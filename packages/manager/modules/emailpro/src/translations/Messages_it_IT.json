@@ -34,7 +34,6 @@
   "emailpro_resilitation_cancel_action_intro": "La disattivazione del servizio Email Pro \"{0}\" è pianificata alla data di scadenza. <br /><br />Se annulli questa operazione, il servizio tornerà in rinnovo automatico. Vuoi continuare? ",
   "emailpro-mxplan_resilitation_cancel_action_intro": "La disattivazione del servizio MX Plan \"{0}\" è pianificata alla data di scadenza. <br /><br />Se annulli questa operazione, il servizio tornerà in rinnovo automatico. Vuoi continuare? ",
   "emailpro_tab_domain_no_domains_1": "Per creare uno o più account Email Pro, aggiungi un dominio. Clicca",
-  "emailpro-mxplan_tab_domain_no_domains_1": "Per creare uno o più account MX Plan, aggiungi un dominio. Clicca",
   "emailpro_tab_domain_diagnostic_mx_no_antispam": "Se utilizzi la modalità non autoritativa (Exchange + altro sistema di posta) con un servizio di posta non ospitato in OVH:",
   "emailpro-mxplan_tab_domain_diagnostic_mx_no_antispam": "Se utilizzi la modalità non autoritativa (MX Plan + altro sistema di posta) con un servizio di posta non ospitato in OVH:",
   "emailpro_tab_domain_diagnostic_mx_antispam": "Se utilizzi la modalità autoritativa (solo Exchange) o non autoritativa con un servizio di posta ospitato in OVH:",
@@ -855,5 +854,6 @@
   "emailpro_tab_MAILING_LIST": "Mailing list",
   "emailpro_tab_REDIRECTION": "Reindirizzamenti",
   "emailpro_navigation_more": "Più",
-  "emailpro_tab_INFORMATIONS_server": "Server"
+  "emailpro_tab_INFORMATIONS_server": "Server",
+  "emailpro-mxplan_tab_domain_no_domains": "Nessun risultato trovato"
 }

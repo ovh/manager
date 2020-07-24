@@ -34,7 +34,6 @@
   "emailpro_resilitation_cancel_action_intro": "Die Stornierung der E-Mail Pro Dienstleistung \"{0}\" ist für das Ablaufdatum festgelegt. <br /><br />Sind Sie sicher, dass Sie die Stornierung abbrechen möchten? Die Dienstleistung wird danach automatisch verlängert.",
   "emailpro-mxplan_resilitation_cancel_action_intro": "Die Kündigung des MX Plan E-Mail-Dienstes „{0}\" ist für das Ablaufdatum programmiert. <br /><br />Sind Sie sicher, dass Sie die Kündigung stornieren möchten? Der Dient wird anschließend automatisch verlängert.",
   "emailpro_tab_domain_no_domains_1": "Eine Domain hinzufügen, um E-Mail Pro Accounts einzurichten. Klicken Sie",
-  "emailpro-mxplan_tab_domain_no_domains_1": "Fügen Sie eine Domain hinzu, um MX Plan Accounts zu erstellen. Klicken Sie",
   "emailpro_tab_domain_diagnostic_mx_no_antispam": "Wenn Sie den nicht-autoritativen Modus (Exchange + ein anderes E-Mail-System) mit einem System verwenden, dass nicht bei OVH gehostet wird:",
   "emailpro-mxplan_tab_domain_diagnostic_mx_no_antispam": "Wenn Sie den nicht-autoritativen Modus (MX Plan E-Mail + anderes E-Mail-System) mit einem System verwenden, das nicht bei OVH gehostet wird:",
   "emailpro_tab_domain_diagnostic_mx_antispam": "Wenn Sie den autoritativen Modus (nur Exchange) oder den nicht-autoritativen Modus mit einem E-Mail-System verwenden (Webhosting E-Mail), das bei OVH gehostet wird:",
@@ -855,5 +854,6 @@
   "emailpro_tab_MAILING_LIST": "Mailinglisten",
   "emailpro_tab_REDIRECTION": "Weiterleitungen",
   "emailpro_navigation_more": "Mehr",
-  "emailpro_tab_INFORMATIONS_server": "Server"
+  "emailpro_tab_INFORMATIONS_server": "Server",
+  "emailpro-mxplan_tab_domain_no_domains": "Keine Ergebnisse gefunden"
 }

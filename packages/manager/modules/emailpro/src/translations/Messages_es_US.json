@@ -34,7 +34,6 @@
   "emailpro_resilitation_cancel_action_intro": "La cancelación del servicio Email Pro «{0}» está programada en su fecha de expiración. <br /><br />¿Está seguro(a) de que desea cancelar esta operación? Si continúa, el servicio pasará a renovación automática.",
   "emailpro-mxplan_resilitation_cancel_action_intro": "La résiliation du service E-mail MX Plan \"{0}\" est programmée à la date d'expiration. <br /><br />Etes-vous sûr(e) de vouloir annuler cette résiliation ? Le service passera alors en renouvellement automatique.",
   "emailpro_tab_domain_no_domains_1": "Añada un dominio para crear cuentas Email Pro. Haga clic",
-  "emailpro-mxplan_tab_domain_no_domains_1": "Ajoutez un domaine afin de créer des comptes MX Plan. Cliquez",
   "emailpro_tab_domain_diagnostic_mx_no_antispam": "Si utiliza el modo no autoritario (Exchange + otro servicio de correo) con un servicio de correo no alojado por OVH:",
   "emailpro-mxplan_tab_domain_diagnostic_mx_no_antispam": "Si vous utilisez le mode non autoritatif (E-mail MX Plan + autre système de messagerie) avec un système de messagerie non hébergé par OVH :",
   "emailpro_tab_domain_diagnostic_mx_antispam": "Si utiliza el modo autoritario (solo Exchange) o no autoritario con un servicio de correo (correo compartido) alojado por OVH:",
@@ -847,5 +846,6 @@
   "email_tab_modal_delete_redirection_heading": "Va a eliminar la redirección:",
   "email_tab_modal_delete_redirection_accounts": "<strong>{0}</strong> hacia <strong>{1}</strong>",
   "emails_common_continue_question": "¿Desea continuar?",
-  "emails_common_account_name_conditions": "Atención, el nombre de la cuenta debe cumplir los siguientes criterios: <br/>- mínimo {0} caracteres,<br/>- máximo {1} caracteres,<br/>- sin espacios,<br/>- sin caracteres acentuados,<br/>- sin caracteres especiales, excepto «.», «-» y «_»."
+  "emails_common_account_name_conditions": "Atención, el nombre de la cuenta debe cumplir los siguientes criterios: <br/>- mínimo {0} caracteres,<br/>- máximo {1} caracteres,<br/>- sin espacios,<br/>- sin caracteres acentuados,<br/>- sin caracteres especiales, excepto «.», «-» y «_».",
+  "emailpro-mxplan_tab_domain_no_domains": "No se han encontrado resultados."
 }

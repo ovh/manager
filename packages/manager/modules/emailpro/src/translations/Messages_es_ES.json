@@ -34,7 +34,6 @@
   "emailpro_resilitation_cancel_action_intro": "La baja del servicio Email Pro «{0}» está programada para su fecha de expiración. <br /><br />¿Seguro que quiere cancelar dicha baja? Si continúa, el servicio pasará a renovación automática.",
   "emailpro-mxplan_resilitation_cancel_action_intro": "La baja del servicio MX Plan «{0}» está programada para su fecha de expiración. <br /><br />¿Seguro que quiere cancelar dicha baja? Si continúa, el servicio pasará a renovación automática.",
   "emailpro_tab_domain_no_domains_1": "Añada un dominio para crear cuentas Email Pro. Haga clic",
-  "emailpro-mxplan_tab_domain_no_domains_1": "Añada un dominio para crear cuentas MX Plan. Haga clic",
   "emailpro_tab_domain_diagnostic_mx_no_antispam": "Si utiliza el modo no autoritario (Exchange + otro servicio de correo) con una solución de correo no alojada en OVH:",
   "emailpro-mxplan_tab_domain_diagnostic_mx_no_antispam": "Si utiliza el modo no autoritario (MX Plan + otro servicio de correo) con una solución de correo no alojada en OVH:",
   "emailpro_tab_domain_diagnostic_mx_antispam": "Si utiliza el modo autoritario (solo Exchange) o no autoritario con una solución de correo alojada en OVH (correo en alojamiento compartido):",
@@ -855,5 +854,6 @@
   "emailpro_tab_MAILING_LIST": "Listas de correo",
   "emailpro_tab_REDIRECTION": "Redirecciones",
   "emailpro_navigation_more": "Más",
-  "emailpro_tab_INFORMATIONS_server": "Servidor"
+  "emailpro_tab_INFORMATIONS_server": "Servidor",
+  "emailpro-mxplan_tab_domain_no_domains": "No se han encontrado resultados"
 }

@@ -34,7 +34,6 @@
   "emailpro_resilitation_cancel_action_intro": "The \"{0}\" Email Pro service is scheduled to close on the expiry date. <br /><br />Are you sure you want to undo this cancellation? The service will then switch to automatic renewal.",
   "emailpro-mxplan_resilitation_cancel_action_intro": "The \"{0}\" MX Plan email service is scheduled to close on the expiry date. <br /><br />Are you sure you want to undo this cancellation? The service will then switch to automatic renewal.",
   "emailpro_tab_domain_no_domains_1": "Add a domain to create Email Pro accounts. Click",
-  "emailpro-mxplan_tab_domain_no_domains_1": "Add a domain to create MX Plan accounts. Click",
   "emailpro_tab_domain_diagnostic_mx_no_antispam": "If you are using non-authoritative mode (Exchange + another email service) with an email service that is not hosted by OVH:",
   "emailpro-mxplan_tab_domain_diagnostic_mx_no_antispam": "If you are using non-authoritative mode (MX Plan email + another email service) with an email service that is not hosted by OVH:",
   "emailpro_tab_domain_diagnostic_mx_antispam": "If you use authoritative (Exchange only) or non-authoritative mode with an email service (hosted email) hosted by OVH:",
@@ -855,5 +854,6 @@
   "emailpro_tab_MAILING_LIST": "Mailing-lists",
   "emailpro_tab_REDIRECTION": "Redirections",
   "emailpro_navigation_more": "More",
-  "emailpro_tab_INFORMATIONS_server": "Server"
+  "emailpro_tab_INFORMATIONS_server": "Server",
+  "emailpro-mxplan_tab_domain_no_domains": "No results found"
 }
