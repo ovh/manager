@@ -1,3 +1,12 @@
+## [1.8.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@1.8.1...@ovh-ux/manager-emailpro@1.8.2) (2020-07-24)
+
+
+### Bug Fixes
+
+* **mxplan:** remove domain add for mxplan ([#3311](https://github.com/ovh/manager/issues/3311)) ([268799f](https://github.com/ovh/manager/commit/268799fa911be87a70730a9777165751afb59744))
+
+
+
 ## [1.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@1.8.0...@ovh-ux/manager-emailpro@1.8.1) (2020-07-09)
 
 
