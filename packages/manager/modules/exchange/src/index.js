@@ -23,6 +23,17 @@ angular
         );
       };
 
+      $stateProvider.state('app.exchanges.**', {
+        url: '/configuration/exchange',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+          return import('./exchanges/exchanges.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
+      });
+
       $stateProvider.state('app.exchange.**', {
         url: '/configuration/exchange/:organization/:productId',
         lazyLoad,
