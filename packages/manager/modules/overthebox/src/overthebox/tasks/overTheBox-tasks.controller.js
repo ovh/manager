@@ -1,8 +1,7 @@
 export default class OverTheBoxTasksCtrl {
   /* @ngInject */
-  constructor($translate, $q, PAGINATION_PER_PAGE, OvhApiOverTheBox, TucToast) {
+  constructor($translate, PAGINATION_PER_PAGE, OvhApiOverTheBox, TucToast) {
     this.$translate = $translate;
-    this.$q = $q;
     this.PAGINATION_PER_PAGE = PAGINATION_PER_PAGE;
     this.OvhApiOverTheBox = OvhApiOverTheBox;
     this.TucToast = TucToast;
@@ -19,7 +18,7 @@ export default class OverTheBoxTasksCtrl {
       perPage: this.PAGINATION_PER_PAGE,
     };
 
-    this.$q.all([this.getTasks()]);
+    this.getTasks();
   }
 
   getTasks() {
