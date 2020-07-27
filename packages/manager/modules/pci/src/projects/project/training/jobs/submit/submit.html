@@ -117,7 +117,7 @@
                 class="oui-button oui-button_ghost"
                 type="button"
                 ng-click="$ctrl.goToData()"
-                data-ng-if="!$ctrl.dataSource.length"
+                data-ng-if="$ctrl.emptyData"
             >
                 <span
                     class="text-danger"
@@ -128,7 +128,7 @@
             <oui-dual-list
                 data-on-add="$ctrl.onAddData(item)"
                 data-source="$ctrl.dataSource"
-                data-ng-if="$ctrl.data.length"
+                data-ng-if="!$ctrl.emptyData"
                 data-property="display"
                 data-target="$ctrl.job.data"
             >

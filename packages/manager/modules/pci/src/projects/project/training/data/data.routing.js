@@ -28,7 +28,7 @@ export default /* @ngInject */ ($stateProvider) => {
         const reload = message && type === 'success';
 
         const promise = $state.go(
-          'pci.projects.project.training.data',
+          'pci.projects.project.training.data.list',
           {
             projectId,
           },
@@ -41,7 +41,7 @@ export default /* @ngInject */ ($stateProvider) => {
           promise.then(() =>
             CucCloudMessage[type](
               message,
-              'pci.projects.project.training.data',
+              'pci.projects.project.training.data.list',
             ),
           );
         }

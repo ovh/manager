@@ -87,6 +87,8 @@ export default class PciTrainingJobsSubmitController {
           display: `${name} (/workspace/${name})`,
         };
       });
+    this.job.data = [];
+    this.emptyData = this.dataSource.length === 0;
   }
 
   cliCommand() {
@@ -103,7 +105,7 @@ export default class PciTrainingJobsSubmitController {
       '--gpu',
       this.job.resources.gpu,
       '\\\n\t',
-      this.job.data.map(({ name }) => `--data ${name}`).join('\\\n\t'),
+      this.job.data.map(({ name }) => `--data ${name} `).join('\\\n\t'),
     ].join(' ');
   }
 

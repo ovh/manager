@@ -81,13 +81,13 @@ export default class PciTrainingDataAddController {
       this.projectId,
       this.computeDataSpec(),
     )
-      .then(() =>
-        this.goBack(
+      .then(() => {
+        return this.goBack(
           this.$translate.instant(
             'pci_projects_project_training_jobs_list_submit_success',
           ),
-        ),
-      )
+        );
+      })
       .catch((error) => {
         this.error = get(error, 'data.message');
       })
