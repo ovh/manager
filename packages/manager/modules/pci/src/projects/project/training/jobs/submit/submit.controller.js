@@ -81,9 +81,9 @@ export default class PciTrainingJobsSubmitController {
         ({ region, user }) =>
           region === this.job.region.name && user === this.job.user.name,
       )
-      .map(({ name }) => {
+      .map(({ name, id }) => {
         return {
-          name: `${name}:/workspace/${name}`,
+          name: `${id}:/workspace/${name}`,
           display: `${name} (/workspace/${name})`,
         };
       });
