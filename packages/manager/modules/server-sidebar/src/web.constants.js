@@ -10,7 +10,7 @@ export const DOMAIN_CONFIG = {
   loadOnState: 'app.domain',
   children: [
     {
-      id: 'domain_all',
+      id: 'domain_bulk',
       state: 'app.domain.all',
       stateUrl: '#/configuration/domains',
       icon: 'ovh-font ovh-font-network',
