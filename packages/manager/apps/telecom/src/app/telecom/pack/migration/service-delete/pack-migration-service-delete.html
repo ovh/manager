@@ -6,7 +6,7 @@
 
     <div
         class="row"
-        data-ng-repeat="subServiceChunk in ServiceDeleteCtrl.chunkedSubServices track by $index"
+        data-ng-repeat="subServiceChunk in $ctrl.chunkedSubServices track by $index"
     >
         <div
             class="widget-presentation col-xs-12 col-md-6"
@@ -31,7 +31,7 @@
                             <input
                                 type="checkbox"
                                 data-ng-model="service.selected"
-                                data-ng-disabled="subService.services.length === subService.numberToDelete || (ServiceDeleteCtrl.selectedSubServiceToDeleteReached(subService) && !service.selected)"
+                                data-ng-disabled="subService.services.length === subService.numberToDelete || ($ctrl.selectedSubServiceToDeleteReached(subService) && !service.selected)"
                             />
                         </div>
                         <span data-ng-bind="service.name"></span>
@@ -51,9 +51,9 @@
         <button
             type="button"
             class="btn btn-primary"
-            data-ng-disabled="!ServiceDeleteCtrl.isValidSelection()"
+            data-ng-disabled="!$ctrl.isValidSelection()"
             data-translate="telecom_pack_migration_service_delete_confirm"
-            data-ng-click="ServiceDeleteCtrl.process.currentStep = ServiceDeleteCtrl.process.selectedOffer.needNewModem ? 'shipping' : 'confirm'"
+            data-ng-click="$ctrl.process.currentStep = $ctrl.process.selectedOffer.needNewModem ? 'shipping' : 'confirm'"
         ></button>
     </div>
 </div>

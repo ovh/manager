@@ -1,10 +1,10 @@
 <div class="telecom-pack-migration-confirm">
-    <div class="text-center" data-ng-if="ConfirmCtrl.loading.migrate">
+    <div class="text-center" data-ng-if="$ctrl.loading.migrate">
         <oui-spinner></oui-spinner>
         <h3 data-translate="telecom_pack_migration_doing"></h3>
     </div>
 
-    <div class="widget-presentation" data-ng-if="!ConfirmCtrl.loading.migrate">
+    <div class="widget-presentation" data-ng-if="!$ctrl.loading.migrate">
         <h2
             class="widget-presentation-title"
             data-translate="telecom_pack_migration_confirm_resume_title"
@@ -12,11 +12,11 @@
 
         <p
             data-translate="telecom_pack_migration_confirm_migrate_to"
-            data-translate-values="{ fromOffer : ConfirmCtrl.process.pack.offerDescription, toOffer : ConfirmCtrl.process.selectedOffer.description }"
+            data-translate-values="{ fromOffer : $ctrl.process.pack.offerDescription, toOffer : $ctrl.process.selectedOffer.description }"
         ></p>
 
         <div
-            data-ng-if="ConfirmCtrl.choosedAdditionalOptions.length > 0 || (ConfirmCtrl.process.selectedOffer.options.gtr_ovh && ConfirmCtrl.process.selectedOffer.options.gtr_ovh.selected)"
+            data-ng-if="$ctrl.choosedAdditionalOptions.length > 0 || ($ctrl.process.selectedOffer.options.gtr_ovh && $ctrl.process.selectedOffer.options.gtr_ovh.selected)"
         >
             <div class="responsive-table-line my-3">
                 <table class="table table-condensed">
@@ -48,12 +48,12 @@
                             <th
                                 scope="row"
                                 data-translate="telecom_pack_migration_confirm_current_offer"
-                                data-translate-values="{ description : ConfirmCtrl.process.selectedOffer.description + ' *' }"
+                                data-translate-values="{ description : $ctrl.process.selectedOffer.description + ' *' }"
                                 data-title="{{ 'telecom_pack_migration_confirm_header_entitled' | translate }}"
                             ></th>
                             <td
                                 class="text-price text-right"
-                                data-ng-bind="ConfirmCtrl.process.selectedOffer.price.text"
+                                data-ng-bind="$ctrl.process.selectedOffer.price.text"
                                 data-title="{{ 'telecom_pack_migration_confirm_header_price' | translate }}"
                             ></td>
                             <td
@@ -63,12 +63,12 @@
                             ></td>
                             <td
                                 class="text-price text-right"
-                                data-ng-bind="ConfirmCtrl.process.selectedOffer.price.text"
+                                data-ng-bind="$ctrl.process.selectedOffer.price.text"
                                 data-title="{{ 'telecom_pack_migration_confirm_header_total' | translate }}"
                             ></td>
                         </tr>
                         <tr
-                            data-ng-repeat="option in ConfirmCtrl.choosedAdditionalOptions track by $index"
+                            data-ng-repeat="option in $ctrl.choosedAdditionalOptions track by $index"
                         >
                             <th
                                 scope="row"
@@ -87,12 +87,12 @@
                             ></td>
                             <td
                                 class="text-price text-right"
-                                data-ng-bind=":: ConfirmCtrl.getOptionPrice(option).text"
+                                data-ng-bind=":: $ctrl.getOptionPrice(option).text"
                                 data-title="{{ 'telecom_pack_migration_confirm_header_total' | translate }}"
                             ></td>
                         </tr>
                         <tr
-                            data-ng-if="ConfirmCtrl.process.selectedOffer.options.gtr_ovh && ConfirmCtrl.process.selectedOffer.options.gtr_ovh.selected"
+                            data-ng-if="$ctrl.process.selectedOffer.options.gtr_ovh && $ctrl.process.selectedOffer.options.gtr_ovh.selected"
                         >
                             <th
                                 scope="row"
@@ -101,7 +101,7 @@
                             ></th>
                             <td
                                 class="text-price text-right"
-                                data-ng-bind="ConfirmCtrl.process.selectedOffer.options.gtr_ovh.optionalPrice.text"
+                                data-ng-bind="$ctrl.process.selectedOffer.options.gtr_ovh.optionalPrice.text"
                                 data-title="{{ 'telecom_pack_migration_confirm_header_price' | translate }}"
                             ></td>
                             <td
@@ -111,7 +111,7 @@
                             ></td>
                             <td
                                 class="text-price text-right"
-                                data-ng-bind="ConfirmCtrl.process.selectedOffer.options.gtr_ovh.optionalPrice.text"
+                                data-ng-bind="$ctrl.process.selectedOffer.options.gtr_ovh.optionalPrice.text"
                                 data-title="{{ 'telecom_pack_migration_confirm_header_total' | translate }}"
                             ></td>
                         </tr>
@@ -121,8 +121,8 @@
 
             <p
                 class="text-asterisk small"
-                data-translate="{{ ConfirmCtrl.process.selectedOffer.engageMonths ? 'telecom_pack_migration_confirm_commitment' : 'telecom_pack_migration_confirm_no_commitment' }}"
-                data-translate-values="{ month : ConfirmCtrl.process.selectedOffer.engageMonths }"
+                data-translate="{{ $ctrl.process.selectedOffer.engageMonths ? 'telecom_pack_migration_confirm_commitment' : 'telecom_pack_migration_confirm_no_commitment' }}"
+                data-translate-values="{ month : $ctrl.process.selectedOffer.engageMonths }"
             ></p>
 
             <p class="text-right">
@@ -130,35 +130,35 @@
                     data-translate="telecom_pack_migration_confirm_resume_total"
                 ></span>
                 <span
-                    data-ng-bind-html="ConfirmCtrl.process.selectedOffer.displayedPrice.text | tucFormatPrice"
+                    data-ng-bind-html="$ctrl.process.selectedOffer.displayedPrice.text | tucFormatPrice"
                 ></span>
             </p>
         </div>
 
         <div
-            data-ng-if="ConfirmCtrl.choosedAdditionalOptions.length === 0 || (!ConfirmCtrl.process.selectedOffer.options.gtr_ovh && !ConfirmCtrl.process.selectedOffer.options.gtr_ovh.selected)"
+            data-ng-if="$ctrl.choosedAdditionalOptions.length === 0 || (!$ctrl.process.selectedOffer.options.gtr_ovh && !$ctrl.process.selectedOffer.options.gtr_ovh.selected)"
         >
             <p
                 data-translate="telecom_pack_migration_confirm_new_offer_price"
-                data-translate-values="{ price : ConfirmCtrl.process.selectedOffer.displayedPrice.text }"
+                data-translate-values="{ price : $ctrl.process.selectedOffer.displayedPrice.text }"
             ></p>
 
             <p
-                data-translate="{{ ConfirmCtrl.process.selectedOffer.engageMonths ? 'telecom_pack_migration_confirm_commitment' : 'telecom_pack_migration_confirm_no_commitment' }}"
-                data-translate-values="{ month : ConfirmCtrl.process.selectedOffer.engageMonths }"
+                data-translate="{{ $ctrl.process.selectedOffer.engageMonths ? 'telecom_pack_migration_confirm_commitment' : 'telecom_pack_migration_confirm_no_commitment' }}"
+                data-translate-values="{ month : $ctrl.process.selectedOffer.engageMonths }"
             ></p>
         </div>
 
         <p
-            data-ng-if="ConfirmCtrl.process.selectedOffer.needNewModem && ConfirmCtrl.process.shipping.mode === 'transporter'"
+            data-ng-if="$ctrl.process.selectedOffer.needNewModem && $ctrl.process.shipping.mode === 'transporter'"
             data-translate="telecom_pack_migration_confirm_shipping"
-            data-translate-values="{ price : ConfirmCtrl.getFirstMensuality().text, transportPrice : ConfirmCtrl.modemTransportPrice }"
+            data-translate-values="{ price : $ctrl.getFirstMensuality().text, transportPrice : $ctrl.modemTransportPrice }"
         ></p>
     </div>
 
     <div
         class="widget-presentation"
-        data-ng-if="!ConfirmCtrl.loading.migrate && ConfirmCtrl.process.selectedOffer.totalSubServiceToDelete > 0"
+        data-ng-if="!$ctrl.loading.migrate && $ctrl.process.selectedOffer.totalSubServiceToDelete > 0"
     >
         <h2
             class="widget-presentation-title"
@@ -167,7 +167,7 @@
 
         <p
             data-translate="telecom_pack_migration_confirm_service_to_delete_total"
-            data-translate-values="{ count : ConfirmCtrl.process.selectedOffer.totalSubServiceToDelete }"
+            data-translate-values="{ count : $ctrl.process.selectedOffer.totalSubServiceToDelete }"
         ></p>
 
         <div class="responsive-table-line my-3">
@@ -191,7 +191,7 @@
                 </thead>
                 <tbody>
                     <tr
-                        data-ng-repeat="serviceToDelete in ConfirmCtrl.process.selectedOffer.subServicesToDelete track by $index"
+                        data-ng-repeat="serviceToDelete in $ctrl.process.selectedOffer.subServicesToDelete track by $index"
                     >
                         <th
                             scope="row"
@@ -204,7 +204,7 @@
                             data-title="{{ 'telecom_pack_migration_confirm_service_to_delete_table_service_count' | translate }}"
                         ></td>
                         <td
-                            data-ng-bind="ConfirmCtrl.getServiceToDeleteList(serviceToDelete)"
+                            data-ng-bind="$ctrl.getServiceToDeleteList(serviceToDelete)"
                             data-title="{{ 'telecom_pack_migration_confirm_service_to_delete_table_service_names' | translate }}"
                         ></td>
                     </tr>
@@ -213,20 +213,20 @@
         </div>
     </div>
 
-    <div class="widget-presentation" data-ng-if="!ConfirmCtrl.loading.migrate">
+    <div class="widget-presentation" data-ng-if="!$ctrl.loading.migrate">
         <h2
             class="widget-presentation-title"
             data-translate="telecom_pack_migration_confirm_contracts_accept_title"
         ></h2>
 
-        <form data-ng-submit="ConfirmCtrl.startMigration()">
+        <form data-ng-submit="$ctrl.startMigration()">
             <div class="checkbox">
                 <label for="acceptContracts">
                     <input
                         type="checkbox"
                         id="acceptContracts"
                         name="acceptContracts"
-                        data-ng-model="ConfirmCtrl.model.acceptContracts"
+                        data-ng-model="$ctrl.model.acceptContracts"
                     />
                     <span
                         data-translate="telecom_pack_migration_confirm_contracts_accept_explain"
@@ -235,7 +235,7 @@
             </div>
             <ul class="list-unstyled mb-5">
                 <li
-                    data-ng-repeat="contract in ConfirmCtrl.process.selectedOffer.contracts track by $index"
+                    data-ng-repeat="contract in $ctrl.process.selectedOffer.contracts track by $index"
                 >
                     <a
                         data-ng-href="{{ contract.url }}"
@@ -259,7 +259,7 @@
             <button
                 type="submit"
                 class="btn btn-primary"
-                data-ng-disabled="!ConfirmCtrl.model.acceptContracts"
+                data-ng-disabled="!$ctrl.model.acceptContracts"
                 data-translate="telecom_pack_migration_confirm_contracts_accept_button"
             ></button>
         </form>
