@@ -10,6 +10,6 @@ export default {
     dataInfo: '<',
     addDataLink: '<',
     attachData: '<',
-    allRegions: '<',
+    regions: '<',
   },
 };

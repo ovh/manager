@@ -4,11 +4,11 @@ import '@ovh-ux/ng-ovh-cloud-universe-components';
 import '@ovh-ux/ng-translate-async-loader';
 import '@uirouter/angularjs';
 import 'angular-translate';
-import 'ovh-ui-angular';
 import 'ovh-api-services';
 
 import component from './submit.component';
 import routing from './submit.routing';
+import data from '../../data/data.service';
 
 const moduleName = 'ovhManagerPciTrainingJobsSubmit';
 
@@ -24,6 +24,7 @@ angular
   ])
   .config(routing)
   .component('pciProjectTrainingJobsSubmitComponent', component)
+  .service('PciProjectTrainingDataService', data)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

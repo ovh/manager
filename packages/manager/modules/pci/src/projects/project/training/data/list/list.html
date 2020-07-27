@@ -15,7 +15,7 @@
     data-rows="$ctrl.allDataList"
     data-row-loader="$row"
 >
-    <oui-column
+    <oui-datagrid-column
         data-title=":: 'pci_projects_project_training_data_id' | translate"
         data-property="id"
         data-type="string"
@@ -23,9 +23,8 @@
         data-filterable
         data-sortable
     >
-        <span data-ng-bind="$value"></span>
-    </oui-column>
-    <oui-column
+    </oui-datagrid-column>
+    <oui-datagrid-column
         data-title=":: 'pci_projects_project_training_data_name' | translate"
         data-property="name"
         data-type="string"
@@ -33,9 +32,18 @@
         data-filterable
         data-sortable
     >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'pci_projects_project_training_data_container' | translate"
+        data-property="container"
+        data-type="string"
+        data-searchable
+        data-filterable
+        data-sortable
+    >
         <span><a href="{{ $row.link }}">{{ $value }}</a></span>
-    </oui-column>
-    <oui-column
+    </oui-datagrid-column>
+    <oui-datagrid-column
         data-title=":: 'pci_projects_project_training_data_region' | translate"
         data-property="region"
         data-type="string"
@@ -43,9 +51,8 @@
         data-filterable
         data-sortable
     >
-        <span data-ng-bind="$value"></span>
-    </oui-column>
-    <oui-column
+    </oui-datagrid-column>
+    <oui-datagrid-column
         data-title=":: 'pci_projects_project_training_data_user' | translate"
         data-property="user"
         data-type="string"
@@ -53,9 +60,8 @@
         data-filterable
         data-sortable
     >
-        <span data-ng-bind="$value"></span>
-    </oui-column>
-    <oui-column
+    </oui-datagrid-column>
+    <oui-datagrid-column
         data-title=":: 'pci_projects_project_training_data_created' | translate"
         data-property="created"
         data-type="string"
@@ -63,9 +69,8 @@
         data-filterable
         data-sortable
     >
-        <span data-ng-bind="$value"></span>
-    </oui-column>
-    <extra-top>
+    </oui-datagrid-column>
+    <oui-datagrid-topbar>
         <a
             data-ng-href="{{ $ctrl.addDataLink }}"
             class="oui-button oui-button_secondary oui-button_icon-left"
@@ -75,5 +80,5 @@
                 data-translate="{{:: 'pci_projects_project_training_data_list_add' | translate }}"
             ></span>
         </a>
-    </extra-top>
+    </oui-datagrid-topbar>
 </oui-datagrid>

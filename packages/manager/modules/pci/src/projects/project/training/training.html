@@ -1,26 +1,33 @@
-<div data-ui-view>
-    <oui-page-header
+<div data-ui-view="content">
+    <oui-header
         class="mb-3"
         data-heading="{{:: 'pci_projects_project_training_title' | translate }}"
     >
         <oui-header-tabs>
             <oui-header-tabs-item
-                data-text="{{:: 'pci_projects_project_training_install_title' | translate }}"
-                data-href="{{:: $ctrl.installLink }}"
                 data-active="$ctrl.currentActiveLink() === $ctrl.installLink"
+                data-href="{{:: $ctrl.installLink }}"
             >
+                <span
+                    data-translate="pci_projects_project_training_install_title"
+                ></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
-                data-text="{{:: 'pci_projects_project_training_jobs_title' | translate }}"
                 data-href="{{:: $ctrl.jobsLink }}"
                 data-active="$ctrl.currentActiveLink() === $ctrl.jobsLink"
             >
+                <span
+                    data-translate="pci_projects_project_training_jobs_title"
+                ></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
                 data-text="{{:: 'pci_projects_project_training_data_title' | translate }}"
                 data-href="{{:: $ctrl.dataLink }}"
                 data-active="$ctrl.currentActiveLink() === $ctrl.dataLink"
             >
+                <span
+                    data-translate="pci_projects_project_training_data_title"
+                ></span>
             </oui-header-tabs-item>
         </oui-header-tabs>
 
@@ -33,7 +40,7 @@
                 ></span>
             </oui-guide-menu-item>
         </oui-guide-menu>
-    </oui-page-header>
+    </oui-header>
 
-    <div class="container-fluid" data-ui-view="trainingView"></div>
+    <div class="container-fluid" data-ui-view></div>
 </div>

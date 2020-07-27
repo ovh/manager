@@ -2,6 +2,7 @@
   "pci_projects_project_training_data_id": "ID",
   "pci_projects_project_training_data_name": "Nom",
   "pci_projects_project_training_data_region": "Region",
+  "pci_projects_project_training_data_container": "Container",
   "pci_projects_project_training_data_created": "Création",
   "pci_projects_project_training_data_user": "Utilisateur",
 
@@ -9,9 +10,12 @@
   "pci_projects_project_training_data_list_message_2": "Pour accéder cette liste via la client, lancer la commande suivante : ",
   "pci_projects_project_training_data_list_add": "Attacher un conteneur de données",
 
-  "pci_projects_project_training_data_add_select_region": "Choisir une région",
+  "pci_projects_project_training_data_add_select_region": "Choisir une région sur laquelle vos données seront disponible",
   "pci_projects_project_training_data_add_select_obj_container": "Choisir les données",
-  "pci_projects_project_training_data_add_select_obj_container_tips": "Choisir un conteneur de données (au sein de l'Object Storage du projet) à syncrhoniser avec les données des tâches",
+  "pci_projects_project_training_data_add_select_obj_container_tips": "Choisir un conteneur de données (au sein de l'Object Storage du projet) à synchroniser avec les données des tâches",
   "pci_projects_project_training_data_add_select_user": "Choisir un utilisateur",
-  "pci_projects_project_training_data_add_select_user_tips": "Choisir l'utilisateur à qui appartiendra la donnée"
+  "pci_projects_project_training_data_add_select_user_tips": "Choisir l'utilisateur à qui appartiendra la donnée",
+  "pci_projects_project_training_data_add_select_name": "Choisir le nom de la data",
+  "pci_projects_project_training_data_add_select_name_tips": "le nom de la data doit être en minuscule",
+  "pci_projects_project_training_data_add_sync_tips": "Importer ma donnée maintenant"
 }

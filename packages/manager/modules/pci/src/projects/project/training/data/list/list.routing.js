@@ -1,9 +1,7 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.training.data.list', {
     url: '/list',
-    views: {
-      dataView: 'pciProjectTrainingDataListComponent',
-    },
+    component: 'pciProjectTrainingDataListComponent',
     resolve: {
       breadcrumb: () => null, // Hide breadcrumb
       containerLink: /* @ngInject */ ($state, projectId) => (containerId) => {

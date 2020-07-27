@@ -5,8 +5,13 @@ export default {
   controller,
   template,
   bindings: {
-    submitJob: '<',
+    projectId: '<',
+    user: '<',
+    presetImages: '<',
+    pricesCatalog: '<',
     allUsers: '<',
-    allRegions: '<',
+    regions: '<',
+    data: '<',
+    goToData: '<',
   },
 };

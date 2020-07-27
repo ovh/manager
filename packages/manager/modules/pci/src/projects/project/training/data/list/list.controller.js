@@ -1,52 +1,44 @@
 export default class PciTrainingJobsListController {
   /* @ngInject */
-  constructor(
-    $state,
-    PciProjectStorageContainersService,
-    CucCloudMessage,
-    CucRegionService,
-  ) {
+  constructor($state, CucCloudMessage, CucRegionService) {
     this.$state = $state;
     this.CucCloudMessage = CucCloudMessage;
     this.CucRegionService = CucRegionService;
-    this.PciProjectStorageContainersService = PciProjectStorageContainersService;
   }
 
   $onInit() {
     this.loadMessages();
-    this.allContainers = [];
-    this.allContainersLoaded = false;
 
-    this.loadAllContainers().then(() => {
-      this.allDataList = this.dataList.map((elt) => {
-        // Link each data to its related PCS container
-        const containerId = this.getContainerId(elt.region, elt.name);
-        const cloneElt = { ...elt };
-        cloneElt.link = containerId;
-        return cloneElt;
-      });
+    this.allDataList = this.dataList.map((data) => {
+      // Link each data to its related PCS container
+      const containerId = PciTrainingJobsListController.getContainerId(
+        data.containerRegion,
+        data.container,
+      );
+
+      const cloneData = { ...data };
+      cloneData.link = containerId;
+      return cloneData;
     });
   }
 
-  getContainerId(region, name) {
-    const filtered = this.allContainers.filter((container) => {
-      return container.name === name && container.region === region;
-    });
-    if (filtered.length > 0) {
-      const containerId = filtered[0].id;
-      return this.containerLink(containerId);
+  static getContainerId(region, name) {
+    return PciTrainingJobsListController.hexEncode(btoa(`${name}.${region}`));
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  static hexEncode(string) {
+    let hex;
+    let i;
+
+    let result = '';
+    // eslint-disable-next-line no-plusplus
+    for (i = 0; i < string.length; i++) {
+      hex = string.charCodeAt(i).toString(16);
+      result += `000${hex}`.slice(-4);
     }
-    return null;
-  }
 
-  loadAllContainers() {
-    return this.PciProjectStorageContainersService.getAll(this.projectId)
-      .then((containers) => {
-        this.allContainers = containers;
-      })
-      .finally(() => {
-        this.allContainersLoaded = true;
-      });
+    return result;
   }
 
   loadMessages() {

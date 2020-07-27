@@ -162,11 +162,11 @@ export const MENU = [
       },
       {
         id: 'training',
-        new: true,
+        beta: true,
         options: {
           state: 'pci.projects.project.training',
         },
-        title: 'ML Training',
+        title: 'Training Platform',
         regions: ['EU'],
       },
     ],

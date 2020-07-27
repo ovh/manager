@@ -1,11 +1,16 @@
 <div class="pci-projects-project-training-data-add">
     <h2>{{:: 'pci_projects_project_training_data_list_add' | translate }}</h2>
+
+    <oui-message type="error" data-ng-if="$ctrl.error">
+        <span data-ng-bind="$ctrl.error"></span>
+    </oui-message>
+
     <oui-stepper data-on-finish="$ctrl.onStepperFinish()">
         <oui-step-form
             data-header="{{:: 'pci_projects_project_training_data_add_select_region' | translate }}"
             data-on-submit="$ctrl.onRegionSubmit()"
-            data-editable="$ctrl.allContainersLoaded"
-            data-loading="!$ctrl.allContainersLoaded"
+            data-editable="$ctrl.allContainersLoaded && !$ctrl.isSubmit"
+            data-loading="!$ctrl.allContainersLoaded || $ctrl.isSubmit"
         >
             <pci-project-regions-list
                 data-regions="$ctrl.regions"
@@ -15,8 +20,8 @@
         </oui-step-form>
         <oui-step-form
             data-header="{{:: 'pci_projects_project_training_data_add_select_obj_container' | translate }}"
-            data-editable="$ctrl.allContainersLoaded"
-            data-loading="!$ctrl.allContainersLoaded"
+            data-editable="$ctrl.allContainersLoaded && !$ctrl.isSubmit"
+            data-loading="!$ctrl.allContainersLoaded || $ctrl.isSubmit"
         >
             <oui-field
                 data-size="xl"
@@ -36,8 +41,8 @@
         </oui-step-form>
         <oui-step-form
             data-header="{{:: 'pci_projects_project_training_data_add_select_user' | translate }}"
-            data-editable="$ctrl.allUsersLoaded"
-            data-loading="!$ctrl.allUsersLoaded"
+            data-editable="$ctrl.allUsersLoaded && !$ctrl.isSubmit"
+            data-loading="!$ctrl.allUsersLoaded || $ctrl.isSubmit"
         >
             <oui-field
                 data-size="xl"
@@ -54,6 +59,33 @@
                     data-required
                 >
                 </oui-select>
+            </oui-field>
+        </oui-step-form>
+        <oui-step-form
+            data-header="{{:: 'pci_projects_project_training_data_add_select_name' | translate }}"
+            data-editable="!$ctrl.isSubmit"
+            data-loading="$ctrl.isSubmit"
+        >
+            <oui-field
+                data-size="xl"
+                data-help-text="{{:: 'pci_projects_project_training_data_add_select_name_tips' | translate  }}"
+            >
+                <input
+                    class="oui-input"
+                    type="text"
+                    id="name"
+                    name="name"
+                    data-ng-model="$ctrl.data.name"
+                    data-required
+                />
+            </oui-field>
+
+            <oui-field
+                data-size="xl"
+                data-label="{{:: 'pci_projects_project_training_data_add_sync_tips' | translate  }}"
+            >
+                <oui-switch data-model="$ctrl.data.sync" name="sync">
+                </oui-switch>
             </oui-field>
         </oui-step-form>
     </oui-stepper>

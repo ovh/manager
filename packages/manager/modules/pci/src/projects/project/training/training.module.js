@@ -4,7 +4,6 @@ import '@ovh-ux/ng-ovh-cloud-universe-components';
 import '@ovh-ux/ng-translate-async-loader';
 import '@uirouter/angularjs';
 import 'angular-translate';
-import 'ovh-ui-angular';
 import 'ovh-api-services';
 
 import labs from '../../../components/project/labs';

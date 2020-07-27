@@ -10,6 +10,6 @@ export default {
     currentActiveLink: '<',
     dataLink: '<',
     allUsers: '<',
-    allRegions: '<',
+    regions: '<',
   },
 };

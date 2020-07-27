@@ -1,17 +1,15 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.training.jobs', {
     url: '/jobs',
-    views: {
-      trainingView: 'pciProjectTrainingJobsComponent',
-    },
+    component: 'pciProjectTrainingJobsComponent',
     redirectTo: {
       state: 'pci.projects.project.training.jobs.list',
     },
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_projects_project_training_jobs_title'),
-      jobList: /* @ngInject */ (PciProjectTrainingJobsService, projectId) =>
-        PciProjectTrainingJobsService.getAll(projectId),
+      presetImages: /* @ngInject */ (PciProjectTrainingService, projectId) =>
+        PciProjectTrainingService.getPresetImages(projectId),
       job: /* @ngInject */ (PciProjectTrainingJobsService, projectId) => (
         jobId,
       ) => PciProjectTrainingJobsService.get(projectId, jobId),
@@ -24,22 +22,33 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('pci.projects.project.training.jobs.submit', {
           projectId,
         }),
-      submitJob: /* @ngInject */ (
-        PciProjectTrainingJobsService,
-        $state,
-        projectId,
-      ) => (jobSpec) =>
-        PciProjectTrainingJobsService.submit(projectId, jobSpec).then(() => {
-          $state.go(
-            'pci.projects.project.training.jobs.list',
-            {
-              projectId,
-            },
-            {
-              reload: true,
-            },
+      goToJobs: ($state, CucCloudMessage, projectId) => (
+        message = false,
+        type = 'success',
+      ) => {
+        const reload = message && type === 'success';
+
+        const promise = $state.go(
+          'pci.projects.project.training.jobs',
+          {
+            projectId,
+          },
+          {
+            reload,
+          },
+        );
+
+        if (message) {
+          promise.then(() =>
+            CucCloudMessage[type](
+              message,
+              'pci.projects.project.training.jobs',
+            ),
           );
-        }),
+        }
+
+        return promise;
+      },
     },
   });
 };

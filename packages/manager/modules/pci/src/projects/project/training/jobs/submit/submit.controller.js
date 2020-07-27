@@ -1,14 +1,35 @@
+import get from 'lodash/get';
+
 export default class PciTrainingJobsSubmitController {
   /* @ngInject */
-  constructor(CucCloudMessage, CucRegionService) {
+  constructor(
+    CucCloudMessage,
+    CucRegionService,
+    PciProjectTrainingJobsService,
+  ) {
     this.CucCloudMessage = CucCloudMessage;
     this.CucRegionService = CucRegionService;
+    this.PciProjectTrainingJobsService = PciProjectTrainingJobsService;
   }
 
   $onInit() {
+    // Form payload
+    this.job = {
+      region: null,
+      image: {
+        id: null,
+      },
+      command: null,
+      user: null,
+      data: [],
+      resources: {
+        gpu: 1,
+      },
+    };
+
     // Load available regions
     this.allRegionsLoaded = false;
-    this.allRegions()
+    this.regions()
       .then((regions) => {
         this.regions = regions;
       })
@@ -29,34 +50,43 @@ export default class PciTrainingJobsSubmitController {
       })
       .finally(() => {
         this.allUsersLoaded = true;
+        if (this.users.length === 1) {
+          // eslint-disable-next-line prefer-destructuring
+          this.job.user = this.users[0];
+        }
       });
 
-    // Form payload
-    this.job = {
-      region: null,
-      image: null,
-      command: null,
-      user: null,
-      resources: {
-        cpu: 1,
-        mem: 1,
-        gpu: 0,
-      },
-    };
+    this.showAdvancedImage = false;
 
     this.loadMessages();
   }
 
-  computePricePerMinute() {
-    let price = this.resources.cpu * this.resources.mem * 0.1;
-    if (this.resources.gpu > 0) {
-      price += 1;
-    }
-    return price;
+  getPrice() {
+    return (
+      this.pricesCatalog[`ai-serving-engine.ml1-c-xl.hour.consumption`]
+        .priceInUcents * this.job.resources.gpu
+    );
   }
 
-  computePricePerHour() {
-    return this.computePricePerMinute() * 60;
+  getTax() {
+    return (
+      this.pricesCatalog[`ai-serving-engine.ml1-c-xl.hour.consumption`].tax *
+      this.job.resources.gpu
+    );
+  }
+
+  setData() {
+    this.dataSource = this.data
+      .filter(
+        ({ region, user }) =>
+          region === this.job.region.name && user === this.job.user.name,
+      )
+      .map(({ name }) => {
+        return {
+          name: `${name}:/workspace/${name}`,
+          display: `${name} (/workspace/${name})`,
+        };
+      });
   }
 
   cliCommand() {
@@ -68,24 +98,21 @@ export default class PciTrainingJobsSubmitController {
       this.job.region.name,
       '\\\n\t',
       '--image',
-      this.job.image,
-      '\\\n\t',
-      '--cpu',
-      this.resources.cpu,
-      '\\\n\t',
-      '--mem',
-      this.resources.mem,
+      this.job.image.id,
       '\\\n\t',
       '--gpu',
-      this.resources.gpu,
+      this.job.resources.gpu,
+      '\\\n\t',
+      this.job.data.map(({ name }) => `--data ${name}`).join('\\\n\t'),
     ].join(' ');
   }
 
   computeJobSpec() {
     return {
-      image: this.job.image,
+      image: this.job.image.id,
       region: this.job.region.name,
       user: this.job.user.name,
+      data: this.job.data.map(({ name }) => name),
       resources: {
         cpu: this.job.resources.cpu,
         gpu: this.job.resources.gpu,
@@ -95,8 +122,7 @@ export default class PciTrainingJobsSubmitController {
   }
 
   onStepperFinish() {
-    const jobsSpec = this.computeJobSpec();
-    this.submitJob(jobsSpec);
+    this.submitJob();
   }
 
   loadMessages() {
@@ -110,5 +136,30 @@ export default class PciTrainingJobsSubmitController {
 
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
+  }
+
+  onClickAdvancedImage() {
+    this.showAdvancedImage = !this.showAdvancedImage;
+  }
+
+  submitJob() {
+    this.isSubmit = true;
+    this.PciProjectTrainingJobsService.submit(
+      this.projectId,
+      this.computeJobSpec(),
+    )
+      .then(() =>
+        this.goBack(
+          this.$translate.instant(
+            'pci_projects_project_training_jobs_list_submit_success',
+          ),
+        ),
+      )
+      .catch((error) => {
+        this.error = get(error, 'data.message');
+      })
+      .finally(() => {
+        this.isSubmit = false;
+      });
   }
 }

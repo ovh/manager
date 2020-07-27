@@ -1,9 +1,7 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.training.data', {
     url: '/data',
-    views: {
-      trainingView: 'pciProjectTrainingDataComponent',
-    },
+    component: 'pciProjectTrainingDataComponent',
     redirectTo: {
       state: 'pci.projects.project.training.data.list',
     },
@@ -23,22 +21,33 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('pci.projects.project.training.data.add', {
           projectId,
         }),
-      attachData: /* @ngInject */ (
-        PciProjectTrainingDataService,
-        $state,
-        projectId,
-      ) => (dataSpec) =>
-        PciProjectTrainingDataService.attach(projectId, dataSpec).then(() => {
-          $state.go(
-            'pci.projects.project.training.data.list',
-            {
-              projectId,
-            },
-            {
-              reload: true,
-            },
+      goToData: ($state, CucCloudMessage, projectId) => (
+        message = false,
+        type = 'success',
+      ) => {
+        const reload = message && type === 'success';
+
+        const promise = $state.go(
+          'pci.projects.project.training.data',
+          {
+            projectId,
+          },
+          {
+            reload,
+          },
+        );
+
+        if (message) {
+          promise.then(() =>
+            CucCloudMessage[type](
+              message,
+              'pci.projects.project.training.data',
+            ),
           );
-        }),
+        }
+
+        return promise;
+      },
     },
   });
 };

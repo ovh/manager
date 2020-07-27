@@ -1,19 +1,25 @@
+import get from 'lodash/get';
+
 export default class PciTrainingDataAddController {
   /* @ngInject */
   constructor(
     PciProjectStorageContainersService,
+    PciProjectTrainingDataService,
     CucCloudMessage,
     CucRegionService,
+    $translate,
   ) {
     this.PciProjectStorageContainersService = PciProjectStorageContainersService;
+    this.PciProjectTrainingDataService = PciProjectTrainingDataService;
     this.CucCloudMessage = CucCloudMessage;
     this.CucRegionService = CucRegionService;
+    this.$translate = $translate;
   }
 
   $onInit() {
     // Load available regions
     this.allRegionsLoaded = false;
-    this.allRegions()
+    this.regions()
       .then((regions) => {
         this.regions = regions;
       })
@@ -21,7 +27,7 @@ export default class PciTrainingDataAddController {
         this.allRegionsLoaded = true;
       });
 
-    // Load avaliable users
+    // Load available users
     this.allUsersLoaded = false;
     this.allUsers()
       .then((users) => {
@@ -60,15 +66,34 @@ export default class PciTrainingDataAddController {
 
   computeDataSpec() {
     return {
-      name: this.data.container.name,
+      container: this.data.container.name,
+      name: this.data.name,
       region: this.data.region.name,
+      containerRegion: this.data.container.region,
       user: this.data.user.name,
+      sync: this.data.sync,
     };
   }
 
   onStepperFinish() {
-    const dataSpec = this.computeDataSpec();
-    this.attachData(dataSpec);
+    this.isSubmit = true;
+    this.PciProjectTrainingDataService.attach(
+      this.projectId,
+      this.computeDataSpec(),
+    )
+      .then(() =>
+        this.goBack(
+          this.$translate.instant(
+            'pci_projects_project_training_jobs_list_submit_success',
+          ),
+        ),
+      )
+      .catch((error) => {
+        this.error = get(error, 'data.message');
+      })
+      .finally(() => {
+        this.isSubmit = false;
+      });
   }
 
   loadMessages() {
@@ -99,9 +124,10 @@ export default class PciTrainingDataAddController {
       .filter(
         ({ region, archive }) => region === this.data.region.name && !archive,
       )
-      .map(({ name }) => {
+      .map(({ name, region }) => {
         return {
           name,
+          region,
           description: `${name} - ${this.data.region.name}`,
         };
       });

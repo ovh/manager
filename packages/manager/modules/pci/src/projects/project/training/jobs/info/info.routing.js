@@ -1,9 +1,7 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.training.jobs.info', {
     url: '/:jobId',
-    views: {
-      jobView: 'pciProjectTrainingJobsInfoComponent',
-    },
+    component: 'pciProjectTrainingJobsInfoComponent',
     resolve: {
       breadcrumb: /* @ngInject */ (jobId) => jobId,
       jobId: /* @ngInject */ ($transition$) => $transition$.params().jobId,

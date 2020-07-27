@@ -33,9 +33,6 @@
   "pci_projects_project_training_jobs_submit_select_resources_tips_gpu": "Number of GPU",
   "pci_projects_project_training_jobs_submit_select_resources_tips_price": "Price",
   "pci_projects_project_training_jobs_submit_select_resources_tips_per_minutes": "Price per minute",
-  "pci_projects_project_training_jobs_submit_select_resources_tips_per_minutes_short": "€/min",
-  "pci_projects_project_training_jobs_submit_select_resources_tips_per_hour": "Price per hour",
-  "pci_projects_project_training_jobs_submit_select_resources_tips_per_hour_short": "€/hour",
   "pci_projects_project_training_jobs_submit_validation": "Validate summary",
   "pci_projects_project_training_jobs_submit_validation_job_summary": "Job Summary",
   "pci_projects_project_training_jobs_submit_validation_equivalent_command": "Equivalent command"

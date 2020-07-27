@@ -108,7 +108,7 @@ export default class PciProjectTrainingDataService {
           resolve(result);
         }, 300);
       });
-      
+
       return promise.then(
         (data) =>
           new Data({

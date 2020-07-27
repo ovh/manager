@@ -1,14 +1,18 @@
+import map from 'lodash/map';
+import Job from './jobs/job.class';
+
 export default class PciProjectTrainingService {
   /* @ngInject */
-  constructor(OvhApiCloudProjectAi, OvhApiCloudProjectUser) {
+  constructor(
+    $q,
+    OvhApiCloudProjectAi,
+    OvhApiCloudProjectUser,
+    CucPriceHelper,
+  ) {
+    this.$q = $q;
     this.OvhApiCloudProjectAi = OvhApiCloudProjectAi;
     this.OvhApiCloudProjectUser = OvhApiCloudProjectUser;
-    this.regions = [
-      {
-        name: 'GRA',
-        hasEnoughQuota: () => true,
-      },
-    ];
+    this.CucPriceHelper = CucPriceHelper;
   }
 
   // Check if the given projectId has already been authorized on training platform
@@ -39,7 +43,42 @@ export default class PciProjectTrainingService {
     }).$promise;
   }
 
-  getAllRegions() {
-    return Promise.resolve(this.regions);
+  getPresetImages(serviceName) {
+    return this.OvhApiCloudProjectAi.Capabilities()
+      .Training()
+      .PresetImage()
+      .v6()
+      .query({
+        serviceName,
+      }).$promise;
+  }
+
+  getPricesFromCatalog(serviceName) {
+    return this.CucPriceHelper.getPrices(serviceName);
+  }
+
+  getRegions(serviceName) {
+    return this.OvhApiCloudProjectAi.Capabilities()
+      .Training()
+      .Region()
+      .v6()
+      .query({
+        serviceName,
+      })
+      .$promise.then((regions) => {
+        const promises = map(regions, (regionName) => ({
+          name: regionName,
+          hasEnoughQuota: () => true,
+        }));
+        return this.$q.all(promises);
+      });
+  }
+
+  getAllJobs(projectId) {
+    return this.OvhApiCloudProjectAi.Training()
+      .Job()
+      .v6()
+      .query({ serviceName: projectId })
+      .$promise.then((jobs) => jobs.map((job) => new Job({ ...job })));
   }
 }
