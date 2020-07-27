@@ -1,18 +1,32 @@
-import controller from './private-database.controller';
-import routing from './private-database.routing';
-import service from './private-database.service';
-import tabController from './private-database-tabs.controller';
+import angular from 'angular';
+import '@uirouter/angularjs';
+import 'oclazyload';
 
-import orderCloudDb from './order/clouddb';
+const moduleName = 'ovhManagerPrivateDatabasesLazyLoading';
 
-const moduleName = 'ovhManagerWebPrivateDatabaseModule';
+angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
+  /* @ngInject */ ($stateProvider) => {
+    $stateProvider.state('app.private-database.**', {
+      url: '/configuration/private_database/:productId',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-angular
-  .module(moduleName, [orderCloudDb])
-  .config(routing)
-  .controller('PrivateDatabaseCtrl', controller)
-  .controller('PrivateDatabaseTabsCtrl', tabController)
-  .service('PrivateDatabase', service)
-  .run(/* @ngTranslationsInject:json ./translations */);
+        return import('./private-database.module').then((mod) =>
+          $ocLazyLoad.inject(mod.default || mod),
+        );
+      },
+    });
 
+    $stateProvider.state('app.private-databases.**', {
+      url: '/configuration/private_database',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./private-databases/databases.module').then((mod) =>
+          $ocLazyLoad.inject(mod.default || mod),
+        );
+      },
+    });
+  },
+);
 export default moduleName;
