@@ -70,8 +70,6 @@ import './ftp/user/update/hosting-ftp-user-update.controller';
 import './general-informations/GENERAL_INFORMATIONS.controller';
 import './general-informations/general-informations.constants';
 import './hosting.constant';
-import './hosting.controller';
-import './hosting.routes';
 import './hosting.service';
 import './indy/hosting-indy.controller';
 import './indy/hosting-indy.service';
