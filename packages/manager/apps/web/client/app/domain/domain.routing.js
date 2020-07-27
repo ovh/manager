@@ -31,11 +31,6 @@ const commonResolves = {
 };
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.domain', {
-    abstract: true,
-    template: '<div ui-view></div>',
-  });
-
   $stateProvider.state('app.domain.product', {
     url: '/configuration/domain/:productId',
     templateUrl: 'domain/domain.html',

@@ -1,31 +1,48 @@
-import ovhManagerAdvices from '@ovh-ux/manager-advices';
-import generalInformationsState from './general-informations/domain-general-informations.state';
+import angular from 'angular';
+import '@uirouter/angularjs';
+import 'oclazyload';
 
-import anycast from './anycast';
-import emailObfuscation from './email-obfuscation/index';
-import optin from './optin/index';
-import webhosting from './webhosting';
-import webhostingEnable from './general-informations/webhosting-enable/enable.module';
-import zoneActivation from './general-informations/activateZone/activate.module';
+const moduleName = 'ovhManagerDomainsLazyLoading';
 
-import dnsZone from '../dns-zone';
+angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
+  /* @ngInject */ ($stateProvider) => {
+    $stateProvider.state('app.domain', {
+      abstract: true,
+      template: '<div ui-view></div>',
+    });
 
-import routing from './domain.routing';
+    $stateProvider.state('app.domain.index.**', {
+      url: '/configuration/domain',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-const moduleName = 'ovhManagerWebDomainModule';
+        return import('./domains/domains.module').then((mod) =>
+          $ocLazyLoad.inject(mod.default || mod),
+        );
+      },
+    });
 
-angular
-  .module(moduleName, [
-    anycast,
-    dnsZone,
-    emailObfuscation,
-    optin,
-    ovhManagerAdvices,
-    webhosting,
-    webhostingEnable,
-    zoneActivation,
-  ])
-  .config(routing)
-  .config(generalInformationsState);
+    $stateProvider.state('app.domain.alldom.**', {
+      url: '/configuration/all_dom/:allDom/:productId',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
+        return import('./domain.module').then((mod) =>
+          $ocLazyLoad.inject(mod.default || mod),
+        );
+      },
+    });
+
+    $stateProvider.state('app.domain.product.**', {
+      url: '/configuration/domain/:productId',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./domain.module').then((mod) =>
+          $ocLazyLoad.inject(mod.default || mod),
+        );
+      },
+    });
+  },
+);
 export default moduleName;
