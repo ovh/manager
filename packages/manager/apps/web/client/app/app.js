@@ -49,7 +49,7 @@ import domain from './domain';
 import domainDnsZone from './dns-zone';
 import emailDomainOrder from './email-domain/order';
 import errorPage from './error-page/error-page.module';
-import hosting from './hosting/hosting.module';
+import hosting from './hosting';
 import privateDatabase from './private-database';
 import zone from './domain/zone/zone.module';
 
