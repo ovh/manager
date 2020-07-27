@@ -17,6 +17,7 @@
   },
   "peerDependencies": {
     "@ovh-ux/manager-core": "^10.0.0 || ^11.0.0",
+    "@ovh-ux/manager-ng-layout-helpers": "^1.1.0 || ^2.0.0",
     "@ovh-ux/ng-ovh-export-csv": "^2.0.0",
     "@ovh-ux/ng-ovh-http": "^5.0.0",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.1",
