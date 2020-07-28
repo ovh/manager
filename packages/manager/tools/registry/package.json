@@ -27,6 +27,7 @@
     "commander": "^4.0.0",
     "express": "^4.17.1",
     "fs-extra": "^9.0.1",
+    "multimatch": "^4.0.0",
     "semver": "^7.3.2"
   },
   "engines": {
