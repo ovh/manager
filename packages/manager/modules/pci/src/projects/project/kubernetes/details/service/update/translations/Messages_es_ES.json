@@ -2,7 +2,7 @@
   "kube_service_update_common_confirm": "Confirmar",
   "kube_service_update_common_cancel": "Cancelar",
   "kube_service_update_title": "Forzar la actualización ahora",
-  "kube_service_update_message": "La actualización puede hacer que los nodos dejen de estar disponibles durante uno o dos minutos. OVH utiliza la actualización continua («rolling upgrade with node drain») para reducir al mínimo, o incluso eliminar por completo, el impacto en los servicios expuestos.",
+  "kube_service_update_message": "La actualización puede hacer que cada nodo deje de estar disponible entre uno y dos minutos. Utilizamos la actualización continua («rolling upgrade with node drain») para minimizar o eliminar el impacto en los servicios expuestos.",
   "kube_service_update_success": "Actualizando el cluster Kubernetes...",
   "kube_service_update_error": "Se ha producido un error al actualizar el cluster: {{ message }}.",
   "kube_service__minor_version_update_title": "Pasar a la siguiente versión menor de Kubernetes",

@@ -43,5 +43,7 @@
   "kube_nodes_switch_billing_type_success": "Il tipo di fatturazione del nodo è stata modificata in fatturazione mensile.",
   "kube_nodes_switch_billing_type_error": "Impossibile attivare la fatturazione mensile: {{ message }}",
   "kube_nodes_delete_many": "Elimina nodi",
-  "kube_nodes_delete_select_nodes": "Seleziona il numero di nodi da eliminare"
+  "kube_nodes_delete_select_nodes": "Seleziona il numero di nodi da eliminare",
+  "kube_nodes_add_nodes": "Aggiungi nodi",
+  "kube_nodes_delete_nodes": "Elimina nodi"
 }

@@ -42,6 +42,8 @@
   "kube_nodes_switch_to_monthly_billing_info": "Otrzymasz natychmiast fakturę opiewającą na kwotę odpowiadającą liczbie dni do końca miesiąca.",
   "kube_nodes_switch_billing_type_success": "Sposób rozliczania za użycie węzła został zmieniony na płatność miesięczną",
   "kube_nodes_switch_billing_type_error": "Nie można zmienić płatności na miesięczną: {{ message }}.",
-  "kube_nodes_delete_many": "Usuń pule",
-  "kube_nodes_delete_select_nodes": "Wybierz liczbę węzłów, które mają zostać usunięte"
+  "kube_nodes_delete_many": "Usuń węzły",
+  "kube_nodes_delete_select_nodes": "Wybierz liczbę węzłów, które mają zostać usunięte",
+  "kube_nodes_add_nodes": "Dodaj węzły",
+  "kube_nodes_delete_nodes": "Usuń węzły"
 }
