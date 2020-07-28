@@ -10,6 +10,6 @@ export default {
     data: '<',
     dataInfo: '<',
     addDataLink: '<',
-    containerLink: '<',
+    goToContainer: '<',
   },
 };

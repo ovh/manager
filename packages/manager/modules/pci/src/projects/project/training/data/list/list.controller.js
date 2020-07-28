@@ -11,13 +11,13 @@ export default class PciTrainingJobsListController {
 
     this.allDataList = this.dataList.map((data) => {
       // Link each data to its related PCS container
-      const containerId = PciTrainingJobsListController.getContainerId(
+      const containerLink = PciTrainingJobsListController.getContainerId(
         data.containerRegion,
         data.container,
       );
 
       const cloneData = { ...data };
-      cloneData.link = containerId;
+      cloneData.containerLink = containerLink;
       return cloneData;
     });
   }
@@ -35,7 +35,7 @@ export default class PciTrainingJobsListController {
     // eslint-disable-next-line no-plusplus
     for (i = 0; i < string.length; i++) {
       hex = string.charCodeAt(i).toString(16);
-      result += `000${hex}`.slice(-4);
+      result += `${hex}`.slice(-4);
     }
 
     return result;
