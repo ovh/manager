@@ -1,5 +1,5 @@
 {
-  "dedicated_server_interfaces_ola_terminate_action": "Résilier",
+  "dedicated_server_interfaces_ola_terminate_action": "Confirmer",
   "dedicated_server_interfaces_ola_terminate_kvm_warning": "Une fois l'option résiliée, n'oubliez pas de régler vos interfaces via KVM IPMI pour retrouver votre configuration d'origine.",
   "dedicated_server_interfaces_ola_terminate_explanation": "Votre offre se terminera à la prochaine date de renouvellement.",
   "dedicated_server_interfaces_ola_terminate_text": "Êtes-vous sûr de vouloir résilier l'option OVH Link Aggregation (OLA) ?"
