@@ -37,7 +37,7 @@ Commands:
 
 *Common Options*
 
-* `-V, --version` : Display version number
+* `-V, --version`: Display version number
 * `-h, --help`: Display help
 
 #### Dev
@@ -51,6 +51,7 @@ Usage: manager-registry-dev [options] <fragmentsPath>
 Options:
   -V, --version                          output the version number
   -p, --port <port>                      server port (default: 8888)
+  -e, --regexp <pattern>                 filter fragment pattern (default: [])
   --fallbackRegistry <fallbackRegistry>  Fallback server registry url
   -h, --help                             output usage information
 
@@ -58,8 +59,9 @@ Options:
 
 *Options*
 
-* `-p, --port <port>` : Server port (default: 8888)
-* `--fallbackRegistry <fallbackRegistry>` : Fallback server registry url
+* `-p, --port <port>`: Server port (default: 8888)
+* `-e, --regexp <pattern>`: Allows to filter fragments served (multiple allowed)
+* `--fallbackRegistry <fallbackRegistry>`: Fallback server registry url
 
 *Examples*
 
@@ -74,8 +76,21 @@ Serve: ./packages/manager/fragments - localhost:1234
 To serve fragments from dev environmment, and fallback missing fragments to another registry:
 ```sh
 $ manager-registry dev ./packages/manager/fragments --fallbackRegistry http://localhost:1234
-Serve: ./packages/manager/fragments  - localhost:8888
+Serve: ./packages/manager/fragments - localhost:8888
 Fallback registry: http://localhost:1234
+```
+
+
+To serve only the `navbar` fragment:
+```sh
+$ manager-registry dev ./packages/manager/fragments -e navbar
+Serve: ./packages/manager/fragments - localhost:8888
+```
+
+To serve only fragments with name following `*bar` and `!sidebar` patterns (e.g. `navbar`, `userbar`):
+```sh
+$ manager-registry dev ./packages/manager/fragments -e '*bar' -e '!sidebar'
+Serve: ./packages/manager/fragments - localhost:8888
 ```
 
 #### Static
@@ -114,7 +129,7 @@ Options:
 
 *Options*
 
-* `--fallbackRegistry <fallbackRegistry>` : Fallback server registry url
+* `--fallbackRegistry <fallbackRegistry>`: Fallback server registry url
 
 *Examples*
 
