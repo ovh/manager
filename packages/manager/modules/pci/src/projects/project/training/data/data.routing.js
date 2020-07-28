@@ -6,7 +6,8 @@ export default /* @ngInject */ ($stateProvider) => {
       state: 'pci.projects.project.training.data.list',
     },
     resolve: {
-      breadcrumb: /* @ngInject */ ($translate) => $translate.instant('Data'),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('pci_projects_project_training_data_title'),
       dataList: /* @ngInject */ (PciProjectTrainingDataService, projectId) =>
         PciProjectTrainingDataService.getAll(projectId),
       data: /* @ngInject */ (PciProjectTrainingDataService, projectId) => (
