@@ -70,7 +70,9 @@
                 'oui-status_error': ($row.state === 'FAILED')
             }"
         >
-            <span data-ng-bind=":: $row.state"></span>
+            <span
+                data-translate="{{:: 'pci_projects_project_training_jobs_state_' + $value }}"
+            ></span>
         </span>
     </oui-datagrid-column>
     <oui-datagrid-column

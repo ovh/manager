@@ -12,6 +12,8 @@ export default /* @ngInject */ ($stateProvider) => {
         $translate.instant('pci_projects_project_training_jobs_list_submit'),
       data: /* @ngInject */ (PciProjectTrainingDataService, projectId) =>
         PciProjectTrainingDataService.getAll(projectId),
+      presetImages: /* @ngInject */ (PciProjectTrainingService, projectId) =>
+        PciProjectTrainingService.getPresetImages(projectId),
       goToData: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.training.data.add', {
           projectId,

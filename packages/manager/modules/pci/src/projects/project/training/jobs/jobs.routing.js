@@ -8,8 +8,6 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_projects_project_training_jobs_title'),
-      presetImages: /* @ngInject */ (PciProjectTrainingService, projectId) =>
-        PciProjectTrainingService.getPresetImages(projectId),
       job: /* @ngInject */ (PciProjectTrainingJobsService, projectId) => (
         jobId,
       ) => PciProjectTrainingJobsService.get(projectId, jobId),
