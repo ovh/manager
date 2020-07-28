@@ -43,5 +43,7 @@
   "kube_nodes_switch_billing_type_success": "O tipo de faturação do nó foi alterado para uma faturação mensal",
   "kube_nodes_switch_billing_type_error": "Não foi possível passar para uma faturação mensal: {{ message }}",
   "kube_nodes_delete_many": "Eliminar nós",
-  "kube_nodes_delete_select_nodes": "Selecione o número de nós que pretende eliminar"
+  "kube_nodes_delete_select_nodes": "Selecione o número de nós que pretende eliminar",
+  "kube_nodes_add_nodes": "Adicionar nós",
+  "kube_nodes_delete_nodes": "Eliminar nós"
 }

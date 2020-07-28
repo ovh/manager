@@ -42,6 +42,8 @@
   "kube_nodes_switch_to_monthly_billing_info": "Se emitirá inmediatamente una factura de la parte proporcional al período restante del mes actual.",
   "kube_nodes_switch_billing_type_success": "La facturación del nodo ha cambiado a la modalidad mensual.",
   "kube_nodes_switch_billing_type_error": "No es posible cambiar la facturación a la modalidad mensual: {{ message }}",
-  "kube_nodes_delete_many": "Eliminar los nodos",
-  "kube_nodes_delete_select_nodes": "Seleccione el número de nodos que quiere eliminar."
+  "kube_nodes_delete_many": "Eliminar nodos",
+  "kube_nodes_delete_select_nodes": "Seleccione el número de nodos que quiere eliminar.",
+  "kube_nodes_add_nodes": "Añadir nodos",
+  "kube_nodes_delete_nodes": "Eliminar nodos"
 }

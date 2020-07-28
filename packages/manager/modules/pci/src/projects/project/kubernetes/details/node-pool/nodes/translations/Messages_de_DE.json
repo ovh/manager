@@ -43,5 +43,7 @@
   "kube_nodes_switch_billing_type_success": "Der Abrechnungstyp des Nodes wurde auf monatliche Abrechnung umgestellt.",
   "kube_nodes_switch_billing_type_error": "Es konnte nicht auf monatliche Abrechnung umgestellt werden: {{ message }}",
   "kube_nodes_delete_many": "Nodes löschen",
-  "kube_nodes_delete_select_nodes": "Wählen Sie die Anzahl der zu löschenden Nodes aus"
+  "kube_nodes_delete_select_nodes": "Wählen Sie die Anzahl der zu löschenden Nodes aus",
+  "kube_nodes_add_nodes": "Nodes hinzufügen",
+  "kube_nodes_delete_nodes": "Nodes löschen"
 }

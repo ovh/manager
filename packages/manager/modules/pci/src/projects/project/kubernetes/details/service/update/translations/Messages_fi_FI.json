@@ -2,7 +2,7 @@
   "kube_service_update_common_confirm": "Confirm",
   "kube_service_update_common_cancel": "Cancel",
   "kube_service_update_title": "Force update now",
-  "kube_service_update_message": "The update may result in an unavailability of one to two minutes for each of your nodes. We use rolling upgrade with node drain to make the impact on your exposed services minimal or transparent.",
+  "kube_service_update_message": "The upgrade may result in each of your nodes being unavailable for a period of around 1-2 minutes. We will use a rolling upgrade with node drain, to minimise the impact on your exposed services, or make it transparent.",
   "kube_service_update_success": "Your Kubernetes cluster is updating.",
   "kube_service_update_error": "An error has occurred updating your cluster: {{ message }}",
   "kube_service__minor_version_update_title": "Upgrade to the next minor version of Kubernetes",
