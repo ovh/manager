@@ -1,7 +1,7 @@
 import { find, get } from 'lodash-es';
 
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
-import { urlQueryParams, params, component, resolves } from './config';
+import { component, resolves } from './config';
 
 export const genericProductResolve = {
   apiPath: /* @ngInject */ (resourcePath) =>
@@ -20,8 +20,8 @@ export const genericProductResolve = {
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dashboard.products', {
-    url: `:product?${urlQueryParams}`,
-    params,
+    url: `:product?${ListLayoutHelper.urlQueryParams}`,
+    params: ListLayoutHelper.stateParams,
     component,
     redirectTo: (trans) =>
       trans
@@ -29,7 +29,6 @@ export default /* @ngInject */ ($stateProvider) => {
         .getAsync('products')
         .then((products) => (products ? false : 'app.dashboard')),
     resolve: {
-      ...ListLayoutHelper.stateResolves,
       ...resolves,
       ...genericProductResolve,
       productType: /* @ngInject */ ($transition$) =>
