@@ -6,15 +6,10 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import 'ovh-api-services';
 
-import info from './info';
-import list from './list';
-import submit from './submit';
-import kill from './kill';
-import component from './jobs.component';
-import routing from './jobs.routing';
-import service from './jobs.service';
+import component from './kill.component';
+import routing from './kill.routing';
 
-const moduleName = 'ovhManagerPciTrainingJobs';
+const moduleName = 'ovhManagerPciTrainingJobsKill';
 
 angular
   .module(moduleName, [
@@ -25,14 +20,9 @@ angular
     'ovhManagerCore',
     'pascalprecht.translate',
     'ui.router',
-    info,
-    list,
-    submit,
-    kill,
   ])
   .config(routing)
-  .component('pciProjectTrainingJobsComponent', component)
-  .service('PciProjectTrainingJobsService', service)
+  .component('pciProjectTrainingJobsKillComponent', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
