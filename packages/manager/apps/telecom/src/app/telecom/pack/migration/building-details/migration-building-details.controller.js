@@ -1,4 +1,5 @@
 import has from 'lodash/has';
+import { FIBER_PTO } from './migration-building-details.constant';
 
 export default class TelecomPackMigrationBuildingDetailsCtrl {
   /* @ngInject */
@@ -75,9 +76,20 @@ export default class TelecomPackMigrationBuildingDetailsCtrl {
     this.process.selectedOffer.buildingReference = this.model.selectedBuilding.reference;
     this.process.selectedOffer.stair = this.model.selectedStair.stair.value;
     this.process.selectedOffer.floor = this.model.selectedFloor.value;
-    this.process.selectedOffer.pto = this.model.pto;
-    if (this.model.pto && !this.model.ptoReferenceNotKnown) {
-      this.process.selectedOffer.ptoReference = this.model.ptoReference;
+
+    switch (this.model.pto) {
+      case FIBER_PTO.FIBER_PTO_YES:
+        this.process.selectedOffer.pto = true;
+        this.process.selectedOffer.ptoReference = this.model.ptoReference;
+        break;
+      case FIBER_PTO.FIBER_PTO_NO:
+        this.process.selectedOffer.pto = false;
+        break;
+      case FIBER_PTO.FIBER_PTO_YES_BUT_NOT_KNOWN:
+        this.process.selectedOffer.pto = true;
+        break;
+      default:
+        break;
     }
 
     if (this.process.selectedOffer.totalSubServiceToDelete > 0) {
@@ -96,17 +108,21 @@ export default class TelecomPackMigrationBuildingDetailsCtrl {
       this.model.selectedFloor != null &&
       this.model.pto != null
     ) {
-      if (
-        this.model.pto &&
-        ((this.model.ptoReference != null && this.model.ptoReference !== '') ||
-          this.model.ptoReferenceNotKnown)
-      ) {
-        return true;
+      switch (this.model.pto) {
+        case FIBER_PTO.FIBER_PTO_YES:
+          if (
+            this.model.ptoReference != null &&
+            this.model.ptoReference !== ''
+          ) {
+            return true;
+          }
+          return false;
+        case FIBER_PTO.FIBER_PTO_NO:
+        case FIBER_PTO.FIBER_PTO_YES_BUT_NOT_KNOWN:
+          return true;
+        default:
+          return false;
       }
-      if (!this.model.pto) {
-        return true;
-      }
-      return false;
     }
     return false;
   }

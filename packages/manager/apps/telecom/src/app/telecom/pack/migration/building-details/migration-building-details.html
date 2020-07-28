@@ -66,31 +66,63 @@
         <div>
             <h3 data-translate="telecom_pack_migration_pto_title"></h3>
             <div data-translate="telecom_pack_migration_pto_description"></div>
-            <div class="form-inline">
-                <div class="form-group">
-                    <oui-radio
-                        name="radioPto"
-                        model="$ctrl.model.pto"
-                        value="true"
-                    >
-                        <span
-                            data-translate="telecom_pack_migration_pto_check_yes"
-                        ></span>
-                    </oui-radio>
+            <div class="row">
+                <div class="form-inline">
+                    <div class="form-group">
+                        <oui-radio
+                            name="radioPto"
+                            model="$ctrl.model.pto"
+                            value="'no'"
+                        >
+                            <span
+                                data-translate="telecom_pack_migration_pto_check_no"
+                            ></span>
+                            <button
+                                type="button"
+                                class="oui-popover-button"
+                                oui-popover="{{'telecom_pack_migration_pto_no_description' | translate}}"
+                            ></button>
+                        </oui-radio>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <oui-radio
-                        name="radioPto"
-                        model="$ctrl.model.pto"
-                        value="false"
-                    >
-                        <span
-                            data-translate="telecom_pack_migration_pto_check_no"
-                        ></span>
-                    </oui-radio>
+                <div class="form-inline">
+                    <div class="form-group">
+                        <oui-radio
+                            name="radioPto"
+                            model="$ctrl.model.pto"
+                            value="'yesNotKnown'"
+                        >
+                            <span
+                                data-translate="telecom_pack_migration_pto_yes_not_known"
+                            ></span>
+                            <button
+                                type="button"
+                                class="oui-popover-button"
+                                oui-popover="{{'telecom_pack_migration_pto_yes_not_known_description' | translate}}"
+                            ></button>
+                        </oui-radio>
+                    </div>
+                </div>
+                <div class="form-inline">
+                    <div class="form-group">
+                        <oui-radio
+                            name="radioPto"
+                            model="$ctrl.model.pto"
+                            value="'yes'"
+                        >
+                            <span
+                                data-translate="telecom_pack_migration_pto_yes"
+                            ></span>
+                            <button
+                                type="button"
+                                class="oui-popover-button"
+                                oui-popover="{{'telecom_pack_migration_pto_yes_description' | translate}}"
+                            ></button>
+                        </oui-radio>
+                    </div>
                 </div>
             </div>
-            <div class="form-inline" data-ng-if="$ctrl.model.pto">
+            <div class="form-inline" data-ng-if="$ctrl.model.pto === 'yes'">
                 <div class="form-group">
                     <label
                         for="referencePto"
@@ -105,7 +137,7 @@
                     />
                 </div>
             </div>
-            <div class="form-inline" data-ng-if="$ctrl.model.pto">
+            <div class="form-inline" data-ng-if="$ctrl.model.pto === 'yes'">
                 <div class="form-group">
                     <strong
                         class="d-block"
@@ -114,18 +146,6 @@
                     <div
                         data-translate="telecom_pack_migration_pto_where_description"
                     ></div>
-                </div>
-            </div>
-            <div class="form-inline" data-ng-if="$ctrl.model.pto">
-                <div class="form-group">
-                    <oui-checkbox
-                        model="$ctrl.model.ptoReferenceNotKnown"
-                        name="checkPtoYes"
-                    >
-                        <span
-                            data-translate="telecom_pack_migration_pto_yes_not_known"
-                        ></span>
-                    </oui-checkbox>
                 </div>
             </div>
         </div>

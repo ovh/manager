@@ -130,6 +130,11 @@
   "telecom_pack_migration_pto_check_no": "Non je ne dispose pas d'un boîter PTO",
   "telecom_pack_migration_pto_reference": "Saisissez votre référence PTO",
   "telecom_pack_migration_pto_where": "Où trouver votre numéro de référence du boîtier PTO ?",
-  "telecom_pack_migration_pto_where_description": "Cette référence est inscrite sur le boîtier PTO et est composée de chiffres et de lettres sous la forme OO-XXXX-XXXX /C",
-  "telecom_pack_migration_pto_yes_not_known": "J'ai un boîtier mais je ne connais pas son numéro"
+  "telecom_pack_migration_pto_where_description": "Cette référence est inscrite sur le boîtier PTO et est composée de chiffres et de lettres sous la forme OO-XXXX-XXXX",
+  "telecom_pack_migration_pto_yes_not_known": "J'ai un boîtier mais je ne connais pas son numéro",
+  "telecom_pack_migration_pto_yes": "J'ai un boîtier avec la réfèrence suivante",
+  "telecom_pack_migration_pto_yes_description": "Nous procéderons à l'écrasement de la prise optique (PTO) existante.",
+  "telecom_pack_migration_pto_no_description": "Un technicien procèdera à l'installation d'une prise optique (PTO) lors de son intervention.",
+  "telecom_pack_migration_pto_yes_not_known": "J'ai un boîtier mais je ne connais pas son numéro",
+  "telecom_pack_migration_pto_yes_not_known_description": "Avez-vous bien vérifié que vous ne disposez pas de la réfèrence de la prise optique (PTO) ? Cela peut avoir avoir une incidence sur le délai de votre raccordement."
 }
