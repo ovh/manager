@@ -121,8 +121,7 @@ export default class OverTheBoxDetailsCtrl {
    * @param series
    * @returns {{max: number, current: number, rateMbps: number, rateUnit: string}}
    */
-  // eslint-disable-next-line class-methods-use-this
-  computeSpeed(series) {
+  static computeSpeed(series) {
     let max = 0;
     let currentMax = 0;
     let rateUnit = 'Mbps';
@@ -152,8 +151,7 @@ export default class OverTheBoxDetailsCtrl {
     };
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  makeGraphPositive(graph) {
+  static makeGraphPositive(graph) {
     forEach(Object.keys(graph.dps), (key) => {
       // eslint-disable-next-line no-param-reassign
       graph.dps[key] = graph.dps[key] < 0 ? 0 : graph.dps[key];
@@ -190,14 +188,14 @@ export default class OverTheBoxDetailsCtrl {
           (d) => this.kpiInterfaces.indexOf(d.tags.iface) > -1,
         );
 
-        forEach(filteredDown, this.makeGraphPositive);
-        this.download = this.computeSpeed(filteredDown);
+        forEach(filteredDown, this.constructor.makeGraphPositive);
+        this.download = this.constructor.computeSpeed(filteredDown);
 
         const filteredUp = outData.filter(
           (d) => this.kpiInterfaces.indexOf(d.tags.iface) > -1,
         );
-        forEach(filteredUp, this.makeGraphPositive);
-        this.upload = this.computeSpeed(filteredUp);
+        forEach(filteredUp, this.constructor.makeGraphPositive);
+        this.upload = this.constructor.computeSpeed(filteredUp);
 
         // Download chart
         this.chartDown = new this.TucChartjsFactory(
