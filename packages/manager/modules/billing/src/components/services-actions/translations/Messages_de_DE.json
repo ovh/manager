@@ -1,0 +1,21 @@
+{
+  "billing_services_actions_menu_label": "Mehr Aktionen für diesen Dienst",
+  "billing_autorenew_service_enable_autorenew": "Automatische Zahlung aktivieren",
+  "billing_services_actions_menu_pay_bill": "Meine Rechnung begleichen",
+  "billing_services_actions_menu_manage_renew": "Verlängerung konfigurieren",
+  "billing_services_actions_menu_exchange_update_accounts": "Verlängerung der Accounts konfigurieren",
+  "billing_services_actions_menu_anticipate_renew": "Vorauszahlen",
+  "billing_services_actions_menu_resiliate": "Am Ablaufdatum kündigen",
+  "billing_services_actions_menu_renew_label": "Dienst verlängern: {{ serviceName }} (Neues Fenster)",
+  "billing_services_actions_menu_renew": "Dienst verlängern",
+  "billing_services_actions_menu_exchange_update": "Abrechnung bearbeiten",
+  "billing_services_actions_menu_resiliate_EMAIL_DOMAIN": "MX Plan sofort löschen",
+  "billing_services_actions_menu_resiliate_ENTERPRISE_CLOUD_DATABASE": "Enterprise Cloud Databases sofort löschen",
+  "billing_services_actions_menu_resiliate_HOSTING_WEB": "Hosting sofort löschen",
+  "billing_services_actions_menu_resiliate_HOSTING_PRIVATE_DATABASE": "Mein SQL Private Hosting kündigen",
+  "billing_services_actions_menu_resiliate_WEBCOACH": "WebCoach löschen",
+  "billing_services_actions_menu_sms_credit": "Guthaben hinzufügen",
+  "billing_services_actions_menu_sms_renew": "Automatische Aufladung konfigurieren",
+  "billing_services_actions_menu_resiliate_cancel": "Kündigung der Dienstes stornieren",
+  "billing_services_actions_menu_see_dashboard": "Dienstdetails anzeigen"
+}
