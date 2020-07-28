@@ -2,7 +2,7 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-const moduleName = 'ovhManagerOfficeLazyLoading';
+const moduleName = 'ovhManagerOfficeLicensesLazyLoading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
@@ -13,6 +13,16 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
         translations: {
           value: ['.'],
           format: 'json',
+        },
+      })
+      .state('app.microsoft.office.index.**', {
+        url: '/configuration/microsoft/office/license',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+          return import('./licenses/office.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
         },
       })
       .state('app.microsoft.office.product.**', {
