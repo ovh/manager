@@ -1,0 +1,21 @@
+{
+  "billing_services_actions_menu_label": "Più azioni per questo servizio",
+  "billing_autorenew_service_enable_autorenew": "Attiva il pagamento automatico",
+  "billing_services_actions_menu_pay_bill": "Paga la tua fattura",
+  "billing_services_actions_menu_manage_renew": "Configura il rinnovo",
+  "billing_services_actions_menu_exchange_update_accounts": "Configura il rinnovo degli account",
+  "billing_services_actions_menu_anticipate_renew": "Anticipa il pagamento",
+  "billing_services_actions_menu_resiliate": "Disattiva il servizio alla data di scadenza",
+  "billing_services_actions_menu_renew_label": "Rinnova il servizio: {{ serviceName }} (Nuova finestra)",
+  "billing_services_actions_menu_renew": "Rinnova il servizio",
+  "billing_services_actions_menu_exchange_update": "Modifica la fatturazione",
+  "billing_services_actions_menu_resiliate_EMAIL_DOMAIN": "Elimina subito MX Plan",
+  "billing_services_actions_menu_resiliate_ENTERPRISE_CLOUD_DATABASE": "Elimina subito Enterprise Cloud Databases",
+  "billing_services_actions_menu_resiliate_HOSTING_WEB": "Elimina subito l'hosting",
+  "billing_services_actions_menu_resiliate_HOSTING_PRIVATE_DATABASE": "Elimina l'hosting SQL Privato",
+  "billing_services_actions_menu_resiliate_WEBCOACH": "Elimina il tuo WebCoach",
+  "billing_services_actions_menu_sms_credit": "Aggiungi credito",
+  "billing_services_actions_menu_sms_renew": "Imposta la ricarica automatica",
+  "billing_services_actions_menu_resiliate_cancel": "Annulla la disattivazione del servizio",
+  "billing_services_actions_menu_see_dashboard": "Mostra i dettagli del server"
+}

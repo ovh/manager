@@ -1,0 +1,21 @@
+{
+  "billing_services_actions_menu_label": "Mais ações neste serviço",
+  "billing_autorenew_service_enable_autorenew": "Ativar pagamento automático",
+  "billing_services_actions_menu_pay_bill": "Pagar a minha fatura",
+  "billing_services_actions_menu_manage_renew": "Configurar a renovação",
+  "billing_services_actions_menu_exchange_update_accounts": "Configurar a renovação das contas",
+  "billing_services_actions_menu_anticipate_renew": "Antecipar o pagamento",
+  "billing_services_actions_menu_resiliate": "Rescindir na data de expiração",
+  "billing_services_actions_menu_renew_label": "Renovar o serviço: {{ serviceName }} (nova janela)",
+  "billing_services_actions_menu_renew": "Renovar o serviço",
+  "billing_services_actions_menu_exchange_update": "Alterar a faturação",
+  "billing_services_actions_menu_resiliate_EMAIL_DOMAIN": "Eliminar imediatamente o MX Plan",
+  "billing_services_actions_menu_resiliate_ENTERPRISE_CLOUD_DATABASE": "Eliminar imediatamente o Enterprise Cloud Databases",
+  "billing_services_actions_menu_resiliate_HOSTING_WEB": "Eliminar imediatamente o alojamento",
+  "billing_services_actions_menu_resiliate_HOSTING_PRIVATE_DATABASE": "Eliminar o meu alojamento SQL Privado",
+  "billing_services_actions_menu_resiliate_WEBCOACH": "Eliminar o meu WebCoach",
+  "billing_services_actions_menu_sms_credit": "Adicionar créditos",
+  "billing_services_actions_menu_sms_renew": "Configurar a recarga automática",
+  "billing_services_actions_menu_resiliate_cancel": "Anular a rescisão do serviço",
+  "billing_services_actions_menu_see_dashboard": "Ver os detalhes do serviço"
+}
