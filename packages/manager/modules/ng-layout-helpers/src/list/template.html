@@ -1,10 +1,14 @@
-<oui-header class="mb-2" data-heading="{{:: $ctrl.header }}"></oui-header>
+<oui-header
+    data-ng-if="$ctrl.header"
+    class="mb-2"
+    data-heading="{{:: $ctrl.header }}"
+></oui-header>
 <div data-ng-bind-html="$ctrl.description"></div>
 <oui-datagrid
     data-ng-if="$ctrl.staticResources"
     rows="$ctrl.resources"
     id="{{ $ctrl.datagridId }}"
-    row-loader="$ctrl.loadRow($row)"
+    row-loader="$ctrl.loadResource($row)"
     columns="$ctrl.columns"
     customizable="$ctrl.customizableColumns"
     criteria="$ctrl.criteria"
@@ -21,7 +25,7 @@
     data-ng-if="!$ctrl.staticResources"
     id="{{ $ctrl.datagridId }}"
     rows-loader="$ctrl.loadPage()"
-    row-loader="$ctrl.loadRow($row)"
+    row-loader="$ctrl.loadResource($row)"
     columns="$ctrl.columns"
     customizable="$ctrl.customizableColumns"
     criteria="$ctrl.criteria"
