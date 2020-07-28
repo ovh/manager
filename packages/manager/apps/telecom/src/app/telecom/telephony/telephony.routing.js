@@ -24,6 +24,8 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       ...ListLayoutHelper.stateResolves,
       apiPath: () => '/telephony',
+      defaultFilterColumn: () => 'billingAccount',
+      dataModel: () => 'telephony.BillingAccount',
       loadResource: /* @ngInject */ (OvhApiTelephonyService) => (resource) =>
         OvhApiTelephonyService.v6()
           .query({
@@ -33,9 +35,6 @@ export default /* @ngInject */ ($stateProvider) => {
             ...resource,
             numServices: services.length,
           })),
-
-      schema: /* @ngInject */ (OvhApiTelephony) =>
-        OvhApiTelephony.v6().schema().$promise,
       telephonyStatusTypes: /* @ngInject */ (schema) =>
         get(schema.models, 'telephony.BillingAccountStatusEnum').enum,
 

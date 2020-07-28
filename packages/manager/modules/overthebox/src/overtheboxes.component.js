@@ -5,6 +5,7 @@ import template from './overtheboxes.html';
 export default {
   bindings: {
     ...ListLayoutHelper.componentBindings,
+    overTheBoxStatusTypes: '<',
 
     getOvertheboxLink: '<',
     viewOverthebox: '<',
