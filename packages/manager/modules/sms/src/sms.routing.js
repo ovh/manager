@@ -13,7 +13,8 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       apiPath: () => '/sms',
       ...ListLayoutHelper.stateResolves,
-      schema: /* @ngInject */ (OvhApiSms) => OvhApiSms.v6().schema().$promise,
+      defaultFilterColumn: () => 'name',
+      dataModel: () => 'sms.Account',
       smsStatusTypes: /* @ngInject */ (schema) =>
         get(schema.models, 'sms.StatusAccountEnum').enum,
 
