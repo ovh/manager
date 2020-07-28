@@ -2,7 +2,8 @@ import { groupBy, includes, isEmpty, map, uniq } from 'lodash-es';
 
 export default class CatalogController {
   $onInit() {
-    this.reset();
+    this.filterItems();
+    this.categories = this.getAvailableCategories(this.products);
   }
 
   static groupItems(items) {
@@ -28,6 +29,7 @@ export default class CatalogController {
         this.matchSearchText(product),
     );
     this.items = CatalogController.groupItems(items);
+    this.onFilterChange();
   }
 
   onUniverseChange() {
@@ -61,12 +63,19 @@ export default class CatalogController {
     );
   }
 
+  onFilterChange() {
+    this.onSearch({
+      universes: JSON.stringify(this.selectedUniverses),
+      categories: JSON.stringify(this.selectedCategories),
+      q: this.searchText,
+    });
+  }
+
   reset() {
-    this.items = CatalogController.groupItems(this.products);
-    this.categories = this.getAvailableCategories(this.products);
     this.selectedCategories = [];
     this.selectedUniverses = [];
     this.searchText = null;
+    this.$onInit();
   }
 
   static filterByEnum(product, query, property) {
