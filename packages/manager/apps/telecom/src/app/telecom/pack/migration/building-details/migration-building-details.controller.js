@@ -1,5 +1,9 @@
 import has from 'lodash/has';
+<<<<<<< HEAD
 import { FIBER_PTO, STAIR_FLOOR } from './migration-building-details.constant';
+=======
+import { FIBER_PTO } from './migration-building-details.constant';
+>>>>>>> feat(pack.migration): rework on building pto to have less user errors
 
 export default class TelecomPackMigrationBuildingDetailsCtrl {
   /* @ngInject */
