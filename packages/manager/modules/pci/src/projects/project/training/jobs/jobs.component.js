@@ -12,5 +12,6 @@ export default {
     submitJob: '<',
     allUsers: '<',
     regions: '<',
+    jobInfoLink: '<',
   },
 };

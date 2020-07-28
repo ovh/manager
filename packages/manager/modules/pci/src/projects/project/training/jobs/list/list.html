@@ -1,9 +1,5 @@
 <p>
     {{:: 'pci_projects_project_training_jobs_list_message_1' | translate }}
-</p>
-
-<p>
-    {{:: 'pci_projects_project_training_jobs_list_message_2' | translate }}
     <code
         >{{:: 'pci_projects_project_training_parter_cli_name' | translate }} job
         ls</code
@@ -23,7 +19,10 @@
         data-filterable
         data-sortable
     >
-        <span data-ng-bind="$value"></span>
+        <a
+            data-ng-href="{{:: $ctrl.jobInfoLink($value) }}"
+            data-ng-bind="$value"
+        ></a>
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title=":: 'pci_projects_project_training_jobs_region' | translate"
@@ -73,6 +72,16 @@
         >
             <span data-ng-bind=":: $row.state"></span>
         </span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'pci_projects_project_training_jobs_created' | translate"
+        data-property="created"
+        data-type="date"
+        data-searchable
+        data-filterable
+        data-sortable
+    >
+        <span data-ng-bind="$value | date:'medium'"></span>
     </oui-datagrid-column>
     <oui-action-menu data-align="end" data-compact>
         <oui-action-menu-item data-on-click="$ctrl.jobInfo($row.id)">

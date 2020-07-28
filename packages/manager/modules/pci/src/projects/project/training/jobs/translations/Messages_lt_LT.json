@@ -12,8 +12,7 @@
   "pci_projects_project_training_jobs_gpu": "GPU",
   "pci_projects_project_training_jobs_data": "Data",
 
-  "pci_projects_project_training_jobs_list_message_1": "Here are all jobs submitted on your project : ",
-  "pci_projects_project_training_jobs_list_message_2": "If you want to access more informations about these jobs just run the following command in client : ",
+  "pci_projects_project_training_jobs_list_message_1": "If you want to access more informations about these jobs just run the following command in client : ",
   "pci_projects_project_training_jobs_list_submit": "Submit Job",
 
   "pci_projects_project_training_jobs_info_title_1": "Informations",

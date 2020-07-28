@@ -5,8 +5,7 @@
   "pci_projects_project_training_data_created": "Created",
   "pci_projects_project_training_data_user": "User",
 
-  "pci_projects_project_training_data_list_message_1": "Here are all data created on your project :",
-  "pci_projects_project_training_data_list_message_2": "If you want to access more informations about these data just run the following command in client : ",
+  "pci_projects_project_training_data_list_message_1": "If you want to access more informations about these data just run the following command in client : ",
   "pci_projects_project_training_data_list_add": "Attach object storage container",
 
   "pci_projects_project_training_data_add_select_region": "Select a Region",

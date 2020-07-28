@@ -9,5 +9,6 @@ export default {
     job: '<',
     jobInfo: '<',
     submitJobLink: '<',
+    jobInfoLink: '<',
   },
 };
