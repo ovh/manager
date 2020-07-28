@@ -8,15 +8,15 @@
 
         <div
             class="mt-2"
-            data-ng-repeat="section in OverTheBoxDocs.docs.subs track by section.label"
+            data-ng-repeat="section in $ctrl.docs.subs track by section.label"
         >
             <div>
                 <a
                     title="{{:: section.label | translate}} ({{:: 'overTheBox_docs_open_new_tab' | translate }})"
                     target="_blank"
                     rel="noopener"
-                    data-ng-if="section.url && section.url[OverTheBoxDocs.language]"
-                    data-ng-href="{{section.url[OverTheBoxDocs.language]}}"
+                    data-ng-if="section.url && section.url[$ctrl.language]"
+                    data-ng-href="{{section.url[$ctrl.language]}}"
                 >
                     <span data-translate="{{section.label}}"></span>
                     <span
@@ -39,8 +39,8 @@
                             title="{{:: subSection.label | translate}} ({{:: 'overTheBox_docs_open_new_tab' | translate }})"
                             target="_blank"
                             rel="noopener"
-                            data-ng-if="subSection.url && subSection.url[OverTheBoxDocs.language]"
-                            data-ng-href="{{subSection.url[OverTheBoxDocs.language]}}"
+                            data-ng-if="subSection.url && subSection.url[$ctrl.language]"
+                            data-ng-href="{{subSection.url[$ctrl.language]}}"
                         >
                             <span data-translate="{{subSection.label}}"></span>
                             <span
@@ -60,8 +60,8 @@
                                     target="_blank"
                                     rel="noopener"
                                     title="{{:: subsubSection.label | translate}} ({{:: 'overTheBox_docs_open_new_tab' | translate }})"
-                                    data-ng-if="subsubSection.url[OverTheBoxDocs.language]"
-                                    data-ng-href="{{subsubSection.url[OverTheBoxDocs.language]}}"
+                                    data-ng-if="subsubSection.url[$ctrl.language]"
+                                    data-ng-href="{{subsubSection.url[$ctrl.language]}}"
                                 >
                                     <span
                                         data-translate="{{subsubSection.label}}"
