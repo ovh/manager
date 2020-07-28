@@ -1,5 +1,5 @@
 {
-  "dedicated_server_interfaces_ola_terminate_action": "Rezygnacja",
+  "dedicated_server_interfaces_ola_terminate_action": "Zatwierdź",
   "dedicated_server_interfaces_ola_terminate_kvm_warning": "Po rezygnacji z opcji pamiętaj o ustawieniu interfejsów przez KVM IPMI, aby przywrócić pierwotną konfigurację.",
   "dedicated_server_interfaces_ola_terminate_explanation": "Twoja usługa zakończy się w kolejnym dniu odnowienia.",
   "dedicated_server_interfaces_ola_terminate_text": "Czy na pewno chcesz zrezygnować z opcji OVH Link Aggregation (OLA)?"
