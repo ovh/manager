@@ -9,8 +9,8 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       apiPath: () => '/overTheBox',
       ...ListLayoutHelper.stateResolves,
-      schema: /* @ngInject */ (OvhApiOverTheBox) =>
-        OvhApiOverTheBox.v6().schema().$promise,
+      defaultFilterColumn: () => 'serviceName',
+      dataModel: () => 'overTheBox.Service',
       overTheBoxStatusTypes: /* @ngInject */ (schema) =>
         get(schema.models, 'overTheBox.ServiceStatusEnum').enum,
 
