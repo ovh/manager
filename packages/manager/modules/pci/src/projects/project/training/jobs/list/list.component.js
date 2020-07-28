@@ -8,6 +8,7 @@ export default {
     jobList: '<',
     job: '<',
     jobInfo: '<',
+    jobKill: '<',
     submitJobLink: '<',
     jobInfoLink: '<',
   },

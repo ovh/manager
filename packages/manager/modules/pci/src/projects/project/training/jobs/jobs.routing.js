@@ -18,6 +18,11 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           jobId,
         }),
+      jobKill: /* @ngInject */ ($state, projectId) => (jobId) =>
+        $state.go('pci.projects.project.training.jobs.kill', {
+          projectId,
+          jobId,
+        }),
       submitJobLink: /* @ngInject */ ($state, projectId) =>
         $state.href('pci.projects.project.training.jobs.submit', {
           projectId,

@@ -5,6 +5,7 @@
   "pci_projects_project_training_jobs_image": "Image Docker",
   "pci_projects_project_training_jobs_region": "Region",
   "pci_projects_project_training_jobs_info": "Détails",
+  "pci_projects_project_training_jobs_kill": "Arrêter",
   "pci_projects_project_training_jobs_created": "Création",
   "pci_projects_project_training_jobs_command": "Commande",
   "pci_projects_project_training_jobs_cpu": "CPU",
