@@ -6,7 +6,7 @@ import { GUIDE_URLS } from './constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.creating', {
-    url: '/creating/:orderId',
+    url: '/creating/:orderId/:voucherCode',
     views: {
       '@pci': component.name,
     },
@@ -17,10 +17,18 @@ export default /* @ngInject */ ($stateProvider) => {
 
       pciProjectsHref: /* @ngInject */ ($state) => $state.href('pci.projects'),
 
-      onProjectDelivered: /* @ngInject */ ($state) => (projectId) =>
-        $state.go('pci.projects.project', {
+      onProjectDelivered: /* @ngInject */ ($state, atInternet, voucherCode) => (
+        projectId,
+      ) => {
+        atInternet.trackPage({
+          name: 'public-cloud::pci::projects::created',
           projectId,
-        }),
+          ...(voucherCode ? { voucherCode } : {}),
+        });
+        return $state.go('pci.projects.project', {
+          projectId,
+        });
+      },
 
       onProjectDeliveryFail: /* @ngInject */ ($state, $translate) => () =>
         $state.go(
@@ -37,6 +45,9 @@ export default /* @ngInject */ ($stateProvider) => {
 
       orderStatus: /* @ngInject */ (orderId, pciProjectCreating) =>
         pciProjectCreating.getOrderStatus(orderId),
+
+      voucherCode: /* @ngInject */ ($transition$) =>
+        $transition$.params().voucherCode,
     },
   });
 };
