@@ -33,6 +33,22 @@ export const AT_INTERNET_CUSTOM_VARS = {
     path: 'site.6', // OVH's AtInternet configuration
     format: '[%s]',
   },
+
+  /**
+   * Project Id
+   */
+  projectId: {
+    path: 'page.1', // OVH's AtInternet configuration
+    format: '[%s]',
+  },
+
+  /**
+   * Voucher code used
+   */
+  voucherCode: {
+    path: 'page.2', // OVH's AtInternet configuration
+    format: '[%s]',
+  },
 };
 
 export default {
