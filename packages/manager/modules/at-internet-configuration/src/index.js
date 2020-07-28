@@ -7,9 +7,11 @@ import '@ovh-ux/ng-at-internet-ui-router-plugin';
 import { Environment } from '@ovh-ux/manager-config';
 
 import provider from './provider';
-import { CUSTOM_VARIABLES } from './config.constants';
+import { CUSTOM_VARIABLES, USER_ID } from './config.constants';
 
 const moduleName = 'ovhManagerAtInternetConfiguration';
+
+const trackingEnabled = __NODE_ENV__ === 'production';
 
 angular
   .module(moduleName, [
@@ -24,8 +26,6 @@ angular
       atInternetProvider,
       atInternetUiRouterPluginProvider,
     ) => {
-      const trackingEnabled = __NODE_ENV__ === 'production';
-
       atInternetProvider.setEnabled(trackingEnabled);
       atInternetProvider.setDebug(!trackingEnabled);
 
@@ -43,9 +43,31 @@ angular
     },
   )
   .run(
+    /* @ngInject */ ($cookies, atInternet) => {
+      const cookie = $cookies.get(USER_ID);
+      const tag = atInternet.getTag();
+      if (trackingEnabled) {
+        if (cookie) {
+          tag.clientSideUserId.set(cookie);
+        } else {
+          const value = tag.clientSideUserId.get();
+          tag.clientSideUserId.store();
+
+          const element = document.getElementById('manager-tms-iframe');
+
+          if (element) {
+            element.contentWindow.postMessage({
+              id: 'ClientUserId',
+              value,
+            });
+          }
+        }
+      }
+    },
+  )
+  .run(
     /* @ngInject */ ($cookies, $http, atInternet, atInternetConfiguration) => {
       const referrerSite = $cookies.get('OrderCloud');
-
       $http.get('/me').then(({ data: me }) => {
         atInternet.setDefaults({
           ...CUSTOM_VARIABLES,
