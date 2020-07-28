@@ -8,6 +8,8 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       apiPath: () => '/pack/xdsl',
       ...ListLayoutHelper.stateResolves,
+      defaultFilterColumn: () => 'packName',
+      dataModel: () => 'pack.xdsl.PackAdsl',
       loadResource: /* @ngInject */ (OvhApiPackXdsl) => (resource) =>
         OvhApiPackXdsl.Access()
           .v6()

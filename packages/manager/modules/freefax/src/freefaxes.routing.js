@@ -8,6 +8,8 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       apiPath: () => '/freefax',
       ...ListLayoutHelper.stateResolves,
+      defaultFilterColumn: () => 'number',
+      dataModel: () => 'freefax.FreefaxProperties',
       getFreefaxLink: /* @ngInject */ ($state) => (fax) =>
         $state.href('freefaxes.freefax', { serviceName: fax.number }),
       viewFreefax: /* @ngInject */ ($state) => (fax) =>
