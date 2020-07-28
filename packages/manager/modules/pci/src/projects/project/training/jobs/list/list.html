@@ -15,7 +15,7 @@
     data-rows="$ctrl.jobList"
     data-row-loader="$row"
 >
-    <oui-column
+    <oui-datagrid-column
         data-title=":: 'pci_projects_project_training_jobs_id' | translate"
         data-property="id"
         data-type="string"
@@ -24,8 +24,8 @@
         data-sortable
     >
         <span data-ng-bind="$value"></span>
-    </oui-column>
-    <oui-column
+    </oui-datagrid-column>
+    <oui-datagrid-column
         data-title=":: 'pci_projects_project_training_jobs_region' | translate"
         data-property="region"
         data-type="string"
@@ -34,8 +34,8 @@
         data-sortable
     >
         <span data-ng-bind="$value"></span>
-    </oui-column>
-    <oui-column
+    </oui-datagrid-column>
+    <oui-datagrid-column
         data-title=":: 'pci_projects_project_training_jobs_image' | translate"
         data-property="image"
         data-type="string"
@@ -44,8 +44,8 @@
         data-sortable
     >
         <span data-ng-bind="$value"></span>
-    </oui-column>
-    <oui-column
+    </oui-datagrid-column>
+    <oui-datagrid-column
         data-title=":: 'pci_projects_project_training_jobs_creator' | translate"
         data-property="user"
         data-type="string"
@@ -54,8 +54,8 @@
         data-sortable
     >
         <span data-ng-bind="$value"></span>
-    </oui-column>
-    <oui-column
+    </oui-datagrid-column>
+    <oui-datagrid-column
         data-title=":: 'pci_projects_project_training_jobs_state' | translate"
         data-property="state"
         data-type="string"
@@ -73,7 +73,7 @@
         >
             <span data-ng-bind=":: $row.state"></span>
         </span>
-    </oui-column>
+    </oui-datagrid-column>
     <oui-action-menu data-align="end" data-compact>
         <oui-action-menu-item data-on-click="$ctrl.jobInfo($row.id)">
             <span
