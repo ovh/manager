@@ -6,6 +6,7 @@ const express = require('express');
 const manifestBuilder = require('./builder/manifest');
 const devStorage = require('./storage/dev-storage');
 const remoteStorage = require('./storage/remote-storage');
+const filterInfos = require('./storage/filter-infos');
 const mergeInfos = require('./storage/merge-infos');
 
 const {
@@ -13,12 +14,14 @@ const {
   FRAGMENT_DEFINITION_FILE,
 } = require('./storage/constants');
 
-module.exports = (rootPath, port = 8888, { fallbackRegistry }) => {
+module.exports = (rootPath, port = 8888, { fallbackRegistry, filters }) => {
   return Promise.all([
     devStorage.readInfos(rootPath),
     fallbackRegistry ? remoteStorage.readInfos(fallbackRegistry) : [],
   ])
-    .then(([devInfos, fallbackInfos]) => mergeInfos(fallbackInfos, devInfos))
+    .then(([devInfos, fallbackInfos]) =>
+      mergeInfos(fallbackInfos, filterInfos(devInfos, filters)),
+    )
     .then((infos) => {
       const app = express();
 
