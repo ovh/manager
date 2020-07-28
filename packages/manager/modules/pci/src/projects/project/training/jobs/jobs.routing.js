@@ -23,6 +23,11 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           jobId,
         }),
+      jobInfoLink: /* @ngInject */ ($state, projectId) => (jobId) =>
+        $state.href('pci.projects.project.training.jobs.info', {
+          projectId,
+          jobId,
+        }),
       submitJobLink: /* @ngInject */ ($state, projectId) =>
         $state.href('pci.projects.project.training.jobs.submit', {
           projectId,

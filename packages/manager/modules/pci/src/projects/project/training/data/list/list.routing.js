@@ -4,12 +4,11 @@ export default /* @ngInject */ ($stateProvider) => {
     component: 'pciProjectTrainingDataListComponent',
     resolve: {
       breadcrumb: () => null, // Hide breadcrumb
-      containerLink: /* @ngInject */ ($state, projectId) => (containerId) => {
-        return $state.href('pci.projects.project.storages.objects.object', {
+      goToContainer: /* @ngInject */ ($state, projectId) => (containerId) =>
+        $state.go('pci.projects.project.storages.objects.object', {
           projectId,
           containerId,
-        });
-      },
+        }),
     },
   });
 };

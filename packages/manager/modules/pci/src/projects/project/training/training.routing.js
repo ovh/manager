@@ -28,11 +28,6 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('pci.projects.project.training.jobs.list', {
           projectId,
         }),
-      jobInfoLink: /* @ngInject */ ($state, projectId) => (jobId) =>
-        $state.href('pci.projects.project.training.jobs.info', {
-          projectId,
-          jobId,
-        }),
       dataLink: /* @ngInject */ ($state, projectId) =>
         $state.href('pci.projects.project.training.data.list', {
           projectId,

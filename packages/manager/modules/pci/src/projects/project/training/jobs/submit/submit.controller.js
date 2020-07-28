@@ -3,10 +3,12 @@ import get from 'lodash/get';
 export default class PciTrainingJobsSubmitController {
   /* @ngInject */
   constructor(
+    $translate,
     CucCloudMessage,
     CucRegionService,
     PciProjectTrainingJobsService,
   ) {
+    this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.CucRegionService = CucRegionService;
     this.PciProjectTrainingJobsService = PciProjectTrainingJobsService;

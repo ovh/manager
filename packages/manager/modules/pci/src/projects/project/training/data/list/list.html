@@ -28,25 +28,29 @@
         data-filterable
         data-sortable
     >
-        <oui-datagrid-column
-            data-title=":: 'pci_projects_project_training_data_name' | translate"
-            data-property="name"
-            data-type="string"
-            data-searchable
-            data-filterable
-            data-sortable
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'pci_projects_project_training_data_name' | translate"
+        data-property="name"
+        data-type="string"
+        data-searchable
+        data-filterable
+        data-sortable
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'pci_projects_project_training_data_container' | translate"
+        data-property="container"
+        data-type="string"
+        data-searchable
+        data-filterable
+        data-sortable
+    >
+        <span
+            ><a data-ng-click="$ctrl.goToContainer($row.containerLink)"
+                >{{ $value }}</a
+            ></span
         >
-        </oui-datagrid-column>
-        <oui-datagrid-column
-            data-title=":: 'pci_projects_project_training_data_container' | translate"
-            data-property="container"
-            data-type="string"
-            data-searchable
-            data-filterable
-            data-sortable
-        >
-            <span><a href="{{ $row.link }}">{{ $value }}</a></span>
-        </oui-datagrid-column>
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title=":: 'pci_projects_project_training_data_user' | translate"
