@@ -142,6 +142,7 @@ export default class {
   }
 
   onUserClick() {
+    this.$rootScope.$emit('ovh::notifications::hide');
     this.$rootScope.$emit('ovh::sidebar::toggle');
     this.atInternet.trackClick({
       name: 'navbar::action::user-bar',

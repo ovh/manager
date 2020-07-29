@@ -2,6 +2,7 @@
     class="d-none d-md-block"
     name="languages"
     text="{{::  $ctrl.currentLanguage.name }}"
+    on-click="$ctrl.onClick()"
 >
     <ovh-manager-navbar-language-menu-picker
         class="oui-navbar-menu oui-navbar-menu_fixed oui-navbar-menu_end"
@@ -14,6 +15,7 @@
     class="d-md-none"
     name="languages"
     text="{{::  $ctrl.formatCurrentLang() }}"
+    on-click="$ctrl.onClick()"
 >
     <ovh-manager-navbar-language-menu-picker
         class="oui-navbar-menu oui-navbar-menu_fixed oui-navbar-menu_end"
