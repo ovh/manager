@@ -7,7 +7,6 @@ export default {
   bindings: {
     dataList: '<',
     data: '<',
-    dataInfo: '<',
     addDataLink: '<',
     attachData: '<',
     regions: '<',

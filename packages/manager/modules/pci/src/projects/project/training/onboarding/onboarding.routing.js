@@ -1,7 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.training.onboarding', {
     url: '/onboarding',
-    component: 'pciProjectTrainingOnboarding',
     views: {
       'content@pci.projects.project.training': 'pciProjectTrainingOnboarding',
     },

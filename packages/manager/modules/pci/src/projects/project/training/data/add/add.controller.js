@@ -84,7 +84,7 @@ export default class PciTrainingDataAddController {
       .then(() => {
         return this.goBack(
           this.$translate.instant(
-            'pci_projects_project_training_jobs_list_submit_success',
+            'pci_projects_project_training_data_list_submit_success',
           ),
         );
       })

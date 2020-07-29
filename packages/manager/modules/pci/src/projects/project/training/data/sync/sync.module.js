@@ -6,14 +6,10 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import 'ovh-api-services';
 
-import list from './list';
-import add from './add';
-import sync from './sync';
-import component from './data.component';
-import routing from './data.routing';
-import service from './data.service';
+import component from './sync.component';
+import routing from './sync.routing';
 
-const moduleName = 'ovhManagerPciTrainingData';
+const moduleName = 'ovhManagerPciTrainingDataSync';
 
 angular
   .module(moduleName, [
@@ -24,13 +20,9 @@ angular
     'ovhManagerCore',
     'pascalprecht.translate',
     'ui.router',
-    list,
-    add,
-    sync,
   ])
   .config(routing)
-  .component('pciProjectTrainingDataComponent', component)
-  .service('PciProjectTrainingDataService', service)
+  .component('pciProjectTrainingDataSyncComponent', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
