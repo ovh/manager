@@ -1,3 +1,20 @@
+# [10.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@9.4.0...@ovh-ux/manager-core@10.0.0) (2020-07-29)
+
+
+### Features
+
+* **redirection:** add ticket creation url ([0299f2c](https://github.com/ovh/manager/commit/0299f2c584d7f94b30cb2179ed00690f676ae70f))
+* upgrade ovh-ui-kit to v4 ([f48f258](https://github.com/ovh/manager/commit/f48f2587c367b06939c452428c5783c2fb1c1b8d))
+
+
+### BREAKING CHANGES
+
+* bump ovh-ui-kit to latest major
+
+Signed-off-by: Axel Peter <axel.peter@live.com>
+
+
+
 # [9.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@9.3.0...@ovh-ux/manager-core@9.4.0) (2020-06-16)
 
 

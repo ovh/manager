@@ -1,3 +1,12 @@
+## [5.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox-app@5.1.1...@ovh-ux/manager-overthebox-app@5.1.2) (2020-07-29)
+
+
+### Bug Fixes
+
+* **overthebox:** resolve empty guides for some languages ([#3191](https://github.com/ovh/manager/issues/3191)) ([c370a1a](https://github.com/ovh/manager/commit/c370a1af55437e24d9518213974d8560b4239110))
+
+
+
 ## [5.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox-app@5.1.0...@ovh-ux/manager-overthebox-app@5.1.1) (2020-06-02)
 
 

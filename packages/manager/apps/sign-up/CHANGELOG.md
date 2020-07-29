@@ -1,3 +1,19 @@
+# [2.0.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@1.6.2...@ovh-ux/sign-up-app@2.0.0) (2020-07-29)
+
+
+### Features
+
+* upgrade ovh-ui-kit to v4 ([f48f258](https://github.com/ovh/manager/commit/f48f2587c367b06939c452428c5783c2fb1c1b8d))
+
+
+### BREAKING CHANGES
+
+* bump ovh-ui-kit to latest major
+
+Signed-off-by: Axel Peter <axel.peter@live.com>
+
+
+
 ## [1.6.2](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@1.6.1...@ovh-ux/sign-up-app@1.6.2) (2020-07-08)
 
 

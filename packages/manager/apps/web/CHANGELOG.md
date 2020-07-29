@@ -1,3 +1,40 @@
+# [15.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@14.7.2...@ovh-ux/manager-web@15.0.0) (2020-07-29)
+
+
+### Bug Fixes
+
+* change cancel icon when editing service name ([8610d0d](https://github.com/ovh/manager/commit/8610d0df0e7f12f645bed1f9f2afbdaf2a2a8b41))
+* use correct index for stepper position ([#3332](https://github.com/ovh/manager/issues/3332)) ([9414ece](https://github.com/ovh/manager/commit/9414ececb76cd74b14a0ccb858a7848fd4b3372b))
+* **domain:** prevent all dom order display for all subs ([#3195](https://github.com/ovh/manager/issues/3195)) ([6bfca26](https://github.com/ovh/manager/commit/6bfca267fb8ab54a016b67a5aa1ae5b075a4b913))
+* **domain.webhosting:** fix order stepper ([1448ecf](https://github.com/ovh/manager/commit/1448ecfb36b7b6d5e754613cf2352ebbc5edd088))
+* **domain.zone:** allow underscore in CNAME subdomain ([#3228](https://github.com/ovh/manager/issues/3228)) ([634819b](https://github.com/ovh/manager/commit/634819b80aa8955b02563773b6347d7cc35ea68a))
+* **dropdown-menu:** remove unused icons ([0534c59](https://github.com/ovh/manager/commit/0534c59fd63d6e20f56f5c10a50d5c43e14ab590))
+* **dropdown-menu:** use uib-dropdown for toggling ([0f16566](https://github.com/ovh/manager/commit/0f16566676ef8681324b39bf182340c14eab32dc))
+* **hosting.user-logs:** use token if there is one ([#3297](https://github.com/ovh/manager/issues/3297)) ([0f54304](https://github.com/ovh/manager/commit/0f54304b8872f7bf76274eef8f6e9176d26977ba))
+* **i18n:** add missing translations [CDS 492] ([fdc9eb6](https://github.com/ovh/manager/commit/fdc9eb67dd288eec302c8641e05d102e1caa1218))
+* **icon:** fix oui-icon-trash_concept ([#3287](https://github.com/ovh/manager/issues/3287)) ([9347797](https://github.com/ovh/manager/commit/934779770b4db186cc4ed53caf3ca216853367c7))
+* **web.domain.optin:** set specific size to select ([cd5ae4d](https://github.com/ovh/manager/commit/cd5ae4db628ba0ff0b41b9d5f2d42f1d9fa514db))
+* **web.hosting:** fix input size in add domain modal ([c7425c3](https://github.com/ovh/manager/commit/c7425c3c3d5808a0dbb118ad9b95fb508be44d92))
+
+
+### Features
+
+* **private-database:** add Mariadb 10.3, 10.4, 10.5 labels ([#3314](https://github.com/ovh/manager/issues/3314)) ([3834b42](https://github.com/ovh/manager/commit/3834b42569229f5cab50fdb5f57e7d024b6a91a1))
+* upgrade ovh-ui-kit to v4 ([f48f258](https://github.com/ovh/manager/commit/f48f2587c367b06939c452428c5783c2fb1c1b8d))
+* upgrade ovh-ui-kit-bs to v4 ([d649cd7](https://github.com/ovh/manager/commit/d649cd7d566ac39d172b2e36625fde83bd99c9f5))
+
+
+### BREAKING CHANGES
+
+* bump ovh-ui-kit to latest major
+
+Signed-off-by: Axel Peter <axel.peter@live.com>
+* bump ovh-ui-kit-bs to latest major
+
+Signed-off-by: Axel Peter <axel.peter@live.com>
+
+
+
 ## [14.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@14.7.1...@ovh-ux/manager-web@14.7.2) (2020-07-16)
 
 

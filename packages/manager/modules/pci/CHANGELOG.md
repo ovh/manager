@@ -1,3 +1,43 @@
+# [4.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.25.2...@ovh-ux/manager-pci@4.0.0) (2020-07-29)
+
+
+### Bug Fixes
+
+* use correct index for stepper position ([#3332](https://github.com/ovh/manager/issues/3332)) ([9414ece](https://github.com/ovh/manager/commit/9414ececb76cd74b14a0ccb858a7848fd4b3372b))
+* **i18n:** add missing translations [CDS 488] ([08ed551](https://github.com/ovh/manager/commit/08ed551499f9a8adffb2c8a15ec5cf55fa1e6dbe))
+* **i18n:** add missing translations [CDS 494] ([23b4740](https://github.com/ovh/manager/commit/23b47402ee0e3b9b1a7cb3aafaf40718697c8390))
+* **i18n:** add missing translations [CDS 503] ([751ea62](https://github.com/ovh/manager/commit/751ea622b52e3da8827a497edcc2baa5fa652378))
+* **i18n:** add missing translations [CDS 505] ([3f099b7](https://github.com/ovh/manager/commit/3f099b7040abdb050f6a489afa95f6ad5478b14a))
+* **i18n:** add missing translations [CDS 512] ([5808780](https://github.com/ovh/manager/commit/58087804fb9243f5180411f1400e63b0152fad44))
+* **pci.instances.edit:** remove oui-field_error classes ([e83a93d](https://github.com/ovh/manager/commit/e83a93d334ffbee840a9a37ff59b0dd8876c59bd))
+* **pci.project:** update text on delete modal ([1085cbe](https://github.com/ovh/manager/commit/1085cbe467e2e6e289a7238d29c85e3c2a8b0968))
+* **pci.project.users.roles-matrix:** add some paddings ([8af8745](https://github.com/ovh/manager/commit/8af87453223c358637b9c2e5f2f90af1a665b1d7))
+* **project.instance.ssh-keys:** align oui-button correctly ([6f63e68](https://github.com/ovh/manager/commit/6f63e6818cd0bcdb58e0e5a9621ad47f35c6dde1))
+* **project.instances:** map correctly status ([f3f9ae4](https://github.com/ovh/manager/commit/f3f9ae4d18ac31639a75f8d4d217b1fc846b9e42))
+* **project.instances.add:** apply some margin consistency ([6c4a7bb](https://github.com/ovh/manager/commit/6c4a7bb1d23b370f473c0baa8348584b946c67f2))
+* **serving.namespace.models.add:** apply some margin ([e0d43cc](https://github.com/ovh/manager/commit/e0d43cca06f7b34ecdca944d96e2ff91b42db24f))
+* **storages.container:** use oui-field component to fix some alignments ([6c0752b](https://github.com/ovh/manager/commit/6c0752b42f6098cd4db6a6da268b4a101b332d9f))
+
+
+### Features
+
+* **k8s:** k8s node pool ([3242765](https://github.com/ovh/manager/commit/32427658e50456a45c5ff7badc95dadfdd7c17e8)), closes [#MANAGER-4112](https://github.com/ovh/manager/issues/MANAGER-4112)
+* **public-cloud:** default payment method choice ([73d802b](https://github.com/ovh/manager/commit/73d802b70d3602c624841e5f1044131d29904deb))
+* upgrade ovh-ui-kit to v4 ([f48f258](https://github.com/ovh/manager/commit/f48f2587c367b06939c452428c5783c2fb1c1b8d))
+* upgrade ovh-ui-kit-bs to v4 ([d649cd7](https://github.com/ovh/manager/commit/d649cd7d566ac39d172b2e36625fde83bd99c9f5))
+
+
+### BREAKING CHANGES
+
+* bump ovh-ui-kit to latest major
+
+Signed-off-by: Axel Peter <axel.peter@live.com>
+* bump ovh-ui-kit-bs to latest major
+
+Signed-off-by: Axel Peter <axel.peter@live.com>
+
+
+
 ## [3.25.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.25.1...@ovh-ux/manager-pci@3.25.2) (2020-07-16)
 
 

@@ -1,3 +1,29 @@
+# [6.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@5.6.0...@ovh-ux/manager-overthebox@6.0.0) (2020-07-29)
+
+
+### Bug Fixes
+
+* **otb:** fix dropdown menu overflow ([#3292](https://github.com/ovh/manager/issues/3292)) ([9c9a6a9](https://github.com/ovh/manager/commit/9c9a6a99afbe70684b4e6612c302931dc210d746))
+* **overthebox:** resolve empty guides for some languages ([#3191](https://github.com/ovh/manager/issues/3191)) ([c370a1a](https://github.com/ovh/manager/commit/c370a1af55437e24d9518213974d8560b4239110))
+
+
+### Features
+
+* upgrade ovh-ui-kit to v4 ([f48f258](https://github.com/ovh/manager/commit/f48f2587c367b06939c452428c5783c2fb1c1b8d))
+* upgrade ovh-ui-kit-bs to v4 ([d649cd7](https://github.com/ovh/manager/commit/d649cd7d566ac39d172b2e36625fde83bd99c9f5))
+
+
+### BREAKING CHANGES
+
+* bump ovh-ui-kit to latest major
+
+Signed-off-by: Axel Peter <axel.peter@live.com>
+* bump ovh-ui-kit-bs to latest major
+
+Signed-off-by: Axel Peter <axel.peter@live.com>
+
+
+
 # [5.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@5.5.1...@ovh-ux/manager-overthebox@5.6.0) (2020-07-08)
 
 

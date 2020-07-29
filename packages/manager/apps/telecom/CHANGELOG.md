@@ -1,3 +1,39 @@
+# [13.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.6.3...@ovh-ux/manager-telecom@13.0.0) (2020-07-29)
+
+
+### Bug Fixes
+
+* **dropdown-menu:** remove unused icons ([0534c59](https://github.com/ovh/manager/commit/0534c59fd63d6e20f56f5c10a50d5c43e14ab590))
+* **i18n:** add missing translations [CDS 488] ([08ed551](https://github.com/ovh/manager/commit/08ed551499f9a8adffb2c8a15ec5cf55fa1e6dbe))
+* **i18n:** add missing translations [CDS 502] ([5ab1a66](https://github.com/ovh/manager/commit/5ab1a666e2cb069fb76a25d2b11f62aa5261aee9))
+* **icon:** fix oui-icon-trash_concept ([#3287](https://github.com/ovh/manager/issues/3287)) ([9347797](https://github.com/ovh/manager/commit/934779770b4db186cc4ed53caf3ca216853367c7))
+* **xdsl:** fix rate limit checkbox display ([#3310](https://github.com/ovh/manager/issues/3310)) ([bb37389](https://github.com/ovh/manager/commit/bb37389e07e11512c0cfafb9f3855ebf44c06c3a))
+
+
+### Features
+
+* **component.livecalls:** on ovhpabx dashboard display number agent ([#3234](https://github.com/ovh/manager/issues/3234)) ([74eb502](https://github.com/ovh/manager/commit/74eb5021fd12f5e4988809c90a37ea66a6ec7142))
+* **telephony:** add carrier sip cluster details ([#3155](https://github.com/ovh/manager/issues/3155)) ([dfe1e01](https://github.com/ovh/manager/commit/dfe1e018ecd5db84f6ab0917f9c798b891b1e4ed))
+* **telephony:** split endpoint into ip list and list with incoming call ([26449ec](https://github.com/ovh/manager/commit/26449ecd642773bf5b5935572c132096751931f6))
+* **xdsl.access:** add brand name to the modem model ([7cd6c0f](https://github.com/ovh/manager/commit/7cd6c0f00e1b718af15af414001c55d1fe646d82))
+* **xdsl.access:** display associated profile for adsl type ([bc19154](https://github.com/ovh/manager/commit/bc191542875220e1ed625a3ecad6525350ac942c))
+* **xdsl.modem:** hide bridge mode if modem brand is zyxel ([002b73d](https://github.com/ovh/manager/commit/002b73d0f259466cb660ebf940be8e603041179f))
+* **xdsl.notifications:** improve sms remaining credits for notif ([#3136](https://github.com/ovh/manager/issues/3136)) ([bc26c08](https://github.com/ovh/manager/commit/bc26c08b7d9ed967f91a84b800cdba4213fe7e6a))
+* upgrade ovh-ui-kit to v4 ([f48f258](https://github.com/ovh/manager/commit/f48f2587c367b06939c452428c5783c2fb1c1b8d))
+* upgrade ovh-ui-kit-bs to v4 ([d649cd7](https://github.com/ovh/manager/commit/d649cd7d566ac39d172b2e36625fde83bd99c9f5))
+
+
+### BREAKING CHANGES
+
+* bump ovh-ui-kit to latest major
+
+Signed-off-by: Axel Peter <axel.peter@live.com>
+* bump ovh-ui-kit-bs to latest major
+
+Signed-off-by: Axel Peter <axel.peter@live.com>
+
+
+
 ## [12.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@12.6.2...@ovh-ux/manager-telecom@12.6.3) (2020-07-16)
 
 

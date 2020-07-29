@@ -1,3 +1,19 @@
+# [4.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ui-router-layout@3.3.3...@ovh-ux/ng-ui-router-layout@4.0.0) (2020-07-29)
+
+
+### Features
+
+* upgrade ovh-ui-kit to v4 ([f48f258](https://github.com/ovh/manager/commit/f48f2587c367b06939c452428c5783c2fb1c1b8d))
+
+
+### BREAKING CHANGES
+
+* bump ovh-ui-kit to latest major
+
+Signed-off-by: Axel Peter <axel.peter@live.com>
+
+
+
 ## [3.3.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ui-router-layout@3.3.2...@ovh-ux/ng-ui-router-layout@3.3.3) (2020-06-09)
 
 
