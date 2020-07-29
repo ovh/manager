@@ -1,5 +1,4 @@
 import forEach from 'lodash/forEach';
-import remove from 'lodash/remove';
 
 import {
   AUTO_MIGRATION_CUTOFF_DATE,
