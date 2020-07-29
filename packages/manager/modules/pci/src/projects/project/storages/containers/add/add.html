@@ -28,7 +28,7 @@
     <oui-step-form
         data-header="{{:: 'pci_projects_project_storages_containers_add_type_title' | translate }}"
         data-ng-if="!$ctrl.archive"
-        data-position="2"
+        data-position="1"
         data-on-focus="$ctrl.onTypesFocus()"
         data-on-submit="$ctrl.onTypeChange()"
         data-navigation="$ctrl.selectedType"
@@ -50,11 +50,12 @@
                     data-variant="light"
                     data-required
                 >
-                    <oui-select-picker-section
-                        data-ng-if="$ctrl.price"
-                        data-translate="pci_projects_project_storages_containers_add_type_price"
-                        data-translate-values="{ price: $ctrl.price.formatedPrice }"
-                    ></oui-select-picker-section>
+                    <oui-select-picker-section data-ng-if="$ctrl.price">
+                        <span
+                            data-translate="pci_projects_project_storages_containers_add_type_price"
+                            data-translate-values="{ price: $ctrl.price.formatedPrice }"
+                        ></span>
+                    </oui-select-picker-section>
                 </oui-select-picker>
             </div>
         </div>
