@@ -1,3 +1,31 @@
+# [8.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@7.8.0...@ovh-ux/manager-sms@8.0.0) (2020-07-29)
+
+
+### Bug Fixes
+
+* **dropdown-menu:** remove unused icons ([0534c59](https://github.com/ovh/manager/commit/0534c59fd63d6e20f56f5c10a50d5c43e14ab590))
+* **icon:** fix oui-icon-trash_concept ([#3287](https://github.com/ovh/manager/issues/3287)) ([9347797](https://github.com/ovh/manager/commit/934779770b4db186cc4ed53caf3ca216853367c7))
+* **sms:** minor changes in order to mimic topbar ([918f4a1](https://github.com/ovh/manager/commit/918f4a11cb73450b1abee5ae0e048963f312238d))
+* **sms:** minor ui updates ([#3289](https://github.com/ovh/manager/issues/3289)) ([463b51d](https://github.com/ovh/manager/commit/463b51d8a8c738a33f00b88bde7f83757f3339b1)), closes [#3190](https://github.com/ovh/manager/issues/3190)
+
+
+### Features
+
+* upgrade ovh-ui-kit to v4 ([f48f258](https://github.com/ovh/manager/commit/f48f2587c367b06939c452428c5783c2fb1c1b8d))
+* upgrade ovh-ui-kit-bs to v4 ([d649cd7](https://github.com/ovh/manager/commit/d649cd7d566ac39d172b2e36625fde83bd99c9f5))
+
+
+### BREAKING CHANGES
+
+* bump ovh-ui-kit to latest major
+
+Signed-off-by: Axel Peter <axel.peter@live.com>
+* bump ovh-ui-kit-bs to latest major
+
+Signed-off-by: Axel Peter <axel.peter@live.com>
+
+
+
 # [7.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@7.7.2...@ovh-ux/manager-sms@7.8.0) (2020-06-23)
 
 

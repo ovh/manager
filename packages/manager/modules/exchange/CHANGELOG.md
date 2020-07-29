@@ -1,3 +1,24 @@
+# [2.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@1.8.5...@ovh-ux/manager-exchange@2.0.0) (2020-07-29)
+
+
+### Bug Fixes
+
+* **icon:** fix oui-icon-trash_concept ([#3287](https://github.com/ovh/manager/issues/3287)) ([9347797](https://github.com/ovh/manager/commit/934779770b4db186cc4ed53caf3ca216853367c7))
+
+
+### Features
+
+* upgrade ovh-ui-kit to v4 ([f48f258](https://github.com/ovh/manager/commit/f48f2587c367b06939c452428c5783c2fb1c1b8d))
+
+
+### BREAKING CHANGES
+
+* bump ovh-ui-kit to latest major
+
+Signed-off-by: Axel Peter <axel.peter@live.com>
+
+
+
 ## [1.8.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@1.8.4...@ovh-ux/manager-exchange@1.8.5) (2020-07-09)
 
 

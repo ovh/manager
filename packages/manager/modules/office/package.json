@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-office",
-  "version": "1.2.1",
+  "version": "2.0.0",
   "private": true,
   "description": "Office product.",
   "repository": {
@@ -20,7 +20,7 @@
   },
   "peerDependencies": {
     "@ovh-ux/ng-ovh-http": "^5.0.0",
-    "@ovh-ux/ng-ovh-utils": "^14.0.9",
+    "@ovh-ux/ng-ovh-utils": "^14.0.10",
     "@ovh-ux/ng-ovh-web-universe-components": "^8.0.0 || ^9.0.0",
     "@ovh-ux/ui-kit": "^4.1.12",
     "@uirouter/angularjs": "^1.0.15",

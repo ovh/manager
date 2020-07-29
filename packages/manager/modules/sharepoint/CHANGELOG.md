@@ -1,3 +1,25 @@
+# [2.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sharepoint@1.1.1...@ovh-ux/manager-sharepoint@2.0.0) (2020-07-29)
+
+
+### Bug Fixes
+
+* **dropdown-menu:** remove unused icons ([0534c59](https://github.com/ovh/manager/commit/0534c59fd63d6e20f56f5c10a50d5c43e14ab590))
+* **dropdown-menu:** use uib-dropdown for toggling ([0f16566](https://github.com/ovh/manager/commit/0f16566676ef8681324b39bf182340c14eab32dc))
+
+
+### Features
+
+* upgrade ovh-ui-kit to v4 ([f48f258](https://github.com/ovh/manager/commit/f48f2587c367b06939c452428c5783c2fb1c1b8d))
+
+
+### BREAKING CHANGES
+
+* bump ovh-ui-kit to latest major
+
+Signed-off-by: Axel Peter <axel.peter@live.com>
+
+
+
 ## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sharepoint@1.1.0...@ovh-ux/manager-sharepoint@1.1.1) (2020-06-09)
 
 

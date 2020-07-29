@@ -1,3 +1,23 @@
+# [10.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-pagination-front@9.0.1...@ovh-ux/ng-pagination-front@10.0.0) (2020-07-29)
+
+
+### Features
+
+* upgrade ovh-ui-kit to v4 ([f48f258](https://github.com/ovh/manager/commit/f48f2587c367b06939c452428c5783c2fb1c1b8d))
+* upgrade ovh-ui-kit-bs to v4 ([d649cd7](https://github.com/ovh/manager/commit/d649cd7d566ac39d172b2e36625fde83bd99c9f5))
+
+
+### BREAKING CHANGES
+
+* bump ovh-ui-kit to latest major
+
+Signed-off-by: Axel Peter <axel.peter@live.com>
+* bump ovh-ui-kit-bs to latest major
+
+Signed-off-by: Axel Peter <axel.peter@live.com>
+
+
+
 ## [9.0.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-pagination-front@9.0.0...@ovh-ux/ng-pagination-front@9.0.1) (2020-06-09)
 
 

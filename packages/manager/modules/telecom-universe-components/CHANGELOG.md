@@ -1,3 +1,25 @@
+# [6.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@5.1.0...@ovh-ux/ng-ovh-telecom-universe-components@6.0.0) (2020-07-29)
+
+
+### Bug Fixes
+
+* **editable-service-name:** apply right cancel icon ([#3290](https://github.com/ovh/manager/issues/3290)) ([1e9e883](https://github.com/ovh/manager/commit/1e9e883c51fdf040f64a88268f09660a6d722eb2))
+* **telecom.telephony.abbreviated-numbers:** improve topbar display ([a46fe5a](https://github.com/ovh/manager/commit/a46fe5a0b0278ec9b74c6bef64e98c9c2e69eb17))
+
+
+### Features
+
+* upgrade ovh-ui-kit to v4 ([f48f258](https://github.com/ovh/manager/commit/f48f2587c367b06939c452428c5783c2fb1c1b8d))
+
+
+### BREAKING CHANGES
+
+* bump ovh-ui-kit to latest major
+
+Signed-off-by: Axel Peter <axel.peter@live.com>
+
+
+
 # [5.1.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@5.0.2...@ovh-ux/ng-ovh-telecom-universe-components@5.1.0) (2020-07-08)
 
 

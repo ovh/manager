@@ -1,3 +1,28 @@
+# [1.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps-app@0.4.2...@ovh-ux/manager-vps-app@1.0.0) (2020-07-29)
+
+
+### Bug Fixes
+
+* add missing babel-polyfill ([#3296](https://github.com/ovh/manager/issues/3296)) ([1e0d596](https://github.com/ovh/manager/commit/1e0d5961bf9caed188d18abb8b16b6e546b528f5))
+
+
+### Features
+
+* upgrade ovh-ui-kit to v4 ([f48f258](https://github.com/ovh/manager/commit/f48f2587c367b06939c452428c5783c2fb1c1b8d))
+* upgrade ovh-ui-kit-bs to v4 ([d649cd7](https://github.com/ovh/manager/commit/d649cd7d566ac39d172b2e36625fde83bd99c9f5))
+
+
+### BREAKING CHANGES
+
+* bump ovh-ui-kit to latest major
+
+Signed-off-by: Axel Peter <axel.peter@live.com>
+* bump ovh-ui-kit-bs to latest major
+
+Signed-off-by: Axel Peter <axel.peter@live.com>
+
+
+
 ## [0.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps-app@0.4.1...@ovh-ux/manager-vps-app@0.4.2) (2020-07-08)
 
 

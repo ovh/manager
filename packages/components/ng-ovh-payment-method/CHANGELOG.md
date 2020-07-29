@@ -1,3 +1,25 @@
+# [7.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@6.1.2...@ovh-ux/ng-ovh-payment-method@7.0.0) (2020-07-29)
+
+
+### Bug Fixes
+
+* **ng-ovh-payment-method:** depreciate toPaymentMethodType ([e7dfef6](https://github.com/ovh/manager/commit/e7dfef6ddac1f0715379ed422505dbc7a224ec38))
+
+
+### Features
+
+* **ng-ovh-payment-method:** add helpers for payment method types ([9279eb4](https://github.com/ovh/manager/commit/9279eb40cb3110795708e41b601182ab2de82424))
+* upgrade ovh-ui-kit to v4 ([f48f258](https://github.com/ovh/manager/commit/f48f2587c367b06939c452428c5783c2fb1c1b8d))
+
+
+### BREAKING CHANGES
+
+* bump ovh-ui-kit to latest major
+
+Signed-off-by: Axel Peter <axel.peter@live.com>
+
+
+
 ## [6.1.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@6.1.1...@ovh-ux/ng-ovh-payment-method@6.1.2) (2020-06-09)
 
 

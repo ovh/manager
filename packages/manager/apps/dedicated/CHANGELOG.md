@@ -1,3 +1,39 @@
+# [13.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.7.2...@ovh-ux/manager-dedicated@13.0.0) (2020-07-29)
+
+
+### Bug Fixes
+
+* use correct index for stepper position ([#3332](https://github.com/ovh/manager/issues/3332)) ([9414ece](https://github.com/ovh/manager/commit/9414ececb76cd74b14a0ccb858a7848fd4b3372b))
+* **dedicated:** replace cancel label with confirm ([#3316](https://github.com/ovh/manager/issues/3316)) ([9126548](https://github.com/ovh/manager/commit/9126548d3e157372f2f46ba7e95fbcfc1c3bf259))
+* **dropdown-menu:** use uib-dropdown for toggling ([0f16566](https://github.com/ovh/manager/commit/0f16566676ef8681324b39bf182340c14eab32dc))
+* **i18n:** add missing translations [CDS 482] ([23b5a33](https://github.com/ovh/manager/commit/23b5a337f1277f552880eb8e5637fcd5d36b4e4d))
+* **i18n:** add missing translations [CDS 483] ([01674c9](https://github.com/ovh/manager/commit/01674c95c72eb4595a4f3b0a969b26aacca1e010))
+* **i18n:** add missing translations [CDS 484] ([d4cbfdf](https://github.com/ovh/manager/commit/d4cbfdf5962961703671c198d5fc049317d73407))
+* **i18n:** add missing translations [CDS 488] ([08ed551](https://github.com/ovh/manager/commit/08ed551499f9a8adffb2c8a15ec5cf55fa1e6dbe))
+* **i18n:** add missing translations [CDS 501] ([e8d1d62](https://github.com/ovh/manager/commit/e8d1d6208bad1012c7713093460fd5ef8c101158))
+* **user.support-level:** fix discover button display ([#3325](https://github.com/ovh/manager/issues/3325)) ([a823244](https://github.com/ovh/manager/commit/a823244a81e9400227704df91bde47dec135eed3))
+* remove style override for links ([22a784c](https://github.com/ovh/manager/commit/22a784c279fc3819bbeafdddac9cf9bd0215b928))
+* **icon:** fix oui-icon-trash_concept ([#3287](https://github.com/ovh/manager/issues/3287)) ([9347797](https://github.com/ovh/manager/commit/934779770b4db186cc4ed53caf3ca216853367c7))
+
+
+### Features
+
+* upgrade ovh-ui-kit to v4 ([f48f258](https://github.com/ovh/manager/commit/f48f2587c367b06939c452428c5783c2fb1c1b8d))
+* upgrade ovh-ui-kit-bs to v4 ([d649cd7](https://github.com/ovh/manager/commit/d649cd7d566ac39d172b2e36625fde83bd99c9f5))
+* use component for billing actions on services ([c907399](https://github.com/ovh/manager/commit/c907399239f89a915ab891feff04778de714a9ef))
+
+
+### BREAKING CHANGES
+
+* bump ovh-ui-kit to latest major
+
+Signed-off-by: Axel Peter <axel.peter@live.com>
+* bump ovh-ui-kit-bs to latest major
+
+Signed-off-by: Axel Peter <axel.peter@live.com>
+
+
+
 ## [12.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@12.7.1...@ovh-ux/manager-dedicated@12.7.2) (2020-07-15)
 
 

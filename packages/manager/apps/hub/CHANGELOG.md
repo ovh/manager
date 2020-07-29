@@ -1,3 +1,25 @@
+# [2.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@1.4.2...@ovh-ux/manager-hub-app@2.0.0) (2020-07-29)
+
+
+### Bug Fixes
+
+* **theme:** remove custom style ([#3291](https://github.com/ovh/manager/issues/3291)) ([e9d323b](https://github.com/ovh/manager/commit/e9d323b0fd7410ffb115a0dc069fba520bf9eba2))
+
+
+### Features
+
+* upgrade ovh-ui-kit to v4 ([f48f258](https://github.com/ovh/manager/commit/f48f2587c367b06939c452428c5783c2fb1c1b8d))
+* use component for billing actions on services ([c907399](https://github.com/ovh/manager/commit/c907399239f89a915ab891feff04778de714a9ef))
+
+
+### BREAKING CHANGES
+
+* bump ovh-ui-kit to latest major
+
+Signed-off-by: Axel Peter <axel.peter@live.com>
+
+
+
 ## [1.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@1.4.1...@ovh-ux/manager-hub-app@1.4.2) (2020-06-16)
 
 

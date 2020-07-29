@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/sao-ovh-manager-app",
-  "version": "1.0.5",
+  "version": "2.0.0",
   "private": true,
   "description": "Scaffolding tool for standalone app.",
   "repository": {

@@ -1,3 +1,25 @@
+# [2.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@1.3.4...@ovh-ux/manager-account-sidebar@2.0.0) (2020-07-29)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 500] ([4678e38](https://github.com/ovh/manager/commit/4678e3807d08c1aa8050efdc6bb7606f1ead585e))
+
+
+### Features
+
+* add link to assistance request ([7d17c17](https://github.com/ovh/manager/commit/7d17c17312b75e6108a25f4825ceb3665f559dc2))
+* upgrade ovh-ui-kit to v4 ([f48f258](https://github.com/ovh/manager/commit/f48f2587c367b06939c452428c5783c2fb1c1b8d))
+
+
+### BREAKING CHANGES
+
+* bump ovh-ui-kit to latest major
+
+Signed-off-by: Axel Peter <axel.peter@live.com>
+
+
+
 ## [1.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@1.3.3...@ovh-ux/manager-account-sidebar@1.3.4) (2020-07-08)
 
 
