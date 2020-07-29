@@ -76,5 +76,7 @@
   "overTheBox_release_channel_testing": "Version beta",
   "overTheBox_release_channel_unstable": "Version alpha",
   "overTheBox_release_channel_develop": "Version de développement",
-  "overTheBox_release_channel_rpi3": "Version pour Raspberry 3"
+  "overTheBox_release_channel_rpi3": "Version pour Raspberry 3",
+  "overTheBox_version_device": "Version du matériel",
+  "overTheBox_version_system": "Version du système"
 }
