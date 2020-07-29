@@ -259,9 +259,28 @@
                                 </span>
                             </div>
                         </div>
+                        <div class="oui-tile__item">
+                            <div
+                                class="oui-tile__definition"
+                                data-ng-if="$ctrl.loaders.device || !$ctrl.error.noDeviceLinked"
+                            >
+                                <span
+                                    class="oui-tile__term d-block"
+                                    data-translate="overTheBox_reverse_dns"
+                                >
+                                </span>
+                                <span
+                                    class="oui-tile__description"
+                                    data-ng-bind="$ctrl.device.reverse"
+                                ></span>
+                            </div>
+                        </div>
                     </div>
                     <div class="oui-tile__body col-md-6">
-                        <div class="oui-tile__item" data-ng-if="$ctrl.device">
+                        <div
+                            class="oui-tile__item"
+                            data-ng-if="$ctrl.loaders.device || !$ctrl.error.noDeviceLinked"
+                        >
                             <div class="oui-tile__definition">
                                 <span
                                     class="oui-tile__term d-block"
@@ -279,7 +298,10 @@
                                 </oui-select>
                             </div>
                         </div>
-                        <div class="oui-tile__item" data-ng-if="$ctrl.device">
+                        <div
+                            class="oui-tile__item"
+                            data-ng-if="$ctrl.loaders.device || !$ctrl.error.noDeviceLinked"
+                        >
                             <div class="oui-tile__definition">
                                 <span
                                     class="oui-tile__term d-block"
@@ -292,7 +314,10 @@
                                 ></span>
                             </div>
                         </div>
-                        <div class="oui-tile__item" data-ng-if="$ctrl.device">
+                        <div
+                            class="oui-tile__item"
+                            data-ng-if="$ctrl.loaders.device || !$ctrl.error.noDeviceLinked"
+                        >
                             <div class="oui-tile__definition">
                                 <span
                                     class="oui-tile__term d-block"

@@ -2,6 +2,7 @@ import angular from 'angular';
 import isArray from 'lodash/isArray';
 import forEach from 'lodash/forEach';
 import map from 'lodash/map';
+import set from 'lodash/set';
 import sortBy from 'lodash/sortBy';
 import 'moment';
 
@@ -15,6 +16,7 @@ export default class OverTheBoxDetailsCtrl {
     OVERTHEBOX_DETAILS,
     OvhApiOverTheBox,
     OvhApiIp,
+    OvhApiIpReverse,
     OverTheBoxGraphService,
     TucToast,
     TucChartjsFactory,
@@ -26,6 +28,7 @@ export default class OverTheBoxDetailsCtrl {
     this.OVERTHEBOX_DETAILS = OVERTHEBOX_DETAILS;
     this.OvhApiOverTheBox = OvhApiOverTheBox;
     this.OvhApiIp = OvhApiIp;
+    this.OvhApiIpReverse = OvhApiIpReverse;
     this.OverTheBoxGraphService = OverTheBoxGraphService;
     this.TucToast = TucToast;
     this.TucChartjsFactory = TucChartjsFactory;
@@ -455,6 +458,10 @@ export default class OverTheBoxDetailsCtrl {
         this.getLastSeen();
 
         this.checkPublicIP();
+
+        if (this.device && this.device.publicIp) {
+          this.getReverseDNS();
+        }
         return devices;
       })
       .catch((error) => {
@@ -522,8 +529,6 @@ export default class OverTheBoxDetailsCtrl {
             status: this.OVERTHEBOX_DETAILS.serviceIpStatus.unknown,
           };
         }
-        console.log('get ip', ip, this.serviceIP);
-
         return ips;
       })
       .catch((error) => {
@@ -536,6 +541,19 @@ export default class OverTheBoxDetailsCtrl {
         );
         return this.$q.reject(error);
       });
+  }
+
+  /**
+   * Retrieve reverse DNS from public IP
+   */
+  getReverseDNS() {
+    return this.OvhApiIpReverse.v6()
+      .getReverseDns(this.device.publicIp)
+      .then((dns) => {
+        set(this.device, 'reverse', dns);
+        return dns;
+      })
+      .catch(() => this.$q.when(null));
   }
 
   /**
