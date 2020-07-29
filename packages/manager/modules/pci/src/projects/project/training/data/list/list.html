@@ -71,6 +71,54 @@
     >
         <span data-ng-bind="$value | date:'medium'"></span>
     </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'pci_projects_project_training_data_pull_status' | translate"
+        data-property="pullStatus"
+        data-type="string"
+        data-searchable
+        data-filterable
+        data-sortable
+    >
+        <span
+            class="oui-status"
+            data-ng-class="{
+                'oui-status_success': ($value === 'done'),
+                'oui-status_warning': ($value === 'running'),
+                'oui-status_error': ($value === 'error'),
+                'oui-status_info': (!$value)
+            }"
+            ><span
+                data-translate="{{:: 'pci_projects_project_training_data_status_' + $value }}"
+                oui-tooltip="{{:: $row.pullDate | date:'medium' }}"
+                oui-tooltip-placement="top"
+            >
+            </span>
+        </span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'pci_projects_project_training_data_push_status' | translate"
+        data-property="pushStatus"
+        data-type="string"
+        data-searchable
+        data-filterable
+        data-sortable
+    >
+        <span
+            class="oui-status"
+            data-ng-class="{
+                'oui-status_success': ($value === 'done'),
+                'oui-status_warning': ($value === 'running'),
+                'oui-status_error': ($value === 'error'),
+                'oui-status_info': (!$value)
+            }"
+            ><span
+                data-translate="{{:: 'pci_projects_project_training_data_status_' + $value }}"
+                oui-tooltip="{{:: $row.pushDate | date:'medium' }}"
+                oui-tooltip-placement="top"
+            >
+            </span>
+        </span>
+    </oui-datagrid-column>
     <oui-datagrid-topbar>
         <a
             data-ng-href="{{ $ctrl.addDataLink }}"

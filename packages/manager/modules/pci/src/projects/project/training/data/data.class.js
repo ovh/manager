@@ -1,5 +1,17 @@
 export default class Data {
-  constructor({ id, name, region, user, created, container, containerRegion }) {
+  constructor({
+    id,
+    name,
+    region,
+    user,
+    created,
+    container,
+    containerRegion,
+    pushStatus,
+    pullStatus,
+    pushDate,
+    pullDate,
+  }) {
     Object.assign(this, {
       id,
       name,
@@ -8,6 +20,10 @@ export default class Data {
       created,
       container,
       containerRegion,
+      pushStatus,
+      pullStatus,
+      pushDate,
+      pullDate,
     });
   }
 }

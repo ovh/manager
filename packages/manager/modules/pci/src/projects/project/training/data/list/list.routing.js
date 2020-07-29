@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.training.data.list', {
-    url: '/list',
+    url: '/',
     component: 'pciProjectTrainingDataListComponent',
     resolve: {
       breadcrumb: () => null, // Hide breadcrumb

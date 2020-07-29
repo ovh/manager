@@ -5,6 +5,12 @@
   "pci_projects_project_training_data_container": "Container",
   "pci_projects_project_training_data_created": "Création",
   "pci_projects_project_training_data_user": "Utilisateur",
+  "pci_projects_project_training_data_pull_status": "Dernier Import",
+  "pci_projects_project_training_data_push_status": "Dernier Export",
+  "pci_projects_project_training_data_status_done": "Terminé",
+  "pci_projects_project_training_data_status_running": "En cours",
+  "pci_projects_project_training_data_status_error": "Erreur",
+  "pci_projects_project_training_data_status_": "Pas synchronisé",
 
   "pci_projects_project_training_data_list_message_1": "Pour accéder cette liste via la client, lancer la commande suivante : ",
   "pci_projects_project_training_data_list_add": "Attacher un conteneur de données",
