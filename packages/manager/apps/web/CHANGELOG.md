@@ -1,3 +1,12 @@
+## [15.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.0.0...@ovh-ux/manager-web@15.0.1) (2020-07-29)
+
+
+### Bug Fixes
+
+* **deps:** use latest dependencies ([#3335](https://github.com/ovh/manager/issues/3335)) ([01d3a89](https://github.com/ovh/manager/commit/01d3a8901b7d2404f6299c4c04e1630146b6f2d8))
+
+
+
 # [15.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@14.7.2...@ovh-ux/manager-web@15.0.0) (2020-07-29)
 
 

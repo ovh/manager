@@ -1,3 +1,12 @@
+## [7.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms-app@7.2.3...@ovh-ux/manager-sms-app@7.2.4) (2020-07-29)
+
+
+### Bug Fixes
+
+* **deps:** use latest dependencies ([#3335](https://github.com/ovh/manager/issues/3335)) ([01d3a89](https://github.com/ovh/manager/commit/01d3a8901b7d2404f6299c4c04e1630146b6f2d8))
+
+
+
 ## [7.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms-app@7.2.2...@ovh-ux/manager-sms-app@7.2.3) (2020-07-29)
 
 
