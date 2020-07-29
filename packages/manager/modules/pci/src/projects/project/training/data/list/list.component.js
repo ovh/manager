@@ -7,6 +7,7 @@ export default {
   bindings: {
     projectId: '<',
     dataList: '<',
+    dataSync: '<',
     data: '<',
     dataInfo: '<',
     addDataLink: '<',

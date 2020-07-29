@@ -1,0 +1,54 @@
+<form id="syncData" name="syncData" data-ng-submit="$ctrl.sync()" validate>
+    <oui-modal
+        data-primary-label="{{:: 'pci_projects_project_training_data_common_submit' | translate }}"
+        data-secondary-label="{{:: 'pci_projects_project_training_data_common_cancel' | translate }}"
+        data-secondary-action="$ctrl.goBack()"
+        data-on-dismiss="$ctrl.goBack()"
+        data-loading="$ctrl.loading"
+    >
+        <p
+            class="mb-3"
+            data-translate="pci_projects_project_training_data_sync_message"
+        ></p>
+
+        <div>
+            <oui-radio
+                data-model="$ctrl.direction"
+                data-name="pull"
+                data-value="'pull'"
+            >
+                <oui-radio-label>
+                    <span
+                        data-translate="{{:: 'pci_projects_project_training_data_sync_pull' | translate }}"
+                    >
+                    </span>
+                </oui-radio-label>
+                <oui-radio-description>
+                    <span
+                        data-translate="{{:: 'pci_projects_project_training_data_sync_pull_message' | translate }}"
+                    >
+                    </span>
+                </oui-radio-description>
+            </oui-radio>
+
+            <oui-radio
+                data-model="$ctrl.direction"
+                data-name="push"
+                data-value="'push'"
+            >
+                <oui-radio-label>
+                    <span
+                        data-translate="{{:: 'pci_projects_project_training_data_sync_push' | translate }}"
+                    >
+                    </span>
+                </oui-radio-label>
+                <oui-radio-description>
+                    <span
+                        data-translate="{{:: 'pci_projects_project_training_data_sync_push_message' | translate }}"
+                    >
+                    </span>
+                </oui-radio-description>
+            </oui-radio>
+        </div>
+    </oui-modal>
+</form>

@@ -22,6 +22,11 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('pci.projects.project.training.data.add', {
           projectId,
         }),
+      dataSync: /* @ngInject */ ($state, projectId) => (dataId) =>
+        $state.go('pci.projects.project.training.data.sync', {
+          projectId,
+          dataId,
+        }),
       goToData: ($state, CucCloudMessage, projectId) => (
         message = false,
         type = 'success',
