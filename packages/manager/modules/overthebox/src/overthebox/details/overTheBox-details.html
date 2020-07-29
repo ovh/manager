@@ -233,11 +233,25 @@
                                 class="oui-tile__definition"
                                 data-ng-if="$ctrl.loaders.device || !$ctrl.error.noDeviceLinked"
                             >
-                                <strong
-                                    class="oui-tile__term d-block"
-                                    data-translate="overTheBox_publicIp"
-                                >
-                                </strong>
+                                <span class="oui-tile__term d-block">
+                                    <span data-translate="overTheBox_publicIp">
+                                    </span>
+                                    <span
+                                        class="oui-icon oui-icon-lock"
+                                        data-ng-if="$ctrl.serviceIP.status === 'locked'"
+                                    >
+                                    </span>
+                                    <span
+                                        class="oui-icon oui-icon-warning text-danger"
+                                        data-ng-if="$ctrl.serviceIP.status === 'warning'"
+                                    >
+                                    </span>
+                                    <span
+                                        class="oui-icon oui-icon-padlock-opened_concept"
+                                        data-ng-if="$ctrl.serviceIP.status === 'unknown'"
+                                    >
+                                    </span>
+                                </span>
                                 <span
                                     class="oui-tile__description"
                                     data-ng-bind="$ctrl.device.publicIp"

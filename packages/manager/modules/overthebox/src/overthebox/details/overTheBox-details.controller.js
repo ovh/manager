@@ -14,7 +14,7 @@ export default class OverTheBoxDetailsCtrl {
     OVER_THE_BOX,
     OVERTHEBOX_DETAILS,
     OvhApiOverTheBox,
-    OvhApiIP,
+    OvhApiIp,
     OverTheBoxGraphService,
     TucToast,
     TucChartjsFactory,
@@ -25,7 +25,7 @@ export default class OverTheBoxDetailsCtrl {
     this.OVER_THE_BOX = OVER_THE_BOX;
     this.OVERTHEBOX_DETAILS = OVERTHEBOX_DETAILS;
     this.OvhApiOverTheBox = OvhApiOverTheBox;
-    this.OvhApiIP = OvhApiIP;
+    this.OvhApiIp = OvhApiIp;
     this.OverTheBoxGraphService = OverTheBoxGraphService;
     this.TucToast = TucToast;
     this.TucChartjsFactory = TucChartjsFactory;
@@ -453,6 +453,8 @@ export default class OverTheBoxDetailsCtrl {
           );
 
         this.getLastSeen();
+
+        this.checkPublicIP();
         return devices;
       })
       .catch((error) => {
@@ -487,6 +489,53 @@ export default class OverTheBoxDetailsCtrl {
         this.lastSeenAccess.isRecent = false;
       }
     }
+  }
+
+  /**
+   * Check public IP to retrieve its status
+   */
+  checkPublicIP() {
+    return this.OvhApiIp.v6()
+      .query({
+        'routedTo.serviceName': this.serviceName,
+        type: 'overthebox',
+      })
+      .$promise.then((ips) => {
+        const [ip] = ips;
+
+        if (!ip) {
+          this.serviceIP = {
+            status: this.OVERTHEBOX_DETAILS.serviceIpStatus.unknown,
+          };
+        } else if (this.device && this.device.publicIp) {
+          if (ip.includes(this.device.publicIp)) {
+            this.serviceIP = {
+              status: this.OVERTHEBOX_DETAILS.serviceIpStatus.locked,
+            };
+          } else {
+            this.serviceIP = {
+              status: this.OVERTHEBOX_DETAILS.serviceIpStatus.warning,
+            };
+          }
+        } else {
+          this.serviceIP = {
+            status: this.OVERTHEBOX_DETAILS.serviceIpStatus.unknown,
+          };
+        }
+        console.log('get ip', ip, this.serviceIP);
+
+        return ips;
+      })
+      .catch((error) => {
+        this.error.checking = error.data;
+        this.TucToast.error(
+          [
+            this.$translate.instant('an_error_occured'),
+            error.data.message,
+          ].join(' '),
+        );
+        return this.$q.reject(error);
+      });
   }
 
   /**
