@@ -47,6 +47,7 @@
                 ></oui-tile-description>
             </oui-tile-definition>
             <oui-tile-definition
+                ng-if="$ctrl.job.command && $ctrl.job.command.length > 0"
                 data-term="{{:: 'pci_projects_project_training_jobs_command' | translate  }}"
             >
                 <oui-tile-description>
@@ -103,6 +104,7 @@
             data-heading="{{:: 'pci_projects_project_training_jobs_info_title_3' | translate  }}"
         >
             <oui-tile-definition
+                ng-if="$ctrl.job.resources.cpu"
                 data-term="{{:: 'pci_projects_project_training_jobs_cpu' | translate  }}"
             >
                 <oui-tile-description
@@ -110,6 +112,7 @@
                 ></oui-tile-description>
             </oui-tile-definition>
             <oui-tile-definition
+                ng-if="$ctrl.job.resources.mem"
                 data-term="{{:: 'pci_projects_project_training_jobs_ram' | translate  }}"
             >
                 <oui-tile-description
@@ -117,6 +120,7 @@
                 ></oui-tile-description>
             </oui-tile-definition>
             <oui-tile-definition
+                ng-if="$ctrl.job.resources.gpu"
                 data-term="{{:: 'pci_projects_project_training_jobs_gpu' | translate  }}"
             >
                 <oui-tile-description
