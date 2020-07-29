@@ -19,28 +19,33 @@ module.exports = (rootPath, fragmentPath) =>
     getFragmentManifest(fragmentPath),
   ]).then(([infos, fragmentManifest]) => {
     const { name, version } = fragmentManifest;
-    const fragmentExists = infos.find(
-      (info) => info.name === name && info.versions.includes(version),
-    );
 
-    if (fragmentExists) {
-      console.log(
-        `Fragment "${name}@${version}" already exists in ${rootPath}`,
-      );
+    if (!name || !version) {
+      console.log(`Invalid manifest in ${fragmentPath}`);
     } else {
-      util
-        .promisify(fse.copy)(
-          fragmentPath,
-          path.resolve(rootPath, name, version),
-          {
-            dereference: true,
-          },
-        )
-        .then(() => {
-          console.log(
-            `Fragment "${name}@${version}" added in registry ${rootPath}`,
-          );
-        });
+      const fragmentExists = infos.find(
+        (info) => info.name === name && info.versions.includes(version),
+      );
+
+      if (fragmentExists) {
+        console.log(
+          `Fragment "${name}@${version}" already exists in ${rootPath}`,
+        );
+      } else {
+        util
+          .promisify(fse.copy)(
+            fragmentPath,
+            path.resolve(rootPath, name, version),
+            {
+              dereference: true,
+            },
+          )
+          .then(() => {
+            console.log(
+              `Fragment "${name}@${version}" added in registry ${rootPath}`,
+            );
+          });
+      }
     }
   });
 /* eslint-enable no-console */
