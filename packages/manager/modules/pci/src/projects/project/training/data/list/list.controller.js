@@ -1,4 +1,4 @@
-export default class PciTrainingJobsListController {
+export default class PciTrainingDataListController {
   /* @ngInject */
   constructor($state, CucCloudMessage, CucRegionService) {
     this.$state = $state;
@@ -11,7 +11,7 @@ export default class PciTrainingJobsListController {
 
     this.allDataList = this.dataList.map((data) => {
       // Link each data to its related PCS container
-      const containerLink = PciTrainingJobsListController.getContainerId(
+      const containerLink = PciTrainingDataListController.getContainerId(
         data.containerRegion,
         data.container,
       );
@@ -23,7 +23,7 @@ export default class PciTrainingJobsListController {
   }
 
   static getContainerId(region, name) {
-    return PciTrainingJobsListController.hexEncode(btoa(`${name}.${region}`));
+    return PciTrainingDataListController.hexEncode(btoa(`${name}.${region}`));
   }
 
   // eslint-disable-next-line class-methods-use-this

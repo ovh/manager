@@ -9,7 +9,6 @@ export default {
     dataList: '<',
     dataSync: '<',
     data: '<',
-    dataInfo: '<',
     addDataLink: '<',
     goToContainer: '<',
   },

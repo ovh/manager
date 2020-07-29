@@ -6,7 +6,7 @@ export default {
   template,
   bindings: {
     goBack: '<',
-    dataId: '<',
+    data: '<',
     projectId: '<',
   },
 };

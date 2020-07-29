@@ -9,7 +9,7 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     resolve: {
       goBack: /* @ngInject */ (goToData) => goToData,
-      dataId: /* @ngInject */ ($transition$) => $transition$.params().dataId,
+      data: /* @ngInject */ ($stateParams) => $stateParams.dataId,
     },
   });
 };

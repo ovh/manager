@@ -19,14 +19,14 @@ export default class PciProjectTrainingDataService {
       );
   }
 
-  sync(projectId, jobId, direction) {
+  sync(projectId, dataId, direction) {
     return this.OvhApiCloudProjectAi.Training()
       .Data()
       .v6()
       .sync(
         {
           serviceName: projectId,
-          jobId,
+          dataId,
         },
         { direction },
       ).$promise;
@@ -43,14 +43,14 @@ export default class PciProjectTrainingDataService {
       .$promise.then((allData) => allData.map((data) => new Data({ ...data })));
   }
 
-  get(projectId, jobId) {
+  get(projectId, dataId) {
     // Uncomment when iceberg proded
     return this.OvhApiCloudProjectAi.Training()
       .Data()
       .v6()
       .get({
         serviceName: projectId,
-        jobId,
+        dataId,
       })
       .$promise.then(
         (data) =>

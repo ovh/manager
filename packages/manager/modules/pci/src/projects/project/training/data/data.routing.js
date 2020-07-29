@@ -11,13 +11,8 @@ export default /* @ngInject */ ($stateProvider) => {
       dataList: /* @ngInject */ (PciProjectTrainingDataService, projectId) =>
         PciProjectTrainingDataService.getAll(projectId),
       data: /* @ngInject */ (PciProjectTrainingDataService, projectId) => (
-        jobId,
-      ) => PciProjectTrainingDataService.get(projectId, jobId),
-      dataInfo: /* @ngInject */ ($state, projectId) => (jobId) =>
-        $state.go('pci.projects.project.training.data.info', {
-          projectId,
-          jobId,
-        }),
+        dataId,
+      ) => PciProjectTrainingDataService.get(projectId, dataId),
       addDataLink: /* @ngInject */ ($state, projectId) =>
         $state.href('pci.projects.project.training.data.add', {
           projectId,
@@ -34,7 +29,7 @@ export default /* @ngInject */ ($stateProvider) => {
         const reload = message && type === 'success';
 
         const promise = $state.go(
-          'pci.projects.project.training.data.list',
+          'pci.projects.project.training.data',
           {
             projectId,
           },
@@ -47,7 +42,7 @@ export default /* @ngInject */ ($stateProvider) => {
           promise.then(() =>
             CucCloudMessage[type](
               message,
-              'pci.projects.project.training.data.list',
+              'pci.projects.project.training.data',
             ),
           );
         }
