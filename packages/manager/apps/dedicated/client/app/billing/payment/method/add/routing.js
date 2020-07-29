@@ -42,7 +42,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
         },
         legacyBankAccount: {
           name: 'legacyBankAccount',
-          position: 2,
+          position: 1,
           isVisible: () =>
             model.selectedPaymentMethodType.isLegacy() &&
             model.selectedPaymentMethodType.paymentType ===
@@ -51,7 +51,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
         },
         legacyBankAccountOwner: {
           name: 'legacyBankAccountOwner',
-          position: 3,
+          position: 2,
           isVisible: () =>
             model.selectedPaymentMethodType.isLegacy() &&
             model.selectedPaymentMethodType.paymentType ===
@@ -61,7 +61,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
         billingContact: {
           // for US only
           name: 'billingContact',
-          position: 2,
+          position: 1,
           loading: false,
           isVisible: () =>
             model.selectedPaymentMethodType.isRequiringContactId(),
@@ -70,7 +70,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
         paymentMethodIntegration: {
           // for US only
           name: 'paymentMethodIntegration',
-          position: 3,
+          position: 2,
           loading: false,
           isVisible: () =>
             model.selectedPaymentMethodType.isRequiringContactId(),
