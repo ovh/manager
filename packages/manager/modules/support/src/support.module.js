@@ -3,7 +3,7 @@ import angular from 'angular';
 import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import uiRouter from '@uirouter/angularjs';
 import angularTranslate from 'angular-translate';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 
 import tickets from './tickets';
 
@@ -11,10 +11,8 @@ import component from './support.component';
 import { state } from './support.routing';
 
 import 'font-awesome/css/font-awesome.css';
-import 'ovh-ui-kit/dist/oui.css';
-import 'ovh-ui-kit/dist/oui-olt.css';
-import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.min.css';
-import 'ovh-ui-kit-bs/dist/oui-bs3-olt.css';
+import '@ovh-ux/ui-kit/dist/css/oui.css';
+import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 
 import './support.scss';
 

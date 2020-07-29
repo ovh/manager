@@ -5,7 +5,7 @@
                 <img
                     data-ng-src="{{:: $ctrl.imageSource || $ctrl.placeholder }}"
                     data-ng-attr-alt="{{:: $ctrl.imageAlt }}"
-                    alt=""
+                    alt
                     class="w-100"
                 />
             </div>
@@ -36,11 +36,15 @@
                             class="oui-tile__description"
                             data-ng-bind=":: guide.description"
                         ></p>
-                        <span data-translate="pci_project_empty_more"></span>
-                        <span
-                            class="oui-icon oui-icon-external_link"
-                            aria-hidden="true"
-                        ></span>
+                        <span class="oui-link oui-link_icon">
+                            <span
+                                data-translate="pci_project_empty_more"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon-external-link"
+                                aria-hidden="true"
+                            ></span>
+                        </span>
                     </div>
                 </div>
             </a>

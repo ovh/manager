@@ -136,22 +136,22 @@
             data-page-size="10"
             data-selectable-rows
         >
-            <oui-column
+            <oui-datagrid-column
                 data-title="'telephony_alias_configuration_calls_filtering_lists_number' | translate"
                 data-property="callNumber"
                 data-type="string"
                 data-searchable
                 data-sortable
-            ></oui-column>
-            <oui-column
+            ></oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'telephony_alias_configuration_calls_filtering_lists_type_number' | translate"
                 data-property="nature"
             >
                 <span
                     data-ng-bind=":: ('telephony_alias_configuration_calls_filtering_helper_' + $value) | translate"
                 ></span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'telephony_alias_configuration_calls_filtering_type_list' | translate"
                 data-property="type"
                 data-filterable
@@ -166,9 +166,9 @@
                 <span
                     data-ng-bind=":: ('telephony_alias_configuration_calls_filtering_list_' + $value) | translate"
                 ></span>
-            </oui-column>
-            <extra-top>
-                <oui-dropdown class="mb-3" data-align="start">
+            </oui-datagrid-column>
+            <oui-datagrid-topbar>
+                <oui-dropdown class="mb-3" data-placement="start">
                     <oui-dropdown-trigger
                         data-text="{{:: 'common_actions' | translate }}"
                         data-disabled="$selectedRows.length === 0"
@@ -215,7 +215,7 @@
                     data-translate="common_delete_selected_items_count"
                     data-translate-values="{ count: $selectedRows.length }"
                 ></p>
-            </extra-top>
+            </oui-datagrid-topbar>
         </oui-datagrid>
     </div>
 

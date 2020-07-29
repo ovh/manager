@@ -38,9 +38,8 @@
             data-disabled="!$ctrl.hasMaintenanceWindowChanged() || ($ctrl.isDefaultMaintenanceWindow() && !$ctrl.maintenanceWindow)"
             data-ng-if="!$ctrl.loaders.maintenanceWindow"
             data-on-click="$ctrl.saveMaintenanceWindow()"
-            data-text="Primary"
             data-variant="primary"
-        >
+            ><span data-ng-bind="Primary"></span>
             <span data-translate="enterprise_cloud_database_common_save"></span>
         </oui-button>
         <oui-spinner
@@ -64,20 +63,20 @@
                 data-translate="enterprise_cloud_database_service_details_settings_allowed_ips_help"
             ></span>
             <span
-                class="oui-icon oui-icon-external_link"
+                class="oui-icon oui-icon-external-link"
                 aria-hidden="true"
             ></span>
         </a>
         <oui-datagrid class="mt-3" data-rows="$ctrl.securityGroups">
-            <oui-column data-property="name">
+            <oui-datagrid-column data-property="name">
                 <span
-                    class="oui-icon oui-icon-chevron-down_extra-thin expand-button"
+                    class="oui-icon expand-button oui-icon-chevron-down"
                     aria-hidden="true"
                     data-ng-click="$ctrl.toggleRules($row)"
                     data-ng-class="{ 'expand-button_expanded': $row.expanded }"
                 ></span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="::'enterprise_cloud_database_service_details_settings_group_name' | translate"
                 data-property="name"
                 data-sortable="asc"
@@ -101,7 +100,7 @@
                     >
                         <span data-ng-bind="rule.source"></span>
                         <span
-                            class="oui-icon oui-icon-trash_line delete-button"
+                            class="oui-icon delete-button oui-icon-trash_concept"
                             aria-hidden="true"
                             data-ng-click="$ctrl.deleteRule($row, rule)"
                             data-ng-class="{ 'delete-button_disabled': $ctrl.enterpriseCloudDatabaseService.constructor.isProcessing($ctrl.clusterDetails.status)
@@ -110,16 +109,16 @@
                         ></span>
                     </div>
                 </div>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="::'enterprise_cloud_database_service_details_settings_rules_count' | translate"
                 data-property="rulesCount"
                 data-sortable="asc"
                 data-type="number"
                 data-searchable
                 data-filterable
-            ></oui-column>
-            <oui-column
+            ></oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="::'enterprise_cloud_database_common_status' | translate"
                 data-property="status"
                 data-type="string"
@@ -128,8 +127,8 @@
                 data-searchable
             >
                 <p
-                    class="oui-status"
-                    data-ng-class="'oui-status_' + $ctrl.enterpriseCloudDatabaseService.constructor.getStatusGroup($row.status)"
+                    class="oui-badge"
+                    data-ng-class="'oui-badge_' + $ctrl.enterpriseCloudDatabaseService.constructor.getStatusGroup($row.status)"
                     data-ng-bind=":: ('enterprise_cloud_database_common_status_' + $row.status) | translate"
                 ></p>
                 <div
@@ -146,19 +145,19 @@
                         data-ng-repeat="rule in $ctrl.rules[$row.id] track by $index"
                     >
                         <span
-                            class="oui-status"
-                            data-ng-class="'oui-status_' + $ctrl.enterpriseCloudDatabaseService.constructor.getStatusGroup(rule.status)"
+                            class="oui-badge"
+                            data-ng-class="'oui-badge_' + $ctrl.enterpriseCloudDatabaseService.constructor.getStatusGroup(rule.status)"
                             data-ng-bind=":: ('enterprise_cloud_database_common_status_' + rule.status) | translate"
                         ></span>
                     </div>
                 </div>
-            </oui-column>
-            <oui-column data-property="name">
+            </oui-datagrid-column>
+            <oui-datagrid-column data-property="name">
                 <oui-action-menu
-                    data-align="end"
                     data-compact
                     data-disabled="$ctrl.enterpriseCloudDatabaseService.constructor.isProcessing($row.status)
                                     || $ctrl.enterpriseCloudDatabaseService.constructor.isProcessing($ctrl.clusterDetails.status)"
+                    data-placement="end"
                 >
                     <oui-action-menu-item data-on-click="$ctrl.addRule($row)">
                         <span
@@ -180,8 +179,8 @@
                         ></span>
                     </oui-action-menu-item>
                 </oui-action-menu>
-            </oui-column>
-            <extra-top>
+            </oui-datagrid-column>
+            <oui-datagrid-topbar>
                 <oui-button
                     data-on-click="$ctrl.createSecurityGroup()"
                     data-disabled="$ctrl.enterpriseCloudDatabaseService.constructor.isProcessing($ctrl.clusterDetails.status)"
@@ -190,7 +189,7 @@
                         data-translate="enterprise_cloud_database_service_details_settings_create_group"
                     ></span>
                 </oui-button>
-            </extra-top>
+            </oui-datagrid-topbar>
         </oui-datagrid>
     </div>
 </div>

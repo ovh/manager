@@ -12,6 +12,5 @@
   "ovh_manager_hub_payment_status_tile_before": "avant le {{ date }}",
   "ovh_manager_hub_payment_status_tile_renew": "depuis le {{ date }}",
   "ovh_manager_hub_payment_status_tile_error": "Impossible de récupérer les services",
-  "ovh_manager_hub_payment_status_tile_manage_service": "Gérer",
   "ovh_manager_hub_payment_status_tile_no_services": "Aucun service"
 }

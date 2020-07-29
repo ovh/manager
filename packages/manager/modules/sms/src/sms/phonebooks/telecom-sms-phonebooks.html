@@ -199,31 +199,17 @@
                     data-translate="sms_phonebooks_phonebook_contact_import_alert_task"
                 ></div>
                 <div class="mb-3 clearfix">
-                    <div
-                        class="btn-group float-left mr-3"
-                        data-uib-dropdown
-                        data-dropdown-append-to-body
-                    >
+                    <div class="btn-group float-left mr-3" data-uib-dropdown>
                         <button
                             id="btn-sms-phonebooks-actions"
                             type="button"
-                            class="btn btn-default"
+                            class="oui-button oui-button_dropdown"
+                            data-ng-disabled="PhonebooksCtrl.phonebookContact.isExporting"
                             data-uib-dropdown-toggle
                         >
-                            <span
-                                class="fa fa-bars"
-                                aria-hidden="true"
-                                data-ng-if="!PhonebooksCtrl.phonebookContact.isExporting"
-                            >
-                            </span>
-                            <oui-spinner
-                                data-ng-if="PhonebooksCtrl.phonebookContact.isExporting"
-                                data-size="s"
-                            >
-                            </oui-spinner>
                             <span data-translate="sms_common_actions"></span>
                             <span
-                                class="ovh-font ovh-font-small-arrow-down"
+                                class="oui-icon oui-icon-chevron-down"
                                 aria-hidden="true"
                             ></span>
                         </button>
@@ -234,10 +220,6 @@
                             data-uib-dropdown-menu
                         >
                             <li role="menuitem">
-                                <i
-                                    class="ovh-font ovh-font-add-circle"
-                                    aria-hidden="true"
-                                ></i>
                                 <button
                                     type="button"
                                     class="btn btn-link"
@@ -249,10 +231,6 @@
                                 ></button>
                             </li>
                             <li role="menuitem">
-                                <i
-                                    class="ovh-font ovh-font-upload"
-                                    aria-hidden="true"
-                                ></i>
                                 <button
                                     type="button"
                                     class="btn btn-link"
@@ -265,10 +243,6 @@
                                 ></button>
                             </li>
                             <li role="menuitem">
-                                <i
-                                    class="ovh-font ovh-font-download"
-                                    aria-hidden="true"
-                                ></i>
                                 <button
                                     type="button"
                                     class="btn btn-link"
@@ -282,10 +256,6 @@
                                 ></button>
                             </li>
                             <li role="menuitem">
-                                <i
-                                    class="ovh-font ovh-font-arrow-rotate"
-                                    aria-hidden="true"
-                                ></i>
                                 <button
                                     type="button"
                                     class="btn btn-link"
@@ -304,7 +274,7 @@
                         data-ng-click="PhonebooksCtrl.deleteSelectedPhonebookContact()"
                     >
                         <span
-                            class="oui-icon oui-icon-trash_line mr-2"
+                            class="oui-icon mr-2 oui-icon-trash_concept"
                             aria-hidden="true"
                             data-ng-if="!PhonebooksCtrl.phonebookContact.isDeleting"
                         >
@@ -535,7 +505,7 @@
                                         data-ng-bind="contact.group || '-' | limitTo:25"
                                     ></span>
                                     <span
-                                        class="oui-icon oui-icon-help_circle small"
+                                        class="oui-icon small oui-icon-help-circle"
                                         data-ng-if="contact.group.length > 25"
                                         data-oui-tooltip="{{:: contact.group }}"
                                     ></span>
@@ -585,10 +555,6 @@
                                             data-uib-dropdown-menu
                                         >
                                             <li role="menuitem">
-                                                <i
-                                                    class="ovh-font ovh-font-editer"
-                                                    aria-hidden="true"
-                                                ></i>
                                                 <button
                                                     type="button"
                                                     class="btn btn-link"
@@ -598,10 +564,6 @@
                                                 ></button>
                                             </li>
                                             <li role="menuitem">
-                                                <i
-                                                    class="ovh-font ovh-font-bin"
-                                                    aria-hidden="true"
-                                                ></i>
                                                 <button
                                                     type="button"
                                                     class="btn btn-link"

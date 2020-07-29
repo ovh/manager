@@ -51,7 +51,7 @@
         >
             <span data-ng-bind="$ctrl.guideURL"></span>
             <span
-                class="oui-icon oui-icon-external_link"
+                class="oui-icon oui-icon-external-link"
                 aria-hidden="true"
             ></span>
             <span
@@ -70,7 +70,7 @@
         >
             <span data-ng-bind="$ctrl.forumURL"></span>
             <span
-                class="oui-icon oui-icon-external_link"
+                class="oui-icon oui-icon-external-link"
                 aria-hidden="true"
             ></span>
             <span
@@ -98,11 +98,8 @@
         <br />
         <small data-ng-bind="$ctrl.error.queryId"></small>
     </p>
-    <oui-button
-        data-variant="secondary"
-        data-text="{{:: 'ovhManagerSupport_new_creation_cancel' | translate }}"
-        data-on-click="$ctrl.goToTickets()"
-    >
+    <oui-button data-variant="secondary" data-on-click="$ctrl.goToTickets()"
+        ><span data-translate="ovhManagerSupport_new_creation_cancel"></span>
     </oui-button>
     <support-tickets-new-feedback></support-tickets-new-feedback>
 </oui-message>

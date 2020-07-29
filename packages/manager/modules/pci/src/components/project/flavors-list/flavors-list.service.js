@@ -59,7 +59,7 @@ export default class FlavorsList {
           ),
           (groupedFlavors) =>
             new Flavor({
-              ...omit(groupedFlavors[0], ['available', 'id', 'region']),
+              ...omit(groupedFlavors[0], ['available', 'region']),
               technicalBlob: get(
                 find(catalog.addons, {
                   invoiceName: groupedFlavors[0].name,

@@ -8,7 +8,7 @@
             <div class="col-md-3">
                 <div class="oui-tile mb-5">
                     <h4
-                        class="oui-header_4 oui-tile__title"
+                        class="oui-tile__title oui-heading_4"
                         data-ng-if="server.supportsRTM"
                         data-translate="server_tab_stats_legend_rtm"
                     ></h4>
@@ -18,7 +18,7 @@
                         data-translate="server_tab_stats_legend_location"
                     ></p>
 
-                    <h5 class="oui-header_5 oui-tile__title">
+                    <h5 class="oui-tile__title oui-heading_5">
                         <small>
                             <span data-ng-switch="loadingAction">
                                 <span data-ng-switch-when="done">
@@ -117,31 +117,31 @@
                                 ></dt>
                                 <dd class="oui-tile__description">
                                     <span
-                                        class="oui-status"
+                                        class="oui-badge"
                                         data-ng-class="{
-                                                 'oui-status_success': loadInfo.cpu && loadInfo.cpu.value < 60,
-                                                 'oui-status_warning': loadInfo.cpu && loadInfo.cpu.value >= 60 && loadInfo.cpu.value < 85,
-                                                 'oui-status_error': loadInfo.cpu && loadInfo.cpu.value >= 85
+                                                 'oui-badge_success': loadInfo.cpu && loadInfo.cpu.value < 60,
+                                                 'oui-badge_warning': loadInfo.cpu && loadInfo.cpu.value >= 60 && loadInfo.cpu.value < 85,
+                                                 'oui-badge_error': loadInfo.cpu && loadInfo.cpu.value >= 85
                                                  }"
                                         data-translate="server_tab_stats_rtm_infos_cpu"
                                     >
                                     </span>
                                     <span
-                                        class="oui-status"
+                                        class="oui-badge"
                                         data-ng-class="{
-                                                 'oui-status_success': loadInfo.memory && loadInfo.memory.value < 60,
-                                                 'oui-status_warning': loadInfo.memory && loadInfo.memory.value >= 60 && loadInfo.memory.value < 85,
-                                                 'oui-status_error': loadInfo.memory && loadInfo.memory.value >= 85
+                                                 'oui-badge_success': loadInfo.memory && loadInfo.memory.value < 60,
+                                                 'oui-badge_warning': loadInfo.memory && loadInfo.memory.value >= 60 && loadInfo.memory.value < 85,
+                                                 'oui-badge_error': loadInfo.memory && loadInfo.memory.value >= 85
                                                  }"
                                         data-translate="server_tab_stats_rtm_infos_ram"
                                     >
                                     </span>
                                     <span
-                                        class="oui-status"
+                                        class="oui-badge"
                                         data-ng-class="{
-                                                 'oui-status_success': loadInfo.swap && loadInfo.swap.value < 60,
-                                                 'oui-status_warning': loadInfo.swap && loadInfo.swap.value >= 60 && loadInfo.swap.value < 85,
-                                                 'oui-status_error': loadInfo.swap && loadInfo.swap.value >= 85
+                                                 'oui-badge_success': loadInfo.swap && loadInfo.swap.value < 60,
+                                                 'oui-badge_warning': loadInfo.swap && loadInfo.swap.value >= 60 && loadInfo.swap.value < 85,
+                                                 'oui-badge_error': loadInfo.swap && loadInfo.swap.value >= 85
                                                  }"
                                         data-translate="server_tab_stats_rtm_infos_swap"
                                     >
@@ -152,7 +152,7 @@
                         <div class="oui-tile__item oui-tile__item_button">
                             <button
                                 type="button"
-                                class="oui-tile__button oui-button oui-button_link oui-button_icon-right oui-button_full-width"
+                                class="oui-tile__button oui-button oui-button_icon-right oui-button_ghost oui-button_block"
                                 data-ng-click="selectTab('infos')"
                             >
                                 <span
@@ -170,7 +170,7 @@
                         <div class="oui-tile__item oui-tile__item_button">
                             <button
                                 type="button"
-                                class="oui-tile__button oui-button oui-button_link oui-button_icon-right oui-button_full-width"
+                                class="oui-tile__button oui-button oui-button_icon-right oui-button_ghost oui-button_block"
                                 data-ng-click="selectTab('usage')"
                             >
                                 <span
@@ -188,7 +188,7 @@
                         <div class="oui-tile__item oui-tile__item_button">
                             <button
                                 type="button"
-                                class="oui-tile__button oui-button oui-button_link oui-button_icon-right oui-button_full-width"
+                                class="oui-tile__button oui-button oui-button_icon-right oui-button_ghost oui-button_block"
                                 data-ng-click="selectTab('disk')"
                             >
                                 <span
@@ -219,7 +219,7 @@
             data-ng-if="server.supportsRTM"
         >
             <h4
-                class="oui-header_4 oui-tile__title"
+                class="oui-tile__title oui-heading_4"
                 data-translate="server_tab_stats_legend_rtm"
             ></h4>
             <div class="oui-tile__body">

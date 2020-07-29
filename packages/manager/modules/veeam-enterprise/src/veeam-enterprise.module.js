@@ -7,7 +7,7 @@ import '@ovh-ux/ng-ui-router-layout';
 import 'angular-translate';
 import 'angular-ui-bootstrap';
 import 'ovh-api-services';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 
 import VeeamEnterpriseCtrl from './controller';
 import VeeamEnterpriseService from './service';
@@ -17,8 +17,7 @@ import VeeamEnterpriseLicenseTerminateComponent from './dashboard/terminate/term
 
 import routing from './routing';
 
-import 'ovh-ui-kit/dist/oui.css';
-import 'ovh-ui-kit/dist/oui-olt.css';
+import '@ovh-ux/ui-kit/dist/css/oui.css';
 import './index.less';
 import './index.scss';
 

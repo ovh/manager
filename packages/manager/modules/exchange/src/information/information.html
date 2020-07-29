@@ -22,8 +22,8 @@
                         >
                             <oui-action-menu
                                 data-compact
-                                data-align="end"
                                 data-ng-if="ctrl.shouldDisplayMigration2016()"
+                                data-placement="end"
                             >
                                 <oui-action-menu-item
                                     data-on-click="setAction('exchange/information/migration-2016/service-migration-2016', ctrl.exchange)"
@@ -45,10 +45,10 @@
                         >
                             <oui-tile-description>
                                 <button
-                                    class="oui-status"
+                                    class="oui-badge"
                                     type="button"
                                     data-translate="exchange_dashboard_diag_a_label"
-                                    data-ng-class="{'oui-status_success': ctrl.exchange.serverDiagnostic.isAValid, 'oui-status_warning': !ctrl.exchange.serverDiagnostic.isAValid}"
+                                    data-ng-class="{'oui-badge_success': ctrl.exchange.serverDiagnostic.isAValid, 'oui-badge_warning': !ctrl.exchange.serverDiagnostic.isAValid}"
                                     data-ng-if="!ctrl.exchangeServiceInfrastructure.isProvider()"
                                     data-simplepopover="{{ctrl.exchange.serverDiagnostic.aTooltip}}"
                                     data-simplepopover-title="{{'exchange_dashboard_diag_a_tooltip_title' | translate}}"
@@ -56,10 +56,10 @@
                                     data-simplepopover-single="true"
                                 ></button>
                                 <button
-                                    class="oui-status"
+                                    class="oui-badge"
                                     type="button"
                                     data-translate="exchange_dashboard_diag_aaaa_label"
-                                    data-ng-class="{'oui-status_success': ctrl.exchange.serverDiagnostic.isAaaaValid, 'oui-status_warning': !ctrl.exchange.serverDiagnostic.isAaaaValid}"
+                                    data-ng-class="{'oui-badge_success': ctrl.exchange.serverDiagnostic.isAaaaValid, 'oui-badge_warning': !ctrl.exchange.serverDiagnostic.isAaaaValid}"
                                     data-ng-if="ctrl.exchangeServiceInfrastructure.isDedicated() || ctrl.exchangeServiceInfrastructure.isDedicatedCluster()"
                                     data-simplepopover="{{ctrl.exchange.serverDiagnostic.aaaaTooltip}}"
                                     data-simplepopover-title="{{'exchange_dashboard_diag_aaaa_tooltip_title' | translate}}"
@@ -67,10 +67,10 @@
                                     data-simplepopover-single="true"
                                 ></button>
                                 <button
-                                    class="oui-status"
+                                    class="oui-badge"
                                     type="button"
                                     data-translate="exchange_dashboard_diag_ptr_label"
-                                    data-ng-class="{'oui-status_success': ctrl.exchange.serverDiagnostic.isPtrValid, 'oui-status_warning': !ctrl.exchange.serverDiagnostic.isPtrValid}"
+                                    data-ng-class="{'oui-badge_success': ctrl.exchange.serverDiagnostic.isPtrValid, 'oui-badge_warning': !ctrl.exchange.serverDiagnostic.isPtrValid}"
                                     data-ng-if="ctrl.exchangeServiceInfrastructure.isDedicated() || ctrl.exchangeServiceInfrastructure.isDedicatedCluster()"
                                     data-simplepopover="{{ctrl.exchange.serverDiagnostic.ptrTooltip}}"
                                     data-simplepopover-title="{{'exchange_dashboard_diag_ptr_tooltip_title' | translate}}"
@@ -78,10 +78,10 @@
                                     data-simplepopover-single="true"
                                 ></button>
                                 <button
-                                    class="oui-status"
+                                    class="oui-badge"
                                     type="button"
                                     data-translate="exchange_dashboard_diag_ptrv6_label"
-                                    data-ng-class="{'oui-status_success': ctrl.exchange.serverDiagnostic.isPtrV6Valid, 'oui-status_warning': !ctrl.exchange.serverDiagnostic.isPtrV6Valid}"
+                                    data-ng-class="{'oui-badge_success': ctrl.exchange.serverDiagnostic.isPtrV6Valid, 'oui-badge_warning': !ctrl.exchange.serverDiagnostic.isPtrV6Valid}"
                                     data-ng-if="ctrl.exchangeServiceInfrastructure.isDedicated() || ctrl.exchangeServiceInfrastructure.isDedicatedCluster()"
                                     data-simplepopover="{{ctrl.exchange.serverDiagnostic.ptrv6Tooltip}}"
                                     data-simplepopover-title="{{'exchange_dashboard_diag_ptrv6_tooltip_title' | translate}}"
@@ -100,7 +100,6 @@
                                 ></span>
                                 <oui-message
                                     data-type="info"
-                                    data-dismissable="false"
                                     data-ng-if="ctrl.messageSSL"
                                     class="oui-paragraph"
                                 >
@@ -109,9 +108,9 @@
                             </oui-tile-description>
                             <oui-action-menu
                                 data-compact
-                                data-align="end"
                                 data-disabled="ctrl.hasSSLTask"
                                 data-ng-if="ctrl.shouldDisplaySSLRenewValue"
+                                data-placement="end"
                             >
                                 <oui-action-menu-item
                                     data-on-click="ctrl.sslRenew()"
@@ -191,8 +190,8 @@
                             </oui-tile-description>
                             <oui-action-menu
                                 data-compact
-                                data-align="end"
                                 data-ng-if="ctrl.displayOrderDiskSpace()"
+                                data-placement="end"
                             >
                                 <oui-action-menu-item
                                     data-on-click="ctrl.orderDiskSpace()"
@@ -232,7 +231,7 @@
                                 data-ng-bind=":: ctrl.exchange.webUrl"
                             ></span>
                             <span
-                                class="oui-icon oui-icon-external_link"
+                                class="oui-icon oui-icon-external-link"
                                 aria-hidden="true"
                             ></span>
                             <span

@@ -82,7 +82,7 @@
                             data-ng-if="bdd.waitDelete"
                         >
                             <span
-                                class="oui-status oui-status_error"
+                                class="oui-badge oui-badge_error"
                                 data-translate="privateDatabase_tabs_bdd_deleting"
                             ></span>
                         </td>
@@ -97,9 +97,9 @@
                         ></td>
                         <td class="text-center" data-ng-if="!bdd.waitDelete">
                             <div
-                                class="oui-status"
+                                class="oui-badge"
                                 data-ng-bind="bdd.dumpsCount"
-                                data-ng-class="{'oui-status_success': bdd.dumpsCount > 0, 'oui-status_error': !(bdd.dumpsCount > 0)}"
+                                data-ng-class="{'oui-badge_success': bdd.dumpsCount > 0, 'oui-badge_error': !(bdd.dumpsCount > 0)}"
                             ></div>
                             <small
                                 class="d-block mt-2"
@@ -134,8 +134,8 @@
                         <td class="text-center" data-ng-show="!bdd.waitDelete">
                             <oui-action-menu
                                 data-compact
-                                data-align="end"
                                 data-ng-if="!bdd.waitDelete && database.state === 'started' && !taskState.changeVersion"
+                                data-placement="end"
                             >
                                 <oui-action-menu-item
                                     data-on-click="listCtrl.dumpBDD(bdd)"
@@ -197,7 +197,7 @@
 
                         <td colspan="5" class="text-center">
                             <span
-                                class="oui-status oui-status_info"
+                                class="oui-badge oui-badge_info"
                                 data-translate="privateDatabase_tabs_bdd_adding"
                             ></span>
                         </td>

@@ -1,32 +1,33 @@
-<oui-page-header
+<oui-header
     class="mb-3"
     data-heading="{{:: $ctrl.carrierSip.description || $ctrl.carrierSip.serviceName }}"
     data-description="{{:: $ctrl.carrierSip.description ? $ctrl.carrierSip.serviceName : null }}"
 >
     <oui-header-tabs>
         <oui-header-tabs-item
-            data-text="{{:: 'carrier_sip_dashboard_header_dashboard' | translate }}"
             data-href="{{:: $ctrl.dashboardLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.dashboardLink"
-        >
+            ><span
+                data-translate="carrier_sip_dashboard_header_dashboard"
+            ></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
-            data-text="{{:: 'carrier_sip_dashboard_header_endpoints' | translate }}"
             data-href="{{:: $ctrl.endpointsLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.endpointsLink"
-        >
+            ><span
+                data-translate="carrier_sip_dashboard_header_endpoints"
+            ></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
-            data-text="{{:: 'carrier_sip_dashboard_header_cdr' | translate }}"
             data-href="{{:: $ctrl.cdrsLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.cdrsLink"
-        >
+            ><span data-translate="carrier_sip_dashboard_header_cdr"></span>
         </oui-header-tabs-item>
     </oui-header-tabs>
-</oui-page-header>
+</oui-header>
 <section class="px-3 px-md-5 py-4">
     <div data-ui-view class="container-fluid">
-        <div class="row">
+        <div class="row mb-4">
             <div class="col-md-4">
                 <oui-tile
                     data-heading="{{:: 'carrier_sip_dashboard_general_information' | translate }}"
@@ -125,6 +126,26 @@
                             data-translate="carrier_sip_dashboard_shortcuts_cdrs"
                         ></span>
                     </oui-tile-button>
+                </oui-tile>
+            </div>
+        </div>
+        <div
+            class="row"
+            data-ng-if="$ctrl.clusterDetails.zones && $ctrl.clusterDetails.zones.length > 0"
+        >
+            <div class="col-md-4">
+                <oui-tile
+                    heading="{{:: 'carrier_sip_dashboard_network' | translate }}"
+                >
+                    <oui-tile-definition
+                        data-ng-repeat="zone in $ctrl.clusterDetails.zones track by zone.region"
+                        term="{{:: ('carrier_sip_dashboard_network_ip_media' | translate) + ' ' + (zone.region | uppercase) }}"
+                    >
+                        <oui-tile-description
+                            data-ng-repeat="ipMedia in zone.mediaIps track by ipMedia"
+                            data-ng-bind="ipMedia"
+                        ></oui-tile-description>
+                    </oui-tile-definition>
                 </oui-tile>
             </div>
         </div>

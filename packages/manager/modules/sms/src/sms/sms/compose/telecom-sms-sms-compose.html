@@ -17,17 +17,17 @@
         <tuc-toast-message></tuc-toast-message>
 
         <div class="row">
-            <div class="col-md-3 float-right">
-                <div class="oui-tile">
+            <div class="col-md-3 col-md-push-9">
+                <div class="oui-tile mb-4">
                     <h3
-                        class="oui-header_3 oui-tile__title"
+                        class="oui-tile__title oui-heading_3"
                         data-translate="sms_sms_compose_tips_title"
                     ></h3>
                     <div class="oui-tile__body">
                         <div class="oui-tile__item oui-tile__item_button">
                             <a
                                 href="#"
-                                class="oui-tile__button oui-button oui-button_link oui-button_icon-right oui-button_full-width"
+                                class="oui-tile__button oui-button oui-button_icon-right oui-button_ghost oui-button_block"
                                 data-translate="sms_sms_compose_tip_compose_title"
                                 data-ng-click="$ctrl.tips($event, 'compose')"
                             >
@@ -36,7 +36,7 @@
                         <div class="oui-tile__item oui-tile__item_button">
                             <a
                                 href="#"
-                                class="oui-tile__button oui-button oui-button_link oui-button_icon-right oui-button_full-width"
+                                class="oui-tile__button oui-button oui-button_icon-right oui-button_ghost oui-button_block"
                                 data-translate="sms_sms_compose_tip_size_title"
                                 data-ng-click="$ctrl.tips($event, 'size')"
                             >
@@ -45,7 +45,7 @@
                         <div class="oui-tile__item oui-tile__item_button">
                             <a
                                 href="#"
-                                class="oui-tile__button oui-button oui-button_link oui-button_icon-right oui-button_full-width"
+                                class="oui-tile__button oui-button oui-button_icon-right oui-button_ghost oui-button_block"
                                 title="{{:: 'sms_sms_compose_add_receivers_select' | translate }} ({{:: 'common_open_new_tab' | translate }})"
                                 target="_blank"
                                 rel="noopener"
@@ -69,7 +69,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-9 col-md-pull-3">
                 <div
                     class="alert alert-warning"
                     role="alert"
@@ -112,7 +112,7 @@
                             >
                             </label>
                             <div class="row">
-                                <div class="col-md-8">
+                                <div class="col-md-8 mb-2">
                                     <select
                                         name="sender"
                                         id="sender"
@@ -165,7 +165,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <a
-                                        class="d-inline-block mt-2"
+                                        class="d-inline-block"
                                         data-ng-href="{{:: $ctrl.sendersLink() }}"
                                         data-translate="sms_sms_compose_sender_manage"
                                         data-translate-attr="{ title: 'sms_sms_compose_sender_manage' }"

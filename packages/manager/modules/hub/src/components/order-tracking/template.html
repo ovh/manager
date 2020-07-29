@@ -3,7 +3,7 @@
     data-ng-if="$ctrl.ordersTrackingLink"
     data-navi-id="lastOrder-block"
 >
-    <h3 data-translate="hub_order_tracking_title"></h3>
+    <h3 class="oui-heading_4" data-translate="hub_order_tracking_title"></h3>
     <hub-tile-error
         data-ng-if="!$ctrl.order && !$ctrl.loading"
         data-message="{{:: 'hub_order_tracking_error' | translate }}"
@@ -12,7 +12,7 @@
     <span data-ng-if="$ctrl.loading">…</span>
     <div data-ng-if="$ctrl.order && !$ctrl.loading">
         <a
-            class="oui-status oui-status_info mb-2"
+            class="mb-2 oui-badge oui-badge_info"
             data-ng-if="$ctrl.orderTrackingLink"
             data-ng-href="{{:: $ctrl.orderTrackingLink }}"
             data-translate="hub_order_tracking_order_id"
@@ -22,7 +22,7 @@
         ></a>
         <span
             data-ng-if="!$ctrl.orderTrackingLink"
-            class="oui-status oui-status_info"
+            class="oui-badge oui-badge_info"
             data-ng-bind="$ctrl.order.orderId"
         ></span>
         <div class="mb-3 d-flex justify-content-center flex-wrap">
@@ -38,8 +38,8 @@
                 class="oui-icon"
                 aria-hidden="true"
                 data-ng-class="{
-                    'oui-icon-close_extra-thin': $ctrl.ERROR_STATUS.includes($ctrl.currentStatus.label),
-                    'oui-icon-ok_extra-thin': !$ctrl.ERROR_STATUS.includes($ctrl.currentStatus.label) && !$ctrl.isWaitingPayment
+                    'oui-icon-close': $ctrl.ERROR_STATUS.includes($ctrl.currentStatus.label),
+                    'oui-icon-ok': !$ctrl.ERROR_STATUS.includes($ctrl.currentStatus.label) && !$ctrl.isWaitingPayment
                 }"
             ></span>
         </div>
@@ -51,10 +51,7 @@
             data-navi-id="lastOrder-go-to-orders"
         >
             <span data-translate="hub_order_tracking_see_all"></span>
-            <span
-                class="oui-icon oui-icon-arrow-right_extra-thin"
-                aria-hidden="true"
-            >
+            <span class="oui-icon oui-icon-arrow-right" aria-hidden="true">
             </span>
         </a>
     </div>

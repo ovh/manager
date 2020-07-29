@@ -2,7 +2,7 @@
     <div class="row d-lg-flex">
         <div class="col-xm-12">
             <h1
-                class="oui-header_1"
+                class="oui-heading_1"
                 data-translate="vps_configuration_veeam_order_title"
             ></h1>
             <oui-stepper data-on-init="$ctrl.loadUpgradesList()">
@@ -43,11 +43,12 @@
                         data-translate="vps_configuration_veeam_order_step1_id"
                     ></div>
                     <oui-checkbox
-                        data-text="{{ ::'vps_configuration_veeam_order_step1_contracts' | translate }}"
                         id="contractsValidated"
                         name="contractsValidated"
                         data-model="model.contractsValidated"
-                    >
+                        ><span
+                            data-translate="vps_configuration_veeam_order_step1_contracts"
+                        ></span>
                     </oui-checkbox>
                     <ul class="mb-4">
                         <li
@@ -62,7 +63,7 @@
                             >
                                 <span data-ng-bind="contract.name"></span>
                                 <span
-                                    class="oui-icon oui-icon-external_link"
+                                    class="oui-icon oui-icon-external-link"
                                     aria-hidden="true"
                                 ></span>
                             </a>

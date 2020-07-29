@@ -170,16 +170,21 @@
                                 </span>
                             </td>
                             <td colspan="2" class="text-right">
-                                <oui-action-menu data-align="end" data-compact>
+                                <oui-action-menu
+                                    data-compact
+                                    data-placement="end"
+                                >
                                     <oui-action-menu-item
-                                        data-text="{{:: 'server_configuration_ftpbackup_table_ip_edit' | translate }}"
                                         data-on-click="setAction('ftp-backup/access/update/dedicated-server-ftp-backup-access-update', ipbackup)"
-                                    >
+                                        ><span
+                                            data-translate="server_configuration_ftpbackup_table_ip_edit"
+                                        ></span>
                                     </oui-action-menu-item>
                                     <oui-action-menu-item
-                                        data-text="{{ 'server_configuration_ftpbackup_table_ip_delete' | translate }}"
                                         data-on-click="setAction('ftp-backup/access/delete/dedicated-server-ftp-backup-access-delete', ipbackup)"
-                                    >
+                                        ><span
+                                            data-translate="server_configuration_ftpbackup_table_ip_delete"
+                                        ></span>
                                     </oui-action-menu-item>
                                 </oui-action-menu>
                             </td>

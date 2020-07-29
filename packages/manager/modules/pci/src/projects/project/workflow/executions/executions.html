@@ -7,39 +7,39 @@
     class="datagrid-compact"
     data-empty-placeholder="{{ ::'pci_workflow_executions_empty' | translate }}"
 >
-    <oui-column
+    <oui-datagrid-column
         data-title="::'pci_workflow_executions_ececution_date' | translate"
         data-property="executedAt"
         data-sortable="desc"
         data-type="date"
     >
         <span data-ng-bind="$value | date: 'mediumDate' : 'UTC'"></span>
-    </oui-column>
-    <oui-column
+    </oui-datagrid-column>
+    <oui-datagrid-column
         data-title="::'pci_workflow_executions_ececution_time' | translate"
         data-property="executedAt"
         data-type="date"
     >
         <span data-ng-bind="$value | date: 'mediumTime' : 'UTC'"></span>
-    </oui-column>
-    <oui-column
+    </oui-datagrid-column>
+    <oui-datagrid-column
         data-title="::'pci_workflow_executions_status' | translate"
         data-property="state"
         data-type="string"
         data-sortable
     >
         <span
-            class="oui-status"
+            class="oui-badge"
             data-ng-class="{
-                'oui-status_success': $row.state === 'SUCCESS',
-                'oui-status_warning': $row.state === 'PAUSED',
-                'oui-status_error': $row.state === 'ERROR',
-                'oui-status_info': $row.state === $row.status,
+                'oui-badge_success': $row.state === 'SUCCESS',
+                'oui-badge_warning': $row.state === 'PAUSED',
+                'oui-badge_error': $row.state === 'ERROR',
+                'oui-badge_info': $row.state === $row.status,
             }"
         >
             <span
                 data-ng-bind=":: 'pci_workflow_execution_status_' + $row.state | translate"
             ></span>
         </span>
-    </oui-column>
+    </oui-datagrid-column>
 </oui-datagrid>

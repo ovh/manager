@@ -6,22 +6,20 @@
 
 <!-- Section Content -->
 <div data-ng-if="!$ctrl.loading">
-    <oui-page-header heading="{{:: $ctrl.cdn.serviceName }}">
+    <oui-header heading="{{:: $ctrl.cdn.serviceName }}">
         <oui-header-tabs>
             <oui-header-tabs-item
-                text="{{:: 'cdn_tab_statistics' | translate }}"
                 state="app.networks.cdn.dedicated.manage.statistics"
+                ><span data-translate="cdn_tab_statistics"></span
             ></oui-header-tabs-item>
-            <oui-header-tabs-item
-                text="{{:: 'cdn_tab_ssl' | translate }}"
-                state="app.networks.cdn.dedicated.manage.ssl"
+            <oui-header-tabs-item state="app.networks.cdn.dedicated.manage.ssl"
+                ><span data-translate="cdn_tab_ssl"></span
             ></oui-header-tabs-item>
-            <oui-header-tabs-item
-                text="{{:: 'cdn_tab_logs' | translate }}"
-                state="app.networks.cdn.dedicated.manage.logs"
+            <oui-header-tabs-item state="app.networks.cdn.dedicated.manage.logs"
+                ><span data-translate="cdn_tab_logs"></span
             ></oui-header-tabs-item>
         </oui-header-tabs>
-    </oui-page-header>
+    </oui-header>
 
     <!-- Tab Content -->
     <div class="tab-content">

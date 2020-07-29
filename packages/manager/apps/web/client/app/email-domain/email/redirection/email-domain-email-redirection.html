@@ -42,22 +42,26 @@
                 data-rows="ctrlEmailDomainEmailRedirection.redirections"
                 data-row-loader="ctrlEmailDomainEmailRedirection.transformItem($row)"
             >
-                <oui-column
+                <oui-datagrid-column
                     data-title="'emails_common_from' | translate"
                     data-property="from"
-                ></oui-column>
-                <oui-column
+                ></oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'emails_common_to' | translate"
                     data-property="to"
-                ></oui-column>
-                <oui-action-menu data-align="end" data-compact>
+                ></oui-datagrid-column>
+                <oui-action-menu data-compact data-placement="end">
                     <oui-action-menu-item
-                        data-text="{{ 'email_tab_popover_redirection_update' | translate }}"
                         data-on-click="setAction('email-domain/email/redirection/update/email-domain-email-redirection-update', { redirection: $row, domain: domain })"
+                        ><span
+                            data-translate="email_tab_popover_redirection_update"
+                        ></span
                     ></oui-action-menu-item>
                     <oui-action-menu-item
-                        data-text="{{ 'email_tab_popover_redirection_delete' | translate }}"
                         data-on-click="setAction('email-domain/email/redirection/delete/email-domain-email-redirection-delete', { redirection: $row })"
+                        ><span
+                            data-translate="email_tab_popover_redirection_delete"
+                        ></span
                     ></oui-action-menu-item>
                 </oui-action-menu>
             </oui-datagrid>

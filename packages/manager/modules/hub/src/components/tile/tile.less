@@ -1,14 +1,16 @@
 ovh-manager-hub-tile {
-  @import 'oui4/dist/less/_tokens';
+  @import '@ovh-ux/ui-kit/dist/less/_tokens';
 
   .ovh-manager-hub-tile {
-    padding: @base-spacing-medium;
-    border-radius: @base-border-radius-large;
-    box-shadow: @base-box-shadow-secondary;
-
     &__badge {
+      line-height: 1.25;
+      padding: 0.25rem 0.5rem;
       margin-left: 0.3rem;
       overflow: unset;
+      font-size: 0.75rem;
+      color: @p-700;
+      border-radius: 1rem;
+      background-color: @p-100;
     }
 
     &__header {

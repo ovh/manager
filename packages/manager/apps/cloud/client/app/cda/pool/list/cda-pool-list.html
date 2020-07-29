@@ -15,30 +15,30 @@
     </div>
 
     <oui-datagrid data-rows="CdaPoolListCtrl.datas.pools">
-        <oui-column
+        <oui-datagrid-column
             data-title="'cda_pool_table_col_poolname' | translate"
             data-property="name"
             data-sortable="asc"
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'cda_pool_table_col_pooltype' | translate"
             data-property="poolType"
             data-sortable
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'cda_pool_table_col_replica' | translate"
             data-property="replicaCount"
             data-sortable
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'cda_pool_table_col_minreplica' | translate"
             data-property="minActiveReplicas"
             data-sortable
-        ></oui-column>
-        <oui-action-menu data-align="end" data-compact>
+        ></oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="end">
             <oui-action-menu-item
-                data-text="{{'cda_pool_delete_button_text' | translate}}"
                 data-on-click="CdaPoolListCtrl.openDeleteModal($row)"
+                ><span data-translate="cda_pool_delete_button_text"></span
             ></oui-action-menu-item>
         </oui-action-menu>
     </oui-datagrid>

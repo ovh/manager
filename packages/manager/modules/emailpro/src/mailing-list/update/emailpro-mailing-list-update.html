@@ -75,7 +75,7 @@
                                     data-ng-options="lang as ('language_' + lang | translate) for lang in ctrl.languages track by lang"
                                 >
                                     <option
-                                        value=""
+                                        value
                                         disabled
                                         data-translate="select_placeholder"
                                     ></option>
@@ -108,10 +108,13 @@
                                     class="oui-radio__label-container"
                                     for="selectReplyTo-ml"
                                 >
-                                    <span
-                                        class="oui-radio__label"
-                                        data-translate="mailing_list_tab_modal_update_list_reply_to_list"
-                                    ></span>
+                                    <span class="oui-radio__label">
+                                        <span class="oui-radio__icon"></span>
+                                        <span
+                                            class="oui-radio__text"
+                                            data-translate="mailing_list_tab_modal_update_list_reply_to_list"
+                                        ></span>
+                                    </span>
                                 </label>
                             </div>
                             <div class="oui-radio">
@@ -128,10 +131,13 @@
                                     class="oui-radio__label-container"
                                     for="selectReplyTo-lu"
                                 >
-                                    <span
-                                        class="oui-radio__label"
-                                        data-translate="mailing_list_tab_modal_update_list_reply_to_last_user"
-                                    ></span>
+                                    <span class="oui-radio__label">
+                                        <span class="oui-radio__icon"></span>
+                                        <span
+                                            class="oui-radio__text"
+                                            data-translate="mailing_list_tab_modal_update_list_reply_to_last_user"
+                                        ></span>
+                                    </span>
                                 </label>
                             </div>
                             <div class="oui-radio">
@@ -148,10 +154,13 @@
                                     class="oui-radio__label-container"
                                     for="selectReplyTo-rte"
                                 >
-                                    <span
-                                        class="oui-radio__label"
-                                        data-translate="mailing_list_tab_modal_update_list_reply_to_email"
-                                    ></span>
+                                    <span class="oui-radio__label">
+                                        <span class="oui-radio__icon"></span>
+                                        <span
+                                            class="oui-radio__text"
+                                            data-translate="mailing_list_tab_modal_update_list_reply_to_email"
+                                        ></span>
+                                    </span>
                                 </label>
                             </div>
                         </div>
@@ -208,10 +217,13 @@
                                     class="oui-radio__label-container"
                                     for="rdMessages-yes"
                                 >
-                                    <span
-                                        class="oui-radio__label"
-                                        data-translate="mailing_list_tab_modal_create_list_moderator_all_messages"
-                                    ></span>
+                                    <span class="oui-radio__label">
+                                        <span class="oui-radio__icon"></span>
+                                        <span
+                                            class="oui-radio__text"
+                                            data-translate="mailing_list_tab_modal_create_list_moderator_all_messages"
+                                        ></span>
+                                    </span>
                                 </label>
                             </div>
                             <div class="oui-radio">
@@ -228,10 +240,13 @@
                                     class="oui-radio__label-container"
                                     for="rdMessages-no"
                                 >
-                                    <span
-                                        class="oui-radio__label"
-                                        data-translate="mailing_list_tab_modal_create_list_users_post_only"
-                                    ></span>
+                                    <span class="oui-radio__label">
+                                        <span class="oui-radio__icon"></span>
+                                        <span
+                                            class="oui-radio__text"
+                                            data-translate="mailing_list_tab_modal_create_list_users_post_only"
+                                        ></span>
+                                    </span>
                                 </label>
                             </div>
                             <div class="oui-radio">
@@ -248,10 +263,13 @@
                                     class="oui-radio__label-container"
                                     for="rdMessages-null"
                                 >
-                                    <span
-                                        class="oui-radio__label"
-                                        data-translate="mailing_list_tab_modal_create_list_no_moderation"
-                                    ></span>
+                                    <span class="oui-radio__label">
+                                        <span class="oui-radio__icon"></span>
+                                        <span
+                                            class="oui-radio__text"
+                                            data-translate="mailing_list_tab_modal_create_list_no_moderation"
+                                        ></span>
+                                    </span>
                                 </label>
                             </div>
                         </div>
@@ -262,8 +280,9 @@
                             id="chk-ml-only-subscribers"
                             name="mlSubscribersModeration"
                             data-model="ctrl.mailingList.options.subscribeByModerator"
-                            data-text="{{:: 'mailing_list_tab_modal_create_list_only_subscribers_moderator' | translate }}"
-                        >
+                            ><span
+                                data-translate="mailing_list_tab_modal_create_list_only_subscribers_moderator"
+                            ></span>
                         </oui-checkbox>
                         <div
                             class="font-italic"

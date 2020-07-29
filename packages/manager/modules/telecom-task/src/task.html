@@ -11,12 +11,12 @@
             <tuc-toast-message></tuc-toast-message>
 
             <oui-datagrid data-rows="TaskCtrl.allTasks.result.data">
-                <oui-column
+                <oui-datagrid-column
                     data-title="'telecom_task_pack' | translate"
                     data-property="pack"
                     data-sortable
-                ></oui-column>
-                <oui-column
+                ></oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'telecom_task_status' | translate"
                     data-property="status"
                     data-sortable
@@ -31,21 +31,21 @@
                         >
                         </i>
                     </span>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'telecom_task_function' | translate"
                     data-property="function"
                     data-sortable
                 >
                     {{ 'telecom_task_function_' + $row.function | translate}}
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'telecom_task_date' | translate"
                     data-property="updateDate"
                     data-sortable="desc"
                 >
                     {{$row.updateDate | date:'dd/MM/yyyy'}}
-                </oui-column>
+                </oui-datagrid-column>
             </oui-datagrid>
         </div>
         <!-- /.telecom-section-content -->

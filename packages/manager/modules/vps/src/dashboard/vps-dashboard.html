@@ -5,7 +5,7 @@
     ></p>
     <button
         type="button"
-        class="oui-button oui-button_link p-0"
+        class="oui-button p-0 oui-button_ghost"
         data-ng-click="$ctrl.goToVpsMigration()"
         data-translate="vps_dashboard_migration_link"
     ></button>
@@ -24,10 +24,7 @@
         data-translate="vps_dashboard_migration_in_progress"
     ></p>
 </oui-message>
-<oui-message
-    data-ng-if="$ctrl.vpsMigrationTaskInError"
-    data-type="error"
->
+<oui-message data-ng-if="$ctrl.vpsMigrationTaskInError" data-type="error">
     <p data-translate="vps_dashboard_migration_in_error"></p>
 </oui-message>
 <section class="container-fluid cui-page__content cui-page__content-flex">
@@ -53,16 +50,16 @@
                 class="h-100"
             >
                 <oui-tile-button
-                    data-text="{{ ::$ctrl.actions.rebootRescue.text }}"
                     data-on-click="$ctrl.goToRebootRescue()"
                     data-ng-if="$ctrl.actions.rebootRescue.isAvailable()"
-                >
+                    ><span
+                        data-ng-bind="::$ctrl.actions.rebootRescue.text"
+                    ></span>
                 </oui-tile-button>
                 <oui-tile-button
-                    data-text="{{ ::$ctrl.actions.reboot.text }}"
                     data-on-click="$ctrl.goToReboot()"
                     data-ng-if="$ctrl.actions.reboot.isAvailable()"
-                >
+                    ><span data-ng-bind="::$ctrl.actions.reboot.text"></span>
                 </oui-tile-button>
                 <oui-tile-button
                     data-on-click="$ctrl.actions.rebuild.callback()"
@@ -73,16 +70,14 @@
                     ></span>
                 </oui-tile-button>
                 <oui-tile-button
-                    data-text="{{ ::$ctrl.actions.reinstall.text }}"
                     data-on-click="$ctrl.goToReinstall()"
                     data-ng-if="$ctrl.actions.reinstall.isAvailable()"
-                >
+                    ><span data-ng-bind="::$ctrl.actions.reinstall.text"></span>
                 </oui-tile-button>
                 <oui-tile-button
-                    data-text="{{ ::$ctrl.actions.kvm.text }}"
                     data-on-click="$ctrl.goToKvm($ctrl.vps.noVNC)"
                     data-ng-if="$ctrl.actions.kvm.isAvailable()"
-                >
+                    ><span data-ng-bind="::$ctrl.actions.kvm.text"></span>
                 </oui-tile-button>
                 <div
                     class="oui-tile__item oui-tile__item_button"
@@ -91,7 +86,7 @@
                     <a
                         data-ng-href="{{ ::$ctrl.actions.changeOwner.href }}"
                         data-at-internet-click="{ name: $ctrl.action.atInternetClickTag }"
-                        class="oui-tile__button oui-button oui-link_icon oui-button_link oui-button_full-width"
+                        class="oui-tile__button oui-button oui-link_icon oui-button_ghost oui-button_block"
                         rel="noopener"
                         target="_blank"
                     >
@@ -99,7 +94,7 @@
                             data-ng-bind="::$ctrl.actions.changeOwner.text"
                         ></span>
                         <i
-                            class="oui-icon oui-icon-external_link"
+                            class="oui-icon oui-icon-external-link"
                             aria-hidden="true"
                         ></i>
                     </a>
@@ -109,7 +104,7 @@
                     data-ng-if="$ctrl.hasFeature($ctrl.DASHBOARD_FEATURES.upgrade) && $ctrl.actions.upgrade.state && $ctrl.actions.upgrade.isAvailable()"
                 >
                     <a
-                        class="oui-tile__button oui-button oui-link_icon oui-button_link oui-button_full-width"
+                        class="oui-tile__button oui-button oui-link_icon oui-button_ghost oui-button_block"
                         data-ui-sref="{{ $ctrl.actions.upgrade.state + $ctrl.constructor.getActionStateParamString($ctrl.actions.upgrade.stateParams) }}"
                         rel="noopener"
                     >
@@ -144,18 +139,19 @@
                         <br />
                         <button
                             type="button"
-                            class="oui-button oui-button_link p-0"
+                            class="oui-button p-0 oui-button_ghost"
                             data-ng-click="$ctrl.goToVpsMigration()"
                             data-ng-if="$ctrl.canScheduleMigration"
                             data-translate="vps_dashboard_migration_link"
                         ></button>
                     </oui-tile-description>
-                    <oui-action-menu data-compact data-align="end">
+                    <oui-action-menu data-compact data-placement="end">
                         <oui-action-menu-item
-                            data-text="{{::$ctrl.actions.changeName.text}}"
                             aria-label="{{::$ctrl.actions.changeName.text}}"
                             data-on-click="$ctrl.actions.changeName.callback()"
-                        >
+                            ><span
+                                data-ng-bind="::$ctrl.actions.changeName.text"
+                            ></span>
                         </oui-action-menu-item>
                     </oui-action-menu>
                 </oui-tile-definition>
@@ -231,25 +227,26 @@
                         <oui-tile-description>
                             <oui-clipboard
                                 data-model="$ctrl.vps.ipv4"
-                                class="pr-3"
                             ></oui-clipboard>
                         </oui-tile-description>
                         <oui-action-menu
                             data-compact
-                            data-align="end"
                             data-ng-if="$ctrl.actions.manageIps.isAvailable() || $ctrl.actions.displayIps.isAvailable()"
+                            data-placement="end"
                         >
                             <oui-action-menu-item
                                 data-ng-if="$ctrl.actions.manageIps.isAvailable()"
-                                data-text="{{ ::$ctrl.actions.manageIps.text }}"
                                 data-ng-href="{{ ::$ctrl.actions.manageIps.href }}"
-                            >
+                                ><span
+                                    data-ng-bind="::$ctrl.actions.manageIps.text"
+                                ></span>
                             </oui-action-menu-item>
                             <oui-action-menu-item
                                 data-ng-if="$ctrl.actions.displayIps.isAvailable()"
-                                data-text="{{ ::$ctrl.actions.displayIps.text }}"
                                 data-on-click="$ctrl.goToDisplayIps()"
-                            >
+                                ><span
+                                    data-ng-bind="::$ctrl.actions.displayIps.text"
+                                ></span>
                             </oui-action-menu-item>
                         </oui-action-menu>
                     </oui-tile-definition>
@@ -278,12 +275,14 @@
                     >
                         <oui-action-menu
                             data-compact
-                            data-align="end"
                             data-ng-if="$ctrl.actions.reverseDns.isAvailable()"
+                            data-placement="end"
                         >
                             <oui-action-menu-item
-                                data-text="{{ ::$ctrl.actions.reverseDns.text }}"
                                 data-on-click="$ctrl.goToReverseDns()"
+                                ><span
+                                    data-ng-bind="::$ctrl.actions.reverseDns.text"
+                                ></span
                             ></oui-action-menu-item>
                         </oui-action-menu>
                     </oui-tile-definition>
@@ -306,77 +305,77 @@
                 data-heading="{{ ::'vps_dashboard_state_services' | translate }}"
                 class="h-100"
             >
-                <table class="oui-datagrid">
+                <table class="oui-table">
                     <tbody>
-                        <tr class="oui-datagrid__row">
-                            <td class="oui-datagrid__cell">
+                        <tr class="oui-table__row">
+                            <td class="oui-table__cell">
                                 <i
                                     class="oui-icon vps-tile-status__icon"
                                     data-ng-class="$ctrl.vps.ping === 'OK' ? 'oui-icon-success vps-tile-status__icon_success' : 'oui-icon-error vps-tile-status__icon_error'"
                                 ></i>
                             </td>
                             <td
-                                class="oui-datagrid__cell"
+                                class="oui-table__cell"
                                 data-translate="vps_dashboard_ping"
                             ></td>
                         </tr>
-                        <tr class="oui-datagrid__row">
-                            <td class="oui-datagrid__cell">
+                        <tr class="oui-table__row">
+                            <td class="oui-table__cell">
                                 <i
                                     class="oui-icon vps-tile-status__icon"
                                     data-ng-class="$ctrl.vps.ssh === 'OK' ? 'oui-icon-success vps-tile-status__icon_success' : 'oui-icon-error vps-tile-status__icon_error'"
                                 ></i>
                             </td>
                             <td
-                                class="oui-datagrid__cell"
+                                class="oui-table__cell"
                                 data-translate="vps_dashboard_ssh"
                             ></td>
                         </tr>
-                        <tr class="oui-datagrid__row">
-                            <td class="oui-datagrid__cell">
+                        <tr class="oui-table__row">
+                            <td class="oui-table__cell">
                                 <i
                                     class="oui-icon vps-tile-status__icon"
                                     data-ng-class="$ctrl.vps.http === 'OK' ? 'oui-icon-success vps-tile-status__icon_success' : 'oui-icon-error vps-tile-status__icon_error'"
                                 ></i>
                             </td>
                             <td
-                                class="oui-datagrid__cell"
+                                class="oui-table__cell"
                                 data-translate="vps_dashboard_http"
                             ></td>
                         </tr>
-                        <tr class="oui-datagrid__row">
-                            <td class="oui-datagrid__cell">
+                        <tr class="oui-table__row">
+                            <td class="oui-table__cell">
                                 <i
                                     class="oui-icon vps-tile-status__icon"
                                     data-ng-class="$ctrl.vps.https === 'OK' ? 'oui-icon-success vps-tile-status__icon_success' : 'oui-icon-error vps-tile-status__icon_error'"
                                 ></i>
                             </td>
                             <td
-                                class="oui-datagrid__cell"
+                                class="oui-table__cell"
                                 data-translate="vps_dashboard_https"
                             ></td>
                         </tr>
-                        <tr class="oui-datagrid__row">
-                            <td class="oui-datagrid__cell">
+                        <tr class="oui-table__row">
+                            <td class="oui-table__cell">
                                 <i
                                     class="oui-icon vps-tile-status__icon"
                                     data-ng-class="$ctrl.vps.dns === 'OK' ? 'oui-icon-success vps-tile-status__icon_success' : 'oui-icon-error vps-tile-status__icon_error'"
                                 ></i>
                             </td>
                             <td
-                                class="oui-datagrid__cell"
+                                class="oui-table__cell"
                                 data-translate="vps_dashboard_dns"
                             ></td>
                         </tr>
-                        <tr class="oui-datagrid__row">
-                            <td class="oui-datagrid__cell">
+                        <tr class="oui-table__row">
+                            <td class="oui-table__cell">
                                 <i
                                     class="oui-icon vps-tile-status__icon"
                                     data-ng-class="$ctrl.vps.smtp === 'OK' ? 'oui-icon-success vps-tile-status__icon_success' : 'oui-icon-error vps-tile-status__icon_error'"
                                 ></i>
                             </td>
                             <td
-                                class="oui-datagrid__cell"
+                                class="oui-table__cell"
                                 data-translate="vps_dashboard_smtp"
                             ></td>
                         </tr>
@@ -395,15 +394,19 @@
                             data-translate="vps_status_disabled"
                         ></span>
                     </oui-tile-description>
-                    <oui-action-menu data-compact data-align="end">
+                    <oui-action-menu data-compact data-placement="end">
                         <oui-action-menu-item
                             data-ng-if="$ctrl.actions.manageSla.isAvailable()"
-                            data-text="{{ ::$ctrl.actions.manageSla.text }}"
                             data-on-click="$ctrl.goToMonitoringSla(!$ctrl.vps.slaMonitoring)"
+                            ><span
+                                data-ng-bind="::$ctrl.actions.manageSla.text"
+                            ></span
                         ></oui-action-menu-item>
                         <oui-action-menu-item
-                            data-text="{{ ::$ctrl.actions.viewIpSla.text }}"
                             data-on-click="$ctrl.goToMonitoringSla(true, true)"
+                            ><span
+                                data-ng-bind="::$ctrl.actions.viewIpSla.text"
+                            ></span
                         ></oui-action-menu-item>
                     </oui-action-menu>
                 </oui-tile-definition>
@@ -447,29 +450,32 @@
                         </oui-tile-description>
                         <oui-action-menu
                             data-compact
-                            data-align="end"
                             data-ng-if="$ctrl.tabSummary.ftpBackup.optionAvailable"
+                            data-placement="end"
                         >
                             <oui-action-menu-item
-                                data-text="{{::$ctrl.backupStorageActions.manage.text}}"
                                 aria-label="{{::$ctrl.backupStorageActions.manage.text}}"
                                 data-on-click="$ctrl.backupStorageActions.manage.callback()"
                                 data-ng-if="$ctrl.tabSummary.ftpBackup.optionActivated"
-                            >
+                                ><span
+                                    data-ng-bind="::$ctrl.backupStorageActions.manage.text"
+                                ></span>
                             </oui-action-menu-item>
                             <oui-action-menu-item
-                                data-text="{{::$ctrl.backupStorageActions.terminate.text}}"
                                 aria-label="{{::$ctrl.backupStorageActions.terminate.text}}"
                                 data-on-click="$ctrl.goToTerminateOption('ftpBackup')"
                                 data-ng-if="$ctrl.tabSummary.ftpBackup.optionActivated"
-                            >
+                                ><span
+                                    data-ng-bind="::$ctrl.backupStorageActions.terminate.text"
+                                ></span>
                             </oui-action-menu-item>
                             <oui-action-menu-item
-                                data-text="{{::$ctrl.backupStorageActions.order.text}}"
                                 aria-label="{{::$ctrl.backupStorageActions.order.text}}"
                                 data-on-click="$ctrl.backupStorageActions.order.callback()"
                                 data-ng-if="!$ctrl.tabSummary.ftpBackup.optionActivated"
-                            >
+                                ><span
+                                    data-ng-bind="::$ctrl.backupStorageActions.order.text"
+                                ></span>
                             </oui-action-menu-item>
                         </oui-action-menu>
                     </oui-tile-definition>
@@ -488,49 +494,54 @@
                         </oui-tile-description>
                         <oui-action-menu
                             data-compact
-                            data-align="end"
                             data-ng-if="$ctrl.tabSummary.snapshot.optionActivated"
+                            data-placement="end"
                         >
                             <oui-action-menu-item
-                                data-text="{{::$ctrl.snapshotActions.delete.text}}"
                                 aria-label="{{::$ctrl.snapshotActions.delete.text}}"
                                 data-on-click="$ctrl.goToSnapshotDelete()"
                                 data-ng-if="$ctrl.tabSummary.snapshot.optionActivated && $ctrl.snapshotActions.delete.isAvailable()"
-                            >
+                                ><span
+                                    data-ng-bind="::$ctrl.snapshotActions.delete.text"
+                                ></span>
                             </oui-action-menu-item>
                             <oui-action-menu-item
-                                data-text="{{::$ctrl.snapshotActions.restore.text}}"
                                 aria-label="{{::$ctrl.snapshotActions.restore.text}}"
                                 data-on-click="$ctrl.goToSnapshotRestore()"
                                 data-ng-if="$ctrl.tabSummary.snapshot.optionActivated && $ctrl.snapshotActions.restore.isAvailable()"
-                            >
+                                ><span
+                                    data-ng-bind="::$ctrl.snapshotActions.restore.text"
+                                ></span>
                             </oui-action-menu-item>
                             <oui-action-menu-item
-                                data-text="{{::$ctrl.snapshotActions.take.text}}"
                                 aria-label="{{::$ctrl.snapshotActions.take.text}}"
                                 data-on-click="$ctrl.goToSnapshotTake()"
                                 data-ng-if="$ctrl.tabSummary.snapshot.optionActivated && $ctrl.snapshotActions.take.isAvailable()"
-                            >
+                                ><span
+                                    data-ng-bind="::$ctrl.snapshotActions.take.text"
+                                ></span>
                             </oui-action-menu-item>
                             <oui-action-menu-item
-                                data-text="{{::$ctrl.snapshotActions.terminate.text}}"
                                 aria-label="{{::$ctrl.snapshotActions.terminate.text}}"
                                 data-on-click="$ctrl.goToTerminateOption('snapshot')"
                                 data-ng-if="$ctrl.tabSummary.snapshot.optionActivated && $ctrl.snapshotActions.terminate.isAvailable()"
-                            >
+                                ><span
+                                    data-ng-bind="::$ctrl.snapshotActions.terminate.text"
+                                ></span>
                             </oui-action-menu-item>
                         </oui-action-menu>
                         <oui-action-menu
                             data-compact
-                            data-align="end"
                             data-ng-if="!$ctrl.tabSummary.snapshot.optionActivated && $ctrl.snapshotActions.order.isAvailable()"
+                            data-placement="end"
                         >
                             <oui-action-menu-item
-                                data-text="{{::$ctrl.snapshotActions.order.text}}"
                                 aria-label="{{::$ctrl.snapshotActions.order.text}}"
                                 data-on-click="$ctrl.snapshotActions.order.callback()"
                                 data-ng-if="$ctrl.snapshotActions.order.isAvailable()"
-                            >
+                                ><span
+                                    data-ng-bind="::$ctrl.snapshotActions.order.text"
+                                ></span>
                             </oui-action-menu-item>
                         </oui-action-menu>
                     </oui-tile-definition>
@@ -551,29 +562,32 @@
                         </oui-tile-description>
                         <oui-action-menu
                             data-compact
-                            data-align="end"
                             data-ng-if="$ctrl.tabSummary.veeam.optionAvailable"
+                            data-placement="end"
                         >
                             <oui-action-menu-item
-                                data-text="{{::$ctrl.veeamActions.manage.text}}"
                                 aria-label="{{::$ctrl.veeamActions.manage.text}}"
                                 data-on-click="$ctrl.veeamActions.manage.callback()"
                                 data-ng-if="$ctrl.tabSummary.veeam.optionActivated"
-                            >
+                                ><span
+                                    data-ng-bind="::$ctrl.veeamActions.manage.text"
+                                ></span>
                             </oui-action-menu-item>
                             <oui-action-menu-item
-                                data-text="{{::$ctrl.veeamActions.terminate.text}}"
                                 aria-label="{{::$ctrl.veeamActions.terminate.text}}"
                                 data-on-click="$ctrl.goToTerminateOption('automatedBackup')"
                                 data-ng-if="$ctrl.tabSummary.veeam.optionActivated"
-                            >
+                                ><span
+                                    data-ng-bind="::$ctrl.veeamActions.terminate.text"
+                                ></span>
                             </oui-action-menu-item>
                             <oui-action-menu-item
-                                data-text="{{::$ctrl.veeamActions.order.text}}"
                                 aria-label="{{::$ctrl.veeamActions.order.text}}"
                                 data-on-click="$ctrl.veeamActions.order.callback()"
                                 data-ng-if="!$ctrl.tabSummary.veeam.optionActivated"
-                            >
+                                ><span
+                                    data-ng-bind="::$ctrl.veeamActions.order.text"
+                                ></span>
                             </oui-action-menu-item>
                         </oui-action-menu>
                     </oui-tile-definition>
@@ -594,22 +608,24 @@
                         </oui-tile-description>
                         <oui-action-menu
                             data-compact
-                            data-align="end"
                             data-ng-if="$ctrl.tabSummary.additionalDisk.optionAvailable"
+                            data-placement="end"
                         >
                             <oui-action-menu-item
                                 data-ng-if="$ctrl.actions.orderAdditionalDiskOption.isAvailable()"
-                                data-text="{{::$ctrl.actions.orderAdditionalDiskOption.text}}"
                                 aria-label="{{::$ctrl.actions.orderAdditionalDiskOption.text}}"
                                 data-on-click="$ctrl.actions.orderAdditionalDiskOption.callback()"
-                            >
+                                ><span
+                                    data-ng-bind="::$ctrl.actions.orderAdditionalDiskOption.text"
+                                ></span>
                             </oui-action-menu-item>
                             <oui-action-menu-item
                                 data-ng-if="$ctrl.actions.terminateAdditionalDiskOption.isAvailable()"
-                                data-text="{{::$ctrl.actions.terminateAdditionalDiskOption.text}}"
                                 aria-label="{{::$ctrl.actions.terminateAdditionalDiskOption.text}}"
                                 data-on-click="$ctrl.goToTerminateOption('additionalDisk')"
-                            >
+                                ><span
+                                    data-ng-bind="::$ctrl.actions.terminateAdditionalDiskOption.text"
+                                ></span>
                             </oui-action-menu-item>
                         </oui-action-menu>
                     </oui-tile-definition>
@@ -637,8 +653,8 @@
                 >
                     <oui-action-menu
                         data-compact
-                        data-align="end"
                         data-ng-if="$ctrl.actions.upgrade.isAvailable() && $ctrl.hasFeature($ctrl.DASHBOARD_FEATURES.upgrade)"
+                        data-placement="end"
                     >
                         <div class="oui-dropdown-menu__item">
                             <a
@@ -659,15 +675,16 @@
                 >
                     <oui-action-menu
                         data-compact
-                        data-align="end"
                         data-ng-if="$ctrl.actions.manageAutorenew.isAvailable()"
+                        data-placement="end"
                     >
                         <oui-action-menu-item
-                            data-text="{{ ::$ctrl.actions.manageAutorenew.text }}"
                             aria-label="{{ ::$ctrl.actions.manageAutorenew.text }}"
                             data-href="{{ ::$ctrl.actions.manageAutorenew.href }}"
                             data-external="$ctrl.actions.manageAutorenew.external"
-                        >
+                            ><span
+                                data-ng-bind="::$ctrl.actions.manageAutorenew.text"
+                            ></span>
                         </oui-action-menu-item>
                     </oui-action-menu>
                 </oui-tile-definition>
@@ -704,14 +721,15 @@
                     </oui-tile-description>
                     <oui-action-menu
                         data-compact
-                        data-align="end"
                         data-ng-if="$ctrl.actions.manageContact.isAvailable"
+                        data-placement="end"
                     >
                         <oui-action-menu-item
-                            data-text="{{ ::$ctrl.actions.manageContact.text }}"
                             aria-label="{{ ::$ctrl.actions.manageContact.text }}"
                             data-href="{{ ::$ctrl.actions.manageContact.href }}"
-                        >
+                            ><span
+                                data-ng-bind="::$ctrl.actions.manageContact.text"
+                            ></span>
                         </oui-action-menu-item>
                     </oui-action-menu>
                 </oui-tile-definition>

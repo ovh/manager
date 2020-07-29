@@ -1,4 +1,4 @@
-<div class="widget-presentation">
+<div class="widget-presentation clearfix">
     <h2
         class="widget-presentation-title"
         data-translate="telecom_dashboard_bill_title"
@@ -8,24 +8,24 @@
         data-rows="BillsCtrl.lastBills"
         data-page-size="BillsCtrl.amountBillsDisplayed"
     >
-        <oui-column
+        <oui-datagrid-column
             data-title="'telecom_dashboard_date' | translate"
             data-property="date"
             data-sortable="desc"
         >
             {{$row.date | date:'shortDate'}}
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'telecom_dashboard_references' | translate"
             data-property="billId"
             data-sortable
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'telecom_dashboard_total_price' | translate"
             data-property="priceWithTax.text"
             data-sortable
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'telecom_dashboard_download' | translate"
             data-property="url"
         >
@@ -55,11 +55,11 @@
                     ></span>
                 </a>
             </div>
-        </oui-column>
+        </oui-datagrid-column>
     </oui-datagrid>
 
     <a
-        class="oui-button oui-button_link oui-button_icon-right float-right"
+        class="oui-button oui-button_icon-right float-right oui-button_ghost"
         data-ng-if="BillsCtrl.lastBills.length === BillsCtrl.amountBillsDisplayed"
         data-ng-href="{{ BillsCtrl.links.billing }}"
         data-translate-attr="{ 'title': 'telecom_dashboard_bill_more' }"

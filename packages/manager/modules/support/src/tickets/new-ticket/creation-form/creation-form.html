@@ -65,18 +65,16 @@
 
     <oui-button
         data-variant="secondary"
-        data-text="{{:: 'ovhManagerSupport_new_creation_cancel' | translate }}"
         data-on-click="$ctrl.goBack()"
         data-type="reset"
-    >
+        ><span data-translate="ovhManagerSupport_new_creation_cancel"></span>
     </oui-button>
     <oui-button
         data-variant="primary"
-        data-text="{{:: 'ovhManagerSupport_new_creation_submit' | translate }}"
         data-disabled="supportNewCreationForm.$invalid"
         data-on-click="$ctrl.submitForm(true)"
         data-type="submit"
-    >
+        ><span data-translate="ovhManagerSupport_new_creation_submit"></span>
     </oui-button>
 </form>
 

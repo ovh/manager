@@ -53,8 +53,8 @@
         aria-label="{{:: 'menu_action_label' | translate:{ t0: ('dedicated_server_bandwidth_type' | translate) } }}"
         data-ng-if="$ctrl.bandwidthOption === 'subscribed' && $ctrl.specifications.bandwidth.type !== 'included'"
         data-disabled="!$ctrl.server.canResiliateBandwidth"
-        data-align="end"
         data-compact
+        data-placement="end"
     >
         <oui-action-menu-item
             data-href="{{ $ctrl.resiliatePublicLink }}"
@@ -119,8 +119,8 @@
         aria-label="{{:: 'menu_action_label' | translate:{ t0: ('dedicated_server_bandwidth_vrack' | translate) } }}"
         data-ng-if="!$ctrl.server.isExpired && $ctrl.bandwidthVrackOption === 'subscribed'"
         data-disabled="!$ctrl.server.canResiliateVrackBandwidth"
-        data-align="end"
         data-compact
+        data-placement="end"
     >
         <oui-action-menu-item
             data-href="{{ $ctrl.resiliatePrivateLink }}"

@@ -1,38 +1,45 @@
 <section>
-    <h3 data-translate="carrier_sip_endpoints"></h3>
-    <oui-datagrid data-rows="$ctrl.endpoints">
-        <oui-column
-            data-title=":: 'carrier_sip_endpoints_id' | translate"
-            data-property="id"
+    <h3 data-translate="carrier_sip_endpoints_list_IP"></h3>
+    <oui-datagrid class="small-width" rows="$ctrl.endpointIpList">
+        <oui-datagrid-column title=":: 'carrier_sip_endpoints_ip_sip' | translate">
+            <span data-ng-bind="::$row"></span>
+        </oui-datagrid-column>
+    </oui-datagrid>
+
+    <h3 data-translate="carrier_sip_endpoints_with_incoming_call_enabled"></h3>
+    <oui-datagrid rows="$ctrl.endpointsWithIncomingCallsAllowed">
+        <oui-datagrid-column
+            title=":: 'carrier_sip_endpoints_id' | translate"
+            property="id"
         >
-        </oui-column>
-        <oui-column
-            data-title=":: 'carrier_sip_endpoints_protocol' | translate"
-            data-property="protocol"
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            title=":: 'carrier_sip_endpoints_protocol' | translate"
+            property="protocol"
         >
             <span
                 data-translate="{{:: 'carrier_sip_endpoints_protocol_' + $row.protocol }}"
             ></span>
-        </oui-column>
-        <oui-column
-            data-title=":: 'carrier_sip_endpoints_ip_sip' | translate"
-            data-property="ip"
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            title=":: 'carrier_sip_endpoints_ip_sip' | translate"
+            property="ip"
         >
-        </oui-column>
-        <oui-column
-            data-title=":: 'carrier_sip_endpoints_port' | translate"
-            data-property="port"
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            title=":: 'carrier_sip_endpoints_port' | translate"
+            property="port"
         >
-        </oui-column>
-        <oui-column
-            data-title=":: 'carrier_sip_endpoints_priority' | translate"
-            data-property="priority"
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            title=":: 'carrier_sip_endpoints_priority' | translate"
+            property="priority"
         >
-        </oui-column>
-        <oui-column
-            data-title=":: 'carrier_sip_endpoints_weight' | translate"
-            data-property="weight"
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            title=":: 'carrier_sip_endpoints_weight' | translate"
+            property="weight"
         >
-        </oui-column>
+        </oui-datagrid-column>
     </oui-datagrid>
 </section>

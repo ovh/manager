@@ -1,0 +1,21 @@
+{
+  "billing_services_actions_menu_label": "Więcej operacji dla tej usługi",
+  "billing_autorenew_service_enable_autorenew": "Włącz płatność automatyczną",
+  "billing_services_actions_menu_pay_bill": "Ureguluj należności",
+  "billing_services_actions_menu_manage_renew": "Skonfiguruj odnowienie",
+  "billing_services_actions_menu_exchange_update_accounts": "Skonfiguruj odnowienie kont",
+  "billing_services_actions_menu_anticipate_renew": "Prognoza płatności",
+  "billing_services_actions_menu_resiliate": "Zrezygnuj z usługi w dniu wygaśnięcia",
+  "billing_services_actions_menu_renew_label": "Odnowienie usługi: {{serviceName}} (Nowe okno)",
+  "billing_services_actions_menu_renew": "Odnów usługę",
+  "billing_services_actions_menu_exchange_update": "Zmień płatności",
+  "billing_services_actions_menu_resiliate_EMAIL_DOMAIN": "Usuń natychmiast MX Plan",
+  "billing_services_actions_menu_resiliate_ENTERPRISE_CLOUD_DATABASE": "Usuń natychmiast Enterprise Cloud Databases",
+  "billing_services_actions_menu_resiliate_HOSTING_WEB": "Usuń natychmiast hosting",
+  "billing_services_actions_menu_resiliate_HOSTING_PRIVATE_DATABASE": "Usuń serwer Private SQL",
+  "billing_services_actions_menu_resiliate_WEBCOACH": "Usuń moje narzędzie WebCoach",
+  "billing_services_actions_menu_sms_credit": "Zasil konto",
+  "billing_services_actions_menu_sms_renew": "Skonfiguruj automatyczne doładowanie",
+  "billing_services_actions_menu_resiliate_cancel": "Anuluj rezygnację z usługi",
+  "billing_services_actions_menu_see_dashboard": "Wyświetl szczegółowe informacje o usłudze"
+}

@@ -109,7 +109,7 @@
                                                 data-wuc-ovh-filereader-action="ctrl.upload(ctrl.filesModel[$index], arg)"
                                             />
                                             <button
-                                                class="oui-button oui-button_secondary oui-button_icon-only oui-button_small-width ml-1"
+                                                class="oui-button oui-button_secondary oui-button_icon-only ml-1 oui-button_s"
                                                 type="button"
                                                 data-ng-click="ctrl.viewMode[arg.key] = true"
                                                 data-ng-if="ctrl.previousValue[arg.key] && !ctrl.viewMode[arg.key]"
@@ -175,13 +175,13 @@
                                                 ></span>
                                             </a>
                                             <button
-                                                class="oui-button oui-button_secondary oui-button_icon-only oui-button_small-width"
+                                                class="oui-button oui-button_secondary oui-button_icon-only oui-button_s"
                                                 type="button"
                                                 data-ng-click="ctrl.viewMode[arg.key] = false"
                                                 data-oui-tooltip="{{ 'domains_operations_update_document_edit' | translate }}"
                                             >
                                                 <span
-                                                    class="oui-icon oui-icon-pen_line"
+                                                    class="oui-icon oui-icon-pen_concept"
                                                     aria-hidden="true"
                                                 ></span>
                                             </button>
@@ -286,10 +286,13 @@
                                 class="oui-radio__label-container"
                                 for="chk-cancel"
                             >
-                                <span
-                                    class="oui-radio__label"
-                                    data-translate="domains_operations_cancel_title"
-                                ></span>
+                                <span class="oui-radio__label">
+                                    <span class="oui-radio__icon"></span>
+                                    <span
+                                        class="oui-radio__text"
+                                        data-translate="domains_operations_cancel_title"
+                                    ></span>
+                                </span>
                             </label>
                         </div>
                         <div class="oui-radio">
@@ -306,10 +309,13 @@
                                 class="oui-radio__label-container"
                                 for="chk-relaunch"
                             >
-                                <span
-                                    class="oui-radio__label"
-                                    data-translate="domains_operations_relaunch_title"
-                                ></span>
+                                <span class="oui-radio__label">
+                                    <span class="oui-radio__icon"></span>
+                                    <span
+                                        class="oui-radio__text"
+                                        data-translate="domains_operations_relaunch_title"
+                                    ></span>
+                                </span>
                             </label>
                         </div>
                         <div class="oui-radio">
@@ -326,10 +332,13 @@
                                 class="oui-radio__label-container"
                                 for="chk-accelerate"
                             >
-                                <span
-                                    class="oui-radio__label"
-                                    data-translate="domains_operations_accelerate_title"
-                                ></span>
+                                <span class="oui-radio__label">
+                                    <span class="oui-radio__icon"></span>
+                                    <span
+                                        class="oui-radio__text"
+                                        data-translate="domains_operations_accelerate_title"
+                                    ></span>
+                                </span>
                             </label>
                         </div>
                         <div

@@ -1,0 +1,8 @@
+{
+  "kube_add_node_pool_config_title": "Configuración general",
+  "kube_add_node_pool_name_label": "Nombre del pool de nodos",
+  "kube_add_node_pool_creating": "Creación de un pool de nodos",
+  "kube_add_node_pool_success": "El pool de nodos «{{nodePoolName}}» se ha creado correctamente.",
+  "kube_add_node_pool_error": "No es posible crear el pool de nodos {{ nodePoolName }}: {{ message }}",
+  "kube_add_billing_type_description": "En la vista edición del pool de nodos, puede pasar de facturación por horas a facturación mensual en cada nodo."
+}

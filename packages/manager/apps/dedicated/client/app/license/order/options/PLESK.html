@@ -16,7 +16,7 @@
         data-ng-model="selected.options['PLESK'].domainNumber.value"
     >
         <option
-            value=""
+            value
             data-ng-disabled="true"
             data-translate="license_order_common_choose"
         >
@@ -41,7 +41,7 @@
         data-ng-options="(languagePack === 'unlimited' ? ('license_order_step2_option_PLESK_language_pack_unlimited' | translate) : languagePack) for languagePack in selected.version.more.compliantLanguagePack | orderBy:'toString()'"
         data-ng-model="selected.options['PLESK'].languagePackNumber.value"
     >
-        <option value="" data-translate="license_order_common_none"> </option>
+        <option value data-translate="license_order_common_none"> </option>
     </select>
 </div>
 
@@ -62,15 +62,14 @@
         data-ng-options="antivirus as (('license_designation_PLESK_options_antivirus_' + antivirus) | translate) for antivirus in selected.version.more.compliantAntivirus"
         data-ng-model="selected.options['PLESK'].antivirus.value"
     >
-        <option value="" data-translate="license_order_common_none"> </option>
+        <option value data-translate="license_order_common_none"> </option>
     </select>
 </div>
 
 <oui-checkbox
     data-ng-if="selected.version.more.canHavePowerPack && !agoraEnabled"
     data-model="selected.options['PLESK'].powerpack.value"
-    data-text="{{:: 'license_order_step2_option_PLESK_powerpack' | translate }}"
->
+    ><span data-translate="license_order_step2_option_PLESK_powerpack"></span>
 </oui-checkbox>
 
 <div
@@ -87,27 +86,11 @@
     />
     <label class="oui-checkbox__label-container" for="powerPackOption">
         <span class="oui-checkbox__label">
+            <span class="oui-checkbox__icon"></span>
             <span
+                class="oui-checkbox__text"
                 data-translate="license_order_step2_option_PLESK_powerpack"
             ></span>
-            <span class="oui-checkbox__icon">
-                <span
-                    class="oui-icon oui-icon-checkbox-unchecked"
-                    aria-hidden="true"
-                ></span>
-                <span
-                    class="oui-icon oui-icon-checkbox-checked"
-                    aria-hidden="true"
-                ></span>
-                <span
-                    class="oui-icon oui-icon-checkbox-checkmark"
-                    aria-hidden="true"
-                ></span>
-                <span
-                    class="oui-icon oui-icon-checkbox-indeterminate"
-                    aria-hidden="true"
-                ></span>
-            </span>
         </span>
     </label>
 </div>

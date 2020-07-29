@@ -4,7 +4,7 @@
         <div class="col-md-4">
             <div class="oui-tile mb-5 h-100">
                 <h2
-                    class="oui-header_4 oui-tile__title"
+                    class="oui-tile__title oui-heading_4"
                     data-translate="nas_dashboard_general_informations_tile_title"
                 ></h2>
                 <div class="oui-tile__body">
@@ -86,20 +86,21 @@
                             ></dt>
                             <dd class="oui-tile__description">
                                 <span
-                                    class="oui-status"
-                                    data-ng-class="$ctrl.nasData.monitoring.enabled ? 'oui-status_success' : 'oui-status_info'"
+                                    class="oui-badge"
+                                    data-ng-class="$ctrl.nasData.monitoring.enabled ? 'oui-badge_success' : 'oui-badge_info'"
                                     data-ng-bind="($ctrl.nasData.monitoring.enabled ? 'common_activated' : 'common_desactivated') | translate"
                                 >
                                 </span>
                             </dd>
                         </dl>
                         <div class="oui-tile__actions">
-                            <oui-action-menu data-align="end" data-compact>
+                            <oui-action-menu data-compact data-placement="end">
                                 <oui-action-menu-item
-                                    data-text="{{ ($ctrl.nasData.monitoring.enabled ? 'common_desactivate' : 'common_activate') | translate }}"
                                     data-on-click="$ctrl.updateMonitoringState()"
                                     data-disabled="$ctrl.loading.monitoring"
-                                >
+                                    ><span
+                                        data-ng-bind="($ctrl.nasData.monitoring.enabled ? 'common_desactivate' : 'common_activate') | translate"
+                                    ></span>
                                 </oui-action-menu-item>
                             </oui-action-menu>
                         </div>

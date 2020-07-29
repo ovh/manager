@@ -17,16 +17,15 @@
     "lodash": "^4.17.15"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^9.0.0",
+    "@ovh-ux/manager-core": "^9.0.0 || ^10.0.0",
     "@ovh-ux/ng-at-internet": "^5.0.1",
+    "@ovh-ux/ui-kit": "^4.1.12",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-aria": "^1.7.5",
     "angular-dynamic-locale": "^0.1.37",
     "angular-i18n": "~1.5.x",
     "angular-sanitize": "^1.7.5",
-    "angular-translate": "^2.18.1",
-    "ovh-ui-angular": "^3.16.3",
-    "ovh-ui-kit": "^2.42.8"
+    "angular-translate": "^2.18.1"
   }
 }

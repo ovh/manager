@@ -1,0 +1,45 @@
+<form
+    id="kubeNodesDelete"
+    name="kubeNodesDelete"
+    data-ng-submit="kubeNodesDelete.$valid && $ctrl.deleteNode()"
+    novalidate
+>
+    <oui-modal
+        data-heading="{{:: 'kube_nodes_delete_many' | translate }}"
+        data-primary-label="{{:: 'kube_common_delete' | translate }}"
+        data-secondary-label="{{:: 'kube_common_cancel' | translate }}"
+        data-secondary-action="$ctrl.goBack()"
+        data-on-dismiss="$ctrl.goBack()"
+        data-loading="$ctrl.isDeleting"
+        data-type="warning"
+    >
+        <oui-field
+            data-label="{{ ::'kube_nodes_delete_select_nodes' | translate }}"
+            data-size="xl"
+        >
+            <oui-numeric
+                id="node-delete-count"
+                name="node-delete-count"
+                data-model="$ctrl.nodeDeleteCount"
+                min="1"
+                max="$ctrl.nodeCount"
+                required
+            >
+            </oui-numeric>
+        </oui-field>
+        <p
+            class="oui-font-light"
+            data-translate="kube_nodes_delete_warning"
+        ></p>
+        <oui-field data-label="{{:: 'kube_nodes_delete_enter' | translate }}">
+            <input
+                class="oui-input"
+                type="text"
+                name="kubeNodeDeleteConfirm"
+                data-ng-model="$ctrl.deleteConfirmation"
+                data-ng-pattern="$ctrl.DELETE_CONFIRMATION_INPUT"
+                required
+            />
+        </oui-field>
+    </oui-modal>
+</form>

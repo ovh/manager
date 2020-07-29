@@ -6,9 +6,8 @@
     </cui-page-header>
     <section class="cui-page__content cui-page__content-narrow">
         <oui-back-button
-            data-heading="{{ ::'vdi_upgrade_title' | translate }}"
             data-on-click="DeskaasUpgradeCtrl.$state.go('deskaas.details')"
-        >
+            ><span data-translate="vdi_upgrade_title"></span>
         </oui-back-button>
 
         <div class="text-center" data-ng-if="DeskaasUpgradeCtrl.flags.init">
@@ -31,11 +30,10 @@
                             id="oui-deskaas-{{ ref }}"
                             name="ref.name"
                             data-model="DeskaasUpgradeCtrl.deskaasOffer"
-                            data-text="{{ ref.name }}"
                             data-value="ref"
                             data-thumbnail="true"
                             required
-                        >
+                            ><span data-ng-bind="ref.name"></span>
                             <span class="oui-radio__section">
                                 <span class="d-flex flex-wrap">
                                     <span data-translate="vdi_core"></span>

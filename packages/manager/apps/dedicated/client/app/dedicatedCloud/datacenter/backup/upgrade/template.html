@@ -1,5 +1,4 @@
 <oui-modal
-    data-title="{{:: 'dedicatedCloud_datacenter_backup_upgrade_title' | translate }}"
     data-on-dismiss="$ctrl.goToBackup()"
     data-primary-action="$ctrl.upgrade()"
     data-primary-disabled="!$ctrl.dataReplicationConditionAccepted"
@@ -7,6 +6,7 @@
     data-primary-label="{{:: 'dedicatedCloud_datacenter_backup_upgrade_confirm' | translate: { name: $ctrl.BACKUP_OFFER_NAME[$ctrl.backup.backupOffer] } }}"
     data-secondary-label="{{:: 'dedicatedCloud_datacenter_backup_upgrade_cancel' | translate }}"
     data-loading="$ctrl.upgrading"
+    data-heading="{{:: 'dedicatedCloud_datacenter_backup_upgrade_title' | translate }}"
 >
     <oui-message data-type="warning" class="mb-3">
         <span

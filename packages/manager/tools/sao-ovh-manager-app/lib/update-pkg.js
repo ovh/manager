@@ -29,6 +29,7 @@ module.exports = ({ name }) => ({
     '@ovh-ux/ng-ovh-request-tagger': '^1.1.0',
     '@ovh-ux/ng-ovh-sso-auth': '^4.2.3',
     '@ovh-ux/ng-ovh-swimming-poll': '^5.0.0',
+    '@ovh-ux/ui-kit': '^4.1.11',
     '@uirouter/angularjs': '^1.0.23',
     angular: '^1.7.5',
     'angular-aria': '^1.7.8',
@@ -41,8 +42,6 @@ module.exports = ({ name }) => ({
     'angular-translate-loader-pluggable': '^1.3.1',
     jquery: '^2.1.3',
     'ovh-api-services': '^9.26.0',
-    'ovh-ui-angular': '^3.16.2',
-    'ovh-ui-kit': '^2.42.7',
     flatpickr: '~4.5.2',
   },
   devDependencies: {

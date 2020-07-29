@@ -1,5 +1,5 @@
 {
-  "dedicated_server_interfaces_ola_terminate_action": "Dar de baja",
+  "dedicated_server_interfaces_ola_terminate_action": "Confirmar",
   "dedicated_server_interfaces_ola_terminate_kvm_warning": "Una vez que haya dado de baja esta opción, deberá abonar el importe de las interfaces de red a través del KVM/IPMI para volver a la configuración inicial.",
   "dedicated_server_interfaces_ola_terminate_explanation": "La oferta terminará en la próxima fecha de renovación.",
   "dedicated_server_interfaces_ola_terminate_text": "¿Seguro que quiere dar de baja la opción OVHcloud Link Aggregation (OLA)?"

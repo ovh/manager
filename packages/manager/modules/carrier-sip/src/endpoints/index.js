@@ -2,10 +2,13 @@ import angular from 'angular';
 
 // Peer dependencies.
 import 'angular-translate';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 
 // Components.
 import component from './endpoints.component';
+
+// Styles
+import './endpoints.scss';
 
 const moduleName = 'ovhManagerCarrierSipEndpoints';
 

@@ -17,7 +17,7 @@
                 data-rows="OrdersCtrl.ordersDetails"
                 data-page-size="{{OrdersCtrl.perPage}}"
             >
-                <oui-column
+                <oui-datagrid-column
                     data-title="'telecom_orders_follow_up_header_service' | translate"
                     data-property="name"
                     data-sortable="asc"
@@ -27,24 +27,24 @@
                         data-ng-bind="$row.name | limitTo: 25"
                     >
                     </a>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'telecom_orders_follow_up_header_type' | translate"
                     data-property="accessType"
                 >
                     <span
                         data-ng-bind="'telecom_orders_follow_up_type_' + $row.accessType | translate"
                     ></span>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'telecom_orders_follow_up_header_status' | translate"
                     data-property="lineStatus"
                 >
                     <span
                         data-ng-bind="'status_' + $row.lineStatus | translate"
                     ></span>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'telecom_orders_follow_up_header_step' | translate"
                     data-property="lastTask.name"
                 >
@@ -53,8 +53,8 @@
                         data-ng-bind="'telecom_common_pack_xdsl_order_step_name_' + $row.lastTask.name | translate"
                     >
                     </span>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'telecom_orders_follow_up_header_state' | translate"
                     data-property="lastTask.status"
                     data-sortable
@@ -65,7 +65,7 @@
                         data-tooltip-append-to-body="true"
                     >
                     </i>
-                </oui-column>
+                </oui-datagrid-column>
             </oui-datagrid>
         </div>
     </div>

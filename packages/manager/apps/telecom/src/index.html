@@ -4,7 +4,7 @@
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <title data-ng-bind-html="fullTitle">OVHcloud</title>
-        <meta name="description" content="" />
+        <meta name="description" content />
         <meta name="viewport" content="width=device-width" />
         <link rel="shortcut icon" href="assets/images/favicon.png" />
         <link rel="apple-touch-icon" href="assets/images/touchicon-180.png" />
@@ -30,8 +30,8 @@
                 <!-- Skip to main content -->
                 <div class="skipnav">
                     <a
-                        class="oui-button oui-button_link"
-                        href=""
+                        class="oui-button oui-button_ghost"
+                        href
                         data-ng-click="scrollTo('maincontent')"
                         data-translate="common_skip_to_main_content"
                     >
@@ -73,7 +73,7 @@
                                 <div class="position-absolute w-100">
                                     <!-- Skip content target -->
                                     <div class="skiptarget">
-                                        <a id="maincontent" href="">-</a>
+                                        <a id="maincontent" href>-</a>
                                     </div>
                                     <!-- /Skip content target -->
                                     <flash-message

@@ -29,7 +29,7 @@
                             data-ng-click="SharepointCtrl.editDisplayName()"
                         >
                             <span
-                                class="oui-icon oui-icon-pen_line oui-icon_small"
+                                class="oui-icon oui-icon-pen_concept"
                                 aria-hidden="true"
                             ></span>
                             <span
@@ -61,24 +61,24 @@
                             data-ng-model="SharepointCtrl.displayName"
                         />
                         <button
-                            class="oui-button oui-button_small-width"
+                            class="oui-button oui-button_s"
                             type="submit"
                             aria-label="{{ 'sharepoint_dashboard_display_name_save' | translate }}"
                             data-ng-disabled="sharePointDisplayNameForm.displayNameField.$invalid"
                         >
                             <span
-                                class="oui-icon oui-icon-success oui-icon_small"
+                                class="oui-icon oui-icon-success"
                                 aria-hidden="true"
                             ></span>
                         </button>
                         <button
-                            class="oui-button oui-button_small-width"
+                            class="oui-button oui-button_s"
                             type="button"
                             aria-label="{{ 'common_cancel' | translate }}"
                             data-ng-click="SharepointCtrl.resetDisplayName()"
                         >
                             <span
-                                class="oui-icon oui-icon-error oui-icon_small"
+                                class="oui-icon oui-icon-error"
                                 aria-hidden="true"
                             ></span>
                         </button>
@@ -86,13 +86,13 @@
                 </form>
             </div>
             <div class="col-sm-3 d-flex">
-                <div class="btn-group ml-auto mt-4">
+                <div class="btn-group ml-auto mt-4" data-uib-dropdown>
                     <button
                         class="oui-button oui-button_dropdown mb-0"
                         type="button"
                         aria-haspopup="true"
                         aria-expanded="false"
-                        data-toggle="dropdown"
+                        data-uib-dropdown-toggle
                     >
                         <span data-translate="common_actions"></span>
                         <span
@@ -100,12 +100,11 @@
                             aria-hidden="true"
                         ></span>
                     </button>
-                    <ul class="dropdown-menu dropdown-menu-right">
+                    <ul
+                        class="dropdown-menu dropdown-menu-right"
+                        data-uib-dropdown-menu
+                    >
                         <li>
-                            <i
-                                class="oui-icon oui-icon-gear_line"
-                                aria-hidden="true"
-                            ></i>
                             <button
                                 class="btn btn-link"
                                 type="button"

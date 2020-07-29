@@ -40,10 +40,13 @@
                                 class="oui-radio__label-container"
                                 for="domainType-ovh"
                             >
-                                <span
-                                    class="oui-radio__label"
-                                    data-translate="exchange_tab_domain_add_step1_select_domain_option"
-                                ></span>
+                                <span class="oui-radio__label">
+                                    <span class="oui-radio__icon"></span>
+                                    <span
+                                        class="oui-radio__text"
+                                        data-translate="exchange_tab_domain_add_step1_select_domain_option"
+                                    ></span>
+                                </span>
                             </label>
                         </div>
 
@@ -130,11 +133,14 @@
                                 class="oui-radio__label-container"
                                 for="domainType-nonovh"
                             >
-                                <span
-                                    class="oui-radio__label"
-                                    id="nonOvhDomain"
-                                    data-translate="exchange_tab_domain_add_step1_user_owned_option"
-                                ></span>
+                                <span class="oui-radio__label">
+                                    <span class="oui-radio__icon"></span>
+                                    <span
+                                        class="oui-radio__text"
+                                        id="nonOvhDomain"
+                                        data-translate="exchange_tab_domain_add_step1_user_owned_option"
+                                    ></span>
+                                </span>
                             </label>
                         </div>
 
@@ -260,10 +266,13 @@
                         class="oui-radio__label-container"
                         for="domainType-autoritative"
                     >
-                        <span
-                            class="oui-radio__label"
-                            data-translate="exchange_tab_domain_mode_AUTHORITATIVE"
-                        ></span>
+                        <span class="oui-radio__label">
+                            <span class="oui-radio__icon"></span>
+                            <span
+                                class="oui-radio__text"
+                                data-translate="exchange_tab_domain_mode_AUTHORITATIVE"
+                            ></span>
+                        </span>
                         <span
                             class="oui-radio__description"
                             id="domainAuthoritativeHelp"
@@ -286,10 +295,13 @@
                         class="oui-radio__label-container"
                         for="domainType-nonautoritative"
                     >
-                        <span
-                            class="oui-radio__label"
-                            data-translate="exchange_tab_domain_mode_NON_AUTHORITATIVE"
-                        ></span>
+                        <span class="oui-radio__label">
+                            <span class="oui-radio__icon"></span>
+                            <span
+                                class="oui-radio__text"
+                                data-translate="exchange_tab_domain_mode_NON_AUTHORITATIVE"
+                            ></span>
+                        </span>
                         <span
                             class="oui-radio__description"
                             id="domainNonAuthoritativeHelp"
@@ -338,15 +350,17 @@
                         id="srvParam"
                         name="srvParam"
                         data-model="ctrl.model.srvParam"
-                        data-text="{{::'exchange_tab_domain_add_step2_srv_checkbox' | translate}}"
-                    >
+                        ><span
+                            data-translate="exchange_tab_domain_add_step2_srv_checkbox"
+                        ></span>
                     </oui-checkbox>
                     <oui-checkbox
                         id="mxParam"
                         name="mxParam"
                         data-model="ctrl.model.mxParam"
-                        data-text="{{::'exchange_tab_domain_add_step2_mx_checkbox' | translate}}"
-                    >
+                        ><span
+                            data-translate="exchange_tab_domain_add_step2_mx_checkbox"
+                        ></span>
                     </oui-checkbox>
                 </div>
 
@@ -379,27 +393,11 @@
                             for="mainDomain"
                         >
                             <span class="oui-checkbox__label">
+                                <span class="oui-checkbox__icon"></span>
                                 <span
+                                    class="oui-checkbox__text"
                                     data-translate="exchange_tab_domain_add_step1_main_domain"
                                 ></span>
-                                <span class="oui-checkbox__icon">
-                                    <span
-                                        class="oui-icon oui-icon-checkbox-unchecked"
-                                        aria-hidden="true"
-                                    ></span>
-                                    <span
-                                        class="oui-icon oui-icon-checkbox-checked"
-                                        aria-hidden="true"
-                                    ></span>
-                                    <span
-                                        class="oui-icon oui-icon-checkbox-checkmark"
-                                        aria-hidden="true"
-                                    ></span>
-                                    <span
-                                        class="oui-icon oui-icon-checkbox-indeterminate"
-                                        aria-hidden="true"
-                                    ></span>
-                                </span>
                             </span>
                         </label>
                         <div

@@ -1,6 +1,6 @@
 <div data-ui-view>
     <div>
-        <oui-page-header
+        <oui-header
             data-heading="{{:: 'pci_projects_project_storages_blocks_title' | translate }}"
             class="mb-3"
         >
@@ -13,22 +13,22 @@
                     ></span>
                 </oui-guide-menu-item>
             </oui-guide-menu>
-        </oui-page-header>
+        </oui-header>
 
         <cui-message-container
             data-messages="$ctrl.messages"
         ></cui-message-container>
 
         <oui-datagrid data-rows="$ctrl.storages">
-            <oui-column
+            <oui-datagrid-column
                 data-title="'pci_projects_project_storages_blocks_name_label' | translate"
                 data-property="name"
                 data-type="string"
                 data-searchable
                 data-sortable="asc"
                 data-filterable
-            ></oui-column>
-            <oui-column
+            ></oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'pci_projects_project_storages_blocks_region_label' | translate"
                 data-property="region"
                 data-type="string"
@@ -38,8 +38,8 @@
                 <span
                     data-ng-bind="$ctrl.CucRegionService.getTranslatedMicroRegion($row.region)"
                 ></span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'pci_projects_project_storages_blocks_type_label' | translate"
                 data-property="type"
                 data-sortable
@@ -48,8 +48,8 @@
                 <span
                     data-ng-bind="'pci_projects_project_storages_blocks_type_' + $value | translate"
                 ></span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'pci_projects_project_storages_blocks_size_label' | translate"
                 data-property="size"
                 data-type="number"
@@ -57,8 +57,8 @@
                 data-filterable
             >
                 <span>{{ $value | cucBytes:2:true:'GiB'}}</span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'pci_projects_project_storages_blocks_attachedTo_label' | translate"
                 data-property="attachedTo"
                 data-type="string"
@@ -69,20 +69,20 @@
                     data-ng-href="{{:: $ctrl.instanceLink(instance.id) }}"
                     data-ng-bind="instance.name"
                 ></a>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'pci_projects_project_storages_blocks_status_label' | translate"
                 data-property="statusGroup"
                 data-sortable
                 data-filterable
             >
                 <span
-                    class="oui-status"
+                    class="oui-badge"
                     data-ng-class="{
-                        'oui-status_success': ($row.statusGroup === 'ACTIVE'),
-                        'oui-status_warning': ($row.statusGroup === 'PENDING'),
-                        'oui-status_error': ($row.statusGroup === 'ERROR'),
-                        'oui-status_info': ($row.statusGroup === $row.status),
+                        'oui-badge_success': ($row.statusGroup === 'ACTIVE'),
+                        'oui-badge_warning': ($row.statusGroup === 'PENDING'),
+                        'oui-badge_error': ($row.statusGroup === 'ERROR'),
+                        'oui-badge_info': ($row.statusGroup === $row.status),
                     }"
                 >
                     <span
@@ -95,10 +95,9 @@
                         data-ng-bind="'pci_projects_project_storages_blocks_status_' + $row.statusGroup | translate"
                     ></span>
                 </span>
-            </oui-column>
+            </oui-datagrid-column>
 
             <oui-action-menu
-                data-align="end"
                 data-compact
                 data-oui-popover
                 data-oui-popover-open="$rowIndex === 0 && $ctrl.displayHelp === 'snapshot'"
@@ -106,6 +105,7 @@
                 data-oui-popover-placement="top-end"
                 data-oui-popover-template="pci/projects/project/storages/blocks/help/snapshot.html"
                 data-oui-popover-scope="$ctrl"
+                data-placement="end"
             >
                 <oui-action-menu-item data-on-click="$ctrl.editStorage($row)">
                     <span
@@ -142,7 +142,7 @@
                 </oui-action-menu-item>
             </oui-action-menu>
 
-            <extra-top>
+            <oui-datagrid-topbar>
                 <button
                     class="oui-button oui-button_secondary"
                     data-ng-click="$ctrl.addStorage()"
@@ -158,7 +158,7 @@
                         data-translate="pci_projects_project_storages_blocks_add_label"
                     ></span>
                 </button>
-            </extra-top>
+            </oui-datagrid-topbar>
         </oui-datagrid>
     </div>
 </div>

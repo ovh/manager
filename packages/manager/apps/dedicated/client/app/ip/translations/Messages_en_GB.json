@@ -103,7 +103,7 @@
   "ip_table_header_service": "Service",
   "ip_table_header_ip_address": "IP address",
   "ip_table_header_country": "Country",
-  "ip_table_header_reverse": "Reverse",
+  "ip_table_header_reverse": "Reverse DNS",
   "ip_table_header_virtual_mac": "Virtual MAC",
   "ip_table_header_antispam": "Anti-spam",
   "ip_table_header_mitigation": "Mitigation",
@@ -129,7 +129,7 @@
   "ip_table_manage_antispam_unblock": "Anti-spam",
   "ip_table_manage_game_mitigation": "Configure the GAME firewall",
   "ip_table_manage_add_ipv6block": "Select an IPv6",
-  "ip_table_manage_add_ipv6block_question": "Enter a valid IPv6 from this block, and click on \"Validate\".",
+  "ip_table_manage_add_ipv6block_question": "Enter a valid IPv6 from this block, and click “Confirm”.",
   "ip_table_manage_add_ipv6block_failure": "An error occurred on adding an IPv6.",
   "ip_table_manage_select_ipv6block": "You can select an IPv6 from this block by clicking here.",
   "ip_table_manage_delegate_ipv6block": "Delegation of reverse DNS",
@@ -665,5 +665,10 @@
   "ip_table_manage_delegation_ipv6block_delete_err": "An error occurred while deleting the reverse DNS delegation:",
   "ip_table_manage_delegation_ipv6block_resume": "Task summary ",
   "ip_table_manage_delegation_ipv6block_to_add": "Reverse to be added ",
-  "ip_table_manage_delegation_ipv6block_to_delete": "Reverse to delete "
+  "ip_table_manage_delegation_ipv6block_to_delete": "Reverse to delete ",
+  "ip_table_manage_add_ipv6block_reverse": "Configure the reverse DNS for an IPv6",
+  "ip_table_manage_add_ipv6block_validate": "Confirm",
+  "ip_table_manage_add_ipv6block_cancel": "Cancel",
+  "ip_table_header_ip_address_invalid": "Please enter a valid IPv6.",
+  "ip_table_header_reverse_invalid": "Please enter a valid reverse DNS"
 }

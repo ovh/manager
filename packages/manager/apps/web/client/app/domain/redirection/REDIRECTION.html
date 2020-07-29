@@ -51,7 +51,7 @@
                                 data-ng-options="type as ('domain_tab_REDIRECTION_type_' + type | translate) for type in ctrlDomainRedirect.redirectionList.recordTypes track by type"
                             >
                                 <option
-                                    value=""
+                                    value
                                     selected
                                     data-translate="domain_tab_ZONE_type_all"
                                 ></option>
@@ -178,7 +178,7 @@
                                         data-ng-if="redirection.fieldDisplayType === 'visible'"
                                     >
                                         <span
-                                            class="oui-icon oui-icon-eye oui-icon_small"
+                                            class="oui-icon oui-icon-eye-open"
                                             aria-hidden="true"
                                         ></span>
                                     </abbr>
@@ -188,7 +188,7 @@
                                         data-ng-if="redirection.fieldDisplayType === 'visiblePermanent'"
                                     >
                                         <span
-                                            class="oui-icon oui-icon-eye oui-icon_small"
+                                            class="oui-icon oui-icon-eye-open"
                                             aria-hidden="true"
                                         ></span>
                                     </abbr>
@@ -198,7 +198,7 @@
                                         data-ng-if="redirection.fieldDisplayType !== 'visible' && redirection.fieldDisplayType !== 'visiblePermanent'"
                                     >
                                         <span
-                                            class="oui-icon oui-icon-eye-blocked oui-icon_small"
+                                            class="oui-icon oui-icon-eye-closed"
                                             aria-hidden="true"
                                         ></span>
                                     </abbr>
@@ -216,15 +216,19 @@
                                 <td class="text-right">
                                     <oui-action-menu
                                         data-compact
-                                        data-align="end"
+                                        data-placement="end"
                                     >
                                         <oui-action-menu-item
-                                            data-text="{{:: 'table_modify_entry' | translate }}"
                                             data-on-click="setAction('redirection/edit/domain-redirection-edit', { redirection: redirection, displayName: ctrlDomainRedirect.constructor.getDomain(redirection) })"
+                                            ><span
+                                                data-translate="table_modify_entry"
+                                            ></span
                                         ></oui-action-menu-item>
                                         <oui-action-menu-item
-                                            data-text="{{:: 'table_delete_entry' | translate }}"
                                             data-on-click="setAction('redirection/delete/domain-redirection-delete', { redirection: redirection, displayName: ctrlDomainRedirect.constructor.getDomain(redirection) })"
+                                            ><span
+                                                data-translate="table_delete_entry"
+                                            ></span
                                         ></oui-action-menu-item>
                                     </oui-action-menu>
                                 </td>

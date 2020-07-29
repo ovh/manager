@@ -16,17 +16,16 @@
   },
   "peerDependencies": {
     "@ovh-ux/manager-catalog-price": "^1.0.0",
-    "@ovh-ux/manager-core": "^9.0.0",
+    "@ovh-ux/manager-core": "^9.0.0 || ^10.0.0",
     "@ovh-ux/ng-ovh-contracts": "^3.2.0",
     "@ovh-ux/ng-ovh-payment-method": "^6.1.2",
     "@ovh-ux/ng-ovh-web-universe-components": "^6.0.1",
     "@ovh-ux/ng-translate-async-loader": "^2.1.0",
+    "@ovh-ux/ui-kit": "^4.1.12",
     "angular": "^1.7.9",
     "angular-translate": "^2.18.2",
     "bootstrap": "^4.3.1",
     "moment": "^2.24.0",
-    "ovh-api-services": "^9.39.1",
-    "ovh-ui-angular": "^3.16.3",
-    "ovh-ui-kit": "^2.42.8"
+    "ovh-api-services": "^9.39.1"
   }
 }

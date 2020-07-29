@@ -29,7 +29,7 @@
                     data-translate="dedicated_server_interfaces_ola_alert_configuration_needed_link"
                 ></span>
                 <span
-                    class="oui-icon oui-icon-external_link"
+                    class="oui-icon oui-icon-external-link"
                     aria-hidden="true"
                 ></span>
                 <span
@@ -136,28 +136,28 @@
                 data-on-row-select="$ctrl.onRowSelect($rows)"
                 data-selectable-rows
             >
-                <oui-column
+                <oui-datagrid-column
                     data-title=":: 'dedicated_server_interfaces_ola_column_name' | translate"
                     data-property="name"
                 >
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title=":: 'dedicated_server_interfaces_ola_column_current_type' | translate"
                     data-property="type"
                 >
                     <span
                         data-translate="{{ 'dedicated_server_interfaces_type_' + $value + '_label' }}"
                     ></span>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title=":: 'dedicated_server_interfaces_ola_column_network_offer' | translate"
                 >
                     <span
-                        class="oui-status oui-status_warning"
+                        class="oui-badge oui-badge_warning"
                         data-ng-if="$row.isPublic() && $ctrl.hasObsoleteBandwithOption()"
                     >
                         <span
-                            class="oui-icon oui-icon-warning_circle oui-color-warning-medium font-inherit"
+                            class="oui-icon font-inherit oui-icon-warning-circle oui-color-aw-400"
                         ></span>
                         <span
                             data-ng-bind="'dedicated_server_bandwidth_type_' + $ctrl.specifications.bandwidth.type | translate"
@@ -173,8 +173,8 @@
                         data-ng-bind="'dedicated_server_bandwidth_type_' + $ctrl.specifications.vrack.type | translate"
                     >
                     </span>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title=":: 'dedicated_server_interfaces_ola_column_bandwidth_outgoing' | translate"
                 >
                     <span
@@ -190,8 +190,8 @@
                         data-ng-bind="$ctrl.specifications.vrack.bandwidth | ducBandwidth"
                     >
                     </span>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title=":: 'dedicated_server_interfaces_ola_column_bandwidth_incoming' | translate"
                 >
                     <span
@@ -207,7 +207,7 @@
                         data-ng-bind="$ctrl.specifications.vrack.bandwidth | ducBandwidth"
                     >
                     </span>
-                </oui-column>
+                </oui-datagrid-column>
             </oui-datagrid>
         </oui-step-form>
 
@@ -219,43 +219,43 @@
             <!-- Not a datagrid component because rowspan -->
 
             <!-- When grouping -->
-            <table data-ng-if="$ctrl.isGrouping()" class="oui-datagrid">
-                <thead class="oui-datagrid__headers">
+            <table data-ng-if="$ctrl.isGrouping()" class="oui-table">
+                <thead class="oui-table__headers">
                     <tr>
                         <th
-                            class="oui-datagrid__header"
+                            class="oui-table__header"
                             data-translate="dedicated_server_interfaces_ola_column_mode"
                         ></th>
                         <th
-                            class="oui-datagrid__header"
+                            class="oui-table__header"
                             data-translate="dedicated_server_interfaces_ola_column_name"
                         ></th>
                         <th
-                            class="oui-datagrid__header"
+                            class="oui-table__header"
                             data-translate="dedicated_server_interfaces_ola_column_bandwidth_outgoing"
                         ></th>
                         <th
-                            class="oui-datagrid__header"
+                            class="oui-table__header"
                             data-translate="dedicated_server_interfaces_ola_column_bandwidth_incoming"
                         ></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr
-                        class="oui-datagrid__row"
+                        class="oui-table__row"
                         data-ng-repeat="interface in $ctrl.selectedInterfaces track by interface.name"
                     >
                         <td
-                            class="oui-datagrid__cell"
+                            class="oui-table__cell"
                             data-ng-if="!$index"
                             data-ng-bind="'dedicated_server_interfaces_ola_field_mode_choice_' + $ctrl.configuration.mode | translate"
                             rowspan="{{ $ctrl.selectedInterfaces.length }}"
                         ></td>
                         <td
-                            class="oui-datagrid__cell"
+                            class="oui-table__cell"
                             data-ng-bind="interface.name"
                         ></td>
-                        <td class="oui-datagrid__cell">
+                        <td class="oui-table__cell">
                             <span
                                 class="oui-icon oui-icon-arrow-up font-inherit"
                             ></span>
@@ -263,7 +263,7 @@
                                 data-ng-bind="$ctrl.specifications.vrack.bandwidth | ducBandwidth"
                             ></span>
                         </td>
-                        <td class="oui-datagrid__cell">
+                        <td class="oui-table__cell">
                             <span
                                 class="oui-icon oui-icon-arrow-down font-inherit"
                             ></span>
@@ -276,30 +276,30 @@
             </table>
 
             <!-- When ungrouping -->
-            <table data-ng-if="!$ctrl.isGrouping()" class="oui-datagrid">
-                <thead class="oui-datagrid__headers">
+            <table data-ng-if="!$ctrl.isGrouping()" class="oui-table">
+                <thead class="oui-table__headers">
                     <tr>
                         <th
-                            class="oui-datagrid__header"
+                            class="oui-table__header"
                             data-translate="dedicated_server_interfaces_ola_column_name"
                         ></th>
                         <th
-                            class="oui-datagrid__header"
+                            class="oui-table__header"
                             data-translate="dedicated_server_interfaces_ola_column_bandwidth_outgoing"
                         ></th>
                         <th
-                            class="oui-datagrid__header"
+                            class="oui-table__header"
                             data-translate="dedicated_server_interfaces_ola_column_bandwidth_incoming"
                         ></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr
-                        class="oui-datagrid__row"
+                        class="oui-table__row"
                         data-ng-repeat="mac in $ctrl.networkInterfaces track by mac"
                     >
-                        <td class="oui-datagrid__cell" data-ng-bind="mac"></td>
-                        <td class="oui-datagrid__cell">
+                        <td class="oui-table__cell" data-ng-bind="mac"></td>
+                        <td class="oui-table__cell">
                             <div data-ng-if="interface.isPublic()">
                                 <span
                                     class="oui-icon oui-icon-arrow-up font-inherit"
@@ -317,7 +317,7 @@
                                 ></span>
                             </div>
                         </td>
-                        <td class="oui-datagrid__cell">
+                        <td class="oui-table__cell">
                             <div data-ng-if="interface.isPublic()">
                                 <span
                                     class="oui-icon oui-icon-arrow-down font-inherit"

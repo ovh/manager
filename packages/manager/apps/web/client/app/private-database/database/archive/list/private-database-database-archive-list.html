@@ -10,27 +10,27 @@
     ></h2>
 
     <oui-datagrid data-rows="archiveListCtrl.deletedDbList">
-        <oui-column
+        <oui-datagrid-column
             data-title="'privateDatabase_bdd_name' | translate"
             data-property="databaseName"
             data-sortable
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'privateDatabase_bdd_dumps_count' | translate"
             data-property="dumps.length"
             data-sortable
         >
             <div
-                class="oui-status"
+                class="oui-badge"
                 data-ng-bind="$row.dumps.length"
-                data-ng-class="{ 'oui-status_success': $row.dumps.length > 0, 'oui-status_error': !($row.dumps.length > 0) }"
+                data-ng-class="{ 'oui-badge_success': $row.dumps.length > 0, 'oui-badge_error': !($row.dumps.length > 0) }"
             ></div>
-        </oui-column>
-        <oui-action-menu data-align="end" data-compact>
-            <oui-action-menu-item
-                data-text="{{:: 'privateDatabase_action_list_dumps' | translate }}"
-                data-on-click="goToArchivesDumps($row)"
-            >
+        </oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="end">
+            <oui-action-menu-item data-on-click="goToArchivesDumps($row)"
+                ><span
+                    data-translate="privateDatabase_action_list_dumps"
+                ></span>
             </oui-action-menu-item>
         </oui-action-menu>
     </oui-datagrid>

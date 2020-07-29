@@ -1,6 +1,6 @@
 ovh-manager-hub-payment-mean {
   .manager-hub-payment-mean {
-    @import 'oui4/dist/scss/_tokens';
+    @import '@ovh-ux/ui-kit/dist/scss/_tokens';
     @import '@ovh-ux/manager-hub/src/variables.scss';
 
     > a {
@@ -47,7 +47,7 @@ ovh-manager-hub-payment-mean {
       line-height: 0.85rem;
     }
 
-    .oui-status {
+    .oui-badge {
       &_error {
         color: $ae-500;
       }
@@ -65,7 +65,7 @@ ovh-manager-hub-payment-mean {
       color: $p-800;
     }
 
-    .oui-icon-arrow-right_extra-thin {
+    .oui-icon-arrow-right {
       color: $p-500;
     }
   }

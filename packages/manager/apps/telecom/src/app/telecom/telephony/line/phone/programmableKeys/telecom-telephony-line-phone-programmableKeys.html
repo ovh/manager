@@ -42,35 +42,35 @@
             </tuc-telephony-bulk-action>
 
             <oui-datagrid data-rows="ProgrammableKeysCtrl.functionKeys.raw">
-                <oui-column
+                <oui-datagrid-column
                     data-title="'telephony_line_phone_programmableKeys_keys_title' | translate"
                     data-property="label"
                 >
                     <span data-ng-bind="$row.label || '-'"></span>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'telephony_line_phone_programmableKeys_function_title' | translate"
                 >
                     <span
                         data-ng-bind="($row.function && ('telephony_line_phone_programmableKeys_' + $row.function) | translate) || '-'"
                     ></span>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'telephony_line_phone_programmableKeys_supp_param_title' | translate"
                     data-property="parameter"
                 >
                     <span
                         data-ng-bind="$row.parameterLabel || $row.parameter || '-'"
                     ></span>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'telephony_line_phone_programmableKeys_customLabel_title' | translate"
                     data-property="customLabel"
                 >
                     <span data-ng-bind="$row.customLabel || '-'"></span>
-                </oui-column>
+                </oui-datagrid-column>
 
-                <oui-action-menu data-align="end" data-compact>
+                <oui-action-menu data-compact data-placement="end">
                     <oui-action-menu-item
                         on-click="ProgrammableKeysCtrl.edit($row)"
                     >

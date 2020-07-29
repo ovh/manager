@@ -2,7 +2,7 @@
   "kube_service_update_common_confirm": "Potwierdź",
   "kube_service_update_common_cancel": "Anuluj",
   "kube_service_update_title": "Aktualizuj teraz",
-  "kube_service_update_message": "Aktualizacja może spowodować trwającą około 2 minuty niedostępność każdego z Twoich węzłów. Stosujemy ciągłą aktualizację (rolling upgrade with node drain), aby zminimalizować wpływ tej operacji na działanie Twoich usług.",
+  "kube_service_update_message": "Aktualizacja może spowodować trwającą około 2 minut niedostępność każdego z Twoich węzłów.  Stosujemy ciągłą aktualizację (rolling upgrade with node drain), aby zminimalizować wpływ tej operacji na działanie Twoich usług.",
   "kube_service_update_success": "Trwa aktualizacja klastra Kubernetes...",
   "kube_service_update_error": "Wystąpił błąd podczas aktualizacji Twojego klastra: {{ message }}.",
   "kube_service__minor_version_update_title": "Przejdź do następnej pomocniczej wersji Kubernetesa.",

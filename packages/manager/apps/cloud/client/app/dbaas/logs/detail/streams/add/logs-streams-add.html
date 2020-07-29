@@ -1,9 +1,10 @@
 <div class="cui-page__content">
     <oui-back-button
         data-state="dbaas.logs.detail.streams"
-        data-heading="{{ ::(ctrl.isEdit ? 'logs_streams_update_title' : 'logs_streams_add_data_feed') | translate }}"
         data-state-params="{ serviceName: ctrl.serviceName}"
-    >
+        ><span
+            data-ng-bind="::(ctrl.isEdit ? 'logs_streams_update_title' : 'logs_streams_add_data_feed') | translate"
+        ></span>
     </oui-back-button>
 
     <div><oui-spinner data-ng-show="ctrl.stream.loading"></oui-spinner></div>
@@ -52,20 +53,18 @@
             <oui-checkbox
                 id="stream_enable_websocket"
                 name="stream_enable_websocket"
-                data-text="{{:: 'logs_streams_enable_websocket' | translate}}"
                 data-description="{{:: 'logs_streams_enable_websocket_description' | translate}}"
                 data-model="ctrl.stream.data.webSocketEnabled"
-            >
+                ><span data-translate="logs_streams_enable_websocket"></span>
             </oui-checkbox>
         </oui-field>
         <oui-field>
             <oui-checkbox
                 id="stream_enable_indexing"
                 name="stream_enable_indexing"
-                data-text="{{:: 'logs_streams_enable_indexing' | translate}}"
                 data-description="{{ ctrl.getIndexingPrices() }}"
                 data-model="ctrl.stream.data.indexingEnabled"
-            >
+                ><span data-translate="logs_streams_enable_indexing"></span>
             </oui-checkbox>
         </oui-field>
         <div data-ng-if="ctrl.stream.data.indexingEnabled">
@@ -110,8 +109,9 @@
                         name="stream_alert_notification"
                         id="stream_alert_notification"
                         data-model="ctrl.stream.data.indexingNotifyEnabled"
-                        data-text="{{ ctrl.getIndexingNotificationText() }}"
-                    >
+                        ><span
+                            data-ng-bind="ctrl.getIndexingNotificationText()"
+                        ></span>
                     </oui-checkbox>
                 </oui-field>
                 <oui-field
@@ -121,8 +121,9 @@
                         name="stream_pause_indexing"
                         id="stream_pause_indexing"
                         data-model="ctrl.stream.data.pauseIndexingOnMaxSize"
-                        data-text="{{ ctrl.getIndexingPauseText() }}"
-                    >
+                        ><span
+                            data-ng-bind="ctrl.getIndexingPauseText()"
+                        ></span>
                     </oui-checkbox>
                 </oui-field>
             </div>
@@ -132,10 +133,9 @@
             <oui-checkbox
                 id="stream_enable_compression"
                 name="stream_enable_compression"
-                data-text="{{:: 'logs_streams_enable_archieve' | translate}}"
                 data-description="{{:: 'logs_streams_enable_archieve_description' | translate}}"
                 data-model="ctrl.stream.data.coldStorageEnabled"
-            >
+                ><span data-translate="logs_streams_enable_archieve"></span>
             </oui-checkbox>
         </oui-field>
 
@@ -228,8 +228,9 @@
                     name="stream_notification"
                     id="stream_notification"
                     data-model="ctrl.stream.data.coldStorageNotifyEnabled"
-                    data-text="{{:: 'logs_streams_notification_detail' | translate}}"
-                >
+                    ><span
+                        data-translate="logs_streams_notification_detail"
+                    ></span>
                 </oui-checkbox>
             </oui-field>
         </div>

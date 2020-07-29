@@ -236,10 +236,12 @@
                                 class="oui-radio__label-container"
                                 for="eventCategories"
                             >
-                                <span
-                                    class="oui-radio__label"
-                                    data-translate="telephony_number_feature_ovh_pabx_step_no_conditions"
-                                >
+                                <span class="oui-radio__label">
+                                    <span class="oui-radio__icon"></span>
+                                    <span
+                                        class="oui-radio__text"
+                                        data-translate="telephony_number_feature_ovh_pabx_step_no_conditions"
+                                    ></span>
                                 </span>
                             </label>
                         </div>
@@ -266,11 +268,14 @@
                                 for="eventCategories-{{ $index }}"
                             >
                                 <span class="oui-radio__label">
-                                    <voip-time-condition-slot
-                                        data-time-condition-slot="$ctrl.convertCategoryToSlot(category)"
-                                        data-is-scheduler="true"
-                                    >
-                                    </voip-time-condition-slot>
+                                    <span class="oui-radio__icon"></span>
+                                    <span class="oui-radio__text">
+                                        <voip-time-condition-slot
+                                            data-time-condition-slot="$ctrl.convertCategoryToSlot(category)"
+                                            data-is-scheduler="true"
+                                        >
+                                        </voip-time-condition-slot>
+                                    </span>
                                 </span>
                             </label>
                         </div>

@@ -29,13 +29,11 @@
             class="checkbox"
             data-ng-repeat="receiver in AddReceiversListsCtrl.model.receivers | orderBy:'description'"
         >
-            <label>
-                <input
-                    type="checkbox"
-                    name="receiver{{ receiver.slotId }}"
-                    id="receiver{{ receiver.slotId }}"
-                    data-ng-model="receiver.isSelected"
-                />
+            <oui-checkbox
+                model="receiver.isSelected"
+                name="receiver{{ receiver.slotId }}"
+                value="receiver.isSelected"
+            >
                 <span
                     data-ng-bind-html="(receiver.records > 1 ? 'sms_sms_compose_add_receivers_label_plural' : 'sms_sms_compose_add_receivers_label') | translate:{
                           description: receiver.description,
@@ -43,7 +41,7 @@
                       }"
                 >
                 </span>
-            </label>
+            </oui-checkbox>
         </div>
     </div>
 

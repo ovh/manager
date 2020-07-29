@@ -3,7 +3,7 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'angular-translate';
 import 'ovh-api-services';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 
 import { AUDIO_FORMAT } from './freefax-voicemailConfiguration.constants';
 import template from './freefax-voicemailConfiguration.html';

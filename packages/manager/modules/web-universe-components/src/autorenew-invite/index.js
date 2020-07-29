@@ -4,7 +4,7 @@ import '@ovh-ux/ng-ovh-payment-method';
 import '@ovh-ux/ng-ovh-user-pref';
 import '@ovh-ux/ng-translate-async-loader';
 import 'ovh-api-services';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 import 'angular-translate';
 
 import { SUBSIDIARIES_WITH_OPTIONAL_AUTORENEW } from './autorenew-invite.constant';

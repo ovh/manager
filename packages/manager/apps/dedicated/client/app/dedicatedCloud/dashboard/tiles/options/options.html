@@ -16,11 +16,11 @@
                 ></div>
 
                 <span
-                    class="oui-status"
+                    class="oui-badge"
                     data-ng-class="{
-                          'oui-status_error': $ctrl.bindings.options.security.drpGlobalStatus.value.error,
-                          'oui-status_warning': $ctrl.bindings.options.security.drpGlobalStatus.value.warning,
-                          'oui-status_success': $ctrl.bindings.options.security.drpGlobalStatus.value.success
+                          'oui-badge_error': $ctrl.bindings.options.security.drpGlobalStatus.value.error,
+                          'oui-badge_warning': $ctrl.bindings.options.security.drpGlobalStatus.value.warning,
+                          'oui-badge_success': $ctrl.bindings.options.security.drpGlobalStatus.value.success
                     }"
                 >
                     <span
@@ -32,7 +32,7 @@
             <oui-action-menu
                 data-ng-if="::$ctrl.bindings.options.security.actionMenu.exists"
                 data-compact
-                data-align="end"
+                data-placement="end"
             >
                 <oui-action-menu-item
                     data-ng-if="::$ctrl.bindings.options.security.actionMenu.items.selectDatacenter.exists"
@@ -88,26 +88,29 @@
             <oui-action-menu
                 data-ng-if=":: $ctrl.bindings.options.basic.actionMenu.exists"
                 data-compact
-                data-align="end"
+                data-placement="end"
             >
                 <oui-action-menu-item
                     data-ng-if=":: $ctrl.bindings.options.basic.actionMenu.items.activate.exists"
                     data-ui-sref="app.dedicatedClouds.servicePackUpgrade.basicOptions($ctrl.bindings.options.basic.actionMenu.items.activate.stateParams)"
-                    data-text="{{:: 'ovhManagerPccDashboardOptions_basicOptions_actionMenu_activate' | translate  }}"
-                >
+                    ><span
+                        data-translate="ovhManagerPccDashboardOptions_basicOptions_actionMenu_activate"
+                    ></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
                     data-ng-if=":: $ctrl.bindings.options.basic.actionMenu.items.switch.exists"
                     data-ui-sref="app.dedicatedClouds.servicePackUpgrade.basicOptions($ctrl.bindings.options.basic.actionMenu.items.switch.stateParams)"
-                    data-text="{{:: 'ovhManagerPccDashboardOptions_basicOptions_actionMenu_switch' | translate  }}"
-                >
+                    ><span
+                        data-translate="ovhManagerPccDashboardOptions_basicOptions_actionMenu_switch"
+                    ></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
                     data-ng-if=":: $ctrl.bindings.options.basic.actionMenu.items.payCheckout.exists"
                     data-href="{{:: $ctrl.bindings.options.basic.actionMenu.items.payCheckout.url }}"
-                    data-text="{{:: 'ovhManagerPccDashboardOptions_basicOptions_actionMenu_payCheckout' | translate }}"
                     data-external
-                >
+                    ><span
+                        data-translate="ovhManagerPccDashboardOptions_basicOptions_actionMenu_payCheckout"
+                    ></span>
                 </oui-action-menu-item>
             </oui-action-menu>
         </oui-tile-definition>
@@ -136,7 +139,7 @@
                             data-translate="ovhManagerPccDashboardOptions_certification_description_presentation"
                         ></span>
                         <span
-                            class="oui-icon oui-icon-external_link"
+                            class="oui-icon oui-icon-external-link"
                             aria-hidden="true"
                         ></span>
                         <span
@@ -157,26 +160,29 @@
             <oui-action-menu
                 data-ng-if=":: $ctrl.bindings.options.certification.actionMenu.exists"
                 data-compact
-                data-align="end"
+                data-placement="end"
             >
                 <oui-action-menu-item
                     data-ng-if=":: $ctrl.bindings.options.certification.actionMenu.items.activate.exists"
-                    data-text="{{:: 'ovhManagerPccDashboardOptions_certification_actionMenu_activate' | translate }}"
                     data-ui-sref="app.dedicatedClouds.servicePackUpgrade.certification($ctrl.bindings.options.certification.actionMenu.items.activate.stateParams)"
-                >
+                    ><span
+                        data-translate="ovhManagerPccDashboardOptions_certification_actionMenu_activate"
+                    ></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
                     data-ng-if=":: $ctrl.bindings.options.certification.actionMenu.items.configure.exists"
-                    data-text="{{:: 'ovhManagerPccDashboardOptions_certification_actionMenu_configure' | translate }}"
                     data-ui-sref="app.dedicatedClouds.servicePackUpgrade.configurationOnly($ctrl.bindings.options.certification.actionMenu.items.configure.stateParams)"
-                >
+                    ><span
+                        data-translate="ovhManagerPccDashboardOptions_certification_actionMenu_configure"
+                    ></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
                     data-ng-if=":: $ctrl.bindings.options.certification.actionMenu.items.payCheckout.exists"
                     data-href="{{:: $ctrl.bindings.options.certification.actionMenu.items.payCheckout.url }}"
-                    data-text="{{:: 'ovhManagerPccDashboardOptions_certification_actionMenu_payCheckout' | translate }}"
                     data-external
-                >
+                    ><span
+                        data-translate="ovhManagerPccDashboardOptions_certification_actionMenu_payCheckout"
+                    ></span>
                 </oui-action-menu-item>
             </oui-action-menu>
         </oui-tile-definition>

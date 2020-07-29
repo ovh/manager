@@ -1,15 +1,13 @@
-<oui-page-header data-heading="{{:: 'useraccount_contacts' | translate }}">
+<oui-header data-heading="{{:: 'useraccount_contacts' | translate }}">
     <oui-header-tabs>
-        <oui-header-tabs-item
-            data-text="{{:: 'useraccount_contacts_tab_SERVICES' | translate }}"
-            data-state="app.account.contacts.services"
+        <oui-header-tabs-item data-state="app.account.contacts.services"
+            ><span data-translate="useraccount_contacts_tab_SERVICES"></span
         ></oui-header-tabs-item>
-        <oui-header-tabs-item
-            data-text="{{:: 'useraccount_contacts_tab_REQUESTS' | translate }}"
-            data-state="app.account.contacts.requests"
+        <oui-header-tabs-item data-state="app.account.contacts.requests"
+            ><span data-translate="useraccount_contacts_tab_REQUESTS"></span
         ></oui-header-tabs-item>
     </oui-header-tabs>
-</oui-page-header>
+</oui-header>
 
 <div class="p-5">
     <div data-ovh-alert="useraccount.alerts.dashboardContacts"></div>

@@ -227,7 +227,7 @@
                 <oui-datagrid
                     data-rows="TelecomSmsOptionsResponseCtrl.smsResponse.trackingOptions"
                 >
-                    <oui-column
+                    <oui-datagrid-column
                         data-title="'sms_options_response_tracking_media_label' | translate"
                         data-property="media"
                         data-sortable="asc"
@@ -246,24 +246,24 @@
                            }"
                         >
                         </i>
-                    </oui-column>
+                    </oui-datagrid-column>
 
-                    <oui-column
+                    <oui-datagrid-column
                         data-title="'sms_options_response_tracking_email_number_label' | translate"
                         data-property="target"
                     >
                         <strong class="d-block" data-ng-bind="$row.target">
                         </strong>
-                    </oui-column>
+                    </oui-datagrid-column>
 
-                    <oui-column
+                    <oui-datagrid-column
                         data-title="'sms_options_response_tracking_email_sender_label' | translate"
                         data-property="sender"
                     >
                         <span data-ng-bind="$row.sender"></span>
-                    </oui-column>
+                    </oui-datagrid-column>
 
-                    <oui-action-menu data-align="end" data-compact>
+                    <oui-action-menu data-compact data-placement="end">
                         <oui-action-menu-item
                             on-click="TelecomSmsOptionsResponseCtrl.editTrackingOptions($rowIndex, $row)"
                         >

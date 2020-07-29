@@ -12,31 +12,17 @@
         <tuc-toast-message></tuc-toast-message>
 
         <div class="mb-3 clearfix">
-            <div
-                class="btn-group float-left mr-3"
-                data-uib-dropdown
-                data-dropdown-append-to-body
-            >
+            <div class="btn-group float-left mr-3" data-uib-dropdown>
                 <button
                     id="btn-sms-incoming-actions"
                     type="button"
-                    class="btn btn-default"
+                    class="oui-button oui-button_dropdown"
+                    data-ng-disabled="SmsIncomingCtrl.incoming.isExporting"
                     data-uib-dropdown-toggle
                 >
-                    <span
-                        class="fa fa-bars"
-                        aria-hidden="true"
-                        data-ng-if="!SmsIncomingCtrl.incoming.isExporting"
-                    >
-                    </span>
-                    <oui-spinner
-                        data-ng-if="SmsIncomingCtrl.incoming.isExporting"
-                        data-size="s"
-                    >
-                    </oui-spinner>
                     <span data-translate="sms_common_actions"></span>
                     <span
-                        class="ovh-font ovh-font-small-arrow-down"
+                        class="oui-icon oui-icon-chevron-down"
                         aria-hidden="true"
                     ></span>
                 </button>
@@ -47,10 +33,6 @@
                     data-uib-dropdown-menu
                 >
                     <li role="menuitem">
-                        <i
-                            class="ovh-font ovh-font-download"
-                            aria-hidden="true"
-                        ></i>
                         <button
                             type="button"
                             class="btn btn-link"
@@ -62,10 +44,6 @@
                         ></button>
                     </li>
                     <li role="menuitem">
-                        <i
-                            class="ovh-font ovh-font-arrow-rotate"
-                            aria-hidden="true"
-                        ></i>
                         <button
                             type="button"
                             class="btn btn-link"
@@ -85,7 +63,7 @@
                 data-ng-click="SmsIncomingCtrl.deleteSelectedIncoming()"
             >
                 <span
-                    class="oui-icon oui-icon-trash_line mr-2"
+                    class="oui-icon mr-2 oui-icon-trash_concept"
                     aria-hidden="true"
                     data-ng-if="!SmsIncomingCtrl.incoming.isDeleting"
                 >
@@ -312,10 +290,6 @@
                                     data-uib-dropdown-menu
                                 >
                                     <li role="menuitem">
-                                        <i
-                                            class="ovh-font ovh-font-details"
-                                            aria-hidden="true"
-                                        ></i>
                                         <button
                                             type="button"
                                             class="btn btn-link"
@@ -324,10 +298,6 @@
                                         ></button>
                                     </li>
                                     <li role="menuitem">
-                                        <i
-                                            class="ovh-font ovh-font-bin"
-                                            aria-hidden="true"
-                                        ></i>
                                         <button
                                             type="button"
                                             class="btn btn-link"

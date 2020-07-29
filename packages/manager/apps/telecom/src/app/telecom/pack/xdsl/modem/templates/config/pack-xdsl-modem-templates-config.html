@@ -25,14 +25,14 @@
             </div>
 
             <oui-datagrid data-rows="$ctrl.templates" data-page-size="10">
-                <oui-column
+                <oui-datagrid-column
                     data-title="::'xdsl_modem_template_config_table_name' | translate"
                     data-property="name"
                     data-sortable="asc"
                 >
                     <span data-ng-bind="::$row.name"></span>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="::'xdsl_modem_template_config_creation_date' | translate"
                     data-property="detail.creationDate"
                     data-sortable
@@ -40,9 +40,9 @@
                     <span
                         data-ng-bind="$row.detail.creationDate ? ($row.detail.creationDate | date:'dd/MM/yyyy HH:mm:ss') : $row.detail.info"
                     ></span>
-                </oui-column>
+                </oui-datagrid-column>
 
-                <oui-action-menu data-align="end" data-compact>
+                <oui-action-menu data-compact data-placement="end">
                     <oui-action-menu-item
                         data-on-click="$ctrl.setSelectedTemplate($row)"
                     >
@@ -99,56 +99,56 @@
                         data-rows="$ctrl.template.detail.DHCP"
                         data-page-size="10"
                     >
-                        <oui-column
+                        <oui-datagrid-column
                             data-title="::'xdsl_modem_template_config_dhcp_server' | translate"
                             data-property="dhcpName"
                             data-sortable="asc"
                         >
                             <span data-ng-bind="::$row.dhcpName"></span>
-                        </oui-column>
-                        <oui-column
+                        </oui-datagrid-column>
+                        <oui-datagrid-column
                             data-title="::'xdsl_modem_template_config_dhcp_gateway' | translate"
                             data-property="defaultGateway"
                             data-sortable
                         >
                             <span data-ng-bind="::$row.defaultGateway"></span>
-                        </oui-column>
-                        <oui-column
+                        </oui-datagrid-column>
+                        <oui-datagrid-column
                             data-title="::'xdsl_modem_template_config_dhcp_primary_dns' | translate"
                             data-property="primaryDNS"
                             data-sortable
                         >
                             <span data-ng-bind="::$row.primaryDNS"></span>
-                        </oui-column>
-                        <oui-column
+                        </oui-datagrid-column>
+                        <oui-datagrid-column
                             data-title="::'xdsl_modem_template_config_dhcp_secondary_dns' | translate"
                             data-property="secondaryDNS"
                             data-sortable
                         >
                             <span data-ng-bind="::$row.secondaryDNS"></span>
-                        </oui-column>
-                        <oui-column
+                        </oui-datagrid-column>
+                        <oui-datagrid-column
                             data-title="::'xdsl_modem_template_config_dhcp_domain' | translate"
                             data-property="domainName"
                             data-sortable
                         >
                             <span data-ng-bind="::$row.domainName"></span>
-                        </oui-column>
-                        <oui-column
+                        </oui-datagrid-column>
+                        <oui-datagrid-column
                             data-title="::'xdsl_modem_template_config_dhcp_range' | translate"
                             data-sortable
                         >
                             <span data-ng-bind="::$row.startAddress"></span
                             ><br />
                             <span data-ng-bind="::$row.endAddress"></span>
-                        </oui-column>
-                        <oui-column
+                        </oui-datagrid-column>
+                        <oui-datagrid-column
                             data-title="::'xdsl_modem_template_config_dhcp_lease_time' | translate"
                             data-property="leaseTime"
                             data-sortable
                         >
                             <span data-ng-bind="::$row.leaseTime"></span>
-                        </oui-column>
+                        </oui-datagrid-column>
                     </oui-datagrid>
                 </div>
                 <!-- End of DHCP configuration -->
@@ -163,27 +163,27 @@
                         data-rows="$ctrl.template.detail.LAN"
                         data-page-size="10"
                     >
-                        <oui-column
+                        <oui-datagrid-column
                             data-title="::'xdsl_modem_template_config_lan_addressing' | translate"
                             data-property="addressingType"
                             data-sortable="asc"
                         >
                             <span data-ng-bind="::$row.addressingType"></span>
-                        </oui-column>
-                        <oui-column
+                        </oui-datagrid-column>
+                        <oui-datagrid-column
                             data-title="::'xdsl_modem_template_config_lan_ip_address' | translate"
                             data-property="IPAddress"
                             data-sortable
                         >
                             <span data-ng-bind="::$row.IPAddress"></span>"
-                        </oui-column>
-                        <oui-column
+                        </oui-datagrid-column>
+                        <oui-datagrid-column
                             data-title="::'xdsl_modem_template_config_lan_subnet_mask' | translate"
                             data-property="subnetMask"
                             data-sortable
                         >
                             <span data-ng-bind="::$row.subnetMask"></span>"
-                        </oui-column>
+                        </oui-datagrid-column>
                     </oui-datagrid>
                 </div>
                 <!-- End of Wifi configuration -->
@@ -198,7 +198,7 @@
                         data-rows="$ctrl.template.detail.WLAN"
                         data-page-size="10"
                     >
-                        <oui-column
+                        <oui-datagrid-column
                             data-title="::'xdsl_modem_template_config_ignore' | translate"
                             data-property="ignore"
                         >
@@ -206,36 +206,36 @@
                                 data-model="$row.ignore"
                                 data-on-change="$ctrl.onRowSelectWifi($row.wifiName)"
                             ></oui-checkbox>
-                        </oui-column>
-                        <oui-column
+                        </oui-datagrid-column>
+                        <oui-datagrid-column
                             data-title="'xdsl_modem_template_config_wifi_name' | translate"
                             data-property="wifiName"
                             data-sortable="asc"
                         >
                             <span data-ng-bind="::$row.wifiName"></span>
-                        </oui-column>
-                        <oui-column
+                        </oui-datagrid-column>
+                        <oui-datagrid-column
                             data-title="::'xdsl_modem_template_config_wifi_security' | translate"
                             data-property="securityType"
                             data-sortable
                         >
                             <span data-ng-bind="::$row.securityType"></span>
-                        </oui-column>
-                        <oui-column
+                        </oui-datagrid-column>
+                        <oui-datagrid-column
                             data-title="::'xdsl_modem_template_config_wifi_channel' | translate"
                             data-property="channel"
                             data-sortable
                         >
                             <span data-ng-bind="::$row.channelMode"></span>
-                        </oui-column>
-                        <oui-column
+                        </oui-datagrid-column>
+                        <oui-datagrid-column
                             data-title="::'xdsl_modem_template_config_wifi_frequency' | translate"
                             data-property="frequency"
                             data-sortable
                         >
                             <span data-ng-bind="::$row.frequency"></span>
-                        </oui-column>
-                        <oui-column
+                        </oui-datagrid-column>
+                        <oui-datagrid-column
                             data-title="::'xdsl_modem_template_config_wifi_guest' | translate"
                             data-property="guest"
                             data-sortable
@@ -244,7 +244,7 @@
                                 data-translate="{{ $row.guest ? 'common_yes_capitalized' : 'common_no_capitalized' }}"
                             >
                             </span>
-                        </oui-column>
+                        </oui-datagrid-column>
                     </oui-datagrid>
                 </div>
                 <!-- End of Wifi configuration -->
@@ -312,7 +312,7 @@
                         data-rows="$ctrl.template.detail.portMapping"
                         data-page-size="5"
                     >
-                        <oui-column
+                        <oui-datagrid-column
                             data-title="::'xdsl_modem_template_config_ignore' | translate"
                             data-property="ignore"
                         >
@@ -320,57 +320,57 @@
                                 data-model="$row.ignore"
                                 data-on-change="$ctrl.onRowSelectPortMapping($row.name)"
                             ></oui-checkbox>
-                        </oui-column>
-                        <oui-column
+                        </oui-datagrid-column>
+                        <oui-datagrid-column
                             data-title="::'xdsl_modem_template_config_port_mapping_name' | translate"
                             data-property="name"
                             data-sortable="asc"
                         >
                             <span data-ng-bind="::$row.name"></span>"
-                        </oui-column>
-                        <oui-column
+                        </oui-datagrid-column>
+                        <oui-datagrid-column
                             data-title="::'xdsl_modem_template_config_port_mapping_ip_source' | translate"
                             data-property="allowedRemoteIp"
                             data-sortable
                         >
                             <span data-ng-bind="::$row.allowedRemoteIp"></span>"
-                        </oui-column>
-                        <oui-column
+                        </oui-datagrid-column>
+                        <oui-datagrid-column
                             data-title="::'xdsl_modem_template_config_port_mapping_start' | translate"
                             data-property="externalPortStart"
                             data-sortable
                         >
                             <span data-nb-bind="::$row.externalPortStart"></span
                             >"
-                        </oui-column>
-                        <oui-column
+                        </oui-datagrid-column>
+                        <oui-datagrid-column
                             data-title="::'xdsl_modem_template_config_port_mapping_end' | translate"
                             data-property="externalPortEnd"
                             data-sortable
                         >
                             <span data-ng-bind="::$row.externalPortEnd"></span>"
-                        </oui-column>
-                        <oui-column
+                        </oui-datagrid-column>
+                        <oui-datagrid-column
                             data-title="::'xdsl_modem_template_config_port_mapping_protocol' | translate"
                             data-property="protocol"
                             data-sortable
                         >
                             <span data-ng-bind="::$row.protocol"></span>"
-                        </oui-column>
-                        <oui-column
+                        </oui-datagrid-column>
+                        <oui-datagrid-column
                             data-title="::'xdsl_modem_template_config_port_mapping_ip_dest' | translate"
                             data-property="internalClient"
                             data-sortable
                         >
                             <span data-ng-bind="::$row.internalClient"></span>"
-                        </oui-column>
-                        <oui-column
+                        </oui-datagrid-column>
+                        <oui-datagrid-column
                             data-title="::'xdsl_modem_template_config_port_mapping_internal' | translate"
                             data-property="internalPort"
                             data-sortable
                         >
                             <span data-ng-bind="::$row.internalPort"></span>"
-                        </oui-column>
+                        </oui-datagrid-column>
                     </oui-datagrid>
                 </div>
                 <!-- End of DHCP configuration -->

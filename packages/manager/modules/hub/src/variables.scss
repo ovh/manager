@@ -1,14 +1,7 @@
-@import 'oui4/dist/scss/_tokens';
-
-$hub-brand-color: #001191;
-
-$hub-subtitle-color: #001758;
+@import '@ovh-ux/ui-kit/dist/scss/_tokens';
 
 $hub-text-color: #4d5592;
 $hub-text-weight: 400;
-
-$hub-font-size: 1rem;
-$hub-font-weight-semibold: 600;
 
 $hub-button-bg-color: #3046d1;
 $hub-button-fg-color: white;
@@ -16,23 +9,7 @@ $hub-button-fg-color: white;
 $hub-tile-border-radius: 0.5rem;
 $hub-tile-padding: 1rem 0 1rem 0;
 
-$hub-status-expired-color: rgb(96, 104, 158);
-
 $hub-border-radius-default: 6pt;
-
-@mixin hub-link-button {
-  background-color: $hub-button-bg-color;
-  color: $hub-button-fg-color;
-  border: none;
-  transition: box-shadow 0.2s ease-in;
-
-  &:hover {
-    color: $hub-button-fg-color;
-    background-color: $p-700;
-    box-shadow: $base-box-shadow-secondary;
-    text-decoration: none;
-  }
-}
 
 @mixin hub-pill {
   background-color: $p-100;

@@ -38,14 +38,14 @@
                 <div data-ng-if="!$ctrl.loading.init">
                     <!-- TABLE -->
                     <oui-datagrid data-rows="$ctrl.customDomains.raw">
-                        <oui-column
+                        <oui-datagrid-column
                             data-title="'telephony_service_fax_custom_domains_configuration_table_column_domain' | translate"
                             data-property="domain"
                             data-sortable="asc"
                         >
                             <span data-ng-bind="$row.domain"></span>
-                        </oui-column>
-                        <oui-column
+                        </oui-datagrid-column>
+                        <oui-datagrid-column
                             data-title="'telephony_service_fax_custom_domains_configuration_table_column_action' | translate"
                         >
                             <button
@@ -61,7 +61,7 @@
                                     aria-hidden="true"
                                 ></span>
                             </button>
-                        </oui-column>
+                        </oui-datagrid-column>
                     </oui-datagrid>
 
                     <!-- FORM -->

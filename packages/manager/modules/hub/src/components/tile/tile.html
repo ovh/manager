@@ -1,14 +1,14 @@
 <div class="oui-tile ovh-manager-hub-tile">
     <div class="ovh-manager-hub-tile__header" data-ng-if="!$ctrl.hideHeading">
-        <h3 class="ovh-manager-hub-tile__title">
+        <h3 class="oui-tile__title ovh-manager-hub-tile__title">
             <span data-ng-bind="::$ctrl.heading"></span>
             <span
-                class="oui-chip ovh-manager-hub-tile__badge"
+                class="oui-badge oui-badge_info ovh-manager-hub-tile__badge"
                 data-ng-bind="$ctrl.badgeText"
             ></span>
         </h3>
         <button
-            class="oui-button oui-button_link oui-button_icon-right hub-button"
+            class="oui-button oui-button_icon-right hub-button oui-button_ghost"
             type="button"
             data-ng-if="$ctrl.onClick && !$ctrl.href && !$ctrl.hideAction"
             data-ng-click="$ctrl.onClick()"
@@ -18,12 +18,12 @@
                 data-ng-bind="::$ctrl.buttonText"
             ></span>
             <span
-                class="oui-icon oui-icon-arrow-right_extra-thin"
+                class="oui-icon oui-icon-arrow-right"
                 aria-hidden="true"
             ></span>
         </button>
         <a
-            class="oui-button oui-button_link oui-button_icon-right hub-button"
+            class="oui-button oui-button_icon-right hub-button oui-button_ghost"
             data-ng-if="$ctrl.href && !$ctrl.hideAction"
             data-ng-href="{{:: $ctrl.href }}"
             data-ng-click="$ctrl.onClick()"
@@ -33,7 +33,7 @@
                 data-ng-bind="::$ctrl.buttonText"
             ></span>
             <span
-                class="oui-icon oui-icon-arrow-right_extra-thin"
+                class="oui-icon oui-icon-arrow-right"
                 aria-hidden="true"
             ></span>
         </a>

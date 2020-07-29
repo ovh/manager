@@ -5,12 +5,12 @@
     novalidate
 >
     <oui-modal
-        data-title="{{ ::'private_registry_update_modal_title' | translate }}"
         data-primary-label="{{ ::'private_registry_common_confirm' | translate }}"
         data-secondary-label="{{ ::'common_cancel' | translate }}"
         data-secondary-action="$ctrl.cancel('PCI_PROJECTS_PRIVATEREGISTRY_UPDATE_CANCEL')"
         data-on-dismiss="$ctrl.cancel('PCI_PROJECTS_PRIVATEREGISTRY_UPDATE_CLOSE')"
         data-loading="$ctrl.isLoading"
+        data-heading="{{ ::'private_registry_update_modal_title' | translate }}"
     >
         <oui-field
             label="{{ ::'private_registry_update_name_label' | translate }}"

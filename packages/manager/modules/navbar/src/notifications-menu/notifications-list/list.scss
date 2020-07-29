@@ -1,7 +1,7 @@
 navbar-notifications-list {
-  @import '~oui4/dist/scss/_tokens';
+  @import '~@ovh-ux/ui-kit/dist/scss/_tokens';
 
-  .oui-status {
+  .oui-badge {
     position: absolute;
     right: 2rem;
     top: 1.25rem;
@@ -13,11 +13,11 @@ navbar-notifications-list {
     color: $p-000;
   }
 
-  .oui-status_error {
+  .oui-badge_error {
     background-color: $ae-500;
   }
 
-  .oui-status_info {
+  .oui-badge_info {
     background-color: $p-500;
   }
 }

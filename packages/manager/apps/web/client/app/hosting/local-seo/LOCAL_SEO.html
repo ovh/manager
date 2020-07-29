@@ -34,18 +34,12 @@
                         data-translate="hosting_dashboard_local_seo_order"
                     ></span>
                 </oui-button>
-
-                <oui-popover data-ng-if="!$ctrl.isAdmin">
-                    <button
-                        type="button"
-                        class="oui-popover-button"
-                        oui-popover-trigger
-                    ></button>
-                    <oui-popover-content
-                        >{{:: 'hosting_dashboard_local_seo_cannot_order' |
-                        translate }}</oui-popover-content
-                    >
-                </oui-popover>
+                <button
+                    type="button"
+                    class="oui-popover-button"
+                    data-ng-if="!$ctrl.isAdmin"
+                    data-oui-popover="{{:: 'hosting_dashboard_local_seo_cannot_order' | translate }}"
+                ></button>
             </div>
 
             <oui-datagrid
@@ -54,61 +48,63 @@
                 data-row-loader="$ctrl.transformItem($row)"
                 data-empty-placeholder="{{:: 'hosting_tab_LOCAL_SEO_table_empty' | translate }}"
             >
-                <oui-column
+                <oui-datagrid-column
                     data-title=":: 'hosting_tab_LOCAL_SEO_table_header_name' | translate"
                     data-property="name"
                 >
                     {{$row.name}}
                     <span
-                        class="oui-status oui-status_info"
+                        class="oui-badge oui-badge_info"
                         data-ng-if="!$row.name"
                         data-translate="hosting_tab_LOCAL_SEO_table_value_undefined"
                     >
                     </span>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title=":: 'hosting_tab_LOCAL_SEO_table_header_address' | translate"
                     data-property="address"
                 >
                     {{$row.address}}
                     <span
-                        class="oui-status oui-status_info"
+                        class="oui-badge oui-badge_info"
                         data-ng-if="!$row.address"
                         data-translate="hosting_tab_LOCAL_SEO_table_value_undefined"
                     >
                     </span>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title=":: 'hosting_tab_LOCAL_SEO_table_header_email' | translate"
                     data-property="account.email"
                 >
                     {{$row.account.email || '-'}}
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title=":: 'hosting_tab_LOCAL_SEO_table_header_status' | translate"
                     data-property="status"
                 >
                     <span
-                        class="oui-status"
-                        data-ng-class="{'oui-status_success': $row.status === 'created',
-                                          'oui-status_warning': $row.status === 'creating',
-                                          'oui-status_error': $row.status === 'deleting'}"
+                        class="oui-badge"
+                        data-ng-class="{'oui-badge_success': $row.status === 'created',
+                                          'oui-badge_warning': $row.status === 'creating',
+                                          'oui-badge_error': $row.status === 'deleting'}"
                         data-ng-bind="'hosting_tab_LOCAL_SEO_state_' + $row.status | translate"
                     >
                     </span>
-                </oui-column>
-                <oui-action-menu data-align="end" data-compact>
+                </oui-datagrid-column>
+                <oui-action-menu data-compact data-placement="end">
                     <oui-action-menu-item
-                        data-text="{{:: 'hosting_tab_LOCAL_SEO_access_interface' | translate }}"
                         data-disabled="$row.status !== 'created'"
                         data-on-click="$ctrl.goToInterface($row)"
-                    >
+                        ><span
+                            data-translate="hosting_tab_LOCAL_SEO_access_interface"
+                        ></span>
                     </oui-action-menu-item>
                     <oui-action-menu-item
-                        data-text="{{:: 'hosting_tab_LOCAL_SEO_delete' | translate }}"
                         data-disabled="$row.status !== 'created'"
                         data-on-click="setAction('local-seo/delete/hosting-local-seo-delete', $row)"
-                    >
+                        ><span
+                            data-translate="hosting_tab_LOCAL_SEO_delete"
+                        ></span>
                     </oui-action-menu-item>
                 </oui-action-menu>
             </oui-datagrid>

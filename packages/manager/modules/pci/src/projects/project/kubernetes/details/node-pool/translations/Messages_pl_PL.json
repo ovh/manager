@@ -1,0 +1,11 @@
+{
+  "kube_node_pool_name": "Nazwa puli",
+  "kube_node_pool_creation_date": "Data utworzenia",
+  "kube_node_pool_node_count": "Liczba węzłów",
+  "kube_node_pool_edit": "Edytuj pulę ",
+  "kube_node_pool_delete": "Usuń pulę",
+  "kube_node_pool_add": "Utwórz pulę węzłów",
+  "kube_node_pool_refreh": "Odśwież tabelę",
+  "kube_node_pool_title": "Pule węzłów",
+  "kube_add_billing_type_description": "Będziesz mógł zmienić model rozliczenia dla każdego węzła z płatności za godzinę na abonament miesięczny, przechodząc do widoku „edycja puli węzłów”."
+}

@@ -11,25 +11,25 @@
         data-rows="$ctrl.clusterList"
         data-row-loader="$ctrl.loadRowWithFlavorDetails($row)"
     >
-        <extra-top>
+        <oui-datagrid-topbar>
             <button
                 type="button"
-                class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_small-width"
+                class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_s"
                 data-title="{{:: 'analytics_data_platform_service_cluster_refresh' | translate }}"
                 data-ng-click="$ctrl.refresh()"
             >
                 <span class="fa fa-refresh" aria-hidden="true"></span>
             </button>
-        </extra-top>
-        <oui-column
+        </oui-datagrid-topbar>
+        <oui-datagrid-column
             data-title="::'analytics_data_platform_service_cluster_table_node' | translate"
             data-property="hostname"
             data-searchable
             data-type="string"
             data-sortable="asc"
         >
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="::'analytics_data_platform_service_cluster_node_type' | translate"
             data-property="nodeType"
             data-sortable
@@ -38,8 +38,8 @@
             data-type-options="$ctrl.clusterTypeOptions"
             data-searchable
         >
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="::'analytics_data_platform_common_region' | translate"
             data-property="osRegion"
             data-sortable
@@ -51,8 +51,8 @@
             <span
                 data-ng-bind="::$ctrl.cucRegionService.getTranslatedMicroRegion($row.osRegion)"
             ></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="::'analytics_data_platform_service_cluster_table_flavor' | translate"
             data-property="flavor"
             data-searchable
@@ -61,8 +61,8 @@
             data-sortable
         >
             <span data-ng-bind="::$row.flavor.toUpperCase()"></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="::$ctrl.ANALYTICS_DATA_PLATFORM_COMPUTE.CORS"
             data-property="vcpus"
             data-searchable
@@ -70,8 +70,8 @@
             data-type="number"
             data-sortable
         >
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="::$ctrl.ANALYTICS_DATA_PLATFORM_COMPUTE.RAM"
             data-property="ram"
             data-type="number"
@@ -81,8 +81,8 @@
             <span
                 data-translate="analytics_data_platform_common_unit_gb"
             ></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="::'analytics_data_platform_common_storage' | translate"
             data-property="storage"
             data-searchable
@@ -94,16 +94,16 @@
             <span
                 data-translate="analytics_data_platform_common_unit_gb"
             ></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="::'analytics_data_platform_service_cluster_table_ip' | translate"
             data-property="ip"
             data-filterable
             data-type="string"
             data-searchable
         >
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="::'analytics_data_platform_common_status' | translate"
             data-property="status"
             data-type="string"
@@ -111,11 +111,11 @@
             data-searchable
         >
             <span
-                class="oui-status"
-                data-ng-class="'oui-status_' + $ctrl.ANALYTICS_DATA_PLATFORM_STATUS_MAP[$row.status]"
+                class="oui-badge"
+                data-ng-class="'oui-badge_' + $ctrl.ANALYTICS_DATA_PLATFORM_STATUS_MAP[$row.status]"
                 data-ng-bind=":: 'analytics_data_platform_common_status_' + $row.status | translate"
             ></span>
-        </oui-column>
+        </oui-datagrid-column>
     </oui-datagrid>
 
     <div class="m-3">

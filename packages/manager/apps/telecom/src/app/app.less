@@ -1,10 +1,6 @@
-@bs-path: 'bootstrap';
-@oui-path: 'ovh-ui-kit';
-
-@import '~ovh-ui-kit/packages/oui/stylekit';
-@import '~ovh-ui-kit/packages/ovhcloud-light-theme/index';
-@import (less) '~angular-flash-alert/dist/angular-flash.css'; /* needs to be before ovh-ui-kit-bs or it will override style */
-@import '~bootstrap/less/variables';
+@import '~@ovh-ux/ui-kit/dist/less/_tokens';
+@import (less) '~@ovh-ux/ui-kit/dist/css/oui.css';
+@import '~ovh-ui-kit-bs/dist/less/bootstrap/_variables';
 @import '~ovh-manager-webfont/dist/less/ovh-font';
 @import '~font-awesome/less/font-awesome.less';
 @import (less) '~leaflet/dist/leaflet.css';
@@ -16,19 +12,8 @@
 @import (less) '~messenger/build/css/messenger-theme-block.css';
 @import (less) '~intl-tel-input/build/css/intlTelInput.css';
 @import (less) '~ovh-ng-input-password/dist/ovh-ng-input-password.css';
-
-/* Paths for Icons & Fonts */
-
-@icon-font-path: '../fonts/';
-@oui-icon-dist-folder: '../../dist/icons';
-@oui-font-source-sans-pro-folder: '../../packages/oui-typography/fonts/source-sans-pro';
-@fa-font-path: '../fonts';
-@flag-icon-css-path: '../node_modules/flag-icon-css/flags';
-@ovh-font-path: '../fonts/';
-
 @import '~flag-icon-css/less/flag-icon.less';
 
-@ovh-universe-color: @oui-color-dodger;
 @text-disabled-color: #757575;
 
 // Mobile
@@ -45,8 +30,17 @@
 #content {
   padding: 0;
 
+  .oui-header,
   .page-header {
-    margin-top: 0;
+    margin-top: rem-calc(16);
+  }
+
+  .oui-header,
+  .oui-header + .oui-header-tabs,
+  .page-header,
+  .nav.nav-tabs {
+    margin-left: rem-calc(32);
+    margin-right: rem-calc(32);
   }
 
   .container-fluid {

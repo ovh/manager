@@ -37,10 +37,13 @@
                         class="oui-radio__input"
                     />
                     <label class="oui-radio__label-container" for="addOption1">
-                        <span
-                            class="oui-radio__label"
-                            data-translate="emailpro_tab_domain_add_step1_select_domain_option"
-                        ></span>
+                        <span class="oui-radio__label">
+                            <span class="oui-radio__icon"></span>
+                            <span
+                                class="oui-radio__text"
+                                data-translate="emailpro_tab_domain_add_step1_select_domain_option"
+                            ></span>
+                        </span>
                     </label>
                 </div>
                 <div
@@ -62,7 +65,7 @@
                                 data-ng-click="resetSearchValue()"
                             >
                                 <span
-                                    class="oui-icon oui-icon-trash_line oui-icon_small"
+                                    class="oui-icon oui-icon-trash_concept"
                                     aria-hidden="true"
                                 ></span>
                             </button>
@@ -112,11 +115,14 @@
                         class="oui-radio__input"
                     />
                     <label class="oui-radio__label-container" for="addOption2">
-                        <span
-                            id="nonOvhDomain"
-                            class="oui-radio__label"
-                            data-translate="emailpro_tab_domain_add_step1_user_owned_option"
-                        ></span>
+                        <span class="oui-radio__label">
+                            <span class="oui-radio__icon"></span>
+                            <span
+                                class="oui-radio__text"
+                                id="nonOvhDomain"
+                                data-translate="emailpro_tab_domain_add_step1_user_owned_option"
+                            ></span>
+                        </span>
                     </label>
                 </div>
                 <div
@@ -176,10 +182,13 @@
                         class="oui-radio__label-container"
                         for="domainType-A"
                     >
-                        <span
-                            class="oui-radio__label"
-                            data-translate="emailpro_tab_domain_mode_AUTHORITATIVE"
-                        ></span>
+                        <span class="oui-radio__label">
+                            <span class="oui-radio__icon"></span>
+                            <span
+                                class="oui-radio__text"
+                                data-translate="emailpro_tab_domain_mode_AUTHORITATIVE"
+                            ></span>
+                        </span>
                     </label>
                     <span
                         class="help-block"
@@ -201,10 +210,13 @@
                         class="oui-radio__label-container"
                         for="domainType-NA"
                     >
-                        <span
-                            class="oui-radio__label"
-                            data-translate="emailpro_tab_domain_mode_NON_AUTHORITATIVE"
-                        ></span>
+                        <span class="oui-radio__label">
+                            <span class="oui-radio__icon"></span>
+                            <span
+                                class="oui-radio__text"
+                                data-translate="emailpro_tab_domain_mode_NON_AUTHORITATIVE"
+                            ></span>
+                        </span>
                     </label>
                 </div>
                 <div class="form-group">
@@ -248,8 +260,9 @@
                         id="srvParam"
                         name="srvParam"
                         data-model="model.srvParam"
-                        data-text="{{:: 'emailpro_tab_domain_add_step2_srv_checkbox' | translate }}"
-                    >
+                        ><span
+                            data-translate="emailpro_tab_domain_add_step2_srv_checkbox"
+                        ></span>
                     </oui-checkbox>
                     <div
                         class="alert alert-info"
@@ -261,8 +274,9 @@
                         id="mxParam"
                         name="mxParam"
                         data-model="model.mxParam"
-                        data-text="{{:: 'emailpro_tab_domain_add_step2_mx_checkbox' | translate }}"
-                    >
+                        ><span
+                            data-translate="emailpro_tab_domain_add_step2_mx_checkbox"
+                        ></span>
                     </oui-checkbox>
                     <div
                         class="alert alert-warning"

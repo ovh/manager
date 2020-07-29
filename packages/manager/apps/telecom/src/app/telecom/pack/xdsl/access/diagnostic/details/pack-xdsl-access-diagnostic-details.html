@@ -1,5 +1,4 @@
 <oui-modal
-    data-title="{{ :: 'xdsl_details_diagnostic_modal_title' | translate }}"
     data-primary-label="{{ :: 'close' | translate }}"
     data-primary-action="$ctrl.$state.go('^')"
     data-secondary-label="{{ $ctrl.getRemainingChecksText() }}"
@@ -7,6 +6,7 @@
     data-secondary-disabled="$ctrl.diagnostic.remaining === 0"
     data-on-dismiss="$ctrl.$state.go('^')"
     data-loading="!$ctrl.diagnostic"
+    data-heading="{{ :: 'xdsl_details_diagnostic_modal_title' | translate }}"
 >
     <p data-ng-if="!$ctrl.diagnostic">
         <span data-translate="xdsl_details_diagnostic_modal_loading"></span
@@ -35,7 +35,7 @@
             <dd class="col-xs-8">
                 <span
                     aria-hidden="true"
-                    class="small oui-icon {{ status.val ? 'oui-icon-success_circle' : 'oui-icon-error_circle' }}"
+                    class="small oui-icon {{ status.val ? 'oui-icon-success-circle' : 'oui-icon-error-circle' }}"
                 >
                 </span>
                 <span

@@ -4,7 +4,7 @@
         class="discover-iplb"
     >
         <h3
-            class="oui-header_3"
+            class="oui-heading_3"
             data-translate="cpc_loadbalancer_discover_title"
         ></h3>
         <p data-translate="cpc_loadbalancer_discover_body"></p>
@@ -45,29 +45,32 @@
         <oui-datagrid
             rows="CloudProjectComputeLoadbalancerCtrl.table.loadbalancer"
         >
-            <oui-column title="'cpc_loadbalancer_name' | translate"
-                >{{$row.displayName || $row.serviceName}}</oui-column
+            <oui-datagrid-column title="'cpc_loadbalancer_name' | translate"
+                >{{$row.displayName || $row.serviceName}}</oui-datagrid-column
             >
-            <oui-column title="'cpc_loadbalancer_openstack_status' | translate"
+            <oui-datagrid-column
+                title="'cpc_loadbalancer_openstack_status' | translate"
                 >{{'cpc_loadbalancer_openstack_status_'+$row.openstack |
-                translate}}</oui-column
+                translate}}</oui-datagrid-column
             >
-            <oui-column title="'cpc_loadbalancer_status' | translate"
+            <oui-datagrid-column title="'cpc_loadbalancer_status' | translate"
                 >{{'cpc_loadbalancer_status_'+$row.status |
-                translate}}</oui-column
+                translate}}</oui-datagrid-column
             >
-            <oui-action-menu data-align="end" data-compact>
+            <oui-action-menu data-compact data-placement="end">
                 <oui-action-menu-item
-                    data-text="{{ 'cpc_loadbalancer_actions_configure' | translate }}"
                     data-on-click="CloudProjectComputeLoadbalancerCtrl.goToLoadbalancerConfigure($row.serviceName)"
                     data-ng-if="$row.status !== 'unavailable'"
-                >
+                    ><span
+                        data-translate="cpc_loadbalancer_actions_configure"
+                    ></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
-                    data-text="{{ 'cpc_loadbalancer_configure_advanced' | translate }}"
                     data-on-click="CloudProjectComputeLoadbalancerCtrl.goToIPLB($row.serviceName)"
                     data-ng-if="$row.status === 'unavailable'"
-                >
+                    ><span
+                        data-translate="cpc_loadbalancer_configure_advanced"
+                    ></span>
                 </oui-action-menu-item>
             </oui-action-menu>
         </oui-datagrid>

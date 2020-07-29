@@ -130,6 +130,7 @@ export default /* @ngInject */ ($stateProvider) => {
             null,
           ),
           paymentMethod: null,
+          defaultPaymentMethod: null,
           voucher: new PciVoucher({
             value: get(cart, 'projectItem.voucherConfiguration.value'),
           }),
@@ -152,6 +153,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
 
       globalLoading: () => ({
+        setDefaultPaymentMethod: false,
         finalize: false,
       }),
 

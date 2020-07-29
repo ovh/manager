@@ -54,7 +54,7 @@
             data-ng-if="DeviceCtrl.showDevices && DeviceCtrl.devices.length"
         >
             <oui-datagrid data-rows="DeviceCtrl.devices">
-                <oui-column
+                <oui-datagrid-column
                     data-title="'common_table_header_type' | translate"
                     data-property="interfaceType"
                     data-sortable="asc"
@@ -69,26 +69,26 @@
                         data-ng-class="DeviceCtrl.getDeviceInfo($row).icon"
                         data-ng-attr-title="{{DeviceCtrl.getDeviceInfo($row).tooltip | translate}}"
                     ></span>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'xdsl_modem_device_mac' | translate"
                     data-property="macAddress"
                 >
                     {{$row.macAddress}}
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'xdsl_modem_device_ip' | translate"
                     data-property="ipAddress"
                     data-sortable
                 >
                     {{$row.ipAddress}}
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'xdsl_modem_device_host' | translate"
                     data-property="hostName"
                 >
                     {{$row.hostName}}
-                </oui-column>
+                </oui-datagrid-column>
             </oui-datagrid>
         </div>
     </form>

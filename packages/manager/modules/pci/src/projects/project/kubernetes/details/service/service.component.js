@@ -6,6 +6,7 @@ const component = {
     changeClusterName: '<',
     cluster: '<',
     clusterMinorVersion: '<',
+    createNodePool: '<',
     highestVersion: '<',
     kubernetesConfig: '<',
     getKubeConfig: '<',

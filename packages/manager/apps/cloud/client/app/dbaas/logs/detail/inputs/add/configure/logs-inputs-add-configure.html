@@ -3,7 +3,7 @@
         class="flowgger-edit"
         data-ng-if="ctrl.configuration.engineType === 'FLOWGGER'"
     >
-        <p class="oui-header_3">
+        <p class="oui-heading_3">
             {{::'inputs_logs_configure_flowgger_title' | translate}}
             {{ctrl.input.data.info.engine.version}}
         </p>
@@ -72,7 +72,7 @@
                             data-oui-tooltip="{{'input_logs_configure_delimiter_tooltip_LINE' | translate}}"
                         >
                             <i
-                                class="oui-icon oui-icon-help_circle logs-inputs-configure-help"
+                                class="oui-icon logs-inputs-configure-help oui-icon-help-circle"
                                 aria-hidden="true"
                             ></i>
                         </a>
@@ -82,7 +82,7 @@
                             data-oui-tooltip="{{'input_logs_configure_delimiter_tooltip_NUL' | translate}}"
                         >
                             <i
-                                class="oui-icon oui-icon-help_circle logs-inputs-configure-help"
+                                class="oui-icon logs-inputs-configure-help oui-icon-help-circle"
                                 aria-hidden="true"
                             ></i>
                         </a>
@@ -92,7 +92,7 @@
                             data-oui-tooltip="{{'input_logs_configure_delimiter_tooltip_SYSLEN' | translate}}"
                         >
                             <i
-                                class="oui-icon oui-icon-help_circle logs-inputs-configure-help"
+                                class="oui-icon logs-inputs-configure-help oui-icon-help-circle"
                                 aria-hidden="true"
                             ></i>
                         </a>
@@ -102,7 +102,7 @@
                             data-oui-tooltip="{{'input_logs_configure_delimiter_tooltip_CAPNP' | translate}}"
                         >
                             <i
-                                class="oui-icon oui-icon-help_circle logs-inputs-configure-help"
+                                class="oui-icon logs-inputs-configure-help oui-icon-help-circle"
                                 aria-hidden="true"
                             ></i>
                         </a>
@@ -133,7 +133,7 @@
         class="logstash-edit"
         data-ng-if="ctrl.configuration.engineType === 'LOGSTASH'"
     >
-        <p class="oui-header_3">
+        <p class="oui-heading_3">
             {{::'inputs_logs_configure_logstash_title' | translate}}
             {{ctrl.input.data.info.engine.version}}
         </p>
@@ -166,7 +166,7 @@
                         data-ng-disabled="ctrl.saving.loading"
                     >
                         <option
-                            value=""
+                            value
                             data-translate="inputs_logs_configure_choose_app"
                         ></option>
                         <option
@@ -183,7 +183,7 @@
                 </div>
             </oui-field>
 
-            <label class="oui-header_6 mt-3">conf.d/logstash.conf</label>
+            <label class="mt-3 oui-heading_6">conf.d/logstash.conf</label>
             <label class="oui-label pl-4">input {</label>
 
             <div
@@ -208,7 +208,8 @@
                             data-ng-model="ctrl.configuration.logstash.inputSection"
                             data-ng-class="{'oui-textarea_error': ctrl.logstashForm.$submitted && ctrl.logstashForm.input.$invalid}"
                             required
-                        />
+                        >
+                        </textarea>
                     </div>
                 </div>
             </div>
@@ -237,13 +238,14 @@
                             class="oui-input"
                             data-ng-model="ctrl.configuration.logstash.filterSection"
                             data-ng-class="{'oui-textarea_error': ctrl.logstashForm.$submitted && ctrl.logstashForm.filter.$invalid}"
-                        />
+                        >
+                        </textarea>
                     </div>
                 </div>
             </div>
             <label class="oui-label pl-4">}</label>
 
-            <label class="oui-header_6 mt-3"
+            <label class="mt-3 oui-heading_6"
                 >conf.d/logpatterns/custom-grok-patterns</label
             >
 
@@ -268,7 +270,8 @@
                             class="oui-input"
                             data-ng-model="ctrl.configuration.logstash.patternSection"
                             data-ng-class="{'oui-textarea_error': ctrl.logstashForm.$submitted && ctrl.logstashForm.grok.$invalid}"
-                        />
+                        >
+                        </textarea>
                     </div>
                 </div>
             </div>
@@ -291,8 +294,8 @@
                     role="alert"
                 >
                     <i
-                        class="oui-icon oui-icon_bicolor"
-                        data-ng-class="{'oui-icon-success_circle': ctrl.test.data.stdout, 'oui-icon-error_circle': ctrl.test.data.stderr}"
+                        class="oui-icon"
+                        data-ng-class="{'oui-icon-success-circle': ctrl.test.data.stdout, 'oui-icon-error-circle': ctrl.test.data.stderr}"
                         aria-hidden="true"
                     ></i>
                     <div class="oui-message__body">
@@ -336,7 +339,7 @@
                         data-ng-click="ctrl.saveLogstash()"
                     ></button>
                     <a
-                        class="oui-button oui-button_link"
+                        class="oui-button oui-button_ghost"
                         data-translate="logs_later"
                         data-ui-sref="dbaas.logs.detail.inputs"
                     ></a>

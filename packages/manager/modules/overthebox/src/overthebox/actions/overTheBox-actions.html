@@ -10,18 +10,15 @@
                 data-translate="overTheBox_actions_list"
             ></h2>
 
-            <div
-                class="oui-datagrid-topbar__actions"
-                data-ng-if="!$ctrl.isLoading"
-            >
+            <div class="oui-criteria__actions" data-ng-if="!$ctrl.isLoading">
                 <button
                     type="button"
-                    class="oui-button oui-button_secondary oui-button_icon-only oui-button_small-width"
+                    class="oui-button oui-button_secondary oui-button_icon-only oui-button_s"
                     data-ng-click="$ctrl.getActions()"
                     title="{{'overTheBox_actions_refresh' | translate}}"
                 >
                     <span
-                        class="oui-icon oui-icon-refresh_extra-thin"
+                        class="oui-icon oui-icon-refresh"
                         aria-hidden="true"
                     ></span>
                 </button>
@@ -30,17 +27,17 @@
                 data-rows="$ctrl.actionIds"
                 data-row-loader="$ctrl.transformItem($row)"
             >
-                <oui-column
+                <oui-datagrid-column
                     data-title=":: 'overTheBox_actions_name' | translate"
                     data-property="name"
                     data-sortable="asc"
-                ></oui-column>
-                <oui-column
+                ></oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'overTheBox_actions_id' | translate"
                     data-property="actionId"
                     data-sortable
-                ></oui-column>
-                <oui-column
+                ></oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'overTheBox_actions_created_date' | translate"
                     data-property="createdAt"
                     data-sortable
@@ -48,8 +45,8 @@
                     <span
                         data-ng-bind="$row.createdAt | date:'dd/MM/yyyy'"
                     ></span>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'overTheBox_actions_updated_date' | translate"
                     data-property="updatedAt"
                     data-sortable
@@ -57,26 +54,26 @@
                     <span
                         data-ng-bind="$row.updatedAt | date:'dd/MM/yyyy'"
                     ></span>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="'overTheBox_actions_status' | translate"
                     data-property="status"
                     data-sortable
                 >
                     <span
-                        class="oui-status"
+                        class="oui-badge"
                         data-ng-class="{
-                                'oui-status_success': $row.status === 'done',
-                                'oui-status_error': $row.status === 'error',
-                                'oui-status_info': $row.status === 'doing',
-                                'oui-status_info': $row.status === 'todo'
+                                'oui-badge_success': $row.status === 'done',
+                                'oui-badge_error': $row.status === 'error',
+                                'oui-badge_info': $row.status === 'doing',
+                                'oui-badge_info': $row.status === 'todo'
                             }"
                     >
                         <span
                             data-ng-bind="'overTheBox_actions_status_' + $row.status | translate"
                         ></span>
                     </span>
-                </oui-column>
+                </oui-datagrid-column>
             </oui-datagrid>
         </div>
     </div>

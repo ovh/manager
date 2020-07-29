@@ -1,24 +1,13 @@
 import angular from 'angular';
-import controller from './overTheBox-docs.controller';
-import template from './overTheBox-docs.html';
+
+import component from './overTheBox-docs.component';
+import routing from './overTheBox-docs.routing';
 
 const moduleName = 'ovhManagerOtbDocs';
 
-angular.module(moduleName, []).config(($stateProvider) => {
-  $stateProvider.state('overTheBoxes.overTheBox.docs', {
-    url: '/docs',
-    views: {
-      otbView: {
-        template,
-        controller,
-        controllerAs: 'OverTheBoxDocs',
-      },
-    },
-    translations: {
-      value: ['.'],
-      format: 'json',
-    },
-  });
-});
+angular
+  .module(moduleName, [])
+  .component('overTheBoxDocs', component)
+  .config(routing);
 
 export default moduleName;

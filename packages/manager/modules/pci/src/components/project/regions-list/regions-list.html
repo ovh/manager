@@ -36,7 +36,7 @@
                             data-ng-if="$ctrl.constructor.isRegionDisabled(regions)"
                         >
                             <a
-                                class="oui-button oui-button_link"
+                                class="oui-button oui-button_ghost"
                                 data-ng-href="{{:: $ctrl.quotaUrl }}"
                                 data-translate="pci_project_regions_list_quota"
                             >
@@ -67,7 +67,7 @@
                             data-ng-if="!region.hasEnoughQuota"
                         >
                             <a
-                                class="oui-button oui-button_link"
+                                class="oui-button oui-button_ghost"
                                 data-ng-href="{{ $ctrl.quotaUrl }}"
                             >
                                 <span

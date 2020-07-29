@@ -1,0 +1,30 @@
+<div
+    class="oui-ui-select oui-ui-select_single ui-select-container"
+    ng-class="{ 'ui-select-container_open': $select.open }"
+>
+    <input
+        class="ui-select-search"
+        aria-expanded="{{$select.open}}"
+        aria-label="{{$select.baseTitle}}"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        ng-class="{ 'ui-select-search_hidden': !$select.searchEnabled || !$select.open }"
+        ng-model="$select.search"
+        placeholder="{{::$select.placeholder}}"
+        tabindex="-1"
+        type="search"
+    />
+    <div class="ui-select-match"></div>
+    <!-- replaced by match.html -->
+    <div class="ui-select-dropdown" ng-show="$select.items.length > 0">
+        <div class="ui-select-header"></div>
+        <!-- replaced by header.html -->
+        <div class="ui-select-choices"></div>
+        <!-- replaced by choices.html -->
+        <div class="ui-select-footer"></div>
+        <!-- replaced by footer.html -->
+    </div>
+    <div class="ui-select-no-choice"></div>
+    <!-- replaced by no-choice.html -->
+</div>

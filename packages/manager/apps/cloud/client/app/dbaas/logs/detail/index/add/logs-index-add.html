@@ -1,12 +1,12 @@
 <form novalidate name="ctrl.form">
     <oui-modal
-        data-title="{{ ::ctrl.title | translate }}"
         data-primary-action="ctrl.save()"
         data-primary-label="{{ ::'common_save' | translate }}"
         data-secondary-action="ctrl.cancel()"
         data-secondary-label="{{ ::'common_cancel' | translate }}"
         data-on-dismiss="ctrl.cancel()"
         data-loading="ctrl.saving.loading"
+        data-heading="{{ ::ctrl.title | translate }}"
     >
         <div data-ng-if="ctrl.isEdit" class="mb-3">
             <span
@@ -66,7 +66,7 @@
             <oui-checkbox
                 data-name="alertNotify"
                 data-model="ctrl.index.alertNotifyEnabled"
-                data-text="{{ ::'logs_index_modal_checkbox' | translate}}"
+                ><span data-translate="logs_index_modal_checkbox"></span
             ></oui-checkbox>
         </oui-field>
     </oui-modal>

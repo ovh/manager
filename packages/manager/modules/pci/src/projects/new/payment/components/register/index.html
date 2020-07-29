@@ -4,50 +4,11 @@
         data-translate="pci_project_new_payment_register_title"
     ></h2>
 
-    <div
-        class="row"
-        data-ng-repeat="authorizedPaymentMethods in $ctrl.authorizedPaymentMethods.chunks track by $index"
+    <pci-project-new-payment-method-add
+        data-registerable-payment-methods="$ctrl.registerablePaymentMethods"
+        data-eligibility="$ctrl.eligibility"
+        data-model="$ctrl.model"
+        data-global-loading="$ctrl.globalLoading"
     >
-        <div
-            class="col-md-6 mb-3"
-            data-ng-repeat="authorizedPaymentMethod in authorizedPaymentMethods track by $index"
-        >
-            <oui-radio
-                class="oui-radio_btn"
-                data-name="paymentType"
-                data-thumbnail
-                data-variant="light"
-                data-model="$ctrl.model.paymentMethod"
-                data-value="authorizedPaymentMethod"
-                data-on-change="$ctrl.onPaymentTypeRadioChange()"
-                data-disabled="$ctrl.globalLoading.finalize"
-            >
-                <span
-                    data-ng-bind="$ctrl.getPaymentMethodTypeText(authorizedPaymentMethod)"
-                ></span>
-            </oui-radio>
-        </div>
-    </div>
-
-    <div data-ng-if="$ctrl.model.paymentMethod.paymentType !== 'CREDIT'">
-        <p data-translate="pci_project_new_payment_register_explain"></p>
-
-        <oui-message
-            data-type="warning"
-            data-ng-if="$ctrl.model.paymentMethod.paymentType === 'BANK_ACCOUNT'"
-        >
-            <span
-                data-translate="pci_project_new_payment_register_warning_bank_account"
-            ></span>
-        </oui-message>
-
-        <p>
-            <small
-                data-ng-if="$ctrl.model.paymentMethod"
-                data-translate="{{ 'pci_project_new_payment_register_info_' + $ctrl.model.paymentMethod.paymentType.toLowerCase() }}"
-                data-translate-values="{ paymentMethodSection: $ctrl.paymentSectionHref }"
-            >
-            </small>
-        </p>
-    </div>
+    </pci-project-new-payment-method-add>
 </div>

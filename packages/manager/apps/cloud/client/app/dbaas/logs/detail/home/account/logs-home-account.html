@@ -1,12 +1,12 @@
 <form novalidate name="ctrl.form">
     <oui-modal
-        data-title="{{ ::'logs_home_account_title' | translate }}"
         data-primary-action="ctrl.updateDisplayName()"
         data-primary-label="{{ ::'common_save' | translate }}"
         data-secondary-action="ctrl.cancel()"
         data-secondary-label="{{ ::'common_cancel' | translate }}"
         data-on-dismiss="ctrl.cancel()"
         data-loading="ctrl.saving.loading"
+        data-heading="{{ ::'logs_home_account_title' | translate }}"
     >
         <oui-spinner data-ng-if="ctrl.accountDetails.loading"></oui-spinner>
         <p

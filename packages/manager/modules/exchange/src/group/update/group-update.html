@@ -101,8 +101,9 @@
                         id="receiveSizeUnlimited"
                         data-model="ctrl.selectedGroup.receiveSizeUnlimited"
                         data-on-change="ctrl.onReceiveSizeChange()"
-                        data-text="{{::'exchange_GROUPS_add_group_size_unlimited' | translate}}"
-                    >
+                        ><span
+                            data-translate="exchange_GROUPS_add_group_size_unlimited"
+                        ></span>
                     </oui-checkbox>
                 </div>
 
@@ -136,8 +137,9 @@
                         id="sentSizeUnlimited"
                         data-model="ctrl.selectedGroup.sentSizeUnlimited"
                         data-on-change="ctrl.onSentSizeChange()"
-                        data-text="{{::'exchange_GROUPS_add_group_size_unlimited' | translate}}"
-                    >
+                        ><span
+                            data-translate="exchange_GROUPS_add_group_size_unlimited"
+                        ></span>
                     </oui-checkbox>
                 </div>
 
@@ -192,15 +194,17 @@
                 <oui-checkbox
                     id="hiddenFromGAL"
                     data-model="ctrl.selectedGroup.hiddenFromGAL"
-                    data-text="{{::'exchange_GROUPS_add_group_hide_label' | translate}}"
-                >
+                    ><span
+                        data-translate="exchange_GROUPS_add_group_hide_label"
+                    ></span>
                 </oui-checkbox>
 
                 <oui-checkbox
                     id="senderAuthentification"
                     data-model="ctrl.selectedGroup.senderAuthentification"
-                    data-text="{{::'exchange_GROUPS_add_group_auth_label' | translate}}"
-                >
+                    ><span
+                        data-translate="exchange_GROUPS_add_group_auth_label"
+                    ></span>
                 </oui-checkbox>
             </form>
 

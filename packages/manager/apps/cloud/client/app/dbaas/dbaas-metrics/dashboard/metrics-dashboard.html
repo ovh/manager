@@ -11,7 +11,7 @@
                     <oui-tile-description>
                         <a
                             data-ui-sref="dbaas.metrics.detail.token.add({ serviceName: $ctrl.serviceName })"
-                            class="oui-tile__button oui-button oui-link_icon oui-button_link oui-button_full-width"
+                            class="oui-tile__button oui-button oui-link_icon oui-button_ghost oui-button_block"
                             rel="noopener"
                         >
                             <span
@@ -29,13 +29,13 @@
                         >
                             <a
                                 data-ng-href="{{ ::graph.url }}"
-                                class="oui-tile__button oui-button oui-link_icon oui-button_link oui-button_full-width"
+                                class="oui-tile__button oui-button oui-link_icon oui-button_ghost oui-button_block"
                                 rel="noopener"
                                 target="_blank"
                             >
                                 <span data-ng-bind="::graph.name"></span>
                                 <i
-                                    class="oui-icon oui-icon-external_link"
+                                    class="oui-icon oui-icon-external-link"
                                     aria-hidden="true"
                                 ></i>
                             </a>
@@ -114,13 +114,14 @@
                     >
                         <oui-action-menu
                             data-compact
-                            data-align="end"
                             data-ng-if="$ctrl.actions.editName.isAvailable()"
+                            data-placement="end"
                         >
                             <oui-action-menu-item
-                                data-text="{{ ::$ctrl.actions.editName.text }}"
                                 data-on-click="$ctrl.actions.editName.callback()"
-                            >
+                                ><span
+                                    data-ng-bind="::$ctrl.actions.editName.text"
+                                ></span>
                             </oui-action-menu-item>
                         </oui-action-menu>
                     </oui-tile-definition>
@@ -185,15 +186,16 @@
                     >
                         <oui-action-menu
                             data-compact
-                            data-align="end"
                             data-ng-if="$ctrl.actions.autorenew.isAvailable()"
+                            data-placement="end"
                         >
                             <oui-action-menu-item
-                                data-text="{{ ::$ctrl.actions.autorenew.text }}"
                                 aria-label="{{ ::$ctrl.actions.autorenew.text }}"
                                 data-href="{{ ::$ctrl.actions.autorenew.href }}"
                                 data-external
-                            >
+                                ><span
+                                    data-ng-bind="::$ctrl.actions.autorenew.text"
+                                ></span>
                             </oui-action-menu-item>
                         </oui-action-menu>
                     </oui-tile-definition>
@@ -230,15 +232,16 @@
                         </oui-tile-description>
                         <oui-action-menu
                             data-compact
-                            data-align="end"
                             data-ng-if="$ctrl.actions.contacts.isAvailable()"
+                            data-placement="end"
                         >
                             <oui-action-menu-item
-                                data-text="{{ ::$ctrl.actions.contacts.text }}"
                                 aria-label="{{ ::$ctrl.actions.contacts.text }}"
                                 data-href="{{ ::$ctrl.actions.contacts.href }}"
                                 data-external
-                            >
+                                ><span
+                                    data-ng-bind="::$ctrl.actions.contacts.text"
+                                ></span>
                             </oui-action-menu-item>
                         </oui-action-menu>
                     </oui-tile-definition>

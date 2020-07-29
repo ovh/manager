@@ -5,69 +5,55 @@
 ></span>
 
 <div data-ng-if="$ctrl.volumeConsumptionDetails.length > 0" class="volumeList">
-    <div class="oui-datagrid-responsive-container">
-        <div class="oui-datagrid-responsive-container__sticky-container">
-            <div class="oui-datagrid-responsive-container__overflow-container">
-                <table class="oui-datagrid">
-                    <thead class="oui-datagrid__headers">
-                        <th class="oui-datagrid__header">
-                            <span data-translate="cpbc_volume_col_name"></span>
-                        </th>
-                        <th class="oui-datagrid__header text-right">
-                            <span
-                                data-translate="cpbc_volume_col_consumption"
-                            ></span>
-                        </th>
-                    </thead>
-                    <tbody
-                        data-ng-if="$ctrl.loading"
-                        class="oui-datagrid__body"
+    <div class="oui-table-responsive">
+        <table class="oui-table">
+            <thead class="oui-table__headers">
+                <th class="oui-table__header">
+                    <span data-translate="cpbc_volume_col_name"></span>
+                </th>
+                <th class="oui-table__header text-right">
+                    <span data-translate="cpbc_volume_col_consumption"></span>
+                </th>
+            </thead>
+            <tbody data-ng-if="$ctrl.loading" class="oui-table__body">
+                <tr class="oui-table__row">
+                    <td colspan="2" class="text-center">
+                        <spinner></spinner>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody data-ng-if="!$ctrl.loading" class="oui-table__body">
+                <tr
+                    data-ng-repeat="volume in $ctrl.volumeConsumptionDetails | orderBy: 'name' track by volume.volumeId"
+                    class="oui-table__row"
+                >
+                    <td
+                        data-title="{{ :: 'cpbc_volume_col_name' | translate }}"
+                        class="oui-table__cell word-break"
+                        data-responsive-popover="'pci/components/project/billing/details-popover/volume-details-popover.html'"
+                        data-popover-class="details-popover"
+                        data-popover-is-open="$ctrl.DetailsPopoverService.isCurrentDetails(volume)"
+                        data-popover-placement="top"
+                        data-popover-append-to-body="true"
+                        data-popover-trigger="none"
+                        data-ng-click="$ctrl.DetailsPopoverService.setCurrentDetails(volume)"
                     >
-                        <tr class="oui-datagrid__row">
-                            <td colspan="2" class="text-center">
-                                <spinner></spinner>
-                            </td>
-                        </tr>
-                    </tbody>
-                    <tbody
-                        data-ng-if="!$ctrl.loading"
-                        class="oui-datagrid__body"
+                        <span data-ng-bind=" ::  volume.name"></span>
+                    </td>
+                    <td
+                        class="oui-table__cell text-right"
+                        data-title="{{ :: 'cpbc_volume_col_consumption' | translate }}"
                     >
-                        <tr
-                            data-ng-repeat="volume in $ctrl.volumeConsumptionDetails | orderBy: 'name' track by volume.volumeId"
-                            class="oui-datagrid__row"
+                        <span data-ng-bind=" ::  volume.totalPrice"></span>
+                        <i
+                            class="fa fa-question-circle left-space-m4"
+                            data-oui-tooltip="{{ :: 'cpbc_volume_consumption_tooltip_part1' | translate }}{{ :: 'cpbc_volume_consumption_tooltip_part2' | translate : {amount: volume.amount} }}"
+                            data-oui-tooltip-placement="left"
                         >
-                            <td
-                                data-title="{{ :: 'cpbc_volume_col_name' | translate }}"
-                                class="oui-datagrid__cell word-break"
-                                data-responsive-popover="'pci/components/project/billing/details-popover/volume-details-popover.html'"
-                                data-popover-class="details-popover"
-                                data-popover-is-open="$ctrl.DetailsPopoverService.isCurrentDetails(volume)"
-                                data-popover-placement="top"
-                                data-popover-append-to-body="true"
-                                data-popover-trigger="none"
-                                data-ng-click="$ctrl.DetailsPopoverService.setCurrentDetails(volume)"
-                            >
-                                <span data-ng-bind=" ::  volume.name"></span>
-                            </td>
-                            <td
-                                class="oui-datagrid__cell text-right"
-                                data-title="{{ :: 'cpbc_volume_col_consumption' | translate }}"
-                            >
-                                <span
-                                    data-ng-bind=" ::  volume.totalPrice"
-                                ></span>
-                                <i
-                                    class="fa fa-question-circle left-space-m4"
-                                    data-oui-tooltip="{{ :: 'cpbc_volume_consumption_tooltip_part1' | translate }}{{ :: 'cpbc_volume_consumption_tooltip_part2' | translate : {amount: volume.amount} }}"
-                                    data-oui-tooltip-placement="left"
-                                >
-                                </i>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+                        </i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>

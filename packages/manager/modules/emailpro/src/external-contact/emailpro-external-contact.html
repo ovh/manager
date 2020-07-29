@@ -114,7 +114,7 @@
                                     data-oui-tooltip="{{ 'emailpro_tab_EXTERNAL_CONTACTS_table_tooltip_GAL_' + element.hiddenFromGAL | translate }}"
                                 >
                                     <span
-                                        class="oui-icon oui-icon_small"
+                                        class="oui-icon"
                                         data-ng-class="{ 'oui-icon-success text-success': !element.hiddenFromGAL, 'oui-icon-error text-danger': element.hiddenFromGAL }"
                                     >
                                     </span>
@@ -123,14 +123,14 @@
 
                             <td class="text-center">
                                 <span
-                                    class="oui-status"
+                                    class="oui-badge"
                                     data-ng-bind="'emailpro_tab_EXTERNAL_CONTACTS_table_headers_state_' + element.state | translate"
                                     data-ng-class="getStateClassFor(element.state)"
                                     data-ng-if="element.state !== 'OK'"
                                 >
                                 </span>
                                 <span
-                                    class="oui-status oui-status_info"
+                                    class="oui-badge oui-badge_info"
                                     data-translate="emailpro_tab_EXTERNAL_CONTACTS_table_headers_state_MODIFYING"
                                     data-ng-if="element.state === 'OK' && element.taskPendingId"
                                 >
@@ -140,8 +140,8 @@
                             <td class="text-center">
                                 <oui-action-menu
                                     data-compact
-                                    data-align="end"
                                     data-disabled="getIsDisabled(element)"
+                                    data-placement="end"
                                 >
                                     <oui-action-menu-item
                                         data-on-click="modifyExternalContact(element)"

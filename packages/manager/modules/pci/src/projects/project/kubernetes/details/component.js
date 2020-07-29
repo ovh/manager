@@ -7,7 +7,7 @@ const component = {
     containersLink: '<',
     currentActiveLink: '<',
     guideUrl: '<',
-    nodesLink: '<',
+    nodePoolsLink: '<',
     serviceLink: '<',
   },
   template,

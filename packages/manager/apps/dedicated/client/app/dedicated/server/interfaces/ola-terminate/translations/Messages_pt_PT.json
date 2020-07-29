@@ -1,5 +1,5 @@
 {
-  "dedicated_server_interfaces_ola_terminate_action": "Rescindir",
+  "dedicated_server_interfaces_ola_terminate_action": "Confirmar",
   "dedicated_server_interfaces_ola_terminate_kvm_warning": "Após rescindir a opção, pense em ajustar as suas interfaces via KVM IPMI para utilizar a configuração de origem.",
   "dedicated_server_interfaces_ola_terminate_explanation": "A sua solução será desativada na próxima data de renovação.",
   "dedicated_server_interfaces_ola_terminate_text": "Tem a certeza de que pretende rescindir a opção OVH Link Aggregation (OLA)?"

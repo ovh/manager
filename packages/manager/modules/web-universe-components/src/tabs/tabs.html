@@ -29,11 +29,6 @@
                 data-ng-class="{'dropdown-divider': $index > 0 && menuItems[$index - 1].type === 'SEPARATOR'}"
                 data-ng-if="menuItem.type !== 'SEPARATOR'"
             >
-                <i
-                    class="fa fa-external-link"
-                    aria-hidden="true"
-                    data-ng-if="menuItem.type === 'EXTERNAL_LINK'"
-                ></i>
                 <a
                     tabindex="-1"
                     target="{{menuItem.type === 'EXTERNAL_LINK' ? '_blank' : '_self'}}"

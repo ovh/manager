@@ -6,21 +6,16 @@
         ></h2>
 
         <div class="mb-3 clearfix">
-            <div
-                class="btn-group float-left mr-3"
-                data-uib-dropdown
-                data-dropdown-append-to-body
-            >
+            <div class="btn-group float-left mr-3" data-uib-dropdown>
                 <button
                     id="btn-sms-users-actions"
                     type="button"
-                    class="btn btn-default"
+                    class="oui-button oui-button_dropdown"
                     data-uib-dropdown-toggle
                 >
-                    <span class="fa fa-bars" aria-hidden="true"></span>
                     <span data-translate="sms_common_actions"></span>
                     <span
-                        class="ovh-font ovh-font-small-arrow-down"
+                        class="oui-icon oui-icon-chevron-down"
                         aria-hidden="true"
                     ></span>
                 </button>
@@ -31,10 +26,6 @@
                     data-uib-dropdown-menu
                 >
                     <li role="menuitem">
-                        <i
-                            class="ovh-font ovh-font-add-circle"
-                            aria-hidden="true"
-                        ></i>
                         <button
                             type="button"
                             class="btn btn-link"
@@ -43,10 +34,6 @@
                         ></button>
                     </li>
                     <li role="menuitem">
-                        <i
-                            class="ovh-font ovh-font-warning"
-                            aria-hidden="true"
-                        ></i>
                         <button
                             type="button"
                             class="btn btn-link"
@@ -57,10 +44,6 @@
                         ></button>
                     </li>
                     <li role="menuitem">
-                        <i
-                            class="ovh-font ovh-font-arrow-rotate"
-                            aria-hidden="true"
-                        ></i>
                         <button
                             type="button"
                             class="btn btn-link"
@@ -73,7 +56,7 @@
         </div>
 
         <oui-datagrid data-rows="SmsUsersCtrl.users.sorted">
-            <oui-column
+            <oui-datagrid-column
                 data-title="'sms_users_label_id' | translate"
                 data-property="login"
                 data-sortable
@@ -91,8 +74,8 @@
                     data-ng-bind="$row.login"
                 >
                 </span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'sms_users_label_quota_status' | translate"
                 data-property="quotaInformations.quotaStatus"
                 data-sortable
@@ -109,15 +92,15 @@
                     class="text-capitalize"
                 >
                 </span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'sms_users_label_quota' | translate"
                 data-property="quotaInformations.quotaLeft"
                 data-sortable
             >
                 {{$row.quotaInformations.quotaLeft | number : 2}}
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'sms_users_label_alert' | translate"
                 data-property="alertThresholdInformations.alertThreshold"
                 data-sortable
@@ -127,8 +110,8 @@
                     data-translate="{{:: ($row.alertThresholdInformations.alertThreshold === -1) ? 'sms_no' : 'sms_yes' }}"
                 >
                 </span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'sms_users_label_threshold' | translate"
                 data-property="alertThresholdInformations.alertThreshold"
                 data-sortable
@@ -137,8 +120,8 @@
                     data-ng-bind="($row.alertThresholdInformations.alertThreshold === -1) ? '-' : $row.alertThresholdInformations.alertThreshold"
                 >
                 </span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'sms_users_label_notification' | translate"
                 data-property="alertThresholdInformations.support"
                 data-sortable
@@ -152,8 +135,8 @@
                     data-ng-if="$row.alertThresholdInformations.alertEmail.length < 1"
                     data-ng-bind="::'sms_users_limit_user_support_' + $row.alertThresholdInformations.support | translate"
                 ></span>
-            </oui-column>
-            <oui-action-menu data-align="end" data-compact>
+            </oui-datagrid-column>
+            <oui-action-menu data-compact data-placement="end">
                 <oui-action-menu-item
                     on-click="SmsUsersCtrl.changePassword($row)"
                 >

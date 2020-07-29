@@ -1,12 +1,12 @@
 <form novalidate name="ctrl.form">
     <oui-modal
-        data-title="{{ ::ctrl.title | translate }}"
         data-primary-action="ctrl.save()"
         data-primary-label="{{ ::'common_save' | translate }}"
         data-secondary-action="ctrl.cancel()"
         data-secondary-label="{{ ::'common_cancel' | translate }}"
         data-on-dismiss="ctrl.cancel()"
         data-loading="ctrl.saving.loading"
+        data-heading="{{ ::ctrl.title | translate }}"
     >
         <div ng-if="ctrl.isEdit" class="mb-3">
             <span
@@ -59,7 +59,7 @@
                     title="{{::'logs_dashboards_select_stream_title' | translate}}"
                 >
                     <option
-                        value=""
+                        value
                         disabled
                         selected
                         data-translate="logs_dashboards_select_stream"

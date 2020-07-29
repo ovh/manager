@@ -1,6 +1,6 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 
 import routing from './password-backup-storage.routing';
 import passwordComponent from './password-backup-storage.component';

@@ -5,21 +5,75 @@ import map from 'lodash/map';
 import sortBy from 'lodash/sortBy';
 import 'moment';
 
-export default /* @ngInject */ function(
-  $scope,
-  $rootScope,
-  $filter,
-  $translate,
-  $q,
-  $stateParams,
-  OVER_THE_BOX,
-  OVERTHEBOX_DETAILS,
-  OvhApiOverTheBox,
-  OverTheBoxGraphService,
-  TucToast,
-  TucChartjsFactory,
-) {
-  const self = this;
+export default class OverTheBoxDetailsCtrl {
+  /* @ngInject */
+  constructor(
+    $filter,
+    $translate,
+    $q,
+    OVER_THE_BOX,
+    OVERTHEBOX_DETAILS,
+    OvhApiOverTheBox,
+    OverTheBoxGraphService,
+    TucToast,
+    TucChartjsFactory,
+  ) {
+    this.$filter = $filter;
+    this.$translate = $translate;
+    this.$q = $q;
+    this.OVER_THE_BOX = OVER_THE_BOX;
+    this.OVERTHEBOX_DETAILS = OVERTHEBOX_DETAILS;
+    this.OvhApiOverTheBox = OvhApiOverTheBox;
+    this.OverTheBoxGraphService = OverTheBoxGraphService;
+    this.TucToast = TucToast;
+    this.TucChartjsFactory = TucChartjsFactory;
+  }
+
+  $onInit() {
+    this.loaders = {
+      init: true,
+      checking: false,
+      device: false,
+      graph: false,
+    };
+
+    this.error = {
+      checking: null,
+      noDeviceLinked: false,
+    };
+
+    this.nameEditable = false;
+
+    this.deviceIds = [];
+    this.allDevices = [];
+    this.device = null;
+
+    this.$q
+      .all([
+        this.getServiceInfos(),
+        this.checkDevices(),
+        this.getDevice(),
+        this.getTasks(),
+        this.OvhApiOverTheBox.v6()
+          .get({
+            serviceName: this.serviceName,
+          })
+          .$promise.then((otb) => {
+            this.nameEditable = otb.status === 'active';
+            this.releaseChannel = otb.releaseChannel;
+            return otb;
+          }),
+      ])
+      .finally(() => {
+        if (this.allDevices.length === 1 && !this.device) {
+          this.deviceIdToLink = this.allDevices[0].deviceId;
+        }
+        this.loaders.init = false;
+        this.getGraphData();
+      });
+    this.getAvailableReleaseChannels();
+    this.getAvailableAction();
+  }
 
   /**
    * Callback used to display Y scale
@@ -28,36 +82,36 @@ export default /* @ngInject */ function(
    * @param  {Array} all   All scale labels
    * @return {String} Label
    */
-  const humanizeAxisDisplay = function humanizeAxisDisplay(label, index, all) {
+  humanizeAxisDisplay(label, index, all) {
     const interval = Math.round(all.length / 4);
     if (index === all.length - 1 || index % interval === 0) {
-      return $filter('tuc-unit-humanize')(label, 'generic', 1);
+      return this.$filter('tuc-unit-humanize')(label, 'generic', 1);
     }
     return '';
-  };
+  }
 
   /**
    * Define the display string for a bitrate
    * @param {Number} bitrate Bitrate in bits per seconds
    * @return {String}
    */
-  const displayBitrate = function displayBitrate(bitrate) {
-    return $filter('tuc-unit-humanize')(bitrate, 'bit', 1);
-  };
+  displayBitrate(bitrate) {
+    return this.$filter('tuc-unit-humanize')(bitrate, 'bit', 1);
+  }
 
   /**
    * GetAvailable remote actions
    * @returns {Promise}
    */
-  function getAvailableAction() {
-    self.availableAction = {};
-    return OvhApiOverTheBox.v6()
+  getAvailableAction() {
+    this.availableAction = {};
+    return this.OvhApiOverTheBox.v6()
       .getAvailableActions({
-        serviceName: $stateParams.serviceName,
+        serviceName: this.serviceName,
       })
       .$promise.then((actions) => {
         actions.forEach((action) => {
-          self.availableAction[action.name] = true;
+          this.availableAction[action.name] = true;
         });
       });
   }
@@ -67,7 +121,7 @@ export default /* @ngInject */ function(
    * @param series
    * @returns {{max: number, current: number, rateMbps: number, rateUnit: string}}
    */
-  function computeSpeed(series) {
+  static computeSpeed(series) {
     let max = 0;
     let currentMax = 0;
     let rateUnit = 'Mbps';
@@ -97,7 +151,7 @@ export default /* @ngInject */ function(
     };
   }
 
-  function makeGraphPositive(graph) {
+  static makeGraphPositive(graph) {
     forEach(Object.keys(graph.dps), (key) => {
       // eslint-disable-next-line no-param-reassign
       graph.dps[key] = graph.dps[key] < 0 ? 0 : graph.dps[key];
@@ -107,55 +161,56 @@ export default /* @ngInject */ function(
   /**
    * Load graph data
    */
-  function getGraphData() {
-    if (!$scope.OverTheBox.service) {
+  getGraphData() {
+    if (!this.service) {
       return;
     }
 
-    self.loaders.graph = true;
-    $q.all([
-      OverTheBoxGraphService.getGraphData({
-        service: $scope.OverTheBox.service,
-        downSample: OVER_THE_BOX.statistics.sampleRate,
-        direction: 'in',
-      }),
-      OverTheBoxGraphService.getGraphData({
-        service: $scope.OverTheBox.service,
-        downSample: OVER_THE_BOX.statistics.sampleRate,
-        direction: 'out',
-      }),
-    ])
+    this.loaders.graph = true;
+    this.$q
+      .all([
+        this.OverTheBoxGraphService.getGraphData({
+          service: this.service,
+          downSample: this.OVER_THE_BOX.statistics.sampleRate,
+          direction: 'in',
+        }),
+        this.OverTheBoxGraphService.getGraphData({
+          service: this.service,
+          downSample: this.OVER_THE_BOX.statistics.sampleRate,
+          direction: 'out',
+        }),
+      ])
       .then((data) => {
         const inData = data[0] && data[0].data ? data[0].data : [];
         const outData = data[1] && data[1].data ? data[1].data : [];
 
         const filteredDown = inData.filter(
-          (d) => self.kpiInterfaces.indexOf(d.tags.iface) > -1,
+          (d) => this.kpiInterfaces.indexOf(d.tags.iface) > -1,
         );
 
-        forEach(filteredDown, makeGraphPositive);
-        self.download = computeSpeed(filteredDown);
+        forEach(filteredDown, this.constructor.makeGraphPositive);
+        this.download = this.constructor.computeSpeed(filteredDown);
 
         const filteredUp = outData.filter(
-          (d) => self.kpiInterfaces.indexOf(d.tags.iface) > -1,
+          (d) => this.kpiInterfaces.indexOf(d.tags.iface) > -1,
         );
-        forEach(filteredUp, makeGraphPositive);
-        self.upload = computeSpeed(filteredUp);
+        forEach(filteredUp, this.constructor.makeGraphPositive);
+        this.upload = this.constructor.computeSpeed(filteredUp);
 
         // Download chart
-        self.chartDown = new TucChartjsFactory(
-          angular.copy(OVERTHEBOX_DETAILS.chart),
+        this.chartDown = new this.TucChartjsFactory(
+          angular.copy(this.OVERTHEBOX_DETAILS.chart),
         );
-        self.chartDown.setYLabel(
-          $translate.instant('overTheBox_statistics_bits_per_sec_legend'),
+        this.chartDown.setYLabel(
+          this.$translate.instant('overTheBox_statistics_bits_per_sec_legend'),
         );
-        self.chartDown.setAxisOptions('yAxes', {
+        this.chartDown.setAxisOptions('yAxes', {
           ticks: {
-            callback: humanizeAxisDisplay,
+            callback: this.humanizeAxisDisplay.bind(this),
           },
         });
-        self.chartDown.setTooltipCallback('label', (item) =>
-          displayBitrate(item.yLabel),
+        this.chartDown.setTooltipCallback('label', (item) =>
+          this.displayBitrate(item.yLabel),
         );
 
         const downSeries = sortBy(
@@ -170,7 +225,7 @@ export default /* @ngInject */ function(
         );
 
         forEach(downSeries, (serie) => {
-          self.chartDown.addSerie(serie.name, serie.data, {
+          this.chartDown.addSerie(serie.name, serie.data, {
             dataset: {
               fill: true,
               borderWidth: 1,
@@ -178,23 +233,23 @@ export default /* @ngInject */ function(
           });
         });
         if (!downSeries.length) {
-          self.chartDown.options.scales.xAxes = [];
+          this.chartDown.options.scales.xAxes = [];
         }
 
         // Upload chart
-        self.chartUp = new TucChartjsFactory(
-          angular.copy(OVERTHEBOX_DETAILS.chart),
+        this.chartUp = new this.TucChartjsFactory(
+          angular.copy(this.OVERTHEBOX_DETAILS.chart),
         );
-        self.chartUp.setYLabel(
-          $translate.instant('overTheBox_statistics_bits_per_sec_legend'),
+        this.chartUp.setYLabel(
+          this.$translate.instant('overTheBox_statistics_bits_per_sec_legend'),
         );
-        self.chartUp.setAxisOptions('yAxes', {
+        this.chartUp.setAxisOptions('yAxes', {
           ticks: {
-            callback: humanizeAxisDisplay,
+            callback: this.humanizeAxisDisplay.bind(this),
           },
         });
-        self.chartUp.setTooltipCallback('label', (item) =>
-          displayBitrate(item.yLabel),
+        this.chartUp.setTooltipCallback('label', (item) =>
+          this.displayBitrate(item.yLabel),
         );
 
         const upSeries = sortBy(
@@ -209,7 +264,7 @@ export default /* @ngInject */ function(
         );
 
         forEach(upSeries, (serie) => {
-          self.chartUp.addSerie(serie.name, serie.data, {
+          this.chartUp.addSerie(serie.name, serie.data, {
             dataset: {
               fill: true,
               borderWidth: 1,
@@ -217,15 +272,17 @@ export default /* @ngInject */ function(
           });
         });
         if (!upSeries.length) {
-          self.chartUp.options.scales.xAxes = [];
+          this.chartUp.options.scales.xAxes = [];
         }
       })
       .catch((err) => {
-        TucToast.error($translate.instant('overthebox_traffic_error'));
-        $q.reject(err);
+        this.TucToast.error(
+          this.$translate.instant('overthebox_traffic_error'),
+        );
+        this.$q.reject(err);
       })
       .finally(() => {
-        self.loaders.graph = false;
+        this.loaders.graph = false;
       });
   }
 
@@ -233,73 +290,30 @@ export default /* @ngInject */ function(
    * Get available release channels
    * @returns {Promise}
    */
-  function getAvailableReleaseChannels() {
-    self.releaseChannels = [];
-    return OvhApiOverTheBox.v6()
+  getAvailableReleaseChannels() {
+    this.releaseChannels = [];
+    return this.OvhApiOverTheBox.v6()
       .getAvailableReleaseChannels({
-        serviceName: $stateParams.serviceName,
+        serviceName: this.serviceName,
       })
       .$promise.then((channels) => {
-        self.releaseChannels = channels.map((channel) => ({
+        this.releaseChannels = channels.map((channel) => ({
           name: channel,
-          label: $translate.instant(`overTheBox_release_channel_${channel}`),
+          label: this.$translate.instant(
+            `overTheBox_release_channel_${channel}`,
+          ),
         }));
 
-        const result = self.releaseChannels.find(
-          (channel) => self.releaseChannel === channel.name,
+        const result = this.releaseChannels.find(
+          (channel) => this.releaseChannel === channel.name,
         );
 
         if (result) {
-          self.releaseChannel = $translate.instant(
-            `overTheBox_release_channel_${self.releaseChannel}`,
+          this.releaseChannel = this.$translate.instant(
+            `overTheBox_release_channel_${this.releaseChannel}`,
           );
         }
       });
-  }
-
-  function init() {
-    self.loaders = {
-      init: true,
-      checking: false,
-      device: false,
-      graph: false,
-    };
-
-    self.error = {
-      checking: null,
-      noDeviceLinked: false,
-    };
-
-    self.nameEditable = false;
-
-    self.service = null;
-    self.deviceIds = [];
-    self.allDevices = [];
-    self.device = null;
-
-    $q.all([
-      self.getServiceInfos(),
-      self.checkDevices(),
-      self.getDevice(),
-      self.getTasks(),
-      OvhApiOverTheBox.v6()
-        .get({
-          serviceName: $stateParams.serviceName,
-        })
-        .$promise.then((otb) => {
-          self.nameEditable = otb.status === 'active';
-          self.releaseChannel = otb.releaseChannel;
-          return otb;
-        }),
-    ]).finally(() => {
-      if (self.allDevices.length === 1 && !self.device) {
-        self.deviceIdToLink = self.allDevices[0].deviceId;
-      }
-      self.loaders.init = false;
-      getGraphData();
-    });
-    getAvailableReleaseChannels();
-    getAvailableAction();
   }
 
   /**
@@ -307,126 +321,130 @@ export default /* @ngInject */ function(
    * @param {String} actionName Action to launch
    * @returns {Promise}
    */
-  self.LaunchAction = function LaunchAction(actionName) {
-    self.availableAction = {};
-    return OvhApiOverTheBox.v6()
+  LaunchAction(actionName) {
+    this.availableAction = {};
+    return this.OvhApiOverTheBox.v6()
       .launchAction(
         {
-          serviceName: $stateParams.serviceName,
+          serviceName: this.serviceName,
         },
         {
           name: actionName,
         },
       )
       .$promise.then((data) => {
-        TucToast.success(
-          $translate.instant('overTheBox_action_launch_success'),
+        this.TucToast.success(
+          this.$translate.instant('overTheBox_action_launch_success'),
         );
         return data;
       })
       .catch((err) => {
-        TucToast.error($translate.instant('overTheBox_action_launch_error'));
-        return $q.reject(err);
+        this.TucToast.error(
+          this.$translate.instant('overTheBox_action_launch_error'),
+        );
+        return this.$q.reject(err);
       })
       .finally(() => {
-        getAvailableAction();
+        this.getAvailableAction();
       });
-  };
+  }
 
   /**
    * Load Service info
    */
-  self.getServiceInfos = function getServiceInfos() {
-    self.loaders.infos = true;
-    return OvhApiOverTheBox.v6()
-      .getServiceInfos({ serviceName: $stateParams.serviceName })
+  getServiceInfos() {
+    this.loaders.infos = true;
+    return this.OvhApiOverTheBox.v6()
+      .getServiceInfos({ serviceName: this.serviceName })
       .$promise.then((serviceInfos) => {
-        self.serviceInfos = serviceInfos;
-        if (self.serviceInfos && self.serviceInfos.renew) {
-          self.serviceInfos.renew.undoDeleteAtExpiration =
-            self.serviceInfos.renew.deleteAtExpiration;
+        this.serviceInfos = serviceInfos;
+        if (this.serviceInfos && this.serviceInfos.renew) {
+          this.serviceInfos.renew.undoDeleteAtExpiration = this.serviceInfos.renew.deleteAtExpiration;
         }
         return serviceInfos;
       })
       .catch((error) => {
-        self.error.tasks = error.data;
-        TucToast.error(
-          [$translate.instant('an_error_occured'), error.data.message].join(
-            ' ',
-          ),
+        this.error.tasks = error.data;
+        this.TucToast.error(
+          [
+            this.$translate.instant('an_error_occured'),
+            error.data.message,
+          ].join(' '),
         );
-        return $q.reject(error);
+        return this.$q.reject(error);
       })
       .finally(() => {
-        self.loaders.infos = false;
+        this.loaders.infos = false;
       });
-  };
+  }
 
   /**
    * Load Tasks
    */
-  self.getTasks = function getTasks() {
-    self.loaders.tasks = true;
-    return OvhApiOverTheBox.v6()
+  getTasks() {
+    this.loaders.tasks = true;
+    return this.OvhApiOverTheBox.v6()
       .getTasks({
-        serviceName: $stateParams.serviceName,
+        serviceName: this.serviceName,
       })
       .$promise.then((tasks) => {
-        self.tasks = tasks;
+        this.tasks = tasks;
         return tasks;
       })
       .catch((error) => {
-        self.error.tasks = error.data;
-        TucToast.error(
-          [$translate.instant('an_error_occured'), error.data.message].join(
-            ' ',
-          ),
+        this.error.tasks = error.data;
+        this.TucToast.error(
+          [
+            this.$translate.instant('an_error_occured'),
+            error.data.message,
+          ].join(' '),
         );
-        return $q.reject(error);
+        return this.$q.reject(error);
       })
       .finally(() => {
-        self.loaders.tasks = false;
+        this.loaders.tasks = false;
       });
-  };
+  }
 
   /**
    * Check devices
    */
-  self.checkDevices = function checkDevices() {
-    self.loaders.checking = true;
-    return OvhApiOverTheBox.v6()
+  checkDevices() {
+    this.loaders.checking = true;
+    return this.OvhApiOverTheBox.v6()
       .checkDevices()
       .$promise.then((devices) => {
-        self.allDevices = devices;
-        self.deviceIds = devices.map((device) => device.deviceId);
-        return self.deviceIds;
+        this.allDevices = devices;
+        this.deviceIds = devices.map((device) => device.deviceId);
+        return this.deviceIds;
       })
       .catch((error) => {
-        self.error.checking = error.data;
-        TucToast.error(
-          [$translate.instant('an_error_occured'), error.data.message].join(
-            ' ',
-          ),
+        this.error.checking = error.data;
+        this.TucToast.error(
+          [
+            this.$translate.instant('an_error_occured'),
+            error.data.message,
+          ].join(' '),
         );
-        return $q.reject(error);
+        return this.$q.reject(error);
       })
       .finally(() => {
-        self.loaders.checking = false;
+        this.loaders.checking = false;
       });
-  };
+  }
 
   /**
    * Get connected devices
    */
-  self.getDevice = function getDevice() {
-    self.loaders.device = true;
-    return OvhApiOverTheBox.v6()
+  getDevice() {
+    this.loaders.device = true;
+    return this.OvhApiOverTheBox.v6()
       .getDevice({
-        serviceName: $stateParams.serviceName,
+        serviceName: this.serviceName,
       })
       .$promise.then((devices) => {
-        self.device = devices;
-        self.kpiInterfaces = devices.networkInterfaces
+        this.device = devices;
+        this.kpiInterfaces = devices.networkInterfaces
           .filter((netInterface) => netInterface.gateway != null)
           .map((netInterface) =>
             netInterface.device ? netInterface.device : netInterface.name,
@@ -435,53 +453,56 @@ export default /* @ngInject */ function(
       })
       .catch((error) => {
         if (error.status === 404) {
-          self.error.noDeviceLinked = true;
+          this.error.noDeviceLinked = true;
         }
-        return $q.reject(error);
+        return this.$q.reject(error);
       })
       .finally(() => {
-        self.loaders.device = false;
+        this.loaders.device = false;
       });
-  };
+  }
 
   /**
    * Link a device
    * @param {Object} device Device to link
    */
-  self.linkDevice = function linkDevice(device) {
-    self.loaders.device = true;
-    return OvhApiOverTheBox.v6()
+  linkDevice(device) {
+    this.loaders.device = true;
+    return this.OvhApiOverTheBox.v6()
       .linkDevice(
         {
-          serviceName: $stateParams.serviceName,
+          serviceName: this.serviceName,
         },
         {
           deviceId: device.deviceId,
         },
       )
       .$promise.then(() => {
-        self.device = device;
-        TucToast.success($translate.instant('overTheBox_link_device_success'));
+        this.device = device;
+        this.TucToast.success(
+          this.$translate.instant('overTheBox_link_device_success'),
+        );
         return device;
       })
       .catch((error) => {
-        TucToast.error(
-          [$translate.instant('an_error_occured'), error.data.message].join(
-            ' ',
-          ),
+        this.TucToast.error(
+          [
+            this.$translate.instant('an_error_occured'),
+            error.data.message,
+          ].join(' '),
         );
-        return $q.reject(error);
+        return this.$q.reject(error);
       })
       .finally(() => {
-        self.loaders.device = false;
+        this.loaders.device = false;
       });
-  };
+  }
 
   /**
    * check if Service can be resiliated
    * @return {Boolean}
    */
-  self.canResiliate = function canResiliate() {
+  canResiliate() {
     if (!this.serviceInfos || !this.serviceInfos.renew) {
       return false;
     }
@@ -490,14 +511,14 @@ export default /* @ngInject */ function(
       !this.serviceInfos.undoDeleteAtExpiration &&
       this.serviceInfos.canDeleteAtExpiration
     );
-  };
+  }
 
   /**
    * Check if an on-going resiliation can be cancelled
    * @return {Boolean}
    */
-  self.canCancelResiliation = function canCancelResiliation() {
-    if (self.canResiliate()) {
+  canCancelResiliation() {
+    if (this.canResiliate()) {
       return false;
     }
     if (!this.serviceInfos || !this.serviceInfos.renew) {
@@ -507,115 +528,109 @@ export default /* @ngInject */ function(
       this.serviceInfos.renew.deleteAtExpiration &&
       !this.serviceInfos.undoDeleteAtExpiration
     );
-  };
+  }
 
   /**
    * Resiliate the current service
    * @return {Promise}
    */
-  self.resiliate = function resiliate() {
-    self.loaders.resiliating = true;
-    return OvhApiOverTheBox.v6()
+  resiliate() {
+    this.loaders.resiliating = true;
+    return this.OvhApiOverTheBox.v6()
       .deleteAtExpiration(
         {
-          serviceName: $stateParams.serviceName,
+          serviceName: this.serviceName,
         },
         null,
       )
-      .$promise.then(self.getServiceInfos)
+      .$promise.then(this.getServiceInfos)
       .then((data) => {
-        TucToast.success(
-          $translate.instant('overTheBox_resiliation_success', {
+        this.TucToast.success(
+          this.$translate.instant('overTheBox_resiliation_success', {
             service:
-              $scope.OverTheBox.service.customerDescription ||
-              $scope.OverTheBox.service.serviceName,
-            date: moment(self.serviceInfos.expiration).format('DD/MM/YYYY'),
+              this.service.customerDescription || this.service.serviceName,
+            date: moment(this.serviceInfos.expiration).format('DD/MM/YYYY'),
           }),
         );
         return data;
       })
       .catch((err) => {
-        TucToast.error(
-          $translate.instant('overTheBox_resiliation_error', {
+        this.TucToast.error(
+          this.$translate.instant('overTheBox_resiliation_error', {
             service:
-              $scope.OverTheBox.service.customerDescription ||
-              $scope.OverTheBox.service.serviceName,
+              this.service.customerDescription || this.service.serviceName,
           }),
         );
-        return $q.reject(err);
+        return this.$q.reject(err);
       })
       .finally(() => {
-        self.loaders.resiliating = false;
+        this.loaders.resiliating = false;
       });
-  };
+  }
 
   /**
    * Cancel the resiliation of the current service
    * @return {Promise}
    */
-  self.cancelResiliation = function cancelResiliation() {
-    self.loaders.cancellingResiliation = true;
-    return OvhApiOverTheBox.v6()
+  cancelResiliation() {
+    this.loaders.cancellingResiliation = true;
+    return this.OvhApiOverTheBox.v6()
       .keepAtExpiration(
         {
-          serviceName: $stateParams.serviceName,
+          serviceName: this.serviceName,
         },
         null,
       )
-      .$promise.then(self.getServiceInfos)
+      .$promise.then(this.getServiceInfos)
       .then((data) => {
-        TucToast.success(
-          $translate.instant('overTheBox_cancel_resiliation_success', {
+        this.TucToast.success(
+          this.$translate.instant('overTheBox_cancel_resiliation_success', {
             service:
-              $scope.OverTheBox.service.customerDescription ||
-              $scope.OverTheBox.service.serviceName,
+              this.service.customerDescription || this.service.serviceName,
           }),
         );
         return data;
       })
       .catch((err) => {
-        TucToast.error(
-          $translate.instant('overTheBox_resiliation_cancel_error', {
+        this.TucToast.error(
+          this.$translate.instant('overTheBox_resiliation_cancel_error', {
             service:
-              $scope.OverTheBox.service.customerDescription ||
-              $scope.OverTheBox.service.serviceName,
+              this.service.customerDescription || this.service.serviceName,
           }),
         );
-        return $q.reject(err);
+        return this.$q.reject(err);
       })
       .finally(() => {
-        self.loaders.cancellingResiliation = false;
+        this.loaders.cancellingResiliation = false;
       });
-  };
+  }
 
-  self.changeReleaseChannel = function changeReleaseChannel(channel) {
-    self.loaders.changingReleaseChannel = true;
-    return OvhApiOverTheBox.v6()
+  changeReleaseChannel(channel) {
+    this.loaders.changingReleaseChannel = true;
+    return this.OvhApiOverTheBox.v6()
       .putService(
         {
-          serviceName: $stateParams.serviceName,
+          serviceName: this.serviceName,
         },
         {
           releaseChannel: channel.name,
         },
       )
       .$promise.then(() => {
-        TucToast.success(
-          $translate.instant('overTheBox_change_release_channel_success'),
+        this.TucToast.success(
+          this.$translate.instant('overTheBox_change_release_channel_success'),
         );
       })
       .catch((err) => {
-        TucToast.error(
-          $translate.instant('overTheBox_change_release_channel_error', {
+        this.TucToast.error(
+          this.$translate.instant('overTheBox_change_release_channel_error', {
             errorMessage: err.data.message,
           }),
         );
-        return $q.reject(err);
+        return this.$q.reject(err);
       })
       .finally(() => {
-        self.loaders.changingReleaseChannel = false;
+        this.loaders.changingReleaseChannel = false;
       });
-  };
-
-  init();
+  }
 }

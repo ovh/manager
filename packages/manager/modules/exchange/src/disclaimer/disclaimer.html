@@ -10,19 +10,19 @@
     ></div>
 
     <oui-datagrid data-rows-loader="ctrlDisclaimer.loadPaginated($config)">
-        <oui-column
+        <oui-datagrid-column
             data-title="'exchange_tab_DISCLAIMER_associated_domains' | translate"
             data-property="domain.displayName"
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'exchange_tab_DISCLAIMER_disclaimer_content' | translate"
             data-property="strippedContent"
         >
             <span
                 data-ng-bind="$row.strippedContent | wucSliceContent:20"
             ></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'exchange_tab_DISCLAIMER_disclaimer_outside_only' | translate"
             data-property="outsideOnly"
         >
@@ -36,46 +36,50 @@
                 data-translate="exchange_tab_DISCLAIMER_disclaimer_outside_only_false"
                 data-oui-tooltip="{{'exchange_tab_DISCLAIMER_disclaimer_outside_only_tooltip' | translate}}"
             ></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'exchange_tab_DISCLAIMER_state_header' | translate"
         >
             <span
-                class="oui-status oui-status_info"
+                class="oui-badge oui-badge_info"
                 data-translate="exchange_tab_DISCLAIMER_state_doing_tooltip"
                 data-ng-if="$row.taskPendingId && $row.taskPendingId !== 0"
             ></span>
             <span
-                class="oui-status oui-status_success"
+                class="oui-badge oui-badge_success"
                 data-translate="exchange_tab_ACCOUNTS_state_OK"
                 data-ng-if="$row.taskPendingId === 0"
             ></span>
             <span
-                class="oui-status oui-status_warning"
+                class="oui-badge oui-badge_warning"
                 data-translate="common_not_configurated"
                 data-ng-if="$row.emptySlotFlag"
             ></span>
-        </oui-column>
+        </oui-datagrid-column>
 
         <oui-action-menu
             data-compact
-            data-align="end"
             data-disabled="$row.taskPendingId"
+            data-placement="end"
         >
             <oui-action-menu-item
-                data-text="{{'exchange_tab_DISCLAIMER_menu_settings' | translate}}"
                 data-ng-click="ctrlDisclaimer.updateDisclaimer($row)"
                 data-ng-if="!$row.taskPendingId && $row.emptySlotFlag === false"
+                ><span
+                    data-translate="exchange_tab_DISCLAIMER_menu_settings"
+                ></span
             ></oui-action-menu-item>
             <oui-action-menu-item
-                data-text="{{'exchange_tab_DISCLAIMER_menu_delete' | translate}}"
                 data-ng-click="ctrlDisclaimer.deleteDisclaimer($row)"
                 data-ng-if="!$row.taskPendingId && $row.emptySlotFlag === false"
+                ><span
+                    data-translate="exchange_tab_DISCLAIMER_menu_delete"
+                ></span
             ></oui-action-menu-item>
             <oui-action-menu-item
-                data-text="{{'global_configuration' | translate}}"
                 data-ng-click="ctrlDisclaimer.addDisclaimer($row)"
                 data-ng-if="!$row.taskPendingId && $row.emptySlotFlag"
+                ><span data-translate="global_configuration"></span
             ></oui-action-menu-item>
         </oui-action-menu>
     </oui-datagrid>

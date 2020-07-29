@@ -127,7 +127,6 @@
   "logs_home_cold_storage": "Volumen archivado: {{coldStorage}}",
   "logs_home_display_name_update_success": "El nombre se ha modificado correctamente.",
   "logs_home_account_details_get_error": "Se ha producido un error al cargar la cuenta: {{message}}",
-  "logs_home_account_get_error": "Se ha producido un error al cargar la cuenta: {{message}}",
   "logs_home_contacts_get_error": "Se ha producido un error al cargar los contactos: {{message}}",
   "logs_home_contact_get_error": "Se ha producido un error al cargar un contacto: {{message}}",
   "logs_home_display_name_update_error": "Se ha producido un error al modificar el nombre: {{message}}",

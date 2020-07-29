@@ -73,7 +73,7 @@
                 >
                     <span data-translate="cpb_quota_protect_more_btn"></span>
                     <span
-                        class="oui-icon oui-icon-external_link"
+                        class="oui-icon oui-icon-external-link"
                         aria-hidden="true"
                     ></span>
                     <span
@@ -90,7 +90,7 @@
                 >
                     <span data-translate="cpb_quota_protect_more_btn"></span>
                     <span
-                        class="oui-icon oui-icon-external_link"
+                        class="oui-icon oui-icon-external-link"
                         aria-hidden="true"
                     ></span>
                     <span
@@ -126,7 +126,7 @@
         <strong>{{ :: 'cpb_quota_current_limit' | translate }}</strong>
 
         <oui-datagrid data-rows="CloudProjectComputeQuotaCtrl.datas.quota">
-            <oui-column
+            <oui-datagrid-column
                 data-title="'cloud_common_region' | translate"
                 data-property="region"
                 data-sortable="asc"
@@ -145,8 +145,8 @@
                         }}
                     </div>
                 </div>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'cloud_common_instance' | translate"
                 data-property="instance.maxInstances"
             >
@@ -158,8 +158,8 @@
                     {{ :: $row.instance.usedInstances }} / {{ ::
                     $row.instance.maxInstances }}
                 </span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'cloud_common_core' | translate"
                 data-property="instance.maxCores"
             >
@@ -171,8 +171,8 @@
                     {{ :: $row.instance.usedCores }} / {{ ::
                     $row.instance.maxCores }}
                 </span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'cloud_common_ram' | translate"
                 data-property="instance.maxRam"
             >
@@ -186,8 +186,8 @@
                     data-ng-bind="($row.instance.usedRAM > 0 ? (($row.instance.usedRAM * 1000000) | bytes:2) : $row.instance.usedRAM) + ' / ' + (($row.instance.maxRam * 1000000) | bytes:2)"
                 >
                 </span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'cpb_quota_add_disk' | translate"
                 data-property="volume.maxGigabytes"
             >
@@ -201,7 +201,7 @@
                     data-ng-bind="($row.volume.usedGigabytes > 0 ? (($row.volume.usedGigabytes * 1000000000) | bytes:2) : $row.volume.usedGigabytes) + ' / ' + (($row.volume.maxGigabytes * 1000000000) | bytes:2)"
                 >
                 </span>
-            </oui-column>
+            </oui-datagrid-column>
         </oui-datagrid>
 
         <!-- QUOTA TABLE -->
@@ -211,7 +211,7 @@
             data-rows="CloudProjectComputeQuotaCtrl.availableRegions.data"
             data-loading="CloudProjectComputeQuotaCtrl.availableRegions.loading"
         >
-            <oui-column
+            <oui-datagrid-column
                 data-title="::'cloud_common_region' | translate"
                 data-property="name"
                 data-sortable="asc"
@@ -231,11 +231,11 @@
                         }}
                     </div>
                 </div>
-            </oui-column>
-            <oui-action-menu data-align="end" data-compact>
+            </oui-datagrid-column>
+            <oui-action-menu data-compact data-placement="end">
                 <oui-action-menu-item>
                     <a
-                        class="oui-button oui-button_link"
+                        class="oui-button oui-button_ghost"
                         data-ui-sref="iaas.pci-project.compute.regions"
                     >
                         <span data-translate="cpci_add_regions_activate"></span>

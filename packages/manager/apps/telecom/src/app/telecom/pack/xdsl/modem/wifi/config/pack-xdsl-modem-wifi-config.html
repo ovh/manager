@@ -29,14 +29,14 @@
                     data-rows="ConfigWifiCtrl.wifis"
                     data-page-size="10"
                 >
-                    <oui-column
+                    <oui-datagrid-column
                         data-title="'xdsl_modem_wifi_config_table_ssid' | translate"
                         data-property="SSID"
                         data-sortable="asc"
                     >
                         {{$row.SSID}}
-                    </oui-column>
-                    <oui-column
+                    </oui-datagrid-column>
+                    <oui-datagrid-column
                         data-title="'xdsl_modem_wifi_config_ssid_table_visibility' | translate"
                         data-property="SSIDAdvertisementEnabled"
                         data-sortable
@@ -45,8 +45,8 @@
                             data-translate="{{ $row.SSIDAdvertisementEnabled ? 'xdsl_modem_wifi_config_visible' : 'xdsl_modem_wifi_config_hidden' }}"
                         >
                         </span>
-                    </oui-column>
-                    <oui-column
+                    </oui-datagrid-column>
+                    <oui-datagrid-column
                         data-title="'xdsl_modem_wifi_config_security' | translate"
                         data-property="securityType"
                         data-sortable
@@ -54,23 +54,23 @@
                         <span
                             data-ng-bind="'xdsl_modem_wifi_' + $row.securityType | translate"
                         ></span>
-                    </oui-column>
-                    <oui-column
+                    </oui-datagrid-column>
+                    <oui-datagrid-column
                         data-title="'xdsl_modem_wifi_config_canal' | translate"
                         data-property="channelCustom"
                         data-sortable
                     >
                         {{$row.channelCustom}}
-                    </oui-column>
-                    <oui-column
+                    </oui-datagrid-column>
+                    <oui-datagrid-column
                         data-title="'xdsl_modem_wifi_config_table_frequency' | translate"
                         data-property="frequency"
                         data-sortable
                     >
                         {{$row.frequency}}
-                    </oui-column>
+                    </oui-datagrid-column>
 
-                    <oui-column
+                    <oui-datagrid-column
                         data-title="'xdsl_modem_wifi_config_table_guest' | translate"
                         data-property="guest"
                         data-sortable
@@ -79,9 +79,9 @@
                             data-translate="{{ $row.guest ? 'common_yes_capitalized' : 'common_no_capitalized' }}"
                         >
                         </span>
-                    </oui-column>
+                    </oui-datagrid-column>
 
-                    <oui-column
+                    <oui-datagrid-column
                         data-title="'xdsl_modem_wifi_config_state' | translate"
                         data-property="enabled"
                         data-sortable
@@ -90,9 +90,9 @@
                             data-translate="{{ $row.enabled ? 'xdsl_modem_wifi_config_state_enabled' : 'xdsl_modem_wifi_config_state_disabled' }}"
                         >
                         </span>
-                    </oui-column>
+                    </oui-datagrid-column>
 
-                    <oui-action-menu data-align="end" data-compact>
+                    <oui-action-menu data-compact data-placement="end">
                         <oui-action-menu-item
                             on-click="ConfigWifiCtrl.setSelectedWifi($row)"
                         >

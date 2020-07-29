@@ -43,13 +43,14 @@
     "@ovh-ux/component-rollup-config": "^7.0.0"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^9.0.0",
+    "@ovh-ux/manager-core": "^9.0.0 || ^10.0.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^1.5.0",
     "@ovh-ux/ng-ovh-contracts": "^3.1.2",
     "@ovh-ux/ng-ovh-payment-method": "^6.1.2",
     "@ovh-ux/ng-ovh-toaster": "^2.0.0",
     "@ovh-ux/ng-translate-async-loader": "^2.1.0",
     "@ovh-ux/ng-ui-router-layout": "^3.3.3",
+    "@ovh-ux/ui-kit": "^4.1.12",
     "@uirouter/angularjs": "^1.0.15",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",
@@ -60,8 +61,6 @@
     "oclazyload": "^1.1.0",
     "ovh-api-services": "^9.39.1",
     "ovh-manager-webfont": "^1.2.0",
-    "ovh-ui-angular": "^3.16.3",
-    "ovh-ui-kit": "^2.42.8",
-    "ovh-ui-kit-bs": "^2.4.6"
+    "ovh-ui-kit-bs": "^4.1.5"
   }
 }

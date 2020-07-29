@@ -1,0 +1,44 @@
+<div class="pci-project-new-payment-method-add">
+    <div class="row">
+        <div
+            class="col-md-6 mb-3"
+            data-ng-repeat="authorizedPaymentMethod in $ctrl.authorizedPaymentMethods track by $index"
+        >
+            <oui-radio
+                class="oui-radio_btn"
+                data-name="paymentType"
+                data-thumbnail
+                data-model="$ctrl.model.paymentMethod"
+                data-value="authorizedPaymentMethod"
+                data-on-change="$ctrl.onPaymentTypeRadioChange()"
+                data-disabled="$ctrl.globalLoading.finalize"
+            >
+                <span
+                    data-ng-bind="$ctrl.getPaymentMethodTypeText(authorizedPaymentMethod)"
+                ></span>
+            </oui-radio>
+        </div>
+    </div>
+
+    <div data-ng-if="$ctrl.model.paymentMethod.paymentType !== 'CREDIT'">
+        <p data-translate="pci_project_new_payment_method_add_explain"></p>
+
+        <oui-message
+            data-type="warning"
+            data-ng-if="$ctrl.model.paymentMethod.type.isBankAccount()"
+        >
+            <span
+                data-translate="pci_project_new_payment_method_add_warning_bank_account"
+            ></span>
+        </oui-message>
+
+        <p>
+            <small
+                data-ng-if="$ctrl.model.paymentMethod"
+                data-translate="{{ 'pci_project_new_payment_method_add_info_' + $ctrl.model.paymentMethod.paymentType.toLowerCase() }}"
+                data-translate-values="{ paymentMethodSection: $ctrl.paymentSectionHref }"
+            >
+            </small>
+        </p>
+    </div>
+</div>

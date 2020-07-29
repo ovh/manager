@@ -1,16 +1,14 @@
-<oui-page-header class="mb-3">
+<oui-header class="mb-3">
     <oui-header-tabs>
         <oui-header-tabs-item
-            text="{{:: 'pci_project_quota_header' | translate}}"
             state="pci.projects.project.quota"
             state-params="{ projectId: $ctrl.projectId }"
-        >
+            ><span data-translate="pci_project_quota_header"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
-            text="{{:: 'pci_project_region_header' | translate}}"
             state="pci.projects.project.regions"
             state-params="{ projectId: $ctrl.projectId }"
-        >
+            ><span data-translate="pci_project_region_header"></span>
         </oui-header-tabs-item>
     </oui-header-tabs>
     <oui-guide-menu data-text="{{:: 'pci_project_guides_header' | translate }}">
@@ -18,4 +16,4 @@
             <span data-translate="pci_project_guides_header_all_guides"></span>
         </oui-guide-menu-item>
     </oui-guide-menu>
-</oui-page-header>
+</oui-header>

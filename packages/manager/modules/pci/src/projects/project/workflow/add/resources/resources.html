@@ -4,7 +4,7 @@
     class="datagrid-compact"
     data-row-loader="$ctrl.loadInstanceDetail($row)"
 >
-    <oui-column data-title="">
+    <oui-datagrid-column data-title>
         <oui-radio
             class="no-label"
             name="instance-select"
@@ -13,8 +13,8 @@
             data-disabled="!$row.canAddSnapshot()"
             data-on-change="$ctrl.selectResource($row)"
         ></oui-radio>
-    </oui-column>
-    <oui-column
+    </oui-datagrid-column>
+    <oui-datagrid-column
         data-title=":: 'pci_projects_project_workflow_instance_name_label' | translate"
         data-property="name"
         data-type="string"
@@ -23,16 +23,16 @@
         data-sortable="asc"
     >
         <span data-ng-bind="$row.name"></span>
-    </oui-column>
-    <oui-column
+    </oui-datagrid-column>
+    <oui-datagrid-column
         data-title=":: 'pci_projects_project_workflow_instance_region_label' | translate"
         data-property="region"
     >
         <span
             data-ng-bind="$ctrl.CucRegionService.getTranslatedMicroRegion($row.region)"
         ></span>
-    </oui-column>
-    <oui-column
+    </oui-datagrid-column>
+    <oui-datagrid-column
         data-title=":: 'pci_projects_project_workflow_instance_flavor_label' | translate"
         data-property="flavor.name"
         data-type="string"
@@ -40,25 +40,25 @@
         data-sortable
         data-filterable
     >
-    </oui-column>
-    <oui-column
+    </oui-datagrid-column>
+    <oui-datagrid-column
         data-title=":: 'pci_projects_project_workflow_instance_status_label' | translate"
         data-property="status"
     >
         <span
-            class="oui-status"
+            class="oui-badge"
             data-ng-class="{
-                'oui-status_success': $row.statusGroup === 'ACTIVE',
-                'oui-status_warning': $row.statusGroup === 'PENDING',
-                'oui-status_error': $row.statusGroup === 'ERROR',
-                'oui-status_info': $row.statusGroup === $row.status,
+                'oui-badge_success': $row.statusGroup === 'ACTIVE',
+                'oui-badge_warning': $row.statusGroup === 'PENDING',
+                'oui-badge_error': $row.statusGroup === 'ERROR',
+                'oui-badge_info': $row.statusGroup === $row.status,
             }"
         >
             <span
                 data-ng-bind=":: 'pci_projects_project_workflow_instance_status_' + $row.status | translate"
             ></span>
         </span>
-    </oui-column>
+    </oui-datagrid-column>
 </oui-datagrid>
 <div class="row">
     <oui-select-picker

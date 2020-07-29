@@ -1,5 +1,5 @@
 <div data-ui-view>
-    <oui-page-header
+    <oui-header
         data-heading="{{:: 'pci_workflow_title' | translate }}"
         class="mb-3"
     >
@@ -12,7 +12,7 @@
                 ></span>
             </oui-guide-menu-item>
         </oui-guide-menu>
-    </oui-page-header>
+    </oui-header>
     <div class="container-fluid px-0">
         <cui-message-container
             data-messages="$ctrl.messages"
@@ -21,7 +21,7 @@
             data-rows="$ctrl.workflows"
             data-row-loader="$ctrl.getInstance($row)"
         >
-            <oui-column
+            <oui-datagrid-column
                 data-title=":: 'pci_workflow_name' | translate"
                 data-property="name"
                 data-searchable
@@ -30,8 +30,8 @@
                 data-type="string"
             >
                 <span class="text-truncate" data-ng-bind="::$row.name"></span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'pci_workflow_type' | translate"
                 data-property="type"
                 data-searchable
@@ -42,8 +42,8 @@
                 <span
                     data-ng-bind="::'pci_workflow_type_' + $row.type + '_title' | translate"
                 ></span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'pci_workflow_resource' | translate"
                 data-property="instanceName"
                 data-searchable
@@ -53,13 +53,13 @@
             >
                 <button
                     type="button"
-                    class="oui-button oui-button_link p-0"
+                    class="oui-link"
                     data-ng-click="$ctrl.goToInstancePage($row.instanceId)"
                 >
                     <span data-ng-bind="::$row.instanceName"></span>
                 </button>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'pci_workflow_schedule' | translate"
                 data-property="cron"
                 data-searchable
@@ -67,8 +67,8 @@
                 data-sortable
                 data-type="string"
             >
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'pci_workflow_last_execution' | translate"
                 data-property="latestExecution"
                 data-sortable
@@ -79,42 +79,40 @@
                 <span
                     data-ng-bind="$row.latestExecution | date: 'medium': 'UTC'"
                 ></span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'pci_workflow_last_execution_status' | translate"
                 data-property="executions"
                 data-type="string"
             >
                 <span
-                    class="oui-status"
+                    class="oui-badge"
                     data-ng-if="$row.executions && $row.executions.length"
                     data-ng-init="execution = $row.executions[$row.executions.length - 1]"
                     data-ng-class="{
-                        'oui-status_success': execution.state === 'SUCCESS',
-                        'oui-status_warning': execution.state === 'PAUSED',
-                        'oui-status_error': execution.state === 'ERROR',
-                        'oui-status_info': execution.state === execution.status,
+                        'oui-badge_success': execution.state === 'SUCCESS',
+                        'oui-badge_warning': execution.state === 'PAUSED',
+                        'oui-badge_error': execution.state === 'ERROR',
+                        'oui-badge_info': execution.state === execution.status,
                     }"
                 >
                     <span
                         data-ng-bind=":: 'pci_workflow_execution_status_' + execution.state | translate"
                     ></span>
                 </span>
-            </oui-column>
-            <oui-action-menu data-align="end" data-compact>
+            </oui-datagrid-column>
+            <oui-action-menu data-compact data-placement="end">
                 <oui-action-menu-item
                     data-ng-if="$row.executions && $row.executions.length"
-                    data-text="{{ ::'pci_workflow_view_executions' | translate }}"
                     data-on-click="$ctrl.goToExecutionsPage($row)"
-                >
+                    ><span data-translate="pci_workflow_view_executions"></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
-                    data-text="{{ ::'pci_workflow_delete' | translate }}"
                     data-on-click="$ctrl.goToDeleteWorkflowPage($row)"
-                >
+                    ><span data-translate="pci_workflow_delete"></span>
                 </oui-action-menu-item>
             </oui-action-menu>
-            <extra-top>
+            <oui-datagrid-topbar>
                 <button
                     data-ng-click="$ctrl.add()"
                     class="oui-button oui-button_secondary oui-button_icon-left mb-2"
@@ -125,7 +123,7 @@
                     ></span>
                     <span data-translate="pci_workflow_add"></span>
                 </button>
-            </extra-top>
+            </oui-datagrid-topbar>
         </oui-datagrid>
     </div>
 </div>

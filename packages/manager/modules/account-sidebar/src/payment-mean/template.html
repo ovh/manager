@@ -33,8 +33,8 @@
                     data-ng-bind=":: $ctrl.paymentMethod.label"
                 ></p>
                 <span
-                    class="oui-status manager-hub-payment-mean_status"
-                    data-ng-class="'oui-status_' + $ctrl.paymentMethod.getStatusCategory()"
+                    class="manager-hub-payment-mean_status oui-badge"
+                    data-ng-class="'oui-badge_' + $ctrl.paymentMethod.getStatusCategory()"
                     data-ng-bind=":: 'hub_payment_mean_status_' + $ctrl.paymentMethod.status | translate"
                 >
                 </span>
@@ -44,10 +44,7 @@
                 data-translate="hub_payment_mean_none"
             ></p>
         </div>
-        <span
-            class="ml-auto oui-icon oui-icon-arrow-right_extra-thin"
-            aria-hidden="true"
-        >
+        <span class="ml-auto oui-icon oui-icon-arrow-right" aria-hidden="true">
         </span>
     </a>
 </div>

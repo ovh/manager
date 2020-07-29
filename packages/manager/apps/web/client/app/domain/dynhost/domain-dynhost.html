@@ -129,14 +129,21 @@
                             ></th>
                             <td data-ng-bind="dynHost.ip"></td>
                             <td class="text-right">
-                                <oui-action-menu data-compact data-align="end">
+                                <oui-action-menu
+                                    data-compact
+                                    data-placement="end"
+                                >
                                     <oui-action-menu-item
-                                        data-text="{{:: 'table_modify_entry' | translate }}"
                                         data-on-click="setAction('dynhost/edit/domain-dynhost-edit', {dynHost: dynHost, product: ctrlDomainDynHost.product})"
+                                        ><span
+                                            data-translate="table_modify_entry"
+                                        ></span
                                     ></oui-action-menu-item>
                                     <oui-action-menu-item
-                                        data-text="{{:: 'table_delete_entry' | translate }}"
                                         data-on-click="setAction('dynhost/delete/domain-dynhost-delete', {dynHost: dynHost, zoneName: ctrlDomainDynHost.product.name})"
+                                        ><span
+                                            data-translate="table_delete_entry"
+                                        ></span
                                     ></oui-action-menu-item>
                                 </oui-action-menu>
                             </td>

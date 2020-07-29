@@ -1,4 +1,5 @@
 /* eslint-disable import/extensions, import/no-webpack-loader-syntax */
+import 'babel-polyfill';
 import 'script-loader!jquery';
 import 'script-loader!moment/min/moment-with-locales.min';
 import 'script-loader!jsurl/lib/jsurl';
@@ -14,8 +15,7 @@ import ovhManagerCore from '@ovh-ux/manager-core';
 
 import { momentConfiguration } from './config';
 
-import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.min.css';
-import 'ovh-ui-kit-bs/dist/oui-bs3-olt.css';
+import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 
 Environment.setRegion(__WEBPACK_REGION__);
 

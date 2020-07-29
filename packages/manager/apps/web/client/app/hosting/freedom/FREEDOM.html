@@ -27,7 +27,7 @@
                         data-ng-options="status as ('hosting_tab_FREEDOM_status_' + status | translate) for status in ctrlHostingFreedomTab.statusEnum track by status"
                     >
                         <option
-                            value=""
+                            value
                             data-translate="hosting_common_no_filter"
                         ></option>
                     </select>
@@ -106,16 +106,16 @@
                     <td data-ng-bind="::freedom.type"></td>
                     <td class="text-center">
                         <span
-                            class="oui-status"
+                            class="oui-badge"
                             data-ng-class="{
-                                'oui-status_success': freedom.status === 'ok',
-                                'oui-status_error': freedom.status === 'blockedByCustomer' || freedom.status === 'blockedBySystem',
-                                'oui-status_info': freedom.status === 'preset'}"
+                                'oui-badge_success': freedom.status === 'ok',
+                                'oui-badge_error': freedom.status === 'blockedByCustomer' || freedom.status === 'blockedBySystem',
+                                'oui-badge_info': freedom.status === 'preset'}"
                             data-ng-bind=":: 'hosting_tab_FREEDOM_status_' + freedom.status | translate"
                         ></span>
                     </td>
                     <td class="text-nowrap">
-                        <oui-action-menu data-compact data-align="end">
+                        <oui-action-menu data-compact data-placement="end">
                             <oui-action-menu-item
                                 data-on-click="ctrlHostingFreedomTab.setSelectedProduct(freedom.domain)"
                                 data-href="{{'#/configuration/domain/'+freedom.domain}}"

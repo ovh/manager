@@ -1,5 +1,5 @@
 <section data-ui-view>
-    <oui-page-header
+    <oui-header
         data-heading="{{:: 'pci_projects_project_storages_instance-backups_title' | translate }}"
         class="mb-3"
     >
@@ -12,22 +12,22 @@
                 ></span>
             </oui-guide-menu-item>
         </oui-guide-menu>
-    </oui-page-header>
+    </oui-header>
 
     <cui-message-container
         data-messages="$ctrl.messages"
     ></cui-message-container>
 
     <oui-datagrid data-rows="$ctrl.instanceBackups">
-        <oui-column
+        <oui-datagrid-column
             data-title="'pci_projects_project_storages_instance-backups_name_label' | translate"
             data-property="name"
             data-type="string"
             data-searchable
             data-sortable
             data-filterable
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'pci_projects_project_storages_instance-backups_region_label' | translate"
             data-property="region"
             data-type="string"
@@ -37,8 +37,8 @@
             <span
                 data-ng-bind="$ctrl.CucRegionService.getTranslatedMicroRegion($row.region)"
             ></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'pci_projects_project_storages_instance-backups_size_label' | translate"
             data-property="size"
             data-type="number"
@@ -46,8 +46,8 @@
             data-filterable
         >
             <span>{{ $value | cucBytes:2:true:'GiB'}}</span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'pci_projects_project_storages_containers_container_creationDate_label' | translate"
             data-property="creationDate"
             data-type="date"
@@ -55,20 +55,20 @@
             data-filterable
         >
             <span data-ng-bind="$value | date:'medium'"></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'pci_projects_project_storages_instance-backups_status_label' | translate"
             data-property="status"
             data-sortable
             data-filterable
         >
             <span
-                class="oui-status"
+                class="oui-badge"
                 data-ng-class="{
-                    'oui-status_success': ($row.statusGroup === 'ACTIVE'),
-                    'oui-status_warning': ($row.statusGroup === 'PENDING'),
-                    'oui-status_error': ($row.statusGroup === 'ERROR'),
-                    'oui-status_info': ($row.statusGroup === $row.status),
+                    'oui-badge_success': ($row.statusGroup === 'ACTIVE'),
+                    'oui-badge_warning': ($row.statusGroup === 'PENDING'),
+                    'oui-badge_error': ($row.statusGroup === 'ERROR'),
+                    'oui-badge_info': ($row.statusGroup === $row.status),
                 }"
                 data-ng-switch="$row.statusGroup"
             >
@@ -76,9 +76,9 @@
                     data-ng-bind="'pci_projects_project_storages_instance-backups_status_' + $row.status | translate"
                 ></span>
             </span>
-        </oui-column>
+        </oui-datagrid-column>
 
-        <oui-action-menu data-align="end" data-compact>
+        <oui-action-menu data-compact data-placement="end">
             <oui-action-menu-item data-on-click="$ctrl.createInstance($row)">
                 <span
                     data-translate="pci_projects_project_storages_instance-backups_instance_create_label"
@@ -94,7 +94,7 @@
             </oui-action-menu-item>
         </oui-action-menu>
 
-        <extra-top>
+        <oui-datagrid-topbar>
             <button
                 class="oui-button oui-button_secondary"
                 data-ng-click="$ctrl.addInstanceBackup()"
@@ -107,6 +107,6 @@
                     data-translate="pci_projects_project_storages_instance-backups_add_label"
                 ></span>
             </button>
-        </extra-top>
+        </oui-datagrid-topbar>
     </oui-datagrid>
 </section>

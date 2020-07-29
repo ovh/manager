@@ -61,7 +61,7 @@
             data-rows="$ctrl.repayments"
             data-page-size="25"
         >
-            <oui-column
+            <oui-datagrid-column
                 data-title="::'telephony_alias_special_transfer_date' | translate"
                 data-property="creationDatetime"
                 data-type="string"
@@ -72,8 +72,8 @@
                 <span
                     data-ng-bind="::$row.creationDatetime | date:'dd-MM-yyyy hh:mm:ss'"
                 ></span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="::'telephony_alias_special_transfer_calling' | translate"
                 data-property="calling"
                 data-type="string"
@@ -81,30 +81,30 @@
                 data-filterable
             >
                 <span data-ng-bind="::$row.calling | tucPhoneNumber"></span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="::'telephony_alias_special_transfer_duration' | translate"
                 data-property="duration"
                 data-type="number"
                 data-filterable
             >
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="::'telephony_alias_special_transfer_operator' | translate"
                 data-property="operator"
                 data-type="string"
                 data-searchable
                 data-filterable
-            ></oui-column>
-            <oui-column
+            ></oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="::'telephony_alias_special_transfer_transfer' | translate"
                 data-property="price"
                 data-type="number"
                 data-filterable
             >
                 <span data-ng-bind="::$row.price | currency"></span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="::'telephony_alias_special_transfer_fees' | translate"
                 data-property="price"
                 data-type="number"
@@ -113,7 +113,7 @@
                 <span
                     data-ng-bind="::$row.isFee ? ($row.price | currency) : '-'"
                 ></span>
-            </oui-column>
+            </oui-datagrid-column>
         </oui-datagrid>
     </div>
 </div>

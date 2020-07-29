@@ -1,6 +1,6 @@
 <oui-modal
-    data-title="{{ ::'iplb_server_status_title' | translate }}"
     data-on-dismiss="IpLoadBalancerServerStatusDetailCtrl.dismiss()"
+    data-heading="{{ ::'iplb_server_status_title' | translate }}"
 >
     <div
         class="iplb-no-data"
@@ -8,7 +8,7 @@
         data-translate="iplb_server_status_no_information"
     ></div>
     <h5
-        class="oui-header_5"
+        class="oui-heading_5"
         data-ng-repeat-start="serverState in IpLoadBalancerServerStatusDetailCtrl.server.serverState track by $index"
         data-translate="iplb_server_status_instance"
         data-translate-values="{ instanceId: serverState.instanceId }"

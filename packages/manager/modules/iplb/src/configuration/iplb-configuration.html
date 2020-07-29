@@ -13,21 +13,21 @@
         data-rows="$ctrl.zones.data"
         data-selectable-rows
     >
-        <extra-top>
+        <oui-datagrid-topbar>
             <oui-button
                 class="mb-3"
                 data-variant="secondary"
-                data-text="{{:: 'iplb_configuration_action_apply' | translate }}"
                 data-on-click="$ctrl.applyChanges($selectedRows)"
                 data-disabled="!$selectedRows.length"
+                ><span data-translate="iplb_configuration_action_apply"></span
             ></oui-button>
-        </extra-top>
-        <oui-column
+        </oui-datagrid-topbar>
+        <oui-datagrid-column
             data-title=":: 'iplb_configuration_datacenter' | translate"
             data-property="name"
             data-sortable="asc"
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'iplb_configuration_progress' | translate"
             data-sortable
         >
@@ -44,14 +44,16 @@
                     data-value="$row.task.progress"
                 ></oui-progress-bar>
             </oui-progress>
-        </oui-column>
-        <oui-column data-title=":: 'iplb_configuration_status' | translate">
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'iplb_configuration_status' | translate"
+        >
             <span
-                class="oui-status"
+                class="oui-badge"
                 data-ng-pluralize
                 data-ng-class="{
-                    'oui-status_success': $row.changes === 0,
-                    'oui-status_warning': $row.changes !== 0,
+                    'oui-badge_success': $row.changes === 0,
+                    'oui-badge_warning': $row.changes !== 0,
                 }"
                 data-count="$row.changes"
                 data-when="{
@@ -60,17 +62,16 @@
                     'other': ('iplb_configuration_changes_count' | translate: { count: $row.changes }),
                 }"
             ></span>
-        </oui-column>
+        </oui-datagrid-column>
         <oui-action-menu
-            data-align="end"
             data-disabled="!$isSelected"
             data-compact
+            data-placement="end"
         >
             <oui-action-menu-item
-                data-text="{{:: 'iplb_configuration_action_apply' | translate}}"
                 data-on-click="$ctrl.applyChanges($row.id)"
                 data-disabled="$row.task.status && $row.task.status !== 'done'"
-            >
+                ><span data-translate="iplb_configuration_action_apply"></span>
             </oui-action-menu-item>
         </oui-action-menu>
     </oui-datagrid>

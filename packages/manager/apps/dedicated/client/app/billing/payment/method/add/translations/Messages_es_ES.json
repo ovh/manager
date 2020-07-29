@@ -28,6 +28,6 @@
   "billing_payment_method_add_vantiv_recoverable_card_validation_number_error": "Se ha producido un error al añadir su forma de pago. Compruebe que el código de seguridad de su tarjeta bancaria es correcto y vuelva a introducirlo.",
   "billing_payment_method_add_success": "La forma de pago se ha añadido correctamente.",
   "billing_payment_method_add_error": "Se ha producido un error al añadir la forma de pago: {{ errorMessage }}.",
-  "billing_payment_method_add_alert_add_method": "If you are having trouble adding a new payment method, please create an exception in your Ad Blocker for {{ hostname }} or log in via your browser's incognito mode and try to add the card again. We will never display ads on our control panel, but the Ad Blocker can interfere with our payment system.",
-  "billing_payment_method_add_alert_first_payment_failure": "Additionally, if your first payment fails to process, try creating a new payment method with the same card you had previously used. Our system will automatically attempt to charge the new card."
+  "billing_payment_method_add_alert_add_method": "Si tiene problemas para añadir una nueva forma de pago, puede añadir una excepción a su bloqueador de anuncios para {{ hostname } o utilizar el modo incógnito de su navegador. Nunca mostraremos anuncios en el área de cliente. Tenga en cuenta que su bloqueador de anuncios puede interferir con nuestro sistema de pago.",
+  "billing_payment_method_add_alert_first_payment_failure": "Asimismo, si no ha podido realizar el primer pago, intente registrar una nueva forma de pago con la misma tarjeta que acaba de utilizar. El sistema intentará cargar el importe automáticamente en la nueva tarjeta."
 }

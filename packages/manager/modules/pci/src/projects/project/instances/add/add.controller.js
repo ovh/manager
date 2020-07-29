@@ -233,7 +233,7 @@ export default class PciInstancesAddController {
     return (
       this.model.flavorGroup.isAvailableInRegion(datacenter.name) &&
       datacenter.isAvailable() &&
-      datacenter.hasEnoughQuotaForFlavor(this.model.flavorGroup)
+      datacenter.hasEnoughQuotaForFlavors(this.model.flavorGroup)
     );
   }
 

@@ -1,22 +1,22 @@
-<oui-page-header
+<oui-header
     data-heading="{{:: $ctrl.description || $ctrl.serviceName }}"
     data-description="{{:: $ctrl.serviceName }}"
 >
     <oui-header-tabs data-ng-if="!$ctrl.vps.isExpired">
         <oui-header-tabs-item
-            data-text="{{:: 'vps_tab_dashboard' | translate }}"
             data-state="vps.detail.dashboard"
             data-state-params="{ serviceName: $ctrl.serviceName }"
+            ><span data-translate="vps_tab_dashboard"></span
         ></oui-header-tabs-item>
         <oui-header-tabs-item
-            data-text="{{:: 'vps_tab_secondary_dns' | translate }}"
             data-state="vps.detail.secondary-dns"
             data-state-params="{ serviceName: $ctrl.serviceName }"
+            ><span data-translate="vps_tab_secondary_dns"></span
         ></oui-header-tabs-item>
         <oui-header-tabs-item
             data-ng-repeat="feature in ::$ctrl.features track by $index"
-            data-text="{{:: feature.textId | translate }}"
             data-state="{{:: feature.state }}"
+            ><span data-ng-bind=":: feature.textId | translate"></span
         ></oui-header-tabs-item>
     </oui-header-tabs>
-</oui-page-header>
+</oui-header>

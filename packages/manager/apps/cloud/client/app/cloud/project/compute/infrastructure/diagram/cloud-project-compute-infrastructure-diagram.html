@@ -41,14 +41,17 @@
 >
     <div class="row">
         <div class="col-xs-3">
-            <div class="btn-group cloud-compute-infra-primary-actions">
+            <div
+                data-uib-dropdown
+                class="btn-group cloud-compute-infra-primary-actions"
+            >
                 <button
                     type="button"
-                    class="oui-button oui-button_dropdown dropdown-toggle"
+                    class="oui-button oui-button_dropdown"
                     aria-haspopup="true"
                     aria-expanded="false"
                     data-ng-disabled="ComputeInfrastructureDiagramCtrl.loaders.vRack"
-                    data-toggle="dropdown"
+                    data-uib-dropdown-toggle
                     write-right-required
                 >
                     <span data-ng-bind=":: 'common_actions' | translate"></span>

@@ -11,7 +11,7 @@
                 <oui-tile-description>
                     <span data-ng-bind="$ctrl.clusterDetails.name"></span>
                 </oui-tile-description>
-                <oui-action-menu data-align="end" data-compact>
+                <oui-action-menu data-compact data-placement="end">
                     <oui-action-menu-item
                         data-on-click="$ctrl.goToChangeName()"
                     >
@@ -26,8 +26,8 @@
             >
                 <oui-tile-description>
                     <span
-                        class="oui-status"
-                        data-ng-class="'oui-status_' + $ctrl.enterpriseCloudDatabaseService.constructor.getStatusGroup($ctrl.clusterDetails.status)"
+                        class="oui-badge"
+                        data-ng-class="'oui-badge_' + $ctrl.enterpriseCloudDatabaseService.constructor.getStatusGroup($ctrl.clusterDetails.status)"
                         data-ng-bind=":: ('enterprise_cloud_database_common_status_' + $ctrl.clusterDetails.status) | translate"
                     ></span>
                 </oui-tile-description>
@@ -87,7 +87,7 @@
                         <span data-ng-bind="$ctrl.MASKED_PASSWORD"></span>
                     </div>
                 </oui-tile-description>
-                <oui-action-menu data-align="end" data-compact>
+                <oui-action-menu data-compact data-placement="end">
                     <oui-action-menu-item
                         data-on-click="$ctrl.goToUpdatePassword()"
                         data-disabled="$ctrl.enterpriseCloudDatabaseService.constructor.isProcessing($ctrl.clusterDetails.status)"
@@ -113,12 +113,13 @@
                 <oui-tile-description
                     data-ng-bind="$ctrl.serviceInfo.expiration | date: 'dd/MM/yyyy'"
                 ></oui-tile-description>
-                <oui-action-menu data-compact data-align="end">
+                <oui-action-menu data-compact data-placement="end">
                     <oui-action-menu-item
-                        data-text="{{ ::'enterprise_cloud_database_common_manage' | translate }}"
                         aria-label="{{ ::'enterprise_cloud_database_common_manage' | translate }}"
                         data-on-click="$ctrl.goToMyServices($ctrl.clusterDetails.id, $ctrl.SERVICE_TYPE)"
-                    >
+                        ><span
+                            data-translate="enterprise_cloud_database_common_manage"
+                        ></span>
                     </oui-action-menu-item>
                 </oui-action-menu>
             </oui-tile-definition>
@@ -176,16 +177,16 @@
             >
                 <oui-tile-description>
                     <span
-                        class="oui-status"
+                        class="oui-badge"
                         data-ng-class="{
-                              'oui-status_success' : $ctrl.clusterDetails.autoBackup,
-                              'oui-status_warning' : !$ctrl.clusterDetails.autoBackup,
+                              'oui-badge_success' : $ctrl.clusterDetails.autoBackup,
+                              'oui-badge_warning' : !$ctrl.clusterDetails.autoBackup,
                           }"
                         data-ng-bind=":: ('enterprise_cloud_database_common_status_' + $ctrl.AUTO_BACKUP[$ctrl.clusterDetails.autoBackup]) | translate"
                     >
                     </span>
                 </oui-tile-description>
-                <oui-action-menu data-align="end" data-compact>
+                <oui-action-menu data-compact data-placement="end">
                     <oui-action-menu-item data-on-click="$ctrl.goToSettings()">
                         <span
                             data-translate="enterprise_cloud_database_common_manage"
@@ -249,7 +250,7 @@
                         data-ng-bind="$ctrl.INCLUDED_CLUSTER_SIZE.PRIMARY"
                     ></span>
                 </oui-tile-description>
-                <oui-action-menu data-align="end" data-compact>
+                <oui-action-menu data-compact data-placement="end">
                     <oui-action-menu-item
                         data-on-click="$ctrl.goToClusterNodes()"
                     >
@@ -293,7 +294,7 @@
                         role="alert"
                     >
                         <i
-                            class="oui-icon oui-icon-info_circle oui-icon_bicolor"
+                            class="oui-icon oui-icon-info-circle"
                             aria-hidden="true"
                         ></i>
                         <p
@@ -302,7 +303,7 @@
                         ></p>
                     </div>
                 </oui-tile-description>
-                <oui-action-menu data-align="end" data-compact>
+                <oui-action-menu data-compact data-placement="end">
                     <oui-action-menu-item data-on-click="$ctrl.goToSettings()">
                         <span
                             data-translate="enterprise_cloud_database_common_manage"

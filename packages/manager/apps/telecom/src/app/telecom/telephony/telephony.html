@@ -1,6 +1,4 @@
-<oui-page-header
-    data-heading="{{ :: 'telephony_title' | translate }}"
-></oui-page-header>
+<oui-header data-heading="{{ :: 'telephony_title' | translate }}"></oui-header>
 
 <div class="container-fluid my-5">
     <oui-datagrid
@@ -14,7 +12,7 @@
         data-on-sort-change="$ctrl.onSortChange($sort)"
         data-columns="$ctrl.columnsConfig"
     >
-        <oui-column
+        <oui-datagrid-column
             data-title=":: 'telephony_billing_account_label' | translate"
             data-property="billingAccount"
             data-searchable
@@ -27,8 +25,8 @@
                 data-ng-href="{{ $ctrl.getBillingAccountLink($row) }}"
                 data-ng-bind="$row.billingAccount"
             ></a>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'telephony_description_label' | translate"
             data-property="description"
             data-searchable
@@ -37,14 +35,14 @@
             data-type="string"
             data-type-options="$ctrl.stringColumnOptions"
         >
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'telephony_num_service_label' | translate"
             data-property="numServices"
             data-type="number"
         >
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'telephony_current_outplan_label' | translate"
             data-property="currentOutplan.value"
             data-sortable
@@ -52,8 +50,8 @@
             data-type="number"
         >
             <span data-ng-bind="$row.currentOutplan.text"></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'telephony_security_deposit_label' | translate"
             data-property="securityDeposit.value"
             data-sortable
@@ -61,8 +59,8 @@
             data-type="number"
         >
             <span data-ng-bind="$row.securityDeposit.text"></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'telephony_status_label' | translate"
             data-property="status"
             data-filterable
@@ -70,25 +68,26 @@
             data-type-options="$ctrl.filtersOptions.status"
         >
             <span
-                class="oui-status"
+                class="oui-badge"
                 data-ng-class="{
-                    'oui-status_success': ($value === 'enabled'),
-                    'oui-status_error': ($value !== 'enabled'),
+                    'oui-badge_success': ($value === 'enabled'),
+                    'oui-badge_error': ($value !== 'enabled'),
                 }"
                 data-ng-bind="'telephony_status_label_' + $value | translate"
             ></span>
-        </oui-column>
-        <oui-action-menu data-align="left-start" data-compact>
-            <oui-action-menu-item
-                data-text="{{:: 'telephony_view_billing_account_label' | translate }}"
-                data-on-click="$ctrl.viewBillingAccount($row)"
-            >
+        </oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="left-start">
+            <oui-action-menu-item data-on-click="$ctrl.viewBillingAccount($row)"
+                ><span
+                    data-translate="telephony_view_billing_account_label"
+                ></span>
             </oui-action-menu-item>
             <oui-action-menu-item
-                data-text="{{:: 'telephony_view_billing_account_service_services' | translate }}"
                 data-on-click="$ctrl.viewBillingAccountServices($row)"
                 data-ng-if="$row.numServices > 0"
-            >
+                ><span
+                    data-translate="telephony_view_billing_account_service_services"
+                ></span>
             </oui-action-menu-item>
         </oui-action-menu>
     </oui-datagrid>

@@ -31,30 +31,30 @@
         data-rows="$ctrl.restoredInstances"
         data-row-loader="$ctrl.loadDetails($row.backupId)"
     >
-        <oui-column
+        <oui-datagrid-column
             data-title=":: 'enterprise_cloud_database_restored_instances_endpoint' | translate"
             data-property="fqdn"
             data-searchable
         >
             <span data-ng-bind="$row.fqdn" data-ng-if="$row.fqdn"></span>
             <span data-translate="N/A" data-ng-if="!$row.fqdn"></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'enterprise_cloud_database_restored_instances_port' | translate"
             data-property="port"
             data-sortable="asc"
             data-type="string"
             data-searchable
             data-filterable
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'enterprise_cloud_database_restored_instances_restoration_date' | translate"
             data-property="creationDate"
             data-sortable
         >
             <span data-ng-bind="$row.creationDate | date: 'medium'"></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'enterprise_cloud_database_restored_instances_backup_date' | translate"
             data-property="backupDetails.creationDate"
             data-sortable
@@ -62,8 +62,8 @@
             <span
                 data-ng-bind="$row.backupDetails.creationDate | date: 'medium'"
             ></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'enterprise_cloud_database_restored_instances_current_usage' | translate"
             data-property="volumeSize"
             data-sortable
@@ -71,19 +71,19 @@
             <span
                 data-ng-bind="($row.volumeSize ? $row.volumeSize : 0) | cucBytes:2:false"
             ></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'enterprise_cloud_database_common_status' | translate"
             data-property="status"
             data-type="string"
         >
             <span
-                class="oui-status"
-                data-ng-class="'oui-status_' + $ctrl.service.constructor.getStatusGroup($row.status)"
+                class="oui-badge"
+                data-ng-class="'oui-badge_' + $ctrl.service.constructor.getStatusGroup($row.status)"
                 data-ng-bind=":: ('enterprise_cloud_database_common_status_' + $row.status) | translate"
             ></span>
-        </oui-column>
-        <oui-action-menu data-align="end" data-compact>
+        </oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="end">
             <oui-action-menu-item
                 data-on-click="$ctrl.goToDelete($row.id)"
                 data-disabled="$ctrl.service.constructor.isProcessing($row.status) || $ctrl.service.constructor.isError($row.status)"
@@ -93,9 +93,9 @@
                 ></span>
             </oui-action-menu-item>
         </oui-action-menu>
-        <extra-top>
+        <oui-datagrid-topbar>
             <button
-                class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_small-width"
+                class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_s"
                 type="button"
                 data-title="{{:: 'enterprise_cloud_database_common_refresh' | translate }}"
                 data-ng-click="$ctrl.refreshing=true; $ctrl.refreshRestoredInstances()"
@@ -103,6 +103,6 @@
             >
                 <span class="fa fa-refresh" aria-hidden="true"></span>
             </button>
-        </extra-top>
+        </oui-datagrid-topbar>
     </oui-datagrid>
 </div>

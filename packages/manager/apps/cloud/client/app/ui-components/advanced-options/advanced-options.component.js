@@ -4,7 +4,7 @@ angular.module('managerApp').component('cuiAdvancedOptions', {
             <div class="cui-advanced-options">
                 <div class="cui-advanced-options__header">
                     <div class="cui-advanced-options__header-text">
-                        <h5 class="oui-header_6" data-ng-bind="$ctrl.title"></h5>
+                        <h5 class="oui-heading_6" data-ng-bind="$ctrl.title"></h5>
                         <div class="cui-advanced-options__text" data-ng-bind="$ctrl.text"></div>
                     </div>
                     <div class="cui-advanced-options__button"

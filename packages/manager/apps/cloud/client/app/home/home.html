@@ -4,8 +4,8 @@
 
         <oui-message
             data-type="info"
-            data-on-dismissed="$ctrl.onNewRegionsAvailableMessageDismiss()"
             data-ng-if="$ctrl.showNewRegionsAvailableMessage && $ctrl.region !== 'US'"
+            data-on-dismiss="$ctrl.onNewRegionsAvailableMessageDismiss()"
         >
             {{ ::'homepage_apac_regions_availability_message'| translate }}
         </oui-message>
@@ -37,7 +37,7 @@
                         data-ng-repeat="link in section.list track by $index"
                     >
                         <a
-                            class="oui-tile__button oui-button oui-link_icon oui-button_link oui-button_full-width"
+                            class="oui-tile__button oui-button oui-link_icon oui-button_ghost oui-button_block"
                             title="{{ (link.isExternal) ? link.text + ' (' + ('common_new_window' | translate) + ')' : link.text }}"
                             data-at-internet-click="{ name: link.atInternetClickTag }"
                             data-ng-href="{{ link.href }}"
@@ -46,7 +46,7 @@
                         >
                             <span data-ng-bind="link.text"></span>
                             <span
-                                class="oui-icon oui-icon-external_link"
+                                class="oui-icon oui-icon-external-link"
                                 data-ng-if="link.isExternal"
                                 aria-hidden="true"
                             ></span>

@@ -1,0 +1,6 @@
+{
+  "kubernetes_add_node_pool_description": "Una volta creato il cluster è possibile configurare un primo pool di nodi. Un pool di nodi indica un insieme di nodi di lavoro dello stesso tipo. In seguito sarà possibile creare pool di nodi multipli, eliminarli o ridimensionarli.",
+  "kubernetes_add_node_pool_warning": "Consigliamo di configurare pool con un minimo di 3 nodi, per ottimizzare il rolling upgrade durante gli aggiornamenti di sicurezza (patch updates) o delle versioni minori.",
+  "kubernetes_add_node_pool_node_count": "Numero di nodi nel pool",
+  "kubernetes_add_node_pool_node_type": "Tipo di nodi"
+}

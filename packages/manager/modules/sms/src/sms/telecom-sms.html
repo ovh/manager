@@ -8,9 +8,9 @@
         class="telecom-section-header"
         data-ng-if="!TelecomSmsCtrl.loading.init"
     >
-        <header class="oui-page-header">
-            <div class="oui-page-header__container">
-                <div class="oui-page-header__content">
+        <header class="oui-header">
+            <div class="oui-header__container">
+                <div class="oui-header__content">
                     <tuc-editable-service-name
                         data-tuc-editable-service-name-title="TelecomSmsCtrl.service.getDisplayedName()"
                         data-tuc-editable-service-name-title-on-save="TelecomSmsCtrl.serviceNameSave"
@@ -23,45 +23,29 @@
         </header>
 
         <oui-header-tabs>
-            <oui-header-tabs-item
-                data-text="{{:: 'sms_common_home' | translate }}"
-                data-state="sms.service.dashboard"
-            >
+            <oui-header-tabs-item data-state="sms.service.dashboard"
+                ><span data-translate="sms_common_home"></span>
             </oui-header-tabs-item>
-            <oui-header-tabs-item
-                data-text="{{:: 'sms_tabs_sms' | translate }}"
-                data-state="sms.service.sms"
-            >
+            <oui-header-tabs-item data-state="sms.service.sms"
+                ><span data-translate="sms_tabs_sms"></span>
             </oui-header-tabs-item>
-            <oui-header-tabs-item
-                data-text="{{:: 'sms_tabs_contacts' | translate }}"
-                data-state="sms.service.receivers"
-            >
+            <oui-header-tabs-item data-state="sms.service.receivers"
+                ><span data-translate="sms_tabs_contacts"></span>
             </oui-header-tabs-item>
-            <oui-header-tabs-item
-                data-text="{{:: 'sms_tabs_phonebooks' | translate }}"
-                data-state="sms.service.phonebooks"
-            >
+            <oui-header-tabs-item data-state="sms.service.phonebooks"
+                ><span data-translate="sms_tabs_phonebooks"></span>
             </oui-header-tabs-item>
-            <oui-header-tabs-item
-                data-text="{{:: 'sms_tabs_senders' | translate }}"
-                data-state="sms.service.senders"
-            >
+            <oui-header-tabs-item data-state="sms.service.senders"
+                ><span data-translate="sms_tabs_senders"></span>
             </oui-header-tabs-item>
-            <oui-header-tabs-item
-                data-text="{{:: 'sms_tabs_api_users' | translate }}"
-                data-state="sms.service.users"
-            >
+            <oui-header-tabs-item data-state="sms.service.users"
+                ><span data-translate="sms_tabs_api_users"></span>
             </oui-header-tabs-item>
-            <oui-header-tabs-item
-                data-text="{{:: 'sms_tabs_options' | translate }}"
-                data-state="sms.service.options"
-            >
+            <oui-header-tabs-item data-state="sms.service.options"
+                ><span data-translate="sms_tabs_options"></span>
             </oui-header-tabs-item>
-            <oui-header-tabs-item
-                data-text="{{:: 'sms_tabs_guides' | translate }}"
-                data-state="sms.service.guides"
-            >
+            <oui-header-tabs-item data-state="sms.service.guides"
+                ><span data-translate="sms_tabs_guides"></span>
             </oui-header-tabs-item>
         </oui-header-tabs>
     </div>

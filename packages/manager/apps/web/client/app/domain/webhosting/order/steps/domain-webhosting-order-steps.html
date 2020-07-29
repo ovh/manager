@@ -10,20 +10,25 @@
     <ovh-manager-web-domain-webhosting-order-steps-hosting
         data-available-offers="$ctrl.availableOffers"
         data-user="$ctrl.user"
+        data-stepper-position="0"
     >
     </ovh-manager-web-domain-webhosting-order-steps-hosting>
 
     <ovh-manager-web-domain-webhosting-order-steps-module
         data-get-available-modules="$ctrl.getAvailableModules({ offer })"
+        data-stepper-position="1"
     >
     </ovh-manager-web-domain-webhosting-order-steps-module>
 
-    <ovh-manager-web-domain-webhosting-order-steps-dns-configuration>
+    <ovh-manager-web-domain-webhosting-order-steps-dns-configuration
+        data-stepper-position="2"
+    >
     </ovh-manager-web-domain-webhosting-order-steps-dns-configuration>
 
     <ovh-manager-web-domain-webhosting-order-steps-duration
         data-available-offers="$ctrl.availableOffers"
         data-user="$ctrl.user"
+        data-stepper-position="3"
     >
     </ovh-manager-web-domain-webhosting-order-steps-duration>
 
@@ -34,6 +39,7 @@
         data-domain-name="$ctrl.domainName"
         data-go-back-to-dashboard="$ctrl.goBackToDashboard"
         data-prepare-checkout="$ctrl.prepareCheckout"
+        data-stepper-position="4"
     >
     </ovh-manager-web-domain-webhosting-order-steps-payment>
 </oui-stepper>

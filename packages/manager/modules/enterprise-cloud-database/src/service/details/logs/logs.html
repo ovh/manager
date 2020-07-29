@@ -11,7 +11,7 @@
                 data-translate="enterprise_cloud_database_logs_ldp_access"
             ></span>
             <span
-                class="oui-icon oui-icon-external_link"
+                class="oui-icon oui-icon-external-link"
                 aria-hidden="true"
             ></span>
         </a>
@@ -21,7 +21,7 @@
         data-row-loader="$ctrl.loadLogDetails($row.id)"
         data-page-size="10"
     >
-        <oui-column
+        <oui-datagrid-column
             data-title=":: 'enterprise_cloud_database_logs_username' | translate"
             data-property="username"
             data-sortable="asc"
@@ -29,8 +29,8 @@
             data-searchable
             data-filterable
         >
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'enterprise_cloud_database_logs_status' | translate"
             data-property="status"
             data-type="string"
@@ -39,21 +39,21 @@
             data-filterable
         >
             <span
-                class="oui-status"
-                data-ng-class="'oui-status_' + $ctrl.enterpriseCloudDatabaseService.constructor.getStatusGroup($row.status)"
+                class="oui-badge"
+                data-ng-class="'oui-badge_' + $ctrl.enterpriseCloudDatabaseService.constructor.getStatusGroup($row.status)"
                 data-ng-bind=":: ('enterprise_cloud_database_common_status_' + $row.status) | translate"
             >
             </span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'enterprise_cloud_database_logs_note' | translate"
             data-property="note"
             data-sortable
             data-searchable
             data-type="string"
         >
-        </oui-column>
-        <oui-action-menu data-align="end" data-compact>
+        </oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="end">
             <oui-action-menu-item
                 data-on-click="$ctrl.revokeAccess($row)"
                 data-disabled="$ctrl.enterpriseCloudDatabaseService.constructor.isProcessing($row.status)
@@ -64,7 +64,7 @@
                 ></span>
             </oui-action-menu-item>
         </oui-action-menu>
-        <extra-top>
+        <oui-datagrid-topbar>
             <oui-button
                 data-variant="primary"
                 data-on-click="$ctrl.grantAccess()"
@@ -75,13 +75,13 @@
                 ></span>
             </oui-button>
             <button
-                class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_small-width"
+                class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_s"
                 data-title="{{:: 'enterprise_cloud_database_common_refresh' | translate }}"
                 data-ng-click="$ctrl.refreshing=true; $ctrl.refreshLogs()"
                 data-ng-disabled="$ctrl.refreshing"
             >
                 <span class="fa fa-refresh" aria-hidden="true"></span>
             </button>
-        </extra-top>
+        </oui-datagrid-topbar>
     </oui-datagrid>
 </div>

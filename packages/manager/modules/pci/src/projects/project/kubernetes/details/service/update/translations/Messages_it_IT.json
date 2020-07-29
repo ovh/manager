@@ -2,7 +2,7 @@
   "kube_service_update_common_confirm": "Conferma",
   "kube_service_update_common_cancel": "Annulla",
   "kube_service_update_title": "Forza l’aggiornamento",
-  "kube_service_update_message": "L’aggiornamento potrebbe comportare l’irraggiungibilità temporanea di tutti i tuoi nodi. Per rendere l’impatto sui tuoi servizi minimo e trasparente, utilizziamo l’aggiornamento roll-out.",
+  "kube_service_update_message": "L’operazione di aggiornamento potrebbe comportare un’indisponibilità di uno o due minuti per ciascun nodo. Per rendere minimo o trasparente l’impatto sui servizi esposti, utilizziamo il rolling upgrade con drain dei nodi.",
   "kube_service_update_success": "Aggiornamento del cluster Kubernetes in corso...",
   "kube_service_update_error": "Si è verificato un errore durante l'aggiornamento del tuo cluster: {{ message }}",
   "kube_service__minor_version_update_title": "Passa alla versione minor di Kubernetes successiva",

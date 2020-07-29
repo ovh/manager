@@ -1,16 +1,16 @@
 <div class="row">
     <div class="col-md-9">
         <oui-back-button
-            data-heading="{{:: 'exchange_tab_ALIAS_back_button' | translate: { t0: $ctrl.account.primaryEmailDisplayName } }}"
             data-on-click="$ctrl.messaging.resetMessages(); $ctrl.hide()"
+            ><span data-translate="exchange_tab_ALIAS_back_button"></span
         ></oui-back-button>
 
         <oui-datagrid data-rows-loader="$ctrl.getAliases($config)">
-            <oui-column
+            <oui-datagrid-column
                 data-title="'exchange_tab_ALIAS_header' | translate"
                 data-property="displayName"
-            ></oui-column>
-            <oui-column
+            ></oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'exchange_tab_ACCOUNTS_table_status' | translate"
                 data-property="taskPendingId"
             >
@@ -18,12 +18,14 @@
                     data-ng-bind="'exchange_status_task_planned_or_executing' | translate"
                     data-ng-if="$value !== 0"
                 ></span>
-            </oui-column>
-            <oui-action-menu data-align="end" data-compact>
+            </oui-datagrid-column>
+            <oui-action-menu data-compact data-placement="end">
                 <oui-action-menu-item
-                    data-text="{{:: 'exchange_tab_ALIAS_delete_tooltip' | translate }}"
                     data-on-click="$ctrl.openDeletingDialog($row)"
                     data-disabled="$row.taskPendingId !== 0"
+                    ><span
+                        data-translate="exchange_tab_ALIAS_delete_tooltip"
+                    ></span
                 ></oui-action-menu-item>
             </oui-action-menu>
         </oui-datagrid>

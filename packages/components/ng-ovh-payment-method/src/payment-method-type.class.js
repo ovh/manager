@@ -1,99 +1,58 @@
-import { isNull } from 'lodash-es';
-
-import { TYPE_INTEGRATION_ENUM } from './payment-method.constants';
+import { PAYMENT_METHOD_TYPE_ENUM } from './payment-method.constants';
 
 /**
  *  Describe a payment method type object.
  */
-export default class OvhPaymentMethodType {
+export default class OvhPaymentMehtodType {
   /**
-   *  Create a OvhPaymentMethodType.
+   *  Create a OvhPaymentMehtodType.
    *
-   *  @param {Object} options Options for creating a new OvhPaymentMethodType object.
-   *  @param {Object} options.icon Informations about the payment method type icon.
-   *  @param {String} options.icon.name Name of the icon.
-   *  @param {String} options.icon.data Icon in base64.
-   *  @param {String} options.integration Type of integration of the payment type.
-   *  @param {Boolean} options.oneshot Flag indicating if we can use the payment method type
-   *                                   for oneshot payment.
-   *  @param {String} options.paymentType The name of the payment method type.
-   *  @param {Boolean} options.registerable Flag indicating if we can register the payment type.
-   *  @param {Boolean} options.registerableWithTransaction Flag indicating if we can register the
-   *                                                       payment type and in the same time
-   *                                                       pay an order.
-   *  @param {Object} [options.original] An OvhPaymentMeanType object instance if legacy.
+   *  @param {String} paymentType The name of the payment type.
    */
-  constructor(options) {
+  constructor(paymentType) {
     /**
-     *  Informations about the payment method type icon.
-     *  This object is represented by the icon name and the icon data.
-     *  @type {Object}
-     */
-    this.icon = options.icon;
-
-    /**
-     *  Type of integration of the payment type.
+     *  Name of the type of a payment method.
+     *  Will be use for helper class below.
      *  @type {String}
      */
-    this.integration = options.integration;
-
-    /**
-     *  Flag indicating if we can use the payment method type for oneshot payment.
-     *  @type {Boolean}
-     */
-    this.oneshot = options.oneshot;
-
-    /**
-     *  The name of the payment method type.
-     *  @type {String}
-     */
-    this.paymentType = options.paymentType;
-
-    /**
-     *  Flag indicating if we can register the payment type.
-     *  @type {Boolean}
-     */
-    this.registerable = options.registerable;
-
-    /**
-     *  Flag indicating if we can register the payment type and in the same time pay an order.
-     *  @type {Boolean}
-     */
-    this.registerableWithTransaction = options.registerableWithTransaction;
-
-    /**
-     *  An OvhPaymentMeanType object instance representing a legacy payment mean type.
-     *  @type {Object}
-     */
-    this.original = options.original || null;
+    this.paymentType = paymentType;
   }
 
   /**
-   *  Determine if payment method type is a legacy one (if original attribute is setted).
-   *  @return {Boolean} true if payment method type is legacy, false otherwise.
+   * Determine if payment method type is a Bank Account.
+   *
+   * @return {Boolean}
    */
-  isLegacy() {
-    return !isNull(this.original);
+  isBankAccount() {
+    return this.paymentType === PAYMENT_METHOD_TYPE_ENUM.BANK_ACCOUNT;
   }
 
   /**
-   *  Determine if payment method type require a billing contact id when creating it.
-   *  This method uses the integration attribute to determine it.
-   *  @return {Boolean} true if type requires a billing contact id false otherwise.
+   * Determine if payment method type is a Credit Card.
+   *
+   * @return {Boolean}
    */
-  isRequiringContactId() {
-    return [TYPE_INTEGRATION_ENUM.IFRAME_VANTIV].includes(this.integration);
+  isCreditCard() {
+    return this.paymentType === PAYMENT_METHOD_TYPE_ENUM.CREDIT_CARD;
   }
 
   /**
-   *  Determine if payment method type requires finalization.
-   *  This method uses the integration attribute to determine it.
-   *  @return {Boolean} true if type requires finalization false otherwise.
+   * Determine if payment method type is a Deferred Payment Account.
+   *
+   * @return {Boolean}
    */
-  isRequiringFinalization() {
-    return [
-      TYPE_INTEGRATION_ENUM.IFRAME_VANTIV,
-      TYPE_INTEGRATION_ENUM.IN_CONTEXT,
-    ].includes(this.integration);
+  isDeferredPaymentAccount() {
+    return (
+      this.paymentType === PAYMENT_METHOD_TYPE_ENUM.DEFERRED_PAYMENT_ACCOUNT
+    );
+  }
+
+  /**
+   * Determine if payment method type is a Paypal account.
+   *
+   * @return {Boolean}
+   */
+  isPaypal() {
+    return this.paymentType === PAYMENT_METHOD_TYPE_ENUM.PAYPAL;
   }
 }

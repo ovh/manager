@@ -744,7 +744,7 @@
                                     >
                                     </select>
                                     <span
-                                        class="oui-icon oui-icon-warning_circle"
+                                        class="oui-icon oui-icon-warning-circle"
                                         aria-label="{{ 'server_configuration_installation_ovh_step2_error_raid_diskUse_icon' | translate }}"
                                         data-ng-show="partition.hasWarning && !isSetPartition(partition)"
                                         data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_error_raid_diskUse_icon' | translate }}"
@@ -752,7 +752,7 @@
                                     >
                                     </span>
                                     <span
-                                        class="oui-icon oui-icon-warning_circle"
+                                        class="oui-icon oui-icon-warning-circle"
                                         aria-label="{{ 'server_configuration_installation_ovh_step2_error_raid_0' | translate }}"
                                         data-ng-show="!partition.hasWarning && !isSetPartition(partition) && partition.raid == constants.warningRaid0"
                                         data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_error_raid_0' | translate }}"
@@ -846,7 +846,7 @@
                                         data-ng-click="!setPartition.save && !newPartition.display && setPartition.delModel == null && displaySetPartition(partition)"
                                     >
                                         <span
-                                            class="oui-icon oui-icon-pen_line"
+                                            class="oui-icon oui-icon-pen_concept"
                                             aria-hidden="true"
                                         ></span>
                                     </button>
@@ -857,7 +857,7 @@
                                         data-ng-click="partition.canBeDelete && !setPartition.save && !newPartition.display && setPartition.delModel == null && deletePartition(partition)"
                                     >
                                         <span
-                                            class="oui-icon oui-icon-trash_line"
+                                            class="oui-icon oui-icon-trash_concept"
                                             aria-hidden="true"
                                         ></span>
                                     </button>
@@ -1630,7 +1630,7 @@
                                 data-ng-model="installation.options.variablePartition"
                             >
                                 <option
-                                    value=""
+                                    value
                                     data-ng-bind=":: 'server_configuration_installation_ovh_step3_partiton_none' | translate"
                                 >
                                 </option>
@@ -1839,7 +1839,7 @@
                                 data-ng-model="installation.options.sshKeyName"
                             >
                                 <option
-                                    value=""
+                                    value
                                     data-translate="server_configuration_installation_form_ssh_no"
                                 >
                                 </option>

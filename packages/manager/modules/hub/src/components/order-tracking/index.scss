@@ -4,7 +4,7 @@
   @import '~bootstrap/scss/_mixins';
   @import '~bootstrap/scss/_utilities.scss';
   @import '@ovh-ux/manager-hub/src/variables.scss';
-  @import 'oui4/dist/scss/_tokens';
+  @import '@ovh-ux/ui-kit/dist/scss/_tokens';
 
   background-color: $p-200;
   color: $p-800;
@@ -16,19 +16,12 @@
     margin-top: 1rem;
   }
 
-  > h3 {
-    font-size: $jupiter-font-size;
-    font-weight: $jupiter-font-weight;
-    margin-bottom: 0.25rem;
-  }
-
-  a {
-    color: $p-000-white;
-  }
-
-  a.oui-status {
-    padding: 0.5rem;
+  a.oui-badge {
+    line-height: 1rem;
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
     text-decoration: none;
+    font-size: 0.75rem;
     background-color: $p-100;
 
     &:hover {

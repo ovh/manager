@@ -47,305 +47,325 @@
         </button>
 
         <!-- SSH TABLE -->
-        <table class="oui-table oui-table_responsive">
-            <thead class="oui-table__headers">
-                <tr>
-                    <th
-                        class="oui-table__header oui-table__cell_sortable"
-                        tabindex="0"
-                        data-ng-click="$ctrl.orderBy('name')"
-                        data-ng-class="{'oui-table__cell_sortable-asc oui-table__cell_sorted' : $ctrl.order.by === 'name' && !$ctrl.order.reverse, 'oui-table__cell_sortable-desc oui-table__cell_sorted' : $ctrl.order.by === 'name' && $ctrl.order.reverse}"
-                    >
-                        <label
-                            class="pointer"
-                            for="sshaddname"
-                            translate="cpc_ssh_name"
-                        ></label>
-                        <span
-                            class="animate-flash-enter text-danger"
-                            data-ng-show="$ctrl.toggle.openAddSsh"
-                            >*</span
+        <div class="oui-table-responsive">
+            <table class="oui-table">
+                <thead class="oui-table__headers">
+                    <tr>
+                        <th
+                            class="oui-table__header oui-table__header_sortable"
+                            tabindex="0"
+                            data-ng-click="$ctrl.orderBy('name')"
+                            data-ng-class="{'oui-table__header_sorted' : $ctrl.order.by === 'name'}"
                         >
-                    </th>
-                    <th class="oui-table__header" tabindex="0">
-                        <label
-                            class="pointer"
-                            for="sshaddkey"
-                            translate="cpc_ssh_key"
-                        ></label>
-                        <span
-                            class="animate-flash-enter text-danger"
-                            data-ng-show="$ctrl.toggle.openAddSsh"
-                            >*</span
-                        >
-                    </th>
-                    <th
-                        class="oui-table__header oui-table__cell_action text-center"
-                        tabindex="0"
-                        data-ng-click="$ctrl.getSshKeys(true)"
-                        write-right-required
-                    >
-                        <i class="glyphicon glyphicon-refresh"></i>
-                    </th>
-                </tr>
-            </thead>
-            <tbody
-                data-ng-show="$ctrl.toggle.openAddSsh"
-                class="oui-table__body animate-opacity2-leave"
-            >
-                <tr class="oui-table__row" tabindex="0">
-                    <td colspan="3" class="oui-table__cell">
-                        <div
-                            data-ng-slide-down="$ctrl.toggle.openAddSsh"
-                            lazy-render
-                            duration="0.3"
-                        >
-                            <form
-                                name="$ctrl.addSshKeyForm"
-                                class="ovh-form-flat container-fluid no-space"
-                                ng-submit="$ctrl.postSshKey()"
-                                novalidate
+                            <label
+                                class="pointer"
+                                for="sshaddname"
+                                translate="cpc_ssh_name"
+                            ></label>
+                            <span
+                                class="animate-flash-enter text-danger"
+                                data-ng-show="$ctrl.toggle.openAddSsh"
+                                >*</span
                             >
-                                <div class="row-fluid">
-                                    <div class="col-sm-3 no-space">
-                                        <div class="space-p8 vertical-top">
-                                            <input
-                                                type="text"
-                                                class="oui-input error-animate-shake-light"
-                                                id="sshaddname"
-                                                name="sshaddname"
-                                                placeholder="{{ ::'cpc_ssh_add_name' | translate}}"
-                                                data-ng-disabled="$ctrl.createKey.loading"
-                                                data-ng-model="$ctrl.sshKey.name"
-                                                required
-                                                cuc-autofocus
-                                                data-ng-pattern="/^[\w\-\s]+$/"
-                                                data-ng-maxlength="255"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-9 no-space">
-                                        <div class="space-p8">
-                                            <textarea
-                                                class="oui-textarea error-animate-shake-light vertical-resize"
-                                                id="sshaddkey"
-                                                name="sshaddkey"
-                                                rows="3"
-                                                placeholder="{{ ::'cpc_ssh_add_key' | translate}}"
-                                                data-ng-disabled="$ctrl.createKey.loading"
-                                                data-ng-model="$ctrl.sshKey.publicKey"
-                                                required
-                                            ></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row-fluid">
-                                    <div class="col-sm-12 no-space">
-                                        <div
-                                            class="left-space-p8 right-space-p8 text-danger"
-                                            data-ng-messages="$ctrl.addSshKeyForm.sshaddname.$error"
-                                            data-ng-if="$ctrl.addSshKeyForm.sshaddname.$dirty"
-                                        >
-                                            <p
-                                                class="animate-fadeInLeft-enter animate-fadeOutRight-leave"
-                                                data-ng-message="required"
-                                            >
-                                                <span
-                                                    translate="cpc_ssh_error_required_name"
-                                                ></span>
-                                            </p>
-                                            <p
-                                                class="animate-fadeInLeft-enter animate-fadeOutRight-leave"
-                                                data-ng-message="maxlength"
-                                            >
-                                                <span
-                                                    translate="cpc_ssh_error_max_char"
-                                                ></span>
-                                            </p>
-                                            <p
-                                                class="animate-fadeInLeft-enter animate-fadeOutRight-leave"
-                                                data-ng-message="pattern"
-                                            >
-                                                <span
-                                                    translate="cpc_ssh_error_pattern_name"
-                                                ></span>
-                                            </p>
-                                        </div>
-
-                                        <div
-                                            class="left-space-p8 right-space-p8 text-danger"
-                                            data-ng-messages="$ctrl.addSshKeyForm.sshaddkey.$error"
-                                            data-ng-if="$ctrl.addSshKeyForm.sshaddkey.$dirty"
-                                        >
-                                            <p
-                                                class="animate-fadeInLeft-enter animate-fadeOutRight-leave"
-                                                data-ng-message="required"
-                                            >
-                                                <span
-                                                    translate="cpc_ssh_error_required_key"
-                                                ></span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div
-                                    class="row-fluid"
-                                    data-ng-if="$ctrl.createKey.loading"
-                                >
-                                    <oui-spinner size="s"></oui-spinner>
-                                </div>
-                                <div
-                                    class="row-fluid"
-                                    data-ng-if="!$ctrl.createKey.loading"
-                                >
-                                    <div
-                                        class="col-sm-12 bottom-space-p4 top-space-p12 text-center"
-                                    >
-                                        <button
-                                            type="reset"
-                                            class="oui-button oui-button_secondary"
-                                            data-ng-disabled="$ctrl.createKey.loading"
-                                            data-ng-click="$ctrl.toggleAddSshKey()"
-                                        >
-                                            <span
-                                                translate="cpc_ssh_add_button_cancel"
-                                            ></span>
-                                        </button>
-                                        <button
-                                            type="submit"
-                                            class="oui-button oui-button_primary"
-                                            data-ng-disabled="$ctrl.addSshKeyForm.$invalid"
-                                        >
-                                            <span
-                                                translate="cpc_ssh_add_button_submit"
-                                            ></span>
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <div class="row-fluid">
-                                    <div
-                                        class="col-sm-12 bottom-space-p8 text-center"
-                                    >
-                                        <span class="fs10"
-                                            ><span class="text-danger">*</span>
-                                            {{ 'common_required_field' |
-                                            translate }}</span
-                                        >
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-            <tbody data-ng-show="$ctrl.keys.loading" class="oui-table__body">
-                <tr class="oui-table__row">
-                    <td colspan="3" class="text-center">
-                        <oui-spinner></oui-spinner>
-                    </td>
-                </tr>
-            </tbody>
-            <tbody
-                data-ng-if="!$ctrl.keys.loading && $ctrl.table.sshKeysFilter.length === 0"
-                class="oui-table__body"
-            >
-                <tr class="oui-table__row">
-                    <td colspan="3" class="text-center">
-                        <span translate="cpc_ssh_empty"></span><br />
-                        <span translate="cpc_ssh_empty_add"></span>
-                    </td>
-                </tr>
-            </tbody>
-            <tbody
-                data-ng-if="!$ctrl.keys.loading && $ctrl.table.sshKeysFilter === null"
-                class="oui-table__body"
-            >
-                <tr class="oui-table__row">
-                    <td colspan="3" class="text-center">
-                        <i class="fa fa-bug"></i>
-                        <span translate="cpc_ssh_error"></span>
-                    </td>
-                </tr>
-            </tbody>
-            <tbody data-ng-hide="$ctrl.keys.loading" class="oui-table__body">
-                <tr
-                    data-ng-repeat="ssh in $ctrl.table.sshKeysFilter | orderBy:$ctrl.order.by:$ctrl.order.reverse track by ssh.id"
-                    class="oui-table__row"
-                >
-                    <td
-                        data-title="{{::'cpc_ssh_name' | translate}}"
-                        class="oui-table__cell"
-                    >
-                        <span
-                            data-ng-class="{'opacity2-leave' : $ctrl.toggle.sshDeleteId === ssh.id,
-                                            'opacity2-enter' : $ctrl.toggle.sshDeleteId !== ssh.id}"
-                            data-ng-bind="::ssh.name"
+                            <span
+                                aria-hidden="true"
+                                class="oui-icon oui-icon-sort-inactive"
+                                data-ng-class="{
+                                    'oui-icon-sort-inactive': $ctrl.order.by !== 'name',
+                                    'oui-icon-sort-up': $ctrl.order.by === 'name' && !$ctrl.order.reverse,
+                                    'oui-icon-sort-down' : $ctrl.order.by === 'name' && $ctrl.order.reverse
+                                }"
+                            >
+                            </span>
+                        </th>
+                        <th class="oui-table__header" tabindex="0">
+                            <label
+                                class="pointer"
+                                for="sshaddkey"
+                                translate="cpc_ssh_key"
+                            ></label>
+                            <span
+                                class="animate-flash-enter text-danger"
+                                data-ng-show="$ctrl.toggle.openAddSsh"
+                                >*</span
+                            >
+                        </th>
+                        <th
+                            class="oui-table__header oui-table__cell_action text-center"
+                            tabindex="0"
+                            data-ng-click="$ctrl.getSshKeys(true)"
+                            write-right-required
                         >
-                        </span>
-                    </td>
+                            <i class="glyphicon glyphicon-refresh"></i>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody
+                    data-ng-show="$ctrl.toggle.openAddSsh"
+                    class="oui-table__body animate-opacity2-leave"
+                >
+                    <tr class="oui-table__row" tabindex="0">
+                        <td colspan="3" class="oui-table__cell">
+                            <div
+                                data-ng-slide-down="$ctrl.toggle.openAddSsh"
+                                lazy-render
+                                duration="0.3"
+                            >
+                                <form
+                                    name="$ctrl.addSshKeyForm"
+                                    class="ovh-form-flat container-fluid no-space"
+                                    ng-submit="$ctrl.postSshKey()"
+                                    novalidate
+                                >
+                                    <div class="row-fluid">
+                                        <div class="col-sm-3 no-space">
+                                            <div class="space-p8 vertical-top">
+                                                <input
+                                                    type="text"
+                                                    class="oui-input error-animate-shake-light"
+                                                    id="sshaddname"
+                                                    name="sshaddname"
+                                                    placeholder="{{ ::'cpc_ssh_add_name' | translate}}"
+                                                    data-ng-disabled="$ctrl.createKey.loading"
+                                                    data-ng-model="$ctrl.sshKey.name"
+                                                    required
+                                                    cuc-autofocus
+                                                    data-ng-pattern="/^[\w\-\s]+$/"
+                                                    data-ng-maxlength="255"
+                                                />
+                                            </div>
+                                        </div>
 
-                    <td
-                        data-title="{{::'cpc_ssh_key' | translate}}"
-                        class="oui-table__cell"
+                                        <div class="col-sm-9 no-space">
+                                            <div class="space-p8">
+                                                <textarea
+                                                    class="oui-textarea error-animate-shake-light vertical-resize"
+                                                    id="sshaddkey"
+                                                    name="sshaddkey"
+                                                    rows="3"
+                                                    placeholder="{{ ::'cpc_ssh_add_key' | translate}}"
+                                                    data-ng-disabled="$ctrl.createKey.loading"
+                                                    data-ng-model="$ctrl.sshKey.publicKey"
+                                                    required
+                                                ></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row-fluid">
+                                        <div class="col-sm-12 no-space">
+                                            <div
+                                                class="left-space-p8 right-space-p8 text-danger"
+                                                data-ng-messages="$ctrl.addSshKeyForm.sshaddname.$error"
+                                                data-ng-if="$ctrl.addSshKeyForm.sshaddname.$dirty"
+                                            >
+                                                <p
+                                                    class="animate-fadeInLeft-enter animate-fadeOutRight-leave"
+                                                    data-ng-message="required"
+                                                >
+                                                    <span
+                                                        translate="cpc_ssh_error_required_name"
+                                                    ></span>
+                                                </p>
+                                                <p
+                                                    class="animate-fadeInLeft-enter animate-fadeOutRight-leave"
+                                                    data-ng-message="maxlength"
+                                                >
+                                                    <span
+                                                        translate="cpc_ssh_error_max_char"
+                                                    ></span>
+                                                </p>
+                                                <p
+                                                    class="animate-fadeInLeft-enter animate-fadeOutRight-leave"
+                                                    data-ng-message="pattern"
+                                                >
+                                                    <span
+                                                        translate="cpc_ssh_error_pattern_name"
+                                                    ></span>
+                                                </p>
+                                            </div>
+
+                                            <div
+                                                class="left-space-p8 right-space-p8 text-danger"
+                                                data-ng-messages="$ctrl.addSshKeyForm.sshaddkey.$error"
+                                                data-ng-if="$ctrl.addSshKeyForm.sshaddkey.$dirty"
+                                            >
+                                                <p
+                                                    class="animate-fadeInLeft-enter animate-fadeOutRight-leave"
+                                                    data-ng-message="required"
+                                                >
+                                                    <span
+                                                        translate="cpc_ssh_error_required_key"
+                                                    ></span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="row-fluid"
+                                        data-ng-if="$ctrl.createKey.loading"
+                                    >
+                                        <oui-spinner size="s"></oui-spinner>
+                                    </div>
+                                    <div
+                                        class="row-fluid"
+                                        data-ng-if="!$ctrl.createKey.loading"
+                                    >
+                                        <div
+                                            class="col-sm-12 bottom-space-p4 top-space-p12 text-center"
+                                        >
+                                            <button
+                                                type="reset"
+                                                class="oui-button oui-button_secondary"
+                                                data-ng-disabled="$ctrl.createKey.loading"
+                                                data-ng-click="$ctrl.toggleAddSshKey()"
+                                            >
+                                                <span
+                                                    translate="cpc_ssh_add_button_cancel"
+                                                ></span>
+                                            </button>
+                                            <button
+                                                type="submit"
+                                                class="oui-button oui-button_primary"
+                                                data-ng-disabled="$ctrl.addSshKeyForm.$invalid"
+                                            >
+                                                <span
+                                                    translate="cpc_ssh_add_button_submit"
+                                                ></span>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="row-fluid">
+                                        <div
+                                            class="col-sm-12 bottom-space-p8 text-center"
+                                        >
+                                            <span class="fs10"
+                                                ><span class="text-danger"
+                                                    >*</span
+                                                >
+                                                {{ 'common_required_field' |
+                                                translate }}</span
+                                            >
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody
+                    data-ng-show="$ctrl.keys.loading"
+                    class="oui-table__body"
+                >
+                    <tr class="oui-table__row">
+                        <td colspan="3" class="text-center">
+                            <oui-spinner></oui-spinner>
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody
+                    data-ng-if="!$ctrl.keys.loading && $ctrl.table.sshKeysFilter.length === 0"
+                    class="oui-table__body"
+                >
+                    <tr class="oui-table__row">
+                        <td colspan="3" class="text-center">
+                            <span translate="cpc_ssh_empty"></span><br />
+                            <span translate="cpc_ssh_empty_add"></span>
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody
+                    data-ng-if="!$ctrl.keys.loading && $ctrl.table.sshKeysFilter === null"
+                    class="oui-table__body"
+                >
+                    <tr class="oui-table__row">
+                        <td colspan="3" class="text-center">
+                            <i class="fa fa-bug"></i>
+                            <span translate="cpc_ssh_error"></span>
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody
+                    data-ng-hide="$ctrl.keys.loading"
+                    class="oui-table__body"
+                >
+                    <tr
+                        data-ng-repeat="ssh in $ctrl.table.sshKeysFilter | orderBy:$ctrl.order.by:$ctrl.order.reverse track by ssh.id"
+                        class="oui-table__row"
                     >
-                        <div
-                            data-ng-class="{'opacity2-leave' : $ctrl.toggle.sshDeleteId === ssh.id,
-                                            'opacity2-enter' : $ctrl.toggle.sshDeleteId !== ssh.id}"
+                        <td
+                            data-title="{{::'cpc_ssh_name' | translate}}"
+                            class="oui-table__cell"
+                        >
+                            <span
+                                data-ng-class="{'opacity2-leave' : $ctrl.toggle.sshDeleteId === ssh.id,
+                                                'opacity2-enter' : $ctrl.toggle.sshDeleteId !== ssh.id}"
+                                data-ng-bind="::ssh.name"
+                            >
+                            </span>
+                        </td>
+
+                        <td
+                            data-title="{{::'cpc_ssh_key' | translate}}"
+                            class="oui-table__cell"
+                        >
+                            <div
+                                data-ng-class="{'opacity2-leave' : $ctrl.toggle.sshDeleteId === ssh.id,
+                                                'opacity2-enter' : $ctrl.toggle.sshDeleteId !== ssh.id}"
+                            >
+                                <button
+                                    class="no-style"
+                                    data-ng-click="sshkeyDeploy = !sshkeyDeploy; $ctrl.constructor.selectSshKey(ssh.id, sshkeyDeploy);"
+                                >
+                                    <i
+                                        class="fa fa-caret-right rotate"
+                                        data-ng-class="{'rotate90' : sshkeyDeploy}"
+                                    ></i>
+                                </button>
+
+                                <span
+                                    class="animate-fadeInUp-enter animated-300 animate-fadeOutDown-leave"
+                                    data-ng-if="!sshkeyDeploy"
+                                >
+                                    {{ ::ssh.publicKey | sshKeyMin}}
+                                </span>
+
+                                <div
+                                    data-ng-slide-down="sshkeyDeploy"
+                                    duration="0.3"
+                                    style="padding-left: 19px;"
+                                >
+                                    <textarea
+                                        class="no-space no-style vertical-resize full-width no-outline"
+                                        id="sshkey_{{ssh.id}}"
+                                        readonly="true"
+                                        onclick="this.select();"
+                                        data-ng-bind="::ssh.publicKey"
+                                    ></textarea>
+                                </div>
+                            </div>
+                        </td>
+
+                        <td
+                            data-title=""
+                            class="oui-table__cell text-center"
+                            write-right-required
                         >
                             <button
                                 class="no-style"
-                                data-ng-click="sshkeyDeploy = !sshkeyDeploy; $ctrl.constructor.selectSshKey(ssh.id, sshkeyDeploy);"
+                                data-ng-click="$ctrl.openDeleteSshKey(ssh)"
+                                data-ng-disabled="$ctrl.toggle.sshDeleteId === ssh.id"
                             >
                                 <i
-                                    class="fa fa-caret-right rotate"
-                                    data-ng-class="{'rotate90' : sshkeyDeploy}"
+                                    class="glyphicon glyphicon-trash right-space-m8"
                                 ></i>
                             </button>
-
-                            <span
-                                class="animate-fadeInUp-enter animated-300 animate-fadeOutDown-leave"
-                                data-ng-if="!sshkeyDeploy"
-                            >
-                                {{ ::ssh.publicKey | sshKeyMin}}
-                            </span>
-
-                            <div
-                                data-ng-slide-down="sshkeyDeploy"
-                                duration="0.3"
-                                style="padding-left: 19px;"
-                            >
-                                <textarea
-                                    class="no-space no-style vertical-resize full-width no-outline"
-                                    id="sshkey_{{ssh.id}}"
-                                    readonly="true"
-                                    onclick="this.select();"
-                                    data-ng-bind="::ssh.publicKey"
-                                ></textarea>
-                            </div>
-                        </div>
-                    </td>
-
-                    <td
-                        data-title=""
-                        class="oui-table__cell text-center"
-                        write-right-required
-                    >
-                        <button
-                            class="no-style"
-                            data-ng-click="$ctrl.openDeleteSshKey(ssh)"
-                            data-ng-disabled="$ctrl.toggle.sshDeleteId === ssh.id"
-                        >
-                            <i
-                                class="glyphicon glyphicon-trash right-space-m8"
-                            ></i>
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <!-- NO Pagination -->
     </div>
 </div>

@@ -6,7 +6,7 @@
 >
     <div class="oui-modal__header">
         <button
-            class="oui-icon oui-icon-close_thin oui-modal__close-button"
+            class="oui-icon oui-modal__close-button oui-icon-close"
             type="button"
             aria-label="Exit"
             data-ng-click="VmRescueCtrl.cancel()"
@@ -44,7 +44,7 @@
                     data-ng-options="image.name for image in VmRescueCtrl.data.images"
                 >
                     <option
-                        value=""
+                        value
                         data-translate="cpc_rescue_mode_defaut"
                     ></option>
                 </select>

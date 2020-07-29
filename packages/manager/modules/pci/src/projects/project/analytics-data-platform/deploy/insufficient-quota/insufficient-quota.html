@@ -1,5 +1,4 @@
 <oui-modal
-    data-title="{{ ::'analytics_data_platform_deploy_quota_error_model_title' | translate }}"
     data-primary-action="$ctrl.closeModal()"
     data-primary-label="{{ ::'analytics_data_platform_deploy_quota_error_model_button_increase_quota' | translate }}"
     data-secondary-action="$ctrl.dismissModal()"
@@ -7,87 +6,72 @@
     data-secondary-label="{{ ::'analytics_data_platform_common_close' | translate }}"
     data-type="error"
     data-ng-init="localizedStorageUnit = ('analytics_data_platform_common_unit_gb' | translate)"
+    data-heading="{{ ::'analytics_data_platform_deploy_quota_error_model_title' | translate }}"
 >
     <p
         data-translate="analytics_data_platform_deploy_quota_error_model_description"
         data-translate-values="{cloud_name: $ctrl.publicCloudName}"
     ></p>
-    <div
-        class="oui-datagrid-responsive-container
-            oui-datagrid-responsive-container_sticky-checkbox
-            analytics-data-platform-quota-info"
-    >
-        <div
-            class="oui-datagrid-responsive-container__sticky-container
-                oui-datagrid-responsive-container__sticky-container_scroll-end
-                analytics-data-platform-quota-info-container"
-        >
-            <div class="oui-datagrid-responsive-container__overflow-container">
-                <table class="oui-datagrid">
-                    <thead class="oui-datagrid__headers">
-                        <tr>
-                            <th
-                                class="oui-datagrid__header oui-datagrid__cell-sticky text-center"
-                            ></th>
-                            <th
-                                class="oui-datagrid__header text-center"
-                                tabindex="0"
-                                data-translate="analytics_data_platform_deploy_quota_used"
-                            ></th>
-                            <th
-                                class="oui-datagrid__header text-center"
-                                tabindex="0"
-                                data-translate="analytics_data_platform_deploy_quota_required_for_cluster"
-                            ></th>
-                            <th
-                                class="oui-datagrid__header text-center"
-                                tabindex="0"
-                                data-translate="analytics_data_platform_deploy_quota_available"
-                            ></th>
-                            <th
-                                class="oui-datagrid__header text-center"
-                                tabindex="0"
-                                data-translate="analytics_data_platform_deploy_quota_total_required"
-                            ></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr
-                            class="oui-datagrid__row"
-                            data-ng-repeat="compute in $ctrl.quotas track by compute.computeName"
+    <div class="analytics-data-platform-quota-info oui-table-responsive">
+        <table class="oui-table">
+            <thead class="oui-table__headers">
+                <tr>
+                    <th class="oui-table__header text-center"></th>
+                    <th
+                        class="oui-table__header text-center"
+                        tabindex="0"
+                        data-translate="analytics_data_platform_deploy_quota_used"
+                    ></th>
+                    <th
+                        class="oui-table__header text-center"
+                        tabindex="0"
+                        data-translate="analytics_data_platform_deploy_quota_required_for_cluster"
+                    ></th>
+                    <th
+                        class="oui-table__header text-center"
+                        tabindex="0"
+                        data-translate="analytics_data_platform_deploy_quota_available"
+                    ></th>
+                    <th
+                        class="oui-table__header text-center"
+                        tabindex="0"
+                        data-translate="analytics_data_platform_deploy_quota_total_required"
+                    ></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr
+                    class="oui-table__row"
+                    data-ng-repeat="compute in $ctrl.quotas track by compute.computeName"
+                >
+                    <td class="oui-table__cell text-center">
+                        <span data-ng-bind="compute.computeName"></span>
+                    </td>
+                    <td class="oui-table__cell text-center">
+                        <span
+                            data-ng-bind="compute.unit ? compute.currentlyUsed + ' ' + localizedStorageUnit : compute.currentlyUsed"
+                        ></span>
+                    </td>
+                    <td class="oui-table__cell text-center">
+                        <span
+                            data-ng-bind="compute.unit ? compute.requiredForCluster + ' ' + localizedStorageUnit : compute.requiredForCluster"
+                        ></span>
+                    </td>
+                    <td class="oui-table__cell text-center">
+                        <span
+                            data-ng-bind="compute.unit ? compute.maxLimit + ' ' + localizedStorageUnit : compute.maxLimit"
+                        ></span>
+                    </td>
+                    <td class="oui-table__cell text-center">
+                        <span
+                            data-ng-class="['oui-badge', {'oui-badge_success': compute.maxLimit >= compute.required}, {'oui-badge_error': compute.maxLimit < compute.required} ]"
+                            data-ng-bind="compute.unit ? compute.required + ' ' + localizedStorageUnit : compute.required"
                         >
-                            <td
-                                class="oui-datagrid__cell oui-datagrid__cell-sticky text-center"
-                            >
-                                <span data-ng-bind="compute.computeName"></span>
-                            </td>
-                            <td class="oui-datagrid__cell text-center">
-                                <span
-                                    data-ng-bind="compute.unit ? compute.currentlyUsed + ' ' + localizedStorageUnit : compute.currentlyUsed"
-                                ></span>
-                            </td>
-                            <td class="oui-datagrid__cell text-center">
-                                <span
-                                    data-ng-bind="compute.unit ? compute.requiredForCluster + ' ' + localizedStorageUnit : compute.requiredForCluster"
-                                ></span>
-                            </td>
-                            <td class="oui-datagrid__cell text-center">
-                                <span
-                                    data-ng-bind="compute.unit ? compute.maxLimit + ' ' + localizedStorageUnit : compute.maxLimit"
-                                ></span>
-                            </td>
-                            <td class="oui-datagrid__cell text-center">
-                                <span
-                                    data-ng-class="['oui-status', {'oui-status_success': compute.maxLimit >= compute.required}, {'oui-status_error': compute.maxLimit < compute.required} ]"
-                                    data-ng-bind="compute.unit ? compute.required + ' ' + localizedStorageUnit : compute.required"
-                                >
-                                </span>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     <p
         class="pt-2"

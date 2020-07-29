@@ -21,7 +21,7 @@
                             </li>
                         </ul>
                     </oui-tile-description>
-                    <oui-action-menu data-compact data-align="end">
+                    <oui-action-menu data-compact data-placement="end">
                         <oui-action-menu-item
                             data-href="{{ ::$ctrl.actions.manageAlldom.href }}"
                         >
@@ -38,17 +38,17 @@
                 >
                     <oui-tile-description>
                         <span
-                            class="oui-status oui-status_success"
+                            class="oui-badge oui-badge_success"
                             data-translate="domain_dashboard_dns_management_dnsHostedOK"
                             data-ng-if="$ctrl.dnsStatus.isOk && $ctrl.dnsStatus.isHosted"
                         ></span>
                         <span
-                            class="oui-status oui-status_info"
+                            class="oui-badge oui-badge_info"
                             data-translate="domain_dashboard_dns_management_dnsExternalOK"
                             data-ng-if="$ctrl.dnsStatus.isOk && !$ctrl.dnsStatus.isHosted"
                         ></span>
                         <span
-                            class="oui-status oui-status_error"
+                            class="oui-badge oui-badge_error"
                             data-translate="domain_dashboard_dns_management_dnsKO"
                             data-ng-if="!$ctrl.dnsStatus.isOk"
                         ></span>
@@ -66,10 +66,12 @@
                             ></span>
                         </small>
                     </oui-tile-description>
-                    <oui-action-menu data-compact data-align="end">
+                    <oui-action-menu data-compact data-placement="end">
                         <oui-action-menu-item
-                            data-text="{{ ::'domain_dashboard_dns_management_dns_details' | translate }}"
                             data-on-click="$ctrl.goToDnsManagement()"
+                            ><span
+                                data-translate="domain_dashboard_dns_management_dns_details"
+                            ></span
                         ></oui-action-menu-item>
                     </oui-action-menu>
                 </oui-tile-definition>
@@ -100,13 +102,14 @@
                     </oui-tile-description>
                     <oui-action-menu
                         data-compact
-                        data-align="end"
+                        data-placement="end"
                         data-ng-if="!$ctrl.domain.hasDnsAnycast && $ctrl.domain.dnsAvailableOptions.length"
                     >
                         <oui-action-menu-item
-                            data-text="{{ ::'domain_configuration_dnsanycast_title_button' | translate }}"
                             data-on-click="$ctrl.goToDnsAnycast()"
-                        >
+                            ><span
+                                data-translate="domain_configuration_dnsanycast_title_button"
+                            ></span>
                         </oui-action-menu-item>
                     </oui-action-menu>
                 </oui-tile-definition>
@@ -132,8 +135,8 @@
                             ></i>
                         </a>
                         <span
-                            class="oui-status"
-                            data-ng-class="{ 'oui-status_error': !$ctrl.hasStart10mOffer, 'oui-status_success': $ctrl.hasStart10mOffer }"
+                            class="oui-badge"
+                            data-ng-class="{ 'oui-badge_error': !$ctrl.hasStart10mOffer, 'oui-badge_success': $ctrl.hasStart10mOffer }"
                             data-ng-bind="::($ctrl.hasStart10mOffer ? 'common_activated' : 'common_desactivated') | translate"
                             data-ng-if="!(ctrlDomain.canOrderHosting && ctrlDomain.isAdminOrBilling && !$ctrl.hasStart10mOffer)"
                         >
@@ -141,8 +144,8 @@
                     </oui-tile-description>
                     <oui-action-menu
                         data-compact
-                        data-align="end"
                         data-ng-if="ctrlDomain.canOrderHosting && ctrlDomain.isAdminOrBilling"
+                        data-placement="end"
                     >
                         <oui-action-menu-item
                             href="{{:: $ctrl.enableWebhostingLink }}"
@@ -171,12 +174,14 @@
                     </oui-tile-description>
                     <oui-action-menu
                         data-compact
-                        data-align="end"
                         data-ng-if="!$ctrl.loading.associatedHosting && ctrlDomain.canOrderHosting && ctrlDomain.isAdminOrBilling"
+                        data-placement="end"
                     >
                         <oui-action-menu-item
-                            data-text="{{ ::'domain_configuration_order_web_hosting' | translate }}"
                             data-on-click="$ctrl.goToWebhostingOrder()"
+                            ><span
+                                data-translate="domain_configuration_order_web_hosting"
+                            ></span
                         ></oui-action-menu-item>
                     </oui-action-menu>
                 </oui-tile-definition>
@@ -273,13 +278,13 @@
                             data-on-change="$ctrl.switchTheStateOfProtection()"
                         ></oui-switch>
                         <span
-                            class="mt-2 ml-1 d-inline-block align-middle oui-status"
+                            class="mt-2 ml-1 d-inline-block align-middle oui-badge"
                             data-ng-if="!$ctrl.isSwitchingProtectionStatus"
                             data-translate="{{ 'domain_dashboard_protection_' + $ctrl.domain.protection }}"
                             data-ng-class="{
-                              'oui-status_success': $ctrl.vm.protection.enabled,
-                              'oui-status_warning': $ctrl.vm.protection.isUnavailable,
-                              'oui-status_error': !$ctrl.vm.protection.enabled && !$ctrl.vm.protection.isUnavailable
+                              'oui-badge_success': $ctrl.vm.protection.enabled,
+                              'oui-badge_warning': $ctrl.vm.protection.isUnavailable,
+                              'oui-badge_error': !$ctrl.vm.protection.enabled && !$ctrl.vm.protection.isUnavailable
                             }"
                         ></span>
                         <oui-spinner
@@ -330,13 +335,13 @@
                             data-on-change="$ctrl.switchDnssecStatus()"
                         ></oui-switch>
                         <span
-                            class="mt-2 ml-1 d-inline-block align-middle oui-status"
+                            class="mt-2 ml-1 d-inline-block align-middle oui-badge"
                             data-ng-if="!$ctrl.isSwitchingDnssecStatus"
                             data-translate="{{ 'domain_configuration_dnssec_' + $ctrl.domain.dnssecStatus }}"
                             data-ng-class="{
-                              'oui-status_success': $ctrl.vm.dnssec.enabled,
-                              'oui-status_warning': $ctrl.vm.dnssec.isUnavailable,
-                              'oui-status_error': !$ctrl.vm.dnssec.enabled && !$ctrl.vm.dnssec.isUnavailable
+                              'oui-badge_success': $ctrl.vm.dnssec.enabled,
+                              'oui-badge_warning': $ctrl.vm.dnssec.isUnavailable,
+                              'oui-badge_error': !$ctrl.vm.dnssec.enabled && !$ctrl.vm.dnssec.isUnavailable
                             }"
                         ></span>
                         <oui-spinner
@@ -467,7 +472,7 @@
                             </p>
                         </ul>
                     </oui-tile-description>
-                    <oui-action-menu data-compact data-align="end">
+                    <oui-action-menu data-compact data-placement="end">
                         <oui-action-menu-item
                             ng-if="$ctrl.actions.manageContact.href"
                             aria-label="{{ ::$ctrl.actions.manageContact.text }}"
@@ -483,12 +488,13 @@
                             data-ng-if="$ctrl.loading.changeOwner"
                         ></oui-spinner>
                         <oui-action-menu-item
-                            data-text="{{ ::$ctrl.actions.changeOwner.text }}"
                             aria-label="{{ ::$ctrl.actions.changeOwner.text }}"
                             data-href="{{ ::$ctrl.actions.changeOwner.href }}"
                             data-ng-if="$ctrl.actions.changeOwner.href && !$ctrl.loading.changeOwner"
                             data-external
-                        >
+                            ><span
+                                data-ng-bind="::$ctrl.actions.changeOwner.text"
+                            ></span>
                         </oui-action-menu-item>
                         <oui-action-menu-item
                             aria-label="domain_configuration_update_owner"
@@ -554,8 +560,8 @@
                     </oui-tile-description>
                     <oui-action-menu
                         data-compact
-                        data-align="end"
                         data-ng-if="$ctrl.options.dnsAnycast && $ctrl.options.dnsAnycast.optionActivated"
+                        data-placement="end"
                     >
                         <oui-action-menu-item
                             aria-label="{{ ::'domain_dashboard_options_desactivate_option' | translate }}"

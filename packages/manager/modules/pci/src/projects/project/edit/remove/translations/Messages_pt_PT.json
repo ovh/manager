@@ -1,6 +1,6 @@
 {
   "pci_projects_project_edit_remove_title": "Eliminar o projeto",
-  "pci_projects_project_edit_remove_please_note": "É importante ter em conta que os seguintes elementos serão eliminados:",
+  "pci_projects_project_edit_remove_please_note": "Tenha em conta que todos os serviços, recursos, parâmetros e dados serão eliminados e não poderão ser recuperados posteriormente, à exceção dos IP Failovers, que terão estado “parking”.",
   "pci_projects_project_edit_remove_instances": "As suas instâncias",
   "pci_projects_project_edit_remove_volumes": "Os seus volumes",
   "pci_projects_project_edit_remove_object_containers": "Os seus containers de objetos",
@@ -11,7 +11,7 @@
   "pci_projects_project_edit_remove_object_kubernetes": "Os seus clusters Kubernetes",
   "pci_projects_project_edit_remove_object_ip": "Os seus IP Failover serão parados",
   "pci_projects_project_edit_remove_submit": "Eliminar o projeto",
-  "pci_projects_project_edit_remove_cancel": "Anular",
+  "pci_projects_project_edit_remove_cancel": "Cancelar",
   "pci_projects_project_edit_remove_error": "Ocorreu um erro ao eliminar o projeto: {{ error }}",
   "pci_projects_project_edit_remove_success": "Uma confirmação da eliminação foi enviada para o seu e-mail."
 }

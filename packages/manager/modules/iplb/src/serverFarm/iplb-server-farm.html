@@ -26,23 +26,23 @@
         ></a>
 
         <oui-datagrid data-rows="farm.servers.data">
-            <oui-column
+            <oui-datagrid-column
                 data-title="'iplb_farm_server_list_col_server' | translate"
                 data-property="serverId"
                 data-sortable="asc"
             >
                 {{ $row.displayName || $row.serverId }}
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'iplb_farm_server_list_col_ipv4' | translate"
                 data-property="address"
                 data-sortable
-            ></oui-column>
-            <oui-column
+            ></oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'iplb_farm_server_list_col_active' | translate"
                 data-property="status"
                 data-sortable
-                class="oui-table__cell_action"
+                class="oui-datagrid__cell_action"
             >
                 <span class="oui-switch">
                     <label class="oui-switch__label-container">
@@ -58,8 +58,8 @@
                         ></span>
                     </label>
                 </span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'iplb_farm_server_list_col_status' | translate"
                 data-property="serverState"
                 data-sortable
@@ -70,24 +70,23 @@
                     role="button"
                     data-ng-click="ctrl.seeServerStatus($row)"
                 ></iplb-server-status>
-            </oui-column>
-            <oui-action-menu data-align="end" data-compact>
+            </oui-datagrid-column>
+            <oui-action-menu data-compact data-placement="end">
                 <oui-action-menu-item
-                    data-text="{{'iplb_preview_see' | translate}}"
                     data-on-click="ctrl.seeServerPreview($row)"
+                    ><span data-translate="iplb_preview_see"></span
                 ></oui-action-menu-item>
-                <oui-action-menu-item
-                    data-text="{{'iplb_farm_server_status_see' | translate}}"
-                    data-on-click="ctrl.seeServerStatus($row)"
+                <oui-action-menu-item data-on-click="ctrl.seeServerStatus($row)"
+                    ><span data-translate="iplb_farm_server_status_see"></span
                 ></oui-action-menu-item>
                 <oui-action-menu-divider></oui-action-menu-divider>
                 <oui-action-menu-item
-                    data-text="{{'iplb_modify' | translate}}"
                     data-on-click="ctrl.updateServer(farm.farmId, $row.serverId)"
+                    ><span data-translate="iplb_modify"></span
                 ></oui-action-menu-item>
                 <oui-action-menu-item
-                    data-text="{{'iplb_remove' | translate}}"
                     data-on-click="ctrl.deleteServer(farm, $row)"
+                    ><span data-translate="iplb_remove"></span
                 ></oui-action-menu-item>
             </oui-action-menu>
         </oui-datagrid>

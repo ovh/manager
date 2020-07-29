@@ -9,7 +9,7 @@
             <p data-translate="logs_home_info"></p>
 
             <oui-datagrid data-rows="ctrl.accounts">
-                <extra-top>
+                <oui-datagrid-topbar>
                     <a
                         class="oui-button oui-button_secondary"
                         target="_blank"
@@ -21,8 +21,8 @@
                         ></i>
                         {{ ::'logs_accounts_add' | translate }}
                     </a>
-                </extra-top>
-                <oui-column
+                </oui-datagrid-topbar>
+                <oui-datagrid-column
                     data-title="::'logs_accounts_col_name' | translate"
                     data-property="name"
                     data-sortable="asc"
@@ -31,13 +31,13 @@
                     data-filterable
                 >
                     <a
-                        class="oui-button oui-button_link"
+                        class="oui-button oui-button_ghost"
                         data-ui-sref="dbaas.logs.detail({serviceName: $row.serviceName})"
                     >
                         <span>{{$row.name}}</span>
                     </a>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="::'logs_accounts_col_status' | translate"
                     data-property="state"
                     data-sortable
@@ -57,8 +57,8 @@
                             }}</span
                         >
                     </div>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title="::'logs_accounts_col_entry_point' | translate"
                     data-property="cluster.hostname"
                     data-type="string"
@@ -74,11 +74,11 @@
                         data-ng-if="$row.cluster.hostname"
                         data-ng-bind="$row.cluster.hostname"
                     ></span>
-                </oui-column>
-                <oui-action-menu data-align="end" compact>
+                </oui-datagrid-column>
+                <oui-action-menu compact data-placement="end">
                     <oui-action-menu-item
-                        data-text="{{ ::'logs_accounts_details' | translate }}"
                         data-ui-sref="dbaas.logs.detail({serviceName: $row.serviceName})"
+                        ><span data-translate="logs_accounts_details"></span
                     ></oui-action-menu-item>
                 </oui-action-menu>
             </oui-datagrid>

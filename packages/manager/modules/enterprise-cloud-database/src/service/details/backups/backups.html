@@ -66,29 +66,29 @@
         data-rows="$ctrl.backupList"
         data-row-loader="$ctrl.loadBackupDetails($row.id)"
     >
-        <oui-column
+        <oui-datagrid-column
             data-title=":: 'enterprise_cloud_database_common_name' | translate"
             data-property="name"
             data-sortable="asc"
             data-type="string"
             data-searchable
             data-filterable
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'enterprise_cloud_database_backup_time' | translate"
             data-property="creationDate"
             data-sortable
         >
             <span data-ng-bind="$row.creationDate | date: 'medium'"></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'enterprise_cloud_database_backup_expiration_date' | translate"
             data-property="expirationDate"
             data-sortable
         >
             <span data-ng-bind="$row.expirationDate | date: 'medium'"></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'enterprise_cloud_database_backup_mode' | translate"
             data-property="internal"
             data-type="boolean"
@@ -102,8 +102,8 @@
                 data-translate="enterprise_cloud_database_backup_mode_manual"
                 data-ng-if="!$row.internal"
             ></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'enterprise_cloud_database_common_status' | translate"
             data-property="status"
             data-type="string"
@@ -112,12 +112,12 @@
             data-filterable
         >
             <span
-                class="oui-status"
-                data-ng-class="'oui-status_' + $ctrl.service.constructor.getStatusGroup($row.status)"
+                class="oui-badge"
+                data-ng-class="'oui-badge_' + $ctrl.service.constructor.getStatusGroup($row.status)"
                 data-ng-bind=":: ('enterprise_cloud_database_common_status_' + $row.status) | translate"
             ></span>
-        </oui-column>
-        <oui-action-menu data-align="end" data-compact>
+        </oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="end">
             <oui-action-menu-item
                 data-on-click="$ctrl.goToRestore($row)"
                 data-disabled="$ctrl.clusterDetails.status === $ctrl.STATUS.SCALING || $ctrl.service.constructor.isError($row.status) || $ctrl.service.constructor.isProcessing($row.status)"
@@ -135,7 +135,7 @@
                 ></span>
             </oui-action-menu-item>
         </oui-action-menu>
-        <extra-top data-ng-if="$ctrl.backupList > 0">
+        <oui-datagrid-topbar data-ng-if="$ctrl.backupList > 0">
             <oui-action-menu
                 data-text="{{:: 'enterprise_cloud_database_backup_actions' | translate }}"
             >
@@ -157,7 +157,7 @@
                 </oui-action-menu-item>
             </oui-action-menu>
             <button
-                class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_small-width"
+                class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_s"
                 type="button"
                 data-title="{{:: 'enterprise_cloud_database_common_refresh' | translate }}"
                 data-ng-click="$ctrl.refreshing=true; $ctrl.refreshBackups()"
@@ -165,6 +165,6 @@
             >
                 <span class="fa fa-refresh" aria-hidden="true"></span>
             </button>
-        </extra-top>
+        </oui-datagrid-topbar>
     </oui-datagrid>
 </div>

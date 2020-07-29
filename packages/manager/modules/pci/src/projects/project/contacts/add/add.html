@@ -1,12 +1,12 @@
 <form novalidate>
     <oui-modal
-        data-title="{{:: 'cpb_rights_add_title' | translate}}"
         data-primary-action="$ctrl.validateAddRight()"
         data-primary-label="{{ ::'cpb_rights_add' | translate }}"
         data-secondary-action="$ctrl.cancel()"
         data-secondary-label="{{ ::'common_cancel' | translate }}"
         data-on-dismiss="$ctrl.cancel()"
         data-loading="$ctrl.loader"
+        data-heading="{{:: 'cpb_rights_add_title' | translate}}"
     >
         <oui-field
             data-label="{{ :: $ctrl.model.isUSorCA ? 'cpb_rights_table_email' : 'cpb_rights_table_nichandle' | translate }}"
@@ -28,7 +28,6 @@
                 data-items="$ctrl.availableRights"
                 data-match="label"
                 required
-                data-align="start"
             >
             </oui-select>
         </oui-field>

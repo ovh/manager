@@ -1,0 +1,107 @@
+<div data-ui-view>
+    <h1 data-ng-bind="$ctrl.nodePoolName"></h1>
+    <cui-message-container
+        data-messages="$ctrl.messages"
+    ></cui-message-container>
+    <div>
+        <p class="mb-3">
+            <span
+                data-translate="kube_nodes_description_project_1"
+                data-translate-values="{
+                    description: $ctrl.project.description
+                }"
+            >
+            </span>
+        </p>
+        <oui-datagrid
+            data-rows="$ctrl.nodes"
+            data-row-loader="$ctrl.loadRowData($row)"
+        >
+            <oui-datagrid-column
+                data-title=":: 'kube_nodes_name' | translate"
+                data-property="name"
+                data-type="string"
+                data-searchable
+                data-filterable
+            ></oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'kube_nodes_flavor' | translate"
+                data-property="formattedFlavor"
+                data-type="string"
+                data-searchable
+                data-filterable
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'kube_nodes_billing_type' | translate"
+                data-property="billingType"
+                data-type="string"
+                data-searchable
+                data-filterable
+            >
+                <span
+                    data-ng-if="$row.billingType"
+                    data-translate="{{ :: 'kube_nodes_billing_' + $row.billingType }}"
+                ></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'kube_service_cluster_status' | translate"
+                data-property="status"
+            >
+                <span
+                    class="oui-badge"
+                    data-ng-class="{
+                        'oui-status_success' : $row.status === $ctrl.STATUS.READY,
+                        'oui-status_warning' : $ctrl.Kubernetes.constructor.isProcessing($row.status),
+                        'oui-status_error' : $row.status === $ctrl.STATUS.ERROR
+                        }"
+                    data-translate="{{:: 'kube_nodes_status_' + $row.status }}"
+                >
+                </span>
+            </oui-datagrid-column>
+            <oui-action-menu
+                data-disabled="$ctrl.Kubernetes.constructor.isProcessing($row.status) || $ctrl.Kubernetes.constructor.isProcessing($ctrl.cluster.status)"
+                data-compact
+                data-placement="end"
+            >
+                <oui-action-menu-item
+                    data-ng-if="$row.billingType === 'hourly'"
+                    data-on-click="$ctrl.switchBillingType($row.id, $row.name, $row.instanceId)"
+                    ><span
+                        data-translate="kube_nodes_switch_to_monthly_billing_title"
+                    ></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item
+                    data-disabled="!$ctrl.nodePool.isReady()"
+                    data-on-click="$ctrl.deleteNode($row.id, $row.name)"
+                    ><span data-translate="kube_common_delete"></span>
+                </oui-action-menu-item>
+            </oui-action-menu>
+            <oui-datagrid-topbar>
+                <oui-action-menu
+                    data-disabled="!$ctrl.nodePool.isReady()"
+                    data-text="{{ ::'kube_nodes_common_actions' | translate }}"
+                >
+                    <oui-action-menu-item
+                        data-on-click="$ctrl.addNode($ctrl.nodePoolFlavor, $ctrl.nodes.length)"
+                    >
+                        <span data-translate="kube_nodes_add_nodes"></span>
+                    </oui-action-menu-item>
+                    <oui-action-menu-item
+                        data-ng-if="$ctrl.nodes.length > 0"
+                        data-on-click="$ctrl.bulkDelete($ctrl.nodes.length)"
+                    >
+                        <span data-translate="kube_nodes_delete_nodes"></span>
+                    </oui-action-menu-item>
+                </oui-action-menu>
+                <button
+                    class="pl-2 oui-button oui-button_secondary oui-button_icon-only oui-button_s"
+                    data-title="{{:: 'kube_nodes_refresh' | translate }}"
+                    data-ng-click="$ctrl.refreshNodes()"
+                >
+                    <span class="fa fa-refresh" aria-hidden="true"></span>
+                </button>
+            </oui-datagrid-topbar>
+        </oui-datagrid>
+    </div>
+</div>

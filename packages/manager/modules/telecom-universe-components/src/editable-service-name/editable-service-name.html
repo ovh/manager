@@ -6,7 +6,7 @@
         data-ng-hide="$ctrl.inEdition"
         data-ng-class="{ 'd-flex': !$ctrl.inEdition }"
     >
-        <h1 class="oui-page-header__title" data-ng-bind="$ctrl.title"></h1>
+        <h1 class="oui-header__title" data-ng-bind="$ctrl.title"></h1>
 
         <span data-ng-if="!$ctrl.inEdition">
             <button
@@ -16,7 +16,7 @@
                 data-ng-disabled="$ctrl.disabled"
             >
                 <span
-                    class="oui-icon oui-icon-pen_line oui-icon_small"
+                    class="oui-icon oui-icon-pen_concept"
                     aria-hidden="true"
                 ></span>
                 <span
@@ -49,7 +49,7 @@
                 data-ng-disabled="!editableServiceNameForm.editableServiceNameInput.$valid"
             >
                 <span
-                    class="oui-icon oui-icon-success oui-icon_small"
+                    class="oui-icon oui-icon-success"
                     aria-hidden="true"
                 ></span>
                 <span
@@ -63,10 +63,7 @@
                 class="btn btn-editable px-2 h-100"
                 data-ng-click=":: $ctrl.cancelEdition()"
             >
-                <span
-                    class="oui-icon oui-icon-error oui-icon_small"
-                    aria-hidden="true"
-                ></span>
+                <span class="oui-icon oui-icon-close" aria-hidden="true"></span>
                 <span
                     class="sr-only"
                     data-translate="tuc_editableServiceName_cancel"
@@ -76,7 +73,7 @@
     </div>
 
     <h2
-        class="oui-page-header__description"
+        class="oui-header__description"
         data-ng-bind=":: $ctrl.serviceName"
     ></h2>
 </form>

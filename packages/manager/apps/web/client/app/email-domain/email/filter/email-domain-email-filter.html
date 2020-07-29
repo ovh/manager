@@ -21,41 +21,45 @@
             data-rows="ctrlEmailDomainEmailFilter.filters"
             data-row-loader="ctrlEmailDomainEmailFilter.transformItem($row)"
         >
-            <oui-column
+            <oui-datagrid-column
                 data-title="'email_tab_table_header_filter_name' | translate"
                 data-property="name"
                 data-sortable="asc"
-            ></oui-column>
-            <oui-column
+            ></oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'email_tab_table_header_filter_priority' | translate"
                 data-property="priority"
                 data-sortable
-            ></oui-column>
-            <oui-column data-title="'emails_common_status' | translate">
+            ></oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="'emails_common_status' | translate"
+            >
                 <span
-                    class="oui-status"
+                    class="oui-badge"
                     data-ng-show="$row.active"
-                    data-ng-class="{'oui-status_success': $row.active, 'oui-status_error': !$row.active}"
+                    data-ng-class="{'oui-badge_success': $row.active, 'oui-badge_error': !$row.active}"
                     data-ng-bind="'email_tab_filters_status_' + $row.active | translate"
                 ></span>
-            </oui-column>
-            <oui-action-menu data-align="end" data-compact>
+            </oui-datagrid-column>
+            <oui-action-menu data-compact data-placement="end">
                 <oui-action-menu-item
-                    data-text="{{ 'email_tab_popover_filter_edit' | translate }}"
                     data-on-click="setAction('email-domain/email/filter/edit/email-domain-email-filter-edit', {
                                           account: ctrlEmailDomainEmailFilter.currentAccount,
                                           filter: $row,
                                           accounts: ctrlEmailDomainEmail.emails
                                       })"
-                >
+                    ><span
+                        data-translate="email_tab_popover_filter_edit"
+                    ></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
-                    data-text="{{ 'email_tab_popover_filter_delete' | translate }}"
                     data-on-click="setAction('email-domain/email/filter/delete/email-domain-email-filter-delete', {
                                           account: ctrlEmailDomainEmailFilter.currentAccount,
                                           filter: $row
                                       })"
-                >
+                    ><span
+                        data-translate="email_tab_popover_filter_delete"
+                    ></span>
                 </oui-action-menu-item>
             </oui-action-menu>
         </oui-datagrid>

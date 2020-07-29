@@ -14,71 +14,73 @@
         row-loader="$ctrl.getEnvvar($row)"
         page-size="10"
     >
-        <oui-column
+        <oui-datagrid-column
             data-title="'hosting_tab_ENVVARS_table_header_key' | translate"
             data-property="key"
             data-sortable="asc"
             data-type="string"
             data-searchable
             data-filterable
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'hosting_tab_ENVVARS_table_header_type' | translate"
             data-property="type"
             data-type="string"
             data-searchable
             data-filterable
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'hosting_tab_ENVVARS_table_header_value' | translate"
             data-property="value"
             data-type="string"
             data-searchable
             data-filterable
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'hosting_tab_ENVVARS_table_header_status' | translate"
             data-property="status"
             data-sortable
         >
             <span
-                class="oui-status"
+                class="oui-badge"
                 data-ng-bind="'hosting_tab_RUNTIMES_table_status_' + $row.status | translate"
                 data-ng-class="{
-                    'oui-status_success': $row.status === 'created',
-                    'oui-status_error': $row.status === 'deleting',
-                    'oui-status_warning': $row.status !== 'created' && $row.status !== 'deleting'
+                    'oui-badge_success': $row.status === 'created',
+                    'oui-badge_error': $row.status === 'deleting',
+                    'oui-badge_warning': $row.status !== 'created' && $row.status !== 'deleting'
                 }"
             >
             </span>
-        </oui-column>
+        </oui-datagrid-column>
 
-        <oui-action-menu data-align="end" data-compact>
+        <oui-action-menu data-compact data-placement="end">
             <oui-action-menu-item
-                data-text="{{ 'hosting_tab_ENVVARS_table_popover_modify' | translate }}"
                 data-on-click="setAction('envvars/edit/hosting-envvars-edit', { envvar: $row })"
                 data-disabled="$row.status !== 'created'"
+                ><span
+                    data-translate="hosting_tab_ENVVARS_table_popover_modify"
+                ></span
             ></oui-action-menu-item>
 
             <oui-action-menu-item
-                data-text="{{ 'hosting_tab_ENVVARS_table_popover_delete' | translate }}"
                 data-on-click="setAction('envvars/delete/hosting-envvars-delete', { envvar: $row })"
                 data-disabled="$row.status !== 'created'"
+                ><span
+                    data-translate="hosting_tab_ENVVARS_table_popover_delete"
+                ></span
             ></oui-action-menu-item>
         </oui-action-menu>
 
-        <extra-top>
+        <oui-datagrid-topbar>
             <oui-action-menu
                 data-text="{{ 'hosting_tab_ENVVARS_actions' | translate }}"
-                data-align="start"
             >
                 <oui-action-menu-item
-                    data-text="{{ 'hosting_tab_ENVVARS_add' | translate }}"
                     data-on-click="setAction('envvars/add/hosting-envvars-add')"
                     data-disabled="!$ctrl.canAddEnvvar()"
-                >
+                    ><span data-translate="hosting_tab_ENVVARS_add"></span>
                 </oui-action-menu-item>
             </oui-action-menu>
-        </extra-top>
+        </oui-datagrid-topbar>
     </oui-datagrid>
 </div>

@@ -1,4 +1,4 @@
-<oui-page-header
+<oui-header
     data-heading="{{:: 'pci_projects_project_contacts_title' | translate }}"
     class="mb-3"
 >
@@ -7,7 +7,7 @@
             <span data-translate="pci_project_guides_header_all_guides"></span>
         </oui-guide-menu-item>
     </oui-guide-menu>
-</oui-page-header>
+</oui-header>
 <div class="container-fluid p-4 bg-light border mb-4">
     <div class="row">
         <div
@@ -17,13 +17,13 @@
         <div class="col-sm-4" data-ng-bind="$ctrl.model.owner"></div>
         <div class="col-sm-4">
             <button
-                class="oui-button oui-button_link oui-button_icon-right"
+                class="oui-button oui-button_icon-right oui-button_ghost"
                 data-ng-if="$ctrl.canChangeContacts()"
                 data-ng-click="$ctrl.openContacts()"
             >
                 <span data-translate="cpb_rights_modify"></span>
                 <span
-                    class="oui-icon oui-icon-external_link"
+                    class="oui-icon oui-icon-external-link"
                     aria-hidden="true"
                 ></span>
             </button>
@@ -37,13 +37,13 @@
         <div class="col-sm-4" data-ng-bind="$ctrl.model.billing"></div>
         <div class="col-sm-4">
             <button
-                class="oui-button oui-button_link oui-button_icon-right"
+                class="oui-button oui-button_icon-right oui-button_ghost"
                 data-ng-if="$ctrl.canChangeContacts()"
                 data-ng-click="$ctrl.openContacts()"
             >
                 <span data-translate="cpb_rights_modify"></span>
                 <span
-                    class="oui-icon oui-icon-external_link"
+                    class="oui-icon oui-icon-external-link"
                     aria-hidden="true"
                 ></span>
             </button>
@@ -60,7 +60,7 @@
     data-rows="$ctrl.data.rights"
     data-row-loader="$ctrl.transformItem($row)"
 >
-    <extra-top>
+    <oui-datagrid-topbar>
         <a
             data-ui-sref="pci.projects.project.contacts.add"
             class="oui-button oui-button_secondary mb-3"
@@ -69,24 +69,22 @@
             data-translate="common_add"
         >
         </a>
-    </extra-top>
-    <oui-column
+    </oui-datagrid-topbar>
+    <oui-datagrid-column
         data-property="accountId"
         data-title="'cpb_rights_table_nichandle' | translate"
-    ></oui-column>
-    <oui-column
+    ></oui-datagrid-column>
+    <oui-datagrid-column
         data-property="type"
         data-title="'cpb_rights_table_rights' | translate"
     >
         <span
             data-ng-bind="('cpb_rights_table_rights_value_' + $row.type) | translate"
         ></span>
-    </oui-column>
-    <oui-action-menu data-align="end" data-compact>
-        <oui-action-menu-item
-            text="{{'delete' | translate}}"
-            data-on-click="$ctrl.removeRight($row)"
-        >
+    </oui-datagrid-column>
+    <oui-action-menu data-compact data-placement="end">
+        <oui-action-menu-item data-on-click="$ctrl.removeRight($row)"
+            ><span data-translate="delete"></span>
         </oui-action-menu-item>
     </oui-action-menu>
 </oui-datagrid>

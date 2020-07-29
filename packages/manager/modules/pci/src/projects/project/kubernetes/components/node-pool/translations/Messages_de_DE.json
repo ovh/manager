@@ -1,0 +1,6 @@
+{
+  "kubernetes_add_node_pool_description": "Sobald das Cluster erstellt wurde, können Sie einen ersten Node-Pool konfigurieren. Ein Node-Pool bezeichnet eine Gruppe von Worker-Nodes des gleichen Typs. Anschließend können Sie mehrere Node-Pools erstellen, löschen oder deren Größe anpassen.",
+  "kubernetes_add_node_pool_warning": "Es wird empfohlen, einen Pool mit mindestens 3 Nodes zu konfigurieren, um das Rolling-Upgrade bei Sicherheitsupdates (Patch-Updates) oder kleineren Versionsupdates zu optimieren.",
+  "kubernetes_add_node_pool_node_count": "Anzahl der Nodes im Pool",
+  "kubernetes_add_node_pool_node_type": "Node-Typ"
+}

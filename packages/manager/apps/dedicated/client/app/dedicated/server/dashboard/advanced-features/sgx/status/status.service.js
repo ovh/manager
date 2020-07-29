@@ -22,14 +22,14 @@ export default class {
 
   static buildStatusClassName({ isRunning, status }) {
     if (isRunning) {
-      return 'oui-status_warning';
+      return 'oui-badge_warning';
     }
 
     if (status === STATUS.DISABLED) {
-      return 'oui-status_error';
+      return 'oui-badge_error';
     }
 
-    return 'oui-status_success';
+    return 'oui-badge_success';
   }
 
   static buildStatusTextId({ isRunning, status }) {

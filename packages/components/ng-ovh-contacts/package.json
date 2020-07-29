@@ -45,6 +45,7 @@
   },
   "peerDependencies": {
     "@ovh-ux/translate-async-loader": "^1.0.8",
+    "@ovh-ux/ui-kit": "^4.1.12",
     "angular": "^1.5.0",
     "angular-translate": "^2.17.0",
     "bootstrap": "~3.3.7",
@@ -52,8 +53,6 @@
     "flag-icon-css": "^3.2.1",
     "moment": "^2.20.1",
     "ovh-api-services": "^9.0.0",
-    "ovh-ui-angular": "^3.16.3",
-    "ovh-ui-kit": "^2.42.8",
     "ui-select": "^0.19.8"
   }
 }

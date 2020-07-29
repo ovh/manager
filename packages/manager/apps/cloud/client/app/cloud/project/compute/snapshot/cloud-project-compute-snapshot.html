@@ -197,337 +197,409 @@
         </form>
 
         <!-- SNAPSHOT TABLE -->
-        <table class="oui-table oui-table_responsive">
-            <thead class="oui-table oui-table__headers">
-                <tr>
-                    <th
-                        class="oui-table__header oui-table__cell_sortable"
-                        tabindex="0"
-                        data-ng-click="CloudProjectComputeSnapshotCtrl.orderBy('name')"
-                        data-ng-class="{'oui-table__cell_sortable-asc oui-table__cell_sorted' : CloudProjectComputeSnapshotCtrl.order.by === 'name' && !CloudProjectComputeSnapshotCtrl.order.reverse, 'oui-table__cell_sortable-desc oui-table__cell_sorted' : CloudProjectComputeSnapshotCtrl.order.by === 'name' && CloudProjectComputeSnapshotCtrl.order.reverse}"
-                    >
-                        <span translate="cpc_snapshot_name"></span>
-                    </th>
-                    <th
-                        class="oui-table__header oui-table__cell_sortable"
-                        tabindex="0"
-                        data-ng-click="CloudProjectComputeSnapshotCtrl.orderBy('region')"
-                        data-ng-class="{'oui-table__cell_sortable-asc oui-table__cell_sorted' : CloudProjectComputeSnapshotCtrl.order.by === 'region' && !CloudProjectComputeSnapshotCtrl.order.reverse, 'oui-table__cell_sortable-desc oui-table__cell_sorted' : CloudProjectComputeSnapshotCtrl.order.by === 'region' && CloudProjectComputeSnapshotCtrl.order.reverse}"
-                    >
-                        <span translate="cpc_snapshot_region"></span>
-                    </th>
-                    <th
-                        class="oui-table__header oui-table__cell_sortable"
-                        tabindex="0"
-                        data-ng-click="CloudProjectComputeSnapshotCtrl.orderBy('type')"
-                        data-ng-class="{'oui-table__cell_sortable-asc oui-table__cell_sorted' : CloudProjectComputeSnapshotCtrl.order.by === 'type' && !CloudProjectComputeSnapshotCtrl.order.reverse, 'oui-table__cell_sortable-desc oui-table__cell_sorted' : CloudProjectComputeSnapshotCtrl.order.by === 'type' && CloudProjectComputeSnapshotCtrl.order.reverse}"
-                    >
-                        <span translate="cpc_snapshot_type"></span>
-                    </th>
-                    <th
-                        class="oui-table__header oui-table__cell_sortable"
-                        tabindex="0"
-                        data-ng-click="CloudProjectComputeSnapshotCtrl.orderBy('size')"
-                        data-ng-class="{'oui-table__cell_sortable-asc oui-table__cell_sorted' : CloudProjectComputeSnapshotCtrl.order.by === 'size' && !CloudProjectComputeSnapshotCtrl.order.reverse, 'oui-table__cell_sortable-desc oui-table__cell_sorted' : CloudProjectComputeSnapshotCtrl.order.by === 'size' && CloudProjectComputeSnapshotCtrl.order.reverse}"
-                    >
-                        <span translate="cpc_snapshot_min_disk"></span>
-                    </th>
-                    <th
-                        class="oui-table__header oui-table__cell_sortable"
-                        tabindex="0"
-                        data-ng-click="CloudProjectComputeSnapshotCtrl.orderBy('price.value')"
-                        data-ng-class="{'oui-table__cell_sortable-asc oui-table__cell_sorted' : CloudProjectComputeSnapshotCtrl.order.by === 'price.value' && !CloudProjectComputeSnapshotCtrl.order.reverse, 'oui-table__cell_sortable-desc oui-table__cell_sorted' : CloudProjectComputeSnapshotCtrl.order.by === 'price.value' && CloudProjectComputeSnapshotCtrl.order.reverse}"
-                    >
-                        <span translate="cpc_snapshot_price"></span>
-                    </th>
-                    <th
-                        class="oui-table__header oui-table__cell_sortable"
-                        tabindex="0"
-                        data-ng-click="CloudProjectComputeSnapshotCtrl.orderBy('creationDate')"
-                        data-ng-class="{'oui-table__cell_sortable-asc oui-table__cell_sorted' : CloudProjectComputeSnapshotCtrl.order.by === 'creationDate' && !CloudProjectComputeSnapshotCtrl.order.reverse, 'oui-table__cell_sortable-desc oui-table__cell_sorted' : CloudProjectComputeSnapshotCtrl.order.by === 'creationDate' && CloudProjectComputeSnapshotCtrl.order.reverse}"
-                    >
-                        <span translate="cpc_snapshot_creation_date"></span>
-                    </th>
-                    <th
-                        class="oui-table__header oui-table__cell_sortable"
-                        tabindex="0"
-                        data-ng-click="CloudProjectComputeSnapshotCtrl.orderBy('status')"
-                        data-ng-class="{'oui-table__cell_sortable-asc oui-table__cell_sorted' : CloudProjectComputeSnapshotCtrl.order.by === 'status' && !CloudProjectComputeSnapshotCtrl.order.reverse, 'oui-table__cell_sortable-desc oui-table__cell_sorted' : CloudProjectComputeSnapshotCtrl.order.by === 'status' && CloudProjectComputeSnapshotCtrl.order.reverse}"
-                    >
-                        <span translate="cpc_snapshot_status"></span>
-                    </th>
-                    <th
-                        class="oui-table__header oui-table__cell_action text-center"
-                        tabindex="0"
-                        data-ng-click="CloudProjectComputeSnapshotCtrl.getSnapshot(true)"
-                        write-right-required
-                    >
-                        <i class="glyphicon glyphicon-refresh"></i>
-                    </th>
-                </tr>
-            </thead>
-            <tbody
-                data-ng-show="CloudProjectComputeSnapshotCtrl.loaders.table.snapshot"
-                class="oui-table__body"
-            >
-                <tr class="oui-table__row" tabindex="0">
-                    <td colspan="9" class="text-center">
-                        <oui-spinner></oui-spinner>
-                    </td>
-                </tr>
-            </tbody>
-            <tbody
-                data-ng-if="!CloudProjectComputeSnapshotCtrl.loaders.table.snapshot && CloudProjectComputeSnapshotCtrl.table.snapshot.length === 0"
-                class="oui-table__body"
-            >
-                <tr class="oui-table__row" tabindex="0">
-                    <td colspan="9" class="text-center">
-                        <span translate="cpc_snapshot_empty"></span>
-                    </td>
-                </tr>
-            </tbody>
-            <tbody
-                data-ng-if="!CloudProjectComputeSnapshotCtrl.loaders.table.snapshot && CloudProjectComputeSnapshotCtrl.table.snapshot === null"
-                class="oui-table__body"
-            >
-                <tr class="oui-table__row" tabindex="0">
-                    <td colspan="9" class="text-center">
-                        <i class="fa fa-bug"></i>
-                        <span translate="cpc_snapshot_error"></span>
-                    </td>
-                </tr>
-            </tbody>
-            <tbody
-                data-ng-if="!CloudProjectComputeSnapshotCtrl.loaders.table.snapshot
-                            && CloudProjectComputeSnapshotCtrl.table.snapshot.length
-                            && !CloudProjectComputeSnapshotCtrl.table.snapshotFilterPage.length"
-                class="oui-table__body"
-            >
-                <tr class="oui-table__row" tabindex="0">
-                    <td colspan="9" class="text-center">
-                        <i class="fa fa-search"></i>
-                        <span translate="cpc_snapshot_empty_search"></span>
-                    </td>
-                </tr>
-            </tbody>
-            <tbody
-                data-ng-hide="CloudProjectComputeSnapshotCtrl.loaders.table.snapshot"
-                class="oui-table__body"
-            >
-                <tr
-                    data-ng-repeat="snapshot in CloudProjectComputeSnapshotCtrl.table.snapshotFilterPage track by snapshot.id"
-                    class="oui-table__row"
-                    tabindex="0"
-                >
-                    <td
-                        data-title="{{::'cpc_snapshot_name' | translate}}"
-                        class="oui-table__cell"
-                    >
-                        <label
-                            data-ng-class="{'opacity2-leave' : CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId === snapshot.id,
-                                            'opacity2-enter' : CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId !== snapshot.id}"
-                            for="{{::'ss_' + snapshot.id}}"
+        <div class="oui-table-responsive">
+            <table class="oui-table">
+                <thead class="oui-table__headers">
+                    <tr>
+                        <th
+                            class="oui-table__header oui-table__header_sortable"
+                            tabindex="0"
+                            data-ng-click="CloudProjectComputeSnapshotCtrl.orderBy('name')"
+                            data-ng-class="{ 'oui-table__header_sorted': CloudProjectComputeSnapshotCtrl.order.by === 'name' }"
                         >
-                            <span data-ng-bind="::snapshot.name"></span>
+                            <span translate="cpc_snapshot_name"></span>
                             <span
-                                class="show"
-                                data-ng-if="snapshot.isInstalledOnVm"
-                                data-uib-tooltip="{{ snapshot.installedVmNames.join(', ') }}"
+                                aria-hidden="true"
+                                class="oui-icon oui-icon-sort-inactive"
+                                data-ng-class="{
+                                    'oui-icon-sort-inactive': CloudProjectComputeSnapshotCtrl.order.by !== 'name',
+                                    'oui-icon-sort-up': CloudProjectComputeSnapshotCtrl.order.by === 'name' && !CloudProjectComputeSnapshotCtrl.order.reverse,
+                                    'oui-icon-sort-down' : CloudProjectComputeSnapshotCtrl.order.by === 'name' && CloudProjectComputeSnapshotCtrl.order.reverse
+                                }"
                             >
-                                <i
-                                    class="fa fa-exclamation-circle right-space-m4"
-                                ></i>
-                                <strong
-                                    data-ng-bind="(snapshot.installedVm.length > 1 ? 'cpc_snapshot_installed_info_plural' : 'cpc_snapshot_installed_info') | translate:{nbVms: snapshot.installedVm.length}"
-                                ></strong>
                             </span>
-                        </label>
-                    </td>
-                    <td
-                        data-title="{{::'cpc_snapshot_region' | translate}}"
-                        class="oui-table__cell"
+                        </th>
+                        <th
+                            class="oui-table__header oui-table__header_sortable"
+                            tabindex="0"
+                            data-ng-click="CloudProjectComputeSnapshotCtrl.orderBy('region')"
+                            data-ng-class="{ 'oui-table__header_sorted': CloudProjectComputeSnapshotCtrl.order.by === 'region' }"
+                        >
+                            <span translate="cpc_snapshot_region"></span>
+                            <span
+                                aria-hidden="true"
+                                class="oui-icon"
+                                data-ng-class="{
+                                    'oui-icon-sort-inactive': CloudProjectComputeSnapshotCtrl.order.by !== 'region',
+                                    'oui-icon-sort-up': CloudProjectComputeSnapshotCtrl.order.by === 'region' && !CloudProjectComputeSnapshotCtrl.order.reverse,
+                                    'oui-icon-sort-down' : CloudProjectComputeSnapshotCtrl.order.by === 'region' && CloudProjectComputeSnapshotCtrl.order.reverse
+                                }"
+                            >
+                            </span>
+                        </th>
+                        <th
+                            class="oui-table__header oui-table__header_sortable"
+                            tabindex="0"
+                            data-ng-click="CloudProjectComputeSnapshotCtrl.orderBy('type')"
+                            data-ng-class="{ 'oui-table__header_sorted': CloudProjectComputeSnapshotCtrl.order.by === 'type' }"
+                        >
+                            <span translate="cpc_snapshot_type"></span>
+                            <span
+                                aria-hidden="true"
+                                class="oui-icon"
+                                data-ng-class="{
+                                    'oui-icon-sort-inactive': CloudProjectComputeSnapshotCtrl.order.by !== 'type',
+                                    'oui-icon-sort-up': CloudProjectComputeSnapshotCtrl.order.by === 'type' && !CloudProjectComputeSnapshotCtrl.order.reverse,
+                                    'oui-icon-sort-down' : CloudProjectComputeSnapshotCtrl.order.by === 'type' && CloudProjectComputeSnapshotCtrl.order.reverse
+                                }"
+                            >
+                            </span>
+                        </th>
+                        <th
+                            class="oui-table__header oui-table__header_sortable"
+                            tabindex="0"
+                            data-ng-click="CloudProjectComputeSnapshotCtrl.orderBy('size')"
+                            data-ng-class="{ 'oui-table__header_sorted': CloudProjectComputeSnapshotCtrl.order.by === 'size' }"
+                        >
+                            <span translate="cpc_snapshot_min_disk"></span>
+                            <span
+                                aria-hidden="true"
+                                class="oui-icon"
+                                data-ng-class="{
+                                    'oui-icon-sort-inactive': CloudProjectComputeSnapshotCtrl.order.by !== 'size',
+                                    'oui-icon-sort-up': CloudProjectComputeSnapshotCtrl.order.by === 'size' && !CloudProjectComputeSnapshotCtrl.order.reverse,
+                                    'oui-icon-sort-down' : CloudProjectComputeSnapshotCtrl.order.by === 'size' && CloudProjectComputeSnapshotCtrl.order.reverse
+                                }"
+                            >
+                            </span>
+                        </th>
+                        <th
+                            class="oui-table__header oui-table__header_sortable"
+                            tabindex="0"
+                            data-ng-click="CloudProjectComputeSnapshotCtrl.orderBy('price.value')"
+                            data-ng-class="{ 'oui-table__header_sorted': CloudProjectComputeSnapshotCtrl.order.by === 'price.value' }"
+                        >
+                            <span translate="cpc_snapshot_price"></span>
+                            <span
+                                aria-hidden="true"
+                                class="oui-icon"
+                                data-ng-class="{
+                                    'oui-icon-sort-inactive': CloudProjectComputeSnapshotCtrl.order.by !== 'price.value',
+                                    'oui-icon-sort-up': CloudProjectComputeSnapshotCtrl.order.by === 'price.value' && !CloudProjectComputeSnapshotCtrl.order.reverse,
+                                    'oui-icon-sort-down' : CloudProjectComputeSnapshotCtrl.order.by === 'price.value' && CloudProjectComputeSnapshotCtrl.order.reverse
+                                }"
+                            >
+                            </span>
+                        </th>
+                        <th
+                            class="oui-table__header oui-table__header_sortable"
+                            tabindex="0"
+                            data-ng-click="CloudProjectComputeSnapshotCtrl.orderBy('creationDate')"
+                            data-ng-class="{ 'oui-table__header_sorted': CloudProjectComputeSnapshotCtrl.order.by === 'creationDate' }"
+                        >
+                            <span translate="cpc_snapshot_creation_date"></span>
+                            <span
+                                aria-hidden="true"
+                                class="oui-icon"
+                                data-ng-class="{
+                                    'oui-icon-sort-inactive': CloudProjectComputeSnapshotCtrl.order.by !== 'creationDate',
+                                    'oui-icon-sort-up': CloudProjectComputeSnapshotCtrl.order.by === 'creationDate' && !CloudProjectComputeSnapshotCtrl.order.reverse,
+                                    'oui-icon-sort-down' : CloudProjectComputeSnapshotCtrl.order.by === 'creationDate' && CloudProjectComputeSnapshotCtrl.order.reverse
+                                }"
+                            >
+                            </span>
+                        </th>
+                        <th
+                            class="oui-table__header oui-table__header_sortable"
+                            tabindex="0"
+                            data-ng-click="CloudProjectComputeSnapshotCtrl.orderBy('status')"
+                            data-ng-class="{ 'oui-table__header_sorted': CloudProjectComputeSnapshotCtrl.order.by === 'status' }"
+                        >
+                            <span translate="cpc_snapshot_status"></span>
+                            <span
+                                aria-hidden="true"
+                                class="oui-icon"
+                                data-ng-class="{
+                                    'oui-icon-sort-inactive': CloudProjectComputeSnapshotCtrl.order.by !== 'status',
+                                    'oui-icon-sort-up': CloudProjectComputeSnapshotCtrl.order.by === 'status' && !CloudProjectComputeSnapshotCtrl.order.reverse,
+                                    'oui-icon-sort-down' : CloudProjectComputeSnapshotCtrl.order.by === 'status' && CloudProjectComputeSnapshotCtrl.order.reverse
+                                }"
+                            >
+                            </span>
+                        </th>
+                        <th
+                            class="oui-table__header oui-table__cell_action text-center"
+                            tabindex="0"
+                            data-ng-click="CloudProjectComputeSnapshotCtrl.getSnapshot(true)"
+                            write-right-required
+                        >
+                            <i class="glyphicon glyphicon-refresh"></i>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody
+                    data-ng-show="CloudProjectComputeSnapshotCtrl.loaders.table.snapshot"
+                    class="oui-table__body"
+                >
+                    <tr class="oui-table__row" tabindex="0">
+                        <td colspan="9" class="text-center">
+                            <oui-spinner></oui-spinner>
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody
+                    data-ng-if="!CloudProjectComputeSnapshotCtrl.loaders.table.snapshot && CloudProjectComputeSnapshotCtrl.table.snapshot.length === 0"
+                    class="oui-table__body"
+                >
+                    <tr class="oui-table__row" tabindex="0">
+                        <td colspan="9" class="text-center">
+                            <span translate="cpc_snapshot_empty"></span>
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody
+                    data-ng-if="!CloudProjectComputeSnapshotCtrl.loaders.table.snapshot && CloudProjectComputeSnapshotCtrl.table.snapshot === null"
+                    class="oui-table__body"
+                >
+                    <tr class="oui-table__row" tabindex="0">
+                        <td colspan="9" class="text-center">
+                            <i class="fa fa-bug"></i>
+                            <span translate="cpc_snapshot_error"></span>
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody
+                    data-ng-if="!CloudProjectComputeSnapshotCtrl.loaders.table.snapshot
+                                && CloudProjectComputeSnapshotCtrl.table.snapshot.length
+                                && !CloudProjectComputeSnapshotCtrl.table.snapshotFilterPage.length"
+                    class="oui-table__body"
+                >
+                    <tr class="oui-table__row" tabindex="0">
+                        <td colspan="9" class="text-center">
+                            <i class="fa fa-search"></i>
+                            <span translate="cpc_snapshot_empty_search"></span>
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody
+                    data-ng-hide="CloudProjectComputeSnapshotCtrl.loaders.table.snapshot"
+                    class="oui-table__body"
+                >
+                    <tr
+                        data-ng-repeat="snapshot in CloudProjectComputeSnapshotCtrl.table.snapshotFilterPage track by snapshot.id"
+                        class="oui-table__row"
+                        tabindex="0"
                     >
-                        <label
-                            data-ng-class="{'opacity2-leave' : CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId === snapshot.id,
-                                            'opacity2-enter' : CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId !== snapshot.id}"
+                        <td
+                            data-title="{{::'cpc_snapshot_name' | translate}}"
+                            class="oui-table__cell"
+                        >
+                            <label
+                                data-ng-class="{'opacity2-leave' : CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId === snapshot.id,
+                                                'opacity2-enter' : CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId !== snapshot.id}"
+                                for="{{::'ss_' + snapshot.id}}"
+                            >
+                                <span data-ng-bind="::snapshot.name"></span>
+                                <span
+                                    class="show"
+                                    data-ng-if="snapshot.isInstalledOnVm"
+                                    data-uib-tooltip="{{ snapshot.installedVmNames.join(', ') }}"
+                                >
+                                    <i
+                                        class="fa fa-exclamation-circle right-space-m4"
+                                    ></i>
+                                    <strong
+                                        data-ng-bind="(snapshot.installedVm.length > 1 ? 'cpc_snapshot_installed_info_plural' : 'cpc_snapshot_installed_info') | translate:{nbVms: snapshot.installedVm.length}"
+                                    ></strong>
+                                </span>
+                            </label>
+                        </td>
+                        <td
+                            data-title="{{::'cpc_snapshot_region' | translate}}"
+                            class="oui-table__cell"
+                        >
+                            <label
+                                data-ng-class="{'opacity2-leave' : CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId === snapshot.id,
+                                                'opacity2-enter' : CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId !== snapshot.id}"
+                            >
+                                <span
+                                    data-ng-bind="CloudProjectComputeSnapshotCtrl.regionService.getTranslatedMicroRegion(snapshot.region)"
+                                ></span>
+                            </label>
+                        </td>
+                        <td
+                            data-title="{{::'cpc_snapshot_type' | translate}}"
+                            class="oui-table__cell"
                         >
                             <span
-                                data-ng-bind="CloudProjectComputeSnapshotCtrl.regionService.getTranslatedMicroRegion(snapshot.region)"
-                            ></span>
-                        </label>
-                    </td>
-                    <td
-                        data-title="{{::'cpc_snapshot_type' | translate}}"
-                        class="oui-table__cell"
-                    >
-                        <span
-                            data-ng-class="{'opacity2-leave' : CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId === snapshot.id,
-                                            'opacity2-enter' : CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId !== snapshot.id}"
-                            data-ng-bind="::'cpc_snapshot_type_' + snapshot.type | translate"
+                                data-ng-class="{'opacity2-leave' : CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId === snapshot.id,
+                                                'opacity2-enter' : CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId !== snapshot.id}"
+                                data-ng-bind="::'cpc_snapshot_type_' + snapshot.type | translate"
+                            >
+                            </span>
+                        </td>
+                        <td
+                            data-title="{{::'cpc_snapshot_min_disk' | translate}}"
+                            class="oui-table__cell"
                         >
-                        </span>
-                    </td>
-                    <td
-                        data-title="{{::'cpc_snapshot_min_disk' | translate}}"
-                        class="oui-table__cell"
-                    >
-                        <span
-                            data-ng-class="{'opacity2-leave' : CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId === snapshot.id,
-                                            'opacity2-enter' : CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId !== snapshot.id}"
-                            data-ng-if="snapshot.size"
-                            data-ng-bind="::snapshot.size  | bytes:2:'true':'GiB'"
+                            <span
+                                data-ng-class="{'opacity2-leave' : CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId === snapshot.id,
+                                                'opacity2-enter' : CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId !== snapshot.id}"
+                                data-ng-if="snapshot.size"
+                                data-ng-bind="::snapshot.size  | bytes:2:'true':'GiB'"
+                            >
+                            </span>
+                        </td>
+                        <td
+                            data-title="{{::'cpc_snapshot_price' | translate}}"
+                            class="oui-table__cell"
                         >
-                        </span>
-                    </td>
-                    <td
-                        data-title="{{::'cpc_snapshot_price' | translate}}"
-                        class="oui-table__cell"
-                    >
-                        <span
-                            data-ng-class="{'opacity2-leave' : CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId === snapshot.id,
-                                            'opacity2-enter' : CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId !== snapshot.id}"
-                            data-ng-if="snapshot.price"
-                            data-ng-bind="::snapshot.price.text"
+                            <span
+                                data-ng-class="{'opacity2-leave' : CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId === snapshot.id,
+                                                'opacity2-enter' : CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId !== snapshot.id}"
+                                data-ng-if="snapshot.price"
+                                data-ng-bind="::snapshot.price.text"
+                            >
+                            </span>
+                        </td>
+                        <td
+                            data-title="{{::'cpc_snapshot_creation_date' | translate}}"
+                            class="oui-table__cell"
                         >
-                        </span>
-                    </td>
-                    <td
-                        data-title="{{::'cpc_snapshot_creation_date' | translate}}"
-                        class="oui-table__cell"
-                    >
-                        <span
-                            data-ng-class="{'opacity2-leave' : CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId === snapshot.id,
-                                            'opacity2-enter' : CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId !== snapshot.id}"
-                            data-ng-bind="::snapshot.creationDate | date : 'medium'"
+                            <span
+                                data-ng-class="{'opacity2-leave' : CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId === snapshot.id,
+                                                'opacity2-enter' : CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId !== snapshot.id}"
+                                data-ng-bind="::snapshot.creationDate | date : 'medium'"
+                            >
+                            </span>
+                        </td>
+                        <td
+                            data-title="{{::'cpc_snapshot_status' | translate}}"
+                            class="oui-table__cell"
                         >
-                        </span>
-                    </td>
-                    <td
-                        data-title="{{::'cpc_snapshot_status' | translate}}"
-                        class="oui-table__cell"
-                    >
-                        <span
-                            class="ip-text text-center"
-                            data-ng-if="snapshot.status!=='active' && snapshot.status!=='available'"
-                        >
-                            <oui-spinner size="s"></oui-spinner>
-                        </span>
-                        <span
-                            data-ng-class="{'opacity2-leave' : CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId === snapshot.id,
-                                            'opacity2-enter' : CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId !== snapshot.id}"
-                            data-ng-bind="'cpc_snapshot_status_' + snapshot.status | translate"
-                        >
-                        </span>
-                    </td>
+                            <span
+                                class="ip-text text-center"
+                                data-ng-if="snapshot.status!=='active' && snapshot.status!=='available'"
+                            >
+                                <oui-spinner size="s"></oui-spinner>
+                            </span>
+                            <span
+                                data-ng-class="{'opacity2-leave' : CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId === snapshot.id,
+                                                'opacity2-enter' : CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId !== snapshot.id}"
+                                data-ng-bind="'cpc_snapshot_status_' + snapshot.status | translate"
+                            >
+                            </span>
+                        </td>
 
-                    <td
-                        class="oui-table__cell oui-table__cell_action"
-                        write-right-required
-                    >
-                        <div
-                            data-ng-show="CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId === snapshot.id"
-                            class="text-center animate-fadeInRight-enter animate-fadeOutLeft-leave"
+                        <td
+                            class="oui-table__cell oui-table__cell_action"
+                            write-right-required
                         >
-                            -
-                            <button
-                                class="oui-button oui-button_secondary"
-                                type="button"
-                                data-ng-disabled="CloudProjectComputeSnapshotCtrl.loaders.remove.snapshot || CloudProjectComputeSnapshotCtrl.loaders.remove.snapshotMulti"
-                                data-ng-click="CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId = null"
+                            <div
+                                data-ng-show="CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId === snapshot.id"
+                                class="text-center animate-fadeInRight-enter animate-fadeOutLeft-leave"
                             >
-                                <span
-                                    translate="cpc_snapshot_delete_cancel_button"
-                                ></span>
-                            </button>
-                            <button
-                                class="oui-button oui-button_primary"
-                                type="button"
-                                data-ng-click="CloudProjectComputeSnapshotCtrl.deleteSnapshot(snapshot)"
-                                data-ng-disabled="CloudProjectComputeSnapshotCtrl.loaders.remove.snapshot
-                                                || CloudProjectComputeSnapshotCtrl.loaders.remove.snapshotMulti
-                                                || CloudProjectComputeSnapshotCtrl.toggle.openDeleteMultiConfirm"
-                            >
-                                <span
-                                    translate="cpc_snapshot_delete_confirm_button"
-                                ></span>
-                                <oui-spinner
-                                    size="s"
-                                    data-nf-if="CloudProjectComputeSnapshotCtrl.loaders.remove.snapshot"
-                                ></oui-spinner>
-                            </button>
-                        </div>
+                                -
+                                <button
+                                    class="oui-button oui-button_secondary"
+                                    type="button"
+                                    data-ng-disabled="CloudProjectComputeSnapshotCtrl.loaders.remove.snapshot || CloudProjectComputeSnapshotCtrl.loaders.remove.snapshotMulti"
+                                    data-ng-click="CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId = null"
+                                >
+                                    <span
+                                        translate="cpc_snapshot_delete_cancel_button"
+                                    ></span>
+                                </button>
+                                <button
+                                    class="oui-button oui-button_primary"
+                                    type="button"
+                                    data-ng-click="CloudProjectComputeSnapshotCtrl.deleteSnapshot(snapshot)"
+                                    data-ng-disabled="CloudProjectComputeSnapshotCtrl.loaders.remove.snapshot
+                                                    || CloudProjectComputeSnapshotCtrl.loaders.remove.snapshotMulti
+                                                    || CloudProjectComputeSnapshotCtrl.toggle.openDeleteMultiConfirm"
+                                >
+                                    <span
+                                        translate="cpc_snapshot_delete_confirm_button"
+                                    ></span>
+                                    <oui-spinner
+                                        size="s"
+                                        data-nf-if="CloudProjectComputeSnapshotCtrl.loaders.remove.snapshot"
+                                    ></oui-spinner>
+                                </button>
+                            </div>
 
-                        <div
-                            data-ng-class="{'opacity2-leave' : CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId === snapshot.id,
-                                            'opacity2-enter' : CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId !== snapshot.id}"
-                        >
-                            <!-- VM restore button -->
-                            <button
-                                class="no-style"
-                                type="button"
-                                title="{{'cpc_snapshot_create_vm_button' | translate}}"
-                                data-ng-if="snapshot.type !== 'volume'"
-                                data-ng-click="CloudProjectComputeSnapshotCtrl.createVmBySnapshot(snapshot)"
-                                data-ng-disabled="CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId === snapshot.id
-                                                || CloudProjectComputeSnapshotCtrl.loaders.remove.snapshot
-                                                || CloudProjectComputeSnapshotCtrl.loaders.remove.snapshotMulti
-                                                || CloudProjectComputeSnapshotCtrl.toggle.openDeleteMultiConfirm
-                                                || snapshot.status !== 'active'"
+                            <div
+                                data-ng-class="{'opacity2-leave' : CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId === snapshot.id,
+                                                'opacity2-enter' : CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId !== snapshot.id}"
                             >
-                                <span
-                                    class="fa-stack fa-lg"
-                                    style="width: 1em; height: 1em; line-height: 1em;"
+                                <!-- VM restore button -->
+                                <button
+                                    class="no-style"
+                                    type="button"
+                                    title="{{'cpc_snapshot_create_vm_button' | translate}}"
+                                    data-ng-if="snapshot.type !== 'volume'"
+                                    data-ng-click="CloudProjectComputeSnapshotCtrl.createVmBySnapshot(snapshot)"
+                                    data-ng-disabled="CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId === snapshot.id
+                                                    || CloudProjectComputeSnapshotCtrl.loaders.remove.snapshot
+                                                    || CloudProjectComputeSnapshotCtrl.loaders.remove.snapshotMulti
+                                                    || CloudProjectComputeSnapshotCtrl.toggle.openDeleteMultiConfirm
+                                                    || snapshot.status !== 'active'"
                                 >
-                                    <i
-                                        style="font-size: 0.7em; top: -5px;"
-                                        class="fa fa-arrow-down fa-stack-1x"
-                                    ></i>
-                                    <i class="fa fa-hdd-o fa-stack-1x"></i>
-                                </span>
-                            </button>
-                            <!-- Volume restore button -->
-                            <button
-                                class="no-style"
-                                type="button"
-                                title="{{'cpc_snapshot_create_volume_button' | translate}}"
-                                data-ng-if="snapshot.type === 'volume'"
-                                data-ng-click="CloudProjectComputeSnapshotCtrl.createVolumeBySnapshot(snapshot)"
-                                data-ng-disabled="CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId === snapshot.id
-                                                || CloudProjectComputeSnapshotCtrl.loaders.remove.snapshot
-                                                || CloudProjectComputeSnapshotCtrl.loaders.remove.snapshotMulti
-                                                || CloudProjectComputeSnapshotCtrl.toggle.openDeleteMultiConfirm
-                                                || snapshot.status !== 'available'"
-                            >
-                                <span
-                                    class="fa-stack fa-lg"
-                                    style="width: 1em; height: 1em; line-height: 1em;"
+                                    <span
+                                        class="fa-stack fa-lg"
+                                        style="width: 1em; height: 1em; line-height: 1em;"
+                                    >
+                                        <i
+                                            style="font-size: 0.7em; top: -5px;"
+                                            class="fa fa-arrow-down fa-stack-1x"
+                                        ></i>
+                                        <i class="fa fa-hdd-o fa-stack-1x"></i>
+                                    </span>
+                                </button>
+                                <!-- Volume restore button -->
+                                <button
+                                    class="no-style"
+                                    type="button"
+                                    title="{{'cpc_snapshot_create_volume_button' | translate}}"
+                                    data-ng-if="snapshot.type === 'volume'"
+                                    data-ng-click="CloudProjectComputeSnapshotCtrl.createVolumeBySnapshot(snapshot)"
+                                    data-ng-disabled="CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId === snapshot.id
+                                                    || CloudProjectComputeSnapshotCtrl.loaders.remove.snapshot
+                                                    || CloudProjectComputeSnapshotCtrl.loaders.remove.snapshotMulti
+                                                    || CloudProjectComputeSnapshotCtrl.toggle.openDeleteMultiConfirm
+                                                    || snapshot.status !== 'available'"
                                 >
-                                    <i
-                                        style="font-size: 0.7em; top: -5px;"
-                                        class="fa fa-arrow-down fa-stack-1x"
-                                    ></i>
-                                    <i class="fa fa-hdd-o fa-stack-1x"></i>
-                                </span>
-                            </button>
-                            <button
-                                class="no-style"
-                                type="button"
-                                title="{{ (snapshot.isInstalledOnVm ? 'cpc_snapshot_status_cannot_delete' : 'cpc_snapshot_delete_button') | translate}}"
-                                data-ng-click="CloudProjectComputeSnapshotCtrl.openDeleteSnapshot(snapshot)"
-                                data-ng-disabled="CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId === snapshot.id
-                                                || CloudProjectComputeSnapshotCtrl.loaders.remove.snapshot
-                                                || CloudProjectComputeSnapshotCtrl.loaders.remove.snapshotMulti
-                                                || CloudProjectComputeSnapshotCtrl.toggle.openDeleteMultiConfirm
-                                                || (snapshot.status !== 'active' && snapshot.status !== 'available')
-                                                || snapshot.isInstalledOnVm"
-                            >
-                                <i class="glyphicon glyphicon-trash"></i>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                                    <span
+                                        class="fa-stack fa-lg"
+                                        style="width: 1em; height: 1em; line-height: 1em;"
+                                    >
+                                        <i
+                                            style="font-size: 0.7em; top: -5px;"
+                                            class="fa fa-arrow-down fa-stack-1x"
+                                        ></i>
+                                        <i class="fa fa-hdd-o fa-stack-1x"></i>
+                                    </span>
+                                </button>
+                                <button
+                                    class="no-style"
+                                    type="button"
+                                    title="{{ (snapshot.isInstalledOnVm ? 'cpc_snapshot_status_cannot_delete' : 'cpc_snapshot_delete_button') | translate}}"
+                                    data-ng-click="CloudProjectComputeSnapshotCtrl.openDeleteSnapshot(snapshot)"
+                                    data-ng-disabled="CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId === snapshot.id
+                                                    || CloudProjectComputeSnapshotCtrl.loaders.remove.snapshot
+                                                    || CloudProjectComputeSnapshotCtrl.loaders.remove.snapshotMulti
+                                                    || CloudProjectComputeSnapshotCtrl.toggle.openDeleteMultiConfirm
+                                                    || (snapshot.status !== 'active' && snapshot.status !== 'available')
+                                                    || snapshot.isInstalledOnVm"
+                                >
+                                    <i class="glyphicon glyphicon-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
         <!-- PAGINATION TABLE -->
         <div

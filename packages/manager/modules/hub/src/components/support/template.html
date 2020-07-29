@@ -17,73 +17,65 @@
     <div class="manager-hub-support" data-ng-if="!$ctrl.error">
         <div
             data-ng-if="$ctrl.tickets.length > 0 || $ctrl.isLoading"
-            class="oui-datagrid-responsive-container"
+            class="oui-table-responsive"
         >
-            <div class="oui-datagrid-responsive-container__sticky-container">
-                <div
-                    class="oui-datagrid-responsive-container__overflow-container"
-                >
-                    <table class="w-100 oui-datagrid">
-                        <tbody>
-                            <tr
-                                class="oui-datagrid__row"
-                                data-ng-if="!$ctrl.isLoading"
-                                data-ng-repeat="ticket in $ctrl.tickets track by ticket.ticketId"
-                                data-navi-id="{{:: 'helpBlock-' + ticket.serviceName }}"
+            <table class="oui-table">
+                <tbody>
+                    <tr
+                        class="oui-table__row"
+                        data-ng-if="!$ctrl.isLoading"
+                        data-ng-repeat="ticket in $ctrl.tickets track by ticket.ticketId"
+                        data-navi-id="{{:: 'helpBlock-' + ticket.serviceName }}"
+                    >
+                        <td
+                            class="oui-table__cell font-weight-bold"
+                            data-ng-bind=":: ticket.getDisplayName() || ('hub_support_account_management' | translate)"
+                        ></td>
+                        <td
+                            class="oui-table__cell"
+                            data-ng-bind=":: ticket.subject"
+                        ></td>
+                        <td class="oui-table__cell">
+                            <span
+                                class="align-middle oui-badge"
+                                data-ng-class=":: 'oui-badge_' + ticket.getStateCategory()"
+                                data-ng-bind=":: ('hub_support_state_' + ticket.state) | translate"
                             >
-                                <td
-                                    class="oui-datagrid__cell font-weight-bold"
-                                    data-ng-bind=":: ticket.getDisplayName() || ('hub_support_account_management' | translate)"
-                                ></td>
-                                <td
-                                    class="oui-datagrid__cell"
-                                    data-ng-bind=":: ticket.subject"
-                                ></td>
-                                <td class="oui-datagrid__cell">
-                                    <span
-                                        class="oui-status align-middle"
-                                        data-ng-class=":: 'oui-status_' + ticket.getStateCategory()"
-                                        data-ng-bind=":: ('hub_support_state_' + ticket.state) | translate"
-                                    >
-                                    </span>
-                                </td>
-                                <td class="oui-datagrid__cell text-right">
-                                    <a
-                                        data-ng-href="{{:: $ctrl.RedirectionService.getURL('ticket', { ticketId: ticket.ticketId }) }}"
-                                        data-track-on="click"
-                                        data-track-name="{{:: $ctrl.trackingPrefix + '::activity::assistance::go-to-ticket' }}"
-                                        data-track-type="navigation"
-                                        data-navi-id="{{:: 'helpBlock-' + ticket.serviceName + '-go-to-ticket' }}"
-                                    >
-                                        <span
-                                            data-translate="hub_support_read"
-                                        ></span>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr
-                                class="oui-datagrid__row"
-                                data-ng-if="$ctrl.isLoading"
-                                data-ng-repeat="loader in [1,2]"
+                            </span>
+                        </td>
+                        <td class="oui-table__cell text-right">
+                            <a
+                                data-ng-href="{{:: $ctrl.RedirectionService.getURL('ticket', { ticketId: ticket.ticketId }) }}"
+                                data-track-on="click"
+                                data-track-name="{{:: $ctrl.trackingPrefix + '::activity::assistance::go-to-ticket' }}"
+                                data-track-type="navigation"
+                                data-navi-id="{{:: 'helpBlock-' + ticket.serviceName + '-go-to-ticket' }}"
                             >
-                                <td
-                                    data-ng-repeat="skeleton in [1,2]"
-                                    class="oui-datagrid__cell"
-                                >
-                                    <oui-skeleton size="s"></oui-skeleton>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+                                <span data-translate="hub_support_read"></span>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr
+                        class="oui-table__row"
+                        data-ng-if="$ctrl.isLoading"
+                        data-ng-repeat="loader in [1,2]"
+                    >
+                        <td
+                            data-ng-repeat="skeleton in [1,2]"
+                            class="oui-table__cell"
+                        >
+                            <oui-skeleton size="s"></oui-skeleton>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         <div data-ng-if="!$ctrl.tickets.length">
             <div
-                class="manager-hub-support_illustration"
+                class="manager-hub-support__illustration"
                 aria-hidden="true"
             ></div>
-            <h3 data-translate="hub_support_need_help"></h3>
+            <h3 class="oui-heading_4" data-translate="hub_support_need_help"></h3>
             <p data-translate="hub_support_need_help_more"></p>
             <a
                 class="manager-hub-support__link"
@@ -92,10 +84,7 @@
                 data-track-name="{{ $ctrl.trackingPrefix + '::activity::assistance::guide-welcome::go-to-docs' }}"
             >
                 <span data-translate="hub_support_help"></span>
-                <span
-                    class="oui-icon oui-icon-arrow-right_extra-thin"
-                    aria-hidden="true"
-                >
+                <span class="oui-icon oui-icon-arrow-right" aria-hidden="true">
                 </span>
             </a>
         </div>

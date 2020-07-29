@@ -2,32 +2,32 @@
     data-ng-controller="DedicatedServerFtpBackupAccessUpdateController as $ctrl"
 >
     <oui-modal
-        data-title="{{:: 'server_configuration_ftpbackup_access_edit' | translate }}"
         data-primary-action="$ctrl.updateFtpBackupAccess()"
         data-primary-label="{{:: 'wizard_confirm' | translate }}"
         data-secondary-action="resetAction()"
         data-secondary-label="{{:: 'wizard_cancel' | translate }}"
         data-on-dismiss="resetAction()"
         data-loading="$ctrl.isUpdating"
+        data-heading="{{:: 'server_configuration_ftpbackup_access_edit' | translate }}"
     >
         <p
             data-translate="server_configuration_ftpbackup_access_edit_info"
             data-translate-values="{ t0: $ctrl.access.ipBlock }"
         ></p>
-        <oui-checkbox
-            data-text="{{:: 'server_configuration_ftpbackup_table_cifs' | translate }}"
-            data-model="$ctrl.form.access.cifs"
-        >
+        <oui-checkbox data-model="$ctrl.form.access.cifs"
+            ><span
+                data-translate="server_configuration_ftpbackup_table_cifs"
+            ></span>
         </oui-checkbox>
-        <oui-checkbox
-            data-text="{{:: 'server_configuration_ftpbackup_table_ftp' | translate }}"
-            data-model="$ctrl.form.access.ftp"
-        >
+        <oui-checkbox data-model="$ctrl.form.access.ftp"
+            ><span
+                data-translate="server_configuration_ftpbackup_table_ftp"
+            ></span>
         </oui-checkbox>
-        <oui-checkbox
-            data-text="{{:: 'server_configuration_ftpbackup_table_nfs' | translate }}"
-            data-model="$ctrl.form.access.nfs"
-        >
+        <oui-checkbox data-model="$ctrl.form.access.nfs"
+            ><span
+                data-translate="server_configuration_ftpbackup_table_nfs"
+            ></span>
         </oui-checkbox>
     </oui-modal>
 </div>

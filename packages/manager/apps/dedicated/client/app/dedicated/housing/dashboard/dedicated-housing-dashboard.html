@@ -4,7 +4,7 @@
     <div class="col-sm-4">
         <div class="oui-tile mb-5 h-100">
             <h2
-                class="oui-tile__title oui-header_4"
+                class="oui-tile__title oui-heading_4"
                 data-translate="housing_tab_stats_legend_general"
             ></h2>
             <div
@@ -25,11 +25,11 @@
                         ></dt>
                         <dd class="oui-tile__description">
                             <span
-                                class="oui-status"
+                                class="oui-badge"
                                 data-ng-class="{
-                                    'oui-status_success': housing.status === 'ok',
-                                    'oui-status_warning': housing.status === 'error',
-                                    'oui-status_error': housing.status === 'hacked' || housing.status === 'hacked_blocked'
+                                    'oui-badge_success': housing.status === 'ok',
+                                    'oui-badge_warning': housing.status === 'error',
+                                    'oui-badge_error': housing.status === 'hacked' || housing.status === 'hacked_blocked'
                                   }"
                                 data-ng-bind="('housing_status_' + housing.status) | translate"
                             >
@@ -40,14 +40,15 @@
                         <oui-action-menu
                             aria-label="{{:: 'menu_action_label' | translate:{ t0: ('housing_configuration_reboot_title_button' | translate) } }}"
                             data-compact
-                            data-align="end"
+                            data-placement="end"
                         >
                             <oui-action-menu-item
                                 aria-label="{{:: 'housing_configuration_reboot_title_button' | translate }}"
-                                data-text="{{:: 'housing_configuration_reboot_title_button' | translate }}"
                                 data-on-click="!disable.reboot && !disable.byOtherTask && setAction('reboot/dedicated-housing-reboot')"
                                 data-disabled="disable.reboot || disable.byOtherTask"
-                            >
+                                ><span
+                                    data-translate="housing_configuration_reboot_title_button"
+                                ></span>
                             </oui-action-menu-item>
                         </oui-action-menu>
                     </div>
@@ -104,7 +105,7 @@
     <div class="col-sm-4">
         <div class="oui-tile mb-5 h-100">
             <h2
-                class="oui-tile__title oui-header_4"
+                class="oui-tile__title oui-heading_4"
                 data-translate="housing_tab_stats_legend_network"
             ></h2>
             <div
@@ -125,13 +126,15 @@
                     <div class="oui-tile__actions">
                         <oui-action-menu
                             aria-label="{{:: 'menu_action_label' | translate:{ t0: ('server_configuration_distribution' | translate) } }}"
-                            data-align="end"
                             data-compact
+                            data-placement="end"
                         >
                             <oui-action-menu-item
-                                data-text="{{:: 'housing_configuration_ipv4_manage' | translate }}"
                                 data-aria-label="{{:: 'housing_configuration_ipv4_manage' | translate }}"
                                 data-ui-sref="app.ip({ serviceName: housing.name })"
+                                ><span
+                                    data-translate="housing_configuration_ipv4_manage"
+                                ></span
                             ></oui-action-menu-item>
                         </oui-action-menu>
                     </div>
@@ -179,7 +182,7 @@
     <div class="col-sm-4">
         <div class="oui-tile mb-5 h-100">
             <h2
-                class="oui-tile__title oui-header_4"
+                class="oui-tile__title oui-heading_4"
                 data-translate="housing_tab_stats_legend_route"
             ></h2>
             <div
@@ -222,7 +225,7 @@
             data-ng-if="!loadingHousingInformations"
         >
             <h2
-                class="oui-tile__title oui-header_4"
+                class="oui-tile__title oui-heading_4"
                 data-translate="housing_tab_stats_legend_subscription"
             ></h2>
             <div class="oui-tile__body">
@@ -281,14 +284,15 @@
                         <oui-action-menu
                             aria-label="{{:: 'menu_action_label' | translate:{ t0: ('core_change_owner' | translate)} }}"
                             data-compact
-                            data-align="end"
+                            data-placement="end"
                         >
                             <oui-action-menu-item
                                 aria-label="{{:: 'core_change_owner' | translate }}"
-                                data-text="{{:: 'core_change_owner' | translate }}"
                                 data-href="{{changeOwnerUrl}}"
                                 data-external
-                            >
+                                ><span
+                                    data-translate="core_change_owner"
+                                ></span>
                             </oui-action-menu-item>
                         </oui-action-menu>
                     </div>

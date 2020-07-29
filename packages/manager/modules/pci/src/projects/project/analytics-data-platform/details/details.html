@@ -1,5 +1,5 @@
 <section class="analytics-data-platform-service">
-    <oui-page-header
+    <oui-header
         class="mb-2"
         data-heading="{{ $ctrl.platformDetails.data.clusterName }}"
         data-description="{{ $ctrl.platformDetails.data.projectId }}"
@@ -14,43 +14,49 @@
                 ></span>
             </oui-guide-menu-item>
             <oui-guide-menu-item
-                data-text="{{ ::'analytics_data_platform_header_guides_analytics_data_platform' | translate }}"
                 data-href="{{ ::$ctrl.guideLinks.general_link }}"
                 data-external
+                ><span
+                    data-translate="analytics_data_platform_header_guides_analytics_data_platform"
+                ></span
             ></oui-guide-menu-item>
         </oui-guide-menu>
         <!-- header tabs -->
         <oui-header-tabs>
             <oui-header-tabs-item
-                data-text="{{ ::'analytics_data_platform_header_nav_service_info' | translate }}"
                 data-state="pci.projects.project.analytics-data-platform.details.service"
                 data-state-params="{ serviceName: $ctrl.serviceName }"
                 data-disabled="$ctrl.analyticsDataPlatformService.isDeploymentInProgress($ctrl.platformDetails)"
-            >
+                ><span
+                    data-translate="analytics_data_platform_header_nav_service_info"
+                ></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
-                data-text="{{ ::'analytics_data_platform_header_nav_cluster_size' | translate }}"
                 data-state="pci.projects.project.analytics-data-platform.details.cluster"
                 data-state-params="{ serviceName: $ctrl.serviceName }"
                 data-disabled="$ctrl.analyticsDataPlatformService.isDeploymentInProgress($ctrl.platformDetails)"
-            >
+                ><span
+                    data-translate="analytics_data_platform_header_nav_cluster_size"
+                ></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
-                data-text="{{ ::'analytics_data_platform_header_nav_credential' | translate }}"
                 data-state="pci.projects.project.analytics-data-platform.details.credentials"
                 data-state-params="{ serviceName: $ctrl.serviceName }"
                 data-disabled="$ctrl.analyticsDataPlatformService.isDeploymentInProgress($ctrl.platformDetails)"
-            >
+                ><span
+                    data-translate="analytics_data_platform_header_nav_credential"
+                ></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
-                data-text="{{ ::'analytics_data_platform_header_nav_activity' | translate }}"
                 data-state="pci.projects.project.analytics-data-platform.details.log"
                 data-state-params="{ serviceName: $ctrl.serviceName }"
                 data-disabled="$ctrl.analyticsDataPlatformService.isDeploymentInProgress($ctrl.platformDetails)"
-            >
+                ><span
+                    data-translate="analytics_data_platform_header_nav_activity"
+                ></span>
             </oui-header-tabs-item>
         </oui-header-tabs>
-    </oui-page-header>
+    </oui-header>
     <!-- page content -->
     <div>
         <!-- error messages -->

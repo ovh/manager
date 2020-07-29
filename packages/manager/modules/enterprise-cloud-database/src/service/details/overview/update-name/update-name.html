@@ -1,6 +1,5 @@
 <form name="$ctrl.updateName" novalidate>
     <oui-modal
-        data-title="{{ ::'enterprise_cloud_database_name_change_title' | translate }}"
         data-primary-label="{{ ::'enterprise_cloud_database_common_save' | translate }}"
         data-secondary-action="$ctrl.goBack()"
         data-primary-action="$ctrl.updateName.$valid && $ctrl.changeName()"
@@ -8,6 +7,7 @@
         data-secondary-label="{{ ::'enterprise_cloud_database_common_cancel' | translate }}"
         data-on-dismiss="$ctrl.goBack()"
         data-loading="$ctrl.isLoading"
+        data-heading="{{ ::'enterprise_cloud_database_name_change_title' | translate }}"
     >
         <oui-field
             data-label="{{:: 'enterprise_cloud_database_common_name' | translate }}"

@@ -1,8 +1,6 @@
 <div class="billing-payments-request">
-    <oui-back-button
-        data-heading="{{ :: ('billing_payments_request_title' | translate) }}"
-        data-href="{{ $ctrl.$state.href('^') }}"
-    >
+    <oui-back-button data-href="{{ $ctrl.$state.href('^') }}"
+        ><span data-translate="billing_payments_request_title"></span>
     </oui-back-button>
 
     <div class="text-center" data-ng-if="$ctrl.loading.init">
@@ -16,7 +14,7 @@
             <div class="mb-4">
                 <oui-message
                     data-type="info"
-                    data-on-dismissed="$ctrl.$state.go('^')"
+                    data-on-dismiss="$ctrl.$state.go('^')"
                 >
                     <span
                         data-translate="billing_payment_request_no_pending"
@@ -33,30 +31,30 @@
             </div>
 
             <oui-datagrid data-rows="$ctrl.bills">
-                <oui-column
+                <oui-datagrid-column
                     data-title=":: 'billing_payments_request_table_reference' | translate"
                 >
                     <span data-ng-bind="$row.value.billId"></span>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title=":: 'billing_payments_request_table_date' | translate"
                 >
                     <span
                         data-ng-bind="$row.value.date | date:'mediumDate'"
                     ></span>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title=":: 'billing_payments_request_table_paid_date' | translate"
                 >
                     <span
                         data-ng-bind="$row.value.paid | date:'mediumDate'"
                     ></span>
-                </oui-column>
-                <oui-column
+                </oui-datagrid-column>
+                <oui-datagrid-column
                     data-title=":: 'billing_payments_request_table_date' | translate"
                 >
                     <span data-ng-bind="$row.value.priceWithTax.text"></span>
-                </oui-column>
+                </oui-datagrid-column>
             </oui-datagrid>
         </div>
     </div>

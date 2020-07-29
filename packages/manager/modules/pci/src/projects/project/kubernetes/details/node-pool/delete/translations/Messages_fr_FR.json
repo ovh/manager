@@ -1,0 +1,8 @@
+{
+  "kube_node_pool_delete": "Supprimer le pool de nœud",
+  "kube_node_pool_delete_confirmation": "Êtes-vous sûr de supprimer {{ node }} ?",
+  "kube_node_pool_delete_warning": "Cette action est irréversible.",
+  "kube_node_pool_delete_enter": "Entrez \"DELETE\" dans le champ ci-dessous pour confirmer",
+  "kube_node_pool_delete_success": "Le pool de nœuds est en cours de suppression",
+  "kube_node_pool_delete_error": "Une erreur s'est produite lors de la suppression du pool de nœuds: {{message}}"
+}

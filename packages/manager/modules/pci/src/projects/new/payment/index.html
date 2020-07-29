@@ -80,11 +80,15 @@
                     data-type="submit"
                     data-variant-nav="next"
                     data-disabled="
-                        ($ctrl.eligibility.isChallengePaymentMethodRequired() && !$ctrl.model.challenge.isValid($ctrl.defaultPaymentMethod.paymentType)
+                        ($ctrl.eligibility.isChallengePaymentMethodRequired() && !$ctrl.model.challenge.isValid($ctrl.defaultPaymentMethod.paymentType))
                         || (!$ctrl.model.paymentMethod && $ctrl.eligibility.isAddPaymentMethodRequired())
+                        || (!$ctrl.defaultPaymentMethod && 
+                            !$ctrl.model.defaultPaymentMethod && 
+                            $ctrl.eligibility.isDefaultPaymentMethodChoiceRequired())
                         || $ctrl.model.challenge.checking
-                        || $ctrl.globalLoading.finalize)"
-                    data-ng-if="$ctrl.defaultPaymentMethod || !$ctrl.model.paymentMethod"
+                        || $ctrl.globalLoading.finalize
+                        || $ctrl.globalLoading.setDefaultPaymentMethod"
+                    data-ng-if="$ctrl.defaultPaymentMethod || !$ctrl.model.paymentMethod || ($ctrl.eligibility.isDefaultPaymentMethodChoiceRequired() && !$ctrl.model.paymentMethod)"
                 >
                     <span
                         data-translate="pci_project_new_payment_btn_continue_default"
@@ -93,14 +97,14 @@
 
                 <a
                     class="oui-button oui-button_primary oui-button_icon-right no-transition"
-                    data-ng-if="$ctrl.OVH_PAYMENT_METHOD_TYPE.BANK_ACCOUNT === $ctrl.model.paymentMethod.paymentType"
+                    data-ng-if="$ctrl.model.paymentMethod.type.isBankAccount()"
                     data-ng-href="{{ $ctrl.paymentMethodUrl }}"
                 >
                     <span
                         data-translate="pci_project_new_payment_btn_continue_bank_account"
                     ></span>
                     <span
-                        class="oui-icon oui-icon_circle oui-icon-chevron-right"
+                        class="oui-icon oui-icon-chevron-right"
                         aria-hidden="true"
                     >
                     </span>

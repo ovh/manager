@@ -1,7 +1,7 @@
 import angular from 'angular';
 
 import 'ovh-api-services';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 import '@ovh-ux/ng-ovh-contracts';
 
 import { DISCRETE_CREDIT } from './freefax-credit.constants';

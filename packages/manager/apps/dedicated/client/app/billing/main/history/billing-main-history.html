@@ -2,10 +2,11 @@
     <div data-ng-if="$ctrl.postalMailOptions.enabled">
         <oui-checkbox
             class="d-inline-block ml-3"
-            data-text="{{ :: 'billing_main_history_invoices_postal_mail' | translate }}"
             data-on-change="$ctrl.onPostalMailOptionsChange()"
             data-model="$ctrl.postalMailOptions.activated"
-        >
+            ><span
+                data-translate="billing_main_history_invoices_postal_mail"
+            ></span>
         </oui-checkbox>
     </div>
 
@@ -50,7 +51,7 @@
         on-row-select="$ctrl.onRowSelect($rows)"
         columns="$ctrl.columnsConfig"
     >
-        <oui-column
+        <oui-datagrid-column
             title=":: 'billing_main_history_table_id' | translate"
             property="billId"
             searchable
@@ -58,8 +59,8 @@
             sortable
             filterable
         >
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             title=":: 'billing_main_history_table_order_id' | translate"
             property="orderId"
             searchable
@@ -67,8 +68,8 @@
             sortable
             filterable
         >
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             title=":: 'billing_main_history_table_date' | translate"
             property="date"
             sortable
@@ -85,52 +86,52 @@
                 data-translate="billing_main_history_table_unavailable"
             >
             </span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             title=":: 'billing_main_history_table_total' | translate"
             property="priceWithoutTax.value"
             sortable
         >
             <span data-ng-bind="$row.priceWithoutTax.text"></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             title=":: 'billing_main_history_table_total_with_VAT' | translate"
             property="priceWithTax.value"
             sortable
         >
             <span data-ng-bind=":: $row.priceWithTax.text"> </span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             title=":: 'billing_main_history_table_balance_due_amount' | translate"
             property="debt.dueAmount"
             sortable
         >
             <span
                 data-ng-class="{
-                    'oui-status': $row.isDue(),
-                    'oui-status_warning': $row.isDue() && !$row.isUnpaid(),
-                    'oui-status_error': $row.isUnpaid()
+                    'oui-badge': $row.isDue(),
+                    'oui-badge_warning': $row.isDue() && !$row.isUnpaid(),
+                    'oui-badge_error': $row.isUnpaid()
                 }"
                 data-ng-bind=":: $row.debt.dueAmount.text"
             >
             </span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             title=":: 'billing_main_history_table_balance_status' | translate"
             property="debt.status"
             sortable
         >
             <span
                 data-ng-class="{
-                'oui-status': $row.isDue(),
-                'oui-status_warning': $row.isDue() && !$row.isUnpaid(),
-                'oui-status_error': $row.isUnpaid()
+                'oui-badge': $row.isDue(),
+                'oui-badge_warning': $row.isDue() && !$row.isUnpaid(),
+                'oui-badge_error': $row.isUnpaid()
             }"
                 data-translate="{{:: 'billing_main_history_table_balance_status_' + $row.debt.status }}"
             >
             </span>
-        </oui-column>
-        <oui-action-menu data-align="end" compact>
+        </oui-datagrid-column>
+        <oui-action-menu compact data-placement="end">
             <oui-action-menu-item
                 ng-if="$row.url"
                 href="{{ :: $row.url }}"
@@ -171,11 +172,10 @@
             </oui-action-menu-item>
         </oui-action-menu>
 
-        <extra-top>
+        <oui-datagrid-topbar>
             <oui-action-menu
                 text="{{ :: 'billing_main_history_table_actions' | translate }}"
                 aria-label="{{ :: 'billing_main_history_table_actions_title' | translate }}"
-                data-align="start"
             >
                 <div data-ng-if="$ctrl.selectedBills.length">
                     <oui-action-menu-item
@@ -212,6 +212,6 @@
                     ></span>
                 </oui-action-menu-item>
             </oui-action-menu>
-        </extra-top>
+        </oui-datagrid-topbar>
     </oui-datagrid>
 </div>

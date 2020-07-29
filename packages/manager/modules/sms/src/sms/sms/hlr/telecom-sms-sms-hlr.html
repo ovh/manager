@@ -172,7 +172,7 @@
                     data-rows="SmsHlrCtrl.hlr.data"
                     data-row-loader="SmsHlrCtrl.getDetails($row)"
                 >
-                    <oui-column
+                    <oui-datagrid-column
                         data-title="'sms_sms_hlr_read_label_date' | translate"
                         data-property="datetime"
                     >
@@ -182,9 +182,9 @@
                         <span
                             data-ng-bind="$row.datetime | date: 'HH:mm:ss'"
                         ></span>
-                    </oui-column>
+                    </oui-datagrid-column>
 
-                    <oui-column
+                    <oui-datagrid-column
                         data-title="'sms_sms_hlr_read_label_cost' | translate"
                         data-property="status"
                     >
@@ -193,9 +193,9 @@
                             data-translate-values="{ credit: $row.status === 'done' ? 0.1 : 0 }"
                         >
                         </span>
-                    </oui-column>
+                    </oui-datagrid-column>
 
-                    <oui-column
+                    <oui-datagrid-column
                         data-title="'sms_sms_hlr_read_label_status' | translate"
                         data-property="status"
                     >
@@ -209,23 +209,23 @@
                            }"
                         >
                         </i>
-                    </oui-column>
+                    </oui-datagrid-column>
 
-                    <oui-column
+                    <oui-datagrid-column
                         data-title="'sms_sms_hlr_read_label_number' | translate"
                         data-property="msisdn"
                     >
                         {{$row.msisdn}}
-                    </oui-column>
+                    </oui-datagrid-column>
 
-                    <oui-column
+                    <oui-datagrid-column
                         data-title="'sms_sms_hlr_read_label_operator_code' | translate"
                         data-property="operatorName"
                     >
                         {{$row.operatorName || '-'}}
-                    </oui-column>
+                    </oui-datagrid-column>
 
-                    <oui-column
+                    <oui-datagrid-column
                         data-title="'sms_sms_hlr_read_label_valid' | translate"
                         data-property="valid"
                     >
@@ -233,9 +233,9 @@
                             data-ng-bind="$row.valid ? 'sms_yes' : 'sms_no' | translate"
                             class="text-capitalize"
                         ></span>
-                    </oui-column>
+                    </oui-datagrid-column>
 
-                    <oui-column
+                    <oui-datagrid-column
                         data-title="'sms_sms_hlr_read_label_reachable' | translate"
                         data-property="reachable"
                     >
@@ -243,9 +243,9 @@
                             data-ng-bind="$row.reachable ? 'sms_yes' : 'sms_no' | translate"
                             class="text-capitalize"
                         ></span>
-                    </oui-column>
+                    </oui-datagrid-column>
 
-                    <oui-column
+                    <oui-datagrid-column
                         data-title="'sms_sms_hlr_read_label_ported' | translate"
                         data-property="ported"
                     >
@@ -253,9 +253,9 @@
                             data-ng-bind="$row.ported ? 'sms_yes' : 'sms_no' | translate"
                             class="text-capitalize"
                         ></span>
-                    </oui-column>
+                    </oui-datagrid-column>
 
-                    <oui-column
+                    <oui-datagrid-column
                         data-title="'sms_sms_hlr_read_label_roaming' | translate"
                         data-property="roaming"
                     >
@@ -263,7 +263,7 @@
                             data-ng-bind="$row.roaming ? 'sms_yes' : 'sms_no' | translate"
                             class="text-capitalize"
                         ></span>
-                    </oui-column>
+                    </oui-datagrid-column>
                 </oui-datagrid>
             </div>
             <!-- .widget-presentation -->

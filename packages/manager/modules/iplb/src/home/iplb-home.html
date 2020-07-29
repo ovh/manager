@@ -27,21 +27,22 @@
                                 data-ng-if="statusTypeInfo.number"
                             >
                                 <span
-                                    class="oui-status"
+                                    class="oui-badge"
                                     data-translate="{{ ::statusTypeInfo.text }}"
-                                    data-ng-class="'oui-status_' + statusTypeInfo.code"
+                                    data-ng-class="'oui-badge_' + statusTypeInfo.code"
                                 ></span>
                             </div>
                         </oui-tile-description>
                         <oui-action-menu
                             data-compact
-                            data-align="end"
                             data-ng-if="$ctrl[statusInfo.itemName + 'Actions'].isAvailable()"
+                            data-placement="end"
                         >
                             <oui-action-menu-item
-                                data-text="{{ ::$ctrl[statusInfo.itemName + 'Actions'].text }}"
                                 data-on-click="$ctrl[statusInfo.itemName + 'Actions'].callback()"
-                            >
+                                ><span
+                                    data-ng-bind="::$ctrl[statusInfo.itemName + 'Actions'].text"
+                                ></span>
                             </oui-action-menu-item>
                         </oui-action-menu>
                     </oui-tile-definition>
@@ -92,11 +93,12 @@
                                 data-limit="100 * quota.alert / quota.total"
                             ></iplb-bullet-chart>
                         </oui-tile-description>
-                        <oui-action-menu data-compact data-align="end">
+                        <oui-action-menu data-compact data-placement="end">
                             <oui-action-menu-item
-                                data-text="{{ ::'iplb_utilisation_update_alert' | translate }}"
                                 data-on-click="$ctrl.updateQuotaAlert(quota)"
-                            >
+                                ><span
+                                    data-translate="iplb_utilisation_update_alert"
+                                ></span>
                             </oui-action-menu-item>
                         </oui-action-menu>
                     </oui-tile-definition>
@@ -192,12 +194,12 @@
                     >
                         <oui-action-menu
                             data-compact
-                            data-align="end"
                             data-ng-if="$ctrl.information.data.failoverIp.length"
+                            data-placement="end"
                         >
                             <oui-action-menu-item
-                                data-text="{{ ::'iplb_consult' | translate }}"
                                 data-on-click="$ctrl.actions.showFailoverIp.callback()"
+                                ><span data-translate="iplb_consult"></span
                             ></oui-action-menu-item>
                         </oui-action-menu>
                     </oui-tile-definition>
@@ -207,12 +209,12 @@
                     >
                         <oui-action-menu
                             data-compact
-                            data-align="end"
                             data-ng-if="$ctrl.information.data.natIp.length"
+                            data-placement="end"
                         >
                             <oui-action-menu-item
-                                data-text="{{ ::'iplb_consult' | translate }}"
                                 data-on-click="$ctrl.actions.showNatIp.callback()"
+                                ><span data-translate="iplb_consult"></span
                             ></oui-action-menu-item>
                         </oui-action-menu>
                     </oui-tile-definition>
@@ -246,12 +248,14 @@
                     >
                         <oui-action-menu
                             data-compact
-                            data-align="end"
                             data-ng-if="$ctrl.actions.changeName.isAvailable()"
+                            data-placement="end"
                         >
                             <oui-action-menu-item
-                                data-text="{{ ::$ctrl.actions.changeName.text }}"
                                 data-on-click="$ctrl.actions.changeName.callback()"
+                                ><span
+                                    data-ng-bind="::$ctrl.actions.changeName.text"
+                                ></span
                             ></oui-action-menu-item>
                         </oui-action-menu>
                     </oui-tile-definition>
@@ -261,12 +265,14 @@
                     >
                         <oui-action-menu
                             data-compact
-                            data-align="end"
                             data-ng-if="$ctrl.actions.changeCipher.isAvailable()"
+                            data-placement="end"
                         >
                             <oui-action-menu-item
-                                data-text="{{ ::$ctrl.actions.changeCipher.text }}"
                                 data-on-click="$ctrl.actions.changeCipher.callback()"
+                                ><span
+                                    data-ng-bind="::$ctrl.actions.changeCipher.text"
+                                ></span
                             ></oui-action-menu-item>
                         </oui-action-menu>
                     </oui-tile-definition>
@@ -319,18 +325,22 @@
                         </oui-tile-description>
                         <oui-action-menu
                             data-compact
-                            data-align="end"
                             data-ng-if="$ctrl.actions.addZone.isAvailable() || $ctrl.actions.deleteZone.isAvailable()"
+                            data-placement="end"
                         >
                             <oui-action-menu-item
                                 data-ng-if="$ctrl.actions.addZone.isAvailable()"
-                                data-text="{{ ::$ctrl.actions.addZone.text }}"
                                 data-on-click="$ctrl.actions.addZone.callback()"
+                                ><span
+                                    data-ng-bind="::$ctrl.actions.addZone.text"
+                                ></span
                             ></oui-action-menu-item>
                             <oui-action-menu-item
                                 data-ng-if="$ctrl.actions.deleteZone.isAvailable()"
-                                data-text="{{ ::$ctrl.actions.deleteZone.text }}"
                                 data-on-click="$ctrl.actions.deleteZone.callback()"
+                                ><span
+                                    data-ng-bind="::$ctrl.actions.deleteZone.text"
+                                ></span
                             ></oui-action-menu-item>
                         </oui-action-menu>
                     </oui-tile-definition>
@@ -362,14 +372,15 @@
                     >
                         <oui-action-menu
                             data-compact
-                            align="end"
                             data-ng-if="$ctrl.actions.changeOffer.isAvailable()"
+                            data-placement="end"
                         >
                             <oui-action-menu-item
-                                data-text="{{::$ctrl.actions.changeOffer.text}}"
                                 aria-label="{{::$ctrl.actions.changeOffer.text}}"
                                 data-on-click="$ctrl.actions.changeOffer.callback()"
-                            >
+                                ><span
+                                    data-ng-bind="::$ctrl.actions.changeOffer.text"
+                                ></span>
                             </oui-action-menu-item>
                         </oui-action-menu>
                     </oui-tile-definition>
@@ -379,15 +390,16 @@
                     >
                         <oui-action-menu
                             data-compact
-                            align="end"
                             data-ng-if="$ctrl.actions.manageAutorenew.isAvailable()"
+                            data-placement="end"
                         >
                             <oui-action-menu-item
-                                data-text="{{ ::$ctrl.actions.manageAutorenew.text }}"
                                 aria-label="{{ ::$ctrl.actions.manageAutorenew.text }}"
                                 data-href="{{ $ctrl.actions.manageAutorenew.href }}"
                                 data-external
-                            >
+                                ><span
+                                    data-ng-bind="::$ctrl.actions.manageAutorenew.text"
+                                ></span>
                             </oui-action-menu-item>
                         </oui-action-menu>
                     </oui-tile-definition>
@@ -424,15 +436,16 @@
                         </oui-tile-description>
                         <oui-action-menu
                             data-compact
-                            align="end"
                             data-ng-if="$ctrl.actions.manageContact.isAvailable()"
+                            data-placement="end"
                         >
                             <oui-action-menu-item
-                                data-text="{{ ::$ctrl.actions.manageContact.text }}"
                                 aria-label="{{ ::$ctrl.actions.manageContact.text }}"
                                 data-href="{{ ::$ctrl.actions.manageContact.href }}"
                                 data-external
-                            >
+                                ><span
+                                    data-ng-bind="::$ctrl.actions.manageContact.text"
+                                ></span>
                             </oui-action-menu-item>
                         </oui-action-menu>
                     </oui-tile-definition>

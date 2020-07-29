@@ -7,7 +7,7 @@
 </oui-message>
 
 <div data-ui-view>
-    <oui-page-header
+    <oui-header
         data-heading="{{:: 'pci_projects_project_instances_title' | translate }}"
         class="mb-3"
     >
@@ -20,7 +20,7 @@
                 ></span>
             </oui-guide-menu-item>
         </oui-guide-menu>
-    </oui-page-header>
+    </oui-header>
 
     <oui-message data-ng-if="!$ctrl.hasVrack" data-type="info" data-dismissable>
         <p data-translate="pci_projects_project_instances_vrack_none"></p>
@@ -39,7 +39,7 @@
         data-rows="$ctrl.instances"
         data-row-loader="$ctrl.loadInstanceDetail($row)"
     >
-        <oui-column
+        <oui-datagrid-column
             title=":: 'pci_projects_project_instances_name_label' | translate"
             data-property="name"
             data-type="string"
@@ -51,16 +51,16 @@
                 data-ng-href="{{:: $ctrl.instanceLink($row) }}"
                 data-ng-bind="$value"
             ></a>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'pci_projects_project_instances_region_label' | translate"
             data-property="region"
         >
             <span
                 data-ng-bind="$ctrl.CucRegionService.getTranslatedMicroRegion($row.region)"
             ></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'pci_projects_project_instances_flavor_label' | translate"
             data-property="flavor.name"
             data-type="string"
@@ -68,8 +68,8 @@
             data-sortable
             data-filterable
         >
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'pci_projects_project_instances_image_label' | translate"
             data-property="image.name"
             data-type="string"
@@ -77,8 +77,8 @@
             data-sortable
             data-filterable
         >
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'pci_projects_project_instances_publicIp_label' | translate"
             data-property="ipAddresses"
         >
@@ -87,8 +87,8 @@
                 data-ng-repeat="ipAddress in $row.publicIpV4 track by $index"
                 data-ng-bind="ipAddress.ip"
             ></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'pci_projects_project_instances_privateIp_label' | translate"
             data-property="ipAddresses"
         >
@@ -97,8 +97,8 @@
                 data-ng-repeat="ipAddress in $row.privateIpV4 track by $index"
                 data-ng-bind="ipAddress.ip"
             ></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'pci_projects_project_instances_volume_label' | translate"
             data-property="volumes"
             data-type="string"
@@ -108,28 +108,27 @@
                 data-ng-repeat="volume in $row.volumes track by volume.id"
                 data-ng-bind="volume.name"
             ></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'pci_projects_project_instances_status_label' | translate"
             data-property="status"
         >
             <span
-                class="oui-status"
+                class="oui-badge"
                 data-ng-class="{
-                    'oui-status_success': ($row.statusGroup === 'ACTIVE'),
-                    'oui-status_warning': ($row.statusGroup === 'PENDING'),
-                    'oui-status_error': ($row.statusGroup === 'ERROR'),
-                    'oui-status_info': ($row.statusGroup === $row.status),
+                    'oui-badge_success': ($row.statusGroup === 'ACTIVE'),
+                    'oui-badge_warning': ($row.statusGroup === 'PENDING'),
+                    'oui-badge_error': ($row.statusGroup === 'ERROR'),
+                    'oui-badge_info': ($row.statusGroup === $row.status && !['ACTIVE', 'PENDING', 'ERROR'].includes($row.statusGroup)),
                 }"
             >
                 <span
                     data-ng-bind=":: 'pci_projects_project_instances_status_' + $row.status | translate"
                 ></span>
             </span>
-        </oui-column>
+        </oui-datagrid-column>
 
         <oui-action-menu
-            data-align="left-start"
             data-compact
             data-oui-popover
             data-oui-popover-open="$rowIndex === 0 && $ctrl.displayHelp === 'backup'"
@@ -137,6 +136,7 @@
             data-oui-popover-placement="top-end"
             data-oui-popover-template="pci/projects/project/instances/help/backup.html"
             data-oui-popover-scope="$ctrl"
+            data-placement="left-start"
         >
             <oui-action-menu-item data-on-click="$ctrl.viewInstance($row)">
                 <span
@@ -237,7 +237,7 @@
             </oui-action-menu-item>
         </oui-action-menu>
 
-        <extra-top>
+        <oui-datagrid-topbar>
             <button
                 type="button"
                 class="oui-button oui-button_secondary oui-button_icon-left"
@@ -253,12 +253,12 @@
             </button>
             <button
                 type="button"
-                class="ml-2 float-right oui-button oui-button_secondary oui-button_icon-only oui-button_small-width"
+                class="ml-2 float-right oui-button oui-button_secondary oui-button_icon-only oui-button_s"
                 aria-label="{{:: 'pci_projects_project_instances_refresh' | translate }}"
                 data-ng-click="$ctrl.refreshInstances()"
             >
                 <span class="fa fa-refresh" aria-hidden="true"></span>
             </button>
-        </extra-top>
+        </oui-datagrid-topbar>
     </oui-datagrid>
 </div>

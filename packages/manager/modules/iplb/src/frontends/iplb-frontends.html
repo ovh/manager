@@ -14,41 +14,41 @@
         data-rows="ctrl.frontends"
         data-row-loader="ctrl.loadFarm($row)"
     >
-        <oui-column
+        <oui-datagrid-column
             data-title="'iplb_frontend_frontend' | translate"
             data-property="frontendId"
             data-sortable="asc"
         >
             {{ $row.displayName || $row.frontendId }}
             <span data-ng-show="$row.displayName">({{ $row.frontendId }})</span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'iplb_frontend_protocol' | translate"
             data-property="protocol"
             data-sortable
         >
             {{ $row.protocol | uppercase }}
             <span data-ng-show="$row.port">: {{ $row.port }}</span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'iplb_frontend_datacenter' | translate"
             data-property="region.macroRegion.code"
             data-sortable
         >
             {{ $row.region.macroRegion.text }} {{ $row.zone !== 'all' ? ('(' +
             $row.region.macroRegion.code + ')') : '' }}
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'iplb_frontend_default_farm' | translate"
             data-property="defaultFarm"
         >
             {{ $row.defaultFarm.displayName || $row.defaultFarm.farmId || "-" }}
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'iplb_frontend_active' | translate"
             data-property="disabled"
             data-sortable
-            class="oui-table__cell_action"
+            class="oui-datagrid__cell_action"
         >
             <span class="oui-switch">
                 <label class="oui-switch__label-container">
@@ -61,20 +61,17 @@
                     <span class="oui-switch__slider" aria-hidden="true"></span>
                 </label>
             </span>
-        </oui-column>
-        <oui-action-menu data-align="end" data-compact>
-            <oui-action-menu-item
-                data-text="{{'iplb_preview_see' | translate}}"
-                data-on-click="ctrl.preview($row)"
+        </oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="end">
+            <oui-action-menu-item data-on-click="ctrl.preview($row)"
+                ><span data-translate="iplb_preview_see"></span
             ></oui-action-menu-item>
             <oui-action-menu-divider></oui-action-menu-divider>
-            <oui-action-menu-item
-                data-text="{{'iplb_frontend_update' | translate}}"
-                data-on-click="ctrl.update($row)"
+            <oui-action-menu-item data-on-click="ctrl.update($row)"
+                ><span data-translate="iplb_frontend_update"></span
             ></oui-action-menu-item>
-            <oui-action-menu-item
-                data-text="{{'iplb_frontend_delete' | translate}}"
-                data-on-click="ctrl.delete($row)"
+            <oui-action-menu-item data-on-click="ctrl.delete($row)"
+                ><span data-translate="iplb_frontend_delete"></span
             ></oui-action-menu-item>
         </oui-action-menu>
     </oui-datagrid>

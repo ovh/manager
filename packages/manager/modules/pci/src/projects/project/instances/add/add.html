@@ -96,7 +96,7 @@
                                     >
                                         <button
                                             type="button"
-                                            class="oui-button oui-button_link"
+                                            class="oui-button oui-button_ghost"
                                             data-ng-switch-when="UNAVAILABLE"
                                             data-ng-click="$ctrl.currentStep = 0"
                                         >
@@ -105,7 +105,7 @@
                                             ></span>
                                         </button>
                                         <a
-                                            class="oui-button oui-button_link"
+                                            class="oui-button oui-button_ghost"
                                             data-ng-switch-when="INACTIVE"
                                             data-ui-sref="pci.projects.project.regions"
                                         >
@@ -114,7 +114,7 @@
                                             ></span>
                                         </a>
                                         <a
-                                            class="oui-button oui-button_link"
+                                            class="oui-button oui-button_ghost"
                                             data-ng-switch-default
                                             data-ui-sref="pci.projects.project.quota"
                                         >
@@ -163,7 +163,7 @@
         >
             <button
                 type="button"
-                class="oui-button oui-button_link"
+                class="oui-button oui-button_ghost"
                 data-ng-click="$ctrl.currentStep = 0"
             >
                 <span
@@ -218,27 +218,24 @@
             </div>
         </oui-field>
 
-        <div
-            class="d-flex align-items-center"
+        <oui-checkbox
+            class="mb-4"
+            model="$ctrl.model.isInstanceFlex"
+            name="instance-flex"
             data-ng-if="$ctrl.model.flavorGroup.hasFlexOption()"
+            data-on-change="$ctrl.onFlexChange(modelValue)"
         >
-            <oui-checkbox
-                class="position-relative"
-                id="instance-flex"
-                name="instance-flex"
-                data-model="$ctrl.model.isInstanceFlex"
-                data-on-change="$ctrl.onFlexChange(modelValue)"
-            >
+            <oui-checkbox-label>
                 <span
                     data-translate="pci_projects_project_instances_add_instance_flex"
                 ></span>
-            </oui-checkbox>
-            <button
-                type="button"
-                class="oui-popover-button mb-1"
-                oui-popover="{{:: 'pci_projects_project_instances_add_instance_flex_help' | translate }}"
-            ></button>
-        </div>
+            </oui-checkbox-label>
+            <oui-checkbox-description>
+                <span
+                    data-translate="pci_projects_project_instances_add_instance_flex_help"
+                ></span>
+            </oui-checkbox-description>
+        </oui-checkbox>
 
         <oui-field
             data-label="{{ :: 'pci_projects_project_instances_add_name_label' | translate }}"
@@ -266,7 +263,10 @@
             </div>
         </oui-field>
 
-        <div class="oui-box" data-ng-if="$ctrl.model.image.type === 'linux'">
+        <div
+            class="oui-box mb-4"
+            data-ng-if="$ctrl.model.image.type === 'linux'"
+        >
             <oui-field
                 data-label="{{ 'pci_projects_project_instances_add_script_label' | translate }}"
                 data-help-text="{{ 'pci_projects_project_instances_add_script_help' | translate }}"
@@ -310,17 +310,21 @@
         </oui-field>
         <div data-ng-if="$ctrl.automatedBackup.available">
             <oui-checkbox
+                class="mb-4"
+                model="$ctrl.automatedBackup.selected"
                 name="automatedBackup"
-                aria-label="{{:: 'pci_projects_project_instances_add_automated_backup_label' | translate }}"
-                data-model="$ctrl.automatedBackup.selected"
             >
-                <span
-                    data-translate="pci_projects_project_instances_add_automated_backup_label"
-                ></span>
+                <oui-checkbox-label>
+                    <span
+                        data-translate="pci_projects_project_instances_add_automated_backup_label"
+                    ></span>
+                </oui-checkbox-label>
+                <oui-checkbox-description>
+                    <span
+                        data-translate="pci_projects_project_instances_add_automated_backup_infos"
+                    ></span>
+                </oui-checkbox-description>
             </oui-checkbox>
-            <p
-                data-translate="pci_projects_project_instances_add_automated_backup_infos"
-            ></p>
             <p>
                 <strong
                     data-translate="pci_workflow_create_monthly_backup_price"

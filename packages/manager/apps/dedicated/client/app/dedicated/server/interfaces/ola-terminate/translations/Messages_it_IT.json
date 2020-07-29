@@ -1,5 +1,5 @@
 {
-  "dedicated_server_interfaces_ola_terminate_action": "Disattiva",
+  "dedicated_server_interfaces_ola_terminate_action": "Conferma",
   "dedicated_server_interfaces_ola_terminate_kvm_warning": "Una volta disattivata l’opzione, ricordati di regolare le interfacce via KVM IPMI per utilizzare la configurazione di origine.",
   "dedicated_server_interfaces_ola_terminate_explanation": "La funzionalità verrà disattivata alla data del prossimo rinnovo.",
   "dedicated_server_interfaces_ola_terminate_text": "Vuoi davvero disattivare l'opzione OVH Link Aggregation (OLA)?"

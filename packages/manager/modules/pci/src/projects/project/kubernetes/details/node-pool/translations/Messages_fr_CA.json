@@ -1,0 +1,11 @@
+{
+  "kube_node_pool_name": "Nom du pool",
+  "kube_node_pool_creation_date": "Date de création",
+  "kube_node_pool_node_count": "Nombre de nœuds",
+  "kube_node_pool_edit": "Éditer le pool",
+  "kube_node_pool_delete": "Supprimer le pool",
+  "kube_node_pool_add": "Ajouter un pool de nœuds",
+  "kube_node_pool_refreh": "Recharger le tableau",
+  "kube_node_pool_title": "Pools de nœuds",
+  "kube_add_billing_type_description": "Vous pourrez passer de la facturation horaire au forfait mensuel pour chaque nœud, dans la vue édition du pool de nœud."
+}

@@ -19,11 +19,11 @@
                             >
                                 <oui-tile-description>
                                     <div
-                                        class="oui-status"
+                                        class="oui-badge"
                                         data-ng-class="{
-                                         'oui-status_error': stateCtrl.database.state === 'detached',
-                                         'oui-status_warning' : stateCtrl.database.state === 'restartPending' || stateCtrl.database.state === 'stopPending' || database.state === 'stopped',
-                                         'oui-status_success' : stateCtrl.database.state === 'startPending' || stateCtrl.database.state === 'started' }"
+                                         'oui-badge_error': stateCtrl.database.state === 'detached',
+                                         'oui-badge_warning' : stateCtrl.database.state === 'restartPending' || stateCtrl.database.state === 'stopPending' || database.state === 'stopped',
+                                         'oui-badge_success' : stateCtrl.database.state === 'startPending' || stateCtrl.database.state === 'started' }"
                                         data-ng-bind="'privateDatabase_dashboard_' + stateCtrl.database.state | translate"
                                     ></div>
                                 </oui-tile-description>
@@ -47,8 +47,8 @@
                                 </oui-tile-description>
                                 <oui-action-menu
                                     data-compact
-                                    data-align="end"
                                     data-ng-if="!stateCtrl.isExpired"
+                                    data-placement="end"
                                 >
                                     <oui-action-menu-item
                                         data-on-click="setAction('database/version/update/private-database-database-version-update', stateCtrl.database)"
@@ -65,9 +65,9 @@
                             >
                                 <oui-tile-description>
                                     <div
-                                        class="oui-status"
+                                        class="oui-badge"
                                         data-ng-bind="::stateCtrl.database.ram.value + ('unit_size_' + stateCtrl.database.ram.unit | translate)"
-                                        data-ng-class="stateCtrl.database.oom.realList.length >= stateCtrl.database.oom.nbOomError ? 'oui-status_error' : (stateCtrl.database.oom.realList.length > 0 ? 'oui-status_warning' : 'oui-status_success')"
+                                        data-ng-class="stateCtrl.database.oom.realList.length >= stateCtrl.database.oom.nbOomError ? 'oui-badge_error' : (stateCtrl.database.oom.realList.length > 0 ? 'oui-badge_warning' : 'oui-badge_success')"
                                     ></div>
                                     <button
                                         class="btn btn-icon btn-xs d-block text-wrap text-left"
@@ -98,8 +98,8 @@
                                 </oui-tile-description>
                                 <oui-action-menu
                                     data-compact
-                                    data-align="end"
                                     data-ng-if="!stateCtrl.isExpired"
+                                    data-placement="end"
                                 >
                                     <oui-action-menu-item
                                         data-on-click="setAction('database/ram/update/private-database-database-ram-update', stateCtrl.database)"
@@ -203,7 +203,10 @@
                                         data-ng-bind="::stateCtrl.database.serviceInfos.expiration | date:'mediumDate'"
                                     ></span>
                                 </oui-tile-description>
-                                <oui-action-menu data-compact data-align="end">
+                                <oui-action-menu
+                                    data-compact
+                                    data-placement="end"
+                                >
                                     <oui-action-menu-item
                                         title="{{:: 'button_renew' | translate }}"
                                         data-ng-href="#/billing/autoRenew?selectedType=HOSTING_PRIVATE_DATABASE&searchText={{stateCtrl.database.serviceName}}"
@@ -309,7 +312,7 @@
                             data-heading="{{ ::'privateDatabase_dashboard_connections_title' | translate}}"
                             class="mb-5"
                         >
-                            <h4 class="oui-header_5 oui-tile__definition">
+                            <h4 class="oui-tile__definition oui-heading_5">
                                 SQL
                             </h4>
                             <oui-tile-definition
@@ -354,7 +357,10 @@
                                         data-ng-bind="::stateCtrl.database.certificateType"
                                     ></span>
                                 </oui-tile-description>
-                                <oui-action-menu data-compact data-align="end">
+                                <oui-action-menu
+                                    data-compact
+                                    data-placement="end"
+                                >
                                     <oui-action-menu-item
                                         data-on-click="setAction('database/certificate/private-database-database-certificate', stateCtrl.database)"
                                     >
@@ -365,7 +371,7 @@
                                 </oui-action-menu>
                             </oui-tile-definition>
                             <h4
-                                class="oui-header_5 oui-tile__definition"
+                                class="oui-tile__definition oui-heading_5"
                                 data-ng-bind="'privateDatabase_dashboard_ftp_informations_' + stateCtrl.database.infrastructure | translate"
                             ></h4>
                             <oui-tile-definition
@@ -405,8 +411,8 @@
                                 </oui-tile-description>
                                 <oui-action-menu
                                     data-compact
-                                    data-align="end"
                                     data-ng-if="!taskState.changeFtpPassword"
+                                    data-placement="end"
                                 >
                                     <oui-action-menu-item
                                         data-on-click="stateCtrl.changeFtpPassword()"
@@ -455,7 +461,7 @@
                             data-ng-repeat="guide in guides track by $index"
                         >
                             <a
-                                class="oui-tile__button oui-button oui-button_link oui-button_full-width d-flex text-wrap"
+                                class="oui-tile__button oui-button d-flex text-wrap oui-button_ghost oui-button_block"
                                 target="_blank"
                                 data-ng-href="{{guide.url}}"
                             >

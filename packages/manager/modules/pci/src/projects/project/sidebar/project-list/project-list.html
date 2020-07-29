@@ -1,8 +1,7 @@
 <div data-ng-if="!$ctrl.isLoadingTranslations">
     <a
-        class="btn btn-primary py-1 px-2"
+        class="oui-button oui-button_secondary"
         data-ui-sref="pci.projects.new"
-        style="background-color: rgb(40, 89, 192); color: #fff;"
         data-track-on="click"
         data-track-name="PCI_PROJECTS_SIDEBAR_NEW_PROJECT"
         data-track-type="navigation"
@@ -38,26 +37,14 @@
             class="mt-3"
             data-ng-if="$ctrl.projects && $ctrl.projects.length > 0"
         >
-            <strong
+            <h4
                 class="text-white"
                 data-translate="cloud_sidebar_projectlist_title"
-            ></strong>
-            <div class="oui-search mt-2">
-                <div
-                    class="oui-input-group oui-input-group_search align-items-center"
-                >
-                    <input
-                        type="text"
-                        class="oui-input pr-4"
-                        data-ng-model="$ctrl.searchText"
-                        placeholder="{{:: 'cloud_sidebar_projectlist_title_search' | translate }}"
-                    />
-                    <span
-                        class="oui-icon oui-icon-search_extra-thin bg-transparent position-absolute mr-1"
-                        aria-hidden="true"
-                    ></span>
-                </div>
-            </div>
+            ></h4>
+            <oui-search
+                data-model="$ctrl.searchText"
+                placeholder="{{:: 'cloud_sidebar_projectlist_title_search' | translate }}"
+            ></oui-search>
             <ul class="list-unstyled mt-2 mb-5">
                 <li
                     data-ng-repeat="project in $ctrl.projects | filter:$ctrl.searchText track by $index"

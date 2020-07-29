@@ -1,5 +1,22 @@
 {
   "xdsl_access_profile_tooltip_time": "La modification sera effective sous 1 à 5 minutes.",
   "xdsl_access_dslam_an_error_ocurred": "[DSLAM] Une erreur est survenue !",
-  "xdsl_access_profile_doing": "Changement de profil en cours"
+  "xdsl_access_profile_doing": "Changement de profil en cours",
+  "xdsl_access_profile_tooltip_description": "The higher the SNR (signal-to-noise ratio) is, the more stable the line will be, but the lower the throughput will be.",
+  "xdsl_access_profile_tooltip_adsl_24m": "<b>{{profile}}:</b> Maximum throughput at 24000 / 1024 noise margin at 6dB",
+  "xdsl_access_profile_tooltip_adsl_2m": "<b>{{profile}}:</b> Maximum throughput at 2432 / 1024 noise margin higher than 6dB",
+  "xdsl_access_profile_tooltip_adsl_512k": "<b>{{profile}}:</b> Maximum throughput at 608 / 160 noise margin higher than 6dB",
+  "xdsl_access_profile_tooltip_adsl_safe1": "<b>{{profile}}:</b> Maximum throughput at 16128 / 1024 noise margin at 10dB",
+  "xdsl_access_profile_tooltip_adsl_safe2": "<b>{{profile}}:</b> Maximum throughput at 16128 / 1024 noise margin at 16dB",
+  "xdsl_access_profile_tooltip_adsl_perf1": "<b>{{profile}}:</b> Maximum throughput at 24000 / 1024 noise margin at 3dB",
+  "xdsl_access_profile_tooltip_adsl_perf2": "<b>{{profile}}:</b> Maximum throughput at 24000 / 1024 noise margin at 1dB",
+  "xdsl_access_profile_tooltip_vdsl_24m": "<b>{{profile}}:</b> SNR 6 with no throughput limit",
+  "xdsl_access_profile_tooltip_vdsl_2m": "<b>{{profile}}:</b> SNR 6 with a throughput limit at 2M",
+  "xdsl_access_profile_tooltip_vdsl_512k": "<b>{{profile}}:</b> SNR 6 with a throughput limit at 512K",
+  "xdsl_access_profile_tooltip_vdsl_safe1": "<b>{{profile}}:</b> SNR 10",
+  "xdsl_access_profile_tooltip_vdsl_other": "<b>{{profile}}:</b> {{snr}}",
+  "xdsl_access_profile_tooltip_vdsl_17a": "<b>{{profile}}:</b> SNR 8",
+  "xdsl_access_profile_tooltip_vdsl_17a_safe1": "<b>{{profile}}:</b> SNR 12",
+  "xdsl_access_profile_tooltip_vdsl_8b": "<b>{{profile}}:</b> SNR 8",
+  "xdsl_access_profile_tooltip_vdsl_8b_safe1": "<b>{{profile}}:</b> SNR 12"
 }

@@ -1,12 +1,12 @@
 <div class="dedicatedCloud-terminate">
     <oui-modal
-        data-title="{{ :: 'dedicatedCloud_close_service' | translate }}"
         data-primary-action="$ctrl.onTerminateBtnClick()"
         data-primary-label="{{ :: 'wizard_confirm' | translate }}"
         data-secondary-action="$ctrl.onCancelBtnClick()"
         data-secondary-label="{{ :: 'wizard_cancel' | translate }}"
         data-on-dismiss="$ctrl.onCancelBtnClick()"
         data-loading="$ctrl.loading.terminate"
+        data-heading="{{ :: 'dedicatedCloud_close_service' | translate }}"
     >
         <oui-message class="d-block my-4" data-type="error">
             <span data-translate="dedicatedCloud_close_service_warning"></span>

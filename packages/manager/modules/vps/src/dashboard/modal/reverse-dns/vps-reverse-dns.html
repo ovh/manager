@@ -1,11 +1,11 @@
 <form novalidate name="form" data-ng-submit="form.$valid && $ctrl.confirm()">
     <oui-modal
-        data-title="{{:: 'vps_configuration_reversedns_title' | translate}}"
         data-primary-label="{{ ::'vps_common_confirm' | translate }}"
         data-secondary-action="$ctrl.cancel()"
         data-secondary-label="{{ ::'vps_common_cancel' | translate }}"
         data-on-dismiss="$ctrl.cancel()"
         data-loading="$ctrl.loader.init || $ctrl.loader.save"
+        data-heading="{{:: 'vps_configuration_reversedns_title' | translate}}"
     >
         <oui-field
             data-label="{{ ::'vps_configuration_reversedns_step1_question' | translate }}"
@@ -18,7 +18,6 @@
                 data-items="$ctrl.ips"
                 required
                 match="ipAddress"
-                data-align="start"
             >
                 <span data-ng-bind="$item.ipAddress"></span>
             </oui-select>

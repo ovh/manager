@@ -77,7 +77,7 @@
         </dd>
     </dl>
     <oui-datagrid data-rows="$ctrl.calls">
-        <oui-column
+        <oui-datagrid-column
             data-title="'telephony_alias_configuration_mode_calls_number' | translate"
             data-property="callerIdNumber"
         >
@@ -85,14 +85,14 @@
                 class="text-capitalize"
                 data-ng-bind="$row.callerIdNumber | tucPhoneNumber"
             ></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'telephony_alias_configuration_mode_calls_queue_time' | translate"
             data-property="begin"
         >
             <tuc-elapsed-time data-from="$row.begin"></tuc-elapsed-time>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'telephony_alias_configuration_mode_calls_time' | translate"
         >
             <span
@@ -104,13 +104,13 @@
                 data-ng-if="$row.answered"
                 data-from="$row.answered"
             ></tuc-elapsed-time>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'telephony_alias_configuration_mode_calls_agent' | translate"
         >
             <span data-ng-bind="$row.agent || '-'"></span>
-        </oui-column>
-        <oui-action-menu data-align="end" data-compact>
+        </oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="end">
             <oui-action-menu-item
                 data-on-click="$ctrl.interceptCall($row)"
                 data-ng-if="!$row.answered"
@@ -169,19 +169,19 @@
         <dd data-ng-bind="$ctrl.getWaitingAgentsCount()"></dd>
     </dl>
     <oui-datagrid data-rows="$ctrl.agentsStatus">
-        <oui-column
+        <oui-datagrid-column
             data-title="'telephony_alias_configuration_mode_calls_agent' | translate"
-            data-property="agentId"
-        ></oui-column>
-        <oui-column
+            data-property="agentNumber"
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'telephony_alias_configuration_mode_calls_agent_status' | translate"
             data-property="status"
         >
             <span
                 data-ng-bind="'telephony_alias_configuration_mode_calls_agent_status_' + $row.status | translate"
             ></span>
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'telephony_alias_configuration_mode_calls_agent_updated' |translate"
         >
             <span
@@ -192,7 +192,7 @@
             <tuc-elapsed-time
                 data-from="$row.lastStatusChange"
             ></tuc-elapsed-time>
-        </oui-column>
+        </oui-datagrid-column>
     </oui-datagrid>
 </div>
 <!-- agents -->

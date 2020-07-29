@@ -1,7 +1,7 @@
 import angular from 'angular';
 import 'angular-translate';
 import 'angular-ui-bootstrap';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 
 import component from './dark-mode.component';
 

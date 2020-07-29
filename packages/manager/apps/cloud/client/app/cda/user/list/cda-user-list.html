@@ -13,17 +13,17 @@
         </button>
     </div>
     <oui-datagrid data-rows="CdaUserListCtrl.datas.users">
-        <oui-column
+        <oui-datagrid-column
             data-title="'cda_user_table_col_username' | translate"
             data-property="user.name"
             data-sortable="asc"
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'cda_user_table_col_key' | translate"
             data-property="user.key"
             data-sortable
-        ></oui-column>
-        <oui-column
+        ></oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'cda_user_table_col_pool' | translate"
             data-property="pools"
             data-sortable
@@ -39,17 +39,17 @@
                     >...</span
                 >
             </span>
-        </oui-column>
+        </oui-datagrid-column>
 
-        <oui-action-menu data-align="end" data-compact>
+        <oui-action-menu data-compact data-placement="end">
             <oui-action-menu-item
-                data-text="{{'cda_user_edit_button_text' | translate}}"
                 data-on-click="CdaUserListCtrl.viewPermissions($row.user.name)"
+                ><span data-translate="cda_user_edit_button_text"></span
             ></oui-action-menu-item>
             <oui-action-menu-divider></oui-action-menu-divider>
             <oui-action-menu-item
-                data-text="{{'cda_user_delete_button_text' | translate}}"
                 data-on-click="CdaUserListCtrl.openDeleteModal($row)"
+                ><span data-translate="cda_user_delete_button_text"></span
             ></oui-action-menu-item>
         </oui-action-menu>
     </oui-datagrid>

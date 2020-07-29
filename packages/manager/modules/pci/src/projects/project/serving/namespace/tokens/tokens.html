@@ -15,23 +15,23 @@
         data-rows="$ctrl.tokens"
         data-row-loader="$ctrl.loadRow($row)"
     >
-        <oui-column
+        <oui-datagrid-column
             data-title=":: 'pci_projects_project_serving_namespace_tokens_resource' | translate"
             data-property="resource"
             data-type="string"
             data-searchable
             data-filterable
         >
-        </oui-column>
-        <oui-column
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'pci_projects_project_serving_namespace_tokens_groups' | translate"
             data-property="flattenGroups"
             data-type="string"
             data-searchable
             data-filterable
         >
-        </oui-column>
-        <oui-action-menu data-align="end" data-compact>
+        </oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="end">
             <oui-action-menu-item data-on-click="$ctrl.deleteToken($row.id)">
                 <span
                     data-translate="pci_projects_project_serving_namespace_tokens_delete"
@@ -43,13 +43,14 @@
                 ></span>
             </oui-action-menu-item>
         </oui-action-menu>
-        <extra-top>
+        <oui-datagrid-topbar>
             <oui-button
                 data-aria-label="{{:: 'pci_projects_project_serving_namespace_tokens_add_token' | translate }}"
-                data-text="{{:: 'pci_projects_project_serving_namespace_tokens_add_token' | translate }}"
                 data-on-click="$ctrl.addToken()"
-            >
+                ><span
+                    data-translate="pci_projects_project_serving_namespace_tokens_add_token"
+                ></span>
             </oui-button>
-        </extra-top>
+        </oui-datagrid-topbar>
     </oui-datagrid>
 </div>

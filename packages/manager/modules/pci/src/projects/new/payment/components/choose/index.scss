@@ -1,0 +1,76 @@
+.pci-project-new-payment-choose {
+  .oui-collapsible {
+    border: 1px solid #e1e4df;
+    border-radius: 6pt;
+    margin: 0;
+
+    .oui-collapsible__body {
+      border: 0;
+    }
+
+    &.added-payment-method {
+      .oui-collapsible__header {
+        background-color: #f6f7f5;
+
+        strong {
+          line-height: 2.5rem;
+          color: inherit;
+        }
+      }
+    }
+
+    &.use-new-payment-method {
+      .oui-collapsible__header {
+        background: transparent;
+
+        .oui-icon {
+          font-size: 12px;
+          border-color: #59d2ef !important;
+        }
+
+        .oui-button__text {
+          margin-left: 30px;
+        }
+      }
+    }
+  }
+
+  .existing-payment-methods-list .oui-list__items .oui-list__item {
+    .oui-radio {
+      .oui-radio__label-container,
+      .oui-radio__label-container:hover {
+        border: none;
+        background: transparent;
+        padding: 10px 15px;
+        box-shadow: none;
+
+        .oui-radio__label {
+          margin-bottom: 0;
+
+          span:nth-child(1) {
+            display: flex;
+          }
+
+          .payment-method-image-container {
+            width: 44px;
+            max-width: 44px;
+            text-align: center;
+
+            img {
+              max-height: 30px;
+            }
+          }
+        }
+
+        .oui-radio__description {
+          padding: 0;
+        }
+      }
+
+      .oui-radio__input:not(:disabled):checked + .oui-radio__label-container {
+        background: #e0f6fd;
+        border-radius: 0;
+      }
+    }
+  }
+}

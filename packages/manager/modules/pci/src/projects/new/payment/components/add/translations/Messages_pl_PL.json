@@ -1,0 +1,8 @@
+{
+  "pci_project_new_payment_method_add_explain": "Dodanie sposobu płatności jest niezbędne do potwierdzenia Twojej tożsamości. Dopóki nie skorzystasz z usługi, nie zostaniesz obciążony żadnymi kosztami. ",
+  "pci_project_new_payment_method_add_info_credit_card": "Po kliknięciu „Utwórz projekt” zostaniesz przekierowany do bezpiecznego interfejsu naszego dostawcy, abyś mógł zarejestrować nową kartę bankową. Zabezpieczyliśmy środki na Twojej karcie w celu potwierdzenia jej numeru i ważności. Karta nie zostanie obciążona.",
+  "pci_project_new_payment_method_add_info_paypal": "Po kliknięciu „Paypal” zostaniesz przekierowany do bezpiecznego interfejsu PayPal w celu rejestracji Twojego konta.",
+  "pci_project_new_payment_method_add_info_bank_account": "Po kliknięciu \"Dodaj\" zostaniesz przekierowany do sekcji <a href=\"{{ paymentMethodSection }}\">„Moje sposoby płatności”</a> w Panelu klienta.",
+  "pci_project_new_payment_method_add_warning_bank_account": "Twoje konto bankowe zostanie zatwierdzone w ciągu 24 do 48 godzin od otrzymania autoryzacji automatycznego obciążania konta przesłanej przez Ciebie pocztą tradycyjną.  Po zatwierdzeniu konta będziesz mógł utworzyć projekt Public Cloud.",
+  "pci_project_new_payment_method_add_credit": "Zasilenie konta"
+}

@@ -99,7 +99,7 @@
                                 data-ng-if="(number.portability.rio == null) && $ctrl.checkPortabilityStatus($index)"
                             >
                                 <button
-                                    class="oui-button oui-button_primary oui-button_full-width oui-button_icon-right"
+                                    class="oui-button oui-button_primary oui-button_icon-right oui-button_block"
                                     data-ng-click="$ctrl.attachMandate(number.portability)"
                                     data-translate="telephony_alias_portabilities_attach_form"
                                     type="button"
@@ -115,15 +115,15 @@
                                     <oui-datagrid
                                         data-rows="number.portability.uploadedDocuments"
                                     >
-                                        <oui-column
+                                        <oui-datagrid-column
                                             data-title="'telephony_alias_portabilities_attach_file_name' | translate"
                                             data-property="name"
                                         >
-                                        </oui-column>
+                                        </oui-datagrid-column>
                                         <oui-action-menu
-                                            data-align="end"
                                             data-compact
                                             data-ng-if="$ctrl.checkPortabilityStatus($index)"
+                                            data-placement="end"
                                         >
                                             <oui-action-menu-item
                                                 data-on-click="$ctrl.deleteDocument(number.portability, $row.documentId)"

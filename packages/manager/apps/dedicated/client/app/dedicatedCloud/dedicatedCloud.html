@@ -7,12 +7,12 @@
     </div>
 
     <div data-ng-if="!loadingInformations">
-        <header class="oui-page-header">
-            <div class="oui-page-header__container">
-                <div class="oui-page-header__content">
+        <header class="oui-header">
+            <div class="oui-header__container">
+                <div class="oui-header__content">
                     <div class="d-flex">
                         <h1
-                            class="oui-page-header__title"
+                            class="oui-header__title"
                             data-ng-bind="dedicatedCloud.description"
                         ></h1>
                         <button
@@ -21,7 +21,7 @@
                             data-ng-click=":: editDescription(dedicatedCloud.description)"
                         >
                             <span
-                                class="oui-icon oui-icon-pen_line oui-icon_small"
+                                class="oui-icon oui-icon-pen_concept"
                                 aria-hidden="true"
                             ></span>
                             <span
@@ -32,46 +32,45 @@
                     </div>
 
                     <h2
-                        class="oui-page-header__description"
+                        class="oui-header__description"
                         data-ng-bind=":: dedicatedCloud.serviceName"
                     ></h2>
                 </div>
             </div>
 
             <oui-header-tabs>
-                <oui-header-tabs-item
-                    text="{{:: 'dedicatedCloud_tab_dashboard' | translate }}"
-                    state="app.dedicatedClouds.dashboard"
+                <oui-header-tabs-item state="app.dedicatedClouds.dashboard"
+                    ><span data-translate="dedicatedCloud_tab_dashboard"></span
                 ></oui-header-tabs-item>
 
                 <oui-header-tabs-item
                     ng-if=":: !dedicatedCloud.isExpired"
-                    text="{{:: 'dedicatedCloud_tab_datacenter' | translate }}"
                     state="app.dedicatedClouds.datacenters"
+                    ><span data-translate="dedicatedCloud_tab_datacenter"></span
                 ></oui-header-tabs-item>
 
                 <oui-header-tabs-item
                     ng-if=":: !dedicatedCloud.isExpired"
-                    text="{{:: 'dedicatedCloud_tab_user' | translate }}"
                     state="app.dedicatedClouds.users"
+                    ><span data-translate="dedicatedCloud_tab_user"></span
                 ></oui-header-tabs-item>
 
                 <oui-header-tabs-item
                     ng-if=":: !dedicatedCloud.isExpired"
-                    text="{{:: 'dedicatedCloud_tab_security' | translate }}"
                     state="app.dedicatedClouds.security"
+                    ><span data-translate="dedicatedCloud_tab_security"></span
                 ></oui-header-tabs-item>
 
                 <oui-header-tabs-item
                     ng-if=":: !dedicatedCloud.isExpired"
-                    text="{{:: 'dedicatedCloud_tab_operation' | translate }}"
                     state="app.dedicatedClouds.operation"
+                    ><span data-translate="dedicatedCloud_tab_operation"></span
                 ></oui-header-tabs-item>
 
                 <oui-header-tabs-item
                     ng-if=":: !dedicatedCloud.isExpired"
-                    text="{{:: 'dedicatedCloud_tab_license' | translate }}"
                     state="app.dedicatedClouds.license"
+                    ><span data-translate="dedicatedCloud_tab_license"></span
                 ></oui-header-tabs-item>
             </oui-header-tabs>
         </header>

@@ -2,7 +2,7 @@ import angular from 'angular';
 import 'angular-translate';
 import 'angular-ui-bootstrap';
 import 'ovh-api-services';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 import '@uirouter/angularjs';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';

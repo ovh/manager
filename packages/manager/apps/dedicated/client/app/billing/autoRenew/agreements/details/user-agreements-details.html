@@ -1,9 +1,7 @@
 <div class="module-useraccount-sections-agreements-container">
     <div class="tab-content">
-        <oui-back-button
-            data-href="{{ ctrl.$state.href('^') }}"
-            data-heading="{{:: 'user_agreement_details_title' | translate }}"
-        >
+        <oui-back-button data-href="{{ ctrl.$state.href('^') }}"
+            ><span data-translate="user_agreement_details_title"></span>
         </oui-back-button>
 
         <div data-ovh-alert="agreements_details_alerter"></div>
@@ -91,27 +89,11 @@
                     for="user-agreement"
                 >
                     <span class="oui-checkbox__label">
+                        <span class="oui-checkbox__icon"></span>
                         <span
+                            class="oui-checkbox__text"
                             data-ng-bind-html="'user_agreement_details_agreed' | translate:{ t0: ctrl.agreement.title || ctrl.contract.name }"
                         ></span>
-                        <span class="oui-checkbox__icon">
-                            <span
-                                class="oui-icon oui-icon-checkbox-unchecked"
-                                aria-hidden="true"
-                            ></span>
-                            <span
-                                class="oui-icon oui-icon-checkbox-checked"
-                                aria-hidden="true"
-                            ></span>
-                            <span
-                                class="oui-icon oui-icon-checkbox-checkmark"
-                                aria-hidden="true"
-                            ></span>
-                            <span
-                                class="oui-icon oui-icon-checkbox-indeterminate"
-                                aria-hidden="true"
-                            ></span>
-                        </span>
                     </span>
                     <span
                         class="oui-checkbox__description"

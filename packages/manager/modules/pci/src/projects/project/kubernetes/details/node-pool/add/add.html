@@ -1,0 +1,76 @@
+<h1 data-translate="kube_common_create_node_pool"></h1>
+
+<cui-message-container data-messages="$ctrl.messages"></cui-message-container>
+
+<oui-stepper>
+    <oui-step-form
+        data-header="{{:: 'kube_add_node_pool_config_title' | translate }}"
+        data-editable="!$ctrl.isAdding"
+        data-valid="$ctrl.nodePool.name"
+        data-navigation="$ctrl.nodePool.name"
+        name="nodepool_add_name"
+    >
+        <oui-field
+            data-size="m"
+            data-label="{{:: 'kube_add_node_pool_name_label' | translate }}"
+        >
+            <input
+                class="oui-input"
+                type="text"
+                id="name"
+                name="name"
+                data-ng-model="$ctrl.nodePool.name"
+                required
+                maxlength="50"
+                data-ng-pattern="$ctrl.NODE_POOL_NAME_REGEX"
+            />
+        </oui-field>
+    </oui-step-form>
+    <!-- select node pool configuration -->
+    <oui-step-form
+        data-header="{{:: 'kube_common_node_pool_title' | translate }}"
+        data-editable="!$ctrl.isAdding"
+        data-valid="$ctrl.nodePool.flavor"
+        data-navigation="$ctrl.nodePool.flavor"
+        data-on-focus="$ctrl.displaySelectedFlavor = false"
+        data-on-submit="$ctrl.displaySelectedFlavor = true"
+        name="nodepool_add_configuration"
+        data-loading="$ctrl.loadingFlavors"
+    >
+        <node-pool-configuration
+            data-ng-if="$ctrl.region && !$ctrl.loadingFlavors"
+            data-region="$ctrl.region"
+            data-service-name="{{:: $ctrl.projectId }}"
+            data-selected-flavor="$ctrl.nodePool.flavor"
+            data-display-selected-flavor="$ctrl.displaySelectedFlavor"
+            data-node-count="$ctrl.nodePool.nodeCount"
+            data-flavors="$ctrl.flavors"
+        >
+        </node-pool-configuration>
+    </oui-step-form>
+
+    <oui-step-form
+        data-header="{{:: 'kube_common_billing_type_title' | translate }}"
+        data-editable="!$ctrl.isAdding"
+        data-valid="$ctrl.nodePool.flavor"
+        data-navigation="$ctrl.nodePool.flavor && !$ctrl.isAdding"
+        data-submit-text="{{ ::'kube_common_save' | translate }}"
+        data-cancel-text="{{ ::'kube_common_cancel' | translate }}"
+        data-cancel-href="{{$ctrl.cancelLink}}"
+        data-on-submit="$ctrl.create()"
+        name="nodepool_add_billing_info"
+    >
+        <billing-type
+            data-flavor="$ctrl.nodePool.flavor"
+            data-number="$ctrl.nodePool.nodeCount"
+            data-monthly-billing="$ctrl.nodePool.monthlyBilling"
+            data-description="{{ ::'kube_add_billing_type_description' | translate }}"
+        >
+        </billing-type>
+
+        <div data-ng-if="$ctrl.isAdding" class="d-flex align-items-center">
+            <oui-spinner data-size="m"></oui-spinner>
+            <span data-translate="kube_add_node_pool_creating"></span>
+        </div>
+    </oui-step-form>
+</oui-stepper>

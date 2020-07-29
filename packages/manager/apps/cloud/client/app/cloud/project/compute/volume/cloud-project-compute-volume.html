@@ -151,243 +151,306 @@
         </button>
 
         <!-- VOLUME TABLE -->
-        <table class="oui-table oui-table_responsive">
-            <thead class="oui-table oui-table__headers">
-                <tr>
-                    <th
-                        class="oui-table__header oui-table__cell_sortable"
-                        tabindex="0"
-                        data-ng-click="CloudProjectComputeVolumeCtrl.orderBy('name')"
-                        data-ng-class="{'oui-table__cell_sortable-asc oui-table__cell_sorted' : CloudProjectComputeVolumeCtrl.order.by === 'name' && !CloudProjectComputeVolumeCtrl.order.reverse, 'oui-table__cell_sortable-desc oui-table__cell_sorted' : CloudProjectComputeVolumeCtrl.order.by === 'name' && CloudProjectComputeVolumeCtrl.order.reverse}"
-                    >
-                        <span translate="cloud_common_name"></span>
-                    </th>
-                    <th
-                        class="oui-table__header oui-table__cell_sortable"
-                        tabindex="0"
-                        data-ng-click="CloudProjectComputeVolumeCtrl.orderBy('region')"
-                        data-ng-class="{'oui-table__cell_sortable-asc oui-table__cell_sorted' : CloudProjectComputeVolumeCtrl.order.by === 'region' && !CloudProjectComputeVolumeCtrl.order.reverse, 'oui-table__cell_sortable-desc oui-table__cell_sorted' : CloudProjectComputeVolumeCtrl.order.by === 'region' && CloudProjectComputeVolumeCtrl.order.reverse}"
-                    >
-                        <span translate="cloud_common_region"></span>
-                    </th>
-                    <th
-                        class="oui-table__header oui-table__cell_sortable"
-                        tabindex="0"
-                        data-ng-click="CloudProjectComputeVolumeCtrl.orderBy('type')"
-                        data-ng-class="{'oui-table__cell_sortable-asc oui-table__cell_sorted' : CloudProjectComputeVolumeCtrl.order.by === 'type' && !CloudProjectComputeVolumeCtrl.order.reverse, 'oui-table__cell_sortable-desc oui-table__cell_sorted' : CloudProjectComputeVolumeCtrl.order.by === 'type' && CloudProjectComputeVolumeCtrl.order.reverse}"
-                    >
-                        <span translate="cloud_common_type"></span>
-                    </th>
-                    <th class="oui-table__header" tabindex="0">
-                        <span translate="cpc_volume_attachedTo"></span>
-                    </th>
-                    <th
-                        class="oui-table__header oui-table__cell_sortable"
-                        tabindex="0"
-                        data-ng-click="CloudProjectComputeVolumeCtrl.orderBy('size')"
-                        data-ng-class="{'oui-table__cell_sortable-asc oui-table__cell_sorted' : CloudProjectComputeVolumeCtrl.order.by === 'size' && !CloudProjectComputeVolumeCtrl.order.reverse, 'oui-table__cell_sortable-desc oui-table__cell_sorted' : CloudProjectComputeVolumeCtrl.order.by === 'size' && CloudProjectComputeVolumeCtrl.order.reverse}"
-                    >
-                        <span translate="cpc_volume_size"></span>
-                    </th>
-                    <th
-                        class="oui-table__header oui-table__cell_sortable"
-                        tabindex="0"
-                        data-ng-click="CloudProjectComputeVolumeCtrl.orderBy('price')"
-                        data-ng-class="{'oui-table__cell_sortable-asc oui-table__cell_sorted' : CloudProjectComputeVolumeCtrl.order.by === 'price' && !CloudProjectComputeVolumeCtrl.order.reverse, 'oui-table__cell_sortable-desc oui-table__cell_sorted' : CloudProjectComputeVolumeCtrl.order.by === 'price' && CloudProjectComputeVolumeCtrl.order.reverse}"
-                    >
-                        <span translate="cpc_volume_monthly_price"></span>
-                    </th>
-                    <th
-                        class="oui-table__header oui-table__cell_sortable"
-                        tabindex="0"
-                        data-ng-click="CloudProjectComputeVolumeCtrl.orderBy('creationDate')"
-                        data-ng-class="{'oui-table__cell_sortable-asc oui-table__cell_sorted' : CloudProjectComputeVolumeCtrl.order.by === 'creationDate' && !CloudProjectComputeVolumeCtrl.order.reverse, 'oui-table__cell_sortable-desc oui-table__cell_sorted' : CloudProjectComputeVolumeCtrl.order.by === 'creationDate' && CloudProjectComputeVolumeCtrl.order.reverse}"
-                    >
-                        <span translate="cpc_volume_creation_date"></span>
-                    </th>
-                    <th
-                        class="oui-table__header oui-table__cell_sortable text-center"
-                        tabindex="0"
-                        write-right-required
-                    >
-                        <button
-                            data-ng-click="CloudProjectComputeVolumeCtrl.getVolume(true)"
-                            data-ng-disabled="CloudProjectComputeVolumeCtrl.loaders.remove.volume || CloudProjectComputeVolumeCtrl.loaders.remove.volumeMulti"
-                            class="no-style"
+        <div class="oui-table-responsive">
+            <table class="oui-table">
+                <thead class="oui-table__headers">
+                    <tr>
+                        <th
+                            class="oui-table__header oui-table__header_sortable"
+                            tabindex="0"
+                            data-ng-click="CloudProjectComputeVolumeCtrl.orderBy('name')"
+                            data-ng-class="{'oui-table__header_sorted' : CloudProjectComputeVolumeCtrl.order.by === 'name'}"
                         >
-                            <i class="glyphicon glyphicon-refresh"></i>
-                        </button>
-                    </th>
-                </tr>
-            </thead>
-            <tbody
-                data-ng-show="CloudProjectComputeVolumeCtrl.loaders.table.volume"
-                class="oui-table__body"
-            >
-                <tr>
-                    <td colspan="10" class="text-center">
-                        <oui-spinner></oui-spinner>
-                    </td>
-                </tr>
-            </tbody>
-            <tbody
-                data-ng-if="!CloudProjectComputeVolumeCtrl.loaders.table.volume && CloudProjectComputeVolumeCtrl.table.volume.length === 0"
-                class="oui-table__body"
-            >
-                <tr>
-                    <td colspan="10" class="text-center">
-                        <span translate="cpc_volume_empty"></span>
-                    </td>
-                </tr>
-            </tbody>
-            <tbody
-                data-ng-if="!CloudProjectComputeVolumeCtrl.loaders.table.volume && CloudProjectComputeVolumeCtrl.table.volume === null"
-                class="oui-table__body"
-            >
-                <tr>
-                    <td colspan="10" class="text-center">
-                        <i class="fa fa-bug"></i>
-                        <span translate="cpc_volume_error"></span>
-                    </td>
-                </tr>
-            </tbody>
-            <tbody
-                data-ng-if="!CloudProjectComputeVolumeCtrl.loaders.table.volume
-                            && CloudProjectComputeVolumeCtrl.table.volume.length
-                            && !CloudProjectComputeVolumeCtrl.table.volumeFilterPage.length"
-                class="oui-table__body"
-            >
-                <tr>
-                    <td colspan="10" class="text-center">
-                        <i class="fa fa-search"></i>
-                        <span translate="cpc_volume_empty_search"></span>
-                    </td>
-                </tr>
-            </tbody>
-            <tbody
-                data-ng-hide="CloudProjectComputeVolumeCtrl.loaders.table.volume"
-                class="oui-table__body"
-            >
-                <tr
-                    data-ng-repeat="volume in CloudProjectComputeVolumeCtrl.table.volumeFilterPage track by volume.id"
-                    class="oui-table__row"
-                    tabindex="0"
-                >
-                    <td
-                        data-title="{{::'cloud_common_name' | translate}}"
-                        class="oui-table__cell"
-                    >
-                        <label
-                            class="cloud-volume-table"
-                            data-ng-class="{'opacity2-leave' : CloudProjectComputeVolumeCtrl.toggle.volumeDeleteId === volume.id,
-                                            'opacity2-enter' : CloudProjectComputeVolumeCtrl.toggle.volumeDeleteId !== volume.id}"
-                            for="{{::'ss_' + volume.id}}"
-                        >
-                            <span data-ng-bind="::volume.name"></span>
-                            <i
-                                data-ng-if="volume.bootable"
-                                title="{{:: 'common_disk_bootable' | translate}}"
-                                class="left-space-m4 ovh-font ovh-font-bootDisk inline-block"
-                                style="margin-bottom: 2px;"
-                                data-uib-tooltip="{{:: 'common_disk_bootable' | translate }}"
-                            ></i>
-                        </label>
-                    </td>
-                    <td
-                        data-title="{{::'cloud_common_type' | translate}}"
-                        class="oui-table__cell"
-                    >
-                        <span
-                            data-ng-class="{'opacity2-leave' : CloudProjectComputeVolumeCtrl.toggle.volumeDeleteId === volume.id,
-                                            'opacity2-enter' : CloudProjectComputeVolumeCtrl.toggle.volumeDeleteId !== volume.id}"
-                        >
+                            <span translate="cloud_common_name"></span>
                             <span
-                                data-ng-bind="CloudProjectComputeVolumeCtrl.regionService.getTranslatedMicroRegion(volume.region)"
-                            ></span>
-                        </span>
-                    </td>
-                    <td
-                        data-title="{{::'cloud_common_type' | translate}}"
-                        class="oui-table__cell"
-                    >
-                        <span
-                            data-ng-class="{'opacity2-leave' : CloudProjectComputeVolumeCtrl.toggle.volumeDeleteId === volume.id,
-                                            'opacity2-enter' : CloudProjectComputeVolumeCtrl.toggle.volumeDeleteId !== volume.id}"
-                            data-ng-bind="::volume.type"
-                        >
-                        </span>
-                    </td>
-                    <td
-                        data-title="{{::'cpc_volume_attachedTo' | translate}}"
-                        class="oui-table__cell"
-                    >
-                        <span
-                            data-ng-class="{'opacity2-leave' : CloudProjectComputeVolumeCtrl.toggle.volumeDeleteId === volume.id,
-                                            'opacity2-enter' : CloudProjectComputeVolumeCtrl.toggle.volumeDeleteId !== volume.id}"
-                            data-ng-bind=":: volume.attachedToDetails && volume.attachedToDetails.length ? volume.attachedToDetails.join(', ') : '-'"
-                        >
-                        </span>
-                    </td>
-                    <td
-                        data-title="{{::'cpc_volume_size' | translate}}"
-                        class="oui-table__cell"
-                    >
-                        <span
-                            data-ng-class="{'opacity2-leave' : CloudProjectComputeVolumeCtrl.toggle.volumeDeleteId === volume.id,
-                                            'opacity2-enter' : CloudProjectComputeVolumeCtrl.toggle.volumeDeleteId !== volume.id}"
-                            data-ng-bind=":: (volume.size * CloudProjectComputeVolumeCtrl.GIBIBYTE_TO_BYTE) | bytes:2:'true'"
-                        >
-                        </span>
-                    </td>
-                    <td
-                        data-title="{{::'cpc_volume_monthly_price' | translate}}"
-                        class="oui-table__cell"
-                    >
-                        <span
-                            data-ng-class="{'opacity2-leave' : CloudProjectComputeVolumeCtrl.toggle.volumeDeleteId === volume.id,
-                                            'opacity2-enter' : CloudProjectComputeVolumeCtrl.toggle.volumeDeleteId !== volume.id}"
-                        >
-                            <span data-ng-if="volume.volumePricesMap"
-                                >{{ volume.calculatePrice().monthlyPrice.text
-                                }}</span
+                                aria-hidden="true"
+                                class="oui-icon oui-icon-sort-inactive"
+                                data-ng-class="{
+                                    'oui-icon-sort-inactive': CloudProjectComputeVolumeCtrl.order.by !== 'name',
+                                    'oui-icon-sort-up': CloudProjectComputeVolumeCtrl.order.by === 'name' && !CloudProjectComputeVolumeCtrl.order.reverse,
+                                    'oui-icon-sort-down' : CloudProjectComputeVolumeCtrl.order.by === 'name' && CloudProjectComputeVolumeCtrl.order.reverse
+                                }"
                             >
-                        </span>
-                    </td>
-                    <td
-                        data-title="{{::'cpc_volume_creation_date' | translate}}"
-                        class="oui-table__cell"
-                    >
-                        <span
-                            data-ng-class="{'opacity2-leave' : CloudProjectComputeVolumeCtrl.toggle.volumeDeleteId === volume.id,
-                                            'opacity2-enter' : CloudProjectComputeVolumeCtrl.toggle.volumeDeleteId !== volume.id}"
-                            data-ng-bind="::volume.creationDate | date : 'medium'"
+                            </span>
+                        </th>
+                        <th
+                            class="oui-table__header oui-table__header_sortable"
+                            tabindex="0"
+                            data-ng-click="CloudProjectComputeVolumeCtrl.orderBy('region')"
+                            data-ng-class="{'oui-table__header_sorted' : CloudProjectComputeVolumeCtrl.order.by === 'region'}"
                         >
-                        </span>
-                    </td>
-                    <td class="oui-table__cell" write-right-required>
-                        <div
-                            data-ng-class="{'opacity2-leave' : CloudProjectComputeVolumeCtrl.toggle.volumeDeleteId === volume.id,
-                                            'opacity2-enter' : CloudProjectComputeVolumeCtrl.toggle.volumeDeleteId !== volume.id}"
+                            <span translate="cloud_common_region"></span>
+                            <span
+                                aria-hidden="true"
+                                class="oui-icon oui-icon-sort-inactive"
+                                data-ng-class="{
+                                    'oui-icon-sort-inactive': CloudProjectComputeVolumeCtrl.order.by !== 'region',
+                                    'oui-icon-sort-up': CloudProjectComputeVolumeCtrl.order.by === 'region' && !CloudProjectComputeVolumeCtrl.order.reverse,
+                                    'oui-icon-sort-down' : CloudProjectComputeVolumeCtrl.order.by === 'region' && CloudProjectComputeVolumeCtrl.order.reverse
+                                }"
+                            >
+                            </span>
+                        </th>
+                        <th
+                            class="oui-table__header oui-table__header_sortable"
+                            tabindex="0"
+                            data-ng-click="CloudProjectComputeVolumeCtrl.orderBy('type')"
+                            data-ng-class="{'oui-table__header_sorted' : CloudProjectComputeVolumeCtrl.order.by === 'type'}"
+                        >
+                            <span translate="cloud_common_type"></span>
+                            <span
+                                aria-hidden="true"
+                                class="oui-icon oui-icon-sort-inactive"
+                                data-ng-class="{
+                                    'oui-icon-sort-inactive': CloudProjectComputeVolumeCtrl.order.by !== 'type',
+                                    'oui-icon-sort-up': CloudProjectComputeVolumeCtrl.order.by === 'type' && !CloudProjectComputeVolumeCtrl.order.reverse,
+                                    'oui-icon-sort-down' : CloudProjectComputeVolumeCtrl.order.by === 'type' && CloudProjectComputeVolumeCtrl.order.reverse
+                                }"
+                            >
+                            </span>
+                        </th>
+                        <th class="oui-table__header" tabindex="0">
+                            <span translate="cpc_volume_attachedTo"></span>
+                        </th>
+                        <th
+                            class="oui-table__header oui-table__header_sortable"
+                            tabindex="0"
+                            data-ng-click="CloudProjectComputeVolumeCtrl.orderBy('size')"
+                            data-ng-class="{'oui-table__header_sorted' : CloudProjectComputeVolumeCtrl.order.by === 'size'}"
+                        >
+                            <span translate="cpc_volume_size"></span>
+                            <span
+                                aria-hidden="true"
+                                class="oui-icon oui-icon-sort-inactive"
+                                data-ng-class="{
+                                    'oui-icon-sort-inactive': CloudProjectComputeVolumeCtrl.order.by !== 'size',
+                                    'oui-icon-sort-up': CloudProjectComputeVolumeCtrl.order.by === 'size' && !CloudProjectComputeVolumeCtrl.order.reverse,
+                                    'oui-icon-sort-down' : CloudProjectComputeVolumeCtrl.order.by === 'size' && CloudProjectComputeVolumeCtrl.order.reverse
+                                }"
+                            >
+                            </span>
+                        </th>
+                        <th
+                            class="oui-table__header oui-table__header_sortable"
+                            tabindex="0"
+                            data-ng-click="CloudProjectComputeVolumeCtrl.orderBy('price')"
+                            data-ng-class="{'oui-table__header_sorted' : CloudProjectComputeVolumeCtrl.order.by === 'price'}"
+                        >
+                            <span translate="cpc_volume_monthly_price"></span>
+                            <span
+                                aria-hidden="true"
+                                class="oui-icon oui-icon-sort-inactive"
+                                data-ng-class="{
+                                    'oui-icon-sort-inactive': CloudProjectComputeVolumeCtrl.order.by !== 'price',
+                                    'oui-icon-sort-up': CloudProjectComputeVolumeCtrl.order.by === 'price' && !CloudProjectComputeVolumeCtrl.order.reverse,
+                                    'oui-icon-sort-down' : CloudProjectComputeVolumeCtrl.order.by === 'price' && CloudProjectComputeVolumeCtrl.order.reverse
+                                }"
+                            >
+                            </span>
+                        </th>
+                        <th
+                            class="oui-table__header oui-table__header_sortable"
+                            tabindex="0"
+                            data-ng-click="CloudProjectComputeVolumeCtrl.orderBy('creationDate')"
+                            data-ng-class="{'oui-table__header_sorted' : CloudProjectComputeVolumeCtrl.order.by === 'creationDate'}"
+                        >
+                            <span translate="cpc_volume_creation_date"></span>
+                            <span
+                                aria-hidden="true"
+                                class="oui-icon oui-icon-sort-inactive"
+                                data-ng-class="{
+                                    'oui-icon-sort-inactive': CloudProjectComputeVolumeCtrl.order.by !== 'creationDate',
+                                    'oui-icon-sort-up': CloudProjectComputeVolumeCtrl.order.by === 'creationDate' && !CloudProjectComputeVolumeCtrl.order.reverse,
+                                    'oui-icon-sort-down' : CloudProjectComputeVolumeCtrl.order.by === 'creationDate' && CloudProjectComputeVolumeCtrl.order.reverse
+                                }"
+                            >
+                            </span>
+                        </th>
+                        <th
+                            class="oui-table__header text-center"
+                            tabindex="0"
+                            write-right-required
                         >
                             <button
+                                data-ng-click="CloudProjectComputeVolumeCtrl.getVolume(true)"
+                                data-ng-disabled="CloudProjectComputeVolumeCtrl.loaders.remove.volume || CloudProjectComputeVolumeCtrl.loaders.remove.volumeMulti"
                                 class="no-style"
-                                title="{{ volume.snapshotted ? 'cpc_volume_snapshotted_delete_button_info' : 'cpc_volume_delete_button' | translate}}"
-                                data-ng-click="CloudProjectComputeVolumeCtrl.openDeleteVolume(volume)"
-                                data-ng-disabled="CloudProjectComputeVolumeCtrl.toggle.volumeDeleteId === volume.id
-                                                || CloudProjectComputeVolumeCtrl.loaders.remove.volume
-                                                || volume.getStatusGroup() !== 'ACTIVE'
-                                                || volume.snapshotted
-                                                || CloudProjectComputeVolumeCtrl.getSelectedCount() > 0
-                                                || CloudProjectComputeVolumeCtrl.loaders.remove.volumeMulti
-                                                || CloudProjectComputeVolumeCtrl.toggle.openDeleteMultiConfirm"
                             >
-                                <i class="glyphicon glyphicon-trash"></i>
+                                <i class="glyphicon glyphicon-refresh"></i>
                             </button>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody
+                    data-ng-show="CloudProjectComputeVolumeCtrl.loaders.table.volume"
+                    class="oui-table__body"
+                >
+                    <tr>
+                        <td colspan="10" class="text-center">
+                            <oui-spinner></oui-spinner>
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody
+                    data-ng-if="!CloudProjectComputeVolumeCtrl.loaders.table.volume && CloudProjectComputeVolumeCtrl.table.volume.length === 0"
+                    class="oui-table__body"
+                >
+                    <tr>
+                        <td colspan="10" class="text-center">
+                            <span translate="cpc_volume_empty"></span>
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody
+                    data-ng-if="!CloudProjectComputeVolumeCtrl.loaders.table.volume && CloudProjectComputeVolumeCtrl.table.volume === null"
+                    class="oui-table__body"
+                >
+                    <tr>
+                        <td colspan="10" class="text-center">
+                            <i class="fa fa-bug"></i>
+                            <span translate="cpc_volume_error"></span>
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody
+                    data-ng-if="!CloudProjectComputeVolumeCtrl.loaders.table.volume
+                                && CloudProjectComputeVolumeCtrl.table.volume.length
+                                && !CloudProjectComputeVolumeCtrl.table.volumeFilterPage.length"
+                    class="oui-table__body"
+                >
+                    <tr>
+                        <td colspan="10" class="text-center">
+                            <i class="fa fa-search"></i>
+                            <span translate="cpc_volume_empty_search"></span>
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody
+                    data-ng-hide="CloudProjectComputeVolumeCtrl.loaders.table.volume"
+                    class="oui-table__body"
+                >
+                    <tr
+                        data-ng-repeat="volume in CloudProjectComputeVolumeCtrl.table.volumeFilterPage track by volume.id"
+                        class="oui-table__row"
+                        tabindex="0"
+                    >
+                        <td
+                            data-title="{{::'cloud_common_name' | translate}}"
+                            class="oui-table__cell"
+                        >
+                            <label
+                                class="cloud-volume-table"
+                                data-ng-class="{'opacity2-leave' : CloudProjectComputeVolumeCtrl.toggle.volumeDeleteId === volume.id,
+                                                'opacity2-enter' : CloudProjectComputeVolumeCtrl.toggle.volumeDeleteId !== volume.id}"
+                                for="{{::'ss_' + volume.id}}"
+                            >
+                                <span data-ng-bind="::volume.name"></span>
+                                <i
+                                    data-ng-if="volume.bootable"
+                                    title="{{:: 'common_disk_bootable' | translate}}"
+                                    class="left-space-m4 ovh-font ovh-font-bootDisk inline-block"
+                                    style="margin-bottom: 2px;"
+                                    data-uib-tooltip="{{:: 'common_disk_bootable' | translate }}"
+                                ></i>
+                            </label>
+                        </td>
+                        <td
+                            data-title="{{::'cloud_common_type' | translate}}"
+                            class="oui-table__cell"
+                        >
+                            <span
+                                data-ng-class="{'opacity2-leave' : CloudProjectComputeVolumeCtrl.toggle.volumeDeleteId === volume.id,
+                                                'opacity2-enter' : CloudProjectComputeVolumeCtrl.toggle.volumeDeleteId !== volume.id}"
+                            >
+                                <span
+                                    data-ng-bind="CloudProjectComputeVolumeCtrl.regionService.getTranslatedMicroRegion(volume.region)"
+                                ></span>
+                            </span>
+                        </td>
+                        <td
+                            data-title="{{::'cloud_common_type' | translate}}"
+                            class="oui-table__cell"
+                        >
+                            <span
+                                data-ng-class="{'opacity2-leave' : CloudProjectComputeVolumeCtrl.toggle.volumeDeleteId === volume.id,
+                                                'opacity2-enter' : CloudProjectComputeVolumeCtrl.toggle.volumeDeleteId !== volume.id}"
+                                data-ng-bind="::volume.type"
+                            >
+                            </span>
+                        </td>
+                        <td
+                            data-title="{{::'cpc_volume_attachedTo' | translate}}"
+                            class="oui-table__cell"
+                        >
+                            <span
+                                data-ng-class="{'opacity2-leave' : CloudProjectComputeVolumeCtrl.toggle.volumeDeleteId === volume.id,
+                                                'opacity2-enter' : CloudProjectComputeVolumeCtrl.toggle.volumeDeleteId !== volume.id}"
+                                data-ng-bind=":: volume.attachedToDetails && volume.attachedToDetails.length ? volume.attachedToDetails.join(', ') : '-'"
+                            >
+                            </span>
+                        </td>
+                        <td
+                            data-title="{{::'cpc_volume_size' | translate}}"
+                            class="oui-table__cell"
+                        >
+                            <span
+                                data-ng-class="{'opacity2-leave' : CloudProjectComputeVolumeCtrl.toggle.volumeDeleteId === volume.id,
+                                                'opacity2-enter' : CloudProjectComputeVolumeCtrl.toggle.volumeDeleteId !== volume.id}"
+                                data-ng-bind=":: (volume.size * CloudProjectComputeVolumeCtrl.GIBIBYTE_TO_BYTE) | bytes:2:'true'"
+                            >
+                            </span>
+                        </td>
+                        <td
+                            data-title="{{::'cpc_volume_monthly_price' | translate}}"
+                            class="oui-table__cell"
+                        >
+                            <span
+                                data-ng-class="{'opacity2-leave' : CloudProjectComputeVolumeCtrl.toggle.volumeDeleteId === volume.id,
+                                                'opacity2-enter' : CloudProjectComputeVolumeCtrl.toggle.volumeDeleteId !== volume.id}"
+                            >
+                                <span data-ng-if="volume.volumePricesMap"
+                                    >{{
+                                    volume.calculatePrice().monthlyPrice.text
+                                    }}</span
+                                >
+                            </span>
+                        </td>
+                        <td
+                            data-title="{{::'cpc_volume_creation_date' | translate}}"
+                            class="oui-table__cell"
+                        >
+                            <span
+                                data-ng-class="{'opacity2-leave' : CloudProjectComputeVolumeCtrl.toggle.volumeDeleteId === volume.id,
+                                                'opacity2-enter' : CloudProjectComputeVolumeCtrl.toggle.volumeDeleteId !== volume.id}"
+                                data-ng-bind="::volume.creationDate | date : 'medium'"
+                            >
+                            </span>
+                        </td>
+                        <td class="oui-table__cell" write-right-required>
+                            <div
+                                data-ng-class="{'opacity2-leave' : CloudProjectComputeVolumeCtrl.toggle.volumeDeleteId === volume.id,
+                                                'opacity2-enter' : CloudProjectComputeVolumeCtrl.toggle.volumeDeleteId !== volume.id}"
+                            >
+                                <button
+                                    class="no-style"
+                                    title="{{ volume.snapshotted ? 'cpc_volume_snapshotted_delete_button_info' : 'cpc_volume_delete_button' | translate}}"
+                                    data-ng-click="CloudProjectComputeVolumeCtrl.openDeleteVolume(volume)"
+                                    data-ng-disabled="CloudProjectComputeVolumeCtrl.toggle.volumeDeleteId === volume.id
+                                                    || CloudProjectComputeVolumeCtrl.loaders.remove.volume
+                                                    || volume.getStatusGroup() !== 'ACTIVE'
+                                                    || volume.snapshotted
+                                                    || CloudProjectComputeVolumeCtrl.getSelectedCount() > 0
+                                                    || CloudProjectComputeVolumeCtrl.loaders.remove.volumeMulti
+                                                    || CloudProjectComputeVolumeCtrl.toggle.openDeleteMultiConfirm"
+                                >
+                                    <i class="glyphicon glyphicon-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
         <!-- PAGINATION TABLE -->
         <div

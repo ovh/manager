@@ -1,5 +1,5 @@
 import angular from 'angular';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 
 const moduleName = 'ovhManagerCoreOuiAngularConfiguration';
 

@@ -6,7 +6,7 @@ import {
 } from './payment-method.constants';
 
 import OvhPaymentMethod from './payment-method.class';
-import OvhPaymentMethodType from './payment-method-type.class';
+import OvhAvailablePaymentMethod from './available-payment-method.class';
 
 import OvhPaymentMethodLegacy from './legacy/payment-method-legacy';
 
@@ -78,7 +78,8 @@ export default class OvhPaymentMethodService {
 
         return map(
           registerablePaymentTypes,
-          (paymentTypeOptions) => new OvhPaymentMethodType(paymentTypeOptions),
+          (paymentTypeOptions) =>
+            new OvhAvailablePaymentMethod(paymentTypeOptions),
         );
       })
       .catch((error) => (error.status === 404 ? [] : this.$q.reject(error)));

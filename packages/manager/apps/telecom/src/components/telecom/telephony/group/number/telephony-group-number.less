@@ -1,11 +1,11 @@
 // COLORS
-@voip-plan-main-color: @oui-color-primary;
-@voip-plan-secondary-color: @oui-color-shuttle;
-@voip-plan-border-color: @oui-color-mischka;
-@voip-plan-secondary-background-color: @oui-color-foam;
+@voip-plan-main-color: @p-500;
+@voip-plan-secondary-color: #59697d;
+@voip-plan-border-color: #d5dae0;
+@voip-plan-secondary-background-color: #e0f6fd;
 @voip-plan-disabled-color: @voip-plan-secondary-color;
-@voip-plan-disabled-background-color: @oui-color-mischka;
-@voip-plan-disabled-border-color: @oui-color-mischka;
+@voip-plan-disabled-background-color: #d5dae0;
+@voip-plan-disabled-border-color: #d5dae0;
 
 // SIZES
 @voip-plan-main-elements-size: 40px;
@@ -54,7 +54,7 @@
       &--grip {
         width: @voip-plan-main-elements-size - 2;
         height: @voip-plan-main-elements-size - 2;
-        border: solid 1px @oui-color-secondary;
+        border: solid 1px @p-300;
         background-color: @voip-plan-secondary-background-color;
         color: @voip-plan-main-color;
         font-size: @voip-plan-icons-font-size;
@@ -62,7 +62,7 @@
         cursor: move;
 
         &:hover {
-          background-color: lighten(@oui-color-secondary, 25%);
+          background-color: lighten(@p-300, 25%);
         }
 
         &-disabled {
@@ -206,27 +206,27 @@
         width: @voip-plan-main-elements-size;
         height: @voip-plan-main-elements-size;
         border: none;
-        background-color: @oui-color-secondary;
+        background-color: @p-300;
         border-radius: 50%;
 
         &:hover,
         &:focus,
         &:active {
-          background-color: darken(@oui-color-secondary, 15%);
+          background-color: darken(@p-300, 15%);
         }
       }
 
       &--default {
         width: @voip-plan-main-elements-size - 2;
         height: @voip-plan-main-elements-size - 2;
-        border: solid 1px @oui-color-secondary;
+        border: solid 1px @p-300;
         background-color: transparent;
         border-radius: 50%;
 
         &:hover,
         &:focus,
         &:active {
-          background-color: fadeout(@oui-color-secondary, 85%);
+          background-color: fadeout(@p-300, 85%);
         }
       }
 
@@ -239,7 +239,7 @@
         &:hover,
         &:focus,
         &:active {
-          background-color: lighten(@oui-color-secondary, 25%);
+          background-color: lighten(@p-300, 25%);
         }
       }
 

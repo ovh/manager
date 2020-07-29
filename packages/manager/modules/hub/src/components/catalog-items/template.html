@@ -1,8 +1,8 @@
 <div data-ng-repeat="(universe, products) in $ctrl.items track by universe">
-    <h2 data-ng-bind="universe"></h2>
+    <h2 class="oui-heading_3" data-ng-bind="universe"></h2>
     <div class="row">
         <div
-            class="col-md-6 col-xl-4 mb-2"
+            class="col-md-6 col-xl-4 mb-3"
             data-ng-repeat="product in products track by product.productName"
         >
             <ovh-manager-hub-tile
@@ -23,7 +23,7 @@
                         ></span>
                         <span
                             aria-hidden="true"
-                            class="oui-icon oui-icon-arrow-right_extra-thin"
+                            class="oui-icon oui-icon-arrow-right"
                         ></span>
                     </a>
                 </div>

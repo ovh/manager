@@ -1,28 +1,30 @@
+@import '~@ovh-ux/ui-kit/dist/scss/_tokens';
 @import '~bootstrap4/scss/_functions';
 @import '~bootstrap4/scss/_variables';
 @import '~bootstrap4/scss/_mixins';
 @import '~bootstrap4/scss/_utilities.scss';
 
-.oui-page-header {
-  background: #fff;
-}
-
-a.oui-tile,
-.oui-link,
-.oui-button_link {
-  color: rgb(40, 89, 192);
-}
-
 a.oui-tile {
-  background-color: rgb(244, 248, 251);
-  box-shadow: none;
+  background-color: $p-075;
   border: 0;
+  box-shadow: none;
+  color: $p-500;
   transition: all ease-in 200ms;
+
+  .oui-icon {
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
+    background-color: $p-500;
+    color: $p-000;
+    font-size: 1rem;
+    border-radius: $base-border-radius-medium;
+  }
 
   &:hover,
   &:focus {
-    background-color: rgb(230, 245, 252);
-    box-shadow: 0 5pt 10pt rgba(40, 89, 192, 0.15);
+    background-color: $p-100;
+    box-shadow: $base-box-shadow-primary;
   }
 }
 

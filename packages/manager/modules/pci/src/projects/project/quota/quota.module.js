@@ -7,7 +7,7 @@ import '@ovh-ux/ng-ovh-api-wrappers'; // should be a peer dependency of ovh-api-
 import '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ng-ovh-payment-method';
 import 'ovh-api-services';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 
 import header from '../../../components/project/quota-region-header';
 import component from './quota.component';

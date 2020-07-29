@@ -1,5 +1,28 @@
 ovh-manager-hub-carousel {
-  @import 'oui4/dist/scss/_tokens';
+  @import '@ovh-ux/ui-kit/dist/scss/_tokens';
+
+  .oui-message {
+    padding: 1rem 3rem;
+
+    &__next {
+      position: absolute;
+      top: 50%;
+      right: 0.5rem;
+      margin-top: -1rem;
+
+      .oui-icon {
+        font-size: 1.5rem;
+      }
+    }
+
+    &__bullets {
+      text-align: center;
+    }
+
+    &__body {
+      font-weight: 600;
+    }
+  }
 
   a.oui-message__body {
     &:hover,
@@ -8,10 +31,6 @@ ovh-manager-hub-carousel {
       text-decoration-color: $ae-500;
       color: $ae-500;
     }
-  }
-
-  .oui-message__body {
-    font-weight: 600;
   }
 
   .circular-tile {
@@ -26,14 +45,5 @@ ovh-manager-hub-carousel {
     &_active {
       background-color: $ae-500;
     }
-  }
-
-  .oui-icon-warning_extra-thin {
-    &::after {
-      background: transparent;
-    }
-
-    color: $ae-500;
-    font-size: 1.5rem;
   }
 }

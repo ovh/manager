@@ -47,27 +47,30 @@
                                 for="{{'duration'+$index}}"
                             >
                                 <span class="oui-radio__label">
-                                    <span
-                                        data-ng-bind-html="'emailpro_ACTION_order_accounts_step1_pay_type_' + orderAvailable.duration.duration | translate"
-                                    ></span>
-                                    (<strong>
+                                    <span class="oui-radio__icon"></span>
+                                    <span class="oui-radio__text">
                                         <span
-                                            data-ng-if="!showPriceWithTaxOnly"
-                                            data-translate="emailpro_ACTION_order_accounts_step1_price"
-                                            data-translate-values="{ t0: orderAvailable.unitaryMonthlyPrice.text, t1: orderAvailable.unitaryMonthlyPriceWithTaxes.text }"
-                                        >
-                                        </span>
+                                            data-ng-bind-html="'emailpro_ACTION_order_accounts_step1_pay_type_' + orderAvailable.duration.duration | translate"
+                                        ></span>
+                                        (<strong>
+                                            <span
+                                                data-ng-if="!showPriceWithTaxOnly"
+                                                data-translate="emailpro_ACTION_order_accounts_step1_price"
+                                                data-translate-values="{ t0: orderAvailable.unitaryMonthlyPrice.text, t1: orderAvailable.unitaryMonthlyPriceWithTaxes.text }"
+                                            >
+                                            </span>
+                                            <span
+                                                data-ng-if="showPriceWithTaxOnly"
+                                                data-translate="emailpro_ACTION_order_accounts_step1_price_with_tax_only"
+                                                data-translate-values="{ t0: orderAvailable.unitaryMonthlyPriceWithTaxes.localizedText }"
+                                            >
+                                            </span>
+                                        </strong>
                                         <span
-                                            data-ng-if="showPriceWithTaxOnly"
-                                            data-translate="emailpro_ACTION_order_accounts_step1_price_with_tax_only"
-                                            data-translate-values="{ t0: orderAvailable.unitaryMonthlyPriceWithTaxes.localizedText }"
-                                        >
-                                        </span>
-                                    </strong>
-                                    <span
-                                        data-translate="emailpro_ACTION_order_accounts_per_account"
-                                    ></span>
-                                    )
+                                            data-translate="emailpro_ACTION_order_accounts_per_account"
+                                        ></span>
+                                        )
+                                    </span>
                                 </span>
                             </label>
                         </div>
@@ -101,11 +104,10 @@
                         ></span>
                     </div>
                 </div>
-                <oui-checkbox
-                    id="legalWarning"
-                    data-model="valid.legalWarning"
-                    data-text="{{:: 'emailpro_ACTION_add_account_legal_warning' | translate }}"
-                >
+                <oui-checkbox id="legalWarning" data-model="valid.legalWarning"
+                    ><span
+                        data-translate="emailpro_ACTION_add_account_legal_warning"
+                    ></span>
                 </oui-checkbox>
             </form>
         </div>

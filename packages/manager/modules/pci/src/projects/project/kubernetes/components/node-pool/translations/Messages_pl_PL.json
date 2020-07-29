@@ -1,0 +1,6 @@
+{
+  "kubernetes_add_node_pool_description": "Po utworzeniu klastra skonfiguruj pierwszą pulę węzłów. Pula węzłów to zestaw węzłów roboczych tego samego typu. Następnie będziesz mógł tworzyć wiele puli węzłów, usuwać je lub zmieniać ich wielkość.",
+  "kubernetes_add_node_pool_warning": "Zalecamy skonfigurowanie puli co najmniej 3 węzłów w celu optymalizacji mechanizmu rolling upgrade podczas aktualizacji zabezpieczeń (patch update) lub wersji pomocniczych.",
+  "kubernetes_add_node_pool_node_count": "Liczba węzłów w puli",
+  "kubernetes_add_node_pool_node_type": "Rodzaj węzła"
+}

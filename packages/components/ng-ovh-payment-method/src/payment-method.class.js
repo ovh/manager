@@ -1,5 +1,7 @@
 import { isNull } from 'lodash-es';
 
+import OvhPaymentMethodType from './payment-method-type.class';
+
 /**
  *  Describe a payment method object.
  */
@@ -77,10 +79,10 @@ export default class OvhPaymentMethod {
       : null;
 
     /**
-     *  Payment method type.
-     *  @type {String}
+     *  The type of the payment method.
+     *  @type {OvhPaymentMethodType}
      */
-    this.paymentType = options.paymentType;
+    this.type = new OvhPaymentMethodType(options.paymentType);
 
     /**
      *  The ID of the associated billing contact.
@@ -121,6 +123,14 @@ export default class OvhPaymentMethod {
      *  @type {Object}
      */
     this.original = options.original || null;
+  }
+
+  /**
+   * Get the name of the payment type. For retro-compatibility.
+   * @return {String} The name of the payment type.
+   */
+  get paymentType() {
+    return this.type.paymentType;
   }
 
   /**

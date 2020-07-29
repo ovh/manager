@@ -3,7 +3,7 @@
         data-state="dbaas.logs.detail.streams"
         class="back_button_inline_text"
         data-state-params="{ serviceName: ctrl.serviceName}"
-        data-heading="{{ ::'logs_streams_follow_live' | translate }}"
+        ><span data-translate="logs_streams_follow_live"></span
     ></oui-back-button>
 
     <p
@@ -41,10 +41,7 @@
             </p>
         </div>
 
-        <oui-action-menu
-            text="{{ ::'common_actions' | translate}}"
-            align="start"
-        >
+        <oui-action-menu text="{{ ::'common_actions' | translate}}">
             <oui-action-menu-item data-on-click="ctrl.copyAddress()">
                 <span data-translate="logs_streams_follow_copy_address"></span>
             </oui-action-menu-item>
@@ -113,17 +110,17 @@
                     <p
                         class="log-streams-follow_content"
                         data-ng-bind="message.content"
-                    />
+                    ></p>
                 </td>
                 <td data-ng-if="message.code >= 0" style="width: 20%">
                     <span
-                        class="oui-status"
+                        class="oui-badge"
                         data-translate="{{::message.label}}"
                         data-ng-class="{
-                            'oui-status_info': message.type === 'info',
-                            'oui-status_success': message.type === 'success',
-                            'oui-status_warning': message.type === 'warning',
-                            'oui-status_error': message.type === 'error'}"
+                            'oui-badge_info': message.type === 'info',
+                            'oui-badge_success': message.type === 'success',
+                            'oui-badge_warning': message.type === 'warning',
+                            'oui-badge_error': message.type === 'error'}"
                     >
                     </span>
                 </td>

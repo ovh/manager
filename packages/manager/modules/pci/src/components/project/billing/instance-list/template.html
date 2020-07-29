@@ -7,108 +7,100 @@
     data-ng-if="$ctrl.instanceConsumptionDetails.length > 0"
     class="instanceList overflow-scroll"
 >
-    <div class="oui-datagrid-responsive-container">
-        <div class="oui-datagrid-responsive-container__sticky-container">
-            <div class="oui-datagrid-responsive-container__overflow-container">
-                <table class="oui-datagrid mb-0">
-                    <thead class="oui-datagrid__headers">
-                        <th class="oui-datagrid__header">
-                            <span
-                                data-translate="{{ $ctrl.instanceColName }}"
-                            ></span>
-                        </th>
-                        <th class="oui-datagrid__header">
-                            <span
-                                data-translate="{{ $ctrl.instanceColTotal }}"
-                            ></span>
-                        </th>
-                        <th
-                            class="oui-datagrid__header"
-                            data-ng-if="$ctrl.showSwitchToMonthlyBillingOption || $ctrl.showAdditionalInstanceDetails"
-                        ></th>
-                    </thead>
-                    <tbody
-                        class="oui-datagrid__body"
-                        data-ng-if="$ctrl.loaders.instanceList"
+    <div class="oui-table-responsive">
+        <table class="oui-table">
+            <thead class="oui-table__headers">
+                <th class="oui-table__header">
+                    <span data-translate="{{ $ctrl.instanceColName }}"></span>
+                </th>
+                <th class="oui-table__header">
+                    <span data-translate="{{ $ctrl.instanceColTotal }}"></span>
+                </th>
+                <th
+                    class="oui-table__header"
+                    data-ng-if="$ctrl.showSwitchToMonthlyBillingOption || $ctrl.showAdditionalInstanceDetails"
+                ></th>
+            </thead>
+            <tbody
+                class="oui-table__body"
+                data-ng-if="$ctrl.loaders.instanceList"
+            >
+                <tr>
+                    <td colspan="2" class="text-center">
+                        <spinner></spinner>
+                    </td>
+                    <td
+                        data-ng-if="$ctrl.showSwitchToMonthlyBillingOption || $ctrl.showAdditionalInstanceDetails"
+                    ></td>
+                </tr>
+            </tbody>
+            <tbody data-ng-if="!$ctrl.loaders.instanceList">
+                <tr
+                    data-ng-repeat="instanceConsumption in $ctrl.instanceConsumptionDetails | orderBy: 'instanceName' track by instanceConsumption.instanceId + instanceConsumption.reference"
+                    class="oui-table__row"
+                >
+                    <td
+                        data-title="{{ :: $ctrl.instanceColName | translate }}"
+                        class="oui-table__cell word-break"
+                        data-responsive-popover="'pci/components/project/billing/details-popover/instance-details-popover.html'"
+                        data-popover-class="details-popover"
+                        data-popover-is-open="$ctrl.DetailsPopoverService.isCurrentDetails(instanceConsumption)"
+                        data-popover-placement="top"
+                        data-popover-append-to-body="true"
+                        data-popover-trigger="none"
+                        data-ng-click="$ctrl.DetailsPopoverService.setCurrentDetails(instanceConsumption)"
                     >
-                        <tr>
-                            <td colspan="2" class="text-center">
-                                <spinner></spinner>
-                            </td>
-                            <td
-                                data-ng-if="$ctrl.showSwitchToMonthlyBillingOption || $ctrl.showAdditionalInstanceDetails"
-                            ></td>
-                        </tr>
-                    </tbody>
-                    <tbody data-ng-if="!$ctrl.loaders.instanceList">
-                        <tr
-                            data-ng-repeat="instanceConsumption in $ctrl.instanceConsumptionDetails | orderBy: 'instanceName' track by instanceConsumption.instanceId + instanceConsumption.reference"
-                            class="oui-datagrid__row"
+                        <span
+                            data-ng-bind=" ::  instanceConsumption.instanceName"
+                        ></span>
+                    </td>
+                    <td
+                        class="oui-table__cell"
+                        data-title="{{ :: $ctrl.instanceColTotal | translate }}"
+                    >
+                        <span
+                            data-ng-bind=" :: instanceConsumption.total"
+                        ></span>
+                    </td>
+                    <td
+                        data-ng-if="$ctrl.switchToMonthlyBilling || $ctrl.showAdditionalInstanceDetails"
+                        class="oui-table__cell text-right no-space vertical-middle right-space-p4"
+                    >
+                        <span
+                            data-ng-if="instanceConsumption.monthlyBilling && instanceConsumption.monthlyBilling.status === 'ok'"
+                            data-translate="cpbc_hourly_instance_monthly_billing_since"
+                            data-translate-values="{ since : (instanceConsumption.monthlyBilling.since | date:'shortDate') }"
                         >
-                            <td
-                                data-title="{{ :: $ctrl.instanceColName | translate }}"
-                                class="oui-datagrid__cell word-break"
-                                data-responsive-popover="'pci/components/project/billing/details-popover/instance-details-popover.html'"
-                                data-popover-class="details-popover"
-                                data-popover-is-open="$ctrl.DetailsPopoverService.isCurrentDetails(instanceConsumption)"
-                                data-popover-placement="top"
-                                data-popover-append-to-body="true"
-                                data-popover-trigger="none"
-                                data-ng-click="$ctrl.DetailsPopoverService.setCurrentDetails(instanceConsumption)"
-                            >
-                                <span
-                                    data-ng-bind=" ::  instanceConsumption.instanceName"
-                                ></span>
-                            </td>
-                            <td
-                                class="oui-datagrid__cell"
-                                data-title="{{ :: $ctrl.instanceColTotal | translate }}"
-                            >
-                                <span
-                                    data-ng-bind=" :: instanceConsumption.total"
-                                ></span>
-                            </td>
-                            <td
-                                data-ng-if="$ctrl.switchToMonthlyBilling || $ctrl.showAdditionalInstanceDetails"
-                                class="oui-datagrid__cell text-right no-space vertical-middle right-space-p4"
-                            >
-                                <span
-                                    data-ng-if="instanceConsumption.monthlyBilling && instanceConsumption.monthlyBilling.status === 'ok'"
-                                    data-translate="cpbc_hourly_instance_monthly_billing_since"
-                                    data-translate-values="{ since : (instanceConsumption.monthlyBilling.since | date:'shortDate') }"
-                                >
-                                </span>
-                                <span
-                                    data-ng-if="instanceConsumption.monthlyBilling && instanceConsumption.monthlyBilling.status === 'activationPending'"
-                                >
-                                    {{ ::
-                                    'cpbc_hourly_instance_monthly_billing_activationPending'
-                                    | translate }}
-                                    <i class="fa fa-clock-o left-space-m8"></i>
-                                </span>
-                                <span
-                                    class="opacity6"
-                                    data-ng-if="!instanceConsumption.monthlyBilling && instanceConsumption.isDeleted"
-                                    data-translate="cpbc_hourly_instance_deleted"
-                                ></span>
+                        </span>
+                        <span
+                            data-ng-if="instanceConsumption.monthlyBilling && instanceConsumption.monthlyBilling.status === 'activationPending'"
+                        >
+                            {{ ::
+                            'cpbc_hourly_instance_monthly_billing_activationPending'
+                            | translate }}
+                            <i class="fa fa-clock-o left-space-m8"></i>
+                        </span>
+                        <span
+                            class="opacity6"
+                            data-ng-if="!instanceConsumption.monthlyBilling && instanceConsumption.isDeleted"
+                            data-translate="cpbc_hourly_instance_deleted"
+                        ></span>
 
-                                <!-- CONFIRM MONTHLY PAYMENT BUTTON -->
-                                <button
-                                    type="button"
-                                    data-ng-if="$ctrl.switchToMonthlyBilling && instanceConsumption.monthlyBilling === null && !instanceConsumption.isDeleted"
-                                    class="oui-button oui-button_secondary"
-                                    data-ng-click="$ctrl.switchToMonthlyBilling({ instance: instanceConsumption })"
-                                    data-write-right-required
-                                >
-                                    <span
-                                        data-translate="cpbc_hourly_instance_pass_to_monthly"
-                                    ></span>
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+                        <!-- CONFIRM MONTHLY PAYMENT BUTTON -->
+                        <button
+                            type="button"
+                            data-ng-if="$ctrl.switchToMonthlyBilling && instanceConsumption.monthlyBilling === null && !instanceConsumption.isDeleted"
+                            class="oui-button oui-button_secondary"
+                            data-ng-click="$ctrl.switchToMonthlyBilling({ instance: instanceConsumption })"
+                            data-write-right-required
+                        >
+                            <span
+                                data-translate="cpbc_hourly_instance_pass_to_monthly"
+                            ></span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
