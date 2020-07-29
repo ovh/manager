@@ -107,5 +107,12 @@
                 data-translate="{{:: 'pci_projects_project_training_jobs_list_submit' | translate  }}"
             ></span>
         </a>
+        <button
+            class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_s"
+            data-title="{{:: 'pci_projects_project_training_data_refresh' | translate }}"
+            data-ng-click="$ctrl.refreshState()"
+        >
+            <span class="fa fa-refresh" aria-hidden="true"></span>
+        </button>
     </oui-datagrid-topbar>
 </oui-datagrid>

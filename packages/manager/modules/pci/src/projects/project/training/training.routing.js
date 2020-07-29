@@ -46,6 +46,7 @@ export default /* @ngInject */ ($stateProvider) => {
         PciProjectTrainingService.getPricesFromCatalog(projectId),
       regions: /* @ngInject */ (PciProjectTrainingService, projectId) => () =>
         PciProjectTrainingService.getRegions(projectId),
+      refreshState: /* @ngInject */ ($state) => () => $state.reload(),
     },
   });
 };

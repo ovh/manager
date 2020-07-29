@@ -12,5 +12,6 @@ export default {
     dataLink: '<',
     allUsers: '<',
     regions: '<',
+    refreshState: '<',
   },
 };

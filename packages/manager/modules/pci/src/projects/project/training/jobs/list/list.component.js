@@ -11,5 +11,6 @@ export default {
     jobKill: '<',
     submitJobLink: '<',
     jobInfoLink: '<',
+    refreshState: '<',
   },
 };
