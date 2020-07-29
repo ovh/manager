@@ -57,11 +57,7 @@
                 <oui-tile-description>
                     <span
                         class="oui-status"
-                        data-ng-class="{
-                            'oui-status_success': ($ctrl.job.state === 'SUCCEEDED'),
-                            'oui-status_warning': ($ctrl.job.state === 'QUEUING'),
-                            'oui-status_error': ($ctrl.job.state === 'FAILED')
-                        }"
+                        data-ng-class="$ctrl.getClassForState($ctrl.job.state)"
                     >
                         <span
                             data-translate="{{:: 'pci_projects_project_training_jobs_state_' + $ctrl.job.state }}"

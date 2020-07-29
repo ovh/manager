@@ -15,5 +15,6 @@ export default {
     regions: '<',
     jobInfoLink: '<',
     refreshState: '<',
+    getClassForState: '<',
   },
 };

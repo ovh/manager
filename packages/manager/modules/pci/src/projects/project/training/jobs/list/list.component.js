@@ -12,5 +12,6 @@ export default {
     submitJobLink: '<',
     jobInfoLink: '<',
     refreshState: '<',
+    getClassForState: '<',
   },
 };
