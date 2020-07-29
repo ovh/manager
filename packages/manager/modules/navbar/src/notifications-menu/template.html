@@ -1,80 +1,14 @@
-<div
-    class="d-inline-flex oui-navbar-link oui-navbar-link_icon py-0"
-    data-ng-if="$ctrl.isLoading"
+<button
+    class="d-inline-flex oui-navbar-link oui-navbar-link_icon notifications py-0"
+    data-ng-disabled="$ctrl.isLoading"
+    data-ng-click="$ctrl.onClick()"
 >
-    <span class="oui-icon oui-icon-bell"></span>
-    <oui-spinner data-size="s"></oui-spinner>
-</div>
-<oui-navbar-dropdown
-    data-ng-if="!$ctrl.isLoading"
-    name="notifications"
-    data-icon-class="oui-icon oui-icon-bell"
-    data-on-click="$ctrl.openMenu()"
-    data-icon-badge="$ctrl.numberOfActiveNotifications"
->
-    <div
-        role="menu"
-        class="oui-navbar-menu
-            oui-navbar-menu-hub
-            oui-navbar-menu_end
-            oui-navbar-menu_panel"
-    >
-        <ul class="oui-navbar-menu__body oui-navbar-list d-block overflow-auto">
-            <li
-                class="oui-navbar-menu__item oui-navbar-notification"
-                data-ng-repeat="(time, sublinks) in ::$ctrl.groupedSublinks"
-            >
-                <!-- header -->
-                <div
-                    class="manager-navbar-notification_header"
-                    data-ng-bind="time"
-                ></div>
-                <navbar-notifications-list
-                    on-sublink-click="$ctrl.toggleSublinkAction(menuLink, linkClicked)"
-                    sublinks="sublinks"
-                ></navbar-notifications-list>
-                <!-- content -->
-            </li>
-            <li
-                class="oui-navbar-menu__item oui-navbar-notification oui-navbar-notification-placeholder"
-                data-ng-if="$ctrl.sublinks.length === 0"
-            >
-                <div class="oui-navbar-notification-placeholder__content">
-                    <span
-                        class="oui-icon oui-navbar-notification__icon oui-icon-success-circle"
-                        aria-hidden="true"
-                    >
-                    </span>
-                    <div
-                        class="oui-navbar-notification-placeholder__title"
-                        data-ng-bind="::$ctrl.translations.notification.noNotification"
-                    ></div>
-                    <div
-                        class="oui-navbar-notification-placeholder__description"
-                        data-ng-bind="::$ctrl.translations.notification.noNotificationDescription"
-                    ></div>
-                </div>
-            </li>
-            <li
-                class="oui-navbar-menu__item oui-navbar-notification oui-navbar-notification-placeholder"
-                data-ng-if="!$ctrl.sublinks"
-            >
-                <div class="oui-navbar-notification-placeholder__content">
-                    <span
-                        class="oui-icon oui-navbar-notification__icon oui-icon-error-circle"
-                        aria-hidden="true"
-                    >
-                    </span>
-                    <div
-                        class="oui-navbar-notification-placeholder__title"
-                        data-ng-bind="::$ctrl.translations.notification.errorInNotification"
-                    ></div>
-                    <div
-                        class="oui-navbar-notification-placeholder__description"
-                        data-ng-bind="::$ctrl.translations.notification.errorInNotificationDescription"
-                    ></div>
-                </div>
-            </li>
-        </ul>
-    </div>
-</oui-navbar-dropdown>
+    <span class="oui-icon oui-icon-bell">
+        <span
+            class="oui-icon__badge"
+            data-ng-bind="$ctrl.numberOfActiveNotifications"
+        >
+        </span>
+    </span>
+    <oui-spinner data-size="s" data-ng-if="$ctrl.isLoading"></oui-spinner>
+</button>
