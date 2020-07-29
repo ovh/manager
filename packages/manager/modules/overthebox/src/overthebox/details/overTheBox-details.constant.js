@@ -52,4 +52,7 @@ export default {
       },
     },
   },
+  lastSeen: {
+    limit: 5,
+  },
 };

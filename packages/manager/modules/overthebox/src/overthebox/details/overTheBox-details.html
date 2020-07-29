@@ -291,6 +291,42 @@
                                 ></span>
                             </div>
                         </div>
+                        <div
+                            class="oui-tile__item"
+                            data-ng-if="$ctrl.lastSeenAccess"
+                        >
+                            <div class="oui-tile__definition">
+                                <span
+                                    class="oui-tile__term d-block"
+                                    data-translate="overTheBox_last_seen"
+                                >
+                                </span>
+                                <span
+                                    class="oui-tile__description"
+                                    data-ng-if="$ctrl.lastSeenAccess.isRecent"
+                                >
+                                    <span
+                                        class="oui-icon oui-icon-success-circle text-success"
+                                    ></span>
+                                    <span
+                                        data-translate="overTheBox_last_seen_few_seconds"
+                                    ></span>
+                                </span>
+                                <span
+                                    class="oui-tile__description"
+                                    data-ng-if="!$ctrl.lastSeenAccess.isRecent"
+                                >
+                                    <span
+                                        class="oui-icon oui-icon-warning text-danger"
+                                    ></span>
+                                    <span
+                                        data-translate="overTheBox_last_seen_minutes_ago"
+                                        data-translate-values="{lastSeenDiff: $ctrl.lastSeenAccess.lastSeenHuman}"
+                                    >
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

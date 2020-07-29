@@ -14,6 +14,7 @@ export default class OverTheBoxDetailsCtrl {
     OVER_THE_BOX,
     OVERTHEBOX_DETAILS,
     OvhApiOverTheBox,
+    OvhApiIP,
     OverTheBoxGraphService,
     TucToast,
     TucChartjsFactory,
@@ -24,6 +25,7 @@ export default class OverTheBoxDetailsCtrl {
     this.OVER_THE_BOX = OVER_THE_BOX;
     this.OVERTHEBOX_DETAILS = OVERTHEBOX_DETAILS;
     this.OvhApiOverTheBox = OvhApiOverTheBox;
+    this.OvhApiIP = OvhApiIP;
     this.OverTheBoxGraphService = OverTheBoxGraphService;
     this.TucToast = TucToast;
     this.TucChartjsFactory = TucChartjsFactory;
@@ -449,6 +451,8 @@ export default class OverTheBoxDetailsCtrl {
           .map((netInterface) =>
             netInterface.device ? netInterface.device : netInterface.name,
           );
+
+        this.getLastSeen();
         return devices;
       })
       .catch((error) => {
@@ -460,6 +464,29 @@ export default class OverTheBoxDetailsCtrl {
       .finally(() => {
         this.loaders.device = false;
       });
+  }
+
+  /**
+   * Get last seen values
+   */
+  getLastSeen() {
+    if (this.device && this.device.lastSeen) {
+      // check lastSeen access is less than 5 minutes
+      const currentDate = moment();
+      const lastSeen = moment(this.device.lastSeen);
+      const diffDate = currentDate.diff(lastSeen, 'minute');
+
+      this.lastSeenAccess = {
+        lastSeen: diffDate,
+        lastSeenHuman: moment.duration(currentDate.diff(lastSeen)).humanize(),
+      };
+
+      if (diffDate < this.OVERTHEBOX_DETAILS.lastSeen.limit) {
+        this.lastSeenAccess.isRecent = true;
+      } else {
+        this.lastSeenAccess.isRecent = false;
+      }
+    }
   }
 
   /**

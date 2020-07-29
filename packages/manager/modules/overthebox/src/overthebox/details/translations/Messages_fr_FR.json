@@ -78,5 +78,8 @@
   "overTheBox_release_channel_develop": "Version de développement",
   "overTheBox_release_channel_rpi3": "Version pour Raspberry 3",
   "overTheBox_version_device": "Version du matériel",
-  "overTheBox_version_system": "Version du système"
+  "overTheBox_version_system": "Version du système",
+  "overTheBox_last_seen": "Dernière accès du matériel depuis les serveurs de provisionning",
+  "overTheBox_last_seen_few_seconds": "Il y a quelques secondes",
+  "overTheBox_last_seen_minutes_ago": "Il y a {{lastSeenDiff}} environ"
 }
