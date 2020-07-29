@@ -16,6 +16,7 @@ import ovhManagerHub from '@ovh-ux/manager-hub';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
 import ovhManagerOrderTracking from '@ovh-ux/ng-ovh-order-tracking';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
+import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 
 import atInternet from './components/at-internet';
 import errorPage from './components/error-page';
@@ -48,6 +49,7 @@ angular
       ovhManagerHub,
       ovhManagerNavbar,
       ovhManagerOrderTracking,
+      ovhNotificationsSidebar,
       'pascalprecht.translate',
       uiRouter,
       ...get(__NG_APP_INJECTIONS__, Environment.getRegion(), []),
