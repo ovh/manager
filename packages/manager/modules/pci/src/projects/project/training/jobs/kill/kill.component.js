@@ -10,5 +10,6 @@ export default {
     job: '<',
     killJob: '<',
     previousState: '<',
+    getClassForState: '<',
   },
 };

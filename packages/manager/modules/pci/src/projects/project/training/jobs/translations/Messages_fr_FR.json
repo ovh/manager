@@ -20,6 +20,7 @@
   "pci_projects_project_training_jobs_ram": "RAM (Go)",
   "pci_projects_project_training_jobs_gpu": "GPU",
   "pci_projects_project_training_jobs_data": "Données",
+  "pci_projects_project_training_jobs_refresh": "Rafraîchir",
 
   "pci_projects_project_training_jobs_list_message_1": "Pour accéder cette liste de tâches via la client, lancer la commande suivante : ",
   "pci_projects_project_training_jobs_list_submit": "Lancer une nouvelle tâche",

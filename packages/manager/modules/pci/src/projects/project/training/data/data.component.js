@@ -10,5 +10,6 @@ export default {
     addDataLink: '<',
     attachData: '<',
     regions: '<',
+    refreshState: '<',
   },
 };

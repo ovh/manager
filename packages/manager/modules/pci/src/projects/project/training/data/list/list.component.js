@@ -11,5 +11,6 @@ export default {
     data: '<',
     addDataLink: '<',
     goToContainer: '<',
+    refreshState: '<',
   },
 };

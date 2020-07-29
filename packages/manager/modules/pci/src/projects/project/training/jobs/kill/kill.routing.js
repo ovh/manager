@@ -1,12 +1,15 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.training.jobs.kill', {
-    url: '/kill/:jobId?previousState',
+    url: '/kill/:jobId',
     views: {
       modal: {
         component: 'pciProjectTrainingJobsKillComponent',
       },
     },
     layout: 'modal',
+    params: {
+      previousState: null,
+    },
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_projects_project_training_job_kill'),
