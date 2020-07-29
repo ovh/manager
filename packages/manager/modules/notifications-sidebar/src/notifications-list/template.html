@@ -1,0 +1,68 @@
+<div
+    class="manager-notifications_content position-relative d-flex"
+    data-ng-repeat="menuLink in $ctrl.sublinks track by menuLink.id"
+    data-ng-class="{
+        'manager-navbar-notification_content__highlight' : menuLink.url
+    }"
+>
+    <!-- icon -->
+    <span
+        class="oui-icon oui-navbar-notification__icon oui-icon_bicolor oui-icon-info-circle"
+        data-ng-class=":: {
+            'oui-icon_bicolor': menuLink.level !== 'incident',
+            'oui-icon-error-circle': menuLink.level === 'error',
+            'oui-icon-success-circle': menuLink.level === 'success',
+            'oui-icon-info-circle': menuLink.level === 'info',
+            'oui-icon-warning-circle': menuLink.level === 'warning',
+            'oui-icon-clock-wait': menuLink.level === 'incident'
+        }"
+        aria-hidden="true"
+    >
+    </span>
+
+    <!-- Link (href) -->
+    <a
+        data-ng-if="::menuLink.url"
+        data-ng-init="$ctrl.notificationsCreated = $last"
+        data-ng-click="$ctrl.onSublinkClick({ menuLink, linkClicked: true })"
+        data-ng-href="{{::menuLink.url}}"
+    >
+        <div
+            class="manager-notifications_subject"
+            data-ng-bind=":: menuLink.subject"
+        ></div>
+        <div data-ng-bind-html=":: menuLink.description"></div>
+    </a>
+    <!-- /Link (href) -->
+
+    <div
+        data-ng-if="::!menuLink.url"
+        data-ng-init="$ctrl.notificationsCreated = $last"
+    >
+        <div
+            class="manager-notifications_subject"
+            data-ng-bind=":: menuLink.subject"
+        ></div>
+        <div data-ng-bind-html=":: menuLink.description"></div>
+    </div>
+
+    <button
+        class="oui-badge"
+        data-ng-class="{
+                'oui-badge_info': !menuLink.isActive,
+                'oui-badge_error': menuLink.isActive
+            }"
+        type="button"
+        data-ng-if="!menuLink.isCompleted"
+        data-ng-click="$ctrl.onSublinkClick({ menuLink })"
+        data-oui-tooltip="{{(menuLink.isActive ?
+                'navbar_notifications_list_read' :
+                'navbar_notifications_list_unread') | translate
+            }}"
+        data-oui-tooltip-placement="left"
+    >
+        <span
+            data-translate="{{ menuLink.isActive ? 'navbar_notifications_unread' : 'navbar_notifications_read' }}"
+        ></span>
+    </button>
+</div>
