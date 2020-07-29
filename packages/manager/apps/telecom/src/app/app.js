@@ -38,6 +38,7 @@ import ngOvhContact from '@ovh-ux/ng-ovh-contact';
 import ngOvhTimeline from '@ovh-ux/ng-ovh-timeline';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
+import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 import TelecomAppCtrl from './app.controller';
@@ -112,6 +113,7 @@ angular
       ovhManagerOverTheBox,
       ovhManagerSms,
       ovhManagerTelecomTask,
+      ovhNotificationsSidebar,
       'oui',
       'pascalprecht.translate',
       'smoothScroll',
