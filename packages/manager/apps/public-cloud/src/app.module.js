@@ -28,6 +28,7 @@ import ngOvhUserPref from '@ovh-ux/ng-ovh-user-pref';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import ngUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
+import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 
@@ -64,6 +65,7 @@ angular
       ovhManagerCore,
       ovhManagerMfaEnrollment,
       ovhManagerPci,
+      ovhNotificationsSidebar,
       uiRouter,
     ].filter((value) => value !== null),
   ) // Remove null because __NG_APP_INJECTIONS__ can be null
