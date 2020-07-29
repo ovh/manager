@@ -28,7 +28,6 @@ export default class PciProjectTrainingJobsService {
   }
 
   get(projectId, jobId) {
-    // Uncomment when iceberg proded
     return this.OvhApiCloudProjectAi.Training()
       .Job()
       .v6()
@@ -42,5 +41,15 @@ export default class PciProjectTrainingJobsService {
             ...job,
           }),
       );
+  }
+
+  kill(projectId, jobId) {
+    return this.OvhApiCloudProjectAi.Training()
+      .Job()
+      .v6()
+      .kill({
+        serviceName: projectId,
+        jobId,
+      }).$promise;
   }
 }
