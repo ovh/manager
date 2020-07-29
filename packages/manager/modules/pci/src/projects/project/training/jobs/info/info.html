@@ -68,16 +68,35 @@
                         class="oui-status"
                         data-ng-class="{
                             'oui-status_success': ($ctrl.job.state === 'SUCCEEDED'),
-                            'oui-status_warning': ($ctrl.job.state === 'WARNING'),
+                            'oui-status_warning': ($ctrl.job.state === 'QUEUING'),
                             'oui-status_error': ($ctrl.job.state === 'FAILED')
                         }"
                     >
-                        <span data-ng-bind=":: $ctrl.job.state"></span>
+                        <span
+                            data-translate="{{:: 'pci_projects_project_training_jobs_state_' + $ctrl.job.state }}"
+                        ></span>
                     </span>
                 </oui-tile-description>
             </oui-tile-definition>
         </oui-tile>
     </div>
+    <div class="col-md-4">
+        <oui-tile
+            class="h-100"
+            data-heading="{{:: 'pci_projects_project_training_jobs_info_title_actions' | translate  }}"
+        >
+            <oui-tile-button data-on-click="$ctrl.goToJobKill()">
+                <span
+                    data-translate="pci_projects_project_training_jobs_kill"
+                ></span>
+            </oui-tile-button>
+        </oui-tile>
+    </div>
+</div>
+
+<p></p>
+
+<div class="row d-lg-flex">
     <div class="col-md-4">
         <oui-tile
             class="h-100"
@@ -106,12 +125,7 @@
             </oui-tile-definition>
         </oui-tile>
     </div>
-</div>
-
-<p></p>
-
-<div class="row d-lg-flex">
-    <div class="col-md-12">
+    <div class="col-md-8">
         <oui-tile
             class="h-100"
             data-heading="{{:: 'pci_projects_project_training_jobs_info_title_4' | translate  }}"

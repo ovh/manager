@@ -34,7 +34,7 @@ export default class PciTrainingJobsKillController {
   confirmKillJob() {
     return this.killJob()
       .then(() =>
-        this.goBack(
+        this.goToJobs(
           this.$translate.instant(
             'pci_projects_project_training_job_kill_success',
           ),
@@ -42,7 +42,7 @@ export default class PciTrainingJobsKillController {
         ),
       )
       .catch((error) =>
-        this.goBack(
+        this.goToJobs(
           this.$translate.instant(
             'pci_projects_project_training_job_kill_error',
             {
@@ -52,5 +52,13 @@ export default class PciTrainingJobsKillController {
           'error',
         ),
       );
+  }
+
+  goBack() {
+    if (this.previousState && this.previousState === 'info') {
+      this.goToJobInfo();
+    } else {
+      this.goToJobs();
+    }
   }
 }
