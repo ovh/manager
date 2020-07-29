@@ -87,6 +87,16 @@
                 <oui-switch data-model="$ctrl.data.sync" name="sync">
                 </oui-switch>
             </oui-field>
+            <oui-tile-definition
+                data-term="{{:: 'pci_projects_project_training_data_validation_equivalent_command' | translate  }}"
+                data-ng-if="$ctrl.data.container"
+            >
+                <oui-tile-description>
+                    <pre>
+{{:: 'pci_projects_project_training_parter_cli_name' | translate  }} {{ $ctrl.cliCommand() }}</pre
+                    >
+                </oui-tile-description>
+            </oui-tile-definition>
         </oui-step-form>
     </oui-stepper>
 </div>

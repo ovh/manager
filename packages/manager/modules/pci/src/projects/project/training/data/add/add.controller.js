@@ -44,6 +44,7 @@ export default class PciTrainingDataAddController {
 
     // Data payload
     this.data = {
+      name: '',
       region: null,
       container: null,
       user: null,
@@ -73,6 +74,24 @@ export default class PciTrainingDataAddController {
       user: this.data.user.name,
       sync: this.data.sync,
     };
+  }
+
+  cliCommand() {
+    return [
+      'data',
+      'new',
+      this.data.name,
+      '\\\n\t',
+      '--profile',
+      this.data.region.name,
+      '\\\n\t',
+      '--storage ovh',
+      '\\\n\t',
+      `--tags container=${this.data.container.name}`,
+      '\\\n\t',
+      `--tags container-region=${this.data.container.region}`,
+      '\\\n\t',
+    ].join(' ');
   }
 
   onStepperFinish() {

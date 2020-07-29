@@ -120,7 +120,10 @@
         </span>
     </oui-datagrid-column>
     <oui-action-menu data-align="end" data-compact>
-        <oui-action-menu-item data-on-click="$ctrl.dataSync($row.id)">
+        <oui-action-menu-item
+            data-on-click="$ctrl.dataSync($row.id)"
+            data-disabled="!$row.container"
+        >
             <span
                 data-translate="pci_projects_project_training_data_sync"
             ></span>

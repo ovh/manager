@@ -37,4 +37,15 @@ export default class PciTrainingDataSyncController {
         ),
       );
   }
+
+  cliCommand() {
+    return [
+      'data',
+      'sync',
+      this.data,
+      '\\\n\t',
+      '--direction',
+      this.direction,
+    ].join(' ');
+  }
 }
