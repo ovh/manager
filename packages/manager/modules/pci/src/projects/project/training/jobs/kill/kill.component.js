@@ -7,5 +7,6 @@ export default {
   bindings: {
     goBack: '<',
     job: '<',
+    killJob: '<',
   },
 };
