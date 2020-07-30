@@ -130,7 +130,6 @@ export default {
     catalog: `${managerRoot.US}/${URI.catalog}`,
     contactManagement: '',
     contacts: '',
-    createTicket: `${managerRoot.US}/${universes.dedicated}/${URI.createTicket}`,
     debtPay: `${managerRoot.US}/${universes.dedicated}/${URI.debtPay}`,
     domain: '',
     guides: {
