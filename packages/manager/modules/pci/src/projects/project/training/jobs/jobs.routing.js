@@ -57,6 +57,13 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
+      jobCanBeKilled: /* @ngInject */ () => (job) => {
+        return (
+          job.state === 'RUNNING' ||
+          job.state === 'QUEUING' ||
+          job.state === 'QUEUED'
+        );
+      },
       getClassForState: /* @ngInject */ () => (state) => {
         switch (state) {
           case 'CANCELLED':

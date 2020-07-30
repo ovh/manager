@@ -24,12 +24,4 @@ export default class Job {
       region,
     });
   }
-
-  canBeKilled() {
-    return (
-      this.state === 'RUNNING' ||
-      this.state === 'QUEUING' ||
-      this.state === 'QUEUED'
-    );
-  }
 }

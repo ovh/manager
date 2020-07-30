@@ -13,5 +13,6 @@ export default {
     jobInfoLink: '<',
     refreshState: '<',
     getClassForState: '<',
+    jobCanBeKilled: '<',
   },
 };
