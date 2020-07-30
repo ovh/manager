@@ -1,3 +1,12 @@
+## [10.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@10.0.0...@ovh-ux/manager-core@10.0.1) (2020-07-30)
+
+
+### Bug Fixes
+
+* **redirection:** remove ticket creation for the US ([#3341](https://github.com/ovh/manager/issues/3341)) ([b1a891b](https://github.com/ovh/manager/commit/b1a891bf7a1240c96d261ea63c1ce148fee8088f))
+
+
+
 # [10.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@9.4.0...@ovh-ux/manager-core@10.0.0) (2020-07-29)
 
 
