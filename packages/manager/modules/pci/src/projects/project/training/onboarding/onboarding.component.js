@@ -5,6 +5,8 @@ export default {
   controller,
   template,
   bindings: {
-    createProject: '<',
+    createAuthorization: '<',
+    submitJobLink: '<',
+    isAuthorized: '<',
   },
 };

@@ -9,15 +9,17 @@ export default /* @ngInject */ ($stateProvider) => {
         .all([
           transition.injector().getAsync('isAuthorized'),
           transition.injector().getAsync('jobList'),
+          transition.injector().getAsync('dataList'),
         ])
-        .then(([isAuthorized, jobList]) => {
-          if (!isAuthorized) {
+        .then(([isAuthorized, jobList, dataList]) => {
+          if (
+            !isAuthorized ||
+            (jobList.length === 0 && dataList.length === 0)
+          ) {
             return { state: 'pci.projects.project.training.onboarding' };
           }
-          if (jobList.length > 0) {
-            return { state: 'pci.projects.project.training.jobs' };
-          }
-          return { state: 'pci.projects.project.training.jobs.submit' };
+
+          return { state: 'pci.projects.project.training.jobs' };
         }),
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
@@ -38,6 +40,8 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
       jobList: /* @ngInject */ (PciProjectTrainingService, projectId) =>
         PciProjectTrainingService.getAllJobs(projectId),
+      dataList: /* @ngInject */ (PciProjectTrainingService, projectId) =>
+        PciProjectTrainingService.getAllData(projectId),
       currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
         $state.href($state.current.name, $transition$.params()),
       allUsers: /* @ngInject */ (PciProjectTrainingService, projectId) => () =>

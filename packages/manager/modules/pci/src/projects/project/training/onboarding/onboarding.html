@@ -3,10 +3,21 @@
     <p data-translate="pci_projects_project_training_onboarding_content1"></p>
     <p data-translate="pci_projects_project_training_onboarding_content2"></p>
     <p data-translate="pci_projects_project_training_onboarding_content3"></p>
+    <p
+        data-ng-if="!$ctrl.isAuthorized"
+        data-translate="pci_projects_project_training_onboarding_content4"
+    ></p>
 
-    <oui-button data-variant="primary" data-on-click="$ctrl.createProject()">
+    <oui-button
+        data-variant="primary"
+        data-disabled="$ctrl.loading"
+        data-icon-right
+        data-on-click="$ctrl.submit()"
+    >
         <span
+            data-ng-if="!$ctrl.loading"
             data-translate="pci_projects_project_training_onboarding_action_label"
         ></span>
+        <oui-spinner data-ng-if="$ctrl.loading" data-size="s"></oui-spinner>
     </oui-button>
 </pci-project-empty>

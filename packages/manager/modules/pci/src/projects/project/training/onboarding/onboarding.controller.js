@@ -6,6 +6,7 @@ export default class PciServingOnboardingController {
   /* @ngInject */
   constructor($translate) {
     this.$translate = $translate;
+    this.loading = false;
   }
 
   $onInit() {
@@ -26,5 +27,13 @@ export default class PciServingOnboardingController {
       ],
       [],
     );
+  }
+
+  submit() {
+    this.loading = true;
+    if (this.isAuthorized) {
+      return this.submitJobLink();
+    }
+    return this.createAutorization();
   }
 }

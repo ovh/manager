@@ -6,7 +6,11 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       breadcrumb: () => null, // Hide breadcrumb
-      createProject: /* @ngInject */ (
+      submitJobLink: /* @ngInject */ ($state, projectId) => () =>
+        $state.go('pci.projects.project.training.jobs.submit', {
+          projectId,
+        }),
+      createAuthorization: /* @ngInject */ (
         $state,
         PciProjectTrainingService,
         projectId,

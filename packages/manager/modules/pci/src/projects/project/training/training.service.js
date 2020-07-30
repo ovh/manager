@@ -1,5 +1,4 @@
 import map from 'lodash/map';
-import Job from './jobs/job.class';
 
 export default class PciProjectTrainingService {
   /* @ngInject */
@@ -78,7 +77,16 @@ export default class PciProjectTrainingService {
     return this.OvhApiCloudProjectAi.Training()
       .Job()
       .v6()
-      .query({ serviceName: projectId })
-      .$promise.then((jobs) => jobs.map((job) => new Job({ ...job })));
+      .query({ serviceName: projectId }).$promise;
+  }
+
+  getAllData(projectId) {
+    // Uncomment when iceberg proded
+    return this.OvhApiCloudProjectAi.Training()
+      .Data()
+      .v6()
+      .query({
+        serviceName: projectId,
+      }).$promise;
   }
 }
