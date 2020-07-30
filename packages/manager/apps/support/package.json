@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@ovh-ux/manager-account-sidebar": "^1.0.0 || ^2.0.0",
-    "@ovh-ux/manager-config": "^0.4.0",
+    "@ovh-ux/manager-config": "^0.4.0 || ^1.0.0",
     "@ovh-ux/manager-core": "^9.0.0 || ^10.0.0",
     "@ovh-ux/manager-navbar": "^3.0.0 || ^4.0.0",
     "@ovh-ux/manager-support": "^0.6.0 || ^0.7.0 || ^1.0.0",

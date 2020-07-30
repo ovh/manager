@@ -19,7 +19,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-freefax-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^0.4.0",
+    "@ovh-ux/manager-config": "^0.4.0 || ^1.0.0",
     "@ovh-ux/manager-core": "^9.0.0 || ^10.0.0",
     "@ovh-ux/manager-freefax": "^6.0.0 || ^7.0.0",
     "@ovh-ux/manager-telecom-styles": "^4.0.0",
