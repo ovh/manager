@@ -137,6 +137,65 @@
                 <oui-dual-list-target searchable="true"> </oui-dual-list-target>
             </oui-dual-list>
         </oui-step-form>
+
+        <oui-step-form
+            data-header="{{ :: 'pci_projects_project_training_jobs_submit_select_command' | translate }}"
+            data-editable="!$ctrl.isSubmit"
+            data-loading="$ctrl.isSubmit"
+            data-valid="$ctrl.job.command || !$ctrl.job.customCommand"
+        >
+            <div class="row d-lg-flex">
+                <div class="col-md-8">
+                    <oui-field
+                        data-size="xl"
+                        data-label="{{:: 'pci_projects_project_training_jobs_submit_command_default_select' | translate  }}"
+                    >
+                        <oui-switch
+                            data-model="$ctrl.job.customCommand"
+                            name="customCommand"
+                        >
+                        </oui-switch>
+                    </oui-field>
+                    <oui-field
+                        data-size="xl"
+                        data-help-text="{{:: 'pci_projects_project_training_jobs_submit_select_command_tips' | translate  }}"
+                        data-ng-if="$ctrl.job.customCommand"
+                    >
+                        <input
+                            class="oui-input"
+                            type="text"
+                            id="command"
+                            name="command"
+                            data-ng-model="$ctrl.job.command"
+                            data-required
+                        />
+                    </oui-field>
+                </div>
+                <div class="col-md-4">
+                    <oui-tile
+                        class="h-100"
+                        data-heading="{{:: 'pci_projects_project_training_jobs_submit_select_command_tile_title' | translate  }}"
+                        data-ng-if="$ctrl.job.customCommand && $ctrl.splitStringCommandIntoArray().length > 0"
+                    >
+                        <oui-tile-definition
+                            data-term="{{:: 'pci_projects_project_training_jobs_submit_select_command_tile_command' | translate  }}"
+                        >
+                            <oui-tile-description>
+                                <ul>
+                                    <li
+                                        ng-repeat="cmd in $ctrl.splitStringCommandIntoArray()"
+                                        class="api-list-item"
+                                    >
+                                        {{ cmd }}
+                                    </li>
+                                </ul>
+                            </oui-tile-description>
+                        </oui-tile-definition>
+                    </oui-tile>
+                </div>
+            </div>
+        </oui-step-form>
+
         <oui-step-form
             data-header="{{:: 'pci_projects_project_training_jobs_submit_select_resources' | translate  }}"
             data-editable="!$ctrl.isSubmit"

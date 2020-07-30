@@ -94,7 +94,7 @@ export default class PciTrainingJobsSubmitController {
   }
 
   cliCommand() {
-    const cli = [
+    const baseCmdArray = [
       'job',
       'submit',
       '\\\n\t',
@@ -106,21 +106,37 @@ export default class PciTrainingJobsSubmitController {
       '\\\n\t',
       '--gpu',
       this.job.resources.gpu,
-    ].join(' ');
+    ];
 
-    if (this.job.data.length) {
-      const data = [
-        '\\\n\t',
+    if (this.job.data && this.job.data.length > 0) {
+      baseCmdArray.push('\\\n\t');
+      baseCmdArray.push(
         this.job.data.map(({ name }) => `--data ${name} `).join('\\\n\t'),
-      ].join(' ');
-      return `${cli} ${data}`;
+      );
     }
 
-    return cli;
+    if (this.job.command) {
+      baseCmdArray.push('\\\n\t');
+      baseCmdArray.push(`-- ${this.job.command}`);
+    }
+
+    return baseCmdArray.join(' ');
+  }
+
+  splitStringCommandIntoArray() {
+    if (this.job.command) {
+      return this.job.command.match(/(\w|-)+|"[^"]+"/g).map((elt) => {
+        if (elt.startsWith('"') && elt.endsWith('"')) {
+          return elt.substring(1, elt.length - 1);
+        }
+        return elt;
+      });
+    }
+    return [];
   }
 
   computeJobSpec() {
-    return {
+    const payload = {
       image: this.job.image.id,
       region: this.job.region.name,
       user: this.job.user.name,
@@ -131,6 +147,10 @@ export default class PciTrainingJobsSubmitController {
         mem: this.job.resources.mem,
       },
     };
+    if (this.job.command) {
+      payload.command = this.splitStringCommandIntoArray();
+    }
+    return payload;
   }
 
   onStepperFinish() {
