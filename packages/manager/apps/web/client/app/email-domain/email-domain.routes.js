@@ -1,9 +1,4 @@
 angular.module('App').config(($stateProvider) => {
-  $stateProvider.state('app.email', {
-    abstract: true,
-    template: '<div ui-view></div>',
-  });
-
   $stateProvider.state('app.email.domain', {
     url: '/configuration/email-domain/:productId?tab',
     templateUrl: 'email-domain/email-domain.html',
