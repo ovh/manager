@@ -77,9 +77,8 @@ export default class PciTrainingDataAddController {
   }
 
   cliCommand() {
-    return [
-      'data',
-      'new',
+    const cli = [
+      'data new',
       this.data.name,
       '\\\n\t',
       '--profile',
@@ -91,6 +90,12 @@ export default class PciTrainingDataAddController {
       '\\\n\t',
       `--tags container-region=${this.data.container.region}`,
     ].join(' ');
+
+    if (this.data.sync) {
+      return `${cli} \\\n\t --sync pull`;
+    }
+
+    return cli;
   }
 
   onStepperFinish() {
