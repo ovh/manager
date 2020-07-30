@@ -11,7 +11,9 @@
         <oui-datagrid-column
             data-title=":: 'dedicatedCloud_datacenters_title' | translate"
         >
-            <span data-ng-bind="$row.name"></span>
+            <oui-button variant="link" on-click="$ctrl.goToDatacenter($row)">
+                <span data-ng-bind="$row.name"></span>
+            </oui-button>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'dedicatedCloud_datacenters_cpu' | translate"
