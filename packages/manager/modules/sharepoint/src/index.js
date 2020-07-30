@@ -24,6 +24,16 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
           format: 'json',
         },
       })
+      .state(`${routeBase}.index.**`, {
+        url: '/configuration/microsoft/sharepoint',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+          return import('./sharepoints/sharepoints.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
+      })
       .state(`${routeBase}.order.**`, {
         url: '/configuration/microsoft/sharepoint/order',
         lazyLoad,
