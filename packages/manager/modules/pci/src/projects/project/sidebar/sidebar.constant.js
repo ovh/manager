@@ -166,7 +166,7 @@ export const MENU = [
         options: {
           state: 'pci.projects.project.training',
         },
-        title: 'Training Platform',
+        title: 'AI Training',
         regions: ['EU'],
       },
     ],

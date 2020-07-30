@@ -51,6 +51,6 @@
   "pci_projects_project_training_jobs_list_submit_button": "Créer",
   "pci_projects_project_training_jobs_list_submit_success": "Tâche créé",
   "pci_projects_project_training_jobs_submit_select_image_advanced_tips": "Choississez votre propre image docker",
-  "pci_projects_project_training_jobs_submit_select_no_data": "Pas de donnée disponible. Cliquez ici pour en ajouter une",
+  "pci_projects_project_training_jobs_submit_select_no_data": "Aucun jeu de données (dataset) disponible actuellement. Si vous souhaitez ajouter des données pour votre job, créez un jeu de données en cliquant ici",
   "pci_projects_project_training_jobs_submit_select_data": "Attacher des données à la tâche (facultatif)"
 }
