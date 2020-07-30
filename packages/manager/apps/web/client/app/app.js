@@ -47,6 +47,7 @@ import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import config from './config/config';
 import domain from './domain';
 import domainDnsZone from './dns-zone';
+import emailDomain from './email-domain';
 import emailDomainOrder from './email-domain/order';
 import errorPage from './error-page/error-page.module';
 import hosting from './hosting';
@@ -132,6 +133,7 @@ angular
       sharepoint,
       domain,
       domainDnsZone,
+      emailDomain,
       emailDomainOrder,
       errorPage,
       hosting,
