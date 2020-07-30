@@ -90,7 +90,6 @@ export default class PciTrainingDataAddController {
       `--tags container=${this.data.container.name}`,
       '\\\n\t',
       `--tags container-region=${this.data.container.region}`,
-      '\\\n\t',
     ].join(' ');
   }
 

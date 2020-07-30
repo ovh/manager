@@ -94,7 +94,7 @@ export default class PciTrainingJobsSubmitController {
   }
 
   cliCommand() {
-    return [
+    const cli = [
       'job',
       'submit',
       '\\\n\t',
@@ -106,9 +106,17 @@ export default class PciTrainingJobsSubmitController {
       '\\\n\t',
       '--gpu',
       this.job.resources.gpu,
-      '\\\n\t',
-      this.job.data.map(({ name }) => `--data ${name} `).join('\\\n\t'),
     ].join(' ');
+
+    if (this.job.data.length) {
+      const data = [
+        '\\\n\t',
+        this.job.data.map(({ name }) => `--data ${name} `).join('\\\n\t'),
+      ].join(' ');
+      return `${cli} ${data}`;
+    }
+
+    return cli;
   }
 
   computeJobSpec() {
