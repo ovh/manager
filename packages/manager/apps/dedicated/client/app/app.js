@@ -49,6 +49,7 @@ import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 import account from './account';
 import config from './config/config';
 import contactsService from './account/contacts/service/contacts-service.module';
+import dedicatedCloud from './dedicatedCloud';
 import dedicatedCloudDatacenterDrp from './dedicatedCloud/datacenter/drp';
 import dedicatedCloudDatacenterDashboardDeleteDrp from './dedicatedCloud/datacenter/dashboard/deleteDrp';
 import dedicatedCloudTerminate from './dedicatedCloud/terminate/terminate.module';
@@ -80,6 +81,7 @@ angular
       'controllers',
       contactsService,
       datacenterBackup,
+      dedicatedCloud,
       dedicatedCloudDatacenterDrp,
       dedicatedCloudDatacenterDashboardDeleteDrp,
       dedicatedCloudTerminate,
