@@ -8,6 +8,10 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       addDatacenter: /* @ngInject */ ($state) => () =>
         $state.go('app.dedicatedClouds.datacenters.add-datacenter'),
+      goToDatacenter: /* @ngInject */ ($state) => (datacenter) =>
+        $state.go('app.dedicatedClouds.datacenter', {
+          datacenterId: datacenter.name,
+        }),
     },
   });
 };
