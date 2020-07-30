@@ -24,6 +24,18 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
         );
       },
     });
+
+    $stateProvider.state('app.mxplan.**', {
+      url: '/configuration/email_mxplan',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./mx-plan/mx-plan.module').then((mod) =>
+          $ocLazyLoad.inject(mod.default || mod),
+        );
+      },
+    });
+
     $stateProvider
       .state('app.email-pro.**', {
         url: '/configuration/email_pro/:productId?tab',
