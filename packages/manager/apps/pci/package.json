@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@ovh-ux/manager-cloud-styles": "^0.4.0 || ^1.0.0",
-    "@ovh-ux/manager-config": "^0.4.0",
+    "@ovh-ux/manager-config": "^0.4.0 || ^1.0.0",
     "@ovh-ux/manager-core": "^9.0.0 || ^10.0.0",
     "@ovh-ux/manager-pci": "^3.0.0 || ^4.0.0",
     "@ovh-ux/ng-at-internet": "^5.0.1",
