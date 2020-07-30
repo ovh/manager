@@ -5,6 +5,7 @@ export default {
   bindings: {
     addDatacenter: '<',
     dedicatedCloud: '<',
+    goToDatacenter: '<',
     orderDatastore: '<',
     orderHost: '<',
     setMessage: '<',
