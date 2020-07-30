@@ -1,5 +1,5 @@
 import has from 'lodash/has';
-import { FIBER_PTO } from './migration-building-details.constant';
+import { FIBER_PTO, STAIR_FLOOR } from './migration-building-details.constant';
 
 export default class TelecomPackMigrationBuildingDetailsCtrl {
   /* @ngInject */
@@ -77,20 +77,14 @@ export default class TelecomPackMigrationBuildingDetailsCtrl {
     this.process.selectedOffer.stair = this.model.selectedStair.stair.value;
     this.process.selectedOffer.floor = this.model.selectedFloor.value;
 
-    switch (this.model.pto) {
-      case FIBER_PTO.FIBER_PTO_YES:
-        this.process.selectedOffer.pto = true;
-        this.process.selectedOffer.ptoReference = this.model.ptoReference;
-        break;
-      case FIBER_PTO.FIBER_PTO_NO:
-        this.process.selectedOffer.pto = false;
-        break;
-      case FIBER_PTO.FIBER_PTO_YES_BUT_NOT_KNOWN:
-        this.process.selectedOffer.pto = true;
-        break;
-      default:
-        break;
-    }
+    this.process.selectedOffer.pto = [
+      FIBER_PTO.FIBER_PTO_YES,
+      FIBER_PTO.FIBER_PTO_YES_BUT_NOT_KNOWN,
+    ].includes(this.model.pto);
+    this.process.selectedOffer.ptoReference =
+      this.model.pto === FIBER_PTO.FIBER_PTO_YES
+        ? this.model.ptoReference
+        : null;
 
     if (this.process.selectedOffer.totalSubServiceToDelete > 0) {
       this.process.currentStep = 'serviceDelete';
@@ -108,28 +102,22 @@ export default class TelecomPackMigrationBuildingDetailsCtrl {
       this.model.selectedFloor != null &&
       this.model.pto != null
     ) {
-      switch (this.model.pto) {
-        case FIBER_PTO.FIBER_PTO_YES:
-          if (
-            this.model.ptoReference != null &&
-            this.model.ptoReference !== ''
-          ) {
-            return true;
-          }
-          return false;
-        case FIBER_PTO.FIBER_PTO_NO:
-        case FIBER_PTO.FIBER_PTO_YES_BUT_NOT_KNOWN:
-          return true;
-        default:
-          return false;
-      }
+      return (
+        (this.model.pto === FIBER_PTO.FIBER_PTO_YES &&
+          this.model.ptoReference != null &&
+          this.model.ptoReference !== '') ||
+        [
+          FIBER_PTO.FIBER_PTO_YES_BUT_NOT_KNOWN,
+          FIBER_PTO.FIBER_PTO_NO,
+        ].includes(this.model.pto)
+      );
     }
     return false;
   }
 
   convertStairs(stair) {
     const stairsModel = {};
-    if (stair.stair === '_NA_') {
+    if (stair.stair === STAIR_FLOOR.unknown) {
       stairsModel.stair = {
         label: this.$translate.instant(
           'telecom_pack_migration_building_details_none',
@@ -143,7 +131,7 @@ export default class TelecomPackMigrationBuildingDetailsCtrl {
       };
     }
 
-    if (stair.floors[0] === '_NA_') {
+    if (stair.floors[0] === STAIR_FLOOR.unknown) {
       stairsModel.floors = [
         {
           label: this.$translate.instant(
@@ -170,14 +158,14 @@ export default class TelecomPackMigrationBuildingDetailsCtrl {
         label: this.$translate.instant(
           'telecom_pack_migration_building_details_none',
         ),
-        value: '_NA_',
+        value: STAIR_FLOOR.unknown,
       },
       floors: [
         {
           label: this.$translate.instant(
             'telecom_pack_migration_building_details_none',
           ),
-          value: '_NA_',
+          value: STAIR_FLOOR.unknown,
         },
       ],
     };
