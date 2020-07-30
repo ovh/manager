@@ -19,6 +19,12 @@ angular.module('App').controller(
       this.DedicatedCloud = DedicatedCloud;
     }
 
+    getDatacenterLink({ name: datacenterId }) {
+      return this.$state.href('app.dedicatedClouds.datacenter', {
+        datacenterId,
+      });
+    }
+
     loadDatacenters({ offset, pageSize }) {
       return this.DedicatedCloud.getDatacentersInformations(
         this.$stateParams.productId,
