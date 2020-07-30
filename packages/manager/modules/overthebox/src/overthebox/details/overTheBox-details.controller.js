@@ -371,10 +371,9 @@ export default class OverTheBoxDetailsCtrl {
       .catch((error) => {
         this.error.tasks = error.data;
         this.TucToast.error(
-          [
-            this.$translate.instant('an_error_occured'),
-            error.data.message,
-          ].join(' '),
+          `${this.$translate.instant('an_error_occured')} ${
+            error.data.message
+          }`,
         );
         return this.$q.reject(error);
       })
@@ -399,10 +398,9 @@ export default class OverTheBoxDetailsCtrl {
       .catch((error) => {
         this.error.tasks = error.data;
         this.TucToast.error(
-          [
-            this.$translate.instant('an_error_occured'),
-            error.data.message,
-          ].join(' '),
+          `${this.$translate.instant('an_error_occured')} ${
+            error.data.message
+          }`,
         );
         return this.$q.reject(error);
       })
@@ -426,10 +424,9 @@ export default class OverTheBoxDetailsCtrl {
       .catch((error) => {
         this.error.checking = error.data;
         this.TucToast.error(
-          [
-            this.$translate.instant('an_error_occured'),
-            error.data.message,
-          ].join(' '),
+          `${this.$translate.instant('an_error_occured')} ${
+            error.data.message
+          }`,
         );
         return this.$q.reject(error);
       })
@@ -455,11 +452,10 @@ export default class OverTheBoxDetailsCtrl {
             netInterface.device ? netInterface.device : netInterface.name,
           );
 
-        this.getLastSeen();
-
         this.checkPublicIP();
 
         if (this.device && this.device.publicIp) {
+          this.getLastSeen();
           this.getReverseDNS();
         }
         return devices;
@@ -479,23 +475,18 @@ export default class OverTheBoxDetailsCtrl {
    * Get last seen values
    */
   getLastSeen() {
-    if (this.device && this.device.lastSeen) {
-      // check lastSeen access is less than 5 minutes
-      const currentDate = moment();
-      const lastSeen = moment(this.device.lastSeen);
-      const diffDate = currentDate.diff(lastSeen, 'minute');
+    // check lastSeen access is less than 5 minutes
+    const currentDate = moment();
+    const lastSeen = moment(this.device.lastSeen);
+    const diffDate = currentDate.diff(lastSeen, 'minute');
 
-      this.lastSeenAccess = {
-        lastSeen: diffDate,
-        lastSeenHuman: moment.duration(currentDate.diff(lastSeen)).humanize(),
-      };
+    this.lastSeenAccess = {
+      lastSeen: diffDate,
+      lastSeenHuman: moment.duration(currentDate.diff(lastSeen)).humanize(),
+    };
 
-      if (diffDate < this.OVERTHEBOX_DETAILS.lastSeen.limit) {
-        this.lastSeenAccess.isRecent = true;
-      } else {
-        this.lastSeenAccess.isRecent = false;
-      }
-    }
+    this.lastSeenAccess.isRecent =
+      diffDate < this.OVERTHEBOX_DETAILS.lastSeen.limit;
   }
 
   /**
@@ -507,37 +498,27 @@ export default class OverTheBoxDetailsCtrl {
         'routedTo.serviceName': this.serviceName,
         type: 'overthebox',
       })
-      .$promise.then((ips) => {
-        const [ip] = ips;
-
-        if (!ip) {
+      .$promise.then(([ip]) => {
+        if (!ip || !this.device || !this.device.publicIp) {
           this.serviceIP = {
             status: this.OVERTHEBOX_DETAILS.serviceIpStatus.unknown,
           };
-        } else if (this.device && this.device.publicIp) {
-          if (ip.includes(this.device.publicIp)) {
-            this.serviceIP = {
-              status: this.OVERTHEBOX_DETAILS.serviceIpStatus.locked,
-            };
-          } else {
-            this.serviceIP = {
-              status: this.OVERTHEBOX_DETAILS.serviceIpStatus.warning,
-            };
-          }
         } else {
           this.serviceIP = {
-            status: this.OVERTHEBOX_DETAILS.serviceIpStatus.unknown,
+            status:
+              this.device && ip.includes(this.device.publicIp)
+                ? this.OVERTHEBOX_DETAILS.serviceIpStatus.locked
+                : this.OVERTHEBOX_DETAILS.serviceIpStatus.warning,
           };
         }
-        return ips;
+        return ip;
       })
       .catch((error) => {
         this.error.checking = error.data;
         this.TucToast.error(
-          [
-            this.$translate.instant('an_error_occured'),
-            error.data.message,
-          ].join(' '),
+          `${this.$translate.instant('an_error_occured')} ${
+            error.data.message
+          }`,
         );
         return this.$q.reject(error);
       });
@@ -553,7 +534,7 @@ export default class OverTheBoxDetailsCtrl {
         set(this.device, 'reverse', dns);
         return dns;
       })
-      .catch(() => this.$q.when(null));
+      .catch(() => null);
   }
 
   /**
@@ -580,10 +561,9 @@ export default class OverTheBoxDetailsCtrl {
       })
       .catch((error) => {
         this.TucToast.error(
-          [
-            this.$translate.instant('an_error_occured'),
-            error.data.message,
-          ].join(' '),
+          `${this.$translate.instant('an_error_occured')} ${
+            error.data.message
+          }`,
         );
         return this.$q.reject(error);
       })
