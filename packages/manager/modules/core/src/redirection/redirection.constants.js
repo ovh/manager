@@ -25,7 +25,7 @@ const URI = {
   orders: '#/billing/orders',
   paymentMethod: '#/billing/payment/method',
   services: '#/billing/autoRenew',
-  support: '#/support/tickets',
+  support: '#/ticket',
   supportLevel: '#/useraccount/support/level',
   ticket: '#/support/tickets/:ticketId',
   userAccount: '#/useraccount/dashboard',
