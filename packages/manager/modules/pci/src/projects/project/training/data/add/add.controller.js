@@ -125,9 +125,7 @@ export default class PciTrainingDataAddController {
 
   filterContainers() {
     return this.allContainers
-      .filter(
-        ({ region, archive }) => region === this.data.region.name && !archive,
-      )
+      .filter(({ archive }) => !archive)
       .map(({ name, region }) => {
         return {
           name,
