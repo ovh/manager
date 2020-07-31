@@ -3,6 +3,10 @@ import 'whatwg-fetch';
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 import registerApplication from '@ovh-ux/ufrontend/application';
 
+import { attach as attachPreloader } from '@ovh-ux/manager-preloader';
+
+attachPreloader(document.getElementById('application'));
+
 registerApplication().then(({ config, ufrontend }) => {
   import(`./config-${config.region}`)
     .catch(() => {})

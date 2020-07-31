@@ -16,6 +16,7 @@ import ovhManagerHub from '@ovh-ux/manager-hub';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
 import ovhManagerOrderTracking from '@ovh-ux/ng-ovh-order-tracking';
 import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
+import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 
 import atInternet from './components/at-internet';
 import errorPage from './components/error-page';
@@ -110,6 +111,14 @@ angular
       }
     },
   )
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */)
+  .run(
+    /* @ngInject */ ($rootScope, $transitions) => {
+      const unregisterHook = $transitions.onSuccess({}, () => {
+        detachPreloader();
+        unregisterHook();
+      });
+    },
+  );
 
 export default moduleName;
