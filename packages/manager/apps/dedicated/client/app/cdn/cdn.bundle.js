@@ -1,4 +1,3 @@
-import './cdn.routes';
 import './dedicated/backend/order/cdn-dedicated-backend-order.controller';
 import './dedicated/cdn-dedicated.controller';
 import './dedicated/cdn-dedicated.routes';
