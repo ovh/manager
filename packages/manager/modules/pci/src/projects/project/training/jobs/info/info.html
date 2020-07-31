@@ -61,15 +61,17 @@
                 <oui-tile-description>
                     <span
                         data-translate="pci_projects_project_training_jobs_link_not_available"
-                    >
                         data-ng-if=":: !$ctrl.job.accessUrl"
+                    >
                     </span>
                 </oui-tile-description>
             </oui-tile-definition>
             <oui-tile-definition
                 data-term="{{:: 'pci_projects_project_training_jobs_resource_usage_url' | translate  }}"
             >
-                <oui-tile-description data-ng-if=":: $ctrl.job.accessUrl">
+                <oui-tile-description
+                    data-ng-if=":: $ctrl.job.resourceUsageUrl"
+                >
                     <a
                         target="_blank"
                         class="oui-button oui-button_ghost"
@@ -88,8 +90,8 @@
                 <oui-tile-description>
                     <span
                         data-translate="pci_projects_project_training_jobs_link_not_available"
-                    >
                         data-ng-if=":: !$ctrl.job.resourceUsageUrl"
+                    >
                     </span>
                 </oui-tile-description>
             </oui-tile-definition>
@@ -145,7 +147,7 @@
         >
             <oui-tile-button
                 data-on-click="$ctrl.goToJobKill()"
-                data-disabled="!$ctrl.jobCanBeKilled()"
+                data-disabled="!$ctrl.job.jobCanBeKilled()"
             >
                 <span
                     data-translate="pci_projects_project_training_jobs_kill"
@@ -195,11 +197,11 @@
                         ~=
                     </span>
                     <ovh-manager-catalog-price
-                        data-price="$ctrl.getPrice($ctrl.job.totalRuntime / 3600)"
-                        data-tax="$ctrl.getTax($ctrl.job.totalRuntime / 3600)"
+                        data-price="$ctrl.price"
+                        data-tax="$ctrl.tax"
                         data-user="$ctrl.user"
                         data-perform-rounding="false"
-                        data-maximum-fraction-digits="3"
+                        data-maximum-fraction-digits="5"
                     >
                     </ovh-manager-catalog-price>
                 </oui-tile-description>

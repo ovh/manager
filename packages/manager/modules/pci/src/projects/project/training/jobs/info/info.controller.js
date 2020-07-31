@@ -15,12 +15,25 @@ export default class PciTrainingJobsInfoController {
   }
 
   $onInit() {
+    this.unitPrice = this.getPrice(1);
+    this.unitTax = this.getTax(1);
+    const totalHour = this.job.totalRuntime / 3600;
+    this.price = this.unitPrice * totalHour;
+    this.tax = this.unitTax * totalHour;
+
     this.loadMessages();
 
     if (this.job.state === 'RUNNING') {
       this.start = moment();
       this.interval = this.$interval(() => {
-        // Nothing to do. used to trigger the angular loop
+        let totalHourRecalculated = this.job.totalRuntime / 3600;
+
+        if (this.start) {
+          totalHourRecalculated += moment().diff(this.start) / (1000 * 3600);
+        }
+
+        this.price = this.unitPrice * totalHourRecalculated;
+        this.tax = this.unitTax * totalHourRecalculated;
       }, 1000);
     }
   }
