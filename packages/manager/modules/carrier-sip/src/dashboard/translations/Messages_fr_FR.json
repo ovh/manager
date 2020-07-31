@@ -7,6 +7,8 @@
   "carrier_sip_dashboard_general_information_description": "Description",
   "carrier_sip_dashboard_general_information_max_calls_second": "Nombre de call/sec max",
   "carrier_sip_dashboard_general_information_max_concurrent_calls": "Nombre d'appels simultanés",
+  "carrier_sip_dashboard_network": "Réseau",
+  "carrier_sip_dashboard_network_ip_media": "IP Média",
   "carrier_sip_dashboard_renewal": "Abonnement",
   "carrier_sip_dashboard_renewal_date": "Date de renouvellement",
   "carrier_sip_dashboard_renewal_renew": "Gérer mes services",

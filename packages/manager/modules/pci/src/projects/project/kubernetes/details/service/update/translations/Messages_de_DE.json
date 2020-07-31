@@ -4,5 +4,6 @@
   "kube_service_minor_version_update_message_2": "Überprüfen Sie außerdem, dass Ihr Cluster genügend Worker-Nodes enthält, um ein Rolling Upgrade durchzuführen. Wenn das Update durchgeführt wurde, können Sie nicht mehr zur vorherigen Version zurückkehren.",
   "kube_service_minor_version_update_message_3": "Um die Downtime Ihrer Pods und Ihres gesamten Dienstes zu minimieren, werden wir jeden Ihrer Nodes einzeln evakuieren (<i>drain</i>) und erst zum nächsten übergehen, wenn der aktuelle Node betriebsbereit ist (Status „Ready“). Auch Ihre Admin-Komponenten und Server-API werden aktualisiert.",
   "kube_service_minor_version_update_message_4": "Dieser Vorgang dauert in der Regel mehrere zehn Minuten je nach Art und Größe Ihres Clusters.",
-  "kube_service_minor_version_update_message_5": "Zur Version übergehen:"
+  "kube_service_minor_version_update_message_5": "Zur Version übergehen:",
+  "kube_service_update_message": "Bei der Aktualisierung sind Ihre Nodes gegebenenfalls für ein bis zwei Minuten nicht verfügbar. Bei der Aktualisierung handelt es sich um ein „rolling upgrade with node drain“. Diese Methode verwenden wir, um die Auswirkung auf Ihre Dienste so gering wie möglich und transparent zu halten."
 }

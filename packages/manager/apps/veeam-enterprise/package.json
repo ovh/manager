@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-veeam-enterprise-app",
-  "version": "0.2.2",
+  "version": "1.0.1",
   "private": true,
   "description": "Veeam Enterprise standalone application.",
   "repository": {
@@ -19,11 +19,11 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-veeam-enterprise-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^0.4.0",
+    "@ovh-ux/manager-config": "^0.4.0 || ^1.0.0",
     "@ovh-ux/manager-core": "^9.0.0 || ^10.0.0",
     "@ovh-ux/manager-veeam-enterprise": "^0.3.0 || ^1.0.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.7",
-    "@ovh-ux/ng-ovh-cloud-universe-components": "^1.4.3",
+    "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.0",
     "@ovh-ux/ng-ovh-form-flat": "^5.0.0",
     "@ovh-ux/ng-ovh-http": "^5.0.0",
     "@ovh-ux/ng-ovh-proxy-request": "^2.0.0",
@@ -32,7 +32,7 @@
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.1",
     "@ovh-ux/ng-ovh-user-pref": "^2.0.0",
     "@ovh-ux/ng-translate-async-loader": "^2.1.0",
-    "@ovh-ux/ng-ui-router-layout": "^3.3.3",
+    "@ovh-ux/ng-ui-router-layout": "^4.0.0",
     "@ovh-ux/ui-kit": "^4.2.1",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",

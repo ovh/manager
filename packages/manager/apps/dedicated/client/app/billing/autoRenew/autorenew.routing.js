@@ -75,10 +75,6 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
                 services.list.results,
                 (service) => new BillingService(service),
               ),
-            cancelServiceResiliation: /* @ngInject */ ($state) => ({ id }) =>
-              $state.go('app.account.billing.autorenew.cancelResiliation', {
-                serviceId: id,
-              }),
             canDisableAllDomains: /* @ngInject */ (services) =>
               services.bulkDomains,
             /* @ngInject */
@@ -99,14 +95,6 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
               JSON.parse($transition$.params().filters),
             isEnterpriseCustomer: /* @ngInject */ (currentUser) =>
               currentUser.isEnterprise,
-
-            getSMSAutomaticRenewalURL: /* @ngInject */ (CORE_MANAGER_URLS) => (
-              service,
-            ) =>
-              `${CORE_MANAGER_URLS.telecom}sms/${service.serviceId}/options/recredit`,
-            getSMSCreditBuyingURL: /* @ngInject */ (CORE_MANAGER_URLS) => (
-              service,
-            ) => `${CORE_MANAGER_URLS.telecom}/sms/${service.serviceId}/order`,
 
             goToAutorenew: /* @ngInject */ ($state, $timeout, Alerter) => (
               message = false,
@@ -165,12 +153,6 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
               parseInt($transition$.params().pageNumber, 10),
             pageSize: /* @ngInject */ ($transition$) =>
               parseInt($transition$.params().pageSize, 10),
-            payDebtLink: /* @ngInject */ ($state) =>
-              $state.href('app.account.billing.main.history'),
-            resiliateService: /* @ngInject */ ($state) => ({ id }) =>
-              $state.go('app.account.billing.autorenew.delete', {
-                serviceId: id,
-              }),
 
             searchText: /* @ngInject */ ($transition$) =>
               $transition$.params().searchText,
@@ -205,48 +187,6 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
 
             sort: /* @ngInject */ ($transition$) =>
               JSON.parse($transition$.params().sort),
-
-            terminateEmail: /* @ngInject */ ($state) => (service) =>
-              $state.go('app.account.billing.autorenew.terminateEmail', {
-                serviceId: service.serviceId,
-                name: service.domain,
-              }),
-            terminateEnterpriseCloudDatabase: /* @ngInject */ ($state) => (
-              serviceId,
-            ) =>
-              $state.go(
-                'app.account.billing.autorenew.terminateEnterpriseCloudDatabase',
-                { serviceId },
-              ),
-            terminateHostingWeb: /* @ngInject */ ($state) => (serviceId) =>
-              $state.go('app.account.billing.autorenew.terminateHostingWeb', {
-                serviceId,
-              }),
-            terminatePrivateDatabase: /* @ngInject */ ($state) => (serviceId) =>
-              $state.go(
-                'app.account.billing.autorenew.terminatePrivateDatabase',
-                { serviceId },
-              ),
-            terminateWebCoach: /* @ngInject */ ($state) => (serviceId) =>
-              $state.go('app.account.billing.autorenew.terminateWebCoach', {
-                serviceId,
-              }),
-            updateServices: /* @ngInject */ ($state) => ({ id }) =>
-              $state.go('app.account.billing.autorenew.update', {
-                serviceId: id,
-              }),
-            updateExchangeBilling: /* @ngInject */ ($state) => ({
-              serviceId,
-            }) => {
-              const [organization, exchangeName] = serviceId.split('/service/');
-              $state.go('app.account.billing.autorenew.exchange', {
-                organization,
-                exchangeName,
-              });
-            },
-
-            warnNicBilling: /* @ngInject */ ($state) => (nic) =>
-              $state.go('app.account.billing.autorenew.warnNic', { nic }),
           }
         : {},
     ),

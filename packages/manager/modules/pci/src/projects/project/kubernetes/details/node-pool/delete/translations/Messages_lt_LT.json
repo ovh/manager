@@ -1,0 +1,8 @@
+{
+  "kube_node_pool_delete": "Delete node pool",
+  "kube_node_pool_delete_confirmation": "Are you sure you want to delete {{ node }}?",
+  "kube_node_pool_delete_warning": "This action cannot be reversed.",
+  "kube_node_pool_delete_enter": "Type DELETE in the following field to confirm your action.",
+  "kube_node_pool_delete_success": "Deleting node pool...",
+  "kube_node_pool_delete_error": "An error occurred while deleting the node pool: {{message}}"
+}

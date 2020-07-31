@@ -1,10 +1,11 @@
 {
   "kubernetes_add": "Utwórz klaster Kubernetes",
   "kubernetes_add_success": "Klaster Kubernetes został utworzony.",
-  "kubernetes_add_error": "Wystąpił błąd podczas tworzenia klastra: {{ message }}.",
+  "kubernetes_add_error": "Wystąpił błąd podczas tworzenia klastra: {{message}}.",
   "kubernetes_add_loading": "Trwa tworzenie klastra",
   "kubernetes_add_region_title": "Wybierz lokalizację",
   "kubernetes_add_version_title": "Wybierz odpowiednią dla Ciebie pomocniczą wersję Kubernetesa",
   "kubernetes_add_name_title": "Nazwij Twój klaster",
-  "kubernetes_add_name": "Nazwa"
+  "kubernetes_add_name": "Nazwa",
+  "kubernetes_add_billing_type_description": "Po wdrożeniu klastra będziesz mógł zmienić model rozliczenia z płatności za godzinę na abonament miesięczny, przechodząc do widoku „edycja puli węzłów”"
 }

@@ -1,3 +1,19 @@
+# [5.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-line-diagnostics@4.0.6...@ovh-ux/ng-ovh-line-diagnostics@5.0.0) (2020-07-29)
+
+
+### Features
+
+* upgrade ovh-ui-kit to v4 ([f48f258](https://github.com/ovh/manager/commit/f48f2587c367b06939c452428c5783c2fb1c1b8d))
+
+
+### BREAKING CHANGES
+
+* bump ovh-ui-kit to latest major
+
+Signed-off-by: Axel Peter <axel.peter@live.com>
+
+
+
 ## [4.0.6](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-line-diagnostics@4.0.5...@ovh-ux/ng-ovh-line-diagnostics@4.0.6) (2020-07-08)
 
 

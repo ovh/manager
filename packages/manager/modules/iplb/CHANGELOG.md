@@ -1,3 +1,28 @@
+# [1.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@0.4.2...@ovh-ux/manager-iplb@1.0.0) (2020-07-29)
+
+
+### Bug Fixes
+
+* **zone:** display label correctly ([#3326](https://github.com/ovh/manager/issues/3326)) ([f8259a6](https://github.com/ovh/manager/commit/f8259a671b337cec090d517b0a1134ea651aca27))
+
+
+### Features
+
+* upgrade ovh-ui-kit to v4 ([f48f258](https://github.com/ovh/manager/commit/f48f2587c367b06939c452428c5783c2fb1c1b8d))
+* upgrade ovh-ui-kit-bs to v4 ([d649cd7](https://github.com/ovh/manager/commit/d649cd7d566ac39d172b2e36625fde83bd99c9f5))
+
+
+### BREAKING CHANGES
+
+* bump ovh-ui-kit to latest major
+
+Signed-off-by: Axel Peter <axel.peter@live.com>
+* bump ovh-ui-kit-bs to latest major
+
+Signed-off-by: Axel Peter <axel.peter@live.com>
+
+
+
 ## [0.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@0.4.1...@ovh-ux/manager-iplb@0.4.2) (2020-07-08)
 
 

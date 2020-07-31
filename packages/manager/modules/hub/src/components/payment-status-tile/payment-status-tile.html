@@ -106,13 +106,12 @@
                         class="oui-table__cell"
                         data-ng-if="$ctrl.autorenewLink"
                     >
-                        <a
-                            data-ng-href="{{ $ctrl.getServiceManagementLink(service) }}"
-                            data-ng-click="$ctrl.onServiceManagementClick()"
-                            data-translate="ovh_manager_hub_payment_status_tile_manage_service"
-                            data-navi-id="{{:: 'paymentStatus-' + service.serviceId + '-dropdown' }}"
+                        <billing-services-actions
+                            service="service"
+                            tracking-prefix="{{:: $ctrl.trackingPrefix + '::activity::payment-status' }}"
+                            user="$ctrl.user"
                         >
-                        </a>
+                        </billing-services-actions>
                     </td>
                 </tr>
                 <tr

@@ -1,0 +1,6 @@
+{
+  "kubernetes_add_node_pool_description": "Configurez un premier pool de nœuds dès la création du cluster. Un pool de nœuds désigne un ensemble de nœuds de travail partageant le même type. Vous pourrez ensuite créer de multiples pools de nœuds, les supprimer ou les redimensionner.",
+  "kubernetes_add_node_pool_warning": "Il est conseillé de configurer un pool de 3 nœuds minimum pour optimiser le rolling upgrade lors des mises à jour de sécurité (patch updates) ou de version mineure.",
+  "kubernetes_add_node_pool_node_count": "Nombre de nœuds dans le pool",
+  "kubernetes_add_node_pool_node_type": "Type de nœuds"
+}

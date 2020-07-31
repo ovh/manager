@@ -1,0 +1,11 @@
+{
+  "kube_node_pool_name": "Nombre del pool",
+  "kube_node_pool_creation_date": "Fecha de creación",
+  "kube_node_pool_node_count": "Número de nodos",
+  "kube_node_pool_edit": "Editar el pool",
+  "kube_node_pool_delete": "Eliminar el pool",
+  "kube_node_pool_add": "Añadir un pool de nodos",
+  "kube_node_pool_refreh": "Actualizar el tablón",
+  "kube_node_pool_title": "Pools de nodos",
+  "kube_add_billing_type_description": "En la vista edición del pool de nodos, puede pasar de facturación por horas a facturación mensual en cada nodo."
+}

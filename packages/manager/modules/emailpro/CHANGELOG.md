@@ -1,3 +1,25 @@
+# [2.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@1.8.2...@ovh-ux/manager-emailpro@2.0.0) (2020-07-29)
+
+
+### Bug Fixes
+
+* change cancel icon when editing service name ([8610d0d](https://github.com/ovh/manager/commit/8610d0df0e7f12f645bed1f9f2afbdaf2a2a8b41))
+* **icon:** fix oui-icon-trash_concept ([#3287](https://github.com/ovh/manager/issues/3287)) ([9347797](https://github.com/ovh/manager/commit/934779770b4db186cc4ed53caf3ca216853367c7))
+
+
+### Features
+
+* upgrade ovh-ui-kit to v4 ([f48f258](https://github.com/ovh/manager/commit/f48f2587c367b06939c452428c5783c2fb1c1b8d))
+
+
+### BREAKING CHANGES
+
+* bump ovh-ui-kit to latest major
+
+Signed-off-by: Axel Peter <axel.peter@live.com>
+
+
+
 ## [1.8.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@1.8.1...@ovh-ux/manager-emailpro@1.8.2) (2020-07-24)
 
 

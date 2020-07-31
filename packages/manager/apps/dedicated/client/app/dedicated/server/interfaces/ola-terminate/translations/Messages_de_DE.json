@@ -1,5 +1,5 @@
 {
-  "dedicated_server_interfaces_ola_terminate_action": "Kündigen",
+  "dedicated_server_interfaces_ola_terminate_action": "Bestätigen",
   "dedicated_server_interfaces_ola_terminate_kvm_warning": "Denken Sie nach der Kündigung der Option daran, Ihre Interfaces über IPMI-KVM anzupassen, um zur ursprünglichen Konfiguration zurückzukehren.",
   "dedicated_server_interfaces_ola_terminate_explanation": "Ihr Angebot endet zum nächsten Verlängerungsdatum.",
   "dedicated_server_interfaces_ola_terminate_text": "Sind Sie sicher, dass Sie die Option OVHcloud Link Aggregation (OLA) kündigen möchten?"

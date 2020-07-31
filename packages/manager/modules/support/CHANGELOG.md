@@ -1,3 +1,31 @@
+# [1.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@0.7.2...@ovh-ux/manager-support@1.0.0) (2020-07-29)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 488] ([08ed551](https://github.com/ovh/manager/commit/08ed551499f9a8adffb2c8a15ec5cf55fa1e6dbe))
+* **i18n:** add missing translations [CDS 501] ([e8d1d62](https://github.com/ovh/manager/commit/e8d1d6208bad1012c7713093460fd5ef8c101158))
+* **i18n:** add missing translations [CDS 511] ([286246a](https://github.com/ovh/manager/commit/286246ac4549ead8bd73d4bea382cbf7f38e044e))
+* **support:** fix page layout ([f379353](https://github.com/ovh/manager/commit/f3793539560bb11411dd0f5394cf0d0826ffbb7d))
+
+
+### Features
+
+* upgrade ovh-ui-kit to v4 ([f48f258](https://github.com/ovh/manager/commit/f48f2587c367b06939c452428c5783c2fb1c1b8d))
+* upgrade ovh-ui-kit-bs to v4 ([d649cd7](https://github.com/ovh/manager/commit/d649cd7d566ac39d172b2e36625fde83bd99c9f5))
+
+
+### BREAKING CHANGES
+
+* bump ovh-ui-kit to latest major
+
+Signed-off-by: Axel Peter <axel.peter@live.com>
+* bump ovh-ui-kit-bs to latest major
+
+Signed-off-by: Axel Peter <axel.peter@live.com>
+
+
+
 ## [0.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@0.7.1...@ovh-ux/manager-support@0.7.2) (2020-07-08)
 
 

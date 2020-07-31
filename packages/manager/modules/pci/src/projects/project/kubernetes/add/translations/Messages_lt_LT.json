@@ -1,10 +1,11 @@
 {
   "kubernetes_add": "Create a Kubernetes cluster",
   "kubernetes_add_success": "Your cluster was successfully created",
-  "kubernetes_add_error": "An error has occurred deleting your cluster: {{ message }}",
+  "kubernetes_add_error": "An error has occurred creating your cluster: {{ message }}",
   "kubernetes_add_loading": "Cluster creation is in progress",
   "kubernetes_add_region_title": "Select a location",
   "kubernetes_add_version_title": "Select the minor version of Kubernetes you want",
   "kubernetes_add_name_title": "Name your cluster",
-  "kubernetes_add_name": "Name"
+  "kubernetes_add_name": "Name",
+  "kubernetes_add_billing_type_description": "You can switch from hourly billing to monthly billing by editing the node pool after deploying your cluster."
 }

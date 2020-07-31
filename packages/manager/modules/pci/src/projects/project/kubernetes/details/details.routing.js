@@ -46,8 +46,8 @@ export default /* @ngInject */ ($stateProvider) => {
         return promise;
       },
       kubeId: /* @ngInject */ ($stateParams) => $stateParams.kubeId,
-      nodesLink: /* @ngInject */ ($state, kubeId, projectId) =>
-        $state.href('pci.projects.project.kubernetes.details.nodes', {
+      nodePoolsLink: /* @ngInject */ ($state, kubeId, projectId) =>
+        $state.href('pci.projects.project.kubernetes.details.nodepools', {
           kubeId,
           projectId,
         }),

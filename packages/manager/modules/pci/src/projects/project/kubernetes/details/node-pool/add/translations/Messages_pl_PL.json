@@ -1,0 +1,8 @@
+{
+  "kube_add_node_pool_config_title": "Ogólna konfiguracja",
+  "kube_add_node_pool_name_label": "Nazwa puli węzłów",
+  "kube_add_node_pool_creating": "Tworzenie puli węzłów",
+  "kube_add_node_pool_success": "Pula węzłów '{{nodePoolName}}' została utworzona",
+  "kube_add_node_pool_error": "Nie można utworzyć puli węzłów '{{nodePoolName}}': {{message}}",
+  "kube_add_billing_type_description": "Będziesz mógł zmienić model rozliczenia dla każdego węzła z płatności za godzinę na abonament miesięczny, przechodząc do widoku „edycja puli węzłów”."
+}

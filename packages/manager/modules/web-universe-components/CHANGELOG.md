@@ -1,3 +1,25 @@
+# [9.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@8.1.1...@ovh-ux/ng-ovh-web-universe-components@9.0.0) (2020-07-29)
+
+
+### Bug Fixes
+
+* **domain.zone:** allow underscore in CNAME subdomain ([#3228](https://github.com/ovh/manager/issues/3228)) ([634819b](https://github.com/ovh/manager/commit/634819b80aa8955b02563773b6347d7cc35ea68a))
+* **dropdown-menu:** remove unused icons ([0534c59](https://github.com/ovh/manager/commit/0534c59fd63d6e20f56f5c10a50d5c43e14ab590))
+
+
+### Features
+
+* upgrade ovh-ui-kit to v4 ([f48f258](https://github.com/ovh/manager/commit/f48f2587c367b06939c452428c5783c2fb1c1b8d))
+
+
+### BREAKING CHANGES
+
+* bump ovh-ui-kit to latest major
+
+Signed-off-by: Axel Peter <axel.peter@live.com>
+
+
+
 ## [8.1.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@8.1.0...@ovh-ux/ng-ovh-web-universe-components@8.1.1) (2020-06-17)
 
 

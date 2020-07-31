@@ -1,0 +1,11 @@
+{
+  "kube_node_pool_name": "Nome do pool",
+  "kube_node_pool_creation_date": "Data de criação",
+  "kube_node_pool_node_count": "Número de nós",
+  "kube_node_pool_edit": "Editar o pool",
+  "kube_node_pool_delete": "Eliminar o pool",
+  "kube_node_pool_add": "Adicionar um pool de nós",
+  "kube_node_pool_refreh": "Atualizar tabela",
+  "kube_node_pool_title": "Pools de nós",
+  "kube_add_billing_type_description": "Na vista de edição do pool de nós, poderá passar da faturação à hora para a faturação mensal para cada nó."
+}

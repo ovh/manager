@@ -1,9 +1,10 @@
 {
- "kube_guides": "Przewodniki",
- "kube_guides_kubernetes": "Kubernetes",
- "kube_error": "Wystąpił błąd podczas pobierania informacji: {{message}}",
- "kube_service": "Usługa",
- "kube_nodes": "Węzły",
- "kube_flavor": "{{ name }} ({{ cpuNumber }} CPU {{ ramCapacity }}GB RAM {{ diskCapacity }} GB Dysk)",
- "kube_containers_and_services": "Kontenery i usługi"
+  "kube_guides": "Przewodniki",
+  "kube_guides_kubernetes": "Kubernetes",
+  "kube_error": "Wystąpił błąd podczas pobierania informacji: {{message}}",
+  "kube_service": "Usługa",
+  "kube_nodes": "Węzły",
+  "kube_flavor": "{{ name }} ({{ cpuNumber }} CPU {{ ramCapacity }}GB RAM {{ diskCapacity }} GB Dysk)",
+  "kube_containers_and_services": "Kontenery i usługi",
+  "kube_node_pools": "Pule węzłów"
 }

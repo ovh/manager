@@ -1,5 +1,5 @@
 {
-  "dedicated_server_interfaces_ola_terminate_action": "Cancel",
+  "dedicated_server_interfaces_ola_terminate_action": "Confirm",
   "dedicated_server_interfaces_ola_terminate_kvm_warning": "Once you have cancelled the option, please remember to adjust your interfaces via the IPMI KVM to find your original configuration.",
   "dedicated_server_interfaces_ola_terminate_explanation": "Your solution will be closed on the next renewal date.",
   "dedicated_server_interfaces_ola_terminate_text": "Are you sure you want to cancel the OVHcloud Link Aggregation (OLA) option?"

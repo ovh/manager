@@ -1,3 +1,12 @@
+## [14.0.10](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-utils@14.0.9...@ovh-ux/ng-ovh-utils@14.0.10) (2020-07-29)
+
+
+### Bug Fixes
+
+* **wizard-step:** apply btn-lg helper ([f5ab15f](https://github.com/ovh/manager/commit/f5ab15f1fbb3a9e606c8a2598010e52677673f99))
+
+
+
 ## [14.0.9](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-utils@14.0.8...@ovh-ux/ng-ovh-utils@14.0.9) (2020-06-02)
 
 

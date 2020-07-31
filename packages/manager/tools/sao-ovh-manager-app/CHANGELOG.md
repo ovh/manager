@@ -1,3 +1,19 @@
+# [2.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/sao-ovh-manager-app@1.0.5...@ovh-ux/sao-ovh-manager-app@2.0.0) (2020-07-29)
+
+
+### Features
+
+* upgrade ovh-ui-kit to v4 ([f48f258](https://github.com/ovh-ux/manager/commit/f48f2587c367b06939c452428c5783c2fb1c1b8d))
+
+
+### BREAKING CHANGES
+
+* bump ovh-ui-kit to latest major
+
+Signed-off-by: Axel Peter <axel.peter@live.com>
+
+
+
 ## [1.0.5](https://github.com/ovh-ux/manager/compare/@ovh-ux/sao-ovh-manager-app@1.0.4...@ovh-ux/sao-ovh-manager-app@1.0.5) (2020-04-16)
 
 

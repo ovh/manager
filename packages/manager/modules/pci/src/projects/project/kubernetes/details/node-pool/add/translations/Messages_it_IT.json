@@ -1,0 +1,8 @@
+{
+  "kube_add_node_pool_config_title": "Configurazione generale",
+  "kube_add_node_pool_name_label": "Nome del pool di nodi",
+  "kube_add_node_pool_creating": "Creazione di un pool di nodi",
+  "kube_add_node_pool_success": "Il pool di nodi '{{nodePoolName}}' è stato creato correttamente",
+  "kube_add_node_pool_error": "Impossibile creare il pool di nodi '{{ nodePoolName }}': {{ message }}",
+  "kube_add_billing_type_description": "Nella sezione di modifica del pool di nodi, è possibile passare dalla fatturazione oraria al forfait mensile per ogni nodo."
+}

@@ -11,7 +11,7 @@
             <tail-logs>
                 <div
                     class="row"
-                    data-ng-repeat="log in OTBLogs.logger.logs track by $index"
+                    data-ng-repeat="log in $ctrl.logger.logs track by $index"
                     data-ng-class="{
                     'text-muted'   : log.message.lvl === 'debug',
                     'text-primary' : log.message.lvl === 'info' || log.message.lvl === 'notice',
@@ -34,7 +34,7 @@
                     ></span>
                 </div>
                 <div
-                    data-ng-if="OTBLogs.logger.logs.length === 0"
+                    data-ng-if="$ctrl.logger.logs.length === 0"
                     data-translate="overTheBox_logs_no_logs"
                 ></div>
             </tail-logs>

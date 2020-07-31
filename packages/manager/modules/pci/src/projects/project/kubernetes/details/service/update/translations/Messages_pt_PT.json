@@ -2,7 +2,7 @@
   "kube_service_update_common_confirm": "Confirmar",
   "kube_service_update_common_cancel": "Anular",
   "kube_service_update_title": "Forçar a atualização agora",
-  "kube_service_update_message": "A atualização poderá provocar uma indisponibilidade de 1 a 2 minutos para cada um dos seus nós. Utilizamos a atualização contínua (rolling upgrade with node drain) para minimizar ou tornar transparente o impacto nos seus serviços expostos.",
+  "kube_service_update_message": "A atualização poderá provocar uma indisponibilidade de um ou dois minutos para cada nó. Utilizamos a atualização contínua (rolling upgrade with node drain) para minimizar o impacto nos seus serviços expostos.",
   "kube_service_update_success": "O seu cluster Kubernetes está a ser atualizado.",
   "kube_service_update_error": "Ocorreu um erro durante a atualização do seu cluster : {{ message }}",
   "kube_service__minor_version_update_title": "Passar para a versão menor seguinte do Kubernetes",

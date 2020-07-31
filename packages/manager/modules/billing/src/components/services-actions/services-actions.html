@@ -1,0 +1,143 @@
+<oui-action-menu
+    aria-label="{{:: 'billing_services_actions_menu_label' | translate }}"
+    compact
+    data-placement="end"
+>
+    <oui-action-menu-item
+        ng-if="$ctrl.service.hasDebt() && !$ctrl.service.hasBillingRights(user.nichandle)"
+        href="{{:: $ctrl.warningLink }}"
+        on-click="$ctrl.trackAction('go-to-pay-bill')"
+    >
+        <span data-translate="billing_services_actions_menu_pay_bill"></span>
+    </oui-action-menu-item>
+
+    <oui-action-menu-item
+        ng-if="$ctrl.service.hasDebt() && $ctrl.service.hasBillingRights(user.nichandle)"
+        href="{{:: $ctrl.billingLink }}"
+        on-click="$ctrl.trackAction('go-to-pay-bill')"
+    >
+        <span data-translate="billing_services_actions_menu_pay_bill"></span>
+    </oui-action-menu-item>
+
+    <div
+        data-ng-if="!$ctrl.service.hasParticularRenew() && !$ctrl.service.hasPendingResiliation() && !$ctrl.service.hasDebt()"
+    >
+        <!-- Service in autorenew -->
+        <oui-action-menu-item
+            ng-if="!$ctrl.service.isOneShot() && !$ctrl.service.hasForcedRenew() && !$ctrl.service.hasEngagement() && !$ctrl.service.isResiliated() && $ctrl.service.canHandleRenew()"
+            href="{{:: $ctrl.updateLink }}"
+            on-click="$ctrl.trackAction('go-to-configure-renew')"
+        >
+            <span
+                data-translate="billing_services_actions_menu_manage_renew"
+            ></span>
+        </oui-action-menu-item>
+        <oui-action-menu-item
+            ng-if="!$ctrl.service.isOneShot() && !$ctrl.service.hasManualRenew() && $ctrl.service.canHandleRenew()"
+            href="{{:: $ctrl.getRenewUrl() }}"
+            external
+            on-click="$ctrl.trackAction('go-to-anticipate-payment')"
+        >
+            <span
+                data-translate="billing_services_actions_menu_anticipate_renew"
+            ></span>
+        </oui-action-menu-item>
+        <!-- /Service in autorenew -->
+
+        <!-- Service in manual renew  -->
+        <oui-action-menu-item
+            ng-if="$ctrl.service.hasManualRenew() && !$ctrl.service.isInDebt() && $ctrl.service.canHandleRenew()"
+            disabled="$ctrl.service.hasForcedRenew()"
+            aria-label="{{:: 'billing_services_actions_menu_renew_label' | translate: { serviceName: $ctrl.service.serviceId } }}"
+            href="{{:: $ctrl.getRenewUrl() }}"
+            external
+            on-click="$ctrl.trackAction('go-to-renew-manually')"
+        >
+            <span data-translate="billing_services_actions_menu_renew"></span>
+        </oui-action-menu-item>
+        <!-- /Service in manual renew  -->
+    </div>
+
+    <!-- Exchange -->
+    <div data-ng-if="$ctrl.service.serviceType === $ctrl.SERVICE_TYPE.EXCHANGE">
+        <oui-action-menu-item
+            ng-if="$ctrl.service.menuItems.manageEmailAccountsInBilling"
+            href="{{:: $ctrl.getExchangeBilling() }}"
+            on-click="$ctrl.trackAction('go-to-modify-billing-Exchange')"
+        >
+            <span
+                data-translate="billing_services_actions_menu_exchange_update"
+            ></span>
+        </oui-action-menu-item>
+        <oui-action-menu-item
+            ng-if="$ctrl.service.menuItems.manageEmailAccountsInExchange"
+            href="{{ $ctrl.renewLink }}"
+            on-click="$ctrl.trackAction('go-to-modify-billing-ExchangeAccounts')"
+        >
+            <span
+                data-translate="billing_services_actions_menu_exchange_update_accounts"
+            ></span>
+        </oui-action-menu-item>
+    </div>
+    <!-- /Exchange -->
+
+    <oui-action-menu-item
+        ng-if="(!$ctrl.service.shouldDeleteAtExpiration() || !$ctrl.service.isResiliated()) && !$ctrl.service.hasDebt()"
+        disabled="!$ctrl.service.canBeResiliated($ctrl.user.nichandle)"
+        href="{{:: $ctrl.resiliateLink }}"
+        on-click="$ctrl.trackAction('go-to-resiliate')"
+    >
+        <span
+            data-translate="{{:: 'billing_services_actions_menu_resiliate_' + $ctrl.service.serviceType }}"
+            data-translate-default="{{:: 'billing_services_actions_menu_resiliate' | translate }}"
+        ></span>
+    </oui-action-menu-item>
+
+    <!-- SMS -->
+    <div data-ng-if="$ctrl.service.serviceType === $ctrl.SERVICE_TYPE.SMS">
+        <oui-action-menu-item
+            href="{{:: $ctrl.buyingLink }}"
+            external
+            on-click="$ctrl.trackAction('go-to-buy-SMScredits')"
+        >
+            <span
+                data-translate="billing_services_actions_menu_sms_credit"
+            ></span>
+        </oui-action-menu-item>
+
+        <oui-action-menu-item
+            href="{{:: $ctrl.renewLink }}"
+            external
+            on-click="$ctrl.trackAction('go-to-configure-SMSautoreload')"
+        >
+            <span
+                data-translate="billing_services_actions_menu_sms_renew"
+            ></span>
+        </oui-action-menu-item>
+    </div>
+    <!-- /SMS -->
+
+    <!-- Service with termination asked by the customer -->
+    <oui-action-menu-item
+        ng-if="$ctrl.service.canBeUnresiliated($ctrl.user.nichandle)
+            && $ctrl.cancelResiliationLink"
+        href="{{:: $ctrl.cancelResiliationLink }}"
+        on-click="$ctrl.trackAction('go-to-cancel-resiliation')"
+    >
+        >
+        <span
+            data-translate="billing_services_actions_menu_resiliate_cancel"
+        ></span>
+    </oui-action-menu-item>
+    <!-- /Service with termination asked by the customer -->
+
+    <oui-action-menu-item
+        ng-if="$ctrl.service.url"
+        href="{{:: $ctrl.service.url }}"
+        on-click="$ctrl.trackAction('go-to-service')"
+    >
+        <span
+            data-translate="billing_services_actions_menu_see_dashboard"
+        ></span>
+    </oui-action-menu-item>
+</oui-action-menu>

@@ -5,5 +5,6 @@
   "kube_service": "Service",
   "kube_nodes": "Nœuds",
   "kube_flavor": "{{ name }} ({{ cpuNumber }} CPU {{ ramCapacity }}Go RAM {{ diskCapacity }}Go Disque)",
-  "kube_containers_and_services": "Conteneurs et services"
+  "kube_containers_and_services": "Conteneurs et services",
+  "kube_node_pools": "Pools de nœuds"
 }

@@ -1,9 +1,16 @@
 {
- "kube_list_title": "Kubernetes",
- "kube_list_name": "Name des Clusters",
- "kube_list_region": "Region",
- "kube_list_version": "Version",
- "kube_list_cluster_manage": "Cluster verwalten",
- "kube_list_cluster_create": "Kubernetes-Cluster erstellen",
- "kube_list_error": "Beim Laden Ihrer Cluster ist ein Fehler aufgetreten."
+  "kube_list_title": "Kubernetes",
+  "kube_list_name": "Name des Clusters",
+  "kube_list_region": "Region",
+  "kube_list_version": "Version",
+  "kube_list_cluster_manage": "Cluster verwalten",
+  "kube_list_cluster_create": "Kubernetes-Cluster erstellen",
+  "kube_list_error": "Beim Laden Ihrer Cluster ist ein Fehler aufgetreten.",
+  "kube_common_save": "Speichern",
+  "kube_common_cancel": "Abbrechen",
+  "kube_common_delete": "Löschen",
+  "kube_common_node_pool_title": "Konfiguration Ihres Node-Pools",
+  "kube_common_billing_type_title": "Abrechnungsmodus",
+  "kube_common_create_node_pool": "Node-Pool erstellen",
+  "kube_common_flavor_load_error": "Laden der Nodes fehlgeschlagen: {{message}}"
 }

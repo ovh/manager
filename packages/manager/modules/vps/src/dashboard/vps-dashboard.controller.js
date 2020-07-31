@@ -9,7 +9,6 @@ import 'moment';
 import {
   DASHBOARD_FEATURES,
   VPS_2014_AUTO_MIGRATION_DATE,
-  VPS_2014_EXPIRY_DATE,
 } from './vps-dashboard.constants';
 import {
   CHANGE_OWNER_URL,

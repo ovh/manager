@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-sharepoint",
-  "version": "1.1.1",
+  "version": "2.0.0",
   "private": true,
   "description": "SharePoint product.",
   "repository": {
@@ -18,7 +18,7 @@
     "lodash": "^4.17.15"
   },
   "peerDependencies": {
-    "@ovh-ux/ng-ovh-utils": "^14.0.9",
+    "@ovh-ux/ng-ovh-utils": "^14.0.10",
     "@ovh-ux/ui-kit": "^4.1.12",
     "@ovh-ux/web-universe-components": "^7.0.0",
     "@uirouter/angularjs": "^1.0.15",

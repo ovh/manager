@@ -1,0 +1,8 @@
+{
+  "kube_node_pool_delete": "Eliminar pool de nós",
+  "kube_node_pool_delete_confirmation": "Tem a certeza de que pretende eliminar {{ node}}?",
+  "kube_node_pool_delete_warning": "Esta operação não pode ser anulada.",
+  "kube_node_pool_delete_enter": "Introduza \"DELETE\" no seguinte campo para confirmar.",
+  "kube_node_pool_delete_success": "O pool de nós está a ser eliminado",
+  "kube_node_pool_delete_error": "Ocorreu um erro durante a eliminação do pool de nós: {{message}}"
+}
