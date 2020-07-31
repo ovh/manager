@@ -56,6 +56,7 @@ import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 import ovhManagerAccountMigration from '@ovh-ux/manager-account-migration';
 import account from './account';
+import cdn from './cdn';
 import config from './config/config';
 import contactsService from './account/contacts/service/contacts-service.module';
 import dedicatedCloud from './dedicatedCloud';
@@ -84,6 +85,7 @@ angular
       'Billing',
       chartjs,
       'controllers',
+      cdn,
       contactsService,
       dedicatedCloud,
       dedicatedServer,
