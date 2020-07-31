@@ -1,8 +1,15 @@
-<header class="cui-page__header">
-    <cui-page-header-title
-        data-text="$ctrl.titleText"
-        data-subtitle-text="$ctrl.subtitleText"
-        data-guides="$ctrl.guides"
-    ></cui-page-header-title>
+<oui-header
+    class="cui-page__header"
+    heading="{{ $ctrl.titleText }}"
+    description="{{ $ctrl.subtitleText }}"
+>
     <ng-transclude></ng-transclude>
-</header>
+    <oui-guide-menu data-ng-if="$ctrl.guides" text="{{ $ctrl.guides.title }}">
+        <oui-guide-menu-item
+            data-ng-repeat="guide in $ctrl.guides.list track by guide.name"
+            href="{{ guide.url }}"
+        >
+            <span data-ng-bind="guide.name"></span>
+        </oui-guide-menu-item>
+    </oui-guide-menu>
+</oui-header>
