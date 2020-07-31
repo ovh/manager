@@ -31,6 +31,10 @@ angular
           controller: 'otrsCtrl',
           translations: { value: ['../otrs'], format: 'json' },
         });
+        $stateProvider.state('app.account.otrs-ticket-list', {
+          url: '/support/tickets',
+          redirectTo: 'app.account.otrs-ticket',
+        });
       } else {
         $stateProvider.state('app.account.otrs-ticket', {
           url: '/ticket',
