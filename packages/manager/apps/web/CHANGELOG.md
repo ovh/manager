@@ -1,3 +1,12 @@
+## [15.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.0.1...@ovh-ux/manager-web@15.0.2) (2020-07-31)
+
+
+### Bug Fixes
+
+* **private-database.order.clouddb:** display options after init ([#3352](https://github.com/ovh/manager/issues/3352)) ([fc7f75c](https://github.com/ovh/manager/commit/fc7f75c62213ed742cf386e9d4a53dc7cfee6de9))
+
+
+
 ## [15.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.0.0...@ovh-ux/manager-web@15.0.1) (2020-07-29)
 
 
