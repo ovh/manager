@@ -12,6 +12,10 @@ angular.module('App').config(
           controllerAs: '$ctrl',
         },
       },
+      resolve: {
+        goToDomains: /* @ngInject */ ($state) => () =>
+          $state.go('app.networks.cdn.dedicated.manage.domain'),
+      },
     });
   },
 );
