@@ -63,16 +63,21 @@
             data-type="string"
             data-sortable
         >
-            <span data-ng-if="$row.totalRuntime">
-                ~=
-            </span>
-            <ovh-manager-catalog-price
-                data-price="$ctrl.getPrice($row.totalRuntime / 3600)"
-                data-user="$ctrl.user"
-                data-perform-rounding="false"
-                data-maximum-fraction-digits="3"
+            <span
+                data-oui-tooltip-placement="top"
+                data-oui-tooltip="{{:: 'pci_projects_project_training_jobs_price_estimate' | translate }}"
             >
-            </ovh-manager-catalog-price>
+                <span data-ng-if="$row.totalRuntime">
+                    ~=
+                </span>
+                <ovh-manager-catalog-price
+                    data-price="$ctrl.getPrice($row.totalRuntime / 3600)"
+                    data-user="$ctrl.user"
+                    data-perform-rounding="false"
+                    data-maximum-fraction-digits="3"
+                >
+                </ovh-manager-catalog-price>
+            </span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_projects_project_training_jobs_state' | translate"
