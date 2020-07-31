@@ -20,7 +20,7 @@ const buildQueryParams = (search) => {
   }, {});
 };
 
-export const attach = () => {
+export const attach = (containerElement = document.body) => {
   const queryParams = buildQueryParams(window.location.search);
   const template = document.createElement('template');
 
@@ -30,9 +30,8 @@ export const attach = () => {
     template.innerHTML = buildTemplate(false, LOADING_MESSAGES);
   }
 
-  document.body.appendChild(document.importNode(template.content, true));
+  containerElement.appendChild(document.importNode(template.content, true));
 
-  NProgress.configure({ parent: '#managerPreloader' });
   NProgress.start();
 };
 
