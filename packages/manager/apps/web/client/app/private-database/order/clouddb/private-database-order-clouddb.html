@@ -9,6 +9,7 @@
 
     <oui-stepper
         data-current-index="$ctrl.currentIndex"
+        data-on-init="$ctrl.initializeCustomizationOptions()"
         data-on-finish="$ctrl.validateCheckout()"
     >
         <oui-step-form
@@ -39,7 +40,6 @@
 
         <oui-step-form
             data-header="{{:: 'private_database_order_clouddb_customization' | translate }}"
-            data-on-focus="$ctrl.initializeCustomizationOptions()"
             data-editable="!$ctrl.loadingDurations && !$ctrl.loadingCheckout && !$ctrl.hasValidatedCheckout"
             data-navigation="false"
             data-disabled="$ctrl.hasValidatedCheckout"
