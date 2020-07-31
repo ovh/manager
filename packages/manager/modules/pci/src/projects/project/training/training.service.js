@@ -72,21 +72,4 @@ export default class PciProjectTrainingService {
         return this.$q.all(promises);
       });
   }
-
-  getAllJobs(projectId) {
-    return this.OvhApiCloudProjectAi.Training()
-      .Job()
-      .v6()
-      .query({ serviceName: projectId }).$promise;
-  }
-
-  getAllData(projectId) {
-    // Uncomment when iceberg proded
-    return this.OvhApiCloudProjectAi.Training()
-      .Data()
-      .v6()
-      .query({
-        serviceName: projectId,
-      }).$promise;
-  }
 }

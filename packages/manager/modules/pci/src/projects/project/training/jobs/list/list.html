@@ -62,10 +62,7 @@
         data-filterable
         data-sortable
     >
-        <span
-            class="oui-status"
-            data-ng-class="$ctrl.getClassForState($row.state)"
-        >
+        <span class="oui-status" data-ng-class="$row.getClassForState()">
             <span
                 data-translate="{{:: 'pci_projects_project_training_jobs_state_' + $value }}"
             ></span>
@@ -89,7 +86,7 @@
         </oui-action-menu-item>
         <oui-action-menu-item
             data-on-click="$ctrl.jobKill($row.id)"
-            data-disabled="!$ctrl.jobCanBeKilled($row)"
+            data-disabled="!$row.jobCanBeKilled()"
         >
             <span
                 data-translate="pci_projects_project_training_jobs_kill"

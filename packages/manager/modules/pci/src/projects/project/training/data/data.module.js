@@ -11,7 +11,7 @@ import add from './add';
 import sync from './sync';
 import component from './data.component';
 import routing from './data.routing';
-import service from './data.service';
+import service from '../data.service';
 
 const moduleName = 'ovhManagerPciTrainingData';
 

@@ -12,7 +12,7 @@ import submit from './submit';
 import kill from './kill';
 import component from './jobs.component';
 import routing from './jobs.routing';
-import service from './jobs.service';
+import service from '../job.service';
 
 const moduleName = 'ovhManagerPciTrainingJobs';
 

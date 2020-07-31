@@ -57,31 +57,6 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
-      jobCanBeKilled: /* @ngInject */ () => (job) => {
-        return (
-          job.state === 'RUNNING' ||
-          job.state === 'QUEUING' ||
-          job.state === 'QUEUED'
-        );
-      },
-      getClassForState: /* @ngInject */ () => (state) => {
-        switch (state) {
-          case 'CANCELLED':
-          case 'FAILED':
-            return 'oui-status_error';
-          case 'CANCELLING':
-          case 'INTERRUPTED':
-            return 'oui-status_warning';
-          case 'SUCCEEDED':
-            return 'oui-status_success';
-          case 'QUEUING':
-          case 'QUEUED':
-          case 'RUNNING':
-            return 'oui-status_info';
-          default:
-            return 'oui-status_info';
-        }
-      },
     },
   });
 };

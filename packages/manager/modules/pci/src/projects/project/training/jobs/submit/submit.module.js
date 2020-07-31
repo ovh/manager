@@ -8,7 +8,7 @@ import 'ovh-api-services';
 
 import component from './submit.component';
 import routing from './submit.routing';
-import data from '../../data/data.service';
+import data from '../../data.service';
 
 const moduleName = 'ovhManagerPciTrainingJobsSubmit';
 

@@ -1,6 +1,6 @@
 import Job from './job.class';
 
-export default class PciProjectTrainingJobsService {
+export default class PciProjectTrainingJobService {
   /* @ngInject */
   constructor(OvhApiCloudProjectAi) {
     this.OvhApiCloudProjectAi = OvhApiCloudProjectAi;

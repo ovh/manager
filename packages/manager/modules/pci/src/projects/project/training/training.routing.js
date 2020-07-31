@@ -38,10 +38,10 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('pci.projects.project.training.install', {
           projectId,
         }),
-      jobList: /* @ngInject */ (PciProjectTrainingService, projectId) =>
-        PciProjectTrainingService.getAllJobs(projectId),
-      dataList: /* @ngInject */ (PciProjectTrainingService, projectId) =>
-        PciProjectTrainingService.getAllData(projectId),
+      jobList: /* @ngInject */ (PciProjectTrainingJobService, projectId) =>
+        PciProjectTrainingJobService.getAll(projectId),
+      dataList: /* @ngInject */ (PciProjectTrainingDataService, projectId) =>
+        PciProjectTrainingDataService.getAll(projectId),
       currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
         $state.href($state.current.name, $transition$.params()),
       allUsers: /* @ngInject */ (PciProjectTrainingService, projectId) => () =>
