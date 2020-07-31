@@ -6,7 +6,7 @@
   "components_notification_noNotification": "Il n'y a aucune alerte enregistrée.",
   "components_notification_frequency": "Fréquence d'envoi",
   "components_notification_contact": "Contact à notifier en cas d'alertes",
-  "components_notification_account": "Compte:",
+  "components_notification_account": "Account",
   "components_notification_confirm": "Êtes-vous sûr(e) de vouloir supprimer la notification sur le service {{service}} pour {{contact}} ?",
   "components_notification_add": "Add an alert ",
   "components_notification_mail": "Email",
@@ -14,5 +14,6 @@
   "components_notification_once": "Une fois",
   "components_notification_5m": "Toutes les 5 minutes",
   "components_notification_1h": "Hourly",
-  "components_notification_6h": "Every 6 hours"
+  "components_notification_6h": "Every 6 hours",
+  "components_notification_sms_detail_warning": "Important - the account {{smsAccount}} no longer has enough credit to send new SMS messages."
 }
