@@ -63,7 +63,10 @@
             data-type="string"
             data-sortable
         >
-            ~=<ovh-manager-catalog-price
+            <span data-ng-if="$row.totalRuntime">
+                ~=
+            </span>
+            <ovh-manager-catalog-price
                 data-price="$ctrl.getPrice($row.totalRuntime / 3600)"
                 data-user="$ctrl.user"
                 data-perform-rounding="false"

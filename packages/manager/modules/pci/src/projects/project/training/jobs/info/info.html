@@ -184,7 +184,9 @@
                 data-term="{{:: 'pci_projects_project_training_jobs_price' | translate  }}"
             >
                 <oui-tile-description>
-                    ~=
+                    <span data-ng-if="$ctrl.job.totalRuntime">
+                        ~=
+                    </span>
                     <ovh-manager-catalog-price
                         data-price="$ctrl.getPrice($ctrl.job.totalRuntime / 3600)"
                         data-tax="$ctrl.getTax($ctrl.job.totalRuntime / 3600)"
