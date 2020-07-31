@@ -1,4 +1,4 @@
-export default class PciTrainingInstallController {
+export default class PciTrainingJobController {
   /* @ngInject */
   constructor(CucCloudMessage, CucRegionService) {
     this.CucCloudMessage = CucCloudMessage;

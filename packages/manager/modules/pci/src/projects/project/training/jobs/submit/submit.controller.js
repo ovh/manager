@@ -2,16 +2,9 @@ import get from 'lodash/get';
 
 export default class PciTrainingJobsSubmitController {
   /* @ngInject */
-  constructor(
-    $translate,
-    CucCloudMessage,
-    CucRegionService,
-    PciProjectTrainingJobsService,
-  ) {
+  constructor($translate, PciProjectTrainingJobService) {
     this.$translate = $translate;
-    this.CucCloudMessage = CucCloudMessage;
-    this.CucRegionService = CucRegionService;
-    this.PciProjectTrainingJobsService = PciProjectTrainingJobsService;
+    this.PciProjectTrainingJobService = PciProjectTrainingJobService;
   }
 
   $onInit() {
@@ -59,22 +52,6 @@ export default class PciTrainingJobsSubmitController {
       });
 
     this.showAdvancedImage = false;
-
-    this.loadMessages();
-  }
-
-  getPrice() {
-    return (
-      this.pricesCatalog[`ai-serving-engine.ml1-c-xl.hour.consumption`]
-        .priceInUcents * this.job.resources.gpu
-    );
-  }
-
-  getTax() {
-    return (
-      this.pricesCatalog[`ai-serving-engine.ml1-c-xl.hour.consumption`].tax *
-      this.job.resources.gpu
-    );
   }
 
   setData() {
@@ -157,26 +134,13 @@ export default class PciTrainingJobsSubmitController {
     this.submitJob();
   }
 
-  loadMessages() {
-    this.messageHandler = this.CucCloudMessage.subscribe(
-      'pci.projects.project.training.jobs.submit',
-      {
-        onMessage: () => this.refreshMessages(),
-      },
-    );
-  }
-
-  refreshMessages() {
-    this.messages = this.messageHandler.getMessages();
-  }
-
   onClickAdvancedImage() {
     this.showAdvancedImage = !this.showAdvancedImage;
   }
 
   submitJob() {
     this.isSubmit = true;
-    this.PciProjectTrainingJobsService.submit(
+    this.PciProjectTrainingJobService.submit(
       this.projectId,
       this.computeJobSpec(),
     )

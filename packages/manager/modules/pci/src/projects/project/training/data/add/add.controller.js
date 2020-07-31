@@ -5,14 +5,10 @@ export default class PciTrainingDataAddController {
   constructor(
     PciProjectStorageContainersService,
     PciProjectTrainingDataService,
-    CucCloudMessage,
-    CucRegionService,
     $translate,
   ) {
     this.PciProjectStorageContainersService = PciProjectStorageContainersService;
     this.PciProjectTrainingDataService = PciProjectTrainingDataService;
-    this.CucCloudMessage = CucCloudMessage;
-    this.CucRegionService = CucRegionService;
     this.$translate = $translate;
   }
 
@@ -49,8 +45,6 @@ export default class PciTrainingDataAddController {
       container: null,
       user: null,
     };
-
-    this.loadMessages();
 
     // Load available object storage containers
     this.allContainers = [];
@@ -117,19 +111,6 @@ export default class PciTrainingDataAddController {
       .finally(() => {
         this.isSubmit = false;
       });
-  }
-
-  loadMessages() {
-    this.messageHandler = this.CucCloudMessage.subscribe(
-      'pci.projects.project.training.data.add',
-      {
-        onMessage: () => this.refreshMessages(),
-      },
-    );
-  }
-
-  refreshMessages() {
-    this.messages = this.messageHandler.getMessages();
   }
 
   loadAllContainers() {

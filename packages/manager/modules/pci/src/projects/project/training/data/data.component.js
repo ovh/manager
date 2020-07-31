@@ -11,5 +11,8 @@ export default {
     attachData: '<',
     regions: '<',
     refreshState: '<',
+    projectId: '<',
+    dataSync: '<',
+    goToContainer: '<',
   },
 };

@@ -2,9 +2,6 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.training.data', {
     url: '/data',
     component: 'pciProjectTrainingDataComponent',
-    redirectTo: {
-      state: 'pci.projects.project.training.data.list',
-    },
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_projects_project_training_data_title'),
@@ -21,6 +18,11 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('pci.projects.project.training.data.sync', {
           projectId,
           dataId,
+        }),
+      goToContainer: /* @ngInject */ ($state, projectId) => (containerId) =>
+        $state.go('pci.projects.project.storages.objects.object', {
+          projectId,
+          containerId,
         }),
       goToData: ($state, CucCloudMessage, projectId) => (
         message = false,

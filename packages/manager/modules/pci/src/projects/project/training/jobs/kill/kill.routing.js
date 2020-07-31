@@ -17,18 +17,14 @@ export default /* @ngInject */ ($stateProvider) => {
       previousState: /* @ngInject */ ($transition$) => {
         return $transition$.params().previousState;
       },
-      job: /* @ngInject */ (
-        PciProjectTrainingJobsService,
-        projectId,
-        jobId,
-      ) => {
-        return PciProjectTrainingJobsService.get(projectId, jobId);
+      job: /* @ngInject */ (PciProjectTrainingJobService, projectId, jobId) => {
+        return PciProjectTrainingJobService.get(projectId, jobId);
       },
       killJob: /* @ngInject */ (
-        PciProjectTrainingJobsService,
+        PciProjectTrainingJobService,
         projectId,
         jobId,
-      ) => () => PciProjectTrainingJobsService.kill(projectId, jobId),
+      ) => () => PciProjectTrainingJobService.kill(projectId, jobId),
       goToJobInfo: /* @ngInject */ ($state, projectId, jobId) => () =>
         $state.go('pci.projects.project.training.jobs.info', {
           projectId,

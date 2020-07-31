@@ -6,7 +6,6 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import 'ovh-api-services';
 
-import list from './list';
 import add from './add';
 import sync from './sync';
 import component from './data.component';
@@ -24,7 +23,6 @@ angular
     'ovhManagerCore',
     'pascalprecht.translate',
     'ui.router',
-    list,
     add,
     sync,
   ])

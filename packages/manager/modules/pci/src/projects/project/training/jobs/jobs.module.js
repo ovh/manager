@@ -7,7 +7,6 @@ import 'angular-translate';
 import 'ovh-api-services';
 
 import info from './info';
-import list from './list';
 import submit from './submit';
 import kill from './kill';
 import component from './jobs.component';
@@ -26,7 +25,6 @@ angular
     'pascalprecht.translate',
     'ui.router',
     info,
-    list,
     submit,
     kill,
   ])

@@ -231,8 +231,8 @@
                         >
                             <oui-tile-description>
                                 <ovh-manager-catalog-price
-                                    data-price="$ctrl.getPrice(flavor.id)"
-                                    data-tax="$ctrl.getTax(flavor.id)"
+                                    data-price="$ctrl.getPrice($ctrl.job.resources.gpu)"
+                                    data-tax="$ctrl.getTax($ctrl.job.resources.gpu)"
                                     data-user="$ctrl.user"
                                     data-perform-rounding="false"
                                     data-maximum-fraction-digits="3"
@@ -299,8 +299,8 @@
                         >
                             <oui-tile-description>
                                 <ovh-manager-catalog-price
-                                    data-price="$ctrl.getPrice(flavor.id)"
-                                    data-tax="$ctrl.getTax(flavor.id)"
+                                    data-price="$ctrl.getPrice($ctrl.job.resources.gpu)"
+                                    data-tax="$ctrl.getTax($ctrl.job.resources.gpu)"
                                     data-user="$ctrl.user"
                                     data-perform-rounding="false"
                                     data-maximum-fraction-digits="3"

@@ -32,6 +32,60 @@
                     data-ng-bind="$ctrl.job.created"
                 ></oui-tile-description>
             </oui-tile-definition>
+            <oui-tile-definition
+                data-term="{{:: 'pci_projects_project_training_jobs_access_url' | translate  }}"
+            >
+                <oui-tile-description data-ng-if=":: $ctrl.job.accessUrl">
+                    <a
+                        target="_blank"
+                        class="oui-button oui-button_ghost"
+                        rel="noopener"
+                        data-ng-href="{{:: $ctrl.job.accessUrl }}"
+                    >
+                        <span
+                            data-translate="pci_projects_project_training_jobs_access_url_link"
+                        ></span>
+                        <i
+                            class="oui-icon oui-icon-external-link"
+                            aria-hidden="true"
+                        ></i>
+                    </a>
+                </oui-tile-description>
+                <oui-tile-description>
+                    <span
+                        data-translate="pci_projects_project_training_jobs_link_not_available"
+                    >
+                        data-ng-if=":: !$ctrl.job.accessUrl"
+                    </span>
+                </oui-tile-description>
+            </oui-tile-definition>
+            <oui-tile-definition
+                data-term="{{:: 'pci_projects_project_training_jobs_resource_usage_url' | translate  }}"
+            >
+                <oui-tile-description data-ng-if=":: $ctrl.job.accessUrl">
+                    <a
+                        target="_blank"
+                        class="oui-button oui-button_ghost"
+                        rel="noopener"
+                        data-ng-href="{{:: $ctrl.job.resourceUsageUrl }}"
+                    >
+                        <span
+                            data-translate="pci_projects_project_training_jobs_resource_usage_url_link"
+                        ></span>
+                        <i
+                            class="oui-icon oui-icon-external-link"
+                            aria-hidden="true"
+                        ></i>
+                    </a>
+                </oui-tile-description>
+                <oui-tile-description>
+                    <span
+                        data-translate="pci_projects_project_training_jobs_link_not_available"
+                    >
+                        data-ng-if=":: !$ctrl.job.resourceUsageUrl"
+                    </span>
+                </oui-tile-description>
+            </oui-tile-definition>
         </oui-tile>
     </div>
     <div class="col-md-4">
@@ -82,7 +136,10 @@
             class="h-100"
             data-heading="{{:: 'pci_projects_project_training_jobs_info_title_actions' | translate  }}"
         >
-            <oui-tile-button data-on-click="$ctrl.goToJobKill()">
+            <oui-tile-button
+                data-on-click="$ctrl.goToJobKill()"
+                data-disabled="!$ctrl.jobCanBeKilled()"
+            >
                 <span
                     data-translate="pci_projects_project_training_jobs_kill"
                 ></span>
@@ -122,6 +179,21 @@
                 <oui-tile-description
                     data-ng-bind="$ctrl.job.resources.gpu"
                 ></oui-tile-description>
+            </oui-tile-definition>
+            <oui-tile-definition
+                data-term="{{:: 'pci_projects_project_training_jobs_price' | translate  }}"
+            >
+                <oui-tile-description>
+                    ~=
+                    <ovh-manager-catalog-price
+                        data-price="$ctrl.getPrice($ctrl.job.totalRuntime / 3600)"
+                        data-tax="$ctrl.getTax($ctrl.job.totalRuntime / 3600)"
+                        data-user="$ctrl.user"
+                        data-perform-rounding="false"
+                        data-maximum-fraction-digits="3"
+                    >
+                    </ovh-manager-catalog-price>
+                </oui-tile-description>
             </oui-tile-definition>
         </oui-tile>
     </div>

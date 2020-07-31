@@ -10,6 +10,10 @@ export default class Job {
     state,
     updatedOn,
     region,
+    accessUrl,
+    resourceUsageUrl,
+    // eslint-disable-next-line no-unused-vars
+    totalRuntime,
   }) {
     Object.assign(this, {
       command,
@@ -22,6 +26,9 @@ export default class Job {
       state,
       updatedOn,
       region,
+      accessUrl,
+      resourceUsageUrl,
+      totalRuntime: 1000,
     });
   }
 

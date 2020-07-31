@@ -5,12 +5,8 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: /* @ngInject */ (jobId) => jobId,
       jobId: /* @ngInject */ ($transition$) => $transition$.params().jobId,
-      job: /* @ngInject */ (
-        PciProjectTrainingJobsService,
-        projectId,
-        jobId,
-      ) => {
-        return PciProjectTrainingJobsService.get(projectId, jobId);
+      job: /* @ngInject */ (PciProjectTrainingJobService, projectId, jobId) => {
+        return PciProjectTrainingJobService.get(projectId, jobId);
       },
       goToJobKill: /* @ngInject */ ($state, projectId, jobId) => () =>
         $state.go('pci.projects.project.training.jobs.kill', {

@@ -5,7 +5,6 @@ export default {
   controller,
   template,
   bindings: {
-    jobList: '<',
     job: '<',
     jobInfo: '<',
     jobKill: '<',
@@ -15,5 +14,8 @@ export default {
     regions: '<',
     jobInfoLink: '<',
     refreshState: '<',
+    jobList: '<',
+    getPrice: '<',
+    user: '<',
   },
 };

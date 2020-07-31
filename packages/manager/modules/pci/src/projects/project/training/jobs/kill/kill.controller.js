@@ -2,10 +2,8 @@ import get from 'lodash/get';
 
 export default class PciTrainingJobsKillController {
   /* @ngInject */
-  constructor($translate, CucCloudMessage, CucRegionService) {
+  constructor($translate) {
     this.$translate = $translate;
-    this.CucCloudMessage = CucCloudMessage;
-    this.CucRegionService = CucRegionService;
   }
 
   $onInit() {

@@ -2,15 +2,12 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.training.jobs', {
     url: '/jobs',
     component: 'pciProjectTrainingJobsComponent',
-    redirectTo: {
-      state: 'pci.projects.project.training.jobs.list',
-    },
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_projects_project_training_jobs_title'),
-      job: /* @ngInject */ (PciProjectTrainingJobsService, projectId) => (
+      job: /* @ngInject */ (PciProjectTrainingJobService, projectId) => (
         jobId,
-      ) => PciProjectTrainingJobsService.get(projectId, jobId),
+      ) => PciProjectTrainingJobService.get(projectId, jobId),
       jobInfo: /* @ngInject */ ($state, projectId) => (jobId) =>
         $state.go('pci.projects.project.training.jobs.info', {
           projectId,
@@ -30,6 +27,11 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('pci.projects.project.training.jobs.submit', {
           projectId,
         }),
+      getPrice: /* @ngInject */ (pricesCatalog) => (qty) =>
+        pricesCatalog[`ai-serving-engine.ml1-c-xl.hour.consumption`]
+          .priceInUcents * qty,
+      getTax: /* @ngInject */ (pricesCatalog) => (qty) =>
+        pricesCatalog[`ai-serving-engine.ml1-c-xl.hour.consumption`].tax * qty,
       goToJobs: ($state, CucCloudMessage, projectId) => (
         message = false,
         type = 'success',

@@ -27,11 +27,11 @@ export default /* @ngInject */ ($stateProvider) => {
       isAuthorized: /* @ngInject */ (PciProjectTrainingService, projectId) =>
         PciProjectTrainingService.isAuthorized(projectId),
       jobsLink: /* @ngInject */ ($state, projectId) =>
-        $state.href('pci.projects.project.training.jobs.list', {
+        $state.href('pci.projects.project.training.jobs', {
           projectId,
         }),
       dataLink: /* @ngInject */ ($state, projectId) =>
-        $state.href('pci.projects.project.training.data.list', {
+        $state.href('pci.projects.project.training.data', {
           projectId,
         }),
       installLink: /* @ngInject */ ($state, projectId) =>
