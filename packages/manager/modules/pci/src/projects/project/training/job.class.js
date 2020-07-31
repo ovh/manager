@@ -12,7 +12,6 @@ export default class Job {
     region,
     accessUrl,
     resourceUsageUrl,
-    // eslint-disable-next-line no-unused-vars
     totalRuntime,
   }) {
     Object.assign(this, {
@@ -28,7 +27,7 @@ export default class Job {
       region,
       accessUrl,
       resourceUsageUrl,
-      totalRuntime: 1000,
+      totalRuntime,
     });
   }
 
