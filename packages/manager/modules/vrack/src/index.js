@@ -14,7 +14,7 @@ angular
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-          return import('./vrack.module').then((mod) =>
+          return import('./vrack/vrack.module').then((mod) =>
             $ocLazyLoad.inject(mod.default || mod),
           );
         },
