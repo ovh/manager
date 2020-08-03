@@ -63,6 +63,7 @@ import errorPage from './error';
 import expiredPage from './expired';
 
 import dedicatedServer from './dedicated/server';
+import dedicatedNas from './dedicated/nas';
 import userContracts from './user-contracts';
 import otrs from './otrs';
 
@@ -85,6 +86,7 @@ angular
       'controllers',
       cdn,
       dedicatedCloud,
+      dedicatedNas,
       dedicatedServer,
       dedicatedUniverseComponents,
       'directives',
