@@ -42,6 +42,7 @@ import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 
 import cloudUniverseComponents from '../cloudUniverseComponents';
 
+import cda from './cda';
 import errorPage from './error/error.module';
 import metrics from './dbaas/dbaas-metrics';
 
@@ -114,6 +115,7 @@ angular
       ovhManagerBanner,
       ovhManagerNavbar,
       ovhManagerServerSidebar,
+      cda,
       errorPage,
       metrics,
       __NG_APP_INJECTIONS__,
