@@ -19,4 +19,8 @@ import './index.scss';
 
 Environment.setRegion(__WEBPACK_REGION__);
 
-angular.module('nashaApp', [ovhManagerNasha]);
+angular.module('nashaApp', [ovhManagerNasha]).config(
+  /* @ngInject */ ($urlRouterProvider) => {
+    $urlRouterProvider.otherwise('/paas/nasha');
+  },
+);
