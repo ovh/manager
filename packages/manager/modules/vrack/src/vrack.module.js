@@ -25,7 +25,7 @@ import routing from './vrack.routing';
 import vrackAdd from './add';
 import vrackMoveDialog from './move-dialog';
 
-const moduleName = 'ovhManagerVrack';
+const moduleName = 'ovhManagerVrackDetails';
 
 angular
   .module(moduleName, [
