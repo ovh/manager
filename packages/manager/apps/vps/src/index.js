@@ -31,4 +31,9 @@ angular
     /* @ngInject */ ($qProvider) => {
       $qProvider.errorOnUnhandledRejections(false);
     },
+  )
+  .config(
+    /* @ngInject */ ($urlRouterProvider) => {
+      $urlRouterProvider.otherwise('/iaas/vps');
+    },
   );
