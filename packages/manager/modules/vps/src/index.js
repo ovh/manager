@@ -18,6 +18,16 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
             OvhApiMe.v6().get().$promise,
         },
       })
+      .state('vps.index.**', {
+        url: '',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+          return import('./vps/vps.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
+      })
       .state('vps.detail.**', {
         url: '/{serviceName}',
         lazyLoad: ($transition$) => {
