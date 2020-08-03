@@ -1,6 +1,7 @@
 /* eslint-disable import/no-webpack-loader-syntax, import/extensions */
 
 import 'script-loader!jquery';
+import 'script-loader!moment/min/moment.min.js';
 
 /* eslint-enable import/no-webpack-loader-syntax, import/extensions */
 
