@@ -36,4 +36,9 @@ angular
       $qProvider.errorOnUnhandledRejections(false);
     },
   )
-  .config(momentConfiguration);
+  .config(momentConfiguration)
+  .config(
+    /* @ngInject */ ($urlRouterProvider) => {
+      $urlRouterProvider.otherwise('/network/iplb');
+    },
+  );
