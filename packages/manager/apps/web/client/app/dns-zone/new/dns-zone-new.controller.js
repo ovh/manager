@@ -27,7 +27,7 @@ export default class newDnsZoneCtrl {
       `${this.user.ovhSubsidiary}.guides.dnsForExternalDomain`,
     );
     this.configuration = {
-      zone: null,
+      zone: '',
       template: this.TEMPLATES.BASIC,
     };
     this.alerts = {
