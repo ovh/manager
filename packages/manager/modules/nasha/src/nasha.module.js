@@ -26,8 +26,6 @@ import partition from './partition';
 import routing from './routing';
 
 import './styles.less';
-import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
-import '@ovh-ux/ui-kit/dist/css/oui.css';
 import './add/styles.less';
 
 const moduleName = 'ovhManagerNasha';
