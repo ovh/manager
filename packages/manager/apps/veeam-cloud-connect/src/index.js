@@ -18,4 +18,9 @@ angular
       const defaultLanguage = Environment.getUserLanguage();
       moment.locale(defaultLanguage);
     },
+  )
+  .config(
+    /* @ngInject */ ($urlRouterProvider) => {
+      $urlRouterProvider.otherwise('/paas/veeam');
+    },
   );
