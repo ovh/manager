@@ -22,6 +22,16 @@ angular
           url: '/paas/nasha/:nashaId',
           lazyLoad,
         })
+        .state('nashas.**', {
+          url: '/paas/nasha',
+          lazyLoad: ($transition$) => {
+            const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+            return import('./nashas/nasha.module').then((mod) =>
+              $ocLazyLoad.inject(mod.default || mod),
+            );
+          },
+        })
         .state('nasha-order-complete.**', {
           url: '/nasha/order/complete',
           lazyLoad,
