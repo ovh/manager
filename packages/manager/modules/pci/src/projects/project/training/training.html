@@ -5,6 +5,14 @@
     >
         <oui-header-tabs>
             <oui-header-tabs-item
+                data-active="$ctrl.currentActiveLink() === $ctrl.dashboardLink"
+                data-href="{{:: $ctrl.dashboardLink }}"
+            >
+                <span
+                    data-translate="pci_projects_project_training_dashboard_title"
+                ></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
                 data-active="$ctrl.currentActiveLink() === $ctrl.installLink"
                 data-href="{{:: $ctrl.installLink }}"
             >

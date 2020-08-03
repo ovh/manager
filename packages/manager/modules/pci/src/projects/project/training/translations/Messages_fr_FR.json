@@ -4,5 +4,15 @@
   "pci_projects_project_training_parter_cli_name": "eai",
   "pci_projects_project_training_install_title": "Initialisation",
   "pci_projects_project_training_jobs_title": "Tâches",
-  "pci_projects_project_training_data_title": "Données"
+  "pci_projects_project_training_data_title": "Données",
+  "pci_projects_project_training_jobs_list_submit": "Lancer une nouvelle tâche",
+  "pci_projects_project_training_data_list_add": "Attacher un conteneur de données",
+  "pci_projects_project_training_dashboard_title": "Accueil",
+
+  "pci_projects_project_training_jobs_id": "ID",
+  "pci_projects_project_training_jobs_creator": "Utilisateur",
+  "pci_projects_project_training_jobs_state": "État",
+  "pci_projects_project_training_jobs_image": "Image Docker",
+  "pci_projects_project_training_jobs_region": "Region",
+  "pci_projects_project_training_jobs_created": "Création"
 }

@@ -11,6 +11,7 @@ import labs from '../../../components/project/labs';
 import install from './install';
 import jobs from './jobs';
 import data from './data';
+import dashboard from './dashboard';
 
 import onboarding from './onboarding';
 import component from './training.component';
@@ -35,6 +36,7 @@ angular
     jobs,
     onboarding,
     data,
+    dashboard,
   ])
   .config(routing)
   .component('pciProjectTraining', component)

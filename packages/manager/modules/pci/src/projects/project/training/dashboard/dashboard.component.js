@@ -1,22 +1,12 @@
-import controller from './training.controller';
-import template from './training.html';
+import controller from './dashboard.controller';
+import template from './dashboard.html';
 
 export default {
   controller,
   template,
   bindings: {
-    installLink: '<',
-    jobInfoLink: '<',
-    jobsLink: '<',
-    currentActiveLink: '<',
-    dataLink: '<',
-    allUsers: '<',
-    regions: '<',
-    refreshState: '<',
     trainingFeatures: '<',
     registry: '<',
-    deleteRegistry: '<',
-    saveRegistry: '<',
     goToJobSubmit: '<',
     goToDataCreate: '<',
     goToDashboard: '<',
@@ -25,6 +15,9 @@ export default {
     registryAttachLink: '<',
     goToRegistryDetach: '<',
     registryDetachLink: '<',
+    installLink: '<',
+    jobList: '<',
+    refreshState: '<',
     submitJobLink: '<',
   },
 };

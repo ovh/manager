@@ -52,6 +52,53 @@ export default class PciProjectTrainingService {
       }).$promise;
   }
 
+  getFeatures(serviceName) {
+    /* return this.OvhApiCloudProjectAi.Capabilities()
+      .Training()
+      .Feature()
+      .v6()
+      .query({
+        serviceName,
+      }).$promise; */
+    return Promise.resolve({ registry: true, dashboard: true });
+  }
+
+  getRegistry(serviceName) {
+    /* return this.OvhApiCloudProjectAi.Capabilities()
+      .Training()
+      .Registry()
+      .v6()
+      .query({
+        serviceName,
+      }).$promise; */
+    return Promise.resolve({
+      custom: false,
+      url: 'al9csdxp.gra5.container-registry.ovh.net',
+      username: 'toto',
+    });
+  }
+
+  saveRegistry(serviceName, url, username, password) {
+    const registrySpec = { url, username, password };
+    /* return this.OvhApiCloudProjectAi.Capabilities()
+      .Training()
+      .Registry()
+      .v6()
+      .save({ serviceName }, registrySpec).$promise; */
+    return Promise.resolve(registrySpec);
+  }
+
+  deleteRegistry(serviceName) {
+    /* return this.OvhApiCloudProjectAi.Capabilities()
+      .Training()
+      .Registry()
+      .v6()
+      .delete({
+        serviceName,
+      }).$promise; */
+    return Promise.resolve();
+  }
+
   getPricesFromCatalog(serviceName) {
     return this.CucPriceHelper.getPrices(serviceName);
   }

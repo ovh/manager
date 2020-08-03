@@ -19,7 +19,7 @@ export default /* @ngInject */ ($stateProvider) => {
             return { state: 'pci.projects.project.training.onboarding' };
           }
 
-          return { state: 'pci.projects.project.training.jobs' };
+          return { state: 'pci.projects.project.training.dashboard' };
         }),
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
@@ -30,12 +30,48 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('pci.projects.project.training.jobs', {
           projectId,
         }),
+      goToJobSubmit: /* @ngInject */ ($state, projectId) => () =>
+        $state.go('pci.projects.project.training.jobs.submit', {
+          projectId,
+        }),
+      submitJobLink: /* @ngInject */ ($state, projectId) =>
+        $state.href('pci.projects.project.training.jobs.submit', {
+          projectId,
+        }),
+      goToDataCreate: /* @ngInject */ ($state, projectId) => () =>
+        $state.go('pci.projects.project.training.data.add', {
+          projectId,
+        }),
       dataLink: /* @ngInject */ ($state, projectId) =>
         $state.href('pci.projects.project.training.data', {
           projectId,
         }),
       installLink: /* @ngInject */ ($state, projectId) =>
         $state.href('pci.projects.project.training.install', {
+          projectId,
+        }),
+      dashboardLink: /* @ngInject */ ($state, projectId) =>
+        $state.href('pci.projects.project.training.dashboard', {
+          projectId,
+        }),
+      goToDashboard: /* @ngInject */ ($state, projectId) => () =>
+        $state.go('pci.projects.project.training.dashboard', {
+          projectId,
+        }),
+      goToRegistryAttach: /* @ngInject */ ($state, projectId) => () =>
+        $state.go('pci.projects.project.training.dashboard.attach-registry', {
+          projectId,
+        }),
+      registryAttachLink: /* @ngInject */ ($state, projectId) =>
+        $state.href('pci.projects.project.training.dashboard.attach-registry', {
+          projectId,
+        }),
+      goToRegistryDetach: /* @ngInject */ ($state, projectId) => () =>
+        $state.go('pci.projects.project.training.dashboard.detach-registry', {
+          projectId,
+        }),
+      registryDetachLink: /* @ngInject */ ($state, projectId) =>
+        $state.href('pci.projects.project.training.dashboard.detach-registry', {
           projectId,
         }),
       jobList: /* @ngInject */ (PciProjectTrainingJobService, projectId) =>
@@ -51,6 +87,27 @@ export default /* @ngInject */ ($stateProvider) => {
       regions: /* @ngInject */ (PciProjectTrainingService, projectId) => () =>
         PciProjectTrainingService.getRegions(projectId),
       refreshState: /* @ngInject */ ($state) => () => $state.reload(),
+      trainingFeatures: /* @ngInject */ (
+        PciProjectTrainingService,
+        projectId,
+      ) => PciProjectTrainingService.getFeatures(projectId),
+      registry: /* @ngInject */ (PciProjectTrainingService, projectId) =>
+        PciProjectTrainingService.getRegistry(projectId),
+      deleteRegistry: /* @ngInject */ (
+        PciProjectTrainingService,
+        projectId,
+      ) => () => PciProjectTrainingService.deleteRegistry(projectId),
+      saveRegistry: /* @ngInject */ (PciProjectTrainingService, projectId) => (
+        url,
+        username,
+        password,
+      ) =>
+        PciProjectTrainingService.saveRegistry(
+          projectId,
+          url,
+          username,
+          password,
+        ),
     },
   });
 };

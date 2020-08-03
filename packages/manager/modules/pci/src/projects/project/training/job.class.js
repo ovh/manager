@@ -57,4 +57,16 @@ export default class Job {
         return 'oui-status_info';
     }
   }
+
+  isSuccess() {
+    return this.state === 'SUCCEEDED';
+  }
+
+  isRunning() {
+    return this.state === 'RUNNING';
+  }
+
+  isFailed() {
+    return this.state === 'FAILED';
+  }
 }

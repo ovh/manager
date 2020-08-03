@@ -23,10 +23,6 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           jobId,
         }),
-      submitJobLink: /* @ngInject */ ($state, projectId) =>
-        $state.href('pci.projects.project.training.jobs.submit', {
-          projectId,
-        }),
       getPrice: /* @ngInject */ (pricesCatalog) => (qty) =>
         pricesCatalog[`ai-serving-engine.ml1-c-xl.hour.consumption`]
           .priceInUcents * qty,

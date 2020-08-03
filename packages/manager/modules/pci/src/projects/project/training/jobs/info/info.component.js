@@ -10,5 +10,6 @@ export default {
     user: '<',
     getTax: '<',
     getPrice: '<',
+    getClassForState: '<',
   },
 };

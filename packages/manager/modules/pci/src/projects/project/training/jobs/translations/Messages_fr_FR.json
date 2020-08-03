@@ -1,7 +1,4 @@
 {
-  "pci_projects_project_training_jobs_id": "ID",
-  "pci_projects_project_training_jobs_creator": "Utilisateur",
-  "pci_projects_project_training_jobs_state": "État",
   "pci_projects_project_training_jobs_state_QUEUING": "En attente",
   "pci_projects_project_training_jobs_state_CANCELLED": "Annulé",
   "pci_projects_project_training_jobs_state_CANCELLING": "Annulation",
@@ -10,11 +7,8 @@
   "pci_projects_project_training_jobs_state_SUCCEEDED": "Terminé",
   "pci_projects_project_training_jobs_state_QUEUED": "En Attente",
   "pci_projects_project_training_jobs_state_RUNNING": "En cours",
-  "pci_projects_project_training_jobs_image": "Image Docker",
-  "pci_projects_project_training_jobs_region": "Region",
   "pci_projects_project_training_jobs_info": "Détails",
   "pci_projects_project_training_jobs_kill": "Arrêter",
-  "pci_projects_project_training_jobs_created": "Création",
   "pci_projects_project_training_jobs_command": "Commande",
   "pci_projects_project_training_jobs_cpu": "CPU",
   "pci_projects_project_training_jobs_ram": "RAM (Go)",
@@ -31,7 +25,6 @@
   "pci_projects_project_training_jobs_time": "Temps d'éxecution",
 
   "pci_projects_project_training_jobs_list_message_1": "Pour accéder cette liste de tâches via la client, lancer la commande suivante : ",
-  "pci_projects_project_training_jobs_list_submit": "Lancer une nouvelle tâche",
 
   "pci_projects_project_training_jobs_info_title_1": "Informations",
   "pci_projects_project_training_jobs_info_title_2": "Container",
