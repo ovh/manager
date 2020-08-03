@@ -26,7 +26,6 @@ import './nas/details/partition/snapshot/nas-partition-snapshot.controller';
 import './nas/details/partition/snapshot/nas-partition-snapshot.routes';
 import './nas/details/partition/update/nas-partition-update.controller';
 import './nas/nas.controller';
-import './nas/nas.routes';
 import './nas/nas.service';
 import './nas/order/nas-order.controller';
 import './nas/order/nas-order.routes';
