@@ -66,6 +66,7 @@ import errorPage from './error';
 import ovhManagerPccResourceUpgrade from './dedicatedCloud/resource/upgrade';
 
 import dedicatedServer from './dedicated/server';
+import dedicatedNas from './dedicated/nas';
 
 import datacenterBackup from './dedicatedCloud/datacenter/backup';
 import userContracts from './user-contracts';
@@ -96,6 +97,7 @@ angular
       dedicatedCloudTerminate,
       dedicatedCloudDashboard,
       dedicatedCloudOperationExecutionDateEdit,
+      dedicatedNas,
       dedicatedServer,
       dedicatedUniverseComponents,
       'directives',
