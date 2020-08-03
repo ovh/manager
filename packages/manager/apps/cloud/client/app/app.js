@@ -45,6 +45,7 @@ import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 import cloudUniverseComponents from '../cloudUniverseComponents';
 
 import errorPage from './error/error.module';
+import metrics from './dbaas/dbaas-metrics';
 
 const moduleName = 'managerApp';
 
@@ -118,6 +119,7 @@ angular
       ovhManagerNavbar,
       ovhManagerServerSidebar,
       errorPage,
+      metrics,
       __NG_APP_INJECTIONS__,
     ].filter(isString),
   )
