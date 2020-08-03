@@ -4,6 +4,7 @@ import isString from 'lodash/isString';
 import set from 'lodash/set';
 import { Environment } from '@ovh-ux/manager-config';
 import ovhManagerBetaPreference from '@ovh-ux/manager-beta-preference';
+import ovhManagerAccountSidebar from '@ovh-ux/manager-account-sidebar';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ovhManagerDashboard from '@ovh-ux/manager-telecom-dashboard';
 import ovhManagerFreefax from '@ovh-ux/manager-freefax';
@@ -102,6 +103,7 @@ angular
       ngOvhUiConfirmModal,
       'ovh-api-services',
       'ovh-ng-input-password',
+      ovhManagerAccountSidebar,
       ovhManagerBetaPreference,
       ovhManagerCore,
       ovhManagerDashboard,
@@ -270,9 +272,10 @@ angular
   )
   .controller('TelecomAppCtrl', TelecomAppCtrl)
   .run(
-    /* @ngInject */ ($state) => {
+    /* @ngInject */ ($rootScope, $state) => {
       $state.defaultErrorHandler((error) => {
         if (error.type === RejectType.ERROR) {
+          $rootScope.$emit('ovh::sidebar::hide');
           $state.go(
             'telecomError',
             {

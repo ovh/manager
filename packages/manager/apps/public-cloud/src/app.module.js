@@ -19,6 +19,7 @@ import get from 'lodash/get';
 import has from 'lodash/has';
 
 import navbar from '@ovh-ux/manager-navbar';
+import ovhManagerAccountSidebar from '@ovh-ux/manager-account-sidebar';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ovhManagerMfaEnrollment from '@ovh-ux/mfa-enrollment';
 import ovhManagerPci from '@ovh-ux/manager-pci';
@@ -59,6 +60,7 @@ angular
       ngOvhUserPref,
       navbar,
       'oui',
+      ovhManagerAccountSidebar,
       ovhManagerCore,
       ovhManagerMfaEnrollment,
       ovhManagerPci,
@@ -87,9 +89,10 @@ angular
     },
   )
   .run(
-    /* @ngInject */ ($state) => {
+    /* @ngInject */ ($rootScope, $state) => {
       $state.defaultErrorHandler((error) => {
         if (error.type === RejectType.ERROR) {
+          $rootScope.$emit('ovh::sidebar::hide');
           $state.go(
             'pci.error',
             {
