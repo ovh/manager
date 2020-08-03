@@ -12,4 +12,9 @@ import { momentConfiguration } from './config';
 
 angular
   .module('veeamEnterpriseApp', [ovhManagerCore, ovhManagerVeeamEnterprise])
-  .config(momentConfiguration);
+  .config(momentConfiguration)
+  .config(
+    /* @ngInject */ ($urlRouterProvider) => {
+      $urlRouterProvider.otherwise('/paas/veeam-enterprise');
+    },
+  );
