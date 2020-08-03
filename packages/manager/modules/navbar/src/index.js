@@ -2,7 +2,6 @@ import angular from 'angular';
 import '@ovh-ux/ng-at-internet';
 import '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/manager-core';
-import '@ovh-ux/manager-account-sidebar';
 import 'moment';
 import 'ovh-api-services';
 import '@ovh-ux/ui-kit';
@@ -24,7 +23,6 @@ angular
     'ngAtInternet',
     'ngTranslateAsyncLoader',
     'ovhManagerCore',
-    'ovhManagerAccountSidebar',
     'ovh-api-services',
     'oui',
     languageMenu,

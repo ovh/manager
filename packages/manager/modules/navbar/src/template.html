@@ -60,16 +60,6 @@
     </oui-navbar-toggler>
 </oui-navbar>
 <div
-    data-ng-if="$ctrl.user"
-    class="ovh-sidebar-wrapper"
-    data-ng-class="{
-        'sidebar-expand': $ctrl.sidebarExpand,
-    }"
-    data-ng-attr-aria-expanded="{{ $ctrl.isSidebarVisible }}"
->
-    <ovh-manager-account-sidebar me="$ctrl.user"></ovh-manager-account-sidebar>
-</div>
-<div
     class="tour-backdrop w-100 h-100 d-none d-lg-block"
     data-ng-if="$ctrl.shouldShowWalkMe"
     data-ng-click="$ctrl.endWalkMe()"
