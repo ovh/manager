@@ -18,6 +18,16 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
           format: 'json',
         },
       })
+      .state('veeam-cloud-connect.index.**', {
+        url: '',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+          return import('./veeam/veeam.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
+      })
       .state('veeam-cloud-connect.detail.**', {
         url: '/{serviceName}',
         lazyLoad: ($transition$) => {

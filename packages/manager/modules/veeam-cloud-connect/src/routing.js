@@ -5,6 +5,7 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
     .state('veeam-cloud-connect.detail', {
       url: '/{serviceName}',
+      redirectTo: 'veeam-cloud-connect.detail.dashboard',
       views: {
         veeamContainer: {
           component: 'ovhManagerVeeamCloudConnectComponent',
