@@ -4,8 +4,8 @@ import dashboardTemplate from './dashboard/template.html';
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
     .state('veeam-enterprise', {
-      abstract: true,
       url: '/paas/veeam-enterprise/{serviceName}',
+      redirectTo: 'veeam-enterprise.dashboard',
       template,
       controller: 'VeeamEnterpriseCtrl',
       controllerAs: '$ctrl',

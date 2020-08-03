@@ -21,7 +21,7 @@ import '@ovh-ux/ui-kit/dist/css/oui.css';
 import './index.less';
 import './index.scss';
 
-const moduleName = 'ovhManagerVeeamEnterprise';
+const moduleName = 'ovhManagerVeeamEnterpriseDashboard';
 
 angular
   .module(moduleName, [
