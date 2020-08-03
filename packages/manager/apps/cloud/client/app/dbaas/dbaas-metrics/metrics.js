@@ -6,19 +6,6 @@ angular.module('managerApp').config(($stateProvider) => {
   };
 
   $stateProvider
-    .state('dbaas.metrics', {
-      url: '/metrics',
-      views: {
-        dbaasContainer: {
-          templateUrl: 'app/dbaas/dbaas-metrics/metrics.html',
-        },
-      },
-      abstract: true,
-      translations: {
-        value: ['.'],
-        format: 'json',
-      },
-    })
     .state('dbaas.metrics.detail', {
       url: '/{serviceName}',
       views: {
