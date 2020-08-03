@@ -1,3 +1,12 @@
+## [6.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax-app@6.0.1...@ovh-ux/manager-freefax-app@6.0.2) (2020-08-03)
+
+
+### Bug Fixes
+
+* **deps:** add missing @ovh-ux/manager-ng-layout-helpers dependency ([#3363](https://github.com/ovh/manager/issues/3363)) ([e5557d0](https://github.com/ovh/manager/commit/e5557d07a50a89c37833fa88c5369597bf726a0d))
+
+
+
 ## [6.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax-app@6.0.0...@ovh-ux/manager-freefax-app@6.0.1) (2020-07-29)
 
 
