@@ -66,6 +66,7 @@ import errorPage from './error';
 import expiredPage from './expired';
 
 import dedicatedServer from './dedicated/server';
+import dedicatedNas from './dedicated/nas';
 import userContracts from './user-contracts';
 
 import { TRACKING } from './at-internet.constants';
@@ -88,6 +89,7 @@ angular
       cdn,
       contactsService,
       dedicatedCloud,
+      dedicatedNas,
       dedicatedServer,
       dedicatedUniverseComponents,
       'directives',
