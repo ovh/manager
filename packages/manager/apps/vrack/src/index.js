@@ -11,6 +11,9 @@ import 'script-loader!messenger/build/js/messenger-theme-flat.js';
 import angular from 'angular';
 import ovhManagerVrack from '@ovh-ux/manager-vrack';
 
+import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
+import '@ovh-ux/ui-kit/dist/css/oui.css';
+
 import './index.scss';
 
 angular.module('vrackApp', [ovhManagerVrack]).config(

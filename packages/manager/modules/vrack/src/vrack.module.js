@@ -11,8 +11,6 @@ import '@ovh-ux/ui-kit';
 
 import 'font-awesome/css/font-awesome.css';
 import 'ovh-manager-webfont/dist/css/ovh-font.css';
-import '@ovh-ux/ui-kit/dist/css/oui.css';
-import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 
 import './vrack.less';
 import './vrack-mapper.less';
