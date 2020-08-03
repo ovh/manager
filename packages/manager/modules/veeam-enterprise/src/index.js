@@ -16,6 +16,17 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
         );
       },
     });
+
+    $stateProvider.state('veeams-enterprise.**', {
+      url: '/paas/veeam-enterprise',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./veeam/veeam.module').then((mod) =>
+          $ocLazyLoad.inject(mod.default || mod),
+        );
+      },
+    });
   },
 );
 export default moduleName;
