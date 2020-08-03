@@ -22,7 +22,7 @@ import './index.less';
 
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 
-const moduleName = 'ovhManagerVeeamCloudConnect';
+const moduleName = 'ovhManagerVeeamCloudConnectDashboard';
 
 angular
   .module(moduleName, [
