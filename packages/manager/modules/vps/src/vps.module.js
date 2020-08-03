@@ -33,7 +33,6 @@ import ovhManagerVpsUpgrade from './upgrade';
 import ovhManagerVpsVeeam from './veeam';
 import ovhManagerVpsWindows from './windows';
 
-import '@ovh-ux/ui-kit/dist/css/oui.css';
 import './vps.less';
 import './vps.scss';
 
