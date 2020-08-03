@@ -20,8 +20,6 @@ import updateOffer from './dashboard/update-offer/veeam-update-offer.component';
 
 import './index.less';
 
-import '@ovh-ux/ui-kit/dist/css/oui.css';
-
 const moduleName = 'ovhManagerVeeamCloudConnect';
 
 angular

@@ -6,6 +6,8 @@ import ovhManagerCore from '@ovh-ux/manager-core';
 import ovhManagerVeeamCloudConnect from '@ovh-ux/manager-veeam-cloud-connect';
 import { Environment } from '@ovh-ux/manager-config';
 
+import '@ovh-ux/ui-kit/dist/css/oui.css';
+
 Environment.setRegion(__WEBPACK_REGION__);
 
 angular
