@@ -17,10 +17,10 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-support-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "@ovh-ux/manager-account-sidebar": "^1.0.0 || ^2.0.0",
+    "@ovh-ux/manager-account-sidebar": "^2.0.0 || ^3.0.0",
     "@ovh-ux/manager-config": "^0.4.0 || ^1.0.0",
     "@ovh-ux/manager-core": "^9.0.0 || ^10.0.0",
-    "@ovh-ux/manager-navbar": "^3.0.0 || ^4.0.0",
+    "@ovh-ux/manager-navbar": "^4.0.0 || ^5.0.0",
     "@ovh-ux/manager-support": "^0.6.0 || ^0.7.0 || ^1.0.0",
     "@ovh-ux/ng-at-internet": "^5.0.1",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.7",
