@@ -9,6 +9,7 @@ import ovhManagerCore from '@ovh-ux/manager-core';
 import ovhManagerVeeamEnterprise from '@ovh-ux/manager-veeam-enterprise';
 
 import { momentConfiguration } from './config';
+import '@ovh-ux/ui-kit/dist/css/oui.css';
 
 angular
   .module('veeamEnterpriseApp', [ovhManagerCore, ovhManagerVeeamEnterprise])
