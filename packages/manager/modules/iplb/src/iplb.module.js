@@ -35,8 +35,6 @@ import IplbZoneModule from './zone';
 
 import routing from './routing';
 
-import '@ovh-ux/ui-kit/dist/css/oui.css';
-import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 import './iplb.less';
 import './iplb.scss';
 
