@@ -17,4 +17,9 @@ angular.module('vrackApp', [ovhManagerVrack]).config(
   /* @ngInject */ ($qProvider) => {
     $qProvider.errorOnUnhandledRejections(false);
   },
+  )
+  .config(
+    /* @ngInject */ ($urlRouterProvider) => {
+      $urlRouterProvider.otherwise('/vrack');
+    },
 );
