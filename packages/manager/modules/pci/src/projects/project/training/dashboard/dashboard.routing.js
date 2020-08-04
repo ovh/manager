@@ -5,6 +5,14 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_projects_project_training_dashboard_title'),
+      usage: /* @ngInject */ (OvhApiCloudProjectUsageCurrent, projectId) =>
+        OvhApiCloudProjectUsageCurrent.v6().get({ serviceName: projectId }),
+      currencySymbol: /* @ngInject */ (OvhApiMe) =>
+        OvhApiMe.v6()
+          .get()
+          .$promise.then((me) => {
+            return me.currency.symbol;
+          }),
     },
   });
 };

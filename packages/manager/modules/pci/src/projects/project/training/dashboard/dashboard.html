@@ -165,7 +165,11 @@
         </div>
         <div class="col-md-4">
             <oui-tile data-heading="Facturation en cours">
-                XX,XX € HT consommé ce mois
+                {{:: $ctrl.resourceUsage }} {{:: $ctrl.currencySymbol }}
+                <span
+                    data-translate="pci_projects_project_training_dashboard_billing_month"
+                >
+                </span>
             </oui-tile>
         </div>
     </div>
