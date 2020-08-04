@@ -1,6 +1,7 @@
 import defaultsDeep from 'lodash/defaultsDeep';
-import head from 'lodash/head';
 import set from 'lodash/set';
+
+import { Environment } from '@ovh-ux/manager-config';
 
 angular.module('managerApp').run(($translate, asyncLoader) => {
   asyncLoader.addTranslations(
@@ -139,10 +140,7 @@ angular
 
       const defaultOptions = {
         header: false,
-        locale:
-          localStorage && localStorage.getItem('univers-selected-language')
-            ? head(localStorage.getItem('univers-selected-language').split('_'))
-            : 'fr',
+        locale: Environment.getUserLanguage(),
         firstDay: 1,
         editable: false, // todo manage drag and drop
         selectable: true,
