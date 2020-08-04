@@ -21,7 +21,7 @@
 
   "pci_projects_project_training_data_add_select_region": "Choisir une région sur laquelle vos données seront disponible",
   "pci_projects_project_training_data_add_select_obj_container": "Choisir les données",
-  "pci_projects_project_training_data_add_select_obj_container_tips": "Choisir un conteneur de données (au sein de l'Object Storage du projet) à synchroniser avec les données des tâches",
+  "pci_projects_project_training_data_add_select_obj_container_tips": "Choisir un conteneur de données (au sein de l'Object Storage du projet) à synchroniser avec les données du job",
   "pci_projects_project_training_data_add_select_user": "Choisir un utilisateur",
   "pci_projects_project_training_data_add_select_user_tips": "Choisir l'utilisateur à qui appartiendra la donnée",
   "pci_projects_project_training_data_add_select_name": "Choisir le nom de la data",
