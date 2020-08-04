@@ -54,51 +54,56 @@ export default class PciProjectTrainingService {
   }
 
   getFeatures(serviceName) {
-    /* return this.OvhApiCloudProjectAi.Capabilities()
+    return this.OvhApiCloudProjectAi.Capabilities()
       .Training()
       .Feature()
       .v6()
-      .query({
+      .get({
         serviceName,
-      }).$promise; */
-    return Promise.resolve({ registry: true, dashboard: true });
+      })
+      .$promise.catch(() => {
+        return { registry: false, dashboard: false };
+      });
   }
 
   getRegistry(serviceName) {
-    /* return this.OvhApiCloudProjectAi.Capabilities()
-      .Training()
+    return this.OvhApiCloudProjectAi.Training()
       .Registry()
       .v6()
-      .query({
+      .get({
         serviceName,
-      }).$promise; */
-    if (this.currentRegistry != null) {
+      })
+      .$promise.catch(() => {
+        return { custom: false };
+      });
+
+    /* if (this.currentRegistry != null) {
       return Promise.resolve(this.currentRegistry);
-    }
-    return Promise.resolve({ custom: false });
+    } else {
+      return Promise.resolve({ custom: false });
+    } */
   }
 
   saveRegistry(serviceName, url, username, password) {
-    const registrySpec = { custom: true, url, username, password };
-    /* return this.OvhApiCloudProjectAi.Capabilities()
-      .Training()
+    return this.OvhApiCloudProjectAi.Training()
       .Registry()
       .v6()
-      .save({ serviceName }, registrySpec).$promise; */
-    this.currentRegistry = registrySpec;
-    return Promise.resolve(registrySpec);
+      .save({ serviceName }, { url, username, password }).$promise;
+
+    /* this.currentRegistry = { custom: true, url, username, password };
+    return Promise.resolve(this.currentRegistry); */
   }
 
   deleteRegistry(serviceName) {
-    /* return this.OvhApiCloudProjectAi.Capabilities()
-      .Training()
+    return this.OvhApiCloudProjectAi.Training()
       .Registry()
       .v6()
       .delete({
         serviceName,
-      }).$promise; */
-    this.currentRegistry = null;
-    return Promise.resolve();
+      }).$promise;
+
+    /* this.currentRegistry = null;
+    return Promise.resolve(); */
   }
 
   getPricesFromCatalog(serviceName) {
