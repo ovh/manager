@@ -14,7 +14,7 @@
   "kube_nodes_flavor": "Modello di istanza",
   "kube_nodes_flavor_error": "Si è verificato un errore durante il caricamento del tipo di istanza associato",
   "kube_nodes_project_error": "Si è verificato un errore durante il caricamento del progetto associato",
-  "kube_nodes_description_project_1": "Il tuo cluster Kubernetes utilizza nodi per ospitare i tuoi container e servizi. Tutti i nodi saranno avviati nel progetto Public Cloud {{ description }} (modificabile in un secondo momento).",
+  "kube_nodes_description_project_1": "Il cluster Kubernetes utilizza nodi per ospitare container e servizi. Tutti i nodi saranno avviati nel progetto Public Cloud {{ description }} (sarà possibile modificare questa opzione in un secondo momento).",
   "kube_nodes_description_project_2": "Queste istanze vengono fornite con fatturazione oraria standard. Visualizza i dettagli sulla fatturazione nel tuo progetto Public Cloud e scegli se attivare il forfait mensile.",
   "kube_nodes_quota_description": "Per una migliore gestione dei tuoi consumi Cloud, abbiamo limitato le risorse per il tuo progetto.",
   "kube_nodes_quota_more": "Clicca sul pulsante qui sotto per richiedere più risorse.",
@@ -45,5 +45,7 @@
   "kube_nodes_delete_many": "Elimina nodi",
   "kube_nodes_delete_select_nodes": "Seleziona il numero di nodi da eliminare",
   "kube_nodes_add_nodes": "Aggiungi nodi",
-  "kube_nodes_delete_nodes": "Elimina nodi"
+  "kube_nodes_delete_nodes": "Elimina nodi",
+  "kube_nodes_status_RESIZING": "Ridimensionamento",
+  "kube_nodes_common_actions": "Azioni"
 }
