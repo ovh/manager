@@ -6,7 +6,7 @@
   "kube_list_cluster_manage": "Gestionar el cluster",
   "kube_list_cluster_create": "Crear un cluster Kubernetes",
   "kube_list_error": "Se ha producido un error al cargar los clusters.",
-  "kube_common_save": "Guardar",
+  "kube_common_save": "Aceptar",
   "kube_common_cancel": "Cancelar",
   "kube_common_delete": "Eliminar",
   "kube_common_node_pool_title": "Configure su pool de nodos",
