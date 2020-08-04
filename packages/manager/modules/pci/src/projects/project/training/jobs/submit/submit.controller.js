@@ -2,9 +2,10 @@ import get from 'lodash/get';
 
 export default class PciTrainingJobsSubmitController {
   /* @ngInject */
-  constructor($translate, PciProjectTrainingJobService) {
+  constructor($translate, PciProjectTrainingJobService, atInternet) {
     this.$translate = $translate;
     this.PciProjectTrainingJobService = PciProjectTrainingJobService;
+    this.atInternet = atInternet;
   }
 
   $onInit() {
@@ -139,6 +140,12 @@ export default class PciTrainingJobsSubmitController {
   }
 
   submitJob() {
+    this.atInternet.trackClick({
+      name:
+        'public-cloud::pci::projects::project::training::jobs::submit::confirm',
+      type: 'action',
+    });
+
     this.isSubmit = true;
     this.PciProjectTrainingJobService.submit(
       this.projectId,

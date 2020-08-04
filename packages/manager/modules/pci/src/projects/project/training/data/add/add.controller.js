@@ -6,10 +6,12 @@ export default class PciTrainingDataAddController {
     PciProjectStorageContainersService,
     PciProjectTrainingDataService,
     $translate,
+    atInternet,
   ) {
     this.PciProjectStorageContainersService = PciProjectStorageContainersService;
     this.PciProjectTrainingDataService = PciProjectTrainingDataService;
     this.$translate = $translate;
+    this.atInternet = atInternet;
   }
 
   $onInit() {
@@ -93,6 +95,12 @@ export default class PciTrainingDataAddController {
   }
 
   onStepperFinish() {
+    this.atInternet.trackClick({
+      name:
+        'public-cloud::pci::projects::project::training::data::add::confirm',
+      type: 'action',
+    });
+
     this.isSubmit = true;
     this.PciProjectTrainingDataService.attach(
       this.projectId,
