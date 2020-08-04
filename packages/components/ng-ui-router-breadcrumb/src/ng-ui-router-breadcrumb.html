@@ -1,13 +1,1 @@
-<ul>
-    <li data-ng-repeat="element in $ctrl.breadcrumb track by $index">
-        <a
-            data-ng-if="element.url && !element.active && !$last"
-            data-ng-href="{{ element.url }}"
-            data-ng-bind="element.name"
-        ></a>
-        <span
-            data-ng-if="!(element.url && !element.active && !$last)"
-            data-ng-bind="element.name"
-        ></span>
-    </li>
-</ul>
+<manager-breadcrumb id="manager-breadcrumb"></manager-breadcrumb>

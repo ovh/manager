@@ -8,7 +8,7 @@ export default class BreadcrumbService {
   }
 
   getBreadcrumb() {
-    return this.bredcrumb;
+    return this.breadcrumb;
   }
 
   buildBreadcrumb(transition) {

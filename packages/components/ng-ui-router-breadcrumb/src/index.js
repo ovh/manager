@@ -1,10 +1,10 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
 
+import { defineCustomElements } from '@ovh-ux/manager-breadcrumb';
+
 import component from './ng-ui-router-breadcrumb.component';
 import service from './ng-ui-router-breadcrumb.service';
-
-import './ng-ui-router-breadcrumb.less';
 
 const moduleName = 'ngUiRouterBreadcrumb';
 
@@ -19,5 +19,7 @@ angular
       });
     },
   );
+
+defineCustomElements();
 
 export default moduleName;

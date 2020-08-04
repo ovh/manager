@@ -7,9 +7,13 @@ export default class BreadcrumbController {
   }
 
   $onInit() {
-    this.uiRouterBreadcrumbService.subscribe((breadcrumb) => {
-      this.breadcrumb = breadcrumb;
+    this.uiRouterBreadcrumbService.subscribe(() => {
+      this.updateBreadcrumb();
     });
+  }
+
+  updateBreadcrumb() {
     this.breadcrumb = this.uiRouterBreadcrumbService.getBreadcrumb();
+    document.querySelector('#manager-breadcrumb').elements = this.breadcrumb;
   }
 }
