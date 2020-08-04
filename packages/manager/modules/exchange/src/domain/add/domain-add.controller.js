@@ -6,6 +6,8 @@ import head from 'lodash/head';
 import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
 
+import { Environment } from '@ovh-ux/manager-config';
+
 export default class ExchangeAddDomainController {
   /* @ngInject */
   constructor(
@@ -156,18 +158,12 @@ export default class ExchangeAddDomainController {
 
   // eslint-disable-next-line class-methods-use-this
   getDefaultLanguage() {
-    let defaultLanguage = '';
-
-    if (localStorage['univers-selected-language']) {
-      defaultLanguage = localStorage['univers-selected-language'];
-    }
-
-    return defaultLanguage;
+    return Environment.getUserLocale();
   }
 
+  // eslint-disable-next-line class-methods-use-this
   isFrenchLanguage() {
-    const language = this.getDefaultLanguage();
-    return language && /fr_[A-Z]{2}/.test(language);
+    return Environment.getUserLanguage() === 'fr';
   }
 
   loadDomainData() {
