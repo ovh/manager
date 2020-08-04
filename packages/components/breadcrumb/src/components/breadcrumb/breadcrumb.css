@@ -1,0 +1,26 @@
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+li {
+  display: inline-block;
+}
+
+li:not(:first-child)::before {
+  content: '/';
+  margin: 0 0.2rem;
+}
+
+a {
+  color: #0050d7;
+  font-weight: 600;
+  border: none;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #000e9c;
+}

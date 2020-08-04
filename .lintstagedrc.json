@@ -1,6 +1,6 @@
 {
   "*.html": [
-    "htmlhint --ignore \"**/dist/**,**/dist-EU/**,**/dist-CA/**,**/dist-US/**\" \"packages/**/*.html\"",
+    "htmlhint --ignore \"**/dist/**,**/dist-EU/**,**/dist-CA/**,**/dist-US/**,**/www/**\" \"packages/**/*.html\"",
     "prettier --write",
     "git add"
   ],
