@@ -2,8 +2,9 @@ import get from 'lodash/get';
 
 export default class PciTrainingJobsKillController {
   /* @ngInject */
-  constructor($translate) {
+  constructor($translate, atInternet) {
     this.$translate = $translate;
+    this.atInternet = atInternet;
   }
 
   $onInit() {
@@ -11,6 +12,12 @@ export default class PciTrainingJobsKillController {
   }
 
   confirmKillJob() {
+    this.atInternet.trackClick({
+      name:
+        'public-cloud::pci::projects::project::training::jobs::kill::confirm',
+      type: 'action',
+    });
+
     this.loading = true;
     return this.killJob()
       .then(() =>

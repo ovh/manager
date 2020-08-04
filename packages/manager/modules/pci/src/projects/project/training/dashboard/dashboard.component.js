@@ -5,6 +5,8 @@ export default {
   controller,
   template,
   bindings: {
+    usage: '<',
+    currencySymbol: '<',
     trainingFeatures: '<',
     registry: '<',
     goToJobSubmit: '<',

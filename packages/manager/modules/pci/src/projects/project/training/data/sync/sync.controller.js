@@ -2,9 +2,10 @@ import get from 'lodash/get';
 
 export default class PciTrainingDataSyncController {
   /* @ngInject */
-  constructor(PciProjectTrainingDataService, $translate) {
+  constructor(PciProjectTrainingDataService, $translate, atInternet) {
     this.PciProjectTrainingDataService = PciProjectTrainingDataService;
     this.$translate = $translate;
+    this.atInternet = atInternet;
   }
 
   $onInit() {
@@ -12,6 +13,12 @@ export default class PciTrainingDataSyncController {
   }
 
   sync() {
+    this.atInternet.trackClick({
+      name:
+        'public-cloud::pci::projects::project::training::data::sync::confirm',
+      type: 'action',
+    });
+
     this.loading = true;
     return this.PciProjectTrainingDataService.sync(
       this.projectId,
