@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+        />
+        <title>OVHcloud Manager Breadcrumb</title>
+    </head>
+    <body>
+        <script type="module" src="/build/breadcrumb.esm.js"></script>
+        <script nomodule src="/build/breadcrumb.js"></script>
+        <manager-breadcrumb></manager-breadcrumb>
+
+        <script>
+            const breadcrumb = document.querySelector('manager-breadcrumb');
+            breadcrumb.elements = [
+                { url: '#', active: false, name: 'Test' },
+                { url: '#', active: true, name: 'Toto' },
+            ];
+        </script>
+    </body>
+</html>

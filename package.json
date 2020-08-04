@@ -25,7 +25,7 @@
     "generate:module": "sao ./packages/manager/tools/sao-ovh-manager-module",
     "lint": "run-p lint:*",
     "lint:css": "stylelint \"packages/**/*.{css,less,scss}\"",
-    "lint:html": "htmlhint --ignore \"**/dist/**,**/dist-EU/**,**/dist-CA/**,**/dist-US/**\" \"packages/**/*.html\"",
+    "lint:html": "htmlhint --ignore \"**/dist/**,**/dist-EU/**,**/dist-CA/**,**/dist-US/**,**/www/**\" \"packages/**/*.html\"",
     "lint:js": "eslint --cache --quiet --format=pretty \"packages\" \"scripts\"",
     "lint:md": "remark -qf . && eslint --quiet --format=pretty --ext .md \"docs\" \"packages\"",
     "packages:publish": "scripts/publish.js",
