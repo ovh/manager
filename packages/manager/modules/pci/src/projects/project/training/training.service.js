@@ -12,6 +12,7 @@ export default class PciProjectTrainingService {
     this.OvhApiCloudProjectAi = OvhApiCloudProjectAi;
     this.OvhApiCloudProjectUser = OvhApiCloudProjectUser;
     this.CucPriceHelper = CucPriceHelper;
+    this.currentRegistry = null;
   }
 
   // Check if the given projectId has already been authorized on training platform
@@ -71,20 +72,20 @@ export default class PciProjectTrainingService {
       .query({
         serviceName,
       }).$promise; */
-    return Promise.resolve({
-      custom: false,
-      url: 'al9csdxp.gra5.container-registry.ovh.net',
-      username: 'toto',
-    });
+    if (this.currentRegistry != null) {
+      return Promise.resolve(this.currentRegistry);
+    }
+    return Promise.resolve({ custom: false });
   }
 
   saveRegistry(serviceName, url, username, password) {
-    const registrySpec = { url, username, password };
+    const registrySpec = { custom: true, url, username, password };
     /* return this.OvhApiCloudProjectAi.Capabilities()
       .Training()
       .Registry()
       .v6()
       .save({ serviceName }, registrySpec).$promise; */
+    this.currentRegistry = registrySpec;
     return Promise.resolve(registrySpec);
   }
 
@@ -96,6 +97,7 @@ export default class PciProjectTrainingService {
       .delete({
         serviceName,
       }).$promise; */
+    this.currentRegistry = null;
     return Promise.resolve();
   }
 

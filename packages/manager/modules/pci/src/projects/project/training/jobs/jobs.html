@@ -119,8 +119,9 @@
             </oui-action-menu-item>
         </oui-action-menu>
         <oui-datagrid-topbar>
-            <a
-                data-ng-href="{{ $ctrl.submitJobLink }}"
+            <button
+                data-ng-click="$ctrl.goToJobSubmit()"
+                data-title="{{:: 'pci_projects_project_training_jobs_list_submit' | translate  }}"
                 class="oui-button oui-button_secondary oui-button_icon-left"
             >
                 <span
@@ -130,7 +131,7 @@
                 <span
                     data-translate="{{:: 'pci_projects_project_training_jobs_list_submit' | translate  }}"
                 ></span>
-            </a>
+            </button>
             <button
                 class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_s"
                 data-title="{{:: 'pci_projects_project_training_data_refresh' | translate }}"

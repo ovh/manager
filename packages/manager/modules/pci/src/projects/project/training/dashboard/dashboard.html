@@ -1,4 +1,6 @@
-<div data-ng-if="$ctrl.trainingFeatures.registry">
+<cui-message-container data-messages="$ctrl.messages"></cui-message-container>
+
+<div>
     <div class="row d-lg-flex">
         <div class="col-md-4">
             <oui-tile
@@ -46,14 +48,20 @@
                         <oui-tile-description
                             data-ng-if="$ctrl.registry.custom"
                         >
-                            {{:: $ctrl.registry.url }}
+                            <span class="oui-status oui-status_success">
+                                <span>{{:: $ctrl.registry.url }}</span>
+                            </span>
                         </oui-tile-description>
                         <oui-tile-description
                             data-ng-if="!$ctrl.registry.custom"
                         >
-                            {{::
-                            'pci_projects_project_training_dashboard_registry_shared'
-                            | translate }}
+                            <span class="oui-status oui-status_info">
+                                <span
+                                    >{{::
+                                    'pci_projects_project_training_dashboard_registry_shared'
+                                    | translate }}</span
+                                >
+                            </span>
                         </oui-tile-description>
                     </dl>
                     <oui-tile-actions>
@@ -259,8 +267,9 @@
             </oui-action-menu-item>
         </oui-action-menu>
         <oui-datagrid-topbar>
-            <a
-                data-ng-href="{{:: $ctrl.submitJobLink }}"
+            <button
+                data-ng-click="$ctrl.goToJobSubmit()"
+                data-title="{{:: 'pci_projects_project_training_jobs_list_submit' | translate  }}"
                 class="oui-button oui-button_secondary oui-button_icon-left"
             >
                 <span
@@ -270,7 +279,7 @@
                 <span
                     data-translate="{{:: 'pci_projects_project_training_jobs_list_submit' | translate  }}"
                 ></span>
-            </a>
+            </button>
             <button
                 class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_s"
                 data-title="{{:: 'pci_projects_project_training_data_refresh' | translate }}"

@@ -17,5 +17,6 @@ export default {
     jobList: '<',
     getPrice: '<',
     user: '<',
+    goToJobSubmit: '<',
   },
 };

@@ -1,8 +1,9 @@
+import get from 'lodash/get';
+
 export default class PciServingTrainingDashboardAttachRegistryController {
   /* @ngInject */
-  constructor($translate /* , OvhManagerPciServingRegistryService */) {
+  constructor($translate) {
     this.$translate = $translate;
-    // this.OvhManagerPciServingRegistryService = OvhManagerPciServingRegistryService;
   }
 
   $onInit() {
@@ -18,28 +19,28 @@ export default class PciServingTrainingDashboardAttachRegistryController {
   attachRegistry() {
     this.loading = true;
 
-    /* this.OvhManagerPciServingRegistryService.attach(
-      this.projectId,
-      this.namespaceId,
-      this.registry,
+    this.saveRegistry(
+      this.registry.url,
+      this.registry.username,
+      this.registry.password,
     )
       .then(() =>
         this.goBack(
           this.$translate.instant(
-            'pci_projects_project_serving_namespace_infos_attach_registry_success',
+            'pci_projects_project_training_dashboard_attach_registry_success',
           ),
         ),
       )
       .catch((error) =>
         this.goBack(
           this.$translate.instant(
-            'pci_projects_project_serving_namespace_infos_attach_registry_error',
+            'pci_projects_project_training_dashboard_attach_registry_error',
             {
               message: get(error, 'data.message'),
             },
           ),
           'error',
         ),
-      ); */
+      );
   }
 }

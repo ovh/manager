@@ -54,10 +54,33 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('pci.projects.project.training.dashboard', {
           projectId,
         }),
-      goToDashboard: /* @ngInject */ ($state, projectId) => () =>
-        $state.go('pci.projects.project.training.dashboard', {
-          projectId,
-        }),
+      goToDashboard: /* @ngInject */ ($state, CucCloudMessage, projectId) => (
+        message = false,
+        type = 'success',
+      ) => {
+        const reload = message && type === 'success';
+
+        const promise = $state.go(
+          'pci.projects.project.training.dashboard',
+          {
+            projectId,
+          },
+          {
+            reload,
+          },
+        );
+
+        if (message) {
+          promise.then(() =>
+            CucCloudMessage[type](
+              message,
+              'pci.projects.project.training.dashboard',
+            ),
+          );
+        }
+
+        return promise;
+      },
       goToRegistryAttach: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.training.dashboard.attach-registry', {
           projectId,

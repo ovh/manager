@@ -19,5 +19,7 @@ export default {
     jobList: '<',
     refreshState: '<',
     submitJobLink: '<',
+    saveRegistry: '<',
+    deleteRegistry: '<',
   },
 };

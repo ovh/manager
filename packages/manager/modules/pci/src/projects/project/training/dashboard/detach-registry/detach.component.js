@@ -5,6 +5,7 @@ export default {
   bindings: {
     goBack: '<',
     projectId: '<',
+    deleteRegistry: '<',
   },
   template,
   controller,

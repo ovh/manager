@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 export default class PciTrainingDashboardDetachRegistryController {
   /* @ngInject */
   constructor($translate) {
@@ -17,11 +19,7 @@ export default class PciTrainingDashboardDetachRegistryController {
   detachRegistry() {
     this.loading = true;
 
-    /* this.OvhManagerPciServingRegistryService.detach(
-      this.projectId,
-      this.namespaceId,
-      this.registry,
-    )
+    this.deleteRegistry()
       .then(() =>
         this.goBack(
           this.$translate.instant(
@@ -39,6 +37,6 @@ export default class PciTrainingDashboardDetachRegistryController {
           ),
           'error',
         ),
-      ); */
+      );
   }
 }
