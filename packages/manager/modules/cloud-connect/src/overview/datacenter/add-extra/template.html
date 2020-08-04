@@ -73,6 +73,8 @@
         <oui-field
             data-size="m"
             data-ng-if="$ctrl.type.id === 'network'"
+            data-help-text="{{ ::'cloud_connect_datacenter_add_routing_ip_help_message' | translate }}"
+            data-error-messages="{ 'pattern': ('cloud_connect_datacenter_add_routing_ip_invalid_message' | translate) }"
             data-label="{{ ::'cloud_connect_datacenter_add_routing_nexthop' | translate }}"
         >
             <input
@@ -81,6 +83,7 @@
                 name="nexthop"
                 class="oui-input"
                 data-ng-model="$ctrl.nextHop"
+                data-ng-pattern="$ctrl.IPV4_NO_RANGE_REGEX"
                 placeholder="{{:: 'cloud_connect_datacenter_add_routing_nexthop_placeholder' | translate }}"
                 required
             />

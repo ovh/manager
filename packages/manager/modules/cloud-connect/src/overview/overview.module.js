@@ -5,8 +5,8 @@ import associateVrack from './associate-vrack';
 import component from './overview.component';
 import datacenterAdd from './datacenter/add';
 import datacenterAddExtra from './datacenter/add-extra';
-import datacenterConfiguration from './component/datacenter-configuration';
-import datacenterExtraConfiguration from './component/datacenter-extra';
+import datacenterConfiguration from './components/datacenter-configuration';
+import datacenterExtraConfiguration from './components/datacenter-extra';
 import datacenterRemoveExtra from './datacenter/remove-extra';
 import editDescription from './edit-description';
 import lockPort from './lock-port';
@@ -21,12 +21,12 @@ const moduleName = 'ovhCloudConnectOverview';
 
 angular
   .module(moduleName, [
-    datacenterConfiguration,
-    datacenterExtraConfiguration,
     addPopConfiguration,
     associateVrack,
     datacenterAdd,
     datacenterAddExtra,
+    datacenterConfiguration,
+    datacenterExtraConfiguration,
     datacenterRemoveExtra,
     editDescription,
     lockPort,

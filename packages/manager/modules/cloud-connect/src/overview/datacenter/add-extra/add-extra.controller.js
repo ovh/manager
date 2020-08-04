@@ -9,7 +9,8 @@ export default class CloudConnectDacenterAddExtraCtrl {
     this.cloudConnectService = cloudConnectService;
     this.ROUTING_TYPES = ROUTING_TYPES;
     this.ASN_MIN = ASN_MIN;
-    this.IPV4_BLOCK_REGEX = IPV4_BLOCK_REGEX.NO_RANGE;
+    this.IPV4_BLOCK_REGEX = IPV4_BLOCK_REGEX.RANGE_0_TO_28;
+    this.IPV4_NO_RANGE_REGEX = IPV4_BLOCK_REGEX.NO_RANGE;
   }
 
   $onInit() {
