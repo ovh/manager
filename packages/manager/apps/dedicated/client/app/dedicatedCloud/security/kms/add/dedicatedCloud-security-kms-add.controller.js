@@ -1,6 +1,8 @@
 import get from 'lodash/get';
 import isEqual from 'lodash/isEqual';
 
+import { Environment } from '@ovh-ux/manager-config';
+
 import config from '../../../../config/config';
 
 angular.module('App').controller(
@@ -44,7 +46,7 @@ angular.module('App').controller(
       };
 
       this.pollRequestPending = false;
-      const usedLanguage = get(localStorage, 'univers-selected-language', '');
+      const usedLanguage = Environment.getUserLocale();
       if (usedLanguage) {
         const frenchLanguages = ['fr_FR', 'fr_CA'];
         this.vmEncryptionGuide = frenchLanguages.includes(usedLanguage)

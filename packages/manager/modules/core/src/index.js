@@ -148,9 +148,9 @@ angular
   )
   .run(
     /* @ngInject */ ($document) => {
-      let { 'univers-selected-language': lang } = localStorage;
-      [lang] = lang.split('_');
-      $document.querySelectorAll('html')[0].setAttribute('lang', lang);
+      $document
+        .querySelectorAll('html')[0]
+        .setAttribute('lang', Environment.getUserLanguage());
     },
   )
   .run((ssoAuthentication /* , User */) => {

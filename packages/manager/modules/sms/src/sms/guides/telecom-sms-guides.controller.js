@@ -3,6 +3,8 @@ import has from 'lodash/has';
 import isString from 'lodash/isString';
 import snakeCase from 'lodash/snakeCase';
 
+import { Environment } from '@ovh-ux/manager-config';
+
 export default class {
   /* @ngInject */
   constructor($translate, TucSmsMediator, TucToastError, SMS_GUIDES) {
@@ -24,16 +26,7 @@ export default class {
     return this.TucSmsMediator.initDeferred.promise
       .then(() => {
         this.guides = this.constant.SMS_GUIDES;
-        if (localStorage['univers-selected-language']) {
-          this.language = localStorage['univers-selected-language'].replace(
-            /-.*$|_.*$/,
-            '',
-          );
-        } else if (navigator.language || navigator.userLanguage) {
-          this.language = (
-            navigator.language || navigator.userLanguage
-          ).replace(/-.*$|_.*$/, '');
-        }
+        this.language = Environment.getUserLanguage();
         this.injectTitleInUrl();
       })
       .catch((err) => {
