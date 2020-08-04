@@ -8,21 +8,6 @@ export default /* @ngInject */ ($stateProvider) => {
       job: /* @ngInject */ (PciProjectTrainingJobService, projectId) => (
         jobId,
       ) => PciProjectTrainingJobService.get(projectId, jobId),
-      jobInfo: /* @ngInject */ ($state, projectId) => (jobId) =>
-        $state.go('pci.projects.project.training.jobs.info', {
-          projectId,
-          jobId,
-        }),
-      jobKill: /* @ngInject */ ($state, projectId) => (jobId) =>
-        $state.go('pci.projects.project.training.jobs.kill', {
-          projectId,
-          jobId,
-        }),
-      jobInfoLink: /* @ngInject */ ($state, projectId) => (jobId) =>
-        $state.href('pci.projects.project.training.jobs.info', {
-          projectId,
-          jobId,
-        }),
       getPrice: /* @ngInject */ (pricesCatalog) => (qty) =>
         pricesCatalog[`ai-serving-engine.ml1-c-xl.hour.consumption`]
           .priceInUcents * qty,

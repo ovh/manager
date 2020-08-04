@@ -27,5 +27,7 @@ export default {
     registryDetachLink: '<',
     submitJobLink: '<',
     billingLink: '<',
+    jobInfo: '<',
+    jobKill: '<',
   },
 };

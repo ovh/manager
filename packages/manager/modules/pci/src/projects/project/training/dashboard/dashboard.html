@@ -230,10 +230,7 @@
             data-filterable
             data-sortable
         >
-            <a
-                data-ng-href="{{:: $ctrl.jobInfoLink($value) }}"
-                data-ng-bind="$value"
-            ></a>
+            <a ng-click="$ctrl.jobInfo($value)" data-ng-bind="$value"></a>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_projects_project_training_jobs_region' | translate"

@@ -24,5 +24,8 @@ export default {
     saveRegistry: '<',
     deleteRegistry: '<',
     billingLink: '<',
+    jobInfo: '<',
+    jobKill: '<',
+    jobInfoLink: '<',
   },
 };
