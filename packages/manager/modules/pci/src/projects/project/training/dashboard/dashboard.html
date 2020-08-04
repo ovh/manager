@@ -115,10 +115,17 @@
                             <oui-dropdown-content>
                                 <oui-dropdown-item
                                     href="{{ :: $ctrl.eaiDocsUrl }}"
-                                    >{{
-                                    ::'pci_projects_project_training_dashboard_cli_integration_doc'
-                                    | translate }}</oui-dropdown-item
+                                    target="_blank"
+                                    rel="noopener"
                                 >
+                                    {{
+                                    ::'pci_projects_project_training_dashboard_cli_integration_doc'
+                                    | translate }}
+                                    <span
+                                        class="oui-icon oui-icon-external_link"
+                                        aria-hidden="true"
+                                    ></span>
+                                </oui-dropdown-item>
                                 <oui-dropdown-item
                                     href="{{ :: $ctrl.installLink }}"
                                     >{{
@@ -138,13 +145,21 @@
                         <div class="row d-lg-flex">
                             <div class="col-md-6">
                                 <span class="oui-status oui-status_info">
-                                    <span>RUNNING</span>
+                                    <span
+                                        >{{ ::
+                                        'pci_projects_project_training_jobs_state_RUNNING'
+                                        | translate }}</span
+                                    >
                                 </span>
                                 <h2>{{ :: $ctrl.nbRunning }}</h2>
                             </div>
                             <div class="col-md-6">
                                 <span class="oui-status oui-status_success">
-                                    <span>Success</span>
+                                    <span
+                                        >{{ ::
+                                        'pci_projects_project_training_jobs_state_SUCCEEDED'
+                                        | translate }}</span
+                                    >
                                 </span>
                                 <h2>{{ :: $ctrl.nbSuccess }}</h2>
                             </div>
@@ -156,13 +171,21 @@
                         <div class="row d-lg-flex">
                             <div class="col-md-6">
                                 <span class="oui-status oui-status_error">
-                                    <span>Failed</span>
+                                    <span
+                                        >{{ ::
+                                        'pci_projects_project_training_jobs_state_FAILED'
+                                        | translate }}</span
+                                    >
                                 </span>
                                 <h2>{{ :: $ctrl.nbFailed }}</h2>
                             </div>
                             <div class="col-md-6">
                                 <span class="oui-status oui-status_warning">
-                                    <span>Other</span>
+                                    <span
+                                        >{{ ::
+                                        'pci_projects_project_training_jobs_state_OTHER'
+                                        | translate }}</span
+                                    >
                                 </span>
                                 <h2>{{ :: $ctrl.nbOther }}</h2>
                             </div>
@@ -172,12 +195,23 @@
             </oui-tile>
         </div>
         <div class="col-md-4">
-            <oui-tile data-heading="Facturation en cours">
-                {{:: $ctrl.resourceUsage }} {{:: $ctrl.currencySymbol }}
-                <span
-                    data-translate="pci_projects_project_training_dashboard_billing_month"
-                >
-                </span>
+            <oui-tile
+                data-heading="{{ :: 'pci_projects_project_training_dashboard_billing_title' | translate }}"
+            >
+                <div>
+                    {{:: $ctrl.resourceUsage }} {{:: $ctrl.currencySymbol }}
+                    <span
+                        data-translate="pci_projects_project_training_dashboard_billing_month"
+                    >
+                    </span>
+                </div>
+                <div>
+                    <a href="{{ :: $ctrl.billingLink }}"
+                        >{{ ::
+                        'pci_projects_project_training_dashboard_billing_link' |
+                        translate }}</a
+                    >
+                </div>
             </oui-tile>
         </div>
     </div>

@@ -23,5 +23,6 @@ export default {
     submitJobLink: '<',
     saveRegistry: '<',
     deleteRegistry: '<',
+    billingLink: '<',
   },
 };

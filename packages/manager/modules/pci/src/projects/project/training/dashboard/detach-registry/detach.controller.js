@@ -23,14 +23,14 @@ export default class PciTrainingDashboardDetachRegistryController {
       .then(() =>
         this.goBack(
           this.$translate.instant(
-            'pci_projects_project_serving_namespace_infos_detach_registry_success',
+            'pci_projects_project_training_dashboard_detach_registry_success',
           ),
         ),
       )
       .catch((error) =>
         this.goBack(
           this.$translate.instant(
-            'pci_projects_project_serving_namespace_infos_detach_registry_error',
+            'pci_projects_project_training_dashboard_detach_registry_error',
             {
               message: get(error, 'data.message'),
             },

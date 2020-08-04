@@ -152,15 +152,6 @@ export const MENU = [
         regions: ['EU'],
       },
       {
-        id: 'serving',
-        new: true,
-        options: {
-          state: 'pci.projects.project.serving',
-        },
-        title: 'ML Serving',
-        regions: ['EU', 'CA'],
-      },
-      {
         id: 'training',
         beta: true,
         options: {
@@ -168,6 +159,15 @@ export const MENU = [
         },
         title: 'AI Training',
         regions: ['EU'],
+      },
+      {
+        id: 'serving',
+        new: true,
+        options: {
+          state: 'pci.projects.project.serving',
+        },
+        title: 'ML Serving',
+        regions: ['EU', 'CA'],
       },
     ],
     regions: ['EU', 'CA'],

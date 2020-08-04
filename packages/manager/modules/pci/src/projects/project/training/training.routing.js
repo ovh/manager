@@ -30,6 +30,10 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('pci.projects.project.training.jobs', {
           projectId,
         }),
+      billingLink: /* @ngInject */ ($state, projectId) =>
+        $state.href('pci.projects.project.billing', {
+          projectId,
+        }),
       goToJobSubmit: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.training.jobs.submit', {
           projectId,
