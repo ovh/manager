@@ -1,0 +1,23 @@
+{
+  "cloud_connect_datacenter_add_routing_title": "Ajouter une configuration de routage",
+  "cloud_connect_datacenter_add_routing_description": "Vous pouvez ajouter un centre de données ici routage",
+  "cloud_connect_datacenter_add_routing_select_title": "Type",
+  "cloud_connect_datacenter_add_routing_select_placeholder": "Sélectionnez",
+  "cloud_connect_datacenter_add_routing_select_asn": "Saisissez l'ASN Customer",
+  "cloud_connect_datacenter_add_routing_network_neighbor": "Saisissez l'adresse IP Neighbor",
+  "cloud_connect_datacenter_add_routing_network_neighbor_placeholder": "IP Neighbor",
+  "cloud_connect_datacenter_add_routing_nexthop": "Saisissez l'next hop",
+  "cloud_connect_datacenter_add_routing_nexthop_placeholder": "Next hop",
+  "cloud_connect_datacenter_add_routing_subnet": "Saisissez l'sous-réseau",
+  "cloud_connect_datacenter_add_routing_subnet_placeholder": "Sous-réseau",
+  "cloud_connect_datacenter_add_routing_bgp_area": "Saisissez l'ASN Customer",
+  "cloud_connect_datacenter_add_routing_bgp_ip": "Saisissez l'sous-réseau IP Neighbor",
+  "cloud_connect_datacenter_add_routing_error": "Échec de ajouter une configuration de routage: {{message}}",
+  "cloud_connect_datacenter_add_routing_success": "Ajout d'une configuration de routage. <a href=\"{{ tasksUrl }}\">Cliquez ici pour voir le statut.</a>",
+  "cloud_connect_datacenter_add_routing_bgp_area_placeholder": "ASN Customer",
+  "cloud_connect_datacenter_add_routing_ip_help_message": "Bloc IPv4 appartenant à l'adresse du centre de données.",
+  "cloud_connect_datacenter_add_routing_ip_invalid_message": "Entrez un bloc IPv4 valide.",
+  "cloud_connect_datacenter_add_routing_asn_helper": "Nombre positif non nul hors 65501",
+  "cloud_connect_datacenter_add_routing_asn_popover": "Nous vous encourageons à choisir un ASN entre 64512 et 65534 à l'exclusion de 65501.",
+  "cloud_connect_datacenter_add_routing_type_helper": "La configuration du routage ne peut être que d'un seul type"
+}

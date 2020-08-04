@@ -1,0 +1,118 @@
+<!-- extra details -->
+<div class="oui-tile__body">
+    <div class="oui-datagrid-responsive">
+        <table class="oui-datagrid">
+            <thead>
+                <tr>
+                    <th class="oui-datagrid__header">
+                        <span
+                            class="oui-tile__term"
+                            data-translate="cloud_connect_extra_type"
+                        ></span>
+                    </th>
+                    <th
+                        class="oui-datagrid__header"
+                        data-ng-if="$ctrl.firstExtraConfiguration.bgpNeighborArea"
+                    >
+                        <span
+                            class="oui-tile__term"
+                            data-translate="cloud_connect_extra_bgp_neighbor_area"
+                        ></span>
+                    </th>
+                    <th
+                        class="oui-datagrid__header"
+                        data-ng-if="$ctrl.firstExtraConfiguration.subnet"
+                    >
+                        <span
+                            class="oui-tile__term"
+                            data-translate="cloud_connect_extra_subnet"
+                        ></span>
+                    </th>
+                    <th
+                        class="oui-datagrid__header"
+                        data-ng-if="$ctrl.firstExtraConfiguration.bgpNeighborIp"
+                    >
+                        <span
+                            class="oui-tile__term"
+                            data-translate="cloud_connect_extra_ip_neighbor"
+                        ></span>
+                    </th>
+                    <th
+                        class="oui-datagrid__header"
+                        data-ng-if="$ctrl.firstExtraConfiguration.nextHop"
+                    >
+                        <span
+                            class="oui-tile__term"
+                            data-translate="cloud_connect_extra_next_hop"
+                        ></span>
+                    </th>
+                    <th class="oui-datagrid__header">
+                        <span
+                            class="oui-tile__term"
+                            data-translate="cloud_connect_status"
+                        ></span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr
+                    class="oui-datagrid__row"
+                    data-ng-repeat="extraConfig in $ctrl.datacenter.getExtraConfigurations() track by $index"
+                >
+                    <td class="oui-datagrid__cell">
+                        <span
+                            data-ng-bind="'cloud_connect_extra_type_' + extraConfig.type | translate"
+                        ></span>
+                    </td>
+                    <td
+                        class="oui-datagrid__cell"
+                        data-ng-if="$ctrl.firstExtraConfiguration.bgpNeighborArea"
+                    >
+                        <span data-ng-bind="extraConfig.bgpNeighborArea"></span>
+                    </td>
+                    <td data-ng-if="$ctrl.firstExtraConfiguration.subnet">
+                        <span data-ng-bind="extraConfig.subnet"></span>
+                    </td>
+                    <td
+                        class="oui-datagrid__cell"
+                        data-ng-if="$ctrl.firstExtraConfiguration.bgpNeighborIp"
+                    >
+                        <span data-ng-bind="extraConfig.bgpNeighborIp"></span>
+                    </td>
+                    <td
+                        class="oui-datagrid__cell"
+                        data-ng-if="extraConfig.nextHop"
+                    >
+                        <span data-ng-bind="extraConfig.nextHop"></span>
+                    </td>
+                    <td class="oui-datagrid__cell">
+                        <span
+                            class="oui-badge"
+                            data-ng-class="{
+                          'oui-status_success': extraConfig.isActive(),
+                          'oui-status_error': extraConfig.isError(),
+                          'oui-status_warning': extraConfig.isInProcess()
+                      }"
+                            data-ng-bind="'cloud_connect_status_' +  extraConfig.status | translate"
+                        ></span>
+                    </td>
+                    <td class="oui-datagrid__cell">
+                        <oui-action-menu
+                            data-compact
+                            class="float-right"
+                            data-placement="end"
+                        >
+                            <oui-action-menu-item
+                                data-disabled="!extraConfig.isActive()"
+                                data-on-click="$ctrl.removeExtra({ datacenterId: $ctrl.datacenter.id, extraId: extraConfig.id })"
+                                ><span
+                                    data-translate="cloud_connect_delete"
+                                ></span
+                            ></oui-action-menu-item>
+                        </oui-action-menu>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

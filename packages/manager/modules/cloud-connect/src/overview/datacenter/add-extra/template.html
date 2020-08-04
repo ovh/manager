@@ -1,0 +1,110 @@
+<form
+    id="addDcConfForm"
+    name="addDcConfForm"
+    data-ng-submit="addDcConfForm.$valid && $ctrl.create()"
+>
+    <oui-modal
+        data-heading="{{:: 'cloud_connect_datacenter_add_routing_title' | translate}}"
+        data-on-dismiss="$ctrl.goBack()"
+        data-primary-label="{{:: 'cloud_connect_common_create' | translate}}"
+        data-secondary-action="$ctrl.goBack()"
+        data-secondary-label="{{:: 'cloud_connect_common_cancel' | translate}}"
+        data-loading="$ctrl.isLoading"
+        data-primary-disabled="$ctrl.isLoading"
+    >
+        <span
+            data-translate="cloud_connect_datacenter_add_routing_description"
+        ></span>
+        <oui-field
+            data-label="{{:: 'cloud_connect_datacenter_add_routing_select_title' | translate }}"
+            data-size="m"
+        >
+            <oui-select
+                name="type"
+                data-model="$ctrl.type"
+                placeholder="{{:: 'cloud_connect_datacenter_add_routing_select_placeholder' | translate }}"
+                data-items="$ctrl.ROUTING_TYPES"
+                data-match="name"
+                required
+                data-disable-items="!$item.available"
+                ><span data-ng-bind="$item.name"></span>
+            </oui-select>
+            <span
+                class="text-info"
+                data-translate="cloud_connect_datacenter_add_routing_type_helper"
+            ></span>
+        </oui-field>
+        <oui-field
+            data-size="m"
+            data-ng-if="$ctrl.type.id === 'bgp'"
+            help-text="{{:: 'cloud_connect_datacenter_add_routing_asn_helper' | translate}}"
+            label-popover="{{:: 'cloud_connect_datacenter_add_routing_asn_popover' | translate}}"
+            data-label="{{::'cloud_connect_datacenter_add_routing_bgp_area' | translate}}"
+        >
+            <input
+                type="number"
+                id="bgpNeighborArea"
+                name="bgpNeighborArea"
+                class="oui-input"
+                data-ng-model="$ctrl.bgpNeighborArea"
+                required
+                data-ng-min="$ctrl.ASN_MIN"
+                placeholder="{{:: 'cloud_connect_datacenter_add_routing_bgp_area_placeholder' | translate}}"
+            />
+        </oui-field>
+        <oui-field
+            data-size="m"
+            data-ng-if="$ctrl.type.id === 'bgp'"
+            data-label="{{::'cloud_connect_datacenter_add_routing_bgp_ip' | translate}}"
+            data-help-text="{{ ::'cloud_connect_datacenter_add_routing_ip_help_message' | translate }}"
+            data-error-messages="{ 'pattern': ('cloud_connect_datacenter_add_routing_ip_invalid_message' | translate) }"
+        >
+            <input
+                type="text"
+                id="bgpNeighborIp"
+                name="bgpNeighborIp"
+                class="oui-input"
+                data-ng-model="$ctrl.bgpNeighborIp"
+                required
+                data-ng-pattern="$ctrl.IPV4_NO_RANGE_REGEX"
+                placeholder="{{ ::'cloud_connect_datacenter_add_routing_network_neighbor_placeholder' | translate}}"
+            />
+        </oui-field>
+        <oui-field
+            data-size="m"
+            data-ng-if="$ctrl.type.id === 'network'"
+            data-help-text="{{ ::'cloud_connect_datacenter_add_routing_ip_help_message' | translate }}"
+            data-error-messages="{ 'pattern': ('cloud_connect_datacenter_add_routing_ip_invalid_message' | translate) }"
+            data-label="{{ ::'cloud_connect_datacenter_add_routing_nexthop' | translate }}"
+        >
+            <input
+                type="text"
+                id="nexthop"
+                name="nexthop"
+                class="oui-input"
+                data-ng-model="$ctrl.nextHop"
+                data-ng-pattern="$ctrl.IPV4_NO_RANGE_REGEX"
+                placeholder="{{:: 'cloud_connect_datacenter_add_routing_nexthop_placeholder' | translate }}"
+                required
+            />
+        </oui-field>
+        <oui-field
+            data-ng-if="$ctrl.type.id === 'network'"
+            data-size="m"
+            data-label="{{ ::'cloud_connect_datacenter_add_routing_subnet' | translate }}"
+            data-help-text="{{ ::'cloud_connect_datacenter_add_routing_ip_help_message' | translate }}"
+            data-error-messages="{ 'pattern': ('cloud_connect_datacenter_add_routing_ip_invalid_message' | translate) }"
+        >
+            <input
+                type="text"
+                id="subnet"
+                name="subnet"
+                class="oui-input"
+                data-ng-model="$ctrl.subnet"
+                data-ng-pattern="$ctrl.IPV4_BLOCK_REGEX"
+                placeholder="{{:: 'cloud_connect_datacenter_add_routing_subnet_placeholder' | translate }}"
+                required
+            />
+        </oui-field>
+    </oui-modal>
+</form>

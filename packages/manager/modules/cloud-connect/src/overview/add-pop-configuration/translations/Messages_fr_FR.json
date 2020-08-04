@@ -1,0 +1,12 @@
+{
+  "cloud_connect_pop_configure_title": "Ajout d’une configuration Pop",
+  "cloud_connect_pop_configure_description": "Pour configurer votre Pop vous devez sélectionner votre modèle d’interconnexion réseau L2 ou L3",
+  "cloud_connect_pop_configure_pop_select_type": "Sélectionnez un Configuration type",
+  "cloud_connect_pop_add_configuration_error": "Échec de l'ajout de la configuration Pop: {{message}}",
+  "cloud_connect_pop_add_configuration_success": "Ajout de la configuration Pop. <a href=\"{{ tasksUrl }}\">Cliquez ici pour voir le statut.</a>",
+  "cloud_connect_network_address_help_message": "Bloc IPv4 avec plage 30.",
+  "cloud_connect_network_address_invalid_message": "Entrez un bloc IPv4 valide avec la plage 30 (ex: 10.1.250.4/30).",
+  "cloud_connect_asn_helper": "Nombre positif non nul hors 65501",
+  "cloud_connect_asn_popover": "Nous vous encourageons à choisir un ASN entre 64512 et 65534 à l'exclusion de 65501.",
+  "cloud_connect_pop_add_configuration_select_disabled_help": "Le service du fournisseur ne peut avoir qu'une configuration pop L3"
+}

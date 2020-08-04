@@ -1,0 +1,7 @@
+{
+  "cloud_connect_pop_port_unblock": "Débloquer le port",
+  "cloud_connect_pop_unblock_port_confirm": "Voulez-vous vraiment débloquer le port {{portNumber}}?",
+  "cloud_connect_unblock": "Débloquer",
+  "cloud_connect_pop_unblock_port_success": "Le port {{port}} est en cours de déblocage. <a href=\"{{ tasksUrl }}\">Cliquez ici pour voir le statut.</a>",
+  "cloud_connect_pop_unblock_port_error": "Échec du débloquer du port: {{message}}"
+}

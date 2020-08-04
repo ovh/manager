@@ -310,13 +310,14 @@ export const DEDICATED_NETWORK_CONFIG = {
           state: 'cloud-connect',
           stateParams: ['ovhCloudConnectId'],
           app: [DEDICATED],
+          regions: ['EU'],
         },
       ],
       icon: 'oui-icon oui-icon-line-communicating_concept',
       app: [DEDICATED],
       regions: ['EU', 'CA', 'US'],
-    }
-  ]
+    },
+  ],
 };
 
 export const CLOUD_DESKTOP_CONFIG = {

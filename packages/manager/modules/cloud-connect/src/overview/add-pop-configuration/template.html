@@ -1,0 +1,92 @@
+<form
+    id="popConfiguration"
+    name="popConfiguration"
+    data-ng-submit="popConfiguration.$valid && $ctrl.configurePop()"
+    novalidate
+>
+    <oui-modal
+        data-heading="{{:: 'cloud_connect_pop_configure_title' | translate }}"
+        data-primary-label="{{:: 'cloud_connect_create' | translate }}"
+        data-primary-disabled="$ctrl.isLoading"
+        data-secondary-action="$ctrl.goBack()"
+        data-secondary-label="{{:: 'cloud_connect_cancel' | translate }}"
+        data-on-dismiss="$ctrl.goBack()"
+        data-loading="$ctrl.isLoading"
+    >
+        <p data-translate="cloud_connect_pop_configure_description"></p>
+
+        <oui-field data-label="{{ ::'cloud_connect_type' | translate }}">
+            <oui-select
+                name="popType"
+                data-model="$ctrl.popType"
+                data-items="$ctrl.popTypes"
+                data-match="name"
+                data-placeholder="{{ ::'cloud_connect_pop_configure_pop_select_type' | translate }}"
+                required
+                data-disable-items="$item.id === $ctrl.POP_TYPE_CONSTANT.L2 && !$ctrl.cloudConnect.isDirectService()"
+                disabled="$ctrl.popTypeSelected"
+            >
+                <span data-ng-bind="$item.name"></span>
+            </oui-select>
+            <div data-ng-if="!$ctrl.cloudConnect.isDirectService()">
+                <span
+                    class="text-info"
+                    data-translate="cloud_connect_pop_add_configuration_select_disabled_help"
+                >
+                </span>
+            </div>
+        </oui-field>
+        <div
+            data-ng-if="$ctrl.popType && $ctrl.popType.id === $ctrl.POP_TYPE_CONSTANT.L3"
+        >
+            <oui-field
+                data-label="{{ ::'cloud_connect_asn_type' | translate }}"
+                help-text="{{ ::'cloud_connect_asn_helper' | translate }}"
+                label-popover="{{ ::'cloud_connect_asn_popover' | translate }}"
+            >
+                <input
+                    class="oui-input"
+                    type="number"
+                    id="asn-type"
+                    name="asn-type"
+                    data-ng-model="$ctrl.pop.customerBgpArea"
+                    required
+                    data-ng-min="$ctrl.ASN_MIN"
+                    placeholder="{{ ::'cloud_connect_asn_type_placeholder' | translate }}"
+                />
+            </oui-field>
+            <oui-field
+                data-label="{{ ::'cloud_connect_asn_ovh_cloud' | translate }}"
+                help-text="{{ ::'cloud_connect_asn_helper' | translate }}"
+                label-popover="{{ ::'cloud_connect_asn_popover' | translate }}"
+            >
+                <input
+                    class="oui-input"
+                    type="number"
+                    id="asn-ovhcloud"
+                    name="asn-ovhcloud"
+                    data-ng-model="$ctrl.pop.ovhBgpArea"
+                    required
+                    data-ng-min="$ctrl.ASN_MIN"
+                    placeholder="{{ ::'cloud_connect_asn_ovh_cloud_placeholder' | translate }}"
+                />
+            </oui-field>
+            <oui-field
+                data-label="{{ ::'cloud_connect_network_address' | translate }}"
+                data-help-text="{{ ::'cloud_connect_network_address_help_message' | translate }}"
+                data-error-messages="{ 'pattern': ('cloud_connect_network_address_invalid_message' | translate) }"
+            >
+                <input
+                    class="oui-input"
+                    type="text"
+                    id="network-address"
+                    name="network-address"
+                    data-ng-model="$ctrl.pop.subnet"
+                    required
+                    data-ng-pattern="$ctrl.IPV4_BLOCK_REGEX_RANGE_30"
+                    placeholder="{{ ::'cloud_connect_network_address_placeholder' | translate }}"
+                />
+            </oui-field>
+        </div>
+    </oui-modal>
+</form>

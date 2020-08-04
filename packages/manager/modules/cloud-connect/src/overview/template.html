@@ -1,0 +1,476 @@
+<div>
+    <!-- error messages -->
+    <cui-message-container
+        data-messages="$ctrl.messages"
+    ></cui-message-container>
+
+    <h2 data-translate="cloud_connect_title"></h2>
+    <p data-translate="cloud_connect_detail_decription"></p>
+
+    <div class="row d-lg-flex">
+        <!-- Information tile -->
+        <div class="col-sm-12 col-md-4">
+            <div class="oui-tile">
+                <div class="d-flex flex-row">
+                    <h4
+                        class="flex-grow-1 oui-heading_4 oui-tile__title"
+                        data-translate="cloud_connect_informations"
+                    ></h4>
+                    <oui-spinner
+                        class="ml-auto"
+                        data-ng-if="$ctrl.downloadingLoa"
+                        data-size="s"
+                    >
+                    </oui-spinner>
+                    <oui-action-menu
+                        data-compact
+                        class="ml-auto"
+                        data-ng-if="$ctrl.cloudConnect.isDirectService() && !$ctrl.downloadingLoa"
+                        data-placement="end"
+                    >
+                        <oui-action-menu-item
+                            data-on-click="$ctrl.downloadLOA()"
+                            ><span
+                                data-translate="cloud_connect_ola_download"
+                            ></span
+                        ></oui-action-menu-item>
+                    </oui-action-menu>
+                </div>
+                <!-- UUID -->
+                <oui-tile-definition
+                    data-term="Uuid"
+                    data-description="{{ ::$ctrl.cloudConnect.uuid }}"
+                >
+                </oui-tile-definition>
+                <!-- description -->
+                <oui-tile-definition
+                    data-term="{{ ::'cloud_connect_description' | translate }}"
+                    data-description="{{ $ctrl.cloudConnect.description }}"
+                >
+                    <oui-action-menu data-compact data-placement="end">
+                        <oui-action-menu-item
+                            data-on-click="$ctrl.goToUpdateDescriptionPage($ctrl.cloudConnect.description)"
+                            ><span data-translate="cloud_connect_update"></span
+                        ></oui-action-menu-item>
+                    </oui-action-menu>
+                </oui-tile-definition>
+                <!-- Creation date -->
+                <oui-tile-definition
+                    data-term="{{ ::'cloud_connect_date_created' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span
+                            data-ng-bind="$ctrl.serviceInfos.creationDate"
+                        ></span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <!-- POP -->
+                <oui-tile-definition
+                    data-term="Pop"
+                    data-description="{{ ::$ctrl.getPopDescription($ctrl.cloudConnect.pop) }}"
+                >
+                </oui-tile-definition>
+                <!-- vRack -->
+                <oui-tile-definition data-term="vRack">
+                    <oui-tile-description
+                        data-ng-if="!$ctrl.cloudConnect.isVrackAssociated()"
+                    >
+                        <span>-</span>
+                        <button
+                            class="oui-button d-block pl-0 oui-button_ghost"
+                            data-ng-click="$ctrl.goToAssociateVrackPage()"
+                        >
+                            {{ ::'cloud_connect_vrack_associate' | translate }}
+                        </button>
+                    </oui-tile-description>
+                    <oui-tile-description
+                        data-ng-if="$ctrl.cloudConnect.isVrackAssociated()"
+                    >
+                        <oui-spinner
+                            data-size="s"
+                            data-ng-if="$ctrl.loadingVrack"
+                        ></oui-spinner>
+                        <span
+                            data-ng-if="!$ctrl.loadingVrack"
+                            data-ng-bind="$ctrl.cloudConnect.vrackName"
+                        ></span>
+                    </oui-tile-description>
+                    <oui-action-menu
+                        data-ng-if="$ctrl.cloudConnect.isVrackAssociated()"
+                        data-compact
+                    >
+                        <oui-action-menu-item
+                            data-on-click="$ctrl.goToRemoveVrackPage($ctrl.cloudConnect.vrack)"
+                            ><span
+                                data-translate="cloud_connect_vrack_remove"
+                            ></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+                </oui-tile-definition>
+                <!-- status -->
+                <oui-tile-definition
+                    data-term="{{ ::'cloud_connect_status' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span
+                            class="oui-badge"
+                            data-ng-class="{
+                                'oui-status_error': $ctrl.cloudConnect.status === 'closed',
+                                'oui-status_success': $ctrl.cloudConnect.status === 'active'
+                            }"
+                            data-ng-bind="'cloud_connect_status_' +  $ctrl.cloudConnect.status | translate"
+                        ></span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <!-- bandwidth   -->
+                <oui-tile-definition
+                    data-term="{{ ::'cloud_connect_bandwidth' | translate }}"
+                    data-description="{{ ::$ctrl.getBandwidth($ctrl.cloudConnect.bandwidth) }}"
+                >
+                </oui-tile-definition>
+                <!-- ports -->
+                <oui-tile-definition
+                    data-term="{{ ::'cloud_connect_number_of_ports' | translate }}"
+                    data-description="{{ ::$ctrl.cloudConnect.portQuantity }}"
+                >
+                </oui-tile-definition>
+                <!-- provider -->
+                <oui-tile-definition
+                    data-ng-if="!$ctrl.cloudConnect.isDirectService()"
+                    data-term="{{ ::'cloud_connect_provider' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span
+                            class="text-capitalize"
+                            data-ng-bind="$ctrl.cloudConnect.provider"
+                        ></span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <!-- service keys -->
+                <oui-tile-definition
+                    data-ng-if="!$ctrl.cloudConnect.isDirectService()"
+                    data-term="{{ ::'cloud_connect_service_key_active' | translate }}"
+                >
+                    <oui-tile-description
+                        data-ng-if="$ctrl.cloudConnect.isLoadingServiceKeys()"
+                    >
+                        <oui-spinner data-size="s"></oui-spinner>
+                    </oui-tile-description>
+                    <oui-tile-description
+                        data-ng-if="!$ctrl.cloudConnect.isLoadingServiceKeys()"
+                        data-ng-init="activeKey = $ctrl.cloudConnect.getActiveServiceKey()"
+                    >
+                        <oui-clipboard
+                            data-ng-if="activeKey"
+                            data-model="activeKey.key"
+                        >
+                        </oui-clipboard>
+                        <span
+                            data-ng-if="!activeKey"
+                            data-translate="cloud_connect_service_key_active_not_found"
+                        ></span>
+                    </oui-tile-description>
+                    <oui-action-menu
+                        data-ng-if="!$ctrl.cloudConnect.isLoadingServiceKeys()"
+                        data-compact
+                        data-ng-init="activeKey = $ctrl.cloudConnect.getActiveServiceKey()"
+                        data-placement="end"
+                    >
+                        <oui-action-menu-item
+                            data-disabled="!activeKey"
+                            data-on-click="$ctrl.goToSendServiceKeyPage()"
+                            ><span
+                                data-translate="cloud_connect_service_key_active_send"
+                            ></span
+                        ></oui-action-menu-item>
+                        <oui-action-menu-item
+                            data-on-click="$ctrl.goToManageServiceKeysPage()"
+                            ><span
+                                data-translate="cloud_connect_service_keys_manage"
+                            ></span
+                        ></oui-action-menu-item>
+                    </oui-action-menu>
+                </oui-tile-definition>
+            </div>
+        </div>
+
+        <!-- Configure POP tile -->
+        <div
+            class="col-sm-12 col-md-4"
+            data-ng-if="$ctrl.cloudConnect.isVrackAssociated()"
+            data-ng-repeat="interfaceId in $ctrl.cloudConnect.interfaceList track by interfaceId"
+        >
+            <oui-tile
+                data-heading="{{ ::'cloud_connect_pop_configure' | translate: { indexNumber: $index + 1 } }}"
+                data-loading="$ctrl.cloudConnect.isLoadingPop()"
+            >
+                <div
+                    data-ng-init="
+                        $interface = $ctrl.cloudConnect.getInterface(interfaceId);
+                    "
+                >
+                    <!-- port -->
+                    <oui-tile-definition
+                        data-term="{{ ::'cloud_connect_pop_port_id' | translate }}"
+                        data-description="{{ ::interfaceId }}"
+                    >
+                    </oui-tile-definition>
+                    <!-- port lock/unlock -->
+                    <oui-tile-definition
+                        data-ng-if="$ctrl.cloudConnect.isDirectService()"
+                        data-term="{{ ::'cloud_connect_pop_port_lock' | translate }}"
+                    >
+                        <oui-tile-description>
+                            <span
+                                class="d-inline-block align-bottom"
+                                data-ng-if="!$interface.isInProcess()"
+                            >
+                                <span
+                                    data-translate="cloud_connect_pop_port_unblocked"
+                                    class="pr-2"
+                                    data-ng-if="$interface.isEnabled()"
+                                >
+                                </span>
+                                <i
+                                    data-ng-if="$interface.isEnabled()"
+                                    class="oui-icon oui-icon-padlock-opened_concept oui-color-p-800"
+                                    aria-hidden="true"
+                                >
+                                </i>
+                                <span
+                                    data-translate="cloud_connect_pop_port_blocked"
+                                    class="pr-2"
+                                    data-ng-if="!$interface.isEnabled()"
+                                >
+                                </span>
+                                <i
+                                    data-ng-if="!$interface.isEnabled()"
+                                    class="oui-icon oui-icon-padlock-closed_concept oui-color-p-800"
+                                    aria-hidden="true"
+                                >
+                                </i>
+                            </span>
+                            <oui-spinner
+                                data-size="s"
+                                data-ng-if="$interface.isInProcess()"
+                            ></oui-spinner>
+                            <span
+                                data-ng-if="$interface.enabling"
+                                class="pl-2"
+                                data-translate="cloud_connect_pop_port_unblocking"
+                            >
+                            </span>
+                            <span
+                                data-ng-if="$interface.disabling"
+                                class="pl-2"
+                                data-translate="cloud_connect_pop_port_blocking"
+                            >
+                            </span>
+                        </oui-tile-description>
+                        <oui-action-menu
+                            data-compact
+                            data-disabled="$interface.isInProcess()"
+                            class="ml-auto"
+                            data-placement="end"
+                        >
+                            <oui-action-menu-item
+                                data-ng-if="$interface.isEnabled()"
+                                data-on-click="$ctrl.goToLockPortPage(interfaceId)"
+                                ><span
+                                    data-translate="cloud_connect_pop_port_block"
+                                ></span>
+                            </oui-action-menu-item>
+                            <oui-action-menu-item
+                                data-ng-if="!$interface.isEnabled()"
+                                data-on-click="$ctrl.goToUnlockPortPage(interfaceId)"
+                                ><span
+                                    data-translate="cloud_connect_pop_port_unblock"
+                                ></span>
+                            </oui-action-menu-item>
+                        </oui-action-menu>
+                    </oui-tile-definition>
+                    <!-- optique status -->
+                    <oui-tile-definition
+                        data-ng-if="$ctrl.cloudConnect.isDirectService()"
+                        data-term="{{ ::'cloud_connect_pop_interface_status' | translate }}"
+                    >
+                        <oui-tile-description>
+                            <span
+                                class="oui-badge"
+                                data-ng-class="{
+                                    'oui-status_success': $interface.isIncomingLightStatusUp(),
+                                    'oui-status_error': !$interface.isIncomingLightStatusDown(),
+                                    'oui-status_info': !$interface.isIncomingLightStatusUnknown(),
+                                }"
+                                data-ng-bind="'IN'"
+                            ></span>
+                            <span
+                                class="oui-badge"
+                                data-ng-class="{
+                                    'oui-status_success': $interface.isOutgoingLightStatusUp(),
+                                    'oui-status_error': !$interface.isOutgoingLightStatusDown(),
+                                    'oui-status_info': !$interface.isOutgoingLightStatusUnknown(),
+                                }"
+                                data-ng-bind="'OUT'"
+                            ></span>
+                        </oui-tile-description>
+                    </oui-tile-definition>
+                    <!-- add pop configuration -->
+                    <oui-tile-definition
+                        data-ng-if="!$ctrl.cloudConnect.isPopConfigured(interfaceId)"
+                    >
+                        <oui-tile-description>
+                            <oui-button
+                                data-variant="primary"
+                                data-ng-click="$ctrl.goToAddPopConfigurationPage(interfaceId)"
+                                ><span
+                                    data-translate="cloud_connect_pop_configure_add"
+                                ></span>
+                            </oui-button>
+                        </oui-tile-description>
+                    </oui-tile-definition>
+                    <div
+                        data-ng-if="$ctrl.cloudConnect.isPopConfigured(interfaceId)"
+                        data-ng-init="$pop = $ctrl.cloudConnect.getPopConfiguration(interfaceId);"
+                    >
+                        <!-- type of pop -->
+                        <oui-tile-definition
+                            data-term="{{ ::'cloud_connect_pop_configuration_type' | translate }}"
+                            data-description="{{ ::$ctrl.getPopTypeName($pop.type) }}"
+                        >
+                            <oui-action-menu
+                                data-ng-if="!$pop.isInProcess()"
+                                data-compact
+                                class="ml-auto"
+                                data-placement="end"
+                            >
+                                <oui-action-menu-item
+                                    data-on-click="$ctrl.goToRemovePopConfigurationPage(interfaceId)"
+                                    ><span
+                                        data-translate="cloud_connect_pop_configure_delete"
+                                    ></span>
+                                </oui-action-menu-item>
+                            </oui-action-menu>
+                        </oui-tile-definition>
+                        <!-- ASN client -->
+                        <oui-tile-definition
+                            data-ng-if="$pop.isL3Type()"
+                            data-term="{{ ::'cloud_connect_asn_type' | translate }}"
+                            data-description="{{ ::$pop.customerBgpArea }}"
+                        >
+                        </oui-tile-definition>
+                        <!-- ASN OVHcloud -->
+                        <oui-tile-definition
+                            data-ng-if="$pop.isL3Type()"
+                            data-term="{{ ::'cloud_connect_asn_ovh_cloud' | translate }}"
+                            data-description="{{ ::$pop.ovhBgpArea }}"
+                        >
+                        </oui-tile-definition>
+                        <!-- network address -->
+                        <oui-tile-definition
+                            data-ng-if="$pop.isL3Type()"
+                            data-term="{{ ::'cloud_connect_network' | translate }}"
+                            data-description="{{ ::$pop.subnet }}"
+                        >
+                        </oui-tile-definition>
+                        <!-- status -->
+                        <oui-tile-definition
+                            data-term="{{ ::'cloud_connect_pop_status' | translate }}"
+                        >
+                            <oui-tile-description>
+                                <span
+                                    class="oui-badge"
+                                    data-ng-class="{
+                                        'oui-status_error': $pop.isError(),
+                                        'oui-status_success': $pop.isActive(),
+                                        'oui-status_warning': !$pop.isActive()
+                                    }"
+                                    data-ng-bind="'cloud_connect_pop_status_' +  $pop.status | translate"
+                                ></span>
+                            </oui-tile-description>
+                        </oui-tile-definition>
+                    </div>
+                </div>
+            </oui-tile>
+        </div>
+    </div>
+
+    <!-- DC configuration -->
+    <div
+        class="row d-lg-flex"
+        data-ng-if="$ctrl.cloudConnect.isVrackAssociated() && $ctrl.cloudConnect.isPopConfigurationExists()"
+    >
+        <!-- DC tile -->
+        <oui-tile
+            class="box-shadow-none border-0 w-100"
+            data-loading="$ctrl.cloudConnect.loadingDatacenterConfig"
+        >
+            <div class="d-flex flex-row">
+                <h4
+                    class="flex-grow-1 oui-heading_4 oui-tile__title"
+                    data-translate="cloud_connect_dc_title"
+                ></h4>
+                <oui-action-menu
+                    data-ng-if="$ctrl.cloudConnect.datacenterConfigurations.length > 0 && $ctrl.cloudConnect.isL3PopType()"
+                    data-compact
+                    class="ml-3"
+                    data-placement="end"
+                >
+                    <oui-action-menu-item
+                        data-on-click="$ctrl.goToDatacenterAddPage()"
+                        ><span
+                            data-translate="cloud_connect_datacenter_add_configuration"
+                        ></span
+                    ></oui-action-menu-item>
+                </oui-action-menu>
+            </div>
+            <oui-tile-definition
+                data-ng-if="$ctrl.cloudConnect.datacenterConfigurations.length === 0"
+            >
+                <oui-tile-description>
+                    <oui-button
+                        data-variant="primary"
+                        data-ng-click="$ctrl.goToDatacenterAddPage()"
+                        ><span
+                            data-translate="cloud_connect_dc_add_button"
+                        ></span>
+                    </oui-button>
+                </oui-tile-description>
+            </oui-tile-definition>
+            <div
+                class="oui-tile datacenter-configuration col-sm-12 col-md-5 m-2"
+                data-ng-repeat="configuration in $ctrl.cloudConnect.datacenterConfigurations track by configuration.id"
+            >
+                <!-- Datacenter configurations -->
+                <ovh-cloud-connect-datacenter-configuration
+                    data-add-extra="$ctrl.goToDatacenterAddExtraPage(configuration.id)"
+                    data-cloud-connect="$ctrl.cloudConnect"
+                    data-datacenter="configuration"
+                    data-remove-datacenter="$ctrl.goToRemoveDatacenterConfigurationPage(configuration.id)"
+                ></ovh-cloud-connect-datacenter-configuration>
+                <!-- extra -->
+                <oui-spinner
+                    data-size="m"
+                    data-ng-if="configuration.isLoadingExtraConfigurations()"
+                ></oui-spinner>
+                <div
+                    class="mt-3"
+                    data-ng-if="configuration.getExtraConfigurations().length > 0"
+                >
+                    <div class="d-flex flex-row border-bottom">
+                        <h4
+                            class="oui-heading_5 oui-tile__title"
+                            data-translate="cloud_connect_extra_title"
+                        ></h4>
+                    </div>
+                    <!-- Repeat extras inside this to show a table of extra configurations -->
+                    <ovh-cloud-connect-datacenter-extra
+                        data-datacenter="configuration"
+                        data-extra-config="extraConfig"
+                        data-remove-extra="$ctrl.goToRemoveExtraPage(datacenterId, extraId)"
+                    ></ovh-cloud-connect-datacenter-extra>
+                </div>
+            </div>
+        </oui-tile>
+    </div>
+</div>

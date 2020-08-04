@@ -1,0 +1,72 @@
+<form
+    id="addDcForm"
+    name="addDcForm"
+    data-ng-submit="addDcForm.$valid && $ctrl.create()"
+    novalidate
+>
+    <oui-modal
+        data-heading="{{:: 'cloud_connect_datacenter_add_title' | translate}}"
+        data-on-dismiss="$ctrl.goBack()"
+        data-primary-label="{{:: 'cloud_connect_common_create' | translate}}"
+        data-secondary-action="$ctrl.goBack()"
+        data-secondary-label="{{:: 'cloud_connect_common_cancel' | translate}}"
+        data-loading="$ctrl.isLoading"
+        data-primary-disabled="$ctrl.isLoading"
+    >
+        <span data-translate="cloud_connect_datacenter_add_description"></span>
+        <oui-field
+            data-label="{{:: 'cloud_connect_datacenter_add_select_title' | translate }}"
+            data-size="m"
+        >
+            <oui-select
+                name="dc"
+                data-model="$ctrl.datacenter"
+                data-match="name"
+                placeholder="{{:: 'cloud_connect_datacenter_add_select_placeholder' | translate }}"
+                data-items="$ctrl.cloudConnect.availableDatacenters"
+                required
+                data-disable-items="!$item.available"
+                ><span data-ng-bind="$item.name"></span>
+            </oui-select>
+            <span
+                class="text-info"
+                data-translate="cloud_connect_datacenter_add_dc_info"
+            >
+            </span>
+        </oui-field>
+        <oui-field
+            data-size="m"
+            data-ng-if="$ctrl.cloudConnect.isL3PopType()"
+            data-label="{{::'cloud_connect_datacenter_add_select_asn' | translate}}"
+        >
+            <input
+                type="number"
+                id="ovh-asn"
+                name="ovh-asn"
+                class="oui-input"
+                data-ng-model="$ctrl.ovhBgpArea"
+                required
+                data-ng-min="$ctrl.ASN_MIN"
+                placeholder="{{:: 'cloud_connect_datacenter_add_select_asn_placeholder' | translate }}"
+            />
+        </oui-field>
+        <oui-field
+            data-size="m"
+            data-ng-if="$ctrl.cloudConnect.isL3PopType()"
+            data-label="{{::'cloud_connect_datacenter_add_network_address' | translate}}"
+            data-help-text="{{ ::'cloud_connect_datacenter_add_network_address_help_message' | translate }}"
+            data-error-messages="{ 'pattern': ('cloud_connect_datacenter_add_network_address_invalid_message' | translate) }"
+        >
+            <input
+                type="text"
+                id="subnet"
+                name="subnet"
+                class="oui-input"
+                data-ng-model="$ctrl.subnet"
+                data-ng-pattern="$ctrl.IPV4_BLOCK_REGEX_RANGE_0_TO_28"
+                placeholder="{{:: 'cloud_connect_datacenter_add_network_address_placeholder' | translate }}"
+                required
+            />
+        </oui-field>
+    </oui-modal>
+</form>

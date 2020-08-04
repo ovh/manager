@@ -1,0 +1,6 @@
+{
+  "cloud_connect_datacenter_remove": "Supprimer la configuration du centre de données",
+  "cloud_connect_datacenter_remove_description": "Cela supprimera la configuration de centre de données sélectionnée",
+  "cloud_connect_datacenter_remove_success": "Suppression d'une configuration de centre de données. <a href=\"{{ tasksUrl }}\">Cliquez ici pour voir le statut.</a>",
+  "cloud_connect_datacenter_remove_error": "Échec de la suppression d'une configuration de centre de données: {{message}}"
+}

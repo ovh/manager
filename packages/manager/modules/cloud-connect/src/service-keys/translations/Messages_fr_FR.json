@@ -1,0 +1,15 @@
+{
+  "cloud_connect_service_keys_status_doing": "Faire",
+  "cloud_connect_service_keys_status_active": "Actif",
+  "cloud_connect_service_keys_status_cancelled": "Annulé",
+  "cloud_connect_service_keys_status_terminated": "Terminé",
+  "cloud_connect_service_keys_status_toCheck": "Vérifier",
+  "cloud_connect_service_keys_status": "Statut",
+  "cloud_connect_service_keys_id": "ID",
+  "cloud_connect_service_keys_provider": "Provider",
+  "cloud_connect_service_keys_key": "Clé de service ",
+  "cloud_connect_service_keys_decription": "Liste de toutes les clés de service. Une seule clé de service peut être valide à tout moment. Si aucune clé de service active trouvée, une action sera visible pour définir une clé de service comme active.",
+  "cloud_connect_service_keys_active": "Activer",
+  "cloud_connect_close": "Fermer",
+  "cloud_connect_regenerate": "Régénérer"
+}

@@ -1,0 +1,6 @@
+{
+  "cloud_connect_pop_configure_delete": "Supprimer la configuration",
+  "cloud_connect_pop_configure_delete_confirm": "Voulez-vous vraiment supprimer la configuration Pop du port {{portNumber}}?",
+  "cloud_connect_pop_remove_configuration_success": "Suppression de la configuration Pop. <a href=\"{{ tasksUrl }}\">Cliquez ici pour voir le statut.</a>",
+  "cloud_connect_pop_remove_configuration_error": "Échec de la suppression de la configuration Pop: {{message}}"
+}
