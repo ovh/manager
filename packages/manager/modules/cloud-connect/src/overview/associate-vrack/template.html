@@ -1,0 +1,35 @@
+<form
+    id="asssociateVrack"
+    name="asssociateVrack"
+    data-ng-submit="asssociateVrack.$valid && $ctrl.associateVrack()"
+    novalidate
+>
+    <oui-modal
+        data-heading="{{:: 'cloud_connect_vrack_associate' | translate }}"
+        data-primary-label="{{:: 'cloud_connect_create' | translate }}"
+        data-primary-disabled="$ctrl.isLoading"
+        data-secondary-action="$ctrl.goBack()"
+        data-secondary-label="{{:: 'cloud_connect_cancel' | translate }}"
+        data-on-dismiss="$ctrl.goBack()"
+        data-loading="$ctrl.isLoading"
+    >
+        <p
+            data-translate="cloud_connect_vrack_associate_description"
+            data-translate-values="{ vrackOrderUrl: $ctrl.vrackOrderUrl }"
+        ></p>
+
+        <oui-field>
+            <oui-select
+                name="vRack"
+                data-model="$ctrl.vRack"
+                data-items="$ctrl.vRacks"
+                data-match="name"
+                placeholder="{{ ::'cloud_connect_vrack_select' | translate }}"
+                required
+                data-searchable
+            >
+                <span data-ng-bind="$item.name"></span>
+            </oui-select>
+        </oui-field>
+    </oui-modal>
+</form>

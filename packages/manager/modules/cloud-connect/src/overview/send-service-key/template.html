@@ -1,0 +1,31 @@
+<form
+    id="sendServiceKey"
+    name="sendServiceKey"
+    data-ng-submit="sendServiceKey.$valid && $ctrl.sendServiceKey()"
+    novalidate
+>
+    <oui-modal
+        data-heading="{{:: 'cloud_connect_service_key_active_send' | translate }}"
+        data-primary-label="{{:: 'cloud_connect_send' | translate }}"
+        data-primary-disabled="$ctrl.isLoading"
+        data-secondary-action="$ctrl.goBack()"
+        data-secondary-label="{{:: 'cloud_connect_cancel' | translate }}"
+        data-on-dismiss="$ctrl.goBack()"
+        data-loading="$ctrl.isLoading"
+    >
+        <oui-field
+            data-label="{{ ::'cloud_connect_service_email' | translate }}"
+        >
+            <input
+                class="oui-input"
+                type="email"
+                id="email"
+                name="email"
+                data-ng-model="$ctrl.email"
+                required
+                autofocus
+                placeholder="{{ ::'cloud_connect_email_placeholder' | translate }}"
+            />
+        </oui-field>
+    </oui-modal>
+</form>

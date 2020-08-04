@@ -1,0 +1,19 @@
+<form
+    id="removeRouting"
+    name="removeRouting"
+    data-ng-submit="removeRouting.$valid && $ctrl.removeRouting()"
+    novalidate
+>
+    <oui-modal
+        data-heading="{{:: 'cloud_connect_routing_remove' | translate }}"
+        data-primary-label="{{:: 'cloud_connect_remove' | translate }}"
+        data-primary-disabled="$ctrl.isLoading"
+        data-secondary-action="$ctrl.goBack()"
+        data-secondary-label="{{:: 'cloud_connect_cancel' | translate }}"
+        data-on-dismiss="$ctrl.goBack()"
+        data-loading="$ctrl.isLoading"
+        data-type="warning"
+    >
+        <p data-translate="cloud_connect_routing_remove_description"></p>
+    </oui-modal>
+</form>

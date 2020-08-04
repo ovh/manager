@@ -1,0 +1,6 @@
+{
+  "cloud_connect_edit_modal_title": "Éditer la description",
+  "cloud_connect_edit_modal_description": "Changer la description",
+  "cloud_connect_edit_description_success": "La description de la connexion au cloud a été mise à jour avec succès",
+  "cloud_connect_edit_description_error": "Une erreur s'est produite lors de la mise à jour de la description de la connexion au cloud"
+}

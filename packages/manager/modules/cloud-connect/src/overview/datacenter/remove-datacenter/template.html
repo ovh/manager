@@ -1,0 +1,19 @@
+<form
+    id="removeDatacenter"
+    name="removeDatacenter"
+    data-ng-submit="removeDatacenter.$valid && $ctrl.removeDatacenter()"
+    novalidate
+>
+    <oui-modal
+        data-heading="{{:: 'cloud_connect_datacenter_remove' | translate }}"
+        data-primary-label="{{:: 'cloud_connect_remove' | translate }}"
+        data-primary-disabled="$ctrl.isLoading"
+        data-secondary-action="$ctrl.goBack()"
+        data-secondary-label="{{:: 'cloud_connect_cancel' | translate }}"
+        data-on-dismiss="$ctrl.goBack()"
+        data-loading="$ctrl.isLoading"
+        data-type="warning"
+    >
+        <p data-translate="cloud_connect_datacenter_remove_description"></p>
+    </oui-modal>
+</form>

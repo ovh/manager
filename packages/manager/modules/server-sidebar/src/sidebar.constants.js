@@ -315,8 +315,8 @@ export const DEDICATED_NETWORK_CONFIG = {
       icon: 'oui-icon oui-icon-line-communicating_concept',
       app: [DEDICATED],
       regions: ['EU', 'CA', 'US'],
-    }
-  ]
+    },
+  ],
 };
 
 export const CLOUD_DESKTOP_CONFIG = {
