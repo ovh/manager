@@ -1,5 +1,6 @@
 {
   "sms_phonebooks_phonebook_title": "Gestion du carnet d’adresses",
+  "sms_phonebooks_phonebook_breadcrumb": "Carnet d'adresses",
   "sms_phonebooks_phonebook_select_label": "Sélectionnez votre carnet d’adresses :",
   "sms_phonebooks_phonebook_ko": "Oups ! Impossible de récupérer les carnets d’adresses.",
   "sms_phonebooks_phonebook_create": "Ajouter un carnet d’adresses",
