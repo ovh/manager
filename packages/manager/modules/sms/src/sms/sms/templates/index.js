@@ -5,18 +5,24 @@ import template from './telecom-sms-sms-templates.html';
 
 const moduleName = 'ovhManagerSmsSmsTemplates';
 
-angular.module(moduleName, []).config(($stateProvider) => {
-  $stateProvider.state('sms.service.sms.templates', {
-    url: '/templates',
-    views: {
-      'smsView@sms.service': {
-        template,
-        controller,
-        controllerAs: '$ctrl',
+angular
+  .module(moduleName, [])
+  .config(($stateProvider) => {
+    $stateProvider.state('sms.service.sms.templates', {
+      url: '/templates',
+      views: {
+        'smsView@sms.service': {
+          template,
+          controller,
+          controllerAs: '$ctrl',
+        },
       },
-    },
-    translations: { value: ['.'], format: 'json' },
-  });
-});
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('sms_sms_templates_title'),
+      },
+    });
+  })
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

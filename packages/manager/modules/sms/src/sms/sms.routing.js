@@ -11,8 +11,10 @@ export default /* @ngInject */ ($stateProvider) => {
         controllerAs: 'TelecomSmsCtrl',
       },
     },
-    abstract: true,
+    redirectTo: 'sms.service.dashboard',
     resolve: {
+      serviceName: /* @ngInject */ ($transition$) =>
+        $transition$.params().serviceName,
       initSms: ($q, $stateParams, TucSmsMediator) => {
         // init sms services
         TucSmsMediator.initAll().then((smsDetails) =>
@@ -45,6 +47,7 @@ export default /* @ngInject */ ($stateProvider) => {
           .catch(() =>
             $translate('sms_page_title', { name: $stateParams.serviceName }),
           ),
+      breadcrumb: /* @ngInject */ (serviceName) => serviceName,
     },
     translations: {
       value: ['.'],
