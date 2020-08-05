@@ -2,6 +2,7 @@ import groupBy from 'lodash/groupBy';
 import filter from 'lodash/filter';
 
 import { Environment } from '@ovh-ux/manager-config';
+import { emit, listen } from '@ovh-ux/ufrontend/communication';
 import { MAX_NOTIFICATIONS } from './constants';
 
 export default class NotificationsCtrl {
@@ -9,6 +10,7 @@ export default class NotificationsCtrl {
   constructor(
     $q,
     $rootScope,
+    $timeout,
     $translate,
     atInternet,
     NavbarNotifications,
@@ -17,6 +19,7 @@ export default class NotificationsCtrl {
   ) {
     this.$q = $q;
     this.$rootScope = $rootScope;
+    this.$timeout = $timeout;
     this.$translate = $translate;
     this.atInternet = atInternet;
     this.toggle = false;
@@ -63,18 +66,37 @@ export default class NotificationsCtrl {
         }
         this.numberOfActiveNotifications = this.getNumberOfActiveNotifications();
         this.groupedSublinks = groupBy(this.sublinks, 'time');
-
         this.$rootScope.$emit(
           'ovh::notifications::count',
           this.numberOfActiveNotifications,
         );
-      })
-      .catch(() => {
-        this.$rootScope.$emit('ovh::notifications::count', null);
+        emit({
+          id: 'ovh.notifications.count',
+          count: this.numberOfActiveNotifications,
+        });
       })
       .finally(() => {
         this.isLoading = false;
+        this.listenForEvents();
       });
+  }
+
+  listenForEvents() {
+    listen(({ id }) => {
+      this.$timeout(() => {
+        if (id === 'ovh.notifications.toggle') {
+          this.toggle = !this.toggle;
+          if (this.toggle) {
+            this.atInternet.trackClick({
+              name: 'navbar::action::notifications',
+              type: 'action',
+            });
+          }
+        } else if (id === 'ovh.notifications.hide') {
+          this.toggle = false;
+        }
+      });
+    });
   }
 
   getNumberOfActiveNotifications() {
