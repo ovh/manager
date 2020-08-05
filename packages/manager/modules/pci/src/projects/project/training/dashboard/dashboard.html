@@ -5,6 +5,7 @@
         <div class="col-md-4">
             <oui-tile
                 data-heading="{{ ::'pci_projects_project_training_dashboard_information' | translate }}"
+                class="h-100"
             >
                 <div class="oui-tile__item">
                     <dl class="oui-tile__definition">
@@ -143,7 +144,7 @@
             </oui-tile>
         </div>
         <div class="col-md-4">
-            <oui-tile data-heading="Usage">
+            <oui-tile data-heading="Usage" class="h-100">
                 <oui-tile-definition>
                     <oui-tile-description>
                         <div class="row d-lg-flex">
@@ -200,6 +201,7 @@
         </div>
         <div class="col-md-4">
             <oui-tile
+                class="h-100"
                 data-heading="{{ :: 'pci_projects_project_training_dashboard_billing_title' | translate }}"
             >
                 <div>
@@ -220,112 +222,143 @@
         </div>
     </div>
     <p></p>
-    <h4>Tâches actives</h4>
-    <oui-datagrid
-        id="publicCloudTrainingJobsDatagrid"
-        data-rows="$ctrl.runningJobs"
-        data-row-loader="$row"
-    >
-        <oui-datagrid-column
-            data-title=":: 'pci_projects_project_training_jobs_id' | translate"
-            data-property="id"
-            data-type="string"
-            data-searchable
-            data-filterable
-            data-sortable
-        >
-            <a ng-click="$ctrl.jobInfo($value)" data-ng-bind="$value"></a>
-        </oui-datagrid-column>
-        <oui-datagrid-column
-            data-title=":: 'pci_projects_project_training_jobs_region' | translate"
-            data-property="region"
-            data-type="string"
-            data-searchable
-            data-filterable
-            data-sortable
-        >
-            <span data-ng-bind="$value"></span>
-        </oui-datagrid-column>
-        <oui-datagrid-column
-            data-title=":: 'pci_projects_project_training_jobs_image' | translate"
-            data-property="image"
-            data-type="string"
-            data-searchable
-            data-filterable
-            data-sortable
-        >
-            <span data-ng-bind="$value"></span>
-        </oui-datagrid-column>
-        <oui-datagrid-column
-            data-title=":: 'pci_projects_project_training_jobs_creator' | translate"
-            data-property="user"
-            data-type="string"
-            data-searchable
-            data-filterable
-            data-sortable
-        >
-            <span data-ng-bind="$value"></span>
-        </oui-datagrid-column>
-        <oui-datagrid-column
-            data-title=":: 'pci_projects_project_training_jobs_state' | translate"
-            data-property="state"
-            data-type="string"
-            data-searchable
-            data-filterable
-            data-sortable
-        >
-            <span class="oui-status" data-ng-class="$row.getClassForState()">
-                <span
-                    data-translate="{{:: 'pci_projects_project_training_jobs_state_' + $value }}"
-                ></span>
-            </span>
-        </oui-datagrid-column>
-        <oui-datagrid-column
-            data-title=":: 'pci_projects_project_training_jobs_created' | translate"
-            data-property="created"
-            data-type="date"
-            data-searchable
-            data-filterable
-            data-sortable
-        >
-            <span data-ng-bind="$value | date:'medium'"></span>
-        </oui-datagrid-column>
-        <oui-action-menu data-align="end" data-compact>
-            <oui-action-menu-item data-on-click="$ctrl.jobInfo($row.id)">
-                <span
-                    data-translate="pci_projects_project_training_jobs_info"
-                ></span>
-            </oui-action-menu-item>
-            <oui-action-menu-item
-                data-on-click="$ctrl.jobKill($row.id)"
-                data-disabled="!$row.jobCanBeKilled()"
+    <div class="row d-lg-flex">
+        <div class="col-md-4">
+            <oui-tile
+                class="h-100"
+                heading="{{ :: 'pci_projects_project_training_dashboard_active_users' | translate }}"
+                loading="!$ctrl.allUsersLoaded"
             >
-                <span
-                    data-translate="pci_projects_project_training_jobs_kill"
-                ></span>
-            </oui-action-menu-item>
-        </oui-action-menu>
-        <oui-datagrid-topbar>
-            <button
-                data-ng-click="$ctrl.goToJobSubmit()"
-                data-title="{{:: 'pci_projects_project_training_jobs_list_submit' | translate  }}"
-                class="oui-button oui-button_secondary oui-button_icon-left"
+                <oui-tile-definition>
+                    <oui-tile-actions>
+                        <a
+                            placement="end"
+                            href="{{ $ctrl.userLink }}"
+                            class="oui-button oui-button_secondary oui-button_icon-left"
+                        >
+                            <span
+                                data-translate="{{:: 'pci_projects_project_training_dashboard_users_managements' | translate  }}"
+                            ></span>
+                        </a>
+                    </oui-tile-actions>
+                </oui-tile-definition>
+                <table class="oui-table">
+                    <thead>
+                        <tr>
+                            <th class="oui-table__header">Nom</th>
+                            <th class="oui-table__header">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            data-ng-repeat="user in $ctrl.users"
+                            class="oui-table__row"
+                        >
+                            <td class="oui-table__cell">{{ user.username }}</td>
+                            <td class="oui-table__cell">
+                                {{ user.description }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </oui-tile>
+        </div>
+        <div class="col-md-8">
+            <oui-tile
+                class="h-100"
+                heading="{{ :: 'pci_projects_project_training_dashboard_active_jobs' | translate }}"
             >
-                <span
-                    class="oui-icon oui-icon-add pr-1"
-                    aria-hidden="true"
-                ></span>
-                <span
-                    data-translate="{{:: 'pci_projects_project_training_jobs_list_submit' | translate  }}"
-                ></span>
-            </button>
-            <button
-                class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_s"
-                data-title="{{:: 'pci_projects_project_training_data_refresh' | translate }}"
-                data-ng-click="$ctrl.refreshState()"
-            >
-                <span class="fa fa-refresh" aria-hidden="true"></span>
-            </button>
-        </oui-datagrid-topbar>
-    </oui-datagrid>
+                <oui-tile-definition>
+                    <oui-tile-actions>
+                        <button
+                            placement="end"
+                            data-ng-click="$ctrl.goToJobSubmit()"
+                            data-title="{{:: 'pci_projects_project_training_jobs_list_submit' | translate  }}"
+                            class="oui-button oui-button_secondary oui-button_icon-left"
+                            data-track-on="click"
+                            data-track-name="public-cloud::pci::projects::project::training::jobs::add-job"
+                            data-track-type="action"
+                        >
+                            <span
+                                class="oui-icon oui-icon-add pr-1"
+                                aria-hidden="true"
+                            ></span>
+                            <span
+                                data-translate="{{:: 'pci_projects_project_training_jobs_list_submit' | translate  }}"
+                            ></span>
+                        </button>
+                    </oui-tile-actions>
+                </oui-tile-definition>
+
+                <table class="oui-table">
+                    <thead>
+                        <tr>
+                            <th class="oui-table__header">
+                                {{:: 'pci_projects_project_training_jobs_image'
+                                | translate}}
+                            </th>
+                            <th class="oui-table__header">
+                                {{::
+                                'pci_projects_project_training_jobs_creator' |
+                                translate}}
+                            </th>
+                            <th class="oui-table__header">
+                                {{:: 'pci_projects_project_training_jobs_state'
+                                | translate}}
+                            </th>
+                            <th class="oui-table__header">
+                                {{::
+                                'pci_projects_project_training_jobs_created' |
+                                translate}}
+                            </th>
+                            <th class="oui-table__header"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            data-ng-repeat="job in $ctrl.runningJobs"
+                            class="oui-table__row"
+                        >
+                            <td class="oui-table__cell">{{ job.image }}</td>
+                            <td class="oui-table__cell">{{ job.user }}</td>
+                            <td class="oui-table__cell">
+                                <span
+                                    class="oui-status"
+                                    data-ng-class="job.getClassForState()"
+                                >
+                                    <span>
+                                        {{
+                                        'pci_projects_project_training_jobs_state_'
+                                        + job.state | translate }}
+                                    </span>
+                                </span>
+                            </td>
+                            <td class="oui-table__cell">
+                                {{ job.created | date:'medium'}}
+                            </td>
+                            <td class="oui-table__cell">
+                                <oui-action-menu data-align="end" data-compact>
+                                    <oui-action-menu-item
+                                        data-on-click="$ctrl.jobInfo(job.id)"
+                                    >
+                                        <span
+                                            data-translate="pci_projects_project_training_jobs_info"
+                                        ></span>
+                                    </oui-action-menu-item>
+                                    <oui-action-menu-item
+                                        data-on-click="$ctrl.jobKill(job.id)"
+                                        data-disabled="!job.jobCanBeKilled()"
+                                    >
+                                        <span
+                                            data-translate="pci_projects_project_training_jobs_kill"
+                                        ></span>
+                                    </oui-action-menu-item>
+                                </oui-action-menu>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </oui-tile>
+        </div>
+    </div>
 </div>

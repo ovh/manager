@@ -27,5 +27,7 @@ export default {
     jobInfo: '<',
     jobKill: '<',
     jobInfoLink: '<',
+    allUsers: '<',
+    userLink: '<',
   },
 };

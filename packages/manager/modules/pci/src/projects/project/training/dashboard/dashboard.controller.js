@@ -28,6 +28,25 @@ export default class PciTrainingDashboardController {
     this.nbFailed = this.getJobsNumberWithSelector((job) => job.isFailed());
     this.nbOther =
       this.jobList.length - this.nbSuccess - this.nbFailed - this.nbRunning;
+
+    // Load users
+    this.allUsersLoaded = false;
+    this.allUsers()
+      .then((users) => {
+        this.users = users;
+      })
+      .finally(() => {
+        this.allUsersLoaded = true;
+      });
+  }
+
+  getAllUsersAsStrings() {
+    return this.users.map((user) => {
+      if (user.description) {
+        return `${user.username} (${user.description})`;
+      }
+      return user.username;
+    });
   }
 
   loadMessages() {

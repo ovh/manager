@@ -29,5 +29,6 @@ export default {
     billingLink: '<',
     jobInfo: '<',
     jobKill: '<',
+    userLink: '<',
   },
 };

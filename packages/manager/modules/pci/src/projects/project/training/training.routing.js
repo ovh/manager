@@ -150,6 +150,10 @@ export default /* @ngInject */ ($stateProvider) => {
           username,
           password,
         ),
+      userLink: /* @ngInject */ ($state, projectId) =>
+        $state.href('pci.projects.project.users', {
+          projectId,
+        }),
     },
   });
 };
