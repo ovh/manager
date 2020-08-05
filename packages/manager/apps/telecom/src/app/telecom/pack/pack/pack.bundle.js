@@ -1,11 +1,4 @@
 import './index';
-import '../internet-access/index';
-import '../internet-access/internet-access.component';
-import '../internet-access/internet-access.routing';
-import '../internet-access/packs/index';
-import '../internet-access/packs/packs.component';
-import '../internet-access/packs/packs.controller';
-import '../internet-access/packs/packs.routing';
 import './migration/building-details/telecom-pack-migration-building-details.controller';
 import './migration/confirm/telecom-pack-migration-confirm.controller';
 import './migration/migration/telecom-pack-migration-migration.controller';

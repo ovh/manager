@@ -258,9 +258,7 @@ angular
         loadOnState: 'telecom.packs',
         allowSearch: !expand,
         infiniteScroll: true,
-        ...(expand
-          ? { state: 'telecom.packs.internet-access.packs' }
-          : { onLoad: self.fetchData }),
+        ...(expand ? { state: 'telecom.packs' } : { onLoad: self.fetchData }),
       });
 
       return self.mainSectionItem;
