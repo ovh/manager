@@ -4,18 +4,24 @@ import template from './telecom-sms-options-response.html';
 
 const moduleName = 'ovhManagerSmsOptionsResponse';
 
-angular.module(moduleName, []).config(($stateProvider) => {
-  $stateProvider.state('sms.service.options.response', {
-    url: '/response',
-    views: {
-      'smsView@sms.service': {
-        template,
-        controller,
-        controllerAs: 'TelecomSmsOptionsResponseCtrl',
+angular
+  .module(moduleName, [])
+  .config(($stateProvider) => {
+    $stateProvider.state('sms.service.options.response', {
+      url: '/response',
+      views: {
+        'smsView@sms.service': {
+          template,
+          controller,
+          controllerAs: 'TelecomSmsOptionsResponseCtrl',
+        },
       },
-    },
-    translations: { value: ['.'], format: 'json' },
-  });
-});
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('sms_options_response_breacrumb'),
+      },
+    });
+  })
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

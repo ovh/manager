@@ -1,5 +1,6 @@
 {
   "sms_section_back_link": "Revenir aux options",
+  "sms_options_response_breacrumb": "Options des réponses",
   "sms_options_response_information_title": "Informations",
   "sms_options_response_information_text_1": "Lors de la réception d’un SMS suite à l’envoi d’un SMS permettant la réponse, trois choix s’offrent à vous :",
   "sms_options_response_information_list_item_1": "Ne rien faire",
