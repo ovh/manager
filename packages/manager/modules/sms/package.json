@@ -35,6 +35,7 @@
     "@ovh-ux/ng-pagination-front": "^10.0.0",
     "@ovh-ux/ng-ui-router-layout": "^4.0.0",
     "@ovh-ux/ui-kit": "^4.4.1",
+    "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.0",
     "@uirouter/angularjs": "^1.0.15",
     "angular": "^1.7.5",
     "angular-messages": "^1.7.6",

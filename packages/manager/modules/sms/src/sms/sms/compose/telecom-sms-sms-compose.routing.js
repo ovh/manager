@@ -15,6 +15,8 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       sendersLink: /* @ngInject */ ($state) => () =>
         $state.href('sms.service.senders'),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('sms_sms_compose_title'),
     },
   });
 };
