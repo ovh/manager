@@ -26,6 +26,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('sms.service.dashboard', {
           serviceName,
         }),
+      hideBreadcrumb: () => true,
     },
   });
 };
