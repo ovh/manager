@@ -60,6 +60,7 @@ export const CPU_FREQUENCY = {
 };
 
 export default {
+  CATEGORIES,
   CPU_FREQUENCY,
   DEFAULT_OS,
   FLEX_TYPE,
