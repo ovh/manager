@@ -1,6 +1,11 @@
 ovh-manager-account-sidebar {
+  @import '~@ovh-ux/ui-kit/dist/scss/_tokens.scss';
+
+  .ovh-account-sidebar-wrapper {
+    z-index: $base-z-index-sidebar;
+  }
+
   .manager-hub-user-panel {
-    @import '~@ovh-ux/ui-kit/dist/scss/_tokens.scss';
     @import '~bootstrap4/scss/_functions.scss';
     @import '~bootstrap4/scss/_variables.scss';
     @import '~bootstrap4/scss/_mixins.scss';

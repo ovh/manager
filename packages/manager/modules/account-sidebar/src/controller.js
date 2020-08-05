@@ -1,3 +1,4 @@
+import { emit, listen } from '@ovh-ux/ufrontend/communication';
 import constants from './constants';
 
 export default class OvhManagerAccountSidebarCtrl {
@@ -5,6 +6,7 @@ export default class OvhManagerAccountSidebarCtrl {
   constructor(
     $q,
     $rootScope,
+    $timeout,
     $translate,
     atInternet,
     OvhApiMe,
@@ -25,6 +27,17 @@ export default class OvhManagerAccountSidebarCtrl {
       this.isSidebarVisible = false;
       this.sidebarExpand = false;
     });
+
+    listen(({ id }) => {
+      $timeout(() => {
+        if (id === 'ovh.account-sidebar.toggle') {
+          this.isSidebarVisible = !this.isSidebarVisible;
+        } else if (id === 'ovh.account-sidebar.hide') {
+          this.isSidebarVisible = false;
+          this.sidebarExpand = false;
+        }
+      });
+    });
   }
 
   $onInit() {
@@ -40,6 +53,11 @@ export default class OvhManagerAccountSidebarCtrl {
       .then(() => this.getLinks())
       .then((links) => {
         this.links = links;
+      })
+      .finally(() => {
+        emit({
+          id: 'ovh.account-sidebar.ready',
+        });
       });
   }
 
