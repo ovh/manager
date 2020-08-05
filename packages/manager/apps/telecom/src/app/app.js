@@ -49,7 +49,7 @@ import errorPage from './error-page/error-page.module';
 import searchPage from './search/search.module';
 import navbar from '../components/navbar';
 
-import portabilities from './telecom/telephony/alias/portability/portabilities/telecom-telephony-alias-portability-portabilities.module';
+import portabilities from './telecom/telephony/account/alias/portability/portabilities/telecom-telephony-alias-portability-portabilities.module';
 
 import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 

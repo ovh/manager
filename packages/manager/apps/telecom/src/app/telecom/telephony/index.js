@@ -1,10 +1,10 @@
 import angular from 'angular';
 
-import billingAccount from './billingAccount';
-import carrierSip from './carrierSip';
-import linePhoneOrder from './line/phone/order/order.module';
-import linePhoneAccessories from './line/phone/accessories/accessories.module';
-import attachLine from './line/phone/attachLine/attach.module';
+import billingAccount from './account/billingAccount';
+import carrierSip from './account/carrierSip';
+import linePhoneOrder from './account/line/phone/order/order.module';
+import linePhoneAccessories from './account/line/phone/accessories/accessories.module';
+import attachLine from './account/line/phone/attachLine/attach.module';
 
 import component from './telephony.component';
 import routing from './telephony.routing';

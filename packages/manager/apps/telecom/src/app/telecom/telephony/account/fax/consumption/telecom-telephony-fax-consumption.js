@@ -1,0 +1,14 @@
+angular.module('managerApp').config(($stateProvider) => {
+  $stateProvider.state('telecom.telephony.billingAccount.fax.consumption', {
+    url: '/consumption',
+    views: {
+      faxInnerView: {
+        templateUrl:
+          'app/telecom/telephony/account/fax/consumption/telecom-telephony-fax-consumption.html',
+        controller: 'TelecomTelephonyFaxConsumptionCtrl',
+        controllerAs: '$ctrl',
+      },
+    },
+    translations: { value: ['.'], format: 'json' },
+  });
+});
