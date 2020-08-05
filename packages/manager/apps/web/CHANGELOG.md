@@ -1,3 +1,19 @@
+# [15.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.0.3...@ovh-ux/manager-web@15.1.0) (2020-08-05)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 425] ([de0c5c5](https://github.com/ovh/manager/commit/de0c5c5ecb244ef052b8829a7eaf430e9384175c))
+
+
+### Features
+
+* **dns-zone:** activate dns zone ([3641be1](https://github.com/ovh/manager/commit/3641be1169e02af1d9faf12254c19573a3856194))
+* **manager:** import manager-account-sidebar ([bdfd5f9](https://github.com/ovh/manager/commit/bdfd5f9c69acdf2c393712401fc2374a472c7eee))
+* **web:** import notifications sidebar ([36af2e7](https://github.com/ovh/manager/commit/36af2e7650bcdcf2e7c245778a96e3bcaecfdef7))
+
+
+
 ## [15.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.0.2...@ovh-ux/manager-web@15.0.3) (2020-08-05)
 
 

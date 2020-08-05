@@ -1,3 +1,12 @@
+## [1.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.0.0...@ovh-ux/manager-iplb@1.0.1) (2020-08-05)
+
+
+### Bug Fixes
+
+* **iplb:** remove ipv6 field ([#3339](https://github.com/ovh/manager/issues/3339)) ([760b039](https://github.com/ovh/manager/commit/760b039f2bb735639381c2ac1fd8a1c5fddf080a))
+
+
+
 # [1.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@0.4.2...@ovh-ux/manager-iplb@1.0.0) (2020-07-29)
 
 

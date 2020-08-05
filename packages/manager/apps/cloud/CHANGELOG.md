@@ -1,3 +1,12 @@
+# [10.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@10.0.2...@ovh-ux/manager-cloud@10.1.0) (2020-08-05)
+
+
+### Features
+
+* **manager:** import manager-account-sidebar ([bdfd5f9](https://github.com/ovh/manager/commit/bdfd5f9c69acdf2c393712401fc2374a472c7eee))
+
+
+
 ## [10.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@10.0.1...@ovh-ux/manager-cloud@10.0.2) (2020-08-05)
 
 

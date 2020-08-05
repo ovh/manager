@@ -1,3 +1,12 @@
+## [2.0.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.0.1...@ovh-ux/ng-ovh-cloud-universe-components@2.0.2) (2020-08-05)
+
+
+### Bug Fixes
+
+* **page.header:** update to uniformize with ODS styles ([70a5206](https://github.com/ovh/manager/commit/70a52064ef7343aa0132a410eafc3e09a4742662))
+
+
+
 ## [2.0.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.0.0...@ovh-ux/ng-ovh-cloud-universe-components@2.0.1) (2020-08-05)
 
 

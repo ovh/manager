@@ -1,3 +1,14 @@
+# [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@2.0.1...@ovh-ux/manager-hub-app@2.1.0) (2020-08-05)
+
+
+### Features
+
+* **catalog:** add filters to url ([#3315](https://github.com/ovh/manager/issues/3315)) ([71329f5](https://github.com/ovh/manager/commit/71329f533c4fee47f218dcb087195229b4ef6f0c))
+* **hub:** import notifications sidebar ([ca3ac97](https://github.com/ovh/manager/commit/ca3ac973d7f64c63f2bb195e7f83cf567a97fd3d))
+* **manager:** import manager-account-sidebar ([bdfd5f9](https://github.com/ovh/manager/commit/bdfd5f9c69acdf2c393712401fc2374a472c7eee))
+
+
+
 ## [2.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@2.0.0...@ovh-ux/manager-hub-app@2.0.1) (2020-08-05)
 
 

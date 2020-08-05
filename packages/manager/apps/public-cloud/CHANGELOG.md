@@ -1,3 +1,13 @@
+# [4.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.0.2...@ovh-ux/manager-public-cloud@4.1.0) (2020-08-05)
+
+
+### Features
+
+* **manager:** import manager-account-sidebar ([bdfd5f9](https://github.com/ovh/manager/commit/bdfd5f9c69acdf2c393712401fc2374a472c7eee))
+* **public-cloud:** import notifications sidebar ([b29540c](https://github.com/ovh/manager/commit/b29540cf41af05ddd0be88a7120898b6524bee7f))
+
+
+
 ## [4.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.0.1...@ovh-ux/manager-public-cloud@4.0.2) (2020-08-05)
 
 

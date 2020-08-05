@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci",
-  "version": "4.0.1",
+  "version": "4.1.0",
   "private": true,
   "description": "Public Cloud Instance product.",
   "repository": {
@@ -32,7 +32,7 @@
     "@ovh-ux/manager-core": "^9.0.0 || ^10.0.0",
     "@ovh-ux/manager-error-page": "^0.0.0",
     "@ovh-ux/manager-telecom-styles": "^4.0.0",
-    "@ovh-ux/ng-at-internet": "^5.0.1",
+    "@ovh-ux/ng-at-internet": "^5.1.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.2",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.0",
     "@ovh-ux/ng-ovh-contracts": "^4.0.0",

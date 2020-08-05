@@ -1,3 +1,12 @@
+# [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-support-app@2.0.1...@ovh-ux/manager-support-app@2.1.0) (2020-08-05)
+
+
+### Features
+
+* **manager:** import manager-account-sidebar ([bdfd5f9](https://github.com/ovh/manager/commit/bdfd5f9c69acdf2c393712401fc2374a472c7eee))
+
+
+
 ## [2.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-support-app@2.0.0...@ovh-ux/manager-support-app@2.0.1) (2020-08-05)
 
 
