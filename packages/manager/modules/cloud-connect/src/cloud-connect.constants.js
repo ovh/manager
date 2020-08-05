@@ -31,9 +31,32 @@ export const POP_TYPES = [
 export const ASN_MIN = 1;
 
 export const IPV4_BLOCK_REGEX = {
-  NO_RANGE: new RegExp('^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$'),
-  RANGE_0_TO_28: new RegExp('^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\/[0-2][0-8]?$'),
-  RANGE_30: new RegExp('^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\/30?$'),
+  NO_RANGE: new RegExp(
+    '^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$',
+  ),
+  RANGE_0_TO_28: new RegExp(
+    '^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)/[0-2][0-8]?$',
+  ),
+  RANGE_30: new RegExp(
+    '^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)/30?$',
+  ),
+};
+
+export const STATUS = {
+  ACTIVE: 'active',
+  INIT: 'init',
+  TO_DELETE: 'toDelete',
+  ERROR: 'error',
+  ENABLED: 'enabled',
+  DISABLED: 'disabled',
+  TODO: 'todo',
+  DOING: 'doing',
+  UP: 'up',
+  DOWN: 'down',
+  DONE: 'done',
+  TO_CHECK: 'toCheck',
+  CANCELLED: 'cancelled',
+  TERMINATED: 'terminated',
 };
 
 export default {
@@ -42,4 +65,5 @@ export default {
   POP_TYPES,
   ASN_MIN,
   IPV4_BLOCK_REGEX,
+  STATUS,
 };

@@ -20,7 +20,7 @@ export default class DataCenterAddCtrl {
       subnet: this.subnet,
     };
     return this.cloudConnectService
-      .addDatacenterConfiguration(this.cloudConnectId, this.popId, options)
+      .addDatacenterConfiguration(this.cloudConnect.id, this.popId, options)
       .then((task) => {
         const dc = new CloudConnectDatacenter({
           ...options,
@@ -43,7 +43,7 @@ export default class DataCenterAddCtrl {
         ).then(() => {
           if (task) {
             this.cloudConnectService
-              .checkTaskStatus(this.cloudConnectId, task.id)
+              .checkTaskStatus(this.cloudConnect.id, task.id)
               .finally(() => {
                 dc.setActive();
               });

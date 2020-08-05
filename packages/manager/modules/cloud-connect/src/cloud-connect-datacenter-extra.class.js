@@ -1,25 +1,41 @@
+import { STATUS } from './cloud-connect.constants';
+
 export default class CloudConnectDatacenterExtra {
-  constructor(extra) {
-    Object.assign(this, extra);
+  constructor({
+    bgpNeighborArea,
+    bgpNeighborIp,
+    nextHop,
+    subnet,
+    status,
+    type,
+  }) {
+    Object.assign(this, {
+      bgpNeighborArea,
+      bgpNeighborIp,
+      nextHop,
+      subnet,
+      status,
+      type,
+    });
   }
 
   isActive() {
-    return this.status === 'active';
+    return this.status === STATUS.ACTIVE;
   }
 
   isInProcess() {
-    return this.status === 'init' || this.status === 'toDelete';
+    return this.status === STATUS.INIT || this.status === STATUS.TO_DELETE;
   }
 
   isError() {
-    return this.status === 'error';
+    return this.status === STATUS.ERROR;
   }
 
   setActive() {
-    this.status = 'active';
+    this.status = STATUS.ACTIVE;
   }
 
   setDeleting() {
-    this.status = 'toDelete';
+    this.status = STATUS.TO_DELETE;
   }
 }

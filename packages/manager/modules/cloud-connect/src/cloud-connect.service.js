@@ -429,6 +429,14 @@ export default class CloudConnectService {
       .then((res) => res.data);
   }
 
+  getVrackAssociatedCloudConnect(serviceName) {
+    return this.$http
+      .get(`/vrack/${serviceName}/ovhCloudConnect`)
+      .then((res) => {
+        return res.data;
+      });
+  }
+
   checkTaskStatus(cloudConnectId, taskId) {
     return this.Poller.poll(
       `/ovhCloudConnect/${cloudConnectId}/task/${taskId}`,
@@ -442,6 +450,7 @@ export default class CloudConnectService {
     );
   }
 
+  /* eslint-disable-next-line class-methods-use-this */
   clearCache(cacheName) {
     cacheName.removeAll();
   }

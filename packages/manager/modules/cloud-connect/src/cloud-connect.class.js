@@ -1,9 +1,11 @@
 import { find, head, isEmpty, map, remove, set, sortBy, values } from 'lodash';
 import CloudConnectPop from './cloud-connect-pop.class';
 import CloudConnectInterface from './cloud-connect-interface.class';
+import { STATUS } from './cloud-connect.constants';
 
 export default class CloudConnect {
   constructor(cloudConnect) {
+    set(cloudConnect, 'id', cloudConnect.uuid);
     Object.assign(this, cloudConnect);
     this.datacenterConfigurations = [];
     this.availableDatacenters = [];
@@ -13,14 +15,15 @@ export default class CloudConnect {
     this.loadingInterface = false;
     this.loadingServiceKeys = false;
     this.loadingDatacenterConfig = false;
+    this.PROVIDER_OVH_CLOUD = 'OVHcloud';
   }
 
   isActive() {
-    return this.status === 'active';
+    return this.status === STATUS.ACTIVE;
   }
 
   isDirectService() {
-    return this.provider === 'OVHcloud';
+    return this.provider === this.PROVIDER_OVH_CLOUD;
   }
 
   isVrackAssociated() {
@@ -112,7 +115,7 @@ export default class CloudConnect {
   }
 
   getDcConfiguration(dcId) {
-    return find(this.datacenterConfigurations, (dc) => dc.id == dcId);
+    return find(this.datacenterConfigurations, (dc) => dc.id === dcId);
   }
 
   setLoadingServiceKeys(loading) {
@@ -124,7 +127,7 @@ export default class CloudConnect {
   }
 
   setServiceKeys(serviceKeys) {
-    if (find(serviceKeys, { status: 'active' })) {
+    if (find(serviceKeys, { status: STATUS.ACTIVE })) {
       set(this, 'validServiceKey', true);
     } else {
       set(this, 'validServiceKey', false);
@@ -139,7 +142,7 @@ export default class CloudConnect {
   getActiveServiceKey() {
     return find(
       this.getServiceKeys(),
-      (key) => key.status === 'active' || key.status === 'doing',
+      (key) => key.status === STATUS.ACTIVE || key.status === STATUS.DOING,
     );
   }
 
@@ -172,5 +175,9 @@ export default class CloudConnect {
 
   setAvailableDatacenters(list) {
     this.availableDatacenters = sortBy(list, ['name']);
+  }
+
+  isL3PopType() {
+    return this.popType === 'l3';
   }
 }

@@ -3,7 +3,6 @@ import template from './template.html';
 
 export default {
   bindings: {
-    cloudConnectId: '<',
     description: '<',
     goBack: '<',
   },

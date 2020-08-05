@@ -5,7 +5,6 @@ export default {
   bindings: {
     allowedPopType: '<',
     cloudConnect: '<',
-    cloudConnectId: '<',
     goBack: '<',
     interfaceId: '<',
     popTypes: '<',

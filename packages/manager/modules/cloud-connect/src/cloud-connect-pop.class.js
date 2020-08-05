@@ -1,6 +1,24 @@
+import { STATUS } from './cloud-connect.constants';
+
 export default class CloudConnectPop {
-  constructor(cloudConnectPop) {
-    Object.assign(this, cloudConnectPop);
+  constructor({
+    customerBgpArea,
+    id,
+    interfaceId,
+    ovhBgpArea,
+    status,
+    subnet,
+    type,
+  }) {
+    Object.assign(this, {
+      customerBgpArea,
+      id,
+      interfaceId,
+      ovhBgpArea,
+      status,
+      subnet,
+      type,
+    });
   }
 
   isL3Type() {
@@ -8,26 +26,26 @@ export default class CloudConnectPop {
   }
 
   isActive() {
-    return this.status === 'active';
+    return this.status === STATUS.ACTIVE;
   }
 
   isInProcess() {
-    return this.status === 'init' || this.status === 'toDelete';
+    return this.status === STATUS.INIT || this.status === STATUS.TO_DELETE;
   }
 
   isDeleting() {
-    return this.status === 'toDelete';
+    return this.status === STATUS.TO_DELETE;
   }
 
   isError() {
-    return this.status === 'error';
+    return this.status === STATUS.ERROR;
   }
 
   setActive() {
-    this.status = 'active';
+    this.status = STATUS.ACTIVE;
   }
 
   setDeleting() {
-    this.status = 'toDelete';
+    this.status = STATUS.TO_DELETE;
   }
 }

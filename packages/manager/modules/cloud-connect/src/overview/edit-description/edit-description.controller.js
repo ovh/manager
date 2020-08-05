@@ -10,7 +10,7 @@ export default class CloudConnectEditDescriptionCtrl {
   confirm() {
     this.isLoading = true;
     return this.cloudConnectService
-      .saveDescription(this.cloudConnectId, this.description)
+      .saveDescription(this.cloudConnect.id, this.description)
       .then(() => {
         return this.goBack(
           this.$translate.instant('cloud_connect_edit_description_success'),

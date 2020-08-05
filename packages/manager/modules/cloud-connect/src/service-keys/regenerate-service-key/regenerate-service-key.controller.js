@@ -13,8 +13,8 @@ export default class RegenerateServiceKeyCtrl {
 
   regenerateServiceKey() {
     this.isLoading = true;
-    this.cloudConnectService
-      .regenerateServiceKey(this.cloudConnectId, this.serviceKeyId)
+    return this.cloudConnectService
+      .regenerateServiceKey(this.cloudConnect.id, this.serviceKeyId)
       .then(() =>
         this.goBack(
           this.$translate.instant(

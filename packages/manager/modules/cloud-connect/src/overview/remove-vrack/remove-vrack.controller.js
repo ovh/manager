@@ -13,24 +13,27 @@ export default class RemoveVrackCtrl {
 
   removeVrack() {
     this.isLoading = true;
-    this.cloudConnectService.removeVrack(this.vRackId, this.cloudConnectId)
-    .then(() => {
-      this.cloudConnect.vrack = null;
-      this.cloudConnect.vrackName = null;
-      return this.goBack(
-        this.$translate.instant('cloud_connect_vrack_remove_success'),
-        'success',
-        false,
-      );
-    })
-    .catch((error) => this.goBack(
-      this.$translate.instant('cloud_connect_vrack_remove_error', {
-        message: get(error, 'data.message', error.message),
-      }),
-      'error'
-    ))
-    .finally(() => {
-      this.isLoading = false;
-    })
+    this.cloudConnectService
+      .removeVrack(this.vRackId, this.cloudConnect.id)
+      .then(() => {
+        this.cloudConnect.vrack = null;
+        this.cloudConnect.vrackName = null;
+        return this.goBack(
+          this.$translate.instant('cloud_connect_vrack_remove_success'),
+          'success',
+          false,
+        );
+      })
+      .catch((error) =>
+        this.goBack(
+          this.$translate.instant('cloud_connect_vrack_remove_error', {
+            message: get(error, 'data.message', error.message),
+          }),
+          'error',
+        ),
+      )
+      .finally(() => {
+        this.isLoading = false;
+      });
   }
 }

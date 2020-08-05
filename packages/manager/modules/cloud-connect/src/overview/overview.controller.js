@@ -59,7 +59,7 @@ export default class CloudConnectOverviewCtrl {
 
   loadServiceInfo() {
     return this.cloudConnectService
-      .getCloudConnectServiceInfo(this.cloudConnectId)
+      .getCloudConnectServiceInfo(this.cloudConnect.id)
       .then((serviceInfos) => {
         this.serviceInfos = serviceInfos;
         this.serviceInfos.creationDate = moment(
@@ -138,7 +138,7 @@ export default class CloudConnectOverviewCtrl {
   downloadLOA() {
     this.downloadingLoa = true;
     this.cloudConnectService
-      .downloadLOA(this.cloudConnectId)
+      .downloadLOA(this.cloudConnect.id)
       .then((url) => this.$window.open(url, '_blank', 'noopener'))
       .catch((error) =>
         this.CucCloudMessage.error(

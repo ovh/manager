@@ -1,33 +1,40 @@
 import find from 'lodash/find';
 import remove from 'lodash/remove';
 
+import { STATUS } from './cloud-connect.constants';
 import CloudConnectDatacenterExtra from './cloud-connect-datacenter-extra.class';
 
 export default class CloudConnectDatacenter {
-  constructor(datacenterConfiguration) {
-    Object.assign(this, datacenterConfiguration);
+  constructor({ datacenterId, id, ovhBgpArea, status, subnet }) {
+    Object.assign(this, {
+      datacenterId,
+      id,
+      ovhBgpArea,
+      status,
+      subnet,
+    });
     this.loadingExtraConf = false;
     this.extraConf = [];
   }
 
   isActive() {
-    return this.status === 'active';
+    return this.status === STATUS.ACTIVE;
   }
 
   setActive() {
-    this.status = 'active';
+    this.status = STATUS.ACTIVE;
   }
 
   setDeleting() {
-    this.status = 'toDelete';
+    this.status = STATUS.TO_DELETE;
   }
 
   isInProcess() {
-    return this.status === 'init' || this.status === 'toDelete';
+    return this.status === STATUS.INIT || this.status === STATUS.TO_DELETE;
   }
 
   isError() {
-    return this.status === 'error';
+    return this.status === STATUS.ERROR;
   }
 
   setLoadingExtraConfigurations(loading) {
@@ -59,6 +66,11 @@ export default class CloudConnectDatacenter {
     this.extraConf.push(extra);
   }
 
+  getFirstExtraConfiguration() {
+    return this.getExtraConfigurations()[0];
+  }
+
+  /* eslint-disable-next-line class-methods-use-this */
   createExtraConfiguration(extra) {
     return new CloudConnectDatacenterExtra(extra);
   }

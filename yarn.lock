@@ -2572,15 +2572,7 @@
   dependencies:
     "@types/node" ">= 8"
 
-"@ovh-ux/manager-core@^9.0.0":
-  version "7.6.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core/-/manager-core-7.6.2.tgz#feb47b957ec5a3e9c738138d66be5785f21ba022"
-  integrity sha512-cJV89OTuaJDKgYhkhcy6X0zBt2LrRX49lwbxb1qxB6BTh0IPDb7zS1e3+U2pkgXkNnH7gc6RA+HhBYQWLcTwWw==
-  dependencies:
-    "@ovh-ux/ng-translate-async-loader" "^2.0.2"
-    lodash "^4.17.15"
-
-"@ovh-ux/ng-ovh-api-wrappers@^4.0.4", "@ovh-ux/ng-ovh-api-wrappers@^4.0.7":
+"@ovh-ux/ng-ovh-api-wrappers@^4.0.7":
   version "4.0.7"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-api-wrappers/-/ng-ovh-api-wrappers-4.0.7.tgz#f07cff3c42ef1c9d1655e2300617528a7d8b2f4f"
   integrity sha512-oylG6ae9LKsUolZK9ORdd6yAu90VRX/45Ss9tZBMlUN7uHeyVMPpdzAJtY0DzgoRTwX++KteOu8bcUj5kTIM4A==
@@ -6043,7 +6035,7 @@ clipboard@^2.0.0:
     select "^1.1.2"
     tiny-emitter "^2.0.0"
 
-clipboard@^2.0.1, clipboard@^2.0.4:
+clipboard@^2.0.4:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/clipboard/-/clipboard-2.0.6.tgz#52921296eec0fdf77ead1749421b21c968647376"
   integrity sha512-g5zbiixBRk/wyKakSwCKd7vQXDjFnAMGHoEyBogG/bw9kTD9GvdAvaoRR1ALcEzt3pVKxZR0pViekPMIS0QyGg==
@@ -9593,11 +9585,6 @@ flatpickr@^4.6.3:
   version "4.6.3"
   resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.6.3.tgz#15a8b76b6e34e3a072861250503a5995b9d3bc60"
   integrity sha512-007VucCkqNOMMb9ggRLNuJowwaJcyOh4sKAFcdGfahfGc7JQbf94zSzjdBq/wVyHWUEs5o3+idhFZ0wbZMRmVQ==
-
-flatpickr@~4.5.2:
-  version "4.5.7"
-  resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.5.7.tgz#6efc0d93c65547aa77294205c67830ebabe3565c"
-  integrity sha512-JqPfihUc9A/j9QAsh6otoARmMyUauPE17vRBEG+ThJwbl8zAq4ssGpxlPK3wWM/i8EFxkHg9UuVo0ds7XluKxw==
 
 flatted@^2.0.0:
   version "2.0.1"
@@ -14598,13 +14585,6 @@ ovh-angular-responsive-tabs@^4.0.0:
   resolved "https://registry.yarnpkg.com/ovh-angular-responsive-tabs/-/ovh-angular-responsive-tabs-4.0.0.tgz#85b66d7032612c3ed1a14cb29f83d1331b50c1df"
   integrity sha1-hbZtcDJhLD7RoUyyn4PRMxtQwd8=
 
-ovh-api-services@^9.26.0:
-  version "9.48.0"
-  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-9.48.0.tgz#32be3d3638f049153c63a8af37ab7f3fa20fe133"
-  integrity sha512-hfhtDzuvKBsIICmvXCsryrJC0m/kIyTkd2jsrMZmkDx+GWB8vsRaQeNlfouS5QsPMwSrpm6FvlMqpWCHIARZWQ==
-  dependencies:
-    lodash "^4.17.15"
-
 ovh-api-services@^9.47.0:
   version "9.47.0"
   resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-9.47.0.tgz#b95902c3a07eaf45a8175a897c836011c3d2477d"
@@ -14636,28 +14616,10 @@ ovh-ngstrap@^4.0.2:
   resolved "https://registry.yarnpkg.com/ovh-ngstrap/-/ovh-ngstrap-4.0.2.tgz#059291bfb9f59b78df991e476dd2ede0507cb3c9"
   integrity sha1-BZKRv7n1m3jfmR5HbdLt4FB8s8k=
 
-ovh-ui-angular@^3.16.2:
-  version "3.16.3"
-  resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-3.16.3.tgz#75ebd321afd3e56eacfc567997d257bfebfcbeb9"
-  integrity sha512-HNlmQc4kcJ0RT5U/NPUodSwItRUB9apK+fHD6iwA8GHp3mZPbPRgmUWzNdfyj51fMG0RBM+90lHhg7HWJkj6uQ==
-  dependencies:
-    bloodhound-js "^1.2.3"
-    clipboard "^2.0.1"
-    escape-string-regexp "^1.0.5"
-    popper.js "^1.14.4"
-    ui-select "^0.19.8"
-
 ovh-ui-kit-bs@^4.1.8:
   version "4.1.8"
   resolved "https://registry.yarnpkg.com/ovh-ui-kit-bs/-/ovh-ui-kit-bs-4.1.8.tgz#36ebc1e62a2db8da4cb98816a7ec4415031325b7"
   integrity sha512-8lOjGGGc3FBFyy5EFp1i1Z/CYn3y3MhXMK1PHpCu070Zuq7CO60ju4z6nn2hensqMb2yqVeA6zgbp73piqLY8Q==
-
-ovh-ui-kit@^2.42.7:
-  version "2.42.8"
-  resolved "https://registry.yarnpkg.com/ovh-ui-kit/-/ovh-ui-kit-2.42.8.tgz#847342c49c51daf0fe3b3ffc681c7535d92af6b2"
-  integrity sha512-bNkJsSP5f6zRd7jPiLI8gCIwH3y3B2mm99Q02W9LTaZT9D0LYTXOr0ht/HZiHrCLGxfhkG/JlFpV6f71lfXwTw==
-  dependencies:
-    less-plugin-remcalc "^0.1.0"
 
 p-defer@^1.0.0:
   version "1.0.0"
@@ -15234,15 +15196,15 @@ pngjs@^3.3.1:
   resolved "https://registry.yarnpkg.com/pngjs/-/pngjs-3.4.0.tgz#99ca7d725965fb655814eaf65f38f12bbdbf555f"
   integrity sha512-NCrCHhWmnQklfH4MtJMRjZ2a8c80qXeMlQMv2uVp9ISJMTt562SbGd6n2oq0PaPgKm7Z6pL9E2UlLIhC+SHL3w==
 
-popper.js@^1.14.4, popper.js@^1.16.1:
-  version "1.16.1"
-  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.16.1.tgz#2a223cb3dc7b6213d740e40372be40de43e65b1b"
-  integrity sha512-Wb4p1J4zyFTbM+u6WuO4XstYx4Ky9Cewe4DWrel7B0w6VVICvPwdOpotjzcf6eD8TsckVnIMNONQyPIUFOUbCQ==
-
 popper.js@^1.14.7:
   version "1.16.0"
   resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.16.0.tgz#2e1816bcbbaa518ea6c2e15a466f4cb9c6e2fbb3"
   integrity sha512-+G+EkOPoE5S/zChTpmBSSDYmhXJ5PsW8eMhH8cP/CQHMFPBG/kC9Y5IIw6qNYgdJ+/COf0ddY2li28iHaZRSjw==
+
+popper.js@^1.16.1:
+  version "1.16.1"
+  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.16.1.tgz#2a223cb3dc7b6213d740e40372be40de43e65b1b"
+  integrity sha512-Wb4p1J4zyFTbM+u6WuO4XstYx4Ky9Cewe4DWrel7B0w6VVICvPwdOpotjzcf6eD8TsckVnIMNONQyPIUFOUbCQ==
 
 portfinder@^1.0.13, portfinder@^1.0.25:
   version "1.0.25"

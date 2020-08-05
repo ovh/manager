@@ -14,7 +14,7 @@ export default class UnlockPortCtrl {
   unlockPort() {
     this.isLoading = true;
     this.cloudConnectService
-      .unlockInterface(this.cloudConnectId, this.interfaceId)
+      .unlockInterface(this.cloudConnect.id, this.interfaceId)
       .then((task) => {
         this.interface.setEnabling(true);
         this.goBack(
@@ -29,14 +29,14 @@ export default class UnlockPortCtrl {
           },
           'success',
           false,
-        )
-        .then(() => {
-            if (task) {
-              this.cloudConnectService.checkTaskStatus(this.cloudConnectId, task.id)
+        ).then(() => {
+          if (task) {
+            this.cloudConnectService
+              .checkTaskStatus(this.cloudConnect.id, task.id)
               .finally(() => {
                 this.interface.enable();
               });
-            }
+          }
         });
       })
       .catch((error) =>

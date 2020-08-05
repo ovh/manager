@@ -14,7 +14,11 @@ export default class RemovePopConfigurationCtrl {
   removePopConfigure() {
     this.isLoading = true;
     this.cloudConnectService
-      .removePopConfiguration(this.cloudConnectId, this.popId, this.interfaceId)
+      .removePopConfiguration(
+        this.cloudConnect.id,
+        this.popId,
+        this.interfaceId,
+      )
       .then((task) => {
         this.pop.setDeleting();
         this.goBack(
@@ -28,13 +32,13 @@ export default class RemovePopConfigurationCtrl {
           },
           'success',
           false,
-        )
-        .then(() => {
+        ).then(() => {
           if (task) {
-            this.cloudConnectService.checkTaskStatus(this.cloudConnectId, task.id)
-            .finally(() => {
-              this.cloudConnect.removePopConfiguration(this.interfaceId);
-            });
+            this.cloudConnectService
+              .checkTaskStatus(this.cloudConnect.id, task.id)
+              .finally(() => {
+                this.cloudConnect.removePopConfiguration(this.interfaceId);
+              });
           }
         });
       })

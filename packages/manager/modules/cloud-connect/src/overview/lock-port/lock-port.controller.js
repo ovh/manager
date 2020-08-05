@@ -14,7 +14,7 @@ export default class LockPortCtrl {
   lockPort() {
     this.isLoading = true;
     this.cloudConnectService
-      .lockInterface(this.cloudConnectId, this.interfaceId)
+      .lockInterface(this.cloudConnect.id, this.interfaceId)
       .then((task) => {
         this.interface.setDisabling(true);
         this.goBack(
@@ -29,14 +29,14 @@ export default class LockPortCtrl {
           },
           'success',
           false,
-        )
-        .then(() => {
-            if (task) {
-              this.cloudConnectService.checkTaskStatus(this.cloudConnectId, task.id)
+        ).then(() => {
+          if (task) {
+            this.cloudConnectService
+              .checkTaskStatus(this.cloudConnect.id, task.id)
               .finally(() => {
                 this.interface.disable();
               });
-            }
+          }
         });
       })
       .catch((error) =>

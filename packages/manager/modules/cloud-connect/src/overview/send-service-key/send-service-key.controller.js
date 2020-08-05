@@ -14,16 +14,14 @@ export default class SendServiceKeyCtrl {
   sendServiceKey() {
     this.isLoading = true;
     this.cloudConnectService
-      .sendServiceKey(
-        this.cloudConnectId,
-        this.serviceKeyId,
-        this.email,
+      .sendServiceKey(this.cloudConnect.id, this.serviceKeyId, this.email)
+      .then(() =>
+        this.goBack(
+          this.$translate.instant('cloud_connect_service_key_send_success'),
+          'success',
+          false,
+        ),
       )
-      .then(() => this.goBack(
-        this.$translate.instant('cloud_connect_service_key_send_success'),
-        'success',
-        false,
-      ))
       .catch((error) =>
         this.goBack(
           this.$translate.instant('cloud_connect_service_key_send_error', {

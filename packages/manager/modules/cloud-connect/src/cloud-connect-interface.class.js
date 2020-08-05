@@ -1,9 +1,22 @@
 import moment from 'moment';
 import find from 'lodash/find';
+import { STATUS } from './cloud-connect.constants';
 
 export default class CloudConnectInterface {
-  constructor(cloudConnectInterface) {
-    Object.assign(this, cloudConnectInterface);
+  constructor({
+    id,
+    incomingLightStatus,
+    lightLastUpdate,
+    outgoingLightStatus,
+    status,
+  }) {
+    Object.assign(this, {
+      id,
+      incomingLightStatus,
+      lightLastUpdate,
+      outgoingLightStatus,
+      status,
+    });
     this.localeLightLastUpdate = moment(
       this.lightLastUpdate,
       'YYYY/MM/DD',
@@ -25,25 +38,25 @@ export default class CloudConnectInterface {
   }
 
   isEnabled() {
-    return this.status === 'enabled';
+    return this.status === STATUS.ENABLED;
   }
 
   disable() {
-    this.status = 'disabled';
+    this.status = STATUS.DISABLED;
     this.disabling = false;
   }
 
   enable() {
-    this.status = 'enabled';
+    this.status = STATUS.ENABLED;
     this.enabling = false;
   }
 
   isOutgoingLightStatusUp() {
-    return this.outgoingLightStatus === 'up';
+    return this.outgoingLightStatus === STATUS.UP;
   }
 
   isOutgoingLightStatusDown() {
-    return this.outgoingLightStatus === 'down';
+    return this.outgoingLightStatus === STATUS.DOWN;
   }
 
   isOutgoingLightStatusUnknown() {
@@ -51,11 +64,11 @@ export default class CloudConnectInterface {
   }
 
   isIncomingLightStatusUp() {
-    return this.incomingLightStatus === 'up';
+    return this.incomingLightStatus === STATUS.UP;
   }
 
   isIncomingLightStatusDown() {
-    return this.incomingLightStatus === 'down';
+    return this.incomingLightStatus === STATUS.DOWN;
   }
 
   isIncomingLightStatusUnknown() {
@@ -63,8 +76,11 @@ export default class CloudConnectInterface {
   }
 
   isTaskPending(tasks) {
-    return find(tasks, task => {
-      return task.resourceId === this.id && (task.status === 'todo' || task.status === 'doing');
+    return find(tasks, (task) => {
+      return (
+        task.resourceId === this.id &&
+        (task.status === STATUS.TODO || task.status === STATUS.DOING)
+      );
     });
   }
 }

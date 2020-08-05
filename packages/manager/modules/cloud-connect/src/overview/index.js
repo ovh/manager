@@ -7,8 +7,6 @@ import 'oclazyload';
 import 'ovh-api-services';
 import ngOvhCloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-components';
 
-import './components/styles.scss';
-
 const moduleName = 'ovhCloudConnectOverviewLazyLoading';
 
 angular

@@ -61,16 +61,21 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
       goToManageServiceKeysPage: /* @ngInject */ ($state) => () =>
         $state.go('cloud-connect.service-keys'),
-      tasksHref: /* @ngInject */ ($state, cloudConnectId) =>
+      tasksHref: /* @ngInject */ ($state, cloudConnect) =>
         $state.href('cloud-connect.tasks', {
-          ovhCloudConnectId: cloudConnectId,
+          ovhCloudConnectId: cloudConnect.id,
         }),
       goToCloudConnectPage: /* @ngInject */ (
         $state,
         CucCloudMessage,
         CucControllerHelper,
         cloudConnectId,
-      ) => (message = false, type = 'success', reload = false) => {
+      ) => (
+        message = false,
+        type = 'success',
+        reload = false,
+        vrackMessage,
+      ) => {
         const state = 'cloud-connect.overview';
         const promise = $state.go(
           state,
@@ -83,6 +88,9 @@ export default /* @ngInject */ ($stateProvider) => {
         );
         if (message) {
           promise.then(() => {
+            if (vrackMessage) {
+              CucCloudMessage.warning(vrackMessage, state);
+            }
             CucCloudMessage[type](message, state);
             CucControllerHelper.scrollPageToTop();
           });

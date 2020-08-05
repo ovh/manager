@@ -6,23 +6,29 @@
 </div>
 <!-- Datacenter details -->
 <div class="oui-tile__body">
-    <div class="table-responsive">
-        <table class="table">
+    <div class="oui-datagrid-responsive">
+        <table class="oui-datagrid">
             <thead>
                 <tr>
-                    <th data-ng-if="$ctrl.cloudConnect.popType === 'l3'">
+                    <th
+                        class="oui-datagrid__header"
+                        data-ng-if="$ctrl.cloudConnect.isL3PopType()"
+                    >
                         <span
                             class="oui-tile__term"
                             data-translate="cloud_connect_asn_ovh_cloud"
                         ></span>
                     </th>
-                    <th data-ng-if="$ctrl.cloudConnect.popType === 'l3'">
+                    <th
+                        class="oui-datagrid__header"
+                        data-ng-if="$ctrl.cloudConnect.isL3PopType()"
+                    >
                         <span
                             class="oui-tile__term"
                             data-translate="cloud_connect_network"
                         ></span>
                     </th>
-                    <th>
+                    <th class="oui-datagrid__header">
                         <span
                             class="oui-tile__term"
                             data-translate="cloud_connect_status"
@@ -31,44 +37,54 @@
                 </tr>
             </thead>
             <tbody>
-                <td data-ng-if="$ctrl.cloudConnect.popType === 'l3'">
-                    <span data-ng-bind="$ctrl.datacenter.ovhBgpArea"></span>
-                </td>
-                <td data-ng-if="$ctrl.cloudConnect.popType === 'l3'">
-                    <span data-ng-bind="$ctrl.datacenter.subnet"></span>
-                </td>
-                <td>
-                    <span
-                        class="oui-badge"
-                        data-ng-class="{
+                <tr class="oui-datagrid__row">
+                    <td
+                        class="oui-datagrid__cell"
+                        data-ng-if="$ctrl.cloudConnect.isL3PopType()"
+                    >
+                        <span data-ng-bind="$ctrl.datacenter.ovhBgpArea"></span>
+                    </td>
+                    <td
+                        class="oui-datagrid__cell"
+                        data-ng-if="$ctrl.cloudConnect.isL3PopType()"
+                    >
+                        <span data-ng-bind="$ctrl.datacenter.subnet"></span>
+                    </td>
+                    <td class="oui-datagrid__cell">
+                        <span
+                            class="oui-badge"
+                            data-ng-class="{
                             'oui-status_success': $ctrl.datacenter.isActive(),
                             'oui-status_error': $ctrl.datacenter.isError(),
                             'oui-status_warning': $ctrl.datacenter.isInProcess()
                         }"
-                        data-ng-bind="'cloud_connect_status_' +  $ctrl.datacenter.status | translate"
-                    ></span>
-                </td>
-                <td>
-                    <oui-action-menu
-                        data-compact
-                        class="float-right"
-                        data-placement="end"
-                    >
-                        <oui-action-menu-item
-                            data-ng-if="$ctrl.cloudConnect.popType === 'l3'"
-                            data-disabled="$ctrl.datacenter.isLoadingExtraConfigurations() || !$ctrl.datacenter.isActive()"
-                            data-on-click="$ctrl.addExtra()"
-                            ><span
-                                data-translate="cloud_connect_datacenter_add_routage_configuration"
-                            ></span
-                        ></oui-action-menu-item>
-                        <oui-action-menu-item
-                            data-disabled="!$ctrl.datacenter.isActive()"
-                            data-on-click="$ctrl.removeDatacenter()"
-                            ><span data-translate="cloud_connect_delete"></span
-                        ></oui-action-menu-item>
-                    </oui-action-menu>
-                </td>
+                            data-ng-bind="'cloud_connect_status_' +  $ctrl.datacenter.status | translate"
+                        ></span>
+                    </td>
+                    <td class="oui-datagrid__cell">
+                        <oui-action-menu
+                            data-compact
+                            class="float-right"
+                            data-placement="end"
+                        >
+                            <oui-action-menu-item
+                                data-ng-if="$ctrl.cloudConnect.isL3PopType()"
+                                data-disabled="$ctrl.datacenter.isLoadingExtraConfigurations() || !$ctrl.datacenter.isActive()"
+                                data-on-click="$ctrl.addExtra()"
+                                ><span
+                                    data-translate="cloud_connect_datacenter_add_routage_configuration"
+                                ></span
+                            ></oui-action-menu-item>
+                            <oui-action-menu-item
+                                data-disabled="!$ctrl.datacenter.isActive()"
+                                data-on-click="$ctrl.removeDatacenter()"
+                                ><span
+                                    data-translate="cloud_connect_delete"
+                                ></span
+                            ></oui-action-menu-item>
+                        </oui-action-menu>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>

@@ -7,9 +7,9 @@ export default /* @ngInject */ ($stateProvider) => {
       format: 'json',
     },
     resolve: {
-      taskList: /* @ngInject */ (cloudConnectService, cloudConnectId) =>
-        cloudConnectService.loadAllTasks(cloudConnectId),
-      refreshTasks: /* @ngInject */ (cloudConnectService, $state) => () => {
+      taskList: /* @ngInject */ (cloudConnectService, cloudConnect) =>
+        cloudConnectService.loadAllTasks(cloudConnect.id),
+      refreshTasks: /* @ngInject */ ($state) => () => {
         return $state.reload();
       },
     },

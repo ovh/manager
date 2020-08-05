@@ -36,7 +36,7 @@
         </oui-field>
         <oui-field
             data-size="m"
-            data-ng-if="$ctrl.cloudConnect.popType === 'l3'"
+            data-ng-if="$ctrl.cloudConnect.isL3PopType()"
             data-label="{{::'cloud_connect_datacenter_add_select_asn' | translate}}"
         >
             <input
@@ -52,7 +52,7 @@
         </oui-field>
         <oui-field
             data-size="m"
-            data-ng-if="$ctrl.cloudConnect.popType === 'l3'"
+            data-ng-if="$ctrl.cloudConnect.isL3PopType()"
             data-label="{{::'cloud_connect_datacenter_add_network_address' | translate}}"
             data-help-text="{{ ::'cloud_connect_datacenter_add_network_address_help_message' | translate }}"
             data-error-messages="{ 'pattern': ('cloud_connect_datacenter_add_network_address_invalid_message' | translate) }"

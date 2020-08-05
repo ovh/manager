@@ -34,7 +34,7 @@ export default class CloudConnectDacenterAddExtraCtrl {
     };
     return this.cloudConnectService
       .createDatacenterConfigurationExtra(
-        this.cloudConnectId,
+        this.cloudConnect.id,
         this.popId,
         this.datacenterId,
         options,
@@ -60,7 +60,7 @@ export default class CloudConnectDacenterAddExtraCtrl {
         ).then(() => {
           if (task) {
             this.cloudConnectService
-              .checkTaskStatus(this.cloudConnectId, task.id)
+              .checkTaskStatus(this.cloudConnect.id, task.id)
               .finally(() => {
                 extraConf.setActive();
               });

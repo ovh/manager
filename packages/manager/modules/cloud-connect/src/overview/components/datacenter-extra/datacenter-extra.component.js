@@ -1,10 +1,12 @@
+import controller from './datacenter-extra.controller';
 import template from './template.html';
 
 export default {
-  template,
   bindings: {
     datacenter: '<',
     extraConfig: '<',
     removeExtra: '&',
   },
+  controller,
+  template,
 };

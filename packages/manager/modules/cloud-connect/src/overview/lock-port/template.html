@@ -1,22 +1,16 @@
-<form
-    id="lockPort"
-    name="lockPort"
-    data-ng-submit="lockPort.$valid && $ctrl.lockPort()"
-    novalidate
+<oui-modal
+    data-heading="{{:: 'cloud_connect_pop_port_block' | translate }}"
+    data-primary-label="{{:: 'cloud_connect_block' | translate }}"
+    data-primary-disabled="$ctrl.isLoading"
+    data-primary-action="$ctrl.lockPort()"
+    data-secondary-action="$ctrl.goBack()"
+    data-secondary-label="{{:: 'cloud_connect_cancel' | translate }}"
+    data-on-dismiss="$ctrl.goBack()"
+    data-loading="$ctrl.isLoading"
+    data-type="warning"
 >
-    <oui-modal
-        data-heading="{{:: 'cloud_connect_pop_port_block' | translate }}"
-        data-primary-label="{{:: 'cloud_connect_block' | translate }}"
-        data-primary-disabled="$ctrl.isLoading"
-        data-secondary-action="$ctrl.goBack()"
-        data-secondary-label="{{:: 'cloud_connect_cancel' | translate }}"
-        data-on-dismiss="$ctrl.goBack()"
-        data-loading="$ctrl.isLoading"
-        data-type="warning"
-    >
-        <p
-            data-translate="cloud_connect_pop_block_port_confirm"
-            data-translate-values="{ portNumber: $ctrl.interfaceId }"
-        ></p>
-    </oui-modal>
-</form>
+    <p
+        data-translate="cloud_connect_pop_block_port_confirm"
+        data-translate-values="{ portNumber: $ctrl.interfaceId }"
+    ></p>
+</oui-modal>

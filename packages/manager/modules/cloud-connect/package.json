@@ -12,7 +12,9 @@
   "author": "OVH SAS",
   "main": "./src/index.js",
   "dependencies": {
-    "lodash": "^4.17.14"
+    "bootstrap": "^4.3.1",
+    "lodash": "^4.17.14",
+    "moment": "^2.24.0"
   },
   "peerDependencies": {
     "@ovh-ux/manager-core": "^9.0.0 || ^10.0.0",
@@ -20,8 +22,6 @@
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",
-    "bootstrap": "^4.3.1",
-    "moment": "^2.24.0",
     "oclazyload": "^1.1.0",
     "ovh-api-services": "^9.39.1"
   }

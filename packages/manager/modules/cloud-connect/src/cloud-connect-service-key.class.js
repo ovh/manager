@@ -1,17 +1,26 @@
+import { STATUS } from './cloud-connect.constants';
+
 export default class CloudConnectServiceKey {
-  constructor(cloudConnectServiceKey) {
-    Object.assign(this, cloudConnectServiceKey);
+  constructor({ id, key, provider, status }) {
+    Object.assign(this, {
+      id,
+      key,
+      provider,
+      status,
+    });
   }
 
   isActive() {
-    return this.status === 'active';
+    return this.status === STATUS.ACTIVE;
   }
 
   isInProcess() {
-    return this.status === 'toCheck' || this.status === 'doing';
+    return this.status === STATUS.TO_CHECK || this.status === STATUS.DOING;
   }
 
   isError() {
-    return this.status === 'cancelled' || this.status === 'terminated';
+    return (
+      this.status === STATUS.CANCELLED || this.status === STATUS.TERMINATED
+    );
   }
 }

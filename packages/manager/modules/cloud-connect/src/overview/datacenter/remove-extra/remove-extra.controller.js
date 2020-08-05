@@ -15,7 +15,7 @@ export default class CloudConnectDacenterRemoveExtraCtrl {
     this.isLoading = true;
     this.cloudConnectService
       .removeDatacenterConfigurationExtra(
-        this.cloudConnectId,
+        this.cloudConnect.id,
         this.popId,
         this.datacenterId,
         this.extraId,
@@ -36,7 +36,7 @@ export default class CloudConnectDacenterRemoveExtraCtrl {
         ).then(() => {
           if (task) {
             this.cloudConnectService
-              .checkTaskStatus(this.cloudConnectId, task.id)
+              .checkTaskStatus(this.cloudConnect.id, task.id)
               .finally(() => {
                 this.datacenter.removeExtraConfiguration(this.extraId);
               });

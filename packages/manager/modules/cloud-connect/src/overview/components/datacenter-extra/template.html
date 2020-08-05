@@ -1,49 +1,52 @@
 <!-- extra details -->
-<div
-    class="oui-tile__body"
-    data-ng-init="
-        $extra = $ctrl.datacenter.getExtraConfigurations()[0];
-    "
->
-    <div class="table-responsive">
-        <table class="table">
+<div class="oui-tile__body">
+    <div class="oui-datagrid-responsive">
+        <table class="oui-datagrid">
             <thead>
                 <tr>
-                    <th>
+                    <th class="oui-datagrid__header">
                         <span
                             class="oui-tile__term"
                             data-translate="cloud_connect_extra_type"
                         ></span>
                     </th>
-                    <th>
+                    <th
+                        class="oui-datagrid__header"
+                        data-ng-if="$ctrl.firstExtraConfiguration.bgpNeighborArea"
+                    >
                         <span
                             class="oui-tile__term"
-                            data-ng-if="$extra.bgpNeighborArea"
                             data-translate="cloud_connect_extra_bgp_neighbor_area"
                         ></span>
                     </th>
-                    <th>
+                    <th
+                        class="oui-datagrid__header"
+                        data-ng-if="$ctrl.firstExtraConfiguration.subnet"
+                    >
                         <span
                             class="oui-tile__term"
-                            data-ng-if="$extra.subnet"
                             data-translate="cloud_connect_extra_subnet"
                         ></span>
                     </th>
-                    <th>
+                    <th
+                        class="oui-datagrid__header"
+                        data-ng-if="$ctrl.firstExtraConfiguration.bgpNeighborIp"
+                    >
                         <span
                             class="oui-tile__term"
-                            data-ng-if="$extra.bgpNeighborIp"
                             data-translate="cloud_connect_extra_ip_neighbor"
                         ></span>
                     </th>
-                    <th>
+                    <th
+                        class="oui-datagrid__header"
+                        data-ng-if="$ctrl.firstExtraConfiguration.nextHop"
+                    >
                         <span
                             class="oui-tile__term"
-                            data-ng-if="$extra.nextHop"
                             data-translate="cloud_connect_extra_next_hop"
                         ></span>
                     </th>
-                    <th>
+                    <th class="oui-datagrid__header">
                         <span
                             class="oui-tile__term"
                             data-translate="cloud_connect_status"
@@ -53,22 +56,36 @@
             </thead>
             <tbody>
                 <tr
+                    class="oui-datagrid__row"
                     data-ng-repeat="extraConfig in $ctrl.datacenter.getExtraConfigurations() track by $index"
                 >
-                    <td>
+                    <td class="oui-datagrid__cell">
                         <span
                             data-ng-bind="'cloud_connect_extra_type_' + extraConfig.type | translate"
                         ></span>
                     </td>
-                    <td>
+                    <td
+                        class="oui-datagrid__cell"
+                        data-ng-if="$ctrl.firstExtraConfiguration.bgpNeighborArea"
+                    >
                         <span data-ng-bind="extraConfig.bgpNeighborArea"></span>
                     </td>
-                    <td><span data-ng-bind="extraConfig.subnet"></span></td>
-                    <td>
+                    <td data-ng-if="$ctrl.firstExtraConfiguration.subnet">
+                        <span data-ng-bind="extraConfig.subnet"></span>
+                    </td>
+                    <td
+                        class="oui-datagrid__cell"
+                        data-ng-if="$ctrl.firstExtraConfiguration.bgpNeighborIp"
+                    >
                         <span data-ng-bind="extraConfig.bgpNeighborIp"></span>
                     </td>
-                    <td><span data-ng-bind="extraConfig.nextHop"></span></td>
-                    <td>
+                    <td
+                        class="oui-datagrid__cell"
+                        data-ng-if="extraConfig.nextHop"
+                    >
+                        <span data-ng-bind="extraConfig.nextHop"></span>
+                    </td>
+                    <td class="oui-datagrid__cell">
                         <span
                             class="oui-badge"
                             data-ng-class="{
@@ -79,7 +96,7 @@
                             data-ng-bind="'cloud_connect_status_' +  extraConfig.status | translate"
                         ></span>
                     </td>
-                    <td>
+                    <td class="oui-datagrid__cell">
                         <oui-action-menu
                             data-compact
                             class="float-right"

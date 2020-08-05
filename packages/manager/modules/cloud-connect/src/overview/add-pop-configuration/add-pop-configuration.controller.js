@@ -29,7 +29,7 @@ export default class AddPopConfigurationCtrl {
     this.isLoading = true;
     this.cloudConnectService
       .addPopConfiguration(
-        this.cloudConnectId,
+        this.cloudConnect.id,
         this.interfaceId,
         this.popType.id,
         this.pop,
@@ -56,7 +56,7 @@ export default class AddPopConfigurationCtrl {
         ).then(() => {
           if (task) {
             this.cloudConnectService
-              .checkTaskStatus(this.cloudConnectId, task.id)
+              .checkTaskStatus(this.cloudConnect.id, task.id)
               .finally(() => {
                 popConfig.setActive();
               });
