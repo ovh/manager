@@ -6,21 +6,24 @@ import template from './telecom-sms-users.html';
 
 const moduleName = 'ovhManagerSmsSmsUsersComponent';
 
-angular.module(moduleName, ['ui.router']).config(($stateProvider) => {
-  $stateProvider.state('sms.service.users', {
-    url: '/users',
-    views: {
-      smsInnerView: {
-        template,
-        controller,
-        controllerAs: 'SmsUsersCtrl',
+angular
+  .module(moduleName, ['ui.router'])
+  .config(($stateProvider) => {
+    $stateProvider.state('sms.service.users', {
+      url: '/users',
+      views: {
+        smsInnerView: {
+          template,
+          controller,
+          controllerAs: 'SmsUsersCtrl',
+        },
       },
-    },
-    translations: {
-      value: ['.'],
-      format: 'json',
-    },
-  });
-});
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('sms_users_breadcrumb'),
+      },
+    });
+  })
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

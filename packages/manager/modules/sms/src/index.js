@@ -14,7 +14,10 @@ angular
       $stateProvider
         .state('sms', {
           url: '/sms',
-          abstract: true,
+          redirectTo: 'sms.index',
+          resolve: {
+            breadcrumb: () => 'SMS',
+          },
         })
         .state('sms.index.**', {
           url: '',
