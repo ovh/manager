@@ -1,5 +1,6 @@
 {
   "telephony_line_answer_back_link": "Retour vers la gestion du répondeur",
+  "telephony_line_answer_breadcrumb": "Gestion du répondeur",
   "telephony_line_answer_actions_line_default_voicemail": "Choix de la messagerie par défaut",
   "telephony_line_answer_actions_line_voicemail_password": "Mot de passe accès répondeur",
   "telephony_line_answer_actions_line_voicemail_options": "Configuration du répondeur",

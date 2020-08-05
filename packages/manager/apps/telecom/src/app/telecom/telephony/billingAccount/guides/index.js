@@ -6,6 +6,9 @@ import routing from './telecom-telephony-guides.routing';
 
 const moduleName = 'ovhManagerTelecomTelephonyBillingAccountGuides';
 
-angular.module(moduleName, [ovhManagerCore]).config(routing);
+angular
+  .module(moduleName, [ovhManagerCore])
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

@@ -1,5 +1,6 @@
 {
   "telephony_page_title": "Ma Téléphonie \"{{name}}\"",
+  "telephony_breadcrumb": "Téléphonie",
   "telephony_default_title": "Ma Téléphonie",
   "telephony_section_load_error": "Oups ! Une erreur est survenue lors du chargement de la section.",
   "telephony_infrastructure_incoming_call_label": "Appels entrants",

@@ -1,4 +1,5 @@
 {
+  "telephony_alias_change_type_breadcrumb": "Changer la configuration",
   "telephony_alias_change_type_title": "Configuration du numéro",
   "telephony_alias_change_type_subtitle": "À quoi sert la configuration du numéro ?",
   "telephony_alias_change_type_details": "Chaque problématique métier trouvera sa solution de téléphonie chez OVH Télécom. Notre offre VoIP vous permet de mettre en place une stratégie de réception des appels correspondant aux besoins de votre activité : gestion des plages horaires et du débordement, redirection des appels vers un mobile ou transfert en interne… Nos clients bénéficient de nombreux services, tout en maîtrisant leur budget.",

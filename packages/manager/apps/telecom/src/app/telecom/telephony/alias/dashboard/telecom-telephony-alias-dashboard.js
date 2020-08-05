@@ -12,6 +12,9 @@ angular.module('managerApp').config(($stateProvider) => {
         },
       },
       translations: { value: ['..'], format: 'json' },
+      resolve: {
+        breadcrumb: () => null,
+      },
     },
   );
 });

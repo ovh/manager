@@ -1,4 +1,5 @@
 {
+  "telephony_alias_ovh_pabx_sounds_breadcrumb": "Gérer les sons",
   "telephony_alias_ovh_pabx_sounds_list_title": "Liste des sons",
   "telephony_alias_ovh_pabx_sounds_list_info1": "Ici, vous pouvez gérer les sons disponibles.",
   "telephony_alias_ovh_pabx_sounds_list_info2": "Une fois vos sons paramétrés, il vous faut les ajouter dans la configuration de votre serveur vocal pour les utiliser.",

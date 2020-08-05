@@ -1,18 +1,27 @@
-angular.module('managerApp').config(($stateProvider) => {
-  $stateProvider.state(
-    'telecom.telephony.billingAccount.billing.depositMovement',
-    {
-      url: '/depositMovement',
-      views: {
-        'groupView@telecom.telephony.billingAccount': {
-          templateUrl:
-            'app/telecom/telephony/billingAccount/billing/depositMovement/telecom-telephony-billing-account-billing-deposit-movement.html',
-          controller:
-            'TelecomTelephonyBillingAccountBillingDepositMovementCtrl',
-          controllerAs: 'BillingAccountDepositMovementCtrl',
+angular
+  .module('managerApp')
+  .config(($stateProvider) => {
+    $stateProvider.state(
+      'telecom.telephony.billingAccount.billing.depositMovement',
+      {
+        url: '/depositMovement',
+        views: {
+          'groupView@telecom.telephony.billingAccount': {
+            templateUrl:
+              'app/telecom/telephony/billingAccount/billing/depositMovement/telecom-telephony-billing-account-billing-deposit-movement.html',
+            controller:
+              'TelecomTelephonyBillingAccountBillingDepositMovementCtrl',
+            controllerAs: 'BillingAccountDepositMovementCtrl',
+          },
         },
+        resolve: {
+          breadcrumb: /* @ngInject */ ($translate) =>
+            $translate.instant(
+              'telephony_group_billing_deposit_movement_breadcrumb',
+            ),
+        },
+        translations: { value: ['..'], format: 'json' },
       },
-      translations: { value: ['.', '..'], format: 'json' },
-    },
-  );
-});
+    );
+  })
+  .run(/* @ngTranslationsInject:json ./translations */);

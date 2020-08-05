@@ -1,4 +1,5 @@
 {
+  "telephony_line_breacrumb": "Lignes",
   "telephony_line_page_title": "Ligne \"{{name}}\"",
   "telephony_line_tab_manage": "Gestion",
   "telephony_line_tab_consumption": "Consommation",

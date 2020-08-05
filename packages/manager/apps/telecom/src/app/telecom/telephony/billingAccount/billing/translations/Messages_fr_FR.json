@@ -1,4 +1,5 @@
 {
+  "telephony_group_billing_breadcrumb": "Facturation",
   "telephony_group_billing_actions_group_billing_back_link": "Retour à la facturation",
   "telephony_group_billing_actions_group_billing_deposit": "Augmenter le plafond de dépôt de garantie",
   "telephony_group_billing_actions_group_billing_deposit_movement": "Transfert de vos dépôts de garantie entre groupes",

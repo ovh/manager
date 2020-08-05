@@ -1,5 +1,6 @@
 {
   "telephony_fax_page_title": "Fax \"{{name}}\"",
+  "telephony_fax_breadcrumb": "Fax",
   "telephony_fax_loading_error": "Oups ! Une erreur est survenue lors du chargement.",
   "telephony_fax_tab_manage": "Gestion",
   "telephony_fax_tab_consumption": "Consommation",

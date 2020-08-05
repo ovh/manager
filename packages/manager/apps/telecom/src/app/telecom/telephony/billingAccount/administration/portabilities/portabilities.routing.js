@@ -6,7 +6,6 @@ export default /* @ngInject */ ($stateProvider) => {
       views: {
         'groupView@telecom.telephony.billingAccount': 'portabilities',
       },
-      translations: { value: ['.'], format: 'json' },
       resolve: {
         billingAccount: /* @ngInject */ ($transition$) =>
           $transition$.params().billingAccount,
@@ -58,6 +57,8 @@ export default /* @ngInject */ ($stateProvider) => {
 
           return promise;
         },
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('telephony_alias_portabilities_title'),
       },
     },
   );

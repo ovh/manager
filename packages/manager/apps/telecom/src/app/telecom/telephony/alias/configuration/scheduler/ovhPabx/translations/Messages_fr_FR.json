@@ -1,4 +1,5 @@
 {
+  "telephony_alias_config_contactCenterSolution_scheduler_breadcrumb": "Gérer les fermetures exceptionnelles",
   "telephony_alias_config_contactCenterSolution_scheduler_category_title": "Catégories",
   "telephony_alias_config_contactCenterSolution_scheduler_closing_days_title": "Planification des jours de fermeture",
   "telephony_alias_config_contactCenterSolution_scheduler_closing_days_subtitle": "Planifiez des créneaux récurrents ou ponctuels durant lesquels vos correspondants seront redirigés vers un répondeur ou un autre numéro."

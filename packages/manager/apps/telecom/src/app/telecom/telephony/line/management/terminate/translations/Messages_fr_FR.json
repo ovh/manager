@@ -1,4 +1,5 @@
 {
+  "telephony_group_line_terminate_breadcrumb": "Résiliation de la ligne",
   "telephony_group_line_terminate_title": "Résiliation de la ligne \"{{ line }}\"",
   "telephony_group_line_terminate_info_title": "Informations",
   "telephony_group_line_terminate_info_1": "Cette page vous permet de demander la résiliation de votre ligne.",

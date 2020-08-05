@@ -11,6 +11,7 @@ export default /* @ngInject */ ($stateProvider) => {
         OvhApiXdslLines.v6().query({
           xdslId: serviceName,
         }).$promise,
+      breadcrumb: /* @ngInject */ (serviceName) => serviceName,
     },
     redirectTo: (transition) =>
       transition
@@ -84,6 +85,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
       currentActiveLink: /* @ngInject */ ($state, $transition$) => () =>
         $state.href($state.current.name, $transition$.params()),
+      breadcrumb: () => null,
     },
   });
 };

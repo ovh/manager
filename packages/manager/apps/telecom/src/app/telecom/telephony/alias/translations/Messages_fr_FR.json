@@ -1,5 +1,6 @@
 {
   "telephony_alias_page_title": "Numéro \"{{name}}\"",
+  "telephony_alias_breadcrumb": "Lignes",
   "telephony_alias_tab_order": "Commande de numéros",
   "telephony_alias_tab_number": "Mon numéro",
   "telephony_alias_tab_portability": "Portabilité",

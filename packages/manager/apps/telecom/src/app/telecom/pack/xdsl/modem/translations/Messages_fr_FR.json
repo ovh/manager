@@ -1,4 +1,5 @@
 {
+  "xdsl_modem_breadcrumb": "Modem",
   "xdsl_modem_cant_be_managed": "Ce modem ne peut pas être configuré par OVH.",
   "xdsl_modem_general_config": "Configuration générale",
   "xdsl_modem_network_config": "Configuration réseau",

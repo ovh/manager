@@ -1,4 +1,5 @@
 {
+  "telephony_alias_ovh_pabx_tts_breadcrumb": "Gestion des TTS",
   "telephony_alias_ovh_pabx_tts_title": "Gestion des TTS (Text To Speech)",
   "telephony_alias_ovh_pabx_tts_add": "Ajouter un TTS",
   "telephony_alias_ovh_pabx_tts_list_title": "Liste des TTS",

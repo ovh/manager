@@ -18,6 +18,7 @@ angular
     'oui',
   ])
   .component('telephonyLinePhoneAttach', component)
-  .config(routing);
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

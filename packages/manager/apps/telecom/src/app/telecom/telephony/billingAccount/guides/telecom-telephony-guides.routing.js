@@ -11,6 +11,10 @@ export default /* @ngInject */ ($stateProvider) => {
         controllerAs: '$ctrl',
       },
     },
-    translations: { value: ['.', '../guides'], format: 'json' },
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('telephony_guides_breadcrumb'),
+    },
+    translations: { value: ['../guides'], format: 'json' },
   });
 };

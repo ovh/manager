@@ -24,12 +24,12 @@ angular
           controllerAs: '$ctrl',
         },
       },
-      translations: { value: ['.'], format: 'json' },
       redirectTo: 'telecom.telephony.billingAccount.alias.details.dashboard',
       resolve: {
         serviceName: /* @ngInject */ ($transition$) =>
           $transition$.params().serviceName,
+        breadcrumb: /* @ngInject */ (serviceName) => serviceName,
       },
     });
   })
-  .run(/* @ngTranslationsInject ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */);

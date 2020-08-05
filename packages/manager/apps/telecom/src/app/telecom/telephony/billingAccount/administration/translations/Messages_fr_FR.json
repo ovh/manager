@@ -1,4 +1,5 @@
 {
+  "telephony_group_admin_breadcrumb": "Administration",
   "telephony_group_admin_actions_group_billing_options": "Options du groupe",
   "telephony_group_admin_actions_group_lines_group_change": "Regroupement de lignes",
   "telephony_group_admin_actions_group_new_billing_account": "Ajouter un groupe",

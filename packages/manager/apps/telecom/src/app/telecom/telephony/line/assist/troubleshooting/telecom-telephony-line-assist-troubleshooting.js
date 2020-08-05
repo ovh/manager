@@ -37,53 +37,62 @@ angular.module('managerApp').run(($templateCache) => {
     telecomTelephonyLineAssistTroubleshootingProcedureThomson,
   );
 });
-angular.module('managerApp').config(($stateProvider) => {
-  $stateProvider.state(
-    'telecom.telephony.billingAccount.line.dashboard.assist.troubleshooting',
-    {
-      url: '/troubleshooting',
-      resolve: {
-        // this is the object that will be used by each view to display the different steps
-        troubleshootingProcess() {
-          return {
-            phoneType: null,
-            problem: null,
-            line: null,
-            activeStep: null,
-          };
+angular
+  .module('managerApp')
+  .config(($stateProvider) => {
+    $stateProvider.state(
+      'telecom.telephony.billingAccount.line.dashboard.assist.troubleshooting',
+      {
+        url: '/troubleshooting',
+        resolve: {
+          // this is the object that will be used by each view to display the different steps
+          troubleshootingProcess() {
+            return {
+              phoneType: null,
+              problem: null,
+              line: null,
+              activeStep: null,
+            };
+          },
+          breadcrumb: /* @ngInject */ ($translate) =>
+            $translate.instant(
+              'telephony_line_assist_troubleshooting_loading_title',
+            ),
+        },
+        views: {
+          'lineView@telecom.telephony.billingAccount.line.dashboard': {
+            templateUrl:
+              'app/telecom/telephony/line/assist/troubleshooting/telecom-telephony-line-assist-troubleshooting.html',
+            controller: 'TelecomTelephonyLineAssistTroubleshootingCtrl',
+            controllerAs: 'TroubleshootingCtrl',
+          },
+          'procedureStepView@telecom.telephony.billingAccount.line.dashboard.assist.troubleshooting': {
+            templateUrl:
+              'app/telecom/telephony/line/assist/troubleshooting/procedure/telecom-telephony-line-assist-troubleshooting-procedure.html',
+            controller:
+              'TelecomTelephonyLineAssistTroubleshootingProcedureCtrl',
+            controllerAs: 'ProcedureCtrl',
+          },
+          'autoConfigStepView@telecom.telephony.billingAccount.line.dashboard.assist.troubleshooting': {
+            templateUrl:
+              'app/telecom/telephony/line/assist/troubleshooting/autoConfig/telecom-telephony-line-assist-troubleshooting-auto-config.html',
+            controller:
+              'TelecomTelephonyLineAssistTroubleshootingAutoConfigCtrl',
+            controllerAs: 'AutoConfigCtrl',
+          },
+          'manualConfigStepView@telecom.telephony.billingAccount.line.dashboard.assist.troubleshooting': {
+            templateUrl:
+              'app/telecom/telephony/line/assist/troubleshooting/manualConfig/telecom-telephony-line-assist-troubleshooting-manual-config.html',
+            controller:
+              'TelecomTelephonyLineAssistTroubleshootingManualConfigCtrl',
+            controllerAs: 'ManualConfigCtrl',
+          },
+        },
+        translations: {
+          value: ['./autoConfig', './manualConfig'],
+          format: 'json',
         },
       },
-      views: {
-        'lineView@telecom.telephony.billingAccount.line.dashboard': {
-          templateUrl:
-            'app/telecom/telephony/line/assist/troubleshooting/telecom-telephony-line-assist-troubleshooting.html',
-          controller: 'TelecomTelephonyLineAssistTroubleshootingCtrl',
-          controllerAs: 'TroubleshootingCtrl',
-        },
-        'procedureStepView@telecom.telephony.billingAccount.line.dashboard.assist.troubleshooting': {
-          templateUrl:
-            'app/telecom/telephony/line/assist/troubleshooting/procedure/telecom-telephony-line-assist-troubleshooting-procedure.html',
-          controller: 'TelecomTelephonyLineAssistTroubleshootingProcedureCtrl',
-          controllerAs: 'ProcedureCtrl',
-        },
-        'autoConfigStepView@telecom.telephony.billingAccount.line.dashboard.assist.troubleshooting': {
-          templateUrl:
-            'app/telecom/telephony/line/assist/troubleshooting/autoConfig/telecom-telephony-line-assist-troubleshooting-auto-config.html',
-          controller: 'TelecomTelephonyLineAssistTroubleshootingAutoConfigCtrl',
-          controllerAs: 'AutoConfigCtrl',
-        },
-        'manualConfigStepView@telecom.telephony.billingAccount.line.dashboard.assist.troubleshooting': {
-          templateUrl:
-            'app/telecom/telephony/line/assist/troubleshooting/manualConfig/telecom-telephony-line-assist-troubleshooting-manual-config.html',
-          controller:
-            'TelecomTelephonyLineAssistTroubleshootingManualConfigCtrl',
-          controllerAs: 'ManualConfigCtrl',
-        },
-      },
-      translations: {
-        value: ['.', './autoConfig', './manualConfig'],
-        format: 'json',
-      },
-    },
-  );
-});
+    );
+  })
+  .run(/* @ngTranslationsInject:json ./translations */);
