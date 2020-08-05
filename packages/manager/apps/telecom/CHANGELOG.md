@@ -1,3 +1,21 @@
+# [13.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.0.2...@ovh-ux/manager-telecom@13.1.0) (2020-08-05)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 515] ([153e1ef](https://github.com/ovh/manager/commit/153e1ef6a6475433b50d4259cdbe545788ad7c3c))
+* **i18n:** add missing translations [CDS 517] ([b7d8f9e](https://github.com/ovh/manager/commit/b7d8f9e1b5298407fcdeebdafa470ceceaf07059))
+* **i18n:** add missing translations [CDS 518] ([8747d13](https://github.com/ovh/manager/commit/8747d13139527d33be952ea0a181b4aac0d8c37d))
+* **i18n:** add missing translations [CDS 523] ([8c7bce3](https://github.com/ovh/manager/commit/8c7bce35fdc8178ad28f080b2383752662b786ec))
+
+
+### Features
+
+* **manager:** import manager-account-sidebar ([bdfd5f9](https://github.com/ovh/manager/commit/bdfd5f9c69acdf2c393712401fc2374a472c7eee))
+* **telecom:** import notifications sidebar ([7a9d01d](https://github.com/ovh/manager/commit/7a9d01d00f12e9b8b58b51fffbfa445484293272))
+
+
+
 ## [13.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.0.1...@ovh-ux/manager-telecom@13.0.2) (2020-08-05)
 
 

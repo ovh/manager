@@ -1,3 +1,12 @@
+## [1.2.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ui-router-line-progress@1.2.1...@ovh-ux/ng-ui-router-line-progress@1.2.2) (2020-08-05)
+
+
+### Bug Fixes
+
+* **config:** prevent trigger when target state is the final one ([#3351](https://github.com/ovh/manager/issues/3351)) ([0e17383](https://github.com/ovh/manager/commit/0e17383fb6921676e9e3a5dddf4f318403e5a75b))
+
+
+
 ## [1.2.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ui-router-line-progress@1.2.0...@ovh-ux/ng-ui-router-line-progress@1.2.1) (2020-06-02)
 
 

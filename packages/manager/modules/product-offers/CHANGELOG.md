@@ -1,3 +1,12 @@
+# [3.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-product-offers@3.0.0...@ovh-ux/manager-product-offers@3.1.0) (2020-08-05)
+
+
+### Features
+
+* **pricing:** add PRICING_MODE constant ([a32e1c4](https://github.com/ovh/manager/commit/a32e1c46cccb42368ff31b46308cebb362449fcb))
+
+
+
 # [3.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-product-offers@2.0.0...@ovh-ux/manager-product-offers@3.0.0) (2020-07-29)
 
 

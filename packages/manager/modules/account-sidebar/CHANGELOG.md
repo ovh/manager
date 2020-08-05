@@ -1,3 +1,19 @@
+# [3.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@2.0.0...@ovh-ux/manager-account-sidebar@3.0.0) (2020-08-05)
+
+
+### Features
+
+* **account-sidebar:** make standalone, remove from manager-navbar ([cf7b86a](https://github.com/ovh/manager/commit/cf7b86ab4342d4285413e074150158906bca2ac4))
+
+
+### BREAKING CHANGES
+
+* **account-sidebar:** make the module standalone
+
+Signed-off-by: frenauvh <florian.renaut@corp.ovh.com>
+
+
+
 # [2.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@1.3.4...@ovh-ux/manager-account-sidebar@2.0.0) (2020-07-29)
 
 

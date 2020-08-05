@@ -1,3 +1,20 @@
+# [5.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@4.0.1...@ovh-ux/manager-navbar@5.0.0) (2020-08-05)
+
+
+### Features
+
+* **navbar:** remove account sidebar from navbar ([7283e89](https://github.com/ovh/manager/commit/7283e89623a3e7832a7c6050572f0cd345629684))
+* **navbar:** remove notifications panel ([3056e60](https://github.com/ovh/manager/commit/3056e60ddd59d8d897b5a99f9306c503c5dec388))
+
+
+### BREAKING CHANGES
+
+* **navbar:** remove account sidebar panel
+
+Signed-off-by: frenauvh <florian.renaut@corp.ovh.com>
+
+
+
 ## [4.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@4.0.0...@ovh-ux/manager-navbar@4.0.1) (2020-08-05)
 
 

@@ -1,3 +1,12 @@
+## [2.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.0.1...@ovh-ux/manager-nasha@2.0.2) (2020-08-05)
+
+
+### Performance Improvements
+
+* **nasha:** import oui css in app instead of module ([53258a2](https://github.com/ovh/manager/commit/53258a2a4c228f4583871c10bd72a4529d81c1fa))
+
+
+
 ## [2.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.0.0...@ovh-ux/manager-nasha@2.0.1) (2020-07-29)
 
 
