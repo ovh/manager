@@ -2602,10 +2602,10 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/translate-async-loader/-/translate-async-loader-1.0.8.tgz#7cbdc3dfed1042f511206ff6bb9f14c33b8406ba"
   integrity sha512-8yEhPeRTSxtEO9ODXRYZw6pzRQiV5ULCTi8mIzt39m/b9N2TcIF4ILTPsaa8xpE4npHKa/iYgL9z0HJUFi2LGQ==
 
-"@ovh-ux/ui-kit@^4.2.1":
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-4.2.1.tgz#ef59a5df4389f5997f37e9b39c77204506aa0f1c"
-  integrity sha512-Wj+08o4VaLvyZTSSKM3vbfUiN0MgWvRM1EnWY2ZrfmT/KWXKZxkfOdA894ZPePWwrzmzHeR1st6CjiHBTiJilA==
+"@ovh-ux/ui-kit@^4.2.3":
+  version "4.2.3"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-4.2.3.tgz#1c8919a62650df3f24c0270d80b35d75edf4a8a0"
+  integrity sha512-Hov/tlRMg/vom3PIWs7Bzi3BhcaJjqisS0JzDpIItwh40MqSwtDBjbmXFJB8s5Xr4iqgu4QAAV+9tprRG5ReJw==
 
 "@rollup/plugin-babel@^5.0.0":
   version "5.0.0"
