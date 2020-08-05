@@ -5,8 +5,6 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('overTheBox_configure_breadcrumb'),
-    },
-    resolve: {
       orderHash: /* @ngInject */ ($state) => () =>
         $state.href('order-overTheBox'),
       goOrderOverTheBox: /* @ngInject */ ($state) => () =>

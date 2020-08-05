@@ -38,6 +38,7 @@
     "@ovh-ux/ng-ovh-ui-confirm-modal": "^2.0.0",
     "@ovh-ux/ng-pagination-front": "^10.0.1",
     "@ovh-ux/ng-ui-router-layout": "^4.0.1",
+    "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.0",
     "@uirouter/angularjs": "^1.0.23",
     "CSV-JS": "^1.2.0",
     "angular": "^1.7.5",
