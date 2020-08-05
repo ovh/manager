@@ -3,6 +3,8 @@ import 'script-loader!jquery';
 import 'script-loader!moment/min/moment-with-locales.min';
 /* eslint-enable import/no-webpack-loader-syntax */
 
+import 'core-js/stable';
+
 import angular from 'angular';
 
 import ovhManagerCore from '@ovh-ux/manager-core';

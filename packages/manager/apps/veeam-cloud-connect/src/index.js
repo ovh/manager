@@ -1,6 +1,8 @@
 import 'script-loader!jquery'; // eslint-disable-line
 import 'script-loader!moment/min/moment-with-locales.min'; // eslint-disable-line
 
+import 'core-js/stable';
+
 import angular from 'angular';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ovhManagerVeeamCloudConnect from '@ovh-ux/manager-veeam-cloud-connect';

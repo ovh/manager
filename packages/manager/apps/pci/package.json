@@ -49,6 +49,7 @@
     "angular-ui-validate": "^1.2.3",
     "bloodhound-js": "^1.2.3",
     "clipboard": "^2.0.4",
+    "core-js": "^3.6.5",
     "flatpickr": "^4.6.3",
     "font-awesome": "^4.0.0",
     "jquery-ui": "^1.12.1",

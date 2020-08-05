@@ -1,6 +1,6 @@
 /* eslint-disable import/no-webpack-loader-syntax, import/no-unresolved, import/extensions */
 
-import 'babel-polyfill';
+import 'core-js/stable';
 import 'script-loader!jquery';
 import 'angular';
 import 'angular-animate';

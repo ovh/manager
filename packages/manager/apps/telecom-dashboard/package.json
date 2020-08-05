@@ -43,6 +43,7 @@
     "bootstrap4": "twbs/bootstrap#v4.0.0",
     "chart.js": "^2.8.0",
     "clipboard": "^2.0.4",
+    "core-js": "^3.6.5",
     "flatpickr": "^4.6.3",
     "ip-address": "^5.9.2",
     "jquery": "^2.1.3",
