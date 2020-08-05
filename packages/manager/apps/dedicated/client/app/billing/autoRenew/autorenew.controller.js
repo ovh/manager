@@ -5,11 +5,11 @@ import reduce from 'lodash/reduce';
 import set from 'lodash/set';
 import upperFirst from 'lodash/upperFirst';
 
+import { RENEW_URL } from '@ovh-ux/manager-billing';
 import {
   ALIGNMENT_URLS,
   COLUMNS_CONFIG,
   NIC_ALL,
-  RENEW_URL,
   URL_PARAMETER_SEPARATOR,
 } from './autorenew.constants';
 
