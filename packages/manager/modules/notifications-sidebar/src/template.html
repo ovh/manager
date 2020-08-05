@@ -1,0 +1,53 @@
+<div
+    role="menu"
+    class="manager-notifications"
+    data-ng-class="{
+        'manager-notifications_toggle': $ctrl.toggle,
+     }"
+>
+    <ul>
+        <li data-ng-repeat="(time, sublinks) in ::$ctrl.groupedSublinks">
+            <!-- header -->
+            <div class="notification-time" data-ng-bind="time"></div>
+            <navbar-notifications-list
+                on-sublink-click="$ctrl.toggleSublinkAction(menuLink, linkClicked)"
+                sublinks="sublinks"
+            ></navbar-notifications-list>
+            <!-- content -->
+        </li>
+        <li data-ng-if="$ctrl.sublinks.length === 0">
+            <div>
+                <p class="manager-notifications_placeholder">
+                    <span
+                        class="oui-icon oui-navbar-notification__icon oui-icon-success-circle"
+                        aria-hidden="true"
+                    >
+                    </span>
+                    <span
+                        data-ng-bind="::$ctrl.translations.notification.noNotification"
+                    ></span>
+                </p>
+                <div
+                    data-ng-bind="::$ctrl.translations.notification.noNotificationDescription"
+                ></div>
+            </div>
+        </li>
+        <li data-ng-if="!$ctrl.sublinks">
+            <div>
+                <p class="manager-notifications_placeholder">
+                    <span
+                        class="oui-icon oui-navbar-notification__icon oui-icon-error-circle"
+                        aria-hidden="true"
+                    >
+                    </span>
+                    <span
+                        data-ng-bind="::$ctrl.translations.notification.errorInNotification"
+                    ></span>
+                </p>
+                <div
+                    data-ng-bind="::$ctrl.translations.notification.errorInNotificationDescription"
+                ></div>
+            </div>
+        </li>
+    </ul>
+</div>

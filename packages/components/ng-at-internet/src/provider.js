@@ -308,11 +308,7 @@ export default /* @ngInject */ function(AT_INTERNET_CUSTOM_VARS) {
         if (isAtInternetTagAvailable()) {
           updateData(pageData);
           if (pageData.name) {
-            const customVars = {};
-            forOwn(AT_INTERNET_CUSTOM_VARS, (conf, attr) => {
-              updateCustomVars(config.defaults, conf, attr, customVars);
-            });
-            pageData.customVars = customVars;
+            pageData.customVars = getCustomVarsWithDefaults(pageDataParam);
             atinternetTag.page.send(pageData);
             logDebugInfos('atinternet.trackpage: ', pageData);
           } else {

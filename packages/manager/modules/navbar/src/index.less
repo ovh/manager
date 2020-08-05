@@ -1,6 +1,5 @@
 ovh-manager-navbar {
   @import '~@ovh-ux/ui-kit/dist/less/_tokens';
-  @import '~@ovh-ux/manager-account-sidebar/src/variables.less';
 
   .oui-navbar-menu_toggle {
     button.oui-navbar-link::after {
@@ -111,6 +110,12 @@ ovh-manager-navbar {
     }
   }
 
+  button.notifications,
+  button.notifications:hover,
+  button.notifications:focus {
+    padding: 0.65rem;
+  }
+
   .oui-navbar-backdrop {
     display: none;
   }
@@ -127,45 +132,6 @@ ovh-manager-navbar {
       button {
         cursor: default;
       }
-    }
-  }
-
-  .ovh-sidebar-wrapper {
-    position: fixed;
-    top: rem-calc(44);
-    right: 0;
-    bottom: 0;
-    z-index: 99;
-    overflow-x: hidden;
-    transition: padding 0.1s ease-out, opacity 0.2s ease-out;
-    box-shadow: @base-box-shadow-secondary;
-    opacity: 0;
-    padding-left: @ovh-sidebar-width;
-    pointer-events: none;
-
-    .manager-hub-user-panel {
-      width: 0;
-    }
-
-    .sidebar-show() {
-      width: @ovh-sidebar-width;
-      padding-left: 0;
-      opacity: 1;
-      pointer-events: auto;
-
-      .manager-hub-user-panel {
-        width: @ovh-sidebar-width;
-      }
-    }
-
-    &.sidebar-expand {
-      @media screen and (min-width: (@device-breakpoint-medium - 1px)) {
-        .sidebar-show();
-      }
-    }
-
-    &[aria-expanded='true'] {
-      .sidebar-show();
     }
   }
 }

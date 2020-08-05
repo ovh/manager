@@ -822,5 +822,7 @@
   "domain_tab_options_delete_dnsAnycast_title": "Rescindir a opção DNS Anycast",
   "domain_tab_options_delete_success": "A opção foi rescindida.",
   "domain_tab_options_delete_error": "Ocorreu um erro durante a rescisão da opção.",
-  "domain_tab_options_delete_cancel": "Anular"
+  "domain_tab_options_delete_cancel": "Anular",
+  "web_domain_zone_activation_success": "A sua ativação foi concluída com êxito. O seu produto ficará ativo dentro de alguns instantes.",
+  "web_domain_zone_activation_order_success": "A sua <a href=\"{{t0}}\" target=\"_blank\">nota de encomenda</a> foi gerada com sucesso. O seu produto será ativado depois de o ter validado."
 }

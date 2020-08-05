@@ -24,6 +24,7 @@ import ngTailLogs from '@ovh-ux/ng-tail-logs';
 import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import ngUirouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ovhContacts from '@ovh-ux/ng-ovh-contacts';
+import ovhManagerAccountSidebar from '@ovh-ux/manager-account-sidebar';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ovhManagerBanner from '@ovh-ux/manager-banner';
 import ovhManagerEnterpriseCloudDatabase from '@ovh-ux/manager-enterprise-cloud-database';
@@ -43,6 +44,7 @@ import ovhManagerVps from '@ovh-ux/manager-vps';
 import ovhManagerVrack from '@ovh-ux/manager-vrack';
 import ovhManagerIplb from '@ovh-ux/manager-iplb';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
+import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 import account from './account';
 import config from './config/config';
 import contactsService from './account/contacts/service/contacts-service.module';
@@ -68,6 +70,7 @@ angular
     [
       ...get(__NG_APP_INJECTIONS__, Environment.getRegion(), []),
       account,
+      ovhManagerAccountSidebar,
       ovhManagerCore,
       'Billing',
       chartjs,
@@ -121,6 +124,7 @@ angular
       ovhManagerSupport,
       ovhManagerVeeamEnterprise,
       ovhManagerVeeamCloudConnect,
+      ovhNotificationsSidebar,
       ngTailLogs,
       ovhContacts,
       ovhManagerBanner,
@@ -224,12 +228,14 @@ angular
           get(error, 'status') === 403 &&
           get(error, 'code') === 'FORBIDDEN_BILLING_ACCESS'
         ) {
+          $rootScope.$emit('ovh::sidebar::hide');
           $state.go('app.error', { error });
         }
       });
 
       $state.defaultErrorHandler((error) => {
         if (error.type === RejectType.ERROR) {
+          $rootScope.$emit('ovh::sidebar::hide');
           $state.go(
             'error',
             {

@@ -14,7 +14,12 @@ export const PRICING_CAPACITIES = {
   UPGRADE: 'upgrade',
 };
 
+export const PRICING_MODE = {
+  DEFAULT: 'default',
+};
+
 export default {
   ISO_DURATION_FORMAT,
   PRICING_CAPACITIES,
+  PRICING_MODE,
 };

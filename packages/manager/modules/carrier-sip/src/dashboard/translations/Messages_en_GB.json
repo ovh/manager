@@ -18,5 +18,7 @@
   "carrier_sip_dashboard_renewal_contacts_manage": "Manage contacts",
   "carrier_sip_dashboard_shortcuts": "Shortcuts",
   "carrier_sip_dashboard_shortcuts_bills": "Usage summary",
-  "carrier_sip_dashboard_shortcuts_cdrs": "CDR now available"
+  "carrier_sip_dashboard_shortcuts_cdrs": "CDR now available",
+  "carrier_sip_dashboard_network": "Network",
+  "carrier_sip_dashboard_network_ip_media": "Media IP"
 }

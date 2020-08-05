@@ -1,0 +1,41 @@
+@import '@ovh-ux/ui-kit/dist/less/_tokens';
+@import './variables';
+
+.ovh-account-sidebar-wrapper {
+  position: fixed;
+  top: 2.75rem;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
+  overflow-x: hidden;
+  transition: padding 0.1s ease-out, opacity 0.2s ease-out;
+  box-shadow: 0 4px 6px 0 rgba(0, 14, 156, 0.2);
+  opacity: 0;
+  padding-left: @ovh-sidebar-width;
+  pointer-events: none;
+
+  .manager-hub-user-panel {
+    width: 0;
+  }
+
+  .sidebar-show() {
+    width: @ovh-sidebar-width;
+    padding-left: 0;
+    opacity: 1;
+    pointer-events: auto;
+
+    .manager-hub-user-panel {
+      width: @ovh-sidebar-width;
+    }
+  }
+
+  &.sidebar-expand {
+    @media screen and (min-width: (@device-breakpoint-medium - 1px)) {
+      .sidebar-show();
+    }
+  }
+
+  &[aria-expanded='true'] {
+    .sidebar-show();
+  }
+}

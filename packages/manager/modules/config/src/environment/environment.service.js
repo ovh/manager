@@ -1,10 +1,15 @@
+import { ALLOWED_REGIONS, DEFAULT_REGION } from './environment.constants';
+
 export default class EnvironmentService {
   constructor() {
-    this.region = 'EU';
+    this.region = DEFAULT_REGION;
     this.version = null;
   }
 
-  setRegion(region = 'EU') {
+  setRegion(region = DEFAULT_REGION) {
+    if (!ALLOWED_REGIONS.includes(region)) {
+      throw new Error(`Region ${region} is not allowed`);
+    }
     this.region = region;
   }
 

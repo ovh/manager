@@ -16,6 +16,15 @@ export default class OvhManagerAccountSidebarCtrl {
     this.atInternet = atInternet;
     this.OvhApiMe = OvhApiMe;
     this.RedirectionService = RedirectionService;
+
+    this.$rootScope.$on('ovh::sidebar::toggle', () => {
+      this.isSidebarVisible = !this.isSidebarVisible;
+    });
+
+    this.$rootScope.$on('ovh::sidebar::hide', () => {
+      this.isSidebarVisible = false;
+      this.sidebarExpand = false;
+    });
   }
 
   $onInit() {

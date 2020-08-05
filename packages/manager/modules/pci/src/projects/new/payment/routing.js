@@ -1,5 +1,6 @@
 import filter from 'lodash/filter';
 import find from 'lodash/find';
+import get from 'lodash/get';
 
 import component from './component';
 
@@ -112,6 +113,11 @@ export default /* @ngInject */ ($stateProvider) => {
           'pci.projects.creating',
           {
             orderId,
+            voucherCode: get(
+              cart,
+              'projectItem.voucherConfiguration.value',
+              '',
+            ),
           },
           {
             location: false,

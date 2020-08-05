@@ -821,5 +821,7 @@
   "domain_tab_options_delete_dnsAnycast_title": "Cancel the DNS Anycast option",
   "domain_tab_options_delete_success": "The option has been cancelled.",
   "domain_tab_options_delete_error": "An error has occurred when cancelling the option.",
-  "domain_tab_options_delete_cancel": "Cancel"
+  "domain_tab_options_delete_cancel": "Cancel",
+  "web_domain_zone_activation_success": "Your product has been enabled. Your product will be enabled shortly.",
+  "web_domain_zone_activation_order_success": "Your <a href=\"{{t0}}\" target=\"_blank\">order form</a> has been successfully generated. Your web hosting plan will be enabled once you have validated it."
 }

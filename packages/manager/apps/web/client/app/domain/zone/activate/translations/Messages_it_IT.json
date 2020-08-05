@@ -5,5 +5,14 @@
   "web_domain_zone_activation_question": "Vuoi attivare il numero minimo di record nella tua zona DNS?",
   "web_domain_zone_activation_template_minimized": "Sì, voglio attivare la mia zona DNS con il numero minimo di record",
   "web_domain_zone_activation_template_basic": "No, ma voglio attivare la mia zona DNS",
-  "web_domain_zone_activation_success": "L’ordine è stato generato correttamente"
+  "web_domain_zone_activation_success": "L’ordine è stato generato correttamente",
+  "web_domain_zone_activation_description": "Per rispondere alle richieste DNS il dominio deve essere associato a una zona DNS, dove è possibile configurare l’indirizzo IP verso cui verrà reindirizzato il dominio e i suoi sottodomini. La zona DNS del dominio è disattivata. Per attivarla, conferma gli step seguenti.",
+  "web_domain_zone_activation_step_header_product": "Scegli il servizio",
+  "web_domain_zone_activation_step_header_duration": "Scegli la durata",
+  "web_domain_zone_activation_step_header_activation": "Attivazione",
+  "web_domain_zone_activation_step_header_payment": "Pagamento",
+  "web_domain_zone_activation_step_description_activation": "Per confermare la richiesta, accetta le condizioni di utilizzo.",
+  "web_domain_zone_activation_step_description_payment": "Per confermare la richiesta, seleziona il metodo di pagamento e accetta le condizioni di utilizzo.",
+  "web_domain_zone_activation_submit_pay": "Paga",
+  "web_domain_zone_activation_error": "Si è verificato un errore durante l'ordine della zona DNS: {{message}}."
 }

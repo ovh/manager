@@ -1,7 +1,7 @@
 ovh-manager-hub-shortcut-tile {
   .manager-hub-shortcut-tile {
-    @import '@ovh-ux/ui-kit/dist/scss/_tokens';
-    @import '@ovh-ux/manager-hub/src/variables.scss';
+    @import '~@ovh-ux/ui-kit/dist/scss/_tokens';
+    @import '~@ovh-ux/manager-hub/src/variables.scss';
 
     $notification-pill-font-color: $p-000-white;
     $notification-pill-bg-color: #b91a1a;

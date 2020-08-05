@@ -5,5 +5,14 @@
   "web_domain_zone_activation_question": "Czy chcesz włączyć minimalne wpisy w strefie DNS?",
   "web_domain_zone_activation_template_minimized": "Tak, chcę włączyć strefę DNS z minimalnymi wpisami.",
   "web_domain_zone_activation_template_basic": "Nie, ale chcę włączyć strefę DNS.",
-  "web_domain_zone_activation_success": "Zamówienie zostało wygenerowane."
+  "web_domain_zone_activation_success": "Zamówienie zostało wygenerowane.",
+  "web_domain_zone_activation_description": "Aby odpowiedzieć na zapytania DNS, Twoja nazwa domeny musi być powiązana ze strefą DNS. Będziesz mógł skonfigurować, na który adres IP zostanie przekierowana twoja domena i jej subdomeny. Strefa DNS Twojej domeny jest wyłączona. Jeśli chcesz ją włączyć, zatwierdź kolejne etapy.",
+  "web_domain_zone_activation_step_header_product": "Wybierz usługę",
+  "web_domain_zone_activation_step_header_duration": "Wybierz Okres",
+  "web_domain_zone_activation_step_header_activation": "Uruchom",
+  "web_domain_zone_activation_step_header_payment": "Płatności",
+  "web_domain_zone_activation_step_description_activation": "Aby potwierdzić zlecenie, wybierz sposób płatności i zaakceptuj warunki korzystania z usługi.",
+  "web_domain_zone_activation_step_description_payment": "Aby potwierdzić zlecenie, wybierz sposób płatności i zaakceptuj warunki korzystania z usługi.",
+  "web_domain_zone_activation_submit_pay": "Zapłać",
+  "web_domain_zone_activation_error": "Wystąpił błąd podczas zamawiania strefy DNS: {{message}}."
 }

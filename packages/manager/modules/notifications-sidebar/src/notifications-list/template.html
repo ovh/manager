@@ -1,13 +1,13 @@
 <div
+    class="manager-notifications_content position-relative d-flex"
     data-ng-repeat="menuLink in $ctrl.sublinks track by menuLink.id"
-    class="manager-navbar-notification_content position-relative d-flex"
     data-ng-class="{
         'manager-navbar-notification_content__highlight' : menuLink.url
     }"
 >
     <!-- icon -->
     <span
-        class="oui-icon oui-navbar-notification__icon"
+        class="oui-icon oui-navbar-notification__icon oui-icon_bicolor oui-icon-info-circle"
         data-ng-class=":: {
             'oui-icon_bicolor': menuLink.level !== 'incident',
             'oui-icon-error-circle': menuLink.level === 'error',
@@ -22,36 +22,28 @@
 
     <!-- Link (href) -->
     <a
-        class="oui-navbar-notification__content"
         data-ng-if="::menuLink.url"
         data-ng-init="$ctrl.notificationsCreated = $last"
         data-ng-click="$ctrl.onSublinkClick({ menuLink, linkClicked: true })"
         data-ng-href="{{::menuLink.url}}"
     >
         <div
-            class="oui-navbar-notification__header oui-navbar-notification__title"
+            class="manager-notifications_subject"
             data-ng-bind=":: menuLink.subject"
         ></div>
-        <div
-            class="oui_navbar-notification__body oui-navbar-notification__description"
-            data-ng-bind-html=":: menuLink.description"
-        ></div>
+        <div data-ng-bind-html=":: menuLink.description"></div>
     </a>
     <!-- /Link (href) -->
 
     <div
-        class="oui-navbar-notification__content"
         data-ng-if="::!menuLink.url"
         data-ng-init="$ctrl.notificationsCreated = $last"
     >
         <div
-            class="oui-navbar-notification__header oui-navbar-notification__title"
+            class="manager-notifications_subject"
             data-ng-bind=":: menuLink.subject"
         ></div>
-        <div
-            class="oui_navbar-notification__body oui-navbar-notification__description"
-            data-ng-bind-html=":: menuLink.description"
-        ></div>
+        <div data-ng-bind-html=":: menuLink.description"></div>
     </div>
 
     <button

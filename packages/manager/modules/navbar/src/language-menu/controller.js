@@ -10,7 +10,8 @@ import { LANG_PATTERN } from './constants';
 
 export default class {
   /* @ngInject */
-  constructor(CORE_LANGUAGES, TranslateService) {
+  constructor($rootScope, CORE_LANGUAGES, TranslateService) {
+    this.$rootScope = $rootScope;
     this.LANGUAGES = CORE_LANGUAGES.available;
     this.TranslateService = TranslateService;
   }
@@ -24,6 +25,11 @@ export default class {
     }
 
     this.sublinks = this.getSublinks();
+  }
+
+  onClick() {
+    this.$rootScope.$emit('ovh::notifications::hide');
+    this.$rootScope.$emit('ovh::sidebar::hide');
   }
 
   getCurrentLang() {

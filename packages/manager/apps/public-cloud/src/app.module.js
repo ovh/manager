@@ -19,6 +19,7 @@ import get from 'lodash/get';
 import has from 'lodash/has';
 
 import navbar from '@ovh-ux/manager-navbar';
+import ovhManagerAccountSidebar from '@ovh-ux/manager-account-sidebar';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ovhManagerMfaEnrollment from '@ovh-ux/mfa-enrollment';
 import ovhManagerPci from '@ovh-ux/manager-pci';
@@ -27,6 +28,7 @@ import ngOvhUserPref from '@ovh-ux/ng-ovh-user-pref';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import ngUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
+import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 
@@ -59,9 +61,11 @@ angular
       ngOvhUserPref,
       navbar,
       'oui',
+      ovhManagerAccountSidebar,
       ovhManagerCore,
       ovhManagerMfaEnrollment,
       ovhManagerPci,
+      ovhNotificationsSidebar,
       uiRouter,
     ].filter((value) => value !== null),
   ) // Remove null because __NG_APP_INJECTIONS__ can be null
@@ -87,9 +91,10 @@ angular
     },
   )
   .run(
-    /* @ngInject */ ($state) => {
+    /* @ngInject */ ($rootScope, $state) => {
       $state.defaultErrorHandler((error) => {
         if (error.type === RejectType.ERROR) {
+          $rootScope.$emit('ovh::sidebar::hide');
           $state.go(
             'pci.error',
             {

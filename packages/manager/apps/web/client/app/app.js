@@ -25,6 +25,8 @@ import ngTailLogs from '@ovh-ux/ng-tail-logs';
 import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import ngUiRouterLayout from '@ovh-ux/ng-ui-router-layout';
 import ngUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
+import ovhManagerAccountSidebar from '@ovh-ux/manager-account-sidebar';
+import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 import ovhManagerBanner from '@ovh-ux/manager-banner';
 import ovhManagerCatalogPrice from '@ovh-ux/manager-catalog-price';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
@@ -62,6 +64,7 @@ angular
   .module(
     moduleName,
     [
+      ovhManagerAccountSidebar,
       ovhManagerCore,
       ngPaginationFront,
       'ngOvhUtils',
@@ -105,6 +108,7 @@ angular
       ovhManagerCatalogPrice,
       ovhManagerNavbar,
       ovhManagerProductOffers,
+      ovhNotificationsSidebar,
       'moment-picker',
       'oui',
       emailpro,
@@ -527,9 +531,10 @@ angular
     labs: 'https://www.ovh.com/manager/sunrise/uxlabs/#!/',
   })
   .run(
-    /* @ngInject */ ($state) => {
+    /* @ngInject */ ($rootScope, $state) => {
       $state.defaultErrorHandler((error) => {
         if (error.type === RejectType.ERROR) {
+          $rootScope.$emit('ovh::sidebar::hide');
           $state.go(
             'error',
             {

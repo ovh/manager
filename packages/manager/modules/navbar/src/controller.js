@@ -33,12 +33,6 @@ export default class {
 
   $onInit() {
     this.isLoading = true;
-    this.isSidebarVisible = false;
-
-    this.$rootScope.$on('ovh::sidebar::hide', () => {
-      this.isSidebarVisible = false;
-      this.sidebarExpand = false;
-    });
 
     if (has(this.navbarOptions, 'toggle')) {
       this.togglerisLoading = true;
@@ -148,13 +142,12 @@ export default class {
   }
 
   onUserClick() {
-    this.isSidebarVisible = !this.isSidebarVisible;
-    if (this.isSidebarVisible) {
-      this.atInternet.trackClick({
-        name: 'navbar::action::user-bar',
-        type: 'action',
-      });
-    }
+    this.$rootScope.$emit('ovh::notifications::hide');
+    this.$rootScope.$emit('ovh::sidebar::toggle');
+    this.atInternet.trackClick({
+      name: 'navbar::action::user-bar',
+      type: 'action',
+    });
   }
 
   onUniverseChange(universe) {
