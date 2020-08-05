@@ -16,6 +16,9 @@ angular.module(moduleName, ['ui.router']).config(($stateProvider) => {
         controllerAs: 'SmsDashboardCtrl',
       },
     },
+    resolve: {
+      breadcrumb: () => null,
+    },
     translations: {
       value: ['.', '../sms/compose'],
       format: 'json',
