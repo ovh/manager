@@ -29,71 +29,8 @@
                 data-term="{{:: 'pci_projects_project_training_jobs_created' | translate  }}"
             >
                 <oui-tile-description
-                    data-ng-bind="$ctrl.job.created"
+                    data-ng-bind="$ctrl.job.created | date:'medium'"
                 ></oui-tile-description>
-            </oui-tile-definition>
-            <oui-tile-definition
-                data-term="{{:: 'pci_projects_project_training_jobs_time' | translate  }}"
-            >
-                <oui-tile-description>
-                    {{ $ctrl.getDuration() }}
-                </oui-tile-description>
-            </oui-tile-definition>
-            <oui-tile-definition
-                data-term="{{:: 'pci_projects_project_training_jobs_access_url' | translate  }}"
-            >
-                <oui-tile-description data-ng-if=":: $ctrl.job.accessUrl">
-                    <a
-                        target="_blank"
-                        class="oui-button oui-button_ghost"
-                        rel="noopener"
-                        data-ng-href="{{:: $ctrl.job.accessUrl }}"
-                    >
-                        <span
-                            data-translate="pci_projects_project_training_jobs_access_url_link"
-                        ></span>
-                        <i
-                            class="oui-icon oui-icon-external-link"
-                            aria-hidden="true"
-                        ></i>
-                    </a>
-                </oui-tile-description>
-                <oui-tile-description>
-                    <span
-                        data-translate="pci_projects_project_training_jobs_link_not_available"
-                        data-ng-if=":: !$ctrl.job.accessUrl"
-                    >
-                    </span>
-                </oui-tile-description>
-            </oui-tile-definition>
-            <oui-tile-definition
-                data-term="{{:: 'pci_projects_project_training_jobs_resource_usage_url' | translate  }}"
-            >
-                <oui-tile-description
-                    data-ng-if=":: $ctrl.job.resourceUsageUrl"
-                >
-                    <a
-                        target="_blank"
-                        class="oui-button oui-button_ghost"
-                        rel="noopener"
-                        data-ng-href="{{:: $ctrl.job.resourceUsageUrl }}"
-                    >
-                        <span
-                            data-translate="pci_projects_project_training_jobs_resource_usage_url_link"
-                        ></span>
-                        <i
-                            class="oui-icon oui-icon-external-link"
-                            aria-hidden="true"
-                        ></i>
-                    </a>
-                </oui-tile-description>
-                <oui-tile-description>
-                    <span
-                        data-translate="pci_projects_project_training_jobs_link_not_available"
-                        data-ng-if=":: !$ctrl.job.resourceUsageUrl"
-                    >
-                    </span>
-                </oui-tile-description>
             </oui-tile-definition>
         </oui-tile>
     </div>
@@ -138,28 +75,47 @@
                     </span>
                 </oui-tile-description>
             </oui-tile-definition>
-        </oui-tile>
-    </div>
-    <div class="col-md-4">
-        <oui-tile
-            class="h-100"
-            data-heading="{{:: 'pci_projects_project_training_jobs_info_title_actions' | translate  }}"
-        >
-            <oui-tile-button
-                data-on-click="$ctrl.goToJobKill()"
-                data-disabled="!$ctrl.job.jobCanBeKilled()"
+            <oui-tile-definition
+                data-term="{{:: 'pci_projects_project_training_jobs_time' | translate  }}"
             >
-                <span
-                    data-translate="pci_projects_project_training_jobs_kill"
-                ></span>
-            </oui-tile-button>
+                <oui-tile-description>
+                    {{ $ctrl.getDuration() }}
+                </oui-tile-description>
+            </oui-tile-definition>
+
+            <div class="oui-tile__item">
+                <dl class="oui-tile__definition">
+                    <dt class="oui-tile__term">
+                        <span
+                            data-translate="pci_projects_project_training_jobs_access_url"
+                        ></span>
+                        <button
+                            type="button"
+                            class="oui-popover-button"
+                            data-oui-popover="{{:: 'pci_projects_project_training_jobs_access_url_help' | translate : { owner: $ctrl.job.user } }}"
+                        ></button>
+                    </dt>
+
+                    <oui-tile-description>
+                        <a
+                            class="oui-link oui-link_icon"
+                            href="{{:: $ctrl.job.accessUrl }}"
+                            target="_blank"
+                            rel="noopener"
+                        >
+                            <span
+                                data-translate="pci_projects_project_training_jobs_access_url_link"
+                            ></span>
+                            <i
+                                class="oui-icon oui-icon-external-link"
+                                aria-hidden="true"
+                            ></i>
+                        </a>
+                    </oui-tile-description>
+                </dl>
+            </div>
         </oui-tile>
     </div>
-</div>
-
-<p></p>
-
-<div class="row d-lg-flex">
     <div class="col-md-4">
         <oui-tile
             class="h-100"
@@ -194,7 +150,7 @@
             >
                 <oui-tile-description>
                     <span data-ng-if="$ctrl.job.totalRuntime">
-                        ~=
+                        ~
                     </span>
                     <ovh-manager-catalog-price
                         data-price="$ctrl.price"
@@ -206,12 +162,54 @@
                     </ovh-manager-catalog-price>
                 </oui-tile-description>
             </oui-tile-definition>
+            <oui-tile-definition
+                data-term="{{:: 'pci_projects_project_training_jobs_resource_usage_url' | translate  }}"
+                data-ng-if=":: $ctrl.job.resourceUsageUrl"
+            >
+                <oui-tile-description>
+                    <a
+                        target="_blank"
+                        class="oui-button oui-button_ghost"
+                        rel="noopener"
+                        data-ng-href="{{:: $ctrl.job.resourceUsageUrl }}"
+                    >
+                        <span
+                            data-translate="pci_projects_project_training_jobs_resource_usage_url_link"
+                        ></span>
+                        <i
+                            class="oui-icon oui-icon-external-link"
+                            aria-hidden="true"
+                        ></i>
+                    </a>
+                </oui-tile-description>
+            </oui-tile-definition>
+        </oui-tile>
+    </div>
+</div>
+
+<p></p>
+
+<div class="row d-lg-flex">
+    <div class="col-md-4">
+        <oui-tile
+            class="h-100"
+            data-heading="{{:: 'pci_projects_project_training_jobs_info_title_actions' | translate  }}"
+        >
+            <oui-tile-button
+                data-on-click="$ctrl.goToJobKill()"
+                data-disabled="!$ctrl.job.jobCanBeKilled()"
+            >
+                <span
+                    data-translate="pci_projects_project_training_jobs_kill"
+                ></span>
+            </oui-tile-button>
         </oui-tile>
     </div>
     <div class="col-md-8">
         <oui-tile
             class="h-100"
             data-heading="{{:: 'pci_projects_project_training_jobs_info_title_4' | translate  }}"
+            data-ng-if="$ctrl.job.data.length > 0"
         >
             <oui-tile-definition
                 data-term="{{:: 'pci_projects_project_training_jobs_data' | translate  }}"

@@ -12,9 +12,12 @@
         data-on-dismiss="$ctrl.goBack()"
         data-loading="$ctrl.loading"
     >
-        <p
-            data-translate="pci_projects_project_training_dashboard_attach_registry_user_info_1"
-        ></p>
+        <oui-message type="warning">
+            {{::
+            'pci_projects_project_training_dashboard_attach_registry_user_info_1'
+            | translate }}
+        </oui-message>
+
         <p
             data-translate="pci_projects_project_training_dashboard_attach_registry_user_info_2"
         ></p>

@@ -116,10 +116,11 @@
                                 text="{{ ::'pci_projects_project_training_dashboard_cli_integration_details' | translate }}"
                             ></oui-dropdown-trigger>
                             <oui-dropdown-content>
-                                <oui-dropdown-item
+                                <a
                                     href="{{ :: $ctrl.eaiDocsUrl }}"
                                     target="_blank"
                                     rel="noopener"
+                                    class="oui-dropdown-option ng-scope"
                                 >
                                     {{
                                     ::'pci_projects_project_training_dashboard_cli_integration_doc'
@@ -128,7 +129,7 @@
                                         class="oui-icon oui-icon-external_link"
                                         aria-hidden="true"
                                     ></span>
-                                </oui-dropdown-item>
+                                </a>
                                 <oui-dropdown-item
                                     href="{{ :: $ctrl.installLink }}"
                                     >{{
