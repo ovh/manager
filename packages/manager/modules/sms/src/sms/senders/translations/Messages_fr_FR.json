@@ -1,5 +1,6 @@
 {
   "sms_senders_manage_title": "Gérer les expéditeurs",
+  "sms_senders_breadcrumb": "Expéditeurs",
   "sms_senders_label_sender": "Expéditeur",
   "sms_senders_label_referer": "Type",
   "sms_senders_label_description": "Description",

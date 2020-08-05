@@ -7,6 +7,7 @@ const moduleName = 'ovhManagerSmsOptionsBlacklist';
 angular
   .module(moduleName, [])
   .component('telecomSmsOptionsBlacklist', telecomSmsOptionsBlacklist)
-  .config(routing);
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
