@@ -46,6 +46,7 @@
     "angular-ui-validate": "^1.2.3",
     "angular-validation-match": "^1.9.0",
     "chart.js": "^2.8.0",
+    "core-js": "^3.6.5",
     "font-awesome": "4.7.0",
     "ip-address": "^5.9.2",
     "jquery": "^2.1.3",

@@ -4,6 +4,8 @@ import 'script-loader!moment/min/moment-with-locales.min';
 import 'script-loader!chart.js/dist/Chart.min.js';
 /* eslint-enable import/no-webpack-loader-syntax, import/extensions */
 
+import 'core-js/stable';
+
 import { Environment } from '@ovh-ux/manager-config';
 
 import angular from 'angular';

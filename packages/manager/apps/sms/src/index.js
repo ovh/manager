@@ -4,6 +4,8 @@ import 'script-loader!lodash';
 import 'script-loader!moment/min/moment.min';
 /* eslint-enable import/no-webpack-loader-syntax */
 
+import 'core-js/stable';
+
 import angular from 'angular';
 
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';

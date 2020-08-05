@@ -1,5 +1,5 @@
 /* eslint-disable import/no-webpack-loader-syntax, import/no-unresolved, import/extensions */
-import 'babel-polyfill';
+import 'core-js/stable';
 import 'angular';
 import 'angular-animate';
 import 'angular-aria';
