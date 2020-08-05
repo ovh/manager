@@ -1,0 +1,8 @@
+{
+  "xdsl_page_title": "xDSL \"{{name}}\"",
+  "xdsl_tabs_details": "Información",
+  "xdsl_tabs_modem": "Mon modem",
+  "xdsl_tabs_line": "Mon accès",
+  "xdsl_tabs_tasks": "Tâches",
+  "xdsl_rename_error": "Impossible de renommer votre accès {{serviceName}}."
+}

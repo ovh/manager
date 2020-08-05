@@ -1,0 +1,7 @@
+{
+  "xdsl_modem_reboot": "Zrestartuj modemu",
+  "xdsl_modem_reboot_an_error_ocurred": "[Restart modemu] Wystąpił błąd!",
+  "xdsl_modem_reboot_success": "Trwa restart modemu.",
+  "xdsl_modem_reboot_success_end": "Restart modemu został wykonany.",
+  "xdsl_modem_reboot_really": "Czy chcesz zrestartować modem?"
+}

@@ -1,9 +1,0 @@
-{
-  "xdsl_access_lns_ratelimit_title": "Optimisation de l'accès internet",
-  "xdsl_access_lns_ratelimit_activate": "Supprimer la limite du débit de la ligne",
-  "xdsl_access_lns_ratelimit_description": "Disponible seulement pour les collectes France Télecom. Ajuster la limite haute du débit de la ligne au niveau des équipements OVH. Cet ajustement peut fluidifier la navigation, dans certains cas rares de perte de paquets.",
-  "xdsl_access_lns_ratelimit_warning": "Cette opération peut prendre jusqu’à 10 minutes et votre connexion sera interrompue quelques instants.",
-  "xdsl_access_lns_ratelimit_really_on": "Êtes-vous sûr(e) de vouloir activer la limite du débit de la ligne ?",
-  "xdsl_access_lns_ratelimit_really_off": "Êtes-vous sûr(e) de vouloir désactiver la limite du débit de la ligne ?",
-  "xdsl_access_lns_ratelimit_doing": "Changement de la limite de débit de la ligne"
-}

@@ -1,7 +1,0 @@
-{
-  "xdsl_modem_reboot": "Reiniciar el módem",
-  "xdsl_modem_reboot_an_error_ocurred": "Reinicio del módem: se ha producido un error.",
-  "xdsl_modem_reboot_success": "Reiniciando el módem...",
-  "xdsl_modem_reboot_success_end": "Reinicio del módem finalizado.",
-  "xdsl_modem_reboot_really": "¿Seguro que quiere reiniciar el módem?"
-}

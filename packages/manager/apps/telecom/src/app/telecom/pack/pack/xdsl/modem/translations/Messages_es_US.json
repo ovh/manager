@@ -1,0 +1,20 @@
+{
+  "xdsl_modem_cant_be_managed": "Ce modem ne peut pas être configuré par OVH.",
+  "xdsl_modem_general_config": "Configuration générale",
+  "xdsl_modem_network_config": "Configuration réseau",
+  "xdsl_modem_advanced_config": "Configurations avancées",
+  "xdsl_modem_network": "Red",
+  "xdsl_modem_firewall": "Pare-Feu",
+  "xdsl_modem_wifi": "WiFi",
+  "xdsl_modem_modem": "Modem",
+  "xdsl_modem_managedBy": "Configuration à distance",
+  "xdsl_modem_bridge": "Mode Bridge",
+  "xdsl_modem_mtu": "MTU",
+  "xdsl_modem_dmz": "DMZ",
+  "xdsl_modem_warning_managedBy": "La <a href=\"#\">configuration à distance</a> n'est pas activée pour ce modem !",
+  "xdsl_modem_warning_bridge": "Le <a href=\"#\">mode bridge</a> ne vous permet plus d'accéder à la configuration du modem.",
+  "xdsl_model_access_error": "Oups ! Nous n'avons pas pu récupérer les informations relatives à votre pack.",
+  "xdsl_model_task_error": "Oups ! Nous n'avons pas pu récupérer la pile de tâches en cours.",
+  "xdsl_modem_modem_error": "Oups ! Nous n'avons pas pu récupérer les informations relatives à votre modem.",
+  "xdsl_modem_firmware": "Firmware"
+}

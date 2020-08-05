@@ -1,0 +1,16 @@
+{
+  "xdsl_modem_bdhcp_title": "Reservas DHCP",
+  "xdsl_modem_bdhcp_description": "La dirección MAC permite identificar de manera única un dispositivo en la red (LAN e internet). Las reservas DHCP sirven para asignar una dirección IP fija a un dispositivo gracias a dicha dirección MAC. Estas reservas se utilizan principalmente en el alojamiento de servicios (servidor web, SSH, etc.), cuando quiere comunicar con ellos desde el exterior a través de redirecciones de puerto (que podrá configurar en paralelo).",
+  "xdsl_modem_bdhcp_name": "Apellidos",
+  "xdsl_modem_bdhcp_ip": "Dirección IP",
+  "xdsl_modem_bdhcp_mac": "Dirección MAC",
+  "xdsl_modem_bdhcp_ip_tooltip": "La dirección IP debe pertenecer al intervalo de 192.168.1.64 a 192.168.1.253",
+  "xdsl_modem_bdhcp_delete_really": "¿Seguro que quiere eliminar la reserva <strong>{{ name }}</strong>?",
+  "xdsl_modem_bdhcp_add": "Añadir una reserva",
+  "xdsl_modem_bdhcp_placeholder_name": "Nombre de la reserva",
+  "xdsl_modem_bdhcp_edit_success": "Se ha actualizado la reserva <strong>{{ name }}</strong>.",
+  "xdsl_modem_bdhcp_del_success": "Se ha eliminado la reserva <strong>{{ name }}</strong>.",
+  "xdsl_modem_bdhcp_add_error": "¡Vaya! No se ha podido añadir la reserva <strong>{{ name }}</strong>.",
+  "xdsl_modem_bdhcp_edit_error": "¡Vaya! No se ha podido actualizar la reserva <strong>{{ name }}</strong>.",
+  "xdsl_modem_bdhcp_del_error": "¡Vaya! No se ha podido eliminar la reserva <strong>{{ name }}</strong>."
+}

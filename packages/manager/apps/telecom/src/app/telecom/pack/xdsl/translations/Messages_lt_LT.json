@@ -1,8 +1,0 @@
-{
-  "xdsl_page_title": "xDSL \"{{name}}\"",
-  "xdsl_tabs_details": "Informacija",
-  "xdsl_tabs_modem": "Mano modemas ",
-  "xdsl_tabs_line": "Mano prieiga",
-  "xdsl_tabs_tasks": "Užduotys",
-  "xdsl_rename_error": "Negalima pervadinti prieigos {{serviceName}}."
-}

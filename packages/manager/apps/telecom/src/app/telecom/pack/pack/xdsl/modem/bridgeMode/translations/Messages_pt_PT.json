@@ -1,0 +1,10 @@
+{
+  "xdsl_modem_bridge_mode_status": "Mode bridge activé",
+  "xdsl_modem_bridge_mode_description": "L'activation du mode Bridge est réservée à un usage avancé. Ce mode peut s'avérer utile si vous souhaitez utiliser votre propre routeur connecté derrière le modem OVH. Si vous n'avez pas de routeur, un seul périphérique pourra obtenir l'adresse IP publique de l'accès et donc disposer d'un accès à Internet. L'activation de ce mode désactivera de nombreuses fonctionnalités du modem, notamment le Wifi et les redirections de ports.",
+  "xdsl_modem_bridge_mode_warning": "Attention, une fois le mode bridge activé, le seul moyen de faire repasser le modem en mode routeur est de réaliser une restauration manuelle des paramètres d'usine (reset).",
+  "xdsl_modem_bridge_mode_success_validation_on": "Activation du mode bridge en cours",
+  "xdsl_modem_bridge_mode_success_validation_off": "Désactivation du mode bridge: Réinitialisez manuellement votre modem pour valider l'action.",
+  "xdsl_modem_bridge_mode_an_error_ocurred": "[Mode bridge] Une erreur est survenue !",
+  "xdsl_modem_bridge_really_on": "Êtes-vous sûr(e) de vouloir activer le mode Bridge ?",
+  "xdsl_modem_bridge_really_off": "Êtes-vous sûr(e) de vouloir désactiver le mode Bridge ?"
+}

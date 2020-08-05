@@ -1,0 +1,15 @@
+{
+  "xdsl_modem_lan_title": "IP LAN",
+  "xdsl_modem_lan_description": "A cada elemento conectado a la red LAN (Local Area Network) se le asigna una dirección IP. Las IP existentes en dicha red local, a las que no es posible acceder desde el exterior debido a que no están enrutadas en internet por naturaleza, forman IP llamadas «locales» o «IP LAN». Si usted modifica la dirección IP LAN estática del router, deberá configurar también el DHCP, las redirecciones de puertos y de reservas. Si configura el direccionamiento IP del módem en DHCP, deberá configurar también las redirecciones de puertos.",
+  "xdsl_modem_lan_addressingType": "Método de obtención de la dirección IP",
+  "xdsl_modem_lan_ip": "Dirección IP LAN",
+  "xdsl_modem_lan_subnetMask": "Máscara de subred",
+  "xdsl_modem_lan_addressingType_tooltip": "El router puede obtener una dirección automáticamente o tener una dirección fija",
+  "xdsl_modem_lan_ip_tooltip": "Dirección utilizada para contactar con el router",
+  "xdsl_modem_lan_subnetMask_tooltip": "Máscara de subred de la dirección estática",
+  "xdsl_modem_lan_addressingType_Static": "Estática",
+  "xdsl_modem_lan_addressingType_DHCP": "DHCP",
+  "xdsl_modem_lan_success": "Se ha actualizado la LAN <strong>{{ name }}</strong>.",
+  "xdsl_modem_lan_error": "¡Vaya! No se ha podido cargar la información relativa a la LAN.",
+  "xdsl_modem_lan_submit_error": "¡Vaya! No se ha podido actualizar la información relativa a la LAN."
+}

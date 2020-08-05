@@ -1,8 +1,0 @@
-{
-  "xdsl_page_title": "xDSL \"{{name}}\"",
-  "xdsl_tabs_details": "Tiedot",
-  "xdsl_tabs_modem": "Oma modeemi",
-  "xdsl_tabs_line": "Oma yhteys",
-  "xdsl_tabs_tasks": "Tehtävät",
-  "xdsl_rename_error": "Yhteyden {{serviceName}} nimen muuttaminen ei onnistu."
-}

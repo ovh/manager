@@ -1,0 +1,13 @@
+{
+  "xdsl_tasks_list": "Lista dos trabalhos",
+  "xdsl_tasks_name": "Apelido",
+  "xdsl_tasks_id": "ID",
+  "xdsl_tasks_status": "Estado",
+  "xdsl_tasks_status_todo": "A fazer",
+  "xdsl_tasks_status_doing": "Em curso",
+  "xdsl_tasks_status_done": "Terminada",
+  "xdsl_tasks_status_error": "Erro",
+  "xdsl_tasks_status_problem": "Problema",
+  "xdsl_no_task": "Nenhuma operação",
+  "xdsl_tasks_update_date": "Data de atualização"
+}

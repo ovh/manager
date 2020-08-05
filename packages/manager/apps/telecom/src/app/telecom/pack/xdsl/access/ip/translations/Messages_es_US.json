@@ -1,7 +1,0 @@
-{
-  "pack_xdsl_access_ip_title": "DNS inversa",
-  "pack_xdsl_access_ip_ip": "IP",
-  "pack_xdsl_access_ip_dns": "DNS",
-  "pack_xdsl_access_ip_add_entry": "Ajouter une adresse IP",
-  "pack_xdsl_access_ip_delete_really": "Voulez-vous vraiment effacer le reverse DNS sur {{ipReverse}} ?"
-}

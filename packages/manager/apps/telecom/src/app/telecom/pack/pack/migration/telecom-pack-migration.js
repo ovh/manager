@@ -1,0 +1,56 @@
+angular.module('managerApp').config(($stateProvider) => {
+  $stateProvider.state('telecom.packs.pack.migration', {
+    url: '/migration',
+    views: {
+      'packView@telecom.packs': {
+        templateUrl:
+          'app/telecom/pack/pack/migration/telecom-pack-migration.html',
+        controller: 'TelecomPackMigrationCtrl',
+        controllerAs: 'PackMigrationCtrl',
+      },
+      'offersView@telecom.packs.pack.migration': {
+        templateUrl:
+          'app/telecom/pack/pack/migration/offers/telecom-pack-migration-offers.html',
+        controller: 'TelecomPackMigrationOffersCtrl',
+        controllerAs: 'OffersCtrl',
+        noTranslations: true,
+      },
+      'confirmView@telecom.packs.pack.migration': {
+        templateUrl:
+          'app/telecom/pack/pack/migration/confirm/telecom-pack-migration-confirm.html',
+        controller: 'TelecomPackMigrationConfirmCtrl',
+        controllerAs: 'ConfirmCtrl',
+        noTranslations: true,
+      },
+      'shippingView@telecom.packs.pack.migration': {
+        templateUrl:
+          'app/telecom/pack/pack/migration/shipping/telecom-pack-migration-shipping.html',
+        controller: 'TelecomPackMigrationShippingCtrl',
+        controllerAs: 'ShippingCtrl',
+        noTranslations: true,
+      },
+      'migrationView@telecom.packs.pack.migration': {
+        templateUrl:
+          'app/telecom/pack/pack/migration/migration/telecom-pack-migration-migration.html',
+        controller: 'TelecomPackMigrationMigrationCtrl',
+        controllerAs: 'MigrationCtrl',
+        noTranslations: true,
+      },
+      'serviceDeleteView@telecom.packs.pack.migration': {
+        templateUrl:
+          'app/telecom/pack/pack/migration/service-delete/telecom-pack-migration-service-delete.html',
+        controller: 'TelecomPackMigrationServiceDeleteCtrl',
+        controllerAs: 'ServiceDeleteCtrl',
+        noTranslations: true,
+      },
+      'buildingDetailsView@telecom.packs.pack.migration': {
+        templateUrl:
+          'app/telecom/pack/pack/migration/building-details/telecom-pack-migration-building-details.html',
+        controller: 'TelecomPackMigrationBuildingDetailsCtrl',
+        controllerAs: '$ctrl',
+        noTranslations: true,
+      },
+    },
+    translations: { value: ['.'], format: 'json' },
+  });
+});

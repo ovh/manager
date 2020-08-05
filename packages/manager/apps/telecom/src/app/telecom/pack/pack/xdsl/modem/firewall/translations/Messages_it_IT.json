@@ -1,0 +1,11 @@
+{
+  "xdsl_modem_firewall_title": "Livello di Firewall",
+  "xdsl_modem_firewall_description": "Protège votre réseau local de connexions externes indésirables.",
+  "xdsl_modem_firewall_level_blockall": "Inattaccabile",
+  "xdsl_modem_firewall_level_disabled": "Disattivo",
+  "xdsl_modem_firewall_level_normal": "Normale",
+  "xdsl_modem_firewall_change": "Livello",
+  "xdsl_modem_firewall_doing": "Modifica del firewall in corso...",
+  "xdsl_modem_firewall_submit": "Conferma",
+  "xdsl_modem_firewall_an_error_ocurred": "FIREWALL: Si è verificato un errore!"
+}

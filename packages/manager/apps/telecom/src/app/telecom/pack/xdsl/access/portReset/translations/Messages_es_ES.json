@@ -1,8 +1,0 @@
-{
-  "xdsl_access_dslam_reset": "Reiniciar",
-  "xdsl_access_dslam_reset_an_error_ocurred": "Reinicio del puerto de conexión: Se ha producido un error",
-  "xdsl_access_dslam_reset_success": "Reiniciando el puerto de conexión",
-  "xdsl_access_dslam_reset_really": "¿Seguro que quiere reiniciar el puerto de conexión?",
-  "xdsl_access_dslam_reset_description": "Esta función le permite reiniciar el puerto de conexión de su línea, a nivel de su conexión al DSLAM. Atención: La conexión se interrumpirá unos minutos.",
-  "xdsl_access_dslam_reset_warning": "Atención: La conexión se interrumpirá unos minutos."
-}

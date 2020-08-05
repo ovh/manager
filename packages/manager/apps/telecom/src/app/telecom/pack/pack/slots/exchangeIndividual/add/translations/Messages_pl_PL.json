@@ -1,0 +1,11 @@
+{
+  "add_an_account": "Dodaj konto Exchange (Individual)",
+  "account_informations": "Informacje na temat konta",
+  "account_last_name": "Nazwa",
+  "account_first_name": "Imię",
+  "account_display_name": "Nazwa do wyświetlenia",
+  "antispam_option": "Chcę skorzystać z ochrony antywirusowej i antyspamowej.",
+  "all_fields_are_required": "Wszystkie pola są obowiązkowe",
+  "success_validation": "Zlecenie zostało zarejestrowane.",
+  "an_error_ocurred": "Wystąpił błąd podczas tworzenia konta."
+}

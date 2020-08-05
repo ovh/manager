@@ -1,8 +1,0 @@
-{
-  "xdsl_modem_mtu_status": "MTU",
-  "xdsl_modem_mtu_description": "MTU (Maximum Transmission Unit) reikšmės keitimas yra skirtas pažangiam naudojimui ir keičiamas tik surinkimo (PPPoE) paslaugoms. Tam tikrais atvejais reikšmės sumažinimas gali apsunkinti naršymą ar FTP prieigą.",
-  "xdsl_modem_mtu_an_error_ocurred": "[MTU] Klaida!",
-  "xdsl_modem_mtu_doing": "MTU reikšmė keičiama",
-  "xdsl_modem_mtu_submit": "Patvirtinti",
-  "xdsl_modem_mtu_change": "Reikšmė"
-}

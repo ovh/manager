@@ -1,0 +1,8 @@
+{
+  "xdsl_access_dslam_reset": "Reimposta",
+  "xdsl_access_dslam_reset_an_error_ocurred": "[Ripristina connessione] Si è verificato un errore!",
+  "xdsl_access_dslam_reset_success": "Ripristino connessione in corso...",
+  "xdsl_access_dslam_reset_really": "Vuoi davvero ripristinare la tua connessione?",
+  "xdsl_access_dslam_reset_description": "Questa funzionalità ti permette di riavviare la connessione della tua linea a livello del collegamento sul DSLAM. Attenzione: la tua connessione sarà interrotta per qualche minuto!",
+  "xdsl_access_dslam_reset_warning": "Attenzione: la tua connessione sarà interrotta per qualche minuto!"
+}

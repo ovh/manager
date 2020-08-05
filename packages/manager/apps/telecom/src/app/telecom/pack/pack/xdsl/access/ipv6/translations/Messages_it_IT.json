@@ -1,0 +1,12 @@
+{
+  "xdsl_access_ipv6_status": "IPv6 activée",
+  "xdsl_access_ipv6_status_off": "IPv6 désactivée",
+  "xdsl_access_ipv6_description": "L'attivazione del routing IPv6 diventerà effettiva entro 5-10 minuti. Questa operazione comporta anche l'aggiornamento del firmware del tuo modem. Attenzione: il firmware è ancora in fase beta. Durante l'aggiornamento si potrebbe quindi verificare un'interruzione della connessione, sia per l'attivazione che per la disattivazione dell'IPv6.",
+  "xdsl_access_ipv6_warning": "Ti preghiamo di attendere e di non spegnere il tuo modem per tutta la durata dell'operazione.",
+  "xdsl_access_ipv6_success_validation_on": "Attivazione IPv6 in corso...",
+  "xdsl_access_ipv6_success_validation_off": "Disattivazione IPv6 in corso...",
+  "xdsl_access_ipv6_an_error_ocurred": "[IPv6] Si è verificato un errore!",
+  "xdsl_access_ipv6_really_on": "Vuoi davvero attivare l'IPv6?",
+  "xdsl_access_ipv6_really_off": "Vuoi davvero disattivare l'IPv6?",
+  "xdsl_access_ipv6_zyxel_warning": "Cette action réinitialisera votre modem. Êtes-vous sûr(e) de vouloir continuer ?"
+}
