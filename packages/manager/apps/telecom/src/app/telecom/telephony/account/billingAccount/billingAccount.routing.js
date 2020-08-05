@@ -3,7 +3,7 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/:billingAccount',
     views: {
       'telephonyView@telecom.telephony': {
-        templateUrl: 'app/telecom/telephony/telecom-telephony-main.view.html',
+        template: `<section class="telecom-telephony-inner" data-ui-view="groupView"></section>`,
       },
       'groupView@telecom.telephony.billingAccount': {
         templateUrl:

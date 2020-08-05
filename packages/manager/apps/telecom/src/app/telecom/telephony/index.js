@@ -1,28 +1,44 @@
 import angular from 'angular';
+import '@uirouter/angularjs';
+import 'oclazyload';
 
-import billingAccount from './account/billingAccount';
-import carrierSip from './account/carrierSip';
-import linePhoneOrder from './account/line/phone/order/order.module';
-import linePhoneAccessories from './account/line/phone/accessories/accessories.module';
-import attachLine from './account/line/phone/attachLine/attach.module';
+const moduleName = 'ovhManagerTelephonyLazyLoading';
 
-import component from './telephony.component';
-import routing from './telephony.routing';
-import service from './telephony.service';
+angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
+  /* @ngInject */ ($stateProvider) => {
+    $stateProvider
+      .state('telecom.telephony', {
+        url: '/telephony',
+        views: {
+          'telecomView@telecom': {
+            template: `<section
+              class="telecom-legacy telecom-telephony"
+              data-ui-view="telephonyView"
+          ></section>`,
+          },
+        },
+        redirectTo: 'telecom.telephony.index',
+      })
+      .state('telecom.telephony.index.**', {
+        url: '',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-const moduleName = 'ovhManagerTelecomTelephony';
+          return import('./telephony.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
+      })
+      .state('telecom.telephony.billingAccount.**', {
+        url: '/:billingAccount',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-angular
-  .module(moduleName, [
-    attachLine,
-    billingAccount,
-    carrierSip,
-    linePhoneOrder,
-    linePhoneAccessories,
-  ])
-  .config(routing)
-  .component('telecomTelephony', component)
-  .service('TelecomTelephonyService', service)
-  .run(/* @ngTranslationsInject:json ./translations */);
-
+          return import('./telephony.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
+      });
+  },
+);
 export default moduleName;
