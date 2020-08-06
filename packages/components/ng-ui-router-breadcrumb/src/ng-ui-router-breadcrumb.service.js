@@ -42,6 +42,7 @@ export default class BreadcrumbService {
                     absolute: true,
                   }),
               active: this.$state.is(state.name),
+              id: state.name,
             };
 
             this.breadcrumb.unshift(entry);
