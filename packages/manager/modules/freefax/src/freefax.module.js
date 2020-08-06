@@ -13,12 +13,17 @@ import '@ovh-ux/ui-kit/dist/css/oui.css';
 import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 import './freefax/freefax.scss';
 
-const moduleName = 'ovhManagerFreeFaxes';
+const moduleName = 'ovhManagerFreeFax';
 
 angular
   .module(moduleName, ['oc.lazyLoad', 'ovhManagerCore', 'oui', 'ui.router'])
   .config(routing)
-  .component('ovhManagerFreefaxes', component)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .component('ovhManagerFreefax', component)
+  .run(/* @ngTranslationsInject:json ./translations */)
+  .run(
+    /* @ngInject */ ($transitions, $translate) => {
+      $transitions.onBefore({ to: 'freefaxes.**' }, () => $translate.refresh());
+    },
+  );
 
 export default moduleName;

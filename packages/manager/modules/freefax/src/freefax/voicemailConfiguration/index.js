@@ -30,6 +30,10 @@ angular
           value: ['.'],
           format: 'json',
         },
+        resolve: {
+          breadcrumb: /* @ngInject */ ($translate) =>
+            $translate.instant('freefax_voicemail_configuration_title'),
+        },
       });
     },
   )
