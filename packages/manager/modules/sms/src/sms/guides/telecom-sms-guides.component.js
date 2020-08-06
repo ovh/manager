@@ -6,9 +6,10 @@ import template from './telecom-sms-guides.html';
 
 const moduleName = 'ovhManagerSmsGuidesComponent';
 
-angular.module(moduleName, ['ui.router']).config(($stateProvider) => {
-  $stateProvider
-    .state('sms.service.guides', {
+angular
+  .module(moduleName, ['ui.router'])
+  .config(($stateProvider) => {
+    $stateProvider.state('sms.service.guides', {
       url: '/guides',
       views: {
         smsInnerView: {
@@ -21,8 +22,8 @@ angular.module(moduleName, ['ui.router']).config(($stateProvider) => {
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant('sms_guides_breadcrumb'),
       },
-    })
-    .run(/* @ngTranslationsInject:json ./translations */);
-});
+    });
+  })
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
