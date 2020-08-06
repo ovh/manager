@@ -7,7 +7,6 @@ import 'angularjs-scroll-glue';
 import '@ovh-ux/ng-ovh-telecom-universe-components';
 import '@ovh-ux/ng-ui-router-title';
 import '@ovh-ux/ng-tail-logs';
-import 'ovh-angular-responsive-tabs';
 import ngOvhUiConfirmModal from '@ovh-ux/ng-ovh-ui-confirm-modal';
 
 import constant from './overTheBox.constant';
@@ -30,7 +29,6 @@ const moduleName = 'OvhManagerOverTheBoxComponent';
 
 angular
   .module(moduleName, [
-    'ovh-angular-responsive-tabs',
     'ngTailLogs',
     'ngOvhTelecomUniverseComponents',
     'ngUiRouterTitle',
