@@ -9,6 +9,7 @@ import '@ovh-ux/manager-telecom-styles';
 import 'angular-translate';
 import '@ovh-ux/manager-banner';
 import 'ovh-api-services';
+import '@ovh-ux/ng-ui-router-breadcrumb';
 
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
@@ -31,6 +32,7 @@ angular
   .module(moduleName, [
     'ngAtInternet',
     'ngAtInternetUiRouterPlugin',
+    'ngUiRouterBreadcrumb',
     'ngUiRouterTitle',
     'ovh-api-services',
     'ovhManagerBanner',
@@ -76,6 +78,7 @@ angular
               chapter1: 'telecom',
             });
           },
+          hideBreadcrumb: () => true,
         },
       });
     },
