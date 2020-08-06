@@ -7,8 +7,18 @@ import 'regenerator-runtime/runtime';
 
 import angular from 'angular';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
+import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import ovhManagerOtb from '@ovh-ux/manager-overthebox';
 
 import 'ovh-manager-webfont/dist/css/ovh-font.css';
 
-angular.module('overtheboxApp', [ngOvhApiWrappers, ovhManagerOtb]);
+angular
+  .module('overtheboxApp', [
+    ngOvhApiWrappers,
+    ngUiRouterBreadcrumb,
+    ovhManagerOtb,
+  ])
+  .config(
+    /* @ngInject */ ($urlRouterProvider) =>
+      $urlRouterProvider.otherwise('/overTheBox'),
+  );

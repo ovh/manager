@@ -1,10 +1,13 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('overTheBox-order', {
-    url: '/overTheBox/order',
+  $stateProvider.state('overTheBoxes.overTheBox-order', {
+    url: '/order',
     component: 'overTheBoxOrder',
     translations: {
       value: ['.', '..'],
       format: 'json',
+    },
+    resolve: {
+      hideBreadcrumb: () => true,
     },
   });
 };
