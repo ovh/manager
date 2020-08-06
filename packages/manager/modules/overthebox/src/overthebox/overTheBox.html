@@ -14,50 +14,29 @@
             </div>
         </header>
 
-        <nav role="navigation">
-            <responsive-tabs>
-                <responsive-tab
-                    data-state="overTheBoxes.overTheBox.details"
-                    data-dropdown-title="{{ 'overTheBox_tabs_detail' | translate }}"
-                >
-                    <span data-translate="overTheBox_tabs_detail"></span>
-                </responsive-tab>
-                <responsive-tab
-                    data-state="overTheBoxes.overTheBox.remote"
-                    data-dropdown-title="{{ 'overTheBox_tabs_remote' | translate }}"
-                    disabled="OverTheBox.disabledRemote"
-                >
-                    <span data-translate="overTheBox_tabs_remote"></span>
-                </responsive-tab>
-                <responsive-tab
-                    data-state="overTheBoxes.overTheBox.tasks"
-                    data-dropdown-title="{{ 'overTheBox_tabs_tasks' | translate }}"
-                >
-                    <span data-translate="overTheBox_tabs_tasks"></span>
-                </responsive-tab>
-                <responsive-tab
-                    data-ui-sref="overTheBoxes.overTheBox.actions"
-                    data-dropdown-title="{{ 'overTheBox_tabs_actions' | translate }}"
-                >
-                    <span data-translate="overTheBox_tabs_actions"></span>
-                </responsive-tab>
-                <responsive-tab
-                    data-state="overTheBoxes.overTheBox.logs"
-                    data-dropdown-title="{{ 'overTheBox_tabs_logs' | translate }}"
-                >
-                    <span data-translate="overTheBox_tabs_logs"></span>
-                </responsive-tab>
-                <responsive-tab
-                    data-state="overTheBoxes.overTheBox.docs"
-                    data-dropdown-title="{{ 'overTheBox_tabs_docs' | translate }}"
-                >
-                    <span data-translate="overTheBox_tabs_docs"></span>
-                </responsive-tab>
-                <responsive-tab-more>
-                    <i class="fa fa-plus"></i>
-                </responsive-tab-more>
-            </responsive-tabs>
-        </nav>
+        <oui-header-tabs>
+            <oui-header-tabs-item data-state="overTheBoxes.overTheBox.details">
+                <span data-translate="overTheBox_tabs_detail"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-state="overTheBoxes.overTheBox.remote"
+                disabled="OverTheBox.disabledRemote"
+            >
+                <span data-translate="overTheBox_tabs_remote"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item data-state="overTheBoxes.overTheBox.tasks">
+                <span data-translate="overTheBox_tabs_tasks"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item data-state="overTheBoxes.overTheBox.actions">
+                <span data-translate="overTheBox_tabs_actions"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item data-state="overTheBoxes.overTheBox.logs">
+                <span data-translate="overTheBox_tabs_logs"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item data-state="overTheBoxes.overTheBox.docs">
+                <span data-translate="overTheBox_tabs_docs"></span>
+            </oui-header-tabs-item>
+        </oui-header-tabs>
     </div>
     <!-- /.telecom-section-header -->
 
