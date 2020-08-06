@@ -1,6 +1,6 @@
 <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
 
-<div>
+<div ui-view>
     <div class="row d-lg-flex">
         <div class="col-md-4">
             <oui-tile
@@ -75,14 +75,14 @@
                             <oui-dropdown-content>
                                 <oui-dropdown-item
                                     data-ng-if="$ctrl.registry.custom"
-                                    data-ng-click="$ctrl.goToRegistryDetach()"
+                                    data-ng-click="$ctrl.goToRegistryDetachTracking()"
                                     >{{
                                     ::'pci_projects_project_training_dashboard_registry_detach'
                                     | translate }}</oui-dropdown-item
                                 >
                                 <oui-dropdown-item
                                     data-ng-if="!$ctrl.registry.custom"
-                                    data-ng-click="$ctrl.goToRegistryAttach()"
+                                    data-ng-click="$ctrl.goToRegistryAttachTracking()"
                                     >{{
                                     ::'pci_projects_project_training_dashboard_registry_attach'
                                     | translate }}</oui-dropdown-item
@@ -307,7 +307,7 @@
         </oui-action-menu>
         <oui-datagrid-topbar>
             <button
-                data-ng-click="$ctrl.goToJobSubmit()"
+                data-ng-click="$ctrl.goToJobSubmitTracking()"
                 data-title="{{:: 'pci_projects_project_training_jobs_list_submit' | translate  }}"
                 class="oui-button oui-button_secondary oui-button_icon-left"
             >

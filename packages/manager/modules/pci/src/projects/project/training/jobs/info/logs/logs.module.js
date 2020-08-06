@@ -6,12 +6,11 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import 'ovh-api-services';
 
-import component from './info.component';
-import routing from './info.routing';
+import component from './logs.component';
+import routing from './logs.routing';
+import 'angularjs-scroll-glue';
 
-import logs from './logs';
-
-const moduleName = 'ovhManagerPciTrainingJobsInfo';
+const moduleName = 'ovhManagerPciTrainingJobsInfoLogs';
 
 angular
   .module(moduleName, [
@@ -22,10 +21,10 @@ angular
     'ovhManagerCore',
     'pascalprecht.translate',
     'ui.router',
-    logs,
+    'luegg.directives',
   ])
   .config(routing)
-  .component('pciProjectTrainingJobsInfoComponent', component)
+  .component('pciProjectTrainingJobsInfoLogsComponent', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

@@ -10,6 +10,8 @@ export default {
     user: '<',
     getTax: '<',
     getPrice: '<',
-    getClassForState: '<',
+    jobInfo: '<',
+    jobLogs: '<',
+    currentActiveLink: '<',
   },
 };

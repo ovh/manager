@@ -133,23 +133,6 @@ export default /* @ngInject */ ($stateProvider) => {
         PciProjectTrainingService,
         projectId,
       ) => PciProjectTrainingService.getFeatures(projectId),
-      registry: /* @ngInject */ (PciProjectTrainingService, projectId) =>
-        PciProjectTrainingService.getRegistry(projectId),
-      deleteRegistry: /* @ngInject */ (
-        PciProjectTrainingService,
-        projectId,
-      ) => () => PciProjectTrainingService.deleteRegistry(projectId),
-      saveRegistry: /* @ngInject */ (PciProjectTrainingService, projectId) => (
-        url,
-        username,
-        password,
-      ) =>
-        PciProjectTrainingService.saveRegistry(
-          projectId,
-          url,
-          username,
-          password,
-        ),
     },
   });
 };

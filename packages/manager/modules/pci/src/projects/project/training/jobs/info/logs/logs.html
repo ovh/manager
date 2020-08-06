@@ -1,0 +1,11 @@
+<div class="logger" data-scroll-glue>
+    <div
+        class="logger__entry"
+        data-ng-repeat="entry in $ctrl.log.logs track by $index"
+    >
+        <span class="logger__entry-message">
+            {{ entry.content }}
+        </span>
+    </div>
+    <i class="logger__cursor">_</i>
+</div>

@@ -4,9 +4,10 @@ import filter from 'lodash/filter';
 
 export default class PciTrainingDashboardController {
   /* @ngInject */
-  constructor(CucCloudMessage, CucRegionService) {
+  constructor(CucCloudMessage, CucRegionService, atInternet) {
     this.CucCloudMessage = CucCloudMessage;
     this.CucRegionService = CucRegionService;
+    this.atInternet = atInternet;
   }
 
   $onInit() {
@@ -49,5 +50,35 @@ export default class PciTrainingDashboardController {
 
   getJobsNumberWithSelector(selectFunction) {
     return this.getJobsWithSelector(selectFunction).length;
+  }
+
+  goToJobSubmitTracking() {
+    this.atInternet.trackClick({
+      name:
+        'public-cloud::pci::projects::project::training::dashboard::add-job',
+      type: 'action',
+    });
+
+    return this.goToJobSubmit();
+  }
+
+  goToRegistryAttachTracking() {
+    this.atInternet.trackClick({
+      name:
+        'public-cloud::pci::projects::project::training::dashboard::attach-registry::confirm',
+      type: 'action',
+    });
+
+    return this.goToRegistryAttach();
+  }
+
+  goToRegistryDetachTracking() {
+    this.atInternet.trackClick({
+      name:
+        'public-cloud::pci::projects::project::training::dashboard::detach-registry::confirm',
+      type: 'action',
+    });
+
+    return this.goToRegistryDetach();
   }
 }

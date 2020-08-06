@@ -34,6 +34,6 @@ export default class PciServingOnboardingController {
     if (this.isAuthorized) {
       return this.submitJobLink();
     }
-    return this.createAutorization();
+    return this.createAuthorization();
   }
 }
