@@ -33,9 +33,11 @@ import ngOvhCloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-componen
 import ngOvhJqueryUiDraggable from '@ovh-ux/ng-ovh-jquery-ui-draggable';
 import ngOvhJqueryUiDroppable from '@ovh-ux/ng-ovh-jquery-ui-droppable';
 import ngOvhResponsivePageSwitcher from '@ovh-ux/ng-ovh-responsive-page-switcher';
+import ovhManagerAccountSidebar from '@ovh-ux/manager-account-sidebar';
 import ovhManagerBanner from '@ovh-ux/manager-banner';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
 import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
+import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 
 import cloudUniverseComponents from '../cloudUniverseComponents';
 
@@ -58,6 +60,8 @@ angular
       'ui.validate',
       'ui.sortable',
       ovhManagerCore,
+      ovhManagerAccountSidebar,
+      ovhNotificationsSidebar,
       ngAtInternet,
       ngAtInternetUiRouterPlugin,
       ngOvhApiWrappers,
