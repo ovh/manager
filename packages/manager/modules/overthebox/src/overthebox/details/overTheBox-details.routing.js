@@ -4,5 +4,8 @@ export default /* @ngInject */ ($stateProvider) => {
     views: {
       otbView: 'overTheBoxDetails',
     },
+    resolve: {
+      breadcrumb: () => null,
+    },
   });
 };
