@@ -8,14 +8,17 @@ import { FREEFAX_AVAILABILITY } from './feature-availability/feature-availabilit
 
 import 'ovh-manager-webfont/dist/css/ovh-font.css';
 
-const moduleName = 'ovhManagerFreeFaxesLazyLoading';
+const moduleName = 'ovhManagerFreeFaxLazyLoading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad', freefax]).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider
       .state('freefaxes', {
         url: '/freefax',
-        abstract: true,
+        redirectTo: 'freefaxes.index',
+        resolve: {
+          breadcrumb: () => 'Fax',
+        },
       })
       .state('freefaxes.index.**', {
         url: '',
