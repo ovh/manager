@@ -1,10 +1,10 @@
 export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
-  $stateProvider.state('overTheBox-configure', {
-    url: '/overTheBox/configure',
+  $stateProvider.state('overTheBoxes.overTheBox-configure', {
+    url: '/configure',
     component: 'overTheBoxConfigure',
-    translations: {
-      value: ['.'],
-      format: 'json',
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('overTheBox_configure_breadcrumb'),
     },
     resolve: {
       orderHash: /* @ngInject */ ($state) => () =>
