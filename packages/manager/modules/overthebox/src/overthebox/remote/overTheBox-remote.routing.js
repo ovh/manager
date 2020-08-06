@@ -4,5 +4,9 @@ export default /* @ngInject */ ($stateProvider) => {
     views: {
       otbView: 'overTheBoxRemote',
     },
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('overTheBox_remote'),
+    },
   });
 };
