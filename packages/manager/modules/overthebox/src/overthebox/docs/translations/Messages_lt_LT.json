@@ -24,7 +24,7 @@
   "overTheBox_docs_modem_dhcp_monitoring_disable": "Disable the modems' DHCP monitoring ",
   "overTheBox_docs_dns_configure": "Configure your own DNS server ",
   "overTheBox_docs_active_directory_add": "Add an Active Directory server in the DHCP options",
-  "overTheBox_docs_iphone_android_tethering": "Tethering iPhone and Android",
+  "overTheBox_docs_iphone_android_tethering": "iPhone and Android tethering",
   "overTheBox_docs_vlan_configuration": "VLAN configuration ",
   "overTheBox_docs_rate_test_protocol": "Test connection speed",
   "overTheBox_docs_modem_interface": "Manually create a modem interface ",
