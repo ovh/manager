@@ -16,6 +16,10 @@ export default /* @ngInject */ ($stateProvider) => {
           }),
       registry: /* @ngInject */ (PciProjectTrainingService, projectId) =>
         PciProjectTrainingService.getRegistry(projectId),
+      goToJobs: /* @ngInject */ ($state, projectId) => () =>
+        $state.go('pci.projects.project.training.jobs', {
+          projectId,
+        }),
       deleteRegistry: /* @ngInject */ (
         PciProjectTrainingService,
         projectId,

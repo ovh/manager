@@ -5,14 +5,16 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_projects_project_training_jobs_title'),
-      job: /* @ngInject */ (PciProjectTrainingJobService, projectId) => (
-        jobId,
-      ) => PciProjectTrainingJobService.get(projectId, jobId),
+      pricesCatalog: /* @ngInject */ (PciProjectTrainingService, projectId) =>
+        PciProjectTrainingService.getPricesFromCatalog(projectId),
       getPrice: /* @ngInject */ (pricesCatalog) => (qty) =>
         pricesCatalog[`ai-serving-engine.ml1-c-xl.hour.consumption`]
           .priceInUcents * qty,
       getTax: /* @ngInject */ (pricesCatalog) => (qty) =>
         pricesCatalog[`ai-serving-engine.ml1-c-xl.hour.consumption`].tax * qty,
+      job: /* @ngInject */ (PciProjectTrainingJobService, projectId) => (
+        jobId,
+      ) => PciProjectTrainingJobService.get(projectId, jobId),
       goToJobs: ($state, CucCloudMessage, projectId) => (
         message = false,
         type = 'success',

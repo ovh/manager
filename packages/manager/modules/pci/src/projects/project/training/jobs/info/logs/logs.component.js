@@ -5,5 +5,10 @@ import './logs.scss';
 export default {
   controller,
   template,
-  bindings: {},
+  bindings: {
+    job: '<',
+    projectId: '<',
+    jobId: '<',
+    jobLog: '<',
+  },
 };

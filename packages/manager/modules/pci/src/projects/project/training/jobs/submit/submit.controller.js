@@ -23,16 +23,6 @@ export default class PciTrainingJobsSubmitController {
       },
     };
 
-    // Load available regions
-    this.allRegionsLoaded = false;
-    this.regions()
-      .then((regions) => {
-        this.regions = regions;
-      })
-      .finally(() => {
-        this.allRegionsLoaded = true;
-      });
-
     // Load users
     this.allUsersLoaded = false;
     this.allUsers()

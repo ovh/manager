@@ -55,4 +55,17 @@ export default class PciProjectTrainingJobService {
         null,
       ).$promise;
   }
+
+  logs(projectId, jobId) {
+    return this.OvhApiCloudProjectAi.Training()
+      .Job()
+      .v6()
+      .logs(
+        {
+          serviceName: projectId,
+          jobId,
+        },
+        null,
+      ).$promise;
+  }
 }

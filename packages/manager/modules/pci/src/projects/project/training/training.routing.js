@@ -5,17 +5,9 @@ export default /* @ngInject */ ($stateProvider) => {
     redirectTo: (transition) =>
       transition
         .injector()
-        .get('$q')
-        .all([
-          transition.injector().getAsync('isAuthorized'),
-          transition.injector().getAsync('jobList'),
-          transition.injector().getAsync('dataList'),
-        ])
-        .then(([isAuthorized, jobList, dataList]) => {
-          if (
-            !isAuthorized ||
-            (jobList.length === 0 && dataList.length === 0)
-          ) {
+        .getAsync('isAuthorized')
+        .then((isAuthorized) => {
+          if (!isAuthorized) {
             return { state: 'pci.projects.project.training.onboarding' };
           }
 
@@ -66,7 +58,7 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
         }),
       installLink: /* @ngInject */ ($state, projectId) =>
-        $state.href('pci.projects.project.training.install', {
+        $state.href('pci.projects.project.training.dashboard.install', {
           projectId,
         }),
       dashboardLink: /* @ngInject */ ($state, projectId) =>
@@ -118,21 +110,21 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
       jobList: /* @ngInject */ (PciProjectTrainingJobService, projectId) =>
         PciProjectTrainingJobService.getAll(projectId),
-      dataList: /* @ngInject */ (PciProjectTrainingDataService, projectId) =>
-        PciProjectTrainingDataService.getAll(projectId),
       currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
         $state.href($state.current.name, $transition$.params()),
       allUsers: /* @ngInject */ (PciProjectTrainingService, projectId) => () =>
         PciProjectTrainingService.getAllUsers(projectId),
-      pricesCatalog: /* @ngInject */ (PciProjectTrainingService, projectId) =>
-        PciProjectTrainingService.getPricesFromCatalog(projectId),
-      regions: /* @ngInject */ (PciProjectTrainingService, projectId) => () =>
+      regions: /* @ngInject */ (PciProjectTrainingService, projectId) =>
         PciProjectTrainingService.getRegions(projectId),
       refreshState: /* @ngInject */ ($state) => () => $state.reload(),
       trainingFeatures: /* @ngInject */ (
         PciProjectTrainingService,
         projectId,
       ) => PciProjectTrainingService.getFeatures(projectId),
+      userLink: /* @ngInject */ ($state, projectId) =>
+        $state.href('pci.projects.project.users', {
+          projectId,
+        }),
     },
   });
 };

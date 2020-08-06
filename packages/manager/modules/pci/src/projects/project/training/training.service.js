@@ -12,7 +12,6 @@ export default class PciProjectTrainingService {
     this.OvhApiCloudProjectAi = OvhApiCloudProjectAi;
     this.OvhApiCloudProjectUser = OvhApiCloudProjectUser;
     this.CucPriceHelper = CucPriceHelper;
-    this.currentRegistry = null;
   }
 
   // Check if the given projectId has already been authorized on training platform
@@ -76,12 +75,6 @@ export default class PciProjectTrainingService {
       .$promise.catch(() => {
         return { custom: false };
       });
-
-    /* if (this.currentRegistry != null) {
-      return Promise.resolve(this.currentRegistry);
-    } else {
-      return Promise.resolve({ custom: false });
-    } */
   }
 
   saveRegistry(serviceName, url, username, password) {
@@ -89,9 +82,6 @@ export default class PciProjectTrainingService {
       .Registry()
       .v6()
       .save({ serviceName }, { url, username, password }).$promise;
-
-    /* this.currentRegistry = { custom: true, url, username, password };
-    return Promise.resolve(this.currentRegistry); */
   }
 
   deleteRegistry(serviceName) {
@@ -101,9 +91,6 @@ export default class PciProjectTrainingService {
       .delete({
         serviceName,
       }).$promise;
-
-    /* this.currentRegistry = null;
-    return Promise.resolve(); */
   }
 
   getPricesFromCatalog(serviceName) {
@@ -119,11 +106,17 @@ export default class PciProjectTrainingService {
         serviceName,
       })
       .$promise.then((regions) => {
-        const promises = map(regions, (regionName) => ({
-          name: regionName,
+        return map(regions, (region) => ({
+          ...region,
+          cliInstallUrl: 'https://docs.console.gra.training.ai.cloud.ovh.net',
+          documentationUrl:
+            'https://docs.console.gra.training.ai.cloud.ovh.net',
+          consoleUrl: 'https://console.gra.training.ai.cloud.ovh.net',
+          maxGpu: 4,
+          version: '',
+          name: 'GRA',
           hasEnoughQuota: () => true,
         }));
-        return this.$q.all(promises);
       });
   }
 }

@@ -1,4 +1,4 @@
-import { GUIDE_URL } from '../training.constants';
+import { GUIDE_URL } from '../../training.constants';
 
 export default class PciTrainingInstallController {
   $onInit() {

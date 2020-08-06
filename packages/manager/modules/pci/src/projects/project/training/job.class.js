@@ -59,7 +59,7 @@ export default class Job {
   }
 
   isSuccess() {
-    return this.state === 'SUCCEEDED';
+    return this.state === 'SUCCEEDED' || this.state === 'CANCELLED';
   }
 
   isRunning() {

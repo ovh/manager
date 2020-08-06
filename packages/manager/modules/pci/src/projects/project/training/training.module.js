@@ -8,7 +8,6 @@ import 'ovh-api-services';
 
 import labs from '../../../components/project/labs';
 
-import install from './install';
 import jobs from './jobs';
 import data from './data';
 import dashboard from './dashboard';
@@ -32,7 +31,6 @@ angular
     'pascalprecht.translate',
     'ui.router',
     labs,
-    install,
     jobs,
     onboarding,
     data,

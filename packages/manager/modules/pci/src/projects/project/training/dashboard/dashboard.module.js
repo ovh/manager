@@ -8,6 +8,7 @@ import 'ovh-api-services';
 
 import attach from './attach-registry';
 import detach from './detach-registry';
+import install from './install';
 
 import component from './dashboard.component';
 import routing from './dashboard.routing';
@@ -26,6 +27,7 @@ angular
     'ui.router',
     attach,
     detach,
+    install,
   ])
   .config(routing)
   .component('pciProjectTrainingDashboardComponent', component)

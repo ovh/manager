@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('pci.projects.project.training.install', {
+  $stateProvider.state('pci.projects.project.training.dashboard.install', {
     url: '/install',
     // component: 'pciProjectTrainingInstallComponent',
     views: {
@@ -11,10 +11,6 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_projects_project_training_install_title'),
-      userLink: /* @ngInject */ ($state, projectId) =>
-        $state.href('pci.projects.project.users', {
-          projectId,
-        }),
       goBack: /* @ngInject */ (goToDashboard) => goToDashboard,
     },
   });

@@ -12,6 +12,13 @@ export default /* @ngInject */ ($stateProvider) => {
       job: /* @ngInject */ (PciProjectTrainingJobService, projectId, jobId) => {
         return PciProjectTrainingJobService.get(projectId, jobId);
       },
+      jobLog: /* @ngInject */ (
+        PciProjectTrainingJobService,
+        projectId,
+        jobId,
+      ) => {
+        return PciProjectTrainingJobService.logs(projectId, jobId);
+      },
       goToJobKill: /* @ngInject */ ($state, projectId, jobId) => () =>
         $state.go('pci.projects.project.training.jobs.kill', {
           projectId,

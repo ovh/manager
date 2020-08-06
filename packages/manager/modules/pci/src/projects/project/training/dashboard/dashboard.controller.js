@@ -11,6 +11,9 @@ export default class PciTrainingDashboardController {
   }
 
   $onInit() {
+    // eslint-disable-next-line prefer-destructuring
+    this.currentRegion = this.regions[0];
+
     this.loadMessages();
     this.resourceUsage = flatten(
       map(
@@ -21,14 +24,36 @@ export default class PciTrainingDashboardController {
       ),
     ).reduce((a, b) => a + b, 0);
 
-    this.eaiConsoleUrl = 'https://console.gra.training.ai.cloud.ovh.net';
-    this.eaiDocsUrl = 'https://docs.console.gra.training.ai.cloud.ovh.net';
+    this.eaiDocsUrl = '';
     this.runningJobs = this.getJobsWithSelector((job) => job.isRunning());
     this.nbRunning = this.runningJobs.length;
     this.nbSuccess = this.getJobsNumberWithSelector((job) => job.isSuccess());
     this.nbFailed = this.getJobsNumberWithSelector((job) => job.isFailed());
     this.nbOther =
       this.jobList.length - this.nbSuccess - this.nbFailed - this.nbRunning;
+
+    // Load users
+    this.allUsersLoaded = false;
+    this.allUsers()
+      .then((users) => {
+        this.users = users;
+      })
+      .finally(() => {
+        this.allUsersLoaded = true;
+      });
+  }
+
+  changeRegion(region) {
+    this.currentRegion = region;
+  }
+
+  getAllUsersAsStrings() {
+    return this.users.map((user) => {
+      if (user.description) {
+        return `${user.username} (${user.description})`;
+      }
+      return user.username;
+    });
   }
 
   loadMessages() {
