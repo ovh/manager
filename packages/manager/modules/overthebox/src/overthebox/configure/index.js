@@ -8,6 +8,7 @@ const moduleName = 'ovhManagerOtbConfigure';
 angular
   .module(moduleName, [])
   .config(routing)
-  .component('overTheBoxConfigure', component);
+  .component('overTheBoxConfigure', component)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
