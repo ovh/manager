@@ -1,6 +1,7 @@
 import flatten from 'lodash/flatten';
 import map from 'lodash/map';
 import filter from 'lodash/filter';
+import illustration from '../assets/partner.png';
 
 export default class PciTrainingDashboardController {
   /* @ngInject */
@@ -11,6 +12,7 @@ export default class PciTrainingDashboardController {
   }
 
   $onInit() {
+    this.illustration = illustration;
     // eslint-disable-next-line prefer-destructuring
     this.currentRegion = this.regions[0];
 

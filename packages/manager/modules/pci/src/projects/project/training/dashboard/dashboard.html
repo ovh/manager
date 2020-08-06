@@ -1,7 +1,7 @@
 <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
 
 <div ui-view>
-    <div class="row d-lg-flex">
+    <div class="row d-lg-flex mb-3">
         <div class="col-md-4">
             <oui-tile
                 data-heading="{{ ::'pci_projects_project_training_dashboard_information' | translate }}"
@@ -38,13 +38,19 @@
                     <dl class="oui-tile__definition">
                         <dt class="oui-tile__term">
                             <span
+                                class="ellipsis"
                                 data-translate="pci_projects_project_training_dashboard_console_url"
                             ></span>
                             <button
                                 type="button"
-                                class="oui-popover-button"
+                                class="oui-popover-button ellipsis"
                                 data-oui-popover="{{:: 'pci_projects_project_training_dashboard_console_url_help' | translate}}"
                             ></button>
+                            <img
+                                data-ng-src="{{:: $ctrl.illustration }}"
+                                alt
+                                class="w-25 float-right"
+                            />
                         </dt>
 
                         <oui-tile-description>
@@ -248,7 +254,6 @@
             </oui-tile>
         </div>
     </div>
-    <p></p>
     <div class="row d-lg-flex">
         <div class="col-md-4">
             <oui-tile
@@ -299,8 +304,10 @@
                             data-ng-repeat="user in $ctrl.users"
                             class="oui-table__row"
                         >
-                            <td class="oui-table__cell">{{ user.username }}</td>
-                            <td class="oui-table__cell">
+                            <td class="oui-table__cell ellipsis">
+                                {{ user.username }}
+                            </td>
+                            <td class="oui-table__cell ellipsis">
                                 {{ user.description }}
                             </td>
                         </tr>

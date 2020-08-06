@@ -1,5 +1,5 @@
 import reduce from 'lodash/reduce';
-import illustration from './assets/partner.png';
+import illustration from '../assets/partner.png';
 import { GUIDES } from './onboarding.constants';
 
 export default class PciServingOnboardingController {

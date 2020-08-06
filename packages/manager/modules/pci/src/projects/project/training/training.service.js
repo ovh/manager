@@ -108,13 +108,7 @@ export default class PciProjectTrainingService {
       .$promise.then((regions) => {
         return map(regions, (region) => ({
           ...region,
-          cliInstallUrl: 'https://docs.console.gra.training.ai.cloud.ovh.net',
-          documentationUrl:
-            'https://docs.console.gra.training.ai.cloud.ovh.net',
-          consoleUrl: 'https://console.gra.training.ai.cloud.ovh.net',
-          maxGpu: 4,
-          version: '',
-          name: 'GRA',
+          name: region.id,
           hasEnoughQuota: () => true,
         }));
       });

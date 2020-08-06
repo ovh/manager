@@ -1,5 +1,6 @@
 import controller from './dashboard.controller';
 import template from './dashboard.html';
+import './dashboard.scss';
 
 export default {
   controller,
