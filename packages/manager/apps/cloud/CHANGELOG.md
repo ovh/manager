@@ -1,3 +1,12 @@
+## [10.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@10.1.0...@ovh-ux/manager-cloud@10.1.1) (2020-08-06)
+
+
+### Bug Fixes
+
+* add missing account and notifications sidebar components ([#3390](https://github.com/ovh/manager/issues/3390)) ([2d6db61](https://github.com/ovh/manager/commit/2d6db6164a69eb43c67c29b3a2e28a23f5371ab5))
+
+
+
 # [10.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@10.0.2...@ovh-ux/manager-cloud@10.1.0) (2020-08-05)
 
 
