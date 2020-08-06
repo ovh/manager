@@ -1,4 +1,6 @@
 {
+  "overTheBox_configure_title": "OverTheBox",
+  "overTheBox_configure_breadcrumb": "Configurer OverTheBox",
   "overthebox_configure_reset": "Vous avez redémarré votre overTheBox",
   "overthebox_configure_order": "Vous avez reçu votre nouvelle overTheBox",
   "overthebox_configure_reset_explaination": "Votre équipement a changé son identifiant. Vous devez maintenant rattacher ce dernier à un service existant dans la section \"Périphérique > Identifiant du périphérique\" :",

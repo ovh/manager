@@ -22,6 +22,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('overTheBoxes.overTheBox.details', {
           serviceName,
         }),
+      hideBreadcrumb: () => true,
     },
   });
 };
