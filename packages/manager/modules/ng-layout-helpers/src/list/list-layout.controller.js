@@ -34,6 +34,10 @@ export default class ListLayoutCtrl {
     });
   }
 
+  getSorting(property) {
+    return this.sort === property ? this.sortOrder.toLowerCase() : '';
+  }
+
   getDisplayedColumns(columns) {
     this.displayedColumns = columns
       ? JSON.stringify(
