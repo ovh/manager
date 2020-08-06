@@ -242,11 +242,29 @@
                         </a>
                     </oui-tile-actions>
                 </oui-tile-definition>
-                <table class="oui-table">
+
+                <oui-message
+                    type="warning"
+                    data-ng-if="$ctrl.users.length == 0"
+                >
+                    <span
+                        data-translate="pci_projects_project_training_dashboard_users_list_none"
+                    ></span>
+                </oui-message>
+
+                <table class="oui-table" data-ng-if="$ctrl.users.length > 0">
                     <thead>
                         <tr>
-                            <th class="oui-table__header">Nom</th>
-                            <th class="oui-table__header">Description</th>
+                            <th class="oui-table__header">
+                                <span
+                                    data-translate="pci_projects_project_training_dashboard_users_list_name"
+                                ></span>
+                            </th>
+                            <th class="oui-table__header">
+                                <span
+                                    data-translate="pci_projects_project_training_dashboard_users_list_description"
+                                ></span>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -290,7 +308,19 @@
                     </oui-tile-actions>
                 </oui-tile-definition>
 
-                <table class="oui-table">
+                <oui-message
+                    type="info"
+                    data-ng-if="$ctrl.runningJobs.length == 0"
+                >
+                    <span
+                        data-translate="{{:: 'pci_projects_project_training_dashboard_jobs_list_none' | translate  }}"
+                    ></span>
+                </oui-message>
+
+                <table
+                    class="oui-table"
+                    data-ng-if="$ctrl.runningJobs.length > 0"
+                >
                     <thead>
                         <tr>
                             <th class="oui-table__header">
@@ -337,7 +367,11 @@
                                 {{ job.created | date:'medium'}}
                             </td>
                             <td class="oui-table__cell">
-                                <oui-action-menu data-align="end" data-compact>
+                                <oui-action-menu
+                                    data-align="end"
+                                    data-compact
+                                    data-placement="bottom-end"
+                                >
                                     <oui-action-menu-item
                                         data-on-click="$ctrl.jobInfo(job.id)"
                                     >

@@ -29,5 +29,7 @@ export default {
     jobInfoLink: '<',
     allUsers: '<',
     userLink: '<',
+    getPrice: '<',
+    getTax: '<',
   },
 };

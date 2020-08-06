@@ -8,11 +8,6 @@ export default /* @ngInject */ ($stateProvider) => {
       job: /* @ngInject */ (PciProjectTrainingJobService, projectId) => (
         jobId,
       ) => PciProjectTrainingJobService.get(projectId, jobId),
-      getPrice: /* @ngInject */ (pricesCatalog) => (qty) =>
-        pricesCatalog[`ai-serving-engine.ml1-c-xl.hour.consumption`]
-          .priceInUcents * qty,
-      getTax: /* @ngInject */ (pricesCatalog) => (qty) =>
-        pricesCatalog[`ai-serving-engine.ml1-c-xl.hour.consumption`].tax * qty,
       goToJobs: ($state, CucCloudMessage, projectId) => (
         message = false,
         type = 'success',

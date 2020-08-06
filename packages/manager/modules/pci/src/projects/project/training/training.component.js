@@ -30,5 +30,7 @@ export default {
     jobInfo: '<',
     jobKill: '<',
     userLink: '<',
+    getPrice: '<',
+    getTax: '<',
   },
 };

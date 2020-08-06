@@ -154,6 +154,11 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('pci.projects.project.users', {
           projectId,
         }),
+      getPrice: /* @ngInject */ (pricesCatalog) => (qty) =>
+        pricesCatalog[`ai-serving-engine.ml1-c-xl.hour.consumption`]
+          .priceInUcents * qty,
+      getTax: /* @ngInject */ (pricesCatalog) => (qty) =>
+        pricesCatalog[`ai-serving-engine.ml1-c-xl.hour.consumption`].tax * qty,
     },
   });
 };
