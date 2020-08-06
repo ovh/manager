@@ -28,12 +28,16 @@ angular
         controller,
         controllerAs: 'FreefaxNotifications',
         template,
-        // noTranslations: true,
-        translations: ['..'],
+        resolve: {
+          breadcrumb: /* @ngInject */ ($translate) =>
+            $translate.instant('freefax_notifications_breadcrumb'),
+        },
       });
     },
   )
   .constant('FREEFAX_MAX_NOTIFICATIONS', MAX_NOTIFICATIONS)
-  .factory('FreefaxNotificationObject', factory);
+  .factory('FreefaxNotificationObject', factory)
+  .run(/* @ngTranslationsInject:json ./translations */)
+  .run(/* @ngTranslationsInject:json ../translations */);
 
 export default moduleName;
