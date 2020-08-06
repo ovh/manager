@@ -6,17 +6,18 @@
   "pci_project_flavors_category_definition_vps": "Instanzen mit geteilten Ressourcen (Sandbox) sind ideal für Tests, Abnahme und Entwicklungsumgebungen. Die Performance kann im Laufe der Zeit leicht variieren.",
   "pci_project_flavors_category_definition_none": "Es sind keine Modelle in dieser Kategorie verfügbar.",
   "pci_project_flavors_disk_size": "Der Speicherplatz ist geringer als der des aktuellen Modells.",
-  "pci_project_flavors_spec_ram": "Arbeitsspeicher:",
+  "pci_project_flavors_spec_ram": "{{ram}} RAM",
   "pci_project_flavors_spec_core": "Prozessor:",
   "pci_project_flavors_spec_core_details": "{{vcores}} vCores ({{frequency}} GHz)",
   "pci_project_flavors_spec_disk": "Storage:",
   "pci_project_flavors_spec_bandwidth": "Bandbreite:",
   "pci_project_flavors_spec_bandwidth_detail": "{{ bandwidth }} Mbit/s",
-  "pci_project_flavors_price_hourly": "{{price}} / Stunde (zzgl. MwSt.)",
+  "pci_project_flavors_price_hourly": "{{price}} / Stunde (zzgl. MwSt)",
   "pci_project_flavors_price_monthly": "Ab {{price}} / Monat (zzgl. MwSt.)",
   "pci_project_flavors_quota": "Mein Quota erhöhen",
   "pci_project_flavors_category_definition_iops": "IOPS Instanzen liefern die schnellsten Festplattentransaktionen der Public Cloud Reihe.",
   "pci_project_flavors_spec_model": "Modell:",
-  "pci_project_flavors_spec_nvme": "NVMe-Speicher:",
-  "pci_project_flavors_category_definition_baremetal": "Die Bare-Metal-Instanzen bieten physische, auf Abruf bereite Server, die binnen weniger Minuten geliefert und auf Stunden- oder Monatsbasis abgerechnet werden."
+  "pci_project_flavors_spec_nvme": "{{capacity}} NVMe",
+  "pci_project_flavors_category_definition_baremetal": "Die Bare-Metal-Instanzen bieten physische, auf Abruf bereite Server, die binnen weniger Minuten geliefert und auf Stunden- oder Monatsbasis abgerechnet werden.",
+  "pci_project_flavors_spec_nvme_multiple": "{{count}} x {{capacity}} NVMe"
 }
