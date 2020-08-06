@@ -8,7 +8,7 @@ import '@ovh-ux/manager-core';
 import component from './overtheboxes.component';
 import routing from './overtheboxes.routing';
 
-const moduleName = 'ovhManagerOverTheBoxes';
+const moduleName = 'ovhManagerOverTheBox';
 
 angular
   .module(moduleName, [
@@ -19,6 +19,12 @@ angular
   ])
   .config(routing)
   .component('ovhManagerOverTheBoxes', component)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */)
+  .run(
+    /* @ngInject */ ($transitions, $translate) =>
+      $transitions.onBefore({ to: 'overTheBoxes.**' }, () =>
+        $translate.refresh(),
+      ),
+  );
 
 export default moduleName;

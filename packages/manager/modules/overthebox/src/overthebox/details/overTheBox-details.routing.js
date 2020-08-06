@@ -8,5 +8,8 @@ export default /* @ngInject */ ($stateProvider) => {
       value: ['.', '../remote'],
       format: 'json',
     },
+    resolve: {
+      breadcrumb: () => null,
+    },
   });
 };

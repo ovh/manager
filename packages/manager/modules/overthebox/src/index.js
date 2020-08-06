@@ -6,14 +6,19 @@ import overTheBox from './overthebox';
 
 import { OTB_AVAILABILITY } from './feature-availability/feature-availability.constants';
 
-const moduleName = 'ovhManagerOverTheBoxesLazyLoading';
+import '@ovh-ux/ui-kit/dist/css/oui.css';
+
+const moduleName = 'ovhManagerOverTheBoxLazyLoading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad', overTheBox]).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider
       .state('overTheBoxes', {
         url: '/overTheBox',
-        abstract: true,
+        redirectTo: 'overTheBoxes.index',
+        resolve: {
+          breadcrumb: () => 'OverTheBox',
+        },
       })
       .state('overTheBoxes.index.**', {
         url: '',
