@@ -36,7 +36,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
   });
 
-  $stateProvider.state('app.domain.alldom.zone', {
+  $stateProvider.state('app.alldom.domain.zone', {
     url: '/zone',
     views: {
       domainView: {
@@ -50,9 +50,9 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       activateZone: /* @ngInject */ ($state) => () =>
-        $state.go('app.domain.alldom.zone.activate'),
+        $state.go('app.alldom.domain.zone.activate'),
       goToZone: /* @ngInject */ ($state) => () =>
-        $state.go('app.domain.alldom.zone'),
+        $state.go('app.alldom.domain.zone'),
     },
   });
 };

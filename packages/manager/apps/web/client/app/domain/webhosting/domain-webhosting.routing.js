@@ -4,7 +4,7 @@ export default /* @ngInject */ ($stateProvider) => {
       url: '/webhosting',
       abstract: true,
     })
-    .state('app.domain.alldom.webhosting', {
+    .state('app.alldom.domain.webhosting', {
       url: '/webhosting',
       abstract: true,
     });

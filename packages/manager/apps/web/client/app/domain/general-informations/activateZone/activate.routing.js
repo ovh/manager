@@ -7,7 +7,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
   });
 
-  $stateProvider.state('app.domain.alldom.information.zoneActivate', {
+  $stateProvider.state('app.alldom.domain.information.zoneActivate', {
     url: '/activate',
     component: 'domainZoneActivate',
     resolve: {
