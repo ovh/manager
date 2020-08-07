@@ -38,7 +38,6 @@ angular.module('App').controller(
 
       this.hosting = this.$scope.hosting;
       this.hostingProxy = this.$scope.hostingProxy;
-      this.bddTemplate = 'hosting/database/DATABASE_LIST.html';
       this.canCreateDatabase =
         this.hosting.databaseMax - this.hosting.databaseCount > 0;
       this.databases = {
@@ -177,7 +176,7 @@ angular.module('App').controller(
     goToList() {
       this.loading.init = true;
       this.$scope.bdd = null;
-      this.bddTemplate = 'hosting/database/DATABASE_LIST.html';
+      this.$state.go('app.hosting.dashboard.database');
     }
 
     loadDatabases() {
@@ -211,7 +210,7 @@ angular.module('App').controller(
 
     restoreDump(database) {
       this.$scope.bdd = database;
-      this.bddTemplate = 'hosting/database/dump/DUMPS.html';
+      this.$state.go('app.hosting.dashboard.database.dump');
     }
 
     transformItem(id) {

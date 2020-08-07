@@ -1,7 +1,4 @@
-<div
-    class="container-fluid px-0"
-    data-ng-controller="hostingGeneralInformationsCtrl as $ctrl"
->
+<div class="container-fluid px-0">
     <oui-spinner data-ng-if="!hosting"></oui-spinner>
 
     <div data-ng-if="hosting">
@@ -196,9 +193,7 @@
                             data-ng-if="!hosting.boostOffer && hosting.availableBoostOffer && hosting.availableBoostOffer.length > 0"
                             data-placement="end"
                         >
-                            <oui-action-menu-item
-                                data-on-click="$ctrl.goToBoostTab()"
-                            >
+                            <oui-action-menu-item href="{{ $ctrl.boostLink }}">
                                 <span data-translate="hosting_tab_BOOST"></span>
                             </oui-action-menu-item>
                         </oui-action-menu>
@@ -449,6 +444,7 @@
                             <oui-action-menu-item
                                 data-ng-if="hosting.hasCdn && cdnProperties.version === 'cdn-hosting'"
                                 data-on-click="$ctrl.goToMultisite()"
+                                data-href="{{ $ctrl.multisiteLink }}"
                             >
                                 <span
                                     data-translate="hosting_dashboard_service_setting_cdn"
@@ -586,7 +582,7 @@
                         >
                             <oui-action-menu-item
                                 data-ng-if="$ctrl.localSeo.isActive && $ctrl.localSeo.quantity > 0"
-                                data-on-click="ctrlHostingTabs.setSelectedTab('LOCAL_SEO')"
+                                data-href="{{ $ctrl.localSEOLink }}"
                             >
                                 <span data-translate="common_manage"></span>
                             </oui-action-menu-item>
@@ -639,7 +635,7 @@
                         </oui-tile-description>
                         <oui-action-menu data-compact data-placement="end">
                             <oui-action-menu-item
-                                data-on-click="ctrlHostingTabs.setSelectedTab('RUNTIMES')"
+                                href="{{ $ctrl.runtimesLink }}"
                                 ><span data-translate="common_configure"></span
                             ></oui-action-menu-item>
                         </oui-action-menu>
