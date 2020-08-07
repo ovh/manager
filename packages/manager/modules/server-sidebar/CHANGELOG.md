@@ -1,3 +1,12 @@
+## [2.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@2.0.2...@ovh-ux/manager-server-sidebar@2.0.3) (2020-08-07)
+
+
+### Bug Fixes
+
+* **server.order:** update order links to target dedicated ([#3406](https://github.com/ovh/manager/issues/3406)) ([9e9020f](https://github.com/ovh/manager/commit/9e9020fbcaa98416860520fba2b87dc5b0ae472a))
+
+
+
 ## [2.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@2.0.1...@ovh-ux/manager-server-sidebar@2.0.2) (2020-08-05)
 
 
