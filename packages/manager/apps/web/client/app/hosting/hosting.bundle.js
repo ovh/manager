@@ -1,4 +1,4 @@
-import './api-translator.service';
+import './dashboard/api-translator.service';
 import './automated-emails/error-report/hosting-automated-emails-error-report.controller';
 import './automated-emails/hosting-automated-emails.controller';
 import './automated-emails/hosting-automated-emails.service';
@@ -59,8 +59,8 @@ import './ftp/snapshot/restore/hosting-ftp-snapshot-restore.service';
 import './ftp/user/add/hosting-ftp-user-add.controller';
 import './ftp/user/delete/hosting-ftp-user-delete.controller';
 import './ftp/user/update/hosting-ftp-user-update.controller';
-import './hosting.constant';
-import './hosting.service';
+import './dashboard/hosting.constant';
+import './dashboard/hosting.service';
 import './indy/hosting-indy.controller';
 import './indy/hosting-indy.service';
 import './local-seo/delete/hosting-local-seo-delete.controller';
