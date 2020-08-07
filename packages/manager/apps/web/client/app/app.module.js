@@ -58,12 +58,8 @@ import './error-page/error-page.module';
 import './hosting/cdn/flush/hosting-cdn-flush.module';
 import './hosting/cdn/order/hosting-cdn-order.module';
 import './hosting/cdn/terminate/hosting-cdn-terminate.module';
-import './hosting/database/hosting-database.module';
 import './hosting/email/activate/activate.module';
 import './hosting/email/terminate/hosting-email-terminate.module';
-import './hosting/general-informations/general-informations.module';
-import './hosting/hosting.module';
-import './hosting/website-coach/website-coach.module';
 
 import './components/user/user-session.service';
 import './components/user/user.controller';

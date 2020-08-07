@@ -2,7 +2,7 @@ import flattenDeep from 'lodash/flattenDeep';
 import controller from './hosting.controller';
 import template from './hosting.html';
 
-import { LOCAL_SEO_FAMILY } from './local-seo/local-seo.constants';
+import { LOCAL_SEO_FAMILY } from '../local-seo/local-seo.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.hosting', {
