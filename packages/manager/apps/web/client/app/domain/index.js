@@ -16,7 +16,7 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-        return import('./domains/domains.module').then((mod) =>
+        return import('./domains.module').then((mod) =>
           $ocLazyLoad.inject(mod.default || mod),
         );
       },
@@ -27,7 +27,7 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-        return import('./domain.module').then((mod) =>
+        return import('./dashboard/domain.module').then((mod) =>
           $ocLazyLoad.inject(mod.default || mod),
         );
       },
@@ -38,7 +38,7 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-        return import('./domain.module').then((mod) =>
+        return import('./dashboard/domain.module').then((mod) =>
           $ocLazyLoad.inject(mod.default || mod),
         );
       },
