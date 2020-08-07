@@ -233,7 +233,7 @@ angular.module('App').controller(
     }
 
     getState() {
-      return this.isAllDom ? 'app.domain.alldom' : 'app.domain.product';
+      return this.isAllDom ? 'app.alldom.domain' : 'app.domain.product';
     }
   },
 );

@@ -2,7 +2,7 @@ import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.domain.index', {
-    url: `/configuration/domain?${ListLayoutHelper.urlQueryParams}`,
+    url: `?${ListLayoutHelper.urlQueryParams}`,
     component: 'managerListLayout',
     params: ListLayoutHelper.stateParams,
     resolve: {
@@ -18,7 +18,7 @@ export default /* @ngInject */ ($stateProvider) => {
         parentService,
       }) =>
         parentService
-          ? $state.href('app.domain.alldom', {
+          ? $state.href('app.alldom.domain', {
               allDom: parentService.name,
               productId: domain,
             })

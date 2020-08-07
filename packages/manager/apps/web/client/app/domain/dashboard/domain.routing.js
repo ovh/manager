@@ -32,8 +32,8 @@ const commonResolves = {
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.domain.product', {
-    url: '/configuration/domain/:productId',
-    templateUrl: 'domain/domain.html',
+    url: '/:productId',
+    templateUrl: 'domain/dashboard/domain.html',
     controller: 'DomainCtrl',
     controllerAs: 'ctrlDomain',
     reloadOnSearch: false,
@@ -85,13 +85,13 @@ export default /* @ngInject */ ($stateProvider) => {
     },
   });
 
-  $stateProvider.state('app.domain.alldom', {
-    url: '/configuration/all_dom/:allDom/:productId',
-    templateUrl: 'domain/domain.html',
+  $stateProvider.state('app.alldom.domain', {
+    url: '/:allDom/:productId',
+    templateUrl: 'domain/dashboard/domain.html',
     controller: 'DomainCtrl',
     controllerAs: 'ctrlDomain',
     reloadOnSearch: false,
-    redirectTo: 'app.domain.alldom.information',
+    redirectTo: 'app.alldom.domain.information',
     resolve: {
       ...commonResolves,
       allDom: /* @ngInject */ ($transition$) => $transition$.params().allDom,
@@ -101,7 +101,7 @@ export default /* @ngInject */ ($stateProvider) => {
       domainName: /* @ngInject */ ($transition$) =>
         $transition$.params().productId,
       goToWebhostingOrder: /* @ngInject */ ($state) => () =>
-        $state.go('app.domain.alldom.webhosting.order'),
+        $state.go('app.alldom.domain.webhosting.order'),
       navigationInformations: [
         'Navigator',
         '$rootScope',
@@ -122,9 +122,9 @@ export default /* @ngInject */ ($stateProvider) => {
           .catch((error) => (error.code === 404 ? null : $q.reject(error))),
 
       goToDns: /* @ngInject */ ($state) => () =>
-        $state.go('app.domain.alldom.dns'),
+        $state.go('app.alldom.domain.dns'),
       goToDnsAnycast: /* @ngInject */ ($state) => () =>
-        $state.go('app.domain.alldom.anycast'),
+        $state.go('app.alldom.domain.anycast'),
     },
     translations: {
       value: [
