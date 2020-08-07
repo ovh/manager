@@ -1,7 +1,7 @@
 import component from './hosting-database-order-public.component';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.hosting.database.order-public', {
+  $stateProvider.state('app.hosting.dashboard.database.order-public', {
     url: '/order-public',
     component: component.name,
     resolve: {

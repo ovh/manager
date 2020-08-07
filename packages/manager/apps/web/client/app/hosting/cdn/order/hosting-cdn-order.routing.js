@@ -2,7 +2,7 @@ import find from 'lodash/find';
 import get from 'lodash/get';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.hosting.cdn.order', {
+  $stateProvider.state('app.hosting.dashboard.cdn.order', {
     url: '/order',
     component: 'hostingCdnOrder',
     resolve: {

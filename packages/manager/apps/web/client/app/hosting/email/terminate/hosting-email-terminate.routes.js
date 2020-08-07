@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.hosting.terminate-email-option', {
+  $stateProvider.state('app.hosting.dashboard.terminate-email-option', {
     url: '/terminateEmail',
     views: {
       modal: {
