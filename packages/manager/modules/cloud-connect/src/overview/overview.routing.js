@@ -70,12 +70,8 @@ export default /* @ngInject */ ($stateProvider) => {
         CucCloudMessage,
         CucControllerHelper,
         cloudConnectId,
-      ) => (
-        message = false,
-        type = 'success',
-        reload = false,
-        vrackMessage,
-      ) => {
+        cloudConnectService,
+      ) => (message = false, type = 'success', reload = false, vrackId) => {
         const state = 'cloud-connect.overview';
         const promise = $state.go(
           state,
@@ -88,8 +84,19 @@ export default /* @ngInject */ ($stateProvider) => {
         );
         if (message) {
           promise.then(() => {
-            if (vrackMessage) {
-              CucCloudMessage.warning(vrackMessage, state);
+            if (vrackId) {
+              cloudConnectService
+                .getVrackAssociatedCloudConnect(vrackId)
+                .then((res) => {
+                  if (res) {
+                    CucCloudMessage.warning(
+                      this.$translate.instant(
+                        'cloud_connect_vrack_associate_cloud_connect',
+                      ),
+                      state,
+                    );
+                  }
+                });
             }
             CucCloudMessage[type](message, state);
             CucControllerHelper.scrollPageToTop();

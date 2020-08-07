@@ -19,16 +19,13 @@ export default class AssociateVrackCtrl {
         const vRackName = this.vRack.name ? this.vRack.name : this.vRack.id;
         this.cloudConnect.vrack = this.vRack.id;
         this.cloudConnect.vrackName = vRackName;
-        // this.cloudConnectService.getVrackAssociatedCloudConnect(this.vrack.id);
         return this.goBack(
           this.$translate.instant('cloud_connect_vrack_associate_success', {
             vRackName,
           }),
           'success',
           false,
-          this.$translate.instant(
-            'cloud_connect_vrack_associate_cloud_connect',
-          ),
+          this.vRack.id,
         );
       })
       .catch((error) =>

@@ -1,7 +1,7 @@
 import { find, head, isEmpty, map, remove, set, sortBy, values } from 'lodash';
 import CloudConnectPop from './cloud-connect-pop.class';
-import CloudConnectInterface from './cloud-connect-interface.class';
-import { STATUS } from './cloud-connect.constants';
+
+import { POPT_YPE_CONSTANT, STATUS } from './cloud-connect.constants';
 
 export default class CloudConnect {
   constructor(cloudConnect) {
@@ -148,7 +148,7 @@ export default class CloudConnect {
 
   setInterface(ccInterface) {
     if (ccInterface.id) {
-      this.interfaces[ccInterface.id] = new CloudConnectInterface(ccInterface);
+      this.interfaces[ccInterface.id] = ccInterface;
     }
   }
 
@@ -178,6 +178,6 @@ export default class CloudConnect {
   }
 
   isL3PopType() {
-    return this.popType === 'l3';
+    return this.popType === POPT_YPE_CONSTANT.L3;
   }
 }

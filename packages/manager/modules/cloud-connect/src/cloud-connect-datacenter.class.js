@@ -5,9 +5,10 @@ import { STATUS } from './cloud-connect.constants';
 import CloudConnectDatacenterExtra from './cloud-connect-datacenter-extra.class';
 
 export default class CloudConnectDatacenter {
-  constructor({ datacenterId, id, ovhBgpArea, status, subnet }) {
+  constructor({ datacenterId, dcName, id, ovhBgpArea, status, subnet }) {
     Object.assign(this, {
       datacenterId,
+      dcName,
       id,
       ovhBgpArea,
       status,

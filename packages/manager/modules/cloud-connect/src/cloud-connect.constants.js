@@ -42,6 +42,11 @@ export const IPV4_BLOCK_REGEX = {
   ),
 };
 
+export const POPT_YPE_CONSTANT = {
+  L3: 'l3',
+  L2: 'l2',
+};
+
 export const STATUS = {
   ACTIVE: 'active',
   INIT: 'init',
@@ -63,6 +68,7 @@ export default {
   GUIDELINK,
   POP_MAP,
   POP_TYPES,
+  POPT_YPE_CONSTANT,
   ASN_MIN,
   IPV4_BLOCK_REGEX,
   STATUS,

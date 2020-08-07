@@ -5,8 +5,13 @@ import CloudConnectDatacenter from './cloud-connect-datacenter.class';
 import CloudConnectDatacenterExtra from './cloud-connect-datacenter-extra.class';
 import CloudConnectTasks from './cloud-connect-tasks.class';
 import CloudConnectServiceKey from './cloud-connect-service-key.class';
+import CloudConnectInterface from './cloud-connect-interface.class';
 
-import { POP_TYPES } from './cloud-connect.constants';
+import {
+  POP_TYPES,
+  POPT_YPE_CONSTANT,
+  STATUS,
+} from './cloud-connect.constants';
 
 export default class CloudConnectService {
   /* @ngInject */
@@ -163,7 +168,7 @@ export default class CloudConnectService {
       type,
       interfaceId,
     };
-    if (type === 'l3') {
+    if (type === POPT_YPE_CONSTANT.L3) {
       options = {
         ...options,
         ...pop,
@@ -192,13 +197,12 @@ export default class CloudConnectService {
                 cache: this.cache.interface,
               },
             )
-            .then((res) => {
-              cloudConnect.setInterface(res.data);
-              return res.data;
+            .then(({ data }) => {
+              return new CloudConnectInterface(data);
             });
         }),
       )
-      .then(() => cloudConnect)
+      .then((interfaces) => cloudConnect.setInterface(interfaces))
       .finally(() => {
         cloudConnect.setLoadingInterface(false);
       });
@@ -432,8 +436,8 @@ export default class CloudConnectService {
   getVrackAssociatedCloudConnect(serviceName) {
     return this.$http
       .get(`/vrack/${serviceName}/ovhCloudConnect`)
-      .then((res) => {
-        return res.data;
+      .then(({ data }) => {
+        return data.length > 1;
       });
   }
 
@@ -445,7 +449,7 @@ export default class CloudConnectService {
         method: 'get',
         retryMaxAttempts: 6,
         successRule: (task) =>
-          task.status === 'done' || task.status === 'error',
+          task.status === STATUS.DONE || task.status === STATUS.ERROR,
       },
     );
   }

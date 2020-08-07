@@ -3,6 +3,5 @@
   "cloud_connect_vrack_associate_description": "Pour configurer votre OVHcloud Connect vous devez lui associer un vRack. Sélectionnez le vRack concerné dans la liste déroulante suivante ou créez en un nouveau en <a href=\"{{ vrackOrderUrl }}\" target=\"blank\" rel=\"noopener\">cliquant ici.</a>",
   "cloud_connect_vrack_select": "sélectionnez un vRack existant",
   "cloud_connect_vrack_associate_success": "Le vRack a bien été associé à votre Cloud Connect",
-  "cloud_connect_vrack_associate_error": "Impossible d'associer vRack à votre Cloud Connect: {{ message }}",
-  "cloud_connect_vrack_associate_cloud_connect": "Vous avez déjà une option OVHcloud Connect associé sur ce vRack. Sachez que vos configuration DC seront liées et chaque modification entrainera des répercussions sur les options liées."
+  "cloud_connect_vrack_associate_error": "Impossible d'associer vRack à votre Cloud Connect: {{ message }}"
 }

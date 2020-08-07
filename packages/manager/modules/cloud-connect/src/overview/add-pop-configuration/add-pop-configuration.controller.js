@@ -1,7 +1,11 @@
 import find from 'lodash/find';
 import get from 'lodash/get';
 
-import { IPV4_BLOCK_REGEX, ASN_MIN } from '../../cloud-connect.constants';
+import {
+  POPT_YPE_CONSTANT,
+  IPV4_BLOCK_REGEX,
+  ASN_MIN,
+} from '../../cloud-connect.constants';
 
 export default class AddPopConfigurationCtrl {
   /* @ngInject */
@@ -17,7 +21,7 @@ export default class AddPopConfigurationCtrl {
     this.pop = {};
     this.popType = null;
     if (!this.cloudConnect.isDirectService()) {
-      this.popType = find(this.popTypes, { id: 'l3' });
+      this.popType = find(this.popTypes, { id: POPT_YPE_CONSTANT.L3 });
     }
     if (this.allowedPopType) {
       this.popType = find(this.popTypes, { id: this.allowedPopType.type });
