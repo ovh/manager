@@ -1,3 +1,4 @@
+import { readdirSync, readFileSync } from 'fs';
 import execa from 'execa';
 import inquirer from 'inquirer';
 
@@ -5,7 +6,15 @@ import inquirer from 'inquirer';
  * Set of applications that doesn't rely on multiple regions.
  * @type {Set}
  */
-const applicationWithoutRegions = new Set(['@ovh-ux/manager-telecom']);
+const applicationWithoutRegions = new Set([
+  '@ovh-ux/manager-carrier-sip-app',
+  '@ovh-ux/manager-freefax-app',
+  '@ovh-ux/manager-overthebox-app',
+  '@ovh-ux/manager-sms-app',
+  '@ovh-ux/manager-telecom',
+  '@ovh-ux/manager-telecom-dashboard-app',
+  '@ovh-ux/manager-telecom-task-app',
+]);
 
 /**
  * Regions where applications can be available.
@@ -18,40 +27,43 @@ const availableRegions = [
 ];
 
 /**
+ * Workspace location for all applications.
+ * @type {string}
+ */
+const applicationsWorkspace = 'packages/manager/apps';
+
+/**
+ * List all applications available for a given workspace.
+ * @return {Array} Applications' list.
+ */
+const choices = () =>
+  readdirSync(applicationsWorkspace, {
+    withFileTypes: true,
+  }).map((application) => {
+    const data = readFileSync(
+      `${applicationsWorkspace}/${application.name}/package.json`,
+      'utf8',
+    );
+    const { name } = JSON.parse(data);
+    // Skip scoped package name.
+    // `@ovh-ux/foo` => `foo`.
+    const [, formatedName] = name.split('/');
+
+    return {
+      name: formatedName,
+      value: name,
+    };
+  });
+
+/**
  * Ask for both packageName and region to start the corresponding application.
- * @todo Dynamically list all applications available from a given workspace.
  */
 const questions = [
   {
     type: 'list',
     name: 'packageName',
-    message: 'Which control panel do you want to start?',
-    choices: [
-      {
-        name: 'Hub',
-        value: '@ovh-ux/manager-hub-app',
-      },
-      {
-        name: 'Web',
-        value: '@ovh-ux/manager-web',
-      },
-      {
-        name: 'Server (Dedicated)',
-        value: '@ovh-ux/manager-dedicated',
-      },
-      {
-        name: 'Server (Cloud)',
-        value: '@ovh-ux/manager-cloud',
-      },
-      {
-        name: 'Public Cloud',
-        value: '@ovh-ux/manager-public-cloud',
-      },
-      {
-        name: 'Telecom',
-        value: '@ovh-ux/manager-telecom',
-      },
-    ],
+    message: 'Which application do you want to start?',
+    choices,
   },
   {
     type: 'list',
