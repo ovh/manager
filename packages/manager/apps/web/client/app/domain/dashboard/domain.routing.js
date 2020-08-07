@@ -1,13 +1,13 @@
 import clone from 'lodash/clone';
 import isEmpty from 'lodash/isEmpty';
 
-import anycastState from './anycast/domain-dns-anycast.state';
-import dnsState from './dns/domain-dns.state';
-import redirectionState from './redirection/domain-redirection.state';
-import dynHostState from './dynhost/domain-dynhost.state';
-import glueState from './glue/domain-glue.state';
-import dnsSecState from './dnssec/domain-dnssec.state';
-import tasksState from './tasks/domain-tasks.state';
+import anycastState from '../anycast/domain-dns-anycast.state';
+import dnsState from '../dns/domain-dns.state';
+import redirectionState from '../redirection/domain-redirection.state';
+import dynHostState from '../dynhost/domain-dynhost.state';
+import glueState from '../glue/domain-glue.state';
+import dnsSecState from '../dnssec/domain-dnssec.state';
+import tasksState from '../tasks/domain-tasks.state';
 
 const commonResolves = {
   associatedHostings: /* @ngInject */ (Domain, domainName) =>
@@ -76,11 +76,10 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     translations: {
       value: [
-        '../core',
-        '../domain',
-        '../email',
-        '../hosting',
-        '../domain-operation',
+        '../../core',
+        '../../email',
+        '../../hosting',
+        '../../domain-operation',
       ],
       format: 'json',
     },
@@ -129,11 +128,11 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     translations: {
       value: [
-        '../core',
-        '../domain',
-        '../email',
-        '../hosting',
-        '../domain-operation',
+        '../../core',
+        '../../domain',
+        '../../email',
+        '../../hosting',
+        '../../domain-operation',
       ],
       format: 'json',
     },
