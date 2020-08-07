@@ -223,7 +223,9 @@ export default class HostingGeneralInformationsCtrl {
       name: 'web::hostname::general-informations::change-offer',
       type: 'action',
     });
-    this.$state.go('app.hosting.upgrade', { productId: this.serviceName });
+    this.$state.go('app.hosting.dashboard.upgrade', {
+      productId: this.serviceName,
+    });
   }
 
   goToBoostTab() {
@@ -231,7 +233,9 @@ export default class HostingGeneralInformationsCtrl {
   }
 
   goToPrivateSqlActivation() {
-    return this.$state.go('app.hosting.database.private-sql-activation');
+    return this.$state.go(
+      'app.hosting.dashboard.database.private-sql-activation',
+    );
   }
 
   doesEmailOfferExists() {
@@ -240,6 +244,8 @@ export default class HostingGeneralInformationsCtrl {
   }
 
   activateEmailOffer() {
-    this.$state.go('app.hosting.activate', { serviceName: this.serviceName });
+    this.$state.go('app.hosting.dashboard.activate', {
+      serviceName: this.serviceName,
+    });
   }
 }

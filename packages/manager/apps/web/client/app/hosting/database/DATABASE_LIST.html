@@ -16,7 +16,7 @@
     <a
         class="btn btn-link"
         data-translate="hosting_dashboard_service_change_offer_now"
-        data-ui-sref="app.hosting.upgrade({ productId: $ctrl.hosting.serviceName })"
+        data-ui-sref="app.hosting.dashboard.upgrade({ productId: $ctrl.hosting.serviceName })"
     ></a>
 </div>
 
@@ -48,7 +48,7 @@
                 <li data-ng-if="$ctrl.canOrderPublic">
                     <a
                         data-translate="hosting_tab_DATABASES_configuration_order_title_button_public"
-                        data-ui-sref="app.hosting.database.order-public"
+                        data-ui-sref="app.hosting.dashboard.database.order-public"
                     ></a>
                 </li>
                 <li
@@ -56,13 +56,13 @@
                 >
                     <a
                         data-translate="hosting_dashboard_service_privatesql_active_long"
-                        data-ui-sref="app.hosting.database.private-sql-activation"
+                        data-ui-sref="app.hosting.dashboard.database.private-sql-activation"
                     ></a>
                 </li>
                 <li>
                     <a
                         data-translate="hosting_tab_DATABASES_configuration_order_title_button_private"
-                        data-ui-sref="app.hosting.database.order-private"
+                        data-ui-sref="app.hosting.dashboard.database.order-private"
                     ></a>
                 </li>
             </ul>
@@ -118,7 +118,7 @@
                             <li data-ng-if="$ctrl.canOrderPublic">
                                 <a
                                     data-translate="hosting_tab_DATABASES_configuration_order_title_button_public"
-                                    data-ui-sref="app.hosting.database.order-public"
+                                    data-ui-sref="app.hosting.dashboard.database.order-public"
                                 ></a>
                             </li>
                             <li
@@ -127,7 +127,7 @@
                                 <a
                                     class="btn btn-link"
                                     data-translate="hosting_dashboard_service_privatesql_active_long"
-                                    data-ui-sref="app.hosting.database.private-sql-activation"
+                                    data-ui-sref="app.hosting.dashboard.database.private-sql-activation"
                                 >
                                 </a>
                             </li>
@@ -135,7 +135,7 @@
                                 <a
                                     class="btn btn-link"
                                     data-translate="hosting_tab_DATABASES_configuration_order_title_button_private"
-                                    data-ui-sref="app.hosting.database.order-private"
+                                    data-ui-sref="app.hosting.dashboard.database.order-private"
                                 >
                                 </a>
                             </li>

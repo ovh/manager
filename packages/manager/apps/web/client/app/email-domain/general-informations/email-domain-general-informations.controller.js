@@ -152,7 +152,7 @@ angular.module('App').controller(
     loadUrls() {
       this.loading.urls = true;
       if (/hosting/.test(this.domain.offer)) {
-        this.urls.delete = `#/configuration/hosting/${encodeURIComponent(
+        this.urls.delete = `#/hosting/${encodeURIComponent(
           this.$stateParams.productId,
         )}/terminateEmail?tab=GENERAL_INFORMATIONS`;
       } else {

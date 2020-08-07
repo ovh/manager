@@ -1,7 +1,7 @@
 import get from 'lodash/get';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.hosting.database.order-private', {
+  $stateProvider.state('app.hosting.dashboard.database.order-private', {
     url: '/order-private',
     component: 'hostingDatabaseOrderPrivate',
     resolve: {
