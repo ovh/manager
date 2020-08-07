@@ -1,7 +1,10 @@
 export default class {
   /* @ngInject */
-  constructor(OvhApiVrack) {
+  constructor($translate, OvhApiVrack, Poller, CucCloudMessage) {
     this.Vrack = OvhApiVrack;
+    this.$translate = $translate;
+    this.Poller = Poller;
+    this.CucCloudMessage = CucCloudMessage;
   }
 
   $onInit() {
@@ -11,19 +14,55 @@ export default class {
   }
 
   detach() {
+    this.loading = true;
     return this.Vrack.DedicatedServerInterface()
       .v6()
       .delete({
         serviceName: this.interface.vrack,
         dedicatedServerInterface: this.interface.id,
       })
-      .$promise.then(() => {
-        this.goBack();
+      .$promise.then((task) => {
+        return this.goBack(
+          this.$translate.instant('server_vrack_detach_in_progress', {
+            vRackname: this.interface.vrack,
+          }),
+          'success',
+        ).then(() => {
+          this.interface.operation = 'detach';
+          this.interface.setTaskInProgress(true);
+          this.checkStatus(this.interface.vrack, task.data.id)
+            .then(() => {
+              this.interface.setVrack(null);
+              this.interface.setTaskInProgress(false);
+              this.CucCloudMessage.flushMessages('app.dedicated.server.interfaces');
+            });
+        });
       })
       .catch((error) => {
-        this.goBack().then(() =>
-          this.alertError('server_error_vrack_detach', error.data),
+        return this.goBack(
+          this.$translate.instant('server_error_vrack_detach', {
+            vRackname: this.interface.vrack,
+            error: get(error, 'data.message', error.message),
+          }),
+          'error',
         );
+      })
+      .finally(() => {
+        this.loading = false;
       });
+  }
+
+  checkStatus(vrack, taskId) {
+    return this.Poller.poll(
+      `/vrack/${vrack}/task/${taskId}`,
+      {},
+      {
+        method: 'get',
+        retryMaxAttempts: 6,
+        successRule: {
+          status: 'done',
+        },
+      },
+    );
   }
 }
