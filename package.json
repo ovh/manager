@@ -32,7 +32,7 @@
     "packages:publish": "scripts/publish.js",
     "release": "scripts/release.js",
     "split": "scripts/split.js",
-    "start": "node -r esm scripts/start/index.js",
+    "start": "node -r esm scripts/start-application.js",
     "test": "yarn lint",
     "test:e2e:chromium": "rimraf ./reports && testcafe chromium",
     "test:e2e:chromium:headless": "rimraf ./reports && testcafe chromium:headless",
