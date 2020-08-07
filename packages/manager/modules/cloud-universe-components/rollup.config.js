@@ -15,14 +15,4 @@ const config = rollupConfig(
   },
 );
 
-export default [
-  config.cjs(),
-  config.umd({
-    output: {
-      globals: {
-        angular: 'angular',
-        d3: 'd3',
-      },
-    },
-  }),
-];
+export default [config.es()];
