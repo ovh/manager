@@ -379,7 +379,7 @@ export default class DomainTabGeneralInformationsCtrl {
             ),
             (item) => ({
               name: item,
-              url: `#/configuration/hosting/${item}`,
+              url: `#/hosting/${item}`,
             }),
           );
 
