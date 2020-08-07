@@ -61,7 +61,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
   });
 
-  $stateProvider.state('app.domain.alldom.information', {
+  $stateProvider.state('app.alldom.domain.information', {
     url: '/information',
     views: {
       domainView: {
@@ -79,7 +79,7 @@ export default /* @ngInject */ ($stateProvider) => {
         message = false,
         type = 'success',
       ) => {
-        const promise = $state.go('app.domain.alldom.information');
+        const promise = $state.go('app.alldom.domain.information');
 
         if (message) {
           promise.then(() => Alerter[type](message, 'domain_alert_main'));
@@ -88,7 +88,7 @@ export default /* @ngInject */ ($stateProvider) => {
         return promise;
       },
       enableWebhostingLink: /* @ngInject */ ($state, allDom, domainName) =>
-        $state.href('app.domain.alldom.information.enable-webhosting', {
+        $state.href('app.alldom.domain.information.enable-webhosting', {
           allDom,
           productId: domainName,
         }),

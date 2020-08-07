@@ -273,30 +273,6 @@ angular
     '$urlRouterProvider',
     'URLS_REDIRECTED_TO_DEDICATED',
     ($stateProvider, $urlRouterProvider, URLS_REDIRECTED_TO_DEDICATED) => {
-      /**
-       * ALL DOM
-       */
-      $stateProvider.state('app.alldom', {
-        url: '/configuration/all_dom/:allDom/:productId',
-        templateUrl: 'domain/domain.html',
-        controller: 'DomainCtrl',
-        resolve: {
-          navigationInformations: [
-            'Navigator',
-            '$rootScope',
-            (Navigator, $rootScope) => {
-              set($rootScope, 'currentSectionInformation', 'all_dom');
-              return Navigator.setNavigationInformation({
-                leftMenuVisible: true,
-                configurationSelected: true,
-              });
-            },
-          ],
-          currentSection: () => 'all_dom',
-        },
-        translations: { value: ['domain', 'hosting'], format: 'json' },
-      });
-
       forEach(URLS_REDIRECTED_TO_DEDICATED, (url) => {
         $urlRouterProvider.when(url, [
           '$window',

@@ -46,7 +46,6 @@ import moduleName from './app';
 import './app.routes';
 import './app.controller';
 
-import './components/angular-ui-router/angular-ui-router.module';
 import './components/components.module';
 import './components/directives.module';
 import './components/filters.module';
@@ -74,7 +73,7 @@ import './components/webApp.controller';
 import './config/config.bundle';
 import './configuration/configuration.bundle';
 import './dns-zone/dns-zone.bundle';
-import './domain/domain.bundle';
+import './domain/dashboard/domain.bundle';
 import './domain-operation/domain-operation.bundle';
 import './domains/domains.bundle';
 import './double-authentication/double-authentication.bundle';

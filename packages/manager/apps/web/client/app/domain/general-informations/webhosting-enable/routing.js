@@ -40,7 +40,7 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: commonResolves,
   });
 
-  $stateProvider.state('app.domain.alldom.information.enable-webhosting', {
+  $stateProvider.state('app.alldom.domain.information.enable-webhosting', {
     url: '/webhosting-enable',
     component: 'domainWebhostingEnable',
     resolve: commonResolves,

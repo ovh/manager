@@ -1,6 +1,6 @@
-angular.module('App').config(($stateProvider) => {
+angular.module('App').config(($stateProvider, $urlRouterProvider) => {
   $stateProvider.state('app.domain.operation', {
-    url: '/configuration/domains_operations',
+    url: '/operation',
     templateUrl: 'domain-operation/domain-operation.html',
     controller: 'DomainOperationCtrl',
     controllerAs: 'ctrlOperations',
@@ -24,8 +24,8 @@ angular.module('App').config(($stateProvider) => {
     },
   });
 
-  $stateProvider.state('app.domain.operation-progress', {
-    url: '/configuration/domain_operation/progress/:operationId',
+  $stateProvider.state('app.domain.operation.progress', {
+    url: '/progress/:operationId',
     templateUrl: 'domain-operation/progress/domain-operation-progress.html',
     controller: 'DomainOperationProgressCtrl',
     controllerAs: 'ctrlDomainOperationProgress',
@@ -48,4 +48,15 @@ angular.module('App').config(($stateProvider) => {
       format: 'json',
     },
   });
+
+  $urlRouterProvider.when(
+    /^\/configuration\/domains_operations/,
+    /* @ngInject */ ($location) => {
+      $location.url(
+        $location
+          .url()
+          .replace('/configuration/domains_operations', '/domain/operation'),
+      );
+    },
+  );
 });

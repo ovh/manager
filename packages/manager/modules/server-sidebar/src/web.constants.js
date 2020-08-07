@@ -12,14 +12,14 @@ export const DOMAIN_CONFIG = {
     {
       id: 'domain_bulk',
       state: 'app.domain.all',
-      stateUrl: '#/configuration/domains',
+      stateUrl: '#/domain/bulk',
       icon: 'ovh-font ovh-font-network',
       app: [WEB],
     },
     {
       id: 'domain_operations',
       state: 'app.domain.operation',
-      stateUrl: '#/configuration/domains_operations',
+      stateUrl: '#/domain/operations',
       icon: 'ovh-font ovh-font-config',
       app: [WEB],
     },
@@ -28,7 +28,7 @@ export const DOMAIN_CONFIG = {
     {
       path: '/allDom',
       category: 'ALLDOM',
-      loadOnState: 'app.domain.alldom',
+      loadOnState: 'app.alldom.domain',
       stateParams: ['productId'],
       loadOnStateParams: ['allDom'],
       app: [WEB],
@@ -38,7 +38,7 @@ export const DOMAIN_CONFIG = {
         {
           path: '/allDom/:productId/domain',
           category: 'ALLDOM',
-          state: 'app.domain.alldom',
+          state: 'app.alldom.domain',
           stateParams: ['allDom', 'productId'],
           app: [WEB],
           icon: 'ovh-font ovh-font-domain',
