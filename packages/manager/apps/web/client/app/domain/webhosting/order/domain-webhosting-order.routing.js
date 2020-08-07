@@ -109,17 +109,17 @@ export default /* @ngInject */ ($stateProvider) => {
           $state.go('app.domain.product.information'),
       },
     })
-    .state('app.domain.alldom.webhosting.order', {
+    .state('app.alldom.domain.webhosting.order', {
       url: '/order',
       views: {
-        'domainView@app.domain.alldom': {
+        'domainView@app.alldom.domain': {
           component: component.name,
         },
       },
       resolve: {
         ...resolve,
         goBackToDashboard: /* @ngInject */ ($state) => () =>
-          $state.go('app.domain.alldom.information'),
+          $state.go('app.alldom.domain.information'),
       },
     });
 };
