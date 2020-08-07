@@ -1,5 +1,6 @@
 import controller from './jobs.controller';
 import template from './jobs.html';
+import './jobs.scss';
 
 export default {
   controller,

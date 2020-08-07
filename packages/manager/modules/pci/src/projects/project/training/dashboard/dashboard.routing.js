@@ -3,8 +3,7 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/dashboard',
     component: 'pciProjectTrainingDashboardComponent',
     resolve: {
-      breadcrumb: /* @ngInject */ ($translate) =>
-        $translate.instant('pci_projects_project_training_dashboard_title'),
+      breadcrumb: /* @ngInject */ () => null,
       usage: /* @ngInject */ (OvhApiCloudProjectUsageCurrent, projectId) =>
         OvhApiCloudProjectUsageCurrent.v6().get({ serviceName: projectId })
           .$promise,
