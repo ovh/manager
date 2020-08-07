@@ -1,7 +1,7 @@
 import JSURL from 'jsurl';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.hosting.website-coach', {
+  $stateProvider.state('app.hosting.dashboard.website-coach', {
     url: '/website-coach',
     translations: { value: ['.'], format: 'json' },
     component: 'hostingWebsiteCoach',

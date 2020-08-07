@@ -367,7 +367,7 @@
                             </oui-action-menu-item>
                             <oui-action-menu-item
                                 data-ng-if="$ctrl.doesEmailOfferExists()"
-                                data-ui-sref="app.hosting.terminate-email-option"
+                                data-ui-sref="app.hosting.dashboard.terminate-email-option"
                             >
                                 <span
                                     data-translate="hosting_dashboard_service_terminate_email"
@@ -401,7 +401,7 @@
                         >
                             <oui-action-menu-item
                                 data-ng-if="flushCdnState === 'ok' && !hosting.hasCdn && hosting.offer!== 'START_10_M'"
-                                data-href="{{:: $ctrl.$state.href('app.hosting.cdn.order') }}"
+                                data-href="{{:: $ctrl.$state.href('app.hosting.dashboard.cdn.order') }}"
                                 ><span
                                     data-ng-bind=":: (isCdnFree ? 'hosting_dashboard_service_activate_cdn' : 'hosting_dashboard_service_order_cdn') | translate"
                                 ></span
@@ -459,7 +459,7 @@
                             >
                                 <oui-action-menu-item
                                     data-ng-if="sqlPriveState !== 'check' && sqlPriveState !== 'doing'"
-                                    data-ui-sref="app.hosting.database.private-sql-activation"
+                                    data-ui-sref="app.hosting.dashboard.database.private-sql-activation"
                                 >
                                     <span
                                         data-translate="hosting_dashboard_service_privatesql_active"
@@ -485,7 +485,7 @@
                             </oui-action-menu-item>
 
                             <oui-action-menu-item
-                                data-ui-sref="app.hosting.database.order-private"
+                                data-ui-sref="app.hosting.dashboard.database.order-private"
                             >
                                 <span
                                     data-translate="hosting_dashboard_service_privatesql_order"
