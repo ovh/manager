@@ -2,6 +2,9 @@ import { DEDICATED, CLOUD } from './constants';
 
 export const ORDER_URLS = {
   EU: {
+    DEDICATED: {
+      FR: 'https://www.ovh.com/manager/dedicated/',
+    },
     dedicated_cloud: {
       CZ: 'https://www.ovh.cz/sddc/',
       DE: 'https://www.ovh.de/sddc/',
@@ -286,6 +289,15 @@ export const ORDER_URLS = {
     },
   },
   CA: {
+    DEDICATED: {
+      ASIA: 'https://ca.ovh.com/manager/dedicated/',
+      AU: 'https://ca.ovh.com/manager/dedicated/',
+      CA: 'https://ca.ovh.com/manager/dedicated/',
+      QC: 'https://ca.ovh.com/manager/dedicated/',
+      SG: 'https://ca.ovh.com/manager/dedicated/',
+      WE: 'https://ca.ovh.com/manager/dedicated/',
+      WS: 'https://ca.ovh.com/manager/dedicated/',
+    },
     orderDomain: {
       ASIA: 'https://ca.ovh.com/asia/order/domain',
       AU: 'https://ca.ovh.com/au/order/domain',
@@ -409,6 +421,9 @@ export const ORDER_URLS = {
     },
   },
   US: {
+    DEDICATED: {
+      US: 'https://us.ovhcloud.com/manager/dedicated/',
+    },
     dedicated_cloud: {
       US: 'https://us.ovhcloud.com/products/hosted-private-cloud/',
     },
@@ -457,7 +472,6 @@ export const SIDEBAR_ORDER_CONFIG = [
     id: 'order-nas',
     title: 'NAS',
     icon: 'ovh-font ovh-font-cloudnas',
-    state: 'app.networks.nas.order', // TODO: SHOULD BE A LINK    DEDICATED #/configuration/nas
     linkId: 'DEDICATED',
     linkPart: '#/configuration/nas',
     app: [DEDICATED],
@@ -487,7 +501,6 @@ export const SIDEBAR_ORDER_CONFIG = [
     id: 'order-license',
     title: 'licence',
     icon: 'ovh-font ovh-font-certificate',
-    state: 'app.license.order', // TODO: SHOULD BE A LINK DEDICATED #/configuration/license?landingTo=licences
     linkId: 'DEDICATED',
     linkPart: '#/configuration/license/order',
     app: [DEDICATED],
@@ -538,8 +551,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     id: 'order-nasha',
     title: 'NASHA',
     icon: 'ovh-font ovh-font-cloudnas',
-    state: 'nasha-add',
-    linkId: 'CLOUD',
+    linkId: 'DEDICATED',
     linkPart: '#/nasha/new',
     app: [DEDICATED],
     regions: ['EU', 'CA'],
@@ -608,8 +620,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     id: 'order-enterprise-cloud-database',
     title: 'enterprise_cloud_database',
     icon: 'ovh-font ovh-font-database',
-    state: 'enterprise-cloud-database.create',
-    linkId: 'enterprise_cloud_database',
+    linkId: 'DEDICATED',
     linkPart: '#/enterprise-cloud-database/create',
     app: [DEDICATED],
     regions: ['EU'],
