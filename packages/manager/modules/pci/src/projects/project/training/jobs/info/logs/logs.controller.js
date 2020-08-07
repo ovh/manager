@@ -14,10 +14,11 @@ export default class PciTrainingJobsInfoLogsController {
   $onInit() {
     if (this.job.isRunning()) {
       this.interval = this.$interval(() => {
-        this.jobLog = this.pciProjectTrainingJobService.logs(
-          this.projectId,
-          this.jobId,
-        );
+        this.pciProjectTrainingJobService
+          .logs(this.projectId, this.jobId)
+          .then((jobLog) => {
+            this.jobLog = jobLog;
+          });
       }, 3000);
     }
   }
