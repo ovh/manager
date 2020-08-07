@@ -496,7 +496,7 @@ export default class {
           this.tabMenu.items.push({
             label: this.$translate.instant('hosting_tab_WEBSITE_COACH'),
             styles: 'status-beta',
-            state: 'app.hosting.website-coach',
+            state: 'app.hosting.dashboard.website-coach',
             target: 'WEBSITE_COACH',
             type: 'STATE',
           });

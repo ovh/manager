@@ -89,12 +89,12 @@ export const DOMAIN_CONFIG = {
 
 export const HOSTING_CONFIG = {
   id: 'hostings',
-  loadOnState: 'app.hosting',
+  loadOnState: 'app.hosting.dashboard',
   types: [
     {
       path: '/hosting/web',
       category: 'HOSTING',
-      state: 'app.hosting',
+      state: 'app.hosting.dashboard',
       stateParams: ['productId'],
       icon: 'ovh-font ovh-font-server',
       app: [WEB],

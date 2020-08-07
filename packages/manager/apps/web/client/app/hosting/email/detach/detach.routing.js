@@ -8,7 +8,7 @@ import {
 import component from './detach.component';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.hosting.detachEmail', {
+  $stateProvider.state('app.hosting.dashboard.detachEmail', {
     url: '/detachEmail',
     component: component.name,
     resolve: {

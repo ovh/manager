@@ -6,7 +6,7 @@ import union from 'lodash/union';
 import { WEB_HOSTING_NOT_USABLE_DOMAINS } from './activate.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.hosting.activate', {
+  $stateProvider.state('app.hosting.dashboard.activate', {
     url: '/activate',
     component: 'webHostingEmailActivate',
     resolve: {

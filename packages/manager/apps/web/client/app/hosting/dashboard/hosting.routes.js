@@ -5,8 +5,8 @@ import template from './hosting.html';
 import { LOCAL_SEO_FAMILY } from '../local-seo/local-seo.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.hosting', {
-    url: '/configuration/hosting/:productId?tab',
+  $stateProvider.state('app.hosting.dashboard', {
+    url: '/:productId?tab',
     template,
     controller,
     controllerAs: '$ctrl',
@@ -124,15 +124,15 @@ export default /* @ngInject */ ($stateProvider) => {
           },
         }).catch(() => null),
       goToDetachEmail: /* @ngInject */ ($state) => () =>
-        $state.go('app.hosting.detachEmail'),
+        $state.go('app.hosting.dashboard.detachEmail'),
       goToDetachPrivateDB: /* @ngInject */ ($state) => () =>
-        $state.go('app.hosting.database.detachPrivate'),
+        $state.go('app.hosting.dashboard.database.detachPrivate'),
       goToHosting: /* @ngInject */ ($state, $timeout, Alerter) => (
         message = false,
         type = 'success',
         target = 'app.alerts.main',
       ) => {
-        const promise = $state.go('app.hosting', {});
+        const promise = $state.go('app.hosting.dashboard', {});
 
         if (message) {
           promise.then(() =>
@@ -157,7 +157,7 @@ export default /* @ngInject */ ($stateProvider) => {
     atInternet: { ignore: true },
   });
 
-  $stateProvider.state('app.hosting.upgrade', {
+  $stateProvider.state('app.hosting.dashboard.upgrade', {
     url: '/change-offer',
     templateUrl: 'hosting/offer/upgrade/hosting-offer-upgrade.html',
     controller: 'HostingUpgradeOfferCtrl',

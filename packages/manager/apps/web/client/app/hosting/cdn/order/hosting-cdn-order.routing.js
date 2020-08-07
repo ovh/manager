@@ -220,14 +220,14 @@ export default /* @ngInject */ ($stateProvider) => {
     rename: 'web::hosting::cdn::order',
   };
 
-  $stateProvider.state('app.hosting.cdn.order', {
+  $stateProvider.state('app.hosting.dashboard.cdn.order', {
     url: '/order',
     component: 'hostingCdnOrder',
     resolve: { ...resolve, ...resolveOrder },
     atInternet,
   });
 
-  $stateProvider.state('app.hosting.cdn.upgrade', {
+  $stateProvider.state('app.hosting.dashboard.cdn.upgrade', {
     url: '/upgrade',
     component: 'hostingCdnOrder',
     resolve: { ...resolve, ...resolveUpgrade },

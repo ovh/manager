@@ -228,7 +228,9 @@ export default class HostingGeneralInformationsCtrl {
 
   changeOffer() {
     this.sendTrackClick('web::hostname::general-informations::change-offer');
-    this.$state.go('app.hosting.upgrade', { productId: this.serviceName });
+    this.$state.go('app.hosting.dashboard.upgrade', {
+      productId: this.serviceName,
+    });
   }
 
   goToBoostTab() {
@@ -240,7 +242,9 @@ export default class HostingGeneralInformationsCtrl {
   }
 
   goToPrivateSqlActivation() {
-    return this.$state.go('app.hosting.database.private-sql-activation');
+    return this.$state.go(
+      'app.hosting.dashboard.database.private-sql-activation',
+    );
   }
 
   doesEmailOfferExists() {
@@ -249,7 +253,9 @@ export default class HostingGeneralInformationsCtrl {
   }
 
   activateEmailOffer() {
-    this.$state.go('app.hosting.activate', { serviceName: this.serviceName });
+    this.$state.go('app.hosting.dashboard.activate', {
+      serviceName: this.serviceName,
+    });
   }
 
   getCDNBannerKeyToTranslate() {
@@ -275,8 +281,8 @@ export default class HostingGeneralInformationsCtrl {
     this.sendTrackClick('web::hosting::alert::order-cdn');
     return this.$state.go(
       this.$scope.hosting.hasCdn
-        ? 'app.hosting.cdn.upgrade'
-        : 'app.hosting.cdn.order',
+        ? 'app.hosting.dashboard.cdn.upgrade'
+        : 'app.hosting.dashboard.cdn.order',
     );
   }
 
@@ -291,12 +297,12 @@ export default class HostingGeneralInformationsCtrl {
         ? 'web::hosting::activate-cdn'
         : 'web::hosting::order-cdn',
     );
-    this.$state.go('app.hosting.cdn.order');
+    this.$state.go('app.hosting.dashboard.cdn.order');
   }
 
   upgradeCdn() {
     this.sendTrackClick('web::hosting::upgrade-cdn');
-    this.$state.go('app.hosting.cdn.upgrade');
+    this.$state.go('app.hosting.dashboard.cdn.upgrade');
   }
 
   terminateCdn(action) {

@@ -8,11 +8,12 @@ import {
 import component from './component';
 
 export default /* @ngInject */ function($stateProvider) {
-  $stateProvider.state('app.hosting.database.detachPrivate', {
+  $stateProvider.state('app.hosting.dashboard.database.detachPrivate', {
     url: '/detach',
     component: component.name,
     resolve: {
-      goBack: /* @ngInject */ ($state) => () => $state.go('app.hosting'),
+      goBack: /* @ngInject */ ($state) => () =>
+        $state.go('app.hosting.dashboard'),
       pricingType: /* @ngInject */ () =>
         pricingConstants.PRICING_CAPACITIES.DETACH,
       workflow: /* @ngInject */ (privateDatabasesDetachable) => ({
