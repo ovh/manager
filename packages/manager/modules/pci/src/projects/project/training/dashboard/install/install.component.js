@@ -8,5 +8,6 @@ export default {
     userLink: '<',
     goToDashboard: '<',
     goBack: '<',
+    regions: '<',
   },
 };
