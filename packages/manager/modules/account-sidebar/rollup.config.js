@@ -15,4 +15,4 @@ const config = rollupConfig(
   },
 );
 
-export default [config.es({})];
+export default [config.es()];
