@@ -15,11 +15,4 @@ const config = rollupConfig(
   },
 );
 
-const outputs = [config.es()];
-
-if (process.env.BUILD === 'production') {
-  outputs.push(config.cjs());
-  outputs.push(config.umd());
-}
-
-export default outputs;
+export default [config.es()];
