@@ -78,30 +78,28 @@ export default class {
     }
   }
 
+  configureInterface() {
+    switch (this.configuration.mode) {
+      case OLA_MODES.VRACK_AGGREGATION:
+        return this.InterfaceService.setPrivateAggregation(
+          this.serverName,
+          this.configuration.name,
+          this.selectedInterfaces,
+        );
+      case OLA_MODES.DEFAULT:
+        return this.InterfaceService.setDefaultInterfaces(
+          this.serverName,
+          this.selectedInterfaces[0],
+        );
+      default:
+        return this.$q.when();
+    }
+  }
+
   onFinish() {
     this.loading = true;
     this.atTrack('configure_ola');
-    return this.InterfaceService.disableInterfaces(
-      this.serverName,
-      this.selectedInterfaces,
-    )
-      .then(() => {
-        switch (this.configuration.mode) {
-          case OLA_MODES.VRACK_AGGREGATION:
-            return this.InterfaceService.setPrivateAggregation(
-              this.serverName,
-              this.configuration.name,
-              this.selectedInterfaces,
-            );
-          case OLA_MODES.DEFAULT:
-            return this.InterfaceService.setDefaultInterfaces(
-              this.serverName,
-              this.selectedInterfaces[0],
-            );
-          default:
-            return this.$q.when();
-        }
-      })
+    this.configureInterface()
       .then(() => {
         this.PhysicalInterface.v6().resetCache();
         this.VirtualInterface.v6().resetCache();

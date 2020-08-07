@@ -140,42 +140,42 @@ export default class DedicatedServerInterfacesService {
       }));
   }
 
-  disableInterfaces(serverName, interfaces) {
-    return this.$q
-      .all(
-        interfaces
-          .filter((i) => i.enabled === true)
-          .map(
-            (i) =>
-              this.VirtualInterface.v6().disable(
-                {
-                  serverName,
-                  uuid: i.id,
-                },
-                {},
-              ).$promise,
-          ),
-      )
-      .then((tasks) => this.waitAllTasks(serverName, tasks));
-  }
-
   setPrivateAggregation(serverName, name, interfacesToGroup) {
-    return this.Ola.v6().group(
-      { serverName },
-      {
-        name,
-        virtualNetworkInterfaces: map(interfacesToGroup, 'id'),
-      },
-    ).$promise;
+    return this.$http.post(`/dedicated/server/${serverName}/ola/aggregation`, {
+      name,
+      virtualNetworkInterfaces: map(interfacesToGroup, 'id'),
+    }).then((task) => this.waitForTask(serverName, task.data.taskId));
   }
 
   setDefaultInterfaces(serverName, interfaceToUngroup) {
-    return this.Ola.v6().ungroup(
-      { serverName },
+    return this.$http.post(`/dedicated/server/${serverName}/ola/reset`, {
+      virtualNetworkInterface: interfaceToUngroup.id,
+    }).then((task) => this.waitForTask(serverName, task.data.taskId));
+  }
+
+  waitForTask(serverName, taskId) {
+    return this.Poller.poll(
+      `/dedicated/server/${serverName}/task/${taskId}`,
+      {},
       {
-        virtualNetworkInterface: interfaceToUngroup.id,
+        namespace: 'dedicated.server.interfaces.ola.aggregation',
+        method: 'get',
+        successRule: {
+          status: 'done',
+        },
+        errorRule: (task) => {
+          return task.status === 'ovhError' || task.status === 'customerError';
+        },
       },
-    ).$promise;
+    ).then(
+      () => true,
+      (error) => {
+        if (error.status === 404) {
+          return true;
+        }
+        return Promise.reject(error);
+      },
+    );
   }
 
   waitAllTasks(serverName, tasks) {
