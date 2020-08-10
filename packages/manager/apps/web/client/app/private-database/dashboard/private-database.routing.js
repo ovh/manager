@@ -1,26 +1,72 @@
+import controller from './private-database.controller';
+import template from './private-database.html';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.private-database.dashboard', {
     url: '/:productId',
-    templateUrl: 'private-database/dashboard/private-database.html',
-    controller: 'PrivateDatabaseCtrl',
+    template,
+    controller,
+    controllerAs: 'ctrl',
     reloadOnSearch: false,
+    redirectTo: 'app.private-database.dashboard.state',
     resolve: {
-      navigationInformations: [
-        'Navigator',
-        '$rootScope',
-        (Navigator, $rootScope) => {
-          // eslint-disable-next-line no-param-reassign
-          $rootScope.currentSectionInformation = 'private_database';
-          return Navigator.setNavigationInformation({
-            leftMenuVisible: true,
-            configurationSelected: true,
-          });
-        },
-      ],
-    },
-    translations: {
-      value: ['../private-database', '../hosting'],
-      format: 'json',
+      /* @ngInject */
+      navigationInformations: (Navigator, $rootScope) => {
+        // eslint-disable-next-line no-param-reassign
+        $rootScope.currentSectionInformation = 'private_database';
+        return Navigator.setNavigationInformation({
+          leftMenuVisible: true,
+          configurationSelected: true,
+        });
+      },
+      serviceName: /* @ngInject */ ($transition$) =>
+        $transition$.params().productId,
+      hasConfiguration: /* @ngInject */ (PrivateDatabase, serviceName) =>
+        PrivateDatabase.getConfigurationDetails(serviceName).then(
+          (res) => res.details.length > 0,
+        ),
+      stateLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href(
+          'app.private-database.dashboard.state',
+          $transition$.params(),
+        ),
+      userLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href(
+          'app.private-database.dashboard.user',
+          $transition$.params(),
+        ),
+      databaseLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href(
+          'app.private-database.dashboard.database',
+          $transition$.params(),
+        ),
+      allowedIPsLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href(
+          'app.private-database.dashboard.allowed-ips',
+          $transition$.params(),
+        ),
+      metricsLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href(
+          'app.private-database.dashboard.metrics',
+          $transition$.params(),
+        ),
+      logsLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href(
+          'app.private-database.dashboard.logs',
+          $transition$.params(),
+        ),
+      configurationLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href(
+          'app.private-database.dashboard.configuration',
+          $transition$.params(),
+        ),
+      taskLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href(
+          'app.private-database.dashboard.task',
+          $transition$.params(),
+        ),
+      currentActiveLink: /* @ngInject */ ($state, $transition$) => () =>
+        $state.href($state.current.name, $transition$.params()),
     },
   });
 
