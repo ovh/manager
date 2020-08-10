@@ -9,9 +9,15 @@ const moduleName = 'ovhManagerDNSZonesLazyLoading';
 angular
   .module(moduleName, ['ui.router', 'oc.lazyLoad'])
   .config(
-    /* @ngInject */ ($stateProvider) => {
-      $stateProvider.state('app.domain.zone.**', {
-        url: '/configuration/zones',
+    /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
+      $stateProvider.state('app.zone', {
+        url: '/zone',
+        template: '<div ui-view></div>',
+        redirectTo: 'app.zone.index',
+      });
+
+      $stateProvider.state('app.zone.index.**', {
+        url: '',
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
@@ -21,8 +27,8 @@ angular
         },
       });
 
-      $stateProvider.state('app.domain.dns-zone.**', {
-        url: '/configuration/zone/:productId',
+      $stateProvider.state('app.zone.details.**', {
+        url: '/:productId',
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
@@ -31,6 +37,13 @@ angular
           );
         },
       });
+
+      $urlRouterProvider.when(
+        /^\/configuration\/zone/,
+        /* @ngInject */ ($location) => {
+          $location.url($location.url().replace('/configuration', ''));
+        },
+      );
     },
   )
   .service('DNSZoneService', service);
