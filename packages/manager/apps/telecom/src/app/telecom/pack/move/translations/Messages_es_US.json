@@ -21,7 +21,7 @@
   "pack_move_eligibility_synchronisation_line_inactive": "Inactive",
   "pack_move_eligibility_synchronisation_upload": "Upload :",
   "pack_move_eligibility_synchronisation_mbps": "Mbps",
-  "pack_move_eligibility_unbundling_total": "Dégroupage total",
+  "pack_move_eligibility_unbundling_full": "Dégroupage total",
   "pack_move_eligibility_unbundling_createNeighbour": "Création de voisinage",
   "pack_move_eligibility_unbundling_creation": "Création de ligne",
   "pack_move_eligibility_unbundling_partial": "Dégroupage partiel",

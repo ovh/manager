@@ -21,7 +21,7 @@
   "pack_move_eligibility_synchronisation_line_inactive": "Ei aktiivinen",
   "pack_move_eligibility_synchronisation_upload": "Upload:",
   "pack_move_eligibility_synchronisation_mbps": "Mbps",
-  "pack_move_eligibility_unbundling_total": "Täydellinen eriyttäminen",
+  "pack_move_eligibility_unbundling_full": "Täydellinen eriyttäminen",
   "pack_move_eligibility_unbundling_createNeighbour": "Lähiympäristön luominen",
   "pack_move_eligibility_unbundling_creation": "Linjan luominen",
   "pack_move_eligibility_unbundling_partial": "Osittainen eriyttäminen",
