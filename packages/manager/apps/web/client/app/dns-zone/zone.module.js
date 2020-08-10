@@ -1,15 +1,20 @@
-import dashboard from './dashboard';
-import dynhost from './dynhost';
-import newDnsZone from './new';
-import redirection from './redirection';
-import tasks from './tasks';
+import angular from 'angular';
+import 'angular-translate';
+import '@ovh-ux/ui-kit';
+import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
+import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
-import routing from './dns-zone.routing';
+import routing from './zone.routing';
 
-const moduleName = 'ovhManagerWebDomainDnsZone';
+const moduleName = 'ovhManagerDNSZone';
 
 angular
-  .module(moduleName, [dashboard, dynhost, newDnsZone, redirection, tasks])
+  .module(moduleName, [
+    ngTranslateAsyncLoader,
+    'oui',
+    'pascalprecht.translate',
+    ListLayoutHelper.moduleName,
+  ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
 
