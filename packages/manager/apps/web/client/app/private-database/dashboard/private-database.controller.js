@@ -16,10 +16,20 @@ export default class PrivateDatabaseCtrl {
     $timeout,
     $translate,
     Alerter,
+    allowedIPsLink,
+    configurationLink,
+    currentActiveLink,
+    databaseLink,
+    hasConfiguration,
+    logsLink,
+    metricsLink,
     Hosting,
     PrivateDatabase,
     PrivateDatabaseExtension,
+    stateLink,
+    taskLink,
     User,
+    userLink,
   ) {
     this.$q = $q;
     this.$rootScope = $rootScope;
@@ -28,10 +38,20 @@ export default class PrivateDatabaseCtrl {
     this.$timeout = $timeout;
     this.$translate = $translate;
     this.alerter = Alerter;
+    this.allowedIPsLink = allowedIPsLink;
+    this.configurationLink = configurationLink;
+    this.currentActiveLink = currentActiveLink;
+    this.databaseLink = databaseLink;
+    this.hasConfiguration = hasConfiguration;
     this.hostingService = Hosting;
+    this.logsLink = logsLink;
+    this.metricsLink = metricsLink;
     this.privateDatabaseExtensionService = PrivateDatabaseExtension;
     this.privateDatabaseService = PrivateDatabase;
+    this.stateLink = stateLink;
+    this.taskLink = taskLink;
     this.userService = User;
+    this.userLink = userLink;
   }
 
   $onInit() {
@@ -87,11 +107,6 @@ export default class PrivateDatabaseCtrl {
 
     this.$scope.isLegacyDatabase = () =>
       this.$scope.database.infrastructure === 'legacy';
-
-    this.$scope.isConfigSet = () =>
-      this.privateDatabaseService
-        .getConfigurationDetails(this.productId)
-        .then((res) => !isEmpty(res.details));
 
     this.$scope.isExtensionSet = () =>
       this.privateDatabaseExtensionService

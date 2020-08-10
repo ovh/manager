@@ -1,4 +1,4 @@
-<div data-ng-controller="PrivateDatabaseCtrl as ctrl">
+<div>
     <div data-ovh-alert="{{alerts.page}}"></div>
 
     <div class="text-center" data-ng-if="ctrl.loaders.details">
@@ -193,20 +193,66 @@
             ></p>
         </div>
 
-        <div data-ng-controller="PrivateDatabaseTabsCtrl">
-            <wuc-ovh-tabs
-                tabs="tabs"
-                selected-tab="selectedTab"
-                product="privateDatabase"
-                change-tab="setSelectedTab"
-                tr="tr"
-            ></wuc-ovh-tabs>
-            <div class="tab-content">
-                <div
-                    class="tab-pane active"
-                    data-ng-include="!server.isExpired && 'private-database/' + toKebabCase(selectedTab) + '/private-database-' + selectedTab.toLowerCase() + '.html' || ''"
-                ></div>
-            </div>
+        <!-- <div > -->
+        <oui-header-tabs>
+            <oui-header-tabs-item
+                href="{{ ctrl.stateLink }}"
+                active="ctrl.currentActiveLink() === ctrl.stateLink"
+            >
+                <span data-translate="privateDatabase_tab_STATE"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-ng-if="database.serviceInfos.status !== 'expired'"
+                href="{{ ctrl.userLink }}"
+                active="ctrl.currentActiveLink() === ctrl.userLink"
+            >
+                <span data-translate="privateDatabase_tab_USER"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-ng-if="database.serviceInfos.status !== 'expired'"
+                href="{{ ctrl.databaseLink }}"
+                active="ctrl.currentActiveLink() === ctrl.databaseLink"
+            >
+                <span data-translate="privateDatabase_tab_DATABASE"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-ng-if="database.serviceInfos.status !== 'expired' && isDBaaS()"
+                href="{{ ctrl.allowedIPsLink }}"
+                active="ctrl.currentActiveLink() === ctrl.allowedIPsLink"
+            >
+                <span data-translate="privateDatabase_tab_WHITELIST"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-ng-if="database.serviceInfos.status !== 'expired' && !isLegacyDatabase()"
+                href="{{ ctrl.metricsLink }}"
+                active="ctrl.currentActiveLink() === ctrl.metricsLink"
+            >
+                <span data-translate="privateDatabase_tab_METRICS"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-ng-if="database.serviceInfos.status !== 'expired'"
+                href="{{ ctrl.logsLink }}"
+                active="ctrl.currentActiveLink() === ctrl.logsLink"
+            >
+                <span data-translate="privateDatabase_tab_LOGS"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-ng-if="database.serviceInfos.status !== 'expired' && !isLegacyDatabase() && !hasConfiguration"
+                href="{{ ctrl.configurationLink }}"
+                active="ctrl.currentActiveLink() === ctrl.configurationLink"
+            >
+                <span data-translate="privateDatabase_tab_CONFIGURATION"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-ng-if="database.serviceInfos.status !== 'expired'"
+                href="{{ ctrl.taskLink }}"
+                active="ctrl.currentActiveLink() === ctrl.taskLink"
+            >
+                <span data-translate="privateDatabase_tab_TASK"></span>
+            </oui-header-tabs-item>
+        </oui-header-tabs>
+        <div class="tab-content">
+            <div ui-view></div>
         </div>
     </div>
 
