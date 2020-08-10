@@ -13,7 +13,7 @@ angular.module('App').controller(
       Alerter,
       Hosting,
       HostingModule,
-      User,
+      WucUser,
     ) {
       this.$scope = $scope;
       this.$state = $state;
@@ -23,7 +23,7 @@ angular.module('App').controller(
       this.Alerter = Alerter;
       this.Hosting = Hosting;
       this.HostingModule = HostingModule;
-      this.User = User;
+      this.WucUser = WucUser;
     }
 
     $onInit() {
@@ -45,7 +45,7 @@ angular.module('App').controller(
           );
         });
 
-      this.User.getUrlOf('guides').then((guides) => {
+      this.WucUser.getUrlOf('guides').then((guides) => {
         if (guides && guides.hostingModule) {
           this.guide = guides.hostingModule;
         }

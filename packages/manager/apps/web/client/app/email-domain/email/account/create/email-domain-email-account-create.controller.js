@@ -13,7 +13,7 @@ angular.module('App').controller(
      * @param $translate
      * @param Alerter
      * @param WucEmails
-     * @param User
+     * @param WucUser
      */
     constructor(
       $scope,
@@ -22,7 +22,7 @@ angular.module('App').controller(
       $translate,
       Alerter,
       WucEmails,
-      User,
+      WucUser,
     ) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
@@ -30,7 +30,7 @@ angular.module('App').controller(
       this.$translate = $translate;
       this.Alerter = Alerter;
       this.WucEmails = WucEmails;
-      this.User = User;
+      this.WucUser = WucUser;
     }
 
     createGuide(deviceName, guideName, guideUrl, logo) {
@@ -94,7 +94,7 @@ angular.module('App').controller(
 
       this.$scope.createAccount = () => this.createAccount();
 
-      this.User.getUrlOf('guides').then((guides) => {
+      this.WucUser.getUrlOf('guides').then((guides) => {
         this.createGuide(
           'MAC',
           'El capitan',

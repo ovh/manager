@@ -16,7 +16,7 @@ export default class DomainConfigurationController {
     $rootScope,
     $timeout,
     $translate,
-    User,
+    WucUser,
     wizardHostedCreationDomainConfiguration,
   ) {
     this.Exchange = Exchange;
@@ -26,7 +26,7 @@ export default class DomainConfigurationController {
     this.$rootScope = $rootScope;
     this.$timeout = $timeout;
     this.$translate = $translate;
-    this.User = User;
+    this.WucUser = WucUser;
     this.wizardHostedCreationDomainConfiguration = wizardHostedCreationDomainConfiguration;
   }
 
@@ -106,7 +106,7 @@ export default class DomainConfigurationController {
   }
 
   retrieveURLToOrderDomains() {
-    return this.User.getUrlOf('domainOrder').then((urlToOrderDomains) => {
+    return this.WucUser.getUrlOf('domainOrder').then((urlToOrderDomains) => {
       this.urlToOrderDomains = urlToOrderDomains;
     });
   }

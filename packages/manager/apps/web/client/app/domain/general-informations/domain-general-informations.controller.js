@@ -39,7 +39,7 @@ export default class DomainTabGeneralInformationsCtrl {
     OvhApiDomainRules,
     OvhApiScreenshot,
     RedirectionService,
-    User,
+    WucUser,
     WucAllDom,
     DOMAIN,
     goToDnsAnycast,
@@ -62,7 +62,7 @@ export default class DomainTabGeneralInformationsCtrl {
     this.OvhApiDomainRules = OvhApiDomainRules;
     this.OvhApiScreenshot = OvhApiScreenshot.Aapi();
     this.RedirectionService = RedirectionService;
-    this.User = User;
+    this.WucUser = WucUser;
     this.constants = constants;
     this.DOMAIN = DOMAIN;
     this.goToDnsAnycast = goToDnsAnycast;
@@ -163,7 +163,7 @@ export default class DomainTabGeneralInformationsCtrl {
     if (!this.domain.isExpired) {
       this.getScreenshoot(this.domain.name);
     }
-    this.User.getUrlOf('start10mMarket').then((start10mMarket) => {
+    this.WucUser.getUrlOf('start10mMarket').then((start10mMarket) => {
       this.start10MarketUrl = start10mMarket;
     });
 
@@ -210,7 +210,7 @@ export default class DomainTabGeneralInformationsCtrl {
     if (isObject(this.domain.whoisOwner)) {
       return this.$q
         .all({
-          domainOrderTradeUrl: this.User.getUrlOf('domainOrderTrade'),
+          domainOrderTradeUrl: this.WucUser.getUrlOf('domainOrderTrade'),
           orderServiceOption: this.Domain.getOrderServiceOption(
             this.domain.name,
           ),
@@ -239,7 +239,7 @@ export default class DomainTabGeneralInformationsCtrl {
       last(this.domain.name.split('.')),
     );
 
-    return this.User.getUrlOf(
+    return this.WucUser.getUrlOf(
       changeOwnerClassic ? 'changeOwner' : 'domainOrderChange',
     )
       .then((changeOwnerUrl) => {

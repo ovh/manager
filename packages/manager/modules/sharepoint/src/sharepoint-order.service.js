@@ -1,9 +1,9 @@
 export default class MicrosoftSharepointOrderService {
   /* @ngInject */
-  constructor(OvhApiMsServices, OvhApiOrder, User) {
+  constructor(OvhApiMsServices, OvhApiOrder, WucUser) {
     this.OvhApiMsServices = OvhApiMsServices;
     this.OvhApiOrder = OvhApiOrder;
-    this.User = User;
+    this.WucUser = WucUser;
   }
 
   fetchingDoesServiceUseAgora(serviceName) {
@@ -13,7 +13,7 @@ export default class MicrosoftSharepointOrderService {
   }
 
   creatingCart() {
-    return this.User.getUser()
+    return this.WucUser.getUser()
       .then(
         ({ ovhSubsidiary }) =>
           this.OvhApiOrder.Cart()

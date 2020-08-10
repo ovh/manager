@@ -20,14 +20,14 @@ export default class MicrosoftSharepointLicenseService {
     OvhHttp,
     OvhApiEmailExchange,
     SHAREPOINT_GUIDE_URLS,
-    User,
+    WucUser,
   ) {
     this.alerter = Alerter;
     this.OvhHttp = OvhHttp;
     this.$q = $q;
     this.SHAREPOINT_GUIDE_URLS = SHAREPOINT_GUIDE_URLS;
     this.$translate = $translate;
-    this.User = User;
+    this.WucUser = WucUser;
     this.OvhApiEmailExchange = OvhApiEmailExchange;
 
     this.cache = {
@@ -39,7 +39,7 @@ export default class MicrosoftSharepointLicenseService {
       license: 'UNIVERS_MODULE_SHAREPOINT_SERVICE_LICENSE',
     };
 
-    this.User.getUrlOfEndsWithSubsidiary('express_order')
+    this.WucUser.getUrlOfEndsWithSubsidiary('express_order')
       .then((orderBaseUrl) => {
         this.orderBaseUrl = orderBaseUrl;
       })
@@ -57,7 +57,7 @@ export default class MicrosoftSharepointLicenseService {
    * @param {string} assignToProperty
    */
   assignGuideUrl(assignToObject, assignToProperty) {
-    return this.User.getUser().then((user) => {
+    return this.WucUser.getUser().then((user) => {
       // eslint-disable-next-line no-param-reassign
       assignToObject[assignToProperty] =
         this.SHAREPOINT_GUIDE_URLS[user.ovhSubsidiary] ||

@@ -16,7 +16,7 @@ export default class ExchangeCtrl {
     messaging,
     navigation,
     ovhUserPref,
-    User,
+    WucUser,
   ) {
     this.services = {
       $location,
@@ -29,7 +29,7 @@ export default class ExchangeCtrl {
       messaging,
       navigation,
       ovhUserPref,
-      User,
+      WucUser,
     };
 
     this.$routerParams = Exchange.getParams();
@@ -107,7 +107,7 @@ export default class ExchangeCtrl {
         this.shouldOpenWizard = true;
       })
       .then(() =>
-        this.services.User.getUser().then((currentUser) => {
+        this.services.WucUser.getUser().then((currentUser) => {
           const { ovhSubsidiary } = currentUser;
 
           this.shouldOpenWizard =

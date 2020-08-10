@@ -27,8 +27,8 @@ export default class PrivateDatabaseCtrl {
     RedirectionService,
     stateLink,
     taskLink,
-    User,
     userLink,
+    WucUser,
   ) {
     this.$q = $q;
     this.$rootScope = $rootScope;
@@ -50,8 +50,8 @@ export default class PrivateDatabaseCtrl {
     this.RedirectionService = RedirectionService;
     this.stateLink = stateLink;
     this.taskLink = taskLink;
-    this.userService = User;
     this.userLink = userLink;
+    this.userService = WucUser;
   }
 
   $onInit() {

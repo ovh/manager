@@ -13,7 +13,7 @@ export default class HostingCronsCtrl {
     Alerter,
     Hosting,
     HostingCron,
-    User,
+    WucUser,
   ) {
     this.$scope = $scope;
     this.$stateParams = $stateParams;
@@ -22,7 +22,7 @@ export default class HostingCronsCtrl {
     this.Alerter = Alerter;
     this.Hosting = Hosting;
     this.HostingCron = HostingCron;
-    this.User = User;
+    this.WucUser = WucUser;
   }
 
   $onInit() {
@@ -43,7 +43,7 @@ export default class HostingCronsCtrl {
   }
 
   getGuides() {
-    return this.User.getUrlOf('guides').then((guides) => {
+    return this.WucUser.getUrlOf('guides').then((guides) => {
       if (guides && guides.hostingCron) {
         this.guide = guides.hostingCron;
       }

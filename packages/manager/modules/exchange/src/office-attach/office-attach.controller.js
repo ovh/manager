@@ -1,10 +1,10 @@
 export default class OfficeAttachController {
   /* @ngInject */
-  constructor(Exchange, officeAttach, ovhUserPref, User) {
+  constructor(Exchange, officeAttach, ovhUserPref, WucUser) {
     this.Exchange = Exchange;
     this.officeAttach = officeAttach;
     this.ovhUserPref = ovhUserPref;
-    this.User = User;
+    this.WucUser = WucUser;
   }
 
   $onInit() {

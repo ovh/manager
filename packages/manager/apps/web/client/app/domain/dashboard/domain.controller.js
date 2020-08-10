@@ -21,7 +21,7 @@ angular.module('App').controller(
       isEmailDomainAvailable,
       Hosting,
       orderedHosting,
-      User,
+      WucUser,
       WucAllDom,
       zoneCapabilities,
     ) {
@@ -40,7 +40,7 @@ angular.module('App').controller(
       this.isEmailDomainTabAvailable = isEmailDomainAvailable && hasEmailDomain;
       this.Hosting = Hosting;
       this.orderedHosting = orderedHosting;
-      this.User = User;
+      this.WucUser = WucUser;
       this.WucAllDom = WucAllDom;
       this.zoneCapabilities = zoneCapabilities;
     }
@@ -95,7 +95,7 @@ angular.module('App').controller(
 
       return this.$q
         .all({
-          user: this.User.getUser(),
+          user: this.WucUser.getUser(),
           domain: this.Domain.getServiceInfo(this.$stateParams.productId),
           allDom: this.isAllDom
             ? this.WucAllDom.getServiceInfos(this.$stateParams.allDom)
