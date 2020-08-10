@@ -8,7 +8,7 @@ import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
 import routing from './email-pro.routing';
 
-const moduleName = 'ovhManagerEmailPros';
+const moduleName = 'ovhManagerEmailPro';
 
 angular
   .module(moduleName, [

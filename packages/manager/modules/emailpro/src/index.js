@@ -11,7 +11,7 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
     const lazyLoad = ($transition$) => {
       const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-      return import('./emailpro.module').then((mod) =>
+      return import('./dashboard/emailpro.module').then((mod) =>
         $ocLazyLoad.inject(mod.default || mod),
       );
     };
@@ -21,7 +21,7 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-        return import('./email-pro/email-pro.module').then((mod) =>
+        return import('./email-pro.module').then((mod) =>
           $ocLazyLoad.inject(mod.default || mod),
         );
       },
@@ -32,7 +32,7 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-        return import('./mx-plan/mx-plan.module').then((mod) =>
+        return import('./email-pro.module').then((mod) =>
           $ocLazyLoad.inject(mod.default || mod),
         );
       },
