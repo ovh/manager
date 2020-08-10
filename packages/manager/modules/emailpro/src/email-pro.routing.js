@@ -1,8 +1,8 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.emails-pro', {
-    url: `/configuration/email_pro?${ListLayoutHelper.urlQueryParams}`,
+  $stateProvider.state('email-pro.index', {
+    url: `?${ListLayoutHelper.urlQueryParams}`,
     component: 'managerListLayout',
     params: ListLayoutHelper.stateParams,
     resolve: {
@@ -14,14 +14,14 @@ export default /* @ngInject */ ($stateProvider) => {
         $translate.instant('email_pro_title'),
       customizableColumns: () => true,
       getServiceNameLink: /* @ngInject */ ($state) => ({ domain: productId }) =>
-        $state.href('app.email-pro', {
+        $state.href('email-pro.dashboard', {
           productId,
         }),
     },
   });
 
-  $stateProvider.state('app.mxplan', {
-    url: `/configuration/email_mxplan?${ListLayoutHelper.urlQueryParams}`,
+  $stateProvider.state('mxplan.index', {
+    url: `?${ListLayoutHelper.urlQueryParams}`,
     component: 'managerListLayout',
     params: ListLayoutHelper.stateParams,
     resolve: {
@@ -33,7 +33,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $translate.instant('emails_mx_plan_title'),
       customizableColumns: () => true,
       getServiceNameLink: /* @ngInject */ ($state) => ({ domain: productId }) =>
-        $state.href('app.email.mxplan', {
+        $state.href('mxplan.dashboard', {
           productId,
         }),
     },

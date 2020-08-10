@@ -1,7 +1,7 @@
 import sortBy from 'lodash/sortBy';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.email.mxplan.upgrade', {
+  $stateProvider.state('mxplan.dashboard.upgrade', {
     url: '/upgrade?domain',
     component: 'webEmailDomainUpgrade',
     resolve: {
