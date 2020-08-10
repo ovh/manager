@@ -4,7 +4,7 @@ import 'oclazyload';
 
 import service from './private-database.service';
 
-const moduleName = 'ovhManagerPrivateDatabasesLazyLoading';
+const moduleName = 'ovhManagerPrivateDatabaseLazyLoading';
 
 angular
   .module(moduleName, ['ui.router', 'oc.lazyLoad'])
@@ -15,7 +15,7 @@ angular
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-          return import('./private-database.module').then((mod) =>
+          return import('./dashboard/private-database.module').then((mod) =>
             $ocLazyLoad.inject(mod.default || mod),
           );
         },
@@ -26,7 +26,7 @@ angular
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-          return import('./private-databases/databases.module').then((mod) =>
+          return import('./private-database.module').then((mod) =>
             $ocLazyLoad.inject(mod.default || mod),
           );
         },
