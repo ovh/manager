@@ -1,7 +1,7 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.private-database', {
-    url: '/configuration/private_database/:productId',
-    templateUrl: 'private-database/private-database.html',
+  $stateProvider.state('app.private-database.dashboard', {
+    url: '/:productId',
+    templateUrl: 'private-database/dashboard/private-database.html',
     controller: 'PrivateDatabaseCtrl',
     reloadOnSearch: false,
     resolve: {
@@ -24,8 +24,8 @@ export default /* @ngInject */ ($stateProvider) => {
     },
   });
 
-  $stateProvider.state('app.private-database-order', {
-    url: '/configuration/private_database',
+  $stateProvider.state('app.private-database.order', {
+    url: '/order',
     templateUrl: 'private-database/order/private-database-order.html',
     controller: 'PrivateDatabaseOrderCtrl',
     resolve: {
