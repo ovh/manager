@@ -4,8 +4,8 @@ import emailproCtrl from './emailpro.controller';
 import emailproTpl from './emailpro.html';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.email-pro', {
-    url: '/configuration/email_pro/:productId?tab',
+  $stateProvider.state('email-pro.dashboard', {
+    url: '/:productId?tab',
     template: emailproTpl,
     controller: emailproCtrl,
     controllerAs: '$ctrl',
@@ -21,15 +21,15 @@ export default /* @ngInject */ ($stateProvider) => {
       productId: /* @ngInject */ ($transition$) =>
         $transition$.params().productId,
       getTabLink: /* @ngInject */ ($state, productId) => (tab) =>
-        $state.href('app.email-pro', { productId, tab }),
+        $state.href('email-pro.dashboard', { productId, tab }),
     },
     translations: {
       value: ['.'],
       format: 'json',
     },
   });
-  $stateProvider.state('app.email.mxplan', {
-    url: '/configuration/email_mxplan/:productId?tab',
+  $stateProvider.state('mxplan.dashboard', {
+    url: '/:productId?tab',
     template: emailproTpl,
     controller: emailproCtrl,
     controllerAs: '$ctrl',
@@ -48,7 +48,7 @@ export default /* @ngInject */ ($stateProvider) => {
         message = false,
         type = 'success',
       ) => {
-        const promise = $state.go('app.email.mxplan', { productId });
+        const promise = $state.go('mxplan.dashboard', { productId });
 
         if (message) {
           promise.then(() =>
@@ -66,10 +66,10 @@ export default /* @ngInject */ ($stateProvider) => {
         return promise;
       },
       getTabLink: /* @ngInject */ ($state, productId) => (tab) =>
-        $state.href('app.email.mxplan', { productId, tab }),
+        $state.href('mxplan.dashboard', { productId, tab }),
     },
     translations: {
-      value: ['.', 'mailing-list'],
+      value: ['.', '../mailing-list'],
       format: 'json',
     },
   });

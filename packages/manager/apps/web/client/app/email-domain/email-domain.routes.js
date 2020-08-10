@@ -50,7 +50,7 @@ angular.module('App').config(($stateProvider) => {
           WucEmails.getDomain(trans.params().productId).then((data) => {
             if (data.migratedMXPlanServiceName) {
               return {
-                state: 'app.email.mxplan',
+                state: 'mxplan.dashboard',
                 params: {
                   productId: data.migratedMXPlanServiceName,
                 },
