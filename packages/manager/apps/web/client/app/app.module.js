@@ -63,7 +63,6 @@ import './hosting/email/terminate/hosting-email-terminate.module';
 
 import './components/user/user-session.service';
 import './components/user/user.controller';
-import './components/user/user.service';
 import './components/webApp.controller';
 
 import './config/config.bundle';

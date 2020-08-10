@@ -17,7 +17,7 @@ angular.module('App').controller(
       Alerter,
       constants,
       OvhApiEmailDomain,
-      User,
+      WucUser,
       WucEmails,
     ) {
       this.$q = $q;
@@ -29,7 +29,7 @@ angular.module('App').controller(
       this.Alerter = Alerter;
       this.constants = constants;
       this.OvhApiEmailDomain = OvhApiEmailDomain;
-      this.User = User;
+      this.WucUser = WucUser;
       this.WucEmails = WucEmails;
     }
 
@@ -170,7 +170,7 @@ angular.module('App').controller(
             })
           : '';
 
-      return this.User.getUrlOf('changeOwner')
+      return this.WucUser.getUrlOf('changeOwner')
         .then((link) => {
           this.urls.changeOwner = link;
         })

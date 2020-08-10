@@ -44,7 +44,7 @@ export default class {
     generalInformationLink,
     goToDetachEmail,
     goToDetachPrivateDB,
-    User,
+    WucUser,
     HostingDatabase,
     HostingDomain,
     HostingFreedom,
@@ -102,7 +102,7 @@ export default class {
     this.generalInformationLink = generalInformationLink;
     this.goToDetachEmail = goToDetachEmail;
     this.goToDetachPrivateDB = goToDetachPrivateDB;
-    this.User = User;
+    this.WucUser = WucUser;
     this.HostingDatabase = HostingDatabase;
     this.HostingDomain = HostingDomain;
     this.HostingFreedom = HostingFreedom;
@@ -183,7 +183,7 @@ export default class {
       return `${res.value} ${resUnit}`;
     };
 
-    this.User.getUrlOf('changeOwner').then((link) => {
+    this.WucUser.getUrlOf('changeOwner').then((link) => {
       this.$scope.changeOwnerUrl = link;
     });
 
@@ -202,7 +202,7 @@ export default class {
     this.$scope.userInfos = {};
 
     this.$scope.getUserInfos = () =>
-      this.User.getUser()
+      this.WucUser.getUser()
         .then((user) => {
           this.$scope.userInfos = user;
         })
@@ -418,7 +418,7 @@ export default class {
     return this.$q
       .all({
         hosting: this.Hosting.getSelected(this.$stateParams.productId),
-        user: this.User.getUser(),
+        user: this.WucUser.getUser(),
       })
       .then(({ hosting, user }) =>
         isEmpty(hosting.offer)
@@ -678,7 +678,8 @@ export default class {
         this.$scope.sshUrl = `ssh://${hostingProxy.serviceManagementAccess.ssh.url}:${hostingProxy.serviceManagementAccess.ssh.port}/`;
         this.$scope.urls.hosting = hostingUrl;
         this.$scope.urlDomainOrder = domainOrderUrl;
-        return this.User.getUrlOf('guides');
+
+        return this.WucUser.getUrlOf('guides');
       })
       .then((guides) => {
         if (guides) {

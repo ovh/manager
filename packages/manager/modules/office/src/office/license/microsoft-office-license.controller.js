@@ -10,7 +10,7 @@ export default class MicrosoftOfficeLicenseCtrl {
     $translate,
     Alerter,
     MicrosoftOfficeLicenseService,
-    User,
+    WucUser,
   ) {
     this.$rootScope = $rootScope;
     this.$stateParams = $stateParams;
@@ -19,7 +19,7 @@ export default class MicrosoftOfficeLicenseCtrl {
     this.$translate = $translate;
     this.alerter = Alerter;
     this.licenseService = MicrosoftOfficeLicenseService;
-    this.user = User;
+    this.user = WucUser;
   }
 
   $onInit() {

@@ -11,7 +11,7 @@ angular.module('App').controller(
      * @param $translate
      * @param Alerter
      * @param MailingLists
-     * @param User
+     * @param WucUser
      */
     constructor(
       $scope,
@@ -20,7 +20,7 @@ angular.module('App').controller(
       $translate,
       Alerter,
       MailingLists,
-      User,
+      WucUser,
     ) {
       this.$scope = $scope;
       this.$q = $q;
@@ -28,7 +28,7 @@ angular.module('App').controller(
       this.$translate = $translate;
       this.Alerter = Alerter;
       this.MailingLists = MailingLists;
-      this.User = User;
+      this.WucUser = WucUser;
     }
 
     $onInit() {

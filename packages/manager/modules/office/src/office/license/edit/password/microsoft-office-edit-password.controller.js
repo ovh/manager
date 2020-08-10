@@ -6,14 +6,14 @@ export default class MicrosoftOfficePasswordEditCtrl {
     $q,
     $scope,
     $translate,
-    User,
+    WucUser,
   ) {
     this.alerter = Alerter;
     this.licenseService = MicrosoftOfficeLicenseService;
     this.$q = $q;
     this.$scope = $scope;
     this.$translate = $translate;
-    this.userService = User;
+    this.userService = WucUser;
   }
 
   loadUserInfos() {

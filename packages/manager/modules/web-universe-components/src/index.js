@@ -11,6 +11,7 @@ import wucGuides from './guides';
 import wucOrderCart from './order-cart';
 import wucString from './string';
 import wucTabs from './tabs';
+import wucUser from './user';
 import wucValidator from './validator';
 
 const moduleName = 'ngOvhWebUniverseComponents';
@@ -27,6 +28,7 @@ angular.module(moduleName, [
   wucOrderCart,
   wucString,
   wucTabs,
+  wucUser,
   wucValidator,
 ]);
 

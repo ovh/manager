@@ -18,7 +18,7 @@ export default class ExchangeTabInformationCtrl {
     messaging,
     navigation,
     $translate,
-    User,
+    WucUser,
   ) {
     this.$rootScope = $rootScope;
     this.$scope = $scope;
@@ -29,7 +29,7 @@ export default class ExchangeTabInformationCtrl {
     this.messaging = messaging;
     this.navigation = navigation;
     this.$translate = $translate;
-    this.User = User;
+    this.WucUser = WucUser;
   }
 
   $onInit() {
@@ -57,7 +57,7 @@ export default class ExchangeTabInformationCtrl {
   }
 
   getGuides() {
-    return this.User.getUser()
+    return this.WucUser.getUser()
       .then((data) => {
         try {
           this.displayGuides = this.EXCHANGE_CONFIG.URLS.GUIDES.DOCS_HOME[

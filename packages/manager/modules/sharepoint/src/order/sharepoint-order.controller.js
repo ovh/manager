@@ -17,7 +17,7 @@ export default class SharepointOrderCtrl {
     MicrosoftSharepointLicenseService,
     ouiDatagridService,
     OvhApiMeVipStatus,
-    User,
+    WucUser,
   ) {
     this.$q = $q;
     this.$stateParams = $stateParams;
@@ -26,7 +26,7 @@ export default class SharepointOrderCtrl {
     this.Sharepoint = MicrosoftSharepointLicenseService;
     this.ouiDatagridService = ouiDatagridService;
     this.OvhApiMeVipStatus = OvhApiMeVipStatus;
-    this.User = User;
+    this.WucUser = WucUser;
   }
 
   $onInit() {
@@ -54,7 +54,7 @@ export default class SharepointOrderCtrl {
     this.standAloneQuantity = 1;
 
     this.getExchanges()
-      .then(() => this.User.getUser())
+      .then(() => this.WucUser.getUser())
       .then(({ ovhSubsidiary }) => {
         this.userSubsidiary = ovhSubsidiary;
       })

@@ -11,7 +11,7 @@ angular.module('App').controller(
      * @param $translate
      * @param Alerter
      * @param MailingLists
-     * @param User
+     * @param WucUser
      */
     constructor(
       $scope,
@@ -20,7 +20,7 @@ angular.module('App').controller(
       $translate,
       Alerter,
       MailingLists,
-      User,
+      WucUser,
     ) {
       this.$scope = $scope;
       this.$q = $q;
@@ -28,7 +28,7 @@ angular.module('App').controller(
       this.$translate = $translate;
       this.Alerter = Alerter;
       this.MailingLists = MailingLists;
-      this.User = User;
+      this.WucUser = WucUser;
     }
 
     $onInit() {
@@ -128,7 +128,7 @@ angular.module('App').controller(
 
     summary() {
       this.loading.guides = true;
-      this.User.getUrlOf('guides')
+      this.WucUser.getUrlOf('guides')
         .then((guides) => {
           if (guides && guides.emailsCreateMailingListGuide) {
             this.guide = guides.emailsCreateMailingListGuide;

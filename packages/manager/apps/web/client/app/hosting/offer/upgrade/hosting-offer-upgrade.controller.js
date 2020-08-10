@@ -14,7 +14,7 @@ angular.module('App').controller(
       apiTranslator,
       atInternet,
       Hosting,
-      User,
+      WucUser,
     ) {
       this.$scope = $scope;
       this.$rootScope = $rootScope;
@@ -26,7 +26,7 @@ angular.module('App').controller(
       this.apiTranslator = apiTranslator;
       this.atInternet = atInternet;
       this.Hosting = Hosting;
-      this.User = User;
+      this.WucUser = WucUser;
     }
 
     $onInit() {
@@ -47,7 +47,7 @@ angular.module('App').controller(
         downgradeAgree: false,
       };
 
-      this.User.getUser().then((user) => {
+      this.WucUser.getUser().then((user) => {
         this.ovhSubsidiary = user.ovhSubsidiary;
       });
 

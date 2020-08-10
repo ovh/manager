@@ -15,7 +15,7 @@ angular.module('App').controller(
       HostingAutomatedEmails,
       Alerter,
       $filter,
-      User,
+      WucUser,
       WucChartjsFactory,
     ) {
       this.$scope = $scope;
@@ -26,7 +26,7 @@ angular.module('App').controller(
       this.HostingAutomatedEmails = HostingAutomatedEmails;
       this.Alerter = Alerter;
       this.$filter = $filter;
-      this.User = User;
+      this.WucUser = WucUser;
       this.WucChartjsFactory = WucChartjsFactory;
 
       this.HOSTING_AUTOMATED_EMAILS = {
@@ -129,7 +129,7 @@ angular.module('App').controller(
         this.retrievingAutomatedEmails();
       });
 
-      this.User.getUrlOf('guides').then((guides) => {
+      this.WucUser.getUrlOf('guides').then((guides) => {
         this.guide = get(guides, 'hostingScriptEmail', null);
       });
 

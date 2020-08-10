@@ -8,7 +8,7 @@ export default class ExchangeTabResourcesCtrl {
     Exchange,
     ExchangeResources,
     EXCHANGE_CONFIG,
-    User,
+    WucUser,
     navigation,
     messaging,
     $translate,
@@ -19,7 +19,7 @@ export default class ExchangeTabResourcesCtrl {
       Exchange,
       ExchangeResources,
       EXCHANGE_CONFIG,
-      User,
+      WucUser,
       navigation,
       messaging,
       $translate,
@@ -36,7 +36,7 @@ export default class ExchangeTabResourcesCtrl {
       $scope.$broadcast('paginationServerSide.reload', 'resourcesTable');
     });
 
-    User.getUser().then((data) => {
+    WucUser.getUser().then((data) => {
       try {
         this.urls.guides.resources =
           EXCHANGE_CONFIG.URLS.GUIDES.RESOURCES[data.ovhSubsidiary];

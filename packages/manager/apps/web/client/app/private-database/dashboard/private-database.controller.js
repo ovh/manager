@@ -28,8 +28,8 @@ export default class PrivateDatabaseCtrl {
     PrivateDatabaseExtension,
     stateLink,
     taskLink,
-    User,
     userLink,
+    WucUser,
   ) {
     this.$q = $q;
     this.$rootScope = $rootScope;
@@ -50,8 +50,8 @@ export default class PrivateDatabaseCtrl {
     this.privateDatabaseService = PrivateDatabase;
     this.stateLink = stateLink;
     this.taskLink = taskLink;
-    this.userService = User;
     this.userLink = userLink;
+    this.userService = WucUser;
   }
 
   $onInit() {

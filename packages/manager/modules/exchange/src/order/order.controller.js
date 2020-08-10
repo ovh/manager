@@ -7,19 +7,19 @@ import set from 'lodash/set';
 
 export default class ExchangeOrderCtrl {
   /* @ngInject */
-  constructor($scope, Exchange, OvhApiEmailExchange, User) {
+  constructor($scope, Exchange, OvhApiEmailExchange, WucUser) {
     this.services = {
       $scope,
       Exchange,
       OvhApiEmailExchange,
-      User,
+      WucUser,
     };
 
     this.loaders = {
       init: false,
     };
 
-    User.getUrlOf('exchangeOrder').then((exchangeOrder) => {
+    WucUser.getUrlOf('exchangeOrder').then((exchangeOrder) => {
       this.exchangeOrderUrl = exchangeOrder;
     });
 

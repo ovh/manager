@@ -125,7 +125,7 @@ angular.module('App').controller(
     }
 
     /*
-     * Create User jobs
+     * Create WucUser jobs
      */
     onUserCreatestart(evt, opts) {
       this.currentUsers.add.push(opts.userName);
@@ -153,7 +153,7 @@ angular.module('App').controller(
     /** EndCreateUserJobs */
 
     /*
-     * delete User jobs
+     * delete WucUser jobs
      */
     onUserDeletestart(evt, opts) {
       let unregister = null;

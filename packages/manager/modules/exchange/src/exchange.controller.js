@@ -17,11 +17,11 @@ export default class ExchangeCtrl {
     messaging,
     navigation,
     ovhUserPref,
-    User,
     organization,
     productId,
     exchange,
     reloadDashboard,
+    WucUser,
   ) {
     this.services = {
       $q,
@@ -35,11 +35,11 @@ export default class ExchangeCtrl {
       messaging,
       navigation,
       ovhUserPref,
-      User,
       organization,
       productId,
       exchange,
       reloadDashboard,
+      WucUser,
     };
     this.exchange = exchange;
     this.$routerParams = Exchange.getParams();
@@ -124,7 +124,7 @@ export default class ExchangeCtrl {
         this.shouldOpenWizard = true;
       })
       .then(() =>
-        this.services.User.getUser().then((currentUser) => {
+        this.services.WucUser.getUser().then((currentUser) => {
           const { ovhSubsidiary } = currentUser;
 
           this.shouldOpenWizard =

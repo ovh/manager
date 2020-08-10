@@ -18,7 +18,7 @@ angular.module('App').controller(
      * @param Domains
      * @param Navigator
      * @param Alerter
-     * @param User
+     * @param WucUser
      */
     constructor(
       $scope,
@@ -29,7 +29,7 @@ angular.module('App').controller(
       Domains,
       Navigator,
       Alerter,
-      User,
+      WucUser,
     ) {
       this.$scope = $scope;
       this.$state = $state;
@@ -39,7 +39,7 @@ angular.module('App').controller(
       this.Domains = Domains;
       this.Navigator = Navigator;
       this.Alerter = Alerter;
-      this.User = User;
+      this.WucUser = WucUser;
     }
 
     $onInit() {
@@ -55,7 +55,7 @@ angular.module('App').controller(
       this.search = { value: null };
       this.stepPath = '';
 
-      this.User.getUrlOf('bulkChangeOwner')
+      this.WucUser.getUrlOf('bulkChangeOwner')
         .then((link) => {
           this.urlBulkChangeOwner = link;
         })

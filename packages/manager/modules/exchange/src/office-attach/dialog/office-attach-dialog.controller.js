@@ -14,7 +14,7 @@ export default class OfficeAttachDialogCtrl {
     ovhUserPref,
     $scope,
     $translate,
-    User,
+    WucUser,
     $window,
   ) {
     this.Exchange = Exchange;
@@ -24,7 +24,7 @@ export default class OfficeAttachDialogCtrl {
     this.ovhUserPref = ovhUserPref;
     this.$scope = $scope;
     this.$translate = $translate;
-    this.User = User;
+    this.WucUser = WucUser;
     this.$window = $window;
   }
 
@@ -64,7 +64,7 @@ export default class OfficeAttachDialogCtrl {
     this.$scope.isStep1Valid = this.isStep1Valid;
     this.$scope.isStep2Valid = () => this.isStep2Valid();
 
-    return this.User.getUser().then((user) => {
+    return this.WucUser.getUser().then((user) => {
       this.ovhSubsidiary = user.ovhSubsidiary;
     });
   }
@@ -156,7 +156,7 @@ export default class OfficeAttachDialogCtrl {
       quantity: 1,
     }));
 
-    this.User.getUrlOfEndsWithSubsidiary('express_order').then(
+    this.WucUser.getUrlOfEndsWithSubsidiary('express_order').then(
       (expressOrderUrl) => {
         this.$window.open(
           `${expressOrderUrl}#/new/express/resume?products=${JSURL.stringify(
