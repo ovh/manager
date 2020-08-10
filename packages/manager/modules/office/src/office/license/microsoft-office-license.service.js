@@ -14,7 +14,7 @@ export default class MicrosoftOfficeLicenseService {
     constants,
     OvhHttp,
     Poll,
-    User,
+    WucUser,
   ) {
     this.$cacheFactory = $cacheFactory;
     this.$http = $http;
@@ -24,7 +24,7 @@ export default class MicrosoftOfficeLicenseService {
     this.constants = constants;
     this.pollService = Poll;
     this.ovhHttp = OvhHttp;
-    this.User = User;
+    this.WucUser = WucUser;
 
     this.basePath = 'apiv6/license/office';
   }
@@ -313,7 +313,7 @@ export default class MicrosoftOfficeLicenseService {
       },
     ];
 
-    this.User.getUrlOfEndsWithSubsidiary('express_order').then(
+    this.WucUser.getUrlOfEndsWithSubsidiary('express_order').then(
       (expressOrderUrl) => {
         this.$window.open(
           `${expressOrderUrl}#/new/express/resume?products=${JSURL.stringify(

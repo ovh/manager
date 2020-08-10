@@ -14,7 +14,7 @@ angular.module('App').controller(
       constants,
       OvhApiEmailDomain,
       RedirectionService,
-      User,
+      WucUser,
       WucEmails,
     ) {
       this.$q = $q;
@@ -26,7 +26,7 @@ angular.module('App').controller(
       this.constants = constants;
       this.OvhApiEmailDomain = OvhApiEmailDomain;
       this.RedirectionService = RedirectionService;
-      this.User = User;
+      this.WucUser = WucUser;
       this.WucEmails = WucEmails;
     }
 
@@ -136,7 +136,7 @@ angular.module('App').controller(
         'contactManagement',
         { serviceName: this.$stateParams.productId },
       );
-      return this.User.getUrlOf('changeOwner')
+      return this.WucUser.getUrlOf('changeOwner')
         .then((link) => {
           this.urls.changeOwner = link;
         })

@@ -12,7 +12,7 @@ angular.module('App').controller(
       $q,
       $scope,
       $translate,
-      User,
+      WucUser,
     ) {
       this.alerter = Alerter;
       this.$location = $location;
@@ -21,7 +21,7 @@ angular.module('App').controller(
       this.$q = $q;
       this.$scope = $scope;
       this.$translate = $translate;
-      this.User = User;
+      this.WucUser = WucUser;
     }
 
     $onInit() {
@@ -83,7 +83,7 @@ angular.module('App').controller(
         return '';
       };
 
-      this.User.getUser().then((user) => {
+      this.WucUser.getUser().then((user) => {
         this.user = user;
       });
 

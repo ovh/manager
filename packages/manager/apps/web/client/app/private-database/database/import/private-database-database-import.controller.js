@@ -15,7 +15,7 @@ angular.module('App').controller(
       $translate,
       Alerter,
       PrivateDatabase,
-      User,
+      WucUser,
     ) {
       this.$rootScope = $rootScope;
       this.$scope = $scope;
@@ -23,7 +23,7 @@ angular.module('App').controller(
       this.$translate = $translate;
       this.alerter = Alerter;
       this.privateDatabaseService = PrivateDatabase;
-      this.userService = User;
+      this.userService = WucUser;
     }
 
     $onInit() {

@@ -10,7 +10,7 @@ export default class EmailProMXPlanMailingListsCreateCtrl {
     $translate,
     Alerter,
     EmailProMXPlanMailingLists,
-    User,
+    WucUser,
   ) {
     this.$scope = $scope;
     this.$q = $q;
@@ -18,7 +18,7 @@ export default class EmailProMXPlanMailingListsCreateCtrl {
     this.$translate = $translate;
     this.Alerter = Alerter;
     this.EmailProMXPlanMailingLists = EmailProMXPlanMailingLists;
-    this.User = User;
+    this.WucUser = WucUser;
   }
 
   $onInit() {
@@ -118,7 +118,7 @@ export default class EmailProMXPlanMailingListsCreateCtrl {
 
   summary() {
     this.loading.guides = true;
-    this.User.getUrlOf('guides')
+    this.WucUser.getUrlOf('guides')
       .then((guides) => {
         if (guides && guides.emailsCreateMailingListGuide) {
           this.guide = guides.emailsCreateMailingListGuide;
