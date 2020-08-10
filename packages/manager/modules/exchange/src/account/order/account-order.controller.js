@@ -13,7 +13,7 @@ export default class ExchangeOrderAccountCtrl {
     $translate,
     navigation,
     exchangeServiceInfrastructure,
-    User,
+    WucUser,
   ) {
     this.services = {
       $scope,
@@ -25,7 +25,7 @@ export default class ExchangeOrderAccountCtrl {
       exchangeServiceInfrastructure,
     };
 
-    User.getUser()
+    WucUser.getUser()
       .then(({ ovhSubsidiary }) => {
         this.ovhSubsidiary = ovhSubsidiary;
       })

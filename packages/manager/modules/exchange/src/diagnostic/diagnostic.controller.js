@@ -14,7 +14,7 @@ export default class ExchangeTabDiagnosticsCtrl {
     $q,
     constants,
     diagnostic,
-    User,
+    WucUser,
     EXCHANGE_CONFIG,
     $translate,
     navigation,
@@ -27,7 +27,7 @@ export default class ExchangeTabDiagnosticsCtrl {
       $q,
       constants,
       diagnostic,
-      User,
+      WucUser,
       EXCHANGE_CONFIG,
       $translate,
       navigation,
@@ -269,7 +269,7 @@ export default class ExchangeTabDiagnosticsCtrl {
   fetchDiagnosticGuideUrl() {
     const defaultSubsidiary = 'FR';
 
-    this.services.User.getUser()
+    this.services.WucUser.getUser()
       .then((data) => {
         this.diagnosticGuideUrl =
           this.services.EXCHANGE_CONFIG.URLS.GUIDES.DIAGNOSTIC[

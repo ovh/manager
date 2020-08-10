@@ -15,7 +15,7 @@ export default class DomainDnsCtrl {
     $translate,
     Alerter,
     Domain,
-    User,
+    WucUser,
     WucValidator,
     constants,
     goToDnsAnycast,
@@ -27,7 +27,7 @@ export default class DomainDnsCtrl {
     this.$translate = $translate;
     this.Alerter = Alerter;
     this.Domain = Domain;
-    this.User = User;
+    this.WucUser = WucUser;
     this.WucValidator = WucValidator;
     this.constants = constants;
     this.goToDnsAnycast = goToDnsAnycast;
@@ -63,7 +63,7 @@ export default class DomainDnsCtrl {
     this.$q
       .all({
         serviceInfo: this.Domain.getServiceInfo(this.$stateParams.productId),
-        user: this.User.getUser(),
+        user: this.WucUser.getUser(),
       })
       .then(({ serviceInfo, user }) => {
         this.allowModification =

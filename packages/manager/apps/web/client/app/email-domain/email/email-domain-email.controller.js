@@ -19,7 +19,7 @@ angular.module('App').controller(
       constants,
       WucEmails,
       ovhUserPref,
-      User,
+      WucUser,
     ) {
       this.$q = $q;
       this.$scope = $scope;
@@ -32,7 +32,7 @@ angular.module('App').controller(
       this.constants = constants;
       this.WucEmails = WucEmails;
       this.ovhUserPref = ovhUserPref;
-      this.User = User;
+      this.WucUser = WucUser;
     }
 
     $onInit() {
@@ -53,7 +53,7 @@ angular.module('App').controller(
       this.works = {};
       this.statusWorksDone = ['closed', 'finished'];
 
-      this.User.getUrlOf('guides')
+      this.WucUser.getUrlOf('guides')
         .then((guides) => {
           if (guides != null) {
             this.$scope.guide = guides.emailsConfiguration;
@@ -77,9 +77,9 @@ angular.module('App').controller(
 
       this.$q
         .all({
-          webMailUrl: this.User.getUrlOf('domainWebmailUrl'),
-          webOMMUrl: this.User.getUrlOf('domainOMMUrl'),
-          user: this.User.getUser(),
+          webMailUrl: this.WucUser.getUrlOf('domainWebmailUrl'),
+          webOMMUrl: this.WucUser.getUrlOf('domainOMMUrl'),
+          user: this.WucUser.getUser(),
           serviceInfos: this.WucEmails.getServiceInfos(
             this.$stateParams.productId,
           ),

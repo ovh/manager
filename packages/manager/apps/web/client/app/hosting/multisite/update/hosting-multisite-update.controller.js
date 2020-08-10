@@ -21,7 +21,7 @@ angular
       HostingRuntimes,
       Alerter,
       Domain,
-      User,
+      WucUser,
       $q,
     ) => {
       $scope.selectedOptions = {};
@@ -130,7 +130,7 @@ angular
           .then((data) => {
             $scope.model.domains = data.existingDomains;
           })
-          .then(() => User.getUser())
+          .then(() => WucUser.getUser())
           .then((user) => {
             $scope.userInfos = user;
           })
