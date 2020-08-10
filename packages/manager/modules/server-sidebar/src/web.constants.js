@@ -107,12 +107,12 @@ export const HOSTING_CONFIG = {
 
 export const PRIVATE_DATABASE_CONFIG = {
   id: 'privateDatabases',
-  loadOnState: 'app.private-database',
+  loadOnState: 'app.private-database.dashboard',
   types: [
     {
       path: '/hosting/privateDatabase',
       category: 'PRIVATE_DATABASE',
-      state: 'app.private-database',
+      state: 'app.private-database.dashboard',
       stateParams: ['productId'],
       icon: 'ovh-font ovh-font-database',
       app: [WEB],

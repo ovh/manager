@@ -1,8 +1,8 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.private-databases', {
-    url: `/configuration/private_database?${ListLayoutHelper.urlQueryParams}`,
+  $stateProvider.state('app.private-database.index', {
+    url: `?${ListLayoutHelper.urlQueryParams}`,
     component: 'managerListLayout',
     params: ListLayoutHelper.stateParams,
     resolve: {
@@ -16,7 +16,7 @@ export default /* @ngInject */ ($stateProvider) => {
       getServiceNameLink: /* @ngInject */ ($state) => ({
         serviceName: productId,
       }) =>
-        $state.href('app.private-database', {
+        $state.href('app.private-database.dashboard', {
           productId,
         }),
     },

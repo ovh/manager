@@ -199,7 +199,7 @@ angular
       $scope.buyPrivateDb = () => {
         $scope.resetAction();
         $timeout(() => {
-          $location.path('/configuration/private_database');
+          $location.path('/private_database/order');
         }, 300);
       };
     },
