@@ -56,11 +56,11 @@ export default class CloudConnectDatacenter {
   }
 
   removeExtraConfiguration(extraId) {
-    remove(this.extraConf, (extra) => extra.id === extraId);
+    remove(this.extraConf, (extra) => extra.id === parseInt(extraId, 10));
   }
 
   getExtraConfiguration(extraId) {
-    return find(this.extraConf, (extra) => extra.id === extraId);
+    return find(this.extraConf, (extra) => extra.id === parseInt(extraId, 10));
   }
 
   addExtraConfiguration(extra) {

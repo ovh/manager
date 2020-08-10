@@ -4,6 +4,7 @@ export default class CloudConnectDatacenterExtra {
   constructor({
     bgpNeighborArea,
     bgpNeighborIp,
+    id,
     nextHop,
     subnet,
     status,
@@ -12,6 +13,7 @@ export default class CloudConnectDatacenterExtra {
     Object.assign(this, {
       bgpNeighborArea,
       bgpNeighborIp,
+      id,
       nextHop,
       subnet,
       status,

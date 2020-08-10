@@ -1,7 +1,7 @@
 import { find, head, isEmpty, map, remove, set, sortBy, values } from 'lodash';
 import CloudConnectPop from './cloud-connect-pop.class';
 
-import { POPT_YPE_CONSTANT, STATUS } from './cloud-connect.constants';
+import { POP_TYPE_CONSTANT, STATUS } from './cloud-connect.constants';
 
 export default class CloudConnect {
   constructor(cloudConnect) {
@@ -111,11 +111,11 @@ export default class CloudConnect {
   }
 
   removeDcConfiguration(dcId) {
-    remove(this.datacenterConfigurations, (dc) => dc.id === dcId);
+    remove(this.datacenterConfigurations, (dc) => dc.id === parseInt(dcId, 10));
   }
 
   getDcConfiguration(dcId) {
-    return find(this.datacenterConfigurations, (dc) => dc.id === dcId);
+    return find(this.datacenterConfigurations, { id: parseInt(dcId, 10) });
   }
 
   setLoadingServiceKeys(loading) {
@@ -178,6 +178,6 @@ export default class CloudConnect {
   }
 
   isL3PopType() {
-    return this.popType === POPT_YPE_CONSTANT.L3;
+    return this.popType === POP_TYPE_CONSTANT.L3;
   }
 }

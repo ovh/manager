@@ -89,7 +89,6 @@ export default /* @ngInject */ ($stateProvider) => {
               cloudConnectService
                 .getVrackAssociatedCloudConnect(vrackId)
                 .then((res) => {
-                  console.log(res, state);
                   if (res) {
                     CucCloudMessage.warning(
                       $translate.instant(

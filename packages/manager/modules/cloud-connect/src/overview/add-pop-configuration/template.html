@@ -23,7 +23,7 @@
                 data-match="name"
                 data-placeholder="{{ ::'cloud_connect_pop_configure_pop_select_type' | translate }}"
                 required
-                data-disable-items="$item.id === POPT_YPE_CONSTANT.L2 && !$ctrl.cloudConnect.isDirectService()"
+                data-disable-items="$item.id === $ctrl.POP_TYPE_CONSTANT.L2 && !$ctrl.cloudConnect.isDirectService()"
                 disabled="$ctrl.popTypeSelected"
             >
                 <span data-ng-bind="$item.name"></span>
@@ -37,7 +37,7 @@
             </div>
         </oui-field>
         <div
-            data-ng-if="$ctrl.popType && $ctrl.popType.id === POPT_YPE_CONSTANT.L3"
+            data-ng-if="$ctrl.popType && $ctrl.popType.id === $ctrl.POP_TYPE_CONSTANT.L3"
         >
             <oui-field
                 data-label="{{ ::'cloud_connect_asn_type' | translate }}"

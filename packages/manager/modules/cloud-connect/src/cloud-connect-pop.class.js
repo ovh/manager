@@ -1,4 +1,4 @@
-import { POPT_YPE_CONSTANT, STATUS } from './cloud-connect.constants';
+import { POP_TYPE_CONSTANT, STATUS } from './cloud-connect.constants';
 
 export default class CloudConnectPop {
   constructor({
@@ -22,7 +22,7 @@ export default class CloudConnectPop {
   }
 
   isL3Type() {
-    return this.type === POPT_YPE_CONSTANT.L3;
+    return this.type === POP_TYPE_CONSTANT.L3;
   }
 
   isActive() {

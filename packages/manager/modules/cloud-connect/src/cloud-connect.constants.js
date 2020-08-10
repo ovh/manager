@@ -40,7 +40,7 @@ export const IPV4_BLOCK_REGEX = {
   ),
 };
 
-export const POPT_YPE_CONSTANT = {
+export const POP_TYPE_CONSTANT = {
   L3: 'l3',
   L2: 'l2',
 };
@@ -66,7 +66,7 @@ export default {
   GUIDELINK,
   POP_MAP,
   POP_TYPES,
-  POPT_YPE_CONSTANT,
+  POP_TYPE_CONSTANT,
   ASN_MIN,
   IPV4_BLOCK_REGEX,
   STATUS,

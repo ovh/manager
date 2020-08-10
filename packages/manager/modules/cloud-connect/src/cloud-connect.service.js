@@ -9,7 +9,7 @@ import CloudConnectInterface from './cloud-connect-interface.class';
 
 import {
   POP_TYPES,
-  POPT_YPE_CONSTANT,
+  POP_TYPE_CONSTANT,
   STATUS,
 } from './cloud-connect.constants';
 
@@ -168,7 +168,7 @@ export default class CloudConnectService {
       type,
       interfaceId,
     };
-    if (type === POPT_YPE_CONSTANT.L3) {
+    if (type === POP_TYPE_CONSTANT.L3) {
       options = {
         ...options,
         ...pop,

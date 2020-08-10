@@ -2,7 +2,7 @@ import find from 'lodash/find';
 import get from 'lodash/get';
 
 import {
-  POPT_YPE_CONSTANT,
+  POP_TYPE_CONSTANT,
   IPV4_BLOCK_REGEX,
   ASN_MIN,
 } from '../../cloud-connect.constants';
@@ -14,6 +14,7 @@ export default class AddPopConfigurationCtrl {
     this.cloudConnectService = cloudConnectService;
     this.IPV4_BLOCK_REGEX_RANGE_30 = IPV4_BLOCK_REGEX.RANGE_30;
     this.ASN_MIN = ASN_MIN;
+    this.POP_TYPE_CONSTANT = POP_TYPE_CONSTANT;
   }
 
   $onInit() {
@@ -21,7 +22,7 @@ export default class AddPopConfigurationCtrl {
     this.pop = {};
     this.popType = null;
     if (!this.cloudConnect.isDirectService()) {
-      this.popType = find(this.popTypes, { id: POPT_YPE_CONSTANT.L3 });
+      this.popType = find(this.popTypes, { id: POP_TYPE_CONSTANT.L3 });
     }
     if (this.allowedPopType) {
       this.popType = find(this.popTypes, { id: this.allowedPopType.type });
