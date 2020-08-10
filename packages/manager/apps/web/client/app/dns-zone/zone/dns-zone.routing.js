@@ -37,6 +37,6 @@ export default /* @ngInject */ ($stateProvider) => {
         $transition$.params().productId,
     },
     redirectTo: 'app.domain.dns-zone.dashboard',
-    translations: { value: ['../domain'], format: 'json' },
+    translations: { value: ['../../domain/dashboard'], format: 'json' },
   });
 };

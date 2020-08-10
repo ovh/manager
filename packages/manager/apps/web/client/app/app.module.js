@@ -68,7 +68,6 @@ import './components/webApp.controller';
 
 import './config/config.bundle';
 import './configuration/configuration.bundle';
-import './dns-zone/dns-zone.bundle';
 import './domain/dashboard/domain.bundle';
 import './domain-operation/domain-operation.bundle';
 import './domains/domains.bundle';

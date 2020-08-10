@@ -15,7 +15,7 @@ angular
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-          return import('./zones/zones.module').then((mod) =>
+          return import('./zone.module').then((mod) =>
             $ocLazyLoad.inject(mod.default || mod),
           );
         },
@@ -26,7 +26,7 @@ angular
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-          return import('./zone.module').then((mod) =>
+          return import('./zone/zone.module').then((mod) =>
             $ocLazyLoad.inject(mod.default || mod),
           );
         },
