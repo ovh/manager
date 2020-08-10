@@ -13,9 +13,9 @@ import cacheTemplate from './emailpro.template';
 import controllers from './emailproControllers.module';
 import routing from './emailpro.routes';
 import services from './emailproServices.module';
-import upgrade from './upgrade';
+import upgrade from '../upgrade';
 
-import './css/exchangeDiagnostic.css';
+import '../css/exchangeDiagnostic.css';
 
 import {
   EMAILPRO_MX_CONFIG,
@@ -49,6 +49,7 @@ angular
       }),
     }),
   )
-  .run(cacheTemplate);
+  .run(cacheTemplate)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
