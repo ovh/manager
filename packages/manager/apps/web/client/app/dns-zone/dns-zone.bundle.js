@@ -1,10 +1,1 @@
-import './dashboard/dns-zone-dashboard.constants';
-import './dashboard/dns-zone-dashboard.routing';
-import './dashboard/index';
 import './dns-zone.controller';
-import './dynhost/dns-zone-dynhost.routing';
-import './dynhost/index';
-import './redirection/dns-zone-redirection.routing';
-import './redirection/index';
-import './tasks/dns-zone-tasks.routing';
-import './tasks/index';
