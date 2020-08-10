@@ -17,7 +17,7 @@ export const REDIRECT_URLS = {
   orders:
     'https://www.ovh.com/manager/dedicated/index.html#/billing/orders?status=all',
   privateDatabase:
-    'https://www.ovh.com/manager/web/#/configuration/private_database/{serviceName}',
+    'https://www.ovh.com/manager/web/#/private_database/{serviceName}',
   services:
     'https://www.ovh.com/manager/dedicated/index.html#/billing/autoRenew',
   servicesAgreements:

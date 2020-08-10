@@ -9,9 +9,26 @@ const moduleName = 'ovhManagerPrivateDatabaseLazyLoading';
 angular
   .module(moduleName, ['ui.router', 'oc.lazyLoad'])
   .config(
-    /* @ngInject */ ($stateProvider) => {
-      $stateProvider.state('app.private-database.**', {
-        url: '/configuration/private_database/:productId',
+    /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
+      $stateProvider.state('app.private-database', {
+        url: '/private_database',
+        template: '<div ui-view></div>',
+        redirectTo: 'app.private-database.index',
+      });
+
+      $stateProvider.state('app.private-database.index.**', {
+        url: '',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+          return import('./private-database.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
+      });
+
+      $stateProvider.state('app.private-database.dashboard.**', {
+        url: '/:productId',
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
@@ -21,16 +38,12 @@ angular
         },
       });
 
-      $stateProvider.state('app.private-databases.**', {
-        url: '/configuration/private_database',
-        lazyLoad: ($transition$) => {
-          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-
-          return import('./private-database.module').then((mod) =>
-            $ocLazyLoad.inject(mod.default || mod),
-          );
+      $urlRouterProvider.when(
+        /^\/configuration\/private_database/,
+        /* @ngInject */ ($location) => {
+          $location.url($location.url().replace('/configuration', ''));
         },
-      });
+      );
     },
   )
   .service('PrivateDatabase', service);
