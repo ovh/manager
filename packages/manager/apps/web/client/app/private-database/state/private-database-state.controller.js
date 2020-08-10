@@ -18,7 +18,7 @@ angular.module('App').controller(
       Navigator,
       OomService,
       PrivateDatabase,
-      User,
+      WucUser,
     ) {
       this.$q = $q;
       this.$rootScope = $rootScope;
@@ -31,7 +31,7 @@ angular.module('App').controller(
       this.navigatorService = Navigator;
       this.oomService = OomService;
       this.privateDatabaseService = PrivateDatabase;
-      this.userService = User;
+      this.userService = WucUser;
     }
 
     $onInit() {

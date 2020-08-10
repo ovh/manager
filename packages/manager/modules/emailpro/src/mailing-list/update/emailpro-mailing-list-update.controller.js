@@ -9,14 +9,14 @@ export default class EmailProMXPlanMailingListsUpdateCtrl {
     $translate,
     Alerter,
     EmailProMXPlanMailingLists,
-    User,
+    WucUser,
   ) {
     this.$scope = $scope;
     this.$q = $q;
     this.$translate = $translate;
     this.Alerter = Alerter;
     this.EmailProMXPlanMailingLists = EmailProMXPlanMailingLists;
-    this.User = User;
+    this.WucUser = WucUser;
   }
 
   $onInit() {

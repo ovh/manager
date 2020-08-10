@@ -16,7 +16,7 @@ angular.module('App').controller(
       Alerter,
       Hosting,
       HostingLocalSeo,
-      User,
+      WucUser,
     ) {
       this.$q = $q;
       this.$scope = $scope;
@@ -26,7 +26,7 @@ angular.module('App').controller(
       this.Alerter = Alerter;
       this.Hosting = Hosting;
       this.HostingLocalSeo = HostingLocalSeo;
-      this.User = User;
+      this.WucUser = WucUser;
     }
 
     $onInit() {
@@ -52,7 +52,7 @@ angular.module('App').controller(
       return this.$q
         .all({
           serviceInfo: this.Hosting.getServiceInfos(this.productId),
-          user: this.User.getUser(),
+          user: this.WucUser.getUser(),
         })
         .then(
           ({ serviceInfo, user }) =>

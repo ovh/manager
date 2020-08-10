@@ -14,7 +14,7 @@ export default /* @ngInject */ function EmailProCtrl(
   EmailPro,
   APIEmailPro,
   getTabLink,
-  User,
+  WucUser,
   EMAILPRO_CONFIG,
   coreConfig,
 ) {
@@ -44,7 +44,7 @@ export default /* @ngInject */ function EmailProCtrl(
   $scope.currentActionData = null;
   $scope.displayGuides = null;
 
-  User.getUrlOf('changeOwner').then((link) => {
+  WucUser.getUrlOf('changeOwner').then((link) => {
     $scope.changeOwnerUrl = link;
   });
 
@@ -122,7 +122,7 @@ export default /* @ngInject */ function EmailProCtrl(
 
   const loadEmailPro = function loadEmailPro() {
     // eslint-disable-next-line consistent-return
-    User.getUser().then((data) => {
+    WucUser.getUser().then((data) => {
       try {
         $scope.displayGuides =
           EMAILPRO_CONFIG.URLS.GUIDES.DOCS_HOME[data.ovhSubsidiary];

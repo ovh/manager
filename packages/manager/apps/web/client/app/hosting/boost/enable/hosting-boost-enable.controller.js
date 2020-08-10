@@ -4,7 +4,7 @@ angular
   .module('App')
   .controller(
     'HostingBoostOfferRequestCtrl',
-    ($scope, $translate, HostingBoost, Alerter, User) => {
+    ($scope, $translate, HostingBoost, Alerter, WucUser) => {
       $scope.product = $scope.currentActionData.product;
       $scope.models = { boostOffer: null };
       $scope.acceptCGV = { value: false };
@@ -13,7 +13,7 @@ angular
         request: false,
       };
 
-      User.getUser().then((user) => {
+      WucUser.getUser().then((user) => {
         HostingBoost.getBoostPrice(user.ovhSubsidiary).then((catalog) => {
           const addon = catalog.addons.find(
             ({ planCode }) => planCode === 'consumption-perf2014',

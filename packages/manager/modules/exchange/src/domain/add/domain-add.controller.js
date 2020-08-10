@@ -22,7 +22,7 @@ export default class ExchangeAddDomainController {
     WucValidator,
     exchangeVersion,
     exchangeServiceInfrastructure,
-    User,
+    WucUser,
   ) {
     this.services = {
       $rootScope,
@@ -75,7 +75,7 @@ export default class ExchangeAddDomainController {
     $scope.checkDomainType = () => this.checkDomainType();
     $scope.isStep3Valid = () => this.isStep3Valid();
 
-    User.getUser().then((currentUser) => {
+    WucUser.getUser().then((currentUser) => {
       this.canOpenWizard = currentUser.ovhSubsidiary !== 'CA';
     });
   }

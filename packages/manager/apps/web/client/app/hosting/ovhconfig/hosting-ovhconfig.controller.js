@@ -18,7 +18,7 @@ angular.module('App').controller(
       Alerter,
       Hosting,
       HostingOvhConfig,
-      User,
+      WucUser,
     ) {
       this.$scope = $scope;
       this.$q = $q;
@@ -27,7 +27,7 @@ angular.module('App').controller(
       this.alerter = Alerter;
       this.hostingService = Hosting;
       this.hostingOvhConfigService = HostingOvhConfig;
-      this.User = User;
+      this.WucUser = WucUser;
     }
 
     $onInit() {
@@ -65,7 +65,7 @@ angular.module('App').controller(
       const queue = [];
       this.loading = true;
 
-      this.User.getUrlOf('guides').then((guides) => {
+      this.WucUser.getUrlOf('guides').then((guides) => {
         this.phpAppendicesGuide = guides.phpAppendices;
         this.hostingPhpGuide = guides.hostingPhpConfiguration;
       });
