@@ -10,7 +10,7 @@ angular.module('App').controller(
       $translate,
       coreConfig,
       incident,
-      User,
+      WucUser,
     ) {
       this.$scope = $scope;
       this.$rootScope = $rootScope;
@@ -18,7 +18,7 @@ angular.module('App').controller(
       this.$translate = $translate;
       this.coreConfig = coreConfig;
       this.incident = incident;
-      this.User = User;
+      this.WucUser = WucUser;
     }
 
     $onInit() {

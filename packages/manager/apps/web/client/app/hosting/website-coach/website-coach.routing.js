@@ -6,10 +6,10 @@ export default /* @ngInject */ ($stateProvider) => {
     translations: { value: ['.'], format: 'json' },
     component: 'hostingWebsiteCoach',
     resolve: {
-      activateWebsiteCoach: /* @ngInject */ ($window, User) => (
+      activateWebsiteCoach: /* @ngInject */ ($window, WucUser) => (
         attachedDomain,
       ) => {
-        User.getUrlOfEndsWithSubsidiary('express_order').then(
+        WucUser.getUrlOfEndsWithSubsidiary('express_order').then(
           (expressOrderUrl) => {
             const orderParams = [
               {
@@ -43,7 +43,7 @@ export default /* @ngInject */ ($stateProvider) => {
         OvhApiScreenshot.Aapi()
           .get({ url: productId })
           .$promise.then((screenshot) => screenshot),
-      user: /* @ngInject */ (User) => User.getUser(),
+      user: /* @ngInject */ (WucUser) => WucUser.getUser(),
     },
   });
 };

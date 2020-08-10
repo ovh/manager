@@ -21,6 +21,7 @@ import wucProgressBarElementCounter from './progressBarElementCounter';
 import wucServiceStatusAction from './service-status';
 import wucString from './string';
 import wucTabs from './tabs';
+import wucUser from './user';
 import wucValidator from './validator';
 import wucZoneValidator from './zone-validator';
 
@@ -48,6 +49,7 @@ angular.module(moduleName, [
   wucServiceStatusAction,
   wucString,
   wucTabs,
+  wucUser,
   wucValidator,
   wucZoneValidator,
 ]);

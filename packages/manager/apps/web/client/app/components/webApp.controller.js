@@ -2,12 +2,12 @@ import isString from 'lodash/isString';
 
 export default class WebAppCtrl {
   /* @ngInject */
-  constructor($document, $rootScope, $scope, $timeout, $translate, User) {
+  constructor($document, $rootScope, $scope, $timeout, $translate, WucUser) {
     this.$document = $document;
     this.$scope = $scope;
     this.$timeout = $timeout;
     this.$translate = $translate;
-    this.User = User;
+    this.WucUser = WucUser;
     this.$rootScope = $rootScope;
     this.$onInit();
   }
@@ -26,7 +26,7 @@ export default class WebAppCtrl {
 
     [this.currentLanguage] = this.$translate.use().split('_');
 
-    this.User.getUser().then((user) => {
+    this.WucUser.getUser().then((user) => {
       this.user = user;
     });
 
