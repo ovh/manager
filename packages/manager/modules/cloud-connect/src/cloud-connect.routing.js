@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import { GUIDELINK } from './cloud-connect.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('cloud-connect', {
     url: '/cloud-connect/:ovhCloudConnectId',
@@ -13,6 +16,7 @@ export default /* @ngInject */ ($stateProvider) => {
       cloudConnect: /* @ngInject */ (cloudConnectService, cloudConnectId) =>
         cloudConnectService.getCloudConnect(cloudConnectId),
       user: /* @ngInject */ (OvhApiMe) => OvhApiMe.v6().get().$promise,
+      guideUrl: /* @ngInject */ (user) => get(GUIDELINK, user.ovhSubsidiary),
     },
   });
 };

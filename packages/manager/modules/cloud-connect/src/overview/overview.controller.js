@@ -1,7 +1,7 @@
 import moment from 'moment';
 import { get } from 'lodash';
 
-import { GUIDELINK, POP_MAP } from '../cloud-connect.constants';
+import { POP_MAP } from '../cloud-connect.constants';
 
 export default class CloudConnectOverviewCtrl {
   /* @ngInject */
@@ -11,7 +11,6 @@ export default class CloudConnectOverviewCtrl {
     this.CucCloudMessage = CucCloudMessage;
     this.cloudConnectService = cloudConnectService;
     this.$translate = $translate;
-    this.GUIDELINK = GUIDELINK;
     this.POP_MAP = POP_MAP;
   }
 

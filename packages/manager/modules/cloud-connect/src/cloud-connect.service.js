@@ -437,7 +437,7 @@ export default class CloudConnectService {
     return this.$http
       .get(`/vrack/${serviceName}/ovhCloudConnect`)
       .then(({ data }) => {
-        return data.length > 1;
+        return data.length > 0;
       });
   }
 
