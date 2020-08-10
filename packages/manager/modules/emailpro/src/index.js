@@ -7,7 +7,7 @@ import '@ovh-ux/ui-kit/dist/css/oui.css';
 const moduleName = 'ovhManagerEmailproLazyLoading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
-  /* @ngInject */ ($stateProvider) => {
+  /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
     const lazyLoad = ($transition$) => {
       const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
@@ -16,8 +16,14 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
       );
     };
 
-    $stateProvider.state('app.emails-pro.**', {
-      url: '/configuration/email_pro',
+    $stateProvider.state('email-pro', {
+      url: '/email_pro',
+      template: '<div ui-view></div>',
+      redirectTo: 'email-pro.index',
+    });
+
+    $stateProvider.state('email-pro.index.**', {
+      url: '',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
@@ -27,8 +33,26 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
       },
     });
 
-    $stateProvider.state('app.mxplan.**', {
-      url: '/configuration/email_mxplan',
+    $stateProvider.state('email-pro.dashboard.**', {
+      url: '/:productId?tab',
+      lazyLoad,
+    });
+
+    $urlRouterProvider.when(
+      /^\/configuration\/email_pro/,
+      /* @ngInject */ ($location) => {
+        $location.url($location.url().replace('/configuration', ''));
+      },
+    );
+
+    $stateProvider.state('mxplan', {
+      url: '/email_mxplan',
+      template: '<div ui-view></div>',
+      redirectTo: 'mxplan.index',
+    });
+
+    $stateProvider.state('mxplan.index.**', {
+      url: '',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
@@ -38,15 +62,17 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
       },
     });
 
-    $stateProvider
-      .state('app.email-pro.**', {
-        url: '/configuration/email_pro/:productId?tab',
-        lazyLoad,
-      })
-      .state('app.email.mxplan.**', {
-        url: '/configuration/email_mxplan/:productId?tab',
-        lazyLoad,
-      });
+    $stateProvider.state('mxplan.dashboard.**', {
+      url: '/:productId?tab',
+      lazyLoad,
+    });
+
+    $urlRouterProvider.when(
+      /^\/configuration\/email_mxplan/,
+      /* @ngInject */ ($location) => {
+        $location.url($location.url().replace('/configuration', ''));
+      },
+    );
   },
 );
 
