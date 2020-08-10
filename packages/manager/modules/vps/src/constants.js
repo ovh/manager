@@ -69,8 +69,7 @@ export const ORDER_EXPRESS_BASE_URL = {
 };
 
 export const PRIVATE_DATABASE_URL = {
-  EU:
-    'https://www.ovh.com/manager/web/#/configuration/private_database/{serviceName}',
+  EU: 'https://www.ovh.com/manager/web/#/private_database/{serviceName}',
 };
 
 export const PRODUCT_NAME = 'VPS';
