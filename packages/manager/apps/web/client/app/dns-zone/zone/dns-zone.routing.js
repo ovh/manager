@@ -5,15 +5,12 @@ import controller from './dns-zone.controller';
 import template from './dns-zone.html';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.domain.dns-zone', {
-    url: '/configuration/zone/:productId',
+  $stateProvider.state('app.zone.details', {
+    url: '/:productId',
     controller,
     controllerAs: 'ctrlDomain',
     template,
     reloadOnSearch: false,
-    params: {
-      tab: null,
-    },
     resolve: {
       capabilities: /* @ngInject */ (DNSZoneService, serviceName) =>
         DNSZoneService.getCapabilities(serviceName),
@@ -36,7 +33,7 @@ export default /* @ngInject */ ($stateProvider) => {
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().productId,
     },
-    redirectTo: 'app.domain.dns-zone.dashboard',
+    redirectTo: 'app.zone.details.dashboard',
     translations: { value: ['../../domain/dashboard'], format: 'json' },
   });
 };

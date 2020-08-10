@@ -65,7 +65,7 @@ export const DOMAIN_CONFIG = {
     {
       path: '/domain/zone',
       category: 'ZONE',
-      state: 'app.domain.dns-zone',
+      state: 'app.zone.details',
       stateParams: ['productId'],
       icon: 'oui-icon oui-icon-domain-dns',
       app: [WEB],

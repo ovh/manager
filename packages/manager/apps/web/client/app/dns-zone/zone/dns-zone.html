@@ -24,23 +24,23 @@
     <div class="oui-header" data-ng-if="!ctrlDomain.domain.isExpired">
         <oui-header-tabs>
             <oui-header-tabs-item
-                data-state="app.domain.dns-zone.dashboard"
+                data-state="app.zone.details.dashboard"
                 data-state-params="ctrlDomain.$stateParams"
                 ><span data-translate="domain_tab_ZONE"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
-                data-state="app.domain.dns-zone.redirection"
+                data-state="app.zone.details.redirection"
                 data-state-params="ctrlDomain.$stateParams"
                 ><span data-translate="domain_tab_REDIRECTION"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
                 data-ng-if="ctrlDomain.hasZoneDns && ctrlDomain.capabilities.dynHost"
-                data-state="app.domain.dns-zone.dynhost"
+                data-state="app.zone.details.dynhost"
                 data-state-params="ctrlDomain.$stateParams"
                 ><span data-translate="domain_tab_DYNHOST"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
-                data-state="app.domain.dns-zone.tasks"
+                data-state="app.zone.details.tasks"
                 data-state-params="ctrlDomain.$stateParams"
                 ><span data-translate="domain_tab_TASKS"></span>
             </oui-header-tabs-item>

@@ -1,10 +1,10 @@
 import template from '../../domain/tasks/TASKS.html';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.domain.dns-zone.tasks', {
+  $stateProvider.state('app.zone.details.tasks', {
     url: '/tasks',
     views: {
-      'dnsZoneView@app.domain.dns-zone': {
+      'dnsZoneView@app.zone.details': {
         controller: 'controllers.Domain.Tasks',
         controllerAs: 'ctrlDomainTasks',
         template,
