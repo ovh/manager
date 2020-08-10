@@ -1,4 +1,13 @@
 import angular from 'angular';
+import 'angular-route';
+import 'angular-ui-bootstrap';
+import 'bootstrap';
+import 'ckeditor';
+import 'ng-ckeditor';
+import '@ovh-ux/ng-ovh-utils';
+import '@ovh-ux/ng-ovh-web-universe-components';
+
+import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 
 import cacheTemplate from './emailpro.template';
 import controllers from './emailproControllers.module';
@@ -22,6 +31,7 @@ angular
     'ngRoute',
     'ui.bootstrap',
     'ngSanitize',
+    'ngOvhWebUniverseComponents',
     'ng.ckeditor',
     controllers,
     services,
