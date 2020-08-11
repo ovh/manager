@@ -78,7 +78,7 @@ import './domain/dashboard/domain.bundle';
 import './domain-operation/domain-operation.bundle';
 import './domains/domains.bundle';
 import './double-authentication/double-authentication.bundle';
-import './email-domain/email-domain.bundle';
+import './email-domain/dashboard/email-domain.bundle';
 import './hosting/hosting.bundle';
 import './incident/incident.bundle';
 import './private-database/private-database.bundle';
