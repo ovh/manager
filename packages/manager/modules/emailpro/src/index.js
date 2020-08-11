@@ -34,7 +34,7 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
     });
 
     $stateProvider.state('email-pro.dashboard.**', {
-      url: '/:productId?tab',
+      url: '/:productId',
       lazyLoad,
     });
 
@@ -63,7 +63,7 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
     });
 
     $stateProvider.state('mxplan.dashboard.**', {
-      url: '/:productId?tab',
+      url: '/:productId',
       lazyLoad,
     });
 
