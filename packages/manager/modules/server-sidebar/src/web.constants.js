@@ -167,9 +167,9 @@ export const EMAIL_CONFIG = {
     {
       path: '/email/domain/delegatedAccount',
       category: 'EMAIL_DELEGATE',
-      state: 'app.email.delegate',
+      state: 'app.email-delegate.dashboard',
       stateParams: ['productId'],
-      loadOnState: 'app.email.delegate',
+      loadOnState: 'app.email-delegate.dashboard',
       icon: 'ovh-font ovh-font-mail',
       app: [WEB],
       regions: ['EU'],

@@ -1,7 +1,7 @@
-angular.module('App').config(($stateProvider) => {
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.email.domain', {
-    url: '/configuration/email-domain/:productId?tab',
-    templateUrl: 'email-domain/email-domain.html',
+    url: '/:productId?tab',
+    templateUrl: 'email-domain/dashboard/email-domain.html',
     controller: 'EmailDomainCtrl',
     controllerAs: 'ctrlEmailDomain',
     reloadOnSearch: false,
@@ -65,8 +65,8 @@ angular.module('App').config(($stateProvider) => {
     },
   });
 
-  $stateProvider.state('app.email.delegate', {
-    url: '/configuration/email-delegate/:productId?tab',
+  $stateProvider.state('app.email-delegate.dashboard', {
+    url: '/:productId?tab',
     templateUrl: 'email-domain/delegate/email-domain-delegate.html',
     controller: 'EmailDelegateCtrl',
     controllerAs: 'ctrlEmailDelegate',
@@ -88,4 +88,4 @@ angular.module('App').config(($stateProvider) => {
     },
     translations: { value: ['../email'], format: 'json' },
   });
-});
+};
