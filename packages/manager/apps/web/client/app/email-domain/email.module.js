@@ -4,7 +4,7 @@ import '@ovh-ux/ui-kit';
 import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
-import routing from './emails.routing';
+import routing from './email.routing';
 
 const moduleName = 'ovhManagerEmailDomain';
 
