@@ -125,12 +125,12 @@ export const PRIVATE_DATABASE_CONFIG = {
 
 export const EMAIL_PRO_CONFIG = {
   id: 'emailPros',
-  loadOnState: 'app.email-pro',
+  loadOnState: 'email-pro.dashboard',
   types: [
     {
       path: '/email/pro',
       category: 'EMAIL_PRO',
-      state: 'app.email-pro',
+      state: 'email-pro.dashboard',
       stateParams: ['productId'],
       icon: 'ovh-font ovh-font-mail',
       app: [WEB],
@@ -157,9 +157,9 @@ export const EMAIL_CONFIG = {
     {
       path: '/email/mxplan',
       category: 'EMAIL_MXPLAN',
-      state: 'app.email.mxplan',
+      state: 'mxplan.dashboard',
       stateParams: ['productId'],
-      loadOnState: 'app.email.mxplan',
+      loadOnState: 'mxplan.dashboard',
       icon: 'ovh-font ovh-font-mail',
       app: [WEB],
       regions: ['EU', 'CA'],
