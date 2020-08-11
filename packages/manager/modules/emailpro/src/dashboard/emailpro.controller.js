@@ -13,14 +13,21 @@ export default /* @ngInject */ function EmailProCtrl(
   $location,
   $stateParams,
   $translate,
+  accountLink,
+  currentActiveLink,
+  disclaimerLink,
+  domainLink,
+  externalContactLink,
   EmailPro,
   APIEmailPro,
-  getTabLink,
   WucUser,
+  informationLink,
+  mailingListLink,
+  redirectionLink,
+  taskLink,
   EMAILPRO_CONFIG,
   coreConfig,
 ) {
-  this.getTabLink = getTabLink;
   let initialLoad = true;
 
   $scope.currentRegionCA = coreConfig.isRegion('CA');
@@ -49,6 +56,16 @@ export default /* @ngInject */ function EmailProCtrl(
   WucUser.getUrlOf('changeOwner').then((link) => {
     $scope.changeOwnerUrl = link;
   });
+
+  $scope.accountLink = accountLink;
+  $scope.currentActiveLink = currentActiveLink;
+  $scope.disclaimerLink = disclaimerLink;
+  $scope.domainLink = domainLink;
+  $scope.externalContactLink = externalContactLink;
+  $scope.informationLink = informationLink;
+  $scope.mailingListLink = mailingListLink;
+  $scope.redirectionLink = redirectionLink;
+  $scope.taskLink = taskLink;
 
   const loadATooltip = function loadATooltip(exchange) {
     if (exchange.serverDiagnostic.ip && exchange.serverDiagnostic.isAValid) {
@@ -286,6 +303,12 @@ export default /* @ngInject */ function EmailProCtrl(
   $scope.resetMessages = function resetMessages() {
     $scope.message = null;
     $scope.messageDetails = null;
+  };
+
+  $scope.configureEmailService = function configure() {
+    $scope.setAction('emailpro/service/configure/emailpro-service-configure', {
+      exchange: $scope.exchange,
+    });
   };
 
   /**

@@ -15,6 +15,15 @@ import routing from './emailpro.routes';
 import services from './emailproServices.module';
 import upgrade from '../upgrade';
 
+import account from '../account/account.module';
+import disclaimer from '../disclaimer/disclaimer.module';
+import domain from '../domain/domain.module';
+import externalContact from '../external-contact/external-contact.module';
+import information from '../information/information.module';
+import mailingList from '../mailing-list/mailing-list.module';
+import redirection from '../redirection/redirection.module';
+import task from '../task/task.module';
+
 import '../css/exchangeDiagnostic.css';
 
 import {
@@ -36,6 +45,14 @@ angular
     controllers,
     services,
     upgrade,
+    account,
+    disclaimer,
+    domain,
+    externalContact,
+    information,
+    mailingList,
+    redirection,
+    task,
   ])
   .constant('EMAILPRO_MX_CONFIG', EMAILPRO_MX_CONFIG)
   .constant('EMAILPRO_CONFIG_URL', EMAILPRO_CONFIG_URL)

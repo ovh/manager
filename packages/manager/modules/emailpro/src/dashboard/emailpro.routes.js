@@ -1,15 +1,17 @@
 import set from 'lodash/set';
 
+import { Environment } from '@ovh-ux/manager-config';
 import emailproCtrl from './emailpro.controller';
 import emailproTpl from './emailpro.html';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('email-pro.dashboard', {
-    url: '/:productId?tab',
+    url: '/:productId',
     template: emailproTpl,
     controller: emailproCtrl,
     controllerAs: '$ctrl',
     reloadOnSearch: false,
+    redirectTo: 'email-pro.dashboard.information',
     resolve: {
       navigationInformations: /* @ngInject */ (Navigator, $rootScope) => {
         set($rootScope, 'currentSectionInformation', 'email_pro');
@@ -20,8 +22,29 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       productId: /* @ngInject */ ($transition$) =>
         $transition$.params().productId,
-      getTabLink: /* @ngInject */ ($state, productId) => (tab) =>
-        $state.href('email-pro.dashboard', { productId, tab }),
+      informationLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href('email-pro.dashboard.information', $transition$.params()),
+      domainLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href('email-pro.dashboard.domain', $transition$.params()),
+      accountLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href('email-pro.dashboard.account', $transition$.params()),
+      externalContactLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href(
+          'email-pro.dashboard.external-contact',
+          $transition$.params(),
+        ),
+      disclaimerLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href('email-pro.dashboard.disclaimer', $transition$.params()),
+      // TODO: Replace with Feature flipping
+      taskLink: /* @ngInject */ ($state, $transition$) =>
+        Environment.getRegion() === 'EU'
+          ? $state.href('email-pro.dashboard.task', $transition$.params())
+          : null,
+      mailingListLink: () => null,
+      redirectionLink: () => null,
+
+      currentActiveLink: /* @ngInject */ ($state, $transition$) => () =>
+        $state.href($state.current.name, $transition$.params()),
     },
     translations: {
       value: ['.'],
@@ -29,11 +52,12 @@ export default /* @ngInject */ ($stateProvider) => {
     },
   });
   $stateProvider.state('mxplan.dashboard', {
-    url: '/:productId?tab',
+    url: '/:productId',
     template: emailproTpl,
     controller: emailproCtrl,
     controllerAs: '$ctrl',
     reloadOnSearch: false,
+    redirectTo: 'mxplan.dashboard.information',
     resolve: {
       navigationInformations: /* @ngInject */ (Navigator, $rootScope) => {
         set($rootScope, 'currentSectionInformation', 'email_mxplan');
@@ -65,8 +89,33 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
-      getTabLink: /* @ngInject */ ($state, productId) => (tab) =>
-        $state.href('mxplan.dashboard', { productId, tab }),
+
+      informationLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href('mxplan.dashboard.information', $transition$.params()),
+      domainLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href('mxplan.dashboard.domain', $transition$.params()),
+      accountLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href('mxplan.dashboard.account', $transition$.params()),
+      externalContactLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href('mxplan.dashboard.external-contact', $transition$.params()),
+      disclaimerLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href('mxplan.dashboard.disclaimer', $transition$.params()),
+      // TODO: Replace with Feature flipping
+      taskLink: /* @ngInject */ ($state, $transition$) =>
+        Environment.getRegion() === 'EU'
+          ? $state.href('mxplan.dashboard.task', $transition$.params())
+          : null,
+      mailingListLink: /* @ngInject */ ($state, $transition$) =>
+        Environment.getRegion() === 'EU'
+          ? $state.href('mxplan.dashboard.mailing-list', $transition$.params())
+          : null,
+      redirectionLink: /* @ngInject */ ($state, $transition$) =>
+        Environment.getRegion() === 'EU'
+          ? $state.href('mxplan.dashboard.redirection', $transition$.params())
+          : null,
+
+      currentActiveLink: /* @ngInject */ ($state, $transition$) => () =>
+        $state.href($state.current.name, $transition$.params()),
     },
     translations: {
       value: ['.', '../mailing-list'],

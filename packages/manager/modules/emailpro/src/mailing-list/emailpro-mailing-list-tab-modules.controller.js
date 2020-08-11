@@ -12,6 +12,8 @@ export default class EmailProMXPlanMailingListsTabModulesCtrl {
     $translate,
     Alerter,
     WucEmails,
+    goToModerators,
+    goToSubscribers,
     EmailProMXPlanMailingLists,
   ) {
     this.$scope = $scope;
@@ -21,6 +23,8 @@ export default class EmailProMXPlanMailingListsTabModulesCtrl {
     this.$stateParams = $stateParams;
     this.$translate = $translate;
     this.Alerter = Alerter;
+    this.goToModerators = goToModerators;
+    this.goToSubscribers = goToSubscribers;
     this.WucEmails = WucEmails;
     this.EmailProMXPlanMailingLists = EmailProMXPlanMailingLists;
   }

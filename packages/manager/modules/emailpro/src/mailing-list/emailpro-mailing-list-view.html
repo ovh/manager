@@ -1,7 +1,4 @@
-<div
-    class="container-fluid px-0"
-    data-ng-controller="EmailProMXPlanMailingListsTabModulesCtrl as ctrlEmailProMXPlanMailingLists"
->
+<div class="container-fluid px-0" ui-view>
     <div
         class="text-center"
         data-ng-if="ctrlEmailProMXPlanMailingLists.loading.quotas"
@@ -214,7 +211,7 @@
                                     class="btn btn-icon"
                                     type="button"
                                     title="{{:: 'email_tab_moderators_management_heading' | translate }}"
-                                    data-ng-click="ctrlTabView.setCurrentView('moderatorsView', mailingList)"
+                                    data-ng-click="ctrlEmailProMXPlanMailingLists.goToModerators(mailingList)"
                                 >
                                     <span
                                         class="oui-icon oui-icon-user_concept"
@@ -227,7 +224,7 @@
                                     class="btn btn-icon"
                                     type="button"
                                     title="{{:: 'email_tab_subscribers_management_heading' | translate }}"
-                                    data-ng-click="ctrlTabView.setCurrentView('subscribersView', mailingList)"
+                                    data-ng-click="ctrlEmailProMXPlanMailingLists.goToSubscribers(mailingList)"
                                 >
                                     <span
                                         class="oui-icon oui-icon-user_concept"

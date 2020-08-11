@@ -5,10 +5,7 @@
     <oui-spinner data-size="l"></oui-spinner>
 </div>
 
-<div
-    data-ng-controller="EmailProTabsCtrl"
-    data-ng-if="!loadingEmailProInformations && !loadingEmailProError"
->
+<div data-ng-if="!loadingEmailProInformations && !loadingEmailProError">
     <div
         class="oui-header"
         data-ng-if="!loadingEmailProInformations && !loadingEmailProError"
@@ -124,37 +121,68 @@
         <div data-ng-if="!exchange.isExpired">
             <oui-header-tabs>
                 <oui-header-tabs-item
-                    data-ng-repeat="tab in tabs track by $index"
-                    data-href="{{ $ctrl.getTabLink(tab) }}"
-                    data-active="selectedTab === tab"
-                    data-on-click="setSelectedTab(tab)"
-                    ><span
-                        data-ng-bind=":: 'emailpro_tab_' + tab | translate"
-                    ></span>
+                    href="{{:: informationLink }}"
+                    active="informationLink === currentActiveLink()"
+                >
+                    <span data-translate="emailpro_tab_INFORMATION"></span>
                 </oui-header-tabs-item>
-                <oui-header-tabs-dropdown data-text="{{ tabMenu.title }}">
-                    <div
-                        data-ng-repeat="item in tabMenu.items"
-                        data-ng-if="item"
-                        data-track-by="$index"
+                <oui-header-tabs-item
+                    href="{{:: domainLink }}"
+                    active="domainLink === currentActiveLink()"
+                >
+                    <span data-translate="emailpro_tab_DOMAIN"></span>
+                </oui-header-tabs-item>
+                <oui-header-tabs-item
+                    href="{{:: accountLink }}"
+                    active="accountLink === currentActiveLink()"
+                >
+                    <span data-translate="emailpro_tab_ACCOUNT"></span>
+                </oui-header-tabs-item>
+                <oui-header-tabs-item
+                    data-ng-if="mailingListLink"
+                    href="{{:: mailingListLink }}"
+                    active="mailingListLink === currentActiveLink()"
+                >
+                    <span data-translate="emailpro_tab_MAILING_LIST"></span>
+                </oui-header-tabs-item>
+                <oui-header-tabs-item
+                    data-ng-if="redirectionLink"
+                    href="{{:: redirectionLink }}"
+                    active="redirectionLink === currentActiveLink()"
+                >
+                    <span data-translate="emailpro_tab_REDIRECTION"></span>
+                </oui-header-tabs-item>
+                <oui-header-tabs-item
+                    href="{{:: externalContactLink }}"
+                    active="externalContactLink === currentActiveLink()"
+                >
+                    <span data-translate="emailpro_tab_EXTERNAL_CONTACT"></span>
+                </oui-header-tabs-item>
+                <oui-header-tabs-dropdown
+                    data-text="{{:: 'emailpro_navigation_more' | translate }}"
+                >
+                    <oui-header-tabs-item
+                        href="{{:: disclaimerLink}}"
+                        active="disclaimerLink === currentActiveLink()"
                     >
-                        <oui-header-tabs-divider
-                            data-ng-if="item.type === 'SEPARATOR'"
-                        ></oui-header-tabs-divider>
-                        <oui-header-tabs-item
-                            data-ng-if="item.type === 'ACTION'"
-                            data-disabled="item.disabled"
-                            data-on-click="item.fn()"
-                            ><span data-ng-bind="item.label"></span
-                        ></oui-header-tabs-item>
-                        <oui-header-tabs-item
-                            data-ng-if="item.type !== 'ACTION' && item.type !== 'SEPARATOR'"
-                            data-disabled="item.disabled"
-                            data-href="{{ $ctrl.getTabLink(item.target) }}"
-                            data-on-click="setSelectedTab(item.target)"
-                            ><span data-ng-bind="item.label"></span
-                        ></oui-header-tabs-item>
-                    </div>
+                        <span data-translate="emailpro_tab_DISCLAIMER"></span>
+                    </oui-header-tabs-item>
+                    <oui-header-tabs-item
+                        data-ng-if="taskLink"
+                        href="{{:: taskLink}}"
+                        active="taskLink === currentActiveLink()"
+                    >
+                        <span data-translate="emailpro_tab_TASKS"></span>
+                    </oui-header-tabs-item>
+                    <oui-header-tabs-divider></oui-header-tabs-divider>
+                    <oui-header-tabs-item
+                        disabled="is25g()"
+                        on-click="configureEmailService()"
+                    >
+                        <span
+                            data-translate="emailpro_configuration_action_title"
+                        ></span>
+                    </oui-header-tabs-item>
                 </oui-header-tabs-dropdown>
             </oui-header-tabs>
         </div>
@@ -186,12 +214,7 @@
                 ></strong>
             </div>
         </div>
-        <div data-ui-view>
-            <div
-                class="tab-pane active platform"
-                data-ng-include="selectedTab && 'emailpro/' + kebabCase(selectedTab) + '/emailpro-' + kebabCase(selectedTab) + '.html'"
-            ></div>
-        </div>
+        <div data-ui-view></div>
     </div>
 </div>
 

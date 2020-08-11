@@ -1,7 +1,6 @@
 import angular from 'angular';
 
 import emailproCtrl from './emailpro.controller';
-import emailproTabsCtrl from './emailpro-tabs-controller';
 import emailproTabsAccountCtrl from '../account/emailpro-account.controller';
 import emailproAddAccountCtrl from '../account/add/emailpro-account-add.controller';
 import emailproTabAliasCtrl from '../account/alias/emailpro-account-alias.controller';
@@ -33,7 +32,6 @@ import emailproExternalContactsDeleteCtrl from '../external-contact/remove/email
 import emailproTabInformationCtrl from '../information/emailpro-information-tab';
 import emailproLicenseHistoryCtrl from '../license/history/emailpro-license-history.controller';
 import emailproMxPlanMailingListsTabsModulesCtrl from '../mailing-list/emailpro-mailing-list-tab-modules.controller';
-import emailproMxPlanMailingListsTabViewCtrl from '../mailing-list/emailpro-mailing-list-tab-view.controller';
 import emailproMxPlanMailingListsCreateCtrl from '../mailing-list/create/emailpro-mailing-list-create.controller';
 import emailproMxPlanMailingListsDeleteCtrl from '../mailing-list/delete/emailpro-mailing-list-delete.controller';
 import emailproMxPlanMailingListsDeleteModeratorCtrl from '../mailing-list/moderator/delete/emailpro-mailing-list-moderator-delete.controller';
@@ -64,7 +62,6 @@ const moduleName = 'Module.emailpro.controllers';
 angular
   .module(moduleName, [])
   .controller('EmailProCtrl', emailproCtrl)
-  .controller('EmailProTabsCtrl', emailproTabsCtrl)
   .controller('EmailProTabAccountsCtrl', emailproTabsAccountCtrl)
   .controller('EmailProAddAccountCtrl', emailproAddAccountCtrl)
   .controller('EmailProAddAccountAliasCtrl', emailproAddAccountAliasCtrl)
@@ -134,10 +131,6 @@ angular
   .controller(
     'EmailProMXPlanMailingListsTabModulesCtrl',
     emailproMxPlanMailingListsTabsModulesCtrl,
-  )
-  .controller(
-    'EmailProMXPlanMailingListsTabViewController',
-    emailproMxPlanMailingListsTabViewCtrl,
   )
   .controller(
     'EmailProMXPlanMailingListsCreateCtrl',

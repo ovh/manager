@@ -37,7 +37,6 @@ import emailproMailingListDeleteTemplate from '../mailing-list/delete/emailpro-m
 import emailproMailingListSendListByEmailTemplate from '../mailing-list/send-list-by-email/emailpro-mailing-list-send-list-by-email.html';
 import emailproMailingListModeratorDeleteTemplate from '../mailing-list/moderator/delete/emailpro-mailing-list-moderator-delete.html';
 import emailproMailingListViewTemplate from '../mailing-list/emailpro-mailing-list-view.html';
-import emailproMailingListTemplate from '../mailing-list/emailpro-mailing-list.html';
 import emailproMailingListModeratorsDeleteTemplate from '../mailing-list/moderators/delete/emailpro-mailing-list-moderators-delete.html';
 import emailproMailingListModeratorsViewTemplate from '../mailing-list/moderators/emailpro-mailing-list-moderators-view.html';
 import emailproMailingListModeratorsCreateTemplate from '../mailing-list/moderators/create/emailpro-mailing-list-moderators-create.html';
@@ -197,10 +196,6 @@ export default /* @ngInject */ ($templateCache) => {
   $templateCache.put(
     'emailpro/mailing-list/emailpro-mailing-list-view.html',
     emailproMailingListViewTemplate,
-  );
-  $templateCache.put(
-    'emailpro/mailing-list/emailpro-mailing-list.html',
-    emailproMailingListTemplate,
   );
   $templateCache.put(
     'emailpro/mailing-list/moderators/delete/emailpro-mailing-list-moderators-delete.html',

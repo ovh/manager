@@ -1,14 +1,9 @@
-<div
-    class="container-fluid px-0"
-    data-ng-controller="EmailProMXPlanMailingListsSubscribersCtrl as ctrlSubscribers"
->
+<div class="container-fluid px-0">
     <div class="row">
         <div class="col-md-9">
             <div data-ovh-alert="{{alerts.main}}"></div>
 
-            <oui-back-button
-                data-on-click="ctrlTabView.setCurrentView('EmailProMXPlanMailingListsView')"
-            >
+            <oui-back-button data-on-click="ctrlSubscribers.goToMailingList()">
                 <span data-translate="common_back"></span>
             </oui-back-button>
             <h2
