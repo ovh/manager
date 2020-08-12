@@ -3,9 +3,6 @@ import component from './selection.component';
 const resolveActivationType = /* @ngInject */ ($transition$) =>
   $transition$.params().activationType;
 
-const resolveCurrentService = /* @ngInject */ ($transition$, DedicatedCloud) =>
-  DedicatedCloud.getSelected($transition$.params().productId, true);
-
 const resolveHasDefaultMeansOfPayment = /* @ngInject */ (
   $transition$,
   ovhPaymentMethod,
@@ -13,12 +10,21 @@ const resolveHasDefaultMeansOfPayment = /* @ngInject */ (
   $transition$.params().hasDefaultMeansOfPayment ||
   ovhPaymentMethod.hasDefaultPaymentMethod();
 
-const resolveHeader = /* @ngInject */ ($transition$, $translate) =>
-  $translate.instant(
-    `dedicatedCloudDashboardTilesOptionsOrderSelection_${
-      $transition$.params().activationType
-    }_header`,
-  );
+const resolveHeader = /* @ngInject */ ($transition$, $translate, isDowngrade) => {
+  if (isDowngrade) {
+    return $translate.instant(
+      `dedicatedCloudDashboardTilesOptionsOrderSelection_${
+        $transition$.params().activationType
+      }_downgrade_header`,
+    );
+  } else {
+    return $translate.instant(
+      `dedicatedCloudDashboardTilesOptionsOrderSelection_${
+        $transition$.params().activationType
+      }_header`,
+    );
+  }
+};
 
 const resolveHosts = /* @ngInject */ (
   currentService,
@@ -52,12 +58,21 @@ const resolveServicePacksWithPrices = /* @ngInject */ (
 const resolveServicePackToOrder = /* @ngInject */ ($transition$) =>
   $transition$.params().servicePackToOrder;
 
-const resolveSubHeader = /* @ngInject */ ($transition$, $translate) =>
-  $translate.instant(
-    `dedicatedCloudDashboardTilesOptionsOrderSelection_${
-      $transition$.params().activationType
-    }_subheader`,
-  );
+const resolveSubHeader = /* @ngInject */ ($transition$, $translate, isDowngrade) => {
+  if (isDowngrade) {
+    return $translate.instant(
+      `dedicatedCloudDashboardTilesOptionsOrderSelection_${
+        $transition$.params().activationType
+      }_downgrade_subheader`,
+    );
+  } else {
+    return $translate.instant(
+      `dedicatedCloudDashboardTilesOptionsOrderSelection_${
+        $transition$.params().activationType
+      }_subheader`,
+    );
+  }
+};
 
 export default {
   component: component.name,
@@ -68,7 +83,6 @@ export default {
   },
   resolve: {
     activationType: resolveActivationType,
-    currentService: resolveCurrentService,
     hasDefaultMeansOfPayment: resolveHasDefaultMeansOfPayment,
     header: resolveHeader,
     hosts: resolveHosts,

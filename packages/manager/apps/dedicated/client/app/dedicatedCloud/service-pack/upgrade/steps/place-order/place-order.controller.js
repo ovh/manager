@@ -45,6 +45,7 @@ export default class {
           itemName: () => this.servicePackToOrder.displayName,
           itemType: () => this.activationType,
           prices: () => this.servicePackToOrder.prices,
+          isDowngrade: () => this.isDowngrade,
         },
       }).result;
     } catch (error) {

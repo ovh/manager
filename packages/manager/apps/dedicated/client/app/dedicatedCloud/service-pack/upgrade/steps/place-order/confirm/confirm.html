@@ -4,10 +4,10 @@
     data-primary-label="{{:: 'confirm_order_confirm' | translate }}"
     data-secondary-action="$ctrl.$uibModalInstance.dismiss()"
     data-secondary-label="{{:: 'confirm_order_cancel' | translate }}"
-    data-heading="{{:: 'confirm_order_' + $ctrl.itemType + '_title' | translate }}"
+    data-heading="{{:: $ctrl.getTitle() }}"
 >
     <p
-        data-translate="{{ :: 'confirm_order_' + $ctrl.itemType + '_question_1' }}"
+        data-translate="{{ :: $ctrl.getConfirmMessage() }}"
         data-translate-values=":: {
             itemName: $ctrl.itemName,
         }"

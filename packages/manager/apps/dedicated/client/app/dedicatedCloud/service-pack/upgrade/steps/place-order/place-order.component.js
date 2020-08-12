@@ -7,6 +7,7 @@ export default {
     currentService: '<',
     hasDefaultMeansOfPayment: '<',
     servicePackToOrder: '<',
+    isDowngrade: '<',
   },
   controller,
   name: 'ovhManagerPccServicePackUpgradePlaceOrder',

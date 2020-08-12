@@ -33,8 +33,14 @@
         data-navigation-type="next"
     >
         <span
-            data-ng-if="$ctrl.stepper.getStep({ relativeIndex: 1 }).name === 'placeOrder'"
+            data-ng-if="$ctrl.stepper.getStep({ relativeIndex: 1 }).name === 'placeOrder'
+            && !$ctrl.isDowngrade"
             data-translate="dedicatedCloudDashboardTilesOptionsOrderSelection_checkoutButton"
+        ></span>
+        <span
+            data-ng-if="$ctrl.stepper.getStep({ relativeIndex: 1 }).name === 'placeOrder'
+            && $ctrl.isDowngrade"
+            data-translate="dedicatedCloudDashboardTilesOptionsOrderSelection_downgrade_checkoutButton"
         ></span>
         <span
             data-ng-if="$ctrl.stepper.getStep({ relativeIndex: 1 }).name !== 'placeOrder'"

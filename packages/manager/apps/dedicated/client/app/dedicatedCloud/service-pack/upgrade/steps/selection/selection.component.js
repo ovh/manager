@@ -12,6 +12,7 @@ export default {
     servicePacksWithPrices: '<',
     servicePackToOrder: '<?',
     subHeader: '@',
+    isDowngrade: '<',
   },
   controller,
   name: 'ovhManagerPccServicePackUpgradeSelection',
