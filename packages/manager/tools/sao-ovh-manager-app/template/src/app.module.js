@@ -2,7 +2,7 @@
 import { Environment } from '@ovh-ux/manager-config';
 import angular from 'angular';
 import uiRouter from '@uirouter/angularjs';
-import ovhManagerCore from '@ohv-ux/manager-core';
+import ovhManagerCore from '@ovh-ux/manager-core';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import ngOvhUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
