@@ -1,5 +1,7 @@
 import snakeCase from 'lodash/snakeCase';
 
+import punycode from 'punycode';
+
 export default class Group {
   /* @ngInject */
   constructor($q, OvhHttp) {
