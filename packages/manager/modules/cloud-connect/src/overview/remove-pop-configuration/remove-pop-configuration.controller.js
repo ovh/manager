@@ -12,6 +12,9 @@ export default class RemovePopConfigurationCtrl {
   }
 
   removePopConfigure() {
+    this.cloudConnectService.trackClick(
+      'cloud-connect::overview::remove-pop::confirm',
+    );
     this.isLoading = true;
     this.cloudConnectService
       .removePopConfiguration(

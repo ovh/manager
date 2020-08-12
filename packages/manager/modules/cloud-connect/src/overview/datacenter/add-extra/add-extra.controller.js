@@ -24,6 +24,9 @@ export default class CloudConnectDacenterAddExtraCtrl {
   }
 
   create() {
+    this.cloudConnectService.trackClick(
+      'cloud-connect::overview::add-datacenter-extra-configuration::confirm',
+    );
     this.isLoading = true;
     const options = {
       bgpNeighborArea: this.bgpNeighborArea,

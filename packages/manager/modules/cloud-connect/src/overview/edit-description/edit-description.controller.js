@@ -8,6 +8,9 @@ export default class CloudConnectEditDescriptionCtrl {
   }
 
   confirm() {
+    this.cloudConnectService.trackClick(
+      'cloud-connect::overview::edit-description::confirm',
+    );
     this.isLoading = true;
     return this.cloudConnectService
       .saveDescription(this.cloudConnect.id, this.description)

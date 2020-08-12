@@ -12,6 +12,9 @@ export default class AssociateVrackCtrl {
   }
 
   associateVrack() {
+    this.cloudConnectService.trackClick(
+      'cloud-connect::overview::associate-vrack::confirm',
+    );
     this.isLoading = true;
     this.cloudConnectService
       .associateVrack(this.vRack.id, this.cloudConnect.id)

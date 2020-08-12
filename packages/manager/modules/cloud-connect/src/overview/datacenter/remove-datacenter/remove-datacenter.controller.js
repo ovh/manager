@@ -12,6 +12,9 @@ export default class RemoveVrackCtrl {
   }
 
   removeDatacenter() {
+    this.cloudConnectService.trackClick(
+      'cloud-connect::overview::remove-datacenter-configuration::confirm',
+    );
     this.isLoading = true;
     this.cloudConnectService
       .removeDatacenterConfiguration(

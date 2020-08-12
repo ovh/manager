@@ -15,10 +15,11 @@ import {
 
 export default class CloudConnectService {
   /* @ngInject */
-  constructor($cacheFactory, $q, $http, Poller, OvhApiVrack) {
+  constructor($cacheFactory, $q, $http, atInternet, Poller, OvhApiVrack) {
     this.$cacheFactory = $cacheFactory;
     this.$q = $q;
     this.$http = $http;
+    this.atInternet = atInternet;
     this.Poller = Poller;
     this.OvhApiVrack = OvhApiVrack;
     this.POP_TYPES = POP_TYPES;
@@ -452,6 +453,13 @@ export default class CloudConnectService {
           task.status === STATUS.DONE || task.status === STATUS.ERROR,
       },
     );
+  }
+
+  trackClick(name) {
+    return this.atInternet.trackClick({
+      name,
+      type: 'action',
+    });
   }
 
   /* eslint-disable-next-line class-methods-use-this */

@@ -12,6 +12,9 @@ export default class RemoveVrackCtrl {
   }
 
   removeVrack() {
+    this.cloudConnectService.trackClick(
+      'cloud-connect::overview::remove-vrack::confirm',
+    );
     this.isLoading = true;
     this.cloudConnectService
       .removeVrack(this.vRackId, this.cloudConnect.id)
