@@ -150,7 +150,7 @@ angular
     domain: 'https://www.ovh.com/manager/web/#/configuration/domain/{domain}',
     deskaas: 'https://www.ovh.com/manager/sunrise/index.html#/deskaas',
     exchangeAccount:
-      'https://www.ovh.com/manager/web/index.html#/configuration/exchange_hosted/{organizationName}/{exchangeService}?tab=ACCOUNT',
+      'https://www.ovh.com/manager/web/index.html#/exchange/{organizationName}/{exchangeService}?tab=ACCOUNT',
   })
   .constant('URLS', {
     support: 'https://www.ovh.com/fr/support/',

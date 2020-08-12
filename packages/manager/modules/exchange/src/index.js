@@ -18,17 +18,15 @@ const moduleName = 'ovhManagerExchangeLazyLoading';
 angular
   .module(moduleName, [billingAccountRenew, 'ui.router', 'oc.lazyLoad'])
   .config(
-    /* @ngInject */ ($stateProvider) => {
-      const lazyLoad = ($transition$) => {
-        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+    /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
+      $stateProvider.state('exchange', {
+        url: '/exchange',
+        template: '<div data-ui-view></div>',
+        redirectTo: 'exchange.index',
+      });
 
-        return import('./dashboard/exchange.module').then((mod) =>
-          $ocLazyLoad.inject(mod.default || mod),
-        );
-      };
-
-      $stateProvider.state('app.exchanges.**', {
-        url: '/configuration/exchange',
+      $stateProvider.state('exchange.index.**', {
+        url: '',
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
@@ -38,45 +36,32 @@ angular
         },
       });
 
-      $stateProvider.state('app.exchange.**', {
-        url: '/configuration/exchange/:organization/:productId',
+      const lazyLoad = ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./dashboard/exchange.module').then((mod) =>
+          $ocLazyLoad.inject(mod.default || mod),
+        );
+      };
+
+      $stateProvider.state('exchange.dashboard.**', {
+        url: '/:organization/:productId?tab',
         lazyLoad,
       });
 
-      $stateProvider.state('app.microsoft.exchange', {
-        abstract: true,
-        template: '<div data-ui-view></div>',
-        translations: {
-          value: ['.'],
-          format: 'json',
+      $stateProvider.state('exchange.order.**', {
+        url: '/order',
+        lazyLoad,
+      });
+
+      const urlPattern = /^\/configuration\/exchange(_(dedicated|dedicatedCluster|hosted|provider))?/;
+
+      $urlRouterProvider.when(
+        urlPattern,
+        /* @ngInject */ ($location) => {
+          $location.url($location.url().replace(urlPattern, '/exchange'));
         },
-      });
-
-      $stateProvider.state('app.microsoft.exchange.dedicated.**', {
-        url: '/configuration/exchange_dedicated/:organization/:productId?tab',
-        lazyLoad,
-      });
-
-      $stateProvider.state('app.microsoft.exchange.dedicatedCluster.**', {
-        url:
-          '/configuration/exchange_dedicatedCluster/:organization/:productId?tab',
-        lazyLoad,
-      });
-
-      $stateProvider.state('app.microsoft.exchange.hosted.**', {
-        url: '/configuration/exchange_hosted/:organization/:productId?tab',
-        lazyLoad,
-      });
-
-      $stateProvider.state('app.microsoft.exchange.provider.**', {
-        url: '/configuration/exchange_provider/:organization/:productId?tab',
-        lazyLoad,
-      });
-
-      $stateProvider.state('app.microsoft.exchange.order.**', {
-        url: '/configuration/exchange/order',
-        lazyLoad,
-      });
+      );
     },
   )
   .service('APIExchange', APIExchange)
