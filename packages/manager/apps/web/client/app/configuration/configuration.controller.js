@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import { Environment } from '@ovh-ux/manager-config';
 
 angular.module('App').controller(
   'configurationCtrl',
@@ -17,7 +18,7 @@ angular.module('App').controller(
       this.allGuides = get(
         this.constants,
         `urls.${this.subsidiary}.guides.all`,
-        this.constants.urls.FR.guides.all,
+        this.constants.urls[Environment.getRegion()].guides.all,
       );
     }
   },
