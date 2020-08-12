@@ -1,8 +1,10 @@
-angular.module('App').config(($stateProvider) => {
-  $stateProvider.state('app.email.general-informations', {
-    url: 'domain/informations',
-    templateUrl:
-      'email-domain/general-informations/email-domain-general-informations.html',
+import template from './email-domain-general-informations.html';
+
+export default /* @ngInject */ ($stateProvider) => {
+  $stateProvider.state('app.email.domain.information', {
+    url: '',
+    template,
     controller: 'EmailTabGeneralInformationsCtrl',
+    controllerAs: 'ctrlTabGeneralInformations',
   });
-});
+};

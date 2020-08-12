@@ -3,24 +3,20 @@ import 'angular-translate';
 import '@ovh-ux/ui-kit';
 import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 
-import routing from './email-domain.routes';
+import routing from './mailing-list.routing';
 
-import email from '../email/email.module';
-import information from '../general-informations/information.module';
-import mailingList from '../mailing-list/mailing-list.module';
-import task from '../task/task.module';
+import moderators from './moderators/moderators.module';
+import subscribers from './subscribers/subscribers.module';
 
-const moduleName = 'ovhManagerEmailDomainDashboard';
+const moduleName = 'ovhManagerEmailDomainDashboardMailingList';
 
 angular
   .module(moduleName, [
     ngTranslateAsyncLoader,
     'oui',
     'pascalprecht.translate',
-    email,
-    information,
-    mailingList,
-    task,
+    moderators,
+    subscribers,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
