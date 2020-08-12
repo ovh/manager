@@ -12,6 +12,8 @@ angular.module('App').controller(
       $stateParams,
       $translate,
       Alerter,
+      goToModerators,
+      goToSubscribers,
       MailingLists,
       WucEmails,
     ) {
@@ -21,6 +23,8 @@ angular.module('App').controller(
       this.$stateParams = $stateParams;
       this.$translate = $translate;
       this.Alerter = Alerter;
+      this.goToModerators = goToModerators;
+      this.goToSubscribers = goToSubscribers;
       this.MailingLists = MailingLists;
       this.WucEmails = WucEmails;
     }

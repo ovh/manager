@@ -15,6 +15,11 @@ angular.module('App').controller(
       $timeout,
       $translate,
       Alerter,
+      currentActiveLink,
+      emailLink,
+      informationLink,
+      mailingListLink,
+      taskLink,
       WucEmails,
     ) {
       this.$scope = $scope;
@@ -22,6 +27,11 @@ angular.module('App').controller(
       this.$timeout = $timeout;
       this.$translate = $translate;
       this.Alerter = Alerter;
+      this.currentActiveLink = currentActiveLink;
+      this.emailLink = emailLink;
+      this.informationLink = informationLink;
+      this.mailingListLink = mailingListLink;
+      this.taskLink = taskLink;
       this.WucEmails = WucEmails;
     }
 
@@ -72,7 +82,7 @@ angular.module('App').controller(
           this.$scope.domain = domain;
           this.$scope.domain.displayName = domain.domain;
           if (domain.offer && domain.offer.indexOf('hosting') === -1) {
-            this.$scope.$broadcast('emails.canTerminate');
+            this.emailsCanTerminate = true;
           }
         })
         .catch(() => {

@@ -17,6 +17,11 @@ angular.module('App').controller(
       $window,
       Alerter,
       constants,
+      goToAccountMigration,
+      goToAcl,
+      goToFilter,
+      goToRedirection,
+      goToResponders,
       WucEmails,
       ovhUserPref,
       WucUser,
@@ -30,20 +35,21 @@ angular.module('App').controller(
 
       this.Alerter = Alerter;
       this.constants = constants;
+      this.goToAccountMigration = goToAccountMigration;
+      this.goToAcl = goToAcl;
+      this.goToFilter = goToFilter;
+      this.goToRedirection = goToRedirection;
+      this.goToResponders = goToResponders;
       this.WucEmails = WucEmails;
       this.ovhUserPref = ovhUserPref;
       this.WucUser = WucUser;
     }
 
     $onInit() {
-      this.currentView = 'accountsView';
-      this.currentViewData = null;
-
       this.delegationsIsAvailable = false;
       this.emailsDetails = [];
       this.emailIsUnavailable = true;
       this.userPreferences = null;
-      this.shouldDisplayAccountMigration = false;
       this.loading = {
         accounts: false,
         emails: false,
@@ -146,31 +152,8 @@ angular.module('App').controller(
     //---------------------------------------------
     // Navigation
     //---------------------------------------------
-
-    selectSubView(view, data) {
-      this.currentView = view;
-      this.currentViewData = data || null;
-    }
-
-    resetInitialView() {
-      this.currentView = 'accountsView';
-      this.currentViewData = null;
-      this.refreshSummary();
-    }
-
     openWebMailTab() {
       this.$window.open(this.webMailUrl, '_blank');
-    }
-
-    displayAccountMigration(email) {
-      this.shouldDisplayAccountMigration = true;
-      this.accountMigrationEmail = email;
-    }
-
-    displayEmailsList() {
-      this.shouldDisplayAccountMigration = false;
-      this.accountMigrationEmail = null;
-      this.refreshSummary();
     }
 
     //---------------------------------------------

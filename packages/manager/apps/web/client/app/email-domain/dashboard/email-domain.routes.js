@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.email.domain', {
-    url: '/:productId?tab',
+    url: '/:productId',
     templateUrl: 'email-domain/dashboard/email-domain.html',
     controller: 'EmailDomainCtrl',
     controllerAs: 'ctrlEmailDomain',
@@ -28,6 +28,17 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
+      informationLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href('app.email.domain.information', $transition$.params()),
+      emailLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href('app.email.domain.email', $transition$.params()),
+      mailingListLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href('app.email.domain.mailing-list', $transition$.params()),
+      taskLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href('app.email.domain.task', $transition$.params()),
+      currentActiveLink: /* @ngInject */ ($state, $transition$) => () =>
+        $state.href($state.current.name, $transition$.params()),
+
       currentSection: () => 'email_domain',
       navigationInformations: [
         'Navigator',
@@ -56,36 +67,12 @@ export default /* @ngInject */ ($stateProvider) => {
                 },
               };
             }
-            return null;
+            return 'app.email.domain.information';
           }),
         ),
     translations: {
       value: ['../email', '../hosting', '../mailing-list'],
       format: 'json',
     },
-  });
-
-  $stateProvider.state('app.email-delegate.dashboard', {
-    url: '/:productId?tab',
-    templateUrl: 'email-domain/delegate/email-domain-delegate.html',
-    controller: 'EmailDelegateCtrl',
-    controllerAs: 'ctrlEmailDelegate',
-    reloadOnSearch: false,
-    resolve: {
-      currentSection: () => 'email_delegate',
-      navigationInformations: [
-        'Navigator',
-        '$rootScope',
-        (Navigator, $rootScope) => {
-          // eslint-disable-next-line no-param-reassign
-          $rootScope.currentSectionInformation = 'email_delegate';
-          return Navigator.setNavigationInformation({
-            leftMenuVisible: true,
-            configurationSelected: true,
-          });
-        },
-      ],
-    },
-    translations: { value: ['../email'], format: 'json' },
   });
 };

@@ -1,7 +1,6 @@
 import '../delegate/email-domain-delegate.controller';
 import '../delegate/filter/email-domain-delegate-filter.controller';
 import '../delegate/responder/email-domain-delegate-responder.controller';
-import './email-domain-tabs.controller';
 import './email-domain.controller';
 import '../email/account/change-password/email-domain-email-account-change-password.controller';
 import '../email/account/create/email-domain-email-account-create.controller';

@@ -1,5 +1,5 @@
-<div data-ng-controller="EmailsMigrateAccountCtrl as ctrl">
-    <oui-back-button data-on-click="ctrlEmailDomainEmail.displayEmailsList()"
+<div>
+    <oui-back-button data-on-click="ctrl.goToEmail()"
         ><span data-translate="email_tab_modal_migrate_title"></span>
     </oui-back-button>
 
@@ -234,7 +234,7 @@
             data-navigation="ctrl.isMigrationDataValid"
             data-submit-text="{{:: 'email_tab_modal_migrate_submit' | translate }}"
             data-cancel-text="{{:: 'wizard_cancel' | translate }}"
-            data-on-cancel="ctrlEmailDomainEmail.displayEmailsList()"
+            data-on-cancel="ctrl.goToEmail()"
         >
             <!-- Migration data invalid -->
             <oui-message
