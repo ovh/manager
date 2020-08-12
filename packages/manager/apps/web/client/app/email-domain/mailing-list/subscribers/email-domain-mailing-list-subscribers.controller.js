@@ -27,6 +27,8 @@ angular.module('App').controller(
       $stateParams,
       $translate,
       Alerter,
+      goToMailingList,
+      mailingList,
       MailingLists,
       exportCsv,
     ) {
@@ -35,12 +37,14 @@ angular.module('App').controller(
       this.$stateParams = $stateParams;
       this.$translate = $translate;
       this.Alerter = Alerter;
+      this.goToMailingList = goToMailingList;
       this.MailingLists = MailingLists;
       this.exportCsv = exportCsv;
+
+      this.mailingList = mailingList;
     }
 
     $onInit() {
-      this.mailingList = this.$scope.ctrlTabView.currentMailingList;
       this.subscribers = {
         selected: [],
         updating: false,

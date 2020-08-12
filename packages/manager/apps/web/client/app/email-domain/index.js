@@ -24,7 +24,7 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
     });
 
     $stateProvider.state('app.email.domain.**', {
-      url: '/:productId?tab',
+      url: '/:productId',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
@@ -58,12 +58,12 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
       },
     });
 
-    $stateProvider.state('app.email-delegate.domain.**', {
-      url: '/:productId?tab',
+    $stateProvider.state('app.email-delegate.dashboard.**', {
+      url: '/:productId',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-        return import('./dashboard/email-domain.module').then((mod) =>
+        return import('./delegate/delegate.module').then((mod) =>
           $ocLazyLoad.inject(mod.default || mod),
         );
       },
