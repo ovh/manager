@@ -1590,7 +1590,7 @@
   "exchange_mfa_description_DISABLE_period": "Période de désactivation de la double authentification : ",
   "exchange_mfa_description_DISABLE_period_help": "durée en heures",
   "exchange_mfa_description_RESET": "Êtes-vous sûr de vouloir réinitialiser la double authentification pour le compte <strong>{{account}}</strong> ?",
-  "exchange_tab_ACCOUNTS_owa_mfa_disabled" : "La double autentification est désactivée sur votre service Exchange. Les modifications apportées sur la configuration de la double authentification de vos comptes n'auront pas d'impact. Vous pouvez activer la double authentification dans les paramètres de sécurité de votre service Exchange.",
+  "exchange_tab_ACCOUNTS_owa_mfa_disabled": "La double autentification est désactivée sur votre service Exchange. Les modifications apportées sur la configuration de la double authentification de vos comptes n'auront pas d'impact. Vous pouvez activer la double authentification dans les paramètres de sécurité de votre service Exchange.",
   "exchange_tab_ACCOUNTS_owa_mfa_link": "Accéder au paramètres de sécurité",
   "exchange_tab_ACCOUNTS_actions": "Actions",
   "exchange_enable_mfa_error": "Une erreur est survenue lors de l'activation de la double authentification : {{error}}",
