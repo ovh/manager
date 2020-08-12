@@ -23,6 +23,8 @@ angular.module('App').controller(
       $timeout,
       $translate,
       Alerter,
+      goToFilters,
+      goToResponder,
       WucEmails,
     ) {
       this.$scope = $scope;
@@ -31,12 +33,12 @@ angular.module('App').controller(
       this.$timeout = $timeout;
       this.$translate = $translate;
       this.Alerter = Alerter;
+      this.goToFilters = goToFilters;
+      this.goToResponder = goToResponder;
       this.WucEmails = WucEmails;
     }
 
     $onInit() {
-      this.currentView = 'accountsView';
-      this.currentViewData = null;
       this.domain = this.$stateParams.productId || '';
       this.emailsDetails = [];
       this.loading = {
@@ -80,18 +82,6 @@ angular.module('App').controller(
       );
 
       this.loadEmails();
-    }
-
-    /* Navigation */
-    selectSubView(view, data) {
-      this.currentView = view;
-      this.currentViewData = data || null;
-    }
-
-    resetInitialView() {
-      this.currentView = 'accountsView';
-      this.currentViewData = null;
-      this.loading.accounts = true;
     }
 
     /* Search */
