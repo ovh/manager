@@ -1,4 +1,3 @@
-import camelCase from 'lodash/camelCase';
 import set from 'lodash/set';
 
 import template from './exchange.html';
@@ -15,34 +14,8 @@ export default /* @ngInject */ ($stateProvider) => {
     });
   };
 
-  const commonResolvers = {
-    organization: /* @ngInject */ ($transition$) =>
-      $transition$.params().organization,
-    productId: /* @ngInject */ ($transition$) =>
-      $transition$.params().productId,
-    exchange: /* @ngInject */ (Exchange, organization, productId) =>
-      Exchange.getExchangeDetails(organization, productId),
-    reloadDashboard: /* @ngInject */ ($state) => () => {
-      return $state.reload();
-    },
-  };
-
-  $stateProvider.state('app.exchange', {
-    url: '/configuration/exchange/:organization/:productId',
-    resolve: {
-      ...commonResolvers,
-    },
-    redirectTo: (transition) =>
-      transition
-        .injector()
-        .getAsync('exchange')
-        .then(
-          (exchange) => `app.microsoft.exchange.${camelCase(exchange.offer)}`,
-        ),
-  });
-
-  $stateProvider.state('app.microsoft.exchange.dedicated', {
-    url: '/configuration/exchange_dedicated/:organization/:productId?tab',
+  $stateProvider.state('exchange.dashboard', {
+    url: '/:organization/:productId?tab',
     template,
     controller: 'ExchangeCtrl',
     controllerAs: 'ctrl',
@@ -51,61 +24,17 @@ export default /* @ngInject */ ($stateProvider) => {
       tab: null,
     },
     resolve: {
-      navigationInformations: getNavigationInformations('exchange_dedicated'),
-      ...commonResolvers,
+      organization: /* @ngInject */ ($transition$) =>
+        $transition$.params().organization,
+      productId: /* @ngInject */ ($transition$) =>
+        $transition$.params().productId,
+      exchange: /* @ngInject */ (Exchange, organization, productId) =>
+        Exchange.getExchangeDetails(organization, productId),
     },
   });
 
-  $stateProvider.state('app.microsoft.exchange.dedicatedCluster', {
-    url:
-      '/configuration/exchange_dedicatedCluster/:organization/:productId?tab',
-    template,
-    controller: 'ExchangeCtrl',
-    controllerAs: 'ctrl',
-    reloadOnSearch: false,
-    params: {
-      tab: null,
-    },
-    resolve: {
-      navigationInformations: getNavigationInformations(
-        'exchange_dedicatedCluster',
-      ),
-      ...commonResolvers,
-    },
-  });
-
-  $stateProvider.state('app.microsoft.exchange.hosted', {
-    url: '/configuration/exchange_hosted/:organization/:productId?tab',
-    template,
-    controller: 'ExchangeCtrl',
-    controllerAs: 'ctrl',
-    reloadOnSearch: false,
-    params: {
-      tab: null,
-    },
-    resolve: {
-      navigationInformations: getNavigationInformations('exchange_hosted'),
-      ...commonResolvers,
-    },
-  });
-
-  $stateProvider.state('app.microsoft.exchange.provider', {
-    url: '/configuration/exchange_provider/:organization/:productId?tab',
-    template,
-    controller: 'ExchangeCtrl',
-    controllerAs: 'ctrl',
-    reloadOnSearch: false,
-    params: {
-      tab: null,
-    },
-    resolve: {
-      navigationInformations: getNavigationInformations('exchange_provider'),
-      ...commonResolvers,
-    },
-  });
-
-  $stateProvider.state('app.microsoft.exchange.order', {
-    url: '/configuration/exchange/order',
+  $stateProvider.state('exchange.order', {
+    url: '/order',
     template: orderTemplate,
     controller: 'ExchangeOrderCtrl',
     controllerAs: 'ctrl',
