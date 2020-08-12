@@ -1,10 +1,11 @@
+import angular from 'angular';
 import get from 'lodash/get';
 import has from 'lodash/has';
 
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 import isString from 'lodash/isString';
 
-import { Environment } from '@ovh-ux/manager-config';
+import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
@@ -43,11 +44,11 @@ import cloudUniverseComponents from '../cloudUniverseComponents';
 
 import errorPage from './error/error.module';
 
-Environment.setRegion(__WEBPACK_REGION__);
+const moduleName = 'managerApp';
 
 angular
   .module(
-    'managerApp',
+    moduleName,
     [
       'ngCookies',
       'ngResource',
@@ -208,4 +209,14 @@ angular
       });
     },
   )
+  .run(
+    /* @ngInject */ ($rootScope, $transitions) => {
+      const unregisterHook = $transitions.onSuccess({}, () => {
+        detachPreloader();
+        unregisterHook();
+      });
+    },
+  )
   .run(/* @ngTranslationsInject:json ./common/translations */);
+
+export default moduleName;
