@@ -4,12 +4,14 @@ import 'oclazyload';
 
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 
+import ExchangeModel from './dashboard/Exchange.class';
+
 import billingAccountRenew from './billing/account-renew/renew.module';
 
-import APIExchange from './exchange.api';
-import Exchange from './exchange.service';
-import ExchangePassword from './exchange.password.service';
-import navigation from './services/exchange.navigation.service'; // used by emailpro
+import APIExchange from './dashboard/exchange.api';
+import Exchange from './dashboard/exchange.service';
+import ExchangePassword from './dashboard/exchange.password.service';
+import navigation from './services/exchange.navigation.service';
 
 const moduleName = 'ovhManagerExchangeLazyLoading';
 
@@ -20,7 +22,7 @@ angular
       const lazyLoad = ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-        return import('./exchange.module').then((mod) =>
+        return import('./dashboard/exchange.module').then((mod) =>
           $ocLazyLoad.inject(mod.default || mod),
         );
       };
@@ -30,7 +32,7 @@ angular
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-          return import('./exchanges/exchanges.module').then((mod) =>
+          return import('./exchange.module').then((mod) =>
             $ocLazyLoad.inject(mod.default || mod),
           );
         },
@@ -83,3 +85,5 @@ angular
   .service('navigation', navigation);
 
 export default moduleName;
+
+export { ExchangeModel as Exchange };

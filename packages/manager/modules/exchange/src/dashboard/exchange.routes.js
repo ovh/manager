@@ -2,7 +2,7 @@ import camelCase from 'lodash/camelCase';
 import set from 'lodash/set';
 
 import template from './exchange.html';
-import orderTemplate from './order/order.html';
+import orderTemplate from '../order/order.html';
 
 export default /* @ngInject */ ($stateProvider) => {
   const getNavigationInformations = (

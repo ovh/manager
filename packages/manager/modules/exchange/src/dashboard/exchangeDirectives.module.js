@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-import officeAttach from './office-attach/office-attach.directive';
+import officeAttach from '../office-attach/office-attach.directive';
 
 const moduleName = 'Module.exchange.directives';
 
