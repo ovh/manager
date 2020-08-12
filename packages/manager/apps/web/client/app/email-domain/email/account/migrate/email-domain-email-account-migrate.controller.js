@@ -18,11 +18,22 @@ angular.module('App').controller(
      * @param WucEmails
      * @param constants
      */
-    constructor($scope, $q, $translate, Alerter, WucEmails, WucUser) {
+    constructor(
+      $scope,
+      $stateParams,
+      $q,
+      $translate,
+      Alerter,
+      goToEmail,
+      WucEmails,
+      WucUser,
+    ) {
       this.$scope = $scope;
+      this.$stateParams = $stateParams;
       this.$q = $q;
       this.$translate = $translate;
       this.Alerter = Alerter;
+      this.goToEmail = goToEmail;
       this.WucEmails = WucEmails;
       this.WucUser = WucUser;
     }
@@ -33,8 +44,7 @@ angular.module('App').controller(
         HOSTED_EXCHANGE: 'HOSTED EXCHANGE',
         PRIVATE_EXCHANGE: 'PRIVATE EXCHANGE',
       };
-      this.email =
-        this.$scope.ctrlEmailDomainEmail.accountMigrationEmail || null;
+      this.email = this.$stateParams.email || null;
 
       this.loaders = {
         isInitialRetrievalRunning: true,
@@ -220,7 +230,7 @@ angular.module('App').controller(
             );
           }
 
-          this.$scope.ctrlEmailDomainEmail.displayEmailsList();
+          this.goToEmail();
         })
         .catch((err) => this.handleError(err))
         .finally(() => {

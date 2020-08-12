@@ -12,12 +12,23 @@ angular.module('App').controller(
      * @param Alerter
      * @param WucEmails
      */
-    constructor($scope, $stateParams, $q, $translate, Alerter, WucEmails) {
+    constructor(
+      $scope,
+      $stateParams,
+      $q,
+      $translate,
+      Alerter,
+      goToEmail,
+      quotas,
+      WucEmails,
+    ) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
       this.$q = $q;
       this.$translate = $translate;
       this.Alerter = Alerter;
+      this.goToEmail = goToEmail;
+      this.quotas = quotas;
       this.WucEmails = WucEmails;
     }
 

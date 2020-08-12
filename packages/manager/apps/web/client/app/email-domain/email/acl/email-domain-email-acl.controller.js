@@ -21,6 +21,7 @@ angular.module('App').controller(
       $stateParams,
       $translate,
       Alerter,
+      goToEmail,
       WucEmails,
       LANGUAGES,
       WucUser,
@@ -30,6 +31,7 @@ angular.module('App').controller(
       this.$stateParams = $stateParams;
       this.$translate = $translate;
       this.Alerter = Alerter;
+      this.goToEmail = goToEmail;
       this.WucEmails = WucEmails;
       this.LANGUAGES = LANGUAGES;
       this.WucUser = WucUser;
