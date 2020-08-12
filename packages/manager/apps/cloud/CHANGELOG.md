@@ -1,3 +1,12 @@
+# [10.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@10.1.1...@ovh-ux/manager-cloud@10.2.0) (2020-08-12)
+
+
+### Features
+
+* **cloud:** add env-executor ([#3404](https://github.com/ovh/manager/issues/3404)) ([4cd2417](https://github.com/ovh/manager/commit/4cd24174086a4dd7f669bd4adb7eccb884a05a7b))
+
+
+
 ## [10.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@10.1.0...@ovh-ux/manager-cloud@10.1.1) (2020-08-06)
 
 
