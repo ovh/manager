@@ -135,6 +135,9 @@ export default class CloudConnectOverviewCtrl {
   }
 
   downloadLOA() {
+    this.cloudConnectService.trackClick(
+      'cloud-connect::overview::download-loa',
+    );
     this.downloadingLoa = true;
     this.cloudConnectService
       .downloadLOA(this.cloudConnect.id)

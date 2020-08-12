@@ -13,6 +13,9 @@ export default class DataCenterAddCtrl {
   }
 
   create() {
+    this.cloudConnectService.trackClick(
+      'cloud-connect::overview::datacenter-add::confirm',
+    );
     this.isLoading = true;
     const options = {
       ovhBgpArea: this.ovhBgpArea,

@@ -31,6 +31,9 @@ export default class AddPopConfigurationCtrl {
   }
 
   configurePop() {
+    this.cloudConnectService.trackClick(
+      'cloud-connect::overview::add-pop::confirm',
+    );
     this.isLoading = true;
     this.cloudConnectService
       .addPopConfiguration(

@@ -12,6 +12,9 @@ export default class UnlockPortCtrl {
   }
 
   unlockPort() {
+    this.cloudConnectService.trackClick(
+      'cloud-connect::overview::unlock-port::confirm',
+    );
     this.isLoading = true;
     this.cloudConnectService
       .unlockInterface(this.cloudConnect.id, this.interfaceId)

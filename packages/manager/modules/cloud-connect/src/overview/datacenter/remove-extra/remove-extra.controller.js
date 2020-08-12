@@ -12,6 +12,9 @@ export default class CloudConnectDacenterRemoveExtraCtrl {
   }
 
   removeRouting() {
+    this.cloudConnectService.trackClick(
+      'cloud-connect::overview::remove-datacenter-extra-configuration::confirm',
+    );
     this.isLoading = true;
     this.cloudConnectService
       .removeDatacenterConfigurationExtra(

@@ -12,6 +12,9 @@ export default class LockPortCtrl {
   }
 
   lockPort() {
+    this.cloudConnectService.trackClick(
+      'cloud-connect::overview::lock-port::confirm',
+    );
     this.isLoading = true;
     this.cloudConnectService
       .lockInterface(this.cloudConnect.id, this.interfaceId)

@@ -13,6 +13,9 @@ export default class SendServiceKeyCtrl {
 
   sendServiceKey() {
     this.isLoading = true;
+    this.cloudConnectService.trackClick(
+      'cloud-connect::overview::send-service-key::confirm',
+    );
     this.cloudConnectService
       .sendServiceKey(this.cloudConnect.id, this.serviceKeyId, this.email)
       .then(() =>

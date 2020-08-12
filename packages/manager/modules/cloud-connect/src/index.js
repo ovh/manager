@@ -5,6 +5,7 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import 'oclazyload';
 import 'ovh-api-services';
+import '@ovh-ux/ng-at-internet';
 import moment from 'moment';
 import ngOvhCloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-components';
 
