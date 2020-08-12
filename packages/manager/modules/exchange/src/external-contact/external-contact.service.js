@@ -3,6 +3,8 @@ import isEmpty from 'lodash/isEmpty';
 import keys from 'lodash/keys';
 import set from 'lodash/set';
 
+import punycode from 'punycode';
+
 export default class ExchangeExternalContacts {
   /* @ngInject */
   constructor(Exchange, OvhHttp) {

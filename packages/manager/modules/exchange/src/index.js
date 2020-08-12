@@ -2,6 +2,8 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
+import '@ovh-ux/ui-kit/dist/css/oui.css';
+
 import billingAccountRenew from './billing/account-renew/renew.module';
 
 import APIExchange from './exchange.api';

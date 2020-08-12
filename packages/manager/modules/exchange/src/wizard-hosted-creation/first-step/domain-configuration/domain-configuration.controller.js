@@ -6,6 +6,8 @@ import isString from 'lodash/isString';
 import includes from 'lodash/includes';
 import startsWith from 'lodash/startsWith';
 
+import punycode from 'punycode';
+
 export default class DomainConfigurationController {
   /* @ngInject */
   constructor(

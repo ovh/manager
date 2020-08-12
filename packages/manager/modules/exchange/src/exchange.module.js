@@ -1,5 +1,13 @@
 import angular from 'angular';
 import ovhManagerCore from '@ovh-ux/manager-core';
+import 'angular-route';
+import 'angular-ui-bootstrap';
+import 'ng-ckeditor';
+import '@ovh-ux/ng-ovh-utils';
+import '@ovh-ux/ng-ovh-web-universe-components';
+import 'moment';
+
+import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 
 import ExchangeAccountMfaCreate from './account/mfa/create';
 import ExchangeAccountMfaDelete from './account/mfa/delete';
@@ -28,6 +36,7 @@ angular
     'ui.bootstrap',
     'ngSanitize',
     'ng.ckeditor',
+    'ngOvhWebUniverseComponents',
     components,
     controllers,
     directives,

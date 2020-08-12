@@ -11,6 +11,8 @@ import reduce from 'lodash/reduce';
 import set from 'lodash/set';
 import some from 'lodash/some';
 
+import punycode from 'punycode';
+
 export default class Exchange {
   /* @ngInject */
   constructor(

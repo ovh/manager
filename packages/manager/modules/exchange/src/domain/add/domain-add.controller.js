@@ -8,6 +8,8 @@ import isEmpty from 'lodash/isEmpty';
 
 import { Environment } from '@ovh-ux/manager-config';
 
+import punycode from 'punycode';
+
 export default class ExchangeAddDomainController {
   /* @ngInject */
   constructor(
