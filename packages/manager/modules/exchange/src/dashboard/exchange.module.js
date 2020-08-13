@@ -20,6 +20,19 @@ import services from './exchangeServices.module';
 import routing from './exchange.routes';
 import cacheTemplate from './exchange.template';
 
+import information from '../information/information.module';
+import domain from '../domain/domain.module';
+import account from '../account/account.module';
+import group from '../group/group.module';
+import externalContact from '../external-contact/external-contact.module';
+import sharedAccount from '../shared-account/shared-account.module';
+import diagnostic from '../diagnostic/diagnostic.module';
+import security from '../security/security.module';
+import resource from '../resource/resource.module';
+import disclaimer from '../disclaimer/disclaimer.module';
+import shared from '../shared/shared.module';
+import task from '../task/task.module';
+
 import {
   EXCHANGE_MX_CONFIG,
   EXCHANGE_CONFIG_URL,
@@ -45,6 +58,18 @@ angular
     services,
     ExchangeAccountMfaCreate,
     ExchangeAccountMfaDelete,
+    information,
+    domain,
+    account,
+    group,
+    externalContact,
+    sharedAccount,
+    diagnostic,
+    security,
+    resource,
+    disclaimer,
+    shared,
+    task,
   ])
   .constant('EXCHANGE_MX_CONFIG', EXCHANGE_MX_CONFIG)
   .constant('EXCHANGE_CONFIG_URL', EXCHANGE_CONFIG_URL)
