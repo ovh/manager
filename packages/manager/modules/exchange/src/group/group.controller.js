@@ -9,6 +9,9 @@ export default class ExchangeTabGroupsCtrl {
     messaging,
     $translate,
     exchangeStates,
+    goToAlias,
+    goToManager,
+    goToMembers,
   ) {
     this.services = {
       $scope,
@@ -23,44 +26,30 @@ export default class ExchangeTabGroupsCtrl {
 
     this.loading = false;
     this.mailingLists = null;
-    this.search = {
-      value: null,
-    };
-
-    this.displayGroups();
+    this.search = null;
+    this.services.navigation.selectedGroup = null;
 
     $scope.$on(Exchange.events.groupsChanged, () =>
       $scope.$broadcast('paginationServerSide.reload', 'groupsTable'),
     );
-    $scope.$on('showGroups', () => this.displayGroups());
-    $scope.$on('showManagers', () => this.displayManagersByGroup());
-    $scope.$on('showMembers', () => this.displayMembersByGroup());
 
     $scope.getLoading = () => this.getLoading();
     $scope.getMailingListObjects = () => this.getMailingListObjects();
     $scope.getMailingLists = (count, offset) =>
       this.getMailingLists(count, offset);
+
+    this.goToAlias = goToAlias;
+    this.goToManager = goToManager;
+    this.goToMembers = goToMembers;
   }
 
   onSearchValueChange() {
     this.getMailingLists();
   }
 
-  displayGroups() {
-    this.search = null;
-    this.showGroups = true;
-    this.showManagers = false;
-    this.showMembers = false;
-    this.showAliases = false;
-    this.services.navigation.selectedGroup = null;
-  }
-
   displayManagersByGroup(ml) {
     this.search = null;
-    this.showGroups = false;
-    this.showManagers = true;
-    this.showMembers = false;
-    this.showAliases = false;
+    this.goToManager(ml);
     this.services.navigation.selectedGroup = ml;
     this.services.$scope.$broadcast(
       'paginationServerSide.loadPage',
@@ -71,10 +60,7 @@ export default class ExchangeTabGroupsCtrl {
 
   displayMembersByGroup(ml) {
     this.search = null;
-    this.showGroups = false;
-    this.showManagers = false;
-    this.showMembers = true;
-    this.showAliases = false;
+    this.goToMembers(ml);
     this.services.navigation.selectedGroup = ml;
     this.services.$scope.$broadcast(
       'paginationServerSide.loadPage',
@@ -85,10 +71,7 @@ export default class ExchangeTabGroupsCtrl {
 
   displayAliasesByGroup(ml) {
     this.search = null;
-    this.showGroups = false;
-    this.showManagers = false;
-    this.showMembers = false;
-    this.showAliases = true;
+    this.goToAlias(ml);
     this.services.navigation.selectedGroup = ml;
     this.services.$scope.$broadcast(
       'paginationServerSide.loadPage',

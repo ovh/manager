@@ -12,8 +12,17 @@ export default class ExchangeCtrl {
     $scope,
     $timeout,
     $translate,
+    accountLink,
+    currentActiveLink,
+    diagnosticLink,
+    disclaimerLink,
+    domainLink,
     Exchange,
     exchangeServiceInfrastructure,
+    exchangeVersion,
+    externalContactLink,
+    groupLink,
+    informationLink,
     messaging,
     navigation,
     ovhUserPref,
@@ -22,6 +31,11 @@ export default class ExchangeCtrl {
     exchange,
     reloadDashboard,
     WucUser,
+    resourceLink,
+    securityLink,
+    sharedLink,
+    sharedAccountLink,
+    taskLink,
   ) {
     this.services = {
       $q,
@@ -32,6 +46,7 @@ export default class ExchangeCtrl {
       $translate,
       Exchange,
       exchangeServiceInfrastructure,
+      exchangeVersion,
       messaging,
       navigation,
       ovhUserPref,
@@ -73,6 +88,20 @@ export default class ExchangeCtrl {
       this.shouldOpenWizard = false;
       this.hasNoDomain = false;
     });
+
+    this.currentActiveLink = currentActiveLink;
+    this.informationLink = informationLink;
+    this.domainLink = domainLink;
+    this.accountLink = accountLink;
+    this.groupLink = groupLink;
+    this.externalContactLink = externalContactLink;
+    this.sharedAccountLink = sharedAccountLink;
+    this.diagnosticLink = diagnosticLink;
+    this.securityLink = securityLink;
+    this.resourceLink = resourceLink;
+    this.disclaimerLink = disclaimerLink;
+    this.sharedLink = sharedLink;
+    this.taskLink = taskLink;
   }
 
   $onInit() {

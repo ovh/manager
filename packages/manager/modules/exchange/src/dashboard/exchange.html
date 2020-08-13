@@ -18,18 +18,89 @@
     <exchange-header></exchange-header>
 
     <div data-ng-if="!ctrl.shouldOpenWizard || !ctrl.hasNoDomain">
-        <div
-            data-ng-controller="ExchangeTabsCtrl"
-            data-ng-if="!ctrl.exchange.isExpired"
-        >
-            <wuc-ovh-tabs
-                tabs="tabs"
-                selected-tab="selectedTab"
-                change-tab="changeTab"
-                product="exchange"
-                menu="dropdownMenuItems"
-                tr="tr"
-            ></wuc-ovh-tabs>
+        <div data-ng-if="!ctrl.exchange.isExpired">
+            <oui-header-tabs>
+                <oui-header-tabs-item
+                    href="{{ ctrl.informationLink }}"
+                    active="ctrl.currentActiveLink() === ctrl.informationLink"
+                >
+                    <span data-translate="exchange_tab_INFORMATION"></span>
+                </oui-header-tabs-item>
+                <oui-header-tabs-item
+                    href="{{ ctrl.domainLink }}"
+                    active="ctrl.currentActiveLink() === ctrl.domainLink"
+                >
+                    <span data-translate="exchange_tab_DOMAIN"></span>
+                </oui-header-tabs-item>
+                <oui-header-tabs-item
+                    href="{{ ctrl.accountLink }}"
+                    active="ctrl.currentActiveLink() === ctrl.accountLink"
+                >
+                    <span data-translate="exchange_tab_ACCOUNT"></span>
+                </oui-header-tabs-item>
+                <oui-header-tabs-item
+                    href="{{ ctrl.groupLink }}"
+                    active="ctrl.currentActiveLink() === ctrl.groupLink"
+                >
+                    <span data-translate="exchange_tab_GROUP"></span>
+                </oui-header-tabs-item>
+                <oui-header-tabs-item
+                    href="{{ ctrl.externalContactLink }}"
+                    active="ctrl.currentActiveLink() === ctrl.externalContactLink"
+                >
+                    <span data-translate="exchange_tab_EXTERNAL_CONTACT"></span>
+                </oui-header-tabs-item>
+                <oui-header-tabs-item
+                    data-ng-if="ctrl.services.exchangeVersion.isAfter(2010)"
+                    href="{{ ctrl.sharedAccountLink }}"
+                    active="ctrl.currentActiveLink() === ctrl.sharedAccountLink"
+                >
+                    <span data-translate="exchange_tab_SHARED_ACCOUNT"></span>
+                </oui-header-tabs-item>
+                <oui-header-tabs-item
+                    href="{{ ctrl.diagnosticLink }}"
+                    active="ctrl.currentActiveLink() === ctrl.diagnosticLink"
+                >
+                    <span data-translate="exchange_tab_DIAGNOSTIC"></span>
+                </oui-header-tabs-item>
+                <oui-header-tabs-item
+                    href="{{ ctrl.securityLink }}"
+                    active="ctrl.currentActiveLink() === ctrl.securityLink"
+                >
+                    <span data-translate="exchange_tab_SECURITY"></span>
+                </oui-header-tabs-item>
+                <oui-header-tabs-dropdown
+                    text="{{ 'navigation_more' | translate }}"
+                >
+                    <oui-header-tabs-item
+                        href="{{ ctrl.resourceLink }}"
+                        active="ctrl.currentActiveLink() === ctrl.resourceLink"
+                    >
+                        <span data-translate="exchange_tab_RESOURCES"></span>
+                    </oui-header-tabs-item>
+                    <oui-header-tabs-item
+                        href="{{ ctrl.disclaimerLink }}"
+                        active="ctrl.currentActiveLink() === ctrl.disclaimerLink"
+                    >
+                        <span data-translate="exchange_tab_DISCLAIMER"></span>
+                    </oui-header-tabs-item>
+                    <oui-header-tabs-item
+                        data-ng-if="(ctrl.services.exchangeServiceInfrastructure.isDedicated() ||
+                        ctrl.services.exchangeServiceInfrastructure.isDedicatedCluster()) &&
+                        ctrl.services.exchangeVersion.isVersion(2010)"
+                        href="{{ ctrl.sharedLink }}"
+                        active="ctrl.currentActiveLink() === ctrl.sharedLink"
+                    >
+                        <span data-translate="exchange_tab_SHARED"></span>
+                    </oui-header-tabs-item>
+                    <oui-header-tabs-item
+                        href="{{ ctrl.taskLink }}"
+                        active="ctrl.currentActiveLink() === ctrl.taskLink"
+                    >
+                        <span data-translate="exchange_tab_TASKS"></span>
+                    </oui-header-tabs-item>
+                </oui-header-tabs-dropdown>
+            </oui-header-tabs>
             <div class="tab-content">
                 <div
                     class="alert alert-dismissible"
@@ -65,10 +136,7 @@
                     </div>
                 </div>
 
-                <div
-                    class="tab-pane active"
-                    data-ng-include="selectedTab && 'exchange/' + kebabCase(selectedTab) + '/' + kebabCase(selectedTab) + '.html'"
-                ></div>
+                <div class="tab-pane active" ui-view></div>
             </div>
         </div>
 

@@ -1,6 +1,15 @@
 export default class ExchangeTabManagersByGroupsCtrl {
   /* @ngInject */
-  constructor($scope, Exchange, navigation, messaging, $translate, group) {
+  constructor(
+    $scope,
+    Exchange,
+    navigation,
+    mailingList,
+    messaging,
+    $translate,
+    goToGroup,
+    group,
+  ) {
     this.services = {
       $scope,
       Exchange,
@@ -12,15 +21,13 @@ export default class ExchangeTabManagersByGroupsCtrl {
 
     this.$routerParams = Exchange.getParams();
     this.groupParams = {};
+    this.goToGroup = goToGroup;
+    this.mailingList = mailingList;
 
     $scope.$on(Exchange.events.accountsChanged, () => this.refreshList());
     $scope.getManagersList = () => this.managersList;
     $scope.getManagersByGroup = (pageSize, offset) =>
       this.getManagersByGroup(pageSize, offset);
-  }
-
-  hide() {
-    this.services.$scope.$emit('showGroups');
   }
 
   getManagersByGroup({ pageSize, offset }) {
@@ -32,7 +39,7 @@ export default class ExchangeTabManagersByGroupsCtrl {
       .retrievingManagersByGroup(
         this.$routerParams.organization,
         this.$routerParams.productId,
-        this.services.navigation.selectedGroup.mailingListName,
+        this.mailingList.mailingListName,
         pageSize,
         offset - 1,
       )
@@ -60,7 +67,7 @@ export default class ExchangeTabManagersByGroupsCtrl {
       .retrievingManagersByGroup(
         this.$routerParams.organization,
         this.$routerParams.productId,
-        this.services.navigation.selectedGroup.mailingListName,
+        this.mailingList.mailingListName,
         this.groupParams.pageSize,
         this.groupParams.offset - 1,
       )
@@ -90,7 +97,7 @@ export default class ExchangeTabManagersByGroupsCtrl {
     this.services.navigation.setAction(
       'exchange/group/manager/remove/group-manager-remove',
       {
-        group: this.services.navigation.selectedGroup,
+        group: this.mailingList,
         manager,
       },
     );

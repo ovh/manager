@@ -1,26 +1,19 @@
 import orderTemplate from '../order/order.html';
 import serviceSslRenewTemplate from '../information/ssl/service-ssl-renew.html';
 import ServiceMigration2016Template from '../information/migration-2016/service-migration-2016.html';
-import informationTemplate from '../information/information.html';
 import serviceDiskOrderSpaceTemplate from '../information/disk/service-disk-order-space.html';
 import disclaimerRemoveTemplate from '../disclaimer/remove/disclaimer-remove.html';
 import disclaimerUpdateTemplate from '../disclaimer/update/disclaimer-update.html';
-import disclaimerTemplate from '../disclaimer/disclaimer.html';
 import disclaimerAddTemplate from '../disclaimer/add/disclaimer-add.html';
 import groupAliasRemoveTemplate from '../group/alias/remove/group-alias-remove.html';
-import groupAliasTemplate from '../group/alias/group-alias.html';
 import groupAliasAddTemplate from '../group/alias/add/group-alias-add.html';
 import groupRemoveTemplate from '../group/remove/group-remove.html';
 import groupUpdateTemplate from '../group/update/group-update.html';
-import groupTemplate from '../group/group.html';
 import groupMemberRemoveTemplate from '../group/member/remove/group-member-remove.html';
-import groupMemberTemplate from '../group/member/group-member.html';
 import groupDelegationTemplate from '../group/delegation/group-delegation.html';
 import groupManagerRemoveTemplate from '../group/manager/remove/group-manager-remove.html';
-import groupManagerTemplate from '../group/manager/group-manager.html';
 import groupAddTemplate from '../group/add/group-add.html';
 import groupAccountsTemplate from '../group/accounts/group-accounts.html';
-import diagnosticTemplate from '../diagnostic/diagnostic.html';
 import diagnosticErrorConnectiveOwaTemplate from '../diagnostic/error/diagnostic-error-connective-owa.html';
 import diagnosticErrorIsLockedTemplate from '../diagnostic/error/diagnostic-error-is-locked.html';
 import diagnosticErrorIsSpammerTemplate from '../diagnostic/error/diagnostic-error-is-spammer.html';
@@ -29,19 +22,16 @@ import diagnosticErrorCanReceiveEmailTemplate from '../diagnostic/error/diagnost
 import diagnosticErrorIsSuspendedTemplate from '../diagnostic/error/diagnostic-error-is-suspended.html';
 import diagnosticErrorIsMxValidTemplate from '../diagnostic/error/diagnostic-error-is-mx-valid.html';
 import diagnosticErrorCanSendEmailTemplate from '../diagnostic/error/diagnostic-error-can-send-email.html';
-import sharedAccountTemplate from '../shared-account/shared-account.html';
 import sharedAccountUpdateTemplate from '../shared-account/update/shared-account-update.html';
 import sharedAccountDeleteTemplate from '../shared-account/delete/shared-account-delete.html';
 import sharedAccountDelegationTemplate from '../shared-account/delegation/shared-account-delegation.html';
 import sharedAccountAddTemplate from '../shared-account/add/shared-account-add.html';
 import sharedRemoveTemplate from '../shared/remove/shared-remove.html';
 import sharedUpdateTemplate from '../shared/update/shared-update.html';
-import sharedTemplate from '../shared/shared.html';
 import sharedPopoverTemplate from '../shared/popover/shared-popover.html';
 import sharedAddTemplate from '../shared/add/shared-add.html';
 import sharedPermissionRemoveTemplate from '../shared/permission/remove/shared-permission-remove.html';
 import sharedPermissionUpdateTemplate from '../shared/permission/update/shared-permission-update.html';
-import sharedPermissionTemplate from '../shared/permission/shared-permission.html';
 import wizardHostedCreationTemplate from '../wizard-hosted-creation/wizard-hosted-creation.html';
 import firstStepTemplate from '../wizard-hosted-creation/first-step/first-step.html';
 import updateTemplate from '../wizard-hosted-creation/first-step/email-creation/update/update.html';
@@ -54,14 +44,11 @@ import automaticTemplate from '../wizard-hosted-creation/summary/automatic/autom
 import manualTemplate from '../wizard-hosted-creation/summary/manual/manual.html';
 import summaryTemplate from '../wizard-hosted-creation/summary/summary.html';
 import externalContactRemoveTemplate from '../external-contact/remove/external-contact-remove.html';
-import externalContactTemplate from '../external-contact/external-contact.html';
 import externalContactUpdateTemplate from '../external-contact/update/external-contact-update.html';
 import externalContactAddTemplate from '../external-contact/add/external-contact-add.html';
-import taskTemplate from '../task/task.html';
 import officeAttachDialogTemplate from '../office-attach/dialog/office-attach-dialog.html';
 import officeAttachTemplate from '../office-attach/office-attach.html';
 import accountOrderTemplate from '../account/order/account-order.html';
-import accountHomeTemplate from '../account/home/account-home.html';
 import accountAliasRemoveTemplate from '../account/alias/remove/account-alias-remove.html';
 import accountAliasTemplate from '../account/alias/account-alias.html';
 import accountAliasAddTemplate from '../account/alias/add/account-alias-add.html';
@@ -84,7 +71,6 @@ import accountMfaBulkDeleteTemplate from '../account/mfa/bulk-delete.html';
 import errorMessagesPopoverTemplate from './error-messages.popover.html';
 import resourceRemoveTemplate from '../resource/remove/resource-remove.html';
 import resourceUpdateTemplate from '../resource/update/resource-update.html';
-import resourceTemplate from '../resource/resource.html';
 import resourceDelegationTemplate from '../resource/delegation/resource-delegation.html';
 import resourceAddTemplate from '../resource/add/resource-add.html';
 import domainMxAutoconfigTemplate from '../domain/mx-autoconfig/domain-mx-autoconfig.html';
@@ -92,13 +78,11 @@ import domainRemoveTemplate from '../domain/remove/domain-remove.html';
 import domainUpdateTemplate from '../domain/update/domain-update.html';
 import domainSrvAutoconfigTemplate from '../domain/srv-autoconfig/domain-srv-autoconfig.html';
 import domainAddTemplate from '../domain/add/domain-add.html';
-import domainTemplate from '../domain/domain.html';
 import exchangeRemoveTemplate from '../header/remove/exchange-remove.html';
 import serviceLicenseHistoryTemplate from '../header/license/service-license-history.html';
 import headerTemplate from '../header/header.html';
 import billingAccountRenewTemplate from '../billing/account-renew/renew.html';
 import exchangeTemplate from './exchange.html';
-import securityTemplate from '../security/security.html';
 
 export default /* @ngInject */ ($templateCache) => {
   $templateCache.put('exchange/order/order.html', orderTemplate);
@@ -109,10 +93,6 @@ export default /* @ngInject */ ($templateCache) => {
   $templateCache.put(
     'exchange/information/migration-2016/service-migration-2016.html',
     ServiceMigration2016Template,
-  );
-  $templateCache.put(
-    'exchange/information/information.html',
-    informationTemplate,
   );
   $templateCache.put(
     'exchange/information/disk/service-disk-order-space.html',
@@ -126,7 +106,6 @@ export default /* @ngInject */ ($templateCache) => {
     'exchange/disclaimer/update/disclaimer-update.html',
     disclaimerUpdateTemplate,
   );
-  $templateCache.put('exchange/disclaimer/disclaimer.html', disclaimerTemplate);
   $templateCache.put(
     'exchange/disclaimer/add/disclaimer-add.html',
     disclaimerAddTemplate,
@@ -134,10 +113,6 @@ export default /* @ngInject */ ($templateCache) => {
   $templateCache.put(
     'exchange/group/alias/remove/group-alias-remove.html',
     groupAliasRemoveTemplate,
-  );
-  $templateCache.put(
-    'exchange/group/alias/group-alias.html',
-    groupAliasTemplate,
   );
   $templateCache.put(
     'exchange/group/alias/add/group-alias-add.html',
@@ -151,14 +126,9 @@ export default /* @ngInject */ ($templateCache) => {
     'exchange/group/update/group-update.html',
     groupUpdateTemplate,
   );
-  $templateCache.put('exchange/group/group.html', groupTemplate);
   $templateCache.put(
     'exchange/group/member/remove/group-member-remove.html',
     groupMemberRemoveTemplate,
-  );
-  $templateCache.put(
-    'exchange/group/member/group-member.html',
-    groupMemberTemplate,
   );
   $templateCache.put(
     'exchange/group/delegation/group-delegation.html',
@@ -168,16 +138,11 @@ export default /* @ngInject */ ($templateCache) => {
     'exchange/group/manager/remove/group-manager-remove.html',
     groupManagerRemoveTemplate,
   );
-  $templateCache.put(
-    'exchange/group/manager/group-manager.html',
-    groupManagerTemplate,
-  );
   $templateCache.put('exchange/group/add/group-add.html', groupAddTemplate);
   $templateCache.put(
     'exchange/group/accounts/group-accounts.html',
     groupAccountsTemplate,
   );
-  $templateCache.put('exchange/diagnostic/diagnostic.html', diagnosticTemplate);
   $templateCache.put(
     'exchange/diagnostic/error/diagnostic-error-connective-owa.html',
     diagnosticErrorConnectiveOwaTemplate,
@@ -211,10 +176,6 @@ export default /* @ngInject */ ($templateCache) => {
     diagnosticErrorCanSendEmailTemplate,
   );
   $templateCache.put(
-    'exchange/shared-account/shared-account.html',
-    sharedAccountTemplate,
-  );
-  $templateCache.put(
     'exchange/shared-account/update/shared-account-update.html',
     sharedAccountUpdateTemplate,
   );
@@ -238,7 +199,6 @@ export default /* @ngInject */ ($templateCache) => {
     'exchange/shared/update/shared-update.html',
     sharedUpdateTemplate,
   );
-  $templateCache.put('exchange/shared/shared.html', sharedTemplate);
   $templateCache.put(
     'exchange/shared/popover/shared-popover.html',
     sharedPopoverTemplate,
@@ -251,10 +211,6 @@ export default /* @ngInject */ ($templateCache) => {
   $templateCache.put(
     'exchange/shared/permission/update/shared-permission-update.html',
     sharedPermissionUpdateTemplate,
-  );
-  $templateCache.put(
-    'exchange/shared/permission/shared-permission.html',
-    sharedPermissionTemplate,
   );
   $templateCache.put(
     'exchange/wizard-hosted-creation/wizard-hosted-creation.html',
@@ -305,10 +261,6 @@ export default /* @ngInject */ ($templateCache) => {
     externalContactRemoveTemplate,
   );
   $templateCache.put(
-    'exchange/external-contact/external-contact.html',
-    externalContactTemplate,
-  );
-  $templateCache.put(
     'exchange/external-contact/update/external-contact-update.html',
     externalContactUpdateTemplate,
   );
@@ -316,7 +268,6 @@ export default /* @ngInject */ ($templateCache) => {
     'exchange/external-contact/add/external-contact-add.html',
     externalContactAddTemplate,
   );
-  $templateCache.put('exchange/task/task.html', taskTemplate);
   $templateCache.put(
     'exchange/office-attach/dialog/office-attach-dialog.html',
     officeAttachDialogTemplate,
@@ -328,10 +279,6 @@ export default /* @ngInject */ ($templateCache) => {
   $templateCache.put(
     'exchange/account/order/account-order.html',
     accountOrderTemplate,
-  );
-  $templateCache.put(
-    'exchange/account/home/account-home.html',
-    accountHomeTemplate,
   );
   $templateCache.put(
     'exchange/account/alias/remove/account-alias-remove.html',
@@ -418,7 +365,6 @@ export default /* @ngInject */ ($templateCache) => {
     'exchange/resource/update/resource-update.html',
     resourceUpdateTemplate,
   );
-  $templateCache.put('exchange/resource/resource.html', resourceTemplate);
   $templateCache.put(
     'exchange/resource/delegation/resource-delegation.html',
     resourceDelegationTemplate,
@@ -444,7 +390,6 @@ export default /* @ngInject */ ($templateCache) => {
     domainSrvAutoconfigTemplate,
   );
   $templateCache.put('exchange/domain/add/domain-add.html', domainAddTemplate);
-  $templateCache.put('exchange/domain/domain.html', domainTemplate);
   $templateCache.put(
     'exchange/header/remove/exchange-remove.html',
     exchangeRemoveTemplate,
@@ -459,5 +404,4 @@ export default /* @ngInject */ ($templateCache) => {
     billingAccountRenewTemplate,
   );
   $templateCache.put('exchange/exchange.html', exchangeTemplate);
-  $templateCache.put('exchange/security/security.html', securityTemplate);
 };

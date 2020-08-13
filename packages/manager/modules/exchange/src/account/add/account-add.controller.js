@@ -151,9 +151,7 @@ export default class ExchangeAccountAddController {
   }
 
   hide() {
-    this.$scope.$emit(this.exchangeAccount.EVENTS.CHANGE_STATE, {
-      stateName: 'hide',
-    });
+    this.goToAccounts();
   }
 
   switchBetweenPasswordAndTextInput() {

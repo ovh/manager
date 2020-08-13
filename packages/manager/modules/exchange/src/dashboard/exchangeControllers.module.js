@@ -1,7 +1,6 @@
 import angular from 'angular';
 
 import ExchangeCtrl from './exchange.controller';
-import ExchangeTabsCtrl from './exchange.tabs.controller';
 import ExchangeAddExternalContactCtrl from '../external-contact/add/external-contact-add.controller';
 import ExchangeTabExternalContactsCtrl from '../external-contact/external-contact.controller';
 import ExchangeExternalContactsDeleteCtrl from '../external-contact/remove/external-contact-remove.controller';
@@ -86,10 +85,6 @@ const moduleName = 'Module.exchange.controllers';
 angular
   .module(moduleName, [])
   .controller('ExchangeCtrl', ExchangeCtrl)
-  .controller('ExchangeTabsCtrl', ExchangeTabsCtrl)
-  // .controller('ExchangeToolboxGroupsCtrl', ExchangeToolboxGroupsCtrl)
-  // .controller('ExchangeToolboxDisclaimerCtrl', ExchangeToolboxDisclaimerCtrl)
-  // .controller('ExchangeToolboxSharedCtrl', ExchangeToolboxSharedCtrl)
   .controller('ExchangeAddExternalContactCtrl', ExchangeAddExternalContactCtrl)
   .controller(
     'ExchangeTabExternalContactsCtrl',

@@ -1,8 +1,5 @@
-<div
-    class="container-fluid px-0"
-    data-ng-controller="ExchangeTabPublicFolderCtrl as ctrl"
->
-    <div class="row" data-ng-if="ctrl.showPublicFolders">
+<div class="container-fluid px-0" ui-view>
+    <div class="row">
         <div class="col-md-9">
             <form class="form-inline d-md-flex justify-content-md-end mb-3">
                 <div class="form-group">
@@ -226,9 +223,4 @@
             ></button>
         </div>
     </div>
-
-    <div
-        data-ng-if="ctrl.showPermissions"
-        data-ng-include="'exchange/shared/permission/shared-permission.html'"
-    ></div>
 </div>

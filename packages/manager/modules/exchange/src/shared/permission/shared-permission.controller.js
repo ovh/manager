@@ -6,6 +6,7 @@ export default class ExchangeTabPublicFolderPermissionsCtrl {
     $scope,
     Exchange,
     ExchangePublicFolders,
+    goToShared,
     messaging,
     navigation,
     $translate,
@@ -25,6 +26,7 @@ export default class ExchangeTabPublicFolderPermissionsCtrl {
     };
     this.selectedFolder = $scope.selectedFolder;
     this.permissionsLoading = false;
+    this.goToShared = goToShared;
 
     $scope.$on(Exchange.events.publicFoldersChanged, () => {
       $scope.$broadcast('paginationServerSide.reload', 'permissionsTable');
