@@ -1,8 +1,5 @@
 import angular from 'angular';
 
-import exchangeAccountAdd from '../account/add/account-add.component';
-import exchangeAccountAlias from '../account/alias/account-alias.component';
-import exchangeAccountHome from '../account/home/account-home.component';
 import exchangeHeader from '../header/header.component';
 import exchangeWizardHostedCreationDomainConfiguration from '../wizard-hosted-creation/first-step/domain-configuration/domain-configuration.component';
 import exchangeWizardHostedCreationEmailCreation from '../wizard-hosted-creation/first-step/email-creation/email-creation.component';
@@ -15,9 +12,6 @@ const moduleName = 'Module.exchange.components';
 
 angular
   .module(moduleName, [])
-  .component('exchangeAccountAdd', exchangeAccountAdd)
-  .component('exchangeAccountAlias', exchangeAccountAlias)
-  .component('exchangeAccountHome', exchangeAccountHome)
   .component('exchangeHeader', exchangeHeader)
   .component(
     'exchangeWizardHostedCreationDomainConfiguration',

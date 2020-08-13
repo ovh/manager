@@ -4,16 +4,16 @@ export default class ExchangeTabMembersByGroupsCtrl {
     $scope,
     Exchange,
     $timeout,
-    navigation,
+    mailingList,
     messaging,
     $translate,
+    goToGroup,
     group,
   ) {
     this.services = {
       $scope,
       Exchange,
       $timeout,
-      navigation,
       messaging,
       $translate,
       group,
@@ -21,6 +21,8 @@ export default class ExchangeTabMembersByGroupsCtrl {
 
     this.$routerParams = Exchange.getParams();
     this.groupParams = {};
+    this.goToGroup = goToGroup;
+    this.mailingList = mailingList;
 
     $scope.$on(Exchange.events.accountsChanged, () => this.refreshList());
     $scope.getMembersList = () => this.membersList;
@@ -37,7 +39,7 @@ export default class ExchangeTabMembersByGroupsCtrl {
       .retrievingMembersByGroup(
         this.$routerParams.organization,
         this.$routerParams.productId,
-        this.services.navigation.selectedGroup.mailingListName,
+        this.mailingList.mailingListName,
         pageSize,
         offset - 1,
       )
@@ -65,7 +67,7 @@ export default class ExchangeTabMembersByGroupsCtrl {
       .retrievingMembersByGroup(
         this.$routerParams.organization,
         this.$routerParams.productId,
-        this.services.navigation.selectedGroup.mailingListName,
+        this.mailingList.mailingListName,
         this.groupParams.pageSize,
         this.groupParams.offset - 1,
       )
@@ -91,15 +93,11 @@ export default class ExchangeTabMembersByGroupsCtrl {
       );
   }
 
-  hide() {
-    this.services.$scope.$emit('showGroups');
-  }
-
   removeMember(member) {
     this.services.navigation.setAction(
       'exchange/group/member/remove/group-member-remove',
       {
-        group: this.services.navigation.selectedGroup,
+        group: this.mailingList,
         member,
       },
     );
