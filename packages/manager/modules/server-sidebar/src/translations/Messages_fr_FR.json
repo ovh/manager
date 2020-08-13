@@ -20,7 +20,7 @@
   "server_sidebar_item_load_balancer_title": "Load Balancer",
   "server_sidebar_item_dedicated_network_title": "Network",
   "server_sidebar_item_vrack_title": "vRack",
-  "server_sidebar_item_cloud_connect_title": "Cloud Connect",
+  "server_sidebar_item_cloud-connect_title": "OVHcloud Connect",
   "server_sidebar_item_cloud_desktop_title": "Cloud Desktop",
   "server_sidebar_item_domains_title": "Domaines",
   "server_sidebar_item_hostings_title": "Hébergements",

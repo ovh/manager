@@ -19,6 +19,7 @@ import zipObject from 'lodash/zipObject';
 import { SIDEBAR_CONFIG } from './sidebar.constants';
 import { ORDER_URLS, SIDEBAR_ORDER_CONFIG } from './order.constants';
 import { WEB_SIDEBAR_CONFIG, WEB_ORDER_SIDEBAR_CONFIG } from './web.constants';
+import { CLOUD_CONNECT_ID } from './constants';
 
 // we should avoid require, but JSURL don't provide an es6 export
 const { stringify } = require('jsurl');
@@ -34,6 +35,7 @@ export default class OvhManagerServerSidebarController {
     OvhApiService,
     SessionService,
     SidebarMenu,
+    ovhFeatureFlipping,
     CORE_MANAGER_URLS,
   ) {
     this.$q = $q;
@@ -44,12 +46,22 @@ export default class OvhManagerServerSidebarController {
     this.OvhApiService = OvhApiService;
     this.SessionService = SessionService;
     this.SidebarMenu = SidebarMenu;
+    this.ovhFeatureFlipping = ovhFeatureFlipping;
     this.CORE_MANAGER_URLS = CORE_MANAGER_URLS;
   }
 
   $onInit() {
-    this.SidebarMenu.setInitializationPromise(
-      this.$translate
+    this.featuresAvailabilities = null;
+    this.init();
+  }
+
+  init() {
+    // set initialization promise
+    return this.SidebarMenu.setInitializationPromise(
+      this.ovhFeatureFlipping.checkFeatureAvailability([
+        CLOUD_CONNECT_ID,
+      ])
+      .then((features) => this.$translate
         .refresh()
         .then(() => {
           this.SIDEBAR_CONFIG = SIDEBAR_CONFIG;
@@ -59,15 +71,31 @@ export default class OvhManagerServerSidebarController {
             this.SIDEBAR_CONFIG = WEB_SIDEBAR_CONFIG;
             this.SIDEBAR_ORDER_CONFIG = WEB_ORDER_SIDEBAR_CONFIG;
           }
-          this.buildFirstLevelMenu();
-          return this.buildOrderMenu();
+          return features;
         })
         .finally(() => this.$rootScope.$broadcast('sidebar:loaded')),
+      )
+      .then((features) => {
+        this.featuresAvailabilities = features;
+        this.buildFirstLevelMenu();
+        return this.buildOrderMenu();
+      }),
     );
   }
 
   buildFirstLevelMenu() {
-    this.addItems(this.filterRegions(this.SIDEBAR_CONFIG));
+    this.addItems(this.SIDEBAR_CONFIG);
+  }
+
+  isFeatureAvailable(service) {
+    if (has(this.featuresAvailabilities.features, service.id)) {
+      return this.featuresAvailabilities.isFeatureAvailable(service.id);
+    } else {
+      if (has(service, 'regions')) {
+        return includes(service.regions, this.coreConfig.getRegion());
+      }
+      return true;
+    }
   }
 
   filterRegions(items) {
@@ -155,7 +183,10 @@ export default class OvhManagerServerSidebarController {
   }
 
   addItems(services, parent = null) {
-    each(this.filterRegions(services), (service) => {
+    each(services, (service) => {
+      if (!this.isFeatureAvailable(service)) {
+        return;
+      }
       if (!this.SidebarMenu.getItemById(service.id)) {
         const hasSubItems = has(service, 'types') || has(service, 'children');
         const isExternal = !includes(service.app, this.universe);
