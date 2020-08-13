@@ -1,8 +1,5 @@
-<div
-    class="container-fluid px-0"
-    data-ng-controller="ExchangeTabGroupsCtrl as ctrl"
->
-    <div class="row" data-ng-if="ctrl.showGroups">
+<div class="container-fluid px-0" ui-view>
+    <div class="row">
         <div class="col-md-9">
             <div
                 class="alert alert-warning mb-4"
@@ -295,19 +292,4 @@
             ></button>
         </div>
     </div>
-
-    <div
-        data-ng-if="ctrl.showManagers"
-        data-ng-include="'exchange/group/manager/group-manager.html'"
-    ></div>
-
-    <div
-        data-ng-if="ctrl.showMembers"
-        data-ng-include="'exchange/group/member/group-member.html'"
-    ></div>
-
-    <div
-        data-ng-if="ctrl.showAliases"
-        data-ng-include="'exchange/group/alias/group-alias.html'"
-    ></div>
 </div>
