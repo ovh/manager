@@ -5,6 +5,7 @@ import '@ovh-ux/ng-ovh-sidebar-menu';
 import '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/manager-core';
 import 'ovh-api-services';
+import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 
 import { ORDER_URLS } from './order.constants';
 
@@ -24,6 +25,7 @@ angular
     'ovhManagerCore',
     'ovh-api-services',
     'oui',
+    ngOvhFeatureFlipping,
   ])
   .component('ovhManagerServerSidebar', sidebarComponent)
   .provider(
