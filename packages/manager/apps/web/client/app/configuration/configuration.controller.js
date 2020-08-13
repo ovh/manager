@@ -14,11 +14,12 @@ angular.module('App').controller(
         this.constants,
         `urls.${this.subsidiary}.support`,
       );
-      this.allGuides = get(
+
+      const guideURL = get(
         this.constants,
         `urls.${this.subsidiary}.guides.all`,
-        this.constants.urls.FR.guides.all,
       );
+      this.allGuides = guideURL || this.constants.urls.FR.guides.all;
     }
   },
 );
