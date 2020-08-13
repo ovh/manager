@@ -5,6 +5,7 @@ angular
   .controller('CdaDetailsCtrl', function CdaDetailsCtrl(
     $stateParams,
     $translate,
+    $q,
     CdaService,
     CucCloudMessage,
     URLS,
@@ -61,8 +62,9 @@ angular
     function init() {
       self.serviceName = $stateParams.serviceName;
 
-      self.loadMessage();
-      self.loadGuides();
+      return $q.all([self.loadMessage(), self.loadGuides()]).finally(() => {
+        self.loading = false;
+      });
     }
 
     init();
