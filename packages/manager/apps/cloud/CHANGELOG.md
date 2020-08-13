@@ -1,3 +1,12 @@
+## [10.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@10.2.0...@ovh-ux/manager-cloud@10.2.1) (2020-08-13)
+
+
+### Bug Fixes
+
+* **cda:** display header tabs ([#3430](https://github.com/ovh/manager/issues/3430)) ([eb05417](https://github.com/ovh/manager/commit/eb05417ea7381dfd796d1eed227b771a8f0ca3f7))
+
+
+
 # [10.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@10.1.1...@ovh-ux/manager-cloud@10.2.0) (2020-08-12)
 
 
