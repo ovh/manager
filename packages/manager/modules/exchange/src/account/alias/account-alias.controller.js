@@ -92,9 +92,7 @@ export default class ExchangeAccountAliasController {
   }
 
   hide() {
-    this.$scope.$emit(this.exchangeAccount.EVENTS.CHANGE_STATE, {
-      stateName: 'hide',
-    });
+    this.goToAccounts();
   }
 
   openDeletingDialog(alias) {

@@ -21,7 +21,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $translate.instant('exchange_title'),
       customizableColumns: () => true,
       getServiceNameLink: /* @ngInject */ ($state) => ({ domain }) =>
-        $state.href('app.exchange', {
+        $state.href('exchange.dashboard', {
           organization: domain,
           productId: domain,
         }),
