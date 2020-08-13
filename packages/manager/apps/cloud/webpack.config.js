@@ -43,23 +43,26 @@ function getNgAppInjections(regions) {
 }
 
 module.exports = (env = {}) => {
-  const { config } = webpackConfig({
-    template: './client/index.html',
-    basePath: './client',
-    lessPath: ['./client/app', './client/components', './node_modules'],
-    lessJavascriptEnabled: true,
-    root: path.resolve(__dirname, './client/app'),
-    assets: {
-      files: [
-        { from: path.resolve(__dirname, './client/assets'), to: 'assets' },
-        { from: foundNodeModulesFolder('angular-i18n'), to: 'angular-i18n' },
-        {
-          from: path.resolve(__dirname, './client/**/*.html'),
-          context: 'client',
-        },
-      ],
+  const { config } = webpackConfig(
+    {
+      template: './client/index.html',
+      basePath: './client',
+      lessPath: ['./client/app', './client/components', './node_modules'],
+      lessJavascriptEnabled: true,
+      root: path.resolve(__dirname, './client/app'),
+      assets: {
+        files: [
+          { from: path.resolve(__dirname, './client/assets'), to: 'assets' },
+          { from: foundNodeModulesFolder('angular-i18n'), to: 'angular-i18n' },
+          {
+            from: path.resolve(__dirname, './client/**/*.html'),
+            context: 'client',
+          },
+        ],
+      },
     },
-  });
+    env,
+  );
 
   // Extra config files
   const extras = glob.sync('./.extras/**/*.js');
