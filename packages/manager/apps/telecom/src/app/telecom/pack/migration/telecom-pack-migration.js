@@ -2,7 +2,7 @@ angular.module('managerApp').config(($stateProvider) => {
   $stateProvider.state('telecom.packs.pack.migration', {
     url: '/migration',
     views: {
-      'packView@telecom.packs': {
+      '@telecom.packs': {
         templateUrl: 'app/telecom/pack/migration/telecom-pack-migration.html',
         controller: 'TelecomPackMigrationCtrl',
         controllerAs: 'PackMigrationCtrl',

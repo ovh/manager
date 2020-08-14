@@ -1,16 +1,43 @@
 import angular from 'angular';
+import '@uirouter/angularjs';
+import 'oclazyload';
 
-import component from './packs.component';
-import routing from './packs.routing';
+const moduleName = 'ovhManagerPacksLoading';
 
-import dashboard from './dashboard/pack.module';
+angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
+  /* @ngInject */ ($stateProvider) => {
+    $stateProvider
+      .state('telecom.packs', {
+        url: '/pack',
+        redirectTo: 'telecom.packs.index',
+        views: {
+          'telecomView@telecom': {
+            template: '<div ui-view></div>',
+          },
+        },
+      })
+      .state('telecom.packs.index.**', {
+        url: '',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-const moduleName = 'ovhManagerTelecomPackInternetAccessPacks';
+          return import('./packs.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
+      });
 
-angular
-  .module(moduleName, [dashboard])
-  .component('telecomPackInternetAccessPacks', component)
-  .config(routing)
-  .run(/* @ngTranslationsInject:json ./translations */);
+    $stateProvider.state('telecom.packs.pack.**', {
+      url: '/:packName',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./dashboard/pack.module').then((mod) =>
+          $ocLazyLoad.inject(mod.default || mod),
+        );
+      },
+    });
+  },
+);
 
 export default moduleName;
