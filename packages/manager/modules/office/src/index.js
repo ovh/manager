@@ -22,7 +22,7 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-          return import('./licenses/office.module').then((mod) =>
+          return import('./office.module').then((mod) =>
             $ocLazyLoad.inject(mod.default || mod),
           );
         },
@@ -32,7 +32,7 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-          return import('./microsoft.module').then((mod) =>
+          return import('./dashboard/microsoft.module').then((mod) =>
             $ocLazyLoad.inject(mod.default || mod),
           );
         },
