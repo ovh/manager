@@ -15,16 +15,6 @@ export default class PciTrainingDataAddController {
   }
 
   $onInit() {
-    // Load available regions
-    this.allRegionsLoaded = false;
-    this.regions()
-      .then((regions) => {
-        this.regions = regions;
-      })
-      .finally(() => {
-        this.allRegionsLoaded = true;
-      });
-
     // Load available users
     this.allUsersLoaded = false;
     this.allUsers()
