@@ -102,6 +102,7 @@ angular
         licenseTpl,
       );
     },
-  );
+  )
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
