@@ -9,7 +9,7 @@ export default class ExchangeWizardHostedCreationEmailCreationAddController {
   /* @ngInject */
   constructor(
     Exchange,
-    ExchangePassword,
+    wucExchangePassword,
     messaging,
     navigation,
     $rootScope,
@@ -19,7 +19,7 @@ export default class ExchangeWizardHostedCreationEmailCreationAddController {
     wizardHostedCreationEmailCreation,
   ) {
     this.Exchange = Exchange;
-    this.ExchangePassword = ExchangePassword;
+    this.wucExchangePassword = wucExchangePassword;
     this.messaging = messaging;
     this.navigation = navigation;
     this.$rootScope = $rootScope;
@@ -104,7 +104,7 @@ export default class ExchangeWizardHostedCreationEmailCreationAddController {
     const passwordIsComplexEnough =
       isBoolean(this.serviceParameters.complexityEnabled) &&
       this.serviceParameters.complexityEnabled
-        ? this.ExchangePassword.passwordComplexityCheck(this.model.password)
+        ? this.wucExchangePassword.passwordComplexityCheck(this.model.password)
         : true;
     this.addForm.password.$setValidity(
       'passwordComplexity',

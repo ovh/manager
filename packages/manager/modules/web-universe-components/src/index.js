@@ -9,6 +9,7 @@ import wucCron from './cron';
 import wucCronValidator from './cron-validator';
 import wucDuration from './duration';
 import wucEmailDomain from './email-domain';
+import wucExchangePassword from './exchange-password';
 import wucExpiration from './expiration';
 import wucFileChange from './fileChange';
 import wucFileEditor from './fileEditor';
@@ -37,6 +38,7 @@ angular.module(moduleName, [
   wucCronValidator,
   wucDuration,
   wucEmailDomain,
+  wucExchangePassword,
   wucExpiration,
   wucFileChange,
   wucFileEditor,
