@@ -10,7 +10,7 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
     const lazyLoad = ($transition$) => {
       const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-      return import('./sharepoint.module').then((mod) =>
+      return import('./dashboard/sharepoint.module').then((mod) =>
         $ocLazyLoad.inject(mod.default || mod),
       );
     };
@@ -29,7 +29,7 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-          return import('./sharepoints/sharepoints.module').then((mod) =>
+          return import('./sharepoint.module').then((mod) =>
             $ocLazyLoad.inject(mod.default || mod),
           );
         },
