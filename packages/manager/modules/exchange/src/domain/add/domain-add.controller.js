@@ -15,7 +15,7 @@ export default class ExchangeAddDomainController {
   constructor(
     $rootScope,
     $scope,
-    Exchange,
+    wucExchange,
     ExchangeDomains,
     messaging,
     navigation,
@@ -29,7 +29,7 @@ export default class ExchangeAddDomainController {
     this.services = {
       $rootScope,
       $scope,
-      Exchange,
+      wucExchange,
       ExchangeDomains,
       messaging,
       navigation,
@@ -42,11 +42,11 @@ export default class ExchangeAddDomainController {
 
     this.OVH_DOMAIN = 'ovh-domain';
     this.NON_OVH_DOMAIN = 'non-ovh-domain';
-    this.exchange = Exchange.value;
+    this.exchange = wucExchange.value;
 
     this.debouncedResetName = debounce(this.search, 300);
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
     this.noDomainAttached = get(
       navigation.currentActionData,
       'noDomainAttached',

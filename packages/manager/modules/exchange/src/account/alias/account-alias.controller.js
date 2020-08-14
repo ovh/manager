@@ -4,7 +4,7 @@ export default class ExchangeAccountAliasController {
   /* @ngInject */
   constructor(
     $scope,
-    Exchange,
+    wucExchange,
     exchangeAccount,
     exchangeStates,
     navigation,
@@ -13,7 +13,7 @@ export default class ExchangeAccountAliasController {
   ) {
     this.$scope = $scope;
 
-    this.Exchange = Exchange;
+    this.wucExchange = wucExchange;
     this.exchangeAccount = exchangeAccount;
     this.exchangeStates = exchangeStates;
     this.navigation = navigation;
@@ -22,11 +22,11 @@ export default class ExchangeAccountAliasController {
   }
 
   $onInit() {
-    this.$routerParams = this.Exchange.getParams();
+    this.$routerParams = this.wucExchange.getParams();
     this.aliasesParams = {};
-    this.aliasMaxLimit = this.Exchange.aliasMaxLimit;
+    this.aliasMaxLimit = this.wucExchange.aliasMaxLimit;
 
-    this.$scope.$on(this.Exchange.events.accountsChanged, () =>
+    this.$scope.$on(this.wucExchange.events.accountsChanged, () =>
       this.refreshList(),
     );
   }
@@ -35,13 +35,14 @@ export default class ExchangeAccountAliasController {
     this.aliasesParams.pageSize = pageSize;
     this.aliasesParams.offset = offset;
 
-    return this.Exchange.getAliases(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-      this.account.primaryEmailAddress,
-      pageSize,
-      offset - 1,
-    )
+    return this.wucExchange
+      .getAliases(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        this.account.primaryEmailAddress,
+        pageSize,
+        offset - 1,
+      )
       .then((aliases) => {
         this.aliases = aliases.list.results;
 
@@ -62,13 +63,14 @@ export default class ExchangeAccountAliasController {
   }
 
   refreshList() {
-    this.Exchange.getAliases(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-      this.account.primaryEmailAddress,
-      this.aliasesParams.pageSize,
-      this.aliasesParams.offset - 1,
-    )
+    this.wucExchange
+      .getAliases(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        this.account.primaryEmailAddress,
+        this.aliasesParams.pageSize,
+        this.aliasesParams.offset - 1,
+      )
       .then((aliases) => {
         for (let i = 0; i < aliases.list.results.length; i += 1) {
           this.aliases.splice(i, 1, aliases.list.results[i]);

@@ -1,15 +1,15 @@
 export default class ExchangeRemoveManagerCtrl {
   /* @ngInject */
-  constructor($scope, Exchange, navigation, $translate, messaging) {
+  constructor($scope, wucExchange, navigation, $translate, messaging) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       navigation,
       $translate,
       messaging,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
     this.group = navigation.currentActionData.group;
     this.manager = navigation.currentActionData.manager;
 
@@ -21,12 +21,13 @@ export default class ExchangeRemoveManagerCtrl {
       this.services.$translate.instant('exchange_dashboard_action_doing'),
     );
 
-    this.services.Exchange.removeManager(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-      this.group.mailingListName,
-      this.manager.id,
-    )
+    this.services.wucExchange
+      .removeManager(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        this.group.mailingListName,
+        this.manager.id,
+      )
       .then((success) => {
         this.services.messaging.writeSuccess(
           this.services.$translate.instant(

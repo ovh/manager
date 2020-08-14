@@ -1,9 +1,9 @@
 export default class ExchangeSslRenewCtrl {
   /* @ngInject */
-  constructor($scope, Exchange, messaging, navigation, $translate) {
+  constructor($scope, wucExchange, messaging, navigation, $translate) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       messaging,
       navigation,
       $translate,
@@ -11,9 +11,9 @@ export default class ExchangeSslRenewCtrl {
   }
 
   $onInit() {
-    this.$routerParams = this.services.Exchange.getParams();
+    this.$routerParams = this.services.wucExchange.getParams();
     this.loading = false;
-    this.exchange = this.services.Exchange.value;
+    this.exchange = this.services.wucExchange.value;
 
     this.services.$scope.submitting = () => this.submitting();
 
@@ -23,10 +23,11 @@ export default class ExchangeSslRenewCtrl {
   retrievingDCVEmails() {
     this.loading = true;
 
-    return this.services.Exchange.retrievingDVCEmails(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-    )
+    return this.services.wucExchange
+      .retrievingDVCEmails(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+      )
       .then((data) => {
         this.loading = false;
         this.availableDomains = data;
@@ -46,11 +47,12 @@ export default class ExchangeSslRenewCtrl {
   }
 
   submitting() {
-    return this.services.Exchange.renewSsl(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-      this.model.name,
-    )
+    return this.services.wucExchange
+      .renewSsl(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        this.model.name,
+      )
       .then((data) => {
         this.services.messaging.writeSuccess(
           this.services.$translate.instant(

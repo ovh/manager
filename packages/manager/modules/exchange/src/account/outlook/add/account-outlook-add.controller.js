@@ -5,7 +5,7 @@ export default class ExchangeAddOutlookCtrl {
   /* @ngInject */
   constructor(
     $scope,
-    Exchange,
+    wucExchange,
     exchangeAccountOutlook,
     constants,
     $window,
@@ -15,7 +15,7 @@ export default class ExchangeAddOutlookCtrl {
   ) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       exchangeAccountOutlook,
       constants,
       $window,
@@ -24,7 +24,7 @@ export default class ExchangeAddOutlookCtrl {
       $translate,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
     this.selectedAccount = navigation.currentActionData;
 
     this.model = {

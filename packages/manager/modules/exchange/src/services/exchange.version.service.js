@@ -2,8 +2,8 @@ import includes from 'lodash/includes';
 
 export default class ExchangeVersion {
   /* @ngInject */
-  constructor(Exchange) {
-    this.services = { Exchange };
+  constructor(wucExchange) {
+    this.services = { wucExchange };
 
     this.v4 = 4;
     this.v5 = 5;
@@ -19,7 +19,7 @@ export default class ExchangeVersion {
   /**
    * @param {(string|number)} versionNumber - Version to test
    */
-  isVersion(versionNumber, exchange = this.services.Exchange.getValue()) {
+  isVersion(versionNumber, exchange = this.services.wucExchange.getValue()) {
     const isMatchingVersion = includes(
       exchange.serverDiagnostic.commercialVersion,
       versionNumber,
@@ -34,11 +34,11 @@ export default class ExchangeVersion {
 
   /**
    * @param {(string|number)} versionNumberToCompareTo
-   *                          Version to compare current Exchange account to
+   *                          Version to compare current wucExchange account to
    */
   isAfter(
     versionNumberToCompareTo,
-    exchange = this.services.Exchange.getValue(),
+    exchange = this.services.wucExchange.getValue(),
   ) {
     const currentVersionNumber = exchange.serverDiagnostic.version;
 
@@ -50,11 +50,11 @@ export default class ExchangeVersion {
 
   /**
    * @param {(string|number)} versionNumberToCompareTo
-   *                          Version to compare current Exchange account to
+   *                          Version to compare current wucExchange account to
    */
   isBefore(
     versionNumberToCompareTo,
-    exchange = this.services.Exchange.getValue(),
+    exchange = this.services.wucExchange.getValue(),
   ) {
     const currentVersionNumber = exchange.serverDiagnostic.version;
 

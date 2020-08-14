@@ -5,7 +5,7 @@ export default class ExchangeOrderDiskSpaceCtrl {
   constructor(
     $rootScope,
     $scope,
-    Exchange,
+    wucExchange,
     messaging,
     navigation,
     $translate,
@@ -14,7 +14,7 @@ export default class ExchangeOrderDiskSpaceCtrl {
     this.services = {
       $rootScope,
       $scope,
-      Exchange,
+      wucExchange,
       messaging,
       navigation,
       $translate,
@@ -23,7 +23,7 @@ export default class ExchangeOrderDiskSpaceCtrl {
   }
 
   $onInit() {
-    this.$routerParams = this.services.Exchange.getParams();
+    this.$routerParams = this.services.wucExchange.getParams();
     this.loading = false;
     this.agree = {
       value: false,
@@ -40,10 +40,11 @@ export default class ExchangeOrderDiskSpaceCtrl {
   retrievingDiskSpaceOptions() {
     this.loading = true;
 
-    return this.services.Exchange.getDiskSpaceOptions(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-    )
+    return this.services.wucExchange
+      .getDiskSpaceOptions(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+      )
       .then((order) => {
         this.order = order;
         this.loading = false;
@@ -82,10 +83,11 @@ export default class ExchangeOrderDiskSpaceCtrl {
   }
 
   submitting() {
-    return this.services.Exchange.orderDiskSpace(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-    )
+    return this.services.wucExchange
+      .orderDiskSpace(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+      )
       .then((order) => {
         this.services.messaging.writeSuccess(
           this.services.$translate.instant(

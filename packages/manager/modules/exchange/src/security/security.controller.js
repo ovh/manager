@@ -10,7 +10,7 @@ export default class ExchangeServicesConfigureCtrl {
     $scope,
     $translate,
     APIExchange,
-    Exchange,
+    wucExchange,
     coreConfig,
     exchangeSelectedService,
     navigation,
@@ -21,14 +21,14 @@ export default class ExchangeServicesConfigureCtrl {
       $scope,
       APIExchange,
       $translate,
-      Exchange,
+      wucExchange,
       coreConfig,
       exchangeSelectedService,
       navigation,
       messaging,
     };
 
-    this.exchange = Exchange.value;
+    this.exchange = wucExchange.value;
 
     this.loaders = {
       details: true,
@@ -54,7 +54,7 @@ export default class ExchangeServicesConfigureCtrl {
             },
           },
         ),
-        server: this.services.Exchange.getExchangeServer(
+        server: this.services.wucExchange.getExchangeServer(
           this.exchange.organization,
           this.exchange.domain,
         ),
@@ -126,7 +126,7 @@ export default class ExchangeServicesConfigureCtrl {
     }
     return this.$q
       .all({
-        configuration: this.services.Exchange.setConfiguration(
+        configuration: this.services.wucExchange.setConfiguration(
           this.exchange.organization,
           this.exchange.domain,
           dataToSend,
@@ -134,7 +134,7 @@ export default class ExchangeServicesConfigureCtrl {
         owaMfa:
           this.owaMfa === get(this.exchange, 'serverDiagnostic.owaMfa')
             ? this.$q.when(true)
-            : this.services.Exchange.updateExchangeServer(
+            : this.services.wucExchange.updateExchangeServer(
                 this.exchange.organization,
                 this.exchange.domain,
                 { owaMfa: this.owaMfa },
@@ -142,7 +142,7 @@ export default class ExchangeServicesConfigureCtrl {
       })
       .then(() => {
         set(this.exchange, 'serverDiagnostic.owaMfa', this.owaMfa);
-        this.services.Exchange.resetAccounts();
+        this.services.wucExchange.resetAccounts();
         this.services.messaging.writeSuccess(
           this.services.$translate.instant('exchange_ACTION_configure_success'),
         );

@@ -1,15 +1,15 @@
 export default class ExchangeRemoveGroupAliasCtrl {
   /* @ngInject */
-  constructor($scope, Exchange, navigation, $translate, messaging) {
+  constructor($scope, wucExchange, navigation, $translate, messaging) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       navigation,
       $translate,
       messaging,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
   }
 
   $onInit() {
@@ -20,12 +20,13 @@ export default class ExchangeRemoveGroupAliasCtrl {
   }
 
   submit() {
-    this.services.Exchange.deleteGroupAlias(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-      this.selectedGroup.mailingListAddress,
-      this.alias.alias,
-    )
+    this.services.wucExchange
+      .deleteGroupAlias(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        this.selectedGroup.mailingListAddress,
+        this.alias.alias,
+      )
       .then((success) => {
         this.services.messaging.writeSuccess(
           this.services.$translate.instant(
