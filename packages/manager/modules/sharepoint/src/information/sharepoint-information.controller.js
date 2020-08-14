@@ -46,7 +46,7 @@ export default class SharepointInformationsCtrl {
         this.sharepoint = sharepoint;
         if (!this.sharepoint.url) {
           this.$location.path(
-            `/configuration/sharepoint/${this.exchangeId}/${this.sharepoint.domain}/setUrl`,
+            `/sharepoint/${this.exchangeId}/${this.sharepoint.domain}/setUrl`,
           );
         } else {
           this.calculateQuotas(sharepoint);

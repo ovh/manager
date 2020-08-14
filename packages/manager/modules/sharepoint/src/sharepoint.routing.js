@@ -1,8 +1,8 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.microsoft.sharepoint.index', {
-    url: `/configuration/microsoft/sharepoint?${ListLayoutHelper.urlQueryParams}`,
+  $stateProvider.state('sharepoint.index', {
+    url: `?${ListLayoutHelper.urlQueryParams}`,
     component: 'managerListLayout',
     params: ListLayoutHelper.stateParams,
     resolve: {
@@ -24,7 +24,7 @@ export default /* @ngInject */ ($stateProvider) => {
         domain: productId,
         organization: exchangeId,
       }) =>
-        $state.href('app.microsoft.sharepoint.product', {
+        $state.href('sharepoint.product', {
           exchangeId,
           productId,
         }),
