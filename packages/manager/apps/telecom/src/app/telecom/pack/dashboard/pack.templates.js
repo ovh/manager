@@ -1,12 +1,12 @@
-import packVoipLine from './slots/voipLine/pack-voipLine.html';
-import packTask from './slots/task/pack-task.html';
-import packVoipEcoFax from './slots/voipEcoFax/pack-voipEcoFax.html';
-import packHubic from './slots/hubic/pack-hubic.html';
-import packExchangeAccount from './slots/exchangeAccount/pack-exchangeAccount.html';
-import packXdslAccess from './slots/xdslAccess/pack-xdslAccess.html';
-import packInformations from './slots/informations/pack-informations.html';
-import packPromotionCode from './slots/promotionCode/pack-promotionCode.html';
-import packDomain from './slots/domain/pack-domain.html';
+import packVoipLine from '../slots/voipLine/pack-voipLine.html';
+import packTask from '../slots/task/pack-task.html';
+import packVoipEcoFax from '../slots/voipEcoFax/pack-voipEcoFax.html';
+import packHubic from '../slots/hubic/pack-hubic.html';
+import packExchangeAccount from '../slots/exchangeAccount/pack-exchangeAccount.html';
+import packXdslAccess from '../slots/xdslAccess/pack-xdslAccess.html';
+import packInformations from '../slots/informations/pack-informations.html';
+import packPromotionCode from '../slots/promotionCode/pack-promotionCode.html';
+import packDomain from '../slots/domain/pack-domain.html';
 
 export default /* @ngInject */ ($templateCache) => {
   // import templates required by ng-include

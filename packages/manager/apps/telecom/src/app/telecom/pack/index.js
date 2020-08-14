@@ -1,31 +1,16 @@
 import angular from 'angular';
 
-import internetAccess from './internet-access';
-import packMove from './move';
-import packVoipLineActivation from './slots/voipLine/activation/pack-voipLine-activation.module';
-import hostedEmailDetail from './slots/hostedEmail/detail';
-import xdsl from './xdsl';
-import migration from './migration';
+import component from './packs.component';
+import routing from './packs.routing';
 
-import templates from './pack.templates';
+import dashboard from './dashboard/pack.module';
 
-import controller from './pack.controller';
-import routing from './pack.routing';
-
-const moduleName = 'ovhManagerTelecomPack';
+const moduleName = 'ovhManagerTelecomPackInternetAccessPacks';
 
 angular
-  .module(moduleName, [
-    internetAccess,
-    hostedEmailDetail,
-    packVoipLineActivation,
-    xdsl,
-    packMove,
-    migration,
-  ])
-  .controller('PackCtrl', controller)
+  .module(moduleName, [dashboard])
+  .component('telecomPackInternetAccessPacks', component)
   .config(routing)
-  .run(templates)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
