@@ -47,7 +47,7 @@ angular
           $translate.instant('xdsl_access_deconsolidation_success'),
         );
         $timeout(() => {
-          $state.go('telecom.packs.pack.xdsl');
+          $state.go('telecom.packs.pack.xdsl.line');
         }, 3000);
       });
     };

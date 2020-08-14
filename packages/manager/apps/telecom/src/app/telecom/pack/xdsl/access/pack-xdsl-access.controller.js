@@ -190,7 +190,9 @@ export default class XdslAccessCtrl {
     ) {
       this.launchDiagnostic();
     }
-    return this.$state.go('telecom.packs.pack.xdsl.access-diagnostic-details');
+    return this.$state.go(
+      'telecom.packs.pack.xdsl.line.access-diagnostic-details',
+    );
   }
 
   launchDiagnostic() {
