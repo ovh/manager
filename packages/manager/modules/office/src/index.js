@@ -25,7 +25,7 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
         },
       })
       .state('office.product.**', {
-        url: '/:serviceName?tab',
+        url: '/:serviceName',
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 

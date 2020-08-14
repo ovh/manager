@@ -1,18 +1,16 @@
 import set from 'lodash/set';
 
-import controller from './office/license/microsoft-office-license.controller';
-import template from './office/license/microsoft-office-license.html';
+import controller from './microsoft-office-license.controller';
+import template from './microsoft-office-license.html';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('office.product', {
-    url: '/:serviceName?tab',
+    url: '/:serviceName',
     template,
     controller,
     controllerAs: 'MicrosoftOfficeLicenseCtrl',
+    redirectTo: 'office.product.user',
     reloadOnSearch: false,
-    params: {
-      tab: null,
-    },
     resolve: {
       navigationInformations: /* @ngInject */ (Navigator, $rootScope) => {
         set($rootScope, 'currentSectionInformation', 'microsoft');
@@ -21,6 +19,12 @@ export default /* @ngInject */ ($stateProvider) => {
           configurationSelected: true,
         });
       },
+      userLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href('office.product.user', $transition$.params()),
+      consumptionLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href('office.product.consumption', $transition$.params()),
+      currentActiveLink: /* @ngInject */ ($state, $transition$) => () =>
+        $state.href($state.current.name, $transition$.params()),
     },
   });
 };
