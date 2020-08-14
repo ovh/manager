@@ -1,7 +1,7 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('telecom.packs.packs', {
+  $stateProvider.state('telecom.packs.index', {
     url: `?${ListLayoutHelper.urlQueryParams}`,
     params: ListLayoutHelper.stateParams,
     component: 'telecomPackInternetAccessPacks',
