@@ -8,7 +8,7 @@ import sharepointTpl from './sharepoint.html';
 import sharepointOrderTpl from '../order/sharepoint-order.html';
 import sharepointUrlTpl from '../url/sharepoint-url.html';
 
-const routeBase = 'app.microsoft.sharepoint';
+const routeBase = 'sharepoint';
 
 export default /* @ngInject */ ($stateProvider) => {
   const resolve = {
@@ -22,14 +22,14 @@ export default /* @ngInject */ ($stateProvider) => {
   };
 
   $stateProvider.state(`${routeBase}.order`, {
-    url: '/configuration/microsoft/sharepoint/order',
+    url: '/order',
     template: sharepointOrderTpl,
     reloadOnSearch: false,
     resolve,
   });
 
   $stateProvider.state(`${routeBase}.config`, {
-    url: '/configuration/sharepoint/activate/:organizationId/:exchangeId',
+    url: '/activate/:organizationId/:exchangeId',
     template: sharepointOrderTpl,
     controller: orderCtrl,
     controllerAs: 'SharepointOrderCtrl',
@@ -38,7 +38,7 @@ export default /* @ngInject */ ($stateProvider) => {
   });
 
   $stateProvider.state(`${routeBase}.product`, {
-    url: '/configuration/sharepoint/:exchangeId/:productId?tab',
+    url: '/:exchangeId/:productId?tab',
     template: sharepointTpl,
     controller: sharepointCtrl,
     controllerAs: 'SharepointCtrl',
@@ -49,8 +49,8 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve,
   });
 
-  $stateProvider.state(`${routeBase}.setUrl`, {
-    url: '/configuration/sharepoint/:exchangeId/:productId/setUrl',
+  $stateProvider.state(`${routeBase}.product.setUrl`, {
+    url: '/setUrl',
     template: sharepointUrlTpl,
     controller: urlCtrl,
     controllerAs: 'SharepointUrlCtrl',

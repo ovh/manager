@@ -63,7 +63,7 @@ export default class EmailProTabInformationCtrl {
     if (this.$scope.sharepoint) {
       this.sharepointURL = buildURL(
         'dedicated',
-        '#/configuration/sharepoint/:exchangeId/:productId',
+        '#/sharepoint/:exchangeId/:productId',
         {
           exchangeId: this.$scope.exchange.domain,
           productId: this.$scope.sharepoint?.domain,

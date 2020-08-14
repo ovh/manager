@@ -50,7 +50,7 @@ export default class HeaderController {
       },
       ACTIVATE_SHAREPOINT: {
         application: 'web',
-        path: '#/configuration/sharepoint/activate/:organizationId/:exchangeId',
+        path: '#/sharepoint/activate/:organizationId/:exchangeId',
         params: {
           organizationId: this.exchangeService.organization,
           exchangeId: this.exchangeService.domain,

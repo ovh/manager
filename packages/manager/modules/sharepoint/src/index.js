@@ -5,8 +5,8 @@ import 'oclazyload';
 const moduleName = 'ovhManagerSharepointLazyLoading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
-  /* @ngInject */ ($stateProvider) => {
-    const routeBase = 'app.microsoft.sharepoint';
+  /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
+    const routeBase = 'sharepoint';
     const lazyLoad = ($transition$) => {
       const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
@@ -17,15 +17,12 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
 
     $stateProvider
       .state(routeBase, {
-        abstract: true,
+        url: '/sharepoint',
+        redirectTo: 'sharepoint.index',
         template: '<div ui-view></div>',
-        translations: {
-          value: ['.'],
-          format: 'json',
-        },
       })
       .state(`${routeBase}.index.**`, {
-        url: '/configuration/microsoft/sharepoint',
+        url: '',
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
@@ -35,21 +32,28 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
         },
       })
       .state(`${routeBase}.order.**`, {
-        url: '/configuration/microsoft/sharepoint/order',
+        url: '/order',
         lazyLoad,
       })
       .state(`${routeBase}.config.**`, {
-        url: '/configuration/sharepoint/activate/:organizationId/:exchangeId',
+        url: '/activate/:organizationId/:exchangeId',
         lazyLoad,
       })
       .state(`${routeBase}.product.**`, {
-        url: '/configuration/sharepoint/:exchangeId/:productId?tab',
+        url: '/:exchangeId/:productId?tab',
         lazyLoad,
       })
-      .state(`${routeBase}.setUrl.**`, {
-        url: '/configuration/sharepoint/:exchangeId/:productId/setUrl',
+      .state(`${routeBase}.product.setUrl.**`, {
+        url: '/setUrl',
         lazyLoad,
       });
+
+    $urlRouterProvider.when(
+      /^\/configuration\/sharepoint/,
+      /* @ngInject */ ($location) => {
+        $location.url($location.url().replace('/configuration', ''));
+      },
+    );
   },
 );
 export default moduleName;

@@ -102,7 +102,7 @@ export default class SharepointAccountsCtrl {
         this.sharepoint = sharepoint;
         if (isNull(this.sharepoint.url)) {
           this.$location.path(
-            `/configuration/sharepoint/${this.$stateParams.exchangeId}/${this.sharepoint.domain}/setUrl`,
+            `/sharepoint/${this.$stateParams.exchangeId}/${this.sharepoint.domain}/setUrl`,
           );
         }
       })

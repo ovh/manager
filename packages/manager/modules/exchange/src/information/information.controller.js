@@ -81,7 +81,7 @@ export default class ExchangeTabInformationCtrl {
 
         this.SHAREPOINT_URL = buildURL(
           'web',
-          '#/configuration/sharepoint/:exchangeId/:productId',
+          '#/sharepoint/:exchangeId/:productId',
           {
             exchangeId: this.exchange.domain,
             productId: this.sharepoint.domain,
