@@ -1,12 +1,12 @@
 import set from 'lodash/set';
 
 import sharepointCtrl from './sharepoint.controller';
-import orderCtrl from './order/sharepoint-order.controller';
-import urlCtrl from './url/sharepoint-url.controller';
+import orderCtrl from '../order/sharepoint-order.controller';
+import urlCtrl from '../url/sharepoint-url.controller';
 
 import sharepointTpl from './sharepoint.html';
-import sharepointOrderTpl from './order/sharepoint-order.html';
-import sharepointUrlTpl from './url/sharepoint-url.html';
+import sharepointOrderTpl from '../order/sharepoint-order.html';
+import sharepointUrlTpl from '../url/sharepoint-url.html';
 
 const routeBase = 'app.microsoft.sharepoint';
 
