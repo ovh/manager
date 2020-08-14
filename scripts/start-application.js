@@ -37,23 +37,23 @@ const applicationsWorkspace = 'packages/manager/apps';
  * @return {Array} Applications' list.
  */
 const choices = () =>
-  readdirSync(applicationsWorkspace, {
-    withFileTypes: true,
-  }).map((application) => {
-    const data = readFileSync(
-      `${applicationsWorkspace}/${application.name}/package.json`,
-      'utf8',
-    );
-    const { name } = JSON.parse(data);
-    // Skip scoped package name.
-    // `@ovh-ux/foo` => `foo`.
-    const [, formatedName] = name.split('/');
+  readdirSync(applicationsWorkspace, { withFileTypes: true })
+    .filter((dirent) => dirent.isDirectory())
+    .map(({ name: application }) => {
+      const data = readFileSync(
+        `${applicationsWorkspace}/${application}/package.json`,
+        'utf8',
+      );
+      const { name } = JSON.parse(data);
+      // Skip scoped package name.
+      // `@ovh-ux/foo` => `foo`.
+      const [, formatedName] = name.split('/');
 
-    return {
-      name: formatedName,
-      value: name,
-    };
-  });
+      return {
+        name: formatedName,
+        value: name,
+      };
+    });
 
 /**
  * Ask for both packageName and region to start the corresponding application.
