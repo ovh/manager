@@ -42,7 +42,7 @@ export default class NotificationsCtrl {
       this.toggle = false;
 
       // Automatically set all unread messages to read
-      // When we close the notifications menu
+      // when we close the notifications menu
       this.NavbarNotifications.readAllNotifications(
         this.getActiveNotifications(),
       ).then(() => {
@@ -59,7 +59,7 @@ export default class NotificationsCtrl {
     this.$rootScope.$on('ovh::notifications::toggle', () => {
       this.toggle = !this.toggle;
       if (this.toggle) {
-        // Handle the click outside the menu
+        // Handle the click outside the notifications menu
         this.$document.on('click', this.readAllNotifications);
 
         this.atInternet.trackClick({
@@ -112,11 +112,11 @@ export default class NotificationsCtrl {
   }
 
   $postLink() {
-    // Avoid click propagation inside the menu
+    // Avoid click propagation inside the notifications menu
     // Since we're binding a click function of the document
     this.$timeout(() => {
-      this.$element.on('click', (e) => {
-        e.stopPropagation();
+      this.$element.on('click', (event) => {
+        event.stopPropagation();
       });
     });
   }
@@ -126,7 +126,7 @@ export default class NotificationsCtrl {
   }
 
   getActiveNotifications() {
-    return filter(this.sublinks, (notification) => notification.isActive);
+    return filter(this.sublinks, 'isActive');
   }
 
   toggleSublinkAction(toUpdate, linkClicked) {
