@@ -1,9 +1,9 @@
 export default class ExchangeUpgrade300GCtrl {
   /* @ngInject */
-  constructor($scope, Exchange, $window, navigation, messaging, $translate) {
+  constructor($scope, wucExchange, $window, navigation, messaging, $translate) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       $window,
       navigation,
       messaging,
@@ -21,8 +21,8 @@ export default class ExchangeUpgrade300GCtrl {
 
     this.primaryEmailAddress = navigation.currentActionData.primaryEmailAddress;
 
-    this.$routerParams = Exchange.getParams();
-    this.exchange = Exchange.value;
+    this.$routerParams = wucExchange.getParams();
+    this.exchange = wucExchange.value;
   }
 
   closeExportWindow() {
@@ -30,15 +30,16 @@ export default class ExchangeUpgrade300GCtrl {
   }
 
   getPrices() {
-    this.services.Exchange.getAccountUpgradeOptions(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-      {
-        newQuota: 300,
-        primaryEmailAddress: this.primaryEmailAddress,
-        duration: '01',
-      },
-    )
+    this.services.wucExchange
+      .getAccountUpgradeOptions(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        {
+          newQuota: 300,
+          primaryEmailAddress: this.primaryEmailAddress,
+          duration: '01',
+        },
+      )
       .then((data) => {
         this.price1M = data.prices;
       })
@@ -52,15 +53,16 @@ export default class ExchangeUpgrade300GCtrl {
         this.services.navigation.resetAction();
       });
 
-    this.services.Exchange.getAccountUpgradeOptions(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-      {
-        newQuota: 300,
-        primaryEmailAddress: this.primaryEmailAddress,
-        duration: '12',
-      },
-    )
+    this.services.wucExchange
+      .getAccountUpgradeOptions(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        {
+          newQuota: 300,
+          primaryEmailAddress: this.primaryEmailAddress,
+          duration: '12',
+        },
+      )
       .then((data) => {
         this.price12M = data.prices;
       })
@@ -86,11 +88,12 @@ export default class ExchangeUpgrade300GCtrl {
       duration: this.duration.value,
     };
 
-    this.services.Exchange.orderAccountUpgrade(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-      params,
-    )
+    this.services.wucExchange
+      .orderAccountUpgrade(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        params,
+      )
       .then((result) => {
         const confirmationMessage = this.services.$translate.instant(
           'exchange_ACTION_order_upgrade_300G_success_confirmation',

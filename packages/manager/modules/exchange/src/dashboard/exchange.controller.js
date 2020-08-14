@@ -17,7 +17,7 @@ export default class ExchangeCtrl {
     diagnosticLink,
     disclaimerLink,
     domainLink,
-    Exchange,
+    wucExchange,
     exchangeServiceInfrastructure,
     exchangeVersion,
     externalContactLink,
@@ -44,7 +44,7 @@ export default class ExchangeCtrl {
       $scope,
       $timeout,
       $translate,
-      Exchange,
+      wucExchange,
       exchangeServiceInfrastructure,
       exchangeVersion,
       messaging,
@@ -57,7 +57,8 @@ export default class ExchangeCtrl {
       WucUser,
     };
     this.exchange = exchange;
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
+
     set(navigation, '$exchangeRootScope', $scope);
     set(messaging, '$exchangeRootScope', $scope);
 
@@ -145,7 +146,8 @@ export default class ExchangeCtrl {
       return this.services.$q.when(false);
     }
 
-    return this.services.Exchange.retrievingWizardPreference()
+    return this.services.wucExchange
+      .retrievingWizardPreference()
       .then((preference) => {
         this.shouldOpenWizard = get(preference, 'shouldOpenWizard', false);
       })

@@ -1,14 +1,14 @@
 export default class ExchangeRemoveAliasCtrl {
   /* @ngInject */
-  constructor($scope, Exchange, navigation, $translate) {
+  constructor($scope, wucExchange, navigation, $translate) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       navigation,
       $translate,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
     this.account = navigation.currentActionData.account;
     this.alias = navigation.currentActionData.alias;
 
@@ -16,12 +16,13 @@ export default class ExchangeRemoveAliasCtrl {
   }
 
   submit() {
-    this.services.Exchange.deleteAlias(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-      this.account.primaryEmailAddress,
-      this.alias.alias,
-    )
+    this.services.wucExchange
+      .deleteAlias(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        this.account.primaryEmailAddress,
+        this.alias.alias,
+      )
       .then(() => {
         this.services.messaging.writeSuccess(
           this.services.$translate.instant(

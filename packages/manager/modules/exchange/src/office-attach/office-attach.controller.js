@@ -1,7 +1,7 @@
 export default class OfficeAttachController {
   /* @ngInject */
-  constructor(Exchange, officeAttach, ovhUserPref, WucUser) {
-    this.Exchange = Exchange;
+  constructor(wucExchange, officeAttach, ovhUserPref, WucUser) {
+    this.wucExchange = wucExchange;
     this.officeAttach = officeAttach;
     this.ovhUserPref = ovhUserPref;
     this.WucUser = WucUser;
@@ -9,7 +9,7 @@ export default class OfficeAttachController {
 
   $onInit() {
     this.maxNumberOfAccounts = 25;
-    this.$routerParams = this.Exchange.getParams();
+    this.$routerParams = this.wucExchange.getParams();
 
     return this.retrievingIfBannerShouldBeDisplayed();
   }

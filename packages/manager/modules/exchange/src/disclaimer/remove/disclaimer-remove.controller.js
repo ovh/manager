@@ -1,15 +1,15 @@
 export default class ExchangeRemoveDisclaimerCtrl {
   /* @ngInject */
-  constructor($scope, Exchange, navigation, messaging, $translate) {
+  constructor($scope, wucExchange, navigation, messaging, $translate) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       navigation,
       messaging,
       $translate,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
     this.disclaimer = navigation.currentActionData;
 
     $scope.submit = () => this.submit();
@@ -20,11 +20,12 @@ export default class ExchangeRemoveDisclaimerCtrl {
       this.services.$translate.instant('exchange_dashboard_action_doing'),
     );
 
-    this.services.Exchange.deleteDisclaimer(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-      this.disclaimer.domain.name,
-    )
+    this.services.wucExchange
+      .deleteDisclaimer(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        this.disclaimer.domain.name,
+      )
       .then((success) => {
         this.services.messaging.writeSuccess(
           this.services.$translate.instant(

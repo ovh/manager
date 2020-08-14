@@ -14,7 +14,7 @@ export default class ExchangeUpdateAccountCtrl {
     exchangeAccountOutlook,
     exchangeAccountTypes,
     exchangeServiceInfrastructure,
-    Exchange,
+    wucExchange,
     wucExchangePassword,
     exchangeVersion,
     messaging,
@@ -26,7 +26,7 @@ export default class ExchangeUpdateAccountCtrl {
       exchangeAccountOutlook,
       exchangeAccountTypes,
       exchangeServiceInfrastructure,
-      Exchange,
+      wucExchange,
       wucExchangePassword,
       exchangeVersion,
       messaging,
@@ -34,7 +34,7 @@ export default class ExchangeUpdateAccountCtrl {
       $translate,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
     this.originalValues = angular.copy(navigation.currentActionData);
 
     $scope.needsUpdate = () => this.needsUpdate();
@@ -50,9 +50,9 @@ export default class ExchangeUpdateAccountCtrl {
 
     this.passwordTooltip = null; // set in $scope.loadAccountOptions()
 
-    this.exchange = Exchange.value;
+    this.exchange = wucExchange.value;
 
-    Exchange.getSharepointService(this.exchange).then((sharepoint) => {
+    wucExchange.getSharepointService(this.exchange).then((sharepoint) => {
       this.sharepoint = sharepoint;
     });
 
@@ -180,7 +180,7 @@ export default class ExchangeUpdateAccountCtrl {
           );
         }
       } else if (
-        messages[0].message === this.services.Exchange.updateAccountAction
+        messages[0].message === this.services.wucExchange.updateAccountAction
       ) {
         updateAccountMessages.PARTIAL = `${this.services.$translate.instant(
           'exchange_ACTION_update_account_success_message',
@@ -244,7 +244,7 @@ export default class ExchangeUpdateAccountCtrl {
         this.newAccountOptions.minPasswordLength,
       );
 
-      // see the password complexity requirements of Microsoft Windows Server (like Exchange)
+      // see the password complexity requirements of Microsoft Windows Server (like wucExchange)
       // https://technet.microsoft.com/en-us/library/hh994562%28v=ws.10%29.aspx
       if (this.newAccountOptions.passwordComplexityEnabled) {
         this.simplePasswordFlag =
@@ -361,10 +361,11 @@ export default class ExchangeUpdateAccountCtrl {
 
   loadAccountOptions() {
     this.noDomainMessage = null;
-    this.services.Exchange.fetchingAccountCreationOptions(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-    )
+    this.services.wucExchange
+      .fetchingAccountCreationOptions(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+      )
       .then((data) => {
         this.newAccountOptions = data;
 
@@ -411,11 +412,12 @@ export default class ExchangeUpdateAccountCtrl {
 
   updateExchangeAccount() {
     if (this.needsUpdate()) {
-      this.services.Exchange.updateAccount(
-        this.$routerParams.organization,
-        this.$routerParams.productId,
-        this.getFeaturesToUpdate(this.originalValues, this.selectedAccount),
-      )
+      this.services.wucExchange
+        .updateAccount(
+          this.$routerParams.organization,
+          this.$routerParams.productId,
+          this.getFeaturesToUpdate(this.originalValues, this.selectedAccount),
+        )
         .then((data) => {
           this.services.messaging.setMessage(
             this.getActionMessage(data.messages),

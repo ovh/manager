@@ -10,7 +10,7 @@ import reduce from 'lodash/reduce';
 export default class ExchangeWizardHostedCreationEmailCreationUpdateController {
   /* @ngInject */
   constructor(
-    Exchange,
+    wucExchange,
     wucExchangePassword,
     messaging,
     navigation,
@@ -20,7 +20,7 @@ export default class ExchangeWizardHostedCreationEmailCreationUpdateController {
     $translate,
     wizardHostedCreationEmailCreation,
   ) {
-    this.Exchange = Exchange;
+    this.wucExchange = wucExchange;
     this.wucExchangePassword = wucExchangePassword;
     this.messaging = messaging;
     this.navigation = navigation;
@@ -32,7 +32,7 @@ export default class ExchangeWizardHostedCreationEmailCreationUpdateController {
   }
 
   $onInit() {
-    this.$routerParams = this.Exchange.getParams();
+    this.$routerParams = this.wucExchange.getParams();
     this.formerPrimaryEmailAddress = this.navigation.currentActionData.primaryEmailAddress;
 
     this.model = {

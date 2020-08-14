@@ -11,7 +11,7 @@ export default class ExchangeAccountAddController {
     $scope,
     $timeout,
     exchangeAccountTypes,
-    Exchange,
+    wucExchange,
     exchangeAccount,
     exchangeServiceInfrastructure,
     wucExchangePassword,
@@ -23,7 +23,7 @@ export default class ExchangeAccountAddController {
     this.$timeout = $timeout;
 
     this.exchangeAccountTypes = exchangeAccountTypes;
-    this.Exchange = Exchange;
+    this.wucExchange = wucExchange;
     this.exchangeAccount = exchangeAccount;
     this.wucExchangePassword = wucExchangePassword;
     this.exchangeServiceInfrastructure = exchangeServiceInfrastructure;
@@ -33,7 +33,7 @@ export default class ExchangeAccountAddController {
   }
 
   $onInit() {
-    this.$routerParams = this.Exchange.getParams();
+    this.$routerParams = this.wucExchange.getParams();
 
     this.isFetchingCreationOptions = true;
     this.newAccount = {};
@@ -51,10 +51,11 @@ export default class ExchangeAccountAddController {
       }));
     }
 
-    return this.Exchange.fetchingAccountCreationOptions(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-    )
+    return this.wucExchange
+      .fetchingAccountCreationOptions(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+      )
       .then((accountCreationOptions) => {
         this.accountCreationOptions = assign(accountCreationOptions, {
           availableTypes: transformAccountTypes.call(

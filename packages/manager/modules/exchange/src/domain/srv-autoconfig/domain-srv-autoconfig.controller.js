@@ -2,7 +2,7 @@ export default class ExchangeDomainSrvAutoconfigCtrl {
   /* @ngInject */
   constructor(
     $scope,
-    Exchange,
+    wucExchange,
     ExchangeDomains,
     navigation,
     messaging,
@@ -11,7 +11,7 @@ export default class ExchangeDomainSrvAutoconfigCtrl {
   ) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       ExchangeDomains,
       navigation,
       messaging,
@@ -19,7 +19,7 @@ export default class ExchangeDomainSrvAutoconfigCtrl {
       exchangeStates,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
     this.domain = navigation.currentActionData;
 
     this.services.ExchangeDomains.gettingDNSSettings(

@@ -4,8 +4,8 @@ import isEmpty from 'lodash/isEmpty';
 
 export default class ExchangeServiceInfrastructure {
   /* @ngInject */
-  constructor(Exchange, exchangeVersion) {
-    this.Exchange = Exchange;
+  constructor(wucExchange, exchangeVersion) {
+    this.wucExchange = wucExchange;
     this.exchangeVersion = exchangeVersion;
 
     this.INFRASTRUCTURES = {
@@ -16,7 +16,7 @@ export default class ExchangeServiceInfrastructure {
     };
   }
 
-  isType(infrastructure, exchange = this.Exchange.getValue()) {
+  isType(infrastructure, exchange = this.wucExchange.getValue()) {
     if (isEmpty(`${infrastructure}`)) {
       throw new Error("Can't work with empty input");
     }

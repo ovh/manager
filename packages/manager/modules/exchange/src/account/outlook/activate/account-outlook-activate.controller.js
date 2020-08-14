@@ -2,7 +2,7 @@ export default class ExchangeActivateOutlookCtrl {
   /* @ngInject */
   constructor(
     $scope,
-    Exchange,
+    wucExchange,
     exchangeAccountOutlook,
     navigation,
     messaging,
@@ -10,14 +10,14 @@ export default class ExchangeActivateOutlookCtrl {
   ) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       exchangeAccountOutlook,
       navigation,
       messaging,
       $translate,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
     this.account = navigation.currentActionData;
 
     $scope.activateOutlookExchangeAccount = () =>

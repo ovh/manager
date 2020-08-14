@@ -5,6 +5,7 @@ import wucChartjs from './chartjs';
 import wucConverter from './converter';
 import wucDuration from './duration';
 import wucEmailDomain from './email-domain';
+import wucExchange from './exchange';
 import wucExchangePassword from './exchange-password';
 import wucFileChange from './fileChange';
 import wucFileEditor from './fileEditor';
@@ -23,6 +24,7 @@ angular.module(moduleName, [
   wucConverter,
   wucDuration,
   wucEmailDomain,
+  wucExchange,
   wucExchangePassword,
   wucFileChange,
   wucFileEditor,

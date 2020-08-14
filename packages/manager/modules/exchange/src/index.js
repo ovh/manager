@@ -9,7 +9,6 @@ import ExchangeModel from './dashboard/Exchange.class';
 import billingAccountRenew from './billing/account-renew/renew.module';
 
 import APIExchange from './dashboard/exchange.api';
-import Exchange from './dashboard/exchange.service';
 import navigation from './services/exchange.navigation.service';
 
 const moduleName = 'ovhManagerExchangeLazyLoading';
@@ -64,7 +63,6 @@ angular
     },
   )
   .service('APIExchange', APIExchange)
-  .service('Exchange', Exchange)
   .service('navigation', navigation);
 
 export default moduleName;

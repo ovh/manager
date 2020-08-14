@@ -7,7 +7,7 @@ export default class ExchangeExportAsPstCtrl {
   constructor(
     $scope,
     $timeout,
-    Exchange,
+    wucExchange,
     APIExchange,
     navigation,
     messaging,
@@ -17,7 +17,7 @@ export default class ExchangeExportAsPstCtrl {
     this.services = {
       $scope,
       $timeout,
-      Exchange,
+      wucExchange,
       APIExchange,
       navigation,
       messaging,
@@ -26,8 +26,8 @@ export default class ExchangeExportAsPstCtrl {
     };
 
     this.selectedAccount = navigation.currentActionData;
-    this.exchange = Exchange.value;
-    this.$routerParams = Exchange.getParams();
+    this.exchange = wucExchange.value;
+    this.$routerParams = wucExchange.getParams();
 
     this.initialize();
 

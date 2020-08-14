@@ -2,7 +2,7 @@ export default class ExchangeTabManagersByGroupsCtrl {
   /* @ngInject */
   constructor(
     $scope,
-    Exchange,
+    wucExchange,
     navigation,
     mailingList,
     messaging,
@@ -12,19 +12,19 @@ export default class ExchangeTabManagersByGroupsCtrl {
   ) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       navigation,
       messaging,
       $translate,
       group,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
     this.groupParams = {};
     this.goToGroup = goToGroup;
     this.mailingList = mailingList;
 
-    $scope.$on(Exchange.events.accountsChanged, () => this.refreshList());
+    $scope.$on(wucExchange.events.accountsChanged, () => this.refreshList());
     $scope.getManagersList = () => this.managersList;
     $scope.getManagersByGroup = (pageSize, offset) =>
       this.getManagersByGroup(pageSize, offset);

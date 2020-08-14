@@ -11,7 +11,7 @@ export default class ExchangeResourceDelegationCtrl {
   /* @ngInject */
   constructor(
     $scope,
-    Exchange,
+    wucExchange,
     ExchangeResources,
     $timeout,
     messaging,
@@ -20,7 +20,7 @@ export default class ExchangeResourceDelegationCtrl {
   ) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       ExchangeResources,
       $timeout,
       messaging,
@@ -28,7 +28,7 @@ export default class ExchangeResourceDelegationCtrl {
       $translate,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
 
     this.resource = navigation.currentActionData;
 

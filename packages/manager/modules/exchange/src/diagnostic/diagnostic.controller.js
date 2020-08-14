@@ -18,7 +18,7 @@ export default class ExchangeTabDiagnosticsCtrl {
     $translate,
     navigation,
     messaging,
-    Exchange,
+    wucExchange,
     $timeout,
   ) {
     this.services = {
@@ -31,16 +31,16 @@ export default class ExchangeTabDiagnosticsCtrl {
       $translate,
       navigation,
       messaging,
-      Exchange,
+      wucExchange,
       $timeout,
     };
 
     this.POLL_NAMESPACE = 'exchange.diagnostic.poll';
-    this.exchange = Exchange.value;
     this.newTicketUrl = buildURL('dedicated', '#/support/tickets/new', {
       serviceTypeName: 'email_exchange',
       serviceName: this.exchange.domain,
     });
+    this.exchange = wucExchange.value;
 
     this.states = {
       REQUESTING_NEW_DIAGNOSTIC: 'REQUESTING_NEW_DIAGNOSTIC',
@@ -89,10 +89,11 @@ export default class ExchangeTabDiagnosticsCtrl {
   getDiagnosticAccounts() {
     this.loaders.accounts = true;
 
-    return this.services.Exchange.getAccountIds({
-      organizationName: this.exchange.organization,
-      exchangeService: this.exchange.domain,
-    })
+    return this.services.wucExchange
+      .getAccountIds({
+        organizationName: this.exchange.organization,
+        exchangeService: this.exchange.domain,
+      })
       .then((ids) => {
         this.accountIds = ids;
       })
