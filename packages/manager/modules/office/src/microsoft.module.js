@@ -1,4 +1,11 @@
 import angular from 'angular';
+import 'angular-route';
+import 'angular-ui-bootstrap';
+import 'bootstrap';
+import '@ovh-ux/ng-ovh-utils';
+import '@ovh-ux/ng-ovh-web-universe-components';
+
+import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 
 import routing from './microsoft.routes';
 
@@ -53,6 +60,7 @@ angular
     'ngRoute',
     'ui.bootstrap',
     'ngSanitize',
+    'ngOvhWebUniverseComponents',
     'Module.microsoft.controllers',
     'Module.microsoft.services',
   ])
