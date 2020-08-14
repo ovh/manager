@@ -1,7 +1,14 @@
 export default class ExchangeWizardHostedCreationEmailCreationDeleteController {
   /* @ngInject */
-  constructor(Exchange, messaging, navigation, $rootScope, $scope, $translate) {
-    this.Exchange = Exchange;
+  constructor(
+    wucExchange,
+    messaging,
+    navigation,
+    $rootScope,
+    $scope,
+    $translate,
+  ) {
+    this.wucExchange = wucExchange;
     this.messaging = messaging;
     this.navigation = navigation;
     this.$rootScope = $rootScope;
@@ -10,18 +17,19 @@ export default class ExchangeWizardHostedCreationEmailCreationDeleteController {
   }
 
   $onInit() {
-    this.$routerParams = this.Exchange.getParams();
+    this.$routerParams = this.wucExchange.getParams();
     this.account = this.navigation.currentActionData;
 
     this.$scope.deleting = () => this.deleting();
   }
 
   deleting() {
-    return this.Exchange.removingAccount(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-      this.account.primaryEmailAddress,
-    )
+    return this.wucExchange
+      .removingAccount(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        this.account.primaryEmailAddress,
+      )
       .catch((error) => {
         this.messaging.writeError(
           this.$translate.instant('exchange_tab_account_remove_failure'),

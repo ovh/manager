@@ -1,16 +1,16 @@
 export default class ExchangeTabTasksCtrl {
   /* @ngInject */
-  constructor($scope, Exchange, messaging, $translate) {
+  constructor($scope, wucExchange, messaging, $translate) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       messaging,
       $translate,
     };
   }
 
   $onInit() {
-    const params = this.services.Exchange.getParams();
+    const params = this.services.wucExchange.getParams();
     this.organization = params.organization;
     this.productId = params.productId;
 
@@ -22,13 +22,14 @@ export default class ExchangeTabTasksCtrl {
       todo: 'TODO',
     };
 
-    this.services.$scope.$on(this.services.Exchange.events.tasksChanged, () =>
-      this.refreshTasks(),
+    this.services.$scope.$on(
+      this.services.wucExchange.events.tasksChanged,
+      () => this.refreshTasks(),
     );
   }
 
   getTasks({ pageSize, offset }) {
-    return this.services.Exchange.getTasks(
+    return this.services.wucExchange.getTasks(
       this.organization,
       this.productId,
       pageSize,

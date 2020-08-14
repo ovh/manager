@@ -4,7 +4,7 @@ import isString from 'lodash/isString';
 export default class ExchangeAccount {
   /* @ngInject */
   constructor(
-    Exchange,
+    wucExchange,
     exchangeAccountTypes,
     exchangeServiceInfrastructure,
     exchangeSelectedService,
@@ -13,7 +13,7 @@ export default class ExchangeAccount {
     OvhHttp,
     OvhApiMsServices,
   ) {
-    this.Exchange = Exchange;
+    this.wucExchange = wucExchange;
     this.exchangeAccountTypes = exchangeAccountTypes;
     this.exchangeServiceInfrastructure = exchangeServiceInfrastructure;
     this.exchangeSelectedService = exchangeSelectedService;
@@ -85,7 +85,7 @@ export default class ExchangeAccount {
         data: newAccount,
       },
     ).then((data) => {
-      this.Exchange.refreshViews('Accounts', 'Tasks');
+      this.wucExchange.refreshViews('Accounts', 'Tasks');
 
       return data;
     });
@@ -107,7 +107,7 @@ export default class ExchangeAccount {
         {},
       )
       .$promise.then((data) => {
-        this.Exchange.refreshViews('Accounts', 'Tasks');
+        this.wucExchange.refreshViews('Accounts', 'Tasks');
         return data;
       });
   }
@@ -128,7 +128,7 @@ export default class ExchangeAccount {
         {},
       )
       .$promise.then((data) => {
-        this.Exchange.refreshViews('Accounts', 'Tasks');
+        this.wucExchange.refreshViews('Accounts', 'Tasks');
         return data;
       });
   }
@@ -149,7 +149,7 @@ export default class ExchangeAccount {
         {},
       )
       .$promise.then((data) => {
-        this.Exchange.refreshViews('Accounts', 'Tasks');
+        this.wucExchange.refreshViews('Accounts', 'Tasks');
         return data;
       });
   }
@@ -172,7 +172,7 @@ export default class ExchangeAccount {
         },
       )
       .$promise.then((data) => {
-        this.Exchange.refreshViews('Accounts', 'Tasks');
+        this.wucExchange.refreshViews('Accounts', 'Tasks');
         return data;
       });
   }
@@ -193,7 +193,7 @@ export default class ExchangeAccount {
         {},
       )
       .$promise.then((data) => {
-        this.Exchange.refreshViews('Accounts', 'Tasks');
+        this.wucExchange.refreshViews('Accounts', 'Tasks');
         return data;
       });
   }
@@ -207,7 +207,7 @@ export default class ExchangeAccount {
         {},
       )
       .$promise.then((data) => {
-        this.Exchange.refreshViews('Accounts', 'Tasks');
+        this.wucExchange.refreshViews('Accounts', 'Tasks');
         return data;
       });
   }
@@ -221,7 +221,7 @@ export default class ExchangeAccount {
         {},
       )
       .$promise.then((data) => {
-        this.Exchange.refreshViews('Accounts', 'Tasks');
+        this.wucExchange.refreshViews('Accounts', 'Tasks');
         return data;
       });
   }

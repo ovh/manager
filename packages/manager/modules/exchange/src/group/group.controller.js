@@ -4,7 +4,7 @@ export default class ExchangeTabGroupsCtrl {
   /* @ngInject */
   constructor(
     $scope,
-    Exchange,
+    wucExchange,
     navigation,
     messaging,
     $translate,
@@ -15,21 +15,21 @@ export default class ExchangeTabGroupsCtrl {
   ) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       navigation,
       messaging,
       $translate,
       exchangeStates,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
 
     this.loading = false;
     this.mailingLists = null;
     this.search = null;
     this.services.navigation.selectedGroup = null;
 
-    $scope.$on(Exchange.events.groupsChanged, () =>
+    $scope.$on(wucExchange.events.groupsChanged, () =>
       $scope.$broadcast('paginationServerSide.reload', 'groupsTable'),
     );
 
@@ -101,13 +101,14 @@ export default class ExchangeTabGroupsCtrl {
     this.services.messaging.resetMessages();
     this.loading = true;
 
-    this.services.Exchange.getGroups(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-      count,
-      offset,
-      this.search ? this.search.value : '',
-    )
+    this.services.wucExchange
+      .getGroups(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        count,
+        offset,
+        this.search ? this.search.value : '',
+      )
       .then((data) => {
         this.mailingLists = data;
       })

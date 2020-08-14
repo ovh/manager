@@ -5,13 +5,13 @@ import transform from 'lodash/transform';
 
 export default class ExchangeDomains {
   /* @ngInject */
-  constructor($rootScope, $http, $q, constants, Exchange, OvhHttp) {
+  constructor($rootScope, $http, $q, constants, wucExchange, OvhHttp) {
     this.services = {
       $rootScope,
       $http,
       $q,
       constants,
-      Exchange,
+      wucExchange,
       OvhHttp,
     };
   }
@@ -76,15 +76,15 @@ export default class ExchangeDomains {
       {
         rootPath: 'apiv6',
         urlParams: {
-          organizationName: this.services.Exchange.value.organization,
-          exchangeService: this.services.Exchange.value.domain,
+          organizationName: this.services.wucExchange.value.organization,
+          exchangeService: this.services.wucExchange.value.domain,
         },
         data: transformDomain,
       },
     ).then((response) => {
-      this.services.Exchange.resetDomains();
-      this.services.Exchange.resetAccounts();
-      this.services.Exchange.resetTasks();
+      this.services.wucExchange.resetDomains();
+      this.services.wucExchange.resetAccounts();
+      this.services.wucExchange.resetTasks();
 
       return response;
     });
@@ -116,8 +116,8 @@ export default class ExchangeDomains {
         data,
       },
     ).then((response) => {
-      this.services.Exchange.resetDomains();
-      this.services.Exchange.resetTasks();
+      this.services.wucExchange.resetDomains();
+      this.services.wucExchange.resetTasks();
 
       return response;
     });
@@ -135,9 +135,9 @@ export default class ExchangeDomains {
         },
       },
     ).then((response) => {
-      this.services.Exchange.resetDomains();
-      this.services.Exchange.resetAccounts();
-      this.services.Exchange.resetTasks();
+      this.services.wucExchange.resetDomains();
+      this.services.wucExchange.resetAccounts();
+      this.services.wucExchange.resetTasks();
 
       return response;
     });

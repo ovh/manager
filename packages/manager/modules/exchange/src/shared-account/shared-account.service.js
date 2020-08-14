@@ -5,14 +5,14 @@ export default class ExchangeSharedAccounts {
   /* @ngInject */
   constructor(
     $translate,
-    Exchange,
+    wucExchange,
     OvhHttp,
     WucConverterFactory,
     WucConverterService,
   ) {
     this.services = {
       $translate,
-      Exchange,
+      wucExchange,
       OvhHttp,
       WucConverterFactory,
       WucConverterService,
@@ -56,8 +56,8 @@ export default class ExchangeSharedAccounts {
         data,
       },
     ).then((response) => {
-      this.services.Exchange.resetSharedAccounts();
-      this.services.Exchange.resetTasks();
+      this.services.wucExchange.resetSharedAccounts();
+      this.services.wucExchange.resetTasks();
 
       return response;
     });
@@ -71,8 +71,8 @@ export default class ExchangeSharedAccounts {
         data,
       },
     ).then((response) => {
-      this.services.Exchange.resetSharedAccounts();
-      this.services.Exchange.resetTasks();
+      this.services.wucExchange.resetSharedAccounts();
+      this.services.wucExchange.resetTasks();
 
       return response;
     });
@@ -85,8 +85,8 @@ export default class ExchangeSharedAccounts {
         rootPath: 'apiv6',
       },
     ).then((response) => {
-      this.services.Exchange.resetSharedAccounts();
-      this.services.Exchange.resetTasks();
+      this.services.wucExchange.resetSharedAccounts();
+      this.services.wucExchange.resetTasks();
 
       return response;
     });
@@ -125,8 +125,8 @@ export default class ExchangeSharedAccounts {
         },
       },
     ).then((response) => {
-      this.services.Exchange.resetSharedAccounts();
-      this.services.Exchange.resetTasks();
+      this.services.wucExchange.resetSharedAccounts();
+      this.services.wucExchange.resetTasks();
 
       return response;
     });

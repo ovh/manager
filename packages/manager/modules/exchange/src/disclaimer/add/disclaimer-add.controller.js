@@ -4,17 +4,17 @@ import head from 'lodash/head';
 
 export default class ExchangeAddDisclaimerCtrl {
   /* @ngInject */
-  constructor($scope, Exchange, navigation, messaging, $translate) {
+  constructor($scope, wucExchange, navigation, messaging, $translate) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       navigation,
       messaging,
       $translate,
     };
 
     this.mceId = 'add-disclaimer-editor';
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
 
     this.data = {
       content: '',
@@ -31,27 +31,29 @@ export default class ExchangeAddDisclaimerCtrl {
   loadAvailableDomains() {
     this.loadingData = true;
 
-    return this.services.Exchange.getNewDisclaimerOptions(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-    ).then((data) => {
-      this.loadingData = false;
+    return this.services.wucExchange
+      .getNewDisclaimerOptions(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+      )
+      .then((data) => {
+        this.loadingData = false;
 
-      if (data.availableDomains) {
-        this.availableDomains = data.availableDomains;
-        this.selectCurrentDomain();
+        if (data.availableDomains) {
+          this.availableDomains = data.availableDomains;
+          this.selectCurrentDomain();
 
-        this.data.selectedAttribute = head(data.availableAttributes);
-        this.availableAttributes = data.availableAttributes;
-      } else {
-        this.services.navigation.resetAction();
-        this.services.messaging.writeError(
-          this.services.$translate.instant(
-            'exchange_ACTION_add_disclaimer_no_domains',
-          ),
-        );
-      }
-    });
+          this.data.selectedAttribute = head(data.availableAttributes);
+          this.availableAttributes = data.availableAttributes;
+        } else {
+          this.services.navigation.resetAction();
+          this.services.messaging.writeError(
+            this.services.$translate.instant(
+              'exchange_ACTION_add_disclaimer_no_domains',
+            ),
+          );
+        }
+      });
   }
 
   selectCurrentDomain() {
@@ -91,11 +93,12 @@ export default class ExchangeAddDisclaimerCtrl {
       this.services.$translate.instant('exchange_dashboard_action_doing'),
     );
 
-    this.services.Exchange.saveDisclaimer(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-      model,
-    )
+    this.services.wucExchange
+      .saveDisclaimer(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        model,
+      )
       .then((data) => {
         this.services.messaging.writeSuccess(
           this.services.$translate.instant(

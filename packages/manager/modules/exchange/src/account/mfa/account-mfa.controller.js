@@ -5,7 +5,7 @@ export default class ExchangeAccountMfaCtrl {
     $scope,
     $state,
     $translate,
-    Exchange,
+    wucExchange,
     exchangeAccount,
     messaging,
     navigation,
@@ -14,9 +14,9 @@ export default class ExchangeAccountMfaCtrl {
     this.$scope = $scope;
     this.$state = $state;
     this.$translate = $translate;
-    this.Exchange = Exchange;
+    this.wucExchange = wucExchange;
     this.exchangeAccount = exchangeAccount;
-    this.exchangeService = Exchange.value;
+    this.exchangeService = wucExchange.value;
     this.isLoading = false;
     this.messaging = messaging;
     this.navigation = navigation;
@@ -26,10 +26,11 @@ export default class ExchangeAccountMfaCtrl {
     this.account = this.navigation.currentActionData.account;
     this.action = this.navigation.currentActionData.action;
     this.isLoading = true;
-    this.Exchange.getExchangeServer(
-      this.exchangeService.organization,
-      this.exchangeService.domain,
-    )
+    this.wucExchange
+      .getExchangeServer(
+        this.exchangeService.organization,
+        this.exchangeService.domain,
+      )
       .then((server) => {
         this.server = server;
       })

@@ -6,17 +6,17 @@ import isEmpty from 'lodash/isEmpty';
 
 export default class ExchangeUpdateGroupCtrl {
   /* @ngInject */
-  constructor($scope, Exchange, group, navigation, messaging, $translate) {
+  constructor($scope, wucExchange, group, navigation, messaging, $translate) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       group,
       navigation,
       messaging,
       $translate,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
     this.selectedGroup = navigation.currentActionData;
 
     if (
@@ -141,12 +141,13 @@ export default class ExchangeUpdateGroupCtrl {
     );
     this.prepareModel();
 
-    this.services.Exchange.updateGroup(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-      this.selectedGroup.mailingListAddress,
-      this.model,
-    )
+    this.services.wucExchange
+      .updateGroup(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        this.selectedGroup.mailingListAddress,
+        this.model,
+      )
       .then((data) => {
         const addGroupMessages = {
           OK: this.services.$translate.instant(
