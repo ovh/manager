@@ -24,38 +24,28 @@
                 </div>
             </div>
         </header>
-
-        <nav role="navigation">
-            <responsive-tabs>
-                <responsive-tab
-                    data-state="telecom.packs.pack.xdsl.line"
-                    data-dropdown-title="{{ 'xdsl_tabs_line' | translate }}"
-                >
-                    <span data-translate="xdsl_tabs_line"></span>
-                </responsive-tab>
-                <responsive-tab
-                    data-state="telecom.packs.pack.xdsl.line.modem"
-                    disabled="$ctrl.disabledModem"
-                    data-ng-if="$ctrl.isModemTabAvailable()"
-                    data-dropdown-title="{{ 'xdsl_tabs_modem' | translate }}"
-                >
-                    <span data-translate="xdsl_tabs_modem"></span>
-                </responsive-tab>
-                <responsive-tab-more>
-                    <span
-                        data-translate-attr="{title: 'common_tabs_more'}"
-                        class="fa fa-plus"
-                        aria-hidden="true"
-                    ></span>
-                </responsive-tab-more>
-                <responsive-tab
-                    data-state="telecom.packs.pack.xdsl.line.tasks"
-                    data-dropdown-title="{{ 'xdsl_tabs_tasks' | translate }}"
-                >
-                    <span data-translate="xdsl_tabs_tasks"></span>
-                </responsive-tab>
-            </responsive-tabs>
-        </nav>
+        <oui-header-tabs>
+            <oui-header-tabs-item
+                href="{{ $ctrl.lineLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.lineLink"
+            >
+                <span data-translate="xdsl_tabs_line"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                href="{{ $ctrl.modemLink }}"
+                disabled="$ctrl.disabledModem"
+                data-ng-if="$ctrl.isModemTabAvailable()"
+                active="$ctrl.currentActiveLink() === $ctrl.modemLink"
+            >
+                <span data-translate="xdsl_tabs_modem"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                href="{{ $ctrl.taskLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.taskLink"
+            >
+                <span data-translate="xdsl_tabs_tasks"></span>
+            </oui-header-tabs-item>
+        </oui-header-tabs>
     </div>
     <!-- .telecom-section-header -->
 

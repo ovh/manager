@@ -5,6 +5,10 @@ export default {
   controller,
   template,
   bindings: {
+    currentActiveLink: '<',
+    lineLink: '<',
+    modemLink: '<',
+    taskLink: '<',
     packName: '<',
     serviceName: '<',
     goBack: '<',

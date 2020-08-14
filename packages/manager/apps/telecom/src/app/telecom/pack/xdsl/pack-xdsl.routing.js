@@ -70,6 +70,20 @@ export default /* @ngInject */ ($stateProvider) => {
       goBack: /* @ngInject */ ($state) => (backState) => {
         $state.go(backState);
       },
+      lineLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href('telecom.packs.pack.xdsl.line', $transition$.params()),
+      modemLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href(
+          'telecom.packs.pack.xdsl.line.modem',
+          $transition$.params(),
+        ),
+      taskLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href(
+          'telecom.packs.pack.xdsl.line.tasks',
+          $transition$.params(),
+        ),
+      currentActiveLink: /* @ngInject */ ($state, $transition$) => () =>
+        $state.href($state.current.name, $transition$.params()),
     },
   });
 };
