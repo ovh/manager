@@ -38,15 +38,35 @@ export default /* @ngInject */ ($stateProvider) => {
   });
 
   $stateProvider.state(`${routeBase}.product`, {
-    url: '/:exchangeId/:productId?tab',
+    url: '/:exchangeId/:productId',
     template: sharepointTpl,
     controller: sharepointCtrl,
     controllerAs: 'SharepointCtrl',
     reloadOnSearch: false,
-    params: {
-      tab: null,
+    redirectTo: 'sharepoint.product.information',
+    resolve: {
+      ...resolve,
+      exchangeId: /* @ngInject */ ($transition$) =>
+        $transition$.params().exchangeId,
+      informationLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href('sharepoint.product.information', $transition$.params()),
+      accountLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href('sharepoint.product.account', $transition$.params()),
+      taskLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href('sharepoint.product.task', $transition$.params()),
+      domainLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href('sharepoint.product.domain', $transition$.params()),
+      currentActiveLink: /* @ngInject */ ($state, $transition$) => () =>
+        $state.href($state.current.name, $transition$.params()),
+
+      associatedExchange: /* @ngInject */ (
+        exchangeId,
+        MicrosoftSharepointLicenseService,
+      ) =>
+        MicrosoftSharepointLicenseService.getAssociatedExchangeService(
+          exchangeId,
+        ).catch(() => null),
     },
-    resolve,
   });
 
   $stateProvider.state(`${routeBase}.product.setUrl`, {

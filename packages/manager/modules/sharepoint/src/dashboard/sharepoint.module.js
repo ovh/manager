@@ -28,36 +28,32 @@ import updateRenewCtrl from '../renew/update/sharepoint-renew-update.controller'
 import tasksCtrl from '../task/sharepoint-task.controller';
 import urlCtrl from '../url/sharepoint-url.controller';
 import sharepointCtrl from './sharepoint.controller';
-import tabsCtrl from './sharepoint-tabs.controller';
 
 import licenseService from './sharepoint.service';
 import orderService from './sharepoint-order.service';
 
-import orderTpl from '../order/sharepoint-order.html';
-import informationTpl from '../information/INFORMATION.html';
 import renewUpdateTpl from '../renew/update/sharepoint-renew-update.html';
-import sharepointTpl from './sharepoint.html';
-import urlTpl from '../url/sharepoint-url.html';
-import taskTpl from '../task/TASK.html';
 import activateTpl from '../activate/sharepoint-activate.html';
 import adminRightsResetTpl from '../admin-rights/reset/sharepoint-admin-rights-reset.html';
 import passwordUpdateTpl from '../account/password/update/sharepoint-account-password-update.html';
 import accountUpdateTpl from '../account/update/sharepoint-account-update.html';
 import accountDeleteTpl from '../account/delete/sharepoint-account-delete.html';
-import accountTpl from '../account/ACCOUNT.html';
 import userTpl from '../account/popover/user.html';
 import accountAddTpl from '../account/add/sharepoint-account-add.html';
 import accountAddLegacyTpl from '../account/add-legacy/sharepoint-account-add-legacy.html';
 import domainDeleteTpl from '../domain/delete/sharepoint-domain-delete.html';
 import domainAddTpl from '../domain/add/sharepoint-domain-add.html';
-import domainTpl from '../domain/DOMAIN.html';
+
+import information from '../information/information.module';
+import account from '../account/account.module';
+import task from '../task/task.module';
+import domain from '../domain/domain.module';
 
 const moduleName = 'Module.sharepoint';
 
 angular
   .module('Module.sharepoint.controllers', [incrementNumber])
   .controller('SharepointCtrl', sharepointCtrl)
-  .controller('SharepointTabsCtrl', tabsCtrl)
   .controller('SharepointAccountsCtrl', accountCtrl)
   .controller('SharepointAccountAddCtrl', accountAddCtrl)
   .controller('SharepointAccountAddLegacyCtrl', accountAddLegacyCtrl)
@@ -90,6 +86,10 @@ angular
     'Module.sharepoint.services',
     'ovh-api-services',
     'ngOvhWebUniverseComponents',
+    information,
+    account,
+    task,
+    domain,
   ])
   .config(routing)
   .constant('SHAREPOINT_GUIDE_URLS', {
@@ -115,18 +115,10 @@ angular
   })
   .run(
     /* @ngInject */ ($templateCache) => {
-      $templateCache.put('sharepoint/order/sharepoint-order.html', orderTpl);
-      $templateCache.put(
-        'sharepoint/information/INFORMATION.html',
-        informationTpl,
-      );
       $templateCache.put(
         'sharepoint/renew/update/sharepoint-renew-update.html',
         renewUpdateTpl,
       );
-      $templateCache.put('sharepoint/sharepoint.html', sharepointTpl);
-      $templateCache.put('sharepoint/url/sharepoint-url.html', urlTpl);
-      $templateCache.put('sharepoint/task/TASK.html', taskTpl);
       $templateCache.put(
         'sharepoint/activate/sharepoint-activate.html',
         activateTpl,
@@ -147,7 +139,6 @@ angular
         'sharepoint/account/delete/sharepoint-account-delete.html',
         accountDeleteTpl,
       );
-      $templateCache.put('sharepoint/account/ACCOUNT.html', accountTpl);
       $templateCache.put('sharepoint/account/popover/user.html', userTpl);
       $templateCache.put(
         'sharepoint/account/add/sharepoint-account-add.html',
@@ -165,7 +156,6 @@ angular
         'sharepoint/domain/add/sharepoint-domain-add.html',
         domainAddTpl,
       );
-      $templateCache.put('sharepoint/domain/DOMAIN.html', domainTpl);
     },
   )
   .run(/* @ngTranslationsInject:json ./translations */);
