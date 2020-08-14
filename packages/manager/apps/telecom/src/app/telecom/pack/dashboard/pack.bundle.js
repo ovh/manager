@@ -9,8 +9,6 @@ import '../migration/telecom-pack-migration';
 import '../move/pack-move.controller';
 import '../move';
 import './pack.constant';
-import './pack.controller';
-import './pack.routing';
 import './pack.templates';
 import '../resiliation/pack-resiliation.controller';
 import '../resiliation/pack-resiliation';

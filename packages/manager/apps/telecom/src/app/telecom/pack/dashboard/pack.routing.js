@@ -1,26 +1,11 @@
-import packMainTemplate from './pack-main.view.html';
 import packTemplate from './pack.html';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('telecom.packs', {
-    url: '/pack',
-    abstract: true,
-    views: {
-      'telecomView@telecom': {
-        template: packMainTemplate,
-      },
-    },
-  });
-
   $stateProvider.state('telecom.packs.pack', {
     url: '/:packName',
-    views: {
-      'packView@telecom.packs': {
-        template: packTemplate,
-        controller: 'PackCtrl',
-        controllerAs: 'Pack',
-      },
-    },
+    template: packTemplate,
+    controller: 'PackCtrl',
+    controllerAs: 'Pack',
     resolve: {
       resiliationNotification() {
         return {};
