@@ -69,7 +69,7 @@ export default class SharepointUrlCtrl {
 
         this.$timeout(() => {
           this.$location.path(
-            `/configuration/sharepoint/${this.exchangeId}/${this.sharepointDomain}`,
+            `/sharepoint/${this.exchangeId}/${this.sharepointDomain}`,
           );
         }, 3000);
       })
