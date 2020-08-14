@@ -8,18 +8,30 @@ export default class SharepointCtrl {
     $stateParams,
     $timeout,
     $translate,
+    accountLink,
     Alerter,
+    associatedExchange,
+    currentActiveLink,
     constants,
+    domainLink,
+    informationLink,
     MicrosoftSharepointLicenseService,
+    taskLink,
   ) {
     this.$scope = $scope;
     this.$rootScope = $rootScope;
     this.$stateParams = $stateParams;
     this.$timeout = $timeout;
     this.$translate = $translate;
+    this.accountLink = accountLink;
     this.alerter = Alerter;
+    this.associatedExchange = associatedExchange;
     this.constants = constants;
+    this.currentActiveLink = currentActiveLink;
+    this.domainLink = domainLink;
     this.sharepointService = MicrosoftSharepointLicenseService;
+    this.informationLink = informationLink;
+    this.taskLink = taskLink;
   }
 
   $onInit() {

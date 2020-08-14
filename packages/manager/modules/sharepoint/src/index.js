@@ -40,7 +40,7 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
         lazyLoad,
       })
       .state(`${routeBase}.product.**`, {
-        url: '/:exchangeId/:productId?tab',
+        url: '/:exchangeId/:productId',
         lazyLoad,
       })
       .state(`${routeBase}.product.setUrl.**`, {
