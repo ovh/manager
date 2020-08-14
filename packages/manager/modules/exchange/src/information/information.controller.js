@@ -10,7 +10,7 @@ export default class ExchangeTabInformationCtrl {
     $rootScope,
     $scope,
     exchangeServiceInfrastructure,
-    Exchange,
+    wucExchange,
     EXCHANGE_CONFIG,
     exchangeVersion,
     messaging,
@@ -21,7 +21,7 @@ export default class ExchangeTabInformationCtrl {
     this.$rootScope = $rootScope;
     this.$scope = $scope;
     this.exchangeServiceInfrastructure = exchangeServiceInfrastructure;
-    this.exchangeService = Exchange;
+    this.exchangeService = wucExchange;
     this.EXCHANGE_CONFIG = EXCHANGE_CONFIG;
     this.exchangeVersion = exchangeVersion;
     this.messaging = messaging;

@@ -1,9 +1,9 @@
 export default class ExchangeMigration2016Ctrl {
   /* @ngInject */
-  constructor($scope, Exchange, navigation, messaging, $translate, $window) {
+  constructor($scope, wucExchange, navigation, messaging, $translate, $window) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       navigation,
       messaging,
       $translate,
@@ -26,7 +26,8 @@ export default class ExchangeMigration2016Ctrl {
   retrievingContracts() {
     this.agree.value = false;
 
-    return this.services.Exchange.getUpgradeInfos(this.curExchange)
+    return this.services.wucExchange
+      .getUpgradeInfos(this.curExchange)
       .then((data) => {
         this.model.contracts = data.contracts;
       })
@@ -42,7 +43,8 @@ export default class ExchangeMigration2016Ctrl {
   }
 
   submitting() {
-    return this.services.Exchange.upgradeExchange(this.curExchange)
+    return this.services.wucExchange
+      .upgradeExchange(this.curExchange)
       .then((order) => {
         this.services.messaging.writeSuccess(
           this.services.$translate.instant(

@@ -2,7 +2,7 @@ export default class ExchangeRemoveSharedCtrl {
   /* @ngInject */
   constructor(
     $scope,
-    Exchange,
+    wucExchange,
     ExchangePublicFolders,
     messaging,
     navigation,
@@ -10,14 +10,14 @@ export default class ExchangeRemoveSharedCtrl {
   ) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       ExchangePublicFolders,
       messaging,
       navigation,
       $translate,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
     this.shared = navigation.currentActionData;
     $scope.submitting = () => this.submitting();
   }

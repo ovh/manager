@@ -19,7 +19,7 @@ export default class ExchangeTabDiagnosticsCtrl {
     $translate,
     navigation,
     messaging,
-    Exchange,
+    wucExchange,
     $timeout,
   ) {
     this.services = {
@@ -32,12 +32,12 @@ export default class ExchangeTabDiagnosticsCtrl {
       $translate,
       navigation,
       messaging,
-      Exchange,
+      wucExchange,
       $timeout,
     };
 
     this.POLL_NAMESPACE = 'exchange.diagnostic.poll';
-    this.exchange = Exchange.value;
+    this.exchange = wucExchange.value;
     this.newTicketUrl =
       get(NEW_TICKET_URL, constants.target, 'EU') + this.exchange.domain;
 
@@ -88,10 +88,11 @@ export default class ExchangeTabDiagnosticsCtrl {
   getDiagnosticAccounts() {
     this.loaders.accounts = true;
 
-    return this.services.Exchange.getAccountIds({
-      organizationName: this.exchange.organization,
-      exchangeService: this.exchange.domain,
-    })
+    return this.services.wucExchange
+      .getAccountIds({
+        organizationName: this.exchange.organization,
+        exchangeService: this.exchange.domain,
+      })
       .then((ids) => {
         this.accountIds = ids;
       })

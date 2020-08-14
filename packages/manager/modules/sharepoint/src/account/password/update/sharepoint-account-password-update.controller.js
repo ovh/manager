@@ -110,7 +110,7 @@ export default class SharepointUpdatePasswordCtrl {
         this.exchange.minPasswordLength,
       );
 
-      // see the password complexity requirements of Windows Server (like Exchange)
+      // see the password complexity requirements of Windows Server (like wucExchange)
       // https://technet.microsoft.com/en-us/library/hh994562%28v=ws.10%29.aspx
       if (this.exchange.complexityEnabled) {
         this.simplePasswordFlag =

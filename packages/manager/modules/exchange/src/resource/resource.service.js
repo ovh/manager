@@ -2,12 +2,12 @@ import camelCase from 'lodash/camelCase';
 
 export default class ExchangeResources {
   /* @ngInject */
-  constructor($http, $q, $rootScope, Exchange, OvhHttp) {
+  constructor($http, $q, $rootScope, wucExchange, OvhHttp) {
     this.services = {
       $http,
       $q,
       $rootScope,
-      Exchange,
+      wucExchange,
       OvhHttp,
     };
   }
@@ -75,8 +75,8 @@ export default class ExchangeResources {
         },
       },
     ).then((response) => {
-      this.services.Exchange.resetResources();
-      this.services.Exchange.resetTasks();
+      this.services.wucExchange.resetResources();
+      this.services.wucExchange.resetTasks();
 
       return response;
     });
@@ -99,8 +99,8 @@ export default class ExchangeResources {
         },
       },
     ).then((response) => {
-      this.services.Exchange.resetResources();
-      this.services.Exchange.resetTasks();
+      this.services.wucExchange.resetResources();
+      this.services.wucExchange.resetTasks();
 
       return response;
     });
@@ -121,8 +121,8 @@ export default class ExchangeResources {
         },
       },
     ).then((data) => {
-      this.services.Exchange.resetResources();
-      this.services.Exchange.resetTasks();
+      this.services.wucExchange.resetResources();
+      this.services.wucExchange.resetTasks();
 
       return data;
     });
@@ -180,8 +180,8 @@ export default class ExchangeResources {
         data: delegationModel,
       },
     ).then((response) => {
-      this.services.Exchange.resetResources();
-      this.services.Exchange.resetTasks();
+      this.services.wucExchange.resetResources();
+      this.services.wucExchange.resetTasks();
 
       return response;
     });

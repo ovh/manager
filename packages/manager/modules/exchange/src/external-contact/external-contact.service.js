@@ -7,15 +7,15 @@ import punycode from 'punycode';
 
 export default class ExchangeExternalContacts {
   /* @ngInject */
-  constructor(Exchange, OvhHttp) {
-    this.services = { Exchange, OvhHttp };
+  constructor(wucExchange, OvhHttp) {
+    this.services = { wucExchange, OvhHttp };
   }
 
   isAccountValid(account) {
     const accountIsEmpty = account == null;
     const emailIsValid =
       !isEmpty(account.externalEmailAddress) &&
-      this.services.Exchange.constructor.isEmailValid(
+      this.services.wucExchange.constructor.isEmailValid(
         account.externalEmailAddress,
       );
     const displayNameIsValid =
@@ -36,7 +36,7 @@ export default class ExchangeExternalContacts {
         },
       },
     ).then((data) => {
-      this.services.Exchange.resetTabExternalContacts();
+      this.services.wucExchange.resetTabExternalContacts();
       return data;
     });
   }
@@ -56,7 +56,7 @@ export default class ExchangeExternalContacts {
         data: modifiedContact,
       },
     ).then((data) => {
-      this.services.Exchange.resetTabExternalContacts();
+      this.services.wucExchange.resetTabExternalContacts();
       return data;
     });
   }
@@ -73,7 +73,7 @@ export default class ExchangeExternalContacts {
         data: newContact,
       },
     ).then((data) => {
-      this.services.Exchange.resetTabExternalContacts();
+      this.services.wucExchange.resetTabExternalContacts();
       return data;
     });
   }

@@ -6,7 +6,7 @@ export default class ExchangeUpdateResourceController {
   /* @ngInject */
   constructor(
     $scope,
-    Exchange,
+    wucExchange,
     ExchangeResources,
     $filter,
     $translate,
@@ -15,7 +15,7 @@ export default class ExchangeUpdateResourceController {
   ) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       ExchangeResources,
       $filter,
       $translate,
@@ -23,7 +23,7 @@ export default class ExchangeUpdateResourceController {
       navigation,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
     this.model = navigation.currentActionData;
     this.model.slicedEmail = $filter('wucSliceEmail')(
       this.model.resourceEmailDisplayName,

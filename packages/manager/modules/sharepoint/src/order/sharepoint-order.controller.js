@@ -13,7 +13,7 @@ export default class SharepointOrderCtrl {
     $q,
     $stateParams,
     $window,
-    Exchange,
+    wucExchange,
     MicrosoftSharepointLicenseService,
     ouiDatagridService,
     OvhApiMeVipStatus,
@@ -22,7 +22,7 @@ export default class SharepointOrderCtrl {
     this.$q = $q;
     this.$stateParams = $stateParams;
     this.$window = $window;
-    this.Exchange = Exchange;
+    this.wucExchange = wucExchange;
     this.Sharepoint = MicrosoftSharepointLicenseService;
     this.ouiDatagridService = ouiDatagridService;
     this.OvhApiMeVipStatus = OvhApiMeVipStatus;
@@ -133,10 +133,9 @@ export default class SharepointOrderCtrl {
   }
 
   isSupportedExchangeAdditionalCondition(exchange) {
-    return this.Exchange.getExchangeServer(
-      exchange.organization,
-      exchange.name,
-    ).then((server) => server.individual2010 === false);
+    return this.wucExchange
+      .getExchangeServer(exchange.organization, exchange.name)
+      .then((server) => server.individual2010 === false);
   }
 
   filterExchangesThatAlreadyHaveSharepoint(exchanges) {
@@ -164,25 +163,28 @@ export default class SharepointOrderCtrl {
   }
 
   hasSharepoint(exchange) {
-    return this.Exchange.getSharepointServiceForExchange(exchange)
+    return this.wucExchange
+      .getSharepointServiceForExchange(exchange)
       .then(() => true)
       .catch(() => false);
   }
 
   getAccounts() {
-    return this.Exchange.getAccountIds({
-      organizationName: this.associatedExchange.organization,
-      exchangeService: this.associatedExchange.domain,
-    }).then((accountEmails) => ({
-      data: map(accountEmails, (email) => ({ email })),
-      meta: {
-        totalCount: accountEmails.length,
-      },
-    }));
+    return this.wucExchange
+      .getAccountIds({
+        organizationName: this.associatedExchange.organization,
+        exchangeService: this.associatedExchange.domain,
+      })
+      .then((accountEmails) => ({
+        data: map(accountEmails, (email) => ({ email })),
+        meta: {
+          totalCount: accountEmails.length,
+        },
+      }));
   }
 
   getAccount({ email }) {
-    return this.Exchange.getAccount({
+    return this.wucExchange.getAccount({
       organizationName: this.associatedExchange.organization,
       exchangeService: this.associatedExchange.domain,
       primaryEmailAddress: email,

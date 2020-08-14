@@ -11,7 +11,7 @@ import punycode from 'punycode';
 export default class DomainConfigurationController {
   /* @ngInject */
   constructor(
-    Exchange,
+    wucExchange,
     ExchangeDomains,
     exchangeStates,
     messaging,
@@ -21,7 +21,7 @@ export default class DomainConfigurationController {
     WucUser,
     wizardHostedCreationDomainConfiguration,
   ) {
-    this.Exchange = Exchange;
+    this.wucExchange = wucExchange;
     this.ExchangeDomains = ExchangeDomains;
     this.exchangeStates = exchangeStates;
     this.messaging = messaging;
@@ -34,7 +34,7 @@ export default class DomainConfigurationController {
 
   $onInit() {
     this.initialLoading = true;
-    this.$routerParams = this.Exchange.getParams();
+    this.$routerParams = this.wucExchange.getParams();
     this.loaders = {
       isInitialRetrievalRunning: true,
       IsWaitingForDomainAssociation: false,

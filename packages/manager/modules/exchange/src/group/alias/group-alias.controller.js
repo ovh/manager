@@ -4,7 +4,7 @@ export default class ExchangeTabGroupAliasCtrl {
   /* @ngInject */
   constructor(
     $scope,
-    Exchange,
+    wucExchange,
     goToGroup,
     mailingList,
     navigation,
@@ -14,20 +14,20 @@ export default class ExchangeTabGroupAliasCtrl {
   ) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       navigation,
       messaging,
       $translate,
       exchangeStates,
     };
 
-    this.$routerParams = Exchange.getParams();
-    this.aliasMaxLimit = this.services.Exchange.aliasMaxLimit;
+    this.$routerParams = wucExchange.getParams();
+    this.aliasMaxLimit = this.services.wucExchange.aliasMaxLimit;
     this.aliasesParams = {};
     this.goToGroup = goToGroup;
     this.mailingList = mailingList;
 
-    $scope.$on(this.services.Exchange.events.groupsChanged, () =>
+    $scope.$on(this.services.wucExchange.events.groupsChanged, () =>
       this.refreshList(),
     );
     $scope.getAliases = (pageSize, offset) => this.getAliases(pageSize, offset);
@@ -38,13 +38,14 @@ export default class ExchangeTabGroupAliasCtrl {
     this.aliasesParams.pageSize = pageSize;
     this.aliasesParams.offset = offset;
 
-    return this.services.Exchange.getGroupAliasList(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-      this.mailingList.mailingListAddress,
-      pageSize,
-      offset - 1,
-    )
+    return this.services.wucExchange
+      .getGroupAliasList(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        this.mailingList.mailingListAddress,
+        pageSize,
+        offset - 1,
+      )
       .then((data) => {
         this.aliases = data.list.results;
         this.aliasesParams.results = {
@@ -64,13 +65,14 @@ export default class ExchangeTabGroupAliasCtrl {
   }
 
   refreshList() {
-    this.services.Exchange.getGroupAliasList(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-      this.mailingList.mailingListAddress,
-      this.aliasesParams.pageSize,
-      this.aliasesParams.offset - 1,
-    )
+    this.services.wucExchange
+      .getGroupAliasList(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        this.mailingList.mailingListAddress,
+        this.aliasesParams.pageSize,
+        this.aliasesParams.offset - 1,
+      )
       .then((data) => {
         this.aliasesParams.results.meta.totalCount = data.count;
         for (let i = 0; i < data.list.results.length; i += 1) {
