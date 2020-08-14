@@ -8,14 +8,14 @@ export default class SharepointUpdatePasswordCtrl {
     $stateParams,
     $translate,
     Alerter,
-    ExchangePassword,
+    wucExchangePassword,
     MicrosoftSharepointLicenseService,
   ) {
     this.$scope = $scope;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
     this.alerter = Alerter;
-    this.exchangePassword = ExchangePassword;
+    this.wucExchangePassword = wucExchangePassword;
     this.microsoftSharepointLicense = MicrosoftSharepointLicenseService;
   }
 
@@ -104,7 +104,7 @@ export default class SharepointUpdatePasswordCtrl {
     }
 
     if (selectedAccount.password.length > 0) {
-      this.simplePasswordFlag = !this.exchangePassword.passwordSimpleCheck(
+      this.simplePasswordFlag = !this.wucExchangePassword.passwordSimpleCheck(
         selectedAccount.password,
         true,
         this.exchange.minPasswordLength,
@@ -115,12 +115,12 @@ export default class SharepointUpdatePasswordCtrl {
       if (this.exchange.complexityEnabled) {
         this.simplePasswordFlag =
           this.simplePasswordFlag ||
-          !this.exchangePassword.passwordComplexityCheck(
+          !this.wucExchangePassword.passwordComplexityCheck(
             selectedAccount.password,
           );
 
         if (selectedAccount.displayName) {
-          this.containsNameFlag = this.exchangePassword.passwordContainsName(
+          this.containsNameFlag = this.wucExchangePassword.passwordContainsName(
             selectedAccount.password,
             selectedAccount.displayName,
           );
