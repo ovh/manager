@@ -2,6 +2,8 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
+import '@ovh-ux/ui-kit/dist/css/oui.css';
+
 const moduleName = 'ovhManagerSharepointLazyLoading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
