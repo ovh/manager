@@ -9,7 +9,6 @@ import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 
 import routing from './microsoft.routes';
 
-import licenseCtrl from './office/license/microsoft-office-license.controller';
 import licenseConsumptionConstant from './office/license/consumption/microsoft-office-license-consumption.constants';
 import licenseConsumptionCtrl from './office/license/consumption/microsoft-office-license-consumption.controller';
 import licenseTabsCtrl from './office/license/microsoft-office-license-tabs.controller';
@@ -20,17 +19,17 @@ import licenseUserDeleteCtrl from './office/license/user/delete/microsoft-office
 import licenseUserOrderCtrl from './office/license/user/order/microsoft-office-license-user-order.controller';
 import licenseUserUpdateCtrl from './office/license/user/update/microsoft-office-license-user-update.controller';
 import passwordEditCtrl from './office/license/edit/password/microsoft-office-edit-password.controller';
-import licenseService from './office/license/microsoft-office-license.service';
+import licenseService from './microsoft-office-license.service';
 
-import consumptionTpl from './office/license/consumption/CONSUMPTION.html';
 import userOrderTpl from './office/license/user/order/microsoft-office-license-user-order.html';
 import userUpdateTpl from './office/license/user/update/microsoft-office-license-user-update.html';
 import userDeleteTpl from './office/license/user/delete/microsoft-office-license-user-delete.html';
-import userTpl from './office/license/user/USER.html';
 import userAddTpl from './office/license/user/add/microsoft-office-license-user-add.html';
 import passwordEditTpl from './office/license/edit/password/microsoft-office-edit-password.html';
 import licenseEditTpl from './office/license/edit/microsoft-office-license-edit.html';
-import licenseTpl from './office/license/microsoft-office-license.html';
+
+import user from './office/license/user/user.module';
+import consumption from './office/license/consumption/consumption.module';
 
 import './microsoft.less';
 
@@ -39,7 +38,6 @@ const moduleName = 'Module.microsoft';
 angular
   .module('Module.microsoft.controllers', [])
   .constant('OFFICE_LICENSE_CONSUMPTION', licenseConsumptionConstant)
-  .controller('MicrosoftOfficeLicenseCtrl', licenseCtrl)
   .controller('MicrosoftOfficeLicenseTabsCtrl', licenseTabsCtrl)
   .controller('MicrosoftOfficeLicenseConsumptionCtrl', licenseConsumptionCtrl)
   .controller('MicrosoftOfficeLicenseEditCtrl', licenseEditCtrl)
@@ -51,10 +49,6 @@ angular
   .controller('MicrosoftOfficeLicenseUserUpdateCtrl', licenseUserUpdateCtrl);
 
 angular
-  .module('Module.microsoft.services', [])
-  .service('MicrosoftOfficeLicenseService', licenseService);
-
-angular
   .module(moduleName, [
     'ngOvhUtils',
     'ngRoute',
@@ -62,16 +56,14 @@ angular
     'ngSanitize',
     'ngOvhWebUniverseComponents',
     'Module.microsoft.controllers',
-    'Module.microsoft.services',
+    user,
+    consumption,
   ])
+  .service('MicrosoftOfficeLicenseService', licenseService)
   .config(routing)
   .constant('MICROSOFT_GUIDE_URLS', {})
   .run(
     /* @ngInject */ ($templateCache) => {
-      $templateCache.put(
-        'microsoft/office/license/consumption/CONSUMPTION.html',
-        consumptionTpl,
-      );
       $templateCache.put(
         'microsoft/office/license/user/order/microsoft-office-license-user-order.html',
         userOrderTpl,
@@ -84,7 +76,6 @@ angular
         'microsoft/office/license/user/delete/microsoft-office-license-user-delete.html',
         userDeleteTpl,
       );
-      $templateCache.put('microsoft/office/license/user/USER.html', userTpl);
       $templateCache.put(
         'microsoft/office/license/user/add/microsoft-office-license-user-add.html',
         userAddTpl,
@@ -96,10 +87,6 @@ angular
       $templateCache.put(
         'microsoft/office/license/edit/microsoft-office-license-edit.html',
         licenseEditTpl,
-      );
-      $templateCache.put(
-        'microsoft/office/license/microsoft-office-license.html',
-        licenseTpl,
       );
     },
   )
