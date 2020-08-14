@@ -15,7 +15,7 @@ export default class ExchangeUpdateAccountCtrl {
     exchangeAccountTypes,
     exchangeServiceInfrastructure,
     Exchange,
-    ExchangePassword,
+    wucExchangePassword,
     exchangeVersion,
     messaging,
     navigation,
@@ -27,7 +27,7 @@ export default class ExchangeUpdateAccountCtrl {
       exchangeAccountTypes,
       exchangeServiceInfrastructure,
       Exchange,
-      ExchangePassword,
+      wucExchangePassword,
       exchangeVersion,
       messaging,
       navigation,
@@ -238,7 +238,7 @@ export default class ExchangeUpdateAccountCtrl {
     }
 
     if (!isEmpty(selectedAccount.password)) {
-      this.simplePasswordFlag = !this.services.ExchangePassword.passwordSimpleCheck(
+      this.simplePasswordFlag = !this.services.wucExchangePassword.passwordSimpleCheck(
         selectedAccount.password,
         true,
         this.newAccountOptions.minPasswordLength,
@@ -249,12 +249,12 @@ export default class ExchangeUpdateAccountCtrl {
       if (this.newAccountOptions.passwordComplexityEnabled) {
         this.simplePasswordFlag =
           this.simplePasswordFlag ||
-          !this.services.ExchangePassword.passwordComplexityCheck(
+          !this.services.wucExchangePassword.passwordComplexityCheck(
             selectedAccount.password,
           );
 
         if (selectedAccount.displayName) {
-          this.containsNameFlag = this.services.ExchangePassword.passwordContainsName(
+          this.containsNameFlag = this.services.wucExchangePassword.passwordContainsName(
             selectedAccount.password,
             selectedAccount.displayName,
           );
