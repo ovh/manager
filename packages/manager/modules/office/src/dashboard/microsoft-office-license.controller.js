@@ -9,8 +9,11 @@ export default class MicrosoftOfficeLicenseCtrl {
     $timeout,
     $translate,
     Alerter,
+    consumptionLink,
+    currentActiveLink,
     MicrosoftOfficeLicenseService,
     WucUser,
+    userLink,
   ) {
     this.$rootScope = $rootScope;
     this.$stateParams = $stateParams;
@@ -18,8 +21,11 @@ export default class MicrosoftOfficeLicenseCtrl {
     this.$timeout = $timeout;
     this.$translate = $translate;
     this.alerter = Alerter;
+    this.consumptionLink = consumptionLink;
+    this.currentActiveLink = currentActiveLink;
     this.licenseService = MicrosoftOfficeLicenseService;
     this.user = WucUser;
+    this.userLink = userLink;
   }
 
   $onInit() {
