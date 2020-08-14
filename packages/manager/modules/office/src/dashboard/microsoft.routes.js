@@ -4,8 +4,8 @@ import controller from './office/license/microsoft-office-license.controller';
 import template from './office/license/microsoft-office-license.html';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.microsoft.office.product', {
-    url: '/configuration/microsoft/office/license/:serviceName?tab',
+  $stateProvider.state('office.product', {
+    url: '/:serviceName?tab',
     template,
     controller,
     controllerAs: 'MicrosoftOfficeLicenseCtrl',

@@ -1,8 +1,8 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.microsoft.office.index', {
-    url: `/configuration/microsoft/office/license?${ListLayoutHelper.urlQueryParams}`,
+  $stateProvider.state('office.index', {
+    url: `?${ListLayoutHelper.urlQueryParams}`,
     component: 'managerListLayout',
     params: ListLayoutHelper.stateParams,
     resolve: {
