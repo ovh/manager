@@ -1,6 +1,8 @@
 import get from 'lodash/get';
 import set from 'lodash/set';
 
+import punycode from 'punycode';
+
 export default class SharepointDomainsCtrl {
   /* @ngInject */
   constructor(
@@ -19,7 +21,7 @@ export default class SharepointDomainsCtrl {
 
   $onInit() {
     this.exchangeId = this.$stateParams.exchangeId;
-    this.punycode = window.punycode;
+    this.punycode = punycode;
 
     this.getSharepointUpnSuffixes();
   }
