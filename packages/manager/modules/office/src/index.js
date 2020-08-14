@@ -7,18 +7,15 @@ import '@ovh-ux/ui-kit/dist/css/oui.css';
 const moduleName = 'ovhManagerOfficeLicensesLazyLoading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
-  /* @ngInject */ ($stateProvider) => {
+  /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
     $stateProvider
-      .state('app.microsoft.office', {
-        abstract: true,
+      .state('office', {
+        url: '/office/license',
         template: '<div ui-view></div>',
-        translations: {
-          value: ['.'],
-          format: 'json',
-        },
+        redirectTo: 'office.index',
       })
-      .state('app.microsoft.office.index.**', {
-        url: '/configuration/microsoft/office/license',
+      .state('office.index.**', {
+        url: '',
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
@@ -27,8 +24,8 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
           );
         },
       })
-      .state('app.microsoft.office.product.**', {
-        url: '/configuration/microsoft/office/license/:serviceName?tab',
+      .state('office.product.**', {
+        url: '/:serviceName?tab',
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
@@ -37,6 +34,13 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
           );
         },
       });
+
+    $urlRouterProvider.when(
+      /^\/configuration\/microsoft\/office\/license/,
+      /* @ngInject */ ($location) => {
+        $location.url($location.url().replace('/configuration/microsoft', ''));
+      },
+    );
   },
 );
 
