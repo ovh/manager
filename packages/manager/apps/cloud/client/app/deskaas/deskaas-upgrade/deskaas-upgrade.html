@@ -1,9 +1,9 @@
 <div class="cui-page">
-    <cui-page-header
-        data-title-text="DeskaasUpgradeCtrl.details.alias !== 'noAlias' ? DeskaasUpgradeCtrl.details.alias : DeskaasUpgradeCtrl.details.serviceName"
-        data-subtitle-text="DeskaasUpgradeCtrl.details.alias !== 'noAlias' ? DeskaasUpgradeCtrl.details.serviceName :''"
+    <oui-header
+        heading="{{ DeskaasUpgradeCtrl.details.alias !== 'noAlias' ? DeskaasUpgradeCtrl.details.alias : DeskaasUpgradeCtrl.details.serviceName }}"
+        description="{{ DeskaasUpgradeCtrl.details.alias !== 'noAlias' ? DeskaasUpgradeCtrl.details.serviceName : '' }}"
     >
-    </cui-page-header>
+    </oui-header>
     <section class="cui-page__content cui-page__content-narrow">
         <oui-back-button
             data-on-click="DeskaasUpgradeCtrl.$state.go('deskaas.details')"
