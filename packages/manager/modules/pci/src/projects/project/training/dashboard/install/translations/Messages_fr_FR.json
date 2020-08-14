@@ -5,6 +5,8 @@
   "pci_projects_project_training_install_section_1_command_message_1": "Se placer dans le répertoire d'installation voulu et lancer la commande suivante vous permettra de télécharger le client ElementAI sur votre poste de travail et d'installer la configuration OVH :",
   "pci_projects_project_training_install_section_1_command_message_2": "Aprés l'installation, l'executable ",
   "pci_projects_project_training_install_section_1_command_message_3": " sera disponible dans le répertoire d'installation",
+  "pci_projects_project_training_install_section_1_command_message_4": "Pour finaliser votre installation ajouter cette variable d'environnement: ",
+  "pci_projects_project_training_install_section_1_command_message_5": "export EAI_PROFILE=GRA",
 
   "pci_projects_project_training_install_section_2_message_1": "L'authentification sur la plateforme peut se faire à partir de tous les ",
   "pci_projects_project_training_install_section_2_message_2": "utilisateurs configurés",
