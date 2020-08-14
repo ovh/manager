@@ -14,7 +14,7 @@ export default class ExchangeAccountAddController {
     Exchange,
     exchangeAccount,
     exchangeServiceInfrastructure,
-    ExchangePassword,
+    wucExchangePassword,
     exchangeVersion,
     messaging,
     $translate,
@@ -25,7 +25,7 @@ export default class ExchangeAccountAddController {
     this.exchangeAccountTypes = exchangeAccountTypes;
     this.Exchange = Exchange;
     this.exchangeAccount = exchangeAccount;
-    this.ExchangePassword = ExchangePassword;
+    this.wucExchangePassword = wucExchangePassword;
     this.exchangeServiceInfrastructure = exchangeServiceInfrastructure;
     this.exchangeVersion = exchangeVersion;
     this.messaging = messaging;
@@ -114,10 +114,10 @@ export default class ExchangeAccountAddController {
     if (this.accountCreationOptions.passwordComplexityEnabled) {
       this.newAccountForm.password.$setValidity(
         'doesntRespectComplexityRules',
-        this.ExchangePassword.passwordComplexityCheck(
+        this.wucExchangePassword.passwordComplexityCheck(
           this.newAccount.password,
         ) &&
-          this.ExchangePassword.passwordSimpleCheck(
+          this.wucExchangePassword.passwordSimpleCheck(
             this.newAccount.password,
             true,
             this.accountCreationOptions.minPasswordLength,
@@ -125,7 +125,7 @@ export default class ExchangeAccountAddController {
       );
       this.newAccountForm.password.$setValidity(
         'containsDisplayName',
-        !this.ExchangePassword.passwordContainsName(
+        !this.wucExchangePassword.passwordContainsName(
           this.newAccount.password,
           this.newAccount.displayName,
         ),
@@ -141,7 +141,7 @@ export default class ExchangeAccountAddController {
     } else {
       this.newAccountForm.password.$setValidity(
         'doesntRespectComplexityRules',
-        this.ExchangePassword.passwordSimpleCheck(
+        this.wucExchangePassword.passwordSimpleCheck(
           this.newAccount.password,
           true,
           this.accountCreationOptions.minPasswordLength,
