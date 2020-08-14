@@ -5,7 +5,7 @@ export default class ExchangeTabResourcesCtrl {
   /* @ngInject */
   constructor(
     $scope,
-    Exchange,
+    wucExchange,
     ExchangeResources,
     EXCHANGE_CONFIG,
     WucUser,
@@ -16,7 +16,7 @@ export default class ExchangeTabResourcesCtrl {
   ) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       ExchangeResources,
       EXCHANGE_CONFIG,
       WucUser,
@@ -26,13 +26,13 @@ export default class ExchangeTabResourcesCtrl {
       exchangeStates,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
     this.loading = false;
     this.urls = { guides: {} };
-    this.exchange = Exchange.value;
+    this.exchange = wucExchange.value;
     this.searchValue = null;
 
-    $scope.$on(Exchange.events.resourcesChanged, () => {
+    $scope.$on(wucExchange.events.resourcesChanged, () => {
       $scope.$broadcast('paginationServerSide.reload', 'resourcesTable');
     });
 

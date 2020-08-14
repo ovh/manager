@@ -2,7 +2,7 @@ export default class ExchangeTabPublicFolderCtrl {
   /* @ngInject */
   constructor(
     $scope,
-    Exchange,
+    wucExchange,
     $timeout,
     ExchangePublicFolders,
     goToFolder,
@@ -13,7 +13,7 @@ export default class ExchangeTabPublicFolderCtrl {
   ) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       $timeout,
       ExchangePublicFolders,
       messaging,
@@ -22,7 +22,7 @@ export default class ExchangeTabPublicFolderCtrl {
       exchangeStates,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
 
     this.loading = false;
     this.publicFoldersList = null;
@@ -32,7 +32,7 @@ export default class ExchangeTabPublicFolderCtrl {
 
     this.goToFolder = goToFolder;
 
-    $scope.$on(Exchange.events.publicFoldersChanged, () =>
+    $scope.$on(wucExchange.events.publicFoldersChanged, () =>
       $scope.$broadcast('paginationServerSide.reload', 'publicFoldersTable'),
     );
 

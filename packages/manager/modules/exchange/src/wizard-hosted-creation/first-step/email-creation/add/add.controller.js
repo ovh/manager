@@ -8,7 +8,7 @@ import isFinite from 'lodash/isFinite';
 export default class ExchangeWizardHostedCreationEmailCreationAddController {
   /* @ngInject */
   constructor(
-    Exchange,
+    wucExchange,
     wucExchangePassword,
     messaging,
     navigation,
@@ -18,7 +18,7 @@ export default class ExchangeWizardHostedCreationEmailCreationAddController {
     $translate,
     wizardHostedCreationEmailCreation,
   ) {
-    this.Exchange = Exchange;
+    this.wucExchange = wucExchange;
     this.wucExchangePassword = wucExchangePassword;
     this.messaging = messaging;
     this.navigation = navigation;
@@ -30,7 +30,7 @@ export default class ExchangeWizardHostedCreationEmailCreationAddController {
   }
 
   $onInit() {
-    this.$routerParams = this.Exchange.getParams();
+    this.$routerParams = this.wucExchange.getParams();
     this.formerEmailAccount = this.navigation.currentActionData.formerEmailAddress;
     this.model = {
       domain: this.navigation.currentActionData.domainName,

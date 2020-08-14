@@ -7,7 +7,7 @@ import map from 'lodash/map';
 export default class OfficeAttachDialogCtrl {
   /* @ngInject */
   constructor(
-    Exchange,
+    wucExchange,
     exchangeVersion,
     messaging,
     navigation,
@@ -17,7 +17,7 @@ export default class OfficeAttachDialogCtrl {
     WucUser,
     $window,
   ) {
-    this.Exchange = Exchange;
+    this.wucExchange = wucExchange;
     this.exchangeVersion = exchangeVersion;
     this.messaging = messaging;
     this.navigation = navigation;
@@ -44,7 +44,7 @@ export default class OfficeAttachDialogCtrl {
     this.maxNumberOfAccounts = 25;
     this.selectedCheckboxes = {};
     this.selectedAccounts = [];
-    this.exchange = this.Exchange.value;
+    this.exchange = this.wucExchange.value;
 
     this.searchValue = null;
     this.isStep1Valid = false;
@@ -187,13 +187,8 @@ export default class OfficeAttachDialogCtrl {
   }
 
   onWizardLoad() {
-    return this.Exchange.getAccounts(
-      this.maxNumberOfAccounts,
-      0,
-      this.searchValue,
-      false,
-      null,
-    )
+    return this.wucExchange
+      .getAccounts(this.maxNumberOfAccounts, 0, this.searchValue, false, null)
       .then((accounts) => {
         let i = 0;
 
@@ -225,13 +220,8 @@ export default class OfficeAttachDialogCtrl {
 
     this.updateAccounts(null);
 
-    return this.Exchange.getAccounts(
-      count,
-      offset,
-      this.searchValue,
-      false,
-      filterType,
-    )
+    return this.wucExchange
+      .getAccounts(count, offset, this.searchValue, false, filterType)
       .then((accounts) => {
         this.updateAccounts(accounts);
       })

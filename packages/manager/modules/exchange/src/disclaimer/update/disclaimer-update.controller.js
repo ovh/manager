@@ -4,15 +4,15 @@ import isEmpty from 'lodash/isEmpty';
 
 export default class ExchangeUpdateDisclaimerCtrl {
   /* @ngInject */
-  constructor($scope, Exchange, navigation, messaging, $translate) {
+  constructor($scope, wucExchange, navigation, messaging, $translate) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       navigation,
       messaging,
       $translate,
     };
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
     this.mceId = 'update-disclaimer-editor';
     this.data = angular.copy(navigation.currentActionData);
 
@@ -25,7 +25,8 @@ export default class ExchangeUpdateDisclaimerCtrl {
   loadOptions() {
     this.loadingData = true;
 
-    return this.services.Exchange.getUpdateDisclaimerOptions()
+    return this.services.wucExchange
+      .getUpdateDisclaimerOptions()
       .then((data) => {
         this.availableAttributes = data.availableAttributes;
 
@@ -60,11 +61,12 @@ export default class ExchangeUpdateDisclaimerCtrl {
       this.services.$translate.instant('exchange_dashboard_action_doing'),
     );
 
-    this.services.Exchange.updateDisclaimer(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-      model,
-    )
+    this.services.wucExchange
+      .updateDisclaimer(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        model,
+      )
       .then((data) => {
         this.services.messaging.writeSuccess(
           this.services.$translate.instant(
