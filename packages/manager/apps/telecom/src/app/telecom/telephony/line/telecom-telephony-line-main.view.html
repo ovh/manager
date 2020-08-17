@@ -20,88 +20,80 @@
         </header>
 
         <!-- LINE ACTIONS -->
-        <nav role="navigation">
-            <responsive-tabs>
-                <responsive-tab
-                    data-state="telecom.telephony.billingAccount.line"
-                    data-dropdown-title="{{ 'telephony_line_tab_manage' | translate }}"
-                >
-                    <span data-translate="telephony_line_tab_manage"></span>
-                </responsive-tab>
+        <oui-header-tabs>
+            <oui-header-tabs-item
+                href="{{LineCtrl.lineLink}}"
+                active="LineCtrl.lineLink === LineCtrl.currentActiveLink()"
+            >
+                <span data-translate="telephony_line_tab_manage"></span>
+            </oui-header-tabs-item>
 
-                <responsive-tab
-                    data-state="telecom.telephony.billingAccount.line.consumption"
-                    data-dropdown-title="{{ 'telephony_line_tab_consumption' | translate }}"
-                >
-                    <span
-                        data-translate="telephony_line_tab_consumption"
-                    ></span>
-                </responsive-tab>
+            <oui-header-tabs-item
+                href="{{LineCtrl.consumptionLink}}"
+                active="LineCtrl.consumptionLink === LineCtrl.currentActiveLink()"
+            >
+                <span data-translate="telephony_line_tab_consumption"></span>
+            </oui-header-tabs-item>
 
-                <responsive-tab
-                    data-state="telecom.telephony.billingAccount.line.calls"
-                    data-dropdown-title="{{ 'telephony_line_tab_call_management' | translate }}"
-                >
-                    <span
-                        data-translate="telephony_line_tab_call_management"
-                    ></span>
-                </responsive-tab>
+            <oui-header-tabs-item
+                href="{{LineCtrl.callsLink}}"
+                active="LineCtrl.callsLink === LineCtrl.currentActiveLink()"
+            >
+                <span
+                    data-translate="telephony_line_tab_call_management"
+                ></span>
+            </oui-header-tabs-item>
 
-                <responsive-tab
-                    data-state="telecom.telephony.billingAccount.line.tones"
-                    data-dropdown-title="{{ 'telephony_line_tab_music_management' | translate }}"
-                    data-disabled="LineCtrl.loading.init || LineCtrl.line.isIndividual() || LineCtrl.line.isTrunk() || !LineCtrl.line.isPriceplan()"
-                >
-                    <span
-                        data-translate="telephony_line_tab_music_management"
-                    ></span>
-                </responsive-tab>
+            <oui-header-tabs-item
+                href="{{LineCtrl.tonesLink}}"
+                active="LineCtrl.tonesLink === LineCtrl.currentActiveLink()"
+                data-disabled="LineCtrl.loading.init || LineCtrl.line.isIndividual() || LineCtrl.line.isTrunk() || !LineCtrl.line.isPriceplan()"
+            >
+                <span
+                    data-translate="telephony_line_tab_music_management"
+                ></span>
+            </oui-header-tabs-item>
 
-                <responsive-tab
-                    data-state="telecom.telephony.billingAccount.line.answer"
-                    data-dropdown-title="{{ 'telephony_line_tab_answering_machine' | translate }}"
-                >
-                    <span
-                        data-translate="telephony_line_tab_answering_machine"
-                    ></span>
-                </responsive-tab>
+            <oui-header-tabs-item
+                href="{{LineCtrl.answerLink}}"
+                active="LineCtrl.answerLink === LineCtrl.currentActiveLink()"
+            >
+                <span
+                    data-translate="telephony_line_tab_answering_machine"
+                ></span>
+            </oui-header-tabs-item>
 
-                <responsive-tab
-                    data-state="telecom.telephony.billingAccount.line.phone"
-                    data-dropdown-title="{{ 'telephony_line_tab_phone' | translate }}"
-                >
-                    <span data-translate="telephony_line_tab_phone"></span>
-                </responsive-tab>
+            <oui-header-tabs-item
+                href="{{LineCtrl.phoneLink}}"
+                active="LineCtrl.phoneLink === LineCtrl.currentActiveLink()"
+            >
+                <span data-translate="telephony_line_tab_phone"></span>
+            </oui-header-tabs-item>
 
-                <responsive-tab
-                    data-state="telecom.telephony.billingAccount.line.assist"
-                    data-dropdown-title="{{ 'telephony_line_tab_assist' | translate }}"
-                >
-                    <span data-translate="telephony_line_tab_assist"></span>
-                </responsive-tab>
+            <oui-header-tabs-item
+                href="{{LineCtrl.assistLink}}"
+                active="LineCtrl.assistLink === LineCtrl.currentActiveLink()"
+            >
+                <span data-translate="telephony_line_tab_assist"></span>
+            </oui-header-tabs-item>
 
-                <responsive-tab
-                    data-state="telecom.telephony.billingAccount.line.contact"
-                    data-dropdown-title="{{ 'telephony_line_tab_contact_details' | translate }}"
-                >
-                    <span
-                        data-translate="telephony_line_tab_contact_details"
-                    ></span>
-                </responsive-tab>
+            <oui-header-tabs-item
+                href="{{LineCtrl.contactLink}}"
+                active="LineCtrl.contactLink === LineCtrl.currentActiveLink()"
+            >
+                <span
+                    data-translate="telephony_line_tab_contact_details"
+                ></span>
+            </oui-header-tabs-item>
 
-                <responsive-tab
-                    data-state="telecom.telephony.billingAccount.line.fax"
-                    data-dropdown-title="{{ 'telephony_line_tab_fax' | translate }}"
-                    data-disabled="LineCtrl.loading.init || !(LineCtrl.line.isPlugNFax || LineCtrl.fax) || LineCtrl.line.isTrunk()"
-                >
-                    <span data-translate="telephony_line_tab_fax"></span>
-                </responsive-tab>
-
-                <responsive-tab-more>
-                    <i class="fa fa-plus"></i>
-                </responsive-tab-more>
-            </responsive-tabs>
-        </nav>
+            <oui-header-tabs-item
+                href="{{LineCtrl.faxLink}}"
+                active="LineCtrl.faxLink === LineCtrl.currentActiveLink()"
+                data-disabled="LineCtrl.loading.init || !(LineCtrl.line.isPlugNFax || LineCtrl.fax) || LineCtrl.line.isTrunk()"
+            >
+                <span data-translate="telephony_line_tab_fax"></span>
+            </oui-header-tabs-item>
+        </oui-header-tabs>
     </div>
     <!-- .telecom-section-header -->
 

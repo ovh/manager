@@ -25,6 +25,39 @@ angular.module('managerApp').config(($stateProvider) => {
           name: $stateParams.serviceName,
         });
       },
+      faxDashboardLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href(
+          'telecom.telephony.billingAccount.fax',
+          $transition$.params(),
+        ),
+      consumptionLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href(
+          'telecom.telephony.billingAccount.fax.consumption',
+          $transition$.params(),
+        ),
+      voicemailLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href(
+          'telecom.telephony.billingAccount.fax.voicemail',
+          $transition$.params(),
+        ),
+      faxLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href(
+          'telecom.telephony.billingAccount.fax.fax',
+          $transition$.params(),
+        ),
+      contactLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href(
+          'telecom.telephony.billingAccount.fax.contact',
+          $transition$.params(),
+        ),
+      assistLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href(
+          'telecom.telephony.billingAccount.fax.assist',
+          $transition$.params(),
+        ),
+
+      currentActiveLink: /* @ngInject */ ($state, $transition$) => () =>
+        $state.href($state.current.name, $transition$),
     },
   });
 });
