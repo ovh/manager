@@ -1,3 +1,12 @@
+## [1.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@1.0.0...@ovh-ux/manager-billing@1.0.1) (2020-08-05)
+
+
+### Bug Fixes
+
+* **billing.autorenew:** import renew constant ([#3375](https://github.com/ovh/manager/issues/3375)) ([0fc9d96](https://github.com/ovh/manager/commit/0fc9d96cd7a5d319912964be7633db10823f1515))
+
+
+
 # [1.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.0.0...@ovh-ux/manager-billing@1.0.0) (2020-07-29)
 
 

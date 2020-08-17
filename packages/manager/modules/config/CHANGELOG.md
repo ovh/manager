@@ -1,3 +1,19 @@
+# [1.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@0.4.0...@ovh-ux/manager-config@1.0.0) (2020-08-05)
+
+
+### Bug Fixes
+
+* **config:** check environment region before update ([a704a3d](https://github.com/ovh/manager/commit/a704a3d613f0c42217b3dc00f0f8b47caa938351))
+
+
+### BREAKING CHANGES
+
+* **config:** Environment `region` allowed values are `EU`, `CA` and `US`
+
+Signed-off-by: Cyrille Bourgois <cyrille.bourgois@corp.ovh.com>
+
+
+
 # [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@0.3.1...@ovh-ux/manager-config@0.4.0) (2019-10-28)
 
 

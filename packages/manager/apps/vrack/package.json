@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-vrack-app",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "description": "vRack standalone application.",
   "repository": {
@@ -21,7 +21,7 @@
   "dependencies": {
     "@ovh-ux/manager-cloud-styles": "^0.4.0 || ^1.0.0",
     "@ovh-ux/manager-config": "^0.4.0 || ^1.0.0",
-    "@ovh-ux/manager-core": "^9.0.0 || ^10.0.0",
+    "@ovh-ux/manager-core": "^10.0.0 || ^11.0.0",
     "@ovh-ux/manager-vrack": "^0.7.0 || ^1.0.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.7",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.0",
@@ -35,7 +35,7 @@
     "@ovh-ux/ng-ovh-toaster": "^2.0.0",
     "@ovh-ux/ng-ovh-user-pref": "^2.0.0",
     "@ovh-ux/ng-translate-async-loader": "^2.1.0",
-    "@ovh-ux/ui-kit": "^4.2.1",
+    "@ovh-ux/ui-kit": "^4.2.3",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-cookies": "^1.7.8",
@@ -51,7 +51,7 @@
     "lodash": "^4.17.15",
     "messenger": "HubSpot/messenger#~1.4.1",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^9.47.0",
+    "ovh-api-services": "^9.50.0",
     "ovh-manager-webfont": "^1.2.0",
     "popper.js": "^1.16.1",
     "ui-select": "^0.19.8"

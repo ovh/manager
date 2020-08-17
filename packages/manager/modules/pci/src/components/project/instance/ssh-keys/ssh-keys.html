@@ -32,7 +32,13 @@
         </oui-button>
 
         <div class="oui-field__helper">
-            <p data-translate="pci_project_instance_ssh_key_help_required"></p>
+            <p
+                data-ng-if="!$ctrl.loaders.guide"
+                data-translate="pci_project_instance_ssh_key_help_required"
+                data-translate-values="{
+                    guideUrl: $ctrl.guideUrl
+                }"
+            ></p>
             <p data-translate="pci_project_instance_ssh_key_infos"></p>
         </div>
     </oui-field>
@@ -69,7 +75,11 @@
             <div class="oui-field__helper">
                 <span
                     class="d-inline-block"
+                    data-ng-if="!$ctrl.loaders.guide"
                     data-translate="pci_project_instance_ssh_key_help_required"
+                    data-translate-values="{
+                        guideUrl: $ctrl.guideUrl
+                    }"
                 ></span>
                 <span
                     class="d-inline-block"

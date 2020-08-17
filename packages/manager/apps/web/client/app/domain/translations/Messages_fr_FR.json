@@ -823,5 +823,7 @@
   "domain_tab_options_delete_dnsAnycast_title": "Résilier l'option DNS Anycast",
   "domain_tab_options_delete_success": "L'option a été résiliée.",
   "domain_tab_options_delete_error": "Une erreur est survenue lors de la résiliation de l'option.",
-  "domain_tab_options_delete_cancel": "Annuler"
+  "domain_tab_options_delete_cancel": "Annuler",
+  "web_domain_zone_activation_success": "Votre activation a été faite avec succès. Votre produit sera activé dans quelques instants.",
+  "web_domain_zone_activation_order_success": "Votre <a href=\"{{t0}}\" target=\"_blank\">bon de commande</a> a été généré avec succès. Votre produit sera activé lorsque vous l'aurez validé."
 }

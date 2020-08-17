@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-config",
-  "version": "0.4.0",
+  "version": "1.0.0",
   "private": true,
   "description": "Retrieve configuration based on the environment.",
   "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/modules/config#readme",
@@ -13,9 +13,7 @@
     "directory": "packages/manager/modules/config"
   },
   "license": "BSD-3-Clause",
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
-  "browser": "./dist/umd/config.js",
+  "main": "./dist/esm/index.js",
   "files": [
     "dist"
   ],
@@ -27,6 +25,9 @@
     "start": "lerna exec --stream --scope='@ovh-ux/manager-config' --include-dependencies -- yarn run build",
     "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-config' --include-dependencies -- yarn run dev",
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-config' --include-dependencies -- yarn run dev:watch"
+  },
+  "dependencies": {
+    "lodash-es": "^4.17.15"
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^7.0.0"

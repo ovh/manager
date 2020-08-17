@@ -1,3 +1,20 @@
+# [4.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@4.0.1...@ovh-ux/manager-pci@4.1.0) (2020-08-05)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 520] ([7399413](https://github.com/ovh/manager/commit/7399413aa5b553b718422522dcc67eb3652d3a8a))
+* **i18n:** add missing translations [CDS 522] ([6027c70](https://github.com/ovh/manager/commit/6027c703b112cc742ec298ae9bf46a55253f0393))
+* **kubernetes:** rename "sauvegarder" to "valider" ([#3362](https://github.com/ovh/manager/issues/3362)) ([9a09aaf](https://github.com/ovh/manager/commit/9a09aaf7c78672ee5aa15c7faddd2e191c8c8083))
+* **kubernetes.details.node-pool.add:** remove non-supported character ([#3371](https://github.com/ovh/manager/issues/3371)) ([5be42ac](https://github.com/ovh/manager/commit/5be42ac879a37f03fe2e4d45431e26784389a9c5)), closes [#3065](https://github.com/ovh/manager/issues/3065)
+
+
+### Features
+
+* **pci:** add page tracking after project creation ([3b52c21](https://github.com/ovh/manager/commit/3b52c21c4c4a957b4362846e2277eecbd627c922))
+
+
+
 ## [4.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@4.0.0...@ovh-ux/manager-pci@4.0.1) (2020-07-29)
 
 

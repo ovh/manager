@@ -15,7 +15,7 @@ const config = rollupConfig(
   },
 );
 
-const outputs = [
+export default [
   config.es({
     output: {
       globals: {
@@ -24,27 +24,3 @@ const outputs = [
     },
   }),
 ];
-
-if (process.env.BUILD === 'production') {
-  outputs.push(
-    config.cjs({
-      output: {
-        globals: {
-          Tour: 'Tour',
-        },
-      },
-    }),
-  );
-  outputs.push(
-    config.umd({
-      output: {
-        globals: {
-          angular: 'angular',
-          Tour: 'Tour',
-        },
-      },
-    }),
-  );
-}
-
-export default outputs;

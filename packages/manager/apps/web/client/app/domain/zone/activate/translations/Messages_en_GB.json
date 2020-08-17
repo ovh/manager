@@ -1,9 +1,18 @@
 {
-  "web_domain_zone_activation": "Enabling the DNS zone",
+  "web_domain_zone_activation": "Enable your DNS zone",
   "web_domain_zone_activation_confirm": "Enable",
   "web_domain_zone_activation_cancel": "Cancel",
-  "web_domain_zone_activation_question": "Do you want to enable the minimum record in your DNS zone?",
+  "web_domain_zone_activation_question": "Do you want to enable the minimum records in your DNS zone?",
   "web_domain_zone_activation_template_minimized": "Yes, I want to enable my DNS zone with minimum records.",
   "web_domain_zone_activation_template_basic": "No, but I want to enable my DNS zone.",
-  "web_domain_zone_activation_success": "The purchase order has been generated."
+  "web_domain_zone_activation_success": "The purchase order has been generated.",
+  "web_domain_zone_activation_description": "To respond to DNS queries, your domain name must be attached to a DNS zone. You can configure it to the IP address your domains and sub-domains will be redirected to. Your domain name’s DNS zone is disabled. If you would like to enable it, please take the following steps.",
+  "web_domain_zone_activation_step_header_product": "Choose your product",
+  "web_domain_zone_activation_step_header_duration": "Choose your duration",
+  "web_domain_zone_activation_step_header_activation": "Activation",
+  "web_domain_zone_activation_step_header_payment": "Payment",
+  "web_domain_zone_activation_step_description_activation": "To confirm your request, please accept the Terms & Conditions of Use.",
+  "web_domain_zone_activation_step_description_payment": "To confirm your request, please choose a payment method, and accept the Terms & Conditions of Use.",
+  "web_domain_zone_activation_submit_pay": "Pay",
+  "web_domain_zone_activation_error": "An error has occurred ordering a DNS zone: {{message}}."
 }

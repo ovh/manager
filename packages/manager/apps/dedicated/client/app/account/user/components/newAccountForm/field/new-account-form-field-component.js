@@ -6,6 +6,8 @@ import isObject from 'lodash/isObject';
 import map from 'lodash/map';
 import startsWith from 'lodash/startsWith';
 
+import { LANGUAGES } from '@ovh-ux/manager-config';
+
 angular.module('ovhSignupApp').component('newAccountFormField', {
   require: {
     newAccountForm: '^newAccountForm',
@@ -21,7 +23,6 @@ angular.module('ovhSignupApp').component('newAccountFormField', {
     '$timeout',
     '$translate',
     'atInternet',
-    'CORE_LANGUAGES',
     'NewAccountFormConfig',
 
     function newAccountFormFieldController(
@@ -30,7 +31,6 @@ angular.module('ovhSignupApp').component('newAccountFormField', {
       $timeout,
       $translate,
       atInternet,
-      CORE_LANGUAGES,
       NewAccountFormConfig,
     ) {
       $scope.getTemplateUrl = () =>
@@ -223,10 +223,7 @@ angular.module('ovhSignupApp').component('newAccountFormField', {
           } else if (this.rule.fieldName === 'timezone') {
             translated = value;
           } else if (this.rule.fieldName === 'managerLanguage') {
-            translated = get(
-              find(CORE_LANGUAGES.available, { key: value }),
-              'name',
-            );
+            translated = get(find(LANGUAGES.available, { key: value }), 'name');
           } else {
             translated = $translate.instant(
               `signup_enum_${this.rule.fieldName}_${value}`,

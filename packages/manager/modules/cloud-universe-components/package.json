@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-cloud-universe-components",
-  "version": "2.0.0",
+  "version": "2.0.2",
   "private": true,
   "description": "Collection of components for the Cloud control panel.",
   "keywords": [
@@ -20,9 +20,7 @@
   },
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
-  "browser": "./dist/umd/ng-ovh-cloud-universe-components.js",
+  "main": "./dist/esm/index.js",
   "files": [
     "dist"
   ],
@@ -36,7 +34,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ng-ovh-cloud-universe-components' --include-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
-    "@ovh-ux/ui-kit": "^4.2.1",
+    "@ovh-ux/ui-kit": "^4.2.3",
     "bootstrap": "~3.3.0",
     "jsurl": "^0.1.5",
     "lodash": "^4.17.15",

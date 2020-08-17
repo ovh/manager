@@ -5,12 +5,16 @@ angular
     '$translate',
     'Alerter',
     'atInternet',
+    'OvhApiAuth',
+    'OvhApiMe',
     'userAccountServiceInfos',
     function UserAccountDoubleAuthPasswordController(
       $scope,
       $translate,
       Alerter,
       atInternet,
+      OvhApiAuth,
+      OvhApiMe,
       UseraccountInfos,
     ) {
       $scope.loaders = {
@@ -27,9 +31,23 @@ angular
        */
       $scope.loadUserInfos = () => {
         $scope.loaders.loading = true;
-        return UseraccountInfos.getUseraccountInfos()
-          .then((user) => {
-            $scope.user = user;
+        return OvhApiAuth.v6()
+          .details()
+          .$promise.then((authDetails) => {
+            if (authDetails.user) {
+              return OvhApiMe.Identity()
+                .User()
+                .v6()
+                .get({
+                  user: authDetails.user,
+                })
+                .$promise.then((user) => {
+                  $scope.user = user;
+                });
+            }
+            return UseraccountInfos.getUseraccountInfos().then((user) => {
+              $scope.user = user;
+            });
           })
           .catch((err) =>
             Alerter.alertFromSWS(

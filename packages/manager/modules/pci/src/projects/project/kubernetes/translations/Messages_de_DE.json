@@ -9,7 +9,7 @@
   "kube_common_save": "Speichern",
   "kube_common_cancel": "Abbrechen",
   "kube_common_delete": "Löschen",
-  "kube_common_node_pool_title": "Konfiguration Ihres Node-Pools",
+  "kube_common_node_pool_title": "Konfigurieren Sie Ihren Node-Pool",
   "kube_common_billing_type_title": "Abrechnungsmodus",
   "kube_common_create_node_pool": "Node-Pool erstellen",
   "kube_common_flavor_load_error": "Laden der Nodes fehlgeschlagen: {{message}}"

@@ -1,3 +1,19 @@
+# [1.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-filters@0.1.1...@ovh-ux/manager-filters@1.0.0) (2020-08-05)
+
+
+### Build System
+
+* **filters:** move source in `src` folder ([b3cc197](https://github.com/ovh/manager/commit/b3cc1975d0d163ddc13c4fecb6451d38c4e54783))
+
+
+### BREAKING CHANGES
+
+* **filters:** Sources are now in `src` folder
+
+Signed-off-by: Cyrille Bourgois <cyrille.bourgois@corp.ovh.com>
+
+
+
 ## [0.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-filters@0.1.0...@ovh-ux/manager-filters@0.1.1) (2020-04-21)
 
 

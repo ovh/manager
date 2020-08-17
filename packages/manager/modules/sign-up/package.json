@@ -10,9 +10,7 @@
   },
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
-  "browser": "./dist/umd/sign-up.js",
+  "main": "./dist/esm/index.js",
   "scripts": {
     "build": "rollup -c --environment BUILD:production",
     "dev": "rollup -c --environment BUILD:development",
@@ -31,7 +29,7 @@
     "@ovh-ux/component-rollup-config": "^7.0.0"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^9.0.0 || ^10.0.0",
+    "@ovh-ux/manager-core": "^10.0.0 || ^11.0.0",
     "@ovh-ux/ng-translate-async-loader": "^2.1.0",
     "@ovh-ux/ui-kit": "^4.1.12",
     "@uirouter/angularjs": "^1.0.20",

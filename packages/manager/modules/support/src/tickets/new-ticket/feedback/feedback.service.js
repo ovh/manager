@@ -1,18 +1,15 @@
+import { Environment } from '@ovh-ux/manager-config';
 import isObject from 'lodash/isObject';
 
 import { ALLOWED_LANGUAGES, BASE_URL } from './feedback.constants';
 
 export default class {
-  /* @ngInject */
-  constructor(TranslateService) {
-    this.TranslateService = TranslateService;
-  }
-
+  // eslint-disable-next-line class-methods-use-this
   getUrl() {
     const defaultLanguage = Object.keys(ALLOWED_LANGUAGES).find(
       (key) => ALLOWED_LANGUAGES[key].isDefault,
     );
-    const userLanguage = this.TranslateService.getUserLocale(true);
+    const userLanguage = Environment.getUserLanguage();
 
     const languageToUse = isObject(ALLOWED_LANGUAGES[userLanguage])
       ? userLanguage

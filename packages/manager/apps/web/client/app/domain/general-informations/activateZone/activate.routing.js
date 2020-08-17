@@ -1,12 +1,7 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.domain.product.information.zoneActivate', {
     url: '/activate',
-    views: {
-      modal: {
-        component: 'domainZoneActivate',
-      },
-    },
-    layout: 'modal',
+    component: 'domainZoneActivate',
     resolve: {
       goBack: /* @ngInject */ (goToDashboard) => goToDashboard,
     },
@@ -14,12 +9,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
   $stateProvider.state('app.domain.alldom.information.zoneActivate', {
     url: '/activate',
-    views: {
-      modal: {
-        component: 'domainZoneActivate',
-      },
-    },
-    layout: 'modal',
+    component: 'domainZoneActivate',
     resolve: {
       goBack: /* @ngInject */ (goToDashboard) => goToDashboard,
     },

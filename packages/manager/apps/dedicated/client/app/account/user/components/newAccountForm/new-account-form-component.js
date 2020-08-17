@@ -13,6 +13,8 @@ import omit from 'lodash/omit';
 import pick from 'lodash/pick';
 import values from 'lodash/values';
 
+import { Environment, LANGUAGES } from '@ovh-ux/manager-config';
+
 angular.module('ovhSignupApp').component('newAccountForm', {
   bindings: {
     model: '<',
@@ -27,10 +29,8 @@ angular.module('ovhSignupApp').component('newAccountForm', {
     '$http',
     '$timeout',
     'coreConfig',
-    'CORE_LANGUAGES',
     'NewAccountFormConfig',
     'Alerter',
-    'TranslateService',
     'UserAccount.constants',
     'userAccountServiceInfos',
     '$translate',
@@ -40,10 +40,8 @@ angular.module('ovhSignupApp').component('newAccountForm', {
       $http,
       $timeout,
       coreConfig,
-      CORE_LANGUAGES,
       NewAccountFormConfig,
       Alerter,
-      TranslateService,
       UserAccountConstants,
       UserAccountServiceInfos,
       $translate,
@@ -55,7 +53,7 @@ angular.module('ovhSignupApp').component('newAccountForm', {
       this.readonly = this.readonly || [];
       this.rules = null;
       this.isSubmitting = false;
-      this.originalManagerLanguage = TranslateService.getUserLocale();
+      this.originalManagerLanguage = Environment.getUserLocale();
       const CONSENT_MARKETING_EMAIL_NAME = 'consent-marketing-email';
 
       $scope.getTemplateUrl = () =>
@@ -188,8 +186,8 @@ angular.module('ovhSignupApp').component('newAccountForm', {
               rules.splice(languageRuleIdx + 1, 0, {
                 fieldName: 'managerLanguage',
                 mandatory: true,
-                initialValue: TranslateService.getUserLocale(),
-                in: map(CORE_LANGUAGES.available, 'key'),
+                initialValue: Environment.getUserLocale(),
+                in: map(LANGUAGES.available, 'key'),
                 hasBottomMargin: true,
               });
             }
@@ -283,7 +281,7 @@ angular.module('ovhSignupApp').component('newAccountForm', {
               this.model.managerLanguage &&
               this.originalManagerLanguage !== this.model.managerLanguage
             ) {
-              TranslateService.setUserLocale(this.model.managerLanguage);
+              Environment.setUserLocale(this.model.managerLanguage);
               window.location.reload();
             } else if (this.onSubmit) {
               this.onSubmit();

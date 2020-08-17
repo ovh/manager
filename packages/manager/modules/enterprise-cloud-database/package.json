@@ -19,9 +19,7 @@
     "directory": "packages/manager/modules/enterprise-cloud-database"
   },
   "license": "BSD-3-Clause",
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
-  "browser": "./dist/umd/enterprise-cloud-database.js",
+  "main": "./dist/esm/index.js",
   "files": [
     "dist"
   ],
@@ -43,7 +41,7 @@
     "@ovh-ux/component-rollup-config": "^7.0.0"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^9.0.0 || ^10.0.0",
+    "@ovh-ux/manager-core": "^10.0.0 || ^11.0.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.0",
     "@ovh-ux/ng-ovh-contracts": "^4.0.0",
     "@ovh-ux/ng-ovh-payment-method": "^7.0.0",

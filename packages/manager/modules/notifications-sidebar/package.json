@@ -1,0 +1,30 @@
+{
+  "name": "@ovh-ux/manager-notifications-sidebar",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A sidebar component to display OVHcloud notifications.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh/manager.git",
+    "directory": "packages/manager/modules/notifications-sidebar"
+  },
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
+  "main": "src/index.js",
+  "devDependencies": {
+    "lodash": "^4.17.15"
+  },
+  "peerDependencies": {
+    "@ovh-ux/manager-config": "^0.4.0",
+    "@ovh-ux/manager-core": "^9.0.0 || ^10.0.0",
+    "@ovh-ux/ng-at-internet": "^5.1.0",
+    "@ovh-ux/ng-ovh-api-wrappers": "^3.0.0",
+    "@ovh-ux/ng-translate-async-loader": "^2.1.0",
+    "@ovh-ux/ui-kit": "^4.1.12",
+    "@uirouter/angularjs": "^1.0.23",
+    "angular": "^1.7.5",
+    "angular-translate": "^2.18.1",
+    "moment": "^2.24.0",
+    "ovh-api-services": "^9.39.1"
+  }
+}

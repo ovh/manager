@@ -2,10 +2,11 @@ import defaultsDeep from 'lodash/defaultsDeep';
 import filter from 'lodash/filter';
 import find from 'lodash/find';
 import get from 'lodash/get';
-import head from 'lodash/head';
 import map from 'lodash/map';
 import set from 'lodash/set';
 import some from 'lodash/some';
+
+import { Environment } from '@ovh-ux/manager-config';
 
 angular
   .module('managerApp')
@@ -123,14 +124,7 @@ angular
           'options',
           defaultsDeep(controller.options || {}, {
             height: 'auto',
-            locale:
-              localStorage && localStorage.getItem('univers-selected-language')
-                ? head(
-                    localStorage
-                      .getItem('univers-selected-language')
-                      .split('_'),
-                  )
-                : 'fr',
+            locale: Environment.getUserLanguage(),
             editable: true,
             allDaySlot: false,
             allDayDefault: false,

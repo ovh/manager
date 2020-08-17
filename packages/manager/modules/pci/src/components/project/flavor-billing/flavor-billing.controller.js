@@ -1,9 +1,6 @@
-export default class FlavorBillingController {
-  /* @ngInject */
-  constructor(TranslateService) {
-    this.TranslateService = TranslateService;
-  }
+import { Environment } from '@ovh-ux/manager-config';
 
+export default class FlavorBillingController {
   $onInit() {
     this.monthly = this.monthlyBilling === true;
     this.number = this.number || 1;
@@ -15,7 +12,7 @@ export default class FlavorBillingController {
     if (flavor) {
       this.prices = flavor.prices;
       this.PriceFormatter = new Intl.NumberFormat(
-        this.TranslateService.getUserLocale().replace('_', '-'),
+        Environment.getUserLocale().replace('_', '-'),
         { style: 'currency', currency: flavor.prices.hourly.currencyCode },
       );
     }

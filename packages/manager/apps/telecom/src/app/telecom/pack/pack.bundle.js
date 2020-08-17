@@ -14,16 +14,8 @@ import './migration/service-delete/telecom-pack-migration-service-delete.control
 import './migration/shipping/telecom-pack-migration-shipping.controller';
 import './migration/telecom-pack-migration.controller';
 import './migration/telecom-pack-migration';
-import './move/address/current/pack-move-address-current.component';
-import './move/address/future/pack-move-address-future.component';
-import './move/contract/pack-move-contract.controller';
-import './move/eligibility/address/pack-move-eligibility-address.component';
-import './move/eligibility/address/pack-move-eligibility-address.constants';
-import './move/eligibility/address/pack-move-eligibility-address.controller';
-import './move/eligibility/lineNumber/pack-move-eligibility-lineNumber.controller';
-import './move/offer/pack-move-offer.component';
 import './move/pack-move.controller';
-import './move/pack-move';
+import './move';
 import './pack.constant';
 import './pack.controller';
 import './pack.routing';

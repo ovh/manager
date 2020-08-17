@@ -1,3 +1,13 @@
+## [1.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.0.1...@ovh-ux/manager-vrack@1.0.2) (2020-08-05)
+
+
+### Bug Fixes
+
+* **deps:** add missing dependency to angular-translate ([#3369](https://github.com/ovh/manager/issues/3369)) ([2181252](https://github.com/ovh/manager/commit/2181252bebf293d8fa9120274c9251aafbd91e5f))
+* **vrack:** update custom header background color ([180366d](https://github.com/ovh/manager/commit/180366d10c096fe836f77ec933551a49c8ccf154))
+
+
+
 ## [1.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.0.0...@ovh-ux/manager-vrack@1.0.1) (2020-07-29)
 
 

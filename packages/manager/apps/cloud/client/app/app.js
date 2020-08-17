@@ -1,10 +1,11 @@
+import angular from 'angular';
 import get from 'lodash/get';
 import has from 'lodash/has';
 
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 import isString from 'lodash/isString';
 
-import { Environment } from '@ovh-ux/manager-config';
+import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
@@ -33,19 +34,21 @@ import ngOvhCloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-componen
 import ngOvhJqueryUiDraggable from '@ovh-ux/ng-ovh-jquery-ui-draggable';
 import ngOvhJqueryUiDroppable from '@ovh-ux/ng-ovh-jquery-ui-droppable';
 import ngOvhResponsivePageSwitcher from '@ovh-ux/ng-ovh-responsive-page-switcher';
+import ovhManagerAccountSidebar from '@ovh-ux/manager-account-sidebar';
 import ovhManagerBanner from '@ovh-ux/manager-banner';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
 import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
+import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 
 import cloudUniverseComponents from '../cloudUniverseComponents';
 
 import errorPage from './error/error.module';
 
-Environment.setRegion(__WEBPACK_REGION__);
+const moduleName = 'managerApp';
 
 angular
   .module(
-    'managerApp',
+    moduleName,
     [
       'ngCookies',
       'ngResource',
@@ -58,6 +61,8 @@ angular
       'ui.validate',
       'ui.sortable',
       ovhManagerCore,
+      ovhManagerAccountSidebar,
+      ovhNotificationsSidebar,
       ngAtInternet,
       ngAtInternetUiRouterPlugin,
       ngOvhApiWrappers,
@@ -204,4 +209,14 @@ angular
       });
     },
   )
+  .run(
+    /* @ngInject */ ($rootScope, $transitions) => {
+      const unregisterHook = $transitions.onSuccess({}, () => {
+        detachPreloader();
+        unregisterHook();
+      });
+    },
+  )
   .run(/* @ngTranslationsInject:json ./common/translations */);
+
+export default moduleName;

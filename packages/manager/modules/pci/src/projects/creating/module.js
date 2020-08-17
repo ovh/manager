@@ -1,5 +1,6 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
+import '@ovh-ux/ng-at-internet';
 import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 
@@ -14,6 +15,7 @@ const moduleName = 'ovhManagerPciProjectsCreating';
 angular
   .module(moduleName, [
     'ui.router',
+    'ngAtInternet',
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
   ])

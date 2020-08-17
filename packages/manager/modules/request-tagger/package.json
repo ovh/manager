@@ -19,9 +19,7 @@
   },
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
-  "browser": "./dist/umd/request-tagger.js",
+  "main": "./dist/esm/index.js",
   "files": [
     "dist"
   ],

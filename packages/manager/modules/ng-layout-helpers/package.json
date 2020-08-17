@@ -10,9 +10,7 @@
   },
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
-  "browser": "./dist/umd/ng-layout-helpers.js",
+  "main": "./dist/esm/index.js",
   "files": [
     "dist"
   ],

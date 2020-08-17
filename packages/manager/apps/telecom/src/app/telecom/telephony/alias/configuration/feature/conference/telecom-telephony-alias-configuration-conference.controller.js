@@ -2,6 +2,8 @@ import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import omit from 'lodash/omit';
 
+import { Environment } from '@ovh-ux/manager-config';
+
 angular.module('managerApp').controller(
   'TelecomTelephonyAliasConfigurationConferenceCtrl',
   class TelecomTelephonyAliasConfigurationContactCenterSolutionCtrl {
@@ -28,11 +30,7 @@ angular.module('managerApp').controller(
     }
 
     $onInit() {
-      [this.currentLanguage] = get(
-        localStorage,
-        'univers-selected-language',
-        'fr',
-      ).split('_');
+      this.currentLanguage = Environment.getUserLanguage();
       this.conferenceCopy = null;
       this.generatingUrls = false;
       this.hasWebAccessUrls = false;

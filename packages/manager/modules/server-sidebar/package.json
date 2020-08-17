@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-server-sidebar",
-  "version": "2.0.1",
+  "version": "2.0.3",
   "private": true,
   "description": "Sidebar component shared across all control panel.",
   "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/modules/server-sidebar#readme",
@@ -13,9 +13,7 @@
     "directory": "packages/manager/modules/server-sidebar"
   },
   "license": "BSD-3-Clause",
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
-  "browser": "./dist/umd/server-sidebar.js",
+  "main": "./dist/esm/index.js",
   "files": [
     "dist"
   ],
@@ -35,11 +33,11 @@
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^7.0.0",
-    "@ovh-ux/ui-kit": "^4.2.1"
+    "@ovh-ux/ui-kit": "^4.2.3"
   },
   "peerDependencies": {
     "@ovh-ux/manager-config": "^0.4.0 || ^1.0.0",
-    "@ovh-ux/manager-core": "^9.0.0 || ^10.0.0",
+    "@ovh-ux/manager-core": "^10.0.0 || ^11.0.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.0",
     "@ovh-ux/ng-ovh-sidebar-menu": "^10.0.0",
     "@ovh-ux/ng-translate-async-loader": "^2.1.0",

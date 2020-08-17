@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-enterprise-cloud-database-app",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "description": "Enterprise Cloud Databases standalone application.",
   "repository": {
@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^0.4.0 || ^1.0.0",
-    "@ovh-ux/manager-core": "^9.0.0 || ^10.0.0",
+    "@ovh-ux/manager-core": "^10.0.0 || ^11.0.0",
     "@ovh-ux/manager-enterprise-cloud-database": "^0.2.0 || ^1.0.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.7",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.0",
@@ -32,7 +32,7 @@
     "@ovh-ux/ng-ovh-user-pref": "^2.0.0",
     "@ovh-ux/ng-translate-async-loader": "^2.1.0",
     "@ovh-ux/ng-ui-router-layout": "^4.0.0",
-    "@ovh-ux/ui-kit": "^4.2.1",
+    "@ovh-ux/ui-kit": "^4.2.3",
     "@uirouter/angularjs": "^1.0.22",
     "angular": "^1.7.5",
     "angular-cookies": "^1.7.8",
@@ -46,7 +46,7 @@
     "lodash": "^4.17.14",
     "messenger": "HubSpot/messenger#~1.4.1",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^9.47.0",
+    "ovh-api-services": "^9.50.0",
     "ovh-manager-webfont": "^1.2.0",
     "popper.js": "^1.16.1",
     "ui-select": "^0.19.8",

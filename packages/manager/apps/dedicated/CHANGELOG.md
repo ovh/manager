@@ -1,3 +1,29 @@
+# [13.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@13.0.2...@ovh-ux/manager-dedicated@13.1.0) (2020-08-05)
+
+
+### Bug Fixes
+
+* **account.user.password:** retrieve correct email address ([#3366](https://github.com/ovh/manager/issues/3366)) ([6fdaa84](https://github.com/ovh/manager/commit/6fdaa843c8f07393ab3313f7b8ef84bf46423875)), closes [#3015](https://github.com/ovh/manager/issues/3015)
+* **dedicated.server:** remove margin from header ([#3370](https://github.com/ovh/manager/issues/3370)) ([6dd00c1](https://github.com/ovh/manager/commit/6dd00c1c8ef2015d3a484528048def8bb120a944))
+
+
+### Features
+
+* **dedicated:** import notifications sidebar ([83cd477](https://github.com/ovh/manager/commit/83cd477c0b87bb06b7c5b17f55478e3a77290cce))
+* **manager:** import manager-account-sidebar ([bdfd5f9](https://github.com/ovh/manager/commit/bdfd5f9c69acdf2c393712401fc2374a472c7eee))
+
+
+
+## [13.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@13.0.1...@ovh-ux/manager-dedicated@13.0.2) (2020-08-05)
+
+
+### Bug Fixes
+
+* **billing.autorenew:** import renew constant ([#3375](https://github.com/ovh/manager/issues/3375)) ([0fc9d96](https://github.com/ovh/manager/commit/0fc9d96cd7a5d319912964be7633db10823f1515))
+* **deps:** upgrade @ovh-ux/ui-kit to v4.2.3 ([#3376](https://github.com/ovh/manager/issues/3376)) ([fd461ba](https://github.com/ovh/manager/commit/fd461ba26ce7d77328c6951594e3c49ffee51b19))
+
+
+
 ## [13.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@13.0.0...@ovh-ux/manager-dedicated@13.0.1) (2020-07-29)
 
 

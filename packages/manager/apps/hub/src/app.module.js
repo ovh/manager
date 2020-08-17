@@ -10,11 +10,13 @@ import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import { isString, get, has } from 'lodash-es';
 
 import '@ovh-ux/ui-kit';
+import ovhManagerAccountSidebar from '@ovh-ux/manager-account-sidebar';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ovhManagerHub from '@ovh-ux/manager-hub';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
 import ovhManagerOrderTracking from '@ovh-ux/ng-ovh-order-tracking';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
+import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 
 import atInternet from './components/at-internet';
 import errorPage from './components/error-page';
@@ -42,10 +44,12 @@ angular
       ngOvhUiRouterLineProgress,
       ngUiRouterBreadcrumb,
       'oui',
+      ovhManagerAccountSidebar,
       ovhManagerCore,
       ovhManagerHub,
       ovhManagerNavbar,
       ovhManagerOrderTracking,
+      ovhNotificationsSidebar,
       'pascalprecht.translate',
       uiRouter,
       ...get(__NG_APP_INJECTIONS__, Environment.getRegion(), []),
@@ -98,13 +102,6 @@ angular
             { location: false },
           );
         }
-      });
-    },
-  )
-  .run(
-    /* @ngInject */ ($rootScope, $transitions) => {
-      $transitions.onSuccess({ to: 'error' }, () => {
-        $rootScope.$emit('ovh::sidebar::hide');
       });
     },
   )

@@ -1,3 +1,12 @@
+## [5.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox-app@5.1.3...@ovh-ux/manager-overthebox-app@5.1.4) (2020-08-03)
+
+
+### Bug Fixes
+
+* **deps:** add missing @ovh-ux/manager-ng-layout-helpers dependency ([#3363](https://github.com/ovh/manager/issues/3363)) ([e5557d0](https://github.com/ovh/manager/commit/e5557d07a50a89c37833fa88c5369597bf726a0d))
+
+
+
 ## [5.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox-app@5.1.2...@ovh-ux/manager-overthebox-app@5.1.3) (2020-07-29)
 
 

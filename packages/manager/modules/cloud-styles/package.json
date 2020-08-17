@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-cloud-styles",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "[DEPRECATED] - Collection of stylesheets for the Cloud control panel.",
   "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/modules/cloud-styles#readme",
@@ -13,9 +13,7 @@
     "directory": "packages/manager/modules/cloud-styles"
   },
   "license": "BSD-3-Clause",
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
-  "browser": "./dist/umd/cloud-styles.js",
+  "main": "./dist/esm/index.js",
   "scripts": {
     "build": "rollup -c --environment BUILD:production",
     "dev": "rollup -c --environment BUILD:development",
@@ -27,7 +25,7 @@
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^7.0.0",
-    "@ovh-ux/ui-kit": "^4.2.1",
+    "@ovh-ux/ui-kit": "^4.2.3",
     "bootstrap": "~3.3.7",
     "font-awesome": "^4.0.0",
     "ovh-common-style": "^3.2.2",

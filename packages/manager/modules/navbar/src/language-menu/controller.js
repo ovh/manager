@@ -6,13 +6,14 @@ import map from 'lodash/map';
 import union from 'lodash/union';
 import words from 'lodash/words';
 
+import { Environment, LANGUAGES } from '@ovh-ux/manager-config';
+
 import { LANG_PATTERN } from './constants';
 
 export default class {
   /* @ngInject */
-  constructor(CORE_LANGUAGES, TranslateService) {
-    this.LANGUAGES = CORE_LANGUAGES.available;
-    this.TranslateService = TranslateService;
+  constructor($rootScope) {
+    this.$rootScope = $rootScope;
   }
 
   $onInit() {
@@ -26,9 +27,14 @@ export default class {
     this.sublinks = this.getSublinks();
   }
 
+  onClick() {
+    this.$rootScope.$emit('ovh::notifications::hide');
+    this.$rootScope.$emit('ovh::sidebar::hide');
+  }
+
   getCurrentLang() {
     return this.availableLangs.find(
-      ({ key }) => key === this.TranslateService.getUserLocale(),
+      ({ key }) => key === Environment.getUserLocale(),
     );
   }
 
@@ -38,8 +44,8 @@ export default class {
   }
 
   getAvailableLangs() {
-    let langs = clone(this.LANGUAGES);
-    const AVAILABLE_LANGS = map(this.LANGUAGES, 'key');
+    let langs = clone(LANGUAGES.available);
+    const AVAILABLE_LANGS = map(LANGUAGES.available, 'key');
     const excluded = get(this.langOptions, 'exclude', []);
     const included = get(this.langOptions, 'include', []);
 

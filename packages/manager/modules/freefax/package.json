@@ -13,13 +13,14 @@
   "main": "./src/index.js",
   "dependencies": {
     "bootstrap4": "twbs/bootstrap#v4.0.0",
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.15",
+    "ovh-manager-webfont": "^1.2.0"
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^7.0.0"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^9.0.0 || ^10.0.0",
+    "@ovh-ux/manager-core": "^10.0.0 || ^11.0.0",
     "@ovh-ux/manager-ng-layout-helpers": "^1.0.0",
     "@ovh-ux/manager-telecom-styles": "^4.0.0",
     "@ovh-ux/ng-ovh-contracts": "^4.0.0",

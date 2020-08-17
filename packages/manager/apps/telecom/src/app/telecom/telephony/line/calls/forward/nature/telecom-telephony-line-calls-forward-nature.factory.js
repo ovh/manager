@@ -15,12 +15,15 @@ angular
       switch (elt) {
         case 'number':
           this.types = ['number', 'line', 'plug&phone', 'fax', 'voicemail'];
+          this.topologies = ['alias', 'line'];
           break;
         case 'voicemail':
           this.types = ['voicemail', 'fax', 'plug&phone'];
+          this.topologies = ['line'];
           break;
         case 'fax':
           this.types = ['fax', 'plug&phone'];
+          this.topologies = ['line'];
           break;
         default:
           this.types = [elt];

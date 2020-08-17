@@ -2,6 +2,7 @@ import angular from 'angular';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
 import component from './component';
 
+import './index.less';
 import './index.scss';
 
 import paymentMean from './payment-mean';

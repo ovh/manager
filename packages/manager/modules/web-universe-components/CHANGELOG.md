@@ -1,3 +1,21 @@
+## [9.0.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.0.1...@ovh-ux/ng-ovh-web-universe-components@9.0.2) (2020-08-17)
+
+
+### Bug Fixes
+
+* **email-domain.upgrade:** prevent blocking if there are no contracts ([#3448](https://github.com/ovh/manager/issues/3448)) ([e792f60](https://github.com/ovh/manager/commit/e792f6028745f39fb770deef3698eacf304d1e9f))
+
+
+
+## [9.0.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.0.0...@ovh-ux/ng-ovh-web-universe-components@9.0.1) (2020-08-05)
+
+
+### Bug Fixes
+
+* **deps:** upgrade @ovh-ux/ui-kit to v4.2.3 ([#3376](https://github.com/ovh/manager/issues/3376)) ([fd461ba](https://github.com/ovh/manager/commit/fd461ba26ce7d77328c6951594e3c49ffee51b19))
+
+
+
 # [9.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@8.1.1...@ovh-ux/ng-ovh-web-universe-components@9.0.0) (2020-07-29)
 
 

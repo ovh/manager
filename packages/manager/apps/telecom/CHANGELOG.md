@@ -1,3 +1,39 @@
+## [13.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.1.0...@ovh-ux/manager-telecom@13.1.1) (2020-08-17)
+
+
+### Performance Improvements
+
+* **telephony.line.calls:** use autocomplete for forward ([#3238](https://github.com/ovh/manager/issues/3238)) ([904d955](https://github.com/ovh/manager/commit/904d9550eeef3adb651d40aa15c8627b3f08ca1e))
+
+
+
+# [13.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.0.2...@ovh-ux/manager-telecom@13.1.0) (2020-08-05)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 515] ([153e1ef](https://github.com/ovh/manager/commit/153e1ef6a6475433b50d4259cdbe545788ad7c3c))
+* **i18n:** add missing translations [CDS 517] ([b7d8f9e](https://github.com/ovh/manager/commit/b7d8f9e1b5298407fcdeebdafa470ceceaf07059))
+* **i18n:** add missing translations [CDS 518] ([8747d13](https://github.com/ovh/manager/commit/8747d13139527d33be952ea0a181b4aac0d8c37d))
+* **i18n:** add missing translations [CDS 523] ([8c7bce3](https://github.com/ovh/manager/commit/8c7bce35fdc8178ad28f080b2383752662b786ec))
+
+
+### Features
+
+* **manager:** import manager-account-sidebar ([bdfd5f9](https://github.com/ovh/manager/commit/bdfd5f9c69acdf2c393712401fc2374a472c7eee))
+* **telecom:** import notifications sidebar ([7a9d01d](https://github.com/ovh/manager/commit/7a9d01d00f12e9b8b58b51fffbfa445484293272))
+
+
+
+## [13.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.0.1...@ovh-ux/manager-telecom@13.0.2) (2020-08-05)
+
+
+### Bug Fixes
+
+* **deps:** upgrade @ovh-ux/ui-kit to v4.2.3 ([#3376](https://github.com/ovh/manager/issues/3376)) ([fd461ba](https://github.com/ovh/manager/commit/fd461ba26ce7d77328c6951594e3c49ffee51b19))
+
+
+
 ## [13.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.0.0...@ovh-ux/manager-telecom@13.0.1) (2020-07-29)
 
 

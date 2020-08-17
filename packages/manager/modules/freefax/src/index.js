@@ -6,6 +6,8 @@ import freefax from './freefax';
 
 import { FREEFAX_AVAILABILITY } from './feature-availability/feature-availability.constants';
 
+import 'ovh-manager-webfont/dist/css/ovh-font.css';
+
 const moduleName = 'ovhManagerFreeFaxesLazyLoading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad', freefax]).config(

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-core",
-  "version": "10.0.1",
+  "version": "10.0.2",
   "private": true,
   "description": "Core functionalities shared across all control panel.",
   "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/modules/core#readme",
@@ -13,9 +13,7 @@
     "directory": "packages/manager/modules/core"
   },
   "license": "BSD-3-Clause",
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
-  "browser": "./dist/umd/core.js",
+  "main": "./dist/esm/index.js",
   "files": [
     "dist"
   ],

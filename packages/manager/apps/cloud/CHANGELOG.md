@@ -1,3 +1,48 @@
+## [10.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@10.2.0...@ovh-ux/manager-cloud@10.2.1) (2020-08-13)
+
+
+### Bug Fixes
+
+* **cda:** display header tabs ([#3430](https://github.com/ovh/manager/issues/3430)) ([eb05417](https://github.com/ovh/manager/commit/eb05417ea7381dfd796d1eed227b771a8f0ca3f7))
+
+
+
+# [10.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@10.1.1...@ovh-ux/manager-cloud@10.2.0) (2020-08-12)
+
+
+### Features
+
+* **cloud:** add env-executor ([#3404](https://github.com/ovh/manager/issues/3404)) ([4cd2417](https://github.com/ovh/manager/commit/4cd24174086a4dd7f669bd4adb7eccb884a05a7b))
+
+
+
+## [10.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@10.1.0...@ovh-ux/manager-cloud@10.1.1) (2020-08-06)
+
+
+### Bug Fixes
+
+* add missing account and notifications sidebar components ([#3390](https://github.com/ovh/manager/issues/3390)) ([2d6db61](https://github.com/ovh/manager/commit/2d6db6164a69eb43c67c29b3a2e28a23f5371ab5))
+
+
+
+# [10.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@10.0.2...@ovh-ux/manager-cloud@10.1.0) (2020-08-05)
+
+
+### Features
+
+* **manager:** import manager-account-sidebar ([bdfd5f9](https://github.com/ovh/manager/commit/bdfd5f9c69acdf2c393712401fc2374a472c7eee))
+
+
+
+## [10.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@10.0.1...@ovh-ux/manager-cloud@10.0.2) (2020-08-05)
+
+
+### Bug Fixes
+
+* **deps:** upgrade @ovh-ux/ui-kit to v4.2.3 ([#3376](https://github.com/ovh/manager/issues/3376)) ([fd461ba](https://github.com/ovh/manager/commit/fd461ba26ce7d77328c6951594e3c49ffee51b19))
+
+
+
 ## [10.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@10.0.0...@ovh-ux/manager-cloud@10.0.1) (2020-07-29)
 
 

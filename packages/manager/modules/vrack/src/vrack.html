@@ -52,25 +52,30 @@
         </form>
     </header>
 
-    <header class="vrack__header" data-ng-if="!$ctrl.nameEditing">
-        <div>
-            <h1
-                class="cui-page-header__title"
-                data-ng-bind="$ctrl.name || $ctrl.serviceName"
-            ></h1>
-            <h6
-                class="cui-page-header__subtitle"
-                data-ng-bind="$ctrl.serviceName"
-                data-ng-if="$ctrl.name !== ''"
-            ></h6>
+    <header class="oui-header mx-0" data-ng-if="!$ctrl.nameEditing">
+        <div class="oui-header__container">
+            <div class="oui-header__content">
+                <h1
+                    class="oui-header__title"
+                    data-ng-bind="$ctrl.name || $ctrl.serviceName"
+                ></h1>
+                <h2
+                    class="oui-header__description"
+                    data-ng-if="$ctrl.name !== ''"
+                    data-ng-bind="$ctrl.serviceName"
+                ></h2>
+            </div>
         </div>
         <button
             class="vrack__edit-button btn btn-icon"
             type="button"
-            title="{{'vrack_cloud_modiy_name' | translate }}"
+            aria-label="{{:: 'vrack_cloud_modiy_name' | translate }}"
             data-ng-click="$ctrl.editName()"
         >
-            <i class="oui-icon oui-icon-pen_concept" aria-hidden="true"></i>
+            <span
+                class="oui-icon oui-icon-pen_concept"
+                aria-hidden="true"
+            ></span>
         </button>
     </header>
 

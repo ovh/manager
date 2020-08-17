@@ -2,16 +2,27 @@ import filter from 'lodash/filter';
 import get from 'lodash/get';
 import has from 'lodash/has';
 
+import { GUIDE_URLS } from './ssh-keys.constants';
+
 export default class SshKeysController {
   /* @ngInject */
-  constructor($translate, CucCloudMessage, OvhApiCloudProjectSshKey) {
+  constructor(
+    $q,
+    $translate,
+    CucCloudMessage,
+    OvhApiCloudProjectSshKey,
+    OvhApiMe,
+  ) {
+    this.$q = $q;
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.OvhApiCloudProjectSshKey = OvhApiCloudProjectSshKey;
+    this.OvhApiMe = OvhApiMe;
   }
 
   $onInit() {
     this.loaders = {
+      guide: false,
       keys: false,
       isAdding: false,
     };
@@ -25,13 +36,28 @@ export default class SshKeysController {
     };
 
     this.loadMessages();
-    return this.getSshKeys();
+    return this.$q.all([this.getGuideUrl(), this.getSshKeys()]);
   }
 
   $onChanges(changes) {
     if (this.sshKeys && has(changes, 'region')) {
       this.getAvailableKeys(this.region);
     }
+  }
+
+  getGuideUrl() {
+    this.loaders.guide = true;
+    return this.OvhApiMe.v6()
+      .get()
+      .$promise.then((me) => {
+        this.guideUrl = get(GUIDE_URLS, me.ovhSubsidiary, GUIDE_URLS.WORLD);
+      })
+      .catch(() => {
+        this.guideUrl = GUIDE_URLS.WORLD;
+      })
+      .finally(() => {
+        this.loaders.guide = false;
+      });
   }
 
   loadMessages() {
