@@ -206,7 +206,7 @@ angular.module('managerApp').controller(
         .catch((error) => {
           this.number.feature.timeCondition.stopEdition(true).startEdition();
           this.TucToast.error(
-            `${this.$trnaslate.instant(
+            `${this.$translate.instant(
               'telephony_alias_config_contactCenterSolution_timeCondition_update_error',
             )} ${get(error, 'data.message', error.message)}`,
           );
