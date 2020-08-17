@@ -58,8 +58,6 @@ export default /* @ngInject */ ($stateProvider) => {
             }),
           );
       },
-      isBetaActive: /* @ngInject */ (betaPreferenceService) =>
-        betaPreferenceService.isBetaActive(),
       currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
         $state.href($state.current.name, $transition$.params()),
 
