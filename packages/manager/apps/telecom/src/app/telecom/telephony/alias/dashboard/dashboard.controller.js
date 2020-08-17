@@ -305,7 +305,7 @@ export default class TelecomTelephonyAliasHomeController {
 
   redirectToChangeTypePage() {
     return this.$state
-      .go('telecom.telephony.billingAccount.alias.changeType')
+      .go('telecom.telephony.billingAccount.alias.configuration.changeType')
       .then(() =>
         this.atInternet.trackClick({
           name: 'telecom::telephony::alias::dashboard::choose_configuration',
