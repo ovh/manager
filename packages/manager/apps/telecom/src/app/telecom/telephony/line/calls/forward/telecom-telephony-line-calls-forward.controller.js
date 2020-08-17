@@ -2,17 +2,15 @@ import filter from 'lodash/filter';
 import find from 'lodash/find';
 import forEach from 'lodash/forEach';
 import get from 'lodash/get';
-import head from 'lodash/head';
 import map from 'lodash/map';
 import set from 'lodash/set';
-import sortBy from 'lodash/sortBy';
-import uniqBy from 'lodash/uniqBy';
 
 angular
   .module('managerApp')
   .controller(
     'TelecomTelephonyLineCallsForwardCtrl',
     function TelecomTelephonyLineCallsForwardCtrl(
+      $http,
       $q,
       $stateParams,
       $translate,
@@ -21,7 +19,6 @@ angular
       TelecomTelephonyLineCallsForwardService,
       tucValidator,
       tucTelephonyBulk,
-      tucTelecomVoip,
     ) {
       const self = this;
       self.validator = tucValidator;
@@ -115,65 +112,6 @@ angular
       };
 
       /**
-       * Reset the number on nature change (fax -> voicemail, for instance)
-       * @param {Object} forward Forward description
-       */
-      self.resetNumber = function resetNumber(forward) {
-        set(
-          forward,
-          'number',
-          head(self.getFilteredNumbers('', forward.nature.types)),
-        );
-      };
-
-      /* ===========================
-    =           FILTERS          =
-    ============================ */
-
-      function filterBillingAccount(account) {
-        return self.filter.billingAccount
-          ? account === self.filter.billingAccount
-          : true;
-      }
-
-      function filterType(type) {
-        return self.filter.types.indexOf(type) > -1;
-      }
-
-      /**
-       * Filter the phone numbers
-       * @param  {String} search string to search
-       * @param  {Array} origin fax, line voicemail
-       * @return {Array}
-       */
-      self.getFilteredNumbers = function getFilteredNumbers(search, origin) {
-        const searchReg = new RegExp(search, 'i');
-
-        return uniqBy(
-          sortBy(
-            filter(
-              self.allOvhNumbers,
-              (num) =>
-                (searchReg.test(num.serviceName) ||
-                  searchReg.test(num.description)) &&
-                (!origin || origin.indexOf(num.type) > -1) &&
-                filterType(num.type) &&
-                filterBillingAccount(num.billingAccount),
-            ),
-            (num) => (num.formatedNumber === $stateParams.serviceName ? 0 : 1),
-          ),
-          'serviceName',
-        );
-      };
-
-      self.filterTypes = function filterTypes() {
-        self.filter.types = getEnabledTypes(self.types);
-        self.resetNumbers();
-      };
-
-      /* ----  End of FILTERS  ---- */
-
-      /**
        * Make a save of the current data
        */
       self.setCancelBuffer = function setCancelBuffer(restore) {
@@ -210,10 +148,6 @@ angular
         return self.saved;
       };
 
-      self.resetNumbers = function resetNumbers() {
-        return map(self.forwards, (forward) => self.resetNumber(forward));
-      };
-
       /**
        * Load all fowards
        * @return {Promise}
@@ -227,6 +161,13 @@ angular
         ).then(
           (forwards) => {
             self.forwards = forwards;
+            self.autocompleteLines = forwards.reduce(
+              (autocomplete, forward) => ({
+                ...autocomplete,
+                [forward.type]: [],
+              }),
+              {},
+            );
             self.setCancelBuffer();
           },
           (err) => {
@@ -238,47 +179,6 @@ angular
             return $q.reject(err);
           },
         );
-      }
-
-      /**
-       * Load all numbers of all billing accounts
-       * @return {Promise}
-       */
-      function loadAllOvhNumbers() {
-        return TelecomTelephonyLineCallsForwardService.loadAllOvhNumbers(
-          $stateParams.serviceName,
-        )
-          .then((allOvhNumbers) => {
-            const numbers = allOvhNumbers.map((ovhNumber) => {
-              const filtered = self.listBillingAccounts.filter(
-                (billingAccount) =>
-                  billingAccount.description &&
-                  billingAccount.billingAccount === ovhNumber.billingAccount,
-              );
-              const number = ovhNumber;
-              if (filtered.length === 1) {
-                number.billingAccountDescription = filtered[0].description;
-              } else {
-                number.billingAccountDescription = ovhNumber.billingAccount;
-              }
-              return number;
-            });
-            return numbers;
-          })
-          .then(
-            (allOvhNumbers) => {
-              self.allOvhNumbers = allOvhNumbers;
-              return allOvhNumbers;
-            },
-            (err) => {
-              TucToast.error(
-                $translate.instant(
-                  'telephony_line_actions_line_calls_forward_number_load_error',
-                ),
-              );
-              $q.reject(err);
-            },
-          );
       }
 
       /**
@@ -325,6 +225,8 @@ angular
           lockOutCall: null,
         };
 
+        self.listBillingAccounts = [];
+
         self.types = [
           { id: 'number', label: 'Alias', enable: true },
           { id: 'fax', label: 'Fax', enable: true },
@@ -338,19 +240,30 @@ angular
         };
 
         self.saved = angular.copy(self.options);
-        tucTelecomVoip
-          .fetchAll()
-          .then((billingAccounts) => {
-            self.listBillingAccounts = billingAccounts;
-            return billingAccounts;
-          })
-          .then(loadAllOvhNumbers)
-          .then(loadNatures)
+        return loadNatures()
           .then(loadForwards)
           .finally(() => {
             self.loading.init = false;
           });
       }
+
+      self.onNumberChange = (forward) => {
+        if (forward.number.serviceName.length < 5) {
+          return $q.resolve([]);
+        }
+
+        return $http
+          .get('/telephony/searchServices', {
+            params: {
+              axiom: forward.number.serviceName,
+            },
+          })
+          .then(({ data: lines }) => {
+            self.autocompleteLines[forward.type] = lines.filter(({ type }) =>
+              forward.nature.topologies.includes(type),
+            );
+          });
+      };
 
       /* ===========================
     =            BULK            =
