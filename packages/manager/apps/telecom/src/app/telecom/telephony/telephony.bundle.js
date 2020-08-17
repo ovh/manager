@@ -218,7 +218,6 @@ import './fax/voicemail/options/telecom-telephony-fax-voicemail-options';
 import './fax/voicemail/password/telecom-telephony-fax-voicemail-password';
 import './fax/voicemail/telecom-telephony-fax-voicemail.controller';
 import './fax/voicemail/telecom-telephony-fax-voicemail';
-import './index';
 import './line/answer/defaultVoicemail/telecom-telephony-line-answer-defaultVoicemail';
 import './line/answer/telecom-telephony-line-answer.controller';
 import './line/answer/telecom-telephony-line-answer';
@@ -372,7 +371,3 @@ import './service/voicemail/management/telecom-telephony-service-voicemail-manag
 import './service/voicemail/options/telecom-telephony-service-voicemail-options.controller';
 import './service/voicemail/password/telecom-telephony-service-voicemail-password.controller';
 import './telecom-telephony.constant';
-import './telephony.component';
-import './telephony.controller';
-import './telephony.routing';
-import './telephony.service';
