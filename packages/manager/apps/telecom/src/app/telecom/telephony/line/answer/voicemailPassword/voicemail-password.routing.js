@@ -2,7 +2,7 @@ import template from './voicemail-password.html';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'telecom.telephony.billingAccount.line.voicemailPassword',
+    'telecom.telephony.billingAccount.line.answer.voicemailPassword',
     {
       url: '/voicemailPassword',
       views: {
@@ -10,7 +10,7 @@ export default /* @ngInject */ ($stateProvider) => {
           template,
           noTranslations: true,
         },
-        'voicemailView@telecom.telephony.billingAccount.line.voicemailPassword': {
+        'voicemailView@telecom.telephony.billingAccount.line.answer.voicemailPassword': {
           templateUrl:
             'app/telecom/telephony/service/voicemail/password/password.html',
           controller: 'TelecomTelephonyServiceVoicemailPasswordCtrl',

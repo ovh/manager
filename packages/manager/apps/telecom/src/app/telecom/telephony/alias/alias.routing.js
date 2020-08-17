@@ -16,5 +16,9 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     redirectTo: 'telecom.telephony.billingAccount.alias.dashboard',
+    resolve: {
+      serviceName: /* @ngInject */ ($transition$) =>
+        $transition$.params().serviceName,
+    },
   });
 };

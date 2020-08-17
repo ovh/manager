@@ -65,7 +65,7 @@ export default /* @ngInject */ function TelecomTelephonyLineClick2CallChangePass
   };
 
   this.close = function close() {
-    $state.go('telecom.telephony.billingAccount.line.click2call', {
+    $state.go('telecom.telephony.billingAccount.line.calls.click2call', {
       billingAccount: $stateParams.billingAccount,
       serviceName: $stateParams.serviceName,
     });
