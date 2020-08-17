@@ -1,9 +1,7 @@
 import filter from 'lodash/filter';
 import get from 'lodash/get';
 
-import {
-  pricingConstants,
-} from '@ovh-ux/manager-product-offers';
+import { pricingConstants } from '@ovh-ux/manager-product-offers';
 
 export default class DomainDnsZoneActivateController {
   /* @ngInject */
@@ -62,13 +60,15 @@ export default class DomainDnsZoneActivateController {
             'app.domain.product.zoneactivate',
           ),
         )
-        .finally(() => (this.checkoutLoading = false));
+        .finally(() => {
+          this.checkoutLoading = false;
+        });
     }
   }
 
   checkout() {
     this.checkoutOrderCart(
-      this.autoPayWithPreferredPaymentMethod,
+      !!this.defaultPaymentMethod,
       this.cartId,
       this.price.value === 0,
     );
@@ -77,7 +77,7 @@ export default class DomainDnsZoneActivateController {
   checkoutOrderCart(autoPayWithPreferredPaymentMethod, cartId, isOptionFree) {
     this.checkoutLoading = true;
     this.DomainDnsZoneActivateService.checkoutOrderCart(
-      autoPayWithPreferredPaymentMethod,
+      isOptionFree || autoPayWithPreferredPaymentMethod,
       cartId,
     )
       .then((order) => {
@@ -117,7 +117,7 @@ export default class DomainDnsZoneActivateController {
         this.serviceOption,
         price,
       ).then((finalCart) => {
-        return { ...finalCart, cartId: cart.cartId }
+        return { ...finalCart, cartId: cart.cartId };
       }),
     );
   }

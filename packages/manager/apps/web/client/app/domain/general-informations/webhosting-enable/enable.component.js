@@ -4,7 +4,6 @@ import template from './domain-enable-web-hosting.html';
 export default {
   bindings: {
     addOption: '<',
-    defaultPaymentMethod: '<',
     domainName: '<',
     getCheckout: '<',
     goBack: '<',
