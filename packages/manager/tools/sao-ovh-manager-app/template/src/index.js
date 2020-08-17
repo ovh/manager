@@ -11,7 +11,7 @@ bootstrapApplication().then(({ region }) => {
     .then(() => import('./app.module'))
     .then(({ default: application }) => {
       angular.bootstrap(document.body, [application], {
-        strictDi: false,
+        strictDi: true,
       });
     });
 });
