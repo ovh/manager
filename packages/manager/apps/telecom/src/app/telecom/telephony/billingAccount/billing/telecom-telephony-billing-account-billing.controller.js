@@ -35,14 +35,14 @@ angular
           },
           {
             name: 'group_billing_deposit_movement',
-            sref: 'telecom.telephony.billingAccount.depositMovement',
+            sref: 'telecom.telephony.billingAccount.billing.depositMovement',
             text: $translate.instant(
               'telephony_group_billing_actions_group_billing_deposit_movement',
             ),
           },
           {
             name: 'group_billing_credit_threshold',
-            sref: 'telecom.telephony.billingAccount.creditThreshold',
+            sref: 'telecom.telephony.billingAccount.billing.creditThreshold',
             text: $translate.instant(
               'telephony_group_billing_actions_group_billing_credit_threshold',
             ),

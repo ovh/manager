@@ -20,7 +20,6 @@ export default class TelecomTelephonyAliasPortabilitiesCtrl {
       cancel: false,
     };
 
-    this.serviceName = this.$stateParams.serviceName;
     this.init();
   }
 

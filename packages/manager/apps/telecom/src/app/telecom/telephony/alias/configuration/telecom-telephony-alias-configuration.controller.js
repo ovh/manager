@@ -65,7 +65,8 @@ angular.module('managerApp').controller(
       const ovhPabxActions = [
         {
           name: 'number_modification_new',
-          sref: 'telecom.telephony.billingAccount.alias.changeType',
+          sref:
+            'telecom.telephony.billingAccount.alias.configuration.changeType',
           text: this.$translate.instant(
             'telephony_alias_configuration_actions_number_modification_new',
           ),
