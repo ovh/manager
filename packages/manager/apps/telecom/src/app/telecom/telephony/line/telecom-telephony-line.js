@@ -58,6 +58,53 @@ angular.module('managerApp').config(($stateProvider) => {
           'escape',
         );
       },
+      lineLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href(
+          'telecom.telephony.billingAccount.line',
+          $transition$.params(),
+        ),
+      consumptionLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href(
+          'telecom.telephony.billingAccount.line.consumption',
+          $transition$.params(),
+        ),
+      callsLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href(
+          'telecom.telephony.billingAccount.line.calls',
+          $transition$.params(),
+        ),
+      tonesLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href(
+          'telecom.telephony.billingAccount.line.tones',
+          $transition$.params(),
+        ),
+      answerLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href(
+          'telecom.telephony.billingAccount.line.answer',
+          $transition$.params(),
+        ),
+      phoneLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href(
+          'telecom.telephony.billingAccount.line.phone',
+          $transition$.params(),
+        ),
+      assistLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href(
+          'telecom.telephony.billingAccount.line.assist',
+          $transition$.params(),
+        ),
+      contactLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href(
+          'telecom.telephony.billingAccount.line.contact',
+          $transition$.params(),
+        ),
+      faxLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href(
+          'telecom.telephony.billingAccount.line.fax',
+          $transition$.params(),
+        ),
+      currentActiveLink: /* @ngInject */ ($state, $transition$) => () =>
+        $state.href($state.current.name, $transition$.params()),
     },
   });
 });

@@ -4,11 +4,18 @@ angular
     $q,
     $stateParams,
     $translate,
+    assistLink,
     atInternet,
+    contactLink,
+    consumptionLink,
+    currentActiveLink,
+    faxDashboardLink,
+    faxLink,
     TelecomMediator,
     TelephonyMediator,
     SidebarMenu,
     TucToast,
+    voicemailLink,
   ) {
     const self = this;
 
@@ -19,6 +26,14 @@ angular
     self.fax = null;
     self.actions = null;
     self.terminationTask = null;
+
+    self.consumptionLink = consumptionLink;
+    self.currentActiveLink = currentActiveLink;
+    self.faxDashboardLink = faxDashboardLink;
+    self.voicemailLink = voicemailLink;
+    self.faxLink = faxLink;
+    self.contactLink = contactLink;
+    self.assistLink = assistLink;
 
     /* ===============================
     =            ACTIONS            =
