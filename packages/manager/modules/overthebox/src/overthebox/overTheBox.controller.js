@@ -17,6 +17,7 @@ export default class OverTheBoxCtrl {
     this.disabledRemote = true;
 
     this.checkDevices();
+    this.updateName = this.updateName.bind(this);
   }
 
   checkDevices() {
