@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('cloud-connect.overview.edit-description', {
+  $stateProvider.state('cloud-connect.details.overview.edit-description', {
     url: '/edit-description',
     params: {
       description: null,

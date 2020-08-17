@@ -307,7 +307,7 @@ export const DEDICATED_NETWORK_CONFIG = {
       types: [
         {
           path: '/ovhCloudConnect',
-          state: 'cloud-connect',
+          state: 'cloud-connect.details',
           stateParams: ['ovhCloudConnectId'],
           app: [DEDICATED],
           regions: ['EU'],

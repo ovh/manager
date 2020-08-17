@@ -16,16 +16,19 @@ angular
   ])
   .config(
     /* @ngInject */ ($stateProvider) => {
-      $stateProvider.state('cloud-connect.overview.datacenter-add-extra.**', {
-        url: '/datacenter/:datacenterId/extra/add',
-        lazyLoad: ($transition$) => {
-          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+      $stateProvider.state(
+        'cloud-connect.details.overview.datacenter-add-extra.**',
+        {
+          url: '/datacenter/:datacenterId/extra/add',
+          lazyLoad: ($transition$) => {
+            const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-          return import('./add-extra.module').then((mod) =>
-            $ocLazyLoad.inject(mod.default || mod),
-          );
+            return import('./add-extra.module').then((mod) =>
+              $ocLazyLoad.inject(mod.default || mod),
+            );
+          },
         },
-      });
+      );
     },
   );
 

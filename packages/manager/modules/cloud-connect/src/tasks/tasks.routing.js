@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('cloud-connect.tasks', {
+  $stateProvider.state('cloud-connect.details.tasks', {
     url: '/tasks',
     component: 'cloudConnectTasks',
     translations: {

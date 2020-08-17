@@ -18,7 +18,7 @@ angular
   ])
   .config(
     /* @ngInject */ ($stateProvider) => {
-      $stateProvider.state('cloud-connect.overview.remove-vrack.**', {
+      $stateProvider.state('cloud-connect.details.overview.remove-vrack.**', {
         url: '/vrack/:vRackId/remove',
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');

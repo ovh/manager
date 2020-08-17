@@ -43,12 +43,19 @@ export default class CloudConnectDacenterAddExtraCtrl {
         options,
       )
       .then((task) => {
-        const extraConf = this.datacenter.createExtraConfiguration({
+        const extraConf = this.datacenter.constructor.createExtraConfiguration({
           ...options,
           id: task.resourceId,
           status: 'init',
         });
         this.datacenter.addExtraConfiguration(extraConf);
+        if (task) {
+          this.cloudConnectService
+            .checkTaskStatus(this.cloudConnect.id, task.id)
+            .finally(() => {
+              extraConf.setActive();
+            });
+        }
         return this.goBack(
           {
             textHtml: this.$translate.instant(
@@ -60,15 +67,7 @@ export default class CloudConnectDacenterAddExtraCtrl {
           },
           'success',
           false,
-        ).then(() => {
-          if (task) {
-            this.cloudConnectService
-              .checkTaskStatus(this.cloudConnect.id, task.id)
-              .finally(() => {
-                extraConf.setActive();
-              });
-          }
-        });
+        );
       })
       .catch((error) =>
         this.goBack(

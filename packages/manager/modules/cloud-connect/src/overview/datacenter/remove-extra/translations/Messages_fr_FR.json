@@ -1,6 +1,6 @@
 {
   "cloud_connect_routing_remove": "Supprimer extra",
-  "cloud_connect_routing_remove_description": "Cela supprimera la configuration supplémentaire du centre de données sélectionné",
+  "cloud_connect_routing_remove_description": "Cela supprimera la configuration supplémentaire du datacentre sélectionné",
   "cloud_connect_datacenter_remove_routing_error": "Échec de la suppression d'une configuration de routage: {{message}}",
   "cloud_connect_datacenter_remove_routing_success": "Suppression d'une configuration de routage. <a href=\"{{ tasksUrl }}\">Cliquez ici pour voir le statut.</a>"
 }

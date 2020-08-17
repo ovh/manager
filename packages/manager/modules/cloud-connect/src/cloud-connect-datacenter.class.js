@@ -71,8 +71,7 @@ export default class CloudConnectDatacenter {
     return this.getExtraConfigurations()[0];
   }
 
-  /* eslint-disable-next-line class-methods-use-this */
-  createExtraConfiguration(extra) {
+  static createExtraConfiguration(extra) {
     return new CloudConnectDatacenterExtra(extra);
   }
 }

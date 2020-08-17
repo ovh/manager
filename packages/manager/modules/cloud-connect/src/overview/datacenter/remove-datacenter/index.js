@@ -18,16 +18,19 @@ angular
   ])
   .config(
     /* @ngInject */ ($stateProvider) => {
-      $stateProvider.state('cloud-connect.overview.remove-datacenter-configuration.**', {
-        url: '/datacenter/:datacenterId/remove',
-        lazyLoad: ($transition$) => {
-          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+      $stateProvider.state(
+        'cloud-connect.details.overview.remove-datacenter-configuration.**',
+        {
+          url: '/datacenter/:datacenterId/remove',
+          lazyLoad: ($transition$) => {
+            const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-          return import('./remove-datacenter.module').then((mod) =>
-            $ocLazyLoad.inject(mod.default || mod),
-          );
+            return import('./remove-datacenter.module').then((mod) =>
+              $ocLazyLoad.inject(mod.default || mod),
+            );
+          },
         },
-      });
+      );
     },
   );
 

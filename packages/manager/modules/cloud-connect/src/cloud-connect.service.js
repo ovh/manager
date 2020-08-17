@@ -154,10 +154,7 @@ export default class CloudConnectService {
                 });
             }),
           )
-          .then(() => cloudConnect)
-          .finally(() => {
-            cloudConnect.setLoadingPopConfiguration(false);
-          });
+          .then(() => cloudConnect);
       })
       .finally(() => {
         cloudConnect.setLoadingPopConfiguration(false);
@@ -437,9 +434,7 @@ export default class CloudConnectService {
   getVrackAssociatedCloudConnect(serviceName) {
     return this.$http
       .get(`/vrack/${serviceName}/ovhCloudConnect`)
-      .then(({ data }) => {
-        return data.length > 0;
-      });
+      .then(({ data }) => data.length > 0);
   }
 
   checkTaskStatus(cloudConnectId, taskId) {
@@ -462,8 +457,7 @@ export default class CloudConnectService {
     });
   }
 
-  /* eslint-disable-next-line class-methods-use-this */
-  clearCache(cacheName) {
+  static clearCache(cacheName) {
     cacheName.removeAll();
   }
 

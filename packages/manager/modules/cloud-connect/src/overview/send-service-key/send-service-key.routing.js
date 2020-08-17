@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('cloud-connect.overview.send-service-key', {
+  $stateProvider.state('cloud-connect.details.overview.send-service-key', {
     url: '/service-key/:serviceKeyId/send',
     views: {
       modal: {

@@ -16,7 +16,7 @@ export default class RemovePopConfigurationCtrl {
       'cloud-connect::overview::remove-pop::confirm',
     );
     this.isLoading = true;
-    this.cloudConnectService
+    return this.cloudConnectService
       .removePopConfiguration(
         this.cloudConnect.id,
         this.popId,
@@ -24,7 +24,7 @@ export default class RemovePopConfigurationCtrl {
       )
       .then((task) => {
         this.pop.setDeleting();
-        this.goBack(
+        return this.goBack(
           {
             textHtml: this.$translate.instant(
               'cloud_connect_pop_remove_configuration_success',

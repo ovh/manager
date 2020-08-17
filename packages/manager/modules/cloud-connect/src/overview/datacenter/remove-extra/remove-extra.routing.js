@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('cloud-connect.overview.remove-extra', {
+  $stateProvider.state('cloud-connect.details.overview.remove-extra', {
     url: '/datacenter/:datacenterId/extra/:extraId/remove',
     views: {
       modal: {

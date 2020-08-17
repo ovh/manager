@@ -16,16 +16,19 @@ angular
   ])
   .config(
     /* @ngInject */ ($stateProvider) => {
-      $stateProvider.state('cloud-connect.overview.edit-description.**', {
-        url: '/edit-description',
-        lazyLoad: ($transition$) => {
-          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+      $stateProvider.state(
+        'cloud-connect.details.overview.edit-description.**',
+        {
+          url: '/edit-description',
+          lazyLoad: ($transition$) => {
+            const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-          return import('./edit-description.module').then((mod) =>
-            $ocLazyLoad.inject(mod.default || mod),
-          );
+            return import('./edit-description.module').then((mod) =>
+              $ocLazyLoad.inject(mod.default || mod),
+            );
+          },
         },
-      });
+      );
     },
   );
 

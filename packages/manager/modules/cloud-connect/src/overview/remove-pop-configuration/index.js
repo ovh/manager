@@ -18,7 +18,7 @@ angular
   ])
   .config(
     /* @ngInject */ ($stateProvider) => {
-      $stateProvider.state('cloud-connect.overview.remove-pop.**', {
+      $stateProvider.state('cloud-connect.details.overview.remove-pop.**', {
         url: '/pop/:popId/remove',
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');

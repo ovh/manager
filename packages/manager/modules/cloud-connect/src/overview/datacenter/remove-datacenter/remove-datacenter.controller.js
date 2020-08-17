@@ -24,6 +24,13 @@ export default class RemoveVrackCtrl {
       )
       .then((task) => {
         this.datacenter.setDeleting();
+        if (task) {
+          this.cloudConnectService
+            .checkTaskStatus(this.cloudConnect.id, task.id)
+            .finally(() => {
+              this.cloudConnect.removeDcConfiguration(this.datacenterId);
+            });
+        }
         return this.goBack(
           {
             textHtml: this.$translate.instant(
@@ -35,15 +42,7 @@ export default class RemoveVrackCtrl {
           },
           'success',
           false,
-        ).then(() => {
-          if (task) {
-            this.cloudConnectService
-              .checkTaskStatus(this.cloudConnect.id, task.id)
-              .finally(() => {
-                this.cloudConnect.removeDcConfiguration(this.datacenterId);
-              });
-          }
-        });
+        );
       })
       .catch((error) =>
         this.goBack(

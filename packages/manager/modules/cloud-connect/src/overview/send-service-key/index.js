@@ -18,16 +18,19 @@ angular
   ])
   .config(
     /* @ngInject */ ($stateProvider) => {
-      $stateProvider.state('cloud-connect.overview.send-service-key.**', {
-        url: '/service-key/:serviceKeyId/send',
-        lazyLoad: ($transition$) => {
-          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+      $stateProvider.state(
+        'cloud-connect.details.overview.send-service-key.**',
+        {
+          url: '/service-key/:serviceKeyId/send',
+          lazyLoad: ($transition$) => {
+            const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-          return import('./send-service-key.module').then((mod) =>
-            $ocLazyLoad.inject(mod.default || mod),
-          );
+            return import('./send-service-key.module').then((mod) =>
+              $ocLazyLoad.inject(mod.default || mod),
+            );
+          },
         },
-      });
+      );
     },
   );
 

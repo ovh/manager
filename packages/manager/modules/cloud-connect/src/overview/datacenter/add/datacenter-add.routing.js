@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('cloud-connect.overview.datacenter-add', {
+  $stateProvider.state('cloud-connect.details.overview.datacenter-add', {
     url: '/datacenter/add',
     views: {
       modal: {

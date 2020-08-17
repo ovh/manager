@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('cloud-connect.overview.associate-vrack', {
+  $stateProvider.state('cloud-connect.details.overview.associate-vrack', {
     url: '/vrack/associate',
     views: {
       modal: {

@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('cloud-connect.service-keys', {
+  $stateProvider.state('cloud-connect.details.service-keys', {
     url: '/service-keys',
     component: 'cloudConnectServiceKeys',
     translations: {
@@ -12,17 +12,16 @@ export default /* @ngInject */ ($stateProvider) => {
       goToRegenerateServiceKeyPage: /* @ngInject */ ($state) => (
         serviceKeyId,
       ) =>
-        $state
-          .go('cloud-connect.service-keys.regenerate-service-key', {
-            serviceKeyId,
-          }),
+        $state.go('cloud-connect.details.service-keys.regenerate-service-key', {
+          serviceKeyId,
+        }),
       goToServiceKeysPage: /* @ngInject */ (
         $state,
         CucControllerHelper,
         CucCloudMessage,
         cloudConnectId,
       ) => (message = false, type = 'success', reload = false) => {
-        const state = 'cloud-connect.service-keys';
+        const state = 'cloud-connect.details.service-keys';
         const promise = $state.go(
           state,
           {

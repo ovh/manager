@@ -49,7 +49,7 @@
   "cloud_connect_pop_interface_status": "Statut optique",
   "cloud_connect_dc_title": "Configuration DC",
   "cloud_connect_dc_add_button": "Ajouter une configuration",
-  "cloud_connect_dc_get_configuration_error": "Échec de l'obtention d'une configuration du centre de données: {{message}}",
+  "cloud_connect_dc_get_configuration_error": "Échec de l'obtention d'une configuration du datacentre: {{message}}",
   "cloud_connect_service_key_get_error": "Échec de l'obtention de la clé de service: {{message}}",
   "cloud_connect_service_keys": "Clés de service",
   "cloud_connect_service_key_active_send": "Envoyer la clé de service valide",

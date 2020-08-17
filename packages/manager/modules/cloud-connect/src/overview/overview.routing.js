@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('cloud-connect.overview', {
+  $stateProvider.state('cloud-connect.details.overview', {
     url: '/overview',
     component: 'cloudConnectOverview',
     translations: {
@@ -7,18 +7,20 @@ export default /* @ngInject */ ($stateProvider) => {
       format: 'json',
     },
     resolve: {
-      dataCenters: /* @ngInject */ (cloudConnectService, cloudConnect) =>
+      datacenters: /* @ngInject */ (cloudConnectService, cloudConnect) =>
         cloudConnectService.loadDatacenters(cloudConnect),
       goToAssociateVrackPage: /* @ngInject */ ($state) => () =>
-        $state.go('cloud-connect.overview.associate-vrack'),
+        $state.go('cloud-connect.details.overview.associate-vrack'),
       goToRemoveVrackPage: /* @ngInject */ ($state) => (vRackId) =>
-        $state.go('cloud-connect.overview.remove-vrack', { vRackId }),
+        $state.go('cloud-connect.details.overview.remove-vrack', { vRackId }),
       goToUpdateDescriptionPage: /* @ngInject */ ($state) => (description) =>
-        $state.go('cloud-connect.overview.edit-description', { description }),
+        $state.go('cloud-connect.details.overview.edit-description', {
+          description,
+        }),
       goToAddPopConfigurationPage: /* @ngInject */ ($state, cloudConnect) => (
         interfaceId,
       ) =>
-        $state.go('cloud-connect.overview.add-pop', {
+        $state.go('cloud-connect.details.overview.add-pop', {
           interfaceId,
           isDirectService: cloudConnect.isDirectService(),
           allowedPopType: cloudConnect.getAllowedPopType(),
@@ -27,35 +29,40 @@ export default /* @ngInject */ ($stateProvider) => {
         $state,
         cloudConnect,
       ) => (interfaceId) =>
-        $state.go('cloud-connect.overview.remove-pop', {
+        $state.go('cloud-connect.details.overview.remove-pop', {
           interfaceId,
           popId: cloudConnect.getPopConfiguration(interfaceId).id,
         }),
       goToLockPortPage: /* @ngInject */ ($state) => (interfaceId) =>
-        $state.go('cloud-connect.overview.lock-port', { interfaceId }),
+        $state.go('cloud-connect.details.overview.lock-port', { interfaceId }),
       goToUnlockPortPage: /* @ngInject */ ($state) => (interfaceId) =>
-        $state.go('cloud-connect.overview.unlock-port', { interfaceId }),
+        $state.go('cloud-connect.details.overview.unlock-port', {
+          interfaceId,
+        }),
       goToSendServiceKeyPage: /* @ngInject */ ($state, cloudConnect) => () =>
-        $state.go('cloud-connect.overview.send-service-key', {
+        $state.go('cloud-connect.details.overview.send-service-key', {
           serviceKeyId: cloudConnect.getActiveServiceKey().id,
         }),
       goToDatacenterAddPage: /* @ngInject */ ($state) => () =>
-        $state.go('cloud-connect.overview.datacenter-add'),
+        $state.go('cloud-connect.details.overview.datacenter-add'),
       goToDatacenterAddExtraPage: /* @ngInject */ ($state) => (datacenterId) =>
-        $state.go('cloud-connect.overview.datacenter-add-extra', {
+        $state.go('cloud-connect.details.overview.datacenter-add-extra', {
           datacenterId,
         }),
       goToRemoveDatacenterConfigurationPage: /* @ngInject */ ($state) => (
         datacenterId,
       ) =>
-        $state.go('cloud-connect.overview.remove-datacenter-configuration', {
-          datacenterId,
-        }),
+        $state.go(
+          'cloud-connect.details.overview.remove-datacenter-configuration',
+          {
+            datacenterId,
+          },
+        ),
       goToRemoveExtraPage: /* @ngInject */ ($state) => (
         datacenterId,
         extraId,
       ) =>
-        $state.go('cloud-connect.overview.remove-extra', {
+        $state.go('cloud-connect.details.overview.remove-extra', {
           datacenterId,
           extraId,
         }),
@@ -73,7 +80,7 @@ export default /* @ngInject */ ($stateProvider) => {
         cloudConnectId,
         cloudConnectService,
       ) => (message = false, type = 'success', reload = false, vrackId) => {
-        const state = 'cloud-connect.overview';
+        const state = 'cloud-connect.details.overview';
         const promise = $state.go(
           state,
           {
@@ -83,26 +90,26 @@ export default /* @ngInject */ ($stateProvider) => {
             reload,
           },
         );
-        if (message) {
-          promise.then(() => {
-            if (vrackId) {
-              cloudConnectService
-                .getVrackAssociatedCloudConnect(vrackId)
-                .then((res) => {
-                  if (res) {
-                    CucCloudMessage.warning(
-                      $translate.instant(
-                        'cloud_connect_vrack_associate_cloud_connect',
-                      ),
-                      state,
-                    );
-                  }
-                });
-            }
+        promise.then(() => {
+          if (vrackId) {
+            cloudConnectService
+              .getVrackAssociatedCloudConnect(vrackId)
+              .then((res) => {
+                if (res) {
+                  CucCloudMessage.warning(
+                    $translate.instant(
+                      'cloud_connect_vrack_associate_cloud_connect',
+                    ),
+                    state,
+                  );
+                }
+              });
+          }
+          if (message) {
             CucCloudMessage[type](message, state);
             CucControllerHelper.scrollPageToTop();
-          });
-        }
+          }
+        });
         return promise;
       },
     },

@@ -12,6 +12,14 @@ export default class DataCenterAddCtrl {
     this.ASN_MIN = ASN_MIN;
   }
 
+  checkStatus(dc, task) {
+    return this.cloudConnectService
+      .checkTaskStatus(this.cloudConnect.id, task.id)
+      .finally(() => {
+        dc.setActive();
+      });
+  }
+
   create() {
     this.cloudConnectService.trackClick(
       'cloud-connect::overview::datacenter-add::confirm',
@@ -32,6 +40,9 @@ export default class DataCenterAddCtrl {
           dcName: get(this.datacenter, 'name', null),
         });
         this.cloudConnect.addDcConfiguration(dc);
+        if (task) {
+          this.checkStatus(dc, task);
+        }
         return this.goBack(
           {
             textHtml: this.$translate.instant(
@@ -43,15 +54,7 @@ export default class DataCenterAddCtrl {
           },
           'success',
           false,
-        ).then(() => {
-          if (task) {
-            this.cloudConnectService
-              .checkTaskStatus(this.cloudConnect.id, task.id)
-              .finally(() => {
-                dc.setActive();
-              });
-          }
-        });
+        );
       })
       .catch((error) =>
         this.goBack(

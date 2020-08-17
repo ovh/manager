@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('cloud-connect.overview.remove-pop', {
+  $stateProvider.state('cloud-connect.details.overview.remove-pop', {
     url: '/pop/:popId/remove',
     views: {
       modal: {
@@ -15,8 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
       interfaceId: false,
     },
     resolve: {
-      popId: /* @ngInject */ ($transition$) =>
-        $transition$.params().popId,
+      popId: /* @ngInject */ ($transition$) => $transition$.params().popId,
       interfaceId: /* @ngInject */ ($transition$) =>
         $transition$.params().interfaceId,
       pop: /* @ngInject */ (cloudConnect, interfaceId) =>

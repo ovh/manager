@@ -18,7 +18,7 @@ angular
   ])
   .config(
     /* @ngInject */ ($stateProvider) => {
-      $stateProvider.state('cloud-connect.overview.lock-port.**', {
+      $stateProvider.state('cloud-connect.details.overview.lock-port.**', {
         url: '/port/:interfaceId/lock',
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');

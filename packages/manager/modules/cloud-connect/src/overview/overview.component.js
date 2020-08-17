@@ -4,7 +4,7 @@ import template from './template.html';
 export default {
   bindings: {
     cloudConnect: '<',
-    dataCenters: '<',
+    datacenters: '<',
     goToAssociateVrackPage: '<',
     goToLockPortPage: '<',
     goToAddPopConfigurationPage: '<',

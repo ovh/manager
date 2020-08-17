@@ -25,7 +25,7 @@ angular
   .config(
     /* @ngInject */ ($stateProvider) => {
       $stateProvider.state('cloud-connect.**', {
-        url: '/cloud-connect/:ovhCloudConnectId',
+        url: '/cloud-connect',
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
           return import('./cloud-connect.module').then((mod) =>

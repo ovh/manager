@@ -36,9 +36,9 @@ export default class CloudConnectOverviewCtrl {
   }
 
   loadMessages() {
-    this.CucCloudMessage.unSubscribe('cloud-connect.overview');
+    this.CucCloudMessage.unSubscribe('cloud-connect.details.overview');
     this.messageHandler = this.CucCloudMessage.subscribe(
-      'cloud-connect.overview',
+      'cloud-connect.details.overview',
       {
         onMessage: () => this.refreshMessages(),
       },
@@ -107,7 +107,7 @@ export default class CloudConnectOverviewCtrl {
 
   loadDatacenterConfigurations() {
     this.cloudConnectService
-      .loadDatacenterConfigurations(this.cloudConnect, this.dataCenters)
+      .loadDatacenterConfigurations(this.cloudConnect, this.datacenters)
       .then(() => {
         if (this.cloudConnect.datacenterConfigurations) {
           return this.cloudConnectService.getExtras(this.cloudConnect);

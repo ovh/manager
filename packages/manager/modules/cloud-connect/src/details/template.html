@@ -1,0 +1,26 @@
+<oui-header
+    data-heading="{{ ::$ctrl.cloudConnect.description }}"
+    data-description="{{ ::$ctrl.cloudConnect.uuid }}"
+>
+    <oui-guide-menu data-text="{{ ::'cloud_connect_guides' | translate }}">
+        <oui-guide-menu-item data-href="{{:: $ctrl.guideUrl }}" data-external
+            ><span data-translate="cloud_connect_guides_main"></span>
+        </oui-guide-menu-item>
+    </oui-guide-menu>
+    <oui-header-tabs>
+        <oui-header-tabs-item data-state="cloud-connect.overview"
+            ><span data-translate="cloud_connect_overview"></span
+        ></oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-ng-if="!$ctrl.cloudConnect.isDirectService()"
+            data-state="cloud-connect.service-keys"
+            ><span data-translate="cloud_connect_service_keys"></span
+        ></oui-header-tabs-item>
+        <oui-header-tabs-item data-state="cloud-connect.tasks"
+            ><span data-translate="cloud_connect_tasks"></span
+        ></oui-header-tabs-item>
+    </oui-header-tabs>
+</oui-header>
+<div class="container-fluid cui-page__content cui-page__content-flex">
+    <div data-ui-view></div>
+</div>

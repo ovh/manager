@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('cloud-connect.overview.add-pop', {
+  $stateProvider.state('cloud-connect.details.overview.add-pop', {
     url: '/pop/add',
     views: {
       modal: {
@@ -15,10 +15,6 @@ export default /* @ngInject */ ($stateProvider) => {
       interfaceId: null,
       isDirectService: false,
       allowedPopType: null,
-    },
-    translations: {
-      value: ['.'],
-      format: 'json',
     },
     resolve: {
       interfaceId: /* @ngInject */ ($transition$) =>

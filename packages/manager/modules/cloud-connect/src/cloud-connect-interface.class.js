@@ -76,11 +76,11 @@ export default class CloudConnectInterface {
   }
 
   isTaskPending(tasks) {
-    return find(tasks, (task) => {
-      return (
+    return find(
+      tasks,
+      (task) =>
         task.resourceId === this.id &&
-        (task.status === STATUS.TODO || task.status === STATUS.DOING)
-      );
-    });
+        (task.status === STATUS.TODO || task.status === STATUS.DOING),
+    );
   }
 }

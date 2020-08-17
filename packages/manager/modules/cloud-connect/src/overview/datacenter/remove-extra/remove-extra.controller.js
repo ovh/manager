@@ -25,6 +25,13 @@ export default class CloudConnectDacenterRemoveExtraCtrl {
       )
       .then((task) => {
         this.extra.setDeleting();
+        if (task) {
+          this.cloudConnectService
+            .checkTaskStatus(this.cloudConnect.id, task.id)
+            .finally(() => {
+              this.datacenter.removeExtraConfiguration(this.extraId);
+            });
+        }
         return this.goBack(
           {
             textHtml: this.$translate.instant(
@@ -36,15 +43,7 @@ export default class CloudConnectDacenterRemoveExtraCtrl {
           },
           'success',
           false,
-        ).then(() => {
-          if (task) {
-            this.cloudConnectService
-              .checkTaskStatus(this.cloudConnect.id, task.id)
-              .finally(() => {
-                this.datacenter.removeExtraConfiguration(this.extraId);
-              });
-          }
-        });
+        );
       })
       .catch((error) =>
         this.goBack(

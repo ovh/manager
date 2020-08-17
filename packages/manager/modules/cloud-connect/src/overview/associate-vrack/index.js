@@ -14,20 +14,23 @@ angular
     'pascalprecht.translate',
     'ui.router',
     'oc.lazyLoad',
-    ngOvhCloudUniverseComponents
+    ngOvhCloudUniverseComponents,
   ])
   .config(
     /* @ngInject */ ($stateProvider) => {
-      $stateProvider.state('cloud-connect.overview.associate-vrack.**', {
-        url: '/vrack/associate',
-        lazyLoad: ($transition$) => {
-          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+      $stateProvider.state(
+        'cloud-connect.details.overview.associate-vrack.**',
+        {
+          url: '/vrack/associate',
+          lazyLoad: ($transition$) => {
+            const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-          return import('./associate-vrack.module').then((mod) =>
-            $ocLazyLoad.inject(mod.default || mod),
-          );
+            return import('./associate-vrack.module').then((mod) =>
+              $ocLazyLoad.inject(mod.default || mod),
+            );
+          },
         },
-      });
+      );
     },
   );
 
