@@ -1,3 +1,12 @@
+## [6.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.0.2...@ovh-ux/manager-overthebox@6.0.3) (2020-08-17)
+
+
+### Bug Fixes
+
+* rename serviceName with correct reference ([#3454](https://github.com/ovh/manager/issues/3454)) ([93a711d](https://github.com/ovh/manager/commit/93a711d69490adb782c5d8a6bb54478a83b7bf20))
+
+
+
 ## [6.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.0.1...@ovh-ux/manager-overthebox@6.0.2) (2020-08-05)
 
 
