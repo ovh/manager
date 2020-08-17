@@ -2,7 +2,7 @@ import template from './voicemail-options.html';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'telecom.telephony.billingAccount.line.voicemailOptions',
+    'telecom.telephony.billingAccount.line.answer.voicemailOptions',
     {
       url: '/voicemailOptions',
       views: {
@@ -10,7 +10,7 @@ export default /* @ngInject */ ($stateProvider) => {
           template,
           noTranslations: true,
         },
-        'voicemailView@telecom.telephony.billingAccount.line.voicemailOptions': {
+        'voicemailView@telecom.telephony.billingAccount.line.answer.voicemailOptions': {
           templateUrl:
             'app/telecom/telephony/service/voicemail/options/options.html',
           controller: 'TelecomTelephonyServiceVoicemailOptionsCtrl',
