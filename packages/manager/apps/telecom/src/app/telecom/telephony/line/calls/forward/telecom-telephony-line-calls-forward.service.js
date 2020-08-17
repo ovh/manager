@@ -1,27 +1,21 @@
 import assignIn from 'lodash/assignIn';
 import find from 'lodash/find';
 import forEach from 'lodash/forEach';
-import isString from 'lodash/isString';
-import isUndefined from 'lodash/isUndefined';
 import map from 'lodash/map';
-import pick from 'lodash/pick';
-import remove from 'lodash/remove';
-import set from 'lodash/set';
-import orderBy from 'lodash/orderBy';
-import filter from 'lodash/filter';
+
+import { FORWARD_TYPES } from './forward.constants';
 
 angular
   .module('managerApp')
   .service(
     'TelecomTelephonyLineCallsForwardService',
     function TelecomTelephonyLineCallsForwardService(
+      $http,
       $q,
-      $translate,
       OvhApiTelephony,
       TelecomTelephonyLineCallsForwardPhoneNumber,
       TelecomTelephonyLineCallsForward,
       TelecomTelephonyLineCallsForwardNature,
-      tucVoipLinePhone,
     ) {
       /**
        * @param  {String} billingAccount Billing account
@@ -73,64 +67,6 @@ angular
       };
 
       /**
-       * Load all numbers from all billing accounts
-       * @return {Promise}
-       */
-      this.loadAllOvhNumbers = function loadAllOvhNumbers(excludeLine) {
-        return OvhApiTelephony.Number()
-          .Aapi()
-          .all()
-          .$promise.then((ovhNums) => {
-            if (excludeLine) {
-              remove(ovhNums, { type: 'line', serviceName: excludeLine });
-            }
-
-            // look for plug&phone lines
-            return tucVoipLinePhone
-              .fetchAll()
-              .then((phones) => phones)
-              .catch(() => null)
-              .then((phones) =>
-                orderBy(
-                  filter(
-                    map(
-                      forEach(ovhNums, (num) => {
-                        set(
-                          num,
-                          'hasPhone',
-                          !isUndefined(
-                            find(phones, { serviceName: num.serviceName }),
-                          ),
-                        );
-                      }),
-                      (num) =>
-                        new TelecomTelephonyLineCallsForwardPhoneNumber(
-                          pick(num, [
-                            'billingAccount',
-                            'description',
-                            'serviceName',
-                            'type',
-                            'hasPhone',
-                          ]),
-                        ),
-                    ),
-                    (num) =>
-                      [
-                        'fax',
-                        'voicemail',
-                        'line',
-                        'plug&phone',
-                        'number',
-                      ].indexOf(num.type) > -1,
-                  ),
-                  ['description', 'serviceName'],
-                  ['desc', 'asc'],
-                ),
-              );
-          });
-      };
-
-      /**
        * Load all forwards for a given service name
        * @param  {String} billingAccount                  Billing account
        * @param  {String} serviceName                     Service name
@@ -142,7 +78,6 @@ angular
         billingAccount,
         serviceName,
         lineOptionForwardNatureTypeEnum,
-        allOvhNumbers,
       ) {
         return OvhApiTelephony.Line()
           .Options()
@@ -152,39 +87,48 @@ angular
             serviceName,
           })
           .$promise.then((options) => {
-            forEach(options, (data, key) => {
-              if (/^forward\w*Nature$/.test(key)) {
-                // eslint-disable-next-line no-param-reassign
-                options[key] = isString(data)
-                  ? find(lineOptionForwardNatureTypeEnum, { value: data })
-                  : data;
-              }
-              if (/^forward\w*Number$/.test(key)) {
-                // eslint-disable-next-line no-param-reassign
-                options[key] = find(allOvhNumbers, { serviceName: data });
-
-                // Not OVH number
-                if (!options[key]) {
-                  const matcher = key.match(/^forward(\w*)Number$/);
-                  const natureKey = ['forward', matcher[1], 'Nature'].join('');
-                  // eslint-disable-next-line no-param-reassign
-                  options[
-                    key
-                  ] = new TelecomTelephonyLineCallsForwardPhoneNumber({
-                    serviceName: data,
-                    type: 'external',
-                  });
-                  // eslint-disable-next-line no-param-reassign
-                  options[natureKey] = find(lineOptionForwardNatureTypeEnum, {
-                    value: 'external',
-                  });
-                }
-              }
-            });
-            return map(
-              ['Unconditional', 'NoReply', 'Busy', 'Backup'],
-              (elt) => new TelecomTelephonyLineCallsForward(options, elt),
+            const numbers = map(FORWARD_TYPES, (forwardType) =>
+              $q
+                .all({
+                  services: $http
+                    .get('/telephony/searchServices', {
+                      params: {
+                        axiom: options[`forward${forwardType}Number`],
+                      },
+                    })
+                    .then(({ data }) => data),
+                  nature: forwardType,
+                })
+                .then(({ services, nature }) => {
+                  const isExternal = !services.length;
+                  const number = options[`forward${nature}Number`];
+                  const forwardOptions = {
+                    ...options,
+                    [`forward${nature}Number`]: isExternal
+                      ? new TelecomTelephonyLineCallsForwardPhoneNumber({
+                          serviceName: number,
+                          type: 'external',
+                        })
+                      : new TelecomTelephonyLineCallsForwardPhoneNumber({
+                          serviceName: number,
+                          type: options[`forward${nature}Nature`],
+                        }),
+                    [`forward${nature}Nature`]: isExternal
+                      ? find(lineOptionForwardNatureTypeEnum, {
+                          value: 'external',
+                        })
+                      : find(lineOptionForwardNatureTypeEnum, {
+                          value: options[`forward${nature}Nature`],
+                        }),
+                  };
+                  return new TelecomTelephonyLineCallsForward(
+                    forwardOptions,
+                    nature,
+                  );
+                }),
             );
+
+            return $q.all(numbers);
           });
       };
 
