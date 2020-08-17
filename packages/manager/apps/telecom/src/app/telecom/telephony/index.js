@@ -1,28 +1,42 @@
 import angular from 'angular';
+import '@uirouter/angularjs';
+import 'oclazyload';
 
-import billingAccount from './billingAccount';
-import carrierSip from './carrierSip';
-import linePhoneOrder from './line/phone/order/order.module';
-import linePhoneAccessories from './line/phone/accessories/accessories.module';
-import attachLine from './line/phone/attachLine/attach.module';
+const moduleName = 'ovhManagerTelecomTelephonyLazyLoading';
 
-import component from './telephony.component';
-import routing from './telephony.routing';
-import service from './telephony.service';
+angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
+  /* @ngInject */ ($stateProvider) => {
+    $stateProvider
+      .state('telecom.telephony', {
+        url: '/telephony',
+        redirectTo: 'telecom.telephony.index',
+        views: {
+          'telecomView@telecom': {
+            template: '<div ui-view="telephonyView"></div>',
+          },
+        },
+      })
+      .state('telecom.telephony.index.**', {
+        url: '',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-const moduleName = 'ovhManagerTelecomTelephony';
+          return import('./telephony.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
+      })
+      .state('telecom.telephony.billingAccount.**', {
+        url: '/:billingAccount',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-angular
-  .module(moduleName, [
-    attachLine,
-    billingAccount,
-    carrierSip,
-    linePhoneOrder,
-    linePhoneAccessories,
-  ])
-  .config(routing)
-  .component('telecomTelephony', component)
-  .service('TelecomTelephonyService', service)
-  .run(/* @ngTranslationsInject:json ./translations */);
+          return import('./dashboard/dashboard.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
+      });
+  },
+);
 
 export default moduleName;
