@@ -1,7 +1,4 @@
 const commonResolves = {
-  autoPayWithPreferredPaymentMethod: /* @ngInject */ (ovhPaymentMethod) =>
-    ovhPaymentMethod.hasDefaultPaymentMethod(),
-
   serviceName: /* @ngInject */ ($transition$) =>
     $transition$.params().productId,
 
