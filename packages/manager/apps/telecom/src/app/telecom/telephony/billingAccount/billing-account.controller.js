@@ -12,7 +12,6 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountCtrl(
   billingAccountLink,
   currentActiveLink,
   guidesLink,
-  isBetaActive,
   manageContactsLink,
   orderAliasLink,
   phonebookLink,
@@ -36,7 +35,6 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountCtrl(
   self.billingAccountLink = billingAccountLink;
   self.currentActiveLink = currentActiveLink;
   self.guidesLink = guidesLink;
-  self.isBetaActive = isBetaActive;
   self.manageContactsLink = manageContactsLink;
   self.orderAliasLink = orderAliasLink;
   self.phonebookLink = phonebookLink;
