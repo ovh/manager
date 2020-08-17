@@ -366,7 +366,6 @@
   "emailpro_GROUPS_delegation_doing_message": "L'aggiornamento dei diritti di delega sta per essere effettuato.",
   "emailpro_GROUPS_delegation_error_message": "Si è verificato un errore nell'aggiornamento dei diritti di delega.",
   "emailpro_GROUPS_delegation_success_message": "L'aggiornamento dei diritti di delega sta per essere effettuato.",
-  "emailpro_GROUPS_partial_account": "Si è verificato un errore nel caricamento: {0}",
   "emailpro_action_license_history_fail": "Si è verificato un errore durante il caricamento delle informazioni di monitoring.",
   "emailpro_action_license_history_type_outlook": "Licenze Outlook",
   "emailpro_action_order_space_disk": "Ordina spazio disco aggiuntivo",

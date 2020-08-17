@@ -366,7 +366,6 @@
   "emailpro_GROUPS_delegation_doing_message": "Van a actualizarse los permisos de delegación.",
   "emailpro_GROUPS_delegation_error_message": "Se ha producido un error al actualizar los permisos de delegación.",
   "emailpro_GROUPS_delegation_success_message": "Van a actualizarse los permisos de delegación.",
-  "emailpro_GROUPS_partial_account": "Se ha producido un error al cargar: {0}.",
   "emailpro_action_license_history_fail": "Se ha producido un error al cargar la información de monitoring.",
   "emailpro_action_license_history_type_outlook": "Licencias Outlook",
   "emailpro_action_order_space_disk": "Contratar espacio adicional",
