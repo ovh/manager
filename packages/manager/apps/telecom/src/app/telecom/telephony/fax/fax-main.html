@@ -20,55 +20,49 @@
         </header>
 
         <!-- LINE ACTIONS -->
-        <nav role="navigation">
-            <responsive-tabs>
-                <responsive-tab
-                    data-state="telecom.telephony.billingAccount.fax"
-                    data-dropdown-title="{{ 'telephony_fax_tab_manage' | translate }}"
-                >
-                    <span data-translate="telephony_fax_tab_manage"></span>
-                </responsive-tab>
+        <oui-header-tabs>
+            <oui-header-tabs-item
+                href="{{ $ctrl.faxDashboardLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.faxDashboardLink"
+            >
+                <span data-translate="telephony_fax_tab_manage"></span>
+            </oui-header-tabs-item>
 
-                <responsive-tab
-                    data-state="telecom.telephony.billingAccount.fax.consumption"
-                    data-dropdown-title="{{ 'telephony_fax_tab_consumption' | translate }}"
-                >
-                    <span data-translate="telephony_fax_tab_consumption"></span>
-                </responsive-tab>
+            <oui-header-tabs-item
+                href="{{ $ctrl.consumptionLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.consumptionLink"
+            >
+                <span data-translate="telephony_fax_tab_consumption"></span>
+            </oui-header-tabs-item>
 
-                <responsive-tab
-                    data-state="telecom.telephony.billingAccount.fax.voicemail"
-                    data-dropdown-title="{{ 'telephony_fax_tab_voicemail' | translate }}"
-                >
-                    <span data-translate="telephony_fax_tab_voicemail"></span>
-                </responsive-tab>
+            <oui-header-tabs-item
+                href="{{ $ctrl.voicemailLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.voicemailLink"
+            >
+                <span data-translate="telephony_fax_tab_voicemail"></span>
+            </oui-header-tabs-item>
 
-                <responsive-tab
-                    data-state="telecom.telephony.billingAccount.fax.fax"
-                    data-dropdown-title="{{ 'telephony_fax_tab_fax' | translate }}"
-                >
-                    <span data-translate="telephony_fax_tab_fax"></span>
-                </responsive-tab>
+            <oui-header-tabs-item
+                href="{{ $ctrl.faxLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.faxLink"
+            >
+                <span data-translate="telephony_fax_tab_fax"></span>
+            </oui-header-tabs-item>
 
-                <responsive-tab
-                    data-state="telecom.telephony.billingAccount.fax.contact"
-                    data-dropdown-title="{{ 'telephony_fax_tab_contact' | translate }}"
-                >
-                    <span data-translate="telephony_fax_tab_contact"></span>
-                </responsive-tab>
+            <oui-header-tabs-item
+                href="{{ $ctrl.contactLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.contactLink"
+            >
+                <span data-translate="telephony_fax_tab_contact"></span>
+            </oui-header-tabs-item>
 
-                <responsive-tab
-                    data-state="telecom.telephony.billingAccount.fax.assist"
-                    data-dropdown-title="{{ 'telephony_fax_tab_assist' | translate }}"
-                >
-                    <span data-translate="telephony_fax_tab_assist"></span>
-                </responsive-tab>
-
-                <responsive-tab-more>
-                    <i class="fa fa-plus"></i>
-                </responsive-tab-more>
-            </responsive-tabs>
-        </nav>
+            <oui-header-tabs-item
+                href="{{ $ctrl.assistLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.assistLink"
+            >
+                <span data-translate="telephony_fax_tab_assist"></span>
+            </oui-header-tabs-item>
+        </oui-header-tabs>
     </div>
     <!-- .telecom-section-header -->
 
