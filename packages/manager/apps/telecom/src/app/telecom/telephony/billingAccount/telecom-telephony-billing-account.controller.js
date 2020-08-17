@@ -16,7 +16,6 @@ angular
       billingAccountLink,
       currentActiveLink,
       guidesLink,
-      isBetaActive,
       manageContactsLink,
       orderAliasLink,
       phonebookLink,
@@ -40,7 +39,6 @@ angular
       self.billingAccountLink = billingAccountLink;
       self.currentActiveLink = currentActiveLink;
       self.guidesLink = guidesLink;
-      self.isBetaActive = isBetaActive;
       self.manageContactsLink = manageContactsLink;
       self.orderAliasLink = orderAliasLink;
       self.phonebookLink = phonebookLink;

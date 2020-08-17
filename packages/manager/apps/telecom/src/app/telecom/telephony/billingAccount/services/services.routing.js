@@ -16,6 +16,8 @@ export default /* @ngInject */ ($stateProvider) => {
         `/telephony/${billingAccountId}/service`,
       schema: /* @ngInject */ (OvhApiTelephony) =>
         OvhApiTelephony.v6().schema().$promise,
+      defaultFilterColumn: () => 'serviceName',
+      dataModel: () => 'telephony.TelephonyService',
       telephonyFeatureTypes: /* @ngInject */ (schema) =>
         get(schema.models, 'telephony.TypeEnum').enum,
       telephonyServiceTypes: /* @ngInject */ (schema) =>
