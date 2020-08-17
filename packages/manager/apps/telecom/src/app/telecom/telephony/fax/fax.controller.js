@@ -2,11 +2,17 @@ export default /* @ngInject */ function TelecomTelephonyFaxCtrl(
   $q,
   $stateParams,
   $translate,
+  assistLink,
   atInternet,
-  TelecomMediator,
+  contactLink,
+  consumptionLink,
+  currentActiveLink,
+  faxDashboardLink,
+  faxLink,
   TelephonyMediator,
   SidebarMenu,
   TucToast,
+  voicemailLink,
 ) {
   const self = this;
 
@@ -17,6 +23,14 @@ export default /* @ngInject */ function TelecomTelephonyFaxCtrl(
   self.fax = null;
   self.actions = null;
   self.terminationTask = null;
+
+  self.consumptionLink = consumptionLink;
+  self.currentActiveLink = currentActiveLink;
+  self.faxDashboardLink = faxDashboardLink;
+  self.voicemailLink = voicemailLink;
+  self.faxLink = faxLink;
+  self.contactLink = contactLink;
+  self.assistLink = assistLink;
 
   /* ===============================
     =            ACTIONS            =

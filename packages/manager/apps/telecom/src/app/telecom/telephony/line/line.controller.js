@@ -4,8 +4,18 @@ export default /* @ngInject */ function TelecomTelephonyLineCtrl(
   $q,
   $stateParams,
   $translate,
+  answerLink,
+  assistLink,
+  callsLink,
+  contactLink,
+  currentActiveLink,
+  consumptionLink,
+  faxLink,
+  lineLink,
+  phoneLink,
   TelephonyMediator,
   SidebarMenu,
+  tonesLink,
   TucToast,
 ) {
   const self = this;
@@ -18,6 +28,17 @@ export default /* @ngInject */ function TelecomTelephonyLineCtrl(
   self.line = null;
   self.fax = null;
   self.links = null;
+
+  self.lineLink = lineLink;
+  self.currentActiveLink = currentActiveLink;
+  self.consumptionLink = consumptionLink;
+  self.callsLink = callsLink;
+  self.tonesLink = tonesLink;
+  self.answerLink = answerLink;
+  self.phoneLink = phoneLink;
+  self.assistLink = assistLink;
+  self.contactLink = contactLink;
+  self.faxLink = faxLink;
 
   /*= ==============================
     =            ACTIONS            =
