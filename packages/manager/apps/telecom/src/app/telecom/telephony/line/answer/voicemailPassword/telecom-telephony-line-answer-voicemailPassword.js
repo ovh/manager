@@ -1,6 +1,6 @@
 angular.module('managerApp').config(($stateProvider) => {
   $stateProvider.state(
-    'telecom.telephony.billingAccount.line.voicemailPassword',
+    'telecom.telephony.billingAccount.line.answer.voicemailPassword',
     {
       url: '/voicemailPassword',
       views: {
@@ -9,7 +9,7 @@ angular.module('managerApp').config(($stateProvider) => {
             'app/telecom/telephony/line/answer/voicemailPassword/telecom-telephony-line-answer-voicemailPassword.html',
           noTranslations: true,
         },
-        'voicemailView@telecom.telephony.billingAccount.line.voicemailPassword': {
+        'voicemailView@telecom.telephony.billingAccount.line.answer.voicemailPassword': {
           templateUrl:
             'app/telecom/telephony/service/voicemail/password/telecom-telephony-service-voicemail-password.html',
           controller: 'TelecomTelephonyServiceVoicemailPasswordCtrl',

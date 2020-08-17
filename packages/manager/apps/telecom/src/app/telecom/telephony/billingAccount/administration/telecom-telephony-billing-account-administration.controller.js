@@ -23,21 +23,21 @@ angular
           },
           {
             name: 'group_lines_group_change',
-            sref: 'telecom.telephony.billingAccount.linesGroup',
+            sref: 'telecom.telephony.billingAccount.administration.linesGroup',
             text: $translate.instant(
               'telephony_group_admin_actions_group_lines_group_change',
             ),
           },
           {
             name: 'group_new_billing_account',
-            sref: 'telecom.telephony.billingAccount.addGroup',
+            sref: 'telecom.telephony.billingAccount.administration.addGroup',
             text: $translate.instant(
               'telephony_group_admin_actions_group_new_billing_account',
             ),
           },
           {
             name: 'group_delete_billing_account',
-            sref: 'telecom.telephony.billingAccount.deleteGroup',
+            sref: 'telecom.telephony.billingAccount.administration.deleteGroup',
             text: $translate.instant(
               'telephony_group_admin_actions_group_delete_billing_account',
             ),
@@ -45,7 +45,7 @@ angular
           {
             name: 'telephony_group_admin_actions_portabilities',
             sref:
-              "telecom.telephony.billingAccount.alias.portabilities({ serviceName: 'default'})",
+              'telecom.telephony.billingAccount.administration.portabilities',
             text: $translate.instant(
               'telephony_group_admin_actions_portabilities',
             ),

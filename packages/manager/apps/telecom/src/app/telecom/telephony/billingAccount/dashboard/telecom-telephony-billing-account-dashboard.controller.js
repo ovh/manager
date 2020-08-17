@@ -309,7 +309,8 @@ angular
             },
             {
               name: 'telephony_group_admin_actions_delete',
-              sref: 'telecom.telephony.billingAccount.deleteGroup',
+              sref:
+                'telecom.telephony.billingAccount.administration.deleteGroup',
               disabled: isExpired(),
               text: $translate.instant(
                 'telephony_group_billing_dashboard_actions_group_delete',

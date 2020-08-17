@@ -1,6 +1,6 @@
 angular.module('managerApp').config(($stateProvider) => {
   $stateProvider.state(
-    'telecom.telephony.billingAccount.line.click2call.addUser',
+    'telecom.telephony.billingAccount.line.calls.click2call.addUser',
     {
       url: '/add',
       views: {

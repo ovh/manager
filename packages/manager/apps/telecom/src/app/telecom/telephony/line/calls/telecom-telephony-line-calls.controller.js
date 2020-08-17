@@ -125,7 +125,7 @@ angular
           },
           {
             name: 'line_click2call',
-            sref: 'telecom.telephony.billingAccount.line.click2call',
+            sref: 'telecom.telephony.billingAccount.line.calls.click2call',
             text: $translate.instant(
               'telephony_line_calls_actions_line_click2call',
             ),
