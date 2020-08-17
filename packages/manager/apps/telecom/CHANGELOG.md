@@ -1,3 +1,12 @@
+## [13.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.1.0...@ovh-ux/manager-telecom@13.1.1) (2020-08-17)
+
+
+### Performance Improvements
+
+* **telephony.line.calls:** use autocomplete for forward ([#3238](https://github.com/ovh/manager/issues/3238)) ([904d955](https://github.com/ovh/manager/commit/904d9550eeef3adb651d40aa15c8627b3f08ca1e))
+
+
+
 # [13.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.0.2...@ovh-ux/manager-telecom@13.1.0) (2020-08-05)
 
 
