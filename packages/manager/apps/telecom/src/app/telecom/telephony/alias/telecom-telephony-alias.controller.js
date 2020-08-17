@@ -9,6 +9,7 @@ angular.module('managerApp').controller(
       $stateParams,
       $translate,
       SidebarMenu,
+      serviceName,
       TelephonyMediator,
       TucToast,
       tucVoipService,
@@ -26,10 +27,7 @@ angular.module('managerApp').controller(
       this.TELEPHONY_ALIAS_OBSOLETE_FEATURE_TYPES = TELEPHONY_ALIAS_OBSOLETE_FEATURE_TYPES;
 
       this.billingAccount = $stateParams.billingAccount;
-      this.serviceName =
-        $stateParams.serviceName !== 'default'
-          ? $stateParams.serviceName
-          : null;
+      this.serviceName = serviceName !== 'default' ? serviceName : null;
     }
 
     $onInit() {

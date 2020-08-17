@@ -14,5 +14,9 @@ angular.module('managerApp').config(($stateProvider) => {
     },
     translations: { value: ['.'], format: 'json' },
     redirectTo: 'telecom.telephony.billingAccount.alias.dashboard',
+    resolve: {
+      serviceName: /* @ngInject */ ($transition$) =>
+        $transition$.params().serviceName,
+    },
   });
 });
