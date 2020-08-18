@@ -1,7 +1,11 @@
-<oui-header>
-    <oui-guide-menu data-text="{{ ::'cloud_connect_guides' | translate }}">
-        <oui-guide-menu-item data-href="{{:: $ctrl.guideUrl }}" data-external
-            ><span data-translate="cloud_connect_guides_main"></span>
-        </oui-guide-menu-item>
-    </oui-guide-menu>
-</oui-header>
+<div data-ui-view>
+    <oui-header>
+        <oui-guide-menu data-text="{{ ::'cloud_connect_guides' | translate }}">
+            <oui-guide-menu-item
+                data-href="{{:: $ctrl.guideUrl }}"
+                data-external
+                ><span data-translate="cloud_connect_guides_main"></span>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
+    </oui-header>
+</div>

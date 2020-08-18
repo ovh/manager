@@ -1,12 +1,22 @@
-import { find, head, isEmpty, map, remove, set, sortBy, values } from 'lodash';
+import {
+  compact,
+  find,
+  head,
+  isEmpty,
+  map,
+  remove,
+  set,
+  sortBy,
+  values,
+} from 'lodash';
 import CloudConnectPop from './cloud-connect-pop.class';
 
 import { POP_TYPE_CONSTANT, STATUS } from './cloud-connect.constants';
 
 export default class CloudConnect {
   constructor(cloudConnect) {
-    set(cloudConnect, 'id', cloudConnect.uuid);
     Object.assign(this, cloudConnect);
+    this.id = cloudConnect.uuid;
     this.datacenterConfigurations = [];
     this.availableDatacenters = [];
     this.popConfiguration = {};
@@ -90,7 +100,8 @@ export default class CloudConnect {
   }
 
   getFirstPopConfiguration() {
-    return this.getPopConfiguration(this.interfaceList[0]);
+    const pop = map(this.interfaceList, (id) => this.getPopConfiguration(id));
+    return compact(pop)[0];
   }
 
   setLoadingPopConfiguration(loading) {
@@ -146,10 +157,12 @@ export default class CloudConnect {
     );
   }
 
-  setInterface(ccInterface) {
-    if (ccInterface.id) {
-      this.interfaces[ccInterface.id] = ccInterface;
-    }
+  setInterface(interfaces) {
+    map(interfaces, (item) => {
+      if (item.id) {
+        this.interfaces[item.id] = item;
+      }
+    });
   }
 
   getInterface(interfaceId) {
@@ -179,5 +192,12 @@ export default class CloudConnect {
 
   isL3PopType() {
     return this.popType === POP_TYPE_CONSTANT.L3;
+  }
+
+  canCreateDc() {
+    return !find(
+      this.datacenterConfigurations,
+      (dc) => dc.status === STATUS.INIT,
+    );
   }
 }

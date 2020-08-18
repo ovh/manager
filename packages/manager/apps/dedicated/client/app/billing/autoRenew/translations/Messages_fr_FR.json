@@ -122,6 +122,7 @@
   "billing_autorenew_service_type_cloud_project": "Projet Cloud",
   "billing_autorenew_service_type_WEBCOACH": "WebCoach",
   "billing_autorenew_service_type_webcoach": "WebCoach",
+  "billing_autorenew_service_type_OVH_CLOUD_CONNECT": "OVHcloud Connect",
   "billing_export_csv": "Exporter en CSV",
   "billing_common_link_new_window": "(nouvelle fenêtre)",
   "billing_autorenew_renew_action": "Renouveler",

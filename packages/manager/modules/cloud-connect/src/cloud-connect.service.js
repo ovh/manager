@@ -103,12 +103,21 @@ export default class CloudConnectService {
 
   loadAllTasks(cloudConnectId) {
     return this.$http
-      .get(`/ovhCloudConnect/${cloudConnectId}/task`, {
-        headers: {
-          'X-Pagination-Mode': 'CachedObjectList-Pages',
-        },
-      })
-      .then((res) => map(res.data, (task) => new CloudConnectTasks(task)));
+      .get(`/ovhCloudConnect/${cloudConnectId}/task`)
+      .then((res) =>
+        this.$q.all(
+          map(res.data, (taskId) =>
+            this.getTaskDetails(cloudConnectId, taskId),
+          ),
+        ),
+      )
+      .then((res) => res);
+  }
+
+  getTaskDetails(cloudConnectId, taskId) {
+    return this.$http
+      .get(`/ovhCloudConnect/${cloudConnectId}/task/${taskId}`)
+      .then((res) => new CloudConnectTasks(res.data));
   }
 
   saveDescription(cloudConnectId, description) {
@@ -117,7 +126,7 @@ export default class CloudConnectService {
         description,
       })
       .then((res) => {
-        this.clearCache(this.cache.cloudConnect);
+        CloudConnectService.clearCache(this.cache.cloudConnect);
         return res.data;
       });
   }
@@ -158,6 +167,7 @@ export default class CloudConnectService {
       })
       .finally(() => {
         cloudConnect.setLoadingPopConfiguration(false);
+        this.checkPendingTasks(cloudConnect);
       });
   }
 
@@ -200,10 +210,30 @@ export default class CloudConnectService {
             });
         }),
       )
-      .then((interfaces) => cloudConnect.setInterface(interfaces))
+      .then((interfaces) => {
+        cloudConnect.setInterface(interfaces);
+      })
       .finally(() => {
         cloudConnect.setLoadingInterface(false);
       });
+  }
+
+  checkPendingTasks(cloudConnect) {
+    return this.loadAllTasks(cloudConnect.uuid).then((tasks) => {
+      map(tasks, (task) => {
+        if (
+          task.function === 'lockInterface' ||
+          task.function === 'unlockInterface'
+        ) {
+          const pendingInterface = cloudConnect.getInterface(task.resourceId);
+          if (task.function === 'lockInterface') {
+            pendingInterface.setDisabling(true);
+          } else {
+            pendingInterface.setEnabling(true);
+          }
+        }
+      });
+    });
   }
 
   lockInterface(cloudConnectId, interfaceId) {
@@ -257,7 +287,7 @@ export default class CloudConnectService {
       .post(
         `/ovhCloudConnect/${cloudConnectId}/serviceKey/${serviceKeyId}/regenerate`,
       )
-      .then(() => this.clearCache(this.cache.serviceKeys));
+      .then(() => CloudConnectService.clearCache(this.cache.serviceKeys));
   }
 
   sendServiceKey(cloudConnectId, serviceKeyId, email) {
@@ -463,7 +493,7 @@ export default class CloudConnectService {
 
   clearAllCache() {
     forOwn(this.cache, (cacheName) => {
-      this.clearCache(cacheName);
+      CloudConnectService.clearCache(cacheName);
     });
   }
 }

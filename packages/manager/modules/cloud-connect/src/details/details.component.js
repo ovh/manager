@@ -4,6 +4,7 @@ export default {
   bindings: {
     cloudConnect: '<',
     guideUrl: '<',
+    clearCache: '<',
   },
   template,
 };

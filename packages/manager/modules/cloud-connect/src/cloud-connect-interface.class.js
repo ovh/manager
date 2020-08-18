@@ -9,6 +9,7 @@ export default class CloudConnectInterface {
     lightLastUpdate,
     outgoingLightStatus,
     status,
+    enabling,
   }) {
     Object.assign(this, {
       id,
@@ -16,13 +17,12 @@ export default class CloudConnectInterface {
       lightLastUpdate,
       outgoingLightStatus,
       status,
+      enabling,
     });
     this.localeLightLastUpdate = moment(
       this.lightLastUpdate,
       'YYYY/MM/DD',
     ).format('LL');
-    this.enabling = false;
-    this.disabling = false;
   }
 
   setEnabling(enabling) {

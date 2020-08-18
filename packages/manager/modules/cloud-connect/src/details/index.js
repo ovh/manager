@@ -5,7 +5,7 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import 'oclazyload';
 
-const moduleName = 'ovhCloudConnectLazyLoading';
+const moduleName = 'ovhCloudConnectDetailsLazyLoading';
 
 angular
   .module(moduleName, [
@@ -20,6 +20,7 @@ angular
         url: '/details/:ovhCloudConnectId',
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
           return import('./details.module').then((mod) =>
             $ocLazyLoad.inject(mod.default || mod),
           );
@@ -27,3 +28,5 @@ angular
       });
     },
   );
+
+export default moduleName;

@@ -8,15 +8,17 @@
         </oui-guide-menu-item>
     </oui-guide-menu>
     <oui-header-tabs>
-        <oui-header-tabs-item data-state="cloud-connect.overview"
+        <oui-header-tabs-item
+            data-state="cloud-connect.details.overview"
+            data-ng-click="$ctrl.clearCache()"
             ><span data-translate="cloud_connect_overview"></span
         ></oui-header-tabs-item>
         <oui-header-tabs-item
             data-ng-if="!$ctrl.cloudConnect.isDirectService()"
-            data-state="cloud-connect.service-keys"
+            data-state="cloud-connect.details.service-keys"
             ><span data-translate="cloud_connect_service_keys"></span
         ></oui-header-tabs-item>
-        <oui-header-tabs-item data-state="cloud-connect.tasks"
+        <oui-header-tabs-item data-state="cloud-connect.details.tasks"
             ><span data-translate="cloud_connect_tasks"></span
         ></oui-header-tabs-item>
     </oui-header-tabs>
