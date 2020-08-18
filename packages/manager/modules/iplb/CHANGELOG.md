@@ -1,3 +1,13 @@
+## [1.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.0.1...@ovh-ux/manager-iplb@1.0.2) (2020-08-18)
+
+
+### Bug Fixes
+
+* **locale:** move locale detection in bootstrapApplication ([92d1050](https://github.com/ovh/manager/commit/92d1050613a2466ce2447e2c3d322ae81165530a))
+* **locale:** use user locale from manager-config ([81e8d10](https://github.com/ovh/manager/commit/81e8d1009455d7524ee86a5183a8db517640ef41))
+
+
+
 ## [1.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.0.0...@ovh-ux/manager-iplb@1.0.1) (2020-08-05)
 
 

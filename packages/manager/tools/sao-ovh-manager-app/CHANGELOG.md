@@ -1,3 +1,18 @@
+# [2.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/sao-ovh-manager-app@2.0.0...@ovh-ux/sao-ovh-manager-app@2.1.0) (2020-08-18)
+
+
+### Bug Fixes
+
+* remove typo on module name ([#3425](https://github.com/ovh-ux/manager/issues/3425)) ([a360d97](https://github.com/ovh-ux/manager/commit/a360d979eb83365da9f9a9001ce1d36c962f8fdb))
+
+
+### Features
+
+* enable strictDi by default ([#3443](https://github.com/ovh-ux/manager/issues/3443)) ([f15b4dc](https://github.com/ovh-ux/manager/commit/f15b4dc01ed9a513d69a896dc42a7fc54caa7bc8))
+* update template to use env executor ([a649edd](https://github.com/ovh-ux/manager/commit/a649eddb7019ecf018f85631c4aec50e0f8763f0))
+
+
+
 # [2.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/sao-ovh-manager-app@1.0.5...@ovh-ux/sao-ovh-manager-app@2.0.0) (2020-07-29)
 
 

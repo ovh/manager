@@ -1,3 +1,20 @@
+## [4.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@4.1.0...@ovh-ux/manager-pci@4.1.1) (2020-08-18)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 524] ([3ea02a6](https://github.com/ovh/manager/commit/3ea02a60504ac0efcbfab0da79db613be43ad98f))
+* **i18n:** add missing translations [CDS 525] ([69c06c4](https://github.com/ovh/manager/commit/69c06c408087adb1f8995a38e08f58d6e450ced8))
+* **i18n:** add missing translations [CDS 527] ([2aaf840](https://github.com/ovh/manager/commit/2aaf84060383fcd7aa266eff70c9682642819f79))
+* **i18n:** add missing translations [CDS 532] ([c8184e4](https://github.com/ovh/manager/commit/c8184e4abf33a48ff445b45d091f058fc09647a9))
+* **i18n:** add missing translations [CDS 538] ([d836f37](https://github.com/ovh/manager/commit/d836f377e8c7065eec518efb59c5fbaaebb5cb85))
+* **instance:** add link to vrack on instance creation ([7f0e486](https://github.com/ovh/manager/commit/7f0e48677828f5d4a955cdd93c58510723705bca))
+* **locale:** move locale detection in bootstrapApplication ([92d1050](https://github.com/ovh/manager/commit/92d1050613a2466ce2447e2c3d322ae81165530a))
+* **locale:** use user locale from manager-config ([81e8d10](https://github.com/ovh/manager/commit/81e8d1009455d7524ee86a5183a8db517640ef41))
+* **public-cloud:** revamp instance creation ui ([3caac03](https://github.com/ovh/manager/commit/3caac03dd48ed032fac0a04c59ead200784f0443))
+
+
+
 # [4.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@4.0.1...@ovh-ux/manager-pci@4.1.0) (2020-08-05)
 
 

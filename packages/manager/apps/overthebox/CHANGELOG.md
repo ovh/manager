@@ -1,3 +1,12 @@
+## [5.1.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox-app@5.1.4...@ovh-ux/manager-overthebox-app@5.1.5) (2020-08-18)
+
+
+### Bug Fixes
+
+* **locale:** move locale detection in bootstrapApplication ([92d1050](https://github.com/ovh/manager/commit/92d1050613a2466ce2447e2c3d322ae81165530a))
+
+
+
 ## [5.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox-app@5.1.3...@ovh-ux/manager-overthebox-app@5.1.4) (2020-08-03)
 
 

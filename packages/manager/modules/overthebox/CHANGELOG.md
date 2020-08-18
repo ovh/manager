@@ -1,3 +1,14 @@
+## [6.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.0.3...@ovh-ux/manager-overthebox@6.0.4) (2020-08-18)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 525] ([69c06c4](https://github.com/ovh/manager/commit/69c06c408087adb1f8995a38e08f58d6e450ced8))
+* **locale:** move locale detection in bootstrapApplication ([92d1050](https://github.com/ovh/manager/commit/92d1050613a2466ce2447e2c3d322ae81165530a))
+* **locale:** use locale/language from environment ([472f3c7](https://github.com/ovh/manager/commit/472f3c728a02d34dd4d956af6562bfc3f0b42d70))
+
+
+
 ## [6.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.0.2...@ovh-ux/manager-overthebox@6.0.3) (2020-08-17)
 
 

@@ -1,3 +1,13 @@
+## [2.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-cloud-connect@2.0.1...@ovh-ux/manager-veeam-cloud-connect@2.0.2) (2020-08-18)
+
+
+### Bug Fixes
+
+* **header:** display header tabs ([c281724](https://github.com/ovh/manager/commit/c2817243339f02665f70997b0c8f2242d5c3abb5))
+* **locale:** move locale detection in bootstrapApplication ([92d1050](https://github.com/ovh/manager/commit/92d1050613a2466ce2447e2c3d322ae81165530a))
+
+
+
 ## [2.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-cloud-connect@2.0.0...@ovh-ux/manager-veeam-cloud-connect@2.0.1) (2020-07-29)
 
 

@@ -1,3 +1,27 @@
+# [11.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@10.0.2...@ovh-ux/manager-core@11.0.0) (2020-08-18)
+
+
+### Bug Fixes
+
+* **core:** use locale from config ([35761a7](https://github.com/ovh/manager/commit/35761a74fe4b1c38a91257005ddedf76702291b9))
+* **locale:** move locale detection in bootstrapApplication ([92d1050](https://github.com/ovh/manager/commit/92d1050613a2466ce2447e2c3d322ae81165530a))
+* **locale:** use locale/language from environment ([472f3c7](https://github.com/ovh/manager/commit/472f3c728a02d34dd4d956af6562bfc3f0b42d70))
+* **locale:** use user locale from manager-config ([81e8d10](https://github.com/ovh/manager/commit/81e8d1009455d7524ee86a5183a8db517640ef41))
+
+
+### Code Refactoring
+
+* **locale:** remove unused locale parts ([5a5cfc8](https://github.com/ovh/manager/commit/5a5cfc88e6c05ec75b23d953541c3fc00b841ca7))
+
+
+### BREAKING CHANGES
+
+* **locale:** `TranslateService`and `CORE_LANGUAGES` are removed
+
+Signed-off-by: Cyrille Bourgois <cyrille.bourgois@corp.ovh.com>
+
+
+
 ## [10.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@10.0.1...@ovh-ux/manager-core@10.0.2) (2020-07-31)
 
 
