@@ -366,7 +366,6 @@
   "emailpro_GROUPS_delegation_doing_message": "Aktualizacja uprawnień delegacji zostanie wykonana.",
   "emailpro_GROUPS_delegation_error_message": "Wystąpił błąd podczas aktualizacji uprawnień delegacji.",
   "emailpro_GROUPS_delegation_success_message": "Aktualizacja uprawnień delegacji zostanie wykonana.",
-  "emailpro_GROUPS_partial_account": "Wystąpił błąd podczas pobierania informacji: {0}",
   "emailpro_action_license_history_fail": "Wystąpił błąd podczas pobierania informacji z monitoringu.",
   "emailpro_action_license_history_type_outlook": "Licencje Outlook",
   "emailpro_action_order_space_disk": "Zamów dodatkową przestrzeń",

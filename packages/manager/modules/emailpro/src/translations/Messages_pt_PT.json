@@ -366,7 +366,6 @@
   "emailpro_GROUPS_delegation_doing_message": "A atualização dos direitos de delegação vai ser efetuada.",
   "emailpro_GROUPS_delegation_error_message": "Ocorreu um erro aquando da atualização dos direitos de delegação.",
   "emailpro_GROUPS_delegation_success_message": "A atualização dos direitos de delegação vai ser efetuada.",
-  "emailpro_GROUPS_partial_account": "Ocorreu um erro aquando do carregamento: {0}",
   "emailpro_action_license_history_fail": "Ocorreu um erro aquando do carregamento das informações de monitorização.",
   "emailpro_action_license_history_type_outlook": "Licenças Outlook",
   "emailpro_action_order_space_disk": "Solicitar espaço adicional",
