@@ -1,3 +1,13 @@
+## [9.0.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.0.2...@ovh-ux/ng-ovh-web-universe-components@9.0.3) (2020-08-18)
+
+
+### Bug Fixes
+
+* **email-domain:** use correct poller reference ([#3423](https://github.com/ovh/manager/issues/3423)) ([1372777](https://github.com/ovh/manager/commit/1372777ceddd712b4a8d3d4790610f8473e67ae5))
+* **wuc:** remove useless call for free cart option ([83ac33c](https://github.com/ovh/manager/commit/83ac33c7e588a44c69df0b885a1b15e9349de655))
+
+
+
 ## [9.0.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.0.1...@ovh-ux/ng-ovh-web-universe-components@9.0.2) (2020-08-17)
 
 

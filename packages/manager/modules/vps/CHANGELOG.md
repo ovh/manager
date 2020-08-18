@@ -1,3 +1,13 @@
+## [2.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.0.1...@ovh-ux/manager-vps@2.0.2) (2020-08-18)
+
+
+### Bug Fixes
+
+* **language:** use convertLanguageFromOVHToBCP47 from config ([92eec09](https://github.com/ovh/manager/commit/92eec09b64fa5963d0e0dbc41e904f1f999f6325))
+* **locale:** move locale detection in bootstrapApplication ([92d1050](https://github.com/ovh/manager/commit/92d1050613a2466ce2447e2c3d322ae81165530a))
+
+
+
 ## [2.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.0.0...@ovh-ux/manager-vps@2.0.1) (2020-07-29)
 
 

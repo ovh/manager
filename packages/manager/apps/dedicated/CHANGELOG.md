@@ -1,3 +1,16 @@
+## [13.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@13.1.0...@ovh-ux/manager-dedicated@13.1.1) (2020-08-18)
+
+
+### Bug Fixes
+
+* **hpc:** update text for new range ([28797f9](https://github.com/ovh/manager/commit/28797f9532374d9448823441016efab63794e17f))
+* **i18n:** add missing translations [CDS 526] ([350155a](https://github.com/ovh/manager/commit/350155a53c842595e6ceb5f42b3628f6f5ba12af))
+* **locale:** move locale detection in bootstrapApplication ([92d1050](https://github.com/ovh/manager/commit/92d1050613a2466ce2447e2c3d322ae81165530a))
+* **locale:** use locale/language from environment ([472f3c7](https://github.com/ovh/manager/commit/472f3c728a02d34dd4d956af6562bfc3f0b42d70))
+* **locale:** use user locale from manager-config ([81e8d10](https://github.com/ovh/manager/commit/81e8d1009455d7524ee86a5183a8db517640ef41))
+
+
+
 # [13.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@13.0.2...@ovh-ux/manager-dedicated@13.1.0) (2020-08-05)
 
 

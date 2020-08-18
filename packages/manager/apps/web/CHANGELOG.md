@@ -1,3 +1,21 @@
+# [15.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.1.0...@ovh-ux/manager-web@15.2.0) (2020-08-18)
+
+
+### Bug Fixes
+
+* **email-domain.redirection.create:** prevent TypeError on validation ([#3461](https://github.com/ovh/manager/issues/3461)) ([8ea7f12](https://github.com/ovh/manager/commit/8ea7f122ce43bf15d1a0051184a24f13a7496b6c))
+* **web.freewebhosting:** prevent validation if agreement is not checked ([6cfc0d9](https://github.com/ovh/manager/commit/6cfc0d96eb8fa2637f45d20ddf3b8d0b2f6b7541))
+* prevent TypeError when accessing to guides constant ([#3426](https://github.com/ovh/manager/issues/3426)) ([a476af3](https://github.com/ovh/manager/commit/a476af35718c86b479f08a158c504fb204635746))
+* **i18n:** add missing translations [CDS 530] ([67270b3](https://github.com/ovh/manager/commit/67270b3ebced325d8bab98a0e2a267d14e65f253))
+* **locale:** move locale detection in bootstrapApplication ([92d1050](https://github.com/ovh/manager/commit/92d1050613a2466ce2447e2c3d322ae81165530a))
+
+
+### Features
+
+* **private-database:** add mysql 8.0 label ([#3456](https://github.com/ovh/manager/issues/3456)) ([fb70f22](https://github.com/ovh/manager/commit/fb70f2247cff32de5acb9944d051dd684b018ced))
+
+
+
 # [15.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.0.3...@ovh-ux/manager-web@15.1.0) (2020-08-05)
 
 

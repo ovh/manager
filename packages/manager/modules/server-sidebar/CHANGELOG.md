@@ -1,3 +1,12 @@
+## [2.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@2.0.3...@ovh-ux/manager-server-sidebar@2.0.4) (2020-08-18)
+
+
+### Bug Fixes
+
+* **locale:** move locale detection in bootstrapApplication ([92d1050](https://github.com/ovh/manager/commit/92d1050613a2466ce2447e2c3d322ae81165530a))
+
+
+
 ## [2.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@2.0.2...@ovh-ux/manager-server-sidebar@2.0.3) (2020-08-07)
 
 
