@@ -227,23 +227,6 @@
                             />
                         </td>
                     </tr>
-
-                    <tr
-                        data-ng-repeat="account in accounts.list.results track by account.id | orderBy:'id':false"
-                    >
-                        <td colspan="4">
-                            <div class="text-warning">
-                                <span
-                                    class="icon-warning-sign"
-                                    aria-hidden="true"
-                                ></span>
-                                <span
-                                    data-ng-bind="account.id"
-                                    data-oui-tooltip="{{ 'emailpro_GROUPS_partial_account' | translate: { t0: account.message } }}"
-                                ></span>
-                            </div>
-                        </td>
-                    </tr>
                 </tbody>
             </table>
             <div
