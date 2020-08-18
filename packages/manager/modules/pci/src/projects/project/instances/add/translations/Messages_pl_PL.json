@@ -44,5 +44,7 @@
   "pci_projects_project_instances_add_region_selected_title": "Wybrana lokalizacja: {{location}}",
   "pci_projects_project_instances_add_region_display_nonavailable": "Wyświetl niedostępne lokalizacje",
   "pci_project_instances_instance_add_choose_model": "Zmień model",
-  "pci_projects_project_instances_add_automated_backup_recommended": "Zalecane"
+  "pci_projects_project_instances_add_automated_backup_recommended": "Zalecane",
+  "pci_projects_project_instances_add_privateNetwork_description": "Instancje Public Cloud połączone są domyślnie w ramach sieci publicznej, możesz dodać sieć prywatną.",
+  "pci_projects_project_instances_add_privateNetwork_add": "Utwórz prywatną sieć"
 }
