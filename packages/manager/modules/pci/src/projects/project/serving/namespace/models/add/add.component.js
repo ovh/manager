@@ -8,6 +8,8 @@ export default {
     namespace: '<',
     presetImages: '<',
     flavors: '<',
+    frameworks: '<',
+    backends: '<',
     user: '<',
     pricesCatalog: '<',
     goToContainer: '<',
