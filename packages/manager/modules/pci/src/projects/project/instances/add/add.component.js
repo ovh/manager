@@ -17,6 +17,8 @@ export default {
     cancelLink: '<',
     prices: '<',
     quotaLink: '<',
+    regionsLink: '<',
+    addPrivateNetworksLink: '<',
     selectedCategory: '@?',
   },
   controller,

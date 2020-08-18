@@ -678,7 +678,7 @@ export default class {
    * Kill responder tasks polling
    */
   killPollResponderTasks() {
-    this.Poll.kill({ namespace: 'email.domain.email.responder' });
+    this.Poller.kill({ namespace: 'email.domain.email.responder' });
   }
 
   /**

@@ -1,6 +1,5 @@
 {
-
-  "pci_project_instances_available_only": "Masquer les options non disponibles",
+  "pci_project_instances_display_nonavailable": "Montrer les images indisponibles",
   "pci_project_instances_os_linux": "Distributions Unix",
   "pci_project_instances_os_windows": "Distributions Windows",
   "pci_project_instances_apps": "Distributions + Apps",
@@ -18,5 +17,4 @@
   "pci_project_instances_distribution_windows_server_2016": "Windows Server 2016",
   "pci_project_instances_distribution_windows_other": "Autres distributions Windows",
   "pci_project_instances_distribution_version": "Version"
-
 }

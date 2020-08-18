@@ -32,7 +32,7 @@ export default /* @ngInject */ ($stateProvider) => {
       ) => async (autoPayWithPreferredPaymentMethod, cartId) => {
         try {
           const order = await HostingCdnOrderService.checkoutOrderCart(
-            autoPayWithPreferredPaymentMethod,
+            isOptionFree || autoPayWithPreferredPaymentMethod,
             cartId,
           );
 

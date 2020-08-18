@@ -1,6 +1,8 @@
 import flatten from 'lodash/flatten';
 import map from 'lodash/map';
 
+import { Environment } from '@ovh-ux/manager-config';
+
 angular.module('managerApp').controller(
   'TelecomTelephonyGuidesCtrl',
   class TelecomTelephonyGuidesCtrl {
@@ -17,17 +19,7 @@ angular.module('managerApp').controller(
       this.count = null;
 
       this.guides = this.constant.TELEPHONY_GUIDES;
-      if (localStorage['univers-selected-language']) {
-        this.language = localStorage['univers-selected-language'].replace(
-          /-.*$|_.*$/,
-          '',
-        );
-      } else if (navigator.language || navigator.userLanguage) {
-        this.language = (navigator.language || navigator.userLanguage).replace(
-          /-.*$|_.*$/,
-          '',
-        );
-      }
+      this.language = Environment.getUserLanguage();
       this.countGuides();
     }
 

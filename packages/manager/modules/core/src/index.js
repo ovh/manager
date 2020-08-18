@@ -1,4 +1,4 @@
-import { Environment } from '@ovh-ux/manager-config';
+import { Environment, LANGUAGES } from '@ovh-ux/manager-config';
 
 import angular from 'angular';
 import { set, kebabCase } from 'lodash-es';
@@ -23,14 +23,12 @@ import '@uirouter/angularjs';
 import coreConfig from './config';
 import ouiConfig from './oui-angular';
 import translateFactory from './translate/translate.factory';
-import translateServiceProvider from './translate/translate.service';
 import sessionService from './session/session.service';
 import redirectionFilter from './redirection/redirection.filter';
 import redirectionService from './redirection/redirection.service';
 
 import {
   HOSTNAME_REGIONS,
-  LANGUAGES,
   MANAGER_URLS,
   REDIRECT_URLS,
   URLS,
@@ -53,7 +51,6 @@ angular
     ngOvhSsoAuth,
   ])
   .constant('constants', {})
-  .constant('CORE_LANGUAGES', LANGUAGES)
   .provider(
     'CORE_MANAGER_URLS',
     /* @ngInject */ (coreConfigProvider) => ({
@@ -63,34 +60,25 @@ angular
   )
   .constant('CORE_REDIRECT_URLS', REDIRECT_URLS)
   .constant('CORE_URLS', URLS)
-  .provider('TranslateService', translateServiceProvider)
   .factory('TranslateInterceptor', translateFactory)
-  .config(
-    (
-      $translateProvider,
-      translatePluggableLoaderProvider,
-      TranslateServiceProvider,
-    ) => {
-      TranslateServiceProvider.setUserLocale();
+  .config(($translateProvider, translatePluggableLoaderProvider) => {
+    const defaultLanguage = Environment.getUserLocale();
 
-      const defaultLanguage = TranslateServiceProvider.getUserLocale();
+    $translateProvider.useLoader('translatePluggableLoader');
 
-      $translateProvider.useLoader('translatePluggableLoader');
+    translatePluggableLoaderProvider.useLoader('asyncLoader');
 
-      translatePluggableLoaderProvider.useLoader('asyncLoader');
+    $translateProvider.useLoaderCache(true);
+    $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
+    $translateProvider.useMissingTranslationHandler(
+      'translateMissingTranslationHandler',
+    );
 
-      $translateProvider.useLoaderCache(true);
-      $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
-      $translateProvider.useMissingTranslationHandler(
-        'translateMissingTranslationHandler',
-      );
+    $translateProvider.preferredLanguage(defaultLanguage);
 
-      $translateProvider.preferredLanguage(defaultLanguage);
-
-      $translateProvider.use(defaultLanguage);
-      $translateProvider.fallbackLanguage(LANGUAGES.fallback);
-    },
-  )
+    $translateProvider.use(defaultLanguage);
+    $translateProvider.fallbackLanguage(LANGUAGES.fallback);
+  })
   .service('SessionService', sessionService)
   .service('RedirectionService', redirectionService)
   .filter('redirection', redirectionFilter)
@@ -99,13 +87,13 @@ angular
     'translateMissingTranslationHandler',
     ($sanitize) => (translationId) => $sanitize(translationId),
   )
-  .run((tmhDynamicLocaleCache, tmhDynamicLocale, TranslateService) => {
+  .run((tmhDynamicLocaleCache, tmhDynamicLocale) => {
     const injectAngularLocale = (lang) =>
       tmhDynamicLocaleCache.put(
         lang,
         angular.injector(['ngLocale']).get('$locale'),
       );
-    const defaultLanguage = TranslateService.getUserLocale();
+    const defaultLanguage = Environment.getUserLocale();
     const angularLocale = kebabCase(defaultLanguage);
 
     let angularLocalePromise;
@@ -151,18 +139,18 @@ angular
       .then(() => tmhDynamicLocale.set(angularLocale));
   })
   .run(
-    /* @ngInject */ ($rootScope, TranslateService) => {
+    /* @ngInject */ ($rootScope) => {
       $rootScope.$on('lang.onChange', (event, { lang }) => {
-        TranslateService.setUserLocale(lang);
+        Environment.setUserLocale(lang);
         window.location.reload();
       });
     },
   )
   .run(
     /* @ngInject */ ($document) => {
-      let { 'univers-selected-language': lang } = localStorage;
-      [lang] = lang.split('_');
-      $document.querySelectorAll('html')[0].setAttribute('lang', lang);
+      $document
+        .querySelectorAll('html')[0]
+        .setAttribute('lang', Environment.getUserLanguage());
     },
   )
   .run((ssoAuthentication /* , User */) => {
@@ -282,6 +270,9 @@ export const bootstrapApplication = () => {
     }))
     .then((configuration) => {
       Environment.setRegion(configuration.region);
-      return configuration;
+      return {
+        ...configuration,
+        locale: Environment.getUserLocale(),
+      };
     });
 };

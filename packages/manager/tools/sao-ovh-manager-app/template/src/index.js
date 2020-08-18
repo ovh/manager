@@ -1,11 +1,17 @@
-<% const pascalcasedName = this.camelcase(name, { pascalCase: true }) -%>import 'script-loader!jquery'; // eslint-disable-line
-import '@ovh-ux/manager-<%= name %>';
-import { Environment } from '@ovh-ux/manager-config';
-import angular from 'angular';
+import 'script-loader!jquery'; // eslint-disable-line
+import 'whatwg-fetch';
+import { attach as attachPreloader } from '@ovh-ux/manager-preloader';
+import { bootstrapApplication } from '@ovh-ux/manager-core';
 
-Environment.setRegion(__WEBPACK_REGION__);
+attachPreloader();
 
-angular
-  .module('<%= this.camelcase(name) %>App', [
-    'ovhManager<%= pascalcasedName %>',
-  ]);
+bootstrapApplication().then(({ region }) => {
+  import(`./config-${region}`)
+    .catch(() => {})
+    .then(() => import('./app.module'))
+    .then(({ default: application }) => {
+      angular.bootstrap(document.body, [application], {
+        strictDi: true,
+      });
+    });
+});

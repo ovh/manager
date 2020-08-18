@@ -6,7 +6,7 @@
   "pci_project_flavors_category_definition_vps": "Instancje Sandbox są odpowiednie do testowania i programowania. Ich wydajność może się nieznacznie zmieniać w czasie.",
   "pci_project_flavors_category_definition_none": "Brak modelu dostępnego dla tej kategorii",
   "pci_project_flavors_disk_size": "Przestrzeń dyskowa jest mniejsza od aktualnego modelu",
-  "pci_project_flavors_spec_ram": "Pamięć operacyjna:",
+  "pci_project_flavors_spec_ram": "{{ram}} RAM",
   "pci_project_flavors_spec_core": "Procesor:",
   "pci_project_flavors_spec_core_details": "{{vcores}} vCores ({{frequency}} GHz)",
   "pci_project_flavors_spec_disk": "Przestrzeń dyskowa:",
@@ -17,6 +17,7 @@
   "pci_project_flavors_quota": "Zwiększ limity",
   "pci_project_flavors_category_definition_iops": "Instancje IOPS gwarantują najszybsze transakcje dyskowe spośród rozwiązań Public Cloud.",
   "pci_project_flavors_spec_model": "Model:",
-  "pci_project_flavors_spec_nvme": "Dyski NVMe",
-  "pci_project_flavors_category_definition_baremetal": "Instancje bare metal oferują serwery fizyczne na żądanie, które są dostarczane w ciągu kilku minut i są fakturowane w trybie godzinowym lub miesięcznym."
+  "pci_project_flavors_spec_nvme": "{{capacity}} NVMe",
+  "pci_project_flavors_category_definition_baremetal": "Instancje bare metal oferują serwery fizyczne na żądanie, które są dostarczane w ciągu kilku minut i są fakturowane w trybie godzinowym lub miesięcznym.",
+  "pci_project_flavors_spec_nvme_multiple": "{{count}} x {{capacity}} NVMe"
 }

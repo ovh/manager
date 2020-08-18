@@ -16,6 +16,7 @@
   "privateDatabase_dashboard_version_mysql_55": "MySQL 5.5",
   "privateDatabase_dashboard_version_mysql_56": "MySQL 5.6",
   "privateDatabase_dashboard_version_mysql_57": "MySQL 5.7",
+  "privateDatabase_dashboard_version_mysql_80": "MySQL 8.0",
   "privateDatabase_dashboard_version_postgresql_94": "PostgreSQL 9.4",
   "privateDatabase_dashboard_version_postgresql_95": "PostgreSQL 9.5 ",
   "privateDatabase_dashboard_version_postgresql_96": "PostgreSQL 9.6 ",

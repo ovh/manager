@@ -3,7 +3,6 @@ import template from './activate.html';
 
 export default {
   bindings: {
-    autoPayWithPreferredPaymentMethod: '<',
     goBack: '<',
     serviceName: '<',
     serviceOption: '<',

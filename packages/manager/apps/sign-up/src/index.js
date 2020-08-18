@@ -1,5 +1,5 @@
 // set environment
-import { Environment } from '@ovh-ux/manager-config';
+import { Environment, findLanguage } from '@ovh-ux/manager-config';
 
 /* eslint-disable import/no-webpack-loader-syntax, import/extensions */
 import 'script-loader!jquery';
@@ -54,7 +54,7 @@ angular
     },
   )
   .config(
-    /* @ngInject */ ($translateProvider, TranslateServiceProvider) => {
+    /* @ngInject */ ($translateProvider) => {
       const getQueryVariable = (variable) => {
         const { hash } = window.location;
         const query = hash.substring(hash.indexOf('?') + 1);
@@ -74,11 +74,8 @@ angular
         window.navigator.userLanguage ||
         'en';
 
-      const userLocale = TranslateServiceProvider.findLanguage(
-        language,
-        language,
-      );
-      TranslateServiceProvider.setUserLocale(userLocale);
+      const userLocale = findLanguage(language);
+      Environment.setUserLocale(userLocale);
       $translateProvider.use(userLocale);
     },
   )

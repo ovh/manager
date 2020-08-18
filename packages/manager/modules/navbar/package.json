@@ -13,9 +13,7 @@
     "directory": "packages/manager/components/navbar"
   },
   "license": "BSD-3-Clause",
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
-  "browser": "./dist/umd/welcome.js",
+  "main": "./dist/esm/index.js",
   "files": [
     "dist"
   ],
@@ -38,7 +36,7 @@
   },
   "peerDependencies": {
     "@ovh-ux/manager-config": "^0.4.0 || ^1.0.0",
-    "@ovh-ux/manager-core": "^9.0.0 || ^10.0.0",
+    "@ovh-ux/manager-core": "^10.0.0 || ^11.0.0",
     "@ovh-ux/ng-at-internet": "^5.1.0",
     "@ovh-ux/ng-ovh-sso-auth": "^4.2.3",
     "@ovh-ux/ng-ovh-user-pref": "^2.0.0",

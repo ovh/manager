@@ -1,5 +1,5 @@
 {
-  "kube_error": "Ocorreu um erro ao carregar as informações: {{ message }}",
+  "kube_error": "Ocorreu um erro ao carregar as informações: {{message}}",
   "kube_nodes": "Nós",
   "kube_nodes_add_button": "Adicionar um nó",
   "kube_nodes_delete": "Eliminar o nó",
@@ -14,10 +14,10 @@
   "kube_nodes_flavor": "Modelo de instância",
   "kube_nodes_flavor_error": "Ocorreu um erro ao carregar o tipo de instância associada",
   "kube_nodes_project_error": "Ocorreu um erro ao carregar o projeto associado",
-  "kube_nodes_description_project_1": "O seu cluster Kubernetes utiliza nós para alojar os seus containers e serviços. Todos os nós serão executados no projeto Public Cloud {{ description }} (mais tarde, poderá alterá-lo).",
+  "kube_nodes_description_project_1": "O seu cluster Kubernetes utiliza nós para alojar os seus containers e serviços. Todos os seus nós serão lançados no projeto Public Cloud {{ description }} (permitiremos a alteração disto no futuro).",
   "kube_nodes_description_project_2": "Estas instâncias são executadas com faturação à hora standard. Consulte o seu projeto Public Cloud para obter mais informações sobre a faturação ou passar para a opção de faturação mensal.",
-  "kube_nodes_quota_description": "Para controlar os seus consumos cloud, o seu projeto tem um limite de recursos.",
-  "kube_nodes_quota_more": "Se necessitar de mais recursos, poderá pedir à nossa equipa ao clicar no botão abaixo.",
+  "kube_nodes_quota_description": "Para controlar os seus consumos cloud, o seu projeto tem um limite relativo aos recursos que podem ser usados.",
+  "kube_nodes_quota_more": "Se precisar de mais recursos, pode solicitá-los à nossa equipa, clicando no botão abaixo.",
   "kube_nodes_quota_ask_more": "Aumentar os meus limites",
   "kube_nodes_name": "Nome",
   "kube_nodes_common_add": "Adicionar",
@@ -34,7 +34,7 @@
   "kube_nodes_status_RESETTING": "Reinicialização em curso",
   "kube_nodes_instances_error": "Ocorreu um erro ao carregar as informações de faturação: {{ message }}",
   "kube_nodes_billing_type": "Tipo de faturação",
-  "kube_nodes_billing_monthly": "Mensal ",
+  "kube_nodes_billing_monthly": "Mensal",
   "kube_nodes_billing_hourly": "À hora",
   "kube_nodes_billing_monthly_pending": "Passar para plano mensal",
   "kube_nodes_switch_to_monthly_billing_title": "Passar para faturação mensal",
@@ -45,5 +45,7 @@
   "kube_nodes_delete_many": "Eliminar nós",
   "kube_nodes_delete_select_nodes": "Selecione o número de nós que pretende eliminar",
   "kube_nodes_add_nodes": "Adicionar nós",
-  "kube_nodes_delete_nodes": "Eliminar nós"
+  "kube_nodes_delete_nodes": "Eliminar nós",
+  "kube_nodes_status_RESIZING": "Redimensionamento",
+  "kube_nodes_common_actions": "Ações"
 }

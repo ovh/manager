@@ -9,7 +9,13 @@
     <oui-step-form
         id="flavor"
         name="instances_add_flavor"
-        data-header="{{:: 'pci_projects_project_instances_add_flavor_title' | translate }}"
+        data-header="{{ (($ctrl.currentStep > 0)
+            ? 'pci_projects_project_instances_add_flavor_selected_title'
+            : 'pci_projects_project_instances_add_flavor_title')
+            | translate: {
+                model: ($ctrl.model.flavorGroup.name | uppercase),
+                price: $ctrl.model.flavorGroup.prices.monthly.text
+            } }}"
         data-valid="$ctrl.model.flavorGroup"
         data-editable="!$ctrl.isLoading"
         data-navigation="$ctrl.model.flavorGroup"
@@ -29,118 +35,119 @@
 
     <oui-step-form
         name="instances_add_region"
-        data-header="{{:: 'pci_projects_project_instances_add_region_title' | translate }}"
-        data-valid="$ctrl.model.datacenter"
+        data-header="{{
+            (($ctrl.currentStep > 1)
+                ? 'pci_projects_project_instances_add_region_selected_title'
+                : 'pci_projects_project_instances_add_region_title') | translate: {
+                    location: $ctrl.model.location
+                }
+            }}"
+        data-valid="$ctrl.model.datacenter && $ctrl.isRegionAvailable($ctrl.model.datacenter)"
+        data-prevent-next="true"
         data-navigation="$ctrl.model.datacenter"
         data-on-focus="$ctrl.onRegionFocus()"
         data-on-submit="$ctrl.onRegionChange()"
         data-editable="!$ctrl.isLoading"
     >
-        <div data-ng-if="!$ctrl.displaySelectedRegion">
-            <oui-checkbox data-model="$ctrl.showOnlyAvailableRegions">
-                <span
-                    data-translate="pci_project_instances_available_only"
-                ></span>
-            </oui-checkbox>
-
+        <div
+            data-ng-if="!$ctrl.displaySelectedRegion && $ctrl.currentStep === 1"
+        >
             <oui-tabs class="mb-4">
                 <oui-tabs-item
-                    data-ng-repeat="(continent, datacentersLocation) in $ctrl.regions"
+                    data-ng-repeat="(continent, datacentersLocation) in $ctrl.availableRegions track by continent"
                     data-heading="{{:: continent }}"
                 >
                     <div class="container-fluid px-0">
                         <div class="row">
                             <oui-select-picker
-                                class="d-inline-block col-md-6 col-xl-4 my-3"
-                                data-name="{{ continent + '-' + location }}"
-                                data-ng-repeat="(location, datacenter) in datacentersLocation"
-                                data-model="$ctrl.model.location"
+                                class="d-inline-block col-md-6 col-xl-3 my-3"
+                                data-ng-repeat="(location, datacenters) in datacentersLocation track by location"
+                                data-ng-if="datacenters.length"
                                 data-label="{{ location }}"
-                                data-values="[location]"
                                 data-variant="light"
-                                data-ng-if="!$ctrl.showOnlyAvailableRegions || $ctrl.isLocationAvailable(datacenter)"
-                                data-on-change="$ctrl.model.datacenter = null"
-                                data-required
+                                data-picture="flag-icon {{ ::datacenters[0].icon }} flag flag__icon-sm"
+                                data-model="$ctrl.model.datacenter"
+                                data-on-change="$ctrl.model.location = location"
+                                data-match="name"
+                                data-values="datacenters"
                             >
                             </oui-select-picker>
                         </div>
-
-                        <div
-                            data-ng-if="datacentersLocation[$ctrl.model.location]"
+                        <oui-checkbox
+                            data-ng-if="$ctrl.constructor.hasRegions($ctrl.unavailableRegions[continent])"
+                            data-model="$ctrl.showNonAvailableRegions"
                         >
-                            <p
-                                data-translate="pci_projects_project_instances_add_region_datacenter_title"
-                            ></p>
-                            <p
-                                data-ng-if="datacentersLocation[$ctrl.model.location][0].hasExtraBandwidthCost()"
-                                data-translate="pci_project_instances_instance_add_region_bandwidth_extra"
-                                data-translate-values="{
-                                    price: $ctrl.getBandwidthExtraCost(datacentersLocation[$ctrl.model.location][0])
-                                }"
-                            ></p>
+                            <span
+                                data-translate="pci_projects_project_instances_add_region_display_nonavailable"
+                            ></span>
+                        </oui-checkbox>
+                        <div data-ng-if="$ctrl.showNonAvailableRegions">
                             <div class="row">
                                 <oui-select-picker
-                                    data-ng-repeat="datacenter in datacentersLocation[$ctrl.model.location] track by datacenter.name"
-                                    class="d-inline-block col-md-6 col-xl-4 my-3"
-                                    data-name="{{ continent + '-' + datacenter.name }}"
-                                    data-model="$ctrl.model.datacenter"
-                                    data-label="{{:: datacenter.name }}"
-                                    data-values="[datacenter]"
+                                    class="d-inline-block col-md-6 col-xl-3 my-3"
+                                    data-ng-repeat="(location, datacenters) in $ctrl.unavailableRegions[continent] track by location"
+                                    data-ng-if="datacenters.length"
+                                    data-label="{{ location }}"
+                                    data-disabled="true"
                                     data-variant="light"
-                                    data-disabled="!$ctrl.isRegionAvailable(datacenter)"
-                                    data-ng-if="!$ctrl.showOnlyAvailableRegions || $ctrl.isRegionAvailable(datacenter)"
+                                    data-picture="flag-icon {{ ::datacenters[0].icon }} flag flag__icon-sm"
+                                    data-model="$ctrl.model.datacenter"
+                                    data-match="name"
+                                    data-values="datacenters"
                                 >
-                                    <oui-select-picker-section
-                                        data-ng-if="!$ctrl.isRegionAvailable(datacenter)"
-                                        data-ng-switch="$ctrl.getUnavailabilityReason(datacenter)"
-                                    >
-                                        <button
-                                            type="button"
-                                            class="oui-button oui-button_ghost"
-                                            data-ng-switch-when="UNAVAILABLE"
-                                            data-ng-click="$ctrl.currentStep = 0"
-                                        >
-                                            <span
-                                                data-translate="pci_project_instances_instance_add_region_unavailable"
-                                            ></span>
-                                        </button>
-                                        <a
-                                            class="oui-button oui-button_ghost"
-                                            data-ng-switch-when="INACTIVE"
-                                            data-ui-sref="pci.projects.project.regions"
-                                        >
-                                            <span
-                                                data-translate="pci_project_instances_instance_add_region_activate"
-                                            ></span>
-                                        </a>
-                                        <a
-                                            class="oui-button oui-button_ghost"
-                                            data-ng-switch-default
-                                            data-ui-sref="pci.projects.project.quota"
-                                        >
-                                            <span
-                                                data-translate="pci_project_instances_instance_add_region_quota"
-                                            >
-                                            </span>
-                                        </a>
-                                    </oui-select-picker-section>
                                 </oui-select-picker>
                             </div>
+                            <div
+                                class="d-flex justify-content-between"
+                                data-ng-if="$ctrl.constructor.hasRegions($ctrl.unavailableRegions[continent])"
+                            >
+                                <span
+                                    data-translate="pci_project_instances_instance_add_region_unavailable"
+                                ></span>
+                                <button
+                                    type="button"
+                                    class="oui-button oui-button_ghost"
+                                    data-ng-click="$ctrl.currentStep = 0"
+                                >
+                                    <span
+                                        data-translate="pci_project_instances_instance_add_choose_model"
+                                    ></span>
+                                    <i
+                                        class="oui-icon button-icon oui-icon-arrow-right"
+                                        aria-hidden="true"
+                                    ></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div
+                            data-ng-if="$ctrl.model.datacenter && !$ctrl.isRegionAvailable($ctrl.model.datacenter)"
+                            data-ng-switch="$ctrl.getUnavailabilityReason($ctrl.model.datacenter)"
+                        >
+                            <p
+                                class="warning-text"
+                                data-ng-switch-when="INACTIVE"
+                                data-ng-bind-html="'pci_project_instances_instance_add_region_activate' | translate: {
+                                    regionsLink: $ctrl.regionsLink
+                                }"
+                            ></p>
+                            <p
+                                class="warning-text"
+                                data-ng-switch-default
+                                data-ng-bind-html="'pci_project_instances_instance_add_region_quota' | translate: {
+                                    quotaLink: $ctrl.quotaLink
+                                }"
+                            ></p>
                         </div>
                     </div>
                 </oui-tabs-item>
             </oui-tabs>
-        </div>
-        <div class="row">
-            <oui-select-picker
-                class="d-inline-block col-md-6 col-xl-4 my-3"
-                data-ng-if="$ctrl.displaySelectedRegion"
-                data-name="{{ $ctrl.model.datacenter.name }}"
-                data-model="$ctrl.model.datacenter"
-                data-label="{{:: $ctrl.model.datacenter.name }}"
-                data-values="[$ctrl.model.datacenter]"
-            >
-            </oui-select-picker>
+            <p
+                data-ng-if="$ctrl.model.datacenter && $ctrl.model.datacenter.hasExtraBandwidthCost()"
+                data-translate="pci_project_instances_instance_add_region_bandwidth_extra"
+                data-translate-values="{
+                    price: $ctrl.getBandwidthExtraCost($ctrl.model.datacenter)
+                }"
+            ></p>
         </div>
     </oui-step-form>
 
@@ -154,22 +161,33 @@
         data-navigation="$ctrl.showImageNavigation()"
     >
         <pci-project-images-list
+            data-ng-if="$ctrl.currentStep >= 2"
             data-display-selected-image="$ctrl.displaySelectedImage"
             data-flavor-type="$ctrl.model.flavorGroup.name"
             data-os-types="$ctrl.model.flavorGroup.osTypes"
             data-region="$ctrl.model.datacenter.name"
             data-service-name="{{:: $ctrl.projectId }}"
             data-selected-image="$ctrl.model.image"
+            data-is-image-compatible="$ctrl.model.isImageCompatible"
         >
-            <button
-                type="button"
-                class="oui-button oui-button_ghost"
-                data-ng-click="$ctrl.currentStep = 0"
-            >
+            <div class="d-flex justify-content-between">
                 <span
                     data-translate="pci_projects_project_instances_add_image_not_available"
                 ></span>
-            </button>
+                <button
+                    type="button"
+                    class="oui-button oui-button_ghost"
+                    data-ng-click="$ctrl.currentStep = 0"
+                >
+                    <span
+                        data-translate="pci_project_instances_instance_add_choose_model"
+                    ></span>
+                    <i
+                        class="oui-icon button-icon oui-icon-arrow-right"
+                        aria-hidden="true"
+                    ></i>
+                </button>
+            </div>
         </pci-project-images-list>
 
         <pci-project-instance-ssh-keys
@@ -296,7 +314,6 @@
         <oui-field
             data-ng-if="!$ctrl.disablePrivateNetworks"
             data-label="{{ :: 'pci_projects_project_instances_add_privateNetwork_label' | translate }}"
-            data-size="xl"
         >
             <oui-select
                 data-name="privateNetwork"
@@ -307,7 +324,17 @@
                 data-searchable
             >
             </oui-select>
+            <p>
+                <span
+                    data-translate="pci_projects_project_instances_add_privateNetwork_description"
+                ></span>
+                <a
+                    data-ng-href="{{:: $ctrl.addPrivateNetworksLink }}"
+                    data-translate="pci_projects_project_instances_add_privateNetwork_add"
+                ></a>
+            </p>
         </oui-field>
+
         <div data-ng-if="$ctrl.automatedBackup.available">
             <oui-checkbox
                 class="mb-4"
@@ -324,6 +351,10 @@
                         data-translate="pci_projects_project_instances_add_automated_backup_infos"
                     ></span>
                 </oui-checkbox-description>
+                <span
+                    class="recommended-tag ml-2 oui-badge"
+                    data-translate="pci_projects_project_instances_add_automated_backup_recommended"
+                ></span>
             </oui-checkbox>
             <p>
                 <strong

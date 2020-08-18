@@ -366,7 +366,6 @@
   "emailpro_GROUPS_delegation_doing_message": "Das Update der übertragenen Rechte wird ausgeführt.",
   "emailpro_GROUPS_delegation_error_message": "Beim Update der übertragenen Rechte ist ein Fehler aufgetreten.",
   "emailpro_GROUPS_delegation_success_message": "Das Update der übertragenen Rechte wird ausgeführt.",
-  "emailpro_GROUPS_partial_account": "Beim Laden ist ein Fehler aufgetreten: {0}",
   "emailpro_action_license_history_fail": "Beim Laden der Monitoring-Informationen ist ein Fehler aufgetreten.",
   "emailpro_action_license_history_type_outlook": "Outlook Lizenzen",
   "emailpro_action_order_space_disk": "Zusätzlichen Speicherplatz bestellen",

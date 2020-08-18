@@ -22,7 +22,7 @@
   "dependencies": {
     "@ovh-ux/manager-carrier-sip": "^1.0.0 || ^2.0.0",
     "@ovh-ux/manager-config": "^0.4.0 || ^1.0.0",
-    "@ovh-ux/manager-core": "^9.0.0 || ^10.0.0",
+    "@ovh-ux/manager-core": "^10.0.0 || ^11.0.0",
     "@ovh-ux/manager-telecom-styles": "^4.0.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.7",
     "@ovh-ux/ng-ovh-checkbox-table": "^2.0.0",
@@ -58,7 +58,7 @@
     "moment": "^2.24.0",
     "ng-csv": "^0.3.6",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^9.47.0",
+    "ovh-api-services": "^9.50.0",
     "ovh-ngstrap": "^4.0.2",
     "ovh-ui-kit-bs": "^4.1.8",
     "popper.js": "^1.16.1",

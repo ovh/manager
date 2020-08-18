@@ -4,6 +4,8 @@ import find from 'lodash/find';
 import findIndex from 'lodash/findIndex';
 import isPlainObject from 'lodash/isPlainObject';
 
+import { LANGUAGES } from '@ovh-ux/manager-config';
+
 angular.module('UserAccount').controller('UserAccount.controllers.update', [
   'UserAccount.services.Contacts',
   '$scope',
@@ -13,7 +15,6 @@ angular.module('UserAccount').controller('UserAccount.controllers.update', [
   '$timeout',
   '$translate',
   'Alerter',
-  'CORE_LANGUAGES',
   function UserAccountUpdateController(
     Contacts,
     $scope,
@@ -23,9 +24,8 @@ angular.module('UserAccount').controller('UserAccount.controllers.update', [
     $timeout,
     $translate,
     Alerter,
-    CORE_LANGUAGES,
   ) {
-    $scope.languages = CORE_LANGUAGES.available;
+    $scope.languages = LANGUAGES.available;
     $scope.forms = {};
     $scope.today = new Date();
     $scope.alerts = {

@@ -83,11 +83,13 @@
             valid="$ctrl.contractsValidated"
             submit-text="{{:: 'domain_configuration_enable_web_hosting_activate' | translate }}"
             on-cancel="$ctrl.goBack()"
+            prevent-next
         >
             <ovh-contracts-summary
                 name="agreeContracts"
                 items="$ctrl.checkout.contracts"
                 model="$ctrl.contractsValidated"
+                required
             >
             </ovh-contracts-summary>
         </oui-step-form>

@@ -5,6 +5,8 @@ import '@ovh-ux/ng-ovh-cloud-universe-components';
 import 'angular-translate';
 import 'ovh-api-services';
 
+import './add.less';
+
 import flavorBilling from '../../../../components/project/flavor-billing';
 import flavorsList from '../../../../components/project/flavors-list';
 import imagesList from '../../../../components/project/images-list';
