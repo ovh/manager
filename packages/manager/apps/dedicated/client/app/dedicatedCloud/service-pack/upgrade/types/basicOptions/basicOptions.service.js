@@ -1,7 +1,6 @@
 import every from 'lodash/every';
 import filter from 'lodash/filter';
 import isEqual from 'lodash/isEqual';
-import reject from 'lodash/reject';
 
 import { OPTION_TYPES } from '../../../option/option.constants';
 
@@ -14,21 +13,23 @@ export const UpgradeBasicOptionsService = class {
     this.ovhManagerPccServicePackService = ovhManagerPccServicePackService;
   }
 
+  getServicePacks(serviceName,subsidiary) {
+    return this.ovhManagerPccServicePackService.getServicePacks(
+      serviceName,
+      subsidiary,
+    );
+  }
+
   async getOrderableServicePacks(
     serviceName,
     subsidiary,
-    currentServicePackName,
   ) {
-    const allServicePacks = await this.ovhManagerPccServicePackService.getServicePacks(
+    const allServicePacks = await this.getServicePacks(
       serviceName,
       subsidiary,
     );
 
-    const allServicePacksExceptCurrent = reject(allServicePacks, {
-      name: currentServicePackName,
-    });
-
-    return filter(allServicePacksExceptCurrent, (servicePack) =>
+    return filter(allServicePacks, (servicePack) =>
       every(servicePack.options, (option) =>
         isEqual(option.type, OPTION_TYPES.basic),
       ),

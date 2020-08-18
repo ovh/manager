@@ -4,12 +4,6 @@
   "dedicatedCloudDashboardTilesOptionsOrderSelection_priceDifferenceOnMonthlyBill": "{{ priceDifference }} sur votre tarification mensuelle",
   "dedicatedCloudDashboardTilesOptionsOrderSelection_priceDifferenceOnHourlyBill": "{{ priceDifference }} sur votre tarification à l'heure",
 
-  "dedicatedCloudDashboardTilesOptionsOrderSelection_certification_header": "Quel type de données hébergez-vous ?",
-  "dedicatedCloudDashboardTilesOptionsOrderSelection_certification_subheader": "Mettez à niveau votre solution Hosted Private Cloud avec la mise en conformité et l’activation de mesures de sécurisation spécifiques à votre secteur d’activité.",
-
-  "dedicatedCloudDashboardTilesOptionsOrderSelection_basic_header": "Vous souhaitez modifier le niveau de service de votre infrastructure ?",
-  "dedicatedCloudDashboardTilesOptionsOrderSelection_basic_subheader": "Mettez à niveau votre Hosted Private Cloud avec la mise en conformité et l’activation de mesures de sécurisation spécifiques à votre secteur d’activité",
-
   "dedicatedCloudDashboardTilesOptionsOrderSelection_certification_howToConfigureMeansOfPayment_comeBackHereLater": "Il faudra ensuite vous rendre de nouveau ici pour finaliser l'activation de la certification.",
 
   "dedicatedCloudDashboardTilesOptionsOrderSelection_cancelButton": "Annuler",

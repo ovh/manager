@@ -13,13 +13,6 @@ const resolveHasDefaultMeansOfPayment = /* @ngInject */ (
   $transition$.params().hasDefaultMeansOfPayment ||
   ovhPaymentMethod.hasDefaultPaymentMethod();
 
-const resolveHeader = /* @ngInject */ ($transition$, $translate) =>
-  $translate.instant(
-    `dedicatedCloudDashboardTilesOptionsOrderSelection_${
-      $transition$.params().activationType
-    }_header`,
-  );
-
 const resolveHosts = /* @ngInject */ (
   currentService,
   ovhManagerPccServicePackService,
@@ -56,7 +49,7 @@ const resolveSubHeader = /* @ngInject */ ($transition$, $translate) =>
   $translate.instant(
     `dedicatedCloudDashboardTilesOptionsOrderSelection_${
       $transition$.params().activationType
-    }_subheader`,
+    }_option`,
   );
 
 export default {
@@ -70,7 +63,6 @@ export default {
     activationType: resolveActivationType,
     currentService: resolveCurrentService,
     hasDefaultMeansOfPayment: resolveHasDefaultMeansOfPayment,
-    header: resolveHeader,
     hosts: resolveHosts,
     servicePacks: resolveServicePacks,
     servicePacksWithPrices: resolveServicePacksWithPrices,
