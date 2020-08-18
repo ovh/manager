@@ -33,6 +33,8 @@
   "pci_projects_project_instances_add_script_add_label": "Ajouter",
   "pci_projects_project_instances_add_privateNetwork_label": "Réseau privé attaché",
   "pci_projects_project_instances_add_privateNetwork_none": "Aucun",
+  "pci_projects_project_instances_add_privateNetwork_description": "Par défaut les instances Public Cloud possèdent un réseau public, vous pouvez ajouter un réseau privé.",
+  "pci_projects_project_instances_add_privateNetwork_add": "Créer un réseau privé",
 
   "pci_projects_project_instances_add_automated_backup_label": "Sauvegarde automatisée des instances",
   "pci_projects_project_instances_add_automated_backup_recommended": "Recommandé",
