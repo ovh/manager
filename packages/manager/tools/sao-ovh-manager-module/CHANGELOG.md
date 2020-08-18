@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/sao-ovh-manager-module@1.0.3...@ovh-ux/sao-ovh-manager-module@1.1.0) (2020-08-18)
+
+
+### Features
+
+* update dependency version to latest ([43f19f0](https://github.com/ovh-ux/manager/commit/43f19f0b62ccb6f2616b3ecff265ac2f0fef65d6))
+
+
+
 ## [1.0.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/sao-ovh-manager-module@1.0.2...@ovh-ux/sao-ovh-manager-module@1.0.3) (2020-01-31)
 
 

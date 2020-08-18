@@ -1,3 +1,12 @@
+## [7.2.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms-app@7.2.5...@ovh-ux/manager-sms-app@7.2.6) (2020-08-18)
+
+
+### Bug Fixes
+
+* **locale:** move locale detection in bootstrapApplication ([92d1050](https://github.com/ovh/manager/commit/92d1050613a2466ce2447e2c3d322ae81165530a))
+
+
+
 ## [7.2.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms-app@7.2.4...@ovh-ux/manager-sms-app@7.2.5) (2020-08-03)
 
 

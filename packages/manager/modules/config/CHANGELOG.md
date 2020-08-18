@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@1.0.0...@ovh-ux/manager-config@1.1.0) (2020-08-18)
+
+
+### Features
+
+* **config:** add user locale in config ([4c78627](https://github.com/ovh/manager/commit/4c786275764dd2e4c194710f8cacce38e3b35f4f))
+
+
+
 # [1.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@0.4.0...@ovh-ux/manager-config@1.0.0) (2020-08-05)
 
 

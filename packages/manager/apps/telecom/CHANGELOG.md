@@ -1,3 +1,21 @@
+# [13.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.1.1...@ovh-ux/manager-telecom@13.2.0) (2020-08-18)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 525] ([69c06c4](https://github.com/ovh/manager/commit/69c06c408087adb1f8995a38e08f58d6e450ced8))
+* **i18n:** add missing translations [CDS 539] ([52208d6](https://github.com/ovh/manager/commit/52208d6e80af7ce9fb8d4824d9c5aa1272a07a71))
+* **locale:** move locale detection in bootstrapApplication ([92d1050](https://github.com/ovh/manager/commit/92d1050613a2466ce2447e2c3d322ae81165530a))
+* **locale:** use locale/language from environment ([472f3c7](https://github.com/ovh/manager/commit/472f3c728a02d34dd4d956af6562bfc3f0b42d70))
+* **telephony.alias.ccs.time-condition:** display right message error ([#3455](https://github.com/ovh/manager/issues/3455)) ([b46953a](https://github.com/ovh/manager/commit/b46953af8ba0ac3a664ff442d56ddf8eb7aba45b))
+
+
+### Features
+
+* **pack.move:** rework for pack move to add fiber offers ([#3125](https://github.com/ovh/manager/issues/3125)) ([1d4cced](https://github.com/ovh/manager/commit/1d4cced9fdffffbb6f57f85286fb40c8bf8132e0))
+
+
+
 ## [13.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.1.0...@ovh-ux/manager-telecom@13.1.1) (2020-08-17)
 
 

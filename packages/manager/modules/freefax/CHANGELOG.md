@@ -1,3 +1,13 @@
+## [7.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.0.1...@ovh-ux/manager-freefax@7.0.2) (2020-08-18)
+
+
+### Bug Fixes
+
+* add missing webfont import ([#3397](https://github.com/ovh/manager/issues/3397)) ([e39fa31](https://github.com/ovh/manager/commit/e39fa3120fa81e12a0aa9438aae38c7103e565ef))
+* **locale:** move locale detection in bootstrapApplication ([92d1050](https://github.com/ovh/manager/commit/92d1050613a2466ce2447e2c3d322ae81165530a))
+
+
+
 ## [7.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.0.0...@ovh-ux/manager-freefax@7.0.1) (2020-07-29)
 
 

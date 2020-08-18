@@ -1,3 +1,13 @@
+## [1.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-price@1.2.0...@ovh-ux/manager-catalog-price@1.2.1) (2020-08-18)
+
+
+### Bug Fixes
+
+* **locale:** move locale detection in bootstrapApplication ([92d1050](https://github.com/ovh/manager/commit/92d1050613a2466ce2447e2c3d322ae81165530a))
+* **locale:** use user locale from manager-config ([81e8d10](https://github.com/ovh/manager/commit/81e8d1009455d7524ee86a5183a8db517640ef41))
+
+
+
 # [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-price@1.1.0...@ovh-ux/manager-catalog-price@1.2.0) (2020-07-16)
 
 

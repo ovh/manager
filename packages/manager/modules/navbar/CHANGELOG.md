@@ -1,3 +1,18 @@
+# [5.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@5.0.0...@ovh-ux/manager-navbar@5.1.0) (2020-08-18)
+
+
+### Bug Fixes
+
+* **locale:** move locale detection in bootstrapApplication ([92d1050](https://github.com/ovh/manager/commit/92d1050613a2466ce2447e2c3d322ae81165530a))
+* **locale:** use user locale from manager-config ([81e8d10](https://github.com/ovh/manager/commit/81e8d1009455d7524ee86a5183a8db517640ef41))
+
+
+### Features
+
+* **navbar:** update notifications on menu closing ([#3233](https://github.com/ovh/manager/issues/3233)) ([d0b7b83](https://github.com/ovh/manager/commit/d0b7b83c161082611c906577f6fc4d32f102b3a4))
+
+
+
 # [5.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@4.0.1...@ovh-ux/manager-navbar@5.0.0) (2020-08-05)
 
 
