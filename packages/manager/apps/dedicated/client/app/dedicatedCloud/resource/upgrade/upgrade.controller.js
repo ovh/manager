@@ -60,16 +60,42 @@ export const controller = class {
         }).$promise,
         target: this.fetchTarget(),
       })
-      .then(({ catalog, expressURL, service, target }) => {
+      .then(({ catalog, expressURL, service, target }) =>
+        this.fetchServiceOptionPlanCode(target).then((planCode) => ({
+          catalog,
+          expressURL,
+          service,
+          planCode,
+        })),
+      )
+      .then(({ catalog, expressURL, service, planCode }) => {
         this.expressURL = expressURL;
         this.service = service;
 
-        this.plan = this.getPlanFromCatalog(target, catalog);
+        this.plan = this.getPlanFromCatalog(planCode, catalog);
 
         [this.bindings.renewalPeriod] = this.plan.details.pricings[
           `${ORDER_PARAMETERS.pricingModePrefix}${service.servicePackName}`
         ];
       });
+  }
+
+  fetchServiceOptionPlanCode(target) {
+    const targetPlanCode = target.profileCode || target.profile || null;
+    const targetFamily = this.$stateParams.type;
+    return this.$http
+      .get(
+        `/order/cartServiceOption/privateCloud/${this.$stateParams.productId}`,
+      )
+      .then((data) => get(data, 'data'))
+      .then((options) =>
+        find(
+          options,
+          ({ planCode, family }) =>
+            planCode.startsWith(targetPlanCode) && family === targetFamily,
+        ),
+      )
+      .then(({ planCode }) => planCode);
   }
 
   fetchInitialData() {
@@ -120,16 +146,24 @@ export const controller = class {
       );
   }
 
-  getPlanFromCatalog(target, catalog) {
-    return head(
-      filter(
-        find(catalog.plans[0].addonsFamily, { family: this.$stateParams.type })
-          .addons,
-        (addon) =>
-          addon.plan.planCode === target.profileCode ||
-          addon.plan.planCode === target.profile,
-      ),
-    ).plan;
+  getPlanFromCatalog(planCode, catalog) {
+    let matchingPlan = null;
+    get(catalog, 'plans', []).forEach((plan) => {
+      if (plan && !matchingPlan) {
+        const { addons } = find(plan.addonsFamily, {
+          family: this.$stateParams.type,
+        });
+        if (addons) {
+          const matchingAddon = head(
+            filter(addons, (addon) => get(addon, 'plan.planCode') === planCode),
+          );
+          if (matchingAddon) {
+            matchingPlan = matchingAddon.plan;
+          }
+        }
+      }
+    });
+    return matchingPlan;
   }
 
   placeOrder() {
