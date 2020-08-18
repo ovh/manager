@@ -50,7 +50,7 @@ angular.module('App').controller(
     redirectionToCheck(input) {
       input.$setValidity(
         'redirectionTo',
-        validator.isEmail(this.model.redirectionTo),
+        validator.isEmail(this.model.redirectionTo || input.$viewValue),
       );
     }
 
