@@ -1,3 +1,12 @@
+## [2.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@2.1.1...@ovh-ux/manager-hub-app@2.1.2) (2020-08-18)
+
+
+### Bug Fixes
+
+* **hub:** fix redirection in order to avoid authentication looping ([#3465](https://github.com/ovh/manager/issues/3465)) ([ee7528a](https://github.com/ovh/manager/commit/ee7528a0354a3e58b3a7ed0cc57ada16dc1a197a))
+
+
+
 ## [2.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@2.1.0...@ovh-ux/manager-hub-app@2.1.1) (2020-08-18)
 
 
