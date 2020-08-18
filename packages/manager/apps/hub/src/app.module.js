@@ -107,7 +107,9 @@ angular
   )
   .run(
     /* @ngInject */ (ssoAuthentication) => {
-      if (!BILLING_REDIRECTIONS.includes(window.location.href)) {
+      if (
+        !BILLING_REDIRECTIONS.includes(window.location.hash.replace('#', ''))
+      ) {
         ssoAuthentication.login();
       }
     },
