@@ -1,4 +1,5 @@
 import find from 'lodash/find';
+import lowerCase from 'lodash/lowerCase';
 import sortBy from 'lodash/sortBy';
 
 export default class Selection {
@@ -18,28 +19,34 @@ export default class Selection {
   }
 
   $onInit() {
-    const currentServicePack = find(this.servicePacksWithPrices, {
+    this.currentServicePack = find(this.servicePacksWithPrices, {
       name: this.currentService.servicePackName,
     });
+
+    if (!this.servicePackToOrder) {
+      this.servicePackToOrder = this.currentServicePack;
+    }
 
     this.orderableServicePacks = sortBy(
       this.orderableServicePacks.map((servicePack) => {
         const servicePackToDisplay = find(this.servicePacksWithPrices, {
           name: servicePack.name,
         });
-
         return {
-          ...servicePack,
+          ...servicePackToDisplay,
+          isActive: this.currentServicePack.name === servicePackToDisplay.name,
           prices: {
             hourly: Selection.computeRelativePrice(
               'hourly',
-              currentServicePack,
+              this.currentServicePack,
               servicePackToDisplay,
+              this.currentUser,
             ),
             monthly: Selection.computeRelativePrice(
               'monthly',
-              currentServicePack,
+              this.currentServicePack,
               servicePackToDisplay,
+              this.currentUser,
             ),
           },
         };
@@ -52,6 +59,7 @@ export default class Selection {
     duration,
     currentServicePack,
     servicePackToDisplay,
+    currentUser,
   ) {
     if (
       !currentServicePack.price[duration] ||
@@ -67,6 +75,7 @@ export default class Selection {
     const display = Selection.convertPriceValueToDisplay(
       value,
       currentServicePack.price.currencyCode,
+      currentUser,
     );
 
     return {
@@ -76,17 +85,16 @@ export default class Selection {
     };
   }
 
-  static convertPriceValueToDisplay(value, currency) {
+  static convertPriceValueToDisplay(value, currency, currentUser) {
     const priceAsString = new Intl.NumberFormat(
-      'fr', // can't change as the API is not ISO compliant
+      lowerCase(currentUser.ovhSubsidiary),
       {
         style: 'currency',
         currency,
         minimumFractionDigits: 2,
       },
     ).format(value);
-
-    return value > 0 ? `+${priceAsString}` : priceAsString;
+    return value >= 0 ? `+${priceAsString}` : priceAsString;
   }
 
   onChangeServicePackPicker(selectedItem) {

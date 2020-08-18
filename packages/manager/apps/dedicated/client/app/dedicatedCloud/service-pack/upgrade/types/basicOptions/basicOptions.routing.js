@@ -1,6 +1,5 @@
-import stepModuleNames from './basicOptions.steps';
-
 import component from '../../upgrade.component';
+import stepModuleNames from './basicOptions.steps';
 
 export const state = {
   name: 'app.dedicatedClouds.servicePackUpgrade.basicOptions',
@@ -18,7 +17,6 @@ export const state = {
       UpgradeBasicOptionsService.getOrderableServicePacks(
         currentService.name,
         currentUser.ovhSubsidiary,
-        currentService.servicePackName,
       ),
     steps: /* @ngInject */ (pccServicePackUpgradeService) =>
       pccServicePackUpgradeService.buildSteps(stepModuleNames),

@@ -12,6 +12,7 @@ export default {
     servicePacksWithPrices: '<',
     servicePackToOrder: '<?',
     subHeader: '@',
+    currentUser: '<',
   },
   controller,
   name: 'ovhManagerPccServicePackUpgradeSelection',

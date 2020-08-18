@@ -4,20 +4,16 @@
   "dedicatedCloudDashboardTilesOptionsOrderSelection_priceDifferenceOnMonthlyBill": "{{ priceDifference }} sur votre tarification mensuelle",
   "dedicatedCloudDashboardTilesOptionsOrderSelection_priceDifferenceOnHourlyBill": "{{ priceDifference }} sur votre tarification à l'heure",
 
-  "dedicatedCloudDashboardTilesOptionsOrderSelection_certification_header": "Quel type de données hébergez-vous ?",
-  "dedicatedCloudDashboardTilesOptionsOrderSelection_certification_subheader": "Mettez à niveau votre solution Hosted Private Cloud avec la mise en conformité et l’activation de mesures de sécurisation spécifiques à votre secteur d’activité.",
-
-  "dedicatedCloudDashboardTilesOptionsOrderSelection_basic_header": "Vous souhaitez modifier le niveau de service de votre infrastructure ?",
-  "dedicatedCloudDashboardTilesOptionsOrderSelection_basic_subheader": "Mettez à niveau votre Hosted Private Cloud avec la mise en conformité et l’activation de mesures de sécurisation spécifiques à votre secteur d’activité",
-
   "dedicatedCloudDashboardTilesOptionsOrderSelection_certification_howToConfigureMeansOfPayment_comeBackHereLater": "Il faudra ensuite vous rendre de nouveau ici pour finaliser l'activation de la certification.",
 
   "dedicatedCloudDashboardTilesOptionsOrderSelection_cancelButton": "Annuler",
-  "dedicatedCloudDashboardTilesOptionsOrderSelection_checkoutButton": "Passer la commande",
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_checkoutButton": "Modifier",
   "dedicatedCloudDashboardTilesOptionsOrderSelection_nextButton": "Suivant",
 
   "dedicatedCloudDashboardTilesOptionsOrderSelection_checkoutDescription": "La commande a été correctement passée.",
   "dedicatedCloudDashboardTilesOptionsOrderSelection_checkoutLink": "Cliquez ici pour la régler.",
 
-  "dedicatedCloudDashboardTilesOptionsOrderSelection_order_failure": "Le passage de commande a échoué"
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_order_failure": "La commande a échoué",
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_basic_option": "Sélectionnez l'option que vous souhaitez activer sur votre service.",
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_certification_option": "Sélectionnez l'option du secteur d'activité que vous souhaitez activer sur votre service."
 }
