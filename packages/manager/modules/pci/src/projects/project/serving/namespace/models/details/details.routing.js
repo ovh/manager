@@ -11,6 +11,24 @@ export default /* @ngInject */ ($stateProvider) => {
         goBack: /* @ngInject */ (goToNamespaceModels) => goToNamespaceModels,
         breadcrumb: /* @ngInject */ ($stateParams) => $stateParams.modelId,
 
+        deleteModel: /* @ngInject */ ($state, projectId, namespaceId) => (
+          modelId,
+        ) =>
+          $state.go('pci.projects.project.serving.namespace.models.delete', {
+            projectId,
+            namespaceId,
+            modelId,
+          }),
+
+        updateModel: /* @ngInject */ ($state, projectId, namespaceId) => (
+          modelId,
+        ) =>
+          $state.go('pci.projects.project.serving.namespace.models.update', {
+            projectId,
+            namespaceId,
+            modelId,
+          }),
+
         metricsToken: /* @ngInject */ (
           OvhManagerPciServingModelsService,
           projectId,
