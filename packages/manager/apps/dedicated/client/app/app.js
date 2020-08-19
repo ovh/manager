@@ -52,6 +52,7 @@ import contactsService from './account/contacts/service/contacts-service.module'
 import dedicatedCloudDatacenterDrp from './dedicatedCloud/datacenter/drp';
 import dedicatedCloudDatacenterDashboardDeleteDrp from './dedicatedCloud/datacenter/dashboard/deleteDrp';
 import dedicatedCloudTerminate from './dedicatedCloud/terminate/terminate.module';
+import dedicatedCloudDashboard from './dedicatedCloud/dashboard';
 import dedicatedUniverseComponents from './dedicatedUniverseComponents';
 import errorPage from './error';
 import ovhManagerPccDashboard from './dedicatedCloud/dashboard';
@@ -82,6 +83,7 @@ angular
       dedicatedCloudDatacenterDrp,
       dedicatedCloudDatacenterDashboardDeleteDrp,
       dedicatedCloudTerminate,
+      dedicatedCloudDashboard,
       dedicatedServer,
       dedicatedUniverseComponents,
       'directives',
