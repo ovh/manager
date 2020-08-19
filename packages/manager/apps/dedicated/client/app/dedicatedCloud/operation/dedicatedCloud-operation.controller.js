@@ -19,10 +19,11 @@ angular
       BillingOrders,
       Alerter,
       DedicatedCloud,
+      goToExecutionDateEdit,
       ouiDatagridService,
-      $uibModal,
     ) {
       const self = this;
+      this.goToExecutionDateEdit = goToExecutionDateEdit;
 
       function init() {
         self.loading = true;
@@ -234,32 +235,6 @@ angular
           .then(setOperationDescription)
           .then(setRelatedServices)
           .then((res) => res);
-
-      self.onExecutionDateActionClick = ($row) => {
-        const executionDateEditModal = $uibModal.open({
-          templateUrl:
-            'dedicatedCloud/operation/executionDateEdit/dedicatedCloud-operation-executionDateEdit.html',
-          controller: 'DedicatedCloudOperationExecutionDateEditCtrl',
-          controllerAs: '$ctrl',
-          resolve: {
-            operationToEdit: () => $row,
-          },
-        });
-
-        return executionDateEditModal.result.then((error) => {
-          if (!error) {
-            Alerter.success(
-              $translate.instant('dedicatedCloud_OPERATIONS_success'),
-            );
-            ouiDatagridService.refresh('operationsDatagrid', true);
-          } else {
-            Alerter.alertFromSWS(
-              $translate.instant('dedicatedCloud_OPERATIONS_error'),
-              error,
-            );
-          }
-        });
-      };
 
       init();
     },

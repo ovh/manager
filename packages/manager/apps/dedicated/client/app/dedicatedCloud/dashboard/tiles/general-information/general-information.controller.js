@@ -18,6 +18,7 @@ export default class {
       numberOfIPBlocks: {
         arin: this.currentService.ipArinCount,
         ripe: this.currentService.ipRipeCount,
+        total: this.currentService.ips.length,
       },
       location: this.currentService.location,
       numberOfDatacenters: this.currentService.datacenterCount,
@@ -27,6 +28,10 @@ export default class {
         vScope: this.currentService.vScopeUrl,
         webInterface: this.currentService.webInterfaceUrl,
       },
+      updateAvailable:
+        this.currentService.isMinorSolutionUpdateAvailable() ||
+        this.currentService.isMajorSolutionUpdateAvailable(),
+      version: this.currentService.version,
     };
   }
 
@@ -70,8 +75,11 @@ export default class {
         `ovhManagerPccDashboardGeneralInformation_softwareSolution_definition_displayName_${this.currentService.solution.toUpperCase()}`,
       ),
       displayVersionNumber: get(this.currentService.version, 'major', ''),
+      displayBuildNumber: get(this.currentService.version, 'build', ''),
     };
 
-    return `${solution.displayName} ${solution.displayVersionNumber}`.trim();
+    return solution.displayBuildNumber
+      ? `${solution.displayName} ${solution.displayVersionNumber} - build ${solution.displayBuildNumber}`.trim()
+      : `${solution.displayName} ${solution.displayVersionNumber}`.trim();
   }
 }

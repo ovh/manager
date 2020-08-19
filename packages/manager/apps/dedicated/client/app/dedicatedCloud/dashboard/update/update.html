@@ -1,0 +1,32 @@
+<oui-modal
+    data-heading="{{:: 'dedicatedCloud_dashboard_update_title' | translate }}"
+    data-primary-action="$ctrl.update()"
+    data-primary-label="{{:: 'dedicatedCloud_dashboard_update_confirm' | translate }}"
+    data-primary-disabled="!$ctrl.hasSufficientRights"
+    data-secondary-action="$ctrl.goBack()"
+    data-secondary-label="{{:: 'dedicatedCloud_dashboard_update_cancel' | translate }}"
+    data-loading="$ctrl.isUpdating || $ctrl.loadingUserInfo"
+    data-on-dismiss="$ctrl.goBack()"
+>
+    <oui-message data-ng-if="!$ctrl.hasSufficientRights" data-type="error">
+        <span
+            data-translate="dedicatedCloud_dashboard_update_insufficient_rights"
+        ></span>
+    </oui-message>
+    <dl class="dl-horizontal mt-4">
+        <dt
+            data-translate="dedicatedCloud_dashboard_update_actual_version"
+        ></dt>
+        <dd
+            data-ng-bind="::$ctrl.getDisplayName($ctrl.currentService.version)"
+        ></dd>
+        <dt
+            data-translate="dedicatedCloud_dashboard_update_target_version"
+        ></dt>
+        <dd data-ng-bind="::$ctrl.getDisplayName($ctrl.targetVersion)"></dd>
+    </dl>
+    <p data-translate="dedicatedCloud_dashboard_update_description"></p>
+    <oui-message data-type="info">
+        <span data-translate="dedicatedCloud_dashboard_update_info"></span>
+    </oui-message>
+</oui-modal>

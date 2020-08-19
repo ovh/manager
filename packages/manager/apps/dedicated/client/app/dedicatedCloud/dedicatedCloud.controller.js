@@ -26,6 +26,7 @@ angular.module('App').controller(
       datacenterList,
       DedicatedCloud,
       drpGlobalStatus,
+      goBackToDashboard,
       goToDrp,
       goToDrpDatacenterSelection,
       goToVpnConfiguration,
@@ -46,6 +47,7 @@ angular.module('App').controller(
       this.datacenterList = datacenterList;
       this.DedicatedCloud = DedicatedCloud;
       this.drpGlobalStatus = drpGlobalStatus;
+      this.goBackToDashboard = goBackToDashboard;
       this.goToDrp = goToDrp;
       this.goToDrpDatacenterSelection = goToDrpDatacenterSelection;
       this.goToVpnConfiguration = goToVpnConfiguration;

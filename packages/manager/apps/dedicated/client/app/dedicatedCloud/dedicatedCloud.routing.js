@@ -1,13 +1,20 @@
 import get from 'lodash/get';
 import sortBy from 'lodash/sortBy';
 
+import DedicatedCloudInfo from './dedicatedCloud.class';
+
 angular.module('App').config(
   /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
     $stateProvider.state('app.dedicatedClouds', {
       redirectTo: 'app.dedicatedClouds.dashboard',
       resolve: {
         currentService: /* @ngInject */ ($transition$, DedicatedCloud) =>
-          DedicatedCloud.getSelected($transition$.params().productId, true),
+          DedicatedCloud.getSelected(
+            $transition$.params().productId,
+            true,
+          ).then(
+            (dedicatedCloudData) => new DedicatedCloudInfo(dedicatedCloudData),
+          ),
         currentDrp: /* @ngInject */ (
           $transition$,
           dedicatedCloudDrp,
@@ -95,6 +102,34 @@ angular.module('App').config(
           }),
         serviceName: /* @ngInject */ ($transition$) =>
           $transition$.params().productId,
+        goBackToDashboard: /* @ngInject */ (
+          $state,
+          $timeout,
+          Alerter,
+          currentService,
+        ) => (message = false, type = 'success') => {
+          const reload = message && type === 'success';
+
+          const promise = $state.go(
+            'app.dedicatedClouds.dashboard',
+            { productId: currentService.serviceName },
+            {
+              reload,
+            },
+          );
+
+          if (message) {
+            promise.then(() =>
+              $timeout(() => Alerter.set(`alert-${type}`, message, null)),
+            );
+          }
+
+          return promise;
+        },
+        operationsUrl: /* @ngInject */ ($state, currentService) =>
+          $state.href('app.dedicatedClouds.operation', {
+            productId: currentService.serviceName,
+          }),
       },
       url: '/configuration/dedicated_cloud/:productId',
       views: {

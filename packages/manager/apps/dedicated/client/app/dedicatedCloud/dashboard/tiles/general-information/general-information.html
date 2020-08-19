@@ -27,8 +27,85 @@
 
     <oui-tile-definition
         data-term="{{:: 'ovhManagerPccDashboardGeneralInformation_softwareSolution_term' | translate }}"
-        data-description="{{:: $ctrl.bindings.softwareSolution }}"
-    ></oui-tile-definition>
+    >
+        <oui-tile-description>
+            <span data-ng-bind=":: $ctrl.bindings.softwareSolution"></span>
+            <span
+                class="oui-badge oui-badge_warning"
+                data-ng-if="$ctrl.bindings.updateAvailable && !$ctrl.currentService.vcenterUpgradePendingTask"
+                data-translate="ovhManagerPccDashboardGeneralInformation_softwareSolution_update_available"
+            >
+            </span>
+            <span
+                class="oui-badge oui-badge_info"
+                data-ng-if="$ctrl.currentService.vcenterUpgradePendingTask"
+                data-translate="ovhManagerPccDashboardGeneralInformation_softwareSolution_update_planned"
+            >
+            </span>
+        </oui-tile-description>
+        <oui-action-menu
+            data-ng-if="$ctrl.bindings.updateAvailable || $ctrl.currentService.vcenterUpgradePendingTask"
+            data-compact
+            data-placement="end"
+        >
+            <a
+                class="oui-dropdown-option mb-1"
+                role="menuitem"
+                data-ng-if=":: $ctrl.currentService.isMinorSolutionUpdateAvailable() && !$ctrl.currentService.vcenterUpgradePendingTask"
+                data-ui-sref="app.dedicatedClouds.dashboard.update({
+                    currentService: $ctrl.currentService,
+                    targetVersion: $ctrl.currentService.version.lastMinor,
+                })"
+                data-track-on="click"
+                data-track-name="dedicated::dedicatedClouds::dashboard::update-minor"
+                data-track-type="action"
+            >
+                <span
+                    data-translate="ovhManagerPccDashboardGeneralInformation_softwareSolution_update_minor"
+                    data-translate-values="{
+                        version: $ctrl.currentService.version.lastMinor.major,
+                        build: $ctrl.currentService.version.lastMinor.build
+                    }"
+                ></span>
+            </a>
+            <a
+                class="oui-dropdown-option mb-1"
+                role="menuitem"
+                data-ng-if=":: $ctrl.currentService.isMajorSolutionUpdateAvailable() && !$ctrl.currentService.vcenterUpgradePendingTask"
+                data-ui-sref="app.dedicatedClouds.dashboard.update({
+                    currentService: $ctrl.currentService,
+                    targetVersion: $ctrl.currentService.version.lastMajor,
+                })"
+                data-track-on="click"
+                data-track-name="dedicated::dedicatedClouds::dashboard::update-major"
+                data-track-type="action"
+            >
+                <span
+                    data-translate="ovhManagerPccDashboardGeneralInformation_softwareSolution_update_major"
+                    data-translate-values="{
+                        version: $ctrl.currentService.version.lastMajor.major,
+                        build: $ctrl.currentService.version.lastMajor.build
+                    }"
+                ></span>
+            </a>
+            <a
+                class="oui-dropdown-option mb-1"
+                role="menuitem"
+                data-ng-if="$ctrl.currentService.vcenterUpgradePendingTask"
+                data-ui-sref="app.dedicatedClouds.operation.execution-date-edit({
+                    productId: $ctrl.currentService.serviceName,
+                    operationToEdit: $ctrl.currentService.vcenterUpgradePendingTask
+                })"
+                data-track-on="click"
+                data-track-name="dedicated::dedicatedClouds::dashboard::update-change-date"
+                data-track-type="action"
+            >
+                <span
+                    data-translate="ovhManagerPccDashboardGeneralInformation_softwareSolution_reschedule_update"
+                ></span>
+            </a>
+        </oui-action-menu>
+    </oui-tile-definition>
 
     <oui-tile-definition
         data-term="{{:: 'ovhManagerPccDashboardGeneralInformation_commercialRange_term' | translate }}"
@@ -93,13 +170,31 @@
         </oui-tile-description>
 
         <oui-action-menu data-compact data-placement="end">
-            <oui-action-menu-item
+            <a
+                class="oui-dropdown-option mb-1"
+                role="menuitem"
                 data-ui-sref="app.ip({ serviceName: $ctrl.bindings.serviceName })"
+                data-track-on="click"
+                data-track-name="dedicated::dedicatedClouds::dashboard::order-ip-bloc"
+                data-track-type="action"
             >
                 <span
                     data-translate="ovhManagerPccDashboardGeneralInformation_numberOfIPBlocks_actionMenu_order"
                 ></span>
-            </oui-action-menu-item>
+            </a>
+            <a
+                class="oui-dropdown-option mb-1"
+                role="menuitem"
+                data-ng-if="$ctrl.bindings.numberOfIPBlocks.total"
+                data-ui-sref="app.dedicatedClouds.dashboard.associate-ip-bloc"
+                data-track-on="click"
+                data-track-name="dedicated::dedicatedClouds::dashboard::associate-ip-bloc"
+                data-track-type="action"
+            >
+                <span
+                    data-translate="ovhManagerPccDashboardGeneralInformation_numberOfIPBlocks_actionMenu_move"
+                ></span>
+            </a>
         </oui-action-menu>
     </oui-tile-definition>
 
