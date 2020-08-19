@@ -9,12 +9,14 @@ export default class Options {
     $translate,
     Alerter,
     dedicatedCloudDrp,
+    ovhFeatureFlipping,
     ovhManagerPccDashboardOptionsService,
   ) {
     this.$q = $q;
     this.$translate = $translate;
     this.Alerter = Alerter;
     this.dedicatedCloudDrp = dedicatedCloudDrp;
+    this.ovhFeatureFlipping = ovhFeatureFlipping;
     this.ovhManagerPccDashboardOptionsService = ovhManagerPccDashboardOptionsService;
   }
 
@@ -48,7 +50,20 @@ export default class Options {
 
     this.bindings = new OptionsBindings();
 
-    return this.handleInitialData();
+    return this.$q
+      .all({
+        featureAvailability: this.ovhFeatureFlipping
+          .checkFeatureAvailability('dedicated-cloud:sectorSpecificCompliance')
+          .then((featureAvailability) =>
+            featureAvailability.isFeatureAvailable(
+              'dedicated-cloud:sectorSpecificCompliance',
+            ),
+          ),
+        init: this.handleInitialData(),
+      })
+      .then(({ featureAvailability }) => {
+        this.canManageSectorSpecificCompliance = featureAvailability;
+      });
   }
 
   handleInitialData() {
