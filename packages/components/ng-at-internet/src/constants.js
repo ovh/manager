@@ -49,6 +49,14 @@ export const AT_INTERNET_CUSTOM_VARS = {
     path: 'page.2', // OVH's AtInternet configuration
     format: '[%s]',
   },
+
+  /**
+   * Order status used
+   */
+  orderStatus: {
+    path: 'page.1',
+    format: '[%s]',
+  },
 };
 
 export default {
