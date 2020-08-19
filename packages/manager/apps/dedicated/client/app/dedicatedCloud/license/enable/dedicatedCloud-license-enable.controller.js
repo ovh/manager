@@ -96,6 +96,9 @@ angular.module('App').controller(
         )
         .then((contracts) => {
           this.bindings.contracts.value = contracts;
+          if (!contracts.length) {
+            this.bindings.contracts.areSigned = true;
+          }
         });
     }
 

@@ -43,6 +43,7 @@
                 </oui-datagrid>
 
                 <div
+                    data-ng-if="$ctrl.bindings.contracts.value.length > 0"
                     data-contracts=":: $ctrl.bindings.contracts.value"
                     data-full-text="false"
                     data-ng-model="$ctrl.bindings.contracts.areSigned"
