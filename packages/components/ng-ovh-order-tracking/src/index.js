@@ -1,5 +1,6 @@
 import angular from 'angular';
 import '@ovh-ux/ng-translate-async-loader';
+import '@ovh-ux/ng-at-internet';
 import 'angular-translate';
 import 'ovh-api-services';
 import '@ovh-ux/ui-kit';
@@ -16,6 +17,7 @@ const moduleName = 'ngOvhOrderTracking';
 
 angular
   .module(moduleName, [
+    'ngAtInternet',
     'ngTranslateAsyncLoader',
     'oui',
     'ovh-api-services',
