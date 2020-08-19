@@ -12,6 +12,9 @@ export default /* @ngInject */ ($stateProvider) => {
     template,
     controller,
     controllerAs: '$ctrl',
+    atInternet: {
+      ignore: true, // this to tell AtInternet to not track this state
+    },
     resolve: {
       available: /* @ngInject */ ($state, billingFeatureAvailability) => {
         if (!billingFeatureAvailability.allowOrderTracking()) {
