@@ -528,7 +528,7 @@
                         <!-- Mitigation -->
                         <td>
                             <span
-                                data-ng-if="ipBlock.version === 'IPV4'"
+                                data-ng-if="ipBlock.version === IP_TYPE.V4"
                                 data-ng-class="{
                                       'text-muted': !ip.mitigation || ip.mitigation === 'DEFAULT',
                                       'badge': ip.mitigation === 'CREATION_PENDING' || ip.mitigation === 'REMOVAL_PENDING',
@@ -602,7 +602,7 @@
                     </tr>
 
                     <tr
-                        data-ng-if="ipBlock.version === 'IPV6' && !ipBlock.isUniq && !ipBlock.collapsed"
+                        data-ng-if="ipBlock.version === IP_TYPE.V6 && !ipBlock.isUniq && !ipBlock.collapsed"
                     >
                         <td class="text-center" colspan="42">
                             <button

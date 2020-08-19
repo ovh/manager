@@ -1,36 +1,43 @@
 {
-   "ovhManagerPccDashboardGeneralInformation_heading": "Informations générales",
+  "ovhManagerPccDashboardGeneralInformation_heading": "Informations générales",
 
-   "ovhManagerPccDashboardGeneralInformation_description_term": "Description",
-   "ovhManagerPccDashboardGeneralInformation_description_actionMenu_update": "Modifier la description",
+  "ovhManagerPccDashboardGeneralInformation_description_term": "Description",
+  "ovhManagerPccDashboardGeneralInformation_description_actionMenu_update": "Modifier la description",
 
-   "ovhManagerPccDashboardGeneralInformation_softwareSolution_term": "Solution logicielle",
-   "ovhManagerPccDashboardGeneralInformation_softwareSolution_definition_displayName_VSPHERE": "vSphere",
-   "ovhManagerPccDashboardGeneralInformation_softwareSolution_definition_displayName_VCLOUD": "vCloud",
-   "ovhManagerPccDashboardGeneralInformation_softwareSolution_definition_displayName_SYSTEMCENTER": "VMM",
-   "ovhManagerPccDashboardGeneralInformation_softwareSolution_definition_displayName_AZURE": "Azure",
-   "ovhManagerPccDashboardGeneralInformation_softwareSolution_definition_displayName_VCSA": "vCSA",
+  "ovhManagerPccDashboardGeneralInformation_softwareSolution_term": "Solution logicielle",
+  "ovhManagerPccDashboardGeneralInformation_softwareSolution_update_available": "Mise à jour disponible",
+  "ovhManagerPccDashboardGeneralInformation_softwareSolution_update_planned": "Mise à jour programmée",
+  "ovhManagerPccDashboardGeneralInformation_softwareSolution_definition_displayName_VSPHERE": "vSphere",
+  "ovhManagerPccDashboardGeneralInformation_softwareSolution_definition_displayName_VCLOUD": "vCloud",
+  "ovhManagerPccDashboardGeneralInformation_softwareSolution_definition_displayName_SYSTEMCENTER": "VMM",
+  "ovhManagerPccDashboardGeneralInformation_softwareSolution_definition_displayName_AZURE": "Azure",
+  "ovhManagerPccDashboardGeneralInformation_softwareSolution_definition_displayName_VCSA": "vCSA",
 
-   "ovhManagerPccDashboardGeneralInformation_commercialRange_term": "Gamme commerciale",
+  "ovhManagerPccDashboardGeneralInformation_softwareSolution_update_major": "Installer la mise à jour majeure ({{version}} - build {{build}})",
+  "ovhManagerPccDashboardGeneralInformation_softwareSolution_update_minor": "Installer la mise à jour mineure ({{version}} - build {{build}})",
+  "ovhManagerPccDashboardGeneralInformation_softwareSolution_reschedule_update": "Modifier la date de mise à jour",
 
-   "ovhManagerPccDashboardGeneralInformation_location_term": "Localisation",
+  "ovhManagerPccDashboardGeneralInformation_commercialRange_term": "Gamme commerciale",
 
-   "ovhManagerPccDashboardGeneralInformation_accessPolicy_term": "Politique d'accès",
-   "ovhManagerPccDashboardGeneralInformation_accessPolicy_definition_FILTERED": "Restreinte",
-   "ovhManagerPccDashboardGeneralInformation_accessPolicy_definition_OPEN": "Ouverte",
-   "ovhManagerPccDashboardGeneralInformation_accessPolicy_definition_NOT_CONFIGURED": "Pas encore configurée",
+  "ovhManagerPccDashboardGeneralInformation_location_term": "Localisation",
 
-   "ovhManagerPccDashboardGeneralInformation_numberOfDatacenters_term": "Nombre de datacenters",
+  "ovhManagerPccDashboardGeneralInformation_accessPolicy_term": "Politique d'accès",
+  "ovhManagerPccDashboardGeneralInformation_accessPolicy_definition_FILTERED": "Restreinte",
+  "ovhManagerPccDashboardGeneralInformation_accessPolicy_definition_OPEN": "Ouverte",
+  "ovhManagerPccDashboardGeneralInformation_accessPolicy_definition_NOT_CONFIGURED": "Pas encore configurée",
 
-   "ovhManagerPccDashboardGeneralInformation_numberOfIPBlocks_term": "Nombre de blocs IP",
-   "ovhManagerPccDashboardGeneralInformation_numberOfIPBlocks_definition_ripe": "RIPE",
-   "ovhManagerPccDashboardGeneralInformation_numberOfIPBlocks_definition_arin": "ARIN",
-   "ovhManagerPccDashboardGeneralInformation_numberOfIPBlocks_definition_0": "Aucun",
-   "ovhManagerPccDashboardGeneralInformation_numberOfIPBlocks_actionMenu_order": "Commander des blocs d’IP",
+  "ovhManagerPccDashboardGeneralInformation_numberOfDatacenters_term": "Nombre de datacenters",
 
-   "ovhManagerPccDashboardGeneralInformation_managementInterfaces_term": "Interfaces de gestion",
-   "ovhManagerPccDashboardGeneralInformation_managementInterfaces_definition_vscope": "vScope",
-   "ovhManagerPccDashboardGeneralInformation_managementInterfaces_definition_webInterface": "Interface web",
+  "ovhManagerPccDashboardGeneralInformation_numberOfIPBlocks_term": "Nombre de blocs IP",
+  "ovhManagerPccDashboardGeneralInformation_numberOfIPBlocks_definition_ripe": "RIPE",
+  "ovhManagerPccDashboardGeneralInformation_numberOfIPBlocks_definition_arin": "ARIN",
+  "ovhManagerPccDashboardGeneralInformation_numberOfIPBlocks_definition_0": "Aucun",
+  "ovhManagerPccDashboardGeneralInformation_numberOfIPBlocks_actionMenu_order": "Commander des blocs d’IP",
+  "ovhManagerPccDashboardGeneralInformation_numberOfIPBlocks_actionMenu_move": "Associer des bloc d’IP à un autre service",
 
-   "ovhManagerPccDashboardGeneralInformation_opensANewTab": "Ouvre un nouvel onglet"
+  "ovhManagerPccDashboardGeneralInformation_managementInterfaces_term": "Interfaces de gestion",
+  "ovhManagerPccDashboardGeneralInformation_managementInterfaces_definition_vscope": "vScope",
+  "ovhManagerPccDashboardGeneralInformation_managementInterfaces_definition_webInterface": "Interface web",
+
+  "ovhManagerPccDashboardGeneralInformation_opensANewTab": "Ouvre un nouvel onglet"
 }
