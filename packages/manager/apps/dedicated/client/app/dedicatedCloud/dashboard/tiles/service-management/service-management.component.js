@@ -4,6 +4,7 @@ export default {
   bindings: {
     currentService: '<',
     currentUser: '<',
+    showMailingList: '<',
   },
   name: 'ovhManagerPccDashboardServiceManagement',
   template,
