@@ -1,3 +1,12 @@
+## [3.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-product-offers@3.1.1...@ovh-ux/manager-product-offers@3.1.2) (2020-08-21)
+
+
+### Bug Fixes
+
+* **product.offers:** set timeout to fix stepper index incrementation ([#3480](https://github.com/ovh/manager/issues/3480)) ([6f68caa](https://github.com/ovh/manager/commit/6f68caa8831e38a03c3d7fd1a097732e78022cd2))
+
+
+
 ## [3.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-product-offers@3.1.0...@ovh-ux/manager-product-offers@3.1.1) (2020-08-18)
 
 
