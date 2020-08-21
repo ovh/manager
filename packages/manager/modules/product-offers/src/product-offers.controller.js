@@ -7,11 +7,13 @@ export default class ProductOffersController {
   /* @ngInject */
   constructor(
     $q,
+    $timeout,
     $translate,
     ovhManagerProductOffersDetachService,
     WucOrderCartService,
   ) {
     this.$q = $q;
+    this.$timeout = $timeout;
     this.$translate = $translate;
     this.detachService = ovhManagerProductOffersDetachService;
     this.WucOrderCartService = WucOrderCartService;
@@ -40,6 +42,7 @@ export default class ProductOffersController {
       case WORKFLOW_TYPES.SERVICES:
         this.workflow = new ServicesWorkflow(
           this.$q,
+          this.$timeout,
           this.$translate,
           this.workflowOptions,
           this.detachService,
