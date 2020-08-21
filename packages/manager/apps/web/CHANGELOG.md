@@ -1,3 +1,13 @@
+## [15.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.2.0...@ovh-ux/manager-web@15.2.1) (2020-08-21)
+
+
+### Bug Fixes
+
+* **web:** contacts management redirection urls ([#3481](https://github.com/ovh/manager/issues/3481)) ([4f73c2b](https://github.com/ovh/manager/commit/4f73c2b058e75f9e3f1a7492090c4fdbfd8ad30c))
+* **web.domain:** handle unavailable capabilities ([#3483](https://github.com/ovh/manager/issues/3483)) ([910bb9c](https://github.com/ovh/manager/commit/910bb9c6911cda7255fe32bb1b8fc79b20905c21))
+
+
+
 # [15.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.1.0...@ovh-ux/manager-web@15.2.0) (2020-08-18)
 
 
