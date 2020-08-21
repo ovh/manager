@@ -46,7 +46,7 @@ export default class HostingGeneralInformationsCtrl {
 
     this.contactManagementLink = this.RedirectionService.getURL(
       'contactManagement',
-      { serviceName: this.serviceName },
+      { serviceName: this.serviceName, category: 'HOSTING' },
     );
     this.loading = {
       defaultRuntime: true,
