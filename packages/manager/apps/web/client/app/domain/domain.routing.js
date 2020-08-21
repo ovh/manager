@@ -23,7 +23,9 @@ const commonResolves = {
       .then((options) => options.data.zone),
   zoneCapabilities: /* @ngInject */ (DNSZoneService, zoneOption) =>
     zoneOption
-      ? DNSZoneService.getCapabilities(zoneOption.serviceName)
+      ? DNSZoneService.getCapabilities(zoneOption.serviceName).catch(() => ({
+          dynHost: false,
+        }))
       : { dynHost: false },
 };
 
