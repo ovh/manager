@@ -134,7 +134,7 @@ angular.module('App').controller(
       }
       this.urls.manageContacts = this.RedirectionService.getURL(
         'contactManagement',
-        { serviceName: this.$stateParams.productId },
+        { serviceName: this.$stateParams.productId, category: 'EMAIL_DOMAIN' },
       );
       return this.User.getUrlOf('changeOwner')
         .then((link) => {
