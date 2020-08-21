@@ -12,7 +12,28 @@
             <span data-translate="dedicatedCloud_close_service_warning"></span>
         </oui-message>
 
-        <p data-translate="dedicatedCloud_close_service_desc"></p>
-        <p data-translate="dedicatedCloud_close_service_question"></p>
+        <form
+            data-ng-if="$ctrl.canDeleteAtExpiration"
+            class="mt-4"
+            name="cancelSubscriptionForm"
+            novalidate
+        >
+            <oui-field
+                label="{{:: 'server_close_service_form_label' | translate }}"
+            >
+                <oui-select
+                    required
+                    items="$ctrl.TERMINATE_OPTIONS"
+                    model="$ctrl.model.termination"
+                    match="label"
+                >
+                </oui-select>
+            </oui-field>
+        </form>
+
+        <div data-ng-if="$ctrl.model.termination.type === 'terminate'">
+            <p data-translate="dedicatedCloud_close_service_desc"></p>
+            <p data-translate="dedicatedCloud_close_service_question"></p>
+        </div>
     </oui-modal>
 </div>

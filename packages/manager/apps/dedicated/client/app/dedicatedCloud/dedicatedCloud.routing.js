@@ -95,6 +95,8 @@ angular.module('App').config(
             datacenterId: currentDrp.datacenterId,
             drpInformations: currentDrp,
           }),
+        serviceName: /* @ngInject */ ($transition$) =>
+          $transition$.params().productId,
       },
       url: '/configuration/dedicated_cloud/:productId',
       views: {
