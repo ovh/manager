@@ -8,6 +8,7 @@ import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin'
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
 import ngOvhBrowserAlert from '@ovh-ux/ng-ovh-browser-alert';
 import ngOvhExportCsv from '@ovh-ux/ng-ovh-export-csv';
+import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import ngOvhHttp from '@ovh-ux/ng-ovh-http';
 import ngOvhOtrs from '@ovh-ux/ng-ovh-otrs';
 import ngOvhProxyRequest from '@ovh-ux/ng-ovh-proxy-request';
@@ -50,6 +51,7 @@ import config from './config/config';
 import contactsService from './account/contacts/service/contacts-service.module';
 import dedicatedCloudDatacenterDrp from './dedicatedCloud/datacenter/drp';
 import dedicatedCloudDatacenterDashboardDeleteDrp from './dedicatedCloud/datacenter/dashboard/deleteDrp';
+import dedicatedCloudTerminate from './dedicatedCloud/terminate/terminate.module';
 import dedicatedUniverseComponents from './dedicatedUniverseComponents';
 import errorPage from './error';
 import ovhManagerPccDashboard from './dedicatedCloud/dashboard';
@@ -79,6 +81,7 @@ angular
       datacenterBackup,
       dedicatedCloudDatacenterDrp,
       dedicatedCloudDatacenterDashboardDeleteDrp,
+      dedicatedCloudTerminate,
       dedicatedServer,
       dedicatedUniverseComponents,
       'directives',
@@ -97,6 +100,7 @@ angular
       ngAtInternetUiRouterPlugin,
       ngOvhApiWrappers,
       ngOvhBrowserAlert,
+      ngOvhFeatureFlipping,
       ngOvhHttp,
       ngOvhOtrs,
       ngOvhProxyRequest,
@@ -318,6 +322,11 @@ angular
   .run(
     /* @ngInject */ ($translate, $transitions) => {
       $transitions.onBefore({ to: 'app.**' }, () => $translate.refresh());
+    },
+  )
+  .config(
+    /* @ngInject */ (ovhFeatureFlippingProvider) => {
+      ovhFeatureFlippingProvider.setApplicationName('dedicated');
     },
   );
 
