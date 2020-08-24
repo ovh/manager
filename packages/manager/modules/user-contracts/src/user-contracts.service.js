@@ -1,8 +1,8 @@
 export default class {
-  constructor($q, OvhHttp) {
-    'ngInject';
-
+  /* @ngInject */
+  constructor($q, $http, OvhHttp) {
     this.$q = $q;
+    this.$http = $http;
     this.OvhHttp = OvhHttp;
   }
 
@@ -26,43 +26,17 @@ export default class {
   }
 
   getTodoAgreements() {
-    return this.OvhHttp.get('/me/agreements', {
-      rootPath: 'apiv6',
-      params: {
-        agreed: 'todo',
-      },
-    }).then((agreements) => {
-      const promises = agreements.map((agreementId) =>
-        this.getAgreementsDetail(agreementId),
-      );
-      return this.$q.all(promises);
-    });
-  }
-
-  getAgreementsDetail(agreementId) {
-    return this.$q
-      .all({
-        contract: this.getContract(agreementId),
-        agreement: this.getAgreement(agreementId),
+    return this.$http
+      .get('/sws/agreements', {
+        serviceType: 'aapi',
+        params: {
+          count: 0,
+          offset: 0,
+          agreed: 'todo',
+        },
       })
-      .then((data) => ({
-        id: agreementId,
-        code: data.contract.name,
-        pdf: data.contract.pdf,
-        text: data.contract.text,
-        contractId: data.agreement.contractId,
-      }));
-  }
-
-  getContract(agreementId) {
-    return this.OvhHttp.get(`/me/agreements/${agreementId}/contract`, {
-      rootPath: 'apiv6',
-    });
-  }
-
-  getAgreement(agreementId) {
-    return this.OvhHttp.get(`/me/agreements/${agreementId}`, {
-      rootPath: 'apiv6',
-    });
+      .then((res) => {
+        return res.data.list.results;
+      });
   }
 }

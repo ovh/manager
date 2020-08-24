@@ -45,16 +45,16 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
     url: 'user-contracts',
     redirectTo: ($transition$) => {
       const { contracts } = $transition$.params();
-      return contracts ? '' : 'app';
+      return contracts ? false : 'app';
     },
     component: 'userContracts',
     params: {
       contracts: null,
     },
-    translations: { value: ['.'], format: 'json' },
     resolve: {
       contracts: /* @ngInject */ ($transition$) =>
         $transition$.params().contracts,
+      from: /* @ngInject */ () => 'app',
     },
   });
 

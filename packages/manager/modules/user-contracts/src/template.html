@@ -1,4 +1,4 @@
-<div class="container-fluid my-5 hub-main-view_container">
+<div class="container-fluid my-5">
     <oui-spinner data-ng-if="$ctrl.saving"></oui-spinner>
     <div data-ng-if="!$ctrl.saving">
         <h3 data-translate="user_contracts_title"></h3>
@@ -23,8 +23,8 @@
                     class="d-block"
                     target="_blank"
                     rel="noopener"
-                    data-ng-href="{{ contract.pdf }}"
-                    data-translate="{{ 'user_contracts_display_text_' + contract.code }}"
+                    data-ng-href="{{ contract.pdfUrl }}"
+                    data-translate="{{ 'user_contracts_display_text_' + contract.name }}"
                 >
                 </a>
             </li>
@@ -42,6 +42,6 @@
     <oui-button
         data-on-click="$ctrl.agree()"
         data-disabled="!$ctrl.model.accepted.value || $ctrl.saving"
-        ><span data-translate="user_contracts_confirm"></span
+        ><span data-translate="wizard_confirm"></span
     ></oui-button>
 </div>

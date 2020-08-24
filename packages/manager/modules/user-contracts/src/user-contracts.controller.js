@@ -31,7 +31,7 @@ export default class UserContractsCtrl {
     this.hasSubmitError = false;
     this.userContractsService
       .acceptAgreements(this.contracts)
-      .then(() => $('#user-contracts-currentAction').modal('hide'))
+      .then(() => this.$state.go(this.from))
       .catch(() => {
         this.model.accepted.value = false;
         this.hasSubmitError = true;

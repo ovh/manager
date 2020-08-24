@@ -21,10 +21,6 @@ angular.module('App').config(
           component: 'mfaEnrollment',
         },
       },
-      redirectTo: ($transition$) => {
-        const { contracts } = $transition$.params();
-        return contracts ? '' : 'app.configuration';
-      },
       params: {
         forced: {
           dynamic: true,
@@ -39,6 +35,10 @@ angular.module('App').config(
 
     $stateProvider.state('app.userContracts', {
       url: '/user-contracts',
+      redirectTo: ($transition$) => {
+        const { contracts } = $transition$.params();
+        return contracts ? false : 'app.configuration';
+      },
       views: {
         'app@': {
           component: 'userContracts',
@@ -47,10 +47,10 @@ angular.module('App').config(
       params: {
         contracts: null,
       },
-      translations: { value: ['.'], format: 'json' },
       resolve: {
         contracts: /* @ngInject */ ($transition$) =>
           $transition$.params().contracts,
+        from: /* @ngInject */ () => 'app.configuration',
       },
     });
 

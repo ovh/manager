@@ -9,5 +9,5 @@
   "user_contracts_submit_error": "Une erreur est survenue. Veuillez réessayer.",
   "user_contracts_display_text_tos": "Termes du contrat de service",
   "user_contracts_display_text_pp": "Politique de confidentialité",
-  "user_contracts_confirm": "Valider"
+  "wizard_confirm": "Valider"
 }
