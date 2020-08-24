@@ -1,10 +1,11 @@
 import { get, merge } from 'lodash-es';
 
+import { Environment } from '@ovh-ux/manager-config';
+
 export default class OvhPaymentMethodIntegrationInContextPaypalCtrl {
   /* @ngInject */
-  constructor($timeout, TranslateService) {
+  constructor($timeout) {
     this.$timeout = $timeout;
-    this.TranslateService = TranslateService;
   }
 
   /**
@@ -16,7 +17,7 @@ export default class OvhPaymentMethodIntegrationInContextPaypalCtrl {
     // call onIntegrationInitialized callback from parent controller to get render options
     const renderOptions = merge(
       {
-        locale: this.TranslateService.getUserLocale(),
+        locale: Environment.getUserLocale(),
       },
       this.inContextCtrl.integrationCtrl.onIntegrationInitialized(),
     );
