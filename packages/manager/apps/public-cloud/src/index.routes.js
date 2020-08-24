@@ -41,6 +41,23 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
     translations: { value: ['.'], format: 'json' },
   });
 
+  $stateProvider.state('app.userContracts', {
+    url: 'user-contracts',
+    redirectTo: ($transition$) => {
+      const { contracts } = $transition$.params();
+      return contracts ? '' : 'app';
+    },
+    component: 'userContracts',
+    params: {
+      contracts: null,
+    },
+    translations: { value: ['.'], format: 'json' },
+    resolve: {
+      contracts: /* @ngInject */ ($transition$) =>
+        $transition$.params().contracts,
+    },
+  });
+
   $stateProvider.state('redirect-kube', {
     url: '/pci/projects/default/kubernetes/new',
     redirectTo: (trans) => {

@@ -32,6 +32,7 @@
     "@ovh-ux/manager-pci": "^4.0.0 || ^5.0.0",
     "@ovh-ux/manager-preloader": "^1.0.0",
     "@ovh-ux/manager-telecom-styles": "^4.0.0",
+    "@ovh-ux/manager-user-contracts": "0.0.0 || ^1.0.0",
     "@ovh-ux/mfa-enrollment": "^1.0.0 || ^2.0.0",
     "@ovh-ux/ng-at-internet": "^5.3.0",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.1.0",
