@@ -12,6 +12,7 @@ import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import { isString, get, has } from 'lodash-es';
 
 import '@ovh-ux/ui-kit';
+import ovhManagerUserContracts from '@ovh-ux/manager-user-contracts';
 import ovhManagerAccountSidebar from '@ovh-ux/manager-account-sidebar';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ovhManagerHub from '@ovh-ux/manager-hub';
@@ -53,6 +54,7 @@ angular
       ovhManagerHub,
       ovhManagerNavbar,
       ovhManagerOrderTracking,
+      ovhManagerUserContracts,
       ovhNotificationsSidebar,
       'pascalprecht.translate',
       'ui.bootstrap',
@@ -90,6 +92,7 @@ angular
       );
     },
   )
+
   .run(
     /* @ngInject */ ($state) => {
       $state.defaultErrorHandler((error) => {

@@ -107,5 +107,39 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
     },
   });
 
+  $stateProvider.state('app.userContracts', {
+    url: '/user-contracts',
+    redirectTo: ($transition$) => {
+      const { contracts } = $transition$.params();
+      return contracts ? '' : 'app.dashboard';
+    },
+    views: {
+      'app@': {
+        component: 'userContracts',
+      },
+    },
+    params: {
+      contracts: null,
+    },
+    translations: { value: ['.'], format: 'json' },
+    resolve: {
+      contracts: /* @ngInject */ ($transition$) =>
+        $transition$.params().contracts,
+    },
+  });
+
+  BILLING_REDIRECTIONS.map((url) =>
+    $urlRouterProvider.when(
+      url,
+      /* @ngInject */ ($location, $window, CORE_MANAGER_URLS) => {
+        set(
+          $window,
+          'location',
+          `${CORE_MANAGER_URLS.dedicated}/#${$location.url()}`,
+        );
+      },
+    ),
+  );
+
   $urlRouterProvider.otherwise('/');
 };
