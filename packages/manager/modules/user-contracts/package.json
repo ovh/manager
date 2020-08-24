@@ -1,0 +1,23 @@
+{
+  "name": "@ovh-ux/manager-user-contracts",
+  "version": "0.0.0",
+  "private": true,
+  "description": "OVHcloud UserContracts product",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh/manager.git",
+    "directory": "packages/manager/modules/user-contracts"
+  },
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
+  "main": "./src/index.js",
+  "dependencies": {
+    "lodash": "^4.17.15"
+  },
+  "peerDependencies": {
+    "@ovh-ux/manager-core": "^10.0.0 || ^11.0.0",
+    "@uirouter/angularjs": "^1.0.23",
+    "angular": "^1.7.5",
+    "angular-translate": "^2.18.1"
+  }
+}

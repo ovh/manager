@@ -1,0 +1,13 @@
+{
+  "user_contracts_title": "Termes et conditions",
+  "user_contracts_term_of_service_updated_text": "Nos termes et conditions ont changé.",
+  "user_contracts_term_of_service_updated_explanation": "Votre utilisation des services d'OVH, y compris l'accès à l'Espace Client, nécessite que vous acceptiez ces termes et conditions mis à jour :",
+  "user_contracts_checkbox_label_both": "J’accepte les mises à jour des conditions d’utilisation et la politique de confidentialité",
+  "user_contracts_checkbox_label_tos": "J’accepte la mises à jour des conditions d’utilisation",
+  "user_contracts_checkbox_label_pp": "J’accepte la mise à jour des conditions de confidentialité",
+  "user_contracts_submit_button": "Continuer",
+  "user_contracts_submit_error": "Une erreur est survenue. Veuillez réessayer.",
+  "user_contracts_display_text_tos": "Termes du contrat de service",
+  "user_contracts_display_text_pp": "Politique de confidentialité",
+  "user_contracts_confirm": "Valider"
+}

@@ -1,0 +1,47 @@
+<div class="container-fluid my-5 hub-main-view_container">
+    <oui-spinner data-ng-if="$ctrl.saving"></oui-spinner>
+    <div data-ng-if="!$ctrl.saving">
+        <h3 data-translate="user_contracts_title"></h3>
+        <oui-message
+            class="d-block mb-4"
+            data-type="error"
+            data-ng-if="$ctrl.hasSubmitError"
+        >
+            <span data-translate="user_contracts_submit_error"></span>
+        </oui-message>
+        <p class="w-75">
+            <span
+                data-translate="user_contracts_term_of_service_updated_text"
+            ></span>
+            <span
+                data-translate="user_contracts_term_of_service_updated_explanation"
+            ></span>
+        </p>
+        <ul>
+            <li data-ng-repeat="contract in $ctrl.contracts track by $index">
+                <a
+                    class="d-block"
+                    target="_blank"
+                    rel="noopener"
+                    data-ng-href="{{ contract.pdf }}"
+                    data-translate="{{ 'user_contracts_display_text_' + contract.code }}"
+                >
+                </a>
+            </li>
+        </ul>
+        <div class="checkbox">
+            <label>
+                <input
+                    type="checkbox"
+                    data-ng-model="$ctrl.model.accepted.value"
+                />
+                <span data-ng-bind="$ctrl.getCheckboxLabel()"></span>
+            </label>
+        </div>
+    </div>
+    <oui-button
+        data-on-click="$ctrl.agree()"
+        data-disabled="!$ctrl.model.accepted.value || $ctrl.saving"
+        ><span data-translate="user_contracts_confirm"></span
+    ></oui-button>
+</div>
