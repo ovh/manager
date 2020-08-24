@@ -1,3 +1,12 @@
+## [2.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@2.1.2...@ovh-ux/manager-hub-app@2.1.3) (2020-08-24)
+
+
+### Bug Fixes
+
+* **hub:** routing redirection ([#3490](https://github.com/ovh/manager/issues/3490)) ([783a482](https://github.com/ovh/manager/commit/783a482264a6fb9ef5581e529b7810ef6a37c715))
+
+
+
 ## [2.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@2.1.1...@ovh-ux/manager-hub-app@2.1.2) (2020-08-18)
 
 
