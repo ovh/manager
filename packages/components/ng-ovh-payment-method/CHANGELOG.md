@@ -1,3 +1,12 @@
+## [7.0.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@7.0.1...@ovh-ux/ng-ovh-payment-method@7.0.2) (2020-08-24)
+
+
+### Bug Fixes
+
+* **payment-method:** not able to add paypal payment method ([#3494](https://github.com/ovh/manager/issues/3494)) ([cf1d77c](https://github.com/ovh/manager/commit/cf1d77c21abbd932a153c747d2e1d235703d88b1)), closes [#DTRSD-18423](https://github.com/ovh/manager/issues/DTRSD-18423)
+
+
+
 ## [7.0.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@7.0.0...@ovh-ux/ng-ovh-payment-method@7.0.1) (2020-08-18)
 
 
