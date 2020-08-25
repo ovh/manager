@@ -11,7 +11,7 @@ export default {
     goToDrpDatacenterSelection: '<',
     goToVpnConfiguration: '<',
     isDrpActionPossible: '<',
+    isMailingListSubscriptionAvailable: '<',
   },
-  name: 'ovhManagerPccDashboard',
   template,
 };
