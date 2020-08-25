@@ -1,3 +1,12 @@
+## [13.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@13.1.1...@ovh-ux/manager-dedicated@13.1.2) (2020-08-25)
+
+
+### Bug Fixes
+
+* **autorenew:** add serviceType parameter ([44eb046](https://github.com/ovh/manager/commit/44eb0468eaa010f89fc81d4ec0c26d169d7367d0))
+
+
+
 ## [13.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@13.1.0...@ovh-ux/manager-dedicated@13.1.1) (2020-08-18)
 
 
