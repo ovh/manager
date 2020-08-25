@@ -13,7 +13,11 @@ export default class FlavorBillingController {
       this.prices = flavor.prices;
       this.PriceFormatter = new Intl.NumberFormat(
         Environment.getUserLocale().replace('_', '-'),
-        { style: 'currency', currency: flavor.prices.hourly.currencyCode },
+        {
+          style: 'currency',
+          currency: flavor.prices.hourly.currencyCode,
+          maximumFractionDigits: 5, // default is 2. But this rounds off the price
+        },
       );
     }
   }
