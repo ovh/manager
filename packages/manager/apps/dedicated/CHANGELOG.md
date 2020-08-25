@@ -1,3 +1,12 @@
+## [13.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@13.1.2...@ovh-ux/manager-dedicated@13.1.3) (2020-08-25)
+
+
+### Bug Fixes
+
+* **dedicated:** ips are not listing ([c2ee4ad](https://github.com/ovh/manager/commit/c2ee4adb055d735a49d43447c8eeee97b47605e2)), closes [#DTRSD-17970](https://github.com/ovh/manager/issues/DTRSD-17970)
+
+
+
 ## [13.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@13.1.1...@ovh-ux/manager-dedicated@13.1.2) (2020-08-25)
 
 
