@@ -1,3 +1,4 @@
+import filter from 'lodash/filter';
 import get from 'lodash/get';
 import uniq from 'lodash/uniq';
 
@@ -52,7 +53,8 @@ export default class PciServingNamespaceModelsAddController {
 
     this.advancedConfigurationAutoscalerSpec = false;
 
-    this.frameworks = this.frameworks.filter(
+    this.frameworks = filter(
+      this.frameworks,
       (framework) => framework.id !== 'flow',
     );
     [this.model.framework] = this.frameworks;
@@ -178,19 +180,12 @@ export default class PciServingNamespaceModelsAddController {
     );
   }
 
-  getBackendLabel(backend, framework) {
-    let label = backend.name;
-    if (backend.id === framework.recommendedBackend) {
-      label += ` (${this.$translate.instant(
-        'pci_projects_project_serving_namespace_models_add_recommended',
-      )})`;
-    }
-    return label;
-  }
-
   disabledFlavor(flavor) {
     // Preset not selected
-    if (this.model.workflowTemplate !== this.PRESET_IMAGE) {
+    if (
+      this.model.workflowTemplate !== this.PRESET_IMAGE ||
+      this.model.image === null
+    ) {
       return false;
     }
 

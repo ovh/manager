@@ -113,13 +113,23 @@
                     >
                         <oui-select-picker
                             data-name="backend"
-                            data-label="{{ $ctrl.getBackendLabel(backend, $ctrl.model.framework) }}"
                             data-model="$ctrl.model.backend"
                             data-values="[backend]"
                             data-variant="light"
                             data-required
                             data-disabled="!$ctrl.model.framework.backends.includes(backend.id)"
                         >
+                            <oui-select-picker-label>
+                                {{:: backend.name }}
+                                <span
+                                    ng-if="backend.id === $ctrl.model.framework.recommendedBackend"
+                                    class="oui-badge oui-badge_s oui-badge_info"
+                                >
+                                    {{::
+                                    'pci_projects_project_serving_namespace_models_add_recommended'
+                                    | translate }}
+                                </span>
+                            </oui-select-picker-label>
                             <oui-select-picker-section>
                                 <a
                                     target="_blank"
@@ -154,7 +164,7 @@
                     <div class="col-xs-12 py-2">
                         <oui-message type="info">
                             <a
-                                href="{{ $ctrl.COMPATIBILITY_GUIDE_URL }}"
+                                href="{{ $ctrl.COMPATIBILITY_GUIDE_URL[$ctrl.user.language] || $ctrl.COMPATIBILITY_GUIDE_URL['en_GB'] }}"
                                 target="_blank"
                                 rel="noopener"
                                 data-translate="pci_projects_project_serving_namespace_models_add_custom_info"
