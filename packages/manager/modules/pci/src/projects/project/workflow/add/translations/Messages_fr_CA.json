@@ -75,5 +75,6 @@
   "pci_projects_project_workflow_instance_status_RESCUING": "Redémarrage (rescue)",
   "pci_projects_project_workflow_instance_status_UNRESCUING": "Redémarrage",
   "pci_projects_project_workflow_instance_status_SNAPSHOTTING": "Création d'une instance backup",
-  "pci_projects_project_workflow_instance_status_RESUMING": "Reprise en cours"
+  "pci_projects_project_workflow_instance_status_RESUMING": "Reprise en cours",
+  "pci_projects_project_workflow_instance_status_IS_IOPS": "La sauvegarde automatique s’applique strictement aux données du disque local de votre instance. Les données des disques NVMe ne seront pas sauvegardées."
 }

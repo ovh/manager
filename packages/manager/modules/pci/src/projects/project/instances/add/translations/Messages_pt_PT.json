@@ -46,5 +46,6 @@
   "pci_project_instances_instance_add_choose_model": "Mudar de modelo",
   "pci_projects_project_instances_add_automated_backup_recommended": "Recomendado",
   "pci_projects_project_instances_add_privateNetwork_description": "Por predefinição, as instâncias Public Cloud possuem uma rede pública. Pode adicionar uma rede privada.",
-  "pci_projects_project_instances_add_privateNetwork_add": "Criar uma rede privada"
+  "pci_projects_project_instances_add_privateNetwork_add": "Criar uma rede privada",
+  "pci_projects_project_instances_add_instance_is_iops": "O backup automático aplica-se estritamente aos dados do disco local da sua instância. Os dados dos discos NVMe não serão guardados."
 }
