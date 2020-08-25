@@ -285,7 +285,7 @@
 
                 <tbody
                     data-ng-if="ipsList.length"
-                    data-ng-repeat="ipBlock in ipsList track by ipBlock.ipBlock"
+                    data-ng-repeat="ipBlock in ipsList track by $index"
                 >
                     <tr
                         data-ng-show="ipBlock.refreshing || ipBlock.reverseDelegationsRefresh"
