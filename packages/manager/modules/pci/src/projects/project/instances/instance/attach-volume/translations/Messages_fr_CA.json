@@ -3,8 +3,7 @@
   "pci_projects_project_instances_instance_attach-volume_submit_label": "Attacher",
   "pci_projects_project_instances_instance_attach-volume_cancel_label": "Annuler",
   "pci_projects_project_instances_instance_attach-volume_volume_placeholder": "Rechercher",
-  "pci_projects_project_instances_instance_attach-volume_error_no_compatible_volume": "Vous ne possédez actuellement aucun volume compatible auquel attacher cette instance.",
+  "pci_projects_project_instances_instance_attach-volume_error_no_compatible_volume": "Aucun volume n’est disponible dans la région de votre instance.",
   "pci_projects_project_instances_instance_attach-volume_success_message": "Le volume {{ volume }} ({{ volumeId }}) de type {{ type }} a été attaché à l'instance {{ instance }} ({{ instanceId }}).",
   "pci_projects_project_instances_instance_attach-volume_error_attach": "Une erreur est survenue lors de la mise à jour du volume {{ volume }} : {{ message }}"
-
 }
