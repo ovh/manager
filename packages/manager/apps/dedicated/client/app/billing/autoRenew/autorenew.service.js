@@ -1,3 +1,4 @@
+import find from 'lodash/find';
 import head from 'lodash/head';
 import map from 'lodash/map';
 import pick from 'lodash/pick';
@@ -74,14 +75,25 @@ export default class {
     }).$promise;
   }
 
-  getService(serviceId) {
+  /**
+   * add optional serviceType parameter to filter service result
+   * (some services might have the same serviceId but a different
+   *  serviceType : domain and email-domain)
+   */
+  getService(serviceId, serviceType) {
     return this.OvhApiBillingAutorenewServices.Aapi()
       .query({
         search: serviceId,
       })
-      .$promise.then(
-        (services) => new BillingService(head(services.list.results)),
-      );
+      .$promise.then((services) => {
+        if (serviceType) {
+          return find(services.list.results, {
+            serviceType,
+          });
+        }
+        return head(services.list.results);
+      })
+      .then((service) => new BillingService(service));
   }
 
   getServicesTypes(services) {
