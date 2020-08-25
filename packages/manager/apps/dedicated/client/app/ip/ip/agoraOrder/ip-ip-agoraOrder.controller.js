@@ -148,65 +148,98 @@ angular.module('Module.ip.controllers').controller(
       return 'USA';
     }
 
+    loadPrivateCloudIpOffers(serviceName) {
+      return this.IpAgoraOrder.getPrivateCloudIpOffers(serviceName).then(
+        (ipOffers) => {
+          this.ipOffers = map(ipOffers, (offer) => {
+            const price = head(offer.prices);
+            const maximumQuantity = get(price, 'maximumQuantity') || 1;
+            return {
+              ...offer,
+              productShortName: offer.productName,
+              price: price.price,
+              duration: 'P1M', // @todo use price.duration when api is fixed
+              pricingMode: price.pricingMode,
+              maximumQuantity,
+              quantities: range(1, maximumQuantity + 1),
+              isIpBlockOffer: maximumQuantity === 1,
+            };
+          });
+        },
+      );
+    }
+
     loadIpOffers() {
       this.loading.ipOffers = true;
 
       this.model.params = {};
+      let ipOffersPromise;
 
-      const ipOffersPromise = this.IpAgoraOrder.getIpOffers(
-        this.user.ovhSubsidiary,
-      ).then((ipOffers) => {
-        let ipOfferDetails = ipOffers.map(this.createOfferDto.bind(this));
-        if (this.model.selectedService.type === PRODUCT_TYPES.vps.typeName) {
-          ipOfferDetails = ipOfferDetails
-            .filter(({ productShortName }) =>
-              productShortName.includes('failover'),
-            )
-            .map((offer) => ({
-              ...offer,
-              quantities: range(1, VPS_MAX_QUANTITY + 1),
-            }));
-        }
+      this.isPrivateCloudOffer =
+        get(this.model, 'selectedService.type') ===
+        PRODUCT_TYPES.privateCloud.typeName;
 
-        const ipCountryAvailablePromise = this.IpAgoraOrder.getIpCountryAvailablePromise(
-          this.model.selectedService.serviceName,
-          this.model.selectedService.type,
+      if (this.isPrivateCloudOffer) {
+        ipOffersPromise = this.loadPrivateCloudIpOffers(
+          get(this.model, 'selectedService.serviceName'),
         );
+      } else {
+        ipOffersPromise = this.IpAgoraOrder.getIpOffers(
+          this.user.ovhSubsidiary,
+        ).then((ipOffers) => {
+          let ipOfferDetails = ipOffers.map(this.createOfferDto.bind(this));
+          if (this.model.selectedService.type === PRODUCT_TYPES.vps.typeName) {
+            ipOfferDetails = ipOfferDetails
+              .filter(({ productShortName }) =>
+                productShortName.includes('failover'),
+              )
+              .map((offer) => ({
+                ...offer,
+                quantities: range(1, VPS_MAX_QUANTITY + 1),
+              }));
+          }
 
-        return ipCountryAvailablePromise
-          .then((countries) => {
-            if (countries.length > 0) {
-              const ipOffersByRegion = AgoraIpOrderCtrl.getRegionsOffers(
-                countries,
-              );
-              this.ipOffers = ipOfferDetails
-                .filter(({ productRegion }) =>
-                  ipOffersByRegion.includes(productRegion),
-                )
-                .map((ipOffer) => {
-                  set(
-                    ipOffer,
-                    'countries',
-                    ipOffer.countries.filter(
-                      ({ code }) => countries.indexOf(code.toLowerCase()) > -1,
-                    ),
-                  );
-                  return ipOffer;
-                });
-            } else {
+          const ipCountryAvailablePromise = this.IpAgoraOrder.getIpCountryAvailablePromise(
+            this.model.selectedService.serviceName,
+            this.model.selectedService.type,
+          );
+
+          return ipCountryAvailablePromise
+            .then((countries) => {
+              if (countries && countries.length > 0) {
+                const ipOffersByRegion = AgoraIpOrderCtrl.getRegionsOffers(
+                  countries,
+                );
+                this.ipOffers = ipOfferDetails
+                  .filter(({ productRegion }) =>
+                    ipOffersByRegion.includes(productRegion),
+                  )
+                  .map((ipOffer) => {
+                    set(
+                      ipOffer,
+                      'countries',
+                      ipOffer.countries.filter(
+                        ({ code }) =>
+                          countries.indexOf(code.toLowerCase()) > -1,
+                      ),
+                    );
+                    return ipOffer;
+                  });
+              } else {
+                this.ipOffers = AgoraIpOrderCtrl.filterOfferDetailsFromServiceName(
+                  ipOfferDetails,
+                  this.model.selectedService.serviceName,
+                );
+              }
+            })
+            .catch(() => {
               this.ipOffers = AgoraIpOrderCtrl.filterOfferDetailsFromServiceName(
                 ipOfferDetails,
                 this.model.selectedService.serviceName,
               );
-            }
-          })
-          .catch(() => {
-            this.ipOffers = AgoraIpOrderCtrl.filterOfferDetailsFromServiceName(
-              ipOfferDetails,
-              this.model.selectedService.serviceName,
-            );
-          });
-      });
+            });
+        });
+      }
 
       const ipOrganisationPromise = this.IpOrganisation.getIpOrganisation().then(
         (organisations) => {
@@ -251,7 +284,7 @@ angular.module('Module.ip.controllers').controller(
     isOfferFormValid() {
       if (
         !this.model.params.selectedOffer ||
-        !this.model.params.selectedCountry
+        (!this.model.params.selectedCountry && !this.isPrivateCloudOffer)
       ) {
         return false;
       }
@@ -272,8 +305,20 @@ angular.module('Module.ip.controllers').controller(
     }
 
     redirectToPaymentPage() {
-      const productToOrder = this.IpAgoraOrder.constructor.createProductToOrder(
-        {
+      let productToOrder = null;
+      if (this.isPrivateCloudOffer) {
+        productToOrder = this.IpAgoraOrder.constructor.createProductToOrder({
+          productId: 'privateCloud',
+          duration: get(this.model.params, 'selectedOffer.duration'),
+          pricingMode: get(this.model.params, 'selectedOffer.pricingMode'),
+          country: get(this.model.params, 'selectedCountry.code'),
+          destination: get(this.model, 'selectedService.serviceName'),
+          serviceName: get(this.model, 'selectedService.serviceName'),
+          planCode: get(this.model.params, 'selectedOffer.planCode'),
+          quantity: get(this.model.params, 'selectedQuantity', 1),
+        });
+      } else {
+        productToOrder = this.IpAgoraOrder.constructor.createProductToOrder({
           country: get(this.model.params, 'selectedCountry.code'),
           destination: this.model.selectedService.serviceName,
           organisation: get(
@@ -282,8 +327,8 @@ angular.module('Module.ip.controllers').controller(
           ),
           planCode: get(this.model.params, 'selectedOffer.planCode'),
           quantity: get(this.model.params, 'selectedQuantity', 1),
-        },
-      );
+        });
+      }
 
       return this.User.getUrlOf('express_order')
         .then((url) => {
