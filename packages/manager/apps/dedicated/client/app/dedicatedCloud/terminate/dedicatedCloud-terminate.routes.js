@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) =>
-  $stateProvider.state('app.dedicatedClouds.terminate', {
+  $stateProvider.state('app.dedicatedClouds.dashboard.terminate', {
     url: '/terminate',
     views: {
       modal: {
