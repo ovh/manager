@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.account.billing.autorenew.cancelResiliation', {
-    url: '/cancel-resiliation?serviceId',
+    url: '/cancel-resiliation?serviceId&serviceType',
     views: {
       modal: {
         component: 'billingAutorenewCancelResiliation',
@@ -16,8 +16,10 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       serviceId: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceId,
-      service: /* @ngInject */ (BillingAutoRenew, serviceId) =>
-        BillingAutoRenew.getService(serviceId),
+      serviceType: /* @ngInject */ ($transition$) =>
+        $transition$.params().serviceType,
+      service: /* @ngInject */ (BillingAutoRenew, serviceId, serviceType) =>
+        BillingAutoRenew.getService(serviceId, serviceType),
     },
   });
 };
