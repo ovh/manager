@@ -1,6 +1,3 @@
-import './dashboard/dedicatedCloud-dashboard.component';
-import './dashboard/dedicatedCloud-dashboard.routing';
-import './dashboard/index';
 import './dashboard/legacy/index';
 import './dashboard/legacy/legacy.component';
 import './dashboard/legacy/legacy.controller';

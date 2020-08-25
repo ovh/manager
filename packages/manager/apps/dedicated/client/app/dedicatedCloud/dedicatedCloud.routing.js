@@ -1,8 +1,6 @@
 import get from 'lodash/get';
 import sortBy from 'lodash/sortBy';
 
-import pccViewTemplate from './dashboard/dedicatedCloud-dashboard.html';
-
 angular.module('App').config(
   /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
     $stateProvider.state('app.dedicatedClouds', {
@@ -104,9 +102,6 @@ angular.module('App').config(
           templateUrl: 'dedicatedCloud/dedicatedCloud.html',
           controller: 'DedicatedCloudCtrl',
           controllerAs: '$ctrl',
-        },
-        'pccView@app.dedicatedClouds': {
-          template: pccViewTemplate,
         },
       },
       reloadOnSearch: false,
