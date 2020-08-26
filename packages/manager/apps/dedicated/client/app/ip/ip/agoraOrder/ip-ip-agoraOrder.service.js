@@ -1,3 +1,4 @@
+import filter from 'lodash/filter';
 import get from 'lodash/get';
 import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
@@ -77,6 +78,19 @@ angular.module('Module.ip.services').service(
           ovhSubsidiary,
         },
       }).then(({ plans }) => plans);
+    }
+
+    getPrivateCloudIpOffers(serviceName) {
+      return this.OvhHttp.get(
+        `/order/cartServiceOption/privateCloud/${serviceName}`,
+        {
+          rootPath: 'apiv6',
+        },
+      ).then((ipOffers) =>
+        filter(ipOffers, {
+          family: 'ip',
+        }),
+      );
     }
 
     fetchPrices(serviceName, blockSize) {
