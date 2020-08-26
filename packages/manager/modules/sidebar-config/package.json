@@ -1,0 +1,21 @@
+{
+  "name": "@ovh-ux/manager-sidebar-config",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Retrieve sidebar configuration depending on the universe",
+  "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/modules/sidebar-config#readme",
+  "bugs": {
+    "url": "https://github.com/ovh/manager/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh/manager.git",
+    "directory": "packages/manager/modules/sidebar-config"
+  },
+  "license": "BSD-3-Clause",
+  "main": "./src/index.js",
+  "dependencies": {
+    "@ovh-ux/manager-config": "^4.0.0",
+    "i18next": "^19.7.0"
+  }
+}

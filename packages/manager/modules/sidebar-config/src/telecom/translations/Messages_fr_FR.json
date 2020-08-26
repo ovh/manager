@@ -1,0 +1,10 @@
+{
+  "telecom_internet": "Internet",
+  "telecom_telephony": "Téléphonie",
+  "telecom_managerv4": "Managerv4",
+  "telecom_pack": "Accès Internet",
+  "telecom_telephony_lines": "Groupes VoIP",
+  "telecom_sms": "SMS",
+  "telecom_freefax": "Freefax",
+  "telecom_over_the_box": "OverTheBox"
+}
