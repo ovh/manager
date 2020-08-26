@@ -1,0 +1,48 @@
+{
+  "name": "@ovh-ux/manager-fragment-sidebar",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vue-cli-service build --target lib --inline-vue --filename index --formats umd ./src/main.ts",
+    "dev": "yarn build",
+    "dev:watch": "vue-cli-service build --target lib --inline-vue --watch --mode=\"production\" --filename index --formats umd ./src/main.ts",
+    "lint": "vue-cli-service lint ./src",
+    "serve": "vue-cli-service serve",
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-fragment-sidebar' --include-dependencies -- npm run build --if-present",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-fragment-sidebar' --include-dependencies -- npm run dev --if-present",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-fragment-sidebar' --include-dependencies -- npm run dev:watch --if-present"
+  },
+  "dependencies": {
+    "@ovh-ux/manager-config": "^4.0.0",
+    "@ovh-ux/manager-sidebar-config": "^0.0.0 || ^1.0.0",
+    "@ovh-ux/ufrontend": "^1.0.0",
+    "@types/lodash-es": "^4.17.3",
+    "@vue/composition-api": "^1.0.0-beta.25",
+    "lodash-es": "^4.17.15",
+    "npm": "^6.14.8",
+    "vue": "^2.6.11",
+    "vue-i18n": "^8.21.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.33.0",
+    "@typescript-eslint/parser": "^2.33.0",
+    "@vue/cli-plugin-typescript": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/eslint-config-airbnb": "^5.0.2",
+    "@vue/eslint-config-typescript": "^5.0.2",
+    "copy-webpack-plugin": "^6.0.3",
+    "eslint": "^6.7.2",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-vue": "^6.2.2",
+    "node-sass": "^4.12.0",
+    "typescript": "~3.9.3",
+    "webpack-shell-plugin": "^0.5.0"
+  },
+  "peerDependencies": {
+    "@ovh-ux/ui-kit": "^4.2.4"
+  }
+}
