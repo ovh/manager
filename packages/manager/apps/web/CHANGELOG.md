@@ -1,3 +1,12 @@
+## [15.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.2.1...@ovh-ux/manager-web@15.2.2) (2020-08-26)
+
+
+### Bug Fixes
+
+* **email-domain:** always show responders button ([#3509](https://github.com/ovh/manager/issues/3509)) ([05089c2](https://github.com/ovh/manager/commit/05089c2aedc540420e58b5229e35244f05299399))
+
+
+
 ## [15.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.2.0...@ovh-ux/manager-web@15.2.1) (2020-08-21)
 
 
