@@ -1166,7 +1166,7 @@ const constants = {
           nsx:
             'https://us.ovhcloud.com/products/hosted-private-cloud/vmware-nsx',
           vrops:
-            'https://us.ovhcloud.com/products/hosted-private-cloud/vmware-vrealize-operations',
+            'https://us.ovhcloud.com/enterprise/products/hosted-private-cloud/vrops/',
         },
         presentations: {
           home: 'https://us.ovhcloud.com/products/hosted-private-cloud/',
@@ -1175,7 +1175,7 @@ const constants = {
           veeam:
             'https://us.ovhcloud.com/products/hosted-private-cloud/managed-veeam-backup',
           vrops:
-            'https://us.ovhcloud.com/products/hosted-private-cloud/vmware-vrealize-operations',
+            'https://us.ovhcloud.com/enterprise/products/hosted-private-cloud/vrops/',
         },
         vpsCloud: 'https://www.ovh.com/ca/en/vps/vps-cloud.xml',
         dedicatedIpmi:
