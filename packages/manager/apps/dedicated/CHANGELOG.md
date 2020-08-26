@@ -1,3 +1,12 @@
+## [13.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@13.2.0...@ovh-ux/manager-dedicated@13.2.1) (2020-08-26)
+
+
+### Bug Fixes
+
+* **dedicated-server:** bandwidth shown is not correct ([3f77b44](https://github.com/ovh/manager/commit/3f77b448724efe00e5150ea5707c9fff43071d6e)), closes [#DTRSD-18400](https://github.com/ovh/manager/issues/DTRSD-18400)
+
+
+
 # [13.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@13.1.3...@ovh-ux/manager-dedicated@13.2.0) (2020-08-26)
 
 
