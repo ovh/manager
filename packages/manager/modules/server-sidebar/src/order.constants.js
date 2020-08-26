@@ -425,7 +425,7 @@ export const ORDER_URLS = {
       US: 'https://us.ovhcloud.com/manager/dedicated/',
     },
     dedicated_cloud: {
-      US: 'https://us.ovhcloud.com/products/hosted-private-cloud/',
+      US: 'https://us.ovhcloud.com/enterprise/products/hosted-private-cloud',
     },
     cloud_disk_array: {
       US: 'https://us.ovhcloud.com/cloud/cloud-disk-array/',
@@ -535,7 +535,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     target: '_blank',
     external: true,
     app: [CLOUD],
-    regions: ['EU', 'CA'],
+    regions: ['EU', 'CA', 'US'],
   },
   {
     id: 'order-cda',
