@@ -172,7 +172,7 @@
                 <oui-step-form
                     data-header="{{ :: 'billing_payment_method_add_payment_method' | translate }}"
                     data-submit-text="{{ $ctrl.isLastStep('paymentMethodIntegration') ? 'common_add' : 'common_next' | translate }}"
-                    data-position="{{ $ctrl.addSteps.paymentMethod.position }}"
+                    data-position="{{ $ctrl.addSteps.paymentMethodIntegration.position }}"
                     data-on-focus="$ctrl.addSteps.paymentMethod.onFocus()"
                     data-ng-if="$ctrl.isStepVisible('paymentMethodIntegration')"
                 >
