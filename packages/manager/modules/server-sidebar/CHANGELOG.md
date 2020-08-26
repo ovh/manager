@@ -1,3 +1,12 @@
+# [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@2.0.4...@ovh-ux/manager-server-sidebar@2.1.0) (2020-08-26)
+
+
+### Features
+
+* **dedicated-server:** order hpc link in US ([#3411](https://github.com/ovh/manager/issues/3411)) ([3a787cd](https://github.com/ovh/manager/commit/3a787cdc6cf81322e7c2337153750f6ffb831d8c)), closes [#MANAGER-5329](https://github.com/ovh/manager/issues/MANAGER-5329)
+
+
+
 ## [2.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@2.0.3...@ovh-ux/manager-server-sidebar@2.0.4) (2020-08-18)
 
 

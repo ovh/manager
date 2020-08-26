@@ -1,3 +1,12 @@
+## [13.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@13.2.1...@ovh-ux/manager-dedicated@13.2.2) (2020-08-26)
+
+
+### Bug Fixes
+
+* **dedicated:** private cloud guide urls ([#3472](https://github.com/ovh/manager/issues/3472)) ([c5226e9](https://github.com/ovh/manager/commit/c5226e92f51b1aec842ba72f574167b6022b9094)), closes [#MANAGER-5495](https://github.com/ovh/manager/issues/MANAGER-5495)
+
+
+
 ## [13.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@13.2.0...@ovh-ux/manager-dedicated@13.2.1) (2020-08-26)
 
 
