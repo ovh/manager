@@ -257,7 +257,7 @@ export default class DedicatedServerDashboard {
     return (
       !this.server.isExpired &&
       this.server.canOrderQuota &&
-      get(this.trafficInformations.trafficOrderables, 'length')
+      get(this.trafficInformations.trafficOrderables.data, 'length')
     );
   }
 
