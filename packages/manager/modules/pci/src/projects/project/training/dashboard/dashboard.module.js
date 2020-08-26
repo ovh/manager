@@ -12,7 +12,6 @@ import install from './install';
 
 import component from './dashboard.component';
 import routing from './dashboard.routing';
-import service from './dashboard.service';
 
 const moduleName = 'ovhManagerPciTrainingDashboard';
 
@@ -31,7 +30,6 @@ angular
   ])
   .config(routing)
   .component('pciProjectTrainingDashboardComponent', component)
-  .service('PciProjectTrainingServiceDashboard', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

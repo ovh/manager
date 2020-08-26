@@ -33,7 +33,6 @@ export default class PciProjectTrainingDataService {
   }
 
   getAll(projectId) {
-    // Uncomment when iceberg proded
     return this.OvhApiCloudProjectAi.Training()
       .Data()
       .v6()
@@ -44,7 +43,6 @@ export default class PciProjectTrainingDataService {
   }
 
   get(projectId, dataId) {
-    // Uncomment when iceberg proded
     return this.OvhApiCloudProjectAi.Training()
       .Data()
       .v6()

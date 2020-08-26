@@ -89,7 +89,7 @@ export default class PciTrainingDashboardController {
     return this.goToJobSubmit();
   }
 
-  goToRegistryAttachTracking() {
+  attachRegistry() {
     this.atInternet.trackClick({
       name:
         'public-cloud::pci::projects::project::training::dashboard::attach-registry::confirm',

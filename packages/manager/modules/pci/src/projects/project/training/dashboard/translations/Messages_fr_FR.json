@@ -7,7 +7,7 @@
   "pci_projects_project_training_dashboard_console_url": "Console ElementAI",
   "pci_projects_project_training_dashboard_console_url_help": "URL permettant d'accéder à l'interface web du produit ElementAI. L'authentification sur le produit ElementAI s'effectue via un des utilisateurs avec le role « AI TRAINING OPERATOR » créé au sein du même projet public cloud.",
   "pci_projects_project_training_dashboard_registry": "Registre docker attaché",
-  "pci_projects_project_training_dashboard_registry_shared": "Registre Docker OVH partagé",
+  "pci_projects_project_training_dashboard_registry_shared": "Registre Docker OVHcloud partagé",
   "pci_projects_project_training_dashboard_registry_help": "Le registre docker attaché au projet permet d'héberger les images privées nécessaires à l'éxecution des jobs",
   "pci_projects_project_training_dashboard_registry_update": "Modifier",
   "pci_projects_project_training_dashboard_cli_integration_title": "CLI ElementAI",

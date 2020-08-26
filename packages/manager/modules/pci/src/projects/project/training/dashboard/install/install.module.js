@@ -8,7 +8,6 @@ import 'ovh-api-services';
 
 import component from './install.component';
 import routing from './install.routing';
-import service from './install.service';
 
 const moduleName = 'ovhManagerPciTrainingInstall';
 
@@ -24,7 +23,6 @@ angular
   ])
   .config(routing)
   .component('pciProjectTrainingInstallComponent', component)
-  .service('PciProjectTrainingServiceInstall', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

@@ -1,7 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.training.dashboard.install', {
     url: '/install',
-    // component: 'pciProjectTrainingInstallComponent',
     views: {
       modal: {
         component: 'pciProjectTrainingInstallComponent',

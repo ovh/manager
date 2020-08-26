@@ -56,14 +56,20 @@
                         <oui-tile-description>
                             <a
                                 class="oui-link oui-link_icon"
-                                href="{{ $ctrl.currentRegion.consoleUrl }}"
+                                href="{{:: $ctrl.currentRegion.consoleUrl }}"
                                 target="_blank"
                                 rel="noopener"
-                                >{{ $ctrl.currentRegion.consoleUrl }}<span
+                                >{{:: $ctrl.currentRegion.consoleUrl }}
+                                <span
                                     class="oui-icon oui-icon-external_link"
                                     aria-hidden="true"
-                                ></span
-                            ></a>
+                                ></span>
+                                <span class="sr-only"
+                                    >{{::
+                                    'pci_projects_project_training_dashboard_console_url_help'
+                                    | translate}}</span
+                                >
+                            </a>
                         </oui-tile-description>
                     </dl>
                 </div>
@@ -116,7 +122,7 @@
                                 >
                                 <oui-dropdown-item
                                     data-ng-if="!$ctrl.registry.custom"
-                                    data-ng-click="$ctrl.goToRegistryAttachTracking()"
+                                    data-ng-click="$ctrl.attachRegistry()"
                                     >{{
                                     ::'pci_projects_project_training_dashboard_registry_attach'
                                     | translate }}</oui-dropdown-item
@@ -189,7 +195,9 @@
                                         | translate }}</span
                                     >
                                 </span>
-                                <h2>{{ :: $ctrl.nbRunning }}</h2>
+                                <span class="big-number"
+                                    >{{ :: $ctrl.nbRunning }}</span
+                                >
                             </div>
                             <div class="col-md-6">
                                 <span class="oui-status oui-status_success">
@@ -199,7 +207,9 @@
                                         | translate }}</span
                                     >
                                 </span>
-                                <h2>{{ :: $ctrl.nbSuccess }}</h2>
+                                <span class="big-number"
+                                    >{{ :: $ctrl.nbSuccess }}</span
+                                >
                             </div>
                         </div>
                     </oui-tile-description>
@@ -215,7 +225,9 @@
                                         | translate }}</span
                                     >
                                 </span>
-                                <h2>{{ :: $ctrl.nbFailed }}</h2>
+                                <span class="big-number"
+                                    >{{ :: $ctrl.nbFailed }}</span
+                                >
                             </div>
                             <div class="col-md-6">
                                 <span class="oui-status oui-status_warning">
@@ -225,7 +237,9 @@
                                         | translate }}</span
                                     >
                                 </span>
-                                <h2>{{ :: $ctrl.nbOther }}</h2>
+                                <span class="big-number"
+                                    >{{ :: $ctrl.nbOther }}</span
+                                >
                             </div>
                         </div>
                     </oui-tile-description>

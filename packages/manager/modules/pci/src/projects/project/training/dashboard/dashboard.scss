@@ -3,3 +3,12 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.big-number {
+  line-height: 1.25;
+  letter-spacing: 0;
+  font-weight: 400;
+  font-size: 36px;
+  color: #00185e;
+  margin: 0 0 16px;
+}
