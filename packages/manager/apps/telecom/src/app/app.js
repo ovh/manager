@@ -34,7 +34,6 @@ import ngPaginationFront from '@ovh-ux/ng-pagination-front';
 import ngQAllSettled from '@ovh-ux/ng-q-allsettled';
 import ngTailLogs from '@ovh-ux/ng-tail-logs';
 import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
-import ngOvhSidebarMenu from '@ovh-ux/ng-ovh-sidebar-menu';
 import ngOvhSimpleCountryList from '@ovh-ux/ng-ovh-simple-country-list';
 import ngOvhLineDiagnostics from '@ovh-ux/ng-ovh-line-diagnostics';
 import ngOvhContact from '@ovh-ux/ng-ovh-contact';
@@ -102,7 +101,6 @@ angular
       ngOvhContact,
       ngOvhLineDiagnostics,
       ngQAllSettled,
-      ngOvhSidebarMenu,
       ngOvhSimpleCountryList,
       ngOvhTimeline,
       ngOvhUiConfirmModal,

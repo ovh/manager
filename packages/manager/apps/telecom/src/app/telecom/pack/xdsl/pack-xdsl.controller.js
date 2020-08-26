@@ -10,7 +10,6 @@ export default class PackXdslCtrl {
     OvhApiPackXdsl,
     OvhApiXdsl,
     OvhApiXdslModem,
-    SidebarMenu,
     smoothScroll,
     TucToast,
     TucToastError,
@@ -22,7 +21,6 @@ export default class PackXdslCtrl {
     this.OvhApiXdsl = OvhApiXdsl;
     this.OvhApiPackXdsl = OvhApiPackXdsl;
     this.OvhApiXdslModem = OvhApiXdslModem;
-    this.SidebarMenu = SidebarMenu;
     this.smoothScroll = smoothScroll;
     this.TucToast = TucToast;
     this.TucToastError = TucToastError;
@@ -170,16 +168,6 @@ export default class PackXdslCtrl {
       )
       .$promise.then(() => {
         this.access.description = newAccessDescr;
-
-        // rename in sidebar menu
-        this.SidebarMenu.updateItemDisplay(
-          {
-            title: newAccessDescr || this.access.serviceName,
-          },
-          this.serviceName,
-          'telecom-pack-section',
-          this.packName,
-        );
       })
       .catch((error) => {
         this.TucToast.error(

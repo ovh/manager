@@ -56,18 +56,23 @@
                     class="w-100 h-100 position-absolute"
                     style="top: 0; left: 0;"
                 >
-                    <div class="container-fluid h-100" data-ui-view="root">
+                    <div class="container-fluid h-100">
                         <div class="row h-100">
                             <!-- SIDE MENU -->
-                            <div
-                                data-sidebar-menu
-                                class="col-md-3 col-lg-2"
-                            ></div>
+                            <div class="col-md-3 col-lg-2 p-0 h-100">
+                                <ovh-fragment
+                                    fragment-id="sidebar"
+                                    fragment-version="1.0.0"
+                                    ng-non-bindable
+                                ></ovh-fragment>
+                            </div>
+
                             <!-- CONTENT -->
                             <div
                                 id="content"
-                                class="col-md-9 col-md-offset-3 col-lg-10 col-lg-offset-2 h-100"
+                                class="col-md-9 col-lg-10 h-100"
                                 style="overflow: auto;"
+                                data-ui-view="root"
                             >
                                 <div class="position-absolute w-100">
                                     <!-- Skip content target -->
