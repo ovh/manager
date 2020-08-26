@@ -1,3 +1,23 @@
+# [13.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@13.1.3...@ovh-ux/manager-dedicated@13.2.0) (2020-08-26)
+
+
+### Bug Fixes
+
+* **dashboard.options:** check sectorSpecificCompliance availability ([#3477](https://github.com/ovh/manager/issues/3477)) ([0e6c721](https://github.com/ovh/manager/commit/0e6c721afc704b6fb310d2b6ce60e938f9612bbc))
+* **dedicated:** pcc ip option order ([#3498](https://github.com/ovh/manager/issues/3498)) ([cb229ec](https://github.com/ovh/manager/commit/cb229ec31aba0d83519c2d2ecaae70c59a4f55db))
+* **dedicated:** pcc mailing list ([#3478](https://github.com/ovh/manager/issues/3478)) ([dcabcb6](https://github.com/ovh/manager/commit/dcabcb656aba8c1134e11093191aba40d2697054)), closes [#MANAGER-5531](https://github.com/ovh/manager/issues/MANAGER-5531)
+* **dedicated-cloud.license:** allow to have no contracts ([#3476](https://github.com/ovh/manager/issues/3476)) ([e4d97ef](https://github.com/ovh/manager/commit/e4d97ef8aabe1b5a61338518d05599f076016474))
+* **dedicated-cloud.terminate:** redirect to complete state ([#3508](https://github.com/ovh/manager/issues/3508)) ([4726a47](https://github.com/ovh/manager/commit/4726a47a3dffa2b0ef549ec0726de883394f62d0))
+* **payment-method:** iframe integration validation ([#3507](https://github.com/ovh/manager/issues/3507)) ([9a7c3b9](https://github.com/ovh/manager/commit/9a7c3b9cff37e933f181d9cd33894ae38ad2bd17))
+* **pcc:** use cartServiceOption for resource upgrade ([c980ba8](https://github.com/ovh/manager/commit/c980ba80c67c07f7762b0dcb49b34b3082ec790b))
+
+
+### Features
+
+* **dedicated-cloud:** allow to delete at expiration ([#3466](https://github.com/ovh/manager/issues/3466)) ([ca873c7](https://github.com/ovh/manager/commit/ca873c7eec1d39b8b1ef7f40531aaf6804f61e76))
+
+
+
 ## [13.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@13.1.2...@ovh-ux/manager-dedicated@13.1.3) (2020-08-25)
 
 
