@@ -423,12 +423,9 @@ import union from 'lodash/union';
        * Get available offers
        * @param {string} domain
        */
-      getAvailableOffer(domain) {
-        return this.OvhHttp.get('/hosting/web/availableOffer', {
+      getAvailableOffer(serviceName) {
+        return this.OvhHttp.get(`/order/upgrade/webHosting/${serviceName}`, {
           rootPath: 'apiv6',
-          params: {
-            domain,
-          },
         });
       }
 
