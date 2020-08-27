@@ -1,39 +1,48 @@
-import reduce from 'lodash/reduce';
 import illustration from '../assets/partner.png';
 import { GUIDES } from './onboarding.constants';
 
 export default class PciServingOnboardingController {
   /* @ngInject */
-  constructor($translate) {
+  constructor($translate, PciProjectLabsService, $q) {
     this.$translate = $translate;
     this.loading = false;
+    this.PciProjectLabsService = PciProjectLabsService;
+    this.$q = $q;
   }
 
   $onInit() {
+    this.labAccepted = this.lab.isActivated();
     this.illustration = illustration;
-    this.guides = reduce(
-      GUIDES,
-      (list, guide) => [
-        ...list,
-        {
-          ...guide,
-          title: this.$translate.instant(
-            `pci_projects_project_training_onboarding_guides_${guide.id}_title`,
-          ),
-          description: this.$translate.instant(
-            `pci_projects_project_training_onboarding_guides_${guide.id}_description`,
-          ),
-        },
-      ],
-      [],
-    );
+
+    this.guides = GUIDES.map((guide) => ({
+      ...guide,
+      title: this.$translate.instant(
+        `pci_projects_project_training_onboarding_guides_${guide.id}_title`,
+      ),
+      description: this.$translate.instant(
+        `pci_projects_project_training_onboarding_guides_${guide.id}_description`,
+      ),
+    }));
+  }
+
+  acceptLab(accepted) {
+    this.labAccepted = accepted;
   }
 
   submit() {
     this.loading = true;
-    if (this.isAuthorized) {
-      return this.submitJobLink();
+    let labPromise;
+    if (this.lab.isOpen()) {
+      this.PciProjectLabsService.activateLab(this.projectId, this.lab);
+    } else {
+      labPromise = this.$q.resolve();
     }
-    return this.createAuthorization();
+
+    labPromise.then(() => {
+      if (this.isAuthorized) {
+        return this.submitJobLink();
+      }
+      return this.createAuthorization();
+    });
   }
 }

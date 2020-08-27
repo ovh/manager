@@ -59,10 +59,7 @@ export default class PciProjectTrainingService {
       .v6()
       .get({
         serviceName,
-      })
-      .$promise.catch(() => {
-        return { registry: false, dashboard: false };
-      });
+      }).$promise;
   }
 
   getRegistry(serviceName) {

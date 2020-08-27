@@ -13,8 +13,7 @@ export default class PciTrainingDashboardController {
 
   $onInit() {
     this.illustration = illustration;
-    // eslint-disable-next-line prefer-destructuring
-    this.currentRegion = this.regions[0];
+    [this.currentRegion] = this.regions;
 
     this.loadMessages();
     this.resourceUsage = flatten(

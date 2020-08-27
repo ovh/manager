@@ -8,5 +8,7 @@ export default {
     createAuthorization: '<',
     submitJobLink: '<',
     isAuthorized: '<',
+    lab: '<',
+    projectId: '<',
   },
 };

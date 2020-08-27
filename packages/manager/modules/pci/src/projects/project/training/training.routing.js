@@ -3,17 +3,33 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/training',
     component: 'pciProjectTraining',
     redirectTo: (transition) =>
-      transition
-        .injector()
-        .getAsync('isAuthorized')
-        .then((isAuthorized) => {
-          if (!isAuthorized) {
-            return { state: 'pci.projects.project.training.onboarding' };
-          }
+      Promise.all([
+        transition.injector().getAsync('lab'),
+        transition.injector().getAsync('isAuthorized'),
+      ]).then(([lab, isAuthorized]) => {
+        if (!isAuthorized || lab.isOpen()) {
+          return { state: 'pci.projects.project.training.onboarding' };
+        }
 
-          return { state: 'pci.projects.project.training.dashboard' };
-        }),
+        return { state: 'pci.projects.project.training.dashboard' };
+      }),
     resolve: {
+      lab: /* @ngInject */ (
+        PciProjectLabsService,
+        projectId,
+        trainingFeatures,
+        $q,
+      ) => {
+        // If the product is on lab mode, we retrieve lab data
+        if (trainingFeatures.lab) {
+          return PciProjectLabsService.getLabByName(projectId, 'ai-training');
+        }
+        // Else we return an activated lab
+        return $q.resolve({
+          isOpen: () => false,
+          isActivated: () => true,
+        });
+      },
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_projects_project_training_title'),
       isAuthorized: /* @ngInject */ (PciProjectTrainingService, projectId) =>
