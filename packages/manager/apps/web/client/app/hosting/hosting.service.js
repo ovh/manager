@@ -424,12 +424,24 @@ import union from 'lodash/union';
        * @param {string} domain
        */
       getAvailableOffer(domain) {
-        return this.OvhHttp.get('/hosting/web/availableOffer', {
-          rootPath: 'apiv6',
-          params: {
-            domain,
-          },
-        });
+        return this.getServiceInfos(domain)
+          .then(({ serviceId }) => {
+            return this.OvhHttp.get(`/services/${serviceId}`, {
+              rootPath: 'apiv6',
+            });
+          })
+          .then(({ parentServiceId }) => {
+            // if the service is included in another offer it cannot be upgraded
+            if (parentServiceId === null) {
+              return this.OvhHttp.get('/hosting/web/availableOffer', {
+                rootPath: 'apiv6',
+                params: {
+                  domain,
+                },
+              });
+            }
+            return [];
+          });
       }
 
       /**
