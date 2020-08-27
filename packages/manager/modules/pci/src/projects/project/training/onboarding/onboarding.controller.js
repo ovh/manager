@@ -33,7 +33,10 @@ export default class PciServingOnboardingController {
     this.loading = true;
     let labPromise;
     if (this.lab.isOpen()) {
-      this.PciProjectLabsService.activateLab(this.projectId, this.lab);
+      labPromise = this.PciProjectLabsService.activateLab(
+        this.projectId,
+        this.lab,
+      );
     } else {
       labPromise = this.$q.resolve();
     }
