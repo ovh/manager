@@ -90,10 +90,13 @@ angular
       };
 
       this.close = function close() {
-        $state.go('telecom.telephony.billingAccount.line.calls.click2call', {
-          billingAccount: $stateParams.billingAccount,
-          serviceName: $stateParams.serviceName,
-        });
+        $state.go(
+          'telecom.telephony.billingAccount.line.dashboard.calls.click2call',
+          {
+            billingAccount: $stateParams.billingAccount,
+            serviceName: $stateParams.serviceName,
+          },
+        );
       };
 
       /* ===========================

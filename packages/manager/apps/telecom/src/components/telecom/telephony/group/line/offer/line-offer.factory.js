@@ -6,7 +6,7 @@ import isEmpty from 'lodash/isEmpty';
 /**
  *  Need to have client/app/telecom/telephony/line translations files to be loaded
  *  for fullgetFullDescription method.
- *  This should be the case when a state like telecom.telephony.billingAccount.line.* is loaded.
+ *  This should be the case when a state like telecom.telephony.billingAccount.line.dashboard.* is loaded.
  */
 angular
   .module('managerApp')

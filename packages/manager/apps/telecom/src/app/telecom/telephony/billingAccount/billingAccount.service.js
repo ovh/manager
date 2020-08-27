@@ -9,7 +9,7 @@ export default class TelecomBillingAccountService {
     { featureType, serviceName, serviceType },
   ) {
     const statePrefix = 'telecom.telephony.billingAccount.';
-    let state = `${statePrefix}line`;
+    let state = `${statePrefix}line.dashboard`;
 
     if (['alias'].includes(serviceType)) {
       state = `${statePrefix}alias.details`;

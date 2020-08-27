@@ -30,14 +30,15 @@ angular
             name: 'line_details_offer',
             main: true,
             picto: 'ovh-font-details',
-            sref: 'telecom.telephony.billingAccount.line.detailsOffer',
+            sref:
+              'telecom.telephony.billingAccount.line.dashboard.detailsOffer',
             text: $translate.instant(
               'telephony_line_management_actions_line_details_offer',
             ),
           },
           {
             name: 'line_sip_password',
-            sref: 'telecom.telephony.billingAccount.line.password',
+            sref: 'telecom.telephony.billingAccount.line.dashboard.password',
             disabled: !self.canSipPassword,
             text: $translate.instant(
               'telephony_line_management_actions_line_sip_password',
@@ -45,7 +46,7 @@ angular
           },
           {
             name: 'line_sip_domain_management',
-            sref: 'telecom.telephony.billingAccount.line.domain',
+            sref: 'telecom.telephony.billingAccount.line.dashboard.domain',
             disabled: !TelecomMediator.isVip,
             text: $translate.instant(
               'telephony_line_management_actions_line_sip_domain_management',
@@ -55,14 +56,16 @@ angular
             ? {
                 name: 'line_manage_mgcp_ip_restriction',
                 disabled: !self.line.hasPhone,
-                sref: 'telecom.telephony.billingAccount.line.mgcpIpRestriction',
+                sref:
+                  'telecom.telephony.billingAccount.line.dashboard.mgcpIpRestriction',
                 text: $translate.instant(
                   'telephony_line_management_actions_line_mgcp_ip_restriction',
                 ),
               }
             : {
                 name: 'line_sip_ips_restrictions',
-                sref: 'telecom.telephony.billingAccount.line.restrictions',
+                sref:
+                  'telecom.telephony.billingAccount.line.dashboard.restrictions',
                 disabled: get(self.line, 'phone.protocol') === 'mgcp',
                 text: $translate.instant(
                   'telephony_line_management_actions_line_sip_ips_restrictions',
@@ -70,7 +73,7 @@ angular
               },
           {
             name: 'line_language',
-            sref: 'telecom.telephony.billingAccount.line.language',
+            sref: 'telecom.telephony.billingAccount.line.dashboard.language',
             text: $translate.instant(
               'telephony_line_management_actions_line_language',
             ),
@@ -78,14 +81,14 @@ angular
           {
             name: 'line_resume_offer',
             disabled: offerCount === 0 || self.line.isTrunk(),
-            sref: 'telecom.telephony.billingAccount.line.offerChange',
+            sref: 'telecom.telephony.billingAccount.line.dashboard.offerChange',
             text: $translate.instant(
               'telephony_line_management_actions_line_resume_offer',
             ),
           },
           {
             name: 'line_to_number',
-            sref: 'telecom.telephony.billingAccount.line.convert',
+            sref: 'telecom.telephony.billingAccount.line.dashboard.convert',
             disabled: isInXdslPack || self.line.isVoicefax(),
             text: $translate.instant(
               'telephony_line_management_actions_line_to_number',
@@ -96,7 +99,8 @@ angular
         if (taskCount) {
           actions.push({
             name: 'line_cancel_delete_line_new',
-            sref: 'telecom.telephony.billingAccount.line.terminate.cancel',
+            sref:
+              'telecom.telephony.billingAccount.line.dashboard.terminate.cancel',
             text: $translate.instant(
               'telephony_line_management_actions_line_cancel_delete_line_new',
             ),
@@ -104,7 +108,7 @@ angular
         } else {
           actions.push({
             name: 'line_delete_line_new',
-            sref: 'telecom.telephony.billingAccount.line.terminate',
+            sref: 'telecom.telephony.billingAccount.line.dashboard.terminate',
             text: $translate.instant(
               'telephony_line_management_actions_line_delete_line_new',
             ),

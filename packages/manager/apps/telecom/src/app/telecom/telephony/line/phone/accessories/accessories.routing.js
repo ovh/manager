@@ -1,10 +1,11 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'telecom.telephony.billingAccount.line.phone.accessories',
+    'telecom.telephony.billingAccount.line.dashboard.phone.accessories',
     {
       url: '/accessories',
       views: {
-        'lineView@telecom.telephony.billingAccount.line': 'accessories',
+        'lineView@telecom.telephony.billingAccount.line.dashboard':
+          'accessories',
       },
       resolve: {
         billingAccount: /* @ngInject */ ($transition$) =>
@@ -12,7 +13,7 @@ export default /* @ngInject */ ($stateProvider) => {
         serviceName: /* @ngInject */ ($transition$) =>
           $transition$.params().serviceName,
         goBack: /* @ngInject */ ($state) => () =>
-          $state.go('telecom.telephony.billingAccount.line.phone'),
+          $state.go('telecom.telephony.billingAccount.line.dashboard.phone'),
       },
       translations: { value: ['.'], format: 'json' },
     },

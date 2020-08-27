@@ -283,7 +283,7 @@ angular
                 () => {
                   if (!self.line.hasPhone && !self.line.phone) {
                     return $state.go(
-                      'telecom.telephony.billingAccount.line.phone',
+                      'telecom.telephony.billingAccount.line.dashboard.phone',
                     );
                   }
 

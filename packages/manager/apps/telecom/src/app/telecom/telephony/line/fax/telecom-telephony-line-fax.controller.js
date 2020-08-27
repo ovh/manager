@@ -15,17 +15,20 @@ angular
         self.actions = [
           {
             name: 'line_password',
-            sref: 'telecom.telephony.billingAccount.line.fax.password',
+            sref:
+              'telecom.telephony.billingAccount.line.dashboard.fax.password',
             text: $translate.instant('telephony_line_fax_action_line_password'),
           },
           {
             name: 'line_settings',
-            sref: 'telecom.telephony.billingAccount.line.fax.settings',
+            sref:
+              'telecom.telephony.billingAccount.line.dashboard.fax.settings',
             text: $translate.instant('telephony_line_fax_action_line_settings'),
           },
           {
             name: 'line_white_label_domains',
-            sref: 'telecom.telephony.billingAccount.line.fax.customDomains',
+            sref:
+              'telecom.telephony.billingAccount.line.dashboard.fax.customDomains',
             text: $translate.instant(
               'telephony_line_fax_action_line_white_label_domains',
             ),
@@ -33,21 +36,24 @@ angular
           },
           {
             name: 'line_filtering',
-            sref: 'telecom.telephony.billingAccount.line.fax.filtering',
+            sref:
+              'telecom.telephony.billingAccount.line.dashboard.fax.filtering',
             text: $translate.instant(
               'telephony_line_fax_action_line_filtering',
             ),
           },
           {
             name: 'line_campaign_management',
-            sref: 'telecom.telephony.billingAccount.line.fax.campaigns',
+            sref:
+              'telecom.telephony.billingAccount.line.dashboard.fax.campaigns',
             text: $translate.instant(
               'telephony_line_fax_action_line_campaigns',
             ),
           },
           {
             name: 'line_convert_to_ecofax_pro',
-            sref: 'telecom.telephony.billingAccount.line.fax.convertToVoicefax',
+            sref:
+              'telecom.telephony.billingAccount.line.dashboard.fax.convertToVoicefax',
             text: $translate.instant(
               'telephony_line_fax_action_line_convert_to_voicefax',
             ),

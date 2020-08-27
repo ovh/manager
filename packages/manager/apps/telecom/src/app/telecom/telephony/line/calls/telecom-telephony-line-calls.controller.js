@@ -34,7 +34,8 @@ angular
             name: 'line_manage_filtering_lists_new',
             main: true,
             picto: 'ovh-font-callFilter',
-            sref: 'telecom.telephony.billingAccount.line.calls.filtering',
+            sref:
+              'telecom.telephony.billingAccount.line.dashboard.calls.filtering',
             text: $translate.instant(
               'telephony_line_calls_actions_line_manage_filtering_lists_new',
             ),
@@ -43,7 +44,8 @@ angular
           },
           {
             name: 'line_locking',
-            sref: 'telecom.telephony.billingAccount.line.calls.lockOutCall',
+            sref:
+              'telecom.telephony.billingAccount.line.dashboard.calls.lockOutCall',
             text: $translate.instant(
               'telephony_line_calls_actions_line_locking',
             ),
@@ -53,7 +55,8 @@ angular
           {
             name: 'line_forwardcall',
             main: true,
-            sref: 'telecom.telephony.billingAccount.line.calls.forward',
+            sref:
+              'telecom.telephony.billingAccount.line.dashboard.calls.forward',
             picto: 'ovh-font-callForwarding',
             text: $translate.instant(
               'telephony_line_calls_actions_line_forwardcall',
@@ -66,7 +69,7 @@ angular
             main: true,
             picto: 'ovh-font-callRestriction',
             sref:
-              'telecom.telephony.billingAccount.line.calls.line_displayNumber',
+              'telecom.telephony.billingAccount.line.dashboard.calls.line_displayNumber',
             text: $translate.instant(
               'telephony_line_calls_actions_line_displayNumber',
             ),
@@ -76,8 +79,8 @@ angular
           {
             name: 'line_simultaneouslines',
             sref: !isTrunkRates
-              ? 'telecom.telephony.billingAccount.line.calls.simultaneousLines'
-              : 'telecom.telephony.billingAccount.line.calls.simultaneousLinesTrunk',
+              ? 'telecom.telephony.billingAccount.line.dashboard.calls.simultaneousLines'
+              : 'telecom.telephony.billingAccount.line.dashboard.calls.simultaneousLinesTrunk',
             text: $translate.instant(
               'telephony_line_calls_actions_line_simultaneouslines',
             ),
@@ -86,7 +89,8 @@ angular
           },
           {
             name: 'line_manage_slots',
-            sref: 'telecom.telephony.billingAccount.line.calls.timeCondition',
+            sref:
+              'telecom.telephony.billingAccount.line.dashboard.calls.timeCondition',
             text: $translate.instant(
               'telephony_line_calls_actions_line_manage_slots',
             ),
@@ -95,7 +99,8 @@ angular
           },
           {
             name: 'line_calendar',
-            sref: 'telecom.telephony.billingAccount.line.calls.events',
+            sref:
+              'telecom.telephony.billingAccount.line.dashboard.calls.events',
             text: $translate.instant(
               'telephony_line_calls_actions_line_calendar',
             ),
@@ -104,7 +109,8 @@ angular
           },
           {
             name: 'line_callWaiting',
-            sref: 'telecom.telephony.billingAccount.line.calls.callWaiting',
+            sref:
+              'telecom.telephony.billingAccount.line.dashboard.calls.callWaiting',
             text: $translate.instant(
               'telephony_line_calls_actions_line_callWaiting',
             ),
@@ -116,7 +122,7 @@ angular
             main: true,
             picto: 'ovh-font-abbreviatedNumber',
             sref:
-              'telecom.telephony.billingAccount.line.calls.abbreviatedNumbers',
+              'telecom.telephony.billingAccount.line.dashboard.calls.abbreviatedNumbers',
             text: $translate.instant(
               'telephony_line_calls_actions_line_abbreviated_numbers',
             ),
@@ -125,7 +131,8 @@ angular
           },
           {
             name: 'line_click2call',
-            sref: 'telecom.telephony.billingAccount.line.calls.click2call',
+            sref:
+              'telecom.telephony.billingAccount.line.dashboard.calls.click2call',
             text: $translate.instant(
               'telephony_line_calls_actions_line_click2call',
             ),
@@ -134,7 +141,8 @@ angular
           },
           {
             name: 'line_external_number_display',
-            sref: 'telecom.telephony.billingAccount.line.calls.externalNumber',
+            sref:
+              'telecom.telephony.billingAccount.line.dashboard.calls.externalNumber',
             text: $translate.instant(
               'telephony_line_calls_actions_line_external_number_display',
             ),
