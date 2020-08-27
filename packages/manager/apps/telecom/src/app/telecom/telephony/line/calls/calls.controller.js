@@ -30,7 +30,7 @@ export default /* @ngInject */ function TelecomTelephonyLineCallsCtrl(
         name: 'line_manage_filtering_lists_new',
         main: true,
         picto: 'ovh-font-callFilter',
-        sref: 'telecom.telephony.billingAccount.line.calls.filtering',
+        sref: 'telecom.telephony.billingAccount.line.dashboard.calls.filtering',
         text: $translate.instant(
           'telephony_line_calls_actions_line_manage_filtering_lists_new',
         ),
@@ -39,7 +39,8 @@ export default /* @ngInject */ function TelecomTelephonyLineCallsCtrl(
       },
       {
         name: 'line_locking',
-        sref: 'telecom.telephony.billingAccount.line.calls.lockOutCall',
+        sref:
+          'telecom.telephony.billingAccount.line.dashboard.calls.lockOutCall',
         text: $translate.instant('telephony_line_calls_actions_line_locking'),
         display: true,
         enable: true,
@@ -47,7 +48,7 @@ export default /* @ngInject */ function TelecomTelephonyLineCallsCtrl(
       {
         name: 'line_forwardcall',
         main: true,
-        sref: 'telecom.telephony.billingAccount.line.calls.forward',
+        sref: 'telecom.telephony.billingAccount.line.dashboard.calls.forward',
         picto: 'ovh-font-callForwarding',
         text: $translate.instant(
           'telephony_line_calls_actions_line_forwardcall',
@@ -59,7 +60,8 @@ export default /* @ngInject */ function TelecomTelephonyLineCallsCtrl(
         name: 'line_displayNumber',
         main: true,
         picto: 'ovh-font-callRestriction',
-        sref: 'telecom.telephony.billingAccount.line.calls.line_displayNumber',
+        sref:
+          'telecom.telephony.billingAccount.line.dashboard.calls.line_displayNumber',
         text: $translate.instant(
           'telephony_line_calls_actions_line_displayNumber',
         ),
@@ -69,8 +71,8 @@ export default /* @ngInject */ function TelecomTelephonyLineCallsCtrl(
       {
         name: 'line_simultaneouslines',
         sref: !isTrunkRates
-          ? 'telecom.telephony.billingAccount.line.calls.simultaneousLines'
-          : 'telecom.telephony.billingAccount.line.calls.simultaneousLinesTrunk',
+          ? 'telecom.telephony.billingAccount.line.dashboard.calls.simultaneousLines'
+          : 'telecom.telephony.billingAccount.line.dashboard.calls.simultaneousLinesTrunk',
         text: $translate.instant(
           'telephony_line_calls_actions_line_simultaneouslines',
         ),
@@ -79,7 +81,8 @@ export default /* @ngInject */ function TelecomTelephonyLineCallsCtrl(
       },
       {
         name: 'line_manage_slots',
-        sref: 'telecom.telephony.billingAccount.line.calls.timeCondition',
+        sref:
+          'telecom.telephony.billingAccount.line.dashboard.calls.timeCondition',
         text: $translate.instant(
           'telephony_line_calls_actions_line_manage_slots',
         ),
@@ -88,14 +91,15 @@ export default /* @ngInject */ function TelecomTelephonyLineCallsCtrl(
       },
       {
         name: 'line_calendar',
-        sref: 'telecom.telephony.billingAccount.line.calls.events',
+        sref: 'telecom.telephony.billingAccount.line.dashboard.calls.events',
         text: $translate.instant('telephony_line_calls_actions_line_calendar'),
         display: ['priceplan', 'trunk', 'individual'],
         enable: ['priceplan', 'trunk'],
       },
       {
         name: 'line_callWaiting',
-        sref: 'telecom.telephony.billingAccount.line.calls.callWaiting',
+        sref:
+          'telecom.telephony.billingAccount.line.dashboard.calls.callWaiting',
         text: $translate.instant(
           'telephony_line_calls_actions_line_callWaiting',
         ),
@@ -106,7 +110,8 @@ export default /* @ngInject */ function TelecomTelephonyLineCallsCtrl(
         name: 'line_abbreviated_numbers',
         main: true,
         picto: 'ovh-font-abbreviatedNumber',
-        sref: 'telecom.telephony.billingAccount.line.calls.abbreviatedNumbers',
+        sref:
+          'telecom.telephony.billingAccount.line.dashboard.calls.abbreviatedNumbers',
         text: $translate.instant(
           'telephony_line_calls_actions_line_abbreviated_numbers',
         ),
@@ -115,7 +120,8 @@ export default /* @ngInject */ function TelecomTelephonyLineCallsCtrl(
       },
       {
         name: 'line_click2call',
-        sref: 'telecom.telephony.billingAccount.line.calls.click2call',
+        sref:
+          'telecom.telephony.billingAccount.line.dashboard.calls.click2call',
         text: $translate.instant(
           'telephony_line_calls_actions_line_click2call',
         ),
@@ -124,7 +130,8 @@ export default /* @ngInject */ function TelecomTelephonyLineCallsCtrl(
       },
       {
         name: 'line_external_number_display',
-        sref: 'telecom.telephony.billingAccount.line.calls.externalNumber',
+        sref:
+          'telecom.telephony.billingAccount.line.dashboard.calls.externalNumber',
         text: $translate.instant(
           'telephony_line_calls_actions_line_external_number_display',
         ),

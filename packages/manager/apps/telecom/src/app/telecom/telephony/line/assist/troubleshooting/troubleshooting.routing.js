@@ -12,7 +12,7 @@ import procedureController from './procedure/procedure.controller';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'telecom.telephony.billingAccount.line.assist.troubleshooting',
+    'telecom.telephony.billingAccount.line.dashboard.assist.troubleshooting',
     {
       url: '/troubleshooting',
       resolve: {
@@ -27,22 +27,22 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       },
       views: {
-        'lineView@telecom.telephony.billingAccount.line': {
+        'lineView@telecom.telephony.billingAccount.line.dashboard': {
           template,
           controller,
           controllerAs: 'TroubleshootingCtrl',
         },
-        'procedureStepView@telecom.telephony.billingAccount.line.assist.troubleshooting': {
+        'procedureStepView@telecom.telephony.billingAccount.line.dashboard.assist.troubleshooting': {
           template: procedureTemplate,
           controller: procedureController,
           controllerAs: 'ProcedureCtrl',
         },
-        'autoConfigStepView@telecom.telephony.billingAccount.line.assist.troubleshooting': {
+        'autoConfigStepView@telecom.telephony.billingAccount.line.dashboard.assist.troubleshooting': {
           template: autoConfigTemplate,
           controller: autoConfigController,
           controllerAs: 'AutoConfigCtrl',
         },
-        'manualConfigStepView@telecom.telephony.billingAccount.line.assist.troubleshooting': {
+        'manualConfigStepView@telecom.telephony.billingAccount.line.dashboard.assist.troubleshooting': {
           template: manualConfigTemplate,
           controller: manualConfigController,
           controllerAs: 'ManualConfigCtrl',

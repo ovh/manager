@@ -273,7 +273,9 @@ export default /* @ngInject */ function TelecomTelephonyLinePhoneConfigurationCt
           return self.line.getPhone().then(
             () => {
               if (!self.line.hasPhone && !self.line.phone) {
-                return $state.go('telecom.telephony.billingAccount.line.phone');
+                return $state.go(
+                  'telecom.telephony.billingAccount.line.dashboard.phone',
+                );
               }
 
               self.hasExpertConfigs = !every(self.line.phone.configurations, {

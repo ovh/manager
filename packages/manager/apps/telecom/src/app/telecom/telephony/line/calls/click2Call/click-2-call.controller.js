@@ -58,7 +58,7 @@ export default /* @ngInject */ function TelecomTelephonyLineClick2CallCtrl(
 
   self.add = function add() {
     $state.go(
-      'telecom.telephony.billingAccount.line.calls.click2call.addUser',
+      'telecom.telephony.billingAccount.line.dashboard.calls.click2call.addUser',
       {
         billingAccount: $stateParams.billingAccount,
         serviceName: $stateParams.serviceName,
@@ -68,7 +68,7 @@ export default /* @ngInject */ function TelecomTelephonyLineClick2CallCtrl(
 
   self.edit = function edit(user) {
     $state.go(
-      'telecom.telephony.billingAccount.line.calls.click2call.changePassword',
+      'telecom.telephony.billingAccount.line.dashboard.calls.click2call.changePassword',
       {
         billingAccount: $stateParams.billingAccount,
         serviceName: $stateParams.serviceName,

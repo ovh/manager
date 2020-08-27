@@ -23,7 +23,7 @@ export default /* @ngInject */ function TelecomTelephonyLineTonesCtrl(
       .then((group) => group.getLine($stateParams.serviceName))
       .then((line) => {
         if (line.isIndividual()) {
-          $state.go('telecom.telephony.billingAccount.line');
+          $state.go('telecom.telephony.billingAccount.line.dashboard');
           return $q.reject(disabledFeatureError);
         }
         return line;
