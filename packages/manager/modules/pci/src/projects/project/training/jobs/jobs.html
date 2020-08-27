@@ -22,11 +22,9 @@
             data-filterable
             data-sortable
         >
-            <button type="button" class="oui-button oui-button_link">
-                <a href="{{:: $ctrl.jobInfoLink($value) }}">
-                    <span data-ng-bind="::$value"></span>
-                </a>
-            </button>
+            <a href="{{:: $ctrl.jobInfoLink($value) }}">
+                <span data-ng-bind="::$value"></span>
+            </a>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_projects_project_training_jobs_region' | translate"
