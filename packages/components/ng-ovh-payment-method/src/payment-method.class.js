@@ -141,6 +141,10 @@ export default class OvhPaymentMethod {
     return !isNull(this.original);
   }
 
+  isValid() {
+    return this.getStatusCategory() === 'success';
+  }
+
   /**
    * Returns the category of the status between : 'error', 'warning', 'info', 'success'.
    * The category is a pure frontend value and is set arbitrarily. It is meant to be used
