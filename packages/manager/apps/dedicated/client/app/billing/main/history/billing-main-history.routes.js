@@ -155,6 +155,10 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
         hasDefaultPaymentMethod: /* @ngInject */ (ovhPaymentMethod) =>
           ovhPaymentMethod.hasDefaultPaymentMethod(),
         payDebt: /* @ngInject */ ($state) => (debtId) =>
+          $state.go('app.account.billing.main.history.pay-debt', {
+            debtId,
+          }),
+        seeDebt: /* @ngInject */ ($state) => (debtId) =>
           $state.go('app.account.billing.main.history.debt.details', {
             debtId,
           }),
