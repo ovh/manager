@@ -104,6 +104,7 @@
                                     <oui-action-menu-item
                                         data-on-click="setAction('database/ram/update/private-database-database-ram-update', stateCtrl.database)"
                                         data-disabled="taskState.lockAction"
+                                        data-ng-if="stateCtrl.canOrderRam"
                                     >
                                         <span
                                             data-translate="privateDatabase_change_ram_title"
