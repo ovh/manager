@@ -1,3 +1,15 @@
+## [15.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.2.2...@ovh-ux/manager-web@15.2.3) (2020-08-28)
+
+
+### Bug Fixes
+
+* **domain.webhosting:** do not autopay if there is no payment mean ([d829687](https://github.com/ovh/manager/commit/d8296875b5102f428de6ed7bd650bdfe9fdc1011))
+* **hosting:** disable upgrade for not standalone services ([#3521](https://github.com/ovh/manager/issues/3521)) ([6004fd3](https://github.com/ovh/manager/commit/6004fd32cffb5c3849f57c50183231ae01ffa679))
+* **web:** disable ram upgrade for child service private database ([#3523](https://github.com/ovh/manager/issues/3523)) ([3721d49](https://github.com/ovh/manager/commit/3721d497e415e9b69121347903c3109e6a508e4c))
+* **web:** remove upgrade for emails with parent ([#3519](https://github.com/ovh/manager/issues/3519)) ([2e0c5df](https://github.com/ovh/manager/commit/2e0c5df9f8a99a47b2a1d78ac53413fa2ce5e56a)), closes [#DTRSD-18841](https://github.com/ovh/manager/issues/DTRSD-18841)
+
+
+
 ## [15.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.2.1...@ovh-ux/manager-web@15.2.2) (2020-08-26)
 
 

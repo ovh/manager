@@ -1,3 +1,12 @@
+## [7.0.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@7.0.2...@ovh-ux/ng-ovh-payment-method@7.0.3) (2020-08-28)
+
+
+### Bug Fixes
+
+* filter only valid payment method if specified ([ebcc9b4](https://github.com/ovh/manager/commit/ebcc9b492f2ffdb04523cf9a156d68df9c534aae))
+
+
+
 ## [7.0.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@7.0.1...@ovh-ux/ng-ovh-payment-method@7.0.2) (2020-08-24)
 
 
