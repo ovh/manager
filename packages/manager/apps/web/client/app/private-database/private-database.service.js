@@ -107,6 +107,14 @@ export default class PrivateDatabase {
     });
   }
 
+  getParentServiceId(serviceName) {
+    return this.getServiceInfos(serviceName).then(({ serviceId }) => {
+      return this.OvhHttp.get(`/services/${serviceId}`, {
+        rootPath: 'apiv6',
+      });
+    });
+  }
+
   getServiceInfos(dbName) {
     return this.$http
       .get(`apiv6/hosting/privateDatabase/${dbName}/serviceInfos`)
@@ -481,15 +489,22 @@ export default class PrivateDatabase {
   canOrderRam(serviceName) {
     return this.canOrder(serviceName).then((canOrder) => {
       if (canOrder) {
-        return this.$http
-          .get(`${this.swsProxypassOrderPath}/${serviceName}`)
-          .then(
-            (response) =>
-              findIndex(
-                response.data,
-                (service) => service === 'ram' || service === 'upgrade',
-              ) !== -1,
-          );
+        return this.getParentServiceId(serviceName).then(
+          ({ parentServiceId }) => {
+            if (parentServiceId === null) {
+              return this.$http
+                .get(`${this.swsProxypassOrderPath}/${serviceName}`)
+                .then(
+                  (response) =>
+                    findIndex(
+                      response.data,
+                      (service) => service === 'ram' || service === 'upgrade',
+                    ) !== -1,
+                );
+            }
+            return false;
+          },
+        );
       }
       return false;
     });
