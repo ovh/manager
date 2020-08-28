@@ -24,7 +24,8 @@ export default /* @ngInject */ function TelecomTelephonyFaxVoicemailCtrl(
     const actions = [
       {
         name: 'fax_voicemail_management',
-        sref: 'telecom.telephony.billingAccount.fax.voicemail.management',
+        sref:
+          'telecom.telephony.billingAccount.fax.dashboard.voicemail.management',
         main: true,
         picto: 'ovh-font-messagesRead',
         text: $translate.instant(
@@ -33,19 +34,22 @@ export default /* @ngInject */ function TelecomTelephonyFaxVoicemailCtrl(
       },
       {
         name: 'fax_voicemail_status',
-        sref: 'telecom.telephony.billingAccount.fax.voicemail.activation',
+        sref:
+          'telecom.telephony.billingAccount.fax.dashboard.voicemail.activation',
         text: $translate.instant('telephony_group_fax_voicemail_action_status'),
       },
       {
         name: 'fax_voicemail_password',
-        sref: 'telecom.telephony.billingAccount.fax.voicemail.password',
+        sref:
+          'telecom.telephony.billingAccount.fax.dashboard.voicemail.password',
         text: $translate.instant(
           'telephony_group_fax_voicemail_action_password',
         ),
       },
       {
         name: 'fax_voicemail_options',
-        sref: 'telecom.telephony.billingAccount.fax.voicemail.options',
+        sref:
+          'telecom.telephony.billingAccount.fax.dashboard.voicemail.options',
         text: $translate.instant(
           'telephony_group_fax_voicemail_action_options',
         ),

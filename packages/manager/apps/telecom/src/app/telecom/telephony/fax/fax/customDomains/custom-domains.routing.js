@@ -2,7 +2,7 @@ import template from './custom-domains.html';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'telecom.telephony.billingAccount.fax.fax.customDomains',
+    'telecom.telephony.billingAccount.fax.dashboard.fax.customDomains',
     {
       url: '/customDomains',
       views: {
@@ -10,7 +10,7 @@ export default /* @ngInject */ ($stateProvider) => {
           template,
           noTranslations: true,
         },
-        'faxCustomDomainsView@telecom.telephony.billingAccount.fax.fax.customDomains': {
+        'faxCustomDomainsView@telecom.telephony.billingAccount.fax.dashboard.fax.customDomains': {
           templateUrl:
             'app/telecom/telephony/service/fax/customDomains/custom-domains.html',
           controller: 'TelecomTelephonyServiceFaxCustomDomainsCtrl',

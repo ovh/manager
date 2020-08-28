@@ -14,7 +14,7 @@ export default class TelecomBillingAccountService {
     if (['alias'].includes(serviceType)) {
       state = `${statePrefix}alias.details`;
     } else if (['fax', 'voicefax'].includes(featureType)) {
-      state = `${statePrefix}fax`;
+      state = `${statePrefix}fax.dashboard`;
     } else if (['carrierSip'].includes(featureType)) {
       state = `${statePrefix}carrierSip.dashboard`;
     }
