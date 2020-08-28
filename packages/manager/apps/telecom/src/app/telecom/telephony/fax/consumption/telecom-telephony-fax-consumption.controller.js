@@ -31,7 +31,7 @@ angular
             main: true,
             picto: 'ovh-font-faxReceiving',
             sref:
-              'telecom.telephony.billingAccount.fax.consumption.incomingFax',
+              'telecom.telephony.billingAccount.fax.dashboard.consumption.incomingFax',
             text: $translate.instant(
               'telephony_group_fax_consumption_action_incoming_fax',
             ),
@@ -41,7 +41,7 @@ angular
             main: true,
             picto: 'ovh-font-faxEmitting',
             sref:
-              'telecom.telephony.billingAccount.fax.consumption.outgoingFax',
+              'telecom.telephony.billingAccount.fax.dashboard.consumption.outgoingFax',
             text: $translate.instant(
               'telephony_group_fax_consumption_action_outgoing_fax',
             ),

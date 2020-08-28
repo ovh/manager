@@ -28,12 +28,13 @@ angular
         const actions = [
           {
             name: 'fax_assist_logs',
-            sref: 'telecom.telephony.billingAccount.fax.assist.logs',
+            sref: 'telecom.telephony.billingAccount.fax.dashboard.assist.logs',
             text: $translate.instant('telephony_group_fax_assist_action_logs'),
           },
           {
             name: 'fax_assist_logs',
-            sref: 'telecom.telephony.billingAccount.fax.assist.support',
+            sref:
+              'telecom.telephony.billingAccount.fax.dashboard.assist.support',
             main: true,
             picto: 'ovh-font-docs',
             text: $translate.instant(
@@ -42,7 +43,8 @@ angular
           },
           {
             name: 'fax_assist_orders',
-            sref: 'telecom.telephony.billingAccount.fax.assist.orders',
+            sref:
+              'telecom.telephony.billingAccount.fax.dashboard.assist.orders',
             text: $translate.instant(
               'telephony_group_fax_assist_action_orders',
             ),

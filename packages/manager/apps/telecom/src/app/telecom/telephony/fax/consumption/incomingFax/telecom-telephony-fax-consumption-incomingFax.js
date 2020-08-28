@@ -1,14 +1,14 @@
 angular.module('managerApp').config(($stateProvider) => {
   $stateProvider.state(
-    'telecom.telephony.billingAccount.fax.consumption.incomingFax',
+    'telecom.telephony.billingAccount.fax.dashboard.consumption.incomingFax',
     {
       url: '/incomingFax',
       views: {
-        'faxView@telecom.telephony.billingAccount.fax': {
+        'faxView@telecom.telephony.billingAccount.fax.dashboard': {
           templateUrl:
             'app/telecom/telephony/fax/consumption/incomingFax/telecom-telephony-fax-consumption-incomingFax.html',
         },
-        'consumptionView@telecom.telephony.billingAccount.fax.consumption.incomingFax': {
+        'consumptionView@telecom.telephony.billingAccount.fax.dashboard.consumption.incomingFax': {
           templateUrl:
             'app/telecom/telephony/service/consumption/incomingFax/telecom-telephony-service-consumption-incomingFax.html',
           controller: 'TelecomTelephonyServiceConsumptionIncomingFaxCtrl',

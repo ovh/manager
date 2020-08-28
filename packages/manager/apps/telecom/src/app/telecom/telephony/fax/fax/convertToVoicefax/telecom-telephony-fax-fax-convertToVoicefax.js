@@ -1,6 +1,6 @@
 angular.module('managerApp').config(($stateProvider) => {
   $stateProvider.state(
-    'telecom.telephony.billingAccount.fax.fax.convertToVoicefax',
+    'telecom.telephony.billingAccount.fax.dashboard.fax.convertToVoicefax',
     {
       url: '/convertToVoicefax',
       views: {
@@ -11,7 +11,7 @@ angular.module('managerApp').config(($stateProvider) => {
           controller: 'TelecomTelephonyFaxFaxConvertToVoiceFaxCtrl',
           controllerAs: '$ctrl',
         },
-        'faxConvertToVoicefaxView@telecom.telephony.billingAccount.fax.fax.convertToVoicefax': {
+        'faxConvertToVoicefaxView@telecom.telephony.billingAccount.fax.dashboard.fax.convertToVoicefax': {
           templateUrl:
             'app/telecom/telephony/service/fax/convertToVoicefax/telecom-telephony-service-fax-convertToVoicefax.html',
           controller: 'TelecomTelephonyServiceFaxConvertToVoicefaxCtrl',
