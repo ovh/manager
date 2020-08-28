@@ -3,11 +3,11 @@ import controller from './ovh-pabx.controller';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'telecom.telephony.billingAccount.alias.configuration.queues.ovhPabx',
+    'telecom.telephony.billingAccount.alias.details.configuration.queues.ovhPabx',
     {
       url: '/ovhPabx',
       views: {
-        'aliasView@telecom.telephony.billingAccount.alias': {
+        'aliasView@telecom.telephony.billingAccount.alias.details': {
           template,
           controller,
           controllerAs: 'QueuesOvhPabxCtrl',

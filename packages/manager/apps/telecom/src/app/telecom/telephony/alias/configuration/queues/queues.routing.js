@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'telecom.telephony.billingAccount.alias.configuration.queues',
+    'telecom.telephony.billingAccount.alias.details.configuration.queues',
     {
       url: '/queues',
       abstract: true,
