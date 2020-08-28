@@ -88,14 +88,18 @@
         <div class="col-sm-4 mb-5">
             <oui-tile
                 data-heading="{{ ::'common_plan' | translate }}"
-                data-loading="ctrlTabGeneralInformations.loading.domain || ctrlTabGeneralInformations.loading.serviceInfos || ctrlTabGeneralInformations.loading.urls"
+                data-loading="ctrlTabGeneralInformations.loading.domain || ctrlTabGeneralInformations.loading.serviceInfos || ctrlTabGeneralInformations.loading.urls || ctrlTabGeneralInformations.loading.serviceDetails"
                 class="h-100"
             >
                 <oui-tile-definition
                     data-term="{{ ::'email_tab_domain_offer' | translate }}"
                     data-description="{{ ::ctrlTabGeneralInformations.domain.offer || '-' }}"
                 >
-                    <oui-action-menu data-compact data-placement="end">
+                    <oui-action-menu
+                        data-compact
+                        data-placement="end"
+                        data-ng-if="!ctrlTabGeneralInformations.serviceDetails.parentServiceId"
+                    >
                         <oui-action-menu-item
                             data-on-click="ctrlTabGeneralInformations.goToUpgrade()"
                         >
