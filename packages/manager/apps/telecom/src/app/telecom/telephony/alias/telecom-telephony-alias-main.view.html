@@ -23,7 +23,7 @@
         <!-- LINE ACTIONS -->
         <oui-header-tabs>
             <oui-header-tabs-item
-                data-state="telecom.telephony.billingAccount.alias.dashboard"
+                data-state="telecom.telephony.billingAccount.alias.details.dashboard"
                 data-disabled="!$ctrl.serviceName"
                 ><span data-translate="telephony_alias_tab_number"></span
             ></oui-header-tabs-item>
@@ -32,7 +32,7 @@
                 data-ng-if="$ctrl.alias.featureType !== 'empty'"
             >
                 <oui-header-tabs-item
-                    data-state="telecom.telephony.billingAccount.alias.configuration.lines"
+                    data-state="telecom.telephony.billingAccount.alias.details.configuration.lines"
                     data-disabled="$ctrl.isFeatureTypeObsolete()"
                     data-ng-if="$ctrl.isContactCenterSolution()"
                     ><span
@@ -40,7 +40,7 @@
                     ></span
                 ></oui-header-tabs-item>
                 <oui-header-tabs-item
-                    data-state="telecom.telephony.billingAccount.alias.configuration.sounds"
+                    data-state="telecom.telephony.billingAccount.alias.details.configuration.sounds"
                     data-disabled="$ctrl.isFeatureTypeObsolete()"
                     data-ng-if="$ctrl.isContactCenterSolution()"
                     ><span
@@ -48,7 +48,7 @@
                     ></span
                 ></oui-header-tabs-item>
                 <oui-header-tabs-item
-                    data-state="telecom.telephony.billingAccount.alias.configuration.timeCondition"
+                    data-state="telecom.telephony.billingAccount.alias.details.configuration.timeCondition"
                     data-disabled="$ctrl.isFeatureTypeObsolete()"
                     data-ng-if="$ctrl.isContactCenterSolution()"
                     ><span
@@ -56,7 +56,7 @@
                     ></span
                 ></oui-header-tabs-item>
                 <oui-header-tabs-item
-                    data-state="telecom.telephony.billingAccount.alias.configuration.callsFiltering"
+                    data-state="telecom.telephony.billingAccount.alias.details.configuration.callsFiltering"
                     data-disabled="$ctrl.isFeatureTypeObsolete()"
                     data-ng-if="$ctrl.isContactCenterSolution()"
                     ><span
@@ -64,7 +64,7 @@
                     ></span
                 ></oui-header-tabs-item>
                 <oui-header-tabs-item
-                    data-state="telecom.telephony.billingAccount.alias.configuration"
+                    data-state="telecom.telephony.billingAccount.alias.details.configuration"
                     data-disabled="$ctrl.isFeatureTypeObsolete()"
                     data-ng-if="!$ctrl.isContactCenterSolution()"
                     ><span
@@ -73,7 +73,7 @@
                 ></oui-header-tabs-item>
                 <oui-header-tabs-divider></oui-header-tabs-divider>
                 <oui-header-tabs-item
-                    data-state="telecom.telephony.billingAccount.alias.configuration.changeType"
+                    data-state="telecom.telephony.billingAccount.alias.details.configuration.changeType"
                     data-disabled="$ctrl.isFeatureTypeObsolete()"
                     ><span
                         data-translate="telephony_alias_tab_item_change_featureType"
@@ -81,7 +81,7 @@
                 ></oui-header-tabs-item>
             </oui-header-tabs-dropdown>
             <oui-header-tabs-item
-                data-state="telecom.telephony.billingAccount.alias.configuration.changeType"
+                data-state="telecom.telephony.billingAccount.alias.details.configuration.changeType"
                 data-disabled="$ctrl.isFeatureTypeObsolete()"
                 data-ng-if="$ctrl.alias.featureType === 'empty'"
                 ><span
@@ -93,14 +93,14 @@
                 data-ng-if="$ctrl.serviceName && $ctrl.hasConsumption()"
             >
                 <oui-header-tabs-item
-                    data-state="telecom.telephony.billingAccount.alias.consumptionIncomingCalls"
+                    data-state="telecom.telephony.billingAccount.alias.details.consumptionIncomingCalls"
                     data-disabled="$ctrl.isFeatureTypeObsolete()"
                     ><span
                         data-translate="telephony_alias_consumption_incoming_calls"
                     ></span
                 ></oui-header-tabs-item>
                 <oui-header-tabs-item
-                    data-state="telecom.telephony.billingAccount.alias.consumptionOutgoingCalls"
+                    data-state="telecom.telephony.billingAccount.alias.details.consumptionOutgoingCalls"
                     data-disabled="$ctrl.isFeatureTypeObsolete()"
                     ><span
                         data-translate="telephony_alias_consumption_outgoing_calls"
@@ -108,19 +108,19 @@
                 ></oui-header-tabs-item>
             </oui-header-tabs-dropdown>
             <oui-header-tabs-item
-                data-state="telecom.telephony.billingAccount.alias.statistics"
+                data-state="telecom.telephony.billingAccount.alias.details.statistics"
                 data-disabled="$ctrl.isFeatureTypeObsolete()"
                 data-ng-if="$ctrl.isContactCenterSolution()"
                 ><span data-translate="telephony_alias_tab_statistics"></span
             ></oui-header-tabs-item>
             <oui-header-tabs-item
-                data-state="telecom.telephony.billingAccount.alias.records"
+                data-state="telecom.telephony.billingAccount.alias.details.records"
                 data-disabled="$ctrl.isFeatureTypeObsolete()"
                 data-ng-if="$ctrl.isContactCenterSolution()"
                 ><span data-translate="telephony_alias_tab_records"></span
             ></oui-header-tabs-item>
             <oui-header-tabs-item
-                data-state="telecom.telephony.billingAccount.alias.svaGenerator"
+                data-state="telecom.telephony.billingAccount.alias.details.svaGenerator"
                 data-ng-if="$ctrl.serviceName && $ctrl.isSpecialNumber"
                 ><span data-translate="telephony_alias_tab_bank_maker"></span
             ></oui-header-tabs-item>
@@ -130,20 +130,20 @@
                 data-ng-if="$ctrl.serviceName && $ctrl.isSpecialNumber"
             >
                 <oui-header-tabs-item
-                    data-state="telecom.telephony.billingAccount.alias.repayments"
+                    data-state="telecom.telephony.billingAccount.alias.details.repayments"
                     ><span
                         data-translate="telephony_alias_special_repayments"
                     ></span
                 ></oui-header-tabs-item>
                 <oui-header-tabs-item
-                    data-state="telecom.telephony.billingAccount.alias.rsva"
+                    data-state="telecom.telephony.billingAccount.alias.details.rsva"
                     ><span
                         data-translate="telephony_alias_special_number_rsva"
                     ></span
                 ></oui-header-tabs-item>
             </oui-header-tabs-dropdown>
             <oui-header-tabs-item
-                data-state="telecom.telephony.billingAccount.alias.contact"
+                data-state="telecom.telephony.billingAccount.alias.details.contact"
                 data-disabled="!$ctrl.serviceName || $ctrl.isFeatureTypeObsolete()"
                 ><span
                     data-translate="telephony_alias_tab_number_directory"
@@ -164,7 +164,7 @@
                 data-translate-values="{ date: ($ctrl.terminationTask.executionDate | date) }"
             ></span>
             <a
-                data-ui-sref="telecom.telephony.billingAccount.alias.terminate"
+                data-ui-sref="telecom.telephony.billingAccount.alias.details.terminate"
                 data-translate="telephony_alias_termination_warning_cancel"
             ></a>
         </div>
@@ -178,7 +178,7 @@
                 data-translate-values="{ date: ($ctrl.convertTask.executionDate | date) }"
             ></span>
             <a
-                data-ui-sref="telecom.telephony.billingAccount.alias.convertToLine"
+                data-ui-sref="telecom.telephony.billingAccount.alias.details.convertToLine"
                 data-translate="telephony_alias_termination_warning_cancel"
             ></a>
         </div>

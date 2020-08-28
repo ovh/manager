@@ -12,11 +12,11 @@ export default class TelecomBillingAccountService {
     let state = `${statePrefix}line`;
 
     if (['alias'].includes(serviceType)) {
-      state = `${statePrefix}alias`;
+      state = `${statePrefix}alias.details`;
     } else if (['fax', 'voicefax'].includes(featureType)) {
       state = `${statePrefix}fax`;
     } else if (['carrierSip'].includes(featureType)) {
-      state = `${statePrefix}carrierSip`;
+      state = `${statePrefix}carrierSip.dashboard`;
     }
 
     return {

@@ -124,7 +124,7 @@ angular.module('managerApp').controller(
           if (
             !this.stopPolling &&
             this.$state.current.name ===
-              'telecom.telephony.billingAccount.alias.statistics'
+              'telecom.telephony.billingAccount.alias.details.statistics'
           ) {
             this.poller = this.$timeout(periodicRefresh, 1000);
           } else {

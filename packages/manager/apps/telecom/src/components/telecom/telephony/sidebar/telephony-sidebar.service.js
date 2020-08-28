@@ -71,7 +71,7 @@ angular
           addServiceMenuItems(
             sortedAlias,
             {
-              state: 'telecom.telephony.billingAccount.alias',
+              state: 'telecom.telephony.billingAccount.alias.details',
               prefix: $translate.instant(
                 'telecom_sidebar_section_telephony_number',
               ),
@@ -165,7 +165,7 @@ angular
             addServiceMenuItems(
               sortedCarrierSipLines,
               {
-                state: 'telecom.telephony.billingAccount.carrierSip',
+                state: 'telecom.telephony.billingAccount.carrierSip.dashboard',
                 prefix: $translate.instant(
                   'telecom_sidebar_section_telephony_carrier_sip',
                 ),

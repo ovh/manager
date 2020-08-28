@@ -1,10 +1,11 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'telecom.telephony.billingAccount.carrierSip.endpoints',
+    'telecom.telephony.billingAccount.carrierSip.dashboard.endpoints',
     {
       url: '/endpoints',
       views: {
-        '@telecom.telephony.billingAccount.carrierSip': 'carrierSipEndpoints',
+        '@telecom.telephony.billingAccount.carrierSip.dashboard':
+          'carrierSipEndpoints',
       },
       resolve: {
         endpointIpList: /* @ngInject */ (endpoints) =>
@@ -16,6 +17,8 @@ export default /* @ngInject */ ($stateProvider) => {
           CarrierSipService,
           serviceName,
         ) => CarrierSipService.getEndpoints(billingAccount, serviceName),
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('telephony_carrier_sip_endpoints_breadcrumb'),
       },
     },
   );

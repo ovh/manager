@@ -52,7 +52,7 @@
                 <oui-tile-button
                     data-ng-if="!$ctrl.alias.isAPortabilityAlias()"
                     data-disabled="$ctrl.isFeatureTypeObsolete()"
-                    data-on-click="$ctrl.$state.go('telecom.telephony.billingAccount.alias.convertToLine')"
+                    data-on-click="$ctrl.$state.go('telecom.telephony.billingAccount.alias.details.convertToLine')"
                 >
                     <span
                         data-translate="telephony_alias_information_number_to_line"
@@ -61,7 +61,7 @@
                 <oui-tile-button
                     data-ng-if="!$ctrl.alias.isAPortabilityAlias()"
                     data-disabled="$ctrl.isFeatureTypeObsolete()"
-                    data-on-click="$ctrl.$state.go('telecom.telephony.billingAccount.alias.terminate')"
+                    data-on-click="$ctrl.$state.go('telecom.telephony.billingAccount.alias.details.terminate')"
                 >
                     <span
                         data-translate="telephony_alias_information_terminate_number"
@@ -87,7 +87,7 @@
                     data-description="{{:: ($ctrl.alias.directory.displayMarketingDirectory ? 'yes' : 'no') | translate | tucCapitalize }}"
                 ></oui-tile-definition>
                 <oui-tile-button
-                    data-on-click="$ctrl.$state.go('telecom.telephony.billingAccount.alias.contact')"
+                    data-on-click="$ctrl.$state.go('telecom.telephony.billingAccount.alias.details.contact')"
                     data-disabled="$ctrl.isFeatureTypeObsolete()"
                 >
                     <span
@@ -133,7 +133,7 @@
                 ></oui-tile-definition>
                 <div data-ng-if="$ctrl.alias.featureType !== 'empty'">
                     <oui-tile-button
-                        data-on-click="$ctrl.$state.go('telecom.telephony.billingAccount.alias.configuration')"
+                        data-on-click="$ctrl.$state.go('telecom.telephony.billingAccount.alias.details.configuration')"
                         data-disabled="$ctrl.isFeatureTypeObsolete()"
                     >
                         <span
@@ -190,7 +190,7 @@
                     </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-button
-                    data-on-click="$ctrl.$state.go('telecom.telephony.billingAccount.alias.consumptionOutgoingCalls')"
+                    data-on-click="$ctrl.$state.go('telecom.telephony.billingAccount.alias.details.consumptionOutgoingCalls')"
                     data-disabled="$ctrl.isFeatureTypeObsolete()"
                 >
                     <span

@@ -1,10 +1,10 @@
 angular.module('managerApp').config(($stateProvider) => {
   $stateProvider.state(
-    'telecom.telephony.billingAccount.alias.consumptionIncomingCalls',
+    'telecom.telephony.billingAccount.alias.details.consumptionIncomingCalls',
     {
       url: '/incomingCalls',
       views: {
-        'aliasInnerView@telecom.telephony.billingAccount.alias': {
+        'aliasInnerView@telecom.telephony.billingAccount.alias.details': {
           templateUrl:
             'app/telecom/telephony/service/consumption/incomingCalls/telecom-telephony-service-consumption-incomingCalls.html',
           controller: 'TelecomTelephonyServiceConsumptionIncomingCallsCtrl',

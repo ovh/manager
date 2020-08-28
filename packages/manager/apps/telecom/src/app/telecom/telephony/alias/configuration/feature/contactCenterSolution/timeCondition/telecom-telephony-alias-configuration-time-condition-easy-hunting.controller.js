@@ -231,7 +231,7 @@ angular.module('managerApp').controller(
     manageScheduler() {
       this.onTimeConditionFormReset();
       this.$state.go(
-        'telecom.telephony.billingAccount.alias.configuration.timeCondition.scheduler',
+        'telecom.telephony.billingAccount.alias.details.configuration.timeCondition.scheduler',
       );
     }
 

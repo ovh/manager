@@ -22,7 +22,8 @@ angular
           },
           {
             name: 'number_portability_status',
-            sref: 'telecom.telephony.billingAccount.alias.portabilities',
+            sref:
+              'telecom.telephony.billingAccount.alias.details.portabilities',
             text: $translate.instant(
               'telephony_alias_portability_actions_number_portability_status',
             ),

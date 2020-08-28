@@ -9,7 +9,7 @@ const moduleName = 'ovhManagerTelecomCarrierSipDashboardEndpointsLazyLoading';
 angular.module(moduleName, [oclazyload, uiRouter]).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'telecom.telephony.billingAccount.carrierSip.endpoints.**',
+      'telecom.telephony.billingAccount.carrierSip.dashboard.endpoints.**',
       {
         url: '/endpoints',
         lazyLoad: ($transition$) => {

@@ -1,6 +1,6 @@
 angular.module('managerApp').config(($stateProvider) => {
   $stateProvider.state(
-    'telecom.telephony.billingAccount.alias.configuration.stats',
+    'telecom.telephony.billingAccount.alias.details.configuration.stats',
     {
       url: '/stats',
       abstract: true,
