@@ -147,7 +147,7 @@ angular
             addServiceMenuItems(
               sortedFaxLines,
               {
-                state: 'telecom.telephony.billingAccount.fax',
+                state: 'telecom.telephony.billingAccount.fax.dashboard',
                 prefix: $translate.instant(
                   'telecom_sidebar_section_telephony_fax',
                 ),
