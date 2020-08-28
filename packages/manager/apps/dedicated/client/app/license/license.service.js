@@ -162,6 +162,9 @@ angular.module('Module.license').service('License', [
             }
             break;
           case 'CPANEL':
+            if (hasOption(data.options, 'version')) {
+              opts.version = data.options.version.value;
+            }
             break;
           case 'VIRTUOZZO':
             if (hasOption(data.options, 'containerNumber')) {
