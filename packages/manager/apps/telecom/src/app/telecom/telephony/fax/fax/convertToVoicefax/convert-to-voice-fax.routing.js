@@ -3,7 +3,7 @@ import controller from './convert-to-voice-fax.controller';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'telecom.telephony.billingAccount.fax.fax.convertToVoicefax',
+    'telecom.telephony.billingAccount.fax.dashboard.fax.convertToVoicefax',
     {
       url: '/convertToVoicefax',
       views: {
@@ -13,7 +13,7 @@ export default /* @ngInject */ ($stateProvider) => {
           controllerAs: '$ctrl',
           noTranslations: true,
         },
-        'faxConvertToVoicefaxView@telecom.telephony.billingAccount.fax.fax.convertToVoicefax': {
+        'faxConvertToVoicefaxView@telecom.telephony.billingAccount.fax.dashboard.fax.convertToVoicefax': {
           templateUrl:
             'app/telecom/telephony/service/fax/convertToVoicefax/convert-to-voicefax.html',
           controller: 'TelecomTelephonyServiceFaxConvertToVoicefaxCtrl',
