@@ -21,7 +21,7 @@
   "pci_projects_project_training_jobs_list_submit_success": "Job créé",
   "pci_projects_project_training_jobs_submit_select_image_advanced_tips": "Choississez votre propre image Docker",
   "pci_projects_project_training_jobs_submit_select_no_data": "Aucun volume de données (dataset) disponible actuellement. Si vous souhaitez ajouter des données pour votre job, créez un volume de données en cliquant ici",
-  "pci_projects_project_training_jobs_submit_select_data": "Attacher des données au job (facultatif)",
+  "pci_projects_project_training_jobs_submit_select_data": "Attacher des volumes de données au job (facultatif)",
   "pci_projects_project_training_jobs_submit_command_default_select": "Spécifier la commande à lancer. (facultatif)",
   "pci_projects_project_training_jobs_submit_select_command": "Renseigner la commande Docker à lancer dans le conteneur",
   "pci_projects_project_training_jobs_submit_select_command_tips": "Renseigner les arguments (séparés par des espaces) qui seront passés à la commande Docker",
