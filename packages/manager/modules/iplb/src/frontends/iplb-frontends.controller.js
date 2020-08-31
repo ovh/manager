@@ -49,7 +49,7 @@ export default class IpLoadBalancerFrontendsCtrl {
   }
 
   update(frontend) {
-    this.$state.go('network.iplb.detail.frontends.update', {
+    this.$state.go('iplb.detail.frontends.update', {
       serviceName: this.$stateParams.serviceName,
       frontendId: frontend.frontendId,
     });

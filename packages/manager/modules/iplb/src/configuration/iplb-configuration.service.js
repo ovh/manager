@@ -178,10 +178,10 @@ export default class IpLoadBalancerConfigurationService {
         link: {
           type: 'state',
           text: this.$translate.instant('iplb_configuration_action_apply'),
-          state: 'network.iplb.detail.configuration',
+          state: 'iplb.detail.configuration',
         },
       },
-      'network.iplb.detail',
+      'iplb.detail',
     );
   }
 }

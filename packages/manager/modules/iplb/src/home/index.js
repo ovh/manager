@@ -21,7 +21,7 @@ angular
   .module(moduleName, ['ui.router'])
   .config(
     /* @ngInject */ ($stateProvider) => {
-      $stateProvider.state('network.iplb.detail.home', {
+      $stateProvider.state('iplb.detail.home', {
         url: '/home',
         views: {
           iplbHeader: {

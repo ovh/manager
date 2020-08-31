@@ -1,7 +1,7 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('network.iplb.index', {
+  $stateProvider.state('iplb.index', {
     url: `?${ListLayoutHelper.urlQueryParams}`,
     views: {
       iplbContainer: {
@@ -17,7 +17,7 @@ export default /* @ngInject */ ($stateProvider) => {
       header: /* @ngInject */ ($translate) => $translate.instant('iplb_title'),
       customizableColumns: () => true,
       getServiceNameLink: /* @ngInject */ ($state) => ({ serviceName }) =>
-        $state.href('network.iplb.detail', {
+        $state.href('iplb.detail', {
           serviceName,
         }),
     },

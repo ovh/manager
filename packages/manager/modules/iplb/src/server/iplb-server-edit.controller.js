@@ -34,7 +34,7 @@ export default class IpLoadBalancerServerEditCtrl {
           })
           .catch((err) => {
             if (err === 'NOTFOUND') {
-              return this.$state.go('network.iplb.detail.server-farm');
+              return this.$state.go('iplb.detail.server-farm');
             }
             return this.CucServiceHelper.errorHandler(
               'iplb_server_request_error',
@@ -117,7 +117,7 @@ export default class IpLoadBalancerServerEditCtrl {
       this.getCleanServer(),
     )
       .then(() => {
-        this.$state.go('network.iplb.detail.server-farm');
+        this.$state.go('iplb.detail.server-farm');
       })
 
       .finally(() => {
@@ -139,7 +139,7 @@ export default class IpLoadBalancerServerEditCtrl {
       this.getCleanServer(),
     )
       .then(() => {
-        this.$state.go('network.iplb.detail.server-farm');
+        this.$state.go('iplb.detail.server-farm');
       })
       .finally(() => {
         this.saving = false;
