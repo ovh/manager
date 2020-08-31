@@ -10,7 +10,7 @@ import 'moment';
 
 import IplbHomeUpdateQuotaTemplate from './updateQuota/iplb-update-quota.html';
 
-import { RENEW_URL, CONTACTS_URL } from '../iplb-url.constants';
+import { RENEW_URL, CONTACTS_URL } from '../dashboard/iplb-url.constants';
 
 export default class IpLoadBalancerHomeCtrl {
   /* @ngInject */

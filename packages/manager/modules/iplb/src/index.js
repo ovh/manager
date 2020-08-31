@@ -4,8 +4,6 @@ import 'oclazyload';
 
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 
-import iplbTemplate from './template.html';
-
 const moduleName = 'ovhManagerIplbLazyLoading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
@@ -23,7 +21,7 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
         abstract: true,
         views: {
           networkContainer: {
-            template: iplbTemplate,
+            template: '<div data-ui-view="iplbContainer" class="iplb"></div>',
           },
         },
         translations: {
@@ -36,7 +34,7 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-          return import('./iplb.module').then((mod) =>
+          return import('./dashboard/iplb.module').then((mod) =>
             $ocLazyLoad.inject(mod.default || mod),
           );
         },
@@ -46,7 +44,7 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-          return import('./iplb/iplb.module').then((mod) =>
+          return import('./iplb.module').then((mod) =>
             $ocLazyLoad.inject(mod.default || mod),
           );
         },

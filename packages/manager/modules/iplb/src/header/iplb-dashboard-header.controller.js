@@ -1,4 +1,4 @@
-import { GUIDE_HOME_URL } from '../iplb-url.constants';
+import { GUIDE_HOME_URL } from '../dashboard/iplb-url.constants';
 
 export default class IpLoadBalancerDashboardHeaderCtrl {
   /* @ngInject */
