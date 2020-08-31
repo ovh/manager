@@ -3,16 +3,23 @@ import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
+import '@ovh-ux/ng-ui-router-breadcrumb';
+
 const moduleName = 'ovhManagerNashaLazyLoading';
 
 angular
-  .module(moduleName, ['ui.router', 'oc.lazyLoad', 'ovhManagerCore'])
+  .module(moduleName, [
+    'ui.router',
+    'oc.lazyLoad',
+    'ovhManagerCore',
+    'ngUiRouterBreadcrumb',
+  ])
   .config(
     /* @ngInject */ ($stateProvider) => {
       const lazyLoad = ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-        return import('./nasha.module').then((mod) =>
+        return import('./dashboard/nasha.module').then((mod) =>
           $ocLazyLoad.inject(mod.default || mod),
         );
       };
@@ -27,7 +34,7 @@ angular
           lazyLoad: ($transition$) => {
             const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-            return import('./nashas/nasha.module').then((mod) =>
+            return import('./nasha.module').then((mod) =>
               $ocLazyLoad.inject(mod.default || mod),
             );
           },
