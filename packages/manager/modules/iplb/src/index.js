@@ -7,29 +7,18 @@ import '@ovh-ux/ui-kit/dist/css/oui.css';
 const moduleName = 'ovhManagerIplbLazyLoading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
-  /* @ngInject */ ($stateProvider) => {
+  /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
     $stateProvider
-      .state('network', {
-        url: '/network',
-        template: `
-                  <div data-ui-view="networkContainer"></div>
-              `,
-        abstract: true,
-      })
-      .state('network.iplb', {
+      .state('iplb', {
         url: '/iplb',
         abstract: true,
-        views: {
-          networkContainer: {
-            template: '<div data-ui-view="iplbContainer" class="iplb"></div>',
-          },
-        },
+        template: '<div data-ui-view="iplbContainer" class="iplb"></div>',
         translations: {
           value: ['../common', '.'],
           format: 'json',
         },
       })
-      .state('network.iplb.detail.**', {
+      .state('iplb.detail.**', {
         url: '/:serviceName',
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
@@ -39,7 +28,7 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
           );
         },
       })
-      .state('network.iplb.index.**', {
+      .state('iplb.index.**', {
         url: '',
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
@@ -49,6 +38,13 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
           );
         },
       });
+
+    $urlRouterProvider.when(/^\/network\/iplb/, () => {
+      window.location.url = window.location.url.replace(
+        '/network/iplb',
+        '/iplb',
+      );
+    });
   },
 );
 export default moduleName;
