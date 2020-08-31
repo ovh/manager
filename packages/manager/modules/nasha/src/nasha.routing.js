@@ -18,6 +18,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('nasha.dashboard', {
           nashaId,
         }),
+      hideBreadcrumb: () => true,
     },
   });
 };
