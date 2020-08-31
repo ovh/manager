@@ -29,6 +29,9 @@ angular
           url: '/nasha',
           redirectTo: 'nasha.index',
           template: '<div ui-view></div>',
+          resolve: {
+            breadcrumb: () => 'NASHA',
+          },
         })
         .state('nasha.index.**', {
           url: '',
