@@ -15,7 +15,7 @@ angular
     'ngUiRouterBreadcrumb',
   ])
   .config(
-    /* @ngInject */ ($stateProvider) => {
+    /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       const lazyLoad = ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
@@ -25,12 +25,13 @@ angular
       };
 
       $stateProvider
-        .state('nasha.**', {
-          url: '/paas/nasha/:nashaId',
-          lazyLoad,
+        .state('nasha', {
+          url: '/nasha',
+          redirectTo: 'nasha.index',
+          template: '<div ui-view></div>',
         })
-        .state('nashas.**', {
-          url: '/paas/nasha',
+        .state('nasha.index.**', {
+          url: '',
           lazyLoad: ($transition$) => {
             const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
@@ -39,14 +40,25 @@ angular
             );
           },
         })
-        .state('nasha-add.**', {
-          url: '/nasha/new',
+        .state('nasha.dashboard.**', {
+          url: '/:nashaId',
           lazyLoad,
         })
-        .state('nasha-unavailable.**', {
-          url: '/nasha/unavailable',
+        .state('nasha.nasha-add.**', {
+          url: '/new',
+          lazyLoad,
+        })
+        .state('nasha.nasha-unavailable.**', {
+          url: '/unavailable',
           lazyLoad,
         });
+
+      $urlRouterProvider.when(/^\/paas\/nasha/, () => {
+        window.location.href = window.location.href.replace(
+          '/paas/nasha',
+          '/nasha',
+        );
+      });
     },
   );
 export default moduleName;

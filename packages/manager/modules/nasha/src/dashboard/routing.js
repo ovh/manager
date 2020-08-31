@@ -4,9 +4,9 @@ import nashaUnavailableTemplate from '../add/nasha-unavailable.html';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
-    .state('nasha', {
-      abstract: true,
-      url: '/paas/nasha/:nashaId',
+    .state('nasha.dashboard', {
+      url: '/:nashaId',
+      redirectTo: 'nasha.dashboard.nasha-partitions',
       template,
       controller: 'NashaCtrl',
       controllerAs: 'NashaCtrl',
@@ -15,8 +15,8 @@ export default /* @ngInject */ ($stateProvider) => {
         format: 'json',
       },
     })
-    .state('nasha-add', {
-      url: '/nasha/new',
+    .state('nasha.nasha-add', {
+      url: '/new',
       template: nashaAddTemplate,
       controller: 'NashaAddCtrl',
       controllerAs: 'NashaAddCtrl',
@@ -25,8 +25,8 @@ export default /* @ngInject */ ($stateProvider) => {
         format: 'json',
       },
     })
-    .state('nasha-unavailable', {
-      url: '/nasha/unavailable',
+    .state('nasha.nasha-unavailable', {
+      url: '/unavailable',
       template: nashaUnavailableTemplate,
       controller: 'NashaUnavailableCtrl',
       controllerAs: '$ctrl',
