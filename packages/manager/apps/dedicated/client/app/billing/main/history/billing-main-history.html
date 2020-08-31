@@ -136,7 +136,7 @@
                 ng-if="$row.url"
                 href="{{ :: $row.url }}"
                 external
-                on-click="$ctrl.trackInvoiceOpening()"
+                on-click="$ctrl.trackInvoiceOpening('html')"
             >
                 <span
                     data-translate="billing_main_history_table_download_html"
@@ -146,7 +146,7 @@
                 ng-if="$row.pdfUrl"
                 href="{{ :: $row.pdfUrl }}"
                 external
-                on-click="$ctrl.trackInvoiceOpening()"
+                on-click="$ctrl.trackInvoiceOpening('pdf')"
             >
                 <span
                     data-translate="billing_main_history_table_download_pdf"
@@ -156,7 +156,7 @@
                 ng-if="$row.pdfBetaUrl"
                 href="{{ :: $row.pdfBetaUrl }}"
                 external
-                on-click="$ctrl.trackInvoiceOpening()"
+                on-click="$ctrl.trackInvoiceOpening('pdf')"
             >
                 <span
                     data-translate="billing_main_history_table_download_pdf_beta"
