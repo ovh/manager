@@ -1,7 +1,7 @@
 import template from './template.html';
-import nashaOrderCompleteTemplate from './order/template.html';
-import nashaAddTemplate from './add/nasha-add.html';
-import nashaUnavailableTemplate from './add/nasha-unavailable.html';
+import nashaOrderCompleteTemplate from '../order/template.html';
+import nashaAddTemplate from '../add/nasha-add.html';
+import nashaUnavailableTemplate from '../add/nasha-unavailable.html';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
