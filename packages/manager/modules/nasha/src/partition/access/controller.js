@@ -37,7 +37,7 @@ export default class NashaPartitionAccessCtrl {
     };
 
     $scope.$on('$destroy', () => {
-      this.Poller.kill({ namespace: 'nasha.access' });
+      this.Poller.kill({ namespace: 'nasha.dashboard.access' });
     });
   }
 
@@ -133,7 +133,7 @@ export default class NashaPartitionAccessCtrl {
         errorRule(task) {
           return ['doing', 'todo', 'done'].indexOf(task.status) === -1;
         },
-        namespace: 'nasha.access',
+        namespace: 'nasha.dashboard.access',
       },
     );
   }
