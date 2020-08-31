@@ -1,11 +1,21 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('nasha.dashboard.nasha-partition-access', {
-    url: '/access/:partitionName',
+  $stateProvider.state('nasha.dashboard.partition', {
+    url: '/access',
     views: {
       nashaPartitionAccess: {
-        component: 'nashaPartitionAccessComponent',
+        template: '<div ui-view></div>',
       },
     },
+    redirectTo: 'nasha.dashboard.nasha-partitions',
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('nasha_access_breadcrumb'),
+    },
+  });
+
+  $stateProvider.state('nasha.dashboard.partition.nasha-partition-access', {
+    url: '/:partitionName',
+    component: 'nashaPartitionAccessComponent',
     translations: {
       value: ['../../../common', '.'],
       format: 'json',
@@ -16,8 +26,7 @@ export default /* @ngInject */ ($stateProvider) => {
       isNew: null,
     },
     resolve: {
-      serviceName: /* @ngInject */ ($transition$) =>
-        $transition$.params().nashaId,
+      serviceName: /* @ngInject */ (nashaId) => nashaId,
       partition: /* @ngInject */ ($transition$) =>
         $transition$.params().partitionName,
       partitionDetails: /* @ngInject */ (
@@ -39,7 +48,7 @@ export default /* @ngInject */ ($stateProvider) => {
         serviceName,
         partition,
       ) => () =>
-        $state.go('nasha.dashboard.nasha-partition-access.add', {
+        $state.go('nasha.dashboard.partition.nasha-partition-access.add', {
           serviceName,
           partition,
         }),
@@ -48,7 +57,7 @@ export default /* @ngInject */ ($stateProvider) => {
         serviceName,
         partition,
       ) => (access) =>
-        $state.go('nasha.dashboard.nasha-partition-access.delete', {
+        $state.go('nasha.dashboard.partition.nasha-partition-access.delete', {
           serviceName,
           partition,
           access,
@@ -58,7 +67,7 @@ export default /* @ngInject */ ($stateProvider) => {
         type = 'success',
         data,
       ) => {
-        const state = 'nasha.dashboard.nasha-partition-access';
+        const state = 'nasha.dashboard.partition.nasha-partition-access';
         const promise = $state.go(state, data);
         if (message) {
           promise.then(() => {
@@ -67,6 +76,7 @@ export default /* @ngInject */ ($stateProvider) => {
         }
         return promise;
       },
+      breadcrumb: /* @ngInject */ (partition) => partition,
     },
   });
 };
