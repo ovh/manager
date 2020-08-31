@@ -261,7 +261,7 @@ export default class IpLoadBalancerServerFarmEditCtrl {
       this.getCleanFarm(),
     )
       .then(() => {
-        this.$state.go('network.iplb.detail.server-farm');
+        this.$state.go('iplb.detail.server-farm');
       })
       .finally(() => {
         this.saving = false;
@@ -281,7 +281,7 @@ export default class IpLoadBalancerServerFarmEditCtrl {
       this.getCleanFarm(),
     )
       .then(() => {
-        this.$state.go('network.iplb.detail.server-farm');
+        this.$state.go('iplb.detail.server-farm');
       })
       .finally(() => {
         this.saving = false;

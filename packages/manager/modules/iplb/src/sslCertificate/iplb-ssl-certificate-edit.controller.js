@@ -25,7 +25,7 @@ export default class IpLoadBalancerSslCertificateEditCtrl {
       this.ssl,
     )
       .then(() => {
-        this.$state.go('network.iplb.detail.ssl-certificate');
+        this.$state.go('iplb.detail.ssl-certificate');
       })
       .finally(() => {
         this.saving = false;

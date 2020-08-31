@@ -19,9 +19,9 @@ angular
   .config(
     /* @ngInject */ ($stateProvider) => {
       $stateProvider
-        .state('network.iplb.detail.ssl-certificate', {
+        .state('iplb.detail.ssl-certificate', {
           url: '/sslCertificate',
-          redirectTo: 'network.iplb.detail.ssl-certificate.home',
+          redirectTo: 'iplb.detail.ssl-certificate.home',
           views: {
             iplbHeader: {
               template: IplbHeaderTemplate,
@@ -37,7 +37,7 @@ angular
             format: 'json',
           },
         })
-        .state('network.iplb.detail.ssl-certificate.home', {
+        .state('iplb.detail.ssl-certificate.home', {
           url: '/',
           views: {
             iplbSslCertificate: {
@@ -51,7 +51,7 @@ angular
             format: 'json',
           },
         })
-        .state('network.iplb.detail.ssl-certificate.add', {
+        .state('iplb.detail.ssl-certificate.add', {
           url: '/sslCertificate/add',
           views: {
             iplbSslCertificate: {
@@ -65,7 +65,7 @@ angular
             format: 'json',
           },
         })
-        .state('network.iplb.detail.ssl-certificate.order', {
+        .state('iplb.detail.ssl-certificate.order', {
           url: '/sslCertificate/order',
           views: {
             iplbSslCertificate: {

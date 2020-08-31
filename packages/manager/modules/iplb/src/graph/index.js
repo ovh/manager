@@ -10,7 +10,7 @@ angular
   .module(moduleName, ['ui.router'])
   .config(
     /* @ngInject */ ($stateProvider) => {
-      $stateProvider.state('network.iplb.detail.graph', {
+      $stateProvider.state('iplb.detail.graph', {
         url: '/graph',
         views: {
           iplbHeader: {
