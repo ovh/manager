@@ -74,19 +74,19 @@ export default class IpLoadBalancerHomeCtrl {
 
     this.serviceActions = {
       text: this.$translate.instant('iplb_status_apply'),
-      callback: () => this.$state.go('network.iplb.detail.configuration'),
+      callback: () => this.$state.go('iplb.detail.configuration'),
       isAvailable: () => true,
     };
 
     this.frontendsActions = {
       text: this.$translate.instant('iplb_status_details'),
-      callback: () => this.$state.go('network.iplb.detail.frontends'),
+      callback: () => this.$state.go('iplb.detail.frontends'),
       isAvailable: () => true,
     };
 
     this.farmsActions = {
       text: this.$translate.instant('iplb_status_details'),
-      callback: () => this.$state.go('network.iplb.detail.server-farm'),
+      callback: () => this.$state.go('iplb.detail.server-farm'),
       isAvailable: () => true,
     };
   }
@@ -248,7 +248,7 @@ export default class IpLoadBalancerHomeCtrl {
       addZone: {
         text: this.$translate.instant('iplb_add'),
         callback: () =>
-          this.$state.go('network.iplb.detail.zone.add', {
+          this.$state.go('iplb.detail.zone.add', {
             serviceName: this.serviceName,
           }),
         isAvailable: () =>
@@ -257,7 +257,7 @@ export default class IpLoadBalancerHomeCtrl {
       deleteZone: {
         text: this.$translate.instant('iplb_delete'),
         callback: () =>
-          this.$state.go('network.iplb.detail.zone.delete', {
+          this.$state.go('iplb.detail.zone.delete', {
             serviceName: this.serviceName,
           }),
         isAvailable: () =>

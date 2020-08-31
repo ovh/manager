@@ -290,7 +290,7 @@ export default class IpLoadBalancerFrontendsEditCtrl {
       this.$stateParams.serviceName,
       this.getCleanFrontend(),
     )
-      .then(() => this.$state.go('network.iplb.detail.frontends'))
+      .then(() => this.$state.go('iplb.detail.frontends'))
       .finally(() => {
         this.saving = false;
       });
@@ -308,7 +308,7 @@ export default class IpLoadBalancerFrontendsEditCtrl {
       this.frontend.frontendId,
       this.getCleanFrontend(),
     )
-      .then(() => this.$state.go('network.iplb.detail.frontends'))
+      .then(() => this.$state.go('iplb.detail.frontends'))
       .finally(() => {
         this.saving = false;
       });
