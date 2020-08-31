@@ -3,8 +3,7 @@ import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-import cucAutoComplete from './components/autocomplete';
-import cucSpaceMeter from './components/space-meter';
+import '@ovh-ux/ng-ui-router-breadcrumb';
 
 const moduleName = 'ovhManagerNashaLazyLoading';
 
@@ -13,15 +12,14 @@ angular
     'ui.router',
     'oc.lazyLoad',
     'ovhManagerCore',
-    cucAutoComplete,
-    cucSpaceMeter,
+    'ngUiRouterBreadcrumb',
   ])
   .config(
     /* @ngInject */ ($stateProvider) => {
       const lazyLoad = ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-        return import('./nasha.module').then((mod) =>
+        return import('./dashboard/nasha.module').then((mod) =>
           $ocLazyLoad.inject(mod.default || mod),
         );
       };
@@ -36,7 +34,7 @@ angular
           lazyLoad: ($transition$) => {
             const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-            return import('./nashas/nasha.module').then((mod) =>
+            return import('./nasha.module').then((mod) =>
               $ocLazyLoad.inject(mod.default || mod),
             );
           },
