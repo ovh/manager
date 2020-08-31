@@ -1,0 +1,20 @@
+{
+  "ovh_manager_account_migration_pending_contracts1": "Pakeitėme paslaugų teikimo sąlygas. Iki {{date}} turite",
+  "ovh_manager_account_migration_accept_contracts": "priimti šias naujas sutartis.",
+  "ovh_manager_account_migration_accept_all_contracts": "priimti visas laukiančias patvirtinimo sutartis.",
+  "ovh_manager_account_migration_pending_contracts2": "Po šios datos nebegalėsite atnaujinti savo paslaugų. Norėdami gauti daugiau informacijos apie atliktus pakeitimus,",
+  "ovh_manager_account_migration_faq_text": "ieškokite DUK",
+  "ovh_manager_account_migration_pending_contracts_success": "Paskyros atnaujinimas buvo išsaugotas, šios operacijos pabaigoje gausite el. laišką, palaukite. Norėdami gauti daugiau informacijos apie atliktus pakeitimus, ",
+  "ovh_manager_account_migration_pending_debts1": "Tačiau šiuo metu turite {{debt}} skolą. Kviečiame sumokėti ją skyriuje,",
+  "ovh_manager_account_migration_pending_debts2": "kad galėtumėte priimti naujas sutartis.",
+  "ovh_manager_account_migration_pending_order": "Tačiau šiuo metu vykdote užsakymą. Kviečiame jus tai sutvarkyti skyriuje <a href='{{orderUrl}}'> Mano užsakymai </a>",
+  "ovh_manager_account_migration_pending_contact": "Tačiau šiuo metu keičiate kontaktinius duomenis apie vieną iš paslaugų. Siūlome užbaigti operaciją skyriuje <a href='{{contactsUrl}}'> Mano kontaktai </a>",
+  "ovh_manager_account_migration_pending_debts_and_order1": "Tačiau šiuo metu turite {{debt}} skolą ir atliekate pavedimą. Siūlome susimokėti už šias operacijas skyriuose",
+  "ovh_manager_account_migration_pending_debts_and_order2": "ir <a href='{{orderUrl}}'> Mano užsakymai </a>, kad galėtumėte priimti naujas sutartis.",
+  "ovh_manager_account_migration_pending_debts_and_contact1": "Tačiau šiuo metu turite {{debt}} skolą. Siūlome susimokėti už šias operacijas skyriuose",
+  "ovh_manager_account_migration_pending_debts_and_contact2": "ir <a href='{{contactsUrl}}'> Mano kontaktai </a>, kad galėtumėte priimti naujas sutartis.",
+  "ovh_manager_account_migration_pending_order_and_contact": "Tačiau šiuo metu vykdomas užsakymas ir keičiamas kontaktas. Siūlome sumokėti už šias operacijas skyriuose <a href='{{orderUrl}}'> Mano užsakymai </a> ir <a href='{{contactsUrl}}'> Mano kontaktai </a>, kad galėtumėte priimti naujas sutartis",
+  "ovh_manager_account_migration_pending_debts_order_and_contact1": "Tačiau šiuo metu turite neapmokėtų {{debt}} skolų, užsakymų ir kontaktų pakeitimų. Siūlome susimokėti už šias operacijas skyriuose",
+  "ovh_manager_account_migration_pending_debts_order_and_contact2": ", <a href='{{orderUrl}}'> Mano užsakymai </a> ir <a href='{{contactsUrl}}'> Mano kontaktai </a>, kad būtų galima priimti naujas sutartis.",
+  "ovh_manager_account_migration_billing_link_text": "Atsiskaitymas"
+}

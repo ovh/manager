@@ -1,0 +1,20 @@
+{
+  "ovh_manager_account_migration_pending_contracts1": "Olemme muokanneet käyttöehtojamme. Sinulla on päivään {{date}} asti aikaa",
+  "ovh_manager_account_migration_accept_contracts": "vahvistaa nämä uudet sopimukset.",
+  "ovh_manager_account_migration_accept_all_contracts": "hyväksyä kaikki odottavat sopimuksesi.",
+  "ovh_manager_account_migration_pending_contracts2": "Tämän päivän jälkeen et voi enää uusia palvelujasi. Jos haluat lisätietoja tehdyistä muutoksista,",
+  "ovh_manager_account_migration_faq_text": "tutustu usein kysyttyihin kysymyksiin",
+  "ovh_manager_account_migration_pending_contracts_success": "Tilisi päivitys on rekisteröity. Saat sähköpostin, kun toimenpide on valmis. Odota hetkinen. Jos haluat lisätietoja tehdyistä muutoksista, ",
+  "ovh_manager_account_migration_pending_debts1": "Olet kuitenkin tällä hetkellä velkaa {{debt}}. Kehotamme hoitamaan velan osiossa",
+  "ovh_manager_account_migration_pending_debts2": "jotta voit hyväksyä uudet sopimukset.",
+  "ovh_manager_account_migration_pending_order": "Sinulla on kuitenkin tällä hetkellä keskeneräinen tilaus. Kehotamme käsittelemään asian osiossa <a href='{{orderUrl}}'>Omat tilaukset</a>",
+  "ovh_manager_account_migration_pending_contact": "Sinulla on kuitenkin sopimuksen muutos kesken jossakin palveluistasi. Kehotamme viimeistelemään toimenpiteen osiossa <a href='{{contactsUrl}}'>Omat sopimukset</a>",
+  "ovh_manager_account_migration_pending_debts_and_order1": "Sinulla on kuitenkin tällä hetkellä velkaa {{debt}} sekä keskeneräinen tilaus. Kehotamme käsittelemään nämä toimenpiteet osioissa",
+  "ovh_manager_account_migration_pending_debts_and_order2": "ja <a href='{{orderUrl}}'>Omat tilaukset</a>, jotta voit hyväksyä uudet sopimukset.",
+  "ovh_manager_account_migration_pending_debts_and_contact1": "Olet kuitenkin tällä hetkellä velkaa {{debt}}. Kehotamme käsittelemään nämä toimenpiteet osioissa",
+  "ovh_manager_account_migration_pending_debts_and_contact2": "ja <a href='{{contactsUrl}}'>Omat sopimukset</a>, jotta voit hyväksyä uudet sopimukset.",
+  "ovh_manager_account_migration_pending_order_and_contact": "Sinulla on kuitenkin tällä hetkellä tilaus ja sopimuksen muutos kesken. Kehotamme käsittelemään nämä toimenpiteet osioissa <a href='{{orderUrl}}'>Omat tilaukset</a> ja <a href='{{contactsUrl}}'>Omat sopimukset</a>, jotta voit hyväksyä uudet sopimukset",
+  "ovh_manager_account_migration_pending_debts_order_and_contact1": "Sinulla on kuitenkin tällä hetkellä velkaa {{debt}}, tilaus ja sopimuksen muutos kesken. Kehotamme käsittelemään nämä toimenpiteet osioissa",
+  "ovh_manager_account_migration_pending_debts_order_and_contact2": ", <a href='{{orderUrl}}'>Omat tilaukset</a> ja <a href='{{contactsUrl}}'>Omat sopimukset</a>, jotta voit hyväksyä uudet sopimukset.",
+  "ovh_manager_account_migration_billing_link_text": "Laskutus"
+}

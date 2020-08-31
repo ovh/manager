@@ -1,0 +1,20 @@
+{
+  "ovh_manager_account_migration_pending_contracts1": "Změnili jsme smluvní podmínky. Do {{date}} musíte",
+  "ovh_manager_account_migration_accept_contracts": "přijmout tyto nové smlouvy.",
+  "ovh_manager_account_migration_accept_all_contracts": "přijmout všechny své čekající smlouvy.",
+  "ovh_manager_account_migration_pending_contracts2": "Po tomto datu již nebudete moci své služby prodloužit. Další informace o provedených změnách",
+  "ovh_manager_account_migration_faq_text": "naleznete v nejčastějších dotazech",
+  "ovh_manager_account_migration_pending_contracts_success": "Aktualizace vašeho účtu byla uložena, po skončení této operace obdržíte e-mail. Vyčkejte prosím. Další informace o provedených změnách ",
+  "ovh_manager_account_migration_pending_debts1": "Nicméně, v současné době však máte dluh {{debt}}. Situaci prosím napravte v sekci",
+  "ovh_manager_account_migration_pending_debts2": "abyste mohli přijmout nové smlouvy.",
+  "ovh_manager_account_migration_pending_order": "Aktuálně však máte probíhající objednávku. Situaci prosím napravte v sekci <a href='{{orderUrl}}'>Moje objednávky</a>",
+  "ovh_manager_account_migration_pending_contact": "Aktuálně však probíhá změna kontaktu u jedné z vašich služeb. Dokončete prosím operaci v části <a href='{{contactsUrl}}'>Moje kontakty</a>",
+  "ovh_manager_account_migration_pending_debts_and_order1": "Nicméně, v současné době však máte dluh {{debt}} a probíhající objednávku. Situaci prosím napravte v sekcích",
+  "ovh_manager_account_migration_pending_debts_and_order2": "a <a href='{{orderUrl}}'>Moje objednávky</a>, abyste mohli přijmout nové smlouvy.",
+  "ovh_manager_account_migration_pending_debts_and_contact1": "Nicméně, v současné době však máte dluh {{debt}}. Situaci prosím napravte v sekcích",
+  "ovh_manager_account_migration_pending_debts_and_contact2": "a <a href='{{contactsUrl}}'>Moje kontakty</a>, abyste mohli přijmout nové smlouvy. ",
+  "ovh_manager_account_migration_pending_order_and_contact": "Aktuálně však máte probíhající objednávku a změnu kontaktu. Tyto operace prosím uhraďte v sekcích <a href='{{orderUrl}}'>Moje objednávky</a> a <a href='{{contactsUrl}}'>Moje kontakty</a>, abyste mohli přijmout nové smlouvy",
+  "ovh_manager_account_migration_pending_debts_order_and_contact1": "Nicméně, v současné době však máte dluh {{debt}} a probíhající objednávku a změnu kontaktu. Situaci prosím napravte v sekcích",
+  "ovh_manager_account_migration_pending_debts_order_and_contact2": ", <a href='{{orderUrl}}'>Moje objednávky</a> a <a href='{{contactsUrl}}'>Moje kontakty</a>, abyste mohli přijmout nové smlouvy.",
+  "ovh_manager_account_migration_billing_link_text": "Fakturace"
+}

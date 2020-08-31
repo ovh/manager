@@ -1,0 +1,20 @@
+{
+  "ovh_manager_account_migration_pending_contracts1": "We have changed our Terms of Service. You have until {{date}} to",
+  "ovh_manager_account_migration_accept_contracts": "confirm these new contracts.",
+  "ovh_manager_account_migration_accept_all_contracts": "confirm all of your pending contracts.",
+  "ovh_manager_account_migration_pending_contracts2": "After this date, you will no longer be able to renew your services. For further information on the changes that have been made,",
+  "ovh_manager_account_migration_faq_text": "please refer to the FAQ",
+  "ovh_manager_account_migration_pending_contracts_success": "The update to your account has been processed. You will receive an email once this operation is complete. Please wait. For further information on the changes that have been made, ",
+  "ovh_manager_account_migration_pending_debts1": "However, you currently have an outstanding total of {{debt}}. Please settle it in the",
+  "ovh_manager_account_migration_pending_debts2": "section in order to accept the new contracts.",
+  "ovh_manager_account_migration_pending_order": "However, you currently have an order in progress. Please settle the amount in the <a href='{{orderUrl}}'>My orders</a> section",
+  "ovh_manager_account_migration_pending_contact": "However, there is currently a contact change in progress on one of your services. Please complete this operation in the <a href='{{contactsUrl}}'>My contacts</a> section.",
+  "ovh_manager_account_migration_pending_debts_and_order1": "However, you currently have an outstanding total of {{debt}} and an order in progress. Please resolve these operations in the",
+  "ovh_manager_account_migration_pending_debts_and_order2": "and <a href='{{orderUrl}}'>My orders</a> sections in order to accept the new contracts.",
+  "ovh_manager_account_migration_pending_debts_and_contact1": "However, you currently have an outstanding total of {{debt}}. Please resolve these operations in the",
+  "ovh_manager_account_migration_pending_debts_and_contact2": "and <a href='{{contactsUrl}}'>My contacts</a> sections in order to accept the new contracts.",
+  "ovh_manager_account_migration_pending_order_and_contact": "However, there is currently an order and contact change in progress. Please resolve these operations in the <a href='{{orderUrl}}'>My orders</a> and <a href='{{contactsUrl}}'>My contacts</a> sections, in order to accept the new contracts",
+  "ovh_manager_account_migration_pending_debts_order_and_contact1": "However, there is currently an outstanding total of {{debt}}, an order and a contact change in progress. Please resolve these operations in the",
+  "ovh_manager_account_migration_pending_debts_order_and_contact2": ", <a href='{{orderUrl}}'>My orders</a> and <a href='{{contactsUrl}}'>My contacts</a> sections in order to accept the new contracts.",
+  "ovh_manager_account_migration_billing_link_text": "Billing"
+}
