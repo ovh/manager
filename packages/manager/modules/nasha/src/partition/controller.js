@@ -265,7 +265,7 @@ export default class NashaPartitionCtrl {
   }
 
   goToNashaPartitionAccess(partitionName) {
-    this.$state.go('nasha.dashboard.nasha-partition-access', {
+    this.$state.go('nasha.dashboard.partition.nasha-partition-access', {
       partitionName,
     });
   }
