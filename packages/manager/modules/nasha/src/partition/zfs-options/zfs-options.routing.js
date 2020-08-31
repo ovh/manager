@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('nasha.nasha-partitions.zfs-options', {
+  $stateProvider.state('nasha.dashboard.nasha-partitions.zfs-options', {
     url: '/zfs-options',
     views: {
       modal: {
