@@ -1,3 +1,12 @@
+## [15.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.2.3...@ovh-ux/manager-web@15.2.4) (2020-08-31)
+
+
+### Bug Fixes
+
+* **domain:** dynhost tab display ([#3532](https://github.com/ovh/manager/issues/3532)) ([9afb1dd](https://github.com/ovh/manager/commit/9afb1dd8bf2b5cb7c923729f4790956fa963bdc9))
+
+
+
 ## [15.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.2.2...@ovh-ux/manager-web@15.2.3) (2020-08-28)
 
 
