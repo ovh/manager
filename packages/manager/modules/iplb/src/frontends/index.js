@@ -29,13 +29,13 @@ angular
               template: '<div data-ui-view="iplbFrontend"><div>',
             },
           },
-          translations: {
-            value: ['.'],
-            format: 'json',
+          resolve: {
+            breadcrumb: /* @ngInject */ ($translate) =>
+              $translate.instant('iplb_frontends_title'),
           },
         })
         .state('iplb.detail.frontends.home', {
-          url: '/',
+          url: '',
           views: {
             iplbFrontend: {
               template: IplbFrontendsTemplate,
@@ -43,9 +43,8 @@ angular
               controllerAs: 'ctrl',
             },
           },
-          translations: {
-            value: ['.'],
-            format: 'json',
+          resolve: {
+            breadcrumb: () => null,
           },
         })
         .state('iplb.detail.frontends.add', {
@@ -57,9 +56,9 @@ angular
               controllerAs: 'ctrl',
             },
           },
-          translations: {
-            value: ['.'],
-            format: 'json',
+          resolve: {
+            breadcrumb: /* @ngInject */ ($translate) =>
+              $translate.instant('iplb_frontends_add'),
           },
         })
         .state('iplb.detail.frontends.update', {
@@ -71,9 +70,10 @@ angular
               controllerAs: 'ctrl',
             },
           },
-          translations: {
-            value: ['.'],
-            format: 'json',
+          resolve: {
+            frontendId: /* @ngInject */ ($transition$) =>
+              $transition$.params().frontendId,
+            breadcrumb: /* @ngInject */ (frontendId) => frontendId,
           },
         });
     },

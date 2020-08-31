@@ -11,6 +11,11 @@ export default /* @ngInject */ ($stateProvider) => {
         controllerAs: 'ctrl',
       },
     },
+    resolve: {
+      serviceName: /* @ngInject */ ($transition$) =>
+        $transition$.params().serviceName,
+      breadcrumb: /* @ngInject */ (serviceName) => serviceName,
+    },
     translations: {
       value: ['../cloud', './configuration', '../vrack/modals'],
       format: 'json',

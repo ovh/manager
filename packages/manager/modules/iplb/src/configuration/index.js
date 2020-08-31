@@ -1,3 +1,6 @@
+import angular from 'angular';
+import 'angular-translate';
+
 import IpLoadBalancerDashboardHeaderCtrl from '../header/iplb-dashboard-header.controller';
 import IpLoadBalancerConfigurationCtrl from './iplb-configuration.controller';
 import IpLoadBalancerConfigurationService from './iplb-configuration.service';
@@ -8,7 +11,7 @@ import IplbConfigurationTemplate from './iplb-configuration.html';
 const moduleName = 'ovhManagerIplbConfiguration';
 
 angular
-  .module(moduleName, ['ui.router'])
+  .module(moduleName, ['pascalprecht.translate', 'ui.router'])
   .config(
     /* @ngInject */ ($stateProvider) => {
       $stateProvider.state('iplb.detail.configuration', {
@@ -25,9 +28,9 @@ angular
             controllerAs: '$ctrl',
           },
         },
-        translations: {
-          value: ['.'],
-          format: 'json',
+        resolve: {
+          breadcrumb: /* @ngInject */ ($translate) =>
+            $translate.instant('iplb_configuration_title'),
         },
       });
     },

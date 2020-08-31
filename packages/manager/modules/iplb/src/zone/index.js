@@ -33,7 +33,7 @@ angular
           },
           abstract: true,
           translations: {
-            value: ['../../common', '.', '..'],
+            value: ['../../common', '..'],
             format: 'json',
           },
         })
@@ -47,8 +47,12 @@ angular
             },
           },
           translations: {
-            value: ['../../common', '.', '..'],
+            value: ['../../common', '..'],
             format: 'json',
+          },
+          resolve: {
+            breadcrumb: /* @ngInject */ ($translate) =>
+              $translate.instant('iplb_zone_add_title'),
           },
         })
         .state('iplb.detail.zone.delete', {
@@ -61,7 +65,7 @@ angular
             },
           },
           translations: {
-            value: ['../../common', '.', '..'],
+            value: ['../../common', '..'],
             format: 'json',
           },
         });

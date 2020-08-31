@@ -36,8 +36,11 @@ angular
           },
         },
         translations: {
-          value: ['.', '../zone', '../vrack'],
+          value: ['../zone', '../vrack'],
           format: 'json',
+        },
+        resolve: {
+          breadcrumb: () => null,
         },
       });
     },
