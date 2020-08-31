@@ -39,7 +39,7 @@ export default class IpLoadBalancerZoneDeleteCtrl {
       this.serviceName,
       this.model.zones.value,
     )
-      .then(() => this.$state.go('network.iplb.detail.home'))
+      .then(() => this.$state.go('iplb.detail.home'))
       .finally(() => {
         this.saving = false;
       });

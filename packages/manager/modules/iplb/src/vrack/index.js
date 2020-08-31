@@ -17,9 +17,9 @@ angular
   .config(
     /* @ngInject */ ($stateProvider) => {
       $stateProvider
-        .state('network.iplb.detail.vrack', {
+        .state('iplb.detail.vrack', {
           url: '/vrack',
-          redirectTo: 'network.iplb.detail.vrack.home',
+          redirectTo: 'iplb.detail.vrack.home',
           views: {
             iplbHeader: {
               template: IplbHeaderTemplate,
@@ -35,7 +35,7 @@ angular
             format: 'json',
           },
         })
-        .state('network.iplb.detail.vrack.home', {
+        .state('iplb.detail.vrack.home', {
           url: '/',
           views: {
             iplbVrack: {
@@ -49,7 +49,7 @@ angular
             format: 'json',
           },
         })
-        .state('network.iplb.detail.vrack.add', {
+        .state('iplb.detail.vrack.add', {
           url: '/add',
           views: {
             iplbVrack: {
@@ -63,7 +63,7 @@ angular
             format: 'json',
           },
         })
-        .state('network.iplb.detail.vrack.edit', {
+        .state('iplb.detail.vrack.edit', {
           url: '/:networkId',
           views: {
             iplbVrack: {

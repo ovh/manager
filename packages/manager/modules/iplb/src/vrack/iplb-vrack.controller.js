@@ -96,7 +96,7 @@ export default class IpLoadBalancerVrackCtrl {
       addPrivateNetwork: {
         text: this.$translate.instant('iplb_vrack_private_network_add'),
         callback: () =>
-          this.$state.go('network.iplb.detail.vrack.add', {
+          this.$state.go('iplb.detail.vrack.add', {
             serviceName: this.$stateParams.serviceName,
           }),
         isAvailable: () =>
@@ -107,7 +107,7 @@ export default class IpLoadBalancerVrackCtrl {
       editPrivateNetwork: {
         text: this.$translate.instant('iplb_modify'),
         callback: (network) =>
-          this.$state.go('network.iplb.detail.vrack.edit', {
+          this.$state.go('iplb.detail.vrack.edit', {
             serviceName: this.serviceName,
             networkId: network.vrackNetworkId,
           }),

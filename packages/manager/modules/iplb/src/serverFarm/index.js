@@ -25,9 +25,9 @@ angular
   .config(
     /* @ngInject */ ($stateProvider) => {
       $stateProvider
-        .state('network.iplb.detail.server-farm', {
+        .state('iplb.detail.server-farm', {
           url: '/serverfarm',
-          redirectTo: 'network.iplb.detail.server-farm.home',
+          redirectTo: 'iplb.detail.server-farm.home',
           views: {
             iplbHeader: {
               template: IplbHeaderTemplate,
@@ -43,7 +43,7 @@ angular
             format: 'json',
           },
         })
-        .state('network.iplb.detail.server-farm.home', {
+        .state('iplb.detail.server-farm.home', {
           url: '/',
           views: {
             iplbFarms: {
@@ -53,7 +53,7 @@ angular
             },
           },
         })
-        .state('network.iplb.detail.server-farm.add', {
+        .state('iplb.detail.server-farm.add', {
           url: '/add',
           views: {
             iplbFarms: {
@@ -63,7 +63,7 @@ angular
             },
           },
         })
-        .state('network.iplb.detail.server-farm.update', {
+        .state('iplb.detail.server-farm.update', {
           url: '/:farmId',
           views: {
             iplbFarms: {
@@ -73,7 +73,7 @@ angular
             },
           },
         })
-        .state('network.iplb.detail.server-farm.server-add', {
+        .state('iplb.detail.server-farm.server-add', {
           url: '/:farmId/server/add',
           views: {
             iplbFarms: {
@@ -83,7 +83,7 @@ angular
             },
           },
         })
-        .state('network.iplb.detail.server-farm.server-update', {
+        .state('iplb.detail.server-farm.server-update', {
           url: '/:farmId/server/:serverId',
           views: {
             iplbFarms: {

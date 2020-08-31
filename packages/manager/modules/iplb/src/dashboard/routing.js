@@ -1,9 +1,9 @@
 import iplbDetailTemplate from './iplb-detail.html';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('network.iplb.detail', {
+  $stateProvider.state('iplb.detail', {
     url: '/{serviceName}',
-    redirectTo: 'network.iplb.detail.home',
+    redirectTo: 'iplb.detail.home',
     views: {
       iplbContainer: {
         template: iplbDetailTemplate,

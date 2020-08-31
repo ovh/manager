@@ -20,17 +20,16 @@ export default class IpLoadBalancerDetailCtrl {
 
   $onInit() {
     this.CucCloudNavigation.init({
-      state: 'network.iplb.detail',
+      state: 'iplb.detail',
       stateParams: {
         serviceName: this.serviceName,
       },
     });
 
-    this.CucCloudMessage.unSubscribe('network.iplb.detail');
-    this.messageHandler = this.CucCloudMessage.subscribe(
-      'network.iplb.detail',
-      { onMessage: () => this.refreshMessage() },
-    );
+    this.CucCloudMessage.unSubscribe('iplb.detail');
+    this.messageHandler = this.CucCloudMessage.subscribe('iplb.detail', {
+      onMessage: () => this.refreshMessage(),
+    });
     this.checkPendingChanges();
   }
 

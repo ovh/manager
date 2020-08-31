@@ -16,9 +16,9 @@ angular
   .config(
     /* @ngInject */ ($stateProvider) => {
       $stateProvider
-        .state('network.iplb.detail.frontends', {
+        .state('iplb.detail.frontends', {
           url: '/frontends',
-          redirectTo: 'network.iplb.detail.frontends.home',
+          redirectTo: 'iplb.detail.frontends.home',
           views: {
             iplbHeader: {
               template: IplbHeaderTemplate,
@@ -34,7 +34,7 @@ angular
             format: 'json',
           },
         })
-        .state('network.iplb.detail.frontends.home', {
+        .state('iplb.detail.frontends.home', {
           url: '/',
           views: {
             iplbFrontend: {
@@ -48,7 +48,7 @@ angular
             format: 'json',
           },
         })
-        .state('network.iplb.detail.frontends.add', {
+        .state('iplb.detail.frontends.add', {
           url: '/add',
           views: {
             iplbFrontend: {
@@ -62,7 +62,7 @@ angular
             format: 'json',
           },
         })
-        .state('network.iplb.detail.frontends.update', {
+        .state('iplb.detail.frontends.update', {
           url: '/:frontendId',
           views: {
             iplbFrontend: {
