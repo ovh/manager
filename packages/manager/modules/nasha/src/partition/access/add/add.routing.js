@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('nasha.nasha-partition-access.add', {
+  $stateProvider.state('nasha.dashboard.nasha-partition-access.add', {
     url: '/add',
     views: {
       modal: {

@@ -1,8 +1,8 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('nashas', {
-    url: `/paas/nasha?${ListLayoutHelper.urlQueryParams}`,
+  $stateProvider.state('nasha.index', {
+    url: `?${ListLayoutHelper.urlQueryParams}`,
     component: 'managerListLayout',
     params: ListLayoutHelper.stateParams,
     resolve: {
@@ -15,7 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
       getServiceNameLink: /* @ngInject */ ($state) => ({
         serviceName: nashaId,
       }) =>
-        $state.href('nasha.nasha-partitions', {
+        $state.href('nasha.dashboard', {
           nashaId,
         }),
     },

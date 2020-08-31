@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('nasha.nasha-partitions.custom-snapshot', {
+  $stateProvider.state('nasha.dashboard.nasha-partitions.custom-snapshot', {
     url: '/custom-snapshot',
     views: {
       modal: {
