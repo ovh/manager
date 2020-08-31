@@ -12,8 +12,13 @@ export default /* @ngInject */ ($stateProvider) => {
       controller: 'NashaCtrl',
       controllerAs: 'NashaCtrl',
       translations: {
-        value: ['../common', '.'],
+        value: ['../common'],
         format: 'json',
+      },
+      resolve: {
+        nashaId: /* @ngInject */ ($transition$) =>
+          $transition$.params().nashaId,
+        breadcrumb: /* @ngInject */ (nashaId) => nashaId,
       },
     })
     .state('nasha.nasha-order-complete', {
@@ -22,11 +27,14 @@ export default /* @ngInject */ ($stateProvider) => {
       controller: 'NashaOrderCompleteCtrl',
       controllerAs: 'NashaOrderCompleteCtrl',
       translations: {
-        value: ['order', '.', '..'],
+        value: ['order', '..'],
         format: 'json',
       },
       params: {
         orderUrl: null,
+      },
+      resolve: {
+        hideBreadcrumb: () => true,
       },
     })
     .state('nasha.nasha-add', {
@@ -35,8 +43,11 @@ export default /* @ngInject */ ($stateProvider) => {
       controller: 'NashaAddCtrl',
       controllerAs: 'NashaAddCtrl',
       translations: {
-        value: ['add', '.', '..'],
+        value: ['add', '..'],
         format: 'json',
+      },
+      resolve: {
+        hideBreadcrumb: () => true,
       },
     })
     .state('nasha.nasha-unavailable', {
@@ -45,8 +56,11 @@ export default /* @ngInject */ ($stateProvider) => {
       controller: 'NashaUnavailableCtrl',
       controllerAs: '$ctrl',
       translations: {
-        value: ['add', '.', '..'],
+        value: ['add', '..'],
         format: 'json',
+      },
+      resolve: {
+        hideBreadcrumb: () => true,
       },
     });
 };
