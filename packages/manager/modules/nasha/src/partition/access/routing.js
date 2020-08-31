@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('nasha.nasha-partition-access', {
+  $stateProvider.state('nasha.dashboard.nasha-partition-access', {
     url: '/access/:partitionName',
     views: {
       nashaPartitionAccess: {
@@ -39,7 +39,7 @@ export default /* @ngInject */ ($stateProvider) => {
         serviceName,
         partition,
       ) => () =>
-        $state.go('nasha.nasha-partition-access.add', {
+        $state.go('nasha.dashboard.nasha-partition-access.add', {
           serviceName,
           partition,
         }),
@@ -48,7 +48,7 @@ export default /* @ngInject */ ($stateProvider) => {
         serviceName,
         partition,
       ) => (access) =>
-        $state.go('nasha.nasha-partition-access.delete', {
+        $state.go('nasha.dashboard.nasha-partition-access.delete', {
           serviceName,
           partition,
           access,
@@ -58,7 +58,7 @@ export default /* @ngInject */ ($stateProvider) => {
         type = 'success',
         data,
       ) => {
-        const state = 'nasha.nasha-partition-access';
+        const state = 'nasha.dashboard.nasha-partition-access';
         const promise = $state.go(state, data);
         if (message) {
           promise.then(() => {

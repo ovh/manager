@@ -131,7 +131,7 @@ angular
         '/paas/veeam-enterprise',
         '/paas/veeam',
         '/iaas/vps',
-        '/paas/nasha',
+        '/nasha',
         '/vrack',
       ];
 

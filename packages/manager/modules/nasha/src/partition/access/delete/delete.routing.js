@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('nasha.nasha-partition-access.delete', {
+  $stateProvider.state('nasha.dashboard.nasha-partition-access.delete', {
     url: '/delete',
     params: {
       access: null,
