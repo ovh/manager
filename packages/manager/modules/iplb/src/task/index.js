@@ -30,6 +30,10 @@ angular
           value: ['../task'],
           format: 'json',
         },
+        resolve: {
+          breadcrumb: /* @ngInject */ ($translate) =>
+            $translate.instant('iplb_task_title'),
+        },
       });
     },
   )
