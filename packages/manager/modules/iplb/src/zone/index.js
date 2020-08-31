@@ -17,7 +17,7 @@ angular
   .config(
     /* @ngInject */ ($stateProvider) => {
       $stateProvider
-        .state('network.iplb.detail.zone', {
+        .state('iplb.detail.zone', {
           url: '/zone',
           views: {
             iplbHeader: {
@@ -37,7 +37,7 @@ angular
             format: 'json',
           },
         })
-        .state('network.iplb.detail.zone.add', {
+        .state('iplb.detail.zone.add', {
           url: '/add',
           views: {
             iplbZone: {
@@ -51,7 +51,7 @@ angular
             format: 'json',
           },
         })
-        .state('network.iplb.detail.zone.delete', {
+        .state('iplb.detail.zone.delete', {
           url: '/delete',
           views: {
             iplbZone: {
