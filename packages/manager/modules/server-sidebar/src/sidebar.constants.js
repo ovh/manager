@@ -304,11 +304,11 @@ export const LOGS_CONFIG = {
 
 export const IPLB_CONFIG = {
   id: 'load_balancer',
-  loadOnState: 'network.iplb',
+  loadOnState: 'iplb',
   types: [
     {
       path: '/ipLoadbalancing',
-      state: 'network.iplb.detail.home',
+      state: 'iplb.detail.home',
       stateParams: ['serviceName'],
       icon: 'ovh-font ovh-font-iplb',
       app: [DEDICATED],

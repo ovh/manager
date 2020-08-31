@@ -39,6 +39,6 @@ angular
   .config(momentConfiguration)
   .config(
     /* @ngInject */ ($urlRouterProvider) => {
-      $urlRouterProvider.otherwise('/network/iplb');
+      $urlRouterProvider.otherwise('iplb');
     },
   );

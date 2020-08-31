@@ -60,7 +60,7 @@ class CloudProjectComputeLoadbalancerCtrl {
   }
 
   goToIPLB(serviceName) {
-    this.$state.go('network.iplb.detail.home', {
+    this.$state.go('iplb.detail.home', {
       serviceName,
     });
   }
