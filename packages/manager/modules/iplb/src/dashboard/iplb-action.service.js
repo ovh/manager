@@ -1,11 +1,11 @@
-import IpLoadBalancerNatIpDetailTemplate from './modal/nat-ip/iplb-nat-ip-detail.html';
-import IpLoadBalancerFailoverIpDetailTemplate from './modal/failover-ip/iplb-failover-ip-detail.html';
-import IpLoadBalancerCercipherDetailTemplate from './modal/cipher/iplb-cipher-change.html';
-import IpLoadBalancerFrontensdDeleteTemplate from './frontends/delete/iplb-frontends-delete.html';
-import IpLoadBalancerServerFormDeleteTemplate from './serverFarm/delete/iplb-server-farm-delete.html';
-import IpLoadBalancerServerDeleteTemplate from './server/delete/iplb-server-delete.html';
-import IpLoadBalancerSslCertificateUpdateTemplate from './sslCertificate/update/iplb-ssl-certificate-update.html';
-import IpLoadBalancerSslCertificateDeleteTemplate from './sslCertificate/delete/iplb-ssl-certificate-delete.html';
+import IpLoadBalancerNatIpDetailTemplate from '../modal/nat-ip/iplb-nat-ip-detail.html';
+import IpLoadBalancerFailoverIpDetailTemplate from '../modal/failover-ip/iplb-failover-ip-detail.html';
+import IpLoadBalancerCercipherDetailTemplate from '../modal/cipher/iplb-cipher-change.html';
+import IpLoadBalancerFrontensdDeleteTemplate from '../frontends/delete/iplb-frontends-delete.html';
+import IpLoadBalancerServerFormDeleteTemplate from '../serverFarm/delete/iplb-server-farm-delete.html';
+import IpLoadBalancerServerDeleteTemplate from '../server/delete/iplb-server-delete.html';
+import IpLoadBalancerSslCertificateUpdateTemplate from '../sslCertificate/update/iplb-ssl-certificate-update.html';
+import IpLoadBalancerSslCertificateDeleteTemplate from '../sslCertificate/delete/iplb-ssl-certificate-delete.html';
 
 export default class IpLoadBalancerActionService {
   /* @ngInject */
