@@ -34,9 +34,13 @@ angular
             value: ['../frontends'],
             format: 'json',
           },
+          resolve: {
+            breadcrumb: /* @ngInject */ ($translate) =>
+              $translate.instant('iplb_vrack_title'),
+          },
         })
         .state('iplb.detail.vrack.home', {
-          url: '/',
+          url: '',
           views: {
             iplbVrack: {
               template: IplbVrackTemplate,
@@ -47,6 +51,9 @@ angular
           translations: {
             value: ['../vrack'],
             format: 'json',
+          },
+          resolve: {
+            breadcrumb: () => null,
           },
         })
         .state('iplb.detail.vrack.add', {
@@ -62,19 +69,37 @@ angular
             value: ['../frontends'],
             format: 'json',
           },
+          resolve: {
+            breadcrumb: /* @ngInject */ ($translate) =>
+              $translate.instant('iplb_vrack_private_network_add'),
+          },
         })
-        .state('iplb.detail.vrack.edit', {
+        .state('iplb.detail.vrack.dashboard', {
           url: '/:networkId',
+          redirectTo: 'iplb.detail.vrack',
           views: {
             iplbVrack: {
-              template: IplbVrackEditTemplate,
-              controller: 'IpLoadBalancerVrackEditCtrl',
-              controllerAs: '$ctrl',
+              template: '<div ui-view></div>',
             },
           },
+          resolve: {
+            networkId: /* @ngInject */ ($transition$) =>
+              $transition$.params().networkId,
+            breadcrumb: /* @ngInject */ (networkId) => networkId,
+          },
+        })
+        .state('iplb.detail.vrack.dashboard.edit', {
+          url: '/update',
+          template: IplbVrackEditTemplate,
+          controller: 'IpLoadBalancerVrackEditCtrl',
+          controllerAs: '$ctrl',
           translations: {
             value: ['../frontends'],
             format: 'json',
+          },
+          resolve: {
+            breadcrumb: /* @ngInject */ ($translate) =>
+              $translate.instant('iplb_vrack_private_network_edit_title'),
           },
         });
     },
