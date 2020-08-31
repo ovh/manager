@@ -12,10 +12,10 @@
   "pci_projects_project_training_data_status_error": "Erreur",
   "pci_projects_project_training_data_status_": "Pas synchronisé",
   "pci_projects_project_training_data_sync": "Synchroniser",
-  "pci_projects_project_training_data_sync_title": "Synchroniser mon volu,e de données",
+  "pci_projects_project_training_data_sync_title": "Synchroniser mon volume de données",
   "pci_projects_project_training_data_list_submit_success": "Nouveau volume de données ajouté avec succès",
 
-  "pci_projects_project_training_data_list_message_1": "Stockez vos volumes de données dans des conteneurs d'Object Storage puis autorisez ici leur accès à AI Training. Vous pourrez ensuite lancez des jobs directement sur ces données",
+  "pci_projects_project_training_data_list_message_1": "Créez des volumes de données pour stockez vos données et les synchroniser dans des conteneurs d'Object Storage. Vous pourrez ensuite lancez des jobs directement sur ces volume de données",
   "pci_projects_project_training_data_list_message_2": "Pour accéder cette liste via la client, lancer la commande suivante : ",
   "pci_projects_project_training_data_list_add": "Attacher un conteneur de données",
 

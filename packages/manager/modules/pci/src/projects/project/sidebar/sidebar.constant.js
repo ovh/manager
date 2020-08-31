@@ -126,6 +126,30 @@ export const MENU = [
   {
     subitems: [
       {
+        id: 'training',
+        beta: true,
+        options: {
+          state: 'pci.projects.project.training',
+        },
+        title: 'AI Training',
+        regions: ['EU'],
+      },
+      {
+        id: 'serving',
+        new: true,
+        options: {
+          state: 'pci.projects.project.serving',
+        },
+        title: 'ML Serving',
+        regions: ['EU', 'CA'],
+      },
+    ],
+    regions: ['EU', 'CA'],
+    title: 'AI & Machine Learning',
+  },
+  {
+    subitems: [
+      {
         id: 'analytics-data-platform',
         options: {
           state: 'pci.projects.project.analytics-data-platform',
@@ -150,24 +174,6 @@ export const MENU = [
         },
         title: 'ioStream',
         regions: ['EU'],
-      },
-      {
-        id: 'training',
-        beta: true,
-        options: {
-          state: 'pci.projects.project.training',
-        },
-        title: 'AI Training',
-        regions: ['EU'],
-      },
-      {
-        id: 'serving',
-        new: true,
-        options: {
-          state: 'pci.projects.project.serving',
-        },
-        title: 'ML Serving',
-        regions: ['EU', 'CA'],
       },
     ],
     regions: ['EU', 'CA'],
