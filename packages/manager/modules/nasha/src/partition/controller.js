@@ -62,7 +62,7 @@ export default class NashaPartitionCtrl {
     };
 
     $scope.$on('$destroy', () => {
-      this.Poller.kill({ namespace: 'nasha.partition' });
+      this.Poller.kill({ namespace: 'nasha.dashboard.partition' });
     });
   }
 
@@ -116,7 +116,7 @@ export default class NashaPartitionCtrl {
         errorRule(task) {
           return ['doing', 'todo', 'done'].indexOf(task.status) === -1;
         },
-        namespace: 'nasha.partition',
+        namespace: 'nasha.dashboard.partition',
       },
     );
   }
@@ -265,7 +265,7 @@ export default class NashaPartitionCtrl {
   }
 
   goToNashaPartitionAccess(partitionName) {
-    this.$state.go('nasha.nasha-partition-access', {
+    this.$state.go('nasha.dashboard.nasha-partition-access', {
       partitionName,
     });
   }

@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('nasha.nasha-partitions', {
+  $stateProvider.state('nasha.dashboard.nasha-partitions', {
     url: '/partitions',
     views: {
       nashaPartition: {
@@ -33,41 +33,41 @@ export default /* @ngInject */ ($stateProvider) => {
       tasks: /* @ngInject */ ($transition$) => $transition$.params().tasks,
       isNew: /* @ngInject */ ($transition$) => $transition$.params().isNew,
       goToPartitionAdd: /* @ngInject */ ($state, serviceName) => () =>
-        $state.go('nasha.nasha-partitions.add', {
+        $state.go('nasha.dashboard.nasha-partitions.add', {
           serviceName,
         }),
       goToPartitionCustomSnapshot: /* @ngInject */ ($state, serviceName) => (
         partition,
       ) =>
-        $state.go('nasha.nasha-partitions.custom-snapshot', {
+        $state.go('nasha.dashboard.nasha-partitions.custom-snapshot', {
           serviceName,
           partition,
         }),
       goToPartitionDelete: /* @ngInject */ ($state, serviceName) => (
         partition,
       ) =>
-        $state.go('nasha.nasha-partitions.delete', {
+        $state.go('nasha.dashboard.nasha-partitions.delete', {
           serviceName,
           partition,
         }),
       goToPartitionSnapshot: /* @ngInject */ ($state, serviceName) => (
         partition,
       ) =>
-        $state.go('nasha.nasha-partitions.snapshot', {
+        $state.go('nasha.dashboard.nasha-partitions.snapshot', {
           serviceName,
           partition,
         }),
       goToPartitionUpdate: /* @ngInject */ ($state, serviceName) => (
         partition,
       ) =>
-        $state.go('nasha.nasha-partitions.update', {
+        $state.go('nasha.dashboard.nasha-partitions.update', {
           serviceName,
           partition,
         }),
       goToPartitionZfsOptions: /* @ngInject */ ($state, serviceName) => (
         partition,
       ) =>
-        $state.go('nasha.nasha-partitions.zfs-options', {
+        $state.go('nasha.dashboard.nasha-partitions.zfs-options', {
           serviceName,
           partition,
         }),
@@ -76,7 +76,7 @@ export default /* @ngInject */ ($stateProvider) => {
         type = 'success',
         data,
       ) => {
-        const state = 'nasha.nasha-partitions';
+        const state = 'nasha.dashboard.nasha-partitions';
         const promise = $state.go(state, data);
         if (message) {
           promise.then(() => {
