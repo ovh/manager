@@ -24,9 +24,9 @@ angular
             controllerAs: 'ctrl',
           },
         },
-        translations: {
-          value: ['.'],
-          format: 'json',
+        resolve: {
+          breadcrumb: /* @ngInject */ ($translate) =>
+            $translate.instant('iplb_graph_title'),
         },
       });
     },

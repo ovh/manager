@@ -32,13 +32,13 @@ angular
               template: '<div data-ui-view="iplbSslCertificate"><div>',
             },
           },
-          translations: {
-            value: ['.'],
-            format: 'json',
+          resolve: {
+            breadcrumb: /* @ngInject */ ($translate) =>
+              $translate.instant('iplb_ssl_certificate_title'),
           },
         })
         .state('iplb.detail.ssl-certificate.home', {
-          url: '/',
+          url: '',
           views: {
             iplbSslCertificate: {
               template: IplbSSLcertificateTemplate,
@@ -46,13 +46,12 @@ angular
               controllerAs: 'ctrl',
             },
           },
-          translations: {
-            value: ['.'],
-            format: 'json',
+          resolve: {
+            breadcrumb: () => null,
           },
         })
         .state('iplb.detail.ssl-certificate.add', {
-          url: '/sslCertificate/add',
+          url: '/add',
           views: {
             iplbSslCertificate: {
               template: IplbEditSSLcertificateTemplate,
@@ -60,13 +59,13 @@ angular
               controllerAs: 'ctrl',
             },
           },
-          translations: {
-            value: ['.'],
-            format: 'json',
+          resolve: {
+            breadcrumb: /* @ngInject */ ($translate) =>
+              $translate.instant('iplb_ssl_certificate_add'),
           },
         })
         .state('iplb.detail.ssl-certificate.order', {
-          url: '/sslCertificate/order',
+          url: '/order',
           views: {
             iplbSslCertificate: {
               template: IplbOrderSSLcertificateTemplate,
@@ -74,9 +73,9 @@ angular
               controllerAs: 'ctrl',
             },
           },
-          translations: {
-            value: ['.'],
-            format: 'json',
+          resolve: {
+            breadcrumb: /* @ngInject */ ($translate) =>
+              $translate.instant('iplb_ssl_order_title'),
           },
         });
     },
