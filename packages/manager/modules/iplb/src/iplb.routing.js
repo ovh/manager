@@ -20,6 +20,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('iplb.detail', {
           serviceName,
         }),
+      hideBreadcrumb: () => true,
     },
   });
 };
