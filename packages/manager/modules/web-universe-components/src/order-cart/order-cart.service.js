@@ -211,6 +211,22 @@ export default class OrderCartService {
         },
       ).$promise;
 
+    if (
+      !checkout.autoPayWithPreferredPaymentMethod &&
+      order.prices.withTax.value === 0
+    ) {
+      await this.OvhApiMe.Order()
+        .v6()
+        .payRegisteredPaymentMean(
+          {
+            orderId: order.orderId,
+          },
+          {
+            paymentMean: 'fidelityAccount',
+          },
+        ).$promise;
+    }
+
     return order;
   }
 
