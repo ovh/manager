@@ -1,5 +1,5 @@
 import template from './template.html';
-import dashboardTemplate from './dashboard/template.html';
+import dashboardTemplate from '../dashboard/template.html';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
