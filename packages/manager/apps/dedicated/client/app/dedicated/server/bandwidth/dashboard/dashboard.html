@@ -49,23 +49,6 @@
             </div>
         </div>
     </oui-tile-description>
-    <oui-action-menu
-        aria-label="{{:: 'menu_action_label' | translate:{ t0: ('dedicated_server_bandwidth_type' | translate) } }}"
-        data-ng-if="$ctrl.bandwidthOption === 'subscribed' && $ctrl.specifications.bandwidth.type !== 'included'"
-        data-disabled="!$ctrl.server.canResiliateBandwidth"
-        data-compact
-        data-placement="end"
-    >
-        <oui-action-menu-item
-            data-href="{{ $ctrl.resiliatePublicLink }}"
-            data-disabled="$ctrl.server.state === 'HACKED' || $ctrl.server.state === 'HACKED_BLOCKED'"
-            data-ng-if="$ctrl.server.canResiliateBandwidth"
-        >
-            <span
-                data-translate="dedicated_server_bandwidth_cancel_button"
-            ></span>
-        </oui-action-menu-item>
-    </oui-action-menu>
 </oui-tile-definition>
 
 <oui-tile-button
@@ -115,23 +98,6 @@
             </div>
         </div>
     </oui-tile-description>
-    <oui-action-menu
-        aria-label="{{:: 'menu_action_label' | translate:{ t0: ('dedicated_server_bandwidth_vrack' | translate) } }}"
-        data-ng-if="!$ctrl.server.isExpired && $ctrl.bandwidthVrackOption === 'subscribed'"
-        data-disabled="!$ctrl.server.canResiliateVrackBandwidth"
-        data-compact
-        data-placement="end"
-    >
-        <oui-action-menu-item
-            data-href="{{ $ctrl.resiliatePrivateLink }}"
-            data-disabled="$ctrl.server.state === 'HACKED' || $ctrl.server.state === 'HACKED_BLOCKED'"
-            data-ng-if="$ctrl.server.canResiliateVrackBandwidth"
-        >
-            <span
-                data-translate="dedicated_server_bandwidth_vrack_cancel_button"
-            ></span>
-        </oui-action-menu-item>
-    </oui-action-menu>
 </oui-tile-definition>
 <oui-tile-button
     data-ng-if="!$ctrl.server.isExpired && $ctrl.server.canOrderVrackBandwith && $ctrl.bandwidthVrackOrderOption.data.length"

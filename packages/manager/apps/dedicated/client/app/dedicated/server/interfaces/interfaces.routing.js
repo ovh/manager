@@ -74,15 +74,6 @@ export default /* @ngInject */ ($stateProvider) => {
               'app.dedicated.server.interfaces.bandwidth-public-order',
               { productId: serverName },
             ),
-      resiliatePrivateBandwidthLink: /* @ngInject */ ($state, serverName) =>
-        $state.href(
-          'app.dedicated.server.interfaces.bandwidth-private-cancel',
-          { productId: serverName },
-        ),
-      resiliatePublicBandwidthLink: /* @ngInject */ ($state, serverName) =>
-        $state.href('app.dedicated.server.interfaces.bandwidth-public-cancel', {
-          productId: serverName,
-        }),
       taskPolling: /* @ngInject */ (
         DedicatedServerInterfacesService,
         serverName,
