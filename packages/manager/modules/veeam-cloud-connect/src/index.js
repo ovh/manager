@@ -2,7 +2,7 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-import template from './template.html';
+import '@ovh-ux/ui-kit/dist/css/oui.css';
 
 const moduleName = 'ovhManagerVeeamCloudConnectLazyLoading';
 
@@ -12,7 +12,8 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
       .state('veeam-cloud-connect', {
         url: '/paas/veeam',
         abstract: true,
-        template,
+        template:
+          '<div class="veeam veeam-message" data-ui-view="veeamContainer"></div>',
         translations: {
           value: ['.'],
           format: 'json',
@@ -23,7 +24,7 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-          return import('./veeam/veeam.module').then((mod) =>
+          return import('./veeam.module').then((mod) =>
             $ocLazyLoad.inject(mod.default || mod),
           );
         },
@@ -33,7 +34,7 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-          return import('./veeam-cloud-connect.module').then((mod) =>
+          return import('./details/veeam-cloud-connect.module').then((mod) =>
             $ocLazyLoad.inject(mod.default || mod),
           );
         },

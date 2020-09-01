@@ -1,7 +1,7 @@
 import get from 'lodash/get';
 import 'moment';
 
-import { REDIRECT_URLS } from '../constants';
+import { REDIRECT_URLS } from '../details/constants';
 
 export default class VeeamCloudConnectDashboardCtrl {
   /* @ngInject */
