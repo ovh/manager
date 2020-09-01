@@ -1,3 +1,12 @@
+## [2.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.0.2...@ovh-ux/manager-vps@2.0.3) (2020-09-01)
+
+
+### Bug Fixes
+
+* **vps.upgrade:** add error message on error upgrade ([#3540](https://github.com/ovh/manager/issues/3540)) ([4b75f9c](https://github.com/ovh/manager/commit/4b75f9c38a284024971848a985e84914a41a22e5))
+
+
+
 ## [2.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.0.1...@ovh-ux/manager-vps@2.0.2) (2020-08-18)
 
 

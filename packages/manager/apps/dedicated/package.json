@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-dedicated",
-  "version": "13.2.2",
+  "version": "13.2.3",
   "private": true,
   "description": "OVHcloud Dedicated control panel.",
   "repository": {
@@ -45,7 +45,7 @@
     "@ovh-ux/manager-vps": "^1.0.0 || ^2.0.0",
     "@ovh-ux/manager-vrack": "^0.7.0 || ^1.0.0",
     "@ovh-ux/mfa-enrollment": "^1.0.0 || ^2.0.0",
-    "@ovh-ux/ng-at-internet": "^5.1.0",
+    "@ovh-ux/ng-at-internet": "^5.2.0",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.1.0",
     "@ovh-ux/ng-ovh-actions-menu": "^5.0.6",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.7",
@@ -59,9 +59,9 @@
     "@ovh-ux/ng-ovh-form-flat": "^5.0.0",
     "@ovh-ux/ng-ovh-http": "^5.0.0",
     "@ovh-ux/ng-ovh-jquery-ui-draggable": "^2.0.0",
-    "@ovh-ux/ng-ovh-order-tracking": "^1.0.0",
+    "@ovh-ux/ng-ovh-order-tracking": "^1.0.1",
     "@ovh-ux/ng-ovh-otrs": "^9.1.0",
-    "@ovh-ux/ng-ovh-payment-method": "^7.0.2",
+    "@ovh-ux/ng-ovh-payment-method": "^7.0.3",
     "@ovh-ux/ng-ovh-proxy-request": "^2.0.0",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.0",
     "@ovh-ux/ng-ovh-responsive-popover": "^5.0.2",

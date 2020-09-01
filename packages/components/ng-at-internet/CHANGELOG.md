@@ -1,3 +1,12 @@
+# [5.2.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet@5.1.0...@ovh-ux/ng-at-internet@5.2.0) (2020-09-01)
+
+
+### Features
+
+* **constants:** add order status ([2bee240](https://github.com/ovh/manager/commit/2bee240b38d8246880d2fc3d7089722512d740e3))
+
+
+
 # [5.1.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet@5.0.1...@ovh-ux/ng-at-internet@5.1.0) (2020-08-05)
 
 

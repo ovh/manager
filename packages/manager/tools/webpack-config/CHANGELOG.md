@@ -1,3 +1,12 @@
+# [3.5.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-webpack-config@3.4.0...@ovh-ux/manager-webpack-config@3.5.0) (2020-09-01)
+
+
+### Features
+
+* add plugin RetryChunkLoadPlugin ([#3479](https://github.com/ovh-ux/manager/issues/3479)) ([d64b74c](https://github.com/ovh-ux/manager/commit/d64b74cecd209a089d86260fd7278c7c612e60b9))
+
+
+
 # [3.4.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-webpack-config@3.3.4...@ovh-ux/manager-webpack-config@3.4.0) (2020-07-08)
 
 

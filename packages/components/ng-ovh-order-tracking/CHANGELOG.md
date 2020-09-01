@@ -1,3 +1,12 @@
+## [1.0.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-order-tracking@1.0.0...@ovh-ux/ng-ovh-order-tracking@1.0.1) (2020-09-01)
+
+
+### Bug Fixes
+
+* **order:** add order status tracking ([c86845d](https://github.com/ovh/manager/commit/c86845de577d6d5620889442c611e5bdee7cec58))
+
+
+
 # [1.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-order-tracking@0.2.2...@ovh-ux/ng-ovh-order-tracking@1.0.0) (2020-07-29)
 
 

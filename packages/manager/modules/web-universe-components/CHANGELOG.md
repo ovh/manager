@@ -1,3 +1,12 @@
+## [9.0.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.0.3...@ovh-ux/ng-ovh-web-universe-components@9.0.4) (2020-09-01)
+
+
+### Bug Fixes
+
+* **order-cart:** autopay if order is free ([#3536](https://github.com/ovh/manager/issues/3536)) ([c4a1dff](https://github.com/ovh/manager/commit/c4a1dff470d26b3d15a8ad0de8eec165291483c1))
+
+
+
 ## [9.0.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.0.2...@ovh-ux/ng-ovh-web-universe-components@9.0.3) (2020-08-18)
 
 
