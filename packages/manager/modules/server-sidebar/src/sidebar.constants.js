@@ -183,7 +183,7 @@ export const PAAS_CONFIG = {
     'paas.cda',
     'paas.veeam.detail',
     'veeam-cloud-connect',
-    'veeam-enterprise',
+    'veeam-enterprise.details',
   ],
   types: [
     {
@@ -206,7 +206,7 @@ export const PAAS_CONFIG = {
     },
     {
       path: '/veeam/veeamEnterprise',
-      state: 'veeam-enterprise.dashboard',
+      state: 'veeam-enterprise.details.dashboard',
       stateParams: ['serviceName'],
       icon: 'ovh-font ovh-font-veeam',
       app: [DEDICATED],
