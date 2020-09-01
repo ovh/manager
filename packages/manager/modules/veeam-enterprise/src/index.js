@@ -2,6 +2,8 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
+import '@ovh-ux/ui-kit/dist/css/oui.css';
+
 const moduleName = 'ovhManagerVeeamEnterpriseLazyLoading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
@@ -11,7 +13,7 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-        return import('./veeam-enterprise.module').then((mod) =>
+        return import('./details/veeam-enterprise.module').then((mod) =>
           $ocLazyLoad.inject(mod.default || mod),
         );
       },
@@ -22,7 +24,7 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-        return import('./veeam/veeam.module').then((mod) =>
+        return import('./veeam.module').then((mod) =>
           $ocLazyLoad.inject(mod.default || mod),
         );
       },
