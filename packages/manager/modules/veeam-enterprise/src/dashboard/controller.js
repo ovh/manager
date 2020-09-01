@@ -1,6 +1,6 @@
 import 'moment';
 
-import { RENEW_URL } from '../constants';
+import { RENEW_URL } from '../details/constants';
 
 export default class VeeamEnterpriseDashboardCtrl {
   /* @ngInject */
