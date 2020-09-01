@@ -143,13 +143,6 @@ class LogsStreamsHomeCtrl {
       .flat();
   }
 
-  storageInfo(stream) {
-    if (stream.info.isEditable && stream.info.currentStorage !== -1) {
-      return this.bytesFilter(stream.info.currentStorage, 2, true);
-    }
-    return ' - ';
-  }
-
   findRetention(stream) {
     return find(
       this.retentions,
