@@ -128,7 +128,7 @@ export default class PciTrainingDataAddController {
         return {
           name,
           region,
-          description: `${name} - ${this.data.region.name}`,
+          description: `${name} - ${region}`,
         };
       });
   }
