@@ -8,6 +8,7 @@ import set from 'lodash/set';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import TerserJSPlugin from 'terser-webpack-plugin';
 import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
+import { RetryChunkLoadPlugin } from 'webpack-retry-chunk-load-plugin';
 
 const webpack = require('webpack');
 
@@ -64,6 +65,16 @@ export = opts => {
 
       new webpack.DefinePlugin({
         __VERSION__: process.env.VERSION ? `'${process.env.VERSION}'` : 'null',
+      }),
+
+      new RetryChunkLoadPlugin({
+        // optional stringified function to get the cache busting query string appended to the script src
+        // if not set will default to appending the string `?cache-bust=true`
+        cacheBust: `function() {
+          return Date.now();
+        }`,
+        // optional value to set the maximum number of retries to load the chunk. Default is 1
+        maxRetries: 5,
       }),
     ],
 

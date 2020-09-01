@@ -46,5 +46,6 @@
   "pci_project_instances_instance_add_choose_model": "Change model",
   "pci_projects_project_instances_add_automated_backup_recommended": "Recommended",
   "pci_projects_project_instances_add_privateNetwork_description": "Public Cloud instances have a public network by default. You can add a private network.",
-  "pci_projects_project_instances_add_privateNetwork_add": "Add Private Network"
+  "pci_projects_project_instances_add_privateNetwork_add": "Add Private Network",
+  "pci_projects_project_instances_add_instance_is_iops": "The automatic backup applies strictly to data on your instance’s local disk. NVMe drive data will not be backed up."
 }

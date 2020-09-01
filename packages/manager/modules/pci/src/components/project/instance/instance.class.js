@@ -5,6 +5,7 @@ import includes from 'lodash/includes';
 import isObject from 'lodash/isObject';
 
 import { CAPABILITIES } from './instance.constants';
+import Flavor from '../flavors-list/flavor.class';
 
 export default class Instance {
   constructor(resource) {
@@ -182,5 +183,9 @@ export default class Instance {
 
   canBeHardRebooted() {
     return ['ACTIVE', 'SHUTOFF'].includes(this.status);
+  }
+
+  isFlavorType(type) {
+    return new Flavor(this.flavor || {}).isType(type);
   }
 }

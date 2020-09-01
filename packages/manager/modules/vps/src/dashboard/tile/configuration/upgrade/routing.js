@@ -237,9 +237,9 @@ export default /* @ngInject */ ($stateProvider) => {
           })
           .catch((error) =>
             goBack(
-              $translate.instant(
+              `${$translate.instant(
                 'vps_dashboard_tile_configuration_upgrade_error',
-              ),
+              )} ${get(error, 'data.message', error.message)}`,
               'error',
               error,
             ),
