@@ -135,6 +135,7 @@ angular
         '/dbaas/logs',
         '/paas/veeam-enterprise',
         '/veeam',
+        '/veeam-enterprise',
         '/iaas/vps',
         '/nasha',
         '/vrack',
