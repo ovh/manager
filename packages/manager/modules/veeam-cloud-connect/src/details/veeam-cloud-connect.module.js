@@ -12,15 +12,13 @@ import '@ovh-ux/ui-kit';
 import component from './component';
 import routing from './routing';
 import service from './service';
-import dashboard from './dashboard/veeam-dashboard.component';
-import storage from './storage/veeam-storage.component';
-import storageAdd from './storage/add/veeam-storage-add.component';
-import storageQuota from './storage/update-quota/veeam-storage-update-quota.component';
-import updateOffer from './dashboard/update-offer/veeam-update-offer.component';
+import dashboard from '../dashboard/veeam-dashboard.component';
+import storage from '../storage/veeam-storage.component';
+import storageAdd from '../storage/add/veeam-storage-add.component';
+import storageQuota from '../storage/update-quota/veeam-storage-update-quota.component';
+import updateOffer from '../dashboard/update-offer/veeam-update-offer.component';
 
 import './index.less';
-
-import '@ovh-ux/ui-kit/dist/css/oui.css';
 
 const moduleName = 'ovhManagerVeeamCloudConnectDashboard';
 
