@@ -5,6 +5,7 @@ import {
   FLEX_TYPE,
   LEGACY_FLAVORS,
   SSD_DISK_TYPES,
+  CATEGORIES,
 } from './flavors-list.constants';
 
 export default class Flavors {
@@ -46,5 +47,9 @@ export default class Flavors {
 
   hasOsType(os) {
     return this.osType === os;
+  }
+
+  isType(title) {
+    return get(find(CATEGORIES, { title }), 'pattern').test(this.type);
   }
 }
