@@ -37,6 +37,7 @@ export default /* @ngInject */ ($stateProvider) => {
           $state.go('veeam-cloud-connect.detail.dashboard.update-offer', {
             serviceName,
           }),
+        breadcrumb: /* @ngInject */ (serviceName) => serviceName,
       },
     })
     .state('veeam-cloud-connect.detail.dashboard', {
@@ -52,13 +53,11 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       },
       translations: {
-        value: [
-          '.',
-          './dashboard',
-          './storage/add',
-          './dashboard/update-offer',
-        ],
+        value: ['../dashboard', '../storage/add', '../dashboard/update-offer'],
         format: 'json',
+      },
+      resolve: {
+        breadcrumb: () => null,
       },
     })
     .state('veeam-cloud-connect.detail.dashboard.update-offer', {
@@ -69,6 +68,9 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       },
       layout: 'modal',
+      resolve: {
+        breadcrumb: () => null,
+      },
     })
     .state('veeam-cloud-connect.detail.storage', {
       url: '/storage',
@@ -83,8 +85,12 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       },
       translations: {
-        value: ['.', './storage', './storage/add'],
+        value: ['../storage', '../storage/add'],
         format: 'json',
+      },
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('veeam_tab_storage'),
       },
     })
     .state('veeam-cloud-connect.detail.storage.add', {
@@ -95,6 +101,9 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       },
       layout: 'modal',
+      resolve: {
+        breadcrumb: () => null,
+      },
     })
     .state('veeam-cloud-connect.detail.storage.quota', {
       url: '/quota/{inventoryName}',
@@ -107,6 +116,7 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         inventoryName: /* @ngInject */ ($transition$) =>
           $transition$.params().inventoryName,
+        breadcrumb: () => null,
       },
     });
 };
