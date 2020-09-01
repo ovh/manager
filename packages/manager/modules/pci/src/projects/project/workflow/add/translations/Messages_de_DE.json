@@ -75,5 +75,6 @@
   "pci_projects_project_workflow_instance_status_SNAPSHOTTING": "Instance Backup wird erstellt",
   "pci_projects_project_workflow_instance_status_RESUMING": "Wird fortgesetzt",
   "pci_workflow_create_price_monthly": "{{ price }} ohne MWSt./Monat/GB",
-  "pci_workflow_create_monthly_backup_price": "Jede Sicherung wird in Rechnung gestellt: {{ price }} ohne MWSt./Monat/GB"
+  "pci_workflow_create_monthly_backup_price": "Jede Sicherung wird in Rechnung gestellt: {{ price }} ohne MWSt./Monat/GB",
+  "pci_projects_project_workflow_instance_status_IS_IOPS": "Das automatische Backup wird nur für die Daten auf der lokalen Festplatte Ihrer Instanz ausgeführt. Die Daten auf den NVMe-Festplatten werden nicht gesichert."
 }

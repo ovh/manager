@@ -3,7 +3,7 @@
   "pci_projects_project_instances_instance_attach-volume_submit_label": "Przypisz",
   "pci_projects_project_instances_instance_attach-volume_cancel_label": "Anuluj",
   "pci_projects_project_instances_instance_attach-volume_volume_placeholder": "Szukaj",
-  "pci_projects_project_instances_instance_attach-volume_error_no_compatible_volume": "Nie posiadasz aktualnie żadnego kompatybilnego wolumenu, który mógłbyś przypisać do tej instancji.",
+  "pci_projects_project_instances_instance_attach-volume_error_no_compatible_volume": "Brak wolumenów dostępnych w regionie, w którym hostowana jest Twoja instancja",
   "pci_projects_project_instances_instance_attach-volume_success_message": "Wolumen {{volume}} ({{volumeId}}) typu {{type}} został przypisany do instancji {{instance}} ({{instanceId}}).",
   "pci_projects_project_instances_instance_attach-volume_error_attach": "Wystąpił błąd podczas aktualizacji wolumenu {{ volume }}: {{ message }}."
 }

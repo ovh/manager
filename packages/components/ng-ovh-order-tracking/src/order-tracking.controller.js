@@ -7,10 +7,11 @@ const ORDER_FOLLOW_UP_POLLING_INTERVAL = 60 * SECONDS;
 
 export default class OvhOrderTrackingController {
   /* @ngInject */
-  constructor($log, $q, $timeout, OrderTracking, OvhApiMeOrder) {
+  constructor($log, $q, $timeout, atInternet, OrderTracking, OvhApiMeOrder) {
     this.$log = $log;
     this.$q = $q;
     this.$timeout = $timeout;
+    this.atInternet = atInternet;
     this.OrderTracking = OrderTracking;
     this.OvhApiMeOrder = OvhApiMeOrder;
     this.maxHistoryLength = ORDER_DEFAULT_HISTORY_LENGTH;
@@ -41,7 +42,8 @@ export default class OvhOrderTrackingController {
         orderId: this.orderId,
       })
       .$promise.then((order) =>
-        this.OrderTracking.getOrderStatus(order).then(({ status }) => {
+        this.OrderTracking.getOrderStatus(order).then((status) => {
+          this.trackPage(status);
           const orderWithStatus = order;
           orderWithStatus.status = status;
           return orderWithStatus;
@@ -118,5 +120,15 @@ export default class OvhOrderTrackingController {
       this.$timeout.cancel(this.polling.followUp);
       this.polling.followUp = null;
     }
+  }
+
+  trackPage(orderStatus) {
+    return this.atInternet.trackPage({
+      name: 'order',
+      chapter1: 'dedicated',
+      chapter2: 'account',
+      chapter3: 'billing',
+      ...(orderStatus ? { orderStatus } : {}),
+    });
   }
 }

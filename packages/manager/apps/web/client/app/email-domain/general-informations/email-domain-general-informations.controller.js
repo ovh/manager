@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import set from 'lodash/set';
 
 angular.module('App').controller(
@@ -6,6 +7,7 @@ angular.module('App').controller(
     /* @ngInject */
     constructor(
       $q,
+      $http,
       $scope,
       $state,
       $stateParams,
@@ -18,6 +20,7 @@ angular.module('App').controller(
       WucEmails,
     ) {
       this.$q = $q;
+      this.$http = $http;
       this.$scope = $scope;
       this.$state = $state;
       this.$stateParams = $stateParams;
@@ -46,7 +49,11 @@ angular.module('App').controller(
 
       this.$scope.$on('domain.dashboard.refresh', () => this.loadDomain());
       return this.$q
-        .all([this.loadDomain(), this.loadQuotas(), this.loadServiceInfos()])
+        .all([
+          this.loadDomain(),
+          this.loadQuotas(),
+          this.loadServiceInfos().then(() => this.loadServiceDetails()),
+        ])
         .then(() => this.loadUrls());
     }
 
@@ -77,6 +84,25 @@ angular.module('App').controller(
         })
         .finally(() => {
           this.loading.domain = false;
+        });
+    }
+
+    loadServiceDetails() {
+      this.loading.serviceDetails = true;
+      return this.$http
+        .get(`/services/${get(this, 'serviceInfos.serviceId', '')}`)
+        .then((response) => {
+          this.serviceDetails = response.data;
+        })
+        .catch((err) => {
+          this.Alerter.alertFromSWS(
+            this.$translate.instant('email_tab_table_accounts_error'),
+            err,
+            this.$scope.alerts.main,
+          );
+        })
+        .finally(() => {
+          this.loading.serviceDetails = false;
         });
     }
 
@@ -134,7 +160,7 @@ angular.module('App').controller(
       }
       this.urls.manageContacts = this.RedirectionService.getURL(
         'contactManagement',
-        { serviceName: this.$stateParams.productId },
+        { serviceName: this.$stateParams.productId, category: 'EMAIL_DOMAIN' },
       );
       return this.User.getUrlOf('changeOwner')
         .then((link) => {

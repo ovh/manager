@@ -19,8 +19,9 @@ export default class ServicesWorkflow extends Workflow {
    * @param {Object} DetachService   Service to handle request to perform a
    * detach action, see /services API schema
    */
-  constructor($q, $translate, workflowOptions, detachService) {
+  constructor($q, $timeout, $translate, workflowOptions, detachService) {
     super($q, $translate, workflowOptions);
+    this.$timeout = $timeout;
     this.workflowService = detachService;
 
     if (!this.serviceId) {
@@ -40,8 +41,10 @@ export default class ServicesWorkflow extends Workflow {
     this.pricings = this.computePricing(detachPlancode.prices);
 
     if (this.hasUniquePricing()) {
-      this.currentIndex += 1;
-      [this.pricing] = this.pricings;
+      this.$timeout(() => {
+        this.currentIndex += 1;
+        [this.pricing] = this.pricings;
+      });
     }
   }
 

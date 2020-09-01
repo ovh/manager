@@ -22,8 +22,6 @@ import atInternet from './components/at-internet';
 import errorPage from './components/error-page';
 import dashboard from './dashboard';
 
-import { BILLING_REDIRECTIONS } from './constants';
-
 import controller from './controller';
 import routing from './routing';
 import '@ovh-ux/ui-kit/dist/css/oui.css';
@@ -103,13 +101,6 @@ angular
           );
         }
       });
-    },
-  )
-  .run(
-    /* @ngInject */ (ssoAuthentication) => {
-      if (!BILLING_REDIRECTIONS.includes(window.location.href)) {
-        ssoAuthentication.login();
-      }
     },
   )
   .run(/* @ngTranslationsInject:json ./translations */)

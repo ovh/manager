@@ -44,5 +44,8 @@
   "pci_projects_project_instances_add_region_selected_title": "Localización elegida: {{location}}",
   "pci_projects_project_instances_add_region_display_nonavailable": "Mostrar las localizaciones no disponibles",
   "pci_project_instances_instance_add_choose_model": "Cambiar de modelo",
-  "pci_projects_project_instances_add_automated_backup_recommended": "Recomendado"
+  "pci_projects_project_instances_add_automated_backup_recommended": "Recomendado",
+  "pci_projects_project_instances_add_privateNetwork_description": "Por defecto las instancias Public Cloud disponen de una red pública, pero es posible añadir una red privada.",
+  "pci_projects_project_instances_add_privateNetwork_add": "Crear una red privada",
+  "pci_projects_project_instances_add_instance_is_iops": "La copia de seguridad automática solo se aplica a los datos del disco local de su instancia. No se realizarán copias de seguridad de los datos de los discos NVMe."
 }

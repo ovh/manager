@@ -1,3 +1,30 @@
+## [7.0.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@7.0.2...@ovh-ux/ng-ovh-payment-method@7.0.3) (2020-08-28)
+
+
+### Bug Fixes
+
+* filter only valid payment method if specified ([ebcc9b4](https://github.com/ovh/manager/commit/ebcc9b492f2ffdb04523cf9a156d68df9c534aae))
+
+
+
+## [7.0.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@7.0.1...@ovh-ux/ng-ovh-payment-method@7.0.2) (2020-08-24)
+
+
+### Bug Fixes
+
+* **payment-method:** not able to add paypal payment method ([#3494](https://github.com/ovh/manager/issues/3494)) ([cf1d77c](https://github.com/ovh/manager/commit/cf1d77c21abbd932a153c747d2e1d235703d88b1)), closes [#DTRSD-18423](https://github.com/ovh/manager/issues/DTRSD-18423)
+
+
+
+## [7.0.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@7.0.0...@ovh-ux/ng-ovh-payment-method@7.0.1) (2020-08-18)
+
+
+### Bug Fixes
+
+* **locale:** move locale detection in bootstrapApplication ([92d1050](https://github.com/ovh/manager/commit/92d1050613a2466ce2447e2c3d322ae81165530a))
+
+
+
 # [7.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@6.1.2...@ovh-ux/ng-ovh-payment-method@7.0.0) (2020-07-29)
 
 

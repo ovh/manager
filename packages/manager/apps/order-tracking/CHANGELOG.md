@@ -1,3 +1,12 @@
+## [2.0.2](https://github.com/ovh/manager/compare/@ovh-ux/order-tracking-app@2.0.1...@ovh-ux/order-tracking-app@2.0.2) (2020-08-18)
+
+
+### Bug Fixes
+
+* **locale:** move locale detection in bootstrapApplication ([92d1050](https://github.com/ovh/manager/commit/92d1050613a2466ce2447e2c3d322ae81165530a))
+
+
+
 ## [2.0.1](https://github.com/ovh/manager/compare/@ovh-ux/order-tracking-app@2.0.0...@ovh-ux/order-tracking-app@2.0.1) (2020-08-05)
 
 

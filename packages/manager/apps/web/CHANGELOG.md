@@ -1,3 +1,61 @@
+## [15.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.2.3...@ovh-ux/manager-web@15.2.4) (2020-08-31)
+
+
+### Bug Fixes
+
+* **domain:** dynhost tab display ([#3532](https://github.com/ovh/manager/issues/3532)) ([9afb1dd](https://github.com/ovh/manager/commit/9afb1dd8bf2b5cb7c923729f4790956fa963bdc9))
+
+
+
+## [15.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.2.2...@ovh-ux/manager-web@15.2.3) (2020-08-28)
+
+
+### Bug Fixes
+
+* **domain.webhosting:** do not autopay if there is no payment mean ([d829687](https://github.com/ovh/manager/commit/d8296875b5102f428de6ed7bd650bdfe9fdc1011))
+* **hosting:** disable upgrade for not standalone services ([#3521](https://github.com/ovh/manager/issues/3521)) ([6004fd3](https://github.com/ovh/manager/commit/6004fd32cffb5c3849f57c50183231ae01ffa679))
+* **web:** disable ram upgrade for child service private database ([#3523](https://github.com/ovh/manager/issues/3523)) ([3721d49](https://github.com/ovh/manager/commit/3721d497e415e9b69121347903c3109e6a508e4c))
+* **web:** remove upgrade for emails with parent ([#3519](https://github.com/ovh/manager/issues/3519)) ([2e0c5df](https://github.com/ovh/manager/commit/2e0c5df9f8a99a47b2a1d78ac53413fa2ce5e56a)), closes [#DTRSD-18841](https://github.com/ovh/manager/issues/DTRSD-18841)
+
+
+
+## [15.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.2.1...@ovh-ux/manager-web@15.2.2) (2020-08-26)
+
+
+### Bug Fixes
+
+* **email-domain:** always show responders button ([#3509](https://github.com/ovh/manager/issues/3509)) ([05089c2](https://github.com/ovh/manager/commit/05089c2aedc540420e58b5229e35244f05299399))
+
+
+
+## [15.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.2.0...@ovh-ux/manager-web@15.2.1) (2020-08-21)
+
+
+### Bug Fixes
+
+* **web:** contacts management redirection urls ([#3481](https://github.com/ovh/manager/issues/3481)) ([4f73c2b](https://github.com/ovh/manager/commit/4f73c2b058e75f9e3f1a7492090c4fdbfd8ad30c))
+* **web.domain:** handle unavailable capabilities ([#3483](https://github.com/ovh/manager/issues/3483)) ([910bb9c](https://github.com/ovh/manager/commit/910bb9c6911cda7255fe32bb1b8fc79b20905c21))
+
+
+
+# [15.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.1.0...@ovh-ux/manager-web@15.2.0) (2020-08-18)
+
+
+### Bug Fixes
+
+* **email-domain.redirection.create:** prevent TypeError on validation ([#3461](https://github.com/ovh/manager/issues/3461)) ([8ea7f12](https://github.com/ovh/manager/commit/8ea7f122ce43bf15d1a0051184a24f13a7496b6c))
+* **web.freewebhosting:** prevent validation if agreement is not checked ([6cfc0d9](https://github.com/ovh/manager/commit/6cfc0d96eb8fa2637f45d20ddf3b8d0b2f6b7541))
+* prevent TypeError when accessing to guides constant ([#3426](https://github.com/ovh/manager/issues/3426)) ([a476af3](https://github.com/ovh/manager/commit/a476af35718c86b479f08a158c504fb204635746))
+* **i18n:** add missing translations [CDS 530] ([67270b3](https://github.com/ovh/manager/commit/67270b3ebced325d8bab98a0e2a267d14e65f253))
+* **locale:** move locale detection in bootstrapApplication ([92d1050](https://github.com/ovh/manager/commit/92d1050613a2466ce2447e2c3d322ae81165530a))
+
+
+### Features
+
+* **private-database:** add mysql 8.0 label ([#3456](https://github.com/ovh/manager/issues/3456)) ([fb70f22](https://github.com/ovh/manager/commit/fb70f2247cff32de5acb9944d051dd684b018ced))
+
+
+
 # [15.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.0.3...@ovh-ux/manager-web@15.1.0) (2020-08-05)
 
 

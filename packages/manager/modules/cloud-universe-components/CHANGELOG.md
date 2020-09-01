@@ -1,3 +1,13 @@
+## [2.0.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.0.2...@ovh-ux/ng-ovh-cloud-universe-components@2.0.3) (2020-08-18)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 524] ([3ea02a6](https://github.com/ovh/manager/commit/3ea02a60504ac0efcbfab0da79db613be43ad98f))
+* **public-cloud:** revamp instance creation ui ([3caac03](https://github.com/ovh/manager/commit/3caac03dd48ed032fac0a04c59ead200784f0443))
+
+
+
 ## [2.0.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.0.1...@ovh-ux/ng-ovh-cloud-universe-components@2.0.2) (2020-08-05)
 
 

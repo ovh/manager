@@ -1,3 +1,30 @@
+## [2.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@2.1.2...@ovh-ux/manager-hub-app@2.1.3) (2020-08-24)
+
+
+### Bug Fixes
+
+* **hub:** routing redirection ([#3490](https://github.com/ovh/manager/issues/3490)) ([783a482](https://github.com/ovh/manager/commit/783a482264a6fb9ef5581e529b7810ef6a37c715))
+
+
+
+## [2.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@2.1.1...@ovh-ux/manager-hub-app@2.1.2) (2020-08-18)
+
+
+### Bug Fixes
+
+* **hub:** fix redirection in order to avoid authentication looping ([#3465](https://github.com/ovh/manager/issues/3465)) ([ee7528a](https://github.com/ovh/manager/commit/ee7528a0354a3e58b3a7ed0cc57ada16dc1a197a))
+
+
+
+## [2.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@2.1.0...@ovh-ux/manager-hub-app@2.1.1) (2020-08-18)
+
+
+### Bug Fixes
+
+* **locale:** move locale detection in bootstrapApplication ([92d1050](https://github.com/ovh/manager/commit/92d1050613a2466ce2447e2c3d322ae81165530a))
+
+
+
 # [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@2.0.1...@ovh-ux/manager-hub-app@2.1.0) (2020-08-05)
 
 

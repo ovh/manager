@@ -187,7 +187,7 @@ export default class {
           status === ACTIVATION_STATUS.disabled &&
           ServicePackOptionService.getPresentationUrl(
             option.name,
-            this.model.currentUser,
+            this.model.currentUser.ovhSubsidiary,
           ),
         status,
       };
@@ -281,7 +281,7 @@ export default class {
         exists: !currentlyHasCertification,
         url: ServicePackOptionService.getPresentationUrl(
           'home',
-          this.model.currentUser,
+          this.model.currentUser.ovhSubsidiary,
         ),
       },
       status: exists && status,

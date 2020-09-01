@@ -14,8 +14,8 @@ export default class ServicesActionsCtrl {
   $onInit() {
     this.warningLink = `${this.autorenewLink}/warn-nic?nic=${this.service.contactBilling}`;
     this.billingLink = this.RedirectionService.getURL('billing');
-    this.updateLink = `${this.autorenewLink}/update?serviceId=${this.service.serviceId}`;
-    this.cancelResiliationLink = `${this.autorenewLink}/cancel-resiliation?serviceId=${this.service.serviceId}`;
+    this.updateLink = `${this.autorenewLink}/update?serviceId=${this.service.serviceId}&serviceType=${this.service.serviceType}`;
+    this.cancelResiliationLink = `${this.autorenewLink}/cancel-resiliation?serviceId=${this.service.serviceId}&serviceType=${this.service.serviceType}`;
 
     switch (this.service.serviceType) {
       case SERVICE_TYPE.EXCHANGE:

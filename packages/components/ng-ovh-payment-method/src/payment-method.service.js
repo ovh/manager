@@ -316,7 +316,7 @@ export default class OvhPaymentMethodService {
         legacies: !this.coreConfig.isRegion('US')
           ? this.ovhPaymentMethodLegacy.getPaymentMeans(options)
           : this.$q.when([]),
-        paymentMethods: this.getPaymentMethods(),
+        paymentMethods: this.getPaymentMethods(options),
       })
       .then(({ legacies, paymentMethods }) => {
         remove(legacies, ({ paymentMethodId }) =>
@@ -325,7 +325,12 @@ export default class OvhPaymentMethodService {
           }),
         );
 
-        return [].concat(legacies, paymentMethods);
+        const methods = [...legacies, ...paymentMethods];
+        if (options.onlyValid) {
+          return methods.filter((method) => method.isValid());
+        }
+
+        return methods;
       });
   }
 }

@@ -17,13 +17,16 @@ const commonResolves = {
       .get(`/email/domain/${domainName}`)
       .then(() => true)
       .catch(() => false),
-  zoneOption: /* @ngInject */ ($http, domainName) =>
+  zone: /* @ngInject */ ($http, domainName) =>
     $http
-      .get(`/domain/${domainName}/options`)
-      .then((options) => options.data.zone),
-  zoneCapabilities: /* @ngInject */ (DNSZoneService, zoneOption) =>
-    zoneOption
-      ? DNSZoneService.getCapabilities(zoneOption.serviceName)
+      .get(`/domain/zone/${domainName}`)
+      .then((zone) => zone.data)
+      .catch(() => null),
+  zoneCapabilities: /* @ngInject */ (DNSZoneService, zone) =>
+    zone
+      ? DNSZoneService.getCapabilities(zone.name).catch(() => ({
+          dynHost: false,
+        }))
       : { dynHost: false },
 };
 

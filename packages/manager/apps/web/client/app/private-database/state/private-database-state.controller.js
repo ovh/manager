@@ -32,6 +32,7 @@ angular.module('App').controller(
       this.oomService = OomService;
       this.privateDatabaseService = PrivateDatabase;
       this.userService = User;
+      this.canOrderRam = false;
     }
 
     $onInit() {
@@ -54,6 +55,12 @@ angular.module('App').controller(
         this.getHostingsLinked();
         this.getOomList();
       }
+
+      this.privateDatabaseService
+        .canOrderRam(this.productId)
+        .then((canOrder) => {
+          this.canOrderRam = canOrder;
+        });
     }
 
     convertBytesSize(nb, unit, decimalWanted = 0) {

@@ -74,10 +74,27 @@
                     <select
                         id="offer"
                         class="form-control"
+                        data-ng-if="!ctrl.isPrivateCloudOffer"
                         data-ng-model="ctrl.model.params.selectedOffer"
                         data-ng-change="ctrl.onSelectedOfferChange()"
                         data-ng-disabled="!ctrl.ipOffers.length"
                         data-ng-options="offer as (offer.productShortName + ' - ' + offer.price.text) group by offer.productRegion for offer in ctrl.ipOffers | orderBy:'price.value' track by offer.planCode+offer.maximumQuantity"
+                    >
+                        <option
+                            value=""
+                            data-ng-disabled="true"
+                            data-translate="global_select"
+                        >
+                        </option>
+                    </select>
+                    <select
+                        id="offer"
+                        class="form-control"
+                        data-ng-if="ctrl.isPrivateCloudOffer"
+                        data-ng-model="ctrl.model.params.selectedOffer"
+                        data-ng-change="ctrl.onSelectedOfferChange()"
+                        data-ng-disabled="!ctrl.ipOffers.length"
+                        data-ng-options="offer as (offer.productName + ' - ' + offer.price.text) for offer in ctrl.ipOffers | orderBy:'price.value' track by offer.planCode+offer.maximumQuantity"
                     >
                         <option
                             value=""
@@ -146,6 +163,7 @@
                     <div
                         class="form-group"
                         data-ng-show="ctrl.model.params.selectedOffer.isIpBlockOffer"
+                        data-ng-if="!ctrl.isPrivateCloudOffer"
                     >
                         <label
                             for="organisation"

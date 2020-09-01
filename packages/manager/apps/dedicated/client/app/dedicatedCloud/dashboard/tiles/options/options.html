@@ -116,7 +116,7 @@
         </oui-tile-definition>
 
         <oui-tile-definition
-            data-ng-if=":: $ctrl.bindings.options.certification.exists"
+            data-ng-if=":: $ctrl.bindings.options.certification.exists && $ctrl.canManagerSectorSpecificCompliance"
             data-term="{{:: 'ovhManagerPccDashboardOptions_certification_term' | translate }}"
         >
             <oui-tile-description>

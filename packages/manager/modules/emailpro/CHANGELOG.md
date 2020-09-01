@@ -1,3 +1,13 @@
+## [2.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@2.0.1...@ovh-ux/manager-emailpro@2.0.2) (2020-08-18)
+
+
+### Bug Fixes
+
+* **account.delegation:** remove unused part ([#3460](https://github.com/ovh/manager/issues/3460)) ([2393e27](https://github.com/ovh/manager/commit/2393e276a3708fc5c1e74dde479efb1ff8039741))
+* **locale:** move locale detection in bootstrapApplication ([92d1050](https://github.com/ovh/manager/commit/92d1050613a2466ce2447e2c3d322ae81165530a))
+
+
+
 ## [2.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@2.0.0...@ovh-ux/manager-emailpro@2.0.1) (2020-08-05)
 
 

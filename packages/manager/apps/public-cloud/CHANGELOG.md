@@ -1,3 +1,12 @@
+## [4.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.1.0...@ovh-ux/manager-public-cloud@4.1.1) (2020-08-18)
+
+
+### Bug Fixes
+
+* **locale:** move locale detection in bootstrapApplication ([92d1050](https://github.com/ovh/manager/commit/92d1050613a2466ce2447e2c3d322ae81165530a))
+
+
+
 # [4.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.0.2...@ovh-ux/manager-public-cloud@4.1.0) (2020-08-05)
 
 

@@ -1,3 +1,13 @@
+## [2.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@2.0.0...@ovh-ux/manager-exchange@2.0.1) (2020-08-18)
+
+
+### Bug Fixes
+
+* **locale:** move locale detection in bootstrapApplication ([92d1050](https://github.com/ovh/manager/commit/92d1050613a2466ce2447e2c3d322ae81165530a))
+* **locale:** use locale/language from environment ([472f3c7](https://github.com/ovh/manager/commit/472f3c728a02d34dd4d956af6562bfc3f0b42d70))
+
+
+
 # [2.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@1.8.5...@ovh-ux/manager-exchange@2.0.0) (2020-07-29)
 
 

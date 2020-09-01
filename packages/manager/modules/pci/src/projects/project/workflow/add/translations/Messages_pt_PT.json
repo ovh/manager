@@ -75,5 +75,6 @@
   "pci_projects_project_workflow_instance_status_SNAPSHOTTING": "Criação de uma instância de backup",
   "pci_projects_project_workflow_instance_status_RESUMING": "Retoma em curso",
   "pci_workflow_create_price_monthly": "{{ price }}/mês por GB + IVA",
-  "pci_workflow_create_monthly_backup_price": "Cada backup será faturado: {{ price }}/mês por GB + IVA"
+  "pci_workflow_create_monthly_backup_price": "Cada backup será faturado: {{ price }}/mês por GB + IVA",
+  "pci_projects_project_workflow_instance_status_IS_IOPS": "O backup automático aplica-se estritamente aos dados do disco local da sua instância. Os dados dos discos NVMe não serão guardados."
 }

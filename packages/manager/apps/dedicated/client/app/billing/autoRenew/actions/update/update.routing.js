@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.account.billing.autorenew.update', {
-    url: '/update?serviceId',
+    url: '/update?serviceId&serviceType',
     component: 'billingAutorenewUpdate',
     translations: { value: ['.'], format: 'json' },
     resolve: {
@@ -12,8 +12,10 @@ export default /* @ngInject */ ($stateProvider) => {
       goBack: /* @ngInject */ (goToAutorenew) => goToAutorenew,
       serviceId: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceId,
-      service: /* @ngInject */ (BillingAutoRenew, serviceId) =>
-        BillingAutoRenew.getService(serviceId),
+      serviceType: /* @ngInject */ ($transition$) =>
+        $transition$.params().serviceType,
+      service: /* @ngInject */ (BillingAutoRenew, serviceId, serviceType) =>
+        BillingAutoRenew.getService(serviceId, serviceType),
       /* @ngInject */
       updateRenew: (BillingAutoRenew) => (service, agreements) =>
         BillingAutoRenew.updateRenew(service, agreements),
