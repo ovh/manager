@@ -4,8 +4,8 @@ import dashboardTemplate from '../dashboard/template.html';
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
     .state('veeam-enterprise', {
-      url: '/paas/veeam-enterprise/{serviceName}',
-      redirectTo: 'veeam-enterprise.dashboard',
+      url: '/veeam-enterprise/{serviceName}',
+      redirectTo: 'veeam-enterprise.details.dashboard',
       template,
       controller: 'VeeamEnterpriseCtrl',
       controllerAs: '$ctrl',
@@ -17,16 +17,16 @@ export default /* @ngInject */ ($stateProvider) => {
         serviceName: /* @ngInject */ ($transition$) =>
           $transition$.params().serviceName,
         goToDashboard: /* @ngInject */ ($state) => () =>
-          $state.go('veeam-enterprise.dashboard'),
+          $state.go('veeam-enterprise.details.dashboard'),
         goToLicenseActivate: /* @ngInject */ ($state) => () =>
-          $state.go('veeam-enterprise.dashboard.license.activate'),
+          $state.go('veeam-enterprise.details.dashboard.license.activate'),
         goToLicenseUpdate: /* @ngInject */ ($state) => () =>
-          $state.go('veeam-enterprise.dashboard.license.update'),
+          $state.go('veeam-enterprise.details.dashboard.license.update'),
         goToLicenseTerminate: /* @ngInject */ ($state) => () =>
-          $state.go('veeam-enterprise.dashboard.license.terminate'),
+          $state.go('veeam-enterprise.details.dashboard.license.terminate'),
       },
     })
-    .state('veeam-enterprise.dashboard', {
+    .state('veeam-enterprise.details.dashboard', {
       url: '/dashboard',
       views: {
         veeamEnterpriseContent: {
@@ -40,11 +40,11 @@ export default /* @ngInject */ ($stateProvider) => {
         format: 'json',
       },
     })
-    .state('veeam-enterprise.dashboard.license', {
+    .state('veeam-enterprise.details.dashboard.license', {
       url: '/license',
       abstract: true,
     })
-    .state('veeam-enterprise.dashboard.license.activate', {
+    .state('veeam-enterprise.details.dashboard.license.activate', {
       url: '/activate',
       views: {
         modal: {
@@ -56,7 +56,7 @@ export default /* @ngInject */ ($stateProvider) => {
         action: () => 'register',
       },
     })
-    .state('veeam-enterprise.dashboard.license.update', {
+    .state('veeam-enterprise.details.dashboard.license.update', {
       url: '/update',
       views: {
         modal: {
@@ -68,7 +68,7 @@ export default /* @ngInject */ ($stateProvider) => {
         action: () => 'update',
       },
     })
-    .state('veeam-enterprise.dashboard.license.terminate', {
+    .state('veeam-enterprise.details.dashboard.license.terminate', {
       url: '/terminate',
       views: {
         modal: {
