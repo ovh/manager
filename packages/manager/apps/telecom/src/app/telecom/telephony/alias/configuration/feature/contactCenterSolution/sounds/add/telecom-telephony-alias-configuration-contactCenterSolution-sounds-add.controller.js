@@ -1,5 +1,3 @@
-import get from 'lodash/get';
-
 angular.module('managerApp').controller(
   'TelecomTelephonyAliasConfigurationContactCenterSolutionSoundsAddCtrl',
   class TelecomTelephonyAliasConfigurationContactCenterSolutionSoundsAddCtrl {
@@ -8,7 +6,6 @@ angular.module('managerApp').controller(
       $translate,
       $uibModalInstance,
       sounds,
-      TucToast,
       tucVoipServiceAlias,
       TELEPHONY_SERVICE,
     ) {
@@ -16,9 +13,9 @@ angular.module('managerApp').controller(
       this.$translate = $translate;
       this.$uibModalInstance = $uibModalInstance;
       this.sounds = sounds;
-      this.TucToast = TucToast;
       this.tucVoipServiceAlias = tucVoipServiceAlias;
       this.TELEPHONY_SERVICE = TELEPHONY_SERVICE;
+      this.error = null;
     }
 
     $onInit() {
@@ -34,11 +31,13 @@ angular.module('managerApp').controller(
         fileExtension,
       );
       if (!found) {
-        this.TucToast.error(
-          this.$translate.instant(
-            'telephony_alias_config_conference_invalid_file_format',
-          ),
-        );
+        this.error = {
+          data: {
+            message: this.$translate.instant(
+              'telephony_alias_config_conference_invalid_file_format',
+            ),
+          },
+        };
       }
       return found;
     }
@@ -60,11 +59,7 @@ angular.module('managerApp').controller(
           this.sounds = sounds;
         })
         .catch((error) => {
-          this.TucToast.error(
-            `${this.$translate.instant(
-              'telephony_alias_config_contactCenterSolution_sounds_upload_error',
-            )} ${get(error, 'data.message', error.message)}`,
-          );
+          this.error = error;
         })
         .finally(() => {
           this.uploading = false;
