@@ -1,5 +1,5 @@
-import headerTemplate from './header/veeam-dashboard-header.html';
-import headerCtrl from './header/veeam-dashboard-header.controller';
+import headerTemplate from '../header/veeam-dashboard-header.html';
+import headerCtrl from '../header/veeam-dashboard-header.controller';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
