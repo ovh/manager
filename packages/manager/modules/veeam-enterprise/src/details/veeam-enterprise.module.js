@@ -11,9 +11,9 @@ import '@ovh-ux/ui-kit';
 
 import VeeamEnterpriseCtrl from './controller';
 import VeeamEnterpriseService from './service';
-import VeeamEnterpriseDashboardCtrl from './dashboard/controller';
-import VeeamEnterpriseLicenseComponent from './dashboard/license/license.component';
-import VeeamEnterpriseLicenseTerminateComponent from './dashboard/terminate/terminate.component';
+import VeeamEnterpriseDashboardCtrl from '../dashboard/controller';
+import VeeamEnterpriseLicenseComponent from '../dashboard/license/license.component';
+import VeeamEnterpriseLicenseTerminateComponent from '../dashboard/terminate/terminate.component';
 
 import routing from './routing';
 
