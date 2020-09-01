@@ -28,7 +28,9 @@
                     data-value="pricing"
                     data-required
                 >
-                    <span data-ng-bind="$ctrl.getDuration(pricing.interval)"></span>
+                    <span
+                        data-ng-bind="$ctrl.getDuration(pricing.interval)"
+                    ></span>
                     <span>:</span>
                     <ovh-manager-catalog-price
                         data-price="pricing.value"
@@ -40,11 +42,11 @@
         </oui-step-form>
         <oui-step-form
             name="checkout"
-            data-header="{{:: ($ctrl.price.value === 0 ? 'web_domain_zone_activation_step_header_activation' : 'web_domain_zone_activation_step_header_payment') | translate }}"
-            data-submit-text="{{:: ($ctrl.price.value === 0 ? 'web_domain_zone_activation_submit_activate' : 'web_domain_zone_activation_submit_pay') | translate }}"
+            data-header="{{:: ($ctrl.price.price.value === 0 ? 'web_domain_zone_activation_step_header_activation' : 'web_domain_zone_activation_step_header_payment') | translate }}"
+            data-submit-text="{{:: ($ctrl.price.price.value === 0 ? 'web_domain_zone_activation_confirm' : 'web_domain_zone_activation_submit_pay') | translate }}"
             data-cancel-text="{{:: 'web_domain_zone_activation_cancel' | translate }}"
             data-editable="::false"
-            data-description="{{:: ($ctrl.price.value === 0 ? 'web_domain_zone_activation_step_description_activation' : '') | translate }}"
+            data-description="{{:: ($ctrl.price.price.value === 0 ? 'web_domain_zone_activation_step_description_activation' : '') | translate }}"
             data-loading="$ctrl.checkoutLoading"
             data-valid="$ctrl.agreeContracts"
             data-on-focus="$ctrl.prepareCheckout()"
@@ -52,7 +54,7 @@
             data-prevent-next
         >
             <ovh-payment-method-choice
-                data-ng-if="::!$ctrl.price.value === 0"
+                data-ng-if="::!$ctrl.price.price.value === 0"
                 data-model="$ctrl.defaultPaymentMethod"
                 data-error-callback="$ctrl.goBack()"
             >
