@@ -1,3 +1,12 @@
+## [15.2.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.2.4...@ovh-ux/manager-web@15.2.5) (2020-09-01)
+
+
+### Bug Fixes
+
+* **private-database.user:** use right translation key ([a893f3b](https://github.com/ovh/manager/commit/a893f3b58043800f17ac3a622eddf77f18015b65))
+
+
+
 ## [15.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.2.3...@ovh-ux/manager-web@15.2.4) (2020-08-31)
 
 

@@ -1,3 +1,21 @@
+# [4.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@4.1.1...@ovh-ux/manager-pci@4.2.0) (2020-09-01)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 546] ([1d7c992](https://github.com/ovh/manager/commit/1d7c9921054e72ade0fdaa1fb5cd64bb95c21594))
+* **i18n:** add missing translations [CDS 547] ([7af54ab](https://github.com/ovh/manager/commit/7af54ab114a3b984402cfe307edb8e95d059ae61))
+* **pci.sidebar:** use small new badges in sidebar ([#3541](https://github.com/ovh/manager/issues/3541)) ([05dc6af](https://github.com/ovh/manager/commit/05dc6afa39a9018534d92b1c39806c78a73e5979))
+
+
+### Features
+
+* add a message on automated backup for I1 instance ([f9bc7f9](https://github.com/ovh/manager/commit/f9bc7f9fb5cd43f4e846294e26792d970dbf1cad))
+* change error message for no compatible instance ([7076195](https://github.com/ovh/manager/commit/707619552350d16b6f6a5167a2c97a6e43962e8c))
+* change error message no compatible volume ([791956f](https://github.com/ovh/manager/commit/791956f0bc25b8105b29f93ccf3c2c9bc4268123))
+
+
+
 ## [4.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@4.1.0...@ovh-ux/manager-pci@4.1.1) (2020-08-18)
 
 

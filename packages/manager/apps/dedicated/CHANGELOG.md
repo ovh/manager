@@ -1,3 +1,13 @@
+## [13.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@13.2.2...@ovh-ux/manager-dedicated@13.2.3) (2020-09-01)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 552] ([075dcb3](https://github.com/ovh/manager/commit/075dcb3250b6be3a583e4756f19f024c02423575))
+* **order:** add order status tracking ([c86845d](https://github.com/ovh/manager/commit/c86845de577d6d5620889442c611e5bdee7cec58))
+
+
+
 ## [13.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@13.2.1...@ovh-ux/manager-dedicated@13.2.2) (2020-08-26)
 
 
