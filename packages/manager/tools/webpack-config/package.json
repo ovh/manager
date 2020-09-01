@@ -70,6 +70,7 @@
     "webpack-bundle-analyzer": "^2.13.1",
     "webpack-cli": "^3.3.9",
     "webpack-merge": "^4.2.2",
+    "webpack-retry-chunk-load-plugin": "^1.4.0",
     "webpackbar": "^3.2.0"
   },
   "devDependencies": {
