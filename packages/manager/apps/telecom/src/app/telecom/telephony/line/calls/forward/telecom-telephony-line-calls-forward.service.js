@@ -90,13 +90,15 @@ angular
             const numbers = map(FORWARD_TYPES, (forwardType) =>
               $q
                 .all({
-                  services: $http
-                    .get('/telephony/searchServices', {
-                      params: {
-                        axiom: options[`forward${forwardType}Number`],
-                      },
-                    })
-                    .then(({ data }) => data),
+                  services: options[`forward${forwardType}Number`]
+                    ? $http
+                        .get('/telephony/searchServices', {
+                          params: {
+                            axiom: options[`forward${forwardType}Number`],
+                          },
+                        })
+                        .then(({ data }) => data)
+                    : [],
                   nature: forwardType,
                 })
                 .then(({ services, nature }) => {
