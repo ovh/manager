@@ -21,6 +21,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('veeam-cloud-connect.detail', {
           serviceName,
         }),
+      hideBreadcrumb: /* @ngInject */ () => true,
     },
   });
 };
