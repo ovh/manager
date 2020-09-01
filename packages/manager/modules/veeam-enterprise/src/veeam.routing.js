@@ -1,8 +1,8 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('veeams-enterprise', {
-    url: `/paas/veeam-enterprise?${ListLayoutHelper.urlQueryParams}`,
+  $stateProvider.state('veeam-enterprise.index', {
+    url: `?${ListLayoutHelper.urlQueryParams}`,
     component: 'managerListLayout',
     params: ListLayoutHelper.stateParams,
     resolve: {
@@ -14,7 +14,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $translate.instant('veeam_enterprise_title'),
       customizableColumns: () => true,
       getServiceNameLink: /* @ngInject */ ($state) => ({ serviceName }) =>
-        $state.href('veeam-enterprise', {
+        $state.href('veeam-enterprise.details', {
           serviceName,
         }),
     },
