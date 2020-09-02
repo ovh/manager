@@ -2,18 +2,24 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
+import '@ovh-ux/ng-ui-router-breadcrumb';
+
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 
 const moduleName = 'ovhManagerVeeamEnterpriseLazyLoading';
 
 angular
-  .module(moduleName, ['ui.router', 'oc.lazyLoad'])
+  .module(moduleName, ['ngUiRouterBreadcrumb', 'ui.router', 'oc.lazyLoad'])
   .config(
     /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       $stateProvider.state('veeam-enterprise', {
         url: '/veeam-enterprise',
         redirectTo: 'veeam-enterprise.index',
         template: '<div ui-view></div>',
+        resolve: {
+          breadcrumb: /* @ngInject */ ($translate) =>
+            $translate.instant('veeam_enterprise_title'),
+        },
       });
 
       $stateProvider.state('veeam-enterprise.details.**', {
@@ -46,6 +52,7 @@ angular
       });
     },
   )
+  .run(/* @ngTranslationsInject:json ./translations */)
   .run(
     /* @ngInject */ ($translate, $transitions) => {
       $transitions.onBefore({ to: 'veeam-enterprise.**' }, () =>
