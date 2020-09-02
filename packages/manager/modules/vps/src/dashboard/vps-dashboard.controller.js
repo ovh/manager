@@ -15,7 +15,7 @@ import {
   CONTACTS_URL,
   IP_URL,
   RENEW_URL,
-} from '../constants';
+} from '../vps/constants';
 
 export default class {
   /* @ngInject */
