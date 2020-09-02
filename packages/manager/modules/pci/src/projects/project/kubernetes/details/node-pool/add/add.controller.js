@@ -41,14 +41,13 @@ export default class {
 
   create() {
     this.isAdding = true;
-    return this.Kubernetes
-      .createNodePool(
-        this.projectId,
-        this.kubeId,
-        this.nodePool.nodeCount,
-        this.nodePool.flavor.name,
-        this.nodePool.name,
-      )
+    return this.Kubernetes.createNodePool(
+      this.projectId,
+      this.kubeId,
+      this.nodePool.nodeCount,
+      this.nodePool.flavor.name,
+      this.nodePool.name,
+    )
       .then(() =>
         this.goBack(
           this.$translate.instant('kube_add_node_pool_success', {
@@ -72,7 +71,7 @@ export default class {
 
   loadFlavors(region) {
     this.loadingFlavors = true;
-    this.Kubernetes.getAvailableFlavors(region, this.projectId)
+    this.Kubernetes.getAvailableFlavors(region, this.projectId, this.kubeId)
       .then((flavors) => {
         this.flavors = flavors;
       })
