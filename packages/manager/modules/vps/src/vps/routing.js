@@ -104,6 +104,7 @@ export default /* @ngInject */ ($stateProvider) => {
           params,
           options,
         ),
+      breadcrumb: /* @ngInject */ (serviceName) => serviceName,
     },
     views: {
       'vpsHeader@vps': {

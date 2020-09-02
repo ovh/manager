@@ -15,6 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
       mount: /* @ngInject */ ($transition$) => $transition$.params().mount,
       restorePoint: /* @ngInject */ ($transition$) =>
         $transition$.params().restorePoint,
+      breadcrumb: () => null,
     },
   });
 };

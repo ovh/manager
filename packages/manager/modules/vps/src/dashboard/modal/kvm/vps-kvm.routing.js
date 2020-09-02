@@ -12,6 +12,7 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     resolve: {
       noVnc: /* @ngInject */ ($transition$) => $transition$.params().noVnc,
+      breadcrumb: () => null,
     },
   });
 };

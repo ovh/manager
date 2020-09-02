@@ -20,6 +20,7 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       state: /* @ngInject */ ($transition$) => $transition$.params().state,
       preview: /* @ngInject */ ($transition$) => $transition$.params().preview,
+      breadcrumb: () => null,
     },
   });
 };

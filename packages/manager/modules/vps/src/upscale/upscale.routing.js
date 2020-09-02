@@ -29,6 +29,8 @@ export default /* @ngInject */ function($stateProvider) {
             ...catalog.products.find(({ name }) => name === option.planCode),
           })),
         ),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('vps_upscale_title'),
     },
     views: {
       'vpsHeader@vps': {

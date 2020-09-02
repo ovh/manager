@@ -19,6 +19,8 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('vps.detail.backup-storage.password'),
       goBack: /* @ngInject */ ($state) => () =>
         $state.go('vps.detail.backup-storage'),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('vps_backup_storage'),
     },
   });
 };

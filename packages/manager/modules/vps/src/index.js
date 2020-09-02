@@ -18,6 +18,7 @@ angular
           resolve: {
             currentUser: /* @ngInject */ (OvhApiMe) =>
               OvhApiMe.v6().get().$promise,
+            breadcrumb: () => 'VPS',
           },
         })
         .state('vps.index.**', {

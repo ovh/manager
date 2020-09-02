@@ -23,9 +23,9 @@ export default /* @ngInject */ ($stateProvider) => {
         controllerAs: '$ctrl',
       },
     },
-    translations: {
-      value: ['./'],
-      format: 'json',
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('vps_configuration_upgradevps_title'),
     },
   });
 };

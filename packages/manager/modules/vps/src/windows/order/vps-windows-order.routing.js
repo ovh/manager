@@ -24,9 +24,9 @@ export default /* @ngInject */ ($stateProvider) => {
       return orderController;
     },
     controllerAs: '$ctrl',
-    translations: {
-      value: ['./'],
-      format: 'json',
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('vps_order_windows_title'),
     },
   });
 };

@@ -109,6 +109,7 @@ export default /* @ngInject */ ($stateProvider) => {
           : setExpirationDateTermination(
               terminateChoice === TERMINATE_OPTIONS.TERMINATE_AT_EXPIRATION,
             ),
+      breadcrumb: () => null,
     },
   });
 };

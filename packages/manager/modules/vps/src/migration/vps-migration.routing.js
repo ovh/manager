@@ -43,6 +43,8 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
       schedulePage: /* @ngInject */ ($state) => (servers) =>
         $state.go('vps.migration.schedule', { servers }),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('vps_migration_title'),
     },
   });
   $stateProvider.state('vps.migration.schedule', {
@@ -81,6 +83,7 @@ export default /* @ngInject */ ($stateProvider) => {
         }
         return promise;
       },
+      breadcrumb: () => null,
     },
   });
 };
