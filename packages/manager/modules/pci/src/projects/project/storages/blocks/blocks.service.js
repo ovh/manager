@@ -1,6 +1,9 @@
 import find from 'lodash/find';
 import filter from 'lodash/filter';
 import get from 'lodash/get';
+import head from 'lodash/head';
+import isArray from 'lodash/isArray';
+import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import round from 'lodash/round';
@@ -48,7 +51,12 @@ export default class PciProjectStorageBlockService {
         const instanceIds = uniq(
           reduce(
             volumes,
-            (instanceAcc, volume) => [...instanceAcc, ...volume.attachedTo],
+            (instanceAcc, volume) => {
+              if(isArray(volume.attachedTo) && !isEmpty(head(volume.attachedTo))) {
+                return [...instanceAcc, ...volume.attachedTo];
+              }
+              return [...instanceAcc];
+            },
             [],
           ),
         );
