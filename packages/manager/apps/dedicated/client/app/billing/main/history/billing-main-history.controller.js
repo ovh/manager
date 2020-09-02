@@ -115,8 +115,6 @@ export default class BillingMainHistoryCtrl extends ListLayoutHelper.ListLayoutC
         name: 'priceWithTax.value',
         sortable: this.getSorting('priceWithTax.value'),
       },
-      { name: 'debt.dueAmount', sortable: this.getSorting('debt.dueAmount') },
-      { name: 'debt.status', sortable: this.getSorting('debt.status') },
     ];
   }
 }
