@@ -20,6 +20,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('vps.detail', {
           serviceName,
         }),
+      hideBreadcrumb: () => true,
     },
   });
 };
