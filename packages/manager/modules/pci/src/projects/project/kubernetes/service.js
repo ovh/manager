@@ -1,9 +1,13 @@
 import map from 'lodash/map';
 import sortBy from 'lodash/sortBy';
 
-import NodePool from './details/node-pool/node-pool.class'
+import NodePool from './details/node-pool/node-pool.class';
 
-import { CONFIG_FILENAME, ERROR_STATUS, PROCESSING_STATUS } from './details/constants';
+import {
+  CONFIG_FILENAME,
+  ERROR_STATUS,
+  PROCESSING_STATUS,
+} from './details/constants';
 
 export default class Kubernetes {
   /* @ngInject */
@@ -71,51 +75,48 @@ export default class Kubernetes {
   }
 
   createCluster(projectId, name, region, version, desiredNodes, flavorName) {
-    return this.$http
-      .post(
-        `/cloud/project/${projectId}/kube`,
-        {
-          region,
-          name,
-          version,
-          nodepool: {
-            desiredNodes,
-            flavorName,
-          }
-        },
-      )
+    return this.$http.post(`/cloud/project/${projectId}/kube`, {
+      region,
+      name,
+      version,
+      nodepool: {
+        desiredNodes,
+        flavorName,
+      },
+    });
   }
 
   createNodePool(projectId, kubeId, desiredNodes, flavorName, name) {
-    return this.$http
-      .post(
-        `/cloud/project/${projectId}/kube/${kubeId}/nodepool`,
-        {
-          name,
-          desiredNodes,
-          flavorName,
-        },
-      )
+    return this.$http.post(
+      `/cloud/project/${projectId}/kube/${kubeId}/nodepool`,
+      {
+        name,
+        desiredNodes,
+        flavorName,
+      },
+    );
   }
 
   deleteNodePool(projectId, kubeId, nodePoolId) {
-    return this.$http
-      .delete(`/cloud/project/${projectId}/kube/${kubeId}/nodepool/${nodePoolId}`)
+    return this.$http.delete(
+      `/cloud/project/${projectId}/kube/${kubeId}/nodepool/${nodePoolId}`,
+    );
   }
 
   resizeNodePool(projectId, kubeId, nodePoolId, desiredNodes) {
-    return this.$http
-      .put(
-        `/cloud/project/${projectId}/kube/${kubeId}/nodepool/${nodePoolId}`,
-        {
-          desiredNodes,
-        },
-      )
+    return this.$http.put(
+      `/cloud/project/${projectId}/kube/${kubeId}/nodepool/${nodePoolId}`,
+      {
+        desiredNodes,
+      },
+    );
   }
 
   getNodes(projectId, kubeId, nodePoolId) {
     return this.$http
-      .get(`/cloud/project/${projectId}/kube/${kubeId}/nodepool/${nodePoolId}/nodes`)
+      .get(
+        `/cloud/project/${projectId}/kube/${kubeId}/nodepool/${nodePoolId}/nodes`,
+      )
       .then((nodes) => nodes.data);
   }
 
@@ -131,41 +132,43 @@ export default class Kubernetes {
       .then((nodePool) => new NodePool(nodePool.data));
   }
 
-  getAvailableFlavors(region, projectId) {
+  getAvailableFlavors(region, projectId, kubeId = null) {
     if (this.availableFlavors) {
       return this.$q.when(this.availableFlavors);
     }
-    return this.$q.all({
-      flavors: this.getAllFlavors(region, projectId),
-      kubeFlavors: this.getKubeFlavors(region, projectId)
-    }).then(({ flavors, kubeFlavors }) => {
-      const availableFlavors = map(kubeFlavors, (flavor) => {
-        const pciFlavor = flavors.find(
-          (flavorDetails) => flavorDetails.name === flavor.name,
-        );
-        return pciFlavor;
+    return this.$q
+      .all({
+        flavors: this.getAllFlavors(region, projectId),
+        kubeFlavors: this.getKubeFlavors(region, projectId, kubeId),
+      })
+      .then(({ flavors, kubeFlavors }) => {
+        const availableFlavors = map(kubeFlavors, (flavor) => {
+          const pciFlavor = flavors.find(
+            (flavorDetails) => flavorDetails.name === flavor.name,
+          );
+          return pciFlavor;
+        });
+        this.availableFlavors = sortBy(availableFlavors, 'ram');
+        return this.availableFlavors;
       });
-      this.availableFlavors = sortBy(availableFlavors, 'ram');
-      return this.availableFlavors;
-    });
   }
 
-  getKubeFlavors(region, projectId) {
-    return this.$http.get(
-      `/cloud/project/${projectId}/capabilities/kube/flavors`,
-      {
-        params: {
-          region,
-        },
-      },
+  getKubeFlavors(region, projectId, kubeId = null) {
+    return (kubeId
+      ? this.$http.get(`/cloud/project/${projectId}/kube/${kubeId}/flavors`)
+      : this.$http.get(
+          `/cloud/project/${projectId}/capabilities/kube/flavors`,
+          {
+            params: {
+              region,
+            },
+          },
+        )
     ).then((response) => response.data);
   }
 
   getAllFlavors(region, projectId) {
-    return this.PciProjectFlavors.getFlavors(
-      projectId,
-      region,
-    );
+    return this.PciProjectFlavors.getFlavors(projectId, region);
   }
 
   getProjectInstances(projectId) {
