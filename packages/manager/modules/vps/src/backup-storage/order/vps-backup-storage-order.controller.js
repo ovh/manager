@@ -1,7 +1,7 @@
 import find from 'lodash/find';
 import get from 'lodash/get';
 
-import { ORDER_EXPRESS_BASE_URL } from '../../constants';
+import { ORDER_EXPRESS_BASE_URL } from '../../vps/constants';
 
 export default class VpsBackupStorageOrderCtrl {
   /* @ngInject */

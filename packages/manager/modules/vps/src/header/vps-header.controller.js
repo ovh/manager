@@ -8,7 +8,7 @@ import {
   TAB_FEATURES,
 } from './vps-header.constants';
 
-import { PRODUCT_NAME } from '../constants';
+import { PRODUCT_NAME } from '../vps/constants';
 
 export default class {
   /* @ngInject */
