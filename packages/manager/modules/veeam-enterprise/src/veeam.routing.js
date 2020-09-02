@@ -17,6 +17,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('veeam-enterprise.details', {
           serviceName,
         }),
+      hideBreadcrumb: () => true,
     },
   });
 };
