@@ -11,6 +11,7 @@ import { Environment } from '@ovh-ux/manager-config';
 
 import angular from 'angular';
 import cloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-components';
+import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import ovhManagerVps from '@ovh-ux/manager-vps';
 import ovhManagerCore from '@ovh-ux/manager-core';
 
@@ -21,7 +22,12 @@ import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 Environment.setRegion(__WEBPACK_REGION__);
 
 angular
-  .module('vpsApp', [cloudUniverseComponents, ovhManagerCore, ovhManagerVps])
+  .module('vpsApp', [
+    cloudUniverseComponents,
+    ngUiRouterBreadcrumb,
+    ovhManagerCore,
+    ovhManagerVps,
+  ])
   .config(
     /* @ngInject */ (CucConfigProvider, coreConfigProvider) => {
       CucConfigProvider.setRegion(coreConfigProvider.getRegion());
