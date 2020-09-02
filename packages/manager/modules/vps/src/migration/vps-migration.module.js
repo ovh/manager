@@ -11,7 +11,7 @@ import migrationPlan from './components/plan';
 import routing from './vps-migration.routing';
 import service from './vps-migration.service';
 import VpsService from '../import/vps.service';
-import VpsTaskService from '../vps-task.service';
+import VpsTaskService from '../vps/vps-task.service';
 
 import './vps-migration.less';
 

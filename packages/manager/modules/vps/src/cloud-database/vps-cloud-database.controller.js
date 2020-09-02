@@ -7,7 +7,7 @@ import isString from 'lodash/isString';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 
-import { PRIVATE_DATABASE_URL } from '../constants';
+import { PRIVATE_DATABASE_URL } from '../vps/constants';
 
 export default class {
   /* @ngInject */
