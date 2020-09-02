@@ -3,8 +3,8 @@ import dashboardTemplate from '../dashboard/template.html';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
-    .state('veeam-enterprise', {
-      url: '/veeam-enterprise/{serviceName}',
+    .state('veeam-enterprise.details', {
+      url: '/{serviceName}',
       redirectTo: 'veeam-enterprise.details.dashboard',
       template,
       controller: 'VeeamEnterpriseCtrl',
@@ -24,6 +24,7 @@ export default /* @ngInject */ ($stateProvider) => {
           $state.go('veeam-enterprise.details.dashboard.license.update'),
         goToLicenseTerminate: /* @ngInject */ ($state) => () =>
           $state.go('veeam-enterprise.details.dashboard.license.terminate'),
+        breadcrumb: /* @ngInject */ (serviceName) => serviceName,
       },
     })
     .state('veeam-enterprise.details.dashboard', {
@@ -36,8 +37,11 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       },
       translations: {
-        value: ['./dashboard'],
+        value: ['../dashboard'],
         format: 'json',
+      },
+      resolve: {
+        breadcrumb: () => null,
       },
     })
     .state('veeam-enterprise.details.dashboard.license', {
@@ -54,6 +58,7 @@ export default /* @ngInject */ ($stateProvider) => {
       layout: 'modal',
       resolve: {
         action: () => 'register',
+        breadcrumb: () => null,
       },
     })
     .state('veeam-enterprise.details.dashboard.license.update', {
@@ -66,6 +71,7 @@ export default /* @ngInject */ ($stateProvider) => {
       layout: 'modal',
       resolve: {
         action: () => 'update',
+        breadcrumb: () => null,
       },
     })
     .state('veeam-enterprise.details.dashboard.license.terminate', {
@@ -76,5 +82,8 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       },
       layout: 'modal',
+      resolve: {
+        breadcrumb: () => null,
+      },
     });
 };
