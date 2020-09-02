@@ -1,12 +1,12 @@
 import kebabCase from 'lodash/kebabCase';
 import 'moment';
 
-import { NEW_RANGE_VERSION } from './dashboard/vps-dashboard.constants';
-import { RANGES } from './upscale/upscale.constants';
+import { NEW_RANGE_VERSION } from '../dashboard/vps-dashboard.constants';
+import { RANGES } from '../upscale/upscale.constants';
 import { FEATURE_CLOUDDATABASE, PRODUCT_NAME } from './constants';
 
-import detailComponent from './detail/vps-detail.component';
-import headerComponent from './header/vps-header.component';
+import detailComponent from '../detail/vps-detail.component';
+import headerComponent from '../header/vps-header.component';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('vps.detail', {
