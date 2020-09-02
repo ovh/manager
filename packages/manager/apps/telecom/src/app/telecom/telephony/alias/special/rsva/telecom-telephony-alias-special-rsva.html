@@ -228,7 +228,7 @@
         <oui-button
             class="mb-5"
             data-variant="primary"
-            data-disabled="!$ctrl.hasChanged()"
+            data-disabled="!$ctrl.hasChanged() || !$ctrl.directory.email"
             data-on-click="$ctrl.applyChanges()"
         >
             <span data-translate="common_confirm"></span>
