@@ -8,5 +8,9 @@ export default /* @ngInject */ ($stateProvider) => {
         component: component.name,
       },
     },
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('vps_monitoring'),
+    },
   });
 };

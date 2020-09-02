@@ -166,6 +166,7 @@ export default /* @ngInject */ ($stateProvider) => {
           servers: [server],
         });
       },
+      breadcrumb: () => null,
     },
   });
 };
