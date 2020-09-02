@@ -1,9 +1,19 @@
+import head from 'lodash/head';
 import isString from 'lodash/isString';
 
 angular.module('App').controller(
   'HostingTabDomainsMultisiteLogs',
   class HostingTabDomainsMultisiteLogs {
-    constructor($scope, $stateParams, $translate, Alerter, Hosting, constants) {
+    constructor(
+      $http,
+      $scope,
+      $stateParams,
+      $translate,
+      Alerter,
+      Hosting,
+      constants,
+    ) {
+      this.$http = $http;
       this.$scope = $scope;
       this.$stateParams = $stateParams;
       this.$translate = $translate;
@@ -23,6 +33,20 @@ angular.module('App').controller(
       });
     }
 
+    fetchOwnLogs(serviceName, ownLogDomain) {
+      return this.$http
+        .get(`/hosting/web/${serviceName}/ownLogs`, {
+          params: {
+            fqdn: ownLogDomain,
+          },
+        })
+        .then(({ data }) => data)
+        .then((ids) =>
+          this.$http.get(`/hosting/web/${serviceName}/ownLogs/${head(ids)}`),
+        )
+        .then(({ data }) => data.logs);
+    }
+
     /* eslint-disable no-param-reassign */
     generateLogHref(domain) {
       domain.logUrlGenerated = true;
@@ -31,9 +55,13 @@ angular.module('App').controller(
         this.Hosting.getUserLogsToken(this.$stateParams.productId, {
           params: { attachedDomain: domain.name, remoteCheck: true },
         })
-          .then((result) => {
-            domain.logUrl = `${this.$scope.logs.logs}?token=${result}`;
-          })
+          .then((token) =>
+            this.fetchOwnLogs(this.$stateParams.productId, domain.ownLog).then(
+              (logs) => {
+                domain.logUrl = `${logs}?token=${token}`;
+              },
+            ),
+          )
           .catch(() => {
             this.Alerter.error(
               this.$translate.instant(
