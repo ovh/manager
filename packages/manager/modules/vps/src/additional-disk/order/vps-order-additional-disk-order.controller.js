@@ -6,7 +6,7 @@ import map from 'lodash/map';
 import set from 'lodash/set';
 import sortBy from 'lodash/sortBy';
 
-import { ORDER_EXPRESS_BASE_URL } from '../../constants';
+import { ORDER_EXPRESS_BASE_URL } from '../../vps/constants';
 
 export default class VpsOrderDiskCtrl {
   /* @ngInject */
