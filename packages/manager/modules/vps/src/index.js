@@ -2,7 +2,7 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-import template from './vps.html';
+import template from './vps/vps.html';
 
 const moduleName = 'ovhManagerVpsLazyLoading';
 
