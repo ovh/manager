@@ -24,6 +24,19 @@
             ></span>
         </tuc-input-file>
 
+        <oui-message
+            class="mt-2"
+            data-type="error"
+            role="alert"
+            data-dismissable="true"
+            data-ng-if="$ctrl.error"
+        >
+            <p
+                data-translate="telephony_alias_config_contactCenterSolution_sounds_upload_error"
+            ></p>
+            <p data-ng-bind="$ctrl.error.data.message"></p>
+        </oui-message>
+
         <oui-button
             class="my-3"
             data-variant="secondary"
