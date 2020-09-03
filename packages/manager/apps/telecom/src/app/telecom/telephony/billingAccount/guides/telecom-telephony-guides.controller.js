@@ -1,43 +1,48 @@
-import flatten from 'lodash/flatten';
-import map from 'lodash/map';
+import { GUIDES } from './telecom-telephony-guides.constants';
 
-import { Environment } from '@ovh-ux/manager-config';
+export default class TelecomTelephonyGuidesCtrl {
+  /* @ngInject */
+  constructor(SessionService) {
+    this.SessionService = SessionService;
+  }
 
-angular.module('managerApp').controller(
-  'TelecomTelephonyGuidesCtrl',
-  class TelecomTelephonyGuidesCtrl {
-    constructor(TELEPHONY_GUIDES) {
-      this.constant = { TELEPHONY_GUIDES };
-    }
+  $onInit() {
+    this.loading = {
+      init: true,
+    };
+    this.guides = { sections: [] };
 
-    $onInit() {
-      this.loading = {
-        init: false,
+    this.SessionService.getUser().then(({ ovhSubsidiary }) => {
+      this.language = ovhSubsidiary;
+
+      this.guides = {
+        sections: GUIDES.sections.reduce((sections, section) => {
+          const filteredSection = {
+            ...section,
+            guides: section.guides
+              .filter((guide) => guide.url[ovhSubsidiary])
+              .map((guide) => ({
+                ...guide,
+                url: guide.url[ovhSubsidiary],
+              })),
+          };
+
+          if (filteredSection.guides.length > 0) {
+            return [...sections, filteredSection];
+          }
+          return sections;
+        }, []),
       };
-      this.guides = null;
-      this.language = null;
-      this.count = null;
 
-      this.guides = this.constant.TELEPHONY_GUIDES;
-      this.language = Environment.getUserLanguage();
-      this.countGuides();
-    }
+      this.loading.init = false;
+    });
+  }
 
-    /**
-     * Count guides.
-     */
-    countGuides() {
-      this.count = flatten(
-        map(this.guides.sections, (section) => section.guides),
-      ).length;
-    }
-
-    /**
-     * Has guides helper.
-     * @return {Boolean}
-     */
-    hasGuides() {
-      return this.count > 0;
-    }
-  },
-);
+  /**
+   * Has guides helper.
+   * @return {Boolean}
+   */
+  hasGuides() {
+    return this.guides.sections.length > 0;
+  }
+}
