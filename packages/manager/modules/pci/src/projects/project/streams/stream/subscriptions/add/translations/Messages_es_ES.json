@@ -1,8 +1,0 @@
-{
-  "pci_projects_project_streams_stream_subscriptions_add_title": "Añadir una suscripción",
-  "pci_projects_project_streams_stream_subscriptions_add_submit_label": "Añadir",
-  "pci_projects_project_streams_stream_subscriptions_add_cancel_label": "Cancelar",
-  "pci_projects_project_streams_stream_subscriptions_add_name_label": "Nombre de la suscripción",
-  "pci_projects_project_streams_stream_subscriptions_add_success_message": "La suscripción {{subscription}} se ha añadido.",
-  "pci_projects_project_streams_stream_subscriptions_add_error_add": "Se ha producido un error al añadir la suscripción {{ subscription }}: {{ message }}."
-}

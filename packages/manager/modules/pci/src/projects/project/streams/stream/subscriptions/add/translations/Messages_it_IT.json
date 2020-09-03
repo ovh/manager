@@ -1,8 +1,0 @@
-{
-  "pci_projects_project_streams_stream_subscriptions_add_title": "Aggiungi una sottoscrizione",
-  "pci_projects_project_streams_stream_subscriptions_add_submit_label": "Aggiungi",
-  "pci_projects_project_streams_stream_subscriptions_add_cancel_label": "Annulla",
-  "pci_projects_project_streams_stream_subscriptions_add_name_label": "Nome della sottoscrizione",
-  "pci_projects_project_streams_stream_subscriptions_add_success_message": "La sottoscrizione {{subscription}} è stata aggiunta.",
-  "pci_projects_project_streams_stream_subscriptions_add_error_add": "Si è verificato un errore durante l’aggiunta della sottoscrizione {{ subscription }}: {{ message }}."
-}

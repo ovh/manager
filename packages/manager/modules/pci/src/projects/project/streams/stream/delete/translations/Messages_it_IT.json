@@ -1,8 +1,0 @@
-{
-  "pci_projects_project_streams_stream_delete_title": "Elimina lo stream",
-  "pci_projects_project_streams_stream_delete_submit_label": "Conferma",
-  "pci_projects_project_streams_stream_delete_cancel_label": "Annulla",
-  "pci_projects_project_streams_stream_delete_content": "Vuoi eliminare lo stream {{ stream }}?",
-  "pci_projects_project_streams_stream_delete_success_message": "Lo stream {{ stream }} è stato eliminato.",
-  "pci_projects_project_streams_stream_delete_error_delete": "Si è verificato un errore durante l'eliminazione dello stream {{ stream }}: {{ message }}."
-}

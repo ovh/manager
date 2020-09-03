@@ -143,15 +143,6 @@ export const MENU = [
         regions: ['EU', 'CA'],
       },
       {
-        id: 'io-stream',
-        beta: true,
-        options: {
-          state: 'pci.projects.project.streams',
-        },
-        title: 'ioStream',
-        regions: ['EU'],
-      },
-      {
         id: 'serving',
         new: true,
         options: {
