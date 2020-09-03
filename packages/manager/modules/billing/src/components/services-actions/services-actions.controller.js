@@ -41,7 +41,7 @@ export default class ServicesActionsCtrl {
         this.renewLink = `${this.CORE_MANAGER_URLS.telecom}sms/${this.service.serviceId}/options/recredit`;
         break;
       default:
-        this.resiliateLink = `${this.autorenewLink}/delete?serviceId=${this.service.serviceId}`;
+        this.resiliateLink = `${this.autorenewLink}/delete?serviceId=${this.service.serviceId}&serviceType=${this.service.serviceType}`;
         break;
     }
   }
