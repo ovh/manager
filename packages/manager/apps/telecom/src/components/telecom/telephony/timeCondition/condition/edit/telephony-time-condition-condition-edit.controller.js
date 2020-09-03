@@ -244,30 +244,30 @@ angular
       };
 
       /* ----------  TimeFrom and TimeTo  ----------*/
-      self.onTimeFromChange = function onTimeFromChange(modelValue) {
-        self.model.timeFrom = modelValue;
-        const timeToMoment = moment(self.model.timeTo);
+      self.onTimeChange = function onTimeChange(modelValue, timeAttr) {
+        self.model[timeAttr] = modelValue;
+        const timeToMoment = moment(self.model.timeTo, 'HH:mm');
         const isEndMidnight =
           timeToMoment.get('hour') === 0 && timeToMoment.get('minute') === 0;
-        if (!isEndMidnight && self.model.timeFrom >= self.model.timeTo) {
-          self.model.timeTo = moment(self.model.timeFrom)
+        if (
+          !isEndMidnight &&
+          moment(self.model.timeFrom, 'HH:mm').isSameOrAfter(
+            moment(self.model.timeTo, 'HH:mm'),
+          )
+        ) {
+          self.model.timeTo = moment(self.model.timeFrom, 'HH:mm')
             .add(15, 'minute')
             .toDate();
         }
         refreshTime();
       };
 
+      self.onTimeFromChange = function onTimeFromChange(modelValue) {
+        self.onTimeChange(modelValue, 'timeFrom');
+      };
+
       self.onTimeToChange = function onTimeToChange(modelValue) {
-        self.model.timeTo = modelValue;
-        const timeToMoment = moment(self.model.timeTo);
-        const isMidnight =
-          timeToMoment.get('hour') === 0 && timeToMoment.get('minute') === 0;
-        if (!isMidnight && self.model.timeFrom >= self.model.timeTo) {
-          self.model.timeFrom = moment(self.model.timeTo)
-            .subtract(15, 'minute')
-            .toDate();
-        }
-        refreshTime();
+        self.onTimeChange(modelValue, 'timeTo');
       };
 
       /* ----------  Delete condition  ----------*/
@@ -284,23 +284,31 @@ angular
       /* ----------  Footer actions  ----------*/
 
       self.onValidateBtnClick = function onValidateBtnClick() {
-        let repeatToDays = [];
-        if (self.condition.state === 'DRAFT') {
-          self.condition.state = 'TO_CREATE';
-        }
+        /* Timeout is because of oui-timepicker buggy behavior, the on-change event
+         * is not triggered and the model value is not updated unless you tab out or click
+         * on another element. Clicking on submit button after editing the oui-timepicker
+         * will result in an incorrect model value, adding some delay temporarily fix
+         * the issue. @TODO remove when oui-timepicker is fixed
+         */
+        $timeout(() => {
+          let repeatToDays = [];
+          if (self.condition.state === 'DRAFT') {
+            self.condition.state = 'TO_CREATE';
+          }
 
-        self.condition.stopEdition();
-        repeatToDays = self.repeatToDays.filter(
-          ({ id, active }) => active && ![7, 8].includes(id),
-        );
-
-        if ($scope.$parent.$ctrl.onPopoverValidate) {
-          $scope.$parent.$ctrl.onPopoverValidate(
-            self.fcEvent,
-            repeatToDays,
-            self,
+          self.condition.stopEdition();
+          repeatToDays = self.repeatToDays.filter(
+            ({ id, active }) => active && ![7, 8].includes(id),
           );
-        }
+
+          if ($scope.$parent.$ctrl.onPopoverValidate) {
+            $scope.$parent.$ctrl.onPopoverValidate(
+              self.fcEvent,
+              repeatToDays,
+              self,
+            );
+          }
+        }, 500);
       };
 
       self.onCancelBtnClick = function onCancelBtnClick() {
