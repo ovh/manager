@@ -69,7 +69,7 @@
         data-valid="(
           (!$ctrl.workflow.isFreePricing() && $ctrl.workflow.defaultPaymentMethod != null)
           || $ctrl.workflow.isFreePricing()
-          ) && $ctrl.workflow.agreeContracts"
+          ) && $ctrl.workflow.hasContractsAgreements()"
         data-on-focus="$ctrl.workflow.getValidationInformation()"
         data-prevent-next
         data-submit-text="{{ ($ctrl.workflow.isFreePricing() ? 'ovh_product_offers_confirmation_activate' : 'ovh_product_offers_confirmation_pay') | translate }}"
