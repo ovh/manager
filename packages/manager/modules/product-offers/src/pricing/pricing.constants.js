@@ -15,7 +15,12 @@ export const PRICING_CAPACITIES = {
 };
 
 export const PRICING_MODE = {
-  DEFAULT: 'default',
+  DEFAULTS: {
+    CREATE: 'create-default',
+    DEFAULT: 'default',
+    TRANSFER: 'transfer-default',
+    PREMIUM: 'premium-default',
+  },
 };
 
 export default {

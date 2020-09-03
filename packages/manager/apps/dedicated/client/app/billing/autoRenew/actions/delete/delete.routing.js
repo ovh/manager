@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.account.billing.autorenew.delete', {
-    url: '/delete?serviceId',
+    url: '/delete?serviceId&serviceType',
     views: {
       modal: {
         component: 'billingAutorenewDelete',
@@ -21,8 +21,10 @@ export default /* @ngInject */ ($stateProvider) => {
       goBack: /* @ngInject */ (goToAutorenew) => goToAutorenew,
       serviceId: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceId,
-      service: /* @ngInject */ (BillingAutoRenew, serviceId) =>
-        BillingAutoRenew.getService(serviceId),
+      serviceType: /* @ngInject */ ($transition$) =>
+        $transition$.params().serviceType,
+      service: /* @ngInject */ (BillingAutoRenew, serviceId, serviceType) =>
+        BillingAutoRenew.getService(serviceId, serviceType),
       supportPhoneNumber: /* @ngInject */ (constants, currentUser) =>
         constants.SUPPORT[currentUser.ovhSubsidiary],
       updateService: /* @ngInject */ (BillingAutoRenew) => (service) =>

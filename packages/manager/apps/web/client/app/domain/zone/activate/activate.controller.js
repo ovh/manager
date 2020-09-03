@@ -1,5 +1,6 @@
 import filter from 'lodash/filter';
 import get from 'lodash/get';
+import uniqBy from 'lodash/uniqBy';
 
 import { pricingConstants } from '@ovh-ux/manager-product-offers';
 
@@ -12,6 +13,7 @@ export default class DomainDnsZoneActivateController {
     $window,
     Alerter,
     DomainDnsZoneActivateService,
+    ovhManagerProductOffersService,
   ) {
     this.$filter = $filter;
     this.$timeout = $timeout;
@@ -19,13 +21,21 @@ export default class DomainDnsZoneActivateController {
     this.$window = $window;
     this.Alerter = Alerter;
     this.DomainDnsZoneActivateService = DomainDnsZoneActivateService;
+    this.ovhManagerProductOffersService = ovhManagerProductOffersService;
   }
 
   $onInit() {
     // Auto-select duration
-    this.prices = filter(
-      this.serviceOption.prices,
-      (price) => price.pricingMode === pricingConstants.PRICING_MODE.DEFAULT,
+    this.prices = uniqBy(
+      filter(
+        this.serviceOption.prices,
+        (price) =>
+          [
+            pricingConstants.PRICING_MODE.DEFAULTS.CREATE,
+            pricingConstants.PRICING_MODE.DEFAULTS.DEFAULT,
+          ].includes(price.pricingMode) && price.interval !== 0,
+      ),
+      'interval',
     );
     [this.price] = this.prices;
     this.interval = this.price.interval;
