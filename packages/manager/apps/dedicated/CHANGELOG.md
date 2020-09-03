@@ -1,3 +1,14 @@
+## [13.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@13.2.3...@ovh-ux/manager-dedicated@13.2.4) (2020-09-03)
+
+
+### Bug Fixes
+
+* **billing.autorenew:** pass service type for resiliation ([#3563](https://github.com/ovh/manager/issues/3563)) ([ddb600a](https://github.com/ovh/manager/commit/ddb600a33ba1ed86b68e5009b8f476b33e4d9498))
+* **dedicated:** add ssh key name validation ([#3556](https://github.com/ovh/manager/issues/3556)) ([d26ddbb](https://github.com/ovh/manager/commit/d26ddbb7cf848ce0872cab0ed2a581bcb7aa37c4))
+* **dedicated:** monitoring units ([#3564](https://github.com/ovh/manager/issues/3564)) ([a67515a](https://github.com/ovh/manager/commit/a67515a9988ea03822983daaa568c60fd0437258))
+
+
+
 ## [13.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@13.2.2...@ovh-ux/manager-dedicated@13.2.3) (2020-09-01)
 
 

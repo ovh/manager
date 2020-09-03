@@ -1,3 +1,12 @@
+## [1.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps-app@1.0.3...@ovh-ux/manager-vps-app@1.0.4) (2020-09-03)
+
+
+### Bug Fixes
+
+* update semver for product offers ([d2a2cfb](https://github.com/ovh/manager/commit/d2a2cfbd93fa71f74da697507662f5d298631694))
+
+
+
 ## [1.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps-app@1.0.2...@ovh-ux/manager-vps-app@1.0.3) (2020-08-18)
 
 

@@ -1,3 +1,23 @@
+# [4.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-product-offers@3.1.2...@ovh-ux/manager-product-offers@4.0.0) (2020-09-03)
+
+
+### Bug Fixes
+
+* **product-offers:** allow to order if no contracts ([#3570](https://github.com/ovh/manager/issues/3570)) ([38d6adb](https://github.com/ovh/manager/commit/38d6adb85eb04dafb7649e90ebcff6354674c1c9))
+
+
+### Features
+
+* **product.offers:** add all default pricing modes in constant ([c84ba83](https://github.com/ovh/manager/commit/c84ba839fd7fe25032e2b36e04ad4d2f02a529e2))
+
+
+### BREAKING CHANGES
+
+* **product.offers:** change the constant object 'PRICING_MODE', and so requires adaptation of 'PRICING_MODE.DEFAULT' uses
+Signed-off-by: Jérémy De-Cesare <jeremy.de-cesare@corp.ovh.com>
+
+
+
 ## [3.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-product-offers@3.1.1...@ovh-ux/manager-product-offers@3.1.2) (2020-08-21)
 
 

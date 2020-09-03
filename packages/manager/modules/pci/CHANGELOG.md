@@ -1,3 +1,14 @@
+## [4.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@4.2.0...@ovh-ux/manager-pci@4.2.1) (2020-09-03)
+
+
+### Bug Fixes
+
+* **kube.node-pool:** use cluster flavor capabilities if it is created ([660939e](https://github.com/ovh/manager/commit/660939edfd550865cfce3a88887e3bbb5133ffbf)), closes [fix#3558](https://github.com/fix/issues/3558)
+* **pci:** container storage gateway url ([#3557](https://github.com/ovh/manager/issues/3557)) ([788b728](https://github.com/ovh/manager/commit/788b72817451898a0ff36d804660358688b9b44e))
+* **public-cloud:** block storage page is not loading ([#3561](https://github.com/ovh/manager/issues/3561)) ([1d59f13](https://github.com/ovh/manager/commit/1d59f137aad7e656866824b9fe964362246d56de)), closes [#DTRSD-17760](https://github.com/ovh/manager/issues/DTRSD-17760)
+
+
+
 # [4.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@4.1.1...@ovh-ux/manager-pci@4.2.0) (2020-09-01)
 
 

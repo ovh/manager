@@ -1,3 +1,16 @@
+## [13.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.2.0...@ovh-ux/manager-telecom@13.2.1) (2020-09-03)
+
+
+### Bug Fixes
+
+* **telecom:** display sound upload errors ([#3551](https://github.com/ovh/manager/issues/3551)) ([c075834](https://github.com/ovh/manager/commit/c0758341ad4b5394eb3f14fe9d9c46c03a2bd8fa))
+* **telecom:** pack resiliation date ([4065575](https://github.com/ovh/manager/commit/4065575b6282a050474c24e38d5c22ec5144fc6f))
+* **telecom:** time condition incorrect date range ([#3537](https://github.com/ovh/manager/issues/3537)) ([cb5b9b9](https://github.com/ovh/manager/commit/cb5b9b9606c9316c804bca1308cfbada6ad367f6))
+* **telephony.alias.rsva:** disable confirm action if no email ([97f15bb](https://github.com/ovh/manager/commit/97f15bb8e12cf9a8f272884cddef8d73076c7d15))
+* missing param axiom to search a service ([#3548](https://github.com/ovh/manager/issues/3548)) ([b28daed](https://github.com/ovh/manager/commit/b28daed70f4e50c33baaae99bb125faf11cf013b))
+
+
+
 # [13.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.1.1...@ovh-ux/manager-telecom@13.2.0) (2020-08-18)
 
 

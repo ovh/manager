@@ -1,3 +1,15 @@
+## [15.2.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.2.5...@ovh-ux/manager-web@15.2.6) (2020-09-03)
+
+
+### Bug Fixes
+
+* **hosting.email:** pass checkout params ([#3565](https://github.com/ovh/manager/issues/3565)) ([8daf507](https://github.com/ovh/manager/commit/8daf5074fb4db7685192d912e50e749680e298ce))
+* update semver for product offers ([d2a2cfb](https://github.com/ovh/manager/commit/d2a2cfbd93fa71f74da697507662f5d298631694))
+* **web.domain:** fix test condition for label issue ([e116c40](https://github.com/ovh/manager/commit/e116c40dd117221d76ad31e264a1a2456aa83da4))
+* **web.domain:** handle new pricing mode ([55a4f64](https://github.com/ovh/manager/commit/55a4f640ebb83e12aad3d432e96d003bfc7fa283))
+
+
+
 ## [15.2.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.2.4...@ovh-ux/manager-web@15.2.5) (2020-09-01)
 
 
