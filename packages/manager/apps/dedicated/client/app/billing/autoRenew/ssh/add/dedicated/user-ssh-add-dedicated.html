@@ -15,7 +15,9 @@
                 <!-- KEY NAME -->
                 <div
                     class="form-group"
-                    data-ng-class="{ 'has-error': sshKeyAlreadyCreatedError }"
+                    data-ng-class="{
+                        'has-error': sshKeyAlreadyCreatedError || dedicatedSshKeyAdd.$invalid
+                    }"
                 >
                     <label
                         for="sshAddKeyNameLabel"
@@ -29,6 +31,7 @@
                         class="form-control"
                         autocomplete="off"
                         data-ng-model="model.keyName"
+                        data-ng-pattern="/^[\w-]+$/"
                     />
                     <span
                         class="help-block"
