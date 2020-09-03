@@ -20,7 +20,6 @@ angular
     OvhApiMe,
     TucPackMediator,
     resiliationNotification,
-    tucValidator,
   ) {
     const self = this;
     self.model = {
@@ -136,8 +135,7 @@ angular
     this.checkDate = function checkDate() {
       return (
         !self.model.when ||
-        (tucValidator.isDate(self.model.when) &&
-          self.model.when >= self.minResiliationDate)
+        moment(self.model.when).isAfter(self.minResiliationDate)
       );
     };
 
