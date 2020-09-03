@@ -1,8 +1,0 @@
-{
-  "pci_projects_project_streams_stream_subscriptions_title": "Abonnements",
-  "pci_projects_project_streams_stream_subscriptions_name_label": "Nom",
-  "pci_projects_project_streams_stream_subscriptions_lag_label": "Lag",
-  "pci_projects_project_streams_stream_subscriptions_reset_label": "Reset",
-  "pci_projects_project_streams_stream_subscriptions_delete_label": "Supprimer",
-  "pci_projects_project_streams_stream_subscriptions_add_label": "Ajouter un abonnement"
-}

@@ -1,8 +1,0 @@
-{
-  "pci_projects_project_streams_stream_subscriptions_reset_cursor_title": "Ripristina il cursore della sottoscrizione",
-  "pci_projects_project_streams_stream_subscriptions_reset_cursor_submit_label": "Conferma",
-  "pci_projects_project_streams_stream_subscriptions_reset_cursor_cancel_label": "Annulla",
-  "pci_projects_project_streams_stream_subscriptions_reset_cursor_content": "Vuoi ripristinare  il cursore della sottoscrizione {{subscription}}?",
-  "pci_projects_project_streams_stream_subscriptions_reset_cursor_success_message": "Il cursore della sottoscrizione {{subscription}} è stato ripristinato.",
-  "pci_projects_project_streams_stream_subscriptions_reset_cursor_error_reset_cursor": "Si è verificato un errore durante il ripristino del cursore della sottoscrizione {{ subscription }}: {{ message }}."
-}

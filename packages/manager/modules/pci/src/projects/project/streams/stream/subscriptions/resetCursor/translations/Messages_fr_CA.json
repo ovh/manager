@@ -1,8 +1,0 @@
-{
-  "pci_projects_project_streams_stream_subscriptions_reset_cursor_title": "Réinitialiser le curseur de l'abonnement",
-  "pci_projects_project_streams_stream_subscriptions_reset_cursor_submit_label": "Confirmer",
-  "pci_projects_project_streams_stream_subscriptions_reset_cursor_cancel_label": "Annuler",
-  "pci_projects_project_streams_stream_subscriptions_reset_cursor_content": "Souhaitez-vous réinitialiser le curseur de l'abonnement {{subscription}} ?",
-  "pci_projects_project_streams_stream_subscriptions_reset_cursor_success_message": "Le curseur de l'abonnement {{subscription}} a été réinitialisé.",
-  "pci_projects_project_streams_stream_subscriptions_reset_cursor_error_reset_cursor": "Une erreur est survenue lors de la réinitialisation du curseur de l'abonnement {{ subscription }} : {{ message }}."
-}

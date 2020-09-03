@@ -1,8 +1,0 @@
-{
-  "pci_projects_project_streams_stream_subscriptions_reset_cursor_title": "Zresetuj kursor subskrypcji",
-  "pci_projects_project_streams_stream_subscriptions_reset_cursor_submit_label": "Zatwierdź",
-  "pci_projects_project_streams_stream_subscriptions_reset_cursor_cancel_label": "Anuluj",
-  "pci_projects_project_streams_stream_subscriptions_reset_cursor_content": "Chcesz zresetować kursor subskrypcji {{subscription}}?",
-  "pci_projects_project_streams_stream_subscriptions_reset_cursor_success_message": "Kursor subskrypcji {{subscription}} został zresetowany.",
-  "pci_projects_project_streams_stream_subscriptions_reset_cursor_error_reset_cursor": "Wystąpił błąd podczas resetu kursora subskrypcji {{ subscription }}: {{ message }}."
-}

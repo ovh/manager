@@ -1,8 +1,0 @@
-{
-  "pci_projects_project_streams_stream_delete_title": "Eliminar o fluxo",
-  "pci_projects_project_streams_stream_delete_submit_label": "Confirmar",
-  "pci_projects_project_streams_stream_delete_cancel_label": "Anular",
-  "pci_projects_project_streams_stream_delete_content": "Deseja eliminar o fluxo {{ stream }}?",
-  "pci_projects_project_streams_stream_delete_success_message": "O fluxo {{ stream }} foi eliminado.",
-  "pci_projects_project_streams_stream_delete_error_delete": "Ocorreu um erro durante a eliminação do fluxo {{ stream }}: {{ message }}."
-}
