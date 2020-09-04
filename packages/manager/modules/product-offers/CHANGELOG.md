@@ -1,3 +1,12 @@
+## [4.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-product-offers@4.0.0...@ovh-ux/manager-product-offers@4.0.1) (2020-09-04)
+
+
+### Bug Fixes
+
+* **product-offer:** fix contracts agreements check ([#3575](https://github.com/ovh/manager/issues/3575)) ([f1a7b88](https://github.com/ovh/manager/commit/f1a7b8848772a15172dab4b38d92b7e4637c5fdd))
+
+
+
 # [4.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-product-offers@3.1.2...@ovh-ux/manager-product-offers@4.0.0) (2020-09-03)
 
 
