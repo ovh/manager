@@ -32,6 +32,6 @@ angular
       );
     },
   )
-  .directive(component.name, () => component);
+  .component(component.name, component);
 
 export default moduleName;
