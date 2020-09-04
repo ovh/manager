@@ -68,7 +68,7 @@ export default class Workflow {
    * @return {boolean}
    */
   hasContractsAgreements() {
-    return !this.contracts.length || this.agreeContracts;
+    return (this.contracts && !this.contracts.length) || this.agreeContracts;
   }
 
   /**
