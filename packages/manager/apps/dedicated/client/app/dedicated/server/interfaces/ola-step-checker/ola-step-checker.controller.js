@@ -1,4 +1,4 @@
-import isNumber from 'lodash/isNumber';
+import filter from 'lodash/filter';
 
 export default class {
   /* @ngInject */
@@ -7,38 +7,20 @@ export default class {
     this.$state = $state;
   }
 
-  $onInit() {
-    if (!isNumber(this.ola.configStep)) {
-      this.ola.configStep = 0;
-    }
-  }
-
-  getStepClassname(step) {
-    return {
-      'oui-progress-tracker__step_active': this.ola.configStep === step,
-      'oui-progress-tracker__step_complete': this.ola.configStep > step,
-    };
-  }
-
   activateOla() {
     this.$state.go('app.dedicated.server.interfaces.ola-activation');
   }
 
-  closeSteps() {
-    // Clear query parameters then reload current state
-    this.$location.url(this.$location.path());
-    this.$state.reload();
-  }
-
-  goToNextStep() {
-    this.ola.configStep += 1;
-
-    // This parameter is dynamic. It must not reload the page
-    this.$location.search('configStep', this.ola.configStep);
-  }
-
   goToConfiguration() {
     this.$state.go('app.dedicated.server.interfaces.ola-configuration');
+  }
+
+  activateOrConfigure() {
+    if (this.ola.isActivated()) {
+      this.goToConfiguration();
+    } else {
+      this.activateOla();
+    }
   }
 
   getPrice(price) {
@@ -48,5 +30,12 @@ export default class {
       currency: this.price.currencyCode,
       maximumSignificantDigits: 1,
     }).format(price);
+  }
+
+  hasBandwidthExtension() {
+    const specs = filter(this.ola.availableModes, {
+      interfaces: [{ count: 4, aggregation: true }],
+    });
+    return specs.length > 0;
   }
 }

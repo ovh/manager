@@ -20,7 +20,6 @@ export default {
     specifications: '<',
     resiliatePublicBandwidthLink: '<',
     resiliatePrivateBandwidthLink: '<',
-    taskPolling: '<',
     urls: '<',
     user: '<',
   },
