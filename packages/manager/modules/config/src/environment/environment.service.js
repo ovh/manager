@@ -34,7 +34,7 @@ export default class EnvironmentService {
   }
 
   getUserLanguage() {
-    return this.userLocale.split('-')[0];
+    return this.userLocale.split('_')[0];
   }
 
   setVersion(version) {
