@@ -3,7 +3,9 @@ import isFunction from 'lodash/isFunction';
 import some from 'lodash/some';
 
 export default class SignUpFormAppCtrl {
-  constructor() {
+  /* @ngInject */
+  constructor(atInternet) {
+    this.atInternet = atInternet;
     this.isActivityStepVisible = false;
     this.saveError = null;
 
@@ -35,6 +37,10 @@ export default class SignUpFormAppCtrl {
 
   onStepperFinished() {
     this.saveError = null;
+
+    this.atInternet.trackPage({
+      name: `accountcreation-ok-${this.me.model.legalform}`,
+    });
 
     // call to finishSignUp binding
     if (isFunction(this.finishSignUp)) {

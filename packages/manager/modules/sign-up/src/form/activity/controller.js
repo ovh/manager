@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import startCase from 'lodash/startCase';
 
 import { COUNTRIES_VAT_LABEL } from './constants';
 
@@ -38,5 +39,11 @@ export default class OvhSignUpActivityCtrl {
       false,
       'escapeParameters',
     );
+  }
+
+  onFieldBlur(field) {
+    if (field.$invalid) {
+      this.onFieldError(startCase(field.$name));
+    }
   }
 }

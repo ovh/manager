@@ -4,8 +4,10 @@ const path = require('path');
 const webpackConfig = require('@ovh-ux/manager-webpack-config');
 const webpack = require('webpack');
 
+const REGION = process.env.REGION || 'EU';
+
 module.exports = (env = {}) => {
-  Object.assign(env, process.env.REGION ? { region: process.env.REGION } : {});
+  Object.assign(env, REGION ? { region: REGION } : {});
   const { config } = webpackConfig(
     {
       template: './src/index.html',
@@ -39,9 +41,14 @@ module.exports = (env = {}) => {
 
   // Extra config files
   const extras = glob.sync('./.extras/**/*.js');
+  const extrasRegion = glob.sync(`./.extras-${REGION}/**/*.js`);
 
   return merge(config, {
-    entry: { main: './src/index.js', ...(extras.length > 0 ? { extras } : {}) },
+    entry: {
+      main: './src/index.js',
+      ...(extras.length > 0 ? { extras } : {}),
+      ...(extrasRegion.length > 0 ? { extrasRegion } : {}),
+    },
     output: {
       path: path.join(__dirname, 'dist'),
       filename: '[name].[chunkhash].bundle.js',
@@ -54,6 +61,9 @@ module.exports = (env = {}) => {
         __WEBPACK_REGION__: process.env.REGION
           ? `'${process.env.REGION.toUpperCase()}'`
           : '"EU"',
+        __NODE_ENV__: process.env.NODE_ENV
+          ? `'${process.env.NODE_ENV}'`
+          : '"development"',
       }),
     ],
     resolve: {
