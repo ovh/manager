@@ -8,6 +8,7 @@ import uniqBy from 'lodash/uniqBy';
 export default class {
   /* @ngInject */
   constructor(
+    $http,
     $q,
     $stateParams,
     $translate,
@@ -17,6 +18,7 @@ export default class {
     TucToast,
     TucToastError,
   ) {
+    this.$http = $http;
     this.$q = $q;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
@@ -165,13 +167,33 @@ export default class {
           reason: this.sender.reason,
         },
       )
-      .$promise.then(() => this.$state.go('sms.service.senders'))
+      .$promise.then(() =>
+        this.sender.supportingDocument !== undefined
+          ? this.addSupportingDocument(
+              this.sender.sender,
+              this.sender.supportingDocument[0],
+            )
+          : this.$q.when(),
+      )
+      .then(() => this.$state.go('sms.service.senders'))
       .catch((err) => {
         this.TucToastError(err);
       })
       .finally(() => {
         this.loading.adding = false;
       });
+  }
+
+  addSupportingDocument(senderName, supportingDocument) {
+    const { name } = supportingDocument;
+    return this.$http
+      .post(
+        `/sms/${this.$stateParams.serviceName}/senders/${senderName}/documents`,
+        {
+          name,
+        },
+      )
+      .then(({ data }) => this.$http.put(data.putUrl, supportingDocument));
   }
 
   /**
