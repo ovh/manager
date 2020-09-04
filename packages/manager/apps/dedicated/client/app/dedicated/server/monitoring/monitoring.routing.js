@@ -1,4 +1,5 @@
 import filter from 'lodash/filter';
+import flatten from 'lodash/flatten';
 import includes from 'lodash/includes';
 import map from 'lodash/map';
 
@@ -19,11 +20,11 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('app.dedicated.server.dashboard'),
       ips: /* @ngInject */ ($stateParams, IpRange, Server) =>
         Server.listIps($stateParams.productId).then((ips) =>
-          map(
+        flatten(map(
             filter(ips, (ip) => !includes(ip, ':')),
             (ip) => IpRange.getRangeForIpv4Block(ip),
           ),
-        ),
+        )),
       languageEnum: /* @ngInject */ (models) =>
         models.data.models['dedicated.server.AlertLanguageEnum'].enum,
       monitoringIntervalEnum: /* @ngInject */ (models) =>
