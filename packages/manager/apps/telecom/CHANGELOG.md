@@ -1,3 +1,12 @@
+## [13.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.2.1...@ovh-ux/manager-telecom@13.2.2) (2020-09-04)
+
+
+### Bug Fixes
+
+* **telephony.guides:** display guides based on ovhSubsidiary ([#3576](https://github.com/ovh/manager/issues/3576)) ([b02aac2](https://github.com/ovh/manager/commit/b02aac20a8fb0819231da0ba5e19b79bc3d2a413))
+
+
+
 ## [13.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.2.0...@ovh-ux/manager-telecom@13.2.1) (2020-09-03)
 
 
