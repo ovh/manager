@@ -9,7 +9,7 @@ export default class PciTrainingDataSyncController {
   }
 
   $onInit() {
-    this.direction = 'pull';
+    this.direction = 'from-object-storage';
   }
 
   sync() {

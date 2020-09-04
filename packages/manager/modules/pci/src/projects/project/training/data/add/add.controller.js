@@ -78,7 +78,7 @@ export default class PciTrainingDataAddController {
     ].join(' ');
 
     if (this.data.sync) {
-      return `${cli} \\\n\t --sync pull`;
+      return `${cli} \\\n\t --sync from-object-storage`;
     }
 
     return cli;
