@@ -109,7 +109,6 @@ angular
       ovhManagerNavbar,
       ovhManagerProductOffers,
       ovhNotificationsSidebar,
-      'moment-picker',
       'oui',
       emailpro,
       exchange,
@@ -488,6 +487,17 @@ angular
       return import(`script-loader!moment/locale/${lang}.js`).then(() =>
         moment.locale(lang),
       );
+    },
+  )
+
+  .config(
+    /* @ngInject */ (ouiCalendarConfigurationProvider) => {
+      const lang = Environment.getUserLanguage();
+      return import(`flatpickr/dist/l10n/${lang}.js`)
+        .then((module) => {
+          ouiCalendarConfigurationProvider.setLocale(module.default[lang]);
+        })
+        .catch(() => {});
     },
   )
   .run([
