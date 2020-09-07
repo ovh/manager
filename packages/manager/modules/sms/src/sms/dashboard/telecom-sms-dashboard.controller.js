@@ -87,6 +87,16 @@ export default class {
         sref: 'sms.service.receivers',
         text: this.$translate.instant('sms_actions_clean_contact_list'),
       },
+      {
+        name: 'create_campaign',
+        sref: '',
+        text: this.$translate.instant('sms_actions_create_campaign'),
+      },
+      {
+        name: 'campaign_history',
+        sref: 'sms.service.sms.outgoing',
+        text: this.$translate.instant('sms_actions_campaign_history'),
+      },
     ];
 
     this.loading.init = true;

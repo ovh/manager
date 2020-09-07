@@ -6,6 +6,8 @@
   "sms_actions_create_sender": "Créer un expéditeur",
   "sms_actions_create_api_user": "Créer un utilisateur API",
   "sms_actions_clean_contact_list": "Nettoyer la liste des contacts",
+  "sms_actions_create_campaign": "Créer une campagne",
+  "sms_actions_campaign_history": "Historique des campagnes",
   "sms_consumed": "Suivi conso",
   "sms_consumed_credit_left": "SMS restants",
   "sms_consumed_automatic_recredit_amount": "Recharge automatique",
