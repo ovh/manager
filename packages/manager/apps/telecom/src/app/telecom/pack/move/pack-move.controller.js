@@ -139,6 +139,8 @@ export default class PackMoveCtrl {
           this.moveStep = STEPS.shipping;
         } else if (this.isNewLine) {
           this.moveStep = STEPS.meeting;
+        } else {
+          this.moveStep = STEPS.resume;
         }
       } else {
         this.buildings = [this.selectedLine.endpoint.fiberInfo];
