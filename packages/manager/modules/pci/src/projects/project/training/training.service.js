@@ -37,14 +37,20 @@ export default class PciProjectTrainingService {
 
   getAllUsers(projectId) {
     this.OvhApiCloudProjectUser.v6().resetQueryCache();
-    return this.OvhApiCloudProjectUser.v6().query({
-      serviceName: projectId,
-    }).$promise.then(users => {
-      return users.filter(user => {
-        const aiRole = user.roles.find(role => role.name === 'ai_training_operator');
-        return aiRole !== undefined
+    return this.OvhApiCloudProjectUser.v6()
+      .query({
+        serviceName: projectId,
+      })
+      .$promise.then((users) => {
+        return users.filter((user) => {
+          const aiRole = user.roles.find(
+            (role) =>
+              role.name === 'ai_training_operator' ||
+              role.name === 'administrator',
+          );
+          return aiRole !== undefined;
+        });
       });
-    });
   }
 
   getPresetImages(serviceName) {

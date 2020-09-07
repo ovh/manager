@@ -19,7 +19,7 @@ export default class PciTrainingDashboardController {
     this.resourceUsage = flatten(
       map(
         filter(this.usage.resourcesUsage, {
-          type: 'ai-serving-engine',
+          type: 'ai-training',
         }),
         'totalPrice',
       ),

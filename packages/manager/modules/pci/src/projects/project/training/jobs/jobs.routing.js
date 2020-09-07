@@ -8,10 +8,10 @@ export default /* @ngInject */ ($stateProvider) => {
       pricesCatalog: /* @ngInject */ (PciProjectTrainingService, projectId) =>
         PciProjectTrainingService.getPricesFromCatalog(projectId),
       getPrice: /* @ngInject */ (pricesCatalog) => (qty) =>
-        pricesCatalog[`ai-serving-engine.ml1-c-xl.hour.consumption`]
+        pricesCatalog[`ai-training.ai1-standard.hour.consumption`]
           .priceInUcents * qty,
       getTax: /* @ngInject */ (pricesCatalog) => (qty) =>
-        pricesCatalog[`ai-serving-engine.ml1-c-xl.hour.consumption`].tax * qty,
+        pricesCatalog[`ai-training.ai1-standard.hour.consumption`].tax * qty,
       job: /* @ngInject */ (PciProjectTrainingJobService, projectId) => (
         jobId,
       ) => PciProjectTrainingJobService.get(projectId, jobId),
