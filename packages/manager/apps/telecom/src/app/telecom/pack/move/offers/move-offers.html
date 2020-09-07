@@ -243,7 +243,7 @@
                                 </div>
                                 <strong
                                     class="d-block text-muted"
-                                    data-ng-if="!$ctrl.isOptionAvailable($ctrl.currentOffer, 'voipLine')"
+                                    data-ng-if="!$ctrl.constructor.isOptionAvailable($ctrl.currentOffer, 'voipLine')"
                                     data-translate="pack_move_option_unavailable"
                                 >
                                 </strong>
@@ -277,7 +277,7 @@
                                                 data-model="option.choosedValue"
                                                 min="0"
                                                 max="option.optional"
-                                                data-on-change="$ctrl.updateOfferDisplayedPrice(modelValue, offer, option.name, $row)"
+                                                data-on-change="$ctrl.constructor.updateOfferDisplayedPrice(modelValue, offer, option.name, $row)"
                                             >
                                             </oui-numeric>
                                             <span
@@ -291,7 +291,7 @@
                                 </div>
                                 <strong
                                     class="d-block text-muted"
-                                    data-ng-if="!$ctrl.isOptionAvailable(offer, 'voip_line')"
+                                    data-ng-if="!$ctrl.constructor.isOptionAvailable(offer, 'voip_line')"
                                     data-translate="pack_move_option_unavailable"
                                 >
                                 </strong>
@@ -338,7 +338,7 @@
                                 </div>
                                 <strong
                                     class="d-block text-muted"
-                                    data-ng-if="!$ctrl.isOptionAvailable($ctrl.currentOffer, 'exchangeAccount')"
+                                    data-ng-if="!$ctrl.constructor.isOptionAvailable($ctrl.currentOffer, 'exchangeAccount')"
                                     data-translate="pack_move_option_unavailable"
                                 >
                                 </strong>
@@ -370,7 +370,7 @@
                                             min="0"
                                             max="option.optional"
                                             data-model="option.choosedValue"
-                                            data-on-change="$ctrl.updateOfferDisplayedPrice(modelValue, offer, option.name)"
+                                            data-on-change="$ctrl.constructor.updateOfferDisplayedPrice(modelValue, offer, option.name)"
                                         >
                                         </oui-numeric>
                                         <span
@@ -383,7 +383,7 @@
                                 </div>
                                 <strong
                                     class="d-block text-muted"
-                                    data-ng-if="!$ctrl.isOptionAvailable(offer, 'exchange_account')"
+                                    data-ng-if="!$ctrl.constructor.isOptionAvailable(offer, 'exchange_account')"
                                     data-translate="pack_move_option_unavailable"
                                 >
                                 </strong>
@@ -428,7 +428,7 @@
                                 </div>
                                 <strong
                                     class="d-block text-muted"
-                                    data-ng-if="!$ctrl.isOptionAvailable($ctrl.currentOffer, 'hubic')"
+                                    data-ng-if="!$ctrl.constructor.isOptionAvailable($ctrl.currentOffer, 'hubic')"
                                     data-translate="pack_move_option_unavailable"
                                 >
                                 </strong>
@@ -451,7 +451,7 @@
                                 </div>
                                 <strong
                                     class="d-block text-muted"
-                                    data-ng-if="!$ctrl.isOptionAvailable(offer, 'hubic_perso')"
+                                    data-ng-if="!$ctrl.constructor.isOptionAvailable(offer, 'hubic_perso')"
                                     data-translate="pack_move_option_unavailable"
                                 >
                                 </strong>
@@ -498,7 +498,7 @@
                                 </div>
                                 <strong
                                     class="d-block text-muted"
-                                    data-ng-if="!$ctrl.isOptionAvailable($ctrl.currentOffer, 'voipEcoFax')"
+                                    data-ng-if="!$ctrl.constructor.isOptionAvailable($ctrl.currentOffer, 'voipEcoFax')"
                                     data-translate="pack_move_option_unavailable"
                                 >
                                 </strong>
@@ -532,7 +532,7 @@
                                                 data-model="option.choosedValue"
                                                 min="0"
                                                 max="option.optional"
-                                                data-on-change="$ctrl.updateOfferDisplayedPrice(modelValue, offer, option.name)"
+                                                data-on-change="$ctrl.constructor.updateOfferDisplayedPrice(modelValue, offer, option.name)"
                                             >
                                             </oui-numeric>
                                             <span
@@ -546,7 +546,7 @@
                                 </div>
                                 <strong
                                     class="d-block text-muted"
-                                    data-ng-if="!$ctrl.isOptionAvailable(offer, 'voip_ecofax')"
+                                    data-ng-if="!$ctrl.constructor.isOptionAvailable(offer, 'voip_ecofax')"
                                     data-translate="pack_move_option_unavailable"
                                 >
                                 </strong>
@@ -591,7 +591,7 @@
                                 </div>
                                 <strong
                                     class="d-block text-muted"
-                                    data-ng-if="!$ctrl.isOptionAvailable($ctrl.currentOffer, 'domain')"
+                                    data-ng-if="!$ctrl.constructor.isOptionAvailable($ctrl.currentOffer, 'domain')"
                                     data-translate="pack_move_option_unavailable"
                                 >
                                 </strong>
@@ -623,7 +623,7 @@
                                                 data-model="option.choosedValue"
                                                 min="0"
                                                 max="option.optional"
-                                                data-on-change="$ctrl.updateOfferDisplayedPrice(modelValue, offer, option.name)"
+                                                data-on-change="$ctrl.constructor.updateOfferDisplayedPrice(modelValue, offer, option.name)"
                                             >
                                             </oui-numeric>
                                             <span
@@ -637,7 +637,7 @@
                                 </div>
                                 <strong
                                     class="d-block text-muted"
-                                    data-ng-if="!$ctrl.isOptionAvailable(offer, 'dom1')"
+                                    data-ng-if="!$ctrl.constructor.isOptionAvailable(offer, 'dom1')"
                                     data-translate="pack_move_option_unavailable"
                                 >
                                 </strong>
@@ -689,7 +689,7 @@
                                                 <input
                                                     type="checkbox"
                                                     data-ng-model="option.selected"
-                                                    data-ng-change="$ctrl.updateOfferDisplayedPrice(modelValue, offer, option.name)"
+                                                    data-ng-change="$ctrl.constructor.updateOfferDisplayedPrice(modelValue, offer, option.name)"
                                                 />
                                             </div>
                                             <span
@@ -707,7 +707,7 @@
                                 </div>
                                 <strong
                                     class="d-block text-muted"
-                                    data-ng-if="!$ctrl.isOptionAvailable(offer, 'gtr_ovh')"
+                                    data-ng-if="!$ctrl.constructor.isOptionAvailable(offer, 'gtr_ovh')"
                                     data-translate="pack_move_option_unavailable"
                                 >
                                 </strong>
