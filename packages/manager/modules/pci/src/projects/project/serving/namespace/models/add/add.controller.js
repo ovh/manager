@@ -180,7 +180,7 @@ export default class PciServingNamespaceModelsAddController {
     );
   }
 
-  disabledFlavor(flavor) {
+  isFlavorDisabled(flavor) {
     // Preset not selected
     if (
       this.model.workflowTemplate !== this.PRESET_IMAGE ||
@@ -189,8 +189,6 @@ export default class PciServingNamespaceModelsAddController {
       return false;
     }
 
-    const flavorRamMB =
-      parseInt(flavor.description.match(/ \d+GB/)[0], 10) * 1000;
-    return this.model.image.ramRequirementMB > flavorRamMB;
+    return this.model.image.ramRequirementMB > flavor.ramMB;
   }
 }
