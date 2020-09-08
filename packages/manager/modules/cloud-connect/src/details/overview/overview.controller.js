@@ -15,7 +15,6 @@ export default class CloudConnectOverviewCtrl {
   }
 
   $onInit() {
-    // this.cloudConnectService.clearAllCache();
     this.loadMessages();
     this.loadServiceInfo();
     if (this.cloudConnect.isVrackAssociated()) {
@@ -66,8 +65,16 @@ export default class CloudConnectOverviewCtrl {
           serviceInfos.creation,
           'YYYY/MM/DD',
         ).format('LL');
+        this.loadServices(serviceInfos.serviceId);
         return serviceInfos;
       });
+  }
+
+  loadServices(serviceId) {
+    return this.cloudConnectService.getProductName(
+      serviceId,
+      this.cloudConnect,
+    );
   }
 
   loadPopConfigurations() {
@@ -126,8 +133,9 @@ export default class CloudConnectOverviewCtrl {
 
   getBandwidth(bandwidth) {
     const array = bandwidth.split('');
-    return `${array[0]} ${this.$translate.instant(
-      `cloud_connect_common_${array[1]}`,
+    const bandwidthNumber = parseInt(bandwidth, 10);
+    return `${bandwidthNumber} ${this.$translate.instant(
+      `cloud_connect_common_${array[array.length - 1]}`,
     )}`;
   }
 

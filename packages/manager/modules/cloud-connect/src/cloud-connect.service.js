@@ -43,6 +43,7 @@ export default class CloudConnectService {
         'CLOUD_CONNECT_DATACENTER_EXTRA_QUERY',
       ),
       datacenterConfigExtra: $cacheFactory('CLOUD_CONNECT_DATACENTER_EXTRA'),
+      serviceDetails: $cacheFactory('CLOUD_CONNECT_SERVICE_DETAILS'),
     };
   }
 
@@ -51,7 +52,7 @@ export default class CloudConnectService {
       .get(`/ovhCloudConnect/${cloudConnectId}`, {
         cache: this.cache.cloudConnect,
       })
-      .then((res) => new CloudConnect(res.data));
+      .then(({ data }) => new CloudConnect(data));
   }
 
   getCloudConnectServiceInfo(cloudConnectId) {
@@ -59,7 +60,17 @@ export default class CloudConnectService {
       .get(`/ovhCloudConnect/${cloudConnectId}/serviceInfos`, {
         cache: this.cache.serviceInfo,
       })
-      .then((res) => res.data);
+      .then(({ data }) => data);
+  }
+
+  getProductName(serviceId, cloudConnect) {
+    return this.$http
+      .get(`/services/${serviceId}`, {
+        cache: this.cache.serviceDetails,
+      })
+      .then(({ data }) => {
+        cloudConnect.setProductName(get(data, 'billing.plan.invoiceName'));
+      });
   }
 
   getVracks() {
@@ -92,13 +103,13 @@ export default class CloudConnectService {
       .post(`/vrack/${vRackId}/ovhCloudConnect`, {
         ovhCloudConnect: ovhCloudConnectId,
       })
-      .then((res) => res.data);
+      .then(({ data }) => data);
   }
 
   removeVrack(vRackId, ovhCloudConnectId) {
     return this.$http
       .delete(`/vrack/${vRackId}/ovhCloudConnect/${ovhCloudConnectId}`)
-      .then((res) => res.data);
+      .then(({ data }) => data);
   }
 
   loadAllTasks(cloudConnectId) {
@@ -117,7 +128,7 @@ export default class CloudConnectService {
   getTaskDetails(cloudConnectId, taskId) {
     return this.$http
       .get(`/ovhCloudConnect/${cloudConnectId}/task/${taskId}`)
-      .then((res) => new CloudConnectTasks(res.data));
+      .then(({ data }) => new CloudConnectTasks(data));
   }
 
   saveDescription(cloudConnectId, description) {
@@ -125,9 +136,9 @@ export default class CloudConnectService {
       .put(`/ovhCloudConnect/${cloudConnectId}`, {
         description,
       })
-      .then((res) => {
+      .then(({ data }) => {
         CloudConnectService.clearCache(this.cache.cloudConnect);
-        return res.data;
+        return data;
       });
   }
 
@@ -184,13 +195,13 @@ export default class CloudConnectService {
     }
     return this.$http
       .post(`/ovhCloudConnect/${ovhCloudConnectId}/config/pop`, options)
-      .then((res) => res.data);
+      .then(({ data }) => data);
   }
 
   removePopConfiguration(ovhCloudConnectId, popId) {
     return this.$http
       .delete(`/ovhCloudConnect/${ovhCloudConnectId}/config/pop/${popId}`)
-      .then((res) => res.data);
+      .then(({ data }) => data);
   }
 
   loadInterfaces(cloudConnect) {
@@ -302,7 +313,7 @@ export default class CloudConnectService {
   downloadLOA(cloudConnectId) {
     return this.$http
       .post(`/ovhCloudConnect/${cloudConnectId}/loa`)
-      .then((res) => res.data);
+      .then(({ data }) => data);
   }
 
   loadDatacenters(cloudConnect) {
@@ -384,7 +395,7 @@ export default class CloudConnectService {
       .delete(
         `/ovhCloudConnect/${cloudConnectId}/config/pop/${popId}/datacenter/${datacenterId}`,
       )
-      .then((res) => res.data);
+      .then(({ data }) => data);
   }
 
   getExtras(cloudConnect) {
@@ -458,7 +469,7 @@ export default class CloudConnectService {
       .delete(
         `/ovhCloudConnect/${cloudConnectId}/config/pop/${popId}/datacenter/${datacenterId}/extra/${extraId}`,
       )
-      .then((res) => res.data);
+      .then(({ data }) => data);
   }
 
   getVrackAssociatedCloudConnect(serviceName) {

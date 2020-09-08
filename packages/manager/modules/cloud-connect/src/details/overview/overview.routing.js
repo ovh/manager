@@ -66,6 +66,13 @@ export default /* @ngInject */ ($stateProvider) => {
           datacenterId,
           extraId,
         }),
+      getCancelTerminationUrl: /* @ngInject */ (RedirectionService) => (
+        serviceName,
+      ) => {
+        return `${RedirectionService.getURL(
+          'autorenew',
+        )}?searchText=${serviceName}`;
+      },
       goToManageServiceKeysPage: /* @ngInject */ ($state) => () =>
         $state.go('cloud-connect.details.service-keys'),
       tasksHref: /* @ngInject */ ($state, cloudConnect) =>
@@ -75,40 +82,45 @@ export default /* @ngInject */ ($stateProvider) => {
       goToCloudConnectPage: /* @ngInject */ (
         $state,
         $translate,
+        $timeout,
         CucCloudMessage,
         CucControllerHelper,
         cloudConnectId,
         cloudConnectService,
       ) => (message = false, type = 'success', reload = false, vrackId) => {
         const state = 'cloud-connect.details.overview';
-        const promise = $state.go(
-          state,
-          {
-            ovhCloudConnectId: cloudConnectId,
-          },
-          {
-            reload,
-          },
-        );
-        promise.then(() => {
-          if (vrackId) {
-            cloudConnectService
-              .getVrackAssociatedCloudConnect(vrackId)
-              .then((res) => {
-                if (res) {
-                  CucCloudMessage.warning(
-                    $translate.instant(
-                      'cloud_connect_vrack_associate_cloud_connect',
-                    ),
-                    state,
-                  );
-                }
-              });
-          }
-          if (message) {
-            CucCloudMessage[type](message, state);
-            CucControllerHelper.scrollPageToTop();
-          }
+
+        let promise = null;
+        $timeout(function() {
+          promise = $state.go(
+            state,
+            {
+              ovhCloudConnectId: cloudConnectId,
+            },
+            {
+              reload,
+            },
+          );
+          promise.then(() => {
+            if (message) {
+              CucCloudMessage[type](message, state);
+              CucControllerHelper.scrollPageToTop();
+            }
+            if (vrackId) {
+              cloudConnectService
+                .getVrackAssociatedCloudConnect(vrackId)
+                .then((res) => {
+                  if (res) {
+                    CucCloudMessage.warning(
+                      $translate.instant(
+                        'cloud_connect_vrack_associate_cloud_connect',
+                      ),
+                      state,
+                    );
+                  }
+                });
+            }
+          });
         });
         return promise;
       },

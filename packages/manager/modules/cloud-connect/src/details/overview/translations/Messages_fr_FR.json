@@ -73,10 +73,12 @@
   "cloud_connect_vrack_remove": "Supprimer un vRack",
   "cloud_connect_extra_type": "Type",
   "cloud_connect_extra_type_bgp": "BGP",
-  "cloud_connect_extra_type_network": "Network",
+  "cloud_connect_extra_type_network": "Static",
   "cloud_connect_extra_bgp_neighbor_area": "ASN client",
   "cloud_connect_extra_ip_neighbor": "IP Neighbor",
   "cloud_connect_extra_next_hop": "Next Hop",
   "cloud_connect_extra_title": "Configuration de routage",
-  "cloud_connect_vrack_associate_cloud_connect": "Vous avez déjà une option OVHcloud Connect associé sur ce vRack. Sachez que vos configuration DC seront liées et chaque modification entrainera des répercussions sur les options liées."
+  "cloud_connect_vrack_associate_cloud_connect": "Vous avez déjà une option OVHcloud Connect associé sur ce vRack. Sachez que vos configuration DC seront liées et chaque modification entrainera des répercussions sur les options liées.",
+  "cloud_connect_date_expiration": "Renouvellement prévu le",
+  "cloud_connect_product_name": "Nom commercial"
 }

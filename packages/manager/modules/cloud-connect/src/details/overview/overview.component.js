@@ -5,6 +5,7 @@ export default {
   bindings: {
     cloudConnect: '<',
     datacenters: '<',
+    getCancelTerminationUrl: '<',
     goToAssociateVrackPage: '<',
     goToLockPortPage: '<',
     goToAddPopConfigurationPage: '<',

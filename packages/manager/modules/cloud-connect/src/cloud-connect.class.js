@@ -14,9 +14,31 @@ import CloudConnectPop from './cloud-connect-pop.class';
 import { POP_TYPE_CONSTANT, STATUS } from './cloud-connect.constants';
 
 export default class CloudConnect {
-  constructor(cloudConnect) {
-    Object.assign(this, cloudConnect);
-    this.id = cloudConnect.uuid;
+  constructor({
+    bandwidth,
+    description,
+    interfaceList,
+    pop,
+    portQuantity,
+    product,
+    provider,
+    status,
+    uuid,
+    vrack,
+  }) {
+    Object.assign(this, {
+      bandwidth,
+      description,
+      interfaceList,
+      pop,
+      portQuantity,
+      product,
+      provider,
+      status,
+      uuid,
+      vrack,
+    });
+    this.id = this.uuid;
     this.datacenterConfigurations = [];
     this.availableDatacenters = [];
     this.popConfiguration = {};
@@ -42,6 +64,10 @@ export default class CloudConnect {
 
   setVrackName(name) {
     this.vrackName = name;
+  }
+
+  setProductName(name) {
+    this.productName = name;
   }
 
   getAllowedPopType() {
@@ -199,5 +225,16 @@ export default class CloudConnect {
       this.datacenterConfigurations,
       (dc) => dc.status === STATUS.INIT,
     );
+  }
+
+  isPopDeleting() {
+    let isPopDeleting = false;
+    find(this.interfaceList, (id) => {
+      const pop = this.getPopConfiguration(id);
+      if (pop && pop.isDeleting()) {
+        isPopDeleting = true;
+      }
+    });
+    return isPopDeleting;
   }
 }

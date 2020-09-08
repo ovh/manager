@@ -54,6 +54,13 @@
                         ></oui-action-menu-item>
                     </oui-action-menu>
                 </oui-tile-definition>
+                <!-- product name -->
+                <oui-tile-definition
+                    data-ng-if="$ctrl.cloudConnect.productName"
+                    data-term="{{ ::'cloud_connect_product_name' | translate }}"
+                    data-description="{{ $ctrl.cloudConnect.productName }}"
+                >
+                </oui-tile-definition>
                 <!-- Creation date -->
                 <oui-tile-definition
                     data-term="{{ ::'cloud_connect_date_created' | translate }}"
@@ -62,6 +69,20 @@
                         <span
                             data-ng-bind="$ctrl.serviceInfos.creationDate"
                         ></span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <!-- Expiration date -->
+                <oui-tile-definition
+                    data-term="{{ ::'cloud_connect_date_expiration' | translate }}"
+                >
+                    <oui-tile-description>
+                        <a
+                            href="{{ $ctrl.getCancelTerminationUrl($ctrl.serviceInfos.domain) }}"
+                        >
+                            <span
+                                data-ng-bind="$ctrl.serviceInfos.expiration | date:'dd/MM/yyyy'"
+                            ></span>
+                        </a>
                     </oui-tile-description>
                 </oui-tile-definition>
                 <!-- PoP -->
@@ -419,7 +440,7 @@
                     data-placement="end"
                 >
                     <oui-action-menu-item
-                        data-disabled="!$ctrl.cloudConnect.canCreateDc()"
+                        data-disabled="!$ctrl.cloudConnect.canCreateDc() || $ctrl.cloudConnect.isPopDeleting()"
                         data-on-click="$ctrl.goToDatacenterAddPage()"
                         ><span
                             data-translate="cloud_connect_datacenter_add_configuration"
@@ -433,7 +454,7 @@
                 <oui-tile-description>
                     <oui-button
                         data-variant="primary"
-                        data-disabled="!$ctrl.cloudConnect.canCreateDc()"
+                        data-disabled="!$ctrl.cloudConnect.canCreateDc() || $ctrl.cloudConnect.isPopDeleting()"
                         data-ng-click="$ctrl.goToDatacenterAddPage()"
                         ><span
                             data-translate="cloud_connect_dc_add_button"

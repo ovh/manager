@@ -1,4 +1,4 @@
-import { DEDICATED, CLOUD, CLOUD_CONNECT_ID } from './constants';
+import { DEDICATED, CLOUD } from './constants';
 
 export const DEDICATED_SERVER_CONFIG = {
   id: 'dedicatedServers',
@@ -302,7 +302,7 @@ export const DEDICATED_NETWORK_CONFIG = {
       regions: ['EU', 'CA', 'US'],
     },
     {
-      id: CLOUD_CONNECT_ID,
+      id: 'cloud_connect',
       loadOnState: 'cloud-connect',
       types: [
         {
