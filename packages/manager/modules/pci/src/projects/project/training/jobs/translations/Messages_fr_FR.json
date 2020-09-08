@@ -1,5 +1,5 @@
 {
-  "pci_projects_project_training_jobs_list_message_1": "Pour accéder cette liste des jobs via la client, lancer la commande suivante : ",
+  "pci_projects_project_training_jobs_list_message_1": "Pour accéder cette liste des jobs via la ligne de commande, lancer la commande suivante : ",
   "pci_projects_project_training_jobs_submit_select_region": "Choisir une région",
   "pci_projects_project_training_jobs_submit_select_user": "Choisir un utilisateur",
   "pci_projects_project_training_jobs_submit_select_user_tips": "Choisir l'utilisateur à qui appartiendra le job",
