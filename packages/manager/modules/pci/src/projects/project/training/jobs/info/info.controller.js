@@ -1,4 +1,5 @@
 import moment from 'moment';
+import { GUIDE_URL } from '../../training.constants';
 
 export default class PciTrainingJobsInfoController {
   /* @ngInject */
@@ -15,6 +16,8 @@ export default class PciTrainingJobsInfoController {
   }
 
   $onInit() {
+    this.guideUrl = GUIDE_URL;
+
     this.unitPrice = this.getPrice(1);
     this.unitTax = this.getTax(1);
     const totalHour = this.job.totalRuntime / 3600;
