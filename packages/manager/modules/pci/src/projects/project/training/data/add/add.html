@@ -10,7 +10,7 @@
             data-header="{{:: 'pci_projects_project_training_data_add_select_region' | translate }}"
             data-on-submit="$ctrl.onRegionSubmit()"
             data-editable="$ctrl.allContainersLoaded && !$ctrl.isSubmit"
-            data-loading="!$ctrl.allContainersLoaded || $ctrl.isSubmit"
+            data-loading="!$ctrl.allContainersLoaded"
         >
             <pci-project-regions-list
                 data-regions="$ctrl.regions"
@@ -21,7 +21,7 @@
         <oui-step-form
             data-header="{{:: 'pci_projects_project_training_data_add_select_obj_container' | translate }}"
             data-editable="$ctrl.allContainersLoaded && !$ctrl.isSubmit"
-            data-loading="!$ctrl.allContainersLoaded || $ctrl.isSubmit"
+            data-loading="!$ctrl.allContainersLoaded"
         >
             <oui-field
                 data-size="xl"
@@ -42,7 +42,7 @@
         <oui-step-form
             data-header="{{:: 'pci_projects_project_training_data_add_select_user' | translate }}"
             data-editable="$ctrl.allUsersLoaded && !$ctrl.isSubmit"
-            data-loading="!$ctrl.allUsersLoaded || $ctrl.isSubmit"
+            data-loading="!$ctrl.allUsersLoaded"
         >
             <oui-field
                 data-size="xl"

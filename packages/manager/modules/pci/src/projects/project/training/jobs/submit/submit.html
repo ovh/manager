@@ -10,7 +10,6 @@
         <oui-step-form
             data-header="{{:: 'pci_projects_project_training_jobs_submit_select_region' | translate  }}"
             data-editable="!$ctrl.isSubmit"
-            data-loading="$ctrl.isSubmit"
         >
             <pci-project-regions-list
                 data-regions="$ctrl.regions"
@@ -21,7 +20,7 @@
         <oui-step-form
             data-header="{{:: 'pci_projects_project_training_jobs_submit_select_user' | translate  }}"
             data-editable="$ctrl.allUsersLoaded && !$ctrl.isSubmit"
-            data-loading="!$ctrl.allUsersLoaded || $ctrl.isSubmit"
+            data-loading="!$ctrl.allUsersLoaded"
         >
             <oui-field
                 data-size="xl"
@@ -41,7 +40,6 @@
         <oui-step-form
             data-header="{{ :: 'pci_projects_project_training_jobs_submit_select_image' | translate }}"
             data-editable="!$ctrl.isSubmit"
-            data-loading="$ctrl.isSubmit"
             data-valid="$ctrl.job.image.id"
         >
             <div class="container-fluid px-0">
@@ -117,7 +115,6 @@
         <oui-step-form
             data-header="{{:: 'pci_projects_project_training_jobs_submit_select_data' | translate  }}"
             data-editable="!$ctrl.isSubmit"
-            data-loading="$ctrl.isSubmit"
             data-on-focus="$ctrl.setData()"
         >
             <button
@@ -147,7 +144,6 @@
         <oui-step-form
             data-header="{{ :: 'pci_projects_project_training_jobs_submit_select_command' | translate }}"
             data-editable="!$ctrl.isSubmit"
-            data-loading="$ctrl.isSubmit"
             data-valid="$ctrl.job.command || !$ctrl.job.customCommand"
         >
             <div class="row d-lg-flex">
@@ -205,7 +201,6 @@
         <oui-step-form
             data-header="{{:: 'pci_projects_project_training_jobs_submit_select_resources' | translate  }}"
             data-editable="!$ctrl.isSubmit"
-            data-loading="$ctrl.isSubmit"
         >
             <p
                 data-translate="{{:: 'pci_projects_project_training_jobs_submit_select_resources_tips' | translate  }}"
