@@ -5,8 +5,13 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: /* @ngInject */ () => null,
       usage: /* @ngInject */ (OvhApiCloudProjectUsageCurrent, projectId) =>
-        OvhApiCloudProjectUsageCurrent.v6().get({ serviceName: projectId })
-          .$promise,
+        OvhApiCloudProjectUsageCurrent.v6()
+          .get({ serviceName: projectId })
+          .$promise.catch(() => {
+            return {
+              resourcesUsage: [],
+            };
+          }),
       currencySymbol: /* @ngInject */ (OvhApiMe) =>
         OvhApiMe.v6()
           .get()
