@@ -56,8 +56,7 @@ export default class {
         ? UPDATE_TYPES.MINOR
         : UPDATE_TYPES.MAJOR,
     )
-      .then((task) => {
-        this.currentService.vcenterUpgradePendingTask = task;
+      .then(() => {
         this.goBack(
           this.$translate.instant('dedicatedCloud_dashboard_update_success', {
             sourceMajor: this.currentService.version.major,
