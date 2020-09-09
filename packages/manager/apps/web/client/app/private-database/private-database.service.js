@@ -1332,4 +1332,20 @@ export default class PrivateDatabase {
       },
     });
   }
+
+  static getDatabaseDisplayName($translate, keyToTranslate, dbParam) {
+    if (dbParam && typeof dbParam === 'string') {
+      const [type, versionNumber] = dbParam.split('_');
+      return $translate.instant(keyToTranslate.concat(type), {
+        version: versionNumber,
+      });
+    }
+    if (dbParam && typeof dbParam === 'object') {
+      return $translate.instant(keyToTranslate.concat(dbParam.type), {
+        version: dbParam.versionNumber,
+      });
+    }
+
+    return null;
+  }
 }

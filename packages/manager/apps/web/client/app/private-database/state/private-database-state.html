@@ -42,7 +42,8 @@
                             >
                                 <oui-tile-description>
                                     <span
-                                        data-ng-bind=":: (('privateDatabase_dashboard_version_' + stateCtrl.database.version | translate) == 'privateDatabase_dashboard_version_' + stateCtrl.database.version)? stateCtrl.database.version: ('privateDatabase_dashboard_version_' + stateCtrl.database.version | translate)"
+                                        data-translate="{{::('privateDatabase_dashboard_version_' + stateCtrl.database.type)}}"
+                                        data-translate-values="{ version: stateCtrl.database.versionNumber }"
                                     ></span>
                                 </oui-tile-description>
                                 <oui-action-menu
