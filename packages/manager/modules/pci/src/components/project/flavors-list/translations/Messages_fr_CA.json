@@ -18,5 +18,7 @@
   "pci_project_flavors_price_hourly": "{{price}} HT/heure",
   "pci_project_flavors_price_monthly": "À partir de {{price}} HT/mois",
 
-  "pci_project_flavors_quota": "Augmenter mon quota"
+  "pci_project_flavors_quota": "Augmenter mon quota",
+  "pci_project_flavors_quota_info": "Le quota de votre projet ne vous permet pas d’ajouter ce type de machine dans cette région.",
+  "pci_project_flavors_quota_manage": "Gérer mon quota"
 }
