@@ -42,8 +42,7 @@ export default class TelecomPackMigrationConfirmCtrl {
     );
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  getServiceToDeleteList(subService) {
+  static getServiceToDeleteList(subService) {
     return map(
       filter(subService.services, {
         selected: true,

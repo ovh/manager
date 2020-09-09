@@ -31,7 +31,7 @@
                             <input
                                 type="checkbox"
                                 data-ng-model="service.selected"
-                                data-ng-disabled="subService.services.length === subService.numberToDelete || ($ctrl.selectedSubServiceToDeleteReached(subService) && !service.selected)"
+                                data-ng-disabled="subService.services.length === subService.numberToDelete || ($ctrl.constructor.selectedSubServiceToDeleteReached(subService) && !service.selected)"
                             />
                         </div>
                         <span data-ng-bind="service.name"></span>
