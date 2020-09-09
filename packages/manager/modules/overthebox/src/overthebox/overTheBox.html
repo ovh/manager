@@ -4,10 +4,10 @@
             <div class="oui-header__container">
                 <div class="oui-header__content">
                     <tuc-editable-service-name
-                        data-tuc-editable-service-name-title="OverTheBox.service.customerDescription || ('overTheBox_dashboard_title' | translate)"
+                        data-tuc-editable-service-name-title="$ctrl.service.customerDescription || ('overTheBox_dashboard_title' | translate)"
                         data-disabled="false"
-                        data-tuc-editable-service-name-title-on-save="OverTheBox.updateName"
-                        data-tuc-editable-service-name-service-name="OverTheBox.service.serviceName"
+                        data-tuc-editable-service-name-title-on-save="$ctrl.updateName"
+                        data-tuc-editable-service-name-service-name="$ctrl.service.serviceName"
                     >
                     </tuc-editable-service-name>
                 </div>
@@ -20,7 +20,7 @@
             </oui-header-tabs-item>
             <oui-header-tabs-item
                 data-state="overTheBoxes.overTheBox.remote"
-                disabled="OverTheBox.disabledRemote"
+                disabled="$ctrl.disabledRemote"
             >
                 <span data-translate="overTheBox_tabs_remote"></span>
             </oui-header-tabs-item>
