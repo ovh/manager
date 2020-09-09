@@ -1,3 +1,13 @@
+## [13.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.2.2...@ovh-ux/manager-telecom@13.2.3) (2020-09-09)
+
+
+### Bug Fixes
+
+* **xdsl.move:** resolve button on address move validation ([0c6d53a](https://github.com/ovh/manager/commit/0c6d53a7d8c98866436b817a8e1df24bd824157b))
+* **xdsl.move.offers:** fix call on static method for options ([0633b91](https://github.com/ovh/manager/commit/0633b911add0cdd6e4aaa793ca1b1228c65db092))
+
+
+
 ## [13.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.2.1...@ovh-ux/manager-telecom@13.2.2) (2020-09-04)
 
 
