@@ -1,0 +1,12 @@
+{
+  "pci_projects_project_kubernetes_service_reset_kubeconfig": "Réinitialiser le kubeconfig",
+  "pci_projects_project_kubernetes_service_reset_kubeconfig_common_confirm": "Confirmer",
+  "pci_projects_project_kubernetes_service_reset_kubeconfig_common_cancel": "Annuler",
+  "pci_projects_project_kubernetes_service_reset_kubeconfig_message": "La réinitialisation du kubeconfig entraine une courte indisponibilité de vos services !",
+  "pci_projects_project_kubernetes_service_reset_kubeconfig_description1": "Cette opération n’est pas annulable. Dès qu’elle sera lancée, vous perdrez l’accès à votre API Server avec votre kubeconfig actuel. Les nœuds perdront également accès à l’API server mais les conteneurs hébergés continueront à fonctionner.",
+  "pci_projects_project_kubernetes_service_reset_kubeconfig_description2": "Vous devrez télécharger un nouveau fichier kubeconfig quelques minutes plus tard (temps de la génération de la nouvelle autorité de certification et mise à jour des composants du control plane avec cette nouvelle CA). Chaque nœud sera ensuite réinstallé (l’un après l’autre) puis retrouvera l’accès à l’API server à l’issue de cette dernière étape.",
+  "pci_projects_project_kubernetes_service_reset_kubeconfig_description3": "Toutes vos ressources Kubernetes sont préservées.",
+  "pci_projects_project_kubernetes_service_reset_kubeconfig_cluster_not_ready": "La réinitialisation du kubeconfig n'est possible que pour les cluster en état OK.",
+  "pci_projects_project_kubernetes_service_reset_kubeconfig_success": "La réinitialisation du kubeconfig a bien été lancée. Téléchargez le nouveau fichier ci-dessous dans quelques minutes, dès que votre cluster est à nouveau en état OK",
+  "pci_projects_project_kubernetes_service_reset_kubeconfig_error": "Une erreur est survenue lors de la réinitialisation du kubeconfig : {{ message }}"
+}
