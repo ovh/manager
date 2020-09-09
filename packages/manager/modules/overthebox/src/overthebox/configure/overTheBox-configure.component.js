@@ -4,4 +4,8 @@ import template from './overTheBox-configure.html';
 export default {
   controller,
   template,
+  bindings: {
+    orderHash: '<',
+    goOrderOverTheBox: '<',
+  },
 };

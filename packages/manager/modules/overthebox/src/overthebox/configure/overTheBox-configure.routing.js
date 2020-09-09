@@ -6,6 +6,12 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       value: ['.'],
       format: 'json',
     },
+    resolve: {
+      orderHash: /* @ngInject */ ($state) => () =>
+        $state.href('order-overTheBox'),
+      goOrderOverTheBox: /* @ngInject */ ($state) => () =>
+        $state.go('order-overTheBox'),
+    },
   });
 
   // special redirection for /configure/overTheBox which is inside internal OTB UX
