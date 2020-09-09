@@ -13,6 +13,16 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     abstract: true,
     resolve: {
+      batches: /* @ngInject */ ($http, serviceName) =>
+        $http
+          .get(`/sms/${serviceName}/batches`)
+          .then(({ data }) =>
+            data.sort(
+              (batchA, batchB) =>
+                new Date(batchB.createdAt) - new Date(batchA.createdAt),
+            ),
+          )
+          .catch(() => []),
       initSms: ($q, $stateParams, TucSmsMediator) => {
         // init sms services
         TucSmsMediator.initAll().then((smsDetails) =>
@@ -22,6 +32,8 @@ export default /* @ngInject */ ($stateProvider) => {
         );
         return $q.when({ init: true });
       },
+      serviceName: /* @ngInject */ ($transition$) =>
+        $transition$.params().serviceName,
       smsFeatureAvailability: /* @ngInject */ (ovhFeatureFlipping) =>
         ovhFeatureFlipping.checkFeatureAvailability([
           'sms:hlr',
