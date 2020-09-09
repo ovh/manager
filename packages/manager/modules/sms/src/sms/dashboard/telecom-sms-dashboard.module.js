@@ -4,6 +4,8 @@ import '@uirouter/angularjs';
 import component from './telecom-sms-dashboard.component';
 import routing from './routing';
 
+import './telecom-sms-dashboard.scss';
+
 const moduleName = 'ovhManagerSmsDashboardModule';
 
 angular

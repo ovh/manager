@@ -1,10 +1,5 @@
 <section class="telecom-sms-dashboard">
-    <!-- LOADING -->
-    <div class="text-center" data-ng-if="$ctrl.loading.init">
-        <oui-spinner></oui-spinner>
-    </div>
-
-    <div class="row d-md-flex" data-ng-if="!$ctrl.loading.init">
+    <div class="row d-md-flex">
         <div class="col-md-4 mb-3">
             <div class="oui-tile h-100">
                 <h3
@@ -30,7 +25,95 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4 mb-3">
+        <oui-tile class="col-md-8">
+            <div class="text-center" data-ng-if="$ctrl.loadingStats">
+                <oui-spinner></oui-spinner>
+            </div>
+
+            <div class="row mb-5" data-ng-if="!$ctrl.loadingStats">
+                <div class="col-md-3">
+                    <dl class="oui-description">
+                        <dt
+                            data-translate="sms_statistics_campaign_number"
+                        ></dt>
+                        <dd data-ng-bind="$ctrl.statistics.batchesCount"></dd>
+                    </dl>
+                </div>
+                <div class="col-md-3">
+                    <dl class="oui-description">
+                        <dt data-translate="sms_statistics_sent_number"></dt>
+                        <dd data-ng-bind="$ctrl.statistics.sent"></dd>
+                    </dl>
+                </div>
+                <div class="col-md-3">
+                    <dl class="oui-description">
+                        <dt data-translate="sms_consumed_credit_balance"></dt>
+                        <dd data-ng-bind="$ctrl.statistics.credits"></dd>
+                        <dd>
+                            <a
+                                class="oui-link"
+                                href="{{:: $ctrl.getReloadCreditLink() }}"
+                            >
+                                <span
+                                    data-translate="sms_statictics_credit_reload"
+                                ></span>
+                            </a>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-md-3">
+                    <dl class="oui-description">
+                        <dt data-translate="sms_statistics"></dt>
+                        <dd>
+                            <oui-select
+                                match="label"
+                                model="$ctrl.statisticFilter"
+                                items="$ctrl.statisticsFilters"
+                                on-change="$ctrl.getStatistics()"
+                            >
+                                <span data-ng-bind="$item.label"></span>
+                            </oui-select>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="row" data-ng-if="!$ctrl.loadingStats">
+                <div class="col-md-3 offset-md-1 oui-box oui-box_light">
+                    <dl class="oui-description">
+                        <dt
+                            data-translate="sms_statistics_delivered_number"
+                        ></dt>
+                        <dd>
+                            <strong
+                                class="oui-heading_4"
+                                data-ng-bind="$ctrl.statistics.delivered"
+                            ></strong>
+                            <span
+                                data-ng-bind="$ctrl.statistics.deliveredPercentage"
+                            ></span>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-md-3 oui-box oui-box_light">
+                    <dl class="oui-description">
+                        <dt
+                            data-translate="sms_statistics_stop_subscribe_number"
+                        ></dt>
+                        <dd>
+                            <strong
+                                class="oui-heading_4"
+                                data-ng-bind="$ctrl.statistics.stoplisted"
+                            ></strong>
+                            <span
+                                data-ng-bind="$ctrl.statistics.stoplistedPercentage"
+                            ></span>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </oui-tile>
+
+        <div class="col-md-4 mb-3" ng-if="false">
             <div class="oui-tile h-100">
                 <h3
                     class="oui-tile__title oui-heading_3"
@@ -77,7 +160,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4 mb-3">
+        <div class="col-md-4 mb-3" ng-if="false">
             <div class="oui-tile h-100">
                 <h3
                     class="oui-tile__title oui-heading_3"
