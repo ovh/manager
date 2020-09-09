@@ -1,0 +1,8 @@
+{
+  "sms_batches_create": "Créer une campagne",
+  "sms_batches_statistics_history": "Statistiques et historique",
+  "sms_batches_sms_received": "SMS reçus",
+  "sms_batches_pending": "Campagnes planifiées",
+  "sms_batches_manage_hlrs": "HLR",
+  "sms_batches_manage_templates": "Gérer les modèles"
+}
