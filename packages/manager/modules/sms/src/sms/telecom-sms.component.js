@@ -17,6 +17,7 @@ import './telecom-sms.less';
 
 import constant from './telecom-sms.constant';
 
+import batches from './batches';
 import dashboard from './dashboard';
 import guides from './guides';
 import options from './options';
@@ -39,6 +40,7 @@ angular
     ngOvhCheckboxTable,
     'ovh-api-services',
     'ngMessages',
+    batches,
     dashboard,
     guides,
     options,
