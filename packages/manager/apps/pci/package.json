@@ -22,7 +22,7 @@
     "@ovh-ux/manager-cloud-styles": "^0.4.0 || ^1.0.0",
     "@ovh-ux/manager-config": "^0.4.0 || ^1.0.0",
     "@ovh-ux/manager-core": "^10.0.0 || ^11.0.0",
-    "@ovh-ux/manager-pci": "^3.0.0 || ^4.0.0",
+    "@ovh-ux/manager-pci": "^4.0.0 || ^5.0.0",
     "@ovh-ux/ng-at-internet": "^5.1.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.7",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.0",

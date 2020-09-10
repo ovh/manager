@@ -1,8 +1,0 @@
-{
-  "pci_projects_project_streams_stream_subscriptions_delete_title": "Usuń subskrypcję",
-  "pci_projects_project_streams_stream_subscriptions_delete_submit_label": "Zatwierdź",
-  "pci_projects_project_streams_stream_subscriptions_delete_cancel_label": "Anuluj",
-  "pci_projects_project_streams_stream_subscriptions_delete_content": "Czy chcesz usunąć subskrypcję {{subscription}}?",
-  "pci_projects_project_streams_stream_subscriptions_delete_success_message": "Subskrypcja {{subscription}} została dodana.",
-  "pci_projects_project_streams_stream_subscriptions_delete_error_delete": "Wystąpił błąd podczas dodawania subskrypcji {{subscription}}: {{message}}."
-}

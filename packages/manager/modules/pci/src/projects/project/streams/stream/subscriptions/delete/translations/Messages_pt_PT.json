@@ -1,8 +1,0 @@
-{
-  "pci_projects_project_streams_stream_subscriptions_delete_title": "Eliminar uma assinatura",
-  "pci_projects_project_streams_stream_subscriptions_delete_submit_label": "Confirmar",
-  "pci_projects_project_streams_stream_subscriptions_delete_cancel_label": "Anular",
-  "pci_projects_project_streams_stream_subscriptions_delete_content": "Pretende eliminar a assinatura {{subscription}}?",
-  "pci_projects_project_streams_stream_subscriptions_delete_success_message": "A assinatura {{subscription}} foi eliminada.",
-  "pci_projects_project_streams_stream_subscriptions_delete_error_delete": "Ocorreu um erro ao eliminar a assinatura {{ subscription }}: {{ message }}."
-}

@@ -1,8 +1,0 @@
-{
-  "pci_projects_project_streams_stream_subscriptions_delete_title": "Abonnement löschen",
-  "pci_projects_project_streams_stream_subscriptions_delete_submit_label": "Bestätigen",
-  "pci_projects_project_streams_stream_subscriptions_delete_cancel_label": "Abbrechen",
-  "pci_projects_project_streams_stream_subscriptions_delete_content": "Möchten Sie das Abonnement {{subscription}} löschen?",
-  "pci_projects_project_streams_stream_subscriptions_delete_success_message": "Das Abonnement {{subscription}} wurde gelöscht.",
-  "pci_projects_project_streams_stream_subscriptions_delete_error_delete": "Beim Löschen des Abonnements {{subscription}} ist ein Fehler aufgetreten: {{ message }}."
-}
