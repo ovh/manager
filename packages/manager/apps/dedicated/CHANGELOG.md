@@ -1,3 +1,12 @@
+## [13.2.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@13.2.4...@ovh-ux/manager-dedicated@13.2.5) (2020-09-10)
+
+
+### Bug Fixes
+
+* **dedicated-server:** ip monitoring management ([#3579](https://github.com/ovh/manager/issues/3579)) ([7ac426e](https://github.com/ovh/manager/commit/7ac426ead849b1d455d3ee372786c7fa6d79e4b3)), closes [#DTRSD-19171](https://github.com/ovh/manager/issues/DTRSD-19171)
+
+
+
 ## [13.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@13.2.3...@ovh-ux/manager-dedicated@13.2.4) (2020-09-03)
 
 
