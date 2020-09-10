@@ -1,3 +1,13 @@
+## [15.2.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.2.6...@ovh-ux/manager-web@15.2.7) (2020-09-10)
+
+
+### Bug Fixes
+
+* multisite logs url ([#3538](https://github.com/ovh/manager/issues/3538)) ([a35b593](https://github.com/ovh/manager/commit/a35b59366fcadbb0c88b029c31ecd7744047b882))
+* **email-domain.responder:** fix responder date range ([#3587](https://github.com/ovh/manager/issues/3587)) ([b9aa59f](https://github.com/ovh/manager/commit/b9aa59fd819c0b5ec8982298900b5c23d56a53aa))
+
+
+
 ## [15.2.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.2.5...@ovh-ux/manager-web@15.2.6) (2020-09-03)
 
 
