@@ -1,3 +1,12 @@
+## [3.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@3.0.3...@ovh-ux/manager-pci-app@3.0.4) (2020-09-10)
+
+
+### Bug Fixes
+
+* bump dependencies ([e84d859](https://github.com/ovh/manager/commit/e84d859288f1f0cb56e9b244b895f184b36afb9d))
+
+
+
 ## [3.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@3.0.2...@ovh-ux/manager-pci-app@3.0.3) (2020-08-18)
 
 
