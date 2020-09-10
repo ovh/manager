@@ -72,7 +72,6 @@
     "angular-flash-alert": "^2.3.0",
     "angular-i18n": "^1.6.0",
     "angular-messages": "^1.6.0",
-    "angular-moment-picker": "^0.10.1",
     "angular-resource": "^1.6.6",
     "angular-route": "^1.6.0",
     "angular-sanitize": "^1.6.9",

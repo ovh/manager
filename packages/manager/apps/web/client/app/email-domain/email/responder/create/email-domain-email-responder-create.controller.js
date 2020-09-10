@@ -1,7 +1,6 @@
 import filter from 'lodash/filter';
 import get from 'lodash/get';
 import indexOf from 'lodash/indexOf';
-import isEmpty from 'lodash/isEmpty';
 import isString from 'lodash/isString';
 
 angular.module('App').controller(
@@ -111,38 +110,11 @@ angular.module('App').controller(
       );
     }
 
-    responderDatesCheck(start, end) {
-      this.responderDateStartCheck(start);
-      this.responderDateEndCheck(end);
-    }
-
-    responderDateStartCheck(input) {
-      if (!input.$dirty && !isEmpty(this.model.responderDateStart)) {
-        input.$setDirty();
-      }
-      input.$setValidity(
-        'date',
-        !!this.model.responderDateStart &&
-          (!this.model.responderDateEnd ||
-            moment(this.model.responderDateStart).isBefore(
-              this.model.responderDateEnd,
-            )),
-      );
-    }
-
-    responderDateEndCheck(input) {
-      if (!input.$dirty && !isEmpty(this.model.responderDateEnd)) {
-        input.$setDirty();
-      }
-      input.$setValidity(
-        'date',
-        !!this.model.responderDateEnd &&
-          (!this.model.responderDateStart ||
-            moment(this.model.responderDateEnd).isAfter(
-              this.model.responderDateStart,
-            )) &&
-          moment(this.model.responderDateEnd).isAfter(new Date()),
-      );
+    responderDatesChanged(selectedDates) {
+      [
+        this.model.responderDateStart,
+        this.model.responderDateEnd,
+      ] = selectedDates;
     }
 
     responderDurationCheck() {

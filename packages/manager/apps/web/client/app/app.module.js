@@ -23,7 +23,6 @@ import 'angular-flash-alert';
 import 'script-loader!jquery.cookie/jquery.cookie.js';
 import 'bootstrap';
 import 'angular-ui-bootstrap';
-import 'angular-moment-picker';
 import '@ovh-ux/ng-ovh-utils';
 import 'punycode';
 import 'script-loader!urijs/src/URI.min.js';
