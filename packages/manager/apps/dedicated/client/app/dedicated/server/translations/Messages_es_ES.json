@@ -1,5 +1,4 @@
 {
-  "server_dashboard_loading_error": "Se ha producido un error al cargar los datos del servicio.",
   "server_configuration_doing": "[en curso]",
   "server_tab_IP": "IP y seguridad",
   "server_tab_IP_block": "Bloque:",
@@ -582,6 +581,7 @@
   "server_configuration_task_VIRTUAL_MAC_DELETE": "Eliminación de MAC virtual",
   "server_configuration_task_REMOVE_VIRTUAL_MAC": "Eliminación de MAC virtual",
   "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE": "Modificación de las interfaces de red",
+  "server_configuration_task_IPMI_CONFIGURE_SGX": "Modificación de la opción SGX",
   "server_configuration_task_status_CANCELLED": "Cancelado",
   "server_configuration_task_status_CUSTOMER_ERROR": "Error cliente",
   "server_configuration_task_status_DOING": "En proceso",
@@ -882,6 +882,7 @@
   "plan_vrack-bandwidth-5000-option-infra-us": "5 Gb/s de ancho de banda privado garantizado - Tráfico ilimitado - Opción vRack",
   "plan_bandwidth-1000-adv-us": "1 Gb/s de ancho de banda público - Tráfico ilimitado",
   "plan_bandwidth-1000-burst-2gbps-infra": "Ancho de banda público de 2 Gb/s - Tráfico ilimitado",
+  "plan_bandwidth-1000-burst-2gbps-infra-us": "Ancho de banda público de 2 Gb/s - Tráfico ilimitado",
   "plan_bandwidth-guaranteed-1000-ultimate-2019v1": "Ancho de banda público garantizado de 1 Gb/s - Tráfico ilimitado - Opción Ultimate",
   "plan_bandwidth-guaranteed-2000-ultimate-2019v1": "Ancho de banda público garantizado de 2 Gb/s - Tráfico ilimitado - Opción Ultimate",
   "plan_bandwidth-guaranteed-3000-ultimate-2019v1": "Ancho de banda público garantizado de 3 Gb/s - Tráfico ilimitado - Opción Ultimate",
@@ -1212,7 +1213,5 @@
   "server_error_ola_terminate": "Se ha producido un error al dar de baja el servicio: {{error}}.",
   "server_error_vrack_attach": "Se ha producido un error al asociar la red privada: {{error}}.",
   "server_error_vrack_detach": "Se ha producido un error al desvincular la red privada: {{error}}.",
-  "server_error_bandwidth_order": "Se ha producido un error al contratar al ancho de banda: {{error}}",
-  "plan_bandwidth-1000-burst-2gbps-infra-us": "Ancho de banda público de 2 Gb/s - Tráfico ilimitado",
-  "server_configuration_task_IPMI_CONFIGURE_SGX": "Modificación de la opción SGX"
+  "server_error_bandwidth_order": "Se ha producido un error al contratar al ancho de banda: {{error}}"
 }

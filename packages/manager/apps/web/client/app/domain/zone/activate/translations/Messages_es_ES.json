@@ -5,7 +5,6 @@
   "web_domain_zone_activation_question": "¿Quiere activar los registros mínimos en su zona DNS?",
   "web_domain_zone_activation_template_minimized": "Sí, quiero activar la zona DNS con los registros mínimos.",
   "web_domain_zone_activation_template_basic": "No, pero quiero activar la zona DNS.",
-  "web_domain_zone_activation_success": "La orden de pedido se ha generado correctamente.",
   "web_domain_zone_activation_description": "Para responder a las peticiones DNS, su dominio debe estar asociado a una zona DNS. Puede configurar hacia qué dirección IP será redirigido su dominio y sus subdominios. La zona DNS de su dominio está desactivada. Para activarla, siga los pasos que aparecen a continuación.",
   "web_domain_zone_activation_step_header_product": "Elija su solución",
   "web_domain_zone_activation_step_header_duration": "Seleccione la duración",

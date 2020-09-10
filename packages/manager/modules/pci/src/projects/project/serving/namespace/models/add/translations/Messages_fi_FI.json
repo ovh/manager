@@ -21,7 +21,6 @@
   "pci_projects_project_serving_namespace_models_storage_path": "Object Storage Repository",
   "pci_projects_project_serving_namespace_models_storage_scale_min": "Minimum instances",
   "pci_projects_project_serving_namespace_models_storage_scale_max": "Maximum instances",
-  "pci_projects_project_serving_namespace_models_add_autoscaling_info": "During the beta-testing phase, auto-scaling is not customisable.",
   "pci_projects_project_serving_namespace_models_add_model_preset_info": "More information",
   "pci_projects_project_serving_namespace_models_add_folder_mode": "Folder",
   "pci_projects_project_serving_namespace_models_add_file_mode": "File",
