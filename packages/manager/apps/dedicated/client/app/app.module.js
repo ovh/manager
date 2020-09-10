@@ -148,7 +148,6 @@ import './cdn/cdn.bundle';
 import './config/config.bundle';
 import './configuration/configuration.bundle';
 import './dedicated/dedicated.bundle';
-import './dedicatedCloud/dedicatedCloud.bundle';
 import './double-authentication/double-authentication.bundle';
 import './download/download.bundle';
 import './ip/ip.bundle';

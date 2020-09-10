@@ -1,0 +1,46 @@
+<div
+    data-wizard
+    data-wizard-on-cancel="$ctrl.goBack.bind($ctrl)"
+    data-wizard-on-finish="$ctrl.modifyEntry.bind($ctrl)"
+    data-wizard-title=":: 'dedicatedCloud_configuration_security_policy_modify_title' | translate"
+>
+    <div data-wizard-step>
+        <div class="text-center" data-ng-if="$ctrl.loading">
+            <oui-spinner></oui-spinner>
+        </div>
+        <form data-ng-if="!$ctrl.loading">
+            <div class="form-group">
+                <label
+                    for="network"
+                    class="control-label"
+                    data-translate="dedicatedCloud_configuration_security_policy_modify_step1_question"
+                    data-translate-values="{ t0: $ctrl.entryToModify.network }"
+                >
+                </label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="network"
+                    name="network"
+                    disabled
+                    data-ng-value="$ctrl.entryToModify.network"
+                />
+            </div>
+            <div class="form-group">
+                <label
+                    for="description"
+                    class="control-label"
+                    data-translate="dedicatedCloud_configuration_security_policy_add_step1_description"
+                >
+                </label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="description"
+                    name="description"
+                    data-ng-model="$ctrl.entryToModify.description"
+                />
+            </div>
+        </form>
+    </div>
+</div>

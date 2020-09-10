@@ -1,0 +1,6 @@
+{
+    "dedicatedCloud_tab_licences_active_spla_title": "Activate the Windows SPLA licence",
+    "dedicatedCloud_tab_license_type": "Type",
+    "dedicatedCloud_tab_license_price": "Price",
+    "dedicatedCloud_tab_licences_active_spla_load_fail": "An error has occurred retrieving information to activate the SPLA licence."
+}

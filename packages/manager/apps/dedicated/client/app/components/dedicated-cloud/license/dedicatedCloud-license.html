@@ -1,0 +1,29 @@
+<h2 data-translate="dedicatedCloud_tab_license"></h2>
+
+<div class="text-center" data-ng-if="$ctrl.loading.licences">
+    <oui-spinner></oui-spinner>
+</div>
+
+<div
+    class="row"
+    data-ng-show="!$ctrl.loading.licences && $ctrl.licences.spla != null"
+>
+    <div class="col-sm-9">
+        <dl>
+            <dt data-translate="dedicatedCloud_tab_licences_spla_state"></dt>
+            <dd
+                data-translate="{{ 'dedicatedCloud_tab_licences_spla_state_' + $ctrl.licences.spla }}"
+            ></dd>
+        </dl>
+    </div>
+    <div class="col-sm-3">
+        <button
+            type="button"
+            class="btn btn-block btn-default"
+            data-ng-hide="$ctrl.licences.spla"
+            data-ng-click="$ctrl.canBeActivatedSpla() && $ctrl.goToEnableLicense()"
+            data-ng-disabled="!$ctrl.canBeActivatedSpla()"
+            data-translate="dedicatedCloud_tab_licences_spla_on"
+        ></button>
+    </div>
+</div>

@@ -1,9 +1,0 @@
-{
-  "dedicatedCloud_datacenter_drp_confirm_delete_drp_title": "Supprimer définitivement votre PRA",
-  "dedicatedCloud_datacenter_drp_confirm_delete_drp_action_text": "Supprimer Zerto PRA",
-  "dedicatedCloud_datacenter_drp_confirm_delete_drp_modal_title": "Suppression du plan de reprise d’actitivé",
-  "dedicatedCloud_datacenter_drp_confirm_delete_drp_modal_question": "Êtes-vous sûr(e) de vouloir supprimer le PRA ? Cette action est irréversible.",
-  "dedicatedCloud_datacenter_drp_confirm_delete_drp_success": "Votre PRA Zerto est en cours de suppression. L’opération prendra quelques minutes",
-  "dedicatedCloud_datacenter_drp_confirm_delete_drp_error": "Une erreur est survenue lors de la suppression du plan de reprise d’activité",
-  "dedicatedCloud_datacenter_drp_required_vpn_configuration": "Pour finaliser l’activation de votre PRA Zerto, nous vous invitons à ajouter les IPs du VPN ci-dessous"
-}

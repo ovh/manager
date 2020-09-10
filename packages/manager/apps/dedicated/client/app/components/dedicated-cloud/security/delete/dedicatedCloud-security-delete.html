@@ -1,0 +1,24 @@
+<oui-modal
+    data-heading="{{:: 'dedicatedCloud_configuration_security_policy_delete_title' | translate }}"
+    data-primary-action="$ctrl.deleteEntries()"
+    data-primary-label="{{:: 'wizard_confirm' | translate }}"
+    data-primary-disabled="$ctrl.selectedPolicies.length < 1"
+    data-secondary-action="$ctrl.goBack()"
+    data-secondary-label="{{:: 'wizard_cancel' | translate }}"
+    data-loading="$ctrl.loading"
+    data-on-dismiss="$ctrl.goBack()"
+>
+    <p
+        data-ng-if="$ctrl.selectedPolicies.length === 1"
+        data-translate="dedicatedCloud_configuration_security_policy_delete_step1_question"
+        data-translate-values="{ t0: $ctrl.getPolicyIP($ctrl.selectedPolicies[0]) }"
+    ></p>
+    <p
+        data-ng-if="$ctrl.selectedPolicies.length > 1"
+        data-ng-bind="'dedicatedCloud_configuration_security_policy_delete_step1_question_plural' | translate:{ t0: $ctrl.selectedPolicies.length }"
+    ></p>
+    <p
+        data-ng-if="!$ctrl.selectedPolicies.length"
+        data-translate="dedicatedCloud_configuration_security_policy_delete_step1_no_selected_entries"
+    ></p>
+</oui-modal>

@@ -1,6 +1,6 @@
-import stepModuleNames from './certification.steps';
+import stepModuleNames from '../../../../../components/dedicated-cloud/service-pack/upgrade/types/certification/certification.steps';
 
-import component from '../../upgrade.component';
+import component from '../../../../../components/dedicated-cloud/service-pack/upgrade/upgrade.component';
 
 export const state = {
   name: 'app.dedicatedClouds.servicePackUpgrade.certification',
@@ -21,10 +21,6 @@ export const state = {
       ),
     steps: /* @ngInject */ (pccServicePackUpgradeService) =>
       pccServicePackUpgradeService.buildSteps(stepModuleNames),
-  },
-  translations: {
-    format: 'json',
-    value: ['.'],
   },
   url: '/certification',
   views: {

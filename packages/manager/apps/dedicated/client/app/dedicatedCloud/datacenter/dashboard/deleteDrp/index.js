@@ -1,24 +1,23 @@
-import component from '../../drp/summary/delete/dedicatedCloud-datacenter-drp-summary-delete.component';
+import angular from 'angular';
+import '@uirouter/angularjs';
+import 'oclazyload';
 
-const moduleName = 'dedicatedCloudDatacenterDashboardDeleteDrpModule';
+const moduleName = 'ovhManagerDedicatedCloudDatacenterDeleteDrpLazyloading';
 
-angular.module(moduleName, []).config(
+angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.dedicatedClouds.datacenter.dashboard.deleteDrp', {
-      url: '/deleteDrp',
-      views: {
-        modal: {
-          component: component.name,
+    $stateProvider.state(
+      'app.dedicatedClouds.datacenter.dashboard.deleteDrp.**',
+      {
+        url: '/deleteDrp',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+          return import(
+            './dedicatedCloud-datacenter-delete-drp.module'
+          ).then((mod) => $ocLazyLoad.inject(mod.default || mod));
         },
       },
-      layout: 'modal',
-      resolve: {
-        drpInformations: /* @ngInject */ (currentDrp, dedicatedCloudDrp) =>
-          dedicatedCloudDrp.constructor.getPlanServiceInformations(currentDrp),
-
-        goBack: /* @ngInject */ ($state) => () => $state.go('^'),
-      },
-    });
+    );
   },
 );
 

@@ -1,0 +1,20 @@
+{
+    "dedicated_cloud_close_service_form_label": "Select the action you wish to carry out",
+    "dedicated_cloud_close_service_form_option_terminate": "Delete service now",
+    "dedicated_cloud_close_service_form_option_delete_at_expiration": "Delete service on its expiry date",
+    "dedicated_cloud_service_form_option_cancel": "Cancel service deletion",
+    "dedicated_cloud_close_service_delete_at_expiration_activate_success": "The deletion request for this server on its expiry date has been processed.",
+    "dedicated_cloud_close_service_delete_at_expiration_activate_error": "An error has occurred submitting the deletion request for this server on its expiry date:",
+    "dedicated_cloud_close_service_cancel_success": "The deletion request for this server has been suspended.",
+    "dedicated_cloud_close_service_cancel_error": "An error has occurred suspending the deletion request for this server:",
+    "dedicatedCloud_close_service": "Delete my service",
+    "dedicatedCloud_close_service_warning": "By deleting this element, you will permanently delete any data and IP blocks associated with it. The process of deletion does not entitle you to a refund.",
+    "server_close_service_form_label": "Select the action you wish to carry out",
+    "server_close_service_form_option_terminate": "Delete service now",
+    "server_close_service_form_option_delete_at_expiration": "Delete service on its expiry date",
+    "server_close_service_form_option_cancel": "Cancel service deletion",
+    "server_close_service_delete_at_expiration_activate_success": "The deletion request for this server on its expiry date has been processed.",
+    "server_close_service_delete_at_expiration_activate_error": "An error has occurred when submitting the deletion request for this server on its expiry date:",
+    "server_close_service_cancel_success": "The deletion request for this server has been suspended.",
+    "server_close_service_cancel_error": "An error has occurred when suspending the deletion request for this server:"
+}

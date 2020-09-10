@@ -1,17 +1,24 @@
-import steps from './basicOptions.steps';
+import angular from 'angular';
+import '@uirouter/angularjs';
+import 'oclazyload';
 
-import { registerState } from './basicOptions.routing';
-import {
-  name as serviceName,
-  UpgradeBasicOptionsService,
-} from './basicOptions.service';
+const moduleName = 'ovhManagerPccServicePackUpgradeBasicOptionsLazyloading';
 
-const moduleName = 'ovhManagerPccServicePackUpgradeBasicOptions';
-
-angular
-  .module(moduleName, [...steps])
-  .config(registerState)
-  .run(/* @ngTranslationsInject:json ./translations */)
-  .service(serviceName, UpgradeBasicOptionsService);
+angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
+  /* @ngInject */ ($stateProvider) => {
+    $stateProvider.state(
+      'app.dedicatedClouds.servicePackUpgrade.basicOptions.**',
+      {
+        url: '/basicOptions',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+          return import('./basicOptions.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
+      },
+    );
+  },
+);
 
 export default moduleName;

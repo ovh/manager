@@ -1,0 +1,7 @@
+{
+    "dedicatedCloud_USER_enable_title": "Activar un usuario",
+    "dedicatedCloud_USER_enable_infos": "Este usuario es un administrador temporal de su infraestructura y será desactivado en 2 horas.",
+    "dedicatedCloud_USER_enable_message": "¿Está seguro(a) que desea activar el usuario <strong>{{t0}}</strong>?",
+    "dedicatedCloud_USER_enable_success": "El usuario se ha activado correctamente.",
+    "dedicatedCloud_USER_enable_fail": "Se ha producido un error al activar el usuario:"
+}

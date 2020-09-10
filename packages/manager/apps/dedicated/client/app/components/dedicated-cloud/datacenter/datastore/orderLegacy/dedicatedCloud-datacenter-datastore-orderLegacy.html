@@ -1,0 +1,170 @@
+<oui-back-button data-on-click="$ctrl.goBack()"
+    ><span data-translate="dedicatedCloud_order_Datastore"></span>
+</oui-back-button>
+<oui-stepper data-on-finish="$ctrl.displayBC()">
+    <oui-step-form
+        data-header="{{:: 'dedicatedCloud_configuration_order_datastores_step1_question' | translate }}"
+        data-cancel-text="{{:: 'common_cancel' | translate }}"
+        data-submit-text="{{:: 'common_next' | translate }}"
+        data-loading="$ctrl.orderDatastores.loading"
+        data-valid="!$ctrl.orderDatastores.loading && $ctrl.orderDatastores.selected"
+        data-prevent-next="true"
+        data-on-cancel="$ctrl.goBack()"
+        data-on-focus="$ctrl.loadDatastoresProfiles()"
+    >
+        <p
+            data-translate="dedicatedCloud_configuration_order_datastores_step1_question"
+        ></p>
+        <div class="table-responsive">
+            <table class="table table-hover mb-5">
+                <thead>
+                    <tr>
+                        <th scope="col" class="min-width"></th>
+                        <th
+                            scope="col"
+                            class="text-center"
+                            data-translate="dedicatedCloud_configuration_order_datastores_step1_profile"
+                        ></th>
+                        <th
+                            scope="col"
+                            class="text-center"
+                            data-translate="dedicatedCloud_configuration_order_datastores_step1_type"
+                        ></th>
+                        <th scope="col" class="text-right">
+                            <span
+                                data-translate="dedicatedCloud_configuration_order_datastores_rate"
+                            ></span>
+                            <small
+                                data-translate="dedicatedCloud_configuration_order_datastores_monthly_rate"
+                            ></small>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr
+                        data-ng-repeat="profile in $ctrl.orderDatastores.model track by $index"
+                    >
+                        <td>
+                            <input
+                                type="radio"
+                                name="selected_profile"
+                                value="{{ $index }}"
+                                data-ng-model="$ctrl.orderDatastores.selected"
+                            />
+                        </td>
+                        <th
+                            scope="row"
+                            class="text-center"
+                            data-ng-bind="profile.name"
+                        ></th>
+                        <td
+                            class="text-center"
+                            data-ng-bind="profile.fullName"
+                        ></td>
+                        <td
+                            class="text-right text-danger"
+                            data-ng-bind="profile.priceDisplay"
+                        ></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="form-group">
+            <label
+                for="quantity"
+                class="control-label"
+                data-translate="dedicatedCloud_configuration_order_datastores_billing_quantity"
+            >
+            </label>
+            <oui-numeric
+                id="quantity"
+                name="quantity"
+                model="$ctrl.orderDatastores.quantityToOrder"
+                min="1"
+                max="20"
+            >
+            </oui-numeric>
+        </div>
+    </oui-step-form>
+
+    <oui-step-form
+        data-header="{{:: 'dedicatedCloud_configuration_order_datastores_step2_details' | translate }}"
+        data-cancel-text="{{:: 'common_cancel' | translate }}"
+        data-submit-text="{{:: 'wizard_order' | translate }}"
+        data-loading="$ctrl.orderDatastores.loading"
+        data-valid="!$ctrl.orderDatastores.loading && $ctrl.orderDatastores.agreeContract == true"
+        data-prevent-next="true"
+        data-on-cancel="$ctrl.goBack()"
+        data-on-focus="$ctrl.getDatastoreSelected()"
+    >
+        <ul class="list-unstyled">
+            <li>
+                <span
+                    data-translate="dedicatedCloud_configuration_order_datastores_step2_profile"
+                ></span>
+                <strong
+                    data-ng-bind="$ctrl.orderDatastores.selectedModel.name"
+                ></strong>
+            </li>
+            <li>
+                <span
+                    data-translate="dedicatedCloud_configuration_order_datastores_billing_quantity"
+                ></span>
+                <strong
+                    data-ng-bind="$ctrl.orderDatastores.quantityToOrder"
+                ></strong>
+            </li>
+            <li>
+                <span
+                    data-translate="dedicatedCloud_configuration_order_datastores_step2_monthly_price_HT"
+                ></span>
+                <strong
+                    class="text-danger"
+                    data-ng-bind="$ctrl.orderDatastores.orderResult.prices.withoutTax.text"
+                >
+                </strong>
+            </li>
+            <li>
+                <span
+                    data-translate="dedicatedCloud_configuration_order_datastores_step2_monthly_price_TTC"
+                ></span>
+                <strong
+                    class="text-danger"
+                    data-ng-bind="$ctrl.orderDatastores.orderResult.prices.withTax.text"
+                >
+                </strong>
+            </li>
+        </ul>
+        <p
+            data-translate="dedicatedCloud_configuration_order_datastores_step2_confirm"
+        ></p>
+        <p
+            data-translate="dedicatedCloud_configuration_order_datastores_step2_explication"
+        ></p>
+        <div class="checkbox">
+            <label>
+                <input
+                    type="checkbox"
+                    data-ng-model="$ctrl.orderDatastores.agreeContract"
+                />
+                <span
+                    data-translate="dedicatedCloud_configuration_order_datastores_step2_contracts"
+                ></span>
+            </label>
+        </div>
+        <ul>
+            <li
+                data-ng-repeat="contract in $ctrl.orderDatastores.orderResult.contracts track by $index"
+            >
+                <a
+                    target="_blank"
+                    rel="noopener"
+                    title="{{ contract.name }} ({{ 'core_new_window' | translate }})"
+                    data-ng-href="{{ contract.url }}"
+                    data-ng-bind="contract.name"
+                >
+                </a>
+            </li>
+        </ul>
+    </oui-step-form>
+</oui-stepper>

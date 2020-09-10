@@ -1,14 +1,13 @@
-angular.module('App').config(($stateProvider) => {
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicatedClouds.datacenters', {
     url: '/datacenters',
     reloadOnSearch: false,
     views: {
-      pccView: {
-        templateUrl:
-          'dedicatedCloud/datacenters/dedicatedCloud-datacenters.html',
-        controller: 'DedicatedCloudDatacentersCtrl',
-        controllerAs: '$ctrl',
-      },
+      pccView: 'ovhManagerPccDatacenters',
+    },
+    resolve: {
+      addDatacenter: /* @ngInject */ ($state) => () =>
+        $state.go('app.dedicatedClouds.datacenters.add-datacenter'),
     },
   });
-});
+};

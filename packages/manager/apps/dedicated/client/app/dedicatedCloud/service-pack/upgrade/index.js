@@ -1,29 +1,21 @@
-import basicOptions from './types/basicOptions';
-import certification from './types/certification';
-import configurationOnly from './types/configuration-only';
+import angular from 'angular';
+import '@uirouter/angularjs';
+import 'oclazyload';
 
-import servicePack from '..';
-import stepper from '../../../components/stepper';
+const moduleName = 'ovhManagerPccServicePackUpgradeLazyloading';
 
-import component from './upgrade.component';
-import { registerState } from './upgrade.routing';
-import { name as serviceName, UpgradeService } from './upgrade.service';
-
-const moduleName = 'ovhManagerPccServicePackUpgrade';
-
-angular
-  .module(moduleName, [
-    basicOptions,
-    certification,
-    configurationOnly,
-    'pascalprecht.translate',
-    servicePack,
-    stepper,
-    'ui.router',
-  ])
-  .component(component.name, component)
-  .config(registerState)
-  .run(/* @ngTranslationsInject:json ./translations */)
-  .service(serviceName, UpgradeService);
+angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
+  /* @ngInject */ ($stateProvider) => {
+    $stateProvider.state('app.dedicatedClouds.servicePackUpgrade.**', {
+      url: '/servicePackUpgrade',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+        return import('./upgrade.module').then((mod) =>
+          $ocLazyLoad.inject(mod.default || mod),
+        );
+      },
+    });
+  },
+);
 
 export default moduleName;

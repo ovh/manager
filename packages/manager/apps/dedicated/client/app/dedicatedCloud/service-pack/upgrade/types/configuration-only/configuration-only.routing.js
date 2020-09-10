@@ -1,6 +1,6 @@
-import stepModuleNames from './configuration-only.steps';
+import stepModuleNames from '../../../../../components/dedicated-cloud/service-pack/upgrade/types/configuration-only/configuration-only.steps';
 
-import component from '../../upgrade.component';
+import component from '../../../../../components/dedicated-cloud/service-pack/upgrade/upgrade.component';
 
 export const state = {
   name: 'app.dedicatedClouds.servicePackUpgrade.configurationOnly',
@@ -14,10 +14,6 @@ export const state = {
       ),
     steps: /* @ngInject */ (pccServicePackUpgradeService) =>
       pccServicePackUpgradeService.buildSteps(stepModuleNames),
-  },
-  translations: {
-    format: 'json',
-    value: ['.'],
   },
   url: '/configurationOnly',
   views: {

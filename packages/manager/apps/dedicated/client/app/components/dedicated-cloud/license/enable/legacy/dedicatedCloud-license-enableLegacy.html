@@ -1,0 +1,34 @@
+<oui-modal
+    data-heading="{{:: 'dedicatedCloud_tab_licences_active_spla_title' | translate }}"
+    data-primary-action="$ctrl.enableSpla()"
+    data-primary-label="{{:: 'wizard_confirm' | translate }}"
+    data-primary-disabled="!$ctrl.spla.agreeContract"
+    data-secondary-action="$ctrl.goBack()"
+    data-secondary-label="{{:: 'wizard_cancel' | translate }}"
+    data-loading="$ctrl.spla.loading"
+    data-on-dismiss="$ctrl.goBack()"
+>
+    <p data-translate="dedicatedCloud_tab_licences_active_spla_step1"></p>
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" data-ng-model="$ctrl.spla.agreeContract" />
+            <span
+                data-translate="dedicatedCloud_tab_licences_active_spla_contacts"
+            ></span>
+        </label>
+    </div>
+    <ul>
+        <li
+            data-ng-repeat="contract in $ctrl.spla.model.contracts track by $index"
+        >
+            <a
+                target="_blank"
+                rel="noopener"
+                title="{{ contract.name }} ({{ 'core_new_window' | translate }})"
+                data-ng-href="{{ contract.url }}"
+                data-ng-bind="contract.name"
+            >
+            </a>
+        </li>
+    </ul>
+</oui-modal>

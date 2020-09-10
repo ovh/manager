@@ -1,0 +1,57 @@
+<div
+    data-wizard
+    data-wizard-on-cancel="$ctrl.goBack.bind($ctrl)"
+    data-wizard-on-finish="$ctrl.addEntry.bind($ctrl)"
+    data-wizard-title=":: 'dedicatedCloud_configuration_security_policy_add_title' | translate"
+    data-wizard-bread-crumb
+>
+    <div
+        data-wizard-step
+        data-wizard-step-valid="$ctrl.newNetwork.value && $ctrl.newNetwork.value.length && !$ctrl.newNetwork.value.contains('0.0.0.0')"
+    >
+        <form>
+            <div class="form-group">
+                <label
+                    for="network"
+                    class="control-label"
+                    data-translate="dedicatedCloud_configuration_security_policy_add_step1_question"
+                >
+                </label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="network"
+                    name="network"
+                    data-ng-model="$ctrl.newNetwork.value"
+                    data-ng-pattern="regex.ROUTABLE_BLOCK_OR_IP"
+                />
+            </div>
+            <div class="form-group">
+                <label
+                    for="description"
+                    class="control-label"
+                    data-translate="dedicatedCloud_configuration_security_policy_add_step1_description"
+                >
+                </label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="description"
+                    name="description"
+                    data-ng-model="$ctrl.newNetwork.description"
+                />
+            </div>
+        </form>
+    </div>
+
+    <div data-wizard-step>
+        <div class="text-center" data-ng-if="$ctrl.loading">
+            <oui-spinner></oui-spinner>
+        </div>
+        <p
+            data-ng-if="!$ctrl.loading"
+            data-translate="dedicatedCloud_configuration_security_policy_add_step2_question"
+            data-translate-values="{ t0: $ctrl.newNetwork.value }"
+        ></p>
+    </div>
+</div>

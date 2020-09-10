@@ -1,0 +1,7 @@
+{
+    "dedicatedCloud_configuration_security_policy_modify_title": "Changing the IP range ",
+    "dedicatedCloud_configuration_security_policy_modify_step1_question": "IP:",
+    "dedicatedCloud_configuration_security_policy_add_step1_description": "Description:",
+    "dedicatedCloud_configuration_SECURITY_policy_modify_success": "The security rule will be modified shortly.",
+    "dedicatedCloud_configuration_SECURITY_policy_modify_fail": "An error has occurred modifying the security rule {{t0}}."
+}

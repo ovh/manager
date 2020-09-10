@@ -1,14 +1,21 @@
-import component from './dedicatedCloud-datacenter-drp-summary.component';
-import routing from './dedicatedCloud-datacenter-drp-summary.routing';
+import angular from 'angular';
+import '@uirouter/angularjs';
+import 'oclazyload';
 
-import deleteDrp from './delete';
+const moduleName = 'ovhManagerDedicatedCloudDatacenterDrpSummaryLazyloading';
 
-const moduleName = 'dedicatedCloudDatacenterDrpSummary';
-
-angular
-  .module(moduleName, [deleteDrp])
-  .config(routing)
-  .component(component.name, component)
-  .run(/* @ngTranslationsInject:json ./translations */);
+angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
+  /* @ngInject */ ($stateProvider) => {
+    $stateProvider.state('app.dedicatedClouds.datacenter.drp.summary.**', {
+      url: '/summary',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+        return import(
+          './dedicatedCloud-datacenter-drp-summary.module'
+        ).then((mod) => $ocLazyLoad.inject(mod.default || mod));
+      },
+    });
+  },
+);
 
 export default moduleName;

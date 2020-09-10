@@ -1,0 +1,42 @@
+<div
+    data-wizard
+    data-wizard-on-cancel="$ctrl.goBack.bind($ctrl)"
+    data-wizard-on-finish="$ctrl.update.bind($ctrl)"
+    data-wizard-title=":: 'dedicatedCloud_configuration_security_max_concurrent_connections_title' | translate"
+    data-wizard-bread-crumb
+>
+    <div
+        data-wizard-step
+        data-wizard-step-valid="$ctrl.maxSimultaneousConnections.value >= 0 && $ctrl.maxSimultaneousConnections.value != null"
+    >
+        <form>
+            <label
+                for="maxSimultaneousConnections"
+                class="control-label"
+                data-translate="dedicatedCloud_configuration_security_max_concurrent_connections_step1_question"
+            >
+            </label>
+            <input
+                type="number"
+                class="form-control"
+                id="maxSimultaneousConnections"
+                name="maxSimultaneousConnections"
+                min="0"
+                data-ng-model="$ctrl.maxSimultaneousConnections.value"
+            />
+        </form>
+    </div>
+
+    <div data-wizard-step>
+        <div class="text-center" data-ng-if="$ctrl.loading">
+            <oui-spinner></oui-spinner>
+        </div>
+        <p
+            data-ng-if="!$ctrl.loading"
+            data-ng-bind-html="'dedicatedCloud_configuration_security_max_concurrent_connections_step2_question' | translate: {
+            t0: ($ctrl.maxSimultaneousConnections.current === 0 ? (('dedicatedCloud_SECURITY_nb_simultaneous_connection_none') | translate) : ('dedicatedCloud_SECURITY_nb_simultaneous_connection_value') | translate:{ t0: $ctrl.maxSimultaneousConnections.current }),
+            t1: ($ctrl.maxSimultaneousConnections.value === 0 ? (('dedicatedCloud_SECURITY_nb_simultaneous_connection_none') | translate) : ('dedicatedCloud_SECURITY_nb_simultaneous_connection_value') | translate: { t0: $ctrl.maxSimultaneousConnections.value })
+        }"
+        ></p>
+    </div>
+</div>

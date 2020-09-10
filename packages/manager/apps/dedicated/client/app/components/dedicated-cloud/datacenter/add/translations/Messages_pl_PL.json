@@ -1,0 +1,8 @@
+{
+  "dedicatedCloud_configuration_add_datacenter_title": "Dodanie centrum danych",
+  "dedicatedCloud_configuration_add_datacenter_confirmation": "Wybierz rodzaj centrum danych do dodania: ",
+  "dedicatedCloud_datacenters_adding_success": "Nowe centrum danych zostanie stworzone w ciągu kilku minut.",
+  "dedicatedCloud_datacenters_adding_error": "Wystąpił błąd podczas dodawania centrum danych.",
+  "dedicatedCloud_datacenters_adding_load_error": "Wystąpił błąd podczas pobierania informacji o dodawaniu centrum danych.",
+  "dedicatedCloud_datacenters_adding_select": "Wybierz..."
+}

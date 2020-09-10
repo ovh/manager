@@ -1,0 +1,95 @@
+<h2 data-translate="dedicatedCloud_tab_datastores_title"></h2>
+
+<oui-datagrid data-rows-loader="$ctrl.loadDatastores($config)">
+    <oui-datagrid-column
+        data-title=":: 'dedicatedCloud_tab_datastores_id' | translate"
+        data-property="id"
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'dedicatedCloud_tab_datastores_name' | translate"
+        data-property="name"
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'dedicatedCloud_tab_datastores_profile' | translate"
+        data-property="profile"
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'dedicatedCloud_tab_datastores_type' | translate"
+        data-property="fullProfile"
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'dedicatedCloud_tab_datastores_size' | translate"
+    >
+        <span
+            data-ng-bind="$row.size.value + ' ' + ('unit_size_' + $row.size.unit | translate)"
+        ></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'dedicatedCloud_tab_datastores_billing' | translate"
+    >
+        <span
+            data-ng-bind="'dedicatedCloud_tab_datastores_billing_' + $row.billing | translate"
+        ></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'dedicatedCloud_tab_datastores_status' | translate"
+    >
+        <span
+            data-ng-bind="'dedicatedCloud_tab_datastores_status_' + $row.status | translate"
+        ></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'dedicatedCloud_tab_datastores_consumption' | translate"
+    >
+        <span data-ng-if="$row.billing === $ctrl.RESOURCE_BILLING_TYPES.hourly">
+            <span
+                data-ng-if="$row.consumption == null || $row.consumption === 0"
+                data-translate="dedicatedCloud_tab_datastores_hourly_consumption_na"
+            ></span>
+
+            <span
+                data-ng-if="$row.consumption != null && $row.consumption > 0"
+                data-oui-tooltip="{{:: 'dedicatedCloud_tab_datastores_hourly_usage_update' | translate:{ t0: ($row.consumptionLastUpdate|date:'short') } }}"
+                data-oui-tooltip-placement="top"
+            >
+                <span
+                    data-ng-if="$row.consumption <= 1"
+                    data-translate="dedicatedCloud_tab_datastores_hourly_consumption_1"
+                ></span>
+                <span
+                    data-ng-if="$row.consumption > 1"
+                    data-translate="dedicatedCloud_tab_datastores_hourly_consumption_other"
+                    data-translate-value-t0="{{:: $row.consumption }}"
+                ></span>
+            </span>
+        </span>
+    </oui-datagrid-column>
+    <oui-action-menu
+        data-compact
+        data-ng-if="$row.billing === $ctrl.RESOURCE_BILLING_TYPES.hourly && $row.status === 'DELIVERED'"
+        data-placement="end"
+    >
+        <oui-action-menu-item
+            data-on-click="$ctrl.resourceUpgrade(
+                $row.id,
+                $ctrl.usesLegacyOrder ? 'filer' : $ctrl.RESOURCE_UPGRADE_TYPES.datastore,
+                $ctrl.usesLegacyOrder ? $row.model.isUpgradable && 'demoToMonthly' || 'hourlyToMonthly' : undefined
+            )"
+            ><span
+                data-translate="dedicatedCloud_updateResource_toMonthly"
+            ></span
+        ></oui-action-menu-item>
+    </oui-action-menu>
+    <oui-datagrid-topbar>
+        <oui-button
+            data-disabled="!$ctrl.datacenter.model.canOrderFilers && $ctrl.usesLegacyOrder"
+            data-on-click="$ctrl.orderDatastore($ctrl.datacenterId)"
+            class="mb-3"
+            ><span data-translate="dedicatedCloud_order_Datastore"></span>
+        </oui-button>
+    </oui-datagrid-topbar>
+</oui-datagrid>

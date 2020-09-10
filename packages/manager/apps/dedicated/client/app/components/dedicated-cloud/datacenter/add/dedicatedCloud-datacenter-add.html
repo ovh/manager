@@ -1,0 +1,30 @@
+<oui-modal
+    data-heading="{{:: 'dedicatedCloud_configuration_add_datacenter_title' | translate }}"
+    data-primary-action="$ctrl.addDatacenter()"
+    data-primary-label="{{:: 'wizard_confirm' | translate }}"
+    data-primary-disabled="!$ctrl.commercialRange.model"
+    data-secondary-action="$ctrl.goBack()"
+    data-secondary-label="{{:: 'wizard_cancel' | translate }}"
+    data-loading="$ctrl.loader"
+    data-on-dismiss="$ctrl.goBack()"
+>
+    <label
+        for="commercialRange"
+        class="control-label"
+        data-translate="dedicatedCloud_configuration_add_datacenter_confirmation"
+    >
+    </label>
+    <select
+        class="form-control"
+        id="commercialRange"
+        name="commercialRange"
+        data-ng-model="$ctrl.commercialRange.model"
+        data-ng-options="commercialRangeType as ($ctrl.COMMERCIAL_RANGE_ENUM[commercialRangeType] || commercialRangeType) for commercialRangeType in $ctrl.commercialRange.list"
+    >
+        <option
+            value=""
+            data-ng-disabled="true"
+            data-translate="dedicatedCloud_datacenters_adding_select"
+        ></option>
+    </select>
+</oui-modal>
