@@ -12,12 +12,13 @@
         data-ng-controller="HostingTabDomainsMultisiteLogs"
         data-ng-if="!!domain.ownLog"
     >
-        <span data-ng-if="domain.logsLoading">
+        <span data-ng-if="domain.logsLoading || !domain.logUrl">
             <span
                 class="text-muted"
                 data-translate="hosting_tab_DOMAINS_multisite_logs_link"
             ></span>
-            <oui-spinner data-size="s"></oui-spinner>
+            <oui-spinner data-size="s" data-ng-if="domain.logsLoading">
+            </oui-spinner>
         </span>
         <a
             class="btn btn-link"

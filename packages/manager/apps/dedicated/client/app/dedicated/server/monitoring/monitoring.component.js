@@ -13,4 +13,7 @@ export default {
   },
   controller,
   template,
+  require: {
+    dedicatedServer: '^dedicatedServer',
+  },
 };

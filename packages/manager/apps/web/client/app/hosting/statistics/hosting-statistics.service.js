@@ -13,11 +13,13 @@ angular.module('services').service(
       this.OvhHttp = OvhHttp;
     }
 
-    getLogs(serviceName) {
+    getLogs(serviceName, attachedDomain) {
+      const fqdn = attachedDomain || serviceName;
+
       return this.$http
         .get(`/hosting/web/${serviceName}/ownLogs`, {
           params: {
-            fqdn: serviceName,
+            fqdn,
           },
         })
         .then(({ data }) =>
