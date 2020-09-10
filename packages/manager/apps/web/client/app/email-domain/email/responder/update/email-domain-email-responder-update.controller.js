@@ -1,5 +1,4 @@
 import get from 'lodash/get';
-import isEmpty from 'lodash/isEmpty';
 
 angular.module('App').controller(
   'EmailsUpdateResponderCtrl',
@@ -41,6 +40,7 @@ angular.module('App').controller(
             ? 'permanent'
             : 'temporary',
       };
+      this.model.responderDates = [this.responder.from, this.responder.to];
 
       this.$scope.updateResponder = () => this.updateResponder();
     }
@@ -55,33 +55,8 @@ angular.module('App').controller(
       );
     }
 
-    responderDatesCheck(start, end) {
-      this.responderDateStartCheck(start);
-      this.responderDateEndCheck(end);
-    }
-
-    responderDateStartCheck(input) {
-      if (!input.$dirty && !isEmpty(this.model.from)) {
-        input.$setDirty();
-      }
-      input.$setValidity(
-        'date',
-        !!this.model.from &&
-          (!this.model.to || moment(this.model.from).isBefore(this.model.to)),
-      );
-    }
-
-    responderDateEndCheck(input) {
-      if (!input.$dirty && !isEmpty(this.model.to)) {
-        input.$setDirty();
-      }
-      input.$setValidity(
-        'date',
-        !!this.model.to &&
-          (!this.model.from ||
-            moment(this.model.to).isAfter(this.model.from)) &&
-          moment(this.model.to).isAfter(new Date()),
-      );
+    responderDatesChanged(selectedDates) {
+      [this.model.from, this.model.to] = selectedDates;
     }
 
     updateResponder() {
