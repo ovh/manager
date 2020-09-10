@@ -464,7 +464,7 @@
         >
             <!-- monitoring services -->
             <tr
-                data-ng-repeat="monitoring in $ctrl.monitoringServices track by monitoring.monitoringId"
+                data-ng-repeat="monitoring in $ctrl.monitoringServices track by $index"
             >
                 <!-- Read Mode  -->
                 <td
@@ -573,7 +573,7 @@
                         type="button"
                         class="btn btn-link"
                         title="{{ 'server_tab_MONITORING_table_action_delete' | translate }}"
-                        data-ng-click="setAction('monitoring/delete/dedicated-server-monitoring-delete', monitoring)"
+                        data-ng-click="$ctrl.dedicatedServer.$scope.setAction('monitoring/delete/dedicated-server-monitoring-delete', monitoring)"
                     >
                         <span
                             class="oui-icon oui-icon-trash_concept"
@@ -724,7 +724,7 @@
                                             data-ng-click="$ctrl.editMode = null"
                                         >
                                             <span
-                                                class="oui-icon oui-icon-error"
+                                                class="oui-icon oui-icon-close"
                                                 aria-hidden="true"
                                             ></span>
                                         </button>

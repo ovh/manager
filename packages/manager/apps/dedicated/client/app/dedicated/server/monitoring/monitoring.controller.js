@@ -29,7 +29,7 @@ export default class Monitoring {
       smsNotifications: false,
     };
 
-    this.$scope.$on('server.monitoring.reload', this.refreshTableMonitoring);
+    this.$scope.$on('server.monitoring.reload', () => this.refreshTableMonitoring());
 
     return this.refreshTableMonitoring();
   }
@@ -67,6 +67,8 @@ export default class Monitoring {
   refreshTableMonitoring() {
     this.loaders.monitorings = true;
     this.monitoringServicesIds = [];
+    this.editMode = null;
+    this.addMode = null;
 
     this.Server.getServiceMonitoringIds(this.$stateParams.productId)
       .then((monitoringIds) => {
