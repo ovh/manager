@@ -1,0 +1,10 @@
+{
+    "dedicatedCloud_configuration_security_policy_delete_title": "Delete IPs",
+    "dedicatedCloud_configuration_security_policy_delete_step1_question": "Are you sure you want to delete access for the IP {{t0}}?",
+    "dedicatedCloud_configuration_security_policy_delete_step1_question_plural": "Are you sure you want to delete access for the {{t0}} IP addresses?",
+    "dedicatedCloud_configuration_security_policy_delete_step1_no_selected_entries": "You haven't selected any IPs.",
+    "dedicatedCloud_configuration_SECURITY_policy_delete_success_other": "The security rules will be deleted shortly.",
+    "dedicatedCloud_configuration_SECURITY_policy_delete_success_one": "The security rule will be deleted shortly.",
+    "dedicatedCloud_configuration_SECURITY_policy_delete_fail_other": "An error has occurred deleting the security rules.",
+    "dedicatedCloud_configuration_SECURITY_policy_delete_fail_one": "An error has occurred deleting the security rule."
+}

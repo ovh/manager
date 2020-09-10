@@ -1,9 +1,0 @@
-{
-  "dedicatedCloud_datacenter_drp_confirm_delete_drp_title": "Eliminar el DRP de forma definitiva",
-  "dedicatedCloud_datacenter_drp_confirm_delete_drp_action_text": "Eliminar el DRP Zerto",
-  "dedicatedCloud_datacenter_drp_confirm_delete_drp_modal_title": "Eliminación del plan de recuperación ante desastres",
-  "dedicatedCloud_datacenter_drp_confirm_delete_drp_modal_question": "¿Seguro que quiere eliminar el DRP? Esta acción es irreversible.",
-  "dedicatedCloud_datacenter_drp_confirm_delete_drp_success": "Eliminando el DRP Zerto... La operación será efectiva en unos minutos.",
-  "dedicatedCloud_datacenter_drp_confirm_delete_drp_error": "Se ha producido un error al eliminar el plan de recuperación ante desastres.",
-  "dedicatedCloud_datacenter_drp_required_vpn_configuration": "Para completar la activación de su DRP Zerto, debe añadir las IP de la VPN a continuación."
-}

@@ -1,0 +1,256 @@
+<div class="text-center" data-ng-if="$ctrl.loading">
+    <oui-spinner></oui-spinner>
+</div>
+
+<div data-ng-if="!$ctrl.loading">
+    <div class="row d-md-flex">
+        <!-- GENERAL INFORMATIONS -->
+        <div
+            class="mb-5"
+            data-ng-class="{
+                'col-md-4': $ctrl.allowDedicatedServerComplianceOptions,
+                'col-md-6': !$ctrl.allowDedicatedServerComplianceOptions
+            }"
+        >
+            <oui-tile
+                class="h-100"
+                data-heading="{{:: 'dedicatedCloud_information_title' | translate }}"
+            >
+                <oui-tile-definition
+                    data-term="{{:: 'dedicatedCloud_description' | translate }}"
+                    data-description="{{ $ctrl.currentService.description }}"
+                >
+                    <oui-action-menu
+                        data-aria-label="{{:: 'menu_action_label' | translate: { t0: ('dedicatedCloud_description' | translate) } }}"
+                        data-compact
+                        data-placement="end"
+                    >
+                        <oui-action-menu-item
+                            data-ng-click=":: $ctrl.openModalToEditDescription()"
+                            ><span data-translate="common_change"></span
+                        ></oui-action-menu-item>
+                        <oui-action-menu-item
+                            data-on-click="$ctrl.onTerminate()"
+                            ><span
+                                data-translate="dedicatedCloud_close_service"
+                            ></span
+                        ></oui-action-menu-item>
+                    </oui-action-menu>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{:: 'dedicatedCloud_type' | translate }}"
+                    data-description="{{:: $ctrl.buildDescription() }}"
+                ></oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{:: 'dedicatedCloud_commercialRange' | translate }}"
+                    data-description="{{:: $ctrl.currentService.commercialRange }}"
+                ></oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{:: 'dedicatedCloud_pcc_zone' | translate }}"
+                    data-description="{{:: $ctrl.currentService.location }}"
+                ></oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{:: 'dedicatedCloud_access' | translate }}"
+                    data-description="{{:: $ctrl.getUserAccessPolicyLabel() }}"
+                ></oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{:: 'dedicatedCloud_bandwidth' | translate }}"
+                >
+                    <oui-tile-description
+                        class="oui-badge oui-badge_info"
+                        data-translate="dedicatedCloud_coming_soon"
+                    ></oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{:: 'dedicatedCloud_datacenter_count' | translate }}"
+                    data-description="{{:: $ctrl.currentService.datacenterCount }}"
+                ></oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{:: 'dedicatedCloud_nb_bloc_IP_ripe' | translate }}"
+                >
+                    <oui-tile-description
+                        data-ng-if="$ctrl.currentService.ipRipeCount === 0"
+                        data-translate="dedicatedCloud_nb_bloc_IP_no_data"
+                    ></oui-tile-description>
+                    <oui-tile-description
+                        data-ng-if="$ctrl.currentService.ipRipeCount > 0"
+                        data-ng-bind="$ctrl.currentService.ipRipeCount"
+                    ></oui-tile-description>
+                    <oui-action-menu
+                        data-aria-label="{{:: 'menu_action_label' | translate:{ t0: ('dedicatedCloud_order_block' | translate) } }}"
+                        data-compact
+                        data-placement="end"
+                    >
+                        <oui-action-menu-item
+                            data-ui-sref="app.ip({ serviceName: $ctrl.currentService.name })"
+                            ><span
+                                data-translate="dedicatedCloud_order_block"
+                            ></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-ng-if="$ctrl.currentService.ipArinCount > 0"
+                    data-term="{{:: 'dedicatedCloud_nb_bloc_IP_arin' | translate }}"
+                >
+                    <oui-tile-description
+                        data-ng-bind=":: $ctrl.currentService.ipArinCount"
+                    ></oui-tile-description>
+                    <oui-action-menu
+                        data-aria-label="{{:: 'menu_action_label' | translate:{ t0: ('dedicatedCloud_order_block' | translate) } }}"
+                        data-compact
+                        data-placement="end"
+                    >
+                        <oui-action-menu-item
+                            data-ui-sref="app.ip({ serviceName: $ctrl.currentService.name })"
+                            ><span
+                                data-translate="dedicatedCloud_order_block"
+                            ></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{:: 'dedicatedCloud_subscription_links' | translate }}"
+                >
+                    <oui-tile-description>
+                        <a
+                            class="d-block oui-link_icon"
+                            target="_blank"
+                            rel="noopener"
+                            data-ng-href="{{:: $ctrl.currentService.vScopeUrl }}"
+                        >
+                            <span
+                                data-translate="dedicatedCloud_datacenter_go_vscope"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon-external-link"
+                                aria-hidden="true"
+                            ></span>
+                            <span
+                                class="sr-only"
+                                data-translate="common_new_tab"
+                            ></span>
+                        </a>
+                        <a
+                            class="d-block oui-link_icon"
+                            target="_blank"
+                            rel="noopener"
+                            data-ng-if=":: $ctrl.currentService.webInterfaceUrl"
+                            data-ng-href="{{:: $ctrl.currentService.webInterfaceUrl}}"
+                        >
+                            <span
+                                data-translate="dedicatedCloud_datacenter_go_web_interface"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon-external-link"
+                                aria-hidden="true"
+                            ></span>
+                            <span
+                                class="sr-only"
+                                data-translate="common_new_tab"
+                            ></span>
+                        </a>
+                    </oui-tile-description>
+                </oui-tile-definition>
+            </oui-tile>
+        </div>
+
+        <!-- PCC OPTIONS -->
+        <div
+            data-ng-class="{
+            'col-md-4': $ctrl.allowDedicatedServerComplianceOptions,
+            'col-md-6': !$ctrl.allowDedicatedServerComplianceOptions
+        }"
+            data-ng-if="!$ctrl.dedicatedCloud.isExpired"
+        >
+            <ovh-manager-pcc-dashboard-vmware-option
+                data-datacenter-list="$ctrl.datacenterList"
+                data-current-drp="$ctrl.currentDrp"
+                data-delete-drp="$ctrl.deleteDrp"
+                data-disable-vmware-option="$ctrl.disableVmwareOption"
+                data-drp-global-status="$ctrl.drpGlobalStatus"
+                data-go-to-drp="$ctrl.goToDrp"
+                data-go-to-drp-datacenter-selection="$ctrl.goToDrpDatacenterSelection"
+                data-go-to-vpn-configuration="$ctrl.goToVpnConfiguration"
+                data-is-drp-action-possible="$ctrl.isDrpActionPossible"
+                data-order-vmware-option="$ctrl.orderVmwareOption"
+                data-product-id="$ctrl.productId"
+            ></ovh-manager-pcc-dashboard-vmware-option>
+        </div>
+
+        <!-- PCI DSS, HDS AND HIPAA -->
+        <div
+            class="col-md-4"
+            data-ng-if="$ctrl.allowDedicatedServerComplianceOptions && !$ctrl.dedicatedCloud.isExpired"
+        >
+            <ovh-manager-pcc-dashboard-security-options
+                data-order-security-option="$ctrl.orderSecurityOption"
+                data-product-id="$ctrl.productId"
+                data-set-message="$ctrl.setMessage"
+            ></ovh-manager-pcc-dashboard-security-options>
+        </div>
+    </div>
+
+    <div class="row d-md-flex">
+        <!-- SUBSCRIPTIONS -->
+        <div class="col-md-4 mb-5">
+            <oui-tile
+                class="h-100"
+                data-heading="{{:: 'dedicatedCloud_subscription_title' | translate }}"
+            >
+                <oui-tile-definition
+                    data-term="{{:: 'dedicatedCloud_subscription_mailing_list' | translate }}"
+                    data-description="{{:: $ctrl.currentUser.email }}"
+                    data-ng-if="::$ctrl.showMailingList"
+                >
+                    <oui-action-menu
+                        data-aria-label="{{:: 'menu_action_label' | translate:{ t0: ('dedicatedCloud_subscribe_mailing' | translate) } }}"
+                        data-compact
+                        data-placement="end"
+                    >
+                        <oui-action-menu-item
+                            data-on-click="$ctrl.onMlSubscribe()"
+                            ><span
+                                data-translate="dedicatedCloud_subscribe_mailing"
+                            ></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+                </oui-tile-definition>
+                <div
+                    data-ng-if="$ctrl.currentService.serviceInfos"
+                    class="oui-tile__item"
+                >
+                    <dl class="oui-tile__definition">
+                        <dt class="oui-tile__term">
+                            <service-expiration-label
+                                data-service-infos="$ctrl.currentService.serviceInfos"
+                            ></service-expiration-label>
+                        </dt>
+                        <dd class="oui-link">
+                            <service-expiration-date
+                                data-service-name="$ctrl.currentService.name"
+                                data-service-type="'DEDICATED_CLOUD'"
+                                data-service-infos="$ctrl.currentService.serviceInfos"
+                                data-force-hide-renew-action="true"
+                            ></service-expiration-date>
+                        </dd>
+                    </dl>
+                    <div class="oui-tile__actions">
+                        <oui-action-menu
+                            data-aria-label="{{:: 'dedicatedCloud_order_license' | translate }}"
+                            data-compact
+                            data-placement="end"
+                        >
+                            <oui-action-menu-item
+                                data-ui-sref="app.license.order"
+                                ><span
+                                    data-translate="dedicatedCloud_order_license"
+                                ></span>
+                            </oui-action-menu-item>
+                        </oui-action-menu>
+                    </div>
+                </div>
+            </oui-tile>
+        </div>
+    </div>
+</div>

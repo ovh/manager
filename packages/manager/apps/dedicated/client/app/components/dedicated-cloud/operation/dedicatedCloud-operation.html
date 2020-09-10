@@ -1,0 +1,135 @@
+<div class="dedicatedCloud-operation">
+    <h2 data-translate="dedicatedCloud_tab_operation"></h2>
+
+    <div class="text-center" data-ng-if="$ctrl.loading">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <oui-datagrid
+        id="operationsDatagrid"
+        data-ng-if="!$ctrl.loading"
+        data-rows-loader="$ctrl.loadOperations($config)"
+        data-row-loader="$ctrl.loadOperation($row)"
+    >
+        <oui-datagrid-column
+            data-title=":: 'dedicatedCloud_OPERATIONS_taskId' | translate"
+            data-property="taskId"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'dedicatedCloud_OPERATIONS_name' | translate"
+            data-property="name"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'dedicatedCloud_OPERATIONS_type' | translate"
+        >
+            <span
+                data-ng-if="$row.type"
+                data-ng-bind="('dedicatedCloud_OPERATIONS_type_' + $row.type) | translate"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'dedicatedCloud_OPERATIONS_progression' | translate"
+        >
+            <span data-ng-switch="$row.state">
+                <span
+                    data-ng-switch-when="done"
+                    data-translate="dedicatedCloud_OPERATIONS_state_done"
+                >
+                </span>
+                <span
+                    data-ng-switch-when="canceled"
+                    data-translate="dedicatedCloud_OPERATIONS_state_canceled"
+                >
+                </span>
+                <span data-ng-switch-default>
+                    <span
+                        data-ng-if="$row.progress"
+                        data-ng-bind="('dedicatedCloud_OPERATIONS_state_' + $row.state | translate) + ' (' + $row.progress + '%)'"
+                    >
+                    </span>
+                </span>
+            </span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'dedicatedCloud_OPERATIONS_comment' | translate"
+            data-property="description"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'dedicatedCloud_OPERATIONS_related_services' | translate"
+        >
+            <span
+                class="d-block"
+                data-ng-repeat="service in $row.relatedServices track by $index"
+            >
+                <button
+                    type="button"
+                    class="btn btn-link p-0 text-nowrap"
+                    data-ng-if="service.action"
+                    data-ng-click="service.action()"
+                    data-ng-bind="service.label"
+                ></button>
+                <span data-ng-if="!service.action" data-ng-bind="service.label">
+                </span>
+            </span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'dedicatedCloud_OPERATIONS_created_from' | translate"
+            data-property="createdFrom"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'dedicatedCloud_OPERATIONS_created_by' | translate"
+            data-property="createdBy"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'dedicatedCloud_OPERATIONS_date_treatment' | translate"
+        >
+            <span data-ng-bind="$row.executionDate | date:'medium'"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'dedicatedCloud_OPERATIONS_date_end' | translate"
+        >
+            <span data-ng-bind="$row.endDate | date:'medium'"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'dedicatedCloud_OPERATIONS_date_update' | translate"
+        >
+            <span
+                data-ng-bind="$row.lastModificationDate | date:'medium'"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-topbar>
+            <label class="oui-select oui-select_m">
+                <select
+                    class="oui-select__input"
+                    data-ng-model="$ctrl.progressionFilter"
+                    data-ng-options="p.value as p.label for p in $ctrl.progressionFilterList | orderBy: 'label'"
+                    data-ng-change="$ctrl.progressionFilterChanged()"
+                >
+                    <option
+                        value
+                        data-translate="dedicatedCloud_OPERATIONS_progression"
+                    >
+                    </option>
+                </select>
+                <i
+                    class="oui-icon oui-icon-chevron-down"
+                    aria-hidden="true"
+                ></i>
+            </label>
+        </oui-datagrid-topbar>
+        <oui-action-menu data-compact data-placement="end">
+            <oui-action-menu-item
+                data-on-click="$ctrl.goToExecutionDateEdit($row)"
+                data-disabled="$row.progress > 0 || $row.type !== 'maintenance' || $row.maintenanceDateFrom === null || $row.maintenanceDateTo === null"
+                ><span
+                    data-translate="dedicated_cloud_operation_execution_date_edit_title"
+                ></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+    </oui-datagrid>
+</div>

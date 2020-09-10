@@ -1,0 +1,14 @@
+{
+  "ovhManagerPccResourceUpgrade_heading": "Switch to monthly subscription",
+  "ovhManagerPccResourceUpgrade_form_renewalPeriods_label": "Renewal period",
+  "ovhManagerPccResourceUpgrade_onlyOneRenewalPeriod_heading": "Order summary",
+  "ovhManagerPccResourceUpgrade_onlyOneRenewalPeriod_renewalPeriod": "Renewal period",
+  "ovhManagerPccResourceUpgrade_onlyOneRenewalPeriod_renewalPeriod_month": "Monthly",
+  "ovhManagerPccResourceUpgrade_onlyOneRenewalPeriod_renewalPeriod_year": "Yearly ",
+  "ovhManagerPccResourceUpgrade_onlyOneRenewalPeriod_price": "Prive (ex. VAT)",
+  "ovhManagerPccResourceUpgrade_clickOnValidateToPlaceYourOrder": "Click {{ validateButtonText }} to confirm your order.",
+  "ovhManagerPccResourceUpgrade_willOpenNewTabAndRedirect": "A new tab will open and you will automatically be redirected to the payment interface.",
+  "ovhManagerPccResourceUpgrade_validateButton": "Confirm",
+  "ovhManagerPccResourceUpgrade_cancelButton": "Cancel",
+  "dedicatedCloud_order_loading_error": "An error has occurred loading the information."
+}

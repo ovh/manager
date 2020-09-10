@@ -1,0 +1,16 @@
+{
+    "dedicatedCloud_options_title": "Opciones de Private Cloud",
+    "dedicatedCloud_options_nsx": "VMware Network Virtualization (NSX)",
+    "dedicatedCloud_options_state_enabled": "Activé",
+    "dedicatedCloud_options_state_enabling": "Activando",
+    "dedicatedCloud_options_state_disabled": "Desactivada",
+    "dedicatedCloud_options_state_disabling": "Desactivando",
+    "dedicatedCloud_options_discover": "Descubrir esta opción",
+    "dedicatedCloud_options_unactivate": "Désactiver",
+    "dedicatedCloud_options_activate": "Activer",
+    "dedicatedCloud_options_vrops": "VMware vRealize Operations (vRops)",
+    "dedicatedCloud_vmware_option_not_compatible": "Esta opción no es compatible con este centro de datos.",
+    "dedicatedCloud_vmware_option_not_enabled": "No se puede desactivar la opción en este momento porque no está activada.",
+    "dedicatedCloud_vmware_option_not_disabled": "No se puede activar la opción en este momento porque no está desactivada.",
+    "dedicatedCloud_dashboard_loading_error": "Se ha producido un error al cargar los datos del servicio."
+}

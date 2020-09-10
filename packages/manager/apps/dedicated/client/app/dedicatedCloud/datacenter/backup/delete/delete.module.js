@@ -1,23 +1,10 @@
 import angular from 'angular';
-import '@ovh-ux/ng-translate-async-loader';
-import 'ovh-api-services';
-import '@ovh-ux/ui-kit';
-import 'angular-translate';
 
-import component from './delete.component';
+import datacenterBackupDeleteComponent from '../../../../components/dedicated-cloud/datacenter/backup/delete';
 import routing from './delete.routing';
 
-const moduleName = 'ovhManagerDedicatedCloudBackupDeleteModule';
+const moduleName = 'ovhManagerDedicatedCloudDatacenterBackupDelete';
 
-angular
-  .module(moduleName, [
-    'ngTranslateAsyncLoader',
-    'oui',
-    'ovh-api-services',
-    'pascalprecht.translate',
-  ])
-  .config(routing)
-  .component('dedicatedCloudDatacenterBackupDelete', component)
-  .run(/* @ngTranslationsInject:json ./translations */);
+angular.module(moduleName, [datacenterBackupDeleteComponent]).config(routing);
 
 export default moduleName;

@@ -1,0 +1,21 @@
+{
+    "dedicatedCloud_vm_encryption_add_kms_title": "Ajouter un nouveau serveur KMS",
+    "dedicatedCloud_vm_encryption_kms_ip": "IP",
+    "dedicatedCloud_vm_encryption_kms_required_field": "Ce champ est obligatoire",
+    "dedicatedCloud_vm_encryption_add_kms_ip_invalid_format": "Format invalide (ex: 192.168.0.1 et entre 0 et 255 pour chaque bloc).",
+    "dedicatedCloud_vm_encryption_kms_description": "Description",
+    "dedicatedCloud_vm_encryption_kms_optional": "optionnel",
+    "dedicatedCloud_vm_encryption_kms_sslThumbprint": "SSL Thumbprint",
+    "dedicatedCloud_vm_encryption_kms_sslThumbprint_invalid_format": "Format invalide (voir exemple dans la documentation)",
+    "dedicatedCloud_vm_encryption_add_kms_confirm_read_documentation": "J’ai lu et j’ai compris la documentation VM Encryption et les actions que je vais devoir effectuer de mon côté.",
+    "dedicatedCloud_vm_encryption_kms_documentation_link": "Documentation VM Encryption",
+    "dedicatedCloud_vm_encryption_kms_current_operation": "Opération {{currentOperation}} : {{state}}",
+    "dedicatedCloud_vm_encryption_kms_add_error": "Une erreur est survenue lors de l’ajout : {{error}}",
+    "dedicatedCloud_vm_encryption_add_kms_configuration_intro_1": "Veuillez maintenant procéder à la configuration du serveur KMS via le client vSphere.",
+    "dedicatedCloud_vm_encryption_add_kms_configuration_intro_2": "Une fois la configuration effectuée, la mise en place continuera automatiquement et vous pourrez suivre sa progression depuis cette fenêtre. La détection peut prendre jusqu'à une minute.",
+    "dedicatedCloud_vm_encryption_add_kms_configuration_intro_3": "Si vous avez besoin d'aide, vous pouvez consulter la documentation.",
+    "dedicatedCloud_vm_encryption_add_kms_creating": "Création du nouveau serveur KMS",
+    "dedicatedCloud_vm_encryption_kms_pending_task_state": "en cours",
+    "dedicatedCloud_vm_encryption_add_kms_creation_canceled": "Création du serveur KMS annulée",
+    "dedicatedCloud_vm_encryption_kms_added": "Le serveur KMS a été ajouté."
+}

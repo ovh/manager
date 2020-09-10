@@ -1,0 +1,17 @@
+{
+  "dedicatedCloud_configuration_order_datastores_step1_question": "Select a storage profile:",
+  "dedicatedCloud_configuration_order_datastores_step1_profile": "Profile",
+  "dedicatedCloud_configuration_order_datastores_step1_type": "Type",
+  "dedicatedCloud_configuration_order_datastores_step2_details": "Summary of your datastore order:",
+  "dedicatedCloud_configuration_order_datastores_step2_profile": "Profile:",
+  "dedicatedCloud_configuration_order_datastores_step2_monthly_price_HT": "Monthly price ex. VAT:",
+  "dedicatedCloud_configuration_order_datastores_step2_monthly_price_TTC": "Monthly price incl. VAT:",
+  "dedicatedCloud_configuration_order_datastores_step2_confirm": "To confirm your order, please proceed with the payment by clicking the \"Order\" button below.",
+  "dedicatedCloud_configuration_order_datastores_step2_explication": "A new tab will open, and you will be automatically redirected to the OVHcloud payment interface.",
+  "dedicatedCloud_configuration_order_datastores_step2_contracts": "I have read and understood the following conditions:",
+  "dedicatedCloud_configuration_order_datastores_rate": "Price",
+  "dedicatedCloud_configuration_order_datastores_monthly_rate": "(monthly)",
+  "dedicatedCloud_configuration_order_datastores_billing_quantity": "Number of spaces to order:",
+  "dedicatedCloud_configuration_order_datastores_finish_success": "The datastore order number <a href='{{t0}}' target='_blank'>{{t1}}</a> has been registered.",
+  "dedicatedCloud_configuration_order_datastores_finish_fail": "An error has occurred ordering a datastore on the datacentre {{t0}}"
+}

@@ -12,32 +12,12 @@ export default /* @ngInject */ ($stateProvider) => {
       productId: null,
     },
     resolve: {
-      goBack: /* @ngInject */ ($state, $timeout, productId, Alerter) => (
+      goBack: /* @ngInject */ (goBackToState) => (
         message = false,
         type = 'success',
-      ) => {
-        const reload = message && type === 'success';
-
-        const promise = $state.go(
-          'app.dedicatedClouds.operation',
-          { productId },
-          {
-            reload,
-          },
-        );
-
-        if (message) {
-          promise.then(() =>
-            $timeout(() => Alerter.set(`alert-${type}`, message, null)),
-          );
-        }
-
-        return promise;
-      },
+      ) => goBackToState('app.dedicatedClouds.operation', message, type),
       operationToEdit: /* @ngInject */ ($transition$) =>
         $transition$.params().operationToEdit,
-      productId: /* @ngInject */ ($transition$) =>
-        $transition$.params().productId,
     },
   });
 };

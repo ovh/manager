@@ -1,0 +1,11 @@
+{
+  "dedicatedCloud_updateResource_toMonthly": "Przejdź na abonament miesięczny",
+  "server_tab_USB_STORAGE_order_resume": "Podsumowanie zamówienia",
+  "dedicatedCloud_order_price_HT": "Cena netto:",
+  "dedicatedCloud_order_price_TTC": "Cena brutto:",
+  "dedicatedCloud_order_final_txt": "Kliknij przycisk \"Zatwierdź\", aby potwierdzić złożenie zamówienia.",
+  "dedicatedCloud_order_final_txt2": "Otworzy się nowa zakładka i zostaniesz przekierowany do interfejsu płatności. ",
+  "dedicatedCloud_order_loading_error": "Wystąpił błąd podczas pobierania informacji.",
+  "dedicatedCloud_order_finish_success": "Zamówienie nr <a href='{{t0}}' target='_blank'>{{t1}}</a> jest przetwarzane.",
+  "dedicatedCloud_order_finish_error": "Wystąpił błąd podczas składania zamówienia."
+}

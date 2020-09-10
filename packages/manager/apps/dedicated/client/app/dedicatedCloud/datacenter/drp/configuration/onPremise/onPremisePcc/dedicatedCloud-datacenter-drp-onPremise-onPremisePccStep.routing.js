@@ -1,6 +1,4 @@
-import { DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS } from '../../../dedicatedCloud-datacenter-drp.constants';
-
-import component from './dedicatedCloud-datacenter-drp-onPremise-onPremisePccStep.component';
+import { DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS } from '../../../../../../components/dedicated-cloud/datacenter/drp/dedicatedCloud-datacenter-drp.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
@@ -9,7 +7,7 @@ export default /* @ngInject */ ($stateProvider) => {
       url: '/onPremisePcc',
       views: {
         'innerView@app.dedicatedClouds.datacenter.drp': {
-          component: component.name,
+          component: 'dedicatedCloudDatacenterDrpOnPremiseOnPremisePccStep',
         },
       },
       params: {

@@ -1,7 +1,0 @@
-{
-  "dedicatedCloud_datacenter_pcc_name": "Private Cloud name: {{pcc}}",
-  "dedicatedCloud_datacenter_main_datacenter_name": "Private Cloud datacentre ID",
-  "dedicatedCloud_datacenter_main_datacenter_name_placeholder": "Select a primary datacentre",
-  "dedicatedCloud_datacenter_main_ip_address_pool_available": "Available public IP address pools",
-  "dedicatedCloud_datacenter_main_ip_address_pool_available_placeholder": "Select an available public IP address"
-}

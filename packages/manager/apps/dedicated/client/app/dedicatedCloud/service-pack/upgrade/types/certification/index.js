@@ -1,17 +1,24 @@
-import steps from './certification.steps';
+import angular from 'angular';
+import '@uirouter/angularjs';
+import 'oclazyload';
 
-import { registerState } from './certification.routing';
-import {
-  name as serviceName,
-  UpgradeCertificationService,
-} from './certification.service';
+const moduleName = 'ovhManagerPccServicePackUpgradeCertificationLazyloading';
 
-const moduleName = 'ovhManagerPccServicePackUpgradeCertification';
-
-angular
-  .module(moduleName, [...steps])
-  .config(registerState)
-  .run(/* @ngTranslationsInject:json ./translations */)
-  .service(serviceName, UpgradeCertificationService);
+angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
+  /* @ngInject */ ($stateProvider) => {
+    $stateProvider.state(
+      'app.dedicatedClouds.servicePackUpgrade.certification.**',
+      {
+        url: '/certification',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+          return import('./certification.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
+      },
+    );
+  },
+);
 
 export default moduleName;

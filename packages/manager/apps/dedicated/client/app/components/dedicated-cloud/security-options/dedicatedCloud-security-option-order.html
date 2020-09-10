@@ -1,0 +1,266 @@
+<div
+    data-wizard
+    data-wizard-on-cancel="$ctrl.goBack.bind($ctrl)"
+    data-wizard-on-finish="$ctrl.subscribeOption.bind($ctrl)"
+    data-wizard-title="'dedicatedCloud_options_security_modal_title_enabling_' + $ctrl.optionName | translate"
+    data-wizard-confirm-button-text=":: 'wizard_order' | translate"
+>
+    <!-- STEP 1 -->
+    <div
+        data-wizard-step
+        data-wizard-step-valid="$ctrl.checks.nsx && $ctrl.checks.vrops"
+        data-wizard-step-on-load="$ctrl.checkOptions.bind($ctrl)"
+    >
+        <div class="row-fluid">
+            <p data-translate="dedicatedCloud_options_security_step1_info"></p>
+            <ul class="checklist">
+                <li
+                    class="checklist__item"
+                    data-ng-class="$ctrl.getCheckItemClass('nsx')"
+                >
+                    <span
+                        class="checklist-item__name"
+                        data-translate="dedicatedCloud_options_nsx_checklist"
+                    >
+                    </span>
+                    <span
+                        class="checklist-item__value"
+                        data-ng-hide="$ctrl.loaders.checks.nsx"
+                        data-ng-bind="$ctrl.getItemStatusText('nsx') | translate"
+                    >
+                    </span>
+                </li>
+                <li
+                    class="checklist__item"
+                    data-ng-class="$ctrl.getCheckItemClass('vrops')"
+                >
+                    <span
+                        class="checklist-item__name"
+                        data-translate="dedicatedCloud_options_vrops_checklist"
+                    >
+                    </span>
+                    <span
+                        class="checklist-item__value"
+                        data-ng-hide="$ctrl.loaders.checks.vrops"
+                        data-ng-bind="$ctrl.getItemStatusText('vrops') | translate"
+                    >
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div
+        data-wizard-step
+        data-wizard-step-valid="$ctrl.checks.trustedIp && $ctrl.checks.restrictedAccess"
+        data-wizard-step-on-load="$ctrl.checkAccess.bind($ctrl)"
+    >
+        <p data-translate="dedicatedCloud_options_security_step2_info"></p>
+        <ul class="checklist">
+            <li
+                class="checklist__item"
+                data-ng-class="$ctrl.getCheckItemClass('restrictedAccess')"
+            >
+                <span
+                    class="checklist-item__name"
+                    data-translate="dedicatedCloud_options_restricted_access_checklist"
+                >
+                </span>
+                <span
+                    class="checklist-item__value"
+                    data-translate="dedicatedCloud_options_security_useraccesspolicy_FILTERED"
+                >
+                </span>
+            </li>
+            <li
+                class="checklist__item"
+                data-ng-class="$ctrl.getCheckItemClass('trustedIp')"
+            >
+                <span
+                    class="checklist-item__name"
+                    data-translate="dedicatedCloud_options_trusted_ip_checklist"
+                >
+                </span>
+                <span
+                    class="checklist-item__value"
+                    data-ng-bind="$ctrl.listIp.length"
+                    data-ng-show="!$ctrl.loaders.checks.trustedIp"
+                >
+                </span>
+                <div
+                    class="checklist-list-ip"
+                    data-ng-show="!$ctrl.loaders.checks.trustedIp"
+                >
+                    <p
+                        data-translate="dedicatedCloud_options_trusted_ip_list_title"
+                    ></p>
+                    <div class="checklist-list-ip__container">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th
+                                        scope="col"
+                                        data-translate="dedicatedCloud_SECURITY_IP_name"
+                                    ></th>
+                                    <th
+                                        data-translate="dedicatedCloud_SECURITY_description"
+                                    ></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr
+                                    data-ng-repeat="ip in $ctrl.listIp track by $index"
+                                >
+                                    <th
+                                        scope="row"
+                                        data-ng-bind="::ip.network"
+                                    ></th>
+                                    <td data-ng-bind="::ip.description"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <!-- STEP 3 -->
+    <div
+        data-wizard-step
+        data-wizard-step-valid="$ctrl.commercialRanges.bind($ctrl)"
+        data-wizard-step-on-load="$ctrl.checkCompliance.bind($ctrl)"
+    >
+        <div class="text-center" data-ng-show="$ctrl.loaders.loading">
+            <oui-spinner></oui-spinner>
+        </div>
+
+        <div data-ng-show="!$ctrl.loaders.loading">
+            <p data-translate="dedicatedCloud_options_security_step3_info"></p>
+            <div class="userslist" data-ng-show="!$ctrl.loaders.checks.user">
+                <p
+                    data-translate="dedicatedCloud_options_security_step3_list_title"
+                ></p>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th
+                                scope="col"
+                                data-translate="dedicatedCloud_options_user_name"
+                            ></th>
+                            <th
+                                scope="col"
+                                data-translate="dedicatedCloud_options_user_name_lastname"
+                            ></th>
+                            <th
+                                scope="col"
+                                data-translate="dedicatedCloud_options_user_email"
+                            ></th>
+                            <th
+                                scope="col"
+                                data-translate="dedicatedCloud_options_user_phonenumber"
+                            ></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-ng-repeat="u in $ctrl.users track by $index">
+                            <th scope="row" data-ng-bind="::u.name"></th>
+                            <td>
+                                <span data-ng-bind="::u.firstName"></span>
+                                <span data-ng-bind="::u.lastName"></span>
+                            </td>
+                            <td data-ng-bind="::u.email"></td>
+                            <td data-ng-bind="::u.phoneNumber"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div
+        data-wizard-step
+        data-wizard-step-on-load="$ctrl.loadPrices.bind($ctrl)"
+    >
+        <div class="text-center" data-ng-show="$ctrl.loaders.loading">
+            <oui-spinner></oui-spinner>
+        </div>
+
+        <div data-ng-show="!$ctrl.loaders.loading">
+            <p
+                class="text-info"
+                data-translate="dedicatedCloud_options_info"
+            ></p>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th
+                            data-translate="dedicatedCloud_options_order_host_name"
+                        ></th>
+                        <th
+                            data-translate="dedicatedCloud_options_order_datacenter_name"
+                        ></th>
+                        <th
+                            class="text-right text-wrap"
+                            data-translate="dedicatedCloud_options_order_current_price"
+                        ></th>
+                        <th
+                            class="text-right text-wrap"
+                            data-translate="dedicatedCloud_options_order_next_price"
+                        ></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-ng-repeat="p in $ctrl.prices track by $index">
+                        <th scope="row" data-ng-bind="::p.name"></th>
+                        <td data-ng-bind="::p.datacenter"></td>
+                        <td class="text-right">
+                            <span
+                                data-ng-if="p.billingType === 'hourly'"
+                                data-translate="dedicatedCloud_options_order_price_hourly"
+                                data-translate-values="{ t0: p.current }"
+                            >
+                            </span>
+                            <span
+                                data-ng-if="p.billingType !== 'hourly' && p.billingType !== 'freeSpare'"
+                                data-ng-bind="p.current"
+                            >
+                            </span>
+                            <span
+                                data-ng-if="p.billingType === 'freeSpare'"
+                                data-translate="dedicatedCloud_options_order_price_free_spare"
+                            >
+                            </span>
+                        </td>
+                        <td class="text-right">
+                            <span
+                                data-ng-if="p.billingType === 'hourly'"
+                                data-translate="dedicatedCloud_options_order_price_hourly"
+                                data-translate-values="{ t0: p.next }"
+                            ></span>
+                            <span
+                                data-ng-if="p.billingType !== 'hourly' && p.billingType !== 'freeSpare'"
+                                data-ng-bind="p.next"
+                            >
+                            </span>
+                            <span
+                                data-ng-if="p.billingType === 'freeSpare'"
+                                data-translate="dedicatedCloud_options_order_price_free_spare"
+                            >
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <p
+                class="font-italic text-right"
+                data-ng-bind-html="'dedicatedCloud_options_order_price_info' | translate "
+            ></p>
+            <p
+                data-translate="dedicatedCloud_options_order_sms_confirmation"
+            ></p>
+        </div>
+    </div>
+</div>

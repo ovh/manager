@@ -1,0 +1,9 @@
+{
+    "dedicatedCloud_configuration_security_max_concurrent_connections_title": "Modifier le nombre de connexions simultanées",
+    "dedicatedCloud_configuration_security_max_concurrent_connections_step1_question": "Nombre maximum de connexions d’utilisateurs simultanées",
+    "dedicatedCloud_configuration_security_max_concurrent_connections_step2_question": "Vous allez modifier le nombre de connexions d’utilisateurs simultanées de « {{t0}} » à « {{t1}} ».",
+    "dedicatedCloud_SECURITY_nb_simultaneous_connection_none": "Aucune",
+    "dedicatedCloud_SECURITY_nb_simultaneous_connection_value": "{{t0}} connexions",
+    "dedicatedCloud_SECURITY_change_nb_simultaneous_connection_success": "Le nombre maximum de connexions simultanées a été modifié avec succès.",
+    "dedicatedCloud_SECURITY_change_nb_simultaneous_connection_failure": "Une erreur est survenue lors de la modification du nombre maximum de connexions simultanées."
+}

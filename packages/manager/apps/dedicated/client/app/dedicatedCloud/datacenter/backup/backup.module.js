@@ -1,43 +1,24 @@
 import angular from 'angular';
-import '@ovh-ux/ng-ovh-swimming-poll';
-import '@ovh-ux/ng-translate-async-loader';
-import 'ovh-api-services';
-import '@ovh-ux/ui-kit';
-import 'angular-translate';
 
-import './backup.less';
-
-import backupDelete from './delete';
-import backupNew from './new';
-import backupOfferDetails from './components/offer-details';
-import backupOffers from './components/offers';
-import backupService from './backup.service';
-import backupUpgrade from './upgrade';
-import component from './backup.component';
-import minimumHosts from './minimumHosts';
+import datacenterBackupComponent from '../../../components/dedicated-cloud/datacenter/backup';
+import deleteBackup from './delete';
 import routing from './backup.routing';
+import minimumHosts from './minimumHosts';
+import newBackup from './new';
 import splaLicence from './splaLicence';
+import upgrade from './upgrade';
 
-const moduleName = 'ovhManagerDedicatedCloudBackupModule';
+const moduleName = 'ovhManagerDedicatedCloudDatacenterBackup';
 
 angular
   .module(moduleName, [
-    'ngOvhSwimmingPoll',
-    'ngTranslateAsyncLoader',
-    'oui',
-    'ovh-api-services',
-    'pascalprecht.translate',
-    backupDelete,
-    backupOfferDetails,
-    backupOffers,
-    backupNew,
-    backupUpgrade,
+    datacenterBackupComponent,
+    deleteBackup,
     minimumHosts,
+    newBackup,
     splaLicence,
+    upgrade,
   ])
-  .config(routing)
-  .component('dedicatedCloudDatacenterBackup', component)
-  .service('dedicatedCloudDatacenterBackupService', backupService)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .config(routing);
 
 export default moduleName;

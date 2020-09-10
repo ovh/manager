@@ -1,0 +1,141 @@
+<div
+    data-wizard
+    data-wizard-title=":: 'dedicatedCloud_vm_encryption_add_kms_title' | translate"
+    data-wizard-on-cancel="$ctrl.goBack.bind($ctrl)"
+    data-wizard-on-finish="$ctrl.finishCreation.bind($ctrl)"
+    data-wizard-confirm-button-text=":: 'wizard_close' | translate"
+    data-wizard-hide-cancel-button="$ctrl.kmsCreationTask.name && $ctrl.kmsCreationTask.state !== 'error' && !$ctrl.error"
+    data-wizard-hide-previous-button="true"
+    data-wizard-bread-crumb
+>
+    <div data-wizard-step data-wizard-step-valid="$ctrl.isFormValid()">
+        <form novalidate name="$ctrl.newKmsForm">
+            <oui-field
+                data-label="{{:: 'dedicatedCloud_vm_encryption_kms_ip' | translate }}"
+                data-error-messages="{
+                            required: ('dedicatedCloud_vm_encryption_kms_required_field' | translate),
+                            pattern: ('dedicatedCloud_vm_encryption_add_kms_ip_invalid_format' | translate)
+                        }"
+            >
+                <input
+                    class="oui-input"
+                    type="text"
+                    id="ip"
+                    name="ip"
+                    data-ng-model="$ctrl.kms.ip"
+                    data-ng-pattern="$ctrl.regex.ip"
+                    data-required
+                />
+            </oui-field>
+            <oui-field
+                data-label="{{:: ('dedicatedCloud_vm_encryption_kms_description' | translate) + ' (' + ('dedicatedCloud_vm_encryption_kms_optional' | translate) + ')' }}"
+            >
+                <input
+                    class="oui-input"
+                    type="text"
+                    id="description"
+                    name="description"
+                    data-ng-model="$ctrl.kms.description"
+                />
+            </oui-field>
+            <oui-field
+                data-label="{{:: 'dedicatedCloud_vm_encryption_kms_sslThumbprint' | translate }}"
+                data-error-messages="{
+                            required: ('dedicatedCloud_vm_encryption_kms_required_field' | translate),
+                            pattern: ('dedicatedCloud_vm_encryption_kms_sslThumbprint_invalid_format' | translate)
+                        }"
+            >
+                <input
+                    class="oui-input"
+                    type="text"
+                    id="sslThumbprint"
+                    name="sslThumbprint"
+                    data-ng-model="$ctrl.kms.sslThumbprint"
+                    data-ng-pattern="$ctrl.regex.sslThumbprint"
+                    required
+                />
+            </oui-field>
+            <oui-checkbox data-model="$ctrl.documentationRead">
+                <span
+                    data-translate="dedicatedCloud_vm_encryption_add_kms_confirm_read_documentation"
+                ></span>
+            </oui-checkbox>
+            <a
+                class="oui-link oui-link_icon ml-4 pl-3"
+                data-ng-href="{{:: $ctrl.vmEncryptionGuide }}"
+                target="_blank"
+                rel="noopener"
+            >
+                <span
+                    data-translate="dedicatedCloud_vm_encryption_kms_documentation_link"
+                ></span>
+                <span
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></span>
+            </a>
+        </form>
+    </div>
+
+    <div
+        data-wizard-step
+        data-wizard-step-on-load="$ctrl.createNewKms.bind($ctrl)"
+        data-wizard-step-valid="$ctrl.isCreationStepValid()"
+    >
+        <div data-ng-if="!$ctrl.isWaitingUserAction()">
+            <strong
+                data-ng-if="$ctrl.kmsCreationTask.name"
+                data-translate="dedicatedCloud_vm_encryption_kms_current_operation"
+                data-translate-values="{
+                        'currentOperation': $ctrl.kmsCreationTask.name,
+                        'state': $ctrl.kmsCreationTask.state
+                    }"
+            ></strong>
+            <oui-progress class="mb-4 d-block text-nowrap text-truncate">
+                <oui-progress-bar
+                    data-type="info"
+                    data-value="$ctrl.kmsCreationTask.progress"
+                >
+                    <span data-ng-bind="$ctrl.getTaskDetails()"></span>
+                </oui-progress-bar>
+            </oui-progress>
+            <p
+                class="oui-paragraph"
+                data-ng-if="$ctrl.error && $ctrl.error.data"
+                data-translate="dedicatedCloud_vm_encryption_kms_add_error"
+                data-translate-values="{ 'error' : $ctrl.error.data.message }"
+            ></p>
+        </div>
+        <div data-ng-if="$ctrl.isWaitingUserAction()">
+            <p class="oui-paragraph">
+                <span
+                    class="d-block"
+                    data-translate="dedicatedCloud_vm_encryption_add_kms_configuration_intro_1"
+                ></span>
+                <span
+                    class="d-block"
+                    data-translate="dedicatedCloud_vm_encryption_add_kms_configuration_intro_2"
+                ></span>
+            </p>
+            <p class="oui-paragraph">
+                <span
+                    class="d-block"
+                    data-translate="dedicatedCloud_vm_encryption_add_kms_configuration_intro_3"
+                ></span>
+                <a
+                    class="oui-link oui-link_icon"
+                    data-ng-href="{{:: $ctrl.vmEncryptionGuide }}"
+                    target="_blank"
+                >
+                    <span
+                        data-translate="dedicatedCloud_vm_encryption_kms_documentation_link"
+                    ></span>
+                    <span
+                        class="oui-icon oui-icon-external-link"
+                        aria-hidden="true"
+                    ></span>
+                </a>
+            </p>
+        </div>
+    </div>
+</div>

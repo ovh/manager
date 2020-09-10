@@ -1,11 +1,9 @@
-import component from './dedicatedCloud-datacenter-drp-summary.component';
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicatedClouds.datacenter.drp.summary', {
     url: '/summary',
     views: {
       'innerView@app.dedicatedClouds.datacenter.drp': {
-        component: component.name,
+        component: 'dedicatedCloudDatacenterDrpSummary',
       },
     },
     params: {
