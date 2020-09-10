@@ -1,3 +1,19 @@
+# [5.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@4.2.1...@ovh-ux/manager-pci@5.0.0) (2020-09-10)
+
+
+### Features
+
+* **project:** remove io stream ([1e3d5be](https://github.com/ovh/manager/commit/1e3d5be1c51550053de39e87eb4ab8c322ce83f3))
+
+
+### BREAKING CHANGES
+
+* **project:** IO stream management will no longer be available
+
+Signed-off-by: Marie JONES <marie.jones@corp.ovh.com>
+
+
+
 ## [4.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@4.2.0...@ovh-ux/manager-pci@4.2.1) (2020-09-03)
 
 
