@@ -1,5 +1,5 @@
 {
-  "kube_nodes_add": "Node hinzufügen",
+  "kube_nodes_add_success_multiple": "Die Nodes werden gerade installiert",
   "kube_nodes_add_success": "Node wird derzeit installiert",
   "kube_nodes_add_flavor_error": "Beim Laden der Instanz-Typen ist ein Fehler aufgetreten: {{ message }}",
   "kube_nodes_add_node_name": "Name der Instanz",
@@ -25,6 +25,5 @@
   "kube_nodes_add_same_flavor_message": "Sie können nur diesen Instanz-Typ auswählen, da der Node-Pool nur aus Nodes desselben Instanz-Typs bestehen kann.",
   "kube_nodes_add_select_nodes": "Wählen Sie die Anzahl der neu hinzuzufügenden Nodes aus",
   "kube_nodes_add_instance_type": "Instanz-Typ",
-  "kube_nodes_add_adding_message": "Größenanpassung des Pools",
-  "kube_nodes_add_success_multiple": "Die Nodes werden gerade installiert"
+  "kube_nodes_add_adding_message": "Größenanpassung des Pools"
 }

@@ -1,5 +1,4 @@
 {
-  "server_dashboard_loading_error": "Beim Laden der Informationen Ihres Dienstes ist ein Fehler aufgetreten.",
   "server_configuration_doing": "[Wird ausgeführt]",
   "server_tab_IP": "IP und Sicherheit",
   "server_tab_IP_block": "Block:",
@@ -582,6 +581,7 @@
   "server_configuration_task_VIRTUAL_MAC_DELETE": "Löschen von virtuellen MAC-Adressen",
   "server_configuration_task_REMOVE_VIRTUAL_MAC": "Löschen von virtuellen MAC-Adressen",
   "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE": "Bearbeiten der Netzwerkinterfaces",
+  "server_configuration_task_IPMI_CONFIGURE_SGX": "Änderung der SGX-Option",
   "server_configuration_task_status_CANCELLED": "Abgebrochen",
   "server_configuration_task_status_CUSTOMER_ERROR": "Client-Fehler",
   "server_configuration_task_status_DOING": "Wird bearbeitet",
@@ -882,6 +882,7 @@
   "plan_vrack-bandwidth-5000-option-infra-us": "5Gbps garantierte private Bandbreite - unbeschränkter Datenverkehr - vRack-Option",
   "plan_bandwidth-1000-adv-us": "1Gbps öffentliche Bandbreite - unbeschränkter Datenverkehr",
   "plan_bandwidth-1000-burst-2gbps-infra": "2 Gbit/s öffentliche Bandbreite - unbegrenzter Traffic",
+  "plan_bandwidth-1000-burst-2gbps-infra-us": "2 Gbit/s öffentliche Bandbreite - unbegrenzter Traffic",
   "plan_bandwidth-guaranteed-1000-ultimate-2019v1": "1 Gbit/s garantierte öffentliche Bandbreite - unbegrenzter Traffic - Ultimate Option",
   "plan_bandwidth-guaranteed-2000-ultimate-2019v1": "2 Gbit/s garantierte öffentliche Bandbreite - unbegrenzter Traffic - Ultimate Option",
   "plan_bandwidth-guaranteed-3000-ultimate-2019v1": "3 Gbit/s garantierte öffentliche Bandbreite - unbegrenzter Traffic - Ultimate Option",
@@ -1212,7 +1213,5 @@
   "server_error_ola_terminate": "Bei der Kündigung des Dienstes ist ein Fehler aufgetreten: {{error}}",
   "server_error_vrack_attach": "Beim Verbinden des privaten Netzwerks ist ein Fehler aufgetreten: {{error}}",
   "server_error_vrack_detach": "Beim Trennen des privaten Netzwerks ist ein Fehler aufgetreten: {{error}}",
-  "server_error_bandwidth_order": "Bei der Bandbreitenbestellung ist ein Fehler aufgetreten: {{error}}",
-  "plan_bandwidth-1000-burst-2gbps-infra-us": "2 Gbit/s öffentliche Bandbreite - unbegrenzter Traffic",
-  "server_configuration_task_IPMI_CONFIGURE_SGX": "Änderung der SGX-Option"
+  "server_error_bandwidth_order": "Bei der Bandbreitenbestellung ist ein Fehler aufgetreten: {{error}}"
 }
