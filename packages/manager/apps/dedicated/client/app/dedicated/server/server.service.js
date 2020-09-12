@@ -5,6 +5,7 @@ import filter from 'lodash/filter';
 import find from 'lodash/find';
 import head from 'lodash/head';
 import indexOf from 'lodash/indexOf';
+import includes from 'lodash/includes';
 import map from 'lodash/map';
 import parseInt from 'lodash/parseInt';
 import set from 'lodash/set';
@@ -2139,9 +2140,10 @@ export default class ServerF {
   getSms(productId) {
     let promises = [];
 
-    if (this.coreConfig.getRegion() === 'CA') {
+    if (includes(['CA', 'US'], this.coreConfig.getRegion())) {
       return this.$q.when([]);
     }
+
     return this.get(productId, '', {
       proxypass: true,
       urlPath: this.path.sms,
