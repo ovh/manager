@@ -2,6 +2,7 @@ import { Environment } from '@ovh-ux/manager-config';
 import get from 'lodash/get';
 import has from 'lodash/has';
 import set from 'lodash/set';
+import values from 'lodash/values';
 import isString from 'lodash/isString';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
@@ -56,7 +57,6 @@ import dedicatedCloudTerminate from './dedicatedCloud/terminate/terminate.module
 import dedicatedCloudDashboard from './dedicatedCloud/dashboard';
 import dedicatedUniverseComponents from './dedicatedUniverseComponents';
 import errorPage from './error';
-import ovhManagerPccDashboard from './dedicatedCloud/dashboard';
 import ovhManagerPccResourceUpgrade from './dedicatedCloud/resource/upgrade';
 
 import dedicatedServer from './dedicated/server';
@@ -127,7 +127,6 @@ angular
       'ovh-angular-responsive-tabs',
       'ovh-api-services',
       ovhManagerAtInternetConfiguration,
-      ovhManagerPccDashboard,
       ovhManagerIplb,
       ovhManagerPccResourceUpgrade,
       ovhManagerServerSidebar,
@@ -219,10 +218,28 @@ angular
     ssoAuthentication.login().then(() => User.getUser());
   })
   .run(
-    /* @ngInject */ ($rootScope, $state, $transitions, coreConfig) => {
+    /* @ngInject */ (
+      $location,
+      $rootScope,
+      $state,
+      $transitions,
+      coreConfig,
+    ) => {
       $rootScope.$on('$locationChangeStart', () => {
         // eslint-disable-next-line no-param-reassign
         delete $rootScope.isLeftMenuVisible;
+      });
+
+      // if query params contains unescaped '<' value then
+      // clear query params to avoid html injection
+      $transitions.onBefore({}, () => {
+        let invalidParams = false;
+        values($location.search()).forEach((param) => {
+          invalidParams = invalidParams || /</.test(param);
+        });
+        if (invalidParams) {
+          $location.search('');
+        }
       });
 
       // manage restriction on billing section for enterprise account
