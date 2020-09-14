@@ -47,20 +47,24 @@ angular
       const cookie = $cookies.get(USER_ID);
       const tag = atInternet.getTag();
       if (trackingEnabled) {
-        if (cookie) {
-          tag.clientSideUserId.set(cookie);
-        } else {
-          const value = tag.clientSideUserId.get();
-          tag.clientSideUserId.store();
+        try {
+          if (cookie) {
+            tag.clientSideUserId.set(cookie);
+          } else {
+            const value = tag.clientSideUserId.get();
+            tag.clientSideUserId.store();
 
-          const element = document.getElementById('manager-tms-iframe');
+            const element = document.getElementById('manager-tms-iframe');
 
-          if (element) {
-            element.contentWindow.postMessage({
-              id: 'ClientUserId',
-              value,
-            });
+            if (element) {
+              element.contentWindow.postMessage({
+                id: 'ClientUserId',
+                value,
+              });
+            }
           }
+        } catch (e) {
+          // nothing to do.
         }
       }
     },
