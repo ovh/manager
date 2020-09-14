@@ -87,7 +87,7 @@ export default class DomainDnsZoneActivateController {
   checkoutOrderCart(autoPayWithPreferredPaymentMethod, cartId, isOptionFree) {
     this.checkoutLoading = true;
     this.DomainDnsZoneActivateService.checkoutOrderCart(
-      isOptionFree || autoPayWithPreferredPaymentMethod,
+      autoPayWithPreferredPaymentMethod,
       cartId,
     )
       .then((order) => {
