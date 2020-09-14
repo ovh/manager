@@ -1,0 +1,10 @@
+{
+  "xdsl_meeting_slots": "Prise de rendez-vous",
+  "xdsl_meeting_error": "Une erreur est survenue lors la récupération des dates de rendez-vous disponibles : {{error}}",
+  "xdsl_meeting_description": "L'intervention d'un technicien est nécessaire afin de finaliser l'installation de votre ligne.",
+  "xdsl_meeting_programmed_meeting_select": "Veuillez choisir le créneau pour l'installation de celle-ci.",
+  "xdsl_meeting_programmed_meeting": "Un rendez-vous est sélectionné le {{day}} entre {{start}} et {{end}}.",
+  "xdsl_meeting_confirm": "Valider la sélection",
+  "xdsl_meeting_order_succeed": "Le rendez-vous programmé le {{day}} entre {{start}} et {{end}} a bien été enregistré.",
+  "xdsl_meeting_order_error": "Le rendez-vous programmé le {{day}} entre {{start}} et {{end}} n'a pas pu être enregistré : {{error}}"
+}
