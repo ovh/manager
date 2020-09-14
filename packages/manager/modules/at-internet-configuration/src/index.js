@@ -33,9 +33,9 @@ angular
       atInternetUiRouterPluginProvider.addStateNameFilter((routeName) => {
         let route = routeName || '';
         atInternetConfigurationProvider.stateRules.forEach((rule) => {
-          route.replace(rule.pattern, rule.replacement);
+          route = route.replace(rule.pattern, rule.replacement);
         });
-        route = routeName.replace(/\./g, '::');
+        route = route.replace(/\./g, '::');
         return atInternetConfigurationProvider.prefix
           ? `${atInternetConfigurationProvider.prefix}::${route}`
           : route;
