@@ -1,3 +1,12 @@
+## [15.2.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.2.7...@ovh-ux/manager-web@15.2.8) (2020-09-14)
+
+
+### Bug Fixes
+
+* **domain.zone.activate:** only autopay depending on payment method ([#3569](https://github.com/ovh/manager/issues/3569)) ([e8f79ea](https://github.com/ovh/manager/commit/e8f79ea93a7732d023d0f44d3bb9492b7e0f3756))
+
+
+
 ## [15.2.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.2.6...@ovh-ux/manager-web@15.2.7) (2020-09-10)
 
 
