@@ -1,3 +1,13 @@
+## [13.2.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@13.2.5...@ovh-ux/manager-dedicated@13.2.6) (2020-09-14)
+
+
+### Bug Fixes
+
+* **dedicated:** escape query params ([#3604](https://github.com/ovh/manager/issues/3604)) ([59fea65](https://github.com/ovh/manager/commit/59fea650609c6cfc3401bc74d30f13fb058dcfa0))
+* **dedicated.server:** no sms monitoring in US ([#3605](https://github.com/ovh/manager/issues/3605)) ([077861c](https://github.com/ovh/manager/commit/077861c004a157c76cc3e9b5620eb2e70078f099))
+
+
+
 ## [13.2.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@13.2.4...@ovh-ux/manager-dedicated@13.2.5) (2020-09-10)
 
 
