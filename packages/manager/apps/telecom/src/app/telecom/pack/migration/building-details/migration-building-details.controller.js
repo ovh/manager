@@ -115,6 +115,10 @@ export default class TelecomPackMigrationBuildingDetailsCtrl {
     return false;
   }
 
+  isPto() {
+    return this.model.pto === 'yes';
+  }
+
   convertStairs(stair) {
     const stairsModel = {};
     if (stair.stair === STAIR_FLOOR.unknown) {
