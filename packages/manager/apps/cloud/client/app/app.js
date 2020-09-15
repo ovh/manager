@@ -132,10 +132,9 @@ angular
       const dedicatedRedirections = [
         '/dbaas/logs',
         '/paas/veeam-enterprise',
-        '/veeam',
-        '/veeam-enterprise',
+        '/paas/veeam',
         '/iaas/vps',
-        '/nasha',
+        '/paas/nasha',
         '/vrack',
       ];
 
