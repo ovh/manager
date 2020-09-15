@@ -1,3 +1,12 @@
+## [2.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@2.1.3...@ovh-ux/manager-hub-app@2.1.4) (2020-09-15)
+
+
+### Bug Fixes
+
+* **dashboard.catalog:** add missing name attribute ([#3618](https://github.com/ovh/manager/issues/3618)) ([6e2d9ce](https://github.com/ovh/manager/commit/6e2d9ce3712c39c75f44b5ef31cb3f5e768921fe))
+
+
+
 ## [2.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@2.1.2...@ovh-ux/manager-hub-app@2.1.3) (2020-08-24)
 
 
