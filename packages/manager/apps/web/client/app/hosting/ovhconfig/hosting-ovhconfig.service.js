@@ -100,6 +100,15 @@ angular.module('services').service(
       );
     }
 
+    getCapabilities(serviceName) {
+      return this.OvhHttp.get(
+        `/hosting/web/${serviceName}/ovhConfigCapabilities`,
+        {
+          rootPath: 'apiv6',
+        },
+      );
+    }
+
     /**
      * Get config Ids
      * @param {string} serviceName
