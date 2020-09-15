@@ -17,7 +17,7 @@
   "pci_projects_project_training_jobs_created": "Création",
 
   "pci_projects_project_training_jobs_state_QUEUING": "En attente",
-  "pci_projects_project_training_jobs_state_CANCELLED": "Annulé",
+  "pci_projects_project_training_jobs_state_CANCELLED": "Arrêté",
   "pci_projects_project_training_jobs_state_CANCELLING": "Annulation",
   "pci_projects_project_training_jobs_state_FAILED": "Echoué",
   "pci_projects_project_training_jobs_state_INTERRUPTED": "Interrompu",
