@@ -3,12 +3,13 @@
         <oui-header-tabs-item
             href="{{:: $ctrl.homeLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.homeLink"
-            data-ng-if="!$ctrl.isEnterpriseCustomer"
+            data-ng-if="!$ctrl.isEnterpriseCustomer && $ctrl.homeLink"
             ><span data-translate="billing_home_title"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
             href="{{:: $ctrl.agreementsLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.agreementsLink"
+            data-ng-if="$ctrl.agreementsLink"
             ><span data-translate="billing_agreements_title"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
