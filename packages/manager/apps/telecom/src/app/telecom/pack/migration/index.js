@@ -14,6 +14,8 @@ import offers from './offers';
 import serviceDelete from './service-delete';
 import shipping from './shipping';
 
+import './pack-migration.less';
+
 const moduleName = 'ovhManagerTelecomPackMigration';
 
 angular
