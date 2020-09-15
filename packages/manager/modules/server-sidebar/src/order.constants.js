@@ -305,7 +305,7 @@ export const ORDER_URLS = {
       QC: 'https://ca.ovh.com/fr/order/domain',
       SG: 'https://ca.ovh.com/sg/order/domain',
       WE: 'https://us.ovh.com/us/order/domain',
-      WS: 'https://us.ovh.com/us/es/order/domain',
+      WS: 'https://us.ovh.com/es/order/domain',
     },
     orderHosting: {
       ASIA: 'https://www.ovh.com/asia/web-hosting/',
