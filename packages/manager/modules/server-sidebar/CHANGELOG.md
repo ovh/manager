@@ -1,3 +1,12 @@
+## [2.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@2.1.0...@ovh-ux/manager-server-sidebar@2.1.1) (2020-09-15)
+
+
+### Bug Fixes
+
+* **sidebar:** order domain link for WS ([#3615](https://github.com/ovh/manager/issues/3615)) ([74a98bd](https://github.com/ovh/manager/commit/74a98bd3e9c62d050f2a0b01c9fe4190067c230a))
+
+
+
 # [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@2.0.4...@ovh-ux/manager-server-sidebar@2.1.0) (2020-08-26)
 
 

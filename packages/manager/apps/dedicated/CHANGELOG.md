@@ -1,3 +1,14 @@
+## [13.2.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@13.2.6...@ovh-ux/manager-dedicated@13.2.7) (2020-09-15)
+
+
+### Bug Fixes
+
+* **billing.autorenew:** remove extra header-tabs-item ([#3620](https://github.com/ovh/manager/issues/3620)) ([d05e615](https://github.com/ovh/manager/commit/d05e61598b67da95e25399ffd8ec2dc0c669dd5d)), closes [/github.com/ovh/ovh-ui-kit/commit/77f6330f1ccc12d31eaea8a02e11b459e7ea57a0#diff-fec232260aa57f8f05ac33868e24e6d3](https://github.com//github.com/ovh/ovh-ui-kit/commit/77f6330f1ccc12d31eaea8a02e11b459e7ea57a0/issues/diff-fec232260aa57f8f05ac33868e24e6d3)
+* **dedicated:** hosting private db delete url ([#3616](https://github.com/ovh/manager/issues/3616)) ([47859e6](https://github.com/ovh/manager/commit/47859e6498675b586f073c42365acef4781ffb8c))
+* **dedicated.server.bandwidth:** use downgrade instead of resiliation ([#3546](https://github.com/ovh/manager/issues/3546)) ([e67555b](https://github.com/ovh/manager/commit/e67555b8483663de25964f3491049adaa2bb737c))
+
+
+
 ## [13.2.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@13.2.5...@ovh-ux/manager-dedicated@13.2.6) (2020-09-14)
 
 
