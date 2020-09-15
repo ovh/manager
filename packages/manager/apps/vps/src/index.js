@@ -35,6 +35,6 @@ angular
   )
   .config(
     /* @ngInject */ ($urlRouterProvider) => {
-      $urlRouterProvider.otherwise('/iaas/vps');
+      $urlRouterProvider.otherwise('/vps');
     },
   );
