@@ -141,8 +141,16 @@
                 data-property="display"
                 data-target="$ctrl.job.data"
             >
-                <oui-dual-list-source searchable="true"> </oui-dual-list-source>
-                <oui-dual-list-target searchable="true"> </oui-dual-list-target>
+                <oui-dual-list-source
+                    searchable="true"
+                    heading="{{:: 'pci_projects_project_training_jobs_submit_attach_source_heading' | translate }}"
+                    placeholder="{{:: 'pci_projects_project_training_jobs_submit_attach_source_placeholder' | translate }}"
+                ></oui-dual-list-source>
+                <oui-dual-list-target
+                    searchable="true"
+                    heading="{{:: 'pci_projects_project_training_jobs_submit_attach_target_heading' | translate }}"
+                    placeholder="{{:: 'pci_projects_project_training_jobs_submit_attach_target_placeholder' | translate }}"
+                ></oui-dual-list-target>
             </oui-dual-list>
         </oui-step-form>
 
