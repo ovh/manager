@@ -1,3 +1,12 @@
+## [1.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@1.0.3...@ovh-ux/manager-billing@1.0.4) (2020-09-16)
+
+
+### Bug Fixes
+
+* **autorenew:** allow to delete immediately some services ([#3621](https://github.com/ovh/manager/issues/3621)) ([7c30a1f](https://github.com/ovh/manager/commit/7c30a1f53675d3e30ea21d235e22d9fb6695e6d6))
+
+
+
 ## [1.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@1.0.2...@ovh-ux/manager-billing@1.0.3) (2020-09-03)
 
 

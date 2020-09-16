@@ -1,3 +1,17 @@
+# [15.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.2.8...@ovh-ux/manager-web@15.3.0) (2020-09-16)
+
+
+### Bug Fixes
+
+* **translations:** clean translations files ([#3601](https://github.com/ovh/manager/issues/3601)) ([5a483c8](https://github.com/ovh/manager/commit/5a483c8145d305aa5b5cf959f373d23a4f86b894))
+
+
+### Features
+
+* **hosting:** use capabilities for ovhConfig ([#3625](https://github.com/ovh/manager/issues/3625)) ([74b5bf1](https://github.com/ovh/manager/commit/74b5bf161f78518e224d457708930a7b4fbb4d9d))
+
+
+
 ## [15.2.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.2.7...@ovh-ux/manager-web@15.2.8) (2020-09-14)
 
 
