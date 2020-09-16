@@ -33,6 +33,8 @@ export default /* @ngInject */ ($stateProvider) => {
         );
         return $q.when({ init: true });
       },
+      service: /* @ngInject */ ($http, serviceName) =>
+        $http.get(`/sms/${serviceName}`).then(({ data: service }) => service),
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceName,
       smsFeatureAvailability: /* @ngInject */ (ovhFeatureFlipping) =>
@@ -41,23 +43,14 @@ export default /* @ngInject */ ($stateProvider) => {
           'sms:response',
         ]),
       user: /* @ngInject */ (OvhApiMe) => OvhApiMe.v6().get().$promise,
-      $title: (translations, $translate, OvhApiSms, $stateParams) =>
-        OvhApiSms.v6()
-          .get({
-            serviceName: $stateParams.serviceName,
-          })
-          .$promise.then((data) =>
-            $translate.instant(
-              'sms_page_title',
-              { name: data.description || $stateParams.serviceName },
-              null,
-              null,
-              'escape',
-            ),
-          )
-          .catch(() =>
-            $translate('sms_page_title', { name: $stateParams.serviceName }),
-          ),
+      $title: /* @ngInject */ ($translate, service) =>
+        $translate.instant(
+          'sms_page_title',
+          { name: service.description || service.serviceName },
+          null,
+          null,
+          'escape',
+        ),
     },
     translations: {
       value: ['.'],
