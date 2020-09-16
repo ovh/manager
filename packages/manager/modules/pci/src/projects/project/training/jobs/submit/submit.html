@@ -117,17 +117,22 @@
             data-editable="!$ctrl.isSubmit"
             data-on-focus="$ctrl.setData()"
         >
-            <button
-                class="oui-button oui-button_ghost"
-                type="button"
-                ng-click="$ctrl.goToData()"
-                data-ng-if="$ctrl.emptyData"
-            >
-                <span
+            <div data-ng-if="$ctrl.emptyData">
+                <div
                     class="text-danger"
                     data-translate="pci_projects_project_training_jobs_submit_select_no_data"
-                ></span>
-            </button>
+                ></div>
+                <button
+                    class="oui-button oui-button_ghost my-1"
+                    type="button"
+                    ng-click="$ctrl.goToData()"
+                >
+                    <span
+                        class="text-danger"
+                        data-translate="pci_projects_project_training_jobs_submit_select_no_data_create"
+                    ></span>
+                </button>
+            </div>
 
             <oui-dual-list
                 data-on-add="$ctrl.onAddData(item)"
