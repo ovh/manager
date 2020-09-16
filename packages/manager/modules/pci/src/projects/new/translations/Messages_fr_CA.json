@@ -1,5 +1,6 @@
 {
   "pci_project_new_error_contact_support": "Contacter le support",
-  "pci_project_new_error_ask_increase_projects_quota": "Vous ne pouvez pas créer de projet Public Cloud supplémentaire, car vous avez atteint le quota maximum de projets. Pour débloquer ce quota, nous vous invitons à contacter notre support.",
-  "pci_project_new_error_verify_paypal": "Vous ne pouvez pas créer de projet Public Cloud avec votre compte PayPal, car celui-ci n'est pas vérifié. Nous vous invitons à effectuer les démarches nécessaires auprès de PayPal pour vérifier votre compte, puis à réessayer. Vous pouvez aussi modifier <a href=\"{{ href }}\">votre moyen de paiement par défaut</a>."
+  "pci_project_new_error_ask_increase_projects_quota": "Vous ne pouvez plus créer de projet, veuillez contacter le support pour augmenter votre quota et avoir la possibilité de créer un nouveau projet.",
+  "pci_project_new_error_verify_paypal": "Vous ne pouvez pas créer de projet Public Cloud avec votre compte PayPal, car celui-ci n'est pas vérifié. Nous vous invitons à effectuer les démarches nécessaires auprès de PayPal pour vérifier votre compte, puis à réessayer. Vous pouvez aussi modifier <a href=\"{{ href }}\">votre moyen de paiement par défaut</a>.",
+  "pci_project_new_error_cancel": "Annuler"
 }

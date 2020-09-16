@@ -13,6 +13,7 @@ import contacts from './contacts';
 import creating from './creating';
 import dataProcessing from './data-processing';
 import edit from './edit';
+import errorModal from '../new/error-modal';
 import failoverIps from './failover-ips';
 import instances from './instances';
 import kubernetes from './kubernetes';
@@ -43,6 +44,7 @@ angular
     creating,
     dataProcessing,
     edit,
+    errorModal,
     failoverIps,
     instances,
     loadBalancer,

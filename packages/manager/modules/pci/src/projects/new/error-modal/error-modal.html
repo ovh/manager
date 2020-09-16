@@ -1,0 +1,16 @@
+<form
+    id="eligibilityWarning"
+    name="eligibilityWarning"
+    data-ng-submit="$ctrl.submitAction()"
+    novalidate
+>
+    <oui-modal
+        data-primary-label="{{ ::$ctrl.submitLabel }}"
+        data-secondary-action="$ctrl.goBack()"
+        data-secondary-label="{{ ::'pci_project_new_error_cancel' | translate }}"
+        data-on-dismiss="$ctrl.goBack()"
+        data-type="error"
+    >
+        <p data-ng-bind="$ctrl.message"></p>
+    </oui-modal>
+</form>

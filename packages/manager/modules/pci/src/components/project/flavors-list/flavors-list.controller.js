@@ -7,12 +7,14 @@ import isEmpty from 'lodash/isEmpty';
 
 export default class FlavorsListController {
   /* @ngInject */
-  constructor($q, PciProjectFlavors) {
+  constructor($q, $state, PciProjectFlavors) {
     this.$q = $q;
+    this.$state = $state;
     this.PciProjectFlavors = PciProjectFlavors;
   }
 
   $onInit() {
+    this.quotaUrl = this.$state.href('pci.projects.project.quota');
     this.isLoading = true;
     this.flavorCount = this.flavorCount || 1;
     return this.getFlavors().finally(() => {
