@@ -1,0 +1,38 @@
+<oui-modal
+    heading="{{:: 'sms_add_receivers_choice_title' | translate }}"
+    primary-label="{{:: 'sms_confirm' | translate }}"
+    primary-action="$ctrl.confirmSelection()"
+    primary-disabled="!$ctrl.constructor.hasSelectedReceivers($ctrl.receivers)"
+    secondary-action="$ctrl.goBack()"
+    secondary-label="{{:: 'sms_cancel' | translate }}"
+    on-dismiss="$ctrl.goBack()"
+>
+    <span data-translate="sms_add_receivers_choice_select_lists"></span>
+    <div class="ml-2">
+        <div
+            class="mt-2"
+            data-ng-repeat="receiver in $ctrl.receivers track by receiver.slotId"
+        >
+            <oui-checkbox
+                model="receiver.isSelected"
+                value="receiver.isSelected"
+            >
+                <span data-ng-bind="receiver.description"></span>
+                (<span
+                    class="text-small"
+                    data-ng-bind="receiver.records"
+                ></span>
+                <span
+                    class="text-small"
+                    data-ng-pluralize
+                    data-when="{
+                      '1': ('sms_add_receivers_choice_contact' | translate),
+                      'other': ('sms_add_receivers_choice_contacts' | translate),
+                    }"
+                    data-count="receiver.records"
+                ></span
+                >)
+            </oui-checkbox>
+        </div>
+    </div>
+</oui-modal>

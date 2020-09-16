@@ -18,6 +18,7 @@ import './telecom-sms.less';
 import constant from './telecom-sms.constant';
 
 import batches from './batches';
+import components from './components';
 import dashboard from './dashboard';
 import guides from './guides';
 import options from './options';
@@ -41,6 +42,7 @@ angular
     'ovh-api-services',
     'ngMessages',
     batches,
+    components,
     dashboard,
     guides,
     options,
