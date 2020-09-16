@@ -3,7 +3,7 @@
         <div class="form-group service-item px-0">
             <a
                 class="service-button service-button-checkbox"
-                data-ng-disabled="!WifiCtrl.wifis.length || (WifiCtrl.wifis.length === 1 && (!WifiCtrl.mediator.capabilities.canChangeWLAN || WifiCtrl.mediator.tasks.changeModemConfigWLAN === true))"
+                data-ng-disabled="!WifiCtrl.mediator.info.managedByOvh || !WifiCtrl.wifis.length || (WifiCtrl.wifis.length === 1 && (!WifiCtrl.mediator.capabilities.canChangeWLAN || WifiCtrl.mediator.tasks.changeModemConfigWLAN === true))"
                 data-ui-sref="telecom.packs.pack.xdsl.line.modem.wifi"
             >
                 <div class="service-button-description">
