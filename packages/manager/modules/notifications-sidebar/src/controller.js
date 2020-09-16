@@ -158,6 +158,6 @@ export default class NotificationsCtrl {
           this.NavbarNotifications.constructor.convertToSubLink(notification),
         ),
       )
-      .catch(() => undefined);
+      .catch(() => []);
   }
 }
