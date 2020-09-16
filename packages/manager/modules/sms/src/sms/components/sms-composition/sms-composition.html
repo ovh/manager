@@ -1,0 +1,93 @@
+<h2 class="heading_underline" data-translate="sms_message_title"></h2>
+
+<div class="form-group">
+    <div class="row">
+        <div class="col-md-8 mb-2">
+            <oui-field label="{{:: 'sms_message' | translate }}">
+                <oui-textarea
+                    name="message"
+                    model="$ctrl.model.message"
+                    rows="4"
+                    required
+                    on-change="$ctrl.getMessageDetails()"
+                >
+                </oui-textarea>
+            </oui-field>
+            <div
+                class="text-right text-secondary"
+                data-ng-if="!$ctrl.model.messageDetails.maxLengthReached"
+            >
+                <span data-translate="sms_message_characters_left"></span>
+                <strong
+                    data-ng-bind="$ctrl.model.messageDetails.remainingCharacters"
+                ></strong
+                >&nbsp;/&nbsp;<span
+                    data-ng-bind="$ctrl.model.messageDetails.defaultSize"
+                ></span>
+                <span
+                    class="ovh-font ovh-font-filled-warning font-weight-normal text-warning"
+                    data-ng-if="$ctrl.model.messageDetails.coding === '8bit'"
+                    data-oui-tooltip="{{ ::'sms_message_characters_left_warning_8bit' | translate }}"
+                    data-oui-tooltip-placement="left"
+                >
+                </span>
+                <br />
+                <span data-translate="sms_message_equivalent"></span>
+                <strong
+                    data-ng-bind="$ctrl.model.messageDetails.equivalence"
+                ></strong>
+                <span data-translate="sms_sms"></span>
+            </div>
+            <div
+                class="alert alert-danger mt-3"
+                role="alert"
+                data-ng-show="$ctrl.message.maxLengthReached"
+                data-translate="sms_message_alert_maxlength"
+            ></div>
+        </div>
+        <div class="col-md-12">
+            <div
+                class="form-group"
+                data-ng-if="!$ctrl.constructor.isSenderVirtualNumber($ctrl.model.sender)"
+            >
+                <div data-ng-if="$ctrl.canHaveSTOPAnswer()">
+                    <p>
+                        <span
+                            data-translate="sms_message_stop_info_start"
+                        ></span>
+                        <span
+                            class="ovh-font ovh-font-question"
+                            data-oui-tooltip="{{ ::'sms_message_stop_info_tooltip' | translate }}"
+                        >
+                        </span>
+                        <span data-translate="sms_message_stop_info_end"></span>
+                    </p>
+                    <p data-translate="sms_message_stop_description"></p>
+                    <oui-checkbox
+                        name="noStopClause"
+                        id="noStopClause"
+                        model="$ctrl.model.noStopClause"
+                        on-change="$ctrl.getMessageDetails(modelValue)"
+                    >
+                        <span data-translate="sms_no_stop_clause_label"></span>
+                    </oui-checkbox>
+                </div>
+            </div>
+            <div
+                data-ng-if="$ctrl.constructor.isShortNumber($ctrl.model.sender) && $ctrl.displayCommercialClause()"
+            >
+                <p data-translate="sms_message_commercial_description"></p>
+                <oui-checkbox
+                    name="noCommercialClause"
+                    id="noCommercialClause"
+                    model="$ctrl.model.noStopClause"
+                    on-change="$ctrl.getMessageDetails(modelValue)"
+                >
+                    <span
+                        data-translate="sms_no_commercial_clause_label"
+                    ></span>
+                </oui-checkbox>
+            </div>
+        </div>
+    </div>
+</div>
