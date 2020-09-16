@@ -1,0 +1,43 @@
+<div class="oui-box">
+    <h3 data-translate="sms_message_estimation_title"></h3>
+
+    <ul class="list-unstyled">
+        <li>
+            <span
+                data-translate="sms_message_estimation_receivers_count"
+            ></span>
+            <strong
+                data-ng-bind="$ctrl.constructor.getReceiversCount($ctrl.model) | number:0"
+            ></strong>
+        </li>
+        <li>
+            <span
+                data-translate="sms_message_estimation_credit_balance_left"
+            ></span>
+            <strong data-ng-bind="$ctrl.service.creditsLeft | number"></strong>
+        </li>
+        <li>
+            <span
+                data-translate="sms_message_estimation_credit_balance_remaining"
+            ></span>
+            <strong
+                data-ng-bind="$ctrl.getEstimationCreditRemaining() | number:2"
+            ></strong>
+        </li>
+    </ul>
+    <span class="text-info">
+        <span class="ovh-font ovh-font-info" aria-hidden="true"></span>
+        <span data-translate="sms_message_estimation_note_1"></span>
+        <a
+            href="https://www.ovhtelecom.fr/sms/tarifs.xml"
+            class="telecom-link"
+            target="_blank"
+            rel="noopener"
+            data-translate-attr="{ title: 'common_open_new_tab' }"
+        >
+            <span data-translate="sms_message_estimation_note_2"></span>
+            <span class="ovh-font ovh-font-newtab" aria-hidden="true"></span>
+        </a>
+        <p data-translate="sms_message_estimation_note_3"></p>
+    </span>
+</div>
