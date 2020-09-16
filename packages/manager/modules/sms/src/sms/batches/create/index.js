@@ -1,15 +1,14 @@
 import angular from 'angular';
+import '@ovh-ux/ui-kit';
 import '@uirouter/angularjs';
 
-import create from './create';
-
-import component from './telecom-sms-batches.component';
+import component from './telecom-sms-batches-create.component';
 import routing from './routing';
 
-const moduleName = 'ovhManagerSmsBatchesModule';
+const moduleName = 'ovhManagerSmsBatchesCreate';
 
 angular
-  .module(moduleName, [create])
+  .module(moduleName, ['oui', 'ui.router'])
   .component(component.name, component)
   .config(routing);
 
