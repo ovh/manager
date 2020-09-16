@@ -1,3 +1,12 @@
+## [2.0.2](https://github.com/ovh/manager/compare/@ovh-ux/mfa-enrollment@2.0.1...@ovh-ux/mfa-enrollment@2.0.2) (2020-09-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 566] ([5a14433](https://github.com/ovh/manager/commit/5a144336abf817f31e002ebc8b7f2c8612f940cf))
+
+
+
 ## [2.0.1](https://github.com/ovh/manager/compare/@ovh-ux/mfa-enrollment@2.0.0...@ovh-ux/mfa-enrollment@2.0.1) (2020-08-18)
 
 

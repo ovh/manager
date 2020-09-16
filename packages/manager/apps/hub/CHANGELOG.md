@@ -1,3 +1,12 @@
+# [2.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@2.1.4...@ovh-ux/manager-hub-app@2.2.0) (2020-09-16)
+
+
+### Features
+
+* **hub:** add sso auth modal ([a344ab7](https://github.com/ovh/manager/commit/a344ab7d8fab71833bfc4c233e64cb3422523c4e))
+
+
+
 ## [2.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@2.1.3...@ovh-ux/manager-hub-app@2.1.4) (2020-09-15)
 
 

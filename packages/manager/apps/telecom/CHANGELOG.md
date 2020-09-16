@@ -1,3 +1,14 @@
+## [13.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.2.3...@ovh-ux/manager-telecom@13.2.4) (2020-09-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 572] ([1d51589](https://github.com/ovh/manager/commit/1d515895a9438c3c7ea138dd4a984d3b7ac4981f))
+* **i18n:** add missing translations [CDS 573] ([bf25e91](https://github.com/ovh/manager/commit/bf25e91003887c402a4e3f19289e6e3f2a4eb0b9))
+* **xdsl.tasks:** add translated label for task function ([#3588](https://github.com/ovh/manager/issues/3588)) ([3344722](https://github.com/ovh/manager/commit/3344722e836470ba6d58a6eff2d25fe87da0531a))
+
+
+
 ## [13.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.2.2...@ovh-ux/manager-telecom@13.2.3) (2020-09-09)
 
 

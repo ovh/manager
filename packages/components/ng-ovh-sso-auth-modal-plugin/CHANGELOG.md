@@ -1,3 +1,12 @@
+## [4.0.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-sso-auth-modal-plugin@4.0.0...@ovh-ux/ng-ovh-sso-auth-modal-plugin@4.0.1) (2020-09-16)
+
+
+### Bug Fixes
+
+* **sso-auth-modal:** add missing dependency ([bc51ed6](https://github.com/ovh/manager/commit/bc51ed6977341143b599ab6f654018306fa596a5))
+
+
+
 # [4.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-sso-auth-modal-plugin@3.0.4...@ovh-ux/ng-ovh-sso-auth-modal-plugin@4.0.0) (2020-05-15)
 
 

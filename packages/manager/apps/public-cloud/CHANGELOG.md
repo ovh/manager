@@ -1,3 +1,12 @@
+# [4.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.1.2...@ovh-ux/manager-public-cloud@4.2.0) (2020-09-16)
+
+
+### Features
+
+* **public-cloud:** add sso auth modal ([18f9f4f](https://github.com/ovh/manager/commit/18f9f4f23b1d7f171272bacfb9b68e61669be3cc))
+
+
+
 ## [4.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.1.1...@ovh-ux/manager-public-cloud@4.1.2) (2020-09-10)
 
 

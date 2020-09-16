@@ -1,3 +1,14 @@
+## [13.2.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@13.2.7...@ovh-ux/manager-dedicated@13.2.8) (2020-09-16)
+
+
+### Bug Fixes
+
+* **dedicated-cloud:** guide links of private cloud ([#3522](https://github.com/ovh/manager/issues/3522)) ([281b19f](https://github.com/ovh/manager/commit/281b19f0220c6c3f827727b141031a36a5e06461)), closes [#MANAGER-5556](https://github.com/ovh/manager/issues/MANAGER-5556)
+* **translations:** clean translations files ([#3601](https://github.com/ovh/manager/issues/3601)) ([5a483c8](https://github.com/ovh/manager/commit/5a483c8145d305aa5b5cf959f373d23a4f86b894))
+* **useraccount:** remove extra header-tabs-item ([#3622](https://github.com/ovh/manager/issues/3622)) ([0549913](https://github.com/ovh/manager/commit/05499136984d8ce99e2df0bff5c1cbe116e46075)), closes [/github.com/ovh/ovh-ui-kit/commit/77f6330f1ccc12d31eaea8a02e11b459e7ea57a0#diff-fec232260aa57f8f05ac33868e24e6d3](https://github.com//github.com/ovh/ovh-ui-kit/commit/77f6330f1ccc12d31eaea8a02e11b459e7ea57a0/issues/diff-fec232260aa57f8f05ac33868e24e6d3)
+
+
+
 ## [13.2.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@13.2.6...@ovh-ux/manager-dedicated@13.2.7) (2020-09-15)
 
 
