@@ -3,7 +3,9 @@
   "kube_nodes": "Nodos",
   "kube_nodes_add_button": "Añadir un nodo",
   "kube_nodes_delete": "Eliminar el nodo",
+  "kube_nodes_delete_many": "Eliminar nodos",
   "kube_nodes_delete_confirmation": "¿Seguro que quiere eliminar el nodo {{ node }}?",
+  "kube_nodes_delete_select_nodes": "Seleccione el número de nodos que quiere eliminar.",
   "kube_nodes_delete_warning": "Esta acción es irreversible.",
   "kube_nodes_delete_enter": "Introduzca «DELETE» en el siguiente campo para confirmar la operación.",
   "kube_nodes_delete_success": "Eliminación del los nodos",
@@ -15,7 +17,6 @@
   "kube_nodes_flavor_error": "Se ha producido un error al cargar el tipo de instancia asociada.",
   "kube_nodes_project_error": "Se ha producido un error al cargar el proyecto asociado.",
   "kube_nodes_description_project_1": "Su cluster Kubernetes utiliza nodos para alojar sus contenedores y servicios. Todos sus nodos se lanzarán en el proyecto Public Cloud {{ description }}. Próximamente será posible modificar esta opción.",
-  "kube_nodes_description_project_2": "Las instancias se inician con facturación por horas. Consulte su proyecto de Public Cloud para más información sobre la tarificación o para cambiar a facturación mensual.",
   "kube_nodes_quota_description": "Para ayudarle a controlar el consumo de cloud, su proyecto tiene recursos limitados.",
   "kube_nodes_quota_more": "Si necesita más recursos, puede solicitarlos haciendo clic en el siguiente botón.",
   "kube_nodes_quota_ask_more": "Aumentar los límites de mi cuota",
@@ -32,6 +33,7 @@
   "kube_nodes_status_UPDATING": "Actualización",
   "kube_nodes_status_DELETING": "Eliminando...",
   "kube_nodes_status_RESETTING": "Restaurando...",
+  "kube_nodes_status_RESIZING": "Redimensionamiento",
   "kube_nodes_instances_error": "Se ha producido un error al cargar la información de facturación: {{ message }}.",
   "kube_nodes_billing_type": "Tipo de facturación",
   "kube_nodes_billing_monthly": "Mensual",
@@ -42,10 +44,7 @@
   "kube_nodes_switch_to_monthly_billing_info": "Se emitirá inmediatamente una factura de la parte proporcional al período restante del mes actual.",
   "kube_nodes_switch_billing_type_success": "La facturación del nodo ha cambiado a la modalidad mensual.",
   "kube_nodes_switch_billing_type_error": "No es posible cambiar la facturación a la modalidad mensual: {{ message }}",
-  "kube_nodes_delete_many": "Eliminar nodos",
-  "kube_nodes_delete_select_nodes": "Seleccione el número de nodos que quiere eliminar.",
+  "kube_nodes_common_actions": "Acciones",
   "kube_nodes_add_nodes": "Añadir nodos",
-  "kube_nodes_delete_nodes": "Eliminar nodos",
-  "kube_nodes_status_RESIZING": "Redimensionamiento",
-  "kube_nodes_common_actions": "Acciones"
+  "kube_nodes_delete_nodes": "Eliminar nodos"
 }

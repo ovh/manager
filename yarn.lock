@@ -12809,6 +12809,11 @@ lodash@^3.8.0:
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
   integrity sha1-W/Rejkm6QYnhfUgnid/RW9FAt7Y=
 
+lodash@^4.17.20:
+  version "4.17.20"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
+  integrity sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA==
+
 lodash@~1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-1.0.2.tgz#8f57560c83b59fc270bd3d561b690043430e2551"
@@ -14566,12 +14571,12 @@ ovh-angular-responsive-tabs@^4.0.0:
   resolved "https://registry.yarnpkg.com/ovh-angular-responsive-tabs/-/ovh-angular-responsive-tabs-4.0.0.tgz#85b66d7032612c3ed1a14cb29f83d1331b50c1df"
   integrity sha1-hbZtcDJhLD7RoUyyn4PRMxtQwd8=
 
-ovh-api-services@^9.50.0:
-  version "9.50.0"
-  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-9.50.0.tgz#753e02fd16b3a1a5b827992a5d9d9580a1d47953"
-  integrity sha512-4IMiRopzGLGVFCw992Mi3e8VBkuUYZw+dwgRAjWjpEhdbazvooMJaNKCwunQOeZBErtWKxkyIpRoDy4lkACJdA==
+ovh-api-services@^10.0.0:
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-10.0.0.tgz#912d15fb157ae4ebf70e487c7bce9b41798cb6ee"
+  integrity sha512-kdOMQAU9O7Ct8z7QfZcPJBrIEV9hCuNZEATGKmRH+feum3R9xtiHFu9kqwRG361VOWApdCvi639b+HWra+nTlQ==
   dependencies:
-    lodash "^4.17.15"
+    lodash "^4.17.20"
 
 ovh-common-style@^3.2.2, ovh-common-style@ovh-ux/ovh-common-style#^3.2.2:
   version "3.2.2"

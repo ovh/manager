@@ -1,5 +1,4 @@
 {
-  "server_dashboard_loading_error": "Erro ao carregar informação relativa ao seu serviço.",
   "server_configuration_doing": "[Em curso]",
   "server_tab_IP": "IP e Segurança",
   "server_tab_IP_block": "Bloco:",
@@ -582,6 +581,7 @@
   "server_configuration_task_VIRTUAL_MAC_DELETE": "Eliminação do Mac Virtual",
   "server_configuration_task_REMOVE_VIRTUAL_MAC": "Eliminação do Mac Virtual",
   "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE": "Alteração das interfaces de rede",
+  "server_configuration_task_IPMI_CONFIGURE_SGX": "Alteração da opção SGX",
   "server_configuration_task_status_CANCELLED": "Anulada",
   "server_configuration_task_status_CUSTOMER_ERROR": "Erro com a aplicação cliente",
   "server_configuration_task_status_DOING": "Em curso",
@@ -882,6 +882,7 @@
   "plan_vrack-bandwidth-5000-option-infra-us": "5 Gbps de largura de banda privada garantida - Tráfego ilimitado - Opção vRack",
   "plan_bandwidth-1000-adv-us": "1Gbps de largura de banda pública - Tráfego ilimitado",
   "plan_bandwidth-1000-burst-2gbps-infra": "2 Gbps de largura de banda pública - Tráfego ilimitado",
+  "plan_bandwidth-1000-burst-2gbps-infra-us": "2 Gbps de largura de banda pública - Tráfego ilimitado",
   "plan_bandwidth-guaranteed-1000-ultimate-2019v1": "1 Gbps de largura de banda pública garantida - Tráfego ilimitado - Opção Ultimate",
   "plan_bandwidth-guaranteed-2000-ultimate-2019v1": "2 Gbps de largura de banda pública garantida - Tráfego ilimitado - Opção Ultimate",
   "plan_bandwidth-guaranteed-3000-ultimate-2019v1": "3 Gbps de largura de banda pública garantida - Tráfego ilimitado - Opção Ultimate",
@@ -1212,7 +1213,5 @@
   "server_error_ola_terminate": "Lamentamos, mas ocorreu um erro ao rescindir o seu serviço: {{error}}",
   "server_error_vrack_attach": "Lamentamos, mas ocorreu um erro ao associar a rede privada: {{error}}",
   "server_error_vrack_detach": "Lamentamos, mas ocorreu um erro ao desassociar a rede privada: {{error}}",
-  "server_error_bandwidth_order": "Ocorreu um erro aquando da encomenda da largura de banda: {{error}}",
-  "plan_bandwidth-1000-burst-2gbps-infra-us": "2 Gbps de largura de banda pública - Tráfego ilimitado",
-  "server_configuration_task_IPMI_CONFIGURE_SGX": "Alteração da opção SGX"
+  "server_error_bandwidth_order": "Ocorreu um erro aquando da encomenda da largura de banda: {{error}}"
 }

@@ -1,5 +1,4 @@
 {
-  "server_dashboard_loading_error": "An error has occurred loading your service information.",
   "server_configuration_doing": "[In progress]",
   "server_tab_IP": "IP and Security",
   "server_tab_IP_block": "Block:",
@@ -582,6 +581,7 @@
   "server_configuration_task_VIRTUAL_MAC_DELETE": "Virtual MAC address deletion",
   "server_configuration_task_REMOVE_VIRTUAL_MAC": "Virtual MAC address deletion",
   "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE": "Modifying network interfaces",
+  "server_configuration_task_IPMI_CONFIGURE_SGX": "Modify SGX option",
   "server_configuration_task_status_CANCELLED": "Cancelled",
   "server_configuration_task_status_CUSTOMER_ERROR": "Client error",
   "server_configuration_task_status_DOING": "In progress",
@@ -1213,6 +1213,5 @@
   "server_error_ola_terminate": "An error has occurred cancelling your service: {{error}}",
   "server_error_vrack_attach": "An error has occurred attaching the private network: {{error}}",
   "server_error_vrack_detach": "An error has occurred detaching the private network: {{error}}",
-  "server_error_bandwidth_order": "An error has occurred ordering bandwidth: {{error}}",
-  "server_configuration_task_IPMI_CONFIGURE_SGX": "Modify SGX option"
+  "server_error_bandwidth_order": "An error has occurred ordering bandwidth: {{error}}"
 }

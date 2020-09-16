@@ -31,5 +31,6 @@
   "telecom_task_function_regeneratePromoCode": "Régénération du code promotionel",
   "telecom_task_function_changePackOffer": "Changement d'offre",
   "telecom_task_function_packXdslAddressMove": "Déménagement",
-  "telecom_task_function_accessDiagnosticRun": "Diagnostic de la ligne"
+  "telecom_task_function_accessDiagnosticRun": "Diagnostic de la ligne",
+  "telecom_task_function_ToDoNothing": "Test OK, aucune action en attente"
 }

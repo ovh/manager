@@ -83,7 +83,7 @@
 
     <oui-action-menu-item
         ng-if="(!$ctrl.service.shouldDeleteAtExpiration() || !$ctrl.service.isResiliated()) && !$ctrl.service.hasDebt()"
-        disabled="!$ctrl.service.canBeResiliated($ctrl.user.nichandle)"
+        disabled="!$ctrl.service.canBeResiliated($ctrl.user.nichandle) && !$ctrl.service.canBeDeleted()"
         href="{{:: $ctrl.resiliateLink }}"
         on-click="$ctrl.trackAction('go-to-resiliate')"
     >

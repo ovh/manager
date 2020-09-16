@@ -1,5 +1,4 @@
 {
-  "server_dashboard_loading_error": "Si è verificato un errore durante il caricamento delle informazioni relative al tuo servizio.",
   "server_configuration_doing": "[In corso]",
   "server_tab_IP": "IP e Sicurezza",
   "server_tab_IP_block": "Blocco:",
@@ -582,6 +581,7 @@
   "server_configuration_task_VIRTUAL_MAC_DELETE": "Rimuovi Mac virtuali",
   "server_configuration_task_REMOVE_VIRTUAL_MAC": "Rimuovi Mac virtuali",
   "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE": "Modifica delle interfacce di rete",
+  "server_configuration_task_IPMI_CONFIGURE_SGX": "Modifica dell'opzione SGX",
   "server_configuration_task_status_CANCELLED": "Annullata",
   "server_configuration_task_status_CUSTOMER_ERROR": "Errore client",
   "server_configuration_task_status_DOING": "In corso",
@@ -882,6 +882,7 @@
   "plan_vrack-bandwidth-5000-option-infra-us": "5 Gbps banda passante privata garantita - Traffico illimitato - Opzione vRack",
   "plan_bandwidth-1000-adv-us": " 1 Gbps banda passante pubblica - Traffico illimitato",
   "plan_bandwidth-1000-burst-2gbps-infra": "2 Gbps di banda passante pubblica - Traffico illimitato",
+  "plan_bandwidth-1000-burst-2gbps-infra-us": "2 Gbps di banda passante pubblica - Traffico illimitato",
   "plan_bandwidth-guaranteed-1000-ultimate-2019v1": "1 Gbps di banda passante pubblica garantita - Traffico illimitato - Opzione Ultimate",
   "plan_bandwidth-guaranteed-2000-ultimate-2019v1": "2 Gbps di banda passante pubblica garantita - Traffico illimitato - Opzione Ultimate",
   "plan_bandwidth-guaranteed-3000-ultimate-2019v1": "3 Gbps di banda passante pubblica garantita - Traffico illimitato - Opzione Ultimate",
@@ -1212,7 +1213,5 @@
   "server_error_ola_terminate": "Si è verificato un errore durante la disattivazione del servizio: {{error}}",
   "server_error_vrack_attach": "Si è verificato un errore durante l'associazione della rete privata: {{error}}",
   "server_error_vrack_detach": "Si è verificato un errore durante la separazione della rete privata: {{error}}",
-  "server_error_bandwidth_order": "Si è verificato un errore durante l'ordine della banda passante: {{error}}",
-  "plan_bandwidth-1000-burst-2gbps-infra-us": "2 Gbps di banda passante pubblica - Traffico illimitato",
-  "server_configuration_task_IPMI_CONFIGURE_SGX": "Modifica dell'opzione SGX"
+  "server_error_bandwidth_order": "Si è verificato un errore durante l'ordine della banda passante: {{error}}"
 }
