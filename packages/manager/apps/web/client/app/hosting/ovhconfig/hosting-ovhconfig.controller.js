@@ -1,9 +1,11 @@
+import flatten from 'lodash/flatten';
 import get from 'lodash/get';
 import indexOf from 'lodash/indexOf';
 import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
 import isString from 'lodash/isString';
 import set from 'lodash/set';
+import uniq from 'lodash/uniq';
 
 import { RECOMMENDED_VERSION } from './config.constants';
 
@@ -31,6 +33,7 @@ angular.module('App').controller(
     }
 
     $onInit() {
+      this.capabilities = [];
       this.errorMsg = null;
       this.loading = false;
       this.model = {};
@@ -94,6 +97,19 @@ angular.module('App').controller(
           }),
       );
 
+      queue.push(
+        this.hostingOvhConfigService
+          .getCapabilities(this.$stateParams.productId)
+          .then((capabilities) => {
+            this.capabilities = capabilities;
+            this.envExecutions = uniq(
+              flatten(
+                this.capabilities.map(({ containerImage }) => containerImage),
+              ),
+            );
+          }),
+      );
+
       return this.$q
         .all(queue)
         .catch(() => {
@@ -109,6 +125,12 @@ angular.module('App').controller(
             this.toggle.process = 'update';
           }
         });
+    }
+
+    getEngineVersions(envExecution) {
+      return this.capabilities
+        .filter(({ containerImage }) => containerImage.includes(envExecution))
+        .map(({ version }) => version);
     }
 
     setProcess() {
