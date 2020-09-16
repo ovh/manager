@@ -80,7 +80,7 @@
             header="{{:: 'domain_configuration_enable_web_hosting_activation' | translate }}"
             on-focus="$ctrl.loadCheckout()"
             loading="$ctrl.isLoadingCheckout"
-            valid="$ctrl.contractsValidated"
+            valid="($ctrl.checkout.contracts && $ctrl.contractsValidated) || $ctrl.checkout.contracts.length === 0"
             submit-text="{{:: 'domain_configuration_enable_web_hosting_activate' | translate }}"
             on-cancel="$ctrl.goBack()"
             prevent-next
