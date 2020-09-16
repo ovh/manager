@@ -1,8 +1,0 @@
-{
-  "pci_projects_project_streams_stream_subscriptions_reset_cursor_title": "Reiniciar o cursor da assinatura",
-  "pci_projects_project_streams_stream_subscriptions_reset_cursor_submit_label": "Confirmar",
-  "pci_projects_project_streams_stream_subscriptions_reset_cursor_cancel_label": "Anular",
-  "pci_projects_project_streams_stream_subscriptions_reset_cursor_content": "Pretende reiniciar o cursor da assinatura {{subscription}}?",
-  "pci_projects_project_streams_stream_subscriptions_reset_cursor_success_message": "O cursor da assinatura {{subscription}} foi reiniciado.",
-  "pci_projects_project_streams_stream_subscriptions_reset_cursor_error_reset_cursor": "Ocorreu um erro ao reiniciar o cursor da assinatura {{subscription}}: {{ message }}."
-}

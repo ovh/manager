@@ -140,8 +140,6 @@ import './billingAccount/billingAccount.routing';
 import './billingAccount/billingAccount.service';
 import './billingAccount/dashboard/telecom-telephony-billing-account-dashboard.controller';
 import './billingAccount/dashboard/telecom-telephony-billing-account-dashboard';
-import './billingAccount/guides/telecom-telephony-guides.controller';
-import './billingAccount/guides/telecom-telephony-guides';
 import './billingAccount/index';
 import './billingAccount/manageContacts/telecom-telephony-billing-account-manageContacts.controller';
 import './billingAccount/manageContacts/telecom-telephony-billing-account-manageContacts';

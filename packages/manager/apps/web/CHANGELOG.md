@@ -1,3 +1,43 @@
+## [15.2.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.2.7...@ovh-ux/manager-web@15.2.8) (2020-09-14)
+
+
+### Bug Fixes
+
+* **domain.zone.activate:** only autopay depending on payment method ([#3569](https://github.com/ovh/manager/issues/3569)) ([e8f79ea](https://github.com/ovh/manager/commit/e8f79ea93a7732d023d0f44d3bb9492b7e0f3756))
+
+
+
+## [15.2.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.2.6...@ovh-ux/manager-web@15.2.7) (2020-09-10)
+
+
+### Bug Fixes
+
+* multisite logs url ([#3538](https://github.com/ovh/manager/issues/3538)) ([a35b593](https://github.com/ovh/manager/commit/a35b59366fcadbb0c88b029c31ecd7744047b882))
+* **email-domain.responder:** fix responder date range ([#3587](https://github.com/ovh/manager/issues/3587)) ([b9aa59f](https://github.com/ovh/manager/commit/b9aa59fd819c0b5ec8982298900b5c23d56a53aa))
+
+
+
+## [15.2.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.2.5...@ovh-ux/manager-web@15.2.6) (2020-09-03)
+
+
+### Bug Fixes
+
+* **hosting.email:** pass checkout params ([#3565](https://github.com/ovh/manager/issues/3565)) ([8daf507](https://github.com/ovh/manager/commit/8daf5074fb4db7685192d912e50e749680e298ce))
+* update semver for product offers ([d2a2cfb](https://github.com/ovh/manager/commit/d2a2cfbd93fa71f74da697507662f5d298631694))
+* **web.domain:** fix test condition for label issue ([e116c40](https://github.com/ovh/manager/commit/e116c40dd117221d76ad31e264a1a2456aa83da4))
+* **web.domain:** handle new pricing mode ([55a4f64](https://github.com/ovh/manager/commit/55a4f640ebb83e12aad3d432e96d003bfc7fa283))
+
+
+
+## [15.2.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.2.4...@ovh-ux/manager-web@15.2.5) (2020-09-01)
+
+
+### Bug Fixes
+
+* **private-database.user:** use right translation key ([a893f3b](https://github.com/ovh/manager/commit/a893f3b58043800f17ac3a622eddf77f18015b65))
+
+
+
 ## [15.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.2.3...@ovh-ux/manager-web@15.2.4) (2020-08-31)
 
 

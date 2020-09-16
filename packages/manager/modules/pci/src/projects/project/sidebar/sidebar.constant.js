@@ -166,15 +166,6 @@ export const MENU = [
         title: 'Data Processing',
         regions: ['EU', 'CA'],
       },
-      {
-        id: 'io-stream',
-        beta: true,
-        options: {
-          state: 'pci.projects.project.streams',
-        },
-        title: 'ioStream',
-        regions: ['EU'],
-      },
     ],
     regions: ['EU', 'CA'],
     title: 'Data & Analytics',

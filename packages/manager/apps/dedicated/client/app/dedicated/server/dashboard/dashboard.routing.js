@@ -169,14 +169,6 @@ export default /* @ngInject */ ($stateProvider) => {
               'app.dedicated.server.dashboard.bandwidth-public-order',
               { productId: serverName },
             ),
-      resiliatePrivateBandwidthLink: /* @ngInject */ ($state, serverName) =>
-        $state.href('app.dedicated.server.dashboard.bandwidth-private-cancel', {
-          productId: serverName,
-        }),
-      resiliatePublicBandwidthLink: /* @ngInject */ ($state, serverName) =>
-        $state.href('app.dedicated.server.dashboard.bandwidth-public-cancel', {
-          productId: serverName,
-        }),
       serviceMonitoring: /* @ngInject */ ($stateParams, Server) =>
         Server.getAllServiceMonitoring($stateParams.productId),
       trafficInformations: /* @ngInject */ (

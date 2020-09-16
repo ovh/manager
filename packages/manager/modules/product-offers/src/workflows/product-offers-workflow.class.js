@@ -64,6 +64,14 @@ export default class Workflow {
   }
 
   /**
+   * Determines if we have contracts agreement
+   * @return {boolean}
+   */
+  hasContractsAgreements() {
+    return (this.contracts && !this.contracts.length) || this.agreeContracts;
+  }
+
+  /**
    * Determines if the offer has a unique pricing to use
    * @return {boolean}
    */

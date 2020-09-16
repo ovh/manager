@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular
   .module('UserAccount')
   .controller('UserAccount.controllers.ssh.dedicated.add', [
@@ -23,12 +25,18 @@ angular
       $scope.addDedicatedSshKey = function addDedicatedSshKey() {
         UseraccountSsh.addDedicatedSshKey($scope.model)
           .then(() => {
-            Alerter.success($translate.instant('user_ssh_add_success_message'));
+            Alerter.success(
+              $translate.instant('user_ssh_add_success_message'),
+              'userSsh',
+            );
           })
-          .catch((failure) => {
-            Alerter.alertFromSWS(
-              $translate.instant('user_ssh_add_error_message'),
-              failure.data,
+          .catch((err) => {
+            Alerter.error(
+              `${this.$translate.instant('user_ssh_add_error_message')} ${get(
+                err,
+                'message',
+              ) || err}`,
+              'userSsh',
             );
           })
           .finally(() => {

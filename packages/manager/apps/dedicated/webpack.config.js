@@ -111,6 +111,9 @@ module.exports = (env = {}) => {
       ),
       new webpack.DefinePlugin({
         __NG_APP_INJECTIONS__: getNgAppInjections(['EU', 'CA', 'US']),
+        __NODE_ENV__: process.env.NODE_ENV
+          ? `'${process.env.NODE_ENV}'`
+          : '"development"',
       }),
     ],
     optimization: {

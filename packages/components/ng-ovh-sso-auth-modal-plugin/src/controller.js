@@ -10,7 +10,6 @@ import $ from 'jquery';
 export default /* @ngInject */ function SsoAuthModalController(
   $q,
   $window,
-  $translatePartialLoader,
   $translate,
   params,
 ) {

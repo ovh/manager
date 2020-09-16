@@ -1,3 +1,22 @@
+# [5.3.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet@5.2.0...@ovh-ux/ng-at-internet@5.3.0) (2020-09-08)
+
+
+### Features
+
+* **custom-vars:** update variable ([f9664e0](https://github.com/ovh/manager/commit/f9664e080ad08143e08b5f8ed0463d3bb6783448))
+* **provider:** add default configuration ([0e36693](https://github.com/ovh/manager/commit/0e36693e7b6245d805f70f0be2caee4094c6c768))
+
+
+
+# [5.2.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet@5.1.0...@ovh-ux/ng-at-internet@5.2.0) (2020-09-01)
+
+
+### Features
+
+* **constants:** add order status ([2bee240](https://github.com/ovh/manager/commit/2bee240b38d8246880d2fc3d7089722512d740e3))
+
+
+
 # [5.1.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet@5.0.1...@ovh-ux/ng-at-internet@5.1.0) (2020-08-05)
 
 

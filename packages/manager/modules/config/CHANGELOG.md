@@ -1,3 +1,12 @@
+## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@1.1.0...@ovh-ux/manager-config@1.1.1) (2020-09-04)
+
+
+### Bug Fixes
+
+* **config:** fix user language ([#3574](https://github.com/ovh/manager/issues/3574)) ([c43463e](https://github.com/ovh/manager/commit/c43463eca8f9b7e0fce2cc5f7e83cd869e3b0ac9))
+
+
+
 # [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@1.0.0...@ovh-ux/manager-config@1.1.0) (2020-08-18)
 
 

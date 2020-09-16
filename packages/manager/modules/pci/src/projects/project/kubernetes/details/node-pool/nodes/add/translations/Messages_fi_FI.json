@@ -1,5 +1,5 @@
 {
-  "kube_nodes_add": "Add node",
+  "kube_nodes_add_success_multiple": "Installing nodes",
   "kube_nodes_add_success": "Installing node",
   "kube_nodes_add_flavor_error": "An error has occurred loading the flavors: {{ message }}",
   "kube_nodes_add_node_name": "Instance name",
@@ -25,6 +25,5 @@
   "kube_nodes_add_same_flavor_message": "You can only choose this type of instance as the node pool can only contain nodes of the same instance type.",
   "kube_nodes_add_select_nodes": "Select the number of new nodes to add",
   "kube_nodes_add_instance_type": "Flavor",
-  "kube_nodes_add_adding_message": "Resize pool",
-  "kube_nodes_add_success_multiple": "Installing nodes"
+  "kube_nodes_add_adding_message": "Resize pool"
 }

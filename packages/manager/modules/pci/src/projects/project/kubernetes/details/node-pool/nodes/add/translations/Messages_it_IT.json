@@ -1,5 +1,5 @@
 {
-  "kube_nodes_add": "Aggiungi un nodo",
+  "kube_nodes_add_success_multiple": "Installazione dei nodi in corso...",
   "kube_nodes_add_success": "Installazione del nodo in corso...",
   "kube_nodes_add_flavor_error": "Si è verificato un errore durante il caricamento dei modelli di istanza: {{message}}",
   "kube_nodes_add_node_name": "Nome dell'istanza",
@@ -25,6 +25,5 @@
   "kube_nodes_add_same_flavor_message": "È possibile scegliere esclusivamente questo tipo di istanza perché il pool di nodi può essere composto solamente da nodi dello stesso tipo.",
   "kube_nodes_add_select_nodes": "Seleziona il numero di nuovi nodi da aggiungere",
   "kube_nodes_add_instance_type": "Tipo di istanza",
-  "kube_nodes_add_adding_message": "Ridimensionamento del pool",
-  "kube_nodes_add_success_multiple": "Installazione dei nodi in corso..."
+  "kube_nodes_add_adding_message": "Ridimensionamento del pool"
 }

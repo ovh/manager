@@ -1,3 +1,21 @@
+## [2.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.0.3...@ovh-ux/manager-vps@2.0.4) (2020-09-15)
+
+
+### Bug Fixes
+
+* **vps:** configure locale for guides ([#3617](https://github.com/ovh/manager/issues/3617)) ([00b9924](https://github.com/ovh/manager/commit/00b99245b4506a0578d9311a236bd60009142637))
+
+
+
+## [2.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.0.2...@ovh-ux/manager-vps@2.0.3) (2020-09-01)
+
+
+### Bug Fixes
+
+* **vps.upgrade:** add error message on error upgrade ([#3540](https://github.com/ovh/manager/issues/3540)) ([4b75f9c](https://github.com/ovh/manager/commit/4b75f9c38a284024971848a985e84914a41a22e5))
+
+
+
 ## [2.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.0.1...@ovh-ux/manager-vps@2.0.2) (2020-08-18)
 
 

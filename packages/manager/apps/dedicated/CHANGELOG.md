@@ -1,3 +1,54 @@
+## [13.2.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@13.2.6...@ovh-ux/manager-dedicated@13.2.7) (2020-09-15)
+
+
+### Bug Fixes
+
+* **billing.autorenew:** remove extra header-tabs-item ([#3620](https://github.com/ovh/manager/issues/3620)) ([d05e615](https://github.com/ovh/manager/commit/d05e61598b67da95e25399ffd8ec2dc0c669dd5d)), closes [/github.com/ovh/ovh-ui-kit/commit/77f6330f1ccc12d31eaea8a02e11b459e7ea57a0#diff-fec232260aa57f8f05ac33868e24e6d3](https://github.com//github.com/ovh/ovh-ui-kit/commit/77f6330f1ccc12d31eaea8a02e11b459e7ea57a0/issues/diff-fec232260aa57f8f05ac33868e24e6d3)
+* **dedicated:** hosting private db delete url ([#3616](https://github.com/ovh/manager/issues/3616)) ([47859e6](https://github.com/ovh/manager/commit/47859e6498675b586f073c42365acef4781ffb8c))
+* **dedicated.server.bandwidth:** use downgrade instead of resiliation ([#3546](https://github.com/ovh/manager/issues/3546)) ([e67555b](https://github.com/ovh/manager/commit/e67555b8483663de25964f3491049adaa2bb737c))
+
+
+
+## [13.2.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@13.2.5...@ovh-ux/manager-dedicated@13.2.6) (2020-09-14)
+
+
+### Bug Fixes
+
+* **dedicated:** escape query params ([#3604](https://github.com/ovh/manager/issues/3604)) ([59fea65](https://github.com/ovh/manager/commit/59fea650609c6cfc3401bc74d30f13fb058dcfa0))
+* **dedicated.server:** no sms monitoring in US ([#3605](https://github.com/ovh/manager/issues/3605)) ([077861c](https://github.com/ovh/manager/commit/077861c004a157c76cc3e9b5620eb2e70078f099))
+
+
+
+## [13.2.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@13.2.4...@ovh-ux/manager-dedicated@13.2.5) (2020-09-10)
+
+
+### Bug Fixes
+
+* **dedicated-server:** ip monitoring management ([#3579](https://github.com/ovh/manager/issues/3579)) ([7ac426e](https://github.com/ovh/manager/commit/7ac426ead849b1d455d3ee372786c7fa6d79e4b3)), closes [#DTRSD-19171](https://github.com/ovh/manager/issues/DTRSD-19171)
+
+
+
+## [13.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@13.2.3...@ovh-ux/manager-dedicated@13.2.4) (2020-09-03)
+
+
+### Bug Fixes
+
+* **billing.autorenew:** pass service type for resiliation ([#3563](https://github.com/ovh/manager/issues/3563)) ([ddb600a](https://github.com/ovh/manager/commit/ddb600a33ba1ed86b68e5009b8f476b33e4d9498))
+* **dedicated:** add ssh key name validation ([#3556](https://github.com/ovh/manager/issues/3556)) ([d26ddbb](https://github.com/ovh/manager/commit/d26ddbb7cf848ce0872cab0ed2a581bcb7aa37c4))
+* **dedicated:** monitoring units ([#3564](https://github.com/ovh/manager/issues/3564)) ([a67515a](https://github.com/ovh/manager/commit/a67515a9988ea03822983daaa568c60fd0437258))
+
+
+
+## [13.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@13.2.2...@ovh-ux/manager-dedicated@13.2.3) (2020-09-01)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 552] ([075dcb3](https://github.com/ovh/manager/commit/075dcb3250b6be3a583e4756f19f024c02423575))
+* **order:** add order status tracking ([c86845d](https://github.com/ovh/manager/commit/c86845de577d6d5620889442c611e5bdee7cec58))
+
+
+
 ## [13.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@13.2.1...@ovh-ux/manager-dedicated@13.2.2) (2020-08-26)
 
 

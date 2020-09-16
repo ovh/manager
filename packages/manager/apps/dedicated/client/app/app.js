@@ -2,6 +2,7 @@ import { Environment } from '@ovh-ux/manager-config';
 import get from 'lodash/get';
 import has from 'lodash/has';
 import set from 'lodash/set';
+import values from 'lodash/values';
 import isString from 'lodash/isString';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
@@ -26,6 +27,7 @@ import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import ngUirouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ovhContacts from '@ovh-ux/ng-ovh-contacts';
 import ovhManagerAccountSidebar from '@ovh-ux/manager-account-sidebar';
+import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ovhManagerBanner from '@ovh-ux/manager-banner';
 import ovhManagerEnterpriseCloudDatabase from '@ovh-ux/manager-enterprise-cloud-database';
@@ -55,13 +57,14 @@ import dedicatedCloudTerminate from './dedicatedCloud/terminate/terminate.module
 import dedicatedCloudDashboard from './dedicatedCloud/dashboard';
 import dedicatedUniverseComponents from './dedicatedUniverseComponents';
 import errorPage from './error';
-import ovhManagerPccDashboard from './dedicatedCloud/dashboard';
 import ovhManagerPccResourceUpgrade from './dedicatedCloud/resource/upgrade';
 
 import dedicatedServer from './dedicated/server';
 
 import datacenterBackup from './dedicatedCloud/datacenter/backup';
 import userContracts from './user-contracts';
+
+import { TRACKING } from './at-internet.constants';
 
 Environment.setVersion(__VERSION__);
 
@@ -123,7 +126,7 @@ angular
       ngQAllSettled,
       'ovh-angular-responsive-tabs',
       'ovh-api-services',
-      ovhManagerPccDashboard,
+      ovhManagerAtInternetConfiguration,
       ovhManagerIplb,
       ovhManagerPccResourceUpgrade,
       ovhManagerServerSidebar,
@@ -195,22 +198,17 @@ angular
   .config(($urlServiceProvider) => {
     $urlServiceProvider.rules.otherwise('/configuration');
   })
-  /* ========== AT-INTERNET ========== */
-  .config((atInternetProvider, atInternetUiRouterPluginProvider, constants) => {
-    atInternetProvider.setEnabled(
-      constants.prodMode && window.location.port.length <= 3,
-    );
-    atInternetProvider.setDebug(!constants.prodMode);
-
-    atInternetUiRouterPluginProvider.setTrackStateChange(
-      constants.prodMode && window.location.port.length <= 3,
-    );
-    atInternetUiRouterPluginProvider.addStateNameFilter((routeName) =>
-      routeName
-        ? routeName.replace(/^app/, 'dedicated').replace(/\./g, '::')
-        : '',
-    );
-  })
+  .config(
+    /* @ngInject */ (atInternetConfigurationProvider) => {
+      atInternetConfigurationProvider.setConfig(TRACKING);
+      atInternetConfigurationProvider.setReplacementRules([
+        {
+          pattern: /^app/,
+          replacement: 'dedicated',
+        },
+      ]);
+    },
+  )
   .constant('REGEX', {
     ROUTABLE_BLOCK: /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\/(\d|[1-2]\d|3[0-2]))$/,
     ROUTABLE_IP: /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/,
@@ -220,10 +218,28 @@ angular
     ssoAuthentication.login().then(() => User.getUser());
   })
   .run(
-    /* @ngInject */ ($rootScope, $state, $transitions, coreConfig) => {
+    /* @ngInject */ (
+      $location,
+      $rootScope,
+      $state,
+      $transitions,
+      coreConfig,
+    ) => {
       $rootScope.$on('$locationChangeStart', () => {
         // eslint-disable-next-line no-param-reassign
         delete $rootScope.isLeftMenuVisible;
+      });
+
+      // if query params contains unescaped '<' value then
+      // clear query params to avoid html injection
+      $transitions.onBefore({}, () => {
+        let invalidParams = false;
+        values($location.search()).forEach((param) => {
+          invalidParams = invalidParams || /</.test(param);
+        });
+        if (invalidParams) {
+          $location.search('');
+        }
       });
 
       // manage restriction on billing section for enterprise account
@@ -298,20 +314,6 @@ angular
       );
     },
   )
-  .run((constants, atInternet, OvhApiMe) => {
-    const level2 = constants.target === 'US' ? '57' : '10';
-
-    OvhApiMe.v6()
-      .get()
-      .$promise.then((me) => {
-        atInternet.setDefaults({
-          level2,
-          countryCode: me.country,
-          currencyCode: me.currency && me.currency.code,
-          visitorId: me.customerCode,
-        });
-      });
-  })
   .constant('UNIVERSE', 'DEDICATED')
   .run(
     /* @ngInject */ ($rootScope, $transitions) => {

@@ -3,7 +3,9 @@
   "kube_nodes": "Nodes",
   "kube_nodes_add_button": "Node hinzufügen",
   "kube_nodes_delete": "Node löschen",
+  "kube_nodes_delete_many": "Nodes löschen",
   "kube_nodes_delete_confirmation": "Sind Sie sicher, dass Sie den Node {{ node }} löschen möchten?",
+  "kube_nodes_delete_select_nodes": "Wählen Sie die Anzahl der zu löschenden Nodes aus",
   "kube_nodes_delete_warning": "Dieser Vorgang kann nicht rückgängig gemacht werden.",
   "kube_nodes_delete_enter": "Geben Sie im folgenden Feld „DELETE\" ein, um den Vorgang zu bestätigen.",
   "kube_nodes_delete_success": "Löschen der Nodes",
@@ -15,7 +17,6 @@
   "kube_nodes_flavor_error": "Beim Laden des Instanz-Typs ist ein Fehler aufgetreten.",
   "kube_nodes_project_error": "Beim Laden des zugehörigen Projekts ist ein Fehler aufgetreten.",
   "kube_nodes_description_project_1": "Ihr Kubernetes Cluster verwendet Nodes für das Hosting Ihrer Container und Dienste. Alle Ihre Nodes werden im Public Cloud Projekt {{ description }} gestartet (in Zukunft werden Sie dies ändern können).",
-  "kube_nodes_description_project_2": "Diese Instanzen werden standardmäßig über die stündliche Abrechnung berechnet. In Ihrem Public Cloud Projekt finden Sie weitere Abrechnungsinformationen und können Ihre Instanzen auf monatliche Abrechnung umstellen.",
   "kube_nodes_quota_description": "Um den Verbrauch an Cloud-Ressourcen zu begrenzen, wurden diese für Ihr Projekt limitiert.",
   "kube_nodes_quota_more": "Wenn Sie mehr Ressourcen benötigen, können Sie diese bei unserem Team anfordern, indem Sie unten auf den Button klicken.",
   "kube_nodes_quota_ask_more": "Limits erhöhen",
@@ -32,6 +33,7 @@
   "kube_nodes_status_UPDATING": "Aktualisierung",
   "kube_nodes_status_DELETING": "Wird gelöscht",
   "kube_nodes_status_RESETTING": "Wird zurückgesetzt",
+  "kube_nodes_status_RESIZING": "Größenanpassung",
   "kube_nodes_instances_error": "Beim Laden der Abrechnungsdetails ist ein Fehler aufgetreten: {{ message }}",
   "kube_nodes_billing_type": "Abrechnungstyp",
   "kube_nodes_billing_monthly": "Monatlich",
@@ -42,10 +44,7 @@
   "kube_nodes_switch_to_monthly_billing_info": "Es wird dann direkt im Anschluss eine anteilige Rechnung für die verbleibenden Tage des laufenden Monats erstellt.",
   "kube_nodes_switch_billing_type_success": "Der Abrechnungstyp des Nodes wurde auf monatliche Abrechnung umgestellt.",
   "kube_nodes_switch_billing_type_error": "Es konnte nicht auf monatliche Abrechnung umgestellt werden: {{ message }}",
-  "kube_nodes_delete_many": "Nodes löschen",
-  "kube_nodes_delete_select_nodes": "Wählen Sie die Anzahl der zu löschenden Nodes aus",
+  "kube_nodes_common_actions": "Aktionen",
   "kube_nodes_add_nodes": "Nodes hinzufügen",
-  "kube_nodes_delete_nodes": "Nodes löschen",
-  "kube_nodes_status_RESIZING": "Größenanpassung",
-  "kube_nodes_common_actions": "Aktionen"
+  "kube_nodes_delete_nodes": "Nodes löschen"
 }

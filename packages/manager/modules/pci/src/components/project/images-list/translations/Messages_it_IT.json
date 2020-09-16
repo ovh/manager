@@ -1,5 +1,5 @@
 {
-  "pci_project_instances_available_only": "Nascondi le opzioni non disponibili",
+  "pci_project_instances_display_nonavailable": "Mostra le immagini non disponibili",
   "pci_project_instances_os_linux": "Distribuzioni Unix",
   "pci_project_instances_os_windows": "Distribuzioni Windows",
   "pci_project_instances_apps": "Distribuzioni e Applicazioni",
@@ -15,7 +15,6 @@
   "pci_project_instances_distribution_ubuntu": "Ubuntu",
   "pci_project_instances_distribution_windows_server_2012": "Windows Server 2012",
   "pci_project_instances_distribution_windows_server_2016": "Windows Server 2016",
-  "pci_project_instances_distribution_version": "Versione",
   "pci_project_instances_distribution_windows_other": "Altre distribuzioni Windows",
-  "pci_project_instances_display_nonavailable": "Mostra le immagini non disponibili"
+  "pci_project_instances_distribution_version": "Versione"
 }

@@ -1,3 +1,35 @@
+## [13.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.2.2...@ovh-ux/manager-telecom@13.2.3) (2020-09-09)
+
+
+### Bug Fixes
+
+* **xdsl.move:** resolve button on address move validation ([0c6d53a](https://github.com/ovh/manager/commit/0c6d53a7d8c98866436b817a8e1df24bd824157b))
+* **xdsl.move.offers:** fix call on static method for options ([0633b91](https://github.com/ovh/manager/commit/0633b911add0cdd6e4aaa793ca1b1228c65db092))
+
+
+
+## [13.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.2.1...@ovh-ux/manager-telecom@13.2.2) (2020-09-04)
+
+
+### Bug Fixes
+
+* **telephony.guides:** display guides based on ovhSubsidiary ([#3576](https://github.com/ovh/manager/issues/3576)) ([b02aac2](https://github.com/ovh/manager/commit/b02aac20a8fb0819231da0ba5e19b79bc3d2a413))
+
+
+
+## [13.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.2.0...@ovh-ux/manager-telecom@13.2.1) (2020-09-03)
+
+
+### Bug Fixes
+
+* **telecom:** display sound upload errors ([#3551](https://github.com/ovh/manager/issues/3551)) ([c075834](https://github.com/ovh/manager/commit/c0758341ad4b5394eb3f14fe9d9c46c03a2bd8fa))
+* **telecom:** pack resiliation date ([4065575](https://github.com/ovh/manager/commit/4065575b6282a050474c24e38d5c22ec5144fc6f))
+* **telecom:** time condition incorrect date range ([#3537](https://github.com/ovh/manager/issues/3537)) ([cb5b9b9](https://github.com/ovh/manager/commit/cb5b9b9606c9316c804bca1308cfbada6ad367f6))
+* **telephony.alias.rsva:** disable confirm action if no email ([97f15bb](https://github.com/ovh/manager/commit/97f15bb8e12cf9a8f272884cddef8d73076c7d15))
+* missing param axiom to search a service ([#3548](https://github.com/ovh/manager/issues/3548)) ([b28daed](https://github.com/ovh/manager/commit/b28daed70f4e50c33baaae99bb125faf11cf013b))
+
+
+
 # [13.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.1.1...@ovh-ux/manager-telecom@13.2.0) (2020-08-18)
 
 

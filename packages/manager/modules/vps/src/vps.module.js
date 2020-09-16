@@ -7,6 +7,7 @@ import '@ovh-ux/ui-kit';
 import 'angular-ui-bootstrap';
 import 'angular-chart.js';
 
+import { Environment } from '@ovh-ux/manager-config';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ngUiRouterLayout from '@ovh-ux/ng-ui-router-layout';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
@@ -64,6 +65,12 @@ angular
     ovhManagerVpsVeeam,
     ovhManagerVpsWindows,
   ])
+  .config(
+    /* @ngInject */ ($qProvider, ovhDocUrlProvider) => {
+      ovhDocUrlProvider.setUserLocale(Environment.getUserLocale());
+      $qProvider.errorOnUnhandledRejections(false);
+    },
+  )
   .component(detailComponent.name, detailComponent)
   .component(headerComponent.name, headerComponent)
   .service('VpsTaskService', VpsTaskService)

@@ -112,10 +112,12 @@ export default class HostingEmailService {
       );
   }
 
-  orderCart(cart) {
-    return this.OrderService.checkoutCart(cart.cartId).then((order) => {
-      this.OvhApiHostingWebEmailOption.resetQueryCache();
-      return order;
-    });
+  orderCart(cart, options = {}) {
+    return this.OrderService.checkoutCart(cart.cartId, options).then(
+      (order) => {
+        this.OvhApiHostingWebEmailOption.resetQueryCache();
+        return order;
+      },
+    );
   }
 }

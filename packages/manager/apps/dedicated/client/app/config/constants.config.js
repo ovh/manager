@@ -1164,16 +1164,17 @@ const constants = {
           sshChange:
             'http://support.us.ovhcloud.com/hc/en-us/articles/115001588250-SSH-Key-Management',
           nsx:
-            'https://us.ovhcloud.com/products/hosted-private-cloud/vmware-nsx',
+            'https://us.ovhcloud.com/enterprise/products/hosted-private-cloud/nsx-datacenter-vsphere/',
           vrops:
             'https://us.ovhcloud.com/enterprise/products/hosted-private-cloud/vrops/',
         },
         presentations: {
-          home: 'https://us.ovhcloud.com/products/hosted-private-cloud/',
+          home:
+            'https://us.ovhcloud.com/enterprise/products/hosted-private-cloud/',
           nsx:
-            'https://us.ovhcloud.com/products/hosted-private-cloud/vmware-nsx',
+            'https://us.ovhcloud.com/enterprise/products/hosted-private-cloud/nsx-datacenter-vsphere/',
           veeam:
-            'https://us.ovhcloud.com/products/hosted-private-cloud/managed-veeam-backup',
+            'https://us.ovhcloud.com/enterprise/products/hosted-private-cloud/veeam-backup-managed/',
           vrops:
             'https://us.ovhcloud.com/enterprise/products/hosted-private-cloud/vrops/',
         },
@@ -1195,7 +1196,7 @@ const constants = {
         cloudProjectOrder:
           'https://us.ovhcloud.com/manager/cloud/#/iaas/pci/offer',
         veeamBackup:
-          'https://us.ovhcloud.com/products/hosted-private-cloud/managed-veeam-backup',
+          'https://us.ovhcloud.com/enterprise/products/hosted-private-cloud/veeam-backup-managed/',
         iplbOrder: 'https://www.ovh.com/ca/en/solutions/load-balancer/',
       },
     },

@@ -2,7 +2,7 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
     'app.account.billing.autorenew.terminatePrivateDatabase',
     {
-      url: '/delete-private-database?serviceId',
+      url: '/delete-hosting-private-database?serviceId',
       views: {
         modal: {
           component: 'billingAutorenewTerminatePrivateDatabase',

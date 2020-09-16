@@ -143,7 +143,7 @@
                                 name="container"
                                 data-ng-change="ctrl.updateSelectedConfig()"
                                 data-ng-model="ctrl.model.container"
-                                data-ng-options="('hosting_action_config_edit_container_version_enum_'  + ctrl.constructor.parseLabel(name) | translate) for name in ctrl.apiStruct.models['hosting.web.ovhconfig.ContainerEnum'].enum track by name"
+                                data-ng-options="envExecution as envExecution for envExecution in ctrl.envExecutions track by envExecution"
                             >
                             </select>
                             <span
@@ -171,7 +171,7 @@
                                 name="engineVersion"
                                 data-ng-change="ctrl.updateSelectedConfig()"
                                 data-ng-model="ctrl.model.engineVersion"
-                                data-ng-options="name for name in ctrl.apiStruct.models['hosting.web.ovhConfig.AvailableEngineVersionEnum'].enum track by name"
+                                data-ng-options="engineVersion for engineVersion in ctrl.getEngineVersions(ctrl.model.container) track by engineVersion"
                             >
                             </select>
                             <span
@@ -179,11 +179,6 @@
                                 aria-hidden="true"
                             ></span>
                         </div>
-                        <p
-                            class="text-danger"
-                            data-translate="hosting_action_config_edit_unavailable_version"
-                            data-ng-if="!ctrl.toggle.isPhpVersionAvailable"
-                        ></p>
                     </div>
                     <div
                         class="col-md-6"

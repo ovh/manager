@@ -1,3 +1,12 @@
+## [4.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.1.1...@ovh-ux/manager-public-cloud@4.1.2) (2020-09-10)
+
+
+### Bug Fixes
+
+* bump dependencies ([e84d859](https://github.com/ovh/manager/commit/e84d859288f1f0cb56e9b244b895f184b36afb9d))
+
+
+
 ## [4.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.1.0...@ovh-ux/manager-public-cloud@4.1.1) (2020-08-18)
 
 
