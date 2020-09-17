@@ -14,6 +14,7 @@
             <pci-project-regions-list
                 data-regions="$ctrl.regions"
                 data-selected-region="$ctrl.job.region"
+                data-on-change="$ctrl.onChangeRegion(region)"
             >
             </pci-project-regions-list>
         </oui-step-form>
@@ -221,16 +222,31 @@
 
             <div class="row d-lg-flex">
                 <div class="col-md-8">
+                    <oui-field data-label="GPU" data-size="auto">
+                        <oui-select
+                            data-model="$ctrl.selectedGpu"
+                            data-items="$ctrl.gpus"
+                            data-required
+                            match="type"
+                            name="gpu"
+                            inline
+                        >
+                            <span
+                                ng-bind="$item.type"
+                                class="d-inline-block text-truncate"
+                            ></span>
+                        </oui-select>
+                    </oui-field>
                     <oui-field
                         data-label="{{:: 'pci_projects_project_training_jobs_submit_select_resources_tips_gpu' | translate  }}"
                         data-size="auto"
                     >
                         <oui-numeric
                             data-min="1"
-                            data-max="$ctrl.job.region.maxGpu"
+                            data-max="$ctrl.selectedGpu.maxGpus"
                             data-model="$ctrl.job.resources.gpu"
-                            name="gpu"
                             data-on-change="$ctrl.computePricePerMinute(modelValue)"
+                            name="gpuCount"
                         >
                         </oui-numeric>
                     </oui-field>

@@ -2,8 +2,14 @@ import get from 'lodash/get';
 
 export default class PciTrainingJobsSubmitController {
   /* @ngInject */
-  constructor($translate, PciProjectTrainingJobService, atInternet) {
+  constructor(
+    $translate,
+    PciProjectTrainingService,
+    PciProjectTrainingJobService,
+    atInternet,
+  ) {
     this.$translate = $translate;
+    this.PciProjectTrainingService = PciProjectTrainingService;
     this.PciProjectTrainingJobService = PciProjectTrainingJobService;
     this.atInternet = atInternet;
   }
@@ -22,6 +28,9 @@ export default class PciTrainingJobsSubmitController {
         gpu: 1,
       },
     };
+
+    this.gpus = [];
+    this.selectedGpu = null;
 
     // Load users
     this.allUsersLoaded = false;
@@ -119,6 +128,16 @@ export default class PciTrainingJobsSubmitController {
       payload.command = this.splitStringCommandIntoArray();
     }
     return payload;
+  }
+
+  onChangeRegion(region) {
+    // Update GPU
+    this.PciProjectTrainingService.getGpus(this.projectId, region.id).then(
+      (gpus) => {
+        this.gpus = gpus;
+        [this.selectedGpu] = this.gpus;
+      },
+    );
   }
 
   onStepperFinish() {

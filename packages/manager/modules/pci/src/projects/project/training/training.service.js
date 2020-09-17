@@ -121,4 +121,16 @@ export default class PciProjectTrainingService {
         }));
       });
   }
+
+  getGpus(serviceName, region) {
+    return this.OvhApiCloudProjectAi.Capabilities()
+      .Training()
+      .Region()
+      .Gpu()
+      .v6()
+      .query({
+        serviceName,
+        region,
+      }).$promise;
+  }
 }
