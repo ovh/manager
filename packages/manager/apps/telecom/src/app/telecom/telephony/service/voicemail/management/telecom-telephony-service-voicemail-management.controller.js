@@ -217,7 +217,11 @@ angular
               self.sortMessages();
             }),
           )
-          .catch((err) => new TucToastError(err))
+          .catch((err) => {
+            // eslint-disable-next-line no-new
+            new TucToastError(err);
+            return $q.reject(err);
+          })
           .finally(() => {
             self.messages.isDeleting = false;
           });
