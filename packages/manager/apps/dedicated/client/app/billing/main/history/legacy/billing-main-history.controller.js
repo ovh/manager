@@ -4,6 +4,32 @@ import get from 'lodash/get';
 import map from 'lodash/map';
 import set from 'lodash/set';
 
+function applyBillCriteria(request, $config) {
+  let result = request;
+  $config.criteria.forEach((criteria) => {
+    if (criteria.operator === 'contains') {
+      result = result.addFilter(
+        criteria.property || 'billId',
+        'like',
+        `*${criteria.value}*`,
+      );
+    } else if (criteria.operator === 'is' && criteria.property === 'date') {
+      result = result.addFilter('date', 'like', `${criteria.value}*`);
+    } else if (
+      criteria.operator === 'isAfter' &&
+      criteria.property === 'date'
+    ) {
+      result = result.addFilter('date', 'gt', criteria.value);
+    } else if (
+      criteria.operator === 'isBefore' &&
+      criteria.property === 'date'
+    ) {
+      result = result.addFilter('date', 'lt', criteria.value);
+    }
+  });
+  return result;
+}
+
 export default class BillingMainHistoryCtrl {
   /* @ngInject */
   constructor(
@@ -58,55 +84,6 @@ export default class BillingMainHistoryCtrl {
   }
 
   /**
-   *  Used to create an api v7 request instance including sort and filters
-   */
-  getApiv7Request() {
-    const criteriaOperatorToApiV7Map = {
-      isAfter: 'ge',
-      isBefore: 'le',
-      contains: 'like',
-    };
-    let apiv7Request = this.OvhApiMe.Bill()
-      .v7()
-      .query()
-      .sort(
-        this.datagridConfig.sort.property,
-        this.datagridConfig.sort.dir === 1 ? 'ASC' : 'DESC',
-      );
-
-    this.datagridConfig.criteria.forEach((criteria) => {
-      if (criteria.property === 'date') {
-        if (criteria.operator === 'is') {
-          apiv7Request = apiv7Request
-            .addFilter(criteria.property, 'ge', criteria.value)
-            .addFilter(
-              criteria.property,
-              'le',
-              moment(criteria.value)
-                .add(1, 'day')
-                .format('YYYY-MM-DD'),
-            );
-        } else {
-          apiv7Request = apiv7Request.addFilter(
-            criteria.property,
-            get(criteriaOperatorToApiV7Map, criteria.operator),
-            criteria.value,
-          );
-        }
-      } else {
-        // it's a search from search input
-        apiv7Request = apiv7Request.addFilter(
-          'billId',
-          get(criteriaOperatorToApiV7Map, criteria.operator),
-          criteria.value,
-        );
-      }
-    });
-
-    return apiv7Request;
-  }
-
-  /**
    *  Apply debt object to bill objects returned by an apiv7 batch call.
    */
   applyDebtToBills(bills) {
@@ -145,28 +122,29 @@ export default class BillingMainHistoryCtrl {
   ================================ */
 
   getBills($config) {
-    this.datagridConfig = $config;
-    const apiv7Request = this.getApiv7Request();
+    let req = this.OvhApiMe.Bill()
+      .Iceberg()
+      .query()
+      .expand('CachedObjectList-Pages')
+      .offset(Math.ceil($config.offset / ($config.pageSize || 1)))
+      .limit($config.pageSize);
 
-    return this.$q
-      .all({
-        count: apiv7Request.clone().execute().$promise,
-        bills: apiv7Request
-          .clone()
-          .expand()
-          .offset($config.offset - 1)
-          .limit($config.pageSize)
-          .execute().$promise,
-      })
-      .then(({ count, bills }) => {
-        this.totalBills = count.length;
-        return this.applyDebtToBills(bills).then((billList) => ({
-          data: map(billList, 'value'),
-          meta: {
-            totalCount: count.length,
-          },
-        }));
-      });
+    if ($config.sort) {
+      req = req.sort(
+        $config.sort.property,
+        $config.sort.dir > 0 ? 'ASC' : 'DESC',
+      );
+    }
+
+    return applyBillCriteria(req, $config)
+      .execute(null)
+      .$promise.then((result) => ({
+        data: result.data,
+        meta: {
+          totalCount:
+            parseInt(result.headers['x-pagination-elements'], 10) || 0,
+        },
+      }));
   }
 
   /* -----  End of DATAGRID  ------ */
