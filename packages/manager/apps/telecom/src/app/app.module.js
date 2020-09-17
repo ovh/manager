@@ -56,7 +56,6 @@ import 'script-loader!urijs/src/URI.min.js';
 import 'script-loader!urijs/src/URITemplate.js';
 import 'script-loader!leaflet/dist/leaflet-src.js';
 import 'angular-leaflet-directive';
-import 'ovh-angular-responsive-tabs';
 import 'ng-slide-down';
 import 'script-loader!angularjs-scroll-glue/src/scrollglue.js';
 import 'ovh-ng-input-password';
