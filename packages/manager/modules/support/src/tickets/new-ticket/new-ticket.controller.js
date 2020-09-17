@@ -7,6 +7,7 @@ export default class SupportNewController {
     $q,
     $state,
     $window,
+    $translate,
     CORE_URLS,
     OvhApiMe,
     OvhApiSupport,
@@ -15,6 +16,7 @@ export default class SupportNewController {
     this.$q = $q;
     this.$state = $state;
     this.$window = $window;
+    this.$translate = $translate;
     this.CORE_URLS = CORE_URLS;
     this.OvhApiMe = OvhApiMe;
     this.OvhApiSupport = OvhApiSupport;
@@ -37,6 +39,7 @@ export default class SupportNewController {
       this.step = 'creation';
       this.issue = result.issue;
       this.service = result.service;
+      this.serviceType = result.serviceType;
       this.$window.scrollTo(0, 0);
     }
   }
@@ -66,6 +69,7 @@ export default class SupportNewController {
       .catch((error) => {
         this.error = {
           message: (error.data || { message: error.statusText }).message,
+          class: get(error, 'data.class'),
         };
         if (angular.isFunction(error.headers)) {
           this.error.queryId = error.headers('x-ovh-queryid');
@@ -85,5 +89,26 @@ export default class SupportNewController {
 
     this.step = 'issues';
     return this.$q.when();
+  }
+
+  isDedicatedServer() {
+    return get(this.serviceType, 'name') === 'dedicated_server';
+  }
+
+  getErrorMessage() {
+    if (this.isDedicatedServer() && this.error.class) {
+      if (this.error.class === 'Client::BadRequest::AlreadyOpened') {
+        return this.$translate.instant(
+          'ovhManagerSupport_new_creation_error_dedicated_server_already_opened',
+        );
+      }
+      if (this.error.class === 'Client::BadRequest::ServiceMandatory') {
+        return this.$translate.instant(
+          'ovhManagerSupport_new_creation_error_dedicated_server_service_mandatory',
+        );
+      }
+    }
+
+    return this.error.message;
   }
 }

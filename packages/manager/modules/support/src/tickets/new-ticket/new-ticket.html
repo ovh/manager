@@ -94,9 +94,7 @@
         <strong data-translate="ovhManagerSupport_new_creation_error"></strong>
     </p>
     <p>
-        <span data-ng-bind="$ctrl.error.message"></span>
-        <br />
-        <small data-ng-bind="$ctrl.error.queryId"></small>
+        <span data-ng-bind="$ctrl.getErrorMessage()"></span>
     </p>
     <oui-button data-variant="secondary" data-on-click="$ctrl.goToTickets()"
         ><span data-translate="ovhManagerSupport_new_creation_cancel"></span>
