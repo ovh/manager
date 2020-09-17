@@ -120,6 +120,8 @@
   "ovhManagerSupport_new_creation_success": "Votre ticket numéro <a ui-sref=\"{{ state }}\">{{ id }}</a> a bien été pris en compte.",
   "ovhManagerSupport_new_creation_success_back": "Vous pouvez retrouver le fil de discussion de ce ticket depuis la <a ui-sref=\"{{ state }}\" ui-sref-opts=\"{ reload: true }\">liste des tickets</a>.",
   "ovhManagerSupport_new_creation_error": "Une erreur est survenue lors de la création de votre ticket.",
+  "ovhManagerSupport_new_creation_error_dedicated_server_already_opened": "Un ticket d'intervention est déjà en cours pour ce serveur.",
+  "ovhManagerSupport_new_creation_error_dedicated_server_service_mandatory": "Aucune intervention de ce type ne peut être demandée sans disposer d'un serveur dédié.",
   "ovhManagerSupport_new_creation_tip_1": "Afin de faciliter le traitement de votre demande, nous vous invitons à ne créer qu'un seul ticket concernant celle-ci.",
   "ovhManagerSupport_new_creation_tip_guides": "Nos guides :",
   "ovhManagerSupport_new_creation_tip_forum": "Notre forum :",
