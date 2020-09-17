@@ -97,7 +97,6 @@ angular
       ngOvhContact,
       ngOvhLineDiagnostics,
       ngQAllSettled,
-      'ovh-angular-responsive-tabs',
       ngOvhSidebarMenu,
       ngOvhSimpleCountryList,
       ngOvhTimeline,
