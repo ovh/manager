@@ -285,7 +285,7 @@ export const DEDICATED_NETWORK_CONFIG = {
   app: [DEDICATED],
   regions: ['EU', 'CA', 'US'],
   icon: 'oui-icon oui-icon-bandwidth_concept',
-  loadOnState: ['vrack', 'cloud-connect'],
+  loadOnState: ['vrack.dashboard', 'cloud-connect'],
   children: [
     {
       id: 'vrack',
@@ -293,7 +293,7 @@ export const DEDICATED_NETWORK_CONFIG = {
       types: [
         {
           path: '/vrack',
-          state: 'vrack',
+          state: 'vrack.dashboard',
           stateParams: ['vrackId'],
           app: [DEDICATED],
         },
