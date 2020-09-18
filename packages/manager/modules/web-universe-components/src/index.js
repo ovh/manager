@@ -12,7 +12,6 @@ import wucFileEditor from './fileEditor';
 import wucGuides from './guides';
 import wucOrderCart from './order-cart';
 import wucString from './string';
-import wucTabs from './tabs';
 import wucUser from './user';
 import wucValidator from './validator';
 
@@ -31,7 +30,6 @@ angular.module(moduleName, [
   wucGuides,
   wucOrderCart,
   wucString,
-  wucTabs,
   wucUser,
   wucValidator,
 ]);
