@@ -1,6 +1,5 @@
-export default /* @ngInject */ ($http, $timeout, $window) => ({
+export default /* @ngInject */ ($http, $timeout) => ({
   getDocument(serviceName, from, to, batchId = null) {
-    this.$window = $window;
     return $http({
       url: `/sms/${serviceName}/document`,
       method: 'GET',
@@ -24,7 +23,7 @@ export default /* @ngInject */ ($http, $timeout, $window) => ({
           });
       };
       return tryGetDocument().then((document) => {
-        this.$window.location.href = document.getUrl;
+        window.location.href = document.getUrl;
       });
     });
   },
