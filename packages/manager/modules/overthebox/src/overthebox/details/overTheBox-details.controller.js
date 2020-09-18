@@ -2,6 +2,7 @@ import angular from 'angular';
 import isArray from 'lodash/isArray';
 import forEach from 'lodash/forEach';
 import map from 'lodash/map';
+import set from 'lodash/set';
 import sortBy from 'lodash/sortBy';
 import 'moment';
 
@@ -14,6 +15,8 @@ export default class OverTheBoxDetailsCtrl {
     OVER_THE_BOX,
     OVERTHEBOX_DETAILS,
     OvhApiOverTheBox,
+    OvhApiIp,
+    OvhApiIpReverse,
     OverTheBoxGraphService,
     TucToast,
     TucChartjsFactory,
@@ -24,6 +27,8 @@ export default class OverTheBoxDetailsCtrl {
     this.OVER_THE_BOX = OVER_THE_BOX;
     this.OVERTHEBOX_DETAILS = OVERTHEBOX_DETAILS;
     this.OvhApiOverTheBox = OvhApiOverTheBox;
+    this.OvhApiIp = OvhApiIp;
+    this.OvhApiIpReverse = OvhApiIpReverse;
     this.OverTheBoxGraphService = OverTheBoxGraphService;
     this.TucToast = TucToast;
     this.TucChartjsFactory = TucChartjsFactory;
@@ -366,10 +371,9 @@ export default class OverTheBoxDetailsCtrl {
       .catch((error) => {
         this.error.tasks = error.data;
         this.TucToast.error(
-          [
-            this.$translate.instant('an_error_occured'),
-            error.data.message,
-          ].join(' '),
+          `${this.$translate.instant('an_error_occured')} ${
+            error.data.message
+          }`,
         );
         return this.$q.reject(error);
       })
@@ -394,10 +398,9 @@ export default class OverTheBoxDetailsCtrl {
       .catch((error) => {
         this.error.tasks = error.data;
         this.TucToast.error(
-          [
-            this.$translate.instant('an_error_occured'),
-            error.data.message,
-          ].join(' '),
+          `${this.$translate.instant('an_error_occured')} ${
+            error.data.message
+          }`,
         );
         return this.$q.reject(error);
       })
@@ -421,10 +424,9 @@ export default class OverTheBoxDetailsCtrl {
       .catch((error) => {
         this.error.checking = error.data;
         this.TucToast.error(
-          [
-            this.$translate.instant('an_error_occured'),
-            error.data.message,
-          ].join(' '),
+          `${this.$translate.instant('an_error_occured')} ${
+            error.data.message
+          }`,
         );
         return this.$q.reject(error);
       })
@@ -449,6 +451,13 @@ export default class OverTheBoxDetailsCtrl {
           .map((netInterface) =>
             netInterface.device ? netInterface.device : netInterface.name,
           );
+
+        this.checkPublicIP();
+
+        if (this.device && this.device.publicIp) {
+          this.getLastSeen();
+          this.getReverseDNS();
+        }
         return devices;
       })
       .catch((error) => {
@@ -460,6 +469,72 @@ export default class OverTheBoxDetailsCtrl {
       .finally(() => {
         this.loaders.device = false;
       });
+  }
+
+  /**
+   * Get last seen values
+   */
+  getLastSeen() {
+    // check lastSeen access is less than 5 minutes
+    const currentDate = moment();
+    const lastSeen = moment(this.device.lastSeen);
+    const diffDate = currentDate.diff(lastSeen, 'minute');
+
+    this.lastSeenAccess = {
+      lastSeen: diffDate,
+      lastSeenHuman: moment.duration(currentDate.diff(lastSeen)).humanize(),
+    };
+
+    this.lastSeenAccess.isRecent =
+      diffDate < this.OVERTHEBOX_DETAILS.lastSeen.limit;
+  }
+
+  /**
+   * Check public IP to retrieve its status
+   */
+  checkPublicIP() {
+    return this.OvhApiIp.v6()
+      .query({
+        'routedTo.serviceName': this.serviceName,
+        type: 'overthebox',
+      })
+      .$promise.then(([ip]) => {
+        if (!ip || !this.device || !this.device.publicIp) {
+          this.serviceIP = {
+            status: this.OVERTHEBOX_DETAILS.serviceIpStatus.unknown,
+          };
+        } else {
+          this.serviceIP = {
+            status:
+              this.device && ip.includes(this.device.publicIp)
+                ? this.OVERTHEBOX_DETAILS.serviceIpStatus.locked
+                : this.OVERTHEBOX_DETAILS.serviceIpStatus.warning,
+          };
+        }
+        return ip;
+      })
+      .catch((error) => {
+        this.error.checking = error.data;
+        this.TucToast.error(
+          `${this.$translate.instant('an_error_occured')} ${
+            error.data.message
+          }`,
+        );
+        return this.$q.reject(error);
+      });
+  }
+
+  /**
+   * Retrieve reverse DNS from public IP
+   */
+  getReverseDNS() {
+    return this.OvhApiIpReverse.v6()
+      .getReverseDns(this.device.publicIp)
+      .then((dns) => {
+        set(this.device, 'reverse', dns);
+        return dns;
+      })
+      .catch(() => null);
   }
 
   /**
@@ -486,10 +561,9 @@ export default class OverTheBoxDetailsCtrl {
       })
       .catch((error) => {
         this.TucToast.error(
-          [
-            this.$translate.instant('an_error_occured'),
-            error.data.message,
-          ].join(' '),
+          `${this.$translate.instant('an_error_occured')} ${
+            error.data.message
+          }`,
         );
         return this.$q.reject(error);
       })

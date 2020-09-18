@@ -52,4 +52,12 @@ export default {
       },
     },
   },
+  lastSeen: {
+    limit: 5,
+  },
+  serviceIpStatus: {
+    unknown: 'unknown',
+    locked: 'locked',
+    warning: 'warning',
+  },
 };
