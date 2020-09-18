@@ -10,5 +10,8 @@ export default /* @ngInject */ ($stateProvider) => {
       value: ['..', '.'],
       format: 'json',
     },
+    resolve: {
+      hideBreadcrumb: () => true,
+    },
   });
 };
