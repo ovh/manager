@@ -1,8 +1,8 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('vrack-home', {
-    url: `/vrack?${ListLayoutHelper.urlQueryParams}`,
+  $stateProvider.state('vrack.index', {
+    url: `?${ListLayoutHelper.urlQueryParams}`,
     component: 'managerListLayout',
     params: ListLayoutHelper.stateParams,
     resolve: {
@@ -27,7 +27,7 @@ export default /* @ngInject */ ($stateProvider) => {
       getServiceNameLink: /* @ngInject */ ($state) => ({
         serviceName: vrackId,
       }) =>
-        $state.href('vrack', {
+        $state.href('vrack.dashboard', {
           vrackId,
         }),
     },
