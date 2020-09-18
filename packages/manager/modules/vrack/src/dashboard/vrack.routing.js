@@ -5,6 +5,8 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       goToMoveDialog: /* @ngInject */ ($state) => (service) =>
         $state.go('vrack.move', { service }),
+      vrackId: /* @ngInject */ ($transition$) => $transition$.params().vrackId,
+      breadcrumb: /* @ngInject */ (vrackId) => vrackId,
     },
     translations: {
       value: ['.'],
