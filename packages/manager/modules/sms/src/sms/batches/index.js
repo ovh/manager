@@ -3,10 +3,12 @@ import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
+import history from './history';
+
 const moduleName = 'ovhManagerSmsBatches';
 
 angular
-  .module(moduleName, ['ui.router', 'oc.lazyLoad', 'ovhManagerCore'])
+  .module(moduleName, ['ui.router', 'oc.lazyLoad', 'ovhManagerCore', history])
   .config(
     /* @ngInject */ ($stateProvider) => {
       $stateProvider.state('sms.service.batches.**', {
