@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('vrack', {
-    url: '/vrack/:vrackId',
+  $stateProvider.state('vrack.dashboard', {
+    url: '/:vrackId',
     component: 'ovhManagerVrackComponent',
     resolve: {
       goToMoveDialog: /* @ngInject */ ($state) => (service) =>
