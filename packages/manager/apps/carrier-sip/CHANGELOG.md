@@ -1,3 +1,12 @@
+## [2.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-carrier-sip-app@2.0.3...@ovh-ux/manager-carrier-sip-app@2.0.4) (2020-09-18)
+
+
+### Bug Fixes
+
+* bump tuc ([2ffd4ab](https://github.com/ovh/manager/commit/2ffd4ab6d41ad57c2f4717b839766ffe511cb69d))
+
+
+
 ## [2.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-carrier-sip-app@2.0.2...@ovh-ux/manager-carrier-sip-app@2.0.3) (2020-08-18)
 
 

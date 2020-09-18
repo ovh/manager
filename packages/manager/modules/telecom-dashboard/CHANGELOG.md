@@ -1,3 +1,12 @@
+## [6.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard@6.0.2...@ovh-ux/manager-telecom-dashboard@6.0.3) (2020-09-18)
+
+
+### Bug Fixes
+
+* bump tuc ([2ffd4ab](https://github.com/ovh/manager/commit/2ffd4ab6d41ad57c2f4717b839766ffe511cb69d))
+
+
+
 ## [6.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard@6.0.1...@ovh-ux/manager-telecom-dashboard@6.0.2) (2020-08-18)
 
 

@@ -1,3 +1,12 @@
+## [5.0.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-line-diagnostics@5.0.0...@ovh-ux/ng-ovh-line-diagnostics@5.0.1) (2020-09-18)
+
+
+### Bug Fixes
+
+* bump tuc ([2ffd4ab](https://github.com/ovh/manager/commit/2ffd4ab6d41ad57c2f4717b839766ffe511cb69d))
+
+
+
 # [5.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-line-diagnostics@4.0.6...@ovh-ux/ng-ovh-line-diagnostics@5.0.0) (2020-07-29)
 
 

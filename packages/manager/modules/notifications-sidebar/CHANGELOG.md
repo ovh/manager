@@ -1,3 +1,12 @@
+## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-notifications-sidebar@1.1.0...@ovh-ux/manager-notifications-sidebar@1.1.1) (2020-09-18)
+
+
+### Bug Fixes
+
+* **notifications-sidebar:** catch notifications errors ([#3636](https://github.com/ovh/manager/issues/3636)) ([5413bde](https://github.com/ovh/manager/commit/5413bde70ee554ef544ca4d594bc1329fc8a835e))
+
+
+
 # [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-notifications-sidebar@1.0.0...@ovh-ux/manager-notifications-sidebar@1.1.0) (2020-08-18)
 
 

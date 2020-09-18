@@ -1,3 +1,12 @@
+## [2.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-support-app@2.1.1...@ovh-ux/manager-support-app@2.1.2) (2020-09-18)
+
+
+### Bug Fixes
+
+* add missing dependencies ([6c6418e](https://github.com/ovh/manager/commit/6c6418e9e5a480f0ce3587a8c66723f74cad7055))
+
+
+
 ## [2.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-support-app@2.1.0...@ovh-ux/manager-support-app@2.1.1) (2020-08-18)
 
 

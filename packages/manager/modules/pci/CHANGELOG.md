@@ -1,3 +1,12 @@
+## [5.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.1.0...@ovh-ux/manager-pci@5.1.1) (2020-09-18)
+
+
+### Bug Fixes
+
+* **new:** get newSupportTicketLink service asynchronously ([#3649](https://github.com/ovh/manager/issues/3649)) ([5950024](https://github.com/ovh/manager/commit/5950024bbbee8cd0a1545e713d150da6e198e73c))
+
+
+
 # [5.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.0.1...@ovh-ux/manager-pci@5.1.0) (2020-09-16)
 
 

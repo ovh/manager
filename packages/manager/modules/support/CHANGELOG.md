@@ -1,3 +1,12 @@
+## [1.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.0.1...@ovh-ux/manager-support@1.0.2) (2020-09-18)
+
+
+### Bug Fixes
+
+* **new:** prevent elements having the same name ([fa636c4](https://github.com/ovh/manager/commit/fa636c4b95178f2f27b4a705735940bfed533d5d))
+
+
+
 ## [1.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.0.0...@ovh-ux/manager-support@1.0.1) (2020-08-18)
 
 

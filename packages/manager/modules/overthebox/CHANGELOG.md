@@ -1,3 +1,13 @@
+## [6.0.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.0.4...@ovh-ux/manager-overthebox@6.0.5) (2020-09-18)
+
+
+### Bug Fixes
+
+* allow promise chaining ([1f04421](https://github.com/ovh/manager/commit/1f04421631bbedcc89aab01d1801e42125c742cf))
+* bump tuc ([2ffd4ab](https://github.com/ovh/manager/commit/2ffd4ab6d41ad57c2f4717b839766ffe511cb69d))
+
+
+
 ## [6.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.0.3...@ovh-ux/manager-overthebox@6.0.4) (2020-08-18)
 
 
