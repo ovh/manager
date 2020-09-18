@@ -26,7 +26,7 @@ import without from 'lodash/without';
 import angular from 'angular';
 
 import { POLLING_INTERVAL, STATUS, VRACK_URLS } from './vrack.constant';
-import arrowIcon from '../assets/icon_vrack-mapper-arrows.svg';
+import arrowIcon from '../../assets/icon_vrack-mapper-arrows.svg';
 
 export default class VrackMoveDialogCtrl {
   /* @ngInject */
