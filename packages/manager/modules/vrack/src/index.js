@@ -11,8 +11,14 @@ angular
   .module(moduleName, ['ui.router', 'oc.lazyLoad', 'ovhManagerCore'])
   .config(
     /* @ngInject */ ($stateProvider) => {
-      $stateProvider.state('vrack-home.**', {
+      $stateProvider.state('vrack', {
         url: '/vrack',
+        template: '<div ui-view></div>',
+        redirectTo: 'vrack.index',
+      });
+
+      $stateProvider.state('vrack.index.**', {
+        url: '',
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
@@ -22,8 +28,8 @@ angular
         },
       });
 
-      $stateProvider.state('vrack.**', {
-        url: '/vrack/:vrackId',
+      $stateProvider.state('vrack.dashboard.**', {
+        url: '/:vrackId',
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
