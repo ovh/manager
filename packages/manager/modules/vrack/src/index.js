@@ -3,6 +3,8 @@ import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
+import '@ovh-ux/ui-kit/dist/css/oui.css';
+
 const moduleName = 'ovhManagerVrackLazyLoading';
 
 angular
@@ -14,7 +16,7 @@ angular
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-          return import('./vrack/vrack.module').then((mod) =>
+          return import('./vrack.module').then((mod) =>
             $ocLazyLoad.inject(mod.default || mod),
           );
         },
@@ -25,7 +27,7 @@ angular
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-          return import('./vrack.module').then((mod) =>
+          return import('./dashboard/vrack.module').then((mod) =>
             $ocLazyLoad.inject(mod.default || mod),
           );
         },
