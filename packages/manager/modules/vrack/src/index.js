@@ -3,18 +3,27 @@ import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
+import '@ovh-ux/ng-ui-router-breadcrumb';
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 
 const moduleName = 'ovhManagerVrackLazyLoading';
 
 angular
-  .module(moduleName, ['ui.router', 'oc.lazyLoad', 'ovhManagerCore'])
+  .module(moduleName, [
+    'ui.router',
+    'ngUiRouterBreadcrumb',
+    'oc.lazyLoad',
+    'ovhManagerCore',
+  ])
   .config(
     /* @ngInject */ ($stateProvider) => {
       $stateProvider.state('vrack', {
         url: '/vrack',
         template: '<div ui-view></div>',
         redirectTo: 'vrack.index',
+        resolve: {
+          breadcrumb: () => 'vRack',
+        },
       });
 
       $stateProvider.state('vrack.index.**', {

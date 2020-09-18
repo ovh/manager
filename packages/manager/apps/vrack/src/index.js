@@ -12,17 +12,20 @@ import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
 import angular from 'angular';
+import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import ovhManagerVrack from '@ovh-ux/manager-vrack';
 
 import './index.scss';
 
-angular.module('vrackApp', [ovhManagerVrack]).config(
-  /* @ngInject */ ($qProvider) => {
-    $qProvider.errorOnUnhandledRejections(false);
-  },
+angular
+  .module('vrackApp', [ngUiRouterBreadcrumb, ovhManagerVrack])
+  .config(
+    /* @ngInject */ ($qProvider) => {
+      $qProvider.errorOnUnhandledRejections(false);
+    },
   )
   .config(
     /* @ngInject */ ($urlRouterProvider) => {
       $urlRouterProvider.otherwise('/vrack');
     },
-);
+  );
