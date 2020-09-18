@@ -124,13 +124,13 @@ export default class VrackMoveDialogCtrl {
         .query()
         .$promise.then((vracks) => {
           if (isEmpty(vracks)) {
-            this.$state.go('vrack-add');
+            this.$state.go('vrack.add');
           } else {
-            this.$state.go('vrack', { vrackId: vracks[0] });
+            this.$state.go('vrack.dashboard', { vrackId: vracks[0] });
           }
         })
         .catch(() => {
-          this.$state.go('vrack-add');
+          this.$state.go('vrack.add');
         });
     } else {
       // check if the serviceName is valid before loading the services
