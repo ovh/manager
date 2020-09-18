@@ -4,8 +4,8 @@ import atInternet from '@ovh-ux/ng-at-internet';
 import '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ui-kit';
 
-import component from './accept-all.component';
-import routing from './accept-all.routes';
+import component from './popup-agreement.component';
+import routing from './popup-agreement.routes';
 
 const moduleName = 'ovhManagerBillingAutorenewActivation';
 

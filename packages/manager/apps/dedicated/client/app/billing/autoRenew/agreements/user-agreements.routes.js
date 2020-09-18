@@ -16,12 +16,12 @@ export default /* @ngInject */ (
           agreements,
         ) => {
           atInternet.trackClick({
-            name: 'autorenew::agreements',
+            name:
+              'dedicated::account::billing::autorenew::agreements::go-to-accept-all',
             type: 'action',
-            chapter1: 'popup-agreement',
           });
           return $state.go(
-            'app.account.billing.autorenew.agreements.accept-all',
+            'app.account.billing.autorenew.agreements.popup-agreement',
             {
               agreements,
             },

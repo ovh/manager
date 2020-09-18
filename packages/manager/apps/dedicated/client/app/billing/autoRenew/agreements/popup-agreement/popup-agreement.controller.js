@@ -23,10 +23,9 @@ export default class {
   acceptAndNext() {
     if (this.currentAgreementIndex === this.agreements.length - 1) {
       this.atInternet.trackClick({
-        name: 'autorenew::agreements',
+        name:
+          'dedicated::account::billing::autorenew::agreements::popup-agreement::accept-all',
         type: 'action',
-        chapter1: 'popup-agreement',
-        chapter2: 'accept-all',
       });
     }
     this.AgreementUnderProcess = true;

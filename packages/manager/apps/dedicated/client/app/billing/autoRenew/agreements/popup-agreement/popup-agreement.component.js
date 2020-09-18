@@ -1,5 +1,5 @@
-import controller from './accept-all.controller';
-import template from './accept-all.html';
+import controller from './popup-agreement.controller';
+import template from './popup-agreement.html';
 
 export default {
   bindings: {

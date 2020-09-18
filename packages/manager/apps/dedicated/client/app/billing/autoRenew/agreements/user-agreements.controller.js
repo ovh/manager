@@ -4,12 +4,14 @@ angular.module('UserAccount').controller('UserAccount.controllers.agreements', [
   '$scope',
   '$translate',
   'Alerter',
+  'atInternet',
   'gotoAcceptAllAgreements',
   'UserAccountServicesAgreements',
   function UserAccountAgreementsController(
     $scope,
     $translate,
     Alerter,
+    atInternet,
     gotoAcceptAllAgreements,
     Service,
   ) {
@@ -72,6 +74,11 @@ angular.module('UserAccount').controller('UserAccount.controllers.agreements', [
     };
 
     $scope.accept = function accept(contract) {
+      atInternet.trackClick({
+        name:
+          'dedicated::account::billing::autorenew::agreements::go-to-accept-agreement',
+        type: 'action',
+      });
       $scope.loaders[`accept_${contract.id}`] = true;
 
       Service.accept(contract)

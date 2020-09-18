@@ -13,7 +13,7 @@ export default /* @ngInject */ ($stateProvider) => {
           if (migrationDates) {
             return moment().isBefore(moment(migrationDates.START, 'MM/DD/YYYY'))
               ? null
-              : 'app.account.billing.autorenew.blocked';
+              : 'app.account.billing.autorenew.configure-renew-impossible';
           }
           return null;
         }),

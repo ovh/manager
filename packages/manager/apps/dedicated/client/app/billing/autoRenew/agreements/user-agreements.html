@@ -88,10 +88,13 @@
                                         target="_blank"
                                         class="btn btn-link"
                                         rel="noopener"
+                                        data-at-internet-click="{ name: 'dedicated::account::billing::autorenew::agreements::go-to-download-agreement' }"
                                         data-ng-href="{{agreement.pdfUrl}}"
-                                        data-translate="user_agreements_download_pdf"
                                         title="{{ 'user_agreements_download_pdf_title' | translate:{ t0: agreement.name } }}"
                                     >
+                                        <span
+                                            data-translate="user_agreements_download_pdf"
+                                        ></span>
                                     </a>
                                 </li>
                             </ul>

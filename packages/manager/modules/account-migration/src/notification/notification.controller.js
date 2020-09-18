@@ -59,10 +59,19 @@ export default class MigrationNotificationController {
           'bills:server::dedicated::account::billing::alert::go-to-billing-link';
         break;
       case 'debt':
-        trackText = 'dedicated::account::billing:main::balance-payment';
+        trackText = 'alert::notifications::go-to-billing';
+        break;
+      case 'agreements':
+        trackText = 'alert::notifications::go-to-agreements';
         break;
       case 'faq':
         trackText = 'alert::notifications::go-to-faq-agreement';
+        break;
+      case 'order':
+        trackText = 'alert::notifications::go-to-orders';
+        break;
+      case 'contact':
+        trackText = 'alert::notifications::go-to-contact-services';
         break;
       default:
         trackText = type;
