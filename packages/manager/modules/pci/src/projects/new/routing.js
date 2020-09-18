@@ -27,7 +27,7 @@ export default /* @ngInject */ ($stateProvider) => {
       const eligibilityPromise = transition.injector().getAsync('eligibility');
       const newSupportTicketLink = transition
         .injector()
-        .get('newSupportTicketLink');
+        .getAsync('newSupportTicketLink');
       return Promise.all([
         translatePromise,
         windowPromise,
