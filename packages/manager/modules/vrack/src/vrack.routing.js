@@ -30,6 +30,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('vrack.dashboard', {
           vrackId,
         }),
+      hideBreadcrumb: () => true,
     },
   });
 };
