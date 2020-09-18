@@ -1,3 +1,12 @@
+## [15.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.3.0...@ovh-ux/manager-web@15.3.1) (2020-09-18)
+
+
+### Bug Fixes
+
+* **web.domain.start10m:** enable activation if no contracts ([#3634](https://github.com/ovh/manager/issues/3634)) ([bc12914](https://github.com/ovh/manager/commit/bc12914b33abde8f4b25094528edf3d19a0fa558))
+
+
+
 # [15.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.2.8...@ovh-ux/manager-web@15.3.0) (2020-09-16)
 
 

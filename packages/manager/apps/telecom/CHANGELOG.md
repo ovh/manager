@@ -1,3 +1,14 @@
+## [13.2.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.2.4...@ovh-ux/manager-telecom@13.2.5) (2020-09-18)
+
+
+### Bug Fixes
+
+* **telecom.line:** enable order phone if only one offer ([68fbcf7](https://github.com/ovh/manager/commit/68fbcf70143bb7b96cf3a8eee73625a878e574ca))
+* allow promise chaining ([1f04421](https://github.com/ovh/manager/commit/1f04421631bbedcc89aab01d1801e42125c742cf))
+* bump tuc ([2ffd4ab](https://github.com/ovh/manager/commit/2ffd4ab6d41ad57c2f4717b839766ffe511cb69d))
+
+
+
 ## [13.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.2.3...@ovh-ux/manager-telecom@13.2.4) (2020-09-16)
 
 

@@ -1,3 +1,19 @@
+# [7.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@6.0.1...@ovh-ux/ng-ovh-telecom-universe-components@7.0.0) (2020-09-18)
+
+
+### Bug Fixes
+
+* prevent unhandled rejection when alerting ([32728f2](https://github.com/ovh/manager/commit/32728f281e4de34519769fdc8f13d466ffccfd36))
+
+
+### BREAKING CHANGES
+
+* TucToastError no longer returns a promise
+
+Signed-off-by: Marie JONES <marie.jones@corp.ovh.com>
+
+
+
 ## [6.0.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@6.0.0...@ovh-ux/ng-ovh-telecom-universe-components@6.0.1) (2020-08-05)
 
 

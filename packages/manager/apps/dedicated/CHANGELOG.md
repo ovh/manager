@@ -1,3 +1,12 @@
+## [13.2.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@13.2.8...@ovh-ux/manager-dedicated@13.2.9) (2020-09-18)
+
+
+### Bug Fixes
+
+* **payment-method:** remove outdated message when adding bank account ([#3645](https://github.com/ovh/manager/issues/3645)) ([8bce2c8](https://github.com/ovh/manager/commit/8bce2c8a0920583d309643458721f06e9eef74d2))
+
+
+
 ## [13.2.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@13.2.7...@ovh-ux/manager-dedicated@13.2.8) (2020-09-16)
 
 
