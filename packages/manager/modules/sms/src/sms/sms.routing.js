@@ -13,7 +13,8 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     abstract: true,
     resolve: {
-      batches: /* @ngInject */ ($http, serviceName) =>
+      batches: /* @ngInject */ (getBatches) => getBatches(),
+      getBatches: /* @ngInject */ ($http, serviceName) => () =>
         $http
           .get(`/sms/${serviceName}/batches`)
           .then(({ data }) =>
