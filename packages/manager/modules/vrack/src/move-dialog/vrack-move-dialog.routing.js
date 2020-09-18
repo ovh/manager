@@ -12,7 +12,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       goBack: /* @ngInject */ ($state, service) => (reload) =>
-        $state.go('vrack', { vrackId: service.vrack }, { reload }),
+        $state.go('vrack.dashboard', { vrackId: service.vrack }, { reload }),
       service: /* @ngInject */ ($transition$) => $transition$.params().service,
     },
     layout: 'modal',
