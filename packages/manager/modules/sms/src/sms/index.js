@@ -6,6 +6,8 @@ import 'oclazyload';
 import dashboard from './dashboard';
 import order from './order';
 
+import service from './telecom-sms.service';
+
 const moduleName = 'ovhManagerSmsService';
 
 angular
@@ -16,6 +18,7 @@ angular
     dashboard,
     order,
   ])
+  .service('SmsService', service)
   .config(
     /* @ngInject */ ($stateProvider) => {
       $stateProvider.state('sms.service.**', {
