@@ -281,11 +281,11 @@ export const IPLB_CONFIG = {
 
 export const VRACK_CONFIG = {
   id: 'vrack',
-  loadOnState: 'vrack',
+  loadOnState: 'vrack.dashboard',
   types: [
     {
       path: '/vrack',
-      state: 'vrack',
+      state: 'vrack.dashboard',
       stateParams: ['vrackId'],
       app: [DEDICATED],
     },
