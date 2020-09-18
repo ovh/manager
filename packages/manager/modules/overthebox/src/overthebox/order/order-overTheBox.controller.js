@@ -152,9 +152,11 @@ export default class OrderOverTheBoxCtrl {
 
         return offers;
       })
-      .catch(
-        () => new this.TucToastError(null, 'order_overTheBox_offers_error'),
-      );
+      .catch((error) => {
+        // eslint-disable-next-line no-new
+        new this.TucToastError(null, 'order_overTheBox_offers_error');
+        return this.$q.reject(error);
+      });
   }
 
   getOrderDurations() {

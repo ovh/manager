@@ -5,7 +5,7 @@
     <oui-spinner data-ng-if="$ctrl.isLoading"></oui-spinner>
 
     <oui-select
-        data-name="issue"
+        data-name="{{:: 'issue-' + $ctrl.parentIssue.id }}"
         data-ng-show="!$ctrl.isLoading"
         data-model="$ctrl.issue"
         data-items="$ctrl.issues"

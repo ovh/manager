@@ -7,6 +7,7 @@ angular
   .controller(
     'TelecomTelephonyLineCallsDisplayNumberCtrl',
     function TelecomTelephonyLineCallsDisplayNumberCtrl(
+      $q,
       $scope,
       $stateParams,
       $translate,
@@ -29,12 +30,15 @@ angular
               self.options = isObject(options) ? options : {};
               return options;
             },
-            () =>
+            (error) => {
+              // eslint-disable-next-line no-new
               new TucToastError(
                 $translate.instant(
                   'telephony_line_actions_line_calls_display_number_read_error',
                 ),
-              ),
+              );
+              return $q.reject(error);
+            },
           );
       }
 

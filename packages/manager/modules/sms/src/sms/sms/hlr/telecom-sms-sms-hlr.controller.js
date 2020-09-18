@@ -80,7 +80,9 @@ export default class {
             this.service = this.TucSmsMediator.getCurrentSmsService();
           }),
       )
-      .catch((err) => this.TucToastError(err));
+      .catch((err) => {
+        this.TucToastError(err);
+      });
   }
 
   /**

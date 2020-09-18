@@ -299,7 +299,6 @@ angular
             self.options.raw = result.options;
             self.options.modified = angular.copy(result.options);
           })
-          .catch((err) => new TucToastError(err))
           .finally(() => {
             self.isLoading = false;
           });

@@ -12,7 +12,7 @@
 
     <div data-ng-if="!$ctrl.isStepLoading">
         <div
-            data-ng-if="($ctrl.phoneOffers.length > 1 || $ctrl.merchandise.length)"
+            data-ng-if="($ctrl.phoneOffers.length > 0 || $ctrl.merchandise.length)"
         >
             <!-- Define filters -->
             <oui-dropdown
@@ -182,7 +182,7 @@
         <div
             class="alert alert-info"
             role="alert"
-            data-ng-if="!($ctrl.phoneOffers.length > 1 || $ctrl.merchandise.length)"
+            data-ng-if="!($ctrl.phoneOffers.length > 0 || $ctrl.merchandise.length)"
             data-translate="telephony_line_phone_order_order_empty"
         ></div>
     </div>

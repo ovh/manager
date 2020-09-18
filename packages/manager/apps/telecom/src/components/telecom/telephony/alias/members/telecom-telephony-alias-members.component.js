@@ -61,12 +61,9 @@ angular.module('managerApp').component('telecomTelephonyAliasMembers', {
       );
       return $translate.refresh().finally(() => {
         self.isInitialized = true;
-        return self
-          .refreshMembers()
-          .catch((err) => new TucToastError(err))
-          .finally(() => {
-            self.loaders.init = false;
-          });
+        return self.refreshMembers().finally(() => {
+          self.loaders.init = false;
+        });
       });
     };
 
@@ -78,7 +75,11 @@ angular.module('managerApp').component('telecomTelephonyAliasMembers', {
         .then((orderedMembers) => {
           self.members = orderedMembers;
         })
-        .catch((err) => new TucToastError(err))
+        .catch((err) => {
+          // eslint-disable-next-line no-new
+          new TucToastError(err);
+          return $q.reject(err);
+        })
         .finally(() => {
           self.loaders.init = true;
         });
