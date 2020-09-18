@@ -1,0 +1,17 @@
+{
+  "sms_batches_history_title": "Statistiques et historique",
+  "sms_batches_history_none": "Aucune campagne",
+  "sms_batches_history_actions_statistics": "Statistiques",
+  "sms_batches_history_status_PENDING": "Créée",
+  "sms_batches_history_status_INSERTING": "Ajout des SMS dans la base de données",
+  "sms_batches_history_status_INSERTED": "SMS insérés dans la base de données",
+  "sms_batches_history_status_COMPLETED": "Terminée",
+  "sms_batches_history_status_TO_CANCEL": "A supprimer",
+  "sms_batches_history_status_CANCELING": "En cours de suppression",
+  "sms_batches_history_status_CANCELED": "Supprimée",
+  "sms_batches_history_status_FAILED": "Erreur",
+  "sms_batches_history_details": "Voir le détail",
+  "sms_batches_history_error": "Une erreur est survenue. {{error}}",
+  "sms_batches_history_delete_success": "La suppression a bien été réalisée.",
+  "sms_batches_history_download": "Télécharger"
+}
