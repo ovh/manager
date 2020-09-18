@@ -31,7 +31,6 @@
     "angular": "^1.7.5",
     "angular-route": "^1.7.5",
     "angular-translate": "^2.18.1",
-    "angular-ui-bootstrap": "~1.3.3",
     "bootstrap": "^3.3.7",
     "filesize": "^3.6.1",
     "moment": "^2.24.0",
