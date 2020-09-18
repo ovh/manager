@@ -140,11 +140,18 @@
                     <oui-action-menu-item
                         data-aria-label="{{ :: 'billing_main_history_legacy_table_action_export_title' | translate }}"
                         data-on-click="$ctrl.exportToCsv()"
+                        data-disabled="$ctrl.loading.export"
                         ><span
                             data-translate="billing_main_history_legacy_table_action_export"
                         ></span>
                     </oui-action-menu-item>
                 </oui-action-menu>
+                <oui-spinner
+                    data-size="s"
+                    data-ng-if="$ctrl.loading.export"
+                    class="align-middle"
+                >
+                </oui-spinner>
             </oui-datagrid-topbar>
         </oui-datagrid>
 
