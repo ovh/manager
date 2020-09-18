@@ -11,21 +11,14 @@ export default class SmsBatchCancelController {
 
     return this.cancelBatch(this.batch.id)
       .then(() =>
-        this.goBack({
-          reload: true,
-        }).then(() =>
-          this.displaySuccessMessage(
-            this.$translate.instant('sms_cancel_success'),
-          ),
-        ),
+        this.onFinish(this.$translate.instant('sms_cancel_success'), true),
       )
       .catch((error) =>
-        this.goBack().then(() =>
-          this.displayErrorMessage(
-            this.$translate.instant('sms_cancel_error', {
-              error: get(error, 'data.message', error.message),
-            }),
-          ),
+        this.onFinish(
+          this.$translate.instant('sms_cancel_error', {
+            error: get(error, 'data.message', error.message),
+          }),
+          false,
         ),
       )
       .finally(() => {
