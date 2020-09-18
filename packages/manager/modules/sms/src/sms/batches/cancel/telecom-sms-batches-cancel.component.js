@@ -7,9 +7,8 @@ export default {
   bindings: {
     batch: '<',
     cancelBatch: '<',
-    displayErrorMessage: '<',
-    displaySuccessMessage: '<',
     goBack: '<',
+    onFinish: '<',
   },
   controller,
   name: 'ovhManagerSmsBatchCancel',
