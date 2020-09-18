@@ -22,10 +22,11 @@ export default class TelecomPackMigrationMigrationCtrl {
     return this.TucPackMigrationProcess.startTaskPolling()
       .then(() => {
         this.migrationStatus = 'success';
-        this.loading.migrate = false;
       })
       .catch(() => {
         this.migrationStatus = 'error';
+      })
+      .finally(() => {
         this.loading.migrate = false;
       });
   }

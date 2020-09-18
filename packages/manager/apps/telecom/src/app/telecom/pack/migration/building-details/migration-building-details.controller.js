@@ -6,10 +6,12 @@ export default class TelecomPackMigrationBuildingDetailsCtrl {
   constructor(
     $translate,
     TucPackMigrationProcess,
+    TucToast,
     OvhApiConnectivityEligibilitySearch,
   ) {
     this.$translate = $translate;
     this.TucPackMigrationProcess = TucPackMigrationProcess;
+    this.TucToast = TucToast;
     this.OvhApiConnectivityEligibilitySearch = OvhApiConnectivityEligibilitySearch;
   }
 
@@ -30,6 +32,8 @@ export default class TelecomPackMigrationBuildingDetailsCtrl {
       ptoReference: null,
       ptoReferenceNotKnown: false,
     };
+
+    this.FIBER_PTO = FIBER_PTO;
 
     this.process = this.TucPackMigrationProcess.getMigrationProcess();
 
@@ -56,6 +60,13 @@ export default class TelecomPackMigrationBuildingDetailsCtrl {
             );
           }
         })
+        .catch(() =>
+          this.TucToast.error(
+            this.$translate.instant(
+              'telecom_pack_migration_building_details_error',
+            ),
+          ),
+        )
         .finally(() => {
           this.loading.init = false;
         });
@@ -116,7 +127,7 @@ export default class TelecomPackMigrationBuildingDetailsCtrl {
   }
 
   isPto() {
-    return this.model.pto === 'yes';
+    return this.model.pto === FIBER_PTO.FIBER_PTO_YES;
   }
 
   convertStairs(stair) {
