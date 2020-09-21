@@ -1,7 +1,7 @@
 import template from './emailpro-mailing-list-subscribers-view.html';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('mxplan.dashboard.mailing-list.subscribers', {
+  $stateProvider.state('mxplan.dashboard.mailing-list.dashboard.subscribers', {
     url: '/subscribers',
     template,
     controller: 'EmailProMXPlanMailingListsSubscribersCtrl',
