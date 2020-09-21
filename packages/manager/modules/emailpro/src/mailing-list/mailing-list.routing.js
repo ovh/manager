@@ -23,6 +23,8 @@ export default /* @ngInject */ ($stateProvider) => {
           mailingList,
           name: mailingList.name,
         }),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('emailpro_mailing_list'),
     },
   });
 
@@ -30,5 +32,9 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/:name',
     template: '<div ui-view></div>',
     redirectTo: 'mxplan.dashboard.mailing-list',
+    resolve: {
+      name: /* @ngInject */ ($transition$) => $transition$.params().name,
+      breadcrumb: /* @ngInject */ (name) => name,
+    },
   });
 };
