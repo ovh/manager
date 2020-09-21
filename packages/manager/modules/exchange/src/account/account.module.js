@@ -21,6 +21,7 @@ angular
     add,
   ])
   .config(routing)
-  .component('exchangeAccountHome', component);
+  .component('exchangeAccountHome', component)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

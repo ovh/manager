@@ -6,5 +6,9 @@ export default /* @ngInject */ ($stateProvider) => {
     controller: 'ExchangeDisclaimerCtrl',
     controllerAs: 'ctrlDisclaimer',
     template,
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('exchange_disclaimer'),
+    },
   });
 };

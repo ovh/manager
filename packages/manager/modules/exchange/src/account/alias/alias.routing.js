@@ -7,6 +7,8 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       account: /* @ngInject */ ($transition$) => $transition$.params().account,
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('exchange_account_alias'),
     },
   });
 };

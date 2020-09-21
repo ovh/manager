@@ -57,6 +57,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('exchange.dashboard.task', $transition$.params()),
       currentActiveLink: /* @ngInject */ ($state, $transition$) => () =>
         $state.href($state.current.name, $transition$.params()),
+      breadcrumb: /* @ngInject */ (productId) => productId,
     },
   });
 
@@ -68,6 +69,7 @@ export default /* @ngInject */ ($stateProvider) => {
     reloadOnSearch: false,
     resolve: {
       navigationInformations: getNavigationInformations('exchange_order'),
+      hideBreadcrumb: () => true,
     },
   });
 };

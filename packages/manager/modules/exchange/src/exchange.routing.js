@@ -25,6 +25,7 @@ export default /* @ngInject */ ($stateProvider) => {
           organization: domain,
           productId: domain,
         }),
+      hideBreadcrumb: () => true,
     },
   });
 };
