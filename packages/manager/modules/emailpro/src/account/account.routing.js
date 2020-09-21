@@ -13,8 +13,11 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       goToAccounts: /* @ngInject */ ($state, $transition$) => () =>
         $state.go('email-pro.dashboard.account', $transition$.params()),
-      goToAliases: /* @ngInject */ ($state, $transition$) => () =>
-        $state.go('email-pro.dashboard.account.alias', $transition$.params()),
+      goToAliases: /* @ngInject */ ($state, $transition$) => (account) =>
+        $state.go('email-pro.dashboard.account.email.alias', {
+          ...$transition$.params(),
+          account: account.primaryEmailAddress,
+        }),
     },
   });
   $stateProvider.state('mxplan.dashboard.account', {
@@ -22,8 +25,23 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       goToAccounts: /* @ngInject */ ($state, $transition$) => () =>
         $state.go('mxplan.dashboard.account', $transition$.params()),
-      goToAliases: /* @ngInject */ ($state, $transition$) => () =>
-        $state.go('mxplan.dashboard.account.alias', $transition$.params()),
+      goToAliases: /* @ngInject */ ($state, $transition$) => (account) =>
+        $state.go('mxplan.dashboard.account.email.alias', {
+          ...$transition$.params(),
+          account: account.primaryEmailAddress,
+        }),
     },
+  });
+
+  $stateProvider.state('email-pro.dashboard.account.email', {
+    url: '/:account',
+    template: '<div ui-view></div>',
+    redirectTo: 'email-pro.dashboard.account',
+  });
+
+  $stateProvider.state('mxplan.dashboard.account.email', {
+    url: '/:account',
+    template: '<div ui-view></div>',
+    redirectTo: 'mxplan.dashboard.account',
   });
 };
