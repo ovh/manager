@@ -1,7 +1,7 @@
 import template from './group-alias.html';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('exchange.dashboard.group.alias', {
+  $stateProvider.state('exchange.dashboard.group.mailing-list.alias', {
     url: '/alias',
     controller: 'ExchangeTabGroupAliasCtrl',
     controllerAs: 'ctrl',
