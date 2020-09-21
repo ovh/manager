@@ -27,7 +27,7 @@ export default class ExchangeAccountHomeController {
     $q,
     $scope,
     $translate,
-    Exchange,
+    wucExchange,
     coreConfig,
     exchangeAccount,
     exchangeAccountTypes,
@@ -45,7 +45,7 @@ export default class ExchangeAccountHomeController {
     this.$scope = $scope;
     this.$translate = $translate;
 
-    this.Exchange = Exchange;
+    this.Exchange = wucExchange;
     this.coreConfig = coreConfig;
     this.exchangeAccount = exchangeAccount;
     this.exchangeAccountTypes = exchangeAccountTypes;
