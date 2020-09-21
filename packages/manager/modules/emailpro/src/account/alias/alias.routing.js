@@ -5,6 +5,10 @@ const state = {
   url: '/alias',
   template,
   controller: 'EmailProTabAliasCtrl',
+  resolve: {
+    breadcrumb: /* @ngInject */ ($translate) =>
+      $translate.instant('emailpro_accounts_add'),
+  },
 };
 
 export default /* @ngInject */ ($stateProvider) => {

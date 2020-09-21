@@ -5,6 +5,10 @@ const state = {
   url: '/task',
   template,
   controller: 'EmailProTabTasksCtrl',
+  resolve: {
+    breadcrumb: /* @ngInject */ ($translate) =>
+      $translate.instant('emailpro_task'),
+  },
 };
 
 export default /* @ngInject */ ($stateProvider) => {
