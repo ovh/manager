@@ -11,6 +11,7 @@ const moduleName = 'ovhManagerExchangeDashboardAccountAdd';
 angular
   .module(moduleName, [ngTranslateAsyncLoader, 'oui', 'pascalprecht.translate'])
   .config(routing)
-  .component('exchangeAccountAdd', component);
+  .component('exchangeAccountAdd', component)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
