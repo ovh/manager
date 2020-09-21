@@ -72,37 +72,29 @@ export default class PciTrainingJobsSubmitController {
 
   cliCommand() {
     const baseCmdArray = [
-      'job',
-      'submit',
-      '\\\n\t',
-      '--profile',
-      this.job.region.name,
-      '\\\n\t',
-      '--image',
-      this.job.image.id,
-      '\\\n\t',
-      '--gpu',
-      this.job.resources.gpu,
+      'job submit',
+      `--profile ${this.job.region.name}`,
+      `--image ${this.job.image.id}`,
+      `--gpu ${this.job.resources.gpu}`,
     ];
 
     if (this.job.data && this.job.data.length > 0) {
-      baseCmdArray.push('\\\n\t');
-      baseCmdArray.push(
-        this.job.data.map(({ name }) => `--data ${name} `).join('\\\n\t'),
-      );
+      this.job.data
+        .map(({ name }) => `--data ${name}`)
+        .forEach((x) => baseCmdArray.push(x));
     }
 
     if (this.job.command) {
-      baseCmdArray.push('\\\n\t');
-      baseCmdArray.push(`-- ${this.job.command}`);
+      baseCmdArray.push('--');
+      this.splitStringCommandIntoArray().forEach((x) => baseCmdArray.push(x));
     }
 
-    return baseCmdArray.join(' ');
+    return baseCmdArray.join(' \\\n\t');
   }
 
   splitStringCommandIntoArray() {
     if (this.job.command) {
-      return this.job.command.match(/(\w|-)+|"[^"]+"/g).map((elt) => {
+      return this.job.command.match(/([^\s"])+|"[^"]+"/g).map((elt) => {
         if (elt.startsWith('"') && elt.endsWith('"')) {
           return elt.substring(1, elt.length - 1);
         }
