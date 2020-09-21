@@ -26,8 +26,8 @@ export default /* @ngInject */ ($stateProvider) => {
         $transition$.params().organization,
       productId: /* @ngInject */ ($transition$) =>
         $transition$.params().productId,
-      exchange: /* @ngInject */ (Exchange, organization, productId) =>
-        Exchange.getExchangeDetails(organization, productId),
+      exchange: /* @ngInject */ (wucExchange, organization, productId) =>
+        wucExchange.getExchangeDetails(organization, productId),
       informationLink: /* @ngInject */ ($state, $transition$) =>
         $state.href('exchange.dashboard.information', $transition$.params()),
       domainLink: /* @ngInject */ ($state, $transition$) =>
