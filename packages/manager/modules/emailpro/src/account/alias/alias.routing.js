@@ -8,6 +8,6 @@ const state = {
 };
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('email-pro.dashboard.account.alias', clone(state));
-  $stateProvider.state('mxplan.dashboard.account.alias', clone(state));
+  $stateProvider.state('email-pro.dashboard.account.email.alias', clone(state));
+  $stateProvider.state('mxplan.dashboard.account.email.alias', clone(state));
 };
