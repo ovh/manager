@@ -6,5 +6,9 @@ export default /* @ngInject */ ($stateProvider) => {
     controller: 'ExchangeTabDiagnosticsCtrl',
     controllerAs: 'ctrl',
     template,
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('exchange_diagnostic'),
+    },
   });
 };
