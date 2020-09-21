@@ -5,6 +5,9 @@ const state = {
   url: '',
   template,
   controller: 'EmailProTabInformationCtrl',
+  resolve: {
+    breadcrumb: () => null,
+  },
 };
 
 export default /* @ngInject */ ($stateProvider) => {

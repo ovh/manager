@@ -45,6 +45,8 @@ export default /* @ngInject */ ($stateProvider) => {
 
       currentActiveLink: /* @ngInject */ ($state, $transition$) => () =>
         $state.href($state.current.name, $transition$.params()),
+
+      breadcrumb: /* @ngInject */ (productId) => productId,
     },
     translations: {
       value: ['.'],
@@ -116,6 +118,8 @@ export default /* @ngInject */ ($stateProvider) => {
 
       currentActiveLink: /* @ngInject */ ($state, $transition$) => () =>
         $state.href($state.current.name, $transition$.params()),
+
+      breadcrumb: /* @ngInject */ (productId) => productId,
     },
     translations: {
       value: ['.', '../mailing-list'],
