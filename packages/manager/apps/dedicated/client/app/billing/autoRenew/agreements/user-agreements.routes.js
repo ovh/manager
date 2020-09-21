@@ -11,6 +11,23 @@ export default /* @ngInject */ (
       template,
       controller: 'UserAccount.controllers.agreements',
       translations: { value: ['.'], format: 'json' },
+      resolve: {
+        gotoAcceptAllAgreements: /* @ngInject */ ($state, atInternet) => (
+          agreements,
+        ) => {
+          atInternet.trackClick({
+            name:
+              'dedicated::account::billing::autorenew::agreements::go-to-accept-all',
+            type: 'action',
+          });
+          return $state.go(
+            'app.account.billing.autorenew.agreements.popup-agreement',
+            {
+              agreements,
+            },
+          );
+        },
+      },
     });
 
     // ensure compatibility with links sended by emails

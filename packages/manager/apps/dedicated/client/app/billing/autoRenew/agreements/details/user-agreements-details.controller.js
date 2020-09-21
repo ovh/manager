@@ -4,19 +4,19 @@ import get from 'lodash/get';
 angular
   .module('UserAccount')
   .controller('UserAccount.controllers.agreements.details', [
-    '$stateParams',
     '$q',
-    'UserAccount.services.agreements',
+    'UserAccountServicesAgreements',
     'Alerter',
+    'agreementId',
     '$translate',
     'User',
     'GDPR_AGREEMENTS_INFOS',
     'AGREEMENT_GENERIC_MORE_INFORMATIONS_URL',
     function UserAccountAgreementsDtailsController(
-      $stateParams,
       $q,
       Service,
       Alerter,
+      agreementId,
       $translate,
       User,
       GDPR_AGREEMENTS_INFOS,
@@ -31,8 +31,8 @@ angular
         this.alreadyAccepted = false;
 
         $q.all([
-          Service.getAgreement($stateParams.id),
-          Service.getContract($stateParams.id),
+          Service.getAgreement(agreementId),
+          Service.getContract(agreementId),
           User.getUser(),
         ])
           .then(([agreement, contract, user]) => {
@@ -66,7 +66,10 @@ angular
       };
 
       this.accept = () => {
-        Service.accept($stateParams.id)
+        Service.accept({
+          ...this.agreement,
+          ...this.contract,
+        })
           .then(() => {
             this.accepted = true;
             Alerter.success(

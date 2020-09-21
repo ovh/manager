@@ -7,10 +7,13 @@ export default /* @ngInject */ (
 ) => {
   if (coreConfigProvider.isRegion(['EU', 'CA'])) {
     $stateProvider.state('app.account.billing.autorenew.agreements.agreement', {
-      url: '/details/:id',
+      url: '/details/{id:int}',
       template,
       controller: 'UserAccount.controllers.agreements.details',
       controllerAs: 'ctrl',
+      resolve: {
+        agreementId: /* @ngInject */ ($transition$) => $transition$.params().id,
+      },
     });
 
     // ensure compatibility with links sended by emails

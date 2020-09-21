@@ -40,7 +40,8 @@ angular.module('Billing').controller(
     onDebtPayFormSubmit() {
       this.loading.pay = true;
       this.atInternet.trackClick({
-        name: 'billing_pay_balance',
+        name:
+          'dedicated::account::billing::main::history::pay-debt::pay::billing_pay_balance',
         type: 'action',
       });
       let promise;
