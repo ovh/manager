@@ -1,3 +1,12 @@
+## [2.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@2.2.0...@ovh-ux/manager-hub-app@2.2.1) (2020-09-21)
+
+
+### Bug Fixes
+
+* **hub.dashboard:** fix banner positionning ([8c26eef](https://github.com/ovh/manager/commit/8c26eef7c29250e62930bbcaa001296c76160600))
+
+
+
 # [2.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@2.1.4...@ovh-ux/manager-hub-app@2.2.0) (2020-09-16)
 
 
