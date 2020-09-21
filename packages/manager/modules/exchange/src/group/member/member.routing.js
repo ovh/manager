@@ -12,6 +12,8 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       mailingList: /* @ngInject */ ($transition$) =>
         $transition$.params().mailingList,
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('exchange_group_member'),
     },
   });
 };

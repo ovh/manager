@@ -2,6 +2,7 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
+import '@ovh-ux/ng-ui-router-breadcrumb';
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 
 import ExchangeModel from './dashboard/Exchange.class';
@@ -14,13 +15,22 @@ import navigation from './services/exchange.navigation.service';
 const moduleName = 'ovhManagerExchangeLazyLoading';
 
 angular
-  .module(moduleName, [billingAccountRenew, 'ui.router', 'oc.lazyLoad'])
+  .module(moduleName, [
+    billingAccountRenew,
+    'ngUiRouterBreadcrumb',
+    'ui.router',
+    'oc.lazyLoad',
+  ])
   .config(
     /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       $stateProvider.state('exchange', {
         url: '/exchange',
         template: '<div data-ui-view></div>',
         redirectTo: 'exchange.index',
+        resolve: {
+          breadcrumb: /* @ngInject */ ($translate) =>
+            $translate.instant('exchange_title'),
+        },
       });
 
       $stateProvider.state('exchange.index.**', {
@@ -63,7 +73,8 @@ angular
     },
   )
   .service('APIExchange', APIExchange)
-  .service('navigation', navigation);
+  .service('navigation', navigation)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
 

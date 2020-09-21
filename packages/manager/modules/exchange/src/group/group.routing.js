@@ -27,6 +27,8 @@ export default /* @ngInject */ ($stateProvider) => {
           mailingList,
           address: mailingList.mailingListAddress,
         }),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('exchange_group'),
     },
   });
 
@@ -34,5 +36,9 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/:address',
     redirectTo: 'exchange.dashboard.group',
     template: '<div ui-view></div>',
+    resolve: {
+      address: /* @ngInject */ ($transition$) => $transition$.params().address,
+      breadcrumb: /* @ngInject */ (address) => address,
+    },
   });
 };
