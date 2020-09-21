@@ -1,3 +1,16 @@
+## [13.2.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@13.2.9...@ovh-ux/manager-dedicated@13.2.10) (2020-09-21)
+
+
+### Bug Fixes
+
+* implement tracking ([cc87f66](https://github.com/ovh/manager/commit/cc87f665eada6cfe23aa8446d9af6f0eaefc887c)), closes [#MANAGER-5301](https://github.com/ovh/manager/issues/MANAGER-5301)
+* **dedicated:** add account-migration notifications ([0fb7dc2](https://github.com/ovh/manager/commit/0fb7dc281b5a67b12bbc48810906411f61a21a36)), closes [#MANAGER-5301](https://github.com/ovh/manager/issues/MANAGER-5301)
+* **dedicated:** block autorenew on scheduled migration ([ae3495e](https://github.com/ovh/manager/commit/ae3495e84392136a2a4fac9d96546f581853185b)), closes [#MANAGER-5301](https://github.com/ovh/manager/issues/MANAGER-5301)
+* **dedicated:** create accept all popup ([77d5942](https://github.com/ovh/manager/commit/77d59426e8b9b67aa315d8f57bf651d845d68723)), closes [#MANAGER-5301](https://github.com/ovh/manager/issues/MANAGER-5301)
+* **i18n:** add missing translations ([1a3d88b](https://github.com/ovh/manager/commit/1a3d88b824455664055930ffaad3c42a9b7f8e95))
+
+
+
 ## [13.2.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@13.2.8...@ovh-ux/manager-dedicated@13.2.9) (2020-09-18)
 
 

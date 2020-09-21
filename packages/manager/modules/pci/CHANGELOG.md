@@ -1,3 +1,12 @@
+## [5.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.1.1...@ovh-ux/manager-pci@5.1.2) (2020-09-21)
+
+
+### Bug Fixes
+
+* **public-cloud:** add account-migration notifications ([4ac3427](https://github.com/ovh/manager/commit/4ac34272404e66398c77d8b1de948bc6cc42605a)), closes [#MANAGER-5301](https://github.com/ovh/manager/issues/MANAGER-5301)
+
+
+
 ## [5.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.1.0...@ovh-ux/manager-pci@5.1.1) (2020-09-18)
 
 

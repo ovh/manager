@@ -1,3 +1,12 @@
+## [15.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.3.1...@ovh-ux/manager-web@15.3.2) (2020-09-21)
+
+
+### Bug Fixes
+
+* **web:** add account-migration notifications ([0a10536](https://github.com/ovh/manager/commit/0a1053650928f33059648cacb14bc27ad82fb4b7)), closes [#MANAGER-5301](https://github.com/ovh/manager/issues/MANAGER-5301)
+
+
+
 ## [15.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.3.0...@ovh-ux/manager-web@15.3.1) (2020-09-18)
 
 
