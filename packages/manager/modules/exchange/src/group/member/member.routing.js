@@ -1,7 +1,7 @@
 import template from './group-member.html';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('exchange.dashboard.group.member', {
+  $stateProvider.state('exchange.dashboard.group.mailing-list.member', {
     url: '/member',
     controller: 'ExchangeTabMembersByGroupsCtrl',
     controllerAs: 'ctrl',
