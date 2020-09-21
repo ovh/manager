@@ -18,6 +18,8 @@ export default /* @ngInject */ ($stateProvider) => {
           ...$transition$.params(),
           account: account.primaryEmailAddress,
         }),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('emailpro_accounts'),
     },
   });
   $stateProvider.state('mxplan.dashboard.account', {
@@ -30,6 +32,8 @@ export default /* @ngInject */ ($stateProvider) => {
           ...$transition$.params(),
           account: account.primaryEmailAddress,
         }),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('emailpro_accounts'),
     },
   });
 
@@ -37,11 +41,19 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/:account',
     template: '<div ui-view></div>',
     redirectTo: 'email-pro.dashboard.account',
+    resolve: {
+      breadcrumb: /* @ngInject */ ($transition$) =>
+        $transition$.params().account,
+    },
   });
 
   $stateProvider.state('mxplan.dashboard.account.email', {
     url: '/:account',
     template: '<div ui-view></div>',
     redirectTo: 'mxplan.dashboard.account',
+    resolve: {
+      breadcrumb: /* @ngInject */ ($transition$) =>
+        $transition$.params().account,
+    },
   });
 };

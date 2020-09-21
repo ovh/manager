@@ -17,6 +17,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('email-pro.dashboard', {
           productId,
         }),
+      hideBreadcrumb: () => true,
     },
   });
 
@@ -36,6 +37,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('mxplan.dashboard', {
           productId,
         }),
+      hideBreadcrumb: () => true,
     },
   });
 };

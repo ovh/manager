@@ -5,6 +5,10 @@ const state = {
   url: '/disclaimer',
   template,
   controller: 'EmailProDisclaimerCtrl',
+  resolve: {
+    breadcrumb: /* @ngInject */ ($translate) =>
+      $translate.instant('emailpro_domain'),
+  },
 };
 
 export default /* @ngInject */ ($stateProvider) => {
