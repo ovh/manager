@@ -43,7 +43,7 @@ angular
       };
 
       $stateProvider.state('exchange.dashboard.**', {
-        url: '/:organization/:productId?tab',
+        url: '/:organization/:productId',
         lazyLoad,
       });
 
