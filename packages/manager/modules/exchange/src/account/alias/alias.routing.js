@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('exchange.dashboard.account.alias', {
+  $stateProvider.state('exchange.dashboard.account.email.alias', {
     url: '/alias',
     component: 'exchangeAccountAlias',
     params: {
