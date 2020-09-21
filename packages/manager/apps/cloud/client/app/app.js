@@ -9,6 +9,7 @@ import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
+import ovhManagerAccountMigration from '@ovh-ux/manager-account-migration';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
 import ngOvhBrowserAlert from '@ovh-ux/ng-ovh-browser-alert';
 import ngOvhCheckboxTable from '@ovh-ux/ng-ovh-checkbox-table';
@@ -80,6 +81,7 @@ angular
       ngOvhUserPref,
       ngOvhUiRouterLayout,
       ngOvhUiRouterLineProgress,
+      ovhManagerAccountMigration,
       'ovh-api-services',
       'ovh-common-style',
       ngQAllSettled,

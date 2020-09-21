@@ -2,6 +2,7 @@ import ovhManagerBilling from '@ovh-ux/manager-billing';
 
 import activation from './actions/activation/activation.module';
 import agreements from './agreements/user-agreements.module';
+import autorenewBlocked from './actions/autorenew-blocked/autorenew-blocked.module';
 import cancelResiliation from './actions/cancel-resiliation/cancel-resiliation.module';
 import debtBeforePaying from './actions/debtBeforePaying/debtBeforePaying.module';
 import deleteModule from './actions/delete/delete.module';
@@ -31,6 +32,7 @@ angular
     'ui.router',
     activation,
     agreements,
+    autorenewBlocked,
     cancelResiliation,
     debtBeforePaying,
     deleteModule,

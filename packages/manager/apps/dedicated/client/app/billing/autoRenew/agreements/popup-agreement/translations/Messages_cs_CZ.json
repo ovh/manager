@@ -1,0 +1,7 @@
+{
+  "user_agreements_accept_all_count": "Smlouva {{current}}/{{total}}",
+  "user_agreements_accept_all_accept_and_next": "Přijmout a přejít na další",
+  "user_agreements_accept_all_read_and_accepted": "Přečetl(a) jsem a přijímám {{contractTitle}}",
+  "user_agreements_accept_all_annexes": "Chcete-li nahlédnout do příloh, které jsou nedílnou součástí smlouvy (zejména všeobecné obchodní podmínky, zvláštní podmínky, dodatek ke zpracování osobních údajů), <a href='{{url}}' target='_blank' rel='noopener' class='oui-link_icon'>klikněte na tento odkaz<span class='oui-icon oui-icon-external_link' aria-hidden='true'></span></a>",
+  "user_agreements_accept_all_error": "Při zpracování smlouvy došlo k chybě: {{message}}"
+}

@@ -1,0 +1,7 @@
+{
+  "user_agreements_accept_all_count": "Sopimus {{current}}/{{total}}",
+  "user_agreements_accept_all_accept_and_next": "Hyväksy ja siirry seuraavaan",
+  "user_agreements_accept_all_read_and_accepted": "Olen lukenut ja hyväksyn sopimuksen {{contractTitle}}",
+  "user_agreements_accept_all_annexes": "Tutustu liitteisiin, jotka muodostavat olennaisen osan sopimuksesta (yleiset ehdot, erityiset ehdot, liite henkilötietojen käsittelystä), <a href='{{url}}' target='_blank' rel='noopener' class='oui-link_icon'>napsauttamalla tätä linkkiä</a>",
+  "user_agreements_accept_all_error": "Sopimuksen käsittelyssä tapahtui virhe: {{message}}"
+}
