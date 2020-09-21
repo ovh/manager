@@ -8,12 +8,19 @@ export default /* @ngInject */ ($stateProvider) => {
       goToAliasManagement: /* @ngInject */ ($state, $transition$) => (
         account,
       ) =>
-        $state.go('exchange.dashboard.account.alias', {
+        $state.go('exchange.dashboard.account.email.alias', {
           ...$transition$.params(),
           account,
+          email: account.primaryEmailAddress,
         }),
       goToAddAccount: /* @ngInject */ ($state, $transition$) => () =>
         $state.go('exchange.dashboard.account.add', $transition$.params()),
     },
+  });
+
+  $stateProvider.state('exchange.dashboard.account.email', {
+    url: '/:email',
+    template: '<div ui-view></div>',
+    redirectTo: 'exchange.dashboard.account',
   });
 };
