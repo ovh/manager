@@ -5,6 +5,10 @@ const state = {
   url: '/domain',
   template,
   controller: 'EmailProTabDomainsCtrl',
+  resolve: {
+    breadcrumb: /* @ngInject */ ($translate) =>
+      $translate.instant('emailpro_domain'),
+  },
 };
 
 export default /* @ngInject */ ($stateProvider) => {

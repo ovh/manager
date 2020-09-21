@@ -5,6 +5,10 @@ const state = {
   url: '/external-contact',
   template,
   controller: 'EmailProTabExternalContactsCtrl',
+  resolve: {
+    breadcrumb: /* @ngInject */ ($translate) =>
+      $translate.instant('emailpro_external_contact'),
+  },
 };
 
 export default /* @ngInject */ ($stateProvider) => {

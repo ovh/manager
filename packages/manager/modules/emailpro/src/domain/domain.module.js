@@ -16,6 +16,7 @@ angular
     'pascalprecht.translate',
     'ui.router',
   ])
-  .config(routing);
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
