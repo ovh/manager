@@ -1,3 +1,12 @@
+## [1.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-migration@1.0.0...@ovh-ux/manager-account-migration@1.0.1) (2020-09-21)
+
+
+### Bug Fixes
+
+* **notification:** wrong display message ([#3660](https://github.com/ovh/manager/issues/3660)) ([0e5f4c0](https://github.com/ovh/manager/commit/0e5f4c014dad0669e2a05ce91c40d9ccdcf65180))
+
+
+
 # [1.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-migration@0.0.0...@ovh-ux/manager-account-migration@1.0.0) (2020-09-21)
 
 
