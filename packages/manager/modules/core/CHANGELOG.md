@@ -1,3 +1,12 @@
+## [11.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@11.0.0...@ovh-ux/manager-core@11.0.1) (2020-09-21)
+
+
+### Bug Fixes
+
+* **core:** add agreements url ([a53a2a8](https://github.com/ovh/manager/commit/a53a2a804e6d47d5445676c097fdc017e0b18a57)), closes [#MANAGER-5301](https://github.com/ovh/manager/issues/MANAGER-5301)
+
+
+
 # [11.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@10.0.2...@ovh-ux/manager-core@11.0.0) (2020-08-18)
 
 

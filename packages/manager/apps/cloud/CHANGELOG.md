@@ -1,3 +1,12 @@
+## [10.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@10.2.2...@ovh-ux/manager-cloud@10.2.3) (2020-09-21)
+
+
+### Bug Fixes
+
+* **cloud:** add account-migration notifications ([24daa9b](https://github.com/ovh/manager/commit/24daa9b7797dafaa6223c988caacb188070fd2a2)), closes [#MANAGER-5301](https://github.com/ovh/manager/issues/MANAGER-5301)
+
+
+
 ## [10.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@10.2.1...@ovh-ux/manager-cloud@10.2.2) (2020-08-18)
 
 

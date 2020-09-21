@@ -1,3 +1,12 @@
+## [13.2.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.2.5...@ovh-ux/manager-telecom@13.2.6) (2020-09-21)
+
+
+### Bug Fixes
+
+* **telecom:** add account-migration notifications ([08a9dab](https://github.com/ovh/manager/commit/08a9dab63190de3dfd889add8ad7d5f28cc9899e)), closes [#MANAGER-5301](https://github.com/ovh/manager/issues/MANAGER-5301)
+
+
+
 ## [13.2.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.2.4...@ovh-ux/manager-telecom@13.2.5) (2020-09-18)
 
 
