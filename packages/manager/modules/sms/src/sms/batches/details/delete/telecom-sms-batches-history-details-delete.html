@@ -1,0 +1,27 @@
+<oui-modal
+    heading="{{:: 'sms_batches_history_details_delete_title' | translate }}"
+    primary-action="$ctrl.delete($ctrl.outgoing.id)"
+    primary-label="{{:: 'sms_submit' | translate }}"
+    primary-disabled="$ctrl.isDeleting"
+    secondary-action="$ctrl.goBackToDetails()"
+    secondary-label="{{:: 'sms_cancel' | translate }}"
+    on-dismiss="$ctrl.goBackToDetails()"
+>
+    <span data-translate="sms_batches_history_details_delete_question"></span>
+    <dl class="mt-3 mx-auto w-50 oui-description oui-description_horizontal">
+        <dt data-translate="sms_batches_history_details_delete_date"></dt>
+        <dd
+            data-ng-bind="$ctrl.outgoing.sentAt | date: 'dd/MM/yyyy HH:mm'"
+        ></dd>
+        <dt data-translate="sms_batches_history_details_delete_sender"></dt>
+        <dd data-ng-bind="$ctrl.outgoing.from || '-'"></dd>
+        <dt data-translate="sms_batches_history_details_delete_receiver"></dt>
+        <dd data-ng-bind="$ctrl.outgoing.receiver"></dd>
+        <dt
+            data-translate="sms_batches_history_details_delete_destination"
+        ></dt>
+        <dd data-ng-bind="$ctrl.outgoing.tariffCode"></dd>
+        <dt data-translate="sms_batches_history_details_delete_message"></dt>
+        <dd data-ng-bind="$ctrl.outgoing.message"></dd>
+    </dl>
+</oui-modal>
