@@ -13,6 +13,7 @@ export default /* @ngInject */ ($stateProvider) => {
       header: /* @ngInject */ ($translate) =>
         $translate.instant('office_title'),
       customizableColumns: () => true,
+      hideBreadcrumb: () => true,
     },
   });
 };
