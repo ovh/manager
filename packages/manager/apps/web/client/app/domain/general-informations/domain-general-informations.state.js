@@ -58,6 +58,11 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('app.domain.product.information.enable-webhosting', {
           productId: domainName,
         }),
+
+      optinLink: /* @ngInject */ ($state, domainName) =>
+        $state.href('app.domain.product.optin', {
+          productId: domainName,
+        }),
     },
   });
 
@@ -89,6 +94,11 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       enableWebhostingLink: /* @ngInject */ ($state, allDom, domainName) =>
         $state.href('app.alldom.domain.information.enable-webhosting', {
+          allDom,
+          productId: domainName,
+        }),
+      optinLink: /* @ngInject */ ($state, allDom, domainName) =>
+        $state.href('app.alldom.domain.optin', {
           allDom,
           productId: domainName,
         }),

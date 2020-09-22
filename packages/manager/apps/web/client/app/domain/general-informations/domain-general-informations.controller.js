@@ -38,6 +38,7 @@ export default class DomainTabGeneralInformationsCtrl {
     Hosting,
     HostingDomain,
     isStart10mAvailable,
+    optinLink,
     OvhApiDomainRules,
     OvhApiScreenshot,
     WucUser,
@@ -59,6 +60,7 @@ export default class DomainTabGeneralInformationsCtrl {
     this.Hosting = Hosting;
     this.HostingDomain = HostingDomain;
     this.isStart10mAvailable = isStart10mAvailable;
+    this.optinLink = optinLink;
     this.OvhApiDomainRules = OvhApiDomainRules;
     this.OvhApiScreenshot = OvhApiScreenshot.Aapi();
     this.WucUser = WucUser;
