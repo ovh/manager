@@ -8,6 +8,7 @@ const moduleName = 'ovhManagerHostingWebsiteCoach';
 angular
   .module(moduleName, [])
   .component('hostingWebsiteCoach', component)
-  .config(routing);
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

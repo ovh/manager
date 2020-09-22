@@ -5,5 +5,9 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/boost',
     template,
     controller: 'HostingBoostTabCtrl',
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('hosting_boost'),
+    },
   });
 };
