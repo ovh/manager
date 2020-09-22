@@ -4,17 +4,20 @@ export default class {
   /* @ngInject */
   constructor(
     $scope,
+    $translate,
     OvhApiConnectivityEligibility,
     OvhApiConnectivityEligibilitySearch,
     TucToast,
   ) {
     this.$scope = $scope;
+    this.$translate = $translate;
     this.OvhApiConnectivityEligibility = OvhApiConnectivityEligibility;
     this.OvhApiConnectivityEligibilitySearch = OvhApiConnectivityEligibilitySearch;
     this.TucToast = TucToast;
   }
 
   $onInit() {
+    this.STATUS = ELIGIBILITY_LINE_STATUS;
     this.checkLine = {
       lineNumber: '',
     };
@@ -22,62 +25,15 @@ export default class {
   }
 
   /**
-   * Retrieve eligibility (copper and fiber) for the line number
+   * Retrieve line copper for the line number and status
    * @param { String } lineNumber phone number to check eligibility
    * @param { String } status status of the line: 'active' | 'inactive'
    */
-  eligibilityByNumber(lineNumber, status) {
-    // First copper eligibility by number
+  getLineCopper(lineNumber, status) {
     return this.OvhApiConnectivityEligibility.v6()
       .testLine(this.$scope, {
         lineNumber,
         status,
-      })
-      .then((copper) => {
-        if (copper.status === 'error') {
-          const offer = {
-            eligType: 'number',
-            status,
-            eligibilityReference: '',
-            endpoint: '',
-            offers: '',
-            errorMessage: copper.error,
-          };
-          return offer;
-        }
-        // Second fiber eligibility by number
-        return this.fiberEligibilityByNumber(lineNumber, status).then(
-          (fiber) => {
-            const copperOffers = copper.result.offers.filter(
-              (offer) => offer.eligibility.eligible === true,
-            );
-            const offer = {
-              eligType: 'number',
-              status,
-              eligibilityReference: copper.result.eligibilityReference,
-              endpoint: copper.result.endpoint,
-              offers: copperOffers,
-              errorMessage: '',
-            };
-            if (fiber) {
-              const fiberOffers = fiber.result.offers.filter(
-                (el) => el.eligibility.eligible === true,
-              );
-              if (fiberOffers.length > 0) {
-                offer.offers = [...copperOffers, ...fiberOffers];
-                offer.eligibilityReferenceFiber =
-                  fiber.result.eligibilityReference;
-                offer.endpoint.fiberInfo = fiber.result.endpoint.fiberInfo;
-                offer.endpoint.referenceFiber = fiber.result.endpoint.reference;
-                offer.endpoint.referenceTypeFiber =
-                  fiber.result.endpoint.referenceType;
-              }
-              offer.buildingReference =
-                fiber.result.endpoint.fiberInfo.buildingReference;
-            }
-            return offer;
-          },
-        );
       })
       .catch((error) => {
         this.loading = false;
@@ -85,72 +41,185 @@ export default class {
       });
   }
 
-  fiberEligibilityByNumber(lineNumber, status) {
+  fiberSearchBuildingByNumber(lineNumber, status) {
     return this.OvhApiConnectivityEligibilitySearch.v6()
-      .searchBuildingByLines(this.$scope, {
-        lineNumber,
-        status,
-      })
+      .searchBuildingByLines(this.$scope, { lineNumber, status })
       .then((data) => {
-        if (data.result.length > 0) {
-          // Do an eligibility test on a building (fiber only)
-          const [building] = data.result;
-          return this.OvhApiConnectivityEligibility.v6()
-            .testBuilding(this.$scope, {
-              building: building.reference,
-            })
-            .then((elig) => {
-              return elig;
-            })
-            .catch((error) => {
-              this.loading = false;
-              this.TucToast.error(error);
-            });
-        }
-        return null;
+        return data.result.length > 0 ? data.result : null;
       })
       .catch((error) => {
         this.loading = false;
         this.TucToast.error(error);
+      });
+  }
+
+  fiberEligibilityByBuilding(buildingRef) {
+    return this.OvhApiConnectivityEligibility.v6()
+      .testBuilding(this.$scope, {
+        building: buildingRef,
+      })
+      .then((elig) => {
+        return elig;
+      })
+      .catch((error) => {
+        this.loading = false;
+        this.TucToast.error(error);
+      });
+  }
+
+  testBuilding(building) {
+    this.loading = true;
+    return this.fiberEligibilityByBuilding(building.reference)
+      .then((fiber) => {
+        const offer = this.selectedOffer;
+        if (fiber) {
+          const fiberOffers = fiber.result.offers.filter(
+            (el) => el.eligibility.eligible === true,
+          );
+          const copperOffers = offer.offers;
+          if (fiberOffers.length > 0) {
+            offer.offers = [...copperOffers, ...fiberOffers];
+            offer.eligibilityReferenceFiber = fiber.result.eligibilityReference;
+            offer.endpoint.fiberInfo = fiber.result.endpoint.fiberInfo;
+            offer.endpoint.referenceFiber = fiber.result.endpoint.reference;
+            offer.endpoint.referenceTypeFiber =
+              fiber.result.endpoint.referenceType;
+          }
+          offer.buildingReference =
+            fiber.result.endpoint.fiberInfo.buildingReference;
+        }
+        offer.building = building;
+        this.offersChange({
+          OFFERS: [offer],
+        });
+        return offer;
+      })
+      .catch((error) => {
+        this.TucToast.error(error);
+      })
+      .finally(() => {
+        this.loading = false;
+      });
+  }
+
+  getFiberEligibility(copperOffer) {
+    const offer = copperOffer;
+    this.displayFirstStep = false;
+    this.loading = true;
+    // Second step : fiber eligibility by number and status selected
+    return this.fiberSearchBuildingByNumber(this.lineNumber, offer.status)
+      .then((buildings) => {
+        this.buildingsList = buildings && buildings.length > 0 ? buildings : [];
+        const copperOffers = offer.offers;
+        if (buildings) {
+          if (buildings.length === 1) {
+            const [building] = buildings;
+            return this.fiberEligibilityByBuilding(building.reference).then(
+              (fiber) => {
+                if (fiber) {
+                  const fiberOffers = fiber.result.offers.filter(
+                    (el) => el.eligibility.eligible === true,
+                  );
+                  if (fiberOffers.length > 0) {
+                    offer.offers = [...copperOffers, ...fiberOffers];
+                    offer.eligibilityReferenceFiber =
+                      fiber.result.eligibilityReference;
+                    offer.endpoint.fiberInfo = fiber.result.endpoint.fiberInfo;
+                    offer.endpoint.referenceFiber =
+                      fiber.result.endpoint.reference;
+                    offer.endpoint.referenceTypeFiber =
+                      fiber.result.endpoint.referenceType;
+                  }
+                  offer.buildingReference =
+                    fiber.result.endpoint.fiberInfo.buildingReference;
+                }
+                offer.building = building;
+
+                // Display the result for offerChange
+                this.offersChange({
+                  OFFERS: [offer],
+                });
+                return offer;
+              },
+            );
+          }
+          this.selectedOffer = offer;
+        } else {
+          // Display the result for offerChange
+          this.offersChange({
+            OFFERS: [offer],
+          });
+        }
+        return offer;
+      })
+      .finally(() => {
+        this.loading = false;
       });
   }
 
   testLineEligibility() {
     this.loading = true;
     this.offersChange({ OFFERS: [] });
-    this.lineNumber = this.checkLine.lineNumber.replace(/[^0-9]/g, '');
-    this.submited();
+    this.copperOffers = [];
+    this.displayFirstStep = false;
 
-    this.eligibilityByNumber(
+    this.lineNumber = this.checkLine.lineNumber.replace(/[^0-9]/g, '');
+    this.buildingsList = {};
+
+    return this.getLineCopper(
       this.lineNumber,
       ELIGIBILITY_LINE_STATUS.active,
-    ).then((activeOffers) => {
-      if (activeOffers.errorMessage) {
-        this.eligibilityByNumber(
-          this.lineNumber,
-          ELIGIBILITY_LINE_STATUS.inactive,
-        ).then((inactiveOffers) => {
-          if (!inactiveOffers.errorMessage) {
-            this.offersChange({
-              OFFERS: [inactiveOffers],
-            });
-          } else {
-            const noOffer = {
-              eligType: 'number',
-              errorMessage: 'pack_move_eligibility_line_no_offers',
-            };
-            this.offersChange({
-              OFFERS: [noOffer],
-            });
-          }
-          this.loading = false;
-        });
+    ).then((copperActive) => {
+      const active = {
+        eligType: 'number',
+        status: ELIGIBILITY_LINE_STATUS.active,
+        eligibilityReference: '',
+        endpoint: '',
+        offers: '',
+        errorMessage: '',
+      };
+
+      if (copperActive.status === 'error') {
+        active.errorMessage = copperActive.error;
       } else {
-        this.offersChange({
-          OFFERS: [activeOffers],
-        });
-        this.loading = false;
+        const copperActiveOffers = copperActive.result.offers.filter(
+          (offer) => offer.eligibility.eligible === true,
+        );
+        active.eligibilityReference = copperActive.result.eligibilityReference;
+        active.endpoint = copperActive.result.endpoint;
+        active.offers = copperActiveOffers;
       }
+      this.copperOffers.push(active);
+
+      return this.getLineCopper(
+        this.lineNumber,
+        ELIGIBILITY_LINE_STATUS.inactive,
+      ).then((copperInactive) => {
+        const inactive = {
+          eligType: 'number',
+          status: ELIGIBILITY_LINE_STATUS.inactive,
+          eligibilityReference: '',
+          endpoint: '',
+          offers: '',
+          errorMessage: '',
+        };
+
+        if (copperInactive.status === 'error') {
+          inactive.errorMessage = copperInactive.error;
+        } else {
+          const copperInactiveOffers = copperInactive.result.offers.filter(
+            (offer) => offer.eligibility.eligible === true,
+          );
+          inactive.eligibilityReference =
+            copperInactive.result.eligibilityReference;
+          inactive.endpoint = copperInactive.result.endpoint;
+          inactive.offers = copperInactiveOffers;
+        }
+        this.copperOffers.push(inactive);
+        this.displayFirstStep = true;
+
+        this.loading = false;
+      });
     });
   }
 }
