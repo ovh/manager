@@ -1,7 +1,4 @@
-import clone from 'lodash/clone';
 import isEmpty from 'lodash/isEmpty';
-
-import dnsSecState from '../dnssec/domain-dnssec.state';
 
 const commonResolves = {
   associatedHostings: /* @ngInject */ (Domain, domainName) =>
@@ -131,10 +128,5 @@ export default /* @ngInject */ ($stateProvider) => {
       ],
       format: 'json',
     },
-  });
-
-  ['product', 'alldom'].forEach((stateType) => {
-    // Clone state before using it as it will be modified by UI Router
-    $stateProvider.state(`app.domain.${stateType}.dnssec`, clone(dnsSecState));
   });
 };
