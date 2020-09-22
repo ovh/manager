@@ -1,0 +1,17 @@
+@import '~@ovh-ux/ui-kit/dist/scss/_tokens';
+
+.ellipsis {
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.big-number {
+  display: block;
+  line-height: $uranus-line-height;
+  letter-spacing: $uranus-letter-spacing;
+  font-weight: $uranus-font-weight;
+  font-size: $uranus-font-size;
+  color: $p-800;
+  margin: 0 0 16px;
+}

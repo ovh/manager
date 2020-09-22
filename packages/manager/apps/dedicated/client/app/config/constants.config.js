@@ -1169,7 +1169,8 @@ const constants = {
             'https://us.ovhcloud.com/enterprise/products/hosted-private-cloud/vrops/',
         },
         presentations: {
-          home: 'https://us.ovhcloud.com/enterprise/products/hosted-private-cloud/',
+          home:
+            'https://us.ovhcloud.com/enterprise/products/hosted-private-cloud/',
           nsx:
             'https://us.ovhcloud.com/enterprise/products/hosted-private-cloud/nsx-datacenter-vsphere/',
           veeam:

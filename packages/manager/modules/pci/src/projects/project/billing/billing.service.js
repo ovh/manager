@@ -277,6 +277,18 @@ export default class CloudProjectBillingService {
     this.initResourceUsage('loadbalancer', 'loadBalancer');
   }
 
+  initServing() {
+    this.initResourceUsage('ai-serving-engine', 'serving');
+  }
+
+  initTraining() {
+    this.initResourceUsage('ai-training', 'training');
+  }
+
+  initDataprocessing() {
+    this.initResourceUsage('data-processing-job', 'dataProcessing');
+  }
+
   getConsumptionDetails(hourlyBillingInfo, monthlyBillingInfo) {
     return this.getDataInitialized().then(() => {
       this.data.hourlyBilling = hourlyBillingInfo;
@@ -293,6 +305,9 @@ export default class CloudProjectBillingService {
           this.initInstanceBandwidth(),
           this.initPrivateRegistry(),
           this.initLoadBalancer(),
+          this.initServing(),
+          this.initTraining(),
+          this.initDataprocessing(),
         ])
         .then(() => {
           this.data.totals.monthly.total = this.constructor.roundNumber(
@@ -307,7 +322,10 @@ export default class CloudProjectBillingService {
               this.data.totals.hourly.volume +
               this.data.totals.hourly.bandwidth +
               this.data.totals.hourly.privateRegistry +
-              this.data.totals.hourly.loadBalancer,
+              this.data.totals.hourly.loadBalancer +
+              this.data.totals.hourly.serving +
+              this.data.totals.hourly.training +
+              this.data.totals.hourly.dataProcessing,
             2,
           );
           this.data.totals.total = this.constructor.roundNumber(
