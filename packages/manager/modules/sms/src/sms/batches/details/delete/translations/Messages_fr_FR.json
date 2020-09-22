@@ -1,0 +1,12 @@
+{
+  "sms_batches_history_details_delete_title": "Confirmation",
+  "sms_batches_history_details_delete_question": "Êtes-vous sûr de vouloir supprimer le SMS affiché ci-dessous ?",
+  "sms_batches_history_details_delete_remove_ko": "Impossible de supprimer le SMS. {{error}}",
+  "sms_batches_history_details_delete_date": "Date",
+  "sms_batches_history_details_delete_sender": "Expéditeur",
+  "sms_batches_history_details_delete_receiver": "Destinataire",
+  "sms_batches_history_details_delete_destination": "Destination",
+  "sms_batches_history_details_delete_message": "Message",
+  "sms_batches_history_details_delete_error": "Une erreur est survenue lors de la suppression du SMS: {{error}}",
+  "sms_batches_history_details_delete_success": "Le SMS a été supprimé"
+}
