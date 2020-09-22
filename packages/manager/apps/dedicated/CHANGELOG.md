@@ -1,3 +1,12 @@
+## [13.2.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@13.2.10...@ovh-ux/manager-dedicated@13.2.11) (2020-09-22)
+
+
+### Bug Fixes
+
+* **payment:** remove restriction on payment method deletion ([#3670](https://github.com/ovh/manager/issues/3670)) ([ed741e3](https://github.com/ovh/manager/commit/ed741e3cf87b8e48b439fe09f1c3449f337d6714))
+
+
+
 ## [13.2.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@13.2.9...@ovh-ux/manager-dedicated@13.2.10) (2020-09-21)
 
 
