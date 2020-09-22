@@ -25,6 +25,8 @@ const commonResolves = {
 
   isStart10mAvailable: /* @ngInject */ (start10mOffers) =>
     !isEmpty(start10mOffers),
+
+  breadcrumb: () => null,
 };
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -54,6 +56,12 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
+
+      emailObfuscationLink: /* @ngInject */ ($state, domainName) =>
+        $state.href('app.domain.product.emailObfuscation', {
+          productId: domainName,
+        }),
+
       enableWebhostingLink: /* @ngInject */ ($state, domainName) =>
         $state.href('app.domain.product.information.enable-webhosting', {
           productId: domainName,
@@ -92,6 +100,12 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
+
+      emailObfuscationLink: /* @ngInject */ ($state, allDom, domainName) =>
+        $state.href('app.alldom.domain.emailObfuscation', {
+          allDom,
+          productId: domainName,
+        }),
       enableWebhostingLink: /* @ngInject */ ($state, allDom, domainName) =>
         $state.href('app.alldom.domain.information.enable-webhosting', {
           allDom,
