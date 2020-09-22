@@ -1,3 +1,12 @@
+## [5.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.1.2...@ovh-ux/manager-pci@5.1.3) (2020-09-22)
+
+
+### Bug Fixes
+
+* **project.new:** redirect to project list if error in summary ([#3666](https://github.com/ovh/manager/issues/3666)) ([e204903](https://github.com/ovh/manager/commit/e204903a41dd2f79c2f1ba5146be3a07dd7866b6))
+
+
+
 ## [5.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.1.1...@ovh-ux/manager-pci@5.1.2) (2020-09-21)
 
 
