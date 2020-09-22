@@ -6,5 +6,9 @@ export default /* @ngInject */ ($stateProvider) => {
     template,
     controller: 'SharepointTasksCtrl',
     controllerAs: 'taskCtrl',
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('sharepoint_task'),
+    },
   });
 };

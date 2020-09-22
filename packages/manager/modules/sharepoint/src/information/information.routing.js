@@ -6,5 +6,8 @@ export default /* @ngInject */ ($stateProvider) => {
     template,
     controller: 'SharepointInformationsCtrl',
     controllerAs: 'informationsCtrl',
+    resolve: {
+      breadcrumb: () => null,
+    },
   });
 };

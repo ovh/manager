@@ -6,5 +6,9 @@ export default /* @ngInject */ ($stateProvider) => {
     template,
     controller: 'SharepointAccountsCtrl',
     controllerAs: '$ctrl',
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('sharepoint_account'),
+    },
   });
 };

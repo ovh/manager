@@ -19,6 +19,7 @@ export default /* @ngInject */ ($stateProvider) => {
         configurationSelected: true,
       });
     },
+    hideBreadcrumb: () => true,
   };
 
   $stateProvider.state(`${routeBase}.order`, {
@@ -48,6 +49,8 @@ export default /* @ngInject */ ($stateProvider) => {
       ...resolve,
       exchangeId: /* @ngInject */ ($transition$) =>
         $transition$.params().exchangeId,
+      serviceName: /* @ngInject */ ($transition$) =>
+        $transition$.params().productId,
       informationLink: /* @ngInject */ ($state, $transition$) =>
         $state.href('sharepoint.product.information', $transition$.params()),
       accountLink: /* @ngInject */ ($state, $transition$) =>
@@ -66,6 +69,7 @@ export default /* @ngInject */ ($stateProvider) => {
         MicrosoftSharepointLicenseService.getAssociatedExchangeService(
           exchangeId,
         ).catch(() => null),
+      breadcrumb: /* @ngInject */ (serviceName) => serviceName,
     },
   });
 

@@ -28,6 +28,7 @@ export default /* @ngInject */ ($stateProvider) => {
           exchangeId,
           productId,
         }),
+      hideBreadcrumb: () => true,
     },
   });
 };
