@@ -3,6 +3,7 @@ import generalInformationsState from '../general-informations/domain-general-inf
 
 import anycast from '../anycast';
 import dns from '../dns/dns.module';
+import dynhost from '../dynhost/dynhost.module';
 import emailObfuscation from '../email-obfuscation/index';
 import optin from '../optin/index';
 import redirection from '../redirection/redirection.module';
@@ -21,6 +22,7 @@ angular
     anycast,
     dns,
     dnsZone,
+    dynhost,
     emailObfuscation,
     optin,
     ovhManagerAdvices,
