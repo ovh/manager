@@ -375,13 +375,11 @@
                     data-ng-if="$ctrl.canObfuscateEmails"
                 >
                     <oui-tile-description>
-                        <oui-button
-                            data-on-click="$ctrl.$state.go('^.emailObfuscation', $ctrl.$stateParams)"
-                        >
-                            <span
-                                data-translate="domain_dashboard_obfuscated_email_regenerate_button"
-                            ></span>
-                        </oui-button>
+                        <a
+                            data-ng-href="{{ $ctrl.emailObfuscationLink }}"
+                            class="oui-button oui-button_secondary"
+                            data-translate="domain_dashboard_obfuscated_email_regenerate_button"
+                        ></a>
                     </oui-tile-description>
                 </oui-tile-definition>
             </oui-tile>
