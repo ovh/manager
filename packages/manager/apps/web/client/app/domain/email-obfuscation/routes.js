@@ -4,6 +4,10 @@ export default /* @ngInject */ ($stateProvider) => {
     views: {
       domainView: 'domainEmailObfuscation',
     },
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('domain_email_obfuscation_back_button'),
+    },
   };
 
   $stateProvider.state('app.domain.product.emailObfuscation', { ...state });

@@ -11,6 +11,10 @@ const state = {
   atInternet: {
     rename: 'DYNHOST',
   },
+  resolve: {
+    breadcrumb: /* @ngInject */ ($translate) =>
+      $translate.instant('domain_dynhost'),
+  },
 };
 
 export default /* @ngInject */ ($stateProvider) => {

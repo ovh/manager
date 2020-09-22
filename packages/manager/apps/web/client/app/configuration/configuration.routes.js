@@ -15,6 +15,7 @@ angular.module('App').config(($stateProvider) => {
           });
         },
       ],
+      hideBreadcrumb: () => true,
     },
   });
 });

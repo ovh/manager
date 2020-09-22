@@ -11,6 +11,10 @@ const state = {
   atInternet: {
     rename: 'GLUE',
   },
+  resolve: {
+    breadcrumb: /* @ngInject */ ($translate) =>
+      $translate.instant('domain_glue'),
+  },
 };
 
 export default /* @ngInject */ ($stateProvider) => {
