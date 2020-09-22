@@ -231,6 +231,50 @@
         </oui-spinner>
     </div>
 
+    <div
+        class="mt-3"
+        data-ng-if="$ctrl.displayListOfBuildings && $ctrl.displayResult"
+    >
+        <div data-translate="pack_move_eligibility_buildings_available"></div>
+        <oui-datagrid rows="$ctrl.buildings">
+            <oui-datagrid-column
+                data-title="'pack_move_eligibility_building_name' | translate"
+                data-property="name"
+                type="string"
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="'pack_move_eligibility_building_reference' | translate"
+                data-property="reference"
+                type="string"
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="'pack_move_eligibility_building_nro' | translate"
+                data-property="nro"
+                type="string"
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="'pack_move_eligibility_building_type' | translate"
+                data-property="type"
+                type="string"
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="'pack_move_eligibility_building_actions' | translate"
+            >
+                <oui-button
+                    data-variant="primary"
+                    data-on-click="$ctrl.testBuilding($row)"
+                    ><span
+                        data-translate="pack_move_eligibility_building_select_building"
+                    ></span>
+                </oui-button>
+            </oui-datagrid-column>
+        </oui-datagrid>
+    </div>
+
     <div data-ng-if="$ctrl.isAvailableLine && $ctrl.displayResult">
         <!-- Display datagrid with availables lines-->
         <div

@@ -5,7 +5,6 @@ export default {
   bindings: {
     offers: '=?',
     offersChange: '&',
-    submited: '&',
     method: '=?',
     packName: '<',
   },

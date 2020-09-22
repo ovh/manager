@@ -177,9 +177,9 @@ export default class {
   }
 
   /**
-   * Fiber eligibility by address
+   * Retrieve buildings for the address
    */
-  fiberEligibilityByAddress() {
+  searchBuildings() {
     return this.OvhApiConnectivityEligibilitySearch.v6()
       .searchBuildings(this.$scope, {
         streetCode: this.address.street.streetCode,
@@ -187,22 +187,80 @@ export default class {
       })
       .then((data) => {
         if (data.result.length > 0) {
-          // Do an eligibility test on a building (fiber only)
-          const buildings = data.result;
-          const buildingsEligible = [];
-          buildings.forEach((building, index) => {
-            this.OvhApiConnectivityEligibility.v6()
-              .testBuilding(this.$scope, {
-                building: building.reference,
-                index,
-              })
-              .then((elig) => {
-                return buildingsEligible.push(elig);
-              });
-          });
-          return buildingsEligible;
+          return data.result;
         }
         return null;
+      })
+      .catch((error) => {
+        this.loading = false;
+        this.TucToast.error(error);
+      });
+  }
+
+  /**
+   * Select building from the list
+   * @param {*} building
+   */
+  testBuilding(building) {
+    return this.testFiberEligibility(building.reference).then(() => {
+      this.displayListOfBuildings = false;
+
+      // Copper result
+      if (this.copper.isAvailableLines) {
+        // Display inactive lines found for this address
+        this.availableLines = this.copper.result;
+        this.isAvailableLine = true;
+        this.displayResult = true;
+        this.displaySearchResult = true;
+        this.displaySearch = false;
+        this.loading = false;
+      } else {
+        this.sendLineOffers(
+          this.copper,
+          this.fiber,
+          'address',
+          ELIGIBILITY_LINE_STATUS.create,
+        );
+        this.displayResult = true;
+        this.displaySearchResult = true;
+        this.displaySearch = false;
+        this.loading = false;
+      }
+    });
+  }
+
+  /**
+   * Fiber eligibility by building
+   */
+  testFiberEligibility(buildingRef) {
+    return this.OvhApiConnectivityEligibility.v6()
+      .testBuilding(this.$scope, {
+        building: buildingRef,
+      })
+      .then((elig) => {
+        if (elig.result) {
+          const fiber = elig.result;
+          this.fiber = {
+            eligibilityReferenceFiber: fiber.eligibilityReference,
+            fiberInfo: fiber.endpoint.fiberInfo,
+            referenceFiber: fiber.endpoint.reference,
+            referenceTypeFiber: fiber.endpoint.referenceType,
+            addressFiber: fiber.endpoint.address,
+          };
+
+          // Fiber offers
+          const fiberOffers = fiber.offers.filter(
+            (offer) => offer.eligibility.eligible === true,
+          );
+          if (fiberOffers.length > 0) {
+            this.fiber.offers = fiberOffers;
+            this.isFiberOffers = true;
+          } else {
+            this.isFiberOffers = false;
+          }
+        }
+
+        return elig;
       })
       .catch((error) => {
         this.loading = false;
@@ -220,103 +278,61 @@ export default class {
   submitAddress() {
     this.displayResult = false;
     this.availableLines = null;
+    this.buildings = null;
     this.loading = true;
     this.fiber = null;
-    this.submited();
 
     this.offersChange({
       OFFERS: [],
     });
 
-    this.fiberEligibilityByAddress().then((fibers) => {
-      this.copperEligibilityByAddress().then((copper) => {
-        if (fibers && fibers.length > 0) {
-          this.checkFiberResult(fibers);
-        } else {
-          this.isFiberOffers = false;
+    this.copperEligibilityByAddress().then((copper) => {
+      this.searchBuildings().then((buildings) => {
+        if (buildings) {
+          if (buildings.length === 1) {
+            // Eligibility fiber
+            const [building] = buildings;
+            this.testFiberEligibility(building.reference);
+          } else {
+            // Display buildings list
+            this.buildings = buildings;
+          }
         }
 
-        // Cooper result
-        if (copper.isAvailableLines) {
-          // Display inactive lines found for this address
-          this.availableLines = copper.result;
-          this.isAvailableLine = true;
+        if (this.buildings && this.buildings.length > 0) {
+          this.copper = copper;
+          this.displayListOfBuildings = true;
+          this.loading = false;
+          this.displaySearch = false;
           this.displayResult = true;
           this.displaySearchResult = true;
-          this.displaySearch = false;
-          this.loading = false;
         } else {
-          this.sendLineOffers(
-            copper,
-            this.fiber,
-            'address',
-            ELIGIBILITY_LINE_STATUS.create,
-          );
-          this.displayResult = true;
-          this.displaySearchResult = true;
-          this.displaySearch = false;
-          this.loading = false;
+          this.displayListOfBuildings = false;
+
+          // Copper result
+          if (copper.isAvailableLines) {
+            // Display inactive lines found for this address
+            this.availableLines = copper.result;
+            this.isAvailableLine = true;
+            this.displayResult = true;
+            this.displaySearchResult = true;
+            this.displaySearch = false;
+            this.loading = false;
+          } else {
+            this.sendLineOffers(
+              copper,
+              this.fiber,
+              'address',
+              ELIGIBILITY_LINE_STATUS.create,
+            );
+            this.displayResult = true;
+            this.displaySearchResult = true;
+            this.displaySearch = false;
+            this.loading = false;
+          }
         }
       });
     });
-  }
-
-  checkFiberResult(fibers) {
-    if (fibers.length === 1) {
-      const [fiber] = fibers;
-      this.fiber = {
-        eligibilityReferenceFiber: fiber.result.eligibilityReference,
-        fiberInfo: fiber.result.endpoint.fiberInfo,
-        referenceFiber: fiber.result.endpoint.reference,
-        referenceTypeFiber: fiber.result.endpoint.referenceType,
-        addressFiber: fiber.result.endpoint.address,
-      };
-
-      // Fiber result
-      const fiberOffers = fiber.result.offers.filter(
-        (offer) => offer.eligibility.eligible === true,
-      );
-      if (fiberOffers.length > 0) {
-        this.fiber.offers = fiberOffers;
-        this.isFiberOffers = true;
-      } else {
-        this.isFiberOffers = false;
-      }
-    } else {
-      // Search offers eligible to fiber
-      fibers.forEach((fiber) => {
-        // Fiber result
-        const fiberOffers = fiber.result.offers.filter(
-          (offer) => offer.eligibility.eligible === true,
-        );
-        if (fiberOffers.length > 0) {
-          this.fiber = {
-            eligibilityReferenceFiber: fiber.result.eligibilityReference,
-            fiberInfo: fiber.result.endpoint.fiberInfo,
-            referenceFiber: fiber.result.endpoint.reference,
-            referenceTypeFiber: fiber.result.endpoint.referenceType,
-            addressFiber: fiber.result.endpoint.address,
-          };
-          this.fiber.offers = fiberOffers;
-          this.isFiberOffers = true;
-        }
-        return fiber;
-      });
-
-      // There is no offers eligible to fiber but there are fiber infos,
-      // initialize fiber with first value from table
-      if (!this.fiber) {
-        const [fiber] = fibers;
-        this.fiber = {
-          eligibilityReferenceFiber: fiber.result.eligibilityReference,
-          fiberInfo: fiber.result.endpoint.fiberInfo,
-          referenceFiber: fiber.result.endpoint.reference,
-          referenceTypeFiber: fiber.result.endpoint.referenceType,
-          addressFiber: fiber.result.endpoint.address,
-        };
-        this.isFiberOffers = false;
-      }
-    }
   }
 
   /**
