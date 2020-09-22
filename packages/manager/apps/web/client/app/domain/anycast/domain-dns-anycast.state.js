@@ -1,4 +1,4 @@
-export default {
+const state = {
   url: '/dns-anycast',
   views: {
     domainView: {
@@ -15,4 +15,9 @@ export default {
       }
     },
   },
+};
+
+export default /* @ngInject */ ($stateProvider) => {
+  $stateProvider.state('app.domain.product.anycast', { ...state });
+  $stateProvider.state('app.alldom.domain.anycast', { ...state });
 };
