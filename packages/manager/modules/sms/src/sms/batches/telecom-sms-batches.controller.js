@@ -17,7 +17,7 @@ export default class {
         name: 'statistics_history',
         main: true,
         picto: 'ovh-font-SMSEmitting',
-        sref: 'sms.service.batches.statistics',
+        sref: 'sms.service.batches.history',
         text: this.$translate.instant('sms_batches_statistics_history'),
       },
       {
