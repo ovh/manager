@@ -133,8 +133,7 @@
             </oui-header-tabs-item>
             <oui-header-tabs-item
                 data-ng-if="ctrlDomain.isEmailDomainTabAvailable"
-                data-href="{{ '#/configuration/email-domain/' + ctrlDomain.domain.name + '?tab=MAILING_LIST' }}"
-                data-state-params="ctrlDomain.$stateParams"
+                data-href="{{ '#/email_domain/' + ctrlDomain.domain.name + '/mailing-list' }}"
                 ><span data-translate="hosting_tab_menu_emails"></span>
             </oui-header-tabs-item>
         </oui-header-tabs>
