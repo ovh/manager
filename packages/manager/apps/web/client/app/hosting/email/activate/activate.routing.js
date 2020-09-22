@@ -25,6 +25,8 @@ export default /* @ngInject */ ($stateProvider) => {
               ),
             ),
           ),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('hosting_email_address_activate_title'),
     },
   });
 };

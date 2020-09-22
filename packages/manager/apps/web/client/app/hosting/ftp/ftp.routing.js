@@ -5,5 +5,9 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/ftp',
     controller: 'HostingTabFTPCtrl',
     template,
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('hosting_ftp'),
+    },
   });
 };

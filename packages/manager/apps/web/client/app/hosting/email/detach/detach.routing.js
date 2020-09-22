@@ -62,7 +62,8 @@ export default /* @ngInject */ ($stateProvider) => {
           Alerter.success(successMessage, 'app.alerts.tabs');
         });
       },
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('hosting_email_detach_option_title'),
     },
-    translations: { value: ['./'], format: 'json' },
   });
 };

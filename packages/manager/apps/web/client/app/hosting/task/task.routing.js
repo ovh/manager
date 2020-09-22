@@ -5,5 +5,9 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/task',
     controller: 'HostingTabTasksCtrl',
     template,
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('hosting_tasks'),
+    },
   });
 };

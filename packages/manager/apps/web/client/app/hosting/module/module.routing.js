@@ -5,5 +5,9 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/module',
     controller: 'HostingTabModulesController',
     template,
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('hosting_module'),
+    },
   });
 };

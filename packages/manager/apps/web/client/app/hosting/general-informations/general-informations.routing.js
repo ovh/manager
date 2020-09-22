@@ -6,5 +6,8 @@ export default /* @ngInject */ ($stateProvider) => {
     controller: 'hostingGeneralInformationsCtrl',
     controllerAs: '$ctrl',
     template,
+    resolve: {
+      breadcrumb: () => null,
+    },
   });
 };

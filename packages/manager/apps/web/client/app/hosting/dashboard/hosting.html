@@ -143,123 +143,121 @@
             </div>
         </div>
     </div>
-    <div class="oui-header__tabs">
-        <oui-header-tabs>
-            <oui-header-tabs-item
-                href="{{ $ctrl.generalInformationLink }}"
-                active="$ctrl.currentActiveLink() === $ctrl.generalInformationLink"
-            >
-                <span data-translate="hosting_tab_GENERAL_INFORMATIONS"></span>
-            </oui-header-tabs-item>
-            <oui-header-tabs-item
-                href="{{ $ctrl.multisiteLink }}"
-                active="$ctrl.currentActiveLink() === $ctrl.multisiteLink"
-            >
-                <span data-translate="hosting_tab_MULTISITE"></span>
-            </oui-header-tabs-item>
-            <oui-header-tabs-item
-                href="{{ $ctrl.moduleLink }}"
-                active="$ctrl.currentActiveLink() === $ctrl.moduleLink"
-            >
-                <span data-translate="hosting_tab_MODULE"></span>
-            </oui-header-tabs-item>
-            <oui-header-tabs-item
+    <oui-header-tabs>
+        <oui-header-tabs-item
+            href="{{ $ctrl.generalInformationLink }}"
+            active="$ctrl.currentActiveLink() === $ctrl.generalInformationLink"
+        >
+            <span data-translate="hosting_tab_GENERAL_INFORMATIONS"></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            href="{{ $ctrl.multisiteLink }}"
+            active="$ctrl.currentActiveLink() === $ctrl.multisiteLink"
+        >
+            <span data-translate="hosting_tab_MULTISITE"></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            href="{{ $ctrl.moduleLink }}"
+            active="$ctrl.currentActiveLink() === $ctrl.moduleLink"
+        >
+            <span data-translate="hosting_tab_MODULE"></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
             href="{{ $ctrl.userLogsLink }}"
             active="$ctrl.currentActiveLink() === $ctrl.userLogsLink"
         >
             <span data-translate="hosting_tab_USER_LOGS"></span>
         </oui-header-tabs-item>
+        <oui-header-tabs-item
+            href="{{ $ctrl.ftpLink }}"
+            active="$ctrl.currentActiveLink() === $ctrl.ftpLink"
+        >
+            <span data-translate="hosting_tab_FTP"></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            href="{{ $ctrl.databaseLink }}"
+            active="$ctrl.currentActiveLink() === $ctrl.databaseLink"
+        >
+            <span data-translate="hosting_tab_DATABASE"></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            href="{{ $ctrl.taskLink }}"
+            active="$ctrl.currentActiveLink() === $ctrl.taskLink"
+        >
+            <span data-translate="hosting_tab_TASK"></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-ng-if="hosting.isCloudWeb"
+            href="{{ $ctrl.runtimesLink }}"
+            active="$ctrl.currentActiveLink() === $ctrl.runtimesLink"
+        >
+            <span data-translate="hosting_tab_RUNTIMES"></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-ng-if="hosting.isCloudWeb"
+            href="{{ $ctrl.envvarsLink }}"
+            active="$ctrl.currentActiveLink() === $ctrl.envvarsLink"
+        >
+            <span data-translate="hosting_tab_ENVVARS"></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-dropdown data-text="{{:: $ctrl.tabMenu.title }}">
             <oui-header-tabs-item
-                href="{{ $ctrl.ftpLink }}"
-                active="$ctrl.currentActiveLink() === $ctrl.ftpLink"
+                href="{{ $ctrl.automatedEmailsLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.automatedEmailsLink"
             >
-                <span data-translate="hosting_tab_FTP"></span>
+                <span data-translate="hosting_tab_AUTOMATED_EMAILS"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
-                href="{{ $ctrl.databaseLink }}"
-                active="$ctrl.currentActiveLink() === $ctrl.databaseLink"
+                href="{{ $ctrl.cronLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.cronLink"
             >
-                <span data-translate="hosting_tab_DATABASE"></span>
+                <span data-translate="hosting_tab_CRON"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
-                href="{{ $ctrl.taskLink }}"
-                active="$ctrl.currentActiveLink() === $ctrl.taskLink"
+                data-ng-if="$ctrl.isLocalSeoAvailable"
+                href="{{ $ctrl.localSEOLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.localSEOLink"
             >
-                <span data-translate="hosting_tab_TASK"></span>
+                <span data-translate="hosting_tab_LOCAL_SEO"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
-                data-ng-if="hosting.isCloudWeb"
-                href="{{ $ctrl.runtimesLink }}"
-                active="$ctrl.currentActiveLink() === $ctrl.runtimesLink"
+                data-ng-if="!$ctrl.hosting.isCloudWeb"
+                href="{{ $ctrl.boostLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.boostLink"
             >
-                <span data-translate="hosting_tab_RUNTIMES"></span>
+                <span data-translate="hosting_tab_BOOST"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
-                data-ng-if="hosting.isCloudWeb"
-                href="{{ $ctrl.envvarsLink }}"
-                active="$ctrl.currentActiveLink() === $ctrl.envvarsLink"
+                data-ng-if="$ctrl.indys.length > 0"
+                href="{{ $ctrl.indyLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.indyLink"
             >
-                <span data-translate="hosting_tab_ENVVARS"></span>
+                <span data-translate="hosting_tab_INDY"></span>
             </oui-header-tabs-item>
-            <oui-header-tabs-dropdown data-text="{{:: $ctrl.tabMenu.title }}">
-                <oui-header-tabs-item
-                    href="{{ $ctrl.automatedEmailsLink }}"
-                    active="$ctrl.currentActiveLink() === $ctrl.automatedEmailsLink"
-                >
-                    <span data-translate="hosting_tab_AUTOMATED_EMAILS"></span>
-                </oui-header-tabs-item>
-                <oui-header-tabs-item
-                    href="{{ $ctrl.cronLink }}"
-                    active="$ctrl.currentActiveLink() === $ctrl.cronLink"
-                >
-                    <span data-translate="hosting_tab_CRON"></span>
-                </oui-header-tabs-item>
-                <oui-header-tabs-item
-                    data-ng-if="$ctrl.isLocalSeoAvailable"
-                    href="{{ $ctrl.localSEOLink }}"
-                    active="$ctrl.currentActiveLink() === $ctrl.localSEOLink"
-                >
-                    <span data-translate="hosting_tab_LOCAL_SEO"></span>
-                </oui-header-tabs-item>
-                <oui-header-tabs-item
-                    data-ng-if="!$ctrl.hosting.isCloudWeb"
-                    href="{{ $ctrl.boostLink }}"
-                    active="$ctrl.currentActiveLink() === $ctrl.boostLink"
-                >
-                    <span data-translate="hosting_tab_BOOST"></span>
-                </oui-header-tabs-item>
-                <oui-header-tabs-item
-                    data-ng-if="$ctrl.indys.length > 0"
-                    href="{{ $ctrl.indyLink }}"
-                    active="$ctrl.currentActiveLink() === $ctrl.indyLink"
-                >
-                    <span data-translate="hosting_tab_INDY"></span>
-                </oui-header-tabs-item>
-                <oui-header-tabs-item
-                    data-ng-if="$ctrl.freedoms.length > 0"
-                    href="{{ $ctrl.freedomLink }}"
-                    active="$ctrl.currentActiveLink() === $ctrl.freedomLink"
-                ></oui-header-tabs-item>
-                <oui-header-tabs-item
-                    data-ng-if="$ctrl.isWebCoachAvailable"
-                    href="{{ $ctrl.websiteCoachLink }}"
-                    active="$ctrl.currentActiveLink() === $ctrl.websiteCoachLink"
-                >
-                    <span data-translate="hosting_tab_WEBSITE_COACH"></span>
-                </oui-header-tabs-item>
-                <oui-header-tabs-divider
-                    data-ng-if="!$ctrl.hosting.isCloudWeb && $ctrl.isEmailDomainAvailable"
-                ></oui-header-tabs-divider>
-                <oui-header-tabs-item
-                    data-ng-if="!$ctrl.hosting.isCloudWeb && $ctrl.isEmailDomainAvailable"
-                    href="{{ $ctrl.emailLink }}"
-                    active="$ctrl.currentActiveLink() === $ctrl.emailLink"
-                >
-                    <span data-translate="hosting_tab_menu_emails"></span>
-                </oui-header-tabs-item>
-            </oui-header-tabs-dropdown>
-        </oui-header-tabs>
-    </div>
+            <oui-header-tabs-item
+                data-ng-if="$ctrl.freedoms.length > 0"
+                href="{{ $ctrl.freedomLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.freedomLink"
+            ></oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-ng-if="$ctrl.isWebCoachAvailable"
+                href="{{ $ctrl.websiteCoachLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.websiteCoachLink"
+            >
+                <span data-translate="hosting_tab_WEBSITE_COACH"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-divider
+                data-ng-if="!$ctrl.hosting.isCloudWeb && $ctrl.isEmailDomainAvailable"
+            ></oui-header-tabs-divider>
+            <oui-header-tabs-item
+                data-ng-if="!$ctrl.hosting.isCloudWeb && $ctrl.isEmailDomainAvailable"
+                href="{{ $ctrl.emailLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.emailLink"
+            >
+                <span data-translate="hosting_tab_menu_emails"></span>
+            </oui-header-tabs-item>
+        </oui-header-tabs-dropdown>
+    </oui-header-tabs>
 </div>
 
 <div class="p-5" data-ng-if="!loadingHostingInformations && hosting.isExpired">

@@ -126,12 +126,12 @@ export default /* @ngInject */ ($stateProvider) => {
         HostingDatabaseOrderPrivateService,
       ) => () => HostingDatabaseOrderPrivateService.resetOrderCart(cartId),
 
-      serviceName: /* @ngInject */ ($transition$) =>
-        $transition$.params().productId,
-
       /* @ngInject */
       services: (HostingDatabaseOrderPrivateService) =>
         HostingDatabaseOrderPrivateService.getServices(),
+
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('hosting_database_order_private_title'),
     },
   });
 };

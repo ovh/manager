@@ -6,8 +6,8 @@ import routing from './user-logs.routing';
 const moduleName = 'ovhManagerHostingUserLogs';
 
 angular
-  .module(moduleName, ['pascalprecht.translate'])
-  .run(/* @ngTranslationsInject:json ./translations */)
-  .config(routing);
+  .module(moduleName, [])
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

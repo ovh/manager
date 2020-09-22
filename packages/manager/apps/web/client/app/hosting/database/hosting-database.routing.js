@@ -5,6 +5,10 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/database',
     template,
     controller: 'HostingTabDatabasesCtrl',
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('hosting_database'),
+    },
   });
 
   $stateProvider.state('app.hosting.dashboard.database.dashboard', {
@@ -13,6 +17,7 @@ export default /* @ngInject */ ($stateProvider) => {
     redirectTo: 'app.hosting.dashboard.database',
     resolve: {
       name: /* @ngInject */ ($transition$) => $transition$.params().name,
+      breadcrumb: /* @ngInject */ (name) => name,
     },
   });
 };

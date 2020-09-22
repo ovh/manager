@@ -7,5 +7,9 @@ export default /* @ngInject */ ($stateProvider) => {
     template,
     controller,
     controllerAs: 'ctrl',
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('hosting_user_logs'),
+    },
   });
 };

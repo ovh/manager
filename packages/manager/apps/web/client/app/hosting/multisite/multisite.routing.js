@@ -5,5 +5,9 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/multisite',
     controller: 'HostingTabDomainsCtrl',
     template,
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('hosting_multisite'),
+    },
   });
 };
