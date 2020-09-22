@@ -9,8 +9,20 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       goToUsers: /* @ngInject */ ($state) => () =>
         $state.go('app.private-database.dashboard.user.list'),
-      goToGrants: /* @ngInject */ ($state) => () =>
-        $state.go('app.private-database.dashboard.user.grants'),
+      goToGrants: /* @ngInject */ ($state) => (user) =>
+        $state.go('app.private-database.dashboard.user.dashboard.grants', {
+          userName: user.userName,
+        }),
+    },
+  });
+
+  $stateProvider.state('app.private-database.dashboard.user.dashboard', {
+    url: '/:userName',
+    template: '<div ui-view></div>',
+    redirectTo: 'app.private-database.dashboard.user',
+    resolve: {
+      userName: /* @ngInject */ ($transition$) =>
+        $transition$.params().userName,
     },
   });
 };

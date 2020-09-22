@@ -42,7 +42,7 @@ angular.module('App').controller(
 
       this.$scope.goToUsersByDb = (bdd) => {
         this.$scope.bdd = bdd;
-        this.goToUsers();
+        this.goToUsers(bdd);
       };
 
       this.$scope.goToList = () => {

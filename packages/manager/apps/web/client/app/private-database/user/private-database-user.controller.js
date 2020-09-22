@@ -13,7 +13,7 @@ angular.module('App').controller(
 
       this.$scope.goToGrants = (user) => {
         this.$scope.user = user;
-        this.goToGrants();
+        this.goToGrants(user);
       };
 
       this.$scope.goToList = () => {
