@@ -6,5 +6,9 @@ export default /* @ngInject */ ($stateProvider) => {
     template,
     controller: 'MicrosoftOfficeLicenseConsumptionCtrl',
     controllerAs: 'consumptionCtrl',
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('office_consumption'),
+    },
   });
 };
