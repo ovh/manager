@@ -14,6 +14,8 @@ const state = {
         $state.go('^');
       }
     },
+    breadcrumb: /* @ngInject */ ($translate) =>
+      $translate.instant('domain_anycast'),
   },
 };
 
