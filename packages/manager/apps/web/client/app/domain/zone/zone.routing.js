@@ -2,6 +2,10 @@ import controller from './domain-zone-dns.controller';
 import template from './domain-zone-dns.html';
 
 export default /* @ngInject */ ($stateProvider) => {
+  const commonResolve = {
+    breadcrumb: /* @ngInject */ ($translate) =>
+      $translate.instant('domain_zone'),
+  };
   $stateProvider.state('app.domain.product.zone', {
     url: '/zone',
     views: {
@@ -15,6 +19,7 @@ export default /* @ngInject */ ($stateProvider) => {
       rename: 'ZONE',
     },
     resolve: {
+      ...commonResolve,
       activateZone: /* @ngInject */ ($state) => () =>
         $state.go('app.domain.product.zone.activate'),
       orderZone: /* @ngInject */ ($state) => () =>
@@ -51,6 +56,7 @@ export default /* @ngInject */ ($stateProvider) => {
       rename: 'ZONE',
     },
     resolve: {
+      ...commonResolve,
       activateZone: /* @ngInject */ ($state) => () =>
         $state.go('app.alldom.domain.zone.activate'),
       orderZone: /* @ngInject */ ($state) => () =>

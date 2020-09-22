@@ -15,6 +15,7 @@ angular.module('App').config(($stateProvider, $urlRouterProvider) => {
           });
         },
       ],
+      hideBreadcrumb: () => true,
     },
     translations: { value: ['../domain', '../domains'], format: 'json' },
   });

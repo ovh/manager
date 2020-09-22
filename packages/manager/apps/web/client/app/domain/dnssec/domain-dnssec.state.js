@@ -12,6 +12,10 @@ const state = {
   atInternet: {
     rename: 'DNSSEC',
   },
+  resolve: {
+    breadcrumb: /* @ngInject */ ($translate) =>
+      $translate.instant('domain_dnssec'),
+  },
 };
 
 export default /* @ngInject */ ($stateProvider) => {

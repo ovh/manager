@@ -92,6 +92,8 @@ const resolve = {
               ),
         );
       }),
+  breadcrumb: /* @ngInject */ ($translate) =>
+    $translate.instant('domain_webhosting_order_title'),
 };
 
 export default /* @ngInject */ ($stateProvider) => {

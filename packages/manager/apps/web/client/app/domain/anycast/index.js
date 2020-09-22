@@ -6,6 +6,7 @@ const moduleName = 'domainAnycast';
 angular
   .module(moduleName, [])
   .component('domainAnycast', component)
-  .config(routing);
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
