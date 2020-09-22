@@ -14,13 +14,14 @@ export default /* @ngInject */ ($stateProvider) => {
       ) => TucToast.success(successMessage),
       getDashboardHref: /* @ngInject */ ($state) => () =>
         $state.href('sms.service.dashboard'),
-      getDetailsHref: /* @ngInject */ ($state) => (batchId) =>
-        $state.href('sms.service.batches.details', {
-          id: batchId,
-        }),
       goToCancelBatch: /* @ngInject */ ($state) => (batch) =>
         $state.go('sms.service.batches.history.cancel', {
           batch,
+        }),
+      goToDetails: /* @ngInject */ ($state) => (batch) =>
+        $state.go('sms.service.batches.details', {
+          batchId: batch.id,
+          previousState: 'sms.service.batches.history',
         }),
     },
     views: {
