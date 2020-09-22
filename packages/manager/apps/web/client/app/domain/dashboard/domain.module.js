@@ -5,6 +5,7 @@ import anycast from '../anycast';
 import dns from '../dns/dns.module';
 import emailObfuscation from '../email-obfuscation/index';
 import optin from '../optin/index';
+import redirection from '../redirection/redirection.module';
 import webhosting from '../webhosting';
 import webhostingEnable from '../general-informations/webhosting-enable/enable.module';
 import zoneActivation from '../general-informations/activateZone/activate.module';
@@ -23,6 +24,7 @@ angular
     emailObfuscation,
     optin,
     ovhManagerAdvices,
+    redirection,
     webhosting,
     webhostingEnable,
     zoneActivation,

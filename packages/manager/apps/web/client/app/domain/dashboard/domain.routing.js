@@ -2,7 +2,6 @@ import clone from 'lodash/clone';
 import isEmpty from 'lodash/isEmpty';
 
 import anycastState from '../anycast/domain-dns-anycast.state';
-import redirectionState from '../redirection/domain-redirection.state';
 import dynHostState from '../dynhost/domain-dynhost.state';
 import glueState from '../glue/domain-glue.state';
 import dnsSecState from '../dnssec/domain-dnssec.state';
@@ -144,10 +143,7 @@ export default /* @ngInject */ ($stateProvider) => {
       `app.domain.${stateType}.anycast`,
       clone(anycastState),
     );
-    $stateProvider.state(
-      `app.domain.${stateType}.redirection`,
-      clone(redirectionState),
-    );
+
     $stateProvider.state(
       `app.domain.${stateType}.dynhost`,
       clone(dynHostState),
