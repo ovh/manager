@@ -96,7 +96,7 @@
             ></span>
         </oui-datagrid-column>
         <oui-action-menu align="end" compact>
-            <oui-action-menu-item href="{{ $ctrl.getDetailsHref($row.id) }}">
+            <oui-action-menu-item on-click="$ctrl.goToDetails($row)">
                 <span data-translate="sms_batches_details"></span>
             </oui-action-menu-item>
             <oui-action-menu-item
