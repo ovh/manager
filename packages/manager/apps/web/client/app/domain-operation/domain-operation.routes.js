@@ -17,6 +17,7 @@ angular.module('App').config(($stateProvider, $urlRouterProvider) => {
           });
         },
       ],
+      hideBreadcrumb: () => true,
     },
     translations: {
       value: ['../domain', '../domain-operation'],
@@ -42,6 +43,7 @@ angular.module('App').config(($stateProvider, $urlRouterProvider) => {
           });
         },
       ],
+      hideBreadcrumb: () => true,
     },
     translations: {
       value: ['../domain', '../domain-operation'],

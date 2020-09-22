@@ -14,6 +14,10 @@ export default /* @ngInject */ ($stateProvider) => {
     atInternet: {
       rename: 'DNS',
     },
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('domain_dns'),
+    },
   };
 
   $stateProvider.state('app.domain.product.dns', { ...state });

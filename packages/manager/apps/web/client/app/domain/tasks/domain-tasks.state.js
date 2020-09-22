@@ -11,6 +11,10 @@ const state = {
   atInternet: {
     rename: 'TASKS',
   },
+  resolve: {
+    breadcrumb: /* @ngInject */ ($translate) =>
+      $translate.instant('domain_tasks'),
+  },
 };
 
 export default /* @ngInject */ ($stateProvider) => {

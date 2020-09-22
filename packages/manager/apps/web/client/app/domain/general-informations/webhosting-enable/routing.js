@@ -31,6 +31,8 @@ const commonResolves = {
       waiveRetractationPeriod: true,
     }),
   goBack: /* @ngInject */ (goToDashboard) => goToDashboard,
+  breadcrumb: /* @ngInject */ ($translate) =>
+    $translate.instant('domain_configuration_enable_web_hosting'),
 };
 
 export default /* @ngInject */ ($stateProvider) => {
