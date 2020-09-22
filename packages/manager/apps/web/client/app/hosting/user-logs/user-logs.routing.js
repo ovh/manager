@@ -5,5 +5,9 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/user-logs',
     template,
     controller: 'HostingTabUserLogsCtrl',
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('hosting_user_logs'),
+    },
   });
 };
