@@ -1,6 +1,7 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
 
+import details from './details';
 import history from './history';
 
 import cancelComponent from './cancel/telecom-sms-batches-cancel.component';
@@ -10,7 +11,7 @@ import routing from './routing';
 const moduleName = 'ovhManagerSmsBatchesModule';
 
 angular
-  .module(moduleName, [history])
+  .module(moduleName, [details, history])
   .component(cancelComponent.name, cancelComponent)
   .component(component.name, component)
   .config(routing)
