@@ -1,17 +1,15 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.domain.product.optin', {
+  const state = {
     url: '/optin',
     views: {
       domainView: 'domainOptin',
     },
-    translations: { value: ['.'], format: 'json' },
-  });
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('domain_optin_back_button'),
+    },
+  };
 
-  $stateProvider.state('app.alldom.domain.optin', {
-    url: '/optin',
-    views: {
-      domainView: 'domainOptin',
-    },
-    translations: { value: ['.'], format: 'json' },
-  });
+  $stateProvider.state('app.domain.product.optin', { ...state });
+  $stateProvider.state('app.alldom.domain.optin', { ...state });
 };
