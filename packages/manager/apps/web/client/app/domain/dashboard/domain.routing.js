@@ -2,7 +2,6 @@ import clone from 'lodash/clone';
 import isEmpty from 'lodash/isEmpty';
 
 import anycastState from '../anycast/domain-dns-anycast.state';
-import glueState from '../glue/domain-glue.state';
 import dnsSecState from '../dnssec/domain-dnssec.state';
 import tasksState from '../tasks/domain-tasks.state';
 
@@ -142,7 +141,6 @@ export default /* @ngInject */ ($stateProvider) => {
       `app.domain.${stateType}.anycast`,
       clone(anycastState),
     );
-    $stateProvider.state(`app.domain.${stateType}.glue`, clone(glueState));
     $stateProvider.state(`app.domain.${stateType}.dnssec`, clone(dnsSecState));
     $stateProvider.state(`app.domain.${stateType}.tasks`, clone(tasksState));
   });
