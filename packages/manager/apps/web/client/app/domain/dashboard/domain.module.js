@@ -1,6 +1,7 @@
 import generalInformationsState from '../general-informations/domain-general-informations.state';
 
 import anycast from '../anycast';
+import dns from '../dns/dns.module';
 import emailObfuscation from '../email-obfuscation/index';
 import optin from '../optin/index';
 import webhosting from '../webhosting';
@@ -16,6 +17,7 @@ const moduleName = 'ovhManagerWebDomainModule';
 angular
   .module(moduleName, [
     anycast,
+    dns,
     dnsZone,
     emailObfuscation,
     optin,
