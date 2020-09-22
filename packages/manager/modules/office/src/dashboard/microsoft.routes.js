@@ -19,12 +19,15 @@ export default /* @ngInject */ ($stateProvider) => {
           configurationSelected: true,
         });
       },
+      serviceName: /* @ngInject */ ($transition$) =>
+        $transition$.params().serviceName,
       userLink: /* @ngInject */ ($state, $transition$) =>
         $state.href('office.product.user', $transition$.params()),
       consumptionLink: /* @ngInject */ ($state, $transition$) =>
         $state.href('office.product.consumption', $transition$.params()),
       currentActiveLink: /* @ngInject */ ($state, $transition$) => () =>
         $state.href($state.current.name, $transition$.params()),
+      breadcrumb: /* @ngInject */ (serviceName) => serviceName,
     },
   });
 };
