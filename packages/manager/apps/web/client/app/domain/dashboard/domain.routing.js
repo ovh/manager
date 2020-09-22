@@ -3,7 +3,6 @@ import isEmpty from 'lodash/isEmpty';
 
 import anycastState from '../anycast/domain-dns-anycast.state';
 import dnsSecState from '../dnssec/domain-dnssec.state';
-import tasksState from '../tasks/domain-tasks.state';
 
 const commonResolves = {
   associatedHostings: /* @ngInject */ (Domain, domainName) =>
@@ -142,6 +141,5 @@ export default /* @ngInject */ ($stateProvider) => {
       clone(anycastState),
     );
     $stateProvider.state(`app.domain.${stateType}.dnssec`, clone(dnsSecState));
-    $stateProvider.state(`app.domain.${stateType}.tasks`, clone(tasksState));
   });
 };
