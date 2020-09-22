@@ -5,5 +5,9 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/automated-emails',
     template,
     controller: 'HostingTabAutomatedEmailsCtrl',
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('hosting_automated_emails'),
+    },
   });
 };

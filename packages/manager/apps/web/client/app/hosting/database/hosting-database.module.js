@@ -11,6 +11,7 @@ const moduleName = 'ovhManagerHostingDatabase';
 angular
   .module(moduleName, [detachPrivate, dump, orderPrivate, orderPublic])
   .config(routing)
-  .service('HostingDatabaseOrderPublicService', HostingDatabaseOrderPublic);
+  .service('HostingDatabaseOrderPublicService', HostingDatabaseOrderPublic)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
