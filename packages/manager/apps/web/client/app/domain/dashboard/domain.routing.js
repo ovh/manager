@@ -2,7 +2,6 @@ import clone from 'lodash/clone';
 import isEmpty from 'lodash/isEmpty';
 
 import anycastState from '../anycast/domain-dns-anycast.state';
-import dnsState from '../dns/domain-dns.state';
 import redirectionState from '../redirection/domain-redirection.state';
 import dynHostState from '../dynhost/domain-dynhost.state';
 import glueState from '../glue/domain-glue.state';
@@ -28,6 +27,7 @@ const commonResolves = {
           dynHost: false,
         }))
       : { dynHost: false },
+  breadcrumb: /* @ngInject */ (domainName) => domainName,
 };
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -144,7 +144,6 @@ export default /* @ngInject */ ($stateProvider) => {
       `app.domain.${stateType}.anycast`,
       clone(anycastState),
     );
-    $stateProvider.state(`app.domain.${stateType}.dns`, clone(dnsState));
     $stateProvider.state(
       `app.domain.${stateType}.redirection`,
       clone(redirectionState),
