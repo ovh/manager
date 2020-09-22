@@ -9,6 +9,7 @@ angular
   .module(moduleName, [])
   .component('domainEmailObfuscation', component)
   .controller('DomainEmailObfuscationCtrl', controller)
-  .config(routing);
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

@@ -1,11 +1,11 @@
 export default /* @ngInject */ ($stateProvider) => {
-  ['product', 'alldom'].forEach((stateType) => {
-    $stateProvider.state(`app.domain.${stateType}.emailObfuscation`, {
-      url: '/obfuscation',
-      views: {
-        domainView: 'domainEmailObfuscation',
-      },
-      translations: { value: ['.'], format: 'json' },
-    });
-  });
+  const state = {
+    url: '/obfuscation',
+    views: {
+      domainView: 'domainEmailObfuscation',
+    },
+  };
+
+  $stateProvider.state('app.domain.product.emailObfuscation', { ...state });
+  $stateProvider.state('app.alldom.domain.emailObfuscation', { ...state });
 };
