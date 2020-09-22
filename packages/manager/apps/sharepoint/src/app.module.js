@@ -25,7 +25,7 @@ angular
   )
   .config(
     /* @ngInject */ ($urlRouterProvider) =>
-      $urlRouterProvider.otherwise('/configuration/microsoft/sharepoint'),
+      $urlRouterProvider.otherwise('/sharepoint'),
   )
   .config(
     /* @ngInject */ ($stateProvider) => {

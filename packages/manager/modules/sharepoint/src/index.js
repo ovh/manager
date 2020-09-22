@@ -51,9 +51,9 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
       });
 
     $urlRouterProvider.when(
-      /^\/configuration\/sharepoint/,
+      /^\/configuration\/microsoft\/sharepoint/,
       /* @ngInject */ ($location) => {
-        $location.url($location.url().replace('/configuration', ''));
+        $location.url($location.url().replace('/configuration/microsoft', ''));
       },
     );
   },
