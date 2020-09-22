@@ -3,6 +3,7 @@ import generalInformationsState from '../general-informations/domain-general-inf
 
 import anycast from '../anycast';
 import dns from '../dns/dns.module';
+import dnssec from '../dnssec/dnssec.module';
 import dynhost from '../dynhost/dynhost.module';
 import emailObfuscation from '../email-obfuscation/index';
 import glue from '../glue/glue.module';
@@ -23,6 +24,7 @@ angular
   .module(moduleName, [
     anycast,
     dns,
+    dnssec,
     dnsZone,
     dynhost,
     emailObfuscation,

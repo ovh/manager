@@ -14,4 +14,7 @@ const state = {
   },
 };
 
-export default state;
+export default /* @ngInject */ ($stateProvider) => {
+  $stateProvider.state('app.domain.product.dnssec', { ...state });
+  $stateProvider.state('app.alldom.domain.dnssec', { ...state });
+};
