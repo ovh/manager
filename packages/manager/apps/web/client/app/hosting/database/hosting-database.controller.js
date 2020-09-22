@@ -210,7 +210,9 @@ angular.module('App').controller(
 
     restoreDump(database) {
       this.$scope.bdd = database;
-      this.$state.go('app.hosting.dashboard.database.dump');
+      this.$state.go('app.hosting.dashboard.database.dashboard.dump', {
+        name: database.name,
+      });
     }
 
     transformItem(id) {
