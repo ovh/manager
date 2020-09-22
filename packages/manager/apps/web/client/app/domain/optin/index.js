@@ -9,6 +9,7 @@ angular
   .module(moduleName, [])
   .component('domainOptin', component)
   .controller('DomainOptinCtrl', controller)
-  .config(routing);
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
