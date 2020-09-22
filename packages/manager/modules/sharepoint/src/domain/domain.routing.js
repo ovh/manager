@@ -6,5 +6,9 @@ export default /* @ngInject */ ($stateProvider) => {
     template,
     controller: 'SharepointDomainsCtrl',
     controllerAs: 'domainsCtrl',
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('sharepoint_domain'),
+    },
   });
 };
