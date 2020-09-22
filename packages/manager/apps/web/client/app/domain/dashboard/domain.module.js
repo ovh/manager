@@ -7,6 +7,7 @@ import emailObfuscation from '../email-obfuscation/index';
 import glue from '../glue/glue.module';
 import optin from '../optin/index';
 import redirection from '../redirection/redirection.module';
+import tasks from '../tasks/tasks.module';
 import webhosting from '../webhosting';
 import webhostingEnable from '../general-informations/webhosting-enable/enable.module';
 import zoneActivation from '../general-informations/activateZone/activate.module';
@@ -27,6 +28,7 @@ angular
     glue,
     optin,
     redirection,
+    tasks,
     webhosting,
     webhostingEnable,
     zoneActivation,
