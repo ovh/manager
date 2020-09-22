@@ -9,10 +9,10 @@
   "confirm_order_certification_question_1": "Vous êtes sur le point d’activer la certification <strong>{{itemName}}</strong>.",
 
   "confirm_order_question_monthly_adding": "Votre tarification mensuelle augmentera de <strong>{{price}}</strong>.",
-  "confirm_order_question_monthly_deducting": "Votre tarification mensuelle diminuera de <strong>{{price}}</strong>.",
+  "confirm_order_question_monthly_deducting": "Votre tarification mensuelle diminuera de <strong>{{ price }}</strong>.",
 
   "confirm_order_question_hourly_adding": "Votre tarification à l'heure augmentera de <strong>{{price}}</strong>.",
-  "confirm_order_question_hourly_deducting": "Votre tarification à l'heure diminuera de <strong>{{price}}</strong>.",
+  "confirm_order_question_hourly_deducting": "Votre tarification à l'heure diminuera de <strong>{{ price }}</strong>.",
 
   "confirm_order_question_confirm": "Êtes-vous sûr(e) de vouloir faire cela ?"
 }
