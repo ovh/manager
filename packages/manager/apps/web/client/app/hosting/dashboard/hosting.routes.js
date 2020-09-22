@@ -193,6 +193,8 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       isLocalSeoAvailable: /* @ngInject */ (availableOptions) =>
         availableOptions.find(({ family }) => family === LOCAL_SEO_FAMILY),
+
+      breadcrumb: /* @ngInject */ (serviceName) => serviceName,
     },
     translations: { value: ['.'], format: 'json' },
   });
@@ -202,6 +204,9 @@ export default /* @ngInject */ ($stateProvider) => {
     templateUrl: 'hosting/offer/upgrade/hosting-offer-upgrade.html',
     controller: 'HostingUpgradeOfferCtrl',
     reloadOnSearch: false,
-    translations: ['.'],
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('hosting_order_upgrade_modal_header'),
+    },
   });
 };

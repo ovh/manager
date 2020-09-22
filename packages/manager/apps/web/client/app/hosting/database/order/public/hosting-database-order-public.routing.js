@@ -38,9 +38,9 @@ export default /* @ngInject */ ($stateProvider) => {
           'success',
           'app.alerts.database',
         ),
-      serviceName: /* @ngInject */ ($transition$) =>
-        $transition$.params().productId,
       user: /* @ngInject */ (OvhApiMe) => OvhApiMe.v6().get().$promise,
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('ovhManagerHostingDatabaseOrderPublic_title'),
     },
   });
 };
