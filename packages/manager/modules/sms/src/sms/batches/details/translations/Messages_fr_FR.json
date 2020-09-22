@@ -1,0 +1,6 @@
+{
+  "sms_batches_details_title": "Détail de la campagne: {{name}}",
+  "sms_batches_details_receiver": "Destinataire",
+  "sms_batches_details_delivered": "Délivré",
+  "sms_batches_details_downloading": "Téléchargement en cours …"
+}
