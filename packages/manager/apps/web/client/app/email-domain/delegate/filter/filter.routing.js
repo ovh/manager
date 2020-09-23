@@ -1,7 +1,7 @@
 import template from './email-domain-delegate-filter.html';
 
 export default /* @ngInject */ ($stateProvider) =>
-  $stateProvider.state('app.email-delegate.dashboard.filter', {
+  $stateProvider.state('app.email-delegate.dashboard.account.filter', {
     url: '/filter',
     template,
     controller: 'EmailDelegateFilterCtrl',
