@@ -37,7 +37,7 @@ angular.module('App').controller(
 
       this.$scope.goToArchivesDumps = (bdd) => {
         this.$scope.bdd = bdd;
-        this.goToArchivesDump();
+        this.goToArchivesDump(bdd);
       };
 
       this.$scope.goToUsersByDb = (bdd) => {
