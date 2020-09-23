@@ -28,6 +28,8 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('app.private-database.dashboard.database.dashboard.user', {
           databaseName: database.databaseName,
         }),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('private_database_database'),
     },
   });
 
@@ -38,6 +40,7 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       databaseName: /* @ngInject */ ($transition$) =>
         $transition$.params().databaseName,
+      breadcrumb: /* @ngInject */ (databaseName) => databaseName,
     },
   });
 };

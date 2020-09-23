@@ -14,6 +14,10 @@ angular
         url: '/private_database',
         template: '<div ui-view></div>',
         redirectTo: 'app.private-database.index',
+        resolve: {
+          breadcrumb: /* @ngInject */ ($translate) =>
+            $translate.instant('private_databases_title'),
+        },
       });
 
       $stateProvider.state('app.private-database.index.**', {
@@ -46,6 +50,7 @@ angular
       );
     },
   )
-  .service('PrivateDatabase', service);
+  .service('PrivateDatabase', service)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

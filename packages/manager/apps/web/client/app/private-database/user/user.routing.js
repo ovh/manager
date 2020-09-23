@@ -13,6 +13,8 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('app.private-database.dashboard.user.dashboard.grants', {
           userName: user.userName,
         }),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('private_database_user'),
     },
   });
 
@@ -23,6 +25,7 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       userName: /* @ngInject */ ($transition$) =>
         $transition$.params().userName,
+      breadcrumb: /* @ngInject */ (userName) => userName,
     },
   });
 };
