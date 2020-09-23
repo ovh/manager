@@ -132,7 +132,7 @@ export const MENU = [
           state: 'pci.projects.project.training',
         },
         title: 'AI Training',
-        regions: ['EU'],
+        regions: ['CA', 'EU'],
       },
       {
         id: 'serving',
