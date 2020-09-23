@@ -37,6 +37,8 @@ export default /* @ngInject */ ($stateProvider) => {
           emails,
           quotas,
         }),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('email_domain_email'),
     },
   });
 
@@ -47,6 +49,7 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       accountName: /* @ngInject */ ($transition$) =>
         $transition$.params().accountName,
+      breadcrumb: /* @ngInject */ (accountName) => accountName,
     },
   });
 };
