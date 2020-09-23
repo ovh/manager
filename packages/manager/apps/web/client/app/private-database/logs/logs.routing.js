@@ -5,5 +5,9 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/logs',
     template,
     controller: 'PrivateDatabaseLogsCtrl',
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('private_database_logs'),
+    },
   });
 };

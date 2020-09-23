@@ -4,9 +4,13 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
     'app.private-database.dashboard.database.dashboard.dump',
     {
-    url: '/dump',
-    template,
-    controller: 'PrivateDatabaseBDDsDumpsCtrl',
+      url: '/dump',
+      template,
+      controller: 'PrivateDatabaseBDDsDumpsCtrl',
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('private_database_database_dump'),
+      },
     },
   );
 };

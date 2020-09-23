@@ -5,5 +5,9 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/grants',
     template,
     controller: 'PrivateDatabaseUsersGrantsCtrl',
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('private_database_user_grants'),
+    },
   });
 };

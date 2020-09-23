@@ -3,6 +3,10 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/archive',
     redirectTo: 'app.private-database.dashboard.database.archive.list',
     template: '<div ui-view></div>',
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('private_database_database_archive_list'),
+    },
   });
 
   $stateProvider.state(
@@ -14,6 +18,7 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         databaseName: /* @ngInject */ ($transition$) =>
           $transition$.params().databaseName,
+        breadcrumb: /* @ngInject */ (databaseName) => databaseName,
       },
     },
   );
