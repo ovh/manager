@@ -6,5 +6,9 @@ export default /* @ngInject */ ($stateProvider) => {
     template,
     controller: 'EmailDomainEmailAclCtrl',
     controllerAs: 'ctrlEmailDomainEmailAcl',
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('email_domain_email_acl'),
+    },
   });
 };
