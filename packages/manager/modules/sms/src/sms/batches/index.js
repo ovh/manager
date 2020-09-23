@@ -5,6 +5,7 @@ import 'oclazyload';
 
 import details from './details';
 import history from './history';
+import statistics from './statistics';
 
 const moduleName = 'ovhManagerSmsBatches';
 
@@ -15,6 +16,7 @@ angular
     'ovhManagerCore',
     details,
     history,
+    statistics,
   ])
   .config(
     /* @ngInject */ ($stateProvider) => {
