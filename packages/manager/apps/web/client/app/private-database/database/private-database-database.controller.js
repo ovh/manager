@@ -22,7 +22,7 @@ angular.module('App').controller(
     $onInit() {
       this.$scope.goToDumps = (bdd) => {
         this.$scope.bdd = bdd;
-        this.goToDumps();
+        this.goToDumps(bdd);
       };
 
       this.$scope.goToExtension = (bdd) => {
