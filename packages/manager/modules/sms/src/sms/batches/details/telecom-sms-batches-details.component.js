@@ -8,6 +8,7 @@ export default {
     getPttDetails: '<',
     goBack: '<',
     goToDelete: '<',
+    goToStatistics: '<',
     outgoingSms: '<',
     serviceName: '<',
   },
