@@ -5,5 +5,9 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/configuration',
     template,
     controller: 'PrivateDatabaseConfigurationsCtrl',
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('private_database_configuration'),
+    },
   });
 };
