@@ -39,6 +39,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('app.email-delegate.dashboard', {
           productId,
         }),
+      hideBreadcrumb: () => true,
     },
   });
 };
