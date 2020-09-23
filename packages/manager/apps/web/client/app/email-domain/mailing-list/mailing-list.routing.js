@@ -10,17 +10,28 @@ export default /* @ngInject */ ($stateProvider) => {
       goToMailingList: /* @ngInject */ ($state, $transition$) => () =>
         $state.go('app.email.domain.mailing-list', $transition$.params()),
       goToModerators: /* @ngInject */ ($state, $transition$) => (mailingList) =>
-        $state.go('app.email.domain.mailing-list.moderators', {
+        $state.go('app.email.domain.mailing-list.dashboard.moderators', {
           ...$transition$.params(),
           mailingList,
+          name: mailingList.name,
         }),
       goToSubscribers: /* @ngInject */ ($state, $transition$) => (
         mailingList,
       ) =>
-        $state.go('app.email.domain.mailing-list.subscribers', {
+        $state.go('app.email.domain.mailing-list.dashboard.subscribers', {
           ...$transition$.params(),
           mailingList,
+          name: mailingList.name,
         }),
+    },
+  });
+
+  $stateProvider.state('app.email.domain.mailing-list.dashboard', {
+    url: '/:name',
+    template: '<div ui-view></div>',
+    redirectTo: 'app.email.domain.mailing-list',
+    resolve: {
+      name: /* @ngInject */ ($transition$) => $transition$.params().name,
     },
   });
 };
