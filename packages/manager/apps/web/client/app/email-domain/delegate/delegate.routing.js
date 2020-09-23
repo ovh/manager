@@ -31,6 +31,9 @@ export default /* @ngInject */ ($stateProvider) => {
           'app.email-delegate.dashboard.responder',
           $transition$.params,
         ),
+      serviceName: /* @ngInject */ ($transition$) =>
+        $transition$.params().productId,
+      breadcrumb: /* @ngInject */ (serviceName) => serviceName,
     },
     translations: { value: ['../dashboard'], format: 'json' },
   });
@@ -42,6 +45,7 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       accountName: /* @ngInject */ ($transition$) =>
         $transition$.params().accountName,
+      breadcrumb: /* @ngInject */ (accountName) => accountName,
     },
   });
 };

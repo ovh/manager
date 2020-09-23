@@ -13,5 +13,7 @@ export default /* @ngInject */ ($stateProvider) =>
     resolve: {
       email: /* @ngInject */ ($transition$) => $transition$.params().email,
       emails: /* @ngInject */ ($transition$) => $transition$.params().emails,
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('emails_domain_delegate_filter'),
     },
   });

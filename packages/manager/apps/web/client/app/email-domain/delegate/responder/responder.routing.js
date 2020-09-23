@@ -6,4 +6,8 @@ export default /* @ngInject */ ($stateProvider) =>
     template,
     controller: 'EmailDelegateResponderCtrl',
     controllerAs: 'ctrlEmailDelegateResponder',
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('email_domain_delegate_responder'),
+    },
   });
