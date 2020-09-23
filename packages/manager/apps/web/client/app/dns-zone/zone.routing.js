@@ -18,6 +18,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('app.zone.details', {
           productId,
         }),
+      hideBreadcrumb: () => true,
     },
   });
 };

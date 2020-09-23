@@ -14,6 +14,10 @@ angular
         url: '/zone',
         template: '<div ui-view></div>',
         redirectTo: 'app.zone.index',
+        resolve: {
+          breadcrumb: /* @ngInject */ ($translate) =>
+            $translate.instant('zones_title'),
+        },
       });
 
       $stateProvider.state('app.zone.index.**', {
@@ -46,5 +50,7 @@ angular
       );
     },
   )
-  .service('DNSZoneService', service);
+  .service('DNSZoneService', service)
+  .run(/* @ngTranslationsInject:json ./translations */);
+
 export default moduleName;

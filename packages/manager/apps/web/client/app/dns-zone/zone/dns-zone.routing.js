@@ -32,6 +32,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().productId,
+      breadcrumb: /* @ngInject */ (serviceName) => serviceName,
     },
     redirectTo: 'app.zone.details.dashboard',
     translations: { value: ['../../domain/dashboard'], format: 'json' },
