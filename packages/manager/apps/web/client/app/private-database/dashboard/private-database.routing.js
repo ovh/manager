@@ -67,6 +67,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
       currentActiveLink: /* @ngInject */ ($state, $transition$) => () =>
         $state.href($state.current.name, $transition$.params()),
+      breadcrumb: /* @ngInject */ (serviceName) => serviceName,
     },
   });
 
@@ -87,6 +88,7 @@ export default /* @ngInject */ ($stateProvider) => {
           });
         },
       ],
+      hideBreadcrumb: () => true,
     },
     translations: { value: ['../private-database'], format: 'json' },
   });

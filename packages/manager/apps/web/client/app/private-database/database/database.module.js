@@ -10,6 +10,7 @@ const moduleName = 'ovhManagerPrivateDatabaseDatabase';
 
 angular
   .module(moduleName, [archive, dump, extension, list, user])
-  .config(routing);
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

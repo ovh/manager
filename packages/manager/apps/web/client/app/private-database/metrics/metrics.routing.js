@@ -5,5 +5,9 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/metrics',
     template,
     controller: 'PrivateDatabaseMetricsCtrl',
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('private_database_metrics'),
+    },
   });
 };

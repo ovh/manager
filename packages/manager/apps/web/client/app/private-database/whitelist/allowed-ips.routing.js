@@ -5,5 +5,9 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/allowedIps',
     template,
     controller: 'PrivateDatabaseWhitelistCtrl',
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('private_database_allowed_ips'),
+    },
   });
 };

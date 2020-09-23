@@ -46,6 +46,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $timeout(() => {
           Alerter.success(message, 'cloudDB_order_alert');
         }),
+      hideBreadcrumb: () => true,
     },
   });
 };

@@ -5,6 +5,9 @@ import list from './list/list.module';
 
 const moduleName = 'ovhManagerPrivateDatabaseUser';
 
-angular.module(moduleName, [grants, list]).config(routing);
+angular
+  .module(moduleName, [grants, list])
+  .config(routing)
+  .run(/* @ngTranslationsInject ./translations */);
 
 export default moduleName;
