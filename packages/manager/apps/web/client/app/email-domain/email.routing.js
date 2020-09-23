@@ -17,6 +17,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('app.email.domain', {
           productId,
         }),
+      hideBreadcrumb: () => true,
     },
   });
 

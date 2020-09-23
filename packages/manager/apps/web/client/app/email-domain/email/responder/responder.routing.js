@@ -13,6 +13,8 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       emails: /* @ngInject */ ($transition$) => $transition$.params().emails,
       quotas: /* @ngInject */ ($transition$) => $transition$.params().quotas,
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('email_domain_email_responder'),
     },
   });
 };

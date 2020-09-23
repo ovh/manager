@@ -9,6 +9,7 @@ const moduleName = 'ovhManagerEmailDomainDashboardEmailAcl';
 
 angular
   .module(moduleName, [ngTranslateAsyncLoader, 'oui', 'pascalprecht.translate'])
-  .config(routing);
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

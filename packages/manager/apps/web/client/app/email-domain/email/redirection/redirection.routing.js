@@ -11,6 +11,8 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       quotas: /* @ngInject */ ($transition$) => $transition$.params().quotas,
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('email_domain_email_redirection'),
     },
   });
 };

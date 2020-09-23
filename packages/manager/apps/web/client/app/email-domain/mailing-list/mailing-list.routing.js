@@ -23,6 +23,8 @@ export default /* @ngInject */ ($stateProvider) => {
           mailingList,
           name: mailingList.name,
         }),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('email_domain_mailing_list'),
     },
   });
 
@@ -32,6 +34,7 @@ export default /* @ngInject */ ($stateProvider) => {
     redirectTo: 'app.email.domain.mailing-list',
     resolve: {
       name: /* @ngInject */ ($transition$) => $transition$.params().name,
+      breadcrumb: /* @ngInject */ (name) => name,
     },
   });
 };

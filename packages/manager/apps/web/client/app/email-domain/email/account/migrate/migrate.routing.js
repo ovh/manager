@@ -9,5 +9,9 @@ export default /* @ngInject */ ($stateProvider) => {
     params: {
       email: {},
     },
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('email_domain_email_account_migrate'),
+    },
   });
 };
