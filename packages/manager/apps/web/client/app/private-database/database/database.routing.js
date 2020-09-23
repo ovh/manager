@@ -9,16 +9,30 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       goToDatabases: /* @ngInject */ ($state) => () =>
         $state.go('app.private-database.dashboard.database.list'),
-      goToDumps: /* @ngInject */ ($state) => () =>
-        $state.go('app.private-database.dashboard.database.dump'),
+      goToDumps: /* @ngInject */ ($state) => (database) =>
+        $state.go('app.private-database.dashboard.database.dashboard.dump', {
+          databaseName: database.databaseName,
+        }),
       goToExtensions: /* @ngInject */ ($state) => () =>
         $state.go('app.private-database.dashboard.database.extension'),
       goToArchives: /* @ngInject */ ($state) => () =>
         $state.go('app.private-database.dashboard.database.archive.list'),
       goToArchivesDump: /* @ngInject */ ($state) => () =>
         $state.go('app.private-database.dashboard.database.archive.dump'),
-      goToUsers: /* @ngInject */ ($state) => () =>
-        $state.go('app.private-database.dashboard.database.user'),
+      goToUsers: /* @ngInject */ ($state) => (database) =>
+        $state.go('app.private-database.dashboard.database.dashboard.user', {
+          databaseName: database.databaseName,
+        }),
+    },
+  });
+
+  $stateProvider.state('app.private-database.dashboard.database.dashboard', {
+    url: '/:databaseName',
+    template: '<div ui-view></div>',
+    redirectTo: 'app.private-database.dashboard.database',
+    resolve: {
+      databaseName: /* @ngInject */ ($transition$) =>
+        $transition$.params().databaseName,
     },
   });
 };
