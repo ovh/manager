@@ -8,9 +8,10 @@ export default /* @ngInject */ ($stateProvider) => {
     controllerAs: 'ctrlEmailDomainEmail',
     resolve: {
       goToAccountMigration: /* @ngInject */ ($state, $transition$) => (email) =>
-        $state.go('app.email.domain.email.migrate', {
+        $state.go('app.email.domain.email.account.migrate', {
           ...$transition$.params(),
           email,
+          accountName: email.accountName,
         }),
       goToAcl: /* @ngInject */ ($state, $transition$) => () =>
         $state.go('app.email.domain.email.acl', $transition$.params()),
@@ -36,6 +37,16 @@ export default /* @ngInject */ ($stateProvider) => {
           emails,
           quotas,
         }),
+    },
+  });
+
+  $stateProvider.state('app.email.domain.email.account', {
+    url: '/:accountName',
+    template: '<div ui-view></div>',
+    redirectTo: 'app.email.domain.email',
+    resolve: {
+      accountName: /* @ngInject */ ($transition$) =>
+        $transition$.params().accountName,
     },
   });
 };
