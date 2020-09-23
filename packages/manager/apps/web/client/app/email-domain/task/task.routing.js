@@ -6,5 +6,9 @@ export default /* @ngInject */ ($stateProvider) => {
     template,
     controller: 'EmailsTabTasksCtrl',
     controllerAs: 'ctrlEmailsTabTasksCtrl',
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('email_domain_task'),
+    },
   });
 };

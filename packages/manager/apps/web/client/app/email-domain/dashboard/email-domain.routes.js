@@ -52,6 +52,7 @@ export default /* @ngInject */ ($stateProvider) => {
           });
         },
       ],
+      breadcrumb: /* @ngInject */ (serviceName) => serviceName,
     },
     redirectTo: (trans) =>
       trans

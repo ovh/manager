@@ -10,6 +10,9 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
       url: '/email_domain',
       template: '<div ui-view></div>',
       redirectTo: 'app.email.index',
+      resolve: {
+        breadcrumb: () => 'Emails',
+      },
     });
 
     $stateProvider.state('app.email.index.**', {

@@ -6,5 +6,8 @@ export default /* @ngInject */ ($stateProvider) => {
     template,
     controller: 'EmailTabGeneralInformationsCtrl',
     controllerAs: 'ctrlTabGeneralInformations',
+    resolve: {
+      breadcrumb: () => null,
+    },
   });
 };

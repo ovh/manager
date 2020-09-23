@@ -69,6 +69,7 @@ export default /* @ngInject */ ($stateProvider) => {
           cart,
           PRODUCT_NAME,
         ).then((offers) => map(offers, (offer) => new EmailDomainOffer(offer))),
+      hideBreadcrumb: () => true,
     },
     translations: { value: ['.'], format: 'json' },
   });
