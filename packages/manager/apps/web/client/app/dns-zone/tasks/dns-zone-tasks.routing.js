@@ -10,5 +10,9 @@ export default /* @ngInject */ ($stateProvider) => {
         template,
       },
     },
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('dnszone_tasks'),
+    },
   });
 };
