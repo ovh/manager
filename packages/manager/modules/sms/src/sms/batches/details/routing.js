@@ -41,6 +41,10 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('sms.service.batches.details.delete', {
           smsId: outgoingId,
         }),
+      goToStatistics: /* @ngInject */ ($state) => (batch) =>
+        $state.go('sms.service.batches.statistics', {
+          batch,
+        }),
       outgoingSms: /* @ngInject */ (batch, getOutgoingSms) =>
         getOutgoingSms(batch),
     },
