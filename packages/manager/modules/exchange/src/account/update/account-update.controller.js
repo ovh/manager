@@ -52,7 +52,7 @@ export default class ExchangeUpdateAccountCtrl {
 
     this.exchange = Exchange.value;
 
-    Exchange.getSharepointService().then((sharepoint) => {
+    Exchange.getSharepointService(this.exchange).then((sharepoint) => {
       this.sharepoint = sharepoint;
     });
 

@@ -190,6 +190,7 @@ export default class ExchangeExportToCsvAccountsCtrl {
     switch (this.csvExportType) {
       case 'accounts':
         promise = this.services.Exchange.prepareForCsv(
+          this.exchange,
           this.$routerParams.organization,
           this.$routerParams.productId,
           exportOpts,
