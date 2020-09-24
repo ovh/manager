@@ -15,6 +15,7 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 
+import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import ovhManagerEnterpriseCloudDatabase from '@ovh-ux/manager-enterprise-cloud-database';
 
 import './index.scss';
@@ -22,7 +23,11 @@ import './index.scss';
 const moduleName = 'enterpriseCloudDatabaseApp';
 
 angular
-  .module(moduleName, ['ui.router', ovhManagerEnterpriseCloudDatabase])
+  .module(moduleName, [
+    'ui.router',
+    ngUiRouterBreadcrumb,
+    ovhManagerEnterpriseCloudDatabase,
+  ])
   .config(
     /* @ngInject */ ($urlRouterProvider) =>
       $urlRouterProvider.otherwise('/enterprise-cloud-database'),

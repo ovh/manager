@@ -25,6 +25,7 @@ angular
           resolve: {
             minDate: /* @ngInject */ ($transition$) =>
               $transition$.params().minDate,
+            breadcrumb: () => null,
           },
         },
       );

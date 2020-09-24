@@ -25,6 +25,7 @@ angular
           resolve: {
             backupInstance: /* @ngInject */ ($transition$) =>
               $transition$.params().backupInstance,
+            breadcrumb: () => null,
           },
         },
       );
