@@ -24,7 +24,7 @@ export default class {
         name: 'sms_received',
         main: true,
         picto: 'ovh-font-SMSReceiving',
-        sref: 'sms.service.batches.received',
+        sref: 'sms.service.sms.incoming',
         text: this.$translate.instant('sms_batches_sms_received'),
       },
       {
