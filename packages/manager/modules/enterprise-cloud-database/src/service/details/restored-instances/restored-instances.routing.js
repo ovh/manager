@@ -52,9 +52,10 @@ export default /* @ngInject */ ($stateProvider) => {
           enterpriseCloudDatabaseService.resetRestoredInstancesCache();
           return $state.reload();
         },
-        /* @ngInject */
-        restoredInstances: (clusterId, enterpriseCloudDatabaseService) =>
-          enterpriseCloudDatabaseService.getRestoreList(clusterId),
+        restoredInstances: /* @ngInject */ (
+          clusterId,
+          enterpriseCloudDatabaseService,
+        ) => enterpriseCloudDatabaseService.getRestoreList(clusterId),
       },
     },
   );
