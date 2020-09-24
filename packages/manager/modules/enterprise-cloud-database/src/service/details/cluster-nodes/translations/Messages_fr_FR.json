@@ -1,4 +1,5 @@
 {
+  "enterprise_cloud_database_service_details_cluster_nodes": "Nœuds du cluster",
   "enterprise_cloud_database_service_details_cluster_nodes_description": "Un nœud primaire, un nœud replica et un nœud de sauvegardes (backuper) sont inclus par défaut dans le cluster. Alors que seul le nœud primaire accepte les connexions en lecture-écriture, vous pouvez répartir les lectures seules sur plusieurs réplicas. En cas de défaillance d'un nœud primaire, un réplica va prendre le relais. Ajouter des réplicas pour gagner en performances et résilience.",
   "enterprise_cloud_database_service_details_cluster_nodes_included_title": "Inclus",
   "enterprise_cloud_database_service_details_cluster_nodes_included_primary": "Primaire (lecture-écriture)",

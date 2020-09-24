@@ -26,6 +26,7 @@ angular
           resolve: {
             instanceId: /* @ngInject */ ($transition$) =>
               $transition$.params().instanceId,
+            breadcrumb: () => null,
           },
         },
       );

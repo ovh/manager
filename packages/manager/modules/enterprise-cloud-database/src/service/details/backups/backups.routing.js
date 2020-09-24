@@ -6,13 +6,9 @@ import { STATUS } from '../../../enterprise-cloud-database.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('enterprise-cloud-database.service.details.backups', {
+    url: '/backups',
     cache: false,
     component: 'enterpriseCloudDatabaseServiceDetailsBackupsComponent',
-    translations: {
-      value: ['.'],
-      format: 'json',
-    },
-    url: '/backups',
     resolve: {
       /* @ngInject */
       backupList: (clusterId, enterpriseCloudDatabaseService) =>
@@ -71,6 +67,8 @@ export default /* @ngInject */ ($stateProvider) => {
           'pricings[0]',
         ),
       }),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('enterprise_cloud_database_backup'),
     },
   });
 };

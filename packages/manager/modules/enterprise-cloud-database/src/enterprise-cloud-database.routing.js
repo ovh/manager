@@ -6,10 +6,6 @@ import { STATUS } from './enterprise-cloud-database.constants';
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('enterprise-cloud-database', {
     component: 'enterpriseCloudDatabaseComponent',
-    translations: {
-      value: ['.'],
-      format: 'json',
-    },
     url: '/enterprise-cloud-database',
     resolve: {
       user: /* @ngInject */ (enterpriseCloudDatabaseService) =>
@@ -99,6 +95,9 @@ export default /* @ngInject */ ($stateProvider) => {
         enterpriseCloudDatabaseService.resetClusterListCache();
         return $state.reload();
       },
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('enterprise_cloud_database_title'),
+      hideBreadcrumb: () => true,
     },
   });
 };
