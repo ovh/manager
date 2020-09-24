@@ -27,6 +27,7 @@ import { registerState } from './routing';
 
 import controller from './index.controller';
 import { SANITIZATION } from './constants';
+import { TRACKING } from './at-internet.constants';
 
 // styles
 import '@ovh-ux/ui-kit/dist/css/oui.css';
@@ -100,6 +101,7 @@ angular
   )
   .config(
     /* @ngInject */ (atInternetConfigurationProvider) => {
+      atInternetConfigurationProvider.setConfig(TRACKING);
       atInternetConfigurationProvider.setReplacementRules([
         {
           pattern: /^sign-up/,
