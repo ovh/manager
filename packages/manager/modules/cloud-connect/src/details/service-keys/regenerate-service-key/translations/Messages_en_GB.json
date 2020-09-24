@@ -1,0 +1,6 @@
+{
+  "cloud_connect_service_key_regenerate_error": "Unable to regenerate service key: {{message}}",
+  "cloud_connect_service_key_regenerate_success": "Service key regenerated",
+  "cloud_connect_service_key_regenerate_confirm": "Are you sure you want to regenerate the service key?",
+  "cloud_connect_provider_regenerate_service_key": "Regenerate service key"
+}

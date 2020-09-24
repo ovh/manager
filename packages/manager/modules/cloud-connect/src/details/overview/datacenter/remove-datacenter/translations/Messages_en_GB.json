@@ -1,0 +1,6 @@
+{
+  "cloud_connect_datacenter_remove": "Delete datacentre configuration",
+  "cloud_connect_datacenter_remove_description": "This will delete the datacentre configuration selected.",
+  "cloud_connect_datacenter_remove_success": "Deleting datacentre configuration. <a href=\"{{ tasksUrl }}\">Click here to view its status.</a>",
+  "cloud_connect_datacenter_remove_error": "Unable to delete datacentre configuration: {{message}}"
+}

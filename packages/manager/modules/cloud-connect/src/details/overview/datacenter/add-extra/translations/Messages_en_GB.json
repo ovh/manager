@@ -1,0 +1,23 @@
+{
+  "cloud_connect_datacenter_add_routing_title": "Add a routing configuration.",
+  "cloud_connect_datacenter_add_routing_select_title": "Type",
+  "cloud_connect_datacenter_add_routing_select_placeholder": "Select",
+  "cloud_connect_datacenter_add_routing_select_asn": "Enter the customer ASN",
+  "cloud_connect_datacenter_add_routing_network_neighbor": "Enter the IP Neighbour address",
+  "cloud_connect_datacenter_add_routing_network_neighbor_placeholder": "IP Neighbour",
+  "cloud_connect_datacenter_add_routing_nexthop": "Enter the next hop",
+  "cloud_connect_datacenter_add_routing_nexthop_placeholder": "Next hop",
+  "cloud_connect_datacenter_add_routing_subnet": "Enter the target subnetwork",
+  "cloud_connect_datacenter_add_routing_subnet_placeholder": "Subnetwork",
+  "cloud_connect_datacenter_add_routing_bgp_area": "Enter the customer ASN",
+  "cloud_connect_datacenter_add_routing_bgp_ip": "Enter the IP Neighbour",
+  "cloud_connect_datacenter_add_routing_error": "An error has occurred adding the routing configuration: {{message}}",
+  "cloud_connect_datacenter_add_routing_success": "Adding routing configuration. <a href=\"{{ tasksUrl }}\">Click here to view its status.</a>",
+  "cloud_connect_datacenter_add_routing_bgp_area_placeholder": "Customer ASN",
+  "cloud_connect_datacenter_add_routing_bgp_ip_popover": "Neighbour IP address, BGP of your router in the DC. This address must be part of the subnetwork configured in the “DC configuration” section",
+  "cloud_connect_datacenter_add_routing_ip_help_message": "IPv4 address belonging to the DC.",
+  "cloud_connect_datacenter_add_routing_ip_invalid_message": "Enter a valid IPv4 block.",
+  "cloud_connect_datacenter_add_routing_asn_helper": "Positive non null number outside of 65501",
+  "cloud_connect_datacenter_add_routing_asn_popover": "Your AS BGP number, which is configured on your router situated in the DC.",
+  "cloud_connect_datacenter_add_routing_type_helper": "The router configuration can only be one type"
+}

@@ -1,0 +1,6 @@
+{
+  "cloud_connect_service_key_regenerate_error": "Se ha producido un error al obtener la clave de servicio: {{message}}",
+  "cloud_connect_service_key_regenerate_success": "Clave de servicio regenerada",
+  "cloud_connect_service_key_regenerate_confirm": "¿Seguro que quiere regenerar la clave de servicio?",
+  "cloud_connect_provider_regenerate_service_key": "Regenerar la clave de servicio"
+}

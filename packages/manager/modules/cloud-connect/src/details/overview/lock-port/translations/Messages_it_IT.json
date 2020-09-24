@@ -1,0 +1,7 @@
+{
+  "cloud_connect_block": "Blocca",
+  "cloud_connect_pop_port_block": "Blocca la porta",
+  "cloud_connect_pop_block_port_confirm": "Vuoi davvero bloccare la porta {{portNumber}}?",
+  "cloud_connect_pop_block_port_success": "Blocco della porta {{port}} in corso... <a href=\"{{ tasksUrl }}\">Clicca qui per visualizzare lo stato.</a>",
+  "cloud_connect_pop_block_port_error": "Blocco della porta non andato a buon fine: {{message}}"
+}
