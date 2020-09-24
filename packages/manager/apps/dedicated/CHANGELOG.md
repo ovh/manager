@@ -1,3 +1,12 @@
+## [13.2.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@13.2.11...@ovh-ux/manager-dedicated@13.2.12) (2020-09-24)
+
+
+### Bug Fixes
+
+* **billing.autorenew:** catch if call to migration fails ([#3686](https://github.com/ovh/manager/issues/3686)) ([367465e](https://github.com/ovh/manager/commit/367465ebc69c614d1ddf3e2e95b8dea10d174ae4))
+
+
+
 ## [13.2.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@13.2.10...@ovh-ux/manager-dedicated@13.2.11) (2020-09-22)
 
 
