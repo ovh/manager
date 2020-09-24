@@ -22,6 +22,9 @@ angular
             },
           },
           layout: 'modal',
+          resolve: {
+            breadcrumb: () => null,
+          },
         },
       );
     },
