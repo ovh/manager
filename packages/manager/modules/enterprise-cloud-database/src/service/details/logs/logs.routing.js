@@ -2,13 +2,9 @@ import { STATUS, ADP_URL } from '../../../enterprise-cloud-database.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('enterprise-cloud-database.service.details.logs', {
+    url: '/logs',
     cache: false,
     component: 'enterpriseCloudDatabaseServiceDetailsLogsComponent',
-    translations: {
-      value: ['.'],
-      format: 'json',
-    },
-    url: '/logs',
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('enterprise_cloud_database_service_details_logs'),

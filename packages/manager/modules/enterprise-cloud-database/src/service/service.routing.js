@@ -1,7 +1,8 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('enterprise-cloud-database.service', {
-    abstract: true,
+    url: '/:clusterId',
     component: 'enterpriseCloudDatabaseServiceComponent',
+    redirectTo: 'enterprise-cloud-database.service.details.overview',
     resolve: {
       clusterDetails: /* @ngInject */ (
         enterpriseCloudDatabaseService,
@@ -22,11 +23,7 @@ export default /* @ngInject */ ($stateProvider) => {
           { clusterId },
           { reload },
         ),
+      breadcrumb: /* @ngInject */ (clusterId) => clusterId,
     },
-    translations: {
-      value: ['.'],
-      format: 'json',
-    },
-    url: '/service/:clusterId',
   });
 };
