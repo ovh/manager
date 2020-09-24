@@ -1,4 +1,5 @@
 {
+  "enterprise_cloud_database_backup": "Sauvegardes",
   "enterprise_cloud_database_backup_id": "ID de la sauvegarde",
   "enterprise_cloud_database_backup_time": "Date de création",
   "enterprise_cloud_database_backup_expiration_date": "Date d'expiration",
