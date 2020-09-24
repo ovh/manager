@@ -12,27 +12,25 @@ export default /* @ngInject */ ($stateProvider) => {
           'enterprise-cloud-database.service.get-started.add-replicas',
           { callback, clusterId, hostList },
         ),
-      /* @ngInject */
-      endPoints: (clusterId, enterpriseCloudDatabaseService) =>
+      endPoints: /* @ngInject */ (clusterId, enterpriseCloudDatabaseService) =>
         enterpriseCloudDatabaseService.getEndpointsWithDetails(clusterId),
-      /* @ngInject */
-      hostList: (clusterId, enterpriseCloudDatabaseService) =>
+      hostList: /* @ngInject */ (clusterId, enterpriseCloudDatabaseService) =>
         enterpriseCloudDatabaseService.getHosts(clusterId),
-      /* @ngInject */
-      maintenanceWindow: (clusterId, enterpriseCloudDatabaseService) =>
-        enterpriseCloudDatabaseService.getMaintenanceWindow(clusterId),
-      /* @ngInject */
-      regionInfo: (clusterDetails, enterpriseCloudDatabaseService) =>
+      maintenanceWindow: /* @ngInject */ (
+        clusterId,
+        enterpriseCloudDatabaseService,
+      ) => enterpriseCloudDatabaseService.getMaintenanceWindow(clusterId),
+      regionInfo: /* @ngInject */ (
+        clusterDetails,
+        enterpriseCloudDatabaseService,
+      ) =>
         enterpriseCloudDatabaseService.getRegionDetails(
           clusterDetails.regionName,
         ),
-      /* @ngInject */
-      securityGroups: (clusterId, enterpriseCloudDatabaseService) =>
-        enterpriseCloudDatabaseService.getSecurityGroupList(clusterId),
-    },
-    translations: {
-      value: ['.'],
-      format: 'json',
+      securityGroups: /* @ngInject */ (
+        clusterId,
+        enterpriseCloudDatabaseService,
+      ) => enterpriseCloudDatabaseService.getSecurityGroupList(clusterId),
     },
     url: '/get-started',
   });
