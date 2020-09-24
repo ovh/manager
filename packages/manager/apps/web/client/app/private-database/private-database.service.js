@@ -16,14 +16,16 @@ export default class PrivateDatabase {
    * @param $cacheFactory
    * @param $http
    * @param $q
+   * @param $translate
    * @param OvhHttp
    * @param Poll
    */
-  constructor($rootScope, $cacheFactory, $http, $q, OvhHttp, Poll) {
+  constructor($rootScope, $cacheFactory, $http, $q, $translate, OvhHttp, Poll) {
     this.$rootScope = $rootScope;
     this.cach = $cacheFactory;
     this.$http = $http;
     this.$q = $q;
+    this.$translate = $translate;
     this.OvhHttp = OvhHttp;
     this.Poll = Poll;
 
@@ -1333,15 +1335,15 @@ export default class PrivateDatabase {
     });
   }
 
-  static getDatabaseDisplayName($translate, keyToTranslate, dbParam) {
+  getDatabaseDisplayName(keyToTranslate, dbParam) {
     if (dbParam && typeof dbParam === 'string') {
       const [type, versionNumber] = dbParam.split('_');
-      return $translate.instant(keyToTranslate.concat(type), {
+      return this.$translate.instant(keyToTranslate.concat(type), {
         version: versionNumber,
       });
     }
     if (dbParam && typeof dbParam === 'object') {
-      return $translate.instant(keyToTranslate.concat(dbParam.type), {
+      return this.$translate.instant(keyToTranslate.concat(dbParam.type), {
         version: dbParam.versionNumber,
       });
     }

@@ -233,8 +233,7 @@ angular.module('App').controller(
 
     getDatabaseDisplayName(value) {
       const keyToTranslate = 'privateDatabase_dashboard_version_';
-      return this.privateDatabaseService.constructor.getDatabaseDisplayName(
-        this.$translate,
+      return this.privateDatabaseService.getDatabaseDisplayName(
         keyToTranslate,
         value,
       );
