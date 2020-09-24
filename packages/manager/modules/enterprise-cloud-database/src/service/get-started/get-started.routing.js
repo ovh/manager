@@ -1,5 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('enterprise-cloud-database.service.get-started', {
+    url: '/get-started',
     component: 'enterpriseCloudDatabaseServiceGetStartedComponent',
     params: {
       data: null,
@@ -31,7 +32,10 @@ export default /* @ngInject */ ($stateProvider) => {
         clusterId,
         enterpriseCloudDatabaseService,
       ) => enterpriseCloudDatabaseService.getSecurityGroupList(clusterId),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant(
+          'enterprise_cloud_database_service_get_started_title',
+        ),
     },
-    url: '/get-started',
   });
 };

@@ -1,10 +1,10 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('enterprise-cloud-database.service.details.insights', {
-    component: 'enterpriseCloudDatabaseServiceDetailsInsightsComponent',
-    translations: {
-      value: ['.'],
-      format: 'json',
-    },
     url: '/insights',
+    component: 'enterpriseCloudDatabaseServiceDetailsInsightsComponent',
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('enterprise_cloud_database_insights'),
+    },
   });
 };

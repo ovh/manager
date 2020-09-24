@@ -1,5 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('enterprise-cloud-database.service.details.settings', {
+    url: '/settings',
     cache: false,
     component: 'enterpriseCloudDatabaseServiceDetailsSettingsComponent',
     params: {
@@ -49,11 +50,10 @@ export default /* @ngInject */ ($stateProvider) => {
       reload: /* @ngInject */ ($state) => () => $state.reload(),
       securityGroupId: /* @ngInject */ ($transition$) =>
         $transition$.params().securityGroupId,
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant(
+          'enterprise_cloud_database_service_details_settings',
+        ),
     },
-    translations: {
-      value: ['.'],
-      format: 'json',
-    },
-    url: '/settings',
   });
 };
