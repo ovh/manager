@@ -48,6 +48,7 @@ export default /* @ngInject */ ($stateProvider) => {
         /* @ngInject */
         nodeCatalog: (planCatalog) => planCatalog.node,
         orderUrl: /* @ngInject */ (getOrdersURL) => getOrdersURL,
+        breadcrumb: () => null,
       },
       translations: {
         value: ['../../../add-replicas'],
