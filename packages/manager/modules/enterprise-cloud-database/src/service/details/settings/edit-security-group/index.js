@@ -3,7 +3,7 @@ import '@uirouter/angularjs';
 import 'oclazyload';
 
 const moduleName =
-  'enterpriseCloudDatabaseServiceDetailsSettingsEditSecurityGroup';
+  'enterpriseCloudDatabaseServiceDetailsSettingsEditSecurityGroupLazyLoading';
 
 angular.module(moduleName, ['oc.lazyLoad', 'ui.router']).config(
   /* @ngInject */ ($stateProvider) => {

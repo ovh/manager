@@ -4,7 +4,7 @@ import 'oclazyload';
 
 import '@ovh-ux/ng-ovh-contracts';
 
-const moduleName = 'enterpriseCloudDatabaseCreate';
+const moduleName = 'enterpriseCloudDatabaseCreateLazyLoading';
 
 angular
   .module(moduleName, ['oc.lazyLoad', 'ui.router', 'ngOvhContracts'])
