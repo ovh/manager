@@ -2,7 +2,8 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-const moduleName = 'enterpriseCloudDatabaseServiceDetailsSettingsCreateRule';
+const moduleName =
+  'enterpriseCloudDatabaseServiceDetailsSettingsCreateRuleLazyLoading';
 
 angular.module(moduleName, ['oc.lazyLoad', 'ui.router']).config(
   /* @ngInject */ ($stateProvider) => {

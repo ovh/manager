@@ -5,7 +5,7 @@ import 'oclazyload';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import 'ovh-api-services';
 
-const moduleName = 'enterpriseCloudDatabase';
+const moduleName = 'enterpriseCloudDatabaseLazyLoading';
 
 angular
   .module(moduleName, [
