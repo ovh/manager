@@ -303,6 +303,7 @@ export const DEDICATED_NETWORK_CONFIG = {
     },
     {
       id: 'cloud_connect',
+      feature: 'cloud-connect',
       loadOnState: 'cloud-connect',
       types: [
         {

@@ -633,6 +633,7 @@ export const SIDEBAR_ORDER_CONFIG = [
   },
   {
     id: 'order-ovh-cloud-connect',
+    feature: 'cloud-connect',
     title: 'ovh_cloud_connect',
     icon: 'oui-icon oui-icon-line-communicating_concept',
     linkId: 'ovh_cloud_connect',
