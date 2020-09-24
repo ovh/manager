@@ -23,6 +23,7 @@
     "@ovh-ux/manager-core": "^10.0.0 || ^11.0.0",
     "@ovh-ux/manager-enterprise-cloud-database": "^0.2.0 || ^1.0.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.8",
+    "@ovh-ux/manager-preloader": "^1.1.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.0",
     "@ovh-ux/ng-ovh-contracts": "^4.0.0",
     "@ovh-ux/ng-ovh-form-flat": "^5.0.0",
@@ -56,6 +57,7 @@
     "popper.js": "^1.16.1",
     "regenerator-runtime": "^0.13.7",
     "ui-select": "^0.19.8",
+    "whatwg-fetch": "^3.4.1",
     "zxcvbn": "^4.4.2"
   },
   "devDependencies": {
