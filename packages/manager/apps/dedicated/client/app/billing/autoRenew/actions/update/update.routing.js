@@ -16,7 +16,8 @@ export default /* @ngInject */ ($stateProvider) => {
               : 'app.account.billing.autorenew.configure-renew-impossible';
           }
           return null;
-        }),
+        })
+        .catch(() => null),
     translations: { value: ['.'], format: 'json' },
     resolve: {
       addPaymentMean: /* @ngInject */ ($state) => () =>
