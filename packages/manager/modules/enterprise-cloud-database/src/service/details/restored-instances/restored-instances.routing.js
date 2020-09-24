@@ -6,17 +6,13 @@ export default /* @ngInject */ ($stateProvider) => {
     {
       component:
         'enterpriseCloudDatabaseServiceDetailsRestoredInstancesComponent',
-      translations: {
-        value: ['.'],
-        format: 'json',
-      },
       url: '/restored-instances',
       resolve: {
-        /* @ngInject */
-        endPoints: (clusterId, enterpriseCloudDatabaseService) =>
-          enterpriseCloudDatabaseService.getEndpointsWithDetails(clusterId),
-        /* @ngInject */
-        goBackToRestore: ($state, CucCloudMessage) => (
+        endPoints: /* @ngInject */ (
+          clusterId,
+          enterpriseCloudDatabaseService,
+        ) => enterpriseCloudDatabaseService.getEndpointsWithDetails(clusterId),
+        goBackToRestore: /* @ngInject */ ($state, CucCloudMessage) => (
           message = false,
           type = STATUS.SUCCESS,
           clusterId = null,
@@ -56,6 +52,8 @@ export default /* @ngInject */ ($stateProvider) => {
           clusterId,
           enterpriseCloudDatabaseService,
         ) => enterpriseCloudDatabaseService.getRestoreList(clusterId),
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('enterprise_cloud_database_restored_instances'),
       },
     },
   );

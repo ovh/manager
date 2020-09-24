@@ -7,7 +7,7 @@ const moduleName = 'enterpriseCloudDatabaseServiceLazyLoading';
 angular.module(moduleName, ['oc.lazyLoad', 'ui.router']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state('enterprise-cloud-database.service.**', {
-      url: '/service',
+      url: '/:clusterId',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 

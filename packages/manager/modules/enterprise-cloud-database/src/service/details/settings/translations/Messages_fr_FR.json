@@ -1,4 +1,5 @@
 {
+  "enterprise_cloud_database_service_details_settings": "Paramètres",
   "enterprise_cloud_database_service_details_settings_autobackup": "Sauvegardes automatiques journalières",
   "enterprise_cloud_database_service_details_settings_autobackup_description": "Activer gratuitement cette option pour autoriser les sauvegardes automatiques de votre cluster (snapshot ZFS). Les sauvegardes sont réalisés chaque jour sur le nœud de sauvegardes (backuper), sans impacter vos nœuds primaire et réplicas, et vous permettent de restaurer les données de votre cluster quand vous le souhaitez.",
   "enterprise_cloud_database_service_details_settings_autobackup_warning": "En désactivant les sauvegardes automatiques, vous reconaissez avoir compris qu'OVH ne sera plus capable de restaurer votre cluste en cas d'incident",
