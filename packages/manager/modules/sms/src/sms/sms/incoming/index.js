@@ -15,6 +15,10 @@ angular.module(moduleName, []).config(($stateProvider) => {
         controllerAs: 'SmsIncomingCtrl',
       },
     },
+    resolve: {
+      goBack: /* @ngInject */ ($state, $transition$) => () =>
+        $state.go($transition$.from().name || '^'),
+    },
     translations: { value: ['.'], format: 'json' },
   });
 });
