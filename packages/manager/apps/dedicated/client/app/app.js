@@ -62,6 +62,7 @@ import errorPage from './error';
 
 import dedicatedServer from './dedicated/server';
 import dedicatedNas from './dedicated/nas';
+import dedicatedHousing from './dedicated/housing';
 import userContracts from './user-contracts';
 
 import { TRACKING } from './at-internet.constants';
@@ -84,6 +85,7 @@ angular
       cdn,
       contactsService,
       dedicatedCloud,
+      dedicatedHousing,
       dedicatedNas,
       dedicatedServer,
       dedicatedUniverseComponents,
