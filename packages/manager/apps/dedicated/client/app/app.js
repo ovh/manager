@@ -64,6 +64,7 @@ import expiredPage from './expired';
 
 import dedicatedServer from './dedicated/server';
 import dedicatedNas from './dedicated/nas';
+import dedicatedHousing from './dedicated/housing';
 import userContracts from './user-contracts';
 import otrs from './otrs';
 
@@ -86,6 +87,7 @@ angular
       'controllers',
       cdn,
       dedicatedCloud,
+      dedicatedHousing,
       dedicatedNas,
       dedicatedServer,
       dedicatedUniverseComponents,
