@@ -99,8 +99,8 @@ export const NETWORKS_CONFIG = {
       path: '/cdn/dedicated',
       types: [
         {
-          path: '/cdn/dedicated/:productId/domains',
-          state: 'app.networks.cdn.dedicated.domain',
+          path: '/cdn/dedicated/:productId/domains/:domain',
+          state: 'app.networks.cdn.dedicated.manage.domain.dashboard',
           stateParams: ['productId', 'domain'],
           app: [DEDICATED],
           regions: ['EU'],
