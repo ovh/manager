@@ -9,7 +9,9 @@ export default class MoveEligibilityCtrl {
 
   $onInit() {
     this.displayEligibility = false;
-    this.minDate = moment().format('YYYY-MM-DD');
+    this.minDate = moment()
+      .add(1, 'day')
+      .format('YYYY-MM-DD');
     this.maxDate = moment()
       .add(30, 'day')
       .format('YYYY-MM-DD');
