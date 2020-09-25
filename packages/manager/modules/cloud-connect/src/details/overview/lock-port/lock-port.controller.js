@@ -2,7 +2,8 @@ import get from 'lodash/get';
 
 export default class LockPortCtrl {
   /* @ngInject */
-  constructor($translate, cloudConnectService) {
+  constructor($q, $translate, cloudConnectService) {
+    this.$q = $q;
     this.$translate = $translate;
     this.cloudConnectService = cloudConnectService;
   }
@@ -16,11 +17,11 @@ export default class LockPortCtrl {
       'cloud-connect::overview::lock-port::confirm',
     );
     this.isLoading = true;
-    this.cloudConnectService
+    return this.cloudConnectService
       .lockInterface(this.cloudConnect.id, this.interfaceId)
       .then((task) => {
         this.interface.setDisabling(true);
-        this.goBack(
+        return this.goBack(
           {
             textHtml: this.$translate.instant(
               'cloud_connect_pop_block_port_success',
@@ -34,7 +35,7 @@ export default class LockPortCtrl {
           false,
         ).then(() => {
           if (task) {
-            this.cloudConnectService
+            return this.cloudConnectService
               .checkTaskStatus(this.cloudConnect.id, task.id)
               .finally(() => {
                 const cloudConnectInterface = this.cloudConnect.getInterface(
@@ -43,6 +44,7 @@ export default class LockPortCtrl {
                 cloudConnectInterface.disable();
               });
           }
+          return this.$q.resolve();
         });
       })
       .catch((error) =>

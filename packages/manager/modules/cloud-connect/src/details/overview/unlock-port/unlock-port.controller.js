@@ -2,7 +2,8 @@ import get from 'lodash/get';
 
 export default class UnlockPortCtrl {
   /* @ngInject */
-  constructor($translate, cloudConnectService) {
+  constructor($q, $translate, cloudConnectService) {
+    this.$q = $q;
     this.$translate = $translate;
     this.cloudConnectService = cloudConnectService;
   }
@@ -16,11 +17,11 @@ export default class UnlockPortCtrl {
       'cloud-connect::overview::unlock-port::confirm',
     );
     this.isLoading = true;
-    this.cloudConnectService
+    return this.cloudConnectService
       .unlockInterface(this.cloudConnect.id, this.interfaceId)
       .then((task) => {
         this.interface.setEnabling(true);
-        this.goBack(
+        return this.goBack(
           {
             textHtml: this.$translate.instant(
               'cloud_connect_pop_unblock_port_success',
@@ -34,7 +35,7 @@ export default class UnlockPortCtrl {
           false,
         ).then(() => {
           if (task) {
-            this.cloudConnectService
+            return this.cloudConnectService
               .checkTaskStatus(this.cloudConnect.id, task.id)
               .finally(() => {
                 const cloudConnectInterface = this.cloudConnect.getInterface(
@@ -43,6 +44,7 @@ export default class UnlockPortCtrl {
                 cloudConnectInterface.enable();
               });
           }
+          return this.$q.resolve();
         });
       })
       .catch((error) =>

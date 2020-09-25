@@ -80,9 +80,9 @@ export default /* @ngInject */ ($stateProvider) => {
           ovhCloudConnectId: cloudConnect.id,
         }),
       goToCloudConnectPage: /* @ngInject */ (
+        $q,
         $state,
         $translate,
-        $timeout,
         CucCloudMessage,
         CucControllerHelper,
         cloudConnectId,
@@ -90,9 +90,8 @@ export default /* @ngInject */ ($stateProvider) => {
       ) => (message = false, type = 'success', reload = false, vrackId) => {
         const state = 'cloud-connect.details.overview';
 
-        let promise = null;
-        $timeout(function() {
-          promise = $state.go(
+        return $state
+          .go(
             state,
             {
               ovhCloudConnectId: cloudConnectId,
@@ -100,14 +99,14 @@ export default /* @ngInject */ ($stateProvider) => {
             {
               reload,
             },
-          );
-          promise.then(() => {
+          )
+          .then(() => {
             if (message) {
               CucCloudMessage[type](message, state);
               CucControllerHelper.scrollPageToTop();
             }
             if (vrackId) {
-              cloudConnectService
+              return cloudConnectService
                 .getVrackAssociatedCloudConnect(vrackId)
                 .then((res) => {
                   if (res) {
@@ -120,9 +119,8 @@ export default /* @ngInject */ ($stateProvider) => {
                   }
                 });
             }
+            return $q.resolve();
           });
-        });
-        return promise;
       },
     },
   });
