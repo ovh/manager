@@ -41,6 +41,7 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
         filters: /* @ngInject */ ($transition$) => $transition$.params().filter,
         onListParamsChange: /* @ngInject */ ($state) => (params) =>
           $state.go('app.account.billing.main.history', params),
+        breadcrumb: () => null,
       },
     });
   } else {
@@ -169,10 +170,20 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
             debtId,
           }),
         seeDebt: /* @ngInject */ ($state) => (debtId) =>
-          $state.go('app.account.billing.main.history.debt.details', {
+          $state.go('app.account.billing.main.history.details.debt.details', {
             debtId,
           }),
+        breadcrumb: () => null,
       },
     });
   }
+
+  $stateProvider.state('app.account.billing.main.history.details', {
+    url: `/:billId`,
+    redirectTo: 'app.account.billing.main.history',
+    resolve: {
+      billId: /* @ngInject */ ($transition$) => $transition$.params().billId,
+      breadcrumb: /* @ngInject */ (billId) => billId,
+    },
+  });
 };

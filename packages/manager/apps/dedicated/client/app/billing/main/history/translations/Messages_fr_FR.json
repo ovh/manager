@@ -1,4 +1,5 @@
 {
+  "billing_main_history": "Mes factures",
   "billing_main_history_loading_errors": "Une erreur est survenue lors de la récupération de vos factures.",
   "billing_main_history_export_error": "Une erreur est survenue lors de l'exportation de vos factures au format csv.",
   "billing_main_history_invoices_postal_mail": "Recevoir mes factures au format papier",
