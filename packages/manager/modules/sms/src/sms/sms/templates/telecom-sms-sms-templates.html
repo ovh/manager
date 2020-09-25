@@ -1,11 +1,8 @@
 <section class="telecom-sms-sms-templates">
     <header>
-        <tuc-section-back-link
-            data-tuc-section-back-link-to-state="sms.service.sms"
-            data-tuc-section-back-link-title="{{ 'sms_section_back_link' | translate }}"
-        >
-        </tuc-section-back-link>
-        <h1 data-translate="sms_sms_templates_title"></h1>
+        <oui-back-button on-click="$ctrl.goBack()">
+            <span data-translate="sms_sms_templates_title"></span>
+        </oui-back-button>
     </header>
 
     <!-- LOADING -->
