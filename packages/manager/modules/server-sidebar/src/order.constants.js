@@ -33,6 +33,23 @@ export const ORDER_URLS = {
       TN:
         'https://www.ovhcloud.com/fr-tn/enterprise/products/hosted-private-cloud/prices/',
     },
+    managed_bare_metal: {
+      CZ: 'https://www.ovhcloud.com/en-ie/managed-bare-metal/',
+      DE: 'https://www.ovhcloud.com/de/managed-bare-metal/',
+      ES: 'https://www.ovhcloud.com/es/managed-bare-metal/',
+      FI: 'https://www.ovhcloud.com/en-ie/managed-bare-metal/',
+      FR: 'https://www.ovhcloud.com/fr/managed-bare-metal/',
+      GB: 'https://www.ovhcloud.com/en-gb/managed-bare-metal/',
+      IE: 'https://www.ovhcloud.com/en-ie/managed-bare-metal/',
+      IT: 'https://www.ovhcloud.com/it/managed-bare-metal/',
+      LT: 'https://www.ovhcloud.com/en-ie/managed-bare-metal/',
+      MA: 'https://www.ovhcloud.com/fr-ma/managed-bare-metal/',
+      NL: 'https://www.ovhcloud.com/nl/managed-bare-metal/',
+      PL: 'https://www.ovhcloud.com/pl/managed-bare-metal/',
+      PT: 'https://www.ovhcloud.com/pt/managed-bare-metal/',
+      SN: 'https://www.ovhcloud.com/fr-sn/managed-bare-metal/',
+      TN: 'https://www.ovhcloud.com/fr-tn/managed-bare-metal/',
+    },
     vrack: {
       CZ:
         "https://www.ovh.cz/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
@@ -349,6 +366,15 @@ export const ORDER_URLS = {
       WS:
         'https://www.ovhcloud.com/es/enterprise/products/hosted-private-cloud/prices/',
     },
+    managed_bare_metal: {
+      ASIA: 'https://www.ovhcloud.com/asia/managed-bare-metal/',
+      AU: 'https://www.ovhcloud.com/en-au/managed-bare-metal/',
+      CA: 'https://www.ovhcloud.com/en-ca/managed-bare-metal/',
+      QC: 'https://www.ovhcloud.com/fr-ca/managed-bare-metal/',
+      SG: 'https://www.ovhcloud.com/en-sg/managed-bare-metal/',
+      WE: 'https://www.ovhcloud.com/en/managed-bare-metal/',
+      WS: 'https://www.ovhcloud.com/es-es/managed-bare-metal/',
+    },
     cloud_disk_array: {},
     dbaas_logs: {
       ASIA:
@@ -451,6 +477,9 @@ export const ORDER_URLS = {
     dedicated_cloud: {
       US: 'https://us.ovhcloud.com/enterprise/products/hosted-private-cloud',
     },
+    managed_bare_metal: {
+      US: 'https://us.ovhcloud.com/managed-bare-metal/',
+    },
     cloud_disk_array: {
       US: 'https://us.ovhcloud.com/cloud/cloud-disk-array/',
     },
@@ -547,6 +576,17 @@ export const SIDEBAR_ORDER_CONFIG = [
     external: true,
     app: [CLOUD],
     tracker: 'dedicated::orders::vps::order',
+  },
+  {
+    id: 'order-managed-bare-metal',
+    title: 'managed_bare_metal',
+    icon: 'oui-icon oui-icon-cloud-essential_concept',
+    linkId: 'managed_bare_metal',
+    target: '_blank',
+    external: true,
+    app: [CLOUD],
+    regions: ['EU', 'CA', 'US'],
+    tracker: 'dedicated::orders::mbm::order',
   },
   {
     id: 'order-private-cloud',

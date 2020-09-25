@@ -52,7 +52,7 @@
                 data-ng-if=":: $ctrl.currentService.isMinorSolutionUpdateAvailable() && !$ctrl.currentService.vcenterUpgradePendingTask"
                 data-ng-click="$ctrl.onUpgradeVersion($ctrl.currentService.version.lastMinor)"
                 data-track-on="click"
-                data-track-name="dedicated::dedicatedClouds::dashboard::update-minor"
+                data-track-name="{{:: $ctrl.trackingPrefix + '::dashboard::update-minor' }}"
                 data-track-type="action"
             >
                 <span
@@ -69,7 +69,7 @@
                 data-ng-if=":: $ctrl.currentService.isMajorSolutionUpdateAvailable() && !$ctrl.currentService.vcenterUpgradePendingTask"
                 data-ng-click="$ctrl.onUpgradeVersion($ctrl.currentService.version.lastMajor)"
                 data-track-on="click"
-                data-track-name="dedicated::dedicatedClouds::dashboard::update-major"
+                data-track-name="{{:: $ctrl.trackingPrefix + '::dashboard::update-major' }}"
                 data-track-type="action"
             >
                 <span
@@ -86,7 +86,7 @@
                 data-ng-if="$ctrl.currentService.vcenterUpgradePendingTask"
                 data-ng-click="$ctrl.onExecutionDateChange()"
                 data-track-on="click"
-                data-track-name="dedicated::dedicatedClouds::dashboard::update-change-date"
+                data-track-name="{{:: $ctrl.trackingPrefix + '::dashboard::update-change-date' }}"
                 data-track-type="action"
             >
                 <span
@@ -164,7 +164,7 @@
                 role="menuitem"
                 data-ui-sref="app.ip({ serviceName: $ctrl.bindings.serviceName })"
                 data-track-on="click"
-                data-track-name="dedicated::dedicatedClouds::dashboard::order-ip-bloc"
+                data-track-name="{{:: $ctrl.trackingPrefix + '::dashboard::order-ip-bloc' }}"
                 data-track-type="action"
             >
                 <span
@@ -177,7 +177,7 @@
                 data-ng-if="$ctrl.bindings.numberOfIPBlocks.total"
                 data-ng-click="$ctrl.onAssociateIpBlock()"
                 data-track-on="click"
-                data-track-name="dedicated::dedicatedClouds::dashboard::associate-ip-bloc"
+                data-track-name="{{:: $ctrl.trackingPrefix + '::dashboard::associate-ip-bloc' }}"
                 data-track-type="action"
             >
                 <span

@@ -8,6 +8,7 @@ export default {
     goBack: '<',
     operationsUrl: '<',
     targetVersion: '<',
+    trackingPrefix: '<',
   },
   controller,
   template,

@@ -10,6 +10,7 @@ export default {
     editUser: '<',
     enableUser: '<',
     modifyUserRights: '<',
+    nsxUnavailable: '<',
     passwordReset: '<',
     productId: '<',
     setMessage: '<',
