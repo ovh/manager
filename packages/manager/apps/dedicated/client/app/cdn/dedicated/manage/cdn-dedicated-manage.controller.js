@@ -8,7 +8,8 @@ angular.module('App').controller(
       $filter,
       $translate,
       Cdn,
-      goToDomains,
+      currentActiveLink,
+      domainsLink,
     ) {
       // injections
       this.$scope = $scope;
@@ -17,7 +18,8 @@ angular.module('App').controller(
       this.$filter = $filter;
       this.$translate = $translate;
       this.Cdn = Cdn;
-      this.goToDomains = goToDomains;
+      this.currentActiveLink = currentActiveLink;
+      this.domainsLink = domainsLink;
 
       // attributes used in view
       this.cdn = null;

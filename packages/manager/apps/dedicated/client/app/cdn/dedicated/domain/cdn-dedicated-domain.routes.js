@@ -1,9 +1,12 @@
-angular.module('App').config(($stateProvider) => {
-  $stateProvider.state('app.networks.cdn.dedicated.domain', {
-    redirectTo: 'app.networks.cdn.dedicated.domain.statistics',
-    url: '/domain/:domain',
+angular
+  .module('App')
+  .config(($stateProvider) => {
+    $stateProvider.state('app.networks.cdn.dedicated.manage.domain.dashboard', {
+      redirectTo:
+        'app.networks.cdn.dedicated.manage.domain.dashboard.statistics',
+      url: '/:domain',
     views: {
-      cdnMainView: {
+        'cdnMainView@app.networks.cdn.dedicated': {
         templateUrl: 'cdn/dedicated/domain/cdn-dedicated-domain.html',
         controller: 'CdnDomainCtrl',
         controllerAs: '$ctrl',
