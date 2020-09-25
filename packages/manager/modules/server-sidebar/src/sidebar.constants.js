@@ -2,7 +2,7 @@ import { DEDICATED, HPC_NAMESPACE } from './constants';
 
 export const DEDICATED_SERVER_CONFIG = {
   id: 'dedicatedServers',
-  loadOnState: 'app.dedicated',
+  loadOnState: ['app.dedicated', 'dedicated-housing'],
   children: [
     {
       id: 'servers_all',
@@ -16,7 +16,7 @@ export const DEDICATED_SERVER_CONFIG = {
     {
       path: '/dedicated/housing',
       category: 'HOUSING',
-      state: 'app.dedicated.housing',
+      state: 'dedicated-housing.dashboard',
       stateParams: ['productId'],
       app: [DEDICATED],
       searchKeys: ['HOUSING'],
