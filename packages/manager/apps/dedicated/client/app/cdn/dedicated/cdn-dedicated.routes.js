@@ -11,6 +11,7 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().productId,
+      breadcrumb: /* @ngInject */ (serviceName) => serviceName,
     },
   });
 };

@@ -10,6 +10,9 @@ angular.module('App').config(
         },
       },
       translations: { value: ['.'], format: 'json' },
+      resolve: {
+        breadcrumb: () => null,
+      },
     });
   },
 );

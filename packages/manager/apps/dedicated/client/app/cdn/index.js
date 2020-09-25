@@ -13,6 +13,9 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad', domains]).config(
       template: '<div data-ui-view></div>',
       redirectTo: 'app.networks.cdn.index',
       reloadOnSearch: false,
+      resolve: {
+        breadcrumb: () => 'CDN',
+      },
     });
 
     $stateProvider.state('app.networks.cdn.index.**', {

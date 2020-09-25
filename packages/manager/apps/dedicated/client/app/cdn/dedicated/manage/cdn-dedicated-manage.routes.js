@@ -20,6 +20,7 @@ angular.module('App').config(
           ),
         currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
           $state.href($state.current.name, $transition$.params()),
+        breadcrumb: () => null,
       },
     });
   },

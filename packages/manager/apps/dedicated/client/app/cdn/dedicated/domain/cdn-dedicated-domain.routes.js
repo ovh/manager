@@ -5,13 +5,17 @@ angular
       redirectTo:
         'app.networks.cdn.dedicated.manage.domain.dashboard.statistics',
       url: '/:domain',
-    views: {
+      views: {
         'cdnMainView@app.networks.cdn.dedicated': {
-        templateUrl: 'cdn/dedicated/domain/cdn-dedicated-domain.html',
-        controller: 'CdnDomainCtrl',
-        controllerAs: '$ctrl',
+          templateUrl: 'cdn/dedicated/domain/cdn-dedicated-domain.html',
+          controller: 'CdnDomainCtrl',
+          controllerAs: '$ctrl',
+        },
       },
-    },
-    translations: { value: ['.'], format: 'json' },
-  });
-});
+      resolve: {
+        domain: /* @ngInject */ ($transition$) => $transition$.params().domain,
+        breadcrumb: /* @ngInject */ (domain) => domain,
+      },
+    });
+  })
+  .run(/* @ngTranslationsInject:json ./translations */);

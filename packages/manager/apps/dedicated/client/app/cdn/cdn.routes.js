@@ -18,6 +18,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('app.networks.cdn.dedicated', {
           productId,
         }),
+      hideBreadcrumb: () => true,
     },
   });
 };
