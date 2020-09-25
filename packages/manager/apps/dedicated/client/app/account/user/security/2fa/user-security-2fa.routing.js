@@ -11,6 +11,9 @@ angular.module('UserAccount').config(
         keyboard: false,
       },
       toChilds: true,
+      resolve: {
+        breadcrumb: () => null,
+      },
     });
   },
 );
