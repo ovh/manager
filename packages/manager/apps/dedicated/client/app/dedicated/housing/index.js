@@ -4,7 +4,9 @@ import 'oclazyload';
 
 const moduleName = 'ovhManagerDedicatedHousingLazyLoading';
 
-angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
+angular
+  .module(moduleName, ['ui.router', 'oc.lazyLoad'])
+  .config(
   /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
     $stateProvider.state('dedicated-housing', {
       url: '/housing',
@@ -22,6 +24,17 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
         );
       },
     });
+
+      $stateProvider.state('dedicated-housing.dashboard.**', {
+        url: '/:productId',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+          return import('./dashboard/dashboard.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
+      });
 
     $urlRouterProvider.when(/^\/configuration\/housing/, () => {
       window.location.href = window.location.href.replace(
