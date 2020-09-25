@@ -412,8 +412,12 @@
                             data-ng-repeat="job in $ctrl.runningJobs"
                             class="oui-table__row"
                         >
-                            <td class="oui-table__cell">{{ job.image }}</td>
-                            <td class="oui-table__cell">{{ job.user }}</td>
+                            <td class="oui-table__cell ellipsis">
+                                {{ job.image }}
+                            </td>
+                            <td class="oui-table__cell ellipsis">
+                                {{ job.user }}
+                            </td>
                             <td class="oui-table__cell">
                                 <span
                                     class="oui-status"
