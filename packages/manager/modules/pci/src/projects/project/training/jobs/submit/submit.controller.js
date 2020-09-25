@@ -73,7 +73,6 @@ export default class PciTrainingJobsSubmitController {
   cliCommand() {
     const baseCmdArray = [
       'job submit',
-      `--profile ${this.job.region.name}`,
       `--image ${this.job.image.id}`,
       `--gpu ${this.job.resources.gpu}`,
     ];
