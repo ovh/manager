@@ -12,6 +12,7 @@ angular.module('App').controller(
       $stateParams,
       $timeout,
       $translate,
+      atInternet,
       Alerter,
       Hosting,
       HostingDatabase,
@@ -24,6 +25,7 @@ angular.module('App').controller(
       this.$stateParams = $stateParams;
       this.$timeout = $timeout;
       this.$translate = $translate;
+      this.atInternet = atInternet;
       this.alerter = Alerter;
       this.hostingService = Hosting;
       this.hostingDatabaseService = HostingDatabase;
@@ -32,6 +34,8 @@ angular.module('App').controller(
     }
 
     $onInit() {
+      this.atInternet.trackPage({ name: 'web::hosting::databases' });
+
       this.hosting = this.$scope.hosting;
       this.hostingProxy = this.$scope.hostingProxy;
       this.bddTemplate = 'hosting/database/DATABASE_LIST.html';

@@ -9,6 +9,7 @@ angular.module('App').controller(
       $q,
       $filter,
       $stateParams,
+      atInternet,
       Alerter,
       constants,
       Hosting,
@@ -18,6 +19,7 @@ angular.module('App').controller(
       this.$q = $q;
       this.$filter = $filter;
       this.$stateParams = $stateParams;
+      this.atInternet = atInternet;
       this.Alerter = Alerter;
       this.constants = constants;
       this.Hosting = Hosting;
@@ -25,6 +27,11 @@ angular.module('App').controller(
     }
 
     $onInit() {
+      this.atInternet.trackClick({
+        name: 'web::hosting::logs',
+        type: 'action',
+      });
+
       this.hosting = this.$scope.hosting;
       this.logs = this.$scope.logs;
 

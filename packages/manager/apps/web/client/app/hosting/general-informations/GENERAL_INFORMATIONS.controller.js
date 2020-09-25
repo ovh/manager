@@ -1,8 +1,11 @@
 import head from 'lodash/head';
 import isEmpty from 'lodash/isEmpty';
 import isObject from 'lodash/isObject';
+import get from 'lodash/get';
 
 import { QUOTA_DECIMAL_PRECISION } from './general-informations.constants';
+import { HOSTING_CDN_ORDER_CDN_VERSION_V1 } from '../cdn/order/hosting-cdn-order.constant';
+import { SHARED_CDN_GET_MORE_INFO } from '../cdn/shared/hosting-cdn-shared-settings.constants';
 
 export default class HostingGeneralInformationsCtrl {
   /* @ngInject */
@@ -40,10 +43,11 @@ export default class HostingGeneralInformationsCtrl {
   }
 
   $onInit() {
+    this.atInternet.trackPage({ name: 'web::hosting' });
+
     this.serviceName = this.$stateParams.productId;
     this.defaultRuntime = null;
     this.availableOffers = [];
-
     this.contactManagementLink = this.RedirectionService.getURL(
       'contactManagement',
       { serviceName: this.serviceName, category: 'HOSTING' },
@@ -219,15 +223,16 @@ export default class HostingGeneralInformationsCtrl {
   }
 
   changeOffer() {
-    this.atInternet.trackClick({
-      name: 'web::hostname::general-informations::change-offer',
-      type: 'action',
-    });
+    this.sendTrackClick('web::hostname::general-informations::change-offer');
     this.$state.go('app.hosting.upgrade', { productId: this.serviceName });
   }
 
   goToBoostTab() {
     this.$scope.$parent.$ctrl.setSelectedTab('BOOST');
+  }
+
+  goToMultisiteTab() {
+    this.$scope.$parent.$ctrl.setSelectedTab('MULTISITE');
   }
 
   goToPrivateSqlActivation() {
@@ -241,5 +246,73 @@ export default class HostingGeneralInformationsCtrl {
 
   activateEmailOffer() {
     this.$state.go('app.hosting.activate', { serviceName: this.serviceName });
+  }
+
+  getCDNBannerKeyToTranslate() {
+    if (
+      get(this.$scope.cdnProperties, 'version') ===
+      HOSTING_CDN_ORDER_CDN_VERSION_V1
+    ) {
+      return 'hosting_dashboard_service_cdn_customer_has_cdn_v1_banner_msg';
+    }
+
+    if (get(this.$scope.hosting, 'hasCdn') === false) {
+      return 'hosting_dashboard_service_cdn_customer_has_no_cdn_banner_msg';
+    }
+
+    return null;
+  }
+
+  getCDNMoreInfoLink() {
+    return SHARED_CDN_GET_MORE_INFO[this.$scope.ovhSubsidiary];
+  }
+
+  goToOrderOrUpgrade() {
+    this.sendTrackClick('web::hosting::alert::order-cdn');
+    return this.$state.go(
+      this.$scope.hosting.hasCdn
+        ? 'app.hosting.cdn.upgrade'
+        : 'app.hosting.cdn.order',
+    );
+  }
+
+  goToMultisite() {
+    this.sendTrackClick('web::hosting::configure-cdn');
+    this.goToMultisiteTab();
+  }
+
+  orderCdn() {
+    this.sendTrackClick(
+      this.$scope.isCdnFree
+        ? 'web::hosting::activate-cdn'
+        : 'web::hosting::order-cdn',
+    );
+    this.$state.go('app.hosting.cdn.order');
+  }
+
+  upgradeCdn() {
+    this.sendTrackClick('web::hosting::upgrade-cdn');
+    this.$state.go('app.hosting.cdn.upgrade');
+  }
+
+  terminateCdn(action) {
+    this.sendTrackClick('web::hosting::terminate-cdn');
+    this.$scope.setAction(action);
+  }
+
+  flushCdn(action) {
+    this.sendTrackClick('web::hosting::empty-cdn-cache');
+    this.$scope.setAction(action);
+  }
+
+  onMoreInfoLinkClicked() {
+    this.sendTrackClick('web::hosting::alert::cdn-more-info');
+  }
+
+  sendTrackClick(hit) {
+    this.atInternet.trackClick({
+      name: hit,
+      type: 'action',
+    });
   }
 }

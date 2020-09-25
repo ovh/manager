@@ -3,16 +3,27 @@ import get from 'lodash/get';
 angular.module('App').controller(
   'HostingTabTasksCtrl',
   class HostingTabTasksCtrl {
-    constructor($q, $scope, $stateParams, $translate, Alerter, Hosting) {
+    constructor(
+      $q,
+      $scope,
+      $stateParams,
+      $translate,
+      atInternet,
+      Alerter,
+      Hosting,
+    ) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
       this.$translate = $translate;
+      this.atInternet = atInternet;
       this.Alerter = Alerter;
       this.Hosting = Hosting;
       this.$q = $q;
     }
 
     $onInit() {
+      this.atInternet.trackPage({ name: 'web::hosting::tasks' });
+
       this.states = {
         DOING: 'DOING',
         ERROR: 'ERROR',

@@ -14,6 +14,7 @@ angular.module('App').controller(
       $state,
       $stateParams,
       $translate,
+      atInternet,
       Alerter,
       Hosting,
       HostingUser,
@@ -23,12 +24,15 @@ angular.module('App').controller(
       this.$state = $state;
       this.$stateParams = $stateParams;
       this.$translate = $translate;
+      this.atInternet = atInternet;
       this.Alerter = Alerter;
       this.Hosting = Hosting;
       this.HostingUser = HostingUser;
     }
 
     $onInit() {
+      this.atInternet.trackPage({ name: 'web::hosting::ftp' });
+
       this.primaryUser = null;
       this.allowUpdateState = true;
       this.displayFtpExplorer = true;

@@ -1,8 +1,30 @@
 {
-  "hosting_cdn_order_title": "Commander un CDN",
-  "hosting_cdn_order_description": "L'option CDN active un réseau de serveurs de cache pour vos fichiers statiques (HTML, CSS, JavaScript). Il vous permet d'accélérer le chargement de vos pages web et d'utiliser les ressources de votre hébergement uniquement pour vos pages dynamiques.",
+  "hosting_cdn_order_title": "Vous allez souscrire l’option Shared CDN",
+  "hosting_cdn_upgrade_title": "Migrer vers l’option Shared CDN",
+
+  "hosting_cdn_order_customer_cdn_included_step1_description": "Nous prenons en charge pour vous la migration de votre ancien CDN vers l’option Shared CDN. Nous migrerons également au fur et à mesure les noms de domaine de votre hébergement sur lesquels l’ancienne option CDN est activée. Une configuration par défaut sera mise en place. Les noms de domaine sur lesquels le CDN n’est pas activé resteront dans le même état après la migration.",
+  "hosting_cdn_order_customer_cdn_included_step1_header": "Prix de l’option",
+  "hosting_cdn_order_customer_cdn_included_step1_info": "La mise à jour vers le nouveau CDN est incluse avec votre solution Performance 1, 2, 3, 4 ou Cloud Web 1, 2 ou 3 sans facturation supplémentaire.",
+
+  "hosting_cdn_order_customer_cdn_payable_step1_description": "Nous prenons en charge pour vous la migration de votre ancien CDN vers l’option Shared CDN. Nous migrerons également au fur et à mesure les noms de domaine de votre hébergement sur lesquels l’ancienne option CDN est activée. Une configuration par défaut sera mise en place. Les noms de domaine sur lesquels le CDN n’est pas activé resteront dans le même état après la migration.",
+  "hosting_cdn_order_customer_cdn_payable_step1_header": "Évolution de votre offre",
+
+  "hosting_cdn_order_customer_cdn_payable_step1_info": "Vous allez mettre à jour votre CDN vers la nouvelle option Shared CDN.",
+  "hosting_cdn_order_customer_cdn_without_step1_info": "Vous allez mettre à jour votre CDN vers la nouvelle option Shared CDN.",
+
+  "hosting_cdn_order_customer_cdn_without_step1_description": "Pour vous permettre de démarrer rapidement, l’option Shared CDN est proposée avec une configuration par défaut. Lorsque vous l’activez, nous vous proposons des réglages standards pour commencer simplement et rapidement. <br><br>Vous pouvez activer un CDN dédié à chacun de vos noms de domaine pour garder le contrôle. Découvrez à votre rythme chaque fonctionnalité et les possibilités proposées par l’option CDN.",
+  "hosting_cdn_order_customer_cdn_without_step1_header": "Choisissez la durée d’engagement",
+  "hosting_cdn_order_customer_cdn_without_step1_price": "Prix au prorata selon votre hébergement",
+
+  "hosting_cdn_order_customer_cdn_included_step2_header": "Confirmation",
+  "hosting_cdn_order_customer_cdn_included_step2_no_default_payment_method": "Vous n'avez pas entré de moyen de paiement par défaut. Vous allez être redirigé vers un bon de commande pour effectuer votre paiement.",
+  "hosting_cdn_order_customer_cdn_included_step2_btn_ok": "Valider",
+  "hosting_cdn_order_customer_cdn_included_step2_btn_ko": "Annuler",
+
+  "hosting_cdn_order_customer_cdn_payable_step2_header": "Évolution de votre offre",
+  "hosting_cdn_order_customer_cdn_without_step2_header": "Confirmation",
+
   "hosting_cdn_order_duration_label": "{{duration}} :",
-  "hosting_cdn_order_step_header_duration": "Choisissez votre durée",
   "hosting_cdn_order_step_header_activation": "Activation",
   "hosting_cdn_order_step_header_payment": "Paiement",
   "hosting_cdn_order_step_description_activation": "Afin de confirmer votre demande, veuillez accepter les conditions d'utilisation.",

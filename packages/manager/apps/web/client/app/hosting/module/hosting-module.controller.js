@@ -14,6 +14,7 @@ angular.module('App').controller(
       Hosting,
       HostingModule,
       User,
+      atInternet,
     ) {
       this.$scope = $scope;
       this.$state = $state;
@@ -24,9 +25,12 @@ angular.module('App').controller(
       this.Hosting = Hosting;
       this.HostingModule = HostingModule;
       this.User = User;
+      this.atInternet = atInternet;
     }
 
     $onInit() {
+      this.atInternet.trackPage({ name: 'web::hosting::module-1-click' });
+
       this.$scope.$on('hosting.tabs.modules.refresh', () => {
         this.getModules(true);
       });

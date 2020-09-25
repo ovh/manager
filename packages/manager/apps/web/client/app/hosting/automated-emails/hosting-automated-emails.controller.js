@@ -11,6 +11,7 @@ angular.module('App').controller(
       $stateParams,
       $timeout,
       $translate,
+      atInternet,
       HostingAutomatedEmails,
       Alerter,
       $filter,
@@ -21,6 +22,7 @@ angular.module('App').controller(
       this.$stateParams = $stateParams;
       this.$timeout = $timeout;
       this.$translate = $translate;
+      this.atInternet = atInternet;
       this.HostingAutomatedEmails = HostingAutomatedEmails;
       this.Alerter = Alerter;
       this.$filter = $filter;
@@ -100,6 +102,8 @@ angular.module('App').controller(
     }
 
     $onInit() {
+      this.atInternet.trackPage({ name: 'web::hosting::scripts' });
+
       this.automatedEmails = null;
       this.bounces = [];
       this.currentView = 'INFORMATIONS_VIEW';
