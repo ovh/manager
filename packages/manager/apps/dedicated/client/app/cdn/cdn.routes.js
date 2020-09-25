@@ -2,7 +2,7 @@ import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.networks.cdn.index', {
-    url: `/cdn?${ListLayoutHelper.urlQueryParams}`,
+    url: `?${ListLayoutHelper.urlQueryParams}`,
     component: 'managerListLayout',
     params: ListLayoutHelper.stateParams,
     resolve: {
