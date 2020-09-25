@@ -285,6 +285,7 @@ export const DEDICATED_NETWORK_CONFIG = {
   app: [DEDICATED],
   regions: ['EU', 'CA', 'US'],
   icon: 'oui-icon oui-icon-bandwidth_concept',
+  loadOnState: ['vrack', 'cloud-connect'],
   children: [
     {
       id: 'vrack',
