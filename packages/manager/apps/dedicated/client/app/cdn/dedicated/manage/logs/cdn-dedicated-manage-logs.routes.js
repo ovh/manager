@@ -1,16 +1,20 @@
 angular
   .module('App')
   .config(($stateProvider) => {
-  $stateProvider.state('app.networks.cdn.dedicated.manage.logs', {
-    url: '/logs',
-    views: {
-      cdnView: {
+    $stateProvider.state('app.networks.cdn.dedicated.manage.logs', {
+      url: '/logs',
+      views: {
+        cdnView: {
           templateUrl:
             'cdn/dedicated/manage/logs/cdn-dedicated-manage-logs.html',
-        controller: 'CdnLogsCtrl',
-        controllerAs: '$ctrl',
+          controller: 'CdnLogsCtrl',
+          controllerAs: '$ctrl',
+        },
       },
-    },
-    translations: { value: ['.'], format: 'json' },
-  });
-});
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('cdn_tabs_logs'),
+      },
+    });
+  })
+  .run(/* @ngTranslationsInject:json ./translations */);
