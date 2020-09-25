@@ -5,6 +5,7 @@ angular.module('Billing').config(($stateProvider) => {
     redirectTo: 'app.account.billing.main.payments.payment.details',
     resolve: {
       paymentId: /* @ngInject */ ($transition$) => $transition$.params().id,
+      breadcrumb: /* @ngInject */ (paymentId) => paymentId,
     },
   });
 
@@ -13,5 +14,8 @@ angular.module('Billing').config(($stateProvider) => {
     templateUrl: 'billing/main/payments/details/billing-payments-details.html',
     controller: 'Billing.PaymentDetailsCtrl',
     controllerAs: '$ctrl',
+    resolve: {
+      breadcrumb: () => null,
+    },
   });
 });
