@@ -41,7 +41,7 @@ export const REDIRECT_URLS = {
   license:
     'https://ca.ovh.com/manager/index.html#/configuration/license?landingTo=licences',
   housing:
-    'https://www.ovh.com/manager/dedicated/index.html#/configuration/housing/{housing}?landingTo=dedicatedServers',
+    'https://www.ovh.com/manager/dedicated/index.html#/housing/{housing}?landingTo=dedicatedServers',
   dedicatedServers:
     'https://ca.ovh.com/manager/index.html#/configuration?landingTo=dedicatedServers',
   dedicatedServersPage:

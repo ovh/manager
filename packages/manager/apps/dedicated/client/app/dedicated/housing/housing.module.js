@@ -15,6 +15,12 @@ angular
     'ui.router',
   ])
   .config(routing)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .run(
+    /* @ngInject */ ($translate, $transitions) => {
+      $transitions.onBefore({ to: 'dedicated-housing.**' }, () =>
+        $translate.refresh(),
+      );
+    },
+  );
 
 export default moduleName;

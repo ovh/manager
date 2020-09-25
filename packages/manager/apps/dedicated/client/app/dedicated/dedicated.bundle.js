@@ -1,14 +1,10 @@
 import './dedicated.routes';
 import './housing/backup/access/add/dedicated-housing-backup-access-add.controller';
 import './housing/backup/access/delete/dedicated-housing-backup-access-delete.controller';
-import './housing/backup/dedicated-housing-backup.controller';
 import './housing/backup/disable/dedicated-housing-backup-disable.controller';
 import './housing/backup/enable/dedicated-housing-backup-enable.controller';
 import './housing/backup/password/reset/dedicated-housing-backup-password-reset.controller';
-import './housing/dashboard/dedicated-housing-tabs.controller';
 import './housing/dashboard/dedicated-housing.controller';
-import './housing/dashboard/dedicated-housing.routes';
-import './housing/dashboard/dedicated-housing.service';
 import './housing/reboot/dedicated-housing-reboot.controller';
 import './housing/task/dedicated-housing-task.controller';
 import './nas/details/dashboard/nas-details-dashboard.controller';
