@@ -14,11 +14,7 @@ angular.module('UserAccount').config(
       template,
       controller,
       controllerAs: '$ctrl',
-      translations: {
-        format: 'json',
-        value: ['./'],
-      },
-      redirectTo: `${name}.method`,
+      redirectTo: `${name}.dashboard`,
       resolve: {
         schema: /* @ngInject */ (OvhApiMe) => OvhApiMe.v6().schema().$promise,
         supportLevel: /* @ngInject */ (OvhApiMe, schema) =>
@@ -27,6 +23,8 @@ angular.module('UserAccount').config(
                 .supportLevel()
                 .$promise.then((supportLevel) => new SupportLevel(supportLevel))
             : Promise.resolve(null),
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('user_account'),
       },
     });
   },
