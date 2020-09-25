@@ -45,4 +45,5 @@ angular
       set($rootScope, 'target', userAccountConstants.target);
       set($rootScope, 'worldPart', userAccountConstants.target);
     },
-  ]);
+  ])
+  .run(/* @ngTranslationsInject:json ./translations */);
