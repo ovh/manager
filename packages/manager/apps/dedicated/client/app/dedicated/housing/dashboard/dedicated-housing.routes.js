@@ -20,6 +20,7 @@ export default /* @ngInject */ ($stateProvider) => {
       currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
         $state.href($state.current.name, $transition$.params()),
 
+      breadcrumb: /* @ngInject */ (name) => name,
     },
-});
+  });
 };
