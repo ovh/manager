@@ -13,8 +13,13 @@ angular.module('App').config(
         },
       },
       resolve: {
-        goToDomains: /* @ngInject */ ($state) => () =>
-          $state.go('app.networks.cdn.dedicated.manage.domain'),
+        domainsLink: /* @ngInject */ ($transition$, $state) =>
+          $state.href(
+            'app.networks.cdn.dedicated.manage.domain',
+            $transition$.params(),
+          ),
+        currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
+          $state.href($state.current.name, $transition$.params()),
       },
     });
   },

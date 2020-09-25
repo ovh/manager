@@ -9,18 +9,29 @@ const moduleName = 'ovhManagerCdnLazyLoading';
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad', domains]).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state('app.networks.cdn', {
-      url: '',
+      url: '/cdn',
       template: '<div data-ui-view></div>',
-      abstract: true,
+      redirectTo: 'app.networks.cdn.index',
       reloadOnSearch: false,
     });
 
     $stateProvider.state('app.networks.cdn.index.**', {
-      url: '/cdn',
+      url: '',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
         return import('./cdn.module').then((mod) =>
+          $ocLazyLoad.inject(mod.default || mod),
+        );
+      },
+    });
+
+    $stateProvider.state('app.networks.cdn.dedicated.**', {
+      url: '/:productId',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./dedicated/dedicated.module').then((mod) =>
           $ocLazyLoad.inject(mod.default || mod),
         );
       },
