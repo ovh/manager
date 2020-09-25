@@ -1,4 +1,6 @@
-angular.module('App').config(($stateProvider) => {
+angular
+  .module('App')
+  .config(($stateProvider) => {
   $stateProvider.state('app.networks.cdn.dedicated.manage.ssl.delete', {
     url: '/delete',
     templateUrl:

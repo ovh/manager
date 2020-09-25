@@ -1,6 +1,5 @@
 import './dedicated/backend/order/cdn-dedicated-backend-order.controller';
 import './dedicated/cdn-dedicated.controller';
-import './dedicated/cdn-dedicated.routes';
 import './dedicated/cdn-dedicated.service';
 import './dedicated/domain/add/cdn-dedicated-domain-add.controller';
 import './dedicated/domain/backend/update/cdn-dedicated-domain-backend-update.controller';
