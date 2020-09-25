@@ -1,6 +1,15 @@
 angular.module('Billing').config(($stateProvider) => {
-  $stateProvider.state('app.account.billing.main.payments.details', {
-    url: '/:id/details',
+  $stateProvider.state('app.account.billing.main.payments.payment', {
+    url: '/:id',
+    template: '<div ui-view></div>',
+    redirectTo: 'app.account.billing.main.payments.payment.details',
+    resolve: {
+      paymentId: /* @ngInject */ ($transition$) => $transition$.params().id,
+    },
+  });
+
+  $stateProvider.state('app.account.billing.main.payments.payment.details', {
+    url: '/details',
     templateUrl: 'billing/main/payments/details/billing-payments-details.html',
     controller: 'Billing.PaymentDetailsCtrl',
     controllerAs: '$ctrl',
