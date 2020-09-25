@@ -64,6 +64,9 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
           'columns',
           'formatters',
           'mappings',
+          'schema',
+          'apiModel',
+          'configuration',
         ]),
         bills: /* @ngInject */ (OvhApiMe) =>
           OvhApiMe.Bill()
@@ -117,6 +120,7 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
             data: bills.data.map((bill) => new Bill(bill)),
           }));
         },
+        defaultFilterColumn: () => 'date',
         getDebt: /* @ngInject */ ($http, $q) => (bill) =>
           $http
             .get(`/me/bill/${bill.billId}/debt`)
