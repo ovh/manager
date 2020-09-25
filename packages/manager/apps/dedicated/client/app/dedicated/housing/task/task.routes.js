@@ -6,5 +6,9 @@ export default /* @ngInject */ ($stateProvider) => {
     template,
     controller: 'HousingTaskCtrl',
     controllerAs: '$ctrl',
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('housing_task'),
+    },
   });
 };
