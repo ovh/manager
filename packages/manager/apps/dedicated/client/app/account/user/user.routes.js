@@ -14,11 +14,7 @@ angular.module('UserAccount').config(
       template,
       controller,
       controllerAs: '$ctrl',
-      translations: {
-        format: 'json',
-        value: ['./'],
-      },
-      redirectTo: `${name}.method`,
+      redirectTo: `${name}.dashboard`,
       resolve: {
         angularQr: /* @ngInject */ ($ocLazyLoad) =>
           import('angular-qr').then((module) =>
@@ -31,6 +27,8 @@ angular.module('UserAccount').config(
                 .supportLevel()
                 .$promise.then((supportLevel) => new SupportLevel(supportLevel))
             : Promise.resolve(null),
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('user_account'),
       },
     });
   },
