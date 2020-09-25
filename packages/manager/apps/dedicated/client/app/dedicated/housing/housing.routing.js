@@ -17,6 +17,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('dedicated-housing.dashboard', {
           productId,
         }),
+      hideBreadcrumb: () => true,
     },
   });
 };

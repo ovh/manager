@@ -5,5 +5,9 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/backup',
     template,
     controller: 'HousingFtpBackupCtrl',
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('housing_backup'),
+    },
   });
 };
