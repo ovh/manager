@@ -24,48 +24,57 @@
     <oui-header-tabs>
         <oui-header-tabs-item
             data-href="{{:: $ctrl.getTabItemUrl('dashboard') }}"
+            active="$ctrl.getTabItemUrl('dashboard') === $ctrl.currentActiveLink()"
             ><span data-translate="server_informations_general"></span
         ></oui-header-tabs-item>
         <oui-header-tabs-item
             data-href="{{:: $ctrl.getTabItemUrl('interfaces') }}"
+            active="$ctrl.getTabItemUrl('interfaces') === $ctrl.currentActiveLink()"
             data-disabled="server.isExpired"
             ><span data-translate="server_tab_interfaces"></span
         ></oui-header-tabs-item>
         <oui-header-tabs-item
             data-href="{{:: $ctrl.getTabItemUrl('dns') }}"
+            active="$ctrl.getTabItemUrl('dns') === $ctrl.currentActiveLink()"
             data-disabled="server.isExpired"
             ><span data-translate="server_tab_dns"></span
         ></oui-header-tabs-item>
         <oui-header-tabs-item
             data-href="{{:: $ctrl.getTabItemUrl('ftpBackup') }}"
+            active="$ctrl.getTabItemUrl('ftpBackup') === $ctrl.currentActiveLink()"
             data-disabled="server.isExpired"
             data-ng-if="worldPart !== 'US'"
             ><span data-translate="server_tab_ftp_backup"></span
         ></oui-header-tabs-item>
         <oui-header-tabs-item
             data-href="{{:: $ctrl.getTabItemUrl('intervention') }}"
+            active="$ctrl.getTabItemUrl('intervention') === $ctrl.currentActiveLink()"
             data-disabled="server.isExpired"
             ><span data-translate="server_tab_intervention"></span
         ></oui-header-tabs-item>
         <oui-header-tabs-item
             data-href="{{:: $ctrl.getTabItemUrl('firewall') }}"
+            active="$ctrl.getTabItemUrl('firewall') === $ctrl.currentActiveLink()"
             data-disabled="server.isExpired"
             data-ng-if="worldPart !== 'US'"
             ><span data-translate="server_tab_firewall"></span
         ></oui-header-tabs-item>
         <oui-header-tabs-item
             data-href="{{:: $ctrl.getTabItemUrl('ipmi') }}"
+            active="$ctrl.getTabItemUrl('ipmi') === $ctrl.currentActiveLink()"
             data-disabled="server.isExpired"
             ><span data-translate="server_tab_ipmi"></span
         ></oui-header-tabs-item>
         <oui-header-tabs-item
             data-ng-if="disable.usbStorageTab"
             data-href="{{:: $ctrl.getTabItemUrl('usbStorage') }}"
+            active="$ctrl.getTabItemUrl('usbStorage') === $ctrl.currentActiveLink()"
             data-disabled="server.isExpired"
             ><span data-translate="server_tab_usb_storage"></span
         ></oui-header-tabs-item>
         <oui-header-tabs-item
             data-href="{{:: $ctrl.getTabItemUrl('task') }}"
+            active="$ctrl.getTabItemUrl('task') === $ctrl.currentActiveLink()"
             data-disabled="server.isExpired"
             ><span data-translate="server_tab_task"></span
         ></oui-header-tabs-item>
