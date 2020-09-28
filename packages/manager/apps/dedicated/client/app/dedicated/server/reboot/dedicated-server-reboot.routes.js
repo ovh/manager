@@ -6,6 +6,9 @@ angular.module('App').config(
       controller: 'DedicatedServerRebootCtrl',
       controllerAs: '$ctrl',
       layout: 'modal',
+      resolve: {
+        breadcrumb: () => null,
+      },
     });
   },
 );

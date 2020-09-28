@@ -16,6 +16,7 @@ angular
   .component('dedicatedServerTask', component)
   .config(routing)
   .service('DedicatedServerTask', service)
-  .run(/* @ngTranslationsInject:json ../translations */);
+  .run(/* @ngTranslationsInject:json ../translations */)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
