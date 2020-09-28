@@ -17,6 +17,7 @@ export default /* @ngInject */ ($stateProvider) => {
       translations: { value: ['.'], format: 'json' },
       resolve: {
         goBack: /* @ngInject */ ($state) => () => $state.go('^'),
+        breadcrumb: () => null,
       },
     });
   });

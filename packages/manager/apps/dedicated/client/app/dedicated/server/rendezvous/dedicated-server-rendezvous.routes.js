@@ -7,5 +7,8 @@ angular.module('App').config(($stateProvider) => {
       name: 'modal',
       toChilds: true,
     },
+    resolve: {
+      breadcrumb: () => null,
+    },
   });
 });
