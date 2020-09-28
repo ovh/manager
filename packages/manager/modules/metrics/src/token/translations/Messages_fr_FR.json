@@ -41,5 +41,6 @@
   "metrics_token_err_get": "Erreur lors de la récupération des tokens",
   "metrics_token_err_create": "Erreur lors de la création du token",
   "metrics_token_err_revoke": "Erreur lors de la révocation du token",
-  "metrics_token_err_update": "Erreur lors de la mise à jour du token"
+  "metrics_token_err_update": "Erreur lors de la mise à jour du token",
+  "metrics_expiry_date": "Date d'expiration"
 }
