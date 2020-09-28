@@ -147,7 +147,7 @@ export = opts => {
             },
             {
               loader: 'less-loader', // compiles Less to CSS
-              options: lessLoaderOptions,
+              options: { lessOptions: lessLoaderOptions },
             },
           ],
         },
