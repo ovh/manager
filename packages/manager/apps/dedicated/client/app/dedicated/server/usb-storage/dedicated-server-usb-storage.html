@@ -3,8 +3,7 @@
         <oui-spinner></oui-spinner>
     </div>
 
-    <div class="row" data-ng-if="!loading">
-        <div class="col-md-9">
+    <div data-ng-if="!loading">
             <div data-ovh-alert="addTokenAlert"></div>
             <div
                 data-translate="server_tab_USB_STORAGE_summary"
@@ -33,15 +32,5 @@
                     ></span>
                 </span>
             </div>
-        </div>
-        <div class="col-md-3">
-            <button
-                type="button"
-                class="btn btn-default btn-block"
-                data-ng-click="setAction('usb-storage/order/dedicated-server-usb-storage-order', usbInformations)"
-                data-ng-if="usbInformations.orderable"
-                data-translate="server_tab_USB_STORAGE_add"
-            ></button>
-        </div>
     </div>
 </div>
