@@ -7,7 +7,10 @@
   "cpbc_archive_storage_detail_title": "Archivspeicher",
   "cpbc_snapshot_detail_title": "Backup-Speicher",
   "cpbc_volume_detail_title": "Zusätzliche Festplatten",
-  "cpbc_hourly_instance_trafic_title": "Aus den Instanzen ausgehender öffentlicher Datenverkehr ",
+  "cpbc_hourly_instance_trafic_title": "Aus den Instanzen ausgehender öffentlicher Datenverkehr",
   "cpbc_hourly_private_registry_title": "Managed Private Registry",
-  "cpbc_hourly_load_balancer_title": "Loadbalancing-IP"
+  "cpbc_hourly_load_balancer_title": "Loadbalancer",
+  "cpbc_hourly_serving_title": "ML Serving",
+  "cpbc_hourly_training_title": "AI Training",
+  "cpbc_hourly_data_processing_title": "Datenverarbeitung"
 }

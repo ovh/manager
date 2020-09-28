@@ -1,0 +1,12 @@
+{
+  "pci_projects_project_training_dashboard_attach_registry_url": "URL do registo Docker",
+  "pci_projects_project_training_dashboard_attach_registry_success": "O registo Docker fornecido foi corretamente associado ao projeto",
+  "pci_projects_project_training_dashboard_attach_registry_error": "Ocorreu um erro durante a associação do registo Docker: {{ message }}",
+  "pci_projects_project_training_dashboard_attach_registry": "Associar um registo Docker",
+  "pci_projects_project_training_dashboard_attach_registry_common_attach": "Associar",
+  "pci_projects_project_training_dashboard_attach_registry_common_cancel": "Cancelar",
+  "pci_projects_project_training_dashboard_attach_registry_password": "Palavra-passe",
+  "pci_projects_project_training_dashboard_attach_registry_user": "ID de utilizador",
+  "pci_projects_project_training_dashboard_attach_registry_user_info_1": "Armazenamos de forma padrão as imagens privadas dos seus projetos num registo Docker gerido pela OVHcloud e partilhado entre os nossos clientes. Neste registo partilhado, reservamos o direito de eliminar as suas imagens a qualquer momento.",
+  "pci_projects_project_training_dashboard_attach_registry_user_info_2": "É aconselhável utilizar o seu próprio registo para armazenar as suas imagens privadas e associá-lo ao introduzir as seguintes informações:"
+}

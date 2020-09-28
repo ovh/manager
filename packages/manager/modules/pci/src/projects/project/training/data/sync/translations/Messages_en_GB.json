@@ -1,0 +1,11 @@
+{
+  "pci_projects_project_training_data_sync_message": "Choose the sync direction",
+  "pci_projects_project_training_data_common_cancel": "Cancel",
+  "pci_projects_project_training_data_common_submit": "Sync",
+  "pci_projects_project_training_data_sync_pull": "Import",
+  "pci_projects_project_training_data_sync_pull_message": "Import your data from the attached object storage container",
+  "pci_projects_project_training_data_sync_push": "Export",
+  "pci_projects_project_training_data_sync_push_message": "Export your data to the attached object storage container",
+  "pci_projects_project_training_data_sync_success": "Your data will be synced",
+  "pci_projects_project_training_data_sync_error": "An error has occurred: {{ message }}"
+}

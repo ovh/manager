@@ -1,0 +1,8 @@
+{
+  "pci_projects_project_training_dashboard_detach_registry": "Odłącz Twój Docker Registry",
+  "pci_projects_project_training_dashboard_detach_registry_common_detach": "Odłącz",
+  "pci_projects_project_training_dashboard_detach_registry_common_cancel": "Anuluj",
+  "pci_projects_project_training_dashboard_detach_registry_warning": "Chcesz odłączyć Docker Registry od projektu AI Training. Współdzielony Docker Registry OVHcloud zostanie ponownie przypisany do Twojego projektu.",
+  "pci_projects_project_training_dashboard_detach_registry_success": "Twój Docker Registry został odłączony od namespace",
+  "pci_projects_project_training_dashboard_detach_registry_error": "Wystąpił błąd podczas odłączania Docker Registry: {{message}}"
+}

@@ -1,0 +1,11 @@
+{
+  "pci_projects_project_training_data_sync_message": "Scegli il senso della sincronizzazione",
+  "pci_projects_project_training_data_common_cancel": "Annulla",
+  "pci_projects_project_training_data_common_submit": "Sincronizza",
+  "pci_projects_project_training_data_sync_pull": "Importazione",
+  "pci_projects_project_training_data_sync_pull_message": "Importa i dati dal container object storage associato",
+  "pci_projects_project_training_data_sync_push": "Esportazione",
+  "pci_projects_project_training_data_sync_push_message": "Esporta i dati verso il container object storage associato",
+  "pci_projects_project_training_data_sync_success": "I dati verranno sincronizzati",
+  "pci_projects_project_training_data_sync_error": "Si è verificato un errore: {{message}}"
+}
