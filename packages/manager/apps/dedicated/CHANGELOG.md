@@ -1,3 +1,26 @@
+# [14.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@13.2.12...@ovh-ux/manager-dedicated@14.0.0) (2020-09-28)
+
+
+### Bug Fixes
+
+* **cloud-connect:** rearrange components ([28df078](https://github.com/ovh/manager/commit/28df0780733ad0f06f7f9a479a354cde009c9dfa)), closes [#MANAGER-5205](https://github.com/ovh/manager/issues/MANAGER-5205)
+* **i18n:** add missing translations [CDS 582] ([d89587c](https://github.com/ovh/manager/commit/d89587cde6aaa67651cddca6ea717fba4e096fa3))
+
+
+### Features
+
+* **cloud-connect:** ovh cloud connect ([1b86d5c](https://github.com/ovh/manager/commit/1b86d5ca1a73e040181ac74a0eb35702a92052e8)), closes [#MANAGER-5205](https://github.com/ovh/manager/issues/MANAGER-5205)
+* **dedicated:** add feature availability to cloud connect ([911feed](https://github.com/ovh/manager/commit/911feedeb2285ab611600ea8e2184aaaa7310bee))
+
+
+### BREAKING CHANGES
+
+* **cloud-connect:** init `@ovh-ux/manager-cloud-connect` module.
+
+Signed-off-by: varun257 <varun257@gmail.com>
+
+
+
 ## [13.2.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@13.2.11...@ovh-ux/manager-dedicated@13.2.12) (2020-09-24)
 
 
