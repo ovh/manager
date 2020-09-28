@@ -4,7 +4,7 @@ import map from 'lodash/map';
 import some from 'lodash/some';
 
 import { URLS, WEATHERMAP_URL } from './dashboard.constants';
-import { NEW_RANGE } from '../server.constants';
+import { NEW_RANGE } from '../details/server.constants';
 
 export default class DedicatedServerDashboard {
   /* @ngInject */
