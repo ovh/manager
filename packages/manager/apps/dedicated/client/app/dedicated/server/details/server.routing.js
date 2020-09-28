@@ -10,6 +10,8 @@ export default /* @ngInject */ ($stateProvider) => {
     reloadOnSearch: false,
     redirectTo: 'app.dedicated-server.server.dashboard',
     resolve: {
+      currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
+        $state.href($state.current.name, $transition$.params()),
       isLegacy: /* @ngInject */ (server) =>
         !NEW_RANGE.PATTERN.test(server.commercialRange),
       interfaces: /* @ngInject */ (
