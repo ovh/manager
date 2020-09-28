@@ -1,7 +1,7 @@
 import cloneDeep from 'lodash/cloneDeep';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicated.server.interfaces.rename', {
+  $stateProvider.state('app.dedicated-server.server.interfaces.rename', {
     url: '/rename',
     views: {
       modal: {

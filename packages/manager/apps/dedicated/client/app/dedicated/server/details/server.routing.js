@@ -4,11 +4,11 @@ import { NEW_RANGE } from './server.constants';
 import Ola from '../interfaces/ola.class';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicated.server', {
-    url: '/configuration/server/:productId',
+  $stateProvider.state('app.dedicated-server.server', {
+    url: '/:productId',
     component: 'dedicatedServer',
     reloadOnSearch: false,
-    redirectTo: 'app.dedicated.server.dashboard',
+    redirectTo: 'app.dedicated-server.server.dashboard',
     resolve: {
       isLegacy: /* @ngInject */ (server) =>
         !NEW_RANGE.PATTERN.test(server.commercialRange),

@@ -1,4 +1,3 @@
-import './dedicated.routes';
 import './housing/backup/access/add/dedicated-housing-backup-access-add.controller';
 import './housing/backup/access/delete/dedicated-housing-backup-access-delete.controller';
 import './housing/backup/disable/dedicated-housing-backup-disable.controller';

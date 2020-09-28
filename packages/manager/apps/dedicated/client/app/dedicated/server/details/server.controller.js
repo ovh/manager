@@ -363,7 +363,7 @@ export default class ServerCtrl {
       .then(() => this.getTaskInProgress())
       .finally(() => {
         if (this.$scope.server.canTakeRendezVous) {
-          this.$state.go('app.dedicated.server.rendezvous');
+          this.$state.go('app.dedicated-server.server.rendezvous');
         }
       });
   }
@@ -629,7 +629,7 @@ export default class ServerCtrl {
   }
 
   getTabItemUrl(tabItemName) {
-    return this.$state.href(`app.dedicated.server.${tabItemName}`);
+    return this.$state.href(`app.dedicated-server.server.${tabItemName}`);
   }
 
   static isHousing(dedicatedServer) {

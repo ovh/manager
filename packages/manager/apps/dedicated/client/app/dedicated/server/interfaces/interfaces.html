@@ -108,12 +108,12 @@
                 </oui-tile-description>
                 <oui-action-menu data-compact data-placement="end">
                     <oui-action-menu-item
-                        data-ui-sref="app.dedicated.server.interfaces.ola-configuration"
+                        data-ui-sref="app.dedicated-server.server.interfaces.ola-configuration"
                     >
                         <span data-translate="server_ola_configure"></span>
                     </oui-action-menu-item>
                     <oui-action-menu-item
-                        data-ui-sref="app.dedicated.server.interfaces.ola-terminate"
+                        data-ui-sref="app.dedicated-server.server.interfaces.ola-terminate"
                     >
                         <span data-translate="server_ola_terminate"></span>
                     </oui-action-menu-item>
@@ -249,7 +249,7 @@
 
     <oui-action-menu data-compact data-placement="top-end">
         <oui-action-menu-item
-            data-ui-sref="app.dedicated.server.interfaces.rename({ interface: $row })"
+            data-ui-sref="app.dedicated-server.server.interfaces.rename({ interface: $row })"
             data-ng-if="$row.isVirtual()"
         >
             <span
@@ -257,7 +257,7 @@
             ></span>
         </oui-action-menu-item>
         <oui-action-menu-item
-            data-ui-sref="app.dedicated.server.interfaces.bandwidth-public-order"
+            data-ui-sref="app.dedicated-server.server.interfaces.bandwidth-public-order"
             data-ng-if="$row.isPublic() && $ctrl.server.canOrderBandwith"
         >
             <span
@@ -265,7 +265,7 @@
             ></span>
         </oui-action-menu-item>
         <oui-action-menu-item
-            data-ui-sref="app.dedicated.server.interfaces.bandwidth-private-order"
+            data-ui-sref="app.dedicated-server.server.interfaces.bandwidth-private-order"
             data-ng-if="$row.isPrivate() && $ctrl.server.canOrderVrackBandwith"
         >
             <span
@@ -282,7 +282,7 @@
             ></span>
         </oui-action-menu-item>
         <oui-action-menu-item
-            data-ui-sref="app.dedicated.server.interfaces.attach({interface: $row})"
+            data-ui-sref="app.dedicated-server.server.interfaces.attach({interface: $row})"
             data-ng-if="$row.isPrivate() && !$row.hasVrack()"
         >
             <span
@@ -290,7 +290,7 @@
             ></span>
         </oui-action-menu-item>
         <oui-action-menu-item
-            data-ui-sref="app.dedicated.server.interfaces.detach({interface: $row})"
+            data-ui-sref="app.dedicated-server.server.interfaces.detach({interface: $row})"
             data-ng-if="$row.hasVrack()"
         >
             <span

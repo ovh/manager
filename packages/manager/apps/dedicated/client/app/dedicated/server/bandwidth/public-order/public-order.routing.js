@@ -1,8 +1,8 @@
 export default /* @ngInject */ ($stateProvider) => {
   // Parent states where the modal could be called
   const parentStates = [
-    'app.dedicated.server.dashboard',
-    'app.dedicated.server.interfaces',
+    'app.dedicated-server.server.dashboard',
+    'app.dedicated-server.server.interfaces',
   ];
 
   parentStates.forEach((parent) => {

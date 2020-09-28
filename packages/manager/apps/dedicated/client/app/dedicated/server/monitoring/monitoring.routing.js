@@ -8,16 +8,16 @@ function compare(x, y) {
 }
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicated.server.dashboard.monitoring', {
+  $stateProvider.state('app.dedicated-server.server.dashboard.monitoring', {
     url: '/monitoring',
     views: {
-      'tabView@app.dedicated.server': {
+      'tabView@app.dedicated-server.server': {
         component: 'dedicatedServerMonitoring',
       },
     },
     resolve: {
       goBack: /* @ngInject */ ($state) => () =>
-        $state.go('app.dedicated.server.dashboard'),
+        $state.go('app.dedicated-server.server.dashboard'),
       ips: /* @ngInject */ ($stateParams, IpRange, Server) =>
         Server.listIps($stateParams.productId).then((ips) =>
           flatten(
