@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-cloud-connect-app",
-  "version": null,
+  "version": "1.0.0",
   "private": true,
   "repository": {
     "type": "git",
