@@ -1,12 +1,14 @@
 import template from './dedicated-server-ftp-backup.html';
 
-angular.module('App').config(
+angular
+  .module('App')
+  .config(
   /* @ngInject */ ($stateProvider, coreConfigProvider) => {
     if (coreConfigProvider.region !== 'US') {
-      $stateProvider.state('app.dedicated.server.ftpBackup', {
+        $stateProvider.state('app.dedicated-server.server.ftpBackup', {
         url: '/backup',
         views: {
-          'tabView@app.dedicated.server': {
+            'tabView@app.dedicated-server.server': {
             template,
           },
         },

@@ -3,13 +3,13 @@ import { STATUS } from '../sgx.constants';
 import { TYPES } from './confirmation/confirmation.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicated.server.dashboard.sgx.manage', {
+  $stateProvider.state('app.dedicated-server.server.dashboard.sgx.manage', {
     params: {
       goBack: null,
     },
     url: '/manage',
     views: {
-      'tabView@app.dedicated.server': {
+      'tabView@app.dedicated-server.server': {
         component: 'dedicatedServerDashboardSgxManage',
       },
     },
@@ -18,7 +18,6 @@ export default /* @ngInject */ ($stateProvider) => {
         if ($transition$.params().goBack) {
           return 'dedicated_server_dashboard_advanced_features_sgx_manage_back_button_presentation';
         }
-
         return 'dedicated_server_dashboard_advanced_features_sgx_manage_back_button_dashboard';
       },
       initialActivationMode: /* @ngInject */ (biosSettingsSgx) =>
@@ -54,16 +53,23 @@ export default /* @ngInject */ ($stateProvider) => {
       ) =>
         ($transition$.params().goBack &&
           $transition$.params().goBack(params, transitionParams)) ||
-        $state.go('app.dedicated.server.dashboard', params, transitionParams),
+        $state.go(
+          'app.dedicated-server.server.dashboard',
+          params,
+          transitionParams,
+        ),
       goToConfirm: /* @ngInject */ ($state) => (activationMode, prmrr) =>
-        $state.go('app.dedicated.server.dashboard.sgx.manage.confirmation', {
+        $state.go(
+          'app.dedicated-server.server.dashboard.sgx.manage.confirmation',
+          {
           activationMode,
           prmrr: parseInt(prmrr, 10),
           type:
             activationMode === STATUS.DISABLED
               ? TYPES.DEACTIVATION
               : TYPES.ACTIVATION,
-        }),
+          },
+        ),
     },
     atInternet: {
       rename: 'dedicated::dedicated::server::sgx::manage',

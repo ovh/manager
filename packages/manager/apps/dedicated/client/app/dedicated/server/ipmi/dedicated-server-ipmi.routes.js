@@ -1,11 +1,13 @@
 import template from './dedicated-server-ipmi.html';
 
-angular.module('App').config(
+angular
+  .module('App')
+  .config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.dedicated.server.ipmi', {
+      $stateProvider.state('app.dedicated-server.server.ipmi', {
       url: '/ipmi',
       views: {
-        'tabView@app.dedicated.server': {
+          'tabView@app.dedicated-server.server': {
           template,
         },
       },

@@ -21,7 +21,7 @@ export default class {
   }
 
   activateOla() {
-    this.$state.go('app.dedicated.server.interfaces.ola-activation');
+    this.$state.go('app.dedicated-server.server.interfaces.ola-activation');
   }
 
   closeSteps() {
@@ -38,7 +38,7 @@ export default class {
   }
 
   goToConfiguration() {
-    this.$state.go('app.dedicated.server.interfaces.ola-configuration');
+    this.$state.go('app.dedicated-server.server.interfaces.ola-configuration');
   }
 
   getPrice(price) {
