@@ -1,0 +1,12 @@
+{
+  "pci_projects_project_training_dashboard_attach_registry_url": "URL rejestru Docker",
+  "pci_projects_project_training_dashboard_attach_registry_success": "Docker Registry został poprawnie przypisany do projektu",
+  "pci_projects_project_training_dashboard_attach_registry_error": "Wystąpił błąd podczas dodawania rejestru Docker: {{message}}",
+  "pci_projects_project_training_dashboard_attach_registry": "Przypisz rejestr Docker",
+  "pci_projects_project_training_dashboard_attach_registry_common_attach": "Dołącz",
+  "pci_projects_project_training_dashboard_attach_registry_common_cancel": "Anuluj",
+  "pci_projects_project_training_dashboard_attach_registry_password": "Hasło",
+  "pci_projects_project_training_dashboard_attach_registry_user": "Identyfikator",
+  "pci_projects_project_training_dashboard_attach_registry_user_info_1": "Domyślnie przechowujemy prywatne obrazy Twoich zadań w rejestrze Docker zarządzanym przez OVHcloud i współdzielonym z naszymi klientami. Zastrzegamy sobie prawo do usuwania obrazów we współdzielonym rejestrze w dowolnym momencie.",
+  "pci_projects_project_training_dashboard_attach_registry_user_info_2": "Zalecamy korzystanie z własnego rejestru do przechowywania prywatnych obrazów i powiązanie go poprzez wprowadzenie poniższych informacji:"
+}
