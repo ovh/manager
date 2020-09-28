@@ -1,3 +1,12 @@
+## [1.0.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@1.0.4...@ovh-ux/manager-billing@1.0.5) (2020-09-28)
+
+
+### Bug Fixes
+
+* **cloud-connect:** add hub and server sidebar translations ([eb1b16c](https://github.com/ovh/manager/commit/eb1b16c168bb13bbf88af3ab0a417f6e45527f68)), closes [#MANAGER-5205](https://github.com/ovh/manager/issues/MANAGER-5205)
+
+
+
 ## [1.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@1.0.3...@ovh-ux/manager-billing@1.0.4) (2020-09-16)
 
 

@@ -1,3 +1,13 @@
+## [2.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@2.1.1...@ovh-ux/manager-hub@2.1.2) (2020-09-28)
+
+
+### Bug Fixes
+
+* **cloud-connect:** add hub and server sidebar translations ([eb1b16c](https://github.com/ovh/manager/commit/eb1b16c168bb13bbf88af3ab0a417f6e45527f68)), closes [#MANAGER-5205](https://github.com/ovh/manager/issues/MANAGER-5205)
+* **i18n:** add missing translations [CDS 582] ([d89587c](https://github.com/ovh/manager/commit/d89587cde6aaa67651cddca6ea717fba4e096fa3))
+
+
+
 ## [2.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@2.1.0...@ovh-ux/manager-hub@2.1.1) (2020-08-18)
 
 

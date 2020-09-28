@@ -1,3 +1,30 @@
+# [3.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@2.1.1...@ovh-ux/manager-server-sidebar@3.0.0) (2020-09-28)
+
+
+### Bug Fixes
+
+* **cloud-connect:** add hub and server sidebar translations ([eb1b16c](https://github.com/ovh/manager/commit/eb1b16c168bb13bbf88af3ab0a417f6e45527f68)), closes [#MANAGER-5205](https://github.com/ovh/manager/issues/MANAGER-5205)
+* **cloud-connect:** fix issues ([76117b7](https://github.com/ovh/manager/commit/76117b799d8839272c9dec53eefa72ecf487bec7)), closes [#MANAGER-5205](https://github.com/ovh/manager/issues/MANAGER-5205)
+* **i18n:** add missing translations [CDS 582] ([d89587c](https://github.com/ovh/manager/commit/d89587cde6aaa67651cddca6ea717fba4e096fa3))
+* **network:** open when loading vrack or cloud-connect ([a28a31e](https://github.com/ovh/manager/commit/a28a31e155dfe7c1a92deef322f7d4d937f2ab0d))
+* **server-sidebar:** add cloud-connect feature on order config ([634f305](https://github.com/ovh/manager/commit/634f305c3519b3beb4cbf8bde6e41b6e5d832dd8))
+
+
+### Features
+
+* **cloud-connect:** ovh cloud connect ([1b86d5c](https://github.com/ovh/manager/commit/1b86d5ca1a73e040181ac74a0eb35702a92052e8)), closes [#MANAGER-5205](https://github.com/ovh/manager/issues/MANAGER-5205)
+* **dedicated:** add feature availability to cloud connect ([911feed](https://github.com/ovh/manager/commit/911feedeb2285ab611600ea8e2184aaaa7310bee))
+* **navigation:** add vRack and OVH Cloud Connect under Network menu ([13c8361](https://github.com/ovh/manager/commit/13c8361e53752406225c6ccde1987c4d82b5b468))
+
+
+### BREAKING CHANGES
+
+* **cloud-connect:** init `@ovh-ux/manager-cloud-connect` module.
+
+Signed-off-by: varun257 <varun257@gmail.com>
+
+
+
 ## [2.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@2.1.0...@ovh-ux/manager-server-sidebar@2.1.1) (2020-09-15)
 
 

@@ -1,3 +1,12 @@
+## [1.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@1.4.1...@ovh-ux/manager-models@1.4.2) (2020-09-28)
+
+
+### Bug Fixes
+
+* **cloud-connect:** add hub and server sidebar translations ([eb1b16c](https://github.com/ovh/manager/commit/eb1b16c168bb13bbf88af3ab0a417f6e45527f68)), closes [#MANAGER-5205](https://github.com/ovh/manager/issues/MANAGER-5205)
+
+
+
 ## [1.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@1.4.0...@ovh-ux/manager-models@1.4.1) (2020-09-16)
 
 
