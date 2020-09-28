@@ -34,7 +34,7 @@
     "@ovh-ux/manager-office": "^1.0.0 || ^2.0.0",
     "@ovh-ux/manager-preloader": "^1.0.0",
     "@ovh-ux/manager-product-offers": "^3.0.0 || ^4.0.0",
-    "@ovh-ux/manager-server-sidebar": "^1.0.0 || ^2.0.0",
+    "@ovh-ux/manager-server-sidebar": "^2.0.0 || ^3.0.0",
     "@ovh-ux/manager-sharepoint": "^1.0.0 || ^2.0.0",
     "@ovh-ux/mfa-enrollment": "^1.0.0 || ^2.0.0",
     "@ovh-ux/ng-at-internet": "^5.3.0",
