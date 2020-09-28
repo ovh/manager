@@ -44,6 +44,8 @@ export default /* @ngInject */ ($stateProvider) => {
             ),
           )
           .catch((err) => (err.state === 404 ? undefined : $q.reject(err))),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('dedicated_server_monitoring'),
     },
   });
 };

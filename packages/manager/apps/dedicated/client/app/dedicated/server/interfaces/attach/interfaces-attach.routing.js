@@ -16,6 +16,7 @@ export default /* @ngInject */ ($stateProvider) => {
       interface: /* @ngInject */ ($transition$) =>
         $transition$.params().interface,
       vracks: /* @ngInject */ (OvhApiVrack) => OvhApiVrack.v6().query(),
+      breadcrumb: () => null,
     },
   });
 };

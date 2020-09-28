@@ -190,6 +190,7 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
       vrackInfos: /* @ngInject */ ($stateParams, Server) =>
         Server.getVrackInfos($stateParams.productId),
+      breadcrumb: () => null,
     },
   });
 };
