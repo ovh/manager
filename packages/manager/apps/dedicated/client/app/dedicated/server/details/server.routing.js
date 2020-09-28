@@ -1,6 +1,6 @@
 import { NEW_RANGE } from './server.constants';
 
-import Ola from './interfaces/ola.class';
+import Ola from '../interfaces/ola.class';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicated.server', {
