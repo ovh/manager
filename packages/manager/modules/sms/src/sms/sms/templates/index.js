@@ -15,6 +15,10 @@ angular.module(moduleName, []).config(($stateProvider) => {
         controllerAs: '$ctrl',
       },
     },
+    resolve: {
+      goBack: /* @ngInject */ ($state, $transition$) => () =>
+        $state.go($transition$.from().name || '^'),
+    },
     translations: { value: ['.'], format: 'json' },
   });
 });
