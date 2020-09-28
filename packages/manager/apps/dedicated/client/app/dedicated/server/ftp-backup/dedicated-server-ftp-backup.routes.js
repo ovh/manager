@@ -3,17 +3,22 @@ import template from './dedicated-server-ftp-backup.html';
 angular
   .module('App')
   .config(
-  /* @ngInject */ ($stateProvider, coreConfigProvider) => {
-    if (coreConfigProvider.region !== 'US') {
+    /* @ngInject */ ($stateProvider, coreConfigProvider) => {
+      if (coreConfigProvider.region !== 'US') {
         $stateProvider.state('app.dedicated-server.server.ftpBackup', {
-        url: '/backup',
-        views: {
+          url: '/backup',
+          views: {
             'tabView@app.dedicated-server.server': {
-            template,
+              template,
+            },
           },
-        },
-        translations: { value: ['..'], format: 'json' },
-      });
-    }
-  },
-);
+          translations: { value: ['..'], format: 'json' },
+          resolve: {
+            breadcrumb: /* @ngInject */ ($translate) =>
+              $translate.instant('dedicated_server_ftp_backup'),
+          },
+        });
+      }
+    },
+  )
+  .run(/* @ngTranslationsInject:json ./translations */);

@@ -69,6 +69,7 @@ export default /* @ngInject */ ($stateProvider) => {
             params,
             transitionParams,
           ),
+        breadcrumb: () => null,
       },
       atInternet: {
         rename: 'dedicated::dedicated::server::sgx::manage::confirm',
