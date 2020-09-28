@@ -1,0 +1,31 @@
+{
+  "pci_projects_project_training_data_id": "ID",
+  "pci_projects_project_training_data_name": "Nom",
+  "pci_projects_project_training_data_region": "Region",
+  "pci_projects_project_training_data_container": "Conteneur",
+  "pci_projects_project_training_data_created": "Création",
+  "pci_projects_project_training_data_user": "Utilisateur",
+  "pci_projects_project_training_data_pull_status": "Dernier Import",
+  "pci_projects_project_training_data_push_status": "Dernier Export",
+  "pci_projects_project_training_data_status_done": "Terminé",
+  "pci_projects_project_training_data_status_running": "En cours",
+  "pci_projects_project_training_data_status_error": "Erreur",
+  "pci_projects_project_training_data_status_": "Pas synchronisé",
+  "pci_projects_project_training_data_sync": "Synchroniser",
+  "pci_projects_project_training_data_sync_title": "Synchroniser mon volume de données",
+  "pci_projects_project_training_data_list_submit_success": "Nouveau volume de données ajouté avec succès",
+
+  "pci_projects_project_training_data_list_message_1": "Stockez vos volumes de données dans des conteneurs d'Object Storage, puis autorisez ici leur accès à AI Training. Vous pourrez ensuite lancer des jobs directement sur ces informations.",
+  "pci_projects_project_training_data_list_message_2": "Pour accéder à cette liste via la ligne de commande, lancer la commande suivante : ",
+  "pci_projects_project_training_data_list_add": "Attacher un conteneur de données",
+
+  "pci_projects_project_training_data_add_select_region": "Choisir une région sur laquelle votre volume de données sera disponible",
+  "pci_projects_project_training_data_add_select_obj_container": "Choisir le conteneur de données",
+  "pci_projects_project_training_data_add_select_obj_container_tips": "Choisir un conteneur de données (au sein de l'Object Storage du projet) à synchroniser avec le volume de données du job",
+  "pci_projects_project_training_data_add_select_user": "Choisir un utilisateur",
+  "pci_projects_project_training_data_add_select_user_tips": "Choisir l'utilisateur à qui appartiendra le volume de données",
+  "pci_projects_project_training_data_add_select_name": "Choisir le nom du volume de données",
+  "pci_projects_project_training_data_add_select_name_tips": "le nom du volume de données doit être en minuscule",
+  "pci_projects_project_training_data_add_sync_tips": "Importer mes données depuis l'object storage maintenant",
+  "pci_projects_project_training_data_validation_equivalent_command": "Commande Equivalente"
+}
