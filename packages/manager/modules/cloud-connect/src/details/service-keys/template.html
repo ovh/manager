@@ -1,0 +1,43 @@
+<div>
+    <!-- error messages -->
+    <cui-message-container
+        data-messages="$ctrl.messages"
+    ></cui-message-container>
+
+    <h2 data-translate="cloud_connect_service_keys"></h2>
+    <p data-translate="cloud_connect_service_keys_decription"></p>
+    <oui-datagrid data-rows="$ctrl.cloudConnect.serviceKeys">
+        <oui-datagrid-column
+            data-title=":: 'cloud_connect_service_keys_provider' | translate"
+            data-property="provider"
+        >
+            <span class="text-capitalize" data-ng-bind="$row.provider"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'cloud_connect_service_keys_key' | translate"
+            data-property="key"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'cloud_connect_service_keys_status' | translate"
+            data-property="status"
+        >
+            <span
+                class="oui-badge"
+                data-ng-class="{
+                    'oui-status_error': $row.isError(),
+                    'oui-status_success': $row.isActive(),
+                    'oui-status_info': $row.isInProcess(),
+                }"
+                data-ng-bind="'cloud_connect_service_keys_status_' +  $row.status | translate"
+            ></span>
+        </oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="end">
+            <oui-action-menu-item
+                data-disabled="!$row.isError() || !row.isInProcess() || $ctrl.cloudConnect.validServiceKey"
+                data-on-click="$ctrl.goToRegenerateServiceKeyPage($row.id)"
+                ><span data-translate="cloud_connect_regenerate"></span
+            ></oui-action-menu-item>
+        </oui-action-menu>
+    </oui-datagrid>
+</div>

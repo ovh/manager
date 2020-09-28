@@ -29,6 +29,7 @@
   "account_contacts_service_category_LOAD_BALANCING": "IP Load Balancing",
   "account_contacts_service_category_LOAD_BALANCER": "IP Load Balancer",
   "account_contacts_service_category_OVER_THE_BOX": "OverTheBox",
+  "account_contacts_service_category_OVH_CLOUD_CONNECT": "OVHcloud Connect",
   "account_contacts_service_category_FAILOVER": "IP failover",
   "account_contacts_service_category_PACK_XDSL": "Packs XDSL",
   "account_contacts_service_category_PACK_SIP_TRUNK": "Packs SIP Trunk",

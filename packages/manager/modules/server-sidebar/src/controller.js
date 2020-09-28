@@ -19,6 +19,7 @@ import zipObject from 'lodash/zipObject';
 import { SIDEBAR_CONFIG } from './sidebar.constants';
 import { ORDER_URLS, SIDEBAR_ORDER_CONFIG } from './order.constants';
 import { WEB_SIDEBAR_CONFIG, WEB_ORDER_SIDEBAR_CONFIG } from './web.constants';
+import { CLOUD_CONNECT_ID } from './constants';
 
 // we should avoid require, but JSURL don't provide an es6 export
 const { stringify } = require('jsurl');
@@ -34,6 +35,7 @@ export default class OvhManagerServerSidebarController {
     OvhApiService,
     SessionService,
     SidebarMenu,
+    ovhFeatureFlipping,
     CORE_MANAGER_URLS,
   ) {
     this.$q = $q;
@@ -44,36 +46,73 @@ export default class OvhManagerServerSidebarController {
     this.OvhApiService = OvhApiService;
     this.SessionService = SessionService;
     this.SidebarMenu = SidebarMenu;
+    this.ovhFeatureFlipping = ovhFeatureFlipping;
     this.CORE_MANAGER_URLS = CORE_MANAGER_URLS;
   }
 
   $onInit() {
-    this.SidebarMenu.setInitializationPromise(
-      this.$translate
-        .refresh()
-        .then(() => {
-          this.SIDEBAR_CONFIG = SIDEBAR_CONFIG;
-          this.SIDEBAR_ORDER_CONFIG = SIDEBAR_ORDER_CONFIG;
+    this.featuresAvailabilities = null;
+    this.init();
+  }
 
-          if (this.universe === 'WEB') {
-            this.SIDEBAR_CONFIG = WEB_SIDEBAR_CONFIG;
-            this.SIDEBAR_ORDER_CONFIG = WEB_ORDER_SIDEBAR_CONFIG;
-          }
+  init() {
+    // set initialization promise
+    return this.SidebarMenu.setInitializationPromise(
+      this.ovhFeatureFlipping
+        .checkFeatureAvailability([CLOUD_CONNECT_ID])
+        .then((features) =>
+          this.$translate
+            .refresh()
+            .then(() => {
+              this.SIDEBAR_CONFIG = SIDEBAR_CONFIG;
+              this.SIDEBAR_ORDER_CONFIG = SIDEBAR_ORDER_CONFIG;
+
+              if (this.universe === 'WEB') {
+                this.SIDEBAR_CONFIG = WEB_SIDEBAR_CONFIG;
+                this.SIDEBAR_ORDER_CONFIG = WEB_ORDER_SIDEBAR_CONFIG;
+              }
+              return features;
+            })
+            .finally(() => this.$rootScope.$broadcast('sidebar:loaded')),
+        )
+        .then((features) => {
+          this.featuresAvailabilities = features;
           this.buildFirstLevelMenu();
           return this.buildOrderMenu();
-        })
-        .finally(() => this.$rootScope.$broadcast('sidebar:loaded')),
+        }),
     );
   }
 
   buildFirstLevelMenu() {
-    this.addItems(this.filterRegions(this.SIDEBAR_CONFIG));
+    this.addItems(this.SIDEBAR_CONFIG);
+  }
+
+  isFeatureAvailable(service) {
+    if (
+      has(service, 'feature') &&
+      has(this.featuresAvailabilities.features, service.feature)
+    ) {
+      return this.featuresAvailabilities.isFeatureAvailable(service.feature);
+    }
+    if (has(service, 'regions')) {
+      return includes(service.regions, this.coreConfig.getRegion());
+    }
+    return true;
   }
 
   filterRegions(items) {
     return filter(items, (item) => {
       if (has(item, 'regions')) {
         return includes(item.regions, this.coreConfig.getRegion());
+      }
+      return true;
+    });
+  }
+
+  filterFeatures(items) {
+    return filter(items, (item) => {
+      if (has(item, 'feature')) {
+        return this.featuresAvailabilities.isFeatureAvailable(item.feature);
       }
       return true;
     });
@@ -108,7 +147,7 @@ export default class OvhManagerServerSidebarController {
     this.SidebarMenu.actionsMenuOptions = [];
     return this.SessionService.getUser().then(({ ovhSubsidiary }) => {
       const actionsMenuOptions = map(
-        this.filterRegions(this.SIDEBAR_ORDER_CONFIG),
+        this.filterFeatures(this.filterRegions(this.SIDEBAR_ORDER_CONFIG)),
         (orderItemConfig) => {
           if (
             !has(orderItemConfig, 'featureType') ||
@@ -155,7 +194,10 @@ export default class OvhManagerServerSidebarController {
   }
 
   addItems(services, parent = null) {
-    each(this.filterRegions(services), (service) => {
+    each(services, (service) => {
+      if (!this.isFeatureAvailable(service)) {
+        return;
+      }
       if (!this.SidebarMenu.getItemById(service.id)) {
         const hasSubItems = has(service, 'types') || has(service, 'children');
         const isExternal = !includes(service.app, this.universe);

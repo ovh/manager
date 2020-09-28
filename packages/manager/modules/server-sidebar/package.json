@@ -33,7 +33,8 @@
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^7.0.0",
-    "@ovh-ux/ui-kit": "^4.2.3"
+    "@ovh-ux/ui-kit": "^4.2.3",
+    "@ovh-ux/ng-ovh-feature-flipping": "^1.0.0"
   },
   "peerDependencies": {
     "@ovh-ux/manager-config": "^0.4.0 || ^1.0.0",

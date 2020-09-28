@@ -10,6 +10,7 @@ export const AVAILABLE_SERVICES = [
   'NAS',
   'NASHA',
   'OVER_THE_BOX',
+  'OVH_CLOUD_CONNECT',
   'PRIVATE_CLOUD',
   'VPS',
   'PACK_XDSL',

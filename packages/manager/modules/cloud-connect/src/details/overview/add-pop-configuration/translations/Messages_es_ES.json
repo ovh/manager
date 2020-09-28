@@ -1,0 +1,14 @@
+{
+  "cloud_connect_pop_configure_title": "Añadir una configuración PoP",
+  "cloud_connect_pop_configure_description": "Para configurar su PoP debe seleccionar su modelo de interconexión de red L2 o L3.",
+  "cloud_connect_pop_configure_pop_select_type": "Seleccione su configuración",
+  "cloud_connect_pop_add_configuration_error": "Se ha producido un error al configurar el PoP: {{message}}",
+  "cloud_connect_pop_add_configuration_success": "La configuración PoP se ha añadido. <a href=\"{{ tasksUrl }}\">Haga clic aquí para ver el estado.</a>",
+  "cloud_connect_network_address_help_message": "Bloque de IPv4 con rango 30.",
+  "cloud_connect_network_address_invalid_message": "Introduzca un bloque de IPv4 válido con el rango 30 (p. ej.: 10.1.250.4/30).",
+  "cloud_connect_asn_helper": "Número positivo no nulo excepto 65501",
+  "cloud_connect_pop_add_configuration_select_disabled_help": "El servicio del proveedor solo puede tener una configuración PoP L3.",
+  "cloud_connect_network_address_popover": "Un bloque de IPv4/30, utilizado para el enlace entre su router y el router de OVHcloud Connect situado en el PoP.",
+  "cloud_connect_asn_client_popover": "Su número de AS BGP, configurado en su router situado en el PoP.",
+  "cloud_connect_asn_ovh_popover": "El número de AS OVHcloud que se configurará en los routers de OVHcloud Connect situados en el PoP."
+}

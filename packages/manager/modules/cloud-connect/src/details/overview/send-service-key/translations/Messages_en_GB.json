@@ -1,0 +1,7 @@
+{
+  "cloud_connect_service_key_active_send": "Send the active service key",
+  "cloud_connect_service_email": "Email address",
+  "cloud_connect_email_placeholder": "Enter email address",
+  "cloud_connect_service_key_send_error": "Unable to send service key: {{message}}",
+  "cloud_connect_service_key_send_success": "Email sent"
+}

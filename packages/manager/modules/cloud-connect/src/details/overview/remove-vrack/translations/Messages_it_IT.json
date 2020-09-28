@@ -1,0 +1,6 @@
+{
+  "cloud_connect_vrack_remove": "Elimina una vRack",
+  "cloud_connect_vrack_remove_description": "Eliminare la vRack dal servizio OVHcloud Connect?",
+  "cloud_connect_vrack_remove_success": "La vRack è stata eliminata correttamente dal servizio OVHcloud Connect ",
+  "cloud_connect_vrack_remove_error": "Impossibile eliminare la vRack dal servizio OVHcloud Connect: {{ message }}"
+}

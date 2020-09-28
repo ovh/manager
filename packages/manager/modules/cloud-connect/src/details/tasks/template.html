@@ -1,0 +1,42 @@
+<div>
+    <h2 data-translate="cloud_connect_tasks"></h2>
+    <p data-translate="cloud_connect_tasks_decription"></p>
+    <oui-datagrid data-rows="$ctrl.taskList">
+        <oui-datagrid-topbar>
+            <button
+                type="button"
+                class="float-right oui-button oui-button_secondary oui-button_icon-only mb-2 oui-button_s"
+                data-ng-click="$ctrl.refreshTasks()"
+            >
+                <span class="fa fa-refresh" aria-hidden="true"></span>
+            </button>
+        </oui-datagrid-topbar>
+        <oui-datagrid-column
+            data-title=":: 'cloud_connect_tasks_id' | translate"
+            data-property="id"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'cloud_connect_tasks_action' | translate"
+            data-property="function"
+        >
+            <span
+                data-translate="{{:: 'cloud_connect_tasks_' + $row.function }}"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'cloud_connect_tasks_status' | translate"
+            data-property="status"
+        >
+            <span
+                class="oui-badge"
+                data-ng-class="{
+                    'oui-status_error': $row.isError(),
+                    'oui-status_success': $row.isDone(),
+                    'oui-status_info': $row.isInProcess(),
+                }"
+                data-ng-bind="'cloud_connect_tasks_status_' +  $row.status | translate"
+            ></span>
+        </oui-datagrid-column>
+    </oui-datagrid>
+</div>

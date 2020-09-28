@@ -35,5 +35,6 @@
   "account_contacts_service_contact_admin": "Contatto amministratore",
   "account_contacts_service_contact_tech": "Contatto tecnico",
   "account_contacts_service_contact_billing": "Contatto di fatturazione",
-  "account_contacts_service_infos": "Hai la possibilità di modificare gli account amministratore, tecnico e di fatturazione dei tuoi servizi."
+  "account_contacts_service_infos": "Hai la possibilità di modificare gli account amministratore, tecnico e di fatturazione dei tuoi servizi.",
+  "account_contacts_service_category_OVH_CLOUD_CONNECT": "OVHcloud Connect"
 }
