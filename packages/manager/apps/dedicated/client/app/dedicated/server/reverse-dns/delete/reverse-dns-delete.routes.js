@@ -5,5 +5,8 @@ angular.module('App').config(($stateProvider) => {
     templateUrl: 'dedicated/server/reverse-dns/delete/reverse-dns-delete.html',
     layout: 'modal',
     translations: { value: ['.'], format: 'json' },
+    resolve: {
+      breadcrumb: () => null,
+    },
   });
 });

@@ -27,6 +27,7 @@ angular
   .component('dedicatedServerInterfaces', component)
   .component('olaStepChecker', stepCheckerComponent)
   .service('DedicatedServerInterfacesService', service)
-  .config(routing);
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

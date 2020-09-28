@@ -39,6 +39,7 @@ export default /* @ngInject */ ($stateProvider) => {
           chapter1: 'dedicated',
         }),
       worldPart: /* @ngInject */ (coreConfig) => coreConfig.getRegion(),
+      breadcrumb: /* @ngInject */ (serverName) => serverName,
     },
   });
 };

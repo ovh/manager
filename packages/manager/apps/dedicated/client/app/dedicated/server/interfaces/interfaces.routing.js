@@ -79,6 +79,8 @@ export default /* @ngInject */ ($stateProvider) => {
       ) => DedicatedServerInterfacesService.getTasks(serverName),
       urls: /* @ngInject */ (constants, user) =>
         constants.urls[user.ovhSubsidiary],
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('dedicated_server_interfaces'),
     },
   });
 };

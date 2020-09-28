@@ -3,11 +3,14 @@ angular.module('App').config(
     $stateProvider.state(
       'app.dedicated-server.server.dashboard.edit-display-name',
       {
-      url: '/display-name',
-      controller: 'DisplayNameCtrl',
-      templateUrl: 'dedicated/server/display-name/display-name.html',
-      layout: 'modal',
-      translations: { value: ['.'], format: 'json' },
+        url: '/display-name',
+        controller: 'DisplayNameCtrl',
+        templateUrl: 'dedicated/server/display-name/display-name.html',
+        layout: 'modal',
+        translations: { value: ['.'], format: 'json' },
+        resolve: {
+          breadcrumb: () => null,
+        },
       },
     );
   },
