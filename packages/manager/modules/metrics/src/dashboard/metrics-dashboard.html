@@ -181,13 +181,8 @@
                     >
                     </oui-tile-definition>
                     <oui-tile-definition
-<<<<<<< HEAD:packages/manager/apps/cloud/client/app/dbaas/dbaas-metrics/dashboard/metrics-dashboard.html
-                        data-term="{{($ctrl.plan.renew.forced || $ctrl.plan.renew.automatic) ? 'common_tile_subscription_autorenew' : 'common_tile_subscription_expiration_date' | translate}}"
+                        data-term="{{($ctrl.plan.renew.forced || $ctrl.plan.renew.automatic) ? 'metrics_tile_subscription_autorenew' : 'metrics_expiry_date' | translate}}"
                         data-description="{{ ::$ctrl.plan.expiration | cucMomentFormat:'LL' }}"
-=======
-                        data-term="{{($ctrl.plan.renew.forced || $ctrl.plan.renew.automatic) ? 'metrics_tile_subscription_autorenew' : 'metrics_tile_subscription_expiration_date' | translate}}"
-                        data-description="{{ ::$ctrl.plan.expiration | date: 'mediumDate' }}"
->>>>>>> feat(metrics): new module:packages/manager/modules/metrics/src/dashboard/metrics-dashboard.html
                     >
                         <oui-action-menu
                             data-compact
@@ -251,13 +246,8 @@
                         </oui-action-menu>
                     </oui-tile-definition>
                     <oui-tile-definition
-<<<<<<< HEAD:packages/manager/apps/cloud/client/app/dbaas/dbaas-metrics/dashboard/metrics-dashboard.html
-                        data-term="{{ ::'common_tile_subscription_creation_date' | translate }}"
-                        data-description="{{ ::$ctrl.plan.creation | cucMomentFormat:'LL' }}"
-=======
                         data-term="{{ ::'metrics_tile_subscription_creation_date' | translate }}"
-                        data-description="{{ ::$ctrl.plan.creation | date: 'mediumDate' }}"
->>>>>>> feat(metrics): new module:packages/manager/modules/metrics/src/dashboard/metrics-dashboard.html
+                        data-description="{{ ::$ctrl.plan.creation | cucMomentFormat:'LL' }}"
                     >
                     </oui-tile-definition>
                 </div>

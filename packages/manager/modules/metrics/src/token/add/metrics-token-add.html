@@ -1,7 +1,9 @@
 <div class="cui-page__content">
+    <h3 class="oui-heading_3" data-translate="metrics_token_add_token"></h3>
     <oui-back-button
         data-on-click="$ctrl.$state.go('dbaas.metrics.detail.token')"
-        ><span data-translate="metrics_token_add_token"></span>
+        previous-page="{{:: 'metrics_token_add_token' | translate }}"
+    >
     </oui-back-button>
 
     <form name="MetricsTokenAddForm" data-ng-submit="$ctrl.confirm()">

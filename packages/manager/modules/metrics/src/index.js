@@ -1,17 +1,19 @@
 import angular from 'angular';
 
 import '@ovh-ux/manager-core';
-import '@ovh-ux/ng-ovh-cloud-universe-components';
 import '@ovh-ux/ng-ovh-doc-url';
 import '@ovh-ux/ng-ovh-responsive-popover';
 import '@uirouter/angularjs';
 
+import '@ovh-ux/ui-kit';
 import 'angular-translate';
 import 'angular-ui-bootstrap';
 import 'ovh-api-services';
-import 'ovh-ui-angular';
+
+import { Environment } from '@ovh-ux/manager-config';
 
 import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
+import ngOvhCloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-components';
 import ovhManagerDashboardChartPie from './dashboard/chart-pie';
 
 import MetricsDashboardCtrl from './dashboard/metrics-dashboard.controller';
@@ -21,8 +23,6 @@ import MetricService from './metrics.service';
 import FormatSiFilter from './format-si.filter';
 import routing from './routing';
 
-import 'ovh-ui-kit/dist/oui.css';
-import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
 import './dashboard/metrics-dashboard.less';
 import './platform/metrics-platform.less';
 import './token/metrics-token.less';
@@ -33,7 +33,7 @@ const moduleName = 'ovhManagerMetrics';
 
 angular
   .module(moduleName, [
-    'ngOvhCloudUniverseComponents',
+    ngOvhCloudUniverseComponents,
     'ngOvhDocUrl',
     'ngOvhResponsivePopover',
     'oui',
@@ -47,12 +47,8 @@ angular
   ])
   .config(routing)
   .config(
-    /* @ngInject */ (
-      $qProvider,
-      ovhDocUrlProvider,
-      TranslateServiceProvider,
-    ) => {
-      ovhDocUrlProvider.setUserLocale(TranslateServiceProvider.getUserLocale());
+    /* @ngInject */ ($qProvider, ovhDocUrlProvider) => {
+      ovhDocUrlProvider.setUserLocale(Environment.getUserLocale());
       $qProvider.errorOnUnhandledRejections(false);
     },
   )

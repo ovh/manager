@@ -8,6 +8,7 @@ export const graphs = [
     url: 'https://grafana.metrics.ovh.net',
   },
 ];
+
 export const protos = [
   'prometheus',
   'influxdb',
@@ -15,6 +16,7 @@ export const protos = [
   'warp10',
   'opentsdb',
 ];
+
 export const suffix = 'metrics.ovh.net';
 
 export default {
