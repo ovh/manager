@@ -1,5 +1,6 @@
 {
   "name": "@ovh-ux/manager-cloud-connect-app",
+  "version": null,
   "private": true,
   "repository": {
     "type": "git",
@@ -51,6 +52,5 @@
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "webpack-merge": "^4.2.2"
-  },
-  "version": null
+  }
 }
