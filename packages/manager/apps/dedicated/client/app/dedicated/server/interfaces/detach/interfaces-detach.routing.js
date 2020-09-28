@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicated.server.interfaces.detach', {
+  $stateProvider.state('app.dedicated-server.server.interfaces.detach', {
     url: '/detach',
     views: {
       modal: {

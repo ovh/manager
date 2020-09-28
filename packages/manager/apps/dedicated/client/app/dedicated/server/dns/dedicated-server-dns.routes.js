@@ -1,11 +1,13 @@
 import template from './dedicated-server-dns.html';
 
-angular.module('App').config(
+angular
+  .module('App')
+  .config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.dedicated.server.dns', {
+      $stateProvider.state('app.dedicated-server.server.dns', {
       url: '/dns',
       views: {
-        'tabView@app.dedicated.server': {
+          'tabView@app.dedicated-server.server': {
           template,
         },
       },
