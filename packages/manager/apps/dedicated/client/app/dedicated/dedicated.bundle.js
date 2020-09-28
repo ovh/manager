@@ -94,4 +94,3 @@ import './server/traffic/order/dedicated-server-traffic-order.controller';
 import './server/traffic/order/dedicated-server-traffic-order.service';
 import './server/usb-storage/dedicated-server-usb-storage.controller';
 import './server/usb-storage/dedicated-server-usb-storage.routes';
-import './server/usb-storage/order/dedicated-server-usb-storage-order.controller';
