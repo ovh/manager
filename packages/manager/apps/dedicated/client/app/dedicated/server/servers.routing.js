@@ -1,10 +1,10 @@
 import get from 'lodash/get';
 
 export default /* @ngInject */ ($stateProvider) => {
-  const name = 'app.dedicated.servers';
+  const name = 'app.dedicated-server.index';
 
   $stateProvider.state(name, {
-    url: '/configuration/servers?page&pageSize&sort&sortOrder&filter',
+    url: '?page&pageSize&sort&sortOrder&filter',
     component: 'dedicatedServerServers',
     translations: { value: ['.', '../'], format: 'json' },
     params: {
@@ -33,7 +33,7 @@ export default /* @ngInject */ ($stateProvider) => {
       filter: /* @ngInject */ ($transition$) => $transition$.params().filter,
       orderUrl: /* @ngInject */ (User) => User.getUrlOf('dedicatedOrder'),
       getServerDashboardLink: /* @ngInject */ ($state) => (server) =>
-        $state.href('app.dedicated.server', { productId: server.name }),
+        $state.href('app.dedicated-server.server', { productId: server.name }),
       dedicatedServers: /* @ngInject */ ($transition$, iceberg) => {
         const { filter, pageSize, sort, sortOrder } = $transition$.params();
         let { page } = $transition$.params();
