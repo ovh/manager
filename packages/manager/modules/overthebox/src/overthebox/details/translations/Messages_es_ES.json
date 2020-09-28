@@ -29,7 +29,7 @@
   "overTheBox_tasks_show": "Ver tareas",
   "overTheBox_trafic": "Tráfico",
   "overTheBox_bandwidth": "Débito",
-  "overTheBox_publicIp": "Dirección IP pública:",
+  "overTheBox_publicIp": "Dirección IP pública",
   "overTheBox_deviceId": "ID del periférico:",
   "overTheBox_deviceId_button_title": "ID del periférico:",
   "overTheBox_deviceId_modify": "Editar",
@@ -76,5 +76,11 @@
   "overTheBox_release_channel_testing": "Versión beta",
   "overTheBox_release_channel_unstable": "Versión alpha",
   "overTheBox_release_channel_develop": "Versión de desarrollo",
-  "overTheBox_release_channel_rpi3": "Versión para Raspberry 3"
+  "overTheBox_release_channel_rpi3": "Versión para Raspberry 3",
+  "overTheBox_version_device": "Versión del hardware",
+  "overTheBox_version_system": "Versión del sistema",
+  "overTheBox_last_seen": "Último acceso del hardware desde los servidores de aprovisionamiento",
+  "overTheBox_last_seen_few_seconds": "Hace algunos segundos",
+  "overTheBox_last_seen_minutes_ago": "Hace {{lastSeenDiff}} aproximadamente",
+  "overTheBox_reverse_dns": "Registro DNS inverso"
 }
