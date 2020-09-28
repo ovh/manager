@@ -4,11 +4,18 @@ import 'oclazyload';
 
 const moduleName = 'ovhManagerDedicatedServerLazyLoading';
 
-angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
-  /* @ngInject */ ($stateProvider) => {
+angular
+  .module(moduleName, ['ui.router', 'oc.lazyLoad'])
+  .config(
+    /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
     $stateProvider
-      .state('app.dedicated.servers.**', {
-        url: '/configuration/servers',
+        .state('app.dedicated-server', {
+          url: '/server',
+          template: '<div ui-view></div>',
+          redirectTo: 'app.dedicated-server.index',
+        })
+        .state('app.dedicated-server.index.**', {
+          url: '',
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
@@ -17,8 +24,8 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
           );
         },
       })
-      .state('app.dedicated.server.**', {
-        url: '/configuration/server/:productId',
+        .state('app.dedicated-server.server.**', {
+          url: '/:productId',
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
@@ -27,6 +34,20 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
           );
         },
       });
+
+      $urlRouterProvider.when(/^\/configuration\/server/, () => {
+        window.location.href = window.location.href.replace(
+          '/configuration/server',
+          '/server',
+        );
+      });
+
+      $urlRouterProvider.when(/^\/configuration\/servers/, () => {
+        window.location.href = window.location.href.replace(
+          '/configuration/servers',
+          '/server',
+        );
+      });
   },
-);
+  )
 export default moduleName;

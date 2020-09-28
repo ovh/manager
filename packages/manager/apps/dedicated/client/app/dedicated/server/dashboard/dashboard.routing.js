@@ -4,10 +4,10 @@ import isEmpty from 'lodash/isEmpty';
 import { ELIGIBLE_FOR_UPGRADE } from './dashboard.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicated.server.dashboard', {
+  $stateProvider.state('app.dedicated-server.server.dashboard', {
     url: '',
     views: {
-      'tabView@app.dedicated.server': {
+      'tabView@app.dedicated-server.server': {
         component: 'dedicatedServerDashboard',
       },
     },
@@ -102,7 +102,7 @@ export default /* @ngInject */ ($stateProvider) => {
         transitionParams,
       ) => {
         const promise = $state.go(
-          'app.dedicated.server.dashboard',
+          'app.dedicated-server.server.dashboard',
           params,
           transitionParams,
         );
@@ -126,7 +126,9 @@ export default /* @ngInject */ ($stateProvider) => {
           type: 'action',
         });
 
-        return $state.go('app.dedicated.server.dashboard.sgx.introduction');
+        return $state.go(
+          'app.dedicated-server.server.dashboard.sgx.introduction',
+        );
       },
       goToSgxManage: /* @ngInject */ ($state, atInternet) => () => {
         atInternet.trackClick({
@@ -134,7 +136,7 @@ export default /* @ngInject */ ($stateProvider) => {
           type: 'action',
         });
 
-        return $state.go('app.dedicated.server.dashboard.sgx.manage');
+        return $state.go('app.dedicated-server.server.dashboard.sgx.manage');
       },
       monitoringProtocolEnum: /* @ngInject */ (Server) =>
         Server.getModels().then(
@@ -148,11 +150,11 @@ export default /* @ngInject */ ($stateProvider) => {
       ) =>
         isLegacy
           ? $state.href(
-              'app.dedicated.server.dashboard.bandwidth-legacy-private-order',
+              'app.dedicated-server.server.dashboard.bandwidth-legacy-private-order',
               { productId: serverName },
             )
           : $state.href(
-              'app.dedicated.server.dashboard.bandwidth-private-order',
+              'app.dedicated-server.server.dashboard.bandwidth-private-order',
               { productId: serverName },
             ),
       orderPublicBandwidthLink: /* @ngInject */ (
@@ -162,11 +164,11 @@ export default /* @ngInject */ ($stateProvider) => {
       ) =>
         isLegacy
           ? $state.href(
-              'app.dedicated.server.dashboard.bandwidth-legacy-public-order',
+              'app.dedicated-server.server.dashboard.bandwidth-legacy-public-order',
               { productId: serverName },
             )
           : $state.href(
-              'app.dedicated.server.dashboard.bandwidth-public-order',
+              'app.dedicated-server.server.dashboard.bandwidth-public-order',
               { productId: serverName },
             ),
       serviceMonitoring: /* @ngInject */ ($stateParams, Server) =>

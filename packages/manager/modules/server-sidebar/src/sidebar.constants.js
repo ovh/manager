@@ -2,11 +2,11 @@ import { DEDICATED, CLOUD, HPC_NAMESPACE } from './constants';
 
 export const DEDICATED_SERVER_CONFIG = {
   id: 'dedicatedServers',
-  loadOnState: ['app.dedicated', 'dedicated-housing'],
+  loadOnState: ['dedicated-housing', 'app.dedicated-server'],
   children: [
     {
       id: 'servers_all',
-      state: 'app.dedicated.servers',
+      state: 'app.dedicated-server.index',
       stateUrl: '#/configuration/servers',
       icon: 'ovh-font ovh-font-server',
       app: [DEDICATED],
@@ -24,7 +24,7 @@ export const DEDICATED_SERVER_CONFIG = {
     {
       path: '/dedicated/server',
       category: 'SERVER',
-      state: 'app.dedicated.server',
+      state: 'app.dedicated-server.server',
       stateParams: ['productId'],
       app: [DEDICATED],
       searchKeys: ['SERVER'],

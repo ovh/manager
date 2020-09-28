@@ -1,9 +1,9 @@
 angular.module('App').config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.dedicated.server.dashboard.ovh-tasks', {
+    $stateProvider.state('app.dedicated-server.server.dashboard.ovh-tasks', {
       url: '/ovh-tasks',
       views: {
-        'tabView@app.dedicated.server': {
+        'tabView@app.dedicated-server.server': {
           component: 'dedicatedServerOVHTasks',
         },
       },

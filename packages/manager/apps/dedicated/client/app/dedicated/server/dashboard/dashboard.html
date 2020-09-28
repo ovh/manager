@@ -29,7 +29,7 @@
                                 data-placement="end"
                             >
                                 <oui-action-menu-item
-                                    data-ui-sref="app.dedicated.server.dashboard.edit-display-name"
+                                    data-ui-sref="app.dedicated-server.server.dashboard.edit-display-name"
                                 >
                                     <span
                                         data-translate="server_configuration_displayname_edit_button"
@@ -321,7 +321,7 @@
                                 data-placement="end"
                             >
                                 <oui-action-menu-item
-                                    data-ui-sref="app.dedicated.server.dashboard.monitoringUpdate"
+                                    data-ui-sref="app.dedicated-server.server.dashboard.monitoringUpdate"
                                     data-ng-if="$ctrl.server.monitored"
                                 >
                                     <span
@@ -329,7 +329,7 @@
                                     ></span>
                                 </oui-action-menu-item>
                                 <oui-action-menu-item
-                                    data-ui-sref="app.dedicated.server.dashboard.monitoringUpdate"
+                                    data-ui-sref="app.dedicated-server.server.dashboard.monitoringUpdate"
                                     data-ng-if="!$ctrl.server.monitored"
                                 >
                                     <span
@@ -462,7 +462,7 @@
                                         <li class="oui-list__item">
                                             <a
                                                 class="oui-list__link oui-button_ghost"
-                                                data-ui-sref="app.dedicated.server.dashboard.ovh-tasks"
+                                                data-ui-sref="app.dedicated-server.server.dashboard.ovh-tasks"
                                                 data-translate="dedicated_server_dashboard_ovhTasks_description"
                                             ></a>
                                         </li>
@@ -708,14 +708,14 @@
                             data-placement="end"
                         >
                             <oui-action-menu-item
-                                data-ui-sref="app.dedicated.server.update-reverse-dns"
+                                data-ui-sref="app.dedicated-server.server.update-reverse-dns"
                             >
                                 <span
                                     data-translate="server_configuration_reverse_edit_button"
                                 ></span>
                             </oui-action-menu-item>
                             <oui-action-menu-item
-                                data-ui-sref="app.dedicated.server.delete-reverse-dns"
+                                data-ui-sref="app.dedicated-server.server.delete-reverse-dns"
                                 data-ng-if="$ctrl.server.reverse"
                             >
                                 <span data-translate="common_delete"></span>
@@ -808,7 +808,7 @@
                         >
                             <oui-action-menu-item
                                 data-ng-if="!$ctrl.ola.isActivated()"
-                                data-ui-sref="app.dedicated.server.interfaces"
+                                data-ui-sref="app.dedicated-server.server.interfaces"
                             >
                                 <span
                                     data-translate="server_ola_activate"
@@ -816,7 +816,7 @@
                             </oui-action-menu-item>
                             <oui-action-menu-item
                                 data-ng-if="$ctrl.ola.isActivated()"
-                                data-ui-sref="app.dedicated.server.interfaces.ola-configuration"
+                                data-ui-sref="app.dedicated-server.server.interfaces.ola-configuration"
                             >
                                 <span
                                     data-translate="server_ola_configure"
@@ -824,7 +824,7 @@
                             </oui-action-menu-item>
                             <oui-action-menu-item
                                 data-ng-if="$ctrl.ola.isActivated()"
-                                data-ui-sref="app.dedicated.server.interfaces.ola-terminate"
+                                data-ui-sref="app.dedicated-server.server.interfaces.ola-terminate"
                             >
                                 <span
                                     data-translate="server_ola_terminate"

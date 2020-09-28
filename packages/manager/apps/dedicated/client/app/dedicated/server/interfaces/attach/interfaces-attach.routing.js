@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicated.server.interfaces.attach', {
+  $stateProvider.state('app.dedicated-server.server.interfaces.attach', {
     url: '/attach',
     views: {
       modal: {
