@@ -15,6 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
       goBack: /* @ngInject */ ($state) => () => $state.go('^'),
       interface: /* @ngInject */ ($transition$) =>
         $transition$.params().interface,
+      breadcrumb: () => null,
     },
   });
 };

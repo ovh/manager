@@ -18,6 +18,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('^', params, transitionParams),
       interface: /* @ngInject */ ($transition$) =>
         cloneDeep($transition$.params().interface),
+      breadcrumb: () => null,
     },
   });
 };

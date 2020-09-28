@@ -1,4 +1,5 @@
 {
+  "dedicated_server_dashboard_advanced_features_sgx_manage": "Gérer SGX",
   "dedicated_server_dashboard_advanced_features_sgx_manage_back_button_dashboard": "Retour à l'état du serveur",
   "dedicated_server_dashboard_advanced_features_sgx_manage_back_button_presentation": "Retour à la présentation de la fonctionnalité",
   "dedicated_server_dashboard_advanced_features_sgx_manage_header_disabled": "Gestion de votre fonctionnalité SGX",

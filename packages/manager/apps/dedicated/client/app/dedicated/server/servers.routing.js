@@ -104,6 +104,7 @@ export default /* @ngInject */ ($stateProvider) => {
         get(dedicatedServers.headers, 'x-pagination-sort'),
       sortOrder: /* @ngInject */ (dedicatedServers) =>
         get(dedicatedServers.headers, 'x-pagination-sort-order'),
+      hideBreadcrumb: () => true,
     },
   });
 };

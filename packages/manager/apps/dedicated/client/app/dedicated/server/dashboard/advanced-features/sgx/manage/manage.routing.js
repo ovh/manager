@@ -46,7 +46,6 @@ export default /* @ngInject */ ($stateProvider) => {
               ),
             ),
           ),
-
       goBack: /* @ngInject */ ($state, $transition$) => (
         params = {},
         transitionParams,
@@ -62,13 +61,17 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go(
           'app.dedicated-server.server.dashboard.sgx.manage.confirmation',
           {
-          activationMode,
-          prmrr: parseInt(prmrr, 10),
-          type:
-            activationMode === STATUS.DISABLED
-              ? TYPES.DEACTIVATION
-              : TYPES.ACTIVATION,
+            activationMode,
+            prmrr: parseInt(prmrr, 10),
+            type:
+              activationMode === STATUS.DISABLED
+                ? TYPES.DEACTIVATION
+                : TYPES.ACTIVATION,
           },
+        ),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant(
+          'dedicated_server_dashboard_advanced_features_sgx_manage',
         ),
     },
     atInternet: {
