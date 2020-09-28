@@ -1,0 +1,18 @@
+<form
+    id="regenerateServiceKey"
+    name="regenerateServiceKey"
+    data-ng-submit="regenerateServiceKey.$valid && $ctrl.regenerateServiceKey()"
+    novalidate
+>
+    <oui-modal
+        data-heading="{{ ::'cloud_connect_provider_regenerate_service_key' | translate }}"
+        data-primary-label="{{ ::'cloud_connect_regenerate' | translate }}"
+        data-primary-disabled="$ctrl.isLoading"
+        data-secondary-action="$ctrl.goBack()"
+        data-secondary-label="{{ ::'cloud_connect_close' | translate }}"
+        data-on-dismiss="$ctrl.goBack()"
+        data-loading="$ctrl.isLoading"
+    >
+        <p data-translate="cloud_connect_service_key_regenerate_confirm"></p>
+    </oui-modal>
+</form>

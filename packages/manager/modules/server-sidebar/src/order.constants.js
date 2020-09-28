@@ -255,6 +255,12 @@ export const ORDER_URLS = {
       PL: 'https://www.ovh.com/manager/sunrise/index.html#/csp2',
       PT: 'https://www.ovh.com/manager/sunrise/index.html#/csp2',
     },
+    ovh_cloud_connect: {
+      FR:
+        'https://www.ovhcloud.com/fr/network-security/ovhcloud-connect/provider/',
+      GB:
+        'https://www.ovhcloud.com/en/network-security/ovhcloud-connect/provider/',
+    },
     dbaas_logs: {
       FR:
         "https://www.ovh.com/fr/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
@@ -622,6 +628,17 @@ export const SIDEBAR_ORDER_CONFIG = [
     icon: 'ovh-font ovh-font-database',
     linkId: 'DEDICATED',
     linkPart: '#/enterprise-cloud-database/create',
+    app: [DEDICATED],
+    regions: ['EU'],
+  },
+  {
+    id: 'order-ovh-cloud-connect',
+    feature: 'cloud-connect',
+    title: 'ovh_cloud_connect',
+    icon: 'oui-icon oui-icon-line-communicating_concept',
+    linkId: 'ovh_cloud_connect',
+    target: '_blank',
+    external: true,
     app: [DEDICATED],
     regions: ['EU'],
   },

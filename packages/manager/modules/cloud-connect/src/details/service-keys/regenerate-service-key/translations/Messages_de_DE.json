@@ -1,0 +1,6 @@
+{
+  "cloud_connect_service_key_regenerate_error": "Die Neuerstellung des Serviceschlüssels ist fehlgeschlagen: {{ message }}",
+  "cloud_connect_service_key_regenerate_success": "Neu erstellter Serviceschlüssel",
+  "cloud_connect_service_key_regenerate_confirm": "Möchten Sie den Serviceschlüssel wirklich neu erstellen?",
+  "cloud_connect_provider_regenerate_service_key": "Den Serviceschlüssel neu erstellen"
+}

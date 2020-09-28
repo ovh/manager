@@ -251,7 +251,7 @@ export default class BillingService {
   }
 
   canHandleRenew() {
-    return !['VIP'].includes(this.serviceType);
+    return !['VIP', 'OVH_CLOUD_CONNECT'].includes(this.serviceType);
   }
 
   isOneShot() {

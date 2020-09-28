@@ -1,0 +1,6 @@
+{
+  "cloud_connect_datacenter_remove": "Elimina la configurazione del datacenter",
+  "cloud_connect_datacenter_remove_description": "Questa azione comporterà l’eliminazione della configurazione del datacenter selezionata",
+  "cloud_connect_datacenter_remove_success": "Configurazione del datacenter eliminata. <a href=\"{{ tasksUrl }}\">Clicca qui per visualizzare lo stato.</a>",
+  "cloud_connect_datacenter_remove_error": "Eliminazione della configurazione del datacenter non andata buon fine: {{message}}"
+}

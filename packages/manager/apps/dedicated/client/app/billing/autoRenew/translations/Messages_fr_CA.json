@@ -19,17 +19,21 @@
   "billing_autorenew_service_expiration_months": "Expirant dans un mois",
   "billing_autorenew_service_expiration_renew_month": "Renouvelés dans un mois",
   "billing_autorenew_service_actions": "Actions",
+
   "billing_autorenew_criterion_serviceType": "Service",
   "billing_autorenew_criterion_status": "Statut",
   "billing_autorenew_criterion_state": "Disponibilité",
   "billing_autorenew_criterion_expiration": "Date d'effet",
   "billing_autorenew_nic_all": "Tous",
+
   "autorenew_service_deleteAtExpiration_banner": "La résiliation à l’expiration du service « {{ serviceName }} » a bien été prise en compte. Vous pouvez annuler cette opération jusqu’à 24 heures avant expiration du service.",
   "autorenew_service_deleteAtExpiration_banner_cancel": "Annuler la resiliation à l’expiration",
+
   "billing_autorenew_service": "Service",
   "billing_autorenew_service_name": "Nom du service",
   "billing_autorenew_service_state_EXPIRED": "Suspendu",
   "billing_autorenew_service_state_UP": "Actif",
+
   "billing_autorenew_service_state_IN_CREATION": "En cours de création",
   "billing_autorenew_service_state_OK": "Payé",
   "billing_autorenew_service_state_UN_PAID": "Non payé",
@@ -38,6 +42,7 @@
   "billing_autorenew_service_date_before": "Avant le {{ date }}",
   "billing_autorenew_service_date_renew": "Le {{ date }}",
   "billing_autorenew_service_expiration_date": "Expire le",
+
   "autorenew_service_after_expiration_date": "Expiré le",
   "autorenew_service_renew_auto": "Automatique",
   "autorenew_service_renew_manuel": "Manuel",
@@ -49,6 +54,7 @@
   "autorenew_service_renew_frequency_value": "Automatique : tous les {{t0}} mois",
   "autorenew_service_renew_years_frequency_value": "Automatique : tous les {{t0}} ans",
   "autorenew_service_renew_paid": "Payé",
+
   "autorenew_empty": "Vous n'avez aucun service",
   "autorenew_service_action_title": "Actions",
   "autorenew_service_autorenew_day": "Jour de renouvellement automatique:",
@@ -116,9 +122,11 @@
   "billing_autorenew_service_type_cloud_project": "Projet Cloud",
   "billing_autorenew_service_type_WEBCOACH": "WebCoach",
   "billing_autorenew_service_type_webcoach": "WebCoach",
+  "billing_autorenew_service_type_OVH_CLOUD_CONNECT": "OVHcloud Connect",
   "billing_export_csv": "Exporter en CSV",
   "billing_common_link_new_window": "(nouvelle fenêtre)",
   "billing_autorenew_renew_action": "Renouveler",
+
   "billing_autorenew_service_renew_requires_mean_and_date": "Afin de finaliser l'activation du renouvellement automatique, veuillez ajouter un moyen de paiement et ensuite il vous sera possible de sélectionner votre date de prélèvement.",
   "billing_autorenew_service_activate_alert": "Vous avez au moins un service en renouvellement automatique mais vous n'avez pas encore autorisé cette option."
 }

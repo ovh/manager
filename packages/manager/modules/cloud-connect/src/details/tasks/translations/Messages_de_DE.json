@@ -1,0 +1,18 @@
+{
+  "cloud_connect_tasks_decription": "Wartende, laufende und fehlgeschlagene Aufgaben.",
+  "cloud_connect_tasks_id": "ID der Aufgabe",
+  "cloud_connect_tasks_action": "Aktion",
+  "cloud_connect_tasks_lockInterface": "Interface zur Sperrung",
+  "cloud_connect_tasks_unlockInterface": "Das Interface entsperren",
+  "cloud_connect_tasks_addPopConfiguration": "Eine PoP-Konfiguration hinzufügen",
+  "cloud_connect_tasks_delPopConfiguration": "Die Pop-Konfiguration löschen",
+  "cloud_connect_tasks_addDatacenterConfiguration": "Die Konfiguration des Rechenzentrums hinzufügen",
+  "cloud_connect_tasks_delDatacenterConfiguration": "Die Konfiguration des Rechenzentrums löschen",
+  "cloud_connect_tasks_addDatacenterExtraConfiguration": "Eine zusätzliche Konfiguration zum Rechenzentrum hinzufügen",
+  "cloud_connect_tasks_delDatacenterExtraConfiguration": "Die zusätzliche Konfiguration des Rechenzentrums löschen",
+  "cloud_connect_tasks_status_todo": "Geplant",
+  "cloud_connect_tasks_status_doing": "Wird bearbeitet",
+  "cloud_connect_tasks_status_done": "Beendet",
+  "cloud_connect_tasks_status_error": "Fehler",
+  "cloud_connect_tasks_status": "Status"
+}

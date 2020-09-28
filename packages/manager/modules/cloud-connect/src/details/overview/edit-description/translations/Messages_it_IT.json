@@ -1,0 +1,6 @@
+{
+  "cloud_connect_edit_modal_title": "Modifica la descrizione",
+  "cloud_connect_edit_modal_description": "Modifica la descrizione",
+  "cloud_connect_edit_description_success": "La descrizione del servizio è stata aggiornata correttamente.",
+  "cloud_connect_edit_description_error": "Si è verificato un errore durante l'aggiornamento del servizio."
+}

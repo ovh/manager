@@ -1,0 +1,18 @@
+{
+  "cloud_connect_tasks_decription": "Operazione in attesa, in corso o non andata a buon fine",
+  "cloud_connect_tasks_id": "ID Operazione",
+  "cloud_connect_tasks_action": "Azione",
+  "cloud_connect_tasks_lockInterface": "Interfaccia di blocco",
+  "cloud_connect_tasks_unlockInterface": "Sblocca l’interfaccia",
+  "cloud_connect_tasks_addPopConfiguration": "Aggiungi una configurazione PoP",
+  "cloud_connect_tasks_delPopConfiguration": "Elimina la configurazione PoP",
+  "cloud_connect_tasks_addDatacenterConfiguration": "Aggiungi la configurazione del datacenter",
+  "cloud_connect_tasks_delDatacenterConfiguration": "Elimina la configurazione del datacenter",
+  "cloud_connect_tasks_addDatacenterExtraConfiguration": "Aggiungi una configurazione supplementare al datacenter",
+  "cloud_connect_tasks_delDatacenterExtraConfiguration": "Elimina la configurazione supplementare dal datacenter",
+  "cloud_connect_tasks_status_todo": "Pianificato",
+  "cloud_connect_tasks_status_doing": "In corso",
+  "cloud_connect_tasks_status_done": "Terminato",
+  "cloud_connect_tasks_status_error": "Errore",
+  "cloud_connect_tasks_status": "Stato"
+}
