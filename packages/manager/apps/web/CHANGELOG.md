@@ -1,3 +1,12 @@
+## [15.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.3.2...@ovh-ux/manager-web@15.3.3) (2020-09-28)
+
+
+### Bug Fixes
+
+* **deps:** upgrade @ovh-ux/manager-server-sidebar to v3.0.0 ([3f1b29d](https://github.com/ovh/manager/commit/3f1b29df95412d15f1a804d7daa8742791ce4cab))
+
+
+
 ## [15.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.3.1...@ovh-ux/manager-web@15.3.2) (2020-09-21)
 
 

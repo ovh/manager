@@ -1,3 +1,12 @@
+## [10.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@10.2.3...@ovh-ux/manager-cloud@10.2.4) (2020-09-28)
+
+
+### Bug Fixes
+
+* **deps:** upgrade @ovh-ux/manager-server-sidebar to v3.0.0 ([3f1b29d](https://github.com/ovh/manager/commit/3f1b29df95412d15f1a804d7daa8742791ce4cab))
+
+
+
 ## [10.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@10.2.2...@ovh-ux/manager-cloud@10.2.3) (2020-09-21)
 
 

@@ -1,3 +1,12 @@
+## [14.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.0.0...@ovh-ux/manager-dedicated@14.0.1) (2020-09-28)
+
+
+### Bug Fixes
+
+* **deps:** upgrade @ovh-ux/manager-server-sidebar to v3.0.0 ([3f1b29d](https://github.com/ovh/manager/commit/3f1b29df95412d15f1a804d7daa8742791ce4cab))
+
+
+
 # [14.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@13.2.12...@ovh-ux/manager-dedicated@14.0.0) (2020-09-28)
 
 

@@ -1,3 +1,12 @@
+## [1.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect-app@1.0.0...@ovh-ux/manager-cloud-connect-app@1.0.1) (2020-09-28)
+
+
+### Bug Fixes
+
+* **deps:** upgrade some dependencies ([0fc14df](https://github.com/ovh/manager/commit/0fc14df4f76d9643e2bcaed4b5572774cd45fd06))
+
+
+
 #  (2020-09-28)
 
 
