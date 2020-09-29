@@ -476,16 +476,6 @@ export const SIDEBAR_ORDER_CONFIG = [
     tracker: 'dedicated::orders::public-cloud-project::order',
   },
   {
-    id: 'order-nas',
-    title: 'NAS',
-    icon: 'ovh-font ovh-font-cloudnas',
-    linkId: 'DEDICATED',
-    linkPart: '#/configuration/nas',
-    app: [DEDICATED],
-    regions: ['EU'],
-    tracker: 'dedicated::orders::nas::order',
-  },
-  {
     id: 'order-dedicated-server',
     title: 'dedicated_server',
     icon: 'ovh-font ovh-font-server',
