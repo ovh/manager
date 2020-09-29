@@ -22,6 +22,8 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
       currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
         $state.href($state.current.name, $transition$.params()),
+      nasId: /* @ngInject */ ($transition$) => $transition$.params().nasId,
+      breadcrumb: /* @ngInject */ (nasId) => nasId,
     },
     views: {
       nasView: {
