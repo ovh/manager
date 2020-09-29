@@ -4,6 +4,7 @@ import RemcalcPlugin from 'less-plugin-remcalc';
 import WebpackBar from 'webpackbar';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import get from 'lodash/get';
+import isEmpty from 'lodash/isEmpty';
 import set from 'lodash/set';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import TerserJSPlugin from 'terser-webpack-plugin';
@@ -22,6 +23,16 @@ const cacheLoader = {
 // The common webpack configuration
 
 export = opts => {
+  const copyWebpackPluginOptions: any = {};
+
+  if (opts.assets?.files) {
+    copyWebpackPluginOptions.patterns = opts.assets.files
+  }
+
+  if (opts.assets?.options) {
+    copyWebpackPluginOptions.options = opts.assets.options
+  }
+
   const lessLoaderOptions = {
     sourceMap: true,
     plugins: [
@@ -42,10 +53,7 @@ export = opts => {
     plugins: [
       // copy application assets
       // note: we could use the html-loader plugin but it wouldn't work for dynamic src attributes!
-      new CopyWebpackPlugin(
-        get(opts, 'assets.files', []),
-        get(opts, 'assets.options', {}),
-      ),
+      ...(isEmpty(copyWebpackPluginOptions) ? [] : [new CopyWebpackPlugin(copyWebpackPluginOptions)]),
 
       // see : https://github.com/jantimon/html-webpack-plugin
       new HtmlWebpackPlugin({
