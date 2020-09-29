@@ -1,3 +1,12 @@
+## [13.2.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.2.6...@ovh-ux/manager-telecom@13.2.7) (2020-09-29)
+
+
+### Bug Fixes
+
+* **xdsl.move:** fix the move out date calendar to start to date + 1 ([#3699](https://github.com/ovh/manager/issues/3699)) ([e408e7a](https://github.com/ovh/manager/commit/e408e7adfa6d3bc4177b6f97af881ca3aed57427))
+
+
+
 ## [13.2.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.2.5...@ovh-ux/manager-telecom@13.2.6) (2020-09-21)
 
 
