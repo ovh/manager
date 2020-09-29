@@ -133,6 +133,7 @@ export const MENU = [
         },
         title: 'AI Training',
         regions: ['CA', 'EU'],
+        feature: 'ai-training',
       },
       {
         id: 'serving',

@@ -132,6 +132,11 @@ angular
         unregisterHook();
       });
     },
+  )
+  .config(
+    /* @ngInject */ (ovhFeatureFlippingProvider) => {
+      ovhFeatureFlippingProvider.setApplicationName('public-cloud');
+    },
   );
 
 export default moduleName;
