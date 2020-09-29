@@ -22,6 +22,7 @@ export default class SidebarController {
     OvhApiCloudProject,
     OvhApiMe,
     OvhApiServices,
+    ovhFeatureFlipping,
   ) {
     this.$q = $q;
     this.$translate = $translate;
@@ -36,6 +37,7 @@ export default class SidebarController {
     this.OvhApiCloudProject = OvhApiCloudProject;
     this.OvhApiServices = OvhApiServices;
     this.OvhApiCloudProjectServiceInfos = OvhApiCloudProject.ServiceInfos();
+    this.ovhFeatureFlipping = ovhFeatureFlipping;
 
     this.isOpen = false;
     this.isLoading = false;
@@ -75,19 +77,38 @@ export default class SidebarController {
       });
   }
 
+  static findFeatureToCheck() {
+    return MENU.reduce((features, item) => {
+      return [
+        ...features,
+        item.feature,
+        ...item.subitems.map((subitem) => subitem.feature),
+      ].filter((feature) => !!feature);
+    }, []);
+  }
+
   $onInit() {
-    this.MENU = MENU.filter(
-      ({ regions }) => isNil(regions) || this.coreConfig.isRegion(regions),
-    ).map((menu) => {
-      set(
-        menu,
-        'subitems',
-        menu.subitems.filter(
-          ({ regions }) => isNil(regions) || this.coreConfig.isRegion(regions),
-        ),
-      );
-      return menu;
-    });
+    const featuresName = SidebarController.findFeatureToCheck();
+    this.ovhFeatureFlipping
+      .checkFeatureAvailability(featuresName)
+      .then((features) => {
+        const isItemAvailable = (regions, feature) =>
+          (isNil(regions) || this.coreConfig.isRegion(regions)) &&
+          (!feature || features.isFeatureAvailable(feature));
+
+        this.MENU = MENU.filter(({ regions, feature }) =>
+          isItemAvailable(regions, feature),
+        ).map((menu) => {
+          set(
+            menu,
+            'subitems',
+            menu.subitems.filter(({ regions, feature }) =>
+              isItemAvailable(regions, feature),
+            ),
+          );
+          return menu;
+        });
+      });
     let currentProjectId = this.$stateParams.projectId;
     this.setProject(this.$stateParams.projectId);
     this.$transitions.onSuccess({}, () => {
