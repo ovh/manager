@@ -5,7 +5,17 @@ import { NASHA_URL } from '../dashboard/nas.constants';
 angular.module('App').controller(
   'NasDetailsCtrl',
   class NasDetailsCtrl {
-    constructor($stateParams, $scope, Nas, Alerter, constants, nasData) {
+    constructor(
+      $stateParams,
+      $scope,
+      currentActiveLink,
+      dashboardLink,
+      partitionLink,
+      Nas,
+      Alerter,
+      constants,
+      nasData,
+    ) {
       // injections
       this.NASHA_URL = NASHA_URL;
       this.$stateParams = $stateParams;
@@ -14,6 +24,10 @@ angular.module('App').controller(
       this.Alerter = Alerter;
       this.constants = constants;
       this.nasData = nasData;
+
+      this.currentActiveLink = currentActiveLink;
+      this.dashboardLink = dashboardLink;
+      this.partitionLink = partitionLink;
 
       // attributes used in view
       this.alerterId = 'NasAlert';
