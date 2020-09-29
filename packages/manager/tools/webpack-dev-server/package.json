@@ -29,7 +29,7 @@
     "@ovh-ux/manager-dev-server-config": "^1.0.0",
     "duplicate-package-checker-webpack-plugin": "^3.0.0",
     "friendly-errors-webpack-plugin": "^1.7.0",
-    "webpack-dev-server": "^3.8.2",
+    "webpack-dev-server": "^3.11.0",
     "yn": "^4.0.0"
   },
   "devDependencies": {
