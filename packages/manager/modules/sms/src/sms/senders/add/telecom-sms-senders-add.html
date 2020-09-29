@@ -152,6 +152,17 @@
                         </span>
                     </div>
 
+                    <oui-field
+                        data-label="{{:: 'sms_senders_add_sender_supporting_document' | translate }}"
+                        data-label-popover="{{:: 'sms_senders_add_sender_supporting_document_help' | translate }}"
+                        data-size="xl"
+                    >
+                        <oui-file
+                            model="SmsSendersAddCtrl.sender.supportingDocument"
+                            accept=".jpeg, .jpg, .pdf, .png"
+                        ></oui-file>
+                    </oui-field>
+
                     <!-- Description -->
                     <div
                         class="form-group"
