@@ -54,7 +54,7 @@
     "filesize": "^3.6.1",
     "flatpickr": "~4.5.2",
     "jquery": "^2.1.3",
-    "moment": "^2.27.0",
+    "moment": "^2.24.0",
     "ng-ckeditor": "^2.0.5",
     "oclazyload": "^1.1.0",
     "ovh-api-services": "^9.26.0",
