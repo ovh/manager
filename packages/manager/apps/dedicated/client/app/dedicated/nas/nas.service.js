@@ -36,7 +36,7 @@ angular
 
     self.getNasType = function getNasType(nasId) {
       if (!isEmpty(nasId)) {
-        return nasId.split('_')[0];
+        return nasId.split('-')[0];
       }
       return '';
     };
