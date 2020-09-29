@@ -83,7 +83,7 @@ export const NETWORKS_CONFIG = {
     },
     {
       path: '/dedicated/nas',
-      state: 'app.networks.nas.details',
+      state: 'app.dedicated-nas.details',
       stateParams: ['nasId'],
       icon: 'ovh-font ovh-font-cloudnas',
       app: [DEDICATED],
@@ -100,7 +100,11 @@ export const NETWORKS_CONFIG = {
       searchKeys: ['NAS', 'NASHA', 'NAS-HA'],
     },
   ],
-  loadOnState: ['nasha.dashboard.nasha-partitions', 'app.networks'],
+  loadOnState: [
+    'nasha.dashboard.nasha-partitions',
+    'app.networks',
+    'dedicated-nas',
+  ],
   icon: 'ovh-font ovh-font-network',
   app: [DEDICATED],
   regions: ['EU', 'CA'],

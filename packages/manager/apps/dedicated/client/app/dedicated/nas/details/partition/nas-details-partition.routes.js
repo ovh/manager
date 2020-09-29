@@ -1,5 +1,5 @@
 angular.module('App').config(($stateProvider) => {
-  $stateProvider.state('app.networks.nas.details.partition', {
+  $stateProvider.state('app.dedicated-nas.details.partition', {
     url: '/partitions',
     views: {
       nasDetails: {
