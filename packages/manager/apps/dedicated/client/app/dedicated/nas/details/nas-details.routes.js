@@ -2,6 +2,9 @@ angular.module('App').config(($stateProvider) => {
   $stateProvider.state('app.networks.nas.details', {
     url: '/:nasType/:nasId',
     reloadOnSearch: false,
+    params: {
+      nasType: 'nas',
+    },
     resolve: {
       nasData() {
         return {
