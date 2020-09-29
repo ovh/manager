@@ -5,7 +5,17 @@ import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 angular.module('App').controller(
   'NasDetailsCtrl',
   class NasDetailsCtrl {
-    constructor($stateParams, $scope, Nas, Alerter, constants, nasData) {
+    constructor(
+      $stateParams,
+      $scope,
+      currentActiveLink,
+      dashboardLink,
+      partitionLink,
+      Nas,
+      Alerter,
+      constants,
+      nasData,
+    ) {
       // injections
       this.$stateParams = $stateParams;
       this.$scope = $scope;
@@ -13,6 +23,10 @@ angular.module('App').controller(
       this.Alerter = Alerter;
       this.constants = constants;
       this.nasData = nasData;
+
+      this.currentActiveLink = currentActiveLink;
+      this.dashboardLink = dashboardLink;
+      this.partitionLink = partitionLink;
 
       // attributes used in view
       this.alerterId = 'NasAlert';
