@@ -1,5 +1,5 @@
-angular.module('App').config(($stateProvider) => {
-  $stateProvider.state('app.networks.nas.details', {
+export default /* @ngInject */ ($stateProvider) => {
+  $stateProvider.state('app.dedicated-nas.details', {
     url: '/:nasType/:nasId',
     reloadOnSearch: false,
     resolve: {
@@ -17,7 +17,7 @@ angular.module('App').config(($stateProvider) => {
         controller: 'NasDetailsCtrl',
         controllerAs: '$ctrl',
       },
-      'nasDetails@app.networks.nas.details': {
+      'nasDetails@app.dedicated-nas.details': {
         templateUrl:
           'dedicated/nas/details/dashboard/nas-details-dashboard.html',
         controller: 'NasDetailsDashboardCtrl',
@@ -25,4 +25,4 @@ angular.module('App').config(($stateProvider) => {
       },
     },
   });
-});
+};
