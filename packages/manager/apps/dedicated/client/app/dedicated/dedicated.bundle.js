@@ -13,7 +13,6 @@ import './housing/reboot/dedicated-housing-reboot.controller';
 import './housing/task/dedicated-housing-task.controller';
 import './nas/details/dashboard/nas-details-dashboard.controller';
 import './nas/details/nas-details.controller';
-import './nas/details/nas-details.routes';
 import './nas/details/partition/access/add/nas-partition-access-add.controller';
 import './nas/details/partition/access/delete/nas-partition-access-delete.controller';
 import './nas/details/partition/access/nas-partition-access.controller';
