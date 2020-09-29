@@ -1,3 +1,13 @@
+## [14.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.0.1...@ovh-ux/manager-dedicated@14.0.2) (2020-09-29)
+
+
+### Bug Fixes
+
+* **billing.autorenew.agreements:** fix page not loading ([#3717](https://github.com/ovh/manager/issues/3717)) ([99edb9b](https://github.com/ovh/manager/commit/99edb9b75fcc28e8c732dd494a9c62e950186f4c))
+* **dedicated.cloud.dashboard:** fix certificates visibility ([#3716](https://github.com/ovh/manager/issues/3716)) ([596af2c](https://github.com/ovh/manager/commit/596af2c9003c5dce0fcc28c0a84c20be0cda7a0a))
+
+
+
 ## [14.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.0.0...@ovh-ux/manager-dedicated@14.0.1) (2020-09-28)
 
 
