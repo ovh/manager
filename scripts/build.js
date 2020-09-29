@@ -13,6 +13,58 @@ const myEmitter = new EventEmitter();
 let modules;
 let i = 0;
 
+async function getPackagesByWorkspace(workspace) {
+  try {
+    const { stdout } = await execa.command('lerna list -alp --json', {
+      shell: true,
+    });
+    const workspacePackagesInfos = JSON.parse(stdout).filter((packageInfos) =>
+      packageInfos.location.startsWith(workspace),
+    );
+
+    if (workspacePackagesInfos.length > 0) {
+      const scopeArgs = workspacePackagesInfos
+        .map((packageInfos) => `--scope=${packageInfos.name}`)
+        .join(' ');
+      const {
+        stdout: packages,
+      } = await execa.command(
+        `lerna list -alp --json ${scopeArgs} --include-dependencies`,
+        { shell: true },
+      );
+      return JSON.parse(packages);
+    }
+    return [];
+  } catch (error) {
+    return [];
+  }
+}
+
+async function getPackagesByPackageName(packageName) {
+  try {
+    const { stdout } = await execa.command(
+      `lerna list -alp --json --scope=${packageName} --include-dependencies`,
+      {
+        shell: true,
+      },
+    );
+    return JSON.parse(stdout);
+  } catch (error) {
+    return [];
+  }
+}
+
+async function getAllPackages() {
+  try {
+    const { stdout } = await execa.command(`lerna list -alp --json`, {
+      shell: true,
+    });
+    return JSON.parse(stdout);
+  } catch (error) {
+    return [];
+  }
+}
+
 async function retrieveDependencies(_modules) {
   const packages = await Promise.all(
     _modules.map((pck) =>
@@ -111,26 +163,32 @@ program
     '-p, --package [package]',
     'Scope build to a specific package and its dependencies',
   )
-  .action(() => {
-    return execa
-      .command(
-        `lerna list -alp --json ${
-          program.package
-            ? `--scope=${program.package} --include-dependencies`
-            : ''
-        }`,
-        { shell: true },
-      )
-      .then(({ stdout }) => retrieveDependencies(JSON.parse(stdout)))
-      .then((todo) => {
-        modules = {
-          todo,
-          doing: [],
-          done: [],
-        };
+  .option(
+    '-w, --workspace [workspace]',
+    'Scope build to a specific workspace, its packages and their dependencies',
+  )
+  .action(async () => {
+    let packagesInfos = [];
 
-        myEmitter.on('unstack', () => unstack());
-        myEmitter.emit('unstack');
-      });
+    if (program.workspace) {
+      packagesInfos = await getPackagesByWorkspace(
+        path.resolve(program.workspace),
+      );
+    } else if (program.package) {
+      packagesInfos = await getPackagesByPackageName(program.package);
+    } else {
+      packagesInfos = await getAllPackages();
+    }
+
+    return retrieveDependencies(packagesInfos).then((todo) => {
+      modules = {
+        todo,
+        doing: [],
+        done: [],
+      };
+
+      myEmitter.on('unstack', () => unstack());
+      myEmitter.emit('unstack');
+    });
   })
   .parse(process.argv);
