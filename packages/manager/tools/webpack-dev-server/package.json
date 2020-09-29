@@ -30,7 +30,7 @@
     "duplicate-package-checker-webpack-plugin": "^3.0.0",
     "friendly-errors-webpack-plugin": "^1.7.0",
     "webpack-dev-server": "^3.8.2",
-    "yn": "^3.1.1"
+    "yn": "^4.0.0"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.11.0",
