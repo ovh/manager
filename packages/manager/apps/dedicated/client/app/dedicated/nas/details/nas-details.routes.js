@@ -13,6 +13,15 @@ export default /* @ngInject */ ($stateProvider) => {
           monitoring: {},
         };
       },
+      dashboardLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href('app.dedicated-nas.details', $transition$.params()),
+      partitionLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href(
+          'app.dedicated-nas.details.partition',
+          $transition$.params(),
+        ),
+      currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
+        $state.href($state.current.name, $transition$.params()),
     },
     views: {
       nasView: {
