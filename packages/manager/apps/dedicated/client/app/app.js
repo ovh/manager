@@ -135,7 +135,6 @@ angular
       ngOvhExportCsv,
       ngPaginationFront,
       ngQAllSettled,
-      'ovh-angular-responsive-tabs',
       'ovh-api-services',
       ovhManagerAtInternetConfiguration,
       ovhManagerAccountMigration,
