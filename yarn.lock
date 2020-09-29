@@ -2988,6 +2988,36 @@
   dependencies:
     lodash "^4.17.20"
 
+"@ovh-ux/ng-ovh-export-csv@2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-export-csv/-/ng-ovh-export-csv-2.0.0.tgz#cd7dbb1f46f5bf7f660cb856e65d774df75eb75b"
+  integrity sha512-AXj6LRtRyKh/2cskNmo7JwrSpev29dDtgwIm0s7RujnuXjc3SmVErG7vlKuTo91x9brc/9ApOdsI46fayJKlXA==
+
+"@ovh-ux/ng-ovh-proxy-request@2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-proxy-request/-/ng-ovh-proxy-request-2.0.0.tgz#484db5d4e500989b315131dd4589c9928c9b7f77"
+  integrity sha512-R3fCwmCI+BeGT3uBeGOxLS7Kq1oHF4L71+MNP5YV2dK35LAwtLQ2Xqz0fvPO7hUTrNLDqaD9UNl8cESVjV/e4Q==
+
+"@ovh-ux/ng-ovh-user-pref@2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-user-pref/-/ng-ovh-user-pref-2.0.0.tgz#250ea5b216223e5af94c79e082281089821e4417"
+  integrity sha512-YQnHlX4NwGWqN0t8f0u2JaFH+YY/x1fuYsQ0QL5fad46rfCxluSFFeiGBXRGTnraYrd7UURWSePexU1vYT7nXA==
+  dependencies:
+    lodash "^4.17.15"
+
+"@ovh-ux/ng-ovh-utils@14.0.10":
+  version "14.0.10"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-utils/-/ng-ovh-utils-14.0.10.tgz#9a7ab615cb9a680f448ec310865dd5597ca08235"
+  integrity sha512-wvlCj3LLxe78eJK/W3YO1jspar8XlmsCQPQ/2DiEU2kpK37WFOBP9wW1HSZ6QuiWyYKU/dKelKYUGopg0cqQiQ==
+  dependencies:
+    filesize "^3.6.1"
+    lodash "^4.17.15"
+
+"@ovh-ux/ng-translate-async-loader@2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-translate-async-loader/-/ng-translate-async-loader-2.1.0.tgz#dac30a50426658c95be8d24b5a1d75f7b18932aa"
+  integrity sha512-RqSEZp/J4Pe7lrn6yQgJIrvN6Hu3Rm21KUNCe+exlp6DhSfAwn1hKON4OmQ666E+AL2dp6IAIVyhC3Q1nokjiw==
+
 "@ovh-ux/rollup-plugin-less-inject@^1.0.5":
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/@ovh-ux/rollup-plugin-less-inject/-/rollup-plugin-less-inject-1.0.5.tgz#02285367219f72056faf06deeacaeb357f16633c"
@@ -3010,6 +3040,11 @@
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/@ovh-ux/translate-async-loader/-/translate-async-loader-1.0.8.tgz#7cbdc3dfed1042f511206ff6bb9f14c33b8406ba"
   integrity sha512-8yEhPeRTSxtEO9ODXRYZw6pzRQiV5ULCTi8mIzt39m/b9N2TcIF4ILTPsaa8xpE4npHKa/iYgL9z0HJUFi2LGQ==
+
+"@ovh-ux/ui-kit@^4.4.1":
+  version "4.4.3"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-4.4.3.tgz#37c1c8d97bf50b21edd0ec6640e1bafcb0cfaac5"
+  integrity sha512-57oZYymSnNfSk2mBWP1cWcjgwWR5vh5zbhlBYtolY2cJ0etqmd0U6f8GiuqqjFoQzxdvcAHhfLlbKDfxBRFtZA==
 
 "@ovh-ux/ui-kit@^4.4.4":
   version "4.4.4"
@@ -4292,7 +4327,7 @@ angular-resource@1.7.x, angular-resource@^1.6.6, angular-resource@^1.7.5, angula
   resolved "https://registry.yarnpkg.com/angular-resource/-/angular-resource-1.7.9.tgz#fa53623fae2c60debe2410d692447dcb0ba02396"
   integrity sha512-rXXhCE2qT31Pn4Sl+2XL+ntv4zxnA2OzY+clCl8/pOp/s/gIzxpQlEtXipo3QK8Qur3glbIkeF/bJw+gjVAdUw==
 
-angular-route@1.7.x, angular-route@^1.6.0:
+angular-route@1.7.x, angular-route@^1.6.0, angular-route@~1.7.5, angular-route@~1.7.8:
   version "1.7.9"
   resolved "https://registry.yarnpkg.com/angular-route/-/angular-route-1.7.9.tgz#f9910a2af0ba3ad7a969c5dd369b8360d0d5e4ef"
   integrity sha512-vRoj5hzdQtWbODhWJqDzD1iNOEfCKshO6GFBuPVV7RHlPjzIc4R2dHCc7Qiv/8F3LDxJDohc6vSnTDMLHuaqeA==
@@ -10462,7 +10497,7 @@ flat-cache@^2.0.1:
     rimraf "2.6.3"
     write "1.0.3"
 
-flatpickr@4.6.3, flatpickr@^4.6.3:
+flatpickr@4.6.3, flatpickr@^4.6.3, flatpickr@~4.5.2:
   version "4.6.3"
   resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.6.3.tgz#15a8b76b6e34e3a072861250503a5995b9d3bc60"
   integrity sha512-007VucCkqNOMMb9ggRLNuJowwaJcyOh4sKAFcdGfahfGc7JQbf94zSzjdBq/wVyHWUEs5o3+idhFZ0wbZMRmVQ==
@@ -15825,7 +15860,7 @@ ovh-ngstrap@^4.0.2:
   resolved "https://registry.yarnpkg.com/ovh-ngstrap/-/ovh-ngstrap-4.0.2.tgz#059291bfb9f59b78df991e476dd2ede0507cb3c9"
   integrity sha1-BZKRv7n1m3jfmR5HbdLt4FB8s8k=
 
-ovh-ui-kit-bs@^4.2.0:
+ovh-ui-kit-bs@^4.1.6, ovh-ui-kit-bs@^4.1.8, ovh-ui-kit-bs@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/ovh-ui-kit-bs/-/ovh-ui-kit-bs-4.2.0.tgz#d4e4b9c0acbaaaafb284bcd660ae7f4d920fb6d4"
   integrity sha512-/U/H3e5anKliI8zzVVIzRvqJeH9m9jPvpHZaj8BjCyWCYiAfFtXJSw8Rewzos4ERUZgX61chbYNvnZSgRMbAUQ==
@@ -17669,6 +17704,11 @@ regenerate@^1.2.1, regenerate@^1.4.0:
   resolved "https://registry.yarnpkg.com/regenerate/-/regenerate-1.4.0.tgz#4a856ec4b56e4077c557589cae85e7a4c8869a11"
   integrity sha512-1G6jJVDWrt0rK99kBjvEtziZNCICAuvIPkSiUFIQxVP06RCVpq3dmDo2oi6ABpYaDYaTRr67BEhL8r1wgEZZKg==
 
+regenerator-runtime@0.13.5, regenerator-runtime@^0.13.4:
+  version "0.13.5"
+  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.5.tgz#d878a1d094b4306d10b9096484b33ebd55e26697"
+  integrity sha512-ZS5w8CpKFinUzOwW3c83oPeVXoNsrLsaCoLtJvAClH135j/R77RuymhiSErhm2lKcwSCIpmvIWSbDkIfAqKQlA==
+
 regenerator-runtime@^0.10.5:
   version "0.10.5"
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.10.5.tgz#336c3efc1220adcedda2c9fab67b5a7955a33658"
@@ -17679,12 +17719,7 @@ regenerator-runtime@^0.11.0:
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"
   integrity sha512-MguG95oij0fC3QV3URf4V2SDYGJhJnJGqvIIgdECeODCT98wSWDAJ94SSuVpYQUoTcGUIL6L4yNB7j1DFFHSBg==
 
-regenerator-runtime@^0.13.4:
-  version "0.13.5"
-  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.5.tgz#d878a1d094b4306d10b9096484b33ebd55e26697"
-  integrity sha512-ZS5w8CpKFinUzOwW3c83oPeVXoNsrLsaCoLtJvAClH135j/R77RuymhiSErhm2lKcwSCIpmvIWSbDkIfAqKQlA==
-
-regenerator-runtime@^0.13.7:
+regenerator-runtime@^0.13.5, regenerator-runtime@^0.13.7:
   version "0.13.7"
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.7.tgz#cac2dacc8a1ea675feaabaeb8ae833898ae46f55"
   integrity sha512-a54FxoJDIr27pgf7IgeQGxmqUNYrcV338lf/6gH456HZ/PhX+5BcwHXG9ajESmwe6WRO0tAzRUrRmNONWgkrew==
@@ -22105,7 +22140,7 @@ websocket-extensions@>=0.1.1:
   resolved "https://registry.yarnpkg.com/websocket-extensions/-/websocket-extensions-0.1.4.tgz#7f8473bc839dfd87608adb95d7eb075211578a42"
   integrity sha512-OqedPIGOfsDlo31UNwYbCFMSaO9m9G/0faIHj5/dZFDMFqPTcx6UwqyOy3COEaEOg/9VsGIpdqn62W5KhoKSpg==
 
-whatwg-fetch@^3.5.0:
+whatwg-fetch@^3.0.0, whatwg-fetch@^3.5.0:
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-3.5.0.tgz#605a2cd0a7146e5db141e29d1c62ab84c0c4c868"
   integrity sha512-jXkLtsR42xhXg7akoDKvKWE40eJeI+2KZqcp2h3NsOrRnDvtWX36KcKl30dy+hxECivdk2BVUHVNrPtoMBUx6A==
