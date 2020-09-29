@@ -49,7 +49,6 @@
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.0",
     "@ovh-ux/ng-ovh-responsive-page-switcher": "^2.0.0",
     "@ovh-ux/ng-ovh-responsive-popover": "^5.0.2",
-    "@ovh-ux/ng-ovh-responsive-tabs": "^7.0.1",
     "@ovh-ux/ng-ovh-sidebar-menu": "^10.1.0",
     "@ovh-ux/ng-ovh-slider": "^2.0.0",
     "@ovh-ux/ng-ovh-sso-auth": "^4.3.0",
