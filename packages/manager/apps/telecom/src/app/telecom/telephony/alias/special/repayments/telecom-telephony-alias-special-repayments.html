@@ -3,7 +3,7 @@
 </div>
 
 <div class="row" data-ng-if="!$ctrl.loading">
-    <div class="col-lg-8">
+    <div class="col-lg-12">
         <h2 data-translate="telephony_alias_special_repayments_title"></h2>
         <p data-translate="telephony_alias_special_repayments_subtitle"></p>
 
@@ -60,6 +60,8 @@
             class="my-5"
             data-rows="$ctrl.repayments"
             data-page-size="25"
+            data-on-page-change="$ctrl.onPageChanged($pagination)"
+            data-on-sort-change="$ctrl.onSortChanged($sort)"
         >
             <oui-datagrid-column
                 data-title="::'telephony_alias_special_transfer_date' | translate"
