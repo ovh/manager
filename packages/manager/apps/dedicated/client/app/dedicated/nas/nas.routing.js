@@ -1,7 +1,7 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.networks.nas.index', {
+  $stateProvider.state('app.dedicated-nas.index', {
     url: `?${ListLayoutHelper.urlQueryParams}`,
     views: {
       nasView: {
@@ -19,7 +19,7 @@ export default /* @ngInject */ ($stateProvider) => {
       getServiceNameLink: /* @ngInject */ ($state) => ({
         serviceName: nasId,
       }) =>
-        $state.href('app.networks.nas.details', {
+        $state.href('app.dedicated-nas.details', {
           nasId,
           nasType: 'nas',
         }),
