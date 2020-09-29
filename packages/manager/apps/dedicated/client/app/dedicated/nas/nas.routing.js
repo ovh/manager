@@ -23,6 +23,7 @@ export default /* @ngInject */ ($stateProvider) => {
           nasId,
           nasType: 'nas',
         }),
+      hideBreadcrumb: () => true,
     },
   });
 };
