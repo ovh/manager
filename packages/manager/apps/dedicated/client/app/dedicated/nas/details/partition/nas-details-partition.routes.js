@@ -1,4 +1,6 @@
-angular.module('App').config(($stateProvider) => {
+angular
+  .module('App')
+  .config(($stateProvider) => {
   $stateProvider.state('app.dedicated-nas.details.partition', {
     url: '/partitions',
     views: {
@@ -11,4 +13,14 @@ angular.module('App').config(($stateProvider) => {
     },
     reloadOnSearch: false,
   });
+
+    $stateProvider.state('app.dedicated-nas.details.partition.dashboard', {
+      url: '/:partitionName',
+      template: '<div ui-view></div>',
+      redirectTo: 'app.dedicated-nas.details.partition',
+      resolve: {
+        partitionName: /* @ngInject */ ($transition$) =>
+          $transition$.params().partitionName,
+      },
 });
+  })
