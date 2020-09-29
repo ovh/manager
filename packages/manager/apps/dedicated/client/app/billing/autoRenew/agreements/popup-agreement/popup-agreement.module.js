@@ -7,7 +7,7 @@ import '@ovh-ux/ui-kit';
 import component from './popup-agreement.component';
 import routing from './popup-agreement.routes';
 
-const moduleName = 'ovhManagerBillingAutorenewActivation';
+const moduleName = 'ovhManagerBillingAutorenewPopupAgreement';
 
 angular
   .module(moduleName, [
@@ -18,6 +18,6 @@ angular
     atInternet,
   ])
   .config(routing)
-  .component('billingAutorenewActivation', component);
+  .component('billingAutorenewPopupAgreement', component);
 
 export default moduleName;

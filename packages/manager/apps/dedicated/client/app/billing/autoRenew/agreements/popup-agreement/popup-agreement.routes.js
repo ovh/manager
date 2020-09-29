@@ -7,7 +7,7 @@ export default /* @ngInject */ ($stateProvider) => {
       url: '/popup-agreement',
       views: {
         modal: {
-          component: 'billingAutorenewActivation',
+          component: 'billingAutorenewPopupAgreement',
         },
       },
       params: {
