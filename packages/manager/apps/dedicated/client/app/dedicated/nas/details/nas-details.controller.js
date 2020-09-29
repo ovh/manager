@@ -1,17 +1,11 @@
 import indexOf from 'lodash/indexOf';
 
+import { NASHA_URL } from '../dashboard/nas.constants';
+
 angular.module('App').controller(
   'NasDetailsCtrl',
   class NasDetailsCtrl {
-    constructor(
-      NASHA_URL,
-      $stateParams,
-      $scope,
-      Nas,
-      Alerter,
-      constants,
-      nasData,
-    ) {
+    constructor($stateParams, $scope, Nas, Alerter, constants, nasData) {
       // injections
       this.NASHA_URL = NASHA_URL;
       this.$stateParams = $stateParams;
