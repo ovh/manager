@@ -57,12 +57,15 @@ export default class VpsOrderDiskCtrl {
       this.coreConfig.getRegion(),
       this.connectedUser.ovhSubsidiary,
     ]);
+    const priceOptions = find(this.model.disk.prices, {
+      duration: 'P1M',
+    });
     const expressParams = {
       productId: 'vps',
       serviceName: this.stateVps.name,
       planCode: this.model.disk.planCode,
-      duration: 'P1M',
-      pricingMode: 'default',
+      duration: priceOptions.duration,
+      pricingMode: priceOptions.pricingMode,
       quantity: 1,
     };
     expressOrderUrl = `${expressOrderUrl}?products=${JSURL.stringify([
