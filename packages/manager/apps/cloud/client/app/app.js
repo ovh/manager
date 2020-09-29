@@ -16,7 +16,6 @@ import ngOvhCheckboxTable from '@ovh-ux/ng-ovh-checkbox-table';
 import ngOvhDocUrl from '@ovh-ux/ng-ovh-doc-url';
 import ngOvhFormFlat from '@ovh-ux/ng-ovh-form-flat';
 import ngOvhJsplumb from '@ovh-ux/ng-ovh-jsplumb';
-import ngOvhResponsiveTabs from '@ovh-ux/ng-ovh-responsive-tabs';
 import ngOvhSlider from '@ovh-ux/ng-ovh-slider';
 import ngOvhSsoAuth from '@ovh-ux/ng-ovh-sso-auth';
 import ngOvhSsoAuthModalPlugin from '@ovh-ux/ng-ovh-sso-auth-modal-plugin';
@@ -94,7 +93,6 @@ angular
       'chart.js',
 
       ngPaginationFront,
-      ngOvhResponsiveTabs,
       'mgcrea.ngStrap.popover',
       'mgcrea.ngStrap.tooltip',
       'mgcrea.ngStrap.helpers.dimensions',
