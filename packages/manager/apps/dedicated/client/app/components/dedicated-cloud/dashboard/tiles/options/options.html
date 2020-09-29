@@ -63,12 +63,14 @@
 
         <oui-tile-definition
             class="pb-2"
+            data-ng-if="$ctrl.bindings.options.basic.description.available"
             data-term="{{:: 'ovhManagerPccDashboardOptions_basicOptions_term' | translate }}"
         >
             <oui-tile-description class="oui-list oui-list_separated m-0">
                 <ul class="oui-list__items">
                     <li
                         data-ng-repeat="option in ::$ctrl.bindings.options.basic.description.items track by option.name"
+                        data-ng-if="option.available"
                         data-ng-class="{
                             'pb-3': !$last,
                         }"

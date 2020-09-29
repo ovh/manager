@@ -71,7 +71,10 @@
                     ></em>
                 </span>
             </div>
-            <div class="form-group">
+            <div
+                class="form-group"
+                data-ng-if="$ctrl.optionsAvailable.includes('nsx')"
+            >
                 <label
                     for="networkRole"
                     class="control-label"
