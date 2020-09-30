@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-at-internet-configuration@1.0.1...@ovh-ux/manager-at-internet-configuration@1.1.0) (2020-09-30)
+
+
+### Features
+
+* prevent crashing if api error ([e3b1b3a](https://github.com/ovh/manager/commit/e3b1b3a3f960d6bc2636ab76fec69684f286f34f))
+
+
+
 ## [1.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-at-internet-configuration@1.0.0...@ovh-ux/manager-at-internet-configuration@1.0.1) (2020-09-14)
 
 

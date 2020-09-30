@@ -1,3 +1,26 @@
+# [14.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.0.2...@ovh-ux/manager-dedicated@14.1.0) (2020-09-30)
+
+
+### Bug Fixes
+
+* **billing.history:** fix redirection to pay debt ([#3531](https://github.com/ovh/manager/issues/3531)) ([43f9357](https://github.com/ovh/manager/commit/43f93578c523de3ed9876b965b492dd55d641a18))
+* **billing.history:** prevent sorting on dynamically loaded columns ([#3552](https://github.com/ovh/manager/issues/3552)) ([fc605c5](https://github.com/ovh/manager/commit/fc605c5844af434816158b66cc44295071870f0b))
+* **dedicated:** replace apiv7 call with iceberg for bill csv export ([f78b91a](https://github.com/ovh/manager/commit/f78b91a459404854d996225b58859b23450ad007))
+* **dedicated:** replace billing history apiv7 call with iceberg ([0156ca2](https://github.com/ovh/manager/commit/0156ca2fbc72e1f0f704279bf88e7a787a88e8e4))
+* **i18n:** add missing translations [CDS 574] ([23b8252](https://github.com/ovh/manager/commit/23b825268436443d373eae39e1784e29161c80c1))
+* **i18n:** add missing translations [CDS 575] ([59d30f0](https://github.com/ovh/manager/commit/59d30f04dd007ad3aaf825e702b7d58a9e5b3454))
+* **i18n:** add missing translations [CDS 579] ([2d33fdd](https://github.com/ovh/manager/commit/2d33fdded8ef1fe95f27468f6ea90b39ae1a720a))
+* **i18n:** add missing translations [CDS 587] ([c849f6f](https://github.com/ovh/manager/commit/c849f6fd40da8f0620486636f6e2572f1aa022fc))
+
+
+### Features
+
+* **billing.history:** add tracking ([#3499](https://github.com/ovh/manager/issues/3499)) ([bbf6b80](https://github.com/ovh/manager/commit/bbf6b8098491196eaebb8d8822dbe414639cda9b))
+* **billing.history:** enable revamp for EU and CA ([3d6b79e](https://github.com/ovh/manager/commit/3d6b79ebae0f37c901de2b5aaa76e021070daccb))
+* **dedicated:** private cloud service pack enhancements ([e657df5](https://github.com/ovh/manager/commit/e657df5e6980903b4a2facd7f71cf771d7cf4f4f))
+
+
+
 ## [14.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.0.1...@ovh-ux/manager-dedicated@14.0.2) (2020-09-29)
 
 

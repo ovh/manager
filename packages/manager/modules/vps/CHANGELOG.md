@@ -1,3 +1,12 @@
+## [2.0.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.0.5...@ovh-ux/manager-vps@2.0.6) (2020-09-30)
+
+
+### Bug Fixes
+
+* **terminate:** allow to dismiss modal ([#3647](https://github.com/ovh/manager/issues/3647)) ([7eec81f](https://github.com/ovh/manager/commit/7eec81ff244a57d9319e08e2e1b072217924406c))
+
+
+
 ## [2.0.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.0.4...@ovh-ux/manager-vps@2.0.5) (2020-09-30)
 
 
