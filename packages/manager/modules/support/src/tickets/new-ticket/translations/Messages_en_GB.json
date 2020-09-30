@@ -121,5 +121,7 @@
   "ovh_manager_support_tickets_new_issues_form_resources_guides_header": "Guides",
   "ovh_manager_support_tickets_new_issues_form_resources_tips_header": "Tips",
   "ovhManagerSupport_all_serviceType": "Show more products",
-  "ovhManagerSupport_new_serviceType_ovh_cloud_connect": "OVHcloud Connect"
+  "ovhManagerSupport_new_serviceType_ovh_cloud_connect": "OVHcloud Connect",
+  "ovhManagerSupport_new_creation_error_dedicated_server_already_opened": "An intervention ticket is already in progress for this server.",
+  "ovhManagerSupport_new_creation_error_dedicated_server_service_mandatory": "Interventions of this type cannot be requested if you do not have a dedicated server."
 }
