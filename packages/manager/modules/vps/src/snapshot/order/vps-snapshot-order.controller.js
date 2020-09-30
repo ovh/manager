@@ -27,7 +27,7 @@ export default class VpsSnapshotOrderCtrl {
 
     // other attributes used in view
     this.snapshotOption = null;
-    this.getSnapshotMonthlyPrice = VpsSnapshotOrderCtrl.getSnapshotMonthlyPrice;
+    this.snapshotMonthlyPrice = null;
     this.hasInitError = false;
 
     this.loading = {
@@ -35,11 +35,8 @@ export default class VpsSnapshotOrderCtrl {
     };
   }
 
-  static getSnapshotMonthlyPrice(snapshot) {
-    const price = find(snapshot.prices, {
-      duration: 'P1M',
-    });
-    return get(price, 'price');
+  getSnapshotMonthlyPrice() {
+    return get(this.snapshotMonthlyPrice, 'price');
   }
 
   /* =============================
@@ -55,8 +52,8 @@ export default class VpsSnapshotOrderCtrl {
       productId: 'vps',
       serviceName: this.stateVps.name,
       planCode: this.snapshotOption.planCode,
-      duration: 'P1M',
-      pricingMode: 'default',
+      duration: this.snapshotMonthlyPrice.duration,
+      pricingMode: this.snapshotMonthlyPrice.pricingMode,
       quantity: 1,
     };
     expressOrderUrl = `${expressOrderUrl}?products=${JSURL.stringify([
@@ -109,7 +106,9 @@ export default class VpsSnapshotOrderCtrl {
             },
           });
         }
-
+        this.snapshotMonthlyPrice = find(this.snapshotOption.prices, {
+          duration: 'P1M',
+        });
         return this.snapshotOption;
       })
       .catch((error) => {

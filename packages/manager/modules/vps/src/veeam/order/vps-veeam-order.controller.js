@@ -51,12 +51,15 @@ export default class VpsVeeamOrderCtrl {
       this.coreConfig.getRegion(),
       this.connectedUser.ovhSubsidiary,
     ]);
+    const priceOptions = find(this.veeamOption.prices, {
+      duration: 'P1M',
+    });
     const expressParams = {
       productId: 'vps',
       serviceName: this.stateVps.name,
       planCode: this.veeamOption.planCode,
-      duration: 'P1M',
-      pricingMode: 'default',
+      duration: priceOptions.duration,
+      pricingMode: priceOptions.pricingMode,
       quantity: 1,
     };
     expressOrderUrl = `${expressOrderUrl}?products=${JSURL.stringify([
