@@ -43,21 +43,15 @@ export default class MoveMeetingCtrl {
           let slots = [];
           let prevTitle;
           data.result.meetingSlots.forEach((slot, index) => {
-            const title = moment(slot.startDate)
-              .utc()
-              .format('ddd DD MMM YYYY');
+            const title = moment(slot.startDate).format('ddd DD MMM YYYY');
             if (!prevTitle) {
               prevTitle = title;
               slots.push({
                 id: index,
                 start: slot.startDate,
                 end: slot.endDate,
-                startTime: moment(slot.startDate)
-                  .utc()
-                  .format('HH:mm'),
-                endTime: moment(slot.endDate)
-                  .utc()
-                  .format('HH:mm'),
+                startTime: moment(slot.startDate).format('HH:mm'),
+                endTime: moment(slot.endDate).format('HH:mm'),
                 selected: false,
               });
             } else if (prevTitle !== title) {
@@ -70,12 +64,8 @@ export default class MoveMeetingCtrl {
                 id: index,
                 start: slot.startDate,
                 end: slot.endDate,
-                startTime: moment(slot.startDate)
-                  .utc()
-                  .format('HH:mm'),
-                endTime: moment(slot.endDate)
-                  .utc()
-                  .format('HH:mm'),
+                startTime: moment(slot.startDate).format('HH:mm'),
+                endTime: moment(slot.endDate).format('HH:mm'),
                 selected: false,
               });
               prevTitle = title;
@@ -84,12 +74,8 @@ export default class MoveMeetingCtrl {
                 id: index,
                 start: slot.startDate,
                 end: slot.endDate,
-                startTime: moment(slot.startDate)
-                  .utc()
-                  .format('HH:mm'),
-                endTime: moment(slot.endDate)
-                  .utc()
-                  .format('HH:mm'),
+                startTime: moment(slot.startDate).format('HH:mm'),
+                endTime: moment(slot.endDate).format('HH:mm'),
                 selected: false,
               });
             }
@@ -125,12 +111,10 @@ export default class MoveMeetingCtrl {
     const day = moment(this.offer.meetingSlots.slot.startDate).format(
       'DD/MM/YYYY',
     );
-    const start = moment(this.offer.meetingSlots.slot.startDate)
-      .utc()
-      .format('HH:mm');
-    const end = moment(this.offer.meetingSlots.slot.endDate)
-      .utc()
-      .format('HH:mm');
+    const start = moment(this.offer.meetingSlots.slot.startDate).format(
+      'HH:mm',
+    );
+    const end = moment(this.offer.meetingSlots.slot.endDate).format('HH:mm');
     this.meetingSelectMessage = this.$translate.instant(
       'pack_move_programmed_meeting',
       { day, start, end },
