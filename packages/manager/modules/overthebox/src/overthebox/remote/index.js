@@ -10,6 +10,7 @@ angular
   .module(moduleName, [])
   .constant('OVERTHEBOX_REMOTE_STATUS', constant)
   .component('overTheBoxRemote', component)
-  .config(routing);
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

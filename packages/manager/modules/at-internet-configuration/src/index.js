@@ -72,16 +72,23 @@ angular
   .run(
     /* @ngInject */ ($cookies, $http, atInternet, atInternetConfiguration) => {
       const referrerSite = $cookies.get('OrderCloud');
-      $http.get('/me').then(({ data: me }) => {
-        atInternet.setDefaults({
-          ...CUSTOM_VARIABLES,
-          ...atInternetConfiguration.getConfig(Environment.getRegion()),
-          countryCode: me.country,
-          currencyCode: me.currency && me.currency.code,
-          visitorId: me.customerCode,
-          ...(referrerSite ? { referrerSite } : {}),
+      const data = {
+        ...CUSTOM_VARIABLES,
+        ...atInternetConfiguration.getConfig(Environment.getRegion()),
+        ...(referrerSite ? { referrerSite } : {}),
+      };
+      $http
+        .get('/me')
+        .then(({ data: me }) => me)
+        .catch(() => {})
+        .then((me) => {
+          atInternet.setDefaults({
+            ...data,
+            countryCode: me.country,
+            currencyCode: me.currency && me.currency.code,
+            visitorId: me.customerCode,
+          });
         });
-      });
     },
   );
 

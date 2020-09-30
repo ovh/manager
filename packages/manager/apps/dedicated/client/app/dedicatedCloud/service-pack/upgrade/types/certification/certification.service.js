@@ -1,6 +1,5 @@
 import filter from 'lodash/filter';
 import isEqual from 'lodash/isEqual';
-import reject from 'lodash/reject';
 import some from 'lodash/some';
 
 import { OPTION_TYPES } from '../../../option/option.constants';
@@ -17,33 +16,16 @@ export const UpgradeCertificationService = class {
   async getOrderableServicePacks(
     serviceName,
     subsidiary,
-    currentServicePackName,
   ) {
     const allServicePacks = await this.ovhManagerPccServicePackService.getServicePacks(
       serviceName,
       subsidiary,
     );
 
-    const allServicePacksExceptCurrent = reject(allServicePacks, {
-      name: currentServicePackName,
-    });
-
-    return filter(allServicePacksExceptCurrent, (servicePack) =>
+    return filter(allServicePacks, (servicePack) =>
       some(servicePack.options, (option) =>
         isEqual(option.type, OPTION_TYPES.certification),
       ),
-    );
-  }
-
-  getSelectionHeader() {
-    return this.$translate(
-      'ovhManagerPccServicePackUpgradeCertification_selection_header',
-    );
-  }
-
-  getSelectionSubHeader() {
-    return this.$translate(
-      'ovhManagerPccServicePackUpgradeCertification_selection_header',
     );
   }
 };

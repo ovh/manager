@@ -8,6 +8,7 @@
     data-type="warning"
     data-loading="$ctrl.isTerminating"
     data-heading="{{:: 'vps_terminate_title' | translate }}"
+    on-dismiss="$ctrl.cancel()"
 >
     <div data-ng-if="$ctrl.isActionAvailable">
         <p>

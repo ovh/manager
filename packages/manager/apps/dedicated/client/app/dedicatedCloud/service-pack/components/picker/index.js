@@ -1,5 +1,3 @@
-import './service-pack-picker.less';
-
 import component from './service-pack-picker.component';
 
 const moduleName = 'ovhManagerPccServicePackPicker';

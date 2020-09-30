@@ -12,6 +12,7 @@ const component = {
     getKubeConfig: '<',
     kubeId: '<',
     resetCluster: '<',
+    resetKubeconfig: '<',
     terminate: '<',
     updateCluster: '<',
     updatePolicy: '<',

@@ -19,20 +19,32 @@ export default class BillingMainHistoryCtrl extends ListLayoutHelper.ListLayoutC
     this.atInternet = atInternet;
   }
 
-  trackInvoiceOpening() {
+  trackInvoiceOpening(format) {
     this.atInternet.trackClick({
-      name: 'open_invoices',
+      name: `open-invoices-${format}`,
       type: 'action',
       chapter1: 'billing',
       chapter2: 'invoices',
     });
   }
 
+  trackExport(exportType) {
+    this.atInternet.trackClick({
+      name: `export-${exportType}`,
+      type: 'action',
+      chapter1: 'billing',
+      chapter2: 'invoices',
+      chapter3: 'export',
+    });
+  }
+
   exportAll(format) {
+    this.trackExport(format);
     return this.export(format, this.bills);
   }
 
   exportSelection(format) {
+    this.trackExport(`${format}-select`);
     return this.export(
       format,
       this.selectedBills.map(({ billId }) => billId),
@@ -40,13 +52,6 @@ export default class BillingMainHistoryCtrl extends ListLayoutHelper.ListLayoutC
   }
 
   export(format, bills) {
-    this.atInternet.trackClick({
-      name: `export_${format}`,
-      type: 'action',
-      chapter1: 'billing',
-      chapter2: 'invoices',
-      chapter3: 'export',
-    });
     return this.exportBills(format, bills)
       .then(() =>
         this.Alerter.success(
@@ -110,8 +115,6 @@ export default class BillingMainHistoryCtrl extends ListLayoutHelper.ListLayoutC
         name: 'priceWithTax.value',
         sortable: this.getSorting('priceWithTax.value'),
       },
-      { name: 'debt.dueAmount', sortable: this.getSorting('debt.dueAmount') },
-      { name: 'debt.status', sortable: this.getSorting('debt.status') },
     ];
   }
 }

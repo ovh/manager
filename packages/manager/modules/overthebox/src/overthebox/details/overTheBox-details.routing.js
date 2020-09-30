@@ -4,9 +4,5 @@ export default /* @ngInject */ ($stateProvider) => {
     views: {
       otbView: 'overTheBoxDetails',
     },
-    translations: {
-      value: ['.', '../remote'],
-      format: 'json',
-    },
   });
 };

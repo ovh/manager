@@ -2,13 +2,12 @@
     data-ng-if="!$ctrl.hasDefaultMeansOfPayment"
 ></ovh-manager-no-default-means-of-payment>
 
-<h3 data-ng-bind="$ctrl.header"></h3>
 <p data-ng-bind="$ctrl.subHeader"></p>
 
 <form novalidate name="$ctrl.form">
     <pcc-service-pack-picker
         class="mb-3"
-        data-default-value="$ctrl.servicePackToOrder || $ctrl.orderableServicePacks[0]"
+        data-default-value="$ctrl.servicePackToOrder"
         data-on-change="$ctrl.onChangeServicePackPicker(selectedItem)"
         data-service-packs="$ctrl.orderableServicePacks"
     ></pcc-service-pack-picker>
@@ -24,7 +23,7 @@
 
     <oui-stepper-v-navigation-button
         class="ml-3"
-        data-disabled="!$ctrl.form.$valid"
+        data-disabled="!$ctrl.form.$valid || !$ctrl.servicePackToOrder || $ctrl.servicePackToOrder.name === $ctrl.currentServicePack.name"
         data-params="{
             activationType: $ctrl.activationType,
             servicePackToOrder: $ctrl.servicePackToOrder,

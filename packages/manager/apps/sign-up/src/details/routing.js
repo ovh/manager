@@ -6,6 +6,13 @@ export const state = {
       component: 'ovhSignUpDetails',
     },
   },
+  resolve: {
+    onFieldError: /* @ngInject */ (trackError) => (field) =>
+      trackError('step2', field),
+  },
+  atInternet: {
+    rename: 'accountcreation-step2',
+  },
 };
 
 export const registerState = /* @ngInject */ ($stateProvider) => {

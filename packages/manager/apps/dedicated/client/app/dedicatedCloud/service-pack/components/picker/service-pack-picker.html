@@ -1,75 +1,47 @@
-<div
-    class="d-flex"
-    data-ng-if=":: $index % 2 === 0"
-    data-ng-repeat="servicePack in ::$ctrl.servicePacks track by servicePack.name"
->
-    <div
-        class="orderSelection__product-container"
-        data-ng-if=":: $ctrl.servicePacks[i]"
-        data-ng-repeat="i in ::[$index, $index + 1]"
+<div class="row mb-3">
+    <oui-select-picker
+        class="col-md-4 mb-3"
+        data-ng-repeat="servicePack in ::$ctrl.servicePacks track by servicePack.name"
+        name="servicePack"
+        data-model="$ctrl.selectedItem"
+        data-label="{{:: servicePack.type === $ctrl.OPTION_TYPES.certification ? servicePack.fullDisplayName : servicePack.displayName }}"
+        data-variant="light"
+        data-on-change="$ctrl.handleOnChange(modelValue)"
+        data-values="[servicePack]"
     >
-        <div
-            class="oui-select-picker orderSelection__product"
-            data-ng-class=":: {
-                'pr-4' : i % 2 === 0,
-            }"
+        <oui-select-picker-description
+            data-ng-if="servicePack.isActive"
         >
-            <input
-                data-ng-change=":: $ctrl.handleOnChange()"
-                class="oui-select-picker__input oui-input"
-                id="{{:: 'servicePackSelection' + $ctrl.servicePacks[i].name }}"
-                data-ng-model="$ctrl.selectedItem"
-                name="servicePackSelection"
-                required
-                type="radio"
-                data-ng-value=":: $ctrl.servicePacks[i]"
-            />
-            <label
-                class="oui-select-picker__label-container orderSelection__product-content"
-                for="{{:: 'servicePackSelection' + $ctrl.servicePacks[i].name }}"
+            <span
+                class="oui-badge oui-badge_success"
+                data-translate="hpc_service_pack_current_option"
+            ></span>
+        </oui-select-picker-description>
+        <oui-select-picker-section>
+            <span
+                class="dedicatedCloud-servicePack-option-description"
+                data-translate="{{:: servicePack.description }}"
+            ></span>
+        </oui-select-picker-section>
+        <oui-select-picker-footer>
+            <span
+                class="d-block"
+                data-ng-if="servicePack.prices.monthly.exists"
+                data-translate="dedicatedCloudDashboardTilesOptionsOrderSelection_priceDifferenceOnMonthlyBill"
+                data-translate-values=":: {
+                    priceDifference: servicePack.prices.monthly.display
+                }"
             >
-                <span
-                    class="oui-select-picker__label orderSelection__product-label"
-                >
-                    <span
-                        data-ng-bind=":: $ctrl.servicePacks[i].fullDisplayName"
-                        data-ng-if="$ctrl.servicePacks[i].type === $ctrl.OPTION_TYPES.certification"
-                    ></span>
-                    <span
-                        data-ng-bind=":: $ctrl.servicePacks[i].displayName"
-                        data-ng-if="$ctrl.servicePacks[i].type !== $ctrl.OPTION_TYPES.certification"
-                    ></span>
-                </span>
-                <p
-                    class="oui-select-picker__value-container oui-select-picker__section orderSelection__product-description"
-                >
-                    <span
-                        class="dedicatedCloud-servicePack-option-description"
-                        data-translate="{{:: $ctrl.servicePacks[i].description }}"
-                    ></span>
-                </p>
-
-                <p class="orderSelection__product-price">
-                    <span
-                        class="d-block"
-                        data-ng-if="$ctrl.servicePacks[i].prices.monthly.exists"
-                        data-translate="dedicatedCloudDashboardTilesOptionsOrderSelection_priceDifferenceOnMonthlyBill"
-                        data-translate-values=":: {
-                            priceDifference: $ctrl.servicePacks[i].prices.monthly.display
-                        }"
-                    >
-                    </span>
-                    <span
-                        class="d-block"
-                        data-ng-if="$ctrl.servicePacks[i].prices.hourly.exists"
-                        data-translate="dedicatedCloudDashboardTilesOptionsOrderSelection_priceDifferenceOnHourlyBill"
-                        data-translate-values=":: {
-                            priceDifference: $ctrl.servicePacks[i].prices.hourly.display
-                        }"
-                    >
-                    </span>
-                </p>
-            </label>
-        </div>
-    </div>
+            </span>
+            <span
+                class="d-block"
+                data-ng-if="servicePack.prices.hourly.exists"
+                data-translate="dedicatedCloudDashboardTilesOptionsOrderSelection_priceDifferenceOnHourlyBill"
+                data-translate-values=":: {
+                    priceDifference: servicePack.prices.hourly.display
+                }"
+            >
+            </span>
+        </oui-select-picker-footer>
+    </oui-select-picker>
 </div>

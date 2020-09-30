@@ -1,12 +1,38 @@
-import find from 'lodash/find';
-import flatten from 'lodash/flatten';
+import filter from 'lodash/filter';
 import get from 'lodash/get';
 import map from 'lodash/map';
-import set from 'lodash/set';
+import sortBy from 'lodash/sortBy';
+
+function applyBillCriteria(request, $config) {
+  let result = request;
+  $config.criteria.forEach((criteria) => {
+    if (criteria.operator === 'contains') {
+      result = result.addFilter(
+        criteria.property || 'billId',
+        'like',
+        `*${criteria.value}*`,
+      );
+    } else if (criteria.operator === 'is' && criteria.property === 'date') {
+      result = result.addFilter('date', 'like', `${criteria.value}*`);
+    } else if (
+      criteria.operator === 'isAfter' &&
+      criteria.property === 'date'
+    ) {
+      result = result.addFilter('date', 'gt', criteria.value);
+    } else if (
+      criteria.operator === 'isBefore' &&
+      criteria.property === 'date'
+    ) {
+      result = result.addFilter('date', 'lt', criteria.value);
+    }
+  });
+  return result;
+}
 
 export default class BillingMainHistoryCtrl {
   /* @ngInject */
   constructor(
+    $http,
     $q,
     $state,
     $translate,
@@ -18,7 +44,7 @@ export default class BillingMainHistoryCtrl {
     OvhApiMe,
     ovhPaymentMethod,
   ) {
-    // Injections
+    this.$http = $http;
     this.$q = $q;
     this.$state = $state;
     this.$translate = $translate;
@@ -46,89 +72,15 @@ export default class BillingMainHistoryCtrl {
   }
 
   onCriteriaChange($criteria) {
-    const filter = $criteria.map((criteria) => ({
+    const newFilter = $criteria.map((criteria) => ({
       field: get(criteria, 'property'),
       comparator: criteria.operator,
       reference: [criteria.value],
     }));
 
     this.onListParamsChange({
-      filters: JSON.stringify(filter),
+      filters: JSON.stringify(newFilter),
     });
-  }
-
-  /**
-   *  Used to create an api v7 request instance including sort and filters
-   */
-  getApiv7Request() {
-    const criteriaOperatorToApiV7Map = {
-      isAfter: 'ge',
-      isBefore: 'le',
-      contains: 'like',
-    };
-    let apiv7Request = this.OvhApiMe.Bill()
-      .v7()
-      .query()
-      .sort(
-        this.datagridConfig.sort.property,
-        this.datagridConfig.sort.dir === 1 ? 'ASC' : 'DESC',
-      );
-
-    this.datagridConfig.criteria.forEach((criteria) => {
-      if (criteria.property === 'date') {
-        if (criteria.operator === 'is') {
-          apiv7Request = apiv7Request
-            .addFilter(criteria.property, 'ge', criteria.value)
-            .addFilter(
-              criteria.property,
-              'le',
-              moment(criteria.value)
-                .add(1, 'day')
-                .format('YYYY-MM-DD'),
-            );
-        } else {
-          apiv7Request = apiv7Request.addFilter(
-            criteria.property,
-            get(criteriaOperatorToApiV7Map, criteria.operator),
-            criteria.value,
-          );
-        }
-      } else {
-        // it's a search from search input
-        apiv7Request = apiv7Request.addFilter(
-          'billId',
-          get(criteriaOperatorToApiV7Map, criteria.operator),
-          criteria.value,
-        );
-      }
-    });
-
-    return apiv7Request;
-  }
-
-  /**
-   *  Apply debt object to bill objects returned by an apiv7 batch call.
-   */
-  applyDebtToBills(bills) {
-    let billDebtsPromise = this.$q.when([]);
-
-    if (this.debtAccount.active) {
-      billDebtsPromise = this.OvhApiMe.Bill()
-        .v7()
-        .debt()
-        .batch('billId', map(bills, 'key'))
-        .execute().$promise;
-    }
-
-    return billDebtsPromise.then((debts) =>
-      map(bills, (bill) => {
-        const debt = find(debts, {
-          path: `/me/bill/${bill.key}/debt`,
-        });
-
-        return set(bill, 'value.debt', get(debt, 'value', null));
-      }),
-    );
   }
 
   trackInvoiceOpening() {
@@ -145,28 +97,29 @@ export default class BillingMainHistoryCtrl {
   ================================ */
 
   getBills($config) {
-    this.datagridConfig = $config;
-    const apiv7Request = this.getApiv7Request();
+    let req = this.OvhApiMe.Bill()
+      .Iceberg()
+      .query()
+      .expand('CachedObjectList-Pages')
+      .offset(Math.ceil($config.offset / ($config.pageSize || 1)))
+      .limit($config.pageSize);
 
-    return this.$q
-      .all({
-        count: apiv7Request.clone().execute().$promise,
-        bills: apiv7Request
-          .clone()
-          .expand()
-          .offset($config.offset - 1)
-          .limit($config.pageSize)
-          .execute().$promise,
-      })
-      .then(({ count, bills }) => {
-        this.totalBills = count.length;
-        return this.applyDebtToBills(bills).then((billList) => ({
-          data: map(billList, 'value'),
-          meta: {
-            totalCount: count.length,
-          },
-        }));
-      });
+    if ($config.sort) {
+      req = req.sort(
+        $config.sort.property,
+        $config.sort.dir > 0 ? 'ASC' : 'DESC',
+      );
+    }
+
+    return applyBillCriteria(req, $config)
+      .execute(null)
+      .$promise.then((result) => ({
+        data: result.data,
+        meta: {
+          totalCount:
+            parseInt(result.headers['x-pagination-elements'], 10) || 0,
+        },
+      }));
   }
 
   /* -----  End of DATAGRID  ------ */
@@ -175,104 +128,113 @@ export default class BillingMainHistoryCtrl {
   =            EXPORT TO CSV            =
   ===================================== */
 
-  exportToCsv() {
-    // fetch upto 150 bills in single ajax call
-    // we can not increase more than 150, if we do that API
-    // GET /apiv7/me/bill/{{bill-ids}}/debt?$batch=,
-    // url length goes behind safe limit 2083
-    const limit = 150;
-    this.loading.export = true;
-
-    const translations = {
-      notAvailable: this.$translate.instant(
-        'billing_main_history_table_unavailable',
-      ),
-      dueImmediatly: this.$translate.instant(
-        'billing_main_history_table_immediately',
-      ),
-      paid: this.$translate.instant('billing_main_history_table_debt_paid'),
+  fetchAll(route) {
+    let result = [];
+    const fetchPart = (page) => {
+      return this.$http
+        .get(route, {
+          serviceType: 'apiv6',
+          headers: {
+            'X-Pagination-Mode': 'CachedObjectList-Pages',
+            'X-Pagination-Size': '5000',
+            'X-Pagination-Number': `${page}`,
+          },
+        })
+        .then(({ data }) => {
+          if (data.length) {
+            result = result.concat(data);
+            return fetchPart(page + 1);
+          }
+          return result;
+        });
     };
-    const headers = [
-      this.$translate.instant('billing_main_history_table_id'),
-      this.$translate.instant('billing_main_history_table_order_id'),
-      this.$translate.instant('billing_main_history_table_date'),
-      this.$translate.instant('billing_main_history_table_total'),
-      this.$translate.instant('billing_main_history_table_total_with_VAT'),
+    return fetchPart(1);
+  }
+
+  fetchAllBills() {
+    return this.fetchAll('/me/bill');
+  }
+
+  fetchAllDebts() {
+    return this.fetchAll('/me/debtAccount/debt');
+  }
+
+  exportToCsv() {
+    this.loading.export = true;
+    const csvHeaders = [
+      this.$translate.instant('billing_main_history_legacy_table_id'),
+      this.$translate.instant('billing_main_history_legacy_table_order_id'),
+      this.$translate.instant('billing_main_history_legacy_table_date'),
+      this.$translate.instant('billing_main_history_legacy_table_total'),
+      this.$translate.instant(
+        'billing_main_history_legacy_table_total_with_VAT',
+      ),
+      this.$translate.instant(
+        'billing_main_history_legacy_table_balance_due_amount',
+      ),
+      this.$translate.instant(
+        'billing_main_history_legacy_table_balance_due_date',
+      ),
     ];
 
-    if (this.debtAccount.active) {
-      headers.push(
-        this.$translate.instant(
-          'billing_main_history_table_balance_due_amount',
-        ),
-      );
-      headers.push(
-        this.$translate.instant('billing_main_history_table_balance_due_date'),
-      );
-    }
-
-    let fetchedBills = 0;
-    const billsPromises = [];
-    while (fetchedBills < this.totalBills) {
-      const billsPromise = this.getApiv7Request()
-        .expand()
-        .offset(fetchedBills)
-        .limit(limit)
-        .execute()
-        .$promise.then((bills) => this.applyDebtToBills(bills));
-      billsPromises.push(billsPromise);
-      fetchedBills += limit;
-    }
-    return this.$q
-      .all(billsPromises)
-      .then((response) => flatten(response))
-      .then((billList) => {
-        const rows = map(billList, 'value').map((bill) => {
-          let row = [
-            bill.billId,
-            bill.orderId,
-            moment(bill.date).format('L'),
-            bill.priceWithoutTax.text,
-            bill.priceWithTax.text,
-          ];
-
-          if (this.debtAccount.active) {
-            if (!bill.debt) {
-              row.concat([
-                translations.notAvailable,
-                translations.notAvailable,
-              ]);
-            }
-            const dueAmount = get(
-              bill,
-              'debt.dueAmount.text',
-              translations.notAvailable,
+    const getDueDate = (bill) => {
+      if (get(bill, 'debt.dueAmount.value', 0) > 0) {
+        return get(bill, 'debt.dueDate')
+          ? moment(bill.debt.dueDate).format('L')
+          : this.$translate.instant(
+              'billing_main_history_legacy_table_immediately',
             );
-            let dueDate;
-            if (get(bill, 'debt.dueAmount.value', 0) > 0) {
-              dueDate = get(bill, 'debt.dueDate')
-                ? moment(bill.debt.dueDate).format('L')
-                : translations.dueImmediatly;
-            } else {
-              dueDate = translations.paid;
-            }
-            row = row.concat([dueAmount, dueDate]);
-          }
+      }
+      return this.$translate.instant(
+        'billing_main_history_legacy_table_debt_paid',
+      );
+    };
 
-          return row;
-        });
-        return [headers].concat(rows);
+    const getDebtAmount = (bill) => {
+      if (bill.debt) {
+        return get(
+          bill,
+          'debt.dueAmount.text',
+          this.$translate.instant(
+            'billing_main_history_legacy_table_unavailable',
+          ),
+        );
+      }
+      return '0';
+    };
+
+    return this.$q
+      .all({
+        bills: this.fetchAllBills(),
+        debts: this.fetchAllDebts(),
       })
-      .then((csvData) =>
+      .then(({ bills, debts }) => {
+        debts.forEach((debt) => {
+          filter(bills, { orderId: debt.orderId }).forEach((bill) => {
+            bill.debt = debt; // eslint-disable-line
+          });
+        });
         this.exportCsv.exportData({
           separator: ',',
-          datas: csvData,
-        }),
-      )
+          datas: [csvHeaders].concat(
+            map(sortBy(bills, 'date'), (bill) => {
+              return [
+                bill.billId,
+                bill.orderId,
+                moment(bill.date).format('L'),
+                bill.priceWithoutTax.text,
+                bill.priceWithTax.text,
+                getDebtAmount(bill),
+                getDueDate(bill),
+              ];
+            }),
+          ),
+        });
+      })
       .catch((error) => {
         this.Alerter.error(
           [
-            this.$translate.instant('billing_main_history_export_error'),
+            this.$translate.instant('billing_main_history_legacy_export_error'),
             get(error, 'data.message'),
           ].join(' '),
           'billing_main_alert',
@@ -314,10 +276,6 @@ export default class BillingMainHistoryCtrl {
   }
 
   /* -----  End of EVENTS  ------ */
-
-  /* =====================================
-  =            INITIALIZATION            =
-  ====================================== */
 
   getDebtAccount() {
     return this.OvhApiMe.DebtAccount()
@@ -383,7 +341,9 @@ export default class BillingMainHistoryCtrl {
       .catch((error) => {
         this.Alerter.error(
           [
-            this.$translate.instant('billing_main_history_loading_errors'),
+            this.$translate.instant(
+              'billing_main_history_legacy_loading_errors',
+            ),
             get(error, 'data.message'),
           ].join(' '),
           'billing_main_alert',
@@ -393,6 +353,4 @@ export default class BillingMainHistoryCtrl {
         this.loading.init = false;
       });
   }
-
-  /* -----  End of INITIALIZATION  ------ */
 }

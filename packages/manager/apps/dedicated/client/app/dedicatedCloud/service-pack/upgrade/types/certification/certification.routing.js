@@ -18,7 +18,6 @@ export const state = {
       UpgradeCertificationService.getOrderableServicePacks(
         currentService.name,
         currentUser.ovhSubsidiary,
-        currentService.servicePackName,
       ),
     steps: /* @ngInject */ (pccServicePackUpgradeService) =>
       pccServicePackUpgradeService.buildSteps(stepModuleNames),

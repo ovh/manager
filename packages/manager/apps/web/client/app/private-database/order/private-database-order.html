@@ -41,7 +41,7 @@
                             required
                             data-ng-change="orderCtrl.getDurations()"
                             data-ng-model="orderCtrl.selectedOrder.config.version"
-                            data-ng-options="version as ((('privateDatabase_dashboard_version_' + version.replace('.', '') | translate) == 'privateDatabase_dashboard_version_' + version.replace('.', ''))? version: ('privateDatabase_dashboard_version_' + version.replace('.', '') | translate)) for version in orderCtrl.list.versions track by version"
+                            data-ng-options="version as orderCtrl.getDatabaseDisplayName(version) for version in orderCtrl.list.versions track by version"
                         >
                             <option
                                 value

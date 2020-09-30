@@ -15,6 +15,9 @@ import 'angular-translate';
 import '@uirouter/angularjs';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ngOvhSsoAuth from '@ovh-ux/ng-ovh-sso-auth'; // peerDep of manager-core
+import ngAtInternet from '@ovh-ux/ng-at-internet';
+import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
+import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
 
 import '@ovh-ux/sign-up';
 import signUpFormView from './form';
@@ -24,6 +27,7 @@ import { registerState } from './routing';
 
 import controller from './index.controller';
 import { SANITIZATION } from './constants';
+import { TRACKING } from './at-internet.constants';
 
 // styles
 import '@ovh-ux/ui-kit/dist/css/oui.css';
@@ -40,6 +44,9 @@ angular
       'ngSanitize',
       'pascalprecht.translate',
       ovhManagerCore,
+      ovhManagerAtInternetConfiguration,
+      ngAtInternet,
+      ngAtInternetUiRouterPlugin,
       ngOvhSsoAuth,
       signUpFormView,
       detailsState,
@@ -90,6 +97,17 @@ angular
       // @see https://docs.angularjs.org/api/ng/provider/$compileProvider#aHrefSanitizationWhitelist
       $compileProvider.aHrefSanitizationWhitelist(SANITIZATION.regex);
       $compileProvider.imgSrcSanitizationWhitelist(SANITIZATION.regex);
+    },
+  )
+  .config(
+    /* @ngInject */ (atInternetConfigurationProvider) => {
+      atInternetConfigurationProvider.setConfig(TRACKING);
+      atInternetConfigurationProvider.setReplacementRules([
+        {
+          pattern: /^sign-up/,
+          replacement: 'accountcreation',
+        },
+      ]);
     },
   )
   .config(registerState)

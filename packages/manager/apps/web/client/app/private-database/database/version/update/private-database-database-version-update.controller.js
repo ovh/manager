@@ -82,5 +82,13 @@ angular.module('App').controller(
           );
         });
     }
+
+    getDatabaseDisplayName(value) {
+      const keyToTranslate = 'privateDatabase_dashboard_version_';
+      return this.privateDatabaseService.getDatabaseDisplayName(
+        keyToTranslate,
+        value,
+      );
+    }
   },
 );

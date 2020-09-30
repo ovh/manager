@@ -2,15 +2,13 @@
   "dedicatedCloudDashboardTilesOptionsOrderSelection_stepper_header": "Selección del sector de actividad",
   "dedicatedCloudDashboardTilesOptionsOrderSelection_priceDifferenceOnMonthlyBill": "{{ priceDifference }} en su tarificación mensual",
   "dedicatedCloudDashboardTilesOptionsOrderSelection_priceDifferenceOnHourlyBill": "{{ priceDifference }} en su tarificación por horas",
-  "dedicatedCloudDashboardTilesOptionsOrderSelection_certification_header": "¿Qué tipo de datos tiene alojados?",
-  "dedicatedCloudDashboardTilesOptionsOrderSelection_certification_subheader": "Actualice su solución Hosted Private Cloud con el procedimiento de conformidad y la activación de medidas de protección específicas para su sector de actividad.",
-  "dedicatedCloudDashboardTilesOptionsOrderSelection_basic_header": "¿Quiere modificar el nivel de servicio de su infraestructura?",
-  "dedicatedCloudDashboardTilesOptionsOrderSelection_basic_subheader": "Actualice su Hosted Private Cloud con el procedimiento de conformidad y la activación de medidas de protección específicas para su sector de actividad.",
   "dedicatedCloudDashboardTilesOptionsOrderSelection_certification_howToConfigureMeansOfPayment_comeBackHereLater": "Vuelva a esta página para completar la activación de la certificación.",
   "dedicatedCloudDashboardTilesOptionsOrderSelection_cancelButton": "Cancelar",
-  "dedicatedCloudDashboardTilesOptionsOrderSelection_checkoutButton": "Realizar el pedido",
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_checkoutButton": "Editar",
   "dedicatedCloudDashboardTilesOptionsOrderSelection_nextButton": "Siguiente",
   "dedicatedCloudDashboardTilesOptionsOrderSelection_checkoutDescription": "El pedido se ha realizado correctamente.",
   "dedicatedCloudDashboardTilesOptionsOrderSelection_checkoutLink": "Haga clic aquí para abonar el pedido.",
-  "dedicatedCloudDashboardTilesOptionsOrderSelection_order_failure": "No se ha podido realizar el pedido."
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_order_failure": "Se ha producido un error al tramitar el pedido.",
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_basic_option": "Seleccione la opción que quiere activar en su servicio.",
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_certification_option": "Seleccione la opción del sector de actividad que quiere activar en su servicio."
 }

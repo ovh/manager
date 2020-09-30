@@ -12,6 +12,7 @@ export default {
     hasDefaultPaymentMethod: '<',
     invoicesByPostalMail: '<',
     payDebt: '<',
+    seeDebt: '<',
     ...ListLayoutHelper.componentBindings,
   },
   controller,

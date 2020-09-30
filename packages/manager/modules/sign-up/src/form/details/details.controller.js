@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import startCase from 'lodash/startCase';
 import startsWith from 'lodash/startsWith';
 
 import { PHONE_PREFIX } from './details.constants';
@@ -8,70 +9,6 @@ export default class SignUpDetailsCtrl {
   constructor($timeout) {
     // dependencies injections
     this.$timeout = $timeout;
-
-    // other attributes used in view
-    this.phoneModel = {
-      value: null,
-      model: (...args) => {
-        if (args.length) {
-          const newPhoneModel = args[0];
-          const phonePrefix = get(
-            PHONE_PREFIX,
-            this.signUpFormCtrl.model.phoneCountry,
-          );
-          this.phoneModel.value = newPhoneModel;
-          this.signUpFormCtrl.model.phone = SignUpDetailsCtrl.cleanPhoneNumber(
-            newPhoneModel,
-            phonePrefix,
-          );
-        }
-        return this.phoneModel.value;
-      },
-      validator: {
-        test: () => {
-          if (
-            this.signUpFormCtrl.rules &&
-            this.signUpFormCtrl.rules.phone.regularExpression
-          ) {
-            return new RegExp(
-              this.signUpFormCtrl.rules.phone.regularExpression,
-            ).test(this.signUpFormCtrl.model.phone);
-          }
-          return true;
-        },
-      },
-    };
-
-    this.zipModel = {
-      value: null,
-      model: (...args) => {
-        if (args.length) {
-          const newZipModel = args[0];
-          this.zipModel.value = newZipModel.replace(
-            get(this.signUpFormCtrl.rules, 'zip.prefix'),
-            '',
-          );
-          this.signUpFormCtrl.model.zip = SignUpDetailsCtrl.cleanZipCode(
-            newZipModel,
-            get(this.signUpFormCtrl.rules, 'zip.prefix'),
-          );
-        }
-        return this.zipModel.value;
-      },
-      validator: {
-        test: () => {
-          if (
-            this.signUpFormCtrl.rules &&
-            this.signUpFormCtrl.rules.zip.regularExpression
-          ) {
-            return new RegExp(
-              this.signUpFormCtrl.rules.zip.regularExpression,
-            ).test(this.signUpFormCtrl.model.zip);
-          }
-          return true;
-        },
-      },
-    };
   }
 
   /* ==============================
@@ -137,7 +74,7 @@ export default class SignUpDetailsCtrl {
 
   refocusOnField(fieldName) {
     this.constructor.setInputValidity(fieldName, this.formCtrl);
-    this.setElementFocus(fieldName);
+    SignUpDetailsCtrl.setElementFocus(fieldName);
   }
 
   preselectLanguage() {
@@ -162,7 +99,7 @@ export default class SignUpDetailsCtrl {
   onPhoneCountrySelect() {
     this.$timeout(() => {
       // set the focus to phone field to fix error display
-      this.setElementFocus('phone');
+      SignUpDetailsCtrl.setElementFocus('phone');
     });
   }
 
@@ -209,6 +146,70 @@ export default class SignUpDetailsCtrl {
   ============================= */
 
   $onInit() {
+    // other attributes used in view
+    this.phoneModel = {
+      value: null,
+      model: (...args) => {
+        if (args.length) {
+          const newPhoneModel = args[0];
+          const phonePrefix = get(
+            PHONE_PREFIX,
+            this.signUpFormCtrl.model.phoneCountry,
+          );
+          this.phoneModel.value = newPhoneModel;
+          this.signUpFormCtrl.model.phone = SignUpDetailsCtrl.cleanPhoneNumber(
+            newPhoneModel,
+            phonePrefix,
+          );
+        }
+        return this.phoneModel.value;
+      },
+      validator: {
+        test: () => {
+          if (
+            this.signUpFormCtrl.rules &&
+            this.signUpFormCtrl.rules.phone.regularExpression
+          ) {
+            return new RegExp(
+              this.signUpFormCtrl.rules.phone.regularExpression,
+            ).test(this.signUpFormCtrl.model.phone);
+          }
+          return true;
+        },
+      },
+    };
+
+    this.zipModel = {
+      value: null,
+      model: (...args) => {
+        if (args.length) {
+          const newZipModel = args[0];
+          this.zipModel.value = newZipModel.replace(
+            get(this.signUpFormCtrl.rules, 'zip.prefix'),
+            '',
+          );
+          this.signUpFormCtrl.model.zip = SignUpDetailsCtrl.cleanZipCode(
+            newZipModel,
+            get(this.signUpFormCtrl.rules, 'zip.prefix'),
+          );
+        }
+        return this.zipModel.value;
+      },
+      validator: {
+        test: () => {
+          if (
+            this.signUpFormCtrl.rules &&
+            this.signUpFormCtrl.rules.zip.regularExpression
+          ) {
+            return new RegExp(
+              this.signUpFormCtrl.rules.zip.regularExpression,
+            ).test(this.signUpFormCtrl.model.zip);
+          }
+          return true;
+        },
+      },
+    };
+
     // clean phone number
     const phonePrefix = get(
       PHONE_PREFIX,
@@ -250,5 +251,14 @@ export default class SignUpDetailsCtrl {
     this.preselectLanguage();
   }
 
+  static setElementFocus(elementName) {
+    document.getElementsByName(elementName)[0].focus();
+  }
   /* -----  End of Hooks  ------ */
+
+  onFieldBlur(field) {
+    if (field.$invalid) {
+      this.onFieldError(startCase(field.$name));
+    }
+  }
 }

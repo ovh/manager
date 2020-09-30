@@ -60,39 +60,33 @@
             data-translate="telephony_alias_config_contactCenterSolution_timeCondition_time_configuration_subtitle"
         ></p>
 
-        <div class="oui-button-group">
-            <oui-dropdown class="mr-3">
-                <oui-dropdown-trigger
-                    aria-label="{{:: 'common_actions' | translate }}"
-                    data-text="{{:: 'common_actions' | translate }}"
-                >
-                </oui-dropdown-trigger>
-                <oui-dropdown-content>
-                    <oui-dropdown-item
-                        data-on-click="$ctrl.exportConfiguration()"
-                    >
-                        <span
-                            data-translate="telephony_common_time_condition_export_configuration"
-                        ></span>
-                    </oui-dropdown-item>
-                    <oui-dropdown-item
-                        data-on-click="$ctrl.importConfiguration()"
-                    >
-                        <span
-                            data-translate="telephony_common_time_condition_import_configuration"
-                        ></span>
-                    </oui-dropdown-item>
-                </oui-dropdown-content>
-            </oui-dropdown>
-            <oui-button
-                data-variant="secondary"
-                data-on-click="$ctrl.manageScheduler()"
+        <oui-dropdown class="mr-3">
+            <oui-dropdown-trigger
+                aria-label="{{:: 'common_actions' | translate }}"
+                data-text="{{:: 'common_actions' | translate }}"
             >
-                <span
-                    data-translate="telephony_alias_config_contactCenterSolution_timeCondition_scheduler"
-                ></span>
-            </oui-button>
-        </div>
+            </oui-dropdown-trigger>
+            <oui-dropdown-content>
+                <oui-dropdown-item data-on-click="$ctrl.exportConfiguration()">
+                    <span
+                        data-translate="telephony_common_time_condition_export_configuration"
+                    ></span>
+                </oui-dropdown-item>
+                <oui-dropdown-item data-on-click="$ctrl.importConfiguration()">
+                    <span
+                        data-translate="telephony_common_time_condition_import_configuration"
+                    ></span>
+                </oui-dropdown-item>
+            </oui-dropdown-content>
+        </oui-dropdown>
+        <oui-button
+            data-variant="secondary"
+            data-on-click="$ctrl.manageScheduler()"
+        >
+            <span
+                data-translate="telephony_alias_config_contactCenterSolution_timeCondition_scheduler"
+            ></span>
+        </oui-button>
 
         <div class="my-5">
             <!-- CONDITIONS -->

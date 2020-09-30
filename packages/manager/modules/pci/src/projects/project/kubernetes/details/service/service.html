@@ -62,6 +62,12 @@
                 <span data-translate="kube_common_create_node_pool"></span>
             </oui-tile-button>
             <oui-tile-button
+                data-on-click="$ctrl.resetKubeconfig()"
+                data-disabled="$ctrl.Kubernetes.constructor.isProcessing($ctrl.cluster.status)"
+            >
+                <span data-translate="kube_service_reset_kubeconfig"></span>
+            </oui-tile-button>
+            <oui-tile-button
                 data-on-click="$ctrl.updatePolicy()"
                 data-disabled="$ctrl.Kubernetes.constructor.isProcessing($ctrl.cluster.status)"
             >
