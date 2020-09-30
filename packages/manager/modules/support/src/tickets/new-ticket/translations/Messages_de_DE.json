@@ -121,5 +121,7 @@
   "ovhManagerSupport_new_category_description_incident": "Fragen zu technischen Störungen Ihrer Produkte und Dienstleistungen, die nicht auf ein Problem bei der Verwendung zurückzuführen sind",
   "ovhManagerSupport_new_category_description_account": "Fragen zur Verwaltung Ihres Kunden-Accounts, die in keinem Zusammenhang mit einem Produkt stehen",
   "ovhManagerSupport_all_serviceType": "Mehr Produkte anzeigen",
-  "ovhManagerSupport_new_serviceType_ovh_cloud_connect": "OVHcloud Connect"
+  "ovhManagerSupport_new_serviceType_ovh_cloud_connect": "OVHcloud Connect",
+  "ovhManagerSupport_new_creation_error_dedicated_server_already_opened": "Für diesen Server ist bereits eine Support-Anfrage (Ticket) in Bearbeitung.",
+  "ovhManagerSupport_new_creation_error_dedicated_server_service_mandatory": "Wenn Sie keinen Dedicated Server nutzen, können Sie keinen Eingriff dieser Art anfordern."
 }

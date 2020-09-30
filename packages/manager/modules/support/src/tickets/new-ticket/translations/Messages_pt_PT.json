@@ -121,5 +121,7 @@
   "ovhManagerSupport_new_category_description_incident": "Questões relativas aos incidentes técnicos ocorridos nos seus produtos e serviços, não relacionadas com a sua utilização",
   "ovhManagerSupport_new_category_description_account": "Questões relativas à gestão da sua conta de cliente, não relacionadas com qualquer produto",
   "ovhManagerSupport_all_serviceType": "Mostrar mais produtos",
-  "ovhManagerSupport_new_serviceType_ovh_cloud_connect": "OVHcloud Connect"
+  "ovhManagerSupport_new_serviceType_ovh_cloud_connect": "OVHcloud Connect",
+  "ovhManagerSupport_new_creation_error_dedicated_server_already_opened": "Um ticket de intervenção já foi criado para este servidor.",
+  "ovhManagerSupport_new_creation_error_dedicated_server_service_mandatory": "Não pode ser solicitada qualquer intervenção deste tipo sem dispor de um servidor dedicado."
 }
