@@ -230,5 +230,13 @@ angular.module('App').controller(
       window.open(this.order.url);
       this.init();
     }
+
+    getDatabaseDisplayName(value) {
+      const keyToTranslate = 'privateDatabase_dashboard_version_';
+      return this.privateDatabaseService.getDatabaseDisplayName(
+        keyToTranslate,
+        value,
+      );
+    }
   },
 );
