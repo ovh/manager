@@ -503,5 +503,10 @@
   "privateDatabase_tabs_list_extensions_enable_success": "La extensión se ha activado correctamente.",
   "privateDatabase_tabs_list_extensions_enable_error": "Se ha producido un error al activar la extensión.",
   "privateDatabase_tabs_list_extensions_disable_success": "La extensión se ha desactivado correctamente.",
-  "privateDatabase_tabs_list_extensions_disable_error": "Se ha producido un error al desactivar la extensión."
+  "privateDatabase_tabs_list_extensions_disable_error": "Se ha producido un error al desactivar la extensión.",
+  "privateDatabase_dashboard_version_mariadb": "MariaDB {{version}}",
+  "privateDatabase_dashboard_version_mysql": "MySQL {{version}}",
+  "privateDatabase_dashboard_version_postgresql": "PostgreSQL {{version}}",
+  "privateDatabase_dashboard_version_mongodb": "MongoDB {{version}}",
+  "privateDatabase_dashboard_version_redis": "Redis {{version}}"
 }

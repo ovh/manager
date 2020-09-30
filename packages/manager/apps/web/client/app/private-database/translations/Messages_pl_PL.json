@@ -503,5 +503,10 @@
   "privateDatabase_tabs_list_extensions_enable_success": "Rozszerzenie poprawnie aktywowane.",
   "privateDatabase_tabs_list_extensions_enable_error": "Wystąpił błąd podczas aktywowania rozszerzenia.",
   "privateDatabase_tabs_list_extensions_disable_success": "Rozszerzenie poprawnie dezaktywowane.",
-  "privateDatabase_tabs_list_extensions_disable_error": "Wystąpił błąd podczas aktywowania rozszerzenia."
+  "privateDatabase_tabs_list_extensions_disable_error": "Wystąpił błąd podczas aktywowania rozszerzenia.",
+  "privateDatabase_dashboard_version_mariadb": "MariaDB {{version}}",
+  "privateDatabase_dashboard_version_mysql": "MySQL {{version}}",
+  "privateDatabase_dashboard_version_postgresql": "PostgreSQL {{version}}",
+  "privateDatabase_dashboard_version_mongodb": "MongoDB {{version}}",
+  "privateDatabase_dashboard_version_redis": "Redis {{version}}"
 }
