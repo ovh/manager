@@ -261,8 +261,7 @@
                                     disabled="campaign.status === 'todo' ||
                                     campaign.status === 'doing' ||
                                     campaign.status === 'error' ||
-                                    campaign.status === 'done' ||
-                                    campaign.status === 'stop'"
+                                    campaign.status === 'done'"
                                     on-click="CampaignsCtrl.startCampaign(campaign)"
                                 >
                                     <span
@@ -273,7 +272,8 @@
                                     disabled="campaign.status === 'stopTodo' ||
                                     campaign.status === 'stopDoing' ||
                                     campaign.status === 'error' ||
-                                    campaign.status === 'done'"
+                                    campaign.status === 'done' ||
+                                    campaign.status === 'stop'"
                                     on-click="CampaignsCtrl.stopCampaign(campaign)"
                                 >
                                     <span
