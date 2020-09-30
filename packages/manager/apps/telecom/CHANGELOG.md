@@ -1,3 +1,12 @@
+## [13.2.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.2.7...@ovh-ux/manager-telecom@13.2.8) (2020-09-30)
+
+
+### Bug Fixes
+
+* **xdsl.move:** remove utc to display date/hour for meetings ([#3701](https://github.com/ovh/manager/issues/3701)) ([72d7f5d](https://github.com/ovh/manager/commit/72d7f5de5b4490194bdaa6b262fad8c10b6039e0))
+
+
+
 ## [13.2.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.2.6...@ovh-ux/manager-telecom@13.2.7) (2020-09-29)
 
 

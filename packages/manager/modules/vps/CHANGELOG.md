@@ -1,3 +1,12 @@
+## [2.0.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.0.4...@ovh-ux/manager-vps@2.0.5) (2020-09-30)
+
+
+### Bug Fixes
+
+* **vps:** not able to order vps options ([#3726](https://github.com/ovh/manager/issues/3726)) ([28127ad](https://github.com/ovh/manager/commit/28127adfb68e98e8cdbb72d987f1e51fa914c026)), closes [#DTRSD-21356](https://github.com/ovh/manager/issues/DTRSD-21356)
+
+
+
 ## [2.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.0.3...@ovh-ux/manager-vps@2.0.4) (2020-09-15)
 
 
