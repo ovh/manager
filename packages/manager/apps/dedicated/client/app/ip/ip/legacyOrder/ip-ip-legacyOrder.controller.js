@@ -158,9 +158,10 @@ angular.module('Module.ip.controllers').controller(
           if (this.$scope.model.service.serviceType === 'PCC') {
             return this.DedicatedCloud.getDescription(
               this.$scope.model.service.serviceName,
-            ).then(({ generation, servicePackName }) => {
+            ).then(({ generation, productReference, servicePackName }) => {
               this.$scope.model.service.usesLegacyOrder = generation !== '2.0';
               this.$scope.model.service.servicePackName = servicePackName;
+              this.$scope.model.service.productReference = productReference;
             });
           }
 

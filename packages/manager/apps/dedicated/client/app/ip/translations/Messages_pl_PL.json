@@ -470,7 +470,7 @@
   "ip_order_abonnement": "Abonament miesięczny:",
   "ip_order_free": "ZA DARMO",
   "ip_order_bloc": "Blok",
-  "ip_order_renew_PCC": "Twoje adresy IP będą odnawiane automatycznie z Twoją infrastrukturą Dedicated Cloud.",
+  "ip_order_renew_EPCC": "Twoje adresy IP będą odnawiane automatycznie z Twoją infrastrukturą Dedicated Cloud.",
   "ip_order_resume": "Podsumowanie zamówienia",
   "ip_order_resume_short": "Blok /{{ blockSize }} : {{ price }} netto",
   "ip_order_price_HT": "Cena netto:",

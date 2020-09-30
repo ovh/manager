@@ -237,6 +237,8 @@ export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
             datacenterId,
           },
         ),
+      pccType: /* @ngInject */ (dedicatedCloud) =>
+        dedicatedCloud.productReference,
       setMessage: /* @ngInject */ (Alerter) => (
         message = false,
         type = 'success',
