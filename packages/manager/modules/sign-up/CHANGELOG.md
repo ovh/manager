@@ -1,3 +1,12 @@
+# [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.0.1...@ovh-ux/sign-up@2.1.0) (2020-09-30)
+
+
+### Features
+
+* add tracking ([3f259b0](https://github.com/ovh/manager/commit/3f259b083ac0c28bb965b8b33bd107cd10200ba0))
+
+
+
 ## [2.0.1](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.0.0...@ovh-ux/sign-up@2.0.1) (2020-08-18)
 
 

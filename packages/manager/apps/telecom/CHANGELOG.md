@@ -1,3 +1,15 @@
+## [13.2.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.2.8...@ovh-ux/manager-telecom@13.2.9) (2020-09-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 574] ([23b8252](https://github.com/ovh/manager/commit/23b825268436443d373eae39e1784e29161c80c1))
+* **i18n:** add missing translations [CDS 583] ([1cd9df4](https://github.com/ovh/manager/commit/1cd9df42652f7a4bf2ca81277f861aeae72a842a))
+* **telephony:** update color for both scheduler and timeCondition ([7ed59e8](https://github.com/ovh/manager/commit/7ed59e822bc36f849cfdd54675ae1f7f05a27b96))
+* **telephony.ccs.timecondition:** prevent overflow hidden on dropdown ([4be955a](https://github.com/ovh/manager/commit/4be955a35d4ce292a3032c0ef328a4219b0b0621))
+
+
+
 ## [13.2.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.2.7...@ovh-ux/manager-telecom@13.2.8) (2020-09-30)
 
 

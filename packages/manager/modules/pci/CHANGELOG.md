@@ -1,3 +1,13 @@
+## [5.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.1.3...@ovh-ux/manager-pci@5.1.4) (2020-09-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 565] ([bc319f2](https://github.com/ovh/manager/commit/bc319f296f5f64299f2769baf156d3e1e2b00468))
+* **kube:** add reset kubeconfig ([9a81bf9](https://github.com/ovh/manager/commit/9a81bf947d110049403ca5bc7a385069e4d5d196)), closes [#3016](https://github.com/ovh/manager/issues/3016)
+
+
+
 ## [5.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.1.2...@ovh-ux/manager-pci@5.1.3) (2020-09-22)
 
 

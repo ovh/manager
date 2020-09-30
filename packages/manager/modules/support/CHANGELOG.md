@@ -1,3 +1,13 @@
+## [1.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.0.2...@ovh-ux/manager-support@1.0.3) (2020-09-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 590] ([ba36514](https://github.com/ovh/manager/commit/ba36514288df6b54ea6b6e97d3b327664bc16c8f))
+* **support-app:** error message when making ticket for datacenter ([a421288](https://github.com/ovh/manager/commit/a421288dd4656a691b11e57a1a1ecf9862bc8d24))
+
+
+
 ## [1.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.0.1...@ovh-ux/manager-support@1.0.2) (2020-09-18)
 
 
