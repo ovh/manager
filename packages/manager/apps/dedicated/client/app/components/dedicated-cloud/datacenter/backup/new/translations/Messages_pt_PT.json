@@ -1,10 +1,10 @@
 {
   "dedicatedCloud_datacenter_backup_new_description1": "Não ativou qualquer serviço de backup.",
   "dedicatedCloud_datacenter_backup_new_description2": "Pode escolher entre 3 novas ofertas para o backup das suas máquinas virtuais (VM): <strong>Standard</strong>, <strong>Advanced</strong> ou <strong>Premium</strong>.",
-  "dedicatedCloud_datacenter_backup_new_description3": "A oferta escolhida para esse datacenter será a única disponível para todos os outros datacenters deste Private Cloud, e a única aplicável ao conjunto das suas máquinas virtuais.",
+  "dedicatedCloud_datacenter_backup_new_description3_EPCC": "A oferta escolhida para esse datacenter será a única disponível para todos os outros datacenters deste Private Cloud, e a única aplicável ao conjunto das suas máquinas virtuais.",
   "dedicatedCloud_datacenter_backup_new_tariff_url": "Saber mais sobre os preços disponíveis para o Veeam Backup",
-  "dedicatedCloud_datacenter_backup_new_restricted_offer_choice": "A oferta {{offer}} já foi escolhida no datacenter {{datacenterName}} do seu Private Cloud. Pode ativá-la neste datacenter.",
-  "dedicatedCloud_datacenter_backup_new_blocked": "Uma oferta de backup está a ser processada noutro datacenter do Private Cloud. Não pode ativar nenhuma nova oferta enquanto esta operação não estiver finalizada.",
+  "dedicatedCloud_datacenter_backup_new_restricted_offer_choice_EPCC": "A oferta {{offer}} já foi escolhida no datacenter {{datacenterName}} do seu Private Cloud. Pode ativá-la neste datacenter.",
+  "dedicatedCloud_datacenter_backup_new_blocked_EPCC": "Uma oferta de backup está a ser processada noutro datacenter do Private Cloud. Não pode ativar nenhuma nova oferta enquanto esta operação não estiver finalizada.",
   "dedicatedCloud_datacenter_backup_new_choose_offer": "Escolha da oferta de backup",
   "dedicatedCloud_datacenter_backup_new_choose_offer_action": "Escolher a oferta",
   "dedicatedCloud_datacenter_backup_new_validate_conditions": "Validação das condições de utilização",

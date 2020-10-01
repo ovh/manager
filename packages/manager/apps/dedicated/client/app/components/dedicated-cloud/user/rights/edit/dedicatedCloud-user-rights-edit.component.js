@@ -4,7 +4,7 @@ import template from './dedicatedCloud-user-rights-edit.html';
 export default {
   bindings: {
     goBack: '<',
-    optionsAvailable: '<',
+    pccType: '<',
     productId: '<',
     rightId: '<',
     user: '<',

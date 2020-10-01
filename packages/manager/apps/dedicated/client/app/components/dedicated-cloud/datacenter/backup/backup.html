@@ -45,7 +45,7 @@
                 data-ng-if="(!$ctrl.backup.isProcessing()) && $ctrl.backupOffersUnderProcess"
             >
                 <span
-                    data-translate="dedicatedCloud_datacenter_backup_upgrade_blocked"
+                    data-ng-bind=":: ('dedicatedCloud_datacenter_backup_upgrade_blocked_' + $ctrl.pccType) | translate"
                 ></span>
             </oui-message>
             <p
@@ -77,7 +77,7 @@
                 data-translate="dedicatedCloud_datacenter_backup_daily_report_title"
             ></p>
             <p
-                data-translate="dedicatedCloud_datacenter_backup_daily_report_description_1"
+                data-ng-bind=":: ('dedicatedCloud_datacenter_backup_daily_report_description_1_' + $ctrl.pccType) | translate"
             ></p>
             <p
                 data-translate="dedicatedCloud_datacenter_backup_daily_report_description_2"

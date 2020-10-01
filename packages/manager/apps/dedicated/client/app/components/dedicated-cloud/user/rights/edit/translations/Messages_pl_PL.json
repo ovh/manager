@@ -35,7 +35,7 @@
   "dedicatedCloud_USER_right_vmNetwork_READONLY": "Dostęp tylko do odczytu",
   "dedicatedCloud_USER_right_vmNetwork_readonly": "Dostęp tylko do odczytu",
   "dedicatedCloud_USER_right_vlan": "Dostęp do V(x)Lans",
-  "dedicatedCloud_USER_right_vlan_help": "Uprawnienia do zarządzania w prywatnej części sieci (VxLan dla Dedicated Cloud i VLAN dla SDDC oraz pakiety Hosted Private Cloud Premier)",
+  "dedicatedCloud_USER_right_vlan_help_EPCC": "Uprawnienia do zarządzania w prywatnej części sieci (VxLan dla Dedicated Cloud i VLAN dla SDDC oraz pakiety Hosted Private Cloud Premier)",
   "dedicatedCloud_USER_right_vlan_ADMIN": "Pozwala na skonfigurowanie wirtualnych maszyn w sieci prywatnej",
   "dedicatedCloud_USER_right_vlan_admin": "Pozwala na skonfigurowanie wirtualnych maszyn w sieci prywatnej",
   "dedicatedCloud_USER_right_vlan_NO_ACCESS": "Brak dostępu",

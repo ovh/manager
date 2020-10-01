@@ -10,6 +10,7 @@ export default {
     deleteKms: '<',
     deleteSecurity: '<',
     editKms: '<',
+    pccType: '<',
     productId: '<',
     securityAccess: '<',
     securityLogout: '<',

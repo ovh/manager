@@ -3,7 +3,7 @@
   "dedicatedCloud_datacenter_backup_upgrade_confirm": "Passar para a oferta {{ name }}",
   "dedicatedCloud_datacenter_backup_upgrade_cancel": "Cancelar",
   "dedicatedCloud_datacenter_backup_upgrade_description": "Pretende passar da <strong>oferta de backup {{ currentOffer }}</strong> para a <strong>oferta {{ selectedOffer }}</strong>.",
-  "dedicatedCloud_datacenter_backup_upgrade_warning": "Se ativou o backup noutros datacenters deste Private Cloud, esta oferta também será aplicada.",
+  "dedicatedCloud_datacenter_backup_upgrade_warning_EPCC": "Se ativou o backup noutros datacenters deste Private Cloud, esta oferta também será aplicada.",
   "dedicatedCloud_datacenter_backup_upgrade_description_features": "Estes serão os novos parâmetros:",
   "dedicatedCloud_datacenter_backup_upgrade_description_confirmation": "Tem a certeza de que quer mudar de oferta?",
   "dedicatedCloud_datacenter_backup_upgrade_description_billing": "A faturação será realizada em função do número e do tamanho das máquinas virtuais para as quais foi realizado um backup.",

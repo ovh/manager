@@ -11,6 +11,7 @@ export default {
     datacenterId: '<',
     goToBackup: '<',
     operationsUrl: '<',
+    pccType: '<',
     productId: '<',
   },
   controller,

@@ -1,6 +1,6 @@
 {
   "dedicatedCloud_datastore_order_title": "Encomendar um datastore",
-  "dedicatedCloud_datastore_order_info": "Pode personalizar o seu Private Cloud adicionando datastores. De seguida, será redirecionado para um novo separador para finalizar a sua encomenda.",
+  "dedicatedCloud_datastore_order_info_EPCC": "Pode personalizar o seu Private Cloud adicionando datastores. De seguida, será redirecionado para um novo separador para finalizar a sua encomenda.",
   "dedicatedCloud_datastore_order_select": "Selecionar um tipo de datastore:",
   "dedicatedCloud_datastore_order_type": "Tipo",
   "dedicatedCloud_datastore_order_price": "Preço",

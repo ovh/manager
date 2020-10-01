@@ -11,7 +11,7 @@
   "dedicatedCloud_SECURITY_logout_policy": "Política de desconexión",
   "dedicatedCloud_SECURITY_logout_policy_FIRST": "Desconexión del primer usuario conectado",
   "dedicatedCloud_SECURITY_logout_policy_LAST": "Desconexión del último usuario conectado",
-  "dedicatedCloud_SECURITY_title": "IP y bloques autorizados a conectarse a Hosted Private Cloud:",
+  "dedicatedCloud_SECURITY_title_EPCC": "IP y bloques autorizados a conectarse a Hosted Private Cloud:",
   "dedicatedCloud_SECURITY_IP_name": "Nombre de IP",
   "dedicatedCloud_SECURITY_allow": "Permiso",
   "dedicatedCloud_SECURITY_description": "Descripción",

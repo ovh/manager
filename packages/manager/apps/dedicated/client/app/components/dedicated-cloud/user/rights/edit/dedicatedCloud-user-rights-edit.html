@@ -71,10 +71,7 @@
                     ></em>
                 </span>
             </div>
-            <div
-                class="form-group"
-                data-ng-if="$ctrl.optionsAvailable.includes('nsx')"
-            >
+            <div class="form-group">
                 <label
                     for="networkRole"
                     class="control-label"
@@ -92,7 +89,7 @@
                 <span class="help-block" role="alert">
                     <span
                         class="d-block"
-                        data-translate="dedicatedCloud_USER_right_vlan_help"
+                        data-translate="{{ 'dedicatedCloud_USER_right_vlan_help_' + $ctrl.pccType }}"
                     >
                     </span>
                     <em

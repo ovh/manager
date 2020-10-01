@@ -32,8 +32,9 @@
                 ></h2>
 
                 <p
-                    data-translate="dedicatedCloud_subscribe_mailing_disabled"
-                    data-translate-values="{ t0: $ctrl.pccMl }"
+                    data-ng-bind=":: ('dedicatedCloud_subscribe_mailing_disabled_' + $ctrl.pccType) | translate: {
+                        t0: $ctrl.pccMl
+                    }"
                 ></p>
             </div>
         </div>
@@ -72,8 +73,9 @@
                     <label
                         for="email"
                         class="control-label"
-                        data-translate="dedicatedCloud_subscribe_mailing_step1"
-                        data-translate-values="{ t0: 'pcc@ml.ovh.net' }"
+                        data-ng-bind=":: ('dedicatedCloud_subscribe_mailing_step1_' + $ctrl.pccType) | translate: {
+                            t0: 'pcc@ml.ovh.net'
+                        }"
                     >
                     </label>
                     <input
@@ -94,8 +96,10 @@
             </div>
             <p
                 data-ng-if="!$ctrl.loading.subscribe"
-                data-translate="dedicatedCloud_subscribe_mailing_step2"
-                data-translate-values="{ t0: $ctrl.model.email, t1: 'pcc@ml.ovh.net' }"
+                data-ng-bind-html=":: ('dedicatedCloud_subscribe_mailing_step2_' + $ctrl.pccType) | translate: {
+                    t0: $ctrl.model.email,
+                    t1: 'pcc@ml.ovh.net'
+                }"
             ></p>
         </div>
     </div>

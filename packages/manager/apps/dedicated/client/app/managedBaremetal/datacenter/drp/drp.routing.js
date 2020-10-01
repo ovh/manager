@@ -48,6 +48,7 @@ export default /* @ngInject */ ($stateProvider) => {
         displayInfoMessage,
         displaySuccessMessage,
         goToPccDashboard,
+        pccType,
         setDisableSuccessAlertPreference,
         storeZertoOptionOrderInUserPref,
       ) => (drpInformations) =>
@@ -85,7 +86,7 @@ export default /* @ngInject */ ($stateProvider) => {
                     ${$translate.instant(
                       'dedicatedCloud_datacenter_drp_confirm_creation_pending',
                     )} ${$translate.instant(
-                    'dedicatedCloud_datacenter_drp_confirm_creation_pending_task',
+                    `dedicatedCloud_datacenter_drp_confirm_creation_pending_task_${pccType}`,
                   )}
                 `);
                 }

@@ -9,6 +9,7 @@
             data-current-user="$ctrl.currentUser"
             data-current-state="$ctrl.$state.current.name"
             data-go-to-vpn-configuration="$ctrl.goToVpnConfiguration"
+            data-pcc-type="$ctrl.pccType"
         >
         </ovh-manager-dedicated-cloud-datacenter-drp-alerts>
 
@@ -18,7 +19,9 @@
             data-aria-label="{{:: 'dedicatedCloud_datacenter_drp_subtitle' | translate }}"
             data-heading="{{:: 'dedicatedCloud_datacenter_drp_subtitle' | translate }}"
         >
-            <span data-translate="dedicatedCloud_datacenter_drp_details"></span>
+            <span
+                data-ng-bind=":: ('dedicatedCloud_datacenter_drp_details_' + $ctrl.pccType) | translate"
+            ></span>
         </oui-collapsible>
 
         <oui-message
@@ -59,8 +62,8 @@
                         class="h-100"
                         data-name="ovh"
                         data-model="$ctrl.selectedDrpType"
-                        data-label="{{:: 'dedicatedCloud_datacenter_ovh_choice' | translate }}"
-                        data-values="[{ id: 'ovh', name: ('dedicatedCloud_datacenter_ovh_choice' | translate) }]"
+                        data-label="{{:: ('dedicatedCloud_datacenter_ovh_choice_' + $ctrl.pccType) | translate }}"
+                        data-values="[{ id: 'ovh', name: (('dedicatedCloud_datacenter_ovh_choice_' + $ctrl.pccType) | translate) }]"
                         data-variant="light"
                         data-disabled="$ctrl.drpInformations.hasDatacenterWithoutHosts
                                            || $ctrl.isDisablingDrp || $ctrl.isInstallationInError"
@@ -81,8 +84,8 @@
                         class="h-100"
                         data-name="onPremise"
                         data-model="$ctrl.selectedDrpType"
-                        data-label="{{:: 'dedicatedCloud_datacenter_onPremise_choice' | translate }}"
-                        data-values="[{ id: 'onPremise', name: ('dedicatedCloud_datacenter_onPremise_choice' | translate) }]"
+                        data-label="{{:: ('dedicatedCloud_datacenter_onPremise_choice_' + $ctrl.pccType) | translate }}"
+                        data-values="[{ id: 'onPremise', name: (('dedicatedCloud_datacenter_onPremise_choice_' + $ctrl.pccType) | translate) }]"
                         data-variant="light"
                         data-disabled="$ctrl.drpInformations.hasDatacenterWithoutHosts
                                            || $ctrl.isDisablingDrp || $ctrl.isInstallationInError"

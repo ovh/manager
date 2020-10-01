@@ -5,6 +5,7 @@ export default {
   bindings: {
     datacenterId: '<',
     goBack: '<',
+    pccType: '<',
     serviceName: '<',
   },
   controller,

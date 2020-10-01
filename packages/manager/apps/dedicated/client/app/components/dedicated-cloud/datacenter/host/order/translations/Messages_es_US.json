@@ -1,6 +1,6 @@
 {
   "dedicatedCloud_host_order_title": "Contratar un host",
-  "dedicatedCloud_host_order_info": "Usted puede personalizar su cloud privado añadiendo hosts. A continuación se abrirá una nueva pestaña donde podrá finalizar el pedido.",
+  "dedicatedCloud_host_order_info_EPCC": "Usted puede personalizar su cloud privado añadiendo hosts. A continuación se abrirá una nueva pestaña donde podrá finalizar el pedido.",
   "dedicatedCloud_host_order_select": "Seleccionar un host:",
   "dedicatedCloud_host_order_host": "Host",
   "dedicatedCloud_host_order_price": "Precio",

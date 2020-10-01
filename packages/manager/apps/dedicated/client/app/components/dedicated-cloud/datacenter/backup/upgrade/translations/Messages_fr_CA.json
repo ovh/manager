@@ -3,7 +3,7 @@
   "dedicatedCloud_datacenter_backup_upgrade_confirm": "Passer à l’offre {{ name }}",
   "dedicatedCloud_datacenter_backup_upgrade_cancel": "Annuler",
   "dedicatedCloud_datacenter_backup_upgrade_description": "Vous souhaitez changer votre offre de sauvegarde de l’<strong>offre {{ currentOffer }}</strong> à l’<strong>offre {{ selectedOffer }}</strong>.",
-  "dedicatedCloud_datacenter_backup_upgrade_warning": "Si vous avez activé la sauvegarde sur d’autres datacentres de ce Private Cloud, cette offre leur sera également appliquée.",
+  "dedicatedCloud_datacenter_backup_upgrade_warning_EPCC": "Si vous avez activé la sauvegarde sur d’autres datacentres de ce Private Cloud, cette offre leur sera également appliquée.",
   "dedicatedCloud_datacenter_backup_upgrade_description_features": "Vous aurez désormais les paramètres suivants :",
   "dedicatedCloud_datacenter_backup_upgrade_description_confirmation": "Êtes-vous sûr(e) de vouloir changer d’offre ?",
   "dedicatedCloud_datacenter_backup_upgrade_description_billing": "Vous serez facturé(e) selon le nombre et la taille des machines virtuelles sauvegardées.",

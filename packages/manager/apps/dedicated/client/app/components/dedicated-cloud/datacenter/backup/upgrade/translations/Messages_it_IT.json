@@ -3,7 +3,7 @@
   "dedicatedCloud_datacenter_backup_upgrade_confirm": "Passa alla versione {{ name }}",
   "dedicatedCloud_datacenter_backup_upgrade_cancel": "Annulla",
   "dedicatedCloud_datacenter_backup_upgrade_description": "Hai scelto di modificare la tua soluzione di backup dall’<strong>offerta {{ currentOffer }}</strong> all’<strong>offerta {{ selectedOffer }}</strong>.",
-  "dedicatedCloud_datacenter_backup_upgrade_warning": "Se in altri datacenter di questo Private Cloud risulta attivo un servizio di backup, la soluzione verrà applicata anche a questi datacenter.",
+  "dedicatedCloud_datacenter_backup_upgrade_warning_EPCC": "Se in altri datacenter di questo Private Cloud risulta attivo un servizio di backup, la soluzione verrà applicata anche a questi datacenter.",
   "dedicatedCloud_datacenter_backup_upgrade_description_features": "Questa è la configurazione corrente:",
   "dedicatedCloud_datacenter_backup_upgrade_description_confirmation": "Vuoi davvero modificare il servizio attivo?",
   "dedicatedCloud_datacenter_backup_upgrade_description_billing": "La fatturazione varierà in base al numero e alla dimensione delle macchine virtuali sottoposte a backup.",

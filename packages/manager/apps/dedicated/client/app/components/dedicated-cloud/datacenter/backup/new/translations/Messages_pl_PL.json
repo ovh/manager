@@ -1,10 +1,10 @@
 {
   "dedicatedCloud_datacenter_backup_new_description1": "Prawdopodobnie nie masz włączonej usługi tworzenia kopii zapasowych",
   "dedicatedCloud_datacenter_backup_new_description2": "Aby wykonać kopie zapasowe Twoich wirtualnych maszyn (VM), masz do wyboru 3 nowe pakiety: <strong>Standard</strong>, <strong>Advanced</strong> lub <strong>Premium</strong>.",
-  "dedicatedCloud_datacenter_backup_new_description3": "Pakiet wybrany dla tego centrum danych będzie jedynym dostępnym dla pozostałych centrów, w których hostowane jest Twoje rozwiązanie Private Cloud oraz jedynym mającym zastosowanie dla wszystkich Twoich maszyn wirtualnych.",
+  "dedicatedCloud_datacenter_backup_new_description3_EPCC": "Pakiet wybrany dla tego centrum danych będzie jedynym dostępnym dla pozostałych centrów, w których hostowane jest Twoje rozwiązanie Private Cloud oraz jedynym mającym zastosowanie dla wszystkich Twoich maszyn wirtualnych.",
   "dedicatedCloud_datacenter_backup_new_tariff_url": "Sprawdź cennik Veeam Backup ",
-  "dedicatedCloud_datacenter_backup_new_restricted_offer_choice": "Pakiet {{offer}} został już wybrany dla centrum danych {{datacenterName}}, w którym hostowane jest Twoje rozwiązanie Private Cloud. Możesz włączyć usługę dla tego centrum danych.",
-  "dedicatedCloud_datacenter_backup_new_blocked": "Usługa tworzenia kopii zapasowych jest w trakcie realizacji w innym centrum danych, w którym hostowane jest rozwiązanie Private Cloud. Dopóki nie dobiegnie ona końca, nie możesz włączyć żadnej nowej usługi.",
+  "dedicatedCloud_datacenter_backup_new_restricted_offer_choice_EPCC": "Pakiet {{offer}} został już wybrany dla centrum danych {{datacenterName}}, w którym hostowane jest Twoje rozwiązanie Private Cloud. Możesz włączyć usługę dla tego centrum danych.",
+  "dedicatedCloud_datacenter_backup_new_blocked_EPCC": "Usługa tworzenia kopii zapasowych jest w trakcie realizacji w innym centrum danych, w którym hostowane jest rozwiązanie Private Cloud. Dopóki nie dobiegnie ona końca, nie możesz włączyć żadnej nowej usługi.",
   "dedicatedCloud_datacenter_backup_new_choose_offer": "Wybór usługi tworzenia kopii zapasowych",
   "dedicatedCloud_datacenter_backup_new_choose_offer_action": "Wybierz usługę",
   "dedicatedCloud_datacenter_backup_new_validate_conditions": "Akceptacja warunków świadczenia usługi",

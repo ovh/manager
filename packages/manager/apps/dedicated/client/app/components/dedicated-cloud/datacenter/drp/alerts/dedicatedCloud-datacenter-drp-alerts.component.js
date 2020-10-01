@@ -7,6 +7,7 @@ export default {
     currentUser: '<',
     currentState: '<?',
     goToVpnConfiguration: '<',
+    pccType: '<',
   },
   controller,
   name: 'ovhManagerDedicatedCloudDatacenterDrpAlerts',

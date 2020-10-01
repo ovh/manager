@@ -10,7 +10,7 @@
 >
     <oui-message data-type="warning" class="mb-3">
         <span
-            data-translate="dedicatedCloud_datacenter_backup_upgrade_warning"
+            data-ng-bind=":: ('dedicatedCloud_datacenter_backup_upgrade_warning_' + $ctrl.pccType) | translate"
         ></span>
     </oui-message>
     <p
