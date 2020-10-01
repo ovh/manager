@@ -41,6 +41,7 @@ module.exports = ({ name }) => ({
     'angular-sanitize': '^1.7.8',
     'angular-translate': '^2.18.1',
     'angular-translate-loader-pluggable': '^1.3.1',
+    'core-js': '^3.6.5',
     jquery: '^2.1.3',
     'ovh-api-services': '^9.26.0',
     flatpickr: '~4.5.2',
