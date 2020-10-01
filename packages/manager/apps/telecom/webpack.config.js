@@ -83,6 +83,10 @@ module.exports = (env = {}) => {
         /moment[/\\]locale$/,
         /cs|de|en-gb|es|es-us|fi|fr-ca|fr|it|lt|pl|pt/,
       ),
+      new webpack.ContextReplacementPlugin(
+        /flatpicker[/\\]dist[/\\]l10n$/,
+        /cs|de|es|es|fi|fr|it|lt|pl|pt/,
+      ),
       new webpack.DefinePlugin({
         __NODE_ENV__: process.env.NODE_ENV
           ? `'${process.env.NODE_ENV}'`
