@@ -6,7 +6,6 @@
   "sms_cancel_details_receivers": "Destinataires",
   "sms_cancel_details_message": "Message",
   "sms_cancel_question": "Êtes-vous sûr de vouloir annuler la campagne affichée ci-dessous ?",
-  "sms_removing": "Annulation en cours…",
   "sms_cancel_error": "Impossible d‘annuler la campagne. {{error}}",
   "sms_cancel_success": "La campagne a été annulée"
 }
