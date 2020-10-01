@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 import partition from 'lodash/partition';
-import startsWith from 'lodash/startsWith';
+import orderBy from 'lodash/orderBy';
 
 angular.module('managerApp').controller(
   'TelecomTelephonyAliasSpecialRepaymentsCtrl',
@@ -9,13 +9,13 @@ angular.module('managerApp').controller(
       $state,
       $stateParams,
       TucToast,
-      tucVoipService,
+      OvhApiTelephony,
       TELEPHONY_REPAYMENT_CONSUMPTION,
     ) {
       this.$state = $state;
       this.$stateParams = $stateParams;
       this.TucToast = TucToast;
-      this.tucVoipService = tucVoipService;
+      this.OvhApiTelephony = OvhApiTelephony;
       this.TELEPHONY_REPAYMENT_CONSUMPTION = TELEPHONY_REPAYMENT_CONSUMPTION;
     }
 
@@ -27,29 +27,21 @@ angular.module('managerApp').controller(
         feesToPay: null,
       };
 
-      this.serviceInfos = {
-        billingAccount: this.$stateParams.billingAccount,
-        serviceName: this.$stateParams.serviceName,
-      };
-
       this.loading = true;
       this.decimalPrecision = 1000;
 
-      return this.tucVoipService
-        .fetchServiceRepayments(this.serviceInfos)
-        .then((repayments) => {
-          this.repayments = repayments.map((repayment) => {
-            const newRepayment = repayment;
-            newRepayment.price =
-              Math.round(Math.abs(repayment.price) * this.decimalPrecision) /
-              this.decimalPrecision;
-
-            newRepayment.isFee = this.TELEPHONY_REPAYMENT_CONSUMPTION.calledFeesPrefix.fr
-              .concat(this.TELEPHONY_REPAYMENT_CONSUMPTION.calledFeesPrefix.be)
-              .some((prefix) => startsWith(repayment.dialed, prefix));
-
-            return newRepayment;
-          });
+      return this.OvhApiTelephony.Service()
+        .RepaymentConsumption()
+        .Aapi()
+        .repayment({
+          billingAccount: this.$stateParams.billingAccount,
+        })
+        .$promise.then((repayments) => {
+          this.allRepayments = repayments;
+          this.repayments = repayments.slice(
+            0,
+            this.TELEPHONY_REPAYMENT_CONSUMPTION.limit,
+          );
 
           let otherRepayments = [];
           [this.repaymentsInfos.feesToPay, otherRepayments] = partition(
@@ -80,6 +72,33 @@ angular.module('managerApp').controller(
           repayments.reduce((total, repayment) => total + repayment.price, 0) *
             this.decimalPrecision,
         ) / this.decimalPrecision
+      );
+    }
+
+    onSortChanged($sort) {
+      if (
+        this.allRepayments.length < this.TELEPHONY_REPAYMENT_CONSUMPTION.limit
+      ) {
+        return;
+      }
+
+      this.repayments = orderBy(
+        this.allRepayments,
+        [$sort.name],
+        [$sort.order],
+      ).slice(0, this.TELEPHONY_REPAYMENT_CONSUMPTION.limit);
+    }
+
+    onPageChanged($pagination) {
+      if (
+        this.allRepayments.length < this.TELEPHONY_REPAYMENT_CONSUMPTION.limit
+      ) {
+        return;
+      }
+
+      this.repayments = this.allRepayments.slice(
+        $pagination.offset - 1,
+        this.TELEPHONY_REPAYMENT_CONSUMPTION.limit,
       );
     }
   },

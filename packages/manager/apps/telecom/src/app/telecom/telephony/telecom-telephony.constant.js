@@ -148,6 +148,7 @@ angular
       france: ['00338'],
       belgium: ['0032800', '003278', '0032900', '003270'],
     },
+    limit: 5000,
   })
   .constant('TELEPHONY_SERVICE', {
     validSoundExtensions: ['aiff', 'au', 'flac', 'ogg', 'mp3', 'wav', 'wma'],
