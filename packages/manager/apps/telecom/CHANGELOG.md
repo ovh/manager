@@ -1,3 +1,12 @@
+## [13.2.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.2.9...@ovh-ux/manager-telecom@13.2.10) (2020-10-01)
+
+
+### Bug Fixes
+
+* **telecom.alias:** avoid freeze repayment section ([#3735](https://github.com/ovh/manager/issues/3735)) ([5ffedad](https://github.com/ovh/manager/commit/5ffedad68f48765ff06b08797214466e6a599a76))
+
+
+
 ## [13.2.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.2.8...@ovh-ux/manager-telecom@13.2.9) (2020-09-30)
 
 

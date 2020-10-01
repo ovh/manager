@@ -1,3 +1,12 @@
+## [14.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.1.0...@ovh-ux/manager-dedicated@14.1.1) (2020-10-01)
+
+
+### Bug Fixes
+
+* **billing.history:** restrict string filtering ([#3738](https://github.com/ovh/manager/issues/3738)) ([82699c9](https://github.com/ovh/manager/commit/82699c9fa01e91851edf1bdbf412e2cedb59b1df))
+
+
+
 # [14.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.0.2...@ovh-ux/manager-dedicated@14.1.0) (2020-09-30)
 
 
