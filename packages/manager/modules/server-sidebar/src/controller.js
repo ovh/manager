@@ -19,7 +19,6 @@ import zipObject from 'lodash/zipObject';
 import { SIDEBAR_CONFIG } from './sidebar.constants';
 import { ORDER_URLS, SIDEBAR_ORDER_CONFIG } from './order.constants';
 import { WEB_SIDEBAR_CONFIG, WEB_ORDER_SIDEBAR_CONFIG } from './web.constants';
-import { CLOUD_CONNECT_ID } from './constants';
 
 // we should avoid require, but JSURL don't provide an es6 export
 const { stringify } = require('jsurl');
@@ -55,22 +54,48 @@ export default class OvhManagerServerSidebarController {
     this.init();
   }
 
+  getFeaturesList() {
+    const getFeatures = (items) => {
+      return items.reduce((featuresList, item) => {
+        let itemFeatures = [];
+        if (item.feature) {
+          itemFeatures.push(item.feature);
+        }
+        if (item.types) {
+          itemFeatures = [...itemFeatures, ...getFeatures(item.types)];
+        }
+        if (item.children) {
+          itemFeatures = [...itemFeatures, ...getFeatures(item.children)];
+        }
+        return [...featuresList, ...itemFeatures];
+      }, []);
+    };
+
+    return [
+      ...new Set([
+        ...getFeatures(this.SIDEBAR_CONFIG),
+        ...getFeatures(this.SIDEBAR_ORDER_CONFIG),
+      ]),
+    ];
+  }
+
   init() {
+    this.SIDEBAR_CONFIG = SIDEBAR_CONFIG;
+    this.SIDEBAR_ORDER_CONFIG = SIDEBAR_ORDER_CONFIG;
+
+    if (this.universe === 'WEB') {
+      this.SIDEBAR_CONFIG = WEB_SIDEBAR_CONFIG;
+      this.SIDEBAR_ORDER_CONFIG = WEB_ORDER_SIDEBAR_CONFIG;
+    }
+
     // set initialization promise
     return this.SidebarMenu.setInitializationPromise(
       this.ovhFeatureFlipping
-        .checkFeatureAvailability([CLOUD_CONNECT_ID])
+        .checkFeatureAvailability(this.getFeaturesList())
         .then((features) =>
           this.$translate
             .refresh()
             .then(() => {
-              this.SIDEBAR_CONFIG = SIDEBAR_CONFIG;
-              this.SIDEBAR_ORDER_CONFIG = SIDEBAR_ORDER_CONFIG;
-
-              if (this.universe === 'WEB') {
-                this.SIDEBAR_CONFIG = WEB_SIDEBAR_CONFIG;
-                this.SIDEBAR_ORDER_CONFIG = WEB_ORDER_SIDEBAR_CONFIG;
-              }
               return features;
             })
             .finally(() => this.$rootScope.$broadcast('sidebar:loaded')),
@@ -242,12 +267,15 @@ export default class OvhManagerServerSidebarController {
   loadServices(parentService, parent, params = {}) {
     const promises = [];
 
-    each(this.filterRegions(parentService.types), (typeDefinition) => {
-      const parentParams = get(parent, 'stateParams', {});
-      promises.push(
-        this.getTypeItems(typeDefinition, { ...params, ...parentParams }),
-      );
-    });
+    each(
+      this.filterFeatures(this.filterRegions(parentService.types)),
+      (typeDefinition) => {
+        const parentParams = get(parent, 'stateParams', {});
+        promises.push(
+          this.getTypeItems(typeDefinition, { ...params, ...parentParams }),
+        );
+      },
+    );
 
     return this.$q
       .all(promises)
