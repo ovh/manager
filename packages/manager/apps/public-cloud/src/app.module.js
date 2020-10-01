@@ -92,6 +92,16 @@ angular
       );
     },
   )
+  .config(
+    /* @ngInject */ (ouiCalendarConfigurationProvider) => {
+      const lang = Environment.getUserLanguage();
+      return import(`flatpickr/dist/l10n/${lang}.js`)
+        .then((module) => {
+          ouiCalendarConfigurationProvider.setLocale(module.default[lang]);
+        })
+        .catch(() => {});
+    },
+  )
   .run(
     /* @ngInject */ ($rootScope, $state) => {
       $state.defaultErrorHandler((error) => {
