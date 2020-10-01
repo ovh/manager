@@ -29,7 +29,7 @@
   "overTheBox_tasks_show": "See tasks",
   "overTheBox_trafic": "Traffic",
   "overTheBox_bandwidth": "Debit",
-  "overTheBox_publicIp": "Public IP address:",
+  "overTheBox_publicIp": "Public IP address",
   "overTheBox_deviceId": "Device ID:",
   "overTheBox_deviceId_button_title": "Device ID:",
   "overTheBox_deviceId_modify": "Edit",
@@ -76,5 +76,11 @@
   "overTheBox_release_channel_testing": "Beta version",
   "overTheBox_release_channel_unstable": "Alpha version",
   "overTheBox_release_channel_develop": "Development version",
-  "overTheBox_release_channel_rpi3": "Raspberry 3 version"
+  "overTheBox_release_channel_rpi3": "Raspberry 3 version",
+  "overTheBox_version_device": "Hardware version",
+  "overTheBox_version_system": "System version",
+  "overTheBox_last_seen": "Latest access to hardware from provisioning servers",
+  "overTheBox_last_seen_few_seconds": "A few seconds ago",
+  "overTheBox_last_seen_minutes_ago": "Approximately {{lastSeenDiff}} ago",
+  "overTheBox_reverse_dns": "Reverse DNS"
 }

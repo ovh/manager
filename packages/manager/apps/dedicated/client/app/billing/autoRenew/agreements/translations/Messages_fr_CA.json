@@ -13,6 +13,7 @@
   "user_agreements_to_validate": "Mes contrats à valider",
   "user_agreements_agreed": "J'ai lu et j'accepte \"{{t0}}\"",
   "user_agreements_accept": "Accepter",
+  "user_agreements_accept_all": "Accepter tous les contrats",
   "user_agreements_accept_title": "{{t0}} : accepter le contrat",
   "user_agreements_accepting": "En cours...",
   "user_agreements_download_pdf": "Télécharger",

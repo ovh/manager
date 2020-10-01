@@ -43,5 +43,6 @@
   "user_agreement_details_subtitle3": "Avviso ai clienti consumatori",
   "user_agreement_details_paragraph3": "Se non vuoi essere soggetto alle nuove disposizioni, hai la possibilità di recedere dai tuoi servizi a partire dal 20 luglio 2017 ed entro un termine massimo di 4 mesi, conformemente a quanto disposto dall’articolo L224-33 del Codice del consumo. Per inviare la richiesta, <a href=\"{0}\">crea un ticket</a> dal tuo Spazio Cliente OVH riportando nell'oggetto  \"Recesso dai miei servizi\" e indicando la data in cui desideri che il recesso diventi effettivo (immediatamente o alla data di rinnovo dei servizi).",
   "user_agreement_details_success": "Il tuo contratto è stato convalidato.",
-  "user_agreement_details_error": "Si è verificato un errore durante la conferma del tuo contratto."
+  "user_agreement_details_error": "Si è verificato un errore durante la conferma del tuo contratto.",
+  "user_agreements_accept_all": "Accetta tutti i contratti"
 }

@@ -1,0 +1,7 @@
+{
+  "user_agreements_accept_all_count": "Contratto {{current}}/{{total}}",
+  "user_agreements_accept_all_accept_and_next": "Accetta e passa al successivo",
+  "user_agreements_accept_all_read_and_accepted": "Ho letto e accetto {{contractTitle}}",
+  "user_agreements_accept_all_annexes": "Per consultare gli allegati, parte integrante del contratto (in particolare Condizioni Generali, Condizioni Particolari, allegato “Trattamento dei dati a carattere personale (DPA)”, <a href='{{url}}' target='_blank' rel='noopener' class='sì-link_icon'>accedi a questo link<span class='sì-icon-external_link' aria-hidden='true'></span></a>",
+  "user_agreements_accept_all_error": "Si è verificato un errore durante l'elaborazione della richiesta: {{message}}"
+}
