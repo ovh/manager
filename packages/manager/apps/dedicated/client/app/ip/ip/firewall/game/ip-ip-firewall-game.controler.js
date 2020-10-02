@@ -1,19 +1,23 @@
 import findIndex from 'lodash/findIndex';
 import remove from 'lodash/remove';
 
-angular
-  .module('Module.ip.controllers')
-  .controller('IpGameFirewallCtrl', function IpGameFirewallCtrl(
+angular.module('Module.ip.controllers').controller(
+  'IpGameFirewallCtrl',
+  /* @ngInject */ function IpGameFirewallCtrl(
     $scope,
     $rootScope,
     $translate,
+    goToDashboard,
     Ip,
     IpGameFirewall,
+
     Alerter,
     $q,
   ) {
     const self = this;
     const alert = 'ip_game_firewall_alert';
+
+    self.goToDashboard = goToDashboard;
 
     self.constantes = {
       DELETE_RULE_PENDING: 'deleteRulePending',
@@ -173,10 +177,6 @@ angular
       getRules();
     };
 
-    self.hideGameFirewall = function hideGameFirewall() {
-      $rootScope.$broadcast('ips.display', 'table');
-    };
-
     $scope.$on('ips.gameFirewall.display.remove', (event, ruleId) => {
       changeStateRule(ruleId, self.constantes.DELETE_RULE_PENDING);
 
@@ -215,4 +215,5 @@ angular
     $scope.$on('$destroy', () => {
       IpGameFirewall.killPollRuleState();
     });
-  });
+  },
+);

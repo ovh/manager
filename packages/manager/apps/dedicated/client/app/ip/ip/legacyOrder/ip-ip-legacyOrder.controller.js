@@ -59,7 +59,6 @@ angular.module('Module.ip.controllers').controller(
       this.$scope.orderFormValid = () => this.orderFormValid();
       this.$scope.checkDedicatedBlockSize = () =>
         this.checkDedicatedBlockSize();
-      this.$scope.orderOrganisation = () => this.orderOrganisation();
       this.$scope.loadPrices = (durations) => this.loadPrices(durations);
       this.$scope.getDurations = () => this.getDurations();
       this.$scope.loadContracts = () => this.loadContracts();
@@ -333,11 +332,6 @@ angular.module('Module.ip.controllers').controller(
       ) {
         delete this.$scope.model.params.organisationId;
       }
-    }
-
-    orderOrganisation() {
-      this.$rootScope.$broadcast('ips.display', 'organisation');
-      this.$scope.resetAction();
     }
 
     /*= =============================
