@@ -44,5 +44,6 @@
   "user_agreement_details_paragraph3": "Wenn Sie nicht möchten, dass Ihre Dienstleistungen den neuen Bestimmungen unterliegen, können Sie diese ab dem 20. Juli 2017 innerhalb von 4 Monaten und in Übereinstimmung mit den geltenden Vorschriften kündigen. Klicken Sie hierzu in Ihrem Kundencenter auf <a href=\"{0}\">Eine Support-Anfrage erstellen</a> und geben Sie Folgendes im Betreff an: „Kündigung meiner Dienstleistungen“ sowie das gewünschte Datum für die Kündigung (sofortige Kündigung oder Kündigung zur nächsten Verlängerung der Dienstleistungen).",
   "user_agreement_details_success": "Ihr Vertrag wurde erfolgreich validiert.",
   "user_agreement_details_error": "Beim Akzeptieren Ihres Vertrags ist ein Fehler aufgetreten.",
-  "user_agreement_appendices": "Um die Anhänge zu lesen, die ein integrierender Bestandteil des Vertrages sind (insbesondere die allgemeinen Geschäftsbedingungen, die besonderen Bedingungen sowie der Anhang zur Verarbeitung personenbezogener Daten (Data Processing Agreement oder DPA)), klicken Sie <a target=\"_blank\" href=\"{{t0}}\">hier</a>."
+  "user_agreement_appendices": "Um die Anhänge zu lesen, die ein integrierender Bestandteil des Vertrages sind (insbesondere die allgemeinen Geschäftsbedingungen, die besonderen Bedingungen sowie der Anhang zur Verarbeitung personenbezogener Daten (Data Processing Agreement oder DPA)), klicken Sie <a target=\"_blank\" href=\"{{t0}}\">hier</a>.",
+  "user_agreements_accept_all": "Alle Verträge annehmen"
 }
