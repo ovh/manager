@@ -10,10 +10,6 @@ angular.module('Module.ip.services').service(
       return this.allow('US');
     }
 
-    hasIpLoadBalancing() {
-      return this.deny('CA', 'EU', 'US');
-    }
-
     allowIPFailoverImport() {
       return this.deny('US');
     }
