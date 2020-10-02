@@ -1,3 +1,17 @@
+## [13.2.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.2.10...@ovh-ux/manager-telecom@13.2.11) (2020-10-02)
+
+
+### Bug Fixes
+
+* **loccale:** add flatpickr locale import ([e54afb0](https://github.com/ovh/manager/commit/e54afb0e4322152dc1dc6ec6e680caa4acc815d6))
+
+
+### Performance Improvements
+
+* **flatpickr:** add webpack context replacement for flatpickr ([8751ee9](https://github.com/ovh/manager/commit/8751ee9b5ea7db27894cace3c519fc905a9d37d5))
+
+
+
 ## [13.2.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.2.9...@ovh-ux/manager-telecom@13.2.10) (2020-10-01)
 
 

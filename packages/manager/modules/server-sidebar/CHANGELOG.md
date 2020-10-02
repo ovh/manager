@@ -1,3 +1,12 @@
+## [3.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.0.0...@ovh-ux/manager-server-sidebar@3.0.1) (2020-10-02)
+
+
+### Bug Fixes
+
+* **sidebar:** update US baremetal url ([#3750](https://github.com/ovh/manager/issues/3750)) ([6569922](https://github.com/ovh/manager/commit/6569922b62f82c61673a0273b0e3b65a89aa29ba))
+
+
+
 # [3.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@2.1.1...@ovh-ux/manager-server-sidebar@3.0.0) (2020-09-28)
 
 
