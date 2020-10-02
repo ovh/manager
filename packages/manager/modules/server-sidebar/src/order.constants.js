@@ -428,7 +428,7 @@ export const ORDER_URLS = {
   },
   US: {
     DEDICATED: {
-      US: 'https://us.ovhcloud.com/manager/dedicated/',
+      US: 'https://us.ovhcloud.com/bare-metal/',
     },
     dedicated_cloud: {
       US: 'https://us.ovhcloud.com/enterprise/products/hosted-private-cloud',
@@ -447,7 +447,7 @@ export const ORDER_URLS = {
       US: 'https://us.ovhcloud.com/solutions/ip-load-balancing/',
     },
     dedicatedOrder: {
-      US: 'https://us.ovhcloud.com/dedicated-servers/prices',
+      US: 'https://us.ovhcloud.com/bare-metal/prices/',
     },
     cloudProjectOrder: {
       US: 'https://us.ovhcloud.com/manager/cloud/#/iaas/pci/offer',
