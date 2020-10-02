@@ -1,9 +1,9 @@
-<div data-ng-controller="IpDashboardCtrl">
+<div>
     <div class="text-center" data-ng-if="loading.init">
         <oui-spinner></oui-spinner>
     </div>
 
-    <div data-ng-show="currentView == 'table' && !loading.init">
+    <div data-ng-if="!loading.init" ui-view>
         <div class="row">
             <div class="col-md-9">
                 <!-- Alerts -->
@@ -648,32 +648,4 @@
             </oui-pagination>
         </div>
     </div>
-
-    <!-- ANTISPAM -->
-
-    <div
-        data-ng-show="currentView == 'antispam' && !loading.init"
-        data-ng-include="'ip/ip/antispam/ip-ip-antispam.html'"
-    ></div>
-
-    <!-- IPTABLES -->
-
-    <div
-        data-ng-show="currentView == 'firewall' && !loading.init"
-        data-ng-include="'ip/ip/firewall/ip-ip-firewall.html'"
-    ></div>
-
-    <!-- GAME FIREWALL -->
-
-    <div
-        data-ng-show="currentView == 'gameFirewall' && !loading.init"
-        data-ng-include="'ip/ip/firewall/game/ip-ip-firewall-game.html'"
-    ></div>
-
-    <!-- ORGANISATION -->
-
-    <div
-        data-ng-show="currentView == 'organisation' && !loading.init"
-        data-ng-include="'ip/ip/organisation/ip-ip-organisation.html'"
-    ></div>
 </div>
