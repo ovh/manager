@@ -7,5 +7,9 @@ export default /* @ngInject */ ($stateProvider) => {
     controller: 'IpOrganisationCtrl',
     controllerAs: '$ctrl',
     reloadOnSearch: false,
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('ip_organisation'),
+    },
   });
 };

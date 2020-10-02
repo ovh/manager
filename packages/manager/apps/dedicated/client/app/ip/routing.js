@@ -15,6 +15,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
         $state.href($state.current.name, $transition$.params()),
       goToOrganisation: /* @ngInject */ ($state) => () =>
         $state.go('app.ip.dashboard.organisation'),
+      breadcrumb: /* @ngInject */ ($translate) => $translate.instant('ip_ip'),
     },
   });
 

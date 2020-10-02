@@ -7,5 +7,9 @@ export default /* @ngInject */ ($stateProvider) => {
     controller: 'IpGameFirewallCtrl',
     controllerAs: 'IpGameFirewallCtrl',
     reloadOnSearch: false,
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('ip_firewall_game'),
+    },
   });
 };

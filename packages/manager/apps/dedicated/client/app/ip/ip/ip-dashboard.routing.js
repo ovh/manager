@@ -21,6 +21,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('app.ip.dashboard.ip.game-firewall', {
           ip: ip.ip,
         }),
+      breadcrumb: () => null,
     },
   });
 
@@ -29,6 +30,7 @@ export default /* @ngInject */ ($stateProvider) => {
     redirectTo: 'app.ip.dashboard',
     resolve: {
       ip: /* @ngInject */ ($transition$) => $transition$.params().ip,
+      breadcrumb: /* @ngInject */ (ip) => ip,
     },
   });
 };
