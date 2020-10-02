@@ -25,11 +25,17 @@ angular
       templateUrl:
         'components/telecom/telephony/group/consumption/pie-chart/telephony-group-consumption-pie-chart.html',
       link($scope, $element, $attr, $ctrl) {
+        const minWidth = 240;
+        let toggle = $element.parent('div')[0].offsetWidth < minWidth;
         const sizeRatio = $element.parent('div')[0].offsetWidth;
         const animationRatio = 20;
         const viewBox = sizeRatio + animationRatio * 2;
         const radius = sizeRatio / 2;
         const data = $scope.dataset || [];
+
+        $scope.pieLegendClass = () => {
+          return toggle ? 'pie__legend__subtitle' : 'pie__legend';
+        };
 
         // Take angular element and do a d3 node
         const svg = d3
@@ -97,6 +103,10 @@ angular
                 pathAnim(currentArc, ~~(!clicked));
                 currentArc.classed("clicked", !clicked);
             }); */
+
+        angular.element($window).bind('resize', function() {
+          toggle = $element.parent('div')[0].offsetWidth < minWidth;
+        });
 
         $scope.$watchCollection('dataset', (dataParam) => {
           const duration = 1200;
