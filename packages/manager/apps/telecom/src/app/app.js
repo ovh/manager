@@ -183,6 +183,16 @@ angular
     },
   )
   .config(
+    /* @ngInject */ (ouiCalendarConfigurationProvider) => {
+      const lang = Environment.getUserLanguage();
+      return import(`flatpickr/dist/l10n/${lang}.js`)
+        .then((module) => {
+          ouiCalendarConfigurationProvider.setLocale(module.default[lang]);
+        })
+        .catch(() => {});
+    },
+  )
+  .config(
     /* @ngInject */ (atInternetConfigurationProvider) => {
       atInternetConfigurationProvider.setConfig(TRACKING);
     },
