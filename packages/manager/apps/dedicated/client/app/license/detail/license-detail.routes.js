@@ -4,6 +4,11 @@ angular.module('Module.license').config(($stateProvider) => {
     templateUrl: 'license/detail/license-detail.html',
     controller: 'LicenseDetailsCtrl',
     translations: { value: ['..'], format: 'json' },
+    resolve: {
+      licenseId: /* @ngInject */ ($transition$) =>
+        $transition$.params().licenseId,
+      breadcrumb: /* @ngInject */ (licenseId) => licenseId,
+    },
   });
 
   $stateProvider.state('app.license.detail.redirection', {
