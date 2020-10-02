@@ -5,6 +5,16 @@ export default class OvhManagerPciServingNamespaceModelsAddServiceCapabilities {
     this.CucPriceHelper = CucPriceHelper;
   }
 
+  getFeatures(serviceName) {
+    return this.OvhApiCloudProjectAi.Capabilities()
+      .Serving()
+      .Feature()
+      .v6()
+      .get({
+        serviceName,
+      }).$promise;
+  }
+
   getFlavors(serviceName) {
     return this.OvhApiCloudProjectAi.Capabilities()
       .Serving()
@@ -27,5 +37,25 @@ export default class OvhManagerPciServingNamespaceModelsAddServiceCapabilities {
 
   getPricesFromCatalog(projectId) {
     return this.CucPriceHelper.getPrices(projectId);
+  }
+
+  getFrameworks(serviceName) {
+    return this.OvhApiCloudProjectAi.Capabilities()
+      .Serving()
+      .Framework()
+      .v6()
+      .query({
+        serviceName,
+      }).$promise;
+  }
+
+  getBackends(serviceName) {
+    return this.OvhApiCloudProjectAi.Capabilities()
+      .Serving()
+      .Backend()
+      .v6()
+      .query({
+        serviceName,
+      }).$promise;
   }
 }

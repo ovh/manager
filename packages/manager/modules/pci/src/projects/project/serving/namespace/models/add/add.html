@@ -1,5 +1,5 @@
 <div class="servingAddModel">
-    <h1 data-translate="pci_projects_project_serving_namespace_models_add"></h1>
+    <h1 translate="pci_projects_project_serving_namespace_models_add"></h1>
 
     <oui-message type="error" data-ng-if="$ctrl.error">
         <span data-ng-bind="$ctrl.error"></span>
@@ -20,28 +20,230 @@
             >
                 <oui-radio-label>
                     <span
-                        data-translate="{{:: 'pci_projects_project_serving_namespace_models_add_type_' + workflowTemplate.toLowerCase() }}"
+                        translate="{{:: 'pci_projects_project_serving_namespace_models_add_type_' + workflowTemplate.toLowerCase() }}"
                     ></span>
                 </oui-radio-label>
                 <oui-radio-description>
                     <span
-                        data-translate="{{:: 'pci_projects_project_serving_namespace_models_add_type_' + workflowTemplate.toLowerCase() + '_popover' }}"
+                        translate="{{:: 'pci_projects_project_serving_namespace_models_add_type_' + workflowTemplate.toLowerCase() + '_popover' }}"
                     ></span>
                 </oui-radio-description>
             </oui-radio>
         </oui-step-form>
 
         <oui-step-form
-            data-header="{{ :: 'pci_projects_project_serving_namespace_models_add_model' | translate }}"
+            data-ng-if="$ctrl.model.workflowTemplate == $ctrl.BUILD_IMAGE"
+            data-header="{{:: 'pci_projects_project_serving_namespace_models_add_framework' | translate }}"
+            data-editable="!$ctrl.isAdding"
+            data-loading="$ctrl.isAdding || $ctrl.containerLoading"
+        >
+            <div class="container-fluid px-0">
+                <div class="row">
+                    <div
+                        class="col-md-6 col-xl-4 my-3"
+                        data-ng-repeat="framework in $ctrl.frameworks track by framework.id"
+                    >
+                        <oui-select-picker
+                            data-name="framework"
+                            data-label="{{:: framework.name }}"
+                            data-picture="{{:: framework.logo }}"
+                            data-model="$ctrl.model.framework"
+                            data-values="[framework]"
+                            data-variant="light"
+                            data-required
+                            on-change="$ctrl.onChangeFramework(framework)"
+                        >
+                            <oui-select-picker-section>
+                                <a
+                                    data-ng-if="framework.docPage"
+                                    target="_blank"
+                                    class="oui-button oui-button_ghost"
+                                    rel="noopener"
+                                    data-ng-href="https://docs.ovh.com/gb/en/ml-serving/{{:: framework.docPage }}"
+                                >
+                                    <span
+                                        translate="pci_projects_project_serving_namespace_models_add_framework_how_to"
+                                    ></span>
+                                </a>
+                                <a
+                                    target="_blank"
+                                    class="oui-button oui-button_ghost pull-right"
+                                    rel="noopener"
+                                    data-ng-href="{{:: framework.link }}"
+                                >
+                                    <span>{{:: framework.name }} website</span>
+                                    <span
+                                        class="oui-icon oui-icon-external-link"
+                                        aria-hidden="true"
+                                    ></span>
+                                </a>
+                            </oui-select-picker-section>
+                        </oui-select-picker>
+                    </div>
+                </div>
+
+                <button
+                    class="oui-button sizing__advanced-button oui-button_ghost my-3"
+                    type="button"
+                    data-ng-if="$ctrl.features.chooseBackend"
+                    data-ng-click="$ctrl.backendVisible = !$ctrl.backendVisible"
+                >
+                    <span
+                        translate="pci_projects_project_serving_namespace_models_add_backend"
+                    ></span>
+                    <span class="text-small">
+                        ({{::
+                        'pci_projects_project_serving_namespace_models_add_advanced'
+                        | translate }})
+                    </span>
+                </button>
+                <div class="row collapse" data-ng-if="$ctrl.backendVisible">
+                    <div class="col-xs-12">
+                        <oui-message type="info">
+                            {{::
+                            'pci_projects_project_serving_namespace_models_add_backend_description'
+                            | translate }}
+                        </oui-message>
+                    </div>
+                    <div
+                        class="col-md-6 col-xl-4 my-3"
+                        data-ng-repeat="backend in $ctrl.backends track by backend.id"
+                    >
+                        <oui-select-picker
+                            data-name="backend"
+                            data-model="$ctrl.model.backend"
+                            data-values="[backend]"
+                            data-variant="light"
+                            data-required
+                            data-disabled="!$ctrl.model.framework.backends.includes(backend.id)"
+                        >
+                            <oui-select-picker-label>
+                                {{:: backend.name }}
+                                <span
+                                    data-ng-if="backend.id === $ctrl.model.framework.recommendedBackend"
+                                    class="oui-badge oui-badge_s oui-badge_info"
+                                >
+                                    {{::
+                                    'pci_projects_project_serving_namespace_models_add_recommended'
+                                    | translate }}
+                                </span>
+                            </oui-select-picker-label>
+                            <oui-select-picker-section>
+                                <a
+                                    target="_blank"
+                                    class="oui-button oui-button_ghost"
+                                    rel="noopener"
+                                    data-ng-href="{{:: backend.link }}"
+                                >
+                                    <span>{{:: backend.name }} website</span>
+                                    <i
+                                        class="oui-icon oui-icon-external-link"
+                                        aria-hidden="true"
+                                    ></i>
+                                </a>
+                            </oui-select-picker-section>
+                        </oui-select-picker>
+                    </div>
+                </div>
+            </div>
+        </oui-step-form>
+
+        <oui-step-form
+            data-header="{{:: 'pci_projects_project_serving_namespace_models_add_model' | translate }}"
             data-editable="!$ctrl.isAdding"
             data-valid="$ctrl.model.workflowTemplate == $ctrl.PRESET_IMAGE || $ctrl.model.storagePath"
             data-loading="$ctrl.isAdding || $ctrl.containerLoading"
         >
-            <div
-                class="container-fluid px-0"
-                data-ng-if="$ctrl.model.workflowTemplate == $ctrl.PRESET_IMAGE"
-            >
-                <div class="row">
+            <div class="container-fluid px-0">
+                <div
+                    class="row"
+                    data-ng-if="$ctrl.model.workflowTemplate == $ctrl.BUILD_IMAGE"
+                >
+                    <div class="col-xs-12 py-2">
+                        <oui-message type="info">
+                            <a
+                                href="{{ $ctrl.COMPATIBILITY_GUIDE_URL[$ctrl.user.language] || $ctrl.COMPATIBILITY_GUIDE_URL['en_GB'] }}"
+                                target="_blank"
+                                rel="noopener"
+                                translate="pci_projects_project_serving_namespace_models_add_custom_info"
+                            ></a>
+                        </oui-message>
+                    </div>
+                    <div
+                        class="col-xs-12 py-2"
+                        data-ng-if="$ctrl.folders.length || $ctrl.files.length"
+                    >
+                        <oui-radio-toggle-group
+                            data-model="$ctrl.mode"
+                            data-on-change="$ctrl.resetMode()"
+                        >
+                            <oui-radio data-value="$ctrl.FOLDER_MODE">
+                                {{ ::
+                                'pci_projects_project_serving_namespace_models_add_folder_mode'
+                                | translate }}
+                            </oui-radio>
+                            <oui-radio data-value="$ctrl.FILE_MODE">
+                                {{ ::
+                                'pci_projects_project_serving_namespace_models_add_file_mode'
+                                | translate }}
+                            </oui-radio>
+                        </oui-radio-toggle-group>
+                    </div>
+                    <div
+                        class="col-xs-12 py-2"
+                        data-ng-if="$ctrl.folders.length || $ctrl.files.length"
+                    >
+                        <oui-field
+                            data-ng-if="$ctrl.mode === $ctrl.FOLDER_MODE"
+                            data-size="xl"
+                            data-help-text="{{ :: 'pci_projects_project_serving_namespace_models_add_storage_path_info_folder' | translate }}"
+                        >
+                            <oui-select
+                                data-disabled="!$ctrl.folders.length"
+                                id="storagePathFolder"
+                                data-name="storagePath"
+                                data-model="$ctrl.model.storagePath"
+                                data-items="$ctrl.folders"
+                                data-required
+                            >
+                            </oui-select>
+                        </oui-field>
+                        <oui-field
+                            data-ng-if="$ctrl.mode === $ctrl.FILE_MODE"
+                            data-size="xl"
+                            data-help-text="{{ :: 'pci_projects_project_serving_namespace_models_add_storage_path_info_file' | translate }}"
+                        >
+                            <oui-select
+                                data-disabled="!$ctrl.files.length"
+                                id="storagePathFile"
+                                data-name="storagePath"
+                                data-model="$ctrl.model.storagePath"
+                                data-items="$ctrl.files"
+                                data-required
+                            >
+                            </oui-select>
+                        </oui-field>
+                    </div>
+
+                    <div class="col-xs-12 py-2">
+                        <button
+                            class="oui-button oui-button_ghost"
+                            type="button"
+                            ng-click="$ctrl.goToContainer()"
+                            data-ng-if="!$ctrl.files.length && !$ctrl.folders.length"
+                        >
+                            <span
+                                class="text-danger"
+                                translate="pci_projects_project_serving_namespace_models_add_storage_path_no_path"
+                            ></span>
+                        </button>
+                    </div>
+                </div>
+
+                <div
+                    class="row"
+                    data-ng-if="$ctrl.model.workflowTemplate == $ctrl.PRESET_IMAGE"
+                >
                     <div
                         class="col-md-6 col-xl-4 my-3"
                         data-ng-repeat="preset in $ctrl.presetImages track by preset.id"
@@ -49,7 +251,7 @@
                         <oui-select-picker
                             data-name="{{:: preset.id }}"
                             data-description="{{:: preset.description }}"
-                            data-model="$ctrl.model.imageId"
+                            data-model="$ctrl.model.image"
                             data-label="{{:: preset.name }}"
                             data-variant="light"
                             data-values="[preset]"
@@ -65,7 +267,7 @@
                                     data-ng-href="{{:: preset.link }}"
                                 >
                                     <span
-                                        data-translate="pci_projects_project_serving_namespace_models_add_model_preset_info"
+                                        translate="pci_projects_project_serving_namespace_models_add_model_preset_info"
                                     ></span>
                                     <i
                                         class="oui-icon oui-icon-external-link"
@@ -76,75 +278,6 @@
                         </oui-select-picker>
                     </div>
                 </div>
-            </div>
-
-            <div data-ng-if="$ctrl.model.workflowTemplate == $ctrl.BUILD_IMAGE">
-                <oui-message type="info">
-                    <a
-                        href="{{ $ctrl.COMPATIBILITY_GUIDE_URL }}"
-                        target="_blank"
-                        rel="noopener"
-                        data-translate="pci_projects_project_serving_namespace_models_add_custom_info"
-                    ></a>
-                </oui-message>
-                <div data-ng-if="$ctrl.folders.length || $ctrl.files.length">
-                    <oui-radio-toggle-group
-                        data-model="$ctrl.mode"
-                        data-on-change="$ctrl.resetMode()"
-                    >
-                        <oui-radio data-value="$ctrl.FOLDER_MODE">
-                            {{ ::
-                            'pci_projects_project_serving_namespace_models_add_folder_mode'
-                            | translate }}
-                        </oui-radio>
-                        <oui-radio data-value="$ctrl.FILE_MODE">
-                            {{ ::
-                            'pci_projects_project_serving_namespace_models_add_file_mode'
-                            | translate }}
-                        </oui-radio>
-                    </oui-radio-toggle-group>
-                    <oui-field
-                        data-ng-if="$ctrl.mode === $ctrl.FOLDER_MODE"
-                        data-size="xl"
-                        data-help-text="{{ :: 'pci_projects_project_serving_namespace_models_add_storage_path_info_folder' | translate }}"
-                    >
-                        <oui-select
-                            data-disabled="!$ctrl.folders.length"
-                            id="storagePathFolder"
-                            data-name="storagePath"
-                            data-model="$ctrl.model.storagePath"
-                            data-items="$ctrl.folders"
-                            data-required
-                        >
-                        </oui-select>
-                    </oui-field>
-                    <oui-field
-                        data-ng-if="$ctrl.mode === $ctrl.FILE_MODE"
-                        data-size="xl"
-                        data-help-text="{{ :: 'pci_projects_project_serving_namespace_models_add_storage_path_info_file' | translate }}"
-                    >
-                        <oui-select
-                            data-disabled="!$ctrl.files.length"
-                            id="storagePathFile"
-                            data-name="storagePath"
-                            data-model="$ctrl.model.storagePath"
-                            data-items="$ctrl.files"
-                            data-required
-                        >
-                        </oui-select>
-                    </oui-field>
-                </div>
-                <button
-                    class="oui-button oui-button_ghost"
-                    type="button"
-                    ng-click="$ctrl.goToContainer()"
-                    data-ng-if="!$ctrl.files.length && !$ctrl.folders.length"
-                >
-                    <span
-                        class="text-danger"
-                        data-translate="pci_projects_project_serving_namespace_models_add_storage_path_no_path"
-                    ></span>
-                </button>
             </div>
         </oui-step-form>
 
@@ -191,7 +324,7 @@
                 data-size="auto"
             >
                 <oui-numeric
-                    min="2"
+                    min="1"
                     max="20"
                     data-model="$ctrl.model.autoscalingSpec.maxReplicas"
                     name="maxReplicas"
@@ -199,7 +332,7 @@
                 </oui-numeric>
             </oui-field>
             <button
-                class="oui-button sizing__advanced-button oui-button_ghost"
+                class="oui-button sizing__advanced-button oui-button_ghost mb-2"
                 type="button"
                 data-ng-click="$ctrl.onClickAdvancedConfigurationAutoscalerSpecHandler()"
             >
@@ -253,6 +386,7 @@
                             data-label="{{:: flavor.id }}"
                             data-variant="light"
                             data-values="[flavor]"
+                            data-disabled="$ctrl.isFlavorDisabled(flavor)"
                             data-required
                         >
                             <oui-select-picker-description>
@@ -268,7 +402,7 @@
                                     </ovh-manager-catalog-price>
                                     /
                                     <span
-                                        data-translate="pci_projects_project_serving_namespace_models_add_price_unit"
+                                        translate="pci_projects_project_serving_namespace_models_add_price_unit"
                                     ></span>
                                 </p>
                             </oui-select-picker-description>
