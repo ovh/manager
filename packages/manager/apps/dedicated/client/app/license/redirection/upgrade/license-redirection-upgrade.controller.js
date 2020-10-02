@@ -15,7 +15,7 @@ angular.module('Module.license').controller(
     redirectToUpgrade() {
       this.$scope.resetAction();
       this.$timeout(() => {
-        this.$state.go('app.license.upgrade', {
+        this.$state.go('app.license.detail.upgrade', {
           licenseId: this.licenseId,
         });
       }, 300);
