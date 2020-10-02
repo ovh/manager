@@ -1,5 +1,5 @@
 angular.module('App').config(($stateProvider) => {
-  $stateProvider.state('app.ip.agora-order', {
+  $stateProvider.state('app.ip.dashboard.agora-order', {
     url: '/agoraOrder',
     params: {
       service: null,

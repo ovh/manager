@@ -1,54 +1,23 @@
-import kebabCase from 'lodash/kebabCase';
-
-angular.module('Module.ip.controllers').controller('IpMainCtrl', [
-  '$scope',
-  '$timeout',
-  '$stateParams',
-  '$location',
-  '$translate',
-  'Alerter',
-  'coreConfig',
-  'currentUser',
-  'ipFeatureAvailability',
-  function IpMainCtrl(
+angular.module('Module.ip.controllers').controller(
+  'IpMainCtrl',
+  /* @ngInject */ function IpMainCtrl(
     $scope,
     $timeout,
-    $stateParams,
-    $location,
     $translate,
     Alerter,
     coreConfig,
+    currentActiveLink,
     currentUser,
-    ipFeatureAvailability,
+    dashboardLink,
+    goToOrganisation,
   ) {
-    const defaultTab = 'ip';
-    $scope.tabs = ['ip'];
     $scope.currentUser = currentUser;
+    this.currentActiveLink = currentActiveLink;
+    this.dashboardLink = dashboardLink;
 
-    if (ipFeatureAvailability.hasIpLoadBalancing()) {
-      $scope.tabs.push('ip-lb');
-    }
+    $scope.goToOrganisation = () => goToOrganisation();
 
     $scope.worldPart = coreConfig.getRegion();
-    $scope.toKebabCase = kebabCase;
-
-    $scope.setSelectedTab = function setSelectedTab(tab) {
-      if (tab !== undefined && tab !== null && tab !== '') {
-        $scope.selectedTab = tab;
-      } else {
-        $scope.selectedTab = defaultTab;
-      }
-      $location.search('tab', $scope.selectedTab);
-    };
-
-    if (
-      $stateParams.tab &&
-      ~$scope.tabs.indexOf(angular.uppercase($stateParams.tab))
-    ) {
-      $scope.setSelectedTab(angular.uppercase($stateParams.tab));
-    } else {
-      $scope.setSelectedTab(defaultTab);
-    }
 
     // ---
 
@@ -94,4 +63,4 @@ angular.module('Module.ip.controllers').controller('IpMainCtrl', [
       );
     });
   },
-]);
+);

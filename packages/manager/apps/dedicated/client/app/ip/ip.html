@@ -1,24 +1,19 @@
-<div class="page-header">
-    <h1 data-translate="module_ip_dashboard_title"></h1>
-</div>
-
-<duc-ovh-tabs
-    tabs="tabs"
-    selected-tab="selectedTab"
-    product="module_ip"
-    change-tab="setSelectedTab"
-    tr="tr"
->
-</duc-ovh-tabs>
+<oui-header heading="{{:: 'module_ip_dashboard_title' | translate }}">
+    <oui-header-tabs>
+        <oui-header-tabs-item
+            href="{{ $ctrl.dashboardLink }}"
+            active="$ctrl.dashboardLink === $ctrl.currentActiveLink()"
+        >
+            <span data-translate="ip_ip"></span>
+        </oui-header-tabs-item>
+    </oui-header-tabs>
+</oui-header>
 
 <div class="tab-content">
     <div data-ovh-alert></div>
     <div data-ovh-alert="polling_action"></div>
     <div data-ovh-alert="otrs_alert"></div>
-    <div
-        class="tab-pane active"
-        data-ng-include="'ip/' + toKebabCase(selectedTab) + '/ip-' + selectedTab + '.html'"
-    ></div>
+    <div ui-view></div>
     <div id="currentAction" class="modal fade currentAction" data-role="dialog">
         <div class="modal-dialog">
             <div

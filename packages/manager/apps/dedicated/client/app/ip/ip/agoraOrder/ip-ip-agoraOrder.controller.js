@@ -27,6 +27,7 @@ angular.module('Module.ip.controllers').controller(
       $translate,
       $window,
       Alerter,
+      goToOrganisation,
       IpAgoraOrder,
       IpOrganisation,
       User,
@@ -38,6 +39,7 @@ angular.module('Module.ip.controllers').controller(
       this.$translate = $translate;
       this.$window = $window;
       this.Alerter = Alerter;
+      this.goToOrganisation = goToOrganisation;
       this.IpAgoraOrder = IpAgoraOrder;
       this.IpOrganisation = IpOrganisation;
       this.User = User;
@@ -297,11 +299,6 @@ angular.module('Module.ip.controllers').controller(
       }
 
       return true;
-    }
-
-    redirectToOrganisationPage() {
-      this.$rootScope.$broadcast('ips.display', 'organisation');
-      this.$state.go('^');
     }
 
     redirectToPaymentPage() {
