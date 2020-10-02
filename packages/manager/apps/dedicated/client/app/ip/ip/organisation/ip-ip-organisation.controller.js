@@ -1,9 +1,18 @@
 angular.module('Module.ip.controllers').controller(
   'IpOrganisationCtrl',
   class IpOrganisationController {
-    constructor($scope, $translate, Ip, IpOrganisation, Alerter) {
+    /* @ngInject */
+    constructor(
+      $scope,
+      $translate,
+      goToDashboard,
+      Ip,
+      IpOrganisation,
+      Alerter,
+    ) {
       this.$scope = $scope;
       this.$translate = $translate;
+      this.goToDashboard = goToDashboard;
       this.Ip = Ip;
       this.IpOrganisation = IpOrganisation;
       this.Alerter = Alerter;
@@ -37,10 +46,6 @@ angular.module('Module.ip.controllers').controller(
         .finally(() => {
           this.$scope.loadingOrganisation = false;
         });
-    }
-
-    hideOrganisation() {
-      return this.$scope.$emit('ips.display', 'table');
     }
   },
 );
