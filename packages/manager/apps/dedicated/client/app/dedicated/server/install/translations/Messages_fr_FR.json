@@ -1,0 +1,12 @@
+{
+  "dedicated_server_install": "Installer un système (OS)",
+  "dedicated_server_install_intro": "Vous êtes sur le point d'installer un OS sur le serveur <strong>{{ serverName }}</strong>",
+  "dedicated_server_install_warning": "Attention : tous les disques du serveur seront formatés lors de l'installation.",
+  "dedicated_server_install_type_ovh": "Installer une image OVHcloud",
+  "dedicated_server_install_type_ovh_description": "Utilisez les images de distributions maintenues par OVHcloud.",
+  "dedicated_server_install_type_template": "Utiliser vos gabarits d'installation",
+  "dedicated_server_install_type_template_description": "Sauvegardez vos paramètres d'installation dans des gabarits et simplifiez vos déploiements.",
+  "dedicated_server_install_type_image": "Installer une image personnalisée",
+  "dedicated_server_install_type_image_description": "Utilisez vos propres images de distributions sur votre serveur.",
+  "dedicated_server_install_continue": "Étape suivante"
+}

@@ -1,0 +1,57 @@
+<div class="dedicated-server-install p-4">
+    <div data-ui-view>
+        <h1 data-translate="dedicated_server_install"></h1>
+
+        <p
+            data-translate="dedicated_server_install_intro"
+            data-translate-values="{ serverName: $ctrl.server.displayName }"
+        ></p>
+
+        <div class="row mb-3">
+            <div class="col-md-8">
+                <oui-message type="warning">
+                    <span
+                        data-translate="dedicated_server_install_warning"
+                    ></span>
+                </oui-message>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <oui-radio
+                    data-ng-repeat="installationType in $ctrl.installationTypes track by $index"
+                    data-description="{{ :: 'dedicated_server_install_type_' + installationType + '_description' | translate }}"
+                    data-model="$ctrl.model.installationType"
+                    data-name="installChoice"
+                    data-value="installationType"
+                    data-thumbnail
+                >
+                    <span
+                        data-translate="{{ 'dedicated_server_install_type_' + installationType }}"
+                    ></span>
+                </oui-radio>
+
+                <oui-button
+                    class="mt-3"
+                    data-ng-if="!$ctrl.model.installationType"
+                    data-variant="primary"
+                    data-size="l"
+                    data-disabled="true"
+                >
+                    <span
+                        data-translate="dedicated_server_install_continue"
+                    ></span>
+                </oui-button>
+
+                <a
+                    class="oui-button oui-button_l oui-button_primary mt-3"
+                    data-ng-href="{{ :: $ctrl.getInstallationTypeHref($ctrl.model.installationType) }}"
+                    data-ng-if="$ctrl.model.installationType"
+                    data-translate="dedicated_server_install_continue"
+                >
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
