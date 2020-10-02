@@ -1,4 +1,6 @@
 import associateIpBloc from './ip/associate-ip-bloc';
+import dashboard from './ip/ip.module';
+import routing from './routing';
 
 angular
   .module('Module.ip', [
@@ -10,16 +12,7 @@ angular
     'ngRoute',
     'ngSanitize',
     'ui.bootstrap',
+    dashboard,
   ])
-  .config([
-    '$stateProvider',
-    ($stateProvider) => {
-      $stateProvider.state('app.ip', {
-        url: '/configuration/ip?serviceName&page&pageSize',
-        templateUrl: 'ip/ip.html',
-        controller: 'IpMainCtrl',
-        reloadOnSearch: false,
-        translations: { value: ['.', './ip/reverse/update'], format: 'json' },
-      });
-    },
-  ]);
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
