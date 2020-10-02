@@ -104,8 +104,13 @@ angular
                 currentArc.classed("clicked", !clicked);
             }); */
 
-        angular.element($window).bind('resize', function() {
+        const onResize = () => {
           toggle = $element.parent('div')[0].offsetWidth < minWidth;
+        };
+
+        angular.element($window).on('resize', onResize);
+        $scope.$on('$destroy', () => {
+          angular.element($window).off('resize', onResize);
         });
 
         $scope.$watchCollection('dataset', (dataParam) => {
