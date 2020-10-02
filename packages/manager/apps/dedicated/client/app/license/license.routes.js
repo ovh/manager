@@ -1,7 +1,8 @@
-angular.module('Module.license').config(($stateProvider) => {
+angular
+  .module('Module.license')
+  .config(($stateProvider, $urlRouterProvider) => {
   $stateProvider.state('app.license', {
-    abstract: true,
-    url: '/configuration/license',
+      url: '/license',
     template: '<ui-view/>',
     translations: { value: ['.'], format: 'json' },
   });
@@ -9,5 +10,9 @@ angular.module('Module.license').config(($stateProvider) => {
     url: '',
     templateUrl: 'license/license.html',
     controller: 'LicenseCtrl',
+    });
+
+    $urlRouterProvider.when(/^\/configuration\/license/, () => {
+      window.location.href = window.location.href.replace('/configuration', '');
   });
 });
