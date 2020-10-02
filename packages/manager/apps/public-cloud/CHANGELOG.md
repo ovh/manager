@@ -1,3 +1,17 @@
+## [4.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.2.1...@ovh-ux/manager-public-cloud@4.2.2) (2020-10-02)
+
+
+### Bug Fixes
+
+* **loccale:** add flatpickr locale import ([e54afb0](https://github.com/ovh/manager/commit/e54afb0e4322152dc1dc6ec6e680caa4acc815d6))
+
+
+### Performance Improvements
+
+* **flatpickr:** add webpack context replacement for flatpickr ([8751ee9](https://github.com/ovh/manager/commit/8751ee9b5ea7db27894cace3c519fc905a9d37d5))
+
+
+
 ## [4.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.2.0...@ovh-ux/manager-public-cloud@4.2.1) (2020-09-21)
 
 

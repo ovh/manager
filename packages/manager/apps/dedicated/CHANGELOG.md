@@ -1,3 +1,17 @@
+## [14.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.1.1...@ovh-ux/manager-dedicated@14.1.2) (2020-10-02)
+
+
+### Bug Fixes
+
+* **locale:** add flatpickr locale import ([#3743](https://github.com/ovh/manager/issues/3743)) ([59291a4](https://github.com/ovh/manager/commit/59291a40b1bd419ff174d9652f88a8abbf56dbc6))
+
+
+### Performance Improvements
+
+* **flatpickr:** add webpack context replacement for flatpickr ([8751ee9](https://github.com/ovh/manager/commit/8751ee9b5ea7db27894cace3c519fc905a9d37d5))
+
+
+
 ## [14.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.1.0...@ovh-ux/manager-dedicated@14.1.1) (2020-10-01)
 
 
