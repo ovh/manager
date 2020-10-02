@@ -1,12 +1,11 @@
-<div class="dedicated-server-install p-4">
-    <div data-ui-view>
-        <h1 data-translate="dedicated_server_install"></h1>
+<div class="dedicated-server-install" data-ui-view>
+    <oui-header
+        heading="{{ :: 'dedicated_server_install' | translate }}"
+        description="{{ :: 'dedicated_server_install_intro' | translate:{ serverName: $ctrl.server.displayName } }}"
+    >
+    </oui-header>
 
-        <p
-            data-translate="dedicated_server_install_intro"
-            data-translate-values="{ serverName: $ctrl.server.displayName }"
-        ></p>
-
+    <div class="tab-content">
         <div class="row mb-3">
             <div class="col-md-8">
                 <oui-message type="warning">
