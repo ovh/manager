@@ -6,5 +6,9 @@ export default /* @ngInject */ ($stateProvider) => {
     template,
     controller: 'IpAntispamCtrl',
     reloadOnSearch: false,
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('ip_antispam'),
+    },
   });
 };
