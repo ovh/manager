@@ -1,0 +1,55 @@
+<div class="cui-page__content">
+    <oui-back-button data-ui-sref="dbaas-logs.detail.roles"
+        ><span data-translate="logs_roles_members_title"></span
+    ></oui-back-button>
+
+    <p
+        data-translate="logs_roles_members_subtitle"
+        translate-value-name="{{ctrl.roleDetails.data.info.name}}"
+    ></p>
+    <p data-translate="logs_roles_members_description"></p>
+
+    <oui-datagrid rows="ctrl.roleDetails.data.members">
+        <oui-datagrid-topbar>
+            <button
+                type="button"
+                class="oui-button oui-button_secondary"
+                data-ng-click="ctrl.add()"
+                data-ng-if="!ctrl.delete.loading"
+            >
+                <i class="oui-icon oui-icon-add pr-1" aria-hidden="true"></i> {{
+                ::'logs_roles_members_add' | translate }}
+            </button>
+            <oui-spinner data-size="m" data-ng-if="ctrl.delete.loading">
+            </oui-spinner>
+        </oui-datagrid-topbar>
+        <oui-datagrid-column
+            title=":: 'logs_roles_members_user_account' | translate"
+            property="username"
+            sortable="asc"
+            type="string"
+            searchable
+            filterable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            title=":: 'logs_roles_members_note' | translate"
+            property="note"
+            sortable
+            type="string"
+            searchable
+            filterable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            title=":: 'logs_roles_members_date_added' | translate"
+            property="createdAt"
+            type="date"
+        >
+            {{ $row.createdAt | cucMomentFormat:'L'}}
+        </oui-datagrid-column>
+        <oui-action-menu compact data-placement="end">
+            <oui-action-menu-item on-click="ctrl.revoke($row)"
+                ><span data-translate="logs_roles_members_revoke"></span
+            ></oui-action-menu-item>
+        </oui-action-menu>
+    </oui-datagrid>
+</div>

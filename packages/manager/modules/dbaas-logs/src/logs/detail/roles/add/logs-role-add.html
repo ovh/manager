@@ -1,0 +1,43 @@
+<form novalidate name="ctrl.form">
+    <oui-modal
+        data-primary-action="ctrl.save()"
+        data-primary-label="{{ ::'logs_save' | translate }}"
+        data-secondary-action="ctrl.cancel()"
+        data-secondary-label="{{ ::'logs_cancel' | translate }}"
+        data-on-dismiss="ctrl.cancel()"
+        data-loading="ctrl.saving.loading"
+        data-heading="{{ ::ctrl.title | translate }}"
+    >
+        <div data-ng-if="ctrl.isEdit" class="mb-3">
+            <span
+                data-translate="logs_role_modal_edit_desription"
+                data-translate-values="{role: ctrl.role.name}"
+            ></span>
+        </div>
+
+        <oui-field data-label="{{::'logs_role_modal_name' | translate }}">
+            <input
+                type="text"
+                id="name"
+                name="name"
+                class="oui-input mb-0"
+                data-ng-model="ctrl.role.name"
+                cuc-autofocus
+                required
+            />
+        </oui-field>
+
+        <oui-field
+            data-label="{{::'logs_role_modal_description' | translate }}"
+        >
+            <input
+                type="text"
+                id="description"
+                name="description"
+                class="oui-input"
+                data-ng-model="ctrl.role.description"
+                required
+            />
+        </oui-field>
+    </oui-modal>
+</form>
