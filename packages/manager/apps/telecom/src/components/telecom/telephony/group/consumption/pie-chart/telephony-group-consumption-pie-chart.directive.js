@@ -1,3 +1,5 @@
+import throttle from 'lodash/throttle';
+
 angular.module('managerApp').run(($translate, asyncLoader) => {
   asyncLoader.addTranslations(
     import(`./translations/Messages_${$translate.use()}.json`)
@@ -25,17 +27,13 @@ angular
       templateUrl:
         'components/telecom/telephony/group/consumption/pie-chart/telephony-group-consumption-pie-chart.html',
       link($scope, $element, $attr, $ctrl) {
-        const minWidth = 240;
-        let toggle = $element.parent('div')[0].offsetWidth < minWidth;
+        const minWidth = 280;
+        $scope.toggle = $element.parent('div')[0].offsetWidth < minWidth;
         const sizeRatio = $element.parent('div')[0].offsetWidth;
         const animationRatio = 20;
         const viewBox = sizeRatio + animationRatio * 2;
         const radius = sizeRatio / 2;
         const data = $scope.dataset || [];
-
-        $scope.pieLegendClass = () => {
-          return toggle ? 'pie__legend__subtitle' : 'pie__legend';
-        };
 
         // Take angular element and do a d3 node
         const svg = d3
@@ -105,12 +103,14 @@ angular
             }); */
 
         const onResize = () => {
-          toggle = $element.parent('div')[0].offsetWidth < minWidth;
+          $scope.toggle = $element.parent('div')[0].offsetWidth < minWidth;
         };
 
-        angular.element($window).on('resize', onResize);
+        const throttledResize = throttle(onResize, 300);
+
+        angular.element($window).on('resize', throttledResize);
         $scope.$on('$destroy', () => {
-          angular.element($window).off('resize', onResize);
+          angular.element($window).off('resize', throttledResize);
         });
 
         $scope.$watchCollection('dataset', (dataParam) => {

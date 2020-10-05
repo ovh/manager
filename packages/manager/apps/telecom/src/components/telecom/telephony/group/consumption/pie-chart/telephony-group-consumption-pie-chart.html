@@ -1,4 +1,6 @@
-<div class="{{pieLegendClass()}}">
+<div
+    data-ng-class="{ 'pie__legend': !toggle, 'pie__legend__subtitle': toggle }"
+>
     <ul data-ng-if="!PieCtrl.loading.translations">
         <li data-ng-repeat="set in PieCtrl.dataset">
             <i
