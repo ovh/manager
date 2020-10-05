@@ -2572,7 +2572,7 @@
   dependencies:
     "@types/node" ">= 8"
 
-"@ovh-ux/ng-ovh-api-wrappers@^4.0.8":
+"@ovh-ux/ng-ovh-api-wrappers@^4.0.4", "@ovh-ux/ng-ovh-api-wrappers@^4.0.8":
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-api-wrappers/-/ng-ovh-api-wrappers-4.0.8.tgz#f95c8ce909f7baa59f8fd85949801e7d74bf6dbd"
   integrity sha512-V1x01nBs+bmTKD8PV69StlHU9v4CeA4lqLIB/oom2PmQIcsSRhhaiwFE5JCui7fDi0+A8sZSg4EUDMie/M3QQg==
@@ -2602,7 +2602,7 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/translate-async-loader/-/translate-async-loader-1.0.8.tgz#7cbdc3dfed1042f511206ff6bb9f14c33b8406ba"
   integrity sha512-8yEhPeRTSxtEO9ODXRYZw6pzRQiV5ULCTi8mIzt39m/b9N2TcIF4ILTPsaa8xpE4npHKa/iYgL9z0HJUFi2LGQ==
 
-"@ovh-ux/ui-kit@^4.2.3":
+"@ovh-ux/ui-kit@^4.1.11", "@ovh-ux/ui-kit@^4.2.3":
   version "4.3.4"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-4.3.4.tgz#cd3f9d755c7cfbec9b8506628774b6ab2df85ba9"
   integrity sha512-FEPlY6CMZatnQE6Z6A931ddgNpkjifzwGYrqFEzvmLWCNCa3dHLg1RGNeSzi7vFAbo856Nw3PC+GxgP/GHMGwg==
@@ -3690,7 +3690,7 @@ angular-vs-repeat@^2.0.13:
   resolved "https://registry.yarnpkg.com/angular-vs-repeat/-/angular-vs-repeat-2.0.13.tgz#f20c28e7357d3e70cc894398b301921717795e92"
   integrity sha512-Jb0DOt4jU5/xZx7wjKvgZJtgAaMA4ZFLq5aeQHU8U2IZz8ixWP0ML6gFWQ1yefMapvg5LV+ZfA81ZeeN/NtJ7A==
 
-angular-websocket@^2.0.0:
+angular-websocket@^2.0.0, angular-websocket@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/angular-websocket/-/angular-websocket-2.0.1.tgz#0fb4d60ed9018be583d031eec4e56b457cb8dcee"
   integrity sha1-D7TWDtkBi+WD0DHuxOVrRXy43O4=
@@ -9578,6 +9578,11 @@ flatpickr@^4.6.3:
   resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.6.6.tgz#34d2ad80adfa34254e62583a34264d472f1038d6"
   integrity sha512-EZ48CJMttMg3maMhJoX+GvTuuEhX/RbA1YeuI19attP3pwBdbYy6+yqAEVm0o0hSBFYBiLbVxscLW6gJXq6H3A==
 
+flatpickr@~4.5.2:
+  version "4.5.7"
+  resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.5.7.tgz#6efc0d93c65547aa77294205c67830ebabe3565c"
+  integrity sha512-JqPfihUc9A/j9QAsh6otoARmMyUauPE17vRBEG+ThJwbl8zAq4ssGpxlPK3wWM/i8EFxkHg9UuVo0ds7XluKxw==
+
 flatted@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-2.0.1.tgz#69e57caa8f0eacbc281d2e2cb458d46fdb449e08"
@@ -13665,6 +13670,11 @@ moment@^2.10.3, moment@^2.14.1:
   version "2.25.3"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.25.3.tgz#252ff41319cf41e47761a1a88cab30edfe9808c0"
   integrity sha512-PuYv0PHxZvzc15Sp8ybUCoQ+xpyPWvjOuK72a5ovzp2LI32rJXOiIfyoFoYvG3s6EwwrdkMyWuRiEHSZRLJNdg==
+
+moment@^2.29.0:
+  version "2.29.0"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.0.tgz#fcbef955844d91deb55438613ddcec56e86a3425"
+  integrity sha512-z6IJ5HXYiuxvFTI6eiQ9dm77uE0gyy1yXNApVHqTcnIKfY9tIwEjlzsZ6u1LQXvVgKeTnv9Xm7NDvJ7lso3MtA==
 
 move-concurrently@^1.0.1:
   version "1.0.1"
