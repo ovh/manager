@@ -473,6 +473,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     linkId: 'publicCloudProjectOrder',
     app: [DEDICATED],
     regions: ['EU', 'CA', 'US'],
+    tracker: 'dedicated::orders::public-cloud-project::order',
   },
   {
     id: 'order-nas',
@@ -482,6 +483,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     linkPart: '#/configuration/nas',
     app: [DEDICATED],
     regions: ['EU'],
+    tracker: 'dedicated::orders::nas::order',
   },
   {
     id: 'order-dedicated-server',
@@ -492,6 +494,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     external: true,
     app: [DEDICATED],
     regions: ['EU', 'CA', 'US'],
+    tracker: 'dedicated::orders::dedicated-servers::order',
   },
   {
     id: 'order-additional-ip',
@@ -502,6 +505,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     linkPart: '#/configuration/ip?landingTo=ip&tab=ip',
     app: [DEDICATED],
     regions: ['EU', 'CA', 'US'],
+    tracker: 'dedicated::orders::additional-ip::order',
   },
   {
     id: 'order-license',
@@ -511,6 +515,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     linkPart: '#/configuration/license/order',
     app: [DEDICATED],
     regions: ['EU', 'CA', 'US'],
+    tracker: 'dedicated::orders::licences::order',
   },
 
   // CLOUD
@@ -523,6 +528,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     external: true,
     app: [CLOUD],
     regions: ['EU'],
+    tracker: 'dedicated::orders::managed-kubernetes::order',
   },
   {
     id: 'order-vps',
@@ -532,6 +538,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     target: '_blank',
     external: true,
     app: [CLOUD],
+    tracker: 'dedicated::orders::vps::order',
   },
   {
     id: 'order-private-cloud',
@@ -542,6 +549,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     external: true,
     app: [CLOUD],
     regions: ['EU', 'CA', 'US'],
+    tracker: 'dedicated::orders::hpc::order',
   },
   {
     id: 'order-cda',
@@ -552,6 +560,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     external: true,
     app: [CLOUD],
     regions: ['EU', 'CA'],
+    tracker: 'dedicated::orders::cloud-disk-array::order',
   },
   {
     id: 'order-nasha',
@@ -561,6 +570,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     linkPart: '#/nasha/new',
     app: [DEDICATED],
     regions: ['EU', 'CA'],
+    tracker: 'dedicated::orders::nasha::order',
   },
   {
     id: 'order-veeam',
@@ -571,6 +581,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     external: true,
     app: [CLOUD],
     regions: ['EU'],
+    tracker: 'dedicated::orders::veeam-cc::order',
   },
   {
     id: 'order-veeam-enterprise',
@@ -581,6 +592,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     external: true,
     app: [CLOUD],
     regions: ['EU', 'CA'],
+    tracker: 'dedicated::orders::veeam-enterprise::order',
   },
   {
     id: 'order-vrack',
@@ -591,6 +603,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     external: true,
     app: [DEDICATED],
     regions: ['EU', 'CA', 'US'],
+    tracker: 'dedicated::orders::vrack::order',
   },
   {
     id: 'order-cloud-desktop',
@@ -601,6 +614,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     external: true,
     app: [CLOUD],
     regions: ['EU', 'CA'],
+    tracker: 'dedicated::orders::cloud-desktop-infrastructure::order',
   },
   {
     id: 'order-loadbalancer',
@@ -611,6 +625,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     external: true,
     app: [CLOUD],
     regions: ['EU'],
+    tracker: 'dedicated::orders::ip-load-balancer::order',
   },
   {
     id: 'order-logs',
@@ -621,6 +636,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     external: true,
     app: [CLOUD],
     regions: ['EU', 'CA'],
+    tracker: 'dedicated::orders::logs::order',
   },
   {
     id: 'order-enterprise-cloud-database',
@@ -630,6 +646,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     linkPart: '#/enterprise-cloud-database/create',
     app: [DEDICATED],
     regions: ['EU'],
+    tracker: 'dedicated::orders::cloud-db-enterprise::order',
   },
   {
     id: 'order-ovh-cloud-connect',
@@ -641,6 +658,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     external: true,
     app: [DEDICATED],
     regions: ['EU'],
+    tracker: 'dedicated::orders::ovh-cloud-connect::order',
   },
 ];
 

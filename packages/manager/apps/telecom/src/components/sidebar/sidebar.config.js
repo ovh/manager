@@ -169,7 +169,7 @@ angular
             target: '_blank',
             external: true,
             onClick: setTracker(
-              'DomainsName',
+              'telecom::orders::domain-name::order',
               'navigation',
               'Telecom',
               'telecom',
@@ -194,7 +194,7 @@ angular
                             target: '_blank',
                             external: true,
                             onClick: setTracker(
-                              'order-ADSL_VDSL',
+                              'telecom::orders::xdsl::order',
                               'navigation',
                               'Telecom',
                               'telecom',
@@ -208,7 +208,7 @@ angular
                             target: '_blank',
                             external: true,
                             onClick: setTracker(
-                              'order-FIBER',
+                              'telecom::orders::fibre::order',
                               'navigation',
                               'Telecom',
                               'telecom',
@@ -222,7 +222,7 @@ angular
                             target: '_blank',
                             external: true,
                             onClick: setTracker(
-                              'order-SDSL',
+                              'telecom::orders::sdsl::order',
                               'navigation',
                               'Telecom',
                               'telecom',
@@ -236,7 +236,7 @@ angular
                             target: '_blank',
                             external: true,
                             onClick: setTracker(
-                              'order-ADSL',
+                              'telecom::orders::adsl-new::order',
                               'navigation',
                               'Telecom',
                               'telecom',
@@ -274,7 +274,7 @@ angular
                       target: '_blank',
                       external: true,
                       onClick: setTracker(
-                        'order-VOIP',
+                        'telecom::orders::telephony::voip::order',
                         'navigation',
                         'Telecom',
                         'telecom',
@@ -288,7 +288,7 @@ angular
                       target: '_blank',
                       external: true,
                       onClick: setTracker(
-                        'order-Pack_SIP_Trunk',
+                        'telecom::orders::telephony::sip-trunk::order',
                         'navigation',
                         'Telecom',
                         'telecom',
@@ -302,7 +302,7 @@ angular
                       target: '_blank',
                       external: true,
                       onClick: setTracker(
-                        'order-SIP_Trunk_Abo',
+                        'telecom::orders::telephony::sip-trunk-included::order',
                         'navigation',
                         'Telecom',
                         'telecom',
@@ -332,7 +332,7 @@ angular
                 target: '_blank',
                 external: true,
                 onClick: setTracker(
-                  'order-Email_ExchangeHosted',
+                  'telecom::orders::email::email-microsoft-exchange::order',
                   'navigation',
                   'Telecom',
                   'telecom',
@@ -348,7 +348,7 @@ angular
                 target: '_blank',
                 external: true,
                 onClick: setTracker(
-                  'order-Email_Sharepoint',
+                  'telecom::orders::email::microsoft-sharepoint::order',
                   'navigation',
                   'Telecom',
                   'telecom',
@@ -378,7 +378,7 @@ angular
                 target: '_blank',
                 external: true,
                 onClick: setTracker(
-                  'order-O365_Business',
+                  'telecom::orders::office365::licences-office::order',
                   'navigation',
                   'Telecom',
                   'telecom',
@@ -394,7 +394,7 @@ angular
                 target: '_blank',
                 external: true,
                 onClick: setTracker(
-                  'order-O365_Sharepoint',
+                  'telecom::orders::office365::microsoft-sharepoint::order',
                   'navigation',
                   'Telecom',
                   'telecom',
@@ -424,7 +424,7 @@ angular
                             target: '_blank',
                             external: true,
                             onClick: setTracker(
-                              'order-sms-HLR',
+                              'telecom::orders::sms::hlr::order',
                               'navigation',
                               'Telecom',
                               'telecom',
@@ -447,7 +447,7 @@ angular
                   target: '_blank',
                   external: true,
                   onClick: setTracker(
-                    'Fax',
+                    'telecom::orders::freefax::order',
                     'navigation',
                     'Telecom',
                     'telecom',
