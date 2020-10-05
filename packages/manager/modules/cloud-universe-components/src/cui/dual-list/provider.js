@@ -1,4 +1,4 @@
-class DualListProvider {
+export default class DualListProvider {
   constructor() {
     this.height = '100%';
     this.bulkActionEnabled = false;
@@ -40,5 +40,3 @@ class DualListProvider {
     };
   }
 }
-
-angular.module('managerApp').provider('DualListProvider', DualListProvider);

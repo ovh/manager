@@ -1,7 +1,9 @@
-angular.module('managerApp').component('cuiDualList', {
-  templateUrl: 'app/ui-components/dual-list/dual-list.html',
-  controller: 'DualListCtrl',
-  controllerAs: '$ctrl',
+import controller from './controller';
+import template from './template.html';
+
+export default {
+  template,
+  controller,
   bindings: {
     sourceListLabel: '@',
     targetListLabel: '@',
@@ -18,4 +20,4 @@ angular.module('managerApp').component('cuiDualList', {
     onRemove: '&',
     bulkActionEnabled: '<',
   },
-});
+};
