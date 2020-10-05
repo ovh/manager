@@ -1,20 +1,21 @@
 import angular from 'angular';
 
 import '@ovh-ux/manager-core';
+import '@ovh-ux/ng-ovh-cloud-universe-components';
 import '@uirouter/angularjs';
 import 'angular-translate';
 
-import logs from './logs/logs.module';
+import component from './header.component';
 
-const moduleName = 'ovhManagerDbaasLogs';
+const moduleName = 'ovhManagerDbaasLogsHeaderDashboard';
 
 angular
   .module(moduleName, [
+    'ngOvhCloudUniverseComponents',
     'ovhManagerCore',
     'pascalprecht.translate',
     'ui.router',
-    logs,
   ])
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .component('dbaasLogsDashboardHeader', component);
 
 export default moduleName;

@@ -1,0 +1,81 @@
+<form novalidate name="ctrl.form">
+    <oui-modal
+        data-primary-action="ctrl.save()"
+        data-primary-label="{{ ::'logs_save' | translate }}"
+        data-secondary-action="ctrl.cancel()"
+        data-secondary-label="{{ ::'logs_cancel' | translate }}"
+        data-on-dismiss="ctrl.cancel()"
+        data-loading="ctrl.saving.loading"
+        data-heading="{{ ::ctrl.title | translate }}"
+    >
+        <div ng-if="ctrl.isEdit" class="mb-3">
+            <span
+                data-translate="logs_dashboards_update_description"
+                data-translate-values="{name: ctrl.dashboard.data.title}"
+            ></span>
+        </div>
+        <div ng-if="ctrl.isDuplicate" class="mb-3">
+            <span
+                data-translate="logs_dashboards_duplicate_description"
+                data-translate-values="{name: ctrl.dashboardName}"
+            ></span>
+        </div>
+
+        <oui-field data-label="{{::'logs_dashboards_col_name' | translate}}">
+            <input
+                type="text"
+                id="dashboard_name"
+                name="dashboard_name"
+                class="oui-input"
+                data-ng-model="ctrl.dashboard.data.title"
+                cuc-autofocus
+                required
+            />
+        </oui-field>
+
+        <oui-field
+            data-label="{{::'logs_dashboards_col_description' | translate}}"
+        >
+            <textarea
+                id="dashboard_description"
+                name="dashboard_description"
+                class="oui-textarea"
+                data-ng-model="ctrl.dashboard.data.description"
+                required
+            ></textarea>
+        </oui-field>
+
+        <oui-field
+            data-ng-if="ctrl.isDuplicate"
+            data-label="{{::'logs_dashboards_select_stream' | translate}}"
+        >
+            <oui-spinner data-ng-show="ctrl.streams.loading"></oui-spinner>
+            <div class="oui-select" data-ng-hide="ctrl.streams.loading">
+                <select
+                    class="oui-select__input"
+                    name="dashboard_stream"
+                    id="dashboard_stream"
+                    data-ng-model="ctrl.dashboard.data.streamId"
+                    title="{{::'logs_dashboards_select_stream_title' | translate}}"
+                >
+                    <option
+                        value
+                        disabled
+                        selected
+                        data-translate="logs_dashboards_select_stream"
+                    ></option>
+                    <option
+                        data-ng-repeat="stream in ctrl.streams.data"
+                        value="{{stream.info.streamId}}"
+                    >
+                        {{ stream.info.title }}
+                    </option>
+                </select>
+                <i
+                    class="oui-icon oui-icon-chevron-down"
+                    aria-hidden="true"
+                ></i>
+            </div>
+        </oui-field>
+    </oui-modal>
+</form>

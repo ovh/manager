@@ -1,0 +1,73 @@
+<div class="cui-page__content">
+    <oui-back-button
+        data-state="dbaas-logs.detail.aliases"
+        data-state-params="{ serviceName: ctrl.serviceName}"
+        ><span data-translate="logs_aliases_link_title"></span>
+    </oui-back-button>
+
+    <h6 data-ng-if="!ctrl.alias.loading" class="oui-heading_6">
+        {{ctrl.alias.data.info.name}}
+    </h6>
+    <p
+        class="oui-paragraph mb-5"
+        data-translate="logs_aliases_link_description"
+    ></p>
+    <form novalidate name="ctrl.form" class="ml-1">
+        <oui-radio-toggle-group data-model="ctrl.selectedContent">
+            <oui-radio
+                data-ng-repeat="content in ctrl.contents track by $index"
+                data-value="content.value"
+                ><span data-ng-bind="::content.name | translate"></span>
+            </oui-radio>
+        </oui-radio-toggle-group>
+        <div
+            data-ng-if="ctrl.selectedContent === ctrl.LogsAliasesService.contentTypeEnum.STREAMS"
+        >
+            <cui-dual-list
+                data-ng-if="!ctrl.isContentDisabled(ctrl.LogsAliasesService.contentTypeEnum.STREAMS)"
+                source-list-label="{{::'logs_aliases_link_available_streams' | translate}}"
+                target-list-label="{{::'logs_aliases_link_attached_streams' | translate}}"
+                source-list-empty-label="{{::'logs_aliases_link_all_streams_attached' | translate}}"
+                target-list-empty-label="{{::'logs_aliases_link_no_streams_attached' | translate}}"
+                property="info.title"
+                source-list="ctrl.availableStreams.promise"
+                target-list="ctrl.attachedStreams.promise"
+                on-add="ctrl.attachStream(items)"
+                on-remove="ctrl.detachStream(items)"
+                bulk-action-enabled="false"
+                height="300px"
+            >
+            </cui-dual-list>
+            <div
+                data-ng-if="ctrl.isContentDisabled(ctrl.LogsAliasesService.contentTypeEnum.STREAMS)"
+            >
+                <p>{{::'logs_aliases_remove_indexes_message' | translate}}</p>
+            </div>
+        </div>
+
+        <div
+            data-ng-if="ctrl.selectedContent === ctrl.LogsAliasesService.contentTypeEnum.INDICES"
+        >
+            <cui-dual-list
+                data-ng-if="!ctrl.isContentDisabled(ctrl.LogsAliasesService.contentTypeEnum.INDICES)"
+                source-list-label="{{::'logs_aliases_link_available_indexes' | translate}}"
+                target-list-label="{{::'logs_aliases_link_attached_indexes' | translate}}"
+                source-list-empty-label="{{::'logs_aliases_link_all_indexes_attached' | translate}}"
+                target-list-empty-label="{{::'logs_aliases_link_no_indexes_attached' | translate}}"
+                property="info.name"
+                source-list="ctrl.availableIndices.promise"
+                target-list="ctrl.attachedIndices.promise"
+                on-add="ctrl.attachIndex(items)"
+                on-remove="ctrl.detachIndex(items)"
+                bulk-action-enabled="false"
+                height="360px"
+            >
+            </cui-dual-list>
+            <div
+                data-ng-if="ctrl.isContentDisabled(ctrl.LogsAliasesService.contentTypeEnum.INDICES)"
+            >
+                <p>{{::'logs_aliases_remove_streams_message' | translate}}</p>
+            </div>
+        </div>
+    </form>
+</div>

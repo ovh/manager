@@ -1,0 +1,33 @@
+<form novalidate name="ctrl.form">
+    <oui-modal
+        data-primary-action="ctrl.updateDisplayName()"
+        data-primary-label="{{ ::'logs_save' | translate }}"
+        data-secondary-action="ctrl.cancel()"
+        data-secondary-label="{{ ::'logs_cancel' | translate }}"
+        data-on-dismiss="ctrl.cancel()"
+        data-loading="ctrl.saving.loading"
+        data-heading="{{ ::'logs_home_account_title' | translate }}"
+    >
+        <oui-spinner data-ng-if="ctrl.accountDetails.loading"></oui-spinner>
+        <p
+            class="oui-paragraph"
+            data-ng-if="!ctrl.accountDetails.loading"
+            data-translate="logs_home_account_description"
+            data-translate-values="{displayName: ctrl.displayName}"
+        ></p>
+        <oui-field
+            data-label="{{ ::'logs_home_account_display_name_field' | translate }}"
+        >
+            <input
+                type="text"
+                id="display_name"
+                name="display_name"
+                class="oui-input"
+                data-ng-model="ctrl.service.displayName"
+                data-ng-class="{'oui-input_error': ctrl.form.$submitted && ctrl.form.display_name.$invalid}"
+                data-ng-maxlength="ctrl.LogsConstants.DISPLAY_NAME_MAX_LENGTH"
+                cuc-autofocus
+            />
+        </oui-field>
+    </oui-modal>
+</form>

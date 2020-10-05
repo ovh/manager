@@ -1,0 +1,87 @@
+<div>
+    <div>
+        <cui-message-container
+            data-messages="ctrl.messages"
+        ></cui-message-container>
+    </div>
+    <div>
+        <section class="cui-page__content log-accounts">
+            <p data-translate="logs_home_info"></p>
+
+            <oui-datagrid data-rows="ctrl.accounts">
+                <oui-datagrid-topbar>
+                    <a
+                        class="oui-button oui-button_secondary"
+                        target="_blank"
+                        data-ng-href="{{ctrl.orderURL}}"
+                    >
+                        <i
+                            class="oui-icon oui-icon-add pr-1"
+                            aria-hidden="true"
+                        ></i>
+                        {{ ::'logs_accounts_add' | translate }}
+                    </a>
+                </oui-datagrid-topbar>
+                <oui-datagrid-column
+                    data-title="::'logs_accounts_col_name' | translate"
+                    data-property="name"
+                    data-sortable="asc"
+                    data-type="string"
+                    data-searchable
+                    data-filterable
+                >
+                    <a
+                        class="oui-button oui-button_ghost"
+                        data-ui-sref="dbaas-logs.detail({serviceName: $row.serviceName})"
+                    >
+                        <span>{{$row.name}}</span>
+                    </a>
+                </oui-datagrid-column>
+                <oui-datagrid-column
+                    data-title="::'logs_accounts_col_status' | translate"
+                    data-property="state"
+                    data-sortable
+                    data-searchable
+                    data-filterable
+                    data-type="string"
+                >
+                    <div data-ng-switch="$row.state">
+                        <span data-ng-switch-when="ENABLED"
+                            >{{ ::'logs_accounts_enabled' | translate }}</span
+                        >
+                        <span data-ng-switch-when="DISABLED"
+                            >{{ ::'logs_accounts_disabled' | translate }}</span
+                        >
+                        <span data-ng-switch-when="TO_CONFIG"
+                            >{{ ::'logs_accounts_setup_required' | translate
+                            }}</span
+                        >
+                    </div>
+                </oui-datagrid-column>
+                <oui-datagrid-column
+                    data-title="::'logs_accounts_col_entry_point' | translate"
+                    data-property="cluster.hostname"
+                    data-type="string"
+                    data-sortable
+                    data-searchable
+                    data-filterable
+                >
+                    <oui-spinner
+                        data-size="s"
+                        data-ng-if="$row.cluster.isLoadingCluster"
+                    ></oui-spinner>
+                    <span
+                        data-ng-if="$row.cluster.hostname"
+                        data-ng-bind="$row.cluster.hostname"
+                    ></span>
+                </oui-datagrid-column>
+                <oui-action-menu compact data-placement="end">
+                    <oui-action-menu-item
+                        data-ui-sref="dbaas-logs.detail({serviceName: $row.serviceName})"
+                        ><span data-translate="logs_accounts_details"></span
+                    ></oui-action-menu-item>
+                </oui-action-menu>
+            </oui-datagrid>
+        </section>
+    </div>
+</div>

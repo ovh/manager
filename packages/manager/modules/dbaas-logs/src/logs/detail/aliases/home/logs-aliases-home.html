@@ -1,0 +1,109 @@
+<section class="cui-page__content log-aliases">
+    <h3 data-translate="logs_aliases_title"></h3>
+    <p data-translate="logs_aliases_description"></p>
+    <oui-datagrid rows="ctrl.aliases.data">
+        <oui-datagrid-topbar>
+            <button
+                type="button"
+                class="oui-button oui-button_secondary"
+                data-ng-click="ctrl.add()"
+            >
+                <span
+                    class="oui-icon oui-icon-add pr-1"
+                    aria-hidden="true"
+                ></span>
+                <span data-translate="logs_aliases_add"></span>
+            </button>
+            <oui-spinner
+                size="s"
+                data-ng-if="ctrl.delete.loading"
+            ></oui-spinner>
+        </oui-datagrid-topbar>
+        <oui-datagrid-column
+            title="::'logs_aliases_col_title' | translate"
+            property="info.name"
+            sortable="asc"
+            type="string"
+            searchable
+            filterable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            title="::'logs_aliases_col_description' | translate"
+            property="info.description"
+            sortable
+            type="string"
+            searchable
+            filterable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            title="::'logs_aliases_col_streams' | translate"
+            property="streams.length"
+            sortable
+            type="number"
+            filterable
+        >
+            <span
+                data-ng-if="$row.streams.length"
+                data-ng-bind="$row.streams.length"
+            >
+                <span data-ng-if="!$row.streams.length"> - </span>
+            </span></oui-datagrid-column
+        >
+        <oui-datagrid-column
+            title="::'logs_aliases_col_indices' | translate"
+            property="indexes.length"
+            sortable
+            type="number"
+            filterable
+        >
+            <span
+                data-ng-if="$row.indexes.length"
+                data-ng-bind="$row.indexes.length"
+            >
+                <span data-ng-if="!$row.indexes.length"> - </span>
+            </span></oui-datagrid-column
+        >
+        <oui-datagrid-column
+            title="::'logs_col_last_modified' | translate"
+            property="info.updatedAt"
+            sortable
+            type="date"
+        >
+            {{ $row.info.updatedAt | cucMomentFormat:'L'}}
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            title="::'logs_aliases_col_shared' | translate"
+            property="info.isEditable"
+            sortable
+            type="string"
+        >
+            <span data-ng-if="!$row.info.isEditable"
+                >{{ ::'logs_yes' | translate }}</span
+            >
+            <span data-ng-if="$row.info.isEditable"> - </span>
+        </oui-datagrid-column>
+        <oui-action-menu compact data-placement="end">
+            <oui-action-menu-item
+                disabled="!$row.info.isEditable"
+                on-click="ctrl.edit($row.info)"
+                ><span data-translate="logs_edit"></span
+            ></oui-action-menu-item>
+            <oui-action-menu-item
+                disabled="!$row.info.isEditable"
+                on-click="ctrl.attachContent($row)"
+                ><span data-translate="logs_aliases_attach_content"></span
+            ></oui-action-menu-item>
+            <oui-action-menu-item
+                href="{{ctrl.getElasticSearchUrl($row)}}"
+                external
+                ><span data-translate="logs_aliases_elasticsearch_access"></span
+            ></oui-action-menu-item>
+            <oui-action-menu-item
+                disabled="!$row.info.isEditable"
+                on-click="ctrl.showDeleteConfirm($row.info)"
+                ><span data-translate="logs_delete"></span
+            ></oui-action-menu-item>
+        </oui-action-menu>
+    </oui-datagrid>
+    <div data-ui-view="logsAliasesAddEdit"></div>
+</section>

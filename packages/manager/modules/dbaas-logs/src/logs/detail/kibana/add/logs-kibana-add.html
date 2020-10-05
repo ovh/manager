@@ -1,0 +1,24 @@
+<form novalidate name="ctrl.form">
+    <oui-modal
+        data-primary-action="ctrl.save()"
+        data-primary-label="{{ ::ctrl.isEdit ? 'logs_save' : 'logs_order' | translate }}"
+        data-secondary-action="ctrl.cancel()"
+        data-secondary-label="{{ ::'logs_cancel' | translate }}"
+        data-on-dismiss="ctrl.cancel()"
+        data-loading="ctrl.saving.loading"
+        data-heading="{{ ::ctrl.title | translate }}"
+    >
+        <oui-field
+            data-label="{{ ::'logs_kibana_modal_description' | translate }}"
+            data-help-text="{{ ctrl.isEdit ? '' : ctrl.showKibanaPrice() }}"
+        >
+            <textarea
+                id="description"
+                name="description"
+                class="oui-textarea"
+                data-ng-model="ctrl.kibana.description"
+                required
+            ></textarea>
+        </oui-field>
+    </oui-modal>
+</form>
