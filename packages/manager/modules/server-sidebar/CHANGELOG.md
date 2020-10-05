@@ -1,3 +1,12 @@
+# [3.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.0.1...@ovh-ux/manager-server-sidebar@3.1.0) (2020-10-05)
+
+
+### Features
+
+* **sidebar:** add order trackers ([#3761](https://github.com/ovh/manager/issues/3761)) ([c87f2cd](https://github.com/ovh/manager/commit/c87f2cdb66143865588d3cdd3ff17dd924840743))
+
+
+
 ## [3.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.0.0...@ovh-ux/manager-server-sidebar@3.0.1) (2020-10-02)
 
 

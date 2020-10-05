@@ -1,3 +1,12 @@
+# [13.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.2.11...@ovh-ux/manager-telecom@13.3.0) (2020-10-05)
+
+
+### Features
+
+* **sidebar:** add order trackers ([#3761](https://github.com/ovh/manager/issues/3761)) ([c87f2cd](https://github.com/ovh/manager/commit/c87f2cdb66143865588d3cdd3ff17dd924840743))
+
+
+
 ## [13.2.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.2.10...@ovh-ux/manager-telecom@13.2.11) (2020-10-02)
 
 

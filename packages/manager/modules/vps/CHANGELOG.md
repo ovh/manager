@@ -1,3 +1,12 @@
+## [2.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.1.0...@ovh-ux/manager-vps@2.1.1) (2020-10-05)
+
+
+### Bug Fixes
+
+* **vps:** remove maintenance message in US ([#3759](https://github.com/ovh/manager/issues/3759)) ([0b4fa6a](https://github.com/ovh/manager/commit/0b4fa6a6510bda6b9f421e10f3c566a7c463768b))
+
+
+
 # [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.0.6...@ovh-ux/manager-vps@2.1.0) (2020-10-01)
 
 
