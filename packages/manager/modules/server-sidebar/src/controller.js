@@ -30,6 +30,7 @@ export default class OvhManagerServerSidebarController {
     $q,
     $rootScope,
     $translate,
+    atInternet,
     coreConfig,
     CucFeatureAvailabilityService,
     OvhApiService,
@@ -41,6 +42,7 @@ export default class OvhManagerServerSidebarController {
     this.$q = $q;
     this.$rootScope = $rootScope;
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.coreConfig = coreConfig;
     this.CucFeatureAvailabilityService = CucFeatureAvailabilityService;
     this.OvhApiService = OvhApiService;
@@ -179,6 +181,12 @@ export default class OvhManagerServerSidebarController {
                 state: isExternal ? null : orderItemConfig.state,
                 target: isExternal ? '_blank' : null,
                 external: get(orderItemConfig, 'external', false),
+                onClick: () => {
+                  this.atInternet.trackClick({
+                    type: 'action',
+                    name: get(orderItemConfig, 'tracker'),
+                  });
+                },
               };
             }
           }
