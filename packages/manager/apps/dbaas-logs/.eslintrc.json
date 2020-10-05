@@ -1,5 +1,6 @@
 {
   "globals": {
-    "__VERSION__": true
+    "__VERSION__": true,
+    "moment": true
   }
 }
