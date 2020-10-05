@@ -1,5 +1,5 @@
 import angular from 'angular';
-
+import '@ovh-ux/ng-at-internet';
 import '@ovh-ux/ng-ovh-cloud-universe-components';
 import '@ovh-ux/ng-ovh-sidebar-menu';
 import '@ovh-ux/ng-translate-async-loader';
@@ -19,6 +19,7 @@ const moduleName = 'ovhManagerServerSidebar';
 
 angular
   .module(moduleName, [
+    'ngAtInternet',
     'ngOvhCloudUniverseComponents',
     'ngOvhSidebarMenu',
     'ngTranslateAsyncLoader',
