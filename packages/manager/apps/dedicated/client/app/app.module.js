@@ -57,6 +57,7 @@ import 'ovh-angular-responsive-tabs';
 import 'ckeditor';
 import 'script-loader!messenger/build/js/messenger.min.js';
 import 'script-loader!filesize/lib/filesize.js';
+import 'script-loader!angular-websocket/dist/angular-websocket';
 
 // Ckeditor 4.x
 import 'ng-ckeditor';
