@@ -2725,7 +2725,7 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/translate-async-loader/-/translate-async-loader-1.0.8.tgz#7cbdc3dfed1042f511206ff6bb9f14c33b8406ba"
   integrity sha512-8yEhPeRTSxtEO9ODXRYZw6pzRQiV5ULCTi8mIzt39m/b9N2TcIF4ILTPsaa8xpE4npHKa/iYgL9z0HJUFi2LGQ==
 
-"@ovh-ux/ui-kit@^4.1.11", "@ovh-ux/ui-kit@^4.4.1":
+"@ovh-ux/ui-kit@^4.4.1":
   version "4.4.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-4.4.1.tgz#3bd5a69df005854f013c8931f6f4842db51b214d"
   integrity sha512-3e5lD54zX+K3xGohoqXU3eM9D6BufHqGBxpqlyWHUKhcJxCTIOb68bf8spYjAn4JtUpxbW5FbPtVIQCqPbp40w==
@@ -4030,7 +4030,7 @@ angular-vs-repeat@^2.0.13:
   resolved "https://registry.yarnpkg.com/angular-vs-repeat/-/angular-vs-repeat-2.0.13.tgz#f20c28e7357d3e70cc894398b301921717795e92"
   integrity sha512-Jb0DOt4jU5/xZx7wjKvgZJtgAaMA4ZFLq5aeQHU8U2IZz8ixWP0ML6gFWQ1yefMapvg5LV+ZfA81ZeeN/NtJ7A==
 
-angular-websocket@^2.0.0:
+angular-websocket@^2.0.0, angular-websocket@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/angular-websocket/-/angular-websocket-2.0.1.tgz#0fb4d60ed9018be583d031eec4e56b457cb8dcee"
   integrity sha1-D7TWDtkBi+WD0DHuxOVrRXy43O4=
@@ -15130,13 +15130,6 @@ ovh-api-services@^11.0.0:
   version "11.0.0"
   resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-11.0.0.tgz#1425de29c8102d848296c41e2ae54224d04dca20"
   integrity sha512-ffPIFDdHXkiH7CYJ3l4tDF4vAsmpT2r3+o6FCo16XxTFN428ZlTcusI1KbIpvsZkHIuj5sZB0G9CvLj5BBoUXg==
-  dependencies:
-    lodash "^4.17.20"
-
-ovh-api-services@^9.26.0:
-  version "9.51.1"
-  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-9.51.1.tgz#fb7e16244fd1605e5c0f37b0880db1249a521770"
-  integrity sha512-FA4otBRrZ3snaG8FCFJSv6UXn/BcFHZHWLwLbB4avR6L97oWMUpySkbdrZOIbnAzKS6enMlrp2zNnT5/QzDKDQ==
   dependencies:
     lodash "^4.17.20"
 
