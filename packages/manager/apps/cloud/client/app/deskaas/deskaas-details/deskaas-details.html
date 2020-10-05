@@ -172,7 +172,7 @@
                         </oui-tile-definition>
                         <oui-tile-definition
                             data-term="{{($ctrl.services.renew.forced || $ctrl.services.renew.automatic) ? 'common_tile_subscription_autorenew' : 'common_tile_subscription_expiration_date' | translate}}"
-                            data-description="{{$ctrl.services.expiration | momentFormat:'LL'}}"
+                            data-description="{{$ctrl.services.expiration | cucMomentFormat:'LL'}}"
                         >
                             <oui-action-menu
                                 data-compact
@@ -237,7 +237,7 @@
                         </oui-tile-definition>
                         <oui-tile-definition
                             data-term="{{::'common_tile_subscription_creation_date' | translate}}"
-                            data-description="{{$ctrl.services.creation | momentFormat:'LL'}}"
+                            data-description="{{$ctrl.services.creation | cucMomentFormat:'LL'}}"
                         >
                         </oui-tile-definition>
                     </div>
@@ -391,7 +391,8 @@
                             data-property="lastModificationDate"
                             data-sortable
                         >
-                            {{ $row.lastModificationDate | momentFormat:'LLL' }}
+                            {{ $row.lastModificationDate | cucMomentFormat:'LLL'
+                            }}
                         </oui-datagrid-column>
                         <oui-datagrid-column
                             data-title="'common_progress' | translate"
