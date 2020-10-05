@@ -239,25 +239,25 @@ export const METRICS_CONFIG = {
 
 export const LOGS_CONFIG = {
   id: 'logs',
-  loadOnState: 'dbaas.logs',
+  loadOnState: 'dbaas-logs',
   types: [
     {
       path: '/dbaas/logs',
-      state: 'dbaas.logs.detail',
+      state: 'dbaas-logs.detail',
       stateParams: ['serviceName'],
-      app: [CLOUD],
+      app: [DEDICATED],
     },
   ],
   children: [
     {
       id: 'logs_all_accounts',
-      state: 'dbaas.logs',
+      state: 'dbaas-logs',
       stateUrl: '#/dbaas/logs/list',
-      app: [CLOUD],
+      app: [DEDICATED],
     },
   ],
   icon: 'fa fa-bar-chart',
-  app: [CLOUD],
+  app: [DEDICATED],
   regions: ['EU', 'CA'],
 };
 
