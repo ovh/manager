@@ -1,3 +1,12 @@
+## [14.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.1.2...@ovh-ux/manager-dedicated@14.1.3) (2020-10-05)
+
+
+### Bug Fixes
+
+* **i18n:** fix some typos in dedicatedCloud section ([#3760](https://github.com/ovh/manager/issues/3760)) ([c8157e3](https://github.com/ovh/manager/commit/c8157e3772658f46b617dabbc3aa84efdc57cfea))
+
+
+
 ## [14.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.1.1...@ovh-ux/manager-dedicated@14.1.2) (2020-10-02)
 
 
