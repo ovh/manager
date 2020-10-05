@@ -182,7 +182,7 @@
                     </oui-tile-definition>
                     <oui-tile-definition
                         data-term="{{($ctrl.plan.renew.forced || $ctrl.plan.renew.automatic) ? 'common_tile_subscription_autorenew' : 'common_tile_subscription_expiration_date' | translate}}"
-                        data-description="{{ ::$ctrl.plan.expiration | momentFormat:'LL' }}"
+                        data-description="{{ ::$ctrl.plan.expiration | cucMomentFormat:'LL' }}"
                     >
                         <oui-action-menu
                             data-compact
@@ -247,7 +247,7 @@
                     </oui-tile-definition>
                     <oui-tile-definition
                         data-term="{{ ::'common_tile_subscription_creation_date' | translate }}"
-                        data-description="{{ ::$ctrl.plan.creation | momentFormat:'LL' }}"
+                        data-description="{{ ::$ctrl.plan.creation | cucMomentFormat:'LL' }}"
                     >
                     </oui-tile-definition>
                 </div>

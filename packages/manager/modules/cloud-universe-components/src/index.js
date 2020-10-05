@@ -15,6 +15,7 @@ import cucFlavor from './flavor';
 import cucHelper from './helper';
 import cucHighlightedElement from './highlightedElement';
 import cucMessage from './message';
+import cucMomentFormat from './moment';
 import cucMonitoring from './monitoring';
 import cucNavigation from './navigation';
 import cucOrderedHash from './orderedHash';
@@ -48,6 +49,7 @@ angular.module(moduleName, [
   cucHelper,
   cucHighlightedElement,
   cucMessage,
+  cucMomentFormat,
   cucMonitoring,
   cucNavigation,
   cucOrderedHash,
