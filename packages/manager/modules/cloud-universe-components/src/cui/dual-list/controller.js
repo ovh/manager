@@ -1,4 +1,5 @@
-class DualListCtrl {
+export default class DualListCtrl {
+  /* @ngInject */
   constructor($q, $element, DualListProvider) {
     this.$q = $q;
     this.$element = $element;
@@ -234,5 +235,3 @@ class DualListCtrl {
     }
   }
 }
-
-angular.module('managerApp').controller('DualListCtrl', DualListCtrl);
