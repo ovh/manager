@@ -7,6 +7,8 @@ export default {
     goBack: '<',
     namespaceId: '<',
     namespace: '<',
+    deleteModel: '<',
+    updateModel: '<',
     goToContainer: '<',
     projectId: '<',
     model: '<',
