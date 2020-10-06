@@ -1,3 +1,12 @@
+## [15.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.3.3...@ovh-ux/manager-web@15.3.4) (2020-10-06)
+
+
+### Bug Fixes
+
+* **hosting.multisite.logs:** multisite ownlogs url & token ([#3640](https://github.com/ovh/manager/issues/3640)) ([981260d](https://github.com/ovh/manager/commit/981260d4ea6d78d57f1bc0b4d55e6886c95f612a))
+
+
+
 ## [15.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.3.2...@ovh-ux/manager-web@15.3.3) (2020-09-28)
 
 
