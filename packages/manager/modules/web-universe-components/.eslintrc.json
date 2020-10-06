@@ -3,5 +3,13 @@
     "Chart": true,
     "moment": true,
     "URI": true
-  }
+  },
+  "overrides": [
+    {
+      "files": ["**/*.md"],
+      "rules": {
+        "import/no-extraneous-dependencies": "off"
+      }
+    }
+  ]
 }
