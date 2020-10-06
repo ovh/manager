@@ -55,5 +55,6 @@
   "sms_options_response_tracking_remove_confirm": "Vuoi davvero eliminare la notifica",
   "sms_options_response_tracking_remove_option_removing": "Eliminazione notifica in corso...",
   "sms_options_response_tracking_remove_option_removed": "Notifica eliminata! ",
-  "sms_options_response_tracking_remove_option_ko": "Impossibile eliminare la notifica: <br/>{{error}}"
+  "sms_options_response_tracking_remove_option_ko": "Impossibile eliminare la notifica: <br/>{{error}}",
+  "sms_options_response_breacrumb": "Opzioni di risposta"
 }

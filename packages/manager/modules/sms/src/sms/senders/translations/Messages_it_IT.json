@@ -54,5 +54,6 @@
   "sms_senders_terminate_sender_info": "Vuoi disattivare il numero virtuale <b>«{{ number }}»</b> (la disattivazione diventerà effettiva il {{ date }})?",
   "sms_senders_terminate_sender_info_cancel": "Vuoi annullare la richiesta di disattivazione del numero virtuale <b>«{{ number }}»</b>?",
   "sms_senders_terminate_sender_ko": "Ops! Impossibile disattivare il numero virtuale: <br/>{{error}}",
-  "sms_senders_add_warning": "La tua richiesta verrà gestita entro 48 ore"
+  "sms_senders_add_warning": "La tua richiesta verrà gestita entro 48 ore",
+  "sms_senders_breadcrumb": "Mittenti"
 }
