@@ -1,5 +1,13 @@
 {
   "globals": {
     "moment": true
-  }
+  },
+  "overrides": [
+    {
+      "files": ["**/*.md"],
+      "rules": {
+        "import/no-extraneous-dependencies": "off"
+      }
+    }
+  ]
 }
