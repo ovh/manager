@@ -9,11 +9,10 @@ export default /* @ngInject */ ($stateProvider) => {
       ) =>
         ovhFeatureFlipping
           .checkFeatureAvailability('dedicated-cloud:mailingListSubscription')
-          .then(
-            (featureAvailability) =>
-              featureAvailability.isFeatureAvailable(
-                'dedicated-cloud:mailingListSubscription',
-              ),
+          .then((featureAvailability) =>
+            featureAvailability.isFeatureAvailable(
+              'dedicated-cloud:mailingListSubscription',
+            ),
           ),
     },
   });

@@ -24,22 +24,28 @@ export default class FlavorsListController {
 
   $onChanges(changesObj) {
     // remove selected flavor if quota is not sufficient
-    if (changesObj.flavorCount &&
+    if (
+      changesObj.flavorCount &&
       !changesObj.flavorCount.isFirstChange() &&
-      changesObj.flavorCount.currentValue !== changesObj.flavorCount.previousValue &&
+      changesObj.flavorCount.currentValue !==
+        changesObj.flavorCount.previousValue &&
       this.selectedFlavor &&
-      this.region) {
-        const hasQuota = this.region.hasEnoughQuotaForFlavors(this.selectedFlavor, changesObj.flavorCount.currentValue);
-        if(!hasQuota) {
-          this.flavor = null;
-          this.onFlavorChange(this.flavor);
-        }
+      this.region
+    ) {
+      const hasQuota = this.region.hasEnoughQuotaForFlavors(
+        this.selectedFlavor,
+        changesObj.flavorCount.currentValue,
+      );
+      if (!hasQuota) {
+        this.flavor = null;
+        this.onFlavorChange(this.flavor);
+      }
     }
   }
 
   getFlavors() {
     let flavorsPromise = null;
-    if(!isEmpty(this.flavors)) {
+    if (!isEmpty(this.flavors)) {
       flavorsPromise = this.$q.when(this.flavors);
     } else {
       flavorsPromise = this.PciProjectFlavors.getFlavors(

@@ -15,13 +15,15 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         goBack: /* @ngInject */ (goToNodePools) => goToNodePools,
         quota: /* @ngInject */ (cluster, OvhApiCloudProjectQuota, projectId) =>
-          OvhApiCloudProjectQuota.v6().query({ serviceName: projectId })
-          .$promise
-          .then((quotaList) => find(quotaList, { region: cluster.region })),
+          OvhApiCloudProjectQuota.v6()
+            .query({ serviceName: projectId })
+            .$promise.then((quotaList) =>
+              find(quotaList, { region: cluster.region }),
+            ),
         region: /* @ngInject */ (cluster, quota) => {
           return new Datacenter({
             name: cluster.region,
-            quota: quota,
+            quota,
           });
         },
         cancelLink: /* @ngInject */ ($state, projectId, kubeId) =>
