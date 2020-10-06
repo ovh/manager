@@ -1,0 +1,105 @@
+<cui-message-container data-messages="$ctrl.messages"></cui-message-container>
+<div class="row d-lg-flex">
+    <div class="col-md-4">
+        <oui-tile
+            data-heading="{{ ::'platform_sh_service_project_manage_title' | translate }}"
+        >
+            <oui-tile-button
+                data-on-click="$ctrl.openPartnerConsole($ctrl.project)"
+                data-disabled="!$ctrl.project.isActive()"
+                data-external="true"
+            >
+                <span data-translate="platform_sh_service_project_access"></span>
+            </oui-tile-button>
+            <oui-tile-button
+                data-on-click="$ctrl.createProject()"
+            >
+                <span data-translate="platform_sh_service_project_new"></span>
+            </oui-tile-button>
+            <oui-tile-button
+                data-on-click="$ctrl.terminateProject()"
+                data-disabled="!$ctrl.project.isActive()"
+            >
+                <span data-translate="platform_sh_service_project_cancel"></span>
+            </oui-tile-button>
+        </oui-tile>
+    </div>
+    <div class="col-md-4">
+        <oui-tile
+            class="h-100"
+            data-heading="{{:: 'platform_sh_service_project_information' | translate }}"
+        >
+            <oui-tile-definition
+                data-term="{{:: 'platform_sh_service_project_name' | translate }}"
+            >
+                <oui-tile-description
+                    data-ng-bind="$ctrl.project.projectName"
+                ></oui-tile-description>
+                <oui-action-menu data-compact data-placement="end">
+                    <oui-action-menu-item
+                        data-on-click="$ctrl.changeProjectName()"
+                    >
+                        <span
+                            data-translate="platform_sh_service_project_edit"
+                        ></span>
+                    </oui-action-menu-item>
+                </oui-action-menu>
+            </oui-tile-definition>
+
+            <oui-tile-definition
+                data-term="{{:: 'platform_sh_service_project_status' | translate }}"
+            >
+                <oui-tile-description>
+                    <platform-sh-project-status data-project="$ctrl.project">
+                    </platform-sh-project-status>
+                </oui-tile-description>
+            </oui-tile-definition>
+            <oui-tile-definition
+                data-term="{{:: 'platform_sh_service_project_id' | translate }}"
+            >
+                <oui-tile-description>
+                    <span data-ng-bind="$ctrl.project.partnerProjectId"></span>
+                </oui-tile-description>
+            </oui-tile-definition>
+            <oui-tile-definition
+                data-term="{{ ::'platform_sh_service_project_plan_type' | translate }}"
+                data-description="{{:: $ctrl.project.offer }}"
+            >
+            </oui-tile-definition>
+            <oui-tile-button
+                disabled="true"
+            >
+                <span data-translate="platform_sh_service_project_upgrade"></span>
+            </oui-tile-button>
+            <oui-tile-definition
+                data-term="{{:: 'platform_sh_service_project_region' | translate }}"
+                data-description="{{:: $ctrl.project.metadata.project.region }}"
+            ></oui-tile-definition>
+            <oui-tile-definition
+                data-term="{{:: 'platform_sh_service_project_user_licence' | translate: { numLicence: 1} }}"
+                data-description="{{:: $ctrl.project.metadata.project.region }}"
+            >
+                <oui-tile-description>
+                    <span data-translate="platform_sh_service_project_user_licence_available"
+                        data-translate-values="{ numLicenceAvailable: 0 }">
+                    </span>
+                </oui-tile-description>
+            </oui-tile-definition>
+        </oui-tile>
+    </div>
+    <div class="col-md-4">
+        <oui-tile
+            class="h-100"
+            data-heading="{{:: 'platform_sh_service_project_configuration' | translate }}"
+        >
+            <oui-tile-definition
+                data-term="1 vCPU"
+            >
+            </oui-tile-definition>
+            <oui-tile-definition
+                data-term="{{:: 'platform_sh_service_project_storage' | translate: { storageSize: 5 } }}"
+            >
+            </oui-tile-definition>
+        </oui-tile>
+    </div>
+</div>

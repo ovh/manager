@@ -1,0 +1,6 @@
+{
+  "platform_sh_offer_starter-1": "Starter",
+  "platform_sh_offer_current_offer": "Offre actuelle",
+  "platform_sh_offer_price_per_month": "{{ price }}/Mois",
+  "platform_sh_offer_price_from": "À partir de {{price}}"
+}

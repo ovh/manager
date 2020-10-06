@@ -1,0 +1,16 @@
+<div data-ui-view>
+    <oui-header
+        class="mb-3"
+        data-heading="{{:: $ctrl.project.projectName }}"
+        data-description="{{::$ctrl.project.projectId }}"
+    >
+        <oui-header-tabs>
+            <oui-header-tabs-item
+                data-href="{{:: $ctrl.serviceLink }}"
+                data-active="$ctrl.currentActiveLink() === $ctrl.serviceLink"
+                ><span data-translate="platform_sh_general_info"></span>
+            </oui-header-tabs-item>
+        </oui-header-tabs>
+    </oui-header>
+    <div class="container-fluid" data-ui-view="projectView"></div>
+</div>

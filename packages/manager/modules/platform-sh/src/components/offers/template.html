@@ -1,0 +1,41 @@
+<div class="row mb-3">
+    <oui-select-picker
+        class="col-md-4 mb-3"
+        data-ng-repeat="offer in $ctrl.offers track by offer.product"
+        name="offer"
+        data-model="$ctrl.selectedOffer"
+        data-label="{{:: 'platform_sh_offer_' + offer.product | translate }}"
+        data-variant="light"
+        data-on-change="$ctrl.onSelected(modelValue)"
+        data-values="[offer]"
+        data-disabled="$ctrl.disabled"
+        data-ng-if="!$ctrl.previewMode || offer.product === $ctrl.selectedOffer.product"
+    >
+        <oui-select-picker-section>
+            <platform-sh-offer-details
+                data-offer="offer"
+            ></platform-sh-offer-details>
+            <oui-select
+                disabled="$ctrl.selectedVcpu && offer.vcpus.length === 1"
+                data-items="offer.vcpus"
+                data-match="name"
+                data-model="$ctrl.selectedVcpu"
+                name="vcpu"
+                required>
+            </oui-select>
+        </oui-select-picker-section>
+        <oui-select-picker-footer>
+            <span
+                data-translate="platform_sh_offer_price_from"
+            ></span>
+            <ovh-manager-catalog-price
+                data-price="offer.price"
+                data-user="$ctrl.user"
+            >
+            </ovh-manager-catalog-price>
+            <span
+                data-translate="platform_sh_offer_price_per_month"
+            ></span>
+        </oui-select-picker-footer>
+    </oui-select-picker>
+</div>

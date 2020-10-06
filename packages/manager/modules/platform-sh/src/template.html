@@ -1,0 +1,102 @@
+<div data-ui-view>
+    <oui-header
+        data-heading="{{ ::'platform_sh_title' | translate }}"
+    >
+    </oui-header>
+    <div class="container-fluid w-100 h-100 pt-4 px-3 px-md-5">
+        <!-- error messages -->
+        <cui-message-container
+            data-messages="$ctrl.messages"
+        ></cui-message-container>
+
+        <oui-datagrid
+            data-rows="$ctrl.projects"
+            data-row-loader="$ctrl.getProjectDetails($row.projectId)"
+        >
+            <oui-datagrid-column
+                data-title=":: 'platform_sh_project' | translate"
+                data-property="displayName"
+                data-searchable
+                data-filterable
+                data-type="string"
+            >
+                <a
+                    class="oui-link"
+                    data-ng-click="$ctrl.viewDetails($row.projectId)"
+                    data-ng-bind="$row.displayName"
+                >
+                </a>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'platform_sh_region' | translate"
+                data-property="metadata.project.region"
+            ></oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'platform_sh_status' | translate"
+                data-property="status"
+            >
+                <platform-sh-project-status data-project="$row">
+                </platform-sh-project-status>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'platform_sh_plan_type' | translate"
+                data-property="offer"
+            ></oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'platform_sh_plan_rennewal_date' | translate"
+                data-property="metadata.project.renewDate"
+                data-type="date"
+            >
+                {{ $row.metadata.project.renewDate | date:medium }}
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'platform_sh_plan_vcpu' | translate"
+                data-property="metadata.project.vcpu"
+            ></oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'platform_sh_plan_storage' | translate"
+                data-property="metadata.project.storage"
+            ></oui-datagrid-column>
+            <oui-action-menu
+                data-compact
+                data-placement="end">
+                <oui-action-menu-item
+                    data-on-click="$ctrl.openPartnerConsole($row)"
+                    data-data-disabled="!$row.isActive()">
+                    <span
+                        data-translate="platform_sh_open_in_platform_sh_console"
+                    ></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item
+                    data-on-click="$ctrl.viewDetails($row.projectId)">
+                    <span
+                        data-translate="platform_sh_goto_dashbboard"
+                    ></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item
+                    data-on-click="$ctrl.terminateProject($row)"
+                    data-data-disabled="!$row.isActive()">
+                    <span
+                        data-translate="platform_sh_cancel_project"
+                    ></span>
+                </oui-action-menu-item>
+            </oui-action-menu>
+            <oui-datagrid-topbar>
+                <button
+                    data-ng-click="$ctrl.createProject()"
+                    class="oui-button oui-button_secondary oui-button_icon-left mb-2"
+                    data-track-on="click"
+                    data-track-name="PLATFORM_SH_ADD"
+                    data-track-type="navigation"
+                >
+                    <span
+                        class="oui-icon oui-icon-add"
+                        aria-hidden="true"
+                    ></span>
+                    <span data-translate="platform_sh_create_project"></span>
+                </button>
+            </oui-datagrid-topbar>
+        </oui-datagrid>
+    </div>
+</div>
+

@@ -1,0 +1,8 @@
+{
+  "platform_sh_details_service_name_edit": "Modifier",
+  "platform_sh_details_service_name_cancel": "Annuler",
+  "platform_sh_details_service_name_title": "Modifier le nom",
+  "platform_sh_details_service_name": "Project nom",
+  "platform_sh_details_service_name_success": "Le nom du project a été mis à jour.",
+  "platform_sh_details_service_name_error": "Une erreur est survenue lors du renommage du project : {{ message }}"
+}

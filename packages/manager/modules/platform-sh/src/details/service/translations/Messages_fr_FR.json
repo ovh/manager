@@ -1,0 +1,18 @@
+{
+  "platform_sh_service_project_information": "Informations générales",
+  "platform_sh_service_project_name": "Nom du projet",
+  "platform_sh_service_project_status": "Statut du projet",
+  "platform_sh_service_project_id": "Identifiant du projet",
+  "platform_sh_service_project_plan_type": "Gamme",
+  "platform_sh_service_project_region": "Région",
+  "platform_sh_service_project_upgrade": "Passer à l’offre supérieure",
+  "platform_sh_service_project_user_licence": "{{ numLicence }} licence utilisateur",
+  "platform_sh_service_project_user_licence_available": "{{ numLicenceAvailable }} user licence disponible",
+  "platform_sh_service_project_new": "Nouveau projet",
+  "platform_sh_service_project_access": "Accéder au projet",
+  "platform_sh_service_project_cancel": "Supprimer le projet",
+  "platform_sh_service_project_manage_title": "Interface de gestion",
+  "platform_sh_service_project_edit": "Modifier le nom du projet",
+  "platform_sh_service_project_configuration": "Configuration",
+  "platform_sh_service_project_storage": "{{ storageSize }} Go stockage"
+}
