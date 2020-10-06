@@ -1,6 +1,8 @@
 {
- "overthebox_configure_reset": "Hai riavviato il tuo OverTheBox",
- "overthebox_configure_order": "Hai ricevuto il tuo nuovo OverTheBox",
- "overthebox_configure_reset_explaination": "Il tuo dispositivo ha cambiato ID. Accedi alla sezione \"Periferica > Identificativo della periferica\" e associa il nuovo identificativo a un servizio già esistente:",
- "overthebox_configure_order_explaination": "Hai appena ottenuto un nuovo dispositivo, adesso è necessario <a href=\"{{hash}}\">sottoscrivere un nuovo servizio</a>."
+  "overthebox_configure_reset": "Hai riavviato il tuo OverTheBox",
+  "overthebox_configure_order": "Hai ricevuto il tuo nuovo OverTheBox",
+  "overthebox_configure_reset_explaination": "Il tuo dispositivo ha cambiato ID. Accedi alla sezione \"Periferica > Identificativo della periferica\" e associa il nuovo identificativo a un servizio già esistente:",
+  "overthebox_configure_order_explaination": "Hai appena ottenuto un nuovo dispositivo, adesso è necessario <a href=\"{{hash}}\">sottoscrivere un nuovo servizio</a>.",
+  "overTheBox_configure_title": "OverTheBox",
+  "overTheBox_configure_breadcrumb": "Configura OverTheBox"
 }

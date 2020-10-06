@@ -1,5 +1,6 @@
 {
   "sms_receivers_manage_title": "Gérer les destinataires",
+  "sms_receivers_breadcrumb": "Contacts",
   "sms_receivers_label_description": "Nom",
   "sms_receivers_label_date": "Date d’ajout",
   "sms_receivers_label_records": "Nombre de contacts",

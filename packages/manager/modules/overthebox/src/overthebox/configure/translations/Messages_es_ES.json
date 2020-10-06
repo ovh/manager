@@ -1,6 +1,8 @@
 {
- "overthebox_configure_reset": "Se ha reiniciado el OverTheBox",
- "overthebox_configure_order": "Ha recibido su nuevo OverTheBox",
- "overthebox_configure_reset_explaination": "Su dispositivo ha cambiado de identificador. Ahora debe asociar este último a un servicio existente del apartado «Periférico» > «Identificador del periférico»:",
- "overthebox_configure_order_explaination": "Ha adquirido un nuevo dispositivo. Ahora debe <a href=\"{{hash}}\">suscribir un nuevo servicio</a>."
+  "overthebox_configure_reset": "Se ha reiniciado el OverTheBox",
+  "overthebox_configure_order": "Ha recibido su nuevo OverTheBox",
+  "overthebox_configure_reset_explaination": "Su dispositivo ha cambiado de identificador. Ahora debe asociar este último a un servicio existente del apartado «Periférico» > «Identificador del periférico»:",
+  "overthebox_configure_order_explaination": "Ha adquirido un nuevo dispositivo. Ahora debe <a href=\"{{hash}}\">suscribir un nuevo servicio</a>.",
+  "overTheBox_configure_title": "OverTheBox",
+  "overTheBox_configure_breadcrumb": "Configurar OverTheBox"
 }
