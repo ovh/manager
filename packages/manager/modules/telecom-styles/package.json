@@ -14,7 +14,7 @@
   "dependencies": {
     "@ovh-ux/ui-kit": "^4.2.3",
     "bootstrap": "~3.3.7",
-    "ovh-ui-kit-bs": "^4.1.8"
+    "ovh-ui-kit-bs": "^4.2.0"
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^7.0.0"

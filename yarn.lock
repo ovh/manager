@@ -2572,12 +2572,12 @@
   dependencies:
     "@types/node" ">= 8"
 
-"@ovh-ux/ng-ovh-api-wrappers@^4.0.7":
-  version "4.0.7"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-api-wrappers/-/ng-ovh-api-wrappers-4.0.7.tgz#f07cff3c42ef1c9d1655e2300617528a7d8b2f4f"
-  integrity sha512-oylG6ae9LKsUolZK9ORdd6yAu90VRX/45Ss9tZBMlUN7uHeyVMPpdzAJtY0DzgoRTwX++KteOu8bcUj5kTIM4A==
+"@ovh-ux/ng-ovh-api-wrappers@^4.0.8":
+  version "4.0.8"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-api-wrappers/-/ng-ovh-api-wrappers-4.0.8.tgz#f95c8ce909f7baa59f8fd85949801e7d74bf6dbd"
+  integrity sha512-V1x01nBs+bmTKD8PV69StlHU9v4CeA4lqLIB/oom2PmQIcsSRhhaiwFE5JCui7fDi0+A8sZSg4EUDMie/M3QQg==
   dependencies:
-    lodash "^4.17.15"
+    lodash "^4.17.20"
 
 "@ovh-ux/rollup-plugin-less-inject@^1.0.5":
   version "1.0.5"
@@ -2603,9 +2603,9 @@
   integrity sha512-8yEhPeRTSxtEO9ODXRYZw6pzRQiV5ULCTi8mIzt39m/b9N2TcIF4ILTPsaa8xpE4npHKa/iYgL9z0HJUFi2LGQ==
 
 "@ovh-ux/ui-kit@^4.2.3":
-  version "4.2.3"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-4.2.3.tgz#1c8919a62650df3f24c0270d80b35d75edf4a8a0"
-  integrity sha512-Hov/tlRMg/vom3PIWs7Bzi3BhcaJjqisS0JzDpIItwh40MqSwtDBjbmXFJB8s5Xr4iqgu4QAAV+9tprRG5ReJw==
+  version "4.3.4"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-4.3.4.tgz#cd3f9d755c7cfbec9b8506628774b6ab2df85ba9"
+  integrity sha512-FEPlY6CMZatnQE6Z6A931ddgNpkjifzwGYrqFEzvmLWCNCa3dHLg1RGNeSzi7vFAbo856Nw3PC+GxgP/GHMGwg==
 
 "@rollup/plugin-babel@^5.0.0":
   version "5.0.0"
@@ -9574,9 +9574,9 @@ flat@^4.1.0:
     is-buffer "~2.0.3"
 
 flatpickr@^4.6.3:
-  version "4.6.3"
-  resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.6.3.tgz#15a8b76b6e34e3a072861250503a5995b9d3bc60"
-  integrity sha512-007VucCkqNOMMb9ggRLNuJowwaJcyOh4sKAFcdGfahfGc7JQbf94zSzjdBq/wVyHWUEs5o3+idhFZ0wbZMRmVQ==
+  version "4.6.6"
+  resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.6.6.tgz#34d2ad80adfa34254e62583a34264d472f1038d6"
+  integrity sha512-EZ48CJMttMg3maMhJoX+GvTuuEhX/RbA1YeuI19attP3pwBdbYy6+yqAEVm0o0hSBFYBiLbVxscLW6gJXq6H3A==
 
 flatted@^2.0.0:
   version "2.0.1"
@@ -14602,10 +14602,10 @@ ovh-ngstrap@^4.0.2:
   resolved "https://registry.yarnpkg.com/ovh-ngstrap/-/ovh-ngstrap-4.0.2.tgz#059291bfb9f59b78df991e476dd2ede0507cb3c9"
   integrity sha1-BZKRv7n1m3jfmR5HbdLt4FB8s8k=
 
-ovh-ui-kit-bs@^4.1.8:
-  version "4.1.8"
-  resolved "https://registry.yarnpkg.com/ovh-ui-kit-bs/-/ovh-ui-kit-bs-4.1.8.tgz#36ebc1e62a2db8da4cb98816a7ec4415031325b7"
-  integrity sha512-8lOjGGGc3FBFyy5EFp1i1Z/CYn3y3MhXMK1PHpCu070Zuq7CO60ju4z6nn2hensqMb2yqVeA6zgbp73piqLY8Q==
+ovh-ui-kit-bs@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/ovh-ui-kit-bs/-/ovh-ui-kit-bs-4.2.0.tgz#d4e4b9c0acbaaaafb284bcd660ae7f4d920fb6d4"
+  integrity sha512-/U/H3e5anKliI8zzVVIzRvqJeH9m9jPvpHZaj8BjCyWCYiAfFtXJSw8Rewzos4ERUZgX61chbYNvnZSgRMbAUQ==
 
 p-defer@^1.0.0:
   version "1.0.0"

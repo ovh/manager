@@ -29,7 +29,7 @@
     "@ovh-ux/manager-product-offers": "^3.0.0 || ^4.0.0",
     "@ovh-ux/manager-vps": "^1.0.0 || ^2.0.0",
     "@ovh-ux/ng-at-internet": "^5.2.0",
-    "@ovh-ux/ng-ovh-api-wrappers": "^4.0.7",
+    "@ovh-ux/ng-ovh-api-wrappers": "^4.0.8",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.0",
     "@ovh-ux/ng-ovh-contracts": "^4.0.0",
     "@ovh-ux/ng-ovh-doc-url": "^2.0.0",
@@ -68,7 +68,7 @@
     "moment": "^2.24.0",
     "oclazyload": "^1.1.0",
     "ovh-api-services": "^10.1.0",
-    "ovh-ui-kit-bs": "^4.1.8",
+    "ovh-ui-kit-bs": "^4.2.0",
     "popper.js": "^1.16.1",
     "ui-select": "^0.19.8"
   },
