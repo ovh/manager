@@ -72,5 +72,6 @@
   "sms_phonebooks_phonebook_contact_import_alert_task": "Import kontaktów w trakcie…",
   "sms_phonebooks_phonebook_contact_export": "Eksport",
   "sms_phonebooks_phonebook_contact_export_ok": "Eksport kontaktów został zakończony!",
-  "sms_phonebooks_phonebook_contact_export_ko": "Ojej! Nie można eksportować kontaktów."
+  "sms_phonebooks_phonebook_contact_export_ko": "Ojej! Nie można eksportować kontaktów.",
+  "sms_phonebooks_phonebook_breadcrumb": "Książka adresowa"
 }

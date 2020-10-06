@@ -58,11 +58,12 @@
   "sms_receivers_clean_receiver_options_premium_label": "Premium",
   "sms_receivers_clean_receiver_options_premium_text": "Removal of duplicate contacts, and contact validity verification via a HLR lookup <em>(This action will be billed at a rate of {{ credit | number:2 }} credits.)</em>",
   "sms_receivers_clean_receiver_cleaning": "Cleaning recipient list...",
-  "sms_receivers_clean_receiver_cleaning_started": "Cleaning task added. ",
+  "sms_receivers_clean_receiver_cleaning_started": "Cleaning task added.",
   "sms_receivers_clean_receiver_ko": "Unable to clean recipient list.<br/>{{error}}",
   "sms_receivers_remove_receiver_title": "Delete recipient list",
   "sms_receivers_remove_receiver_confirm": "Are you sure you want to delete the <b>“{{ receiver }}”</b> recipient file?",
   "sms_receivers_remove_receiver_removing": "Deleting recipient file...",
   "sms_receivers_remove_receiver_removed": "Recipient file deleted",
-  "sms_receivers_remove_receiver_ko": "Unable to delete recipient file.<br/>{{error}}"
+  "sms_receivers_remove_receiver_ko": "Unable to delete recipient file.<br/>{{error}}",
+  "sms_receivers_breadcrumb": "Contacts"
 }

@@ -23,5 +23,6 @@
   "sms_guides_api_csharp": "Enviar SMS con la API de OVHcloud en C#",
   "sms_guides_api_nodejs": "Enviar SMS con la API de OVHcloud en Node.js",
   "sms_guides_api_php": "Enviar SMS con la API de OVHcloud en PHP",
-  "sms_guides_empty": "No hay ninguna guía disponible en el idioma seleccionado."
+  "sms_guides_empty": "No hay ninguna guía disponible en el idioma seleccionado.",
+  "sms_guides_breadcrumb": "Guías"
 }
