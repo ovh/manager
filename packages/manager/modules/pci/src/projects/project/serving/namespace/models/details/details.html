@@ -9,7 +9,7 @@
                     data-term="{{ :: 'pci_projects_project_serving_models_details_infos_id_label' | translate }}"
                 >
                     <oui-tile-description>
-                        {{ $ctrl.model.id }}
+                        <span data-ng-bind="$ctrl.model.id"></span>
                     </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition
@@ -69,12 +69,16 @@
                 class="h-100"
                 data-heading="{{ ::'pci_projects_project_serving_models_details_action_label' | translate }}"
             >
-                <oui-tile-button data-on-click="$ctrl.detachRegistry()">
+                <oui-tile-button
+                    data-on-click="$ctrl.updateModel($ctrl.model.id)"
+                >
                     <span
                         data-translate="pci_projects_project_serving_models_details_action_update_label"
                     ></span>
                 </oui-tile-button>
-                <oui-tile-button data-on-click="$ctrl.detachRegistry()">
+                <oui-tile-button
+                    data-on-click="$ctrl.deleteModel($ctrl.model.id)"
+                >
                     <span
                         data-translate="pci_projects_project_serving_models_details_action_delete_label"
                     ></span>
@@ -139,7 +143,7 @@
                     >
                         <div>
                             <label
-                                class="oui-label d-inline-block align-middle mr-2 mt-3"
+                                class="oui-label d-inline-block mr-2 mt-1"
                                 for="statisticsType"
                             >
                                 <span
@@ -160,7 +164,7 @@
                         </div>
                         <div>
                             <label
-                                class="oui-label d-inline-block align-middle mr-2 mt-3"
+                                class="oui-label d-inline-block mr-2 mt-1"
                                 for="statisticsPeriod"
                             >
                                 <span
