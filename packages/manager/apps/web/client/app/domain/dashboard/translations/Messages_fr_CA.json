@@ -828,5 +828,6 @@
   "domain_dashboard_recommended_hosting_title_Pro": "Hébergement de votre site web",
   "domain_dashboard_recommended_hosting_title_Perso": "Hébergement de votre blog ou votre site web",
   "domain_dashboard_recommended_hosting_label": "-{{ reduction }} sur votre Hébergement {{ type }} pour le Black Friday.",
-  "domain_dashboard_recommended_hosting_discover": "Découvrir les solutions"
+  "domain_dashboard_recommended_hosting_discover": "Découvrir les solutions",
+  "domain_tab_emails": "E-mails et mailing-lists"
 }
