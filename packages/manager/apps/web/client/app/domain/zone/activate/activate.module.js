@@ -8,10 +8,7 @@ import zoneActivateService from './activate.service';
 const moduleName = 'ovhManagerWebDomainZoneActivateModule';
 
 angular
-  .module(moduleName, [
-    'oui',
-    'pascalprecht.translate',
-  ])
+  .module(moduleName, ['oui', 'pascalprecht.translate'])
   .config(routing)
   .component('domainZoneActivate', component)
   .service('DomainDnsZoneActivateService', zoneActivateService)

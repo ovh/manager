@@ -12,7 +12,7 @@ export default class FlavorsListController {
     this.nodeMaxCount = this.nodeMaxCount || NODE_MAX_COUNT;
     this.excludeCategories = EXCLUDE_FLAVOR_CATEGORIES;
 
-    if(!this.defaultFlavor && this.flavors) {
+    if (!this.defaultFlavor && this.flavors) {
       this.defaultFlavor = find(this.flavors, { name: 'b2-7' });
     }
   }

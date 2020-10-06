@@ -13,21 +13,15 @@ export const UpgradeBasicOptionsService = class {
     this.ovhManagerPccServicePackService = ovhManagerPccServicePackService;
   }
 
-  getServicePacks(serviceName,subsidiary) {
+  getServicePacks(serviceName, subsidiary) {
     return this.ovhManagerPccServicePackService.getServicePacks(
       serviceName,
       subsidiary,
     );
   }
 
-  async getOrderableServicePacks(
-    serviceName,
-    subsidiary,
-  ) {
-    const allServicePacks = await this.getServicePacks(
-      serviceName,
-      subsidiary,
-    );
+  async getOrderableServicePacks(serviceName, subsidiary) {
+    const allServicePacks = await this.getServicePacks(serviceName, subsidiary);
 
     return filter(allServicePacks, (servicePack) =>
       every(servicePack.options, (option) =>
