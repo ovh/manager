@@ -46,14 +46,13 @@
 .false-gradient(@value) {
   background-color: @value;
   background-image: -moz-linear-gradient(top, @value, @value);
-  background-image:
-    -webkit-gradient(
-      linear,
-      0 0,
-      0 100%,
-      from(@value),
-      to(@value)
-    );
+  background-image: -webkit-gradient(
+    linear,
+    0 0,
+    0 100%,
+    from(@value),
+    to(@value)
+  );
   background-image: -webkit-linear-gradient(top, @value, @value);
   background-image: -o-linear-gradient(top, @value, @value);
   background-image: linear-gradient(to bottom, @value, @value);

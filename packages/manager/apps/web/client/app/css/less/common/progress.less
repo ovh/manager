@@ -63,21 +63,18 @@
         &:first-child,
         &.active {
           &::after {
-            border-left:
-              unit(@ovh-progress-bar-height / 10, px) solid
+            border-left: unit(@ovh-progress-bar-height / 10, px) solid
               transparent;
-            border-right:
-              unit(@ovh-progress-bar-height / 10, px) solid
+            border-right: unit(@ovh-progress-bar-height / 10, px) solid
               transparent;
             border-top: unit(@ovh-progress-bar-height / 10, px) solid #27b9a2;
             content: '';
             display: block;
             height: 0;
-            left:
-              unit(
-                (@ovh-progress-bar-height / 4) - (@ovh-progress-bar-height / 10),
-                px
-              );
+            left: unit(
+              (@ovh-progress-bar-height / 4) - (@ovh-progress-bar-height / 10),
+              px
+            );
             position: absolute;
             top: unit(@ovh-progress-bar-height, px);
             width: 0;
@@ -86,12 +83,11 @@
 
         &.active {
           &::after {
-            left:
-              unit(
-                (@ovh-progress-bar-height / 4) - (@ovh-progress-bar-height / 10) +
+            left: unit(
+              (@ovh-progress-bar-height / 4) - (@ovh-progress-bar-height / 10) +
                 2,
-                px
-              );
+              px
+            );
           }
 
           &::before {
