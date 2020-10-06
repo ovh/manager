@@ -53,20 +53,17 @@
 @import './flat-switch/index.less';
 
 .flat-transition {
-  transition:
-    border-color ease-in-out 0.25s,
-    box-shadow ease-in-out 0.25s,
+  transition: border-color ease-in-out 0.25s, box-shadow ease-in-out 0.25s,
     background-color ease-in-out 0.25s;
 }
 
 .flat-shadow {
-  box-shadow:
-    @form-flat-shadow-right-h-offset @form-flat-shadow-right-v-offset
-    @form-flat-shadow-bottom-blur @form-flat-shadow-bottom-spread
-    @form-flat-shadow-right-default-color,
+  box-shadow: @form-flat-shadow-right-h-offset @form-flat-shadow-right-v-offset
+      @form-flat-shadow-bottom-blur @form-flat-shadow-bottom-spread
+      @form-flat-shadow-right-default-color,
     @form-flat-shadow-bottom-h-offset @form-flat-shadow-bottom-v-offset
-    @form-flat-shadow-bottom-blur @form-flat-shadow-bottom-spread
-    @form-flat-shadow-bottom-default-color;
+      @form-flat-shadow-bottom-blur @form-flat-shadow-bottom-spread
+      @form-flat-shadow-bottom-default-color;
 }
 
 .flat-no-shadow {
