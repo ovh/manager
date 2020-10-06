@@ -64,5 +64,6 @@
   "sms_receivers_remove_receiver_confirm": "Vuoi davvero eliminare il file dei destinatari <b>«{{ receiver }}»</b>?",
   "sms_receivers_remove_receiver_removing": "Eliminazione file dei destinatari in corso...",
   "sms_receivers_remove_receiver_removed": "File dei destinatari eliminato",
-  "sms_receivers_remove_receiver_ko": "Impossibile eliminare il file di destinatari: <br/>{{error}}"
+  "sms_receivers_remove_receiver_ko": "Impossibile cancellare il file di destinatari.<br/>{{error}}",
+  "sms_receivers_breadcrumb": "Contatti"
 }

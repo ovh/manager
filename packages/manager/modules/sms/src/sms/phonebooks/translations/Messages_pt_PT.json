@@ -72,5 +72,6 @@
   "sms_phonebooks_phonebook_contact_import_alert_task": "Une tâche d'importation de contact est actuellement en cours…",
   "sms_phonebooks_phonebook_contact_export": "Exportar",
   "sms_phonebooks_phonebook_contact_export_ok": "Exportation des contacts terminée !",
-  "sms_phonebooks_phonebook_contact_export_ko": "Oups ! Impossible d’exporter vos contacts."
+  "sms_phonebooks_phonebook_contact_export_ko": "Oups ! Impossible d’exporter vos contacts.",
+  "sms_phonebooks_phonebook_breadcrumb": "Lista de endereços"
 }

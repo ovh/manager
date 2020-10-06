@@ -55,5 +55,6 @@
   "sms_options_response_tracking_remove_confirm": "¿Seguro que quiere eliminar la siguiente notificación?:",
   "sms_options_response_tracking_remove_option_removing": "Eliminando la notificación...",
   "sms_options_response_tracking_remove_option_removed": "Se ha eliminado la notificación. ",
-  "sms_options_response_tracking_remove_option_ko": "No se ha podido eliminar la notificación.<br/>{{error}}"
+  "sms_options_response_tracking_remove_option_ko": "No se ha podido eliminar la notificación.<br/>{{error}}",
+  "sms_options_response_breacrumb": "Opciones de las respuestas"
 }

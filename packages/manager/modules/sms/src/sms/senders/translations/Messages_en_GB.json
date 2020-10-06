@@ -54,5 +54,6 @@
   "sms_senders_terminate_sender_info": "Are you sure you want to close the virtual number <b>“{{ number }}”</b> (The closure will be effective on {{ date }})?",
   "sms_senders_terminate_sender_info_cancel": "Are you sure you want to cancel the termination request for the virtual number <b>“{{ number }}”</b>?",
   "sms_senders_terminate_sender_ko": "Oops! Unable to cancel the virtual number.<br/>{{error}}",
-  "sms_senders_add_warning": "Your request will be processed within 48 hours"
+  "sms_senders_add_warning": "Your request will be processed within 48 hours",
+  "sms_senders_breadcrumb": "Senders"
 }

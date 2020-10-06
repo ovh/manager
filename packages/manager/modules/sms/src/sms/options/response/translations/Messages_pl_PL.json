@@ -55,5 +55,6 @@
   "sms_options_response_tracking_remove_option_removing": "Usuwanie powiadomienia w trakcie…",
   "sms_options_response_tracking_remove_option_removed": "Powiadomienie zostało usunięte! ",
   "sms_options_response_tracking_remove_option_ko": "Nie można usunąć powiadomienia.<br/>{{error}}",
-  "sms_options_response_tracking_edit_option": "Zmiana powiadomienia"
+  "sms_options_response_tracking_edit_option": "Zmiana powiadomienia",
+  "sms_options_response_breacrumb": "Opcje odpowiedzi"
 }

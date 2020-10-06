@@ -64,5 +64,6 @@
   "sms_receivers_remove_receiver_confirm": "Czy na pewno chcesz usunąć plik zawierający listę odbiorców <b>«{{receiver}}»</b>?",
   "sms_receivers_remove_receiver_removing": "Usuwanie pliku z listą odbiorców w trakcie…",
   "sms_receivers_remove_receiver_removed": "Plik z listą odbiorców został usunięty",
-  "sms_receivers_remove_receiver_ko": "Nie można usunąć pliku z listą odbiorców.<br/>{{error}}"
+  "sms_receivers_remove_receiver_ko": "Nie można usunąć pliku z listą odbiorców.<br/>{{error}}",
+  "sms_receivers_breadcrumb": "Kontakty"
 }

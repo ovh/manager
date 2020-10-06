@@ -23,5 +23,6 @@
   "sms_guides_api_csharp": "Invia SMS con l’API OVH in C#.",
   "sms_guides_api_nodejs": "Invia SMS con l’API OVH in Node.js.",
   "sms_guides_api_php": "Invia SMS con l’API OVH in PHP.",
-  "sms_guides_empty": "Nessuna guida disponibile per la lingua selezionata."
+  "sms_guides_empty": "Nessuna guida disponibile per la lingua selezionata.",
+  "sms_guides_breadcrumb": "Guide"
 }
