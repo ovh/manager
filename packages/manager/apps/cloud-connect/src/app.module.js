@@ -1,6 +1,19 @@
 import 'script-loader!jquery'; // eslint-disable-line
 import angular from 'angular';
-import '@ovh-ux/manager-cloud-connect';
+import ovhManagerCloudConnect from '@ovh-ux/manager-cloud-connect';
 import ovhManagerCore from '@ovh-ux/manager-core';
 
-angular.module('cloudConnectApp', ['ovhManagerCloudConnect', ovhManagerCore]);
+import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
+
+const moduleName = 'cloudConnectApp';
+
+angular.module(moduleName, [ovhManagerCloudConnect, ovhManagerCore]).run(
+  /* @ngInject */ ($transitions) => {
+    const unregisterHook = $transitions.onSuccess({}, () => {
+      detachPreloader();
+      unregisterHook();
+    });
+  },
+);
+
+export default moduleName;
