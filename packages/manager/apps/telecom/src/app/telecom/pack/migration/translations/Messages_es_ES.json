@@ -130,6 +130,11 @@
   "telecom_pack_migration_pto_check_no": "Non je ne dispose pas d'un boîter PTO",
   "telecom_pack_migration_pto_reference": "Saisissez votre référence PTO",
   "telecom_pack_migration_pto_where": "Où trouver votre numéro de référence du boîtier PTO ?",
-  "telecom_pack_migration_pto_where_description": "Cette référence est inscrite sur le boîtier PTO et est composée de chiffres et de lettres sous la forme OO-XXXX-XXXX /C",
-  "telecom_pack_migration_pto_yes_not_known": "J'ai un boîtier mais je ne connais pas son numéro"
+  "telecom_pack_migration_pto_where_description": "Puede consultar la referencia en la caja PTO. Esta está compuesta por cifras y letras con la siguiente forma: OO-XXXX-XXXX",
+  "telecom_pack_migration_pto_yes_not_known": "J'ai un boîtier mais je ne connais pas son numéro",
+  "telecom_pack_migration_building_details_error": "Se ha producido un error al cargar la información de su edificio.",
+  "telecom_pack_migration_pto_yes": "Tengo una caja con la siguiente referencia:",
+  "telecom_pack_migration_pto_yes_description": "Procederemos a la eliminación de la fibra óptica (PTO) existente.",
+  "telecom_pack_migration_pto_no_description": "Un técnico realizará la instalación de una toma óptica (PTO) durante su intervención.",
+  "telecom_pack_migration_pto_yes_not_known_description": "¿Ha comprobado que no dispone de la referencia de la toma óptica (PTO)? Esto podría afectar al tiempo de conexión."
 }
