@@ -11,6 +11,6 @@
   "cpbc_hourly_private_registry_title": "Managed Private Registry",
   "cpbc_hourly_load_balancer_title": "Load Balancer",
   "cpbc_hourly_serving_title": "ML Serving",
-  "cpbc_hourly_training_title": "'Training'",
+  "cpbc_hourly_training_title": "AI Training",
   "cpbc_hourly_data_processing_title": "Processamento de dados"
 }
