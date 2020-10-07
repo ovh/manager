@@ -9,6 +9,10 @@ import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 const moduleName = 'cloudConnectApp';
 angular
   .module(moduleName, [ovhManagerCore, ovhManagerCloudConnect])
+  .config(
+    /* @ngInject */ ($urlRouterProvider) =>
+      $urlRouterProvider.otherwise('/cloud-connect'),
+  )
   .run(
     /* @ngInject */ ($translate) => {
       let lang = $translate.use();
