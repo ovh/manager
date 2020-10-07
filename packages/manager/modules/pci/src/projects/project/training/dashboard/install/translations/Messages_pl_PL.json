@@ -23,8 +23,6 @@
   "pci_projects_project_training_install_registry_attach": "Przypisz rejestr obrazów Docker",
   "pci_projects_project_training_install_registry_detach": "Odłącz rejestr obrazów Docker",
   "pci_projects_project_training_install_information": "Informacje",
-  "pci_projects_project_training_install_console_url": "URL do konsoli Element AI",
-  "pci_projects_project_training_install_console_url_help": "URL umożliwiający dostęp do interfejsu WWW Element AI",
   "pci_projects_project_training_install_registry": "Docker Registry",
   "pci_projects_project_training_install_registry_shared": "Współdzielony Docker Registry"
 }

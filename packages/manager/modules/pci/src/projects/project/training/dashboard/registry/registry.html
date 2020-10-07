@@ -1,0 +1,42 @@
+<oui-modal
+    data-secondary-action="$ctrl.goBack()"
+    data-on-dismiss="$ctrl.goBack()"
+    data-size="'xl'"
+>
+    <h2>
+        {{:: 'pci_projects_project_training_registry_section_1_title' |
+        translate}}
+    </h2>
+    <oui-message type="warning">
+        {{ 'pci_projects_project_training_registry_section_1_title_info_1' |
+        translate }}
+    </oui-message>
+    <p>
+        {{:: 'pci_projects_project_training_registry_section_1_message_1' |
+        translate }}
+    </p>
+
+    <pre><code>docker login {{ $ctrl.currentRegion.registryUrl }}/{{$ctrl.projectId }}</code></pre>
+
+    <p>
+        {{:: 'pci_projects_project_training_registry_section_1_message_2' |
+        translate }}
+        <a href="{{:: $ctrl.userLink }}"
+            >{{:: 'pci_projects_project_training_registry_section_1_message_3' |
+            translate }}</a
+        >
+        {{:: 'pci_projects_project_training_registry_section_1_message_4' |
+        translate }}
+    </p>
+    <p>
+        {{:: 'pci_projects_project_training_registry_section_1_message_5' |
+        translate }}
+    </p>
+    <pre><code>docker tag image {{ $ctrl.currentRegion.registryUrl }}/{{$ctrl.projectId }}/image
+
+docker push {{ $ctrl.currentRegion.registryUrl }}/{{$ctrl.projectId }}/image</code></pre>
+    <p>
+        {{:: 'pci_projects_project_training_registry_section_1_message_6' |
+        translate }}
+    </p>
+</oui-modal>

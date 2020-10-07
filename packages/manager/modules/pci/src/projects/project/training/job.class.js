@@ -1,72 +1,61 @@
+import includes from 'lodash/includes';
+
 export default class Job {
-  constructor({
-    command,
-    data,
-    image,
-    resources,
-    user,
-    created,
-    id,
-    state,
-    updatedOn,
-    region,
-    accessUrl,
-    resourceUsageUrl,
-    totalRuntime,
-  }) {
+  constructor({ id, status, spec, createdAt, updatedAt, user }) {
     Object.assign(this, {
-      command,
-      data,
-      image,
-      resources,
-      user,
-      created,
       id,
-      state,
-      updatedOn,
-      region,
-      accessUrl,
-      resourceUsageUrl,
-      totalRuntime,
+      status,
+      spec,
+      createdAt,
+      updatedAt,
+      user,
     });
   }
 
-  jobCanBeKilled() {
-    return (
-      this.state === 'RUNNING' ||
-      this.state === 'QUEUING' ||
-      this.state === 'QUEUED'
+  canBeKilled() {
+    return includes(
+      ['RUNNING', 'INITIALIZING', 'QUEUED', 'PENDING'],
+      this.status.state,
     );
   }
 
   getClassForState() {
-    switch (this.state) {
-      case 'CANCELLED':
+    switch (this.status.state) {
       case 'FAILED':
+      case 'ERROR':
         return 'oui-status_error';
-      case 'CANCELLING':
+      case 'INTERRUPTING':
       case 'INTERRUPTED':
         return 'oui-status_warning';
-      case 'SUCCEEDED':
-        return 'oui-status_success';
-      case 'QUEUING':
+      case 'PENDING':
       case 'QUEUED':
-      case 'RUNNING':
+      case 'INITIALIZING':
+      case 'SYNCING':
+      case 'FINALIZING':
         return 'oui-status_info';
+      case 'DONE':
+      case 'RUNNING':
+        return 'oui-status_success';
       default:
         return 'oui-status_info';
     }
   }
 
   isSuccess() {
-    return this.state === 'SUCCEEDED' || this.state === 'CANCELLED';
+    return this.status.state === 'DONE';
   }
 
   isRunning() {
-    return this.state === 'RUNNING';
+    return this.status.state === 'RUNNING';
   }
 
   isFailed() {
-    return this.state === 'FAILED';
+    return this.status.state === 'FAILED';
+  }
+
+  isTerminal() {
+    return ['FAILED', 'INTERRUPTED', 'DONE', 'ERROR'].includes(
+      this.status.state,
+    );
   }
 }

@@ -10,7 +10,7 @@
 
     <oui-tabs class="mb-4">
         <oui-tabs-item
-            data-ng-repeat="(os, cmd) in $ctrl.osInstall track by os"
+            data-ng-repeat="(os, link) in $ctrl.osInstall track by os"
             data-heading="{{:: os }}"
         >
             <p>
@@ -19,21 +19,9 @@
                 | translate }}
             </p>
             <p>
-                <code>
-                    {{:: cmd }}
-                </code>
-            </p>
-            <p>
-                {{::
-                'pci_projects_project_training_install_section_1_command_message_2'
-                | translate }}
-                <code
-                    >{{:: 'pci_projects_project_training_parter_cli_name' |
-                    translate }}</code
-                >
-                {{::
-                'pci_projects_project_training_install_section_1_command_message_3'
-                | translate }}
+                <a href="{{:: link}}">
+                    {{:: link }}
+                </a>
             </p>
         </oui-tabs-item>
     </oui-tabs>

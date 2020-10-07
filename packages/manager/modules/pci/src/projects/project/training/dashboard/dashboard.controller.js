@@ -1,7 +1,6 @@
 import flatten from 'lodash/flatten';
 import map from 'lodash/map';
 import filter from 'lodash/filter';
-import illustration from '../assets/partner.png';
 
 export default class PciTrainingDashboardController {
   /* @ngInject */
@@ -12,9 +11,6 @@ export default class PciTrainingDashboardController {
   }
 
   $onInit() {
-    this.illustration = illustration;
-    [this.currentRegion] = this.regions;
-
     this.loadMessages();
     this.resourceUsage = flatten(
       map(
@@ -25,7 +21,6 @@ export default class PciTrainingDashboardController {
       ),
     ).reduce((a, b) => a + b, 0);
 
-    this.eaiDocsUrl = '';
     this.runningJobs = this.getJobsWithSelector((job) => job.isRunning());
     this.nbRunning = this.runningJobs.length;
     this.nbSuccess = this.getJobsNumberWithSelector((job) => job.isSuccess());
@@ -42,10 +37,6 @@ export default class PciTrainingDashboardController {
       .finally(() => {
         this.allUsersLoaded = true;
       });
-  }
-
-  changeRegion(region) {
-    this.currentRegion = region;
   }
 
   getAllUsersAsStrings() {
@@ -86,25 +77,5 @@ export default class PciTrainingDashboardController {
     });
 
     return this.goToJobSubmit();
-  }
-
-  attachRegistry() {
-    this.atInternet.trackClick({
-      name:
-        'public-cloud::pci::projects::project::training::dashboard::attach-registry::confirm',
-      type: 'action',
-    });
-
-    return this.goToRegistryAttach();
-  }
-
-  goToRegistryDetachTracking() {
-    this.atInternet.trackClick({
-      name:
-        'public-cloud::pci::projects::project::training::dashboard::detach-registry::confirm',
-      type: 'action',
-    });
-
-    return this.goToRegistryDetach();
   }
 }

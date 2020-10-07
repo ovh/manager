@@ -2,7 +2,7 @@
   "pci_projects_project_training_install_section_1_title": "Installation du client",
   "pci_projects_project_training_install_section_2_title": "Authentification",
   "pci_projects_project_training_install_section_3_title": "Commandes",
-  "pci_projects_project_training_install_section_1_command_message_1": "Se placer dans le répertoire d'installation voulu et lancer la commande suivante vous permettra de télécharger le client Element AI sur votre poste de travail et d'installer la configuration OVH :",
+  "pci_projects_project_training_install_section_1_command_message_1": "Se placer dans le répertoire d'installation voulu et lancer la commande suivante vous permettra de télécharger le client AI Training sur votre poste de travail et d'installer la configuration OVH :",
   "pci_projects_project_training_install_section_1_command_message_2": "Aprés l'installation, l'executable ",
   "pci_projects_project_training_install_section_1_command_message_3": " sera disponible dans le répertoire d'installation",
   "pci_projects_project_training_install_section_2_message_1": "L'authentification sur la plateforme peut se faire à partir de tous les ",
@@ -25,8 +25,6 @@
   "pci_projects_project_training_install_registry_detach": "Détacher le registre d'images Docker",
   "pci_projects_project_training_install_information": "Informations",
 
-  "pci_projects_project_training_install_console_url": "URL vers la console Element AI",
-  "pci_projects_project_training_install_console_url_help": "URL permettant d'accéder à l'interface web du produit Element AI",
   "pci_projects_project_training_install_registry": "Docker Registry",
   "pci_projects_project_training_install_registry_shared": "Docker Registry partagé"
 }

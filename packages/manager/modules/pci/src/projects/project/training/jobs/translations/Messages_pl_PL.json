@@ -1,8 +1,6 @@
 {
   "pci_projects_project_training_jobs_list_message_1": "Aby uzyskać dostęp do listy zadań za pomocą wiersza poleceń, wprowadź następującą komendę:",
   "pci_projects_project_training_jobs_submit_select_region": "Wybierz region",
-  "pci_projects_project_training_jobs_submit_select_user": "Wybierz użytkownika",
-  "pci_projects_project_training_jobs_submit_select_user_tips": "Wybierz użytkownika, do którego będzie należało zadanie",
   "pci_projects_project_training_jobs_submit_select_image": "Wprowadź obraz Docker",
   "pci_projects_project_training_jobs_submit_select_image_tips": "Wprowadź nazwę obrazu Docker dla zadania",
   "pci_projects_project_training_jobs_submit_select_resources": "Wybierz zasoby, które chcesz przydzielić",
@@ -30,9 +28,5 @@
   "pci_projects_project_training_jobs_submit_select_command_tile_title": "Określone polecenie",
   "pci_projects_project_training_jobs_submit_select_command_tile_command": "Argumenty",
   "pci_projects_project_training_jobs_access_url_help": "Dostęp HTTP umożliwia przekierowanie z przeglądarki do portu 80 kontenera, jeśli nadal trwa jego wykonywanie. Aby uzyskać dostęp do interfejsu WWW, należy zalogować się jako właściciel zadania: {{owner}}",
-  "pci_projects_project_training_jobs_submit_select_image_tips_help": "Akceptowane są obrazy hostowane w rejestrze prywatnym lub publicznym (Github, GitLab, DockerHub,...)",
-  "pci_projects_project_training_jobs_submit_attach_source_heading": "Dostępne wolumeny",
-  "pci_projects_project_training_jobs_submit_attach_target_heading": "Wybrane wolumeny",
-  "pci_projects_project_training_jobs_submit_attach_source_placeholder": "Brak dostępnych wolumenów",
-  "pci_projects_project_training_jobs_submit_attach_target_placeholder": "Nie wybrałeś żadnego wolumenu"
+  "pci_projects_project_training_jobs_submit_select_image_tips_help": "Akceptowane są obrazy hostowane w rejestrze prywatnym lub publicznym (Github, GitLab, DockerHub,...)"
 }

@@ -2,7 +2,7 @@
   "pci_projects_project_training_install_section_1_title": "Installation des Kunden",
   "pci_projects_project_training_install_section_2_title": "Authentifizierung",
   "pci_projects_project_training_install_section_3_title": "Befehle",
-  "pci_projects_project_training_install_section_1_command_message_1": "Wenn Sie in das gewünschte Installationsverzeichnis gehen und folgenden Befehl ausführen, können Sie den Element AI Client auf Ihren Computer herunterladen und die OVHcloud Konfiguration installieren:",
+  "pci_projects_project_training_install_section_1_command_message_1": "Wenn Sie in das gewünschte Installationsverzeichnis gehen und folgenden Befehl ausführen, können Sie den AI Training Client auf Ihren Computer herunterladen und die OVHcloud Konfiguration installieren:",
   "pci_projects_project_training_install_section_1_command_message_2": "Nach der Installation ist die ausführbare Datei ",
   "pci_projects_project_training_install_section_1_command_message_3": " im Installationsverzeichnis verfügbar",
   "pci_projects_project_training_install_section_1_command_message_4": "Um Ihre Installation abzuschließen, fügen Sie folgende Umgebungsvariable hinzu: ",
@@ -23,8 +23,6 @@
   "pci_projects_project_training_install_registry_attach": "Docker Image Registry verbinden",
   "pci_projects_project_training_install_registry_detach": "Docker Image Registry abtrennen",
   "pci_projects_project_training_install_information": "Informationen",
-  "pci_projects_project_training_install_console_url": "URL zur Element AI Konsole",
-  "pci_projects_project_training_install_console_url_help": "URL zum Zugriff auf das Web-Interface des Produkts Element AI",
   "pci_projects_project_training_install_registry": "Docker Registry",
   "pci_projects_project_training_install_registry_shared": "gemeinsam genutzte Docker Registry"
 }
