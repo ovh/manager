@@ -1,3 +1,12 @@
+## [13.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.3.0...@ovh-ux/manager-telecom@13.3.1) (2020-10-07)
+
+
+### Bug Fixes
+
+* **sidebar:** behaviour order action menu items ([#3790](https://github.com/ovh/manager/issues/3790)) ([af83ac2](https://github.com/ovh/manager/commit/af83ac2bcf390b789f28295bef2b1e6e7159cd9d))
+
+
+
 # [13.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.2.11...@ovh-ux/manager-telecom@13.3.0) (2020-10-05)
 
 

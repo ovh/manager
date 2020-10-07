@@ -1,3 +1,12 @@
+## [2.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.1.1...@ovh-ux/manager-vps@2.1.2) (2020-10-07)
+
+
+### Bug Fixes
+
+* **vps.dashboard:** remove maintenance message ([#3791](https://github.com/ovh/manager/issues/3791)) ([1a5de6d](https://github.com/ovh/manager/commit/1a5de6d300f50aa53f53f37073448d172c4d6ade))
+
+
+
 ## [2.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.1.0...@ovh-ux/manager-vps@2.1.1) (2020-10-05)
 
 
