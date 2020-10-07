@@ -1,6 +1,7 @@
 import angular from 'angular';
 
 import '@ovh-ux/manager-core';
+import '@ovh-ux/ng-at-internet';
 import '@uirouter/angularjs';
 import 'angular-translate';
 import '@ovh-ux/ng-ovh-doc-url';
@@ -15,6 +16,7 @@ angular
   .module(moduleName, [
     'ngOvhDocUrl',
     'ovhManagerCore',
+    'ngAtInternet',
     'pascalprecht.translate',
     'ui.router',
     logs,
