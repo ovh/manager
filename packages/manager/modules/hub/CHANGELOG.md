@@ -1,3 +1,12 @@
+## [2.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@2.1.2...@ovh-ux/manager-hub@2.1.3) (2020-10-07)
+
+
+### Bug Fixes
+
+* **peer-deps:** add missing @ovh-ux/manager-billing ([7f0ffde](https://github.com/ovh/manager/commit/7f0ffde51ecc6617a13cf31da597785741d772c1))
+
+
+
 ## [2.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@2.1.1...@ovh-ux/manager-hub@2.1.2) (2020-09-28)
 
 
