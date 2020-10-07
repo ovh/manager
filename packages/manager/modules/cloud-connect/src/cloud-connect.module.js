@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-import component from './cloud-connect.component';
+import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 import details from './details';
 import routing from './cloud-connect.routing';
 import service from './cloud-connect.service';
@@ -8,9 +8,8 @@ import service from './cloud-connect.service';
 const moduleName = 'ovhCloudConnect';
 
 angular
-  .module(moduleName, [details])
+  .module(moduleName, [ListLayoutHelper.moduleName, details])
   .config(routing)
-  .component('cloudConnect', component)
   .service('cloudConnectService', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
