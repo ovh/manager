@@ -1,4 +1,3 @@
-import 'moment';
 import find from 'lodash/find';
 import { STATUS } from './cloud-connect.constants';
 

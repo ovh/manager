@@ -1,4 +1,3 @@
-import 'moment';
 import { get } from 'lodash';
 
 import { POP_MAP } from '../../cloud-connect.constants';
