@@ -6,6 +6,5 @@
   "vps_dashboard_auto_migration_warning": "Votre VPS Cloud 2013/2014 sera migré automatiquement vers un VPS de la nouvelle gamme dans {{days}} jours.",
   "vps_dashboard_migration_in_progress": "Votre VPS Cloud 2013/2014 est en cours de migration vers la nouvelle gamme.",
   "vps_dashboard_migration_in_error": "Une erreur s'est produite lors de la migration de votre VPS. La suite de la migration va être prise en charge par nos équipes.",
-  "vps_dashboard_migration_link": "Migrer vers la nouvelle gamme",
-  "vps_dashboard_maintenance_warning": "En raison d'une maintenance planifiée le 6 Octobre à partir de 23h (UTC+10), pour une durée maximale de 2h, il ne sera pas possible de commander, modifier ou supprimer un VPS sur le Datacenter de Sydney. <br />Vous pouvez suivre la tâche travaux : <a href=\"http://travaux.ovh.net/?do=details&id=46860\" target=\"_blank\">http://travaux.ovh.net/?do=details&id=46860</a>"
+  "vps_dashboard_migration_link": "Migrer vers la nouvelle gamme"
 }

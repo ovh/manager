@@ -179,7 +179,11 @@ export default class OvhManagerServerSidebarController {
                 icon: orderItemConfig.icon,
                 href: link,
                 state: isExternal ? null : orderItemConfig.state,
-                target: isExternal ? '_blank' : null,
+                target: get(
+                  orderItemConfig,
+                  'target',
+                  isExternal ? '_blank' : null,
+                ),
                 external: get(orderItemConfig, 'external', false),
                 onClick: () => {
                   this.atInternet.trackClick({
