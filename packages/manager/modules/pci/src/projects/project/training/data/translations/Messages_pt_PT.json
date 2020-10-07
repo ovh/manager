@@ -20,7 +20,7 @@
   "pci_projects_project_training_data_add_select_region": "Escolher uma região na qual o seu volume de dados estará disponível",
   "pci_projects_project_training_data_add_select_obj_container": "Escolher o container de dados",
   "pci_projects_project_training_data_add_select_obj_container_tips": "Escolher um container de dados (dentro do Object Storage do projeto) a sincronizar com o volume de dados do job",
-  "pci_projects_project_training_data_add_select_user": "Ativar um utilizador",
+  "pci_projects_project_training_data_add_select_user": "Escolher um utilizador",
   "pci_projects_project_training_data_add_select_user_tips": "Escolher o utilizador a quem caberá o volume de dados",
   "pci_projects_project_training_data_add_select_name": "Escolher o nome do volume de dados",
   "pci_projects_project_training_data_add_select_name_tips": "o nome do volume de dados deve ser em minúscula",

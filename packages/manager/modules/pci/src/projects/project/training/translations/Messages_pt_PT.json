@@ -1,11 +1,11 @@
 {
-  "pci_projects_project_training_title": "'Training'",
+  "pci_projects_project_training_title": "AI Training",
   "pci_projects_project_training_parter_name": "Element AI",
   "pci_projects_project_training_parter_cli_name": "eu",
   "pci_projects_project_training_install_title": "Inicialização",
   "pci_projects_project_training_jobs_title": "Jobs",
   "pci_projects_project_training_data_title": "Volumes de dados",
-  "pci_projects_project_training_jobs_list_submit": "Iniciar um novo job",
+  "pci_projects_project_training_jobs_list_submit": "Lançar um novo job",
   "pci_projects_project_training_data_list_add": "Associar um container de dados",
   "pci_projects_project_training_dashboard_title": "Página Inicial",
   "pci_projects_project_training_jobs_id": "ID",
