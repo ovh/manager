@@ -20,21 +20,26 @@ export default class Datacenter {
   checkInstancesNumber(flavorCount) {
     return (
       this.quota.instance.maxInstances !== -1 &&
-      this.quota.instance.usedInstances + flavorCount  <= this.quota.instance.maxInstances
+      this.quota.instance.usedInstances + flavorCount <=
+        this.quota.instance.maxInstances
     );
   }
 
   checkRamQuota(flavor, flavorCount) {
     return (
       this.quota.instance.maxRam !== -1 &&
-      this.quota.instance.maxRam - (this.quota.instance.usedRAM + flavor.ram * flavorCount) >= 0
+      this.quota.instance.maxRam -
+        (this.quota.instance.usedRAM + flavor.ram * flavorCount) >=
+        0
     );
   }
 
   checkCoresQuota(flavor, flavorCount) {
     return (
       this.quota.instance.maxCores !== -1 &&
-      this.quota.instance.maxCores - (this.quota.instance.usedCores + flavor.vcpus * flavorCount) >= 0
+      this.quota.instance.maxCores -
+        (this.quota.instance.usedCores + flavor.vcpus * flavorCount) >=
+        0
     );
   }
 

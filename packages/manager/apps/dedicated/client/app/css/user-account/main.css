@@ -26,7 +26,7 @@
 }
 
 .monospace {
-  font-family: Monospace, sans-serif;
+  font-family: monospace, sans-serif;
 }
 
 .no-padding {
@@ -88,7 +88,9 @@
   padding-left: 23px;
 }
 
-.module-useraccount-menu > .sidebar .navigation-left.module-useraccount-menu-back {
+.module-useraccount-menu
+  > .sidebar
+  .navigation-left.module-useraccount-menu-back {
   padding: 20px 0 10px 0;
 }
 
@@ -100,7 +102,10 @@
   border-left-color: #00a2bf;
 }
 
-.module-useraccount-menu > .sidebar .navigation-left-list-container > li.active {
+.module-useraccount-menu
+  > .sidebar
+  .navigation-left-list-container
+  > li.active {
   background-color: #00a2bf !important;
 }
 
@@ -108,17 +113,32 @@
   background-color: rgba(255, 255, 255, 0.15);
 }
 
-.module-useraccount-menu > .sidebar .navigation-left-list-container > li a.navigation-left-item:hover,
-.module-useraccount-menu > .sidebar .navigation-left-list-container > li a.navigation-left-item:focus {
+.module-useraccount-menu
+  > .sidebar
+  .navigation-left-list-container
+  > li
+  a.navigation-left-item:hover,
+.module-useraccount-menu
+  > .sidebar
+  .navigation-left-list-container
+  > li
+  a.navigation-left-item:focus {
   background-color: transparent;
 }
 
-.module-useraccount-menu .sidebar .navigation-left-list-container > li a.navigation-left-item.active {
+.module-useraccount-menu
+  .sidebar
+  .navigation-left-list-container
+  > li
+  a.navigation-left-item.active {
   background-color: #00a2bf !important;
   color: #122844;
 }
 
-.module-useraccount-menu > .sidebar .navigation-left-title .module-useraccount-menu-small {
+.module-useraccount-menu
+  > .sidebar
+  .navigation-left-title
+  .module-useraccount-menu-small {
   display: block;
   font-weight: lighter;
   font-size: 85%;
@@ -170,16 +190,23 @@
     USER INFO
 **********************************************************/
 
-.module-useraccount-container .module-useraccount-sections-infos-container label {
+.module-useraccount-container
+  .module-useraccount-sections-infos-container
+  label {
   color: #333;
   font-weight: 700;
 }
 
-.module-useraccount-container .module-useraccount-sections-infos-container .top-space-5 {
+.module-useraccount-container
+  .module-useraccount-sections-infos-container
+  .top-space-5 {
   margin-top: 5px;
 }
 
-.module-useraccount-container .module-useraccount-sections-infos-container .form-horizontal .control-group {
+.module-useraccount-container
+  .module-useraccount-sections-infos-container
+  .form-horizontal
+  .control-group {
   margin-bottom: 10px;
 }
 
@@ -294,17 +321,31 @@
   word-wrap: normal;
 }
 
-.module-useraccount-container .popover .popover-content .popover-menu .btn-link:hover {
+.module-useraccount-container
+  .popover
+  .popover-content
+  .popover-menu
+  .btn-link:hover {
   color: #fff;
   background-color: #54a89b;
   text-decoration: none;
   font-weight: bold;
 }
 
-.module-useraccount-container .popover .popover-content .popover-menu a:hover span {
+.module-useraccount-container
+  .popover
+  .popover-content
+  .popover-menu
+  a:hover
+  span {
   background-color: inherit;
 }
 
-.module-useraccount-container .popover .popover-content .popover-menu .btn-link:hover span {
+.module-useraccount-container
+  .popover
+  .popover-content
+  .popover-menu
+  .btn-link:hover
+  span {
   background-color: inherit;
 }

@@ -13,6 +13,9 @@ angular
   .module(moduleName, [add, bulkDelete, deleteNode, switchBillingType])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)
-  .component('ovhManagerPciProjectKubernetesNodePoolNodesComponent', nodeComponents);
+  .component(
+    'ovhManagerPciProjectKubernetesNodePoolNodesComponent',
+    nodeComponents,
+  );
 
 export default moduleName;

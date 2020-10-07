@@ -1,6 +1,5 @@
 import filter from 'lodash/filter';
 import find from 'lodash/find';
-import get from 'lodash/get';
 import map from 'lodash/map';
 import set from 'lodash/set';
 

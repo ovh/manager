@@ -21,9 +21,9 @@ export default class DomainDnsZoneActivateService {
   }
 
   prepareOrderCart(ovhSubsidiary) {
-    return this.WucOrderCartService.createNewCart(
-      ovhSubsidiary,
-    ).then((cart) => this.WucOrderCartService.assignCart(cart.cartId).then(() => cart));
+    return this.WucOrderCartService.createNewCart(ovhSubsidiary).then((cart) =>
+      this.WucOrderCartService.assignCart(cart.cartId).then(() => cart),
+    );
   }
 
   addItemToCart(cartId, serviceName, serviceOption, price) {
@@ -37,18 +37,24 @@ export default class DomainDnsZoneActivateService {
         pricingMode: price.pricingMode,
         quantity: price.minimumQuantity,
       },
-    ).then((cart) => this.WucOrderCartService.addConfigurationItem(
-      cartId,
-      cart.itemId,
-      'zone',
-      serviceName,
-    ).then(() => cart))
-    .then((cart) => this.WucOrderCartService.addConfigurationItem(
-      cartId,
-      cart.itemId,
-      'template',
-      'minimized',
-    )).then(() => this.WucOrderCartService.getCheckoutInformations(cartId));
+    )
+      .then((cart) =>
+        this.WucOrderCartService.addConfigurationItem(
+          cartId,
+          cart.itemId,
+          'zone',
+          serviceName,
+        ).then(() => cart),
+      )
+      .then((cart) =>
+        this.WucOrderCartService.addConfigurationItem(
+          cartId,
+          cart.itemId,
+          'template',
+          'minimized',
+        ),
+      )
+      .then(() => this.WucOrderCartService.getCheckoutInformations(cartId));
   }
 
   checkoutOrderCart(autoPayWithPreferredPaymentMethod, cartId) {
