@@ -6,6 +6,5 @@
   "vps_dashboard_migration_link": "Migruj do nowej gamy",
   "vps_dashboard_auto_migration_warning": "Twój VPS Cloud 2013/2014 zostanie automatycznie przeniesiony do VPS z nowej gamy w ciągu {{days}} dni.",
   "vps_dashboard_migration_in_progress": "Aktualnie trwa migracja VPS Cloud 2013/2014 do nowej gamy.",
-  "vps_dashboard_migration_in_error": "Wystąpił błąd podczas migracji VPS. Dalszym ciągiem migracji zajmie się zespół OVHcloud.",
-  "vps_dashboard_maintenance_warning": "Ze względu na zaplanowane prace konserwacyjne w dniu 6 października 2020, począwszy od 23:00 (UTC+10), przez maksymalnie 2 godziny, nie będzie można złożyć zamówienia, zmienić lub usunąć serwera VPS w centrum danych w Sydney. <br />Tutaj możesz śledzić status prac: <a href=\"http://travaux.ovh.net/?do=details&id=46860\" target=\"_blank\">http://travaux.ovh.net/?do=details&id=46860</a>"
+  "vps_dashboard_migration_in_error": "Wystąpił błąd podczas migracji VPS. Dalszym ciągiem migracji zajmie się zespół OVHcloud."
 }

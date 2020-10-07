@@ -6,6 +6,5 @@
   "vps_dashboard_migration_link": "Zur neuen Reihe wechseln",
   "vps_dashboard_auto_migration_warning": "Ihr VPS Cloud 2013/2014 wird in {{days}} Tagen automatisch auf einen VPS der neuen Reihe umgestellt.",
   "vps_dashboard_migration_in_progress": "Ihr VPS Cloud 2013/2014 wird gerade auf die neue Reihe umgestellt.",
-  "vps_dashboard_migration_in_error": "Bei der Umstellung Ihres VPS ist ein Fehler aufgetreten. Unsere Teams werden sich um den weiteren Verlauf der Umstellung kümmern.",
-  "vps_dashboard_maintenance_warning": "Für den 6. Oktober sind ab 23:00 Uhr (UTC+10) Wartungsarbeiten geplant. Daher wird es für maximal 2 Stunden nicht möglich sein, einen VPS im Rechenzentrum Sydney zu bestellen, zu ändern oder zu löschen. <br />Sie können die Wartungsarbeiten hier mitverfolgen: <a href=\"http://travaux.ovh.net/?do=details&id=46860\" target=\"_blank\">http://travaux.ovh.net/?do=details&id=46860"
+  "vps_dashboard_migration_in_error": "Bei der Umstellung Ihres VPS ist ein Fehler aufgetreten. Unsere Teams werden sich um den weiteren Verlauf der Umstellung kümmern."
 }
