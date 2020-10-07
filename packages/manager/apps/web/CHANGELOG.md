@@ -1,3 +1,12 @@
+## [15.3.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.3.4...@ovh-ux/manager-web@15.3.5) (2020-10-07)
+
+
+### Bug Fixes
+
+* **domain.tasks:** merge domain & zone tasks ([#3770](https://github.com/ovh/manager/issues/3770)) ([4a943a8](https://github.com/ovh/manager/commit/4a943a8d0a20d87ccac37eed52a57e3a95c439ef))
+
+
+
 ## [15.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.3.3...@ovh-ux/manager-web@15.3.4) (2020-10-06)
 
 
