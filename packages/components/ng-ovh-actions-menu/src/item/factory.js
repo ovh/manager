@@ -56,13 +56,12 @@ export default function() {
       this.icon = options.icon;
     }
 
+    this.onClick = angular.isFunction(options.onClick) ? options.onClick : null;
+
     if (options.href && !options.state && !options.subItems) {
       this.href = options.href;
       this.target = options.target || '_self';
       this.external = options.external || false;
-      this.onClick = angular.isFunction(options.onClick)
-        ? options.onClick
-        : null;
     } else if (options.state && !options.href && !options.subItems) {
       this.state = options.state;
       this.stateParams = options.stateParams || {};
