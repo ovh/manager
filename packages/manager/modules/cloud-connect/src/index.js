@@ -1,38 +1,22 @@
 import angular from 'angular';
 
-import '@ovh-ux/manager-core';
-import '@uirouter/angularjs';
-import 'angular-translate';
 import 'oclazyload';
-import 'ovh-api-services';
-import '@ovh-ux/ng-at-internet';
-import ngOvhCloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-components';
-
-import './style.scss';
+import '@uirouter/angularjs';
 
 const moduleName = 'ovhCloudConnectLazyLoading';
 
-angular
-  .module(moduleName, [
-    'ovhManagerCore',
-    'pascalprecht.translate',
-    'ui.router',
-    'oc.lazyLoad',
-    'ovh-api-services',
-    ngOvhCloudUniverseComponents,
-  ])
-  .config(
-    /* @ngInject */ ($stateProvider) => {
-      $stateProvider.state('cloud-connect.**', {
-        url: '/cloud-connect',
-        lazyLoad: ($transition$) => {
-          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-          return import('./cloud-connect.module').then((mod) =>
-            $ocLazyLoad.inject(mod.default || mod),
-          );
-        },
-      });
-    },
-  );
+angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
+  /* @ngInject */ ($stateProvider) => {
+    $stateProvider.state('cloud-connect.**', {
+      url: '/cloud-connect',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+        return import('./cloud-connect.module').then((mod) =>
+          $ocLazyLoad.inject(mod.default || mod),
+        );
+      },
+    });
+  },
+);
 
 export default moduleName;
