@@ -7,6 +7,10 @@ angular
   .module(moduleName, [
     ovhManagerCloudConnect,
   ])
+  .config(
+    /* @ngInject */ ($urlRouterProvider) =>
+      $urlRouterProvider.otherwise('/cloud-connect'),
+  )
   .run(
     /* @ngInject */ ($translate) => {
       let lang = $translate.use();
