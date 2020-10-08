@@ -1,6 +1,3 @@
-import forEach from 'lodash/forEach';
-import set from 'lodash/set';
-
 export default class LogsAccountSetupCtrl {
   /* @ngInject */
   constructor(
@@ -22,7 +19,6 @@ export default class LogsAccountSetupCtrl {
     this.LogsAccountService = LogsAccountService;
     this.LogsHomeService = LogsHomeService;
     this.LogsDetailService = LogsDetailService;
-    this.passwordValid = false;
     this.passwordRules = this.LogsAccountService.getPasswordRules(false);
 
     this.initLoaders();
@@ -57,37 +53,21 @@ export default class LogsAccountSetupCtrl {
     this.passwordRules = this.LogsAccountService.getPasswordRules(true);
   }
 
-  validatePassword() {
-    let allValid = true;
-    forEach(this.passwordRules, (rule) => {
-      set(rule, 'isValid', rule.validator(this.newPassword));
-      if (allValid) {
-        allValid = rule.isValid;
-      }
-      set(rule, 'isValidated', true);
-    });
-    this.passwordValid = allValid;
-  }
-
   changePassword() {
-    if (this.form.$invalid || !this.passwordValid) {
-      return this.$q.reject();
+    if (this.form.$invalid) {
+      return this.$q.when();
     }
     this.CucCloudMessage.flushChildMessage();
-    this.saving = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () =>
-        this.LogsAccountService.changePassword(
-          this.serviceName,
-          this.newPassword,
-          true,
-        ).then(() => {
-          this.$state.go(
-            'dbaas-logs.detail.home',
-            { serviceName: this.serviceName },
-            { reload: true },
-          );
-        }),
+    return this.LogsAccountService.changePassword(
+      this.serviceName,
+      this.newPassword,
+      true,
+    ).then(() => {
+      this.$state.go(
+        'dbaas-logs.detail.home',
+        { serviceName: this.serviceName },
+        { reload: true },
+      );
     });
-    return this.saving.load();
   }
 }
