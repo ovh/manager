@@ -5,6 +5,7 @@ export const component = {
   controller,
   template,
   bindings: {
+    getOrderHref: '<',
     sendersLink: '<',
   },
 };

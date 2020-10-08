@@ -117,5 +117,8 @@
   "sms_sms_compose_add_phonebook_contact_added": "Liste des contacts mise à jour !",
   "sms_sms_compose_add_phonebook_contact_ko": "Oups ! Impossible de récupérer la liste des contacts.",
   "sms_sms_compose_message_commercial_description": "Pour des raisons légales, un SMS à caractère commercial ne sera envoyé qu’<strong>entre 8 h et 20 h, du lundi au samedi</strong>.",
-  "sms_sms_compose_no_commercial_clause_label": "Je certifie sur l’honneur que le SMS n’est pas à caractère commercial."
+  "sms_sms_compose_no_commercial_clause_label": "Je certifie sur l’honneur que le SMS n’est pas à caractère commercial.",
+  "sms_credit_balance": "Solde",
+  "sms_credit_remaining_sms": "SMS restants",
+  "sms_credit_manage_credits": "Gérer vos crédits SMS OVHCloud"
 }
