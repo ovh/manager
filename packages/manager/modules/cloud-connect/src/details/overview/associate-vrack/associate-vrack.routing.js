@@ -7,16 +7,13 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     layout: 'modal',
-    translations: {
-      value: ['.'],
-      format: 'json',
-    },
     resolve: {
       vRacks: /* @ngInject */ (cloudConnectService) =>
         cloudConnectService.getVracks(),
       goBack: /* @ngInject */ (goToCloudConnectPage) => goToCloudConnectPage,
       vrackOrderUrl: /* @ngInject */ (CucVrackService) =>
         CucVrackService.getOrderUrl(),
+      breadcrumb: () => null,
     },
   });
 };

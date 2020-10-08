@@ -15,9 +15,9 @@ angular
     'oc.lazyLoad',
   ])
   .config(
-    /* @ngInject */ ($stateProvider) => {
+    /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       $stateProvider.state('cloud-connect.details.**', {
-        url: '/details/:ovhCloudConnectId',
+        url: '/:ovhCloudConnectId',
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
@@ -25,6 +25,10 @@ angular
             $ocLazyLoad.inject(mod.default || mod),
           );
         },
+      });
+
+      $urlRouterProvider.when(/^\/cloud-connect\/details/, () => {
+        window.location.href = window.location.href.replace('/details', '');
       });
     },
   );

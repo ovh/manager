@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('cloud-connect.details', {
-    url: '/details/:ovhCloudConnectId',
+    url: '/:ovhCloudConnectId',
     component: 'cloudConnectDetails',
     redirectTo: 'cloud-connect.details.overview',
     translations: {
@@ -14,6 +14,7 @@ export default /* @ngInject */ ($stateProvider) => {
         cloudConnectService.getCloudConnect(cloudConnectId),
       clearCache: /* @ngInject */ (cloudConnectService) => () =>
         cloudConnectService.clearAllCache(),
+      breadcrumb: /* @ngInject */ (cloudConnectId) => cloudConnectId,
     },
   });
 };

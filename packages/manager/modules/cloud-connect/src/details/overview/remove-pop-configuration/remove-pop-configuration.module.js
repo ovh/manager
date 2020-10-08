@@ -8,6 +8,7 @@ const moduleName = 'ovhCloudConnectDetailsRemovePopConfiguration';
 angular
   .module(moduleName, [])
   .config(routing)
-  .component('cloudConnectDetailsRemovePopConfiguration', component);
+  .component('cloudConnectDetailsRemovePopConfiguration', component)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

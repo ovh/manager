@@ -7,16 +7,13 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     layout: 'modal',
-    translations: {
-      value: ['.'],
-      format: 'json',
-    },
     resolve: {
       interfaceId: /* @ngInject */ ($transition$) =>
         $transition$.params().interfaceId,
       interface: /* @ngInject */ (cloudConnect, interfaceId) =>
         cloudConnect.getInterface(interfaceId),
       goBack: /* @ngInject */ (goToCloudConnectPage) => goToCloudConnectPage,
+      breadcrumb: () => null,
     },
   });
 };

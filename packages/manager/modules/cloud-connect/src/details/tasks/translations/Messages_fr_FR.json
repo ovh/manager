@@ -1,4 +1,5 @@
 {
+  "cloud_connect_tasks": "Tâches",
   "cloud_connect_tasks_decription": "Tâches en attente, en cours et ayant échoué.",
   "cloud_connect_tasks_id": "ID Tâche",
   "cloud_connect_tasks_action": "Action",

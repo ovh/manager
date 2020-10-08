@@ -9,10 +9,6 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       },
       layout: 'modal',
-      translations: {
-        value: ['.'],
-        format: 'json',
-      },
       resolve: {
         goBack: /* @ngInject */ (goToCloudConnectPage) => goToCloudConnectPage,
         datacenterId: /* @ngInject */ ($transition$) =>
@@ -21,6 +17,7 @@ export default /* @ngInject */ ($stateProvider) => {
           cloudConnect.getDcConfiguration(datacenterId),
         popId: /* @ngInject */ (cloudConnect) =>
           cloudConnect.getFirstPopConfiguration().id,
+        breadcrumb: () => null,
       },
     },
   );

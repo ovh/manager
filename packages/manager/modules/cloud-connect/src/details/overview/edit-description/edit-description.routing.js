@@ -9,15 +9,12 @@ export default /* @ngInject */ ($stateProvider) => {
         component: 'cloudConnectDetailsEditDescription',
       },
     },
-    translations: {
-      value: ['.'],
-      format: 'json',
-    },
     layout: 'modal',
     resolve: {
       description: /* @ngInject */ ($transition$) =>
         $transition$.params().description,
       goBack: /* @ngInject */ (goToCloudConnectPage) => goToCloudConnectPage,
+      breadcrumb: () => null,
     },
   });
 };

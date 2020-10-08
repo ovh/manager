@@ -7,13 +7,10 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     layout: 'modal',
-    translations: {
-      value: ['.'],
-      format: 'json',
-    },
     resolve: {
       goBack: /* @ngInject */ (goToCloudConnectPage) => goToCloudConnectPage,
       vRackId: /* @ngInject */ ($transition$) => $transition$.params().vRackId,
+      breadcrumb: () => null,
     },
   });
 };

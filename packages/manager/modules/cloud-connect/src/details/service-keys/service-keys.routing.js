@@ -2,10 +2,6 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('cloud-connect.details.service-keys', {
     url: '/service-keys',
     component: 'cloudConnectDetailsServiceKeys',
-    translations: {
-      value: ['.'],
-      format: 'json',
-    },
     resolve: {
       serviceKeys: /* @ngInject */ (cloudConnectService, cloudConnect) =>
         cloudConnectService.loadServiceKeys(cloudConnect),
@@ -37,6 +33,8 @@ export default /* @ngInject */ ($stateProvider) => {
         }
         return promise;
       },
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('cloud_connect_service_keys'),
     },
   });
 };

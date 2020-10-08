@@ -1,10 +1,12 @@
 import 'script-loader!jquery'; // eslint-disable-line
 import 'script-loader!moment/min/moment.min.js'; // eslint-disable-line
 import angular from 'angular';
+import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import ovhManagerCloudConnect from '@ovh-ux/manager-cloud-connect';
 const moduleName = 'cloudConnectApp';
 angular
   .module(moduleName, [
+    ngUiRouterBreadcrumb,
     ovhManagerCloudConnect,
   ])
   .config(
