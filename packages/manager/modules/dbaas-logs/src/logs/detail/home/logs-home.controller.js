@@ -40,32 +40,17 @@ export default class LogsHomeCtrl {
   }
 
   $onInit() {
-    this.service = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () =>
-        this.LogsDetailService.getServiceDetails(this.serviceName).then(
-          (service) => {
-            this.initLoaders();
-            this.isAccountDisabled = this.LogsHelperService.isAccountDisabled(
-              service,
-            );
-            this.lastUpdatedDate = moment(service.updatedAt).format('LL');
-            if (service.state === this.LogsConstants.SERVICE_STATE_TO_CONFIG) {
-              this.goToAccountSetupPage();
-            } else {
-              this.streamUsageGraphData = this.newChart('stream-axis');
-              this.archiveUsageGraphData = this.newChart('archive-axis');
-              this.indiceUsageGraphData = this.newChart('indice-axis');
-              this.runLoaders().then(() => {
-                this.prepareDataUsageGraphData();
-                this.canAccessToElasticsearch =
-                  this.indexIds.data.length + this.aliasIds.data.length > 0;
-              });
-            }
-            return service;
-          },
-        ),
-    });
-    this.service.load();
+    this.lastUpdatedDate = moment(this.service.updatedAt).format('LL');
+    if (this.service.state === this.LogsConstants.SERVICE_STATE_TO_CONFIG) {
+      this.goToAccountSetupPage();
+    } else {
+      this.streamUsageGraphData = this.newChart('stream-axis');
+      this.archiveUsageGraphData = this.newChart('archive-axis');
+      this.indiceUsageGraphData = this.newChart('indice-axis');
+      this.prepareDataUsageGraphData();
+      this.canAccessToElasticsearch =
+        this.indexIds.length + this.aliasIds.length > 0;
+    }
   }
 
   /**
@@ -150,10 +135,10 @@ export default class LogsHomeCtrl {
    */
   prepareUsageGraphData(chart, srcData, label) {
     const updatedChart = chart;
-    updatedChart.labels = srcData.data.timestamps.map((timestamp) =>
+    updatedChart.labels = srcData.timestamps.map((timestamp) =>
       moment(timestamp).format('DD MMM YY'),
     );
-    updatedChart.data = srcData.data.usageData;
+    updatedChart.data = srcData.usageData;
     updatedChart.series = [this.$translate.instant(label)];
     updatedChart.options.scales.yAxes[0].ticks = {
       suggestedMin: 0,
@@ -217,55 +202,6 @@ export default class LogsHomeCtrl {
    *
    * @memberof LogsHomeCtrl
    */
-  initLoaders() {
-    this.accountDetails = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () =>
-        this.LogsHomeService.getAccountDetails(this.serviceName),
-    });
-    this.serviceInfos = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () =>
-        this.LogsHomeService.getServiceInfos(this.serviceName),
-    });
-    if (!this.isAccountDisabled) {
-      this.tokenIds = this.CucControllerHelper.request.getArrayLoader({
-        loaderFunction: () =>
-          this.LogsTokensService.getTokensIds(this.serviceName),
-      });
-      this.defaultCluster = this.CucControllerHelper.request.getHashLoader({
-        loaderFunction: () =>
-          this.LogsTokensService.getDefaultCluster(this.serviceName),
-      });
-      this.streamData = this.CucControllerHelper.request.getHashLoader({
-        loaderFunction: () =>
-          this.LogsHomeService.getDataUsage(
-            this.serviceName,
-            this.LogsConstants.DATA_STORAGE.METRICS.STREAM_SIZE,
-          ),
-      });
-      this.archiveData = this.CucControllerHelper.request.getHashLoader({
-        loaderFunction: () =>
-          this.LogsHomeService.getDataUsage(
-            this.serviceName,
-            this.LogsConstants.DATA_STORAGE.METRICS.COLD_STORAGE_TOTAL,
-          ),
-      });
-      this.indiceData = this.CucControllerHelper.request.getHashLoader({
-        loaderFunction: () =>
-          this.LogsHomeService.getDataUsage(
-            this.serviceName,
-            this.LogsConstants.DATA_STORAGE.METRICS.INDEX_SIZE,
-          ),
-      });
-      this.indexIds = this.CucControllerHelper.request.getArrayLoader({
-        loaderFunction: () =>
-          this.LogsIndexService.getIndicesIds(this.serviceName),
-      });
-      this.aliasIds = this.CucControllerHelper.request.getArrayLoader({
-        loaderFunction: () =>
-          this.LogsAliasesService.getAliasesIds(this.serviceName),
-      });
-    }
-  }
 
   /**
    * Opens the Messages and Ports information dialog
@@ -279,30 +215,9 @@ export default class LogsHomeCtrl {
         controller: 'LogsHomeFormatsportsCtrl',
         controllerAs: 'ctrl',
         resolve: {
-          accountDetails: () => this.accountDetails.data,
+          accountDetails: () => this.accountDetails,
         },
       },
     });
-  }
-
-  /**
-   * Runs the loaders
-   *
-   * @memberof LogsHomeCtrl
-   */
-  runLoaders() {
-    const loaderPromises = [];
-    loaderPromises.push(this.accountDetails.load());
-    loaderPromises.push(this.serviceInfos.load());
-    if (!this.isAccountDisabled) {
-      loaderPromises.push(this.tokenIds.load());
-      loaderPromises.push(this.defaultCluster.load());
-      loaderPromises.push(this.streamData.load());
-      loaderPromises.push(this.archiveData.load());
-      loaderPromises.push(this.indiceData.load());
-      loaderPromises.push(this.indexIds.load());
-      loaderPromises.push(this.aliasIds.load());
-    }
-    return this.$q.all(loaderPromises);
   }
 }

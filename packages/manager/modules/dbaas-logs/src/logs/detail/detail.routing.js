@@ -6,5 +6,15 @@ export default /* @ngInject */ ($stateProvider) => {
       logsHeader: 'dbaasLogsDashboardHeader',
       logsContainer: 'dbaasLogsDetail',
     },
+    resolve: {
+      serviceName: /* @ngInject */ ($transition$) =>
+        $transition$.params().serviceName,
+      service: /* @ngInject */ (LogsDetailService, serviceName) =>
+        LogsDetailService.getServiceDetails(serviceName),
+      isAccountDisabled: /* @ngInject */ (LogsHelperService, service) =>
+        LogsHelperService.isAccountDisabled(service),
+      accountSetupRequired: /* @ngInject */ (LogsHelperService, service) =>
+        LogsHelperService.accountSetupRequired(service),
+    },
   });
 };

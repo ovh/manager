@@ -1,18 +1,10 @@
 <header class="oui-header">
     <div class="oui-header__container">
         <div class="oui-header__content">
-            <oui-spinner
-                data-size="m"
-                data-ng-if="ctrl.configuration.loading"
-            ></oui-spinner>
-            <h1
-                class="oui-header__title"
-                data-ng-if="!ctrl.configuration.loading"
-                data-ng-bind="ctrl.title"
-            ></h1>
+            <h1 class="oui-header__title" data-ng-bind="ctrl.title"></h1>
             <h2
                 class="oui-header__description"
-                data-ng-if="!ctrl.configuration.loading && ctrl.title !== ctrl.serviceName"
+                data-ng-if="ctrl.title !== ctrl.serviceName"
                 data-ng-bind="ctrl.serviceName"
             ></h2>
         </div>
