@@ -12,6 +12,7 @@
   "author": "OVH SAS",
   "main": "./src/index.js",
   "dependencies": {
+    "@ovh-ux/manager-config": "^1.0.0",
     "lodash": "^4.17.20"
   },
   "devDependencies": {
@@ -20,6 +21,7 @@
   "peerDependencies": {
     "@ovh-ux/manager-core": "^11.0.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.3",
+    "@ovh-ux/ng-ovh-doc-url": "^2.0.0",
     "@ovh-ux/ng-ovh-sidebar-menu": "^10.0.0",
     "@ovh-ux/ng-tail-logs": "^2.0.3",
     "@ovh-ux/ui-kit": "^4.3.4",
