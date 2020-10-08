@@ -2,10 +2,6 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('cloud-connect.details.overview', {
     url: '/overview',
     component: 'cloudConnectDetailsOverview',
-    translations: {
-      value: ['.'],
-      format: 'json',
-    },
     resolve: {
       datacenters: /* @ngInject */ (cloudConnectService, cloudConnect) =>
         cloudConnectService.loadDatacenters(cloudConnect),
@@ -122,6 +118,7 @@ export default /* @ngInject */ ($stateProvider) => {
             return $q.resolve();
           });
       },
+      breadcrumb: () => null,
     },
   });
 };
