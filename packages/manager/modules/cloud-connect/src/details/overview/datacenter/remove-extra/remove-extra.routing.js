@@ -7,10 +7,6 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     layout: 'modal',
-    translations: {
-      value: ['.'],
-      format: 'json',
-    },
     resolve: {
       datacenterId: /* @ngInject */ ($transition$) =>
         $transition$.params().datacenterId,
@@ -22,6 +18,7 @@ export default /* @ngInject */ ($stateProvider) => {
       extra: /* @ngInject */ (datacenter, extraId) =>
         datacenter.getExtraConfiguration(extraId),
       goBack: /* @ngInject */ (goToCloudConnectPage) => goToCloudConnectPage,
+      breadcrumb: () => null,
     },
   });
 };

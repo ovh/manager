@@ -17,6 +17,7 @@ export default /* @ngInject */ ($stateProvider) => {
       serviceKey: /* @ngInject */ (cloudConnect) =>
         cloudConnect.getActiveServiceKey(),
       goBack: /* @ngInject */ (goToCloudConnectPage) => goToCloudConnectPage,
+      breadcrumb: () => null,
     },
   });
 };

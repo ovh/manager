@@ -6,10 +6,6 @@ export default /* @ngInject */ ($stateProvider) => {
         component: 'cloudConnectDetailsDatacenterAddExtra',
       },
     },
-    translations: {
-      value: ['.'],
-      format: 'json',
-    },
     layout: 'modal',
     resolve: {
       goBack: /* @ngInject */ (goToCloudConnectPage) => goToCloudConnectPage,
@@ -21,6 +17,7 @@ export default /* @ngInject */ ($stateProvider) => {
         cloudConnect.getFirstPopConfiguration().id,
       extraType: /* @ngInject */ (cloudConnect, datacenterId) =>
         cloudConnect.getDatacenterExtraType(datacenterId),
+      breadcrumb: () => null,
     },
   });
 };
