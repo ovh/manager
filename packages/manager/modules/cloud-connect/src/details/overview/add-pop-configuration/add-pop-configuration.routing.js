@@ -7,10 +7,6 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     layout: 'modal',
-    translations: {
-      value: ['.'],
-      format: 'json',
-    },
     params: {
       interfaceId: null,
       isDirectService: false,
@@ -26,6 +22,7 @@ export default /* @ngInject */ ($stateProvider) => {
       popTypes: /* @ngInject */ (cloudConnectService) =>
         cloudConnectService.getAllPopTypes(),
       goBack: /* @ngInject */ (goToCloudConnectPage) => goToCloudConnectPage,
+      breadcrumb: () => null,
     },
   });
 };
