@@ -680,5 +680,6 @@
   "logs_tile_subscription_contact": "Contacts",
   "logs_tile_subscription_contact_admin": "Administrateur",
   "logs_tile_subscription_contact_billing": "Facturation",
-  "logs_tile_subscription_contact_technical": "Technique"
+  "logs_tile_subscription_contact_technical": "Technique",
+  "logs_order": "Commander"
 }
