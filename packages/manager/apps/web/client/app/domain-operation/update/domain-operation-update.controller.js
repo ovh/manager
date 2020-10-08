@@ -1,5 +1,4 @@
 import clone from 'lodash/clone';
-import indexOf from 'lodash/indexOf';
 import isArray from 'lodash/isArray';
 import join from 'lodash/join';
 import map from 'lodash/map';
@@ -64,7 +63,13 @@ angular.module('App').controller(
 
                 // add user friendly translations for some known tasks
                 if (
-                  indexOf(['action', 'memberContactXXX'], argument.key) !== -1
+                  [
+                    'action',
+                    'memberContactXXX',
+                    'firstname',
+                    'name',
+                    'identificationNumber',
+                  ].includes(argument.key)
                 ) {
                   argument.keyTranslation = this.$translate.instant(
                     `domains_operations_update_key_${argument.key}`,
