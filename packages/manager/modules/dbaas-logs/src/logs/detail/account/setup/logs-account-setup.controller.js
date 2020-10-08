@@ -1,6 +1,3 @@
-import forEach from 'lodash/forEach';
-import set from 'lodash/set';
-
 export default class LogsAccountSetupCtrl {
   /* @ngInject */
   constructor(
@@ -55,18 +52,6 @@ export default class LogsAccountSetupCtrl {
 
   resetPasswordRules() {
     this.passwordRules = this.LogsAccountService.getPasswordRules(true);
-  }
-
-  validatePassword() {
-    let allValid = true;
-    forEach(this.passwordRules, (rule) => {
-      set(rule, 'isValid', rule.validator(this.newPassword));
-      if (allValid) {
-        allValid = rule.isValid;
-      }
-      set(rule, 'isValidated', true);
-    });
-    this.passwordValid = allValid;
   }
 
   changePassword() {
