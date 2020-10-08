@@ -5,6 +5,7 @@ import details from './details';
 import routing from './cloud-connect.routing';
 import service from './cloud-connect.service';
 
+import '@ovh-ux/ng-at-internet';
 import '@ovh-ux/ng-ui-router-breadcrumb';
 
 const moduleName = 'ovhCloudConnect';
@@ -12,6 +13,7 @@ const moduleName = 'ovhCloudConnect';
 angular
   .module(moduleName, [
     ListLayoutHelper.moduleName,
+    'ngAtInternet',
     'ngUiRouterBreadcrumb',
     details,
   ])
