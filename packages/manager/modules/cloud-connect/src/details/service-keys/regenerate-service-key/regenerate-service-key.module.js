@@ -8,6 +8,7 @@ const moduleName = 'ovhCloudConnectDetailsRegenerateServiceKey';
 angular
   .module(moduleName, [])
   .config(routing)
-  .component('cloudConnectDetailsRegenerateServiceKey', component);
+  .component('cloudConnectDetailsRegenerateServiceKey', component)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

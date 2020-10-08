@@ -5,10 +5,16 @@ import details from './details';
 import routing from './cloud-connect.routing';
 import service from './cloud-connect.service';
 
+import '@ovh-ux/ng-ui-router-breadcrumb';
+
 const moduleName = 'ovhCloudConnect';
 
 angular
-  .module(moduleName, [ListLayoutHelper.moduleName, details])
+  .module(moduleName, [
+    ListLayoutHelper.moduleName,
+    'ngUiRouterBreadcrumb',
+    details,
+  ])
   .config(routing)
   .service('cloudConnectService', service)
   .run(/* @ngTranslationsInject:json ./translations */);

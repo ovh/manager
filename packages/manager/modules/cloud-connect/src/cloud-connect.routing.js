@@ -10,6 +10,7 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         user: /* @ngInject */ (OvhApiMe) => OvhApiMe.v6().get().$promise,
         guideUrl: /* @ngInject */ (user) => get(GUIDELINK, user.ovhSubsidiary),
+        breadcrumb: () => 'OVHcloud Connect',
       },
     })
     .state('cloud-connect.index', {
@@ -29,6 +30,7 @@ export default /* @ngInject */ ($stateProvider) => {
           $state.href('cloud-connect.details', {
             ovhCloudConnectId,
           }),
+        hideBreadcrumb: () => true,
       },
     });
 };
