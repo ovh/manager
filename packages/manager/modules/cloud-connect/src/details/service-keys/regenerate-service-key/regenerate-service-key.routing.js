@@ -9,16 +9,13 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       },
       layout: 'modal',
-      translations: {
-        value: ['.'],
-        format: 'json',
-      },
       resolve: {
         serviceKeyId: /* @ngInject */ ($transition$) =>
           $transition$.params().serviceKeyId,
         serviceKey: /* @ngInject */ (cloudConnect) =>
           cloudConnect.getActiveServiceKey(),
         goBack: /* @ngInject */ (goToServiceKeysPage) => goToServiceKeysPage,
+        breadcrumb: () => null,
       },
     },
   );

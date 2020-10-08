@@ -8,6 +8,7 @@ const moduleName = 'ovhCloudConnectDetailsRemoveVrack';
 angular
   .module(moduleName, [])
   .config(routing)
-  .component('cloudConnectDetailsRemoveVrack', component);
+  .component('cloudConnectDetailsRemoveVrack', component)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
