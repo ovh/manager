@@ -1,4 +1,5 @@
 {
+  "cloud_connect_service_keys": "Clés de service",
   "cloud_connect_service_keys_status_doing": "À faire",
   "cloud_connect_service_keys_status_active": "Actif",
   "cloud_connect_service_keys_status_cancelled": "Annulé",
