@@ -1,4 +1,6 @@
 import angular from 'angular';
+import 'angular-ui-bootstrap';
+import '@ovh-ux/ng-ui-router-layout';
 
 import component from './details.component';
 import overview from './overview';
@@ -9,7 +11,13 @@ import tasks from './tasks';
 const moduleName = 'ovhCloudConnectDetails';
 
 angular
-  .module(moduleName, [overview, serviceKeys, tasks])
+  .module(moduleName, [
+    'ngUiRouterLayout',
+    'ui.bootstrap',
+    overview,
+    serviceKeys,
+    tasks,
+  ])
   .config(routing)
   .component('cloudConnectDetails', component)
   .run(/* @ngTranslationsInject:json ./translations */);
