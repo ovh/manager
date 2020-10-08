@@ -1,0 +1,11 @@
+{
+  "dedicated_server_install_options": "Options d'installation",
+  "dedicated_server_install_options_hostname": "Hostname (optionnel)",
+  "dedicated_server_install_options_url_script": "URL du script d'installation (optionnel)",
+  "dedicated_server_install_options_ssh": "Clés SSH",
+  "dedicated_server_install_options_ssh_none": "Sans clé SSH",
+  "dedicated_server_install_options_partition_number": "Nombre de disques partitionnés",
+  "dedicated_server_install_options_save_template": "Enregistrer le gabarit",
+  "dedicated_server_install_options_do_not_save_template": "Ne pas enregistrer le gabarit",
+  "dedicated_server_install_options_template_name": "Nom du gabarit à enregistrer"
+}

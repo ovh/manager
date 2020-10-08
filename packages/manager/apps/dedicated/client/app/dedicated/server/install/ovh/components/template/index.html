@@ -1,0 +1,90 @@
+<div class="dedicated-server-install-ovh-template">
+    <h2
+        class="oui-heading_3"
+        data-translate="dedicated_server_install_ovh_template"
+    ></h2>
+
+    <oui-field
+        data-label="{{ :: 'dedicated_server_install_ovh_template_type' | translate }}"
+        data-size="xl"
+    >
+        <label class="oui-select">
+            <select
+                class="oui-select__input"
+                data-ng-options="category as ('dedicated_server_install_ovh_template_type_' + $ctrl.snakeCase(category) | translate) for category in $ctrl.lists.availableTemplateCategories"
+                name="category"
+                id="category"
+                data-ng-model="$ctrl.templateModel.category"
+                data-ng-change="$ctrl.onTemplateCategoryChange()"
+            >
+            </select>
+            <span
+                class="oui-icon oui-icon-chevron-down"
+                aria-hidden="true"
+            ></span>
+        </label>
+    </oui-field>
+
+    <div class="templates-lists">
+        <label data-translate="dedicated_server_install_ovh_template_label">
+        </label>
+
+        <div class="row">
+            <div
+                class="col-md-3"
+                data-ng-repeat="family in $ctrl.templatesFamilies track by $index"
+                data-ng-if="$ctrl.lists.availableTemplateFamilies.has(family)"
+            >
+                <oui-select-picker
+                    data-name="template"
+                    data-match="description"
+                    data-model="$ctrl.templateModel.template"
+                    data-label="{{ family }}"
+                    values="$ctrl.lists.availableTemplateFamilies.get(family)"
+                >
+                </oui-select-picker>
+            </div>
+        </div>
+    </div>
+
+    <oui-field
+        data-label="{{ :: 'dedicated_server_install_ovh_template_language' | translate }}"
+        data-size="xl"
+    >
+        <label class="oui-select">
+            <select
+                class="oui-select__input"
+                data-ng-options="language as (language | uppercase) for language in $ctrl.templateModel.template.availableLanguages"
+                name="language"
+                id="language"
+                data-ng-model="$ctrl.templateModel.language"
+            >
+            </select>
+            <span
+                class="oui-icon oui-icon-chevron-down"
+                aria-hidden="true"
+            ></span>
+        </label>
+    </oui-field>
+
+    <oui-field
+        data-label="{{ :: 'dedicated_server_install_ovh_template_disk_group' | translate }}"
+        data-size="xl"
+    >
+        <label class="oui-select">
+            <select
+                class="oui-select__input"
+                data-ng-options="diskGroup as diskGroup.description for diskGroup in $ctrl.hardwareSpecifications.diskGroups"
+                name="diskGroup"
+                id="diskGroup"
+                data-ng-model="$ctrl.templateModel.diskGroup"
+                data-ng-disabled="$ctrl.hardwareSpecifications.diskGroups.length === 1"
+            >
+            </select>
+            <span
+                class="oui-icon oui-icon-chevron-down"
+                aria-hidden="true"
+            ></span>
+        </label>
+    </oui-field>
+</div>

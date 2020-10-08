@@ -1,3 +1,28 @@
 <div class="dedicated-server-install-ovh">
-    TODO: INSTALL FROM OVHCLOUD TEMPLATE
+    <oui-header
+        heading="{{ :: 'dedicated_server_install_ovh' | translate }}"
+        description="{{ :: 'dedicated_server_install_ovh_intro' | translate:{ serverName: $ctrl.server.displayName } }}"
+    >
+    </oui-header>
+
+    <div class="row">
+        <div class="col-lg-10">
+            <form class="tab-content">
+                <div data-ui-view="template"></div>
+
+                <div data-ui-view="raid"></div>
+
+                <div data-ui-view="partition"></div>
+
+                <div data-ui-view="rtm"></div>
+
+                <div data-ui-view="options"></div>
+
+                <oui-form-actions
+                    data-submit-text="{{ :: 'dedicated_server_install_ovh_submit' | translate }}"
+                >
+                </oui-form-actions>
+            </form>
+        </div>
+    </div>
 </div>

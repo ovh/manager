@@ -1,0 +1,111 @@
+<div class="dedicated-server-install-options">
+    <h2
+        class="oui-heading_3"
+        data-translate="dedicated_server_install_options"
+    ></h2>
+
+    <oui-field
+        data-label="{{ :: 'dedicated_server_install_options_hostname' | translate }}"
+        data-size="xl"
+    >
+        <input
+            class="oui-input"
+            name="customHostname"
+            id="customHostname"
+            type="text"
+            data-ng-model="$ctrl.model.customHostname"
+        />
+    </oui-field>
+
+    <oui-field
+        data-label="{{ :: 'dedicated_server_install_options_url_script' | translate }}"
+        data-size="xl"
+    >
+        <input
+            class="oui-input"
+            name="postInstallationScriptLink"
+            id="postInstallationScriptLink"
+            type="text"
+            data-ng-model="$ctrl.model.postInstallationScriptLink"
+        />
+    </oui-field>
+
+    <oui-field
+        label="{{ :: 'dedicated_server_install_options_ssh' | translate }}"
+        data-size="xl"
+    >
+        <label class="oui-select">
+            <select
+                class="oui-select__input"
+                data-ng-options="sshKey.keyName for sshKey in $ctrl.sshKeys | orderBy:'keyName'"
+                name="sshKeyName"
+                id="sshKeyName"
+                data-ng-model="$ctrl.model.sshKeyName"
+            >
+                <option
+                    value=""
+                    data-translate="dedicated_server_install_options_ssh_none"
+                >
+                </option>
+            </select>
+            <span
+                class="oui-icon oui-icon-chevron-down"
+                aria-hidden="true"
+            ></span>
+        </label>
+    </oui-field>
+
+    <oui-field
+        data-label="{{ :: 'dedicated_server_install_options_partition_number' | translate }}"
+        data-size="xl"
+    >
+        <label class="oui-select">
+            <select
+                class="oui-select__input"
+                data-ng-options="sshKey.keyName for sshKey in $ctrl.sshKeys | orderBy:'keyName'"
+                name="sshKeyName"
+                id="sshKeyName"
+                data-ng-model="$ctrl.model.sshKeyName"
+            >
+                <option
+                    value=""
+                    data-translate="dedicated_server_install_options_ssh_none"
+                >
+                </option>
+            </select>
+            <span
+                class="oui-icon oui-icon-chevron-down"
+                aria-hidden="true"
+            ></span>
+        </label>
+    </oui-field>
+
+    <oui-field data-size="xl">
+        <oui-switch
+            data-model="$ctrl.model.saveTemplate"
+            data-id="saveTemplate"
+            data-name="saveTemplate"
+        >
+        </oui-switch>
+        <label
+            for="saveTemplate"
+            class="d-inline-block"
+            data-translate="{{ !$ctrl.model.saveTemplate ? 'dedicated_server_install_options_do_not_save_template' : 'dedicated_server_install_options_save_template' }}"
+        >
+        </label>
+    </oui-field>
+
+    <oui-field
+        data-size="xl"
+        data-label="{{ :: 'dedicated_server_install_options_template_name' | translate }}"
+        data-ng-if="$ctrl.model.saveTemplate"
+    >
+        <input
+            class="oui-input"
+            name="templateName"
+            id="templateName"
+            type="text"
+            data-ng-model="$ctrl.model.templateName"
+        />
+    </oui-field>
+</div>

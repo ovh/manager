@@ -1,0 +1,12 @@
+dedicated-server-install-ovh-template {
+  .dedicated-server-install-ovh-template {
+    .templates-lists {
+      oui-select {
+        .ui-select-match-text,
+        .oui-select-picker__value {
+          white-space: nowrap;
+        }
+      }
+    }
+  }
+}

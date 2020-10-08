@@ -1,0 +1,90 @@
+<div class="dedicated-server-install-ovh-raid">
+    <h2
+        class="oui-heading_3"
+        data-translate="dedicated_server_install_ovh_configuration_raid"
+    ></h2>
+
+    <p
+        data-translate="dedicated_server_install_ovh_configuration_raid_intro"
+    ></p>
+
+    <oui-field
+        data-label="{{ :: 'dedicated_server_install_ovh_configuration_raid_controller' | translate }}"
+        data-size="xl"
+    >
+        <label class="oui-select">
+            <select
+                class="oui-select__input"
+                data-ng-options="controller as controller.displayName for controller in $ctrl.raidProfiles.controllers | orderBy:'displayName'"
+                name="hardwareRaidController"
+                id="hardwareRaidController"
+                data-ng-model="$ctrl.model.hardwareRaidController"
+            >
+            </select>
+            <span
+                class="oui-icon oui-icon-chevron-down"
+                aria-hidden="true"
+            ></span>
+        </label>
+    </oui-field>
+
+    <oui-field
+        data-label="{{ :: 'dedicated_server_install_ovh_configuration_raid_mode' | translate }}"
+        data-size="xl"
+    >
+        <label class="oui-select">
+            <select
+                class="oui-select__input"
+                data-ng-options="raid for raid in $ctrl.model.hardwareRaidController.getAvailableRaids()"
+                name="hardwareRaidMode"
+                id="hardwareRaidMode"
+                data-ng-model="$ctrl.model.hardwareRaidMode"
+            >
+            </select>
+            <span
+                class="oui-icon oui-icon-chevron-down"
+                aria-hidden="true"
+            ></span>
+        </label>
+    </oui-field>
+
+    <oui-field
+        data-label="{{ :: 'dedicated_server_install_ovh_configuration_raid_disk_number' | translate }}"
+        data-size="xl"
+    >
+        <label class="oui-select">
+            <select
+                class="oui-select__input"
+                data-ng-options="disk for disk in $ctrl.getDiskNumberList()"
+                name="hardwareRaidDiskNumber"
+                id="hardwareRaidDiskNumber"
+                data-ng-model="$ctrl.model.hardwareRaidDiskNumber"
+            >
+            </select>
+            <span
+                class="oui-icon oui-icon-chevron-down"
+                aria-hidden="true"
+            ></span>
+        </label>
+    </oui-field>
+
+    <oui-field
+        data-label="{{ :: 'dedicated_server_install_ovh_configuration_raid_cluster_number' | translate }}"
+        data-size="xl"
+    >
+        <label class="oui-select">
+            <select
+                class="oui-select__input"
+                data-ng-options="disk for disk in $ctrl.getDiskNumberList()"
+                name="hardwareRaidDiskNumber"
+                id="hardwareRaidDiskNumber"
+                data-ng-model="$ctrl.model.hardwareRaidClusterNumber"
+            >
+            </select>
+            <span
+                class="oui-icon oui-icon-chevron-down"
+                aria-hidden="true"
+            ></span>
+        </label>
+    </oui-field>
+</div>

@@ -1,1 +1,5 @@
-{}
+{
+  "dedicated_server_install_ovh": "Installer un système (OS) depuis une image OVHcloud",
+  "dedicated_server_install_ovh_intro": "Renseignez les paramètres de l'OS que vous souhaitez utiliser sur le serveur {{ serverName }}.",
+  "dedicated_server_install_ovh_submit": "Installer le système"
+}

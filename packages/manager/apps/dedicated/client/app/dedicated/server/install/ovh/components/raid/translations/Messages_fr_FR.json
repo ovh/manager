@@ -1,0 +1,8 @@
+{
+  "dedicated_server_install_ovh_configuration_raid": "Configuration du hardware RAID",
+  "dedicated_server_install_ovh_configuration_raid_intro": "Choisissez la configuration hardware RAID sur laquelle le système que vous avez choisi sera installé.",
+  "dedicated_server_install_ovh_configuration_raid_controller": "Contrôleur RAID",
+  "dedicated_server_install_ovh_configuration_raid_mode": "RAID",
+  "dedicated_server_install_ovh_configuration_raid_disk_number": "Nombre de disques",
+  "dedicated_server_install_ovh_configuration_raid_cluster_number": "Nombre de clusters"
+}
