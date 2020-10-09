@@ -20,16 +20,16 @@ export default class LogsHomeAccountModalCtrl {
           backdrop: 'static',
         },
       })
-      .then(() => {
-        this.$scope.$parent.$parent.$parent.$$prevSibling.ctrl.runLoaders();
-        this.$scope.$parent.ctrl.runLoaders();
-      })
       .finally(() => this.onCloseModal());
   }
 
   onCloseModal() {
-    this.$state.go('dbaas-logs.detail.home', {
-      serviceName: this.serviceName,
-    });
+    this.$state.go(
+      'dbaas-logs.detail.home',
+      {
+        serviceName: this.serviceName,
+      },
+      { reload: true },
+    );
   }
 }
