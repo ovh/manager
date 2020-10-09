@@ -356,7 +356,7 @@
   "server_configuration_description_housing": "Hosting",
   "server_configuration_reverse": "Reverse",
   "server_configuration_reverse_not_configured": "Not configured",
-  "server_configuration_reverse_edit_button": "Modify",
+  "server_configuration_reverse_edit_button": "Edit",
   "server_configuration_ipv4": "IPv4",
   "server_configuration_ipv6": "IPv6",
   "server_configuration_ipv4_manage": "Manage",
@@ -1038,7 +1038,7 @@
   "server_ola_active": "Active",
   "server_ola_inactive": "Inactive",
   "server_ola_activate": "Enable OLA",
-  "server_ola_configure": "Configure OLA",
+  "server_ola_configure": "Configure private aggregation",
   "server_ola_terminate": "Cancel OLA",
   "server_ola_mode_vrack_aggregation": "Private aggregation",
   "server_ola_mode_default": "Default",
@@ -1213,5 +1213,6 @@
   "server_error_ola_terminate": "An error has occurred cancelling your service: {{error}}",
   "server_error_vrack_attach": "An error has occurred attaching the private network: {{error}}",
   "server_error_vrack_detach": "An error has occurred detaching the private network: {{error}}",
-  "server_error_bandwidth_order": "An error has occurred ordering bandwidth: {{error}}"
+  "server_error_bandwidth_order": "An error has occurred ordering bandwidth: {{error}}",
+  "server_ola_reset": "Unconfigure private aggregation"
 }

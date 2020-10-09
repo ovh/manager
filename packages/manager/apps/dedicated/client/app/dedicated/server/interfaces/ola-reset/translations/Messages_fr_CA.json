@@ -1,0 +1,5 @@
+{
+  "dedicated_server_interfaces_ola_reset_title": "Déconfigurer l'agrégation privée",
+  "dedicated_server_interfaces_ola_reset_text": "Êtes-vous sûr de vouloir déconfigurer l'agrégation privée sur ce serveur?",
+  "dedicated_server_interfaces_ola_reset_error": "Une erreur est survenue lors de la déconfiguration de l'agrégation privée."
+}

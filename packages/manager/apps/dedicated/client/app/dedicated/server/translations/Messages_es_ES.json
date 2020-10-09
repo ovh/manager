@@ -821,7 +821,7 @@
   "server_configuration_installation_ovh_step3_error_integrity": "Se ha detectado un error al probar la coherencia de su instalación personalizada ({{t0}}). No se ha podido realizar la instalación.",
   "server_configuration_installation_ovh_step3_error_integrity_info": "Corrija el error haciendo clic en «Anterior».",
   "server_configuration_installation_ovh_step3_partiton_variable": "Partición de tamaño variable:",
-  "server_configuration_installation_ovh_step3_partiton_variable_help": "Esta partición ocupará el espacio disponible restante para adaptar la plantilla a un servidor  que tiene un espacio total diferente.",
+  "server_configuration_installation_ovh_step3_partiton_variable_help": "Esta partición ocupará el espacio disponible restante para adaptar la plantilla a un servidor que tiene un espacio total diferente.",
   "server_configuration_installation_ovh_step3_partiton_variable_info": "La partición <b>{{t0}}</b> adaptará su tamaño para ocupar el espacio disponible restante de otro servidor.",
   "server_configuration_installation_ovh_step3_partiton_none": "Ninguna",
   "server_configuration_installation_ovh_step3_saveGabarit": "Guardar esta instalación",
@@ -1038,7 +1038,7 @@
   "server_ola_active": "Activo",
   "server_ola_inactive": "Inactivo",
   "server_ola_activate": "Activar OLA",
-  "server_ola_configure": "Configurar OLA",
+  "server_ola_configure": "Configurar la agregación privada",
   "server_ola_terminate": "Dar de baja OLA",
   "server_ola_mode_vrack_aggregation": "Agregación privada",
   "server_ola_mode_default": "Por defecto",
@@ -1213,5 +1213,6 @@
   "server_error_ola_terminate": "Se ha producido un error al dar de baja el servicio: {{error}}.",
   "server_error_vrack_attach": "Se ha producido un error al asociar la red privada: {{error}}.",
   "server_error_vrack_detach": "Se ha producido un error al desvincular la red privada: {{error}}.",
-  "server_error_bandwidth_order": "Se ha producido un error al contratar al ancho de banda: {{error}}"
+  "server_error_bandwidth_order": "Se ha producido un error al contratar al ancho de banda: {{error}}",
+  "server_ola_reset": "Desconfigurar la agregación privada"
 }
