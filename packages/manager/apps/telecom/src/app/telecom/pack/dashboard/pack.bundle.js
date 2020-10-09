@@ -1,11 +1,3 @@
-import '../migration/building-details/telecom-pack-migration-building-details.controller';
-import '../migration/confirm/telecom-pack-migration-confirm.controller';
-import '../migration/migration/telecom-pack-migration-migration.controller';
-import '../migration/offers/telecom-pack-migration-offers.controller';
-import '../migration/service-delete/telecom-pack-migration-service-delete.controller';
-import '../migration/shipping/telecom-pack-migration-shipping.controller';
-import '../migration/telecom-pack-migration.controller';
-import '../migration/telecom-pack-migration';
 import '../move/pack-move.controller';
 import '../move';
 import './pack.constant';
