@@ -2988,23 +2988,6 @@
   dependencies:
     lodash "^4.17.20"
 
-"@ovh-ux/ng-ovh-export-csv@2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-export-csv/-/ng-ovh-export-csv-2.0.0.tgz#cd7dbb1f46f5bf7f660cb856e65d774df75eb75b"
-  integrity sha512-AXj6LRtRyKh/2cskNmo7JwrSpev29dDtgwIm0s7RujnuXjc3SmVErG7vlKuTo91x9brc/9ApOdsI46fayJKlXA==
-
-"@ovh-ux/ng-ovh-proxy-request@2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-proxy-request/-/ng-ovh-proxy-request-2.0.0.tgz#484db5d4e500989b315131dd4589c9928c9b7f77"
-  integrity sha512-R3fCwmCI+BeGT3uBeGOxLS7Kq1oHF4L71+MNP5YV2dK35LAwtLQ2Xqz0fvPO7hUTrNLDqaD9UNl8cESVjV/e4Q==
-
-"@ovh-ux/ng-ovh-user-pref@2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-user-pref/-/ng-ovh-user-pref-2.0.0.tgz#250ea5b216223e5af94c79e082281089821e4417"
-  integrity sha512-YQnHlX4NwGWqN0t8f0u2JaFH+YY/x1fuYsQ0QL5fad46rfCxluSFFeiGBXRGTnraYrd7UURWSePexU1vYT7nXA==
-  dependencies:
-    lodash "^4.17.15"
-
 "@ovh-ux/ng-ovh-utils@14.0.10":
   version "14.0.10"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-utils/-/ng-ovh-utils-14.0.10.tgz#9a7ab615cb9a680f448ec310865dd5597ca08235"
@@ -4431,7 +4414,7 @@ angular-xeditable@^0.9.0:
   dependencies:
     angular "~1.x"
 
-angular@*, angular@1.7.x, angular@1.x, "angular@>=1.2.26 <=1.7", "angular@>=1.3.0 <2.0.0", angular@^1.4.8, angular@^1.5.5, angular@^1.6.10, angular@^1.7.5, angular@^1.7.8, angular@~1.x:
+angular@*, angular@1.7.x, angular@1.x, "angular@>=1.2.26 <=1.7", "angular@>=1.3.0 <2.0.0", angular@^1.4.8, angular@^1.5.5, angular@^1.6.10, angular@^1.7.5, angular@^1.7.8, angular@~1.7.5, angular@~1.x:
   version "1.7.9"
   resolved "https://registry.yarnpkg.com/angular/-/angular-1.7.9.tgz#e52616e8701c17724c3c238cfe4f9446fd570bc4"
   integrity sha512-5se7ZpcOtu0MBFlzGv5dsM1quQDoDeUTwZrWjGtTNA7O88cD8TEk5IEKCTDa3uECV9XnvKREVUr7du1ACiWGFQ==

@@ -34,7 +34,7 @@
     "@ovh-ux/ng-ovh-user-pref": "^2.0.0",
     "@ovh-ux/ng-ovh-utils": "^14.0.10",
     "@ovh-ux/ng-ovh-web-universe-components": "^9.0.1",
-    "@ovh-ux/ng-translate-async-loader": "2.1.0",
+    "@ovh-ux/ng-translate-async-loader": "^2.1.0",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.0.0",
     "@ovh-ux/ng-ui-router-line-progress": "^1.2.2",
     "@ovh-ux/ui-kit": "^4.4.1",
@@ -59,6 +59,7 @@
     "oclazyload": "^1.1.0",
     "ovh-api-services": "^11.0.1",
     "ovh-ui-kit-bs": "^4.1.6",
+    "punycode": "^1.4.1",
     "regenerator-runtime": "^0.13.5",
     "urijs": "^1.19.1",
     "whatwg-fetch": "^3.0.0"
