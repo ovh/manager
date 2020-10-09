@@ -1,3 +1,5 @@
+import Datacenter from '../../../../../components/project/regions-list/datacenter.class';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.instances.instance.edit', {
     url: '/edit',
@@ -14,6 +16,26 @@ export default /* @ngInject */ ($stateProvider) => {
         projectId,
         instanceId,
       ) => PciProjectsProjectInstanceService.get(projectId, instanceId),
+      region: /* @ngInject */ ($http, $q, instance, projectId) =>
+        $q
+          .all({
+            region: $http
+              .get(`/cloud/project/${projectId}/region/${instance.region}`)
+              .then(({ data }) => data),
+            quota: $http
+              .get(
+                `/cloud/project/${projectId}/region/${instance.region}/quota`,
+              )
+              .then(({ data }) => data),
+          })
+
+          .then(
+            ({ region, quota }) =>
+              new Datacenter({
+                ...region,
+                quota,
+              }),
+          ),
       goBack: /* @ngInject */ (goToInstance) => goToInstance,
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant(
