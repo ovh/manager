@@ -1213,5 +1213,7 @@
   "server_error_ola_terminate": "Lamentamos, mas ocorreu um erro ao rescindir o seu serviço: {{error}}",
   "server_error_vrack_attach": "Lamentamos, mas ocorreu um erro ao associar a rede privada: {{error}}",
   "server_error_vrack_detach": "Lamentamos, mas ocorreu um erro ao desassociar a rede privada: {{error}}",
-  "server_error_bandwidth_order": "Ocorreu um erro aquando da encomenda da largura de banda: {{error}}"
+  "server_error_bandwidth_order": "Ocorreu um erro aquando da encomenda da largura de banda: {{error}}",
+  "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_GROUP": "Interfaces de rede do grupo",
+  "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_UNGROUP": "Separar as interfaces de rede"
 }

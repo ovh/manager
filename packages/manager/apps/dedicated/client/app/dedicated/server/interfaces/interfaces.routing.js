@@ -80,28 +80,18 @@ export default /* @ngInject */ ($stateProvider) => {
       ) => DedicatedServerInterfacesService.getTasks(serverName),
       urls: /* @ngInject */ (constants, user) =>
         constants.urls[user.ovhSubsidiary],
-      goToInterfaces: ($state, CucCloudMessage, serverName) => (
-          message = false,
-          type = 'success',
-        ) => {
-          const promise = $state.go(
-            'app.dedicated.server.interfaces',
-            {
-              projectId: serverName,
-            },
-          );
-
-          if (message) {
-            promise.then(() =>
-              CucCloudMessage[type](
-                message,
-                'app.dedicated.server.interfaces',
-              ),
-            );
-          }
-
-          return promise;
-        },
+      goToInterfaces: ($state, Alerter, serverName) => (
+        message = false,
+        type = 'success',
+      ) => {
+        const promise = $state.go('app.dedicated.server.interfaces', {
+          projectId: serverName,
+        });
+        if (message) {
+          promise.then(() => Alerter[type](message));
+        }
+        return promise;
+      },
     },
   });
 };

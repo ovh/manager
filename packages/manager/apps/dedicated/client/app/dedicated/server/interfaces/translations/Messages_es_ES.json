@@ -72,5 +72,9 @@
   "dedicated_server_interfaces_task_error": "Se ha producido un error durante la configuración: {{ errorMessage }}.",
   "dedicated_server_interfaces_guides": "Guías",
   "dedicated_server_interfaces_guides_ola": "¿Cómo configurar OLA?",
-  "dedicated_server_interfaces_new_tab": "Se abrirá en una nueva pestaña"
+  "dedicated_server_interfaces_new_tab": "Se abrirá en una nueva pestaña",
+  "dedicated_server_interfaces_vrack_operation_attach": "Asociando",
+  "dedicated_server_interfaces_vrack_operation_detach": "Desvinculado",
+  "server_vrack_attach_in_progress": "El vRack {{vRackname}} se está asociando...",
+  "server_vrack_detach_in_progress": "El vRack {{vRackname}} se está desvinculando..."
 }

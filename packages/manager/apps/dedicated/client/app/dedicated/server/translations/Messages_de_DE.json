@@ -1213,5 +1213,7 @@
   "server_error_ola_terminate": "Bei der Kündigung des Dienstes ist ein Fehler aufgetreten: {{error}}",
   "server_error_vrack_attach": "Beim Verbinden des privaten Netzwerks ist ein Fehler aufgetreten: {{error}}",
   "server_error_vrack_detach": "Beim Trennen des privaten Netzwerks ist ein Fehler aufgetreten: {{error}}",
-  "server_error_bandwidth_order": "Bei der Bandbreitenbestellung ist ein Fehler aufgetreten: {{error}}"
+  "server_error_bandwidth_order": "Bei der Bandbreitenbestellung ist ein Fehler aufgetreten: {{error}}",
+  "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_GROUP": "Interfaces des Unternehmensnetzwerks",
+  "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_UNGROUP": "Die Netzwerkinterfaces trennen"
 }

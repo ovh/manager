@@ -1213,5 +1213,7 @@
   "server_error_ola_terminate": "Wystąpił błąd podczas rezygnacji z usługi: {{error}}.",
   "server_error_vrack_attach": "Wystąpił błąd podczas dodawania sieci prywatnej: {{error}}.",
   "server_error_vrack_detach": "Wystąpił błąd podczas odłączania sieci prywatnej: {{error}}.",
-  "server_error_bandwidth_order": "Wystąpił błąd podczas zamawiania przepustowości: {{error}}."
+  "server_error_bandwidth_order": "Wystąpił błąd podczas zamawiania przepustowości: {{error}}.",
+  "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_GROUP": "Grupowe interfejsy sieciowe",
+  "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_UNGROUP": "Odłącz interfejsy sieciowe"
 }

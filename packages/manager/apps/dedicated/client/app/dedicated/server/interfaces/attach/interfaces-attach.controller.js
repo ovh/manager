@@ -1,10 +1,11 @@
+import get from 'lodash/get';
+
 export default class {
   /* @ngInject */
-  constructor($translate, OvhApiVrack, Poller, CucCloudMessage) {
+  constructor($translate, OvhApiVrack, Poller) {
     this.Vrack = OvhApiVrack;
     this.$translate = $translate;
     this.Poller = Poller;
-    this.CucCloudMessage = CucCloudMessage;
   }
 
   $onInit() {
@@ -34,12 +35,10 @@ export default class {
         ).then(() => {
           this.interface.operation = 'attach';
           this.interface.setTaskInProgress(true);
-          this.checkStatus(this.vrack, task.data.id)
-            .then(() => {
-              this.interface.setVrack(this.vrack);
-              this.interface.setTaskInProgress(false);
-              this.CucCloudMessage.flushMessages('app.dedicated.server.interfaces');
-            });
+          this.checkStatus(this.vrack, task.data.id).then(() => {
+            this.interface.setVrack(this.vrack);
+            this.interface.setTaskInProgress(false);
+          });
         });
       })
       .catch((error) => {

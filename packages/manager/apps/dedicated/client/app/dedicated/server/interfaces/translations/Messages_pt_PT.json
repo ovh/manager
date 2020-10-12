@@ -69,8 +69,12 @@
   "dedicated_server_interfaces_bandwith_public": "Largura de banda pública",
   "dedicated_server_interfaces_bandwith_private": "Largura de banda privada",
   "dedicated_server_interfaces_current_operation": "Está em curso uma operação no servidor ",
-  "dedicated_server_interfaces_task_error": "Ocorreu um erro durante a configuração: {{ errorMessage }}.",
+  "dedicated_server_interfaces_task_error": "Ocorreu um erro durante a configuração: {{ errorMessage }}",
   "dedicated_server_interfaces_guides": "Manuais",
   "dedicated_server_interfaces_guides_ola": "Como configurar o OLA?",
-  "dedicated_server_interfaces_new_tab": "Abre-se numa nova janela"
+  "dedicated_server_interfaces_new_tab": "Abre-se numa nova janela",
+  "dedicated_server_interfaces_vrack_operation_attach": "Associação em curso",
+  "dedicated_server_interfaces_vrack_operation_detach": "Em curso de dissociação",
+  "server_vrack_attach_in_progress": "O vRack {{vRackname}} está a ser associado",
+  "server_vrack_detach_in_progress": "O vRack {{vRackname}} está a ser desassociado"
 }

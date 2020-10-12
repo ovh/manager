@@ -41,10 +41,6 @@
     </a>
 </p>
 
-<cui-message-container
-        data-messages="$ctrl.messages"
-></cui-message-container>
-
 <div class="row mt-1" data-ng-if="!$ctrl.loading">
     <div
         class="col-md-8 mb-5"
@@ -238,7 +234,10 @@
         data-property="vrack"
     >
         <div data-ng-if="$row.isTaskInProgress()">
-            <span class="d-inline-block mr-1" data-ng-bind="'dedicated_server_interfaces_vrack_operation_' + $row.operation | translate"></span>
+            <span
+                class="d-inline-block mr-1"
+                data-ng-bind="'dedicated_server_interfaces_vrack_operation_' + $row.operation | translate"
+            ></span>
             <oui-spinner data-size="s"></oui-spinner>
         </div>
         <div data-ng-if="!$row.isTaskInProgress()">
