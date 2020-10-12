@@ -4,7 +4,7 @@
     data-placement="end"
 >
     <oui-action-menu-item
-        ng-if="$ctrl.service.hasDebt() && !$ctrl.service.hasBillingRights(user.nichandle)"
+        ng-if="$ctrl.service.hasDebt() && !$ctrl.service.hasBillingRights($ctrl.user.nichandle)"
         href="{{:: $ctrl.warningLink }}"
         on-click="$ctrl.trackAction('go-to-pay-bill')"
     >
@@ -12,7 +12,7 @@
     </oui-action-menu-item>
 
     <oui-action-menu-item
-        ng-if="$ctrl.service.hasDebt() && $ctrl.service.hasBillingRights(user.nichandle)"
+        ng-if="$ctrl.service.hasDebt() && $ctrl.service.hasBillingRights($ctrl.user.nichandle)"
         href="{{:: $ctrl.billingLink }}"
         on-click="$ctrl.trackAction('go-to-pay-bill')"
     >
