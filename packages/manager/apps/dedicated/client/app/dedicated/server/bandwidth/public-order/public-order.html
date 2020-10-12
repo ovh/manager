@@ -100,7 +100,7 @@
             <oui-checkbox
                 data-model="$ctrl.model.autoPay"
                 class="mt-3"
-                data-ng-if="$ctrl.region !== 'US'"
+                data-ng-if="$ctrl.region !== 'US' && $ctrl.hasDefaultPaymentMethod"
             >
                 <span data-translate="server_order_bandwidth_auto_pay"></span>
             </oui-checkbox>
