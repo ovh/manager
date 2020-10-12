@@ -14,7 +14,7 @@ export default class LogsDashboardHeaderCtrl {
     if (!this.menuItem) {
       this.menuItem = { title: this.serviceName };
     }
-    this.guides = this.LogsHelperService.getGuides();
+    this.guides = this.LogsHelperService.getGuides(this.me.ovhSubsidiary);
   }
 
   initLoaders() {
