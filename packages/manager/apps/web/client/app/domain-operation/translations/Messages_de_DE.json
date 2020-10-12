@@ -109,5 +109,8 @@
   "domains_operations_progress_instructions_4": "Bei Ablehnung oder ausbleibender Antwort nach 5 Tagen: Transfer wird abgebrochen.",
   "domains_operations_progress_instructions_5": "Wenn nur eine der beiden E-Mails bestätigt wurde: Erfolgt keine Bestätigung der zweiten E-Mail, wird der Transfer nach 5 Tagen fortgesetzt.",
   "domains_operations_progress_instructions_6": "Wenn beide E-Mails bestätigt wurden: Bestätigung und Übergang zum nächsten Schritt innerhalb von 24 Stunden.",
-  "domains_operations_progress_instructions_7": "Sie können den aktuellen Anbieter Ihrer Domain kontaktieren, damit dieser dem Transfer zustimmt."
+  "domains_operations_progress_instructions_7": "Sie können den aktuellen Anbieter Ihrer Domain kontaktieren, damit dieser dem Transfer zustimmt.",
+  "domains_operations_update_key_firstname": "Den Vornamen mit einer gültigen Angabe aktualisieren",
+  "domains_operations_update_key_name": "Den Namen mit einer gültigen Angabe aktualisieren",
+  "domains_operations_update_key_identificationNumber": "Die Identifikationsnummer mit einer gültigen Angabe aktualisieren"
 }
