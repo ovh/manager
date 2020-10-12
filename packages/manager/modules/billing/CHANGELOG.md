@@ -1,3 +1,12 @@
+## [1.0.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@1.0.5...@ovh-ux/manager-billing@1.0.6) (2020-10-12)
+
+
+### Bug Fixes
+
+* **billing:** use component binding instead of scope variable ([#3809](https://github.com/ovh/manager/issues/3809)) ([5a365d1](https://github.com/ovh/manager/commit/5a365d11d5e6f4bd23397f529fad080fee8bd8c4))
+
+
+
 ## [1.0.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@1.0.4...@ovh-ux/manager-billing@1.0.5) (2020-09-28)
 
 

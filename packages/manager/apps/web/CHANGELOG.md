@@ -1,3 +1,12 @@
+## [15.3.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.3.5...@ovh-ux/manager-web@15.3.6) (2020-10-12)
+
+
+### Bug Fixes
+
+* **hosting:** prevent email activation if it is not possible ([#3808](https://github.com/ovh/manager/issues/3808)) ([d08a7f9](https://github.com/ovh/manager/commit/d08a7f959736fd70eea3cf90bb48b8705f05b71f))
+
+
+
 ## [15.3.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.3.4...@ovh-ux/manager-web@15.3.5) (2020-10-07)
 
 
