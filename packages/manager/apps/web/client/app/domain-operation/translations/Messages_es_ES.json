@@ -109,5 +109,8 @@
   "domains_operations_progress_instructions_4": "Si se rechaza la solicitud o no se ha obtenido respuesta en un plazo de 5 días, se abandona la transferencia.",
   "domains_operations_progress_instructions_5": "Si solo se ha confirmado uno de los dos emails, al cabo de 5 días la transferencia pasa a la siguiente etapa.",
   "domains_operations_progress_instructions_6": "Si se han confirmado los dos emails, se pasa a la siguiente etapa en un plazo de 24 horas.",
-  "domains_operations_progress_instructions_7": "Puede contactar con su actual proveedor del dominio para que este dé su consentimiento."
+  "domains_operations_progress_instructions_7": "Puede contactar con su actual proveedor del dominio para que este dé su consentimiento.",
+  "domains_operations_update_key_firstname": "Nombre",
+  "domains_operations_update_key_name": "Apellidos",
+  "domains_operations_update_key_identificationNumber": "Número de identificación fiscal (NIF) de persona física"
 }
