@@ -7,5 +7,12 @@ export default /* @ngInject */ ($stateProvider) => {
       value: ['.'],
       format: 'json',
     },
+    resolve: {
+      me: /* @ngInject */ ($http) =>
+        $http
+          .get('/me')
+          .then(({ data }) => data)
+          .catch(() => {}),
+    },
   });
 };

@@ -5,6 +5,6 @@ export default class LogsListHeaderCtrl {
   }
 
   $onInit() {
-    this.guides = this.LogsHelperService.getGuides();
+    this.guides = this.LogsHelperService.getGuides(this.me.ovhSubsidiary);
   }
 }

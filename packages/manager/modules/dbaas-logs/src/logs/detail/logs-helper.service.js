@@ -110,15 +110,17 @@ export default class LogsHelperService {
         external: true,
       },
     ];
-    this.guides.footer = {
-      name: this.$translate.instant('logs_guides_footer'),
-      url: GUIDES.FR,
-      external: true,
-    };
   }
 
-  getGuides() {
-    return this.guides;
+  getGuides(subsidiary) {
+    return {
+      ...this.guides,
+      footer: {
+        name: this.$translate.instant('logs_guides_footer'),
+        url: GUIDES[subsidiary] || GUIDES.FR,
+        external: true,
+      },
+    };
   }
 
   isAccountDisabled(account) {

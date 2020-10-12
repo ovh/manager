@@ -3,6 +3,7 @@ import template from './logs-dashboard-header.html';
 
 export default {
   bindings: {
+    me: '<',
     service: '<',
     serviceName: '<',
     isAccountDisabled: '<',
