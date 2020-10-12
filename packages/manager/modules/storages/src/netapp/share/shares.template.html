@@ -1,13 +1,7 @@
 <div class="col-md-12">
     <!-- SHARE -->
-    <h4
-        class="oui-tile__title oui-heading_4"
-        data-translate="share_title"
-    ></h4>
-    <oui-datagrid
-        id="dg-share"
-        data-rows="$ctrl.shares"
-    >
+    <h4 class="oui-tile__title oui-heading_4" data-translate="share_title"></h4>
+    <oui-datagrid id="dg-share" data-rows="$ctrl.shares">
         <oui-datagrid-column
             data-title=":: 'share_id' | translate"
             data-property="id"
@@ -52,15 +46,15 @@
             data-type="options"
             data-type-options="$ctrl.stateEnumFilter"
         >
-                <span
-                    class="oui-badge"
-                    data-ng-class="{
+            <span
+                class="oui-badge"
+                data-ng-class="{
                     'oui-badge_success': $ctrl.constructor.toUpperSnakeCase($value) === 'OK',
                     'oui-badge_warning': $ctrl.constructor.toUpperSnakeCase($value) === 'ERROR',
                     'oui-badge_error': $ctrl.constructor.toUpperSnakeCase($value) === 'HACKED' || $ctrl.constructor.toUpperSnakeCase($value) === 'HACKED_BLOCKED'
                     }"
-                    data-translate="{{:: 'share_netapp_status_' + $ctrl.constructor.toUpperSnakeCase($value) }}"
-                ></span>
+                data-translate="{{:: 'share_netapp_status_' + $ctrl.constructor.toUpperSnakeCase($value) }}"
+            ></span>
         </oui-datagrid-column>
     </oui-datagrid>
 </div>

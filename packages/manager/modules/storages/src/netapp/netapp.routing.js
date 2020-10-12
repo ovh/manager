@@ -9,11 +9,11 @@ export default /* @ngInject */ ($stateProvider) => {
         NetappService.getService(netappId),
       serviceLink: /* @ngInject */ ($state, netappId) =>
         $state.href('netapp', {
-          netappId: netappId,
+          netappId,
         }),
       shareLink: /* @ngInject */ ($state, netappId) =>
         $state.href('netapp.share', {
-          netappId: netappId,
+          netappId,
         }),
       currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
         $state.href($state.current.name, $transition$.params()),
