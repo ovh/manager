@@ -206,7 +206,6 @@ export default class {
           this.currentIndex = lastIndex - 1;
           // this is a trick to circumvent limitations of the stepper component.
           // in case of error, it allows user to submit again through the stepper.
-          // fixes https://projects.dsi.ovh/browse/MANAGER-4599
           setTimeout(() => {
             this.currentIndex = lastIndex;
             this.$scope.$apply();
