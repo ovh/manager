@@ -128,7 +128,7 @@ export const STORAGE_CONFIG = {
       searchKeys: ['NAS', 'NASHA', 'NAS-HA'],
     },
     {
-      path: '/storages/netapp',
+      path: '/storage/netapp',
       state: 'netapp',
       stateParams: ['netappId'],
       icon: 'ovh-font ovh-font-cloudnas',
