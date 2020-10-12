@@ -78,5 +78,9 @@
   "dedicated_server_interfaces_bandwith_description" : "La bande passante publique (depuis et vers internet) n’est pas limitée en entrée. Vous pouvez augmenter la bande passante publique et privée en souscrivant à une option",
   "dedicated_server_interfaces_bandwith_public" : "Bande passante publique",
   "dedicated_server_interfaces_bandwith_private" : "Bande passante privée",
-  "dedicated_server_interfaces_task_error": "Une erreur est survenue lors de la configuration : {{ errorMessage }}"
+  "dedicated_server_interfaces_task_error": "Une erreur est survenue lors de la configuration : {{ errorMessage }}",
+  "dedicated_server_interfaces_vrack_operation_attach": "En cours d’attachement",
+  "dedicated_server_interfaces_vrack_operation_detach": "En cours de détachement",
+  "server_vrack_attach_in_progress": "Le vRack {{vRackname}} est en cours d'attachement",
+  "server_vrack_detach_in_progress": "Le vRack {{vRackname}} est en cours de détachement"
 }

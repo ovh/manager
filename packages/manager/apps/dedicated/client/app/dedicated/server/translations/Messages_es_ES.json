@@ -1213,5 +1213,7 @@
   "server_error_ola_terminate": "Se ha producido un error al dar de baja el servicio: {{error}}.",
   "server_error_vrack_attach": "Se ha producido un error al asociar la red privada: {{error}}.",
   "server_error_vrack_detach": "Se ha producido un error al desvincular la red privada: {{error}}.",
-  "server_error_bandwidth_order": "Se ha producido un error al contratar al ancho de banda: {{error}}"
+  "server_error_bandwidth_order": "Se ha producido un error al contratar al ancho de banda: {{error}}",
+  "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_GROUP": "Interfaces de red de grupo",
+  "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_UNGROUP": "Desvincular las interfaces de red"
 }

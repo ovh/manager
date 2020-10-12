@@ -1213,5 +1213,7 @@
   "server_error_ola_terminate": "Si è verificato un errore durante la disattivazione del servizio: {{error}}",
   "server_error_vrack_attach": "Si è verificato un errore durante l'associazione della rete privata: {{error}}",
   "server_error_vrack_detach": "Si è verificato un errore durante la separazione della rete privata: {{error}}",
-  "server_error_bandwidth_order": "Si è verificato un errore durante l'ordine della banda passante: {{error}}"
+  "server_error_bandwidth_order": "Si è verificato un errore durante l'ordine della banda passante: {{error}}",
+  "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_GROUP": "Interfacce di rete di gruppo",
+  "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_UNGROUP": "Disassocia le interfacce di rete"
 }

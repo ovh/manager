@@ -72,5 +72,9 @@
   "dedicated_server_interfaces_bandwith_private": "Private Bandbreite",
   "dedicated_server_interfaces_guides": "Anleitungen",
   "dedicated_server_interfaces_guides_ola": "Wie wird OLA konfiguriert?",
-  "dedicated_server_interfaces_new_tab": "Wird in einem neuen Tab geöffnet"
+  "dedicated_server_interfaces_new_tab": "Wird in einem neuen Tab geöffnet",
+  "dedicated_server_interfaces_vrack_operation_attach": "Wird verbunden",
+  "dedicated_server_interfaces_vrack_operation_detach": "Wird getrennt",
+  "server_vrack_attach_in_progress": "Das vRack {{vRackname}} wird gerade verbunden",
+  "server_vrack_detach_in_progress": "Das vRack {{vRackname}} wird gerade abgetrennt"
 }

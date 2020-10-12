@@ -1213,5 +1213,7 @@
   "server_error_ola_terminate": "An error has occurred cancelling your service: {{error}}",
   "server_error_vrack_attach": "An error has occurred attaching the private network: {{error}}",
   "server_error_vrack_detach": "An error has occurred detaching the private network: {{error}}",
-  "server_error_bandwidth_order": "An error has occurred ordering bandwidth: {{error}}"
+  "server_error_bandwidth_order": "An error has occurred ordering bandwidth: {{error}}",
+  "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_GROUP": "Group network interfaces",
+  "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_UNGROUP": "Detach network interfaces"
 }

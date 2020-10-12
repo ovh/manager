@@ -72,5 +72,9 @@
   "dedicated_server_interfaces_bandwith_private": "Private bandwidth",
   "dedicated_server_interfaces_current_operation": "An operation is in progress on this server ",
   "dedicated_server_interfaces_task_error": "An error has occurred during configuration: {{ errorMessage }}",
-  "dedicated_server_interfaces_new_tab": "Open in a new tab"
+  "dedicated_server_interfaces_new_tab": "Open in a new tab",
+  "dedicated_server_interfaces_vrack_operation_attach": "Attaching...",
+  "dedicated_server_interfaces_vrack_operation_detach": "Detaching...",
+  "server_vrack_attach_in_progress": "The {{vRackname}} vRack is being attached",
+  "server_vrack_detach_in_progress": "The {{vRackname}} vRack is being detached"
 }
