@@ -75,28 +75,19 @@
                 </div>
             </div>
             <div class="col-md-9 col-md-pull-3">
-                <div
-                    class="alert alert-warning"
-                    role="alert"
+                <oui-message
+                    type="error"
                     data-ng-if="$ctrl.service.creditsLeft <= 0 || $ctrl.service.creditsLeft < $ctrl.receivers.records"
                 >
-                    <p
+                    <span
                         data-ng-if="$ctrl.service.creditsLeft <= 0"
                         data-translate="sms_sms_compose_alert_not_enough_credits"
-                    ></p>
-                    <p
+                    ></span>
+                    <span
                         data-ng-if="$ctrl.service.creditsLeft > 0 && $ctrl.service.creditsLeft < $ctrl.receivers.records"
                         data-translate="sms_sms_compose_alert_not_enough_credits_receivers"
-                    ></p>
-                    <a
-                        title="{{ ::'sms_actions_credit_account' | translate }}"
-                        data-ui-sref="sms.service.order"
-                    >
-                        <span data-translate="sms_actions_credit_account"></span
-                        >.
-                    </a>
-                </div>
-
+                    ></span>
+                </oui-message>
                 <form
                     name="sendSmsForm"
                     novalidate
