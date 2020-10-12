@@ -1,0 +1,123 @@
+<div class="" style="overflow: auto;">
+    <oui-header
+        data-heading="{{:: 'netapp_product_name' | translate }} - {{ $ctrl.netappId }}"
+    >
+        <oui-header-tabs>
+            <oui-header-tabs-item
+                data-href="{{ $ctrl.serviceLink }}"
+                data-active="$ctrl.currentActiveLink() === $ctrl.serviceLink"
+                ><span data-translate="netapp_tab_global_news"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-href="{{ $ctrl.shareLink }}"
+                data-active="$ctrl.currentActiveLink() === $ctrl.shareLink"
+                ><span data-translate="netapp_tab_share"></span>
+            </oui-header-tabs-item>
+        </oui-header-tabs>
+        <oui-guide-menu data-text="{{:: 'netapp_guides_header' | translate }}">
+            <oui-guide-menu-item href="{{ $ctrl.guideUrl }}" data-external>
+                <span data-translate="netapp_guides_header_all_guides"></span>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
+    </oui-header>
+
+    <div class="px-3 px-md-4" data-ui-view>
+        <div class="row">
+            <div class="col-md-4">
+                <oui-tile
+                    data-heading="{{:: 'service_netapp_global_news' | translate }}"
+                >
+                    <oui-tile-definition
+                        data-term="{{:: 'service_netapp_name' | translate }}"
+                    >
+                        <oui-tile-description>
+                            <span
+                                data-ng-bind="$ctrl.service.displayName"
+                            ></span>
+                        </oui-tile-description>
+                        <oui-action-menu
+                            aria-label="{{:: 'menu_action_label' | translate:{ t0: ('service_netapp_name_modifiy' | translate) } }}"
+                            data-compact
+                            data-placement="end"
+                        >
+                            <oui-action-menu-item
+                                data-ui-sref="app.dedicated.server.dashboard.edit-display-name"
+                                disabled="true"
+                            >
+                                <span
+                                    data-translate="service_netapp_name_modifiy"
+                                ></span>
+                            </oui-action-menu-item>
+                        </oui-action-menu>
+                    </oui-tile-definition>
+
+                    <oui-tile-definition
+                        data-term="{{:: 'service_netapp_id' | translate }}"
+                    >
+                        <oui-tile-description>
+                            <span data-ng-bind="$ctrl.service.id"></span>
+                        </oui-tile-description>
+                    </oui-tile-definition>
+
+                    <oui-tile-definition
+                        data-term="{{:: 'service_netapp_region' | translate }}"
+                    >
+                        <oui-tile-description>
+                            <span
+                                data-ng-bind="$ctrl.CucRegionService.getTranslatedMicroRegion($ctrl.service.region)"
+                            ></span>
+                        </oui-tile-description>
+                    </oui-tile-definition>
+                </oui-tile>
+            </div>
+
+            <div class="col-md-4">
+                <oui-tile
+                    data-heading="{{:: 'service_netapp_state' | translate }}"
+                >
+                    <oui-tile-definition
+                        data-term="{{:: 'service_netapp_status' | translate }}"
+                    >
+                        <oui-tile-description>
+                            <span
+                                class="oui-badge"
+                                data-ng-class="{
+                                'oui-badge_success': ($ctrl.service.statusGroup === 'ACTIVE'),
+                                'oui-badge_warning': ($ctrl.service.statusGroup === 'PENDING'),
+                                'oui-badge_error': ($ctrl.service.statusGroup === 'ERROR'),
+                                'oui-badge_info': ($ctrl.service.statusGroup === $ctrl.service.status && !['ACTIVE', 'PENDING', 'ERROR'].includes($ctrl.service.statusGroup)),
+                            }"
+                            >
+                                <span
+                                    data-ng-bind="'service_netapp_status_' + $ctrl.service.status | translate"
+                                ></span>
+                            </span>
+                        </oui-tile-description>
+                    </oui-tile-definition>
+                </oui-tile>
+            </div>
+
+            <div class="col-md-4">
+                <oui-tile
+                    data-heading="{{:: 'service_netapp_plan' | translate }}"
+                >
+                    <oui-tile-definition
+                        data-term="{{:: 'service_netapp_level' | translate }}"
+                    >
+                        <oui-tile-description>
+                            <span data-ng-bind="$ctrl.service.product"></span>
+                        </oui-tile-description>
+                    </oui-tile-definition>
+
+                    <oui-tile-definition
+                        data-term="{{:: 'service_netapp_creation_date' | translate }}"
+                    >
+                        <oui-tile-description>
+                            <span data-ng-bind="$ctrl.service.createdAt"></span>
+                        </oui-tile-description>
+                    </oui-tile-definition>
+                </oui-tile>
+            </div>
+        </div>
+    </div>
+</div>
