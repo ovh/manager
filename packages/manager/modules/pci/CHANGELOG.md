@@ -1,3 +1,12 @@
+## [5.1.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.1.4...@ovh-ux/manager-pci@5.1.5) (2020-10-12)
+
+
+### Bug Fixes
+
+* comment adjustment ([#3811](https://github.com/ovh/manager/issues/3811)) ([f8a69b1](https://github.com/ovh/manager/commit/f8a69b1027b16692fd6b3e6ee29b94c58863471b))
+
+
+
 ## [5.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.1.3...@ovh-ux/manager-pci@5.1.4) (2020-09-30)
 
 
