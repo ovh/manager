@@ -685,7 +685,7 @@
                             type="submit"
                             class="btn btn-primary"
                             data-ng-disabled="sendSmsForm.$invalid ||
-                                              $ctrl.service.creditsLeft === 0 ||
+                                              $ctrl.service.creditsLeft <= 0 ||
                                               $ctrl.loading.send"
                         >
                             <oui-spinner
