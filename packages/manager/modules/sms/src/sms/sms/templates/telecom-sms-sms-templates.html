@@ -122,7 +122,7 @@
                 data-property="name"
                 data-sortable="asc"
             >
-                {{$row.name || '-'}}
+                <span data-ng-bind="($row.name | limitTo: 40) || '-'"></span>
             </oui-datagrid-column>
 
             <oui-datagrid-column
@@ -130,7 +130,9 @@
                 data-property="datetime"
                 data-sortable
             >
-                {{$row.datetime | date:'shortDate' || '-'}}
+                <span
+                    data-ng-bind="$row.datetime | date:'shortDate' || '-'"
+                ></span>
             </oui-datagrid-column>
 
             <oui-datagrid-column
@@ -138,8 +140,10 @@
                 data-property="activity"
                 data-sortable
             >
-                {{(('sms_sms_templates_add_activity_type_' + $row.activity) |
-                translate) || '-'}}
+                <span
+                    data-ng-bind="(('sms_sms_templates_add_activity_type_' + $row.activity) |
+              translate) || '-'"
+                ></span>
             </oui-datagrid-column>
 
             <oui-datagrid-column
@@ -147,7 +151,9 @@
                 data-property="description"
                 data-sortable
             >
-                {{$row.description || '-'}}
+                <span
+                    data-ng-bind="($row.description | limitTo: 40) || '-'"
+                ></span>
             </oui-datagrid-column>
 
             <oui-datagrid-column
@@ -155,7 +161,7 @@
                 data-property="message"
                 data-sortable
             >
-                {{$row.message || '-'}}
+                <span data-ng-bind="($row.message | limitTo: 40) || '-'"></span>
             </oui-datagrid-column>
 
             <oui-datagrid-column
