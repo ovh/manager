@@ -1,3 +1,12 @@
+## [1.0.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@1.0.6...@ovh-ux/manager-billing@1.0.7) (2020-10-13)
+
+
+### Bug Fixes
+
+* **services-action:** allow to resiliate deletable service if possible ([#3818](https://github.com/ovh/manager/issues/3818)) ([40bc7bd](https://github.com/ovh/manager/commit/40bc7bdc53098295dce490116e3e93005327de90))
+
+
+
 ## [1.0.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@1.0.5...@ovh-ux/manager-billing@1.0.6) (2020-10-12)
 
 

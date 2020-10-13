@@ -1,3 +1,18 @@
+## [15.3.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.3.6...@ovh-ux/manager-web@15.3.7) (2020-10-13)
+
+
+### Bug Fixes
+
+* **deps:** upgrade to @ovh-ux/manager-config v2.0.0 ([ca3f955](https://github.com/ovh/manager/commit/ca3f9554c13b1436cbdeed3de8ac69e399d5dd93))
+* **domain.operation.update:** translate some form labels ([c84c175](https://github.com/ovh/manager/commit/c84c175b4eacc35805b8a57eb6a93ab5410df5df))
+* **i18n:** add missing translations [CDS 598] ([e5be4ff](https://github.com/ovh/manager/commit/e5be4ff3567df1171c776fb7315c8be4d09c423f))
+* **i18n:** add missing translations [CDS 603] ([4e2e675](https://github.com/ovh/manager/commit/4e2e675b06edca380c3e23a63c28bfd0db442d83))
+* **i18n:** add missing translations [CDS 608] ([3adf17d](https://github.com/ovh/manager/commit/3adf17d42e44f15a6c4775cab693b944495a07ee))
+* **private-database.order:** add missing translations ([7b0f1fd](https://github.com/ovh/manager/commit/7b0f1fd6984890ccd408c93195d548171e5c0b40))
+* **private-database.order:** prevent error message on landing ([4a33232](https://github.com/ovh/manager/commit/4a33232b55c579f7840faa3a299ec8846db3958a))
+
+
+
 ## [15.3.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.3.5...@ovh-ux/manager-web@15.3.6) (2020-10-12)
 
 

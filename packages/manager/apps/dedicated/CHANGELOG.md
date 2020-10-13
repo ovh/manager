@@ -1,3 +1,27 @@
+## [14.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.1.3...@ovh-ux/manager-dedicated@14.1.4) (2020-10-13)
+
+
+### Bug Fixes
+
+* **config.constants:** update baremetal url in US ([#3822](https://github.com/ovh/manager/issues/3822)) ([da1d0f4](https://github.com/ovh/manager/commit/da1d0f46d2746f555b820f75ff14f7d526bf0347))
+* **dedicated.nas:** add default type param if not provided ([81819e0](https://github.com/ovh/manager/commit/81819e0f42625dd192afeefbded8befb083d1bad))
+* **dedicated.nas:** match type correctly ([527fdaa](https://github.com/ovh/manager/commit/527fdaa5acfd0aa513ee5c1442893cae06d2076e))
+* **deps:** upgrade to @ovh-ux/manager-config v2.0.0 ([ca3f955](https://github.com/ovh/manager/commit/ca3f9554c13b1436cbdeed3de8ac69e399d5dd93))
+* **i18n:** add missing translations [CDS 593] ([e561a94](https://github.com/ovh/manager/commit/e561a940e069e4b87b8c1b6f2be0348e4ab59911))
+* **i18n:** add missing translations [CDS 594] ([53e8fd1](https://github.com/ovh/manager/commit/53e8fd115cdf8fbca183cd6e123ffdd92cfa7980))
+* **i18n:** add missing translations [CDS 597] ([48bb8c4](https://github.com/ovh/manager/commit/48bb8c4af90552edbfade682512d73820b31f353))
+* **i18n:** add missing translations [CDS 599] ([1a2a0a9](https://github.com/ovh/manager/commit/1a2a0a91293287a9557396f75ca91995fe0bdbc7))
+* **i18n:** add missing translations [CDS 603] ([4e2e675](https://github.com/ovh/manager/commit/4e2e675b06edca380c3e23a63c28bfd0db442d83))
+* **i18n:** add missing translations [CDS 605] ([95c86b7](https://github.com/ovh/manager/commit/95c86b75448550a605e6569367bd0fef8fddbde0))
+* **i18n:** add missing translations [CDS 612] ([948f0f9](https://github.com/ovh/manager/commit/948f0f9c8676a6a6d55ea43c4cda016a9276ca76))
+
+
+### Performance Improvements
+
+* **ip:** improve loading time ([#3796](https://github.com/ovh/manager/issues/3796)) ([679e0c0](https://github.com/ovh/manager/commit/679e0c087b80849d72e4469e9e7169a3b05902b7))
+
+
+
 ## [14.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.1.2...@ovh-ux/manager-dedicated@14.1.3) (2020-10-05)
 
 

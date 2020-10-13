@@ -1,3 +1,16 @@
+## [2.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.1.2...@ovh-ux/manager-vps@2.1.3) (2020-10-13)
+
+
+### Bug Fixes
+
+* **deps:** upgrade to @ovh-ux/manager-config v2.0.0 ([ca3f955](https://github.com/ovh/manager/commit/ca3f9554c13b1436cbdeed3de8ac69e399d5dd93))
+* **i18n:** add missing translations [CDS 594] ([53e8fd1](https://github.com/ovh/manager/commit/53e8fd115cdf8fbca183cd6e123ffdd92cfa7980))
+* **i18n:** add missing translations [CDS 595] ([fe5e042](https://github.com/ovh/manager/commit/fe5e042913cd90b3e2bf1be6891098b544d784f5))
+* **i18n:** add missing translations [CDS 599] ([1a2a0a9](https://github.com/ovh/manager/commit/1a2a0a91293287a9557396f75ca91995fe0bdbc7))
+* **i18n:** add missing translations [CDS 605] ([95c86b7](https://github.com/ovh/manager/commit/95c86b75448550a605e6569367bd0fef8fddbde0))
+
+
+
 ## [2.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.1.1...@ovh-ux/manager-vps@2.1.2) (2020-10-07)
 
 

@@ -1,3 +1,12 @@
+## [7.2.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms-app@7.2.7...@ovh-ux/manager-sms-app@7.2.8) (2020-10-13)
+
+
+### Bug Fixes
+
+* **deps:** upgrade to @ovh-ux/manager-config v2.0.0 ([ca3f955](https://github.com/ovh/manager/commit/ca3f9554c13b1436cbdeed3de8ac69e399d5dd93))
+
+
+
 ## [7.2.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms-app@7.2.6...@ovh-ux/manager-sms-app@7.2.7) (2020-09-18)
 
 

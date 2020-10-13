@@ -1,3 +1,20 @@
+# [5.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.1.5...@ovh-ux/manager-pci@5.2.0) (2020-10-13)
+
+
+### Bug Fixes
+
+* **deps:** upgrade to @ovh-ux/manager-config v2.0.0 ([ca3f955](https://github.com/ovh/manager/commit/ca3f9554c13b1436cbdeed3de8ac69e399d5dd93))
+* **i18n:** add missing translations [CDS 611] ([35788d8](https://github.com/ovh/manager/commit/35788d843f5dfa6b5ae05f46663b027d56089c9c))
+* **kubernetes.translations:** rename label 'backup' into 'save' ([#3823](https://github.com/ovh/manager/issues/3823)) ([ce0322b](https://github.com/ovh/manager/commit/ce0322bc7d14a1d39bf80588f070c916cf85ea77))
+* **pci.instance.edit:** pass region parameter ([#3814](https://github.com/ovh/manager/issues/3814)) ([44d116c](https://github.com/ovh/manager/commit/44d116cdd2214442b3c2ccc65ddca983db2521fa))
+
+
+### Features
+
+* **pci.load-balancer:** add region on datagrid list for lbaas ([#3747](https://github.com/ovh/manager/issues/3747)) ([db604eb](https://github.com/ovh/manager/commit/db604eb8b2d4b9b1bb338cfb08b3ebe532f1007b))
+
+
+
 ## [5.1.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.1.4...@ovh-ux/manager-pci@5.1.5) (2020-10-12)
 
 

@@ -1,3 +1,21 @@
+# [13.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.3.1...@ovh-ux/manager-telecom@13.4.0) (2020-10-13)
+
+
+### Bug Fixes
+
+* **deps:** upgrade to @ovh-ux/manager-config v2.0.0 ([ca3f955](https://github.com/ovh/manager/commit/ca3f9554c13b1436cbdeed3de8ac69e399d5dd93))
+* **i18n:** add missing translations [CDS 602] ([29f3a48](https://github.com/ovh/manager/commit/29f3a4872de300ced82b49b0755311c6f46e329b))
+* **i18n:** add missing translations [CDS 605] ([95c86b7](https://github.com/ovh/manager/commit/95c86b75448550a605e6569367bd0fef8fddbde0))
+* **telephony:** sort programmablekey BLF parameters ([#3707](https://github.com/ovh/manager/issues/3707)) ([db61611](https://github.com/ovh/manager/commit/db61611badd638ddc6d330f9ff9eb98623e9ac34))
+* **telephony.fax.campaigns:** allow to launch campaign ([fdc5e7b](https://github.com/ovh/manager/commit/fdc5e7b348d5a0a90501f9a5dec723452e9d9c0c))
+
+
+### Features
+
+* **pack.migration:** rework on building details pto input ([#3319](https://github.com/ovh/manager/issues/3319)) ([87abd19](https://github.com/ovh/manager/commit/87abd19473f8b19e50d00b7623f4d5b3f21eecaa))
+
+
+
 ## [13.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.3.0...@ovh-ux/manager-telecom@13.3.1) (2020-10-07)
 
 

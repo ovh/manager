@@ -1,3 +1,12 @@
+## [4.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.2.2...@ovh-ux/manager-public-cloud@4.2.3) (2020-10-13)
+
+
+### Bug Fixes
+
+* **deps:** upgrade to @ovh-ux/manager-config v2.0.0 ([ca3f955](https://github.com/ovh/manager/commit/ca3f9554c13b1436cbdeed3de8ac69e399d5dd93))
+
+
+
 ## [4.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.2.1...@ovh-ux/manager-public-cloud@4.2.2) (2020-10-02)
 
 
