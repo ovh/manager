@@ -1,3 +1,19 @@
+# [3.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.1.1...@ovh-ux/manager-server-sidebar@3.2.0) (2020-10-13)
+
+
+### Bug Fixes
+
+* **deps:** upgrade to @ovh-ux/manager-config v2.0.0 ([ca3f955](https://github.com/ovh/manager/commit/ca3f9554c13b1436cbdeed3de8ac69e399d5dd93))
+* **i18n:** add missing translations [CDS 598] ([e5be4ff](https://github.com/ovh/manager/commit/e5be4ff3567df1171c776fb7315c8be4d09c423f))
+* **web.order:** add private database order ([91bfb3b](https://github.com/ovh/manager/commit/91bfb3bb8d00a6becfeebbc5fd8ebb7a421b7e05))
+
+
+### Features
+
+* **features:** retrieve features dynamically ([#3745](https://github.com/ovh/manager/issues/3745)) ([b3064e7](https://github.com/ovh/manager/commit/b3064e7c6b3cdc8317841eb5c5c5edd77b28cba1))
+
+
+
 ## [3.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.1.0...@ovh-ux/manager-server-sidebar@3.1.1) (2020-10-07)
 
 

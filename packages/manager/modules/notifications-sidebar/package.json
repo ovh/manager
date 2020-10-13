@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-notifications-sidebar",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "private": true,
   "description": "A sidebar component to display OVHcloud notifications.",
   "repository": {

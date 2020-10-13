@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-feature-flipping",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Feature flipping library",
   "keywords": [
     "angularjs",
