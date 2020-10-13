@@ -1,10 +1,8 @@
 import filter from 'lodash/filter';
-import flatten from 'lodash/flatten';
 import get from 'lodash/get';
-import map from 'lodash/map';
 
 export default /* @ngInject */ function TelecomTelephonyServiceVoicemailDefaultCtrl(
-  $scope,
+  $http,
   $stateParams,
   $q,
   $timeout,
@@ -16,22 +14,6 @@ export default /* @ngInject */ function TelecomTelephonyServiceVoicemailDefaultC
   TucToast,
 ) {
   const self = this;
-
-  function fetchLines() {
-    return OvhApiTelephony.Line()
-      .Aapi()
-      .get()
-      .$promise.then((result) =>
-        filter(flatten(map(result, 'lines')), { serviceType: 'line' }),
-      );
-  }
-
-  function fetchFax() {
-    return OvhApiTelephony.Fax()
-      .Aapi()
-      .getServices()
-      .$promise.then((result) => filter(result, { type: 'FAX' }));
-  }
 
   function fetchOptions() {
     return OvhApiTelephony.Line()
@@ -51,22 +33,33 @@ export default /* @ngInject */ function TelecomTelephonyServiceVoicemailDefaultC
     };
 
     self.loading = true;
-    return $q
-      .all({
-        lines: fetchLines(),
-        fax: fetchFax(),
-        options: fetchOptions(),
-      })
-      .then((result) => {
-        self.numbers = result.lines.concat(result.fax);
-        self.options = result.options;
-        self.defaultVoicemail = self.options.defaultVoicemail;
+    return fetchOptions()
+      .then((options) => {
+        self.options = options;
+        self.defaultVoicemail = options.defaultVoicemail;
       })
       .catch((err) => new TucToastError(err))
       .finally(() => {
         self.loading = false;
       });
   }
+
+  self.onDefaultVoicemailChange = function onDefaultVoicemailChange() {
+    self.success = false;
+    if (self.options.defaultVoicemail.length < 5) {
+      return $q.when();
+    }
+
+    return $http
+      .get('/telephony/searchServices', {
+        params: {
+          axiom: self.options.defaultVoicemail,
+        },
+      })
+      .then(({ data }) => {
+        self.numbers = data;
+      });
+  };
 
   self.saveDefaultVoicemail = function saveDefaultVoicemail() {
     self.saving = true;
