@@ -4,6 +4,7 @@
   "dedicated_server_install_ovh_template_type_basic": "Basique",
   "dedicated_server_install_ovh_template_type_ready_to_use": "Prêt à l'emploi (interface graphique)",
   "dedicated_server_install_ovh_template_label": "Système",
+  "dedicated_server_install_ovh_template_info": "Il est nécessaire de disposer d’une licence liée à votre serveur, pour installer certaines distributions (Windows server, Redhat Enterprise Linux, etc..).",
   "dedicated_server_install_ovh_template_language": "Langue du système",
   "dedicated_server_install_ovh_template_disk_group": "Grappe de disque cible"
 }

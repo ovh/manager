@@ -14,7 +14,7 @@
                 data-ng-options="category as ('dedicated_server_install_ovh_template_type_' + $ctrl.snakeCase(category) | translate) for category in $ctrl.lists.availableTemplateCategories"
                 name="category"
                 id="category"
-                data-ng-model="$ctrl.templateModel.category"
+                data-ng-model="$ctrl.template.category"
                 data-ng-change="$ctrl.onTemplateCategoryChange()"
             >
             </select>
@@ -25,7 +25,7 @@
         </label>
     </oui-field>
 
-    <div class="templates-lists">
+    <div class="templates-lists mb-3">
         <label data-translate="dedicated_server_install_ovh_template_label">
         </label>
 
@@ -38,9 +38,10 @@
                 <oui-select-picker
                     data-name="template"
                     data-match="description"
-                    data-model="$ctrl.templateModel.template"
+                    data-model="$ctrl.template.template"
                     data-label="{{ family }}"
-                    values="$ctrl.lists.availableTemplateFamilies.get(family)"
+                    data-values="$ctrl.lists.availableTemplateFamilies.get(family)"
+                    data-on-change="$ctrl.onTemplateChange()"
                 >
                 </oui-select-picker>
             </div>
@@ -50,14 +51,15 @@
     <oui-field
         data-label="{{ :: 'dedicated_server_install_ovh_template_language' | translate }}"
         data-size="xl"
+        data-ng-if="$ctrl.template.template"
     >
         <label class="oui-select">
             <select
                 class="oui-select__input"
-                data-ng-options="language as (language | uppercase) for language in $ctrl.templateModel.template.availableLanguages"
+                data-ng-options="language as (language | uppercase) for language in $ctrl.template.template.availableLanguages"
                 name="language"
                 id="language"
-                data-ng-model="$ctrl.templateModel.language"
+                data-ng-model="$ctrl.template.language"
             >
             </select>
             <span
@@ -66,6 +68,12 @@
             ></span>
         </label>
     </oui-field>
+
+    <oui-message data-type="info" class="mb-3">
+        <span
+            data-translate="dedicated_server_install_ovh_template_info"
+        ></span>
+    </oui-message>
 
     <oui-field
         data-label="{{ :: 'dedicated_server_install_ovh_template_disk_group' | translate }}"
@@ -77,7 +85,7 @@
                 data-ng-options="diskGroup as diskGroup.description for diskGroup in $ctrl.hardwareSpecifications.diskGroups"
                 name="diskGroup"
                 id="diskGroup"
-                data-ng-model="$ctrl.templateModel.diskGroup"
+                data-ng-model="$ctrl.template.diskGroup"
                 data-ng-disabled="$ctrl.hardwareSpecifications.diskGroups.length === 1"
             >
             </select>

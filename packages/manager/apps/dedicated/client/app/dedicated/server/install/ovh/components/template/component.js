@@ -8,7 +8,7 @@ export default {
   bindings: {
     compatibleTemplates: '<',
     hardwareSpecifications: '<',
-    templateModel: '<',
+    model: '<',
     templatesFamilies: '<',
   },
 };

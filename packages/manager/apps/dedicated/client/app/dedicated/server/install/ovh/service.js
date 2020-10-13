@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 
-import DedicatedServerRaidController from './components/raid/models/controller';
+import DedicatedServerRaidController from './models/raid-controller.class';
 
 export default class DedicatedServerInstallOvh {
   /* @ngInject */

@@ -16,9 +16,10 @@
             <select
                 class="oui-select__input"
                 data-ng-options="controller as controller.displayName for controller in $ctrl.raidProfiles.controllers | orderBy:'displayName'"
-                name="hardwareRaidController"
-                id="hardwareRaidController"
-                data-ng-model="$ctrl.model.hardwareRaidController"
+                name="controller"
+                id="controller"
+                data-ng-model="$ctrl.raid.controller"
+                data-ng-on-change="$ctrl.onControllerChange()"
             >
             </select>
             <span
@@ -35,10 +36,11 @@
         <label class="oui-select">
             <select
                 class="oui-select__input"
-                data-ng-options="raid for raid in $ctrl.model.hardwareRaidController.getAvailableRaids()"
-                name="hardwareRaidMode"
-                id="hardwareRaidMode"
-                data-ng-model="$ctrl.model.hardwareRaidMode"
+                data-ng-options="mode for mode in $ctrl.lists.modes"
+                name="mode"
+                id="mode"
+                data-ng-model="$ctrl.raid.mode"
+                data-ng-on-change="$ctrl.onModeChange()"
             >
             </select>
             <span
@@ -55,10 +57,10 @@
         <label class="oui-select">
             <select
                 class="oui-select__input"
-                data-ng-options="disk for disk in $ctrl.getDiskNumberList()"
-                name="hardwareRaidDiskNumber"
-                id="hardwareRaidDiskNumber"
-                data-ng-model="$ctrl.model.hardwareRaidDiskNumber"
+                data-ng-options="disk for disk in $ctrl.lists.diskNumbers"
+                name="diskNumber"
+                id="diskNumber"
+                data-ng-model="$ctrl.raid.diskNumber"
             >
             </select>
             <span
@@ -75,10 +77,10 @@
         <label class="oui-select">
             <select
                 class="oui-select__input"
-                data-ng-options="disk for disk in $ctrl.getDiskNumberList()"
-                name="hardwareRaidDiskNumber"
-                id="hardwareRaidDiskNumber"
-                data-ng-model="$ctrl.model.hardwareRaidClusterNumber"
+                data-ng-options="cluster for cluster in $ctrl.lists.clusters"
+                name="cluster"
+                id="cluster"
+                data-ng-model="$ctrl.raid.cluster"
             >
             </select>
             <span

@@ -5,7 +5,7 @@ import partitionComponent from './components/partition/component';
 import rtmComponent from './components/rtm/component';
 import optionsComponent from '../components/options/component';
 
-import DedicatedServerInstallOvhModel from './models/ovh-install';
+import DedicatedServerInstallOvhModel from './models/ovh-install.model.class';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicated.server.install.ovh', {
@@ -15,7 +15,10 @@ export default /* @ngInject */ ($stateProvider) => {
 
       'template@app.dedicated.server.install.ovh': templateComponent.name,
 
-      'raid@app.dedicated.server.install.ovh': raidComponent.name,
+      'raid@app.dedicated.server.install.ovh': {
+        componentProvider: /* @ngInject */ (raidProfiles) =>
+          raidProfiles ? raidComponent.name : null,
+      },
 
       'partition@app.dedicated.server.install.ovh': partitionComponent.name,
 
@@ -25,8 +28,6 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       model: () => new DedicatedServerInstallOvhModel(),
-
-      templateModel: /* @ngInject */ (model) => model.templateModel,
 
       raidProfiles: /* @ngInject */ ($q, dedicatedServerInstallOvh, server) =>
         dedicatedServerInstallOvh

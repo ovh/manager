@@ -13,12 +13,20 @@ export default class DedicatedServerInstallOvhTemplateCtrl {
     };
   }
 
+  get template() {
+    return this.model.template;
+  }
+
   /*= =============================
   =            Events            =
   ============================== */
 
   onTemplateCategoryChange() {
-    this.initAvailableTemplateFamiliesList();
+    this.getAvailableTemplateFamiliesList();
+  }
+
+  onTemplateChange() {
+    this.template.language = this.template.template.defaultLanguage;
   }
 
   /*= ====  End of Events  ====== */
@@ -27,12 +35,12 @@ export default class DedicatedServerInstallOvhTemplateCtrl {
   =            Initialization            =
   ====================================== */
 
-  initAvailableTemplateFamiliesList() {
+  getAvailableTemplateFamiliesList() {
     this.lists.availableTemplateFamilies.clear();
 
     // first filter compatible templates with selected category of template
     const templatesOfCategory = filter(this.compatibleTemplates, {
-      category: this.templateModel.category,
+      category: this.template.category,
     });
 
     // then group templates by families
@@ -43,19 +51,17 @@ export default class DedicatedServerInstallOvhTemplateCtrl {
         this.lists.availableTemplateFamilies.set(family, templatesOfFamily);
       }
     });
-  }
 
-  initLists() {
-    this.lists.availableTemplateCategories = AVAILABLE_TEMPLATE_CATEGORIES;
-
-    this.initAvailableTemplateFamiliesList();
+    return this.lists.availableTemplateFamilies;
   }
 
   $onInit() {
-    [this.templateModel.category] = AVAILABLE_TEMPLATE_CATEGORIES;
-    [this.templateModel.diskGroup] = this.hardwareSpecifications.diskGroups;
+    this.lists.availableTemplateCategories = AVAILABLE_TEMPLATE_CATEGORIES;
+    [this.template.category] = this.lists.availableTemplateCategories;
 
-    this.initLists();
+    this.getAvailableTemplateFamiliesList();
+
+    [this.template.diskGroup] = this.hardwareSpecifications.diskGroups;
   }
 
   /*= ====  End of Initialization  ====== */
