@@ -3,11 +3,11 @@ import camelCase from 'lodash/camelCase';
 import filter from 'lodash/filter';
 import find from 'lodash/find';
 import forEach from 'lodash/forEach';
-import get from 'lodash/get';
 import has from 'lodash/has';
 import includes from 'lodash/includes';
 import keys from 'lodash/keys';
 import map from 'lodash/map';
+import reduce from 'lodash/reduce';
 import set from 'lodash/set';
 import some from 'lodash/some';
 
@@ -24,6 +24,7 @@ export default class Exchange {
     OvhHttp,
     ovhUserPref,
     constants,
+    iceberg,
   ) {
     this.services = {
       $cacheFactory,
@@ -36,6 +37,7 @@ export default class Exchange {
       OvhHttp,
       ovhUserPref,
       constants,
+      iceberg,
     };
 
     this.requests = {
@@ -102,8 +104,6 @@ export default class Exchange {
       publicFoldersChanged: 'exchange.tabs.publicFolders.changed',
       sslRenewAsked: 'exchange.sslRenew.asked',
     };
-
-    this.updateValue();
   }
 
   /*
@@ -219,32 +219,51 @@ export default class Exchange {
     );
   }
 
-  getExchangeServices() {
-    return this.services.OvhApiEmailExchange.service()
-      .v7()
+  getAllExchangeServices() {
+    return this.services.OvhHttp.get('/email/exchange', {
+      rootPath: 'apiv6',
+    })
+      .then((serviceIds) =>
+        this.services.$q.all(
+          map(serviceIds, (serviceId) => this.getExchangeServices(serviceId)),
+        ),
+      )
+      .then((services) =>
+        reduce(
+          services,
+          (flattened, other) => {
+            return flattened.concat(other);
+          },
+          [],
+        ),
+      );
+  }
+
+  getExchangeServices(organizationName) {
+    return this.services
+      .iceberg('/email/exchange/:organizationName/service')
       .query()
-      .expand(false)
-      .aggregate('displayName')
-      .execute({ organizationName: '*' })
-      .$promise.then((services) =>
+      .expand('CachedObjectList-Pages')
+      .execute({ organizationName })
+      .$promise.then((services) => services.data)
+      .then((services) =>
         filter(
           services,
-          (service) =>
-            has(service, 'value.displayName') && has(service, 'value.offer'),
+          (service) => has(service, 'displayName') && has(service, 'offer'),
         ),
       )
       .then((services) =>
         map(services, (service) => ({
-          name: service.key,
-          displayName: service.value.displayName,
-          organization: get(service.path.split('/'), '[3]'),
-          type: `EXCHANGE_${service.value.offer.toUpperCase()}`,
+          name: service.domain,
+          displayName: service.displayName,
+          organization: service.domain,
+          type: `EXCHANGE_${service.offer.toUpperCase()}`,
         })),
       );
   }
 
   getExchange(organization, exchangeId) {
-    return this.getExchangeServices().then((services) =>
+    return this.getExchangeServices(exchangeId).then((services) =>
       find(services, {
         name: exchangeId,
         organization,
@@ -259,51 +278,6 @@ export default class Exchange {
         organization,
         exchange: exchangeName,
       }).$promise;
-  }
-
-  /**
-   * Get Selected Exchange
-   */
-  getSelected(forceRefresh) {
-    if (forceRefresh) {
-      this.resetCache();
-    }
-
-    const { organization, productId } = this.getParams();
-
-    return this.getExchange(organization, productId)
-      .then((product) => {
-        if (product && product.organization) {
-          const selectedExchange = this.exchangeCache.get('exchange');
-          if (!selectedExchange) {
-            if (this.requests.exchangeDetails === null) {
-              this.requests.exchangeDetails = this.services.OvhHttp.get(
-                '/sws/exchange/{organization}/{exchange}',
-                {
-                  rootPath: '2api',
-                  urlParams: {
-                    organization: product.organization,
-                    exchange: product.name,
-                  },
-                },
-              ).then((result) => {
-                this.exchangeCache.put('exchange', result);
-              });
-            }
-            return this.requests.exchangeDetails;
-          }
-          return selectedExchange;
-        }
-        return this.services.$q.reject(product);
-      })
-      .then(() => this.exchangeCache.get('exchange'))
-      .catch((reason) => this.services.$q.reject(reason));
-  }
-
-  updateValue() {
-    return this.getSelected().then((exchange) => {
-      this.value = exchange;
-    });
   }
 
   setConfiguration(organization, serviceName, data) {
@@ -402,17 +376,23 @@ export default class Exchange {
    * @param configurableOnly - Integer value: "0" to get all, "1" to filter out dummy accounts
    *                           and creating/deleting ones
    */
-  getAccounts(pageSize, offset, search, configurableOnly, type, timeout) {
-    return this.getSelected().then((exchange) =>
-      this.getAccountsForExchange(
-        exchange,
-        pageSize,
-        offset,
-        search,
-        configurableOnly,
-        type,
-        timeout,
-      ),
+  getAccounts(
+    exchange,
+    pageSize,
+    offset,
+    search,
+    configurableOnly,
+    type,
+    timeout,
+  ) {
+    return this.getAccountsForExchange(
+      exchange,
+      pageSize,
+      offset,
+      search,
+      configurableOnly,
+      type,
+      timeout,
     );
   }
 
@@ -1588,10 +1568,11 @@ export default class Exchange {
     });
   }
 
-  prepareForCsv(organization, serviceName, opts, offset, timeout) {
+  prepareForCsv(exchange, organization, serviceName, opts, offset, timeout) {
     const queue = [];
 
     return this.getAccounts(
+      exchange,
       opts.count,
       offset,
       opts.search,
@@ -1654,26 +1635,6 @@ export default class Exchange {
 
       return response;
     });
-  }
-
-  doSharepointBeta(opts) {
-    const { primaryEmailAddress, subDomain } = opts;
-
-    return this.getSelected().then((exchange) =>
-      this.services.$http.post(
-        [
-          'apiv6/email/exchange',
-          exchange.organization,
-          'service',
-          exchange.domain,
-          'activateSharepoint',
-        ].join('/'),
-        {
-          primaryEmailAddress,
-          subDomain,
-        },
-      ),
-    );
   }
 
   getAccountIds(opts) {
@@ -1774,10 +1735,8 @@ export default class Exchange {
   /**
    * Return information related to sharepoint order
    */
-  getSharepointService() {
-    return this.getSelected().then((exchange) =>
-      this.getSharepointServiceForExchange(exchange),
-    );
+  getSharepointService(exchange) {
+    return this.getSharepointServiceForExchange(exchange);
   }
 
   getSharepointServiceForExchange(exchange) {
