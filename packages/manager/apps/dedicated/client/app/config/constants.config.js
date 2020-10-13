@@ -1190,7 +1190,7 @@ const constants = {
         exchangeOrder: 'https://www.ovh.com/ca/en/emails/hosted-exchange/',
         faq: 'https://www.ovh.com/ca/en/dedicated-servers/faq.xml',
         faqVps: 'https://www.ovh.com/ca/en/vps/faq-help.xml',
-        dedicatedOrder: 'https://us.ovhcloud.com/dedicated-servers/prices',
+        dedicatedOrder: 'https://us.ovhcloud.com/bare-metal/prices',
         vrackOrder:
           "https://us.ovhcloud.com/order/express/#/express/review?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
         cloudProjectOrder:
