@@ -23,7 +23,6 @@ angular
     /* @ngInject */ (ovhDocUrlProvider) => {
       ovhDocUrlProvider.setUserLocale(Environment.getUserLocale());
     },
-  )
-  .run(/* @ngTranslationsInject:json ./translations */);
+  );
 
 export default moduleName;
