@@ -2,11 +2,11 @@ import compact from 'lodash/compact';
 import filter from 'lodash/filter';
 import find from 'lodash/find';
 import flatten from 'lodash/flatten';
-import get from 'lodash/get';
 import has from 'lodash/has';
 import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
 import startsWith from 'lodash/startsWith';
+import reduce from 'lodash/reduce';
 
 const URL_DEFAULT_SUFFIX = '.sp.ovh.net';
 const DEFAULT_SUBSIDIARY = 'GB';
@@ -21,6 +21,7 @@ export default class MicrosoftSharepointLicenseService {
     OvhApiEmailExchange,
     SHAREPOINT_GUIDE_URLS,
     User,
+    iceberg,
   ) {
     this.alerter = Alerter;
     this.OvhHttp = OvhHttp;
@@ -29,6 +30,7 @@ export default class MicrosoftSharepointLicenseService {
     this.$translate = $translate;
     this.User = User;
     this.OvhApiEmailExchange = OvhApiEmailExchange;
+    this.iceberg = iceberg;
 
     this.cache = {
       models: 'UNIVERS_MODULE_SHAREPOINT_MODELS',
@@ -623,32 +625,50 @@ export default class MicrosoftSharepointLicenseService {
     );
   }
 
-  getExchangeServices() {
-    return this.OvhApiEmailExchange.service()
-      .v7()
+  getAllExchangeServices() {
+    return this.OvhHttp.get('/email/exchange', {
+      rootPath: 'apiv6',
+    })
+      .then((serviceIds) =>
+        this.$q.all(
+          map(serviceIds, (serviceId) => this.getExchangeServices(serviceId)),
+        ),
+      )
+      .then((services) =>
+        reduce(
+          services,
+          (flattened, other) => {
+            return flattened.concat(other);
+          },
+          [],
+        ),
+      );
+  }
+
+  getExchangeServices(organizationName) {
+    return this.iceberg('/email/exchange/:organizationName/service')
       .query()
-      .expand(false)
-      .aggregate('displayName')
-      .execute({ organizationName: '*' })
-      .$promise.then((services) =>
+      .expand('CachedObjectList-Pages')
+      .execute({ organizationName })
+      .$promise.then((services) => services.data)
+      .then((services) =>
         filter(
           services,
-          (service) =>
-            has(service, 'value.displayName') && has(service, 'value.offer'),
+          (service) => has(service, 'displayName') && has(service, 'offer'),
         ),
       )
       .then((services) =>
         map(services, (service) => ({
-          name: service.key,
-          displayName: service.value.displayName,
-          organization: get(service.path.split('/'), '[3]'),
-          type: `EXCHANGE_${service.value.offer.toUpperCase()}`,
+          name: service.domain,
+          displayName: service.displayName,
+          organization: service.domain,
+          type: `EXCHANGE_${service.offer.toUpperCase()}`,
         })),
       );
   }
 
   getAssociatedExchangeService(exchangeId) {
-    return this.getExchangeServices()
+    return this.getExchangeServices(exchangeId)
       .then((services) =>
         find(services, {
           name: exchangeId,
