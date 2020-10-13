@@ -51,7 +51,7 @@ export = (opts: any = {}) => {
               props.filter(
                 (item) =>
                   item &&
-                  item.key.name === 'translations' &&
+                  item.key?.name === 'translations' &&
                   item.type === 'Property',
               )[0];
 

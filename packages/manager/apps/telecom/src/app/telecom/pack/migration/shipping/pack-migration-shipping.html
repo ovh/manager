@@ -13,11 +13,11 @@
                 ></p>
 
                 <!-- LOADER -->
-                <div class="text-center" data-ng-if="ShippingCtrl.loading.init">
+                <div class="text-center" data-ng-if="$ctrl.loading.init">
                     <oui-spinner></oui-spinner>
                 </div>
 
-                <div data-ng-if="!ShippingCtrl.loading.init">
+                <div data-ng-if="!$ctrl.loading.init">
                     <!-- CONTACT CHOICE -->
                     <div class="contact-choice">
                         <h3
@@ -26,8 +26,8 @@
                         ></h3>
 
                         <ovh-contact
-                            data-ng-model="ShippingCtrl.process.shipping.address"
-                            data-ovh-contact-choice-options="ShippingCtrl.ovhContactOptions"
+                            data-ng-model="$ctrl.process.shipping.address"
+                            data-ovh-contact-choice-options="$ctrl.ovhContactOptions"
                         >
                             <div class="text-center">
                                 <oui-spinner></oui-spinner>
@@ -44,15 +44,15 @@
                         ></h3>
 
                         <tuc-shipping-mode-selection
-                            data-ng-model="ShippingCtrl.process.shipping.mode"
-                            data-tuc-shipping-mode-selection-relay="ShippingCtrl.process.shipping.relay"
+                            data-ng-model="$ctrl.process.shipping.mode"
+                            data-tuc-shipping-mode-selection-relay="$ctrl.process.shipping.relay"
                         >
                         </tuc-shipping-mode-selection>
                     </div>
                     <!-- SHIPPING MODE CHOICE -->
                 </div>
 
-                <div class="mt-5" data-ng-if="!ShippingCtrl.loading.init">
+                <div class="mt-5" data-ng-if="!$ctrl.loading.init">
                     <a
                         class="btn btn-default"
                         data-translate="telecom_pack_migration_confirm_cancel_button"
@@ -62,9 +62,9 @@
                     <button
                         type="button"
                         class="btn btn-primary"
-                        data-ng-disabled="!ShippingCtrl.process.shipping.mode || (ShippingCtrl.process.shipping.mode === 'mondialRelay' && !ShippingCtrl.process.shipping.relay) || (ShippingCtrl.process.shipping.mode === 'transporter' && !ShippingCtrl.process.shipping.address)"
+                        data-ng-disabled="!$ctrl.process.shipping.mode || ($ctrl.process.shipping.mode === 'mondialRelay' && !$ctrl.process.shipping.relay) || ($ctrl.process.shipping.mode === 'transporter' && !$ctrl.process.shipping.address)"
                         data-translate="telecom_pack_migration_shipping_confirm"
-                        data-ng-click="ShippingCtrl.process.currentStep = 'confirm'"
+                        data-ng-click="$ctrl.process.currentStep = 'confirm'"
                     ></button>
                 </div>
             </div>

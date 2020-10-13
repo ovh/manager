@@ -6,5 +6,6 @@
   "pci_projects_project_load_balancer_list_healthy": "In gutem Zustand",
   "pci_projects_project_load_balancer_list_last_applied_configuration": "Letzte verwendete Konfiguration",
   "pci_projects_project_load_balancer_list_reqs": "Anfragen / Sekunde",
-  "pci_projects_project_load_balancer_guide_using_load_balancer": "Einen Kubernetes-Service mit einem Loadbalancer konfigurieren"
+  "pci_projects_project_load_balancer_guide_using_load_balancer": "Einen Kubernetes-Service mit einem Loadbalancer konfigurieren",
+  "pci_projects_project_load_balancer_list_region": "Region"
 }

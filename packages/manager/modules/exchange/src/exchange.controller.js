@@ -6,6 +6,7 @@ import set from 'lodash/set';
 export default class ExchangeCtrl {
   /* @ngInject */
   constructor(
+    $q,
     $location,
     $rootScope,
     $scope,
@@ -17,8 +18,13 @@ export default class ExchangeCtrl {
     navigation,
     ovhUserPref,
     User,
+    organization,
+    productId,
+    exchange,
+    reloadDashboard,
   ) {
     this.services = {
+      $q,
       $location,
       $rootScope,
       $scope,
@@ -30,10 +36,13 @@ export default class ExchangeCtrl {
       navigation,
       ovhUserPref,
       User,
+      organization,
+      productId,
+      exchange,
+      reloadDashboard,
     };
-
+    this.exchange = exchange;
     this.$routerParams = Exchange.getParams();
-
     set(navigation, '$exchangeRootScope', $scope);
     set(messaging, '$exchangeRootScope', $scope);
 
@@ -52,7 +61,7 @@ export default class ExchangeCtrl {
     this.displayName = null;
 
     $scope.$on('exchange.dashboard.refresh', () => {
-      this.retrievingExchange();
+      reloadDashboard();
     });
 
     $scope.$on('exchange.wizard_hosted_creation.display', () => {
@@ -67,6 +76,13 @@ export default class ExchangeCtrl {
   }
 
   $onInit() {
+    this.services.Exchange.value = this.exchange;
+    if (!isEmpty(this.exchange.messages)) {
+      this.services.messaging.writeError(
+        this.services.$translate.instant('exchange_dashboard_loading_error'),
+        this.exchange,
+      );
+    }
     this.services.$scope.resetMessages();
 
     const modals = {
@@ -74,7 +90,7 @@ export default class ExchangeCtrl {
       resiliate: 'exchange/header/remove/exchange-remove',
     };
 
-    this.retrievingExchange().then(() => {
+    this.retrievingWizardPreference().then(() => {
       const urlParamAction = this.services.$location.search().action;
       if (Object.keys(modals).includes(urlParamAction)) {
         this.services.$timeout(() => {
@@ -96,7 +112,8 @@ export default class ExchangeCtrl {
     this.shouldOpenWizard = this.services.exchangeServiceInfrastructure.isHosted();
 
     if (!this.shouldOpenWizard) {
-      return false;
+      this.isLoading = false;
+      return this.services.$q.when(false);
     }
 
     return this.services.Exchange.retrievingWizardPreference()
@@ -136,64 +153,6 @@ export default class ExchangeCtrl {
         }
 
         return null;
-      })
-      .finally(() => {
-        this.isLoading = false;
-      });
-  }
-
-  retrievingExchange() {
-    this.isLoading = true;
-
-    return this.services.Exchange.getSelected(true)
-      .then((exchange) => {
-        this.services.Exchange.value = exchange;
-        this.exchange = exchange;
-      })
-      .then(() => {
-        if (!isEmpty(this.exchange.messages)) {
-          this.services.messaging.writeError(
-            this.services.$translate.instant(
-              'exchange_dashboard_loading_error',
-            ),
-            this.exchange,
-          );
-        }
-      })
-      .then(() => this.services.Exchange.updateValue())
-      .then(() => this.retrievingWizardPreference())
-      .catch((failure) => {
-        if (failure) {
-          const response = failure.data || failure;
-          const data = {
-            status: 'ERROR',
-            messages: [
-              {
-                type: 'ERROR',
-                message: response.message,
-                id: response.id,
-              },
-            ],
-          };
-
-          if (response.code === 460 || response.status === 460) {
-            this.services.messaging.writeError(
-              this.services.$translate.instant('common_service_expired', {
-                t0: response.id,
-              }),
-              data,
-            );
-          } else {
-            this.services.messaging.writeError(
-              this.services.$translate.instant(
-                'exchange_dashboard_loading_error',
-              ),
-              data,
-            );
-          }
-        } else {
-          this.loadingExchangeError = true;
-        }
       })
       .finally(() => {
         this.isLoading = false;

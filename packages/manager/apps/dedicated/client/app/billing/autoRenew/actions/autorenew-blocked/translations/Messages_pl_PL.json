@@ -1,0 +1,5 @@
+{
+  "autorenew_service_autorenew_blocked_title": "Konfiguracja odnowienia niedostępna",
+  "autorenew_service_autorenew_blocked_description": "Automatyczne odnowienie nie jest już możliwe w przypadku starych regulaminów. Aby móc odnawiać usługi automatycznie, przeczytaj i zaakceptuj nowe regulaminy.",
+  "autorenew_service_autorenew_blocked_confirm": "Przeczytaj i zaakceptuj nowe regulaminy"
+}

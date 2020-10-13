@@ -32,37 +32,19 @@ export default class HeaderController {
 
   $onInit() {
     this.$routerParams = this.Exchange.getParams();
-    this.isFetchingInitialData = true;
 
-    return this.fetchingExchangeService()
-      .then(() => this.fetchingCanActivateSharepoint())
-      .then(() => this.fetchingCanActivateOfficeAttach())
-      .catch((error) => {
-        this.messaging.writeError(
-          this.$translate.instant('exchange_ACTION_configure_error', {
-            error: error.message,
-          }),
-          error,
-        );
-      })
-      .finally(() => {
-        this.isFetchingInitialData = false;
-      });
-  }
-
-  fetchingExchangeService() {
-    return this.Exchange.getSelected().then((exchangeService) => {
-      this.exchangeService = exchangeService;
-      this.remoteDisplayName = this.exchangeService.displayName;
-      this.displayNameToUpdate = this.remoteDisplayName;
-    });
+    this.exchangeService = this.Exchange.value;
+    this.remoteDisplayName = this.exchangeService.displayName;
+    this.displayNameToUpdate = this.remoteDisplayName;
+    this.fetchingCanActivateSharepoint();
+    this.fetchingCanActivateOfficeAttach();
   }
 
   fetchingCanActivateSharepoint() {
     const infrastructureAllowsSharepoint = this.exchangeServiceInfrastructure.isHosted();
     const subsidiaryAllowsSharepoint = this.constants.target === 'EU';
 
-    return this.Exchange.getSharepointService()
+    return this.Exchange.getSharepointService(this.exchangeService)
       .then((sharepoint) => {
         const isAlreadyActivated = sharepoint != null;
 

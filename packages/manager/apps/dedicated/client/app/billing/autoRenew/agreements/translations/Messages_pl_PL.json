@@ -44,5 +44,6 @@
   "user_agreement_details_subtitle3": "Przypomnienie dla klientów będących konsumentami",
   "user_agreement_details_paragraph3": "Jeśli nie chcesz podlegać tym nowym przepisom, możesz zrezygnować z usług, z których korzystasz w ciągu maksymalnie 4 miesięcy począwszy od 20 lipca 2017.  W tym celu prosimy <a href=\"{{t0}}\">otworzyć zgłoszenie</a> w Panelu klienta, w temacie podając \"Rezygnacja z usług\". W treści wiadomości prosimy o podanie terminu rezygnacji z usług (rezygnacja natychmiastowa lub w dniu odnawiania usług). ",
   "user_agreement_details_success": "Regulamin został zaakceptowany.",
-  "user_agreement_details_error": "Wystąpił błąd podczas akceptowania regulaminu."
+  "user_agreement_details_error": "Wystąpił błąd podczas akceptowania regulaminu.",
+  "user_agreements_accept_all": "Zaakceptuj wszystkie regulaminy"
 }

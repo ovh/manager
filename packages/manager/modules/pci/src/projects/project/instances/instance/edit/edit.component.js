@@ -11,5 +11,6 @@ export default {
     instance: '<',
     instanceId: '<',
     projectId: '<',
+    region: '<',
   },
 };

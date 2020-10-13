@@ -1,4 +1,6 @@
 {
+  "common_back_button_back_to": "Retour à",
+  "common_back_button_back_to_previous_page": "Retour à la page précédente",
   "common_clipboard_copy_to_clipboard": "Copier dans le presse-papier",
   "common_clipboard_copied": "Copié",
   "common_clipboard_not_supported": "La copie dans le presse-papier n’est pas supportée. Veuillez copier le texte manuellement",

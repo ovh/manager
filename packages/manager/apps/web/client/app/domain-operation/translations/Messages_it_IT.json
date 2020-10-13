@@ -109,5 +109,8 @@
   "domains_operations_progress_instructions_4": "In caso di rifiuto o mancata risposta entro 5 giorni: il trasferimento resta in sospeso.",
   "domains_operations_progress_instructions_5": "Se una sola delle due email è stata confermata: in caso di mancata convalida della seconda email entro 5 giorni, il trasferimento passa allo step successivo.",
   "domains_operations_progress_instructions_6": "Se le due email sono state confermate: convalida e passaggio allo step successivo entro 24 ore.",
-  "domains_operations_progress_instructions_7": "Puoi contattare l'attuale provider del dominio per ottenere la sua autorizzazione"
+  "domains_operations_progress_instructions_7": "Puoi contattare l'attuale provider del dominio per ottenere la sua autorizzazione",
+  "domains_operations_update_key_firstname": "Aggiorna il nome con un contenuto valido",
+  "domains_operations_update_key_name": "Aggiorna il cognome con un contenuto valido",
+  "domains_operations_update_key_identificationNumber": "Aggiorna il numero di identificazione con un contenuto valido"
 }

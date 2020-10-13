@@ -244,83 +244,48 @@
                             </em>
                         </td>
                         <td class="text-right">
-                            <div
-                                class="btn-group"
-                                data-uib-dropdown
-                                data-dropdown-append-to-body
+                            <oui-action-menu
+                                aria-label="{{:: 'telephony_service_fax_campaigns_sr_only_actions' | translate }}"
+                                compact
+                                placement="end"
                             >
-                                <button
-                                    type="button"
-                                    class="btn btn-link"
-                                    data-uib-dropdown-toggle
+                                <oui-action-menu-item
+                                    disabled="campaign.status === 'stop'"
+                                    on-click="CampaignsCtrl.readCampaign(campaign)"
                                 >
                                     <span
-                                        class="ovh-font ovh-font-dots"
-                                        aria-hidden="true"
+                                        data-translate="telephony_service_fax_campaigns_action_read"
                                     ></span>
-                                    <span
-                                        class="sr-only"
-                                        data-translate="telephony_service_fax_campaigns_sr_only_actions"
-                                    >
-                                    </span>
-                                </button>
-                                <ul
-                                    class="dropdown-menu dropdown-menu-right"
-                                    data-uib-dropdown-menu
-                                    role="menu"
+                                </oui-action-menu-item>
+                                <oui-action-menu-item
+                                    disabled="campaign.status === 'todo' ||
+                                    campaign.status === 'doing' ||
+                                    campaign.status === 'error' ||
+                                    campaign.status === 'done'"
+                                    on-click="CampaignsCtrl.startCampaign(campaign)"
                                 >
-                                    <li
-                                        role="menuitem"
-                                        data-ng-class="{ 'disabled': campaign.status === 'stop' }"
-                                    >
-                                        <a
-                                            href="#"
-                                            data-ng-click="CampaignsCtrl.readCampaign($event, campaign)"
-                                            data-translate="telephony_service_fax_campaigns_action_read"
-                                        >
-                                        </a>
-                                    </li>
-                                    <li
-                                        role="menuitem"
-                                        data-ng-class="{ 'disabled': campaign.status === 'todo' ||
-                                            campaign.status === 'doing' ||
-                                            campaign.status === 'error' ||
-                                            campaign.status === 'done' ||
-                                            campaign.status === 'stop'
-                                        }"
-                                    >
-                                        <a
-                                            href="#"
-                                            data-ng-click="CampaignsCtrl.startCampaign($event, campaign)"
-                                            data-translate="telephony_service_fax_campaigns_action_start"
-                                        >
-                                        </a>
-                                    </li>
-                                    <li
-                                        role="menuitem"
-                                        data-ng-class="{ 'disabled': campaign.status === 'stopTodo' ||
-                                            campaign.status === 'stopDoing' ||
-                                            campaign.status === 'error' ||
-                                            campaign.status === 'done'
-                                        }"
-                                    >
-                                        <a
-                                            href="#"
-                                            data-ng-click="CampaignsCtrl.stopCampaign($event, campaign)"
-                                            data-translate="telephony_service_fax_campaigns_action_stop"
-                                        >
-                                        </a>
-                                    </li>
-                                    <li role="menuitem">
-                                        <a
-                                            href="#"
-                                            data-ng-click="CampaignsCtrl.removeCampaign($event, campaign)"
-                                            data-translate="delete"
-                                        >
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
+                                    <span
+                                        data-translate="telephony_service_fax_campaigns_action_start"
+                                    ></span>
+                                </oui-action-menu-item>
+                                <oui-action-menu-item
+                                    disabled="campaign.status === 'stopTodo' ||
+                                    campaign.status === 'stopDoing' ||
+                                    campaign.status === 'error' ||
+                                    campaign.status === 'done' ||
+                                    campaign.status === 'stop'"
+                                    on-click="CampaignsCtrl.stopCampaign(campaign)"
+                                >
+                                    <span
+                                        data-translate="telephony_service_fax_campaigns_action_stop"
+                                    ></span>
+                                </oui-action-menu-item>
+                                <oui-action-menu-item
+                                    on-click="CampaignsCtrl.removeCampaign(campaign)"
+                                >
+                                    <span data-translate="delete"></span>
+                                </oui-action-menu-item>
+                            </oui-action-menu>
                         </td>
                     </tr>
                 </tbody>

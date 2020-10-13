@@ -1,0 +1,7 @@
+{
+  "user_agreements_accept_all_count": "Konto {{current}}/{{total}}",
+  "user_agreements_accept_all_accept_and_next": "Zaakceptuj i przejdź dalej",
+  "user_agreements_accept_all_read_and_accepted": "Przeczytałem i akceptuję {{contractTitle}}",
+  "user_agreements_accept_all_annexes": "Aby zapoznać się z załącznikami, które są częścią umowy (w szczególności Regulaminami, Szczegółowymi warunkami korzystania z usług, Umową Powierzenia Przetwarzania Danych Osobowych (DPA)), <a href='{{url}}' target='_blank' rel='noopener' class='tak-link_icon'>kliknij link<span class='tak-icon-external_link hidden='true'></span></a>",
+  "user_agreements_accept_all_error": "Wystąpił błąd podczas przetwarzania regulaminu: {{message}}"
+}

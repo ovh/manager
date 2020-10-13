@@ -73,7 +73,7 @@ export default class ExchangeTabInformationCtrl {
   getSharePoint() {
     this.loading.sharePoint = true;
     return this.exchangeService
-      .getSharepointService()
+      .getSharepointService(this.exchange)
       .then((sharePoint) => {
         this.sharepoint = sharePoint;
       })
