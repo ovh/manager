@@ -19,16 +19,17 @@
                         data-translate="telephony_line_answer_default_voicemail_label"
                     >
                     </label>
-                    <select
+                    <input
                         id="default"
                         name="default"
-                        class="form-control"
-                        required
+                        class="oui-input"
                         data-ng-model="DefaultVoicemailCtrl.options.defaultVoicemail"
-                        data-ng-change="DefaultVoicemailCtrl.success = false"
-                        data-ng-options="number.serviceName as DefaultVoicemailCtrl.formatNumber(number) for number in DefaultVoicemailCtrl.numbers | orderBy: ['description', 'label', 'serviceName']"
-                    >
-                    </select>
+                        type="text"
+                        oui-autocomplete="DefaultVoicemailCtrl.numbers"
+                        oui-autocomplete-property="domain"
+                        data-ng-change="DefaultVoicemailCtrl.onDefaultVoicemailChange()"
+                        placeholder="{{:: 'telephony_line_answer_default_voicemail_search' | translate }}"
+                    />
                 </div>
                 <div class="form-group mt-4">
                     <hr />
