@@ -5,8 +5,12 @@ import forEach from 'lodash/forEach';
 import get from 'lodash/get';
 import map from 'lodash/map';
 import mapKeys from 'lodash/mapKeys';
+import orderBy from 'lodash/orderBy';
 import size from 'lodash/size';
 import some from 'lodash/some';
+import split from 'lodash/split';
+
+import { DATABASE_NAMES } from './private-database.constants';
 
 export default class PrivateDatabase {
   /* @ngInject */
@@ -82,6 +86,32 @@ export default class PrivateDatabase {
         },
       })
       .then((res) => res.data);
+  }
+
+  getOrderableDatabaseVersions(offer) {
+    return this.getAvailableOrderCapacities(offer)
+      .then((capabilities) => {
+        const versions = capabilities.version;
+        return map(versions, (v) => {
+          const [name, version] = split(v, '_');
+          if (name && DATABASE_NAMES[name]) {
+            return {
+              id: v,
+              label: `${DATABASE_NAMES[name]} ${version}`,
+              name: DATABASE_NAMES[name],
+              version,
+            };
+          }
+          return {
+            id: v,
+            label: v,
+            name: v,
+          };
+        });
+      })
+      .then((versions) =>
+        orderBy(versions, ['name', 'version'], ['asc', 'desc']),
+      );
   }
 
   /**

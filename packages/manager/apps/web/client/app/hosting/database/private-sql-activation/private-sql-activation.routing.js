@@ -1,6 +1,4 @@
 import filter from 'lodash/filter';
-import head from 'lodash/head';
-import map from 'lodash/map';
 import orderBy from 'lodash/orderBy';
 import toLower from 'lodash/toLower';
 
@@ -33,31 +31,8 @@ export default /* @ngInject */ ($stateProvider) => {
           .$promise.then((services) =>
             orderBy(services, (serviceName) => toLower(serviceName)),
           ),
-      versions: /* @ngInject */ ($translate, PrivateDatabase) =>
-        PrivateDatabase.getAvailableOrderCapacities('classic')
-          .then(({ version }) =>
-            map(version, (v) => ({
-              id: v,
-              label: $translate.instant(
-                `privatesql_activation_version_v_${v.replace('.', '')}`,
-              ),
-            })),
-          )
-          .then((versions) => {
-            return orderBy(
-              versions,
-              [
-                ({ id }) => {
-                  return head(id.split('_'));
-                },
-                ({ id }) => {
-                  const [, version] = id.split('_');
-                  return parseFloat(version);
-                },
-              ],
-              ['asc', 'desc'],
-            );
-          }),
+      versions: /* @ngInject */ (PrivateDatabase) =>
+        PrivateDatabase.getOrderableDatabaseVersions('classic'),
     },
   });
 };
