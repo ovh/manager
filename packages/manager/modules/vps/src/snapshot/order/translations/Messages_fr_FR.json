@@ -5,7 +5,7 @@
   "vps_configuration_activate_snapshot_step1_id": "Afin de confirmer votre demande, veuillez accepter les conditions d'utilisation et cliquer sur le bouton \"Suivant\" ci-dessous.",
   "vps_configuration_activate_snapshot_step1_contracts": "Je reconnais avoir bien pris connaissance des éléments suivants :",
   "vps_configuration_activate_snapshot_step1_info": "Pour le premier paiement, vous serez facturé au prorata du nombre de jours restant avant la date de renouvellement de votre VPS.",
-  "vps_configuration_activate_snapshot_step1_alert": "Cette option sera facturée au tarif mensuel de <strong>{{ amount }} HT</strong>.",
+  "vps_configuration_activate_snapshot_step1_alert": "Cette option sera facturée au tarif de <strong>{{ amount }} HT</strong>.",
   "vps_configuration_activate_snapshot_step1_description": "L'option Snapshot vous permet de créer un point de restauration. C'est un instantané de votre configuration pouvant être restauré en cas de besoin.",
   "vps_configuration_activate_snapshot_step1_instruction": "Veuillez cliquer sur le bouton \"Suivant\" afin de poursuivre l'activation de l'option Snapshot.",
   "vps_configuration_activate_snapshot_step2_id": "Afin de confirmer votre demande, veuillez procéder au règlement en cliquant sur le bouton \"Commander\" ci-dessous.",

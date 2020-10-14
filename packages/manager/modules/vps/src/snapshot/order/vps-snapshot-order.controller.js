@@ -106,9 +106,10 @@ export default class VpsSnapshotOrderCtrl {
             },
           });
         }
-        this.snapshotMonthlyPrice = find(this.snapshotOption.prices, {
-          duration: 'P1M',
-        });
+        this.snapshotMonthlyPrice = find(
+          this.snapshotOption.prices,
+          ({ capacities }) => capacities.includes('renew'),
+        );
         return this.snapshotOption;
       })
       .catch((error) => {
