@@ -1,5 +1,6 @@
 import filter from 'lodash/filter';
 import find from 'lodash/find';
+import flattenDeep from 'lodash/flattenDeep';
 import get from 'lodash/get';
 import head from 'lodash/head';
 import intersection from 'lodash/intersection';
@@ -129,11 +130,11 @@ angular.module('Module.ip.controllers').controller(
     }
 
     static getRegionsOffers(countries) {
-      return IP_LOCATION_GROUPS.filter(
-        (group) => intersection(group.countries, countries).length > 0,
-      )
-        .map(({ labels }) => labels)
-        .flatten();
+      return flattenDeep(
+        IP_LOCATION_GROUPS.filter(
+          (group) => intersection(group.countries, countries).length > 0,
+        ).map(({ labels }) => labels),
+      );
     }
 
     static getRegionFromServiceName(serviceName) {
