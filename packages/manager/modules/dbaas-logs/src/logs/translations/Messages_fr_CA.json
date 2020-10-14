@@ -670,5 +670,16 @@
   "logs_member_delete_title": "Retirer le membre",
   "logs_member_delete_question": "Êtes-vous sûr de vouloir retirer le membre <strong>{{username}}</strong> ?",
   "logs_role_member_remove_success": "Le membre {{name}} a été retiré avec succès.",
-  "logs_role_member_remove_error": "Une erreur est survenue lors du retrait du membre: {{message}}"
+  "logs_role_member_remove_error": "Une erreur est survenue lors du retrait du membre: {{message}}",
+  "logs_save": "Sauvegarder",
+  "logs_cancel": "Annuler",
+  "logs_yes": "Oui",
+  "logs_actions": "Actions",
+  "logs_edit": "Modifier",
+  "logs_delete": "Supprimer",
+  "logs_tile_subscription_contact": "Contacts",
+  "logs_tile_subscription_contact_admin": "Administrateur",
+  "logs_tile_subscription_contact_billing": "Facturation",
+  "logs_tile_subscription_contact_technical": "Technique",
+  "logs_order": "Commander"
 }

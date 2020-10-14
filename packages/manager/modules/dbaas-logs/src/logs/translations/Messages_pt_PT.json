@@ -670,5 +670,16 @@
   "logs_streams_col_retention": "Retenção",
   "streams_45_days": "45 dias",
   "inputs_nb_instance": "Instâncias",
-  "logs_index_col_nb_shard": "Partições"
+  "logs_index_col_nb_shard": "Partições",
+  "logs_save": "Guardar",
+  "logs_cancel": "Cancelar",
+  "logs_yes": "Sim",
+  "logs_actions": "Ações",
+  "logs_edit": "Alterar",
+  "logs_delete": "Eliminar",
+  "logs_tile_subscription_contact": "Contactos",
+  "logs_tile_subscription_contact_admin": "Administrador",
+  "logs_tile_subscription_contact_billing": "Faturação",
+  "logs_tile_subscription_contact_technical": "Técnico",
+  "logs_order": "Encomendar"
 }
