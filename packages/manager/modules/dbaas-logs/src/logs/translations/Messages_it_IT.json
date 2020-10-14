@@ -670,5 +670,16 @@
   "logs_streams_col_retention": "Retention",
   "streams_45_days": "45 giorni",
   "inputs_nb_instance": "Istanze",
-  "logs_index_col_nb_shard": "Partizioni"
+  "logs_index_col_nb_shard": "Partizioni",
+  "logs_save": "Salva",
+  "logs_cancel": "Annulla",
+  "logs_yes": "Sì",
+  "logs_actions": "Azioni",
+  "logs_edit": "Modifica",
+  "logs_delete": "Elimina",
+  "logs_tile_subscription_contact": "Contatti",
+  "logs_tile_subscription_contact_admin": "Amministratore",
+  "logs_tile_subscription_contact_billing": "Fatturazione",
+  "logs_tile_subscription_contact_technical": "Tecnico",
+  "logs_order": "Ordina"
 }
