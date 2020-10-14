@@ -4,16 +4,26 @@ import findIndex from 'lodash/findIndex';
 angular.module('App').controller(
   'PrivateDatabaseOomCtrl',
   class PrivateDatabaseOomCtrl {
-    constructor($scope, $q, $stateParams, $translate, Alerter, OomService) {
+    constructor(
+      $scope,
+      $q,
+      $stateParams,
+      $translate,
+      Alerter,
+      OomService,
+      PrivateDatabase,
+    ) {
       this.$scope = $scope;
       this.$q = $q;
       this.$stateParams = $stateParams;
       this.$translate = $translate;
       this.Alerter = Alerter;
       this.oomService = OomService;
+      this.privateDatabaseService = PrivateDatabase;
     }
 
     $onInit() {
+      this.isLoading = true;
       this.productId = this.$stateParams.productId;
 
       this.NB_DAY_OOM = 7;
@@ -39,6 +49,15 @@ angular.module('App').controller(
       this.$scope.orderMoreRam = () => this.orderMoreRam();
 
       this.getOom();
+
+      return this.privateDatabaseService
+        .canOrderRam(this.productId)
+        .then((canOrderRam) => {
+          this.canOrderRam = canOrderRam;
+        })
+        .finally(() => {
+          this.isLoading = false;
+        });
     }
 
     getOom() {
