@@ -78,7 +78,6 @@
   "ip_filter_services__ALL": "Tous les services",
   "ip_filter_services__ALERTS": "Services en alerte",
   "ip_filter_services__PARK": "Parking des IPs",
-  "ip_filter_services__FAILOVER": "IP failover",
   "ip_filter_services_title_OTHER": "Autres",
   "ip_filter_services_title_CDN": "CDN",
   "ip_filter_services_title_DEDICATED": "Serveurs Dédiés",

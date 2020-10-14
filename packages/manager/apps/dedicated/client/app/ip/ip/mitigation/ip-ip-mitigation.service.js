@@ -14,9 +14,11 @@ angular.module('Module.ip.services').service('IpMitigation', [
       return Poll.poll(
         [
           swsProxypassPath,
-          `ip/${encodeURIComponent(
-            ipBlock.ipBlock,
-          )}/mitigation/${encodeURIComponent(ip.ip)}`,
+          window.encodeURIComponent(
+            `ip/${window.encodeURIComponent(ipBlock.ipBlock)}/mitigation/${
+              ip.ip
+            }`,
+          ),
         ].join('/'),
         null,
         { successRule: { state: 'ok' }, namespace: 'ip.mitigation' },
@@ -32,9 +34,11 @@ angular.module('Module.ip.services').service('IpMitigation', [
         pattern = {
           url: [
             swsProxypassPath,
-            `ip/${encodeURIComponent(
-              ipBlock.ipBlock,
-            )}/mitigation/${encodeURIComponent(ip.ip)}`,
+            window.encodeURIComponent(
+              `ip/${window.encodeURIComponent(ipBlock.ipBlock)}/mitigation/${
+                ip.ip
+              }`,
+            ),
           ].join('/'),
         };
       } else {
@@ -47,7 +51,7 @@ angular.module('Module.ip.services').service('IpMitigation', [
       if (mitigation === 'PERMANENT') {
         return $http
           .post(
-            ['/ip', encodeURIComponent(ipBlock), 'mitigation'].join('/'),
+            ['/ip', window.encodeURIComponent(ipBlock), 'mitigation'].join('/'),
             { ipOnMitigation: ip },
             { serviceType: 'apiv6' },
           )
@@ -59,7 +63,9 @@ angular.module('Module.ip.services').service('IpMitigation', [
       if (mitigation === 'DEFAULT') {
         return $http
           .delete(
-            ['/ip', encodeURIComponent(ipBlock), 'mitigation', ip].join('/'),
+            ['/ip', window.encodeURIComponent(ipBlock), 'mitigation', ip].join(
+              '/',
+            ),
             {
               serviceType: 'apiv6',
             },
@@ -75,9 +81,9 @@ angular.module('Module.ip.services').service('IpMitigation', [
     this.getMitigationDetails = function getMitigationDetails(ipBlock, ip) {
       const url = [
         swsProxypassPath,
-        `ip/${encodeURIComponent(ipBlock)}/mitigation/${encodeURIComponent(
-          ip,
-        )}`,
+        window.encodeURIComponent(
+          `ip/${window.encodeURIComponent(ipBlock)}/mitigation/${ip}`,
+        ),
       ].join('/');
       return $http.get(url).then(
         (result) => result.data,
@@ -122,7 +128,7 @@ angular.module('Module.ip.services').service('IpMitigation', [
           .get(
             [
               swsAapiIpPath,
-              encodeURIComponent(ipBlock),
+              window.encodeURIComponent(ipBlock),
               'mitigation',
               ip,
               'statistics',
