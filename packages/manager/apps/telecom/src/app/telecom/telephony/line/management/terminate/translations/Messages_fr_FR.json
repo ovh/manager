@@ -5,6 +5,7 @@
   "telephony_group_line_terminate_info_2": "Les demandes de résiliation seront prises en compte lors de votre prochaine facturation. Jusqu'à cette date, l'annulation de la demande restera possible.",
   "telephony_group_line_terminate_info_3": "Procédure de retour matériel : ",
   "telephony_group_line_terminate_info_4": "Vous nous retournez l'ancien matériel dans un délai de 15 jours après la résiliation effective de votre ligne. La caution vous est restituée sous 10 jours après réception de l'équipement.",
+  "telephony_group_line_terminate_info_5": "Vous recevrez par e-mail le bon de retour à joindre au matériel.",
   "telephony_group_line_terminate_back_address": "Adresse de retour : ",
   "telephony_group_line_terminate_address_name": "OVH SAS",
   "telephony_group_line_terminate_address_service": "Service Après Vente",
