@@ -6,5 +6,6 @@
   "vps_dashboard_auto_migration_warning": "Votre VPS Cloud 2013/2014 sera migré automatiquement vers un VPS de la nouvelle gamme dans {{days}} jours.",
   "vps_dashboard_migration_in_progress": "Votre VPS Cloud 2013/2014 est en cours de migration vers la nouvelle gamme.",
   "vps_dashboard_migration_in_error": "Une erreur s'est produite lors de la migration de votre VPS. La suite de la migration va être prise en charge par nos équipes.",
-  "vps_dashboard_migration_link": "Migrer vers la nouvelle gamme"
+  "vps_dashboard_migration_link": "Migrer vers la nouvelle gamme",
+  "vps_dashboard_maintenance_warning": "Afin d'améliorer la stabilité de l'orchestration du service VPS, une série de maintenances vont avoir lieu dans les différentes zones VPS. Les opérations seront d'une durée maximale de 2h en heures non ouvrées. Durant la période de maintenance il ne sera pas possible sur la zone concernée de commander, modifier ou supprimer un VPS. <br />Vous pouvez retrouver le détail de leur planification zone par zone sur cette tâche travaux : <a href=\"http://travaux.ovh.net/?do=details&id=47124\" target=\"_blank\">http://travaux.ovh.net/?do=details&id=47124</a>"
 }
