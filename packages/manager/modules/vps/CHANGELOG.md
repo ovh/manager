@@ -1,3 +1,12 @@
+# [2.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.1.3...@ovh-ux/manager-vps@2.2.0) (2020-10-14)
+
+
+### Features
+
+* **vps.dashboard:** add warning message for maintenance ([#3828](https://github.com/ovh/manager/issues/3828)) ([e503018](https://github.com/ovh/manager/commit/e503018324ece346f04873a557c168ceb75263fb))
+
+
+
 ## [2.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.1.2...@ovh-ux/manager-vps@2.1.3) (2020-10-13)
 
 
