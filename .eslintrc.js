@@ -23,6 +23,7 @@ module.exports = {
       files: ['**/*.md'],
       rules: {
         'import/no-extraneous-dependencies': 'off',
+        'import/extensions': 'off',
         'no-undef': 'off',
         'no-unused-vars': 'off',
       },
