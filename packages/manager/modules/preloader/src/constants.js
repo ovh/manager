@@ -20,8 +20,16 @@ export const LOADING_MESSAGES = {
 
 export const SWITCH_PARAMETER = 'm';
 
+export const MANAGER_BASE_URLS = [
+  'https://www.ovh.com/manager/',
+  'https://www.ovhtelecom.fr/manager/',
+  'https://ca.ovh.com/manager/',
+  'https://us.ovhcloud.com/manager/',
+];
+
 export default {
   WELCOME_MESSAGES,
   LOADING_MESSAGES,
   SWITCH_PARAMETER,
+  MANAGER_BASE_URLS,
 };
