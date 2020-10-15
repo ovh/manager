@@ -1,0 +1,57 @@
+@import '~ovh-ui-kit-bs/dist/less/bootstrap/_variables';
+
+.telecom-telephony-line-phone-configuration {
+  label {
+    font-weight: normal;
+  }
+
+  .configuration-row {
+    .line-phone-configuration {
+      dl {
+        color: @gray-base;
+
+        dt {
+          font-weight: normal;
+        }
+
+        dd {
+          font-weight: bold;
+        }
+      }
+
+      &.line-phone-configuration-user-interface {
+        .nav-pills > li.active > button,
+        .nav-pills > li.active > button:hover,
+        .nav-pills > li.active > button:focus {
+          background-color: @p-300;
+        }
+      }
+    }
+  }
+
+  /* Special rule for footer buttons actions */
+  @media (min-width: @screen-sm-min) {
+    footer div {
+      > button {
+        float: right;
+
+        &:not(:last-child) {
+          margin-left: 16px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: (@screen-sm-min - 1)) {
+    footer div {
+      > button {
+        width: 100%;
+        margin-left: 0 !important;
+
+        &:not(:last-child) {
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+}

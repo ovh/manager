@@ -7,7 +7,9 @@ import '@ovh-ux/ui-kit';
 
 import choice from './choice.component';
 
-const moduleName = 'ovhTelecomLinePhoneOrderChoice';
+import './choice.less';
+
+const moduleName = 'ovhManagerTelecomTelephonyLinePhoneOrderChoice';
 
 angular
   .module(moduleName, [

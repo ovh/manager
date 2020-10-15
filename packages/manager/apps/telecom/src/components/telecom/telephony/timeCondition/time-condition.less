@@ -1,0 +1,265 @@
+@import '~ovh-ui-kit-bs/dist/less/bootstrap/_variables';
+@import './../../../../app/common/less/mixins.less';
+@import './../variables.less';
+/* =============================
+=            SLOTS            =
+============================= */
+
+.telephony-time-condition-slot {
+  .legend-color {
+    height: 1.4em;
+    width: 2em;
+
+    &.available {
+      background-color: fade(@telephony-slot-available-color, 60%);
+      border: solid 1px @telephony-slot-available-color;
+    }
+
+    &.slot1 {
+      background-color: fade(@telephony-slot1-color, 60%);
+      border: solid 1px @telephony-slot1-color;
+    }
+
+    &.slot2 {
+      background-color: fade(@telephony-slot2-color, 60%);
+      border: solid 1px @telephony-slot2-color;
+    }
+
+    &.slot3 {
+      background-color: fade(@telephony-slot3-color, 60%);
+      border: solid 1px @telephony-slot3-color;
+    }
+
+    &.unavailable {
+      background-color: white;
+      border: solid 1px #999;
+    }
+  }
+
+  .legend-description {
+    color: @gray-base;
+  }
+
+  &.d-table {
+    .d-table-cell {
+      padding: 0.5em;
+      vertical-align: middle;
+
+      &:first-child {
+        width: 2em;
+      }
+    }
+  }
+
+  .voip-time-condition-slots-edit-popover {
+    .makeTwoPagePopover();
+
+    &:not(.popover-full-screen) {
+      @section-height: 450px;
+
+      max-height: 520px;
+
+      .voip-time-condition-slots-edit {
+        section.page-section {
+          section {
+            overflow-y: auto;
+
+            .sound-list-container,
+            .menu-list-container {
+              position: relative;
+              overflow: hidden;
+            }
+          }
+
+          .numberChoice {
+            max-height: 304px !important;
+          }
+
+          &:last-child {
+            section {
+              max-height: @section-height;
+            }
+          }
+        }
+      }
+    }
+
+    .section-item {
+      border-top: none;
+      border-right: none;
+    }
+  }
+}
+
+/* -----  End of SLOTS  ------ */
+
+/* ================================
+=            CALENDAR            =
+================================ */
+
+div.voip-time-condition-calendar {
+  position: relative;
+
+  .voip-time-condition-ui-calendar {
+    &.events-resizable-disabled {
+      .fc-highlight {
+        display: none !important;
+      }
+
+      a.fc-time-grid-event .fc-resizer {
+        display: none !important;
+      }
+    }
+  }
+
+  a.fc-time-grid-event {
+    overflow: visible;
+    background-color: transparent;
+    border-radius: initial;
+    border: none;
+    color: @gray-dark;
+    opacity: 1;
+    box-shadow: none;
+    transition: box-shadow 0.4s ease-out, transform 0.4s ease-out,
+      opacity 0.4s ease-out;
+
+    .fc-content {
+      margin-top: 3px;
+      margin-right: 3px;
+
+      .fc-time {
+        margin: 3px 0 0 5px;
+        display: inline-block;
+        font-size: inherit;
+
+        span {
+          display: block;
+        }
+
+        &::before,
+        &::after {
+          content: '';
+        }
+      }
+    }
+
+    div.fc-bg {
+      opacity: 0.8;
+    }
+
+    &.available div.fc-bg {
+      background-color: @telephony-slot-available-color;
+      border: solid 1px @telephony-slot-available-color;
+    }
+
+    &.unavailable div.fc-bg {
+      background-color: #fff;
+      border: solid 1px #cfd0d2;
+    }
+
+    &.slot1 div.fc-bg {
+      background-color: @telephony-slot1-color;
+      border: solid 1px @telephony-slot1-color;
+    }
+
+    &.slot2 div.fc-bg {
+      background-color: @telephony-slot2-color;
+      border: solid 1px @telephony-slot2-color;
+    }
+
+    &.slot3 div.fc-bg {
+      background-color: @telephony-slot3-color;
+      border: solid 1px @telephony-slot3-color;
+    }
+  }
+
+  .fc-unthemed .fc-today {
+    background: transparent;
+  }
+
+  // hack on the actual css to customize the calendar
+  td.fc-widget-header {
+    border: none;
+
+    div.fc-widget-header {
+      border-right-style: none;
+
+      th.fc-widget-header {
+        border: none;
+        padding-bottom: 10px;
+        font-weight: normal;
+        font-size: 1.2em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+
+  div.fc-time-grid {
+    background-color: #bbbdbf;
+
+    .fc-axis {
+      background-color: #fff;
+    }
+
+    div.fc-slats {
+      tr.fc-minor {
+        td {
+          border-top-style: none;
+        }
+      }
+    }
+  }
+
+  td.fc-widget-content {
+    border-left: none;
+  }
+
+  div.voip-time-condition-calendar-resize-handle {
+    width: 100%;
+    text-align: center;
+    border-bottom: solid 1px #ddd;
+    letter-spacing: -3px;
+    color: #818b99;
+    margin-bottom: 90px;
+  }
+}
+
+/* stylelint-disable no-descending-specificity */
+.voip-time-condition-condition-edit-popover {
+  .makeTwoPagePopover();
+
+  cursor: initial;
+
+  table.uib-timepicker {
+    margin: auto;
+  }
+
+  &:not(.popover-full-screen) {
+    @section-height: 1450px;
+
+    max-height: 1520px;
+
+    .voip-time-condition-slots-edit {
+      section.page-section {
+        section {
+          overflow-y: auto;
+        }
+
+        &:last-child {
+          section {
+            max-height: @section-height;
+          }
+        }
+      }
+    }
+  }
+
+  .section-item {
+    border-top: none;
+    border-right: none;
+  }
+}
+/* stylelint-enable no-descending-specificity */
+
+/* -----  End of CALENDAR  ------ */

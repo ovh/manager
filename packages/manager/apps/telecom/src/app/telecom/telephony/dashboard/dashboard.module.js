@@ -2,9 +2,9 @@ import angular from 'angular';
 
 import billingAccount from '../billingAccount';
 import carrierSip from '../carrierSip';
-import linePhoneOrder from '../line/phone/order/order.module';
-import linePhoneAccessories from '../line/phone/accessories/accessories.module';
-import attachLine from '../line/phone/attachLine/attach.module';
+import linePhoneOrder from '../line/phone/order';
+import linePhoneAccessories from '../line/phone/accessories';
+import attachLine from '../line/phone/attachLine';
 
 const moduleName = 'ovhManagerTelecomTelephonyDashboard';
 

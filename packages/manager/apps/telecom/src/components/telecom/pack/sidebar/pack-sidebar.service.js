@@ -259,7 +259,7 @@ angular
         allowSearch: !expand,
         infiniteScroll: true,
         ...(expand
-          ? { state: 'telecom.packs.internet-access.packs' }
+          ? { state: 'telecom.packs.index' }
           : { onLoad: self.fetchData }),
       });
 
