@@ -1,13 +1,6 @@
 {
   "ovh_manager_hub_payment_status_tile_title": "Ultimi stati di pagamento dei servizi",
   "ovh_manager_hub_payment_status_tile_see_all": "Visualizza tutto",
-  "ovh_manager_hub_payment_status_tile_status_auto": "Rinnovo automatico",
-  "ovh_manager_hub_payment_status_tile_status_automatic": "Rinnovo automatico",
-  "ovh_manager_hub_payment_status_tile_status_manual": "Rinnovo manuale",
-  "ovh_manager_hub_payment_status_tile_status_manualPayment": "Rinnovo manuale",
-  "ovh_manager_hub_payment_status_tile_status_pending_debt": "Fatture da pagare",
-  "ovh_manager_hub_payment_status_tile_status_delete_at_expiration": "Disattivazione richiesta",
-  "ovh_manager_hub_payment_status_tile_status_expired": "Disattivato",
   "ovh_manager_hub_payment_status_tile_now": "Immediatamente",
   "ovh_manager_hub_payment_status_tile_before": "Prima del {{ date }}",
   "ovh_manager_hub_payment_status_tile_renew": "dal {{ date }}",
