@@ -7,117 +7,89 @@
         <div class="row">
             <div class="col-md-9">
                 <!-- Alerts -->
-                <div data-ng-if="!loading.table && ipsList.length">
+                <div
+                    data-ng-if="!loading.alerts && !loading.table && ipsList.length"
+                >
                     <div
                         class="alert alert-warning"
                         data-ng-if="alertsCount()"
                         role="alert"
                     >
                         <p>
-                            <button
-                                type="button"
-                                class="btn btn-link"
-                                data-ng-click="viewServicesInAlert()"
+                            <span
+                                data-ng-if="!singleService()"
+                                data-ng-pluralize
+                                data-count="alertsCount()"
+                                data-when="{
+                                      '0': ('ip_alerts_none' | translate) + ' :',
+                                      'one': ('ip_alerts_1' | translate) + ' :',
+                                      'other': ('ip_alerts_other' | translate: { count: {} }) + ' :'
+                                  }"
                             >
-                                <span
-                                    data-ng-if="filters.service.serviceName === '_ALL'"
-                                    data-ng-pluralize
-                                    data-count="alertsCount()"
-                                    data-when="{
-                                          '0': ('ip_alerts_none' | translate) + ' :',
-                                          'one': ('ip_alerts_1' | translate) + ' :',
-                                          'other': ('ip_alerts_other' | translate: { count: {} }) + ' :'
-                                      }"
-                                >
-                                </span>
-                                <span
-                                    data-ng-if="filters.service.serviceName !== '_ALL'"
-                                    data-ng-pluralize
-                                    data-count="alertsCount()"
-                                    data-when="{
-                                          '0': ('ip_alerts_service_none' | translate) + ' :',
-                                          'one': ('ip_alerts_service_1' | translate) + ' :',
-                                          'other': ('ip_alerts_service_other' | translate: { count: {} }) + ' :'
-                                      }"
-                                >
-                                </span>
-                            </button>
+                            </span>
+                            <span
+                                data-ng-if="singleService()"
+                                data-ng-pluralize
+                                data-count="alertsCount()"
+                                data-when="{
+                                      '0': ('ip_alerts_service_none' | translate) + ' :',
+                                      'one': ('ip_alerts_service_1' | translate) + ' :',
+                                      'other': ('ip_alerts_service_other' | translate: { count: {} }) + ' :'
+                                  }"
+                            >
+                            </span>
                         </p>
 
                         <p data-ng-if="alerts.spam.length">
-                            <button
-                                type="button"
-                                class="btn btn-link"
-                                data-ng-click="viewServicesInAlert()"
+                            <span
+                                data-ng-pluralize
+                                data-count="alerts.spam.length"
+                                data-when="{
+                                      '0': ('ip_alerts_spam' | translate),
+                                      'one': ('ip_alerts_spam_1' | translate),
+                                      'other': ('ip_alerts_spam_other' | translate: { count: {} })
+                                  }"
                             >
-                                <span
-                                    data-ng-pluralize
-                                    data-count="alerts.spam.length"
-                                    data-when="{
-                                          '0': ('ip_alerts_spam' | translate),
-                                          'one': ('ip_alerts_spam_1' | translate),
-                                          'other': ('ip_alerts_spam_other' | translate: { count: {} })
-                                      }"
-                                >
-                                </span>
-                            </button>
+                            </span>
                         </p>
 
                         <p data-ng-if="alerts.antihack.length">
-                            <button
-                                type="button"
-                                class="btn btn-link"
-                                data-ng-click="viewServicesInAlert()"
+                            <span
+                                data-ng-pluralize
+                                data-count="alerts.antihack.length"
+                                data-when="{
+                                      '0': ('ip_alerts_antihack' | translate),
+                                      'one': ('ip_alerts_antihack_1' | translate),
+                                      'other': ('ip_alerts_antihack_other' | translate: { count: {} })
+                                  }"
                             >
-                                <span
-                                    data-ng-pluralize
-                                    data-count="alerts.antihack.length"
-                                    data-when="{
-                                          '0': ('ip_alerts_antihack' | translate),
-                                          'one': ('ip_alerts_antihack_1' | translate),
-                                          'other': ('ip_alerts_antihack_other' | translate: { count: {} })
-                                      }"
-                                >
-                                </span>
-                            </button>
+                            </span>
                         </p>
 
                         <p data-ng-if="alerts.arp.length">
-                            <button
-                                type="button"
-                                class="btn btn-link"
-                                data-ng-click="viewServicesInAlert()"
+                            <span
+                                data-ng-pluralize
+                                data-count="alerts.arp.length"
+                                data-when="{
+                                      '0': ('ip_alerts_arp' | translate),
+                                      'one': ('ip_alerts_arp_1' | translate),
+                                      'other': ('ip_alerts_arp_other' | translate: { count: {} })
+                                  }"
                             >
-                                <span
-                                    data-ng-pluralize
-                                    data-count="alerts.arp.length"
-                                    data-when="{
-                                          '0': ('ip_alerts_arp' | translate),
-                                          'one': ('ip_alerts_arp_1' | translate),
-                                          'other': ('ip_alerts_arp_other' | translate: { count: {} })
-                                      }"
-                                >
-                                </span>
-                            </button>
+                            </span>
                         </p>
 
                         <p data-ng-if="alerts.mitigation.length">
-                            <button
-                                type="button"
-                                class="btn btn-link"
-                                data-ng-click="viewServicesInAlert()"
+                            <span
+                                data-ng-pluralize
+                                data-count="alerts.mitigation.length"
+                                data-when="{
+                                      '0': ('ip_alerts_mitigation' | translate),
+                                      'one': ('ip_alerts_mitigation_1' | translate),
+                                      'other': ('ip_alerts_mitigation_other' | translate: { count: {} })
+                                  }"
                             >
-                                <span
-                                    data-ng-pluralize
-                                    data-count="alerts.mitigation.length"
-                                    data-when="{
-                                          '0': ('ip_alerts_mitigation' | translate),
-                                          'one': ('ip_alerts_mitigation_1' | translate),
-                                          'other': ('ip_alerts_mitigation_other' | translate: { count: {} })
-                                      }"
-                                >
-                                </span>
-                            </button>
+                            </span>
                         </p>
                     </div>
 
@@ -127,46 +99,20 @@
                         role="alert"
                     >
                         <span
-                            data-ng-if="filters.service.serviceName === '_ALL'"
+                            data-ng-if="!singleService()"
                             data-translate="ip_alerts_none"
                         >
                         </span>
                         <span
-                            data-ng-if="filters.service.serviceName !== '_ALL'"
+                            data-ng-if="singleService()"
                             data-translate="ip_alerts_service_none"
                         >
                         </span>
                     </div>
                 </div>
 
-                <!-- Loader -->
-                <div data-ng-if="loading.table && state.loaded < state.total">
-                    <div data-ng-if="state.total > 1">
-                        <strong
-                            data-ng-translate="ip_loader_loading_state"
-                            data-translate-values="{ t0: state.loaded + 1, t1: state.total }"
-                        ></strong>
-                        <div class="progress">
-                            <div
-                                class="progress-bar progress-bar-info progress-bar-striped"
-                                role="progressbar"
-                                data-ng-attr-style="{{ 'width:' + getStatePercent() + '%' }}"
-                            >
-                                <span
-                                    class="sr-only"
-                                    data-ng-bind="('common_loading' | translate) + ' ' + getStatePercent() + '%'"
-                                >
-                                </span>
-                            </div>
-                        </div>
-                        <p data-translate="ip_loader_tips"></p>
-                    </div>
-                    <div data-ng-if="state.total === 1">
-                        <strong
-                            data-translate="ip_loader_loading_uniq"
-                        ></strong>
-                    </div>
-                </div>
+                <oui-spinner data-ng-if="loading.alerts" size="s">
+                </oui-spinner>
             </div>
 
             <!-- Buttons -->
@@ -219,8 +165,8 @@
                 class="form-control"
                 id="serviceSelector"
                 name="serviceSelector"
-                data-ng-model="filters.service"
-                data-ng-change="selectService()"
+                data-ng-model="selectedService"
+                data-ng-change="selectService(selectedService)"
                 data-ng-options="service as (('ip_filter_services_' + service.serviceName) | ducTranslateAlt: service.serviceName) group by (('ip_filter_services_title_' + service.category) | ducTranslateAlt: service.category) for service in services"
             >
             </select>
@@ -252,7 +198,6 @@
                         ></th>
                         <th
                             scope="col"
-                            data-ng-if="filters.service.serviceName === '_ALL'"
                             data-translate="ip_table_header_service"
                         ></th>
                         <th
@@ -287,9 +232,7 @@
                     data-ng-if="ipsList.length"
                     data-ng-repeat="ipBlock in ipsList track by $index"
                 >
-                    <tr
-                        data-ng-show="ipBlock.refreshing || ipBlock.reverseDelegationsRefresh"
-                    >
+                    <tr data-ng-show="ipBlock.refreshing">
                         <td class="text-center">
                             <oui-spinner size="s"></oui-spinner>
                         </td>
@@ -354,8 +297,7 @@
 
                         <!-- Server -->
                         <td
-                            data-ng-if="filters.service.serviceName === '_ALL'"
-                            data-ng-bind="ipBlock.routedTo ? ipBlock.routedTo === '_PARK' ? ('ip_service_PARK' | translate) : ipBlock.routedTo : '-'"
+                            data-ng-bind="ipBlock.routedTo.serviceName || '-'"
                         ></td>
 
                         <!-- Reverse -->
@@ -363,15 +305,15 @@
                             <span
                                 class="label label-info"
                                 title="{{ 'ip_table_manage_delegation_ipv6block_delegation_reverse_dns' | translate }}"
-                                data-ng-if="ipBlock.reverseDelegations && ipBlock.reverseDelegations.length > 0"
+                                data-ng-if="ipBlock.delegation && ipBlock.delegation.length > 0"
                                 >NS</span
                             >
                             <ul
                                 class="list-unstyled"
-                                data-ng-show="ipBlock.reverseDelegations"
+                                data-ng-show="ipBlock.delegation"
                             >
                                 <li
-                                    data-ng-repeat="reverse in ipBlock.reverseDelegations"
+                                    data-ng-repeat="reverse in ipBlock.delegation"
                                 >
                                     <span data-ng-bind="reverse"></span>
                                     <button
@@ -389,23 +331,6 @@
                                     </button>
                                 </li>
                             </ul>
-                            <em
-                                data-ng-if="ipBlock.reverseDelegationsErr"
-                                data-ng-bind="ipBlock.reverseDelegationsErr"
-                            ></em>
-                            <button
-                                class="btn btn-link"
-                                data-ng-if="ipBlock.reverseDelegationsErr"
-                                data-ng-click="getReverseDelegations(ipBlock)"
-                                title="{{:: 'common_refresh' | translate }}"
-                            >
-                                <span
-                                    class="fa fa-refresh"
-                                    aria-label="{{:: 'common_refresh' | translate }}"
-                                    aria-hidden="true"
-                                >
-                                </span>
-                            </button>
                         </td>
 
                         <!-- Virtual MAC -->
@@ -486,8 +411,7 @@
 
                         <!-- Server -->
                         <td
-                            data-ng-if="filters.service.serviceName === '_ALL'"
-                            data-ng-bind="ipBlock.routedTo ? ipBlock.routedTo === '_PARK' ? ('ip_service_PARK' | translate) : ipBlock.routedTo : '-'"
+                            data-ng-bind="ipBlock.routedTo.serviceName || '-'"
                         ></td>
 
                         <!-- Reverse -->
@@ -688,6 +612,15 @@
                     </tr>
                 </tbody>
             </table>
+
+            <oui-pagination
+                data-ng-if="!loading.table && ipsCount > 0 && serviceName !== '_PARK'"
+                data-current-offset="paginationOffset"
+                data-page-size="pageSize"
+                data-total-items="ipsCount"
+                data-on-change="onPaginationChange($event)"
+            >
+            </oui-pagination>
         </div>
     </div>
 
