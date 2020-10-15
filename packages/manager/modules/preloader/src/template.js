@@ -1,17 +1,13 @@
-const buildHtml = (loaded, messages) => {
+const buildTemplate = (loaded, message) => {
   const loadedClass = loaded ? 'loaded' : '';
 
-  const messagesHtml = `<ul>
-  ${messages
-    .map((message) => {
-      if (Array.isArray(message)) {
-        const [welcome, manager] = message;
-        return `<li><p>${welcome}</p><h1>${manager}</h1></li>`;
-      }
-      return `<li><p>${message}</p></li>`;
-    })
-    .join('')}
-</ul>`;
+  let messageHtml = '';
+  if (Array.isArray(message)) {
+    const [welcome, manager] = message;
+    messageHtml = `<p>${welcome}</p><h1>${manager}</h1>`;
+  } else {
+    messageHtml = `<p>${message}</p>`;
+  }
 
   return `
   <div
@@ -58,120 +54,9 @@ const buildHtml = (loaded, messages) => {
           transform="translate(312 31)"/>
       </svg>
 
-      ${messagesHtml}
+      <div>${messageHtml}</div>
     </div>
   </div>`;
 };
-
-const buildStyle = (messages) => {
-  const messageDuration = 5;
-
-  const messagesStyle = messages
-    .map(
-      (message, index) => `#managerPreloader li:nth-child(${index + 1}) {
-    animation-delay: ${index * messageDuration}s;
-  }
-`,
-    )
-    .join('');
-
-  const fadOutPercent = Math.floor(100 / messages.length);
-
-  const messageAnimation = `
-  @keyframes message {
-    0% { opacity: 0; }
-    3% { opacity: 1; }
-    ${fadOutPercent - 3}% { opacity: 1; }
-    ${fadOutPercent}% { opacity: 0; }
-    100% { opacity: 0; }
-  }
-`;
-
-  return `
-  #managerPreloader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #fff;
-    z-index: 9999;
-    display: flex !important;
-  }
-
-  #managerPreloader #nprogress .bar {
-    background: #000E9C;
-  }
-
-  #managerPreloader.loaded {
-    transition: opacity 800ms 1s, visibility 1800ms;
-    opacity: 0;
-    visibility: hidden !important;
-  }
-
-  #managerPreloader .logo {
-    margin: auto !important;
-    width: 600px;
-    max-width: 95%;
-    height: 200px;
-    text-align: center;
-  }
-
-  #managerPreloader .logo svg {
-    width: 600px;
-    max-width: 100%;
-  }
-
-  #managerPreloader .logo path {
-    fill: #000E9C;
-  }
-
-  #managerPreloader ul {
-    position: relative;
-    padding: 0;
-  }
-
-  #managerPreloader li {
-    font-size: 24px;
-    list-style: none;
-    position: absolute;
-    opacity: 0;
-    width: 100%;
-
-    animation: message ${messages.length *
-      messageDuration}s ease-in-out infinite 0s;
-  }
-
-  #managerPreloader li p {
-    color: #00185E;
-    font-size: 28px;
-    letter-spacing: 0;
-    line-height: 35px;
-    font-family: "Source Sans Pro";
-    font-weight: 400;
-    margin-bottom: 10px;
-  }
-
-  #managerPreloader li h1 {
-    margin-top: 10px;
-    color: #00185E;
-    font-size: 36px;
-    letter-spacing: 0;
-    line-height: 45px;
-    font-family: "Source Sans Pro";
-    font-weight: 400;
-  }
-
-  ${messagesStyle}
-  ${messageAnimation}
-  `;
-};
-
-const buildTemplate = (loaded, messages) => `
-    <style type="text/css">
-        ${buildStyle(messages)}
-    </style>
-    ${buildHtml(loaded, messages)}
-  `;
 
 export default buildTemplate;
