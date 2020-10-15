@@ -15,7 +15,7 @@ angular
         url: '/configuration/ip?serviceName&page&pageSize',
         templateUrl: 'ip/ip.html',
         controller: 'IpMainCtrl',
-        reloadOnSearch: true,
+        reloadOnSearch: false,
         translations: { value: ['.', './ip/reverse/update'], format: 'json' },
       });
     },

@@ -16,6 +16,7 @@ angular
       $q,
       $rootScope,
       $scope,
+      $state,
       $stateParams,
       $timeout,
       $translate,
@@ -30,6 +31,12 @@ angular
       Validator,
     ) => {
       $scope.currentView = 'table';
+      $scope.alerts = {
+        mitigation: [],
+        antihack: [],
+        arp: [],
+        spam: [],
+      };
 
       // pagination
       $scope.pageNumber = toInteger($stateParams.page) || 1;
@@ -44,44 +51,44 @@ angular
         $scope.pageSize = 300;
       }
 
-      $http
-        .get('/sws/products/services', {
-          serviceType: 'aapi',
-        })
-        .then(({ data }) => data)
-        .then((services) => {
-          $scope.services = [
-            {
-              category: 'OTHER',
-              serviceName: '_ALL',
-            },
-            {
-              category: 'OTHER',
-              serviceName: '_PARK',
-            },
-            {
-              category: 'OTHER',
-              serviceName: '_FAILOVER',
-            },
-            ...orderBy(services, 'serviceName'),
-          ];
-          $scope.selectedService = find($scope.services, {
-            serviceName: $scope.serviceName,
-          });
-        });
-
       function init() {
-        $scope.alerts = {
-          mitigation: [],
-          antihack: [],
-          arp: [],
-          spam: [],
-        };
         $scope.loading = {};
         $scope.state = {};
         $scope.services = [];
         $scope.selectedService = null;
         $scope.serviceName = $stateParams.serviceName || '_ALL';
+      }
+
+      function fetchServices() {
+        return $http
+          .get('/sws/products/services', {
+            serviceType: 'aapi',
+          })
+          .then(({ data }) => data)
+          .then((services) => {
+            $scope.services = [
+              {
+                category: 'OTHER',
+                serviceName: '_ALL',
+              },
+              {
+                category: 'OTHER',
+                serviceName: '_PARK',
+              },
+              {
+                category: 'OTHER',
+                serviceName: '_FAILOVER',
+              },
+              ...orderBy(services, 'serviceName'),
+            ];
+            $scope.selectedService = find($scope.services, {
+              serviceName: $scope.serviceName,
+            });
+            $scope.serviceType = {};
+            $scope.services.forEach(({ category, serviceName }) => {
+              $scope.serviceType[serviceName] = category;
+            });
+          });
       }
 
       $scope.canImportIPFO = () =>
@@ -96,6 +103,21 @@ angular
       Ip.getPriceForParking().then((price) => {
         $scope.parkPrice = price;
       });
+
+      function refreshIp(ip) {
+        return $http
+          .get('/ips', {
+            params: {
+              extras: true,
+              ip,
+            },
+            serviceType: 'aapi',
+          })
+          .then(({ data }) => data)
+          .then(({ count, data }) => {
+            return count === 1 ? data[0] : null;
+          });
+      }
 
       function checkIps(ipBlock) {
         if (!(ipBlock.ips && ipBlock.ips.length)) {
@@ -150,6 +172,15 @@ angular
             });
           }
 
+          // Poll virtual mac
+          if (get(ipBlock, 'virtualMac.status') === 'PENDING') {
+            IpVirtualMac.pollVirtualMacs(ipBlock.service).then(() => {
+              refreshIp(ipBlock.ipBlock).then((refreshedIp) => {
+                Object.assign(ipBlock, refreshedIp);
+              });
+            });
+          }
+
           // Alerts
           if (ip.spam === 'BLOCKED_FOR_SPAM') {
             ipBlock.alerts.spam.push(ip.ip);
@@ -164,21 +195,6 @@ angular
             ipBlock.alerts.mitigation.push(ip.ip);
           }
         });
-      }
-
-      function refreshIp(ip) {
-        return $http
-          .get('/ips', {
-            params: {
-              extras: true,
-              ip,
-            },
-            serviceType: 'aapi',
-          })
-          .then(({ data }) => data)
-          .then(({ count, data }) => {
-            return count === 1 ? data[0] : null;
-          });
       }
 
       function refreshAlerts(ips) {
@@ -201,7 +217,12 @@ angular
           arp: [],
           spam: [],
         };
-        if ($scope.serviceName && $scope.serviceName !== '_ALL') {
+        if (
+          $scope.serviceName &&
+          $scope.serviceName !== '_ALL' &&
+          $scope.serviceName !== '_PARK' &&
+          $scope.serviceName !== '_FAILOVER'
+        ) {
           params.serviceName = $scope.serviceName;
         }
         return ipsPromise
@@ -245,21 +266,27 @@ angular
         } else if ($scope.serviceName && $scope.serviceName !== '_ALL') {
           params.serviceName = $scope.serviceName;
         }
-        return $http
-          .get('/ips', {
-            params,
-            serviceType: 'aapi',
-          })
+        const fetchServicesPromise = $scope.services.length
+          ? $q.when($scope.services)
+          : fetchServices();
+        return fetchServicesPromise
+          .then(() =>
+            $http.get('/ips', {
+              params,
+              serviceType: 'aapi',
+            }),
+          )
           .then(({ data }) => data)
           .then(({ count, data }) => {
             $scope.ipsCount = count;
             $scope.ipsList = map(data, (ip) => {
+              const serviceName = get(ip, 'routedTo.serviceName');
               return {
                 ...ip,
                 collapsed: !ip.isUniq,
                 service: {
-                  serviceName: get(ip, 'routedTo.serviceName'),
-                  category: ip.type,
+                  serviceName,
+                  category: $scope.serviceType[serviceName],
                 },
               };
             });
@@ -268,19 +295,15 @@ angular
                 $scope.ipsList,
                 (ip) => !get(ip, 'routedTo.serviceName'),
               );
-              $scope.ipsList = map($scope.ipsList, (ip) => ({
-                ...ip,
-                routedTo: {
-                  serviceName: '_PARK',
-                },
-              }));
             }
             $scope.ipsList.forEach(checkIps);
-            refreshAlerts(
-              count === $scope.ipsList.length || $scope.serviceName === '_PARK'
-                ? data
-                : null,
-            );
+          })
+          .catch((error) => {
+            Alerter.error(`
+              ${$translate.instant('ip_dashboard_error')}
+              <br />
+              ${get(error, 'data.message') || get(error, 'data', error)}
+            `);
           })
           .finally(() => {
             $scope.loading.table = false;
@@ -293,11 +316,11 @@ angular
             return $translate.instant('ip_virtualmac_add_impossible_server');
           }
 
-          if (ipBlock.service.virtualmac.status === 'PENDING') {
+          if (ipBlock.virtualMac.status === 'PENDING') {
             return $translate.instant('ip_virtualmac_add_impossible_status');
           }
 
-          if (ipBlock.service.virtualmac.status === 'OK') {
+          if (ipBlock.virtualMac.status === 'OK') {
             return $translate.instant('ip_virtualmac_add_impossible_exists');
           }
           return $translate.instant('ip_virtualmac_add_impossible_unavailable');
@@ -329,13 +352,12 @@ angular
         $location.search('page', $scope.pageNumber);
         $location.search('serviceName', serviceName);
         refreshTable();
+        refreshAlerts();
       };
 
-      function pollVirtualMacs(service) {
-        IpVirtualMac.pollVirtualMacs(service).then((vmacInfos) => {
-          set(service, 'virtualmac', vmacInfos);
-        });
-      }
+      $scope.navigateToService = (serviceName) => {
+        $state.go('app.ip', { page: 1, serviceName }, { reload: true });
+      };
 
       $scope.alertsCount = function alertsCount(ipBlock) {
         if (ipBlock) {
@@ -432,23 +454,6 @@ angular
         });
       });
 
-      $scope.$on('ips.table.refreshVmac', (e, ipBlock) => {
-        if (ipBlock.service.category === 'DEDICATED') {
-          set(ipBlock, 'service.loading.virtualmac', true);
-          IpVirtualMac.getVirtualMacList(ipBlock.service)
-            .then((vmacInfos) => {
-              set(ipBlock, 'service.virtualmac', vmacInfos);
-
-              if (vmacInfos && vmacInfos.status === 'PENDING') {
-                pollVirtualMacs(ipBlock.service);
-              }
-            })
-            .finally(() => {
-              set(ipBlock, 'service.loading.virtualmac', false);
-            });
-        }
-      });
-
       // Add only an Ipv6
       $scope.$on('ips.table.add', (e, ipBlock, ipv6) => {
         // Ensure ipBlock is loaded and opened
@@ -469,6 +474,7 @@ angular
       $scope.$on('ips.table.reload', () => {
         init();
         refreshTable();
+        refreshAlerts();
       });
 
       $scope.$on('organisation.change.done', () => {
@@ -598,5 +604,7 @@ angular
       } else {
         refreshTable();
       }
+
+      refreshAlerts();
     },
   );

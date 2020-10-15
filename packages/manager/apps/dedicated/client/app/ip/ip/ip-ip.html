@@ -7,9 +7,7 @@
         <div class="row">
             <div class="col-md-9">
                 <!-- Alerts -->
-                <div
-                    data-ng-if="!loading.alerts && !loading.table && ipsList.length"
-                >
+                <div data-ng-if="!loading.alerts">
                     <div
                         class="alert alert-warning"
                         data-ng-if="alertsCount()"
@@ -42,6 +40,7 @@
 
                         <p data-ng-if="alerts.spam.length">
                             <span
+                                class="d-block"
                                 data-ng-pluralize
                                 data-count="alerts.spam.length"
                                 data-when="{
@@ -51,10 +50,19 @@
                                   }"
                             >
                             </span>
+                            <button
+                                class="btn btn-link"
+                                type="button"
+                                data-ng-if="!singleService()"
+                                data-ng-repeat="ip in alerts.spam"
+                                data-ng-click="navigateToService(ip.ip.routedTo.serviceName)"
+                                data-ng-bind="ip.ip.routedTo.serviceName"
+                            ></button>
                         </p>
 
                         <p data-ng-if="alerts.antihack.length">
                             <span
+                                class="d-block"
                                 data-ng-pluralize
                                 data-count="alerts.antihack.length"
                                 data-when="{
@@ -64,10 +72,19 @@
                                   }"
                             >
                             </span>
+                            <button
+                                class="btn btn-link"
+                                type="button"
+                                data-ng-if="!singleService()"
+                                data-ng-repeat="ip in alerts.antihack"
+                                data-ng-click="navigateToService(ip.ip.routedTo.serviceName)"
+                                data-ng-bind="ip.ip.routedTo.serviceName"
+                            ></button>
                         </p>
 
                         <p data-ng-if="alerts.arp.length">
                             <span
+                                class="d-block"
                                 data-ng-pluralize
                                 data-count="alerts.arp.length"
                                 data-when="{
@@ -77,10 +94,19 @@
                                   }"
                             >
                             </span>
+                            <button
+                                class="btn btn-link"
+                                type="button"
+                                data-ng-if="!singleService()"
+                                data-ng-repeat="ip in alerts.arp"
+                                data-ng-click="navigateToService(ip.ip.routedTo.serviceName)"
+                                data-ng-bind="ip.ip.routedTo.serviceName"
+                            ></button>
                         </p>
 
                         <p data-ng-if="alerts.mitigation.length">
                             <span
+                                class="d-block"
                                 data-ng-pluralize
                                 data-count="alerts.mitigation.length"
                                 data-when="{
@@ -90,6 +116,14 @@
                                   }"
                             >
                             </span>
+                            <button
+                                class="btn btn-link"
+                                type="button"
+                                data-ng-if="!singleService()"
+                                data-ng-repeat="ip in alerts.mitigation"
+                                data-ng-click="navigateToService(ip.ip.routedTo.serviceName)"
+                                data-ng-bind="ip.ip.routedTo.serviceName"
+                            ></button>
                         </p>
                     </div>
 
@@ -476,28 +510,19 @@
 
                         <!-- VMAC -->
                         <td>
-                            <div
-                                data-ng-if="!ipBlock.service.loading.virtualmac && ipBlock.type==='FAILOVER'"
+                            <span
+                                data-ng-if="ipBlock.virtualMac.status === 'OK'"
+                                data-ng-bind="ipBlock.virtualMac.virtualMacs[ip.ip] || '-'"
                             >
-                                <span
-                                    data-ng-if="ipBlock.service.virtualmac.status === 'OK'"
-                                    data-ng-bind="ipBlock.service.virtualmac.virtualMacsByIp[ip.ip] || '-'"
-                                >
-                                </span>
-                                <span
-                                    class="badge"
-                                    data-ng-if="ipBlock.service.virtualmac.status === 'PENDING'"
-                                    data-translate="ip_taskpending_label"
-                                    data-oui-tooltip="{{:: 'ip_manage_task_pending' | translate }}"
-                                    data-oui-tooltip-placement="top"
-                                >
-                                </span>
-                            </div>
-                            <oui-spinner
-                                size="s"
-                                data-ng-if="ipBlock.service.loading.virtualmac && ipBlock.type==='FAILOVER'"
+                            </span>
+                            <span
+                                class="badge"
+                                data-ng-if="ipBlock.virtualMac.status === 'PENDING'"
+                                data-translate="ip_taskpending_label"
+                                data-oui-tooltip="{{:: 'ip_manage_task_pending' | translate }}"
+                                data-oui-tooltip-placement="top"
                             >
-                            </oui-spinner>
+                            </span>
                         </td>
 
                         <!-- Mitigation -->
