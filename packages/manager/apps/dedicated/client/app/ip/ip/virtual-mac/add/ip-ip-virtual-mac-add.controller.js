@@ -13,15 +13,13 @@ angular
       $scope.existingVirtualMacs = [];
 
       if (
-        $scope.data.ipBlock.service.virtualmac &&
-        $scope.data.ipBlock.service.virtualmac.virtualMacs
+        $scope.data.ipBlock.virtualMac &&
+        $scope.data.ipBlock.virtualMac.virtualMacs
       ) {
         angular.forEach(
-          $scope.data.ipBlock.service.virtualmac.virtualMacs,
+          $scope.data.ipBlock.virtualMac.virtualMacs,
           (ips, virtualmac) => {
-            if (ips.length && !~ips.indexOf($scope.data.ip.ip)) {
-              $scope.existingVirtualMacs.push(virtualmac);
-            }
+            $scope.existingVirtualMacs.push(virtualmac);
           },
         );
       }
@@ -44,7 +42,7 @@ angular
           )
             .then(() => {
               $rootScope.$broadcast(
-                'ips.table.refreshVmac',
+                'ips.table.refreshBlock',
                 $scope.data.ipBlock,
               );
               Alerter.success(
@@ -54,12 +52,12 @@ angular
               );
             })
             .catch((reason) => {
-              Alerter.alertFromSWS(
-                $translate.instant('ip_virtualmac_add_new_failure', {
+              Alerter.error(`
+                ${$translate.instant('ip_virtualmac_add_new_failure', {
                   t0: $scope.data.ip.ip,
-                }),
-                reason,
-              );
+                })}
+              <br />
+              ${reason.message}`);
             })
             .finally(() => {
               $scope.resetAction();
@@ -73,7 +71,7 @@ angular
           )
             .then(() => {
               $rootScope.$broadcast(
-                'ips.table.refreshVmac',
+                'ips.table.refreshBlock',
                 $scope.data.ipBlock,
               );
               Alerter.success(
@@ -83,12 +81,12 @@ angular
               );
             })
             .catch((reason) =>
-              Alerter.alertFromSWS(
-                $translate.instant('ip_virtualmac_add_existing_failure', {
+              Alerter.error(`
+                ${$translate.instant('ip_virtualmac_add_existing_failure', {
                   t0: $scope.data.ip.ip,
-                }),
-                reason,
-              ),
+                })}
+              <br />
+              ${reason.message}`),
             )
             .finally(() => $scope.resetAction());
         }

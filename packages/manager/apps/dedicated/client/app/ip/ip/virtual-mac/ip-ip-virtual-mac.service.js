@@ -23,14 +23,6 @@ angular.module('Module.ip.services').service('IpVirtualMac', [
       return data;
     }
 
-    this.getVirtualMacList = (service) =>
-      $http
-        .get(
-          `/sws/module/ip/${service.category}/${service.serviceName}/virtualMac`,
-          { serviceType: 'aapi' },
-        )
-        .then((response) => getVirtualMacListSanitized(response.data));
-
     this.pollVirtualMacs = (service) =>
       Poll.poll(
         `${swsIpPath}/${service.category}/${service.serviceName}/virtualMac`,
