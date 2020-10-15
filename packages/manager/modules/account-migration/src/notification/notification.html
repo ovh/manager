@@ -1,6 +1,6 @@
 <oui-message
     data-type="success"
-    data-ng-if="$ctrl.migrationDetail && !$ctrl.migrationDetail.isPending()"
+    data-ng-if="$ctrl.migrationDetail && !$ctrl.migrationDetail.isPending() && !$ctrl.migrationDetail.isDone()"
 >
     <span
         data-translate="ovh_manager_account_migration_pending_contracts_success"
