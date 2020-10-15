@@ -2,7 +2,8 @@ import get from 'lodash/get';
 import isUndefined from 'lodash/isUndefined';
 import sortBy from 'lodash/sortBy';
 
-import DedicatedCloudInfo from '../components/dedicated-cloud/dedicatedCloud.class';
+import { DedicatedCloud as DedicatedCloudInfo } from '@ovh-ux/manager-models';
+
 import {
   DEDICATEDCLOUD_DATACENTER_DRP_STATUS,
   DEDICATEDCLOUD_DATACENTER_DRP_VPN_CONFIGURATION_STATUS,
