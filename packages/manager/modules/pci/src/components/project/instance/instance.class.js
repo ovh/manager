@@ -188,4 +188,14 @@ export default class Instance {
   isFlavorType(type) {
     return new Flavor(this.flavor || {}).isType(type);
   }
+
+  /**
+   * Tell if instance is currently in deleting status.
+   * Based on: cloud.instance.InstanceStatusEnum
+   *
+   * @return {Boolean}
+   */
+  isDeleting() {
+    return this.status === 'DELETING';
+  }
 }
