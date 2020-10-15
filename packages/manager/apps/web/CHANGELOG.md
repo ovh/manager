@@ -1,3 +1,12 @@
+## [15.3.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.3.7...@ovh-ux/manager-web@15.3.8) (2020-10-15)
+
+
+### Bug Fixes
+
+* **web.privatedb:** hide order ram button in oom modal if not possible ([#3842](https://github.com/ovh/manager/issues/3842)) ([182f5e4](https://github.com/ovh/manager/commit/182f5e42e2e1734daa8bfe29a050dc40628844bd))
+
+
+
 ## [15.3.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.3.6...@ovh-ux/manager-web@15.3.7) (2020-10-13)
 
 
