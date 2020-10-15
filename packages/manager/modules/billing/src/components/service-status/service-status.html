@@ -1,0 +1,19 @@
+<div>
+    <span
+        class="oui-badge oui-badge_error"
+        data-ng-if="$ctrl.service.hasDebt()"
+        data-translate="manager_billing_service_status_pending_debt"
+    >
+    </span>
+    <span data-ng-if="$ctrl.service.isOneShot()">-</span>
+    <span
+        class="oui-badge"
+        data-ng-class="{
+        'oui-badge_error': $ctrl.SERVICE_STATES.error.includes($ctrl.service.getRenew()),
+        'oui-badge_warning': $ctrl.SERVICE_STATES.warning.includes($ctrl.service.getRenew()),
+        'oui-badge_success': $ctrl.SERVICE_STATES.success.includes($ctrl.service.getRenew()),
+    }"
+        data-ng-if="!$ctrl.service.hasDebt() && !$ctrl.service.isOneShot()"
+        data-translate="{{:: 'manager_billing_service_status_' + $ctrl.service.getRenew() | translate }}"
+    ></span>
+</div>
