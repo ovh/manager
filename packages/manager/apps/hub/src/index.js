@@ -5,9 +5,10 @@ import 'regenerator-runtime/runtime';
 import { attach as attachPreloader } from '@ovh-ux/manager-preloader';
 import { bootstrapApplication } from '@ovh-ux/manager-core';
 import { MANAGER_URLS } from '@ovh-ux/manager-core/src/manager-core.constants';
+import { Environment } from '@ovh-ux/manager-config';
 import { BILLING_REDIRECTIONS } from './constants';
 
-attachPreloader();
+attachPreloader(Environment.getUserLanguage());
 
 bootstrapApplication().then(({ region }) => {
   BILLING_REDIRECTIONS.forEach((redirectionRegex) => {
