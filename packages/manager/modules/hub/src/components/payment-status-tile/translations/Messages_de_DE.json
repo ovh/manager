@@ -1,13 +1,6 @@
 {
   "ovh_manager_hub_payment_status_tile_title": "Letzter Status der Zahlungen für Dienstleistungen",
   "ovh_manager_hub_payment_status_tile_see_all": "Alles anzeigen",
-  "ovh_manager_hub_payment_status_tile_status_auto": "Automatische Verlängerung",
-  "ovh_manager_hub_payment_status_tile_status_automatic": "Automatische Verlängerung",
-  "ovh_manager_hub_payment_status_tile_status_manual": "Manuelle Verlängerung",
-  "ovh_manager_hub_payment_status_tile_status_manualPayment": "Manuelle Verlängerung",
-  "ovh_manager_hub_payment_status_tile_status_pending_debt": "Ausstehende Rechnung",
-  "ovh_manager_hub_payment_status_tile_status_delete_at_expiration": "Kündigung angefordert",
-  "ovh_manager_hub_payment_status_tile_status_expired": "Gekündigt",
   "ovh_manager_hub_payment_status_tile_now": "Sofort",
   "ovh_manager_hub_payment_status_tile_before": "vor dem {{ date }}",
   "ovh_manager_hub_payment_status_tile_renew": "seit dem {{ date }}",
