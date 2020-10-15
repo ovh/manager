@@ -48,14 +48,11 @@
             data-sortable="asc"
         >
             <a
-                data-ng-if="$row.status !== 'DELETING'"
+                data-ng-if="!$row.isDeleting()"
                 data-ng-href="{{:: $ctrl.instanceLink($row) }}"
                 data-ng-bind="$value"
             ></a>
-            <span
-                data-ng-if="$row.status === 'DELETING'"
-                data-ng-bind="$value"
-            ></span>
+            <span data-ng-if="$row.isDeleting()" data-ng-bind="$value"></span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_projects_project_instances_region_label' | translate"
