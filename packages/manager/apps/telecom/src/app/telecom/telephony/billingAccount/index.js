@@ -1,16 +1,21 @@
 import angular from 'angular';
+import '@uirouter/angularjs';
+import 'oclazyload';
 
-import guides from './guides';
-import services from './services';
+const moduleName = 'ovhManagerTelecomTelephonyBillingAccountLazyLoading';
 
-import routing from './billingAccount.routing';
-import service from './billingAccount.service';
-
-const moduleName = 'ovhManagerTelecomTelephonyBillingAccount';
-
-angular
-  .module(moduleName, [guides, services])
-  .config(routing)
-  .service('telecomBillingAccount', service);
+angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
+  /* @ngInject */ ($stateProvider) => {
+    $stateProvider.state('telecom.telephony.billingAccount.**', {
+      url: '/:billingAccount',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+        return import('./billing-account.module').then((mod) => {
+          return $ocLazyLoad.inject(mod.default || mod);
+        });
+      },
+    });
+  },
+);
 
 export default moduleName;

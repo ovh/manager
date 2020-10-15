@@ -2,9 +2,13 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
+import telephony from './telephony.module';
+
+import './telecom-telephony.less';
+
 const moduleName = 'ovhManagerTelecomTelephonyLazyLoading';
 
-angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
+angular.module(moduleName, ['ui.router', 'oc.lazyLoad', telephony]).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider
       .state('telecom.telephony', {
@@ -12,7 +16,8 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
         redirectTo: 'telecom.telephony.index',
         views: {
           'telecomView@telecom': {
-            template: '<div ui-view="telephonyView"></div>',
+            template:
+              '<div class="telecom-telephony" ui-view="telephonyView"></div>',
           },
         },
       })
@@ -25,17 +30,17 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
             $ocLazyLoad.inject(mod.default || mod),
           );
         },
-      })
-      .state('telecom.telephony.billingAccount.**', {
-        url: '/:billingAccount',
-        lazyLoad: ($transition$) => {
-          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-
-          return import('./dashboard/dashboard.module').then((mod) =>
-            $ocLazyLoad.inject(mod.default || mod),
-          );
-        },
       });
+    // .state('telecom.telephony.billingAccount.**', {
+    //   url: '/:billingAccount',
+    //   lazyLoad: ($transition$) => {
+    //     const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+    //     return import('./dashboard/dashboard.module').then((mod) =>
+    //       $ocLazyLoad.inject(mod.default || mod),
+    //     );
+    //   },
+    // });
   },
 );
 

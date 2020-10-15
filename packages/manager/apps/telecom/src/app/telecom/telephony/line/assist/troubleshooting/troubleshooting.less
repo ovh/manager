@@ -1,0 +1,76 @@
+@import '~ovh-ui-kit-bs/dist/less/bootstrap/_variables';
+
+.telecom-telephony-line-assist-troubleshooting {
+  .content-container {
+    padding: 20px 0;
+  }
+
+  .image-container {
+    background-color: @gray-lighter;
+    padding: 15px;
+
+    img {
+      max-width: 100%;
+    }
+
+    i {
+      font-size: 16em;
+    }
+  }
+
+  .problems-list-container {
+    .content-container .problem-list {
+      .problem-item {
+        &:not(:last-child) {
+          border-bottom: 1px solid @gray-lighter;
+        }
+
+        label {
+          padding: 10px 15px;
+          cursor: pointer;
+          font-weight: normal;
+
+          strong {
+            color: @gray-base;
+          }
+        }
+      }
+    }
+  }
+
+  .troubleshooting-outside-label {
+    color: @gray-dark !important;
+  }
+
+  ol.troubleshooting-list {
+    padding-left: 2%;
+
+    > li {
+      font-size: 18px;
+
+      *:not(h4) {
+        font-size: @font-size-base;
+      }
+    }
+  }
+
+  ul.troubleshooting-list {
+    list-style-type: disc;
+    padding-left: 24px;
+
+    li {
+      list-style-type: disc;
+      padding-top: 8px;
+
+      ul {
+        list-style-type: circle;
+        padding-left: 24px;
+
+        li {
+          list-style-type: circle;
+          padding-top: 8px;
+        }
+      }
+    }
+  }
+}

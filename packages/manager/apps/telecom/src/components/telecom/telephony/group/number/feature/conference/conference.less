@@ -1,0 +1,26 @@
+@import '~ovh-ui-kit-bs/dist/less/bootstrap/_variables';
+
+.telephony-number-conference-participant-actions-menu {
+  margin-left: 3px;
+
+  &:not(.popover-full-screen) {
+    width: 350px;
+  }
+
+  .popover-content {
+    .bottom-action {
+      background-color: @gray-light;
+      overflow: hidden;
+      max-height: 150px;
+      transition: max-height 0.5s;
+
+      .confirm-inner {
+        padding: 12px;
+      }
+
+      &.ng-hide {
+        max-height: 0;
+      }
+    }
+  }
+}

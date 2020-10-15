@@ -12,6 +12,5 @@ export default /* @ngInject */ ($stateProvider) => {
       goBack: /* @ngInject */ ($state) => () =>
         $state.go('telecom.telephony.billingAccount.line.phone'),
     },
-    translations: { value: ['.'], format: 'json' },
   });
 };
