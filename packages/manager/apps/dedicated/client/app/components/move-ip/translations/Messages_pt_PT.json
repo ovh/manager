@@ -1,0 +1,17 @@
+{
+  "dedicatedCloud_move_ip_title": "Associar este bloco de IP a outro serviço",
+  "dedicatedCloud_move_ip_description": "Pode reatribuir um bloco de IP que já contratou a outro serviço compatível. Estes serviços são filtrados em função da sua pertinência, da sua geolocalização e dos datacenters.",
+  "dedicatedCloud_move_ip_select_ip": "Escolha o bloco de IP a migrar:",
+  "dedicatedCloud_move_ip_select_target": "Escolha o serviço para o qual o seu bloco de IP será migrado:",
+  "dedicatedCloud_move_ip_select_next_hop": "Escolha o nexthop para o seu serviço de destino:",
+  "dedicatedCloud_move_ip_option_hostingReseller": "Hosting Reseller",
+  "dedicatedCloud_move_ip_option_dedicatedServer": "Servidores dedicados",
+  "dedicatedCloud_move_ip_option_dedicatedCloud": "Dedicated Cloud",
+  "dedicatedCloud_move_ip_option_vps": "VPS",
+  "dedicatedCloud_move_ip_option_cloudProject": "Projeto Cloud",
+  "dedicatedCloud_move_ip_option_ipLoadbalancing": "IP Load Balancer",
+  "dedicatedCloud_move_ip_cancel": "Cancelar",
+  "dedicatedCloud_move_ip_confirm": "Validar",
+  "dedicatedCloud_move_ip_error": "Ocorreu um erro durante a tentativa de associação do bloco IP {{ipBlock}} ao serviço {{service}}: {{ message }}",
+  "dedicatedCloud_move_ip_success": "O bloco de IP {{ipBlock}} está a ser associado ao serviço {{service}}."
+}

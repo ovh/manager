@@ -191,6 +191,7 @@
   "ip_description_field": "Description",
   "ip_description_new_title": "Ajouter une description",
   "ip_description_edit_title": "Editer la description",
+  "ip_description_edit_move": "Associer ce bloc d’IP à un autre service",
   "ip_description_edit_field": "Description :",
   "ip_description_edit_success": "La description de l'IP {{t0}} a été modifiée.",
   "ip_description_edit_failure": "Une erreur est survenue lors de l'édition de la description de l'IP {{t0}}",
