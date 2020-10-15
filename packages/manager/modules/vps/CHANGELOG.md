@@ -1,3 +1,12 @@
+## [2.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.2.0...@ovh-ux/manager-vps@2.2.1) (2020-10-15)
+
+
+### Bug Fixes
+
+* **snapshot.order:** get offer by capacity instead of duration ([#3837](https://github.com/ovh/manager/issues/3837)) ([a2b312e](https://github.com/ovh/manager/commit/a2b312efe6587c3d4726bb1471e678f6904c909b))
+
+
+
 # [2.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.1.3...@ovh-ux/manager-vps@2.2.0) (2020-10-14)
 
 

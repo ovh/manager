@@ -1,3 +1,12 @@
+## [1.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-migration@1.0.2...@ovh-ux/manager-account-migration@1.0.3) (2020-10-15)
+
+
+### Bug Fixes
+
+* hide migration notification when completed ([#3838](https://github.com/ovh/manager/issues/3838)) ([2b94215](https://github.com/ovh/manager/commit/2b9421573a7c606753e779ddcb7ea50ec3e5cb0e))
+
+
+
 ## [1.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-migration@1.0.1...@ovh-ux/manager-account-migration@1.0.2) (2020-10-13)
 
 
