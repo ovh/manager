@@ -71,13 +71,16 @@
             anti-affinity-max-nodes="$ctrl.antiAffinityMaxNodes"
         >
         </node-pool-anti-affinity>
-        <billing-type
+
+        <p data-translate="kubernetes_add_billing_type_description"></p>
+        <pci-project-flavor-billing
             data-flavor="$ctrl.cluster.nodePool.flavor"
             data-number="$ctrl.cluster.nodePool.nodeCount"
             data-monthly-billing="$ctrl.cluster.nodePool.monthlyBilling"
-            data-description="{{ ::'kubernetes_add_billing_type_description' | translate }}"
+            data-disabled="false"
         >
-        </billing-type>
+        </pci-project-flavor-billing>
+        <p data-translate="kubernetes_add_billing_type_payment_method"></p>
     </oui-step-form>
 
     <oui-step-form
