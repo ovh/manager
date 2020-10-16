@@ -56,6 +56,17 @@
             ></span>
         </oui-datagrid-column>
         <oui-datagrid-column
+            data-title=":: 'kube_node_pool_monthly_billing' | translate"
+            data-property="monthlyBilled"
+            data-type="boolean"
+            data-filterable
+        >
+            <span
+                data-ng-if="$row.monthlyBilled"
+                class="oui-icon oui-icon-check"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'kube_service_cluster_status' | translate"
             data-property="status"
         >
