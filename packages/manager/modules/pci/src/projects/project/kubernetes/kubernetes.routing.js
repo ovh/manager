@@ -2,7 +2,10 @@ import get from 'lodash/get';
 import map from 'lodash/map';
 import max from 'lodash/max';
 
-import { VERSION_ENUM_KEY } from './kubernetes.constants';
+import {
+  ANTI_AFFINITY_MAX_NODES,
+  VERSION_ENUM_KEY,
+} from './kubernetes.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.kubernetes', {
@@ -71,6 +74,8 @@ export default /* @ngInject */ ($stateProvider) => {
               hasEnoughQuota: () => true,
             })),
           ),
+
+      antiAffinityMaxNodes: /* @ngInject */ () => ANTI_AFFINITY_MAX_NODES,
 
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('kube_list_title'),

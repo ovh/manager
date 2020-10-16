@@ -1,0 +1,17 @@
+<oui-checkbox
+    data-model="$ctrl.nodePool.antiAffinity"
+    disabled="$ctrl.nodePool.nodeCount > $ctrl.antiAffinityMaxNodes"
+    data-on-change="$ctrl.onAntiAffinityChange(modelValue)"
+    class="mb-4"
+    name="kube_anti_affinity"
+>
+    <oui-checkbox-label>
+        <span data-translate="kubernetes_node_pool_anti_affinity"></span>
+    </oui-checkbox-label>
+    <oui-checkbox-description>
+        <span
+            data-translate="kubernetes_node_pool_anti_affinity_description"
+            data-translate-values="{ maxNodes: $ctrl.antiAffinityMaxNodes}"
+        ></span>
+    </oui-checkbox-description>
+</oui-checkbox>
