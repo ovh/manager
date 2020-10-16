@@ -47,6 +47,7 @@ export default class {
       flavorName: this.nodePool.flavor.name,
       name: this.nodePool.name,
       antiAffinity: this.nodePool.antiAffinity,
+      monthlyBilled: this.nodePool.monthlyBilling,
     })
       .then(() =>
         this.goBack(
