@@ -1,5 +1,4 @@
 import isEmpty from 'lodash/isEmpty';
-import isUndefined from 'lodash/isUndefined';
 
 import { VIRTUAL_TYPE } from './interfaces.constants';
 import { OLA_MODES } from './ola-configuration/ola-configuration.constants';
@@ -7,10 +6,6 @@ import { OLA_MODES } from './ola-configuration/ola-configuration.constants';
 export default class Ola {
   constructor(resource) {
     Object.assign(this, resource);
-
-    this.configStep = !isUndefined(this.configStep)
-      ? parseInt(this.configStep, 10)
-      : 0;
   }
 
   getCurrentMode() {

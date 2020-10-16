@@ -1,18 +1,17 @@
 import get from 'lodash/get';
 import { GUIDES } from './interfaces.constants';
+import { redirectTo } from './ola-pending-task/ola-pending-task.routing';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicated.server.interfaces', {
-    url: '/interfaces?:configStep',
+    url: '/interfaces',
     views: {
       'tabView@app.dedicated.server': {
         component: 'dedicatedServerInterfaces',
       },
     },
     translations: { value: ['.'], format: 'json' },
-    params: {
-      configStep: { dynamic: true },
-    },
+    redirectTo,
     resolve: {
       alertError: /* @ngInject */ ($timeout, $translate, Alerter) => (
         translateId,
@@ -21,7 +20,9 @@ export default /* @ngInject */ ($stateProvider) => {
         $timeout(() => {
           Alerter.set(
             'alert-danger',
-            $translate.instant(translateId, { error: error.message }),
+            $translate.instant(translateId, {
+              error: get(error, 'message', error),
+            }),
           );
         }),
       failoverIps: /* @ngInject */ (OvhApiIp, serverName) =>
@@ -74,12 +75,20 @@ export default /* @ngInject */ ($stateProvider) => {
               'app.dedicated.server.interfaces.bandwidth-public-order',
               { productId: serverName },
             ),
-      taskPolling: /* @ngInject */ (
-        DedicatedServerInterfacesService,
-        serverName,
-      ) => DedicatedServerInterfacesService.getTasks(serverName),
       urls: /* @ngInject */ (constants, user) =>
         constants.urls[user.ovhSubsidiary],
+      goToInterfaces: ($state, Alerter, serverName) => (
+        message = false,
+        type = 'success',
+      ) => {
+        const promise = $state.go('app.dedicated.server.interfaces', {
+          projectId: serverName,
+        });
+        if (message) {
+          promise.then(() => Alerter[type](message));
+        }
+        return promise;
+      },
     },
   });
 };

@@ -1,7 +1,11 @@
+import get from 'lodash/get';
+
 export default class {
   /* @ngInject */
-  constructor(OvhApiVrack) {
+  constructor($translate, OvhApiVrack, Poller) {
     this.Vrack = OvhApiVrack;
+    this.$translate = $translate;
+    this.Poller = Poller;
   }
 
   $onInit() {
@@ -11,6 +15,7 @@ export default class {
   }
 
   attach() {
+    this.loading = true;
     return this.Vrack.DedicatedServerInterface()
       .v6()
       .post(
@@ -21,13 +26,46 @@ export default class {
           dedicatedServerInterface: this.interface.id,
         },
       )
-      .$promise.then(() => {
-        this.goBack();
+      .$promise.then((task) => {
+        return this.goBack(
+          this.$translate.instant('server_vrack_attach_in_progress', {
+            vRackname: this.vrack,
+          }),
+          'success',
+        ).then(() => {
+          this.interface.operation = 'attach';
+          this.interface.setTaskInProgress(true);
+          this.checkStatus(this.vrack, task.data.id).then(() => {
+            this.interface.setVrack(this.vrack);
+            this.interface.setTaskInProgress(false);
+          });
+        });
       })
       .catch((error) => {
-        this.goBack().then(() =>
-          this.alertError('server_error_vrack_attach', error.data),
+        return this.goBack(
+          this.$translate.instant('server_error_vrack_attach', {
+            vRackname: this.vrack,
+            error: get(error, 'data.message', error.message),
+          }),
+          'error',
         );
+      })
+      .finally(() => {
+        this.loading = false;
       });
+  }
+
+  checkStatus(vrack, taskId) {
+    return this.Poller.poll(
+      `/vrack/${vrack}/task/${taskId}`,
+      {},
+      {
+        method: 'get',
+        retryMaxAttempts: 6,
+        successRule: {
+          status: 'done',
+        },
+      },
+    );
   }
 }

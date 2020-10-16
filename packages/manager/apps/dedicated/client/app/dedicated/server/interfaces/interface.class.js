@@ -5,6 +5,7 @@ import { PHYSICAL_TYPE, VIRTUAL_TYPE } from './interfaces.constants';
 export default class Interface {
   constructor(resource) {
     Object.assign(this, resource);
+    this.taskInProgress = false;
   }
 
   isPhysical() {
@@ -38,5 +39,17 @@ export default class Interface {
 
   hasVrack() {
     return this.vrack !== null;
+  }
+
+  setVrack(vrack) {
+    this.vrack = vrack;
+  }
+
+  hasTaskInProgress() {
+    return !!this.taskInProgress;
+  }
+
+  setTaskInProgress(progress) {
+    this.taskInProgress = progress;
   }
 }

@@ -2,8 +2,9 @@ import interfaceAttach from './attach/interfaces-attach.module';
 import interfaceDetach from './detach/interfaces-detach.module';
 import interfaceRename from './rename/interfaces-rename.module';
 import olaActivation from './ola-activation/ola-activation.module';
-import olaTerminate from './ola-terminate/ola-terminate.module';
+import olaReset from './ola-reset/ola-reset.module';
 import olaConfiguration from './ola-configuration/ola-configuration.module';
+import olaPendingTask from './ola-pending-task/ola-pending-task.module';
 
 import component from './interfaces.component';
 import routing from './interfaces.routing';
@@ -19,8 +20,9 @@ angular
     interfaceDetach,
     interfaceRename,
     olaActivation,
-    olaTerminate,
+    olaReset,
     olaConfiguration,
+    olaPendingTask,
     'ovh-api-services',
     'ui.router',
   ])

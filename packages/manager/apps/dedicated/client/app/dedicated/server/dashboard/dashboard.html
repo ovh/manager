@@ -733,10 +733,18 @@
                         data-term="{{:: 'server_ola' | translate}}"
                     >
                         <oui-tile-description>
-                            <span
-                                data-ng-if="$ctrl.ola.isActivated()"
-                                data-translate="server_ola_active"
-                            ></span>
+                            <div data-ng-if="$ctrl.ola.isActivated()">
+                                <span
+                                    data-ng-if="$ctrl.ola.isConfigured()"
+                                    data-translate="server_ola_mode_{{ $ctrl.ola.getCurrentMode() }}"
+                                >
+                                </span>
+                                <span
+                                    data-ng-if="!$ctrl.ola.isConfigured()"
+                                    data-translate="server_ola_active"
+                                >
+                                </span>
+                            </div>
                             <span
                                 data-ng-if="!$ctrl.ola.isActivated()"
                                 data-translate="server_ola_inactive"
@@ -756,19 +764,17 @@
                                 ></span>
                             </oui-action-menu-item>
                             <oui-action-menu-item
-                                data-ng-if="$ctrl.ola.isActivated()"
+                                data-ng-if="$ctrl.ola.isConfigured()"
+                                data-ui-sref="app.dedicated.server.interfaces.ola-reset"
+                            >
+                                <span data-translate="server_ola_reset"></span>
+                            </oui-action-menu-item>
+                            <oui-action-menu-item
+                                data-ng-if="$ctrl.ola.isActivated() && !$ctrl.ola.isConfigured()"
                                 data-ui-sref="app.dedicated.server.interfaces.ola-configuration"
                             >
                                 <span
                                     data-translate="server_ola_configure"
-                                ></span>
-                            </oui-action-menu-item>
-                            <oui-action-menu-item
-                                data-ng-if="$ctrl.ola.isActivated()"
-                                data-ui-sref="app.dedicated.server.interfaces.ola-terminate"
-                            >
-                                <span
-                                    data-translate="server_ola_terminate"
                                 ></span>
                             </oui-action-menu-item>
                         </oui-action-menu>

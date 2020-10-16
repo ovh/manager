@@ -732,7 +732,11 @@
   "server_configuration_installation_ovh_step1_hardwareRaid_os_not_supported_short": "Brak RAID-u sprzętowego",
   "server_configuration_installation_ovh_step1_hardwareRaid_os_not_supported": "Instalator tego systemu operacyjnego nie może ponownie skonfigurować sprzętowego RAID-u.  Jeśli chcesz ponownie skonfigurować RAID sprzętowy, zainstaluj inny system operacyjny.  Konfiguracja zostanie wtedy zapisana.",
   "server_configuration_installation_ovh_step1_virtual_desktop_not_supported": "Wybrany system operacyjny ({{t0}}) nie posiada funkcjonalności zdalnego pulpitu.  Brak innych dostępnych systemów operacyjnych? Przejdź do sekcji <a href='{{t1}}' target='_blank'>Licencje</a> w Panelu klienta.",
+<<<<<<< HEAD
   "server_configuration_installation_ovh_step1_warning_exist": "Uwaga, rozpocząłeś konfigurowanie instalacji dla dystrybucji <b>{{t0}}</b>. Zmiana dystrybucji usunie tą konfigurację.",
+=======
+  "server_configuration_installation_ovh_step1_warning_exist": "Uwaga, rozpocząłeś konfigurowanie instalacji dla dystrybucji <b>{{t0}}</b>.  Zmiana dystrybucji usunie tą konfigurację.",
+>>>>>>> 5b0fb72794... feat(dedicated): ola enhancements
   "server_configuration_installation_ovh_step1_warning_exist_valid": "Usuń wcześniejszą konfigurację",
   "server_configuration_installation_ovh_step1_warning_exist_cancel": "Nie zmieniaj dystrybucji",
   "server_configuration_installation_ovh_step2_available_color_help": "Aby zwiększyć widoczność partycji, możesz zmienić ich kolor, klikając na poniższy pasek.",
@@ -1038,7 +1042,7 @@
   "server_ola_active": "Aktywny",
   "server_ola_inactive": "Nieaktywny",
   "server_ola_activate": "Włącz OLA",
-  "server_ola_configure": "Konfiguruj OLA",
+  "server_ola_configure": "Skonfiguruj agregację prywatną",
   "server_ola_terminate": "Rezygnuj z OLA",
   "server_ola_mode_vrack_aggregation": "Agregacja prywatna",
   "server_ola_mode_default": "Domyślnie",
@@ -1222,5 +1226,8 @@
   "server_configuration_installation_form_rtm_deactivated": "Wyłączony",
   "server_configuration_installation_form_rtm_activated": "Aktywny",
   "server_configuration_installation_image": "Instalacja z wykorzystaniem spersonalizowanego obrazu",
-  "server_configuration_distribution_byoi": "BringYourOwnImage"
+  "server_configuration_distribution_byoi": "BringYourOwnImage",
+  "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_GROUP": "Grupowe interfejsy sieciowe",
+  "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_UNGROUP": "Odłącz interfejsy sieciowe",
+  "server_ola_reset": "Wyłącz agregację prywatną"
 }

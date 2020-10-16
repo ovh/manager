@@ -9,27 +9,27 @@ export default class {
   /* @ngInject */
   constructor(
     $q,
+    $timeout,
     $translate,
     Alerter,
+    ouiDatagridService,
     DedicatedServerInterfacesService,
     OvhApiDedicatedServerPhysicalInterface,
     OvhApiDedicatedServerVirtualInterface,
   ) {
     this.$q = $q;
+    this.$timeout = $timeout;
     this.$translate = $translate;
     this.Alerter = Alerter;
     this.InterfaceService = DedicatedServerInterfacesService;
     this.PhysicalInterface = OvhApiDedicatedServerPhysicalInterface;
     this.VirtualInterface = OvhApiDedicatedServerVirtualInterface;
+    this.ouiDatagridService = ouiDatagridService;
   }
 
   $onInit() {
     this.olaModes = Object.values(OLA_MODES);
-
-    this.isPolling = true;
-    this.taskPolling.promise.then(() => {
-      this.isPolling = false;
-    });
+    this.isLoading = false;
 
     this.configuration = {
       mode:
@@ -37,7 +37,6 @@ export default class {
           ? OLA_MODES.VRACK_AGGREGATION
           : OLA_MODES.DEFAULT,
     };
-
     this.selectedInterfaces = [];
     this.notAllowedInterfaces = filter(
       this.interfaces,
@@ -48,24 +47,25 @@ export default class {
     );
   }
 
-  isGrouping() {
-    return this.configuration.mode === OLA_MODES.VRACK_AGGREGATION;
-  }
-
-  isSelectionValid() {
-    const selectableAmount = this.isGrouping() ? 2 : 1;
-    return (
-      !!this.selectedInterfaces.length &&
-      this.selectedInterfaces.length === selectableAmount
+  selectAllRows() {
+    const datagrid = get(
+      this.ouiDatagridService,
+      'datagrids.olaConfigDatagrid',
     );
-  }
-
-  isModeDisabled(mode) {
-    return this.ola.getCurrentMode() === mode;
+    if (datagrid) {
+      this.$timeout(() => {
+        datagrid.toggleAllRowsSelection(true);
+        datagrid.selectAllRows = true;
+      });
+    }
   }
 
   hasObsoleteBandwithOption() {
     return this.specifications.bandwidth.type !== 'included';
+  }
+
+  isInterfaceSelectionValid() {
+    return [2, 4].includes(this.selectedInterfaces.length);
   }
 
   onRowSelect(selectedRows) {
@@ -78,37 +78,31 @@ export default class {
     }
   }
 
+  configureInterface() {
+    switch (this.configuration.mode) {
+      case OLA_MODES.VRACK_AGGREGATION:
+        return this.InterfaceService.setPrivateAggregation(
+          this.serverName,
+          this.configuration.name,
+          this.selectedInterfaces,
+        );
+      case OLA_MODES.DEFAULT:
+        return this.InterfaceService.setDefaultInterfaces(
+          this.serverName,
+          this.selectedInterfaces[0],
+        );
+      default:
+        return this.$q.when();
+    }
+  }
+
   onFinish() {
-    this.loading = true;
+    this.isLoading = true;
     this.atTrack('configure_ola');
-    return this.InterfaceService.disableInterfaces(
-      this.serverName,
-      this.selectedInterfaces,
-    )
-      .then(() => {
-        switch (this.configuration.mode) {
-          case OLA_MODES.VRACK_AGGREGATION:
-            return this.InterfaceService.setPrivateAggregation(
-              this.serverName,
-              this.configuration.name,
-              this.selectedInterfaces,
-            );
-          case OLA_MODES.DEFAULT:
-            return this.InterfaceService.setDefaultInterfaces(
-              this.serverName,
-              this.selectedInterfaces[0],
-            );
-          default:
-            return this.$q.when();
-        }
-      })
+    return this.configureInterface()
       .then(() => {
         this.PhysicalInterface.v6().resetCache();
         this.VirtualInterface.v6().resetCache();
-        if (this.isGrouping()) {
-          return this.goBack({ configStep: 2 });
-        }
-
         return this.goBack();
       })
       .catch((error) =>
