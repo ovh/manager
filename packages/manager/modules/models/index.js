@@ -3,6 +3,7 @@ import BillingService from './BillingService/BillingService.class';
 import Certificate from './certificate/Certificate.class';
 import DebtAccount from './billing/DebtAccount.class';
 import DedicatedCloud from './dedicatedCloud/dedicatedCloud.class';
+import Engagement from './service/Engagement.class';
 import PartnerLevel from './support/level/PartnerLevel.class';
 import Price from './Price/Price.class';
 import Service from './service/Service.class';
@@ -16,6 +17,7 @@ export {
   Certificate,
   DebtAccount,
   DedicatedCloud,
+  Engagement,
   PartnerLevel,
   Price,
   Service,
@@ -30,6 +32,7 @@ export default {
   Certificate,
   DebtAccount,
   DedicatedCloud,
+  Engagement,
   PartnerLevel,
   Price,
   Service,
