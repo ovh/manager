@@ -60,12 +60,17 @@
     </oui-step-form>
 
     <oui-step-form
-        data-header="{{:: 'kube_common_billing_type_title' | translate }}"
+        data-header="{{:: 'kubernetes_add_billing_anti_affinity_title' | translate }}"
         data-editable="!$ctrl.isAdding"
         data-valid="$ctrl.cluster.nodePool.flavor"
         data-navigation="$ctrl.cluster.nodePool.flavor"
         name="kubernetes_add_node_pool_billing_type"
     >
+        <node-pool-anti-affinity
+            data-node-pool="$ctrl.cluster.nodePool"
+            anti-affinity-max-nodes="$ctrl.antiAffinityMaxNodes"
+        >
+        </node-pool-anti-affinity>
         <billing-type
             data-flavor="$ctrl.cluster.nodePool.flavor"
             data-number="$ctrl.cluster.nodePool.nodeCount"

@@ -3,6 +3,7 @@ import template from './template.html';
 
 const component = {
   bindings: {
+    antiAffinityMaxNodes: '<',
     cancelLink: '<',
     goBack: '<',
     goToProjectQuota: '<',
@@ -14,6 +15,7 @@ const component = {
     nodePoolId: '<',
     projectId: '<',
     quotas: '<',
+    nodePool: '<',
   },
   controller,
   template,

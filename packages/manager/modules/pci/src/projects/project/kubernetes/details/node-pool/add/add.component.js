@@ -3,6 +3,7 @@ import template from './add.html';
 
 const component = {
   bindings: {
+    antiAffinityMaxNodes: '<',
     region: '<',
     goBack: '<',
     kubeId: '<',

@@ -70,6 +70,25 @@
             >
             </span>
         </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'kube_node_pool_anti_affinity' | translate"
+            data-property="antiAffinity"
+            data-type="boolean"
+            data-sortable
+        >
+            <div
+                data-ng-if="$row.antiAffinity"
+                class="d-flex justify-content-center"
+            >
+                <span class="oui-icon oui-icon-check" aria-hidden="true"></span>
+            </div>
+            <div
+                data-ng-if="!$row.antiAffinity"
+                class="d-flex justify-content-center"
+            >
+                <span class="oui-icon oui-icon-close" aria-hidden="true"></span>
+            </div>
+        </oui-datagrid-column>
         <oui-action-menu data-compact data-placement="end">
             <oui-action-menu-item
                 data-ng-href="{{ ::$ctrl.getNodesStateHref($row.id) }}"

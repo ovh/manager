@@ -13,6 +13,13 @@
         data-on-submit="$ctrl.displaySelectedFlavor = true"
         name="node_add_configuration"
     >
+        <oui-message type="info" data-ng-if="$ctrl.nodePool.antiAffinity">
+            <span
+                data-translate="kube_nodes_add_anti_affinity_active_info"
+                data-translate-values="{ maxNodes: $ctrl.antiAffinityMaxNodes }"
+            ></span>
+        </oui-message>
+
         <oui-field
             data-label="{{ ::'kube_nodes_add_select_nodes' | translate }}"
             data-size="xl"
