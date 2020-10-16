@@ -12,6 +12,7 @@ export default class BillingService {
     Object.assign(this, service);
 
     this.expirationDate = moment(this.expiration);
+    this.creationDate = moment(this.creation);
 
     if (this.status) {
       this.state = this.isSuspended() ? 'EXPIRED' : 'UP';
@@ -24,6 +25,10 @@ export default class BillingService {
 
   get formattedExpiration() {
     return this.expirationDate.format('LL');
+  }
+
+  get formattedCreationDate() {
+    return this.creationDate.format('LL');
   }
 
   getRenew() {
