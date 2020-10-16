@@ -65,13 +65,16 @@
             anti-affinity-max-nodes="$ctrl.antiAffinityMaxNodes"
         >
         </node-pool-anti-affinity>
-        <billing-type
+
+        <p data-translate="kube_add_billing_type_description"></p>
+        <pci-project-flavor-billing
             data-flavor="$ctrl.nodePool.flavor"
             data-number="$ctrl.nodePool.nodeCount"
             data-monthly-billing="$ctrl.nodePool.monthlyBilling"
-            data-description="{{ ::'kube_add_billing_type_description' | translate }}"
+            data-disabled="false"
         >
-        </billing-type>
+        </pci-project-flavor-billing>
+        <p data-translate="kube_add_billing_type_payment_method"></p>
 
         <div data-ng-if="$ctrl.isAdding" class="d-flex align-items-center">
             <oui-spinner data-size="m"></oui-spinner>

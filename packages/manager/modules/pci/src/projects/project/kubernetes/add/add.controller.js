@@ -62,6 +62,7 @@ export default class {
         desiredNodes: this.cluster.nodePool.nodeCount,
         flavorName: this.cluster.nodePool.flavor.name,
         antiAffinity: this.cluster.nodePool.antiAffinity,
+        monthlyBilled: this.cluster.nodePool.monthlyBilling,
       },
     )
       .then((response) =>
