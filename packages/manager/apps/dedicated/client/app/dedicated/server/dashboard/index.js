@@ -6,6 +6,7 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
 
+import ovhManagerBilling from '@ovh-ux/manager-billing';
 import advancedFeatures from './advanced-features';
 
 import component from './dashboard.component';
@@ -20,6 +21,7 @@ angular
     'oui',
     'pascalprecht.translate',
     'ui.router',
+    ovhManagerBilling,
   ])
   .component('dedicatedServerDashboard', component)
   .config(routing)
