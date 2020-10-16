@@ -10,7 +10,6 @@ export default {
     specifications: '<',
     interfaces: '<',
     ola: '<',
-    taskPolling: '<',
   },
   controller,
   template,

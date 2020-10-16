@@ -1038,7 +1038,7 @@
   "server_ola_active": "Aktiv",
   "server_ola_inactive": "Inaktiv",
   "server_ola_activate": "OLA aktivieren",
-  "server_ola_configure": "OLA konfigurieren",
+  "server_ola_configure": "Die „private aggregation“ konfigurieren",
   "server_ola_terminate": "OLA kündigen",
   "server_ola_mode_vrack_aggregation": "Private Aggregation",
   "server_ola_mode_default": "Standard",
@@ -1222,5 +1222,8 @@
   "server_configuration_installation_form_rtm_deactivated": "Deaktiviert",
   "server_configuration_installation_form_rtm_activated": "Aktiviert",
   "server_configuration_installation_image": "Installation auf Basis eines personalisierten Images",
-  "server_configuration_distribution_byoi": "BringYourOwnImage"
+  "server_configuration_distribution_byoi": "BringYourOwnImage",
+  "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_GROUP": "Interfaces des Unternehmensnetzwerks",
+  "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_UNGROUP": "Die Netzwerkinterfaces trennen",
+  "server_ola_reset": "Die „private aggregation“ dekonfigurieren"
 }

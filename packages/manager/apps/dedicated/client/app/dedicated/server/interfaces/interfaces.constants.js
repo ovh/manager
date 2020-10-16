@@ -15,6 +15,9 @@ export const GUIDES = {
 };
 
 export const INTERFACE_TASK = 'INFRA_002_VirtualNetworkInterface';
+export const INTERFACE_GROUP_TASK = 'INFRA_002_VirtualNetworkInterface_group';
+export const INTERFACE_UNGROUP_TASK =
+  'INFRA_002_VirtualNetworkInterface_ungroup';
 
 export const PHYSICAL_TYPE = {
   public: 'public',

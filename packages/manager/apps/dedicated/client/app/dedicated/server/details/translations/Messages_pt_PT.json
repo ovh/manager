@@ -1222,5 +1222,7 @@
   "server_configuration_installation_form_rtm_deactivated": "Desativado",
   "server_configuration_installation_form_rtm_activated": "Ativado",
   "server_configuration_installation_image": "Instalar a partir de uma imagem personalizada",
-  "server_configuration_distribution_byoi": "BringYourOwnImage"
+  "server_configuration_distribution_byoi": "BringYourOwnImage",
+  "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_GROUP": "Interfaces de rede do grupo",
+  "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_UNGROUP": "Separar as interfaces de rede"
 }

@@ -1047,7 +1047,8 @@
   "server_ola_active": "Actif",
   "server_ola_inactive": "Inactif",
   "server_ola_activate": "Activer OLA",
-  "server_ola_configure": "Configurer OLA",
+  "server_ola_configure": "Configurer l'agrégation privée",
+  "server_ola_reset": "Déconfigurer l'agrégation privée",
   "server_ola_terminate": "Résilier OLA",
   "server_ola_mode_vrack_aggregation": "Agrégation privée",
   "server_ola_mode_default": "Défaut",
@@ -1222,5 +1223,7 @@
   "server_error_ola_terminate": "Une erreur est survenue lors de la résiliation de votre service : {{error}}",
   "server_error_vrack_attach": "Une erreur est survenue lors de l'attachement du réseau privé : {{error}}",
   "server_error_vrack_detach": "Une erreur est survenue lors du détachement du réseau privé : {{error}}",
-  "server_error_bandwidth_order": "Une erreur est survenue lors de la commande de bande passante : {{error}}"
+  "server_error_bandwidth_order": "Une erreur est survenue lors de la commande de bande passante : {{error}}",
+  "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_GROUP": "Interfaces réseau de groupe",
+  "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_UNGROUP": "Dissocier les interfaces réseau"
 }

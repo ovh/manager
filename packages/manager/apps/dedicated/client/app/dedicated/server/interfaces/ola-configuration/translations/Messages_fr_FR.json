@@ -1,5 +1,5 @@
 {
-  "dedicated_server_interfaces_ola_title": "Configuration OLA",
+  "dedicated_server_interfaces_ola_title": "Configuration d'OVHcloud Link Aggregation",
   "dedicated_server_interfaces_ola_description": "OLA vous permet de configurer une interface réseau et d’en modifier le fonctionnement. Par exemple, utilisez l’interface dédiée au réseau public afin d’obtenir une double connectivité au réseau privé OVH (vRack)",
   "dedicated_server_interface_ola_new_tab": "(S'ouvre dans un nouvel onglet)",
 
@@ -13,6 +13,9 @@
   "dedicated_server_interfaces_ola_column_network_offer": "Offre réseau",
   "dedicated_server_interfaces_ola_column_bandwidth_outgoing": "Bande passante sortante",
   "dedicated_server_interfaces_ola_column_bandwidth_incoming": "Bande passante entrante",
+
+  "dedicated_server_interfaces_ola_network_interfaces": "Votre interface réseau actuelle",
+  "dedicated_server_interfaces_ola_network_interfaces_after": "Votre interface réseau après activation",
 
   "dedicated_server_interfaces_ola_field_mode_label": "Choisissez un mode",
   "dedicated_server_interfaces_ola_field_mode_description": "OLA est capable de proposer differents types de configuration des interfaces",

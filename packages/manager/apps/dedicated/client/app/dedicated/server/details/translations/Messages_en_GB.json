@@ -1038,7 +1038,7 @@
   "server_ola_active": "Enabled",
   "server_ola_inactive": "Disabled",
   "server_ola_activate": "Enable OLA",
-  "server_ola_configure": "Configure OLA",
+  "server_ola_configure": "Configure private aggregation",
   "server_ola_terminate": "Cancel OLA",
   "server_ola_mode_vrack_aggregation": "Private aggregation",
   "server_ola_mode_default": "Default",
@@ -1222,5 +1222,8 @@
   "server_configuration_installation_form_rtm_deactivated": "Disabled",
   "server_configuration_installation_form_rtm_activated": "Enabled",
   "server_configuration_installation_image": "Install from custom image",
-  "server_configuration_distribution_byoi": "BringYourOwnImage"
+  "server_configuration_distribution_byoi": "BringYourOwnImage",
+  "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_GROUP": "Group network interfaces",
+  "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_UNGROUP": "Detach network interfaces",
+  "server_ola_reset": "Unconfigure private aggregation"
 }

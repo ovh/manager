@@ -1,17 +1,17 @@
 import get from 'lodash/get';
 import { GUIDES } from './interfaces.constants';
+import { redirectTo } from './ola-pending-task/ola-pending-task.routing';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicated-server.server.interfaces', {
-    url: '/interfaces?:configStep',
+    url: '/interfaces',
     views: {
       'tabView@app.dedicated-server.server': {
         component: 'dedicatedServerInterfaces',
       },
     },
-    params: {
-      configStep: { dynamic: true },
-    },
+    translations: { value: ['.'], format: 'json' },
+    redirectTo,
     resolve: {
       alertError: /* @ngInject */ ($timeout, $translate, Alerter) => (
         translateId,
@@ -20,7 +20,9 @@ export default /* @ngInject */ ($stateProvider) => {
         $timeout(() => {
           Alerter.set(
             'alert-danger',
-            $translate.instant(translateId, { error: error.message }),
+            $translate.instant(translateId, {
+              error: get(error, 'message', error),
+            }),
           );
         }),
       failoverIps: /* @ngInject */ (OvhApiIp, serverName) =>
@@ -73,14 +75,22 @@ export default /* @ngInject */ ($stateProvider) => {
               'app.dedicated-server.server.interfaces.bandwidth-public-order',
               { productId: serverName },
             ),
-      taskPolling: /* @ngInject */ (
-        DedicatedServerInterfacesService,
-        serverName,
-      ) => DedicatedServerInterfacesService.getTasks(serverName),
       urls: /* @ngInject */ (constants, user) =>
         constants.urls[user.ovhSubsidiary],
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('dedicated_server_interfaces'),
+      goToInterfaces: ($state, Alerter, serverName) => (
+        message = false,
+        type = 'success',
+      ) => {
+        const promise = $state.go('app.dedicated-server.server.interfaces', {
+          projectId: serverName,
+        });
+        if (message) {
+          promise.then(() => Alerter[type](message));
+        }
+        return promise;
+      },
     },
   });
 };

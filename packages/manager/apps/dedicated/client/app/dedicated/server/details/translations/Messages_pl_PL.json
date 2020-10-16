@@ -1038,7 +1038,7 @@
   "server_ola_active": "Aktywny",
   "server_ola_inactive": "Nieaktywny",
   "server_ola_activate": "Włącz OLA",
-  "server_ola_configure": "Konfiguruj OLA",
+  "server_ola_configure": "Skonfiguruj agregację prywatną",
   "server_ola_terminate": "Rezygnuj z OLA",
   "server_ola_mode_vrack_aggregation": "Agregacja prywatna",
   "server_ola_mode_default": "Domyślnie",
@@ -1222,5 +1222,8 @@
   "server_configuration_installation_form_rtm_deactivated": "Wyłączony",
   "server_configuration_installation_form_rtm_activated": "Aktywny",
   "server_configuration_installation_image": "Instalacja z wykorzystaniem spersonalizowanego obrazu",
-  "server_configuration_distribution_byoi": "BringYourOwnImage"
+  "server_configuration_distribution_byoi": "BringYourOwnImage",
+  "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_GROUP": "Grupowe interfejsy sieciowe",
+  "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_UNGROUP": "Odłącz interfejsy sieciowe",
+  "server_ola_reset": "Wyłącz agregację prywatną"
 }

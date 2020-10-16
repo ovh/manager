@@ -1,12 +1,12 @@
-import controller from './ola-terminate.controller';
-import template from './ola-terminate.html';
+import controller from './ola-reset.controller';
+import template from './ola-reset.html';
 
 export default {
   bindings: {
     goBack: '<',
     alertError: '<',
-    atTrack: '<',
     serverName: '<',
+    ola: '<',
   },
   controller,
   template,

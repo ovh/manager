@@ -18,6 +18,8 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         goBack: /* @ngInject */ ($state) => () => $state.go('^'),
         breadcrumb: () => null,
+        hasDefaultPaymentMethod: /* @ngInject */ (ovhPaymentMethod) =>
+          ovhPaymentMethod.hasDefaultPaymentMethod(),
       },
     });
   });

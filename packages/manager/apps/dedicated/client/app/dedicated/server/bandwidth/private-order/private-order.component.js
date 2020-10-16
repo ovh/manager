@@ -5,8 +5,9 @@ export default {
   controller,
   template,
   bindings: {
-    goBack: '<',
     alertError: '<',
+    goBack: '<',
+    hasDefaultPaymentMethod: '<',
     serverName: '<',
     specifications: '<',
     user: '<',
