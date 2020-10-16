@@ -1,9 +1,10 @@
 export default class Service {
-  constructor({ serviceId, route, resource }) {
+  constructor({ billing, serviceId, route, resource }) {
     Object.assign(this, {
       serviceId,
       route,
       resource,
+      billing,
     });
 
     this.route.url = route.url.replace(
@@ -18,5 +19,9 @@ export default class Service {
 
   get path() {
     return this.route.url;
+  }
+
+  get nextBillingDate() {
+    return moment(this.billing.nextBillingDate).format('LL');
   }
 }
