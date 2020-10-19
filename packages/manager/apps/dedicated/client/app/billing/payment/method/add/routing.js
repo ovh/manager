@@ -105,9 +105,10 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
         $transition$,
         $translate,
         goPaymentList,
+        RedirectionService,
       ) => () => {
         const { callbackUrl } = $transition$.params();
-        if (callbackUrl) {
+        if (callbackUrl && RedirectionService.validate(callbackUrl)) {
           window.location.href = callbackUrl;
           return callbackUrl;
         }
