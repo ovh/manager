@@ -6,14 +6,14 @@ export default class ServicesActionsCtrl {
     $attrs,
     $q,
     $translate,
-    BillingSubscriptionService,
+    BillingService,
     ovhFeatureFlipping,
     RedirectionService,
   ) {
     this.$attrs = $attrs;
     this.$q = $q;
     this.$translate = $translate;
-    this.BillingSubscriptionService = BillingSubscriptionService;
+    this.BillingService = BillingService;
     this.ovhFeatureFlipping = ovhFeatureFlipping;
     this.RedirectionService = RedirectionService;
   }
@@ -28,7 +28,7 @@ export default class ServicesActionsCtrl {
         this.contactAvailability = contactAvailability;
         return this.serviceInfos
           ? this.$q.when(new ServiceInfos(this.serviceInfos))
-          : this.BillingSubscriptionService.getServiceInfos(this.servicePath);
+          : this.BillingService.getServiceInfos(this.servicePath);
       })
       .then((serviceInfos) => {
         this.serviceInfos = serviceInfos;
@@ -39,10 +39,10 @@ export default class ServicesActionsCtrl {
           },
         );
         return this.$q.all({
-          service: this.BillingSubscriptionService.getService(serviceInfos),
+          service: this.BillingService.getService(serviceInfos.serviceId),
           engagement:
             serviceInfos.hasEngagement() && this.withEngagement
-              ? this.BillingSubscriptionService.getEngagement(serviceInfos)
+              ? this.BillingService.getEngagement(serviceInfos.serviceId)
               : this.$q.when(null),
         });
       })
