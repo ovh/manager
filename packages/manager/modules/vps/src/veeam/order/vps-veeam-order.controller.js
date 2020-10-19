@@ -36,9 +36,9 @@ export default class VpsVeeamOrderCtrl {
   }
 
   static getVeeamMonthlyPrice(option) {
-    const price = find(option.prices, {
-      duration: 'P1M',
-    });
+    const price = find(option.prices, ({ capacities }) =>
+      capacities.includes('renew'),
+    );
     return get(price, 'price');
   }
 
@@ -51,9 +51,9 @@ export default class VpsVeeamOrderCtrl {
       this.coreConfig.getRegion(),
       this.connectedUser.ovhSubsidiary,
     ]);
-    const priceOptions = find(this.veeamOption.prices, {
-      duration: 'P1M',
-    });
+    const priceOptions = find(this.veeamOption.prices, ({ capacities }) =>
+      capacities.includes('renew'),
+    );
     const expressParams = {
       productId: 'vps',
       serviceName: this.stateVps.name,
