@@ -6,7 +6,11 @@ import map from 'lodash/map';
 import union from 'lodash/union';
 import words from 'lodash/words';
 
-import { Environment, LANGUAGES } from '@ovh-ux/manager-config';
+import {
+  Environment,
+  LANGUAGES,
+  localeStorageKey,
+} from '@ovh-ux/manager-config';
 
 import { LANG_PATTERN } from './constants';
 
@@ -33,6 +37,11 @@ export default class {
   }
 
   getCurrentLang() {
+    // TODO(@antleblanc): Remove it on February 4th, 2021.
+    if (localStorage[localeStorageKey] === 'cs_CZ') {
+      return this.availableLangs.find(({ key }) => key === 'cs_CZ');
+    }
+
     return this.availableLangs.find(
       ({ key }) => key === Environment.getUserLocale(),
     );
