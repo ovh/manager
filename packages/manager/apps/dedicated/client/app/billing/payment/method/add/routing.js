@@ -6,7 +6,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
   const name = 'app.account.billing.payment.method.add';
 
   $stateProvider.state(name, {
-    url: '/add',
+    url: '/add?callbackUrl',
     views: {
       '@app.account.billing.payment': {
         component: component.name,
@@ -105,14 +105,21 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
         $transition$,
         $translate,
         goPaymentList,
-      ) => () =>
-        goPaymentList(
+      ) => () => {
+        const { callbackUrl } = $transition$.params();
+        if (callbackUrl) {
+          window.location.href = callbackUrl;
+          return callbackUrl;
+        }
+
+        return goPaymentList(
           {
             type: 'success',
             text: $translate.instant('billing_payment_method_add_success'),
           },
           get($transition$.params(), 'from', null),
-        ),
+        );
+      },
     },
   });
 
