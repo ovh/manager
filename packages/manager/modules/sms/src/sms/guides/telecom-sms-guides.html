@@ -17,33 +17,38 @@
                 data-ng-if="SmsGuidesCtrl.hasGuides()"
                 data-ng-repeat="section in SmsGuidesCtrl.guides.sections track by section.label"
             >
-                <header class="widget-presentation-header">
-                    <h2
-                        class="widget-presentation-title"
-                        data-translate="{{ section.label }}"
-                    ></h2>
-                </header>
-                <ul>
-                    <li
-                        data-ng-repeat="guide in section.guides track by guide.label"
-                    >
-                        <a
-                            title="{{ guide.label | translate }} ({{:: 'common_open_new_tab' | translate }})"
-                            target="_blank"
-                            rel="noopener"
+                <div
+                    data-ng-if="SmsGuidesCtrl.constructor.hasGuidesInSection(section, SmsGuidesCtrl.language)"
+                >
+                    <header class="widget-presentation-header">
+                        <h2
+                            class="widget-presentation-title"
+                            data-translate="{{ section.label }}"
+                        ></h2>
+                    </header>
+                    <ul>
+                        <li
+                            data-ng-repeat="guide in section.guides track by guide.label"
                             data-ng-if="guide.url[SmsGuidesCtrl.language]"
-                            data-ng-href="{{ guide.url[SmsGuidesCtrl.language] }}"
                         >
-                            <span
-                                data-translate="{{ guide.label | translate }}"
-                            ></span>
-                            <i
-                                class="ovh-font ovh-font-newtab"
-                                aria-hidden="true"
-                            ></i>
-                        </a>
-                    </li>
-                </ul>
+                            <a
+                                title="{{ guide.label | translate }} ({{:: 'common_open_new_tab' | translate }})"
+                                target="_blank"
+                                rel="noopener"
+                                data-ng-if="guide.url[SmsGuidesCtrl.language]"
+                                data-ng-href="{{ guide.url[SmsGuidesCtrl.language] }}"
+                            >
+                                <span
+                                    data-translate="{{ guide.label | translate }}"
+                                ></span>
+                                <i
+                                    class="ovh-font ovh-font-newtab"
+                                    aria-hidden="true"
+                                ></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </section>
             <!-- /.widget-presentation -->
         </div>
