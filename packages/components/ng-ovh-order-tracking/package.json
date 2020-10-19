@@ -48,6 +48,6 @@
     "@ovh-ux/ui-kit": "^4.1.12",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",
-    "ovh-api-services": "^9.39.1"
+    "ovh-api-services": "^11.0.0"
   }
 }
