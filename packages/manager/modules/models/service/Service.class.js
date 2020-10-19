@@ -24,4 +24,12 @@ export default class Service {
   get nextBillingDate() {
     return moment(this.billing.nextBillingDate).format('LL');
   }
+
+  get productType() {
+    return this.route.path
+      .replace(/{.*}/, '')
+      .split('/')
+      .filter((item) => !!item)
+      .join('_');
+  }
 }
