@@ -12,6 +12,7 @@ const universes = {
 };
 
 const URI = {
+  addPaymentMethod: '#/billing/payment/method/add',
   agreements: '#/billing/autorenew/agreements',
   autorenew: '#/billing/autorenew',
   billing: '#/billing/history',
@@ -35,6 +36,7 @@ const URI = {
 
 export default {
   EU: {
+    addPaymentMethod: `${URI.addPaymentMethod}`,
     agreements: `${managerRoot.EU}/${universes.dedicated}/${URI.agreements}`,
     autorenew: `${managerRoot.EU}/${universes.dedicated}/${URI.autorenew}`,
     billing: `${managerRoot.EU}/${universes.dedicated}/${URI.billing}`,
@@ -88,6 +90,7 @@ export default {
     userEmails: `${managerRoot.EU}/${universes.dedicated}/${URI.userEmails}`,
   },
   CA: {
+    addPaymentMethod: `${managerRoot.CA}/${universes.dedicated}/${URI.addPaymentMethod}`,
     agreements: `${managerRoot.CA}/${universes.dedicated}/${URI.agreements}`,
     autorenew: `${managerRoot.CA}/${universes.dedicated}/${URI.autorenew}`,
     billing: `${managerRoot.CA}/${universes.dedicated}/${URI.billing}`,
@@ -128,6 +131,7 @@ export default {
     userEmails: `${managerRoot.CA}/${universes.dedicated}/${URI.userEmails}`,
   },
   US: {
+    addPaymentMethod: `${managerRoot.US}/${universes.dedicated}/${URI.addPaymentMethod}`,
     agreements: `${managerRoot.US}/${universes.dedicated}/${URI.agreements}`,
     billing: `${managerRoot.US}/${universes.dedicated}/${URI.billing}`,
     billingEnterprise: 'https://billing.us.ovhcloud.com/login',
