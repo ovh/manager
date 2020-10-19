@@ -64,6 +64,7 @@
     "ovh-ui-kit-bs": "^4.2.0",
     "popper.js": "^1.16.1",
     "punycode": "^1.4.1",
+    "regenerator-runtime": "^0.13.7",
     "ui-select": "^0.19.8",
     "validator": "^11.1.0",
     "validator-js": "^0.2.1"

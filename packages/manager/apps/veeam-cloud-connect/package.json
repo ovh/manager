@@ -54,6 +54,7 @@
     "oclazyload": "^1.1.0",
     "ovh-api-services": "^10.1.0",
     "popper.js": "^1.16.1",
+    "regenerator-runtime": "^0.13.7",
     "ui-select": "^0.19.8"
   },
   "devDependencies": {

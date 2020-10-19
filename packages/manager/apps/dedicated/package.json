@@ -145,6 +145,7 @@
     "qrcode.js": "janantala/qrcode.js#~1.0.x",
     "randexp": "fent/randexp.js#~0.4.0",
     "raphael": "^2.2.8",
+    "regenerator-runtime": "^0.13.7",
     "u2f-api-polyfill": "^0.4.3",
     "ui-select": "^0.19.8",
     "urijs": "^1.19.1",
