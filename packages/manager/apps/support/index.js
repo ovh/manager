@@ -9,6 +9,7 @@ import 'script-loader!moment/min/moment-with-locales.min.js';
 /* eslint-enable import/no-webpack-loader-syntax, import/extensions */
 
 import 'core-js/stable';
+import 'regenerator-runtime/runtime';
 
 import { state } from './index.routing';
 

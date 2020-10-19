@@ -121,6 +121,7 @@
     "properties": "latest",
     "punycode": "^1.4.1",
     "raven-js": "^3.27.1",
+    "regenerator-runtime": "^0.13.7",
     "request": "^2.51.0",
     "ui-select": "^0.19.8",
     "urijs": "^1.19.1",

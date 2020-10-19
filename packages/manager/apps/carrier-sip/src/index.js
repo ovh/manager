@@ -4,6 +4,7 @@ import 'script-loader!moment/min/moment-with-locales.min';
 /* eslint-enable import/no-webpack-loader-syntax */
 
 import 'core-js/stable';
+import 'regenerator-runtime/runtime';
 
 import angular from 'angular';
 

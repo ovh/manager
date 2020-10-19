@@ -5,6 +5,7 @@ import 'script-loader!chart.js/dist/Chart.min.js';
 /* eslint-enable import/no-webpack-loader-syntax, import/extensions */
 
 import 'core-js/stable';
+import 'regenerator-runtime/runtime';
 
 import { Environment } from '@ovh-ux/manager-config';
 
