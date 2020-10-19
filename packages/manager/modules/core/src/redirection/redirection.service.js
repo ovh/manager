@@ -1,6 +1,7 @@
-import { forOwn, get, isString, keys } from 'lodash-es';
+import { forOwn, get, isString, keys, startsWith } from 'lodash-es';
+import { Environment } from '@ovh-ux/manager-config';
 
-import constants from './redirection.constants';
+import constants, { managerRoot, telecomRoot } from './redirection.constants';
 
 export default class RedirectionService {
   /* @ngInject */
@@ -31,5 +32,12 @@ export default class RedirectionService {
     }
 
     return url;
+  }
+
+  static validate(url) {
+    return (
+      startsWith(managerRoot[Environment.getRegion()], url) ||
+      startsWith(telecomRoot[Environment.getRegion()], url)
+    );
   }
 }
