@@ -4,8 +4,8 @@ import '@ovh-ux/ui-kit';
 import '@ovh-ux/ng-ovh-feature-flipping';
 import '@ovh-ux/manager-core';
 
+import utils from '../utils';
 import component from './subscription-tile.component';
-import service from './subscription-tile.service';
 
 const moduleName = 'ovhManagerBillingSubscriptionTile';
 
@@ -16,9 +16,9 @@ angular
     'ngTranslateAsyncLoader',
     'oui',
     'ovhManagerCore',
+    utils,
   ])
   .component('billingSubscriptionTile', component)
-  .service('BillingSubscriptionService', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
