@@ -1,3 +1,12 @@
+## [5.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.2.0...@ovh-ux/manager-pci@5.2.1) (2020-10-19)
+
+
+### Bug Fixes
+
+* **pci:** null instance price ([#3864](https://github.com/ovh/manager/issues/3864)) ([cd62472](https://github.com/ovh/manager/commit/cd62472518be88fa9ea8f923e731705e69121901))
+
+
+
 # [5.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.1.5...@ovh-ux/manager-pci@5.2.0) (2020-10-13)
 
 
