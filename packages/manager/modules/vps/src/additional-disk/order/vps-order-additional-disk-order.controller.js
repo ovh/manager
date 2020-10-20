@@ -42,9 +42,9 @@ export default class VpsOrderDiskCtrl {
   }
 
   static getDiskMonthlyPrice(disk) {
-    const price = find(disk.prices, {
-      duration: 'P1M',
-    });
+    const price = find(disk.prices, ({ capacities }) =>
+      capacities.includes('renew'),
+    );
     return get(price, 'price');
   }
 
@@ -57,9 +57,9 @@ export default class VpsOrderDiskCtrl {
       this.coreConfig.getRegion(),
       this.connectedUser.ovhSubsidiary,
     ]);
-    const priceOptions = find(this.model.disk.prices, {
-      duration: 'P1M',
-    });
+    const priceOptions = find(this.model.disk.prices, ({ capacities }) =>
+      capacities.includes('renew'),
+    );
     const expressParams = {
       productId: 'vps',
       serviceName: this.stateVps.name,
