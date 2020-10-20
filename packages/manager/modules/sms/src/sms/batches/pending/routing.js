@@ -41,5 +41,8 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
       reloadPage: /* @ngInject */ ($state) => () => $state.reload(),
     },
+    atInternet: {
+      rename: 'sms::service::campaign::pending',
+    },
   });
 };

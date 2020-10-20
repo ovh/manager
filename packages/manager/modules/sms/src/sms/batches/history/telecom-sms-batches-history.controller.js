@@ -1,6 +1,8 @@
 import get from 'lodash/get';
 import moment from 'moment';
 
+import { DOWNLOAD_HIT } from './telecom-sms-batches-history.constants';
+
 export default class SmsBatchesHistoryController {
   /* @ngInject */
   constructor(SmsService) {
@@ -10,6 +12,7 @@ export default class SmsBatchesHistoryController {
   downloadLogs(batch) {
     this.isDownloading = true;
 
+    this.trackClick(DOWNLOAD_HIT);
     return this.SmsService.getDocument(
       this.serviceName,
       moment(batch.createdAt).format(),

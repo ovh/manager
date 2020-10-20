@@ -8,6 +8,8 @@ export default {
 
     getBatchesStatistics: '<',
     getReloadCreditLink: '<',
+
+    trackClick: '<',
   },
   controller,
   name: 'ovhManagerSmsDashboard',

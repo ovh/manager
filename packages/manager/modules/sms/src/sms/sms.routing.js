@@ -42,6 +42,12 @@ export default /* @ngInject */ ($stateProvider) => {
           'sms:hlr',
           'sms:response',
         ]),
+      trackClick: /* ngInject */ (atInternet) => (hit) => {
+        atInternet.trackClick({
+          name: hit,
+          type: 'action',
+        });
+      },
       user: /* @ngInject */ (OvhApiMe) => OvhApiMe.v6().get().$promise,
       $title: /* @ngInject */ ($translate, service) =>
         $translate.instant(

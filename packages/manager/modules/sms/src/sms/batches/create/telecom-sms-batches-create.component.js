@@ -4,10 +4,10 @@ import template from './telecom-sms-batches-create.html';
 export default {
   bindings: {
     createBatch: '<',
-    getOrderHref: '<',
     getSendersHref: '<',
     goBack: '<',
     goToComposeTip: '<',
+    goToOrder: '<',
     goToPhonebooksContacts: '<',
     goToReceiversChoice: '<',
     goToSizeTip: '<',
@@ -20,6 +20,7 @@ export default {
     senders: '<',
     service: '<',
     smsClasses: '<',
+    trackClick: '<',
     user: '<',
   },
   controller,

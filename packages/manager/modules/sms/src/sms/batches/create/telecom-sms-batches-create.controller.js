@@ -1,6 +1,8 @@
 import moment from 'moment';
 import { SMS_COMPOSE } from '../../sms/compose/telecom-sms-sms-compose.constant';
 
+import { CREATE_BATCH_HIT } from './telecom-sms-batches-create.constants';
+
 export default class SmsBatchesCreateController {
   /* @ngInject */
   constructor($q, $translate) {
@@ -61,6 +63,7 @@ export default class SmsBatchesCreateController {
 
   validateBatch() {
     this.isValidating = true;
+    this.trackClick(CREATE_BATCH_HIT);
     const batchParams = SmsBatchesCreateController.buildBatchParams(this.sms);
 
     // First call to send to numeric receivers

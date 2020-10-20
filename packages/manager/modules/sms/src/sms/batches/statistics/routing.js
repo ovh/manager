@@ -17,10 +17,15 @@ export default /* @ngInject */ ($stateProvider) => {
         $http
           .get(`/sms/${serviceName}/batches/${batchId}/statistics`)
           .then(({ data }) => data),
-      goToDetails: /* @ngInject */ ($state) => (batch) =>
-        $state.go('sms.service.batches.details', {
+      goToDetails: /* @ngInject */ ($state, trackClick) => (batch) => {
+        trackClick('sms::service::campaign::reports::get-details');
+        return $state.go('sms.service.batches.details', {
           batchId: batch.id,
-        }),
+        });
+      },
+    },
+    atInternet: {
+      rename: 'sms::service::campaign::reports',
     },
   });
 };

@@ -44,7 +44,7 @@
                 ></oui-action-menu-item>
                 <oui-action-menu-item
                     aria-label="{{:: 'sms_batches_actions_statistics' | translate }}"
-                    href="{{:: $ctrl.getDashboardHref() }}"
+                    on-click="$ctrl.goToDashboard()"
                     ><span
                         data-translate="sms_batches_actions_statistics"
                     ></span

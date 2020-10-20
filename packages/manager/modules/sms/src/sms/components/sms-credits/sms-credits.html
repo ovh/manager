@@ -4,7 +4,7 @@
         description="{{:: $ctrl.credits }}"
     >
     </oui-tile-definition>
-    <oui-tile-button href="{{:: $ctrl.orderHref }}">
+    <oui-tile-button on-click="$ctrl.goToOrderCredits()">
         <span data-translate="sms_credit_manage_credits"></span>
     </oui-tile-button>
 </oui-tile>

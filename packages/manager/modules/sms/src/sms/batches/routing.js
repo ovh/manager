@@ -34,5 +34,8 @@ export default /* @ngInject */ ($stateProvider) => {
       schema: /* @ngInject */ ($http) =>
         $http.get('/sms.json').then(({ data: schema }) => schema),
     },
+    atInternet: {
+      rename: 'sms::service::campaign',
+    },
   });
 };

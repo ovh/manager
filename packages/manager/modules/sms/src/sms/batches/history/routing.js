@@ -1,5 +1,10 @@
 import component from './telecom-sms-batches-history.component';
 
+import {
+  DETAILS_HIT,
+  STATISTICS_HIT,
+} from './telecom-sms-batches-history.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('sms.service.batches.history', {
     url: '/history',
@@ -19,22 +24,29 @@ export default /* @ngInject */ ($stateProvider) => {
       displaySuccessMessage: /* @ngInject */ ($translate, TucToast) => (
         successMessage,
       ) => TucToast.success(successMessage),
-      getDashboardHref: /* @ngInject */ ($state) => () =>
-        $state.href('sms.service.dashboard'),
+      goToDashboard: /* @ngInject */ ($state, trackClick) => () => {
+        trackClick(STATISTICS_HIT);
+        return $state.go('sms.service.dashboard');
+      },
       goToCancelBatch: /* @ngInject */ ($state) => (batchId) =>
         $state.go('sms.service.batches.history.cancel', {
           batchId,
         }),
-      goToDetails: /* @ngInject */ ($state) => (batch) =>
-        $state.go('sms.service.batches.details', {
+      goToDetails: /* @ngInject */ ($state, trackClick) => (batch) => {
+        trackClick(DETAILS_HIT);
+        return $state.go('sms.service.batches.details', {
           batchId: batch.id,
           previousState: 'sms.service.batches.history',
-        }),
+        });
+      },
     },
     views: {
       'smsView@sms.service': {
         component: component.name,
       },
+    },
+    atInternet: {
+      rename: 'sms::service::campaign::outgoing',
     },
   });
 };

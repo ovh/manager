@@ -5,6 +5,8 @@ const STATISTICS_FILTER = {
   ALL: 'all',
 };
 
+const RELOAD_CREDITS_HIT_NAME = 'sms::service::dashboard::report::add-credit';
+
 export default class {
   /* @ngInject */
   constructor($translate, OvhApiSms, TucSmsMediator, TucToastError) {
@@ -27,41 +29,49 @@ export default class {
         name: 'compose_message',
         sref: 'sms.service.sms.compose',
         text: this.$translate.instant('sms_actions_send_sms'),
+        hit: 'sms::service::dashboard::shortcuts::compose',
       },
       {
         name: 'recredit_options',
         sref: 'sms.service.order',
         text: this.$translate.instant('sms_actions_credit_account'),
+        hit: 'sms::service::dashboard::shortcuts::order',
       },
       {
         name: 'manage_recipient_new',
         sref: 'sms.service.receivers',
         text: this.$translate.instant('sms_actions_create_contact'),
+        hit: 'sms::service::dashboard::shortcuts::add-receivers',
       },
       {
         name: 'manage_senders',
         sref: 'sms.service.senders.add',
         text: this.$translate.instant('sms_actions_create_sender'),
+        hit: 'sms::service::dashboard::shortcuts::add-senders',
       },
       {
         name: 'manage_soapi_users',
         sref: 'sms.service.users',
         text: this.$translate.instant('sms_actions_create_api_user'),
+        hit: 'sms::service::dashboard::shortcuts::add-user',
       },
       {
         name: 'manage_blacklisted_senders',
         sref: 'sms.service.receivers',
         text: this.$translate.instant('sms_actions_clean_contact_list'),
+        hit: 'sms::service::dashboard::shortcuts::clean-receivers',
       },
       {
         name: 'create_campaign',
         sref: 'sms.service.batches.create',
         text: this.$translate.instant('sms_actions_create_campaign'),
+        hit: 'sms::service::dashboard::shortcuts::add-campaign',
       },
       {
         name: 'campaign_history',
         sref: 'sms.service.batches.history',
         text: this.$translate.instant('sms_actions_campaign_history'),
+        hit: 'sms::service::dashboard::shortcuts::historic-campaigns',
       },
     ];
 
@@ -72,6 +82,10 @@ export default class {
 
     [this.statisticFilter] = this.statisticsFilters;
     return this.getStatistics();
+  }
+
+  static getTrackName() {
+    return RELOAD_CREDITS_HIT_NAME;
   }
 
   getStatistics() {

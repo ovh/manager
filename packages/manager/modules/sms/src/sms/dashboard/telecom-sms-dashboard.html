@@ -14,6 +14,9 @@
                         <a
                             class="oui-tile__button oui-button oui-button_icon-right oui-button_ghost oui-button_block"
                             data-ui-sref="{{ action.sref }}"
+                            data-track-on="click"
+                            data-track-name="{{:: action.hit }}"
+                            data-track-type="action"
                         >
                             <span data-ng-bind="action.text"></span>
                             <i
@@ -53,6 +56,9 @@
                             <a
                                 class="oui-link"
                                 href="{{:: $ctrl.getReloadCreditLink() }}"
+                                data-track-on="click"
+                                data-track-name="{{:: $ctrl.constructor.getTrackName() }}"
+                                data-track-type="action"
                             >
                                 <span
                                     data-translate="sms_statictics_credit_reload"

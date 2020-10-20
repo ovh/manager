@@ -3,6 +3,8 @@ import SMS_CONSTANTS from '../../telecom-sms.constant';
 
 import component from './telecom-sms-batches-create.component';
 
+import { MANAGE_CREDITS_HIT } from './telecom-sms-batches-create.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('sms.service.batches.create', {
     url: '/create',
@@ -22,8 +24,10 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
       getSendersHref: /* @ngInject */ ($state) => () =>
         $state.href('sms.service.senders'),
-      getOrderHref: /* @ngInject */ ($state) => () =>
-        $state.href('sms.service.order'),
+      goToOrder: /* @ngInject */ ($state, trackClick) => () => {
+        trackClick(MANAGE_CREDITS_HIT);
+        return $state.go('sms.service.order');
+      },
       goToComposeTip: /* @ngInject */ ($state) => () =>
         $state.go('sms.service.batches.create.compose-tips'),
       goToPhonebooksContacts: /* @ngInject */ ($state) => (model) =>
@@ -93,6 +97,9 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
       smsClasses: /* @ngInject */ (schema) =>
         schema.models['sms.BatchClassEnum'].enum,
+    },
+    atInternet: {
+      rename: 'sms::service::campaign::create',
     },
   });
 };

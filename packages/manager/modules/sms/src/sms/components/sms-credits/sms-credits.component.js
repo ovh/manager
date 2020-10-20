@@ -3,7 +3,7 @@ import template from './sms-credits.html';
 export default {
   bindings: {
     credits: '<',
-    orderHref: '<',
+    goToOrderCredits: '<',
   },
   name: 'ovhManagerSmsSmsCredits',
   template,
