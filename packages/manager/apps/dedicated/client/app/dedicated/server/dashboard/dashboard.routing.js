@@ -120,6 +120,8 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
+      goToCommit: /* @ngInject */ ($state) => () =>
+        $state.go('app.dedicated.server.dashboard.commitment'),
       goToSgxIntroduction: /* @ngInject */ ($state, atInternet) => () => {
         atInternet.trackClick({
           name: 'dedicated::dedicated::server::dashboard::sgx::manage',

@@ -33,7 +33,7 @@
             ></span>
         </oui-action-menu-item>
         <oui-action-menu-item
-            ng-if="!$ctrl.service.isOneShot() && !$ctrl.service.hasManualRenew() && $ctrl.service.canHandleRenew()"
+            ng-if="!$ctrl.service.isOneShot() && !$ctrl.service.hasManualRenew() && $ctrl.service.canHandleRenew() && !$ctrl.service.canBeEngaged && !$ctrl.service.hasPendingEngagement"
             href="{{:: $ctrl.getRenewUrl() }}"
             external
             on-click="$ctrl.trackAction('go-to-anticipate-payment')"
@@ -57,6 +57,13 @@
         </oui-action-menu-item>
         <!-- /Service in manual renew  -->
     </div>
+
+    <oui-action-menu-item
+        ng-if="$ctrl.service.canBeEngaged && !$ctrl.service.hasPendingEngagement"
+        href="{{:: $ctrl.commitmentLink }}"
+    >
+        <span data-translate="billing_services_actions_menu_commit"></span>
+    </oui-action-menu-item>
 
     <!-- Exchange -->
     <div data-ng-if="$ctrl.service.serviceType === $ctrl.SERVICE_TYPE.EXCHANGE">

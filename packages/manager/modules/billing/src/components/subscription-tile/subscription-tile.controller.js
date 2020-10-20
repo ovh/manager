@@ -38,17 +38,35 @@ export default class ServicesActionsCtrl {
             serviceName: serviceInfos.domain,
           },
         );
+        this.serviceManagementUrl = this.RedirectionService.getURL(
+          'serviceManagement',
+          {
+            serviceName: serviceInfos.domain,
+          },
+        );
         return this.$q.all({
           service: this.BillingService.getService(serviceInfos.serviceId),
           engagement:
             serviceInfos.hasEngagement() && this.withEngagement
               ? this.BillingService.getEngagement(serviceInfos.serviceId)
               : this.$q.when(null),
+          canBeEngaged: this.withEngagement
+            ? this.BillingService.getAvailableEngagement(serviceInfos.serviceId)
+                .then((availableEngagements) => availableEngagements.length > 0)
+                .catch(() => false)
+            : this.$q.when(false),
+          hasPendingEngagement: this.withEngagement
+            ? this.BillingService.getPendingEngagement(serviceInfos.serviceId)
+                .then(() => true)
+                .catch(() => false)
+            : this.$q.when(false),
         });
       })
-      .then(({ service, engagement }) => {
+      .then(({ canBeEngaged, service, engagement, hasPendingEngagement }) => {
         this.service = service;
         this.engagement = engagement;
+        this.canBeEngaged = canBeEngaged;
+        this.hasPendingEngagement = hasPendingEngagement;
       })
       .catch((error) =>
         this.onError({

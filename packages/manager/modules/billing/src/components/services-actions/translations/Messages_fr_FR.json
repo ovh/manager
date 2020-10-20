@@ -17,5 +17,6 @@
   "billing_services_actions_menu_sms_credit": "Ajouter des crédits",
   "billing_services_actions_menu_sms_renew": "Configurer la recharge automatique",
   "billing_services_actions_menu_resiliate_cancel": "Annuler la résiliation du service",
-  "billing_services_actions_menu_see_dashboard": "Voir le détail du service"
+  "billing_services_actions_menu_see_dashboard": "Voir le détail du service",
+  "billing_services_actions_menu_commit": "Gérer mon engagement"
 }

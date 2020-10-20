@@ -7,6 +7,8 @@ export default {
     withEngagement: '<?',
     servicePath: '@',
     serviceInfos: '<?',
+    goToCommit: '&',
+    highlightEngagement: '<?',
   },
   controller,
   template,

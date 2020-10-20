@@ -481,6 +481,9 @@
                 on-error="$ctrl.onBillingInformationError(error)"
                 service-path="{{ '/dedicated/server/' + $ctrl.server.name }}"
                 with-engagement
+                go-to-commit="$ctrl.goToCommit()"
+                service-infos="$ctrl.serviceInfos"
+                highlight-engagement="$ctrl.server.shouldReengage"
             >
                 <billing-contact-actions>
                     <oui-action-menu-item
