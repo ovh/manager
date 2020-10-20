@@ -14,6 +14,7 @@ export default class DedicatedServerDashboard {
     $state,
     $stateParams,
     $translate,
+    Alerter,
     constants,
     DedicatedServerFeatureAvailability,
     Server,
@@ -23,6 +24,7 @@ export default class DedicatedServerDashboard {
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
+    this.Alerter = Alerter;
     this.constants = constants;
     this.DedicatedServerFeatureAvailability = DedicatedServerFeatureAvailability;
     this.Server = Server;
@@ -283,5 +285,9 @@ export default class DedicatedServerDashboard {
     return map(list, (value) =>
       value.unit === 'bps' ? (value.y / 1024).toFixed(2) : value.y,
     );
+  }
+
+  onBillingInformationError(error) {
+    return this.Alerter.error(error, 'server_dashboard_alert');
   }
 }
