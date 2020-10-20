@@ -1,4 +1,4 @@
-import { Pricing } from '@ovh-ux/manager-models';
+import Pricing from './Pricing.class';
 
 export default class Commitment {
   constructor(pricing) {

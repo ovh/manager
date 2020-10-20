@@ -4,6 +4,7 @@ import activation from './actions/activation/activation.module';
 import agreements from './agreements/user-agreements.module';
 import autorenewBlocked from './actions/autorenew-blocked/autorenew-blocked.module';
 import cancelResiliation from './actions/cancel-resiliation/cancel-resiliation.module';
+import commitment from './commitment';
 import debtBeforePaying from './actions/debtBeforePaying/debtBeforePaying.module';
 import deleteModule from './actions/delete/delete.module';
 import disable from './disable/disable.module';
@@ -34,6 +35,7 @@ angular
     agreements,
     autorenewBlocked,
     cancelResiliation,
+    commitment,
     debtBeforePaying,
     deleteModule,
     disable,
