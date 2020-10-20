@@ -12,6 +12,7 @@ export default class ServicesActionsCtrl {
   }
 
   $onInit() {
+    this.commitmentLink = `${this.autorenewLink}/${this.service.serviceId}/commitment`;
     this.warningLink = `${this.autorenewLink}/warn-nic?nic=${this.service.contactBilling}`;
     this.billingLink = this.RedirectionService.getURL('billing');
     this.updateLink = `${this.autorenewLink}/update?serviceId=${this.service.serviceId}&serviceType=${this.service.serviceType}`;

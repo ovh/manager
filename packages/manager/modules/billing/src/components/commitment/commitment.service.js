@@ -1,22 +1,24 @@
 import { flatten, groupBy, minBy, sumBy } from 'lodash-es';
 import { CatalogPricing, Pricing } from '@ovh-ux/manager-models';
-import Commitment from './Commitment.class';
 import { CATALOG_MAPPING } from './commitment.constants';
 
 export default class CommitmentService {
   /* @ngInject */
-  constructor($http, $q) {
+  constructor($http, $q, BillingService) {
     this.$http = $http;
     this.$q = $q;
+    this.BillingService = BillingService;
   }
 
   getServiceAvailableEngagements(service) {
     return this.$q
       .all({
-        serviceEngagement: this.getAvailableEngagement(service.serviceId),
+        serviceEngagement: this.BillingService.getAvailableEngagement(
+          service.serviceId,
+        ),
         optionsEngagement: this.$q.all(
           service.options.map((option) =>
-            this.getAvailableEngagement(option.serviceId),
+            this.BillingService.getAvailableEngagement(option.serviceId),
           ),
         ),
       })
@@ -29,79 +31,6 @@ export default class CommitmentService {
           return commitment;
         });
       });
-  }
-
-  getAvailableEngagement(serviceId) {
-    return this.$http
-      .get(`/services/${serviceId}/billing/engagement/available`)
-      .then(({ data }) => data)
-      .catch(() => [
-        {
-          price: {
-            text: '110.99 €',
-            value: 110.99,
-            currencyCode: 'EUR',
-          },
-          pricingMode: 'periodic12',
-          pricingType: 'rental',
-          interval: 1,
-          intervalUnit: 'month',
-          engagement_configuration: {
-            type: 'periodic',
-            duration: 12,
-            duration_unit: 'month',
-          },
-        },
-        {
-          price: {
-            text: '105.99 €',
-            value: 105.99,
-            currencyCode: 'EUR',
-          },
-          pricingMode: 'periodic24',
-          pricingType: 'rental',
-          interval: 1,
-          intervalUnit: 'month',
-          engagement_configuration: {
-            type: 'periodic',
-            duration: 24,
-            duration_unit: 'month',
-          },
-        },
-        {
-          price: {
-            text: '1265.28 €',
-            value: 1265.28,
-            currencyCode: 'EUR',
-          },
-          pricingMode: 'upfront12',
-          pricingType: 'rental',
-          interval: 12,
-          intervalUnit: 'month',
-          engagement_configuration: {
-            type: 'upfront',
-            duration: 1,
-            duration_unit: 'month',
-          },
-        },
-        {
-          price: {
-            text: '1265.28 €',
-            value: 1265.99,
-            currencyCode: 'EUR',
-          },
-          pricingMode: 'upfront24',
-          pricingType: 'rental',
-          interval: 24,
-          intervalUnit: 'month',
-          engagement_configuration: {
-            type: 'upfront',
-            duration: 1,
-            duration_unit: 'month',
-          },
-        },
-      ])
-      .then((commitments) => commitments.map((c) => new Commitment(c)));
   }
 
   commit(service, engagement, paymentMethod) {

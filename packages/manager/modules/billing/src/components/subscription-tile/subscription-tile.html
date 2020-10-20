@@ -20,6 +20,26 @@
                 <billing-status service="$ctrl.serviceInfos"></billing-status>
             </div>
         </oui-tile-description>
+        <oui-tile-actions>
+            <oui-action-menu compact placement="end">
+                <oui-action-menu-item
+                    ng-if="$ctrl.serviceManagementUrl"
+                    href="{{ $ctrl.serviceManagementUrl }}"
+                >
+                    <span
+                        data-translate="manager_billing_subscription_service_management"
+                    ></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item
+                    ng-if="$ctrl.canBeEngaged && !$ctrl.hasPendingEngagement"
+                    on-click="$ctrl.goToCommit()"
+                >
+                    <span
+                        data-translate="manager_billing_subscription_service_engagement"
+                    ></span>
+                </oui-action-menu-item>
+            </oui-action-menu>
+        </oui-tile-actions>
     </oui-tile-definition>
     <oui-tile-definition
         term="{{:: 'manager_billing_subscription_engagement' | translate }}"
@@ -43,6 +63,16 @@
                     data-translate-values="{ endDate: $ctrl.engagement.endDate }"
                 ></span>
             </div>
+            <oui-button
+                variant="link"
+                icon-right="oui-icon-arrow-right"
+                ng-if="$ctrl.canBeEngaged && !$ctrl.hasPendingEngagement && (!$ctrl.engagement || $ctrl.highlightEngagement)"
+                on-click="$ctrl.goToCommit()"
+            >
+                <span
+                    data-translate="manager_billing_subscription_engagement_commit"
+                ></span>
+            </oui-button>
         </oui-tile-description>
     </oui-tile-definition>
     <oui-tile-definition
@@ -71,7 +101,7 @@
         <oui-tile-actions
             ng-if="$ctrl.contactAvailability.isFeatureAvailable('contact:management') && !$ctrl.serviceInfos.isExpired()"
         >
-            <oui-action-menu data-compact data-placement="end">
+            <oui-action-menu compact placement="end">
                 <oui-action-menu-item
                     aria-label="{{:: 'manager_billing_subscription_contacts_management' | translate }}"
                     href="{{ $ctrl.contactManagementUrl }}"
