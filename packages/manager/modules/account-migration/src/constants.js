@@ -1,5 +1,7 @@
 export const FAQ_LINK = {
+  CZ: 'https://www.ovh.cz/faq/',
   FI: 'https://www.ovh-hosting.fi/ukk/',
+  LT: 'https://www.ovh.lt/duk/',
 };
 
 export const X_PAGINATION_MODE = 'X-Pagination-Mode';
@@ -21,6 +23,14 @@ export const MIGRATION_DATES = {
   FI: {
     START: '10/01/2020',
     END: '01/01/2021',
+  },
+  CZ: {
+    START: '11/10/2020',
+    END: '03/01/2021',
+  },
+  LT: {
+    START: '10/21/2020',
+    END: '02/01/2021',
   },
 };
 

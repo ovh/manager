@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-exchange",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "private": true,
   "description": "Exchange product.",
   "repository": {
@@ -32,6 +32,6 @@
     "moment": "^2.24.0",
     "ng-ckeditor": "^2.0.5",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^9.39.1"
+    "ovh-api-services": "^11.0.0"
   }
 }

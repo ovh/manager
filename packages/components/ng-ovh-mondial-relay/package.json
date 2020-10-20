@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-mondial-relay",
-  "version": "8.0.1",
+  "version": "8.0.2",
   "description": "Display a map to select mondial relay",
   "keywords": [
     "angularjs",
@@ -54,6 +54,6 @@
     "angular-leaflet-directive": "0.8.5",
     "angular-translate": "^2.18.1",
     "leaflet": "0.7.x",
-    "ovh-api-services": "^3.33.0"
+    "ovh-api-services": "^11.0.0"
   }
 }

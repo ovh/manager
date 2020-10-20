@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-contact",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "description": "Helps you dealing with OVHcloud contacts from /me/contact API.",
   "keywords": [
     "angularjs",
@@ -48,7 +48,7 @@
     "international-phone-number": "mareczek/international-phone-number#^0.0.16",
     "jquery": "~2.1",
     "moment": "^2.24.0",
-    "ovh-api-services": "^9.2.0",
+    "ovh-api-services": "^11.0.0",
     "ovh-manager-webfont": "^1.2.0",
     "ui-select": "^0.19.8"
   }

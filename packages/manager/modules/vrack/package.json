@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-vrack",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "private": true,
   "description": "vRack product.",
   "keywords": [
@@ -42,7 +42,7 @@
     "angular-ui-bootstrap": "~1.3.3",
     "font-awesome": "4.7.0",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^9.39.1",
+    "ovh-api-services": "^11.0.0",
     "ovh-manager-webfont": "^1.2.0",
     "ovh-ui-kit-bs": "^4.1.5"
   }

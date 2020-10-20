@@ -12,7 +12,7 @@ angular
     '$stateProvider',
     ($stateProvider) => {
       $stateProvider.state('app.ip', {
-        url: '/configuration/ip?serviceName',
+        url: '/configuration/ip?serviceName&page&pageSize',
         templateUrl: 'ip/ip.html',
         controller: 'IpMainCtrl',
         reloadOnSearch: false,
