@@ -1,3 +1,12 @@
+## [4.2.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.2.4...@ovh-ux/manager-public-cloud@4.2.5) (2020-10-20)
+
+
+### Bug Fixes
+
+* **deps:** add missing dependency ([#3874](https://github.com/ovh/manager/issues/3874)) ([0750a41](https://github.com/ovh/manager/commit/0750a418809a158262ea27cdb5c42080592dec90))
+
+
+
 ## [4.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.2.3...@ovh-ux/manager-public-cloud@4.2.4) (2020-10-20)
 
 

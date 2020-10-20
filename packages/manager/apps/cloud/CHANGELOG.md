@@ -1,3 +1,12 @@
+## [10.2.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@10.2.6...@ovh-ux/manager-cloud@10.2.7) (2020-10-20)
+
+
+### Bug Fixes
+
+* **deps:** add missing dependency ([#3874](https://github.com/ovh/manager/issues/3874)) ([0750a41](https://github.com/ovh/manager/commit/0750a418809a158262ea27cdb5c42080592dec90))
+
+
+
 ## [10.2.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@10.2.5...@ovh-ux/manager-cloud@10.2.6) (2020-10-20)
 
 
