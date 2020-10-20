@@ -52,5 +52,6 @@
   "sms_senders_terminate_sender_cancelled": "Hemos registrado correctamente su solicitud de cancelación del número virtual.",
   "sms_senders_terminate_sender_info": "¿Desea dar de baja el número virtual <b>«{{ number }}»</b>? (La baja se hará efectiva el {{ date }}).",
   "sms_senders_terminate_sender_info_cancel": "¿Desea cancelar la solicitud de baja del número virtual <b>«{{ number }}»</b>?",
-  "sms_senders_terminate_sender_ko": "¡Vaya! No es posible dar de baja el número virtual. <br/>{{error}}"
+  "sms_senders_terminate_sender_ko": "¡Vaya! No es posible dar de baja el número virtual. <br/>{{error}}",
+  "sms_senders_add_warning": "Trataremos su solicitud en un plazo de 48 horas."
 }

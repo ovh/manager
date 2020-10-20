@@ -116,5 +116,8 @@
   "sms_sms_compose_add_phonebook_contact_added": "Liste des contacts mise à jour !",
   "sms_sms_compose_add_phonebook_contact_ko": "Oups ! Impossible de récupérer la liste des contacts.",
   "sms_sms_compose_message_commercial_description": "Ze względów prawnych wiadomości SMS o charakterze informacji handlowej będą wysyłane <strong> tylko w godz. 8:00-20:00, od poniedziałku do soboty</strong>.",
-  "sms_sms_compose_no_commercial_clause_label": "Zaświadczam, że SMS nie ma charakteru informacji handlowej."
+  "sms_sms_compose_no_commercial_clause_label": "Zaświadczam, że SMS nie ma charakteru informacji handlowej.",
+  "sms_credit_balance": "Saldo",
+  "sms_credit_remaining_sms": "Liczba pozostałych SMS-ów",
+  "sms_credit_manage_credits": "Zarządzanie kredytami SMS"
 }

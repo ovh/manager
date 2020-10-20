@@ -31,5 +31,7 @@
   "sms_senders_add_sender_sr_only": "Aggiungi {{ sender }}",
   "sms_senders_add_sender": "Aggiungi il mittente selezionato",
   "sms_senders_add_senders": "Aggiungi i {{ count }} mittenti selezionati",
-  "sms_senders_add_senders_success": "Aggiunta in corso..."
+  "sms_senders_add_senders_success": "Aggiunta in corso...",
+  "sms_senders_add_sender_supporting_document": "Documenti giustificativi",
+  "sms_senders_add_sender_supporting_document_help": "Nel rispetto della nostra politica di sicurezza, ti chiediamo di fornire un documento giustificativo. Si tratta di una carta intestata della società o del marchio che include l’autorizzazione di un responsabile con firma e timbro della stessa società, di una carta d’identità o di una visura camerale nel caso di marchi non depositati."
 }

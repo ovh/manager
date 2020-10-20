@@ -1,0 +1,9 @@
+{
+  "sms_sms_compose_tip_size_title": "Długość wiadomości SMS",
+  "sms_sms_compose_tip_compose_paragraphe_1": "SMS może zawierać maksymalnie 160 znaków.",
+  "sms_sms_compose_tip_compose_paragraphe_2": "Jeśli wiadomość przekroczy 160 znaków, zostanie podzielona na kilka wiadomości w następujący sposób:",
+  "sms_sms_compose_tip_compose_list_item_1": "1 SMS -> łącznie 160 znaków (160 / sms) ",
+  "sms_sms_compose_tip_compose_list_item_2": "2 SMS-y -> łącznie 306 znaków (153 / sms)",
+  "sms_sms_compose_tip_compose_list_item_3": "3 SMS-y -> łącznie 459 znaków (153 / sms)",
+  "sms_sms_compose_tip_compose_list_item_4": "… (153 / sms)"
+}

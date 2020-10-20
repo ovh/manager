@@ -1,0 +1,8 @@
+{
+  "sms_batches_pending_scheduled": "Scheduled",
+  "sms_batches_pending_short_number": "Number allowing for a reply",
+  "sms_batches_pending_actions_cancel": "Cancel",
+  "sms_batches_pending_actions_cancel_one": "Cancel selected campaign",
+  "sms_batches_pending_actions_cancel_many": "Cancel selected campaigns",
+  "sms_batches_pending_cancel_success": "Cancellation successful"
+}

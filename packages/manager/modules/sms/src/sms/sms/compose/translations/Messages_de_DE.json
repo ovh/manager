@@ -114,5 +114,8 @@
   "sms_sms_compose_add_phonebook_contact_empty": "Kein Kontakt gefunden.",
   "sms_sms_compose_add_phonebook_contact_adding": "Mise à jour des contacts…",
   "sms_sms_compose_add_phonebook_contact_added": "Liste des contacts mise à jour !",
-  "sms_sms_compose_add_phonebook_contact_ko": "Oups ! Impossible de récupérer la liste des contacts."
+  "sms_sms_compose_add_phonebook_contact_ko": "Oups ! Impossible de récupérer la liste des contacts.",
+  "sms_credit_balance": "Stand",
+  "sms_credit_remaining_sms": "Verbleibende SMS",
+  "sms_credit_manage_credits": "SMS-Guthaben verwalten"
 }

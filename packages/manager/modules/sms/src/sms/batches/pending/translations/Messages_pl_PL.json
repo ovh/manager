@@ -1,0 +1,8 @@
+{
+  "sms_batches_pending_scheduled": "Zaplanowana",
+  "sms_batches_pending_short_number": "Numer umożliwiający przesłanie odpowiedzi",
+  "sms_batches_pending_actions_cancel": "Anuluj",
+  "sms_batches_pending_actions_cancel_one": "Anuluj wybraną kampanię",
+  "sms_batches_pending_actions_cancel_many": "Anuluj wybrane kampanie",
+  "sms_batches_pending_cancel_success": "Anulowanie kampanii zostało wykonane"
+}

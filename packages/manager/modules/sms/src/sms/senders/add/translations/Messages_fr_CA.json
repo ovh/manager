@@ -17,6 +17,8 @@
   "sms_senders_add_sender_error_required": "Le champ \"expéditeur\" est obligatoire.",
   "sms_senders_add_sender_error_pattern": "Le champ \"expéditeur\" doit être composé uniquement de caractères alphabétiques.",
   "sms_senders_add_sender_error_maxlength": "Le champ \"expéditeur\" ne peut excéder les 11 caractères.",
+  "sms_senders_add_sender_supporting_document": "Pièce justificative",
+  "sms_senders_add_sender_supporting_document_help": "Nous vous demandons un justificatif dans le cadre de notre politique de sécurité. Il s’agit par défaut d’un papier en-tête de la société ou de la marque, incluant l’autorisation d’un reponsable avec signature et tampon de cette même société, d’un papier d’identité, ou extrait Kbis si ce n’est pas une marque déposée.",
   "sms_senders_add_sender_description_label": "Description : ",
   "sms_senders_add_sender_description_placeholder": "Description (facultatif)",
   "sms_senders_add_sender_description_error_maxlength": "Le champ \"description\" ne peut excéder les 40 caractères.",
