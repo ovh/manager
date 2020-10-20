@@ -72,4 +72,17 @@ export default class Service {
       this.billing.renew.current.mode === 'manual'
     );
   }
+
+  isEngagementExpired() {
+    return (
+      this.isEngaged() &&
+      this.billing.engagement &&
+      this.billing.engagement.endDate &&
+      moment(this.billing.engagement.endDate).isBefore(moment())
+    );
+  }
+
+  isEngaged() {
+    return !!get(this.billing, 'pricing.engagementConfiguration');
+  }
 }
