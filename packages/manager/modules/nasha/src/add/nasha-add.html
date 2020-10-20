@@ -42,6 +42,7 @@
                                         name="select"
                                         class="oui-select__input"
                                         data-ng-model="NashaAddCtrl.data.selectedDatacenter"
+                                        data-ng-change="NashaAddCtrl.onDatacenterChanged()"
                                         data-ng-options="datacenter as ('nasha_order_datacenter_' + datacenter | translate) for datacenter in NashaAddCtrl.datacenters.data"
                                     >
                                         <option

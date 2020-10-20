@@ -5,6 +5,7 @@ import set from 'lodash/set';
 export default class NashaAddService {
   /* @ngInject */
   constructor(
+    $http,
     $q,
     $translate,
     CucOrderHelperService,
@@ -12,6 +13,7 @@ export default class NashaAddService {
     OvhApiOrder,
     CucServiceHelper,
   ) {
+    this.$http = $http;
     this.$q = $q;
     this.$translate = $translate;
     this.CucOrderHelperService = CucOrderHelperService;
@@ -30,6 +32,20 @@ export default class NashaAddService {
         ),
       )
       .catch(this.CucServiceHelper.errorHandler('nasha_order_loading_error'));
+  }
+
+  getCatalog() {
+    return this.OvhApiMe.v6()
+      .get()
+      .$promise.then(({ ovhSubsidiary }) =>
+        this.$http
+          .get('/order/catalog/public/nasha', {
+            params: {
+              ovhSubsidiary,
+            },
+          })
+          .then(({ data }) => data),
+      );
   }
 
   getOffers() {
