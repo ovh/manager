@@ -1,0 +1,5 @@
+{
+  "duration_day": "{{duration}} jours",
+  "duration_month": "{{duration}} mois",
+  "duration_year": "{{duration}} ans"
+}

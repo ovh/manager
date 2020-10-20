@@ -687,5 +687,7 @@
   "license_potential_problem_isOsPleskOnyx": "Serwer prawdopodobnie nie obsługuje dystrybucji Plesk Onyx",
   "license_designation_CPANEL_premier_option": "do {{numberOfCPANEL}} kont CPANEL",
   "license_designation_CPANEL_admin_option": "2-5 kont CPANEL",
-  "license_designation_CPANEL_pro_option": "6-30 kont CPANEL"
+  "license_designation_CPANEL_pro_option": "6-30 kont CPANEL",
+  "license_order_step3_pricing_warning": "The price will be calculated on a pro-rata basis depending on your services expiry date",
+  "license_designation_CPANEL_version_option": "up to {{ licenseCount }} CPANEL accounts"
 }
