@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 export default class {
   /* @ngInject */
   constructor(
@@ -29,7 +31,8 @@ export default class {
         this.goBack().then(() =>
           this.alertError(
             'dedicated_server_interfaces_ola_reset_error',
-            error.data,
+            get(error, 'data', error),
+            true,
           ),
         );
       })

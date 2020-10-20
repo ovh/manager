@@ -668,6 +668,7 @@
   "server_configuration_installation_gabarit": "Installer un de vos gabarits",
   "server_configuration_reinstallation_button": "Réinstaller",
   "server_configuration_installation_button": "Installer",
+  "server_configuration_installation_no_public_network": "La configuration réseau appliquée sur votre serveur ne donnant pas accès au réseau public, il est impossible d’installer/réinstaller un OS sur celui-ci. Pour débloquer cette action, merci de modifier votre configuration réseau dans l’onglet « interfaces réseaux »",
   "server_configuration_installation_title": "Installation du serveur",
   "server_configuration_installation_info": "Vous êtes sur le point d'installer un OS sur le serveur <b>{{t0}}</b>. Choisissez le type d'installation que vous souhaitez utiliser :",
   "server_configuration_installation_warning": "Attention : tous les disques du serveur seront formatés lors de l’installation",
