@@ -623,5 +623,7 @@
   "license_potential_problem_isOsPlesk10andLater": "Al parecer el hipervisor no ejecuta una distribución Plesk 10.",
   "license_potential_problem_isOsPlesk12": "Al parecer el hipervisor no ejecuta una distribución Plesk 12.",
   "license_potential_problem_isWindowsOs": "Al parecer el hipervisor no ejecuta una versión de Windows.",
-  "license_potential_problem_isOsPleskOnyx": "Al parecer el hipervisor no ejecuta una distribución Plesk Onyx."
+  "license_potential_problem_isOsPleskOnyx": "Al parecer el hipervisor no ejecuta una distribución Plesk Onyx.",
+  "license_order_step3_pricing_warning": "The price will be calculated on a pro-rata basis depending on your services expiry date",
+  "license_designation_CPANEL_version_option": "up to {{ licenseCount }} CPANEL accounts"
 }
