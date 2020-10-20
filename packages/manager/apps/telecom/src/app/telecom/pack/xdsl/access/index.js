@@ -5,6 +5,8 @@ import uiRouter from '@uirouter/angularjs';
 import angularTranslate from 'angular-translate';
 import '@ovh-ux/ui-kit';
 
+import diagnostic from './diagnostic';
+import diagnosticDetails from './diagnostic/details';
 import access from './pack-xdsl-access.component';
 
 const moduleName = 'ovhManagerTelecomPackXdslAccess';
@@ -15,6 +17,8 @@ angular
     uiRouter,
     angularTranslate,
     'oui',
+    diagnostic,
+    diagnosticDetails,
   ])
   .component('packXdslAccess', access);
 

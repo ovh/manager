@@ -38,10 +38,6 @@ import '../xdsl/access/comfortExchange/pack-xdsl-access-comfort-exchange.service
 import '../xdsl/access/deconsolidation/contract/pack-xdsl-access-deconsolidation-contract.controller';
 import '../xdsl/access/deconsolidation/pack-xdsl-access-deconsolidation.controller';
 import '../xdsl/access/deconsolidation/pack-xdsl-access-deconsolidation';
-import '../xdsl/access/diagnostic/details/pack-xdl-access-diagnostic-details.controller';
-import '../xdsl/access/diagnostic/details/pack-xdl-access-diagnostic-details';
-import '../xdsl/access/diagnostic/pack-xdsl-access-diagnostic.controller';
-import '../xdsl/access/diagnostic/pack-xdsl-access-diagnostic';
 import '../xdsl/access/ip/order/pack-xdsl-access-ip-order.controller';
 import '../xdsl/access/ip/pack-xdsl-access-ip.controller';
 import '../xdsl/access/ip/pack-xdsl-access-ip';
