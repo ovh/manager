@@ -116,6 +116,7 @@ export default class PciProjectNewPaymentCtrl {
     // call integration submit function if some
     if (
       this.eligibility.isAddPaymentMethodRequired() &&
+      this.model.paymentMethod.paymentType !== 'CREDIT' &&
       this.integrationSubmitFn
     ) {
       return this.integrationSubmitFn();
