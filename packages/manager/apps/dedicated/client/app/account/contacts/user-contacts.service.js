@@ -32,6 +32,7 @@ angular
       'NASHA',
       'OVER_THE_BOX',
       'PRIVATE_CLOUD',
+      'ESSENTIALS',
       'VPS',
       'PACK_XDSL',
       'XDSL',
