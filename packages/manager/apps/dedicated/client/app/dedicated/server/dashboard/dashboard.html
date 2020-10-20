@@ -478,6 +478,7 @@
         <div class="col-md-4">
             <!-- SUBSCRIPTION -->
             <billing-subscription-tile
+                on-error="$ctrl.onBillingInformationError(error)"
                 service-path="{{ '/dedicated/server/' + $ctrl.server.name }}"
                 with-engagement
             >
