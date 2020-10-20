@@ -1,3 +1,5 @@
+import throttle from 'lodash/throttle';
+
 angular.module('managerApp').run(($translate, asyncLoader) => {
   asyncLoader.addTranslations(
     import(`./translations/Messages_${$translate.use()}.json`)
@@ -25,6 +27,8 @@ angular
       templateUrl:
         'components/telecom/telephony/group/consumption/pie-chart/telephony-group-consumption-pie-chart.html',
       link($scope, $element, $attr, $ctrl) {
+        const minWidth = 280;
+        $scope.toggle = $element.parent('div')[0].offsetWidth < minWidth;
         const sizeRatio = $element.parent('div')[0].offsetWidth;
         const animationRatio = 20;
         const viewBox = sizeRatio + animationRatio * 2;
@@ -97,6 +101,17 @@ angular
                 pathAnim(currentArc, ~~(!clicked));
                 currentArc.classed("clicked", !clicked);
             }); */
+
+        const onResize = () => {
+          $scope.toggle = $element.parent('div')[0].offsetWidth < minWidth;
+        };
+
+        const throttledResize = throttle(onResize, 300);
+
+        angular.element($window).on('resize', throttledResize);
+        $scope.$on('$destroy', () => {
+          angular.element($window).off('resize', throttledResize);
+        });
 
         $scope.$watchCollection('dataset', (dataParam) => {
           const duration = 1200;
