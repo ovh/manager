@@ -6,6 +6,7 @@ export default {
     service: '<',
     trackingPrefix: '@?',
     user: '<',
+    getCommitmentLink: '&?',
   },
   controller,
   template,

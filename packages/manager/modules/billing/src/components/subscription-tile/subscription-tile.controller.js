@@ -31,7 +31,6 @@ export default class ServicesActionsCtrl {
           : this.BillingService.getServiceInfos(this.servicePath);
       })
       .then((serviceInfos) => {
-        this.serviceInfos = serviceInfos;
         this.contactManagementUrl = this.RedirectionService.getURL(
           'contactManagement',
           {
@@ -39,17 +38,43 @@ export default class ServicesActionsCtrl {
           },
         );
         return this.$q.all({
+          serviceInfos,
           service: this.BillingService.getService(serviceInfos.serviceId),
           engagement:
             serviceInfos.hasEngagement() && this.withEngagement
               ? this.BillingService.getEngagement(serviceInfos.serviceId)
               : this.$q.when(null),
+          canBeEngaged: this.withEngagement
+            ? this.BillingService.getAvailableEngagement(serviceInfos.serviceId)
+                .then((availableEngagements) => availableEngagements.length > 0)
+                .catch(() => false)
+            : this.$q.when(false),
+          hasPendingEngagement: this.withEngagement
+            ? this.BillingService.getPendingEngagement(serviceInfos.serviceId)
+                .then(() => true)
+                .catch(() => false)
+            : this.$q.when(false),
         });
       })
-      .then(({ service, engagement }) => {
-        this.service = service;
-        this.engagement = engagement;
-      })
+      .then(
+        ({
+          canBeEngaged,
+          service,
+          engagement,
+          serviceInfos,
+          hasPendingEngagement,
+        }) => {
+          this.service = service;
+          this.engagement = engagement;
+          this.serviceInfos = new ServiceInfos({
+            ...serviceInfos,
+            id: serviceInfos.serviceId,
+            serviceId: serviceInfos.domain,
+            canBeEngaged: canBeEngaged && serviceInfos.canCommit(),
+            hasPendingEngagement,
+          });
+        },
+      )
       .catch((error) =>
         this.onError({
           error: this.$translate.instant('manager_billing_subscription_error', {

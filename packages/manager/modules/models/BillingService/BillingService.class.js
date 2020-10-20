@@ -11,6 +11,7 @@ export default class BillingService {
   constructor(service) {
     Object.assign(this, service);
 
+    this.id = service.id || service.serviceId;
     this.expirationDate = moment(this.expiration);
     this.creationDate = moment(this.creation);
 
@@ -249,6 +250,12 @@ export default class BillingService {
       availability: true,
       reason: 'available',
     };
+  }
+
+  canCommit() {
+    return (
+      !this.isResiliated() && !this.isExpired() && !this.hasPendingResiliation()
+    );
   }
 
   hasParticularRenew() {

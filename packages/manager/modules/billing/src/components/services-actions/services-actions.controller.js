@@ -12,15 +12,18 @@ export default class ServicesActionsCtrl {
   }
 
   $onInit() {
+    this.commitmentLink =
+      (this.getCommitmentLink && this.getCommitmentLink(this.service)) ||
+      `${this.autorenewLink}/${this.service.id}/commitment`;
     this.warningLink = `${this.autorenewLink}/warn-nic?nic=${this.service.contactBilling}`;
     this.billingLink = this.RedirectionService.getURL('billing');
     this.updateLink = `${this.autorenewLink}/update?serviceId=${this.service.serviceId}&serviceType=${this.service.serviceType}`;
     this.cancelResiliationLink = `${this.autorenewLink}/cancel-resiliation?serviceId=${this.service.serviceId}&serviceType=${this.service.serviceType}`;
-    this.deleteLink = `${
-      this.autorenewLink
-    }/delete-${this.service.serviceType
-      .replace(/_/g, '-')
-      .toLowerCase()}?serviceId=${this.service.serviceId}`;
+    this.deleteLink =
+      this.service.serviceType &&
+      `${this.autorenewLink}/delete-${this.service.serviceType
+        .replace(/_/g, '-')
+        .toLowerCase()}?serviceId=${this.service.serviceId}`;
 
     switch (this.service.serviceType) {
       case SERVICE_TYPE.EXCHANGE:
