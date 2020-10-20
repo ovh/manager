@@ -3,6 +3,7 @@ import flatten from 'lodash/flatten';
 import isArray from 'lodash/isArray';
 import isEqual from 'lodash/isEqual';
 import map from 'lodash/map';
+import XdslModemTemplateConfigModalCtrl from './modal/pack-xdsl-modem-template-config-modal.controller';
 
 angular.module('managerApp').controller(
   'XdslModemTemplateConfigCtrl',
@@ -172,7 +173,7 @@ angular.module('managerApp').controller(
         animation: true,
         templateUrl:
           'app/telecom/pack/xdsl/modem/templates/config/modal/pack-xdsl-modem-template-config-modal.html',
-        controller: 'XdslModemTemplateConfigModalCtrl',
+        controller: XdslModemTemplateConfigModalCtrl,
         controllerAs: '$ctrl',
         resolve: {
           data: () => ({

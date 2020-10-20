@@ -1,5 +1,6 @@
 import find from 'lodash/find';
 import isEmpty from 'lodash/isEmpty';
+import { PACK_XDSL_MODEM } from '../pack-xdsl-modem.constant';
 
 angular
   .module('managerApp')
@@ -10,7 +11,6 @@ angular
     $translate,
     TucToast,
     TucPackXdslModemMediator,
-    PACK_XDSL_MODEM,
   ) {
     const self = this;
 
