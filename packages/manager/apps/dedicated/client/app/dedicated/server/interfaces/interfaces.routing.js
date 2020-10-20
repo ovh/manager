@@ -16,13 +16,20 @@ export default /* @ngInject */ ($stateProvider) => {
       alertError: /* @ngInject */ ($timeout, $translate, Alerter) => (
         translateId,
         error,
+        appendError = false,
       ) =>
         $timeout(() => {
           Alerter.set(
             'alert-danger',
-            $translate.instant(translateId, {
-              error: get(error, 'message', error),
-            }),
+            appendError
+              ? `${$translate.instant(translateId)}<br />${get(
+                  error,
+                  'message',
+                  error,
+                )}`
+              : $translate.instant(translateId, {
+                  error: get(error, 'message', error),
+                }),
           );
         }),
       failoverIps: /* @ngInject */ (OvhApiIp, serverName) =>
