@@ -1,6 +1,7 @@
 import angular from 'angular';
 
 import packMove from '../move';
+import packResiliation from '../resiliation/pack-resiliation';
 import packVoipLineActivation from '../slots/voipLine/activation/pack-voipLine-activation.module';
 import hostedEmailDetail from '../slots/hostedEmail/detail';
 import xdsl from '../xdsl';
@@ -20,6 +21,7 @@ angular
     xdsl,
     packMove,
     migration,
+    packResiliation,
   ])
   .controller('PackCtrl', controller)
   .config(routing)

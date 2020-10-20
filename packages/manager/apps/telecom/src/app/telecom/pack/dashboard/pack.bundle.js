@@ -1,9 +1,3 @@
-import '../move/pack-move.controller';
-import '../move';
-import './pack.constant';
-import './pack.templates';
-import '../resiliation/pack-resiliation.controller';
-import '../resiliation/pack-resiliation';
 import '../slots/domain/activation/pack-domain-activation.controller';
 import '../slots/domain/activation/pack-domain-activation';
 import '../slots/domain/pack-domain.controller';
