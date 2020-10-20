@@ -1,3 +1,23 @@
+# [14.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.1.4...@ovh-ux/manager-dedicated@14.2.0) (2020-10-20)
+
+
+### Bug Fixes
+
+* **dedicated:** ip virtual mac & minor improvements ([3bcde93](https://github.com/ovh/manager/commit/3bcde93b76626dd2e8d56c08887e76b46f31f006))
+* **deps:** upgrade ovh-api-services to v11.0.0 ([#3869](https://github.com/ovh/manager/issues/3869)) ([df90e4d](https://github.com/ovh/manager/commit/df90e4de660920e3cd07b2ff6b4452b0aa861377))
+
+
+### Features
+
+* **license:** use agora order for  vps ([#3849](https://github.com/ovh/manager/issues/3849)) ([90ef6e1](https://github.com/ovh/manager/commit/90ef6e1f258d7235b05169333d90e9422b14d45c))
+
+
+### Reverts
+
+* Revert "Revert "perf(ip): improve loading time (#3796)" (#3843)" ([88a216a](https://github.com/ovh/manager/commit/88a216af8ca5f548fbc95de768f1b44edb3d13cd)), closes [#3796](https://github.com/ovh/manager/issues/3796) [#3843](https://github.com/ovh/manager/issues/3843)
+
+
+
 ## [14.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.1.3...@ovh-ux/manager-dedicated@14.1.4) (2020-10-13)
 
 

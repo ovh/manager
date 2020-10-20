@@ -1,3 +1,13 @@
+## [2.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.2.1...@ovh-ux/manager-vps@2.2.2) (2020-10-20)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v11.0.0 ([#3869](https://github.com/ovh/manager/issues/3869)) ([df90e4d](https://github.com/ovh/manager/commit/df90e4de660920e3cd07b2ff6b4452b0aa861377))
+* get option price by capacity instead of duration ([#3866](https://github.com/ovh/manager/issues/3866)) ([c8d26b0](https://github.com/ovh/manager/commit/c8d26b0584a28fa7229da3991a1d2332e60eaa44))
+
+
+
 ## [2.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.2.0...@ovh-ux/manager-vps@2.2.1) (2020-10-15)
 
 

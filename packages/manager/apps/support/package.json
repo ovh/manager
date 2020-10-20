@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-support-app",
-  "version": "2.1.3",
+  "version": "2.1.4",
   "private": true,
   "description": "Support standalone application.",
   "repository": {

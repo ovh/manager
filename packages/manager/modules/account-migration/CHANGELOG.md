@@ -1,3 +1,17 @@
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-migration@1.0.3...@ovh-ux/manager-account-migration@1.1.0) (2020-10-20)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v11.0.0 ([#3869](https://github.com/ovh/manager/issues/3869)) ([df90e4d](https://github.com/ovh/manager/commit/df90e4de660920e3cd07b2ff6b4452b0aa861377))
+
+
+### Features
+
+* add information for CZ and LT ([#3829](https://github.com/ovh/manager/issues/3829)) ([7a3c0cd](https://github.com/ovh/manager/commit/7a3c0cdfc9371504bd8e89d859649817a2b23227))
+
+
+
 ## [1.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-migration@1.0.2...@ovh-ux/manager-account-migration@1.0.3) (2020-10-15)
 
 

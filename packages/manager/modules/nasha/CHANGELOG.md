@@ -1,3 +1,13 @@
+## [2.0.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.0.4...@ovh-ux/manager-nasha@2.0.5) (2020-10-20)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v11.0.0 ([#3869](https://github.com/ovh/manager/issues/3869)) ([df90e4d](https://github.com/ovh/manager/commit/df90e4de660920e3cd07b2ff6b4452b0aa861377))
+* **nasha.order:** filter offers by datacenter ([#3870](https://github.com/ovh/manager/issues/3870)) ([396760e](https://github.com/ovh/manager/commit/396760e0342d2357ef2a33695f9c45d2dd07a8d6))
+
+
+
 ## [2.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.0.3...@ovh-ux/manager-nasha@2.0.4) (2020-10-13)
 
 
