@@ -10,7 +10,6 @@ import component from './add.component';
 import routing from './add.routing';
 
 import antiAffinity from '../../../components/anti-affinity';
-import billingType from '../../../components/billing-type';
 import nodePool from '../../../components/node-pool';
 
 const moduleName = 'ovhManagerPciProjectKubernetesNodePoolsAdd';
@@ -24,7 +23,6 @@ angular
     'ui.router',
     'ngOvhCloudUniverseComponents',
     nodePool,
-    billingType,
     antiAffinity,
   ])
   .config(routing)

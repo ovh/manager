@@ -11,7 +11,6 @@ import routing from './add.routing';
 import versionsList from './versions-list';
 
 import antiAffinity from '../components/anti-affinity';
-import billingType from '../components/billing-type';
 import nodePool from '../components/node-pool';
 
 const moduleName = 'ovhManagerPciProjectKubernetesAdd';
@@ -25,7 +24,6 @@ angular
     regionsList,
     versionsList,
     nodePool,
-    billingType,
     antiAffinity,
   ])
   .config(routing)
