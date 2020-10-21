@@ -1,9 +1,9 @@
 import filter from 'lodash/filter';
 import map from 'lodash/map';
 
-angular
-  .module('Billing')
-  .controller('Billing.PaymentsCtrl', function BillingPaymentsCtrl(
+export default class {
+  /* @ngInject */
+  constructor(
     $filter,
     $q,
     $state,
@@ -145,4 +145,5 @@ angular
       }
       return $q.when();
     };
-  });
+  }
+};

@@ -1,0 +1,16 @@
+{
+  "globals": {
+    "__NG_APP_INJECTIONS__": true,
+    "__VERSION__": true,
+    "EprotectIframeClient": true,
+    "ipaddr": true,
+    "JSURL": true,
+    "moment": true,
+    "punycode": true,
+    "RandExp": true,
+    "URI": true,
+    "validator": true,
+    "WEBPACK_ENV": true,
+    "zE": true
+  }
+}
