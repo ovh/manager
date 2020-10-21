@@ -6,6 +6,7 @@ import packVoipLineActivation from '../slots/voipLine/activation/pack-voipLine-a
 import hostedEmailDetail from '../slots/hostedEmail/detail';
 import xdsl from '../xdsl';
 import migration from '../migration';
+import domainActivation from '../slots/domain/activation';
 
 import templates from './pack.templates';
 
@@ -22,6 +23,7 @@ angular
     packMove,
     migration,
     packResiliation,
+    domainActivation,
   ])
   .controller('PackCtrl', controller)
   .config(routing)

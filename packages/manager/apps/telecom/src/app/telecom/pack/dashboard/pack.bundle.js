@@ -1,5 +1,3 @@
-import '../slots/domain/activation/pack-domain-activation.controller';
-import '../slots/domain/activation/pack-domain-activation';
 import '../slots/domain/pack-domain.controller';
 import '../slots/emailPro/add/pack-emailPro-add.controller';
 import '../slots/emailPro/add/pack-emailPro-add';
