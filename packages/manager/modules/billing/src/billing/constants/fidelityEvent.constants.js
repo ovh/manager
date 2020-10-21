@@ -1,3 +1,7 @@
-angular.module('Billing.constants').constant('FIDELITY_EVENT', {
+const moduleName = 'ovhManagerBillingConstantsFidelityEvents';
+
+angular.module(moduleName, []).constant('FIDELITY_EVENT', {
   CREDIT: 'FidelityCredit',
 });
+
+export default moduleName;

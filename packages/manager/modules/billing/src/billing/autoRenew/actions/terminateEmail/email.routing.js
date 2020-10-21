@@ -1,5 +1,5 @@
-export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
-  $stateProvider.state('app.account.billing.autorenew.terminateEmail', {
+export default /* @ngInject */ ($stateProvider) => {
+  $stateProvider.state('billing.autorenew.terminateEmail', {
     url: '/delete-email?serviceId&name',
     views: {
       modal: {

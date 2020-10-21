@@ -1,4 +1,6 @@
-angular.module('Billing.constants').constant('AUTORENEW_EVENT', {
+const moduleName = 'ovhManagerBillingConstantsAutorenewEvents';
+
+angular.module(moduleName, []).constant('AUTORENEW_EVENT', {
   TERMINATE_AT_EXPIRATION: 'ServiceTerminateAtExpiration',
   TERMINATE: 'ServiceTerminate',
   CANCEL_TERMINATE: 'ServiceCancelTerminate',
@@ -8,3 +10,5 @@ angular.module('Billing.constants').constant('AUTORENEW_EVENT', {
   PAY: 'ServicePay',
   DISABLE_AUTOMATIC_PAYMENT_FOR_DOMAINS: 'DisableAutomaticPaymentForDomains',
 });
+
+export default moduleName;

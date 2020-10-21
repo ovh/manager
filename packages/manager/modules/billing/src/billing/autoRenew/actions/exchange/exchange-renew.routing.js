@@ -1,7 +1,7 @@
 import ExchangeModel from '@ovh-ux/manager-exchange/src/Exchange.class'; // eslint-disable-line import/extensions
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.account.billing.autorenew.exchange', {
+  $stateProvider.state('billing.autorenew.exchange', {
     url: '/exchange?organization&exchangeName',
     component: 'exchangeAccountRenew',
     resolve: {

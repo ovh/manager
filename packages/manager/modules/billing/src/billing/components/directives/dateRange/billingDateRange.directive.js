@@ -1,16 +1,16 @@
-angular.module('Billing.directives').directive('billingDateRange', [
-  'BILLING_BASE_URL',
-  function billingDateRangeDirective(BILLING_BASE_URL) {
-    return {
-      restrict: 'A',
-      scope: {
-        onChange: '=?',
-      },
-      bindToController: true,
-      controllerAs: '$ctrl',
-      controller: 'Billing.directives.billingDateRangeCtrl',
-      replace: false,
-      templateUrl: `${BILLING_BASE_URL}components/directives/dateRange/billingDateRange.html`,
-    };
-  },
-]);
+import controller from './billingDateRange.controller';
+import template from './billingDateRange.html';
+
+export default /* @ngInject */ function billingDateRangeDirective() {
+  return {
+    restrict: 'A',
+    scope: {
+      onChange: '=?',
+    },
+    bindToController: true,
+    controllerAs: '$ctrl',
+    controller,
+    replace: false,
+    template,
+  };
+}

@@ -2,7 +2,7 @@ import filter from 'lodash/filter';
 import map from 'lodash/map';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.account.billing.autorenew.disable', {
+  $stateProvider.state('billing.autorenew.disable', {
     url: '/disable?services',
     component: 'billingAutorenewDisable',
     translations: { value: ['.'], format: 'json' },

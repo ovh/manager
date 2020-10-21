@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 
-angular.module('UserAccount').controller('UserAccount.controllers.agreements', [
+export default [
   '$scope',
   '$translate',
   'Alerter',
@@ -109,4 +109,4 @@ angular.module('UserAccount').controller('UserAccount.controllers.agreements', [
       Alerter.resetMessage('agreements_alerter');
     };
   },
-]);
+];
