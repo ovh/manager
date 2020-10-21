@@ -1,7 +1,7 @@
 import clone from 'lodash/clone';
 import map from 'lodash/map';
 
-angular.module('Billing.services').service('BillingPayments', [
+export default [
   '$http',
   '$q',
   '$cacheFactory',
@@ -155,4 +155,4 @@ angular.module('Billing.services').service('BillingPayments', [
         )
         .then((response) => response.data);
   },
-]);
+];
