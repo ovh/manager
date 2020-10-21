@@ -1,11 +1,13 @@
-angular.module('App').config(($stateProvider, coreConfigProvider) => {
+import template from './billing-history-balance.html';
+
+export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
   if (coreConfigProvider.getRegion() === 'US') {
-    $stateProvider.state('app.account.billing.main.history.balance', {
+    $stateProvider.state('billing.main.history.balance', {
       url: '/balance',
-      templateUrl: 'billing/main/history/balance/billing-history-balance.html',
+      template,
       controller: 'BillingHistoryBalanceCtrl',
       controllerAs: '$ctrl',
       translations: { value: ['../balance'], format: 'json' },
     });
   }
-});
+};

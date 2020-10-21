@@ -3,6 +3,8 @@ import get from 'lodash/get';
 import map from 'lodash/map';
 import sortBy from 'lodash/sortBy';
 
+import billingHistoryPostalMailOptionsTemplate from '../postalMailOptions/billing-main-history-postal-mail-options.html';
+
 function applyBillCriteria(request, $config) {
   let result = request;
   $config.criteria.forEach((criteria) => {
@@ -260,8 +262,7 @@ export default class BillingMainHistoryCtrl {
 
   onPostalMailOptionsChange() {
     const postalOptionsModal = this.$uibModal.open({
-      templateUrl:
-        'billing/main/history/postalMailOptions/billing-main-history-postal-mail-options.html',
+      template: billingHistoryPostalMailOptionsTemplate,
       controller: 'BillingHistoryPostalMailOptionsCtrl',
       controllerAs: '$ctrl',
       resolve: {
