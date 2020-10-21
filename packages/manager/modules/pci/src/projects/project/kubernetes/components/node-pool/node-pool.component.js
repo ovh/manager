@@ -11,7 +11,7 @@ export default {
     nodeMaxCount: '<?',
     nodeMinCount: '<?',
     defaultFlavor: '<?',
-    flavors: '<?'
+    flavors: '<?',
   },
   controller,
   template,

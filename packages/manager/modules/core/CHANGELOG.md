@@ -1,3 +1,14 @@
+## [11.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@11.0.1...@ovh-ux/manager-core@11.0.2) (2020-10-13)
+
+
+### Bug Fixes
+
+* **deps:** upgrade to @ovh-ux/manager-config v2.0.0 ([ca3f955](https://github.com/ovh/manager/commit/ca3f9554c13b1436cbdeed3de8ac69e399d5dd93))
+* **i18n:** add missing translations [CDS 611] ([35788d8](https://github.com/ovh/manager/commit/35788d843f5dfa6b5ae05f46663b027d56089c9c))
+* **oui-angular.translations:** add oui-back-button translations ([2b4a5d9](https://github.com/ovh/manager/commit/2b4a5d9b6055825a7e3a9527c1a04592c5644a79))
+
+
+
 ## [11.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@11.0.0...@ovh-ux/manager-core@11.0.1) (2020-09-21)
 
 

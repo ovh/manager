@@ -219,7 +219,10 @@ angular
       function getSiblingParameters() {
         return TelephonyMediator.getGroup($stateParams.billingAccount).then(
           (group) => {
-            self.availableParameters = group.lines;
+            self.availableParameters = sortBy(group.lines, [
+              'description',
+              'serviceName',
+            ]);
             return self.availableParameters;
           },
         );

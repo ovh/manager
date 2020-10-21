@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-catalog-price",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "private": true,
   "description": "Component to display catalog prices, formatted by locale",
   "repository": {
@@ -15,7 +15,7 @@
     "lodash": "^4.17.15"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-config": "^0.4.0 || ^1.0.0",
+    "@ovh-ux/manager-config": "^1.0.0 || ^2.0.0",
     "@ovh-ux/manager-core": "^10.0.0 || ^11.0.0",
     "@ovh-ux/ng-translate-async-loader": "^2.1.0",
     "angular": "^1.7.9",

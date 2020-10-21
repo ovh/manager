@@ -508,5 +508,6 @@
   "privateDatabase_dashboard_version_mysql": "MySQL {{version}}",
   "privateDatabase_dashboard_version_postgresql": "PostgreSQL {{version}}",
   "privateDatabase_dashboard_version_mongodb": "MongoDB {{version}}",
-  "privateDatabase_dashboard_version_redis": "Redis {{version}}"
+  "privateDatabase_dashboard_version_redis": "Redis {{version}}",
+  "privateDatabase_order_sql_period_sub_title": "Durante quanto tempo deseja utilizá-las?"
 }

@@ -45,17 +45,32 @@
   background-color: rgba(255, 255, 255, 0.15);
 }
 
-.module-billing-menu > .sidebar .navigation-left-list-container > li a.navigation-left-item:hover,
-.module-billing-menu > .sidebar .navigation-left-list-container > li a.navigation-left-item:focus {
+.module-billing-menu
+  > .sidebar
+  .navigation-left-list-container
+  > li
+  a.navigation-left-item:hover,
+.module-billing-menu
+  > .sidebar
+  .navigation-left-list-container
+  > li
+  a.navigation-left-item:focus {
   background-color: transparent;
 }
 
-.module-billing-menu .sidebar .navigation-left-list-container > li a.navigation-left-item.active {
+.module-billing-menu
+  .sidebar
+  .navigation-left-list-container
+  > li
+  a.navigation-left-item.active {
   background-color: #00a2bf !important;
   color: #122844;
 }
 
-.module-billing-menu > .sidebar .navigation-left-title .module-billing-menu-small {
+.module-billing-menu
+  > .sidebar
+  .navigation-left-title
+  .module-billing-menu-small {
   display: block;
   font-weight: lighter;
   font-size: 85%;

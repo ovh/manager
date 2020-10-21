@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-filters@1.0.0...@ovh-ux/manager-filters@1.1.0) (2020-10-20)
+
+
+### Features
+
+* **license:** use agora order for  vps ([#3849](https://github.com/ovh/manager/issues/3849)) ([90ef6e1](https://github.com/ovh/manager/commit/90ef6e1f258d7235b05169333d90e9422b14d45c))
+
+
+
 # [1.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-filters@0.1.1...@ovh-ux/manager-filters@1.0.0) (2020-08-05)
 
 

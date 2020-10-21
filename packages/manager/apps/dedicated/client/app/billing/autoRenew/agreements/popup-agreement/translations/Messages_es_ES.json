@@ -1,0 +1,7 @@
+{
+  "user_agreements_accept_all_count": "Contrato {{current}}/{{total}}",
+  "user_agreements_accept_all_accept_and_next": "Aceptar y pasar al siguiente",
+  "user_agreements_accept_all_read_and_accepted": "He leído y acepto {{contractTitle}}",
+  "user_agreements_accept_all_annexes": "Para consultar los anexos, parte integrante del contrato (en particular, las Condiciones Generales, las Condiciones Particulares, el Contrato de Encargo de Tratamiento (DPA)), <a href='{{url}}' target='_blank' rel='noopener' class='oui-link_icon'>acceda a este enlace<span class='oui-icon oui-icon-external_link' aria-hidden='true'></span></a>.",
+  "user_agreements_accept_all_error": "Se ha producido un error al aceptar el contrato: {{message}}"
+}

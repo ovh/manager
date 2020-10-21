@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-emailpro",
-  "version": "2.0.2",
+  "version": "2.0.4",
   "private": true,
   "description": "Email Pro product.",
   "repository": {
@@ -17,7 +17,7 @@
     "validator": "^11.1.0"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-config": "^0.4.0 || ^1.0.0",
+    "@ovh-ux/manager-config": "^1.0.0 || ^2.0.0",
     "@ovh-ux/manager-core": "^10.0.0 || ^11.0.0",
     "@ovh-ux/ng-ovh-export-csv": "^2.0.0",
     "@ovh-ux/ng-ovh-http": "^5.0.0",
@@ -33,6 +33,6 @@
     "moment": "^2.24.0",
     "ng-ckeditor": "^2.0.5",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^9.39.1"
+    "ovh-api-services": "^11.0.0"
   }
 }

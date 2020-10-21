@@ -1,4 +1,8 @@
-<oui-message data-type="warning" data-dismissable>
+<oui-message
+    data-type="warning"
+    data-dismissable
+    data-ng-if="$ctrl.coreConfig.getRegion() !== 'US'"
+>
     <p data-translate="vps_dashboard_maintenance_warning"></p>
 </oui-message>
 

@@ -1,0 +1,59 @@
+<div class="telecom-pack-migration-service-delete">
+    <p
+        class="mb-5"
+        data-translate="telecom_pack_migration_service_delete_explain"
+    ></p>
+
+    <div
+        class="row"
+        data-ng-repeat="subServiceChunk in $ctrl.chunkedSubServices track by $index"
+    >
+        <div
+            class="widget-presentation col-xs-12 col-md-6"
+            data-ng-repeat="subService in subServiceChunk track by $index"
+        >
+            <h2
+                class="widget-presentation-title"
+                data-translate="{{ 'telecom_pack_migration_confirm_resume_' + subService.type }}"
+            ></h2>
+
+            <h3
+                data-translate="{{ subService.numberToDelete === 1 ? 'telecom_pack_migration_service_delete_count_single' : 'telecom_pack_migration_service_delete_count_multiple' }}"
+                data-translate-values="{ count: subService.numberToDelete }"
+            ></h3>
+
+            <ul class="list-unstyled">
+                <li
+                    data-ng-repeat="service in subService.services track by $index"
+                >
+                    <label class="my-2">
+                        <div class="d-inline-block align-middle mr-2">
+                            <input
+                                type="checkbox"
+                                data-ng-model="service.selected"
+                                data-ng-disabled="subService.services.length === subService.numberToDelete || ($ctrl.constructor.selectedSubServiceToDeleteReached(subService) && !service.selected)"
+                            />
+                        </div>
+                        <span data-ng-bind="service.name"></span>
+                    </label>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="mb-5">
+        <a
+            class="btn btn-default"
+            data-translate="telecom_pack_migration_confirm_cancel_button"
+            data-ui-sref="telecom.packs.pack"
+        >
+        </a>
+        <button
+            type="button"
+            class="btn btn-primary"
+            data-ng-disabled="!$ctrl.isValidSelection()"
+            data-translate="telecom_pack_migration_service_delete_confirm"
+            data-ng-click="$ctrl.process.currentStep = $ctrl.process.selectedOffer.needNewModem ? 'shipping' : 'confirm'"
+        ></button>
+    </div>
+</div>

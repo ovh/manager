@@ -17,8 +17,8 @@
   text-align: center;
 
   .iplb-bullet-chart-modifiers(@i: length(@iplb-bullet-chart-modifiers))
-  when
-  (@i > 0) {
+    when
+    (@i > 0) {
     .iplb-bullet-chart-modifiers(@i - 1);
     @current-modifier: extract(@iplb-bullet-chart-modifiers, @i);
     @foreground-color: 'iplb-bullet-chart-foreground-@{current-modifier}';

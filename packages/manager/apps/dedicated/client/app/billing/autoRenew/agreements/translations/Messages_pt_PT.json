@@ -44,5 +44,6 @@
   "user_agreement_details_subtitle3": "Aviso aos clientes consumidores",
   "user_agreement_details_paragraph3": "Se não pretender ficar sujeito a estas novas disposições, pode rescindir os seus serviços a partir de 20 de julho de 2017 num prazo máximo de 4 meses, de acordo com o artigo aplicável do Código do Consumidor. Para isso, deve <a href=\"{{t0}}\">criar um ticket</a> na sua Área de Cliente, indicando no assunto: “Rescisão dos meus serviços” e a data na qual pretende rescindi-los (de imediato ou na data de renovação dos serviços).",
   "user_agreement_details_success": "O seu contrato foi validado.",
-  "user_agreement_details_error": "Ocorreu um erro na validação do seu contrato."
+  "user_agreement_details_error": "Ocorreu um erro na validação do seu contrato.",
+  "user_agreements_accept_all": "Aceitar todos os contratos"
 }

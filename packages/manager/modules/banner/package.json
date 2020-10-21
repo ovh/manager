@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-banner",
-  "version": "1.2.1",
+  "version": "1.2.3",
   "private": true,
   "description": "A banner component useful for a specific event.",
   "keywords": [
@@ -39,11 +39,11 @@
     "@ovh-ux/component-rollup-config": "^7.0.0"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-config": "^0.4.0 || ^1.0.0",
+    "@ovh-ux/manager-config": "^1.0.0 || ^2.0.0",
     "@ovh-ux/manager-core": "^10.0.0 || ^11.0.0",
-    "@ovh-ux/ng-at-internet": "^5.1.0",
+    "@ovh-ux/ng-at-internet": "^5.3.0",
     "angular": "^1.7.8",
     "angular-translate": "^2.18.1",
-    "ovh-api-services": "^9.39.1"
+    "ovh-api-services": "^11.0.0"
   }
 }

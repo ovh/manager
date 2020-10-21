@@ -83,7 +83,7 @@
   "telecom_pack_migration_confirm_resume_emailPro": "Compte emailPro",
   "telecom_pack_migration_confirm_contracts_accept_title": "Contrats",
   "telecom_pack_migration_confirm_contracts_accept_button": "Valider le changement d'offre",
-  "telecom_pack_migration_confirm_cancel_button": "Annuler le changement d’offre",
+  "telecom_pack_migration_confirm_cancel_button": "Annuler le changement d'offre",
   "telecom_pack_migration_confirm_contracts_accept_explain": "En cliquant sur \"Valider le changement d'offre\", vous reconnaissez avoir pris connaissance et acceptez les contrats suivants :",
   "telecom_pack_migration_confirm_no_commitment": "Ce changement d’offre n’est sujet à aucun réengagement.",
   "telecom_pack_migration_confirm_commitment": "Un réengagement de {{ month }} mois débutera à la date de facturation.",
@@ -109,6 +109,7 @@
   "telecom_pack_migration_service_delete_confirm": "Confirmer la suppression de services",
   "telecom_pack_migration_shipping_contact": "Contact de livraison",
   "telecom_pack_migration_shipping_mode": "Mode de livraison",
+  "telecom_pack_migration_building_details_error": "Une erreur s'est produite lors de la récupération des informations sur votre bâtiment",
   "telecom_pack_migration_building_details_select_engagment": "Veuillez choisir votre engagement",
   "telecom_pack_migration_building_details_engagment_month": "mois",
   "telecom_pack_migration_building_details_select_building": "Veuillez indiquer votre bâtiment",
@@ -130,6 +131,10 @@
   "telecom_pack_migration_pto_check_no": "Non je ne dispose pas d'un boîter PTO",
   "telecom_pack_migration_pto_reference": "Saisissez votre référence PTO",
   "telecom_pack_migration_pto_where": "Où trouver votre numéro de référence du boîtier PTO ?",
-  "telecom_pack_migration_pto_where_description": "Cette référence est inscrite sur le boîtier PTO et est composée de chiffres et de lettres sous la forme OO-XXXX-XXXX /C",
-  "telecom_pack_migration_pto_yes_not_known": "J'ai un boîtier mais je ne connais pas son numéro"
+  "telecom_pack_migration_pto_where_description": "Cette référence est inscrite sur le boîtier PTO et est composée de chiffres et de lettres sous la forme OO-XXXX-XXXX",
+  "telecom_pack_migration_pto_yes": "J'ai un boîtier avec la référence suivante",
+  "telecom_pack_migration_pto_yes_description": "Nous procéderons à l'écrasement de la prise optique (PTO) existante.",
+  "telecom_pack_migration_pto_no_description": "Un technicien procèdera à l'installation d'une prise optique (PTO) lors de son intervention.",
+  "telecom_pack_migration_pto_yes_not_known": "J'ai un boîtier mais je ne connais pas son numéro",
+  "telecom_pack_migration_pto_yes_not_known_description": "Avez-vous bien vérifié que vous ne disposez pas de la référence de la prise optique (PTO) ? Cela peut avoir avoir une incidence sur le délai de votre raccordement."
 }

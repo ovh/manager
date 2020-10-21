@@ -2,6 +2,7 @@ angular.module('App').controller(
   'HostingTabDomainsMultisiteLogs',
   class HostingTabDomainsMultisiteLogs {
     constructor(
+      $http,
       $q,
       $scope,
       $stateParams,
@@ -11,6 +12,7 @@ angular.module('App').controller(
       HostingStatistics,
       constants,
     ) {
+      this.$http = $http;
       this.$q = $q;
       this.$scope = $scope;
       this.$stateParams = $stateParams;
@@ -35,22 +37,29 @@ angular.module('App').controller(
     /* eslint-disable no-param-reassign */
     generateLogHref(domain) {
       domain.logsLoading = true;
-      this.$q
-        .all({
-          ownLogs: this.HostingStatistics.getLogs(
-            this.$stateParams.productId,
-            domain.name,
-          ),
-          userLogsToken: this.Hosting.getUserLogsToken(
-            this.$stateParams.productId,
-            {
-              params: {
-                attachedDomain: domain.name,
-                remoteCheck: true,
+
+      return this.$http
+        .get(
+          `/hosting/web/${this.$stateParams.productId}/attachedDomain/${domain.name}`,
+        )
+        .then(({ data }) => data.ownLog)
+        .then((fqdn) =>
+          this.$q.all({
+            ownLogs: this.HostingStatistics.getLogs(
+              this.$stateParams.productId,
+              fqdn,
+            ),
+            userLogsToken: this.Hosting.getUserLogsToken(
+              this.$stateParams.productId,
+              {
+                params: {
+                  attachedDomain: domain.name,
+                  remoteCheck: true,
+                },
               },
-            },
-          ),
-        })
+            ),
+          }),
+        )
         .then(({ ownLogs, userLogsToken }) => {
           if (ownLogs.logs) {
             domain.logUrl = `${ownLogs.logs}?token=${userLogsToken}`;

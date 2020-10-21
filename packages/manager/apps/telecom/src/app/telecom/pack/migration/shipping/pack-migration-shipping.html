@@ -1,0 +1,73 @@
+<div class="telecom-pack-migration-shipping">
+    <div class="row">
+        <div class="col-xs-12 col-md-6">
+            <div class="widget-presentation">
+                <h2
+                    class="widget-presentation-title"
+                    data-translate="telecom_pack_migration_shipping_title"
+                ></h2>
+
+                <p data-translate="telecom_pack_migration_shipping_explain"></p>
+                <p
+                    data-translate="telecom_pack_migration_shipping_explain2"
+                ></p>
+
+                <!-- LOADER -->
+                <div class="text-center" data-ng-if="$ctrl.loading.init">
+                    <oui-spinner></oui-spinner>
+                </div>
+
+                <div data-ng-if="!$ctrl.loading.init">
+                    <!-- CONTACT CHOICE -->
+                    <div class="contact-choice">
+                        <h3
+                            data-translate="telecom_pack_migration_shipping_contact"
+                            class="mb-3 mt-5"
+                        ></h3>
+
+                        <ovh-contact
+                            data-ng-model="$ctrl.process.shipping.address"
+                            data-ovh-contact-choice-options="$ctrl.ovhContactOptions"
+                        >
+                            <div class="text-center">
+                                <oui-spinner></oui-spinner>
+                            </div>
+                        </ovh-contact>
+                    </div>
+                    <!-- CONTACT CHOICE -->
+
+                    <!-- SHIPPING MODE CHOICE -->
+                    <div class="shipping-choice mt-5">
+                        <h3
+                            data-translate="telecom_pack_migration_shipping_mode"
+                            class="mb-3"
+                        ></h3>
+
+                        <tuc-shipping-mode-selection
+                            data-ng-model="$ctrl.process.shipping.mode"
+                            data-tuc-shipping-mode-selection-relay="$ctrl.process.shipping.relay"
+                        >
+                        </tuc-shipping-mode-selection>
+                    </div>
+                    <!-- SHIPPING MODE CHOICE -->
+                </div>
+
+                <div class="mt-5" data-ng-if="!$ctrl.loading.init">
+                    <a
+                        class="btn btn-default"
+                        data-translate="telecom_pack_migration_confirm_cancel_button"
+                        data-ui-sref="telecom.packs.pack"
+                    >
+                    </a>
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        data-ng-disabled="!$ctrl.process.shipping.mode || ($ctrl.process.shipping.mode === 'mondialRelay' && !$ctrl.process.shipping.relay) || ($ctrl.process.shipping.mode === 'transporter' && !$ctrl.process.shipping.address)"
+                        data-translate="telecom_pack_migration_shipping_confirm"
+                        data-ng-click="$ctrl.process.currentStep = 'confirm'"
+                    ></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

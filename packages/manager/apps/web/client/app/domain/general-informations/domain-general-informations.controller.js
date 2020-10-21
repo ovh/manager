@@ -1,4 +1,5 @@
 import find from 'lodash/find';
+import flattenDeep from 'lodash/flattenDeep';
 import forEach from 'lodash/forEach';
 import get from 'lodash/get';
 import has from 'lodash/has';
@@ -362,7 +363,7 @@ export default class DomainTabGeneralInformationsCtrl {
           }),
         ),
       )
-      .then((allAssociatedHosting) => allAssociatedHosting.flatten())
+      .then((allAssociatedHosting) => flattenDeep(allAssociatedHosting))
       .then((allAssociatedHosting) => {
         if (isArray(allAssociatedHosting) && !isEmpty(allAssociatedHosting)) {
           this.hasSubdomainsOrMultisites = true;

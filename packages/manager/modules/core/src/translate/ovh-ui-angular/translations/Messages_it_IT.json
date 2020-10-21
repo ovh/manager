@@ -75,5 +75,7 @@
   "common_password_weak_password": "Password debole",
   "common_password_good_password": "Password corretta",
   "common_password_strong_password": "Password sicura",
-  "common_criteria_adder_filter_label": "Filtra"
+  "common_criteria_adder_filter_label": "Filtra",
+  "common_back_button_back_to": "Torna a",
+  "common_back_button_back_to_previous_page": "Torna alla pagina precedente"
 }

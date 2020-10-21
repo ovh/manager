@@ -149,9 +149,7 @@ angular
         return modal;
       };
 
-      self.readCampaign = function readCampaign($event, campaign) {
-        $event.preventDefault();
-
+      self.readCampaign = function readCampaign(campaign) {
         if (campaign.status === 'stop') {
           return null;
         }
@@ -172,14 +170,8 @@ angular
         return modal;
       };
 
-      self.startCampaign = function startCampaign($event, campaign) {
-        $event.preventDefault();
-
-        if (
-          campaign.status === 'todo' ||
-          campaign.status === 'doing' ||
-          campaign.status === 'stop'
-        ) {
+      self.startCampaign = function startCampaign(campaign) {
+        if (campaign.status === 'todo' || campaign.status === 'doing') {
           return $q.when(null);
         }
 
@@ -212,9 +204,7 @@ angular
           );
       };
 
-      self.stopCampaign = function stopCampaign($event, campaign) {
-        $event.preventDefault();
-
+      self.stopCampaign = function stopCampaign(campaign) {
         if (campaign.status === 'stopTodo' || campaign.status === 'stopDoing') {
           return $q.when(null);
         }
@@ -248,9 +238,7 @@ angular
           );
       };
 
-      self.removeCampaign = function removeCampaign($event, campaign) {
-        $event.preventDefault();
-
+      self.removeCampaign = function removeCampaign(campaign) {
         const modal = $uibModal.open({
           animation: true,
           templateUrl:

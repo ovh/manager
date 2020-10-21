@@ -109,5 +109,8 @@
   "domains_operations_progress_instructions_4": "If there is a refusal or a lack of response within 5 days: the transfer is terminated.",
   "domains_operations_progress_instructions_5": "If only one of two emails has been validated: after 5 days without the other email being validated, the transfer will progress to the next stage.",
   "domains_operations_progress_instructions_6": "If both emails have been validated: validation and progression to the next stage within 24 hours.",
-  "domains_operations_progress_instructions_7": "You can contact your domain's current service provider, so that they can give their approval."
+  "domains_operations_progress_instructions_7": "You can contact your domain's current service provider, so that they can give their approval.",
+  "domains_operations_update_key_firstname": "Update first name with valid content",
+  "domains_operations_update_key_name": "Update surname with valid content",
+  "domains_operations_update_key_identificationNumber": "Update identification number with valid content"
 }

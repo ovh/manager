@@ -75,5 +75,7 @@
   "common_password_weak_password": "Schwaches Passwort.",
   "common_password_good_password": "Korrektes Passwort.",
   "common_password_strong_password": "Starkes Passwort.",
-  "common_criteria_adder_filter_label": "Filtern"
+  "common_criteria_adder_filter_label": "Filtern",
+  "common_back_button_back_to": "Zurück zu",
+  "common_back_button_back_to_previous_page": "Zurück zur vorherigen Seite "
 }

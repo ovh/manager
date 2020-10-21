@@ -116,9 +116,9 @@ export default class VpsUpgradeCtrl {
    *  Find the monthly price object of given offer
    */
   static getMonthlyPrice(offer) {
-    const prices = filter(offer.offer.details.prices, {
-      duration: 'P1M',
-    });
+    const prices = filter(offer.offer.details.prices, ({ capacities }) =>
+      capacities.includes('renew'),
+    );
     const totalPrice = sumBy(prices, 'price.value');
     return {
       ...prices[0].price,

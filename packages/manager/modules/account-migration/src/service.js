@@ -17,11 +17,19 @@ import Migration from './migration.class';
 
 export default class {
   /* @ngInject */
-  constructor($cacheFactory, $q, $http, $translate, OvhApiMe) {
+  constructor(
+    $cacheFactory,
+    $q,
+    $http,
+    $translate,
+    OvhApiMe,
+    ovhFeatureFlipping,
+  ) {
     this.$q = $q;
     this.$http = $http;
     this.$translate = $translate;
     this.OvhApiMe = OvhApiMe;
+    this.ovhFeatureFlipping = ovhFeatureFlipping;
     this.migrationDetails = null;
     this.cache = $cacheFactory('AccountMigrationCache');
   }
@@ -97,14 +105,23 @@ export default class {
   }
 
   getMigrationList() {
-    return this.$http
-      .get('/me/migration', {
-        headers: {
-          [X_PAGINATION_MODE]: CACHED_OBJECT_LIST_PAGES,
-        },
-        cache: this.cache,
-      })
-      .then((res) => res.data);
+    return this.ovhFeatureFlipping
+      .checkFeatureAvailability('account-migration')
+      .catch(() => ({
+        'account-migration': false,
+      }))
+      .then((featureAvailability) =>
+        featureAvailability.isFeatureAvailable('account-migration')
+          ? this.$http
+              .get('/me/migration', {
+                headers: {
+                  [X_PAGINATION_MODE]: CACHED_OBJECT_LIST_PAGES,
+                },
+                cache: this.cache,
+              })
+              .then((res) => res.data)
+          : this.$q.when([]),
+      );
   }
 
   getPendingMigration() {

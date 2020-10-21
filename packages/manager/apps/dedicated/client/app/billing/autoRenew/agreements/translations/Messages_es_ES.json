@@ -44,5 +44,6 @@
   "user_agreement_details_subtitle3": "Recordatorio a los clientes consumidores",
   "user_agreement_details_paragraph3": "De conformidad con el artículo L224-33 del Código de Consumo francés, si el Cliente no ha aceptado expresamente las nuevas condiciones contractuales, dispondrá de la facultad de cancelar los servicios hasta en un plazo de cuatro (4) meses. Para ello, puede <a href=\"{{t0}}\">crear un tíquet</a> desde el área de cliente con el asunto «Baja de mis servicios» y la fecha en la que desea dar de baja el servicio (inmediatamente o en la fecha de renovación).",
   "user_agreement_details_success": "Se ha aceptado el contrato.",
-  "user_agreement_details_error": "Se ha producido un error al aceptar el contrato."
+  "user_agreement_details_error": "Se ha producido un error al aceptar el contrato.",
+  "user_agreements_accept_all": "Aceptar todos los contratos"
 }

@@ -1,0 +1,5 @@
+{
+  "autorenew_service_autorenew_blocked_title": "Configuración de la renovación no disponible",
+  "autorenew_service_autorenew_blocked_description": "La renovación automática ya no está disponible en las soluciones activadas con los contratos antiguos. Por favor, lea y acepte los nuevos contratos para poder renovar sus productos automáticamente.",
+  "autorenew_service_autorenew_blocked_confirm": "Leer y aceptar las nuevas condiciones"
+}

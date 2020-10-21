@@ -109,5 +109,8 @@
   "domains_operations_progress_instructions_4": "Em caso de recusa ou de ausência de resposta no prazo de 5 dias, a transferência é cancelada.",
   "domains_operations_progress_instructions_5": "Só um dos e-mails foi validado: a transferência passa à etapa seguinte após 5 dias.",
   "domains_operations_progress_instructions_6": "Os dois e-mails foram validados: o processo será validado e passará à etapa seguinte nas próximas 24 horas.",
-  "domains_operations_progress_instructions_7": "Contacte agente de registo atualmente responsável  pelo domínio para obter a autorização."
+  "domains_operations_progress_instructions_7": "Contacte agente de registo atualmente responsável  pelo domínio para obter a autorização.",
+  "domains_operations_update_key_firstname": "Atualizar o nome com um conteúdo válido",
+  "domains_operations_update_key_name": "Atualizar o sobrenome com um conteúdo válido",
+  "domains_operations_update_key_identificationNumber": "Atualizar o número de identificação com um conteúdo válido"
 }

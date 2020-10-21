@@ -7,8 +7,8 @@ const moduleName = 'ovhManagerPciProjectsNewLazyLoading';
 
 angular
   .module(moduleName, ['ui.router', 'oc.lazyLoad', featureFlippling])
-  .config((ovhFeatureFlippingProvider) => {
-    ovhFeatureFlippingProvider.addFeatures([
+  .config((ovhPciFeatureFlippingProvider) => {
+    ovhPciFeatureFlippingProvider.addFeatures([
       {
         key: 'pci.onboarding.new',
         name: 'New PCI onboarding',
@@ -26,7 +26,7 @@ angular
     ]);
   })
   .config(
-    /* @ngInject */ ($stateProvider, ovhFeatureFlippingProvider) => {
+    /* @ngInject */ ($stateProvider, ovhPciFeatureFlippingProvider) => {
       $stateProvider.state('pci.projects.new.**', {
         url: '/new',
         lazyLoad: ($transition$) => {
@@ -34,7 +34,7 @@ angular
           let loadPromise;
 
           if (
-            ovhFeatureFlippingProvider.isFeatureActive('pci.onboarding.new')
+            ovhPciFeatureFlippingProvider.isFeatureActive('pci.onboarding.new')
           ) {
             loadPromise = import('./module');
           } else {

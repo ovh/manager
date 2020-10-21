@@ -2,6 +2,6 @@
   "user_agreements_accept_all_count": "Contract {{current}}/{{total}}",
   "user_agreements_accept_all_accept_and_next": "Accept and continue",
   "user_agreements_accept_all_read_and_accepted": "I have read and accepted {{contractTitle}}",
-  "user_agreements_accept_all_annexes": "To read the appendices, which are an integral part of the contract (namely the General Conditions, Special Conditions, and the Data Processing Agreement (DPA)), <a href='{{url}}' target='_blank' rel='noopener' class='oui-link_icon'>click here<span class='oui-icon oui-icon-external_link' aria-hidden='true'></span></a>",
+  "user_agreements_accept_all_annexes": "To view the appendices, which are an integral part of the contract (namely the General Conditions, Special Conditions, and the Data Processing Agreement (DPA)), <a href='{{url}}' target='_blank' rel='noopener' class='oui-link_icon'>click here<span class='oui-icon oui-icon-external_link' aria-hidden='true'></span></a>",
   "user_agreements_accept_all_error": "An error has occurred processing the contract: {{message}}"
 }

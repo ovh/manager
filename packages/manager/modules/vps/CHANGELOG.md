@@ -1,3 +1,62 @@
+## [2.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.2.1...@ovh-ux/manager-vps@2.2.2) (2020-10-20)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v11.0.0 ([#3869](https://github.com/ovh/manager/issues/3869)) ([df90e4d](https://github.com/ovh/manager/commit/df90e4de660920e3cd07b2ff6b4452b0aa861377))
+* get option price by capacity instead of duration ([#3866](https://github.com/ovh/manager/issues/3866)) ([c8d26b0](https://github.com/ovh/manager/commit/c8d26b0584a28fa7229da3991a1d2332e60eaa44))
+
+
+
+## [2.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.2.0...@ovh-ux/manager-vps@2.2.1) (2020-10-15)
+
+
+### Bug Fixes
+
+* **snapshot.order:** get offer by capacity instead of duration ([#3837](https://github.com/ovh/manager/issues/3837)) ([a2b312e](https://github.com/ovh/manager/commit/a2b312efe6587c3d4726bb1471e678f6904c909b))
+
+
+
+# [2.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.1.3...@ovh-ux/manager-vps@2.2.0) (2020-10-14)
+
+
+### Features
+
+* **vps.dashboard:** add warning message for maintenance ([#3828](https://github.com/ovh/manager/issues/3828)) ([e503018](https://github.com/ovh/manager/commit/e503018324ece346f04873a557c168ceb75263fb))
+
+
+
+## [2.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.1.2...@ovh-ux/manager-vps@2.1.3) (2020-10-13)
+
+
+### Bug Fixes
+
+* **deps:** upgrade to @ovh-ux/manager-config v2.0.0 ([ca3f955](https://github.com/ovh/manager/commit/ca3f9554c13b1436cbdeed3de8ac69e399d5dd93))
+* **i18n:** add missing translations [CDS 594] ([53e8fd1](https://github.com/ovh/manager/commit/53e8fd115cdf8fbca183cd6e123ffdd92cfa7980))
+* **i18n:** add missing translations [CDS 595] ([fe5e042](https://github.com/ovh/manager/commit/fe5e042913cd90b3e2bf1be6891098b544d784f5))
+* **i18n:** add missing translations [CDS 599] ([1a2a0a9](https://github.com/ovh/manager/commit/1a2a0a91293287a9557396f75ca91995fe0bdbc7))
+* **i18n:** add missing translations [CDS 605] ([95c86b7](https://github.com/ovh/manager/commit/95c86b75448550a605e6569367bd0fef8fddbde0))
+
+
+
+## [2.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.1.1...@ovh-ux/manager-vps@2.1.2) (2020-10-07)
+
+
+### Bug Fixes
+
+* **vps.dashboard:** remove maintenance message ([#3791](https://github.com/ovh/manager/issues/3791)) ([1a5de6d](https://github.com/ovh/manager/commit/1a5de6d300f50aa53f53f37073448d172c4d6ade))
+
+
+
+## [2.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.1.0...@ovh-ux/manager-vps@2.1.1) (2020-10-05)
+
+
+### Bug Fixes
+
+* **vps:** remove maintenance message in US ([#3759](https://github.com/ovh/manager/issues/3759)) ([0b4fa6a](https://github.com/ovh/manager/commit/0b4fa6a6510bda6b9f421e10f3c566a7c463768b))
+
+
+
 # [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.0.6...@ovh-ux/manager-vps@2.1.0) (2020-10-01)
 
 

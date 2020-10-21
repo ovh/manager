@@ -40,6 +40,10 @@ export const LANGUAGES = {
       name: 'Suomi',
       key: 'fi_FI',
     },
+    {
+      name: 'Česky',
+      key: 'cs_CZ',
+    },
   ],
   defaultLoc: 'fr_FR',
   fallback: 'fr_FR',

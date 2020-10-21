@@ -13,10 +13,7 @@ export const UpgradeCertificationService = class {
     this.ovhManagerPccServicePackService = ovhManagerPccServicePackService;
   }
 
-  async getOrderableServicePacks(
-    serviceName,
-    subsidiary,
-  ) {
+  async getOrderableServicePacks(serviceName, subsidiary) {
     const allServicePacks = await this.ovhManagerPccServicePackService.getServicePacks(
       serviceName,
       subsidiary,

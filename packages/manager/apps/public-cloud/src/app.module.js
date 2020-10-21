@@ -2,7 +2,8 @@
 import { Environment } from '@ovh-ux/manager-config';
 
 /* eslint-disable import/no-webpack-loader-syntax, import/extensions */
-import 'babel-polyfill';
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
 import angular from 'angular';
 import ngAnimate from 'angular-animate';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
@@ -90,6 +91,16 @@ angular
       return import(`script-loader!moment/locale/${lang}.js`).then(() =>
         moment.locale(lang),
       );
+    },
+  )
+  .config(
+    /* @ngInject */ (ouiCalendarConfigurationProvider) => {
+      const lang = Environment.getUserLanguage();
+      return import(`flatpickr/dist/l10n/${lang}.js`)
+        .then((module) => {
+          ouiCalendarConfigurationProvider.setLocale(module.default[lang]);
+        })
+        .catch(() => {});
     },
   )
   .run(

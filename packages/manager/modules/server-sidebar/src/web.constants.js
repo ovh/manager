@@ -254,6 +254,7 @@ export const WEB_ORDER_SIDEBAR_CONFIG = [
     target: '_blank',
     app: [WEB],
     regions: ['EU', 'CA'],
+    tracker: 'web::orders::domain-name::order',
   },
   {
     id: 'orderZone',
@@ -262,6 +263,7 @@ export const WEB_ORDER_SIDEBAR_CONFIG = [
     state: 'app.dns-zone-new',
     regions: ['EU', 'CA'],
     app: [WEB],
+    tracker: 'web::orders::dns-zone::order',
   },
   {
     id: 'orderHosting',
@@ -271,6 +273,7 @@ export const WEB_ORDER_SIDEBAR_CONFIG = [
     target: '_blank',
     app: [WEB],
     regions: ['EU', 'CA'],
+    tracker: 'web::orders::web-hosting::order',
   },
   {
     id: 'orderCloudWeb',
@@ -280,6 +283,7 @@ export const WEB_ORDER_SIDEBAR_CONFIG = [
     target: '_blank',
     app: [WEB],
     regions: ['EU'],
+    tracker: 'web::orders::cloud-web::order',
   },
   {
     id: 'orderEmailPro',
@@ -289,6 +293,7 @@ export const WEB_ORDER_SIDEBAR_CONFIG = [
     target: '_blank',
     app: [WEB],
     regions: ['EU'],
+    tracker: 'web::orders::email-pro::order',
   },
   {
     id: 'orderMXPlan',
@@ -297,6 +302,7 @@ export const WEB_ORDER_SIDEBAR_CONFIG = [
     state: 'app.mx-plan',
     regions: ['EU'],
     app: [WEB],
+    tracker: 'web::orders::mx-plan::order',
   },
   {
     id: 'orderExchange',
@@ -305,6 +311,7 @@ export const WEB_ORDER_SIDEBAR_CONFIG = [
     state: 'app.microsoft.exchange.order',
     regions: ['EU'],
     app: [WEB],
+    tracker: 'web::orders::email-microsoft-exchange::order',
   },
   {
     id: 'orderOffice',
@@ -314,6 +321,7 @@ export const WEB_ORDER_SIDEBAR_CONFIG = [
     target: '_blank',
     app: [WEB],
     regions: ['EU'],
+    tracker: 'web::orders::licences-office::order',
   },
   {
     id: 'orderCsp2',
@@ -323,6 +331,7 @@ export const WEB_ORDER_SIDEBAR_CONFIG = [
     target: '_blank',
     app: [WEB],
     regions: ['EU'],
+    tracker: 'web::orders::licences-office-reseller::order',
   },
   {
     id: 'orderSharepoint',
@@ -331,6 +340,7 @@ export const WEB_ORDER_SIDEBAR_CONFIG = [
     state: 'app.microsoft.sharepoint.order',
     regions: ['EU'],
     app: [WEB],
+    tracker: 'web::orders::microsoft-sharepoint::order',
   },
   {
     id: 'orderCloudDatabase',
@@ -338,6 +348,15 @@ export const WEB_ORDER_SIDEBAR_CONFIG = [
     icon: 'ovh-font ovh-font-database',
     state: 'app.private-database-order-clouddb',
     regions: ['EU'],
+    app: [WEB],
+    tracker: 'web::orders::cloud-db::order',
+  },
+  {
+    id: 'orderPrivateDatabase',
+    title: 'privateDatabase',
+    icon: 'ovh-font ovh-font-database',
+    state: 'app.private-database-order',
+    regions: ['EU', 'CA'],
     app: [WEB],
   },
 ];

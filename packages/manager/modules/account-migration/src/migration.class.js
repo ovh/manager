@@ -51,4 +51,8 @@ export default class {
   isPending() {
     return this.status === MIGRATION_STATUS.TODO;
   }
+
+  isDone() {
+    return this.status === MIGRATION_STATUS.MIGRATED;
+  }
 }

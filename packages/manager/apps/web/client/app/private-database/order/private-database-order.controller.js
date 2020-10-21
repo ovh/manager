@@ -154,7 +154,10 @@ angular.module('App').controller(
     onHostingChanged() {
       this.selectedOrder.config.datacenter = null;
 
-      if (this.selectedHosting.value === 'other') {
+      if (
+        this.selectedHosting.value === 'other' ||
+        !this.selectedHosting.value
+      ) {
         return;
       }
       this.hostingService

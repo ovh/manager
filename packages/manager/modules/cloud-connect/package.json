@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-cloud-connect",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "OVHcloud CloudConnect product",
   "repository": {
@@ -20,11 +20,13 @@
     "@ovh-ux/manager-core": "^11.0.0",
     "@ovh-ux/ng-at-internet": "^5.3.0",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.1.0",
-    "@ovh-ux/ng-ovh-cloud-universe-components": "^1.5.0",
+    "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.3",
+    "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.0",
+    "@ovh-ux/ui-kit": "^4.2.3",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^9.39.1"
+    "ovh-api-services": "^11.0.0"
   }
 }

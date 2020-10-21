@@ -1,5 +1,3 @@
-import map from 'lodash/map';
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.kubernetes.details.nodepools', {
     url: '/nodepools',
@@ -17,7 +15,10 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
         }),
 
-      editNodePool: /* @ngInject */ ($state, kubeId, projectId) => (nodePoolId, nodePool) =>
+      editNodePool: /* @ngInject */ ($state, kubeId, projectId) => (
+        nodePoolId,
+        nodePool,
+      ) =>
         $state.go('pci.projects.project.kubernetes.details.nodepools.nodes', {
           kubeId,
           projectId,
@@ -36,15 +37,17 @@ export default /* @ngInject */ ($stateProvider) => {
           nodePoolName,
         }),
 
-      getNodesStateHref: /* @ngInject */ ($state, kubeId, projectId) => (nodePoolId) =>
-          $state.href(
-            'pci.projects.project.kubernetes.details.nodepools.details',
-            {
-              projectId,
-              kubeId,
-              nodePoolId,
-            }
-          ),
+      getNodesStateHref: /* @ngInject */ ($state, kubeId, projectId) => (
+        nodePoolId,
+      ) =>
+        $state.href(
+          'pci.projects.project.kubernetes.details.nodepools.details',
+          {
+            projectId,
+            kubeId,
+            nodePoolId,
+          },
+        ),
 
       nodePools: /* @ngInject */ (Kubernetes, kubeId, projectId) =>
         Kubernetes.getNodePools(projectId, kubeId),
@@ -85,17 +88,21 @@ export default /* @ngInject */ ($stateProvider) => {
     },
   });
 
-  $stateProvider.state('pci.projects.project.kubernetes.details.nodepools.details', {
-    url: '/:nodePoolId',
-    redirectTo: 'pci.projects.project.kubernetes.details.nodepools.details.nodes',
-    template: `<div data-ui-view></div>`,
-    resolve: {
-      nodePool: /* @ngInject */ (Kubernetes, kubeId, projectId, nodePoolId) =>
-        Kubernetes
-          .getNodePool(projectId, kubeId, nodePoolId),
-      nodePoolId: /* @ngInject */ ($transition$) =>  $transition$.params().nodePoolId,
-      nodePoolName: /* @ngInject */ (nodePool) =>  nodePool.name,
-      breadcrumb: /* @ngInject */ (nodePool) => nodePool.name,
-    }
-  });
+  $stateProvider.state(
+    'pci.projects.project.kubernetes.details.nodepools.details',
+    {
+      url: '/:nodePoolId',
+      redirectTo:
+        'pci.projects.project.kubernetes.details.nodepools.details.nodes',
+      template: `<div data-ui-view></div>`,
+      resolve: {
+        nodePool: /* @ngInject */ (Kubernetes, kubeId, projectId, nodePoolId) =>
+          Kubernetes.getNodePool(projectId, kubeId, nodePoolId),
+        nodePoolId: /* @ngInject */ ($transition$) =>
+          $transition$.params().nodePoolId,
+        nodePoolName: /* @ngInject */ (nodePool) => nodePool.name,
+        breadcrumb: /* @ngInject */ (nodePool) => nodePool.name,
+      },
+    },
+  );
 };

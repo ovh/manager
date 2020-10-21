@@ -328,6 +328,7 @@
   "privateDatabase_order_step1_datacenter": "Datacentre",
   "privateDatabase_order_step1_error": "Une erreur est survenue lors de la récupération des bases de données disponible.",
   "privateDatabase_order_step2_title": "2. Choisissez une durée",
+  "privateDatabase_order_sql_period_sub_title": "Combien de temps désirez-vous l'utiliser ?",
   "privateDatabase_order_step2_duration_fail": "Une erreur est survenue lors de la récupération des durées disponible.",
   "privateDatabase_order_step2_price_fail": "Une erreur est survenue lors de la récupération des prix pour cette durée.",
   "privateDatabase_order_step3_title": "3. Validation",

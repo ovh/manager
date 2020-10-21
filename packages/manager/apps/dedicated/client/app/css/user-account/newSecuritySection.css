@@ -20,7 +20,10 @@
   margin-top: 32px;
 }
 
-.new-security-section .new-security-section__2fa-lists > .media:not(:last-child) > .media-body {
+.new-security-section
+  .new-security-section__2fa-lists
+  > .media:not(:last-child)
+  > .media-body {
   margin-bottom: 32px;
   padding-bottom: 32px;
   border-bottom: 1px solid #e9ebed;

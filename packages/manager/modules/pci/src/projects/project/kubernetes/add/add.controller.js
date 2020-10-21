@@ -6,7 +6,14 @@ import { READY_STATUS, DEFAULT_NODE_COUNT } from './add.constants';
 
 export default class {
   /* @ngInject */
-  constructor($translate, $q, CucCloudMessage, Kubernetes, OvhApiCloudProjectKube, Poller) {
+  constructor(
+    $translate,
+    $q,
+    CucCloudMessage,
+    Kubernetes,
+    OvhApiCloudProjectKube,
+    Poller,
+  ) {
     this.$translate = $translate;
     this.$q = $q;
     this.CucCloudMessage = CucCloudMessage;
@@ -45,16 +52,17 @@ export default class {
 
   create() {
     this.isAdding = true;
-    return this.Kubernetes
-      .createCluster(
-        this.projectId,
-        this.cluster.name,
-        this.cluster.region.name,
-        this.cluster.version,
-        this.cluster.nodePool.nodeCount,
-        this.cluster.nodePool.flavor.name,
+    return this.Kubernetes.createCluster(
+      this.projectId,
+      this.cluster.name,
+      this.cluster.region.name,
+      this.cluster.version,
+      this.cluster.nodePool.nodeCount,
+      this.cluster.nodePool.flavor.name,
+    )
+      .then((response) =>
+        this.checkKubernetesStatus(this.projectId, response.data.id),
       )
-      .then((response) => this.checkKubernetesStatus(this.projectId, response.data.id))
       .then(() =>
         this.goBack(this.$translate.instant('kubernetes_add_success')),
       )

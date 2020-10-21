@@ -1,3 +1,21 @@
+## [2.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@2.1.3...@ovh-ux/manager-hub@2.1.4) (2020-10-20)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v11.0.0 ([#3869](https://github.com/ovh/manager/issues/3869)) ([df90e4d](https://github.com/ovh/manager/commit/df90e4de660920e3cd07b2ff6b4452b0aa861377))
+
+
+
+## [2.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@2.1.2...@ovh-ux/manager-hub@2.1.3) (2020-10-07)
+
+
+### Bug Fixes
+
+* **peer-deps:** add missing @ovh-ux/manager-billing ([7f0ffde](https://github.com/ovh/manager/commit/7f0ffde51ecc6617a13cf31da597785741d772c1))
+
+
+
 ## [2.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@2.1.1...@ovh-ux/manager-hub@2.1.2) (2020-09-28)
 
 

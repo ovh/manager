@@ -1,7 +1,8 @@
 import FeatureAvailabilityResult from './feature-availability-result.class';
 
 export default class FeatureFlipping {
-  constructor($http, applicationName) {
+  constructor($q, $http, applicationName) {
+    this.$q = $q;
     this.$http = $http;
     this.applicationName = applicationName;
   }
@@ -20,6 +21,10 @@ export default class FeatureFlipping {
 
     if (!Array.isArray(featuresList)) {
       featuresList = [featuresList];
+    }
+
+    if (featuresList.length === 0) {
+      return this.$q.resolve(new FeatureAvailabilityResult());
     }
 
     return this.$http

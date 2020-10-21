@@ -55,7 +55,8 @@ pci-project-creating-not-paid {
           }
         }
 
-        &.oui-progress-tracker__step_complete .oui-progress-tracker__status::before {
+        &.oui-progress-tracker__step_complete
+          .oui-progress-tracker__status::before {
           content: counter(oui-progress-tracker);
           font-family: inherit;
         }

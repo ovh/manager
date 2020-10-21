@@ -12,17 +12,11 @@ ul.messenger-theme-ice .messenger-message {
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
   border-radius: 5px;
-  -webkit-box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.14),
-    0 4px #aaa,
+  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.14), 0 4px #aaa,
     0 5px rgba(0, 0, 0, 0.05);
-  -moz-box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.14),
-    0 4px #aaa,
+  -moz-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.14), 0 4px #aaa,
     0 5px rgba(0, 0, 0, 0.05);
-  box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.14),
-    0 4px #aaa,
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.14), 0 4px #aaa,
     0 5px rgba(0, 0, 0, 0.05);
   border: 0;
   background-color: #f6f6f6;
@@ -65,14 +59,11 @@ ul.messenger-theme-ice .messenger-message .messenger-actions {
 }
 
 ul.messenger-theme-ice .messenger-message .messenger-actions a {
-  -webkit-box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.1),
+  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1),
     inset 0 1px rgba(255, 255, 255, 0.05);
-  -moz-box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.1),
+  -moz-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1),
     inset 0 1px rgba(255, 255, 255, 0.05);
-  box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.1),
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1),
     inset 0 1px rgba(255, 255, 255, 0.05);
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -90,34 +81,22 @@ ul.messenger-theme-ice .messenger-message .messenger-actions a {
 
 ul.messenger-theme-ice .messenger-message .messenger-actions a:hover,
 ul.messenger-theme-ice .messenger-message .messenger-actions a:active {
-  -webkit-box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.1),
-    inset 0 1px rgba(255, 255, 255, 0.15),
-    0 2px #aaa;
-  -moz-box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.1),
-    inset 0 1px rgba(255, 255, 255, 0.15),
-    0 2px #aaa;
-  box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.1),
-    inset 0 1px rgba(255, 255, 255, 0.15),
-    0 2px #aaa;
+  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1),
+    inset 0 1px rgba(255, 255, 255, 0.15), 0 2px #aaa;
+  -moz-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1),
+    inset 0 1px rgba(255, 255, 255, 0.15), 0 2px #aaa;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1),
+    inset 0 1px rgba(255, 255, 255, 0.15), 0 2px #aaa;
   color: #444;
 }
 
 ul.messenger-theme-ice .messenger-message .messenger-actions a:active {
-  -webkit-box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.1),
-    inset 0 1px rgba(255, 255, 255, 0.15),
-    0 1px #aaa;
-  -moz-box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.1),
-    inset 0 1px rgba(255, 255, 255, 0.15),
-    0 1px #aaa;
-  box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.1),
-    inset 0 1px rgba(255, 255, 255, 0.15),
-    0 1px #aaa;
+  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1),
+    inset 0 1px rgba(255, 255, 255, 0.15), 0 1px #aaa;
+  -moz-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1),
+    inset 0 1px rgba(255, 255, 255, 0.15), 0 1px #aaa;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1),
+    inset 0 1px rgba(255, 255, 255, 0.15), 0 1px #aaa;
   top: 1px;
 }
 
@@ -132,14 +111,20 @@ ul.messenger-theme-ice .messenger-message .messenger-message-inner::before {
   margin-bottom: 2px;
 }
 
-ul.messenger-theme-ice .messenger-message.alert-success .messenger-message-inner::before {
+ul.messenger-theme-ice
+  .messenger-message.alert-success
+  .messenger-message-inner::before {
   content: 'Success';
 }
 
-ul.messenger-theme-ice .messenger-message.alert-error .messenger-message-inner::before {
+ul.messenger-theme-ice
+  .messenger-message.alert-error
+  .messenger-message-inner::before {
   content: 'Error';
 }
 
-ul.messenger-theme-ice .messenger-message.alert-info .messenger-message-inner::before {
+ul.messenger-theme-ice
+  .messenger-message.alert-info
+  .messenger-message-inner::before {
   content: 'Information';
 }

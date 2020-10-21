@@ -109,5 +109,8 @@
   "domains_operations_progress_instructions_4": "W przypadku odrzucenia lub braku odpowiedzi w ciągu 5 dni: transfer zostanie anulowany.",
   "domains_operations_progress_instructions_5": "Jeśli jeden z e-maili został potwierdzony: w przypadku braku potwierdzenia z drugiego e-maila, po 5 dniach transfer przejdzie do koolejnego etapu.",
   "domains_operations_progress_instructions_6": "Jeśli obydwa e-maile zostały potwierdzone: potwierdzenie i przejście do kolejnego etapu za 24 godziny.",
-  "domains_operations_progress_instructions_7": "Możesz skontaktować się z aktualnym operatorem domeny, aby wyraził on zgodę."
+  "domains_operations_progress_instructions_7": "Możesz skontaktować się z aktualnym operatorem domeny, aby wyraził on zgodę.",
+  "domains_operations_update_key_firstname": "Zaktualizuj imię, wprowadzając prawidłową treść",
+  "domains_operations_update_key_name": "Zaktualizuj nazwisko, wprowadzając prawidłową treść",
+  "domains_operations_update_key_identificationNumber": "Zaktualizuj numer identyfikacyjny, wprowadzając prawidłową treść"
 }
