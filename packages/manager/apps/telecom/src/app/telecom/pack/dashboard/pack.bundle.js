@@ -13,8 +13,6 @@ import '../slots/exchangeLite/pack-exchangeLite.controller';
 import '../slots/hostedEmail/add/pack-hostedEmail-add.controller';
 import '../slots/hostedEmail/add/pack-hostedEmail-add';
 import '../slots/hostedEmail/pack-hostedEmail.controller';
-import '../slots/hubic/activation/pack-hubic-activation.controller';
-import '../slots/hubic/activation/pack-hubic-activation';
 import '../slots/hubic/pack-hubic.controller';
 import '../slots/informations/pack-informations.controller';
 import '../slots/promotionCode/pack-promotionCode.controller';
