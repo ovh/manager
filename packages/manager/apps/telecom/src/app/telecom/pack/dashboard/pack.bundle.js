@@ -75,6 +75,4 @@ import '../xdsl/modem/wifi/config/pack-xdsl-modem-wifi-config';
 import '../xdsl/modem/wifi/pack-xdsl-modem-wifi.controller';
 import '../xdsl/orderFollowUp/pack-xdsl-orderFollowUp.controller';
 import '../xdsl/orderFollowUp/pack-xdsl-orderFollowUp';
-import '../xdsl/tasks/pack-xdsl-tasks.controller';
-import '../xdsl/tasks/packs-xdsl-tasks';
 import '../xdsl/xdsl-task-poller.service';
