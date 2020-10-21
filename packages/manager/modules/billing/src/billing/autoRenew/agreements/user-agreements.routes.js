@@ -6,7 +6,7 @@ export default /* @ngInject */ (
   coreConfigProvider,
 ) => {
   if (coreConfigProvider.isRegion(['EU', 'CA'])) {
-    $stateProvider.state('app.account.billing.autorenew.agreements', {
+    $stateProvider.state('billing.autorenew.agreements', {
       url: '/agreements',
       template,
       controller: 'UserAccount.controllers.agreements',
@@ -20,12 +20,9 @@ export default /* @ngInject */ (
               'dedicated::account::billing::autorenew::agreements::go-to-accept-all',
             type: 'action',
           });
-          return $state.go(
-            'app.account.billing.autorenew.agreements.popup-agreement',
-            {
-              agreements,
-            },
-          );
+          return $state.go('billing.autorenew.agreements.popup-agreement', {
+            agreements,
+          });
         },
       },
     });

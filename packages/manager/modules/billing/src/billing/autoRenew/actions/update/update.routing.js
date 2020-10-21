@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.account.billing.autorenew.update', {
+  $stateProvider.state('billing.autorenew.update', {
     url: '/update?serviceId&serviceType',
     component: 'billingAutorenewUpdate',
     redirectTo: (transition) =>
@@ -13,7 +13,7 @@ export default /* @ngInject */ ($stateProvider) => {
           if (migrationDates) {
             return moment().isBefore(moment(migrationDates.START, 'MM/DD/YYYY'))
               ? null
-              : 'app.account.billing.autorenew.configure-renew-impossible';
+              : 'billing.autorenew.configure-renew-impossible';
           }
           return null;
         })
@@ -21,7 +21,7 @@ export default /* @ngInject */ ($stateProvider) => {
     translations: { value: ['.'], format: 'json' },
     resolve: {
       addPaymentMean: /* @ngInject */ ($state) => () =>
-        $state.go('app.account.billing.payment.method.add'),
+        $state.go('billing.payment.method.add'),
       /* @ngInject */
       autorenewAgreements: (BillingAutoRenew) =>
         BillingAutoRenew.getAutorenewAgreements(),

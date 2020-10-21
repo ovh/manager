@@ -315,4 +315,13 @@ export default class {
   isAutomaticRenewV2Available() {
     return this.coreConfig.isRegion('EU');
   }
+
+  getDedicatedServer(serviceName) {
+    return this.OvhHttp.get('/sws/dedicated/server/{serviceName}', {
+      rootPath: '2api',
+      urlParams: {
+        serviceName,
+      },
+    });
+  }
 }

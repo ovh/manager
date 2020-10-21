@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.account.billing.autorenew.terminateHostingWeb', {
+  $stateProvider.state('billing.autorenew.terminateHostingWeb', {
     url: '/delete-hosting-web?serviceId',
     views: {
       modal: {
