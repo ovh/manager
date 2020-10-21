@@ -1,0 +1,11 @@
+{
+  "sms_cancel_title": "Bestätigung",
+  "sms_cancel_details_name": "Name",
+  "sms_cancel_details_date": "Erstellungsdatum",
+  "sms_cancel_details_sender": "Absender",
+  "sms_cancel_details_receivers": "Empfänger",
+  "sms_cancel_details_message": "Nachricht",
+  "sms_cancel_question": "Sind Sie sicher, dass Sie die unten angezeigte Kampagne abbrechen möchten?",
+  "sms_cancel_error": "Die Kampagne kann nicht abgebrochen werden. {{error}}",
+  "sms_cancel_success": "Kampagne wurde abgebrochen"
+}

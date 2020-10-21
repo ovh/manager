@@ -66,4 +66,8 @@ export default class {
   hasGuides() {
     return this.count > 0;
   }
+
+  static hasGuidesInSection(section, language) {
+    return section.guides.some((guide) => guide.url[language]);
+  }
 }

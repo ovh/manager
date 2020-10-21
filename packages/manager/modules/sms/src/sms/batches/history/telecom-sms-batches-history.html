@@ -1,0 +1,110 @@
+<header>
+    <oui-back-button data-on-click="$ctrl.goBack()">
+        <span data-translate="sms_batches_history_title"></span>
+    </oui-back-button>
+</header>
+
+<section class="container-fluid">
+    <oui-message
+        type="success"
+        data-ng-if="$ctrl.hasCancelled"
+        dismissable
+        on-dismiss="$ctrl.hasCancelled = false"
+    >
+        <span data-translate="sms_batches_delete_success"></span>
+    </oui-message>
+
+    <oui-message type="info" data-ng-if="$ctrl.isDownloading">
+        <span data-translate="sms_batches_history_downloading"></span>
+    </oui-message>
+
+    <oui-message
+        type="error"
+        data-ng-if="$ctrl.error"
+        dismissable
+        on-dismiss="$ctrl.error = null"
+    >
+        <span
+            data-translate="sms_batches_error"
+            data-translate-values="{ 'error': $ctrl.error }"
+        ></span>
+    </oui-message>
+
+    <oui-datagrid
+        page-size="10"
+        rows="$ctrl.batches"
+        empty-placeholder="{{:: 'sms_batches_none' | translate }}"
+    >
+        <oui-datagrid-topbar>
+            <oui-action-menu text="{{:: 'sms_batches_actions' | translate }}">
+                <oui-action-menu-item
+                    aria-label="{{:: 'sms_batches_actions_refresh' | translate }}"
+                    on-click="$ctrl.refreshBatches()"
+                    ><span data-translate="sms_batches_actions_refresh"></span
+                ></oui-action-menu-item>
+                <oui-action-menu-item
+                    aria-label="{{:: 'sms_batches_actions_statistics' | translate }}"
+                    on-click="$ctrl.goToDashboard()"
+                    ><span
+                        data-translate="sms_batches_actions_statistics"
+                    ></span
+                ></oui-action-menu-item>
+            </oui-action-menu>
+        </oui-datagrid-topbar>
+
+        <oui-datagrid-column
+            property="name"
+            filterable
+            searchable
+            title="::'sms_batches_name' | translate"
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            property="createdAt"
+            filterable
+            type="date"
+            title="::'sms_batches_datetime' | translate"
+        >
+            <span
+                data-ng-bind="($row.sentAt || $row.createdAt) | date: 'dd/MM/yyyy HH:mm'"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            property="from"
+            searchable
+            filterable
+            title="::'sms_batches_sender' | translate"
+        >
+            <span
+                data-ng-bind="$row.from || ('sms_batches_history_short_number' | translate )"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            property="receivers"
+            title="::'sms_batches_receivers' | translate"
+        >
+            <div
+                data-ng-repeat="receiver in $row.receivers track by receiver"
+                data-ng-bind="receiver"
+            ></div>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            property="status"
+            title="::'sms_batches_status' | translate"
+        >
+            <span
+                data-translate="{{:: 'sms_batches_status_' + $ctrl.formatStatus($row.status) }}"
+            ></span>
+        </oui-datagrid-column>
+        <oui-action-menu align="end" compact>
+            <oui-action-menu-item on-click="$ctrl.goToDetails($row)">
+                <span data-translate="sms_batches_details"></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                on-click="$ctrl.downloadLogs($row)"
+                disabled="$ctrl.isDownloading"
+            >
+                <span data-translate="sms_batches_download"></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+    </oui-datagrid>
+</section>

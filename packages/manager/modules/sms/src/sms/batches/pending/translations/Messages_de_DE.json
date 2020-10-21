@@ -1,0 +1,8 @@
+{
+  "sms_batches_pending_scheduled": "Geplant",
+  "sms_batches_pending_short_number": "Nummer, die Antworten erlaubt",
+  "sms_batches_pending_actions_cancel": "Abbrechen",
+  "sms_batches_pending_actions_cancel_one": "Ausgewählte Kampagne abbrechen",
+  "sms_batches_pending_actions_cancel_many": "Ausgewählte Kampagnen abbrechen",
+  "sms_batches_pending_cancel_success": "Wurde erfolgreich abgebrochen."
+}

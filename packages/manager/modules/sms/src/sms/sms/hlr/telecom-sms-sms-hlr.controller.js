@@ -9,6 +9,7 @@ export default class {
     $stateParams,
     $q,
     $translate,
+    goBack,
     OvhApiSms,
     TucSmsMediator,
     tucValidator,
@@ -24,6 +25,7 @@ export default class {
         hlr: OvhApiSms.Hlr().v6(),
       },
     };
+    this.goBack = goBack;
     this.TucSmsMediator = TucSmsMediator;
     this.validator = tucValidator;
     this.TucToast = TucToast;

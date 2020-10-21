@@ -117,5 +117,8 @@
   "sms_sms_compose_add_phonebook_contact_added": "Contact list updated.",
   "sms_sms_compose_add_phonebook_contact_ko": "Oops! Unable to retrieve contact list.",
   "sms_sms_compose_message_commercial_description": "For legal reasons, commercial SMS messages will only be sent between <strong>08:00 and 20:00, from Monday to Friday</strong>.",
-  "sms_sms_compose_no_commercial_clause_label": "I formally certify that the SMS is not commercial."
+  "sms_sms_compose_no_commercial_clause_label": "I formally certify that the SMS is not commercial.",
+  "sms_credit_balance": "Balance",
+  "sms_credit_remaining_sms": "Remaining SMS messages",
+  "sms_credit_manage_credits": "Manage your SMS credits"
 }

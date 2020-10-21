@@ -10,5 +10,11 @@
   "sms_tabs_guides": "Anleitungen",
   "sms_rename_error": "Impossible de renommer votre pack {{serviceName}}.",
   "sms_loading_error": "Une erreur est survenue lors du chargement de SMS",
-  "sms_feature_soon_available": "Cette fonctionnalité sera bientôt disponible."
+  "sms_feature_soon_available": "Cette fonctionnalité sera bientôt disponible.",
+  "sms_tabs_messages_campaign": "Nachricht und Kampagne",
+  "sms_sublink_sms_compose": "Verwaltung der SMS",
+  "sms_sublink_sms_campaign": "Verwaltung der Kampagnen",
+  "sms_sublink_phonebooks": "Adressbuch",
+  "sms_sublink_contact_list": "Kontaktliste erstellen",
+  "sms_confirm": "Bestätigen"
 }

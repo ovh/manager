@@ -1,0 +1,11 @@
+@import '~@ovh-ux/ui-kit/dist/scss/tokens/_colors.scss';
+
+.row {
+  .col-md-3 {
+    min-height: 6rem;
+
+    &:not(:last-child) {
+      border-right: 1px solid $p-075;
+    }
+  }
+}
