@@ -1,3 +1,12 @@
+## [14.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.2.1...@ovh-ux/manager-dedicated@14.2.2) (2020-10-21)
+
+
+### Bug Fixes
+
+* correct redirection url to order funnel ([#3888](https://github.com/ovh/manager/issues/3888)) ([dc27fe1](https://github.com/ovh/manager/commit/dc27fe17c8f7a3f40b5cfa2e38e528c8c170adfb))
+
+
+
 ## [14.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.2.0...@ovh-ux/manager-dedicated@14.2.1) (2020-10-21)
 
 
