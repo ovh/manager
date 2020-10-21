@@ -1,6 +1,7 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
-
 import get from 'lodash/get';
+
+import billingHistoryPostalMailOptionsTemplate from './postalMailOptions/billing-main-history-postal-mail-options.html';
 
 export default class BillingMainHistoryCtrl extends ListLayoutHelper.ListLayoutCtrl {
   /* @ngInject */
@@ -76,8 +77,7 @@ export default class BillingMainHistoryCtrl extends ListLayoutHelper.ListLayoutC
 
   onPostalMailOptionsChange() {
     const postalOptionsModal = this.$uibModal.open({
-      templateUrl:
-        'billing/main/history/postalMailOptions/billing-main-history-postal-mail-options.html',
+      template: billingHistoryPostalMailOptionsTemplate,
       controller: 'BillingHistoryPostalMailOptionsCtrl',
       controllerAs: '$ctrl',
       resolve: {

@@ -4,9 +4,8 @@ import get from 'lodash/get';
 import map from 'lodash/map';
 import set from 'lodash/set';
 
-angular.module('App').controller(
-  'BillingMainPayAsYouGoCtrl',
-  class BillingMainPayAsYouGoCtrl {
+export default class BillingMainPayAsYouGoCtrl {
+  /* @ngInject */
     constructor(
       $q,
       $translate,
@@ -115,5 +114,4 @@ angular.module('App').controller(
     }
 
     /* -----  End of INITIALIZATION  ------ */
-  },
-);
+  };

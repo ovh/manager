@@ -4,6 +4,8 @@ import set from 'lodash/set';
 import ngOvhExportCsv from '@ovh-ux/ng-ovh-export-csv';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
+import { config } from '@ovh-ux/ng-ovh-dedicated-universe-components';
+import dedicatedUniversalComponents from '@ovh-ux/ng-ovh-dedicated-universe-components';
 
 // import autorenew from './autoRenew/autorenew.module';
 import featureAvailability from './billing-feature-availability';
@@ -15,14 +17,20 @@ import main from './main';
 // import paymentMehtod from './payment/method';
 
 import billingCtrl from './billing.controller';
-import config from './config/config';
 import routing from './billing.routing';
+
+import '@ovh-ux/ui-kit/dist/css/oui.css';
+import './billing.scss';
+import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 
 const moduleName = 'ovhManagerBilling';
 
 angular
   .module(moduleName, [
     ovhManagerCore,
+    dedicatedUniversalComponents,
+    ngOvhExportCsv,
+    ngOvhUtils,
     // autorenew,
     // 'Billing.constants',
     // 'Billing.controllers',
@@ -34,8 +42,7 @@ angular
     // 'ngSanitize',
     // order,
     // orders,
-    ngOvhExportCsv,
-    ngOvhUtils,
+
     // sla,
     // termination,
     // 'ui.bootstrap',
@@ -66,9 +73,6 @@ angular
       set($rootScope, 'worldPart', coreConfig.getRegion());
     },
   )
-  .run(/* @ngTranslationsInject:json ./translations */)
-  .run(() => {
-    console.log('run in billing module');
-  });
+  .run(/* @ngTranslationsInject:json ./translations */);
 
-  export default moduleName;
+export default moduleName;

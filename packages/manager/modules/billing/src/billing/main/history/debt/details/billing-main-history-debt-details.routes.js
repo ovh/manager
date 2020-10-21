@@ -1,10 +1,11 @@
-angular.module('App').config(($stateProvider) => {
-  $stateProvider.state('app.account.billing.main.history.debt.details', {
+import template from './billing-main-history-debt-details.html';
+
+export default /* @ngInject */ ($stateProvider) => {
+  $stateProvider.state('billing.main.history.debt.details', {
     url: '/details',
-    templateUrl:
-      'billing/main/history/debt/details/billing-main-history-debt-details.html',
+    template,
     controller: 'BillingHistoryDebtDetailsCtrl',
     controllerAs: '$ctrl',
     translations: { value: ['.'], format: 'json' },
   });
-});
+};
