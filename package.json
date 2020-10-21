@@ -40,6 +40,9 @@
     "test:e2e:firefox:headless": "rimraf ./reports && testcafe firefox:headless",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
   },
+  "resolutions": {
+    "flatpickr": "4.6.3"
+  },
   "devDependencies": {
     "@commitlint/cli": "^8.3.3",
     "@commitlint/config-angular": "^8.2.0",
