@@ -7,6 +7,6 @@ export default {
   template,
   bindings: {
     model: '<',
-    raidProfiles: '<',
+    server: '<',
   },
 };

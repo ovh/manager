@@ -61,7 +61,7 @@ export default class DedicatedServerInstallOvhTemplateCtrl {
 
     this.getAvailableTemplateFamiliesList();
 
-    [this.template.diskGroup] = this.hardwareSpecifications.diskGroups;
+    [this.template.diskGroup] = this.server.hardware.specifications.diskGroups;
   }
 
   /*= ====  End of Initialization  ====== */

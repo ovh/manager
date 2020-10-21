@@ -16,8 +16,8 @@ export default /* @ngInject */ ($stateProvider) => {
       'template@app.dedicated.server.install.ovh': templateComponent.name,
 
       'raid@app.dedicated.server.install.ovh': {
-        componentProvider: /* @ngInject */ (raidProfiles) =>
-          raidProfiles ? raidComponent.name : null,
+        componentProvider: /* @ngInject */ (raidProfile) =>
+          raidProfile ? raidComponent.name : null,
       },
 
       'partition@app.dedicated.server.install.ovh': partitionComponent.name,
@@ -29,9 +29,9 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       model: () => new DedicatedServerInstallOvhModel(),
 
-      raidProfiles: /* @ngInject */ ($q, dedicatedServerInstallOvh, server) =>
+      raidProfile: /* @ngInject */ ($q, dedicatedServerInstallOvh, server) =>
         dedicatedServerInstallOvh
-          .getHardwareRaidProfiles(server.name)
+          .getHardwareRaidProfile(server)
           .catch((error) => {
             if (error.status === 403) {
               return null;
@@ -43,12 +43,13 @@ export default /* @ngInject */ ($stateProvider) => {
       hardwareSpecifications: /* @ngInject */ (
         dedicatedServerInstallOvh,
         server,
-      ) => dedicatedServerInstallOvh.getHardwareSpecifications(server.name),
+      ) => dedicatedServerInstallOvh.getHardwareSpecifications(server),
 
       sshKeys: /* @ngInject */ (dedicatedServerInstallOvh) =>
         dedicatedServerInstallOvh.getSshKeys(),
 
       /* ----------  Templates loading  ----------*/
+
       templatesFamilies: /* @ngInject */ (dedicatedServerInstallOvh) =>
         dedicatedServerInstallOvh.getTemplatesFamilies(),
 

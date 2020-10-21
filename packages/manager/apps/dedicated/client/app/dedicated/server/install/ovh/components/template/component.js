@@ -7,8 +7,8 @@ export default {
   template,
   bindings: {
     compatibleTemplates: '<',
-    hardwareSpecifications: '<',
     model: '<',
+    server: '<',
     templatesFamilies: '<',
   },
 };

@@ -1,6 +1,79 @@
 <div class="dedicated-server-install-ovh-partition">
     <h2
         class="oui-heading_3"
-        data-translate="dedicated_server_install_ovh_configuration_partition"
+        data-translate="dedicated_server_install_ovh_partition"
     ></h2>
+
+    <dl class="oui-description oui-description_horizontal">
+        <dt
+            class="mr-1"
+            data-translate="dedicated_server_install_ovh_partition_used_disks"
+        ></dt>
+        <dd class="text-left">
+            <span
+                data-ng-bind="$ctrl.model.template.diskGroup.displayDiskType"
+            ></span>
+            <span
+                data-ng-if="$ctrl.model.template.diskGroup.raidController !== null"
+                data-translate="dedicated_server_install_ovh_partition_hard_raid"
+            >
+            </span>
+        </dd>
+
+        <dt
+            class="mr-1"
+            data-translate="dedicated_server_install_ovh_partition_total_space"
+        ></dt>
+        <dd data-ng-bind="$ctrl.getTotalSize()"></dd>
+
+        <dt
+            class="mr-1"
+            data-translate="dedicated_server_install_ovh_partition_left_space"
+        ></dt>
+    </dl>
+
+    <table class="oui-table">
+        <thead>
+            <tr>
+                <th class="oui-table__header"></th>
+                <th
+                    class="oui-table__header"
+                    data-translate="dedicated_server_install_ovh_partition_table_type"
+                ></th>
+                <th
+                    class="oui-table__header"
+                    data-translate="dedicated_server_install_ovh_partition_table_filesystem"
+                ></th>
+                <th
+                    class="oui-table__header"
+                    data-translate="dedicated_server_install_ovh_partition_table_mountpoint"
+                ></th>
+                <th
+                    class="oui-table__header"
+                    data-translate="dedicated_server_install_ovh_partition_table_mountpoint"
+                ></th>
+                <th
+                    class="oui-table__header"
+                    data-translate="dedicated_server_install_ovh_partition_table_lvm"
+                ></th>
+                <th
+                    class="oui-table__header"
+                    data-translate="dedicated_server_install_ovh_partition_table_raid"
+                ></th>
+                <th
+                    class="oui-table__header"
+                    data-translate="dedicated_server_install_ovh_partition_table_size"
+                ></th>
+                <th
+                    class="oui-table__header"
+                    data-translate="dedicated_server_install_ovh_partition_table_used_space"
+                ></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="oui-table__row">
+                <td class="oui-table__cell">Column</td>
+            </tr>
+        </tbody>
+    </table>
 </div>

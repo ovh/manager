@@ -82,11 +82,11 @@
         <label class="oui-select">
             <select
                 class="oui-select__input"
-                data-ng-options="diskGroup as diskGroup.description for diskGroup in $ctrl.hardwareSpecifications.diskGroups"
+                data-ng-options="diskGroup as diskGroup.description for diskGroup in $ctrl.server.hardware.specifications.diskGroups"
                 name="diskGroup"
                 id="diskGroup"
                 data-ng-model="$ctrl.template.diskGroup"
-                data-ng-disabled="$ctrl.hardwareSpecifications.diskGroups.length === 1"
+                data-ng-disabled="$ctrl.server.hardware.specifications.diskGroups.length === 1"
             >
             </select>
             <span

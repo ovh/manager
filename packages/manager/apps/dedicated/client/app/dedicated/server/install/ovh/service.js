@@ -1,7 +1,5 @@
 import get from 'lodash/get';
 
-import DedicatedServerRaidController from './models/raid-controller.class';
-
 export default class DedicatedServerInstallOvh {
   /* @ngInject */
   constructor($http, iceberg) {
@@ -42,26 +40,26 @@ export default class DedicatedServerInstallOvh {
           .execute().$promise;
       })
       .then(({ data }) => data);
-    // GET /dedicated/server/{serviceName}/install/compatibleTemplates
-    // GET /dedicated/installationTemplate/{templateName} with Iceberg
   }
 
-  getHardwareRaidProfiles(serviceName) {
+  /**
+   * Get the installation raid profile of given server.
+   * The raid profile is the result of the call to
+   * GET /dedicated/server/{serviceName}/install/hardwareRaidProfile
+   *
+   * @param  {DedicatedServer} server The dedicated server instance to get hardware raid profile.
+   * @return {Promise<Object>}
+   */
+  getHardwareRaidProfile(server) {
     return this.$http
-      .get(`/dedicated/server/${serviceName}/install/hardwareRaidProfile`)
-      .then(({ data }) => {
-        const raidProfile = data;
-        raidProfile.controllers = raidProfile.controllers.map(
-          (raidController) => new DedicatedServerRaidController(raidController),
-        );
-        return raidProfile;
-      });
+      .get(`/dedicated/server/${server.name}/install/hardwareRaidProfile`)
+      .then(({ data }) => server.hardware.setRaidProfile(data));
   }
 
-  getHardwareSpecifications(serviceName) {
+  getHardwareSpecifications(server) {
     return this.$http
-      .get(`/dedicated/server/${serviceName}/specifications/hardware`)
-      .then(({ data }) => data);
+      .get(`/dedicated/server/${server.name}/specifications/hardware`)
+      .then(({ data }) => server.hardware.setSpecifications(data));
   }
 
   getSshKeys() {

@@ -19,11 +19,12 @@ export default class DedicatedServerInstallOvhRaidCtrl {
 
   getDiskNumberList() {
     this.lists.diskNumbers = [];
+    console.log(this.raid);
 
     for (
       let i = this.raid.getMinDisk();
       i < this.raid.controller.numberOfDisk + 1;
-      i += this.raid.getMinDiskPerArray()
+      i += this.raid.getMinDiskPerCluster()
     ) {
       this.lists.diskNumbers.push(i);
     }
@@ -32,12 +33,12 @@ export default class DedicatedServerInstallOvhRaidCtrl {
   }
 
   getClusterList() {
-    if (this.raid.isMutipleClusterArray()) {
+    if (this.raid.isMutipleCluster()) {
       this.lists.clusters = [];
 
       for (
-        let i = this.raid.getMinClusterArray();
-        i < this.raid.getMaxClusterArray();
+        let i = this.raid.getMinCluster();
+        i < this.raid.getMaxCluster();
         i += 1
       ) {
         if (this.raid.diskNumber % i === 0) {
@@ -72,7 +73,7 @@ export default class DedicatedServerInstallOvhRaidCtrl {
 
   initMode() {
     this.getModeList();
-    [this.raid.mode] = this.lists.modes;
+    this.raid.mode = this.model.template.diskGroup.defaultHardwareRaidType;
   }
 
   initDiskNumber() {
@@ -86,7 +87,7 @@ export default class DedicatedServerInstallOvhRaidCtrl {
   }
 
   $onInit() {
-    [this.raid.controller] = this.raidProfiles.controllers;
+    [this.raid.controller] = this.server.hardware.raidProfile.controllers;
     this.initMode();
     this.initDiskNumber();
     this.initCluster();

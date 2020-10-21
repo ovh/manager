@@ -1,3 +1,14 @@
 {
-  "dedicated_server_install_ovh_configuration_partition": "Configuration des partitions"
+  "dedicated_server_install_ovh_partition": "Configuration des partitions",
+  "dedicated_server_install_ovh_partition_used_disks": "Disques utilisés pour cette installation :",
+  "dedicated_server_install_ovh_partition_hard_raid": "(HardRAID)",
+  "dedicated_server_install_ovh_partition_total_space": "Espace total :",
+  "dedicated_server_install_ovh_partition_left_space": "Espace restant :",
+  "dedicated_server_install_ovh_partition_table_type": "Type",
+  "dedicated_server_install_ovh_partition_table_filesystem": "Système de fichier",
+  "dedicated_server_install_ovh_partition_table_mountpoint": "Point de montage",
+  "dedicated_server_install_ovh_partition_table_lvm": "Nom du volume LVM",
+  "dedicated_server_install_ovh_partition_table_raid": "Raid",
+  "dedicated_server_install_ovh_partition_table_size": "Taille de la partition",
+  "dedicated_server_install_ovh_partition_table_used_space": "Espace consommé"
 }

@@ -754,6 +754,8 @@ angular
       $scope.refreshDiskGroupInfos = function refreshDiskGroupInfos(
         newDiskGroup,
       ) {
+        console.log(newDiskGroup);
+
         $scope.informations.isCachecade =
           newDiskGroup.raidController === 'cache';
         $scope.informations.raidController =
@@ -2128,6 +2130,7 @@ angular
           $scope.installation.hardwareRaid.arrays &&
           $scope.installation.hardwareRaid.controller
         ) {
+          console.log('recalculateSpace');
           let diskSize =
             $scope.installation.hardwareRaid.controller.disks[0].capacity.value;
           const grappe = $scope.installation.hardwareRaid.arrays;

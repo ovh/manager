@@ -15,7 +15,7 @@
         <label class="oui-select">
             <select
                 class="oui-select__input"
-                data-ng-options="controller as controller.displayName for controller in $ctrl.raidProfiles.controllers | orderBy:'displayName'"
+                data-ng-options="controller as controller.displayName for controller in $ctrl.server.hardware.raidProfile.controllers | orderBy:'displayName'"
                 name="controller"
                 id="controller"
                 data-ng-model="$ctrl.raid.controller"
