@@ -5,7 +5,7 @@ import reduce from 'lodash/reduce';
 import set from 'lodash/set';
 import upperFirst from 'lodash/upperFirst';
 
-import { RENEW_URL } from '@ovh-ux/manager-billing';
+import { RENEW_URL } from '../../components/services-actions/service-actions.constants';
 import {
   ALIGNMENT_URLS,
   COLUMNS_CONFIG,

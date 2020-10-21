@@ -1,5 +1,6 @@
-angular
-  .module('UserAccount')
-  .controller('UserAccount.controllers.ssh.view', ($scope) => {
+export default class UserAccountSshViewCtrl {
+  /* @ngInject */
+  constructor($scope) {
     $scope.data = $scope.currentActionData;
-  });
+  }
+}
