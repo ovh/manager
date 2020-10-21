@@ -1,3 +1,12 @@
+## [5.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.2.2...@ovh-ux/manager-pci@5.2.3) (2020-10-21)
+
+
+### Bug Fixes
+
+* **project.new:** avoid creating payment mean if it is credit ([#3878](https://github.com/ovh/manager/issues/3878)) ([e72d5d6](https://github.com/ovh/manager/commit/e72d5d6329674e0750c831f4522f413850bf7a2c))
+
+
+
 ## [5.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.2.1...@ovh-ux/manager-pci@5.2.2) (2020-10-20)
 
 
