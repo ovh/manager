@@ -1,4 +1,4 @@
-export default /* @ngInject */ ($stateProvider) => {
+export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
   $stateProvider.state('app.account.billing.autorenew.terminateEmail', {
     url: '/delete-email?serviceId&name',
     views: {
@@ -7,7 +7,6 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     layout: 'modal',
-    translations: { value: ['.'], format: 'json' },
     resolve: {
       email: /* @ngInject */ (BillingAutoRenew, name) =>
         BillingAutoRenew.getEmailInfos(name),
@@ -25,8 +24,16 @@ export default /* @ngInject */ ($stateProvider) => {
       name: /* @ngInject */ ($transition$) => $transition$.params().name,
       serviceId: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceId,
-      terminateEmail: /* @ngInject */ (BillingAutoRenew, email) => () =>
-        BillingAutoRenew.terminateEmail(email),
+      terminateEmail: /* @ngInject */ (BillingAutoRenew, serviceId) => () =>
+        BillingAutoRenew.terminateEmail(serviceId),
     },
+  });
+
+  $urlRouterProvider.when(/\/delete-email-domain$/, ($location, $state) => {
+    const { name, serviceId } = $location.search();
+    $state.go('app.account.billing.autorenew.terminateEmail', {
+      name,
+      serviceId,
+    });
   });
 };

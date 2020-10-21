@@ -8,6 +8,7 @@ const moduleName = 'ovhManagerBillingAutorenewTerminateEmail';
 angular
   .module(moduleName, ['ui.router', terminate])
   .config(routing)
-  .component('billingAutorenewTerminateEmail', component);
+  .component('billingAutorenewTerminateEmail', component)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
