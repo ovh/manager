@@ -36,8 +36,6 @@ import '../xdsl/access/ip/pack-xdsl-access-ip';
 import '../xdsl/access/ipv6/pack-xdsl-access-ipv6.controller';
 import '../xdsl/access/linediagnostic/pack-xdsl-access-linediagnostic.controller';
 import '../xdsl/access/linediagnostic/pack-xdsl-access-linediagnostic';
-import '../xdsl/access/notifications/pack-xdsl-access-notifications.controller';
-import '../xdsl/access/notifications/pack-xdsl-access-notifications';
 import '../xdsl/access/pack-xdsl-access.constants';
 import '../xdsl/access/pack-xdsl-access.controller';
 import '../xdsl/access/portReset/pack-xdsl-access-port-reset.controller';

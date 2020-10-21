@@ -8,6 +8,7 @@ import '@ovh-ux/ui-kit';
 import diagnostic from './diagnostic';
 import diagnosticDetails from './diagnostic/details';
 import access from './pack-xdsl-access.component';
+import notifications from './notifications';
 
 const moduleName = 'ovhManagerTelecomPackXdslAccess';
 
@@ -19,6 +20,7 @@ angular
     'oui',
     diagnostic,
     diagnosticDetails,
+    notifications,
   ])
   .component('packXdslAccess', access);
 
