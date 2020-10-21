@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.account.billing.autorenew.delete', {
+  $stateProvider.state('billing.autorenew.delete', {
     url: '/delete?serviceId&serviceType',
     views: {
       modal: {
@@ -10,12 +10,12 @@ export default /* @ngInject */ ($stateProvider) => {
     translations: { value: ['.'], format: 'json' },
     resolve: {
       cancelResiliationUrl: /* @ngInject */ ($state, serviceId) =>
-        $state.href('app.account.billing.autorenew.cancelResiliation', {
+        $state.href('billing.autorenew.cancelResiliation', {
           serviceId,
         }),
-      engagement: /* @ngInject */ (Server, service) =>
+      engagement: /* @ngInject */ (BillingAutoRenew, service) =>
         (service.canHaveEngagement()
-          ? Server.getSelected(service.serviceId)
+          ? BillingAutoRenew.getDedicatedServer(service.serviceId)
           : Promise.resolve({ engagement: null })
         ).then(({ engagement }) => engagement),
       goBack: /* @ngInject */ (goToAutorenew) => goToAutorenew,

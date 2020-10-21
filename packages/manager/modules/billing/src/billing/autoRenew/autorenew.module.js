@@ -1,4 +1,7 @@
-import ovhManagerBilling from '@ovh-ux/manager-billing';
+import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
+import '@ovh-ux/ng-ui-router-layout';
+
+import serviceActionsComponents from '../../components/services-actions';
 
 import activation from './actions/activation/activation.module';
 import agreements from './agreements/user-agreements.module';
@@ -28,8 +31,10 @@ const moduleName = 'ovhManagerBillingAutorenew';
 
 angular
   .module(moduleName, [
-    ovhManagerBilling,
+    ngOvhPaymentMethod,
+    serviceActionsComponents,
     'ui.router',
+    'ngUiRouterLayout',
     activation,
     agreements,
     autorenewBlocked,

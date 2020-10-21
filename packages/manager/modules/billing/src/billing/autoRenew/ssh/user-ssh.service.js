@@ -7,7 +7,7 @@ import set from 'lodash/set';
 import sortBy from 'lodash/sortBy';
 import values from 'lodash/values';
 
-angular.module('UserAccount').service('UseraccountSshService', [
+export default [
   'OvhHttp',
   '$q',
   'CORE_MANAGER_URLS',
@@ -179,4 +179,4 @@ angular.module('UserAccount').service('UseraccountSshService', [
       return `${CORE_MANAGER_URLS.publicCloud}/pci/projects/${serviceName}/ssh/add`;
     };
   },
-]);
+];

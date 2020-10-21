@@ -3,13 +3,13 @@ import find from 'lodash/find';
 import map from 'lodash/map';
 import set from 'lodash/set';
 
-angular.module('UserAccount').service('UserAccountServicesAgreements', [
+export default [
   '$cacheFactory',
   '$http',
   '$q',
   '$translate',
   'accountMigrationService',
-  'UserAccount.constants',
+  'constants',
   'GDPR_AGREEMENTS_INFOS',
   function UserAccountAgreementsService(
     cache,
@@ -176,4 +176,4 @@ angular.module('UserAccount').service('UserAccountServicesAgreements', [
             });
     };
   },
-]);
+];

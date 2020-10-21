@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 
-angular.module('UserAccount').controller('UserAccount.controllers.ssh.delete', [
+export default [
   '$scope',
   '$translate',
   'UseraccountSshService',
@@ -42,4 +42,4 @@ angular.module('UserAccount').controller('UserAccount.controllers.ssh.delete', [
       );
     };
   },
-]);
+];
