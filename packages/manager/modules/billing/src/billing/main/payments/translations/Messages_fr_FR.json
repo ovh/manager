@@ -1,3 +1,4 @@
 {
-  "billing_main_payments_title": "Suivi des paiements"
+  "billing_main_payments_title": "Suivi des paiements",
+  "billing_export_csv": "Exporter en CSV"
 }

@@ -1,17 +1,18 @@
-angular.module('App').config(($stateProvider) => {
-  $stateProvider.state('app.account.billing.main.history.pay-debt', {
+import template from './billing-main-history-debt-pay.html';
+
+export default /* @ngInject */ ($stateProvider) => {
+  $stateProvider.state('billing.main.history.pay-debt', {
     url: '/debt/:debtId/pay',
     views: {
       modal: {
-        templateUrl:
-          'billing/main/history/debt/pay/billing-main-history-debt-pay.html',
+        template,
         controller: 'BillingHistoryDebtPayCtrl',
       },
     },
     layout: {
       name: 'modal',
-      redirectTo: 'app.account.billing.main.history',
+      redirectTo: 'billing.main.history',
     },
     translations: { value: ['.'], format: 'json' },
   });
-});
+};

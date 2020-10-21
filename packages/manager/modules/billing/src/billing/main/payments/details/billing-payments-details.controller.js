@@ -1,13 +1,6 @@
-angular
-  .module('Billing')
-  .controller('Billing.PaymentDetailsCtrl', function BillingPaymentDetailsCtrl(
-    $q,
-    $state,
-    $stateParams,
-    $translate,
-    Alerter,
-    BillingPayments,
-  ) {
+export default class BillingPaymentDetailsCtrl {
+  /* @ngInject */
+  constructor($q, $state, $stateParams, $translate, Alerter, BillingPayments) {
     this.paymentId = $stateParams.id;
     this.payment = {};
 
@@ -24,7 +17,7 @@ angular
     this.loadDetails = ({ id }) =>
       BillingPayments.getBillDetails($stateParams.id, id);
 
-    this.paymentsHref = () => $state.href('app.account.billing.main.payments');
+    this.paymentsHref = () => $state.href('billing.main.payments');
 
     this.$onInit = () =>
       BillingPayments.getPayment($stateParams.id)
@@ -35,4 +28,5 @@ angular
           Alerter.alertFromSWS($translate.instant('payments_error'), err.data);
           return $q.reject(err);
         });
-  });
+  }
+}
