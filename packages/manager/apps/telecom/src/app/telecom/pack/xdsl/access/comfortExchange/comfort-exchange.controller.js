@@ -1,5 +1,5 @@
 import assign from 'lodash/assign';
-import { COMFORT_EXCHANGE_TYPE_ERROR } from './pack-xdsl-access-comfort-exchange.constant';
+import { COMFORT_EXCHANGE_TYPE_ERROR } from './comfort-exchange.constant';
 
 export default class XdslAccessComfortExchangeCtrl {
   /* @ngInject */
