@@ -7,7 +7,7 @@ import 'ovh-api-services';
 
 import routing from './templates-config.routing';
 
-const moduleName = 'ovhManagerTelecomTelephonyBillingAccountManageContacts';
+const moduleName = 'XdslModemTemplateConfig';
 
 angular
   .module(moduleName, [
