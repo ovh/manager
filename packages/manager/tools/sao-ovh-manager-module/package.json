@@ -5,7 +5,7 @@
   "description": "Scaffolding tool for standalone modules.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ovh-ux/manager.git",
+    "url": "git+https://github.com/ovh/manager.git",
     "directory": "packages/manager/tools/sao-ovh-manager-module"
   },
   "license": "BSD-3-Clause",

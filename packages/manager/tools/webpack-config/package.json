@@ -12,7 +12,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ovh-ux/manager.git",
+    "url": "git+https://github.com/ovh/manager.git",
     "directory": "packages/manager/tools/webpack-config"
   },
   "license": "BSD-3-Clause",
