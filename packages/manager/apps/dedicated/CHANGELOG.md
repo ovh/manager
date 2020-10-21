@@ -1,3 +1,12 @@
+## [14.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.2.0...@ovh-ux/manager-dedicated@14.2.1) (2020-10-21)
+
+
+### Bug Fixes
+
+* **nas:** remove order section for old nas references ([#3886](https://github.com/ovh/manager/issues/3886)) ([84183ab](https://github.com/ovh/manager/commit/84183ab17ace6ed1b0bb03181c3f01d5231b0930))
+
+
+
 # [14.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.1.4...@ovh-ux/manager-dedicated@14.2.0) (2020-10-20)
 
 
