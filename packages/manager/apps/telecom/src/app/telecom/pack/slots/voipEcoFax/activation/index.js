@@ -5,9 +5,9 @@ import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 import 'ovh-api-services';
 
-import routing from './activation.routing';
+import routing from './activation.router';
 
-const moduleName = 'PackDomainActivation';
+const moduleName = 'PackFaxActivation';
 
 angular
   .module(moduleName, [

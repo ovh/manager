@@ -3,6 +3,7 @@ import angular from 'angular';
 import packMove from '../move';
 import packResiliation from '../resiliation/pack-resiliation';
 import packVoipLineActivation from '../slots/voipLine/activation/pack-voipLine-activation.module';
+import packEcoFaxActivation from '../slots/voipEcoFax/activation';
 import hostedEmailDetail from '../slots/hostedEmail/detail';
 import xdsl from '../xdsl';
 import migration from '../migration';
@@ -19,6 +20,7 @@ angular
   .module(moduleName, [
     hostedEmailDetail,
     packVoipLineActivation,
+    packEcoFaxActivation,
     xdsl,
     packMove,
     migration,
