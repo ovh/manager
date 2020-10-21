@@ -1,12 +1,13 @@
-angular.module('App').config(($stateProvider, coreConfigProvider) => {
+import template from './billing-payments-request.html';
+
+export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
   if (coreConfigProvider.getRegion() === 'US') {
-    $stateProvider.state('app.account.billing.main.payments.request', {
+    $stateProvider.state('billing.main.payments.request', {
       url: '/request',
-      templateUrl:
-        'billing/main/payments/request/billing-payments-request.html',
+      template,
       controller: 'BillingHistoryRequestCtrl',
       controllerAs: '$ctrl',
       translations: { value: ['../request'], format: 'json' },
     });
   }
-});
+};

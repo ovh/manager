@@ -1,8 +1,10 @@
-angular.module('Billing').config(($stateProvider) => {
-  $stateProvider.state('app.account.billing.main.payments.details', {
+import template from './billing-payments-details.html';
+
+export default /* @ngInject */ ($stateProvider) => {
+  $stateProvider.state('billing.main.payments.details', {
     url: '/:id/details',
-    templateUrl: 'billing/main/payments/details/billing-payments-details.html',
+    template,
     controller: 'Billing.PaymentDetailsCtrl',
     controllerAs: '$ctrl',
   });
-});
+};

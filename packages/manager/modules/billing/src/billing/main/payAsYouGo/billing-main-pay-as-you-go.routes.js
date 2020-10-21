@@ -1,11 +1,13 @@
-angular.module('App').config(($stateProvider, coreConfigProvider) => {
+import template from './billing-main-pay-as-you-go.html';
+
+export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
   if (coreConfigProvider.getRegion() === 'US') {
-    $stateProvider.state('app.account.billing.main.pay-as-you-go', {
+    $stateProvider.state('billing.main.pay-as-you-go', {
       url: '/payAsYouGo',
       controller: 'BillingMainPayAsYouGoCtrl',
       controllerAs: '$ctrl',
-      templateUrl: 'billing/main/payAsYouGo/billing-main-pay-as-you-go.html',
+      template,
       translations: { value: ['.'], format: 'json' },
     });
   }
-});
+};
