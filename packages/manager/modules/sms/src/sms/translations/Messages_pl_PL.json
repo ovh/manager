@@ -10,5 +10,11 @@
   "sms_tabs_guides": "Przewodniki",
   "sms_rename_error": "Nie można zmienić nazwy pakietu {{serviceName}}.",
   "sms_loading_error": "Une erreur est survenue lors du chargement de SMS",
-  "sms_feature_soon_available": "Funkcjonalność ta będzie wkrótce dostępna."
+  "sms_feature_soon_available": "Funkcjonalność ta będzie wkrótce dostępna.",
+  "sms_tabs_messages_campaign": "Wiadomość SMS i kampania",
+  "sms_sublink_sms_compose": "Zarządzanie SMS-ami",
+  "sms_sublink_sms_campaign": "Zarządzanie kampaniami",
+  "sms_sublink_phonebooks": "Książka adresowa",
+  "sms_sublink_contact_list": "Utwórz listę kontaktów",
+  "sms_confirm": "Zatwierdź"
 }

@@ -1,0 +1,86 @@
+<oui-modal
+    heading="{{:: 'sms_add_contacts_choice_title' | translate }}"
+    primary-label="{{:: 'sms_confirm' | translate }}"
+    primary-action="$ctrl.confirmSelection()"
+    primary-disabled="!$ctrl.constructor.hasSelectedContacts($ctrl.selectedContacts) || $ctrl.loadingContacts"
+    secondary-action="$ctrl.goBack()"
+    secondary-label="{{:: 'sms_cancel' | translate }}"
+    on-dismiss="$ctrl.goBack()"
+>
+    <oui-message type="info">
+        <span data-translate="sms_add_contacts_choice_info"></span>
+    </oui-message>
+
+    <div class="row">
+        <div class="col-md-7" data-ng-if="$ctrl.phonebooks.length > 1">
+            <oui-field
+                label="{{:: 'sms_add_contacts_select_label' | translate }}"
+            >
+                <oui-select
+                    disabled="$ctrl.loadingContacts"
+                    name="phonebooks"
+                    model="$ctrl.selectedPhonebook"
+                    items="$ctrl.phonebooks"
+                    match="name"
+                    on-change="$ctrl.getContacts(modelValue)"
+                ></oui-select>
+            </oui-field>
+        </div>
+        <div class="col-md-5">
+            <oui-field
+                label="{{:: 'sms_add_contacts_filter_select_label' | translate }}"
+            >
+                <oui-select
+                    name="contactFilter"
+                    model="$ctrl.selectedFilter"
+                    items="$ctrl.contactsFilters"
+                    match="label"
+                ></oui-select>
+            </oui-field>
+        </div>
+    </div>
+
+    <div class="text-center" data-ng-if="$ctrl.loadingContacts">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <oui-datagrid
+        page-size="10"
+        rows="$ctrl.contacts"
+        data-ng-if="!$ctrl.loadingContacts"
+    >
+        <oui-datagrid-column>
+            <oui-checkbox
+                data-model="$row.isSelected"
+                on-change="$ctrl.onContactSelection(modelValue, $row)"
+            >
+            </oui-checkbox>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            title="'sms_add_contacts_contact_surname' | translate"
+            property="surname"
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            title="'sms_add_contacts_contact_name' | translate"
+            property="name"
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            title="'sms_add_contacts_contact_phonenumber' | translate"
+            property="phonenumber"
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            title="'sms_add_contacts_contact_type' | translate"
+            property="phonetype"
+        >
+            <span
+                data-translate="{{:: $ctrl.constructor.isMobileType($row.phoneType) ? 'sms_add_contacts_contact_mobile' : 'sms_add_contacts_contact_phone'}}"
+            ></span>
+            <span class="text-small">
+                (<span
+                    data-translate="{{:: $ctrl.constructor.isHomeType($row.phoneType) ? 'sms_add_contacts_contact_home' : 'sms_add_contacts_contact_work'}}"
+                ></span
+                >)
+            </span>
+        </oui-datagrid-column>
+    </oui-datagrid>
+</oui-modal>

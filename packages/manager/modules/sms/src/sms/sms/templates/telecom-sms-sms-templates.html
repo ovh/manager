@@ -1,11 +1,8 @@
 <section class="telecom-sms-sms-templates">
     <header>
-        <tuc-section-back-link
-            data-tuc-section-back-link-to-state="sms.service.sms"
-            data-tuc-section-back-link-title="{{ 'sms_section_back_link' | translate }}"
-        >
-        </tuc-section-back-link>
-        <h1 data-translate="sms_sms_templates_title"></h1>
+        <oui-back-button on-click="$ctrl.goBack()">
+            <span data-translate="sms_sms_templates_title"></span>
+        </oui-back-button>
     </header>
 
     <!-- LOADING -->
@@ -125,7 +122,7 @@
                 data-property="name"
                 data-sortable="asc"
             >
-                {{$row.name || '-'}}
+                <span data-ng-bind="($row.name | limitTo: 40) || '-'"></span>
             </oui-datagrid-column>
 
             <oui-datagrid-column
@@ -133,7 +130,9 @@
                 data-property="datetime"
                 data-sortable
             >
-                {{$row.datetime | date:'shortDate' || '-'}}
+                <span
+                    data-ng-bind="$row.datetime | date:'shortDate' || '-'"
+                ></span>
             </oui-datagrid-column>
 
             <oui-datagrid-column
@@ -141,8 +140,10 @@
                 data-property="activity"
                 data-sortable
             >
-                {{(('sms_sms_templates_add_activity_type_' + $row.activity) |
-                translate) || '-'}}
+                <span
+                    data-ng-bind="(('sms_sms_templates_add_activity_type_' + $row.activity) |
+              translate) || '-'"
+                ></span>
             </oui-datagrid-column>
 
             <oui-datagrid-column
@@ -150,7 +151,9 @@
                 data-property="description"
                 data-sortable
             >
-                {{$row.description || '-'}}
+                <span
+                    data-ng-bind="($row.description | limitTo: 40) || '-'"
+                ></span>
             </oui-datagrid-column>
 
             <oui-datagrid-column
@@ -158,7 +161,7 @@
                 data-property="message"
                 data-sortable
             >
-                {{$row.message || '-'}}
+                <span data-ng-bind="($row.message | limitTo: 40) || '-'"></span>
             </oui-datagrid-column>
 
             <oui-datagrid-column

@@ -1,0 +1,8 @@
+{
+  "sms_sms_compose_tip_compose_title": "Composing an SMS",
+  "sms_sms_compose_tip_size_paragraphe_1": "The maximum size of an SMS is 160 characters (GSM standard 03.38).",
+  "sms_sms_compose_tip_size_paragraphe_2": "The two tables below list the authorised characters.",
+  "sms_sms_compose_tip_size_paragraphe_3": "<b>Important:</b> If you use characters that do not appear in the tables, they will switch to Unicode, and will reduce the maximum size of an SMS to 70 characters.",
+  "sms_sms_compose_tip_size_characters_basics": "Basic characters",
+  "sms_sms_compose_tip_size_characters_extensions": "Extensions"
+}

@@ -25,7 +25,7 @@ import tipsController from './tips/telecom-sms-sms-compose-tips.controller';
 import tipsComposeTemplate from './tips/telecom-sms-sms-compose-tips-compose.html';
 import tipsSizeTemplate from './tips/telecom-sms-sms-compose-tips-size.html';
 
-import { SMS_COMPOSE } from './telecom-sms-sms-compose.constant';
+import { COMPOSE_HIT, SMS_COMPOSE } from './telecom-sms-sms-compose.constant';
 
 export default class {
   /* @ngInject */
@@ -38,7 +38,6 @@ export default class {
     OvhApiSms,
     TucSmsMediator,
     OvhApiMe,
-    atInternet,
     TucToast,
     TucToastError,
     SMS_URL,
@@ -63,7 +62,6 @@ export default class {
       },
       user: OvhApiMe.v6(),
     };
-    this.atInternet = atInternet;
     this.TucToast = TucToast;
     this.TucToastError = TucToastError;
     this.SMS_URL = SMS_URL;
@@ -558,33 +556,15 @@ export default class {
       }
     }
 
+    this.trackClick(COMPOSE_HIT);
     return this.$q
       .all(promises)
       .then((results) => {
         const totalCreditsRemoved = sumBy(results, 'totalCreditsRemoved');
         const invalidReceivers = flatten(map(results, 'invalidReceivers'));
-        const validReceivers = flatten(map(results, 'validReceivers'));
 
         // update the creditLeft value (displayed on the dashboard)
         this.service.creditsLeft -= totalCreditsRemoved;
-        this.atInternet.trackClick({
-          name: 'sms-sended',
-          type: 'action',
-          chapter1: 'telecom-sms',
-          chapter2: 'telecom-sms-sms',
-          chapter3: 'telecom-sms-sms-compose',
-          customObject: {
-            nichandle: get(this.user, 'nichandle'),
-            country: get(this.user, 'country'),
-            receiversCount: this.receivers.count,
-            receiversLists:
-              this.receivers.records + (this.sms.receivers ? 1 : 0),
-            phonebookContactCount: this.phonebooks.lists.length,
-            totalCreditsRemoved,
-            invalidReceivers: size(invalidReceivers),
-            validReceivers: size(validReceivers),
-          },
-        });
 
         this.resetForm(form);
         if (!isEmpty(invalidReceivers)) {

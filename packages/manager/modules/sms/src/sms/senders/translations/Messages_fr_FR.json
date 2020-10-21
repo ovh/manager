@@ -53,5 +53,6 @@
   "sms_senders_terminate_sender_cancelled": "Demande d’annulation du numéro virtuel enregistrée !",
   "sms_senders_terminate_sender_info": "Voulez-vous résilier le n° virtuel <b>«{{ number }}»</b> (La résiliation sera effective le {{ date }}) ?",
   "sms_senders_terminate_sender_info_cancel": "Voulez-vous annuler la demande de résiliation pour le n° virtuel <b>«{{ number }}»</b> ?",
-  "sms_senders_terminate_sender_ko": "Oups ! Impossible de résilier le numéro virtuel.<br/>{{error}}"
+  "sms_senders_terminate_sender_ko": "Oups ! Impossible de résilier le numéro virtuel.<br/>{{error}}",
+  "sms_senders_add_warning": "Le traitement de votre demande sera effectué dans un délai de 48h"
 }

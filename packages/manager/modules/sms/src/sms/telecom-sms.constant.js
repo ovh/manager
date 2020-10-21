@@ -15,18 +15,33 @@ const SMS_GUIDES = {
           label: 'sms_guides_compose_faq',
           url: {
             fr: 'https://www.ovh.com/fr/g2169.{title}',
+            es: 'https://docs.ovh.com/es/sms/',
+            en: 'https://docs.ovh.com/gb/en/sms/',
+            it: 'https://docs.ovh.com/it/sms/',
+            pl: 'https://docs.ovh.com/pl/sms/',
           },
         },
         {
           label: 'sms_guides_compose_filters',
           url: {
             fr: 'https://www.ovh.com/fr/g747.{title}',
+            es: 'https://docs.ovh.com/es/sms/',
+            en: 'https://docs.ovh.com/gb/en/sms/',
+            it: 'https://docs.ovh.com/it/sms/',
+            pl: 'https://docs.ovh.com/pl/sms/',
           },
         },
         {
           label: 'sms_guides_compose_manager',
           url: {
             fr: 'https://www.ovh.com/fr/g2142.{title}',
+            es:
+              'https://docs.ovh.com/es/sms/enviar-sms-desde-el-area-de-cliente/',
+            en:
+              'https://docs.ovh.com/gb/en/sms/send_sms_messages_via_control_panel/',
+            it: 'https://docs.ovh.com/it/sms/inviare_sms_dallo_spazio_cliente/',
+            pl:
+              'https://docs.ovh.com/pl/sms/wysylanie-wiadomosci-sms-z-panelu-klienta/',
           },
         },
         {
@@ -34,24 +49,45 @@ const SMS_GUIDES = {
           url: {
             fr:
               'https://docs.ovh.com/fr/sms/envoyer-sms-depuis-adresse-email/#gestion-des-destinataires',
+            es: 'https://docs.ovh.com/es/sms/',
+            en:
+              'https://docs.ovh.com/gb/en/sms/send-sms-message-via-email-address/',
+            it: 'https://docs.ovh.com/it/sms/inviare-sms-da-indirizzo-email/',
+            pl:
+              'https://docs.ovh.com/pl/sms/wysylanie-wiadomosci-sms-z-adresu-e-mail/',
           },
         },
         {
           label: 'sms_guides_compose_url',
           url: {
             fr: 'https://www.ovh.com/fr/g2153.{title}',
+            es: 'https://docs.ovh.com/es/sms/enviar-sms-desde-una-url/',
+            en:
+              'https://docs.ovh.com/ie/en/sms/send_sms_messages_via_url_-_http2sms/',
+            it: 'https://docs.ovh.com/it/sms/inviare_sms_da_un_url_http2sms/',
+            pl:
+              'https://docs.ovh.com/pl/sms/wysylanie-wiadomosci-sms-z-adresu-url-http2sms/',
           },
         },
         {
           label: 'sms_guides_compose_usa',
           url: {
             fr: 'https://www.ovh.com/fr/g1754.{title}',
+            es: 'https://docs.ovh.com/es/sms/envio_de_sms_a_estados_unidos/',
+            en: 'https://docs.ovh.com/gb/en/sms/sending-sms-to-usa/',
+            it: 'https://docs.ovh.com/it/sms/invio_sms_negli_stati-uniti/',
+            pl:
+              'https://docs.ovh.com/pl/sms/wysylanie_sms-ow_do_stanow_zjednoczonych',
           },
         },
         {
           label: 'sms_guides_compose_campaign',
           url: {
             fr: 'https://www.ovh.com/fr/g2212.{title}',
+            es: 'https://docs.ovh.com/es/sms/crear-una-campana-sms/',
+            en: 'https://docs.ovh.com/gb/en/sms/launch_first_sms_campaign/',
+            it: 'https://docs.ovh.com/it/sms/la_prima_campagna_sms/',
+            pl: 'https://docs.ovh.com/pl/sms/moja-pierwsza-kampania-sms/',
           },
         },
         {
@@ -69,6 +105,7 @@ const SMS_GUIDES = {
           label: 'sms_guides_outgoing_faq',
           url: {
             fr: 'http://guides.ovh.com/SmsFaxFaqHistoriqueSms',
+            es: 'https://docs.ovh.com/es/sms/historial-de-envios/',
           },
         },
       ],
@@ -109,6 +146,8 @@ const SMS_GUIDES = {
           label: 'sms_guides_users_quota',
           url: {
             fr: 'http://guides.ovh.com/SmsUserQuota',
+            es:
+              'https://docs.ovh.com/es/sms/enviar-sms-desde-correo-electronico/',
           },
         },
       ],
@@ -126,6 +165,13 @@ const SMS_GUIDES = {
           label: 'sms_guides_api_java',
           url: {
             fr: 'https://www.ovh.com/fr/g1670.{title}',
+            es:
+              'https://docs.ovh.com/es/sms/enviar-sms-con-java-usando-la-api-de-ovhcloud/',
+            en:
+              'https://docs.ovh.com/gb/en/sms/send_sms_with_ovhcloud_api_in_java/',
+            it: 'https://docs.ovh.com/it/sms/inviare_sms_con_lapi_ovh_in_java/',
+            pl:
+              'https://docs.ovh.com/pl/sms/wysylanie-wiadomosci-sms-api-ovh-java/',
           },
         },
         {
@@ -138,12 +184,27 @@ const SMS_GUIDES = {
           label: 'sms_guides_api_nodejs',
           url: {
             fr: 'https://www.ovh.com/fr/g1651.{title}',
+            es:
+              'https://docs.ovh.com/es/sms/enviar-sms-con-nodejs-usando-la-api-de-ovhcloud/',
+            en:
+              'https://docs.ovh.com/gb/en/sms/send_sms_with_ovhcloud_api_in_nodejs/',
+            it:
+              'https://docs.ovh.com/it/sms/inviare_sms_con_lapi_ovh_in_nodejs/',
+            pl:
+              'https://docs.ovh.com/pl/sms/wysylanie-wiadomosci-sms-api-ovh-nodejs/',
           },
         },
         {
           label: 'sms_guides_api_php',
           url: {
             fr: 'https://www.ovh.com/fr/g1639.{title}',
+            es:
+              'https://docs.ovh.com/es/sms/enviar-sms-con-php-usando-la-api-de-ovhcloud/',
+            en:
+              'https://docs.ovh.com/gb/en/sms/send_sms_with_ovhcloud_api_in_php/',
+            it: 'https://docs.ovh.com/it/sms/inviare_sms_con_lapi_ovh_in_php/',
+            pl:
+              'https://docs.ovh.com/pl/sms/wysylanie-wiadomosci-sms-api-ovh-php/',
           },
         },
       ],

@@ -1,0 +1,44 @@
+<h2 class="heading_underline" data-translate="sms_programming"></h2>
+
+<div class="mb-2">
+    <oui-radio model="$ctrl.model.immediate" name="immediate" value="true">
+        <span data-translate="sms_differed_period_instant"></span>
+    </oui-radio>
+
+    <oui-radio model="$ctrl.model.immediate" name="immediate" value="false">
+        <span data-translate="sms_differed_period_delayed"></span>
+    </oui-radio>
+</div>
+
+<div data-ng-if="!$ctrl.model.immediate">
+    <oui-field size="m" label="{{:: 'sms_programming_date' | translate }}">
+        <oui-calendar
+            name="date"
+            model="$ctrl.model.delayedDate"
+            format="d/m/Y"
+            min-date="$ctrl.minDate"
+            required
+        >
+        </oui-calendar>
+    </oui-field>
+
+    <oui-field size="m" label="{{:: 'sms_programming_time' | translate }}">
+        <oui-timepicker
+            name="time"
+            model="$ctrl.model.delayedTime"
+            on-open="$ctrl.setCurrentTime()"
+            enable-time
+            required
+        >
+        </oui-timepicker>
+    </oui-field>
+</div>
+
+<oui-field label="{{:: 'sms_options_type' | translate }}" size="m">
+    <oui-select
+        name="type"
+        model="$ctrl.model.class"
+        match="label"
+        items="$ctrl.classes"
+    ></oui-select>
+</oui-field>

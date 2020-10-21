@@ -1,0 +1,103 @@
+<header>
+    <oui-back-button data-on-click="$ctrl.goBack()">
+        <h1 data-translate="sms_batches_create_title"></h1>
+    </oui-back-button>
+</header>
+
+<section class="container-fluid mt-4 ml-4">
+    <div class="row">
+        <div class="col-md-9">
+            <oui-message
+                type="error"
+                data-ng-if="$ctrl.service.creditsLeft < 0"
+            >
+                <span data-translate="sms_batches_create_need_credits"></span>
+            </oui-message>
+            <oui-message
+                type="error"
+                data-ng-if="$ctrl.error != null"
+                dismissable
+                on-dismiss="$ctrl.error = null"
+            >
+                <span
+                    data-translate="sms_batches_create_error"
+                    data-translate-values="{ 'error': $ctrl.error.data.message }"
+                ></span>
+            </oui-message>
+            <ovh-manager-sms-sms-configuration
+                go-to-phonebooks-contacts="$ctrl.goToPhonebooksContacts"
+                go-to-receivers-choice="$ctrl.goToReceiversChoice"
+                group-senders="$ctrl.groupBySenderType"
+                is-batch="true"
+                model="$ctrl.sms"
+                phonebooks="$ctrl.phonebooks"
+                receivers="$ctrl.receivers"
+                senders="$ctrl.senders"
+                senders-href="$ctrl.getSendersHref()"
+            ></ovh-manager-sms-sms-configuration>
+        </div>
+        <div class="col-md-3">
+            <ovh-manager-sms-sms-credits
+                credits="$ctrl.service.creditsLeft"
+                go-to-order-credits="$ctrl.goToOrder"
+            >
+            </ovh-manager-sms-sms-credits>
+            <ovh-manager-sms-sms-tips
+                go-to-compose-tip="$ctrl.goToComposeTip"
+                go-to-size-tip="$ctrl.goToSizeTip"
+                receivers-url="$ctrl.receiversUrl"
+            >
+            </ovh-manager-sms-sms-tips>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-9">
+            <form name="$ctrl.composition" novalidate>
+                <ovh-manager-sms-sms-composition
+                    model="$ctrl.sms"
+                    user="$ctrl.user"
+                >
+                </ovh-manager-sms-sms-composition>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-9">
+            <form name="$ctrl.options" novalidate>
+                <ovh-manager-sms-sms-options
+                    model="$ctrl.sms"
+                    classes="$ctrl.classes"
+                ></ovh-manager-sms-sms-options>
+            </form>
+        </div>
+    </div>
+
+    <div
+        class="row mb-5"
+        data-ng-if="$ctrl.constructor.canDisplayEstimation($ctrl.sms)"
+    >
+        <div class="col-md-9">
+            <ovh-manager-sms-sms-estimate
+                model="$ctrl.sms"
+                service="$ctrl.service"
+            >
+            </ovh-manager-sms-sms-estimate>
+        </div>
+    </div>
+
+    <oui-button
+        disabled="$ctrl.configuration.$invalid || $ctrl.composition.$invalid || $ctrl.options.$invalid || $ctrl.isValidating || $ctrl.service.creditsLeft < 1"
+        variant="primary"
+        on-click="$ctrl.validateBatch()"
+    >
+        <span data-translate="sms_batches_create_send"></span>
+    </oui-button>
+    <oui-button
+        disabled="$ctrl.isValidating"
+        variant="secondary"
+        on-click="$ctrl.goBack()"
+    >
+        <span data-translate="sms_batches_create_cancel"></span>
+    </oui-button>
+</section>
