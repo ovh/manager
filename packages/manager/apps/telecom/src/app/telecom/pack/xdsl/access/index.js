@@ -11,6 +11,7 @@ import access from './pack-xdsl-access.component';
 import notifications from './notifications';
 import comfortExchange from './comfortExchange/comfort-exchange.module';
 import ipConfiguration from './ip';
+import deconsolidation from './deconsolidation';
 
 const moduleName = 'ovhManagerTelecomPackXdslAccess';
 
@@ -25,6 +26,7 @@ angular
     notifications,
     comfortExchange,
     ipConfiguration,
+    deconsolidation,
   ])
   .component('packXdslAccess', access);
 

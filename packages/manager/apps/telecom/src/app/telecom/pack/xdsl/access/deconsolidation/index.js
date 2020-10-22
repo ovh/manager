@@ -5,9 +5,11 @@ import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 import 'ovh-api-services';
 
-import routing from './ip.routing';
+import './deconsolidation.less';
 
-const moduleName = 'XdslAccessIp';
+import routing from './deconsolidation.routing';
+
+const moduleName = 'XdslDeconsolidation';
 
 angular
   .module(moduleName, [
