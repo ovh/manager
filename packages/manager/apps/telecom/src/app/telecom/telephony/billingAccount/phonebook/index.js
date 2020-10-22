@@ -1,23 +1,23 @@
 import angular from 'angular';
-import ngOvhTelecomUniverseComponents from '@ovh-ux/ng-ovh-telecom-universe-components';
 import '@uirouter/angularjs';
-import '@ovh-ux/ng-translate-async-loader';
-import 'angular-translate';
-import 'ovh-api-services';
+import 'oclazyload';
 
-import routing from './phonebook.routing';
+const moduleName =
+  'ovhManagerTelecomTelephonyBillingAccountPhonebookLazyLoading';
 
-const moduleName = 'ovhManagerTelecomTelephonyBillingAccountPhonebook';
+angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
+  /* @ngInject */ ($stateProvider) => {
+    $stateProvider.state('telecom.telephony.billingAccount.phonebook.**', {
+      url: '/phonebook',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-angular
-  .module(moduleName, [
-    ngOvhTelecomUniverseComponents,
-    'ngTranslateAsyncLoader',
-    'pascalprecht.translate',
-    'ovh-api-services',
-    'ui.router',
-  ])
-  .config(routing)
-  .run(/* @ngTranslationsInject:json ./translations */);
+        return import(
+          /* webpackChunkName: "phonebook" */ './phonebook.module'
+        ).then((mod) => $ocLazyLoad.inject(mod.default || mod));
+      },
+    });
+  },
+);
 
 export default moduleName;

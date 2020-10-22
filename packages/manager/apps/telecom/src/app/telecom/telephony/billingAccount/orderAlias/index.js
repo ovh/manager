@@ -1,36 +1,23 @@
 import angular from 'angular';
-import ngOvhTelecomUniverseComponents from '@ovh-ux/ng-ovh-telecom-universe-components';
 import '@uirouter/angularjs';
-import '@ovh-ux/ng-translate-async-loader';
-import 'angular-translate';
-import 'ovh-api-services';
+import 'oclazyload';
 
-import './order-alias.less';
+const moduleName =
+  'ovhManagerTelecomTelephonyBillingAccountOrderAliasLazyLoading';
 
-import geographical from './geographical';
-import international from './international';
-import nonGeographical from './nonGeographical';
-import special from './special';
+angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
+  /* @ngInject */ ($stateProvider) => {
+    $stateProvider.state('telecom.telephony.billingAccount.orderAlias.**', {
+      url: '/orderAlias',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-import routing from './order-alias.routing';
-import service from './order-alias.service';
-
-const moduleName = 'ovhManagerTelecomTelephonyBillingAccountOrderAlias';
-
-angular
-  .module(moduleName, [
-    ngOvhTelecomUniverseComponents,
-    'ngTranslateAsyncLoader',
-    'pascalprecht.translate',
-    'ovh-api-services',
-    'ui.router',
-    geographical,
-    international,
-    nonGeographical,
-    special,
-  ])
-  .config(routing)
-  .service('TelecomTelephonyBillingAccountOrderAliasService', service)
-  .run(/* @ngTranslationsInject:json ./translations */);
+        return import(
+          /* webpackChunkName: "orderAlias" */ './order-alias.module'
+        ).then((mod) => $ocLazyLoad.inject(mod.default || mod));
+      },
+    });
+  },
+);
 
 export default moduleName;

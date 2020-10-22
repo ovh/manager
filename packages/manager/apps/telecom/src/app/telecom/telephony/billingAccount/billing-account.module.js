@@ -4,6 +4,12 @@ import '@uirouter/angularjs';
 import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 
+import alias from '../alias';
+import billingAccount from '.';
+import carrierSip from '../carrierSip';
+import fax from '../fax';
+import line from '../line';
+
 import abbreviatedNumbers from './abbreviatedNumbers';
 import administration from './administration';
 import billing from './billing';
@@ -26,6 +32,12 @@ angular
     'pascalprecht.translate',
     'ovh-api-services',
     'ui.router',
+    alias,
+    billingAccount,
+    carrierSip,
+    fax,
+    line,
+
     abbreviatedNumbers,
     administration,
     billing,

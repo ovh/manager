@@ -1,32 +1,46 @@
 import angular from 'angular';
-import ngOvhTelecomUniverseComponents from '@ovh-ux/ng-ovh-telecom-universe-components';
 import '@uirouter/angularjs';
+import 'oclazyload';
 import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
-import 'ovh-api-services';
 
 import addGroup from './addGroup';
 import deleteGroup from './deleteGroup';
 import linesGroup from './linesGroup';
 import optionsGroup from './optionsGroup';
 
-import routing from './administration.routing';
-
-const moduleName = 'ovhManagerTelecomTelephonyBillingAccountAdministration';
+const moduleName =
+  'ovhManagerTelecomTelephonyBillingAccountAdministrationLazyLoading';
 
 angular
   .module(moduleName, [
-    ngOvhTelecomUniverseComponents,
+    'ui.router',
+    'oc.lazyLoad',
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
-    'ovh-api-services',
-    'ui.router',
     addGroup,
     deleteGroup,
     linesGroup,
     optionsGroup,
   ])
-  .config(routing)
+  .config(
+    /* @ngInject */ ($stateProvider) => {
+      $stateProvider.state(
+        'telecom.telephony.billingAccount.administration.**',
+        {
+          url: '/administration',
+          lazyLoad: ($transition$) => {
+            const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+            return import(
+              /* webpackChunkName: "administration" */ './administration.module'
+            ).then((mod) => {
+              return $ocLazyLoad.inject(mod.default || mod);
+            });
+          },
+        },
+      );
+    },
+  )
   .run(/* @ngTranslationsInject:json ./translations ./../billing/translations */);
 
 export default moduleName;

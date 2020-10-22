@@ -3,11 +3,11 @@ import ngOvhTelecomUniverseComponents from '@ovh-ux/ng-ovh-telecom-universe-comp
 import '@uirouter/angularjs';
 import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
+import 'ovh-api-services';
 
-import component from './telephony.component';
-import routing from './telephony.routing';
+import routing from './administration.routing';
 
-const moduleName = 'ovhManagerTelecomTelephony';
+const moduleName = 'ovhManagerTelecomTelephonyBillingAccountAdministration';
 
 angular
   .module(moduleName, [
@@ -18,7 +18,6 @@ angular
     'ui.router',
   ])
   .config(routing)
-  .component('telecomTelephony', component)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations ./../billing/translations */);
 
 export default moduleName;
