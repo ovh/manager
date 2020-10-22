@@ -4,6 +4,7 @@
   "sms_senders_label_referer": "Type",
   "sms_senders_label_description": "Description",
   "sms_senders_label_status": "Statut",
+  "sms_senders_label_comment": "Commentaire",
   "sms_senders_sr_only_actions": "Actions",
   "sms_senders_referer_custom": "Personnalisé",
   "sms_senders_referer_domain": "Domaine OVH",

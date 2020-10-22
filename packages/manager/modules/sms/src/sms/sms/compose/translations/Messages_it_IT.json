@@ -3,7 +3,7 @@
   "sms_sms_compose_title": "Invia un SMS",
   "sms_sms_compose_section_configure": "Configura il mittente e il destinatario",
   "sms_sms_compose_section_compose": "Componi un messaggio",
-  "sms_sms_compose_alert_not_enough_credits": "Il credito non è sufficiente per l'invio di SMS.",
+  "sms_sms_compose_alert_not_enough_credits": "I crediti disponibili non sono sufficienti per inviare SMS. Ricarica il tuo account.",
   "sms_sms_compose_alert_not_enough_credits_receivers": "Il credito potrebbe non essere sufficiente per consentire l'invio a tutti i contatti selezionati.",
   "sms_sms_compose_sender_label": "Mittente:",
   "sms_sms_compose_sender_optgroup_label_response": "Mittenti che permettono la risposta",
