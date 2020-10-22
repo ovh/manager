@@ -1,6 +1,6 @@
 {
   "sms_page_title": "SMS «{{name}}»",
-  "sms_tabs_dashboard": "Panel de control",
+  "sms_tabs_dashboard": "Cuadro de mando",
   "sms_tabs_sms": "SMS",
   "sms_tabs_contacts": "Contactos",
   "sms_tabs_phonebooks": "Agenda de contactos",
@@ -18,7 +18,7 @@
   "sms_common_download": "Descargar",
   "sms_common_filter": "Filtrar",
   "sms_common_home": "Inicio",
-  "sms_common_pagination_display": "Ver",
+  "sms_common_pagination_display": "Mostrar",
   "sms_common_pagination_page": "Página {{currentPage}} de {{nbPages}}",
   "sms_common_refresh": "Actualizar",
   "sms_common_refresh_data": "Actualizar los datos",

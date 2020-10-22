@@ -1,0 +1,9 @@
+{
+  "sms_title": "SMS",
+  "sms_name_label": "Name",
+  "sms_description_label": "Description",
+  "sms_status_label": "Status",
+  "sms_status_label_enable": "OK",
+  "sms_status_label_disable": "Disabled",
+  "sms_view_sms_label": "Details"
+}

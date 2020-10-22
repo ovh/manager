@@ -1,7 +1,7 @@
 {
   "sms_actions": "I want to...",
   "sms_actions_send_sms": "Send an SMS",
-  "sms_actions_credit_account": "Credit my account",
+  "sms_actions_credit_account": "Top up my account",
   "sms_actions_create_contact": "Create a contact",
   "sms_actions_create_sender": "Create a sender",
   "sms_actions_create_api_user": "Create an API user",
@@ -11,7 +11,7 @@
   "sms_consumed_automatic_recredit_amount": "Automatic re-credit",
   "sms_consumed_automatic_recredit_amount_activate": "enabled",
   "sms_consumed_automatic_recredit_amount_disactivate": "disabled",
-  "sms_consumed_last_recharge": "Last re-credit",
+  "sms_consumed_last_recharge": "Last top-up",
   "sms_statistics_title": "Statistics",
   "sms_statistics_filter_month": "Current month",
   "sms_statistics_filter_sender": "All senders",
