@@ -1,6 +1,6 @@
 {
   "globals": {
-    "ipaddr": true,
-    "punycode": true
+    "d3": true,
+    "moment": true
   }
 }
