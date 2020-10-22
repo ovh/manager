@@ -52,7 +52,10 @@ export default class PciProjectStorageBlockService {
           reduce(
             volumes,
             (instanceAcc, volume) => {
-              if(isArray(volume.attachedTo) && !isEmpty(head(volume.attachedTo))) {
+              if (
+                isArray(volume.attachedTo) &&
+                !isEmpty(head(volume.attachedTo))
+              ) {
                 return [...instanceAcc, ...volume.attachedTo];
               }
               return [...instanceAcc];

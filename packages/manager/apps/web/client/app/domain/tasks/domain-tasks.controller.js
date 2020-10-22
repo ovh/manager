@@ -17,11 +17,18 @@ angular.module('controllers').controller(
     }
 
     getTasks() {
-      return this.Domain.getZoneDnsTasks(this.$stateParams.productId).then(
-        (tasks) => {
-          this.tasks = this.constructor.getTaskStruct(tasks, true);
-        },
-      );
+      return this.$q
+        .all({
+          zoneDnsTasks: this.Domain.getZoneDnsTasks(
+            this.$stateParams.productId,
+          ).catch(() => []),
+          tasks: this.Domain.getTasks(this.$stateParams.productId),
+        })
+        .then(({ zoneDnsTasks, tasks }) => {
+          this.tasks = this.constructor
+            .getTaskStruct(zoneDnsTasks, true)
+            .concat(this.constructor.getTaskStruct(tasks, false));
+        });
     }
 
     static getTaskStruct(tasks, isZone) {

@@ -3,12 +3,7 @@ import set from 'lodash/set';
 
 export default class KubernetesNodePoolsCtrl {
   /* @ngInject */
-  constructor(
-    $translate,
-    CucCloudMessage,
-    Kubernetes,
-    PciProjectFlavors,
-  ) {
+  constructor($translate, CucCloudMessage, Kubernetes, PciProjectFlavors) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.Kubernetes = Kubernetes;
@@ -34,17 +29,15 @@ export default class KubernetesNodePoolsCtrl {
   }
 
   getAssociatedFlavor(nodePool) {
-    return this.PciProjectFlavors
-      .getFlavors(this.projectId, this.cluster.region)
+    return this.PciProjectFlavors.getFlavors(
+      this.projectId,
+      this.cluster.region,
+    )
       .then((flavors) => {
         this.flavor = find(flavors, { name: nodePool.flavor });
         this.flavor.region = this.cluster.region;
         this.formatteFlavor = this.Kubernetes.formatFlavor(this.flavor);
-        set(
-          nodePool,
-          'formattedFlavor',
-          this.formatteFlavor,
-        );
+        set(nodePool, 'formattedFlavor', this.formatteFlavor);
         return nodePool;
       })
       .catch(() => {

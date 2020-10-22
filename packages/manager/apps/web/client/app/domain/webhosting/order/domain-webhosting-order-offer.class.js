@@ -1,4 +1,5 @@
 import capitalize from 'lodash/capitalize';
+import flattenDeep from 'lodash/flattenDeep';
 import trim from 'lodash/trim';
 
 import {
@@ -32,7 +33,7 @@ export default class WebHostingOffer {
       DATABASE_ISOLATION_TYPES.LOCAL,
     );
 
-    return localDatabases.map(({ engines }) => engines).flatten();
+    return flattenDeep(localDatabases.map(({ engines }) => engines));
   }
 
   get formattedDiskSpace() {

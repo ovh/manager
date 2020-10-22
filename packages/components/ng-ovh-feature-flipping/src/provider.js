@@ -15,7 +15,7 @@ export default class NgOvhFeatureFlippingProvider {
   }
 
   /* @ngInject */
-  $get($http) {
-    return new FeatureFlipping($http, this.applicationName);
+  $get($q, $http) {
+    return new FeatureFlipping($q, $http, this.applicationName);
   }
 }

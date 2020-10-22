@@ -10,4 +10,4 @@ Follow [@ovhcloud](https://twitter.com/ovhcloud) on Twitter for important
 announcements.
 
 This project adheres to the Contributor Covenant [code of conduct](https://github.com/ovh/.github/tree/master/CODE_OF_CONDUCT.md).
-By participating, you are expected to uphold this code. Please report unacceptable behavior to opensource@ovh.net.
+By participating, you are expected to uphold this code. Please report unacceptable behavior to <mailto:opensource@ovh.net>.

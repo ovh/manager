@@ -1,0 +1,75 @@
+@import '~ovh-ui-kit-bs/dist/less/bootstrap/_variables';
+
+.telecom-pack-migration {
+  .table-comparison {
+    &__property {
+      &-name {
+        text-align: left;
+        font-weight: bold;
+
+        &--sublevel {
+          text-align: left;
+          font-weight: 400;
+        }
+      }
+
+      &-icon {
+        font-size: 1.5rem;
+        color: #32acff;
+        margin-right: 8px;
+      }
+    }
+
+    &--item-base {
+      background-color: @gray-lighter;
+    }
+
+    &__cell {
+      border: none;
+      vertical-align: middle;
+      color: @gray-dark;
+
+      &--border {
+        border-bottom: solid 1px #eaeaea;
+      }
+
+      &--head {
+        border-bottom: 2px solid #eaeaea;
+        text-align: center;
+      }
+
+      &--empty {
+        border-top: solid 1px #eaeaea;
+      }
+
+      .text-price {
+        font-weight: bold;
+        font-size: @font-size-h3;
+      }
+
+      small .text-price {
+        font-size: 1.5em;
+      }
+
+      strong {
+        font-size: @font-size-base;
+
+        &:not(.text-muted) {
+          color: #32acff;
+        }
+      }
+    }
+
+    &__value {
+      text-align: center;
+    }
+  }
+
+  .text-asterisk {
+    &::before {
+      display: inline-block;
+      content: '*';
+      padding-right: 4px;
+    }
+  }
+}

@@ -28,6 +28,7 @@ export default class {
     Alerter,
     Navigator,
     constants,
+    availableOptions,
     emailOptionIds,
     emailOptionDetachInformation,
     isEmailDomainAvailable,
@@ -65,6 +66,7 @@ export default class {
     this.Alerter = Alerter;
     this.Navigator = Navigator;
     this.constants = constants;
+    this.availableOptions = availableOptions;
     this.emailOptionIds = emailOptionIds;
     this.emailOptionDetachInformation = emailOptionDetachInformation;
     this.isEmailDomainAvailable = isEmailDomainAvailable;
@@ -96,6 +98,7 @@ export default class {
       active: false,
     };
 
+    this.$scope.availableOptions = this.availableOptions;
     this.$scope.emailOptionIds = this.emailOptionIds;
     this.$scope.emailOptionDetachInformation = this.emailOptionDetachInformation;
     this.$scope.privateDatabasesDetachable = this.privateDatabasesDetachable;

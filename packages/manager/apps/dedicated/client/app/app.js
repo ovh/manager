@@ -41,6 +41,7 @@ import uiRouter, { RejectType } from '@uirouter/angularjs';
 import chartjs from 'angular-chart.js';
 
 import moduleExchange from '@ovh-ux/manager-exchange';
+import ovhManagerFilters from '@ovh-ux/manager-filters';
 import ovhManagerVeeamEnterprise from '@ovh-ux/manager-veeam-enterprise';
 import ovhManagerVeeamCloudConnect from '@ovh-ux/manager-veeam-cloud-connect';
 import ovhManagerVps from '@ovh-ux/manager-vps';
@@ -137,6 +138,7 @@ angular
       ovhManagerVeeamEnterprise,
       ovhManagerVeeamCloudConnect,
       ovhNotificationsSidebar,
+      ovhManagerFilters,
       ngTailLogs,
       ovhContacts,
       ovhManagerBanner,
@@ -316,6 +318,16 @@ angular
       return import(`script-loader!moment/locale/${lang}.js`).then(() =>
         moment.locale(lang),
       );
+    },
+  )
+  .config(
+    /* @ngInject */ (ouiCalendarConfigurationProvider) => {
+      const lang = Environment.getUserLanguage();
+      return import(`flatpickr/dist/l10n/${lang}.js`)
+        .then((module) => {
+          ouiCalendarConfigurationProvider.setLocale(module.default[lang]);
+        })
+        .catch(() => {});
     },
   )
   .constant('UNIVERSE', 'DEDICATED')

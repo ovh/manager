@@ -1,5 +1,6 @@
 /* eslint-disable import/no-webpack-loader-syntax, import/no-unresolved, import/extensions */
-import 'babel-polyfill';
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
 import 'script-loader!moment/min/moment.min.js';
 import 'script-loader!es6-shim/es6-shim.min.js';
 import 'script-loader!components-jqueryui/ui/minified/version.js';

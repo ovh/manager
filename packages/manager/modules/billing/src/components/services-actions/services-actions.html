@@ -4,7 +4,7 @@
     data-placement="end"
 >
     <oui-action-menu-item
-        ng-if="$ctrl.service.hasDebt() && !$ctrl.service.hasBillingRights(user.nichandle)"
+        ng-if="$ctrl.service.hasDebt() && !$ctrl.service.hasBillingRights($ctrl.user.nichandle)"
         href="{{:: $ctrl.warningLink }}"
         on-click="$ctrl.trackAction('go-to-pay-bill')"
     >
@@ -12,7 +12,7 @@
     </oui-action-menu-item>
 
     <oui-action-menu-item
-        ng-if="$ctrl.service.hasDebt() && $ctrl.service.hasBillingRights(user.nichandle)"
+        ng-if="$ctrl.service.hasDebt() && $ctrl.service.hasBillingRights($ctrl.user.nichandle)"
         href="{{:: $ctrl.billingLink }}"
         on-click="$ctrl.trackAction('go-to-pay-bill')"
     >
@@ -81,17 +81,29 @@
     </div>
     <!-- /Exchange -->
 
-    <oui-action-menu-item
-        ng-if="(!$ctrl.service.shouldDeleteAtExpiration() || !$ctrl.service.isResiliated()) && !$ctrl.service.hasDebt()"
-        disabled="!$ctrl.service.canBeResiliated($ctrl.user.nichandle) && !$ctrl.service.canBeDeleted()"
-        href="{{:: $ctrl.resiliateLink }}"
-        on-click="$ctrl.trackAction('go-to-resiliate')"
+    <div
+        data-ng-if="(!$ctrl.service.shouldDeleteAtExpiration() || !$ctrl.service.isResiliated()) && !$ctrl.service.hasDebt()"
     >
-        <span
-            data-translate="{{:: 'billing_services_actions_menu_resiliate_' + $ctrl.service.serviceType }}"
-            data-translate-default="{{:: 'billing_services_actions_menu_resiliate' | translate }}"
-        ></span>
-    </oui-action-menu-item>
+        <oui-action-menu-item
+            ng-if="$ctrl.service.canBeResiliated($ctrl.user.nichandle)"
+            href="{{:: $ctrl.resiliateLink }}"
+            on-click="$ctrl.trackAction('go-to-resiliate')"
+        >
+            <span
+                data-translate="billing_services_actions_menu_resiliate"
+            ></span>
+        </oui-action-menu-item>
+
+        <oui-action-menu-item
+            ng-if="$ctrl.service.canBeDeleted()"
+            href="{{:: $ctrl.deleteLink }}"
+            on-click="$ctrl.trackAction('go-to-resiliate')"
+        >
+            <span
+                data-translate="{{:: 'billing_services_actions_menu_resiliate_' + $ctrl.service.serviceType }}"
+            ></span>
+        </oui-action-menu-item>
+    </div>
 
     <!-- SMS -->
     <div data-ng-if="$ctrl.service.serviceType === $ctrl.SERVICE_TYPE.SMS">
@@ -124,7 +136,6 @@
         href="{{:: $ctrl.cancelResiliationLink }}"
         on-click="$ctrl.trackAction('go-to-cancel-resiliation')"
     >
-        >
         <span
             data-translate="billing_services_actions_menu_resiliate_cancel"
         ></span>

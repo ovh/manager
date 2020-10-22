@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-at-internet-configuration",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "private": true,
   "description": "OVHcloud manager atInternet common configuration",
   "repository": {
@@ -12,7 +12,7 @@
   "author": "OVH SAS",
   "main": "./src/index.js",
   "dependencies": {
-    "@ovh-ux/manager-config": "^1.1.1"
+    "@ovh-ux/manager-config": "^1.0.0 || ^2.0.0"
   },
   "peerDependencies": {
     "@ovh-ux/manager-core": "^9.0.0",

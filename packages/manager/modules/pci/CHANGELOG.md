@@ -1,3 +1,56 @@
+## [5.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.2.2...@ovh-ux/manager-pci@5.2.3) (2020-10-21)
+
+
+### Bug Fixes
+
+* **project.new:** avoid creating payment mean if it is credit ([#3878](https://github.com/ovh/manager/issues/3878)) ([e72d5d6](https://github.com/ovh/manager/commit/e72d5d6329674e0750c831f4522f413850bf7a2c))
+
+
+
+## [5.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.2.1...@ovh-ux/manager-pci@5.2.2) (2020-10-20)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v11.0.0 ([#3869](https://github.com/ovh/manager/issues/3869)) ([df90e4d](https://github.com/ovh/manager/commit/df90e4de660920e3cd07b2ff6b4452b0aa861377))
+
+
+
+## [5.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.2.0...@ovh-ux/manager-pci@5.2.1) (2020-10-19)
+
+
+### Bug Fixes
+
+* **pci:** null instance price ([#3864](https://github.com/ovh/manager/issues/3864)) ([cd62472](https://github.com/ovh/manager/commit/cd62472518be88fa9ea8f923e731705e69121901))
+
+
+
+# [5.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.1.5...@ovh-ux/manager-pci@5.2.0) (2020-10-13)
+
+
+### Bug Fixes
+
+* **deps:** upgrade to @ovh-ux/manager-config v2.0.0 ([ca3f955](https://github.com/ovh/manager/commit/ca3f9554c13b1436cbdeed3de8ac69e399d5dd93))
+* **i18n:** add missing translations [CDS 611] ([35788d8](https://github.com/ovh/manager/commit/35788d843f5dfa6b5ae05f46663b027d56089c9c))
+* **kubernetes.translations:** rename label 'backup' into 'save' ([#3823](https://github.com/ovh/manager/issues/3823)) ([ce0322b](https://github.com/ovh/manager/commit/ce0322bc7d14a1d39bf80588f070c916cf85ea77))
+* **pci.instance.edit:** pass region parameter ([#3814](https://github.com/ovh/manager/issues/3814)) ([44d116c](https://github.com/ovh/manager/commit/44d116cdd2214442b3c2ccc65ddca983db2521fa))
+
+
+### Features
+
+* **pci.load-balancer:** add region on datagrid list for lbaas ([#3747](https://github.com/ovh/manager/issues/3747)) ([db604eb](https://github.com/ovh/manager/commit/db604eb8b2d4b9b1bb338cfb08b3ebe532f1007b))
+
+
+
+## [5.1.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.1.4...@ovh-ux/manager-pci@5.1.5) (2020-10-12)
+
+
+### Bug Fixes
+
+* comment adjustment ([#3811](https://github.com/ovh/manager/issues/3811)) ([f8a69b1](https://github.com/ovh/manager/commit/f8a69b1027b16692fd6b3e6ee29b94c58863471b))
+
+
+
 ## [5.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.1.3...@ovh-ux/manager-pci@5.1.4) (2020-09-30)
 
 

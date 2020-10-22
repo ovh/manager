@@ -348,7 +348,11 @@
                                 data-ng-bind=":: $ctrl.doesEmailOfferExists() ? ('hosting_dashboard_service_common_active' | translate) : ('hosting_dashboard_service_common_inactive' | translate)"
                             ></span>
                         </oui-tile-description>
-                        <oui-action-menu data-compact data-placement="end">
+                        <oui-action-menu
+                            data-compact
+                            data-placement="end"
+                            data-ng-if="availableOptions.length"
+                        >
                             <oui-action-menu-item
                                 data-on-click="$ctrl.activateEmailOffer()"
                                 data-ng-if="!$ctrl.doesEmailOfferExists()"

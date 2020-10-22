@@ -352,18 +352,20 @@ export default class PciProjectInstanceService {
   }
 
   getInstancePrice(projectId, instance) {
-    return this.CucPriceHelper.getPrices(projectId).then((prices) => {
-      const price = prices[instance.planCode];
-      // Set 3 digits for hourly price
-      if (!instance.isMonthlyBillingActivated()) {
-        price.price.text = price.price.text.replace(
-          /\d+(?:[.,]\d+)?/,
-          `${price.price.value.toFixed(3)}`,
-        );
-      }
+    return this.CucPriceHelper.getPrices(projectId)
+      .then((prices) => {
+        const price = prices[instance.planCode];
+        // Set 3 digits for hourly price
+        if (!instance.isMonthlyBillingActivated()) {
+          price.price.text = price.price.text.replace(
+            /\d+(?:[.,]\d+)?/,
+            `${price.price.value.toFixed(3)}`,
+          );
+        }
 
-      return price;
-    });
+        return price;
+      })
+      .catch(() => null);
   }
 
   getProjectQuota(projectId, region = null) {

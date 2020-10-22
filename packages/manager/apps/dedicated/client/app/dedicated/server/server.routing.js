@@ -1,3 +1,4 @@
+import { DedicatedServer } from '@ovh-ux/manager-models';
 import { NEW_RANGE } from './server.constants';
 
 import Ola from './interfaces/ola.class';
@@ -24,7 +25,9 @@ export default /* @ngInject */ ($stateProvider) => {
       schema: /* @ngInject */ (OvhApiDedicatedServer) =>
         OvhApiDedicatedServer.v6().schema().$promise,
       server: /* @ngInject */ (Server, serverName) =>
-        Server.getSelected(serverName),
+        Server.getSelected(serverName).then(
+          (swsResponse) => new DedicatedServer(swsResponse),
+        ),
       serverName: /* @ngInject */ ($transition$) =>
         $transition$.params().productId,
       serviceInfos: /* @ngInject */ ($stateParams, Server) =>

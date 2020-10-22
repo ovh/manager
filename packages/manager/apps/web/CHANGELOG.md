@@ -1,3 +1,63 @@
+## [15.3.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.3.8...@ovh-ux/manager-web@15.3.9) (2020-10-20)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v11.0.0 ([#3869](https://github.com/ovh/manager/issues/3869)) ([df90e4d](https://github.com/ovh/manager/commit/df90e4de660920e3cd07b2ff6b4452b0aa861377))
+
+
+
+## [15.3.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.3.7...@ovh-ux/manager-web@15.3.8) (2020-10-15)
+
+
+### Bug Fixes
+
+* **web.privatedb:** hide order ram button in oom modal if not possible ([#3842](https://github.com/ovh/manager/issues/3842)) ([182f5e4](https://github.com/ovh/manager/commit/182f5e42e2e1734daa8bfe29a050dc40628844bd))
+
+
+
+## [15.3.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.3.6...@ovh-ux/manager-web@15.3.7) (2020-10-13)
+
+
+### Bug Fixes
+
+* **deps:** upgrade to @ovh-ux/manager-config v2.0.0 ([ca3f955](https://github.com/ovh/manager/commit/ca3f9554c13b1436cbdeed3de8ac69e399d5dd93))
+* **domain.operation.update:** translate some form labels ([c84c175](https://github.com/ovh/manager/commit/c84c175b4eacc35805b8a57eb6a93ab5410df5df))
+* **i18n:** add missing translations [CDS 598] ([e5be4ff](https://github.com/ovh/manager/commit/e5be4ff3567df1171c776fb7315c8be4d09c423f))
+* **i18n:** add missing translations [CDS 603] ([4e2e675](https://github.com/ovh/manager/commit/4e2e675b06edca380c3e23a63c28bfd0db442d83))
+* **i18n:** add missing translations [CDS 608] ([3adf17d](https://github.com/ovh/manager/commit/3adf17d42e44f15a6c4775cab693b944495a07ee))
+* **private-database.order:** add missing translations ([7b0f1fd](https://github.com/ovh/manager/commit/7b0f1fd6984890ccd408c93195d548171e5c0b40))
+* **private-database.order:** prevent error message on landing ([4a33232](https://github.com/ovh/manager/commit/4a33232b55c579f7840faa3a299ec8846db3958a))
+
+
+
+## [15.3.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.3.5...@ovh-ux/manager-web@15.3.6) (2020-10-12)
+
+
+### Bug Fixes
+
+* **hosting:** prevent email activation if it is not possible ([#3808](https://github.com/ovh/manager/issues/3808)) ([d08a7f9](https://github.com/ovh/manager/commit/d08a7f959736fd70eea3cf90bb48b8705f05b71f))
+
+
+
+## [15.3.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.3.4...@ovh-ux/manager-web@15.3.5) (2020-10-07)
+
+
+### Bug Fixes
+
+* **domain.tasks:** merge domain & zone tasks ([#3770](https://github.com/ovh/manager/issues/3770)) ([4a943a8](https://github.com/ovh/manager/commit/4a943a8d0a20d87ccac37eed52a57e3a95c439ef))
+
+
+
+## [15.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.3.3...@ovh-ux/manager-web@15.3.4) (2020-10-06)
+
+
+### Bug Fixes
+
+* **hosting.multisite.logs:** multisite ownlogs url & token ([#3640](https://github.com/ovh/manager/issues/3640)) ([981260d](https://github.com/ovh/manager/commit/981260d4ea6d78d57f1bc0b4d55e6886c95f612a))
+
+
+
 ## [15.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.3.2...@ovh-ux/manager-web@15.3.3) (2020-09-28)
 
 

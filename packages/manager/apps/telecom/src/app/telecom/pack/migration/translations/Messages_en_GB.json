@@ -130,6 +130,11 @@
   "telecom_pack_migration_pto_check_no": "Non je ne dispose pas d'un boîter PTO",
   "telecom_pack_migration_pto_reference": "Enter your fibre optic termination point reference",
   "telecom_pack_migration_pto_where": "Where is the fibre optic termination box reference?",
-  "telecom_pack_migration_pto_where_description": "This reference is located on the fibre optic termination box, and contains letters and numbers in the following format: OO-XXXX-XXXX /C",
-  "telecom_pack_migration_pto_yes_not_known": "I have a box but I don't know its number"
+  "telecom_pack_migration_pto_where_description": "This reference is located on the fibre termination box, and contains letters and numbers in the following format: OO-XXXX-XXXX",
+  "telecom_pack_migration_pto_yes_not_known": "I have a box but I don't know its number",
+  "telecom_pack_migration_building_details_error": "An error has occurred retrieving information on your building",
+  "telecom_pack_migration_pto_yes": "I have a box with the following reference",
+  "telecom_pack_migration_pto_yes_description": "We will proceed to remove the existing fibre termination point (FTP) socket.",
+  "telecom_pack_migration_pto_no_description": "A technician will proceed to install a fibre termination point (FTP) socket during their intervention.",
+  "telecom_pack_migration_pto_yes_not_known_description": "Have you checked that you do not have the fibre termination box (FTP) reference? This may impact your connection time. "
 }

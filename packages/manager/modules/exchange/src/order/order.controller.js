@@ -27,7 +27,7 @@ export default class ExchangeOrderCtrl {
   getExchanges() {
     this.loaders.init = true;
 
-    return this.services.Exchange.getExchangeServices()
+    return this.services.Exchange.getAllExchangeServices()
       .then((exchanges) => {
         this.exchanges = map(exchanges, (exchange) => {
           set(exchange, 'domain', exchange.name);

@@ -29,7 +29,9 @@ export default class Monitoring {
       smsNotifications: false,
     };
 
-    this.$scope.$on('server.monitoring.reload', () => this.refreshTableMonitoring());
+    this.$scope.$on('server.monitoring.reload', () =>
+      this.refreshTableMonitoring(),
+    );
 
     return this.refreshTableMonitoring();
   }

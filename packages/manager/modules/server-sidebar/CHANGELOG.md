@@ -1,3 +1,64 @@
+## [3.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.2.1...@ovh-ux/manager-server-sidebar@3.2.2) (2020-10-21)
+
+
+### Bug Fixes
+
+* **nas:** remove order section for old nas references ([#3886](https://github.com/ovh/manager/issues/3886)) ([84183ab](https://github.com/ovh/manager/commit/84183ab17ace6ed1b0bb03181c3f01d5231b0930))
+
+
+
+## [3.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.2.0...@ovh-ux/manager-server-sidebar@3.2.1) (2020-10-20)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v11.0.0 ([#3869](https://github.com/ovh/manager/issues/3869)) ([df90e4d](https://github.com/ovh/manager/commit/df90e4de660920e3cd07b2ff6b4452b0aa861377))
+
+
+
+# [3.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.1.1...@ovh-ux/manager-server-sidebar@3.2.0) (2020-10-13)
+
+
+### Bug Fixes
+
+* **deps:** upgrade to @ovh-ux/manager-config v2.0.0 ([ca3f955](https://github.com/ovh/manager/commit/ca3f9554c13b1436cbdeed3de8ac69e399d5dd93))
+* **i18n:** add missing translations [CDS 598] ([e5be4ff](https://github.com/ovh/manager/commit/e5be4ff3567df1171c776fb7315c8be4d09c423f))
+* **web.order:** add private database order ([91bfb3b](https://github.com/ovh/manager/commit/91bfb3bb8d00a6becfeebbc5fd8ebb7a421b7e05))
+
+
+### Features
+
+* **features:** retrieve features dynamically ([#3745](https://github.com/ovh/manager/issues/3745)) ([b3064e7](https://github.com/ovh/manager/commit/b3064e7c6b3cdc8317841eb5c5c5edd77b28cba1))
+
+
+
+## [3.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.1.0...@ovh-ux/manager-server-sidebar@3.1.1) (2020-10-07)
+
+
+### Bug Fixes
+
+* **sidebar:** behaviour order action menu items ([#3790](https://github.com/ovh/manager/issues/3790)) ([af83ac2](https://github.com/ovh/manager/commit/af83ac2bcf390b789f28295bef2b1e6e7159cd9d))
+
+
+
+# [3.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.0.1...@ovh-ux/manager-server-sidebar@3.1.0) (2020-10-05)
+
+
+### Features
+
+* **sidebar:** add order trackers ([#3761](https://github.com/ovh/manager/issues/3761)) ([c87f2cd](https://github.com/ovh/manager/commit/c87f2cdb66143865588d3cdd3ff17dd924840743))
+
+
+
+## [3.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.0.0...@ovh-ux/manager-server-sidebar@3.0.1) (2020-10-02)
+
+
+### Bug Fixes
+
+* **sidebar:** update US baremetal url ([#3750](https://github.com/ovh/manager/issues/3750)) ([6569922](https://github.com/ovh/manager/commit/6569922b62f82c61673a0273b0e3b65a89aa29ba))
+
+
+
 # [3.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@2.1.1...@ovh-ux/manager-server-sidebar@3.0.0) (2020-09-28)
 
 

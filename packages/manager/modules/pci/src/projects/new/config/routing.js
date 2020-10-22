@@ -7,8 +7,8 @@ export default /* @ngInject */ ($stateProvider) => {
       '': component.name,
 
       'banner@pci.projects.new.config': {
-        componentProvider: /* @ngInject */ (ovhFeatureFlipping) =>
-          ovhFeatureFlipping.isFeatureActive('pci.onboarding.new.banner')
+        componentProvider: /* @ngInject */ (ovhPciFeatureFlipping) =>
+          ovhPciFeatureFlipping.isFeatureActive('pci.onboarding.new.banner')
             ? 'pciProjectNewConfigBanner'
             : null,
       },

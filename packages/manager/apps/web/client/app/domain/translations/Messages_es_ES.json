@@ -742,7 +742,7 @@
   "domain_update_owner_firstname": "Nombre",
   "domain_update_owner_change_password": "Cambiar la contraseña",
   "domain_update_owner_organisation": "Organización",
-  "domain_update_owner_tva": "ID Fiscal",
+  "domain_update_owner_tva": "Número de identificación fiscal (NIF) intracomunitario",
   "domain_update_owner_address_1": "Dirección",
   "domain_update_owner_address_2": "Dirección (continuación)",
   "domain_update_owner_address_3": "Dirección (continuación)",

@@ -1,3 +1,12 @@
+## [5.0.7](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-actions-menu@5.0.6...@ovh-ux/ng-ovh-actions-menu@5.0.7) (2020-10-07)
+
+
+### Bug Fixes
+
+* **sidebar:** behaviour order action menu items ([#3790](https://github.com/ovh/manager/issues/3790)) ([af83ac2](https://github.com/ovh/manager/commit/af83ac2bcf390b789f28295bef2b1e6e7159cd9d))
+
+
+
 ## [5.0.6](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-actions-menu@5.0.5...@ovh-ux/ng-ovh-actions-menu@5.0.6) (2020-06-15)
 
 

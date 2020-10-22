@@ -1,0 +1,61 @@
+<div class="telecom-pack-migration">
+    <header>
+        <oui-back-button data-on-click="$ctrl.goBack()">
+            <span
+                data-translate="telecom_pack_migration_back_link_title"
+            ></span>
+        </oui-back-button>
+        <h1 data-translate="telecom_pack_migration_title"></h1>
+    </header>
+
+    <div class="telecom-section-content">
+        <!-- LOADER -->
+        <div class="text-center" data-ng-if="$ctrl.loading.init">
+            <oui-spinner></oui-spinner>
+        </div>
+
+        <tuc-toast-message></tuc-toast-message>
+
+        <!-- OFFER CHOICE STEP -->
+        <div
+            data-ng-if="!$ctrl.loading.init && $ctrl.process.currentStep === 'offers'"
+        >
+            <pack-migration-offers></pack-migration-offers>
+        </div>
+
+        <!-- BUILDING DETAILS STEP -->
+        <div
+            data-ng-if="!$ctrl.loading.init && $ctrl.process.currentStep === 'buildingDetails'"
+        >
+            <pack-migration-building-details></pack-migration-building-details>
+        </div>
+
+        <!-- SHIPPING STEP -->
+        <div
+            data-ng-if="!$ctrl.loading.init && $ctrl.process.currentStep === 'shipping'"
+        >
+            <pack-migration-shipping></pack-migration-shipping>
+        </div>
+
+        <!-- CONFIRM STEP -->
+        <div
+            data-ng-if="!$ctrl.loading.init && $ctrl.process.currentStep === 'confirm'"
+        >
+            <pack-migration-confirm></pack-migration-confirm>
+        </div>
+
+        <!-- MIGRATION TASK IN PROGRESS -->
+        <div
+            data-ng-if="!$ctrl.loading.init && $ctrl.process.currentStep === 'migration'"
+        >
+            <pack-migration-migration></pack-migration-migration>
+        </div>
+
+        <!-- SERVICE TO DELETE -->
+        <div
+            data-ng-if="!$ctrl.loading.init && $ctrl.process.currentStep === 'serviceDelete'"
+        >
+            <pack-migration-service-delete></pack-migration-service-delete>
+        </div>
+    </div>
+</div>

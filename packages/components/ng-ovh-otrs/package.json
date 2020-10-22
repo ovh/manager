@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-otrs",
-  "version": "9.1.0",
+  "version": "9.1.1",
   "description": "Manage OTRS tickets",
   "keywords": [
     "angularjs",
@@ -48,6 +48,6 @@
     "bootstrap": "^3.3.6",
     "font-awesome": "^4.7.0",
     "jquery": "^2.1.3",
-    "ovh-api-services": "^3.15.1"
+    "ovh-api-services": "^11.0.0"
   }
 }

@@ -1,7 +1,9 @@
 <section>
     <h3 data-translate="carrier_sip_endpoints_list_IP"></h3>
     <oui-datagrid class="small-width" rows="$ctrl.endpointIpList">
-        <oui-datagrid-column title=":: 'carrier_sip_endpoints_ip_sip' | translate">
+        <oui-datagrid-column
+            title=":: 'carrier_sip_endpoints_ip_sip' | translate"
+        >
             <span data-ng-bind="::$row"></span>
         </oui-datagrid-column>
     </oui-datagrid>

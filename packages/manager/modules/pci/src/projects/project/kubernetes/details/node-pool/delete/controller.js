@@ -16,12 +16,11 @@ export default class KubernetesNodePoolsDeleteCtrl {
 
   deletePoolNode() {
     this.isDeleting = true;
-    return this.Kubernetes
-      .deleteNodePool(
-        this.projectId,
-        this.kubeId,
-        this.nodePoolId,
-      )
+    return this.Kubernetes.deleteNodePool(
+      this.projectId,
+      this.kubeId,
+      this.nodePoolId,
+    )
       .then(() =>
         this.goBack(this.$translate.instant('kube_node_pool_delete_success')),
       )

@@ -188,6 +188,7 @@ export default class OfficeAttachDialogCtrl {
 
   onWizardLoad() {
     return this.Exchange.getAccounts(
+      this.exchange,
       this.maxNumberOfAccounts,
       0,
       this.searchValue,
@@ -226,6 +227,7 @@ export default class OfficeAttachDialogCtrl {
     this.updateAccounts(null);
 
     return this.Exchange.getAccounts(
+      this.exchange,
       count,
       offset,
       this.searchValue,

@@ -1,5 +1,5 @@
 export default class FeatureAvailabilityResult {
-  constructor(apiResult) {
+  constructor(apiResult = {}) {
     this.features = apiResult;
   }
 

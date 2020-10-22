@@ -1,3 +1,62 @@
+## [13.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.4.0...@ovh-ux/manager-telecom@13.4.1) (2020-10-20)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v11.0.0 ([#3869](https://github.com/ovh/manager/issues/3869)) ([df90e4d](https://github.com/ovh/manager/commit/df90e4de660920e3cd07b2ff6b4452b0aa861377))
+
+
+
+# [13.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.3.1...@ovh-ux/manager-telecom@13.4.0) (2020-10-13)
+
+
+### Bug Fixes
+
+* **deps:** upgrade to @ovh-ux/manager-config v2.0.0 ([ca3f955](https://github.com/ovh/manager/commit/ca3f9554c13b1436cbdeed3de8ac69e399d5dd93))
+* **i18n:** add missing translations [CDS 602] ([29f3a48](https://github.com/ovh/manager/commit/29f3a4872de300ced82b49b0755311c6f46e329b))
+* **i18n:** add missing translations [CDS 605] ([95c86b7](https://github.com/ovh/manager/commit/95c86b75448550a605e6569367bd0fef8fddbde0))
+* **telephony:** sort programmablekey BLF parameters ([#3707](https://github.com/ovh/manager/issues/3707)) ([db61611](https://github.com/ovh/manager/commit/db61611badd638ddc6d330f9ff9eb98623e9ac34))
+* **telephony.fax.campaigns:** allow to launch campaign ([fdc5e7b](https://github.com/ovh/manager/commit/fdc5e7b348d5a0a90501f9a5dec723452e9d9c0c))
+
+
+### Features
+
+* **pack.migration:** rework on building details pto input ([#3319](https://github.com/ovh/manager/issues/3319)) ([87abd19](https://github.com/ovh/manager/commit/87abd19473f8b19e50d00b7623f4d5b3f21eecaa))
+
+
+
+## [13.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.3.0...@ovh-ux/manager-telecom@13.3.1) (2020-10-07)
+
+
+### Bug Fixes
+
+* **sidebar:** behaviour order action menu items ([#3790](https://github.com/ovh/manager/issues/3790)) ([af83ac2](https://github.com/ovh/manager/commit/af83ac2bcf390b789f28295bef2b1e6e7159cd9d))
+
+
+
+# [13.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.2.11...@ovh-ux/manager-telecom@13.3.0) (2020-10-05)
+
+
+### Features
+
+* **sidebar:** add order trackers ([#3761](https://github.com/ovh/manager/issues/3761)) ([c87f2cd](https://github.com/ovh/manager/commit/c87f2cdb66143865588d3cdd3ff17dd924840743))
+
+
+
+## [13.2.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.2.10...@ovh-ux/manager-telecom@13.2.11) (2020-10-02)
+
+
+### Bug Fixes
+
+* **loccale:** add flatpickr locale import ([e54afb0](https://github.com/ovh/manager/commit/e54afb0e4322152dc1dc6ec6e680caa4acc815d6))
+
+
+### Performance Improvements
+
+* **flatpickr:** add webpack context replacement for flatpickr ([8751ee9](https://github.com/ovh/manager/commit/8751ee9b5ea7db27894cace3c519fc905a9d37d5))
+
+
+
 ## [13.2.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.2.9...@ovh-ux/manager-telecom@13.2.10) (2020-10-01)
 
 
