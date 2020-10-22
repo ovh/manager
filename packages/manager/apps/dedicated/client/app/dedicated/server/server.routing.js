@@ -1,4 +1,4 @@
-import DedicatedServer from '@ovh-ux/manager-models';
+import { DedicatedServer } from '@ovh-ux/manager-models';
 import { NEW_RANGE } from './server.constants';
 
 import Ola from './interfaces/ola.class';
