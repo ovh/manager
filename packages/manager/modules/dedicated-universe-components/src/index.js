@@ -16,8 +16,6 @@ import components from './components';
 
 import sshkeyMinFilter from './filters/sshkeyMin';
 
-import validatorService from './validator/validator.service';
-
 const moduleName = 'ngOvhDedicatedUniverseComponents';
 
 angular
@@ -92,7 +90,6 @@ angular
       regex: /^(ssh-ed25519)\s+(A{4}[0-9A-Za-z +/]+[=]{0,3})\s+(\S+)$/,
     },
   ])
-  .filter('sshkeyMin', sshkeyMinFilter)
-  .service('Validator', validatorService);
+  .filter('sshkeyMin', sshkeyMinFilter);
 
 export default moduleName;
