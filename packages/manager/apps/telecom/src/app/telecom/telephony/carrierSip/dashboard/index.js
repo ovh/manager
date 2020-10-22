@@ -13,9 +13,9 @@ angular.module(moduleName, [oclazyload, uiRouter]).config(
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-        return import('./dashboard.module').then((mod) =>
-          $ocLazyLoad.inject(mod.default || mod),
-        );
+        return import(
+          /* webpackChunkName: "carrierSip-dashboard" */ './dashboard.module'
+        ).then((mod) => $ocLazyLoad.inject(mod.default || mod));
       },
     });
   },

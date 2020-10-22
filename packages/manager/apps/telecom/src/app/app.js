@@ -46,6 +46,7 @@ import uiRouter, { RejectType } from '@uirouter/angularjs';
 import TelecomAppCtrl from './app.controller';
 import pack from './telecom/pack';
 import telephony from './telecom/telephony';
+import telephonyComponents from '../components/telecom/telephony';
 
 import errorPage from './error-page/error-page.module';
 import searchPage from './search/search.module';
@@ -134,6 +135,7 @@ angular
       'validation.match',
       pack,
       telephony,
+      telephonyComponents,
       searchPage,
       ngOvhFeatureFlipping,
       ...get(__NG_APP_INJECTIONS__, Environment.getRegion(), []),

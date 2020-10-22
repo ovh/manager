@@ -10,11 +10,11 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
       url: '/fax/:serviceName',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-        return import(
-          /* webpackChunkName: "telephony-fax" */ './fax.module'
-        ).then((mod) => {
-          return $ocLazyLoad.inject(mod.default || mod);
-        });
+        return import(/* webpackChunkName: "fax" */ './fax.module').then(
+          (mod) => {
+            return $ocLazyLoad.inject(mod.default || mod);
+          },
+        );
       },
     });
   },

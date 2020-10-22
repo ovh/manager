@@ -2,13 +2,13 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-import telephony from './telephony.module';
+import billingAccount from './billingAccount';
 
 import './telecom-telephony.less';
 
 const moduleName = 'ovhManagerTelecomTelephonyLazyLoading';
 
-angular.module(moduleName, ['ui.router', 'oc.lazyLoad', telephony]).config(
+angular.module(moduleName, ['ui.router', 'oc.lazyLoad', billingAccount]).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider
       .state('telecom.telephony', {
@@ -31,16 +31,6 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad', telephony]).config(
           );
         },
       });
-    // .state('telecom.telephony.billingAccount.**', {
-    //   url: '/:billingAccount',
-    //   lazyLoad: ($transition$) => {
-    //     const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-
-    //     return import('./dashboard/dashboard.module').then((mod) =>
-    //       $ocLazyLoad.inject(mod.default || mod),
-    //     );
-    //   },
-    // });
   },
 );
 
