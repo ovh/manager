@@ -6,6 +6,7 @@ import meetings from './meetings';
 import resiliation from './resiliation';
 import orderFollowUp from './orderFollowUp';
 import tasks from './tasks';
+import missingRio from './missingRio';
 
 import component from './pack-xdsl.component';
 import routing from './pack-xdsl.routing';
@@ -21,6 +22,7 @@ angular
     resiliation,
     tasks,
     orderFollowUp,
+    missingRio,
   ])
   .component('packXdsl', component)
   .config(routing)

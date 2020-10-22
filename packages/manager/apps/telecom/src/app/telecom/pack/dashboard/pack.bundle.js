@@ -33,8 +33,6 @@ import '../xdsl/access/profil/pack-xdsl-access-profil.controller';
 import '../xdsl/access/rateLimit/xdsl-access-lns-ratelimit.controller';
 import '../xdsl/access/statistics/pack-xdsl-statistics.constant';
 import '../xdsl/access/statistics/pack-xdsl-statistics.controller';
-import '../xdsl/missingRio/pack-xdsl-missing-rio.controller';
-import '../xdsl/missingRio/pack-xdsl-missing-rio';
 import '../xdsl/modem/bridgeMode/pack-xdsl-modem-bridgeMode.controller';
 import '../xdsl/modem/connectedDevices/pack-xdsl-modem-connectedDevices.controller';
 import '../xdsl/modem/dmz/pack-xdsl-modem-dmz.controller';
