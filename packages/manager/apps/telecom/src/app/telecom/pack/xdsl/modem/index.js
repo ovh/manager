@@ -1,6 +1,7 @@
 import angular from 'angular';
 
 import '@ovh-ux/ng-ovh-telecom-universe-components';
+import modemDmz from './dmz';
 
 import component from './pack-xdsl-modem.component';
 import { PACK_XDSL_MODEM } from './pack-xdsl-modem.constant';
@@ -10,7 +11,7 @@ import acsBackend from './acsBackend';
 const moduleName = 'ovhManagerTelecomPackXdslModem';
 
 angular
-  .module(moduleName, ['ngOvhTelecomUniverseComponents', acsBackend])
+  .module(moduleName, ['ngOvhTelecomUniverseComponents', acsBackend, modemDmz])
   .component('packXdslModem', component)
   .config(routing)
   .constant('PACK_XDSL_MODEM', PACK_XDSL_MODEM)

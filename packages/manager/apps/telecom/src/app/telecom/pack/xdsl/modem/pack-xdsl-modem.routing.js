@@ -16,7 +16,7 @@ export default /* @ngInject */ ($stateProvider) => {
         controllerAs: 'DeviceCtrl',
       },
       'dmzView@telecom.packs.pack.xdsl.line.modem': {
-        templateUrl: 'app/telecom/pack/xdsl/modem/dmz/pack-xdsl-modem-dmz.html',
+        templateUrl: 'app/telecom/pack/xdsl/modem/dmz/dmz.html',
         controller: 'XdslModemDmzCtrl',
         controllerAs: 'DmzCtrl',
       },
