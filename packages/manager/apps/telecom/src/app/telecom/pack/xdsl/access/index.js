@@ -10,6 +10,7 @@ import diagnosticDetails from './diagnostic/details';
 import access from './pack-xdsl-access.component';
 import notifications from './notifications';
 import comfortExchange from './comfortExchange/comfort-exchange.module';
+import ipConfiguration from './ip';
 
 const moduleName = 'ovhManagerTelecomPackXdslAccess';
 
@@ -23,6 +24,7 @@ angular
     diagnosticDetails,
     notifications,
     comfortExchange,
+    ipConfiguration,
   ])
   .component('packXdslAccess', access);
 

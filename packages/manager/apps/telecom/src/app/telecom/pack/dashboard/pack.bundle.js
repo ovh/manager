@@ -25,8 +25,6 @@ import '../xdsl/access/deconsolidation/contract/pack-xdsl-access-deconsolidation
 import '../xdsl/access/deconsolidation/pack-xdsl-access-deconsolidation.controller';
 import '../xdsl/access/deconsolidation/pack-xdsl-access-deconsolidation';
 import '../xdsl/access/ip/order/pack-xdsl-access-ip-order.controller';
-import '../xdsl/access/ip/pack-xdsl-access-ip.controller';
-import '../xdsl/access/ip/pack-xdsl-access-ip';
 import '../xdsl/access/ipv6/pack-xdsl-access-ipv6.controller';
 import '../xdsl/access/linediagnostic/pack-xdsl-access-linediagnostic.controller';
 import '../xdsl/access/linediagnostic/pack-xdsl-access-linediagnostic';
