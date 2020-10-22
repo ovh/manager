@@ -1,3 +1,12 @@
+## [14.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.2.2...@ovh-ux/manager-dedicated@14.2.3) (2020-10-22)
+
+
+### Bug Fixes
+
+* **billing.autorenew:** fix email domain termination ([#3891](https://github.com/ovh/manager/issues/3891)) ([aba2afe](https://github.com/ovh/manager/commit/aba2afecf152905877ec67c072aad543fc53f777))
+
+
+
 ## [14.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.2.1...@ovh-ux/manager-dedicated@14.2.2) (2020-10-21)
 
 
