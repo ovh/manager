@@ -8,7 +8,7 @@
   "sms_tabs_api_users": "Utenti API",
   "sms_tabs_options": "Opzioni",
   "sms_tabs_guides": "Guide",
-  "sms_rename_error": "Impossibile rinominare il tuo pack {{serviceName}}.",
+  "sms_rename_error": "Impossibile rinominare il pack {{serviceName}}.",
   "sms_loading_error": "Si è verificato un errore durante il caricamento degli SMS",
   "sms_feature_soon_available": "Questa funzionalità sarà presto disponibile.",
   "sms_cancel": "Annulla",

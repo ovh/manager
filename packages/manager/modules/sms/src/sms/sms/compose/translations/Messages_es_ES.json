@@ -3,7 +3,7 @@
   "sms_sms_compose_title": "Enviar un SMS",
   "sms_sms_compose_section_configure": "Configurar el remitente y el destinatario",
   "sms_sms_compose_section_compose": "Escribir un mensaje",
-  "sms_sms_compose_alert_not_enough_credits": "Su saldo es insuficiente para poder enviar SMS.",
+  "sms_sms_compose_alert_not_enough_credits": "No dispone de saldo suficiente para enviar SMS. Por favor, recargue su cuenta.",
   "sms_sms_compose_alert_not_enough_credits_receivers": "Su saldo podría no ser suficiente para permitir el envío a todos los contactos seleccionados.",
   "sms_sms_compose_sender_label": "Remitente",
   "sms_sms_compose_sender_optgroup_label_response": "Remitentes que permiten responder",

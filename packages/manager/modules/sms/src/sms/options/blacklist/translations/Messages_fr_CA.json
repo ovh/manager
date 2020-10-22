@@ -1,8 +1,8 @@
 {
-  "sms_section_back_link": "Retour aux expéditeurs",
+  "sms_section_back_link": "Retour aux options",
   "sms_senders_blacklisted_manage_title": "Gérer les expéditeurs blacklistés",
   "sms_senders_blacklisted_information_title": "Informations",
-  "sms_senders_blacklisted_information_text_1": "Liste de vos destinataires qui ont bloqué les réceptions de SMS en provenance de l’un de vos expéditeurs.",
+  "sms_senders_blacklisted_information_text_1": "Liste de vos destinataires qui ne souhaitent plus recevoir de SMS de votre part.",
   "sms_senders_blacklisted_information_text_2": "Si vous supprimez un numéro de la liste, la réception de SMS en provenance de vos expéditeurs sera rétablie vers ce destinataire.",
   "sms_senders_blacklisted_delete_list": "Supprimer le numéro sélectionné",
   "sms_senders_blacklisted_delete_lists": "Supprimer les {{ count }} numéros sélectionnés",
