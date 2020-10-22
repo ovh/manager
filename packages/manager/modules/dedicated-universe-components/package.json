@@ -2,7 +2,7 @@
   "name": "@ovh-ux/ng-ovh-dedicated-universe-components",
   "version": "0.0.0",
   "private": true,
-  "description": "Collection of components for the Dedicated universe.",
+  "description": "Collection of components for the Dedicated Cloud.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh/manager.git",
@@ -44,6 +44,7 @@
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",
     "angular-ui-bootstrap": "~1.3.3",
-    "ovh-api-services": "^9.39.1"
+    "ovh-api-services": "^9.39.1",
+    "regenerator-runtime": "^0.13.7"
   }
 }
