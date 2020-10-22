@@ -1,6 +1,6 @@
 import component from './no-default-means-of-payment.component';
 
-const moduleName = 'ducNoDefaultMeansOfPayment';
+const moduleName = 'ovhManagerNoDefaultMeansOfPaymentModule';
 
 angular
   .module(moduleName, ['oui', 'pascalprecht.translate', 'ui.router'])
