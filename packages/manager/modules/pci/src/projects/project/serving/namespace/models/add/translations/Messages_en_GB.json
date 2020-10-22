@@ -28,5 +28,11 @@
   "pci_projects_project_serving_namespace_models_scale_advanced_configuration": "Advanced configuration",
   "pci_projects_project_serving_namespace_models_scale_advanced_configuration_memory": "% Memory Usage",
   "pci_projects_project_serving_namespace_models_scale_advanced_configuration_cpu": "% CPU Usage",
-  "pci_projects_project_serving_namespace_models_add_price_unit": "hour"
+  "pci_projects_project_serving_namespace_models_add_price_unit": "hour",
+  "pci_projects_project_serving_namespace_models_add_framework": "Framework",
+  "pci_projects_project_serving_namespace_models_add_framework_how_to": "How to upload your model",
+  "pci_projects_project_serving_namespace_models_add_backend": "Back-end",
+  "pci_projects_project_serving_namespace_models_add_backend_description": "HTTP server that will use your model to make predictions",
+  "pci_projects_project_serving_namespace_models_add_advanced": "Advanced",
+  "pci_projects_project_serving_namespace_models_add_recommended": "Recommended"
 }
