@@ -95,7 +95,7 @@ Serve: ./packages/manager/apps/hub/dist - region: ca - localhost:1234
 
 ## Related
 
-* [manager-dev-server-config](https://github.com/ovh-ux/manager/tree/master/packages/manager/tools/dev-server-config) - OVHcloud manager shared dev server configuration
+* [manager-dev-server-config](https://github.com/ovh/manager/tree/master/packages/manager/tools/dev-server-config) - OVHcloud manager shared dev server configuration
 
 ## Contributing
 

@@ -19,7 +19,7 @@ import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin'
 angular.module('myApp', [ngAtInternetUiRouterPlugin]);
 ```
 
-Follow [at-internet installation](https://github.com/ovh-ux/ng-at-internet/blob/master/README.md)
+Follow [at-internet installation](https://github.com/ovh/manager/blob/master/packages/components/ng-at-internet/README.md)
 In your web page:
 
 ```html
@@ -32,7 +32,7 @@ In your web page:
 ## Examples
 
 Please see at-internet documentation:
-[link](https://github.com/ovh-ux/ng-at-internet/blob/master/README.md)
+[link](https://github.com/ovh/manager/blob/master/packages/components/ng-at-internet/README.md)
 
 Configuring the provider:
 
@@ -90,7 +90,7 @@ $ yarn test
 
 ## Related
 
-- [ng-at-internet](https://github.com/ovh-ux/ng-at-internet) - AT Internet tracking js library wrapper for AngularJS
+- [ng-at-internet](https://github.com/ovh/manager/tree/master/packages/components/ng-at-internet) - AT Internet tracking js library wrapper for AngularJS
 
 ## Contributing
 

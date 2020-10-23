@@ -8,9 +8,9 @@
     "title",
     "ui-router"
   ],
-  "homepage": "https://github.com/ovh-ux/manager/tree/master/packages/components/ng-ui-router-breadcrumb#readme",
+  "homepage": "https://github.com/ovh/manager/tree/master/packages/components/ng-ui-router-title#readme",
   "bugs": {
-    "url": "https://github.com/ovh-ux/manager/issues"
+    "url": "https://github.com/ovh/manager/issues"
   },
   "repository": {
     "type": "git",

@@ -31,7 +31,7 @@ To know what is going on, click [here](./ROADMAP.md).
 
 ## Related
 
-- [ng-ovh-actions-menu](https://github.com/ovh-ux/ng-ovh-actions-menu) - Group a set of actions for a specific context under a single menu
+- [ng-ovh-actions-menu](https://github.com/ovh/manager/tree/master/packages/components/ng-ovh-actions-menu) - Group a set of actions for a specific context under a single menu
 - [ng-slide-down](https://github.com/TheRusskiy/ng-slide-down) - AngularJS directive for slide-down animation
 
 ## Contributing

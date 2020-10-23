@@ -275,7 +275,7 @@ $ yarn test
 
 ## Related
 
-- [ng-ovh-responsive-popover](https://github.com/ovh-ux/ng-ovh-responsive-popover)
+- [ng-ovh-responsive-popover](https://github.com/ovh/manager/tree/master/packages/components/ng-ovh-responsive-popover)
 
 ## Contributing
 
