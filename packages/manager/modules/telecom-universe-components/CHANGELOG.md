@@ -1,3 +1,12 @@
+## [7.0.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.0.1...@ovh-ux/ng-ovh-telecom-universe-components@7.0.2) (2020-10-23)
+
+
+### Bug Fixes
+
+* **validator:** avoid null ip errors ([#3905](https://github.com/ovh/manager/issues/3905)) ([ed3c1d8](https://github.com/ovh/manager/commit/ed3c1d817b4fc43de2eee1d116a32990574fc67e))
+
+
+
 ## [7.0.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.0.0...@ovh-ux/ng-ovh-telecom-universe-components@7.0.1) (2020-10-20)
 
 
