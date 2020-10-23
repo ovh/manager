@@ -21,8 +21,7 @@ export default /* @ngInject */ ($stateProvider) => {
         controllerAs: 'DmzCtrl',
       },
       'firewallView@telecom.packs.pack.xdsl.line.modem': {
-        templateUrl:
-          'app/telecom/pack/xdsl/modem/firewall/pack-xdsl-modem-firewall.html',
+        templateUrl: 'app/telecom/pack/xdsl/modem/firewall/firewall.html',
         controller: 'XdslModemFirewallCtrl',
         controllerAs: 'FirewallCtrl',
       },
