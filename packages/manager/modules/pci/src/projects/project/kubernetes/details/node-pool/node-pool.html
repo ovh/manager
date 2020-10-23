@@ -35,13 +35,31 @@
         >
         </oui-datagrid-column>
         <oui-datagrid-column
-            data-title=":: 'kube_node_pool_creation_date' | translate"
-            data-property="createdAt"
-            data-type="date"
-            data-filterable
+            data-title=":: 'kube_node_pool_anti_affinity' | translate"
+            data-property="antiAffinity"
+            data-type="boolean"
             data-sortable
         >
-            <span data-ng-bind="$row.createdAt| date:'medium'"></span>
+            <div
+                data-ng-if="$row.antiAffinity"
+                class="d-flex justify-content-center"
+            >
+                <span class="oui-icon oui-icon-check" aria-hidden="true"></span>
+                <span
+                    class="sr-only"
+                    data-translate="kube_node_pool_enabled"
+                ></span>
+            </div>
+            <div
+                data-ng-if="!$row.antiAffinity"
+                class="d-flex justify-content-center"
+            >
+                <span class="oui-icon oui-icon-close" aria-hidden="true"></span>
+                <span
+                    class="sr-only"
+                    data-translate="kube_node_pool_disabled"
+                ></span>
+            </div>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'kube_node_pool_node_count' | translate"
@@ -65,6 +83,29 @@
                 data-ng-if="$row.monthlyBilled"
                 class="oui-icon oui-icon-check"
             ></span>
+            <span
+                data-ng-if="$row.monthlyBilled"
+                class="sr-only"
+                data-translate="kube_node_pool_enabled"
+            ></span>
+            <span
+                data-ng-if="!$row.monthlyBilled"
+                class="oui-icon oui-icon-close"
+            ></span>
+            <span
+                data-ng-if="!$row.monthlyBilled"
+                class="sr-only"
+                data-translate="kube_node_pool_disabled"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'kube_node_pool_creation_date' | translate"
+            data-property="createdAt"
+            data-type="date"
+            data-filterable
+            data-sortable
+        >
+            <span data-ng-bind="$row.createdAt| date:'medium'"></span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'kube_service_cluster_status' | translate"
@@ -80,25 +121,6 @@
                 data-translate="{{:: 'kube_nodes_status_' + $row.status }}"
             >
             </span>
-        </oui-datagrid-column>
-        <oui-datagrid-column
-            data-title=":: 'kube_node_pool_anti_affinity' | translate"
-            data-property="antiAffinity"
-            data-type="boolean"
-            data-sortable
-        >
-            <div
-                data-ng-if="$row.antiAffinity"
-                class="d-flex justify-content-center"
-            >
-                <span class="oui-icon oui-icon-check" aria-hidden="true"></span>
-            </div>
-            <div
-                data-ng-if="!$row.antiAffinity"
-                class="d-flex justify-content-center"
-            >
-                <span class="oui-icon oui-icon-close" aria-hidden="true"></span>
-            </div>
         </oui-datagrid-column>
         <oui-action-menu data-compact data-placement="end">
             <oui-action-menu-item
