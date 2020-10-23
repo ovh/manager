@@ -13,7 +13,7 @@ export default /* @ngInject */ ($stateProvider) => {
       denyEnterprise: ($q, $state, currentUser) => {
         if (
           currentUser.isEnterprise &&
-          $state.transition.to().name !== 'app.account.billing.autorenew.ssh'
+          $state.transition.to().name !== 'billing.autorenew.ssh'
         ) {
           return $q.reject({
             status: 403,
@@ -24,8 +24,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return false;
       },
-      goToOrders: /* @ngInject */ ($state) => () =>
-        $state.go('app.account.billing.orders'),
+      goToOrders: /* @ngInject */ ($state) => () => $state.go('billing.orders'),
     },
   });
 };
