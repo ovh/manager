@@ -10,7 +10,8 @@ import migration from '../migration';
 import domainActivation from '../slots/domain/activation';
 import hubicActivation from '../slots/hubic/activation';
 import emailProAdd from '../slots/emailPro/add';
-import emailDetail from '../slots/emailPro/detail';
+import emailProDetail from '../slots/emailPro/detail';
+import emailPro from '../slots/emailPro';
 
 import templates from './pack.templates';
 
@@ -31,7 +32,8 @@ angular
     domainActivation,
     hubicActivation,
     emailProAdd,
-    emailDetail,
+    emailPro,
+    emailProDetail,
   ])
   .controller('PackCtrl', controller)
   .config(routing)

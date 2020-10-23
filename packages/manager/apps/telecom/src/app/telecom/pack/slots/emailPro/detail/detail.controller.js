@@ -1,3 +1,5 @@
+import { PACK_EMAILPRO } from '../emailPro.constant';
+
 export default /* @ngInject */ class PackEmailProDetailCtrl {
   constructor(
     $q,
@@ -6,7 +8,6 @@ export default /* @ngInject */ class PackEmailProDetailCtrl {
     $translate,
     OvhApiPackXdsl,
     OvhApiXdsl,
-    PACK_EMAILPRO,
     TucToast,
     URLS,
   ) {
