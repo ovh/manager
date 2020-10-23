@@ -83,11 +83,7 @@
                 data-ng-bind=":: $row.date | date:'mediumDate'"
             >
             </span>
-            <span
-                data-ng-if="!$row.date"
-                data-translate="billing_main_history_table_unavailable"
-            >
-            </span>
+            <span data-ng-if="!$row.date"> - </span>
         </oui-datagrid-column>
         <oui-datagrid-column
             title=":: 'billing_main_history_table_total' | translate"
