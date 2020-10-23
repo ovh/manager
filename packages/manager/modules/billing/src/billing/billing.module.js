@@ -26,8 +26,8 @@ import billingDebtAccountService from './dbtAccount/billing-debtAccount.service'
 import main from './main';
 import order from './order/billing-order-tracking.module';
 import orders from './orders/orders.module';
+import payment from './payment';
 // import sla from './sla/sla.module';
-// import paymentMehtod from './payment/method';
 
 import featureAvailability from './billing-feature-availability';
 import billingCtrl from './billing.controller';
@@ -69,11 +69,8 @@ angular
     main,
     order,
     orders,
-
+    payment,
     // sla,
-    // termination,
-
-    // paymentMehtod,
   ])
   .controller('BillingCtrl', billingCtrl)
   .config(routing)

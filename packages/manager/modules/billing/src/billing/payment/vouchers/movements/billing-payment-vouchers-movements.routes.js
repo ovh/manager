@@ -1,10 +1,11 @@
-angular.module('Billing').config(($stateProvider) => {
-  const name = 'app.account.billing.payment.vouchers.movement';
+import template from './billing-vouchers-movements.html';
+
+export default /* @ngInject */ ($stateProvider) => {
+  const name = 'billing.payment.vouchers.movement';
 
   $stateProvider.state(name, {
     url: '/movements/:voucherAccountId',
-    templateUrl:
-      'billing/payment/vouchers/movements/billing-vouchers-movements.html',
+    template,
     controller: 'Billing.controllers.Vouchers.Movements',
   });
-});
+};
