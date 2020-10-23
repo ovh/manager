@@ -142,7 +142,7 @@ $ yarn test
 
 ## Related
 
-- [ng-at-internet-ui-router-plugin](https://github.com/ovh-ux/ng-at-internet-ui-router-plugin) - Plugin for AT Internet when using UI-Router
+- [ng-at-internet-ui-router-plugin](https://github.com/ovh/manager/tree/master/packages/components/ng-at-internet-ui-router-plugin) - Plugin for AT Internet when using UI-Router
 
 ## Contributing
 

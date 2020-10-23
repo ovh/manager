@@ -45,9 +45,9 @@ yarn test
 
 ## Related
 
-* [Web Control Panel UI](https://github.com/ovh-ux/ovh-manager-web).
-* [Dedicated Control Panel UI](https://github.com/ovh-ux/ovh-manager-dedicated).
-* [Telecom Control Panel UI](https://github.com/ovh-ux/ovh-manager-telecom).
+* [Web Control Panel UI](https://github.com/ovh/manager/tree/master/packages/manager/apps/web).
+* [Dedicated Control Panel UI](https://github.com/ovh/manager/tree/master/packages/manager/apps/dedicated).
+* [Telecom Control Panel UI](https://github.com/ovh/manager/tree/master/packages/manager/apps/telecom).
 
 ## Contributing
 

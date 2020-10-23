@@ -191,7 +191,7 @@ $ yarn test
 
 ## Related
 
-- [@ovh-ux/rollup-plugin-less-tilde-importer](https://github.com/ovh-ux/rollup-plugin-less-tilde-importer) - Rollup plugin to facilitate less imports with a ~ (tilde) prefix
+- [@ovh-ux/rollup-plugin-less-tilde-importer](https://github.com/ovh/rollup-plugin-less-tilde-importer) - Rollup plugin to facilitate less imports with a ~ (tilde) prefix
 
 ## Contributing
 

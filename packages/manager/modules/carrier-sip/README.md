@@ -23,7 +23,7 @@ angular.module('myApp', [ovhManagerCarrierSip]);
 
 ## Related
 
-* [manager-telecom](https://github.com/ovh-ux/manager/blob/master/packages/manager/apps/telecom/README.md) - OVH Control Panel Telecom UI.
+* [manager-telecom](https://github.com/ovh/manager/blob/master/packages/manager/apps/telecom/README.md) - OVH Control Panel Telecom UI.
 
 ## Contributing
 
