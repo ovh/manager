@@ -928,5 +928,8 @@
   "billing_credit_balance_movements_load_error": "Une erreur est survenue lors du chargement des mouvements de votre votre compte de crédits.",
   "billing_credit_back": "Retourner à mes comptes de crédits",
   "billing_date_range_choose_custom_date": "Définir une période",
-  "billing_date_range_text": "Du {{t0}} au {{t1}}"
+  "billing_date_range_text": "Du {{t0}} au {{t1}}",
+  "common_cancel": "Annuler",
+  "common_confirm": "Confirmer",
+  "common_add": "Ajouter"
 }
