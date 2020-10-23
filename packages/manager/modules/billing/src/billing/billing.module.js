@@ -24,9 +24,8 @@ import confirmTermination from './confirmTerminate/termination.module';
 import billingConstants from './constants/constants.module';
 import billingDebtAccountService from './dbtAccount/billing-debtAccount.service';
 import main from './main';
-
-// import order from './order/billing-order-tracking.module';
-// import orders from './orders/orders.module';
+import order from './order/billing-order-tracking.module';
+import orders from './orders/orders.module';
 // import sla from './sla/sla.module';
 // import paymentMehtod from './payment/method';
 
@@ -68,9 +67,8 @@ angular
     confirmTermination,
     billingConstants,
     main,
-
-    // order,
-    // orders,
+    order,
+    orders,
 
     // sla,
     // termination,
