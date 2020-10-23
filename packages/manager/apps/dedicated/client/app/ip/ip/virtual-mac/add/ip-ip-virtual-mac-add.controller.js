@@ -18,7 +18,7 @@ angular
       ) {
         angular.forEach(
           $scope.data.ipBlock.virtualMac.virtualMacs,
-          (ips, virtualmac) => {
+          (virtualmac) => {
             $scope.existingVirtualMacs.push(virtualmac);
           },
         );
