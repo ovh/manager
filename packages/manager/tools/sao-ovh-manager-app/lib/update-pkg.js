@@ -30,7 +30,7 @@ module.exports = ({ name }) => ({
     '@ovh-ux/ng-translate-async-loader': '2.1.0',
     '@ovh-ux/ng-ui-router-breadcrumb': '^1.0.0',
     '@ovh-ux/ng-ui-router-line-progress': '^1.2.2',
-    '@ovh-ux/ui-kit': '^4.1.11',
+    '@ovh-ux/ui-kit': '^4.4.1',
     '@uirouter/angularjs': '^1.0.23',
     angular: '^1.7.5',
     'angular-aria': '^1.7.8',
