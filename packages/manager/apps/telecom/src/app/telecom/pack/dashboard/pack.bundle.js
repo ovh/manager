@@ -1,6 +1,4 @@
 import '../slots/domain/pack-domain.controller';
-import '../slots/emailPro/add/pack-emailPro-add.controller';
-import '../slots/emailPro/add/pack-emailPro-add';
 import '../slots/emailPro/detail/pack-emailPro-detail.controller';
 import '../slots/emailPro/detail/pack-emailPro-detail';
 import '../slots/emailPro/pack-emailPro.controller';
@@ -26,7 +24,6 @@ import '../xdsl/access/ip/order/pack-xdsl-access-ip-order.controller';
 import '../xdsl/access/ipv6/pack-xdsl-access-ipv6.controller';
 import '../xdsl/access/linediagnostic/pack-xdsl-access-linediagnostic.controller';
 import '../xdsl/access/linediagnostic/pack-xdsl-access-linediagnostic';
-import '../xdsl/access/pack-xdsl-access.constants';
 import '../xdsl/access/pack-xdsl-access.controller';
 import '../xdsl/access/portReset/pack-xdsl-access-port-reset.controller';
 import '../xdsl/access/profil/pack-xdsl-access-profil.controller';

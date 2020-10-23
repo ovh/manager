@@ -9,6 +9,7 @@ import xdsl from '../xdsl';
 import migration from '../migration';
 import domainActivation from '../slots/domain/activation';
 import hubicActivation from '../slots/hubic/activation';
+import emailProAdd from '../slots/emailPro/add';
 
 import templates from './pack.templates';
 
@@ -28,6 +29,7 @@ angular
     packResiliation,
     domainActivation,
     hubicActivation,
+    emailProAdd,
   ])
   .controller('PackCtrl', controller)
   .config(routing)
