@@ -4,6 +4,7 @@ import '@ovh-ux/ng-ovh-telecom-universe-components';
 import modemDmz from './dmz';
 import firewall from './firewall';
 import wifi from './wifi';
+import wifiConfig from './wifi/config';
 
 import component from './pack-xdsl-modem.component';
 import { PACK_XDSL_MODEM } from './pack-xdsl-modem.constant';
@@ -19,6 +20,7 @@ angular
     modemDmz,
     firewall,
     wifi,
+    wifiConfig,
   ])
   .component('packXdslModem', component)
   .config(routing)

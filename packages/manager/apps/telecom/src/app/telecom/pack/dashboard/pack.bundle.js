@@ -53,6 +53,4 @@ import '../xdsl/modem/router/ports/pack-xdsl-modem-ports.controller';
 import '../xdsl/modem/service/modal/pack-xdsl-modem-service-modal.controller';
 import '../xdsl/modem/service/pack-xdsl-modem-service.controller';
 import '../xdsl/modem/templates/config/modal/pack-xdsl-modem-template-config-modal.controller';
-import '../xdsl/modem/wifi/config/pack-xdsl-modem-wifi-config.controller';
-import '../xdsl/modem/wifi/config/pack-xdsl-modem-wifi-config';
 import '../xdsl/xdsl-task-poller.service';
