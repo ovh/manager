@@ -931,5 +931,17 @@
   "billing_date_range_text": "Du {{t0}} au {{t1}}",
   "common_cancel": "Annuler",
   "common_confirm": "Confirmer",
-  "common_add": "Ajouter"
+  "common_add": "Ajouter",
+  "common_criteria_adder_operator_options_is": "est",
+  "common_new_tab": "Ouvre le lien dans un nouvel onglet",
+  "common_next": "Suivant",
+  "common_no": "Non",
+  "common_yes": "Oui",
+  "core_new_window": "Nouvelle fenêtre",
+  "fidelity_get_movements_error": "Oops une erreur est survenue",
+  "menu_sla": "Mes compensations",
+  "orders_bill_url": "Voir la bill au format HTML",
+  "orders_bill_url_pdf": "Voir la bill au format PDF",
+  "ovhAccount_get_accounts_error": "Oops une erreur est survenue",
+  "billing_refresh": "Actualiser"
 }

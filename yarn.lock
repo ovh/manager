@@ -2871,6 +2871,11 @@
   dependencies:
     "@types/node" ">= 8"
 
+"@ovh-ux/manager-config@^1.0.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-config/-/manager-config-0.4.0.tgz#81171e361b8400870821632adddea7b46a240395"
+  integrity sha512-ZiLfkRNwCqnyQvYpN9Frx/WKXE9JEQhtkmoxIdhzDtkBjvuIHbC9uGH7rzh771xfuZcUPv8hmidwf0cjdpXCjQ==
+
 "@ovh-ux/ng-ovh-api-wrappers@^4.0.4", "@ovh-ux/ng-ovh-api-wrappers@^4.0.8":
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-api-wrappers/-/ng-ovh-api-wrappers-4.0.8.tgz#f95c8ce909f7baa59f8fd85949801e7d74bf6dbd"
@@ -10565,6 +10570,11 @@ flatpickr@4.6.3, flatpickr@^4.6.3:
   resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.6.3.tgz#15a8b76b6e34e3a072861250503a5995b9d3bc60"
   integrity sha512-007VucCkqNOMMb9ggRLNuJowwaJcyOh4sKAFcdGfahfGc7JQbf94zSzjdBq/wVyHWUEs5o3+idhFZ0wbZMRmVQ==
 
+flatpickr@~4.5.2:
+  version "4.5.7"
+  resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.5.7.tgz#6efc0d93c65547aa77294205c67830ebabe3565c"
+  integrity sha512-JqPfihUc9A/j9QAsh6otoARmMyUauPE17vRBEG+ThJwbl8zAq4ssGpxlPK3wWM/i8EFxkHg9UuVo0ds7XluKxw==
+
 flatted@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-2.0.1.tgz#69e57caa8f0eacbc281d2e2cb458d46fdb449e08"
@@ -15897,6 +15907,13 @@ ovh-api-services@^11.0.1:
   version "11.0.1"
   resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-11.0.1.tgz#9ab9174a57bf3e41a28c005d88c3751a6d4de09e"
   integrity sha512-VBdbujFTgYyJ5uy9V1ojN71dMpphVw6ohr8bmPcy5KDFx2trWMFzDDts6hzOeEHbzccUQLDrKWMLMQc6pjqpqg==
+  dependencies:
+    lodash "^4.17.20"
+
+ovh-api-services@^9.26.0:
+  version "9.51.1"
+  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-9.51.1.tgz#fb7e16244fd1605e5c0f37b0880db1249a521770"
+  integrity sha512-FA4otBRrZ3snaG8FCFJSv6UXn/BcFHZHWLwLbB4avR6L97oWMUpySkbdrZOIbnAzKS6enMlrp2zNnT5/QzDKDQ==
   dependencies:
     lodash "^4.17.20"
 
