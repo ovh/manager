@@ -2725,10 +2725,10 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/translate-async-loader/-/translate-async-loader-1.0.8.tgz#7cbdc3dfed1042f511206ff6bb9f14c33b8406ba"
   integrity sha512-8yEhPeRTSxtEO9ODXRYZw6pzRQiV5ULCTi8mIzt39m/b9N2TcIF4ILTPsaa8xpE4npHKa/iYgL9z0HJUFi2LGQ==
 
-"@ovh-ux/ui-kit@^4.2.3":
-  version "4.3.6"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-4.3.6.tgz#41a68ee67c4fe6b0fe48aa2fc6e4804c744cbf51"
-  integrity sha512-W++FFxRgoCORLVRBntwRj9WrPqeG76E8MClaf8UyE1N+Anki1bnvJp2XwS808lgxLRhSMHwB5nA8MOIsZckudw==
+"@ovh-ux/ui-kit@^4.4.1":
+  version "4.4.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-4.4.1.tgz#3bd5a69df005854f013c8931f6f4842db51b214d"
+  integrity sha512-3e5lD54zX+K3xGohoqXU3eM9D6BufHqGBxpqlyWHUKhcJxCTIOb68bf8spYjAn4JtUpxbW5FbPtVIQCqPbp40w==
 
 "@rollup/plugin-babel@^5.0.0":
   version "5.0.0"
@@ -10000,7 +10000,7 @@ flat@^4.1.0:
   dependencies:
     is-buffer "~2.0.3"
 
-flatpickr@4.6.3, flatpickr@^4.6.3:
+flatpickr@^4.6.3:
   version "4.6.3"
   resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.6.3.tgz#15a8b76b6e34e3a072861250503a5995b9d3bc60"
   integrity sha512-007VucCkqNOMMb9ggRLNuJowwaJcyOh4sKAFcdGfahfGc7JQbf94zSzjdBq/wVyHWUEs5o3+idhFZ0wbZMRmVQ==
