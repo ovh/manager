@@ -1,19 +1,19 @@
-angular.module('Billing').config([
-  '$stateProvider',
-  '$urlRouterProvider',
-  'coreConfigProvider',
-  ($stateProvider, $urlRouterProvider, coreConfigProvider) => {
-    if (coreConfigProvider.getRegion() === 'EU') {
-      const name = 'app.account.billing.payment.transactions';
+import template from './billing-payment-transactions.html';
 
-      $stateProvider.state(name, {
-        url: '/transactions',
-        templateUrl:
-          'billing/payment/transactions/billing-payment-transactions.html',
-        controller: 'BillingPaymentTransactionsCtrl',
-        controllerAs: '$ctrl',
-        translations: { value: ['./'], format: 'json' },
-      });
-    }
-  },
-]);
+export default /* @ngInject */ (
+  $stateProvider,
+  $urlRouterProvider,
+  coreConfigProvider,
+) => {
+  if (coreConfigProvider.getRegion() === 'EU') {
+    const name = 'billing.payment.transactions';
+
+    $stateProvider.state(name, {
+      url: '/transactions',
+      template,
+      controller: 'BillingPaymentTransactionsCtrl',
+      controllerAs: '$ctrl',
+      translations: { value: ['./'], format: 'json' },
+    });
+  }
+};

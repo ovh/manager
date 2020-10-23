@@ -1,23 +1,24 @@
-angular.module('Billing').config([
-  '$stateProvider',
-  '$urlRouterProvider',
-  'coreConfigProvider',
-  ($stateProvider, $urlRouterProvider, coreConfigProvider) => {
-    if (
-      coreConfigProvider.getRegion() === 'EU' ||
-      coreConfigProvider.getRegion() === 'CA'
-    ) {
-      const name = 'app.account.billing.payment.ovhaccount';
+import template from './billing-ovhAccount.html';
 
-      $stateProvider.state(name, {
-        url: '/ovhaccount',
-        templateUrl: 'billing/payment/ovhAccount/billing-ovhAccount.html',
-        controller: 'Billing.controllers.OvhAccount',
-      });
+export default /* @ngInject */ (
+  $stateProvider,
+  $urlRouterProvider,
+  coreConfigProvider,
+) => {
+  if (
+    coreConfigProvider.getRegion() === 'EU' ||
+    coreConfigProvider.getRegion() === 'CA'
+  ) {
+    const name = 'billing.payment.ovhaccount';
 
-      $urlRouterProvider.when(/^\/billing\/ovhaccount/, ($location, $state) =>
-        $state.go(name),
-      );
-    }
-  },
-]);
+    $stateProvider.state(name, {
+      url: '/ovhaccount',
+      template,
+      controller: 'Billing.controllers.OvhAccount',
+    });
+
+    $urlRouterProvider.when(/^\/billing\/ovhaccount/, ($location, $state) =>
+      $state.go(name),
+    );
+  }
+};

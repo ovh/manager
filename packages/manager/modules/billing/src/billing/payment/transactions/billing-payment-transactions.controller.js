@@ -1,6 +1,7 @@
 import get from 'lodash/get';
 
 export default class BillingPaymentTransactionsCtrl {
+  /* @ngInject */
   constructor($q, $translate, Alerter, OvhApiMe) {
     // dependencies injection
     this.$q = $q;
@@ -66,7 +67,3 @@ export default class BillingPaymentTransactionsCtrl {
 
   /* -----  End of DATAGRID  ------ */
 }
-
-angular
-  .module('Billing')
-  .controller('BillingPaymentTransactionsCtrl', BillingPaymentTransactionsCtrl);

@@ -1,8 +1,8 @@
 import template from './billing-payment.html';
 import controller from './billing-payment.controller';
 
-angular.module('Billing').config(($stateProvider) => {
-  const name = 'app.account.billing.payment';
+export default /* @ngInject */ ($stateProvider) => {
+  const name = 'billing.payment';
 
   $stateProvider.state(name, {
     url: '/payment',
@@ -13,4 +13,4 @@ angular.module('Billing').config(($stateProvider) => {
     translations: { value: ['./'], format: 'json' },
     redirectTo: `${name}.method`,
   });
-});
+};
