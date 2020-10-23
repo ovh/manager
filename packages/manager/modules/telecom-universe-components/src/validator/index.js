@@ -97,6 +97,9 @@ angular
       return theFilter.reduce((all, thisTest) => all || check[thisTest], false);
     };
 
+    const { isIP } = validator;
+    customValidator.isIP = (str, version) => isIP(str || '', version);
+
     /**
      *  Validate an IPv4Block or IPv6Block
      *  @param {String} str     IP representation string
