@@ -1,6 +1,4 @@
 import '../slots/domain/pack-domain.controller';
-import '../slots/emailPro/detail/pack-emailPro-detail.controller';
-import '../slots/emailPro/detail/pack-emailPro-detail';
 import '../slots/emailPro/pack-emailPro.controller';
 import '../slots/emailPro/pack.emailPro.constant';
 import '../slots/exchangeAccount/pack-exchangeAccount.controller';
