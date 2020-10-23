@@ -12,6 +12,8 @@ import hubicActivation from '../slots/hubic/activation';
 import emailProAdd from '../slots/emailPro/add';
 import emailProDetail from '../slots/emailPro/detail';
 import emailPro from '../slots/emailPro';
+import exchangeIndividualAdd from '../slots/exchangeIndividual/add';
+import exchangeIndividual from '../slots/exchangeIndividual';
 
 import templates from './pack.templates';
 
@@ -34,6 +36,8 @@ angular
     emailProAdd,
     emailPro,
     emailProDetail,
+    exchangeIndividualAdd,
+    exchangeIndividual,
   ])
   .controller('PackCtrl', controller)
   .config(routing)

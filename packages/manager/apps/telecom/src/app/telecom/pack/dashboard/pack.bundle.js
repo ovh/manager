@@ -1,8 +1,5 @@
 import '../slots/domain/pack-domain.controller';
 import '../slots/exchangeAccount/pack-exchangeAccount.controller';
-import '../slots/exchangeIndividual/add/pack-exchangeIndividual-add.controller';
-import '../slots/exchangeIndividual/add/pack-exchangeIndividual-add';
-import '../slots/exchangeIndividual/pack-exchangeIndividual.controller';
 import '../slots/exchangeLite/pack-exchangeLite.controller';
 import '../slots/hostedEmail/add/pack-hostedEmail-add.controller';
 import '../slots/hostedEmail/add/pack-hostedEmail-add';
