@@ -2,7 +2,7 @@ import controller from './billing-orders.controller';
 import template from './billing-orders.html';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.account.billing.orders', {
+  $stateProvider.state('billing.orders', {
     url: '/orders?filter',
     params: {
       filter: {
@@ -43,24 +43,24 @@ export default /* @ngInject */ ($stateProvider) => {
       schema: /* @ngInject */ (OvhApiMe) => OvhApiMe.v6().schema().$promise,
 
       getOrderTrackingHref: /* @ngInject */ ($state) => (order, filter) =>
-        $state.href('app.account.billing.order', {
+        $state.href('billing.order', {
           orderId: order.orderId,
           ordersFilter: filter,
         }),
 
       goToOrder: /* @ngInject */ ($state) => (order, filter) =>
-        $state.go('app.account.billing.order', {
+        $state.go('billing.order', {
           orderId: order.orderId,
           ordersFilter: filter,
         }),
 
       goToOrderRetractation: /* @ngInject */ ($state) => ({ orderId }) =>
-        $state.go('app.account.billing.retract', {
+        $state.go('billing.retract', {
           id: orderId,
         }),
       updateFilterParam: /* @ngInject */ ($state) => (filter) =>
         $state.go(
-          'app.account.billing.orders',
+          'billing.orders',
           {
             filter,
           },
