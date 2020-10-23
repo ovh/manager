@@ -47,7 +47,7 @@
     "@ovh-ux/ng-ovh-form-flat": "^5.0.0",
     "@ovh-ux/ng-ovh-user-pref": "^2.0.0",
     "@ovh-ux/ng-translate-async-loader": "^2.1.0",
-    "@ovh-ux/ui-kit": "^4.1.12",
+    "@ovh-ux/ui-kit": "^4.4.1",
     "@uirouter/angularjs": "^1.0.22",
     "angular": "^1.5.0",
     "angular-translate": "^2.11.0",
