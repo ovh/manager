@@ -1,13 +1,15 @@
-angular.module('Billing').config(($stateProvider, $urlRouterProvider) => {
-  const name = 'app.account.billing.payment.refunds';
+import template from './billing-refunds.html';
+
+export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
+  const name = 'billing.payment.refunds';
 
   $stateProvider.state(name, {
     url: '/refunds',
-    templateUrl: 'billing/payment/refunds/billing-refunds.html',
+    template,
     controller: 'Billing.controllers.Refunds',
   });
 
   $urlRouterProvider.when(/^\/billing\/refunds/, ($location, $state) =>
     $state.go(name),
   );
-});
+};

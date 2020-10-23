@@ -3,21 +3,21 @@ import get from 'lodash/get';
 import component from './component';
 
 export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
-  const name = 'app.account.billing.payment.method.add';
+  const name = 'billing.payment.method.add';
 
   $stateProvider.state(name, {
     url: '/add',
     views: {
-      '@app.account.billing.payment': {
+      '@billing.payment': {
         component: component.name,
       },
-      'legacyBankAccount@app.account.billing.payment.method.add': {
+      'legacyBankAccount@billing.payment.method.add': {
         component: 'paymentMethodAddLegacyBankAccountView',
       },
-      'legacyBankAccountOwner@app.account.billing.payment.method.add': {
+      'legacyBankAccountOwner@billing.payment.method.add': {
         component: 'paymentMethodAddLegacyBillingAddressView',
       },
-      'billingContact@app.account.billing.payment.method.add': {
+      'billingContact@billing.payment.method.add': {
         component: 'paymentMethodAddBillingContactView',
       },
     },

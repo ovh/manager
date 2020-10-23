@@ -1,20 +1,21 @@
-angular.module('Billing').config([
-  '$stateProvider',
-  '$urlRouterProvider',
-  'coreConfigProvider',
-  ($stateProvider, $urlRouterProvider, coreConfigProvider) => {
-    if (coreConfigProvider.getRegion() === 'EU') {
-      const name = 'app.account.billing.payment.fidelity';
+import template from './billing-fidelity.html';
 
-      $stateProvider.state(name, {
-        url: '/fidelity',
-        templateUrl: 'billing/payment/fidelity/billing-fidelity.html',
-        controller: 'Billing.controllers.Fidelity',
-      });
+export default /* @ngInject */ (
+  $stateProvider,
+  $urlRouterProvider,
+  coreConfigProvider,
+) => {
+  if (coreConfigProvider.getRegion() === 'EU') {
+    const name = 'billing.payment.fidelity';
 
-      $urlRouterProvider.when(/^\/billing\/fidelity/, ($location, $state) =>
-        $state.go(name),
-      );
-    }
-  },
-]);
+    $stateProvider.state(name, {
+      url: '/fidelity',
+      template,
+      controller: 'Billing.controllers.Fidelity',
+    });
+
+    $urlRouterProvider.when(/^\/billing\/fidelity/, ($location, $state) =>
+      $state.go(name),
+    );
+  }
+};
