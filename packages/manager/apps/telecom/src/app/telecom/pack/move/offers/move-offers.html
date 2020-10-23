@@ -56,7 +56,7 @@
                             >
                                 <div
                                     data-ng-if="!offer.prices.firstYearPromo.price"
-                                    data-ng-bind-html="offer.prices.price.price.text | tucFormatPrice"
+                                    data-ng-bind-html="offer.displayedPrice.text | tucFormatPrice"
                                 ></div>
                                 <div
                                     data-ng-if="offer.prices.firstYearPromo.price"
