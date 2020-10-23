@@ -1,3 +1,12 @@
+## [14.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.2.3...@ovh-ux/manager-dedicated@14.2.4) (2020-10-23)
+
+
+### Bug Fixes
+
+* **constants:** add missing trailing slash for order url ([#3904](https://github.com/ovh/manager/issues/3904)) ([da80398](https://github.com/ovh/manager/commit/da80398751b1c9a82223b19186135ede5659b032))
+
+
+
 ## [14.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.2.2...@ovh-ux/manager-dedicated@14.2.3) (2020-10-22)
 
 

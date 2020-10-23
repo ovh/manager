@@ -1,3 +1,12 @@
+## [13.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.4.1...@ovh-ux/manager-telecom@13.4.2) (2020-10-23)
+
+
+### Bug Fixes
+
+* **pack.move.offers:** update services to delete when select options ([#3857](https://github.com/ovh/manager/issues/3857)) ([db037c2](https://github.com/ovh/manager/commit/db037c22d67a85c79a9857bb37afb06747459c01))
+
+
+
 ## [13.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.4.0...@ovh-ux/manager-telecom@13.4.1) (2020-10-20)
 
 
