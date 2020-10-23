@@ -1185,7 +1185,7 @@ const constants = {
     UNIVERS: 'dedicated',
     URLS: {
       US: {
-        express_order: 'https://us.ovhcloud.com/order/express/#/express',
+        express_order: 'https://us.ovhcloud.com/order/express/#/express/',
         express_order_resume:
           'https://us.ovhcloud.com/order/express/#/express/review',
         support: 'http://www.ovh.co.uk/support/',
