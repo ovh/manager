@@ -1,11 +1,13 @@
 import NProgress from 'nprogress';
-
 import {
   WELCOME_MESSAGES,
   LOADING_MESSAGES,
   SWITCH_PARAMETER,
+  MANAGER_BASE_URLS,
 } from './constants';
 import buildTemplate from './template';
+
+import './style.css';
 
 const buildQueryParams = (search) => {
   const queryParamsString =
@@ -20,15 +22,26 @@ const buildQueryParams = (search) => {
   }, {});
 };
 
-export const attach = () => {
-  const queryParams = buildQueryParams(window.location.search);
+const hasSwitchParameter = (search) =>
+  Object.keys(buildQueryParams(search)).includes(SWITCH_PARAMETER);
+
+const isManagerBaseUrl = (url) =>
+  MANAGER_BASE_URLS.some((baseUrl) => url.startsWith(baseUrl));
+
+export const attach = (language = 'en') => {
   const template = document.createElement('template');
 
-  if (!Object.keys(queryParams).includes(SWITCH_PARAMETER)) {
-    template.innerHTML = buildTemplate(false, WELCOME_MESSAGES);
-  } else {
-    template.innerHTML = buildTemplate(false, LOADING_MESSAGES);
+  let messageSource = WELCOME_MESSAGES;
+  if (
+    hasSwitchParameter(window.location.search) ||
+    isManagerBaseUrl(document.referrer)
+  ) {
+    messageSource = LOADING_MESSAGES;
   }
+  const message = Object.keys(messageSource).includes(language)
+    ? messageSource[language]
+    : messageSource.en;
+  template.innerHTML = buildTemplate(false, message);
 
   document.body.appendChild(document.importNode(template.content, true));
 
