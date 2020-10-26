@@ -5,6 +5,7 @@ import modemDmz from './dmz';
 import firewall from './firewall';
 import wifi from './wifi';
 import wifiConfig from './wifi/config';
+import XdslModemDhcpBdhcp from './router/dhcp/bdhcp';
 
 import component from './pack-xdsl-modem.component';
 import { PACK_XDSL_MODEM } from './pack-xdsl-modem.constant';
@@ -21,6 +22,7 @@ angular
     firewall,
     wifi,
     wifiConfig,
+    XdslModemDhcpBdhcp,
   ])
   .component('packXdslModem', component)
   .config(routing)

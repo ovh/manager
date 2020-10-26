@@ -55,8 +55,7 @@ export default /* @ngInject */ ($stateProvider) => {
         controllerAs: 'RouterCtrl',
       },
       'routerBdhcpView@telecom.packs.pack.xdsl.line.modem': {
-        templateUrl:
-          'app/telecom/pack/xdsl/modem/router/dhcp/bdhcp/pack-xdsl-modem-dhcp-bdhcp.html',
+        templateUrl: 'app/telecom/pack/xdsl/modem/router/dhcp/bdhcp/bdhcp.html',
         controller: 'XdslModemDhcpBdhcpCtrl',
         controllerAs: 'BdhcpCtrl',
       },

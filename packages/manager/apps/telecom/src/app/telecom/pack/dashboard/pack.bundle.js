@@ -23,8 +23,6 @@ import '../xdsl/modem/managedByOvh/pack-xdsl-modem-managedByOvh.controller';
 import '../xdsl/modem/mtu/pack-xdsl-modem-mtu.controller';
 import '../xdsl/modem/reboot/pack-xdsl-modem-reboot.controller';
 import '../xdsl/modem/reset/pack-xdsl-modem-reset.controller';
-import '../xdsl/modem/router/dhcp/bdhcp/pack-xdsl-modem-dhcp-bdhcp.controller';
-import '../xdsl/modem/router/dhcp/bdhcp/pack-xdsl-modem-dhcp-bdhcp.factory';
 import '../xdsl/modem/router/dhcp/pack-xdsl-modem-dhcp-modal.component';
 import '../xdsl/modem/router/dhcp/pack-xdsl-modem-dhcp.controller';
 import '../xdsl/modem/router/dhcp/pack-xdsl-modem-dhcp.factory';
