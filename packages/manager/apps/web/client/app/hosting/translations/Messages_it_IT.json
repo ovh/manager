@@ -1377,5 +1377,6 @@
   "hosting_dashboard_service_common_active": "Attivo",
   "hosting_dashboard_service_common_inactive": "Disattivo",
   "hosting_dashboard_email_offer_get_error": "Impossibile recuperare l’indirizzo email",
-  "hosting_tab_DATABASES_configuration_order_title_button_public": "Ordina un database Start SQL"
+  "hosting_tab_DATABASES_configuration_order_title_button_public": "Ordina un database Start SQL",
+  "hosting_dashboard_stats_status": "Beta"
 }
