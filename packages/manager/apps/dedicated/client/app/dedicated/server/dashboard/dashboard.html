@@ -133,6 +133,11 @@
                                     data-translate="server_configuration_distribution_none"
                                 >
                                 </span>
+                                <p
+                                    class="small"
+                                    data-ng-if="$ctrl.ola.isConfigured()"
+                                    data-translate="server_configuration_installation_no_public_network"
+                                ></p>
                             </dd>
                         </dl>
                         <div
@@ -143,6 +148,7 @@
                                 aria-label="{{:: 'menu_action_label' | translate:{ t0: ('server_configuration_distribution' | translate) } }}"
                                 data-compact
                                 data-placement="end"
+                                data-disabled="$ctrl.ola.isConfigured()"
                             >
                                 <oui-action-menu-item
                                     data-on-click="$ctrl.dedicatedServer.$scope.setAction('installation/progress/dedicated-server-installation-progress', { server: $ctrl.server, serverCtrl: $ctrl.dedicatedServer, user: $ctrl.user })"
@@ -170,16 +176,6 @@
                                     <span
                                         data-translate="server_configuration_installation_button"
                                     ></span>
-                                </oui-action-menu-item>
-                                <oui-action-menu-item
-                                    data-ng-if="$ctrl.ola.isConfigured()"
-                                    data-disabled="true"
-                                >
-                                    <oui-message data-type="info">
-                                        <span
-                                            data-translate="server_configuration_installation_no_public_network"
-                                        ></span>
-                                    </oui-message>
                                 </oui-action-menu-item>
                             </oui-action-menu>
                         </div>
