@@ -1,13 +1,15 @@
-angular.module('managerApp').config(($stateProvider) => {
+import controller from './linediagnostic.controller';
+import template from './linediagnostic.html';
+
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('telecom.packs.pack.xdsl.line.line-diagnostic', {
     url: '/lineDiagnostic?type',
     views: {
       'accessView@telecom.packs.pack.xdsl.line': {
-        templateUrl:
-          'app/telecom/pack/xdsl/access/linediagnostic/pack-xdsl-access-linediagnostic.html',
-        controller: 'PackxdslaccesslinediagnosticCtrl',
+        template,
+        controller,
         controllerAs: 'PackxdslaccesslinediagnosticCtrl',
       },
     },
   });
-});
+};

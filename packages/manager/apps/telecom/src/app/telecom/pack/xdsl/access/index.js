@@ -7,6 +7,7 @@ import '@ovh-ux/ui-kit';
 
 import diagnostic from './diagnostic';
 import diagnosticDetails from './diagnostic/details';
+import lineDiagnostic from './linediagnostic';
 import access from './pack-xdsl-access.component';
 import notifications from './notifications';
 import comfortExchange from './comfortExchange/comfort-exchange.module';
@@ -25,6 +26,7 @@ angular
     'oui',
     diagnostic,
     diagnosticDetails,
+    lineDiagnostic,
     notifications,
     comfortExchange,
     ipConfiguration,
