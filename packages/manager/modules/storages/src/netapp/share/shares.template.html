@@ -1,6 +1,5 @@
-<div class="col-md-12">
     <!-- SHARE -->
-    <h4 class="oui-tile__title oui-heading_4" data-translate="share_title"></h4>
+    <h4 class="oui-heading_4" data-translate="share_title"></h4>
     <oui-datagrid id="dg-share" data-rows="$ctrl.shares">
         <oui-datagrid-column
             data-title=":: 'share_id' | translate"
@@ -21,7 +20,16 @@
         >
         </oui-datagrid-column>
         <oui-datagrid-column
-            title=":: 'share_protocol' | translate"
+            title=":: 'share_description' | translate"
+            data-property="description"
+            data-searchable
+            data-filterable
+            data-sortable
+            data-type="string"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            title= ":: 'share_protocol' | translate"
             data-property="protocol"
             data-searchable
             data-filterable
@@ -57,4 +65,3 @@
             ></span>
         </oui-datagrid-column>
     </oui-datagrid>
-</div>

@@ -1,6 +1,5 @@
 import angular from 'angular';
 
-import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
 import 'angular-translate';
 
@@ -10,7 +9,7 @@ import share from './share';
 import routing from './netapp.routing';
 import service from './netapp.service';
 
-const moduleName = 'ovhManagerNetapp';
+const moduleName = 'ovhManagerStorageNetapp';
 
 angular
   .module(moduleName, ['ui.router', share])

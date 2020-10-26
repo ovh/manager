@@ -2,12 +2,12 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-const moduleName = 'ovhManagerNetappLazyLoading';
+const moduleName = 'ovhManagerStorageNetappLazyLoading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state('netapp.**', {
-      url: '/netapp:netappId',
+      url: '/netapp/:netappId',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 

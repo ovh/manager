@@ -9,6 +9,6 @@ export default class NetappCtrl {
   }
 
   $onInit() {
-    this.guideUrl = 'https://duckduckgo.com/';
+    this.guideUrl = 'https://docs.ovh.com/fr/storage/';
   }
 }
