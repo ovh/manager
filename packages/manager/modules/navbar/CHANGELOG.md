@@ -1,3 +1,12 @@
+# [5.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@5.1.2...@ovh-ux/manager-navbar@5.2.0) (2020-10-26)
+
+
+### Features
+
+* **navbar:** rename web & server universes ([#3920](https://github.com/ovh/manager/issues/3920)) ([c740a60](https://github.com/ovh/manager/commit/c740a60a714ecf1ce1aa55cfd7bff99d95fc6eaf))
+
+
+
 ## [5.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@5.1.1...@ovh-ux/manager-navbar@5.1.2) (2020-10-20)
 
 

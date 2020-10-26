@@ -1,3 +1,12 @@
+## [2.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@2.2.3...@ovh-ux/manager-hub-app@2.2.4) (2020-10-26)
+
+
+### Bug Fixes
+
+* **preloader:** attach preloader with user language ([6c65188](https://github.com/ovh/manager/commit/6c6518888146a4c90bd9268d0db40cb2d2df699f))
+
+
+
 ## [2.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@2.2.2...@ovh-ux/manager-hub-app@2.2.3) (2020-10-20)
 
 

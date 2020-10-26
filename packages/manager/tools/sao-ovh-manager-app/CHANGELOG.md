@@ -1,3 +1,12 @@
+## [2.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/sao-ovh-manager-app@2.1.0...@ovh-ux/sao-ovh-manager-app@2.1.1) (2020-10-26)
+
+
+### Bug Fixes
+
+* **template:** attach preloader with user language ([4616d7b](https://github.com/ovh-ux/manager/commit/4616d7b1423fd2bd937219689a55243a99fbd017))
+
+
+
 # [2.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/sao-ovh-manager-app@2.0.0...@ovh-ux/sao-ovh-manager-app@2.1.0) (2020-08-18)
 
 
