@@ -14,6 +14,8 @@ import emailProDetail from '../slots/emailPro/detail';
 import emailPro from '../slots/emailPro';
 import exchangeIndividualAdd from '../slots/exchangeIndividual/add';
 import exchangeIndividual from '../slots/exchangeIndividual';
+import hostedEmailAdd from '../slots/hostedEmail/add';
+import hostedEmail from '../slots/hostedEmail';
 
 import templates from './pack.templates';
 
@@ -38,6 +40,8 @@ angular
     emailProDetail,
     exchangeIndividualAdd,
     exchangeIndividual,
+    hostedEmail,
+    hostedEmailAdd,
   ])
   .controller('PackCtrl', controller)
   .config(routing)
