@@ -12,18 +12,17 @@
 
   "service_netapp_name": "Nom du service",
   "service_netapp_id": "Id de service",
-  "service_netapp_name_modifiy": "modify",
   "service_netapp_region": "Localisation",
 
 
   "service_netapp_state": "Etat du service",
-  "service_netapp_status": "Status",
+  "service_netapp_statut": "Statut",
 
   "service_netapp_plan": "Abonnement",
   "service_netapp_creation_date": "Date de création",
   "service_netapp_level": "Niveau de service",
 
-  "service_netapp_status_": "Unknown",
+  "service_netapp_statut_": "Inconnu",
 
   "service_netapp_status_creating": "Création",
   "service_netapp_status_running": "Activé",
@@ -34,12 +33,12 @@
   "service_netapp_status_deleted": "Supprimer",
 
 
-  "share_netapp_status_": "Unknown",
+  "share_netapp_status_": "Inconnu",
   "share_netapp_status_AVAILABLE": "Disponible",
   "share_netapp_status_CREATING": "Création",
   "share_netapp_status_DELETING": "Suppression en cours",
   "share_netapp_status_DELETED": "Supprimé",
-  "share_netapp_status_ERROR": "Error",
+  "share_netapp_status_ERROR": "Erreur",
   "share_netapp_status_INACTIVE": "Inactif",
 
   "share_netapp_status_suspended": "Suspendu",
@@ -52,11 +51,12 @@
   "netapp_guides_header_all_guides": "Tous les guides",
 
   "share_title": "Volumes",
-  "share_id": "id",
-  "share_name": "Description",
-  "share_size": "Taille",
-  "share_protocol": "Protocole",
-  "share_status": "Status"
+  "share_id": "Id",
+  "share_name": "Nom",
+  "share_description": "Description",
+  "share_size": "Taille (Go)",
+  "share_protocol": "Taille",
+  "share_status": "Statut"
 
 
 }

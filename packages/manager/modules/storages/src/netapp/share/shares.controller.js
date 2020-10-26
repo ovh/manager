@@ -3,10 +3,8 @@ import reduce from 'lodash/reduce';
 
 export default class NetappShareCtrl {
   /* @ngInject */
-  constructor($q, $translate, ouiDatagridService) {
-    this.$q = $q;
+  constructor($translate) {
     this.$translate = $translate;
-    this.ouiDatagridService = ouiDatagridService;
 
     this.shareStateEnum = [
       'creating',
@@ -27,6 +25,7 @@ export default class NetappShareCtrl {
     this.columnsConfig = [
       { name: 'id', sortable: this.getSorting('id') },
       { name: 'name', sortable: this.getSorting('name') },
+      { name: 'description', sortable: this.getSorting('description') },
       { name: 'product', sortable: this.getSorting('product') },
       { name: 'datacenter', sortable: this.getSorting('region') },
       { name: 'status', sortable: this.getSorting('status') },

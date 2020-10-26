@@ -3,10 +3,8 @@ import reduce from 'lodash/reduce';
 
 export default class StorageCtrl {
   /* @ngInject */
-  constructor($q, $translate, ouiDatagridService) {
-    this.$q = $q;
+  constructor($translate) {
     this.$translate = $translate;
-    this.ouiDatagridService = ouiDatagridService;
   }
 
   $onInit() {

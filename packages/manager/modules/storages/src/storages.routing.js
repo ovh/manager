@@ -8,8 +8,11 @@ export default /* @ngInject */ ($stateProvider) => {
       nas: /* @ngInject */ (StoragesService) => StoragesService.getStorageNas(),
       netapp: /* @ngInject */ (StoragesService) =>
         StoragesService.getStorageNetapp(),
-      storages: /* @ngInject */ (nasha, nas, netapp) =>
-        nasha.concat(nas, netapp),
+      storages: /* @ngInject */ (nasha, nas, netapp) => [
+        ...nasha,
+        ...nas,
+        ...netapp,
+      ],
     },
   });
 };
