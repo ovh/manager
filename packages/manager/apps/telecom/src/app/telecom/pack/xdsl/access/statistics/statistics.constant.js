@@ -1,7 +1,7 @@
 import get from 'lodash/get';
 import head from 'lodash/head';
 
-angular.module('managerApp').constant('PACK_XDSL_STATISTICS', {
+export const PACK_XDSL_STATISTICS = {
   chart: {
     type: 'line',
     data: {
@@ -56,4 +56,8 @@ angular.module('managerApp').constant('PACK_XDSL_STATISTICS', {
       },
     },
   },
-});
+};
+
+export default {
+  PACK_XDSL_STATISTICS,
+};

@@ -21,8 +21,6 @@ import '../xdsl/access/pack-xdsl-access.controller';
 import '../xdsl/access/portReset/pack-xdsl-access-port-reset.controller';
 import '../xdsl/access/profil/pack-xdsl-access-profil.controller';
 import '../xdsl/access/rateLimit/xdsl-access-lns-ratelimit.controller';
-import '../xdsl/access/statistics/pack-xdsl-statistics.constant';
-import '../xdsl/access/statistics/pack-xdsl-statistics.controller';
 import '../xdsl/modem/bridgeMode/pack-xdsl-modem-bridgeMode.controller';
 import '../xdsl/modem/connectedDevices/pack-xdsl-modem-connectedDevices.controller';
 import '../xdsl/modem/firmware/pack-xdsl-modem-firmware.controller';

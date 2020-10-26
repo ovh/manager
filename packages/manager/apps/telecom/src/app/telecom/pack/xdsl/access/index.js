@@ -13,6 +13,8 @@ import comfortExchange from './comfortExchange/comfort-exchange.module';
 import ipConfiguration from './ip';
 import deconsolidation from './deconsolidation';
 
+import XdslStatistics from './statistics';
+
 const moduleName = 'ovhManagerTelecomPackXdslAccess';
 
 angular
@@ -27,6 +29,7 @@ angular
     comfortExchange,
     ipConfiguration,
     deconsolidation,
+    XdslStatistics,
   ])
   .component('packXdslAccess', access);
 

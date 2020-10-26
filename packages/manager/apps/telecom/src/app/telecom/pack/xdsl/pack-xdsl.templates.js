@@ -2,7 +2,6 @@ import packXdslAccessIpv6 from './access/ipv6/pack-xdsl-access-ipv6.html';
 import packXdslAccessProfil from './access/profil/pack-xdsl-access-profil.html';
 import xdslAccessLnsRatelimit from './access/rateLimit/xdsl-access-lns-ratelimit.html';
 import packXdslAccessPortReset from './access/portReset/pack-xdsl-access-port-reset.html';
-import packXdslStatistics from './access/statistics/pack-xdsl-statistics.html';
 
 export default /* @ngInject */ ($templateCache) => {
   // import templates required by ng-include
@@ -21,9 +20,5 @@ export default /* @ngInject */ ($templateCache) => {
   $templateCache.put(
     'app/telecom/pack/xdsl/access/portReset/pack-xdsl-access-port-reset.html',
     packXdslAccessPortReset,
-  );
-  $templateCache.put(
-    'app/telecom/pack/xdsl/access/statistics/pack-xdsl-statistics.html',
-    packXdslStatistics,
   );
 };
