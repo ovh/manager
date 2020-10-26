@@ -1,3 +1,13 @@
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-preloader@1.1.0...@ovh-ux/manager-preloader@1.2.0) (2020-10-26)
+
+
+### Features
+
+* **language:** add possibility to define user language ([57c964f](https://github.com/ovh/manager/commit/57c964f392fee977d56fb28c6cee2478c9e51368))
+* **message:** display loading message when redirected from manager ([#3856](https://github.com/ovh/manager/issues/3856)) ([f1a5197](https://github.com/ovh/manager/commit/f1a519726559d169a4969ddb7a5a88864d6b0aad))
+
+
+
 # [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-preloader@1.0.0...@ovh-ux/manager-preloader@1.1.0) (2020-04-06)
 
 

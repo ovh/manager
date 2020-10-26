@@ -1,3 +1,12 @@
+## [4.2.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.2.5...@ovh-ux/manager-public-cloud@4.2.6) (2020-10-26)
+
+
+### Bug Fixes
+
+* **preloader:** attach preloader with user language ([6c65188](https://github.com/ovh/manager/commit/6c6518888146a4c90bd9268d0db40cb2d2df699f))
+
+
+
 ## [4.2.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.2.4...@ovh-ux/manager-public-cloud@4.2.5) (2020-10-20)
 
 

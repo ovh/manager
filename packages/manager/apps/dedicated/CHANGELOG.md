@@ -1,3 +1,17 @@
+# [14.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.2.4...@ovh-ux/manager-dedicated@14.3.0) (2020-10-26)
+
+
+### Bug Fixes
+
+* **preloader:** attach preloader with user language ([6c65188](https://github.com/ovh/manager/commit/6c6518888146a4c90bd9268d0db40cb2d2df699f))
+
+
+### Features
+
+* **navbar:** rename web & server universes ([#3920](https://github.com/ovh/manager/issues/3920)) ([c740a60](https://github.com/ovh/manager/commit/c740a60a714ecf1ce1aa55cfd7bff99d95fc6eaf))
+
+
+
 ## [14.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.2.3...@ovh-ux/manager-dedicated@14.2.4) (2020-10-23)
 
 

@@ -1,3 +1,12 @@
+## [10.2.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@10.2.7...@ovh-ux/manager-cloud@10.2.8) (2020-10-26)
+
+
+### Bug Fixes
+
+* **preloader:** attach preloader with user language ([6c65188](https://github.com/ovh/manager/commit/6c6518888146a4c90bd9268d0db40cb2d2df699f))
+
+
+
 ## [10.2.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@10.2.6...@ovh-ux/manager-cloud@10.2.7) (2020-10-20)
 
 

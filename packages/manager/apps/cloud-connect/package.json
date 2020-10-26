@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-cloud-connect-app",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "private": true,
   "repository": {
     "type": "git",
@@ -30,7 +30,7 @@
     "@ovh-ux/ng-ovh-http": "^5.0.0",
     "@ovh-ux/ng-ovh-proxy-request": "^2.0.0",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.0",
-    "@ovh-ux/ng-ovh-sso-auth": "^4.2.3",
+    "@ovh-ux/ng-ovh-sso-auth": "^4.2.4",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.1",
     "@ovh-ux/ng-ovh-user-pref": "^2.0.0",
     "@ovh-ux/ui-kit": "^4.2.3",

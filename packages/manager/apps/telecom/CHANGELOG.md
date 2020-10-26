@@ -1,3 +1,12 @@
+## [13.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.4.2...@ovh-ux/manager-telecom@13.4.3) (2020-10-26)
+
+
+### Bug Fixes
+
+* **preloader:** attach preloader with user language ([6c65188](https://github.com/ovh/manager/commit/6c6518888146a4c90bd9268d0db40cb2d2df699f))
+
+
+
 ## [13.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.4.1...@ovh-ux/manager-telecom@13.4.2) (2020-10-23)
 
 

@@ -1,3 +1,17 @@
+# [15.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.3.9...@ovh-ux/manager-web@15.4.0) (2020-10-26)
+
+
+### Bug Fixes
+
+* **preloader:** attach preloader with user language ([6c65188](https://github.com/ovh/manager/commit/6c6518888146a4c90bd9268d0db40cb2d2df699f))
+
+
+### Features
+
+* **navbar:** rename web & server universes ([#3920](https://github.com/ovh/manager/issues/3920)) ([c740a60](https://github.com/ovh/manager/commit/c740a60a714ecf1ce1aa55cfd7bff99d95fc6eaf))
+
+
+
 ## [15.3.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.3.8...@ovh-ux/manager-web@15.3.9) (2020-10-20)
 
 
