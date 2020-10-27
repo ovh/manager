@@ -1,4 +1,5 @@
-angular.module('ovhSignupApp').constant('NewAccountFormConfig', {
+export default {
+  /* @ngInject */
   debounce: 250,
 
   accountCreationRoute: '/auth/signup/register',
@@ -292,4 +293,4 @@ angular.module('ovhSignupApp').constant('NewAccountFormConfig', {
     ZM: '260',
     ZW: '263',
   },
-});
+};

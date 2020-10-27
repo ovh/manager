@@ -4,16 +4,9 @@ import map from 'lodash/map';
 import some from 'lodash/some';
 import values from 'lodash/values';
 
-angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth', [
-  '$scope',
-  '$q',
-  '$translate',
-  'UserAccount.services.doubleAuth.sms',
-  'UserAccount.services.doubleAuth.totp',
-  'UserAccount.services.doubleAuth.u2f',
-  'UserAccount.services.doubleAuth.backupCode',
-  'Alerter',
-  function UserAccountDoubleAuthController(
+export default class UserAccountDoubleAuthController {
+  /* @ngInject */
+  constructor(
     $scope,
     $q,
     $translate,
@@ -221,5 +214,5 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth', [
     };
 
     /* -----  End of INITIALIZATION  ------ */
-  },
-]);
+  }
+}

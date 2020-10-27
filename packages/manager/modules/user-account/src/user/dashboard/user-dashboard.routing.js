@@ -13,6 +13,8 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       user: /* @ngInject */ (UserAccountService) =>
         UserAccountService.getUser(),
+      goToInfos: /* @ngInject */ ($state) => () =>
+        $state.go('account.user.infos'),
       lastBill: /* @ngInject */ (OvhApiMeBillIceberg) =>
         OvhApiMeBillIceberg.query()
           .expand('CachedObjectList-Pages')
@@ -29,7 +31,6 @@ export default /* @ngInject */ ($stateProvider) => {
           ...shortcut,
           href: shortcut.state ? $state.href(shortcut.state) : shortcut.href,
         })),
-      goToInfos: /* @ngInject */ ($state) => $state.go('account.user.infos'),
     },
   });
 };

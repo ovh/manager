@@ -1,4 +1,4 @@
-import UserAccountInfosCtrl from './user-infos.controller';
+import controller from './user-infos.controller';
 import template from './user-infos.html';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -7,10 +7,10 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(name, {
     url: '/infos',
     template,
-    controller: UserAccountInfosCtrl,
+    controller,
     translations: {
       format: 'json',
-      value: ['../newAccountForm'],
+      value: ['../../newAccountForm'],
     },
   });
 };

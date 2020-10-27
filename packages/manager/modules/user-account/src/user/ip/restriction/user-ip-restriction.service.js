@@ -1,7 +1,7 @@
-angular.module('UserAccount').service('UserAccount.services.ipRestrictions', [
-  '$http',
-  '$q',
-  function UserAccountIpRestrictionsService($http, $q) {
+export default class UserAccountIpRestrictionsService {
+  /* @ngInject */
+
+  constructor($http, $q) {
     function getSuccessDataOrReject(response) {
       return response.status < 300 ? response.data : $q.reject(response.data);
     }
@@ -82,5 +82,5 @@ angular.module('UserAccount').service('UserAccount.services.ipRestrictions', [
         },
       );
     };
-  },
-]);
+  }
+}
