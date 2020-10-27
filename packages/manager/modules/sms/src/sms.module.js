@@ -19,7 +19,7 @@ angular
   .module(moduleName, [
     'ui.router',
     'ngAtInternet',
-    'ngAtInternetRouterPlugin',
+    'ngAtInternetUiRouterPlugin',
     'oc.lazyLoad',
     'ovh-api-services',
     'ovhManagerCore',
