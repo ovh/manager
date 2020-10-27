@@ -170,7 +170,7 @@ export default class TelecomTelephonyAliasConfigurationLinesCtrl {
   deleteLineOpenModal(line) {
     this.$uibModal
       .open({
-        templateUrl: deleteTemplate,
+        template: deleteTemplate,
         controller: deleteController,
         controllerAs: '$ctrl',
         resolve: {
@@ -210,7 +210,7 @@ export default class TelecomTelephonyAliasConfigurationLinesCtrl {
 
   updateLine(lineToEdit) {
     const updateLineModel = this.$uibModal.open({
-      templateUrl: editTemplate,
+      template: editTemplate,
       controller: editController,
       controllerAs: '$ctrl',
       resolve: {
