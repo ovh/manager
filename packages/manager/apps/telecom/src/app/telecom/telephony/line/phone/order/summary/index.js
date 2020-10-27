@@ -7,7 +7,7 @@ import '@ovh-ux/ui-kit';
 
 import summary from './summary.component';
 
-const moduleName = 'ovhTelecomLinePhoneOrderSummary';
+const moduleName = 'ovhManagerTelecomTelephonyLinePhoneOrderSummary';
 
 angular
   .module(moduleName, [

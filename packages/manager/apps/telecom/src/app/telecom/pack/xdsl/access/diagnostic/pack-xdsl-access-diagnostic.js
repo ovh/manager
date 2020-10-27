@@ -1,8 +1,8 @@
 angular.module('managerApp').config(($stateProvider) => {
-  $stateProvider.state('telecom.packs.pack.xdsl.access-diagnostic', {
+  $stateProvider.state('telecom.packs.pack.xdsl.line.access-diagnostic', {
     url: '/diagnostic',
     views: {
-      'accessView@telecom.packs.pack.xdsl': {
+      'accessView@telecom.packs.pack.xdsl.line': {
         controller: 'XdslDiagnosticCtrl',
         controllerAs: '$ctrl',
         templateUrl:

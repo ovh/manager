@@ -100,7 +100,7 @@ angular
               self.wifi = null;
             } else {
               $timeout(() => {
-                $state.go('telecom.packs.pack.xdsl.modem');
+                $state.go('telecom.packs.pack.xdsl.line.modem');
               }, 2000);
             }
             self.mediator.tasks.changeModemConfigWLAN = true;
@@ -120,7 +120,7 @@ angular
 
     self.cancelConfig = function cancelConfig() {
       if (self.wifis.length === 1) {
-        $state.go('telecom.packs.pack.xdsl.modem');
+        $state.go('telecom.packs.pack.xdsl.line.modem');
       } else {
         self.wifi = null;
       }

@@ -1,8 +1,8 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('telecom.packs.pack.xdsl.access-modem-exchange', {
+  $stateProvider.state('telecom.packs.pack.xdsl.line.access-modem-exchange', {
     url: '/comfortExchange',
     views: {
-      'accessView@telecom.packs.pack.xdsl': 'xdslAccessComfortExchange',
+      'accessView@telecom.packs.pack.xdsl.line': 'xdslAccessComfortExchange',
     },
     resolve: {
       xdslId: /* @ngInject */ ($transition$) =>

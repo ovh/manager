@@ -1,0 +1,44 @@
+@import '~ovh-ui-kit-bs/dist/less/bootstrap/_variables';
+
+.telecom-telephony-alias-members {
+  .well {
+    padding: 7px !important;
+    margin-bottom: 6px !important;
+    background-color: white;
+    border: none;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  }
+
+  button.no-style {
+    margin-top: -4px;
+
+    &:focus {
+      border: 1px dotted black;
+    }
+  }
+
+  .member-description {
+    width: 140px;
+    display: inline-block;
+  }
+
+  .cursor-move {
+    cursor: move;
+  }
+
+  ul {
+    padding: 30px 10px;
+    list-style-type: none;
+    background-color: #efefef;
+    border-color: #ccc;
+    border-radius: @border-radius-base;
+  }
+
+  .memberPhoneNumber {
+    display: block;
+
+    @media (min-width: @screen-sm) {
+      display: inline;
+    }
+  }
+}

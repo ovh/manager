@@ -7,7 +7,7 @@ import '@ovh-ux/ui-kit';
 
 import rma from './rma.component';
 
-const moduleName = 'ovhTelecomLinePhoneOrderRma';
+const moduleName = 'ovhManagerTelecomTelephonyLinePhoneOrderRma';
 
 angular
   .module(moduleName, [

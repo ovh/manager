@@ -1,0 +1,47 @@
+@import './../../../../../app/common/less/mixins.less';
+
+.telephony-service-choice-popover {
+  .makeTwoPagePopover();
+
+  &.popover-full-screen {
+    .popover-inner {
+      height: 100%;
+    }
+  }
+
+  &:not(.popover-full-screen) {
+    max-height: 520px;
+
+    section.page-section {
+      section {
+        height: 360px;
+        overflow-y: auto;
+      }
+    }
+  }
+
+  .section-item {
+    border-top: none !important;
+  }
+
+  .btn {
+    padding: 5px 13px;
+  }
+
+  .search-results {
+    margin-top: 8px !important;
+
+    label {
+      position: relative;
+      padding-left: 50px !important;
+
+      input {
+        &[type='radio'] {
+          position: absolute;
+          top: 25px;
+          left: 15px;
+        }
+      }
+    }
+  }
+}
