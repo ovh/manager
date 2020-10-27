@@ -506,6 +506,12 @@ export default class {
             },
           ]);
         }
+      })
+      .catch(() => {
+        this.Alerter.error(
+          this.$translate.instant('hosting_tab_generic_error'),
+          this.$scope.alerts.page,
+        );
       });
   }
 
