@@ -1,9 +1,3 @@
-import '../slots/domain/pack-domain.controller';
-import '../slots/exchangeAccount/pack-exchangeAccount.controller';
-import '../slots/exchangeLite/pack-exchangeLite.controller';
-import '../slots/hubic/pack-hubic.controller';
-import '../slots/informations/pack-informations.controller';
-import '../slots/promotionCode/pack-promotionCode.controller';
 import '../slots/task/pack-task.controller';
 import '../slots/voipBillingAccount/pack-voipBillingAccount.controller';
 import '../slots/voipEcoFax/pack-voipEcoFax.controller';

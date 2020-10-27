@@ -16,6 +16,12 @@ import exchangeIndividualAdd from '../slots/exchangeIndividual/add';
 import exchangeIndividual from '../slots/exchangeIndividual';
 import hostedEmailAdd from '../slots/hostedEmail/add';
 import hostedEmail from '../slots/hostedEmail';
+import packDomain from '../slots/domain';
+import packExchangeAccount from '../slots/exchangeAccount';
+import packExchangeLite from '../slots/exchangeLite';
+import hubic from '../slots/hubic';
+import packInformation from '../slots/informations';
+import promotionCode from '../slots/promotionCode';
 
 import templates from './pack.templates';
 
@@ -42,6 +48,12 @@ angular
     exchangeIndividual,
     hostedEmail,
     hostedEmailAdd,
+    packDomain,
+    packExchangeAccount,
+    packExchangeLite,
+    hubic,
+    packInformation,
+    promotionCode,
   ])
   .controller('PackCtrl', controller)
   .config(routing)
