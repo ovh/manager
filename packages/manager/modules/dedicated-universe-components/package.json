@@ -2,7 +2,7 @@
   "name": "@ovh-ux/ng-ovh-dedicated-universe-components",
   "version": "0.0.0",
   "private": true,
-  "description": "Collection of components for the Dedicated Cloud.",
+  "description": "Collection of components for the Dedicated universe.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh/manager.git",
@@ -34,7 +34,9 @@
     "@ovh-ux/component-rollup-config": "^7.0.0"
   },
   "peerDependencies": {
+    "@ovh-ux/manager-config": "^1.0.0 || ^2.0.0",
     "@ovh-ux/manager-core": "^10.0.0 || ^11.0.0",
+    "@ovh-ux/manager-models": "^1.0.0",
     "@ovh-ux/ng-ovh-form-flat": "^5.0.0",
     "@ovh-ux/ng-ovh-http": "^5.0.0",
     "@ovh-ux/ng-ovh-user-pref": "^2.0.0",
@@ -44,7 +46,6 @@
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",
     "angular-ui-bootstrap": "~1.3.3",
-    "ovh-api-services": "^9.39.1",
-    "regenerator-runtime": "^0.13.7"
+    "ovh-api-services": "^9.39.1"
   }
 }
