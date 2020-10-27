@@ -3,12 +3,13 @@ import angular from 'angular';
 import userController from './user.controller';
 import userService from './user.service';
 import userSessionController from './session/user-session.controller';
+import OvhHttp from '../ovh-angular-http/ovh-angular-http.module';
 import config from '../../config';
 
 const moduleName = 'dedicatedUniverseUser';
 
 angular
-  .module(moduleName, [])
+  .module(moduleName, [OvhHttp])
   .constant('Billing.constants', {
     aapiRootPath: config.aapiRootPath,
     swsProxyRootPath: config.swsProxyRootPath,
