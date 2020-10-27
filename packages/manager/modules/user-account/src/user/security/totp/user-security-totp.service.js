@@ -1,6 +1,6 @@
-angular.module('UserAccount').service('UserAccount.services.doubleAuth.totp', [
-  'OvhHttp',
-  function UserAccountDoubleAuthTotpService(OvhHttp) {
+export default class UserAccountDoubleAuthTotpService {
+  /* @ngInject */
+  constructor(OvhHttp) {
     /**
      * Get TOTP accounts ids.
      * @return {Promise}
@@ -112,5 +112,5 @@ angular.module('UserAccount').service('UserAccount.services.doubleAuth.totp', [
           code,
         },
       });
-  },
-]);
+  }
+}

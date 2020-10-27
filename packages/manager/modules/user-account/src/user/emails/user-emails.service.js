@@ -1,7 +1,6 @@
-angular.module('UserAccount').service('UserAccount.services.emails', [
-  'constants',
-  'OvhHttp',
-  function UserAccountEmailsService(constants, OvhHttp) {
+export default class UserAccountEmailsService {
+  /* @ngInject */
+  constructor(OvhHttp) {
     const cache = {
       models: 'UNIVERS_MODULE_OTRS_MODELS',
       me: 'UNIVERS_MODULE_OTRS_ME',
@@ -35,5 +34,5 @@ angular.module('UserAccount').service('UserAccount.services.emails', [
         },
       });
     };
-  },
-]);
+  }
+}

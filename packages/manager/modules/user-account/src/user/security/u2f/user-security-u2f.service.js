@@ -1,10 +1,8 @@
 import get from 'lodash/get';
 
-angular.module('UserAccount').service('UserAccount.services.doubleAuth.u2f', [
-  '$q',
-  '$window',
-  'OvhHttp',
-  function UserAccountDoubleAuthU2fService($q, $window, OvhHttp) {
+export default class UserAccountDoubleAuthU2fService {
+  /* @ngInject */
+  constructor($q, $window, OvhHttp) {
     const TIMEOUT_SECONDS = 15;
 
     /**
@@ -218,5 +216,5 @@ angular.module('UserAccount').service('UserAccount.services.doubleAuth.u2f', [
           registrationData,
         },
       });
-  },
-]);
+  }
+}

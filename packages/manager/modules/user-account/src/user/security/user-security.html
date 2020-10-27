@@ -108,7 +108,7 @@
                             <!-- SMS -->
                             <div
                                 class="media"
-                                data-ng-controller="UserAccount.controllers.doubleAuth.sms"
+                                data-ng-controller="UserAccountDoubleAuthSmsCtrl"
                                 data-ng-init="init()"
                                 data-ng-if="does2faSmsIsAvailable()"
                             >
@@ -259,7 +259,7 @@
                             <!-- TOTP -->
                             <div
                                 class="media"
-                                data-ng-controller="UserAccount.controllers.doubleAuth.totp"
+                                data-ng-controller="UserAccountDoubleAuthTotpCtrl"
                                 data-ng-init="init()"
                             >
                                 <span class="media-left">
@@ -407,7 +407,7 @@
                             <!-- U2F -->
                             <div
                                 class="media"
-                                data-ng-controller="UserAccount.controllers.doubleAuth.u2f"
+                                data-ng-controller="UserAccountDoubleAuthU2fController"
                                 data-ng-init="init()"
                             >
                                 <span class="float-left">
@@ -555,7 +555,7 @@
                             <!-- BACKUP CODE -->
                             <div
                                 class="media"
-                                data-ng-controller="UserAccount.controllers.doubleAuth.backupCode"
+                                data-ng-controller="UserAccountDoubleAuthBackupCodeCtrl"
                                 data-ng-init="init()"
                             >
                                 <span class="float-left">
@@ -651,7 +651,7 @@
                 <!-- IP Restrictions -->
                 <div
                     class="media media-first-level"
-                    data-ng-controller="UserAccount.controllers.ipRestrictions"
+                    data-ng-controller="IpRestrictionCtrl"
                     data-ng-init="initIpRestrictions()"
                 >
                     <span class="media-left">
