@@ -1,4 +1,4 @@
-angular.module('managerApp').constant('SvaGeneratorConfig', {
+export const CONFIG = {
   taxCoefficient: 1.2,
 
   fillType: ['gradient', 'simple', 'black'],
@@ -41,4 +41,8 @@ angular.module('managerApp').constant('SvaGeneratorConfig', {
       pay: [165, 15, 120],
     },
   },
-});
+};
+
+export default {
+  CONFIG,
+};
