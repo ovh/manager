@@ -1,3 +1,13 @@
+## [13.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.5.0...@ovh-ux/manager-telecom@13.5.1) (2020-10-27)
+
+
+### Bug Fixes
+
+* **ccs.lines:** fix edit remove template ([#3929](https://github.com/ovh/manager/issues/3929)) ([9caf2ed](https://github.com/ovh/manager/commit/9caf2eda6f485d785178da382eacb716514a8d5d))
+* **svagenerator:** fix sva generator config ([#3931](https://github.com/ovh/manager/issues/3931)) ([8009c6c](https://github.com/ovh/manager/commit/8009c6c8b5fe6a479c957f1dc7d73d210aa90a9e))
+
+
+
 # [13.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.4.3...@ovh-ux/manager-telecom@13.5.0) (2020-10-27)
 
 

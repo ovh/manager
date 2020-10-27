@@ -1,3 +1,12 @@
+## [8.0.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.0.6...@ovh-ux/manager-sms@8.0.7) (2020-10-27)
+
+
+### Bug Fixes
+
+* **sms:** correct typo on sms module injected provider ([#3930](https://github.com/ovh/manager/issues/3930)) ([2ac12a5](https://github.com/ovh/manager/commit/2ac12a539071077ecc2de184463ce0c949ebb5ba))
+
+
+
 ## [8.0.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.0.5...@ovh-ux/manager-sms@8.0.6) (2020-10-22)
 
 
