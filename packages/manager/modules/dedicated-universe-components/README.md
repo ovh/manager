@@ -13,7 +13,7 @@ yarn add @ovh-ux/ng-ovh-dedicated-universe-components
 
 ```js
 import angular from 'angular';
-import ngOvhCloudUniverseComponents from '@ovh-ux/ng-ovh-dedicated-universe-components';
+import ngOvhDedicatedUniverseComponents from '@ovh-ux/ng-ovh-dedicated-universe-components';
 
 angular.module('myApp', [ngOvhDedicatedUniverseComponents]);
 ```
