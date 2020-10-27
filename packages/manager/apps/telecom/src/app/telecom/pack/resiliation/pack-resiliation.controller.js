@@ -135,6 +135,7 @@ angular
     this.checkDate = function checkDate() {
       return (
         !self.model.when ||
+        moment(self.model.when).isSame(self.minResiliationDate) ||
         moment(self.model.when).isAfter(self.minResiliationDate)
       );
     };
