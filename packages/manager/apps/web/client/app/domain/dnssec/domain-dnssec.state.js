@@ -6,6 +6,7 @@ const state = {
     domainView: {
       template,
       controller: 'DomainDnssecTabCtrl',
+      controllerAs: 'ctrlDomainDnssec',
     },
   },
   atInternet: {
