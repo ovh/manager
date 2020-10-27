@@ -1,3 +1,4 @@
+import 'script-loader!jsurl/lib/jsurl.js'; // eslint-disable-line
 import { Environment } from '@ovh-ux/manager-config';
 import angular from 'angular';
 import uiRouter from '@uirouter/angularjs';
@@ -26,7 +27,7 @@ angular
     /* @ngInject */ ($locationProvider) => $locationProvider.hashPrefix(''),
   )
   .run(
-    /* @ngInject */ ($rootScope, $transitions) => {
+    /* @ngInject */ ($transitions) => {
       const unregisterHook = $transitions.onSuccess({}, () => {
         detachPreloader();
         unregisterHook();

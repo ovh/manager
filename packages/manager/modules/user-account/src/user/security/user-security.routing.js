@@ -1,12 +1,14 @@
-angular.module('UserAccount').config(
-  /* @ngInject */ ($stateProvider) => {
-    const name = 'account.user.security';
+import controller from './user-security.controller';
+import template from './user-security.html';
 
-    $stateProvider.state(name, {
-      url: '/security',
-      templateUrl: 'account/user/security/user-security.html',
-      controller: 'UserAccount.controllers.doubleAuth',
-      translations: ['../'],
-    });
-  },
-);
+export default /* @ngInject */ ($stateProvider) => {
+  const name = 'account.user.security';
+
+  $stateProvider.state(name, {
+    url: '/security',
+    template,
+    controller,
+    controllerAs: 'doubleAuth',
+    translations: ['../'],
+  });
+};

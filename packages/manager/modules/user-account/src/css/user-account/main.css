@@ -1,0 +1,351 @@
+.center {
+  text-align: center;
+}
+
+.left-height-full {
+  height: 100%;
+  float: left;
+}
+
+.lh30 {
+  line-height: 30px;
+}
+
+.black-title {
+  color: #000;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.fa-10x {
+  font-size: 10em !important;
+}
+
+.text-muted {
+  color: #999;
+}
+
+.monospace {
+  font-family: monospace, sans-serif;
+}
+
+.no-padding {
+  padding: 0 !important;
+}
+
+.no-margin {
+  margin: 0 !important;
+}
+
+.paddingt10 {
+  padding: 10px 0 !important;
+}
+
+.padding10 {
+  padding: 10px !important;
+}
+
+.margint10 {
+  margin-top: 10px !important;
+}
+
+.marginl10 {
+  margin-left: 10px !important;
+}
+
+.marginb10 {
+  margin-bottom: 10px !important;
+}
+
+.selectable {
+  cursor: pointer;
+}
+
+.module-useraccount-menu > .sidebar {
+  left: 0;
+  top: 40px;
+}
+
+.module-useraccount-menu .sidebar .navigation-left-title:hover {
+  background-color: #3f5167;
+}
+
+.module-useraccount-menu .sidebar .extended-accordion-in {
+  height: auto;
+  visibility: visible;
+}
+
+.module-useraccount-menu .sidebar .navigation-left-title .fa-chevron-left {
+  opacity: 0.6;
+  font-size: 10px;
+  width: 8px;
+  height: 8px;
+  margin: 15px 0 0 15px;
+}
+
+.module-useraccount-menu .sidebar .navigation-left-title.not-expandable {
+  margin-left: 0;
+  padding-left: 23px;
+}
+
+.module-useraccount-menu
+  > .sidebar
+  .navigation-left.module-useraccount-menu-back {
+  padding: 20px 0 10px 0;
+}
+
+.module-useraccount-menu > .sidebar .navigation-left-title > span {
+  margin: 7px 10px 0 18px;
+}
+
+.module-useraccount-menu > .sidebar .navigation-left-list-container.active {
+  border-left-color: #00a2bf;
+}
+
+.module-useraccount-menu
+  > .sidebar
+  .navigation-left-list-container
+  > li.active {
+  background-color: #00a2bf !important;
+}
+
+.module-useraccount-menu > .sidebar .navigation-left-list-container > li:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.module-useraccount-menu
+  > .sidebar
+  .navigation-left-list-container
+  > li
+  a.navigation-left-item:hover,
+.module-useraccount-menu
+  > .sidebar
+  .navigation-left-list-container
+  > li
+  a.navigation-left-item:focus {
+  background-color: transparent;
+}
+
+.module-useraccount-menu
+  .sidebar
+  .navigation-left-list-container
+  > li
+  a.navigation-left-item.active {
+  background-color: #00a2bf !important;
+  color: #122844;
+}
+
+.module-useraccount-menu
+  > .sidebar
+  .navigation-left-title
+  .module-useraccount-menu-small {
+  display: block;
+  font-weight: lighter;
+  font-size: 85%;
+  margin-top: 0;
+  padding-bottom: 12px;
+  line-height: 8px;
+}
+
+/*******************
+	SECTIONS
+*******************/
+
+.module-useraccount-sections-container {
+  background: none repeat scroll 0 0 #fff;
+  width: auto;
+  max-width: 1610px;
+  color: #737373;
+  line-height: 20px;
+}
+
+.module-useraccount-sections-wrapped {
+  background: none repeat scroll 0 0 #fff;
+  margin-left: 305px;
+  max-width: 1610px;
+  padding: 0 40px;
+  line-height: 20px;
+}
+
+/*******************
+	/SECTIONS
+*******************/
+
+/*********************************************************
+	SSH
+*********************************************************/
+
+.module-useraccount-container #sshAddKeyLabel {
+  max-width: 510px;
+  min-width: 220px;
+  min-height: 80px;
+  margin-bottom: 0;
+}
+
+/*********************************************************
+	/SSH
+*********************************************************/
+
+/*********************************************************
+    USER INFO
+**********************************************************/
+
+.module-useraccount-container
+  .module-useraccount-sections-infos-container
+  label {
+  color: #333;
+  font-weight: 700;
+}
+
+.module-useraccount-container
+  .module-useraccount-sections-infos-container
+  .top-space-5 {
+  margin-top: 5px;
+}
+
+.module-useraccount-container
+  .module-useraccount-sections-infos-container
+  .form-horizontal
+  .control-group {
+  margin-bottom: 10px;
+}
+
+/*********************************************************
+    !USER INFO
+**********************************************************/
+
+/*********************************************************
+    SECURITY
+**********************************************************/
+
+.module-useraccount-container .fs-green {
+  color: #45ae6e !important;
+}
+
+.module-useraccount-container .fs-red {
+  color: #e85e5e !important;
+}
+
+.module-useraccount-sections-container .button,
+.module-useraccount-sections-container a[role='button'] {
+  color: #fff;
+  background: #7f8aaf;
+  border: 0;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 0;
+}
+
+.module-useraccount-sections-container .button[disabled],
+.module-useraccount-sections-container a[role='button'][disabled] {
+  opacity: 0.5;
+}
+
+.module-useraccount-container .btn-prev-step {
+  width: 140px;
+  position: relative;
+  margin-left: 20px;
+}
+
+.module-useraccount-container .btn-prev-step::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 20px;
+  border-color: transparent transparent transparent #7f8aaf;
+  left: -40px;
+  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+}
+
+.module-useraccount-container .btn-next-step {
+  position: relative;
+  margin-right: 15px;
+  width: 190px;
+}
+
+.module-useraccount-container .btn-next-step.big {
+  margin-right: 25px;
+}
+
+.module-useraccount-container .btn-next-step::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  right: -40px;
+  border-width: 20px;
+  border-color: transparent transparent transparent #7f8aaf;
+}
+
+.module-useraccount-container .btn-next-step.big::after {
+  right: -60px;
+  border-width: 30px;
+}
+
+/*********************************************************
+    !Agreements
+**********************************************************/
+
+.module-useraccount-sections-agreements-container .contract {
+  word-wrap: break-word;
+  word-break: keep-all;
+  text-align: justify;
+  max-height: 400px;
+}
+
+.module-useraccount-sections-agreements-container .backButton {
+  margin-right: 2em;
+  margin-top: 1.2em;
+}
+
+/* Contacts */
+.module-useraccount-sections-contacts-container .tab-content {
+  overflow: inherit !important;
+}
+
+.module-useraccount-sections-contacts-container td .btn.btn-icon:hover,
+.module-useraccount-sections-contacts-container td .btn.btn-icon:focus,
+.module-useraccount-sections-contacts-container td .btn.btn-icon:active {
+  padding: 0 10px !important;
+}
+
+.module-useraccount-sections-emails-container pre {
+  word-break: normal;
+  word-wrap: normal;
+}
+
+.module-useraccount-container
+  .popover
+  .popover-content
+  .popover-menu
+  .btn-link:hover {
+  color: #fff;
+  background-color: #54a89b;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.module-useraccount-container
+  .popover
+  .popover-content
+  .popover-menu
+  a:hover
+  span {
+  background-color: inherit;
+}
+
+.module-useraccount-container
+  .popover
+  .popover-content
+  .popover-menu
+  .btn-link:hover
+  span {
+  background-color: inherit;
+}

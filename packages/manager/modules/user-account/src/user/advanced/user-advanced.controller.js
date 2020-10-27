@@ -1,5 +1,5 @@
 export default /* @ngInject */ function(
-  userAccountServiceInfos,
+  UserAccountServiceInfos,
   Alerter,
   $translate,
 ) {
@@ -7,8 +7,7 @@ export default /* @ngInject */ function(
 
   this.$ngInit = () => {
     this.isLoadingDeveloperMode = true;
-    userAccountServiceInfos
-      .getDeveloperMode()
+    UserAccountServiceInfos.getDeveloperMode()
       .then((developmentMode) => {
         this.developmentMode = developmentMode;
       })
@@ -22,8 +21,7 @@ export default /* @ngInject */ function(
     const successKey = this.developmentMode.enabled
       ? 'user_account_advanced_section_developer_alert_success_enabled'
       : 'user_account_advanced_section_developer_alert_success_disabled';
-    userAccountServiceInfos
-      .updateDeveloperMode(this.developmentMode)
+    UserAccountServiceInfos.updateDeveloperMode(this.developmentMode)
       .then(
         () => {
           const zone = 'useraccount.alerts.dashboardAdvanced';

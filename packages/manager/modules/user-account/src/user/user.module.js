@@ -1,15 +1,41 @@
+import angular from 'angular';
+import '@ovh-ux/ng-translate-async-loader';
+import 'angular-translate';
+import 'angular-ui-bootstrap';
+import '@ovh-ux/ui-kit';
+
 import set from 'lodash/set';
 
 import './newAccountForm/new-account-form.module';
 import advanced from './advanced/advanced.module';
-import config from '../config/config';
+// import config from '../config/config';
 import dashboard from './dashboard/user-dahboard.module';
 import supportLevel from './support-level/support-level.module';
 import infos from './infos';
+import security from './security';
+import users from './users/users.module';
+import emails from './emails';
 
-import '@ovh-ux/ui-kit';
+import userPasswordTemplate from './password/user-password.html';
+import userIpRestrictionAddTemplate from './ip/restriction/add/user-ip-restriction-add.html';
+import addUserTemplate from './users/add/user-users-add.html';
+import deleteUserTemplate from './users/delete/user-users-delete.html';
+import disableUserTemplate from './users/disable/user-users-disable.html';
+import enableUserTemplate from './users/enable/user-users-enable.html';
+import updateUserTemplate from './users/update/user-users-update.html';
+
+import userAccountUsersAddCtrl from './users/add/user-users-add.controller';
+import userAccountUsersDeleteCtrl from './users/delete/user-users-delete.controller';
+import userAccountUsersDisableCtrl from './users/disable/user-users-disable.controller';
+import userAccountUsersEnableCtrl from './users/enable/user-users-enable.controller';
+import userAccountUsersUpdateCtrl from './users/update/user-users-update.controller';
+
+import userAccountDoubleAuthPasswordController from './password/user-password.controller';
 
 import routing from './user.routes';
+
+import useraccountUsersService from './users/users.service';
+import useraccountGroupsService from './users/group.service';
 
 const moduleName = 'UserAccount';
 
@@ -23,39 +49,62 @@ angular
     'ngOvhUtils',
     'ovhSignupApp',
     'oui',
-    // advanced,
+    'ui.bootstrap',
+    advanced,
     dashboard,
     infos,
-    // supportLevel,
+    security,
+    supportLevel,
+    users,
+    emails,
   ])
   .config(routing)
-  .constant('constants', {
-    aapiRootPath: config.aapiRootPath,
-    swsProxyRootPath: config.swsProxyRootPath,
-    target: config.target,
-  })
-  .constant('CountryConstants', {
-    support: config.constants.URLS.support,
-  })
-  .constant('AccountCreationURLS', config.constants.accountCreation)
-  .constant('sshkey-regex', [
-    {
-      name: 'RSA',
-      regex: /^(ssh-rsa)\s+(A{4}[0-9A-Za-z +/]+[=]{0,3})\s+(\S+)$/,
-    },
-    {
-      name: 'ECDSA',
-      regex: /^(ecdsa-sha2-nistp[0-9]+)\s+(A{4}[0-9A-Za-z +/]+[=]{0,3})\s+(\S+)$/,
-    },
-    {
-      name: 'ED25519',
-      regex: /^(ssh-ed25519)\s+(A{4}[0-9A-Za-z +/]+[=]{0,3})\s+(\S+)$/,
-    },
-  ])
+  .controller(
+    'UserAccountDoubleAuthPasswordCtrl',
+    userAccountDoubleAuthPasswordController,
+  )
+  .controller('UserAccountUsersAddCtrl', userAccountUsersAddCtrl)
+  .controller('UserAccountUsersDisableCtrl', userAccountUsersDisableCtrl)
+  .controller('UserAccountUsersDeleteCtrl', userAccountUsersDeleteCtrl)
+  .controller('UserAccountUsersEnableCtrl', userAccountUsersEnableCtrl)
+  .controller('UserAccountUsersUpdateCtrl', userAccountUsersUpdateCtrl)
+
+  .service('UseraccountUsersService', useraccountUsersService)
+  .service('UseraccountGroupsService', useraccountGroupsService)
   .run([
     '$rootScope',
+    '$templateCache',
     'constants',
-    ($rootScope, constants) => {
+    ($rootScope, $templateCache, constants) => {
+      $templateCache.put(
+        'account/user/password/user-password.html',
+        userPasswordTemplate,
+      );
+      $templateCache.put(
+        'account/user/ip/restriction/add/user-ip-restriction-add.html',
+        userIpRestrictionAddTemplate,
+      );
+      $templateCache.put(
+        'account/user/users/add/user-users-add.html',
+        addUserTemplate,
+      );
+      $templateCache.put(
+        'account/user/users/delete/user-users-delete.html',
+        deleteUserTemplate,
+      );
+      $templateCache.put(
+        'account/user/users/disable/user-users-disable.html',
+        disableUserTemplate,
+      );
+      $templateCache.put(
+        'account/user/users/enable/user-users-enable.html',
+        enableUserTemplate,
+      );
+      $templateCache.put(
+        'account/user/users/update/user-users-update.html',
+        updateUserTemplate,
+      );
+
       set($rootScope, 'target', constants.target);
       set($rootScope, 'worldPart', constants.target);
     },

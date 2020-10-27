@@ -1,17 +1,11 @@
-angular.module('UserAccount').controller('UserAccount.controllers.emails', [
-  '$q',
-  '$location',
-  '$scope',
-  '$translate',
-  'UserAccount.services.emails',
-  'Alerter',
-
-  function UserAccountEmailsController(
+export default class UserAccountEmailsController {
+  /* @ngInject */
+  constructor(
     $q,
     $location,
     $scope,
     $translate,
-    Emails,
+    UserAccountEmailsService,
     Alerter,
   ) {
     const self = this;
@@ -38,7 +32,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.emails', [
     $scope.getEmailIds = (refresh) => {
       self.mailsIdsInError = [];
       $scope.loaders.emails = true;
-      Emails.getEmails({ forceRefresh: refresh })
+      UserAccountEmailsService.getEmails({ forceRefresh: refresh })
         .then((table) => {
           // We receive the email ids from oldest to newest, so reverse them to have
           // the newest on top.
@@ -59,7 +53,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.emails', [
 
     $scope.transformItem = (emailId) => {
       $scope.loaders.emails = true;
-      return Emails.getEmail(emailId).catch((err) => {
+      return UserAccountEmailsService.getEmail(emailId).catch((err) => {
         Alerter.alertFromSWS(
           $translate.instant('user_account_table_email_error'),
           null,
@@ -79,5 +73,5 @@ angular.module('UserAccount').controller('UserAccount.controllers.emails', [
     };
 
     $scope.init();
-  },
-]);
+  }
+}

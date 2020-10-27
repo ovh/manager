@@ -1,23 +1,27 @@
 import includes from 'lodash/includes';
 
-angular.module('UserAccount').config(
-  /* @ngInject */ ($stateProvider, coreConfigProvider) => {
-    const name = 'account.user.emails';
-    const nameDetails = 'account.user.emailsDetails';
+import userEmailsTemplate from './user-emails.html';
+import userEmailsDetailsTemplate from './details/user-emails-details.html';
 
-    if (includes(['EU', 'CA'], coreConfigProvider.getRegion())) {
-      $stateProvider.state(name, {
-        url: '/emails',
-        templateUrl: 'account/user/emails/user-emails.html',
-        controller: 'UserAccount.controllers.emails',
-        translations: ['../'],
-      });
+import userEmailsController from './user-emails.controller';
+import userEmailsDetailsController from './details/user-emails-details.controller';
 
-      $stateProvider.state(nameDetails, {
-        url: '/emails/:emailId',
-        templateUrl: 'account/user/emails/details/user-emails-details.html',
-        controller: 'UserAccount.controllers.emails.details',
-      });
-    }
-  },
-);
+export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
+  const name = 'account.user.emails';
+  const nameDetails = 'account.user.emailsDetails';
+
+  if (includes(['EU', 'CA'], coreConfigProvider.getRegion())) {
+    $stateProvider.state(name, {
+      url: '/emails',
+      template: userEmailsTemplate,
+      controller: userEmailsController,
+      translations: ['../'],
+    });
+
+    $stateProvider.state(nameDetails, {
+      url: '/emails/:emailId',
+      template: userEmailsDetailsTemplate,
+      controller: userEmailsDetailsController,
+    });
+  }
+};

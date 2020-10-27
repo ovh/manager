@@ -18,7 +18,8 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     redirectTo: `${name}.dashboard`,
     resolve: {
-      // currentUser: /* @ngInject */ (UserAccountService) => UserAccountService.getUser(),
+      currentUser: /* @ngInject */ (UserAccountService) =>
+        UserAccountService.getUser(),
       schema: /* @ngInject */ (OvhApiMe) => OvhApiMe.v6().schema().$promise,
       supportLevel: /* @ngInject */ (OvhApiMe, schema) =>
         schema.models[API_MODEL_SUPPORT_LEVEL]

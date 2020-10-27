@@ -1,6 +1,7 @@
 export default class Validator {
   /* @ngInject */
-  connstructor() {
+
+  constructor() {
     const self = this;
 
     this.isValidIpv4 = function isValidIpv4(ip) {
