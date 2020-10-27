@@ -1,18 +1,19 @@
 import head from 'lodash/head';
 
+import { CONFIG } from '../../../../../components/telecom/telephony/alias/svaGenerator/sva-generator.constant';
+
 export default /* @ngInject */ function TelecomTelephonyAliasSvaGeneratorCtrl(
   $stateParams,
   OvhApiTelephony,
   TucToastError,
-  SvaGeneratorConfig,
 ) {
   const self = this;
 
   function init() {
     self.serviceName = $stateParams.serviceName;
-    self.fillTypeList = SvaGeneratorConfig.fillType;
+    self.fillTypeList = CONFIG.fillType;
     self.fillType = head(self.fillTypeList);
-    self.numberFormatList = SvaGeneratorConfig.numberFormat;
+    self.numberFormatList = CONFIG.numberFormat;
     self.numberFormat = head(self.numberFormatList);
     self.pricePerCall = 0;
     self.pricePerMinute = 0;
@@ -28,10 +29,9 @@ export default /* @ngInject */ function TelecomTelephonyAliasSvaGeneratorCtrl(
       .$promise.then((rate) => {
         self.rate = rate;
         self.pricePerCall =
-          rate.pricePerCallWithoutTax.value * SvaGeneratorConfig.taxCoefficient;
+          rate.pricePerCallWithoutTax.value * CONFIG.taxCoefficient;
         self.pricePerMinute =
-          rate.pricePerMinuteWithoutTax.value *
-          SvaGeneratorConfig.taxCoefficient;
+          rate.pricePerMinuteWithoutTax.value * CONFIG.taxCoefficient;
       })
       .catch((err) => {
         if (err && err.status === 404) {

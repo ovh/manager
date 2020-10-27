@@ -4,12 +4,9 @@ import set from 'lodash/set';
 
 import svaTemplate from './sva-generator.html';
 
-export default /* @ngInject */ (
-  $q,
-  $translate,
-  $timeout,
-  SvaGeneratorConfig,
-) => {
+import { CONFIG } from './sva-generator.constant';
+
+export default /* @ngInject */ ($q, $translate, $timeout) => {
   function normalizeNumber(number) {
     if (angular.isString(number)) {
       const n = number.replace(/\s/g, '');
@@ -201,7 +198,7 @@ export default /* @ngInject */ (
         if (scope.fill !== 'black') {
           numberCanvas = colorize(
             numberCanvas,
-            SvaGeneratorConfig.colors.rgb[getNumberType(scope.number)],
+            CONFIG.colors.rgb[getNumberType(scope.number)],
           );
         }
         drawCenteredAt(
@@ -287,7 +284,7 @@ export default /* @ngInject */ (
       }
 
       $translate.refresh().then(() => {
-        set(scope, 'scale', SvaGeneratorConfig.scale['14pt']);
+        set(scope, 'scale', CONFIG.scale['14pt']);
         scope.$watchGroup(
           ['number', 'numberFormat', 'fill', 'pricePerCall', 'pricePerMinute'],
           refresh,
