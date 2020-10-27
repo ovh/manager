@@ -1,10 +1,7 @@
-export default class TelephonyLineOrderRmaCtrl {
-  /* @ngInject */
-  constructor(TELEPHONY_RMA) {
-    this.TELEPHONY_RMA = TELEPHONY_RMA;
-  }
+import { RMA } from './rma.constants';
 
+export default class TelephonyLineOrderRmaCtrl {
   $onInit() {
-    this.pdfBaseUrl = this.TELEPHONY_RMA.pdfBaseUrl;
+    this.pdfBaseUrl = RMA.pdfBaseUrl;
   }
 }

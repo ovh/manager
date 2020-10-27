@@ -79,4 +79,8 @@ export const URLS = {
   },
 };
 
-export default { URLS };
+export const TELEPHONY_AVAILABILITY = {
+  order: ['FR'],
+};
+
+export default { URLS, TELEPHONY_AVAILABILITY };

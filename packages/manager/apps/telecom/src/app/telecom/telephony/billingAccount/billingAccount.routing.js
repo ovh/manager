@@ -1,20 +1,26 @@
+import mainTemplate from '../telecom-telephony-main.view.html';
+
+import template from './billing-account.html';
+import controller from './billing-account.controller';
+
+import dashboardTemplate from './dashboard/dashboard.html';
+import dashboardController from './dashboard/dashboard.controller';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('telecom.telephony.billingAccount', {
     url: '/:billingAccount',
     views: {
       'telephonyView@telecom.telephony': {
-        templateUrl: 'app/telecom/telephony/telecom-telephony-main.view.html',
+        template: mainTemplate,
       },
       'groupView@telecom.telephony.billingAccount': {
-        templateUrl:
-          'app/telecom/telephony/billingAccount/telecom-telephony-billing-account.html',
-        controller: 'TelecomTelephonyBillingAccountCtrl',
+        template,
+        controller,
         controllerAs: 'BillingAccountCtrl',
       },
       'groupInnerView@telecom.telephony.billingAccount': {
-        templateUrl:
-          'app/telecom/telephony/billingAccount/dashboard/telecom-telephony-billing-account-dashboard.html',
-        controller: 'TelecomTelephonyBillingAccountDashboardCtrl',
+        template: dashboardTemplate,
+        controller: dashboardController,
         controllerAs: 'DashboardCtrl',
       },
     },

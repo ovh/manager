@@ -51,7 +51,7 @@
                                             ></p>
                                             <button
                                                 class="oui-button oui-button_icon-right oui-button_secondary oui-button_block"
-                                                data-ui-sref="telecom.packs.pack.xdsl.access-diagnostic"
+                                                data-ui-sref="telecom.packs.pack.xdsl.line.access-diagnostic"
                                                 data-ng-disabled="access.xdsl.isFiber"
                                             >
                                                 <span
@@ -197,7 +197,7 @@
                                     >
                                         <a
                                             class="service-button"
-                                            data-ui-sref="telecom.packs.pack.xdsl.access-deconsolidation"
+                                            data-ui-sref="telecom.packs.pack.xdsl.line.access-deconsolidation"
                                             data-uib-tooltip-template="'pack-xdsl-access-tooltip-deconsolidation.html'"
                                             data-tooltip-enable="$ctrl.lineDetails.deconsolidation"
                                             data-tooltip-placement="right"
@@ -328,7 +328,7 @@
                                         </div>
                                         <a
                                             class="oui-button oui-button_icon-right oui-button_secondary oui-button_block"
-                                            data-ui-sref="telecom.packs.pack.xdsl.access-order"
+                                            data-ui-sref="telecom.packs.pack.xdsl.line.access-order"
                                         >
                                             <span
                                                 data-translate="xdsl_details_followUp_label_step_name_detail"
@@ -373,7 +373,7 @@
 
                                         <a
                                             class="oui-button oui-button_icon-right oui-button_secondary oui-button_block"
-                                            data-ui-sref="telecom.packs.pack.xdsl.access-notifications"
+                                            data-ui-sref="telecom.packs.pack.xdsl.line.access-notifications"
                                         >
                                             <span
                                                 data-translate="xdsl_details_notif_show_alerts"
@@ -391,7 +391,7 @@
                                 <div class="oui-tile__definition">
                                     <a
                                         class="btn btn-default btn-block"
-                                        data-ui-sref="telecom.packs.pack.xdsl.access-resiliation"
+                                        data-ui-sref="telecom.packs.pack.xdsl.line.access-resiliation"
                                         data-translate="xdsl_resiliate"
                                         data-translate-attr="{title: 'common_resiliation'}"
                                     ></a>
@@ -421,7 +421,7 @@
                                         ></p>
                                         <a
                                             class="oui-button oui-button_secondary oui-button_block"
-                                            data-ui-sref="telecom.packs.pack.xdsl.access-modem-exchange"
+                                            data-ui-sref="telecom.packs.pack.xdsl.line.access-modem-exchange"
                                             data-translate="xdsl_modem_exchange"
                                         >
                                         </a>
@@ -629,7 +629,7 @@
                                                     <a
                                                         data-ng-disabled="ip.deleting"
                                                         title="{{ip.ip}} / {{ip.range}} : {{::'xdsl_details_ips_manage' | translate }}"
-                                                        data-ui-sref="telecom.packs.pack.xdsl.access-ip({block:ip.getBlock()})"
+                                                        data-ui-sref="telecom.packs.pack.xdsl.line.access-ip({block:ip.getBlock()})"
                                                         class="btn btn-default"
                                                     >
                                                         <span
@@ -686,7 +686,7 @@
                                                 <div class="float-right">
                                                     <a
                                                         data-ng-disabled="ip.deleting"
-                                                        data-ui-sref="telecom.packs.pack.xdsl.access-ip({block:ip.getBlock()})"
+                                                        data-ui-sref="telecom.packs.pack.xdsl.line.access-ip({block:ip.getBlock()})"
                                                         title="{{ip.ip}} / {{ip.range}} : {{::'xdsl_details_ips_manage' | translate }}"
                                                         class="btn btn-default"
                                                     >

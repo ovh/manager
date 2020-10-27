@@ -1,3 +1,18 @@
+# [13.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.4.3...@ovh-ux/manager-telecom@13.5.0) (2020-10-27)
+
+
+### Bug Fixes
+
+* **pack.bundle:** remove invalid imports ([5a8740f](https://github.com/ovh/manager/commit/5a8740fd95c3975fd23596fcbb554431272f5420))
+
+
+### Features
+
+* **telephony:** add lazy loading ([d2b9815](https://github.com/ovh/manager/commit/d2b981500a1fc016e04d8b347a4f73bbdc2e461f))
+* **telephony:** add lazy loading on root state ([f9322d0](https://github.com/ovh/manager/commit/f9322d0f122378e84666cc6f6b978de7af00d050))
+
+
+
 ## [13.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.4.2...@ovh-ux/manager-telecom@13.4.3) (2020-10-26)
 
 

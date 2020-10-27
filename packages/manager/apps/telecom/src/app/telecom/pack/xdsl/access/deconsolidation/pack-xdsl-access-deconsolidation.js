@@ -1,8 +1,8 @@
 angular.module('managerApp').config(($stateProvider) => {
-  $stateProvider.state('telecom.packs.pack.xdsl.access-deconsolidation', {
+  $stateProvider.state('telecom.packs.pack.xdsl.line.access-deconsolidation', {
     url: '/deconsolidation',
     views: {
-      'accessView@telecom.packs.pack.xdsl': {
+      'accessView@telecom.packs.pack.xdsl.line': {
         controller: 'XdslDeconsolidationCtrl',
         controllerAs: 'DeconCtrl',
         templateUrl:

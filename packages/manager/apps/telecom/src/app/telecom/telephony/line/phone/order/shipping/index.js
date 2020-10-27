@@ -7,7 +7,7 @@ import '@ovh-ux/ui-kit';
 
 import shipping from './shipping.component';
 
-const moduleName = 'ovhTelecomLinePhoneOrderShipping';
+const moduleName = 'ovhManagerTelecomTelephonyLinePhoneOrderShipping';
 
 angular
   .module(moduleName, [
