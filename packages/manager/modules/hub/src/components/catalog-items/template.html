@@ -3,7 +3,7 @@
     <div class="row">
         <div
             class="col-md-6 col-xl-4 mb-3"
-            data-ng-repeat="product in products track by product.productName"
+            data-ng-repeat="product in products track by (product.category + '_' + product.productName)"
         >
             <ovh-manager-hub-tile
                 heading="{{:: product.name }}"
