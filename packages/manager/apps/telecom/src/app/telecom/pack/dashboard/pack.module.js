@@ -22,8 +22,11 @@ import packExchangeLite from '../slots/exchangeLite';
 import hubic from '../slots/hubic';
 import packInformation from '../slots/informations';
 import promotionCode from '../slots/promotionCode';
-
-import templates from './pack.templates';
+import task from '../slots/task';
+import voipBillingAccount from '../slots/voipBillingAccount';
+import voipEcoFax from '../slots/voipEcoFax';
+import voipLine from '../slots/voipLine';
+import xdslAccess from '../slots/xdslAccess';
 
 import controller from './pack.controller';
 import routing from './pack.routing';
@@ -54,10 +57,14 @@ angular
     hubic,
     packInformation,
     promotionCode,
+    task,
+    voipBillingAccount,
+    voipEcoFax,
+    voipLine,
+    xdslAccess,
   ])
   .controller('PackCtrl', controller)
   .config(routing)
-  .run(templates)
   .run(/* @ngTranslationsInject:json ../translations */);
 
 export default moduleName;

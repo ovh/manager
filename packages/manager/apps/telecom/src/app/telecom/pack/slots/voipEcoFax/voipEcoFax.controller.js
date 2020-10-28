@@ -56,6 +56,3 @@ export default class PackVoipEcoFaxCtrl {
       });
   }
 }
-angular
-  .module('managerApp')
-  .controller('PackVoipEcoFaxCtrl', PackVoipEcoFaxCtrl);

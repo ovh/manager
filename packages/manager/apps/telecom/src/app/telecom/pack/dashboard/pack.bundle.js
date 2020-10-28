@@ -1,8 +1,3 @@
-import '../slots/task/pack-task.controller';
-import '../slots/voipBillingAccount/pack-voipBillingAccount.controller';
-import '../slots/voipEcoFax/pack-voipEcoFax.controller';
-import '../slots/voipLine/pack-voipLine.controller';
-import '../slots/xdslAccess/pack-xdslAccess.controller';
 import '../xdsl/access/deconsolidation/contract/pack-xdsl-access-deconsolidation-contract.controller';
 import '../xdsl/access/ip/order/pack-xdsl-access-ip-order.controller';
 import '../xdsl/access/ipv6/pack-xdsl-access-ipv6.controller';
