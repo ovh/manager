@@ -13,6 +13,7 @@ import managedByOvh from './managedByOvh';
 import mtu from './mtu';
 import reboot from './reboot';
 import reset from './reset';
+import dhcp from './router/dhcp';
 
 import component from './pack-xdsl-modem.component';
 import { PACK_XDSL_MODEM } from './pack-xdsl-modem.constant';
@@ -37,6 +38,7 @@ angular
     mtu,
     reboot,
     reset,
+    dhcp,
   ])
   .component('packXdslModem', component)
   .config(routing)

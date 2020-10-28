@@ -1,6 +1,3 @@
-import '../xdsl/modem/router/dhcp/pack-xdsl-modem-dhcp-modal.component';
-import '../xdsl/modem/router/dhcp/pack-xdsl-modem-dhcp.controller';
-import '../xdsl/modem/router/dhcp/pack-xdsl-modem-dhcp.factory';
 import '../xdsl/modem/router/lan/pack-xdsl-modem-lan.controller';
 import '../xdsl/modem/router/lan/pack-xdsl-modem-lan.factory';
 import '../xdsl/modem/router/pack-xdsl-modem-router.controller';
