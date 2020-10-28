@@ -9,6 +9,9 @@ import XdslModemDhcpBdhcp from './router/dhcp/bdhcp';
 import bridgeMode from './bridgeMode';
 import connectedDevices from './connectedDevices';
 import firmware from './firmware';
+import managedByOvh from './managedByOvh';
+import mtu from './mtu';
+import reboot from './reboot';
 
 import component from './pack-xdsl-modem.component';
 import { PACK_XDSL_MODEM } from './pack-xdsl-modem.constant';
@@ -29,6 +32,9 @@ angular
     bridgeMode,
     connectedDevices,
     firmware,
+    managedByOvh,
+    mtu,
+    reboot,
   ])
   .component('packXdslModem', component)
   .config(routing)

@@ -1,5 +1,3 @@
-import '../xdsl/modem/mtu/pack-xdsl-modem-mtu.controller';
-import '../xdsl/modem/reboot/pack-xdsl-modem-reboot.controller';
 import '../xdsl/modem/reset/pack-xdsl-modem-reset.controller';
 import '../xdsl/modem/router/dhcp/pack-xdsl-modem-dhcp-modal.component';
 import '../xdsl/modem/router/dhcp/pack-xdsl-modem-dhcp.controller';
