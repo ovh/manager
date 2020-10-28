@@ -6,6 +6,7 @@ import 'angular-translate';
 import 'ovh-api-services';
 
 import routing from './templates-config.routing';
+import modalTemplate from './modal/pack-xdsl-modem-template-config-modal.html';
 
 const moduleName = 'XdslModemTemplateConfig';
 
@@ -18,6 +19,14 @@ angular
     'ui.router',
   ])
   .config(routing)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */)
+  .run(
+    /* @ngInject */ ($templateCache) => {
+      $templateCache.put(
+        'app/telecom/pack/xdsl/modem/templates/config/modal/pack-xdsl-modem-template-config-modal.html',
+        modalTemplate,
+      );
+    },
+  );
 
 export default moduleName;

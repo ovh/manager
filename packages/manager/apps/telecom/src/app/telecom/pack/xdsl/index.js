@@ -10,6 +10,7 @@ import missingRio from './missingRio';
 
 import component from './pack-xdsl.component';
 import routing from './pack-xdsl.routing';
+import service from './xdsl-task-poller.service';
 
 const moduleName = 'ovhManagerTelecomPackXdsl';
 
@@ -24,6 +25,7 @@ angular
     missingRio,
   ])
   .component('packXdsl', component)
+  .service('XdslTaskPoller', service)
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
 
