@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-account-sidebar",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "private": true,
   "description": "A sidebar component shared across all control panel.",
   "repository": {
@@ -32,8 +32,8 @@
     "@ovh-ux/manager-core": "^10.0.0 || ^11.0.0",
     "@ovh-ux/ng-at-internet": "^5.3.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^3.0.0",
-    "@ovh-ux/ng-ovh-order-tracking": "^1.0.2",
-    "@ovh-ux/ng-ovh-payment-method": "^7.0.5",
+    "@ovh-ux/ng-ovh-order-tracking": "^1.0.3",
+    "@ovh-ux/ng-ovh-payment-method": "^7.0.6",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.1",
     "@ovh-ux/ng-translate-async-loader": "^2.1.0",
     "@ovh-ux/ui-kit": "^4.4.1",

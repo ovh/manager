@@ -1,3 +1,19 @@
+# [4.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.2.6...@ovh-ux/manager-public-cloud@4.3.0) (2020-10-28)
+
+
+### Bug Fixes
+
+* **deps:** upgrade webpack to v4.44.2 ([fc868d2](https://github.com/ovh/manager/commit/fc868d2670b0de220837c8917d90fa3020e6d4ca))
+* **preloader:** attach preloader with user language ([6eb9cc1](https://github.com/ovh/manager/commit/6eb9cc1cc362f8cc2426965d8563de1af9dee0c8))
+* add regenerator-runtime ([982d03a](https://github.com/ovh/manager/commit/982d03a1054ecc3c6fb886f57c8b8f9afe0e7001))
+
+
+### Features
+
+* add core-js to polyfill ([1411e1c](https://github.com/ovh/manager/commit/1411e1ca873d1ffd715c43fcadfe96f26e5be874))
+
+
+
 ## [4.2.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.2.5...@ovh-ux/manager-public-cloud@4.2.6) (2020-10-26)
 
 

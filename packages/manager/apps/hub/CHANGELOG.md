@@ -1,3 +1,19 @@
+# [2.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@2.2.4...@ovh-ux/manager-hub-app@2.3.0) (2020-10-28)
+
+
+### Bug Fixes
+
+* **peer-deps:** upgrade @ovh-ux/ui-kit to v4.4.1 ([8254623](https://github.com/ovh/manager/commit/82546237336e185ae7d973a1bb2aabddbb50112e))
+* **preloader:** attach preloader with user language ([6eb9cc1](https://github.com/ovh/manager/commit/6eb9cc1cc362f8cc2426965d8563de1af9dee0c8))
+* add regenerator-runtime ([982d03a](https://github.com/ovh/manager/commit/982d03a1054ecc3c6fb886f57c8b8f9afe0e7001))
+
+
+### Features
+
+* add core-js to polyfill ([1411e1c](https://github.com/ovh/manager/commit/1411e1ca873d1ffd715c43fcadfe96f26e5be874))
+
+
+
 ## [2.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@2.2.3...@ovh-ux/manager-hub-app@2.2.4) (2020-10-26)
 
 

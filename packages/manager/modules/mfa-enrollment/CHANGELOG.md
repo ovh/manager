@@ -1,3 +1,12 @@
+## [2.0.3](https://github.com/ovh/manager/compare/@ovh-ux/mfa-enrollment@2.0.2...@ovh-ux/mfa-enrollment@2.0.3) (2020-10-28)
+
+
+### Bug Fixes
+
+* **peer-deps:** upgrade @ovh-ux/ui-kit to v4.4.1 ([8254623](https://github.com/ovh/manager/commit/82546237336e185ae7d973a1bb2aabddbb50112e))
+
+
+
 ## [2.0.2](https://github.com/ovh/manager/compare/@ovh-ux/mfa-enrollment@2.0.1...@ovh-ux/mfa-enrollment@2.0.2) (2020-09-16)
 
 

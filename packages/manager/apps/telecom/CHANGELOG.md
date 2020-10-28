@@ -1,3 +1,26 @@
+# [13.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.5.3...@ovh-ux/manager-telecom@13.6.0) (2020-10-28)
+
+
+### Bug Fixes
+
+* **deps:** upgrade webpack to v4.44.2 ([fc868d2](https://github.com/ovh/manager/commit/fc868d2670b0de220837c8917d90fa3020e6d4ca))
+* **i18n:** add missing translations [CDS 627] ([8abdcc9](https://github.com/ovh/manager/commit/8abdcc9ebbb092968f07f78e5ff688796eb651f3))
+* **preloader:** attach preloader with user language ([6eb9cc1](https://github.com/ovh/manager/commit/6eb9cc1cc362f8cc2426965d8563de1af9dee0c8))
+* **sidebar:** update overthebox url ([#3936](https://github.com/ovh/manager/issues/3936)) ([6ab266b](https://github.com/ovh/manager/commit/6ab266b293d7bfcec96d1b456839b1ec4303b8fe))
+* **telephony.group.consumption.pie-chart:** improve responsiveness ([#3755](https://github.com/ovh/manager/issues/3755)) ([2eff159](https://github.com/ovh/manager/commit/2eff15905dcfa640603776a8453d4bbb0706b269))
+* **telephony.line.management.terminate:** add missing terminate info ([#3800](https://github.com/ovh/manager/issues/3800)) ([ad2385a](https://github.com/ovh/manager/commit/ad2385a2a3f8bd560ec63c1df0ddbf7f79260d38))
+* **xdsl.move:** change label for move out date ([#3892](https://github.com/ovh/manager/issues/3892)) ([a30b855](https://github.com/ovh/manager/commit/a30b855371b6520cb558c522e9c849f16581892b))
+* add regenerator-runtime ([982d03a](https://github.com/ovh/manager/commit/982d03a1054ecc3c6fb886f57c8b8f9afe0e7001))
+
+
+### Features
+
+* **xdsl.meetings:** add meetings view for xDSL new line creation ([#3612](https://github.com/ovh/manager/issues/3612)) ([644ffd3](https://github.com/ovh/manager/commit/644ffd34eb327d78e9311edd6b48d4b2bc3ee54a))
+* **xdsl.modem:** add acs backend config ([#3646](https://github.com/ovh/manager/issues/3646)) ([ef4974c](https://github.com/ovh/manager/commit/ef4974cd00f8a1b77b053c4793199e55bd994785))
+* add core-js to polyfill ([1411e1c](https://github.com/ovh/manager/commit/1411e1ca873d1ffd715c43fcadfe96f26e5be874))
+
+
+
 ## [13.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.5.2...@ovh-ux/manager-telecom@13.5.3) (2020-10-28)
 
 

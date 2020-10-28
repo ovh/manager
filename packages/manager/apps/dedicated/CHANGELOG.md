@@ -1,3 +1,26 @@
+# [14.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.3.0...@ovh-ux/manager-dedicated@14.4.0) (2020-10-28)
+
+
+### Bug Fixes
+
+* **dedicated:** hpc enhance ([e1c51b3](https://github.com/ovh/manager/commit/e1c51b32b2e354b4f8cd7677179392467180cb8a)), closes [#MANAGER-5466](https://github.com/ovh/manager/issues/MANAGER-5466)
+* **deps:** upgrade webpack to v4.44.2 ([fc868d2](https://github.com/ovh/manager/commit/fc868d2670b0de220837c8917d90fa3020e6d4ca))
+* **i18n:** add missing translations [CDS 617] ([08d8856](https://github.com/ovh/manager/commit/08d8856e4c2337e6f0b3c585c2276d9539388028))
+* **i18n:** add missing translations [CDS 618] ([db3a67b](https://github.com/ovh/manager/commit/db3a67b2c5889ba947e4436cd2069f286fb18092))
+* **ip:** fix virtual mac selector ([#3907](https://github.com/ovh/manager/issues/3907)) ([8f70837](https://github.com/ovh/manager/commit/8f70837d0477f86f9d9c18ba2e86c6f4d1e23bd6))
+* **preloader:** attach preloader with user language ([6eb9cc1](https://github.com/ovh/manager/commit/6eb9cc1cc362f8cc2426965d8563de1af9dee0c8))
+* add regenerator-runtime ([982d03a](https://github.com/ovh/manager/commit/982d03a1054ecc3c6fb886f57c8b8f9afe0e7001))
+* replace flatten usage ([#3839](https://github.com/ovh/manager/issues/3839)) ([aef1003](https://github.com/ovh/manager/commit/aef1003b64502147768a2983019d906197798d27))
+
+
+### Features
+
+* add dbaas log to dedicated ([df46d83](https://github.com/ovh/manager/commit/df46d8323ec9a494f9b1be544a830c2f23de4f12))
+* **dedicated:** hpc enhance ([7b784f8](https://github.com/ovh/manager/commit/7b784f86f251e0a8c64df8be2197d2416c893efb)), closes [#MANAGER-5466](https://github.com/ovh/manager/issues/MANAGER-5466)
+* add core-js to polyfill ([1411e1c](https://github.com/ovh/manager/commit/1411e1ca873d1ffd715c43fcadfe96f26e5be874))
+
+
+
 # [14.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.2.4...@ovh-ux/manager-dedicated@14.3.0) (2020-10-26)
 
 

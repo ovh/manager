@@ -1,3 +1,17 @@
+# [7.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms-app@7.2.9...@ovh-ux/manager-sms-app@7.3.0) (2020-10-28)
+
+
+### Bug Fixes
+
+* add regenerator-runtime ([982d03a](https://github.com/ovh/manager/commit/982d03a1054ecc3c6fb886f57c8b8f9afe0e7001))
+
+
+### Features
+
+* add core-js to polyfill ([1411e1c](https://github.com/ovh/manager/commit/1411e1ca873d1ffd715c43fcadfe96f26e5be874))
+
+
+
 ## [7.2.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms-app@7.2.8...@ovh-ux/manager-sms-app@7.2.9) (2020-10-20)
 
 

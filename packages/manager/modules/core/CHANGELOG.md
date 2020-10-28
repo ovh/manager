@@ -1,3 +1,15 @@
+## [11.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@11.0.2...@ovh-ux/manager-core@11.0.3) (2020-10-28)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 619] ([f6c1b1d](https://github.com/ovh/manager/commit/f6c1b1d5b9e3f910e9f481a8082b2a403efcf8aa))
+* **i18n:** add missing translations [CDS 629] ([f228d28](https://github.com/ovh/manager/commit/f228d280763c30b89c357196bfb283807b5931d7))
+* **i18n:** add missing translations [CDS 634] ([a35adc9](https://github.com/ovh/manager/commit/a35adc9948ee3f648aaf1b82c4d84c5f39d97e6a))
+* **peer-deps:** upgrade @ovh-ux/ui-kit to v4.4.1 ([8254623](https://github.com/ovh/manager/commit/82546237336e185ae7d973a1bb2aabddbb50112e))
+
+
+
 ## [11.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@11.0.1...@ovh-ux/manager-core@11.0.2) (2020-10-13)
 
 

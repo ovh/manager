@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-overthebox",
-  "version": "6.1.2",
+  "version": "6.1.3",
   "private": true,
   "description": "OverTheBox product.",
   "repository": {
@@ -21,7 +21,7 @@
     "@ovh-ux/manager-core": "^10.0.0 || ^11.0.0",
     "@ovh-ux/manager-ng-layout-helpers": "^1.0.0",
     "@ovh-ux/manager-telecom-styles": "^4.0.0",
-    "@ovh-ux/ng-ovh-contracts": "^4.0.0",
+    "@ovh-ux/ng-ovh-contracts": "^4.0.1",
     "@ovh-ux/ng-ovh-telecom-universe-components": "^6.0.0 || ^7.0.0",
     "@ovh-ux/ng-ovh-ui-confirm-modal": "^2.0.0",
     "@ovh-ux/ng-tail-logs": "^2.0.3",

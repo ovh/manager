@@ -1,3 +1,35 @@
+# [3.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-config@3.5.0...@ovh-ux/manager-webpack-config@3.6.0) (2020-10-28)
+
+
+### Bug Fixes
+
+* **deps:** upgrade css-loader to v4.3.0 ([bc0023b](https://github.com/ovh/manager/commit/bc0023b49b676a53e66d171d174111ceb3a812d6))
+* **deps:** upgrade file-loader to v4.0.0 ([6ec8294](https://github.com/ovh/manager/commit/6ec829407baf585ab61a1311308daf90518b26aa))
+* **deps:** upgrade html-webpack-plugin to v4.5.0 ([b84f0aa](https://github.com/ovh/manager/commit/b84f0aab0b12e92c15090ffc322a164fdde776e5))
+* **deps:** upgrade less-loader to v7.0.2 ([c14a2ff](https://github.com/ovh/manager/commit/c14a2ffcd84da177b66bfea34a6c4ebd7389274e))
+* **deps:** upgrade loader-utils to v2.0.0 ([ebcfcf2](https://github.com/ovh/manager/commit/ebcfcf290378e2f8a3a8ec95ecc21e7ee4aba84a))
+* **deps:** upgrade mini-css-extract-plugin to v0.11.2 ([3fc3735](https://github.com/ovh/manager/commit/3fc37357341b0aa94c1302766655a9056c7a47a0))
+* **deps:** upgrade raw-loader to v4.0.2 ([838f39c](https://github.com/ovh/manager/commit/838f39c37db5b10270e44fba7738dafe8ac69fcb))
+* **deps:** upgrade style-loader to v1.2.1 ([027bf43](https://github.com/ovh/manager/commit/027bf43c7859c34b5146ffaa0e09d112c49dfe35))
+* **deps:** upgrade terser-webpack-plugin to v4.2.2 ([982f20a](https://github.com/ovh/manager/commit/982f20af7a6c8d3bbfb99440b748eaab101d8040))
+* **deps:** upgrade url-loader to v4.1.1 ([fd35096](https://github.com/ovh/manager/commit/fd35096b20f2ee3d50075ae0460e1ee6cd7161fe))
+* **deps:** upgrade webpack to v4.44.2 ([fc868d2](https://github.com/ovh/manager/commit/fc868d2670b0de220837c8917d90fa3020e6d4ca))
+* **deps:** upgrade webpack-bundle-analyzer to v3.9.0 ([ecba939](https://github.com/ovh/manager/commit/ecba9396990e364a6a139c07bfd5a0fabd7940cf))
+* **deps:** upgrade webpack-cli to v3.3.12 ([a10ffb4](https://github.com/ovh/manager/commit/a10ffb49c603ff21bbc8c0ec87a7b02293ccd812))
+* **deps:** upgrade webpackbar to v4.0.0 ([9deaebc](https://github.com/ovh/manager/commit/9deaebcd81ec467c0c2491646f1080b82998fbc9))
+
+
+### Features
+
+* add core-js to polyfill ([1411e1c](https://github.com/ovh/manager/commit/1411e1ca873d1ffd715c43fcadfe96f26e5be874))
+
+
+### Reverts
+
+* Revert "feat: add babel transform runtime plugin" ([72ffe63](https://github.com/ovh/manager/commit/72ffe63d8f87898e2eb07b8b0df6014add3c1e02))
+
+
+
 # [3.5.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-webpack-config@3.4.0...@ovh-ux/manager-webpack-config@3.5.0) (2020-09-01)
 
 
