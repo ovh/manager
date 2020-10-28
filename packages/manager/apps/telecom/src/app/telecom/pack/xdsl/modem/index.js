@@ -17,6 +17,7 @@ import dhcp from './router/dhcp';
 import ports from './router/ports';
 import router from './router';
 import lan from './router/lan';
+import service from './service';
 
 import component from './pack-xdsl-modem.component';
 import { PACK_XDSL_MODEM } from './pack-xdsl-modem.constant';
@@ -45,6 +46,7 @@ angular
     ports,
     router,
     lan,
+    service,
   ])
   .component('packXdslModem', component)
   .config(routing)
