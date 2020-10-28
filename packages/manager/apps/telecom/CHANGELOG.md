@@ -1,3 +1,12 @@
+## [13.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.5.1...@ovh-ux/manager-telecom@13.5.2) (2020-10-28)
+
+
+### Bug Fixes
+
+* **pack.xdsl.line:** avoid to duplicate serviceName in url ([#3938](https://github.com/ovh/manager/issues/3938)) ([03a5f30](https://github.com/ovh/manager/commit/03a5f303fa2701ed3246377e92df14ddc9dc58af))
+
+
+
 ## [13.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.5.0...@ovh-ux/manager-telecom@13.5.1) (2020-10-27)
 
 
