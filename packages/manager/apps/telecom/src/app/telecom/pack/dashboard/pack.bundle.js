@@ -1,5 +1,3 @@
-import '../xdsl/modem/firmware/pack-xdsl-modem-firmware.controller';
-import '../xdsl/modem/managedByOvh/pack-xdsl-modem-managedByOvh.controller';
 import '../xdsl/modem/mtu/pack-xdsl-modem-mtu.controller';
 import '../xdsl/modem/reboot/pack-xdsl-modem-reboot.controller';
 import '../xdsl/modem/reset/pack-xdsl-modem-reset.controller';

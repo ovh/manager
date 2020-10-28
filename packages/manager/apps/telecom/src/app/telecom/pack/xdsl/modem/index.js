@@ -8,6 +8,7 @@ import wifiConfig from './wifi/config';
 import XdslModemDhcpBdhcp from './router/dhcp/bdhcp';
 import bridgeMode from './bridgeMode';
 import connectedDevices from './connectedDevices';
+import firmware from './firmware';
 
 import component from './pack-xdsl-modem.component';
 import { PACK_XDSL_MODEM } from './pack-xdsl-modem.constant';
@@ -27,6 +28,7 @@ angular
     XdslModemDhcpBdhcp,
     bridgeMode,
     connectedDevices,
+    firmware,
   ])
   .component('packXdslModem', component)
   .config(routing)
