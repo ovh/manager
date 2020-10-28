@@ -21,7 +21,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       'featureView@telecom.telephony.billingAccount.alias.configuration': {
         templateProvider: (alias) => {
-          if (alias.featureType === 'ddi') {
+          if (['ddi', 'redirect'].includes(alias.featureType)) {
             return configurationFeatureRedirectTemplate;
           }
           if (alias.featureType === 'contactCenterSolution') {
@@ -33,7 +33,7 @@ export default /* @ngInject */ ($stateProvider) => {
           return '';
         },
         controllerProvider: (alias) => {
-          if (alias.featureType === 'ddi') {
+          if (['ddi', 'redirect'].includes(alias.featureType)) {
             return configurationFeatureRedirectController;
           }
           if (alias.featureType === 'contactCenterSolution') {
