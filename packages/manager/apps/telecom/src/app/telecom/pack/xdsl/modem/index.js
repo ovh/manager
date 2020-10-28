@@ -14,6 +14,8 @@ import mtu from './mtu';
 import reboot from './reboot';
 import reset from './reset';
 import dhcp from './router/dhcp';
+import ports from './router/ports';
+import router from './router';
 import lan from './router/lan';
 
 import component from './pack-xdsl-modem.component';
@@ -40,6 +42,8 @@ angular
     reboot,
     reset,
     dhcp,
+    ports,
+    router,
     lan,
   ])
   .component('packXdslModem', component)
