@@ -1,3 +1,12 @@
+## [13.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.5.2...@ovh-ux/manager-telecom@13.5.3) (2020-10-28)
+
+
+### Bug Fixes
+
+* **pack.migration:** restore migration page ([#3941](https://github.com/ovh/manager/issues/3941)) ([6042621](https://github.com/ovh/manager/commit/6042621e80b4b51e7a5f72df08470a4282708711))
+
+
+
 ## [13.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.5.1...@ovh-ux/manager-telecom@13.5.2) (2020-10-28)
 
 
