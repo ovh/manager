@@ -4,13 +4,11 @@ import '@uirouter/angularjs';
 import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 import 'ovh-api-services';
-import contract from './contract';
 
-import './deconsolidation.less';
+import controller from './order.controller';
+import template from './order.modal.html';
 
-import routing from './deconsolidation.routing';
-
-const moduleName = 'XdslDeconsolidation';
+const moduleName = 'XdslAccessIpOrder';
 
 angular
   .module(moduleName, [
@@ -19,9 +17,16 @@ angular
     'pascalprecht.translate',
     'ovh-api-services',
     'ui.router',
-    contract,
   ])
-  .config(routing)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .controller('XdslAccessIpOrderCtrl', controller)
+  .run(/* @ngTranslationsInject:json ./translations */)
+  .run(
+    /* @ngInject */ ($templateCache) => {
+      $templateCache.put(
+        'app/telecom/pack/xdsl/access/ip/order/pack-xdsl-access-ip-order.modal.html',
+        template,
+      );
+    },
+  );
 
 export default moduleName;

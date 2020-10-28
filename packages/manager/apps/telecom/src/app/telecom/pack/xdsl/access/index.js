@@ -13,6 +13,9 @@ import notifications from './notifications';
 import comfortExchange from './comfortExchange/comfort-exchange.module';
 import ipConfiguration from './ip';
 import deconsolidation from './deconsolidation';
+import ipOder from './ip/order';
+import ipv6 from './ipv6';
+import portReset from './portReset';
 
 import XdslStatistics from './statistics';
 
@@ -32,6 +35,9 @@ angular
     ipConfiguration,
     deconsolidation,
     XdslStatistics,
+    ipOder,
+    ipv6,
+    portReset,
   ])
   .component('packXdslAccess', access);
 

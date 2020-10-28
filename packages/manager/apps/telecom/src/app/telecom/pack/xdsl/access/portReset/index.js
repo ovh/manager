@@ -4,13 +4,11 @@ import '@uirouter/angularjs';
 import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 import 'ovh-api-services';
-import contract from './contract';
 
-import './deconsolidation.less';
+import controller from './port-reset.controller';
+import template from './port-reset.html';
 
-import routing from './deconsolidation.routing';
-
-const moduleName = 'XdslDeconsolidation';
+const moduleName = 'XdslAccessPortReset';
 
 angular
   .module(moduleName, [
@@ -19,9 +17,16 @@ angular
     'pascalprecht.translate',
     'ovh-api-services',
     'ui.router',
-    contract,
   ])
-  .config(routing)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .controller('XdslAccessPortResetCtrl', controller)
+  .run(/* @ngTranslationsInject:json ./translations */)
+  .run(
+    /* @ngInject */ ($templateCache) => {
+      $templateCache.put(
+        'app/telecom/pack/xdsl/access/portReset/pack-xdsl-access-port-reset.html',
+        template,
+      );
+    },
+  );
 
 export default moduleName;
