@@ -75,7 +75,7 @@ export const URLS = {
     FR: 'https://www.ovhtelecom.fr/fax/',
   },
   overTheBox: {
-    FR: '#/overTheBox/order',
+    FR: 'https://www.ovhtelecom.fr/overthebox/tarifs.xml',
   },
 };
 
