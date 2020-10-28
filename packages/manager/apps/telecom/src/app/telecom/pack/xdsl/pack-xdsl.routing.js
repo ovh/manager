@@ -26,7 +26,7 @@ export default /* @ngInject */ ($stateProvider) => {
   });
 
   $stateProvider.state('telecom.packs.pack.xdsl.line', {
-    url: '/xdsl/:serviceName/lines/:number',
+    url: '/lines/:number',
     views: {
       '@telecom.packs': 'packXdsl',
       'xdslView@telecom.packs.pack.xdsl.line': 'packXdslAccess',
