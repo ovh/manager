@@ -1,4 +1,3 @@
-import '../xdsl/modem/bridgeMode/pack-xdsl-modem-bridgeMode.controller';
 import '../xdsl/modem/connectedDevices/pack-xdsl-modem-connectedDevices.controller';
 import '../xdsl/modem/firmware/pack-xdsl-modem-firmware.controller';
 import '../xdsl/modem/managedByOvh/pack-xdsl-modem-managedByOvh.controller';
