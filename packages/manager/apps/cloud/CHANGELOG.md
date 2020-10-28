@@ -1,3 +1,29 @@
+# [11.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@10.2.8...@ovh-ux/manager-cloud@11.0.0) (2020-10-28)
+
+
+### Bug Fixes
+
+* add missing dependencies ([210faae](https://github.com/ovh/manager/commit/210faaec7cee592f09b94818265376cf58017869))
+* remove dbaas logs import ([ba110d4](https://github.com/ovh/manager/commit/ba110d4fdf560478873a858537fa388fad2b6b85))
+* **deps:** upgrade webpack to v4.44.2 ([fc868d2](https://github.com/ovh/manager/commit/fc868d2670b0de220837c8917d90fa3020e6d4ca))
+* **preloader:** attach preloader with user language ([6eb9cc1](https://github.com/ovh/manager/commit/6eb9cc1cc362f8cc2426965d8563de1af9dee0c8))
+* add regenerator-runtime ([982d03a](https://github.com/ovh/manager/commit/982d03a1054ecc3c6fb886f57c8b8f9afe0e7001))
+
+
+### Features
+
+* scaffold dbaas logs app and module ([ccb53d0](https://github.com/ovh/manager/commit/ccb53d0189800937cfd1717e026505a8cbbd8158))
+* **cui.dual-list:** move to cuc ([676c298](https://github.com/ovh/manager/commit/676c29871a136b086600329b744a5f363bd5ce40))
+* **moment-format:** add filter to cuc ([8427623](https://github.com/ovh/manager/commit/842762371f47adb5a23130c2a04f3588e4ed0774))
+* add core-js to polyfill ([1411e1c](https://github.com/ovh/manager/commit/1411e1ca873d1ffd715c43fcadfe96f26e5be874))
+
+
+### BREAKING CHANGES
+
+* Init dbaas logs app and module
+
+
+
 ## [10.2.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@10.2.7...@ovh-ux/manager-cloud@10.2.8) (2020-10-26)
 
 

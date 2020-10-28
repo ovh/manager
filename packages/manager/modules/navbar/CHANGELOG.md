@@ -1,3 +1,13 @@
+## [5.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@5.2.0...@ovh-ux/manager-navbar@5.2.1) (2020-10-28)
+
+
+### Bug Fixes
+
+* **language.menu:** temporarily force display of cs_CZ language ([9069191](https://github.com/ovh/manager/commit/9069191b590b9d0c4737517b03cdc7e95601a82d))
+* **peer-deps:** upgrade @ovh-ux/ui-kit to v4.4.1 ([8254623](https://github.com/ovh/manager/commit/82546237336e185ae7d973a1bb2aabddbb50112e))
+
+
+
 # [5.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@5.1.2...@ovh-ux/manager-navbar@5.2.0) (2020-10-26)
 
 

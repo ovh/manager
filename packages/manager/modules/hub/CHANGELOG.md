@@ -1,3 +1,13 @@
+## [2.1.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@2.1.4...@ovh-ux/manager-hub@2.1.5) (2020-10-28)
+
+
+### Bug Fixes
+
+* **components.catalog-items:** avoid duplicate track by keys ([#3946](https://github.com/ovh/manager/issues/3946)) ([2fcd12b](https://github.com/ovh/manager/commit/2fcd12ba3044316f924c531bc228a6e2c1830919))
+* **peer-deps:** upgrade @ovh-ux/ui-kit to v4.4.1 ([8254623](https://github.com/ovh/manager/commit/82546237336e185ae7d973a1bb2aabddbb50112e))
+
+
+
 ## [2.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@2.1.3...@ovh-ux/manager-hub@2.1.4) (2020-10-20)
 
 

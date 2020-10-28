@@ -1,3 +1,17 @@
+## [2.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.2.2...@ovh-ux/manager-vps@2.2.3) (2020-10-28)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 619] ([f6c1b1d](https://github.com/ovh/manager/commit/f6c1b1d5b9e3f910e9f481a8082b2a403efcf8aa))
+* **i18n:** add missing translations [CDS 623] ([848d332](https://github.com/ovh/manager/commit/848d332869776013d0c71e74e5cb57a9b6a0b0b4))
+* **i18n:** add missing translations [CDS 627] ([8abdcc9](https://github.com/ovh/manager/commit/8abdcc9ebbb092968f07f78e5ff688796eb651f3))
+* **i18n:** add missing translations [CDS 629] ([f228d28](https://github.com/ovh/manager/commit/f228d280763c30b89c357196bfb283807b5931d7))
+* **monitoring-sla:** allow to activate monitoring ([#3896](https://github.com/ovh/manager/issues/3896)) ([5972037](https://github.com/ovh/manager/commit/5972037618ab06539376d017b296d479632e949e))
+* **peer-deps:** upgrade @ovh-ux/ui-kit to v4.4.1 ([8254623](https://github.com/ovh/manager/commit/82546237336e185ae7d973a1bb2aabddbb50112e))
+
+
+
 ## [2.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.2.1...@ovh-ux/manager-vps@2.2.2) (2020-10-20)
 
 

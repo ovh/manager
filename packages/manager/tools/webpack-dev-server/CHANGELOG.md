@@ -1,3 +1,13 @@
+## [2.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-dev-server@2.7.0...@ovh-ux/manager-webpack-dev-server@2.7.1) (2020-10-28)
+
+
+### Bug Fixes
+
+* **deps:** upgrade webpack-dev-server to v3.11.0 ([578d5d4](https://github.com/ovh/manager/commit/578d5d4d765a8a2a98ff22670afb545fb5a20623))
+* **deps:** upgrade yn to v4.0.0 ([3e022dc](https://github.com/ovh/manager/commit/3e022dc26fe5daf0161108d15365c3da31c8faca))
+
+
+
 # [2.7.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-webpack-dev-server@2.6.0...@ovh-ux/manager-webpack-dev-server@2.7.0) (2020-07-08)
 
 

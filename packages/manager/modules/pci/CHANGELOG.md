@@ -1,3 +1,14 @@
+## [5.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.2.3...@ovh-ux/manager-pci@5.2.4) (2020-10-28)
+
+
+### Bug Fixes
+
+* **instances:** remove unterminated quote ([#3911](https://github.com/ovh/manager/issues/3911)) ([49244c0](https://github.com/ovh/manager/commit/49244c039a2b1e6827cd7985424c619415300394)), closes [/github.com/ovh/manager/pull/3547/files#diff-6a962e959a6475e7f1b40f2d0fdc4005276aaba782d5050d0de2a3722cfca054R142](https://github.com//github.com/ovh/manager/pull/3547/files/issues/diff-6a962e959a6475e7f1b40f2d0fdc4005276aaba782d5050d0de2a3722cfca054R142)
+* **peer-deps:** upgrade @ovh-ux/ui-kit to v4.4.1 ([8254623](https://github.com/ovh/manager/commit/82546237336e185ae7d973a1bb2aabddbb50112e))
+* **project.instances:** disable deleting instance ([#3547](https://github.com/ovh/manager/issues/3547)) ([82c4ff7](https://github.com/ovh/manager/commit/82c4ff7588def3e470b18303f062d440670d090c))
+
+
+
 ## [5.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.2.2...@ovh-ux/manager-pci@5.2.3) (2020-10-21)
 
 

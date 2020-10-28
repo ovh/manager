@@ -1,3 +1,18 @@
+# [3.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.2.2...@ovh-ux/manager-server-sidebar@3.3.0) (2020-10-28)
+
+
+### Bug Fixes
+
+* **order.constants:** update hpc urls ([#3925](https://github.com/ovh/manager/issues/3925)) ([da068ba](https://github.com/ovh/manager/commit/da068baebc338e047b62bf3284c46e6cbc5fbb12))
+* **peer-deps:** upgrade @ovh-ux/ui-kit to v4.4.1 ([8254623](https://github.com/ovh/manager/commit/82546237336e185ae7d973a1bb2aabddbb50112e))
+
+
+### Features
+
+* add dbaas log to dedicated ([df46d83](https://github.com/ovh/manager/commit/df46d8323ec9a494f9b1be544a830c2f23de4f12))
+
+
+
 ## [3.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.2.1...@ovh-ux/manager-server-sidebar@3.2.2) (2020-10-21)
 
 

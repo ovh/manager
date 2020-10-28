@@ -1,3 +1,13 @@
+## [7.0.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.0.2...@ovh-ux/ng-ovh-telecom-universe-components@7.0.3) (2020-10-28)
+
+
+### Bug Fixes
+
+* **peer-deps:** upgrade @ovh-ux/ui-kit to v4.4.1 ([8254623](https://github.com/ovh/manager/commit/82546237336e185ae7d973a1bb2aabddbb50112e))
+* **tuc:** remove hit if no tracking on action ([7a5719d](https://github.com/ovh/manager/commit/7a5719de9ef481cf7e086191baf5206014c283bc))
+
+
+
 ## [7.0.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.0.1...@ovh-ux/ng-ovh-telecom-universe-components@7.0.2) (2020-10-23)
 
 

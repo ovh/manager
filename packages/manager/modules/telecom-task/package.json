@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-telecom-task",
-  "version": "6.0.4",
+  "version": "6.0.5",
   "private": true,
   "description": "Telecom task section.",
   "repository": {

@@ -1,3 +1,23 @@
+# [15.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.4.0...@ovh-ux/manager-web@15.5.0) (2020-10-28)
+
+
+### Bug Fixes
+
+* **deps:** upgrade webpack to v4.44.2 ([fc868d2](https://github.com/ovh/manager/commit/fc868d2670b0de220837c8917d90fa3020e6d4ca))
+* **i18n:** add missing translations [CDS 634] ([a35adc9](https://github.com/ovh/manager/commit/a35adc9948ee3f648aaf1b82c4d84c5f39d97e6a))
+* **preloader:** attach preloader with user language ([6eb9cc1](https://github.com/ovh/manager/commit/6eb9cc1cc362f8cc2426965d8563de1af9dee0c8))
+* **web:** human readable private database versions ([#3841](https://github.com/ovh/manager/issues/3841)) ([b885636](https://github.com/ovh/manager/commit/b8856366f998a8e445f7a8a70e9837c293780066)), closes [#DTRSD-22071](https://github.com/ovh/manager/issues/DTRSD-22071)
+* add regenerator-runtime ([982d03a](https://github.com/ovh/manager/commit/982d03a1054ecc3c6fb886f57c8b8f9afe0e7001))
+* replace flatten usage ([#3839](https://github.com/ovh/manager/issues/3839)) ([aef1003](https://github.com/ovh/manager/commit/aef1003b64502147768a2983019d906197798d27))
+
+
+### Features
+
+* **hosting:** add beta badge to statistics & logs shortcut ([#3916](https://github.com/ovh/manager/issues/3916)) ([f7b5afe](https://github.com/ovh/manager/commit/f7b5afe8955b62219f3795cc795157227f7f3b04))
+* add core-js to polyfill ([1411e1c](https://github.com/ovh/manager/commit/1411e1ca873d1ffd715c43fcadfe96f26e5be874))
+
+
+
 # [15.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.3.9...@ovh-ux/manager-web@15.4.0) (2020-10-26)
 
 

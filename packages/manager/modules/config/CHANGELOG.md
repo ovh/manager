@@ -1,3 +1,14 @@
+## [2.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@2.0.0...@ovh-ux/manager-config@2.0.1) (2020-10-28)
+
+
+### Bug Fixes
+
+* **environment.service:** temporarily fallback for cs_CZ language ([f527be7](https://github.com/ovh/manager/commit/f527be7afc8bea21b72991a0193ba47ecff682dd))
+* export localeStorageKey constant as default ([bbe4cdd](https://github.com/ovh/manager/commit/bbe4cdd05d6a6b8f971b3bc0fe8fedc1b25b1e6d))
+* **locale:** add missing cs_CZ entry ([9aedddb](https://github.com/ovh/manager/commit/9aedddb65553d80c967056bf52e2c33055987e65))
+
+
+
 # [2.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@1.1.1...@ovh-ux/manager-config@2.0.0) (2020-10-13)
 
 
