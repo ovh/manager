@@ -16,6 +16,8 @@ import deconsolidation from './deconsolidation';
 import ipOder from './ip/order';
 import ipv6 from './ipv6';
 import portReset from './portReset';
+import profil from './profil';
+import rateLimit from './rateLimit';
 
 import XdslStatistics from './statistics';
 
@@ -38,6 +40,8 @@ angular
     ipOder,
     ipv6,
     portReset,
+    profil,
+    rateLimit,
   ])
   .component('packXdslAccess', access);
 
