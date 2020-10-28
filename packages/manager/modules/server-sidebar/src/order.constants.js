@@ -6,21 +6,32 @@ export const ORDER_URLS = {
       FR: 'https://www.ovh.com/manager/dedicated/',
     },
     dedicated_cloud: {
-      CZ: 'https://www.ovh.cz/sddc/',
-      DE: 'https://www.ovh.de/sddc/',
-      ES: 'https://www.ovh.es/sddc/',
-      FI: 'https://www.ovh-hosting.fi/sddc/',
-      FR: 'https://www.ovh.com/fr/sddc/',
-      GB: 'https://www.ovh.co.uk/sddc/',
-      IE: 'https://www.ovh.ie/sddc/',
-      IT: 'https://www.ovh.it/sddc/',
-      LT: 'https://www.ovh.lt/sddc/',
-      MA: 'https://www.ovh.com/ma/sddc/',
-      NL: 'https://www.ovh.nl/sddc/',
-      PL: 'https://www.ovh.pl/sddc/',
-      PT: 'https://www.ovh.pt/sddc/',
-      SN: 'https://www.ovh.sn/sddc/',
-      TN: 'https://www.ovh.com/tn/sddc/',
+      DE:
+        'https://www.ovhcloud.com/de/enterprise/products/hosted-private-cloud/prices/',
+      ES:
+        'https://www.ovhcloud.com/es-es/enterprise/products/hosted-private-cloud/prices/',
+      FR:
+        'https://www.ovhcloud.com/fr/enterprise/products/hosted-private-cloud/prices/',
+      GB:
+        'https://www.ovhcloud.com/en-gb/enterprise/products/hosted-private-cloud/prices/',
+      IE:
+        'https://www.ovhcloud.com/en-ie/enterprise/products/hosted-private-cloud/prices/',
+      IT:
+        'https://www.ovhcloud.com/it/enterprise/products/hosted-private-cloud/prices/',
+      LT:
+        'https://www.ovhcloud.com/en-ie/enterprise/products/hosted-private-cloud/prices/',
+      MA:
+        'https://www.ovh.com/ma/enterprise/products/hosted-private-cloud/prices/',
+      NL:
+        'https://www.ovhcloud.com/nl/enterprise/products/hosted-private-cloud/prices/',
+      PL:
+        'https://www.ovhcloud.com/pl/enterprise/products/hosted-private-cloud/prices/',
+      PT:
+        'https://www.ovhcloud.com/pt/enterprise/products/hosted-private-cloud/prices/',
+      SN:
+        'https://www.ovhcloud.com/fr-sn/enterprise/products/hosted-private-cloud/prices/',
+      TN:
+        'https://www.ovhcloud.com/fr-tn/enterprise/products/hosted-private-cloud/prices/',
     },
     vrack: {
       CZ:
@@ -323,13 +334,20 @@ export const ORDER_URLS = {
       WS: 'https://www.ovh.com/world/es/hosting/',
     },
     dedicated_cloud: {
-      ASIA: 'https://www.ovh.com/asia/sddc/',
-      AU: 'https://www.ovh.com.au/sddc/',
-      CA: 'https://www.ovh.com/ca/en/sddc/',
-      QC: 'https://www.ovh.com/ca/fr/sddc/',
-      SG: 'https://www.ovh.com/sg/sddc/',
-      WE: 'https://www.ovh.com/world/sddc/',
-      WS: 'https://www.ovh.com/world/es/sddc/',
+      ASIA:
+        'https://www.ovhcloud.com/en-sg/enterprise/products/hosted-private-cloud/prices/',
+      AU:
+        'https://www.ovhcloud.com/en-au/enterprise/products/hosted-private-cloud/prices/',
+      CA:
+        'https://www.ovhcloud.com/en-ca/enterprise/products/hosted-private-cloud/prices/',
+      QC:
+        'https://www.ovhcloud.com/fr-ca/enterprise/products/hosted-private-cloud/prices/',
+      SG:
+        'https://www.ovhcloud.com/en-sg/enterprise/products/hosted-private-cloud/prices/',
+      WE:
+        'https://www.ovhcloud.com/en/enterprise/products/hosted-private-cloud/prices/',
+      WS:
+        'https://www.ovhcloud.com/es/enterprise/products/hosted-private-cloud/prices/',
     },
     cloud_disk_array: {},
     dbaas_logs: {
