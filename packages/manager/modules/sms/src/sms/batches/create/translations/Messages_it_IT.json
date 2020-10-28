@@ -1,7 +1,7 @@
 {
   "sms_batches_create_title": "Invia una campagna",
   "sms_configure": "Configura i diversi campi",
-  "sms_batches_create_need_credits": "I crediti disponibili non sono sufficienti per creare una campagna di invio di SMS. Aggiungi crediti al tuo servizio per realizzare una nuova campagna.",
+  "sms_batches_create_need_credits": "I crediti disponibili non sono sufficienti per inviare SMS. Ricarica il tuo account.",
   "sms_batches_create_error": "Si è verificato un errore durante la creazione della campagna: {{error}}",
   "sms_batches_create_success": "La tua campagna è stata creata",
   "sms_batches_create_name": "Nome della campagna",

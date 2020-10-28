@@ -24,7 +24,11 @@ export default class EnvironmentService {
   }
 
   setUserLocale(userLocale) {
-    const locale = findAvailableLocale(userLocale, this.getRegion());
+    // TODO(@antleblanc): Remove it on February 4th, 2021.
+    const locale =
+      userLocale === 'cs_CZ'
+        ? userLocale
+        : findAvailableLocale(userLocale, this.getRegion());
     saveUserLocale(locale);
     this.userLocale = locale;
   }

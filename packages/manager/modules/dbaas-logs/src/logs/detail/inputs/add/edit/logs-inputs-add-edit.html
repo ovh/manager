@@ -1,0 +1,152 @@
+<div class="cui-page__content inputs-logs-add-edit pt-0">
+    <form name="ctrl.form" data-ng-submit="ctrl.addEditInput()">
+        <oui-field
+            label="{{ ::'inputs_logs_edit_title_field' | translate }}"
+            size="xl"
+        >
+            <input
+                type="text"
+                id="input_title"
+                name="input_title"
+                class="oui-input"
+                data-ng-model="ctrl.input.data.info.title"
+                data-ng-class="{'oui-field_error': ctrl.form.$submitted && ctrl.form.input_title.$invalid}"
+                data-ng-minlength="ctrl.LogsConstants.TITLE_MIN_LENGTH"
+                data-ng-maxlength="ctrl.LogsConstants.TITLE_MAX_LENGTH"
+                cuc-autofocus
+                required
+            />
+        </oui-field>
+
+        <oui-field
+            label="{{ ::'inputs_logs_edit_description_field' | translate }}"
+            size="xl"
+        >
+            <textarea
+                class="oui-textarea"
+                id="input_description"
+                name="input_description"
+                data-ng-class="{'oui-input_error': ctrl.form.$submitted && ctrl.form.input_description.$invalid}"
+                data-ng-model="ctrl.input.data.info.description"
+                data-ng-minlength="ctrl.LogsConstants.DESCRIPTION_MIN_LENGTH"
+                required
+            >
+            </textarea>
+        </oui-field>
+
+        <oui-field
+            label="{{ ::'inputs_logs_edit_software_field' | translate }}"
+            size="xl"
+        >
+            <oui-spinner
+                data-ng-if="ctrl.availableEngines.length === 0"
+            ></oui-spinner>
+            <div
+                class="oui-select"
+                data-ng-show="ctrl.availableEngines.length > 0"
+            >
+                <select
+                    class="oui-select__input"
+                    name="input_software"
+                    id="input_software"
+                    data-ng-class="{'oui-input_error': ctrl.form.$submitted && ctrl.form.input_software.$invalid}"
+                    data-ng-options="engine.engineId as (engine.name + ' ' + engine.version) for engine in ctrl.availableEngines"
+                    data-ng-model="ctrl.input.data.info.engineId"
+                    required
+                >
+                    <option
+                        value=""
+                        disabled
+                        selected
+                        data-translate="inputs_logs_edit_select_software"
+                    ></option>
+                </select>
+                <i
+                    class="oui-icon oui-icon-chevron-down"
+                    aria-hidden="true"
+                ></i>
+            </div>
+        </oui-field>
+
+        <oui-field
+            label="{{ ::'inputs_logs_edit_port_field' | translate }}"
+            size="xl"
+        >
+            <oui-numeric
+                id="input_port"
+                name="input_port"
+                data-model="ctrl.input.data.info.exposedPort"
+                min="ctrl.LogsConstants.EXPOSED_PORT_MIN"
+                max="ctrl.LogsConstants.EXPOSED_PORT_MAX"
+                required
+            >
+            </oui-numeric>
+        </oui-field>
+
+        <oui-field
+            label="{{ ::'inputs_logs_networks_title' | translate }}"
+            size="xl"
+            help-text="{{ ::'inputs_logs_networks_ip_address_example' | translate }}"
+        >
+            <textarea
+                class="oui-textarea"
+                id="input_allowed_networks"
+                name="input_allowed_networks"
+                data-ng-class="{'oui-input_error': ctrl.form.$submitted && ctrl.form.input_allowed_networks.$invalid}"
+                data-ng-model="ctrl.input.data.info.allowedNetworks"
+            >
+            </textarea>
+        </oui-field>
+
+        <oui-field
+            label="{{ ::'inputs_logs_edit_stream_field' | translate }}"
+            size="xl"
+        >
+            <oui-spinner data-ng-if="ctrl.streams.loading"></oui-spinner>
+            <div class="oui-select" data-ng-show="!ctrl.streams.loading">
+                <select
+                    class="oui-select__input"
+                    name="input_stream"
+                    id="input_stream"
+                    data-ng-class="{'oui-input_error': ctrl.form.$submitted && ctrl.form.input_stream.$invalid}"
+                    data-ng-options="stream.info.streamId as stream.info.title for stream in ctrl.streams.data"
+                    data-ng-model="ctrl.input.data.info.streamId"
+                    required
+                >
+                    <option
+                        value=""
+                        disabled
+                        selected
+                        data-translate="inputs_logs_edit_select_stream"
+                    ></option>
+                </select>
+                <i
+                    class="oui-icon oui-icon-chevron-down"
+                    aria-hidden="true"
+                ></i>
+            </div>
+        </oui-field>
+
+        <oui-field
+            label="{{ ::'inputs_logs_edit_nb_instance_field' | translate }}"
+            size="xl"
+            help-text="{{ ctrl.showInputPrices() }}"
+        >
+            <oui-numeric
+                id="input_nbInstance"
+                name="input_nbInstance"
+                data-model="ctrl.input.data.info.nbInstance"
+                min="ctrl.LogsConstants.NB_INSTANCE_MIN"
+                max="ctrl.LogsConstants.NB_INSTANCE_MAX"
+                required
+            >
+            </oui-numeric>
+        </oui-field>
+
+        <oui-form-actions
+            data-ng-hide="ctrl.inputAddEdit.loading"
+            data-submit-text="{{::'logs_next' | translate}}"
+        ></oui-form-actions>
+        <oui-spinner data-ng-show="ctrl.inputAddEdit.loading"></oui-spinner>
+    </form>
+</div>

@@ -48,9 +48,11 @@
             data-sortable="asc"
         >
             <a
+                data-ng-if="!$row.isDeleting()"
                 data-ng-href="{{:: $ctrl.instanceLink($row) }}"
                 data-ng-bind="$value"
             ></a>
+            <span data-ng-if="$row.isDeleting()" data-ng-bind="$value"></span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_projects_project_instances_region_label' | translate"
@@ -137,6 +139,7 @@
             data-oui-popover-template="pci/projects/project/instances/help/backup.html"
             data-oui-popover-scope="$ctrl"
             data-placement="left-start"
+            data-ng-if="!$row.isDeleting()"
         >
             <oui-action-menu-item data-on-click="$ctrl.viewInstance($row)">
                 <span

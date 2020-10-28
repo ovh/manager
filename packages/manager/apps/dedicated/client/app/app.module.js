@@ -1,5 +1,6 @@
 /* eslint-disable import/no-webpack-loader-syntax, import/no-unresolved, import/extensions */
-import 'babel-polyfill';
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
 import 'script-loader!moment/min/moment.min.js';
 import 'script-loader!es6-shim/es6-shim.min.js';
 import 'script-loader!components-jqueryui/ui/minified/version.js';
@@ -56,6 +57,7 @@ import 'ovh-angular-responsive-tabs';
 import 'ckeditor';
 import 'script-loader!messenger/build/js/messenger.min.js';
 import 'script-loader!filesize/lib/filesize.js';
+import 'script-loader!angular-websocket/dist/angular-websocket';
 
 // Ckeditor 4.x
 import 'ng-ckeditor';

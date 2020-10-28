@@ -12,7 +12,7 @@ yarn add @ovh-ux/manager-dev-server-config
 
 ## Related
 
-* [dev-server](https://github.com/ovh-ux/manager/tree/master/packages/manager/tools/dev-server) - OVHcloud manager dev server
+* [dev-server](https://github.com/ovh/manager/tree/master/packages/manager/tools/dev-server) - OVHcloud manager dev server
 
 ## Contributing
 

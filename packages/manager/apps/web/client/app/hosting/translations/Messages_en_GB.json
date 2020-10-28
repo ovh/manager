@@ -1363,5 +1363,6 @@
   "hosting_dashboard_service_common_active": "Enabled",
   "hosting_dashboard_service_common_inactive": "Disabled",
   "hosting_dashboard_email_offer_get_error": "Unable to retrieve email address",
-  "hosting_tab_DATABASES_configuration_order_title_button_public": "Order a Start SQL database"
+  "hosting_tab_DATABASES_configuration_order_title_button_public": "Order a Start SQL database",
+  "hosting_dashboard_stats_status": "Beta"
 }

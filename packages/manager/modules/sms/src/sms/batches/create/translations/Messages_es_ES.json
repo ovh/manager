@@ -1,7 +1,7 @@
 {
   "sms_batches_create_title": "Enviar una campaña",
   "sms_configure": "Configurar los diferentes campos",
-  "sms_batches_create_need_credits": "No tiene saldo suficiente para crear una campaña de envío de SMS. Por favor, recargue su servicio de SMS para crear una nueva campaña.",
+  "sms_batches_create_need_credits": "No dispone de saldo suficiente para enviar SMS. Por favor, recargue su cuenta.",
   "sms_batches_create_error": "Se ha producido un error al crear la campaña. {{error}}",
   "sms_batches_create_success": "La campaña se ha creado correctamente.",
   "sms_batches_create_name": "Nombre de la campaña",
@@ -16,7 +16,7 @@
   "sms_receivers_error_required": "El campo «Destinatario» es obligatorio.",
   "sms_receivers_error_pattern": "El número del destinatario debe tener formato internacional.",
   "sms_message_title": "Escribir un mensaje",
-  "sms_message": "Mensaje:",
+  "sms_message": "Mensaje",
   "sms_message_placeholder": "Escriba su mensaje",
   "sms_message_characters_left": "Caracteres restantes:",
   "sms_message_equivalent": "Equivale a:",

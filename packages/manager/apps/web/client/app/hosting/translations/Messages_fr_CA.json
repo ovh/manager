@@ -1060,6 +1060,7 @@
   "hosting_tab_DATABASES_configuration_order_button_group": "Configurer vos bases de données",
   "hosting_tab_DATABASES_configuration_order_info": "Les packs de bases de données ne se cumulent pas.",
   "hosting_tab_DATABASES_configuration_order_title_button": "Commander une base de données",
+  "hosting_tab_DATABASES_configuration_order_title_button_public": "Commander une base Start SQL",
   "hosting_tab_DATABASES_configuration_order_title_button_private": "Commander une base SQL Privé",
   "hosting_tab_DATABASES_configuration_order_title": "Commander une base de données",
   "hosting_tab_DATABASES_configuration_order_title_private": "Commander une base SQL Privé",
@@ -1377,5 +1378,5 @@
   "hosting_dashboard_service_common_active": "Actif",
   "hosting_dashboard_service_common_inactive": "Inactif",
   "hosting_dashboard_email_offer_get_error": "Impossible de récupérer l'adresse e-mail",
-  "hosting_tab_DATABASES_configuration_order_title_button_public": "Commander une base Start SQL"
+  "hosting_dashboard_stats_status": "Bêta"
 }

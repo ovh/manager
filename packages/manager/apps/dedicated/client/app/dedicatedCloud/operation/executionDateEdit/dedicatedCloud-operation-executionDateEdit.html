@@ -8,8 +8,8 @@
         data-heading="{{ :: 'dedicated_cloud_operation_execution_date_edit_title' | translate }}"
         data-primary-label="{{ :: 'wizard_modify' | translate }}"
         data-secondary-label="{{ :: 'wizard_cancel' | translate }}"
-        data-secondary-action="$ctrl.$uibModalInstance.dismiss()"
-        data-on-dismiss="$ctrl.$uibModalInstance.dismiss()"
+        data-secondary-action="$ctrl.goBack()"
+        data-on-dismiss="$ctrl.goBack()"
         data-loading="$ctrl.loading.save"
     >
         <div class="text-center">

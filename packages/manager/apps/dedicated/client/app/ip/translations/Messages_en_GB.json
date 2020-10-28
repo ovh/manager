@@ -671,5 +671,6 @@
   "ip_table_manage_add_ipv6block_cancel": "Cancel",
   "ip_table_header_ip_address_invalid": "Please enter a valid IPv6.",
   "ip_table_header_reverse_invalid": "Please enter a valid reverse DNS",
-  "ip_filter_services__FAILOVER": "Failover IP"
+  "ip_filter_services__FAILOVER": "Failover IP",
+  "ip_description_edit_move": "Attach this IP block to another service"
 }

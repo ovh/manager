@@ -1,0 +1,76 @@
+<oui-modal
+    data-heading="{{:: 'dedicatedCloud_move_ip_title' | translate }}"
+    data-primary-action="$ctrl.moveIp()"
+    data-primary-label="{{:: 'dedicatedCloud_move_ip_confirm' | translate }}"
+    data-primary-disabled="!$ctrl.data.targetService || ($ctrl.data.targetService.nexthop.length && !$ctrl.data.nextHop)"
+    data-secondary-action="$ctrl.goBack()"
+    data-secondary-label="{{:: 'dedicatedCloud_move_ip_cancel' | translate }}"
+    data-loading="$ctrl.isUpgrading"
+    data-on-dismiss="$ctrl.goBack()"
+>
+    <p data-translate="dedicatedCloud_move_ip_description"></p>
+    <oui-field
+        data-ng-if="$ctrl.ips.length > 1"
+        data-label="{{::'dedicatedCloud_move_ip_select_ip' | translate}}"
+    >
+        <oui-select
+            id="sourceIp"
+            name="sourceIp"
+            data-items="$ctrl.ips"
+            data-model="$ctrl.data.selectedIp"
+            data-on-change="$ctrl.getTargetsForIp(modelValue)"
+            data-disabled="$ctrl.loaders.targetsLoading"
+        >
+        </oui-select>
+    </oui-field>
+    <oui-field
+        data-label="{{::'dedicatedCloud_move_ip_select_target' | translate}}"
+    >
+        <label class="oui-select" data-ng-hide="$ctrl.loaders.targetsLoading">
+            <select
+                id="ipTarget"
+                name="ipTarget"
+                class="oui-select__input"
+                data-ng-model="$ctrl.data.targetService"
+                data-ng-change="$ctrl.checkNextHop()"
+            >
+                <option
+                    value=""
+                    data-ng-disabled="true"
+                    data-translate="global_select"
+                >
+                </option>
+                <optgroup
+                    data-ng-repeat="(serviceType, services) in $ctrl.data.targets track by serviceType"
+                    data-ng-if="services.length"
+                    label="{{ ('dedicatedCloud_move_ip_option_' + serviceType) | translate }}"
+                >
+                    <option
+                        data-ng-repeat="service in services track by service.service"
+                        data-ng-bind="service.service"
+                        data-ng-value="service"
+                    ></option>
+                </optgroup>
+            </select>
+            <span
+                class="oui-icon oui-icon-chevron-down"
+                aria-hidden="true"
+            ></span>
+        </label>
+        <oui-spinner size="s" data-ng-show="$ctrl.loaders.targetsLoading">
+        </oui-spinner>
+    </oui-field>
+    <oui-field
+        data-ng-if="$ctrl.data.targetService && $ctrl.data.targetService.nexthop.length"
+        data-label="{{::'dedicatedCloud_move_ip_select_next_hop' | translate}}"
+    >
+        <oui-select
+            id="nextHop"
+            name="nextHop"
+            data-items="$ctrl.data.targetService.nexthop"
+            data-model="$ctrl.data.nextHop"
+            data-placeholder="{{:: 'global_select' | translate }}"
+        >
+        </oui-select>
+    </oui-field>
+</oui-modal>

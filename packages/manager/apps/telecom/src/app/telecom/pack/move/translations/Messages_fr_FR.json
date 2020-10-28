@@ -53,7 +53,7 @@
   "pack_move_line_address_building": "Bâtiment:",
   "pack_move_line_address_residence": "Residence:",
   "pack_move_rio": "RIO",
-  "pack_move_eligibility_move_out_date": "Date de déménagement souhaitée",
+  "pack_move_eligibility_move_out_date": "Date de fermeture de l'accès actuel",
   "pack_move_eligibility_move_out_date_description": "La date doit être comprise entre aujourd'hui et 30 jours. La date par défaut sera celle dans 30 jours.",
   "pack_move_eligibility_address_more": "Plus de précisions",
   "pack_move_eligibility_number": "Numéro de téléphone",

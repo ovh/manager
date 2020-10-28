@@ -52,7 +52,7 @@ export const findAvailableLocale = (userLocale, region) => {
   // Since following locales has been removed from the language menu picker
   // from the navbar we want to avoid to redirect customer to the default one
   // which is `fr_FR` by design.
-  if (['fi', 'nl'].includes(language)) {
+  if (['cs', 'nl'].includes(language)) {
     return findAvailableLocale('en_GB');
   }
   return findLanguage(language, country);

@@ -1,3 +1,5 @@
+import throttle from 'lodash/throttle';
+
 import template from './pie-chart.html';
 import controller from './pie-chart.controller';
 
@@ -15,6 +17,8 @@ export default /* @ngInject */ ($window) => {
     controller,
     template,
     link($scope, $element, $attr, $ctrl) {
+      const minWidth = 280;
+      $scope.toggle = $element.parent('div')[0].offsetWidth < minWidth;
       const sizeRatio = $element.parent('div')[0].offsetWidth;
       const animationRatio = 20;
       const viewBox = sizeRatio + animationRatio * 2;
@@ -59,34 +63,45 @@ export default /* @ngInject */ ($window) => {
         .each((d) => this._current === d);
 
       /* var pathAnim = function (arc, dir) {
-                switch (dir) {
-                    case 0:
-                        arc.transition()
-                            .duration(500)
-                            .ease(d3.easeBounce).attr("d", d3.arc()
-                            .innerRadius(radius - animationRatio)
-                            .outerRadius(radius)
-                        );
-                        break;
-                    case 1:
-                        arc.transition()
-                            .duration(500)
-                            .ease(d3.easeBounce).attr("d", d3.arc()
-                            .innerRadius(radius)
-                            .outerRadius(radius + animationRatio)
-                        );
-                        break;
-                }
-            };
+              switch (dir) {
+                  case 0:
+                      arc.transition()
+                          .duration(500)
+                          .ease(d3.easeBounce).attr("d", d3.arc()
+                          .innerRadius(radius - animationRatio)
+                          .outerRadius(radius)
+                      );
+                      break;
+                  case 1:
+                      arc.transition()
+                          .duration(500)
+                          .ease(d3.easeBounce).attr("d", d3.arc()
+                          .innerRadius(radius)
+                          .outerRadius(radius + animationRatio)
+                      );
+                      break;
+              }
+          };
 
-            Manage click on Arc
-            arcs.on("click", function () {
-                var currentArc = d3.select(this);
-                var clicked = currentArc.classed("clicked");
+          Manage click on Arc
+          arcs.on("click", function () {
+              var currentArc = d3.select(this);
+              var clicked = currentArc.classed("clicked");
 
-                pathAnim(currentArc, ~~(!clicked));
-                currentArc.classed("clicked", !clicked);
-            }); */
+              pathAnim(currentArc, ~~(!clicked));
+              currentArc.classed("clicked", !clicked);
+          }); */
+
+      const onResize = () => {
+        $scope.toggle = $element.parent('div')[0].offsetWidth < minWidth;
+      };
+
+      const throttledResize = throttle(onResize, 300);
+
+      angular.element($window).on('resize', throttledResize);
+      $scope.$on('$destroy', () => {
+        angular.element($window).off('resize', throttledResize);
+      });
 
       $scope.$watchCollection('dataset', (dataParam) => {
         const duration = 1200;

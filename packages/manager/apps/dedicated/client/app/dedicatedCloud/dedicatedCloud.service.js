@@ -1055,6 +1055,17 @@ angular
         },
       });
 
+    this.updateSoftware = (serviceName, release) =>
+      OvhHttp.post('/dedicatedCloud/{serviceName}/upgradeVcenter', {
+        rootPath: 'apiv6',
+        urlParams: {
+          serviceName,
+        },
+        data: {
+          release,
+        },
+      });
+
     this.isOptionToggable = (
       serviceName,
       optionName,

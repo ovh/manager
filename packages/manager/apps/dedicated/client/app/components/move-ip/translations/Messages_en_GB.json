@@ -1,0 +1,17 @@
+{
+  "dedicatedCloud_move_ip_title": "Attach this IP block to another service",
+  "dedicatedCloud_move_ip_description": "You can reassign an IP block that you have already ordered to another compatible service. These services are filtered according to their relevance, geolocation and datacentres.",
+  "dedicatedCloud_move_ip_select_ip": "Choose the IP block to move:",
+  "dedicatedCloud_move_ip_select_target": "Choose the service your IP block will be migrated to:",
+  "dedicatedCloud_move_ip_select_next_hop": "Choose the next hop for your target service:",
+  "dedicatedCloud_move_ip_option_hostingReseller": "Hosting Reseller",
+  "dedicatedCloud_move_ip_option_dedicatedServer": "Dedicated servers",
+  "dedicatedCloud_move_ip_option_dedicatedCloud": "Dedicated Cloud",
+  "dedicatedCloud_move_ip_option_vps": "VPS",
+  "dedicatedCloud_move_ip_option_cloudProject": "Cloud Project",
+  "dedicatedCloud_move_ip_option_ipLoadbalancing": "Load balancing IP",
+  "dedicatedCloud_move_ip_cancel": "Cancel",
+  "dedicatedCloud_move_ip_confirm": "Confirm",
+  "dedicatedCloud_move_ip_error": "An error has occurred attempting to attach the {{ipBlock}} IP block to the {{service}} service: {{ message }}",
+  "dedicatedCloud_move_ip_success": "The {{ipBlock}} IP block is being attached to the {{service}} service."
+}

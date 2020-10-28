@@ -1,7 +1,7 @@
 {
   "sms_batches_create_title": "Kampagne senden",
   "sms_configure": "Verschiedene Felder konfigurieren",
-  "sms_batches_create_need_credits": "Ihr Guthaben reicht nicht aus, um eine SMS-Kampagne zu starten. Bitte laden Sie Ihren SMS-Dienst auf, um Kampagnen erstellen zu können.",
+  "sms_batches_create_need_credits": "Ihr Guthaben reicht nicht aus, um SMS zu versenden. Account aufladen",
   "sms_batches_create_error": "Beim Erstellen der Kampagne ist ein Fehler aufgetreten. {{error}}",
   "sms_batches_create_success": "Kampagne wurde erstellt",
   "sms_batches_create_name": "Name Ihrer Kampagne",

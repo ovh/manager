@@ -64,7 +64,7 @@
     "@ovh-ux/ng-translate-async-loader": "^2.1.0",
     "@ovh-ux/ng-ui-router-layout": "^4.0.0",
     "@ovh-ux/ng-ui-router-line-progress": "^1.2.2",
-    "@ovh-ux/ui-kit": "^4.2.3",
+    "@ovh-ux/ui-kit": "^4.4.1",
     "@uirouter/angularjs": "^1.0.23",
     "URIjs": "^1.14.0",
     "angular": "^1.6.10",
@@ -86,7 +86,6 @@
     "angular-xeditable": "^0.9.0",
     "angularjs-scroll-glue": "^2.2.0",
     "animate.css": "^3.5.0",
-    "babel-polyfill": "^6.26.0",
     "bloodhound-js": "^1.2.3",
     "bootstrap": "^3.3.6",
     "bootstrap-tour": "^0.12.0",
@@ -95,6 +94,7 @@
     "chartjs-plugin-zoom": "^0.5.0",
     "ckeditor": "^4.7.2",
     "clipboard": "^2.0.4",
+    "core-js": "^3.6.5",
     "df-tab-menu": "^0.3.0",
     "filesize": "^3.5.10",
     "flatpickr": "^4.6.3",
@@ -121,6 +121,7 @@
     "properties": "latest",
     "punycode": "^1.4.1",
     "raven-js": "^3.27.1",
+    "regenerator-runtime": "^0.13.7",
     "request": "^2.51.0",
     "ui-select": "^0.19.8",
     "urijs": "^1.19.1",
@@ -131,7 +132,7 @@
     "@ovh-ux/manager-webpack-config": "^3.1.1",
     "eslint-plugin-angular": "^4.0.1",
     "glob": "^7.1.4",
-    "webpack": "^4.41.2",
+    "webpack": "^4.44.2",
     "webpack-merge": "^4.2.2"
   }
 }

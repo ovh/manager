@@ -54,9 +54,9 @@
         data-ng-if="!$ctrl.action.disabled && $ctrl.action.sref"
         data-ui-sref="{{ $ctrl.action.sref }}"
         title="{{ $ctrl.action.tip || $ctrl.action.text }}"
-        data-track-on="click"
-        data-track-name="{{ $ctrl.action.tracking }}"
-        data-track-type="navigation"
+        data-track-on="{{ $ctrl.action.tracking ? 'click' : '' }}"
+        data-track-name="{{ $ctrl.action.tracking || '' }}"
+        data-track-type="{{ $ctrl.action.tracking ? 'navigation' : ''}}"
     >
         <span class="service-button-description">
             <span

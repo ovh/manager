@@ -48,7 +48,7 @@ const env = {
 
 ## Related
 
-* [manager-webpack-config](https://github.com/ovh-ux/manager/tree/master/packages/manager/tools/webpack-config) - OVH manager shared webpack configuration
+* [manager-webpack-config](https://github.com/ovh/manager/tree/master/packages/manager/tools/webpack-config) - OVH manager shared webpack configuration
 
 ## Contributing
 

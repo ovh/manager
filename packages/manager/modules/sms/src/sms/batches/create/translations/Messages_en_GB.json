@@ -1,7 +1,7 @@
 {
   "sms_batches_create_title": "Send campaign",
   "sms_configure": "Configure the various fields",
-  "sms_batches_create_need_credits": "You do not have enough credit to create an SMS campaign. Please top up your SMS service so that you can create one again.",
+  "sms_batches_create_need_credits": "You do not have enough credit to send SMS messages. Please top up your account.",
   "sms_batches_create_error": "An error has occurred creating the campaign. {{error}}",
   "sms_batches_create_success": "Your campaign has been created",
   "sms_batches_create_name": "Your campaign name",

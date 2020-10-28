@@ -1,0 +1,55 @@
+<form novalidate name="ctrl.form">
+    <oui-modal
+        data-primary-action="ctrl.createToken()"
+        data-primary-label="{{ ::'logs_save' | translate }}"
+        data-secondary-action="ctrl.cancel()"
+        data-secondary-label="{{ ::'logs_cancel' | translate }}"
+        data-on-dismiss="ctrl.cancel()"
+        data-loading="ctrl.saving.loading"
+        data-heading="{{ ::'logs_tokens_add' | translate }}"
+    >
+        <oui-field data-label="{{ ::'logs_tokens_col_name' | translate }}">
+            <input
+                type="text"
+                id="token_name"
+                name="token_name"
+                class="oui-input"
+                data-ng-model="ctrl.token.data.name"
+                cuc-autofocus
+                required
+            />
+        </oui-field>
+
+        <oui-field
+            data-label="{{ ::'logs_tokens_select_cluster' | translate }}"
+        >
+            <oui-spinner data-ng-if="ctrl.clusters.loading"></oui-spinner>
+            <div class="oui-select" data-ng-if="!ctrl.clusters.loading">
+                <select
+                    class="oui-select__input"
+                    name="token_cluster"
+                    id="token_cluster"
+                    data-ng-model="ctrl.token.data.clusterId"
+                    required
+                >
+                    <option
+                        value
+                        disabled
+                        selected
+                        data-translate="logs_tokens_select_cluster"
+                    ></option>
+                    <option
+                        data-ng-repeat="cluster in ctrl.clusters.data"
+                        value="{{cluster.clusterId}}"
+                    >
+                        {{ cluster.hostname }}
+                    </option>
+                </select>
+                <i
+                    class="oui-icon oui-icon-chevron-down"
+                    aria-hidden="true"
+                ></i>
+            </div>
+        </oui-field>
+    </oui-modal>
+</form>

@@ -1376,5 +1376,6 @@
   "hosting_dashboard_service_email_address": "E-Mail-Adressen",
   "hosting_dashboard_service_common_active": "Aktiv",
   "hosting_dashboard_service_common_inactive": "Inaktiv",
-  "hosting_dashboard_email_offer_get_error": "Es ist unmöglich, die E-Mail-Adresse wiederherzustellen."
+  "hosting_dashboard_email_offer_get_error": "Es ist unmöglich, die E-Mail-Adresse wiederherzustellen.",
+  "hosting_dashboard_stats_status": "Beta"
 }

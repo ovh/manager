@@ -11,7 +11,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ovh-ux/manager.git",
+    "url": "git+https://github.com/ovh/manager.git",
     "directory": "packages/manager/tools/component-rollup-config"
   },
   "license": "BSD-3-Clause",
@@ -31,7 +31,6 @@
     "test": "yarn run build && yarn run lint && mocha"
   },
   "dependencies": {
-    "@babel/core": "^7.10.3",
     "@babel/plugin-proposal-class-properties": "^7.10.1",
     "@babel/plugin-proposal-optional-chaining": "^7.10.1",
     "@babel/plugin-proposal-private-methods": "^7.10.1",
@@ -47,12 +46,14 @@
     "@rollup/pluginutils": "^3.0.8",
     "babel-plugin-angularjs-annotate": "^0.10.0",
     "camelcase": "^5.0.0",
+    "core-js": "^3.6.5",
     "estree-walker": "^0.6.0",
     "less": "~3.9.0",
     "less-plugin-remcalc": "^0.1.0",
     "lodash": "^4.17.15",
     "magic-string": "^0.25.4",
     "node-sass": "^4.10.0",
+    "regenerator-runtime": "^0.13.7",
     "rollup": "^2.0.2",
     "rollup-plugin-html": "^0.2.1",
     "rollup-plugin-peer-deps-external": "^2.2.2",

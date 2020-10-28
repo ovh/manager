@@ -671,5 +671,6 @@
   "ip_table_manage_delegation_ipv6block_resume": "Resumo da operação",
   "ip_table_manage_delegation_ipv6block_to_add": "Reverse(s) a adicionar",
   "ip_table_manage_delegation_ipv6block_to_delete": "Reverse(s) a eliminar",
-  "ip_filter_services__FAILOVER": "IP Failover"
+  "ip_filter_services__FAILOVER": "IP Failover",
+  "ip_description_edit_move": "Associar este bloco de IP a outro serviço"
 }

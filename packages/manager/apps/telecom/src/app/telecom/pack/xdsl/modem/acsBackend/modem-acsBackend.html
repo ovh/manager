@@ -1,0 +1,27 @@
+<form name="acsBackendForm" data-ng-submit="$ctrl.changeAcsBackend()">
+    <div class="form-group">
+        <select
+            class="form-control"
+            name="configAcsBackend"
+            id="configAcsBackend"
+            data-ng-model="$ctrl.acsBackendTmp"
+            data-ng-options="acs for acs in $ctrl.availableAcsList"
+            data-ng-disabled="!$ctrl.mediator.capabilities.canChangeACS || $ctrl.mediator.tasks.changeACSBackend || $ctrl.loading"
+        >
+        </select>
+    </div>
+    <button
+        class="oui-button oui-button_primary mt-1"
+        type="submit"
+        data-ng-disabled="!$ctrl.mediator.capabilities.canChangeACS || $ctrl.acsBackend === $ctrl.acsBackendTmp"
+    >
+        <span data-ng-if="$ctrl.mediator.tasks.changeACSBackend">
+            <oui-spinner class="mr-2" data-size="s"> </oui-spinner>
+            <span data-translate="xdsl_modem_acs_backend_doing"></span>
+        </span>
+        <span
+            data-ng-if="!$ctrl.mediator.tasks.changeACSBackend"
+            data-translate="xdsl_modem_acs_backend_submit"
+        ></span>
+    </button>
+</form>

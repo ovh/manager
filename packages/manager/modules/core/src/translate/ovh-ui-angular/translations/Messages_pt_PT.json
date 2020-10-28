@@ -75,5 +75,7 @@
   "common_password_weak_password": "Palavra-passe fraca.",
   "common_password_good_password": "Palavra-passe correta.",
   "common_password_strong_password": "Palavra-passe forte.",
-  "common_criteria_adder_filter_label": "Filtrar"
+  "common_criteria_adder_filter_label": "Filtrar",
+  "common_back_button_back_to": "Voltar para",
+  "common_back_button_back_to_previous_page": "Voltar à página anterior"
 }

@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^7.0.0",
-    "@ovh-ux/ui-kit": "^4.2.3"
+    "@ovh-ux/ui-kit": "^4.4.1"
   },
   "peerDependencies": {
     "@ovh-ux/manager-config": "^1.0.0 || ^2.0.0",
@@ -41,7 +41,7 @@
     "@ovh-ux/ng-ovh-sso-auth": "^4.2.4",
     "@ovh-ux/ng-ovh-user-pref": "^2.0.0",
     "@ovh-ux/ng-translate-async-loader": "^2.1.0",
-    "@ovh-ux/ui-kit": "^4.1.12",
+    "@ovh-ux/ui-kit": "^4.4.1",
     "angular": "^1.7.8",
     "angular-translate": "^2.18.1",
     "bootstrap-tour": "^0.12.0",

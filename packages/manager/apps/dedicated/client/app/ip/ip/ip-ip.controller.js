@@ -6,6 +6,8 @@ import orderBy from 'lodash/orderBy';
 import set from 'lodash/set';
 import toInteger from 'lodash/toInteger';
 
+import { IP_TYPE } from './ip-ip.constant';
+
 angular
   .module('Module.ip.controllers')
   .controller(
@@ -37,6 +39,7 @@ angular
         arp: [],
         spam: [],
       };
+      $scope.IP_TYPE = IP_TYPE;
 
       // pagination
       $scope.pageNumber = toInteger($stateParams.page) || 1;

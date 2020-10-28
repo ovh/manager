@@ -123,7 +123,7 @@
         </oui-datagrid-topbar>
         <oui-action-menu data-compact data-placement="end">
             <oui-action-menu-item
-                data-on-click="$ctrl.onExecutionDateActionClick($row)"
+                data-on-click="$ctrl.goToExecutionDateEdit($row)"
                 data-disabled="$row.progress > 0 || $row.type !== 'maintenance' || $row.maintenanceDateFrom === null || $row.maintenanceDateTo === null"
                 ><span
                     data-translate="dedicated_cloud_operation_execution_date_edit_title"

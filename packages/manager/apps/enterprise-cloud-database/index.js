@@ -8,6 +8,9 @@ import 'script-loader!messenger/build/js/messenger-theme-flat.js';
 
 /* eslint-enable import/no-webpack-loader-syntax, import/extensions */
 
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
+
 import angular from 'angular';
 import '@uirouter/angularjs';
 

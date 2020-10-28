@@ -9,6 +9,13 @@ angular.module('App').config(($stateProvider) => {
         controllerAs: '$ctrl',
       },
     },
+    resolve: {
+      goToExecutionDateEdit: /* @ngInject */ ($state, $transition$) => (task) =>
+        $state.go('app.dedicatedClouds.operation.execution-date-edit', {
+          productId: $transition$.params().productId,
+          operationToEdit: task,
+        }),
+    },
     translations: { value: ['./executionDateEdit'], format: 'json' },
   });
 });

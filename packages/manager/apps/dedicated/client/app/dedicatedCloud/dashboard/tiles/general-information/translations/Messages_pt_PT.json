@@ -23,5 +23,11 @@
   "ovhManagerPccDashboardGeneralInformation_managementInterfaces_term": "Interfaces de gestão",
   "ovhManagerPccDashboardGeneralInformation_managementInterfaces_definition_vscope": "vScope",
   "ovhManagerPccDashboardGeneralInformation_managementInterfaces_definition_webInterface": "Interface web",
-  "ovhManagerPccDashboardGeneralInformation_opensANewTab": "Abre um novo separador"
+  "ovhManagerPccDashboardGeneralInformation_opensANewTab": "Abre um novo separador",
+  "ovhManagerPccDashboardGeneralInformation_softwareSolution_update_available": "Atualização disponível",
+  "ovhManagerPccDashboardGeneralInformation_softwareSolution_update_planned": "Atualização programada",
+  "ovhManagerPccDashboardGeneralInformation_softwareSolution_update_major": "Instalar a atualização maior ({{version}} - build {{build}})",
+  "ovhManagerPccDashboardGeneralInformation_softwareSolution_update_minor": "Instalar a atualização menor ({{version}} - build {{build}})",
+  "ovhManagerPccDashboardGeneralInformation_softwareSolution_reschedule_update": "Modificar a data de atualização",
+  "ovhManagerPccDashboardGeneralInformation_numberOfIPBlocks_actionMenu_move": "Associar blocos de IP a outro serviço"
 }
