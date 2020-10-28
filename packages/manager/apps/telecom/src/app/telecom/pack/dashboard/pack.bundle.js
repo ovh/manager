@@ -1,5 +1,3 @@
-import '../xdsl/modem/router/lan/pack-xdsl-modem-lan.controller';
-import '../xdsl/modem/router/lan/pack-xdsl-modem-lan.factory';
 import '../xdsl/modem/router/pack-xdsl-modem-router.controller';
 import '../xdsl/modem/router/ports/pack-xdsl-modem-port.factory';
 import '../xdsl/modem/router/ports/pack-xdsl-modem-ports.controller';
