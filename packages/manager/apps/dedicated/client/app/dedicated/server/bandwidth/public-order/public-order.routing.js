@@ -20,6 +20,8 @@ export default /* @ngInject */ ($stateProvider) => {
         breadcrumb: () => null,
         hasDefaultPaymentMethod: /* @ngInject */ (ovhPaymentMethod) =>
           ovhPaymentMethod.hasDefaultPaymentMethod(),
+        trackingPrefix: () =>
+          'dedicated::server::interfaces::bandwidth-public-order::',
       },
     });
   });

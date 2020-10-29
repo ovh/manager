@@ -8,6 +8,7 @@ export default {
     atTrack: '<',
     serverName: '<',
     specifications: '<',
+    trackingPrefix: '<',
     interfaces: '<',
     ola: '<',
   },

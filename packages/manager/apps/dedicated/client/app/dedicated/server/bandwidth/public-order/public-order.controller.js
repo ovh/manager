@@ -84,6 +84,7 @@ export default class {
     });
     if (this.model.plan) {
       this.isLoading = true;
+      this.atTrack(`${this.trackingPrefix}confirm`);
       this.Server.bareMetalPublicBandwidthPlaceOrder(
         this.serverName,
         this.model.plan,
@@ -96,6 +97,11 @@ export default class {
           this.isLoading = false;
         });
     }
+  }
+
+  cancel() {
+    this.atTrack(`${this.trackingPrefix}cancel`);
+    this.goBack();
   }
 
   seeOrder() {

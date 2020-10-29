@@ -20,6 +20,7 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       goBack: /* @ngInject */ ($state) => (reload = false) =>
         $state.go('app.dedicated-server.server.interfaces', {}, { reload }),
+      trackingPrefix: () => 'dedicated::server::interfaces::ola-reset::',
     },
   });
 };

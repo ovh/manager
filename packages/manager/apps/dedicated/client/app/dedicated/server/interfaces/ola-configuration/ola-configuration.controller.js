@@ -98,7 +98,7 @@ export default class {
 
   onFinish() {
     this.isLoading = true;
-    this.atTrack('configure_ola');
+    this.atTrack(`${this.trackingPrefix}confirm`);
     return this.configureInterface()
       .then(() => {
         this.PhysicalInterface.v6().resetCache();
@@ -112,5 +112,10 @@ export default class {
           }),
         ),
       );
+  }
+
+  cancel() {
+    this.atTrack(`${this.trackingPrefix}cancel`);
+    this.goBack();
   }
 }
