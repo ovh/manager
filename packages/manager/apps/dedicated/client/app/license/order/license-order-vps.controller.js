@@ -1,9 +1,9 @@
 import dropRight from 'lodash/dropRight';
 import get from 'lodash/get';
-import has from 'lodash/has';
 import isNaN from 'lodash/isNaN';
 import last from 'lodash/last';
 import set from 'lodash/set';
+import startsWith from 'lodash/startsWith';
 import values from 'lodash/values';
 import _ from 'lodash';
 
@@ -46,10 +46,9 @@ angular
             $scope.types = _.chain(data)
               .filter((license) => {
                 const type = license.family.toUpperCase();
-                return has(
+                return Object.keys(
                   LicenseOrder.LicenseAgoraOrder.licenseTypeToCatalog,
-                  type,
-                );
+                ).find((l) => startsWith(type, l));
               })
               .groupBy((license) =>
                 license.planCode.split('-')[1].toUpperCase(),
