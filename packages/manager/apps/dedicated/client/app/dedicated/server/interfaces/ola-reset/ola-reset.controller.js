@@ -18,6 +18,7 @@ export default class {
 
   reset() {
     this.isLoading = true;
+    this.atTrack(`${this.trackingPrefix}confirm`);
     return this.InterfaceService.resetOlaInterfaces(
       this.serverName,
       this.ola.interfaces,
@@ -39,5 +40,10 @@ export default class {
       .finally(() => {
         this.isLoading = false;
       });
+  }
+
+  cancel() {
+    this.atTrack(`${this.trackingPrefix}cancel`);
+    this.goBack();
   }
 }

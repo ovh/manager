@@ -11,6 +11,7 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       goBack: /* @ngInject */ ($state) => (params) =>
         $state.go('app.dedicated.server.interfaces', params),
+      trackingPrefix: () => 'dedicated::server::interfaces::',
     },
   });
 };

@@ -74,9 +74,15 @@ export default class {
     this.steps[1].load();
   }
 
+  cancel() {
+    this.atTrack(`${this.trackingPrefix}cancel`);
+    this.goBack();
+  }
+
   order() {
     if (this.model.plan) {
       this.isLoading = true;
+      this.atTrack(`${this.trackingPrefix}confirm`);
       return this.Server.bareMetalPrivateBandwidthPlaceOrder(
         this.serverName,
         this.model.plan,

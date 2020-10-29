@@ -19,6 +19,8 @@ export default /* @ngInject */ ($stateProvider) => {
         goBack: /* @ngInject */ ($state) => () => $state.go('^'),
         hasDefaultPaymentMethod: /* @ngInject */ (ovhPaymentMethod) =>
           ovhPaymentMethod.hasDefaultPaymentMethod(),
+        trackingPrefix: () =>
+          'dedicated::server::interfaces::bandwidth-private-order::',
       },
     });
   });

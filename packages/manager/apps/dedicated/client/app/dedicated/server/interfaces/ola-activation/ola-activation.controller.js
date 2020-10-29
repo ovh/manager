@@ -83,7 +83,7 @@ export default class DedicatedServerInterfacesOlaActivationCtrl {
 
   activate() {
     this.loading = true;
-    this.atTrack('activate_ola');
+    this.atTrack(`${this.trackingPrefix}activate-ola`);
     return this.cartPromise
       .then(
         () =>

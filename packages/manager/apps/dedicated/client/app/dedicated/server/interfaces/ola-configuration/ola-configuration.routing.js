@@ -13,6 +13,8 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       goBack: /* @ngInject */ ($state) => (params) =>
         $state.go('app.dedicated.server.interfaces', params, { reload: true }),
+      trackingPrefix: () =>
+        'dedicated::server::interfaces::ola-configuration::',
     },
   });
 };

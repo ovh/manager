@@ -5,7 +5,9 @@ export default {
   bindings: {
     goBack: '<',
     alertError: '<',
+    atTrack: '<',
     serverName: '<',
+    trackingPrefix: '<',
     ola: '<',
   },
   controller,
