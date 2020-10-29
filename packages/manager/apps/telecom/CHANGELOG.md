@@ -1,3 +1,13 @@
+## [13.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.6.0...@ovh-ux/manager-telecom@13.6.1) (2020-10-29)
+
+
+### Bug Fixes
+
+* **redirect.config:** restore config for redirect featureType ([#3949](https://github.com/ovh/manager/issues/3949)) ([3573cf0](https://github.com/ovh/manager/commit/3573cf02691df59facc6149a926e7bbc47047269))
+* **sidebar:** open otb link in new window ([#3955](https://github.com/ovh/manager/issues/3955)) ([ac34a9c](https://github.com/ovh/manager/commit/ac34a9c0826b6b11e84e0afac0d7befe7e292dc0))
+
+
+
 # [13.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.5.3...@ovh-ux/manager-telecom@13.6.0) (2020-10-28)
 
 

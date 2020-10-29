@@ -1,3 +1,12 @@
+## [14.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.4.0...@ovh-ux/manager-dedicated@14.4.1) (2020-10-29)
+
+
+### Bug Fixes
+
+* **license.vps:** match license type according to pattern ([#3952](https://github.com/ovh/manager/issues/3952)) ([742263f](https://github.com/ovh/manager/commit/742263f408f8373c98de27b3ad24211101ea2802))
+
+
+
 # [14.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.3.0...@ovh-ux/manager-dedicated@14.4.0) (2020-10-28)
 
 

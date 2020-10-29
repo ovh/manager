@@ -1,3 +1,12 @@
+## [5.2.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.2.4...@ovh-ux/manager-pci@5.2.5) (2020-10-29)
+
+
+### Bug Fixes
+
+* **project.users:** only use region with storage capacity ([#3942](https://github.com/ovh/manager/issues/3942)) ([9aa8c06](https://github.com/ovh/manager/commit/9aa8c06a39a290c57440c05da4678fce2033d956))
+
+
+
 ## [5.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.2.3...@ovh-ux/manager-pci@5.2.4) (2020-10-28)
 
 

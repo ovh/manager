@@ -1,3 +1,15 @@
+## [15.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.5.0...@ovh-ux/manager-web@15.5.1) (2020-10-29)
+
+
+### Bug Fixes
+
+* **domain:** fix ds records edition ([#3928](https://github.com/ovh/manager/issues/3928)) ([e018654](https://github.com/ovh/manager/commit/e0186549e601780908cce1614c590363b47c0d23))
+* **hosting:** add `track by` to ensure that "More" tab will always be displayed ([#3933](https://github.com/ovh/manager/issues/3933)) ([55c58f8](https://github.com/ovh/manager/commit/55c58f8d73bd1b03d31a5d2604bc6cd2511863fd))
+* **hosting.cdn:** prevent checkout autopay if there are no payment mean ([#3893](https://github.com/ovh/manager/issues/3893)) ([e3ef7c8](https://github.com/ovh/manager/commit/e3ef7c8884e6df94e3e1f33808fcbcd22034c004))
+* **i18n:** add missing translations [CDS 635] ([7eaf0f5](https://github.com/ovh/manager/commit/7eaf0f5388c3c3cc6a94cf17a6a77b0f138926fc))
+
+
+
 # [15.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.4.0...@ovh-ux/manager-web@15.5.0) (2020-10-28)
 
 
