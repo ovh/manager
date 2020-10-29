@@ -28,6 +28,7 @@ angular.module('App').controller(
       drpGlobalStatus,
       isDrpActionPossible,
       DEDICATED_CLOUD_DATACENTER,
+      surveyUrl,
     ) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
@@ -44,6 +45,7 @@ angular.module('App').controller(
       this.dedicatedCloudDrp = dedicatedCloudDrp;
       this.drpGlobalStatus = drpGlobalStatus;
       this.isDrpActionPossible = isDrpActionPossible;
+      this.surveyUrl = surveyUrl;
       this.DEDICATED_CLOUD_DATACENTER = DEDICATED_CLOUD_DATACENTER;
       this.DRP_STATUS = DEDICATEDCLOUD_DATACENTER_DRP_STATUS;
       this.DRP_VPN_STATUS = DEDICATEDCLOUD_DATACENTER_DRP_VPN_CONFIGURATION_STATUS;

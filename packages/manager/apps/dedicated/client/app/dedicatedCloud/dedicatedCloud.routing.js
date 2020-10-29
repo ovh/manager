@@ -1,6 +1,9 @@
 import get from 'lodash/get';
 import sortBy from 'lodash/sortBy';
 
+import { Environment } from '@ovh-ux/manager-config';
+import { SURVEY } from './dedicatedCloud.constant';
+
 import DedicatedCloudInfo from './dedicatedCloud.class';
 
 angular.module('App').config(
@@ -130,6 +133,15 @@ angular.module('App').config(
           $state.href('app.dedicatedClouds.operation', {
             productId: currentService.serviceName,
           }),
+        surveyUrl: /* @ngInject */ (ovhFeatureFlipping) =>
+          ovhFeatureFlipping
+            .checkFeatureAvailability('dedicated-cloud:survey')
+            .then((featureAvailability) =>
+              featureAvailability.isFeatureAvailable('dedicated-cloud:survey')
+                ? SURVEY[Environment.getUserLanguage().toUpperCase()] ||
+                  SURVEY.default
+                : null,
+            ),
       },
       url: '/configuration/dedicated_cloud/:productId',
       views: {

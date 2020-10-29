@@ -26,6 +26,7 @@ angular.module('App').controller(
       datacenterList,
       DedicatedCloud,
       drpGlobalStatus,
+      surveyUrl,
       goBackToDashboard,
       goToDrp,
       goToDrpDatacenterSelection,
@@ -56,6 +57,8 @@ angular.module('App').controller(
       this.User = User;
       this.DRP_OPTIONS = DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS;
       this.DRP_STATUS = DEDICATEDCLOUD_DATACENTER_DRP_STATUS;
+
+      this.surveyUrl = surveyUrl;
     }
 
     $onInit() {

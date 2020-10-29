@@ -91,6 +91,19 @@
                 <span data-ng-bind-html="message"></span>
             </div>
 
+            <oui-message class="mb-1" type="info" ng-if="$ctrl.surveyUrl">
+                <span data-translate="dedicatedCloud_survey"></span>
+                <a
+                    data-ng-href="{{ $ctrl.surveyUrl }}"
+                    data-track-on="click"
+                    data-track-name="alert::hpc::go-to-hpc-survey"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    <span data-translate="dedicatedCloud_survey_link"></span>
+                </a>
+            </oui-message>
+
             <div data-ui-view="pccView"></div>
         </div>
     </div>
