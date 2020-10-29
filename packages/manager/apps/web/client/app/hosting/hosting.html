@@ -149,7 +149,7 @@
         <oui-header-tabs>
             <oui-header-tabs-item
                 data-ng-if="$ctrl.tabs"
-                data-ng-repeat="tab in $ctrl.tabs"
+                data-ng-repeat="tab in $ctrl.tabs track by $index"
                 data-href="{{:: $ctrl.$state.href('app.hosting', { 'tab': tab }) }}"
                 data-active="$ctrl.selectedTab === tab"
                 data-on-click="$ctrl.setSelectedTab(tab)"

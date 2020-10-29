@@ -1,7 +1,4 @@
-<div
-    class="container-fluid px-0"
-    data-ng-controller="DomainDnssecTabCtrl as ctrlDomainDnssec"
->
+<div class="container-fluid px-0">
     <div class="text-center" data-ng-if="ctrlDomainDnssec.loading">
         <oui-spinner data-size="l"></oui-spinner>
     </div>
@@ -21,7 +18,6 @@
         data-ng-if="!ctrlDomainDnssec.loading && ctrlDomainDnssec.product.dnssecSupported"
     >
         <div class="col-md-9">
-            <div data-ovh-alert="{{alerts.main}}"></div>
             <div
                 class="alert alert-warning"
                 role="alert"
@@ -259,7 +255,7 @@
                     type="button"
                     data-translate="wizard_confirm"
                     data-ng-click="setAction('dnssec/save/domain-dnssec-save', {})"
-                    data-ng-disabled="!ctrlDomainDnssec.addDnssecForm.$dirty || ctrlDomainDnssec.addDnssecForm.$invalid"
+                    data-ng-disabled="!ctrlDomainDnssec.hasValidChanges()"
                     data-ng-if="ctrlDomainDnssec.editMode"
                 ></button>
                 <button
