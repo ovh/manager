@@ -250,6 +250,8 @@ angular
                               'telecom_sidebar_actions_menu_internet_otb',
                             ),
                             href: URLS.overTheBox.FR,
+                            target: '_blank',
+                            extrnal: true,
                           },
                         ]
                       : []),
