@@ -102,7 +102,7 @@ angular.module('controllers').controller(
           this.Alerter.alertFromSWS(
             this.$translate.instant('domain_tab_DNSSEC_loading_error'),
             get(err, 'data', err),
-            this.$scope.alerts.main,
+            this.$scope.alerts.tabs,
           ),
         )
         .finally(() => {
@@ -173,6 +173,17 @@ angular.module('controllers').controller(
       this.editMode = false;
     }
 
+    hasValidChanges() {
+      if (this.dnssecList.length < this.dnssecListSave.length) {
+        return !this.addDnssecForm.$invalid;
+      }
+      return (
+        this.addDnssecForm.$dirty &&
+        !this.addDnssecForm.$invalid &&
+        this.dnssecList.length > 0
+      );
+    }
+
     saveModifications() {
       this.loading = true;
       return this.Domain.saveDnssecList(this.product.name, {
@@ -181,14 +192,14 @@ angular.module('controllers').controller(
         .then(() =>
           this.Alerter.success(
             this.$translate.instant('domain_tab_DNSSEC_action_add_success'),
-            this.$scope.alerts.main,
+            this.$scope.alerts.tabs,
           ),
         )
         .catch((err) =>
           this.Alerter.alertFromSWS(
             this.$translate.instant('domain_tab_DNSSEC_action_add_error'),
             err,
-            this.$scope.alerts.main,
+            this.$scope.alerts.tabs,
           ),
         )
         .finally(() => this.loadDnssec());

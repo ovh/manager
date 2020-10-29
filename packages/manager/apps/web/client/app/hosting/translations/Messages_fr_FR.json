@@ -252,6 +252,7 @@
   "hosting_dashboard_local_seo_visibility_check": "Vérifiez votre référencement local",
   "hosting_dashboard_local_seo_activating": "Activation en cours",
   "hosting_dashboard_local_seo_inactive": "Inactif",
+  "hosting_tab_generic_error": "Une erreur est survenue lors de la récupération des informations.",
   "hosting_tab_CRON": "Cron",
   "hosting_tab_CRON_guide_help": "Besoin d'aide pour configurer vos tâches planifiées ?",
   "hosting_guide_help": "Consultez nos guides en ligne.",
