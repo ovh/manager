@@ -688,6 +688,7 @@
   "license_designation_CPANEL_premier_option": "fino a {{ numberOfCPANEL }} account cPanel",
   "license_designation_CPANEL_admin_option": "2-5 account cPanel",
   "license_designation_CPANEL_pro_option": "6-30 account cPanel",
-  "license_order_step3_pricing_warning": "The price will be calculated on a pro-rata basis depending on your services expiry date",
-  "license_designation_CPANEL_version_option": "up to {{ licenseCount }} CPANEL accounts"
+  "license_order_step3_pricing_warning": "In base alla data di scadenza dei servizi, sul prezzo potrebbe essere applicato un prorata.",
+  "license_designation_CPANEL_version_option": "up to {{ licenseCount }} CPANEL accounts",
+  "license_designation_CPANEL_version_option-cpanel": "fino a {{ licenseCount }} account cPanel"
 }
