@@ -46,12 +46,14 @@ export const DEDICATED_CLOUD_CONFIG = {
           state: 'app.dedicatedClouds.datacenter',
           stateParams: ['productId', 'datacenterId'],
           app: [DEDICATED],
+          namespace: HPC_NAMESPACE,
         },
       ],
       state: 'app.dedicatedClouds',
       stateParams: ['productId'],
       icon: 'ovh-font ovh-font-dedicatedCloud',
       app: [DEDICATED],
+      namespace: HPC_NAMESPACE,
     },
   ],
   loadOnState: 'app.dedicatedClouds',
@@ -158,6 +160,7 @@ export const IP_CONFIG = {
   icon: 'ovh-font ovh-font-ip',
   app: [DEDICATED],
   regions: ['EU', 'CA', 'US'],
+  namespace: [undefined, HPC_NAMESPACE],
 };
 
 export const IAAS_CONFIG = {
@@ -195,6 +198,7 @@ export const PAAS_CONFIG = {
       app: [CLOUD],
       regions: ['EU', 'CA'],
       searchKeys: ['Cloud Disk Array', 'CDA'],
+      namespace: [undefined],
     },
     {
       path: '/veeamCloudConnect',
@@ -204,6 +208,7 @@ export const PAAS_CONFIG = {
       app: [DEDICATED],
       regions: ['EU', 'CA'],
       searchKeys: ['Veeam Cloud Connect', 'VEEAM'],
+      namespace: [undefined],
     },
     {
       path: '/veeam/veeamEnterprise',
@@ -213,11 +218,13 @@ export const PAAS_CONFIG = {
       app: [DEDICATED],
       regions: ['EU'],
       searchKeys: ['Veeam Enterprise', 'VEEAM_ENTERPRISE'],
+      namespace: [HPC_NAMESPACE],
     },
   ],
   icon: 'ovh-font ovh-font-cloud-package',
   app: [CLOUD],
   regions: ['EU', 'CA'],
+  namespace: [undefined, HPC_NAMESPACE],
 };
 
 export const METRICS_CONFIG = {
@@ -285,6 +292,7 @@ export const DEDICATED_NETWORK_CONFIG = {
   forceDisplaySearch: true,
   app: [DEDICATED],
   regions: ['EU', 'CA', 'US'],
+  namespace: [undefined, HPC_NAMESPACE],
   icon: 'oui-icon oui-icon-bandwidth_concept',
   loadOnState: ['vrack', 'cloud-connect'],
   children: [
@@ -297,11 +305,13 @@ export const DEDICATED_NETWORK_CONFIG = {
           state: 'vrack',
           stateParams: ['vrackId'],
           app: [DEDICATED],
+          namespace: [undefined, HPC_NAMESPACE],
         },
       ],
       icon: 'ovh-font ovh-font-vRack',
       app: [DEDICATED],
       regions: ['EU', 'CA', 'US'],
+      namespace: [undefined, HPC_NAMESPACE],
     },
     {
       id: 'cloud_connect',
@@ -314,10 +324,12 @@ export const DEDICATED_NETWORK_CONFIG = {
           stateParams: ['ovhCloudConnectId'],
           app: [DEDICATED],
           regions: ['EU'],
+          namespace: [undefined, HPC_NAMESPACE],
         },
       ],
       icon: 'oui-icon oui-icon-line-communicating_concept',
       app: [DEDICATED],
+      namespace: [undefined, HPC_NAMESPACE],
     },
   ],
 };

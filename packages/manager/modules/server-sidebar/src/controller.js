@@ -245,6 +245,7 @@ export default class OvhManagerServerSidebarController {
           link = get(this.CORE_MANAGER_URLS, camelCase(service.app[0]));
           link += service.stateUrl;
         }
+
         const menuItem = this.SidebarMenu.addMenuItem(
           {
             id: service.id,
@@ -382,6 +383,7 @@ export default class OvhManagerServerSidebarController {
                   icon: get(typeServices.type, 'icon'),
                   loadOnState: get(typeServices.type, 'loadOnState'),
                   loadOnStateParams,
+                  namespace: typeServices.type.namespace,
                 },
                 parent,
               );
