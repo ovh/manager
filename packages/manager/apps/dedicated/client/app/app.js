@@ -242,13 +242,26 @@ angular
 
       // if query params contains unescaped '<' value then
       // clear query params to avoid html injection
-      $transitions.onBefore({}, () => {
+      $transitions.onBefore({}, (transition) => {
         let invalidParams = false;
         values($location.search()).forEach((param) => {
           invalidParams = invalidParams || /</.test(param);
         });
         if (invalidParams) {
           $location.search('');
+        }
+
+        const HPC_STATES = ['app.dedicatedClouds'];
+        const IGNORE_STATES = ['app.configuration'];
+
+        const stateIncludes = Object.keys(transition.$to().includes);
+
+        if (HPC_STATES.some((state) => stateIncludes.includes(state))) {
+          $rootScope.$broadcast('switchUniverse', 'hpc');
+        } else if (
+          !IGNORE_STATES.some((state) => stateIncludes.includes(state))
+        ) {
+          $rootScope.$broadcast('switchUniverse', 'server');
         }
       });
 
