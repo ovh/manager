@@ -111,8 +111,12 @@ export default /* @ngInject */ ($stateProvider) => {
           currentUser.ovhSubsidiary,
           BACKUP_CONDITIONS_URL.FR,
         ),
-      backupTariffUrl: /* @ngInject */ (currentUser) =>
-        get(BACKUP_TARIFF_URL, currentUser.ovhSubsidiary, BACKUP_TARIFF_URL.FR),
+      backupTariffUrl: /* @ngInject */ (currentUser, pccType) =>
+        get(
+          BACKUP_TARIFF_URL,
+          `${pccType}.${currentUser.ovhSubsidiary}`,
+          BACKUP_TARIFF_URL[pccType].FR,
+        ),
       goToUpgradeOffer: /* @ngInject */ ($state, productId, datacenterId) => (
         actualOffer,
       ) =>
