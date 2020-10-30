@@ -1,7 +1,7 @@
 <oui-navbar
     class="flex-nowrap"
     data-brand="$ctrl.brand"
-    data-active-link="{{ :: $ctrl.navbarOptions.universe }}"
+    active-link="{{ $ctrl.navbarOptions.universe }}"
     data-fixed="$ctrl.fixed"
 >
     <oui-navbar-main>
@@ -21,7 +21,8 @@
                 href="{{:: link.url }}"
                 variant="{{:: link.isPrimary ? 'primary' : 'secondary' }}"
                 on-click="$ctrl.onUniverseChange(link.name)"
-                ><span data-ng-bind=":: link.title"></span>
+            >
+                <span data-ng-bind=":: link.title"></span>
             </oui-navbar-link>
         </div>
     </oui-navbar-main>
