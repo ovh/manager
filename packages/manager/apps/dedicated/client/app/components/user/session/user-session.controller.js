@@ -15,6 +15,10 @@ angular.module('App').controller(
     }
 
     $onInit() {
+      this.$scope.$on('switchUniverse', (event, universe) => {
+        this.sidebarNamespace = universe === 'server' ? undefined : 'hpc';
+      });
+
       [this.currentLanguage] = this.$translate.use().split('_');
 
       this.User.getUser().then((user) => {
