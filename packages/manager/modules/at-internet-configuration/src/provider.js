@@ -10,7 +10,7 @@ export default class atInternetConfigurationProvider {
   }
 
   setReplacementRules(rules) {
-    this.stateRules = rules;
+    this.stateRules = [...this.stateRules, ...rules];
   }
 
   setPrefix(prefix) {
