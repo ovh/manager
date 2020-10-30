@@ -263,6 +263,7 @@ export default class OvhManagerServerSidebarController {
             url: link,
             target: link ? '_self' : null,
             click: () => this.onClick(),
+            namespace: service.namespace,
           },
           parent,
         );

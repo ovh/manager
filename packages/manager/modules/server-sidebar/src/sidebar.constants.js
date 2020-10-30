@@ -1,4 +1,4 @@
-import { DEDICATED, CLOUD } from './constants';
+import { DEDICATED, CLOUD, HPC_NAMESPACE } from './constants';
 
 export const DEDICATED_SERVER_CONFIG = {
   id: 'dedicatedServers',
@@ -58,6 +58,7 @@ export const DEDICATED_CLOUD_CONFIG = {
   icon: 'ovh-font ovh-font-dedicatedCloud',
   app: [DEDICATED],
   regions: ['EU', 'CA', 'US'],
+  namespace: HPC_NAMESPACE,
 };
 
 export const NETWORKS_CONFIG = {
