@@ -6,6 +6,7 @@ const component = {
     onClick: '&',
     isOpen: '<',
     universe: '<',
+    namespace: '<',
   },
   controller,
   template,
