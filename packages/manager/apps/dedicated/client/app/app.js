@@ -251,7 +251,7 @@ angular
           $location.search('');
         }
 
-        const HPC_STATES = ['app.dedicatedClouds'];
+        const HPC_STATES = ['app.dedicatedClouds', 'app.hpc'];
         const IGNORE_STATES = ['app.configuration'];
 
         const stateIncludes = Object.keys(transition.$to().includes);

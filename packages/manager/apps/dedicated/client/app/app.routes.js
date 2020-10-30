@@ -33,6 +33,12 @@ angular.module('App').config(
       },
     });
 
+    $stateProvider.state('app.hpc', {
+      url: '/hosted-private-cloud',
+      template: '<ui-view></ui-view>',
+      redirectTo: 'app.configuration',
+    });
+
     // CDN & NAS
     $stateProvider.state('app.networks', {
       abstract: true,
