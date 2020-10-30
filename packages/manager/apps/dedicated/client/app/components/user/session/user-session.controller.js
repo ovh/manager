@@ -17,6 +17,13 @@ angular.module('App').controller(
     $onInit() {
       [this.currentLanguage] = this.$translate.use().split('_');
 
+      this.navbarOptions = {
+        toggle: {
+          event: 'sidebar:loaded',
+        },
+        universe: 'server',
+      };
+
       this.User.getUser().then((user) => {
         this.user = user;
       });
