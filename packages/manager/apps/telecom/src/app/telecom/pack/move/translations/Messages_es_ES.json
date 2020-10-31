@@ -81,7 +81,7 @@
   "pack_move_eligibility_line_status_create": "Creación de una nueva línea",
   "pack_move_eligibility_line_unknown_status": "Estado desconocido de la línea",
   "pack_move_eligibility_line_no_offers": "No se ha encontrado ninguna elegibilidad para su línea.",
-  "pack_move_eligibility_move_out_date": "Fecha prevista del traslado",
+  "pack_move_eligibility_move_out_date": "Fecha de cierre del acceso actual",
   "pack_move_eligibility_move_out_date_description": "La fecha debe estar comprendida entre hoy y los próximos 30 días. La fecha establecida por defecto será dentro de 30 días.",
   "pack_move_go_back": "Volver al detalle del pack",
   "pack_move_eligibility_error_test": "Se ha producido un error no gestionado:",
