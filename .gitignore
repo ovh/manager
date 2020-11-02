@@ -2,7 +2,7 @@ node_modules
 dist
 dist-*
 .memsourcerc.yaml
-docs/.vuepress/public/assets/json/packages.json
+/docs/docs/.vuepress/public/assets/json/packages.json
 .extras*
 .env
 /packages/manager/tools/testcafe/config/**/*.json

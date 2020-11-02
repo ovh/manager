@@ -1,0 +1,16 @@
+{
+  "name": "@ovh-ux/manager-documentation",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Manager documentation deployed with GitHub Pages",
+  "scripts": {
+    "build": "vuepress prebuild docs && vuepress build docs",
+    "deploy": "yarn run build && gh-pages -d docs/.vuepress/dist -m \"docs: update documentation [skip ci]\"",
+    "dev": "vuepress prebuild docs && vuepress dev docs"
+  },
+  "devDependencies": {
+    "get-monorepo-packages": "^1.2.0",
+    "gh-pages": "^2.2.0",
+    "vuepress": "^1.7.1"
+  }
+}
