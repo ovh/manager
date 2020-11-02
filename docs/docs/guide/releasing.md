@@ -19,7 +19,7 @@ Approximate release date: 📆 DD/MM/YY
 
 ## Dashboard
 
-### :rocket: Features
+### :sparkles: Features
 
 - [ ] Description #
 
@@ -27,9 +27,9 @@ Approximate release date: 📆 DD/MM/YY
 
 - [ ] Description #
 
-## Web
+## Web Cloud
 
-### :rocket: Features
+### :sparkles: Features
 
 - [ ] Description #
 
@@ -37,9 +37,19 @@ Approximate release date: 📆 DD/MM/YY
 
 - [ ] Description #
 
-## Server
+## Bare Metal Cloud
 
-### :rocket: Features
+### :sparkles: Features
+
+- [ ] Description #
+
+### :bug: Bug Fixes
+
+- [ ] Description #
+
+## Hosted Private Cloud
+
+### :sparkles: Features
 
 - [ ] Description #
 
@@ -49,7 +59,7 @@ Approximate release date: 📆 DD/MM/YY
 
 ## Public Cloud
 
-### :rocket: Features
+### :sparkles: Features
 
 - [ ] Description #
 
@@ -59,7 +69,7 @@ Approximate release date: 📆 DD/MM/YY
 
 ## Telecom
 
-### :rocket: Features
+### :sparkles: Features
 
 - [ ] Description #
 
