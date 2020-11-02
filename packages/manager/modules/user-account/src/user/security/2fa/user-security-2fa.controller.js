@@ -35,7 +35,7 @@ export default class UserAccountDoubleAuth2FaController {
       codeImg,
       successImg,
     };
-    
+
     $scope.step1 = {
       doubleAuthType: null,
       isActive: false,

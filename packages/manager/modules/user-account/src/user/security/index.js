@@ -47,7 +47,6 @@ const moduleName = 'ovhManagerDedicatedAccountUserSecurity';
 angular
   .module(moduleName, [
     'ovhManagerCore',
-    'pascalprecht.translate',
     'oui',
     'pascalprecht.translate',
     'ui.bootstrap',

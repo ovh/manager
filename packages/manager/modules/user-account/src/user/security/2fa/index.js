@@ -10,7 +10,7 @@ const moduleName = 'ovhManagerDedicatedAccountUserSecurity2fa';
 
 angular
   .module(moduleName, [
-    'ja.qr', 
+    'ja.qr',
     'ovhManagerCore',
     'pascalprecht.translate',
     'ui.router',
