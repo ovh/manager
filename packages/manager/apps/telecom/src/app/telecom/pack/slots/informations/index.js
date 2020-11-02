@@ -23,7 +23,7 @@ angular
   .run(
     /* @ngInject */ ($templateCache) => {
       $templateCache.put(
-        'app/telecom/pack/slots/informations/pack-informations.html',
+        'app/telecom/pack/slots/informations/informations.html',
         template,
       );
     },

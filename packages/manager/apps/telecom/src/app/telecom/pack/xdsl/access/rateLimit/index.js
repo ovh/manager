@@ -23,7 +23,7 @@ angular
   .run(
     /* @ngInject */ ($templateCache) => {
       $templateCache.put(
-        'app/telecom/pack/xdsl/access/rateLimit/xdsl-access-lns-ratelimit.html',
+        'app/telecom/pack/xdsl/access/rateLimit/ratelimit.html',
         template,
       );
     },

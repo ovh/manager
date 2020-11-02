@@ -23,7 +23,7 @@ angular
   .run(
     /* @ngInject */ ($templateCache) => {
       $templateCache.put(
-        'app/telecom/pack/xdsl/access/deconsolidation/contract/pack-xdsl-access-deconsolidation-contract.modal.html',
+        'app/telecom/pack/xdsl/access/deconsolidation/contract/contract.modal.html',
         template,
       );
     },

@@ -23,7 +23,7 @@ angular
   .run(
     /* @ngInject */ ($templateCache) => {
       $templateCache.put(
-        'app/telecom/pack/xdsl/access/ipv6/pack-xdsl-access-ipv6.html',
+        'app/telecom/pack/xdsl/access/ipv6/ipv6.html',
         template,
       );
     },

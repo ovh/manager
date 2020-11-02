@@ -23,7 +23,7 @@ angular
   .run(
     /* @ngInject */ ($templateCache) => {
       $templateCache.put(
-        'app/telecom/pack/slots/xdslAccess/pack-xdslAccess.html',
+        'app/telecom/pack/slots/xdslAccess/xdslAccess.html',
         template,
       );
     },

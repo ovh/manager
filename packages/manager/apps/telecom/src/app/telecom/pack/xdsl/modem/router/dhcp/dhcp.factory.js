@@ -69,7 +69,7 @@ export default /* @ngInject */ (
           $uibModal.open({
             animation: true,
             templateUrl:
-              'app/telecom/pack/xdsl/modem/router/dhcp/pack-xdsl-modem-dhcp-modal.html',
+              'app/telecom/pack/xdsl/modem/router/dhcp/dhcp-modal.html',
             controller: 'telecomXdslModemDhcpModal',
             controllerAs: '$ctrl',
             resolve: {

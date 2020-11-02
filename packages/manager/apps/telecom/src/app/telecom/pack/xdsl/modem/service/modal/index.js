@@ -23,7 +23,7 @@ angular
   .run(
     /* @ngInject */ ($templateCache) => {
       $templateCache.put(
-        'app/telecom/pack/xdsl/modem/service/modal/pack-xdsl-modem-service-modal.html',
+        'app/telecom/pack/xdsl/modem/service/modal/service-modal.html',
         template,
       );
     },

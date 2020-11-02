@@ -22,10 +22,7 @@ angular
   .run(/* @ngTranslationsInject:json ./translations */)
   .run(
     /* @ngInject */ ($templateCache) => {
-      $templateCache.put(
-        'app/telecom/pack/xdsl/modem/mtu/pack-xdsl-modem-mtu.html',
-        template,
-      );
+      $templateCache.put('app/telecom/pack/xdsl/modem/mtu/mtu.html', template);
     },
   );
 

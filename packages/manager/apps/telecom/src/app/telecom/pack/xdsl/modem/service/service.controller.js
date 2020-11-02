@@ -419,7 +419,7 @@ angular.module('managerApp').controller(
             .open({
               animation: true,
               templateUrl:
-                'app/telecom/pack/xdsl/modem/service/modal/pack-xdsl-modem-service-modal.html',
+                'app/telecom/pack/xdsl/modem/service/modal/service-modal.html',
               controller: 'XdslModemServiceModalCtrl',
               controllerAs: '$ctrl',
             })

@@ -23,7 +23,7 @@ angular
   .run(
     /* @ngInject */ ($templateCache) => {
       $templateCache.put(
-        'app/telecom/pack/slots/exchangeLite/pack-exchangeLite.html',
+        'app/telecom/pack/slots/exchangeLite/exchangeLite.html',
         template,
       );
     },

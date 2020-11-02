@@ -35,7 +35,7 @@ export default /* @ngInject */ function PromotionCodeCtrl(
     $uibModal
       .open({
         templateUrl:
-          'app/telecom/pack/slots/promotionCode/pack-promotionCode.modal.html',
+          'app/telecom/pack/slots/promotionCode/promotionCode.modal.html',
         resolve: {
           data() {
             return self.amount;

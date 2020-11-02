@@ -22,10 +22,7 @@ angular
   .run(/* @ngTranslationsInject:json ./translations */)
   .run(
     /* @ngInject */ ($templateCache) => {
-      $templateCache.put(
-        'app/telecom/pack/slots/domain/pack-domain.html',
-        template,
-      );
+      $templateCache.put('app/telecom/pack/slots/domain/domain.html', template);
     },
   );
 

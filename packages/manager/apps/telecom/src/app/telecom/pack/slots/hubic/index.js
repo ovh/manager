@@ -22,10 +22,7 @@ angular
   .run(/* @ngTranslationsInject:json ./translations */)
   .run(
     /* @ngInject */ ($templateCache) => {
-      $templateCache.put(
-        'app/telecom/pack/slots/hubic/pack-hubic.html',
-        template,
-      );
+      $templateCache.put('app/telecom/pack/slots/hubic/hubic.html', template);
     },
   );
 

@@ -23,7 +23,7 @@ angular
   .run(
     /* @ngInject */ ($templateCache) => {
       $templateCache.put(
-        'app/telecom/pack/xdsl/modem/bridgeMode/pack-xdsl-modem-bridgeMode.html',
+        'app/telecom/pack/xdsl/modem/bridgeMode/bridgeMode.html',
         template,
       );
     },

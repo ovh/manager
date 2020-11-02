@@ -23,7 +23,7 @@ angular
   .run(
     /* @ngInject */ ($templateCache) => {
       $templateCache.put(
-        'app/telecom/pack/slots/task/pack-voipBillingAccount.html',
+        'app/telecom/pack/slots/voipBillingAccount/voipBillingAccount.html',
         template,
       );
     },

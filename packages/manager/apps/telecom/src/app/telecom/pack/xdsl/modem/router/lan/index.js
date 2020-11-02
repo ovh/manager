@@ -25,7 +25,7 @@ angular
   .run(
     /* @ngInject */ ($templateCache) => {
       $templateCache.put(
-        'app/telecom/pack/xdsl/modem/router/lan/pack-xdsl-modem-lan.html',
+        'app/telecom/pack/xdsl/modem/router/lan/lan.html',
         template,
       );
     },

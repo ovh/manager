@@ -24,11 +24,11 @@ angular
   .run(
     /* @ngInject */ ($templateCache) => {
       $templateCache.put(
-        'app/telecom/pack/slots/promotionCode/pack-promotionCode.modal.html',
+        'app/telecom/pack/slots/promotionCode/promotionCode.modal.html',
         templateModal,
       );
       $templateCache.put(
-        'app/telecom/pack/slots/promotionCode/pack-promotionCode.html',
+        'app/telecom/pack/slots/promotionCode/promotionCode.html',
         template,
       );
     },

@@ -23,7 +23,7 @@ angular
   .run(
     /* @ngInject */ ($templateCache) => {
       $templateCache.put(
-        'app/telecom/pack/slots/voipEcoFax/pack-voipEcoFax.html',
+        'app/telecom/pack/slots/voipEcoFax/voipEcoFax.html',
         template,
       );
     },

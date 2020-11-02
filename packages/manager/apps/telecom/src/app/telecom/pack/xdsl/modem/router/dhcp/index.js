@@ -29,11 +29,11 @@ angular
   .run(
     /* @ngInject */ ($templateCache) => {
       $templateCache.put(
-        'app/telecom/pack/xdsl/modem/router/dhcp/pack-xdsl-modem-dhcp.html',
+        'app/telecom/pack/xdsl/modem/router/dhcp/dhcp.html',
         template,
       );
       $templateCache.put(
-        'app/telecom/pack/xdsl/modem/router/dhcp/pack-xdsl-modem-dhcp-modal.html',
+        'app/telecom/pack/xdsl/modem/router/dhcp/dhcp-modal.html',
         templateModal,
       );
     },

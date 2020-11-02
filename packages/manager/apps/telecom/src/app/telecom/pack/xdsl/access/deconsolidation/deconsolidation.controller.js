@@ -25,7 +25,7 @@ export default /* @ngInject */ function XdslDeconsolidationCtrl(
     const modal = $uibModal.open({
       animation: true,
       templateUrl:
-        'app/telecom/pack/xdsl/access/deconsolidation/contract/pack-xdsl-access-deconsolidation-contract.modal.html',
+        'app/telecom/pack/xdsl/access/deconsolidation/contract/contract.modal.html',
       controller: 'XdslDeconsolidationContractCtrl',
       controllerAs: 'XdslDeconsolidationContract',
       resolve: {
