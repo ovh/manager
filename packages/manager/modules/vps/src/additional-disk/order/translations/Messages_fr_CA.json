@@ -1,0 +1,19 @@
+{
+  "vps_order_additionnal_disk_title": "Commander un disque additionnel",
+  "vps_order_additionnal_disk_title_back": "Retour à la liste de vos disques additionnels",
+  "vps_order_additionnal_disk_choose_disk": "Choix du disque",
+  "vps_order_additionnal_disk_label": "Disque additionnel {{ size }}",
+  "vps_order_additional_disk_select_capacity": "Veuillez choisir la taille du disque additionnel pour votre VPS. Il sera visible en tant que second disque dur depuis votre système d'exploitation.",
+  "vps_order_additional_disk_step2": "Le disque additionnel sera ajouté à votre serveur jusqu'à la date de renouvellement de votre VPS, puis il sera ensuite renouvelé avec ce dernier.",
+  "vps_order_additional_disk_select_capacity_price_tax_free": "{{ price }} HT",
+  "vps_order_additional_disk_totalHT": "Prix HT :",
+  "vps_order_additional_disk_totalTTC": "Prix TTC :",
+  "vps_order_additional_disk_option": "Option :",
+  "vps_order_additional_disk_offer_description": "Option Disque Additionnel - {{ size }} jusqu'au {{ date }}",
+  "vps_order_additional_disk_price": "Prix :",
+  "vps_order_additional_disk_step2_title": "Récapitulatif",
+  "vps_order_additional_disk_fail": "Erreur lors de la commande du disque additionnel",
+  "vps_order_additional_disk_load_error": "Une erreur est survenue lors du chargement des disques additionnels disponibles.",
+  "vps_order_additional_disk_explain": "En cliquant sur le bouton \"Commander\", un nouvel onglet s'ouvrira et vous serez automatiquement redirigé(e) vers l'interface de paiement.",
+  "vps_order_additional_disk_success": "Afin de finaliser votre commande, veuillez suivre les instructions décrites dans le nouvel onglet qui s'est ouvert. Si aucun nouvel onglet ne s'est ouvert, veuillez cliquer sur <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">ce lien</a>."
+}
