@@ -29,5 +29,9 @@
   "dedicatedCloud_datacenter_drp_vpn_success": "A atualização da configuração VPN foi realizada com êxito",
   "dedicatedCloud_datacenter_drp_vpn_error": "Ocorreu um erro ao atualizar a configuração VPN",
   "dedicatedCloud_datacenter_drp_vpn_ip_invalid": "Introduza um endereço IPv4 válido (ex.: 192.168.0.1)",
-  "dedicatedCloud_datacenter_drp_confirm_order": "A sua <a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">nota de encomenda</a> foi gerada com êxito. Uma vez o pagamento efetuado, poderá verificar a tarefa enableDisasterRecovery no separador Operações para seguir a ativação da opção."
+  "dedicatedCloud_datacenter_drp_confirm_order": "A sua <a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">nota de encomenda</a> foi gerada com êxito. Uma vez o pagamento efetuado, poderá verificar a tarefa enableDisasterRecovery no separador Operações para seguir a ativação da opção.",
+  "dedicatedCloud_datacenter_drp_confirm_creation_pending_task_MBM": "Não hesite em verificar a tarefa enableDisasterRecovery do serviço Essentials principal para consultar o seu progresso.",
+  "dedicatedCloud_datacenter_drp_confirm_summary_first_ovh_pcc_MBM": "Serviço Essentials principal",
+  "dedicatedCloud_datacenter_drp_confirm_summary_first_onPremise_pcc_MBM": "Managed Bare Metal da OVHcloud",
+  "dedicatedCloud_datacenter_drp_confirm_summary_secondary_pcc_MBM": "Serviço Essentials secundário"
 }

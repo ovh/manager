@@ -9,5 +9,6 @@
   "dedicatedCloud_host_order_cores": "Número de cores",
   "dedicatedCloud_host_order_quantity": "Quantidade:",
   "dedicatedCloud_host_order_confirm": "Confirmar a encomenda",
-  "dedicatedCloud_host_order_loading_error": "Erro ao carregar informações relativas aos hosts."
+  "dedicatedCloud_host_order_loading_error": "Erro ao carregar informações relativas aos hosts.",
+  "dedicatedCloud_host_order_info_MBM": "Pode personalizar o seu serviço Essentials adicionando hosts. De seguida, será redirecionado para um novo separador para finalizar a sua encomenda."
 }

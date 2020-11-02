@@ -6,5 +6,6 @@
   "dedicatedCloud_datastore_order_price": "Preço",
   "dedicatedCloud_datastore_order_quantity": "Quantidade:",
   "dedicatedCloud_datastore_order_confirm": "Confirmar a encomenda",
-  "dedicatedCloud_datastore_order_loading_error": "Ocorreu um erro aquando do carregamento das informações dos datastores."
+  "dedicatedCloud_datastore_order_loading_error": "Ocorreu um erro aquando do carregamento das informações dos datastores.",
+  "dedicatedCloud_datastore_order_info_MBM": "Pode personalizar o seu serviço Essentials adicionando datastores. De seguida, será redirecionado para um novo separador para finalizar a sua encomenda."
 }

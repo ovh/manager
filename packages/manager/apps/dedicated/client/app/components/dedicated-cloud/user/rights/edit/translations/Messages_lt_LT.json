@@ -47,5 +47,6 @@
   "dedicatedCloud_USER_right_resources": "Add resources",
   "dedicatedCloud_USER_right_resources_help": "Right to add additional resources through the OVHcloud plugin in the vSphere client.",
   "dedicatedCloud_USER_right_set_success": "The modification of {{t0}} rights for the {{t1}} datacentre has been confirmed",
-  "dedicatedCloud_USER_right_set_fail": "An error has occurred modifying {{t0}} rights for the {{t1}} datacentre"
+  "dedicatedCloud_USER_right_set_fail": "An error has occurred modifying {{t0}} rights for the {{t1}} datacentre",
+  "dedicatedCloud_USER_right_vlan_help_MBM": "Management rights over the private network section (VXLAN for Essentials and VLAN for SDDC and Hosted Private Cloud Premier packs)"
 }

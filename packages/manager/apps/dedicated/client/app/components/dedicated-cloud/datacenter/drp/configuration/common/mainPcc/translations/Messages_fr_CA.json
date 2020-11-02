@@ -1,6 +1,8 @@
 {
   "dedicatedCloud_datacenter_pcc_name_EPCC": "Nom du Private Cloud : {{pcc}}",
+  "dedicatedCloud_datacenter_pcc_name_MBM": "Nom du Essentials : {{pcc}}",
   "dedicatedCloud_datacenter_main_datacenter_name_EPCC": "Identifiant du datacenter Private Cloud correspondant",
+  "dedicatedCloud_datacenter_main_datacenter_name_MBM": "Identifiant du datacenter Essentials correspondant",
   "dedicatedCloud_datacenter_main_datacenter_name_placeholder": "Choisissez votre datacenter principal",
   "dedicatedCloud_datacenter_main_ip_address_pool_available": "Pool d’adresses IP publiques disponible",
   "dedicatedCloud_datacenter_main_ip_address_pool_available_placeholder": "Choisissez une adresse IP publique libre",

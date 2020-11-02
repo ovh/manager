@@ -13,8 +13,11 @@
   "dedicatedCloud_servicePack_requiredConfiguration_descriptionTable_descriptionColumn": "Description",
 
   "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_accessPolicy_error_EPCC": "La politique d'accès de votre Private Cloud n'est pas restreinte",
+  "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_accessPolicy_error_MBM": "La politique d'accès de votre Essentials n'est pas restreinte",
   "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_numberOfAllowedIPAndBlocks_error_EPCC": "La politique d'accès de votre Private Cloud n'a aucune adresse IP autorisée",
+  "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_numberOfAllowedIPAndBlocks_error_MBM": "La politique d'accès de votre Essentials n'a aucune adresse IP autorisée",
   "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_both_error_EPCC": "La politique d'accès de votre Private Cloud n'est pas restreinte et ne possède aucune adresse IP autorisée.",
+  "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_both_error_MBM": "La politique d'accès de votre Essentials n'est pas restreinte et ne possède aucune adresse IP autorisée.",
   "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_whatToDoNow_1": "Veuillez configurer ces éléments dans l'onglet ",
   "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_whatToDoNow_security": "Securité",
   "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_whatToDoNow_2": " avant de continuer",

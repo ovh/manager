@@ -47,5 +47,6 @@
   "dedicatedCloud_USER_right_resources": "Dodawanie zasobów",
   "dedicatedCloud_USER_right_resources_help": "Uprawnienia do dodawania dodatkowych zasobów za pomocą wtyczki OVH w vSphere Client",
   "dedicatedCloud_USER_right_set_success": "Zmiana uprawnień dla {{t0}} dla centrum danych {{t1}} została przyjęta.",
-  "dedicatedCloud_USER_right_set_fail": "Wystąpił błąd podczas modyfikacji uprawnień dla {{t0}} dla centrum danych {{t1}}"
+  "dedicatedCloud_USER_right_set_fail": "Wystąpił błąd podczas modyfikacji uprawnień dla {{t0}} dla centrum danych {{t1}}",
+  "dedicatedCloud_USER_right_vlan_help_MBM": "Uprawnienia do zarządzania w prywatnej części sieci (VxLan dla Essentials i VLAN dla SDDC oraz pakiety Hosted Private Cloud Premier)"
 }

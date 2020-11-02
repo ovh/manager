@@ -47,5 +47,6 @@
   "dedicatedCloud_USER_right_resources": "Añadir recursos",
   "dedicatedCloud_USER_right_resources_help": "Derecho de añadir recursos adicionales mediante el plugin OVH en vSphere Client",
   "dedicatedCloud_USER_right_set_success": "El cambio de los permisos de {{t0}} para el datacenter {{t1}} se ha enviado",
-  "dedicatedCloud_USER_right_set_fail": "Se ha producido un error al cambiar los permisos de {{t0}} para el datacenter {{t1}}"
+  "dedicatedCloud_USER_right_set_fail": "Se ha producido un error al cambiar los permisos de {{t0}} para el datacenter {{t1}}",
+  "dedicatedCloud_USER_right_vlan_help_MBM": "Derechos de gestión de la red pública (VxLan para Essentials y VLAN para SDDC)"
 }

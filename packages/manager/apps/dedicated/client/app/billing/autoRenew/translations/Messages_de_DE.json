@@ -121,5 +121,6 @@
   "billing_autorenew_renew_action": "Verlängern",
   "billing_autorenew_service_renew_requires_mean_and_date": "Um die Aktivierung der automatischen Verlängerung abzuschließen, hinterlegen Sie bitte ein Zahlungsmittel Ihrer Wahl. Danach können Sie das Datum der Abbuchung auswählen.",
   "billing_autorenew_service_activate_alert": "Sie haben für mindestens einen Dienst die automatische Verlängerung eingestellt, diese Option aber noch nicht autorisiert.",
-  "billing_autorenew_service_type_OVH_CLOUD_CONNECT": "OVHcloud Connect"
+  "billing_autorenew_service_type_OVH_CLOUD_CONNECT": "OVHcloud Connect",
+  "billing_autorenew_service_type_ESSENTIALS": "Essentials"
 }

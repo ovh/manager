@@ -10,5 +10,8 @@
   "dedicatedCloud_datacenter_drp_confirm_delete_drp_success": "Zerto DRP wird gelöscht. Dieser Vorgang dauert einige Minuten",
   "dedicatedCloud_datacenter_drp_get_state_error": "Beim Abrufen der Daten Ihres DRP ist ein Fehler aufgetreten.",
   "dedicatedCloud_datacenter_install_plan": "Installieren",
-  "dedicatedCloud_datacenter_install_in_error": "Bei der Installation des Plans ist ein Fehler aufgetreten. Bitte kontaktieren Sie den Support"
+  "dedicatedCloud_datacenter_install_in_error": "Bei der Installation des Plans ist ein Fehler aufgetreten. Bitte kontaktieren Sie den Support",
+  "dedicatedCloud_datacenter_drp_details_MBM": "Stellen Sie den Schutz Ihres IT-Systems sicher, indem Sie Ihren Disaster Recovery Plan konfigurieren. Stellen Sie Ihre Infrastruktur mit 1 Klick binnen weniger Minuten um, falls eine Störung vorliegt oder ein Dienst unterbrochen wird. Bitte beachten Sie: Um diese Option zu aktivieren, müssen Sie über einen sekundären Managed Bare Metal Server verfügen.",
+  "dedicatedCloud_datacenter_ovh_choice_MBM": "Zwischen zwei Managed Bare Metal Servern",
+  "dedicatedCloud_datacenter_onPremise_choice_MBM": "Zwischen Ihrer Infrastruktur und einem Managed Bare Metal Server"
 }

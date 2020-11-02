@@ -8,5 +8,7 @@
   "dedicatedCloud_datacenter_local_vra_network_help": "Pode escolher a sua sub-rede VRA local ou utilizar uma proposta pela OVH acima",
   "dedicatedCloud_datacenter_local_vra_network_placeholder": "Indique a sub-rede VRA local",
   "dedicatedCloud_datacenter_no_ip_pool": "Não tem qualquer pool de endereços IP disponível.",
-  "dedicatedCloud_datacenter_order_please": "Por favor, encomende"
+  "dedicatedCloud_datacenter_order_please": "Por favor, encomende",
+  "dedicatedCloud_datacenter_pcc_name_MBM": "Nome do Essentials: {{pcc}}",
+  "dedicatedCloud_datacenter_main_datacenter_name_MBM": "Identificador do datacenter Essentials correspondente"
 }

@@ -672,5 +672,6 @@
   "ip_table_manage_delegation_ipv6block_to_add": "Reverse(s) a adicionar",
   "ip_table_manage_delegation_ipv6block_to_delete": "Reverse(s) a eliminar",
   "ip_filter_services__FAILOVER": "IP Failover",
-  "ip_description_edit_move": "Associar este bloco de IP a outro serviço"
+  "ip_description_edit_move": "Associar este bloco de IP a outro serviço",
+  "ip_order_renew_MBM": "Os seus endereços IP serão automaticamente renovados com a sua infraestrutura Managed Bare Metal."
 }
