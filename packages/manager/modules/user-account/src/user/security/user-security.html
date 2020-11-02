@@ -35,7 +35,7 @@
                             alt="{{ 'user_account_security_password_title' | translate }}"
                             width="16"
                             height="16"
-                            src="images/user-account/security/icon-password.png"
+                            data-ng-src="{{ assets.iconPasswordImg }}"
                         />
                     </span>
                     <div class="media-body">
@@ -66,7 +66,7 @@
                             alt="{{ 'user_account_security_double_auth_title' | translate }}"
                             width="16"
                             height="16"
-                            src="images/user-account/security/icon-2fa.png"
+                            data-ng-src="{{ assets.icon2faImg }}"
                         />
                     </span>
                     <div class="media-body">
@@ -89,7 +89,7 @@
                             ></p>
 
                             <a
-                                data-ui-sref="app.account.user.security.mfa"
+                                data-ui-sref="account.user.security.mfa"
                                 class="oui-button oui-button_primary float-right"
                                 data-track-on="click"
                                 data-track-name="account::security::authentication::double_authentication"
@@ -118,7 +118,7 @@
                                         alt="{{ 'user_account_security_double_auth_type_sms_alt' | translate }}"
                                         width="42"
                                         height="42"
-                                        src="images/user-account/security/sms.svg"
+                                        data-ng-src="{{ assets.smsImg }}"
                                     />
                                 </span>
                                 <div class="media-body">
@@ -268,7 +268,7 @@
                                         alt="{{ 'user_account_security_double_auth_type_totp_alt' | translate }}"
                                         width="42"
                                         height="42"
-                                        src="images/user-account/security/app.svg"
+                                        data-ng-src="{{ assets.appImg }}"
                                     />
                                 </span>
                                 <div class="media-body">
@@ -416,7 +416,7 @@
                                         alt="{{ 'user_account_security_double_auth_type_u2f_alt' | translate }}"
                                         width="42"
                                         height="42"
-                                        src="images/user-account/security/key.svg"
+                                        data-ng-src="{{ assets.keyImg }}"
                                     />
                                 </span>
                                 <div class="media-body">
@@ -564,7 +564,7 @@
                                         alt="{{ 'user_account_security_double_auth_type_backup_code_alt' | translate }}"
                                         width="42"
                                         height="42"
-                                        src="images/user-account/security/code.svg"
+                                        data-ng-src="{{ assets.codeImg }}"
                                     />
                                 </span>
                                 <div class="media-body">
@@ -658,7 +658,7 @@
                         <img
                             class="media-object"
                             alt="{{ 'user_account_security_ip_restrictions_alt' | translate }}"
-                            src="images/user-account/security/icon-ip-restriction.png"
+                            data-ng-src="{{ assets.iconIpRestrictionImg }}"
                         />
                     </span>
                     <div class="media-body">
