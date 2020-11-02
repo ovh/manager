@@ -25,7 +25,7 @@
   "order_tracking_history_details_FRAUD_CHECK": "",
   "order_tracking_history_details_FRAUD_DOCS_REQUESTED": "",
   "order_tracking_history_details_FRAUD_MANUAL_REVIEW": "An additional processing time is required. It is usually around 48 hours. Our customer support team may contact you.",
-  "order_tracking_history_details_FRAUD_REFUSED": "You will be sent an email on this.",
+  "order_tracking_history_details_FRAUD_REFUSED": "The data associated with this order does not have the necessary guarantees for the transaction. Please renew it using another payment method.",
   "order_tracking_history_details_INVOICE_IN_PROGRESS": "",
   "order_tracking_history_details_INVOICE_SENT": "You can view and download it in the <a data-ng-href=\"{{ billingUrl }}\">Billing</a> section.",
   "order_tracking_history_details_ORDER_ACCEPTED": "",

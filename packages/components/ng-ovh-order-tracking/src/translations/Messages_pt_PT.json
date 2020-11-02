@@ -25,7 +25,7 @@
   "order_tracking_history_details_FRAUD_CHECK": "",
   "order_tracking_history_details_FRAUD_DOCS_REQUESTED": "",
   "order_tracking_history_details_FRAUD_MANUAL_REVIEW": "É necessário um tempo de processamento adicional. Demora cerca de 48 horas. O apoio ao cliente poderá contactá-lo.",
-  "order_tracking_history_details_FRAUD_REFUSED": "Receberá um e-mail sobre este assunto.",
+  "order_tracking_history_details_FRAUD_REFUSED": "Os dados relativos a esta encomenda não apresentam as garantias necessárias para a transação. Sugerimos que a renove utilizando outro método de pagamento.",
   "order_tracking_history_details_INVOICE_IN_PROGRESS": "",
   "order_tracking_history_details_INVOICE_SENT": "Pode consultá-la e descarregá-la na secção “<a data-ng-href=\"{{ billingUrl }}\">Faturação</a>”.",
   "order_tracking_history_details_ORDER_ACCEPTED": "",

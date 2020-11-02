@@ -25,7 +25,7 @@
   "order_tracking_history_details_FRAUD_CHECK": "",
   "order_tracking_history_details_FRAUD_DOCS_REQUESTED": "",
   "order_tracking_history_details_FRAUD_MANUAL_REVIEW": "Es necesario un plazo de tratamiento adicional. Su duración media es de 48 horas. Nuestro equipo de soporte podría ponerse en contacto con usted.",
-  "order_tracking_history_details_FRAUD_REFUSED": "Recibirá un mensaje de correo electrónico relacionado con este asunto.",
+  "order_tracking_history_details_FRAUD_REFUSED": "Los datos asociados al pedido no ofrecen las garantías suficientes para realizar la transacción. Le rogamos que vuelva a realizar el pedido utilizando otra forma de pago.",
   "order_tracking_history_details_INVOICE_IN_PROGRESS": "",
   "order_tracking_history_details_INVOICE_SENT": "Puede consultarlo y descargarlo desde la sección «<a data-ng-href=\"{{ billingUrl }}\">Facturación</a>» del área de cliente.",
   "order_tracking_history_details_ORDER_ACCEPTED": "",
