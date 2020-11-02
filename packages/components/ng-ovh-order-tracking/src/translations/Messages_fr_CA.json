@@ -28,7 +28,7 @@
   "order_tracking_history_details_FRAUD_CHECK": "",
   "order_tracking_history_details_FRAUD_DOCS_REQUESTED": "",
   "order_tracking_history_details_FRAUD_MANUAL_REVIEW": "Un délai de traitement supplémentaire est nécessaire. Il dure en moyenne 48 heures. Le service client pourra éventuellement vous contacter.",
-  "order_tracking_history_details_FRAUD_REFUSED": "Un e-mail vous sera envoyé à ce sujet.",
+  "order_tracking_history_details_FRAUD_REFUSED": "Les données liées à cette commande ne présentent pas les garanties nécessaires à la transaction. Nous vous invitons à la renouveler en utilisant un autre moyen de paiement.",
   "order_tracking_history_details_INVOICE_IN_PROGRESS": "",
   "order_tracking_history_details_INVOICE_SENT": "Vous pouvez la consulter et la télécharger depuis la rubrique « <a data-ng-href=\"{{ billingUrl }}\">Facturation</a> ».",
   "order_tracking_history_details_ORDER_ACCEPTED": "",
