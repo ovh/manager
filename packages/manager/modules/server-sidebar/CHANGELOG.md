@@ -1,3 +1,13 @@
+# [3.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.3.0...@ovh-ux/manager-server-sidebar@3.4.0) (2020-11-02)
+
+
+### Features
+
+* **hpc:** move products on hpc universe ([b83a29c](https://github.com/ovh/manager/commit/b83a29ca7529c11492cc1ce201f9ff7c34ad097d))
+* **server:** move dedicatedCloud in hpc namespace ([de09cbd](https://github.com/ovh/manager/commit/de09cbd31a067d63dacdee626073f5a08a7660db))
+
+
+
 # [3.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.2.2...@ovh-ux/manager-server-sidebar@3.3.0) (2020-10-28)
 
 

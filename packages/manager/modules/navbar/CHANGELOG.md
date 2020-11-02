@@ -1,3 +1,13 @@
+# [5.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@5.2.1...@ovh-ux/manager-navbar@5.3.0) (2020-11-02)
+
+
+### Features
+
+* remove one time binding to swicth active link ([c4ebeaf](https://github.com/ovh/manager/commit/c4ebeaf25c4d040079ded5a2162ebd2daf2a56b3))
+* update translations ([337dcf4](https://github.com/ovh/manager/commit/337dcf4a6a29aca88081e271d33b8f50e599caba))
+
+
+
 ## [5.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@5.2.0...@ovh-ux/manager-navbar@5.2.1) (2020-10-28)
 
 

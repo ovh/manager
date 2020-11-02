@@ -1,3 +1,15 @@
+# [14.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.4.1...@ovh-ux/manager-dedicated@14.5.0) (2020-11-02)
+
+
+### Features
+
+* **hpc:** move products on hpc universe ([b83a29c](https://github.com/ovh/manager/commit/b83a29ca7529c11492cc1ce201f9ff7c34ad097d))
+* add redirection for hosted private cloud route ([#3962](https://github.com/ovh/manager/issues/3962)) ([dca8bec](https://github.com/ovh/manager/commit/dca8bec3d30e39de8f80e2b156011819dea51772))
+* switch navbar universe based on states ([0f8c465](https://github.com/ovh/manager/commit/0f8c4658366aa3dcd4874ade6391da6e166a2fe0))
+* **dedicated:** switch sidebar namespace based on states ([182cc0c](https://github.com/ovh/manager/commit/182cc0c9e798cd2999f4f9eebc5696ed2ec6a1d2))
+
+
+
 ## [14.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.4.0...@ovh-ux/manager-dedicated@14.4.1) (2020-10-29)
 
 
