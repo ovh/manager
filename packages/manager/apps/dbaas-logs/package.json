@@ -2,6 +2,7 @@
   "name": "@ovh-ux/manager-dbaas-logs-app",
   "version": "1.0.0",
   "private": true,
+  "description": "Cloud Databases standalone application.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh/manager.git",
