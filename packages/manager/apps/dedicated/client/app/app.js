@@ -52,6 +52,7 @@ import ovhManagerCloudConnect from '@ovh-ux/manager-cloud-connect';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 import ovhManagerAccountMigration from '@ovh-ux/manager-account-migration';
+import UserAccount from '@ovh-ux/manager-user-account';
 import account from './account';
 import config from './config/config';
 import contactsService from './account/contacts/service/contacts-service.module';
@@ -148,7 +149,7 @@ angular
       'ui.utils',
       'ui.validate',
       uiRouter,
-      'UserAccount',
+      UserAccount,
       userContracts,
       'xeditable',
     ].filter(isString),
