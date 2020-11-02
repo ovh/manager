@@ -99,9 +99,9 @@ export default class SupportNewIssuesFormController {
 
     return this.IssueForm.getServices(
       this.bindings.serviceType.value.route,
+      this.bindings.serviceType.value.subType,
     ).then((services) => {
       this.bindings.service.isLoading = false;
-
       return services;
     });
   }
