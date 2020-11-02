@@ -8,8 +8,9 @@
             'status-{{item.status}}' : item.status !== 'none',
             'hidden': item.shouldHide === true
         }"
-        data-ng-if="(ListCtrl.namespace && item.namespace ===  ListCtrl.namespace) || (!ListCtrl.namespace && !item.namespace)"
+        data-ng-if="(ListCtrl.namespace && item.isValidNamespace(ListCtrl.namespace)) || (!ListCtrl.namespace && (!item.namespace || item.isValidNamespace(undefined)))"
         data-sidebar-menu-list-item="item"
+        data-sidebar-menu-list-item-namespace="ListCtrl.namespace"
         data-ng-repeat="item in ListCtrl.items track by $index"
     ></li>
 </ul>

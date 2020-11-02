@@ -15,7 +15,19 @@ angular.module('App').controller(
     }
 
     $onInit() {
+      this.$scope.$on('switchUniverse', (event, universe) => {
+        this.sidebarNamespace = universe === 'server' ? undefined : 'hpc';
+        this.navbarOptions.universe = universe;
+      });
+
       [this.currentLanguage] = this.$translate.use().split('_');
+
+      this.navbarOptions = {
+        toggle: {
+          event: 'sidebar:loaded',
+        },
+        universe: 'server',
+      };
 
       this.User.getUser().then((user) => {
         this.user = user;
