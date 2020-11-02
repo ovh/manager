@@ -1,4 +1,4 @@
-module.exports = ({ name }) => ({
+module.exports = ({ name, description }) => ({
   name: `@ovh-ux/manager-${name}-app`,
   version: '0.0.0',
   private: true,
@@ -7,6 +7,7 @@ module.exports = ({ name }) => ({
     url: 'git+https://github.com/ovh/manager.git',
     directory: `packages/manager/apps/${name}`,
   },
+  description,
   license: 'BSD-3-Clause',
   author: 'OVH SAS',
   scripts: {
