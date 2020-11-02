@@ -1,3 +1,12 @@
+## [13.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.6.1...@ovh-ux/manager-telecom@13.6.2) (2020-11-02)
+
+
+### Bug Fixes
+
+* **telecom.search:** import missing telephony module ([#3964](https://github.com/ovh/manager/issues/3964)) ([c86ab00](https://github.com/ovh/manager/commit/c86ab008afffb8b031c28b67cbf8504f0d2ef93b))
+
+
+
 ## [13.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.6.0...@ovh-ux/manager-telecom@13.6.1) (2020-10-29)
 
 

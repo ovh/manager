@@ -1,3 +1,12 @@
+## [1.0.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-order-tracking@1.0.3...@ovh-ux/ng-ovh-order-tracking@1.0.4) (2020-11-02)
+
+
+### Bug Fixes
+
+* **ng-ovh-order-tracking:** update translation ([#3937](https://github.com/ovh/manager/issues/3937)) ([3bcf5e8](https://github.com/ovh/manager/commit/3bcf5e82491485e5dcf226484488b050ec56c42e))
+
+
+
 ## [1.0.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-order-tracking@1.0.2...@ovh-ux/ng-ovh-order-tracking@1.0.3) (2020-10-28)
 
 

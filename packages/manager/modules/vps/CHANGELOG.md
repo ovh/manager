@@ -1,3 +1,13 @@
+## [2.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.2.3...@ovh-ux/manager-vps@2.2.4) (2020-11-02)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 641] ([aca1160](https://github.com/ovh/manager/commit/aca116038ed96e6bd719012d03a4ecf55da111eb))
+* remove monthly mention for options ([39cac6e](https://github.com/ovh/manager/commit/39cac6ea03138d2d66df1a4aec1ae408843f87c5))
+
+
+
 ## [2.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.2.2...@ovh-ux/manager-vps@2.2.3) (2020-10-28)
 
 
