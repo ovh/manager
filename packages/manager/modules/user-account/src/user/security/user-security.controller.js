@@ -4,6 +4,14 @@ import map from 'lodash/map';
 import some from 'lodash/some';
 import values from 'lodash/values';
 
+import iconPasswordImg from '../../images/user-account/security/icon-password.png';
+import icon2faImg from '../../images/user-account/security/icon-2fa.png';
+import smsImg from '../../images/user-account/security/sms.svg';
+import appImg from '../../images/user-account/security/app.svg';
+import keyImg from '../../images/user-account/security/key.svg';
+import codeImg from '../../images/user-account/security/code.svg';
+import iconIpRestrictionImg from '../../images/user-account/security/icon-ip-restriction.png';
+
 export default class UserAccountDoubleAuthController {
   /* @ngInject */
   constructor(
@@ -16,6 +24,15 @@ export default class UserAccountDoubleAuthController {
     DoubleAuthBackupCodeService,
     Alerter,
   ) {
+    $scope.assets = {
+      iconPasswordImg,
+      smsImg,
+      icon2faImg,
+      appImg,
+      keyImg,
+      codeImg,
+      iconIpRestrictionImg,
+    };
     $scope.doubleAuth = {
       sms: 'disabled',
       totp: 'disabled',

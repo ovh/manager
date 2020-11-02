@@ -8,7 +8,6 @@ import set from 'lodash/set';
 
 import './newAccountForm/new-account-form.module';
 import advanced from './advanced/advanced.module';
-// import config from '../config/config';
 import dashboard from './dashboard/user-dahboard.module';
 import supportLevel from './support-level/support-level.module';
 import infos from './infos';
@@ -17,7 +16,6 @@ import users from './users/users.module';
 import emails from './emails';
 
 import userPasswordTemplate from './password/user-password.html';
-import userIpRestrictionAddTemplate from './ip/restriction/add/user-ip-restriction-add.html';
 import addUserTemplate from './users/add/user-users-add.html';
 import deleteUserTemplate from './users/delete/user-users-delete.html';
 import disableUserTemplate from './users/disable/user-users-disable.html';
@@ -44,8 +42,11 @@ angular
   .module('UserAccount', [
 =======
   .module(moduleName, [
+<<<<<<< HEAD
     // 'ja.qr',
 >>>>>>> feat(user-account): add new user account module:packages/manager/modules/user-account/src/user/user.module.js
+=======
+>>>>>>> feat(user-account): remove unused code
     'ngOvhUtils',
     'ovhSignupApp',
     'oui',
@@ -79,10 +80,6 @@ angular
       $templateCache.put(
         'account/user/password/user-password.html',
         userPasswordTemplate,
-      );
-      $templateCache.put(
-        'account/user/ip/restriction/add/user-ip-restriction-add.html',
-        userIpRestrictionAddTemplate,
       );
       $templateCache.put(
         'account/user/users/add/user-users-add.html',

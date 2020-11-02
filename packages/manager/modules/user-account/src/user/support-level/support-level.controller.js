@@ -7,10 +7,21 @@ import some from 'lodash/some';
 import { SupportLevel } from '@ovh-ux/manager-models';
 import { SUBSCRIPTION, URLS } from './support-level.constants';
 
+import business from '../../images/support-level/business.png';
+import enterprise from '../../images/support-level/enterprise.png';
+import premium from '../../images/support-level/premium.png';
+import standard from '../../images/support-level/standard.png';
+
 export default class UserAccountSupportLevelCtrl {
   /* @ngInject */
   constructor(constants) {
     this.constants = constants;
+    this.assets = {
+      business,
+      enterprise,
+      premium,
+      standard,
+    }
   }
 
   $onInit() {
