@@ -1,11 +1,20 @@
 import 'script-loader!jsurl/lib/jsurl.js'; // eslint-disable-line
-import { Environment } from '@ovh-ux/manager-config';
+import 'script-loader!qrcode.js/lib/qrcode.js'; // eslint-disable-line
+import 'script-loader!ipaddr.js/ipaddr.min.js'; // eslint-disable-line
+
 import angular from 'angular';
-import uiRouter from '@uirouter/angularjs';
-import ovhManagerCore from '@ovh-ux/manager-core';
-import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
+import 'angular-ui-bootstrap';
+import 'angular-qr';
+import 'bootstrap';
+import 'punycode';
+
 import ngOvhUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
+import ovhManagerCore from '@ovh-ux/manager-core';
+import uiRouter from '@uirouter/angularjs';
+
+import { Environment } from '@ovh-ux/manager-config';
+import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 
 import UserAccount from '@ovh-ux/manager-user-account';
 
@@ -17,11 +26,12 @@ const moduleName = 'UserAccountApp';
 
 angular
   .module(moduleName, [
-    ovhManagerCore,
+    'ui.bootstrap',
     ngOvhUiRouterLineProgress,
     ngUiRouterBreadcrumb,
     uiRouter,
     UserAccount,
+    ovhManagerCore,
   ])
   .config(
     /* @ngInject */ ($locationProvider) => $locationProvider.hashPrefix(''),

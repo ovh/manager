@@ -21,7 +21,7 @@ export default class UserAccountSupportLevelCtrl {
       enterprise,
       premium,
       standard,
-    }
+    };
   }
 
   $onInit() {

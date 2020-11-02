@@ -5,7 +5,6 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 
 import '@ovh-ux/ui-kit';
-import '@ovh-ux/ui-kit/dist/css/oui.css';
 import 'angular-ui-bootstrap';
 
 import routing from './user-infos.routing';

@@ -6,7 +6,6 @@ import '@ovh-ux/ui-kit';
 
 import set from 'lodash/set';
 
-import './newAccountForm/new-account-form.module';
 import advanced from './advanced/advanced.module';
 import dashboard from './dashboard/user-dahboard.module';
 import supportLevel from './support-level/support-level.module';
@@ -40,7 +39,6 @@ const moduleName = 'UserAccount';
 angular
   .module(moduleName, [
     'ngOvhUtils',
-    'ovhSignupApp',
     'oui',
     'ui.bootstrap',
     advanced,

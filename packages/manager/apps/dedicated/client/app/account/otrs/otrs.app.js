@@ -1,9 +1,5 @@
 import angular from 'angular';
 
-import '@ovh-ux/manager-core';
-import '@uirouter/angularjs';
-import 'angular-translate';
-
 angular
   .module('Module.otrs', [
     'Module.otrs.controllers',
@@ -11,11 +7,11 @@ angular
     'Module.otrs.services',
     'Module.otrs.filters',
     'ngOvhUtils',
-    // 'ngRoute',
+    'ngRoute',
     'ovhManagerCore',
     'oui',
     'pascalprecht.translate',
-    // 'ui.bootstrap',
+    'ui.bootstrap',
     'ui.router',
   ])
   .config(
