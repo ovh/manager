@@ -10,7 +10,7 @@ export default /* @ngInject */ ($stateProvider) => {
     controller,
     translations: {
       format: 'json',
-      value: ['../../newAccountForm'],
+      value: ['../components/newAccountForm'],
     },
   });
 };
