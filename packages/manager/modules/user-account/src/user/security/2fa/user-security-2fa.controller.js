@@ -3,6 +3,13 @@ import head from 'lodash/head';
 import isEmpty from 'lodash/isEmpty';
 import size from 'lodash/size';
 
+import hackerImg from '../../../images/user-account/security/hacker.svg';
+import smsImg from '../../../images/user-account/security/sms.svg';
+import appImg from '../../../images/user-account/security/app.svg';
+import keyImg from '../../../images/user-account/security/key.svg';
+import codeImg from '../../../images/user-account/security/code.svg';
+import successImg from '../../../images/user-account/security/success.svg';
+
 export default class UserAccountDoubleAuth2FaController {
   /* @ngInject */
   constructor(
@@ -20,6 +27,15 @@ export default class UserAccountDoubleAuth2FaController {
     UserAccountServiceInfos,
     OvhApiAuth,
   ) {
+    this.assets = {
+      hackerImg,
+      smsImg,
+      appImg,
+      keyImg,
+      codeImg,
+      successImg,
+    };
+    
     $scope.step1 = {
       doubleAuthType: null,
       isActive: false,

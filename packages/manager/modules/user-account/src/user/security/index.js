@@ -7,6 +7,9 @@ import 'angular-ui-bootstrap';
 
 import routing from './user-security.routing';
 
+import userIpRestrictionAddTemplate from '../ip/restriction/add/user-ip-restriction-add.html';
+import userIpRestrictionDeleteTemplate from '../ip/restriction/delete/user-ip-restriction-delete.html';
+
 import ipRestrictionController from '../ip/restriction/user-ip-restriction.controller';
 import ipRestrictionAddController from '../ip/restriction/add/user-ip-restriction-add.controller';
 import ipRestrictionDeleteController from '../ip/restriction/delete/user-ip-restriction-delete.controller';
@@ -34,7 +37,9 @@ import UserAccountServicesDoubleAuthSms from './sms/user-security-sms.service';
 import UserAccountDoubleAuthTotpService from './totp/user-security-totp.service';
 import UserAccountDoubleAuthU2fService from './u2f/user-security-u2f.service';
 import UserAccountDoubleAuthBackupCodeService from './backupCode/user-security-backupCode.service';
-// import newAccountFormModule from '../components/newAccountForm';
+
+import userSecurity2fa from './2fa';
+
 import UserAccountIpRestrictionsService from '../ip/restriction/user-ip-restriction.service';
 
 const moduleName = 'ovhManagerDedicatedAccountUserSecurity';
@@ -47,7 +52,7 @@ angular
     'pascalprecht.translate',
     'ui.bootstrap',
     'ui.router',
-    // newAccountFormModule,
+    userSecurity2fa,
   ])
   .config(routing)
   .controller('IpRestrictionCtrl', ipRestrictionController)
@@ -122,6 +127,19 @@ angular
     UserAccountDoubleAuthBackupCodeService,
   )
   .service('IpRestrictionsService', UserAccountIpRestrictionsService)
+  .run([
+    '$templateCache',
+    ($templateCache) => {
+      $templateCache.put(
+        'account/user/ip/restriction/add/user-ip-restriction-add.html',
+        userIpRestrictionAddTemplate,
+      );
+      $templateCache.put(
+        'account/user/ip/restriction/delete/user-ip-restriction-delete.html',
+        userIpRestrictionDeleteTemplate,
+      );
+    },
+  ])
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
