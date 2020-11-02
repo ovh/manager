@@ -11,13 +11,13 @@ It houses:
 
 The monolithic applications can be started for a specific region
 
-| Application                   | Region       |
-| ----------------------------- | ------------ |
-| [Dashboard](#dashboard)       | EU / CA / US |
-| [Web](#web)                   | EU / CA      |
-| [Server](#server)             | EU / CA / US |
-| [Public Cloud](#public-cloud) | EU / CA / US |
-| [Telecom](#telecom)           | EU           |
+| Application                           | Region       |
+| ------------------------------------- | ------------ |
+| [Dashboard](#dashboard)               | EU / CA / US |
+| [Web Cloud](#web-cloud)               | EU / CA      |
+| [Bare Metal Cloud](#bare-metal-cloud) | EU / CA / US |
+| [Public Cloud](#public-cloud)         | EU / CA / US |
+| [Telecom](#telecom)                   | EU           |
 
 :::tip Information
 Depending on the requested region, the URL to access the API will be different
@@ -44,7 +44,7 @@ Go to <http://localhost:9000>
 $ yarn run build -p @ovh-ux/manager-hub-app
 ```
 
-## Web
+## Web Cloud
 
 ![](/manager/assets/img/control-panel-web.jpg)
 
@@ -62,12 +62,12 @@ Go to <http://localhost:9000>
 $ yarn run build -p @ovh-ux/manager-web
 ```
 
-## Server
+## Bare Metal Cloud
 
-![](/manager/assets/img/control-panel-server.jpg)
+![](/manager/assets/img/control-panel-bare-metal-cloud.jpg)
 
 ::: tip Information
-Both applications **Dedicated** and **Cloud** are grouped under the **Server**
+Both applications **Bare Metal Cloud** and **Hosted Private Cloud** are grouped under the following location: `packages/manager/apps/dedicated`.
 tab.
 
 They can be started in different region with a given environment variable.
@@ -85,7 +85,7 @@ Go to <http://localhost:9000>
 ### How to build the application?
 
 ```sh
-$ yarn run build -p @ovh-ux/manager-dedicated # or @ovh-ux/manager-cloud
+$ yarn run build -p @ovh-ux/manager-dedicated
 ```
 
 ## Public Cloud
