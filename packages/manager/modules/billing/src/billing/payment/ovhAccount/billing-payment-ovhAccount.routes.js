@@ -9,7 +9,7 @@ export default /* @ngInject */ (
     coreConfigProvider.getRegion() === 'EU' ||
     coreConfigProvider.getRegion() === 'CA'
   ) {
-    const name = 'billing.payment.ovhaccount';
+    const name = 'app.account.billing.payment.ovhaccount';
 
     $stateProvider.state(name, {
       url: '/ovhaccount',

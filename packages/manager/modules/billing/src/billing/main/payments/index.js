@@ -6,7 +6,7 @@ const moduleName = 'ovhManagerBillingPaymentsLazyloading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('billing.main.payments.**', {
+    $stateProvider.state('app.account.billing.main.payments.**', {
       url: '/payments',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');

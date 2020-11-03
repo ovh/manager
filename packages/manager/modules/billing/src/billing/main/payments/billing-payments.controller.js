@@ -117,7 +117,7 @@ export default class {
     this.displayActionsCol = () => coreConfig.getRegion() !== 'US';
 
     this.depositDetailsHref = ({ depositId }) =>
-      $state.href('billing.main.payments.details', {
+      $state.href('app.account.billing.main.payments.details', {
         id: depositId,
       });
 
@@ -139,7 +139,7 @@ export default class {
           .$promise.then((depositRequests) => {
             this.paymentRequests = depositRequests;
             this.paymentRequestsHref = $state.href(
-              'billing.main.payments.request',
+              'app.account.billing.main.payments.request',
             );
           });
       }

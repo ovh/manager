@@ -3,7 +3,7 @@ import template from './legacy/termination-legacy.html';
 
 export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
   if (coreConfigProvider.isRegion('US')) {
-    $stateProvider.state('billing.confirmTerminate', {
+    $stateProvider.state('app.account.billing.confirmTerminate', {
       url: '/confirmTerminate?id&token',
       template,
       controller,
@@ -11,7 +11,7 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
       translations: { value: ['./legacy', '../autoRenew'], format: 'json' },
     });
   } else {
-    $stateProvider.state('billing.confirmTerminate', {
+    $stateProvider.state('app.account.billing.confirmTerminate', {
       url: '/confirmTerminate?id&token',
       component: 'billingConfirmTermination',
       resolve: {

@@ -8,13 +8,13 @@ import { BillingService } from '@ovh-ux/manager-models';
 import { NIC_ALL } from './autorenew.constants';
 
 export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
-  $stateProvider.state('billing.autorenewRedirection', {
+  $stateProvider.state('app.account.billing.autorenewRedirection', {
     url:
       '/autoRenew?selectedType&pageSize&pageNumber&filters&searchText&nicBilling&sort',
-    redirectTo: 'billing.autorenew',
+    redirectTo: 'app.account.billing.autorenew',
   });
 
-  $stateProvider.state('billing.autorenew', {
+  $stateProvider.state('app.account.billing.autorenew', {
     url:
       '/autorenew?selectedType&pageSize&pageNumber&filters&searchText&nicBilling&sort',
     component: 'autoRenew',
@@ -54,15 +54,19 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
         currentActiveLink: /* @ngInject */ ($state) => () =>
           $state.href($state.current.name, {}, { inherit: false }),
         sshLink: /* @ngInject */ ($state) =>
-          $state.href('billing.autorenew.ssh', {}, { inherit: false }),
+          $state.href(
+            'app.account.billing.autorenew.ssh',
+            {},
+            { inherit: false },
+          ),
       },
       coreConfigProvider.region !== 'US'
         ? {
             activationLink: /* @ngInject */ ($state) =>
-              $state.href('billing.autorenew.activation'),
+              $state.href('app.account.billing.autorenew.activation'),
             agreementsLink: /* @ngInject */ ($state) =>
               $state.href(
-                'billing.autorenew.agreements',
+                'app.account.billing.autorenew.agreements',
                 {},
                 { inherit: false },
               ),
@@ -77,14 +81,14 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
             defaultPaymentMean: (ovhPaymentMethod) =>
               ovhPaymentMethod.getDefaultPaymentMethod(),
             disableAutorenewForDomains: /* @ngInject */ ($state) => () =>
-              $state.go('billing.autorenew.disableDomainsBulk'),
+              $state.go('app.account.billing.autorenew.disableDomainsBulk'),
             disableBulkAutorenew: /* @ngInject */ ($state) => (services) =>
-              $state.go('billing.autorenew.disable', {
+              $state.go('app.account.billing.autorenew.disable', {
                 services: map(services, 'id').join(','),
               }),
 
             enableBulkAutorenew: /* @ngInject */ ($state) => (services) =>
-              $state.go('billing.autorenew.enable', {
+              $state.go('app.account.billing.autorenew.enable', {
                 services: map(services, 'id').join(','),
               }),
             filters: /* @ngInject */ ($transition$) =>
@@ -99,7 +103,7 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
               const reload = message && type === 'success';
 
               const promise = $state.go(
-                'billing.autorenew',
+                'app.account.billing.autorenew',
                 {},
                 {
                   reload,
@@ -119,7 +123,11 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
               billingRenewHelper.serviceHasAutomaticRenew(service),
 
             homeLink: /* @ngInject */ ($state) =>
-              $state.href('billing.autorenew', {}, { inherit: false }),
+              $state.href(
+                'app.account.billing.autorenew',
+                {},
+                { inherit: false },
+              ),
 
             nicBilling: /* @ngInject */ ($transition$) =>
               $transition$.params().nicBilling,
@@ -183,6 +191,8 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
         : {},
     ),
     redirectTo: /* @ngInject */ () =>
-      coreConfigProvider.region === 'US' ? 'billing.autorenew.ssh' : false,
+      coreConfigProvider.region === 'US'
+        ? 'app.account.billing.autorenew.ssh'
+        : false,
   });
 };

@@ -4,14 +4,14 @@ import set from 'lodash/set';
 import component from './component';
 
 export default /* @ngInject */ ($stateProvider) => {
-  const name = 'billing.payment.method.action.edit';
+  const name = 'app.account.billing.payment.method.action.edit';
 
   $stateProvider.state(name, {
     url: '/edit',
     component: component.name,
     layout: 'ouiModal',
     resolve: {
-      redirectTo: () => 'billing.payment.method',
+      redirectTo: () => 'app.account.billing.payment.method',
 
       model: /* @ngInject */ (paymentMethod) => ({
         description: paymentMethod.description,

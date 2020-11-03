@@ -6,7 +6,7 @@ export default /* @ngInject */ (
   coreConfigProvider,
 ) => {
   if (coreConfigProvider.getRegion() === 'EU') {
-    const name = 'billing.payment.transactions';
+    const name = 'app.account.billing.payment.transactions';
 
     $stateProvider.state(name, {
       url: '/transactions',

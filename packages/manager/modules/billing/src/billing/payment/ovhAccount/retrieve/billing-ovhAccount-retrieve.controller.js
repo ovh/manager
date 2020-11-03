@@ -47,8 +47,8 @@ export default /* @ngInject */ (
     $scope.resetAction();
     $timeout(
       () =>
-        $state.go('billing.payment.method.add', {
-          from: 'billing.payment.ovhaccount',
+        $state.go('app.account.billing.payment.method.add', {
+          from: 'app.account.billing.payment.ovhaccount',
         }),
       300,
     );
