@@ -5,7 +5,7 @@ import template from './user.html';
 import controller from './user.controller';
 
 export default /* @ngInject */ ($stateProvider) => {
-  const name = 'account.user';
+  const name = 'app.account.user';
 
   $stateProvider.state(name, {
     url: '/useraccount',

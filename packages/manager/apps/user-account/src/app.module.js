@@ -17,6 +17,7 @@ import { Environment } from '@ovh-ux/manager-config';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 
 import UserAccount from '@ovh-ux/manager-user-account';
+import routing from './app.routing';
 
 import './index.scss';
 
@@ -33,6 +34,7 @@ angular
     UserAccount,
     ovhManagerCore,
   ])
+  .config(routing)
   .config(
     /* @ngInject */ ($locationProvider) => $locationProvider.hashPrefix(''),
   )

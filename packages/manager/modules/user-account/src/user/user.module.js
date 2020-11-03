@@ -37,15 +37,7 @@ import useraccountGroupsService from './users/group.service';
 const moduleName = 'UserAccount';
 
 angular
-<<<<<<< HEAD:packages/manager/apps/dedicated/client/app/account/user/user.module.js
-  .module('UserAccount', [
-=======
   .module(moduleName, [
-<<<<<<< HEAD
-    // 'ja.qr',
->>>>>>> feat(user-account): add new user account module:packages/manager/modules/user-account/src/user/user.module.js
-=======
->>>>>>> feat(user-account): remove unused code
     'ngOvhUtils',
     'oui',
     'ui.bootstrap',
