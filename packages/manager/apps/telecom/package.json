@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-telecom",
-  "version": "13.6.2",
+  "version": "13.6.3",
   "private": true,
   "description": "OVHcloud Telecom control panel.",
   "repository": {
@@ -54,7 +54,7 @@
     "@ovh-ux/ng-ovh-proxy-request": "^2.0.0",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.0",
     "@ovh-ux/ng-ovh-responsive-popover": "^5.0.2",
-    "@ovh-ux/ng-ovh-sidebar-menu": "^10.0.1",
+    "@ovh-ux/ng-ovh-sidebar-menu": "^10.1.0",
     "@ovh-ux/ng-ovh-simple-country-list": "^2.0.0",
     "@ovh-ux/ng-ovh-sso-auth": "^4.2.4",
     "@ovh-ux/ng-ovh-sso-auth-modal-plugin": "^4.0.1",

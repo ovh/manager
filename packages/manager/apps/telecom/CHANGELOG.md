@@ -1,3 +1,12 @@
+## [13.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.6.2...@ovh-ux/manager-telecom@13.6.3) (2020-11-03)
+
+
+### Bug Fixes
+
+* **telephony:** avoid stateMatcher error with beta search ([#3973](https://github.com/ovh/manager/issues/3973)) ([0126fe0](https://github.com/ovh/manager/commit/0126fe07b366a7ca0186214136a8e829733b8691))
+
+
+
 ## [13.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.6.1...@ovh-ux/manager-telecom@13.6.2) (2020-11-02)
 
 
