@@ -23,7 +23,6 @@ export default class {
       },
     };
 
-    this.serviceName = this.productId;
     this.selectedOffer = null;
 
     return this.fetchInitialData();
@@ -63,7 +62,7 @@ export default class {
 
   fetchOffers() {
     return this.ovhManagerPccLicenseEnableService
-      .fetchOffers(this.serviceName)
+      .fetchOffers(this.dedicatedCloud.serviceName)
       .then((offers) => {
         this.bindings.offers = {
           value: offers,
@@ -75,7 +74,7 @@ export default class {
     return this.ovhManagerPccLicenseEnableService
       .fetchContracts(
         head(this.bindings.offers.value),
-        this.serviceName,
+        this.dedicatedCloud,
         this.ovhSubsidiary,
       )
       .then((contracts) => {
@@ -102,7 +101,7 @@ export default class {
     return `${this.expressOrderUrl}review?products=${JSURL.stringify([
       {
         productId: 'privateCloud',
-        serviceName: this.serviceName,
+        serviceName: this.dedicatedCloud.serviceName,
         planCode: this.bindings.offers.selected.planCode,
         duration: price.duration,
         pricingMode: price.pricingMode,
