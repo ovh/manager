@@ -33,7 +33,7 @@ export default class BillingHistoryBalanceCtrl {
       paymentMethod: null,
     };
     this.paymentSref =
-      "billing.payment.method.add({from: 'billing.main.history.balance'})";
+      "app.account.billing.payment.method.add({from: 'app.account.billing.main.history.balance'})";
   }
 
   getBalance() {
@@ -61,7 +61,7 @@ export default class BillingHistoryBalanceCtrl {
       .then(() => {
         this.Alerter.success(
           this.$translate.instant('billing_history_balance_pay_success', {
-            trackHref: this.$state.href('billing.payments.request'),
+            trackHref: this.$state.href('app.account.billing.payments.request'),
           }),
           'billing_balance',
         );

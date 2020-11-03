@@ -2,7 +2,7 @@ import template from './billing-payment.html';
 import controller from './billing-payment.controller';
 
 export default /* @ngInject */ ($stateProvider) => {
-  const name = 'billing.payment';
+  const name = 'app.account.billing.payment';
 
   $stateProvider.state(name, {
     url: '/payment',

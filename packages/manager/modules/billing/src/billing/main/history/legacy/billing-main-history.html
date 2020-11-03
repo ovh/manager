@@ -263,21 +263,21 @@
                 </oui-action-menu-item>
                 <oui-action-menu-item
                     data-ng-if="$row.debt"
-                    data-href="{{ :: $ctrl.$state.href('billing.main.history.debt.details', { debtId: $row.debt.debtId }) }}"
+                    data-href="{{ :: $ctrl.$state.href('app.account.billing.main.history.debt.details', { debtId: $row.debt.debtId }) }}"
                     ><span
                         data-translate="billing_main_history_legacy_table_debt_detail"
                     ></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
                     data-ng-if="$row.debt && $row.debt.dueAmount.value > 0 && !$row.debt.paymentOrder.url && $ctrl.coreConfig.getRegion() !== 'US'"
-                    data-href="{{ :: $ctrl.$state.href('billing.main.history.pay-debt', { debtId: $row.debt.debtId }) }}"
+                    data-href="{{ :: $ctrl.$state.href('app.account.billing.main.history.pay-debt', { debtId: $row.debt.debtId }) }}"
                     ><span
                         data-translate="billing_main_history_legacy_table_debt_pay"
                     ></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
                     data-ng-if="$row.debt && $row.debt.dueAmount.value > 0  && !$row.debt.paymentOrder.url && $ctrl.coreConfig.getRegion() === 'US'"
-                    data-href="{{ :: $ctrl.$state.href('billing.main.history.balance') }}"
+                    data-href="{{ :: $ctrl.$state.href('app.account.billing.main.history.balance') }}"
                     ><span
                         data-translate="billing_main_history_legacy_table_debt_pay"
                     ></span>
@@ -297,7 +297,7 @@
                 >
                     <oui-action-menu-item
                         data-aria-label="{{ :: 'billing_main_history_legacy_table_action_pay_debt_title' | translate }}"
-                        data-href="{{ :: $ctrl.$state.href('billing.main.history.pay-debt', { debtId: 'all' }) }}"
+                        data-href="{{ :: $ctrl.$state.href('app.account.billing.main.history.pay-debt', { debtId: 'all' }) }}"
                         data-ng-if="$ctrl.debtAccount.active && ($ctrl.debtAccount.dueAmount.value > 0 || $ctrl.debtAccount.todoAmount.value > 0) && $ctrl.coreConfig.getRegion() !== 'US'"
                         ><span
                             data-translate="billing_main_history_legacy_table_action_pay_debt"
@@ -305,7 +305,7 @@
                     </oui-action-menu-item>
                     <oui-action-menu-item
                         data-aria-label="{{ :: 'billing_main_history_legacy_table_action_pay_debt_title' | translate }}"
-                        data-href="{{ :: $ctrl.$state.href('billing.main.history.balance') }}"
+                        data-href="{{ :: $ctrl.$state.href('app.account.billing.main.history.balance') }}"
                         data-ng-if="$ctrl.debtAccount.active && ($ctrl.debtAccount.dueAmount.value > 0 || $ctrl.debtAccount.todoAmount.value > 0) && $ctrl.coreConfig.getRegion() === 'US'"
                         ><span
                             data-translate="billing_main_history_legacy_table_action_pay_debt"

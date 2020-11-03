@@ -6,7 +6,7 @@ export default /* @ngInject */ (
   coreConfigProvider,
 ) => {
   if (coreConfigProvider.isRegion(['EU', 'CA'])) {
-    $stateProvider.state('billing.autorenew.agreements.agreement', {
+    $stateProvider.state('app.account.billing.autorenew.agreements.agreement', {
       url: '/details/{id:int}',
       template,
       controller: 'UserAccount.controllers.agreements.details',

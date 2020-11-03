@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('billing.autorenew.cancelResiliation', {
+  $stateProvider.state('app.account.billing.autorenew.cancelResiliation', {
     url: '/cancel-resiliation?serviceId&serviceType',
     views: {
       modal: {

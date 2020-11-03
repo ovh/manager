@@ -7,6 +7,6 @@ export default class BillingOrderTrackingCtrl {
   }
 
   getBillingHistoryUrl() {
-    return this.$state.href('billing.main.history');
+    return this.$state.href('app.account.billing.main.history');
   }
 }

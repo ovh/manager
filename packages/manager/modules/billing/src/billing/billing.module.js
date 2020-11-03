@@ -58,11 +58,6 @@ angular
     ovhManagerAccountMigration,
     ngQAllSettled,
 
-    // 'Billing.constants',
-    // 'Billing.controllers',
-    // 'Billing.directives',
-    // 'Billing.filters',
-    // 'Billing.services',
     autorenew,
     billingCommon,
     billingComponents,
