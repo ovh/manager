@@ -5,6 +5,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh/manager.git",
+    "description": "User Account standalone application.",
     "directory": "packages/manager/apps/user-account"
   },
   "license": "BSD-3-Clause",
@@ -19,18 +20,19 @@
   },
   "dependencies": {
     "@ovh-ux/manager-beta-preference": "^1.0.0",
-    "@ovh-ux/manager-config": "^1.0.0 || ^2.0.0",
+    "@ovh-ux/manager-config": "^2.0.0",
     "@ovh-ux/manager-core": "^10.0.0 || ^11.0.0",
     "@ovh-ux/manager-preloader": "^1.1.0",
-    "@ovh-ux/manager-user-account": "^0.0.0",
+    "@ovh-ux/manager-user-account": "^0.0.0 || ^1.0.0",
     "@ovh-ux/ng-at-internet": "^5.3.0",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.1.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.4",
-    "@ovh-ux/ng-ovh-dedicated-universe-components": "0.0.0",
+    "@ovh-ux/ng-ovh-dedicated-universe-components": "^0.0.0 || ^1.0.0",
     "@ovh-ux/ng-ovh-http": "^5.0.0",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.0",
     "@ovh-ux/ng-ovh-sso-auth": "^4.2.3",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.0",
+    "@ovh-ux/ng-ovh-utils": "^14.0.10",
     "@ovh-ux/ng-translate-async-loader": "2.1.0",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.0.0",
     "@ovh-ux/ng-ui-router-line-progress": "^1.2.2",
@@ -56,7 +58,6 @@
     "office-ui-fabric-core": "^11.0.0",
     "ovh-api-services": "^9.26.0",
     "punycode": "^1.4.1",
-    "qrcode.js": "janantala/qrcode.js#~1.0.x",
     "regenerator-runtime": "^0.13.7",
     "whatwg-fetch": "^3.0.0"
   },

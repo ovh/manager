@@ -1,4 +1,4 @@
-import angular from 'angular';
+import ovhManagerCore from '@ovh-ux/manager-core';
 
 angular
   .module('Module.otrs', [
@@ -8,7 +8,7 @@ angular
     'Module.otrs.filters',
     'ngOvhUtils',
     'ngRoute',
-    'ovhManagerCore',
+    ovhManagerCore,
     'oui',
     'pascalprecht.translate',
     'ui.bootstrap',

@@ -4,6 +4,6 @@ export default {
   bindings: {
     onGoToMeansOfPayment: '&',
   },
-  name: 'ovhManagerNoDefaultMeansOfPayment',
+  name: 'ducOvhManagerNoDefaultMeansOfPayment',
   template,
 };

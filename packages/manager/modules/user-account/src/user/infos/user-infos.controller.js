@@ -1,7 +1,7 @@
 import identity from 'lodash/identity';
 import pick from 'lodash/pick';
 import pickBy from 'lodash/pickBy';
-import moment from 'moment';
+import 'moment';
 
 export default class UserAccountInfosCtrl {
   /* @ngInject */

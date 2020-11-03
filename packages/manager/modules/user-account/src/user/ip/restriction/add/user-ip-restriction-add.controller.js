@@ -9,7 +9,7 @@ export default class UserAccountIpRestrictionsAddController {
     Alerter,
     atInternet,
     IpRestrictionsService,
-    Validator,
+    ducUserValidator,
   ) {
     $scope.isValid = false;
     $scope.restriction = {
@@ -24,10 +24,10 @@ export default class UserAccountIpRestrictionsAddController {
         $scope.$apply(() => {
           $scope.isValid =
             target != null &&
-            (Validator.isValidIpv4(target) ||
-              Validator.isValidIpv6(target) ||
-              Validator.isValidIpv4Block(target) ||
-              Validator.isValidIpv6Block(target));
+            (ducUserValidator.isValidIpv4(target) ||
+              ducUserValidator.isValidIpv6(target) ||
+              ducUserValidator.isValidIpv4Block(target) ||
+              ducUserValidator.isValidIpv6Block(target));
         });
       }, 100),
     );

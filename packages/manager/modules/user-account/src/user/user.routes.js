@@ -5,7 +5,7 @@ import template from './user.html';
 import controller from './user.controller';
 
 export default /* @ngInject */ ($stateProvider) => {
-  const name = 'account.user';
+  const name = 'app.account.user';
 
   $stateProvider.state(name, {
     url: '/useraccount',
@@ -21,6 +21,10 @@ export default /* @ngInject */ ($stateProvider) => {
       currentUser: /* @ngInject */ (UserAccountService) =>
         UserAccountService.getUser(),
       schema: /* @ngInject */ (OvhApiMe) => OvhApiMe.v6().schema().$promise,
+      angularQr: /* @ngInject */ ($ocLazyLoad) =>
+        import('angular-qr').then((module) =>
+          $ocLazyLoad.inject(module.default || module),
+        ),
       supportLevel: /* @ngInject */ (OvhApiMe, schema) =>
         schema.models[API_MODEL_SUPPORT_LEVEL]
           ? OvhApiMe.v6()

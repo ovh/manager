@@ -6,8 +6,6 @@ import isDate from 'lodash/isDate';
 import map from 'lodash/map';
 import set from 'lodash/set';
 
-import moment from 'moment';
-
 angular.module('Module.otrs.controllers').controller('otrsCtrl', [
   '$rootScope',
   '$scope',

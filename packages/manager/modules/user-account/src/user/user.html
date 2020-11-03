@@ -2,37 +2,37 @@
     <oui-header data-heading="{{ :: 'user_account_title_infos' | translate }}">
         <oui-header-tabs>
             <oui-header-tabs-item
-                data-href="{{ $ctrl.$state.href('account.user.dashboard') }}"
-                data-active="$ctrl.$state.includes('account.user.dashboard')"
+                data-href="{{ $ctrl.$state.href('app.account.user.dashboard') }}"
+                data-active="$ctrl.$state.includes('app.account.user.dashboard')"
                 ><span data-translate="user_account_title_dashboard"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
-                data-href="{{ $ctrl.$state.href('account.user.security') }}"
-                data-active="$ctrl.$state.includes('account.user.security')"
+                data-href="{{ $ctrl.$state.href('app.account.user.security') }}"
+                data-active="$ctrl.$state.includes('app.account.user.security')"
                 ><span data-translate="user_account_security_title"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
-                data-href="{{ $ctrl.$state.href('account.user.emails') }}"
-                data-ng-if="$ctrl.$state.href('account.user.emails')"
-                data-active="$ctrl.$state.includes('account.user.emails')"
+                data-href="{{ $ctrl.$state.href('app.account.user.emails') }}"
+                data-ng-if="$ctrl.$state.href('app.account.user.emails')"
+                data-active="$ctrl.$state.includes('app.account.user.emails')"
                 ><span data-translate="user_account_emails_title"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
-                data-href="{{ $ctrl.$state.href('account.user.support-level') }}"
-                data-active="$ctrl.$state.includes('account.user.support-level')"
+                data-href="{{ $ctrl.$state.href('app.account.user.support-level') }}"
+                data-active="$ctrl.$state.includes('app.account.user.support-level')"
                 data-ng-if="$ctrl.supportLevel"
                 ><span data-translate="user_account_support_level_title"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
-                data-href="{{ $ctrl.$state.href('account.user.users') }}"
-                data-active="$ctrl.$state.includes('account.user.users')"
+                data-href="{{ $ctrl.$state.href('app.account.user.users') }}"
+                data-active="$ctrl.$state.includes('app.account.user.users')"
                 ><span
                     data-translate="user_account_users_management_title"
                 ></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
-                data-href="{{ $ctrl.$state.href('account.user.advanced') }}"
-                data-active="$ctrl.$state.includes('account.user.advanced')"
+                data-href="{{ $ctrl.$state.href('app.account.user.advanced') }}"
+                data-active="$ctrl.$state.includes('app.account.user.advanced')"
                 ><span data-translate="user_account_advanced_title"></span>
             </oui-header-tabs-item>
         </oui-header-tabs>

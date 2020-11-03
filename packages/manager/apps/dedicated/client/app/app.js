@@ -54,7 +54,8 @@ import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 import ovhManagerAccountMigration from '@ovh-ux/manager-account-migration';
 import { billingManagement } from '@ovh-ux/manager-billing';
-import UserAccount from '@ovh-ux/manager-user-account';
+import ovhManagerUserAccount from '@ovh-ux/manager-user-account';
+
 import account from './account';
 import config from './config/config';
 import contactsService from './account/contacts/service/contacts-service.module';
@@ -142,6 +143,7 @@ angular
       ovhManagerVps,
       ovhManagerVrack,
       ovhManagerCloudConnect,
+      ovhManagerUserAccount,
       ovhPaymentMethod,
       'pascalprecht.translate',
       'services',
@@ -151,7 +153,6 @@ angular
       'ui.utils',
       'ui.validate',
       uiRouter,
-      UserAccount,
       userContracts,
       'xeditable',
       ngOvhDedicatedUniverseComponents,

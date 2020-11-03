@@ -1,7 +1,7 @@
 export const USER_DASHBOARD_SHORTCUTS = [
   {
     key: 'ALL_BILLS',
-    state: 'account.billing.main.history',
+    state: 'app.account.billing.main.history',
     isAvailable: (user) => !user.isEnterprise,
   },
   {
@@ -11,20 +11,20 @@ export const USER_DASHBOARD_SHORTCUTS = [
   },
   {
     key: 'PAYMENT_FOLLOW_UP',
-    state: 'account.billing.payment.transactions',
+    state: 'app.account.billing.payment.transactions',
   },
   {
     key: 'ADD_PAYMENT_METHOD',
-    state: 'account.billing.payment.method.add',
+    state: 'app.account.billing.payment.method.add',
   },
   {
     key: 'MANAGE_SERVICES',
-    state: 'account.billing.autorenew',
+    state: 'app.account.billing.autorenew',
     regions: ['EU', 'CA'],
   },
   {
     key: 'ADD_CONTACT',
-    state: 'account.contacts.services',
+    state: 'app.account.contacts.services',
     regions: ['EU'],
   },
 ];

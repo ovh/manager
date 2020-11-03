@@ -1,5 +1,4 @@
 export default {
-  /* @ngInject */
   debounce: 250,
 
   accountCreationRoute: '/auth/signup/register',

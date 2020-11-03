@@ -3,6 +3,7 @@ import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 import 'angular-ui-bootstrap';
 import '@ovh-ux/ui-kit';
+import 'oclazyload';
 
 import set from 'lodash/set';
 
@@ -38,7 +39,6 @@ const moduleName = 'UserAccount';
 
 angular
   .module(moduleName, [
-    'ngOvhUtils',
     'oui',
     'ui.bootstrap',
     advanced,
@@ -65,8 +65,8 @@ angular
   .run([
     '$rootScope',
     '$templateCache',
-    'constants',
-    ($rootScope, $templateCache, constants) => {
+    'ducConstants',
+    ($rootScope, $templateCache, ducConstants) => {
       $templateCache.put(
         'account/user/password/user-password.html',
         userPasswordTemplate,
@@ -91,9 +91,8 @@ angular
         'account/user/users/update/user-users-update.html',
         updateUserTemplate,
       );
-
-      set($rootScope, 'target', constants.target);
-      set($rootScope, 'worldPart', constants.target);
+      set($rootScope, 'target', ducConstants.target);
+      set($rootScope, 'worldPart', ducConstants.target);
     },
   ])
   .run(/* @ngTranslationsInject:json ./translations */);
