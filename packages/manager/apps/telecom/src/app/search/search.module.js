@@ -3,7 +3,7 @@ import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
 import routing from './search.routing';
 
 import telecomSearchResults from './results/results.component';
-import ovhManagerTelecomTelephonyBillingAccount from '../telecom/telephony/billingAccount/billing-account.module';
+import ovhManagerTelecomTelephonyBillingAccount from '../telecom/telephony/billingAccount';
 
 const moduleName = 'ovhManagerTelecomSearch';
 
