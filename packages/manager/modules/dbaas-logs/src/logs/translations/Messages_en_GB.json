@@ -671,7 +671,7 @@
   "streams_45_days": " days",
   "inputs_nb_instance": "Instances",
   "logs_index_col_nb_shard": "Partitions",
-  "logs_save": "Back up",
+  "logs_save": "Save",
   "logs_cancel": "Cancel",
   "logs_yes": "Yes",
   "logs_actions": "Actions",
