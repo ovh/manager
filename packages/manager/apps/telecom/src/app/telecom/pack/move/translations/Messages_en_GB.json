@@ -81,7 +81,7 @@
   "pack_move_eligibility_line_status_create": "Creation of a new line",
   "pack_move_eligibility_line_unknown_status": "Line status unknown",
   "pack_move_eligibility_line_no_offers": "No eligibility found for your line.",
-  "pack_move_eligibility_move_out_date": "Requested migration date",
+  "pack_move_eligibility_move_out_date": "Current access closure date",
   "pack_move_eligibility_move_out_date_description": "The date must be between today and 30 days from now. The default date will be 30 days from now.",
   "pack_move_go_back": "Back to pack details",
   "pack_move_eligibility_error_test": "An unmanaged error has occurred:",
