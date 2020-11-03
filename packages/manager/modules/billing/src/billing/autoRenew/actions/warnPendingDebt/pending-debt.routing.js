@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('billing.autorenew.pendingDebt', {
+  $stateProvider.state('app.account.billing.autorenew.pendingDebt', {
     url: '/warn-debt?serviceName',
     views: {
       modal: {
@@ -11,7 +11,7 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       goBack: /* @ngInject */ (goToAutorenew) => goToAutorenew,
       payDebt: /* @ngInject */ ($state) => () => {
-        $state.go('billing.main.history');
+        $state.go('app.account.billing.main.history');
       },
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceName,

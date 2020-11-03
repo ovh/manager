@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('billing.autorenew.terminateWebCoach', {
+  $stateProvider.state('app.account.billing.autorenew.terminateWebCoach', {
     url: '/delete-webcoach?serviceId',
     views: {
       modal: {

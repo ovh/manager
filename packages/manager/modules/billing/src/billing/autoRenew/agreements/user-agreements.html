@@ -42,7 +42,7 @@
                 >
                     <th scope="row">
                         <a
-                            data-ui-sref="billing.autorenew.agreements.agreement({ id: agreement.id })"
+                            data-ui-sref="app.account.billing.autorenew.agreements.agreement({ id: agreement.id })"
                             data-ng-bind-html="'user_agreements_agreed' | translate:{ t0: agreement.name }"
                         >
                         </a>
@@ -148,7 +148,7 @@
             <tr data-ng-repeat="agreement in list.list.results track by $index">
                 <th scope="row">
                     <a
-                        data-ui-sref="billing.autorenew.agreements.agreement({ id: agreement.id })"
+                        data-ui-sref="app.account.billing.autorenew.agreements.agreement({ id: agreement.id })"
                         data-ng-bind="agreement.name"
                     >
                     </a>

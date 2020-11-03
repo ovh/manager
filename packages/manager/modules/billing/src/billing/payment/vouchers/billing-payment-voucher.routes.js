@@ -1,7 +1,7 @@
 import template from './billing-vouchers.html';
 
 export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
-  const name = 'billing.payment.vouchers';
+  const name = 'app.account.billing.payment.vouchers';
 
   $stateProvider.state(name, {
     url: '/vouchers',

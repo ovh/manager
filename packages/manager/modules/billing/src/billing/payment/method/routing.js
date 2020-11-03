@@ -8,7 +8,7 @@ export default /* @ngInject */ (
   $transitionsProvider,
   $urlRouterProvider,
 ) => {
-  const name = 'billing.payment.method';
+  const name = 'app.account.billing.payment.method';
 
   $stateProvider.state(name, {
     url: '/method',
