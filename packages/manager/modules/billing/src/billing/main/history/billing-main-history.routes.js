@@ -24,7 +24,7 @@ const mapDateFilter = (comparator, value) => {
 
 export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
   if (coreConfigProvider.isRegion(['US'])) {
-    $stateProvider.state('billing.main.history', {
+    $stateProvider.state('app.account.billing.main.history', {
       url: `/history?filter`,
       params: {
         filter: {
@@ -40,11 +40,11 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
       resolve: {
         filters: /* @ngInject */ ($transition$) => $transition$.params().filter,
         onListParamsChange: /* @ngInject */ ($state) => (params) =>
-          $state.go('billing.main.history', params),
+          $state.go('app.account.billing.main.history', params),
       },
     });
   } else {
-    $stateProvider.state('billing.main.history', {
+    $stateProvider.state('app.account.billing.main.history', {
       url: `/history?${ListLayoutHelper.urlQueryParams}`,
       params: {
         ...ListLayoutHelper.stateParams,
@@ -155,11 +155,11 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
         hasDefaultPaymentMethod: /* @ngInject */ (ovhPaymentMethod) =>
           ovhPaymentMethod.hasDefaultPaymentMethod(),
         payDebt: /* @ngInject */ ($state) => (debtId) =>
-          $state.go('billing.main.history.pay-debt', {
+          $state.go('app.account.billing.main.history.pay-debt', {
             debtId,
           }),
         seeDebt: /* @ngInject */ ($state) => (debtId) =>
-          $state.go('billing.main.history.debt.details', {
+          $state.go('app.account.billing.main.history.debt.details', {
             debtId,
           }),
       },

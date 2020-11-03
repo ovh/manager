@@ -4,14 +4,14 @@ import set from 'lodash/set';
 import component from './component';
 
 export default /* @ngInject */ ($stateProvider) => {
-  const name = 'billing.payment.method.action.delete';
+  const name = 'app.account.billing.payment.method.action.delete';
 
   $stateProvider.state(name, {
     url: '/delete',
     component: component.name,
     layout: 'ouiModal',
     resolve: {
-      redirectTo: () => 'billing.payment.method',
+      redirectTo: () => 'app.account.billing.payment.method',
 
       loaders: () => ({
         deleting: false,

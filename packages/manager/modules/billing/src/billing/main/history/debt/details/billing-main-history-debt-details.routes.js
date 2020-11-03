@@ -1,7 +1,7 @@
 import template from './billing-main-history-debt-details.html';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('billing.main.history.debt.details', {
+  $stateProvider.state('app.account.billing.main.history.debt.details', {
     url: '/details',
     template,
     controller: 'BillingHistoryDebtDetailsCtrl',

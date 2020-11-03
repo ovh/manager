@@ -1,7 +1,7 @@
 import template from './billing-main.html';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('billing.main', {
+  $stateProvider.state('app.account.billing.main', {
     url: '',
     template,
     controller: 'BillingMainCtrl',

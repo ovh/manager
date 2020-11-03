@@ -17,7 +17,7 @@ export default class BillingPaymentDetailsCtrl {
     this.loadDetails = ({ id }) =>
       BillingPayments.getBillDetails($stateParams.id, id);
 
-    this.paymentsHref = () => $state.href('billing.main.payments');
+    this.paymentsHref = () => $state.href('app.account.billing.main.payments');
 
     this.$onInit = () =>
       BillingPayments.getPayment($stateParams.id)

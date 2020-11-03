@@ -1,24 +1,27 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('billing.autorenew.terminatePrivateDatabase', {
-    url: '/delete-hosting-private-database?serviceId',
-    views: {
-      modal: {
-        component: 'billingAutorenewTerminatePrivateDatabase',
+  $stateProvider.state(
+    'app.account.billing.autorenew.terminatePrivateDatabase',
+    {
+      url: '/delete-hosting-private-database?serviceId',
+      views: {
+        modal: {
+          component: 'billingAutorenewTerminatePrivateDatabase',
+        },
+      },
+      layout: 'modal',
+      translations: { value: ['.'], format: 'json' },
+      resolve: {
+        goBack: /* @ngInject */ (goToAutorenew) => goToAutorenew,
+        serviceId: /* @ngInject */ ($transition$) =>
+          $transition$.params().serviceId,
+        terminateHostingPrivateDatabase: /* @ngInject */ (
+          BillingAutoRenew,
+          serviceId,
+        ) => () => BillingAutoRenew.terminateHostingPrivateDatabase(serviceId),
       },
       atInternet: {
         ignore: true,
       },
     },
-    layout: 'modal',
-    translations: { value: ['.'], format: 'json' },
-    resolve: {
-      goBack: /* @ngInject */ (goToAutorenew) => goToAutorenew,
-      serviceId: /* @ngInject */ ($transition$) =>
-        $transition$.params().serviceId,
-      terminateHostingPrivateDatabase: /* @ngInject */ (
-        BillingAutoRenew,
-        serviceId,
-      ) => () => BillingAutoRenew.terminateHostingPrivateDatabase(serviceId),
-    },
-  });
+  );
 };
