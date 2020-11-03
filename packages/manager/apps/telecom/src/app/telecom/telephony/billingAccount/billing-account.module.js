@@ -21,7 +21,6 @@ import phonebook from './phonebook';
 import services from './services';
 
 import routing from './billingAccount.routing';
-import service from './billingAccount.service';
 
 const moduleName = 'ovhManagerTelecomTelephonyBillingAccount';
 
@@ -49,7 +48,6 @@ angular
     services,
   ])
   .config(routing)
-  .service('telecomBillingAccount', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
