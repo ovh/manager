@@ -7,8 +7,8 @@ import userEmailsController from './user-emails.controller';
 import userEmailsDetailsController from './details/user-emails-details.controller';
 
 export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
-  const name = 'account.user.emails';
-  const nameDetails = 'account.user.emailsDetails';
+  const name = 'app.account.user.emails';
+  const nameDetails = 'app.account.user.emailsDetails';
 
   if (includes(['EU', 'CA'], coreConfigProvider.getRegion())) {
     $stateProvider.state(name, {

@@ -3,7 +3,7 @@ import head from 'lodash/head';
 import { USER_DASHBOARD_SHORTCUTS } from './user-dashboard.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('account.user.dashboard', {
+  $stateProvider.state('app.account.user.dashboard', {
     url: '/dashboard',
     component: 'userAccountDashboard',
     translations: {
@@ -14,7 +14,7 @@ export default /* @ngInject */ ($stateProvider) => {
       user: /* @ngInject */ (UserAccountService) =>
         UserAccountService.getUser(),
       goToInfos: /* @ngInject */ ($state) => () =>
-        $state.go('account.user.infos'),
+        $state.go('app.account.user.infos'),
       lastBill: /* @ngInject */ (OvhApiMeBillIceberg) =>
         OvhApiMeBillIceberg.query()
           .expand('CachedObjectList-Pages')

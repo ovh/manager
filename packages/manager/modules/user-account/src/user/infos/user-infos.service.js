@@ -5,12 +5,12 @@ import set from 'lodash/set';
 export default class userAccountServiceInfos {
   /* @ngInject */
 
-  constructor($http, $q, constants, $window) {
+  constructor($http, $q, ducConstants, $window) {
     this.$http = $http;
     this.$q = $q;
-    this.constants = constants;
+    this.ducConstants = ducConstants;
     this.$window = $window;
-    this.swsUseraccountInfosPath = `${this.constants.swsProxyRootPath}me`;
+    this.swsUseraccountInfosPath = `${this.ducConstants.swsProxyRootPath}me`;
     this.cache = {
       me: 'UNIVERS_USER_ME',
     };
@@ -183,7 +183,7 @@ export default class userAccountServiceInfos {
 
   getListOfRulesFieldName() {
     return this.$http
-      .get(`${this.constants.swsProxyRootPath}newAccount.json`)
+      .get(`${this.ducConstants.swsProxyRootPath}newAccount.json`)
       .then((response) => {
         let result = [];
         const models = get(response, 'data.models');
@@ -201,7 +201,9 @@ export default class userAccountServiceInfos {
     // Get creation Rules by user
     return this.$http
       .get(
-        [this.constants.swsProxyRootPath, 'newAccount/creationRules'].join(''),
+        [this.ducConstants.swsProxyRootPath, 'newAccount/creationRules'].join(
+          '',
+        ),
         {
           params,
         },
@@ -230,7 +232,7 @@ export default class userAccountServiceInfos {
         this.$http
           .get(
             [
-              this.constants.swsProxyRootPath,
+              this.ducConstants.swsProxyRootPath,
               'newAccount/corporationType',
             ].join(''),
             {
@@ -253,7 +255,9 @@ export default class userAccountServiceInfos {
       .then((returnResponse) =>
         this.$http
           .get(
-            [this.constants.swsProxyRootPath, 'newAccount/legalform'].join(''),
+            [this.ducConstants.swsProxyRootPath, 'newAccount/legalform'].join(
+              '',
+            ),
             {
               params: {
                 country: params.country,
@@ -273,11 +277,14 @@ export default class userAccountServiceInfos {
       )
       .then((returnResponse) =>
         this.$http
-          .get([this.constants.swsProxyRootPath, 'newAccount/area'].join(''), {
-            params: {
-              country: params.country,
+          .get(
+            [this.ducConstants.swsProxyRootPath, 'newAccount/area'].join(''),
+            {
+              params: {
+                country: params.country,
+              },
             },
-          })
+          )
           .then(
             (response) => {
               set(returnResponse, 'availableArea', response.data);
@@ -291,7 +298,7 @@ export default class userAccountServiceInfos {
       )
       .then((returnResponse) =>
         this.$http
-          .get([this.constants.swsProxyRootPath, 'newAccount.json'].join(''))
+          .get([this.ducConstants.swsProxyRootPath, 'newAccount.json'].join(''))
           .then(
             (response) => {
               set(
@@ -311,7 +318,7 @@ export default class userAccountServiceInfos {
 
   getMeModels() {
     return this.$http
-      .get([this.constants.swsProxyRootPath, 'me.json'].join(''), {
+      .get([this.ducConstants.swsProxyRootPath, 'me.json'].join(''), {
         cache: this.cache.me,
       })
       .then((response) => response.data.models);

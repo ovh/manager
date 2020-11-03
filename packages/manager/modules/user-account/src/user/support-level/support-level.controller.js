@@ -14,8 +14,8 @@ import standard from '../../images/support-level/standard.png';
 
 export default class UserAccountSupportLevelCtrl {
   /* @ngInject */
-  constructor(constants) {
-    this.constants = constants;
+  constructor(ducConstants) {
+    this.ducConstants = ducConstants;
     this.assets = {
       business,
       enterprise,
@@ -26,9 +26,9 @@ export default class UserAccountSupportLevelCtrl {
 
   $onInit() {
     this.orderBaseUrl = get(
-      this.constants,
+      this.ducConstants,
       `urls.${this.currentUser.ovhSubsidiary}.express_order`,
-      this.constants.urls.FR.express_order,
+      this.ducConstants.urls.FR.express_order,
     );
     this.supportLevelsEnum = get(
       this.schema.models,

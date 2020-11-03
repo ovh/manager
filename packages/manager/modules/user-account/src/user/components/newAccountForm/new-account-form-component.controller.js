@@ -25,7 +25,7 @@ export default class newAccountFormController {
     coreConfig,
     NewAccountFormConfig,
     Alerter,
-    constants,
+    ducConstants,
     UserAccountServiceInfos,
     $translate,
   ) {
@@ -94,7 +94,10 @@ export default class newAccountFormController {
           consentDecision = get(fetchedConsentDecision, 'value', false);
         })
         .then(() =>
-          $http.post(`${constants.swsProxyRootPath}newAccount/rules`, params),
+          $http.post(
+            `${ducConstants.swsProxyRootPath}newAccount/rules`,
+            params,
+          ),
         )
         .then((result) => {
           if (result.status !== 200) {
@@ -211,7 +214,7 @@ export default class newAccountFormController {
       model = omit(model, 'managerLanguage');
 
       let promise = $http
-        .put(`${constants.swsProxyRootPath}me`, model)
+        .put(`${ducConstants.swsProxyRootPath}me`, model)
         .then((result) => {
           if (result.status !== 200) {
             return $q.reject(result);

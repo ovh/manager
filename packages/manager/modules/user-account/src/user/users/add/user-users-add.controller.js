@@ -2,9 +2,9 @@ import get from 'lodash/get';
 
 export default class UserAccountUsersAddCtrl {
   /* @ngInject */
-  constructor($scope, User, UseraccountUsersService, Alerter, $translate) {
+  constructor($scope, ducUser, UseraccountUsersService, Alerter, $translate) {
     this.$scope = $scope;
-    this.userService = User;
+    this.userService = ducUser;
     this.usersService = UseraccountUsersService;
     this.alerter = Alerter;
     this.$translate = $translate;

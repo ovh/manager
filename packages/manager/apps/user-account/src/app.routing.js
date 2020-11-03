@@ -2,12 +2,11 @@ export default /* @ngInject */ ($stateProvider) => {
   [
     {
       abstract: true,
-      name: 'app.account',
+      name: 'app',
     },
     {
       abstract: true,
-      name: 'app.account.service',
-      template: '<ui-view/>',
+      name: 'app.account',
     },
   ].forEach((state) => $stateProvider.state(state.name, state));
 };

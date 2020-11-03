@@ -13,7 +13,7 @@ import component from './new-account-form-component';
 import fieldComponent from './field/new-account-form-field.component';
 import constant from './new-account-form.config';
 
-const moduleName = 'ovhManagerDedicatedAccountUserInfosNewAccountForm';
+const moduleName = 'ovhManagerUserAccountInfosNewAccountForm';
 
 angular
   .module(moduleName, [

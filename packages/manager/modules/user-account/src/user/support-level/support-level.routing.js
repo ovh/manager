@@ -1,7 +1,7 @@
 import { PartnerLevel } from '@ovh-ux/manager-models';
 
 export default /* @ngInject */ ($stateProvider) => {
-  const name = 'account.user.support-level';
+  const name = 'app.account.user.support-level';
 
   $stateProvider.state(name, {
     url: '/support/level',

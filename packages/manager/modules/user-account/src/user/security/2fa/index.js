@@ -9,12 +9,7 @@ import routing from './user-security-2fa.routing';
 const moduleName = 'ovhManagerDedicatedAccountUserSecurity2fa';
 
 angular
-  .module(moduleName, [
-    'ja.qr',
-    'ovhManagerCore',
-    'pascalprecht.translate',
-    'ui.router',
-  ])
+  .module(moduleName, ['ovhManagerCore', 'pascalprecht.translate', 'ui.router'])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
 

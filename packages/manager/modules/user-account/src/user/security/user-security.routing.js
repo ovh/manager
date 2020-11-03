@@ -2,7 +2,7 @@ import controller from './user-security.controller';
 import template from './user-security.html';
 
 export default /* @ngInject */ ($stateProvider) => {
-  const name = 'account.user.security';
+  const name = 'app.account.user.security';
 
   $stateProvider.state(name, {
     url: '/security',

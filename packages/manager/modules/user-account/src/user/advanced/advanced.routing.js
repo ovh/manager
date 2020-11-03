@@ -1,7 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('account.user.advanced', {
+  $stateProvider.state('app.account.user.advanced', {
     url: '/advanced',
     component: 'accountUserAdvanced',
-    translations: ['../', './'],
   });
 };
