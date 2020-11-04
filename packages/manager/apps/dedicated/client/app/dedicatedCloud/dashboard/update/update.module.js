@@ -20,7 +20,6 @@ angular
     updateVersionComponent,
   ])
   .config(routing)
-  .component('ovhManagerPccDashboardUpdate', component)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .component('ovhManagerPccDashboardUpdate', component);
 
 export default moduleName;
