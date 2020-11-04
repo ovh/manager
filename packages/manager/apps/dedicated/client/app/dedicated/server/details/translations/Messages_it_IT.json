@@ -1225,5 +1225,6 @@
   "server_configuration_distribution_byoi": "BringYourOwnImage",
   "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_GROUP": "Interfacce di rete di gruppo",
   "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_UNGROUP": "Disassocia le interfacce di rete",
-  "server_ola_reset": "Rimuovi la configurazione dell’aggregazione privata"
+  "server_ola_reset": "Rimuovi la configurazione dell’aggregazione privata",
+  "server_configuration_installation_no_public_network": "Non è possibile installare/reinstallare un OS sul server perché la configurazione di rete applicata sulla macchina non consente l'accesso alla rete pubblica. Per effettuare l’operazione è necessario modificare la configurazione di rete nella scheda \"Interfacce di rete\"."
 }

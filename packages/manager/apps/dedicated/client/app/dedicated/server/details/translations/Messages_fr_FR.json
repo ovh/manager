@@ -1049,6 +1049,7 @@
   "server_ola_activate": "Activer OLA",
   "server_ola_configure": "Configurer l'agrégation privée",
   "server_ola_reset": "Déconfigurer l'agrégation privée",
+  "server_configuration_installation_no_public_network": "La configuration réseau appliquée sur votre serveur ne donnant pas accès au réseau public, il est impossible d’installer/réinstaller un OS sur celui-ci. Pour débloquer cette action, merci de modifier votre configuration réseau dans l’onglet « interfaces réseaux »",
   "server_ola_terminate": "Résilier OLA",
   "server_ola_mode_vrack_aggregation": "Agrégation privée",
   "server_ola_mode_default": "Défaut",
