@@ -1225,5 +1225,6 @@
   "server_configuration_distribution_byoi": "BringYourOwnImage",
   "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_GROUP": "Group network interfaces",
   "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_UNGROUP": "Detach network interfaces",
-  "server_ola_reset": "Unconfigure private aggregation"
+  "server_ola_reset": "Unconfigure private aggregation",
+  "server_configuration_installation_no_public_network": "Since the network configuration applied on your server does not give access to the public network, you cannot install/reinstall an OS on it. To unblock this action, please modify your network configuration in the “network interfaces” tab"
 }

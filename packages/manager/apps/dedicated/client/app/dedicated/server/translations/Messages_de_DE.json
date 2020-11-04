@@ -1225,5 +1225,6 @@
   "server_configuration_distribution_byoi": "BringYourOwnImage",
   "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_GROUP": "Interfaces des Unternehmensnetzwerks",
   "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_UNGROUP": "Die Netzwerkinterfaces trennen",
-  "server_ola_reset": "Die „private aggregation“ dekonfigurieren"
+  "server_ola_reset": "Die „private aggregation“ dekonfigurieren",
+  "server_configuration_installation_no_public_network": "Die auf Ihrem Server angewandte Netzwerkkonfiguration ermöglicht keinen Zugang zum öffentlichen Netzwerk. Daher kann kein Betriebssystem auf diesem Server (re)installiert werden. Um diese Aktion zu ermöglichen, ändern Sie bitte Ihre Netzwerkkonfiguration im Tab \"Netzwerk-Interfaces\"."
 }
