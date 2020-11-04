@@ -21,5 +21,7 @@
   "dedicatedCloud_datacenter_backup_capability_update": "Confirmar las opciones del informe",
   "dedicatedCloud_datacenter_backup_capability_update_error": "Se ha producido un error al actualizar los parámetros de backup: {{ message }}",
   "dedicatedCloud_datacenter_backup_capability_update_success": "Los cambios realizados en su informe diario se han registrado correctamente.",
-  "dedicatedCloud_datacenter_backup_capability_update_email_success": "Recibirá este informe en la siguiente dirección: {{emailAddress}}"
+  "dedicatedCloud_datacenter_backup_capability_update_email_success": "Recibirá este informe en la siguiente dirección: {{emailAddress}}",
+  "dedicatedCloud_datacenter_backup_upgrade_blocked_MBM": "Ya se está tramitando una solución de backup en otro datacenter del Essentials. No es posible modificar el backup hasta que la operación se haya completado.",
+  "dedicatedCloud_datacenter_backup_daily_report_description_1_MBM": "Las opciones seleccionadas para el informe diario se aplicarán en todos los datacenters de este Essentials."
 }

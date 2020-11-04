@@ -46,5 +46,6 @@
   "dedicatedCloud_SECURITY_change_logout_policy": "Modify the disconnection policy",
   "dedicatedCloud_SECURITY_add_IP": "Add a new IP address range",
   "dedicatedCloud_SECURITY_delete_IP": "Delete IP address ranges",
-  "dedicatedCloud_dashboard_loading_error": "An error has occurred loading your service information."
+  "dedicatedCloud_dashboard_loading_error": "An error has occurred loading your service information.",
+  "dedicatedCloud_SECURITY_title_MBM": "IPs and blocks authorised to connect to Managed Bare Metal:"
 }

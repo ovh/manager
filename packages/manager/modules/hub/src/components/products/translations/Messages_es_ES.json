@@ -57,5 +57,6 @@
   "manager_hub_products_see_all": "Ver todo",
   "manager_hub_products_IP_LOADBALANCER": "IP Load Balancer",
   "manager_hub_products_EXCHANGE": "Microsoft Exchange",
-  "manager_hub_products_OVH_CLOUD_CONNECT": "OVHcloud Connect"
+  "manager_hub_products_OVH_CLOUD_CONNECT": "OVHcloud Connect",
+  "manager_hub_products_ESSENTIALS": "Managed Bare Metal"
 }

@@ -10,5 +10,6 @@
   "dedicatedCloud_datacenter_backup_upgrade_replication_condition": "Zatwierdzam replikację danych",
   "dedicatedCloud_datacenter_backup_upgrade_success_1": "Zmiana Twojej oferty Veeam {{actualOffer}} na {{newOffer}} jest w trakcie realizacji i może trochę potrwać.",
   "dedicatedCloud_datacenter_backup_upgrade_success_2": "Możesz śledzić jej kolejne etapy <a href=\"{{operationsUrl}}\">tutaj</a>.",
-  "dedicatedCloud_datacenter_backup_upgrade_error": "Wystąpił błąd podczas zmiany Twojej oferty tworzenia kopii zapasowych: {{ message }}"
+  "dedicatedCloud_datacenter_backup_upgrade_error": "Wystąpił błąd podczas zmiany Twojej oferty tworzenia kopii zapasowych: {{ message }}",
+  "dedicatedCloud_datacenter_backup_upgrade_warning_MBM": "Jeżeli dla tej usługi Essentials włączyłeś opcję tworzenia kopii zapasowych w innych centrach danych, oferta ta będzie odnosiła się również do tych centrów."
 }

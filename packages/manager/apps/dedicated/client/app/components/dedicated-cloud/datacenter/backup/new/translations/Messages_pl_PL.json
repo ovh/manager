@@ -11,5 +11,8 @@
   "dedicatedCloud_datacenter_backup_new_activate_offer_action": "Włącz usługę",
   "dedicatedCloud_datacenter_backup_new_create_success": "Twoje zlecenie aktywacji usługi Veeam Backup {{offerType}} jest w trakcie przetwarzania. <a href=\"{{operationsUrl}}\">Tutaj</a>możesz śledzić status zadań.",
   "dedicatedCloud_datacenter_backup_new_create_error": "Nie można utworzyć usługi tworzenia kopii zapasowych: {{message}}.",
-  "dedicatedCloud_datacenter_backup_new_order_success": "Twoje <a target='_blank' rel='noopener' href='{{orderUrl}}'>zlecenie</a> aktywacji usługi Veeam Backup {{offerType}} zostało utworzone. Po jego zatwierdzeniu <a href=\"{{operationsUrl}}\">tutaj</a> możesz śledzić status zadań."
+  "dedicatedCloud_datacenter_backup_new_order_success": "Twoje <a target='_blank' rel='noopener' href='{{orderUrl}}'>zlecenie</a> aktywacji usługi Veeam Backup {{offerType}} zostało utworzone. Po jego zatwierdzeniu <a href=\"{{operationsUrl}}\">tutaj</a> możesz śledzić status zadań.",
+  "dedicatedCloud_datacenter_backup_new_description3_MBM": "Pakiet wybrany dla tego centrum danych będzie jedynym dostępnym dla pozostałych centrów, w których hostowane jest Twoje rozwiązanie Essentials oraz jedynym mającym zastosowanie dla wszystkich Twoich wirtualnych maszyn.",
+  "dedicatedCloud_datacenter_backup_new_restricted_offer_choice_MBM": "Pakiet {{offer}} został już wybrany dla centrum danych {{datacenterName}}, w którym hostowane jest Twoje rozwiązanie Essentials. Możesz włączyć usługę dla tego centrum danych.",
+  "dedicatedCloud_datacenter_backup_new_blocked_MBM": "Usługa tworzenia kopii zapasowych jest wykonywana w innym centrum danych niż to, w którym hostowane jest rozwiązanie Essentials. Dopóki nie dobiegnie ona końca, nie możesz włączyć żadnej nowej usługi."
 }

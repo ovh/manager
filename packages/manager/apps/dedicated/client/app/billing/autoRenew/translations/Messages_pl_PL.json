@@ -121,5 +121,6 @@
   "billing_autorenew_renew_action": "Odnów",
   "billing_autorenew_service_renew_requires_mean_and_date": "Aby dokończyć aktywację automatycznego odnowienia, prosimy o dodanie sposobu płatności. Następnie będziesz mógł wybrać datę pobrania płatności.",
   "billing_autorenew_service_activate_alert": "Posiadasz co najmniej jedną usługę w trybie automatycznego odnowienia, ale nie zatwierdziłeś jeszcze tej opcji.",
-  "billing_autorenew_service_type_OVH_CLOUD_CONNECT": "OVHCloud Connect"
+  "billing_autorenew_service_type_OVH_CLOUD_CONNECT": "OVHCloud Connect",
+  "billing_autorenew_service_type_ESSENTIALS": "Essentials"
 }

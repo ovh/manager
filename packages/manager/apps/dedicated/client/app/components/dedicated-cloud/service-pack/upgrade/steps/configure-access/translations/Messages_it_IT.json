@@ -14,5 +14,8 @@
   "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_whatToDoNow_security": "Sicurezza",
   "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_whatToDoNow_2": " prima di continuare",
   "dedicatedCloud_servicePack_requiredConfiguration_previousButton": "Indietro",
-  "dedicatedCloud_servicePack_requiredConfiguration_nextButton": "Continua"
+  "dedicatedCloud_servicePack_requiredConfiguration_nextButton": "Continua",
+  "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_accessPolicy_error_MBM": "La politica di accesso della tua soluzione Essentials non è limitata.",
+  "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_numberOfAllowedIPAndBlocks_error_MBM": "La politica di accesso della tua soluzione Essentials non contiene indirizzi IP autorizzati.",
+  "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_both_error_MBM": "La politica di accesso della tua soluzione Essentials non è limitata e non contiene indirizzi IP autorizzati."
 }

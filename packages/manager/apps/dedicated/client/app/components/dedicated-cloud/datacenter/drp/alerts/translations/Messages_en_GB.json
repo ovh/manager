@@ -7,5 +7,8 @@
   "dedicatedCloud_datacenter_drp_confirm_creation_pending_task_EPCC": "Please check the enableDisasterRecovery task on your primary Private Cloud to track its progress.",
   "dedicatedCloud_options_zerto_waiting_vpn_message_part_one": "To finish enabling your Zerto DRP,",
   "dedicatedCloud_options_zerto_waiting_vpn_message_part_two": "please add the VPN IP addresses in the DRP settings",
-  "dedicatedCloud_datacenter_drp_required_vpn_configuration": "To finish enabling your Zerto DRP, please add the IPs of the VPN below"
+  "dedicatedCloud_datacenter_drp_required_vpn_configuration": "To finish enabling your Zerto DRP, please add the IPs of the VPN below",
+  "dedicatedCloud_options_zerto_delivered_message_part_one_MBM": "Your Zerto Disaster Recovery Plan between this Essentials product and ",
+  "dedicatedCloud_options_zerto_delivered_message_part_two_ovh_MBM": "the {{pccId}} Essentials product has been set up.",
+  "dedicatedCloud_datacenter_drp_confirm_creation_pending_task_MBM": "Please check the enableDisasterRecovery task on your primary Essentials product to track its progress."
 }
