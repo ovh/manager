@@ -11,7 +11,7 @@
   "dedicatedCloud_OPERATIONS_state_doing": "En proceso",
   "dedicatedCloud_OPERATIONS_state_error": "Error",
   "dedicatedCloud_OPERATIONS_state_problem": "Problema",
-  "dedicatedCloud_OPERATIONS_state_todo": "Por realizar",
+  "dedicatedCloud_OPERATIONS_state_todo": "Pendiente",
   "dedicatedCloud_OPERATIONS_state_fixing": "Intervención en curso",
   "dedicatedCloud_OPERATIONS_state_toCancel": "Por cancelar",
   "dedicatedCloud_OPERATIONS_state_toCreate": "Por crear",

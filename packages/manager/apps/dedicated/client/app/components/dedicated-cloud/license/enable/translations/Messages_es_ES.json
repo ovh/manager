@@ -1,6 +1,6 @@
 {
-    "dedicatedCloud_tab_licences_active_spla_title": "Activación de la licencia Windows SPLA",
-    "dedicatedCloud_tab_license_type": "Tipo",
-    "dedicatedCloud_tab_license_price": "Precio",
-    "dedicatedCloud_tab_licences_active_spla_load_fail": "Se ha producido un error al cargar la información para activar la licencia SPLA."
+  "dedicatedCloud_tab_licences_active_spla_title": "Activación de la licencia Windows SPLA",
+  "dedicatedCloud_tab_license_type": "Tipo",
+  "dedicatedCloud_tab_license_price": "Precio",
+  "dedicatedCloud_tab_licences_active_spla_load_fail": "Se ha producido un error al cargar la información para activar la licencia SPLA."
 }
