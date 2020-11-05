@@ -23,7 +23,7 @@ import without from 'lodash/without';
 
 import angular from 'angular';
 
-import { POLLING_INTERVAL, VRACK_URLS } from './vrack.constant';
+import { POLLING_INTERVAL, STATUS, VRACK_URLS } from './vrack.constant';
 import arrowIcon from '../assets/icon_vrack-mapper-arrows.svg';
 
 export default class VrackMoveDialogCtrl {
@@ -180,7 +180,19 @@ export default class VrackMoveDialogCtrl {
     return this.OvhApiVrack.Aapi()
       .allowedServices({ serviceName: this.serviceName })
       .$promise.then((allServicesParam) => {
-        let allServices = allServicesParam;
+        let allServices = {
+          ...allServicesParam,
+          dedicatedCloud: allServicesParam.dedicatedCloud.filter(
+            VrackMoveDialogCtrl.isServiceAllowed,
+          ),
+          dedicatedServer: allServicesParam.dedicatedServer.filter(
+            VrackMoveDialogCtrl.isServiceAllowed,
+          ),
+          dedicatedServerInterface: allServicesParam.dedicatedServerInterface.filter(
+            ({ dedicatedServer }) =>
+              VrackMoveDialogCtrl.isServiceAllowed(dedicatedServer),
+          ),
+        };
         allServices = mapValues(allServices, (services, serviceType) => {
           if (isArray(services)) {
             return map(services, (service) =>
@@ -212,6 +224,14 @@ export default class VrackMoveDialogCtrl {
 
         return allServices;
       });
+  }
+
+  static isServiceAllowed(service) {
+    return (
+      !service.expired &&
+      [STATUS.ok, STATUS.delivered].includes(service.state) &&
+      service.status === STATUS.ok
+    );
   }
 
   getVrackServices() {
