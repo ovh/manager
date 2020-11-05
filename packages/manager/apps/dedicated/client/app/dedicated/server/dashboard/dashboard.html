@@ -227,6 +227,13 @@
             </div>
         </div>
 
+        <!-- TECHNICAL DETAILS -->
+        <div class="col-md-4" data-ng-if="$ctrl.technicalDetails">
+            <dedicated-server-dashboard-technical-details
+                technical-details="$ctrl.technicalDetails"
+            ></dedicated-server-dashboard-technical-details>
+        </div>
+
         <div
             class="col-md-4"
             data-ng-if="$ctrl.server.commercialRange !== 'housing'"
@@ -475,171 +482,14 @@
             </div>
         </div>
 
-        <div class="col-md-4">
-            <!-- SUBSCRIPTION -->
-            <div class="oui-tile mb-5 h-100">
-                <h4
-                    class="oui-tile__title oui-heading_4"
-                    data-translate="server_subscription"
-                ></h4>
-                <div class="oui-tile__body">
-                    <div class="oui-tile__item">
-                        <dl class="oui-tile__definition">
-                            <dt class="oui-tile__term">
-                                <service-expiration-label
-                                    data-service-infos="$ctrl.serviceInfos"
-                                >
-                                </service-expiration-label>
-                            </dt>
-                            <dd class="oui-tile__description">
-                                <service-expiration-date
-                                    data-hide-renew-action="!$ctrl.server.canOrder"
-                                    data-service-name="$ctrl.server.name"
-                                    data-service-type="'DEDICATED_SERVER'"
-                                    data-service-infos="$ctrl.serviceInfos"
-                                    data-force-hide-renew-action="true"
-                                >
-                                </service-expiration-date>
-                            </dd>
-                        </dl>
-                        <div class="oui-tile__actions">
-                            <service-expiration-date
-                                data-hide-renew-date="true"
-                                data-hide-renew-action="!$ctrl.server.canOrder"
-                                data-service-name="$ctrl.server.name"
-                                data-service-type="'DEDICATED_SERVER'"
-                                data-service-infos="$ctrl.serviceInfos"
-                            >
-                            </service-expiration-date>
-                        </div>
-                    </div>
-                    <div
-                        class="oui-tile__item"
-                        data-ng-if="$ctrl.worldPart !== 'US'"
-                    >
-                        <dl class="oui-tile__definition">
-                            <dt
-                                class="oui-tile__term"
-                                data-translate="common_subscription_contacts"
-                            ></dt>
-                            <dd class="oui-tile__description">
-                                <span
-                                    data-ng-bind="$ctrl.serviceInfos.contactAdmin"
-                                ></span>
-                                <span
-                                    class="oui-tile__extra"
-                                    data-translate="common_subscription_contacts_admin"
-                                ></span
-                                ><br />
-                                <span
-                                    data-ng-bind="$ctrl.serviceInfos.contactTech"
-                                ></span>
-                                <span
-                                    class="oui-tile__extra"
-                                    data-translate="common_subscription_contacts_tech"
-                                ></span
-                                ><br />
-                                <span
-                                    data-ng-bind="$ctrl.serviceInfos.contactBilling"
-                                ></span>
-                                <span
-                                    class="oui-tile__extra"
-                                    data-translate="common_subscription_contacts_billing"
-                                ></span>
-                            </dd>
-                        </dl>
-                        <div
-                            class="oui-tile__actions"
-                            data-ng-if="$ctrl.DedicatedServerFeatureAvailability.hasContactChangement() && !$ctrl.server.isExpired"
-                        >
-                            <oui-action-menu
-                                aria-label="{{:: 'menu_action_label' | translate:{t0: ('server_bandwidth_ovh_to_internet' | translate)} }}"
-                                data-compact
-                                data-ng-if="$ctrl.DedicatedServerFeatureAvailability.hasContactChangement() && !$ctrl.server.isExpired"
-                                data-placement="end"
-                            >
-                                <oui-action-menu-item
-                                    aria-label="{{:: 'contacts_management' | translate }}"
-                                    data-ui-sref="app.account.contacts.services({ serviceName: $ctrl.server.name })"
-                                    ><span
-                                        data-translate="contacts_management"
-                                    ></span
-                                ></oui-action-menu-item>
-                                <oui-action-menu-item
-                                    data-href="{{:: $ctrl.changeOwnerUrl }}"
-                                    data-external
-                                    data-disabled="$ctrl.server.state === 'HACKED' || $ctrl.server.state === 'HACKED_BLOCKED'"
-                                >
-                                    <span
-                                        data-translate="core_change_owner"
-                                    ></span>
-                                </oui-action-menu-item>
-                            </oui-action-menu>
-                        </div>
-                    </div>
-                    <div class="oui-tile__item">
-                        <dl class="oui-tile__definition">
-                            <dt
-                                class="oui-tile__term"
-                                data-translate="common_configuration_creation"
-                            ></dt>
-                            <dd
-                                class="oui-tile__description"
-                                data-ng-bind="$ctrl.server.creation|date:'mediumDate'"
-                            ></dd>
-                        </dl>
-                    </div>
-                    <div
-                        class="oui-tile__item"
-                        data-ng-if="$ctrl.server.availableProfessionalUse"
-                    >
-                        <dl class="oui-tile__definition">
-                            <dt
-                                class="oui-tile__term"
-                                data-translate="server_configuration_profesionnal_use"
-                            ></dt>
-                            <dd class="oui-tile__description">
-                                <span
-                                    class="oui-badge"
-                                    data-ng-class="{
-                                          'oui-badge_success': $ctrl.server.hasProfessionalUse,
-                                          'oui-badge_error': !$ctrl.server.hasProfessionalUse
-                                      }"
-                                    data-translate="{{'server_configuration_monitoring_' + ($ctrl.server.hasProfessionalUse &amp;&amp; 'activated' || 'disabled') | translate}}"
-                                >
-                                </span>
-
-                                <span
-                                    class="oui-icon oui-icon-info-circle"
-                                    data-aria-hidden="true"
-                                    data-ng-if="!$ctrl.server.hasProfessionalUse"
-                                    data-oui-tooltip="{{:: 'server_configuration_profesionnal_use_info' | translate}}"
-                                    data-oui-tooltip-placement="top-start"
-                                ></span>
-                            </dd>
-                        </dl>
-                        <div
-                            class="oui-tile__actions"
-                            data-ng-if="!$ctrl.server.isExpired && $ctrl.server.availableProfessionalUse && !$ctrl.server.hasProfessionalUse"
-                        >
-                            <oui-action-menu
-                                aria-label="{{:: 'menu_action_label' | translate:{ t0: ('server_configuration_profesionnal_use' | translate) } }}"
-                                data-compact
-                                data-placement="end"
-                            >
-                                <oui-action-menu-item
-                                    data-on-click="$ctrl.dedicatedServer.$scope.setAction('pro-use/order/dedicated-server-pro-use-order', $ctrl.server.name)"
-                                    data-disabled="$ctrl.server.order.indexOf('professionalUse') === -1"
-                                >
-                                    <span
-                                        data-translate="server_configuration_profesionnal_use_order_button"
-                                    ></span>
-                                </oui-action-menu-item>
-                            </oui-action-menu>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- SUBSCRIPTIONS -->
+        <div class="col-md-4" data-ng-if="!$ctrl.technicalDetails">
+            <dedicated-server-dashboard-subscriptions
+                change-owner-url="$ctrl.changeOwnerUrl"
+                dedicated-server="$ctrl.dedicatedServer"
+                world-part="$ctrl.worldPart"
+            >
+            </dedicated-server-dashboard-subscriptions>
         </div>
     </div>
     <div class="row d-md-flex mb-5">
@@ -867,6 +717,16 @@
                     </oui-tile-definition>
                 </div>
             </oui-tile>
+        </div>
+
+        <!-- SUBSCRIPTIONS -->
+        <div class="col-md-4" data-ng-if="$ctrl.technicalDetails">
+            <dedicated-server-dashboard-subscriptions
+                change-owner-url="$ctrl.changeOwnerUrl"
+                dedicated-server="$ctrl.dedicatedServer"
+                world-part="$ctrl.worldPart"
+            >
+            </dedicated-server-dashboard-subscriptions>
         </div>
 
         <div
