@@ -12,6 +12,8 @@ import commitment from './commitment';
 import cancelCommitment from './cancel-commitment';
 import cancelResiliation from './cancel-resiliation';
 import resiliation from './resiliation';
+import subscriptions from './subscriptions';
+import technicalDetails from './technical-details';
 
 import component from './dashboard.component';
 import routing from './dashboard.routing';
@@ -27,6 +29,8 @@ angular
     atInternet,
     'oui',
     'pascalprecht.translate',
+    subscriptions,
+    technicalDetails,
     'ui.router',
     ovhManagerBilling,
     resiliation,

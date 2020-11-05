@@ -24,6 +24,7 @@ export default {
     serviceInfos: '<',
     serviceMonitoring: '<',
     specifications: '<',
+    technicalDetails: '<',
     trafficInformations: '<',
     user: '<',
     vrackInfos: '<',

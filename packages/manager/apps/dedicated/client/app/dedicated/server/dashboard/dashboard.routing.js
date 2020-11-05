@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
 
@@ -198,6 +199,12 @@ export default /* @ngInject */ ($stateProvider) => {
             ),
       serviceMonitoring: /* @ngInject */ ($stateParams, Server) =>
         Server.getAllServiceMonitoring($stateParams.productId),
+      technicalDetails: /* @ngInject */ ($http, $stateParams) =>
+        $http
+          .get(`/dedicated/technical-details/${$stateParams.productId}`, {
+            serviceType: 'aapi',
+          })
+          .then(({ data }) => get(data, 'baremetalServers')),
       trafficInformations: /* @ngInject */ (
         $q,
         $stateParams,
