@@ -1,7 +1,7 @@
 {
   "dedicatedCloudDashboardTilesOptionsOrderSelection_stepper_header": "Wybór sektora działalności",
-  "dedicatedCloudDashboardTilesOptionsOrderSelection_priceDifferenceOnMonthlyBill": "{{ priceDifference }}na twojej miesięcznej cenie",
-  "dedicatedCloudDashboardTilesOptionsOrderSelection_priceDifferenceOnHourlyBill": "{{ priceDifference }} na twojej stawce godzinowej",
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_priceDifferenceOnMonthlyBill": "{{priceDifference}} w rozliczeniu miesięcznym",
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_priceDifferenceOnHourlyBill": "{{priceDifference}} w rozliczeniu godzinowym",
   "dedicatedCloudDashboardTilesOptionsOrderSelection_certification_howToConfigureMeansOfPayment_comeBackHereLater": "Następnie wróć do tego miejsca, aby zakończyć aktywację certyfikacji.",
   "dedicatedCloudDashboardTilesOptionsOrderSelection_cancelButton": "Anuluj",
   "dedicatedCloudDashboardTilesOptionsOrderSelection_checkoutButton": "Zmień",

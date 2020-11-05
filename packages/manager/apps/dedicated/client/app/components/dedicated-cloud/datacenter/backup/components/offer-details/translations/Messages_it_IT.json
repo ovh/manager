@@ -1,5 +1,5 @@
 {
-  "dedicatedCloud_datacenter_backup_offer_upgrade_custom_report": "Report dei backup personalizzabile",
+  "dedicatedCloud_datacenter_backup_offer_upgrade_custom_report": "Report personalizzabile dei backup",
   "dedicatedCloud_datacenter_backup_offer_upgrade_encrypted_backup": "Backup cifrati",
   "dedicatedCloud_datacenter_backup_offer_upgrade_retention_points": "{{retention}} punti di retention",
   "dedicatedCloud_datacenter_backup_offer_upgrade_minimum_retention_points": "Minimo {{retention}} punti di retention",
