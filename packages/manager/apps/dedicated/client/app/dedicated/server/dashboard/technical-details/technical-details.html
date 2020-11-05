@@ -1,0 +1,65 @@
+<oui-tile
+    class="h-100"
+    heading="{{:: 'dedicated_server_dashboard_technical_details_heading' | translate }}"
+>
+    <oui-tile-definition
+        term="{{:: 'dedicated_server_dashboard_technical_details_cpu' | translate }}"
+    >
+        <oui-tile-description>
+            <span data-ng-bind=":: $ctrl.formattedCPU"></span>
+        </oui-tile-description>
+    </oui-tile-definition>
+    <oui-tile-definition
+        term="{{:: 'dedicated_server_dashboard_technical_details_ram' | translate }}"
+    >
+        <oui-tile-description>
+            <span data-ng-bind=":: $ctrl.formattedRAM"></span>
+        </oui-tile-description>
+    </oui-tile-definition>
+    <!--
+    <oui-tile-definition
+        term="{{:: 'dedicated_server_dashboard_technical_details_gpu' | translate }}"
+    >
+        <oui-tile-description>-</oui-tile-description>
+    </oui-tile-definition>
+    -->
+    <oui-tile-definition
+        term="{{:: 'dedicated_server_dashboard_technical_details_system_disk_many' | translate }}"
+    >
+        <oui-tile-description>
+            <p
+                data-ng-repeat="formattedDisk in $ctrl.formattedOsDisks track by $index"
+                data-ng-bind=":: formattedDisk"
+            ></p>
+        </oui-tile-description>
+    </oui-tile-definition>
+    <oui-tile-definition
+        term="{{:: 'dedicated_server_dashboard_technical_details_data_disk_many' | translate }}"
+    >
+        <oui-tile-description>
+            <p
+                data-ng-repeat="formattedDisk in $ctrl.formattedDataDisks track by $index"
+                data-ng-bind=":: formattedDisk"
+            ></p>
+        </oui-tile-description>
+    </oui-tile-definition>
+    <!--
+    <oui-tile-definition
+        term="{{:: 'dedicated_server_dashboard_technical_details_cache_disk_many' | translate }}"
+    >
+        <oui-tile-description>
+            <p
+                data-ng-repeat="formattedDisk in $ctrl.formattedCacheDisks track by $index"
+                data-ng-bind=":: formattedDisk"
+            ></p>
+        </oui-tile-description>
+    </oui-tile-definition>
+    -->
+    <oui-tile-definition
+        term="{{:: 'dedicated_server_dashboard_technical_details_extension_card_many' | translate }}"
+    >
+        <oui-tile-description>
+            <span data-ng-bind=":: $ctrl.formattedExtensionCard"></span>
+        </oui-tile-description>
+    </oui-tile-definition>
+</oui-tile>

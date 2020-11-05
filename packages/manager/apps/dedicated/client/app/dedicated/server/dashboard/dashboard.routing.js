@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
 
@@ -201,8 +202,17 @@ export default /* @ngInject */ ($stateProvider) => {
               'app.dedicated-server.server.dashboard.bandwidth-public-order',
               { productId: serverName },
             ),
-      serviceMonitoring: /* @ngInject */ ($stateParams, Server) =>
-        Server.getAllServiceMonitoring($stateParams.productId),
+      serviceMonitoring: /* @ngInject */ ($transition$, Server) =>
+        Server.getAllServiceMonitoring($transition$.params().productId),
+      technicalDetails: /* @ngInject */ ($http, $transition$) =>
+        $http
+          .get(
+            `/dedicated/technical-details/${$transition$.params().productId}`,
+            {
+              serviceType: 'aapi',
+            },
+          )
+          .then(({ data }) => get(data, 'baremetalServers')),
       trafficInformations: /* @ngInject */ (
         $q,
         $stateParams,
