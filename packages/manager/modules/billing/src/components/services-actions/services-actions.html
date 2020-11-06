@@ -64,6 +64,14 @@
     >
         <span data-translate="billing_services_actions_menu_commit"></span>
     </oui-action-menu-item>
+    <oui-action-menu-item
+        ng-if="$ctrl.service.hasPendingEngagement"
+        href="{{:: $ctrl.cancelCommitmentLink }}"
+    >
+        <span
+            data-translate="billing_services_actions_menu_commit_cancel"
+        ></span>
+    </oui-action-menu-item>
 
     <!-- Exchange -->
     <div data-ng-if="$ctrl.service.serviceType === $ctrl.SERVICE_TYPE.EXCHANGE">

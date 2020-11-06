@@ -8,6 +8,7 @@ export default {
     changeOwnerUrl: '<',
     eligibleData: '<',
     goToCommit: '<',
+    goToCancelCommit: '<',
     goToSgxIntroduction: '<',
     goToSgxManage: '<',
     monitoringProtocolEnum: '<',
