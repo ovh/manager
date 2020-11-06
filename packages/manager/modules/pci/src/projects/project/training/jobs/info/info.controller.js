@@ -30,49 +30,6 @@ export default class PciTrainingJobsInfoController {
   }
 
   $onInit() {
-    this.job = {
-      id: 'fc8063d7-10e7-400e-8bf5-627ef7ea8228',
-      createdAt: '2020-11-05T15:44:11.799495Z',
-      updatedAt: '2020-11-05T19:44:32.971231Z',
-      user: 'km3mpVJQcxrq',
-      spec: {
-        image: 'xcid/test',
-        command: [],
-        env: [],
-        defaultHttpPort: 8080,
-        resources: { gpu: 1 },
-        volumes: [
-          {
-            container: 'test',
-            region: 'GRA',
-            mountPath: '/',
-            permission: 'RO',
-          },
-        ],
-        timeout: 0,
-        shutdown: null,
-        name: 'test-flamboyant',
-        labels: {},
-      },
-      status: {
-        state: 'DONE',
-        queuedAt: '2020-11-05T15:44:12Z',
-        startedAt: null,
-        stoppedAt: null,
-        ip: null,
-        infos: 'Pushing logs to storage',
-        history: [
-          { state: 'QUEUED', date: '2020-11-05T15:44:11.799856Z' },
-          { state: 'PENDING', date: '2020-11-05T15:44:12.432231Z' },
-          { state: 'RUNNING', date: '2020-11-05T15:44:26.902944Z' },
-          { state: 'FINALIZING', date: '2020-11-05T19:44:28.540189Z' },
-          { state: 'DONE', date: '2020-11-05T19:45:28.540189Z' },
-        ],
-        duration: 0,
-        jobUrl: null,
-        monitoringUrl: null,
-      },
-    };
     this.guideUrl = GUIDE_URL;
 
     this.unitPrice = this.getPrice(1);
