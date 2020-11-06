@@ -56,6 +56,39 @@
                         data-ng-bind="$ctrl.job.createdAt | date:'medium'"
                     ></oui-tile-description>
                 </oui-tile-definition>
+
+                <oui-tile-definition
+                    data-term="{{   'pci_projects_project_training_jobs_info_title_5' | translate  }}"
+                    data-ng-if="$ctrl.job.status.history"
+                >
+                    <oui-tile-description>
+                        <div
+                            class="oui-progress-tracker oui-progress-tracker_vertical mt-3"
+                        >
+                            <ol class="oui-progress-tracker__steps">
+                                <li
+                                    ng-repeat="status in $ctrl.job.status.history"
+                                    class="oui-progress-tracker__step"
+                                    ng-class="{
+                                'oui-progress-tracker__step_error': $ctrl.isError(status.state),
+                                'oui-progress-tracker__step_complete' : !$ctrl.isError(status.state),
+                                'oui-progress-tracker__step_active': $index == $ctrl.job.status.history.length - 1 && !$ctrl.isError(status.state)
+                            }"
+                                >
+                                    <span class="oui-progress-tracker__status">
+                                        <span
+                                            class="oui-progress-tracker__label"
+                                            data-translate="{{:: 'pci_projects_project_training_jobs_state_' + status.state }}"
+                                        ></span>
+                                        <span
+                                            data-ng-bind="status.date | date:'medium'"
+                                        ></span>
+                                    </span>
+                                </li>
+                            </ol>
+                        </div>
+                    </oui-tile-description>
+                </oui-tile-definition>
             </oui-tile>
         </div>
         <div class="col-md-4">
@@ -245,38 +278,6 @@
                         </ul>
                     </oui-tile-description>
                 </oui-tile-definition>
-            </oui-tile>
-        </div>
-    </div>
-    <div class="row d-lg-flex mb-3">
-        <div class="col-md-6">
-            <oui-tile
-                class="h-100"
-                data-heading="{{ 'pci_projects_project_training_jobs_info_title_5' | translate  }}"
-            >
-                <div class="oui-progress-tracker oui-progress-tracker_vertical">
-                    <ol class="oui-progress-tracker__steps">
-                        <li
-                            ng-repeat="status in $ctrl.job.status.history"
-                            class="oui-progress-tracker__step"
-                            ng-class="{
-                                'oui-progress-tracker__step_error': $ctrl.isError(status.state),
-                                'oui-progress-tracker__step_complete' : !$ctrl.isError(status.state),
-                                'oui-progress-tracker__step_active': $index == $ctrl.job.status.history.length - 1 && !$ctrl.isError(status.state)
-                            }"
-                        >
-                            <span class="oui-progress-tracker__status">
-                                <span
-                                    class="oui-progress-tracker__label"
-                                    data-translate="{{:: 'pci_projects_project_training_jobs_state_' + status.state }}"
-                                ></span>
-                                <span
-                                    data-ng-bind="status.date | date:'medium'"
-                                ></span>
-                            </span>
-                        </li>
-                    </ol>
-                </div>
             </oui-tile>
         </div>
     </div>
