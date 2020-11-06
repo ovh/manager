@@ -25,5 +25,7 @@
   "kube_nodes_add_same_flavor_message": "Só é possível escolher este tipo de instância, porque o pool de nós só pode ser composto por nós do mesmo tipo de instância.",
   "kube_nodes_add_select_nodes": "Selecione o número de novos nós que pretende adicionar",
   "kube_nodes_add_instance_type": "Tipo de instância",
-  "kube_nodes_add_adding_message": "Redimensionamento do pool"
+  "kube_nodes_add_adding_message": "Redimensionamento do pool",
+  "kube_nodes_add_anti_affinity_active_info": "A anti-afinidade está ativada: o pool de nós não poderá conter mais de {{ maxNodes }} nós",
+  "kube_nodes_add_billing_type_unavailable": "O modo de faturação de um pool de nós não pode ser alterado"
 }

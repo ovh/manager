@@ -4,5 +4,7 @@
   "kube_add_node_pool_creating": "Erstellung eines Node-Pools",
   "kube_add_node_pool_success": "Der Node-Pool '{{nodePoolName}}' wurde erfolgreich erstellt.",
   "kube_add_node_pool_error": "Der Node-Pool '{{nodePoolName}}' kann nicht erstellt werden: {{ message }}",
-  "kube_add_billing_type_description": "In der Node-Pool-Editieransicht können Sie für jeden Node von der stündlichen auf die monatliche Abrechnung wechseln."
+  "kube_add_billing_type_description": "Alle künftigen Nodes in diesem Node-Pool werden nach diesem Modus berechnet. Sie können später jeden Ihrer Nodes einzeln von der stündlichen auf die monatliche Abrechnung umstellen.",
+  "kube_add_billing_type_payment_method": "Die Rechnung wird über Ihr Standardzahlungsmittel beglichen.",
+  "kube_add_billing_anti_affinity_title": "Abrechnung und Anti-Affinität"
 }

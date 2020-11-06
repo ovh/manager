@@ -7,5 +7,7 @@
   "kubernetes_add_version_title": "Seleccione la versión menor de Kubernetes que desee",
   "kubernetes_add_name_title": "Asigne un nombre a su cluster",
   "kubernetes_add_name": "Nombre",
-  "kubernetes_add_billing_type_description": "Tras el despliegue del cluster, podrá editar el pool de nodos para pasar de facturación por horas a facturación mensual."
+  "kubernetes_add_billing_type_description": "Este modo de facturación se aplicará a todos los nodos futuros del pool. Más adelante podrá modificar la facturación de cada uno de sus nodos pasando de la modalidad por horas a la mensual.",
+  "kubernetes_add_billing_type_payment_method": "El importe se cargará en su forma de pago por defecto.",
+  "kubernetes_add_billing_anti_affinity_title": "Facturación y antiafinidad"
 }

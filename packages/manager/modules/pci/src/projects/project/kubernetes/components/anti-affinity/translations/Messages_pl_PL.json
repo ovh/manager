@@ -1,0 +1,4 @@
+{
+  "kubernetes_node_pool_anti_affinity": "Ochrona przed koligacją (anti-affinity)",
+  "kubernetes_node_pool_anti_affinity_description": "Po włączeniu ochrony przed koligacją (anti-affinity) węzły, działające aktualnie i te, które zostaną utworzone w przyszłości, będą uruchamiane na różnych hiperwizorach (serwerach fizycznych), co zapewni większą odporność na awarie. Pule węzłów z włączoną ochroną przed koligacją (anti-affinity) mogą zawierać tylko {{maxNodes}} węzłów."
+}

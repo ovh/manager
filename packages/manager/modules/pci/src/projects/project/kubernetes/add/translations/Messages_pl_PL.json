@@ -7,5 +7,7 @@
   "kubernetes_add_version_title": "Wybierz odpowiednią dla Ciebie pomocniczą wersję Kubernetesa",
   "kubernetes_add_name_title": "Nazwij Twój klaster",
   "kubernetes_add_name": "Nazwa",
-  "kubernetes_add_billing_type_description": "Po wdrożeniu klastra będziesz mógł zmienić model rozliczenia z płatności za godzinę na abonament miesięczny, przechodząc do widoku „edycja puli węzłów”"
+  "kubernetes_add_billing_type_description": "Ten tryb płatności zostanie zastosowany do wszystkich utworzonych w przyszłości węzłów w tej puli. Będziesz mógł później zmienić płatność za godzinę na płatność miesięczną dla każdego węzła osobno.",
+  "kubernetes_add_billing_type_payment_method": "Opłata zostanie pobrana pomocą domyślnego sposobu płatności.",
+  "kubernetes_add_billing_anti_affinity_title": "Płatności i ochrona przed koligacją (anti-affinity)"
 }

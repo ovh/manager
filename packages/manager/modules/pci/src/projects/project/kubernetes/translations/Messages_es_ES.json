@@ -10,7 +10,7 @@
   "kube_common_cancel": "Cancelar",
   "kube_common_delete": "Eliminar",
   "kube_common_node_pool_title": "Configure su pool de nodos",
-  "kube_common_billing_type_title": "Modo de facturación",
+  "kube_common_billing_type_title": "Facturación y antiafinidad",
   "kube_common_create_node_pool": "Crear un pool de nodos",
   "kube_common_flavor_load_error": "Se ha producido un error al cargar los nodos: {{message}}"
 }

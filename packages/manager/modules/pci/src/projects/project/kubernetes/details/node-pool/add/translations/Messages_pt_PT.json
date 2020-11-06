@@ -4,5 +4,7 @@
   "kube_add_node_pool_creating": "Criação de um pool de nós",
   "kube_add_node_pool_success": "O pool de nós '{{nodePoolName}}' foi criado com êxito",
   "kube_add_node_pool_error": "Não foi possível criar o pool de nós '{{ nodePoolName }}': {{ message }}",
-  "kube_add_billing_type_description": "Na vista de edição do pool de nós, poderá passar da faturação à hora para a faturação mensal para cada nó."
+  "kube_add_billing_type_description": "Todos os nós futuros deste pool de nós estarão sujeitos a este modo de faturação. Posteriormente, poderá passar cada um dos seus nós individualmente da faturação à hora para a faturação mensal.",
+  "kube_add_billing_type_payment_method": "A faturação será realizada através do seu método de pagamento predefinido.",
+  "kube_add_billing_anti_affinity_title": "Faturação e anti-afinidade"
 }
