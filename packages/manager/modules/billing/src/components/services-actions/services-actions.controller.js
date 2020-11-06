@@ -15,6 +15,10 @@ export default class ServicesActionsCtrl {
     this.commitmentLink =
       (this.getCommitmentLink && this.getCommitmentLink(this.service)) ||
       `${this.autorenewLink}/${this.service.id}/commitment`;
+    this.cancelCommitmentLink =
+      (this.getCancelCommitmentLink &&
+        this.getCancelCommitmentLink(this.service)) ||
+      `${this.autorenewLink}/${this.service.id}/cancel-commitment`;
     this.warningLink = `${this.autorenewLink}/warn-nic?nic=${this.service.contactBilling}`;
     this.billingLink = this.RedirectionService.getURL('billing');
     this.updateLink = `${this.autorenewLink}/update?serviceId=${this.service.serviceId}&serviceType=${this.service.serviceType}`;

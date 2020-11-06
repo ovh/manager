@@ -26,6 +26,7 @@
                 tracking-prefix="{{ $ctrl.trackingPrefix }}"
                 user="$ctrl.user"
                 get-commitment-link="$ctrl.goToCommit()"
+                get-cancel-commitment-link="$ctrl.goToCancelCommit()"
             >
             </billing-services-actions>
         </oui-tile-actions>
@@ -59,8 +60,8 @@
                 class="oui-link_icon"
                 data-ng-href="{{ $ctrl.goToCommit() }}"
                 data-ng-click="$ctrl.trackClick('cancel-commit')"
-                >
-                    <span
+            >
+                <span
                     data-ng-if="!$ctrl.service.isEngaged()"
                     data-translate="manager_billing_subscription_engagement_commit"
                 ></span>
@@ -68,7 +69,10 @@
                     data-ng-if="$ctrl.highlightEngagement"
                     data-translate="manager_billing_subscription_engagement_commit_again"
                 ></span>
-                <span class="oui-icon oui-icon-arrow-right" aria-hidden="true"></span>
+                <span
+                    class="oui-icon oui-icon-arrow-right"
+                    aria-hidden="true"
+                ></span>
             </a>
         </oui-tile-description>
     </oui-tile-definition>

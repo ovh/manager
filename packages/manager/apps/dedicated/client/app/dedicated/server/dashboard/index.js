@@ -9,6 +9,7 @@ import '@ovh-ux/ui-kit';
 import ovhManagerBilling from '@ovh-ux/manager-billing';
 import advancedFeatures from './advanced-features';
 import commitment from './commitment';
+import cancelCommitment from './cancel-commitment';
 
 import component from './dashboard.component';
 import routing from './dashboard.routing';
@@ -19,6 +20,7 @@ angular
   .module(moduleName, [
     advancedFeatures,
     commitment,
+    cancelCommitment,
     atInternet,
     'oui',
     'pascalprecht.translate',
