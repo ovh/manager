@@ -6,7 +6,7 @@
   "dedicatedCloud_servicePack_requiredConfiguration_criterias_accessPolicy_value_FILTERED": "restrito",
   "dedicatedCloud_servicePack_requiredConfiguration_criterias_numberOfAllowedIPAndBlocks_definition": "Número de endereços IP e blocos autorizados para se ligarem: {{numberOfAllowedIPsAndBlocks}}.",
   "dedicatedCloud_servicePack_requiredConfiguration_ipTable_ipColumn": "Endereço IP",
-  "dedicatedCloud_servicePack_requiredConfiguration_descriptionTable_descriptionColumn": "Descrição ",
+  "dedicatedCloud_servicePack_requiredConfiguration_descriptionTable_descriptionColumn": "Descrição",
   "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_accessPolicy_error": "A política de acesso do seu Private Cloud não é restrita",
   "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_numberOfAllowedIPAndBlocks_error": "A política de acesso do seu Private Cloud não tem nenhum endereço IP autorizado",
   "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_both_error": "A política de acesso do seu Private Cloud não é restrita e não possui nenhum endereço IP autorizado.",

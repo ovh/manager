@@ -1,6 +1,6 @@
 {
   "ovhManagerPccDashboardGeneralInformation_heading": "Informações gerais",
-  "ovhManagerPccDashboardGeneralInformation_description_term": "Descrição ",
+  "ovhManagerPccDashboardGeneralInformation_description_term": "Descrição",
   "ovhManagerPccDashboardGeneralInformation_description_actionMenu_update": "Alterar a descrição",
   "ovhManagerPccDashboardGeneralInformation_softwareSolution_term": "Solução de software",
   "ovhManagerPccDashboardGeneralInformation_softwareSolution_definition_displayName_VSPHERE": "vSphere",
@@ -12,7 +12,7 @@
   "ovhManagerPccDashboardGeneralInformation_location_term": "Localização",
   "ovhManagerPccDashboardGeneralInformation_accessPolicy_term": "Política de acesso",
   "ovhManagerPccDashboardGeneralInformation_accessPolicy_definition_FILTERED": "Restrita",
-  "ovhManagerPccDashboardGeneralInformation_accessPolicy_definition_OPEN": "Aberto",
+  "ovhManagerPccDashboardGeneralInformation_accessPolicy_definition_OPEN": "Aberta",
   "ovhManagerPccDashboardGeneralInformation_accessPolicy_definition_NOT_CONFIGURED": "Ainda não está configurado",
   "ovhManagerPccDashboardGeneralInformation_numberOfDatacenters_term": "Número de datacenters",
   "ovhManagerPccDashboardGeneralInformation_numberOfIPBlocks_term": "Número de blocos IP",
