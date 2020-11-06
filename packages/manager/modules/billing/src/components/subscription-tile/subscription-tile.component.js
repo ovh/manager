@@ -9,6 +9,7 @@ export default {
     serviceInfos: '<?',
     goToCommit: '&',
     highlightEngagement: '<?',
+    goToCancelCommit: '<',
   },
   controller,
   template,
