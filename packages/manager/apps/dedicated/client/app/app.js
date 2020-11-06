@@ -252,6 +252,7 @@ angular
       // see src/billing/billingApp.js for resolve restriction on billing states
       $transitions.onError({}, (transition) => {
         const error = transition.error();
+        console.log(error);
         if (
           get(error, 'status') === 403 &&
           get(error, 'code') === 'FORBIDDEN_BILLING_ACCESS'

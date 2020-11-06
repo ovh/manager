@@ -1,13 +1,12 @@
 import { DEDICATED_SERVER_HARDWARE_RAID_MODES } from '@ovh-ux/manager-models';
 
 export default class DedicatedServerInstallOvhRaidModel {
-  mode;
-
-  controller;
-
-  diskNumber;
-
-  clusterNumber;
+  constructor() {
+    this.mode = undefined;
+    this.controller = undefined;
+    this.diskNumber = undefined;
+    this.clusterNumber = undefined;
+  }
 
   /*= ==================================
   =            Disk number            =

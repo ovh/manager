@@ -5,6 +5,8 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
 
+import './index.scss';
+
 import component from './component';
 
 const moduleName = 'ovhManagerDedicatedServerInstallOvhPartition';

@@ -23,6 +23,7 @@ export {
 };
 
 export * from './dedicated-server';
+export * from './unit-and-value';
 
 export default {
   Bill,

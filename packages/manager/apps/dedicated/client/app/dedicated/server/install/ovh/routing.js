@@ -27,6 +27,11 @@ export default /* @ngInject */ ($stateProvider) => {
       'options@app.dedicated.server.install.ovh': optionsComponent.name,
     },
     resolve: {
+      installLoaders: () => ({
+        global: false,
+        partition: false,
+      }),
+
       model: () => new DedicatedServerInstallOvhModel(),
 
       raidProfile: /* @ngInject */ ($q, dedicatedServerInstallOvh, server) =>
@@ -56,7 +61,7 @@ export default /* @ngInject */ ($stateProvider) => {
       compatibleTemplates: /* @ngInject */ (
         dedicatedServerInstallOvh,
         server,
-      ) => dedicatedServerInstallOvh.getCompatibleOvhTemplates(server.name),
+      ) => dedicatedServerInstallOvh.getCompatibleOvhTemplates(server),
     },
   });
 };

@@ -10,5 +10,6 @@
   "dedicated_server_install_ovh_partition_table_lvm": "Nom du volume LVM",
   "dedicated_server_install_ovh_partition_table_raid": "Raid",
   "dedicated_server_install_ovh_partition_table_size": "Taille de la partition",
-  "dedicated_server_install_ovh_partition_table_used_space": "Espace consommé"
+  "dedicated_server_install_ovh_partition_table_used_space": "Espace consommé",
+  "dedicated_server_install_ovh_partition_add": "Ajouter une partition"
 }

@@ -1,4 +1,4 @@
-<div class="dedicated-server-install-ovh-partition">
+<div class="dedicated-server-install-ovh-partition mb-3">
     <h2
         class="oui-heading_3"
         data-translate="dedicated_server_install_ovh_partition"
@@ -24,15 +24,40 @@
             class="mr-1"
             data-translate="dedicated_server_install_ovh_partition_total_space"
         ></dt>
-        <dd data-ng-bind="$ctrl.getTotalSize()"></dd>
+        <dd class="text-left">
+            <oui-skeleton
+                class="d-inline-block"
+                data-ng-if="$ctrl.installLoaders.partition"
+                size="xs"
+            >
+            </oui-skeleton>
+            <span
+                data-ng-if="!$ctrl.installLoaders.partition"
+                data-ng-bind="$ctrl.model.totalSize.readable"
+            >
+            </span>
+        </dd>
 
         <dt
             class="mr-1"
             data-translate="dedicated_server_install_ovh_partition_left_space"
         ></dt>
+        <dd class="text-left">
+            <oui-skeleton
+                class="d-inline-block"
+                data-ng-if="$ctrl.installLoaders.partition"
+                size="xs"
+            >
+            </oui-skeleton>
+            <span
+                data-ng-if="!$ctrl.installLoaders.partition"
+                data-ng-bind="$ctrl.model.remainingSize.readable"
+            >
+            </span>
+        </dd>
     </dl>
 
-    <table class="oui-table">
+    <table class="oui-table mb-3">
         <thead>
             <tr>
                 <th class="oui-table__header"></th>
@@ -50,10 +75,6 @@
                 ></th>
                 <th
                     class="oui-table__header"
-                    data-translate="dedicated_server_install_ovh_partition_table_mountpoint"
-                ></th>
-                <th
-                    class="oui-table__header"
                     data-translate="dedicated_server_install_ovh_partition_table_lvm"
                 ></th>
                 <th
@@ -64,16 +85,171 @@
                     class="oui-table__header"
                     data-translate="dedicated_server_install_ovh_partition_table_size"
                 ></th>
-                <th
+                <th class="oui-table__header"></th>
+                <!-- <th
                     class="oui-table__header"
                     data-translate="dedicated_server_install_ovh_partition_table_used_space"
-                ></th>
+                ></th> -->
             </tr>
         </thead>
         <tbody>
-            <tr class="oui-table__row">
-                <td class="oui-table__cell">Column</td>
+            <tr
+                class="oui-table__row"
+                data-ng-repeat="partition in $ctrl.model.partition.template.defaultPartitionScheme.partitions | orderBy:'order' track by $index"
+            >
+                <td class="oui-table__cell" data-ng-bind="partition.order"></td>
+                <td class="oui-table__cell">
+                    <span
+                        data-ng-bind="partition.type"
+                        data-ng-if="!$ctrl.isPartitionInEdition(partition)"
+                    >
+                    </span>
+
+                    <label
+                        class="oui-select oui-select_xs"
+                        data-ng-if="$ctrl.isPartitionInEdition(partition)"
+                    >
+                        <select class="oui-select__input">
+                            <option value="Option 1">Option 1</option>
+                        </select>
+                        <span
+                            class="oui-icon oui-icon-chevron-down"
+                            aria-hidden="true"
+                        >
+                        </span>
+                    </label>
+                </td>
+                <td class="oui-table__cell">
+                    <span
+                        data-ng-bind="partition.filesystem"
+                        data-ng-if="!$ctrl.isPartitionInEdition(partition)"
+                    >
+                    </span>
+
+                    <label
+                        class="oui-select oui-select_xs"
+                        data-ng-if="$ctrl.isPartitionInEdition(partition)"
+                    >
+                        <select class="oui-select__input">
+                            <option value="Option 1">Option 1</option>
+                        </select>
+                        <span
+                            class="oui-icon oui-icon-chevron-down"
+                            aria-hidden="true"
+                        >
+                        </span>
+                    </label>
+                </td>
+                <td class="oui-table__cell">
+                    <span
+                        data-ng-bind="partition.mountpoint"
+                        data-ng-if="!$ctrl.isPartitionInEdition(partition)"
+                    >
+                    </span>
+
+                    <input
+                        class="oui-input oui-input_xs"
+                        data-ng-model="$ctrl.partitionInEdition.mountpoint"
+                        type="text"
+                        data-ng-if="$ctrl.isPartitionInEdition(partition)"
+                    />
+                </td>
+                <td class="oui-table__cell">
+                    <span
+                        data-ng-bind="partition.volumeName || '-'"
+                        data-ng-if="!$ctrl.isPartitionInEdition(partition)"
+                    >
+                    </span>
+                </td>
+                <td class="oui-table__cell text-center">
+                    <span
+                        data-ng-bind="partition.raid"
+                        data-ng-if="!$ctrl.isPartitionInEdition(partition)"
+                    >
+                    </span>
+                </td>
+                <td class="oui-table__cell text-right">
+                    <span
+                        data-ng-bind="partition.size.value + ' ' + partition.size.unit"
+                        data-ng-if="!$ctrl.isPartitionInEdition(partition)"
+                    >
+                    </span>
+
+                    <div
+                        class="oui-input-group partition-size-edition"
+                        data-ng-if="$ctrl.isPartitionInEdition(partition)"
+                    >
+                        <input
+                            class="oui-input oui-input_xs"
+                            data-ng-model="partition.size.value"
+                            type="number"
+                        />
+
+                        <label class="oui-select oui-select_xs mx-1">
+                            <select class="oui-select__input">
+                                <option value="Option 1">Option 1</option>
+                            </select>
+                            <span
+                                class="oui-icon oui-icon-chevron-down"
+                                aria-hidden="true"
+                            >
+                            </span>
+                        </label>
+
+                        <oui-button
+                            class="auto-size-btn"
+                            data-size="s"
+                            data-variant="secondary"
+                        >
+                            <span class="oui-icon oui-icon-chevron-up-down">
+                            </span>
+                        </oui-button>
+                    </div>
+                </td>
+                <td class="oui-table__cell text-right py-2">
+                    <div data-ng-if="!$ctrl.isPartitionInEdition(partition)">
+                        <oui-button
+                            data-size="s"
+                            data-variant="secondary"
+                            data-on-click="$ctrl.onEditPartitionBtnClick(partition)"
+                            data-disabled="$ctrl.status.edition"
+                        >
+                            <span class="oui-icon oui-icon-pen"> </span>
+                        </oui-button>
+                        <oui-button
+                            data-size="s"
+                            data-variant="secondary"
+                            data-disabled="$ctrl.status.edition"
+                        >
+                            <span class="oui-icon oui-icon-bin"> </span>
+                        </oui-button>
+                    </div>
+                    <div data-ng-if="$ctrl.isPartitionInEdition(partition)">
+                        <oui-button
+                            data-size="s"
+                            data-variant="secondary"
+                            data-on-click="$ctrl.onEditPartitionBtnClick(partition)"
+                        >
+                            <span class="oui-icon oui-icon-check"> </span>
+                        </oui-button>
+                        <oui-button
+                            data-size="s"
+                            data-variant="secondary"
+                            data-on-click="$ctrl.onCancelPartitionEditionBtnClick(partition)"
+                        >
+                            <span class="oui-icon oui-icon-close"> </span>
+                        </oui-button>
+                    </div>
+                </td>
             </tr>
         </tbody>
     </table>
+
+    <oui-button
+        data-variant="secondary"
+        data-disabled="$ctrl.model.remainingSize.size.value === 0"
+    >
+        <span data-translate="dedicated_server_install_ovh_partition_add">
+        </span>
+    </oui-button>
 </div>

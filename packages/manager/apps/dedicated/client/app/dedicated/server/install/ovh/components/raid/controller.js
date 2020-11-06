@@ -19,7 +19,6 @@ export default class DedicatedServerInstallOvhRaidCtrl {
 
   getDiskNumberList() {
     this.lists.diskNumbers = [];
-    console.log(this.raid);
 
     for (
       let i = this.raid.getMinDisk();

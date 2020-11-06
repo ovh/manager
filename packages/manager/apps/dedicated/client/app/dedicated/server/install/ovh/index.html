@@ -12,7 +12,10 @@
 
                 <div data-ui-view="raid"></div>
 
-                <div data-ui-view="partition"></div>
+                <div
+                    data-ui-view="partition"
+                    data-ng-if="$ctrl.model.partition.template"
+                ></div>
 
                 <div data-ui-view="rtm"></div>
 

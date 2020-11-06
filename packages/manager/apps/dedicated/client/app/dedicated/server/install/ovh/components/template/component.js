@@ -6,7 +6,7 @@ export default {
   controller,
   template,
   bindings: {
-    compatibleTemplates: '<',
+    installLoaders: '<',
     model: '<',
     server: '<',
     templatesFamilies: '<',
