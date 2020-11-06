@@ -3,6 +3,7 @@ import ovhManagerBilling from '@ovh-ux/manager-billing';
 import activation from './actions/activation/activation.module';
 import agreements from './agreements/user-agreements.module';
 import autorenewBlocked from './actions/autorenew-blocked/autorenew-blocked.module';
+import cancelCommitment from './cancel-commitment';
 import cancelResiliation from './actions/cancel-resiliation/cancel-resiliation.module';
 import commitment from './commitment';
 import debtBeforePaying from './actions/debtBeforePaying/debtBeforePaying.module';
@@ -34,6 +35,7 @@ angular
     activation,
     agreements,
     autorenewBlocked,
+    cancelCommitment,
     cancelResiliation,
     commitment,
     debtBeforePaying,

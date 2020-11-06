@@ -7,6 +7,7 @@ export default {
     trackingPrefix: '@?',
     user: '<',
     getCommitmentLink: '&?',
+    getCancelCommitmentLink: '&?',
   },
   controller,
   template,

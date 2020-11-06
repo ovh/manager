@@ -1,6 +1,7 @@
 import angular from 'angular';
 
 import commitment from './components/commitment';
+import cancelCommitment from './components/cancel-commitment';
 import servicesActions from './components/services-actions';
 import serviceStatus from './components/service-status';
 import subscriptionTile from './components/subscription-tile';
@@ -10,6 +11,7 @@ const moduleName = 'ovhManagerBilling';
 
 angular.module(moduleName, [
   commitment,
+  cancelCommitment,
   servicesActions,
   serviceStatus,
   subscriptionTile,
