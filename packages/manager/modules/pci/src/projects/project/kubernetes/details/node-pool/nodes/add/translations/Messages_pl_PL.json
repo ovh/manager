@@ -25,5 +25,7 @@
   "kube_nodes_add_same_flavor_message": "Możesz wybrać tylko ten typ instancji, ponieważ pula węzłów może składać się tylko z węzłów tego samego typu.",
   "kube_nodes_add_select_nodes": "Wybierz liczbę nowych węzłów, które mają zostać dodane",
   "kube_nodes_add_instance_type": "Typ instancji",
-  "kube_nodes_add_adding_message": "Zmiana wielkości puli"
+  "kube_nodes_add_adding_message": "Zmiana wielkości puli",
+  "kube_nodes_add_anti_affinity_active_info": "Ochrona przed koligacją (anti-affinity) jest włączona: pula nie może zawierać więcej niż {{maxNodes}} węzłów",
+  "kube_nodes_add_billing_type_unavailable": "Tryb fakturowania puli węzłów nie może zostać zmieniony"
 }

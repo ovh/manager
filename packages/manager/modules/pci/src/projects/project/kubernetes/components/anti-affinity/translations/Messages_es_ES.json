@@ -1,0 +1,4 @@
+{
+  "kubernetes_node_pool_anti_affinity": "Antiafinidad",
+  "kubernetes_node_pool_anti_affinity_description": "Al activar la antiafinidad, los nodos presentes y futuros se lanzarán en hipervisores (servidores físicos) diferentes, garantizando una mayor tolerancia a fallos. Los pools de nodos con antiafinidad solo pueden incluir hasta {{ maxNodes }} nodos."
+}

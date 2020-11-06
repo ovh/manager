@@ -25,5 +25,7 @@
   "kube_nodes_add_same_flavor_message": "You can only choose this type of instance as the node pool can only contain nodes of the same instance type.",
   "kube_nodes_add_select_nodes": "Select the number of new nodes to add",
   "kube_nodes_add_instance_type": "Flavor",
-  "kube_nodes_add_adding_message": "Resize pool"
+  "kube_nodes_add_adding_message": "Resize pool",
+  "kube_nodes_add_anti_affinity_active_info": "Anti-affinity is enabled: the node pool cannot contain more than {{ maxNodes }} nodes",
+  "kube_nodes_add_billing_type_unavailable": "The billing method for a node pool cannot be changed"
 }

@@ -7,5 +7,9 @@
   "kube_node_pool_add": "Añadir un pool de nodos",
   "kube_node_pool_refreh": "Actualizar el tablón",
   "kube_node_pool_title": "Pools de nodos",
-  "kube_add_billing_type_description": "En la vista edición del pool de nodos, puede pasar de facturación por horas a facturación mensual en cada nodo."
+  "kube_add_billing_type_description": "En la vista edición del pool de nodos, puede pasar de facturación por horas a facturación mensual en cada nodo.",
+  "kube_node_pool_monthly_billing": "Cuota mensual",
+  "kube_node_pool_anti_affinity": "Antiafinidad",
+  "kube_node_pool_enabled": "Activado",
+  "kube_node_pool_disabled": "Desactivado"
 }

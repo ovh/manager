@@ -7,5 +7,7 @@
   "kubernetes_add_version_title": "Select the minor version of Kubernetes you want",
   "kubernetes_add_name_title": "Name your cluster",
   "kubernetes_add_name": "Name",
-  "kubernetes_add_billing_type_description": "You can switch from hourly billing to monthly billing by editing the node pool after deploying your cluster."
+  "kubernetes_add_billing_type_description": "All future nodes in this node pool will be billed in this way. You can then switch each of your nodes individually from hourly to monthly billing.",
+  "kubernetes_add_billing_type_payment_method": "You will be billed via your default payment method.",
+  "kubernetes_add_billing_anti_affinity_title": "Billing and anti-affinity"
 }
