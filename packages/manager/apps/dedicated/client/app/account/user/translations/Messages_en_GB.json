@@ -574,7 +574,7 @@
   "user_account_security_double_auth_type_backup_code_info_u2f": "Use these codes if you have lost your security key, or do not have access to it.",
   "user_account_security_double_auth_type_backup_code_action_manage": "Regenerating codes",
   "user_account_security_double_auth_type_backup_code_action_generate": "Generate codes",
-  "user_account_security_double_auth_type_backup_code_action_delete": "Delete codes",
+  "user_account_security_double_auth_type_backup_code_action_delete": "Disable 2FA codes",
   "user_account_security_double_auth_type_backup_code_modal_title": "Two-factor authentication by recovery code",
   "user_account_security_double_auth_type_backup_code_modal_generate": "Get emergency codes",
   "user_account_security_double_auth_type_backup_code_modal_generate_info": "If your phone gets lost or stolen, we recommend storing the single-use emergency codes in a secure place.",
