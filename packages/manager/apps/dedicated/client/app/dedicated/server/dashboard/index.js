@@ -8,6 +8,7 @@ import '@ovh-ux/ui-kit';
 
 import ovhManagerBilling from '@ovh-ux/manager-billing';
 import advancedFeatures from './advanced-features';
+import cancelCommitment from './cancel-commitment';
 
 import component from './dashboard.component';
 import routing from './dashboard.routing';
@@ -17,6 +18,7 @@ const moduleName = 'ovhManagerDedicatedServerDashboard';
 angular
   .module(moduleName, [
     advancedFeatures,
+    cancelCommitment,
     atInternet,
     'oui',
     'pascalprecht.translate',
