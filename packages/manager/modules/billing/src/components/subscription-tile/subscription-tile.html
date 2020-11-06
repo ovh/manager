@@ -38,6 +38,14 @@
                         data-translate="manager_billing_subscription_service_engagement"
                     ></span>
                 </oui-action-menu-item>
+                <oui-action-menu-item
+                    ng-if="$ctrl.hasPendingEngagement"
+                    on-click="$ctrl.goToCancelCommit()"
+                >
+                    <span
+                        data-translate="manager_billing_subscription_service_engagement_cancel"
+                    ></span>
+                </oui-action-menu-item>
             </oui-action-menu>
         </oui-tile-actions>
     </oui-tile-definition>
