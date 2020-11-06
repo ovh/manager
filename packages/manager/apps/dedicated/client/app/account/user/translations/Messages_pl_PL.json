@@ -574,7 +574,7 @@
   "user_account_security_double_auth_type_backup_code_info_u2f": "Użyj tych kodów, jeśli stracisz klucz bezpieczeństwa lub nie masz do niego dostępu.",
   "user_account_security_double_auth_type_backup_code_action_manage": "Generowanie kodów",
   "user_account_security_double_auth_type_backup_code_action_generate": "Generowanie kodów",
-  "user_account_security_double_auth_type_backup_code_action_delete": "Usuń kody",
+  "user_account_security_double_auth_type_backup_code_action_delete": "Wyłącz kody 2FA",
   "user_account_security_double_auth_type_backup_code_modal_title": "Weryfikacja dwuetapowa za pomocą kodu zapasowego",
   "user_account_security_double_auth_type_backup_code_modal_generate": "Uzyskanie kodów zapasowych",
   "user_account_security_double_auth_type_backup_code_modal_generate_info": "Na wypadek kradzieży lub utraty smartphone'a zalecamy przechowywać listę jednorazowych kodów zapasowych w bezpiecznym miejscu.",
