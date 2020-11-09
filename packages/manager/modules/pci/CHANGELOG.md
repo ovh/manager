@@ -1,3 +1,12 @@
+## [5.2.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.2.5...@ovh-ux/manager-pci@5.2.6) (2020-11-09)
+
+
+### Bug Fixes
+
+* **project.users:** fix region list in operc modal ([#3971](https://github.com/ovh/manager/issues/3971)) ([e5850e7](https://github.com/ovh/manager/commit/e5850e705e118f5492c781825088a1ed4d19c6a7))
+
+
+
 ## [5.2.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.2.4...@ovh-ux/manager-pci@5.2.5) (2020-10-29)
 
 

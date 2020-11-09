@@ -1,3 +1,12 @@
+## [14.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.5.0...@ovh-ux/manager-dedicated@14.5.1) (2020-11-09)
+
+
+### Bug Fixes
+
+* **billing.history:** allow to pay bill indivually ([#3972](https://github.com/ovh/manager/issues/3972)) ([9d62ce9](https://github.com/ovh/manager/commit/9d62ce957ac5ce88f505de7d39ee901294e0dbe6))
+
+
+
 # [14.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.4.1...@ovh-ux/manager-dedicated@14.5.0) (2020-11-02)
 
 
