@@ -8,7 +8,7 @@ import 'ovh-api-services';
 
 import labs from '../../../components/project/labs';
 
-import registriess from './registries';
+import registries from './registries';
 import jobs from './jobs';
 import dashboard from './dashboard';
 
@@ -31,7 +31,7 @@ angular
     'ui.router',
     labs,
     jobs,
-    registriess,
+    registries,
     onboarding,
     dashboard,
   ])

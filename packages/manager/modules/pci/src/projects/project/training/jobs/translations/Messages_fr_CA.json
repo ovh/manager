@@ -9,7 +9,7 @@
   "pci_projects_project_training_jobs_submit_select_resources_tips_ram": "Quantité de RAM (en Go)",
   "pci_projects_project_training_jobs_submit_select_resources_tips_gpu": "Nombre de GPU",
   "pci_projects_project_training_jobs_submit_select_resources_tips_price": "Prix",
-  "pci_projects_project_training_jobs_submit_select_resources_tips_per_hour": "Prix a l'heure",
+  "pci_projects_project_training_jobs_submit_select_resources_tips_per_hour": "Prix à l'heure",
   "pci_projects_project_training_jobs_submit_validation": "Validation des détails",
   "pci_projects_project_training_jobs_submit_validation_job_summary": "Résumé du job",
   "pci_projects_project_training_jobs_submit_validation_equivalent_command": "Commande équivalente",

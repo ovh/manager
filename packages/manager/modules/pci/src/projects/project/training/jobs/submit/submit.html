@@ -126,18 +126,16 @@
                         <oui-field
                             data-label="{{:: 'pci_projects_project_training_jobs_submit_data_container' | translate  }}"
                         >
-                            <label class="oui-select">
-                                <oui-select
-                                    id="container"
-                                    name="container"
-                                    data-model="container"
-                                    data-items="$ctrl.filteredContainers"
-                                    data-match="description"
-                                    data-searchable
-                                    data-required
-                                >
-                                </oui-select>
-                            </label>
+                            <oui-select
+                                id="container"
+                                name="container"
+                                data-model="container"
+                                data-items="$ctrl.filteredContainers"
+                                data-match="description"
+                                data-searchable
+                                data-required
+                            >
+                            </oui-select>
                         </oui-field>
                     </oui-inline-adder-field>
                     <oui-inline-adder-field>

@@ -25,7 +25,7 @@ export default class PciProjectTrainingRegistryService {
       .v6()
       .query({ serviceName: projectId })
       .$promise.then((registries) =>
-        registries.map((registry) => new Registry({ ...registry })),
+        registries.map((registry) => new Registry(registry)),
       );
   }
 

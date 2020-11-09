@@ -1,7 +1,7 @@
 {
   "pci_projects_project_training_registry_section_1_title": "Registre Docker partagé",
   "pci_projects_project_training_registry_section_1_title_info_1": "Nous stockons par défaut les images privées de vos jobs sur un registre Docker géré par OVHcloud et partagé entre nos clients. Les images stockées sur celui-ci peuvent être supprimées à tout moment. Nous vous conseillons d’utiliser votre registre privé pour stocker vos propres images.",
-  "pci_projects_project_training_registry_section_1_message_1": "Vous pouvez vous connecter au registre Docker partagé via la commande suivante:",
+  "pci_projects_project_training_registry_section_1_message_1": "Vous pouvez vous connecter au registre Docker partagé via la commande suivante :",
   "pci_projects_project_training_registry_section_1_message_2": "L'authentification sur la plateforme peut se faire via tous les ",
   "pci_projects_project_training_registry_section_1_message_3": "utilisateurs configurés",
   "pci_projects_project_training_registry_section_1_message_4": " au sein du même projet Public Cloud.",

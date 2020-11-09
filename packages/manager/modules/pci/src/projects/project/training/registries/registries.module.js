@@ -11,7 +11,7 @@ import routing from './registries.routing';
 import service from '../registry.service';
 
 import add from './add';
-import deleteC from './delete';
+import deleteComponent from './delete';
 
 const moduleName = 'ovhManagerPciTrainingRegistries';
 
@@ -25,7 +25,7 @@ angular
     'pascalprecht.translate',
     'ui.router',
     add,
-    deleteC,
+    deleteComponent,
   ])
   .config(routing)
   .component('pciProjectTrainingRegistriesComponent', component)

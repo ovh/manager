@@ -3,10 +3,9 @@
     data-on-dismiss="$ctrl.goBack()"
     data-size="'xl'"
 >
-    <h2>
-        {{:: 'pci_projects_project_training_registry_section_1_title' |
-        translate}}
-    </h2>
+    <h2
+        data-translate="pci_projects_project_training_registry_section_1_title"
+    ></h2>
     <oui-message type="warning">
         {{ 'pci_projects_project_training_registry_section_1_title_info_1' |
         translate }}
@@ -21,7 +20,7 @@
     <p>
         {{:: 'pci_projects_project_training_registry_section_1_message_2' |
         translate }}
-        <a href="{{:: $ctrl.userLink }}"
+        <a data-ng-href="{{:: $ctrl.userLink }}"
             >{{:: 'pci_projects_project_training_registry_section_1_message_3' |
             translate }}</a
         >

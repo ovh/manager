@@ -8,7 +8,6 @@ export default class PciTrainingRegistriesDeleteController {
   }
 
   $onInit() {
-    console.log(this.registryId);
     this.loading = false;
   }
 
@@ -21,7 +20,7 @@ export default class PciTrainingRegistriesDeleteController {
 
     this.loading = true;
 
-    this.deleteRegistry(this.registryId)
+    return this.deleteRegistry(this.registryId)
       .then(() =>
         this.goBack(
           this.$translate.instant(
