@@ -21,7 +21,9 @@
         </oui-header-tabs-item>
     </oui-header-tabs>
 
-    <oui-guide-menu data-text="{{ 'pci_project_guides_header' | translate }}">
+    <oui-guide-menu
+        data-text="{{ :: 'pci_project_guides_header' | translate }}"
+    >
         <oui-guide-menu-item data-href="{{ $ctrl.guideUrl }}" data-external>
             <span data-translate="pci_project_guides_header_all_guides"></span>
         </oui-guide-menu-item>
@@ -33,24 +35,24 @@
         <div class="col-md-4">
             <oui-tile
                 class="h-100"
-                data-heading="{{ 'pci_projects_project_training_jobs_info_title_1' | translate  }}"
+                data-heading="{{ ::'pci_projects_project_training_jobs_info_title_1' | translate  }}"
             >
                 <oui-tile-definition
-                    data-term="{{ 'pci_projects_project_training_jobs_name' | translate  }}"
+                    data-term="{{ ::'pci_projects_project_training_jobs_name' | translate  }}"
                 >
                     <oui-tile-description
                         data-ng-bind="$ctrl.job.spec.name"
                     ></oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition
-                    data-term="{{ 'pci_projects_project_training_jobs_region' | translate  }}"
+                    data-term="{{ ::'pci_projects_project_training_jobs_region' | translate  }}"
                 >
                     <oui-tile-description
                         data-ng-bind="$ctrl.job.spec.region"
                     ></oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition
-                    data-term="{{ 'pci_projects_project_training_jobs_created' | translate  }}"
+                    data-term="{{ ::'pci_projects_project_training_jobs_created' | translate  }}"
                 >
                     <oui-tile-description
                         data-ng-bind="$ctrl.job.createdAt | date:'medium'"
@@ -58,7 +60,7 @@
                 </oui-tile-definition>
 
                 <oui-tile-definition
-                    data-term="{{ 'pci_projects_project_training_jobs_info_title_5' | translate  }}"
+                    data-term="{{ ::'pci_projects_project_training_jobs_info_title_5' | translate  }}"
                     data-ng-if="$ctrl.job.status.history"
                 >
                     <oui-tile-description>
@@ -94,7 +96,7 @@
         <div class="col-md-4">
             <oui-tile
                 class="h-100"
-                data-heading="{{ 'pci_projects_project_training_jobs_info_title_2' | translate  }}"
+                data-heading="{{ ::'pci_projects_project_training_jobs_info_title_2' | translate  }}"
             >
                 <oui-tile-definition
                     data-term="{{ 'pci_projects_project_training_jobs_image' | translate  }}"

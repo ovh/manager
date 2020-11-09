@@ -1,5 +1,18 @@
 import includes from 'lodash/includes';
 
+export const STATE_ENUM = {
+  RUNNING: 'RUNNING',
+  INITIALIZING: 'INITIALIZING',
+  FINALIZING: 'FINALIZING',
+  PENDING: 'PENDING',
+  QUEUED: 'QUEUED',
+  FAILED: 'FAILED',
+  ERROR: 'ERROR',
+  INTERRUPTING: 'INTERRUPTING',
+  INTERRUPTED: 'INTERRUPTED',
+  DONE: 'DONE',
+};
+
 export default class Job {
   constructor({ id, status, spec, createdAt, updatedAt, user }) {
     Object.assign(this, {
@@ -14,27 +27,31 @@ export default class Job {
 
   canBeKilled() {
     return includes(
-      ['RUNNING', 'INITIALIZING', 'QUEUED', 'PENDING'],
+      [
+        STATE_ENUM.RUNNING,
+        STATE_ENUM.INITIALIZING,
+        STATE_ENUM.QUEUED,
+        STATE_ENUM.PENDING,
+      ],
       this.status.state,
     );
   }
 
   getClassForState() {
     switch (this.status.state) {
-      case 'FAILED':
-      case 'ERROR':
+      case STATE_ENUM.FAILED:
+      case STATE_ENUM.ERROR:
         return 'oui-status_error';
-      case 'INTERRUPTING':
-      case 'INTERRUPTED':
+      case STATE_ENUM.INTERRUPTING:
+      case STATE_ENUM.INTERRUPTED:
         return 'oui-status_warning';
-      case 'PENDING':
-      case 'QUEUED':
-      case 'INITIALIZING':
-      case 'SYNCING':
-      case 'FINALIZING':
+      case STATE_ENUM.PENDING:
+      case STATE_ENUM.QUEUED:
+      case STATE_ENUM.INITIALIZING:
+      case STATE_ENUM.FINALIZING:
         return 'oui-status_info';
-      case 'DONE':
-      case 'RUNNING':
+      case STATE_ENUM.DONE:
+      case STATE_ENUM.RUNNING:
         return 'oui-status_success';
       default:
         return 'oui-status_info';
@@ -42,20 +59,27 @@ export default class Job {
   }
 
   isSuccess() {
-    return this.status.state === 'DONE';
+    return this.status.state === STATE_ENUM.DONE;
   }
 
   isRunning() {
-    return this.status.state === 'RUNNING';
+    return this.status.state === STATE_ENUM.RUNNING;
   }
 
   isFailed() {
-    return this.status.state === 'FAILED';
+    return (
+      this.status.state === STATE_ENUM.FAILED ||
+      this.status.state === STATE_ENUM.ERROR
+    );
   }
 
   isTerminal() {
-    return ['FAILED', 'INTERRUPTED', 'DONE', 'ERROR'].includes(
-      this.status.state,
-    );
+    return [
+      STATE_ENUM.FAILED,
+      STATE_ENUM.INTERRUPTING,
+      STATE_ENUM.INTERRUPTED,
+      STATE_ENUM.DONE,
+      STATE_ENUM.ERROR,
+    ].includes(this.status.state);
   }
 }

@@ -42,7 +42,7 @@
                                 class="oui-button oui-button_secondary oui-button_icon-right"
                             >
                                 <span
-                                    data-translate="{{:: 'pci_projects_project_training_dashboard_registry_details' | translate  }}"
+                                    data-translate="pci_projects_project_training_dashboard_registry_details"
                                 ></span>
                                 <span
                                     class="oui-icon oui-icon-info pr-1"
@@ -111,10 +111,8 @@
                             <div class="col-md-6">
                                 <span class="oui-status oui-status_success">
                                     <span
-                                        >{{ ::
-                                        'pci_projects_project_training_jobs_state_RUNNING'
-                                        | translate }}</span
-                                    >
+                                        data-translate="pci_projects_project_training_jobs_state_RUNNING"
+                                    ></span>
                                 </span>
                                 <span class="big-number"
                                     >{{ :: $ctrl.nbRunning }}</span
@@ -123,10 +121,8 @@
                             <div class="col-md-6">
                                 <span class="oui-status oui-status_info">
                                     <span
-                                        >{{ ::
-                                        'pci_projects_project_training_jobs_state_DONE'
-                                        | translate }}</span
-                                    >
+                                        data-translate="pci_projects_project_training_jobs_state_DONE"
+                                    ></span>
                                 </span>
                                 <span class="big-number"
                                     >{{ :: $ctrl.nbSuccess }}</span
@@ -141,10 +137,8 @@
                             <div class="col-md-6">
                                 <span class="oui-status oui-status_error">
                                     <span
-                                        >{{ ::
-                                        'pci_projects_project_training_jobs_state_FAILED'
-                                        | translate }}</span
-                                    >
+                                        data-translate="pci_projects_project_training_jobs_state_FAILED"
+                                    ></span>
                                 </span>
                                 <span class="big-number"
                                     >{{ :: $ctrl.nbFailed }}</span
@@ -153,10 +147,8 @@
                             <div class="col-md-6">
                                 <span class="oui-status oui-status_warning">
                                     <span
-                                        >{{ ::
-                                        'pci_projects_project_training_jobs_state_OTHER'
-                                        | translate }}</span
-                                    >
+                                        data-translate="pci_projects_project_training_jobs_state_OTHER"
+                                    ></span>
                                 </span>
                                 <span class="big-number"
                                     >{{ :: $ctrl.nbOther }}</span
@@ -185,10 +177,8 @@
                         data-track-name="public-cloud::pci::projects::project::training::dashboard::billing-details"
                         data-track-type="action"
                         href="{{ :: $ctrl.billingLink }}"
-                        >{{ ::
-                        'pci_projects_project_training_dashboard_billing_link' |
-                        translate }}</a
-                    >
+                        data-translate="pci_projects_project_training_dashboard_billing_link"
+                    ></a>
                 </div>
             </oui-tile>
         </div>
@@ -352,7 +342,7 @@
                                     data-ng-class="job.getClassForState()"
                                 >
                                     <span>
-                                        {{
+                                        {{ ::
                                         'pci_projects_project_training_jobs_state_'
                                         + job.status.state | translate }}
                                     </span>
