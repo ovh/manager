@@ -8,7 +8,7 @@ import 'ovh-api-services';
 import controller from './task.controller';
 import template from './task.html';
 
-const moduleName = 'PackTask';
+const moduleName = 'ovhManagerTelecomPackSlotsTask';
 
 angular
   .module(moduleName, [

@@ -1,6 +1,7 @@
 import map from 'lodash/map';
 
-export default /* @ngInject */ class PackEmailProCtrl {
+export default class PackEmailProCtrl {
+  /* @ngInject */
   constructor($q, $stateParams, $translate, OvhApiPackXdslEmailPro, TucToast) {
     this.$q = $q;
     this.$stateParams = $stateParams;
