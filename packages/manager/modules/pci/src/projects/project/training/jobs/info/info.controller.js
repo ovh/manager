@@ -40,13 +40,13 @@ export default class PciTrainingJobsInfoController {
 
     this.loadMessages();
 
-    if (this.job.canBeKilled()) {
+    if (!this.job.isTerminal()) {
       this.pullInterval = this.$interval(() => {
         this.PciProjectTrainingJobService.get(this.projectId, this.jobId).then(
           (job) => {
             this.job = job;
 
-            if (this.job.canBeKilled()) {
+            if (this.job.isTerminal()) {
               this.$interval.cancel(this.pullInterval);
             }
           },
