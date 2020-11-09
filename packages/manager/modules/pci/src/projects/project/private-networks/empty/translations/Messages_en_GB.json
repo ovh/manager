@@ -1,7 +1,7 @@
 {
- "pci_projects_project_network_private": "Private networks",
- "pci_projects_project_network_private_vrack_empty": "You have not yet taken a snapshot.",
- "pci_projects_project_network_private_vrack_deploy": "Connect your instances across private networks with the OVH vRack, wherever they are located.  ",
- "pci_projects_project_network_private_vrack_explanation_1": "You can instantly create private networks on demand. They guarantee level 2 isolation and are compatible with DHCP service to automatically deliver IP addressing to your instances. Each private network can be deployed in a single location or it can connect all of your project regions together. ",
- "pci_projects_project_network_private_vrack_explanation_2": "Your private networks form your vRack. They can then be connected to other OVH solutions within this same vRack, using a commun VLAN ID. "
+  "pci_projects_project_network_private": "Private networks",
+  "pci_projects_project_network_private_vrack_empty": "You have not yet created a private network.",
+  "pci_projects_project_network_private_vrack_deploy": "Connect your instances across private networks with the OVH vRack, wherever they are located.  ",
+  "pci_projects_project_network_private_vrack_explanation_1": "You can instantly create private networks on demand. They guarantee level 2 isolation and are compatible with DHCP service to automatically deliver IP addressing to your instances. Each private network can be deployed in a single location or it can connect all of your project regions together. ",
+  "pci_projects_project_network_private_vrack_explanation_2": "Your private networks form your vRack. They can then be connected to other OVH solutions within this same vRack, using a commun VLAN ID. "
 }
