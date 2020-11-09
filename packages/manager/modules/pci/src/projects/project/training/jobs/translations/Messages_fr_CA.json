@@ -28,5 +28,5 @@
   "pci_projects_project_training_jobs_submit_select_command_tile_title": "Commande spécifique",
   "pci_projects_project_training_jobs_submit_select_command_tile_command": "Arguments",
   "pci_projects_project_training_jobs_access_url_help": "L'accès HTTP permet d'être redirigé depuis votre navigateur vers le port 80 du conteneur si celui-ci est toujours en cours d'exécution. Pour accéder à l'interface web vous aurrez besoin de vous identifier en tant qu'utilisateur propriétaire du job : {{ owner }}.",
-  "pci_projects_project_training_jobs_submit_select_image_tips_help": "Les images hébergées sur un registry privé ou public sont acceptées (Github, GitLab, DockerHub, ...)"
+  "pci_projects_project_training_jobs_submit_select_image_tips_help": "Les images hébergées sur une registry privé ou public sont acceptées (Github, GitLab, DockerHub, ...)"
 }

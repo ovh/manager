@@ -11,12 +11,7 @@ export default class PciProjectTrainingRegistryService {
       .Registry()
       .v6()
       .save({ serviceName: projectId }, registry)
-      .$promise.then(
-        (newRegistry) =>
-          new Registry({
-            ...newRegistry,
-          }),
-      );
+      .$promise.then((newRegistry) => new Registry(newRegistry));
   }
 
   getAll(projectId) {
@@ -37,12 +32,7 @@ export default class PciProjectTrainingRegistryService {
         serviceName: projectId,
         registryId,
       })
-      .$promise.then(
-        (registry) =>
-          new Registry({
-            ...registry,
-          }),
-      );
+      .$promise.then((registry) => new Registry(registry));
   }
 
   delete(projectId, registryId) {

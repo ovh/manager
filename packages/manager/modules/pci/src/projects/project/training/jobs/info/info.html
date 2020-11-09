@@ -112,7 +112,7 @@
                     <oui-tile-description>
                         <ul>
                             <li
-                                ng-repeat="cmd in $ctrl.job.spec.command"
+                                ng-repeat="cmd in $ctrl.job.spec.command track by $index"
                                 class="api-list-item"
                             >
                                 {{ cmd }}
@@ -158,7 +158,7 @@
                         <oui-tile-description>
                             <a
                                 class="oui-link oui-link_icon"
-                                href="{{ $ctrl.job.status.jobUrl }}"
+                                data-ng-href="{{ $ctrl.job.status.jobUrl }}"
                                 target="_blank"
                                 rel="noopener"
                             >
@@ -271,7 +271,7 @@
                     <oui-tile-description>
                         <ul>
                             <li
-                                ng-repeat="data in $ctrl.job.spec.volumes"
+                                ng-repeat="data in $ctrl.job.spec.volumes track by $index"
                                 class="api-list-item"
                             >
                                 {{ data.container }}@{{

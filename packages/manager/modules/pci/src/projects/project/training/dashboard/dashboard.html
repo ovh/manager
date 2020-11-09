@@ -35,7 +35,7 @@
                     <oui-tile-definition>
                         <oui-tile-actions>
                             <button
-                                data-ng-click="$ctrl.goToRegistyDetails()"
+                                data-ng-click="$ctrl.goToRegistryDetails()"
                                 data-track-on="click"
                                 data-track-name="public-cloud::pci::projects::project::training::dashboard::registry-details"
                                 data-track-type="action"
@@ -176,7 +176,7 @@
                         data-track-on="click"
                         data-track-name="public-cloud::pci::projects::project::training::dashboard::billing-details"
                         data-track-type="action"
-                        href="{{ :: $ctrl.billingLink }}"
+                        data-ng-href="{{ :: $ctrl.billingLink }}"
                         data-translate="pci_projects_project_training_dashboard_billing_link"
                     ></a>
                 </div>

@@ -16,7 +16,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('pci.projects.project.training.dashboard.install', {
           projectId,
         }),
-      goToRegistyDetails: /* @ngInject */ ($state, projectId) => () =>
+      goToRegistryDetails: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.training.dashboard.registry', {
           projectId,
         }),

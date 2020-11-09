@@ -15,7 +15,7 @@ export default {
     goToDashboard: '<',
     dashboardLink: '<',
     installLink: '<',
-    goToRegistyDetails: '<',
+    goToRegistryDetails: '<',
     jobList: '<',
     refreshState: '<',
     submitJobLink: '<',

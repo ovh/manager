@@ -20,7 +20,7 @@
             data-filterable
             data-sortable
         >
-            <a href="{{:: $ctrl.jobInfoLink($value) }}">
+            <a data-ng-href="{{:: $ctrl.jobInfoLink($value) }}">
                 <span data-ng-bind="::$value"></span>
             </a>
         </oui-datagrid-column>
@@ -95,7 +95,7 @@
                     aria-hidden="true"
                 ></span>
                 <span
-                    data-translate="{{:: 'pci_projects_project_training_registries_list_add' | translate }}"
+                    data-translate="pci_projects_project_training_registries_list_add"
                 ></span>
             </button>
             <button
@@ -103,7 +103,10 @@
                 data-title="{{:: 'pci_projects_project_training_data_refresh' | translate }}"
                 data-ng-click="$ctrl.refreshState()"
             >
-                <span class="fa fa-refresh" aria-hidden="true"></span>
+                <span
+                    class="oui-icon oui-icon-refresh"
+                    aria-hidden="true"
+                ></span>
             </button>
         </oui-datagrid-topbar>
     </oui-datagrid>
