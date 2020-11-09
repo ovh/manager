@@ -20,7 +20,9 @@ export default /* @ngInject */ ($stateProvider) => {
         userId,
       ) => PciProjectsProjectUsersService.get(projectId, userId),
       regions: /* @ngInject */ (PciProjectsProjectUsersService, projectId) =>
-        PciProjectsProjectUsersService.getRegions(projectId),
+        PciProjectsProjectUsersService.getRegions(projectId).then((regions) =>
+          regions.map(({ name }) => name),
+        ),
       openstackGuide: /* @ngInject */ (SessionService, coreConfig) =>
         SessionService.getUser().then(({ ovhSubsidiary }) =>
           get(OPENSTACK_GUIDE, [coreConfig.getRegion(), ovhSubsidiary]),

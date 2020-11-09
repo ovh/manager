@@ -74,13 +74,15 @@ export default class PciProjectsProjectUsersService {
           'X-Pagination-Mode': 'CachedObjectList-Pages',
         },
       })
-      .then(({ data }) =>
-        data
-          .filter(({ services }) =>
-            services.find(({ name }) => name === REGION_CAPACITY),
-          )
-          .map(({ name }) => name),
+      .then(({ data }) => data);
+  }
+
+  getStorageRegions(projectId) {
+    return this.getRegions(projectId).then((regions) => {
+      return regions.filter(({ services }) =>
+        services.find(({ name }) => name === REGION_CAPACITY),
       );
+    });
   }
 
   downloadOpenRc(projectId, { id: userId }, region, version) {
