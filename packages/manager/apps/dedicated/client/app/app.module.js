@@ -39,8 +39,6 @@ import 'script-loader!randexp/build/randexp.min';
 import 'script-loader!ui-select/dist/select.min.js';
 import 'angular-resource';
 import 'script-loader!jsurl/lib/jsurl.js';
-import 'script-loader!intl-tel-input/build/js/intlTelInput.min.js';
-import 'script-loader!intl-tel-input/lib/libphonenumber/build/utils.js';
 import 'script-loader!international-phone-number/releases/international-phone-number.min.js';
 import 'script-loader!qrcode.js/lib/qrcode.js';
 import 'angular-qr';
