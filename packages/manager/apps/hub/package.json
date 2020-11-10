@@ -11,9 +11,10 @@
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "scripts": {
-    "build": "webpack --env.production",
+    "build": "webpack --env.production && yarn run generate:manifest",
     "dev": "webpack-dev-server",
     "dev:watch": "yarn run dev",
+    "generate:manifest": "manager-manifest-generator ./dist --application hub",
     "start": "lerna exec --stream --scope='@ovh-ux/manager-hub-app' --include-dependencies -- npm run build --if-present",
     "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-hub-app' --include-dependencies -- npm run dev --if-present",
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-hub-app' --include-dependencies -- npm run dev:watch --if-present"
@@ -78,6 +79,7 @@
   },
   "devDependencies": {
     "@ovh-ux/manager-webpack-config": "^3.3.0 || ^4.0.0",
+    "@ovh-ux/manager-manifest-generator": "^0.0.0 || ^1.0.0",
     "@ovh-ux/ui-kit": "^4.4.1",
     "glob": "^7.1.6",
     "lodash": "^4.17.15",
