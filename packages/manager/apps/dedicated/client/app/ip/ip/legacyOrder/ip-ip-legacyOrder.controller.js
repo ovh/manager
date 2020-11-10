@@ -75,9 +75,15 @@ angular.module('Module.ip.controllers').controller(
     }
 
     isOrderingFromDrp() {
-      return startsWith(
-        this.$state.current.name,
-        'app.dedicatedClouds.datacenter.drp',
+      return (
+        startsWith(
+          this.$state.current.name,
+          'app.dedicatedClouds.datacenter.drp',
+        ) ||
+        startsWith(
+          this.$state.current.name,
+          'app.managedBaremetal.datacenter.drp',
+        )
       );
     }
 
@@ -475,6 +481,12 @@ angular.module('Module.ip.controllers').controller(
     =            STEP 4            =
     ============================== */
 
+    getDrpState() {
+      return this.$scope.model.service.productReference === 'MBM'
+        ? 'app.managedBaremetal.datacenter.drp'
+        : 'app.dedicatedClouds.datacenter.drp';
+    }
+
     loadContracts() {
       this.$scope.agree.value = false;
 
@@ -538,7 +550,7 @@ angular.module('Module.ip.controllers').controller(
         .finally(() =>
           this.isOrderingFromDrp()
             ? this.$scope.closeModal().then(() =>
-                this.$state.go('app.dedicatedClouds.datacenter.drp', {
+                this.$state.go(this.getDrpState(), {
                   reload: true,
                 }),
               )
@@ -585,7 +597,7 @@ angular.module('Module.ip.controllers').controller(
         .finally(() =>
           this.isOrderingFromDrp()
             ? this.$scope.closeModal().then(() =>
-                this.$state.go('app.dedicatedClouds.datacenter.drp', {
+                this.$state.go(this.getDrpState(), {
                   reload: true,
                 }),
               )
