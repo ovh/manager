@@ -20,7 +20,7 @@ angular
     'ui.router',
   ])
   .controller('XdslModemPortsCtrl', controller)
-  .factory('PackXdslModemLanObject', factory)
+  .factory('PackXdslModemPortObject', factory)
   .run(/* @ngTranslationsInject:json ./translations */)
   .run(
     /* @ngInject */ ($templateCache) => {

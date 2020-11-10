@@ -24,7 +24,7 @@ angular
   ])
   .controller('XdslModemDhcpCtrl', controller)
   .controller('telecomXdslModemDhcpModal', controllerModal)
-  .factory('telecomXdslModemDhcpModal', factory)
+  .factory('PackXdslModemDhcpObject', factory)
   .run(/* @ngTranslationsInject:json ./translations */)
   .run(
     /* @ngInject */ ($templateCache) => {
