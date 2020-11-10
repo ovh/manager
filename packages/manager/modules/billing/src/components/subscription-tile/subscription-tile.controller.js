@@ -1,3 +1,5 @@
+import { BillingService as ServiceInfos } from '@ovh-ux/manager-models';
+
 export default class ServicesActionsCtrl {
   /* @ngInject */
   constructor(
@@ -24,9 +26,9 @@ export default class ServicesActionsCtrl {
       .checkFeatureAvailability(['contact', 'contact:management'])
       .then((contactAvailability) => {
         this.contactAvailability = contactAvailability;
-        return this.BillingSubscriptionService.getServiceInfos(
-          this.servicePath,
-        );
+        return this.serviceInfos
+          ? this.$q.when(new ServiceInfos(this.serviceInfos))
+          : this.BillingSubscriptionService.getServiceInfos(this.servicePath);
       })
       .then((serviceInfos) => {
         this.serviceInfos = serviceInfos;
