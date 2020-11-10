@@ -12,7 +12,7 @@ import routing from './pack.routing';
 const moduleName = 'ovhManagerTelecomPack';
 
 angular
-  .module(moduleName, [xdsl, packMove, migration, packResiliation, slots])
+  .module(moduleName, [migration, packMove, packResiliation, slots, xdsl])
   .controller('PackCtrl', controller)
   .config(routing)
   .run(/* @ngTranslationsInject:json ../translations */);
