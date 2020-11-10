@@ -24,6 +24,8 @@ import { PACK_XDSL_MODEM } from './pack-xdsl-modem.constant';
 import routing from './pack-xdsl-modem.routing';
 import acsBackend from './acsBackend';
 
+import './pack-xdsl-modem.less';
+
 const moduleName = 'ovhManagerTelecomPackXdslModem';
 
 angular

@@ -7,6 +7,8 @@ import 'ovh-api-services';
 
 import routing from './orderFollowUp.routing';
 
+import './orderFollowUp.less';
+
 const moduleName = 'XdslOrderFollowUp';
 
 angular

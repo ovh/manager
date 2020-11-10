@@ -18,8 +18,9 @@ import ipv6 from './ipv6';
 import portReset from './portReset';
 import profil from './profil';
 import rateLimit from './rateLimit';
-
 import XdslStatistics from './statistics';
+
+import './pack-xdsl-access.less';
 
 const moduleName = 'ovhManagerTelecomPackXdslAccess';
 

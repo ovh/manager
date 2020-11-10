@@ -7,6 +7,8 @@ import angularTranslate from 'angular-translate';
 import component from './xdsl-meetings.component';
 import routing from './xdsl-meetings.routing';
 
+import './xdsl-meetings.less';
+
 const moduleName = 'ovhManagerTelecomPackXdslMeetings';
 
 angular

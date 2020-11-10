@@ -7,6 +7,8 @@ import 'ovh-api-services';
 
 import routing from './linediagnostic.routing';
 
+import './linediagnostic.less';
+
 const moduleName = 'Packxdslaccesslinediagnostic';
 
 angular
