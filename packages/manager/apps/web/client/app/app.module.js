@@ -38,7 +38,6 @@ import 'angular-translate-loader-partial';
 import 'angular-translate-loader-static-files';
 import 'ng-slide-down';
 import 'script-loader!matchmedia-ng/matchmedia-ng.js';
-import 'ckeditor';
 import 'ovh-api-services';
 import 'script-loader!clipboard/dist/clipboard.min.js';
 import 'script-loader!bootstrap-tour/build/js/bootstrap-tour-standalone.min.js';
