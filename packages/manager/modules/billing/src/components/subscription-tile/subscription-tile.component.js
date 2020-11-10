@@ -6,6 +6,7 @@ export default {
     onError: '&?',
     withEngagement: '<?',
     servicePath: '@',
+    serviceInfos: '<?',
   },
   controller,
   template,
