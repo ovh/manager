@@ -8,6 +8,12 @@ export default /* @ngInject */ ($stateProvider) => {
       format: 'json',
     },
     resolve: {
+      angularWebsocket: /* @ngInject */ ($ocLazyLoad) =>
+        import('script-loader!angular-websocket/dist/angular-websocket').then(
+          () => {
+            $ocLazyLoad.inject('angular-websocket');
+          },
+        ),
       me: /* @ngInject */ ($http) =>
         $http
           .get('/me')

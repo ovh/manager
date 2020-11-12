@@ -23,7 +23,6 @@ import 'script-loader!angular-strap/dist/modules/popover.min';
 import 'script-loader!angular-strap/dist/modules/popover.tpl.min';
 import 'angular-translate';
 import 'angular-translate-loader-partial';
-import 'script-loader!angular-websocket/dist/angular-websocket';
 import 'script-loader!jquery-ui/ui/minified/core.min';
 import 'script-loader!jquery-ui/ui/minified/widget.min';
 import 'script-loader!jquery-ui/ui/minified/mouse.min';

@@ -1,6 +1,5 @@
 import 'script-loader!moment/min/moment.min.js'; // eslint-disable-line
 import 'script-loader!chart.js/dist/Chart.min.js'; // eslint-disable-line
-import 'script-loader!angular-websocket/dist/angular-websocket'; // eslint-disable-line
 import 'script-loader!bootstrap/dist/js/bootstrap'; // eslint-disable-line
 
 import { Environment } from '@ovh-ux/manager-config';

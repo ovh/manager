@@ -4,6 +4,7 @@ import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
 import 'angular-translate';
 import '@ovh-ux/ng-ovh-doc-url';
+import 'oclazyload';
 
 import { Environment } from '@ovh-ux/manager-config';
 
@@ -14,6 +15,7 @@ const moduleName = 'ovhManagerDbaasLogs';
 angular
   .module(moduleName, [
     'ngOvhDocUrl',
+    'oc.lazyLoad',
     'ovhManagerCore',
     'pascalprecht.translate',
     'ui.router',

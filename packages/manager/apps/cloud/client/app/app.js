@@ -108,7 +108,6 @@ angular
       ngOvhSlider,
       ngTailLogs,
       'matchmedia-ng',
-      'angular-websocket',
       'angular-translate-loader-pluggable',
 
       ngTranslateAsyncLoader,

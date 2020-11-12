@@ -4030,7 +4030,7 @@ angular-vs-repeat@^2.0.13:
   resolved "https://registry.yarnpkg.com/angular-vs-repeat/-/angular-vs-repeat-2.0.13.tgz#f20c28e7357d3e70cc894398b301921717795e92"
   integrity sha512-Jb0DOt4jU5/xZx7wjKvgZJtgAaMA4ZFLq5aeQHU8U2IZz8ixWP0ML6gFWQ1yefMapvg5LV+ZfA81ZeeN/NtJ7A==
 
-angular-websocket@^2.0.0, angular-websocket@^2.0.1:
+angular-websocket@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/angular-websocket/-/angular-websocket-2.0.1.tgz#0fb4d60ed9018be583d031eec4e56b457cb8dcee"
   integrity sha1-D7TWDtkBi+WD0DHuxOVrRXy43O4=

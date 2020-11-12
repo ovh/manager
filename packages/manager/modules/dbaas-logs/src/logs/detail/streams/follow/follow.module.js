@@ -15,7 +15,6 @@ const moduleName = 'ovhManagerDbaasLogsDetailStreamsFollow';
 
 angular
   .module(moduleName, [
-    'angular-websocket',
     'ngOvhCloudUniverseComponents',
     'oui',
     'ovhManagerCore',
