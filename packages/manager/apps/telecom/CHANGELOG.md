@@ -1,3 +1,12 @@
+## [13.6.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.6.3...@ovh-ux/manager-telecom@13.6.4) (2020-11-12)
+
+
+### Bug Fixes
+
+* **portability:** add portability order lazy loading ([#4011](https://github.com/ovh/manager/issues/4011)) ([f2b3075](https://github.com/ovh/manager/commit/f2b3075994ae431483d4632fabfa635b5e91a123))
+
+
+
 ## [13.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.6.2...@ovh-ux/manager-telecom@13.6.3) (2020-11-03)
 
 
