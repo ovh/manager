@@ -26,7 +26,6 @@ import 'script-loader!jquery.cookie/jquery.cookie.js';
 import 'bootstrap';
 import 'angular-ui-bootstrap';
 import 'angularjs-scroll-glue';
-import 'raphael';
 import 'script-loader!angular-dynamic-locale/dist/tmhDynamicLocale.js';
 import 'punycode';
 import 'script-loader!urijs/src/URI.min.js';
