@@ -16,7 +16,6 @@
   "pci_project_flavors_price_hourly": "{{price}} /hora + IVA",
   "pci_project_flavors_price_monthly": "A partir de {{price}} /mês + IVA",
   "pci_project_flavors_quota": "Aumentar o meu limite",
-  "pci_project_flavors_spec_model": "Modelo:",
   "pci_project_flavors_quota_info": "O limite do seu projeto não lhe permite adicionar este tipo de máquina nesta região.",
   "pci_project_flavors_quota_manage": "Gerir o meu limite"
 }

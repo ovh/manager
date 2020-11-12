@@ -16,7 +16,6 @@
   "pci_project_flavors_price_hourly": "{{price}} / Stunde (zzgl. MwSt)",
   "pci_project_flavors_price_monthly": "Ab {{price}} / Monat (zzgl. MwSt.)",
   "pci_project_flavors_quota": "Mein Quota erhöhen",
-  "pci_project_flavors_spec_model": "Modell:",
   "pci_project_flavors_quota_info": "Das Quota Ihres Projekts erlaubt es nicht, eine Maschine dieser Art in dieser Region hinzuzufügen.",
   "pci_project_flavors_quota_manage": "Mein Quota verwalten."
 }

@@ -34,6 +34,5 @@
   "otrs_service_category_CDN": "Content Delivery Network",
   "otrs_menu_userAccount_1": "Buongiorno {{username}}",
   "otrs_menu_userAccount_2": "il tuo account",
-  "global_logout": "Logout",
-  "sidebar_actions_menu_cloud_project": "Progetto Cloud"
+  "global_logout": "Logout"
 }

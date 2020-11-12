@@ -16,7 +16,6 @@
   "pci_project_flavors_price_hourly": "{{price}} netto/godz.",
   "pci_project_flavors_price_monthly": "Od {{price}} netto/m-c",
   "pci_project_flavors_quota": "Zwiększ limity",
-  "pci_project_flavors_spec_model": "Model:",
   "pci_project_flavors_quota_info": "Limit Twojego projektu nie pozwala na dodanie tego typu maszyny w tym regionie. ",
   "pci_project_flavors_quota_manage": "Zarządzaj limitami"
 }

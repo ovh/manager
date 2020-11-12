@@ -16,7 +16,6 @@
   "pci_project_flavors_price_hourly": "{{price}} ex. VAT/hour",
   "pci_project_flavors_price_monthly": "From {{price}} ex. VAT/month",
   "pci_project_flavors_quota": "Increase your quota",
-  "pci_project_flavors_spec_model": "Model",
   "pci_project_flavors_quota_info": "Your project quota will not allow you to add this machine type in this region.",
   "pci_project_flavors_quota_manage": "Manage my quota"
 }

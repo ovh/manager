@@ -34,6 +34,5 @@
   "otrs_service_category_CDN": "Content Delivery Network",
   "otrs_menu_userAccount_1": "Guten Tag {{username}}",
   "otrs_menu_userAccount_2": "Ihr Account",
-  "global_logout": "Abmelden",
-  "sidebar_actions_menu_cloud_project": "Cloud Projekt"
+  "global_logout": "Abmelden"
 }
