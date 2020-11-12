@@ -124,7 +124,6 @@
     "international-phone-number": "mareczek/international-phone-number#^0.0.16",
     "ipaddr.js": "^1.6.0",
     "jquery": "^2.1.3",
-    "jquery.cookie": "^1.4.1",
     "jquery.scrollto": "^1.4.13",
     "jsurl": "^0.1.4",
     "lodash": "^4.17.15",

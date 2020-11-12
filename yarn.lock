@@ -13119,10 +13119,6 @@ jquery-ui@components/jqueryui#~1.11.2:
   version "1.11.4"
   resolved "https://codeload.github.com/components/jqueryui/tar.gz/c34f8dbf3ba57b3784b93f26119f436c0e8288e1"
 
-jquery.cookie@1.4.1, jquery.cookie@^1.4.1, jquery.cookie@carhartl/jquery-cookie#~1.4.0:
-  version "1.4.1"
-  resolved "https://codeload.github.com/carhartl/jquery-cookie/tar.gz/7f88a4e631aba8a8c688fd8999ce6b9bcfd50718"
-
 jquery.scrollTo@flesler/jquery.scrollTo#~1.4.14:
   version "1.4.14"
   resolved "https://codeload.github.com/flesler/jquery.scrollTo/tar.gz/025405d6bc60e810130ba33a63acc37fe32cdadc"
