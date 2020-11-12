@@ -74,8 +74,8 @@ export default class SmsBatchesCreateController {
     const createBatchSlotsPromises = this.sms.receivers.map(({ slotId }) =>
       this.createBatch({
         ...batchParams,
-        to: null,
-        slotId,
+        to: [],
+        slotID: slotId.toString(),
       }),
     );
 
