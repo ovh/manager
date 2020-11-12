@@ -114,3 +114,56 @@ emit(
   },
 );
 ```
+
+### URL Resolver
+
+URL resolver is here to help us to maintain links between applications.
+When you want to build an URL for an outside state (a state exposed by another application), you will use `url-resolver` to get it.
+
+
+#### Examples
+
+Resolve the `app.dashboard` URL from the `hub` application with some `routeParams` (`expand:true`)
+
+```js
+import { resolveUrl } from '@ovh-ux/ufrontend/url-resolver';
+
+resolveUrl('hub', 'app.dashboard', { expand: true }).then((url) => {
+  // use `url`
+});
+```
+
+
+Resolve multiples routes using an array of `{application, route, routeParams}`
+
+```js
+import { resolveUrls } from '@ovh-ux/ufrontend/url-resolver';
+
+resolveUrls([
+  {
+    application: 'hub',
+    route: 'app.dashboard',
+    routeParams: { expand: true },
+  },
+  { application: 'hub', route: 'app.dashboard.catalog' },
+]).then(([dashboard, catalog]) => {
+  // use `dashboard` and `catalog` URLs
+});
+```
+
+Resolve multiples routes using an object of `{application, route, routeParams}`
+
+```js
+import { resolveUrls } from '@ovh-ux/ufrontend/url-resolver';
+
+resolveUrls({
+  dashboard: {
+    application: 'hub',
+    route: 'app.dashboard',
+    routeParams: { expand: true },
+  },
+  catalog: { application: 'hub', route: 'app.dashboard.catalog' },
+}).then(({ dashboard, catalog }) => {
+  // use `dashboard` and `catalog` URLs
+});
+```
