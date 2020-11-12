@@ -34,6 +34,5 @@
   "otrs_service_category_CDN": "Content Delivery Network",
   "otrs_menu_userAccount_1": "Bonjour {{username}}",
   "otrs_menu_userAccount_2": "votre compte",
-  "global_logout": "Déconnexion",
-  "sidebar_actions_menu_cloud_project": "Projet Cloud"
+  "global_logout": "Déconnexion"
 }
