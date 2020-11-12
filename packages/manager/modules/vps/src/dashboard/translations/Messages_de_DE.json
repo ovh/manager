@@ -6,6 +6,5 @@
   "vps_dashboard_migration_link": "Zur neuen Reihe wechseln",
   "vps_dashboard_auto_migration_warning": "Ihr VPS Cloud 2013/2014 wird in {{days}} Tagen automatisch auf einen VPS der neuen Reihe umgestellt.",
   "vps_dashboard_migration_in_progress": "Ihr VPS Cloud 2013/2014 wird gerade auf die neue Reihe umgestellt.",
-  "vps_dashboard_migration_in_error": "Bei der Umstellung Ihres VPS ist ein Fehler aufgetreten. Unsere Teams werden sich um den weiteren Verlauf der Umstellung kümmern.",
-  "vps_dashboard_maintenance_warning": "Um die Orchestrierung des VPS stabiler zu gestalten, werden in den verschiedenen VPS Zonen eine Reihe von Wartungsarbeiten durchgeführt. Diese Maßnahmen dauern außerhalb der Geschäftszeiten höchstens 2 Stunden. Während der Wartungsarbeiten ist es in der jeweiligen Zone nicht möglich, einen VPS zu bestellen, ihn zu verändern oder zu löschen. <br />Sie finden hier die Details zur Planung nach Zonen: <a href=\"http://travaux.ovh.net/?do=details&id=47124\" target=\"_blank\">http://travaux.ovh.net/?do=details&id=47124</a>"
+  "vps_dashboard_migration_in_error": "Bei der Umstellung Ihres VPS ist ein Fehler aufgetreten. Unsere Teams werden sich um den weiteren Verlauf der Umstellung kümmern."
 }
