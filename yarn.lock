@@ -17393,10 +17393,6 @@ qrcode-terminal@^0.10.0:
   resolved "https://registry.yarnpkg.com/qrcode-terminal/-/qrcode-terminal-0.10.0.tgz#a76a48e2610a18f97fa3a2bd532b682acff86c53"
   integrity sha1-p2pI4mEKGPl/o6K9UytoKs/4bFM=
 
-qrcode.js@janantala/qrcode.js#~1.0.x:
-  version "1.0.2"
-  resolved "https://codeload.github.com/janantala/qrcode.js/tar.gz/2c20b467901740e6e32308b100d2df1125d4f6ac"
-
 qs@6.7.0:
   version "6.7.0"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.7.0.tgz#41dc1a015e3d581f1621776be31afb2876a9b1bc"

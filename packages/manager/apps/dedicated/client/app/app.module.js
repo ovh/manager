@@ -38,8 +38,6 @@ import 'script-loader!ui-select/dist/select.min.js';
 import 'angular-resource';
 import 'script-loader!jsurl/lib/jsurl.js';
 import 'script-loader!international-phone-number/releases/international-phone-number.min.js';
-import 'script-loader!qrcode.js/lib/qrcode.js';
-import 'angular-qr';
 import 'script-loader!u2f-api-polyfill/u2f-api-polyfill.js';
 import 'ovh-api-services';
 import 'angular-translate';
