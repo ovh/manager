@@ -826,5 +826,7 @@
   "ip_order_finish_success": "Zamówienie nr <a href='{{t0}}' target='_blank'>{{t1}}</a> jest przetwarzane.",
   "ip_order_finish_error": "Wystąpił błąd podczas zamawiania dodatkowych adresów IP.",
   "ip_order_free_activation_fee": "W przypadku serwerów, dla których abonament za dodatkowe adresy IP jest darmowy, koszty aktywacji nie będą doliczane w trakcie odnawiania serwera. ",
-  "ip_order_resume_short": "Blok /{{ blockSize }}: {{ price }}"
+  "ip_order_resume_short": "Blok /{{ blockSize }}: {{ price }}",
+  "dedicatedCloud_survey": "Dokładamy wszelkich starań, aby stale ulepszać usługę Hosted Private Cloud, dlatego prosimy",
+  "dedicatedCloud_survey_link": "o opinię na temat tego interfejsu"
 }

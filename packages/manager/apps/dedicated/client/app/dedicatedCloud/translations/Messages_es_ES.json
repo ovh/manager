@@ -826,5 +826,7 @@
   "ip_order_finish_success": "El pedido número <a href='{{t0}}' target='_blank'>{{t1}}</a> se ha enviado.",
   "ip_order_finish_error": "Se ha producido un error al contratar IP adicionales.",
   "ip_order_free_activation_fee": "Para los servidores en los que la suscripción de IP adicionales está incluida, estos gastos de activación no se volverán a facturar al renovar el servidor.",
-  "ip_order_resume_short": "Bloque /{{ blockSize }}: {{ price }}"
+  "ip_order_resume_short": "Bloque /{{ blockSize }}: {{ price }}",
+  "dedicatedCloud_survey": "Para mejorar la calidad del servicio Hosted Private Cloud le invitamos a",
+  "dedicatedCloud_survey_link": "enviarnos su opinión en esta interfaz."
 }

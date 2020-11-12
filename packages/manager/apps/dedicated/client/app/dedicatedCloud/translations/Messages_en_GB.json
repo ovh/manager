@@ -826,5 +826,7 @@
   "ip_order_finish_success": "Order number <a href='{{t0}}' target='_blank'>{{t1}}</a> has been processed.",
   "ip_order_finish_error": "An error has occurred ordering additional IPs.",
   "ip_order_free_activation_fee": "If you have a server with free IPs included, you will not be billed these activation fees following the renewal of your server.",
-  "ip_order_resume_short": "Block /{{ blockSize }}: {{ price }}"
+  "ip_order_resume_short": "Block /{{ blockSize }}: {{ price }}",
+  "dedicatedCloud_survey": "To improve the quality of our Hosted Private Cloud service: please",
+  "dedicatedCloud_survey_link": "give your feedback on this interface"
 }

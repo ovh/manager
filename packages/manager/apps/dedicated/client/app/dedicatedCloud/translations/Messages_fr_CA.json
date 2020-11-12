@@ -828,5 +828,7 @@
   "ip_order_finish_success": "La commande numéro <a href='{{t0}}' target='_blank'>{{t1}}</a> a bien été prise en compte.",
   "ip_order_finish_error": "Une erreur est survenue lors de la commande d'IPs additionnelles.",
   "ip_order_free_activation_fee": "Pour les serveurs dont l'abonnement des IPs additionnelles est offert, ces frais d'activation ne seront pas refacturés à l'issu du renouvellement du serveur.",
-  "ip_order_resume_short": "Bloc /{{ blockSize }} : {{ price }}"
+  "ip_order_resume_short": "Bloc /{{ blockSize }} : {{ price }}",
+  "dedicatedCloud_survey": "En vue d’améliorer la qualité de service Hosted Private Cloud : nous vous invitons à",
+  "dedicatedCloud_survey_link": "donner votre opinion sur cette interface"
 }
