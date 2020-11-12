@@ -7,7 +7,7 @@ import '@ovh-ux/ng-ovh-doc-url';
 
 import { Environment } from '@ovh-ux/manager-config';
 
-import logs from './logs/logs.module';
+import logs from './logs';
 
 const moduleName = 'ovhManagerDbaasLogs';
 
