@@ -3837,7 +3837,7 @@ angular-dynamic-locale@^0.1.0, angular-dynamic-locale@^0.1.27, angular-dynamic-l
   dependencies:
     "@types/angular" "^1.6.25"
 
-angular-flash-alert@2.5.0, angular-flash-alert@^2.3.0:
+angular-flash-alert@2.5.0:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/angular-flash-alert/-/angular-flash-alert-2.5.0.tgz#321d4908d9acf847aa8a219cc7f6e95a502e71d4"
   integrity sha512-O/uqA66qtGsOA232+enzJNH4wH9v6ywcClRPf2C+T7xE/MxRRovOc959mcX9mIqNwncwPPc8quWol36R9fm1ow==
