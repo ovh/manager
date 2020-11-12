@@ -38,7 +38,6 @@ import 'angular-validation-match';
 import 'bootstrap';
 import 'script-loader!CSV-JS/csv.js';
 import 'script-loader!d3/build/d3.js';
-import 'script-loader!jquery.cookie/jquery.cookie.js';
 import 'matchmedia-polyfill';
 import 'matchmedia-ng';
 import 'script-loader!messenger/build/js/messenger.js';

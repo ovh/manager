@@ -101,7 +101,6 @@
     "ipaddr.js": "^1.9.1",
     "jquery": "^2.1.3",
     "jquery-ui": "^1.12.1",
-    "jquery.cookie": "^1.4.1",
     "jquery.scrollto": "^1.4.13",
     "json3": "^3.2.5",
     "jsurl": "^0.1.4",
