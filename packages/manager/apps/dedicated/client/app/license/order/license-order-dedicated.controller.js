@@ -1,11 +1,11 @@
 import dropRight from 'lodash/dropRight';
+import filter from 'lodash/filter';
 import get from 'lodash/get';
-// import has from 'lodash/has';
+import groupBy from 'lodash/groupBy';
 import isNaN from 'lodash/isNaN';
 import last from 'lodash/last';
 import set from 'lodash/set';
 import values from 'lodash/values';
-import _ from 'lodash';
 
 angular
   .module('Module.license')
@@ -46,16 +46,14 @@ angular
           serviceName: get($scope, 'selected.ipBlock.serviceName'),
         })
           .then((data) => {
-            $scope.types = _.chain(data)
-              .filter((license) => {
-                const type = license.family.toUpperCase();
-                // return has(LicenseOrder.LicenseAgoraOrder.licenseTypeToCatalog, type);
-                return type.indexOf('LICENSE') !== -1;
-              })
-              .groupBy((license) =>
-                license.planCode.split('-')[1].toUpperCase(),
-              )
-              .value();
+            const filteredData = filter(data, (license) => {
+              const type = license.family.toUpperCase();
+              return type.indexOf('LICENSE') !== -1;
+            });
+
+            $scope.types = groupBy(filteredData, (license) =>
+              license.planCode.split('-')[1].toUpperCase(),
+            );
 
             $scope.nbLicence.value = values($scope.types).length || 0;
           })
