@@ -8,7 +8,6 @@ import 'jquery-ui/ui/widgets/mouse.js';
 import 'jquery-ui/ui/widgets/draggable.js';
 import 'jquery-ui/ui/widgets/droppable.js';
 import 'jquery-ui/ui/widgets/resizable.js';
-import 'lodash';
 import 'angular';
 import 'angular-aria';
 import 'angular-route';
