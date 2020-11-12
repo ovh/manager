@@ -6,16 +6,26 @@ const moduleName = 'ovhManagerTelecomTelephonyAliasLazyLoading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
+    const lazyLoad = ($transition$) => {
+      const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+      return import(
+        /* webpackChunkName: "alias" */ './alias.module'
+      ).then((mod) => $ocLazyLoad.inject(mod.default || mod));
+    };
+
     $stateProvider.state('telecom.telephony.billingAccount.alias.**', {
       url: '/alias/:serviceName',
-      lazyLoad: ($transition$) => {
-        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-
-        return import(
-          /* webpackChunkName: "alias" */ './alias.module'
-        ).then((mod) => $ocLazyLoad.inject(mod.default || mod));
-      },
+      lazyLoad,
     });
+
+    $stateProvider.state(
+      'telecom.telephony.billingAccount.portabilityOrder.**',
+      {
+        url: '/portabilityOrder',
+        lazyLoad,
+      },
+    );
   },
 );
 
