@@ -1,5 +1,4 @@
 import angular from 'angular';
-import 'd3';
 
 /**
  * A simple monitoring chart directive using d3 js library for rendering.

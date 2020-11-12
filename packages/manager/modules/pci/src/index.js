@@ -24,6 +24,7 @@ import '@ovh-ux/ui-kit/dist/css/oui.css';
 import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 import 'font-awesome/css/font-awesome.css';
 import 'ovh-common-style/dist/ovh-common-style.css';
+import 'd3';
 
 import components from './components';
 import error from './error';
