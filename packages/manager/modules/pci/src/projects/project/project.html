@@ -39,6 +39,15 @@
                             </oui-header-tabs>
                         </oui-header>
                         <div class="py-5" data-ui-view="contentTab">
+                            <oui-message
+                                data-type="warning"
+                                data-dismissable
+                                data-ng-if="$ctrl.region !== 'US'"
+                            >
+                                <p
+                                    data-translate="pci_projects_maintenance_warning_message"
+                                ></p>
+                            </oui-message>
                             <oui-message data-type="info">
                                 <p
                                     data-translate="pci_projects_project_quota_warning_message"
