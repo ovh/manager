@@ -3,6 +3,8 @@ import isUndefined from 'lodash/isUndefined';
 import sortBy from 'lodash/sortBy';
 
 import { DedicatedCloud as DedicatedCloudInfo } from '@ovh-ux/manager-models';
+import { Environment } from '@ovh-ux/manager-config';
+import { SURVEY } from './dedicatedCloud.constants';
 
 import {
   DEDICATEDCLOUD_DATACENTER_DRP_STATUS,
@@ -218,6 +220,15 @@ export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
       },
       usesLegacyOrder: /* @ngInject */ (currentService) =>
         currentService.usesLegacyOrder,
+      surveyUrl: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability('dedicated-cloud:survey')
+          .then((featureAvailability) =>
+            featureAvailability.isFeatureAvailable('dedicated-cloud:survey')
+              ? SURVEY[Environment.getUserLanguage().toUpperCase()] ||
+                SURVEY.default
+              : null,
+          ),
     },
     url: '/configuration/dedicated_cloud/:productId',
     views: {

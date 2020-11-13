@@ -242,5 +242,7 @@
   "ip_order_finish_success": "L’ordine numero <a href='{{t0}}' target='_blank'>{{t1}}</a> è stato preso in carico.",
   "ip_order_finish_error": "Si è verificato un errore durante l'ordine di IP aggiuntivi.",
   "ip_order_free_activation_fee": "Per le macchine con IP aggiuntivi inclusi, le spese di attivazione non vengono rifatturate al rinnovo del server.",
-  "ip_order_resume_short": "Blocco/{{ blockSize }}: {{ price }}"
+  "ip_order_resume_short": "Blocco/{{ blockSize }}: {{ price }}",
+  "dedicatedCloud_survey": "Per migliorare la qualità del servizio Hosted Private Cloud, ti chiediamo di",
+  "dedicatedCloud_survey_link": "condividere il tuo feedback tramite questa interfaccia."
 }

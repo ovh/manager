@@ -10,6 +10,7 @@ export default {
     datastoresState: '<',
     drpState: '<',
     hostsState: '<',
+    surveyUrl: '<',
   },
   controller,
   template,
