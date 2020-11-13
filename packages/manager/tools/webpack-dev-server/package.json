@@ -21,9 +21,8 @@
     "build": "tsc",
     "dev": "yarn run build",
     "dev:watch": "tsc -w",
-    "lint": "eslint --quiet --fix src",
     "prepare": "yarn run build",
-    "test": "eslint --quiet src"
+    "test": "yarn run build"
   },
   "dependencies": {
     "@ovh-ux/manager-dev-server-config": "^1.1.0",
@@ -33,11 +32,6 @@
     "yn": "^4.0.0"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^2.11.0",
-    "@typescript-eslint/parser": "^2.11.0",
-    "eslint": "^6.7.2",
-    "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-import": "^2.19.1",
     "typescript": "^3.7.3"
   }
 }

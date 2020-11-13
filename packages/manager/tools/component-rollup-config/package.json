@@ -24,10 +24,8 @@
     "build": "tsc",
     "dev": "yarn run build",
     "dev:watch": "tsc -w",
-    "lint": "run-p lint:ts lint:md",
-    "lint:md": "eslint --quiet --fix --format=pretty --ext .md .",
-    "lint:ts": "eslint --quiet --fix --format=pretty ./src/**/*.ts",
-    "prepare": "yarn run build"
+    "prepare": "yarn run build",
+    "test": "yarn run build"
   },
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.10.1",
@@ -61,14 +59,6 @@
     "slash": "^2.0.0"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^2.11.0",
-    "@typescript-eslint/parser": "^2.11.0",
-    "eslint": "^6.7.2",
-    "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-formatter-pretty": "^3.0.1",
-    "eslint-plugin-import": "^2.19.1",
-    "eslint-plugin-markdown": "^1.0.0",
-    "npm-run-all": "^4.1.5",
     "typescript": "^3.7.3"
   }
 }
