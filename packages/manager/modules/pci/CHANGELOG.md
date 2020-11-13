@@ -1,3 +1,12 @@
+## [5.2.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.2.6...@ovh-ux/manager-pci@5.2.7) (2020-11-13)
+
+
+### Bug Fixes
+
+* **pci:** add maintenance warning message ([#4018](https://github.com/ovh/manager/issues/4018)) ([8302fd7](https://github.com/ovh/manager/commit/8302fd7831eb012c3ec2be192915ba6998402f57))
+
+
+
 ## [5.2.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.2.5...@ovh-ux/manager-pci@5.2.6) (2020-11-09)
 
 
