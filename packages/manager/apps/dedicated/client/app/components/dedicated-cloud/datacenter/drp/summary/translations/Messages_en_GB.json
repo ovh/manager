@@ -9,8 +9,8 @@
   "dedicatedCloud_datacenter_drp_confirm_summary_drp_type": "Disaster Recovery Plan type",
   "dedicatedCloud_datacenter_drp_confirm_summary_first_ovh_datacenter": "Primary datacentre",
   "dedicatedCloud_datacenter_drp_confirm_summary_first_ovh_pcc": "Primary Private Cloud",
-  "dedicatedCloud_datacenter_drp_confirm_summary_first_onPremise_datacenter": "OVH datacentre",
-  "dedicatedCloud_datacenter_drp_confirm_summary_first_onPremise_pcc": "OVH Private Cloud",
+  "dedicatedCloud_datacenter_drp_confirm_summary_first_onPremise_datacenter": "OVHcloud datacentre",
+  "dedicatedCloud_datacenter_drp_confirm_summary_first_onPremise_pcc": "OVHcloud Private Cloud",
   "dedicatedCloud_datacenter_drp_confirm_summary_secondary_datacenter": "Secondary datacentre",
   "dedicatedCloud_datacenter_drp_confirm_summary_secondary_pcc": "Secondary Private Cloud",
   "dedicatedCloud_datacenter_drp_confirm_delete_drp_title": "Permanently delete DRP",
@@ -18,7 +18,7 @@
   "dedicatedCloud_datacenter_drp_confirm_delete_drp_modal_title": "Deleting a Disaster Recovery Plan",
   "dedicatedCloud_datacenter_drp_confirm_delete_drp_modal_question": "Are you sure you want to delete the DRP? This action cannot be reversed.",
   "dedicatedCloud_datacenter_drp_confirm_delete_drp_success": "Deleting Zerto DRP. This will take a few minutes",
-  "dedicatedCloud_datacenter_drp_confirm_delete_drp_error": "Un error has occurred deleting the Disaster Recovery Plan.",
+  "dedicatedCloud_datacenter_drp_confirm_delete_drp_error": "An error has occurred deleting the Disaster Recovery Plan.",
   "dedicatedCloud_datacenter_drp_required_vpn_configuration": "To finish enabling your Zerto DRP, please add the IPs of the VPN below",
   "dedicatedCloud_datacenter_drp_vpn_presharedkey": "VPN encryption key (PSK)",
   "dedicatedCloud_datacenter_drp_vpn_remoteEndpointPublicIp": "Public IP of remote VPN",
@@ -29,5 +29,5 @@
   "dedicatedCloud_datacenter_drp_vpn_success": "The VPN configuration has been updated",
   "dedicatedCloud_datacenter_drp_vpn_error": "An error has occurred updating the VPN configuration",
   "dedicatedCloud_datacenter_drp_vpn_ip_invalid": "Please enter a valid IPv4 (e.g. 192.168.0.1)",
-  "dedicatedCloud_datacenter_drp_confirm_order": "Your <a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">order form</a> has been successfully generated. Once the payment has been made, you can check the enableDisasterRecovery task in the Operations tab, to track the activation of the option."
+  "dedicatedCloud_datacenter_drp_confirm_order": "Your <a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">purchase order</a> has been successfully generated. Once the payment has been made, you can check the enableDisasterRecovery task in the Operations tab, to track the activation of the option."
 }

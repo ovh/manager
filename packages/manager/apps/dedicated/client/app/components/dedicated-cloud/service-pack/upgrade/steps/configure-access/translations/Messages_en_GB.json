@@ -13,6 +13,6 @@
   "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_whatToDoNow_1": "Please configure these elements in the ",
   "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_whatToDoNow_security": "Security",
   "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_whatToDoNow_2": " tab before you continue",
-  "dedicatedCloud_servicePack_requiredConfiguration_previousButton": "Back",
+  "dedicatedCloud_servicePack_requiredConfiguration_previousButton": "Previous",
   "dedicatedCloud_servicePack_requiredConfiguration_nextButton": "Next"
 }

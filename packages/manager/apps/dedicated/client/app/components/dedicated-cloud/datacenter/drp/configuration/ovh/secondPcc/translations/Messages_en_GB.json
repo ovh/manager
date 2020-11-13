@@ -15,6 +15,6 @@
   "dedicatedCloud_datacenter_secondary_datacenter_subnetwork_mask": "Subnet mask (optional)",
   "dedicatedCloud_datacenter_secondary_datacenter_pcc_on_same_location_warning": "This Private Cloud must be hosted in a different datacentre to the primary Private Cloud.",
   "dedicatedCloud_datacenter_secondary_datacenter_without_hosts": "The datacentre selected does not have any hosts.",
-  "dedicatedCloud_datacenter_secondary_datacenter_choose_another_or_order_host": "Choose a datacenter with at least one host, or order a host. ",
+  "dedicatedCloud_datacenter_secondary_datacenter_choose_another_or_order_host": "Choose a datacentre with at least one host, or order a host. ",
   "dedicatedCloud_datacenter_secondary_datacenter_get_hosts_error": "An error has occurred retrieving hosts for the secondary datacentre"
 }
