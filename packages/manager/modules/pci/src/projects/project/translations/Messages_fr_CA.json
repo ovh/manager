@@ -19,5 +19,6 @@
   "pci_projects_project_welcome": "Bienvenue sur la nouvelle interface Public Cloud",
   "pci_projects_project_keystone_upgrade": "Changement important le 23 juin 2020, merci d'anticiper dès maintenant le passage à <strong>Keystone v3</strong>.",
   "pci_projects_project_keystone_upgrade_more": "En savoir plus",
-  "pci_projects_project_quota_warning_message": "Par mesure de sécurité, votre projet est soumis à un quota. Si vous voulez augmenter ce quota, rendez-vous sur la page <a data-ui-sref=\"{{ quotaUrl }}\">Quota and localization</a>."
+  "pci_projects_project_quota_warning_message": "Par mesure de sécurité, votre projet est soumis à un quota. Si vous voulez augmenter ce quota, rendez-vous sur la page <a data-ui-sref=\"{{ quotaUrl }}\">Quota and localization</a>.",
+  "pci_projects_maintenance_warning_message": "Afin d'améliorer la stabilité des APIs Public Cloud, une série de maintenances vont avoir lieu dans les différentes régions Public Cloud. Les opérations seront d'une durée maximale de 2h en heures non ouvrées. Durant la période de maintenance il ne sera pas possible sur la région concernée de créer, modifier ou supprimer des ressources Cloud. <br />Vous pouvez retrouver le détail des planifications zone par zone sur cette tâche travaux : <a href=\"http://travaux.ovh.net/?do=details&id=47661\" target=\"_blank\">http://travaux.ovh.net/?do=details&id=47661</a>"
 }
