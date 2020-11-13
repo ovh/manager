@@ -163,17 +163,6 @@ export = opts => {
           ],
         },
 
-        // load translations (convert from xml to json)
-        {
-          test: /Messages_\w+_\w+\.xml$/,
-          use: [
-            cacheLoader,
-            {
-              loader: path.resolve(__dirname, './loaders/translation-xml.js'),
-            },
-          ],
-        },
-
         // normalize json translation files
         {
           test: /Messages_\w+_\w+\.json$/,
