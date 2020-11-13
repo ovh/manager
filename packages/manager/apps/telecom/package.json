@@ -144,7 +144,7 @@
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^3.0.0",
+    "@ovh-ux/manager-webpack-config": "^3.0.0 || ^4.0.0",
     "glob": "^7.1.4",
     "webpack": "^4.44.2",
     "webpack-merge": "^4.2.2"

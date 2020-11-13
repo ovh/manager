@@ -70,7 +70,7 @@
     "ui-select": "^0.19.8"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^3.0.8",
+    "@ovh-ux/manager-webpack-config": "^3.0.8 || ^4.0.0",
     "webpack-merge": "^4.2.2"
   }
 }
