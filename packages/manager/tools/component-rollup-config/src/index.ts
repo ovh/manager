@@ -12,10 +12,10 @@ import path from 'path';
 import peerdeps from 'rollup-plugin-peer-deps-external';
 import resolve from '@rollup/plugin-node-resolve';
 import sass from 'rollup-plugin-sass';
+import dynamicImportVars from '@rollup/plugin-dynamic-import-vars';
 
 import translationInject from './plugins/translation-inject';
 import translationUiRouter from './plugins/translation-ui-router';
-import translationXML from './plugins/translation-xml';
 import common from './plugins/common';
 
 const defaultName = path.basename(process.cwd());
@@ -64,7 +64,7 @@ const generateConfig = (opts, pluginsOpts) => mergeConfig({
       subdirectory: 'translations',
       languages: getLanguages(pluginsOpts),
     }),
-    translationXML(),
+    dynamicImportVars(),
     babel({
       babelHelpers: 'bundled',
       babelrc: false,
@@ -130,7 +130,6 @@ const config = (globalOpts = {}, pluginsOpts = {}) => ({
 config.plugins = {
   translationInject,
   translationUiRouter,
-  translationXML,
 };
 
 config.common = {
