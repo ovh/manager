@@ -27,6 +27,7 @@ export default {
     orderVmwareOption: '<',
     productId: '<',
     setMessage: '<',
+    surveyUrl: '<',
   },
   template,
 };

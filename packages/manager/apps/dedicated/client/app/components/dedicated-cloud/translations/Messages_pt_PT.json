@@ -242,5 +242,7 @@
   "ip_order_finish_success": "A encomenda número <a href='{{t0}}' target='_blank'>{{t1}}</a> foi devidamente registada.",
   "ip_order_finish_error": "Ocorreu um erro durante a encomenda de IP adicionais.",
   "ip_order_free_activation_fee": "Para os servidores cujos IPs são oferecidos, estas taxas de ativação não serão novamente faturadas quando for renovado o servidor de destino.",
-  "ip_order_resume_short": "Bloco /{{ blockSize }}: {{ price }}"
+  "ip_order_resume_short": "Bloco /{{ blockSize }}: {{ price }}",
+  "dedicatedCloud_survey": "Para melhorar a qualidade do serviço Hosted Private Cloud, pedimos-lhe que",
+  "dedicatedCloud_survey_link": "partilhe a sua opinião sobre esta interface"
 }

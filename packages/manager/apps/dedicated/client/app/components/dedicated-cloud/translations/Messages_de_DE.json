@@ -242,5 +242,7 @@
   "ip_order_finish_success": "Die Bestellung Nummer <a href='{{t0}}' target='_blank'>{{t1}}</a> wurde erfolgreich durchgeführt.",
   "ip_order_finish_error": "Bei der Bestellung zusätzlicher IP-Adressen ist ein Fehler aufgetreten.",
   "ip_order_free_activation_fee": "Bei Servern, für die der Bezug zusätzlicher IP-Adressen kostenlos ist, werden diese Aktivierungsgebühren bei der Verlängerung des Servers nicht erneut in Rechnung gestellt.",
-  "ip_order_resume_short": "Block / {{ blockSize }}: {{ price }}"
+  "ip_order_resume_short": "Block / {{ blockSize }}: {{ price }}",
+  "dedicatedCloud_survey": "Zur Verbesserung der Qualität des Dienstes Hosted Private Cloud: Bitte",
+  "dedicatedCloud_survey_link": "teilen Sie uns Ihre Meinung zu diesem Interface mit."
 }
