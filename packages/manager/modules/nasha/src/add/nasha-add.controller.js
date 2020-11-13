@@ -3,12 +3,14 @@ export default class NashaAddCtrl {
   constructor(
     $translate,
     $state,
+    $window,
     CucCloudMessage,
     CucControllerHelper,
     NashaAddService,
   ) {
     this.$translate = $translate;
     this.$state = $state;
+    this.$window = $window;
     this.CucCloudMessage = CucCloudMessage;
     this.CucControllerHelper = CucControllerHelper;
     this.NashaAddService = NashaAddService;
@@ -35,8 +37,8 @@ export default class NashaAddCtrl {
   }
 
   order() {
-    this.NashaAddService.order(this.data).then((response) =>
-      this.$state.go('nasha-order-complete', { orderUrl: response.url }),
+    this.NashaAddService.order(this.data).then(({ url }) =>
+      this.$window.open(url, '_blank'),
     );
   }
 
