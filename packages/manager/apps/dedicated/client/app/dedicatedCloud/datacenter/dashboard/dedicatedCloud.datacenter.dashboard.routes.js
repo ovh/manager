@@ -6,6 +6,9 @@ export default /* @ngInject */ ($stateProvider) => {
         'pccDatacenterView@app.dedicatedCloud.details.datacenter.details':
           'ovhManagerDedicatedCloudDatacenterDashboard',
       },
+      resolve: {
+        breadcrumb: () => null,
+      },
     },
   );
 };

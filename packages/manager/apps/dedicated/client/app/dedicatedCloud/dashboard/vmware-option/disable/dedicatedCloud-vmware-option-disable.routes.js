@@ -15,6 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         goBack: /* @ngInject */ (goBackToDashboard) => goBackToDashboard,
         option: /* @ngInject */ ($transition$) => $transition$.params().option,
+        breadcrumb: () => null,
       },
     },
   );

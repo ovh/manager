@@ -11,6 +11,8 @@ export default /* @ngInject */ ($stateProvider) => {
           productId,
           operationToEdit: task,
         }),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('dedicated_cloud_operation'),
     },
   });
 };

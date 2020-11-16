@@ -13,6 +13,7 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       goBack: /* @ngInject */ (goBackToDashboard) => goBackToDashboard,
       token: /* @ngInject */ ($transition$) => $transition$.params().token,
+      breadcrumb: () => null,
     },
   });
 };

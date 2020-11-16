@@ -20,6 +20,7 @@ export default /* @ngInject */ ($stateProvider) => {
             },
           ),
         minimumHosts: () => BACKUP_MINIMUM_HOST_COUNT,
+        breadcrumb: () => null,
       },
     },
   );

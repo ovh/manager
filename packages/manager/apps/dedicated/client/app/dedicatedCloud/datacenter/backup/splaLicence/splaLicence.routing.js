@@ -4,6 +4,9 @@ export default /* @ngInject */ ($stateProvider) => {
     {
       url: '/spla-licence',
       component: 'dedicatedCloudDatacenterBackupSplaLicence',
+      resolve: {
+        breadcrumb: () => null,
+      },
     },
   );
 };

@@ -13,7 +13,8 @@ export default /* @ngInject */ ($stateProvider) => {
           rightId,
           userId,
         }),
-      userId: /* @ngInject */ ($transition$) => $transition$.params().userId,
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('dedicated_cloud_users_rights'),
     },
   });
 };

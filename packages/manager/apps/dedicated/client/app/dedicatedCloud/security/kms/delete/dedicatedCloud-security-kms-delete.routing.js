@@ -13,6 +13,7 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       kmsToDelete: /* @ngInject */ ($transition$) =>
         $transition$.params().kmsToDelete,
+      breadcrumb: () => null,
     },
   });
 };

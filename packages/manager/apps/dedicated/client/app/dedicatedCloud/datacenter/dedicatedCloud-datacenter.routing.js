@@ -2,7 +2,8 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicatedCloud.details.datacenter.details', {
     url: '/:datacenterId',
     views: {
-      dedicatedCloudView: 'ovhManagerDedicatedCloudDatacenter',
+      'dedicatedCloudView@app.dedicatedCloud.details':
+        'ovhManagerDedicatedCloudDatacenter',
     },
     redirectTo: 'app.dedicatedCloud.details.datacenter.details.dashboard',
     resolve: {
@@ -57,6 +58,7 @@ export default /* @ngInject */ ($stateProvider) => {
           'dedicatedCloudDatacenterAlert',
         );
       },
+      breadcrumb: /* @ngInject */ (datacenterId) => datacenterId,
     },
   });
 };
