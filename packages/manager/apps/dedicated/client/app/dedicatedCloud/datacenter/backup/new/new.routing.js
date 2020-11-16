@@ -21,6 +21,7 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         defaultPaymentMethod: (ovhPaymentMethod) =>
           ovhPaymentMethod.getDefaultPaymentMethod(),
+        breadcrumb: () => null,
       },
     },
   );

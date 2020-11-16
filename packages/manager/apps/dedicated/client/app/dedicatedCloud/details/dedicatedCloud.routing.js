@@ -263,6 +263,7 @@ export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
                 SURVEY.default
               : null,
           ),
+      breadcrumb: /* @ngInject */ (serviceName) => serviceName,
     },
     views: {
       '': 'ovhManagerPcc',

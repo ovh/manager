@@ -10,6 +10,7 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       drpInformations: /* @ngInject */ (currentDrp, dedicatedCloudDrp) =>
         dedicatedCloudDrp.constructor.getPlanServiceInformations(currentDrp),
+      breadcrumb: () => null,
     },
   });
 };

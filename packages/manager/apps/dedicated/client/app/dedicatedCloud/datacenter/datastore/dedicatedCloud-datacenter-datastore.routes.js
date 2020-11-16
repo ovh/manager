@@ -7,7 +7,6 @@ export default /* @ngInject */ ($stateProvider) => {
       views: {
         pccDatacenterView: 'ovhManagerDedicatedCloudDatacenterDatastore',
       },
-      translations: { value: ['../../../dedicated/server'], format: 'json' },
       resolve: {
         serviceId: /* @ngInject */ (currentService) =>
           currentService.serviceInfos.serviceId,
@@ -48,6 +47,10 @@ export default /* @ngInject */ ($stateProvider) => {
 
           return promise;
         },
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant(
+            'dedicated_cloud_datacenters_datacenter_datastores',
+          ),
       },
     },
   );
