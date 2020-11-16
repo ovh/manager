@@ -1,3 +1,12 @@
+## [1.2.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ui-router-line-progress@1.2.2...@ovh-ux/ng-ui-router-line-progress@1.2.3) (2020-11-16)
+
+
+### Bug Fixes
+
+* **config:** complete nprogress when redirect to same state ([#3974](https://github.com/ovh/manager/issues/3974)) ([562b35c](https://github.com/ovh/manager/commit/562b35ccf0c98a32c2828d22cf009fa38f12a367))
+
+
+
 ## [1.2.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ui-router-line-progress@1.2.1...@ovh-ux/ng-ui-router-line-progress@1.2.2) (2020-08-05)
 
 

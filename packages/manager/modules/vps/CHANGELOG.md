@@ -1,3 +1,14 @@
+## [2.2.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.2.4...@ovh-ux/manager-vps@2.2.5) (2020-11-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 636] ([da5b51b](https://github.com/ovh/manager/commit/da5b51b1df6466ec8fda13ce91397d0ede15f46c))
+* **i18n:** add missing translations [CDS 639] ([ddb4bd2](https://github.com/ovh/manager/commit/ddb4bd2daec6972c4ac7696aac6541da1d1a3e26))
+* **vps:** remove maintenance warning message ([#3999](https://github.com/ovh/manager/issues/3999)) ([07baf91](https://github.com/ovh/manager/commit/07baf913e1b4e66d0fd87611134004f7a036eb27))
+
+
+
 ## [2.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.2.3...@ovh-ux/manager-vps@2.2.4) (2020-11-02)
 
 

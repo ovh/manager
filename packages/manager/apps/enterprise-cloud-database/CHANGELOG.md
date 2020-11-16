@@ -1,3 +1,12 @@
+## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-enterprise-cloud-database-app@1.1.0...@ovh-ux/manager-enterprise-cloud-database-app@1.1.1) (2020-11-16)
+
+
+### Bug Fixes
+
+* **deps:** add missing deps ([558276f](https://github.com/ovh/manager/commit/558276f39789bf9ed3da962b40a5f2be94658d90))
+
+
+
 # [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-enterprise-cloud-database-app@1.0.5...@ovh-ux/manager-enterprise-cloud-database-app@1.1.0) (2020-10-28)
 
 

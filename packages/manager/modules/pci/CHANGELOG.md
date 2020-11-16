@@ -1,3 +1,23 @@
+# [5.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.2.7...@ovh-ux/manager-pci@5.3.0) (2020-11-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 654] ([d6d0d1f](https://github.com/ovh/manager/commit/d6d0d1fff030d69cb5e1f49eb58b4d9ec86dc1a6))
+* **i18n:** add missing translations [CDS 660] ([c99b0b9](https://github.com/ovh/manager/commit/c99b0b924a5595b773a9553ec37d9f6bef3e99ed))
+* **kubernetes:** node pool column alignment ([577b94e](https://github.com/ovh/manager/commit/577b94eccab8a0bebbd89c7ab4f1b51642fca8b1))
+* **project.quota.increase-request:** fix quota type id ([#3824](https://github.com/ovh/manager/issues/3824)) ([8bc3ac6](https://github.com/ovh/manager/commit/8bc3ac6440f7cb9d49e02ffd42da5cd21187f4bc))
+* **translations:** clean translations files ([#4008](https://github.com/ovh/manager/issues/4008)) ([3dfc129](https://github.com/ovh/manager/commit/3dfc1296ce2e702b08b1f54c007123ad0c55a53a))
+
+
+### Features
+
+* **pci.kube.node:** activate monthly billing for nodepool creation ([8035399](https://github.com/ovh/manager/commit/8035399a0e09e749decfdd5b5cb104416ad0b376))
+* **pci.kube.nodes:** add monthly billing information column ([3eca9b6](https://github.com/ovh/manager/commit/3eca9b63deedb1a326e5604a765577c11734e4ed))
+* **public-cloud:** kubernetes anti-affinity ([1f3a0ce](https://github.com/ovh/manager/commit/1f3a0ce0755b05802968b3861caebeb450106025)), closes [#MANAGER-5524](https://github.com/ovh/manager/issues/MANAGER-5524)
+
+
+
 ## [5.2.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.2.6...@ovh-ux/manager-pci@5.2.7) (2020-11-13)
 
 

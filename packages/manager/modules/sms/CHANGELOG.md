@@ -1,3 +1,13 @@
+## [8.0.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.0.8...@ovh-ux/manager-sms@8.0.9) (2020-11-16)
+
+
+### Bug Fixes
+
+* **sms.batches.create:** fix empty recipients array and slotID ([#3990](https://github.com/ovh/manager/issues/3990)) ([90e7ff8](https://github.com/ovh/manager/commit/90e7ff846ed1b6b17a35bd38715343c77c211336))
+* **translations:** clean translations files ([#4008](https://github.com/ovh/manager/issues/4008)) ([3dfc129](https://github.com/ovh/manager/commit/3dfc1296ce2e702b08b1f54c007123ad0c55a53a))
+
+
+
 ## [8.0.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.0.7...@ovh-ux/manager-sms@8.0.8) (2020-10-28)
 
 

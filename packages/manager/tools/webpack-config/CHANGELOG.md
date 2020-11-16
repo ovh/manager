@@ -1,3 +1,12 @@
+## [3.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-config@3.6.0...@ovh-ux/manager-webpack-config@3.6.1) (2020-11-16)
+
+
+### Bug Fixes
+
+* **loaders:** add es6 proposals for translations webpack plugins ([#3816](https://github.com/ovh/manager/issues/3816)) ([8637ef1](https://github.com/ovh/manager/commit/8637ef16f547420ba4f87d6081ae12038a0e17a4))
+
+
+
 # [3.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-config@3.5.0...@ovh-ux/manager-webpack-config@3.6.0) (2020-10-28)
 
 

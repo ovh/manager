@@ -1,3 +1,12 @@
+## [11.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@11.0.0...@ovh-ux/manager-cloud@11.0.1) (2020-11-16)
+
+
+### Performance Improvements
+
+* remove unused jquery-cookie dependency ([#4014](https://github.com/ovh/manager/issues/4014)) ([9114662](https://github.com/ovh/manager/commit/9114662d99b4a8d71d8060af7d6d6556dcf0d331))
+
+
+
 # [11.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@10.2.8...@ovh-ux/manager-cloud@11.0.0) (2020-10-28)
 
 
