@@ -1,3 +1,12 @@
+## [2.1.1](https://github.com/ovh/manager/compare/@ovh-ux/order-tracking-app@2.1.0...@ovh-ux/order-tracking-app@2.1.1) (2020-11-16)
+
+
+### Bug Fixes
+
+* **deps:** add missing deps ([cd7b610](https://github.com/ovh/manager/commit/cd7b6105868c252d5ef3596323452e562b40f954))
+
+
+
 # [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/order-tracking-app@2.0.4...@ovh-ux/order-tracking-app@2.1.0) (2020-10-28)
 
 

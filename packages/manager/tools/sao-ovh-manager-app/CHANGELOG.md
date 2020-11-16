@@ -1,3 +1,12 @@
+# [2.3.0](https://github.com/ovh/manager/compare/@ovh-ux/sao-ovh-manager-app@2.2.0...@ovh-ux/sao-ovh-manager-app@2.3.0) (2020-11-16)
+
+
+### Features
+
+* prompt new question to describe application ([1c52880](https://github.com/ovh/manager/commit/1c528803b55f39a39719b09135506716d35b2bd0))
+
+
+
 # [2.2.0](https://github.com/ovh/manager/compare/@ovh-ux/sao-ovh-manager-app@2.1.1...@ovh-ux/sao-ovh-manager-app@2.2.0) (2020-10-28)
 
 

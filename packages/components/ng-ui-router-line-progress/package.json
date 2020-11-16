@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ui-router-line-progress",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Display a line progress between UI-Router transition hooks.",
   "keywords": [
     "angular",

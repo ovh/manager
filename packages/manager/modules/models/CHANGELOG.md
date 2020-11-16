@@ -1,3 +1,12 @@
+## [1.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@1.4.2...@ovh-ux/manager-models@1.4.3) (2020-11-16)
+
+
+### Bug Fixes
+
+* **models:** add dedicatedCloud class ([1c624c4](https://github.com/ovh/manager/commit/1c624c41f7017ac7a0f031b05f0ed9ea38d256b0))
+
+
+
 ## [1.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@1.4.1...@ovh-ux/manager-models@1.4.2) (2020-09-28)
 
 

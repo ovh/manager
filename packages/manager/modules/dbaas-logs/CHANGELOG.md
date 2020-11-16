@@ -1,3 +1,18 @@
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.0.0...@ovh-ux/manager-dbaas-logs@1.1.0) (2020-11-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 638] ([2b63404](https://github.com/ovh/manager/commit/2b6340470f11b3a5b019429abbbf3f94ba9c54b3))
+* **i18n:** add missing translations [CDS 647] ([22b29a7](https://github.com/ovh/manager/commit/22b29a7b7053db07cebf02d80463ac8e82387cc6))
+
+
+### Features
+
+* **logs:** make module lazy loaded ([#4009](https://github.com/ovh/manager/issues/4009)) ([6e4135f](https://github.com/ovh/manager/commit/6e4135fc17c7091942e9cff1aaa099eb907fc5d0))
+
+
+
 # [1.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@0.0.0...@ovh-ux/manager-dbaas-logs@1.0.0) (2020-10-28)
 
 

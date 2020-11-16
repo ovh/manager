@@ -1,3 +1,39 @@
+# [14.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.5.1...@ovh-ux/manager-dedicated@14.6.0) (2020-11-16)
+
+
+### Bug Fixes
+
+* **billing:** remove pagination if empty list ([#3984](https://github.com/ovh/manager/issues/3984)) ([ef729d5](https://github.com/ovh/manager/commit/ef729d5102d50b547a970725d7da3dbfd55be0b0))
+* **dedicated:** update translations ([#3980](https://github.com/ovh/manager/issues/3980)) ([fe5d24e](https://github.com/ovh/manager/commit/fe5d24e1c4df5d6b5f421abd70b8458bf6373931))
+* **i18n:** add missing translations [CDS 638] ([2b63404](https://github.com/ovh/manager/commit/2b6340470f11b3a5b019429abbbf3f94ba9c54b3))
+* **i18n:** add missing translations [CDS 639] ([ddb4bd2](https://github.com/ovh/manager/commit/ddb4bd2daec6972c4ac7696aac6541da1d1a3e26))
+* **i18n:** add missing translations [CDS 646] ([2c2e07c](https://github.com/ovh/manager/commit/2c2e07cef0d49428e4957d32cf780cd194e328cb))
+* **i18n:** add missing translations [CDS 649] ([9308a0e](https://github.com/ovh/manager/commit/9308a0eb699768fa9e25a21e349f5db89eb07ac6))
+* **i18n:** add missing translations [CDS 653] ([59a73ea](https://github.com/ovh/manager/commit/59a73ea6c1aefa4fa4b81f1a003a7d0efabc10a4))
+* **i18n:** add missing translations [CDS 655] ([7ee8d0e](https://github.com/ovh/manager/commit/7ee8d0efc0007fecbe8274c46f537a516e41bb16))
+* **i18n:** add missing translations [CDS 656] ([073ee6a](https://github.com/ovh/manager/commit/073ee6aa15fff82a11547a851c8af2c6a5b66a1a))
+* **i18n:** add missing translations [CDS 665] ([72bc72b](https://github.com/ovh/manager/commit/72bc72b6ab934204f4e9c4c76e6c47c15f11281c))
+* **ip:** not possibble to add  mac address ([#4003](https://github.com/ovh/manager/issues/4003)) ([22338c9](https://github.com/ovh/manager/commit/22338c90c57c30f192ee511193fe1c3d3200675b))
+* **models:** add dedicatedCloud class ([1c624c4](https://github.com/ovh/manager/commit/1c624c41f7017ac7a0f031b05f0ed9ea38d256b0))
+* **translations:** clean translations files ([#4008](https://github.com/ovh/manager/issues/4008)) ([3dfc129](https://github.com/ovh/manager/commit/3dfc1296ce2e702b08b1f54c007123ad0c55a53a))
+* **user:** change label for deactivate 2FA codes ([f76d040](https://github.com/ovh/manager/commit/f76d0402f0d7165fa6b867760d734a4ff81c9d9e))
+
+
+### Features
+
+* **dedicated-cloud:** add survey banner ([#4017](https://github.com/ovh/manager/issues/4017)) ([961b2dd](https://github.com/ovh/manager/commit/961b2ddb771dfa8f9f13dfe8905c791a7fc232f2))
+
+
+### Performance Improvements
+
+* lazy load angular-qr dependency ([#3996](https://github.com/ovh/manager/issues/3996)) ([6d5b608](https://github.com/ovh/manager/commit/6d5b608b92608bfb8fa9e164b589bd12a478bb3b))
+* remove full lodash import ([#4007](https://github.com/ovh/manager/issues/4007)) ([9cf553c](https://github.com/ovh/manager/commit/9cf553c7718b51869e3cd0b3057d4f6e762716cf))
+* remove raphael and justgage unused deps ([#3997](https://github.com/ovh/manager/issues/3997)) ([b547a59](https://github.com/ovh/manager/commit/b547a5946dadcee5b5002e2089534387fc0354c9))
+* remove unused ckeditor import ([#3995](https://github.com/ovh/manager/issues/3995)) ([42b1a31](https://github.com/ovh/manager/commit/42b1a31dd836dbcc207ccdfe7fc421fc028e6061))
+* remove unused jquery-cookie dependency ([#4014](https://github.com/ovh/manager/issues/4014)) ([9114662](https://github.com/ovh/manager/commit/9114662d99b4a8d71d8060af7d6d6556dcf0d331))
+
+
+
 ## [14.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.5.0...@ovh-ux/manager-dedicated@14.5.1) (2020-11-09)
 
 

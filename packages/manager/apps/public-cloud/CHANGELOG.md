@@ -1,3 +1,12 @@
+## [4.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.3.0...@ovh-ux/manager-public-cloud@4.3.1) (2020-11-16)
+
+
+### Performance Improvements
+
+* remove unused angular-vs-repeat dependency ([#4010](https://github.com/ovh/manager/issues/4010)) ([4691d0c](https://github.com/ovh/manager/commit/4691d0cd429270e8fa16a7bcf16ce0b48d0e295c))
+
+
+
 # [4.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.2.6...@ovh-ux/manager-public-cloud@4.3.0) (2020-10-28)
 
 

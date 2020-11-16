@@ -1,3 +1,24 @@
+## [13.6.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.6.4...@ovh-ux/manager-telecom@13.6.5) (2020-11-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 636] ([da5b51b](https://github.com/ovh/manager/commit/da5b51b1df6466ec8fda13ce91397d0ede15f46c))
+* **i18n:** add missing translations [CDS 639] ([ddb4bd2](https://github.com/ovh/manager/commit/ddb4bd2daec6972c4ac7696aac6541da1d1a3e26))
+* **i18n:** add missing translations [CDS 642] ([d3a9a07](https://github.com/ovh/manager/commit/d3a9a071ff381bc5fed8bc913dbd83c91ffbb8c5))
+* **i18n:** add missing translations [CDS 646] ([2c2e07c](https://github.com/ovh/manager/commit/2c2e07cef0d49428e4957d32cf780cd194e328cb))
+* **pack.resiliation:** fix on resiliation date test ([#3927](https://github.com/ovh/manager/issues/3927)) ([f09c367](https://github.com/ovh/manager/commit/f09c367f082af2d6d360b96fa79e4d9c69381354))
+* **pack.xdsl.access:** remove disabled for ftth pack ([#3914](https://github.com/ovh/manager/issues/3914)) ([de854af](https://github.com/ovh/manager/commit/de854afd00863c79a68f8a13ca12dfc976ccbe2b))
+* **pack.xdsl.modem:** disable modem wifi config if remote config is disabled ([#3630](https://github.com/ovh/manager/issues/3630)) ([700dbf3](https://github.com/ovh/manager/commit/700dbf3e8eb1333cc0f0e3d4814ba27a45f6f019))
+* **telephony.service.voicemail:** replace aapi call with autocomplete ([d9d2fcd](https://github.com/ovh/manager/commit/d9d2fcdefe05d311c74c21770d0a359cd172f37c))
+
+
+### Performance Improvements
+
+* remove unused jquery-cookie dependency ([#4014](https://github.com/ovh/manager/issues/4014)) ([9114662](https://github.com/ovh/manager/commit/9114662d99b4a8d71d8060af7d6d6556dcf0d331))
+
+
+
 ## [13.6.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.6.3...@ovh-ux/manager-telecom@13.6.4) (2020-11-12)
 
 

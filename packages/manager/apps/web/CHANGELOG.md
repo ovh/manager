@@ -1,3 +1,21 @@
+## [15.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.5.1...@ovh-ux/manager-web@15.5.2) (2020-11-16)
+
+
+### Bug Fixes
+
+* **translations:** clean translations files ([#4008](https://github.com/ovh/manager/issues/4008)) ([3dfc129](https://github.com/ovh/manager/commit/3dfc1296ce2e702b08b1f54c007123ad0c55a53a))
+
+
+### Performance Improvements
+
+* remove unused angular-flash-alert dependency ([#4012](https://github.com/ovh/manager/issues/4012)) ([81f51a5](https://github.com/ovh/manager/commit/81f51a55d6ffaa3f95980d99b15d4c873dcc959d))
+* remove unused angular-vs-repeat dependency ([#4010](https://github.com/ovh/manager/issues/4010)) ([4691d0c](https://github.com/ovh/manager/commit/4691d0cd429270e8fa16a7bcf16ce0b48d0e295c))
+* remove unused ckeditor import ([#3995](https://github.com/ovh/manager/issues/3995)) ([42b1a31](https://github.com/ovh/manager/commit/42b1a31dd836dbcc207ccdfe7fc421fc028e6061))
+* remove unused jquery-cookie dependency ([#4014](https://github.com/ovh/manager/issues/4014)) ([9114662](https://github.com/ovh/manager/commit/9114662d99b4a8d71d8060af7d6d6556dcf0d331))
+* remove unused lodash import ([#4013](https://github.com/ovh/manager/issues/4013)) ([980de2c](https://github.com/ovh/manager/commit/980de2ce8beba6d8fd4a9ae4892f96ad978ed065))
+
+
+
 ## [15.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.5.0...@ovh-ux/manager-web@15.5.1) (2020-10-29)
 
 
