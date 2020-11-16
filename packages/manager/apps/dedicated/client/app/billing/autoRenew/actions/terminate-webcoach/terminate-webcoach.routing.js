@@ -15,5 +15,8 @@ export default /* @ngInject */ ($stateProvider) => {
       terminateWebCoach: /* @ngInject */ (OvhApiWebCoach, serviceId) => () =>
         OvhApiWebCoach.v6().terminate({ serviceName: serviceId }).$promise,
     },
+    atInternet: {
+      ignore: true,
+    },
   });
 };
