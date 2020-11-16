@@ -1,0 +1,20 @@
+{
+  "dedicatedCloud_USER_change_password": "Change password",
+  "dedicatedCloud_users_password_reset_not_allowed": "To change your password, please go to your certified web interface at the following address: ",
+  "dedicatedCloud_USER_change_password_confirmation": "Enter the new password for the <b>{{t0}}</b> user:",
+  "dedicatedCloud_USER_change_password_new": "New password",
+  "dedicatedCloud_USER_change_password_digitMandatory": "At least one number",
+  "dedicatedCloud_USER_change_password_letterMandatory": "At least one letter ",
+  "dedicatedCloud_USER_change_password_lowercaseLetterMandatory": "Must contain lower-case letters",
+  "dedicatedCloud_USER_change_password_denied_chars": "Must not contain the following characters: {{ chars }}",
+  "dedicatedCloud_USER_change_password_specialMandatory": "At least one special character ",
+  "dedicatedCloud_USER_change_password_uppercaseLetterMandatory": "Must contain upper-case letters",
+  "dedicatedCloud_USER_change_password_maxLength": "Maximum length:",
+  "dedicatedCloud_USER_change_password_minLength": "Minimum length:",
+  "dedicatedCloud_USER_change_password_repeat": "Confirm password",
+  "dedicatedCloud_USER_change_password_repeat_fail": "The two passwords must be identical ",
+  "dedicatedCloud_USER_change_password_informations": "If you do not set a password, you will be sent a randomly-generated password via email.",
+  "dedicatedCloud_users_password_loading_done": "Password successfully changed ",
+  "dedicatedCloud_users_password_loading_error": "Unable to change password ",
+  "dedicatedCloud_users_password_reset_check_error": "An error has occurred loading your data."
+}

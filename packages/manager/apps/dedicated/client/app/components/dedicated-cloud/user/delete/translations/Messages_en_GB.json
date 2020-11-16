@@ -1,0 +1,6 @@
+{
+  "dedicatedCloud_USER_delete_title": "Delete user",
+  "dedicatedCloud_USER_delete_message": "Are you sure you want to delete the <b>{{t0}}</b> user? ",
+  "dedicatedCloud_USER_delete_success": "The request to delete the <b>{{t0}}</b> user has been registered",
+  "dedicatedCloud_USER_delete_fail": "An error has occurred deleting the <b>{{t0}}</b> user"
+}

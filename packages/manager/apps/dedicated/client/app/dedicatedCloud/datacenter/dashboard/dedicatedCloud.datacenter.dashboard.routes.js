@@ -1,10 +1,8 @@
-angular.module('App').config(($stateProvider) => {
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicatedClouds.datacenter.dashboard', {
     views: {
-      'pccDatacenterView@app.dedicatedClouds.datacenter': {
-        templateUrl:
-          'dedicatedCloud/datacenter/dashboard/dedicatedCloud-datacenter-dashboard.html',
-      },
+      'pccDatacenterView@app.dedicatedClouds.datacenter':
+        'ovhManagerDedicatedCloudDatacenterDashboard',
     },
   });
-});
+};

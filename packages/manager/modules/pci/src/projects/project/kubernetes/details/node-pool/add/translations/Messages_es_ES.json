@@ -4,5 +4,7 @@
   "kube_add_node_pool_creating": "Creación de un pool de nodos",
   "kube_add_node_pool_success": "El pool de nodos «{{nodePoolName}}» se ha creado correctamente.",
   "kube_add_node_pool_error": "No es posible crear el pool de nodos {{ nodePoolName }}: {{ message }}",
-  "kube_add_billing_type_description": "En la vista edición del pool de nodos, puede pasar de facturación por horas a facturación mensual en cada nodo."
+  "kube_add_billing_type_description": "Este modo de facturación se aplicará a todos los nodos futuros del pool. Más adelante podrá modificar la facturación de cada uno de sus nodos pasando de la modalidad por horas a la mensual.",
+  "kube_add_billing_type_payment_method": "El importe se cargará en su forma de pago por defecto.",
+  "kube_add_billing_anti_affinity_title": "Facturación y antiafinidad"
 }

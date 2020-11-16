@@ -637,6 +637,7 @@
   "license_order_step2_option_WINDOWS_sqlversion": "SQL-Version",
   "license_order_step2_option_WORKLIGHT_lessThan1000Users": "Unternehmen mit weniger als 1000 Beschäftigten",
   "license_order_step3_title": "3. Wählen Sie eine Laufzeit aus",
+  "license_order_step3_pricing_warning": "Je nach Ablaufdatum Ihrer Dienstleistungen kann ein anteiliger Preis berechnet werden.",
   "license_order_step4_title": "4. Bestätigung",
   "license_order_step4_question": "Klicken Sie auf \"Bestellschein erstellen\", um Ihre Lizenz zu bestellen.",
   "license_order_step4_contracts_ask": "Bitte lesen und akzeptieren Sie die unten aufgeführten Verträge und klicken Sie dann auf \"Bestellschein erstellen\":",
@@ -688,6 +689,5 @@
   "license_designation_CPANEL_premier_option": "bis zu {{ numberOfCPANEL }} CPANEL Accounts",
   "license_designation_CPANEL_admin_option": "2-5 CPANEL Accounts",
   "license_designation_CPANEL_pro_option": "6-30 CPANEL Accounts",
-  "license_order_step3_pricing_warning": "The price will be calculated on a pro-rata basis depending on your services expiry date",
-  "license_designation_CPANEL_version_option": "up to {{ licenseCount }} CPANEL accounts"
+  "license_designation_CPANEL_version_option-cpanel": "bis zu {{ licenseCount }} CPANEL Accounts"
 }

@@ -1,0 +1,17 @@
+{
+  "dedicatedCloud_confirm_close_confirm": "Confirmo que quero encerrar este serviço",
+  "dedicatedCloud_confirm_close_cancel": "Mudei de ideias",
+  "dedicatedCloud_confirm_close_service": "Confirmação do encerramento do serviço",
+  "dedicatedCloud_confirm_close_question": "Pode indicar-nos qual é a principal razão pela qual pretende terminar este serviço?",
+  "dedicatedCloud_confirm_close_reason_not_needed_anymore": "Já não utilizo este serviço",
+  "dedicatedCloud_confirm_close_reason_too_hard_to_use": "As ferramentas são muito complexas",
+  "dedicatedCloud_confirm_close_reason_lack_of_performances": "O rendimento do sistema é insuficiente",
+  "dedicatedCloud_confirm_close_reason_not_reliable": "O serviço é pouco fiável",
+  "dedicatedCloud_confirm_close_reason_too_expensive": "O serviço é demasiado caro",
+  "dedicatedCloud_confirm_close_reason_migrated_to_another_ovh_product": "Estou a usar outro serviço da OVHcloud",
+  "dedicatedCloud_confirm_close_reason_migrated_to_competitor": "Estou a usar o serviço de um concorrente",
+  "dedicatedCloud_confirm_close_reason_other": "Outros...",
+  "dedicatedCloud_confirm_close_feedback": "Pode dar-nos mais detalhes ou dar-nos uma sugestão sobre como melhorar o serviço?",
+  "dedicatedCloud_confirm_close_success": "O pedido de encerramento desta infraestrutura foi confirmado.",
+  "dedicatedCloud_confirm_close_error": "Ocorreu um erro aquando da confirmação da eliminação:"
+}

@@ -1,0 +1,8 @@
+{
+  "dedicatedCloud_configuration_add_datacenter_title": "Aggiungi un datacenter",
+  "dedicatedCloud_configuration_add_datacenter_confirmation": "Scegli il tipo di datacenter da aggiungere:",
+  "dedicatedCloud_datacenters_adding_success": "Il nuovo datacenter sarà creato in pochi secondi.",
+  "dedicatedCloud_datacenters_adding_error": "Si è verificato un errore durante l'aggiunta del datacenter",
+  "dedicatedCloud_datacenters_adding_load_error": "Si è verificato un errore durante il caricamento delle informazioni di aggiunta del datacenter ",
+  "dedicatedCloud_datacenters_adding_select": "Seleziona..."
+}

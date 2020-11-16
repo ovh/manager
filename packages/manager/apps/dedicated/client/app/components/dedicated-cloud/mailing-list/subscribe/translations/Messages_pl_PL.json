@@ -1,0 +1,8 @@
+{
+  "dedicatedCloud_subscribe_mailing": "Zapisz się na listę mailingową",
+  "dedicatedCloud_subscribe_mailing_disabled": "Wpisanie adresu e-mail na listę mailingową Private Cloud ({{t0}}) nie jest możliwe.",
+  "dedicatedCloud_subscribe_mailing_step1": "Wprowadź adres e-mail, który chcesz zapisać na listę mailingową Private Cloud ({{t0}}):",
+  "dedicatedCloud_subscribe_mailing_step2": "Zapisałeś adres e-mail {{t0}} na listę mailingową Private Cloud ({{t1}})",
+  "dedicatedCloud_subscribe_mailing_step2_success": "Zlecenie subskrypcji dla <b>{{t0}}</b> zostało zarejestrowane.",
+  "dedicatedCloud_subscribe_mailing_step2_error": "Wystąpił błąd podczas zlecania subskrypcji dla <b>{{t0}}</b>"
+}

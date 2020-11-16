@@ -1,0 +1,17 @@
+{
+  "dedicatedCloud_configuration_order_datastores_step1_question": "Wybierz profil przestrzeni dyskowej:",
+  "dedicatedCloud_configuration_order_datastores_step1_profile": "Profil",
+  "dedicatedCloud_configuration_order_datastores_step1_type": "Typ",
+  "dedicatedCloud_configuration_order_datastores_step2_details": "Podsumowanie Twojego zamówienia datastore:",
+  "dedicatedCloud_configuration_order_datastores_step2_profile": "Profil:",
+  "dedicatedCloud_configuration_order_datastores_step2_monthly_price_HT": "Cena miesięczna netto:",
+  "dedicatedCloud_configuration_order_datastores_step2_monthly_price_TTC": "Cena miesięczna brutto:",
+  "dedicatedCloud_configuration_order_datastores_step2_confirm": "Aby potwierdzić zlecenie, kliknij przycisk \"Zamów\".",
+  "dedicatedCloud_configuration_order_datastores_step2_explication": "Otworzy się nowe okno i zostaniesz przekierowany do interfejsu płatności OVHcloud.",
+  "dedicatedCloud_configuration_order_datastores_step2_contracts": "Zapoznałem się i akceptuję regulamin:",
+  "dedicatedCloud_configuration_order_datastores_rate": "Cena",
+  "dedicatedCloud_configuration_order_datastores_monthly_rate": "(miesięcznie)",
+  "dedicatedCloud_configuration_order_datastores_billing_quantity": "Ilość przestrzeni do zamówienia:",
+  "dedicatedCloud_configuration_order_datastores_finish_success": "Zamówienie numer <a href='{{t0}}' target='_blank'>{{t1}}</a> dotyczące datastore zostało przyjęte.",
+  "dedicatedCloud_configuration_order_datastores_finish_fail": "Wystąpił błąd podczas zamawiania datastore dla centrum danych {{t0}}"
+}

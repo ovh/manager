@@ -7,5 +7,9 @@
   "kube_node_pool_add": "Node-Pool hinzufügen",
   "kube_node_pool_refreh": "Tabelle neu laden",
   "kube_node_pool_title": "Node-Pools",
-  "kube_add_billing_type_description": "In der Node-Pool-Editieransicht können Sie für jeden Node von der stündlichen auf die monatliche Abrechnung wechseln."
+  "kube_add_billing_type_description": "In der Node-Pool-Editieransicht können Sie für jeden Node von der stündlichen auf die monatliche Abrechnung wechseln.",
+  "kube_node_pool_monthly_billing": "Monatspauschale",
+  "kube_node_pool_anti_affinity": "Anti-Affinität",
+  "kube_node_pool_enabled": "Aktiviert",
+  "kube_node_pool_disabled": "Deaktiviert"
 }

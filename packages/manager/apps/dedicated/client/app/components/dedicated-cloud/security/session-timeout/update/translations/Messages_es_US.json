@@ -1,0 +1,10 @@
+{
+    "dedicatedCloud_configuration_security_update_session_timeout_title": "Modifier le délai d'expiration d'une session",
+    "dedicatedCloud_configuration_security_update_session_timeout_step1_never": "la sesión no expira nunca",
+    "dedicatedCloud_configuration_security_update_session_timeout_step1_question": "Nombre de minutes avant l'expiration d'une session",
+    "dedicatedCloud_configuration_security_update_session_timeout_step2_question": "Vous allez modifier le nombre de minutes avant l'expiration d'une session de « {{t0}} » à « {{t1}} ».",
+    "dedicatedCloud_SECURITY_expiration_session_never": "Jamais",
+    "dedicatedCloud_SECURITY_expiration_session_value": "{{t0}} minutos",
+    "dedicatedCloud_configuration_SECURITY_update_session_timeout_success": "El plazo de expiración será modificado en unos instantes.",
+    "dedicatedCloud_configuration_SECURITY_update_session_timeout_fail": "Se ha producido un error al modificar el plazo de expiración."
+}

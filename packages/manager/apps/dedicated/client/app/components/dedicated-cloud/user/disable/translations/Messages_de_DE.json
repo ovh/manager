@@ -1,0 +1,6 @@
+{
+  "dedicatedCloud_USER_disable_title": "Benutzer deaktivieren",
+  "dedicatedCloud_USER_disable_message": "Sind Sie sicher, dass Sie den Benutzer <strong>{{t0}}</strong> deaktivieren möchten?",
+  "dedicatedCloud_USER_disable_success": "Der Benutzer wurde erfolgreich deaktiviert.",
+  "dedicatedCloud_USER_disable_fail": "Bei der Deaktivierung des Benutzers ist ein Fehler aufgetreten:"
+}

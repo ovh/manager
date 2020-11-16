@@ -8,5 +8,7 @@
   "kubernetes_add_version_title": "Sélectionnez la version mineure de Kubernetes souhaitée",
   "kubernetes_add_name_title": "Nommez votre cluster",
   "kubernetes_add_name": "Nom",
-  "kubernetes_add_billing_type_description": "Vous pourrez passer de la facturation horaire au forfait mensuel en éditant le pool de nœuds, après déploiement de votre cluster."
+  "kubernetes_add_billing_type_description": "Tous les nœuds futurs de ce pool de nœuds se verront appliquer ce mode de facturation. Vous pourrez ultérieurement passer chacun de vos nœuds individuellement de la facturation horaire à mensuelle.",
+  "kubernetes_add_billing_type_payment_method": "Vous serez facturé sur votre mode de paiement par défaut",
+  "kubernetes_add_billing_anti_affinity_title": "Facturation et anti-affinité"
 }

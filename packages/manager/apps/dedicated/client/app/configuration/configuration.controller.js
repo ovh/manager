@@ -5,12 +5,12 @@ import isString from 'lodash/isString';
 angular.module('App').controller(
   'configurationCtrl',
   class ConfigurationCtrl {
-    constructor($q, $translate, constants, coreConfig, DedicatedCloud, User) {
+    constructor($q, $translate, constants, coreConfig, OvhHttp, User) {
       this.$q = $q;
       this.$translate = $translate;
       this.constants = constants;
       this.coreConfig = coreConfig;
-      this.DedicatedCloud = DedicatedCloud;
+      this.OvhHttp = OvhHttp;
       this.User = User;
     }
 
@@ -52,7 +52,9 @@ angular.module('App').controller(
       const sectionNames = ['sd'];
 
       if (this.coreConfig.getRegion() === 'US') {
-        return this.DedicatedCloud.getDescription().then((ids) => {
+        return this.OvhHttp.get('/dedicatedCloud', {
+          rootPath: 'apiv6',
+        }).then((ids) => {
           if (isArray(ids) && !isEmpty(ids)) {
             return sectionNames;
           }

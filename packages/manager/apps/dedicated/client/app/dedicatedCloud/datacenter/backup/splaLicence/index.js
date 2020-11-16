@@ -1,21 +1,24 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
-import '@ovh-ux/ng-translate-async-loader';
-import 'angular-translate';
+import 'oclazyload';
 
-import component from './component';
-import routing from './routing';
+const moduleName = 'ovhManagerDedicatedCloudBackupSplaLicenseLazyloading';
 
-const moduleName = 'ovhManagerDedicatedCloudBackupSplaLicence';
-
-angular
-  .module(moduleName, [
-    'ngTranslateAsyncLoader',
-    'pascalprecht.translate',
-    'ui.router',
-  ])
-  .config(routing)
-  .component('dedicatedCloudDatacenterBackupSplaLicence', component)
-  .run(/* @ngTranslationsInject:json ./translations */);
+angular.module(moduleName, ['oc.lazyLoad', 'ui.router']).config(
+  /* @ngInject */ ($stateProvider) => {
+    $stateProvider.state(
+      'app.dedicatedClouds.datacenter.backup.spla-licence.**',
+      {
+        url: '/spla-licence',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+          return import('./splaLicence.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
+      },
+    );
+  },
+);
 
 export default moduleName;

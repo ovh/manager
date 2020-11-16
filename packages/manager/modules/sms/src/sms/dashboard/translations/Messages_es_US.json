@@ -6,19 +6,5 @@
   "sms_actions_create_sender": "Créer un expéditeur",
   "sms_actions_create_api_user": "Créer un utilisateur API",
   "sms_actions_clean_contact_list": "Nettoyer la liste des contacts",
-  "sms_consumed": "Suivi conso",
-  "sms_consumed_credit_left": "SMS restants",
-  "sms_consumed_automatic_recredit_amount": "Recharge automatique",
-  "sms_consumed_automatic_recredit_amount_activate": "activée",
-  "sms_consumed_automatic_recredit_amount_disactivate": "desactivada",
-  "sms_consumed_last_recharge": "Dernière recharge",
-  "sms_statistics_title": "Statistiques",
-  "sms_statistics_filter_month": "Mois en cours",
-  "sms_statistics_filter_sender": "Tous les expéditeurs",
-  "sms_statistics_outgoing": "SMS envoyé",
-  "sms_statistics_outgoing_plural": "SMS envoyés",
-  "sms_statistics_incoming": "SMS reçu",
-  "sms_statistics_incoming_plural": "SMS reçus",
-  "sms_statistics_planned": "SMS planifié",
-  "sms_statistics_planned_plural": "SMS planifiés"
+  "sms_consumed_last_recharge": "Dernière recharge"
 }

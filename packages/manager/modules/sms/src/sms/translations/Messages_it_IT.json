@@ -1,9 +1,12 @@
 {
   "sms_page_title": "SMS \"{{name}}\"",
   "sms_tabs_dashboard": "Dashboard",
-  "sms_tabs_sms": "SMS",
+  "sms_tabs_messages_campaign": "Messaggio e campagna",
+  "sms_sublink_sms_compose": "Gestisci gli SMS",
+  "sms_sublink_sms_campaign": "Gestisci le campagne",
   "sms_tabs_contacts": "Contatti",
-  "sms_tabs_phonebooks": "Rubrica",
+  "sms_sublink_phonebooks": "Rubrica",
+  "sms_sublink_contact_list": "Crea una lista di contatti",
   "sms_tabs_senders": "Mittenti",
   "sms_tabs_api_users": "Utenti API",
   "sms_tabs_options": "Opzioni",
@@ -11,6 +14,7 @@
   "sms_rename_error": "Impossibile rinominare il pack {{serviceName}}.",
   "sms_loading_error": "Si è verificato un errore durante il caricamento degli SMS",
   "sms_feature_soon_available": "Questa funzionalità sarà presto disponibile.",
+  "sms_confirm": "Conferma",
   "sms_cancel": "Annulla",
   "sms_close": "Chiudi",
   "sms_common_actions": "Azioni",
@@ -33,11 +37,5 @@
   "sms_reset": "Reset",
   "sms_submit": "Conferma",
   "sms_today": "Oggi",
-  "sms_yes": "sì",
-  "sms_tabs_messages_campaign": "Messaggio e campagna",
-  "sms_sublink_sms_compose": "Gestisci gli SMS",
-  "sms_sublink_sms_campaign": "Gestisci le campagne",
-  "sms_sublink_phonebooks": "Rubrica",
-  "sms_sublink_contact_list": "Crea una lista di contatti",
-  "sms_confirm": "Conferma"
+  "sms_yes": "sì"
 }

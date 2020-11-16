@@ -1,0 +1,11 @@
+{
+  "dedicatedCloud_updateResource_toMonthly": "Switch to monthly subscription",
+  "server_tab_USB_STORAGE_order_resume": "Order summary",
+  "dedicatedCloud_order_price_HT": "Total price ex. VAT:",
+  "dedicatedCloud_order_price_TTC": "Total price incl. VAT:",
+  "dedicatedCloud_order_final_txt": "Click \"Confirm\" to confirm your order.",
+  "dedicatedCloud_order_final_txt2": "A new tab will open, and you will be automatically redirected to the payment interface.",
+  "dedicatedCloud_order_loading_error": "An error has occurred loading the information.",
+  "dedicatedCloud_order_finish_success": "Order number <a href='{{t0}}' target='_blank'>{{t1}}</a> has been processed.",
+  "dedicatedCloud_order_finish_error": "An error has occurred generating the purchase order."
+}

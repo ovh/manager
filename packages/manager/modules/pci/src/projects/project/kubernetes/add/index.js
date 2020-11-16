@@ -4,19 +4,10 @@ import 'oclazyload';
 
 import '@ovh-ux/manager-core';
 
-import billingType from '../components/billing-type';
-import nodePool from '../components/node-pool';
-
 const moduleName = 'ovhManagerPciProjectKubernetesAddLazyloading';
 
 angular
-  .module(moduleName, [
-    'ui.router',
-    'ovhManagerCore',
-    'oc.lazyLoad',
-    nodePool,
-    billingType,
-  ])
+  .module(moduleName, ['ui.router', 'ovhManagerCore', 'oc.lazyLoad'])
   .config(
     /* @ngInject */ ($stateProvider) => {
       $stateProvider.state('pci.projects.project.kubernetes.add.**', {

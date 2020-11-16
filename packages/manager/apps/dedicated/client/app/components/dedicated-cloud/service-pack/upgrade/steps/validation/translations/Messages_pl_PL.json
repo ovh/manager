@@ -1,0 +1,15 @@
+{
+  "dedicatedCloudDashboardTilesOptionsOrderValidation_stepper_header": "Zatwierdzenie certyfikacji",
+  "dedicatedCloud_servicePack_summary_stepper_order": "Aby zapłacić za zamówienie, kliknij link ",
+  "dedicatedCloud_servicePack_summary_stepper_order_warning": "Zamówienie nie zostanie skutecznie złożone, jeśli nie klikniesz na powyższy link",
+  "dedicatedCloud_servicePack_summary_stepper_order_resume": "Po zatwierdzeniu zamówienia możesz przejść do interfejsu zarządzania (dostępnego tylko z poziomu adresów IP upoważnionych do łączenia się z vCenter infrastruktury), aby zatwierdzić certyfikat za pomocą kodu otrzymanego w wiadomości SMS.",
+  "dedicatedCloud_servicePack_summary_stepper_go_management_interface": "Przejdź bezpośrednio do interfejsu zarządzania, aby zatwierdzić certyfikację przy użyciu kodu otrzymanego w wiadomości SMS. Interfejs ten jest dostępny tylko z adresów IP uprawnionych do łączenia się z vCenter infrastruktury.",
+  "dedicatedCloud_servicePack_summary_stepper_go_management_interface_action": "Interfejs aktywacji SMS",
+  "dedicatedCloud_servicePack_summary_stepper_validation_header": "Zatwierdzenie może potrwać od 30 minut do 4 godzin",
+  "dedicatedCloud_servicePack_summary_stepper_validation_part_one": "Po zatwierdzeniu Twoja infrastruktura jest zgodna z wybranym certyfikatem.",
+  "dedicatedCloud_servicePack_summary_stepper_validation_part_two": "Otrzymasz wówczas dokumenty związane z aktywacją certyfikacji i umożliwiające dopełnienie formalności.",
+  "dedicatedCloud_servicePack_summary_stepper_validation_part_three": "Koszt certyfikatu zostanie dodany do faktury w kolejnym miesiącu.",
+  "dedicatedCloud_servicePack_summary_stepper_finish": "Zakończ",
+  "dedicatedCloud_servicePack_summary_stepper_order_failed": "Złożenie zamówienia nie powiodło się.",
+  "dedicatedCloud_servicePack_summary_stepper_openNewTab": "Otwórz nową zakładkę"
+}

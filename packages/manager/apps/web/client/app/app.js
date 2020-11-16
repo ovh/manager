@@ -83,8 +83,6 @@ angular
       'directives',
       ngQAllSettled,
       'ngMessages',
-      'ngFlash',
-      'vs-repeat',
       'xeditable',
       ngAtInternet,
       ngAtInternetUiRouterPlugin,

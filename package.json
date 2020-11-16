@@ -5,18 +5,17 @@
   "description": "OVH Control Panel also known as Manager",
   "license": "BSD-3-Clause",
   "workspaces": [
+    "docs",
     "packages/components/*",
     "packages/manager/apps/*",
     "packages/manager/modules/*",
-    "packages/manager/tools/*"
+    "packages/manager/tools/*",
+    "packages/manager/fragments/*"
   ],
   "scripts": {
     "build": "node --experimental-worker scripts/build.js",
     "clean": "lerna clean -y && yarn run clean:dist && rimraf node_modules",
     "clean:dist": "rimraf \"packages/**/dist?(-EU|-CA|-US)\"",
-    "docs:build": "vuepress prebuild docs && vuepress build docs",
-    "docs:deploy": "yarn run docs:build && gh-pages -d docs/.vuepress/dist -m \"docs: update documentation [skip ci]\"",
-    "docs:dev": "vuepress prebuild docs && vuepress dev docs",
     "format": "run-p format:*",
     "format:css": "yarn run lint:css --fix",
     "format:html": "yarn run lint:html && prettier --parser=html --write \"packages/**/*.html\"",
@@ -62,8 +61,6 @@
     "eslint-plugin-prettier": "^3.1.1",
     "esm": "^3.2.25",
     "execa": "^2.0.5",
-    "get-monorepo-packages": "^1.2.0",
-    "gh-pages": "^2.2.0",
     "git-raw-commits": "^2.0.2",
     "git-url-parse": "^11.1.2",
     "htmlhint": "^0.14.1",
@@ -90,8 +87,7 @@
     "stylelint-scss": "^3.18.0",
     "testcafe": "^1.8.4",
     "testcafe-angular-selectors": "^0.4.1",
-    "testcafe-reporter-html": "^1.4.6",
-    "vuepress": "^1.2.0"
+    "testcafe-reporter-html": "^1.4.6"
   },
   "engines": {
     "node": ">=12.13",

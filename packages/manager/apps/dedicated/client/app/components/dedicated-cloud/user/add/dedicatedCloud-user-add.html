@@ -1,0 +1,226 @@
+<div
+    data-wizard
+    data-wizard-on-cancel="$ctrl.goBack.bind($ctrl)"
+    data-wizard-on-finish="$ctrl.addUser.bind($ctrl)"
+    data-wizard-title=":: 'dedicatedCloud_USER_add_user' | translate"
+    data-wizard-bread-crumb
+>
+    <div
+        data-wizard-step
+        data-wizard-step-on-load="$ctrl.checkOptionsStates.bind($ctrl)"
+        data-wizard-step-valid="$ctrl.userForm.$valid"
+    >
+        <div class="text-center" data-ng-if="$ctrl.loaders.init">
+            <oui-spinner></oui-spinner>
+        </div>
+
+        <form
+            id="$ctrl.userForm"
+            name="$ctrl.userForm"
+            data-ng-if="!$ctrl.loaders.init"
+        >
+            <div
+                class="form-group"
+                data-ng-class="$ctrl.constructor.getClassLabel($ctrl.userForm.name)"
+            >
+                <label
+                    for="name"
+                    class="control-label required"
+                    data-translate="dedicatedCloud_USER_add_user_name"
+                >
+                </label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    name="name"
+                    required="true"
+                    data-ng-model="$ctrl.newUser.name"
+                    data-ng-change="$ctrl.caseControl()"
+                    data-ng-pattern="/^[a-zA-Z0-9]{2,11}$/"
+                />
+                <span
+                    class="help-block"
+                    role="alert"
+                    data-ng-show="$ctrl.constructor.hasError($ctrl.userForm.name) && value == true"
+                >
+                    <span
+                        data-ng-repeat="(error, value) in $ctrl.userForm.name.$error"
+                        data-ng-bind="('dedicatedCloud_USER_add_user_' + error) | ducTranslateAlt: error"
+                    >
+                    </span>
+                </span>
+            </div>
+            <div
+                class="form-group"
+                data-ng-if="$ctrl.canSetPassword && $ctrl.passwordPolicy"
+            >
+                <label
+                    for="password"
+                    class="control-label"
+                    data-translate="dedicatedCloud_USER_add_user_password"
+                >
+                </label>
+                <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    name="password"
+                    data-ng-model="$ctrl.newUser.password"
+                    data-ui-validate="{ checkPassword: '$ctrl.checkPassword($value)' }"
+                />
+                <ul
+                    class="text-danger list-unstyled"
+                    data-ng-if="$ctrl.showError.checkPassword"
+                >
+                    <li
+                        data-ng-if="$ctrl.passwordPolicy.digitMandatory"
+                        data-translate="dedicatedCloud_USER_change_password_digitMandatory"
+                    ></li>
+                    <li
+                        data-ng-if="$ctrl.passwordPolicy.letterMandatory"
+                        data-translate="dedicatedCloud_USER_change_password_letterMandatory"
+                    ></li>
+                    <li
+                        data-ng-if="$ctrl.passwordPolicy.lowercaseLetterMandatory"
+                        data-translate="dedicatedCloud_USER_change_password_lowercaseLetterMandatory"
+                    ></li>
+                    <li
+                        data-ng-if="$ctrl.passwordPolicy.specialMandatory"
+                        data-translate="dedicatedCloud_USER_change_password_specialMandatory"
+                    ></li>
+                    <li
+                        data-ng-if="$ctrl.passwordPolicy.uppercaseLetterMandatory"
+                        data-translate="dedicatedCloud_USER_change_password_uppercaseLetterMandatory"
+                    ></li>
+                    <li data-ng-if="$ctrl.passwordPolicy.maxLength">
+                        <span
+                            data-translate="dedicatedCloud_USER_change_password_maxLength"
+                        ></span>
+                        <span
+                            data-ng-bind="$ctrl.passwordPolicy.maxLength"
+                        ></span>
+                    </li>
+                    <li data-ng-if="$ctrl.passwordPolicy.minLength">
+                        <span
+                            data-translate="dedicatedCloud_USER_change_password_minLength"
+                        ></span>
+                        <span
+                            data-ng-bind="$ctrl.passwordPolicy.minLength"
+                        ></span>
+                    </li>
+                </ul>
+            </div>
+            <div
+                class="form-group"
+                data-ng-class="$ctrl.constructor.getClassLabel($ctrl.userForm.email)"
+            >
+                <label
+                    for="email"
+                    class="control-label"
+                    data-translate="dedicatedCloud_USER_add_user_mail"
+                >
+                </label>
+                <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    name="email"
+                    data-ng-model="$ctrl.newUser.email"
+                    data-ui-validate="'$ctrl.constructor.validEmail($value)'"
+                />
+                <span
+                    class="help-block"
+                    role="alert"
+                    data-ng-show="$ctrl.constructor.hasError($ctrl.userForm.email) && value == true"
+                    data-translate="dedicatedCloud_USER_add_user_email"
+                >
+                </span>
+            </div>
+            <p>
+                <span>*</span
+                ><span
+                    data-translate="dedicatedCloud_USER_add_user_required"
+                ></span>
+            </p>
+            <p
+                data-ng-if="!$ctrl.canSetPassword"
+                data-translate="dedicatedCloud_USER_add_user_cant_set_password"
+            ></p>
+        </form>
+    </div>
+
+    <div data-wizard-step data-wizard-step-valid="$ctrl.newUser.right">
+        <p
+            data-translate="dedicatedCloud_USER_add_user_step2_question"
+            data-translate-values="{ t0: $ctrl.newUser.name }"
+        ></p>
+        <div class="radio">
+            <label>
+                <input
+                    type="radio"
+                    id="pcc-user-rights-rw"
+                    name="pcc-user-rights"
+                    value="readwrite"
+                    data-ng-model="$ctrl.newUser.right"
+                />
+                <span
+                    data-translate="dedicatedCloud_USER_add_user_which_rights_rw"
+                ></span>
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                <input
+                    type="radio"
+                    id="pcc-user-rights-ro"
+                    name="pcc-user-rights"
+                    value="readonly"
+                    data-ng-model="$ctrl.newUser.right"
+                />
+                <span
+                    data-translate="dedicatedCloud_USER_add_user_which_rights_ro"
+                ></span>
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                <input
+                    type="radio"
+                    id="pcc-user-rights-none"
+                    name="pcc-user-rights"
+                    value="disabled"
+                    data-ng-model="$ctrl.newUser.right"
+                />
+                <span
+                    data-translate="dedicatedCloud_USER_add_user_which_rights_none"
+                ></span>
+            </label>
+        </div>
+    </div>
+
+    <div data-wizard-step data-wizard-step-valid="!$ctrl.loaders.add">
+        <div class="text-center" data-ng-if="$ctrl.loaders.add">
+            <oui-spinner></oui-spinner>
+        </div>
+
+        <div data-ng-if="!$ctrl.loaders.add">
+            <p
+                data-translate="dedicatedCloud_USER_add_user_step3_question1"
+                data-translate-values="{ t0: $ctrl.newUser.name }"
+            ></p>
+            <dl>
+                <dt
+                    data-translate="dedicatedCloud_USER_add_user_step3_rights"
+                ></dt>
+                <dd
+                    data-ng-bind-html="('dedicatedCloud_USER_add_user_which_rights_' + {'readwrite': 'rw', 'readonly': 'ro', 'disabled': 'none'}[$ctrl.newUser.right] | translate) + ' '"
+                ></dd>
+                <dt
+                    data-translate="dedicatedCloud_USER_add_user_step3_mail"
+                ></dt>
+                <dd data-ng-bind="$ctrl.newUser.email || '-'"></dd>
+            </dl>
+        </div>
+    </div>
+</div>

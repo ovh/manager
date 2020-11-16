@@ -1,0 +1,7 @@
+{
+  "dedicatedCloud_configuration_security_policy_modify_title": "Modificação do intervalo de IP",
+  "dedicatedCloud_configuration_security_policy_modify_step1_question": "IP:",
+  "dedicatedCloud_configuration_security_policy_add_step1_description": "Descrição:",
+  "dedicatedCloud_configuration_SECURITY_policy_modify_success": "A regra de segurança será modificada dentro de alguns instantes.",
+  "dedicatedCloud_configuration_SECURITY_policy_modify_fail": "Ocorreu um erro durante a modificação da regra de segurança {{t0}}."
+}

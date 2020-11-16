@@ -1,0 +1,10 @@
+{
+  "xdsl_meeting_slots": "Book an appointment",
+  "xdsl_meeting_error": "An error has occurred retrieving the available time slots: {{error}}",
+  "xdsl_meeting_description": "You will need a technician to finish installing your line.",
+  "xdsl_meeting_programmed_meeting_select": "Please choose the time slot for installing the line.",
+  "xdsl_meeting_programmed_meeting": "A time slot is selected on {{day}} between {{start}} and {{end}}.",
+  "xdsl_meeting_confirm": "Confirm selection",
+  "xdsl_meeting_order_succeed": "The time slot scheduled for {{day}} between {{start}} and {{end}} has been saved.",
+  "xdsl_meeting_order_error": "The scheduled time slot on {{day}} between {{start}} and {{end}} could not be saved: {{error}}"
+}

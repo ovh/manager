@@ -1,0 +1,7 @@
+{
+  "dedicatedCloud_configuration_security_policy_logout_title": "Abmeldeeinstellungen ändern",
+  "dedicatedCloud_configuration_security_policy_logout_step1_question": "Abmeldeeinstellungen bei doppelter Verbindung",
+  "dedicatedCloud_SECURITY_logout_policy_FIRST": "Ersten verbundenen Benutzer abmelden",
+  "dedicatedCloud_SECURITY_logout_policy_LAST": "Letzten verbundenen Benutzer abmelden",
+  "dedicatedCloud_configuration_security_policy_logout_step1_value": "Auswahl"
+}

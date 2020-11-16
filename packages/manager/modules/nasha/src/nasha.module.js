@@ -16,11 +16,9 @@ import { Environment } from '@ovh-ux/manager-config';
 
 import NashaCtrl from './controller';
 import NashaAddCtrl from './add/nasha-add.controller';
-import NashaOrderCompleteCtrl from './order/controller';
 import NashaUnavailableCtrl from './add/nasha-unavailable.controller';
 
 import informationTemplate from './information/nasha-information.html';
-import orderTemplate from './order/template.html';
 import usageHelpTemplate from './information/nasha-information-usage-help.html';
 
 import NashaAddService from './add/nasha-add.service';
@@ -55,7 +53,6 @@ angular
   )
   .controller('NashaCtrl', NashaCtrl)
   .controller('NashaAddCtrl', NashaAddCtrl)
-  .controller('NashaOrderCompleteCtrl', NashaOrderCompleteCtrl)
   .controller('NashaUnavailableCtrl', NashaUnavailableCtrl)
   .service('NashaAddService', NashaAddService)
   .run(/* @ngTranslationsInject:json ./translations */)
@@ -69,7 +66,6 @@ angular
         'nasha/information/nasha-information-usage-help.html',
         usageHelpTemplate,
       );
-      $templateCache.put('nasha/order/template.html', orderTemplate);
     },
   );
 

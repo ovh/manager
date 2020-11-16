@@ -1,0 +1,9 @@
+{
+  "dedicatedCloud_datacenter_no_name": "Centrum danych {{t0}}",
+  "dedicatedCloud_datacenter_no_description": "Dodaj opis",
+  "dedicatedCloud_tab_dashboard": "Informacje ogólne",
+  "dedicatedCloud_tab_host": "Hosty",
+  "dedicatedCloud_tab_datastore": "Magazyny danych (datastore)",
+  "dedicatedCloud_tab_backup": "Backup",
+  "dedicatedCloud_tab_drp": "Plan Disaster Recovery (DRP)"
+}

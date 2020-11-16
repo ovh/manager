@@ -7,6 +7,7 @@ import ngAtInternet from '@ovh-ux/ng-at-internet';
 
 import component from './update.component';
 import routing from './update.routing';
+import updateVersionComponent from '../../../components/dedicated-cloud/dashboard/update';
 
 const moduleName = 'ovhManagerPccDashboardUpdate';
 
@@ -16,9 +17,9 @@ angular
     'ngTranslateAsyncLoader',
     'oui',
     'pascalprecht.translate',
+    updateVersionComponent,
   ])
   .config(routing)
-  .component('ovhManagerPccDashboardUpdate', component)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .component('ovhManagerPccDashboardUpdate', component);
 
 export default moduleName;

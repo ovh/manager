@@ -1,12 +1,22 @@
-angular.module('App').config(
-  /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.dedicatedClouds.license.enable', {
-      controller: 'ovhManagerPccLicenseEnable',
-      controllerAs: '$ctrl',
-      layout: 'modal',
-      templateUrl:
-        'dedicatedCloud/license/enable/dedicatedCloud-license-enable.html',
-      url: '/enable',
-    });
-  },
-);
+export default /* @ngInject */ ($stateProvider) => {
+  $stateProvider.state('app.dedicatedClouds.license.enable', {
+    url: '/enable',
+    redirectTo: (transition) =>
+      transition
+        .injector()
+        .getAsync('usesLegacyOrder')
+        .then((usesLegacyOrder) =>
+          usesLegacyOrder
+            ? {
+                state: 'app.dedicatedClouds.license.enable-legacy',
+              }
+            : false,
+        ),
+    views: {
+      modal: {
+        component: 'dedicatedCloudLicenseEnable',
+      },
+    },
+    layout: 'modal',
+  });
+};

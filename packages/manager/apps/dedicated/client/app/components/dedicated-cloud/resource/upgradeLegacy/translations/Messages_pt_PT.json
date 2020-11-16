@@ -1,0 +1,11 @@
+{
+  "dedicatedCloud_updateResource_toMonthly": "Passar para plano mensal",
+  "server_tab_USB_STORAGE_order_resume": "Resumo da nota de encomenda",
+  "dedicatedCloud_order_price_HT": "Preço total sem IVA:",
+  "dedicatedCloud_order_price_TTC": "Preço total com IVA:",
+  "dedicatedCloud_order_final_txt": "Clique no botão \"Validar\" para confirmar a sua encomenda.",
+  "dedicatedCloud_order_final_txt2": "Irá visualizar um novo separador, e será automaticamente reencaminhado para a página de pagamento.",
+  "dedicatedCloud_order_loading_error": "Erro ao carregar a informação.",
+  "dedicatedCloud_order_finish_success": "A encomenda número <a href='{{t0}}' target='_blank'>{{t1}}</a> foi registada.",
+  "dedicatedCloud_order_finish_error": "Erro ao gerar nota de encomenda."
+}

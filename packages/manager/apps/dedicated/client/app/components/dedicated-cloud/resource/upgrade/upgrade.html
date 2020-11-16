@@ -1,0 +1,35 @@
+<oui-modal
+    data-heading="{{:: 'ovhManagerPccResourceUpgrade_heading' | translate }}"
+    data-primary-action=":: $ctrl.placeOrder()"
+    data-primary-label="{{:: 'ovhManagerPccResourceUpgrade_validateButton' | translate }}"
+    data-secondary-action=":: $ctrl.goBack()"
+    data-secondary-label="{{:: 'ovhManagerPccResourceUpgrade_cancelButton' | translate }}"
+    data-on-dismiss=":: $ctrl.goBack()"
+    data-loading="$ctrl.bindings.isLoading"
+>
+    <h2
+        data-translate="ovhManagerPccResourceUpgrade_onlyOneRenewalPeriod_heading"
+    ></h2>
+    <dl data-ng-if="!$ctrl.bindings.isLoading">
+        <dd
+            data-translate="ovhManagerPccResourceUpgrade_onlyOneRenewalPeriod_renewalPeriod"
+        ></dd>
+        <dt
+            data-translate="{{:: 'ovhManagerPccResourceUpgrade_onlyOneRenewalPeriod_renewalPeriod_' + $ctrl.bindings.renewalPeriod.intervalUnit }}"
+        ></dt>
+        <dd
+            data-translate="ovhManagerPccResourceUpgrade_onlyOneRenewalPeriod_price"
+        ></dd>
+        <dt data-ng-bind=":: $ctrl.bindings.renewalPeriod.price.text"></dt>
+    </dl>
+
+    <p
+        data-translate="ovhManagerPccResourceUpgrade_clickOnValidateToPlaceYourOrder"
+        data-translate-values="{ validateButtonText: '<strong>' + ('ovhManagerPccResourceUpgrade_validateButton' | translate) + '</strong>' }"
+    ></p>
+    <oui-message data-type="info">
+        <p
+            data-translate="ovhManagerPccResourceUpgrade_willOpenNewTabAndRedirect"
+        ></p>
+    </oui-message>
+</oui-modal>

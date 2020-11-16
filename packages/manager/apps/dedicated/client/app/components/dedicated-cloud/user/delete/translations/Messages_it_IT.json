@@ -1,0 +1,6 @@
+{
+  "dedicatedCloud_USER_delete_title": "Elimina un utente",
+  "dedicatedCloud_USER_delete_message": "Vuoi davvero eliminare l'utente <b>{{t0}}</b>?",
+  "dedicatedCloud_USER_delete_success": "La richiesta di eliminazione dell'utente <b>{{t0}}</b> è stata presa in carico",
+  "dedicatedCloud_USER_delete_fail": "Si è verificato un errore durante l'eliminazione dell'utente <b>{{t0}}</b>"
+}

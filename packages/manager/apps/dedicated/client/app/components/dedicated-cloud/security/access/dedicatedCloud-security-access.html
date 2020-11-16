@@ -1,0 +1,29 @@
+<oui-modal
+    data-heading="{{:: 'dedicatedCloud_configuration_security_policy_access_title' | translate }}"
+    data-primary-action="$ctrl.modifyPolicyAccess()"
+    data-primary-label="{{:: 'wizard_confirm' | translate }}"
+    data-primary-disabled="!$ctrl.selectedAccessPolicy.value"
+    data-secondary-action="$ctrl.goBack()"
+    data-secondary-label="{{:: 'wizard_cancel' | translate }}"
+    data-loading="$ctrl.loading"
+    data-on-dismiss="$ctrl.goBack()"
+>
+    <label
+        for="accessPolicy"
+        class="control-label"
+        data-translate="dedicatedCloud_configuration_security_policy_access_step1_question"
+    >
+    </label>
+    <select
+        class="form-control"
+        data-ng-options="type as ('dedicatedCloud_SECURITY_access_policy_' + type | translate) for type in $ctrl.selectedAccessPolicy.policies"
+        data-ng-model="$ctrl.selectedAccessPolicy.value"
+    >
+        <option
+            value=""
+            data-ng-disabled="true"
+            data-translate="dedicatedCloud_configuration_security_policy_access_step1_value"
+        >
+        </option>
+    </select>
+</oui-modal>

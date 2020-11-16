@@ -1,0 +1,79 @@
+<div class="oui-modal">
+    <div class="oui-modal__header">
+        <button
+            type="button"
+            class="oui-icon oui-modal__close-button oui-icon-close"
+            aria-label="{{:: 'wizard_close' | translate }}"
+            data-ng-click="$ctrl.goBack()"
+        ></button>
+    </div>
+
+    <div class="oui-modal__body oui-modal__body_no-icon">
+        <div class="oui-modal__body-text">
+            <h2
+                class="oui-modal__title mb-4"
+                data-translate="dedicatedCloud_tab_licences_active_spla_title"
+            ></h2>
+
+            <div class="text-center" data-ng-if="$ctrl.bindings.isLoading">
+                <oui-spinner></oui-spinner>
+            </div>
+
+            <div data-ng-if="!$ctrl.bindings.isLoading">
+                <oui-datagrid data-rows=":: $ctrl.bindings.offers.value">
+                    <oui-datagrid-column
+                        data-title=":: 'dedicatedCloud_tab_license_type' | translate"
+                    >
+                        <oui-radio
+                            data-name="selectedOffer"
+                            data-model="$ctrl.bindings.offers.selected"
+                            data-value="$row"
+                            ><span data-ng-bind=":: $row.productName"></span
+                        ></oui-radio>
+                    </oui-datagrid-column>
+                    <oui-datagrid-column
+                        data-title=":: 'dedicatedCloud_tab_license_price' | translate"
+                    >
+                        <div data-ng-bind=":: $row.prices[0].price.text"></div>
+                        <div
+                            class="small"
+                            data-ng-bind=":: $row.prices[0].description"
+                        ></div>
+                    </oui-datagrid-column>
+                </oui-datagrid>
+
+                <div
+                    data-ng-if="$ctrl.bindings.contracts.value.length > 0"
+                    data-contracts=":: $ctrl.bindings.contracts.value"
+                    data-full-text="false"
+                    data-ng-model="$ctrl.bindings.contracts.areSigned"
+                ></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="oui-modal__footer">
+        <button
+            type="button"
+            class="oui-button oui-button_secondary"
+            data-translate="wizard_cancel"
+            data-ng-click="$ctrl.goBack()"
+        ></button>
+        <button
+            type="button"
+            class="oui-button oui-button_primary"
+            data-translate="wizard_order"
+            data-ng-if="!$ctrl.isOrderButtonAvailable()"
+            data-ng-disabled="true"
+        ></button>
+        <a
+            class="oui-button oui-button_primary"
+            data-translate="wizard_order"
+            target="_blank"
+            rel="noopener"
+            data-ng-if="$ctrl.isOrderButtonAvailable()"
+            data-ng-click=":: $ctrl.goBack()"
+            href="{{ $ctrl.getOrderUrl() }}"
+        ></a>
+    </div>
+</div>

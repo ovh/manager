@@ -1,6 +1,6 @@
 import get from 'lodash/get';
-import { DEFAULT_NODE_COUNT } from '../../../add/add.constants';
 
+import { DEFAULT_NODE_COUNT } from '../../../add/add.constants';
 import { NODE_POOL_NAME_REGEX } from './add.constants';
 
 export default class {
@@ -16,6 +16,7 @@ export default class {
     this.NODE_POOL_NAME_REGEX = NODE_POOL_NAME_REGEX;
     this.isAdding = false;
     this.nodePool = {
+      antiAffinity: false,
       name: null,
       flavor: null,
       nodeCount: DEFAULT_NODE_COUNT,
@@ -41,13 +42,13 @@ export default class {
 
   create() {
     this.isAdding = true;
-    return this.Kubernetes.createNodePool(
-      this.projectId,
-      this.kubeId,
-      this.nodePool.nodeCount,
-      this.nodePool.flavor.name,
-      this.nodePool.name,
-    )
+    return this.Kubernetes.createNodePool(this.projectId, this.kubeId, {
+      desiredNodes: this.nodePool.nodeCount,
+      flavorName: this.nodePool.flavor.name,
+      name: this.nodePool.name,
+      antiAffinity: this.nodePool.antiAffinity,
+      monthlyBilled: this.nodePool.monthlyBilling,
+    })
       .then(() =>
         this.goBack(
           this.$translate.instant('kube_add_node_pool_success', {
@@ -85,5 +86,12 @@ export default class {
       .finally(() => {
         this.loadingFlavors = false;
       });
+  }
+
+  onNodePoolSubmit() {
+    this.displaySelectedFlavor = true;
+    if (this.nodePool.nodeCount > this.antiAffinityMaxNodes) {
+      this.nodePool.antiAffinity = false;
+    }
   }
 }

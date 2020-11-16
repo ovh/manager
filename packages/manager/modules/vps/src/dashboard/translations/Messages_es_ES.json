@@ -6,6 +6,5 @@
   "vps_dashboard_migration_link": "Migrar a la nueva gama",
   "vps_dashboard_auto_migration_warning": "Su VPS Cloud 2013/2014 será migrado automáticamente hacia un VPS de la nueva gama dentro de {{days}} días.",
   "vps_dashboard_migration_in_progress": "Estamos migrando su VPS Cloud 2013/2014 hacia la nueva gama.",
-  "vps_dashboard_migration_in_error": "Se ha producido un error al migrar el VPS. Nuestro equipo se encargará del resto de la migración.",
-  "vps_dashboard_maintenance_warning": "Con el fin de mejorar la estabilidad de la orquestación del servicio VPS, vamos a realizar una serie de operaciones de mantenimiento en las diferentes zonas de VPS. Estas operaciones tendrán una duración máxima de 2 horas no laborables. Durante el período de mantenimiento, no será posible contratar, modificar o eliminar un VPS en la zona afectada. <br />Puede consultar los detalles de la planificación zona por zona en la siguiente tarea: <a href=\"http://travaux.ovh.net/?do=details&id=47124\" target=\"_blank\">http://travaux.ovh.net/?do=details&id=47124</a>"
+  "vps_dashboard_migration_in_error": "Se ha producido un error al migrar el VPS. Nuestro equipo se encargará del resto de la migración."
 }

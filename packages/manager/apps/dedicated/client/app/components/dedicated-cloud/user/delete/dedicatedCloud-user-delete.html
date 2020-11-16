@@ -1,0 +1,13 @@
+<div
+    data-wizard
+    data-wizard-on-cancel="$ctrl.goBack.bind($ctrl)"
+    data-wizard-on-finish="$ctrl.deleteUser.bind($ctrl)"
+    data-wizard-title=":: 'dedicatedCloud_USER_delete_title' | translate"
+>
+    <div data-wizard-step>
+        <span
+            data-translate="dedicatedCloud_USER_delete_message"
+            data-translate-values="{ t0: $ctrl.user.name }"
+        ></span>
+    </div>
+</div>

@@ -1,5 +1,6 @@
 import get from 'lodash/get';
 import find from 'lodash/find';
+import min from 'lodash/min';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
@@ -42,12 +43,12 @@ export default /* @ngInject */ ($stateProvider) => {
         quotas: /* @ngInject */ (OvhApiCloudProjectQuota, projectId) =>
           OvhApiCloudProjectQuota.v6().query({ serviceName: projectId })
             .$promise,
-        maxInstances: /* @ngInject */ (quotas, cluster) => {
+        maxInstances: /* @ngInject */ (quotas, cluster, nodePool) => {
           const quota = find(quotas, { region: cluster.region });
-          return (
+          const maxNodes =
             get(quota, 'instance.maxInstances', 0) -
-            get(quota, 'instance.usedInstances', 0)
-          );
+            get(quota, 'instance.usedInstances', 0);
+          return min([maxNodes, nodePool.maxNodes]) - nodePool.currentNodes;
         },
         goToProjectQuota: /* @ngInject */ ($state, projectId) => () =>
           $state.go('pci.projects.project.quota', { projectId }),

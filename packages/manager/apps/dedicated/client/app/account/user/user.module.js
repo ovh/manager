@@ -8,7 +8,6 @@ import supportLevel from './support-level/support-level.module';
 
 angular
   .module('UserAccount', [
-    'ja.qr',
     'ngOvhUtils',
     'ovhSignupApp',
     advanced,

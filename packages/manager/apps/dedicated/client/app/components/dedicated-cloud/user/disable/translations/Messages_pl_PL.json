@@ -1,0 +1,6 @@
+{
+  "dedicatedCloud_USER_disable_title": "Wyłącz użytkownika",
+  "dedicatedCloud_USER_disable_message": "Czy chcesz wyłączyć użytkownika <strong>{{t0}}</strong>?",
+  "dedicatedCloud_USER_disable_success": "Użytkownik został poprawnie wyłączony.",
+  "dedicatedCloud_USER_disable_fail": "Wystąpił błąd podczas wyłączania użytkownika:"
+}

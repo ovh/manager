@@ -6,6 +6,5 @@
   "vps_dashboard_migration_link": "Migrate to the new range",
   "vps_dashboard_auto_migration_warning": "Your Cloud VPS 2013/2014 will be migrated automatically to a VPS from the new range in {{days}} days.",
   "vps_dashboard_migration_in_progress": "Your Cloud VPS 2013/2014 is currently migrating to the new range.",
-  "vps_dashboard_migration_in_error": "An error has occurred migrating your VPS. The rest of the migration process will be managed by our teams.",
-  "vps_dashboard_maintenance_warning": "In order to improve stability of our orchestration for VPS service, multiple maintenance will take place in the different VPS zones. The operations will last for a maximum of 2 hours in non-working hours. During the maintenance period, it will not be possible in the affected area to order, modify or delete a VPS.<br />You can find details zone by zone on this travaux task: <a href=\"http://travaux.ovh.net/?do=details&id=47124\" target=\"_blank\">http://travaux.ovh.net/?do=details&id=47124</a>"
+  "vps_dashboard_migration_in_error": "An error has occurred migrating your VPS. The rest of the migration process will be managed by our teams."
 }

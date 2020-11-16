@@ -7,5 +7,9 @@
   "kube_node_pool_add": "Adicionar um pool de nós",
   "kube_node_pool_refreh": "Atualizar tabela",
   "kube_node_pool_title": "Pools de nós",
-  "kube_add_billing_type_description": "Na vista de edição do pool de nós, poderá passar da faturação à hora para a faturação mensal para cada nó."
+  "kube_add_billing_type_description": "Na vista de edição do pool de nós, poderá passar da faturação à hora para a faturação mensal para cada nó.",
+  "kube_node_pool_monthly_billing": "Tarifa mensal",
+  "kube_node_pool_anti_affinity": "Anti-afinidade",
+  "kube_node_pool_enabled": "Ativado",
+  "kube_node_pool_disabled": "Desativado"
 }

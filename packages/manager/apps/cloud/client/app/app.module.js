@@ -34,7 +34,6 @@ import 'script-loader!angular-ui-sortable/src/sortable';
 import 'script-loader!angular-ui-validate/dist/validate';
 import 'script-loader!bootstrap/dist/js/bootstrap';
 import 'd3';
-import 'jquery.cookie';
 import 'script-loader!jquery.scrollto/jquery.scrollTo.min';
 import 'lodash';
 import 'script-loader!matchmedia/matchMedia';

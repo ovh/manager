@@ -1,0 +1,172 @@
+<div class="oui-tile mb-5 h-100">
+    <h2
+        class="oui-tile__title oui-heading_4"
+        data-translate="dedicatedCloud_options_title"
+    ></h2>
+    <div class="oui-tile__body">
+        <!-- ZERTO DRP OPTION -->
+        <div class="oui-tile__item">
+            <dl class="oui-tile__definition">
+                <dt
+                    class="oui-tile__term"
+                    data-translate="dedicatedCloud_options_zerto"
+                ></dt>
+                <dd class="oui-tile__description">
+                    <span
+                        class="oui-badge"
+                        data-ng-class="{
+                              'oui-badge_error': $ctrl.drpGlobalStatus.error,
+                              'oui-badge_warning': $ctrl.drpGlobalStatus.warning,
+                              'oui-badge_success': $ctrl.drpGlobalStatus.success
+                        }"
+                    >
+                        <span
+                            data-translate="{{:: $ctrl.currentDrp.isWaitingVpnConfiguration ? 'dedicatedCloud_options_zerto_status_vpn_' + $ctrl.currentDrp.vpnStatus : 'dedicatedCloud_options_zerto_status_' + $ctrl.drpStatus }}"
+                        ></span>
+                    </span>
+                </dd>
+            </dl>
+            <oui-action-menu
+                data-ng-if="$ctrl.isDrpActionPossible"
+                data-compact
+                data-placement="end"
+            >
+                <oui-action-menu-item
+                    data-ng-if="$ctrl.currentDrp.status === $ctrl.DRP_STATUS.disabled"
+                    data-on-click="$ctrl.chooseDatacenterForDrp()"
+                >
+                    <span
+                        data-translate="dedicatedCloud_options_zerto_action_install"
+                    ></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item
+                    data-on-click="$ctrl.goToVpnConfiguration()"
+                    data-ng-if="::$ctrl.currentDrp.vpnStatus === $ctrl.DRP_VPN_STATUS.notConfigured"
+                >
+                    <span
+                        data-translate="dedicatedCloud_options_zerto_action_add_configuration"
+                    ></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item
+                    data-ng-if="::$ctrl.drpStatus === $ctrl.DRP_STATUS.delivered && $ctrl.drpRemotePccStatus === $ctrl.DRP_STATUS.delivered && $ctrl.currentDrp.vpnStatus !== $ctrl.DRP_VPN_STATUS.configuring"
+                    data-on-click="$ctrl.deleteDrp()"
+                >
+                    <span
+                        data-translate="dedicatedCloud_options_zerto_action_delete"
+                    ></span>
+                </oui-action-menu-item>
+            </oui-action-menu>
+        </div>
+        <!-- NSX OPTION -->
+        <div class="oui-tile__item">
+            <dl
+                class="oui-tile__definition"
+                data-ng-if="$ctrl.options.nsx.loading"
+            >
+                <div class="text-center">
+                    <oui-spinner></oui-spinner>
+                </div>
+            </dl>
+            <dl
+                class="oui-tile__definition"
+                data-ng-if="!$ctrl.options.nsx.loading && $ctrl.options.nsx.state !== null"
+            >
+                <dt
+                    class="oui-tile__term"
+                    data-translate="dedicatedCloud_options_nsx"
+                ></dt>
+                <dd class="oui-tile__description">
+                    <span
+                        data-ng-bind="$ctrl.options.nsx.toggable ? ('dedicatedCloud_options_state_' + $ctrl.options.nsx.state | translate) : $ctrl.options.nsx.toggableMessage"
+                    ></span>
+                </dd>
+                <a
+                    class="oui-link d-block"
+                    target="_blank"
+                    rel="noopener"
+                    data-ng-href="{{ $ctrl.options.nsx.guide }}"
+                >
+                    <span
+                        data-translate="dedicatedCloud_options_discover"
+                    ></span>
+                    <span class="fa fa-external-link" aria-hidden="true">
+                    </span>
+                </a>
+            </dl>
+            <div
+                class="oui-tile__actions"
+                data-ng-if="!$ctrl.options.nsx.loading && $ctrl.options.nsx.state !== null && $ctrl.options.nsx.toggable"
+            >
+                <oui-action-menu
+                    aria-label="{{:: 'menu_action_label' | translate:{ t0: ('dedicatedCloud_options_nsx' | translate) } }}"
+                    data-compact
+                    data-placement="end"
+                >
+                    <oui-action-menu-item
+                        aria-label="{{:: ($ctrl.options.nsx.state === 'enabled' ? 'dedicatedCloud_options_unactivate' : 'dedicatedCloud_options_activate') | translate}}"
+                        data-on-click="$ctrl.options.nsx.state === 'enabled' ? $ctrl.disableVmwareOption('nsx') : $ctrl.orderVmwareOption('nsx')"
+                        ><span
+                            data-ng-bind=":: ($ctrl.options.nsx.state === 'enabled' ? 'dedicatedCloud_options_unactivate' : 'dedicatedCloud_options_activate') | translate"
+                        ></span>
+                    </oui-action-menu-item>
+                </oui-action-menu>
+            </div>
+        </div>
+        <!-- VROPS OPTIONS -->
+        <div class="oui-tile__item">
+            <dl
+                class="oui-tile__definition"
+                data-ng-if="$ctrl.options.vrops.loading"
+            >
+                <div class="text-center">
+                    <oui-spinner></oui-spinner>
+                </div>
+            </dl>
+            <dl
+                class="oui-tile__definition"
+                data-ng-if="!$ctrl.options.vrops.loading && $ctrl.options.vrops.state !== null"
+            >
+                <dt
+                    class="oui-tile__term"
+                    data-translate="dedicatedCloud_options_vrops"
+                ></dt>
+                <dd class="oui-tile__description">
+                    <span
+                        data-ng-bind="$ctrl.options.vrops.toggable ? ('dedicatedCloud_options_state_' + $ctrl.options.vrops.state | translate) : $ctrl.options.vrops.toggableMessage"
+                    ></span>
+                </dd>
+                <a
+                    class="oui-link d-block"
+                    target="_blank"
+                    rel="noopener"
+                    title="{{ 'dedicatedCloud_options_discover' | translate }} ({{ 'core_new_window' | translate }})"
+                    data-ng-href="{{ $ctrl.options.vrops.guide }}"
+                >
+                    <span
+                        data-translate="dedicatedCloud_options_discover"
+                    ></span>
+                    <span class="fa fa-external-link" aria-hidden="true">
+                    </span>
+                </a>
+            </dl>
+            <div
+                class="oui-tile__actions"
+                data-ng-if="!$ctrl.options.vrops.loading && $ctrl.options.vrops.state !== null && $ctrl.options.vrops.toggable"
+            >
+                <oui-action-menu
+                    aria-label="{{:: 'menu_action_label' | translate:{ t0: ('dedicatedCloud_options_vrops' | translate) } }}"
+                    data-compact
+                    data-placement="end"
+                >
+                    <oui-action-menu-item
+                        aria-label="{{:: ($ctrl.options.vrops.state === 'enabled' ? 'dedicatedCloud_options_unactivate' : 'dedicatedCloud_options_activate') | translate }}"
+                        data-on-click="$ctrl.options.vrops.state === 'enabled' ? $ctrl.disableVmwareOption('vrops') : $ctrl.orderVmwareOption('vrops')"
+                        ><span
+                            data-ng-bind=":: ($ctrl.options.vrops.state === 'enabled' ? 'dedicatedCloud_options_unactivate' : 'dedicatedCloud_options_activate') | translate"
+                        ></span>
+                    </oui-action-menu-item>
+                </oui-action-menu>
+            </div>
+        </div>
+    </div>
+</div>

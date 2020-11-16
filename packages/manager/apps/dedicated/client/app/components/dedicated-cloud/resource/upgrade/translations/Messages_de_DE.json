@@ -1,0 +1,14 @@
+{
+  "ovhManagerPccResourceUpgrade_heading": "Auf monatliche Abrechnung umstellen",
+  "ovhManagerPccResourceUpgrade_form_renewalPeriods_label": "Verlängerungszeitraum",
+  "ovhManagerPccResourceUpgrade_onlyOneRenewalPeriod_heading": "Zusammenfassung Ihrer Bestellung",
+  "ovhManagerPccResourceUpgrade_onlyOneRenewalPeriod_renewalPeriod": "Verlängerungszeitraum",
+  "ovhManagerPccResourceUpgrade_onlyOneRenewalPeriod_renewalPeriod_month": "Monatlich",
+  "ovhManagerPccResourceUpgrade_onlyOneRenewalPeriod_renewalPeriod_year": "Jährlich",
+  "ovhManagerPccResourceUpgrade_onlyOneRenewalPeriod_price": "Preis (zzgl. MwSt.)",
+  "ovhManagerPccResourceUpgrade_clickOnValidateToPlaceYourOrder": "Klicken Sie auf den Button {{ validateButtonText }}, um Ihre Bestellung zu bestätigen.",
+  "ovhManagerPccResourceUpgrade_willOpenNewTabAndRedirect": "Es wird ein neuer Tab geöffnet, und Sie werden automatisch auf das Zahlungsinterface weitergeleitet.",
+  "ovhManagerPccResourceUpgrade_validateButton": "Bestätigen",
+  "ovhManagerPccResourceUpgrade_cancelButton": "Abbrechen",
+  "dedicatedCloud_order_loading_error": "Beim Laden der Informationen ist ein Fehler aufgetreten."
+}

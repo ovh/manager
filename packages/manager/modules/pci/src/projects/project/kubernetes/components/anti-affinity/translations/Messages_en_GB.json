@@ -1,0 +1,4 @@
+{
+  "kubernetes_node_pool_anti_affinity": "Anti-affinity",
+  "kubernetes_node_pool_anti_affinity_description": "By enabling anti-affinity, current and future nodes will be launched on different hypervisors (physical servers), guaranteeing higher fault tolerance. Anti-affinity node pools can only include up to {{ maxNodes }} nodes."
+}

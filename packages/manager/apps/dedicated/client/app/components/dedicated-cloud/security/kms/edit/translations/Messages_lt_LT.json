@@ -1,0 +1,13 @@
+{
+    "dedicatedCloud_vm_encryption_edit_kms_title": "Modify KMS server",
+    "dedicatedCloud_vm_encryption_kms_description": "Description",
+    "dedicatedCloud_vm_encryption_kms_optional": "Optional",
+    "dedicatedCloud_vm_encryption_kms_sslThumbprint": "SSL Thumbprint",
+    "dedicatedCloud_vm_encryption_kms_sslThumbprint_invalid_format": "Invalid format (see example in documentation)",
+    "dedicatedCloud_vm_encryption_kms_required_field": "This field is mandatory",
+    "dedicatedCloud_vm_encryption_kms_current_operation": "Operation {{currentOperation}}: {{state}}",
+    "dedicatedCloud_vm_encryption_kms_edit_error": "An error has occurred editing the KMS server: {{error}}",
+    "dedicatedCloud_vm_encryption_edit_kms_editing": "Modifying KMS server",
+    "dedicatedCloud_vm_encryption_kms_pending_task_state": "In progress",
+    "dedicatedCloud_vm_encryption_kms_edited": "The KMS server has been modified."
+}

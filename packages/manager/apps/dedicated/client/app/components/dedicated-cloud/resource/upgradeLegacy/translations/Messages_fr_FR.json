@@ -1,0 +1,11 @@
+{
+  "dedicatedCloud_updateResource_toMonthly": "Passer au forfait mensuel",
+  "server_tab_USB_STORAGE_order_resume": "Résumé de votre commande",
+  "dedicatedCloud_order_price_HT": "Prix total HT :",
+  "dedicatedCloud_order_price_TTC": "Prix total TTC :",
+  "dedicatedCloud_order_final_txt": "Cliquez sur le bouton \"Valider\" afin de confirmer votre commande.",
+  "dedicatedCloud_order_final_txt2": "Un nouvel onglet s'ouvrira et vous serez automatiquement redirigé(e) vers l'interface de paiement.",
+  "dedicatedCloud_order_loading_error": "Une erreur est survenue lors du chargement des informations.",
+  "dedicatedCloud_order_finish_success": "La commande numéro <a href='{{t0}}' target='_blank'>{{t1}}</a> a bien été prise en compte.",
+  "dedicatedCloud_order_finish_error": "Une erreur est survenue lors de la création du bon de commande."
+}

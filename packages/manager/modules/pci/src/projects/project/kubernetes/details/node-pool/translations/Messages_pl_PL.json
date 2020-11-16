@@ -7,5 +7,9 @@
   "kube_node_pool_add": "Utwórz pulę węzłów",
   "kube_node_pool_refreh": "Odśwież tabelę",
   "kube_node_pool_title": "Pule węzłów",
-  "kube_add_billing_type_description": "Będziesz mógł zmienić model rozliczenia dla każdego węzła z płatności za godzinę na abonament miesięczny, przechodząc do widoku „edycja puli węzłów”."
+  "kube_add_billing_type_description": "Będziesz mógł zmienić model rozliczenia dla każdego węzła z płatności za godzinę na abonament miesięczny, przechodząc do widoku „edycja puli węzłów”.",
+  "kube_node_pool_monthly_billing": "Abonament miesięczny",
+  "kube_node_pool_anti_affinity": "Ochrona przed koligacją (anti-affinity)",
+  "kube_node_pool_enabled": "Aktywny",
+  "kube_node_pool_disabled": "Wyłączony"
 }

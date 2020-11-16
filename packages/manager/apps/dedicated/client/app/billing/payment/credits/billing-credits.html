@@ -142,7 +142,9 @@
             </tbody>
         </table>
     </div>
-    <div data-ng-show="!$ctrl.loading.init && !$ctrl.loading.getBalance">
+    <div
+        data-ng-show="!$ctrl.loading.init && !$ctrl.loading.getBalance && $ctrl.balances.length > 0"
+    >
         <div
             data-pagination-front
             data-items="$ctrl.balances"

@@ -10,7 +10,7 @@
   "kube_common_cancel": "Cancelar",
   "kube_common_delete": "Eliminar",
   "kube_common_node_pool_title": "Configure o seu pool de nós",
-  "kube_common_billing_type_title": "Modo de faturação",
+  "kube_common_billing_type_title": "Faturação e anti-afinidade",
   "kube_common_create_node_pool": "Criar um pool de nós",
   "kube_common_flavor_load_error": "Falha ao alterar os nós: {{message}}"
 }

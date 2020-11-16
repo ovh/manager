@@ -1,0 +1,21 @@
+{
+  "dedicatedCloud_vm_encryption_add_kms_title": "Neuen KMS-Server hinzufügen",
+  "dedicatedCloud_vm_encryption_kms_ip": "IP",
+  "dedicatedCloud_vm_encryption_kms_required_field": "Dieses Feld ist ein Pflichtfeld",
+  "dedicatedCloud_vm_encryption_add_kms_ip_invalid_format": "Ungültiges Format (z. B.: 192.168.0.1 und zwischen 0 und 255 für jeden Block).",
+  "dedicatedCloud_vm_encryption_kms_description": "Beschreibung",
+  "dedicatedCloud_vm_encryption_kms_optional": "optional",
+  "dedicatedCloud_vm_encryption_kms_sslThumbprint": "SSL Thumbprint",
+  "dedicatedCloud_vm_encryption_kms_sslThumbprint_invalid_format": "Ungültiges Format (siehe Beispiel in der Dokumentation)",
+  "dedicatedCloud_vm_encryption_add_kms_confirm_read_documentation": "Ich habe die Dokumentation von VM Encryption sowie die Aktionen, die von mir durchgeführt werden müssen, gelesen und verstanden.",
+  "dedicatedCloud_vm_encryption_kms_documentation_link": "VM Encryption Dokumentation",
+  "dedicatedCloud_vm_encryption_kms_current_operation": "Operation {{currentOperation}}: {{state}}",
+  "dedicatedCloud_vm_encryption_kms_add_error": "Beim Hinzufügen ist ein Fehler aufgetreten: {{error}}",
+  "dedicatedCloud_vm_encryption_add_kms_configuration_intro_1": "Bitte fahren Sie mit der Konfiguration Ihres KMS-Servers über den vSphere Client fort.",
+  "dedicatedCloud_vm_encryption_add_kms_configuration_intro_2": "Wenn die Konfiguration abgeschlossen ist, wird das Setup automatisch fortgesetzt und Sie können den Fortschritt in diesem Fenster nachverfolgen. Es kann bis zu einer Minute dauern, bis der Server erkannt wird.",
+  "dedicatedCloud_vm_encryption_add_kms_configuration_intro_3": "Wenn Sie Hilfe benötigen, lesen Sie bitte die zugehörige Dokumentation.",
+  "dedicatedCloud_vm_encryption_add_kms_creating": "Einrichten eines neuen KMS-Servers",
+  "dedicatedCloud_vm_encryption_kms_pending_task_state": "in Bearbeitung",
+  "dedicatedCloud_vm_encryption_add_kms_creation_canceled": "Einrichten des KMS-Servers abgebrochen",
+  "dedicatedCloud_vm_encryption_kms_added": "Der KMS-Server wurde hinzugefügt."
+}

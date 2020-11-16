@@ -1,0 +1,8 @@
+{
+  "dedicatedCloud_datacenter_drp_confirm_delete_drp_title": "Permanently delete DRP",
+  "dedicatedCloud_datacenter_drp_confirm_delete_drp_action_text": "Delete Zerto DRP",
+  "dedicatedCloud_datacenter_drp_confirm_delete_drp_modal_title": "Deleting a Disaster Recovery Plan",
+  "dedicatedCloud_datacenter_drp_confirm_delete_drp_modal_question": "Are you sure you want to delete the DRP? This action cannot be reversed.",
+  "dedicatedCloud_datacenter_drp_confirm_delete_drp_success": "Deleting Zerto DRP. This will take a few minutes",
+  "dedicatedCloud_datacenter_drp_confirm_delete_drp_error": "Un error has occurred deleting the Disaster Recovery Plan."
+}

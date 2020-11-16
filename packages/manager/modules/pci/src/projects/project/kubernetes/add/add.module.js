@@ -10,6 +10,9 @@ import regionsList from '../../../../components/project/regions-list';
 import routing from './add.routing';
 import versionsList from './versions-list';
 
+import antiAffinity from '../components/anti-affinity';
+import nodePool from '../components/node-pool';
+
 const moduleName = 'ovhManagerPciProjectKubernetesAdd';
 
 angular
@@ -20,6 +23,8 @@ angular
     'ovh-api-services',
     regionsList,
     versionsList,
+    nodePool,
+    antiAffinity,
   ])
   .config(routing)
   .component('ovhManagerPciProjectKubernetesAdd', component)

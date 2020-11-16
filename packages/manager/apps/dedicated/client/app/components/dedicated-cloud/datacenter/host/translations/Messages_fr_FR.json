@@ -1,0 +1,22 @@
+{
+  "dedicatedCloud_tab_host_id": "Id",
+  "dedicatedCloud_tab_host_name": "Nom",
+  "dedicatedCloud_tab_host_profile": "Profil",
+  "dedicatedCloud_tab_host_billing": "Facturation",
+  "dedicatedCloud_tab_host_billing_HOURLY": "A l'heure",
+  "dedicatedCloud_tab_host_billing_MONTHLY": "Au mois",
+  "dedicatedCloud_tab_host_billing_FREE_SPARE": "Spare gratuit",
+  "dedicatedCloud_tab_host_billing_UNDEFINED": "Indéfini",
+  "dedicatedCloud_tab_host_status": "État",
+  "dedicatedCloud_tab_host_status_ADDING": "Ajout en cours",
+  "dedicatedCloud_tab_host_status_DELIVERED": "Actif",
+  "dedicatedCloud_tab_host_status_ERROR": "Erreur",
+  "dedicatedCloud_tab_host_status_REMOVING": "Suppression en cours",
+  "dedicatedCloud_tab_host_status_UNKNOWN": "Inconnu",
+  "dedicatedCloud_tab_host_consumption": "Consommation",
+  "dedicatedCloud_tab_host_empty": "Aucun host",
+  "dedicatedCloud_tab_host_hourly_usage_1": "1 heure",
+  "dedicatedCloud_tab_host_hourly_usage_other": "{} heures",
+  "dedicatedCloud_tab_host_hourly_usage_na": "Bientôt disponible",
+  "dedicatedCloud_tab_host_hourly_usage_update": "En date du {{t0}}"
+}

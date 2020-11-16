@@ -1,0 +1,9 @@
+{
+  "dedicatedCloud_configuration_security_policy_access_title": "Zmień politykę dostępu do vCenter",
+  "dedicatedCloud_configuration_security_policy_access_step1_question": "Wybór polityki dostępu",
+  "dedicatedCloud_SECURITY_access_policy_FILTERED": "Ograniczony",
+  "dedicatedCloud_SECURITY_access_policy_OPEN": "Otwarty",
+  "dedicatedCloud_configuration_security_policy_access_step1_value": "Wybierz",
+  "dedicatedCloud_configuration_SECURITY_policy_access_success": "Polityka dostępów dostała poprawnie zmieniona.",
+  "dedicatedCloud_configuration_SECURITY_policy_access_fail": "Wystąpił błąd podczas zmieniania polityki dostępów."
+}

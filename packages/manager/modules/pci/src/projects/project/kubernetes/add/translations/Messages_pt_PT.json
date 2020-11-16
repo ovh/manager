@@ -7,5 +7,7 @@
   "kubernetes_add_version_title": "Selecione a versão menor de Kubernetes que deseja",
   "kubernetes_add_name_title": "Dê um nome ao seu projeto",
   "kubernetes_add_name": "Nome",
-  "kubernetes_add_billing_type_description": "Após a implementação do seu cluster, poderá passar da faturação à hora para a faturação mensal editando o pool de nós."
+  "kubernetes_add_billing_type_description": "Todos os nós futuros deste pool de nós estarão sujeitos a este modo de faturação. Posteriormente, poderá passar cada um dos seus nós individualmente da faturação à hora para a faturação mensal.",
+  "kubernetes_add_billing_type_payment_method": "A faturação será realizada através do seu método de pagamento predefinido.",
+  "kubernetes_add_billing_anti_affinity_title": "Faturação e anti-afinidade"
 }

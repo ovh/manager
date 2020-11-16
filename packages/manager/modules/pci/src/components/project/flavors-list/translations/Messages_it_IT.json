@@ -16,7 +16,6 @@
   "pci_project_flavors_price_hourly": "{{price}} + IVA/ora",
   "pci_project_flavors_price_monthly": "A partire da {{price}} +IVA/mese",
   "pci_project_flavors_quota": "Aumenta la tua quota",
-  "pci_project_flavors_spec_model": "Modello:",
   "pci_project_flavors_quota_info": "La quota del tuo progetto non consente di aggiungere macchine di questo tipo in questa Region. ",
   "pci_project_flavors_quota_manage": "Gestisci la quota"
 }

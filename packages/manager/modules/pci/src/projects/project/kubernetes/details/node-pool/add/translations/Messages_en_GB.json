@@ -4,5 +4,7 @@
   "kube_add_node_pool_creating": "Creating a node pool",
   "kube_add_node_pool_success": "The '{{nodePoolName}}' node pool has been created.",
   "kube_add_node_pool_error": "Unable to create '{{ nodePoolName }}' node pool: {{ message }}",
-  "kube_add_billing_type_description": "You can switch from hourly billing to monthly billing for each node in the node pool edit view."
+  "kube_add_billing_type_description": "All future nodes in this node pool will be billed in this way. You can then switch each of your nodes individually from hourly to monthly billing.",
+  "kube_add_billing_type_payment_method": "You will be billed via your default payment method.",
+  "kube_add_billing_anti_affinity_title": "Billing and anti-affinity"
 }

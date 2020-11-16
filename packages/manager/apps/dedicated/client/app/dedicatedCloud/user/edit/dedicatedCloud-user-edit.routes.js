@@ -1,9 +1,17 @@
-angular.module('App').config(($stateProvider) => {
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicatedClouds.users.edit', {
-    url: '/edit/:userId',
-    templateUrl: 'dedicatedCloud/user/edit/dedicatedCloud-user-edit.html',
-    controller: 'DedicatedCloudUserEditCtrl',
-    controllerAs: '$ctrl',
+    url: '/edit',
+    params: {
+      user: null,
+    },
+    views: {
+      modal: {
+        component: 'dedicatedCloudUserEdit',
+      },
+    },
     layout: 'modal',
+    resolve: {
+      user: /* @ngInject */ ($transition$) => $transition$.params().user,
+    },
   });
-});
+};

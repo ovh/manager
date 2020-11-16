@@ -4,5 +4,7 @@
   "kube_add_node_pool_creating": "Création d'un pool de nœuds",
   "kube_add_node_pool_success": "Le pool de nœuds '{{nodePoolName}}' a été créé avec succès",
   "kube_add_node_pool_error": "Impossible de créer le pool de nœuds '{{ nodePoolName }}': {{ message }}",
-  "kube_add_billing_type_description": "Vous pourrez passer de la facturation horaire au forfait mensuel pour chaque nœud, dans la vue édition du pool de nœud."
+  "kube_add_billing_type_description": "Tous les nœuds futurs de ce pool de nœuds se verront appliquer ce mode de facturation. Vous pourrez ultérieurement passer chacun de vos nœuds individuellement de la facturation horaire à mensuelle.",
+  "kube_add_billing_type_payment_method": "Vous serez facturé sur votre mode de paiement par défaut",
+  "kube_add_billing_anti_affinity_title": "Facturation et anti-affinité"
 }

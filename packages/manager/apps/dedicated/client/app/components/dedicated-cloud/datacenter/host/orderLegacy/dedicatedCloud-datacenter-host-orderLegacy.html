@@ -1,0 +1,243 @@
+<oui-back-button data-on-click="$ctrl.goBack()"
+    ><span data-translate="dedicatedCloud_order_Host"></span>
+</oui-back-button>
+<oui-stepper data-on-finish="$ctrl.displayBC()">
+    <oui-step-form
+        data-header="{{:: 'dedicatedCloud_configuration_order_hosts_step1_question' | translate }}"
+        data-cancel-text="{{:: 'common_cancel' | translate }}"
+        data-submit-text="{{:: 'common_next' | translate }}"
+        data-loading="$ctrl.orderHosts.loading"
+        data-valid="!$ctrl.orderHosts.loading && $ctrl.orderHosts.selected"
+        data-prevent-next="true"
+        data-on-cancel="$ctrl.goBack()"
+        data-on-focus="$ctrl.loadHostsProfiles()"
+    >
+        <div class="table-responsive">
+            <table class="table table-hover mb-5">
+                <thead>
+                    <tr>
+                        <th scope="col" class="min-width"></th>
+                        <th
+                            scope="col"
+                            class="text-center"
+                            data-translate="dedicatedCloud_configuration_order_hosts"
+                        ></th>
+                        <th
+                            scope="col"
+                            class="text-right"
+                            data-translate="dedicatedCloud_configuration_order_hosts_processor_speed"
+                        ></th>
+                        <th scope="col" class="text-right">
+                            <span
+                                class="d-block"
+                                data-translate="dedicatedCloud_configuration_order_hosts_memory"
+                            >
+                            </span>
+                            <span
+                                data-translate="dedicatedCloud_configuration_order_hosts_memory_ecc"
+                            ></span>
+                        </th>
+                        <th
+                            scope="col"
+                            class="text-right"
+                            data-translate="dedicatedCloud_configuration_order_hosts_nb_cores"
+                        ></th>
+                        <th scope="col" class="text-right">
+                            <span
+                                class="d-block"
+                                data-translate="dedicatedCloud_configuration_order_hosts_step1_rate"
+                            >
+                            </span>
+                            <small
+                                data-translate="dedicatedCloud_configuration_order_hosts_step1_monthly_rate"
+                            ></small>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr
+                        data-ng-repeat="profile in $ctrl.orderHosts.model track by $index"
+                    >
+                        <td>
+                            <input
+                                type="radio"
+                                name="selected_profile"
+                                value="{{ $index }}"
+                                data-ng-model="$ctrl.orderHosts.selected"
+                            />
+                        </td>
+                        <th
+                            scope="row"
+                            class="text-center"
+                            data-ng-bind="profile.name"
+                        ></th>
+                        <td
+                            class="text-right"
+                            data-ng-bind="profile.cpu.value + ' ' + profile.cpu.unit"
+                        ></td>
+                        <td
+                            class="text-right"
+                            data-ng-bind="profile.ram.value + ' ' + profile.ram.unit"
+                        ></td>
+                        <td class="text-right" data-ng-bind="profile.core"></td>
+                        <td class="text-right">
+                            <strong
+                                class="text-danger"
+                                data-ng-bind="profile.priceDisplay"
+                            >
+                            </strong>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="oui-message oui-message_info" role="alert">
+            <span
+                class="oui-icon oui-icon-info-circle"
+                aria-hidden="true"
+            ></span>
+            <p
+                class="oui-message__body"
+                data-translate="dedicatedCloud_configuration_order_hosts_quantity_info"
+            ></p>
+        </div>
+
+        <div class="form-group mt-3">
+            <label
+                for="quantity"
+                class="control-label"
+                data-translate="dedicatedCloud_configuration_order_hosts_billing_quantity"
+            >
+            </label>
+            <oui-numeric
+                id="quantity"
+                name="quantity"
+                model="$ctrl.orderHosts.quantityToOrder"
+                min="1"
+                max="20"
+            >
+            </oui-numeric>
+        </div>
+    </oui-step-form>
+
+    <oui-step-form
+        data-header="{{:: 'dedicatedCloud_configuration_order_hosts_step2_details' | translate }}"
+        data-cancel-text="{{:: 'common_cancel' | translate }}"
+        data-submit-text="{{:: 'wizard_order' | translate }}"
+        data-loading="$ctrl.orderHosts.loading"
+        data-valid="!$ctrl.orderHosts.loading && $ctrl.orderHosts.agreeContract == true"
+        data-prevent-next="true"
+        data-on-cancel="$ctrl.goBack()"
+        data-on-focus="$ctrl.getHostSelected()"
+    >
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th
+                        scope="col"
+                        class="text-center"
+                        data-translate="dedicatedCloud_configuration_order_hosts"
+                    ></th>
+                    <th
+                        scope="col"
+                        class="text-right"
+                        data-translate="dedicatedCloud_configuration_order_hosts_processor_speed"
+                    ></th>
+                    <th
+                        scope="col"
+                        class="text-right"
+                        data-translate="dedicatedCloud_configuration_order_hosts_memory"
+                    ></th>
+                    <th
+                        scope="col"
+                        class="text-right"
+                        data-translate="dedicatedCloud_configuration_order_hosts_nb_cores"
+                    ></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th
+                        scope="row"
+                        class="text-center"
+                        data-ng-bind="$ctrl.orderHosts.selectedModel.name"
+                    ></th>
+                    <td
+                        class="text-right"
+                        data-ng-bind="$ctrl.orderHosts.selectedModel.cpu.value + ' ' + $ctrl.orderHosts.selectedModel.cpu.unit"
+                    ></td>
+                    <td
+                        class="text-right"
+                        data-ng-bind="$ctrl.orderHosts.selectedModel.ram.value + ' ' + $ctrl.orderHosts.selectedModel.ram.unit"
+                    ></td>
+                    <td
+                        class="text-right"
+                        data-ng-bind="$ctrl.orderHosts.selectedModel.core"
+                    ></td>
+                </tr>
+            </tbody>
+        </table>
+        <ul class="list-unstyled">
+            <li>
+                <span
+                    data-translate="dedicatedCloud_configuration_order_hosts_billing_quantity"
+                ></span>
+                <strong
+                    data-ng-bind="$ctrl.orderHosts.quantityToOrder"
+                ></strong>
+            </li>
+            <li>
+                <span
+                    data-translate="dedicatedCloud_configuration_order_hosts_step2_monthly_price_HT"
+                ></span>
+                <strong
+                    class="text-danger"
+                    data-ng-bind="$ctrl.orderHosts.orderResult.prices.withoutTax.text"
+                >
+                </strong>
+            </li>
+            <li>
+                <span
+                    data-translate="dedicatedCloud_configuration_order_hosts_step2_monthly_price_TTC"
+                ></span>
+                <strong
+                    class="text-danger"
+                    data-ng-bind="$ctrl.orderHosts.orderResult.prices.withTax.text"
+                >
+                </strong>
+            </li>
+        </ul>
+        <p
+            data-translate="dedicatedCloud_configuration_order_hosts_step2_confirm"
+        ></p>
+        <p
+            data-translate="dedicatedCloud_configuration_order_hosts_step2_explication"
+        ></p>
+        <div class="checkbox">
+            <label>
+                <input
+                    type="checkbox"
+                    data-ng-model="$ctrl.orderHosts.agreeContract"
+                />
+                <span
+                    data-translate="dedicatedCloud_configuration_order_hosts_step2_contracts"
+                ></span>
+            </label>
+        </div>
+        <ul>
+            <li
+                data-ng-repeat="contract in $ctrl.orderHosts.orderResult.contracts track by $index"
+            >
+                <a
+                    target="_blank"
+                    rel="noopener"
+                    title="{{ contract.name }} ({{ 'core_new_window' | translate }})"
+                    data-ng-href="{{ contract.url }}"
+                    data-ng-bind="contract.name"
+                >
+                </a>
+            </li>
+        </ul>
+    </oui-step-form>
+</oui-stepper>

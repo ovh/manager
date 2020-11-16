@@ -7,5 +7,7 @@
   "kubernetes_add_version_title": "Wählen Sie die gewünschte Kubernetes-Nebenversion aus",
   "kubernetes_add_name_title": "Benennen Sie Ihr Cluster",
   "kubernetes_add_name": "Name",
-  "kubernetes_add_billing_type_description": "Sie können nach der Bereitstellung Ihres Clusters von der stündlichen auf die monatliche Abrechnung wechseln, indem Sie den Node-Pool bearbeiten."
+  "kubernetes_add_billing_type_description": "Alle künftigen Nodes in diesem Node-Pool werden nach diesem Modus berechnet. Sie können später jeden Ihrer Nodes einzeln von der stündlichen auf die monatliche Abrechnung umstellen.",
+  "kubernetes_add_billing_type_payment_method": "Die Rechnung wird über Ihr Standardzahlungsmittel beglichen.",
+  "kubernetes_add_billing_anti_affinity_title": "Abrechnung und Anti-Affinität"
 }

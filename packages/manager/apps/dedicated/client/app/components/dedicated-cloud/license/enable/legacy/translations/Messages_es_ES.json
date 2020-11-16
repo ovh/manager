@@ -1,0 +1,8 @@
+{
+  "dedicatedCloud_tab_licences_active_spla_title": "Activación de la licencia Windows SPLA",
+  "dedicatedCloud_tab_licences_active_spla_step1": "Acepte los contratos de las licencias:",
+  "dedicatedCloud_tab_licences_active_spla_contacts": "He leído y acepto las siguientes condiciones:",
+  "dedicatedCloud_tab_licences_active_spla_load_fail": "Se ha producido un error al cargar la información para activar la licencia SPLA.",
+  "dedicatedCloud_tab_licences_active_spla_success": "El pedido de una licencia SPLA número <a href='{{t0}}' target='_blank'>{{t1}}</a> se ha enviado.",
+  "dedicatedCloud_tab_licences_active_spla_fail": "Se ha producido un error al solicitar la activación de la licencia SPLA."
+}

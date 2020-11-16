@@ -574,7 +574,7 @@
   "user_account_security_double_auth_type_backup_code_info_u2f": "Utilizza questi codici se smarrisci o non hai accesso alla tua chiave di sicurezza.",
   "user_account_security_double_auth_type_backup_code_action_manage": "Rigenera i codici",
   "user_account_security_double_auth_type_backup_code_action_generate": "Genera i codici",
-  "user_account_security_double_auth_type_backup_code_action_delete": "Elimina i codici",
+  "user_account_security_double_auth_type_backup_code_action_delete": "Disattiva i codici 2FA",
   "user_account_security_double_auth_type_backup_code_modal_title": "Doppia autenticazione tramite codice di backup",
   "user_account_security_double_auth_type_backup_code_modal_generate": "Ricevi i codici di sicurezza ",
   "user_account_security_double_auth_type_backup_code_modal_generate_info": "Salva in un luogo sicuro i codici di sicurezza temporanei in caso di furto o perdita del tuo smartphone.",

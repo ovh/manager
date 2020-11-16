@@ -574,7 +574,7 @@
   "user_account_security_double_auth_type_backup_code_info_u2f": "Verwenden Sie diese Codes, falls Sie Ihren USB-Token verloren oder keinen Zugriff darauf haben.",
   "user_account_security_double_auth_type_backup_code_action_manage": "Die Codes erneut erstellen",
   "user_account_security_double_auth_type_backup_code_action_generate": "Die Codes generieren",
-  "user_account_security_double_auth_type_backup_code_action_delete": "Die Codes löschen",
+  "user_account_security_double_auth_type_backup_code_action_delete": "2FA-Codes deaktivieren",
   "user_account_security_double_auth_type_backup_code_modal_title": "Zwei-Faktor-Authentifizierung per Notfall-Code",
   "user_account_security_double_auth_type_backup_code_modal_generate": "Die Notfall-Codes erhalten",
   "user_account_security_double_auth_type_backup_code_modal_generate_info": "Für den Fall des Verlusts oder Diebstahls Ihres Smartphones empfehlen wir Ihnen, die Liste der Notfall-Codes an einem gesicherten Ort aufzubewahren.",

@@ -1,0 +1,10 @@
+{
+  "dedicatedCloud_datacenter_backup_delete_title": "Wyłączenie opcji tworzenia kopii zapasowych",
+  "dedicatedCloud_datacenter_backup_delete_description_1": "Czy chcesz wyłączyć opcję tworzenia kopii zapasowej dla centrum danych {{datacenter}}? Sprawdzić w vSphere, czy nastąpiło wyłączenie opcji tworzenia kopii zapasowych dla każdej wirtualnej maszyny.",
+  "dedicatedCloud_datacenter_backup_delete_description_2": "Uwaga, ta operacja usunie definitywnie wszystkie kopie zapasowe.",
+  "dedicatedCloud_datacenter_backup_delete_cancel": "Anuluj",
+  "dedicatedCloud_datacenter_backup_delete_confirm": "Wyłącz opcję tworzenia kopii zapasowych",
+  "dedicatedCloud_datacenter_backup_delete_success": "Zlecenie wyłączenia opcji Veeam Backup {{name}} jest przetwarzane. Operacja zajmie 24 godziny.",
+  "dedicatedCloud_datacenter_backup_delete_error": "Wystąpił błąd podczas wyłączania Twojej usługi tworzenia kopii zapasowych: {{ message }}",
+  "dedicatedCloud_datacenter_backup_delete_error_403": "Wystąpił błąd podczas wyłączania Twojej usługi tworzenia kopii zapasowych: {{ message }} Skontaktuj się z Pomocą techniczną, która pomoże Ci rozwiązać ten problem."
+}

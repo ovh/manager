@@ -93,7 +93,7 @@
   "logs_password_setup_success": "La password è stata configurata correttamente",
   "logs_password_change_error": "Si è verificato un errore durante la modifica della password: {{message}}",
   "logs_password_setup_error": "Si è verificato un errore durante la configurazione della password: {{message}}",
-  "logs_home_info_title": "A proposito di OVHcloud",
+  "logs_home_info_title": "Tutto su OVHcloud",
   "logs_home_info": "Logs Data Platform è un’interfaccia di raccolta, indicizzazione e analisi dei log. Indipendentemente dalla loro provenienza, questa piattaforma permette di scegliere diversi input in base a protocollo, livello di sicurezza e formato. L’analisi e l’elaborazione dei dati possono essere effettuate tramite diverse API e interfacce Web.",
   "logs_home_account_disabled_title": "Account disattivato",
   "logs_home_account_disabled_message": "Il tuo account è stato disabilitato il {{disabledDate}}. Per riattivarlo, contatta il supporto.",

@@ -85,7 +85,7 @@
                 class="btn btn-link"
                 data-ng-click="setAction('ip/virtual-mac/add/ip-ip-virtual-mac-add', { ipBlock: ipBlock, ip: ip })"
                 data-translate="ip_table_manage_add_virtualmac"
-                data-ng-disabled="ipBlock.service.category !== 'DEDICATED' || ipBlock.virtualMac.status !== 'OK' || ipBlock.virtualMac.virtualMacs[ip.ip]"
+                data-ng-disabled="ipBlock.service.category !== 'DEDICATED' || (ipBlock.virtualMac && ipBlock.virtualMac.status !== 'OK') || ipBlock.virtualMac.virtualMacs[ip.ip]"
                 data-oui-tooltip-placement="left"
                 data-oui-tooltip="{{ ipBlock.service.category === 'DEDICATED' && ipBlock.virtualMac.status === 'OK' && ipBlock.virtualMac.virtualMacs[ip.ip] ? getVirtualMacMessage(ipBlock) : '' }}"
             ></button>

@@ -3,12 +3,10 @@ import flatten from 'lodash/flatten';
 import legacyTemplate from '../../../../../../ip/ip/legacyOrder/ip-ip-legacyOrder.html';
 import template from '../../../../../../ip/ip/agoraOrder/ip-ip-agoraOrder.html';
 
-import component from './dedicatedCloud-datacenter-drp-ovh-secondPccStep.component';
-
 import {
   DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS,
   DEDICATEDCLOUD_DATACENTER_DRP_STATUS,
-} from '../../../dedicatedCloud-datacenter-drp.constants';
+} from '../../../../../../components/dedicated-cloud/datacenter/drp/dedicatedCloud-datacenter-drp.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
@@ -16,7 +14,7 @@ export default /* @ngInject */ ($stateProvider) => {
       url: '/secondPcc',
       views: {
         'innerView@app.dedicatedClouds.datacenter.drp': {
-          component: component.name,
+          component: 'dedicatedCloudDatacenterDrpOvhSecondPccStep',
         },
       },
       params: {

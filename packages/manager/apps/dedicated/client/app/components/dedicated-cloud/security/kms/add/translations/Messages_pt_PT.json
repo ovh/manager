@@ -1,0 +1,21 @@
+{
+  "dedicatedCloud_vm_encryption_add_kms_title": "Adicionar um novo servidor KMS",
+  "dedicatedCloud_vm_encryption_kms_ip": "IP",
+  "dedicatedCloud_vm_encryption_kms_required_field": "Este campo é obrigatório",
+  "dedicatedCloud_vm_encryption_add_kms_ip_invalid_format": "Formato inválido (ex.: 192.168.0.1 e entre 0 e 255 para cada bloco).",
+  "dedicatedCloud_vm_encryption_kms_description": "Descrição",
+  "dedicatedCloud_vm_encryption_kms_optional": "Opcional",
+  "dedicatedCloud_vm_encryption_kms_sslThumbprint": "SSL Thumbprint",
+  "dedicatedCloud_vm_encryption_kms_sslThumbprint_invalid_format": "Formato inválido (ver exemplo na documentação)",
+  "dedicatedCloud_vm_encryption_add_kms_confirm_read_documentation": "Li e compreendi a documentação de VM Encryption, assim como as ações que devo realizar.",
+  "dedicatedCloud_vm_encryption_kms_documentation_link": "Documentação VM Encryption",
+  "dedicatedCloud_vm_encryption_kms_current_operation": "Operação {{currentOperation}}: {{state}}",
+  "dedicatedCloud_vm_encryption_kms_add_error": "Ocorreu um erro ao adicionar o servidor: {{error}}",
+  "dedicatedCloud_vm_encryption_add_kms_configuration_intro_1": "Já pode confirmar o servidor KMS através do cliente vSphere.",
+  "dedicatedCloud_vm_encryption_add_kms_configuration_intro_2": "Depois de configurar o servidor, o arranque será realizado automaticamente. Pode seguir o progresso através desta janela. A deteção pode demorar até um minuto.",
+  "dedicatedCloud_vm_encryption_add_kms_configuration_intro_3": "Se precisar de ajuda, pode consultar a nossa documentação.",
+  "dedicatedCloud_vm_encryption_add_kms_creating": "Criação do novo servidor KMS",
+  "dedicatedCloud_vm_encryption_kms_pending_task_state": "em curso",
+  "dedicatedCloud_vm_encryption_add_kms_creation_canceled": "Criação do servidor KMS cancelada",
+  "dedicatedCloud_vm_encryption_kms_added": "O servidor KMS foi adicionado."
+}

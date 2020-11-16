@@ -20,6 +20,10 @@ angular.module('UserAccount').config(
       },
       redirectTo: `${name}.method`,
       resolve: {
+        angularQr: /* @ngInject */ ($ocLazyLoad) =>
+          import('angular-qr').then((module) =>
+            $ocLazyLoad.inject(module.default || module),
+          ),
         schema: /* @ngInject */ (OvhApiMe) => OvhApiMe.v6().schema().$promise,
         supportLevel: /* @ngInject */ (OvhApiMe, schema) =>
           schema.models[API_MODEL_SUPPORT_LEVEL]
