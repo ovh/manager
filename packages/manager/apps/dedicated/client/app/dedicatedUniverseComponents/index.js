@@ -5,7 +5,6 @@ import ducBytes from './bytes';
 import ducContract from './contract';
 import ducNotification from './notification';
 import ducPrice from './price';
-import ducTabs from './tabs';
 import ducTranslate from './translate';
 
 const moduleName = 'dedicatedUniverseComponents';
@@ -16,7 +15,6 @@ angular.module(moduleName, [
   ducContract,
   ducNotification,
   ducPrice,
-  ducTabs,
   ducTranslate,
 ]);
 
