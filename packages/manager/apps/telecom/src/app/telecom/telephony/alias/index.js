@@ -15,7 +15,7 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
     };
 
     $stateProvider.state('telecom.telephony.billingAccount.alias.**', {
-      url: '/alias/:serviceName',
+      url: '/alias',
       lazyLoad,
     });
 
