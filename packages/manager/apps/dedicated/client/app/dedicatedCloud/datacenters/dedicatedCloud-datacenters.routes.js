@@ -1,15 +1,15 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicatedClouds.datacenters', {
-    url: '/datacenters',
+  $stateProvider.state('app.dedicatedCloud.details.datacenter', {
+    url: '/datacenter',
     reloadOnSearch: false,
     views: {
       pccView: 'ovhManagerPccDatacenters',
     },
     resolve: {
       addDatacenter: /* @ngInject */ ($state) => () =>
-        $state.go('app.dedicatedClouds.datacenters.add-datacenter'),
+        $state.go('app.dedicatedCloud.details.datacenter.add-datacenter'),
       goToDatacenter: /* @ngInject */ ($state) => (datacenter) =>
-        $state.go('app.dedicatedClouds.datacenter', {
+        $state.go('app.dedicatedCloud.details.datacenter.details', {
           datacenterId: datacenter.name,
         }),
     },

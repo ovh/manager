@@ -3,7 +3,7 @@ import stepModuleNames from '../../../../../components/dedicated-cloud/service-p
 import component from '../../../../../components/dedicated-cloud/service-pack/upgrade/upgrade.component';
 
 export const state = {
-  name: 'app.dedicatedClouds.servicePackUpgrade.configurationOnly',
+  name: 'app.dedicatedCloud.details.servicePackUpgrade.configurationOnly',
   params: {
     activationType: 'basic',
   },
@@ -17,7 +17,7 @@ export const state = {
   },
   url: '/configurationOnly',
   views: {
-    'pccView@app.dedicatedClouds': component.name,
+    'pccView@app.dedicatedCloud.details': component.name,
   },
 };
 

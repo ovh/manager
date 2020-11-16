@@ -15,8 +15,9 @@ import {
 } from '../../components/dedicated-cloud/datacenter/drp/dedicatedCloud-datacenter-drp.constants';
 
 export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
-  $stateProvider.state('app.dedicatedClouds', {
-    redirectTo: 'app.dedicatedClouds.dashboard',
+  $stateProvider.state('app.dedicatedCloud.details', {
+    url: '/:productId',
+    redirectTo: 'app.dedicatedCloud.details.dashboard',
     resolve: {
       currentService: /* @ngInject */ (DedicatedCloud, productId) =>
         DedicatedCloud.getSelected(productId, true).then(
@@ -125,43 +126,45 @@ export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
       isDrpActionPossible: /* @ngInject */ (currentDrp, dedicatedCloudDrp) =>
         dedicatedCloudDrp.constructor.isDrpActionPossible(currentDrp),
 
-      datacentersState: () => 'app.dedicatedClouds.datacenters',
-      pccDashboardState: () => 'app.dedicatedClouds.dashboard',
-      licenseState: () => 'app.dedicatedClouds.license',
-      operationState: () => 'app.dedicatedClouds.operation',
-      securityState: () => 'app.dedicatedClouds.security',
-      usersState: () => 'app.dedicatedClouds.users',
+      datacentersState: () => 'app.dedicatedCloud.details.datacenter',
+      pccDashboardState: () => 'app.dedicatedCloud.details.dashboard',
+      licenseState: () => 'app.dedicatedCloud.details.license',
+      operationState: () => 'app.dedicatedCloud.details.operation',
+      securityState: () => 'app.dedicatedCloud.details.security',
+      usersState: () => 'app.dedicatedCloud.details.users',
       goToDrp: /* @ngInject */ ($state, currentDrp) => (datacenterId) =>
-        $state.go('app.dedicatedClouds.datacenter.drp', {
+        $state.go('app.dedicatedCloud.details.datacenter.details.drp', {
           datacenterId,
           drpInformations: currentDrp,
         }),
       goToDrpDatacenterSelection: /* @ngInject */ ($state) => () =>
-        $state.go('app.dedicatedClouds.dashboard.drpDatacenterSelection'),
+        $state.go(
+          'app.dedicatedCloud.details.dashboard.drpDatacenterSelection',
+        ),
       goToPccDashboard: /* @ngInject */ ($state) => (reload = false) =>
-        $state.go('app.dedicatedClouds', {}, { reload }),
+        $state.go('app.dedicatedCloud.details', {}, { reload }),
       goToVpnConfiguration: /* @ngInject */ ($state, currentDrp) => () =>
-        $state.go('app.dedicatedClouds.datacenter.drp.summary', {
+        $state.go('app.dedicatedCloud.details.datacenter.details.drp.summary', {
           datacenterId: currentDrp.datacenterId,
           drpInformations: currentDrp,
         }),
       goToDatacenter: /* @ngInject */ ($state, productId) => (datacenterId) =>
-        $state.go('app.dedicatedClouds.datacenter', {
+        $state.go('app.dedicatedCloud.details.datacenter.details', {
           productId,
           datacenterId,
         }),
       goToDatastores: /* @ngInject */ ($state, productId) => (datacenterId) =>
-        $state.go('app.dedicatedClouds.datacenter.datastores', {
+        $state.go('app.dedicatedCloud.details.datacenter.details.datastores', {
           productId,
           datacenterId,
         }),
       goToHosts: /* @ngInject */ ($state, productId) => (datacenterId) =>
-        $state.go('app.dedicatedClouds.datacenter.hosts', {
+        $state.go('app.dedicatedCloud.details.datacenter.details.hosts', {
           productId,
           datacenterId,
         }),
       goToUsers: /* @ngInject */ ($state) => () =>
-        $state.go('app.dedicatedClouds.users'),
+        $state.go('app.dedicatedCloud.details.users'),
       serviceName: /* @ngInject */ (productId) => productId,
       productId: /* @ngInject */ ($transition$) =>
         $transition$.params().productId,
@@ -190,9 +193,9 @@ export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
       goBackToDashboard: /* @ngInject */ (goBackToState) => (
         message = false,
         type = 'success',
-      ) => goBackToState('app.dedicatedClouds.dashboard', message, type),
+      ) => goBackToState('app.dedicatedCloud.details.dashboard', message, type),
       operationsUrl: /* @ngInject */ ($state, currentService) =>
-        $state.href('app.dedicatedClouds.operation', {
+        $state.href('app.dedicatedCloud.details.operation', {
           productId: currentService.serviceName,
         }),
       optionsAvailable: /* @ngInject */ (
@@ -225,8 +228,8 @@ export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
       ) =>
         $state.go(
           usesLegacyOrder
-            ? 'app.dedicatedClouds.datacenter.datastores.order-legacy'
-            : 'app.dedicatedClouds.datacenter.datastores.order',
+            ? 'app.dedicatedCloud.details.datacenter.details.datastores.order-legacy'
+            : 'app.dedicatedCloud.details.datacenter.details.datastores.order',
           {
             datacenterId,
           },
@@ -234,8 +237,8 @@ export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
       orderHost: /* @ngInject */ ($state, usesLegacyOrder) => (datacenterId) =>
         $state.go(
           usesLegacyOrder
-            ? 'app.dedicatedClouds.datacenter.hosts.order-legacy'
-            : 'app.dedicatedClouds.datacenter.hosts.order',
+            ? 'app.dedicatedCloud.details.datacenter.details.hosts.order-legacy'
+            : 'app.dedicatedCloud.details.datacenter.details.hosts.order',
           {
             datacenterId,
           },
@@ -261,7 +264,6 @@ export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
               : null,
           ),
     },
-    url: '/configuration/dedicated_cloud/:productId',
     views: {
       '': 'ovhManagerPcc',
     },

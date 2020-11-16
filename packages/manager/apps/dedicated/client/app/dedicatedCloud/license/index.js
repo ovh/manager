@@ -6,7 +6,7 @@ const moduleName = 'dedicatedCloudLicenseLazyloading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.dedicatedClouds.license.**', {
+    $stateProvider.state('app.dedicatedCloud.details.license.**', {
       url: '/license',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');

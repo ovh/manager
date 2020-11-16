@@ -7,7 +7,7 @@ const moduleName = 'ovhManagerDedicatedCloudBackupMinimumHostsLazyloading';
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'app.dedicatedClouds.datacenter.backup.minimum-hosts.**',
+      'app.dedicatedCloud.details.datacenter.details.backup.minimum-hosts.**',
       {
         url: '/minimum-hosts',
         lazyLoad: ($transition$) => {
