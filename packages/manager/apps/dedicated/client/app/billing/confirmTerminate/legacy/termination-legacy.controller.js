@@ -1,5 +1,7 @@
 import get from 'lodash/get';
 
+import { SUB_TYPE_PROPERTIES } from './termination-legacy.constants';
+
 export default class TerminateServiceCtrl {
   /* @ngInject */
   constructor($q, $stateParams, BillingTerminateLegacy, User) {
@@ -65,10 +67,30 @@ export default class TerminateServiceCtrl {
     return this.BillingTerminate.getServiceInfo(this.serviceId)
       .then((serviceInfos) => {
         this.serviceInfos = serviceInfos;
-        return this.BillingTerminate.getServiceApi(serviceInfos.serviceId);
+        return this.BillingTerminate.getServiceApi(serviceInfos.serviceId).then(
+          (service) => {
+            this.serviceState = get(service, 'resource.state');
+          },
+        );
       })
-      .then((service) => {
-        this.serviceState = get(service, 'resource.state');
+      .then(() => {
+        const subTypeProperty = get(
+          SUB_TYPE_PROPERTIES,
+          this.serviceInfos.serviceType,
+        );
+        this.serviceType = this.serviceInfos.serviceType;
+        if (subTypeProperty) {
+          return this.BillingTerminate.getServiceDetails(
+            this.serviceInfos.serviceId,
+          ).then((serviceDetails) => {
+            this.serviceType = get(
+              serviceDetails,
+              subTypeProperty,
+              this.serviceInfos.serviceType,
+            );
+          });
+        }
+        return this.$q.when();
       })
       .finally(() => {
         this.loading = false;
