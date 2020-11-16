@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicatedClouds.security', {
+  $stateProvider.state('app.dedicatedCloud.details.security', {
     url: '/security',
     reloadOnSearch: false,
     views: {
@@ -21,49 +21,56 @@ export default /* @ngInject */ ($stateProvider) => {
             .resetQueryCache();
         }
 
-        return goBackToState('app.dedicatedClouds.security', message, type);
+        return goBackToState(
+          'app.dedicatedCloud.details.security',
+          message,
+          type,
+        );
       },
       addKms: /* @ngInject */ ($state) => () =>
-        $state.go('app.dedicatedClouds.security.kms-add'),
+        $state.go('app.dedicatedCloud.details.security.kms-add'),
       addSecurity: /* @ngInject */ ($state) => () =>
-        $state.go('app.dedicatedClouds.security.add'),
+        $state.go('app.dedicatedCloud.details.security.add'),
       deleteKms: /* @ngInject */ ($state) => (kmsToDelete) =>
-        $state.go('app.dedicatedClouds.security.kms-delete', {
+        $state.go('app.dedicatedCloud.details.security.kms-delete', {
           kmsToDelete,
         }),
       deleteSecurity: /* @ngInject */ ($state) => (
         selectedPolicies,
         policies,
       ) =>
-        $state.go('app.dedicatedClouds.security.delete', {
+        $state.go('app.dedicatedCloud.details.security.delete', {
           policies,
           selectedPolicies,
         }),
       editKms: /* @ngInject */ ($state) => (kmsToEdit) =>
-        $state.go('app.dedicatedClouds.security.kms-edit', {
+        $state.go('app.dedicatedCloud.details.security.kms-edit', {
           kmsToEdit,
         }),
       securityAccess: /* @ngInject */ ($state) => () =>
-        $state.go('app.dedicatedClouds.security.access'),
+        $state.go('app.dedicatedCloud.details.security.access'),
       securityLogout: /* @ngInject */ ($state) => () =>
-        $state.go('app.dedicatedClouds.security.logout'),
+        $state.go('app.dedicatedCloud.details.security.logout'),
       updateMaxSimultaneousConnection: /* @ngInject */ ($state) => (
         userLimitConcurrentSession,
       ) =>
         $state.go(
-          'app.dedicatedClouds.security.simultaneous-connection-update',
+          'app.dedicatedCloud.details.security.simultaneous-connection-update',
           {
             userLimitConcurrentSession,
           },
         ),
       updateSecurity: /* @ngInject */ ($state) => (policy) =>
-        $state.go('app.dedicatedClouds.security.update', {
+        $state.go('app.dedicatedCloud.details.security.update', {
           policy,
         }),
       updateSessionTimeout: /* @ngInject */ ($state) => (userSessionTimeout) =>
-        $state.go('app.dedicatedClouds.security.session-timeout-update', {
-          userSessionTimeout,
-        }),
+        $state.go(
+          'app.dedicatedCloud.details.security.session-timeout-update',
+          {
+            userSessionTimeout,
+          },
+        ),
     },
   });
 };

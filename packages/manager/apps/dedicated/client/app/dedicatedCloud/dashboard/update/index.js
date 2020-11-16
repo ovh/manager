@@ -6,7 +6,7 @@ const moduleName = 'ovhManagerPccDashboardUpdateLazyloading';
 
 angular.module(moduleName, ['oc.lazyLoad', 'ui.router']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.dedicatedClouds.dashboard.update.**', {
+    $stateProvider.state('app.dedicatedCloud.details.dashboard.update.**', {
       url: '/update',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');

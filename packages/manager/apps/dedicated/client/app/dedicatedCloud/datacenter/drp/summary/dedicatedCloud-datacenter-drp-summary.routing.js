@@ -1,17 +1,22 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicatedClouds.datacenter.drp.summary', {
-    url: '/summary',
-    views: {
-      'innerView@app.dedicatedClouds.datacenter.drp': {
-        component: 'dedicatedCloudDatacenterDrpSummary',
+  $stateProvider.state(
+    'app.dedicatedCloud.details.datacenter.details.drp.summary',
+    {
+      url: '/summary',
+      views: {
+        'innerView@app.dedicatedCloud.details.datacenter.details.drp': {
+          component: 'dedicatedCloudDatacenterDrpSummary',
+        },
+      },
+      params: {
+        drpInformations: {},
+      },
+      resolve: {
+        goToDeleteDrpModal: /* @ngInject */ ($state) => () =>
+          $state.go(
+            'app.dedicatedCloud.details.datacenter.details.drp.summary.deleteDrp',
+          ),
       },
     },
-    params: {
-      drpInformations: {},
-    },
-    resolve: {
-      goToDeleteDrpModal: /* @ngInject */ ($state) => () =>
-        $state.go('app.dedicatedClouds.datacenter.drp.summary.deleteDrp'),
-    },
-  });
+  );
 };

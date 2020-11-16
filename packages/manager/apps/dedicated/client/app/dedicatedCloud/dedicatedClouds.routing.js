@@ -16,7 +16,7 @@ export default /* @ngInject */ ($stateProvider) => {
       getServiceNameLink: /* @ngInject */ ($state) => ({
         serviceName: productId,
       }) =>
-        $state.href('app.dedicatedClouds.dashboard', {
+        $state.href('app.dedicatedCloud.details.dashboard', {
           productId,
         }),
     },

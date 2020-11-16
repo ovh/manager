@@ -7,7 +7,7 @@ const moduleName = 'dedicatedCloudSecuritySessionTimeoutUpdateLazyloading';
 angular.module(moduleName, ['oc.lazyLoad', 'ui.router']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'app.dedicatedClouds.security.session-timeout-update.**',
+      'app.dedicatedCloud.details.security.session-timeout-update.**',
       {
         url: '/session-timeout-update',
         lazyLoad: ($transition$) => {

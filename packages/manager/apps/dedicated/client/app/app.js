@@ -254,7 +254,7 @@ angular
 
         const HPC_STATES = [
           'app.hpc',
-          'app.dedicatedClouds',
+          'app.dedicatedCloud',
           'veeam-enterprise',
         ];
         const IGNORE_STATES = [

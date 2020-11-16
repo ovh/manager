@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicatedClouds.dashboard.deleteDrp', {
+  $stateProvider.state('app.dedicatedCloud.details.dashboard.deleteDrp', {
     url: '/deleteDrp',
     views: {
       modal: {

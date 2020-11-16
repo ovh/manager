@@ -8,7 +8,7 @@ const moduleName =
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'app.dedicatedClouds.datacenter.drp.onPremise.onPremisePccStep.**',
+      'app.dedicatedCloud.details.datacenter.details.drp.onPremise.onPremisePccStep.**',
       {
         url: '/onPremisePcc',
         lazyLoad: ($transition$) => {

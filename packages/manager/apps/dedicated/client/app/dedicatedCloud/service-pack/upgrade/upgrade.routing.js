@@ -1,6 +1,6 @@
 export const state = {
   abstract: true,
-  name: 'app.dedicatedClouds.servicePackUpgrade',
+  name: 'app.dedicatedCloud.details.servicePackUpgrade',
   resolve: {
     goBack: /* @ngInject */ (goToPccDashboard) => goToPccDashboard,
   },

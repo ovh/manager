@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicatedClouds.datacenters.add-datacenter', {
+  $stateProvider.state('app.dedicatedCloud.details.datacenter.add-datacenter', {
     url: '/add-datacenter',
     views: {
       modal: {
@@ -15,7 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
         const reload = message && type === 'success';
 
         const promise = $state.go(
-          'app.dedicatedClouds.datacenters',
+          'app.dedicatedCloud.details.datacenter',
           { productId },
           {
             reload,

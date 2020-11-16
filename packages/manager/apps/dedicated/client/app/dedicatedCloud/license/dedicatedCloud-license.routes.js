@@ -1,16 +1,16 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicatedClouds.license', {
+  $stateProvider.state('app.dedicatedCloud.details.license', {
     url: '/license',
     views: {
       pccView: 'ovhManagerPccLicense',
     },
     resolve: {
       goToEnableLicense: /* @ngInject */ ($state) => () =>
-        $state.go('app.dedicatedClouds.license.enable'),
+        $state.go('app.dedicatedCloud.details.license.enable'),
       goBack: /* @ngInject */ (goBackToState) => (
         message = false,
         type = 'success',
-      ) => goBackToState('app.dedicatedClouds.license', message, type),
+      ) => goBackToState('app.dedicatedCloud.details.license', message, type),
     },
   });
 };
