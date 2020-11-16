@@ -64,7 +64,7 @@ export const REDIRECT_URLS = {
   dedicatedCloud:
     'https://www.ovh.com/manager/dedicated/index.html#/configuration?landingTo=dedicatedClouds',
   dedicatedCloudPage:
-    'https://www.ovh.com/manager/dedicated/index.html#/configuration/dedicated_cloud/{pcc}?landingTo=dedicatedClouds',
+    'https://www.ovh.com/manager/dedicated/index.html#/dedicated_cloud/{pcc}?landingTo=dedicatedClouds',
   cloudDesktop: 'https://www.ovh.com/manager/sunrise/index.html#/deskaas',
   vps:
     'https://www.ovh.com/manager/dedicated/index.html#/configuration?landingTo=vps',

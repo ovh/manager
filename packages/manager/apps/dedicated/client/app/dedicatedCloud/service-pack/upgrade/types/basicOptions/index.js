@@ -7,7 +7,7 @@ const moduleName = 'ovhManagerPccServicePackUpgradeBasicOptionsLazyloading';
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'app.dedicatedClouds.servicePackUpgrade.basicOptions.**',
+      'app.dedicatedCloud.details.servicePackUpgrade.basicOptions.**',
       {
         url: '/basicOptions',
         lazyLoad: ($transition$) => {

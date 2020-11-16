@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'app.dedicatedClouds.security.simultaneous-connection-update',
+    'app.dedicatedCloud.details.security.simultaneous-connection-update',
     {
       url: '/simultaneous-connection-update',
       params: {

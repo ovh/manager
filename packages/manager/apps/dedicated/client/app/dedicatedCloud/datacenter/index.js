@@ -6,8 +6,8 @@ const moduleName = 'ovhManagerDedicatedCloudDatacenterLazyloading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.dedicatedClouds.datacenter.**', {
-      url: '/datacenter/:datacenterId',
+    $stateProvider.state('app.dedicatedCloud.details.datacenter.details.**', {
+      url: '/:datacenterId',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
         return import('./dedicatedCloud-datacenter.module').then((mod) =>

@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicatedClouds.users.password-reset', {
+  $stateProvider.state('app.dedicatedCloud.details.users.password-reset', {
     url: '/password-reset',
     params: {
       passwordPolicy: null,

@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicatedClouds.security.logout', {
+  $stateProvider.state('app.dedicatedCloud.details.security.logout', {
     url: '/logout',
     views: {
       modal: {

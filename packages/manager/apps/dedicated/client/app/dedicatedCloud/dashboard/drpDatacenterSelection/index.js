@@ -7,7 +7,7 @@ const moduleName = 'dedicatedCloudDrpDatacenterSelectionLazyloading';
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'app.dedicatedClouds.dashboard.drpDatacenterSelection.**',
+      'app.dedicatedCloud.details.dashboard.drpDatacenterSelection.**',
       {
         url: '/drpDatacenterSelection',
         lazyLoad: ($transition$) => {

@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicatedClouds.users', {
+  $stateProvider.state('app.dedicatedCloud.details.users', {
     url: '/users',
     reloadOnSearch: false,
     views: {
@@ -12,38 +12,38 @@ export default /* @ngInject */ ($stateProvider) => {
         reload = undefined,
       ) => {
         return goBackToState(
-          'app.dedicatedClouds.users',
+          'app.dedicatedCloud.details.users',
           message,
           type,
           reload,
         );
       },
       addUser: /* @ngInject */ ($state) => (passwordPolicy) =>
-        $state.go('app.dedicatedClouds.users.add', {
+        $state.go('app.dedicatedCloud.details.users.add', {
           passwordPolicy,
         }),
       deleteUser: /* @ngInject */ ($state) => (user) =>
-        $state.go('app.dedicatedClouds.users.delete', {
+        $state.go('app.dedicatedCloud.details.users.delete', {
           user,
         }),
       disableUser: /* @ngInject */ ($state) => (user) =>
-        $state.go('app.dedicatedClouds.users.disable', {
+        $state.go('app.dedicatedCloud.details.users.disable', {
           user,
         }),
       editUser: /* @ngInject */ ($state) => (user) =>
-        $state.go('app.dedicatedClouds.users.edit', {
+        $state.go('app.dedicatedCloud.details.users.edit', {
           user,
         }),
       enableUser: /* @ngInject */ ($state) => (user) =>
-        $state.go('app.dedicatedClouds.users.enable', {
+        $state.go('app.dedicatedCloud.details.users.enable', {
           user,
         }),
       modifyUserRights: /* @ngInject */ ($state) => (userId) =>
-        $state.go('app.dedicatedClouds.users.rights', {
+        $state.go('app.dedicatedCloud.details.users.rights', {
           userId,
         }),
       passwordReset: /* @ngInject */ ($state) => (user, passwordPolicy) =>
-        $state.go('app.dedicatedClouds.users.password-reset', {
+        $state.go('app.dedicatedCloud.details.users.password-reset', {
           passwordPolicy,
           user,
         }),

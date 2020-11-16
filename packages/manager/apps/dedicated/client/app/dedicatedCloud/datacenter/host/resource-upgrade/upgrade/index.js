@@ -7,7 +7,7 @@ const moduleName = 'dedicatedCloudDatacenterHostResourceUpgradeLazyloading';
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'app.dedicatedClouds.datacenter.hosts.resourceUpgrade.**',
+      'app.dedicatedCloud.details.datacenter.details.hosts.resourceUpgrade.**',
       {
         url: '/upgradeResource',
         lazyLoad: ($transition$) => {

@@ -7,7 +7,7 @@ const moduleName = 'dedicatedCloudDatacenterDrpOvhMainPccStepLazyloading';
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'app.dedicatedClouds.datacenter.drp.ovh.mainPccStep.**',
+      'app.dedicatedCloud.details.datacenter.details.drp.ovh.mainPccStep.**',
       {
         url: '/mainPcc',
         lazyLoad: ($transition$) => {
