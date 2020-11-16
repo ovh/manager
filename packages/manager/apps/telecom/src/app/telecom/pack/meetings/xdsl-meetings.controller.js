@@ -16,9 +16,12 @@ export default class XdslMeetingCtrl {
     };
 
     this.showMeetingSlots = false;
+    this.infoMessage = '';
 
     if (this.meetings.length > 0) {
       this.showMeetingSlots = true;
+    } else {
+      this.infoMessage = this.$translate.instant('xdsl_meeting_no_meetings');
     }
   }
 
