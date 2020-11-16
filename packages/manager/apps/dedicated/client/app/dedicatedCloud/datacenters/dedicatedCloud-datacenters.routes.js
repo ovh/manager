@@ -12,6 +12,8 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('app.dedicatedCloud.details.datacenter.details', {
           datacenterId: datacenter.name,
         }),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('dedicated_cloud_datacenters'),
     },
   });
 };

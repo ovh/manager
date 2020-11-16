@@ -47,6 +47,9 @@ export default /* @ngInject */ ($stateProvider) => {
           passwordPolicy,
           user,
         }),
+
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('dedicated_cloud_users'),
     },
   });
 };

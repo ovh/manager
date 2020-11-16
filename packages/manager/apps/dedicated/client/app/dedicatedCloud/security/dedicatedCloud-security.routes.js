@@ -71,6 +71,8 @@ export default /* @ngInject */ ($stateProvider) => {
             userSessionTimeout,
           },
         ),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('dedicated_cloud_security'),
     },
   });
 };
