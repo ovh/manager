@@ -149,7 +149,7 @@ export default class TelecomTelephonyAliasConfigurationLinesLineCtrl {
 
   goBack() {
     return this.$state.go(
-      'telecom.telephony.billingAccount.alias.configuration.lines',
+      'telecom.telephony.billingAccount.alias.details.configuration.lines',
     );
   }
 }

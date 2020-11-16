@@ -8,7 +8,7 @@ const moduleName =
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'telecom.telephony.billingAccount.alias.convertToLine.**',
+      'telecom.telephony.billingAccount.alias.details.convertToLine.**',
       {
         url: '/convert',
         lazyLoad: ($transition$) => {

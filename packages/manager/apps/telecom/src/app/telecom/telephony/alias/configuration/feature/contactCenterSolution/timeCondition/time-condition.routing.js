@@ -3,11 +3,11 @@ import controller from './time-condition.controller';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'telecom.telephony.billingAccount.alias.configuration.timeCondition',
+    'telecom.telephony.billingAccount.alias.details.configuration.timeCondition',
     {
       url: '/timeCondition',
       views: {
-        'aliasInnerView@telecom.telephony.billingAccount.alias': {
+        'aliasInnerView@telecom.telephony.billingAccount.alias.details': {
           template,
           controller,
           controllerAs: '$ctrl',

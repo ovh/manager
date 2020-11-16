@@ -230,7 +230,7 @@ export default class TelecomTelephonyAliasConfigurationTimeConditionCtrl {
   manageScheduler() {
     this.onTimeConditionFormReset();
     this.$state.go(
-      'telecom.telephony.billingAccount.alias.configuration.timeCondition.scheduler',
+      'telecom.telephony.billingAccount.alias.details.configuration.timeCondition.scheduler',
     );
   }
 

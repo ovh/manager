@@ -30,9 +30,11 @@ export default class TelecomTelephonyAliasConfigurationContactCenterSolutionCtrl
         this.OvhApiTelephony.Service()
           .v6()
           .resetCache();
-        this.$state.go('telecom.telephony.billingAccount.alias').then(() => {
-          this.$state.reload();
-        });
+        this.$state
+          .go('telecom.telephony.billingAccount.alias.details')
+          .then(() => {
+            this.$state.reload();
+          });
       })
       .catch((error) => {
         if (error) {

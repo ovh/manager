@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'telecom.telephony.billingAccount.alias.configuration.tones',
+    'telecom.telephony.billingAccount.alias.details.configuration.tones',
     {
       url: '/tones',
       abstract: true,
