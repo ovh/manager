@@ -6,7 +6,7 @@ const moduleName = 'dedicatedCloudSecurityKmsEditLazyloading';
 
 angular.module(moduleName, ['oc.lazyLoad', 'ui.router']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.dedicatedClouds.security.kms-edit.**', {
+    $stateProvider.state('app.dedicatedCloud.details.security.kms-edit.**', {
       url: '/kms-edit',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');

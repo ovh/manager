@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicatedClouds.license.enable', {
+  $stateProvider.state('app.dedicatedCloud.details.license.enable', {
     url: '/enable',
     redirectTo: (transition) =>
       transition
@@ -8,7 +8,7 @@ export default /* @ngInject */ ($stateProvider) => {
         .then((usesLegacyOrder) =>
           usesLegacyOrder
             ? {
-                state: 'app.dedicatedClouds.license.enable-legacy',
+                state: 'app.dedicatedCloud.details.license.enable-legacy',
               }
             : false,
         ),

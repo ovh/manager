@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'app.dedicatedClouds.datacenter.datastores.resourceUpgradeLegacy',
+    'app.dedicatedCloud.details.datacenter.details.datastores.resourceUpgradeLegacy',
     {
       url: '/upgradeResourceLegacy',
       params: {

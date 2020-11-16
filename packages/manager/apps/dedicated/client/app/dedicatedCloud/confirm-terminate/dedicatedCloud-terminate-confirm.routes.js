@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicatedClouds.terminate-confirm', {
+  $stateProvider.state('app.dedicatedCloud.details.terminate-confirm', {
     url: '/terminate-confirm?token',
     params: {
       token: null,

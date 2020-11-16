@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicatedClouds.security.kms-delete', {
+  $stateProvider.state('app.dedicatedCloud.details.security.kms-delete', {
     url: '/kms-delete',
     params: {
       kmsToDelete: null,

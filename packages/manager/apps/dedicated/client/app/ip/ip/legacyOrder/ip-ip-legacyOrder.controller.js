@@ -77,7 +77,7 @@ angular.module('Module.ip.controllers').controller(
       return (
         startsWith(
           this.$state.current.name,
-          'app.dedicatedClouds.datacenter.drp',
+          'app.dedicatedCloud.details.datacenter.drp',
         ) ||
         startsWith(
           this.$state.current.name,
@@ -478,7 +478,7 @@ angular.module('Module.ip.controllers').controller(
     getDrpState() {
       return this.$scope.model.service.productReference === 'MBM'
         ? 'app.managedBaremetal.details.datacenters.datacenter.drp'
-        : 'app.dedicatedClouds.datacenter.drp';
+        : 'app.dedicatedCloud.details.datacenter.drp';
     }
 
     loadContracts() {

@@ -8,7 +8,7 @@ const moduleName =
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'app.dedicatedClouds.datacenter.datastores.order-legacy.**',
+      'app.dedicatedCloud.details.datacenter.details.datastores.order-legacy.**',
       {
         url: '/order-legacy',
         lazyLoad: ($transition$) => {

@@ -7,7 +7,7 @@ const moduleName = 'ovhManagerDedicatedCloudBackupSplaLicenseLazyloading';
 angular.module(moduleName, ['oc.lazyLoad', 'ui.router']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'app.dedicatedClouds.datacenter.backup.spla-licence.**',
+      'app.dedicatedCloud.details.datacenter.details.backup.spla-licence.**',
       {
         url: '/spla-licence',
         lazyLoad: ($transition$) => {
