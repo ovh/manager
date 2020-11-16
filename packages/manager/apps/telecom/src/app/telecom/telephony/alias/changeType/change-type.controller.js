@@ -272,7 +272,7 @@ export default class TelecomTelephonyAliasChangeTypeCtrl {
             .resetQueryCache();
 
           this.$state
-            .go('telecom.telephony.billingAccount.alias.configuration')
+            .go('telecom.telephony.billingAccount.alias.details.configuration')
             .then(() => {
               this.$state.reload();
             });
