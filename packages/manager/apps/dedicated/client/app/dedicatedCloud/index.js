@@ -17,7 +17,7 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-        return import('./dedicatedClouds/dedicatedClouds.module').then((mod) =>
+        return import('./dedicatedClouds.module').then((mod) =>
           $ocLazyLoad.inject(mod.default || mod),
         );
       },
@@ -27,7 +27,7 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
       url: '/configuration/dedicated_cloud/:productId',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-        return import('./dedicatedCloud.module').then((mod) =>
+        return import('./details/dedicatedCloud.module').then((mod) =>
           $ocLazyLoad.inject(mod.default || mod),
         );
       },
