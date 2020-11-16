@@ -19,8 +19,10 @@
     "manager-registry": "bin/manager-registry.js",
     "manager-registry-dev": "bin/manager-registry-dev.js",
     "manager-registry-static": "bin/manager-registry-static.js",
+    "manager-registry-static-add": "bin/manager-registry-static-add.js",
     "manager-registry-static-generate-manifests": "bin/manager-registry-static-generate-manifests.js",
-    "manager-registry-static-serve": "bin/manager-registry-static-serve.js"
+    "manager-registry-static-serve": "bin/manager-registry-static-serve.js",
+    "manager-registry-static-sync": "bin/manager-registry-static-sync.js"
   },
   "dependencies": {
     "axios": "^0.19.2",
