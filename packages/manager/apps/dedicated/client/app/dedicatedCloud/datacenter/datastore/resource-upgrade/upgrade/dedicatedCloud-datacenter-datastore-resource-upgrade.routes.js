@@ -17,6 +17,7 @@ export default /* @ngInject */ ($stateProvider) => {
         goBack: /* @ngInject */ (goBackToDatastore) => goBackToDatastore,
         id: /* @ngInject */ ($transition$) => $transition$.params().id,
         type: /* @ngInject */ ($transition$) => $transition$.params().type,
+        breadcrumb: () => null,
       },
     },
   );

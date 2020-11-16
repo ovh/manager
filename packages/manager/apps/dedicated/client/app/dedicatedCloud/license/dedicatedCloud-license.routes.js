@@ -11,6 +11,8 @@ export default /* @ngInject */ ($stateProvider) => {
         message = false,
         type = 'success',
       ) => goBackToState('app.dedicatedCloud.details.license', message, type),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('dedicated_cloud_license'),
     },
   });
 };

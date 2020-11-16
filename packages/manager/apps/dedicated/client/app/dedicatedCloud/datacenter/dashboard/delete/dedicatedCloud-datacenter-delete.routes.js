@@ -11,7 +11,6 @@ export default /* @ngInject */ ($stateProvider) => {
       layout: 'modal',
       translations: { value: ['../../../../dedicated/server'], format: 'json' },
       resolve: {
-        datacenterId: /* @ngInject */ (datacenter) => datacenter.model.id,
         goBack: /* @ngInject */ (
           $state,
           $timeout,
@@ -34,6 +33,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
           return promise;
         },
+        breadcrumb: () => null,
       },
     },
   );

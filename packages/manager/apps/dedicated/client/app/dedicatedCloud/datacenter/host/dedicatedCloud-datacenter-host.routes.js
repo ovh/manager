@@ -46,6 +46,8 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('dedicated_cloud_datacenters_datacenter_hosts'),
     },
   });
 };

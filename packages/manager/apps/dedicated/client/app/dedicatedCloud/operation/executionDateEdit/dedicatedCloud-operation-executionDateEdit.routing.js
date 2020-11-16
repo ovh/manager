@@ -21,6 +21,7 @@ export default /* @ngInject */ ($stateProvider) => {
           goBackToState('app.dedicatedCloud.details.operation', message, type),
         operationToEdit: /* @ngInject */ ($transition$) =>
           $transition$.params().operationToEdit,
+        breadcrumb: () => null,
       },
     },
   );

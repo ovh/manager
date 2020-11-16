@@ -19,6 +19,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('app.dedicatedCloud.details.dashboard', {
           productId,
         }),
+      hideBreadcrumb: () => true,
     },
   });
 };

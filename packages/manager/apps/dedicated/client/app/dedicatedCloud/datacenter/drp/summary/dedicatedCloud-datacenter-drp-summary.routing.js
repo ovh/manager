@@ -16,6 +16,7 @@ export default /* @ngInject */ ($stateProvider) => {
           $state.go(
             'app.dedicatedCloud.details.datacenter.details.drp.summary.deleteDrp',
           ),
+        breadcrumb: () => null,
       },
     },
   );
