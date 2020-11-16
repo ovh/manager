@@ -135,6 +135,8 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('app.dedicatedCloud.details.datacenter.details.drp.summary', {
           drpInformations,
         }),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('dedicated_cloud_datacenters_datacenter_drp'),
     },
   });
 };

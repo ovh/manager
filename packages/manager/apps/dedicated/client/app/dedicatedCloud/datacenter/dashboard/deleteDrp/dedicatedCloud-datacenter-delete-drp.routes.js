@@ -19,6 +19,7 @@ angular.module(moduleName, []).config(
             ),
 
           goBack: /* @ngInject */ ($state) => () => $state.go('^'),
+          breadcrumb: () => null,
         },
       },
     );

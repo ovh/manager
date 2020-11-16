@@ -8,8 +8,11 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
     $stateProvider.state('app.dedicatedCloud', {
       url: '/dedicated_cloud',
-      abstract: true,
+      redirectTo: 'app.dedicatedCloud.index',
       template: '<div data-ui-view></div>',
+      resolve: {
+        breadcrumb: /* @ngInject */ () => 'Private Cloud',
+      },
     });
 
     $stateProvider.state('app.dedicatedCloud.index.**', {

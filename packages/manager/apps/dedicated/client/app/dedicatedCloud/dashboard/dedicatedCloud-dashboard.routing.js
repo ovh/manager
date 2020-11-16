@@ -102,6 +102,7 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
 
       goBack: /* @ngInject */ (goBackToDashboard) => goBackToDashboard,
+      breadcrumb: () => null,
     },
   });
 };

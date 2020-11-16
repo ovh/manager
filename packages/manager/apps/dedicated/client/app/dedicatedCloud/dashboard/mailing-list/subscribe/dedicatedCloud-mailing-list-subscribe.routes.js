@@ -9,6 +9,7 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     resolve: {
       goBack: /* @ngInject */ (goBackToDashboard) => goBackToDashboard,
+      breadcrumb: () => null,
     },
   });
 };

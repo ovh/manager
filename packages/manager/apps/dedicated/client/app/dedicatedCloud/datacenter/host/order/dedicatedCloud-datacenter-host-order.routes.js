@@ -4,6 +4,10 @@ export default /* @ngInject */ ($stateProvider) => {
     {
       resolve: {
         goBack: /* @ngInject */ (goBackToHost) => goBackToHost,
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant(
+            'dedicated_cloud_datacenters_datacenter_host_order',
+          ),
       },
       url: '/order',
       views: {
