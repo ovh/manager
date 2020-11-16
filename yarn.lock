@@ -8842,7 +8842,7 @@ dezalgo@^1.0.0:
     asap "^2.0.0"
     wrappy "1"
 
-df-tab-menu@^0.3.0, df-tab-menu@^0.3.1:
+df-tab-menu@^0.3.0:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/df-tab-menu/-/df-tab-menu-0.3.1.tgz#363a76486ab3de25dc1709c3f0c2cb429574108c"
   integrity sha1-Njp2SGqz3iXcFwnD8MLLQpV0EIw=

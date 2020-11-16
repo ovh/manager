@@ -118,7 +118,6 @@
     "clipboard": "^2.0.4",
     "components-jqueryui": "^1.12.1",
     "core-js": "^3.6.5",
-    "df-tab-menu": "^0.3.1",
     "es6-shim": "~0.35.3",
     "filesize": "^3.6.1",
     "flag-icon-css": "^3.4.2",
