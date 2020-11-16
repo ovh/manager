@@ -12,7 +12,7 @@ import { SURVEY } from './dedicatedCloud.constants';
 import {
   DEDICATEDCLOUD_DATACENTER_DRP_STATUS,
   DEDICATEDCLOUD_DATACENTER_DRP_VPN_CONFIGURATION_STATUS,
-} from '../components/dedicated-cloud/datacenter/drp/dedicatedCloud-datacenter-drp.constants';
+} from '../../components/dedicated-cloud/datacenter/drp/dedicatedCloud-datacenter-drp.constants';
 
 export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
   $stateProvider.state('app.dedicatedClouds', {
