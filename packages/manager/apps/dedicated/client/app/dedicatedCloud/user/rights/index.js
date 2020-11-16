@@ -6,7 +6,7 @@ const moduleName = 'dedicatedCloudUserRightsLazyloading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.dedicatedClouds.users.rights.**', {
+    $stateProvider.state('app.dedicatedCloud.details.users.rights.**', {
       url: '/:userId/rights',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');

@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicatedClouds.security.add', {
+  $stateProvider.state('app.dedicatedCloud.details.security.add', {
     url: '/add',
     views: {
       modal: {

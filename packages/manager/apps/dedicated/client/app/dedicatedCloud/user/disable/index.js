@@ -6,7 +6,7 @@ const moduleName = 'dedicatedCloudUserDisableLazyloading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.dedicatedClouds.users.disable.**', {
+    $stateProvider.state('app.dedicatedCloud.details.users.disable.**', {
       url: '/disable',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');

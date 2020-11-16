@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicatedClouds.users.enable', {
+  $stateProvider.state('app.dedicatedCloud.details.users.enable', {
     url: '/enable',
     params: {
       user: null,

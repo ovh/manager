@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicatedClouds.users.edit', {
+  $stateProvider.state('app.dedicatedCloud.details.users.edit', {
     url: '/edit',
     params: {
       user: null,

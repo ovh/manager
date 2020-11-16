@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicatedClouds.security.kms-edit', {
+  $stateProvider.state('app.dedicatedCloud.details.security.kms-edit', {
     url: '/kms-edit',
     params: {
       kmsToEdit: null,

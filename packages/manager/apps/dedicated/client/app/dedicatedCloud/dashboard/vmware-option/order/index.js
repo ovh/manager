@@ -7,7 +7,7 @@ const moduleName = 'dedicatedCloudVmwareOptionOrderLazyloading';
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'app.dedicatedClouds.dashboard.vmware-option-order.**',
+      'app.dedicatedCloud.details.dashboard.vmware-option-order.**',
       {
         url: '/vmware-option-order',
         lazyLoad: ($transition$) => {

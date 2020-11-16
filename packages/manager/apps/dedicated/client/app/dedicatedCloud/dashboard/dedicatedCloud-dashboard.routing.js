@@ -3,14 +3,15 @@ import map from 'lodash/map';
 import set from 'lodash/set';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicatedClouds.dashboard', {
+  $stateProvider.state('app.dedicatedCloud.details.dashboard', {
+    url: '',
     cache: false,
     views: {
       pccView: 'pccDashboard',
     },
     resolve: {
       deleteDrp: /* @ngInject */ ($state) => () =>
-        $state.go('app.dedicatedClouds.dashboard.deleteDrp'),
+        $state.go('app.dedicatedCloud.details.dashboard.deleteDrp'),
       isMailingListSubscriptionAvailable: /* @ngInject */ (
         ovhFeatureFlipping,
       ) =>
@@ -44,56 +45,59 @@ export default /* @ngInject */ ($stateProvider) => {
       onUpgradeVersion: /* @ngInject */ ($state, currentService) => (
         targetVersion,
       ) =>
-        $state.go('app.dedicatedClouds.dashboard.update', {
+        $state.go('app.dedicatedCloud.details.dashboard.update', {
           currentService,
           targetVersion,
         }),
 
       onAssociateIpBlock: /* @ngInject */ ($state) => () =>
-        $state.go('app.dedicatedClouds.dashboard.associate-ip-bloc'),
+        $state.go('app.dedicatedCloud.details.dashboard.associate-ip-bloc'),
 
       onExecutionDateChange: /* @ngInject */ ($state, currentService) => () =>
-        $state.go('app.dedicatedClouds.operation.execution-date-edit', {
+        $state.go('app.dedicatedCloud.details.operation.execution-date-edit', {
           productId: currentService.serviceName,
           operationToEdit: currentService.vcenterUpgradePendingTask,
         }),
 
       onMlSubscribe: /* @ngInject */ ($state) => () =>
-        $state.go('app.dedicatedClouds.dashboard.ml-subscribe'),
+        $state.go('app.dedicatedCloud.details.dashboard.ml-subscribe'),
 
       onTerminate: /* @ngInject */ ($state) => () =>
-        $state.go('app.dedicatedClouds.dashboard.terminate'),
+        $state.go('app.dedicatedCloud.details.dashboard.terminate'),
 
       onBasicOptionsUpgrade: /* @ngInject */ ($state) => (stateParams) =>
         $state.go(
-          'app.dedicatedClouds.servicePackUpgrade.basicOptions',
+          'app.dedicatedCloud.details.servicePackUpgrade.basicOptions',
           stateParams,
         ),
 
       onCertificationUpgrade: /* @ngInject */ ($state) => (stateParams) =>
         $state.go(
-          'app.dedicatedClouds.servicePackUpgrade.certification',
+          'app.dedicatedCloud.details.servicePackUpgrade.certification',
           stateParams,
         ),
 
       onConfigurationOnlyUpgrade: /* @ngInject */ ($state) => (stateParams) =>
         $state.go(
-          'app.dedicatedClouds.servicePackUpgrade.configurationOnly',
+          'app.dedicatedCloud.details.servicePackUpgrade.configurationOnly',
           stateParams,
         ),
 
       orderSecurityOption: /* @ngInject */ ($state) => (optionName) =>
-        $state.go('app.dedicatedClouds.dashboard.security-options', {
+        $state.go('app.dedicatedCloud.details.dashboard.security-options', {
           optionName,
         }),
 
       disableVmwareOption: /* @ngInject */ ($state) => (option) =>
-        $state.go('app.dedicatedClouds.dashboard.vmware-option-disable', {
-          option,
-        }),
+        $state.go(
+          'app.dedicatedCloud.details.dashboard.vmware-option-disable',
+          {
+            option,
+          },
+        ),
 
       orderVmwareOption: /* @ngInject */ ($state) => (option) =>
-        $state.go('app.dedicatedClouds.dashboard.vmware-option-order', {
+        $state.go('app.dedicatedCloud.details.dashboard.vmware-option-order', {
           option,
         }),
 

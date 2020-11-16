@@ -7,7 +7,7 @@ const moduleName = 'dedicatedCloudDatacenterDrpSummaryDeleteLazyloading';
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'app.dedicatedClouds.datacenter.drp.summary.deleteDrp.**',
+      'app.dedicatedCloud.details.datacenter.details.drp.summary.deleteDrp.**',
       {
         url: '/deleteDrp',
         lazyLoad: ($transition$) => {

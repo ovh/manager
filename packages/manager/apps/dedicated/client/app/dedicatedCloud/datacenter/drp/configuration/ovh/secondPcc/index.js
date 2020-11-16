@@ -7,7 +7,7 @@ const moduleName = 'dedicatedCloudDatacenterDrpOvhSecondPccStepLazyloading';
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'app.dedicatedClouds.datacenter.drp.ovh.secondPccStep.**',
+      'app.dedicatedCloud.details.datacenter.details.drp.ovh.secondPccStep.**',
       {
         url: '/secondPcc',
         lazyLoad: ($transition$) => {
