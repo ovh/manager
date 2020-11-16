@@ -64,7 +64,8 @@ export default class TelecomTelephonyAliasConfigurationCtrl {
     const ovhPabxActions = [
       {
         name: 'number_modification_new',
-        sref: 'telecom.telephony.billingAccount.alias.configuration.changeType',
+        sref:
+          'telecom.telephony.billingAccount.alias.details.configuration.changeType',
         text: this.$translate.instant(
           'telephony_alias_configuration_actions_number_modification_new',
         ),
@@ -83,7 +84,7 @@ export default class TelecomTelephonyAliasConfigurationCtrl {
             ? 'number_cloud_hunting_agents'
             : 'number_easy_hunting_members',
           sref:
-            'telecom.telephony.billingAccount.alias.configuration.agents.ovhPabx',
+            'telecom.telephony.billingAccount.alias.details.configuration.agents.ovhPabx',
           text: this.$translate.instant(
             isContactCenterSolutionExpert
               ? 'telephony_alias_configuration_actions_number_hunting_agents'
@@ -95,7 +96,7 @@ export default class TelecomTelephonyAliasConfigurationCtrl {
         ovhPabxActions.push({
           name: 'number_cloud_hunting_queues',
           sref:
-            'telecom.telephony.billingAccount.alias.configuration.queues.ovhPabx',
+            'telecom.telephony.billingAccount.alias.details.configuration.queues.ovhPabx',
           text: this.$translate.instant(
             'telephony_alias_configuration_actions_number_hunting_queues',
           ),
@@ -111,7 +112,7 @@ export default class TelecomTelephonyAliasConfigurationCtrl {
         ovhPabxActions.push({
           name: 'number_ovh_pabx_menus',
           sref:
-            'telecom.telephony.billingAccount.alias.configuration.ovhPabx.menus',
+            'telecom.telephony.billingAccount.alias.details.configuration.ovhPabx.menus',
           text: this.$translate.instant(
             'telephony_alias_configuration_actions_menus_management',
           ),
@@ -123,7 +124,7 @@ export default class TelecomTelephonyAliasConfigurationCtrl {
         ovhPabxActions.push({
           name: 'number_ovh_pabx_tts',
           sref:
-            'telecom.telephony.billingAccount.alias.configuration.ovhPabx.tts',
+            'telecom.telephony.billingAccount.alias.details.configuration.ovhPabx.tts',
           text: this.$translate.instant(
             'telephony_alias_configuration_actions_tts_management',
           ),
@@ -137,7 +138,7 @@ export default class TelecomTelephonyAliasConfigurationCtrl {
         {
           name: 'number_ovh_pabx_sounds',
           sref:
-            'telecom.telephony.billingAccount.alias.configuration.ovhPabx.sounds',
+            'telecom.telephony.billingAccount.alias.details.configuration.ovhPabx.sounds',
           text: this.$translate.instant(
             'telephony_alias_configuration_actions_sounds_management',
           ),
@@ -148,7 +149,7 @@ export default class TelecomTelephonyAliasConfigurationCtrl {
         {
           name: 'number_cloud_hunting_events',
           sref:
-            'telecom.telephony.billingAccount.alias.configuration.schedulerOvhPabx',
+            'telecom.telephony.billingAccount.alias.details.configuration.schedulerOvhPabx',
           text: this.$translate.instant(
             'telephony_alias_configuration_actions_number_cloud_hunting_events',
           ),
@@ -164,7 +165,7 @@ export default class TelecomTelephonyAliasConfigurationCtrl {
           {
             name: 'number_cloud_hunting_board',
             sref:
-              'telecom.telephony.billingAccount.alias.configuration.stats.ovhPabx',
+              'telecom.telephony.billingAccount.alias.details.configuration.stats.ovhPabx',
             text: this.$translate.instant(
               'telephony_alias_configuration_actions_number_hunting_board',
             ),
@@ -172,7 +173,7 @@ export default class TelecomTelephonyAliasConfigurationCtrl {
           {
             name: 'number_cloud_hunting_records',
             sref:
-              'telecom.telephony.billingAccount.alias.configuration.recordsOvhPabx',
+              'telecom.telephony.billingAccount.alias.details.configuration.recordsOvhPabx',
             text: this.$translate.instant(
               'telephony_alias_configuration_actions_number_hunting_records',
             ),

@@ -11,15 +11,15 @@ import configurationFeatureConferenceTemplate from './feature/conference/confere
 import configurationFeatureConferenceController from './feature/conference/conference.controller';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('telecom.telephony.billingAccount.alias.configuration', {
+  $stateProvider.state('telecom.telephony.billingAccount.alias.details.configuration', {
     url: '/configuration',
     views: {
-      'aliasInnerView@telecom.telephony.billingAccount.alias': {
+      'aliasInnerView@telecom.telephony.billingAccount.alias.details': {
         template,
         controller,
         controllerAs: '$ctrl',
       },
-      'featureView@telecom.telephony.billingAccount.alias.configuration': {
+      'featureView@telecom.telephony.billingAccount.alias.details.configuration': {
         templateProvider: (alias) => {
           if (['ddi', 'redirect'].includes(alias.featureType)) {
             return configurationFeatureRedirectTemplate;
@@ -46,27 +46,27 @@ export default /* @ngInject */ ($stateProvider) => {
         },
         controllerAs: '$ctrl',
       },
+      resolve: {
+        alias: ($stateParams, tucVoipService) =>
+          tucVoipService
+            .fetchSingleService(
+              $stateParams.billingAccount,
+              $stateParams.serviceName,
+            )
+            .then((alias) => {
+              const aliasCopy = clone(alias);
+              aliasCopy.featureType = alias.isContactCenterSolution()
+                ? 'contactCenterSolution'
+                : alias.featureType;
+              return aliasCopy;
+            }),
+        featureTypeLabel: ($translate) =>
+          $translate
+            .instant(
+              'telephony_alias_configuration_configuration_type_contactCenterSolution',
+            )
+            .toLowerCase(),
+      },
     },
-    resolve: {
-      alias: ($stateParams, tucVoipService) =>
-        tucVoipService
-          .fetchSingleService(
-            $stateParams.billingAccount,
-            $stateParams.serviceName,
-          )
-          .then((alias) => {
-            const aliasCopy = clone(alias);
-            aliasCopy.featureType = alias.isContactCenterSolution()
-              ? 'contactCenterSolution'
-              : alias.featureType;
-            return aliasCopy;
-          }),
-      featureTypeLabel: ($translate) =>
-        $translate
-          .instant(
-            'telephony_alias_configuration_configuration_type_contactCenterSolution',
-          )
-          .toLowerCase(),
-    },
-  });
+  );
 };
