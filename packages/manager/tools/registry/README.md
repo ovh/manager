@@ -102,14 +102,15 @@ manager-registry static --help
 Usage: manager-registry-static [options] [command]
 
 Options:
-  -V, --version                      output the version number
-  -h, --help                         output usage information
+  -V, --version                                   output the version number
+  -h, --help                                      output usage information
 
 Commands:
-  generate-manifests <registryPath>  Generate manifest for static registry
-  serve <registryPath>               Serve a static registry
-  add <registryPath> <fragmentPath>  Add a fragment in static registry
-  help [cmd]                         display help for [cmd]
+  generate-manifests <registryPath>               Generate manifest for static registry
+  serve <registryPath>                            Serve a static registry
+  add <registryPath> <fragmentPath>               Add a fragment in static registry
+  sync <sourceRegistryPath> <targetRegistryPath>  Sync two registry folders
+  help [cmd]                                      display help for [cmd]
 
 ```
 
@@ -196,6 +197,27 @@ $ manager-registry static add ./path/to/static/registry ./path/to/fragment/dist
 Fragment "fragment@1.0.O" already exists in ./path/to/static/registry
 ```
 
+##### Sync registry
+
+> Sync two registry directories (will add missing fragment from source to target directory)
+
+```sh
+$ manager-registry static sync --help
+Usage: manager-registry-static-sync [options] <sourceRegistryPath> <targetRegistryPath>
+
+Options:
+  -V, --version  output the version number
+  -h, --help     output usage information
+```
+
+*Example*
+
+Sync a static registry with an another existing static registry
+
+```sh
+$ manager-registry static sync ./path/to/static/registry ./path/to/another/static/registry
+Fragment "fragment@1.0.O" added in registry ./path/to/another/static/registry
+```
 
 ## Related
 

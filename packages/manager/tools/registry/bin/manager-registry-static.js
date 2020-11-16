@@ -14,4 +14,8 @@ program
     'add <registryPath> <fragmentPath>',
     'Add a fragment in static registry',
   )
+  .command(
+    'sync <sourceRegistryPath> <targetRegistryPath>',
+    'Sync two registry directories',
+  )
   .parse(process.argv);
