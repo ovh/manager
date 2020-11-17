@@ -15,6 +15,7 @@ export default {
     goToDrpSummary: '<',
     goToDeleteDrp: '<',
     isDrpActionPossible: '<',
+    pccType: '<',
     productId: '<',
     serviceName: '<',
     setMessage: '<',

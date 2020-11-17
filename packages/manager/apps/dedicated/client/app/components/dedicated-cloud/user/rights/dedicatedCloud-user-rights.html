@@ -11,13 +11,7 @@
             ></span>
         </oui-back-button>
 
-        <oui-datagrid
-            data-rows-loader="$ctrl.loadUserRights($config)"
-            data-columns-parameters="[{
-                name: 'networkRole',
-                hidden: !$ctrl.optionsAvailable.includes('nsx')
-            }]"
-        >
+        <oui-datagrid data-rows-loader="$ctrl.loadUserRights($config)">
             <oui-datagrid-column
                 data-title=":: 'dedicatedCloud_datacenter_count' | translate"
                 data-property="datacenterName"
@@ -53,8 +47,7 @@
                 ></span>
             </oui-datagrid-column>
             <oui-datagrid-column
-                data-title=":: 'dedicatedCloud_USER_NETWORK_ROLE' | translate"
-                data-name="networkRole"
+                data-title=":: ('dedicatedCloud_USER_NETWORK_ROLE_' + $ctrl.pccType) | translate"
             >
                 <span
                     data-translate="{{ 'dedicatedCloud_USER_right_' + $row.networkRole }}"

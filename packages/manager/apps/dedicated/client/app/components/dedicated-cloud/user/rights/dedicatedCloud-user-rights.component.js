@@ -5,7 +5,7 @@ export default {
   bindings: {
     editRight: '<',
     goBack: '<',
-    optionsAvailable: '<',
+    pccType: '<',
     productId: '<',
     userId: '<',
   },

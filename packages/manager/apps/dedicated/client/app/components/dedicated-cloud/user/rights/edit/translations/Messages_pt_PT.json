@@ -34,8 +34,8 @@
   "dedicatedCloud_USER_right_vmNetwork_noAccess": "Sem acesso",
   "dedicatedCloud_USER_right_vmNetwork_READONLY": "Acesso só de leitura",
   "dedicatedCloud_USER_right_vmNetwork_readonly": "Acesso só de leitura",
-  "dedicatedCloud_USER_right_vlan": "Acesso às V(x)Lans",
-  "dedicatedCloud_USER_right_vlan_help_EPCC": "Permissões de gestão da parte da rede privada (VxLan para Dedicated Cloud, e VLAN para SDDC e os packs Hosted Private Cloud Premier)",
+  "dedicatedCloud_USER_right_vlan_EPCC": "Acesso às V(x)Lans",
+  "dedicatedCloud_USER_right_vlan_help": "Permissões de gestão da parte da rede privada (VxLan para Dedicated Cloud, e VLAN para SDDC e os packs Hosted Private Cloud Premier)",
   "dedicatedCloud_USER_right_vlan_ADMIN": "Permite configurar máquinas virtuais na rede privada",
   "dedicatedCloud_USER_right_vlan_admin": "Permite configurar máquinas virtuais na rede privada",
   "dedicatedCloud_USER_right_vlan_NO_ACCESS": "Sem acesso",
@@ -47,6 +47,5 @@
   "dedicatedCloud_USER_right_resources": "Adição de recursos",
   "dedicatedCloud_USER_right_resources_help": "Permissões para acrescentar recursos adicionais através do plugin OVHcloud no vSphere Client",
   "dedicatedCloud_USER_right_set_success": "A modificação de permissões de {{t0}} no datacenter {{t1}} foi corretamente tomada em conta",
-  "dedicatedCloud_USER_right_set_fail": "Ocorreu um erro durante a modificação das permissões de {{t0}} no datacenter {{t1}}",
-  "dedicatedCloud_USER_right_vlan_help_MBM": "Permissões de gestão da parte da rede privada (VxLan para Essentials, e VLAN para SDDC e os packs Hosted Private Cloud Premier)"
+  "dedicatedCloud_USER_right_set_fail": "Ocorreu um erro durante a modificação das permissões de {{t0}} no datacenter {{t1}}"
 }
