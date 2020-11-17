@@ -1,3 +1,13 @@
+## [1.0.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.0.6...@ovh-ux/manager-support@1.0.7) (2020-11-17)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 650] ([6e72d24](https://github.com/ovh/manager/commit/6e72d24aaa5dd085e207e67f8c557b27f2e9e29f))
+* **support:** add managed bare metal ([3f84427](https://github.com/ovh/manager/commit/3f84427f13df76d0211c3ee4aa204bc00ac38497)), closes [#MANAGER-5741](https://github.com/ovh/manager/issues/MANAGER-5741)
+
+
+
 ## [1.0.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.0.5...@ovh-ux/manager-support@1.0.6) (2020-10-28)
 
 

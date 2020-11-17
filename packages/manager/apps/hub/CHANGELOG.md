@@ -1,3 +1,12 @@
+## [2.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@2.3.0...@ovh-ux/manager-hub-app@2.3.1) (2020-11-17)
+
+
+### Bug Fixes
+
+* add essentials to hub ([accf87a](https://github.com/ovh/manager/commit/accf87a948dc9121ed40671cc2a03a48629264a8))
+
+
+
 # [2.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@2.2.4...@ovh-ux/manager-hub-app@2.3.0) (2020-10-28)
 
 
