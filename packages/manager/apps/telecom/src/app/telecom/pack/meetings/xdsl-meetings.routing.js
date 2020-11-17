@@ -28,7 +28,6 @@ export default /* @ngInject */ ($stateProvider) => {
         return null;
       },
       meetings: /* @ngInject */ (meetingSlots) => {
-        console.log('meetingSlots', meetingSlots, meetingSlots.slots);
         const meetings = [];
 
         let slots = [];
