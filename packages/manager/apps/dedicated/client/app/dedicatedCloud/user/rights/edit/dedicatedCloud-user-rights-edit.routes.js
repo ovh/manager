@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicatedCloud.details.users.rights.edit', {
+  $stateProvider.state('app.dedicatedCloud.details.users.user.rights.edit', {
     url: '/edit',
     params: {
       rightId: null,
@@ -17,7 +17,7 @@ export default /* @ngInject */ ($stateProvider) => {
         type = 'success',
       ) => {
         return goBackToState(
-          'app.dedicatedCloud.details.users.rights',
+          'app.dedicatedCloud.details.users.user.rights',
           message,
           type,
         );

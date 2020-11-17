@@ -23,33 +23,47 @@ export default /* @ngInject */ ($stateProvider) => {
           passwordPolicy,
         }),
       deleteUser: /* @ngInject */ ($state) => (user) =>
-        $state.go('app.dedicatedCloud.details.users.delete', {
+        $state.go('app.dedicatedCloud.details.users.user.delete', {
+          userId: user.userId,
           user,
         }),
       disableUser: /* @ngInject */ ($state) => (user) =>
-        $state.go('app.dedicatedCloud.details.users.disable', {
+        $state.go('app.dedicatedCloud.details.users.user.disable', {
+          userId: user.userId,
           user,
         }),
       editUser: /* @ngInject */ ($state) => (user) =>
-        $state.go('app.dedicatedCloud.details.users.edit', {
+        $state.go('app.dedicatedCloud.details.users.user.edit', {
           user,
+          userId: user.userId,
         }),
       enableUser: /* @ngInject */ ($state) => (user) =>
-        $state.go('app.dedicatedCloud.details.users.enable', {
+        $state.go('app.dedicatedCloud.details.users.user.enable', {
+          userId: user.userId,
           user,
         }),
       modifyUserRights: /* @ngInject */ ($state) => (userId) =>
-        $state.go('app.dedicatedCloud.details.users.rights', {
+        $state.go('app.dedicatedCloud.details.users.user.rights', {
           userId,
         }),
       passwordReset: /* @ngInject */ ($state) => (user, passwordPolicy) =>
-        $state.go('app.dedicatedCloud.details.users.password-reset', {
+        $state.go('app.dedicatedCloud.details.users.user.password-reset', {
+          userId: user.userId,
           passwordPolicy,
           user,
         }),
 
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('dedicated_cloud_users'),
+    },
+  });
+
+  $stateProvider.state('app.dedicatedCloud.details.users.user', {
+    url: '/:userId',
+    redirectTo: 'app.dedicatedCloud.details.users',
+    resolve: {
+      userId: /* @ngInject */ ($transition$) => $transition$.params().userId,
+      breadcrumb: /* @ngInject */ (userId) => userId,
     },
   });
 };
