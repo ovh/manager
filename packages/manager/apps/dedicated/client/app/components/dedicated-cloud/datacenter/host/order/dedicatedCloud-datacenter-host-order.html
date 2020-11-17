@@ -11,7 +11,9 @@
     >
         <span data-translate="core_user_enterprise_retail_prices_hpc"></span>
     </oui-message>
-    <p data-translate="dedicatedCloud_host_order_info"></p>
+    <p
+        data-ng-bind=":: ('dedicatedCloud_host_order_info_' + $ctrl.pccType) | translate"
+    ></p>
     <p data-translate="dedicatedCloud_host_order_select"></p>
     <oui-datagrid data-rows-loader="$ctrl.fetchDatagridOffers()">
         <oui-datagrid-column

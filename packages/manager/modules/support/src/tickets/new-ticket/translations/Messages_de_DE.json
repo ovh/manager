@@ -123,5 +123,6 @@
   "ovhManagerSupport_all_serviceType": "Mehr Produkte anzeigen",
   "ovhManagerSupport_new_serviceType_ovh_cloud_connect": "OVHcloud Connect",
   "ovhManagerSupport_new_creation_error_dedicated_server_already_opened": "Für diesen Server ist bereits eine Support-Anfrage (Ticket) in Bearbeitung.",
-  "ovhManagerSupport_new_creation_error_dedicated_server_service_mandatory": "Wenn Sie keinen Dedicated Server nutzen, können Sie keinen Eingriff dieser Art anfordern."
+  "ovhManagerSupport_new_creation_error_dedicated_server_service_mandatory": "Wenn Sie keinen Dedicated Server nutzen, können Sie keinen Eingriff dieser Art anfordern.",
+  "ovhManagerSupport_new_serviceType_managed_bare_metal": "Managed Bare Metal"
 }

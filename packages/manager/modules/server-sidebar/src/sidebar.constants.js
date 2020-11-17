@@ -47,6 +47,7 @@ export const DEDICATED_CLOUD_CONFIG = {
           stateParams: ['productId', 'datacenterId'],
           app: [DEDICATED],
           namespace: HPC_NAMESPACE,
+          subType: 'EPCC',
         },
       ],
       state: 'app.dedicatedClouds',
@@ -54,6 +55,7 @@ export const DEDICATED_CLOUD_CONFIG = {
       icon: 'ovh-font ovh-font-dedicatedCloud',
       app: [DEDICATED],
       namespace: HPC_NAMESPACE,
+      subType: 'EPCC',
     },
   ],
   loadOnState: 'app.dedicatedClouds',
@@ -61,6 +63,33 @@ export const DEDICATED_CLOUD_CONFIG = {
   app: [DEDICATED],
   regions: ['EU', 'CA', 'US'],
   namespace: HPC_NAMESPACE,
+};
+
+export const MANAGED_BAREMETAL_CONFIG = {
+  id: 'managedBaremetal',
+  types: [
+    {
+      path: '/dedicatedCloud',
+      types: [
+        {
+          path: '/dedicatedCloud/:productId/datacenter',
+          state: 'app.managedBaremetal.datacenter',
+          stateParams: ['productId', 'datacenterId'],
+          app: [DEDICATED],
+          subType: 'MBM',
+        },
+      ],
+      state: 'app.managedBaremetal',
+      stateParams: ['productId'],
+      icon: 'oui-icon oui-icon-cloud-essential_concept',
+      app: [DEDICATED],
+      subType: 'MBM',
+    },
+  ],
+  loadOnState: 'app.managedBaremetal',
+  icon: 'oui-icon oui-icon-cloud-essential_concept',
+  app: [DEDICATED],
+  regions: ['EU', 'CA', 'US'],
 };
 
 export const NETWORKS_CONFIG = {
@@ -354,6 +383,7 @@ export const CLOUD_DESKTOP_CONFIG = {
 
 export const SIDEBAR_CONFIG = [
   DEDICATED_SERVER_CONFIG,
+  MANAGED_BAREMETAL_CONFIG,
   DEDICATED_CLOUD_CONFIG,
   NETWORKS_CONFIG,
   ENTERPRISE_CLOUD_DATABASE,

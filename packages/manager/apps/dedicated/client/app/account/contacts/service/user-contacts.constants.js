@@ -12,6 +12,7 @@ export const AVAILABLE_SERVICES = [
   'OVER_THE_BOX',
   'OVH_CLOUD_CONNECT',
   'PRIVATE_CLOUD',
+  'ESSENTIALS',
   'VPS',
   'PACK_XDSL',
   'XDSL',

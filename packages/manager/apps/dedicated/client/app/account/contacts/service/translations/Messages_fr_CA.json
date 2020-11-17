@@ -10,6 +10,7 @@
   "account_contacts_service_category_KUBE": "Kubernetes",
   "account_contacts_service_category_OTHER": "Autre",
   "account_contacts_service_category_PRIVATE_CLOUD": "Private Cloud",
+  "account_contacts_service_category_ESSENTIALS": "Essentials",
   "account_contacts_service_category_PUBLIC_CLOUD": "PCI",
   "account_contacts_service_category_SITE_BUILDER": "Site Builder",
   "account_contacts_service_category_TELEPHONY": "Téléphonie",

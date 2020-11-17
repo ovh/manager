@@ -1,6 +1,7 @@
 {
   "dedicatedCloud_datastore_order_title": "Commander un datastore",
-  "dedicatedCloud_datastore_order_info": "Vous pouvez personnaliser votre cloud privé en ajoutant des datastores. Vous serez ensuite redirigé dans un nouvel onglet pour finaliser votre commande.",
+  "dedicatedCloud_datastore_order_info_EPCC": "Vous pouvez personnaliser votre cloud privé en ajoutant des datastores. Vous serez ensuite redirigé dans un nouvel onglet pour finaliser votre commande.",
+  "dedicatedCloud_datastore_order_info_MBM": "Vous pouvez personnaliser votre Essentials en ajoutant des datastores. Vous serez ensuite redirigé dans un nouvel onglet pour finaliser votre commande.",
   "dedicatedCloud_datastore_order_select": "Sélectionner un type de datastore :",
   "dedicatedCloud_datastore_order_type": "Type",
   "dedicatedCloud_datastore_order_price": "Prix",

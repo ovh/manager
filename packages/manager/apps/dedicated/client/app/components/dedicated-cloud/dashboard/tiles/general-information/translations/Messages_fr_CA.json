@@ -17,8 +17,6 @@
   "ovhManagerPccDashboardGeneralInformation_softwareSolution_update_minor": "Installer la mise à jour mineure ({{version}} - build {{build}})",
   "ovhManagerPccDashboardGeneralInformation_softwareSolution_reschedule_update": "Modifier la date de mise à jour",
 
-  "ovhManagerPccDashboardGeneralInformation_commercialRange_term": "Gamme commerciale",
-
   "ovhManagerPccDashboardGeneralInformation_location_term": "Localisation",
 
   "ovhManagerPccDashboardGeneralInformation_accessPolicy_term": "Politique d'accès",

@@ -50,6 +50,28 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
       },
     });
 
+    $stateProvider.state('app.dashboard.dedicated_cloud.**', {
+      url: 'dedicated_cloud',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./products-list.module').then((mod) =>
+          $ocLazyLoad.inject(mod.default || mod),
+        );
+      },
+    });
+
+    $stateProvider.state('app.dashboard.essentials.**', {
+      url: 'essentials',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./products-list.module').then((mod) =>
+          $ocLazyLoad.inject(mod.default || mod),
+        );
+      },
+    });
+
     $stateProvider.state('app.dashboard.products.**', {
       url: ':product',
       lazyLoad: ($transition$) => {

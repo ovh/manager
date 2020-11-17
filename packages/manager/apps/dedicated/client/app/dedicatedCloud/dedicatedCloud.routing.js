@@ -1,6 +1,9 @@
 import get from 'lodash/get';
 import isUndefined from 'lodash/isUndefined';
+import map from 'lodash/map';
+import reduce from 'lodash/reduce';
 import sortBy from 'lodash/sortBy';
+import uniq from 'lodash/uniq';
 
 import { DedicatedCloud as DedicatedCloudInfo } from '@ovh-ux/manager-models';
 import { Environment } from '@ovh-ux/manager-config';
@@ -192,6 +195,31 @@ export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
         $state.href('app.dedicatedClouds.operation', {
           productId: currentService.serviceName,
         }),
+      optionsAvailable: /* @ngInject */ (
+        currentService,
+        currentUser,
+        ovhManagerPccDashboardOptionsService,
+      ) =>
+        ovhManagerPccDashboardOptionsService
+          .getInitialData(
+            currentService.name,
+            currentUser.ovhSubsidiary,
+            currentService.servicePackName,
+          )
+          .then((model) => {
+            const options = uniq(
+              reduce(
+                model.servicePacks.all,
+                (availableOptions, servicePack) => {
+                  return availableOptions.concat(
+                    map(servicePack.options, (option) => option.name),
+                  );
+                },
+                [],
+              ),
+            );
+            return options;
+          }),
       orderDatastore: /* @ngInject */ ($state, usesLegacyOrder) => (
         datacenterId,
       ) =>
@@ -212,12 +240,15 @@ export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
             datacenterId,
           },
         ),
+      pccType: /* @ngInject */ (dedicatedCloud) =>
+        dedicatedCloud.productReference,
       setMessage: /* @ngInject */ (Alerter) => (
         message = false,
         type = 'success',
       ) => {
         Alerter.set(`alert-${type}`, message, null, 'dedicatedCloud');
       },
+      trackingPrefix: () => 'dedicated::dedicatedClouds',
       usesLegacyOrder: /* @ngInject */ (currentService) =>
         currentService.usesLegacyOrder,
       surveyUrl: /* @ngInject */ (ovhFeatureFlipping) =>

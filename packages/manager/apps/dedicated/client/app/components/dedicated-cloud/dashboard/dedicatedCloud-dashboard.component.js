@@ -28,6 +28,7 @@ export default {
     productId: '<',
     setMessage: '<',
     surveyUrl: '<',
+    trackingPrefix: '<',
   },
   template,
 };

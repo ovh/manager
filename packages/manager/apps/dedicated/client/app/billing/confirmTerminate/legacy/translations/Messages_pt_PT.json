@@ -40,7 +40,7 @@
   "terminate_service_legacy_type_cloud_project": "Projeto Cloud",
   "terminate_service_legacy_type_dbaas_logs": "DBaaS Timeseries",
   "terminate_service_legacy_type_dbaas_queue": "DBaaS Queue",
-  "terminate_service_legacy_type_dedicatedCloud": "Hosted Private Cloud",
+  "terminate_service_legacy_type_EPCC": "Hosted Private Cloud",
   "terminate_service_legacy_type_dedicated_ceph": "Ceph as a Service",
   "terminate_service_legacy_type_dedicated_housing": "Servidor housing",
   "terminate_service_legacy_type_dedicated_nas": "Nas dedicado",
@@ -85,5 +85,6 @@
   "terminate_service_legacy_type_xdsl": "Linha xDSL",
   "terminate_service_legacy_type_kube": "Kubernetes",
   "terminate_service_legacy_type_webcoach": "WebCoach",
-  "terminate_service_legacy_comments": "Comentários"
+  "terminate_service_legacy_comments": "Comentários",
+  "terminate_service_legacy_type_MBM": "Essentials"
 }

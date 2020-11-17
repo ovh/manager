@@ -465,7 +465,7 @@
   "ip_order_abonnement": "Suscripción mensual:",
   "ip_order_free": "GRATUITO",
   "ip_order_bloc": "Bloque",
-  "ip_order_renew_PCC": "Las direcciones IP se renovarán automáticamente con la infraestructura del cloud dedicado.",
+  "ip_order_renew_EPCC": "Las direcciones IP se renovarán automáticamente con la infraestructura del cloud dedicado.",
   "ip_order_resume": "Resumen del pedido",
   "ip_order_resume_short": "Bloc /{{ blockSize }} : {{ price }} HT",
   "ip_order_price_HT": "Precio:",

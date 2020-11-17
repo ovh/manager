@@ -13,6 +13,7 @@ export default {
     goBackToChoice: '<',
     goToNextStep: '<',
     ipAddressDetails: '<',
+    pccType: '<',
   },
   controller,
   template,

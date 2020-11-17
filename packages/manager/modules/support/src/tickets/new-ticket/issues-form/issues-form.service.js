@@ -1,7 +1,12 @@
 import compact from 'lodash/compact';
+import forEach from 'lodash/forEach';
 import get from 'lodash/get';
+import head from 'lodash/head';
+import remove from 'lodash/remove';
 import snakeCase from 'lodash/snakeCase';
 import uniq from 'lodash/uniq';
+
+import { SUB_SERVICE_TYPES } from './issues-form.constants';
 
 function getServiceTypeName(serviceType) {
   const route = get(serviceType, 'route.path', '')
@@ -20,10 +25,28 @@ export default class {
     this.OvhApiSupport = OvhApiSupport;
   }
 
-  getServices(route) {
+  static addSubTypes(serviceTypes) {
+    forEach(SUB_SERVICE_TYPES, (subTypes, serviceName) => {
+      const service = head(
+        remove(serviceTypes, (serviceType) => serviceType.name === serviceName),
+      );
+      if (service) {
+        forEach(subTypes, (subType) => {
+          serviceTypes.push({
+            ...service,
+            ...subType,
+          });
+        });
+      }
+    });
+    return serviceTypes;
+  }
+
+  getServices(route, subType) {
     return this.OvhApiService.Aapi().query({
       type: route,
       external: false,
+      subType,
     }).$promise;
   }
 
@@ -32,18 +55,21 @@ export default class {
   }
 
   getServiceTypes() {
-    return this.getServiceTypesRaw().then((serviceTypes) =>
-      [...serviceTypes]
-        .map((serviceType) => ({
-          ...serviceType,
-          label: this.$translate.instant(
-            `ovhManagerSupport_new_serviceType_${serviceType.name}`,
+    return this.getServiceTypesRaw()
+      .then((serviceTypes) => this.constructor.addSubTypes(serviceTypes))
+      .then((serviceTypes) =>
+        serviceTypes
+          .map((serviceType) => ({
+            ...serviceType,
+            label: this.$translate.instant(
+              `ovhManagerSupport_new_serviceType_${serviceType.label ||
+                serviceType.name}`,
+            ),
+          }))
+          .sort((a, b) =>
+            a.label.localeCompare(b.label, 'en', { sensitivity: 'base' }),
           ),
-        }))
-        .sort((a, b) =>
-          a.label.localeCompare(b.label, 'en', { sensitivity: 'base' }),
-        ),
-    );
+      );
   }
 
   filterOwnServiceTypes(serviceTypes) {

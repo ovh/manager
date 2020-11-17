@@ -7,12 +7,15 @@
   "dedicatedCloud_servicePack_requiredConfiguration_criterias_numberOfAllowedIPAndBlocks_definition": "Anzahl der zur Verbindung autorisierten IP-Adressen und -Blocks: {{numberOfAllowedIPsAndBlocks}}.",
   "dedicatedCloud_servicePack_requiredConfiguration_ipTable_ipColumn": "IP-Adresse",
   "dedicatedCloud_servicePack_requiredConfiguration_descriptionTable_descriptionColumn": "Beschreibung",
-  "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_accessPolicy_error": "Die Zugriffseinstellungen Ihrer Private Cloud sind nicht eingeschränkt",
-  "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_numberOfAllowedIPAndBlocks_error": "Die Zugriffseinstellungen Ihrer Private Cloud beinhalten keine autorisierten IP-Adressen",
-  "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_both_error": "Die Zugriffseinstellungen Ihrer Private Cloud sind nicht eingeschränkt und beinhalten keine autorisierten IP-Adressen.",
+  "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_accessPolicy_error_EPCC": "Die Zugriffseinstellungen Ihrer Private Cloud sind nicht eingeschränkt",
+  "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_numberOfAllowedIPAndBlocks_error_EPCC": "Die Zugriffseinstellungen Ihrer Private Cloud beinhalten keine autorisierten IP-Adressen",
+  "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_both_error_EPCC": "Die Zugriffseinstellungen Ihrer Private Cloud sind nicht eingeschränkt und beinhalten keine autorisierten IP-Adressen.",
   "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_whatToDoNow_1": "Bitte konfigurieren Sie diese Elemente im Tab ",
   "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_whatToDoNow_security": "„Sicherheit“,",
   "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_whatToDoNow_2": " bevor Sie fortfahren",
   "dedicatedCloud_servicePack_requiredConfiguration_previousButton": "Zurück",
-  "dedicatedCloud_servicePack_requiredConfiguration_nextButton": "Weiter"
+  "dedicatedCloud_servicePack_requiredConfiguration_nextButton": "Weiter",
+  "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_accessPolicy_error_MBM": "Die Zugriffseinstellungen Ihres Essentials Produkts sind nicht eingeschränkt",
+  "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_numberOfAllowedIPAndBlocks_error_MBM": "Die Zugriffseinstellungen Ihres Essentials Produkts beinhalten keine autorisierten IP-Adressen",
+  "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_both_error_MBM": "Die Zugriffseinstellungen Ihres Essentials Produkts sind nicht eingeschränkt und beinhalten keine autorisierten IP-Adressen."
 }

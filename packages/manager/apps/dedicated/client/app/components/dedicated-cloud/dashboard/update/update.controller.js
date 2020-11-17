@@ -33,11 +33,8 @@ export default class {
 
   update() {
     this.atInternet.trackClick({
-      name: 'update::schedule-update',
+      name: `${this.trackingPrefix}::dashboard::update::schedule-update`,
       type: 'action',
-      chapter1: 'dedicated',
-      chapter2: 'dedicatedClouds',
-      chapter3: 'dashboard',
     });
 
     this.isUpdating = true;

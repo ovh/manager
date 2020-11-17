@@ -8,7 +8,6 @@
   "ovhManagerPccDashboardGeneralInformation_softwareSolution_definition_displayName_SYSTEMCENTER": "VMM",
   "ovhManagerPccDashboardGeneralInformation_softwareSolution_definition_displayName_AZURE": "Azure",
   "ovhManagerPccDashboardGeneralInformation_softwareSolution_definition_displayName_VCSA": "vCSA",
-  "ovhManagerPccDashboardGeneralInformation_commercialRange_term": "Commercial range",
   "ovhManagerPccDashboardGeneralInformation_location_term": "Location",
   "ovhManagerPccDashboardGeneralInformation_accessPolicy_term": "Access policy",
   "ovhManagerPccDashboardGeneralInformation_accessPolicy_definition_FILTERED": "Restricted",

@@ -6,6 +6,7 @@ export default {
   controller,
   bindings: {
     goBack: '<',
+    pccType: '<',
   },
   name: 'ovhManagerPccMailingListSubscribe',
 };

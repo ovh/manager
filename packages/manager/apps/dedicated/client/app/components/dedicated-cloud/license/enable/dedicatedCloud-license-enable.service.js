@@ -1,12 +1,18 @@
+import assign from 'lodash/assign';
 import filter from 'lodash/filter';
+import find from 'lodash/find';
+import forEach from 'lodash/forEach';
+
+import { OVERRIDE_CONTRACTS } from './dedicatedCloud-license-enable.constants';
 
 export default class {
   /* @ngInject */
-  constructor(OvhApiOrder) {
+  constructor($translate, OvhApiOrder) {
+    this.$translate = $translate;
     this.OvhApiOrder = OvhApiOrder;
   }
 
-  fetchContracts(offer, serviceName, ovhSubsidiary) {
+  fetchContracts(offer, service, ovhSubsidiary) {
     return this.OvhApiOrder.Cart()
       .v6()
       .post({
@@ -25,7 +31,7 @@ export default class {
                 .post(
                   {
                     productName: 'privateCloud',
-                    serviceName,
+                    serviceName: service.serviceName,
                   },
                   {
                     cartId,
@@ -45,7 +51,9 @@ export default class {
                 }).$promise,
           ),
       )
-      .then(({ contracts }) => contracts);
+      .then(({ contracts }) =>
+        this.transformContracts(contracts, service.productReference),
+      );
   }
 
   fetchOffers(serviceName) {
@@ -58,5 +66,22 @@ export default class {
       .$promise.then((offers) =>
         filter(offers, { planCode: 'pcc-option-windows' }),
       );
+  }
+
+  transformContracts(contracts, serviceType) {
+    forEach(OVERRIDE_CONTRACTS, (OVERRIDE_CONTRACT) => {
+      const contractToOverride = find(contracts, {
+        name: OVERRIDE_CONTRACT.NAME,
+      });
+      if (contractToOverride && OVERRIDE_CONTRACT.TYPE === serviceType) {
+        assign(contractToOverride, {
+          name: this.$translate.instant(
+            `dedicatedCloud_tab_licences_contract_name_${serviceType}`,
+          ),
+          url: OVERRIDE_CONTRACT.URL,
+        });
+      }
+    });
+    return contracts;
   }
 }

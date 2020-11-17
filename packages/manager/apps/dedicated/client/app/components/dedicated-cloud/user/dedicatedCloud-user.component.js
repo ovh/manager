@@ -10,6 +10,7 @@ export default {
     editUser: '<',
     enableUser: '<',
     modifyUserRights: '<',
+    optionsAvailable: '<',
     passwordReset: '<',
     productId: '<',
     setMessage: '<',

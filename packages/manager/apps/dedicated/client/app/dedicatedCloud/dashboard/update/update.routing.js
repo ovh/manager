@@ -3,6 +3,7 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/update',
     params: {
       targetVersion: null,
+      trackingPrefix: null,
     },
     views: {
       modal: {

@@ -5,6 +5,7 @@ export default {
   bindings: {
     editRight: '<',
     goBack: '<',
+    optionsAvailable: '<',
     productId: '<',
     userId: '<',
   },

@@ -9,6 +9,6 @@
   "dedicatedCloudDashboardTilesOptionsOrderSelection_checkoutDescription": "El pedido se ha realizado correctamente.",
   "dedicatedCloudDashboardTilesOptionsOrderSelection_checkoutLink": "Haga clic aquí para abonar el pedido.",
   "dedicatedCloudDashboardTilesOptionsOrderSelection_order_failure": "Se ha producido un error al tramitar el pedido.",
-  "dedicatedCloudDashboardTilesOptionsOrderSelection_basic_option": "Seleccione la opción que quiere activar en su servicio.",
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_basic_option": "Seleccione la opción que quiere activar en su infraestructura.",
   "dedicatedCloudDashboardTilesOptionsOrderSelection_certification_option": "Seleccione la opción del sector de actividad que quiere activar en su servicio."
 }

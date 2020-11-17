@@ -14,6 +14,7 @@ export default {
 
     displayErrorMessage: '<',
     goToPreviousStep: '<',
+    pccType: '<',
   },
   controller,
   name: 'dedicatedCloudDatacenterDrpOvhSecondPccStep',

@@ -11,7 +11,7 @@
   "dedicatedCloud_SECURITY_logout_policy": "Abmeldeeinstellungen",
   "dedicatedCloud_SECURITY_logout_policy_FIRST": "Ersten verbundenen Benutzer abmelden",
   "dedicatedCloud_SECURITY_logout_policy_LAST": "Letzten verbundenen Benutzer abmelden",
-  "dedicatedCloud_SECURITY_title": "Zur Verbindung mit der Private Cloud berechtigte IPs und Blöcke:",
+  "dedicatedCloud_SECURITY_title_EPCC": "Zur Verbindung mit der Private Cloud berechtigte IPs und Blöcke:",
   "dedicatedCloud_SECURITY_IP_name": "IP-Name",
   "dedicatedCloud_SECURITY_allow": "Recht",
   "dedicatedCloud_SECURITY_description": "Beschreibung",
@@ -46,5 +46,6 @@
   "dedicatedCloud_SECURITY_change_logout_policy": "Abmeldeeinstellungen ändern",
   "dedicatedCloud_SECURITY_add_IP": "Neuen IP-Bereich hinzufügen",
   "dedicatedCloud_SECURITY_delete_IP": "IP-Bereiche löschen",
-  "dedicatedCloud_dashboard_loading_error": "Beim Laden der Informationen Ihres Dienstes ist ein Fehler aufgetreten."
+  "dedicatedCloud_dashboard_loading_error": "Beim Laden der Informationen Ihres Dienstes ist ein Fehler aufgetreten.",
+  "dedicatedCloud_SECURITY_title_MBM": "IPs und Blöcke, die sich mit Managed Bare Metal verbinden dürfen:"
 }

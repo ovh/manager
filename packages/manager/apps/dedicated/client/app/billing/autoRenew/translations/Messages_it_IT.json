@@ -121,5 +121,6 @@
   "billing_autorenew_renew_action": "Rinnova",
   "billing_autorenew_service_renew_requires_mean_and_date": "Per completare l'attivazione del rinnovo automatico, aggiungi una modalità di pagamento. In seguito sarà possibile selezionare la data di addebito.",
   "billing_autorenew_service_activate_alert": "Il rinnovo automatico è impostato su almeno uno dei tuoi servizi ma non hai ancora autorizzato questa opzione.",
-  "billing_autorenew_service_type_OVH_CLOUD_CONNECT": "OVHcloud Connect"
+  "billing_autorenew_service_type_OVH_CLOUD_CONNECT": "OVHcloud Connect",
+  "billing_autorenew_service_type_ESSENTIALS": "Essentials"
 }

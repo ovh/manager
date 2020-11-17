@@ -34,7 +34,9 @@
                 <oui-spinner></oui-spinner>
             </div>
             <div class="mb-5" data-ng-hide="$ctrl.loaders.table">
-                <p data-translate="dedicatedCloud_SECURITY_title"></p>
+                <p
+                    data-ng-bind=":: ('dedicatedCloud_SECURITY_title_' + $ctrl.pccType) | translate"
+                ></p>
                 <oui-datagrid
                     data-rows-loader="$ctrl.loadPaginated($config)"
                     data-on-row-select="$ctrl.globalCheckboxPoliciesStateChange($rows)"

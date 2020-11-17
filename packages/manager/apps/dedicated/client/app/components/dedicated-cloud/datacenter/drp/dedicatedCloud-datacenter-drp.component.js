@@ -11,6 +11,7 @@ export default {
     goToConfiguration: '<',
     goToSummary: '<',
     goToVpnConfiguration: '<',
+    pccType: '<',
     selectedDrpType: '<?',
     storedDrpInformations: '<?',
   },

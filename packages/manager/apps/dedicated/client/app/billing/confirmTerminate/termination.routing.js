@@ -8,7 +8,7 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
       template,
       controller,
       controllerAs: 'TerminateServiceCtrl',
-      translations: { value: ['./legacy'], format: 'json' },
+      translations: { value: ['./legacy', '../autoRenew'], format: 'json' },
     });
   } else {
     $stateProvider.state('app.account.billing.confirmTerminate', {

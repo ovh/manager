@@ -470,7 +470,7 @@
   "ip_order_abonnement": "Abonament miesięczny:",
   "ip_order_free": "ZA DARMO",
   "ip_order_bloc": "Blok",
-  "ip_order_renew_PCC": "Twoje adresy IP będą odnawiane automatycznie z Twoją infrastrukturą Dedicated Cloud.",
+  "ip_order_renew_EPCC": "Twoje adresy IP będą odnawiane automatycznie z Twoją infrastrukturą Dedicated Cloud.",
   "ip_order_resume": "Podsumowanie zamówienia",
   "ip_order_resume_short": "Blok /{{ blockSize }} : {{ price }} netto",
   "ip_order_price_HT": "Cena netto:",
@@ -672,5 +672,6 @@
   "ip_table_manage_delegation_ipv6block_to_add": "Rewers(y) do dodania",
   "ip_table_manage_delegation_ipv6block_to_delete": "Rewers(y) do usunięcia",
   "ip_filter_services__FAILOVER": "IP Failover",
-  "ip_description_edit_move": "Przypisz ten blok IP do innej usługi"
+  "ip_description_edit_move": "Przypisz ten blok IP do innej usługi",
+  "ip_order_renew_MBM": "Adresy IP będą odnawiane automatycznie wraz z Twoją infrastrukturą Managed Bare Metal."
 }
