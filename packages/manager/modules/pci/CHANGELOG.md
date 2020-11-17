@@ -1,3 +1,12 @@
+## [5.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.3.0...@ovh-ux/manager-pci@5.3.1) (2020-11-17)
+
+
+### Bug Fixes
+
+* **public-cloud:** fix quota error ([#4034](https://github.com/ovh/manager/issues/4034)) ([2824dc1](https://github.com/ovh/manager/commit/2824dc18921c16f0fb8b7103aa5eed0ca60325e8)), closes [#3824](https://github.com/ovh/manager/issues/3824)
+
+
+
 # [5.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.2.7...@ovh-ux/manager-pci@5.3.0) (2020-11-16)
 
 
