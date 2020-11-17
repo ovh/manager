@@ -5,8 +5,8 @@ export default {
   template,
   controller,
   bindings: {
+    dedicatedCloud: '<',
     goBack: '<',
-    productId: '<',
   },
   name: 'dedicatedCloudLicenseEnable',
 };

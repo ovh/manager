@@ -6,6 +6,7 @@ export default {
     allowedIPsAndBlocks: '<',
     currentService: '<',
     hasDefaultMeansOfPayment: '<',
+    pccType: '<',
   },
   controller,
   name: 'ovhManagerPccServicePackUpgradeConfigureAccess',

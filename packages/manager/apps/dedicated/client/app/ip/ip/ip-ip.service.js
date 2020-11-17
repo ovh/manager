@@ -340,13 +340,15 @@ angular
         =            IP DEL            =
         =============================== */
 
-    this.deleteIpBlock = (ipBlock) =>
-      OvhHttp.post('/ip/{block}/terminate', {
+    this.deleteIpBlock = (ipBlock) => {
+      const [ip, block] = ipBlock.split('/');
+      return OvhHttp.post('/ip/service/{serviceName}/terminate', {
         rootPath: 'apiv6',
         urlParams: {
-          block: ipBlock,
+          serviceName: `ip-${block === '32' ? ip : ipBlock}`,
         },
       });
+    };
 
     /*= ==============================
         =            IP MOVE            =

@@ -99,7 +99,10 @@
             </div>
         </oui-field>
 
-        <oui-field data-label="{{:: 'dedicatedCloud_USER_nsx' | translate }}">
+        <oui-field
+            data-ng-if="$ctrl.optionsAvailable.includes('nsx')"
+            data-label="{{:: 'dedicatedCloud_USER_nsx' | translate }}"
+        >
             <div class="oui-switch">
                 <label class="oui-switch__label-container">
                     <input

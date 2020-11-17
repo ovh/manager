@@ -61,5 +61,21 @@
   "dedicatedCloud_datacenter_go_certified_web_interface": "Certyfikowany interfejs webowy",
   "dedicatedCloud_datacenter_drp_get_state_error": "Wystąpił błąd podczas pobierania informacji o Twoim DRP. ",
   "dedicatedCloud_datacenter_descriptionModifying_success": "Zmiana opisu Twojego centrum danych będzie widoczna w ciągu kilku minut.",
-  "dedicatedCloud_datacenter_nameModifying_success": "Zmiana nazwy Twojego centrum danych będzie widoczna w ciągu kilku minut."
+  "dedicatedCloud_datacenter_nameModifying_success": "Zmiana nazwy Twojego centrum danych będzie widoczna w ciągu kilku minut.",
+  "dedicatedCloud_datacenter_commercial_name_ESSENTIALS": "Essentials",
+  "dedicatedCloud_datacenter_commercial_name_ESSENTIALS-HDS": "Essentials HDS",
+  "dedicatedCloud_datacenter_commercial_name_ESSENTIALS-HIPAA": "Essentials HIPAA",
+  "dedicatedCloud_datacenter_commercial_name_ESSENTIALS-NSX": "Essentials z NSX",
+  "dedicatedCloud_datacenter_commercial_name_ESSENTIALS-NSX-VROPS": "Essentials z NSX i vROps",
+  "dedicatedCloud_datacenter_commercial_name_ESSENTIALS-PCIDSS": "Essentials PCI DSS",
+  "dedicatedCloud_datacenter_commercial_name_ESSENTIALS-UNKNOWN": "Essentials",
+  "dedicatedCloud_datacenter_commercial_name_ESSENTIALS-VROPS": "Essentials z vROps",
+  "dedicatedCloud_datacenter_commercial_name_PREMIER": "Premier",
+  "dedicatedCloud_datacenter_commercial_name_PREMIER-HDS": "Premier HDS",
+  "dedicatedCloud_datacenter_commercial_name_PREMIER-HIPAA": "Premier HIPAA",
+  "dedicatedCloud_datacenter_commercial_name_PREMIER-NSX": "Premier z NSX",
+  "dedicatedCloud_datacenter_commercial_name_PREMIER-NSX-VROPS": "Premier z NSX i vROps",
+  "dedicatedCloud_datacenter_commercial_name_PREMIER-PCIDSS": "Premier PCI DSS",
+  "dedicatedCloud_datacenter_commercial_name_PREMIER-UNKNOWN": "Premier",
+  "dedicatedCloud_datacenter_commercial_name_PREMIER-VROPS": "Premier z vROps"
 }

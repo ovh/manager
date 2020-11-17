@@ -29,6 +29,7 @@
   "ovhManagerSupport_new_serviceType_hubic": "Hubic",
   "ovhManagerSupport_new_serviceType_OTHER": "Autre",
   "ovhManagerSupport_new_serviceType_dedicated_cloud": "Private Cloud",
+  "ovhManagerSupport_new_serviceType_managed_bare_metal": "Managed Bare Metal",
   "ovhManagerSupport_new_serviceType_cloud_project": "Public Cloud (project)",
   "ovhManagerSupport_new_serviceType_telephony": "Téléphonie",
   "ovhManagerSupport_new_serviceType_telephony_fax": "Fax",

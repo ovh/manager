@@ -8,9 +8,7 @@
         data-ng-if="::$ctrl.showMailingList"
     >
         <oui-action-menu data-compact data-placement="end">
-            <oui-action-menu-item
-                data-on-click="$ctrl.onMlSubscribe()"
-            >
+            <oui-action-menu-item data-on-click="$ctrl.onMlSubscribe()">
                 <span
                     data-translate="ovhManagerPccDashboardServiceManagement_mailingList_actionMenu_subscribe"
                 ></span>
@@ -44,6 +42,7 @@
                 </oui-action-menu-item>
 
                 <oui-action-menu-item
+                    data-ng-if="!$ctrl.currentUser.isEnterprise"
                     data-on-click="$ctrl.onTerminate()"
                 >
                     <span

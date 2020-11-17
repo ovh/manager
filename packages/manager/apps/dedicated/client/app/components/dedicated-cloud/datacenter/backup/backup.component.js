@@ -11,6 +11,7 @@ export default {
     goToUpgradeOffer: '<',
     operationsUrl: '<',
     productId: '<',
+    pccType: '<',
     scrollToTop: '<',
     goToDeleteBackup: '<',
     guideUrl: '<',

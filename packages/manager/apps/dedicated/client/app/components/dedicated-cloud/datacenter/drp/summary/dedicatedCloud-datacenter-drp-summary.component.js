@@ -7,6 +7,7 @@ export default {
     currentUser: '<',
     goToDeleteDrpModal: '<',
     goBackToDashboard: '<',
+    pccType: '<',
   },
   controller,
   name: 'dedicatedCloudDatacenterDrpSummary',

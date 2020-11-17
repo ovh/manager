@@ -57,5 +57,6 @@
   "manager_hub_products_see_less": "Visualizza meno servizi",
   "manager_hub_products_see_more": "Visualizza più servizi",
   "manager_hub_products_see_all": "Visualizza tutto",
-  "manager_hub_products_OVH_CLOUD_CONNECT": "OVHcloud Connect"
+  "manager_hub_products_OVH_CLOUD_CONNECT": "OVHcloud Connect",
+  "manager_hub_products_ESSENTIALS": "Managed Bare Metal"
 }

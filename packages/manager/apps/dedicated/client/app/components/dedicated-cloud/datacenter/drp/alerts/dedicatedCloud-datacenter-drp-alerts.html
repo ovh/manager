@@ -5,11 +5,12 @@
     data-on-dismiss="$ctrl.disableSuccessAlert()"
 >
     <span
-        data-translate="dedicatedCloud_options_zerto_delivered_message_part_one"
+        data-ng-bind=":: ('dedicatedCloud_options_zerto_delivered_message_part_one_' + $ctrl.pccType) | translate"
     ></span>
     <span
-        data-translate="dedicatedCloud_options_zerto_delivered_message_part_two_ovh"
-        data-translate-values="{ 'pccId': $ctrl.currentDrp.remoteSiteInformation.serviceName }"
+        data-ng-bind=":: ('dedicatedCloud_options_zerto_delivered_message_part_two_ovh_' + $ctrl.pccType) | translate: {
+            pccId: $ctrl.currentDrp.remoteSiteInformation.serviceName
+        }"
         data-ng-if="$ctrl.currentDrp.drpType === $ctrl.DRP_OPTIONS.ovh"
     ></span>
     <span
@@ -31,7 +32,7 @@
         data-translate="dedicatedCloud_datacenter_drp_confirm_creation_pending"
     ></span>
     <span
-        data-translate="dedicatedCloud_datacenter_drp_confirm_creation_pending_task"
+        data-ng-bind=":: ('dedicatedCloud_datacenter_drp_confirm_creation_pending_task_' + $ctrl.pccType) | translate"
     ></span>
 </oui-message>
 

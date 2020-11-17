@@ -42,15 +42,15 @@
 >
     <span
         data-ng-if="!$ctrl.userAccessPolicyIsCorrect && $ctrl.numberOfAllowedIPsAndBlocksIsAllowed"
-        data-translate="dedicatedCloud_servicePack_requiredConfiguration_warningMessage_accessPolicy_error"
+        data-ng-bind=":: ('dedicatedCloud_servicePack_requiredConfiguration_warningMessage_accessPolicy_error_' + $ctrl.pccType) | translate"
     ></span>
     <span
         data-ng-if="$ctrl.userAccessPolicyIsCorrect && !$ctrl.numberOfAllowedIPsAndBlocksIsAllowed"
-        data-translate="dedicatedCloud_servicePack_requiredConfiguration_warningMessage_numberOfAllowedIPAndBlocks_error"
+        data-ng-bind=":: ('dedicatedCloud_servicePack_requiredConfiguration_warningMessage_numberOfAllowedIPAndBlocks_error_' + $ctrl.pccType) | translate"
     ></span>
     <span
         data-ng-if="!$ctrl.userAccessPolicyIsCorrect && !$ctrl.numberOfAllowedIPsAndBlocksIsAllowed"
-        data-translate="dedicatedCloud_servicePack_requiredConfiguration_warningMessage_both_error"
+        data-ng-bind=":: ('dedicatedCloud_servicePack_requiredConfiguration_warningMessage_both_error_' + $ctrl.pccType) | translate"
     ></span>
     <span
         data-translate="dedicatedCloud_servicePack_requiredConfiguration_warningMessage_whatToDoNow_1"

@@ -10,6 +10,6 @@
   "dedicatedCloud_servicePack_configureUsers_hasUser_table_column_emailAddress": "Adres e-mail",
   "dedicatedCloud_servicePack_configureUsers_hasUser_table_column_phoneNumber": "Numer telefonu",
   "dedicatedCloud_servicePack_configureUsers_previousButton": "Wstecz",
-  "dedicatedCloud_servicePack_configureUsers_checkoutButton": "Złóż zamówienie",
+  "dedicatedCloud_servicePack_configureUsers_checkoutButton": "Zatwierdź",
   "dedicatedCloud_servicePack_configureUsers_nextButton": "Dalej"
 }

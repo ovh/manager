@@ -1,6 +1,7 @@
 import head from 'lodash/head';
 
 export default class {
+  /* @ngInject */
   constructor($state, $translate, OvhApiDedicatedCloud) {
     this.$state = $state;
     this.$translate = $translate;

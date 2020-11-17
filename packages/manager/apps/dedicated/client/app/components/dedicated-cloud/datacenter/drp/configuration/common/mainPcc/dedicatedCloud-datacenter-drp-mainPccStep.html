@@ -1,10 +1,11 @@
 <p
-    data-translate="dedicatedCloud_datacenter_pcc_name"
-    data-translate-values="{ 'pcc': $ctrl.drpInformations.primaryPcc.description || $ctrl.drpInformations.primaryPcc.serviceName }"
+    data-ng-bind-html=":: ('dedicatedCloud_datacenter_pcc_name_' + $ctrl.pccType) | translate: {
+        pcc: $ctrl.drpInformations.primaryPcc.description || $ctrl.drpInformations.primaryPcc.serviceName
+    }"
 ></p>
 <form name="$ctrl.primaryPcc" novalidate>
     <oui-field
-        data-label="{{:: 'dedicatedCloud_datacenter_main_datacenter_name' | translate }}"
+        data-label="{{:: ('dedicatedCloud_datacenter_main_datacenter_name_' + $ctrl.pccType) | translate }}"
         data-size="l"
     >
         <oui-select

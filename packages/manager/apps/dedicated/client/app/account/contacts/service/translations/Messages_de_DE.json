@@ -36,5 +36,6 @@
   "account_contacts_service_contact_tech": "Technischer Kontakt",
   "account_contacts_service_contact_billing": "Rechnungskontakt",
   "account_contacts_service_infos": "Sie können die Administator-, technischen und Rechnungs-Accounts Ihrer Dienste ändern.",
-  "account_contacts_service_category_OVH_CLOUD_CONNECT": "OVHcloud Connect"
+  "account_contacts_service_category_OVH_CLOUD_CONNECT": "OVHcloud Connect",
+  "account_contacts_service_category_ESSENTIALS": "Essentials"
 }

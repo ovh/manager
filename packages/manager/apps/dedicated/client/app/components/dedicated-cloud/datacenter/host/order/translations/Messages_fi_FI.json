@@ -1,6 +1,6 @@
 {
   "dedicatedCloud_host_order_title": "Order a host",
-  "dedicatedCloud_host_order_info": "You can customise your Private Cloud by adding hosts. You will then be redirected to a new tab to complete your order.",
+  "dedicatedCloud_host_order_info_EPCC": "You can customise your Private Cloud by adding hosts. You will then be redirected to a new tab to complete your order.",
   "dedicatedCloud_host_order_select": "Select a host type:",
   "dedicatedCloud_host_order_host": "Host",
   "dedicatedCloud_host_order_price": "Price",

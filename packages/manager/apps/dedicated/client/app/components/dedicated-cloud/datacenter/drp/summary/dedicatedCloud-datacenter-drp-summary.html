@@ -27,7 +27,7 @@
             ></dd>
             <dt
                 class="col-md-5"
-                data-ng-bind=":: 'dedicatedCloud_datacenter_drp_confirm_summary_first_' + $ctrl.drpInformations.drpType + '_pcc' | translate"
+                data-ng-bind=":: ('dedicatedCloud_datacenter_drp_confirm_summary_first_' + $ctrl.drpInformations.drpType + '_pcc_' + $ctrl.pccType) | translate"
             ></dt>
             <dd
                 class="col-md-7"
@@ -46,7 +46,7 @@
             <dt
                 class="col-md-5"
                 data-ng-if="!$ctrl.isDrpTypeOnPremise()"
-                data-translate="dedicatedCloud_datacenter_drp_confirm_summary_secondary_pcc"
+                data-ng-bind=":: ('dedicatedCloud_datacenter_drp_confirm_summary_secondary_pcc_' + $ctrl.pccType) | translate"
             ></dt>
             <dd
                 class="col-md-7"

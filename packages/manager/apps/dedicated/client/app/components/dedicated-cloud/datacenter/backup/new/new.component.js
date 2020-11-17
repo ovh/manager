@@ -13,6 +13,7 @@ export default {
     defaultPaymentMethod: '<',
     enabledBackupOffer: '<',
     goToBackup: '<',
+    pccType: '<',
     productId: '<',
     operationsUrl: '<',
     scrollToTop: '<',

@@ -1,7 +1,9 @@
+import find from 'lodash/find';
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import keys from 'lodash/keys';
 import map from 'lodash/map';
+import reduce from 'lodash/reduce';
 import some from 'lodash/some';
 import values from 'lodash/values';
 
@@ -138,6 +140,13 @@ class ModelBindings {
 
   updateOptionsBasicDescriptionItems() {
     this.options.basic.description.items = this.computeOptionsBasicDescriptionItems();
+    this.options.basic.description.available = reduce(
+      this.options.basic.description.items,
+      (available, item) => {
+        return item.available || available;
+      },
+      false,
+    );
   }
 
   updateOptionsBasicActionMenu() {
@@ -199,6 +208,9 @@ class ModelBindings {
             this.model.currentUser.ovhSubsidiary,
           ),
         status,
+        available: some(this.model.servicePacks.all, (servicePack) => {
+          return find(servicePack.options, { name: option.name });
+        }),
       };
     });
   }

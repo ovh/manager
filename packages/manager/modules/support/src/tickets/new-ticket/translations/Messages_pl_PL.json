@@ -123,5 +123,6 @@
   "ovhManagerSupport_all_serviceType": "Wyświetl więcej produktów",
   "ovhManagerSupport_new_serviceType_ovh_cloud_connect": "OVHcloud Connect",
   "ovhManagerSupport_new_creation_error_dedicated_server_already_opened": "Zgłoszenie zawierające prośbę o interwencję utworzone dla tego serwera jest już obsługiwane.",
-  "ovhManagerSupport_new_creation_error_dedicated_server_service_mandatory": "Nie możesz poprosić o tego typu interwencję, jeśli nie posiadasz serwera dedykowanego."
+  "ovhManagerSupport_new_creation_error_dedicated_server_service_mandatory": "Nie możesz poprosić o tego typu interwencję, jeśli nie posiadasz serwera dedykowanego.",
+  "ovhManagerSupport_new_serviceType_managed_bare_metal": "Managed Bare Metal"
 }

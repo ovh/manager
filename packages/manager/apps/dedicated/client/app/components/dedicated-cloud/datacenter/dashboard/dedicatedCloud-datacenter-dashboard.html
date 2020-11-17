@@ -2,6 +2,7 @@
     data-current-drp="$ctrl.currentDrp"
     data-current-user="$ctrl.currentUser"
     data-go-to-vpn-configuration="$ctrl.goToVpnConfiguration"
+    data-pcc-type="$ctrl.pccType"
 ></ovh-manager-dedicated-cloud-datacenter-drp-alerts>
 
 <div class="mb-5 px-0">
@@ -52,7 +53,7 @@
                 </oui-tile-definition>
                 <oui-tile-definition
                     data-term="{{:: 'dedicatedCloud_datacenter_commercial_name' | translate }}"
-                    data-description="{{:: 'dedicatedCloud_datacenter_commercial_name_' + $ctrl.datacenter.model.commercialName | translate }}"
+                    data-description="{{:: ('dedicatedCloud_datacenter_commercial_name_' + $ctrl.datacenter.model.commercialName) | translate }}"
                 ></oui-tile-definition>
                 <oui-tile-definition
                     data-term="{{:: 'dedicatedCloud_datacenter_host' | translate }}"

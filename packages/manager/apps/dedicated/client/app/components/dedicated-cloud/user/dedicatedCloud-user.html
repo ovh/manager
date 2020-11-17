@@ -62,6 +62,10 @@
         data-rows-loader="$ctrl.loadUsers($config)"
         data-ng-if="!$ctrl.loading"
         data-row-loader="$ctrl.loadUser($row)"
+        data-columns-parameters="[{
+            name: 'nsx',
+            hidden: !$ctrl.optionsAvailable.includes('nsx')
+        }]"
     >
         <oui-datagrid-column
             data-title=":: 'dedicatedCloud_USER_name' | translate"
@@ -133,6 +137,7 @@
         <oui-datagrid-column
             data-title=":: 'dedicatedCloud_USER_nsx' | translate"
             data-ng-if="$ctrl.nsxOptions === 'enabled'"
+            data-name="nsx"
         >
             <span data-translate="common_yes" data-ng-if="$row.nsxRight">
             </span>

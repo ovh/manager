@@ -9,9 +9,10 @@ import Backup from '../../../components/dedicated-cloud/datacenter/backup/backup
 import {
   BACKUP_CONDITIONS_URL,
   BACKUP_GUIDES_URL,
-  BACKUP_TARIFF_URL,
   BACKUP_MINIMUM_HOST_COUNT,
 } from '../../../components/dedicated-cloud/datacenter/backup/backup.constants';
+
+import { BACKUP_TARIFF_URL } from './backup.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicatedClouds.datacenter.backup', {
