@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicatedCloud.details.users.delete', {
+  $stateProvider.state('app.dedicatedCloud.details.users.user.delete', {
     url: '/delete',
     params: {
       user: null,
