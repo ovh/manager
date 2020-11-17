@@ -25,6 +25,7 @@ export default {
     onConfigurationOnlyUpgrade: '<',
     orderSecurityOption: '<',
     orderVmwareOption: '<',
+    pccType: '<',
     productId: '<',
     setMessage: '<',
     surveyUrl: '<',
