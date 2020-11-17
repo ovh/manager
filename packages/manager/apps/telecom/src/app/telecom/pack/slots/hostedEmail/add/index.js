@@ -7,7 +7,7 @@ import 'ovh-api-services';
 
 import routing from './add.routing';
 
-const moduleName = 'PackHostedEmailAdd';
+const moduleName = 'ovhManagerTelecomPackHostedEmailAdd';
 
 angular
   .module(moduleName, [

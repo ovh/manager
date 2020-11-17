@@ -1,6 +1,7 @@
 import { PACK_EMAILPRO } from '../emailPro.constant';
 
-export default /* @ngInject */ class PackEmailProDetailCtrl {
+export default class PackEmailProDetailCtrl {
+  /* @ngInject */
   constructor(
     $q,
     $stateParams,

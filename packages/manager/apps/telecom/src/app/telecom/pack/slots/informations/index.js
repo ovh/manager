@@ -8,7 +8,7 @@ import 'ovh-api-services';
 import controller from './informations.controller';
 import template from './informations.html';
 
-const moduleName = 'PackInformation';
+const moduleName = 'ovhManagerTelecomPackInformation';
 
 angular
   .module(moduleName, [

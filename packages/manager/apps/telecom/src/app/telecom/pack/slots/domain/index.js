@@ -8,7 +8,7 @@ import 'ovh-api-services';
 import controller from './domain.controller';
 import template from './domain.html';
 
-const moduleName = 'PackDomain';
+const moduleName = 'ovhManagerTelecomPackDomain';
 
 angular
   .module(moduleName, [

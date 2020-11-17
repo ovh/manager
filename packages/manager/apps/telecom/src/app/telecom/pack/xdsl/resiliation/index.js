@@ -7,7 +7,7 @@ import 'ovh-api-services';
 
 import routing from './resiliation.routing';
 
-const moduleName = 'PackXdslResiliation';
+const moduleName = 'ovhManagerTelecomPackXdslResiliation';
 
 angular
   .module(moduleName, [

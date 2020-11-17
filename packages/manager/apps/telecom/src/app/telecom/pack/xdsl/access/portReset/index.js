@@ -8,7 +8,7 @@ import 'ovh-api-services';
 import controller from './port-reset.controller';
 import template from './port-reset.html';
 
-const moduleName = 'XdslAccessPortReset';
+const moduleName = 'ovhManagerTelecomPackXdslAccessPortReset';
 
 angular
   .module(moduleName, [

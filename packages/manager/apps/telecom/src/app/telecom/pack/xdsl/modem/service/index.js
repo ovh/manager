@@ -9,7 +9,7 @@ import modal from './modal';
 import controller from './service.controller';
 import template from './service.html';
 
-const moduleName = 'XdslModemService';
+const moduleName = 'ovhManagerTelecomPackXdslModemService';
 
 angular
   .module(moduleName, [

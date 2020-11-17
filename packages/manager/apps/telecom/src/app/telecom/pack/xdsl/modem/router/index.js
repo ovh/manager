@@ -8,7 +8,7 @@ import 'ovh-api-services';
 import controller from './router.controller';
 import template from './router.html';
 
-const moduleName = 'XdslModemRouter';
+const moduleName = 'ovhManagerTelecomPackXdslModemRouter';
 
 angular
   .module(moduleName, [

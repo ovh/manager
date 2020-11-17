@@ -2,7 +2,8 @@ import get from 'lodash/get';
 import has from 'lodash/has';
 import pick from 'lodash/pick';
 
-export default /* @ngInject */ class XdslDiagnosticDetailsCtrl {
+export default class XdslDiagnosticDetailsCtrl {
+  /* @ngInject */
   constructor($rootScope, $scope, $state, $translate) {
     this.$rootScope = $rootScope;
     this.$scope = $scope;

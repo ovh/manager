@@ -9,7 +9,7 @@ import controller from './bdhcp.controller';
 import template from './bdhcp.html';
 import factory from './bdhcp.factory';
 
-const moduleName = 'XdslModemDhcpBdhcp';
+const moduleName = 'ovhManagerTelecomPackXdslModemDhcpBdhcp';
 
 angular
   .module(moduleName, [

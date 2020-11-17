@@ -17,12 +17,12 @@ const moduleName = 'ovhManagerTelecomPackXdsl';
 angular
   .module(moduleName, [
     access,
-    modem,
     meetings,
+    missingRio,
+    modem,
+    orderFollowUp,
     resiliation,
     tasks,
-    orderFollowUp,
-    missingRio,
   ])
   .component('packXdsl', component)
   .service('XdslTaskPoller', service)

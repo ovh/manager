@@ -8,7 +8,7 @@ import 'ovh-api-services';
 import controller from './connectedDevices.controller';
 import template from './connectedDevices.html';
 
-const moduleName = 'XdslModemConnectedDevices';
+const moduleName = 'ovhManagerTelecomPackXdslModemConnectedDevices';
 
 angular
   .module(moduleName, [

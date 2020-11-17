@@ -7,7 +7,7 @@ import 'ovh-api-services';
 
 import routing from './ip.routing';
 
-const moduleName = 'XdslAccessIp';
+const moduleName = 'ovhManagerTelecomPackXdslAccessIp';
 
 angular
   .module(moduleName, [

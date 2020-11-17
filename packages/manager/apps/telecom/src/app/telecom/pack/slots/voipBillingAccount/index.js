@@ -8,7 +8,7 @@ import 'ovh-api-services';
 import controller from './voipBillingAccount.controller';
 import template from './voipBillingAccount.html';
 
-const moduleName = 'PackVoipBillingAccount';
+const moduleName = 'ovhManagerTelecomPackVoipBillingAccount';
 
 angular
   .module(moduleName, [

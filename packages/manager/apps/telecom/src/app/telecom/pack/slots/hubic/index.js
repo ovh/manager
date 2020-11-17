@@ -8,7 +8,7 @@ import 'ovh-api-services';
 import controller from './hubic.controller';
 import template from './hubic.html';
 
-const moduleName = 'PackHubic';
+const moduleName = 'ovhManagerTelecomPackHubic';
 
 angular
   .module(moduleName, [

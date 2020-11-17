@@ -9,7 +9,7 @@ import routing from './linediagnostic.routing';
 
 import './linediagnostic.less';
 
-const moduleName = 'Packxdslaccesslinediagnostic';
+const moduleName = 'ovhManagerTelecomPackxdslaccesslinediagnostic';
 
 angular
   .module(moduleName, [

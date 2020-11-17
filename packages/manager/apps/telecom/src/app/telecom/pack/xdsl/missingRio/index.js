@@ -7,7 +7,7 @@ import 'ovh-api-services';
 
 import routing from './missing-rio.routing';
 
-const moduleName = 'PackXdslMissingRio';
+const moduleName = 'ovhManagerTelecomPackXdslMissingRio';
 
 angular
   .module(moduleName, [

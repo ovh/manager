@@ -7,7 +7,7 @@ import 'ovh-api-services';
 
 import routing from './details.routing';
 
-const moduleName = 'XdslDiagnosticDetails';
+const moduleName = 'ovhManagerTelecomPackXdslDiagnosticDetails';
 
 angular
   .module(moduleName, [

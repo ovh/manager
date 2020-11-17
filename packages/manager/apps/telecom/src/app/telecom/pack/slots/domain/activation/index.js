@@ -7,7 +7,7 @@ import 'ovh-api-services';
 
 import routing from './activation.routing';
 
-const moduleName = 'PackDomainActivation';
+const moduleName = 'ovhManagerTelecomPackDomainActivation';
 
 angular
   .module(moduleName, [

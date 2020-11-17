@@ -8,7 +8,7 @@ import 'ovh-api-services';
 import template from './pack-xdsl-modem-firewall.html';
 import controller from './pack-xdsl-modem-firewall.controller';
 
-const moduleName = 'XdslModemFirewall';
+const moduleName = 'ovhManagerTelecomPackXdslModemFirewall';
 
 angular
   .module(moduleName, [

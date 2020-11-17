@@ -8,7 +8,7 @@ import 'ovh-api-services';
 import controller from './ipv6.controller';
 import template from './ipv6.html';
 
-const moduleName = 'XdslAccessIpv6';
+const moduleName = 'ovhManagerTelecomPackXdslAccessIpv6';
 
 angular
   .module(moduleName, [

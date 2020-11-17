@@ -8,7 +8,7 @@ import 'ovh-api-services';
 import controller from './xdslAccess.controller';
 import template from './xdslAccess.html';
 
-const moduleName = 'PackAccess';
+const moduleName = 'ovhManagerTelecomPackAccess';
 
 angular
   .module(moduleName, [

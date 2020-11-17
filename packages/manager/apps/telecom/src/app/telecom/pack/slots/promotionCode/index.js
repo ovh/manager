@@ -9,7 +9,7 @@ import controller from './promotionCode.controller';
 import template from './promotionCode.html';
 import templateModal from './promotionCode.modal.html';
 
-const moduleName = 'PromotionCode';
+const moduleName = 'ovhManagerTelecomPackPromotionCode';
 
 angular
   .module(moduleName, [

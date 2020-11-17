@@ -8,7 +8,7 @@ import 'ovh-api-services';
 import controller from './voipEcoFax.controller';
 import template from './voipEcoFax.html';
 
-const moduleName = 'PackVoipEcoFax';
+const moduleName = 'ovhManagerTelecomPackVoipEcoFax';
 
 angular
   .module(moduleName, [

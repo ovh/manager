@@ -7,7 +7,7 @@ import 'ovh-api-services';
 
 import routing from './activation.router';
 
-const moduleName = 'PackFaxActivation';
+const moduleName = 'ovhManagerTelecomPackFaxActivation';
 
 angular
   .module(moduleName, [

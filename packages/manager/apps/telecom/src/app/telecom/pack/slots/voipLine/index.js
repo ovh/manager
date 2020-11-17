@@ -8,7 +8,7 @@ import 'ovh-api-services';
 import controller from './voipLine.controller';
 import template from './voipLine.html';
 
-const moduleName = 'PackVoipLine';
+const moduleName = 'ovhManagerTelecomPackVoipLine';
 
 angular
   .module(moduleName, [

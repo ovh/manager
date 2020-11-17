@@ -1,7 +1,8 @@
 import get from 'lodash/get';
 import map from 'lodash/map';
 
-export default /* @ngInject */ class PackEmailProAddCtrl {
+export default class PackEmailProAddCtrl {
+  /* @ngInject */
   constructor(
     $q,
     $scope,

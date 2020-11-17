@@ -8,7 +8,7 @@ import 'ovh-api-services';
 import controller from './contract.controller';
 import template from './contract.modal.html';
 
-const moduleName = 'XdslDeconsolidationContract';
+const moduleName = 'ovhManagerTelecomPackXdslDeconsolidationContract';
 
 angular
   .module(moduleName, [

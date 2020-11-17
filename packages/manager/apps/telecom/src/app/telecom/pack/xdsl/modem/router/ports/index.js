@@ -9,7 +9,7 @@ import controller from './ports.controller';
 import factory from './ports.factory';
 import template from './ports.html';
 
-const moduleName = 'XdslModemPorts';
+const moduleName = 'ovhManagerTelecomPackXdslModemPorts';
 
 angular
   .module(moduleName, [

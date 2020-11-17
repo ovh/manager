@@ -7,7 +7,7 @@ import 'ovh-api-services';
 
 import routing from './activation.routing';
 
-const moduleName = 'PackHubicActivation';
+const moduleName = 'ovhManagerTelecomPackHubicActivation';
 
 angular
   .module(moduleName, [

@@ -9,7 +9,7 @@ import service from './comfort-exchange.service';
 import xdslAccessComfortExchange from './comfort-exchange.component';
 import routing from './comfort-exchange.routing';
 
-const moduleName = 'xdslAccessComfortExchange';
+const moduleName = 'ovhManagerTelecomPackXdslAccessComfortExchange';
 
 angular
   .module(moduleName, [

@@ -8,7 +8,7 @@ import 'ovh-api-services';
 import routing from './templates-config.routing';
 import modalTemplate from './modal/pack-xdsl-modem-template-config-modal.html';
 
-const moduleName = 'XdslModemTemplateConfig';
+const moduleName = 'ovhManagerTelecomPackXdslModemTemplateConfig';
 
 angular
   .module(moduleName, [

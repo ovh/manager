@@ -8,7 +8,7 @@ import 'ovh-api-services';
 import template from './wifi.html';
 import controller from './wifi.controller';
 
-const moduleName = 'XdslModemWifi';
+const moduleName = 'ovhManagerTelecomPackXdslModemWifi';
 
 angular
   .module(moduleName, [

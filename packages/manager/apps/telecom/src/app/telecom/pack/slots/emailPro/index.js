@@ -8,7 +8,7 @@ import 'ovh-api-services';
 import controller from './emailPro.controller';
 import template from './emailPro.html';
 
-const moduleName = 'PackEmailPro';
+const moduleName = 'ovhManagerTelecomPackEmailPro';
 
 angular
   .module(moduleName, [

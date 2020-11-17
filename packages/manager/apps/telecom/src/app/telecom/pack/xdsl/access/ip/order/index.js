@@ -8,7 +8,7 @@ import 'ovh-api-services';
 import controller from './order.controller';
 import template from './order.modal.html';
 
-const moduleName = 'XdslAccessIpOrder';
+const moduleName = 'ovhManagerTelecomPackXdslAccessIpOrder';
 
 angular
   .module(moduleName, [

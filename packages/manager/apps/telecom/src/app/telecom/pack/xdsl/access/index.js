@@ -26,23 +26,23 @@ const moduleName = 'ovhManagerTelecomPackXdslAccess';
 
 angular
   .module(moduleName, [
-    ngTranslateAsyncLoader,
-    uiRouter,
     angularTranslate,
-    'oui',
+    comfortExchange,
+    deconsolidation,
     diagnostic,
     diagnosticDetails,
-    lineDiagnostic,
-    notifications,
-    comfortExchange,
     ipConfiguration,
-    deconsolidation,
-    XdslStatistics,
     ipOder,
     ipv6,
+    lineDiagnostic,
+    notifications,
+    'oui',
     portReset,
     profil,
     rateLimit,
+    uiRouter,
+    XdslStatistics,
+    ngTranslateAsyncLoader,
   ])
   .component('packXdslAccess', access);
 

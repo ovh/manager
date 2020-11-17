@@ -10,7 +10,7 @@ import './deconsolidation.less';
 
 import routing from './deconsolidation.routing';
 
-const moduleName = 'XdslDeconsolidation';
+const moduleName = 'ovhManagerTelecomPackXdslDeconsolidation';
 
 angular
   .module(moduleName, [

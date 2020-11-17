@@ -8,7 +8,7 @@ import 'ovh-api-services';
 import controller from './firmware.controller';
 import template from './firmware.html';
 
-const moduleName = 'XdslModemFirmware';
+const moduleName = 'ovhManagerTelecomPackXdslModemFirmware';
 
 angular
   .module(moduleName, [

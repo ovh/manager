@@ -8,7 +8,7 @@ import 'ovh-api-services';
 import controller from './statistics.controller';
 import template from './statistics.html';
 
-const moduleName = 'XdslStatistics';
+const moduleName = 'ovhManagerTelecomPackXdslStatistics';
 
 angular
   .module(moduleName, [

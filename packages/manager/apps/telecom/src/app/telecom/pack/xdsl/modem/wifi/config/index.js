@@ -7,7 +7,7 @@ import 'ovh-api-services';
 
 import routing from './config.routing';
 
-const moduleName = 'ConfigWifi';
+const moduleName = 'ovhManagerTelecomPackConfigWifi';
 
 angular
   .module(moduleName, [

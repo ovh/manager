@@ -8,7 +8,7 @@ import 'ovh-api-services';
 import controller from './exchangeIndividual.controller';
 import template from './exchangeIndividual.html';
 
-const moduleName = 'PackExchangeIndividual';
+const moduleName = 'ovhManagerTelecomPackExchangeIndividual';
 
 angular
   .module(moduleName, [

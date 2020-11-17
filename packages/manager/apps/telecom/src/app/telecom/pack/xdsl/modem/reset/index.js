@@ -8,7 +8,7 @@ import 'ovh-api-services';
 import controller from './reset.controller';
 import template from './reset.html';
 
-const moduleName = 'XdslModemReset';
+const moduleName = 'ovhManagerTelecomPackXdslModemReset';
 
 angular
   .module(moduleName, [

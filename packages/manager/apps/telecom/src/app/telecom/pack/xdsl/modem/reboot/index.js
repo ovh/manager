@@ -8,7 +8,7 @@ import 'ovh-api-services';
 import controller from './reboot.controller';
 import template from './reboot.html';
 
-const moduleName = 'XdslModemReboot';
+const moduleName = 'ovhManagerTelecomPackXdslModemReboot';
 
 angular
   .module(moduleName, [

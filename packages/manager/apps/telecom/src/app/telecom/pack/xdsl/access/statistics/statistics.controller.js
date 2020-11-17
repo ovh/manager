@@ -2,7 +2,8 @@ import get from 'lodash/get';
 import map from 'lodash/map';
 import { PACK_XDSL_STATISTICS } from './statistics.constant';
 
-export default /* @ngInject */ class XdslStatisticsCtrl {
+export default class XdslStatisticsCtrl {
+  /* @ngInject */
   constructor(
     $filter,
     $q,

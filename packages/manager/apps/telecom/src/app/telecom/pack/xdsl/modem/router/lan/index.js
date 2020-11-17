@@ -9,7 +9,7 @@ import controller from './lan.controller';
 import factory from './lan.factory';
 import template from './lan.html';
 
-const moduleName = 'XdslModemLan';
+const moduleName = 'ovhManagerTelecomPackXdslModemLan';
 
 angular
   .module(moduleName, [

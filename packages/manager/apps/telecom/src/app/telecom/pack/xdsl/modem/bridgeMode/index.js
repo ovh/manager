@@ -8,7 +8,7 @@ import 'ovh-api-services';
 import controller from './bridgeMode.controller';
 import template from './bridgeMode.html';
 
-const moduleName = 'XdslModemBridgeMode';
+const moduleName = 'ovhManagerTelecomPackXdslModemBridgeMode';
 
 angular
   .module(moduleName, [

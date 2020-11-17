@@ -8,7 +8,7 @@ import 'ovh-api-services';
 import controller from './profil.controller';
 import template from './profil.html';
 
-const moduleName = 'XdslAccessProfile';
+const moduleName = 'ovhManagerTelecomPackXdslAccessProfile';
 
 angular
   .module(moduleName, [

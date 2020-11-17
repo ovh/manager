@@ -8,7 +8,7 @@ import 'ovh-api-services';
 import controller from './ratelimit.controller';
 import template from './ratelimit.html';
 
-const moduleName = 'XdslAccessLnsRateLimit';
+const moduleName = 'ovhManagerTelecomPackXdslAccessLnsRateLimit';
 
 angular
   .module(moduleName, [

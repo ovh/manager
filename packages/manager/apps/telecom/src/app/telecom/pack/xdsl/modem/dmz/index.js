@@ -9,7 +9,7 @@ import controller from './dmz.controller';
 import template from './dmz.html';
 import routing from './dmz.routing';
 
-const moduleName = 'XdslModemDmz';
+const moduleName = 'ovhManagerTelecomPackXdslModemDmz';
 
 angular
   .module(moduleName, [

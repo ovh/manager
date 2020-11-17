@@ -12,7 +12,7 @@ import template from './dhcp.html';
 import controllerModal from './dhcp-modal.component';
 import templateModal from './dhcp-modal.html';
 
-const moduleName = 'XdslModemDhcp';
+const moduleName = 'ovhManagerTelecomPackXdslModemDhcp';
 
 angular
   .module(moduleName, [

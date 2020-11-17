@@ -9,7 +9,7 @@ import routing from './orderFollowUp.routing';
 
 import './orderFollowUp.less';
 
-const moduleName = 'XdslOrderFollowUp';
+const moduleName = 'ovhManagerTelecomPackXdslOrderFollowUp';
 
 angular
   .module(moduleName, [
