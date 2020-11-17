@@ -1,3 +1,12 @@
+## [14.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.6.0...@ovh-ux/manager-dedicated@14.6.1) (2020-11-17)
+
+
+### Bug Fixes
+
+* **dedicated-cloud.datacenter.add:** avoid duplicate naming ([#4033](https://github.com/ovh/manager/issues/4033)) ([adcb73e](https://github.com/ovh/manager/commit/adcb73ecd771ffb09b2d57d7a77d95b48c238726))
+
+
+
 # [14.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.5.1...@ovh-ux/manager-dedicated@14.6.0) (2020-11-16)
 
 
