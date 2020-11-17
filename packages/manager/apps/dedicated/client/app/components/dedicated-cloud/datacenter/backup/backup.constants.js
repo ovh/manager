@@ -101,82 +101,6 @@ export const BACKUP_CONDITIONS_URL = {
     'https://www.ovh.com/world/support/termsofservice/special_conditions_dedicated_cloud_2014.pdf',
 };
 
-export const BACKUP_TARIFF_URL = {
-  EPCC: {
-    ASIA:
-      'https://www.ovhcloud.com/asia/enterprise/products/hosted-private-cloud/prices/',
-    AU:
-      'https://www.ovhcloud.com/en-au/enterprise/products/hosted-private-cloud/prices/',
-    CA:
-      'https://www.ovhcloud.com/en-ca/enterprise/products/hosted-private-cloud/prices/',
-    CZ:
-      'https://www.ovhcloud.com/en/enterprise/products/hosted-private-cloud/prices/',
-    DE:
-      'https://www.ovhcloud.com/de/enterprise/products/hosted-private-cloud/prices/',
-    ES:
-      'https://www.ovhcloud.com/es-es/enterprise/products/hosted-private-cloud/prices/',
-    FI:
-      'https://www.ovhcloud.com/en/enterprise/products/hosted-private-cloud/prices/',
-    FR:
-      'https://www.ovhcloud.com/fr/enterprise/products/hosted-private-cloud/prices/',
-    GB:
-      'https://www.ovhcloud.com/en-gb/enterprise/products/hosted-private-cloud/prices/',
-    IE:
-      'https://www.ovhcloud.com/en-ie/enterprise/products/hosted-private-cloud/prices/',
-    IT:
-      'https://www.ovhcloud.com/it/enterprise/products/hosted-private-cloud/prices/',
-    LT:
-      'https://www.ovhcloud.com/en/enterprise/products/hosted-private-cloud/prices/',
-    MA:
-      'https://www.ovhcloud.com/fr-ma/enterprise/products/hosted-private-cloud/prices/',
-    NL:
-      'https://www.ovhcloud.com/nl/enterprise/products/hosted-private-cloud/prices/',
-    PL:
-      'https://www.ovhcloud.com/pl/enterprise/products/hosted-private-cloud/prices/',
-    PT:
-      'https://www.ovhcloud.com/pt/enterprise/products/hosted-private-cloud/prices/',
-    QC:
-      'https://www.ovhcloud.com/fr-ca/enterprise/products/hosted-private-cloud/prices/',
-    SG:
-      'https://www.ovhcloud.com/en-sg/enterprise/products/hosted-private-cloud/prices/',
-    SN:
-      'https://www.ovhcloud.com/fr-sn/enterprise/products/hosted-private-cloud/prices/',
-    TN:
-      'https://www.ovhcloud.com/fr-tn/enterprise/products/hosted-private-cloud/prices/',
-    US:
-      'https://us.ovhcloud.com/products/hosted-private-cloud/managed-veeam-backup',
-    WE:
-      'https://www.ovhcloud.com/en/enterprise/products/hosted-private-cloud/prices/',
-    WS:
-      'https://www.ovhcloud.com/es/enterprise/products/hosted-private-cloud/prices/',
-  },
-  MBM: {
-    ASIA: 'https://www.ovhcloud.com/asia/managed-bare-metal/options/',
-    AU: 'https://www.ovhcloud.com/en-au/managed-bare-metal/options/',
-    CA: 'https://www.ovhcloud.com/en-ca/managed-bare-metal/options/',
-    CZ: 'https://www.ovhcloud.com/en-ie/managed-bare-metal/options/',
-    DE: 'https://www.ovhcloud.com/de/managed-bare-metal/options/',
-    ES: 'https://www.ovhcloud.com/es-es/managed-bare-metal/options/',
-    FI: 'https://www.ovhcloud.com/en-ie/managed-bare-metal/options/',
-    FR: 'https://www.ovhcloud.com/fr/managed-bare-metal/options/',
-    GB: 'https://www.ovhcloud.com/en-gb/managed-bare-metal/options/',
-    IE: 'https://www.ovhcloud.com/en-ie/managed-bare-metal/options/',
-    IT: 'https://www.ovhcloud.com/it/managed-bare-metal/options/',
-    LT: 'https://www.ovhcloud.com/en-ie/managed-bare-metal/options/',
-    MA: 'https://www.ovhcloud.com/fr-ma/managed-bare-metal/options/',
-    NL: 'https://www.ovhcloud.com/nl/managed-bare-metal/options/',
-    PL: 'https://www.ovhcloud.com/pl/managed-bare-metal/options/',
-    PT: 'https://www.ovhcloud.com/pt/managed-bare-metal/options/',
-    QC: 'https://www.ovhcloud.com/fr-ca/managed-bare-metal/options/',
-    SG: 'https://www.ovhcloud.com/en-sg/managed-bare-metal/options/',
-    SN: 'https://www.ovhcloud.com/fr-sn/managed-bare-metal/options/',
-    TN: 'https://www.ovhcloud.com/fr-tn/managed-bare-metal/options/',
-    US: 'https://us.ovhcloud.com/managed-bare-metal/options/',
-    WE: 'https://www.ovhcloud.com/en/managed-bare-metal/options/',
-    WS: 'https://www.ovhcloud.com/es/managed-bare-metal/options/',
-  },
-};
-
 export default {
   BACKUP_MINIMUM_HOST_COUNT,
   BACKUP_GUIDES_URL,
@@ -189,6 +113,5 @@ export default {
   BACKUP_PROPERTIES_MAP,
   BACKUP_STATE_DISABLED,
   BACKUP_STATE_ENABLING,
-  BACKUP_TARIFF_URL,
   CATALOG_INFO,
 };

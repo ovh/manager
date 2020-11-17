@@ -9,9 +9,10 @@ import Backup from '../../../components/dedicated-cloud/datacenter/backup/backup
 import {
   BACKUP_CONDITIONS_URL,
   BACKUP_GUIDES_URL,
-  BACKUP_TARIFF_URL,
   BACKUP_MINIMUM_HOST_COUNT,
 } from '../../../components/dedicated-cloud/datacenter/backup/backup.constants';
+
+import { BACKUP_TARIFF_URL } from './backup.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.managedBaremetal.datacenter.backup', {
@@ -111,12 +112,8 @@ export default /* @ngInject */ ($stateProvider) => {
           currentUser.ovhSubsidiary,
           BACKUP_CONDITIONS_URL.FR,
         ),
-      backupTariffUrl: /* @ngInject */ (currentUser, pccType) =>
-        get(
-          BACKUP_TARIFF_URL,
-          `${pccType}.${currentUser.ovhSubsidiary}`,
-          BACKUP_TARIFF_URL[pccType].FR,
-        ),
+      backupTariffUrl: /* @ngInject */ (currentUser) =>
+        get(BACKUP_TARIFF_URL, currentUser.ovhSubsidiary, BACKUP_TARIFF_URL.FR),
       goToUpgradeOffer: /* @ngInject */ ($state, productId, datacenterId) => (
         actualOffer,
       ) =>
