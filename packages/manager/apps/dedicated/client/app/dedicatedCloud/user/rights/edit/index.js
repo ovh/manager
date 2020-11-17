@@ -6,15 +6,18 @@ const moduleName = 'dedicatedCloudUserRightsEditLazyloading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.dedicatedCloud.details.users.rights.edit.**', {
-      url: '/edit',
-      lazyLoad: ($transition$) => {
-        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-        return import('./dedicatedCloud-user-rights-edit.module').then((mod) =>
-          $ocLazyLoad.inject(mod.default || mod),
-        );
+    $stateProvider.state(
+      'app.dedicatedCloud.details.users.user.rights.edit.**',
+      {
+        url: '/edit',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+          return import(
+            './dedicatedCloud-user-rights-edit.module'
+          ).then((mod) => $ocLazyLoad.inject(mod.default || mod));
+        },
       },
-    });
+    );
   },
 );
 
