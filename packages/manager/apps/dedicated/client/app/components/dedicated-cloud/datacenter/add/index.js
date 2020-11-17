@@ -7,7 +7,7 @@ import ngAtInternet from '@ovh-ux/ng-at-internet';
 
 import component from './dedicatedCloud-datacenter-add.component';
 
-const moduleName = 'ovhManagerDedicatedCloudDatacenterDatastoreComponent';
+const moduleName = 'ovhManagerDedicatedCloudDatacenterAddComponent';
 
 angular
   .module(moduleName, [
