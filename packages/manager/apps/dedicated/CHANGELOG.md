@@ -1,3 +1,32 @@
+# [14.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.6.1...@ovh-ux/manager-dedicated@14.7.0) (2020-11-17)
+
+
+### Bug Fixes
+
+* **dedicated:** add commercial name ([2c6db72](https://github.com/ovh/manager/commit/2c6db72e9434de9903e0b63f0074f02a48bb9da8)), closes [#MANAGER-5673](https://github.com/ovh/manager/issues/MANAGER-5673)
+* **dedicated:** add ip ([0e245bb](https://github.com/ovh/manager/commit/0e245bbbb55f8925ce6fc3235809540387ab3658)), closes [#MANAGER-5956](https://github.com/ovh/manager/issues/MANAGER-5956)
+* **dedicated:** backup tariff url ([098ab6b](https://github.com/ovh/manager/commit/098ab6b6911eb9024d45eaedda3bac533347a447)), closes [#MANAGER-5456](https://github.com/ovh/manager/issues/MANAGER-5456)
+* **dedicated:** fix sub type ([7024e8c](https://github.com/ovh/manager/commit/7024e8cc76b7cd662354936e77c56cb2be2129ff)), closes [#MANAGER-5994](https://github.com/ovh/manager/issues/MANAGER-5994)
+* **dedicated:** hide nsx ([59ac919](https://github.com/ovh/manager/commit/59ac91902c4fa395c46fda4345cd5fe418e97984)), closes [#MANAGER-5673](https://github.com/ovh/manager/issues/MANAGER-5673)
+* **dedicated:** pcc delete service ([0c5bce2](https://github.com/ovh/manager/commit/0c5bce2842ec60365a7e08e0f1718bf459a8e9b6)), closes [#MANAGER-5907](https://github.com/ovh/manager/issues/MANAGER-5907)
+* **dedicated:** rename essentials ([468e566](https://github.com/ovh/manager/commit/468e566302b9bb5cd8a79debbc0503e8d4333e50)), closes [#MANAGER-5919](https://github.com/ovh/manager/issues/MANAGER-5919)
+* **dedicated:** spla license ([1c8df1f](https://github.com/ovh/manager/commit/1c8df1f54b2a4ce52f2a31635fa7102c493e1de9)), closes [#MANAGER-5738](https://github.com/ovh/manager/issues/MANAGER-5738)
+* **dedicated:** terminate pcc ([36f0694](https://github.com/ovh/manager/commit/36f069437e9dafc70c107bb370b115e63a57acfa)), closes [#MANAGER-5930](https://github.com/ovh/manager/issues/MANAGER-5930)
+* **dedicated:** text changes ([08c8c1c](https://github.com/ovh/manager/commit/08c8c1ca9c235fb96c456a3a8ecaf9d7c8cb54f8)), closes [#MANAGER-5673](https://github.com/ovh/manager/issues/MANAGER-5673)
+* **dedicated:** update backup links ([8a967f5](https://github.com/ovh/manager/commit/8a967f5dbe610a01a09137e32196d9804df48196)), closes [#MANAGER-5857](https://github.com/ovh/manager/issues/MANAGER-5857)
+* **dedicated-ip:** replace terminate api ([61c0876](https://github.com/ovh/manager/commit/61c08769f37c179c0d3559aa18b5103592d78713)), closes [#MANAGER-5951](https://github.com/ovh/manager/issues/MANAGER-5951)
+* **i18n:** add missing translations [CDS 644] ([d9426c2](https://github.com/ovh/manager/commit/d9426c2de58f544c096f1c58ee6568085b7dae6f))
+* **i18n:** add missing translations [CDS 650] ([6e72d24](https://github.com/ovh/manager/commit/6e72d24aaa5dd085e207e67f8c557b27f2e9e29f))
+* add essentials to billing ([bab2aa6](https://github.com/ovh/manager/commit/bab2aa6ba8f6663bd1d7ffec75123d361b04d18f))
+* add essentials to manage contacts ([7f1b3f0](https://github.com/ovh/manager/commit/7f1b3f0f9d2200136df28440bde59d9193ef0f77))
+
+
+### Features
+
+* add managed baremetal ([71ee67e](https://github.com/ovh/manager/commit/71ee67e667128367f29e0db0d3f15b55be1a8d64)), closes [#MANAGER-5673](https://github.com/ovh/manager/issues/MANAGER-5673)
+
+
+
 ## [14.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.6.0...@ovh-ux/manager-dedicated@14.6.1) (2020-11-17)
 
 

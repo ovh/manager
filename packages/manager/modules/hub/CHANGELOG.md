@@ -1,3 +1,14 @@
+## [2.1.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@2.1.5...@ovh-ux/manager-hub@2.1.6) (2020-11-17)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 644] ([d9426c2](https://github.com/ovh/manager/commit/d9426c2de58f544c096f1c58ee6568085b7dae6f))
+* **i18n:** add missing translations [CDS 650] ([6e72d24](https://github.com/ovh/manager/commit/6e72d24aaa5dd085e207e67f8c557b27f2e9e29f))
+* add essentials to hub ([accf87a](https://github.com/ovh/manager/commit/accf87a948dc9121ed40671cc2a03a48629264a8))
+
+
+
 ## [2.1.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@2.1.4...@ovh-ux/manager-hub@2.1.5) (2020-10-28)
 
 

@@ -1,3 +1,18 @@
+# [3.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.4.0...@ovh-ux/manager-server-sidebar@3.5.0) (2020-11-17)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 644] ([d9426c2](https://github.com/ovh/manager/commit/d9426c2de58f544c096f1c58ee6568085b7dae6f))
+* **i18n:** add missing translations [CDS 650] ([6e72d24](https://github.com/ovh/manager/commit/6e72d24aaa5dd085e207e67f8c557b27f2e9e29f))
+
+
+### Features
+
+* add managed baremetal ([71ee67e](https://github.com/ovh/manager/commit/71ee67e667128367f29e0db0d3f15b55be1a8d64)), closes [#MANAGER-5673](https://github.com/ovh/manager/issues/MANAGER-5673)
+
+
+
 # [3.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.3.0...@ovh-ux/manager-server-sidebar@3.4.0) (2020-11-02)
 
 
