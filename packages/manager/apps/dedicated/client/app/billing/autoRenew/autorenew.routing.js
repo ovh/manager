@@ -206,6 +206,8 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
     resolve: {
       serviceId: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceId,
+      service: /* @ngInject */ ($http, serviceId) =>
+        $http.get(`/services/${serviceId}`).then(({ data }) => data),
     },
   });
 };

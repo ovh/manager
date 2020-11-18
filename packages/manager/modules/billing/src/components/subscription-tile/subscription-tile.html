@@ -24,6 +24,7 @@
             <oui-action-menu compact placement="end">
                 <oui-action-menu-item
                     ng-if="$ctrl.serviceManagementUrl"
+                    on-click="$ctrl.trackClick('manage-service')"
                     href="{{ $ctrl.serviceManagementUrl }}"
                 >
                     <span
@@ -32,7 +33,7 @@
                 </oui-action-menu-item>
                 <oui-action-menu-item
                     ng-if="$ctrl.canBeEngaged && !$ctrl.hasPendingEngagement"
-                    on-click="$ctrl.goToCommit()"
+                    on-click="$ctrl.commit()"
                 >
                     <span
                         data-translate="manager_billing_subscription_service_engagement"
@@ -40,7 +41,7 @@
                 </oui-action-menu-item>
                 <oui-action-menu-item
                     ng-if="$ctrl.hasPendingEngagement"
-                    on-click="$ctrl.goToCancelCommit()"
+                    on-click="$ctrl.cancelCommit()"
                 >
                     <span
                         data-translate="manager_billing_subscription_service_engagement_cancel"
@@ -75,7 +76,7 @@
                 variant="link"
                 icon-right="oui-icon-arrow-right"
                 ng-if="$ctrl.canBeEngaged && !$ctrl.hasPendingEngagement && (!$ctrl.engagement || $ctrl.highlightEngagement)"
-                on-click="$ctrl.goToCommit()"
+                on-click="$ctrl.commit()"
             >
                 <span
                     data-translate="manager_billing_subscription_engagement_commit"
