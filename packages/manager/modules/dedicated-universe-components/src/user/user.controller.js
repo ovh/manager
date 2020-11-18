@@ -1,4 +1,4 @@
-angular.module('App').controller('UserCtrl', [
+export default [
   '$scope',
   '$http',
   'User',
@@ -14,4 +14,4 @@ angular.module('App').controller('UserCtrl', [
       $scope.user = user;
     });
   },
-]);
+];

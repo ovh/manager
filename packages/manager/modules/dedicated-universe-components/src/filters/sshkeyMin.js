@@ -1,4 +1,4 @@
-angular.module('UserAccount').filter('sshkeyMin', [
+export default [
   'sshkey-regex',
   function sshkeyMinFilter(SSHKEY_REGEX) {
     let splitted;
@@ -71,4 +71,4 @@ angular.module('UserAccount').filter('sshkeyMin', [
       );
     };
   },
-]);
+];
