@@ -1,5 +1,5 @@
 /* eslint-disable no-shadow */
-angular.module('UserAccount').directive('checkboxSwitch', [
+export default [
   '$timeout',
   function checkboxSwitchDirective($timeout) {
     return {
@@ -96,5 +96,5 @@ angular.module('UserAccount').directive('checkboxSwitch', [
       },
     };
   },
-]);
+];
 /* eslint-enable no-shadow */
