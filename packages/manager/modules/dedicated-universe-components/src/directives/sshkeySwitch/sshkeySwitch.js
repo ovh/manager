@@ -1,4 +1,4 @@
-angular.module('UserAccount').directive('sshkeySwitch', [
+export default /* @ngInject */ [
   'sshkey-regex',
   function sshkeySwitchDirective(SSHKEY_REGEX) {
     return {
@@ -36,4 +36,4 @@ angular.module('UserAccount').directive('sshkeySwitch', [
       },
     };
   },
-]);
+];
