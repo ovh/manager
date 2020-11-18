@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicatedClouds.dashboard.vmware-option-order', {
+  $stateProvider.state('app.dedicatedClouds.vmware-option-order', {
     url: '/vmware-option-order',
     params: {
       option: null,

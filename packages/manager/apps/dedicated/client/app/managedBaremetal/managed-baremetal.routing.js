@@ -4,6 +4,8 @@ import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import sortBy from 'lodash/sortBy';
 import uniq from 'lodash/uniq';
+import head from 'lodash/head';
+import set from 'lodash/set';
 
 import { DedicatedCloud as DedicatedCloudInfo } from '@ovh-ux/manager-models';
 import {
@@ -13,7 +15,6 @@ import {
 
 export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
   $stateProvider.state('app.managedBaremetal', {
-    redirectTo: 'app.managedBaremetal.dashboard',
     resolve: {
       currentService: /* @ngInject */ (DedicatedCloud, productId) =>
         DedicatedCloud.getSelected(productId, true).then(
@@ -63,14 +64,14 @@ export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
         currentUser,
         DedicatedCloud,
         dedicatedCloudDescription,
-        dedicatedCloudServiceInfos,
+        managedBaremetalerviceInfos,
       ) =>
         DedicatedCloud.getSelected($stateParams.productId, true).then(
           (dedicatedCloud) => ({
             ...dedicatedCloud,
             ...dedicatedCloudDescription,
             email: currentUser.email,
-            serviceInfos: dedicatedCloudServiceInfos,
+            serviceInfos: managedBaremetalerviceInfos,
           }),
         ),
 
@@ -79,7 +80,7 @@ export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
         DedicatedCloud,
       ) => DedicatedCloud.getDescription($stateParams.productId),
 
-      dedicatedCloudServiceInfos: /* @ngInject */ (
+      managedBaremetalerviceInfos: /* @ngInject */ (
         $stateParams,
         OvhApiDedicatedCloud,
       ) =>
@@ -122,19 +123,27 @@ export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
       isDrpActionPossible: /* @ngInject */ (currentDrp, dedicatedCloudDrp) =>
         dedicatedCloudDrp.constructor.isDrpActionPossible(currentDrp),
 
-      datacentersState: () => 'app.managedBaremetal.datacenters',
-      pccDashboardState: () => 'app.managedBaremetal.dashboard',
-      licenseState: () => 'app.managedBaremetal.license',
-      operationState: () => 'app.managedBaremetal.operation',
-      securityState: () => 'app.managedBaremetal.security',
-      usersState: () => 'app.managedBaremetal.users',
+      currentActiveLink: /* @ngInject */ ($state, productId) => () =>
+        $state.href($state.current.name, { productId }),
+      datacentersLink: /* @ngInject */ ($state, productId) =>
+        $state.href('app.managedBaremetal.datacenters', { productId }),
+      pccDashboardLink: /* @ngInject */ ($state, productId) =>
+        $state.href('app.managedBaremetal', { productId }),
+      licenseLink: /* @ngInject */ ($state, productId) =>
+        $state.href('app.managedBaremetal.license', { productId }),
+      operationLink: /* @ngInject */ ($state, productId) =>
+        $state.href('app.managedBaremetal.operation', { productId }),
+      securityLink: /* @ngInject */ ($state, productId) =>
+        $state.href('app.managedBaremetal.security', { productId }),
+      usersLink: /* @ngInject */ ($state, productId) =>
+        $state.href('app.managedBaremetal.users', { productId }),
       goToDrp: /* @ngInject */ ($state, currentDrp) => (datacenterId) =>
         $state.go('app.managedBaremetal.datacenter.drp', {
           datacenterId,
           drpInformations: currentDrp,
         }),
       goToDrpDatacenterSelection: /* @ngInject */ ($state) => () =>
-        $state.go('app.managedBaremetal.dashboard.drpDatacenterSelection'),
+        $state.go('app.managedBaremetal.drpDatacenterSelection'),
       goToPccDashboard: /* @ngInject */ ($state) => (reload = false) =>
         $state.go('app.managedBaremetal', {}, { reload }),
       goToVpnConfiguration: /* @ngInject */ ($state, currentDrp) => () =>
@@ -187,7 +196,7 @@ export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
       goBackToDashboard: /* @ngInject */ (goBackToState) => (
         message = false,
         type = 'success',
-      ) => goBackToState('app.managedBaremetal.dashboard', message, type),
+      ) => goBackToState('app.managedBaremetal', message, type),
       operationsUrl: /* @ngInject */ ($state, currentService) =>
         $state.href('app.managedBaremetal.operation', {
           productId: currentService.serviceName,
@@ -248,6 +257,97 @@ export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
       trackingPrefix: () => 'dedicated::managedBaremetal',
       usesLegacyOrder: /* @ngInject */ (currentService) =>
         currentService.usesLegacyOrder,
+      deleteDrp: /* @ngInject */ ($state) => () =>
+        $state.go('app.managedBaremetal.deleteDrp'),
+      isMailingListSubscriptionAvailable: /* @ngInject */ (
+        ovhFeatureFlipping,
+      ) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability('dedicated-cloud:mailingListSubscription')
+          .then((featureAvailability) =>
+            featureAvailability.isFeatureAvailable(
+              'dedicated-cloud:mailingListSubscription',
+            ),
+          ),
+      vCenterUpgradeTask: /* @ngInject */ ($http, currentService) =>
+        $http
+          .get(`/dedicatedCloud/${currentService.serviceName}/task`, {
+            params: {
+              name: 'maintenanceUpgradeVcenter',
+              state: 'todo',
+            },
+          })
+          .then((response) => {
+            return map(response.data, (taskId) => {
+              return $http
+                .get(
+                  `/dedicatedCloud/${currentService.serviceName}/task/${taskId}`,
+                )
+                .then((taskResponse) => taskResponse.data);
+            });
+          })
+          .then((tasks) => {
+            return set(
+              currentService,
+              'vcenterUpgradePendingTask',
+              head(tasks),
+            );
+          }),
+      onUpgradeVersion: /* @ngInject */ ($state, currentService) => (
+        targetVersion,
+      ) =>
+        $state.go('app.managedBaremetal.update', {
+          currentService,
+          targetVersion,
+        }),
+
+      onAssociateIpBlock: /* @ngInject */ ($state) => () =>
+        $state.go('app.managedBaremetal.associate-ip-bloc'),
+
+      onExecutionDateChange: /* @ngInject */ ($state, currentService) => () =>
+        $state.go('app.managedBaremetal.operation.execution-date-edit', {
+          productId: currentService.serviceName,
+          operationToEdit: currentService.vcenterUpgradePendingTask,
+        }),
+
+      onMlSubscribe: /* @ngInject */ ($state) => () =>
+        $state.go('app.managedBaremetal.ml-subscribe'),
+
+      onTerminate: /* @ngInject */ ($state) => () =>
+        $state.go('app.managedBaremetal.terminate'),
+
+      onBasicOptionsUpgrade: /* @ngInject */ ($state) => (stateParams) =>
+        $state.go(
+          'app.managedBaremetal.servicePackUpgrade.basicOptions',
+          stateParams,
+        ),
+
+      onCertificationUpgrade: /* @ngInject */ ($state) => (stateParams) =>
+        $state.go(
+          'app.managedBaremetal.servicePackUpgrade.certification',
+          stateParams,
+        ),
+
+      onConfigurationOnlyUpgrade: /* @ngInject */ ($state) => (stateParams) =>
+        $state.go(
+          'app.managedBaremetal.servicePackUpgrade.configurationOnly',
+          stateParams,
+        ),
+
+      orderSecurityOption: /* @ngInject */ ($state) => (optionName) =>
+        $state.go('app.managedBaremetal.security-options', {
+          optionName,
+        }),
+
+      disableVmwareOption: /* @ngInject */ ($state) => (option) =>
+        $state.go('app.managedBaremetal.vmware-option-disable', {
+          option,
+        }),
+
+      orderVmwareOption: /* @ngInject */ ($state) => (option) =>
+        $state.go('app.managedBaremetal.vmware-option-order', {
+          option,
+        }),
     },
     url: '/configuration/managedBaremetal/:productId',
     views: {

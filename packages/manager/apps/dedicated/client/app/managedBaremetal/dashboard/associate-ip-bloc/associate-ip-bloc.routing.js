@@ -1,7 +1,7 @@
 import map from 'lodash/map';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.managedBaremetal.dashboard.associate-ip-bloc', {
+  $stateProvider.state('app.managedBaremetal.associate-ip-bloc', {
     url: '/associate-ip-bloc',
     params: {
       ips: null,

@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicatedClouds.dashboard.ml-subscribe', {
+  $stateProvider.state('app.dedicatedClouds.ml-subscribe', {
     url: '/ml-subscribe',
     views: {
       modal: {

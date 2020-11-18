@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicatedClouds.dashboard.security-options', {
+  $stateProvider.state('app.dedicatedClouds.security-options', {
     url: '/security-options',
     params: {
       optionName: null,

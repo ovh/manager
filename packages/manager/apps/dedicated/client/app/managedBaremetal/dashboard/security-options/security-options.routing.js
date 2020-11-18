@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.managedBaremetal.dashboard.security-options', {
+  $stateProvider.state('app.managedBaremetal.security-options', {
     url: '/security-options',
     params: {
       optionName: null,

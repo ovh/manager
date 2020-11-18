@@ -4,6 +4,8 @@ import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import sortBy from 'lodash/sortBy';
 import uniq from 'lodash/uniq';
+import head from 'lodash/head';
+import set from 'lodash/set';
 
 import { DedicatedCloud as DedicatedCloudInfo } from '@ovh-ux/manager-models';
 import { Environment } from '@ovh-ux/manager-config';
@@ -16,7 +18,6 @@ import {
 
 export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
   $stateProvider.state('app.dedicatedClouds', {
-    redirectTo: 'app.dedicatedClouds.dashboard',
     resolve: {
       currentService: /* @ngInject */ (DedicatedCloud, productId) =>
         DedicatedCloud.getSelected(productId, true).then(
@@ -125,19 +126,27 @@ export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
       isDrpActionPossible: /* @ngInject */ (currentDrp, dedicatedCloudDrp) =>
         dedicatedCloudDrp.constructor.isDrpActionPossible(currentDrp),
 
-      datacentersState: () => 'app.dedicatedClouds.datacenters',
-      pccDashboardState: () => 'app.dedicatedClouds.dashboard',
-      licenseState: () => 'app.dedicatedClouds.license',
-      operationState: () => 'app.dedicatedClouds.operation',
-      securityState: () => 'app.dedicatedClouds.security',
-      usersState: () => 'app.dedicatedClouds.users',
+      currentActiveLink: /* @ngInject */ ($state, productId) => () =>
+        $state.href($state.current.name, { productId }),
+      datacentersLink: /* @ngInject */ ($state, productId) =>
+        $state.href('app.dedicatedClouds.datacenters', { productId }),
+      pccDashboardLink: /* @ngInject */ ($state, productId) =>
+        $state.href('app.dedicatedClouds', { productId }),
+      licenseLink: /* @ngInject */ ($state, productId) =>
+        $state.href('app.dedicatedClouds.license', { productId }),
+      operationLink: /* @ngInject */ ($state, productId) =>
+        $state.href('app.dedicatedClouds.operation', { productId }),
+      securityLink: /* @ngInject */ ($state, productId) =>
+        $state.href('app.dedicatedClouds.security', { productId }),
+      usersLink: /* @ngInject */ ($state, productId) =>
+        $state.href('app.dedicatedClouds.users', { productId }),
       goToDrp: /* @ngInject */ ($state, currentDrp) => (datacenterId) =>
         $state.go('app.dedicatedClouds.datacenter.drp', {
           datacenterId,
           drpInformations: currentDrp,
         }),
       goToDrpDatacenterSelection: /* @ngInject */ ($state) => () =>
-        $state.go('app.dedicatedClouds.dashboard.drpDatacenterSelection'),
+        $state.go('app.dedicatedClouds.drpDatacenterSelection'),
       goToPccDashboard: /* @ngInject */ ($state) => (reload = false) =>
         $state.go('app.dedicatedClouds', {}, { reload }),
       goToVpnConfiguration: /* @ngInject */ ($state, currentDrp) => () =>
@@ -190,7 +199,7 @@ export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
       goBackToDashboard: /* @ngInject */ (goBackToState) => (
         message = false,
         type = 'success',
-      ) => goBackToState('app.dedicatedClouds.dashboard', message, type),
+      ) => goBackToState('app.dedicatedClouds', message, type),
       operationsUrl: /* @ngInject */ ($state, currentService) =>
         $state.href('app.dedicatedClouds.operation', {
           productId: currentService.serviceName,
@@ -260,6 +269,93 @@ export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
                 SURVEY.default
               : null,
           ),
+      deleteDrp: /* @ngInject */ ($state) => () =>
+        $state.go('app.dedicatedClouds.deleteDrp'),
+      isMailingListSubscriptionAvailable: /* @ngInject */ (
+        ovhFeatureFlipping,
+      ) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability('dedicated-cloud:mailingListSubscription')
+          .then((featureAvailability) =>
+            featureAvailability.isFeatureAvailable(
+              'dedicated-cloud:mailingListSubscription',
+            ),
+          ),
+      vCenterUpgradeTask: /* @ngInject */ ($http, currentService) =>
+        $http
+          .get(`/dedicatedCloud/${currentService.serviceName}/task`, {
+            params: {
+              name: 'maintenanceUpgradeVcenter',
+              state: 'todo',
+            },
+          })
+          .then((response) =>
+            map(response.data, (taskId) =>
+              $http
+                .get(
+                  `/dedicatedCloud/${currentService.serviceName}/task/${taskId}`,
+                )
+                .then(({ data }) => data),
+            ),
+          )
+          .then((tasks) =>
+            set(currentService, 'vcenterUpgradePendingTask', head(tasks)),
+          ),
+      onUpgradeVersion: /* @ngInject */ ($state, currentService) => (
+        targetVersion,
+      ) =>
+        $state.go('app.dedicatedClouds.update', {
+          currentService,
+          targetVersion,
+        }),
+
+      onAssociateIpBlock: /* @ngInject */ ($state) => () =>
+        $state.go('app.dedicatedClouds.associate-ip-bloc'),
+
+      onExecutionDateChange: /* @ngInject */ ($state, currentService) => () =>
+        $state.go('app.dedicatedClouds.operation.execution-date-edit', {
+          productId: currentService.serviceName,
+          operationToEdit: currentService.vcenterUpgradePendingTask,
+        }),
+
+      onMlSubscribe: /* @ngInject */ ($state) => () =>
+        $state.go('app.dedicatedClouds.ml-subscribe'),
+
+      onTerminate: /* @ngInject */ ($state) => () =>
+        $state.go('app.dedicatedClouds.terminate'),
+
+      onBasicOptionsUpgrade: /* @ngInject */ ($state) => (stateParams) =>
+        $state.go(
+          'app.dedicatedClouds.servicePackUpgrade.basicOptions',
+          stateParams,
+        ),
+
+      onCertificationUpgrade: /* @ngInject */ ($state) => (stateParams) =>
+        $state.go(
+          'app.dedicatedClouds.servicePackUpgrade.certification',
+          stateParams,
+        ),
+
+      onConfigurationOnlyUpgrade: /* @ngInject */ ($state) => (stateParams) =>
+        $state.go(
+          'app.dedicatedClouds.servicePackUpgrade.configurationOnly',
+          stateParams,
+        ),
+
+      orderSecurityOption: /* @ngInject */ ($state) => (optionName) =>
+        $state.go('app.dedicatedClouds.security-options', {
+          optionName,
+        }),
+
+      disableVmwareOption: /* @ngInject */ ($state) => (option) =>
+        $state.go('app.dedicatedClouds.vmware-option-disable', {
+          option,
+        }),
+
+      orderVmwareOption: /* @ngInject */ ($state) => (option) =>
+        $state.go('app.dedicatedClouds.vmware-option-order', {
+          option,
+        }),
     },
     url: '/configuration/dedicated_cloud/:productId',
     views: {

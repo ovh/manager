@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicatedClouds.dashboard.drpDatacenterSelection', {
+  $stateProvider.state('app.dedicatedClouds.drpDatacenterSelection', {
     url: '/drpDatacenterSelection',
     views: {
       modal: {

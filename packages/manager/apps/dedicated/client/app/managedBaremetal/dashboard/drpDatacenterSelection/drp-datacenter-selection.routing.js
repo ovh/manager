@@ -1,14 +1,11 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state(
-    'app.managedBaremetal.dashboard.drpDatacenterSelection',
-    {
-      url: '/drpDatacenterSelection',
-      views: {
-        modal: {
-          component: 'dedicatedCloudDrpDatacenterSelection',
-        },
+  $stateProvider.state('app.managedBaremetal.drpDatacenterSelection', {
+    url: '/drpDatacenterSelection',
+    views: {
+      modal: {
+        component: 'dedicatedCloudDrpDatacenterSelection',
       },
-      layout: 'modal',
     },
-  );
+    layout: 'modal',
+  });
 };

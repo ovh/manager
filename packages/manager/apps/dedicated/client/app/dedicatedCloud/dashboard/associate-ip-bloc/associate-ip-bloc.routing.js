@@ -1,7 +1,7 @@
 import map from 'lodash/map';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicatedClouds.dashboard.associate-ip-bloc', {
+  $stateProvider.state('app.dedicatedClouds.associate-ip-bloc', {
     url: '/associate-ip-bloc',
     params: {
       ips: null,

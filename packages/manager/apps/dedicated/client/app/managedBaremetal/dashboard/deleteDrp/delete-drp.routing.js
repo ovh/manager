@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.managedBaremetal.dashboard.deleteDrp', {
+  $stateProvider.state('app.managedBaremetal.deleteDrp', {
     url: '/deleteDrp',
     views: {
       modal: {

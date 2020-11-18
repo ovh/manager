@@ -6,7 +6,7 @@ const moduleName = 'dedicatedCloudTerminateLazyloading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.dedicatedClouds.dashboard.terminate.**', {
+    $stateProvider.state('app.dedicatedClouds.terminate.**', {
       url: '/terminate',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');

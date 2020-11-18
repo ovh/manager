@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicatedClouds.dashboard.update', {
+  $stateProvider.state('app.dedicatedClouds.update', {
     url: '/update',
     params: {
       targetVersion: null,

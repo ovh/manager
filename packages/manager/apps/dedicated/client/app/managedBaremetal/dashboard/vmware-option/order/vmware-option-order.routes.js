@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.managedBaremetal.dashboard.vmware-option-order', {
+  $stateProvider.state('app.managedBaremetal.vmware-option-order', {
     url: '/vmware-option-order',
     params: {
       option: null,

@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicatedClouds.dashboard.vmware-option-disable', {
+  $stateProvider.state('app.dedicatedClouds.vmware-option-disable', {
     url: '/vmware-option-disable',
     params: {
       option: null,

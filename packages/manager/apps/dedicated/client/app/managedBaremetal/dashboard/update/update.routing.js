@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.managedBaremetal.dashboard.update', {
+  $stateProvider.state('app.managedBaremetal.update', {
     url: '/update',
     params: {
       targetVersion: null,

@@ -6,7 +6,7 @@ const moduleName = 'managedBaremetalDashboardSecurityOptionsLazyloading';
 
 angular.module(moduleName, ['oc.lazyLoad', 'ui.router']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.managedBaremetal.dashboard.security-options.**', {
+    $stateProvider.state('app.managedBaremetal.security-options.**', {
       url: '/security-options',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');

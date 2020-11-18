@@ -6,7 +6,7 @@ const moduleName = 'managedBaremetalMailingListSubscribeLazyloading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.managedBaremetal.dashboard.ml-subscribe.**', {
+    $stateProvider.state('app.managedBaremetal.ml-subscribe.**', {
       url: '/ml-subscribe',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
