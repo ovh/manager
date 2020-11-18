@@ -3,10 +3,19 @@ import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
+import cucAutoComplete from './components/autocomplete';
+import cucSpaceMeter from './components/space-meter';
+
 const moduleName = 'ovhManagerNashaLazyLoading';
 
 angular
-  .module(moduleName, ['ui.router', 'oc.lazyLoad', 'ovhManagerCore'])
+  .module(moduleName, [
+    'ui.router',
+    'oc.lazyLoad',
+    'ovhManagerCore',
+    cucAutoComplete,
+    cucSpaceMeter,
+  ])
   .config(
     /* @ngInject */ ($stateProvider) => {
       const lazyLoad = ($transition$) => {
