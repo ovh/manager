@@ -15,7 +15,8 @@ export default /* @ngInject */ function TelecomTelephonyLineConsumptionCtrl(
         name: 'line_consumption_incoming_calls',
         main: true,
         picto: 'ovh-font-callReceiving',
-        sref: 'telecom.telephony.billingAccount.line.consumption.incomingCalls',
+        sref:
+          'telecom.telephony.billingAccount.line.dashboard.consumption.incomingCalls',
         text: $translate.instant(
           'telephony_line_management_actions_line_consumption_incoming_calls',
         ),
@@ -24,7 +25,8 @@ export default /* @ngInject */ function TelecomTelephonyLineConsumptionCtrl(
         name: 'line_consumption_outgoing_calls',
         main: true,
         picto: 'ovh-font-callEmitting',
-        sref: 'telecom.telephony.billingAccount.line.consumption.outgoingCalls',
+        sref:
+          'telecom.telephony.billingAccount.line.dashboard.consumption.outgoingCalls',
         text: $translate.instant(
           'telephony_line_management_actions_line_consumption_outgoing_calls',
         ),
@@ -33,7 +35,8 @@ export default /* @ngInject */ function TelecomTelephonyLineConsumptionCtrl(
         name: 'line_consumption_incoming_fax',
         main: true,
         picto: 'ovh-font-faxReceiving',
-        sref: 'telecom.telephony.billingAccount.line.consumption.incomingFax',
+        sref:
+          'telecom.telephony.billingAccount.line.dashboard.consumption.incomingFax',
         text: $translate.instant(
           'telephony_line_management_actions_line_consumption_incoming_fax',
         ),
@@ -42,7 +45,8 @@ export default /* @ngInject */ function TelecomTelephonyLineConsumptionCtrl(
         name: 'line_consumption_outgoing_fax',
         main: true,
         picto: 'ovh-font-faxEmitting',
-        sref: 'telecom.telephony.billingAccount.line.consumption.outgoingFax',
+        sref:
+          'telecom.telephony.billingAccount.line.dashboard.consumption.outgoingFax',
         text: $translate.instant(
           'telephony_line_management_actions_line_consumption_outgoing_fax',
         ),

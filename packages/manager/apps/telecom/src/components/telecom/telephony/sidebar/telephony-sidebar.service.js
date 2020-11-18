@@ -107,7 +107,7 @@ angular
             addServiceMenuItems(
               sortedSipLines,
               {
-                state: 'telecom.telephony.billingAccount.line',
+                state: 'telecom.telephony.billingAccount.line.dashboard',
                 prefix(lineService) {
                   return lineService.isSipTrunk() ? sipTrunkPrefix : sipPrefix;
                 },
@@ -127,7 +127,7 @@ angular
             addServiceMenuItems(
               sortedPlugAndFaxLines,
               {
-                state: 'telecom.telephony.billingAccount.line',
+                state: 'telecom.telephony.billingAccount.line.dashboard',
                 prefix: $translate.instant(
                   'telecom_sidebar_section_telephony_plug_fax',
                 ),

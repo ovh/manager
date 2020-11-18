@@ -13,21 +13,24 @@ export default /* @ngInject */ function TelecomTelephonyLineAnswerCtrl(
     self.actions = [
       {
         name: 'line_default_voicemail',
-        sref: 'telecom.telephony.billingAccount.line.answer.defaultVoicemail',
+        sref:
+          'telecom.telephony.billingAccount.line.dashboard.answer.defaultVoicemail',
         text: $translate.instant(
           'telephony_line_answer_actions_line_default_voicemail',
         ),
       },
       {
         name: 'line_voicemail_password',
-        sref: 'telecom.telephony.billingAccount.line.answer.voicemailPassword',
+        sref:
+          'telecom.telephony.billingAccount.line.dashboard.answer.voicemailPassword',
         text: $translate.instant(
           'telephony_line_answer_actions_line_voicemail_password',
         ),
       },
       {
         name: 'line_voicemail_options',
-        sref: 'telecom.telephony.billingAccount.line.answer.voicemailOptions',
+        sref:
+          'telecom.telephony.billingAccount.line.dashboard.answer.voicemailOptions',
         text: $translate.instant(
           'telephony_line_answer_actions_line_voicemail_options',
         ),
@@ -37,7 +40,7 @@ export default /* @ngInject */ function TelecomTelephonyLineAnswerCtrl(
         main: true,
         picto: 'ovh-font-messagesRead',
         sref:
-          'telecom.telephony.billingAccount.line.answer.voicemailManagement',
+          'telecom.telephony.billingAccount.line.dashboard.answer.voicemailManagement',
         text: $translate.instant(
           'telephony_line_answer_actions_line_voicemail_management',
         ),
