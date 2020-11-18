@@ -10,6 +10,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $transition$.params().duration,
       serviceId: /* @ngInject */ (serviceInfos) => serviceInfos.serviceId,
       me: /* @ngInject */ (currentUser) => currentUser,
+      trackingPrefix: () => 'dedicated::server::dashboard',
     },
   });
 };
