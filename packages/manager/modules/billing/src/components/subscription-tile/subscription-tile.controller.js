@@ -6,6 +6,7 @@ export default class ServicesActionsCtrl {
     $attrs,
     $q,
     $translate,
+    atInternet,
     BillingService,
     ovhFeatureFlipping,
     RedirectionService,
@@ -13,6 +14,7 @@ export default class ServicesActionsCtrl {
     this.$attrs = $attrs;
     this.$q = $q;
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.BillingService = BillingService;
     this.ovhFeatureFlipping = ovhFeatureFlipping;
     this.RedirectionService = RedirectionService;
@@ -78,5 +80,22 @@ export default class ServicesActionsCtrl {
       .finally(() => {
         this.isLoading = false;
       });
+  }
+
+  commit() {
+    this.trackClick('commit');
+    return this.goToCommit();
+  }
+
+  cancelCommit() {
+    this.trackClick('cancel-commit');
+    return this.goToCancelCommit();
+  }
+
+  trackClick(action) {
+    return this.atInternet.trackClick({
+      name: `${this.trackingPrefix}::${action}`,
+      type: 'action',
+    });
   }
 }

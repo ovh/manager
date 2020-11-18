@@ -10,6 +10,7 @@ export default {
     goToCommit: '&',
     highlightEngagement: '<?',
     goToCancelCommit: '<',
+    trackingPrefix: '@',
   },
   controller,
   template,
