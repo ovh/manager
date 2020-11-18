@@ -1,14 +1,31 @@
 export default class NetappCtrl {
   /* @ngInject */
-  constructor($q, $translate, coreConfig, NetappService, CucRegionService) {
-    this.$q = $q;
+  constructor(coreConfig, NetappService, CucRegionService, CORE_URLS, User) {
     this.coreConfig = coreConfig;
-    this.$translate = $translate;
     this.NetappService = NetappService;
     this.CucRegionService = CucRegionService;
+    this.CORE_URLS = CORE_URLS;
+    this.User = User;
+  }
+
+  initGuides() {
+    this.guidesLoading = true;
+    return this.User.getUser()
+      .then((user) => {
+        console.log(user);
+        this.guideUrl =
+          this.CORE_URLS.guides.home[user.ovhSubsidiary] +
+          this.CORE_URLS.guides.cda;
+      })
+      .catch((error) => {
+        this.$log.error(error);
+      })
+      .finally(() => {
+        this.guidesLoading = false;
+      });
   }
 
   $onInit() {
-    this.guideUrl = 'https://docs.ovh.com/fr/storage/';
+    this.initGuides();
   }
 }
