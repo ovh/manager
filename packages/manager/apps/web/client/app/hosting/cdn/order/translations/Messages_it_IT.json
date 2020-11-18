@@ -1,5 +1,5 @@
 {
-  "hosting_cdn_order_title": "Ordina una CDN",
+  "hosting_cdn_order_title": "Stai per attivare l'opzione Shared CDN",
   "hosting_cdn_order_description": "L’opzione CDN attiva una rete di server di cache per i tuoi file statici (HTML, CSS, JavaScript). Permette di accelerare il caricamento delle pagine Web e utilizzare le risorse dell’hosting esclusivamente per gli elementi dinamici.",
   "hosting_cdn_order_duration_label": "{{duration}}:",
   "hosting_cdn_order_step_header_duration": "Scegli la durata",
@@ -9,5 +9,22 @@
   "hosting_cdn_order_step_description_payment": "Per confermare la richiesta, seleziona il metodo di pagamento e accetta le condizioni di utilizzo.",
   "hosting_cdn_order_submit_activate": "Attiva",
   "hosting_cdn_order_submit_pay": "Paga",
-  "hosting_cdn_order_cancel": "Annulla"
+  "hosting_cdn_order_cancel": "Annulla",
+  "hosting_cdn_upgrade_title": "Passa all'opzione Shared CDN",
+  "hosting_cdn_order_customer_cdn_included_step1_description": "La migrazione della tua CDN precedente verso l'opzione Shared CDN verrà presa in carico da OVHcloud, che provvederà anche a migrare i domini dell’hosting su cui risulta attiva la vecchia CDN. Sarà installata una configurazione di default. Lo stato dei domini su cui la CDN non è attiva resterà invariato dopo la migrazione.",
+  "hosting_cdn_order_customer_cdn_included_step1_header": "Prezzo dell'opzione",
+  "hosting_cdn_order_customer_cdn_included_step1_info": "L'aggiornamento verso la nuova CDN è incluso con la soluzione Performance 1, 2, 3, 4 o Cloud Web 1, 2 o 3, senza fatturazione aggiuntiva.",
+  "hosting_cdn_order_customer_cdn_payable_step1_description": "La migrazione della tua CDN precedente verso l'opzione Shared CDN verrà presa in carico da OVHcloud, che provvederà anche a migrare i domini dell’hosting su cui risulta attiva la vecchia CDN. Sarà installata una configurazione di default. Lo stato dei domini su cui la CDN non è attiva resterà invariato dopo la migrazione.",
+  "hosting_cdn_order_customer_cdn_payable_step1_header": "Aggiornamento dell’offerta",
+  "hosting_cdn_order_customer_cdn_payable_step1_info": "Stai per aggiornare la tua CDN alla nuova opzione Shared CDN.",
+  "hosting_cdn_order_customer_cdn_without_step1_info": "Stai per aggiornare la tua CDN alla nuova opzione Shared CDN.",
+  "hosting_cdn_order_customer_cdn_without_step1_description": "Configurazione proposta di default<br>Per iniziare senza difficoltà, l'opzione Shared CDN è disponibile con una configurazione di default. Per iniziare con la massima semplicità e rapidità, all’attivazione del servizio vengono proposte le impostazioni standard.<br><br>Attivazione dominio per dominio<br>Per mantenere tutto sotto controllo, per ciascun dominio è possibile attivare una CDN dedicata. Scopri tutte le funzionalità e le possibilità offerte dall'opzione CDN.",
+  "hosting_cdn_order_customer_cdn_without_step1_header": "Scegli la durata del periodo contrattuale",
+  "hosting_cdn_order_customer_cdn_without_step1_price": "Prezzo proporzionale in base al tuo hosting",
+  "hosting_cdn_order_customer_cdn_included_step2_header": "Conferma",
+  "hosting_cdn_order_customer_cdn_included_step2_no_default_payment_method": "Non hai impostato nessuna modalità di pagamento predefinita. Verrai reindirizzato al buono d'ordine da cui sarà possibile effettuare il pagamento.",
+  "hosting_cdn_order_customer_cdn_included_step2_btn_ok": "Conferma",
+  "hosting_cdn_order_customer_cdn_included_step2_btn_ko": "Annulla",
+  "hosting_cdn_order_customer_cdn_payable_step2_header": "Aggiornamento dell’offerta",
+  "hosting_cdn_order_customer_cdn_without_step2_header": "Conferma"
 }

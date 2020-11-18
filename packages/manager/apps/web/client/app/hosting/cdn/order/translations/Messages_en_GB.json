@@ -1,5 +1,5 @@
 {
-  "hosting_cdn_order_title": "Order a CDN",
+  "hosting_cdn_order_title": "You are about to subscribe to the Shared CDN option",
   "hosting_cdn_order_description": "The CDN option enables a network of cache servers for static files (HTML, CSS, JavaScript). It helps speed up loading times for your webpages, so that your web hosting plan’s resources are only used for dynamic pages.",
   "hosting_cdn_order_duration_label": "{{duration}}:",
   "hosting_cdn_order_step_header_duration": "Choose your duration",
@@ -9,5 +9,22 @@
   "hosting_cdn_order_step_description_payment": "To confirm your request, please choose a payment method, and accept the Terms & Conditions of Use.",
   "hosting_cdn_order_submit_activate": "Enable",
   "hosting_cdn_order_submit_pay": "Pay",
-  "hosting_cdn_order_cancel": "Cancel"
+  "hosting_cdn_order_cancel": "Cancel",
+  "hosting_cdn_upgrade_title": "Migrate to the Shared CDN option",
+  "hosting_cdn_order_customer_cdn_included_step1_description": "We will migrate your old CDN to the Shared CDN option for you. We will also progressively migrate the domain names on your hosting plan that have the old CDN option enabled. A default configuration will be set up. Domain names that do not have the CDN option enabled will remain in the same state after the migration.",
+  "hosting_cdn_order_customer_cdn_included_step1_header": "Option price",
+  "hosting_cdn_order_customer_cdn_included_step1_info": "Updating to the new CDN is included with Performance 1, 2, 3, 4 and Cloud Web 1, 2 and 3 solutions, with no additional fees.",
+  "hosting_cdn_order_customer_cdn_payable_step1_description": "We will migrate your old CDN to the Shared CDN option for you. We will also progressively migrate the domain names on your hosting plan that have the old CDN option enabled. A default configuration will be set up. Domain names that do not have the CDN option enabled will remain in the same state after the migration.",
+  "hosting_cdn_order_customer_cdn_payable_step1_header": "Solution development",
+  "hosting_cdn_order_customer_cdn_payable_step1_info": "You are about to update your CDN to the new Shared CDN option.",
+  "hosting_cdn_order_customer_cdn_without_step1_info": "You are about to update your CDN to the new Shared CDN option.",
+  "hosting_cdn_order_customer_cdn_without_step1_description": "Default configuration<br>To help you get started quickly, the Shared CDN option is offered with a default configuration. When you enable it, we offer standard settings to get started quickly and easily. <br><br>Individual domain activation<br>You can enable a dedicated CDN for each of your domain names to maintain control. In your own time, explore the features and possibilities offered by the CDN option.",
+  "hosting_cdn_order_customer_cdn_without_step1_header": "Select the subscription period",
+  "hosting_cdn_order_customer_cdn_without_step1_price": "Billed on a pro rata basis according to your hosting plan",
+  "hosting_cdn_order_customer_cdn_included_step2_header": "Confirmation",
+  "hosting_cdn_order_customer_cdn_included_step2_no_default_payment_method": "You have not set a default payment method. You will be redirected to a purchase order to make your payment.",
+  "hosting_cdn_order_customer_cdn_included_step2_btn_ok": "Confirm",
+  "hosting_cdn_order_customer_cdn_included_step2_btn_ko": "Cancel",
+  "hosting_cdn_order_customer_cdn_payable_step2_header": "Solution development",
+  "hosting_cdn_order_customer_cdn_without_step2_header": "Confirm"
 }

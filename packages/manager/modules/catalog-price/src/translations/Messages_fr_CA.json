@@ -6,5 +6,7 @@
   "order_catalog_price_gst_incl_label": "{{ price }} incl. GST",
   "order_catalog_price_interval_day": "jour",
   "order_catalog_price_interval_month": "mois",
-  "order_catalog_price_interval_year": "an"
+  "order_catalog_price_interval_year": "an",
+  "order_catalog_price_from": "De",
+  "order_catalog_price_to": "à"
 }

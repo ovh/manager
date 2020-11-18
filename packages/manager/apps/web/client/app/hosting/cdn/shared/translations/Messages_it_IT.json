@@ -1,0 +1,22 @@
+{
+  "hosting_cdn_shared_title": "Configura la CDN Basic",
+  "hosting_cdn_shared_info": "Visualizza le impostazioni dell'opzione Shared CDN. Per iniziare con la massima semplicità e rapidità, vengono applicate di default le impostazioni standard.\nLe opzioni avanzate CDN Security e CDN Advance danno accesso a ulteriori parametri.",
+  "hosting_cdn_shared_state_enable": "Attivo",
+  "hosting_cdn_shared_state_disabled": "Disattivato",
+  "hosting_cdn_shared_option_always_online_info": "La CDN continua a rispondere alle richieste, anche in caso di malfunzionamenti del server di origine.",
+  "hosting_cdn_shared_option_http_https_info": "Per aumentare le prestazioni e la sicurezza del sito, utilizza il protocollo HTTP/2.",
+  "hosting_cdn_shared_option_dev_mode_info": "Modalità sviluppatore per forzare la CDN a recuperare sistematicamente i valori sul server di origine.",
+  "hosting_cdn_shared_option_brotli_info": "Ridurre il volume dei dati trasferiti grazie agli algoritmi di ultima generazione Brotli.",
+  "hosting_cdn_shared_option_cache_rule_btn_add_rule": "Aggiungi una regola",
+  "hosting_cdn_shared_option_cache_rule_add_rule_max_rules": "L'offerta CDN Basic permette di aggiungere fino a un massimo di 5 regole.",
+  "hosting_cdn_shared_option_cache_rule_table_header_order_by": "Classificazione",
+  "hosting_cdn_shared_option_cache_rule_table_header_rule_name": "Nome della regola",
+  "hosting_cdn_shared_option_cache_rule_table_header_uri": "URI",
+  "hosting_cdn_shared_option_cache_rule_table_header_options": "Opzioni",
+  "hosting_cdn_shared_option_cache_rule_table_time_to_live": "Durata di vita",
+  "hosting_cdn_shared_option_cache_rule_table_status": "Stato",
+  "hosting_cdn_shared_option_cache_rule_table_items_option_set_rule": "Modifica Ia regola",
+  "hosting_cdn_shared_option_cache_rule_table_items_option_delete_rule": "Rimuovi la regola",
+  "hosting_cdn_shared_option_cache_rule_btn_validate": "Applica la configurazione",
+  "hosting_cdn_shared_option_cache_rule_btn_cancel": "Annulla"
+}

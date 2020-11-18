@@ -1,0 +1,22 @@
+{
+  "hosting_cdn_shared_title": "Configurar su CDN Basic",
+  "hosting_cdn_shared_info": "Consulte la configuración de la opción Shared CDN. Las opciones estándar se aplican por defecto para que pueda empezar a utilizar el servicio de forma rápida y sencilla.\nLas opciones avanzadas CDN Security y CDN Advance le permiten acceder a más parámetros de configuración.",
+  "hosting_cdn_shared_state_enable": "Activada",
+  "hosting_cdn_shared_state_disabled": "Desactivada",
+  "hosting_cdn_shared_option_always_online_info": "La CDN seguirá respondiendo a las peticiones, incluso en caso de avería del servidor de origen.",
+  "hosting_cdn_shared_option_http_https_info": "Mejora del rendimiento y la seguridad de su sitio web mediante el protocolo HTTP/2.",
+  "hosting_cdn_shared_option_dev_mode_info": "Modo desarrollador para forzar a la CDN a recuperar sistemáticamente los valores en el servidor de origen.",
+  "hosting_cdn_shared_option_brotli_info": "Reducir el tamaño de los datos transferidos mediante los algoritmos de última generación de Brotli.",
+  "hosting_cdn_shared_option_cache_rule_btn_add_rule": "Añadir una regla",
+  "hosting_cdn_shared_option_cache_rule_add_rule_max_rules": "La solución CDN Basic permite añadir hasta 5 reglas como máximo.",
+  "hosting_cdn_shared_option_cache_rule_table_header_order_by": "Clasificación",
+  "hosting_cdn_shared_option_cache_rule_table_header_rule_name": "Nombre de la regla",
+  "hosting_cdn_shared_option_cache_rule_table_header_uri": "URI",
+  "hosting_cdn_shared_option_cache_rule_table_header_options": "Opciones",
+  "hosting_cdn_shared_option_cache_rule_table_time_to_live": "Vida útil",
+  "hosting_cdn_shared_option_cache_rule_table_status": "Estado",
+  "hosting_cdn_shared_option_cache_rule_table_items_option_set_rule": "Modificar la regla",
+  "hosting_cdn_shared_option_cache_rule_table_items_option_delete_rule": "Eliminar la regla",
+  "hosting_cdn_shared_option_cache_rule_btn_validate": "Aplicar la configuración",
+  "hosting_cdn_shared_option_cache_rule_btn_cancel": "Cancelar"
+}
