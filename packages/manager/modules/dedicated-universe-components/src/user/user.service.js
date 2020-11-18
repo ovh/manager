@@ -2,7 +2,7 @@ import flatten from 'lodash/flatten';
 
 import { User } from '@ovh-ux/manager-models';
 
-angular.module('services').service('User', [
+export default [
   '$http',
   '$q',
   'constants',
@@ -192,4 +192,4 @@ angular.module('services').service('User', [
       });
     };
   },
-]);
+];
