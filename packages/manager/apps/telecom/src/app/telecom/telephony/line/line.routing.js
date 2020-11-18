@@ -6,17 +6,23 @@ import mainTemplate from './line-main.html';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('telecom.telephony.billingAccount.line', {
-    url: '/line/:serviceName',
+    url: '/line',
+    template: '<div ui-view></div>',
+    redirectTo: 'telecom.telephony.billingAccount.services',
+  });
+
+  $stateProvider.state('telecom.telephony.billingAccount.line.dashboard', {
+    url: '/:serviceName',
     views: {
       'telephonyView@telecom.telephony': {
         template,
       },
-      'lineView@telecom.telephony.billingAccount.line': {
+      'lineView@telecom.telephony.billingAccount.line.dashboard': {
         template: mainTemplate,
         controller,
         controllerAs: 'LineCtrl',
       },
-      'lineInnerView@telecom.telephony.billingAccount.line': {
+      'lineInnerView@telecom.telephony.billingAccount.line.dashboard': {
         templateUrl: 'app/telecom/telephony/line/management/management.html',
         controller: 'TelecomTelephonyLineManagementCtrl',
         controllerAs: 'LineManagementCtrl',
@@ -58,47 +64,47 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       lineLink: /* @ngInject */ ($state, $transition$) =>
         $state.href(
-          'telecom.telephony.billingAccount.line',
+          'telecom.telephony.billingAccount.line.dashboard',
           $transition$.params(),
         ),
       consumptionLink: /* @ngInject */ ($state, $transition$) =>
         $state.href(
-          'telecom.telephony.billingAccount.line.consumption',
+          'telecom.telephony.billingAccount.line.dashboard.consumption',
           $transition$.params(),
         ),
       callsLink: /* @ngInject */ ($state, $transition$) =>
         $state.href(
-          'telecom.telephony.billingAccount.line.calls',
+          'telecom.telephony.billingAccount.line.dashboard.calls',
           $transition$.params(),
         ),
       tonesLink: /* @ngInject */ ($state, $transition$) =>
         $state.href(
-          'telecom.telephony.billingAccount.line.tones',
+          'telecom.telephony.billingAccount.line.dashboard.tones',
           $transition$.params(),
         ),
       answerLink: /* @ngInject */ ($state, $transition$) =>
         $state.href(
-          'telecom.telephony.billingAccount.line.answer',
+          'telecom.telephony.billingAccount.line.dashboard.answer',
           $transition$.params(),
         ),
       phoneLink: /* @ngInject */ ($state, $transition$) =>
         $state.href(
-          'telecom.telephony.billingAccount.line.phone',
+          'telecom.telephony.billingAccount.line.dashboard.phone',
           $transition$.params(),
         ),
       assistLink: /* @ngInject */ ($state, $transition$) =>
         $state.href(
-          'telecom.telephony.billingAccount.line.assist',
+          'telecom.telephony.billingAccount.line.dashboard.assist',
           $transition$.params(),
         ),
       contactLink: /* @ngInject */ ($state, $transition$) =>
         $state.href(
-          'telecom.telephony.billingAccount.line.contact',
+          'telecom.telephony.billingAccount.line.dashboard.contact',
           $transition$.params(),
         ),
       faxLink: /* @ngInject */ ($state, $transition$) =>
         $state.href(
-          'telecom.telephony.billingAccount.line.fax',
+          'telecom.telephony.billingAccount.line.dashboard.fax',
           $transition$.params(),
         ),
       currentActiveLink: /* @ngInject */ ($state, $transition$) => () =>

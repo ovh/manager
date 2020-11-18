@@ -3,11 +3,11 @@ import controller from './configuration.controller';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'telecom.telephony.billingAccount.line.phone.configuration',
+    'telecom.telephony.billingAccount.line.dashboard.phone.configuration',
     {
       url: '/configuration',
       views: {
-        'lineView@telecom.telephony.billingAccount.line': {
+        'lineView@telecom.telephony.billingAccount.line.dashboard': {
           template,
           controller,
           controllerAs: 'PhoneConfigCtrl',
