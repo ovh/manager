@@ -2,7 +2,7 @@ import angular from 'angular';
 import 'angular-translate';
 import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 
-import dedicatedUniverseComponents from '../../dedicatedUniverseComponents';
+import ngOvhDedicatedUniverseComponents from '@ovh-ux/ng-ovh-dedicated-universe-components';
 
 import controller from './user-contracts-accept.controller';
 import template from './user-contracts-accept.html';
@@ -11,7 +11,7 @@ const moduleName = 'UserContractsModal';
 
 angular
   .module(moduleName, [
-    dedicatedUniverseComponents,
+    ngOvhDedicatedUniverseComponents,
     ngTranslateAsyncLoader,
     'pascalprecht.translate',
   ])
