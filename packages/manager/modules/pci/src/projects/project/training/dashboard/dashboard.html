@@ -77,20 +77,6 @@
                                 text="{{ ::'pci_projects_project_training_dashboard_cli_integration_details' | translate }}"
                             ></oui-dropdown-trigger>
                             <oui-dropdown-content>
-                                <a
-                                    href="{{ $ctrl.currentRegion.documentationUrl }}"
-                                    target="_blank"
-                                    rel="noopener"
-                                    class="oui-dropdown-option ng-scope"
-                                >
-                                    {{
-                                    ::'pci_projects_project_training_dashboard_cli_integration_doc'
-                                    | translate }}
-                                    <span
-                                        class="oui-icon oui-icon-external_link"
-                                        aria-hidden="true"
-                                    ></span>
-                                </a>
                                 <oui-dropdown-item
                                     href="{{ :: $ctrl.installLink }}"
                                     >{{

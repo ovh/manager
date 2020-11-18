@@ -17,7 +17,6 @@
   "pci_projects_project_training_install_section_2_message_9": "Authentication is now complete",
   "pci_projects_project_training_install_section_3_message_1": "Launch ",
   "pci_projects_project_training_install_section_3_message_2": " for a list of available actions, or refer to the documentation ",
-  "pci_projects_project_training_install_section_3_message_3": " to learn more about what you can do.",
   "pci_projects_project_training_install_section_4_title": "Docker image registry",
   "pci_projects_project_training_install_actions": "Actions",
   "pci_projects_project_training_install_registry_attach": "Attach a Docker image registry",

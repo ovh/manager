@@ -17,7 +17,6 @@
   "pci_projects_project_training_install_section_2_message_9": "La autenticación se ha completado.",
   "pci_projects_project_training_install_section_3_message_1": "Ejecute ",
   "pci_projects_project_training_install_section_3_message_2": " para consultar una lista de las acciones disponibles o consulte la documentación ",
-  "pci_projects_project_training_install_section_3_message_3": " para conocer todas las opciones.",
   "pci_projects_project_training_install_section_4_title": "Registro de imágenes Docker",
   "pci_projects_project_training_install_actions": "Acciones",
   "pci_projects_project_training_install_registry_attach": "Asociar un registro de imágenes Docker",
