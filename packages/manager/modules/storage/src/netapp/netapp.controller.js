@@ -12,7 +12,6 @@ export default class NetappCtrl {
     this.guidesLoading = true;
     return this.User.getUser()
       .then((user) => {
-        console.log(user);
         this.guideUrl =
           this.CORE_URLS.guides.home[user.ovhSubsidiary] +
           this.CORE_URLS.guides.cda;
