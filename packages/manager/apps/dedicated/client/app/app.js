@@ -8,6 +8,7 @@ import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
 import ngOvhBrowserAlert from '@ovh-ux/ng-ovh-browser-alert';
+import ngOvhDedicatedUniverseComponents from '@ovh-ux/ng-ovh-dedicated-universe-components';
 import ngOvhExportCsv from '@ovh-ux/ng-ovh-export-csv';
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import ngOvhHttp from '@ovh-ux/ng-ovh-http';
@@ -56,7 +57,6 @@ import account from './account';
 import config from './config/config';
 import contactsService from './account/contacts/service/contacts-service.module';
 import dedicatedCloud from './dedicatedCloud';
-import dedicatedUniverseComponents from './dedicatedUniverseComponents';
 import managedBaremetal from './managedBaremetal';
 import errorPage from './error';
 
@@ -83,7 +83,6 @@ angular
       contactsService,
       dedicatedCloud,
       dedicatedServer,
-      dedicatedUniverseComponents,
       'directives',
       errorPage,
       'filters',
@@ -153,6 +152,7 @@ angular
       'UserAccount',
       userContracts,
       'xeditable',
+      ngOvhDedicatedUniverseComponents,
     ].filter(isString),
   )
   .constant('constants', {
