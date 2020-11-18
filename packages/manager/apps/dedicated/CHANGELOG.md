@@ -1,3 +1,14 @@
+## [14.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.7.0...@ovh-ux/manager-dedicated@14.7.1) (2020-11-18)
+
+
+### Bug Fixes
+
+* **dedicated:** user rights text ([88aba4a](https://github.com/ovh/manager/commit/88aba4aca727b5a0b84c88527f443ff09a5aee46)), closes [#MANAGER-5997](https://github.com/ovh/manager/issues/MANAGER-5997)
+* **i18n:** add missing translations [CDS 670] ([bf33247](https://github.com/ovh/manager/commit/bf332474f5df053b65ddff2505d40636ad1a6967))
+* allow to access sub dashboard states ([#4044](https://github.com/ovh/manager/issues/4044)) ([f2b3d40](https://github.com/ovh/manager/commit/f2b3d40de941e49a4c0f0fa18e1d6829d5ddc76b))
+
+
+
 # [14.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.6.1...@ovh-ux/manager-dedicated@14.7.0) (2020-11-17)
 
 
