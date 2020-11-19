@@ -6,4 +6,5 @@ angular
   .module('managerApp')
   .component('xdslAccessComfortExchange', xdslAccessComfortExchange)
   .config(routing)
-  .service('XdslAccessComfortExchangeService', service);
+  .service('XdslAccessComfortExchangeService', service)
+  .run(/* @ngTranslationsInject:json ./translations */);

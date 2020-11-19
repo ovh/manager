@@ -51,6 +51,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return meetings;
       },
+      hideBreadcrumb: () => true,
     },
   });
 };

@@ -15,6 +15,10 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
             template: '<div ui-view></div>',
           },
         },
+        resolve: {
+          breadcrumb: /* @ngInject */ ($translate) =>
+            $translate.instant('packs_breadcrumb'),
+        },
       })
       .state('telecom.packs.index.**', {
         url: '',

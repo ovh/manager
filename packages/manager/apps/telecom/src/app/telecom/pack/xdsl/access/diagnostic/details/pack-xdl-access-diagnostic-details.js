@@ -9,6 +9,9 @@ angular.module('managerApp').config(($stateProvider) => {
       controllerAs: '$ctrl',
       layout: 'modal',
       translations: { value: ['..'], format: 'json' },
+      resolve: {
+        breadcrumb: () => null,
+      },
     },
   );
 });
