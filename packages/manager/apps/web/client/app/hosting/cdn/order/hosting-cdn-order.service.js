@@ -3,8 +3,9 @@ import includes from 'lodash/includes';
 
 export default class HostingCdnOrderService {
   /* @ngInject */
-  constructor(WucOrderCartService) {
+  constructor(WucOrderCartService, HostingCdnSharedService) {
     this.WucOrderCartService = WucOrderCartService;
+    this.HostingCdnSharedService = HostingCdnSharedService;
   }
 
   async getCatalogAddon(ovhSubsidiary, serviceOption) {
@@ -27,7 +28,6 @@ export default class HostingCdnOrderService {
     const { cartId } = await this.WucOrderCartService.createNewCart(
       ovhSubsidiary,
     );
-
     await this.WucOrderCartService.assignCart(cartId);
 
     return cartId;
@@ -37,9 +37,7 @@ export default class HostingCdnOrderService {
     const price = find(serviceOption.prices, ({ capacities }) =>
       includes(capacities, 'renew'),
     );
-    const {
-      itemId,
-    } = await this.WucOrderCartService.addProductServiceOptionToCart(
+    await this.WucOrderCartService.addProductServiceOptionToCart(
       cartId,
       'webHosting',
       serviceName,
@@ -51,19 +49,36 @@ export default class HostingCdnOrderService {
       },
     );
 
-    await this.WucOrderCartService.addConfigurationItem(
-      cartId,
-      itemId,
-      'legacy_domain',
-      serviceName,
+    return this.WucOrderCartService.getCheckoutInformations(cartId);
+  }
+
+  async simulateCartForUpgrade(serviceName, addonOption, serviceId) {
+    const price = find(addonOption.prices, ({ capacities }) =>
+      includes(capacities, 'upgrade'),
     );
 
-    return this.WucOrderCartService.getCheckoutInformations(cartId);
+    return this.HostingCdnSharedService.simulateUpgradeToSharedCDN(
+      serviceId,
+      addonOption.planCode,
+      price,
+    );
   }
 
   checkoutOrderCart(autoPayWithPreferredPaymentMethod, cartId) {
     return this.WucOrderCartService.checkoutCart(cartId, {
       autoPayWithPreferredPaymentMethod,
     });
+  }
+
+  checkoutOrderCartForUpgrade(
+    autoPayWithPreferredPaymentMethod,
+    serviceOption,
+    serviceId,
+  ) {
+    return this.HostingCdnSharedService.upgradeToSharedCDN(
+      autoPayWithPreferredPaymentMethod,
+      serviceOption,
+      serviceId,
+    );
   }
 }

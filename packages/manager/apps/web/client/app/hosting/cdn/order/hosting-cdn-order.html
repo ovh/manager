@@ -1,5 +1,7 @@
 <oui-back-button data-on-click="$ctrl.goBack()">
-    <span data-translate="hosting_cdn_order_title"></span>
+    <span
+        data-translate="{{:: 'hosting_cdn_' + ($ctrl.hasCDN ? 'upgrade' : 'order') + '_title' }}"
+    ></span>
 </oui-back-button>
 
 <div class="text-center" data-ng-if="$ctrl.loading">
@@ -7,19 +9,21 @@
 </div>
 
 <div data-ng-if="!$ctrl.loading">
-    <p data-translate="hosting_cdn_order_description"></p>
-
+    <p
+        data-translate="{{:: 'hosting_cdn_order_customer_cdn_'+ $ctrl.cdnCase +'_step1_description' }}"
+    ></p>
     <oui-stepper
         data-current-index="$ctrl.currentIndex"
         data-on-finish="$ctrl.checkout()"
     >
         <oui-step-form
-            data-header="{{:: 'hosting_cdn_order_step_header_duration' | translate }}"
+            data-header="{{:: 'hosting_cdn_order_customer_cdn_'+ $ctrl.cdnCase +'_step1_header' | translate }}"
+            data-description="{{:: ($ctrl.isIncludedCDN ? 'hosting_cdn_order_customer_cdn_included_step1_info' : '') | translate }}"
             data-editable="$ctrl.isEditable && !$ctrl.checkoutLoading"
             data-on-focus="$ctrl.resetCart()"
         >
             <!-- Durations -->
-            <oui-field>
+            <oui-field data-ng-if="!$ctrl.isIncludedCDN">
                 <oui-radio
                     name="interval"
                     data-ng-repeat="pricing in ::$ctrl.prices track by $index"
@@ -38,6 +42,7 @@
                         data-price="pricing.price"
                         data-tax="pricing.tax"
                         data-user="$ctrl.user"
+                        data-from-to-price="!$ctrl.hasCDN ? null : $ctrl.cdn1Price"
                     >
                     </ovh-manager-catalog-price>
                 </oui-radio>
@@ -45,8 +50,8 @@
         </oui-step-form>
         <oui-step-form
             name="checkout"
-            data-header="{{:: ($ctrl.isOptionFree ? 'hosting_cdn_order_step_header_activation' : 'hosting_cdn_order_step_header_payment') | translate }}"
-            data-submit-text="{{:: ($ctrl.isOptionFree ? 'hosting_cdn_order_submit_activate' : 'hosting_cdn_order_submit_pay') | translate }}"
+            data-header="{{:: $ctrl.getHeaderText() }}"
+            data-submit-text="{{:: $ctrl.getButtonSubmitText() }}"
             data-cancel-text="{{:: 'hosting_cdn_order_cancel' | translate }}"
             data-editable="::false"
             data-description="{{:: ($ctrl.isOptionFree ? 'hosting_cdn_order_step_description_activation' : '') | translate }}"
@@ -56,9 +61,14 @@
             data-on-cancel="$ctrl.goBack()"
             data-prevent-next
         >
+            <p
+                data-ng-if="(!$ctrl.autoPayWithPreferredPaymentMethod && !$ctrl.isOptionFree)"
+                data-translate="hosting_cdn_order_customer_cdn_included_step2_no_default_payment_method"
+            ></p>
+
             <!-- Payment Means -->
             <ovh-payment-method-choice
-                data-ng-if="::!$ctrl.isOptionFree"
+                data-ng-if="::($ctrl.autoPayWithPreferredPaymentMethod && !$ctrl.isOptionFree)"
                 data-model="$ctrl.defaultPaymentMethod"
                 data-error-callback="$ctrl.goBackWithError()"
             >

@@ -11,6 +11,7 @@ import remove from 'lodash/remove';
 import set from 'lodash/set';
 import some from 'lodash/some';
 import union from 'lodash/union';
+import { HOSTING_CDN_ORDER_CDN_VERSION_V1 } from './cdn/order/hosting-cdn-order.constant';
 
 export default class {
   /* @ngInject */
@@ -42,6 +43,8 @@ export default class {
     HostingIndy,
     HostingOvhConfig,
     HostingTask,
+    HostingCdnSharedService,
+    HostingCdnOrderService,
     logs,
     pendingTasks,
     PrivateDatabase,
@@ -80,6 +83,8 @@ export default class {
     this.HostingIndy = HostingIndy;
     this.HostingOvhConfig = HostingOvhConfig;
     this.HostingTask = HostingTask;
+    this.HostingCdnSharedService = HostingCdnSharedService;
+    this.HostingCdnOrderService = HostingCdnOrderService;
     this.pendingTasks = pendingTasks;
     this.PrivateDatabase = PrivateDatabase;
     this.privateDatabasesDetachable = privateDatabasesDetachable;
@@ -115,6 +120,8 @@ export default class {
     this.$scope.displayMore = {
       value: false,
     };
+
+    this.$scope.ovhSubsidiary = this.user.ovhSubsidiary;
 
     this.$scope.alerts = {
       page: 'app.alerts.page',
@@ -748,7 +755,6 @@ export default class {
         this.$scope.sshUrl = `ssh://${hostingProxy.serviceManagementAccess.ssh.url}:${hostingProxy.serviceManagementAccess.ssh.port}/`;
         this.$scope.urls.hosting = hostingUrl;
         this.$scope.urlDomainOrder = domainOrderUrl;
-
         return this.User.getUrlOf('guides');
       })
       .then((guides) => {
@@ -817,6 +823,8 @@ export default class {
         this.Alerter.error(err);
       })
       .then(() => this.handlePrivateDatabases())
+      .then(() => this.handleCDNProperties())
+      .then(() => this.simulateUpgradeAvailability())
       .finally(() => {
         this.$scope.loadingHostingInformations = false;
       });
@@ -826,6 +834,70 @@ export default class {
     return this.getPrivateDatabases().then((privateDatabases) => {
       this.$scope.privateDatabases = privateDatabases;
     });
+  }
+
+  handleCDNProperties() {
+    return this.HostingCdnSharedService.getCDNProperties(
+      this.$scope.hosting.serviceName,
+    )
+      .then(({ data: cdn }) => {
+        this.$scope.cdnProperties = cdn;
+      })
+      .catch((err) => {
+        this.Alerter.error(err);
+        this.$scope.cdnProperties = null;
+      });
+  }
+
+  /**
+   * This function can be removed once all CDN has been migrated by AGORA
+   * The isUpgradable variable can also removed
+   * @returns {Promise<{}>}
+   */
+  async simulateUpgradeAvailability() {
+    try {
+      const cdnVersion = get(this.$scope.cdnProperties, 'version', '');
+      const { serviceName } = this.$scope.hosting;
+      if (cdnVersion === HOSTING_CDN_ORDER_CDN_VERSION_V1) {
+        const {
+          data: servInfo,
+        } = await this.HostingCdnSharedService.getServiceInfo(serviceName);
+
+        const {
+          data: servOpts,
+        } = await this.HostingCdnSharedService.getServiceOptions(
+          servInfo.serviceId,
+        );
+
+        const { serviceId } = find(
+          servOpts,
+          ({ billing }) =>
+            billing.plan.code.match('^cdn') &&
+            billing.plan.code.match('_business$'),
+        );
+
+        const {
+          data: addonPlans,
+        } = await this.HostingCdnSharedService.getCatalogAddonsPlan(serviceId);
+
+        const addonPlan = find(addonPlans, ({ planCode }) =>
+          includes(['cdn-basic', 'cdn-basic-free'], planCode),
+        );
+
+        await this.HostingCdnOrderService.simulateCartForUpgrade(
+          serviceName,
+          addonPlan,
+          serviceId,
+        );
+        this.$scope.isUpgradable = true;
+        return {};
+      }
+      this.$scope.isUpgradable = true;
+      return {};
+    } catch (e) {
+      this.$scope.isUpgradable = false;
+      return {};
+    }
   }
 
   setSelectedTab(tab) {

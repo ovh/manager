@@ -154,6 +154,7 @@ export default /* @ngInject */ ($stateProvider) => {
         availableOptions.find(({ family }) => family === LOCAL_SEO_FAMILY),
     },
     translations: { value: ['.'], format: 'json' },
+    atInternet: { ignore: true },
   });
 
   $stateProvider.state('app.hosting.upgrade', {
