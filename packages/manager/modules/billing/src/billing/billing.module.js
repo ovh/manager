@@ -24,8 +24,8 @@ import confirmTermination from './confirmTerminate/termination.module';
 import billingConstants from './constants/constants.module';
 import billingDebtAccountService from './dbtAccount/billing-debtAccount.service';
 import main from './main';
-import order from './order/billing-order-tracking.module';
-import orders from './orders/orders.module';
+import order from './order';
+import orders from './orders';
 import payment from './payment';
 import sla from './sla/sla.module';
 
@@ -70,6 +70,7 @@ angular
     sla,
     servicesModule,
   ])
+  .constant('BILLING_BASE_URL', 'billing/')
   .controller('BillingCtrl', billingCtrl)
   .config(routing)
   .service('billingFeatureAvailability', featureAvailability)

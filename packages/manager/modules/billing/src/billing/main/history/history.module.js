@@ -4,6 +4,7 @@ import 'angular-ui-bootstrap';
 import 'ovh-api-services';
 import '@ovh-ux/ui-kit';
 import '@uirouter/angularjs';
+import '@ovh-ux/ng-ui-router-layout';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
 import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
@@ -27,7 +28,6 @@ const moduleName = 'ovhManagerDedicatedBillingHistory';
 
 angular
   .module(moduleName, [
-    legacyHistory,
     ngAtInternet,
     ngOvhApiWrappers,
     ngOvhPaymentMethod,
@@ -37,6 +37,8 @@ angular
     'pascalprecht.translate',
     'ui.bootstrap',
     'ui.router',
+    'ngUiRouterLayout',
+    legacyHistory,
   ])
   .config(routing)
   .controller('BillingHistoryBalanceCtrl', billingHistoryBalanceCtrl)
@@ -51,7 +53,6 @@ angular
     billingHistoryPostalMailOptionsCtrl,
   )
   .component('billingHistory', component)
-  .run(/* @ngTranslationsInject:json ./translations */)
-  .run(/* @ngTranslationsInject:json ./postalMailOptions/translations */);
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
