@@ -13,9 +13,9 @@ angular
       $scope,
       $stateParams,
       $translate,
+      $q,
       HostingStatistics,
       HostingDatabase,
-      $q,
       WucChartjsFactory,
     ) => {
       const HOSTING_STATISTICS = {

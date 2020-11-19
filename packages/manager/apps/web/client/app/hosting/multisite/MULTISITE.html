@@ -6,6 +6,7 @@
     <div class="row" data-ng-show="!loading.init">
         <div class="col-md-9">
             <div data-ovh-alert="{{alerts.main}}"></div>
+            <div data-ovh-alert="cdnSharedSettingsSuccess"></div>
 
             <div
                 class="alert alert-info"
@@ -212,7 +213,7 @@
                                 </td>
                                 <td class="text-center">
                                     <button
-                                        class="btn btn-icon"
+                                        class="oui-action-button"
                                         type="button"
                                         data-linkedpopover="hosting/popover/multisite.html"
                                         data-linkedpopover-placement="left"
@@ -222,7 +223,7 @@
                                         data-domain-index="{{$index}}"
                                     >
                                         <span
-                                            class="oui-icon oui-icon-gear_concept"
+                                            class="oui-icon oui-icon-ellipsis"
                                             aria-hidden="true"
                                         ></span>
                                     </button>

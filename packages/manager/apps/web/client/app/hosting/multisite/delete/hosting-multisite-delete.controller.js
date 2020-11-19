@@ -4,15 +4,27 @@ import indexOf from 'lodash/indexOf';
 angular.module('App').controller(
   'HostingRemoveDomainCtrl',
   class HostingRemoveDomainCtrl {
-    constructor($scope, $stateParams, $translate, Alerter, HostingDomain) {
+    constructor(
+      $scope,
+      $stateParams,
+      $translate,
+      atInternet,
+      Alerter,
+      HostingDomain,
+    ) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
       this.$translate = $translate;
+      this.atInternet = atInternet;
       this.Alerter = Alerter;
       this.HostingDomain = HostingDomain;
     }
 
     $onInit() {
+      this.atInternet.trackPage({
+        name: 'web::hosting::multisites::detach-domain',
+      });
+
       this.model = {
         domains: null,
       };
@@ -59,6 +71,11 @@ angular.module('App').controller(
     }
 
     deleteMultiSite() {
+      this.atInternet.trackClick({
+        name: 'web::hosting::multisites::detach-domain::confirm',
+        type: 'action',
+      });
+
       this.$scope.resetAction();
       return this.HostingDomain.removeDomain(
         this.$stateParams.productId,

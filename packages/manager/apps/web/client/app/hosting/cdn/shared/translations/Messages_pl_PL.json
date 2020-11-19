@@ -1,0 +1,22 @@
+{
+  "hosting_cdn_shared_title": "Skonfiguruj usługę CDN Basic",
+  "hosting_cdn_shared_info": "Sprawdź ustawienia usługi Shared CDN. Standardowe ustawienia są wprowadzone domyślnie, abyś mógł zacząć szybko i w prosty sposób korzystać z usługi.\nZaawansowane opcje CDN Security i CDN Advance dają dostęp do większej liczby ustawień.",
+  "hosting_cdn_shared_state_enable": "Aktywny",
+  "hosting_cdn_shared_state_disabled": "Wyłączony",
+  "hosting_cdn_shared_option_always_online_info": "CDN odpowiada na zapytania, nawet w przypadku awarii serwera źródłowego.",
+  "hosting_cdn_shared_option_http_https_info": "Zwiększenie wydajności i bezpieczeństwa strony przy użyciu protokołu HTTP/2.",
+  "hosting_cdn_shared_option_dev_mode_info": "Tryb programisty, dzięki któremu CDN systematycznie pobiera wartości z serwera źródłowego.",
+  "hosting_cdn_shared_option_brotli_info": "Zmniejsz rozmiar przesyłanych danych dzięki algorytmom najnowszej generacji Brotli.",
+  "hosting_cdn_shared_option_cache_rule_btn_add_rule": "Dodawanie reguły",
+  "hosting_cdn_shared_option_cache_rule_add_rule_max_rules": "W ramach usługi CDN Basic możesz dodać maksymalnie do 5 reguł.",
+  "hosting_cdn_shared_option_cache_rule_table_header_order_by": "Klasyfikacja",
+  "hosting_cdn_shared_option_cache_rule_table_header_rule_name": "Nazwa reguły",
+  "hosting_cdn_shared_option_cache_rule_table_header_uri": "URI",
+  "hosting_cdn_shared_option_cache_rule_table_header_options": "Opcje",
+  "hosting_cdn_shared_option_cache_rule_table_time_to_live": "Czas trwania",
+  "hosting_cdn_shared_option_cache_rule_table_status": "Status",
+  "hosting_cdn_shared_option_cache_rule_table_items_option_set_rule": "Zmień regułę",
+  "hosting_cdn_shared_option_cache_rule_table_items_option_delete_rule": "Usuń regułę",
+  "hosting_cdn_shared_option_cache_rule_btn_validate": "Zastosuj konfigurację",
+  "hosting_cdn_shared_option_cache_rule_btn_cancel": "Anuluj"
+}

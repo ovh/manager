@@ -42,7 +42,7 @@ export default /* @ngInject */ ($stateProvider) => {
           'sms:hlr',
           'sms:response',
         ]),
-      trackClick: /* ngInject */ (atInternet) => (hit) => {
+      trackClick: /* @ngInject */ (atInternet) => (hit) => {
         atInternet.trackClick({
           name: hit,
           type: 'action',
