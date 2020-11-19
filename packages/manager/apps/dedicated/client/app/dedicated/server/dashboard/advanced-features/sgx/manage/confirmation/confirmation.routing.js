@@ -48,25 +48,18 @@ export default /* @ngInject */ ($stateProvider) => {
             )
             .then(() =>
               goToDashboard(
-                {
-                  message: {
-                    text: $translate.instant(
-                      `dedicated_server_dashboard_advanced_features_sgx_manage_${type}_success`,
-                    ),
-                    type: 'DONE',
-                  },
-                },
-                { reload: true },
-              ).catch((error) =>
-                goToDashboard({
-                  message: {
-                    text: $translate.instant(
-                      'dedicated_server_dashboard_advanced_features_sgx_manage_error',
-                    ),
-                    data: error.data,
-                    type: 'ERROR',
-                  },
-                }),
+                $translate.instant(
+                  `dedicated_server_dashboard_advanced_features_sgx_manage_${type}_success`,
+                ),
+                'DONE',
+              ),
+            )
+            .catch(() =>
+              goToDashboard(
+                $translate.instant(
+                  'dedicated_server_dashboard_advanced_features_sgx_manage_error',
+                ),
+                'ERROR',
               ),
             );
         },
