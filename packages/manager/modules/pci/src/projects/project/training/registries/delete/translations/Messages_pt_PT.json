@@ -1,0 +1,8 @@
+{
+  "pci_projects_project_training_registries_delete": "Desassociar o seu Docker Registry",
+  "pci_projects_project_training_registries_delete_common_delete": "Dissociar",
+  "pci_projects_project_training_registries_delete_common_cancel": "Cancelar",
+  "pci_projects_project_training_registries_delete_warning": "Está prestes a dissociar o seu Docker Registry do seu projeto AI Training. O Docker Registry partilhado OVHcloud será novamente associado ao seu projeto.",
+  "pci_projects_project_training_registries_delete_success": "O seu Docker Registry foi dissociado do seu namespace com sucesso",
+  "pci_projects_project_training_registries_delete_error": "Ocorreu um erro durante a desassociação do seu Docker Registry: {{ message }}"
+}

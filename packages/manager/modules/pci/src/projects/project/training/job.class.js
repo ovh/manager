@@ -1,72 +1,85 @@
+import includes from 'lodash/includes';
+
+export const STATE_ENUM = {
+  RUNNING: 'RUNNING',
+  INITIALIZING: 'INITIALIZING',
+  FINALIZING: 'FINALIZING',
+  PENDING: 'PENDING',
+  QUEUED: 'QUEUED',
+  FAILED: 'FAILED',
+  ERROR: 'ERROR',
+  INTERRUPTING: 'INTERRUPTING',
+  INTERRUPTED: 'INTERRUPTED',
+  DONE: 'DONE',
+};
+
 export default class Job {
-  constructor({
-    command,
-    data,
-    image,
-    resources,
-    user,
-    created,
-    id,
-    state,
-    updatedOn,
-    region,
-    accessUrl,
-    resourceUsageUrl,
-    totalRuntime,
-  }) {
+  constructor({ id, status, spec, createdAt, updatedAt, user }) {
     Object.assign(this, {
-      command,
-      data,
-      image,
-      resources,
-      user,
-      created,
       id,
-      state,
-      updatedOn,
-      region,
-      accessUrl,
-      resourceUsageUrl,
-      totalRuntime,
+      status,
+      spec,
+      createdAt,
+      updatedAt,
+      user,
     });
   }
 
-  jobCanBeKilled() {
-    return (
-      this.state === 'RUNNING' ||
-      this.state === 'QUEUING' ||
-      this.state === 'QUEUED'
+  canBeKilled() {
+    return includes(
+      [
+        STATE_ENUM.RUNNING,
+        STATE_ENUM.INITIALIZING,
+        STATE_ENUM.QUEUED,
+        STATE_ENUM.PENDING,
+      ],
+      this.status.state,
     );
   }
 
   getClassForState() {
-    switch (this.state) {
-      case 'CANCELLED':
-      case 'FAILED':
+    switch (this.status.state) {
+      case STATE_ENUM.FAILED:
+      case STATE_ENUM.ERROR:
         return 'oui-status_error';
-      case 'CANCELLING':
-      case 'INTERRUPTED':
+      case STATE_ENUM.INTERRUPTING:
+      case STATE_ENUM.INTERRUPTED:
         return 'oui-status_warning';
-      case 'SUCCEEDED':
-        return 'oui-status_success';
-      case 'QUEUING':
-      case 'QUEUED':
-      case 'RUNNING':
+      case STATE_ENUM.PENDING:
+      case STATE_ENUM.QUEUED:
+      case STATE_ENUM.INITIALIZING:
+      case STATE_ENUM.FINALIZING:
         return 'oui-status_info';
+      case STATE_ENUM.DONE:
+      case STATE_ENUM.RUNNING:
+        return 'oui-status_success';
       default:
         return 'oui-status_info';
     }
   }
 
   isSuccess() {
-    return this.state === 'SUCCEEDED' || this.state === 'CANCELLED';
+    return this.status.state === STATE_ENUM.DONE;
   }
 
   isRunning() {
-    return this.state === 'RUNNING';
+    return this.status.state === STATE_ENUM.RUNNING;
   }
 
   isFailed() {
-    return this.state === 'FAILED';
+    return (
+      this.status.state === STATE_ENUM.FAILED ||
+      this.status.state === STATE_ENUM.ERROR
+    );
+  }
+
+  isTerminal() {
+    return [
+      STATE_ENUM.FAILED,
+      STATE_ENUM.INTERRUPTING,
+      STATE_ENUM.INTERRUPTED,
+      STATE_ENUM.DONE,
+      STATE_ENUM.ERROR,
+    ].includes(this.status.state);
   }
 }

@@ -10,15 +10,17 @@ export default /* @ngInject */ ($stateProvider) => {
       user: /* @ngInject */ (SessionService) => SessionService.getUser(),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_projects_project_training_jobs_list_submit'),
-      data: /* @ngInject */ (PciProjectTrainingDataService, projectId) =>
-        PciProjectTrainingDataService.getAll(projectId),
+      containers: /* @ngInject */ (
+        PciProjectStorageContainersService,
+        projectId,
+      ) => PciProjectStorageContainersService.getAll(projectId),
       presetImages: /* @ngInject */ (PciProjectTrainingService, projectId) =>
         PciProjectTrainingService.getPresetImages(projectId),
       gpus: /* @ngInject */ (PciProjectTrainingService, projectId) => (
         region,
       ) => PciProjectTrainingService.getGpus(projectId, region),
       goToData: /* @ngInject */ ($state, projectId) => () =>
-        $state.go('pci.projects.project.training.data.add', {
+        $state.go('pci.projects.project.storages.objects.add', {
           projectId,
         }),
     },

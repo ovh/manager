@@ -1,8 +1,6 @@
 {
   "pci_projects_project_training_jobs_list_message_1": "To access this list of jobs via the command line, run the following command:",
   "pci_projects_project_training_jobs_submit_select_region": "Choose a region",
-  "pci_projects_project_training_jobs_submit_select_user": "Choose a user",
-  "pci_projects_project_training_jobs_submit_select_user_tips": "Choose the user who will own the job",
   "pci_projects_project_training_jobs_submit_select_image": "Enter the Docker image",
   "pci_projects_project_training_jobs_submit_select_image_tips": "Enter the name of the Docker image for the job",
   "pci_projects_project_training_jobs_submit_select_resources": "Choose the resources to allocate",
@@ -30,9 +28,5 @@
   "pci_projects_project_training_jobs_submit_select_command_tile_title": "Specific command",
   "pci_projects_project_training_jobs_submit_select_command_tile_command": "Arguments",
   "pci_projects_project_training_jobs_access_url_help": "With HTTP access, you can be redirected from your browser to port 80 of the container, if it is still running. To access the web interface, you will need to authenticate as the user who owns the job: {{ owner }}.",
-  "pci_projects_project_training_jobs_submit_select_image_tips_help": "Images hosted on a private or public registry are accepted (GitHub, GitLab, DockerHub, etc.)",
-  "pci_projects_project_training_jobs_submit_attach_source_heading": "Available volumes",
-  "pci_projects_project_training_jobs_submit_attach_target_heading": "Selected volumes",
-  "pci_projects_project_training_jobs_submit_attach_source_placeholder": "No volumes available",
-  "pci_projects_project_training_jobs_submit_attach_target_placeholder": "No volumes selected"
+  "pci_projects_project_training_jobs_submit_select_image_tips_help": "Images hosted on a private or public registry are accepted (GitHub, GitLab, DockerHub, etc.)"
 }

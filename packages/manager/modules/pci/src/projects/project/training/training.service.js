@@ -73,34 +73,6 @@ export default class PciProjectTrainingService {
       }).$promise;
   }
 
-  getRegistry(serviceName) {
-    return this.OvhApiCloudProjectAi.Training()
-      .Registry()
-      .v6()
-      .get({
-        serviceName,
-      })
-      .$promise.catch(() => {
-        return { custom: false };
-      });
-  }
-
-  saveRegistry(serviceName, url, username, password) {
-    return this.OvhApiCloudProjectAi.Training()
-      .Registry()
-      .v6()
-      .save({ serviceName }, { url, username, password }).$promise;
-  }
-
-  deleteRegistry(serviceName) {
-    return this.OvhApiCloudProjectAi.Training()
-      .Registry()
-      .v6()
-      .delete({
-        serviceName,
-      }).$promise;
-  }
-
   getPricesFromCatalog(serviceName) {
     return this.CucPriceHelper.getPrices(serviceName);
   }

@@ -12,33 +12,24 @@ export default /* @ngInject */ ($stateProvider) => {
               resourcesUsage: [],
             };
           }),
+      installLink: /* @ngInject */ ($state, projectId) =>
+        $state.href('pci.projects.project.training.dashboard.install', {
+          projectId,
+        }),
+      goToRegistryDetails: /* @ngInject */ ($state, projectId) => () =>
+        $state.go('pci.projects.project.training.dashboard.registry', {
+          projectId,
+        }),
       currencySymbol: /* @ngInject */ (OvhApiMe) =>
         OvhApiMe.v6()
           .get()
           .$promise.then((me) => {
             return me.currency.symbol;
           }),
-      registry: /* @ngInject */ (PciProjectTrainingService, projectId) =>
-        PciProjectTrainingService.getRegistry(projectId),
       goToJobs: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.training.jobs', {
           projectId,
         }),
-      deleteRegistry: /* @ngInject */ (
-        PciProjectTrainingService,
-        projectId,
-      ) => () => PciProjectTrainingService.deleteRegistry(projectId),
-      saveRegistry: /* @ngInject */ (PciProjectTrainingService, projectId) => (
-        url,
-        username,
-        password,
-      ) =>
-        PciProjectTrainingService.saveRegistry(
-          projectId,
-          url,
-          username,
-          password,
-        ),
     },
   });
 };

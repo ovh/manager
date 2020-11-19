@@ -10,7 +10,6 @@ export default {
     jobKill: '<',
     submitJobLink: '<',
     submitJob: '<',
-    allUsers: '<',
     regions: '<',
     jobInfoLink: '<',
     refreshState: '<',

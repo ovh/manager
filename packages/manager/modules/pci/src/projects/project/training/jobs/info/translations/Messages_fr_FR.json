@@ -1,6 +1,7 @@
 {
   "pci_projects_project_training_job_logs_text_1": "Les dernières 100 lignes de logs sont visibles dans cet onglet",
   "pci_projects_project_training_job_logs_text_2": "Pour accéder à l'integralité des logs du job via la ligne de commande, lancer la commande suivante :",
+  "pci_projects_project_training_job_logs_text_3": "Une fois le job terminé, vous pouvez télécharger vos logs via l'object storage, dans le container \"ai-training-logs\"",
   "pci_projects_project_training_job_info": "Job: ",
   "pci_projects_project_training_job_info_header": "Job informations",
   "pci_projects_project_training_job_logs_header": "Logs",
@@ -23,5 +24,6 @@
   "pci_projects_project_training_jobs_info_title_2": "Conteneur",
   "pci_projects_project_training_jobs_info_title_3": "Ressources",
   "pci_projects_project_training_jobs_info_title_4": "Données",
+  "pci_projects_project_training_jobs_info_title_5": "Timeline",
   "pci_projects_project_training_jobs_info_title_actions": "Actions"
 }
