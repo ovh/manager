@@ -5,11 +5,18 @@ import set from 'lodash/set';
 
 export default class TelecomPackMigrationOffersCtrl {
   /* @ngInject */
-  constructor($q, $translate, TucPackMigrationProcess, TucToast) {
+  constructor(
+    $q,
+    $translate,
+    TucPackMigrationProcess,
+    TucToast,
+    PROMO_DISPLAY,
+  ) {
     this.$q = $q;
     this.$translate = $translate;
     this.TucPackMigrationProcess = TucPackMigrationProcess;
     this.TucToast = TucToast;
+    this.PROMO_DISPLAY = PROMO_DISPLAY;
   }
 
   /*= =====================================

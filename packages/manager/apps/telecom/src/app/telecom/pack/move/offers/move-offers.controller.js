@@ -11,6 +11,7 @@ export default class PackMoveOffersCtrl {
     OvhApiPackXdsl,
     OvhApiPackXdslMove,
     TucToast,
+    PROMO_DISPLAY,
   ) {
     this.$q = $q;
     this.$scope = $scope;
@@ -18,6 +19,7 @@ export default class PackMoveOffersCtrl {
     this.OvhApiPackXdsl = OvhApiPackXdsl;
     this.OvhApiPackXdslMove = OvhApiPackXdslMove;
     this.TucToast = TucToast;
+    this.PROMO_DISPLAY = PROMO_DISPLAY;
   }
 
   $onInit() {

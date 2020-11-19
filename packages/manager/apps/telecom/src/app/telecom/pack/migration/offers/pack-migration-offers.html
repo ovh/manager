@@ -77,7 +77,10 @@
                                     <div
                                         data-ng-if="!offer.firstYearPromo"
                                         data-ng-bind-html="offer.displayedPrice.text | tucFormatPrice"
-                                    ></div>
+                                    >
+                                    </div>
+
+                                    <!-- First Year Promo -->
                                     <div data-ng-if="offer.firstYearPromo">
                                         <div
                                             data-ng-bind-html="offer.firstYearPromo.text | tucFormatPrice"
@@ -88,6 +91,21 @@
                                         <small
                                             data-ng-bind-html="offer.price.text | tucFormatPrice"
                                         ></small>
+                                    </div>
+
+                                    <!-- Other Promotion -->
+                                    <div data-ng-if="offer.promotion && offer.promotion.id === $ctrl.PROMO_DISPLAY.PROMO_FTTH_2020" class="alert alert-info mt-2">
+                                        <div
+                                            data-translate="telecom_pack_migration_promotion_description"
+                                            data-translate-values="{ 'endDate' : (offer.promotion.endDate | date : short) }"
+                                        >
+                                        </div>
+                                        <strong
+                                            data-ng-if="offer.promotion.subscription.duration === $ctrl.PROMO_DISPLAY.P3M.key"
+                                            data-translate="telecom_pack_migration_promotion_subscription_months_offered"
+                                            data-translate-values="{ 'duration' :  $ctrl.PROMO_DISPLAY.P3M.value }"
+                                        >
+                                        </strong>
                                     </div>
                                 </td>
                             </tr>
@@ -141,6 +159,23 @@
                                         ng-if="offer.installFees"
                                         data-ng-bind-html="offer.installFees.text | tucFormatPrice"
                                     ></span>
+
+                                    <!-- Other promotion -->
+                                    <div data-ng-if="offer.promotion.id=='FTTH_MIGRATION_AND_ADRESSMOVE_2020'" class="alert alert-info mt-2">
+                                        <div
+                                            data-translate="telecom_pack_migration_promotion_description"
+                                            data-translate-values="{ 'endDate' : (offer.promotion.endDate | date : short) }"
+                                        >
+                                        </div>
+                                        <strong
+                                            data-translate="telecom_pack_migration_promotion_installation_fees_offered"
+                                        >
+                                        </strong>
+                                        <br/>
+                                        <del>
+                                            <small data-ng-bind-html="offer.promotion.installFee.discount.text | tucFormatPrice"></small>
+                                        </del>
+                                    </div>
                                 </td>
                             </tr>
                             <tr class="table-comparison__property">
