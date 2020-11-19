@@ -26,7 +26,7 @@
                 disabled="true"
                 data-ng-init="status = {inProgress: false}"
                 data-model="$ctrl.model.alwaysOnline.enabled"
-                data-on-change="$ctrl.updateSwitchOption($ctrl.model.alwaysOnline, status)"
+                data-on-change="$ctrl.updateSwitchOption($ctrl.model.alwaysOnline, modelValue, status)"
             >
             </oui-switch>
             <strong
@@ -45,7 +45,7 @@
                 disabled="true"
                 data-ng-init="status = {inProgress: false}"
                 data-model="$ctrl.model.http.enabled"
-                data-on-change="$ctrl.updateSwitchOption($ctrl.model.http, status)"
+                data-on-change="$ctrl.updateSwitchOption($ctrl.model.http, modelValue, status)"
             >
             </oui-switch>
             <strong
@@ -64,7 +64,7 @@
                 data-ng-init="status = {inProgress: false}"
                 disabled="!$ctrl.model.devmode || status.inProgress"
                 data-model="$ctrl.model.devmode.enabled"
-                data-on-change="$ctrl.updateSwitchOption($ctrl.model.devmode, status)"
+                data-on-change="$ctrl.updateSwitchOption($ctrl.model.devmode, modelValue, status)"
             >
             </oui-switch>
             <strong
@@ -83,7 +83,7 @@
                 disabled="!$ctrl.model.brotli || status.inProgress"
                 data-ng-init="status = {inProgress: false}"
                 data-model="$ctrl.model.brotli.enabled"
-                data-on-change="$ctrl.updateSwitchOption($ctrl.model.brotli, status)"
+                data-on-change="$ctrl.updateSwitchOption($ctrl.model.brotli, modelValue, status)"
             >
             </oui-switch>
             <strong
@@ -168,7 +168,7 @@
                                 <oui-switch
                                     disabled="status.inProgress"
                                     data-model="rule.enabled"
-                                    data-on-change="$ctrl.updateSwitchRule(rule, status)"
+                                    data-on-change="$ctrl.updateSwitchRule(rule, modelValue, status)"
                                 >
                                 </oui-switch>
                                 <span
