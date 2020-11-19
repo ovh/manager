@@ -13,7 +13,12 @@ export default /* @ngInject */ ($stateProvider) => {
           controllerAs: '$ctrl',
         },
       },
-      translations: { value: ['.'], format: 'json' },
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant(
+            'telephony_alias_configuration_tones_old_pabx_sub_title',
+          ),
+      },
     },
   );
 };

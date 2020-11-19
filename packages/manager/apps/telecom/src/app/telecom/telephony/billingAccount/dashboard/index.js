@@ -7,8 +7,6 @@ import 'ovh-api-services';
 
 import pieChartComponent from '../../../../../components/telecom/telephony/group/consumption/pie-chart';
 
-import routing from './dashboard.routing';
-
 const moduleName = 'ovhManagerTelecomTelephonyBillingAccountDashboard';
 
 angular
@@ -20,7 +18,6 @@ angular
     'ui.router',
     pieChartComponent,
   ])
-  .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

@@ -13,6 +13,10 @@ export default /* @ngInject */ ($stateProvider) => {
           controllerAs: 'PhoneConfigCtrl',
         },
       },
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('telephony_line_phone_configuration_title'),
+      },
     },
   );
 };

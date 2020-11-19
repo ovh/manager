@@ -9,6 +9,10 @@ export default /* @ngInject */ ($stateProvider) => {
           controller: 'TelecomTelephonyServiceContactCtrl',
           controllerAs: 'ServiceContactCtrl',
         },
+        resolve: {
+          breadcrumb: /* @ngInject */ ($translate) =>
+            $translate.instant('telephony_alias_contact_breadcrumb'),
+        },
         translations: { value: ['../../service/contact'], format: 'json' },
       },
     },

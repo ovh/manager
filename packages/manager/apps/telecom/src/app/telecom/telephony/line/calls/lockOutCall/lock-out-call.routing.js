@@ -13,6 +13,12 @@ export default /* @ngInject */ ($stateProvider) => {
           controllerAs: 'LineLockOutCallCtrl',
         },
       },
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant(
+            'telephony_line_actions_line_calls_lock_out_call_title',
+          ),
+      },
     },
   );
 };

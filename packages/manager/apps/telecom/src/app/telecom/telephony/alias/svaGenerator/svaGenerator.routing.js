@@ -13,6 +13,10 @@ export default /* @ngInject */ ($stateProvider) => {
           controllerAs: 'SvaGeneratorCtrl',
         },
       },
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('telephony_alias_sva_generator'),
+      },
     },
   );
 };

@@ -13,6 +13,10 @@ export default /* @ngInject */ ($stateProvider) => {
           controllerAs: 'CodecCtrl',
         },
       },
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('telephony_line_phone_codec_title'),
+      },
     },
   );
 };

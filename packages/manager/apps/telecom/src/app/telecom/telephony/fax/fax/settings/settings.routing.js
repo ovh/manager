@@ -17,6 +17,10 @@ export default /* @ngInject */ ($stateProvider) => {
           controllerAs: 'SettingsCtrl',
         },
       },
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('telephony_fax_fax_settings'),
+      },
     },
   );
 };

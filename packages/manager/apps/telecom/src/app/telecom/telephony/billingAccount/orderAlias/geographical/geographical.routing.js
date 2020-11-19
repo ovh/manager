@@ -13,6 +13,10 @@ export default /* @ngInject */ ($stateProvider) => {
           controllerAs: 'AliasOrderGeographicalCtrl',
         },
       },
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('telephony_order_geographical_title'),
+      },
     },
   );
 };

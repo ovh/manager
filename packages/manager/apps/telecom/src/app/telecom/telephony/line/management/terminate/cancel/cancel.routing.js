@@ -13,6 +13,10 @@ export default /* @ngInject */ ($stateProvider) => {
           controllerAs: 'TerminateCancelCtrl',
         },
       },
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('telephony_group_line_cancel_terminate'),
+      },
     },
   );
 };

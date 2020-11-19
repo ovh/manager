@@ -9,6 +9,10 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/line',
     template: '<div ui-view></div>',
     redirectTo: 'telecom.telephony.billingAccount.services',
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('telephony_line_breacrumb'),
+    },
   });
 
   $stateProvider.state('telecom.telephony.billingAccount.line.dashboard', {
@@ -109,6 +113,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
       currentActiveLink: /* @ngInject */ ($state, $transition$) => () =>
         $state.href($state.current.name, $transition$.params()),
+      breadcrumb: /* @ngInject */ (serviceName) => serviceName,
     },
   });
 };

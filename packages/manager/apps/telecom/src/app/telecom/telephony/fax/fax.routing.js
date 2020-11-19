@@ -10,6 +10,10 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/fax',
     template: '<div ui-view></div>',
     redirectTo: 'telecom.telephony.billingAccount.services',
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('telephony_fax_breadcrumb'),
+    },
   });
 
   $stateProvider.state('telecom.telephony.billingAccount.fax.dashboard', {
@@ -68,6 +72,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
       currentActiveLink: /* @ngInject */ ($state, $transition$) => () =>
         $state.href($state.current.name, $transition$),
+      breadcrumb: /* @ngInject */ (serviceName) => serviceName,
     },
   });
 };

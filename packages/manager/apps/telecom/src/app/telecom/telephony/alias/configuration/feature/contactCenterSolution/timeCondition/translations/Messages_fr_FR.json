@@ -1,4 +1,5 @@
 {
+  "telephony_alias_config_contactCenterSolution_timeCondition": "Plages horaires et fermetures",
   "telephony_alias_config_contactCenterSolution_timeCondition_title": "File d’appels : plages horaires et fermetures",
   "telephony_alias_config_contactCenterSolution_timeCondition_subtitle": "Vous pouvez gérer vos {{timeCondition}} récurrentes et/ou vos fermetures exceptionnelles (ex. jours fériés, congés).",
   "telephony_alias_config_contactCenterSolution_timeCondition_label": "Plages horaires",

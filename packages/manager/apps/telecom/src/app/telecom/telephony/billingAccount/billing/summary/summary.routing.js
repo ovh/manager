@@ -11,5 +11,9 @@ export default /* @ngInject */ ($stateProvider) => {
         controllerAs: 'SummaryCtrl',
       },
     },
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('telephony_group_billing_summary_title'),
+    },
   });
 };

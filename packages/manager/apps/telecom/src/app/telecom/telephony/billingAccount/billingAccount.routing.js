@@ -98,6 +98,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('telecom.telephony.billingAccount.guides', {
           billingAccount: billingAccountId,
         }),
+      breadcrumb: /* @ngInject */ (billingAccount) => billingAccount,
     },
     translations: { value: ['..', '.', './dashboard'], format: 'json' },
   });

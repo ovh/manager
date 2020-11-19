@@ -13,6 +13,12 @@ export default /* @ngInject */ ($stateProvider) => {
           controllerAs: 'LineDisplayNumberCtrl',
         },
       },
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant(
+            'telephony_line_actions_line_calls_display_number_title',
+          ),
+      },
     },
   );
 };

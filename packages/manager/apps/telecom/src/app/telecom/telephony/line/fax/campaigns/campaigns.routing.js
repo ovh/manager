@@ -17,6 +17,10 @@ export default /* @ngInject */ ($stateProvider) => {
           controllerAs: 'CampaignsCtrl',
         },
       },
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('telephony_line_fax_campaigns_breadcrumb'),
+      },
     },
   );
 };

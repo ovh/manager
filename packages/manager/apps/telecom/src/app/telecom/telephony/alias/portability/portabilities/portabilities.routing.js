@@ -7,7 +7,6 @@ export default /* @ngInject */ ($stateProvider) => {
         'aliasView@telecom.telephony.billingAccount.alias.details':
           'portabilities',
       },
-      translations: { value: ['.'], format: 'json' },
       resolve: {
         billingAccount: /* @ngInject */ ($transition$) =>
           $transition$.params().billingAccount,
@@ -59,6 +58,8 @@ export default /* @ngInject */ ($stateProvider) => {
           return promise;
         },
       },
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('telephony_alias_portabilities_title'),
     },
   );
 };

@@ -11,5 +11,9 @@ export default /* @ngInject */ ($stateProvider) => {
         controllerAs: 'BillingAccountBillCtrl',
       },
     },
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('telephony_group_billing_bill_title'),
+    },
   });
 };

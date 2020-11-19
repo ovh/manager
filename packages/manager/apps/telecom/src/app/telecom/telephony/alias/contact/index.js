@@ -7,6 +7,9 @@ import routing from './contact.routing';
 
 const moduleName = 'ovhManagerTelecomTelephonyAliasContact';
 
-angular.module(moduleName, ['ui.router', serviceContact]).config(routing);
+angular
+  .module(moduleName, ['ui.router', serviceContact])
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

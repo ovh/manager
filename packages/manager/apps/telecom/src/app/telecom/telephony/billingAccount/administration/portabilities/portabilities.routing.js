@@ -58,6 +58,8 @@ export default /* @ngInject */ ($stateProvider) => {
 
           return promise;
         },
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('telephony_alias_portabilities_title'),
       },
     },
   );

@@ -13,6 +13,12 @@ export default /* @ngInject */ ($stateProvider) => {
           controllerAs: '$ctrl',
         },
       },
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant(
+            'telephony_line_actions_line_calls_simultaneous_line_title',
+          ),
+      },
     },
   );
 };

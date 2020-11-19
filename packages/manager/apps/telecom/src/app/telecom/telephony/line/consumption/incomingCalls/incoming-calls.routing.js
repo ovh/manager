@@ -19,6 +19,12 @@ export default /* @ngInject */ ($stateProvider) => {
           controllerAs: 'IncomingCallsCtrl',
         },
       },
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant(
+            'telephony_line_management_actions_line_consumption_incoming_breadcrumb',
+          ),
+      },
     },
   );
 };

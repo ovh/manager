@@ -13,6 +13,12 @@ export default /* @ngInject */ ($stateProvider) => {
           controllerAs: 'Click2CallAddUserCtrl',
         },
       },
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant(
+            'telephony_group_line_calls_click2call_addUser_title',
+          ),
+      },
     },
   );
 };
