@@ -118,8 +118,8 @@ export default class CdnSharedSettingsController {
     this.HostingCdnSharedService.settingsToSave = toSave;
   }
 
-  updateSwitchOption(model, status) {
-    const { type, enabled } = model;
+  updateSwitchOption(model, modelValue, status) {
+    const { type } = model;
     CdnSharedSettingsController.activateDeactivateStatus(status, true);
     this.HostingCdnSharedService.updateCDNDomainOption(
       this.serviceName,
@@ -127,7 +127,7 @@ export default class CdnSharedSettingsController {
       type,
       {
         type,
-        enabled,
+        enabled: modelValue,
       },
     )
       .then(() => this.markFormAsToSave(true))
@@ -144,9 +144,10 @@ export default class CdnSharedSettingsController {
     );
   }
 
-  updateRule(rule) {
+  updateRule(rule, modelValue) {
     const cRule = clone(rule);
     delete cRule.name;
+    if (modelValue !== undefined) cRule.enabled = modelValue;
     return this.HostingCdnSharedService.updateCDNDomainOption(
       this.serviceName,
       this.domainName,
@@ -173,9 +174,9 @@ export default class CdnSharedSettingsController {
       );
   }
 
-  updateSwitchRule(rule, status) {
+  updateSwitchRule(rule, modelValue, status) {
     CdnSharedSettingsController.activateDeactivateStatus(status, true);
-    return this.updateRule(rule)
+    return this.updateRule(rule, modelValue)
       .then((res) => {
         this.markFormAsToSave(true);
         return res;
