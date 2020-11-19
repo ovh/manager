@@ -97,22 +97,26 @@ export default /* @ngInject */ ($stateProvider) => {
           isEligible: false,
         };
       },
-      goToDashboard: /* @ngInject */ ($state, Alerter) => (
-        params = {},
-        transitionParams,
+      goToDashboard: /* @ngInject */ ($state, Alerter, serverName) => (
+        message = false,
+        type = 'DONE',
       ) => {
+        const reload = message && type === 'DONE';
         const promise = $state.go(
           'app.dedicated.server.dashboard',
-          params,
-          transitionParams,
+          {
+            productId: serverName,
+          },
+          {
+            reload,
+          },
         );
 
-        const { message } = params;
         if (message) {
           promise.then(() => {
             Alerter.alertFromSWS(
-              message.text,
-              message.type,
+              message,
+              type,
               message.id || 'server_dashboard_alert',
             );
           });
