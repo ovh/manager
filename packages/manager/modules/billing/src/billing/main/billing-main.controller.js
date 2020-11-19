@@ -1,6 +1,6 @@
 export default class BillingMainCtrl {
-    /* @ngInject */
-    constructor(coreConfig) {
-      this.coreConfig = coreConfig;
-    }
-  };
+  /* @ngInject */
+  constructor(coreConfig) {
+    this.coreConfig = coreConfig;
+  }
+}

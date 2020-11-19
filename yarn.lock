@@ -2853,10 +2853,91 @@
   dependencies:
     "@types/node" ">= 8"
 
-"@ovh-ux/manager-config@^1.0.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-config/-/manager-config-0.4.0.tgz#81171e361b8400870821632adddea7b46a240395"
-  integrity sha512-ZiLfkRNwCqnyQvYpN9Frx/WKXE9JEQhtkmoxIdhzDtkBjvuIHbC9uGH7rzh771xfuZcUPv8hmidwf0cjdpXCjQ==
+"@ovh-ux/component-rollup-config@^7.0.0", "@ovh-ux/component-rollup-config@^7.3.0":
+  version "7.3.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/component-rollup-config/-/component-rollup-config-7.3.0.tgz#7e82c17f93d76d8acd47192a8d7e38ecb8339169"
+  integrity sha512-My7Du14Bin2lRQRENMQD7s7Fc4PTh5nu9ZrNjhXDWDsjL38IPvl7H4EhD+jk015Nk8DJBwtL7D7ofvlZ6o1epg==
+  dependencies:
+    "@babel/plugin-proposal-class-properties" "^7.10.1"
+    "@babel/plugin-proposal-optional-chaining" "^7.10.1"
+    "@babel/plugin-proposal-private-methods" "^7.10.1"
+    "@babel/plugin-syntax-dynamic-import" "^7.8.3"
+    "@babel/preset-env" "^7.10.3"
+    "@ovh-ux/rollup-plugin-less-inject" "^1.0.5"
+    "@ovh-ux/rollup-plugin-less-tilde-importer" "^1.0.3"
+    "@rollup/plugin-babel" "^5.0.0"
+    "@rollup/plugin-commonjs" "^11.0.2"
+    "@rollup/plugin-image" "^2.0.4"
+    "@rollup/plugin-json" "^4.0.2"
+    "@rollup/plugin-node-resolve" "^7.1.1"
+    "@rollup/pluginutils" "^3.0.8"
+    babel-plugin-angularjs-annotate "^0.10.0"
+    camelcase "^5.0.0"
+    core-js "^3.6.5"
+    estree-walker "^0.6.0"
+    less "~3.9.0"
+    less-plugin-remcalc "^0.1.0"
+    lodash "^4.17.15"
+    magic-string "^0.25.4"
+    node-sass "^4.10.0"
+    regenerator-runtime "^0.13.7"
+    rollup "^2.0.2"
+    rollup-plugin-html "^0.2.1"
+    rollup-plugin-peer-deps-external "^2.2.2"
+    rollup-plugin-sass "^1.2.2"
+    slash "^2.0.0"
+
+"@ovh-ux/manager-webpack-config@^3.3.0":
+  version "3.6.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-webpack-config/-/manager-webpack-config-3.6.1.tgz#fba78e081cc8d51bebe39ee9c1404fc20a6bb17e"
+  integrity sha512-hYnztHsrs7j6JNtYNUKsoUmtyQ2dNH2ZBo7+NUR2NKLWjgdAUdK+dC9ZXb574iHRgHaeuXkIlvdD8+aOjfuG3Q==
+  dependencies:
+    "@babel/generator" "^7.10.3"
+    "@babel/parser" "^7.10.3"
+    "@babel/plugin-proposal-class-properties" "^7.10.1"
+    "@babel/plugin-proposal-optional-chaining" "^7.10.1"
+    "@babel/plugin-proposal-private-methods" "^7.10.1"
+    "@babel/plugin-syntax-dynamic-import" "^7.8.3"
+    "@babel/preset-env" "^7.10.3"
+    "@ovh-ux/component-rollup-config" "^7.3.0"
+    "@ovh-ux/manager-webpack-dev-server" "^2.8.0"
+    acorn "^6.0.5"
+    acorn-class-fields "^0.3.7"
+    acorn-dynamic-import "^4.0.0"
+    acorn-optional-chaining "^0.0.3"
+    acorn-private-methods "^0.3.3"
+    babel-eslint "^10.1.0"
+    babel-loader "^8.1.0"
+    babel-plugin-angularjs-annotate "^0.10.0"
+    cache-loader "^4.1.0"
+    copy-webpack-plugin "^4.6.0"
+    core-js "^3.6.5"
+    css-loader "^4.3.0"
+    file-loader "^4.0.0"
+    html-webpack-plugin "^4.5.0"
+    http-proxy-middleware "^0.19.1"
+    less "~3.9.0"
+    less-loader "^7.0.2"
+    less-plugin-remcalc "^0.1.0"
+    loader-utils "^2.0.0"
+    lodash "^4.17.15"
+    mini-css-extract-plugin "^0.11.2"
+    node-sass "^4.11.0"
+    optimize-css-assets-webpack-plugin "^5.0.3"
+    raw-loader "^4.0.2"
+    regenerator-runtime "^0.13.7"
+    resolve-url-loader "^3.0.0"
+    sass-loader "^8.0.0"
+    script-loader "^0.7.2"
+    style-loader "^1.2.1"
+    terser-webpack-plugin "^4.2.2"
+    url-loader "^4.1.1"
+    webpack "^4.44.2"
+    webpack-bundle-analyzer "^3.9.0"
+    webpack-cli "^3.3.12"
+    webpack-merge "^4.2.2"
+    webpack-retry-chunk-load-plugin "^1.4.0"
+    webpackbar "^4.0.0"
 
 "@ovh-ux/ng-ovh-api-wrappers@^4.0.4", "@ovh-ux/ng-ovh-api-wrappers@^4.0.8":
   version "4.0.8"
@@ -2888,7 +2969,7 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/translate-async-loader/-/translate-async-loader-1.0.8.tgz#7cbdc3dfed1042f511206ff6bb9f14c33b8406ba"
   integrity sha512-8yEhPeRTSxtEO9ODXRYZw6pzRQiV5ULCTi8mIzt39m/b9N2TcIF4ILTPsaa8xpE4npHKa/iYgL9z0HJUFi2LGQ==
 
-"@ovh-ux/ui-kit@^4.2.3":
+"@ovh-ux/ui-kit@^4.1.11":
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-4.4.2.tgz#489d99930340938e5afaad4e770a409bb91f2b85"
   integrity sha512-b8Ktyj5k1M+MOnVmU5YtBiksIBYc3GpE/yMSrUeRd6modBs3aJ2pkEoiDRLauGhDWAk2xoo0KG1B9CqXHXdB+Q==
@@ -10547,15 +10628,10 @@ flat-cache@^2.0.1:
     rimraf "2.6.3"
     write "1.0.3"
 
-flatpickr@4.6.3, flatpickr@^4.6.3:
+flatpickr@4.6.3, flatpickr@^4.6.3, flatpickr@~4.5.2:
   version "4.6.3"
   resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.6.3.tgz#15a8b76b6e34e3a072861250503a5995b9d3bc60"
   integrity sha512-007VucCkqNOMMb9ggRLNuJowwaJcyOh4sKAFcdGfahfGc7JQbf94zSzjdBq/wVyHWUEs5o3+idhFZ0wbZMRmVQ==
-
-flatpickr@~4.5.2:
-  version "4.5.7"
-  resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.5.7.tgz#6efc0d93c65547aa77294205c67830ebabe3565c"
-  integrity sha512-JqPfihUc9A/j9QAsh6otoARmMyUauPE17vRBEG+ThJwbl8zAq4ssGpxlPK3wWM/i8EFxkHg9UuVo0ds7XluKxw==
 
 flatted@^2.0.0:
   version "2.0.1"

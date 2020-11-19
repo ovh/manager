@@ -8,7 +8,7 @@ export default /* @ngInject */ ($stateProvider) => {
     template,
     controller: 'BillingCtrl',
     resolve: {
-      currentUser: /* @ngInject */ (User) => User.getUser(),
+      currentUser: /* @ngInject */ (ducUser) => ducUser.getUser(),
       denyEnterprise: ($q, $state, currentUser) => {
         if (
           currentUser.isEnterprise &&
