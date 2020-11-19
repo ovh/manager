@@ -1,8 +1,6 @@
 {
   "pci_projects_project_training_jobs_list_message_1": "Pour accéder à cette liste de jobs via la ligne de commande, lancez la commande suivante :",
   "pci_projects_project_training_jobs_submit_select_region": "Choisir une région",
-  "pci_projects_project_training_jobs_submit_select_user": "Choisir un utilisateur",
-  "pci_projects_project_training_jobs_submit_select_user_tips": "Choisir l'utilisateur à qui appartiendra le job",
   "pci_projects_project_training_jobs_submit_select_image": "Renseigner l'image Docker",
   "pci_projects_project_training_jobs_submit_select_image_tips": "Renseigner le nom de l'image Docker du job",
   "pci_projects_project_training_jobs_submit_select_resources": "Choisir les ressources à allouer",
@@ -11,7 +9,7 @@
   "pci_projects_project_training_jobs_submit_select_resources_tips_ram": "Quantité de RAM (en Go)",
   "pci_projects_project_training_jobs_submit_select_resources_tips_gpu": "Nombre de GPU",
   "pci_projects_project_training_jobs_submit_select_resources_tips_price": "Prix",
-  "pci_projects_project_training_jobs_submit_select_resources_tips_per_hour": "Prix a l'heure",
+  "pci_projects_project_training_jobs_submit_select_resources_tips_per_hour": "Prix à l'heure",
   "pci_projects_project_training_jobs_submit_validation": "Validation des détails",
   "pci_projects_project_training_jobs_submit_validation_job_summary": "Résumé du job",
   "pci_projects_project_training_jobs_submit_validation_equivalent_command": "Commande équivalente",
@@ -30,9 +28,5 @@
   "pci_projects_project_training_jobs_submit_select_command_tile_title": "Commande spécifique",
   "pci_projects_project_training_jobs_submit_select_command_tile_command": "Arguments",
   "pci_projects_project_training_jobs_access_url_help": "L'accès HTTP permet d'être redirigé depuis votre navigateur vers le port 80 du conteneur si celui-ci est toujours en cours d'exécution. Pour accéder à l'interface web vous aurrez besoin de vous identifier en tant qu'utilisateur propriétaire du job : {{ owner }}.",
-  "pci_projects_project_training_jobs_submit_select_image_tips_help": "Les images hébergées sur un registry privé ou public sont acceptées (Github, GitLab, DockerHub, ...)",
-  "pci_projects_project_training_jobs_submit_attach_source_heading": "Volumes disponibles",
-  "pci_projects_project_training_jobs_submit_attach_target_heading": "Volumes sélectionnés",
-  "pci_projects_project_training_jobs_submit_attach_source_placeholder": "Aucun volume disponible",
-  "pci_projects_project_training_jobs_submit_attach_target_placeholder": "Aucun volume sélectionné"
+  "pci_projects_project_training_jobs_submit_select_image_tips_help": "Les images hébergées sur une registry privé ou public sont acceptées (Github, GitLab, DockerHub, ...)"
 }

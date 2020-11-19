@@ -1,8 +1,6 @@
 {
   "pci_projects_project_training_jobs_list_message_1": "Per accedere a questa lista di job da riga di comando, esegui questo comando:",
   "pci_projects_project_training_jobs_submit_select_region": "Scegli una Region",
-  "pci_projects_project_training_jobs_submit_select_user": "Scegli un utente",
-  "pci_projects_project_training_jobs_submit_select_user_tips": "Scegli l'utente a cui apparterrà il job",
   "pci_projects_project_training_jobs_submit_select_image": "Inserisci l'immagine Docker",
   "pci_projects_project_training_jobs_submit_select_image_tips": "Inserisci il nome dell'immagine Docker del job",
   "pci_projects_project_training_jobs_submit_select_resources": "Scegli le risorse da assegnare",
@@ -30,9 +28,5 @@
   "pci_projects_project_training_jobs_submit_select_command_tile_title": "Comando specifico",
   "pci_projects_project_training_jobs_submit_select_command_tile_command": "Argomenti",
   "pci_projects_project_training_jobs_access_url_help": "L'accesso HTTP consente il reindirizzamento dal browser alla porta 80 del container, se ancora in esecuzione. Per accedere all'interfaccia Web è necessario identificarsi come utente proprietario del job: {{ owner }}",
-  "pci_projects_project_training_jobs_submit_select_image_tips_help": "Le immagini ospitate su un Registry privato o pubblico sono accettate (Github, GitLab, DockerHub, ecc...)",
-  "pci_projects_project_training_jobs_submit_attach_source_heading": "Volumi disponibili",
-  "pci_projects_project_training_jobs_submit_attach_target_heading": "Volumi selezionati",
-  "pci_projects_project_training_jobs_submit_attach_source_placeholder": "Nessun volume disponibile",
-  "pci_projects_project_training_jobs_submit_attach_target_placeholder": "Nessun volume selezionato"
+  "pci_projects_project_training_jobs_submit_select_image_tips_help": "Le immagini ospitate su un Registry privato o pubblico sono accettate (Github, GitLab, DockerHub, ecc...)"
 }

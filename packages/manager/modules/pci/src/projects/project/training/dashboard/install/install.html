@@ -10,7 +10,7 @@
 
     <oui-tabs class="mb-4">
         <oui-tabs-item
-            data-ng-repeat="(os, cmd) in $ctrl.osInstall track by os"
+            data-ng-repeat="(os, link) in $ctrl.osInstall track by os"
             data-heading="{{:: os }}"
         >
             <p>
@@ -19,21 +19,9 @@
                 | translate }}
             </p>
             <p>
-                <code>
-                    {{:: cmd }}
-                </code>
-            </p>
-            <p>
-                {{::
-                'pci_projects_project_training_install_section_1_command_message_2'
-                | translate }}
-                <code
-                    >{{:: 'pci_projects_project_training_parter_cli_name' |
-                    translate }}</code
-                >
-                {{::
-                'pci_projects_project_training_install_section_1_command_message_3'
-                | translate }}
+                <a data-ng-href="{{:: link}}">
+                    {{:: link }}
+                </a>
             </p>
         </oui-tabs-item>
     </oui-tabs>
@@ -96,19 +84,6 @@
             >{{:: 'pci_projects_project_training_parter_cli_name' | translate }}
             --help</code
         >{{:: 'pci_projects_project_training_install_section_3_message_2' |
-        translate }}
-        <a
-            class="oui-link oui-link_icon"
-            href="{{:: $ctrl.documentationLink }}"
-            target="_blank"
-            rel="noopener"
-            >{{:: 'pci_projects_project_training_parter_name' | translate
-            }}<span
-                class="oui-icon oui-icon-external_link"
-                aria-hidden="true"
-            ></span
-        ></a>
-        {{:: 'pci_projects_project_training_install_section_3_message_3' |
         translate }}
     </p>
 </oui-modal>

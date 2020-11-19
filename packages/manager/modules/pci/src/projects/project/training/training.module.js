@@ -8,8 +8,8 @@ import 'ovh-api-services';
 
 import labs from '../../../components/project/labs';
 
+import registries from './registries';
 import jobs from './jobs';
-import data from './data';
 import dashboard from './dashboard';
 
 import onboarding from './onboarding';
@@ -17,7 +17,6 @@ import component from './training.component';
 import routing from './training.routing';
 import service from './training.service';
 import jobService from './job.service';
-import dataService from './data.service';
 
 const moduleName = 'ovhManagerPciTraining';
 
@@ -32,15 +31,14 @@ angular
     'ui.router',
     labs,
     jobs,
+    registries,
     onboarding,
-    data,
     dashboard,
   ])
   .config(routing)
   .component('pciProjectTraining', component)
   .service('PciProjectTrainingService', service)
   .service('PciProjectTrainingJobService', jobService)
-  .service('PciProjectTrainingDataService', dataService)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

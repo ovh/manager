@@ -6,9 +6,8 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import 'ovh-api-services';
 
-import attach from './attach-registry';
-import detach from './detach-registry';
 import install from './install';
+import registry from './registry';
 
 import component from './dashboard.component';
 import routing from './dashboard.routing';
@@ -24,9 +23,8 @@ angular
     'ovhManagerCore',
     'pascalprecht.translate',
     'ui.router',
-    attach,
-    detach,
     install,
+    registry,
   ])
   .config(routing)
   .component('pciProjectTrainingDashboardComponent', component)

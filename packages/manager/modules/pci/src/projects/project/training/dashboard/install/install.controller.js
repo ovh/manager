@@ -5,7 +5,9 @@ export default class PciTrainingInstallController {
     this.guideUrl = GUIDE_URL;
     [this.currentRegion] = this.regions;
     this.osInstall = {
-      'Linux / Mac OS': `curl ${this.currentRegion.cliInstallUrl} | sh`,
+      Linux: `${this.currentRegion.cliInstallUrl}/ovhai-linux.zip`,
+      macOS: `${this.currentRegion.cliInstallUrl}/ovhai-darwin.zip`,
+      Windows: `${this.currentRegion.cliInstallUrl}/ovhai-windows.zip`,
     };
     this.documentationLink = this.currentRegion.documentationUrl;
   }

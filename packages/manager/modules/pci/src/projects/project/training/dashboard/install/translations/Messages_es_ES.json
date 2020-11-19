@@ -2,7 +2,7 @@
   "pci_projects_project_training_install_section_1_title": "Instalación del cliente",
   "pci_projects_project_training_install_section_2_title": "Autenticación",
   "pci_projects_project_training_install_section_3_title": "Comandos",
-  "pci_projects_project_training_install_section_1_command_message_1": "Para descargar el cliente Element AI en su equipo de trabajo e instalar la configuración de OVHcloud, vaya al directorio de instalación correspondiente y ejecute el siguiente comando:",
+  "pci_projects_project_training_install_section_1_command_message_1": "Para descargar el cliente AI Training en su equipo de trabajo e instalar la configuración de OVHcloud, vaya al directorio de instalación correspondiente y ejecute el siguiente comando:",
   "pci_projects_project_training_install_section_1_command_message_2": "Tras la instalación, el ejecutable ",
   "pci_projects_project_training_install_section_1_command_message_3": " estará disponible en el directorio de instalación.",
   "pci_projects_project_training_install_section_1_command_message_4": "Para finalizar la instalación, añada esta variable de entorno: ",
@@ -17,14 +17,11 @@
   "pci_projects_project_training_install_section_2_message_9": "La autenticación se ha completado.",
   "pci_projects_project_training_install_section_3_message_1": "Ejecute ",
   "pci_projects_project_training_install_section_3_message_2": " para consultar una lista de las acciones disponibles o consulte la documentación ",
-  "pci_projects_project_training_install_section_3_message_3": " para conocer todas las opciones.",
   "pci_projects_project_training_install_section_4_title": "Registro de imágenes Docker",
   "pci_projects_project_training_install_actions": "Acciones",
   "pci_projects_project_training_install_registry_attach": "Asociar un registro de imágenes Docker",
   "pci_projects_project_training_install_registry_detach": "Desvincular el registro de imágenes Docker",
   "pci_projects_project_training_install_information": "Información",
-  "pci_projects_project_training_install_console_url": "URL hacia la consola Element AI",
-  "pci_projects_project_training_install_console_url_help": "URL que permite acceder a la interfaz web del producto Element AI.",
   "pci_projects_project_training_install_registry": "Registro Docker",
   "pci_projects_project_training_install_registry_shared": "Registro Docker compartido"
 }
