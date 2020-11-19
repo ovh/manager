@@ -1,3 +1,12 @@
+## [15.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.6.0...@ovh-ux/manager-web@15.6.1) (2020-11-19)
+
+
+### Bug Fixes
+
+* **hosting:** update value base on switch modelValue ([#4060](https://github.com/ovh/manager/issues/4060)) ([3077322](https://github.com/ovh/manager/commit/307732258e85649b1afc06914e6eae48a5f628d8))
+
+
+
 # [15.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.5.2...@ovh-ux/manager-web@15.6.0) (2020-11-19)
 
 
