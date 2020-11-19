@@ -10,6 +10,10 @@ export default /* @ngInject */ ($stateProvider) => {
           controllerAs: 'LogsCtrl',
         },
       },
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('telephony_fax_assist_logs_breadcrumb'),
+      },
     },
   );
 };

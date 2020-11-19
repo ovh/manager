@@ -1,6 +1,6 @@
 {
   "telephony_alias_sva_generator_config": "Konfigūracija",
-  "telephony_alias_sva_generator_panpanpan": "Dėžutės generatorius",
+  "telephony_alias_sva_generator": "Dėžutės generatorius",
   "telephony_alias_sva_generator_fill": "Spalva",
   "telephony_alias_sva_generator_fill_gradient": "Gradientas",
   "telephony_alias_sva_generator_fill_simple": "Be gradiento",

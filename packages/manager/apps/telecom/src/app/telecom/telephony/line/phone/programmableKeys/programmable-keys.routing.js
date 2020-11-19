@@ -13,6 +13,12 @@ export default /* @ngInject */ ($stateProvider) => {
           controllerAs: 'ProgrammableKeysCtrl',
         },
       },
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant(
+            'telephony_line_phone_programmableKeys_keys_title',
+          ),
+      },
     },
   );
 };

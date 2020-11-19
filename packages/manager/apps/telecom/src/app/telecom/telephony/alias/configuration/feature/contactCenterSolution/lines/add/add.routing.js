@@ -13,6 +13,12 @@ export default /* @ngInject */ ($stateProvider) => {
           controllerAs: '$ctrl',
         },
       },
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant(
+            'telephony_alias_config_contactCenterSolution_lines_add',
+          ),
+      },
       translations: { value: ['..'], format: 'json' },
     },
   );

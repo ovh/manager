@@ -13,6 +13,12 @@ export default /* @ngInject */ ($stateProvider) => {
           controllerAs: 'StatsEasyHuntingCtrl',
         },
       },
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant(
+            'telephony_alias_configuration_stats_easyhunting_title',
+          ),
+      },
     },
   );
 };

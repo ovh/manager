@@ -13,6 +13,12 @@ export default /* @ngInject */ ($stateProvider) => {
           controllerAs: 'PhonebookCtrl',
         },
       },
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant(
+            'telephony_line_phone_actions_line_details_phone_phonebook_breadcrumb',
+          ),
+      },
     },
   );
 };

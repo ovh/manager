@@ -1,6 +1,6 @@
 {
   "telephony_alias_sva_generator_config": "Configurazione",
-  "telephony_alias_sva_generator_panpanpan": "Generatore di etichette",
+  "telephony_alias_sva_generator": "Generatore di etichette",
   "telephony_alias_sva_generator_fill": "Colore etichetta",
   "telephony_alias_sva_generator_fill_gradient": "Sfumatura di colore",
   "telephony_alias_sva_generator_fill_simple": "Colore senza sfumatura",

@@ -13,9 +13,14 @@ export default /* @ngInject */ ($stateProvider) => {
           controllerAs: 'LineConsumptionCtrl',
         },
       },
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant(
+            'telephony_line_management_actions_line_consumption_breadcrumb',
+          ),
+      },
       translations: {
         value: [
-          '.',
           '../../service/consumption',
           '../../service/consumption/outgoingCalls',
           '../../service/consumption/outgoingFax',

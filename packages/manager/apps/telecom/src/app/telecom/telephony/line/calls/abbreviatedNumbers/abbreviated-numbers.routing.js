@@ -13,6 +13,12 @@ export default /* @ngInject */ ($stateProvider) => {
           controllerAs: 'LineAbbreviatedNumbersCtrl',
         },
       },
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant(
+            'telephony_line_actions_line_calls_abbreviated_numbers_title',
+          ),
+      },
     },
   );
 };

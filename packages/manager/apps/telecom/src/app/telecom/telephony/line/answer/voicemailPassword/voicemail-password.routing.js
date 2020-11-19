@@ -17,6 +17,12 @@ export default /* @ngInject */ ($stateProvider) => {
           controllerAs: 'VoicemailPasswordCtrl',
         },
       },
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant(
+            'telephony_line_answer_actions_line_voicemail_password_breadcrumb',
+          ),
+      },
     },
   );
 };

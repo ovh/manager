@@ -42,6 +42,8 @@ export default /* @ngInject */ ($stateProvider) => {
         );
         return $state.go(state, stateParams);
       },
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('telephony_billing_account_line_breadcrumb'),
     },
   });
 };

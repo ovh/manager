@@ -16,6 +16,7 @@ angular
     'ui.router',
     serviceAssistLogs,
   ])
-  .config(routing);
+  .config(routing)
+  .run(/* @ngTranslationInject:json ./translations */);
 
 export default moduleName;

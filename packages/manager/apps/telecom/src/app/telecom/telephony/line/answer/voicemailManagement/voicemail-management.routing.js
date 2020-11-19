@@ -17,6 +17,12 @@ export default /* @ngInject */ ($stateProvider) => {
           controllerAs: 'VoicemailManagementCtrl',
         },
       },
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant(
+            'telephony_line_answer_actions_line_voicemail_management_breadcrumb',
+          ),
+      },
     },
   );
 };

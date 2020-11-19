@@ -8,8 +8,6 @@ import 'ovh-api-services';
 import convertToLine from './convertToLine';
 import terminate from './terminate';
 
-import routing from './administration.routing';
-
 const moduleName = 'ovhManagerTelecomTelephonyAliasAdministration';
 
 angular
@@ -22,7 +20,6 @@ angular
     convertToLine,
     terminate,
   ])
-  .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

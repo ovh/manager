@@ -48,27 +48,29 @@ export default /* @ngInject */ ($stateProvider) => {
           },
           controllerAs: '$ctrl',
         },
-        resolve: {
-          alias: ($stateParams, tucVoipService) =>
-            tucVoipService
-              .fetchSingleService(
-                $stateParams.billingAccount,
-                $stateParams.serviceName,
-              )
-              .then((alias) => {
-                const aliasCopy = clone(alias);
-                aliasCopy.featureType = alias.isContactCenterSolution()
-                  ? 'contactCenterSolution'
-                  : alias.featureType;
-                return aliasCopy;
-              }),
-          featureTypeLabel: ($translate) =>
-            $translate
-              .instant(
-                'telephony_alias_configuration_configuration_type_contactCenterSolution',
-              )
-              .toLowerCase(),
-        },
+      },
+      resolve: {
+        alias: ($stateParams, tucVoipService) =>
+          tucVoipService
+            .fetchSingleService(
+              $stateParams.billingAccount,
+              $stateParams.serviceName,
+            )
+            .then((alias) => {
+              const aliasCopy = clone(alias);
+              aliasCopy.featureType = alias.isContactCenterSolution()
+                ? 'contactCenterSolution'
+                : alias.featureType;
+              return aliasCopy;
+            }),
+        featureTypeLabel: ($translate) =>
+          $translate
+            .instant(
+              'telephony_alias_configuration_configuration_type_contactCenterSolution',
+            )
+            .toLowerCase(),
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('telephony_alias_configuration_breadcrumb'),
       },
     },
   );

@@ -18,6 +18,7 @@ angular
     'ui.router',
     serviceConsumptionIncomingCalls,
   ])
-  .config(routing);
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

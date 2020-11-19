@@ -13,6 +13,7 @@ export default /* @ngInject */ ($stateProvider) => {
         portabilityId: /* @ngInject */ ($transition$) =>
           $transition$.params().portabilityId,
         goBack: /* @ngInject */ (goToPortabilities) => goToPortabilities,
+        breadcrumb: () => null,
       },
     },
   );

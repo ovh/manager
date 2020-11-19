@@ -19,6 +19,7 @@ angular
     serviceVoicemailManagement,
   ])
   .config(routing)
-  .run(/* @ngTranslationsInject:json ./../translations */);
+  .run(/* @ngTranslationsInject:json ./../translations */)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

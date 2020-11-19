@@ -13,6 +13,12 @@ export default /* @ngInject */ ($stateProvider) => {
           controllerAs: 'BillingAccountDepositMovementCtrl',
         },
       },
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant(
+            'telephony_group_billing_deposit_movement_breadcrumb',
+          ),
+      },
     },
   );
 };

@@ -25,6 +25,10 @@ export default /* @ngInject */ ($stateProvider) => {
             activeStep: null,
           };
         },
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant(
+            'telephony_line_assist_troubleshooting_loading_title',
+          ),
       },
       views: {
         'lineView@telecom.telephony.billingAccount.line.dashboard': {

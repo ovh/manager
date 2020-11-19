@@ -1,4 +1,5 @@
 {
+  "telephony_alias_configuration_calls_filtering": "Filtrage des appels",
   "telephony_alias_configuration_calls_filtering_title": "File d’appels : filtrage des appels",
   "telephony_alias_configuration_calls_filtering_subtitle": "Le filtrage des appels vous permet de rejeter automatiquement une liste de numéros (liste noire) ou à l’inverse de n’accepter que certains numéros (liste blanche).",
   "telephony_alias_configuration_calls_filtering_configuration_filters": "Configuration des filtrages",

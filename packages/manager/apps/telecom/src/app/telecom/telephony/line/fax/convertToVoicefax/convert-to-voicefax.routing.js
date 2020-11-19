@@ -17,6 +17,12 @@ export default /* @ngInject */ ($stateProvider) => {
           controllerAs: '$ctrl',
         },
       },
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant(
+            'telephony_line_fax_convert_to_voice_fax_breadcrumb',
+          ),
+      },
       translations: {
         value: ['../../../service/fax/convertToVoicefax'],
         format: 'json',

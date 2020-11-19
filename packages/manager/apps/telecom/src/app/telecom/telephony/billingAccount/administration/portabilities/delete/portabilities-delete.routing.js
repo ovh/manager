@@ -15,6 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
         documentId: /* @ngInject */ ($transition$) =>
           $transition$.params().documentId,
         goBack: /* @ngInject */ (goToPortabilities) => goToPortabilities,
+        breadcrumb: () => null,
       },
     },
   );

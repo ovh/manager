@@ -11,6 +11,10 @@ export default /* @ngInject */ ($stateProvider) => {
           controllerAs: 'SupportCtrl',
         },
       },
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('telephony_line_assist_support_breadcrumb'),
+      },
     },
   );
 };
