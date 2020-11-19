@@ -2,25 +2,25 @@ import filter from 'lodash/filter';
 import get from 'lodash/get';
 
 export default [
-    '$q',
-    'UserAccountServicesAgreements',
-    'Alerter',
-    'agreementId',
-    '$translate',
-    'ducUser',
-    'GDPR_AGREEMENTS_INFOS',
-    'AGREEMENT_GENERIC_MORE_INFORMATIONS_URL',
-    function UserAccountAgreementsDtailsController(
-      $q,
-      Service,
-      Alerter,
-      agreementId,
-      $translate,
-      ducUser,
-      GDPR_AGREEMENTS_INFOS,
-      AGREEMENT_GENERIC_MORE_INFORMATIONS_URL,
-    ) {
-      const CGV_AGREEMENT_ID = 1635;
+  '$q',
+  'UserAccountServicesAgreements',
+  'Alerter',
+  'agreementId',
+  '$translate',
+  'ducUser',
+  'GDPR_AGREEMENTS_INFOS',
+  'AGREEMENT_GENERIC_MORE_INFORMATIONS_URL',
+  function UserAccountAgreementsDtailsController(
+    $q,
+    Service,
+    Alerter,
+    agreementId,
+    $translate,
+    ducUser,
+    GDPR_AGREEMENTS_INFOS,
+    AGREEMENT_GENERIC_MORE_INFORMATIONS_URL,
+  ) {
+    const CGV_AGREEMENT_ID = 1635;
 
     this.$ngInit = () => {
       this.accepted = false;
@@ -28,19 +28,19 @@ export default [
       this.confirmed = false;
       this.alreadyAccepted = false;
 
-        $q.all([
-          Service.getAgreement(agreementId),
-          Service.getContract(agreementId),
-          ducUser.getUser(),
-        ])
-          .then(([agreement, contract, user]) => {
-            this.agreement = agreement;
-            this.contract = contract;
-            this.isIndividual = user.legalform === 'individual';
-            this.alreadyAccepted = this.agreement.agreed === 'ok';
-            this.confirmed = this.alreadyAccepted;
-            this.accepted = this.alreadyAccepted;
-            this.isCGVContract = this.agreement.contractId === CGV_AGREEMENT_ID;
+      $q.all([
+        Service.getAgreement(agreementId),
+        Service.getContract(agreementId),
+        ducUser.getUser(),
+      ])
+        .then(([agreement, contract, user]) => {
+          this.agreement = agreement;
+          this.contract = contract;
+          this.isIndividual = user.legalform === 'individual';
+          this.alreadyAccepted = this.agreement.agreed === 'ok';
+          this.confirmed = this.alreadyAccepted;
+          this.accepted = this.alreadyAccepted;
+          this.isCGVContract = this.agreement.contractId === CGV_AGREEMENT_ID;
 
           this.appendicesLink = get(
             filter(
