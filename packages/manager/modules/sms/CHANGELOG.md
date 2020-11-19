@@ -1,3 +1,12 @@
+## [8.0.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.0.9...@ovh-ux/manager-sms@8.0.10) (2020-11-19)
+
+
+### Bug Fixes
+
+* update annotation comment ([e1707d0](https://github.com/ovh/manager/commit/e1707d085fb0f6940c91aa00d795d745bd0b155a))
+
+
+
 ## [8.0.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.0.8...@ovh-ux/manager-sms@8.0.9) (2020-11-16)
 
 

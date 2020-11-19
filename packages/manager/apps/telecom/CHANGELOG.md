@@ -1,3 +1,12 @@
+## [13.6.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.6.5...@ovh-ux/manager-telecom@13.6.6) (2020-11-19)
+
+
+### Bug Fixes
+
+* update annotation comment ([e1707d0](https://github.com/ovh/manager/commit/e1707d085fb0f6940c91aa00d795d745bd0b155a))
+
+
+
 ## [13.6.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.6.4...@ovh-ux/manager-telecom@13.6.5) (2020-11-16)
 
 

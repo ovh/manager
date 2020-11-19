@@ -1,3 +1,17 @@
+# [15.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.5.2...@ovh-ux/manager-web@15.6.0) (2020-11-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 672] ([980aa6b](https://github.com/ovh/manager/commit/980aa6bf26b4281eb007effba060432cb3686bb8))
+
+
+### Features
+
+* **hosting:** add Shared CDN ([7494079](https://github.com/ovh/manager/commit/7494079ea3307b20c9c2eccb2c3f70e3b1c1c6a9))
+
+
+
 ## [15.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.5.1...@ovh-ux/manager-web@15.5.2) (2020-11-16)
 
 
