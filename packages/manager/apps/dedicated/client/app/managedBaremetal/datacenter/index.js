@@ -6,15 +6,18 @@ const moduleName = 'managedBaremetalDatacenterLazyloading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.managedBaremetal.datacenter.**', {
-      url: '/datacenter/:datacenterId',
-      lazyLoad: ($transition$) => {
-        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-        return import('./datacenter.module').then((mod) =>
-          $ocLazyLoad.inject(mod.default || mod),
-        );
+    $stateProvider.state(
+      'app.managedBaremetal.details.datacenters.datacenter.**',
+      {
+        url: '/:datacenterId',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+          return import('./datacenter.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
       },
-    });
+    );
   },
 );
 

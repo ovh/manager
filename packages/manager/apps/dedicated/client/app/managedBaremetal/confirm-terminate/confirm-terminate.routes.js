@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.managedBaremetal.terminate-confirm', {
+  $stateProvider.state('app.managedBaremetal.details.terminate-confirm', {
     url: '/terminate-confirm?token',
     params: {
       token: null,

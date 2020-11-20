@@ -6,7 +6,7 @@ const moduleName = 'managedBaremetalServicePackUpgradeLazyloading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.managedBaremetal.servicePackUpgrade.**', {
+    $stateProvider.state('app.managedBaremetal.details.servicePackUpgrade.**', {
       url: '/servicePackUpgrade',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');

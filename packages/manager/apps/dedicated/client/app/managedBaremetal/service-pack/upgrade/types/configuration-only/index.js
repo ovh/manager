@@ -8,7 +8,7 @@ const moduleName =
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'app.managedBaremetal.servicePackUpgrade.configurationOnly.**',
+      'app.managedBaremetal.details.servicePackUpgrade.configurationOnly.**',
       {
         url: '/configurationOnly',
         lazyLoad: ($transition$) => {

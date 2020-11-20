@@ -1,7 +1,7 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.managedBaremetals', {
+  $stateProvider.state('app.managedBaremetal.index', {
     url: `/managedBaremetal?${ListLayoutHelper.urlQueryParams}`,
     component: 'managerListLayout',
     params: ListLayoutHelper.stateParams,
@@ -26,7 +26,7 @@ export default /* @ngInject */ ($stateProvider) => {
       getServiceNameLink: /* @ngInject */ ($state) => ({
         serviceName: productId,
       }) =>
-        $state.href('app.managedBaremetal.dashboard', {
+        $state.href('app.managedBaremetal.details.dashboard', {
           productId,
         }),
     },

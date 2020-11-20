@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.managedBaremetal.security.kms-delete', {
+  $stateProvider.state('app.managedBaremetal.details.security.kms-delete', {
     url: '/kms-delete',
     params: {
       kmsToDelete: null,

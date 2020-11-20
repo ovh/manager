@@ -1,10 +1,11 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.managedBaremetal.datacenter', {
-    url: '/datacenter/:datacenterId',
+  $stateProvider.state('app.managedBaremetal.details.datacenters.datacenter', {
+    url: '/:datacenterId',
     views: {
-      dedicatedCloudView: 'ovhManagerDedicatedCloudDatacenter',
+      'dedicatedCloudView@app.managedBaremetal.details':
+        'ovhManagerDedicatedCloudDatacenter',
     },
-    redirectTo: 'app.managedBaremetal.datacenter.dashboard',
+    redirectTo: 'app.managedBaremetal.details.datacenters.datacenter.dashboard',
     resolve: {
       datacenterId: /* @ngInject */ ($transition$) =>
         $transition$.params().datacenterId,
@@ -20,26 +21,39 @@ export default /* @ngInject */ ($stateProvider) => {
           },
         })),
       deleteDatacenter: /* @ngInject */ ($state) => () =>
-        $state.go('app.managedBaremetal.datacenter.dashboard.delete'),
-      backupState: () => 'app.managedBaremetal.datacenter.backup',
-      dashboardState: () => 'app.managedBaremetal.datacenter.dashboard',
-      datastoresState: () => 'app.managedBaremetal.datacenter.datastores',
-      drpState: () => 'app.managedBaremetal.datacenter.drp',
-      hostsState: () => 'app.managedBaremetal.datacenter.hosts',
+        $state.go(
+          'app.managedBaremetal.details.datacenters.datacenter.dashboard.delete',
+        ),
+      backupState: () =>
+        'app.managedBaremetal.details.datacenters.datacenter.backup',
+      dashboardState: () =>
+        'app.managedBaremetal.details.datacenters.datacenter.dashboard',
+      datastoresState: () =>
+        'app.managedBaremetal.details.datacenters.datacenter.datastores',
+      drpState: () => 'app.managedBaremetal.details.datacenters.datacenter.drp',
+      hostsState: () =>
+        'app.managedBaremetal.details.datacenters.datacenter.hosts',
       goToHosts: /* @ngInject */ ($state) => () =>
-        $state.go('app.managedBaremetal.datacenter.hosts'),
+        $state.go('app.managedBaremetal.details.datacenters.datacenter.hosts'),
       goToDatastores: /* @ngInject */ ($state) => () =>
-        $state.go('app.managedBaremetal.datacenter.datastores'),
+        $state.go(
+          'app.managedBaremetal.details.datacenters.datacenter.datastores',
+        ),
       goToBackup: /* @ngInject */ ($state) => () =>
-        $state.go('app.managedBaremetal.datacenter.backup'),
+        $state.go('app.managedBaremetal.details.datacenters.datacenter.backup'),
       goToDrp: /* @ngInject */ ($state) => () =>
-        $state.go('app.managedBaremetal.datacenter.drp'),
+        $state.go('app.managedBaremetal.details.datacenters.datacenter.drp'),
       goToDrpSummary: /* @ngInject */ ($state, currentDrp) => () =>
-        $state.go('app.managedBaremetal.datacenter.drp.summary', {
-          drpInformations: currentDrp,
-        }),
+        $state.go(
+          'app.managedBaremetal.details.datacenters.datacenter.drp.summary',
+          {
+            drpInformations: currentDrp,
+          },
+        ),
       goToDeleteDrp: /* @ngInject */ ($state) => () =>
-        $state.go('app.managedBaremetal.datacenter.dashboard.deleteDrp'),
+        $state.go(
+          'app.managedBaremetal.details.datacenters.datacenter.dashboard.deleteDrp',
+        ),
       setMessage: /* @ngInject */ (Alerter) => (
         message = false,
         type = 'success',

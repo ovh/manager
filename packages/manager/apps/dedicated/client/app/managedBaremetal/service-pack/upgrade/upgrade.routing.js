@@ -1,6 +1,6 @@
 export const state = {
   abstract: true,
-  name: 'app.managedBaremetal.servicePackUpgrade',
+  name: 'app.managedBaremetal.details.servicePackUpgrade',
   resolve: {
     goBack: /* @ngInject */ (goToPccDashboard) => goToPccDashboard,
   },

@@ -81,7 +81,7 @@ angular.module('Module.ip.controllers').controller(
         ) ||
         startsWith(
           this.$state.current.name,
-          'app.managedBaremetal.datacenter.drp',
+          'app.managedBaremetal.details.datacenters.datacenter.drp',
         )
       );
     }
@@ -477,7 +477,7 @@ angular.module('Module.ip.controllers').controller(
 
     getDrpState() {
       return this.$scope.model.service.productReference === 'MBM'
-        ? 'app.managedBaremetal.datacenter.drp'
+        ? 'app.managedBaremetal.details.datacenters.datacenter.drp'
         : 'app.dedicatedClouds.datacenter.drp';
     }
 

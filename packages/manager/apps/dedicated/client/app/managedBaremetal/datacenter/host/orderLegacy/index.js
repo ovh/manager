@@ -7,7 +7,7 @@ const moduleName = 'managedBaremetalDatacenterHostOrderLegacyLazyloading';
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'app.managedBaremetal.datacenter.hosts.order-legacy.**',
+      'app.managedBaremetal.details.datacenters.datacenter.hosts.order-legacy.**',
       {
         url: '/order-legacy',
         lazyLoad: ($transition$) => {
