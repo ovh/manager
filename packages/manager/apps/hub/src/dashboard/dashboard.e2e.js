@@ -4,7 +4,7 @@ import config from '../../../../tools/testcafe/config';
 
 fixture('Just a simple test')
   .meta({
-    service: config.allowedServices(['ovh.com-manager']),
+    service: ['ovh.com-manager'],
     type: 'regression',
     severity: 'critical',
     priority: 'high',
