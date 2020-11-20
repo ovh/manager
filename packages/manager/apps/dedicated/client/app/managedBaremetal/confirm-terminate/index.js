@@ -6,7 +6,7 @@ const moduleName = 'managedBaremetalConfirmTerminateLazyloading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.managedBaremetal.terminate-confirm.**', {
+    $stateProvider.state('app.managedBaremetal.details.terminate-confirm.**', {
       url: '/terminate-confirm?token',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');

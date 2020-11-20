@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.managedBaremetal.operation', {
+  $stateProvider.state('app.managedBaremetal.details.operation', {
     url: '/operation',
     reloadOnSearch: false,
     views: {
@@ -7,10 +7,13 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       goToExecutionDateEdit: /* @ngInject */ ($state, productId) => (task) =>
-        $state.go('app.managedBaremetal.operation.execution-date-edit', {
-          productId,
-          operationToEdit: task,
-        }),
+        $state.go(
+          'app.managedBaremetal.details.operation.execution-date-edit',
+          {
+            productId,
+            operationToEdit: task,
+          },
+        ),
     },
   });
 };

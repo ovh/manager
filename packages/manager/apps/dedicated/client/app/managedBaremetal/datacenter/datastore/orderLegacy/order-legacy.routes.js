@@ -1,10 +1,10 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'app.managedBaremetal.datacenter.datastores.order-legacy',
+    'app.managedBaremetal.details.datacenters.datacenter.datastores.order-legacy',
     {
       url: '/order-legacy',
       views: {
-        'pccDatacenterView@app.managedBaremetal.datacenter':
+        'pccDatacenterView@app.managedBaremetal.details.datacenters.datacenter':
           'ovhManagerDedicatedCloudDatacenterDatastoreOrderLegacy',
       },
       resolve: {

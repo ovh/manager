@@ -6,7 +6,7 @@ const moduleName = 'managedBaremetalUserDisableLazyloading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.managedBaremetal.users.disable.**', {
+    $stateProvider.state('app.managedBaremetal.details.users.user.disable.**', {
       url: '/disable',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');

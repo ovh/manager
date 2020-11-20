@@ -7,7 +7,7 @@ const moduleName = 'managedBaremetalDatacenterDeleteLazyloading';
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'app.managedBaremetal.datacenter.dashboard.delete.**',
+      'app.managedBaremetal.details.datacenters.datacenter.dashboard.delete.**',
       {
         url: '/delete',
         lazyLoad: ($transition$) => {

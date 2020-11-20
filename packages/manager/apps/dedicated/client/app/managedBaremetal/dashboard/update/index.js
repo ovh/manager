@@ -6,7 +6,7 @@ const moduleName = 'managedBaremetalDashboardUpdateLazyloading';
 
 angular.module(moduleName, ['oc.lazyLoad', 'ui.router']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.managedBaremetal.dashboard.update.**', {
+    $stateProvider.state('app.managedBaremetal.details.dashboard.update.**', {
       url: '/update',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
