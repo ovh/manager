@@ -4,7 +4,6 @@ import get from 'lodash/get'
 
 import confirmTerminate from '../confirm-terminate';
 import dashboard from '../dashboard/dashboard.module';
-import datacenter from '../datacenter';
 import datacenters from '../datacenters';
 import dedicatedCloudComponent from '../../components/dedicated-cloud';
 import license from '../license';
@@ -20,7 +19,6 @@ angular
   .module(moduleName, [
     confirmTerminate,
     dashboard,
-    datacenter,
     datacenters,
     dedicatedCloudComponent,
     license,

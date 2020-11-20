@@ -8,7 +8,7 @@ const moduleName =
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'app.managedBaremetal.datacenter.hosts.resourceUpgradeLegacy.**',
+      'app.managedBaremetal.details.datacenters.datacenter.hosts.resourceUpgradeLegacy.**',
       {
         url: '/upgradeResourceLegacy',
         lazyLoad: ($transition$) => {

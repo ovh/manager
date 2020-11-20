@@ -7,7 +7,7 @@ const moduleName = 'managedBaremetalServicePackUpgradeCertificationLazyloading';
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'app.managedBaremetal.servicePackUpgrade.certification.**',
+      'app.managedBaremetal.details.servicePackUpgrade.certification.**',
       {
         url: '/certification',
         lazyLoad: ($transition$) => {

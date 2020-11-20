@@ -7,7 +7,7 @@ const moduleName = 'managedBaremetalServicePackUpgradeBasicOptionsLazyloading';
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'app.managedBaremetal.servicePackUpgrade.basicOptions.**',
+      'app.managedBaremetal.details.servicePackUpgrade.basicOptions.**',
       {
         url: '/basicOptions',
         lazyLoad: ($transition$) => {

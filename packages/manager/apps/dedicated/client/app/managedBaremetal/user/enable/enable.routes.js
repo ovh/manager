@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.managedBaremetal.users.enable', {
+  $stateProvider.state('app.managedBaremetal.details.users.user.enable', {
     url: '/enable',
     params: {
       user: null,

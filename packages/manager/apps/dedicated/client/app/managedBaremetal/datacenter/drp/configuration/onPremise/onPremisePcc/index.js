@@ -8,7 +8,7 @@ const moduleName =
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'app.managedBaremetal.datacenter.drp.onPremise.onPremisePccStep.**',
+      'app.managedBaremetal.details.datacenters.datacenter.drp.onPremise.onPremisePccStep.**',
       {
         url: '/onPremisePcc',
         lazyLoad: ($transition$) => {

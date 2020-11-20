@@ -7,7 +7,7 @@ const moduleName = 'managedBaremetalDatacenterDatastoreOrderLazyloading';
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'app.managedBaremetal.datacenter.datastores.order.**',
+      'app.managedBaremetal.details.datacenters.datacenter.datastores.order.**',
       {
         url: '/order',
         lazyLoad: ($transition$) => {

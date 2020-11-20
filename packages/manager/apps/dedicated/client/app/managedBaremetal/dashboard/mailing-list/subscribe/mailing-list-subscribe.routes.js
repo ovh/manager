@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.managedBaremetal.dashboard.ml-subscribe', {
+  $stateProvider.state('app.managedBaremetal.details.dashboard.ml-subscribe', {
     url: '/ml-subscribe',
     views: {
       modal: {

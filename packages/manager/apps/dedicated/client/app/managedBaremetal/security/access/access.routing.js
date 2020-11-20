@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.managedBaremetal.security.access', {
+  $stateProvider.state('app.managedBaremetal.details.security.access', {
     url: '/access',
     views: {
       modal: {
