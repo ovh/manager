@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.managedBaremetal.security.delete', {
+  $stateProvider.state('app.managedBaremetal.details.security.delete', {
     url: '/delete',
     params: {
       policies: null,

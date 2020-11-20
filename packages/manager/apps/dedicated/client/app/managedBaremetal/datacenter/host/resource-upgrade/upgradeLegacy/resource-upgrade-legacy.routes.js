@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'app.managedBaremetal.datacenter.hosts.resourceUpgradeLegacy',
+    'app.managedBaremetal.details.datacenters.datacenter.hosts.resourceUpgradeLegacy',
     {
       url: '/upgradeResourceLegacy',
       params: {

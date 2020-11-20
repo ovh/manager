@@ -1,11 +1,14 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.managedBaremetal.datacenter.backup.delete', {
-    url: '/delete',
-    views: {
-      modal: {
-        component: 'dedicatedCloudDatacenterBackupDelete',
+  $stateProvider.state(
+    'app.managedBaremetal.details.datacenters.datacenter.backup.delete',
+    {
+      url: '/delete',
+      views: {
+        modal: {
+          component: 'dedicatedCloudDatacenterBackupDelete',
+        },
       },
+      layout: 'modal',
     },
-    layout: 'modal',
-  });
+  );
 };

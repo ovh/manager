@@ -6,7 +6,7 @@ const moduleName = 'managedBaremetalSecurityKmsAddLazyloading';
 
 angular.module(moduleName, ['oc.lazyLoad', 'ui.router']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.managedBaremetal.security.kms-add.**', {
+    $stateProvider.state('app.managedBaremetal.details.security.kms-add.**', {
       url: '/kms-add',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');

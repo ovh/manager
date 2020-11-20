@@ -7,7 +7,7 @@ const moduleName = 'managedBaremetalDatacenterDrpSummaryDeleteLazyloading';
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'app.managedBaremetal.datacenter.drp.summary.deleteDrp.**',
+      'app.managedBaremetal.details.datacenters.datacenter.drp.summary.deleteDrp.**',
       {
         url: '/deleteDrp',
         lazyLoad: ($transition$) => {

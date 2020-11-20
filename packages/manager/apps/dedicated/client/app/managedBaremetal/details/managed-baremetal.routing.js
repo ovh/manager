@@ -12,8 +12,9 @@ import {
 } from '../../components/dedicated-cloud/datacenter/drp/dedicatedCloud-datacenter-drp.constants';
 
 export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
-  $stateProvider.state('app.managedBaremetal', {
-    redirectTo: 'app.managedBaremetal.dashboard',
+  $stateProvider.state('app.managedBaremetal.details', {
+    url: '/:productId',
+    redirectTo: 'app.managedBaremetal.details.dashboard',
     resolve: {
       currentService: /* @ngInject */ (DedicatedCloud, productId) =>
         DedicatedCloud.getSelected(productId, true).then(
@@ -122,43 +123,51 @@ export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
       isDrpActionPossible: /* @ngInject */ (currentDrp, dedicatedCloudDrp) =>
         dedicatedCloudDrp.constructor.isDrpActionPossible(currentDrp),
 
-      datacentersState: () => 'app.managedBaremetal.datacenters',
-      pccDashboardState: () => 'app.managedBaremetal.dashboard',
-      licenseState: () => 'app.managedBaremetal.license',
-      operationState: () => 'app.managedBaremetal.operation',
-      securityState: () => 'app.managedBaremetal.security',
-      usersState: () => 'app.managedBaremetal.users',
+      datacentersState: () => 'app.managedBaremetal.details.datacenters',
+      pccDashboardState: () => 'app.managedBaremetal.details.dashboard',
+      licenseState: () => 'app.managedBaremetal.details.license',
+      operationState: () => 'app.managedBaremetal.details.operation',
+      securityState: () => 'app.managedBaremetal.details.security',
+      usersState: () => 'app.managedBaremetal.details.users',
       goToDrp: /* @ngInject */ ($state, currentDrp) => (datacenterId) =>
-        $state.go('app.managedBaremetal.datacenter.drp', {
+        $state.go('app.managedBaremetal.details.datacenters.datacenter.drp', {
           datacenterId,
           drpInformations: currentDrp,
         }),
       goToDrpDatacenterSelection: /* @ngInject */ ($state) => () =>
-        $state.go('app.managedBaremetal.dashboard.drpDatacenterSelection'),
+        $state.go(
+          'app.managedBaremetal.details.dashboard.drpDatacenterSelection',
+        ),
       goToPccDashboard: /* @ngInject */ ($state) => (reload = false) =>
-        $state.go('app.managedBaremetal', {}, { reload }),
+        $state.go('app.managedBaremetal.details', {}, { reload }),
       goToVpnConfiguration: /* @ngInject */ ($state, currentDrp) => () =>
-        $state.go('app.managedBaremetal.datacenter.drp.summary', {
-          datacenterId: currentDrp.datacenterId,
-          drpInformations: currentDrp,
-        }),
+        $state.go(
+          'app.managedBaremetal.details.datacenters.datacenter.drp.summary',
+          {
+            datacenterId: currentDrp.datacenterId,
+            drpInformations: currentDrp,
+          },
+        ),
       goToDatacenter: /* @ngInject */ ($state, productId) => (datacenterId) =>
-        $state.go('app.managedBaremetal.datacenter', {
+        $state.go('app.managedBaremetal.details.datacenters.datacenter', {
           productId,
           datacenterId,
         }),
       goToDatastores: /* @ngInject */ ($state, productId) => (datacenterId) =>
-        $state.go('app.managedBaremetal.datacenter.datastores', {
-          productId,
-          datacenterId,
-        }),
+        $state.go(
+          'app.managedBaremetal.details.datacenters.datacenter.datastores',
+          {
+            productId,
+            datacenterId,
+          },
+        ),
       goToHosts: /* @ngInject */ ($state, productId) => (datacenterId) =>
-        $state.go('app.managedBaremetal.datacenter.hosts', {
+        $state.go('app.managedBaremetal.details.datacenters.datacenter.hosts', {
           productId,
           datacenterId,
         }),
       goToUsers: /* @ngInject */ ($state) => () =>
-        $state.go('app.managedBaremetal.users'),
+        $state.go('app.managedBaremetal.details.users'),
       serviceName: /* @ngInject */ (productId) => productId,
       productId: /* @ngInject */ ($transition$) =>
         $transition$.params().productId,
@@ -187,9 +196,10 @@ export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
       goBackToDashboard: /* @ngInject */ (goBackToState) => (
         message = false,
         type = 'success',
-      ) => goBackToState('app.managedBaremetal.dashboard', message, type),
+      ) =>
+        goBackToState('app.managedBaremetal.details.dashboard', message, type),
       operationsUrl: /* @ngInject */ ($state, currentService) =>
-        $state.href('app.managedBaremetal.operation', {
+        $state.href('app.managedBaremetal.details.operation', {
           productId: currentService.serviceName,
         }),
       optionsAvailable: /* @ngInject */ (
@@ -222,8 +232,8 @@ export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
       ) =>
         $state.go(
           usesLegacyOrder
-            ? 'app.managedBaremetal.datacenter.datastores.order-legacy'
-            : 'app.managedBaremetal.datacenter.datastores.order',
+            ? 'app.managedBaremetal.details.datacenters.datacenter.datastores.order-legacy'
+            : 'app.managedBaremetal.details.datacenters.datacenter.datastores.order',
           {
             datacenterId,
           },
@@ -231,8 +241,8 @@ export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
       orderHost: /* @ngInject */ ($state, usesLegacyOrder) => (datacenterId) =>
         $state.go(
           usesLegacyOrder
-            ? 'app.managedBaremetal.datacenter.hosts.order-legacy'
-            : 'app.managedBaremetal.datacenter.hosts.order',
+            ? 'app.managedBaremetal.details.datacenters.datacenter.hosts.order-legacy'
+            : 'app.managedBaremetal.details.datacenters.datacenter.hosts.order',
           {
             datacenterId,
           },
@@ -249,7 +259,6 @@ export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
       usesLegacyOrder: /* @ngInject */ (currentService) =>
         currentService.usesLegacyOrder,
     },
-    url: '/configuration/managedBaremetal/:productId',
     views: {
       '': 'ovhManagerPcc',
     },

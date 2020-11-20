@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.managedBaremetal.license.enable-legacy', {
+  $stateProvider.state('app.managedBaremetal.details.license.enable-legacy', {
     url: '/enable-legacy',
     views: {
       modal: {

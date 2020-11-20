@@ -3,7 +3,7 @@ import stepModuleNames from '../../../../../components/dedicated-cloud/service-p
 import component from '../../../../../components/dedicated-cloud/service-pack/upgrade/upgrade.component';
 
 export const state = {
-  name: 'app.managedBaremetal.servicePackUpgrade.configurationOnly',
+  name: 'app.managedBaremetal.details.servicePackUpgrade.configurationOnly',
   params: {
     activationType: 'basic',
   },
@@ -17,7 +17,7 @@ export const state = {
   },
   url: '/configurationOnly',
   views: {
-    'pccView@app.managedBaremetal': component.name,
+    'pccView@app.managedBaremetal.details': component.name,
   },
 };
 

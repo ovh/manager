@@ -8,7 +8,7 @@ const moduleName =
 angular.module(moduleName, ['oc.lazyLoad', 'ui.router']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'app.managedBaremetal.security.simultaneous-connection-update.**',
+      'app.managedBaremetal.details.security.simultaneous-connection-update.**',
       {
         url: '/simultaneous-connection-update',
         lazyLoad: ($transition$) => {

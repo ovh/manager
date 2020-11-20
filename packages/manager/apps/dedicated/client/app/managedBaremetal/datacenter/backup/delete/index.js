@@ -6,15 +6,18 @@ const moduleName = 'managedBaremetalBackupDeleteLazyloading';
 
 angular.module(moduleName, ['oc.lazyLoad', 'ui.router']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.managedBaremetal.datacenter.backup.delete.**', {
-      url: '/delete',
-      lazyLoad: ($transition$) => {
-        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-        return import('./delete.module').then((mod) =>
-          $ocLazyLoad.inject(mod.default || mod),
-        );
+    $stateProvider.state(
+      'app.managedBaremetal.details.datacenters.datacenter.backup.delete.**',
+      {
+        url: '/delete',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+          return import('./delete.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
       },
-    });
+    );
   },
 );
 
