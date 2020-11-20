@@ -22,7 +22,6 @@ import wucServiceStatusAction from './service-status';
 import wucString from './string';
 import wucTabs from './tabs';
 import wucValidator from './validator';
-import wucZoneValidator from './zone-validator';
 
 const moduleName = 'ngOvhWebUniverseComponents';
 
@@ -49,7 +48,6 @@ angular.module(moduleName, [
   wucString,
   wucTabs,
   wucValidator,
-  wucZoneValidator,
 ]);
 
 export default moduleName;
