@@ -10,6 +10,7 @@ export default {
     goToCommit: '<',
     goToSgxIntroduction: '<',
     goToSgxManage: '<',
+    isCommitmentAvailable: '<',
     monitoringProtocolEnum: '<',
     ola: '<',
     orderPrivateBandwidthLink: '<',

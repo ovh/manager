@@ -480,7 +480,7 @@
             <billing-subscription-tile
                 on-error="$ctrl.onBillingInformationError(error)"
                 service-path="{{ '/dedicated/server/' + $ctrl.server.name }}"
-                with-engagement
+                with-engagement="$ctrl.isCommitmentAvailable"
                 go-to-commit="$ctrl.goToCommit()"
                 service-infos="$ctrl.serviceInfos"
                 highlight-engagement="$ctrl.server.shouldReengage"

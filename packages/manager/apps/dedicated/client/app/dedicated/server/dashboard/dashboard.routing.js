@@ -76,6 +76,13 @@ export default /* @ngInject */ ($stateProvider) => {
             return {};
           })
           .catch((error) => (error.status === 404 ? {} : $q.reject(error))),
+      isCommitmentAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability(['billing:commitment'])
+          .then((commitmentAvailability) =>
+            commitmentAvailability.isFeatureAvailable('billing:commitment'),
+          )
+          .catch(() => false),
       changeOwnerUrl: /* @ngInject */ (User) => User.getUrlOf('changeOwner'),
       eligibleData: /* @ngInject */ (Server, user) => {
         const isEligible = includes(
