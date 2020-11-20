@@ -8,7 +8,7 @@ import drp from './drp';
 import host from './host';
 import routing from './datacenter.routing';
 
-const moduleName = 'managedBaremetalDatacenterHost';
+const moduleName = 'managedBaremetalDatacenter';
 
 angular
   .module(moduleName, [

@@ -7,7 +7,7 @@ const moduleName = 'managedBaremetalDrpDatacenterSelectionLazyloading';
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'app.managedBaremetal.dashboard.drpDatacenterSelection.**',
+      'app.managedBaremetal.details.dashboard.drpDatacenterSelection.**',
       {
         url: '/drpDatacenterSelection',
         lazyLoad: ($transition$) => {

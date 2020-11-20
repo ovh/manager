@@ -2,11 +2,11 @@ import { DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS } from '../../../../../../compone
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'app.managedBaremetal.datacenter.drp.onPremise.onPremisePccStep',
+    'app.managedBaremetal.details.datacenters.datacenter.drp.onPremise.onPremisePccStep',
     {
       url: '/onPremisePcc',
       views: {
-        'innerView@app.managedBaremetal.datacenter.drp': {
+        'innerView@app.managedBaremetal.details.datacenters.datacenter.drp': {
           component: 'dedicatedCloudDatacenterDrpOnPremiseOnPremisePccStep',
         },
       },
@@ -21,7 +21,7 @@ export default /* @ngInject */ ($stateProvider) => {
           $transition$.params().drpInformations,
         goToPreviousStep: /* @ngInject */ ($state) => (drpInformations) =>
           $state.go(
-            'app.managedBaremetal.datacenter.drp.onPremise.ovhPccStep',
+            'app.managedBaremetal.details.datacenters.datacenter.drp.onPremise.ovhPccStep',
             {
               drpInformations,
             },

@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.managedBaremetal.license.enable', {
+  $stateProvider.state('app.managedBaremetal.details.license.enable', {
     url: '/enable',
     redirectTo: (transition) =>
       transition
@@ -8,7 +8,7 @@ export default /* @ngInject */ ($stateProvider) => {
         .then((usesLegacyOrder) =>
           usesLegacyOrder
             ? {
-                state: 'app.managedBaremetal.license.enable-legacy',
+                state: 'app.managedBaremetal.details.license.enable-legacy',
               }
             : false,
         ),

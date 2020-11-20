@@ -6,15 +6,18 @@ const moduleName = 'managedBaremetalSecurityKmsDeleteLazyloading';
 
 angular.module(moduleName, ['oc.lazyLoad', 'ui.router']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.managedBaremetal.security.kms-delete.**', {
-      url: '/kms-delete',
-      lazyLoad: ($transition$) => {
-        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-        return import('./kms-delete.module').then((mod) =>
-          $ocLazyLoad.inject(mod.default || mod),
-        );
+    $stateProvider.state(
+      'app.managedBaremetal.details.security.kms-delete.**',
+      {
+        url: '/kms-delete',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+          return import('./kms-delete.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
       },
-    });
+    );
   },
 );
 

@@ -6,7 +6,7 @@ const moduleName = 'managedBaremetalSecurityLogoutLazyloading';
 
 angular.module(moduleName, ['oc.lazyLoad', 'ui.router']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.managedBaremetal.security.logout.**', {
+    $stateProvider.state('app.managedBaremetal.details.security.logout.**', {
       url: '/logout',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
