@@ -11,6 +11,7 @@ export default {
     goToCancelCommit: '<',
     goToSgxIntroduction: '<',
     goToSgxManage: '<',
+    isCommitmentAvailable: '<',
     monitoringProtocolEnum: '<',
     ola: '<',
     orderPrivateBandwidthLink: '<',
