@@ -7,5 +7,9 @@ export default /* @ngInject */ ($stateProvider) => {
     template,
     controller,
     controllerAs: 'PackResiliation',
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('pack_resiliation_title'),
+    },
   });
 };

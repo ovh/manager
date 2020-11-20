@@ -15,5 +15,9 @@ export default /* @ngInject */ ($stateProvider) => {
         controllerAs: 'OrderFollowUpCtrl',
       },
     },
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('telecom_pack_xdsl_order_follow_up_intro'),
+    },
   });
 };

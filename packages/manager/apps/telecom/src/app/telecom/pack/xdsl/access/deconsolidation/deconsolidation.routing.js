@@ -11,5 +11,9 @@ export default /* @ngInject */ ($stateProvider) => {
         template,
       },
     },
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('xdsl_access_deconsolidation_title'),
+    },
   });
 };

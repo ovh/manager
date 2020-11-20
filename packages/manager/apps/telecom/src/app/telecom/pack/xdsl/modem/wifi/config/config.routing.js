@@ -14,5 +14,9 @@ export default /* @ngInject */ ($stateProvider) => {
     params: {
       wifi: null,
     },
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('xdsl_modem_wifi_config_title'),
+    },
   });
 };

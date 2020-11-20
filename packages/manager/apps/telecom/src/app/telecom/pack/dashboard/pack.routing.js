@@ -32,6 +32,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       packName: /* @ngInject */ ($transition$) =>
         $transition$.params().packName,
+      breadcrumb: /* @ngInject */ (packName) => packName,
     },
     translations: {
       value: [

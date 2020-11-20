@@ -14,5 +14,9 @@ export default /* @ngInject */ ($stateProvider) => {
     params: {
       templates: null,
     },
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('xdsl_modem_template_config_breadcrumb'),
+    },
   });
 };
