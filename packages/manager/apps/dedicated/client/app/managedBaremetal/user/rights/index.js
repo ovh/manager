@@ -6,7 +6,7 @@ const moduleName = 'managedBaremetalUserRightsLazyloading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.managedBaremetal.users.rights.**', {
+    $stateProvider.state('app.managedBaremetal.details.users.user.rights.**', {
       url: '/:userId/rights',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');

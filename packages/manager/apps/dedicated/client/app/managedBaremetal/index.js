@@ -5,9 +5,15 @@ import 'oclazyload';
 const moduleName = 'managedBaremetalLazyloading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
-  /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.managedBaremetals.**', {
+  /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
+    $stateProvider.state('app.managedBaremetal', {
       url: '/managedBaremetal',
+      template: '<div ui-view></div>',
+      redirectTo: 'app.managedBaremetal.index',
+    });
+
+    $stateProvider.state('app.managedBaremetal.index.**', {
+      url: '',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
         return import('./managed-baremetal.module').then((mod) =>
@@ -16,14 +22,18 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
       },
     });
 
-    $stateProvider.state('app.managedBaremetal.**', {
-      url: '/configuration/managedBaremetal/:productId',
+    $stateProvider.state('app.managedBaremetal.details.**', {
+      url: '/:productId',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
         return import('./details/managed-baremetal.module').then((mod) =>
           $ocLazyLoad.inject(mod.default || mod),
         );
       },
+    });
+
+    $urlRouterProvider.when(/^\/configuration\/managedBaremetal/, () => {
+      window.location.href = window.location.href.replace('configuration', '');
     });
   },
 );

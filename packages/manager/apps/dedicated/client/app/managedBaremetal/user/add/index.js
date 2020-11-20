@@ -6,7 +6,7 @@ const moduleName = 'managedBaremetalUserAddLazyloading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.managedBaremetal.users.add.**', {
+    $stateProvider.state('app.managedBaremetal.details.users.add.**', {
       url: '/add',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');

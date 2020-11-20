@@ -7,7 +7,7 @@ const moduleName = 'managedBaremetalBackupSplaLicenseLazyloading';
 angular.module(moduleName, ['oc.lazyLoad', 'ui.router']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'app.managedBaremetal.datacenter.backup.spla-licence.**',
+      'app.managedBaremetal.details.datacenters.datacenter.backup.spla-licence.**',
       {
         url: '/spla-licence',
         lazyLoad: ($transition$) => {

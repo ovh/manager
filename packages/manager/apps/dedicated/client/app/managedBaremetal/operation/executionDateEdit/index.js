@@ -7,7 +7,7 @@ const moduleName = 'managedBaremetalOperationExecutionDateEditLazyloading';
 angular.module(moduleName, ['oc.lazyLoad', 'ui.router']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'app.managedBaremetal.operation.execution-date-edit.**',
+      'app.managedBaremetal.details.operation.execution-date-edit.**',
       {
         url: '/execution-date-edit',
         lazyLoad: ($transition$) => {

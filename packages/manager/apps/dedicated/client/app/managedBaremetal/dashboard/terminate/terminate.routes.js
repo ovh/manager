@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) =>
-  $stateProvider.state('app.managedBaremetal.dashboard.terminate', {
+  $stateProvider.state('app.managedBaremetal.details.dashboard.terminate', {
     url: '/terminate',
     views: {
       modal: {
