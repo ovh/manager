@@ -4,9 +4,8 @@ You can run End-To-End scenarii, using [TestCafé](https://devexpress.github.io/
 
 ## Prerequisites
 
-You must have at least one browser (Chrome/Chromium or Firefox) installed.
-
-You can install a standalone version of Chromium: check [`How-to install locally Chromium`](#how-to-install-locally-chromium) below.
+- You must have at least one browser (Chrome/Chromium or Firefox) installed. You can install a standalone version of Chromium: check [`How-to install locally Chromium`](#how-to-install-locally-chromium) below.
+- You must execute [patch-package](https://github.com/ds300/patch-package), in order to apply some updates to TestCafé library. Please execute the following command after installation: `npx patch-package --patch-dir="packages/manager/tools/testcafe/patches"`.
 
 ## Usage
 
@@ -23,10 +22,10 @@ You can launch TestCafé with:
 
 This will launch all the tests.
 
-You can run specific tests, using the `--fixture-meta` parameter:
+You can run specific tests, using the `--test-meta` parameter:
 
 ```bash
-$ yarn run test:e2e:chromium:headless -- --fixture-meta="service=ovh.com-fr-manager,severity=critical,priority=high,type=regression"
+$ yarn run test:e2e:chromium:headless -- --test-meta="service=ovh.com-fr-manager,severity=critical,priority=high,type=regression"
 ```
 
 This command will launch only tests with requested meta parameters.
