@@ -1,32 +1,15 @@
 import angular from 'angular';
+import '@uirouter/angularjs';
 
-import confirmTerminate from './confirm-terminate';
-import dashboard from './dashboard/dashboard.module';
-import datacenter from './datacenter';
-import datacenters from './datacenters';
-import dedicatedCloudComponent from '../components/dedicated-cloud';
-import license from './license';
-import operation from './operation';
+import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
+
 import routing from './managed-baremetal.routing';
-import security from './security';
-import servicePackUpgrade from './service-pack/upgrade';
-import user from './user';
 
-const moduleName = 'managedBaremetalModule';
+const moduleName = 'ovhManagerManagedBaremetal';
 
 angular
-  .module(moduleName, [
-    confirmTerminate,
-    dashboard,
-    datacenter,
-    datacenters,
-    dedicatedCloudComponent,
-    license,
-    operation,
-    security,
-    servicePackUpgrade,
-    user,
-  ])
-  .config(routing);
+  .module(moduleName, ['ui.router', ListLayoutHelper.moduleName])
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
