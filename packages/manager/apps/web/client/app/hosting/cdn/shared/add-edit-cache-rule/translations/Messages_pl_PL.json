@@ -11,7 +11,7 @@
   "hosting_cdn_shared_modal_add_rule_field_uri_info": "Adres URI to podzbiór zasobów Twojej strony WWW. W ten sposób możesz wskazać podzbiór Twojej strony: <br>/sciezka/do/zasobu. W przypadku oferty CDN-Basic możesz wprowadzić tylko rozszerzenie pliku",
   "hosting_cdn_shared_modal_add_rule_field_rule_name": "Nazwa reguły",
   "hosting_cdn_shared_modal_field_rule_name_error_required": "Wypełnij to pole.",
-  "hosting_cdn_shared_modal_field_rule_name_error_pattern": "Prawidłowy format: litery bez znaków diakrytycznych, cyfry, „-” oraz „_”",
+  "hosting_cdn_shared_modal_field_rule_name_error_pattern": "Może zawierać tylko cyfry, litery nieakcentowane, podkreślenia i myślnik.",
   "hosting_cdn_shared_modal_field_rule_name_error_duplicate_name": "Nazwa już istnieje",
   "hosting_cdn_shared_modal_add_rule_field_time_to_live": "Czas trwania",
   "hosting_cdn_shared_modal_add_rule_field_time_to_live_info": "Czas trwania służy do wskazania, jak często CDN ma odświeżać zawartość w pamięci podręcznej. Czas ten można wyrazić w kilku jednostkach, które wyświetlą się w rozwijanym menu. ",

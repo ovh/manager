@@ -18,7 +18,7 @@
   "hosting_cdn_order_customer_cdn_payable_step1_header": "Solution development",
   "hosting_cdn_order_customer_cdn_payable_step1_info": "You are about to update your CDN to the new Shared CDN option.",
   "hosting_cdn_order_customer_cdn_without_step1_info": "You are about to update your CDN to the new Shared CDN option.",
-  "hosting_cdn_order_customer_cdn_without_step1_description": "Default configuration<br>To help you get started quickly, the Shared CDN option is offered with a default configuration. When you enable it, we offer standard settings to get started quickly and easily. <br><br>Individual domain activation<br>You can enable a dedicated CDN for each of your domain names to maintain control. In your own time, explore the features and possibilities offered by the CDN option.",
+  "hosting_cdn_order_customer_cdn_without_step1_description": "To help you get started quickly, the Shared CDN option is offered with a default configuration. When you enable it, we offer standard settings to get started quickly and easily. <br><br>You can enable a dedicated CDN for each of your domain names to maintain control. In your own time, explore the features and possibilities offered by the CDN option.",
   "hosting_cdn_order_customer_cdn_without_step1_header": "Select the subscription period",
   "hosting_cdn_order_customer_cdn_without_step1_price": "Billed on a pro rata basis according to your hosting plan",
   "hosting_cdn_order_customer_cdn_included_step2_header": "Confirmation",
@@ -26,5 +26,5 @@
   "hosting_cdn_order_customer_cdn_included_step2_btn_ok": "Confirm",
   "hosting_cdn_order_customer_cdn_included_step2_btn_ko": "Cancel",
   "hosting_cdn_order_customer_cdn_payable_step2_header": "Solution development",
-  "hosting_cdn_order_customer_cdn_without_step2_header": "Confirm"
+  "hosting_cdn_order_customer_cdn_without_step2_header": "Confirmation"
 }
