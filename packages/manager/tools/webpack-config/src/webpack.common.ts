@@ -21,7 +21,7 @@ const cacheLoader = {
 
 // The common webpack configuration
 
-export = opts => {
+export = (opts) => {
   const lessLoaderOptions = {
     sourceMap: true,
     plugins: [
@@ -37,6 +37,11 @@ export = opts => {
   if ('lessJavascriptEnabled' in opts) {
     set(lessLoaderOptions, 'javascriptEnabled', opts.lessJavascriptEnabled);
   }
+
+  const jsExclude = [
+    /\/node_modules/, // vendors
+    /\/dist/, // bundled files
+  ];
 
   return {
     plugins: [
@@ -79,14 +84,10 @@ export = opts => {
     ],
 
     resolve: {
-      modules: [
-        './node_modules',
-        path.resolve('./node_modules'),
-      ],
+      modules: ['./node_modules', path.resolve('./node_modules')],
     },
 
     resolveLoader: {
-
       // webpack module resolution paths
       modules: [
         './node_modules', // #1 check in module's relative node_module directory
@@ -96,7 +97,6 @@ export = opts => {
 
     module: {
       rules: [
-
         // load HTML files as string (raw-loader)
         {
           test: /\.html$/,
@@ -188,7 +188,7 @@ export = opts => {
         // load JS files
         {
           test: /\.js$/,
-          exclude: /node_modules(?!\/ovh-module)/, // we don't want babel to process vendors files
+          exclude: jsExclude,
           use: [
             cacheLoader,
             {
@@ -214,12 +214,15 @@ export = opts => {
         // given proper ui-router state 'translations' property
         {
           test: /\.js$/,
-          exclude: /node_modules(?!\/ovh-module)/,
+          exclude: jsExclude,
           enforce: 'pre',
           use: [
             cacheLoader,
             {
-              loader: path.resolve(__dirname, './loaders/translation-ui-router.js'),
+              loader: path.resolve(
+                __dirname,
+                './loaders/translation-ui-router.js',
+              ),
               options: {
                 subdirectory: 'translations',
                 filtering: false,
@@ -231,12 +234,15 @@ export = opts => {
         // inject translation with @ngTranslationsInject comment
         {
           test: /\.js$/,
-          exclude: /node_modules(?!\/ovh-module)/,
+          exclude: jsExclude,
           enforce: 'pre',
           use: [
             cacheLoader,
             {
-              loader: path.resolve(__dirname, './loaders/translation-inject.js'),
+              loader: path.resolve(
+                __dirname,
+                './loaders/translation-inject.js',
+              ),
               options: {
                 filtering: false,
               },
@@ -251,7 +257,6 @@ export = opts => {
       runtimeChunk: 'single',
       // bundle spliting configuration
       splitChunks: {
-
         // vendors bundle containing node_modules source code
         cacheGroups: {
           bower: {
@@ -276,7 +281,6 @@ export = opts => {
           },
         },
       },
-
     }, // \optimization
   };
 };
