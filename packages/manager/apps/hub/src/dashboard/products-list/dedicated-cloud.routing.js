@@ -1,27 +1,22 @@
-import { compact, get, map, merge, pick } from 'lodash-es';
+import { compact, get, map, merge } from 'lodash-es';
 
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
-import { urlQueryParams, params, component, resolves } from './config';
+import { component, resolves } from './config';
 
 const routingData = {
-  params,
+  params: ListLayoutHelper.stateParams,
   component,
   resolve: {
     ...resolves,
-    ...pick(ListLayoutHelper.stateResolves, [
-      'onListParamsChange',
-      'filter',
-      'sort',
-      'sortOrder',
-    ]),
-    apiPath: /* @ngInject */ (resourcePath) =>
-      resourcePath.replace(/\/\{[a-zA-Z]+\}/g, ''),
-    schema: /* @ngInject */ ($http, apiPath) =>
-      $http.get(`${apiPath}.json`).then(({ data }) => data),
-    rows: /* @ngInject */ ($http, apiPath, products, propertyId) =>
+    ...ListLayoutHelper.stateResolves,
+    apiPath: () => '/dedicatedCloud',
+    staticResources: () => true,
+    resources: /* @ngInject */ ($http, apiPath, products, propertyId) =>
       $http
         .get(apiPath, {
-          headers: { 'X-Pagination-Mode': 'CachedObjectList-Pages' },
+          headers: {
+            'X-Pagination-Mode': 'CachedObjectList-Pages',
+          },
         })
         .then(({ data }) =>
           compact(
@@ -33,13 +28,6 @@ const routingData = {
             ),
           ),
         ),
-    paginationNumber: /* @ngInject */ ($transition$) =>
-      $transition$.paramsChanged().filter && !$transition$.paramsChanged().page
-        ? 1
-        : $transition$.params().page,
-    paginationSize: /* @ngInject */ ($transition$) =>
-      $transition$.params().pageSize,
-    paginationTotalCount: /* @ngInject */ (rows) => rows.length,
   },
   atInternet: {
     rename: /* @ngInject */ ($state) =>
@@ -57,7 +45,7 @@ export default /* @ngInject */ ($stateProvider) => {
     .state(
       'app.dashboard.dedicated_cloud',
       merge({}, routingData, {
-        url: `dedicated_cloud?${urlQueryParams}`,
+        url: `dedicated_cloud?${ListLayoutHelper.urlQueryParams}`,
         resolve: {
           productType: () => 'DEDICATED_CLOUD',
         },
@@ -66,7 +54,7 @@ export default /* @ngInject */ ($stateProvider) => {
     .state(
       'app.dashboard.essentials',
       merge({}, routingData, {
-        url: `essentials?${urlQueryParams}`,
+        url: `essentials?${ListLayoutHelper.urlQueryParams}`,
         resolve: {
           productType: () => 'ESSENTIALS',
         },
