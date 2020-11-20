@@ -20,6 +20,7 @@ export const AVAILABLE_SERVICES = [
   'FAILOVER',
   'PACK_SIP_TRUNK',
   'LOAD_BALANCER',
+  'LOGS',
 ];
 
 export default {

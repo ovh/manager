@@ -5,7 +5,7 @@ import sortBy from 'lodash/sortBy';
 
 import { BillingService } from '@ovh-ux/manager-models';
 
-import { AVAILABLE_SERVICES } from './user-contacts.constants';
+import { AVAILABLE_SERVICES } from '../user-contacts.constants';
 
 export default class {
   /* @ngInject */

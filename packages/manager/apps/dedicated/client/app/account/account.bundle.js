@@ -12,7 +12,7 @@ import './contacts/service/edit/edit.controller';
 import './contacts/service/edit/edit.routing';
 import './contacts/service/user-contacts-service.controller';
 import './contacts/service/user-contacts-service.routes';
-import './contacts/service/user-contacts.constants';
+import './contacts/user-contacts.constants';
 import './contacts/update/user-contacts-update.controller';
 import './contacts/update/user.contacts-update.routes';
 import './contacts/user-contacts.controller';
