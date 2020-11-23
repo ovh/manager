@@ -26,6 +26,7 @@ export default /* @ngInject */ ($stateProvider) => {
               drpInformations,
             },
           ),
+        breadcrumb: () => null,
       },
     },
   );

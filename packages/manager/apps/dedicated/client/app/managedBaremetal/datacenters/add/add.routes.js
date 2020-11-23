@@ -30,6 +30,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
           return promise;
         },
+        breadcrumb: () => null,
       },
     },
   );

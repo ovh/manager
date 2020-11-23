@@ -25,6 +25,7 @@ export default /* @ngInject */ ($stateProvider) => {
       rightId: /* @ngInject */ ($transition$) => $transition$.params().rightId,
       user: /* @ngInject */ (DedicatedCloud, productId, userId) =>
         DedicatedCloud.getUserDetail(productId, userId),
+      breadcrumb: () => null,
     },
   });
 };

@@ -14,6 +14,8 @@ export default /* @ngInject */ ($stateProvider) => {
             operationToEdit: task,
           },
         ),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('managed_baremetal_operation'),
     },
   });
 };
