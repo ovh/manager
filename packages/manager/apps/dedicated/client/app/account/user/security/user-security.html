@@ -692,6 +692,16 @@
                                 <oui-spinner></oui-spinner>
                             </div>
 
+                            <oui-message
+                                class="mb-3"
+                                type="warning"
+                                ng-if="preventSubmitIfDefaultRuleIsDeny()"
+                            >
+                                <span
+                                    data-translate="user_ipRestrictions_error_disable"
+                                ></span>
+                            </oui-message>
+
                             <form
                                 class="form-horizontal"
                                 data-ng-submit="updateDefaultRule()"
@@ -722,11 +732,6 @@
                                             >
                                             </option>
                                         </select>
-                                        <p
-                                            class="help-block text-danger"
-                                            data-ng-if="defaultConfDisabled"
-                                            data-translate="user_ipRestrictions_error_disable"
-                                        ></p>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -762,6 +767,7 @@
                                         <button
                                             type="submit"
                                             class="oui-button oui-button_secondary"
+                                            data-ng-disabled="preventSubmitIfDefaultRuleIsDeny()"
                                             data-track-name="account::security::edit::validation_IP_restriction_edit"
                                             data-track-on="click"
                                             data-track-type="action"
@@ -775,6 +781,16 @@
                             </form>
 
                             <hr />
+
+                            <oui-message
+                                class="mb-3"
+                                type="warning"
+                                ng-if="shouldDisplayWarningMessage()"
+                            >
+                                <span
+                                    data-translate="user_ipRestrictions_warning_last_ip_with_deny"
+                                ></span>
+                            </oui-message>
 
                             <!-- IP Restrictions -->
                             <table
@@ -932,6 +948,7 @@
                                                         <button
                                                             type="button"
                                                             class="btn btn-link"
+                                                            data-ng-disabled="shouldDisplayWarningMessage()"
                                                             data-ng-click="setAction('ip/restriction/delete/user-ip-restriction-delete', restriction)"
                                                             data-translate="user_ipRestrictions_delete"
                                                         ></button>
