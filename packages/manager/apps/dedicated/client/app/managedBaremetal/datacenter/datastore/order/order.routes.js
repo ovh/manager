@@ -4,6 +4,10 @@ export default /* @ngInject */ ($stateProvider) => {
     {
       resolve: {
         goBack: /* @ngInject */ (goBackToDatastore) => goBackToDatastore,
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant(
+            'managed_baremetal_datacenters_datacenter_datastores_order',
+          ),
       },
       url: '/order',
       views: {

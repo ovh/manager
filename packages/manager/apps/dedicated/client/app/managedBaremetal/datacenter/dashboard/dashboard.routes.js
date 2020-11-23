@@ -7,6 +7,9 @@ export default /* @ngInject */ ($stateProvider) => {
         'pccDatacenterView@app.managedBaremetal.details.datacenters.datacenter':
           'ovhManagerDedicatedCloudDatacenterDashboard',
       },
+      resolve: {
+        breadcrumb: () => null,
+      },
     },
   );
 };

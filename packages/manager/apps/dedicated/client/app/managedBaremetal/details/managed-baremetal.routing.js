@@ -258,6 +258,7 @@ export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
       trackingPrefix: () => 'dedicated::managedBaremetal',
       usesLegacyOrder: /* @ngInject */ (currentService) =>
         currentService.usesLegacyOrder,
+      breadcrumb: /* @ngInject */ (productId) => productId,
     },
     views: {
       '': 'ovhManagerPcc',

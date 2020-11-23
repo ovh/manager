@@ -29,6 +29,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('app.managedBaremetal.details.dashboard', {
           productId,
         }),
+      hideBreadcrumb: () => true,
     },
   });
 };

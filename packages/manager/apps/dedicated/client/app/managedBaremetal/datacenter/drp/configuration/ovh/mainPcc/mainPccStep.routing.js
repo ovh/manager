@@ -47,6 +47,7 @@ export default /* @ngInject */ ($stateProvider) => {
             dedicatedCloudDrp.getPccIpAddressesDetails(
               currentService.serviceName,
             ),
+          breadcrumb: () => null,
         },
       },
     )
@@ -58,7 +59,9 @@ export default /* @ngInject */ ($stateProvider) => {
         controllerAs: 'ctrl',
         template: legacyTemplate,
         layout: 'modal',
-        translations: { value: ['.'], format: 'json' },
+        resolve: {
+          breadcrumb: () => null,
+        },
       },
     )
     .state(
@@ -69,7 +72,9 @@ export default /* @ngInject */ ($stateProvider) => {
         controllerAs: 'ctrl',
         template,
         layout: 'modal',
-        translations: { value: ['.'], format: 'json' },
+        resolve: {
+          breadcrumb: () => null,
+        },
       },
     );
 };
