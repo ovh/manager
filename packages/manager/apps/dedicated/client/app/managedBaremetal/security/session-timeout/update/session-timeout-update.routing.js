@@ -15,6 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         userSessionTimeout: /* @ngInject */ ($transition$) =>
           $transition$.params().userSessionTimeout,
+        breadcrumb: () => null,
       },
     },
   );

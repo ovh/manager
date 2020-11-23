@@ -15,6 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         userLimitConcurrentSession: /* @ngInject */ ($transition$) =>
           $transition$.params().userLimitConcurrentSession,
+        breadcrumb: () => null,
       },
     },
   );

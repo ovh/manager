@@ -25,6 +25,7 @@ export default /* @ngInject */ ($stateProvider) => {
           ),
         operationToEdit: /* @ngInject */ ($transition$) =>
           $transition$.params().operationToEdit,
+        breadcrumb: () => null,
       },
     },
   );

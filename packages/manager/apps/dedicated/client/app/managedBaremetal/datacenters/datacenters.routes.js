@@ -8,6 +8,8 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       addDatacenter: /* @ngInject */ ($state) => () =>
         $state.go('app.managedBaremetal.details.datacenters.add-datacenter'),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('managed_baremetal_datacenters'),
     },
   });
 };

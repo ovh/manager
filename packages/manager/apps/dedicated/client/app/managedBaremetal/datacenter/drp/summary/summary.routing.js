@@ -16,6 +16,7 @@ export default /* @ngInject */ ($stateProvider) => {
           $state.go(
             'app.managedBaremetal.details.datacenters.datacenter.drp.summary.deleteDrp',
           ),
+        breadcrumb: () => null,
       },
     },
   );
