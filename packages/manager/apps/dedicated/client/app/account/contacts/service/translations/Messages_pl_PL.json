@@ -37,5 +37,6 @@
   "account_contacts_service_contact_billing": "Kontakt księgowy",
   "account_contacts_service_infos": "Możesz zmienić kontakt administracyjny, techniczny i księgowy dla swoich usług.",
   "account_contacts_service_category_OVH_CLOUD_CONNECT": "OVHCloud Connect",
-  "account_contacts_service_category_ESSENTIALS": "Essentials"
+  "account_contacts_service_category_ESSENTIALS": "Essentials",
+  "account_contacts_service_category_LOGS": "Logs Data Platform"
 }
