@@ -1,6 +1,6 @@
 {
-  "vrack_move_dialog_title": "Verschieben eines Private Cloud Rechenzentrums",
-  "vrack_move_dialog_intro": "Sie haben eine Dienstleistung vom Typ Rechenzentrum Private Cloud gewählt. Dieser Dienst kann nicht allein stehen und muss in ein anderes vRack transferiert werden.",
+  "vrack_move_dialog_title_dedicatedCloudDatacenter": "Verschieben eines Private Cloud Rechenzentrums",
+  "vrack_move_dialog_intro_dedicatedCloudDatacenter": "Sie haben eine Dienstleistung vom Typ Rechenzentrum Private Cloud gewählt. Dieser Dienst kann nicht allein stehen und muss in ein anderes vRack transferiert werden.",
   "vrack_move_dialog_warning_notice": "Dieser Vorgang führt zu einer Dienstunterbrechung von etwa 5 Minuten.",
   "vrack_move_dialog_choose_vrack_label": "Ziel-vRack:",
   "vrack_move_dialog_choose_vrack_default_option": "vRack auswählen",
