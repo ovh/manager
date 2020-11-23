@@ -854,50 +854,24 @@ export default class {
    * The isUpgradable variable can also removed
    * @returns {Promise<{}>}
    */
-  async simulateUpgradeAvailability() {
-    try {
-      const cdnVersion = get(this.$scope.cdnProperties, 'version', '');
+  simulateUpgradeAvailability() {
+    const cdnVersion = get(this.$scope.cdnProperties, 'version', '');
+    if (cdnVersion === HOSTING_CDN_ORDER_CDN_VERSION_V1) {
       const { serviceName } = this.$scope.hosting;
-      if (cdnVersion === HOSTING_CDN_ORDER_CDN_VERSION_V1) {
-        const {
-          data: servInfo,
-        } = await this.HostingCdnSharedService.getServiceInfo(serviceName);
-
-        const {
-          data: servOpts,
-        } = await this.HostingCdnSharedService.getServiceOptions(
-          servInfo.serviceId,
-        );
-
-        const { serviceId } = find(
-          servOpts,
-          ({ billing }) =>
-            billing.plan.code.match('^cdn') &&
-            billing.plan.code.match('_business$'),
-        );
-
-        const {
-          data: addonPlans,
-        } = await this.HostingCdnSharedService.getCatalogAddonsPlan(serviceId);
-
-        const addonPlan = find(addonPlans, ({ planCode }) =>
-          includes(['cdn-basic', 'cdn-basic-free'], planCode),
-        );
-
-        await this.HostingCdnOrderService.simulateCartForUpgrade(
-          serviceName,
-          addonPlan,
-          serviceId,
-        );
-        this.$scope.isUpgradable = true;
-        return {};
-      }
-      this.$scope.isUpgradable = true;
-      return {};
-    } catch (e) {
-      this.$scope.isUpgradable = false;
-      return {};
+      return this.HostingCdnSharedService.simulateUpgrade(
+        serviceName,
+        this.HostingCdnOrderService,
+      )
+        .then(() => {
+          this.$scope.isUpgradable = true;
+        })
+        .catch(() => {
+          this.$scope.isUpgradable = false;
+          return this.$q.resolve();
+        });
     }
+    this.$scope.isUpgradable = true;
+    return this.$q.resolve();
   }
 
   setSelectedTab(tab) {
