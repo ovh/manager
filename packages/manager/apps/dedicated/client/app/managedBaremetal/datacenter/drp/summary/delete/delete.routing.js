@@ -14,6 +14,7 @@ export default /* @ngInject */ ($stateProvider) => {
           dedicatedCloudDrp.constructor.getPlanServiceInformations(currentDrp),
 
         goBack: /* @ngInject */ ($state) => () => $state.go('^'),
+        breadcrumb: () => null,
       },
     },
   );

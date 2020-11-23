@@ -48,6 +48,8 @@ export default /* @ngInject */ ($stateProvider) => {
 
           return promise;
         },
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('managed_baremetal_datacenters_datacenter_host'),
       },
     },
   );
