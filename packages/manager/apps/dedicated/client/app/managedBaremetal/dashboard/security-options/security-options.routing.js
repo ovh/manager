@@ -15,6 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         optionName: /* @ngInject */ ($transition$) =>
           $transition$.params().optionName,
+        breadcrumb: () => null,
       },
     },
   );

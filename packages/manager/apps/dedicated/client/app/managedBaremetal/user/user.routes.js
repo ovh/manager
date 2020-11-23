@@ -47,6 +47,8 @@ export default /* @ngInject */ ($stateProvider) => {
           passwordPolicy,
           user,
         }),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('managed_baremetal_user_rights'),
     },
   });
 
@@ -55,6 +57,7 @@ export default /* @ngInject */ ($stateProvider) => {
     redirectTo: 'app.dedicatedCloud.details.users',
     resolve: {
       userId: /* @ngInject */ ($transition$) => $transition$.params().userId,
+      breadcrumb: /* @ngInject */ (userId) => userId,
     },
   });
 };

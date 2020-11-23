@@ -212,6 +212,8 @@ export default /* @ngInject */ ($stateProvider) => {
           $location.hash('dedicatedCloud_datacenter_backup_header');
           $anchorScroll();
         },
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('managed_baremetal_datacenters_datacenter_backup'),
       },
     },
   );

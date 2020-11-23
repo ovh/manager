@@ -20,6 +20,7 @@ export default /* @ngInject */ ($stateProvider) => {
         goBack: /* @ngInject */ (goBackToDashboard) => goBackToDashboard,
         trackingPrefix: () =>
           'dedicated::dedicatedClouds::dashboard::associate-ip-bloc',
+        breadcrumb: () => null,
       },
     },
   );

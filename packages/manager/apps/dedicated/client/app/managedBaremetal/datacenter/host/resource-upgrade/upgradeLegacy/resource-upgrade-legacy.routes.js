@@ -20,6 +20,7 @@ export default /* @ngInject */ ($stateProvider) => {
         type: /* @ngInject */ ($transition$) => $transition$.params().type,
         upgradeType: /* @ngInject */ ($transition$) =>
           $transition$.params().upgradeType,
+        breadcrumb: () => null,
       },
     },
   );

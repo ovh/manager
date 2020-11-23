@@ -9,6 +9,7 @@ const moduleName = 'managedBaremetalLicenseModule';
 
 angular
   .module(moduleName, [datacenterLicenseComponent, enable, enableLegacy])
-  .config(routing);
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

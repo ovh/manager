@@ -16,6 +16,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $transition$.params().policies,
       selectedPolicies: /* @ngInject */ ($transition$) =>
         $transition$.params().selectedPolicies,
+      breadcrumb: () => null,
     },
   });
 };

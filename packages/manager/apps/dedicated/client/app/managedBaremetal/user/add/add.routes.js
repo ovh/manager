@@ -13,6 +13,7 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       passwordPolicy: /* @ngInject */ ($transition$) =>
         $transition$.params().passwordPolicy,
+      breadcrumb: () => null,
     },
   });
 };
