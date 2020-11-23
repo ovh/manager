@@ -17,15 +17,16 @@
             data-ng-click="$ctrl.toggleAccordion('mapped', 'types', $index)"
         >
             <i
-                class="vrack__service-type-icon ovh-font"
+                class="vrack__service-type-icon"
                 data-ng-class="{
-                'ovh-font-dedicatedCloud': serviceType === 'dedicatedCloud' || serviceType === 'dedicatedCloudDatacenter',
-                'ovh-font-public-cloud': serviceType === 'cloudProject',
-                'ovh-font-iplb' : serviceType === 'ipLoadbalancing',
-                'ovh-font-ip': serviceType === 'ip',
-                'ovh-font-server': serviceType === 'dedicatedServer' || serviceType === 'dedicatedServerInterface',
-                'ovh-font-network': serviceType === 'dedicatedConnect',
-                'ovh-font-vRack': serviceType === 'legacyVrack'}"
+                'ovh-font ovh-font-dedicatedCloud': serviceType === 'dedicatedCloud' || serviceType === 'dedicatedCloudDatacenter',
+                'oui-icon oui-icon-cloud-essential_concept': serviceType === 'managedBareMetal' || serviceType === 'managedBareMetalDatacenter',
+                'ovh-font ovh-font-public-cloud': serviceType === 'cloudProject',
+                'ovh-font ovh-font-iplb' : serviceType === 'ipLoadbalancing',
+                'ovh-font ovh-font-ip': serviceType === 'ip',
+                'ovh-font ovh-font-server': serviceType === 'dedicatedServer' || serviceType === 'dedicatedServerInterface',
+                'ovh-font ovh-font-network': serviceType === 'dedicatedConnect',
+                'ovh-font ovh-font-vRack': serviceType === 'legacyVrack'}"
             >
             </i>
             <span data-ng-bind="::$ctrl.getDisplayName(serviceType)"></span>
@@ -52,7 +53,7 @@
 
         <ul
             class="vrack__service-group-list"
-            data-ng-if="serviceType === 'dedicatedCloud'"
+            data-ng-if="serviceType === 'dedicatedCloud' || serviceType === 'managedBareMetal'"
         >
             <li
                 class="vrack__service-group"
@@ -88,7 +89,7 @@
 
         <ul
             class="vrack__service-group-list"
-            data-ng-if="serviceType === 'dedicatedCloudDatacenter'"
+            data-ng-if="serviceType === 'dedicatedCloudDatacenter' || serviceType === 'managedBareMetalDatacenter'"
         >
             <li
                 class="vrack__service-group"
