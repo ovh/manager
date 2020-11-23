@@ -34,7 +34,7 @@
         </oui-datagrid-column>
         <oui-action-menu data-compact data-placement="end">
             <oui-action-menu-item
-                data-disabled="!$row.isError() || !row.isInProcess() || $ctrl.cloudConnect.validServiceKey"
+                data-disabled="$ctrl.cloudConnect.validServiceKey"
                 data-on-click="$ctrl.goToRegenerateServiceKeyPage($row.id)"
                 ><span data-translate="cloud_connect_regenerate"></span
             ></oui-action-menu-item>
