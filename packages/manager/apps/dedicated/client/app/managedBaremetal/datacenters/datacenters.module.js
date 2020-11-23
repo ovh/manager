@@ -9,6 +9,7 @@ const moduleName = 'managedBaremetalDatacenters';
 
 angular
   .module(moduleName, [add, datacentersComponent, datacenter])
-  .config(routing);
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

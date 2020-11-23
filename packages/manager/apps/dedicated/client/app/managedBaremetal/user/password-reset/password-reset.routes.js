@@ -17,6 +17,7 @@ export default /* @ngInject */ ($stateProvider) => {
         passwordPolicy: /* @ngInject */ ($transition$) =>
           $transition$.params().passwordPolicy,
         user: /* @ngInject */ ($transition$) => $transition$.params().user,
+        breadcrumb: () => null,
       },
     },
   );

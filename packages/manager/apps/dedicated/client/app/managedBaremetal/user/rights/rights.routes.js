@@ -10,6 +10,8 @@ export default /* @ngInject */ ($stateProvider) => {
           rightId,
           userId,
         }),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('managed_baremetal_user_rights'),
     },
   });
 };

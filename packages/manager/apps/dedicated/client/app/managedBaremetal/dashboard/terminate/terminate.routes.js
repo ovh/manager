@@ -23,5 +23,6 @@ export default /* @ngInject */ ($stateProvider) =>
                 'dedicated-cloud:deleteAtExpiration',
               ) && !currentUser.isEnterprise,
           ),
+      breadcrumb: () => null,
     },
   });

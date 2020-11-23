@@ -9,6 +9,7 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         actualOffer: /* @ngInject */ ($transition$) =>
           $transition$.params().actualOffer,
+        breadcrumb: () => null,
       },
       views: {
         modal: {

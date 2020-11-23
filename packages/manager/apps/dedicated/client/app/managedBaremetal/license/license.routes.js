@@ -11,6 +11,8 @@ export default /* @ngInject */ ($stateProvider) => {
         message = false,
         type = 'success',
       ) => goBackToState('app.managedBaremetal.details.license', message, type),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('managed_baremetal_license'),
     },
   });
 };

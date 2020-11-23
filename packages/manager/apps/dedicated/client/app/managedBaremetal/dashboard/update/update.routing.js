@@ -15,6 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
       targetVersion: /* @ngInject */ ($transition$) =>
         $transition$.params().targetVersion,
       goBack: /* @ngInject */ (goBackToDashboard) => goBackToDashboard,
+      breadcrumb: () => null,
     },
   });
 };

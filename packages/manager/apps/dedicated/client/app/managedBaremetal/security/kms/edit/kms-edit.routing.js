@@ -13,6 +13,7 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       kmsToEdit: /* @ngInject */ ($transition$) =>
         $transition$.params().kmsToEdit,
+      breadcrumb: () => null,
     },
   });
 };

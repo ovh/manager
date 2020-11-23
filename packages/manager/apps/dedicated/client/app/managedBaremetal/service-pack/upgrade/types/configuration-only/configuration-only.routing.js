@@ -14,6 +14,8 @@ export const state = {
       ),
     steps: /* @ngInject */ (pccServicePackUpgradeService) =>
       pccServicePackUpgradeService.buildSteps(stepModuleNames),
+    breadcrumb: /* @ngInject */ ($translate) =>
+      $translate.instant('managed_baremetal_servicepack_upgrade_configuration'),
   },
   url: '/configurationOnly',
   views: {

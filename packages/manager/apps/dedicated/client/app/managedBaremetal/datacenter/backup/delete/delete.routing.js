@@ -9,6 +9,9 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       },
       layout: 'modal',
+      resolve: {
+        breadcrumb: () => null,
+      },
     },
   );
 };

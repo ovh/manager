@@ -10,6 +10,10 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         goBack: /* @ngInject */ (goBackToDatastore) => goBackToDatastore,
         datacenterModel: /* @ngInject */ (datacenter) => datacenter.model,
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant(
+            'managed_baremetal_datacenters_datacenter_datastores_order_legacy',
+          ),
       },
     },
   );

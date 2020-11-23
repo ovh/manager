@@ -8,6 +8,7 @@ const moduleName = 'managedBaremetalOperationModule';
 
 angular
   .module(moduleName, [datacenterOperationComponent, executionDateEdit])
-  .config(routing);
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

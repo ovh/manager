@@ -141,6 +141,8 @@ export default /* @ngInject */ ($stateProvider) => {
               drpInformations,
             },
           ),
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('managed_baremetal_datacenters_datacenter_drp'),
       },
     },
   );
