@@ -12,6 +12,7 @@ angular.module('App').controller(
       this.$state = $state;
       this.$transitions = $transitions;
       this.$translate = $translate;
+      this.chatbotEnabled = false;
     }
 
     $onInit() {
@@ -22,6 +23,10 @@ angular.module('App').controller(
 
       this.currentLanguage = Environment.getUserLanguage();
       this.user = Environment.getUser();
+      const unregisterListener = this.$scope.$on('app:started', () => {
+        this.chatbotEnabled = true;
+        unregisterListener();
+      });
 
       this.navbarOptions = {
         toggle: {
