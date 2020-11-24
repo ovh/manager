@@ -1,7 +1,7 @@
 class zendeskService {
-  constructor($translate, User) {
+  constructor($translate, ducUser) {
     this.$translate = $translate;
-    this.User = User;
+    this.User = ducUser;
   }
 
   getLanguageCodeFromTranslator() {
@@ -63,4 +63,4 @@ class zendeskService {
 
 angular
   .module('services')
-  .service('zendesk', ['$translate', 'User', zendeskService]);
+  .service('zendesk', ['$translate', 'ducUser', zendeskService]);

@@ -6,11 +6,11 @@ import sortBy from 'lodash/sortBy';
 
 export default class {
   /* @ngInject */
-  constructor($q, $scope, OvhHttp, User) {
+  constructor($q, $scope, OvhHttp, ducUser) {
     this.$q = $q;
     this.$scope = $scope;
     this.OvhHttp = OvhHttp;
-    this.User = User;
+    this.User = ducUser;
   }
 
   fetchOffers() {

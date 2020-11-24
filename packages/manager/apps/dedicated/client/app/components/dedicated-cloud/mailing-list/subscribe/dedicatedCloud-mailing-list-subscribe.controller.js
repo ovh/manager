@@ -2,10 +2,10 @@ import { DEDICATEDCLOUD_MAILING_LIST } from './dedicatedCloud-mailing-list-subsc
 
 export default class {
   /* @ngInject */
-  constructor($translate, dedicatedCloudMailingList, User) {
+  constructor($translate, dedicatedCloudMailingList, ducUser) {
     this.$translate = $translate;
     this.dedicatedCloudMailingList = dedicatedCloudMailingList;
-    this.User = User;
+    this.User = ducUser;
 
     // controller attributes
     this.loading = {

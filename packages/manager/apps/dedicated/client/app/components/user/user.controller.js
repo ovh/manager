@@ -1,17 +1,17 @@
-export default [
+angular.module('App').controller('UserCtrl', [
   '$scope',
   '$http',
-  'User',
+  'ducUser',
   'ssoAuthentication',
-  function UserCtrl($scope, $http, User, authentication) {
+  function UserCtrl($scope, $http, ducUser, authentication) {
     $scope.user = null;
 
     $scope.logout = function logout() {
       authentication.logout();
     };
 
-    User.getUser().then((user) => {
+    ducUser.getUser().then((user) => {
       $scope.user = user;
     });
   },
-];
+]);

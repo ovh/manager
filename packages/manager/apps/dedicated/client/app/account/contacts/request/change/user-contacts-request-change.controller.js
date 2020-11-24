@@ -8,14 +8,14 @@ angular
     '$translate',
     'UserAccount.services.Contacts',
     'Alerter',
-    'User',
+    'ducUser',
     function UserAccountContactsRequestController(
       $scope,
       $stateParams,
       $translate,
       Contacts,
       Alerter,
-      User,
+      ducUser,
     ) {
       $scope.task = angular.copy($scope.currentActionData.task);
       $scope.action = $scope.currentActionData.action;
@@ -123,7 +123,7 @@ angular
       };
 
       function getUser() {
-        User.getUser().then(
+        ducUser.getUser().then(
           (user) => {
             $scope.user = user;
           },

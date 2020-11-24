@@ -33,5 +33,7 @@ import './stepper/stepper.step-collection';
 import './stepper/stepper.transition-management';
 import './string/SliceContent';
 import './string/SliceEmail';
+import './user/session/user-session.controller';
+import './user/user.controller';
 import './validator/validator.service';
 import './zendesk/zendesk.service';

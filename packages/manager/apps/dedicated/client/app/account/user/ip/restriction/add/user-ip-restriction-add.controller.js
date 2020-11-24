@@ -9,7 +9,7 @@ angular
     'Alerter',
     'atInternet',
     'UserAccount.services.ipRestrictions',
-    'UserValidator',
+    'ducUserValidator',
     function UserAccountIpRestrictionsAddController(
       $rootScope,
       $scope,

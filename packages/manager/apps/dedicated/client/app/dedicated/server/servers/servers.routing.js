@@ -31,7 +31,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       filter: /* @ngInject */ ($transition$) => $transition$.params().filter,
-      orderUrl: /* @ngInject */ (User) => User.getUrlOf('dedicatedOrder'),
+      orderUrl: /* @ngInject */ (ducUser) => ducUser.getUrlOf('dedicatedOrder'),
       getServerDashboardLink: /* @ngInject */ ($state) => (server) =>
         $state.href('app.dedicated.server', { productId: server.name }),
       dedicatedServers: /* @ngInject */ ($transition$, iceberg) => {

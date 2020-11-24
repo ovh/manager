@@ -5,6 +5,8 @@ import './sshkeySwitch.css';
 
 const moduleName = 'ducSshkeySwitch';
 
-angular.module(moduleName, []).directive('sshkeySwitch', sshKeySwitchDirective);
+angular
+  .module(moduleName, [])
+  .directive('ducSshkeySwitch', sshKeySwitchDirective);
 
 export default moduleName;

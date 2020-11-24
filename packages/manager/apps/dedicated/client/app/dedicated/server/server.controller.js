@@ -20,7 +20,7 @@ export default class ServerCtrl {
     ovhUserPref,
     Polling,
     Server,
-    User,
+    ducUser,
   ) {
     this.$q = $q;
     this.$scope = $scope;
@@ -32,7 +32,7 @@ export default class ServerCtrl {
     this.ovhUserPref = ovhUserPref;
     this.Polling = Polling;
     this.Server = Server;
-    this.User = User;
+    this.User = ducUser;
   }
 
   $onInit() {

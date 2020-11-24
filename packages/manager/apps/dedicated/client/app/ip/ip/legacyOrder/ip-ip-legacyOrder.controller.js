@@ -23,7 +23,7 @@ angular.module('Module.ip.controllers').controller(
       IpAgoraOrder,
       IpLegacyOrder,
       IpOrganisation,
-      User,
+      ducUser,
     ) {
       this.$q = $q;
       this.$rootScope = $rootScope;
@@ -38,7 +38,7 @@ angular.module('Module.ip.controllers').controller(
       this.IpAgoraOrder = IpAgoraOrder;
       this.IpLegacyOrder = IpLegacyOrder;
       this.IpOrganisation = IpOrganisation;
-      this.User = User;
+      this.User = ducUser;
     }
 
     $onInit() {

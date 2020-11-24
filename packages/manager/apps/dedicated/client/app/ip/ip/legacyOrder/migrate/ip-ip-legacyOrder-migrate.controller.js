@@ -9,7 +9,7 @@ angular
       $q,
       $translate,
       IpLegacyOrder,
-      User,
+      ducUser,
       Alerter,
       $rootScope,
       Validator,
@@ -81,7 +81,7 @@ angular
         );
 
         queue.push(
-          User.getUser().then((data) => {
+          ducUser.getUser().then((data) => {
             $scope.user = data;
           }),
         );

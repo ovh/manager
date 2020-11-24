@@ -9,7 +9,7 @@ angular
     'Alerter',
     'agreementId',
     '$translate',
-    'User',
+    'ducUser',
     'GDPR_AGREEMENTS_INFOS',
     'AGREEMENT_GENERIC_MORE_INFORMATIONS_URL',
     function UserAccountAgreementsDtailsController(
@@ -18,7 +18,7 @@ angular
       Alerter,
       agreementId,
       $translate,
-      User,
+      ducUser,
       GDPR_AGREEMENTS_INFOS,
       AGREEMENT_GENERIC_MORE_INFORMATIONS_URL,
     ) {
@@ -33,7 +33,7 @@ angular
         $q.all([
           Service.getAgreement(agreementId),
           Service.getContract(agreementId),
-          User.getUser(),
+          ducUser.getUser(),
         ])
           .then(([agreement, contract, user]) => {
             this.agreement = agreement;

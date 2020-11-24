@@ -8,7 +8,7 @@ export default class UserAccountSshCtrl {
     $timeout,
     $translate,
     UseraccountSshService,
-    User,
+    ducUser,
     constants,
     $log,
     Alerter,
@@ -17,7 +17,7 @@ export default class UserAccountSshCtrl {
     this.$q = $q;
     this.$translate = $translate;
     this.UseraccountSshService = UseraccountSshService;
-    this.User = User;
+    this.User = ducUser;
     this.constants = constants;
     this.$log = $log;
     this.Alerter = Alerter;

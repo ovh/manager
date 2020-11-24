@@ -15,7 +15,7 @@ angular
       BillingmessageParser,
       BillingOvhAccount,
       BillingdateRangeSelection,
-      User,
+      ducUser,
     ) => {
       $scope.ovhAccountLoading = false;
       $scope.ovhAccountsLoading = false;
@@ -29,7 +29,7 @@ angular
       function init() {
         $scope.ovhAccountsLoading = true;
 
-        User.getUser().then((user) => {
+        ducUser.getUser().then((user) => {
           $scope.user = user;
         });
 

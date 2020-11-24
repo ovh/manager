@@ -5,7 +5,7 @@ angular
   .module('App')
   .controller(
     'ServerOrderLegacyBandwidthCtrl',
-    ($scope, $state, $stateParams, $translate, Alerter, Server, User) => {
+    ($scope, $state, $stateParams, $translate, Alerter, Server, ducUser) => {
       $scope.orderable = null;
 
       $scope.orderableBandwidth = {
@@ -38,7 +38,8 @@ angular
           value: null,
         };
 
-        User.getUser()
+        ducUser
+          .getUser()
           .then((data) => {
             $scope.user.value = data;
           })

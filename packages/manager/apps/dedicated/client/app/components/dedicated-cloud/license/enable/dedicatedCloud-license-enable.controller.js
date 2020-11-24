@@ -2,10 +2,10 @@ import head from 'lodash/head';
 
 export default class {
   /* @ngInject */
-  constructor($translate, ovhManagerPccLicenseEnableService, User) {
+  constructor($translate, ovhManagerPccLicenseEnableService, ducUser) {
     this.$translate = $translate;
     this.ovhManagerPccLicenseEnableService = ovhManagerPccLicenseEnableService;
-    this.User = User;
+    this.User = ducUser;
   }
 
   $onInit() {

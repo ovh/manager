@@ -7,13 +7,13 @@ import { ORDER_PARAMETERS, RESOURCE_UPGRADE_TYPES } from './upgrade.constants';
 
 export default class {
   /* @ngInject */
-  constructor($http, $q, $translate, $window, OvhApiDedicatedCloud, User) {
+  constructor($http, $q, $translate, $window, OvhApiDedicatedCloud, ducUser) {
     this.$q = $q;
     this.$http = $http;
     this.$translate = $translate;
     this.$window = $window;
     this.OvhApiDedicatedCloud = OvhApiDedicatedCloud;
-    this.User = User;
+    this.User = ducUser;
   }
 
   $onInit() {

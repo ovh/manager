@@ -3,7 +3,7 @@ angular
   .run(/* @ngTranslationsInject:json ./translations */)
   .run(
     /* @ngInject */
-    ($q, $rootScope, $translate, coreConfig, SidebarMenu, User) => {
+    ($q, $rootScope, $translate, coreConfig, SidebarMenu, ducUser) => {
       function buildMyAccountMenu() {
         SidebarMenu.addMenuItem({
           name: 'userAccountMenu',
@@ -75,7 +75,7 @@ angular
         return $q
           .all({
             translate: $translate.refresh(),
-            user: User.getUser(),
+            user: ducUser.getUser(),
           })
           .then((result) => {
             SidebarMenu.addMenuItem({

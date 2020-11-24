@@ -76,7 +76,8 @@ export default /* @ngInject */ ($stateProvider) => {
             return {};
           })
           .catch((error) => (error.status === 404 ? {} : $q.reject(error))),
-      changeOwnerUrl: /* @ngInject */ (User) => User.getUrlOf('changeOwner'),
+      changeOwnerUrl: /* @ngInject */ (ducUser) =>
+        ducUser.getUrlOf('changeOwner'),
       eligibleData: /* @ngInject */ (Server, user) => {
         const isEligible = includes(
           ELIGIBLE_FOR_UPGRADE.SUBSIDIARIES,

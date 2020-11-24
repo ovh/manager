@@ -1,3 +1,5 @@
+import punycode from 'punycode';
+
 /* eslint-disable no-unused-vars */
 export default /* @ngInject */ function UserValidatorService() {
   const self = this;

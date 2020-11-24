@@ -3,13 +3,13 @@ import isEmpty from 'lodash/isEmpty';
 
 export default class {
   /* @ngInject */
-  constructor($q, $rootScope, $translate, $window, DedicatedCloud, User) {
+  constructor($q, $rootScope, $translate, $window, DedicatedCloud, ducUser) {
     this.$q = $q;
     this.$rootScope = $rootScope;
     this.$translate = $translate;
     this.$window = $window;
     this.DedicatedCloud = DedicatedCloud;
-    this.User = User;
+    this.User = ducUser;
   }
 
   $onInit() {
