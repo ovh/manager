@@ -14,7 +14,7 @@ angular
       Alerter,
       atInternet,
       BillingOvhAccount,
-      User,
+      ducUser,
       OVH_ACCOUNT_EVENT,
       ovhPaymentMethod,
     ) => {
@@ -37,7 +37,7 @@ angular
 
       $scope.initStep1 = () => {
         $scope.loading = true;
-        $q.all([getBankAccounts(), User.getUser()])
+        $q.all([getBankAccounts(), ducUser.getUser()])
           .then(([bankAccounts, user]) => {
             $scope.bankAccounts = bankAccounts;
             $scope.user = user;

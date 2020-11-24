@@ -21,7 +21,7 @@ angular
       License,
       licenseFeatureAvailability,
       LicenseOrder,
-      User,
+      ducUser,
     ) => {
       $scope.nbLicence = {
         value: 0,
@@ -268,7 +268,8 @@ angular
           quantity: 1,
         };
 
-        return User.getUrlOf('express_order_resume')
+        return ducUser
+          .getUrlOf('express_order_resume')
           .then((url) => {
             $scope.selected.agoraUrl = `${url}?products=${JSURL.stringify([
               expressParams,

@@ -11,7 +11,7 @@ class ServerOrderLegacyBandwidthVrackCtrl {
     $stateParams,
     $translate,
     Alerter,
-    User,
+    ducUser,
     BandwidthVrackOrderService,
   ) {
     this.$scope = $scope;
@@ -20,7 +20,7 @@ class ServerOrderLegacyBandwidthVrackCtrl {
     this.$translate = $translate;
     this.Alerter = Alerter;
     this.BandwidthVrackOrderService = BandwidthVrackOrderService;
-    this.User = User;
+    this.User = ducUser;
 
     const loadingStruct = {
       loading: false,

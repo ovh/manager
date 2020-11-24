@@ -15,7 +15,7 @@ angular
       DedicatedServerFeatureAvailability,
       Polling,
       Server,
-      User,
+      ducUser,
     ) => {
       $scope.ttl = '5';
       $scope.alert = 'server_tab_ipmi_alert';
@@ -414,11 +414,11 @@ angular
 
       // ------------Loader------------
       $scope.init = function init() {
-        User.getUrlOf('dedicatedIpmi').then((link) => {
+        ducUser.getUrlOf('dedicatedIpmi').then((link) => {
           $scope.ipmiHelpUrl = link;
         });
 
-        User.getUser().then((user) => {
+        ducUser.getUser().then((user) => {
           $scope.user = user;
         });
 

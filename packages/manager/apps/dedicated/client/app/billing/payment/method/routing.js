@@ -21,7 +21,7 @@ export default /* @ngInject */ (
         return $state.href(`${name}.${action}`, params);
       },
 
-      guides: /* @ngInject */ (User) => User.getUrlOf('guides'),
+      guides: /* @ngInject */ (ducUser) => ducUser.getUrlOf('guides'),
 
       paymentMethods: /* @ngInject */ (
         OVH_PAYMENT_MEAN_STATUS,

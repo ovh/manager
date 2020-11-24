@@ -2,12 +2,12 @@ import includes from 'lodash/includes';
 
 export default class UserContractsCtrl {
   /* @ngInject */
-  constructor($scope, $timeout, coreConfig, DucUserContractService, User) {
+  constructor($scope, $timeout, coreConfig, DucUserContractService, ducUser) {
     this.$scope = $scope;
     this.$timeout = $timeout;
     this.coreConfig = coreConfig;
     this.DucUserContractService = DucUserContractService;
-    this.User = User;
+    this.User = ducUser;
   }
 
   $onInit() {

@@ -3,9 +3,9 @@ import get from 'lodash/get';
 angular.module('UserAccount').controller(
   'UserAccountUsersAddCtrl',
   class UserAccountUsersAddCtrl {
-    constructor($scope, User, UseraccountUsersService, Alerter, $translate) {
+    constructor($scope, ducUser, UseraccountUsersService, Alerter, $translate) {
       this.$scope = $scope;
-      this.userService = User;
+      this.userService = ducUser;
       this.usersService = UseraccountUsersService;
       this.alerter = Alerter;
       this.$translate = $translate;

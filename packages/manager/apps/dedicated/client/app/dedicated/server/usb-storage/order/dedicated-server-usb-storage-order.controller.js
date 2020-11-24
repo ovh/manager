@@ -11,10 +11,10 @@ angular
       $stateParams,
       $translate,
       Server,
-      User,
+      ducUser,
       Alerter,
     ) => {
-      User.getUser().then((user) => {
+      ducUser.getUser().then((user) => {
         $scope.ovhSubsidiary = user.ovhSubsidiary;
       });
 

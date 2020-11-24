@@ -9,14 +9,14 @@ import set from 'lodash/set';
       $scope,
       $stateParams,
       $translate,
-      User,
+      ducUser,
       ServerOrderTrafficService,
     ) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
       this.$translate = $translate;
       this.ServerOrderTrafficService = ServerOrderTrafficService;
-      this.User = User;
+      this.User = ducUser;
 
       const loadingStruct = {
         loading: false,

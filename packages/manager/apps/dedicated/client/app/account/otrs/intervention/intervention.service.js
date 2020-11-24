@@ -7,7 +7,7 @@ angular
   .module('Module.otrs.services')
   .service(
     'Module.otrs.services.Intervention',
-    function OtrsInterventionService($q, OvhHttp, User, constants) {
+    function OtrsInterventionService($q, OvhHttp, ducUser, constants) {
       const self = this;
 
       const cacheServer = {
@@ -93,7 +93,7 @@ angular
       };
 
       self.getGuidesForDiskIntervention = function getGuidesForDiskIntervention() {
-        return User.getUser().then((user) => {
+        return ducUser.getUser().then((user) => {
           if (user && has(constants.urls, [user.ovhSubsidiary, 'guides'])) {
             return {
               diskSerial:

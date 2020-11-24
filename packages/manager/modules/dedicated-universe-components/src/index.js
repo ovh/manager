@@ -8,14 +8,13 @@ import ducPrice from './price';
 import ducTabs from './tabs';
 import ducTranslate from './translate';
 
-import ducCheckboxSwitch from './directives/checkboxSwitch';
 import ducSshKeySwitch from './directives/sshkeySwitch';
 
 import config from './config';
-import user from './user';
 import noDefaultMeansOfPayment from './no-default-means-of-payment';
 import sshkeyMinFilter from './filters/sshkeyMin';
 import validatorService from './validator.service';
+import userService from './user.service';
 
 const moduleName = 'ngOvhDedicatedUniverseComponents';
 
@@ -28,55 +27,22 @@ angular
     ducPrice,
     ducTabs,
     ducTranslate,
-    ducCheckboxSwitch,
     ducSshKeySwitch,
-    user,
     noDefaultMeansOfPayment,
   ])
-  .constant('constants', {
+  .constant('ducConstants', {
     swsProxyRootPath: config.swsProxyRootPath,
-    aapiRootPath: config.aapiRootPath,
-    target: config.target,
-    renew: config.constants.RENEW_URL,
-    urls: config.constants.URLS,
-    UNIVERS: config.constants.UNIVERS,
-    TOP_GUIDES: config.constants.TOP_GUIDES,
-    vmsUrl: config.constants.vmsUrl,
-    travauxUrl: config.constants.travauxUrl,
-    aapiHeaderName: 'X-Ovh-Session',
-    vrackUrl: config.constants.vrackUrl,
-    REDIRECT_URLS: config.constants.REDIRECT_URLS,
-    DEFAULT_LANGUAGE: config.constants.DEFAULT_LANGUAGE,
-    FALLBACK_LANGUAGE: config.constants.FALLBACK_LANGUAGE,
-    SUPPORT: config.constants.SUPPORT,
-    billingRenew: config.constants.billingRenew,
+    urls: config.ducConstants.URLS,
   })
-  .constant('website_url', config.constants.website_url)
-  .constant('BILLING_BASE_URL', 'billing/')
-  .constant('Billing.constants', {
-    aapiRootPath: config.aapiRootPath,
-    swsProxyRootPath: config.swsProxyRootPath,
+  .constant('ducPaymentMeans', {
     paymentMeans: [
       'bankAccount',
       'paypal',
       'creditCard',
       'deferredPaymentAccount',
     ],
-    target: config.target,
   })
-  .constant('Billing.URLS', {
-    renew: config.constants.billingRenew,
-  })
-  .constant('UserAccount.constants', {
-    aapiRootPath: config.aapiRootPath,
-    swsProxyRootPath: config.swsProxyRootPath,
-    target: config.target,
-  })
-  .constant('CountryConstants', {
-    support: config.constants.URLS.support,
-  })
-  .constant('AccountCreationURLS', config.constants.accountCreation)
-  .constant('sshkey-regex', [
+  .constant('ducSshkeyRegex', [
     {
       name: 'RSA',
       regex: /^(ssh-rsa)\s+(A{4}[0-9A-Za-z +/]+[=]{0,3})\s+(\S+)$/,
@@ -90,7 +56,8 @@ angular
       regex: /^(ssh-ed25519)\s+(A{4}[0-9A-Za-z +/]+[=]{0,3})\s+(\S+)$/,
     },
   ])
-  .filter('sshkeyMin', sshkeyMinFilter)
-  .service('UserValidator', validatorService);
+  .filter('ducSshkeyMin', sshkeyMinFilter)
+  .service('ducUserValidator', validatorService)
+  .service('ducUser', userService);
 
 export default moduleName;

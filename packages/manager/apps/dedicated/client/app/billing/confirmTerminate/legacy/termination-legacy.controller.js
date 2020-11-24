@@ -4,11 +4,11 @@ import { SUB_TYPE_PROPERTIES } from './termination-legacy.constants';
 
 export default class TerminateServiceCtrl {
   /* @ngInject */
-  constructor($q, $stateParams, BillingTerminateLegacy, User) {
+  constructor($q, $stateParams, BillingTerminateLegacy, ducUser) {
     this.$q = $q;
     this.$stateParams = $stateParams;
     this.BillingTerminate = BillingTerminateLegacy;
-    this.User = User;
+    this.User = ducUser;
   }
 
   $onInit() {

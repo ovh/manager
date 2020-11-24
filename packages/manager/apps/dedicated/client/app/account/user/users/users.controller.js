@@ -6,7 +6,7 @@ export default class UserAccountUsersCtrl {
   /* @ngInject */
   constructor(
     $scope,
-    User,
+    ducUser,
     UseraccountUsersService,
     UseraccountGroupsService,
     $q,
@@ -15,7 +15,7 @@ export default class UserAccountUsersCtrl {
   ) {
     this.$scope = $scope;
     this.$q = $q;
-    this.userService = User;
+    this.userService = ducUser;
     this.usersService = UseraccountUsersService;
     this.groupsService = UseraccountGroupsService;
     this.alerter = Alerter;

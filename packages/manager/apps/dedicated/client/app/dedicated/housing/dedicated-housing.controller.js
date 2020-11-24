@@ -9,7 +9,7 @@ angular.module('App').controller('HousingCtrl', [
   'constants',
   'Housing',
   'ovhUserPref',
-  'User',
+  'ducUser',
   function HousingCtrl(
     $scope,
     $stateParams,
@@ -19,7 +19,7 @@ angular.module('App').controller('HousingCtrl', [
     constants,
     Housing,
     ovhUserPref,
-    User,
+    ducUser,
   ) {
     $scope.loadingHousingInformations = true;
     $scope.loadingHousingError = false;
@@ -64,12 +64,12 @@ angular.module('App').controller('HousingCtrl', [
           $scope.loadingHousingError = true;
         });
 
-      User.getUser().then((user) => {
+      ducUser.getUser().then((user) => {
         $scope.user = user;
         checkIfStopBotherHousingPhone();
       });
 
-      User.getUrlOf('changeOwner').then((link) => {
+      ducUser.getUrlOf('changeOwner').then((link) => {
         $scope.changeOwnerUrl = link;
       });
 

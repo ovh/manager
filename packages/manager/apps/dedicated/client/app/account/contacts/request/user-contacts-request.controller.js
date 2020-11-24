@@ -8,7 +8,7 @@ angular
     '$scope',
     'UserAccount.services.Contacts',
     'Alerter',
-    'User',
+    'ducUser',
     '$q',
     '$stateParams',
     '$translate',
@@ -16,7 +16,7 @@ angular
       $scope,
       Contacts,
       Alerter,
-      User,
+      ducUser,
       $q,
       $stateParams,
       $translate,
@@ -31,7 +31,7 @@ angular
       };
 
       function getUser() {
-        return User.getUser().then(
+        return ducUser.getUser().then(
           (user) => {
             self.user = user;
           },

@@ -7,14 +7,14 @@ class ServerCancelTrafficCtrl {
     $scope,
     $rootScope,
     $stateParams,
-    User,
+    ducUser,
     Server,
     ServerOrderTrafficService,
   ) {
     this.$scope = $scope;
     this.$stateParams = $stateParams;
     this.$rootScope = $rootScope;
-    this.User = User;
+    this.User = ducUser;
     this.Server = Server;
     this.ServerOrderTrafficService = ServerOrderTrafficService;
 

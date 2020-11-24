@@ -10,7 +10,7 @@ angular
       Ip,
       ipFeatureAvailability,
       IpOrganisation,
-      User,
+      ducUser,
     ) => {
       $scope.alert = 'ip_organisation_addedit_alerter';
       $scope.load = {
@@ -63,7 +63,7 @@ angular
         );
 
         queue.push(
-          User.getUser().then((data) => {
+          ducUser.getUser().then((data) => {
             $scope.newOrganisation.country = data.billingCountry;
           }),
         );

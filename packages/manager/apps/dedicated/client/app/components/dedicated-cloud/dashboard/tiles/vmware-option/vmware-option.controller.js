@@ -15,13 +15,20 @@ import config from '../../../../../config/config';
 
 export default class {
   /* @ngInject */
-  constructor($q, $translate, DedicatedCloud, dedicatedCloudDrp, User, Poller) {
+  constructor(
+    $q,
+    $translate,
+    DedicatedCloud,
+    dedicatedCloudDrp,
+    ducUser,
+    Poller,
+  ) {
     this.$q = $q;
     this.$translate = $translate;
     this.DedicatedCloud = DedicatedCloud;
     this.dedicatedCloudDrp = dedicatedCloudDrp;
     this.Poller = Poller;
-    this.User = User;
+    this.User = ducUser;
     this.DRP_OPTIONS = DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS;
     this.DRP_STATUS = DEDICATEDCLOUD_DATACENTER_DRP_STATUS;
     this.DRP_VPN_STATUS = DEDICATEDCLOUD_DATACENTER_DRP_VPN_CONFIGURATION_STATUS;

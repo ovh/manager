@@ -7,14 +7,14 @@ angular
     '$translate',
     'UserAccount.services.Contacts',
     'Alerter',
-    'User',
+    'ducUser',
 
     function UserAccountContactsRequestReceivedController(
       $scope,
       $translate,
       Contacts,
       Alerter,
-      User,
+      ducUser,
     ) {
       const self = this;
 
@@ -23,7 +23,7 @@ angular
       };
 
       function getUser() {
-        return User.getUser().then(
+        return ducUser.getUser().then(
           (user) => {
             self.user = user;
           },

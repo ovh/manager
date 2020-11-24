@@ -5,13 +5,13 @@ import isString from 'lodash/isString';
 angular.module('App').controller(
   'configurationCtrl',
   class ConfigurationCtrl {
-    constructor($q, $translate, constants, coreConfig, OvhHttp, User) {
-      this.$q = $q;
+    constructor($scope, $translate, constants, coreConfig, OvhHttp, ducUser) {
+      this.$scope = $scope;
       this.$translate = $translate;
       this.constants = constants;
-      this.coreConfig = coreConfig;
+      this.User = ducUser;
       this.OvhHttp = OvhHttp;
-      this.User = User;
+      this.coreConfig = coreConfig;
     }
 
     $onInit() {

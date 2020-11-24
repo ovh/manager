@@ -6,11 +6,11 @@ import sortBy from 'lodash/sortBy';
 
 export default class {
   /* @ngInject */
-  constructor($q, $translate, OvhHttp, User) {
+  constructor($q, $translate, OvhHttp, ducUser) {
     this.$q = $q;
     this.$translate = $translate;
     this.OvhHttp = OvhHttp;
-    this.User = User;
+    this.User = ducUser;
   }
 
   $onInit() {

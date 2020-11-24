@@ -7,13 +7,13 @@ import { DEDICATED_CLOUD_CONSTANTS } from '../../../dedicatedCloud.constant';
 
 export default class {
   /* @ngInject */
-  constructor($q, $scope, $translate, DedicatedCloud, Poller, User) {
+  constructor($q, $scope, $translate, DedicatedCloud, Poller, ducUser) {
     this.$q = $q;
     this.$scope = $scope;
     this.$translate = $translate;
     this.DedicatedCloud = DedicatedCloud;
     this.Poller = Poller;
-    this.User = User;
+    this.User = ducUser;
   }
 
   $onInit() {

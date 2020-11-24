@@ -16,7 +16,7 @@ angular
       License,
       licenseFeatureAvailability,
       LicenseOrder,
-      User,
+      ducUser,
     ) => {
       $scope.alerts = {
         order: 'license.alerts.order',
@@ -131,7 +131,7 @@ angular
         return $q
           .all({
             ips: License.ips(),
-            user: User.getUser(),
+            user: ducUser.getUser(),
           })
           .then((results) => {
             $scope.availableIpBlock = results.ips;
