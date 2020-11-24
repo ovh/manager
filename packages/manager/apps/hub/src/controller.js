@@ -1,19 +1,16 @@
 import { isString } from 'lodash-es';
 
+import { Environment } from '@ovh-ux/manager-config';
+
 export default class HubController {
   /* @ngInject */
-  constructor($document, $translate, SessionService) {
+  constructor($document) {
     this.$document = $document;
-    this.$translate = $translate;
-    this.SessionService = SessionService;
   }
 
   $onInit() {
-    [this.currentLanguage] = this.$translate.use().split('_');
-
-    this.SessionService.getUser().then((user) => {
-      this.user = user;
-    });
+    this.currentLanguage = Environment.getUserLanguage();
+    this.user = Environment.getUser();
   }
 
   /**
