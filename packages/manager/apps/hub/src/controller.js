@@ -4,13 +4,19 @@ import { Environment } from '@ovh-ux/manager-config';
 
 export default class HubController {
   /* @ngInject */
-  constructor($document) {
+  constructor($document, $scope) {
     this.$document = $document;
+    this.$scope = $scope;
+    this.chatbotEnabled = false;
   }
 
   $onInit() {
     this.currentLanguage = Environment.getUserLanguage();
     this.user = Environment.getUser();
+    const unregisterListener = this.$scope.$on('app:started', () => {
+      this.chatbotEnabled = true;
+      unregisterListener();
+    });
   }
 
   /**

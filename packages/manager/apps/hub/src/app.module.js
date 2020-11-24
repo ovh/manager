@@ -115,6 +115,7 @@ angular
     /* @ngInject */ ($rootScope, $transitions) => {
       const unregisterHook = $transitions.onSuccess({}, () => {
         detachPreloader();
+        $rootScope.$broadcast('app:started');
         unregisterHook();
       });
     },
