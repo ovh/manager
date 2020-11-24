@@ -5,6 +5,7 @@ export default class TelecomAppCtrl {
   constructor(
     $q,
     $state,
+    $scope,
     $transitions,
     $translate,
     betaPreferenceService,
@@ -16,13 +17,21 @@ export default class TelecomAppCtrl {
     this.$q = $q;
     this.$translate = $translate;
     this.$state = $state;
+    this.$scope = $scope;
     this.betaPreferenceService = betaPreferenceService;
     this.ovhUserPref = ovhUserPref;
+
+    this.chatbotEnabled = false;
   }
 
   $onInit() {
     this.currentLanguage = Environment.getUserLanguage();
     this.user = Environment.getUser();
+
+    const unregisterListener = this.$scope.$on('app:started', () => {
+      this.chatbotEnabled = true;
+      unregisterListener();
+    });
 
     return this.betaPreferenceService.isBetaActive().then((beta) => {
       this.globalSearchLink = beta
