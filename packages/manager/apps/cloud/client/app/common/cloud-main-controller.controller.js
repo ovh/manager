@@ -4,6 +4,7 @@ class CloudMainController {
   constructor(
     $document,
     $interval,
+    $scope,
     $rootScope,
     $transitions,
     $translate,
@@ -11,10 +12,12 @@ class CloudMainController {
   ) {
     this.$document = $document;
     this.$interval = $interval;
+    this.$scope = $scope;
     this.$rootScope = $rootScope;
     this.$transitions = $transitions;
     this.$translate = $translate;
     this.CucProductsService = CucProductsService;
+    this.chatbotEnabled = false;
   }
 
   $onInit() {
@@ -22,6 +25,10 @@ class CloudMainController {
 
     this.currentLanguage = Environment.getUserLanguage();
     this.user = Environment.getUser();
+    const unregisterListener = this.$scope.$on('app:started', () => {
+      this.chatbotEnabled = true;
+      unregisterListener();
+    });
 
     this.$transitions.onStart({}, () => this.closeSidebar());
   }
