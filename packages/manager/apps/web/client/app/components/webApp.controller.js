@@ -1,13 +1,13 @@
 import isString from 'lodash/isString';
+import { Environment } from '@ovh-ux/manager-config';
 
 export default class WebAppCtrl {
   /* @ngInject */
-  constructor($document, $rootScope, $scope, $timeout, $translate, User) {
+  constructor($document, $rootScope, $scope, $timeout, $translate) {
     this.$document = $document;
     this.$scope = $scope;
     this.$timeout = $timeout;
     this.$translate = $translate;
-    this.User = User;
     this.$rootScope = $rootScope;
     this.$onInit();
   }
@@ -24,11 +24,8 @@ export default class WebAppCtrl {
       this.isNavbarLoaded = true;
     });
 
-    [this.currentLanguage] = this.$translate.use().split('_');
-
-    this.User.getUser().then((user) => {
-      this.user = user;
-    });
+    this.currentLanguage = Environment.getUserLanguage();
+    this.user = Environment.getUser();
 
     // Scroll to anchor id
     this.$scope.scrollTo = (id) => {
