@@ -79,7 +79,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.Infos', [
             // juste in case birthday date is retrieved in legacy format
             // we nullify it so we don't break the first call to /rules
             if (
-              !moment($scope.user.birthDay, 'YYYY-MM-DD').isValid() ||
+              !moment($scope.user.birthDay, 'YYYY-MM-DD', true).isValid() ||
               /\//.test($scope.user.birthDay)
             ) {
               delete $scope.user.birthDay;
