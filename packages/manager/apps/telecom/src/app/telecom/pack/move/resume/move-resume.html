@@ -192,7 +192,11 @@
                     data-translate="pack_move_confirm_new_offer_price"
                     data-translate-values="{ price : $ctrl.offer.selected.offer.displayedPrice.text }"
                 ></p>
-
+                <p
+                    data-translate="pack_move_resume_promotion"
+                    data-translate-values="{ duration: $ctrl.PROMO_DISPLAY[$ctrl.offer.selected.offer.prices.promotion.subscription.duration].value }"
+                    data-ng-if="$ctrl.offer.selected.offer.prices.promotion"
+                ></p>
                 <p
                     data-translate="{{ $ctrl.offer.selected.offer.engageMonths ? 'pack_move_confirm_commitment' : 'pack_move_confirm_no_commitment' }}"
                     data-translate-values="{ month : $ctrl.offer.selected.offer.engageMonths }"

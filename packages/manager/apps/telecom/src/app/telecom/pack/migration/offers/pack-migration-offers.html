@@ -101,9 +101,8 @@
                                         >
                                         </div>
                                         <strong
-                                            data-ng-if="offer.promotion.subscription.duration === $ctrl.PROMO_DISPLAY.P3M.key"
                                             data-translate="telecom_pack_migration_promotion_subscription_months_offered"
-                                            data-translate-values="{ 'duration' :  $ctrl.PROMO_DISPLAY.P3M.value }"
+                                            data-translate-values="{ 'duration' :  $ctrl.PROMO_DISPLAY[offer.promotion.subscription.duration].value }"
                                         >
                                         </strong>
                                     </div>

@@ -6,12 +6,20 @@ import values from 'lodash/values';
 
 export default class MoveResumeCtrl {
   /* @ngInject */
-  constructor($scope, $timeout, $translate, OvhApiPackXdslMove, TucToast) {
+  constructor(
+    $scope,
+    $timeout,
+    $translate,
+    OvhApiPackXdslMove,
+    TucToast,
+    PROMO_DISPLAY,
+  ) {
     this.$scope = $scope;
     this.$timeout = $timeout;
     this.$translate = $translate;
     this.OvhApiPackXdslMove = OvhApiPackXdslMove;
     this.TucToast = TucToast;
+    this.PROMO_DISPLAY = PROMO_DISPLAY;
   }
 
   $onInit() {
