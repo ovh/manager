@@ -1,3 +1,5 @@
+import { Environment } from '@ovh-ux/manager-config';
+
 export default class TelecomAppCtrl {
   /* @ngInject */
   constructor(
@@ -6,7 +8,6 @@ export default class TelecomAppCtrl {
     $transitions,
     $translate,
     betaPreferenceService,
-    SessionService,
     ovhUserPref,
   ) {
     this.displayFallbackMenu = false;
@@ -17,15 +18,11 @@ export default class TelecomAppCtrl {
     this.$state = $state;
     this.betaPreferenceService = betaPreferenceService;
     this.ovhUserPref = ovhUserPref;
-    this.SessionService = SessionService;
   }
 
   $onInit() {
-    [this.currentLanguage] = this.$translate.use().split('_');
-
-    this.SessionService.getUser().then((user) => {
-      this.user = user;
-    });
+    this.currentLanguage = Environment.getUserLanguage();
+    this.user = Environment.getUser();
 
     return this.betaPreferenceService.isBetaActive().then((beta) => {
       this.globalSearchLink = beta
