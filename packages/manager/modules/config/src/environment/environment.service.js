@@ -10,6 +10,7 @@ export default class EnvironmentService {
     this.region = DEFAULT_REGION;
     this.userLocale = findAvailableLocale(detectUserLocale(), this.region);
     this.version = null;
+    this.user = {};
   }
 
   setRegion(region = DEFAULT_REGION) {
@@ -21,6 +22,14 @@ export default class EnvironmentService {
 
   getRegion() {
     return this.region;
+  }
+
+  setUser(user) {
+    this.user = user;
+  }
+
+  getUser() {
+    return this.user;
   }
 
   setUserLocale(userLocale) {
