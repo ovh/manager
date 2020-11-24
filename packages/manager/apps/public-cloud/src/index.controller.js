@@ -21,6 +21,8 @@ export default class PublicCloudController {
     this.publicCloud = publicCloud;
     this.navbarOptions = options;
 
+    this.chatbotEnabled = false;
+
     $scope.$on('oui-step-form.submit', (event, { form }) => {
       this.atInternet.trackClick({
         name: form.$name,
@@ -32,6 +34,11 @@ export default class PublicCloudController {
   $onInit() {
     this.currentLanguage = Environment.getUserLanguage();
     this.user = Environment.getUser();
+
+    const unregisterListener = this.$scope.$on('app:started', () => {
+      this.chatbotEnabled = true;
+      unregisterListener();
+    });
   }
 
   openSidebar() {
