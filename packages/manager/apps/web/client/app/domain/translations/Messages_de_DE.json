@@ -824,5 +824,11 @@
   "domain_tab_options_delete_error": "Bei der Kündigung der Option ist ein Fehler aufgetreten.",
   "domain_tab_options_delete_cancel": "Abbrechen",
   "web_domain_zone_activation_success": "Ihre Aktivierung wurde erfolgreich abgeschlossen. Ihr Produkt wird in wenigen Minuten aktiviert.",
-  "web_domain_zone_activation_order_success": "Ihr <a href=\"{{t0}}\" target=\"_blank\">Bestellformular</a> wurde erfolgreich generiert. Ihr Produkt wird aktiviert, sobald Sie es validiert haben."
+  "web_domain_zone_activation_order_success": "Ihr <a href=\"{{t0}}\" target=\"_blank\">Bestellformular</a> wurde erfolgreich generiert. Ihr Produkt wird aktiviert, sobald Sie es validiert haben.",
+  "domain_dashboard_recommended_hosting_title_pro": "Hosting für Ihre Website",
+  "domain_dashboard_recommended_hosting_title_perso": "Hosting für Ihren Blog oder Ihre Website",
+  "domain_dashboard_recommended_hosting_label": "- {{ reduction }} auf Ihr Hosting {{ type }} zum Black Friday.",
+  "domain_dashboard_recommended_hosting_discover": "Zu den Lösungen",
+  "domain_dashboard_recommended_hosting_title_Pro": "Hosting für Ihre Website",
+  "domain_dashboard_recommended_hosting_title_Perso": "Hosting für Ihren Blog oder Ihre Website"
 }
