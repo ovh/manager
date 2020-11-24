@@ -9,7 +9,7 @@ export default class WebAppCtrl {
     this.$timeout = $timeout;
     this.$translate = $translate;
     this.$rootScope = $rootScope;
-    this.$onInit();
+    this.chatbotEnabled = false;
   }
 
   $onInit() {
@@ -26,6 +26,10 @@ export default class WebAppCtrl {
 
     this.currentLanguage = Environment.getUserLanguage();
     this.user = Environment.getUser();
+    const unregisterListener = this.$scope.$on('app:started', () => {
+      this.chatbotEnabled = true;
+      unregisterListener();
+    });
 
     // Scroll to anchor id
     this.$scope.scrollTo = (id) => {
