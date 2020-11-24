@@ -64,7 +64,8 @@
                 ></span>
                 <span
                     data-ng-if="$ctrl.serviceInfos.hasEngagement() && !$ctrl.engagement.hasEnded()"
-                    data-ng-bind="$ctrl.engagement.endDate"
+                    data-translate="manager_billing_subscription_engagement_status_engaged"
+                    data-translate-values="{ endDate: $ctrl.engagement.endDate }"
                 ></span>
                 <span
                     data-ng-if="$ctrl.serviceInfos.hasEngagement() && $ctrl.engagement.hasEnded()"

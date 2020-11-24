@@ -14,5 +14,6 @@
   "manager_billing_subscription_service_management": "Gérer le service",
   "manager_billing_subscription_service_engagement": "Gérer l'engagement",
   "manager_billing_subscription_engagement_commit": "S’engager et bénéficier d’une remise",
-  "manager_billing_subscription_service_engagement_cancel": "Annuler l'engagement"
+  "manager_billing_subscription_service_engagement_cancel": "Annuler l'engagement",
+  "manager_billing_subscription_engagement_status_engaged": "Se termine le {{ endDate }}"
 }
