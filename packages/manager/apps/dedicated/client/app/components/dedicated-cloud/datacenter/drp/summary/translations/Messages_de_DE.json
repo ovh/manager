@@ -10,7 +10,7 @@
   "dedicatedCloud_datacenter_drp_confirm_summary_first_ovh_datacenter": "Primäres Datacenter",
   "dedicatedCloud_datacenter_drp_confirm_summary_first_ovh_pcc_EPCC": "Primäre Private Cloud",
   "dedicatedCloud_datacenter_drp_confirm_summary_first_onPremise_datacenter": "OVH Datacenter",
-  "dedicatedCloud_datacenter_drp_confirm_summary_first_onPremise_pcc_EPCC": "OVH Private Cloud",
+  "dedicatedCloud_datacenter_drp_confirm_summary_first_onPremise_pcc_EPCC": "OVHcloud Private Cloud",
   "dedicatedCloud_datacenter_drp_confirm_summary_secondary_datacenter": "Sekundäres Datacenter",
   "dedicatedCloud_datacenter_drp_confirm_summary_secondary_pcc_EPCC": "Sekundäre Private Cloud",
   "dedicatedCloud_datacenter_drp_confirm_delete_drp_title": "DRP endgültig löschen",

@@ -28,7 +28,13 @@ export const VRACK_URLS = {
 
 export const POLLING_INTERVAL = 500;
 
+export const STATUS = {
+  ok: 'ok',
+  delivered: 'delivered',
+};
+
 export default {
   POLLING_INTERVAL,
+  STATUS,
   VRACK_URLS,
 };

@@ -1,3 +1,4 @@
+import filter from 'lodash/filter';
 import get from 'lodash/get';
 import uniq from 'lodash/uniq';
 
@@ -38,8 +39,10 @@ export default class PciServingNamespaceModelsAddController {
       id: null,
       storagePath: null,
       flavor: null,
+      framework: null,
+      backend: null,
       workflowTemplate: null,
-      imageId: null,
+      image: null, // Preset
       autoscalingSpec: {
         minReplicas: 1,
         maxReplicas: 3,
@@ -50,7 +53,13 @@ export default class PciServingNamespaceModelsAddController {
 
     this.advancedConfigurationAutoscalerSpec = false;
 
-    [this.model.flavor] = this.flavors;
+    this.frameworks = filter(
+      this.frameworks,
+      (framework) => framework.id !== 'flow',
+    );
+    [this.model.framework] = this.frameworks;
+    this.onChangeFramework(this.model.framework);
+    this.backendVisible = false;
 
     this.workflowTemplates = [this.BUILD_IMAGE, this.PRESET_IMAGE];
 
@@ -108,17 +117,34 @@ export default class PciServingNamespaceModelsAddController {
     this.error = false;
     this.isAdding = true;
 
-    this.OvhManagerPciServingModelsService.add(
-      this.projectId,
-      this.namespaceId,
-      {
+    let modelCreation;
+    if (this.model.workflowTemplate === this.PRESET_IMAGE) {
+      // Preset image
+      modelCreation = {
         id: this.model.id,
         storagePath: this.model.storagePath,
         flavor: this.model.flavor.id,
         workflowTemplate: this.model.workflowTemplate,
-        imageId: get(this.model.imageId, 'id'),
+        imageId: this.model.image.id,
         autoscalingSpec: this.model.autoscalingSpec,
-      },
+      };
+    } else {
+      // Build image
+      modelCreation = {
+        id: this.model.id,
+        storagePath: this.model.storagePath,
+        flavor: this.model.flavor.id,
+        framework: this.model.framework.id,
+        backend: this.model.backend.id,
+        workflowTemplate: this.model.workflowTemplate,
+        autoscalingSpec: this.model.autoscalingSpec,
+      };
+    }
+
+    return this.OvhManagerPciServingModelsService.add(
+      this.projectId,
+      this.namespaceId,
+      modelCreation,
     )
       .then(() =>
         this.goBack(
@@ -146,5 +172,18 @@ export default class PciServingNamespaceModelsAddController {
 
   getTax(id) {
     return this.pricesCatalog[`ai-serving-engine.${id}.hour.consumption`].tax;
+  }
+
+  onChangeFramework(framework) {
+    this.model.backend = this.backends.find(
+      (backend) => backend.id === framework.recommendedBackend,
+    );
+  }
+
+  isFlavorDisabled(flavor) {
+    return this.model.workflowTemplate !== this.PRESET_IMAGE ||
+      this.model.image === null
+      ? false
+      : this.model.image.ramRequirementMB > flavor.ramMB;
   }
 }

@@ -26,7 +26,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-account-migration' --include-dependencies -- yarn run dev:watch"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^7.0.0",
+    "@ovh-ux/component-rollup-config": "^7.0.0 || ^8.0.0",
     "lodash": "^4.17.15"
   },
   "peerDependencies": {

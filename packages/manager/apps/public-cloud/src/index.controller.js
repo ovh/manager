@@ -1,3 +1,4 @@
+import { Environment } from '@ovh-ux/manager-config';
 import options from './navbar.config';
 
 export default class PublicCloudController {
@@ -6,23 +7,21 @@ export default class PublicCloudController {
     $scope,
     $state,
     $timeout,
-    $translate,
     $window,
     atInternet,
     ovhUserPref,
     publicCloud,
-    SessionService,
   ) {
     this.$scope = $scope;
     this.$state = $state;
     this.$timeout = $timeout;
-    this.$translate = $translate;
     this.$window = $window;
     this.atInternet = atInternet;
     this.ovhUserPref = ovhUserPref;
     this.publicCloud = publicCloud;
-    this.sessionService = SessionService;
     this.navbarOptions = options;
+
+    this.chatbotEnabled = false;
 
     $scope.$on('oui-step-form.submit', (event, { form }) => {
       this.atInternet.trackClick({
@@ -33,12 +32,12 @@ export default class PublicCloudController {
   }
 
   $onInit() {
-    [this.currentLanguage] = this.$translate.use().split('_');
+    this.currentLanguage = Environment.getUserLanguage();
+    this.user = Environment.getUser();
 
-    this.$translate.refresh().then(() => {
-      this.sessionService.getUser().then((user) => {
-        this.user = user;
-      });
+    const unregisterListener = this.$scope.$on('app:started', () => {
+      this.chatbotEnabled = true;
+      unregisterListener();
     });
   }
 

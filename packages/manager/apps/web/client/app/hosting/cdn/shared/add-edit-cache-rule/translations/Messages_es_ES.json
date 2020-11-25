@@ -11,7 +11,7 @@
   "hosting_cdn_shared_modal_add_rule_field_uri_info": "Una URI corresponde a un subconjunto de recursos de su sitio web. Puede indicar una subparte del sitio web de la siguiente forma: <br>/ruta/hacia/un/recurso. Para la solución CDN Basic, solo es posible introducir una extensión de archivo.",
   "hosting_cdn_shared_modal_add_rule_field_rule_name": "Nombre de la regla",
   "hosting_cdn_shared_modal_field_rule_name_error_required": "Complete este campo.",
-  "hosting_cdn_shared_modal_field_rule_name_error_pattern": "Formato válido: letras no acentuadas, cifras, « - » y « _ ».",
+  "hosting_cdn_shared_modal_field_rule_name_error_pattern": "Solo debe contener números, letras no acentuadas, guiones bajos y guiones.",
   "hosting_cdn_shared_modal_field_rule_name_error_duplicate_name": "Este nombre ya existe.",
   "hosting_cdn_shared_modal_add_rule_field_time_to_live": "Vida útil",
   "hosting_cdn_shared_modal_add_rule_field_time_to_live_info": "La vida útil permite indicar con qué frecuencia quiere que la CDN actualice el contenido en su caché. El menú desplegable permite indicar esta duración en diferentes unidades de tiempo.",

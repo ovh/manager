@@ -12,11 +12,13 @@ import 'angular-ui-bootstrap';
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 import './logs.scss';
 
+import empty from './empty';
 import component from './logs.component';
 import constants from './logs-constants';
 import logsDetail from './detail/detail.module';
 import logsList from './list/list.module';
-import logsWelcome from './welcome/welcome.module';
+import logsOnboarding from './onboarding/onboarding.module';
+import logsOrder from './order/order.module';
 import routing from './logs.routing';
 
 const moduleName = 'ovhManagerDbaasLogsDashboard';
@@ -31,11 +33,23 @@ angular
     'pascalprecht.translate',
     'ui.bootstrap',
     'ui.router',
+    empty,
+    logsOrder,
     logsDetail,
     logsList,
-    logsWelcome,
+    logsOnboarding,
   ])
   .config(routing)
+  .config(
+    /* @ngInject */ (atInternetConfigurationProvider) => {
+      atInternetConfigurationProvider.setReplacementRules([
+        {
+          pattern: /^dbaas-logs/,
+          replacement: 'dbaas::logs',
+        },
+      ]);
+    },
+  )
   .constant('LogsConstants', constants)
   .component('dbaasLogs', component)
   .run(/* @ngTranslationsInject:json ./translations */);

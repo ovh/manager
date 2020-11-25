@@ -11,7 +11,7 @@
   "hosting_cdn_shared_modal_add_rule_field_uri_info": "Un URL corrisponde a un sottoinsieme di risorse del sito Web. Il sottoinsieme del sito può essere inserito in questo modo: <br>/percorso/verso/una/risorsa Per l'offerta CDN Basic è possibile inserire esclusivamente un'estensione di file",
   "hosting_cdn_shared_modal_add_rule_field_rule_name": "Nome della regola",
   "hosting_cdn_shared_modal_field_rule_name_error_required": "Completa questo campo",
-  "hosting_cdn_shared_modal_field_rule_name_error_pattern": "Formato valido: lettere non accentate, cifre, - e _",
+  "hosting_cdn_shared_modal_field_rule_name_error_pattern": "Può contenere solo numeri, lettere non accentate, underscore e trattini.",
   "hosting_cdn_shared_modal_field_rule_name_error_duplicate_name": "Nome già esistente",
   "hosting_cdn_shared_modal_add_rule_field_time_to_live": "Durata di vita",
   "hosting_cdn_shared_modal_add_rule_field_time_to_live_info": "La durata di vita permette di indicare la frequenza con cui la CDN effettuerà l’aggiornamento dei contenuti salvati in cache. Dal menu a tendina è possibile selezionare questa durata in diverse unità di tempo.",

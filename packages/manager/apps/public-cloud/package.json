@@ -81,7 +81,7 @@
     "matchmedia-ng": "^1.0.8",
     "moment": "^2.24.0",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^11.0.0",
+    "ovh-api-services": "^11.0.1",
     "ovh-common-style": "^5.0.0",
     "ovh-manager-webfont": "^1.2.0",
     "ovh-ui-kit-bs": "^4.2.0",
@@ -92,7 +92,7 @@
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^3.0.8",
+    "@ovh-ux/manager-webpack-config": "^3.0.8 || ^4.0.0",
     "glob": "^7.1.4",
     "webpack": "^4.44.2",
     "webpack-merge": "^4.2.2"

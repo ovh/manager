@@ -27,6 +27,9 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       terminateEmail: /* @ngInject */ (BillingAutoRenew, serviceId) => () =>
         BillingAutoRenew.terminateEmail(serviceId),
     },
+    atInternet: {
+      ignore: true,
+    },
   });
 
   $urlRouterProvider.when(/\/delete-email-domain$/, ($location, $state) => {

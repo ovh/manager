@@ -10,7 +10,7 @@
   "dedicatedCloud_datacenter_drp_confirm_summary_first_ovh_datacenter": "Datacenter principal",
   "dedicatedCloud_datacenter_drp_confirm_summary_first_ovh_pcc_EPCC": "Private Cloud principal",
   "dedicatedCloud_datacenter_drp_confirm_summary_first_onPremise_datacenter": "Datacenter de OVH",
-  "dedicatedCloud_datacenter_drp_confirm_summary_first_onPremise_pcc_EPCC": "Private Cloud de OVH",
+  "dedicatedCloud_datacenter_drp_confirm_summary_first_onPremise_pcc_EPCC": "Private Cloud de OVHcloud",
   "dedicatedCloud_datacenter_drp_confirm_summary_secondary_datacenter": "Datacenter secundario",
   "dedicatedCloud_datacenter_drp_confirm_summary_secondary_pcc_EPCC": "Private Cloud secundario",
   "dedicatedCloud_datacenter_drp_confirm_delete_drp_title": "Eliminar el DRP de forma definitiva",
@@ -32,6 +32,6 @@
   "dedicatedCloud_datacenter_drp_confirm_order": "La <a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">orden de pedido</a> se ha generado. Una vez abonada la orden de pedido, puede consultar la activación de la opción en la tarea «enableDisasterRecovery» de la pestaña «Operaciones».",
   "dedicatedCloud_datacenter_drp_confirm_creation_pending_task_MBM": "Puede acceder a la tarea «enableDisasterRecovery» del Essentials principal para consultar el progreso.",
   "dedicatedCloud_datacenter_drp_confirm_summary_first_ovh_pcc_MBM": "Essentials principal",
-  "dedicatedCloud_datacenter_drp_confirm_summary_first_onPremise_pcc_MBM": "OVH Managed Bare Metal",
+  "dedicatedCloud_datacenter_drp_confirm_summary_first_onPremise_pcc_MBM": "OVHcloud Managed Bare Metal",
   "dedicatedCloud_datacenter_drp_confirm_summary_secondary_pcc_MBM": "Essentials secundario"
 }

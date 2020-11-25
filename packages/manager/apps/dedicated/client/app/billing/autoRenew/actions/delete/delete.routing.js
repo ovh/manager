@@ -30,5 +30,8 @@ export default /* @ngInject */ ($stateProvider) => {
       updateService: /* @ngInject */ (BillingAutoRenew) => (service) =>
         BillingAutoRenew.updateService(service),
     },
+    atInternet: {
+      ignore: true,
+    },
   });
 };

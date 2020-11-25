@@ -22,13 +22,7 @@ export default {
     dataset.APIV6_URL ||
     process.env.APIV6_URL ||
     'https://www.ovh.com/engine/apiv6',
-  service: process.env.SERVICE,
-  allowedServices: (services) => {
-    // return the service name if inside the array, otherwise the first
-    return [...services].includes(process.env.SERVICE)
-      ? process.env.SERVICE
-      : [...services][0];
-  },
+  service: dataset.SERVICE || process.env.SERVICE,
   auth: {
     url: dataset.AUTH_URL || process.env.AUTH_URL || 'https://www.ovh.com/auth',
     userNic: process.env.USER_NIC || '',

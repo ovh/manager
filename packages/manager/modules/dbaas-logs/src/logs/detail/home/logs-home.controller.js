@@ -53,6 +53,14 @@ export default class LogsHomeCtrl {
     }
   }
 
+  getPlanName() {
+    return this.accountDetails.service.plan
+      ? this.$translate.instant(
+          `logs_home_service_type_${this.accountDetails.service.plan.toLowerCase()}`,
+        )
+      : null;
+  }
+
   /**
    * instanciate a new chart with default settings
    *

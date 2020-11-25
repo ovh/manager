@@ -51,7 +51,7 @@
     "lodash": "^4.17.14",
     "messenger": "HubSpot/messenger#~1.4.1",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^11.0.0",
+    "ovh-api-services": "^11.0.1",
     "ovh-manager-webfont": "^1.2.0",
     "popper.js": "^1.16.1",
     "regenerator-runtime": "^0.13.7",
@@ -59,7 +59,7 @@
     "zxcvbn": "^4.4.2"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^3.0.8",
+    "@ovh-ux/manager-webpack-config": "^3.0.8 || ^4.0.0",
     "webpack-merge": "^4.2.2"
   }
 }

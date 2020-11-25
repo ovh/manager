@@ -19,6 +19,9 @@ export default /* @ngInject */ ($stateProvider) => {
           serviceId,
         ) => () => BillingAutoRenew.terminateHostingPrivateDatabase(serviceId),
       },
+      atInternet: {
+        ignore: true,
+      },
     },
   );
 };

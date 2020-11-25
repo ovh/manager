@@ -11,7 +11,7 @@
   "hosting_cdn_shared_modal_add_rule_field_uri_info": "Eine URI entspricht einem Teil der Ressourcen Ihrer Website. Sie können einen Teil Ihrer Website wie folgt angeben: <br>/pfad/zu/ressource. Bei CDN Basic können Sie nur eine Dateierweiterung angeben",
   "hosting_cdn_shared_modal_add_rule_field_rule_name": "Name der Regel",
   "hosting_cdn_shared_modal_field_rule_name_error_required": "Bitte füllen Sie dieses Feld aus.",
-  "hosting_cdn_shared_modal_field_rule_name_error_pattern": "Gültiges Format: Buchstaben ohne Umlaut oder Akzent, Zahlen, - und _",
+  "hosting_cdn_shared_modal_field_rule_name_error_pattern": "Darf ausschließlich Zahlen und Buchstaben ohne Akzente, Unterstriche oder Bindestrich enthalten.",
   "hosting_cdn_shared_modal_field_rule_name_error_duplicate_name": "Dieser Name besteht bereits",
   "hosting_cdn_shared_modal_add_rule_field_time_to_live": "Lebensdauer",
   "hosting_cdn_shared_modal_add_rule_field_time_to_live_info": "Die Lebensdauer gibt an, in welchen Abständen das CDN Ihren Inhalt in seinem Cache aktualisieren soll. Diese Dauer können Sie ihm Ausklappmenü in mehreren Zeiteinheiten angeben.",

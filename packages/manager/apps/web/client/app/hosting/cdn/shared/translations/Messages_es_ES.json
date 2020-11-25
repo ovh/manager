@@ -15,7 +15,7 @@
   "hosting_cdn_shared_option_cache_rule_table_header_options": "Opciones",
   "hosting_cdn_shared_option_cache_rule_table_time_to_live": "Vida útil",
   "hosting_cdn_shared_option_cache_rule_table_status": "Estado",
-  "hosting_cdn_shared_option_cache_rule_table_items_option_set_rule": "Modificar la regla",
+  "hosting_cdn_shared_option_cache_rule_table_items_option_set_rule": "Editar la regla",
   "hosting_cdn_shared_option_cache_rule_table_items_option_delete_rule": "Eliminar la regla",
   "hosting_cdn_shared_option_cache_rule_btn_validate": "Aplicar la configuración",
   "hosting_cdn_shared_option_cache_rule_btn_cancel": "Cancelar"

@@ -18,7 +18,7 @@
   "hosting_cdn_order_customer_cdn_payable_step1_header": "Aktualizacja usługi",
   "hosting_cdn_order_customer_cdn_payable_step1_info": "Zaktualizujesz CDN do nowej opcji Shared CDN.",
   "hosting_cdn_order_customer_cdn_without_step1_info": "Zaktualizujesz CDN do nowej opcji Shared CDN.",
-  "hosting_cdn_order_customer_cdn_without_step1_description": "Konfiguracja domyślna<br>Opcja Shared CDN jest udostępniona z konfiguracją domyślną, abyś mógł zacząć szybko i w prosty sposób korzystać z usługi. Po włączeniu opcji skorzystaj ze standardowych ustawień, aby szybko i w prosty sposób zacząć korzystać z usługi. <br><br>Aktywacja odrębnie dla każdej domeny<br>Włącz CDN dla każdej domeny i zachowaj kontrolę. Poznaj stopniowo wszystkie funkcje i możliwości oferowane przez opcję CDN.",
+  "hosting_cdn_order_customer_cdn_without_step1_description": "Opcja Shared CDN jest udostępniona z konfiguracją domyślną, abyś mógł zacząć szybko i w prosty sposób korzystać z usługi. Po włączeniu opcji skorzystaj ze standardowych ustawień, aby szybko i w prosty sposób zacząć korzystać z usługi. <br><br>Włącz CDN dla każdej domeny i zachowaj kontrolę. Poznaj stopniowo wszystkie funkcje i możliwości oferowane przez opcję CDN.",
   "hosting_cdn_order_customer_cdn_without_step1_header": "Wybierz czas trwania umowy",
   "hosting_cdn_order_customer_cdn_without_step1_price": "Cena proporcjonalna do ceny hostingu",
   "hosting_cdn_order_customer_cdn_included_step2_header": "Potwierdzenie",

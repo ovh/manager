@@ -34,7 +34,7 @@
   "dedicatedCloud_USER_right_vmNetwork_noAccess": "No hay accesos",
   "dedicatedCloud_USER_right_vmNetwork_READONLY": "Acceso de solo lectura",
   "dedicatedCloud_USER_right_vmNetwork_readonly": "Acceso de solo lectura",
-  "dedicatedCloud_USER_right_vlan_EPCC": "Acceso a las V(X)LAN",
+  "dedicatedCloud_USER_right_vlan_EPCC": "Acceso a las V(x)LAN",
   "dedicatedCloud_USER_right_vlan_help": "Permisos de gestión de la parte de red privada (VLAN en Essentials o Dedicated Cloud y VxLAN en Hosted Private Cloud Premier o SDDC)",
   "dedicatedCloud_USER_right_vlan_ADMIN": "Permite configurar máquinas virtuales en la red privada",
   "dedicatedCloud_USER_right_vlan_admin": "Permite configurar máquinas virtuales en la red privada",
@@ -48,5 +48,7 @@
   "dedicatedCloud_USER_right_resources_help": "Permiso para añadir recursos adicionales a través del plugin de OVHcloud en vSphere Client",
   "dedicatedCloud_USER_right_set_success": "El cambio de los permisos de {{t0}} para el datacenter {{t1}} se ha enviado correctamente.",
   "dedicatedCloud_USER_right_set_fail": "Se ha producido un error al cambiar los permisos de {{t0}} para el datacenter {{t1}}.",
-  "dedicatedCloud_USER_right_vlan_MBM": "Acceso a las VLAN"
+  "dedicatedCloud_USER_right_vlan_MBM": "Acceso a las VLAN",
+  "dedicatedCloud_USER_right_vlan_help_EPCC": "Permisos de gestión de la parte de red privada (VxLan en Dedicated Cloud y VLAN en SDDC y los packs Hosted Private Cloud Premier)",
+  "dedicatedCloud_USER_right_vlan_help_MBM": "Permisos de gestión de la parte de red privada (VxLAN en Essentials y VLAN en SDDC y los packs Hosted Private Cloud Premier)"
 }

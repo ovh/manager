@@ -1,6 +1,8 @@
 import set from 'lodash/set';
 import without from 'lodash/without';
 
+import { AVAILABLE_SERVICES } from './user-contacts.constants';
+
 angular
   .module('UserAccount')
   .service('UserAccount.services.Contacts', function UserAccountContactsService(
@@ -19,28 +21,7 @@ angular
     };
 
     self.noAvailableService = ['IP', 'VRACK'];
-    self.availableService = [
-      'CLOUD',
-      'DOMAIN',
-      'HOSTING',
-      'HOSTING_RESELLER',
-      'PRIVATE_DATABASE',
-      'EMAIL_DOMAIN',
-      'DEDICATED',
-      'KUBE',
-      'NAS',
-      'NASHA',
-      'OVER_THE_BOX',
-      'PRIVATE_CLOUD',
-      'ESSENTIALS',
-      'VPS',
-      'PACK_XDSL',
-      'XDSL',
-      'ZONE',
-      'FAILOVER',
-      'PACK_SIP_TRUNK',
-      'LOAD_BALANCER',
-    ];
+    self.availableService = AVAILABLE_SERVICES;
     self.excludeNics = [/^ovhtel-[0-9]+/];
 
     self.getMe = function getMe() {

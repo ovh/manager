@@ -18,7 +18,7 @@
   "hosting_cdn_order_customer_cdn_payable_step1_header": "Actualización de la solución",
   "hosting_cdn_order_customer_cdn_payable_step1_info": "Va a actualizar su CDN hacia la nueva opción Shared CDN.",
   "hosting_cdn_order_customer_cdn_without_step1_info": "Va a actualizar su CDN hacia la nueva opción Shared CDN.",
-  "hosting_cdn_order_customer_cdn_without_step1_description": "Configuración propuesta por defecto<br>Para permitir un inicio rápido, la opción Shared CDN está disponible con una configuración por defecto. Al activarla, le ofrecemos configuraciones estándar para que pueda empezar a usarla fácil y rápidamente. <br>< br>Una activación dominio por dominio<br>Para un mayor control, puede activar una CDN dedicada para cada uno de sus dominios. Descubra a su ritmo todas las funcionalidades y posibilidades que ofrece la opción CDN.",
+  "hosting_cdn_order_customer_cdn_without_step1_description": "Para permitir un inicio rápido, la opción Shared CDN está disponible con una configuración por defecto. Al activarla, le ofrecemos configuraciones estándar para que pueda empezar a usarla fácil y rápidamente. <br><br>Para un mayor control, puede activar una CDN dedicada para cada uno de sus dominios. Descubra a su ritmo todas las funcionalidades y posibilidades que ofrece la opción CDN.",
   "hosting_cdn_order_customer_cdn_without_step1_header": "Elija la duración del compromiso",
   "hosting_cdn_order_customer_cdn_without_step1_price": "Precio de la parte proporcional según el tipo de alojamiento",
   "hosting_cdn_order_customer_cdn_included_step2_header": "Confirmación",
