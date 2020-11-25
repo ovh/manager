@@ -1542,6 +1542,31 @@
                         </dl>
                     </div>
 
+                    <!-- installRTM -->
+                    <div class="mb-3">
+                        <h5
+                            class="mb-0"
+                            data-translate="server_configuration_installation_form_rtm"
+                        ></h5>
+                        <p
+                            data-translate="server_configuration_installation_form_rtm_explain"
+                        ></p>
+
+                        <oui-switch
+                            data-model="installation.options.installRTM"
+                            data-id="installRTM"
+                            data-name="installRTM"
+                            data-disabled="$ctrl.loaders.launchInstall"
+                        >
+                        </oui-switch>
+                        <label
+                            for="installRTM"
+                            class="d-inline-block"
+                            data-translate="{{ !installation.options.installRTM ? 'server_configuration_installation_form_rtm_deactivated' : 'server_configuration_installation_form_rtm_activated' }}"
+                        >
+                        </label>
+                    </div>
+
                     <h5
                         data-translate="server_configuration_installation_form_option"
                     ></h5>
