@@ -1,10 +1,10 @@
 {
   "dedicatedCloud_datacenter_backup_new_description1": "Anscheinend haben Sie keinen Backup-Dienst aktiviert",
   "dedicatedCloud_datacenter_backup_new_description2": "Sie können für das Backup Ihrer virtuellen Maschinen (VMs) aus 3 neuen Angeboten wählen: <strong>Standard</strong>, <strong>Advanced</strong> oder <strong>Premium</strong>.",
-  "dedicatedCloud_datacenter_backup_new_description3_EPCC": "Das für dieses Datacenter gewählte Angebot wird als einziges für alle anderen Datacenter dieser Private Cloud verfügbar sein und als einziges für Ihre virtuellen Maschinen verwendet werden.",
+  "dedicatedCloud_datacenter_backup_new_description3_EPCC": "Nur das für dieses Rechenzentrum gewählte Angebot wird auch für alle anderen Rechenzentren dieser Private Cloud verfügbar sein. Es wird als einziges für Ihre virtuellen Maschinen verwendet werden.",
   "dedicatedCloud_datacenter_backup_new_tariff_url": "Verfügbare Preise für Veeam Backup anzeigen",
-  "dedicatedCloud_datacenter_backup_new_restricted_offer_choice_EPCC": "Das Angebot {{offer}} wurde bereits für das Datacenter {{datacenterName}} Ihrer Private Cloud ausgewählt. Sie können es für dieses Datacenter aktivieren.",
-  "dedicatedCloud_datacenter_backup_new_blocked_EPCC": "Es wird bereits ein Backup-Angebot in einem anderen Datacenter der Private Cloud verwendet. Bevor dieses nicht beendet ist, können Sie kein neues Angebot aktivieren.",
+  "dedicatedCloud_datacenter_backup_new_restricted_offer_choice_EPCC": "Das Angebot {{offer}} wurde bereits für das Rechenzentrum {{datacenterName}} Ihrer Private Cloud ausgewählt. Sie können es für dieses Rechenzentrum aktivieren.",
+  "dedicatedCloud_datacenter_backup_new_blocked_EPCC": "Es wird bereits ein Backup-Angebot in einem anderen Datacenter der Private Cloud verwendet. Bevor diese Anwendung beendet ist, können Sie kein neues Angebot aktivieren.",
   "dedicatedCloud_datacenter_backup_new_choose_offer": "Auswahl des Backup-Angebots",
   "dedicatedCloud_datacenter_backup_new_choose_offer_action": "Angebot auswählen",
   "dedicatedCloud_datacenter_backup_new_validate_conditions": "Bestätigung der Nutzungsbedingungen",
