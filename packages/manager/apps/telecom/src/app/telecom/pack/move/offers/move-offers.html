@@ -77,7 +77,8 @@
 
                                 <!-- Other promotion -->
                                 <div
-                                    data-ng-if="offer.prices.promotion && offer.prices.promotion.id === $ctrl.PROMO_DISPLAY.PROMO_FTTH_2020" class="alert alert-info mt-2">
+                                    data-ng-if="offer.prices.promotion && offer.prices.promotion.id === $ctrl.PROMO_DISPLAY.PROMO_FTTH_2020" class="oui-message oui-message_info mt-2">
+                                        <span class="oui-message__icon oui-icon oui-icon-info-circle" aria-hidden="true"></span>
                                         <div
                                             data-translate="pack_move_promotion_description"
                                             data-translate-values="{ 'endDate' : (offer.prices.promotion.endDate | date : short) }"
@@ -144,7 +145,8 @@
                                 ></span>
 
                                 <!-- Other Promotion -->
-                                <div data-ng-if="offer.prices.promotion.id=='FTTH_MIGRATION_AND_ADRESSMOVE_2020'" class="alert alert-info mt-2">
+                                <div data-ng-if="offer.prices.promotion.id=='FTTH_MIGRATION_AND_ADRESSMOVE_2020'" class="oui-message oui-message_info mt-2">
+                                    <span class="oui-message__icon oui-icon oui-icon-info-circle" aria-hidden="true"></span>
                                     <div
                                         data-translate="telecom_pack_migration_promotion_description"
                                         data-translate-values="{ 'endDate' : (offer.prices.promotion.endDate | date : short) }"

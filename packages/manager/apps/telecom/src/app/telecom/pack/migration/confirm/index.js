@@ -6,13 +6,10 @@ import angularTranslate from 'angular-translate';
 
 import component from './pack-migration-confirm.component';
 
-import { PROMO_DISPLAY } from './pack-migration-confirm.constant';
-
 const moduleName = 'ovhManagerTelecomPackMigrationConfirm';
 
 angular
   .module(moduleName, [ngTranslateAsyncLoader, uiRouter, angularTranslate])
-  .component('packMigrationConfirm', component)
-  .constant('PROMO_DISPLAY', PROMO_DISPLAY);
+  .component('packMigrationConfirm', component);
 
 export default moduleName;

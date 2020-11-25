@@ -2,20 +2,15 @@ import filter from 'lodash/filter';
 import get from 'lodash/get';
 import map from 'lodash/map';
 
+import { PROMO_DISPLAY } from '../pack-migration.constant';
+
 export default class TelecomPackMigrationConfirmCtrl {
   /* @ngInject */
-  constructor(
-    $q,
-    $translate,
-    TucPackMigrationProcess,
-    TucToast,
-    PROMO_DISPLAY,
-  ) {
+  constructor($q, $translate, TucPackMigrationProcess, TucToast) {
     this.$q = $q;
     this.$translate = $translate;
     this.TucPackMigrationProcess = TucPackMigrationProcess;
     this.TucToast = TucToast;
-    this.PROMO_DISPLAY = PROMO_DISPLAY;
   }
 
   $onInit() {
@@ -27,6 +22,9 @@ export default class TelecomPackMigrationConfirmCtrl {
     this.model = {
       acceptContracts: false,
     };
+
+    this.PROMO_DISPLAY = PROMO_DISPLAY;
+
     this.modemTransportPrice = 9.99;
 
     this.process = this.TucPackMigrationProcess.getMigrationProcess();

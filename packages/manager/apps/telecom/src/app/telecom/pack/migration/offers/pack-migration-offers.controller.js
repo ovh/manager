@@ -3,20 +3,15 @@ import get from 'lodash/get';
 import isUndefined from 'lodash/isUndefined';
 import set from 'lodash/set';
 
+import { PROMO_DISPLAY } from '../pack-migration.constant';
+
 export default class TelecomPackMigrationOffersCtrl {
   /* @ngInject */
-  constructor(
-    $q,
-    $translate,
-    TucPackMigrationProcess,
-    TucToast,
-    PROMO_DISPLAY,
-  ) {
+  constructor($q, $translate, TucPackMigrationProcess, TucToast) {
     this.$q = $q;
     this.$translate = $translate;
     this.TucPackMigrationProcess = TucPackMigrationProcess;
     this.TucToast = TucToast;
-    this.PROMO_DISPLAY = PROMO_DISPLAY;
   }
 
   /*= =====================================
@@ -24,6 +19,7 @@ export default class TelecomPackMigrationOffersCtrl {
   ====================================== */
 
   $onInit() {
+    this.PROMO_DISPLAY = PROMO_DISPLAY;
     this.process = null;
     this.loading = {
       init: true,
