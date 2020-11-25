@@ -1,3 +1,17 @@
+# [15.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.6.1...@ovh-ux/manager-web@15.7.0) (2020-11-25)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 682] ([15ad38e](https://github.com/ovh/manager/commit/15ad38eebe18712963cda0d15fcf80a2680c6ea5))
+
+
+### Features
+
+* **domain:** add recommended hosting offer ([8b0f386](https://github.com/ovh/manager/commit/8b0f386e6a7e49193be32ca9fee405395e94f319))
+
+
+
 ## [15.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.6.0...@ovh-ux/manager-web@15.6.1) (2020-11-19)
 
 
