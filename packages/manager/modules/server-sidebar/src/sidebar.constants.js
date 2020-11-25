@@ -346,7 +346,6 @@ export const DEDICATED_NETWORK_CONFIG = {
     },
     {
       id: 'cloud_connect',
-      feature: 'cloud-connect',
       loadOnState: 'cloud-connect',
       types: [
         {
@@ -354,12 +353,12 @@ export const DEDICATED_NETWORK_CONFIG = {
           state: 'cloud-connect.details',
           stateParams: ['ovhCloudConnectId'],
           app: [DEDICATED],
-          regions: ['EU'],
           namespace: [undefined, HPC_NAMESPACE],
         },
       ],
       icon: 'oui-icon oui-icon-line-communicating_concept',
       app: [DEDICATED],
+      regions: ['EU', 'CA'],
       namespace: [undefined, HPC_NAMESPACE],
     },
   ],
