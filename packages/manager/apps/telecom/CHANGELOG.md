@@ -1,3 +1,18 @@
+## [13.6.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.6.6...@ovh-ux/manager-telecom@13.6.7) (2020-11-25)
+
+
+### Bug Fixes
+
+* **chatbot:** add support level ([7755b4e](https://github.com/ovh/manager/commit/7755b4eb7d9dc946c0747e06b4d4618fe7266b3d))
+* **deps:** upgrade ovh-api-services to v11.0.1 ([#4067](https://github.com/ovh/manager/issues/4067)) ([994f173](https://github.com/ovh/manager/commit/994f173072ab2e6920fa48049d477579f7364657))
+
+
+### Performance Improvements
+
+* **chatbot:** delay the chatbot initialization ([7492586](https://github.com/ovh/manager/commit/7492586f40ffcb09026efec84392df44ca0dea32))
+
+
+
 ## [13.6.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.6.5...@ovh-ux/manager-telecom@13.6.6) (2020-11-19)
 
 

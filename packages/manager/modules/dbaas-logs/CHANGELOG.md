@@ -1,3 +1,17 @@
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.1.0...@ovh-ux/manager-dbaas-logs@1.2.0) (2020-11-25)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 678] ([9f2697e](https://github.com/ovh/manager/commit/9f2697e97db2ad50e2de9366716df5fdb243392c))
+
+
+### Features
+
+* **ldp:** add new order process + empty state ([1f1bd7e](https://github.com/ovh/manager/commit/1f1bd7efe2b0215db075087e9d2bd777c519f7f6))
+
+
+
 # [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.0.0...@ovh-ux/manager-dbaas-logs@1.1.0) (2020-11-16)
 
 

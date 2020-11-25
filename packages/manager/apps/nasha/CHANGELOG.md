@@ -1,3 +1,12 @@
+## [2.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha-app@2.1.0...@ovh-ux/manager-nasha-app@2.1.1) (2020-11-25)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v11.0.1 ([#4067](https://github.com/ovh/manager/issues/4067)) ([994f173](https://github.com/ovh/manager/commit/994f173072ab2e6920fa48049d477579f7364657))
+
+
+
 # [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha-app@2.0.6...@ovh-ux/manager-nasha-app@2.1.0) (2020-10-28)
 
 

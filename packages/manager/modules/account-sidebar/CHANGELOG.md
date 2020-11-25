@@ -1,3 +1,12 @@
+# [3.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@3.0.3...@ovh-ux/manager-account-sidebar@3.1.0) (2020-11-25)
+
+
+### Features
+
+* **environment:** replace api calls by user env ([25bce8a](https://github.com/ovh/manager/commit/25bce8a33dfaed0d73135b28a1720f36a6a89298))
+
+
+
 ## [3.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@3.0.2...@ovh-ux/manager-account-sidebar@3.0.3) (2020-10-28)
 
 

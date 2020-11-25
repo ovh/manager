@@ -1,3 +1,12 @@
+# [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@2.0.1...@ovh-ux/manager-config@2.1.0) (2020-11-25)
+
+
+### Features
+
+* **environment:** add user in environment during bootstrap ([c9df248](https://github.com/ovh/manager/commit/c9df248543a739176a8253b17473010b4c636d1e))
+
+
+
 ## [2.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@2.0.0...@ovh-ux/manager-config@2.0.1) (2020-10-28)
 
 

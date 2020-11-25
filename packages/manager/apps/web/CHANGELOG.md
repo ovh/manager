@@ -1,3 +1,19 @@
+## [15.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.7.0...@ovh-ux/manager-web@15.7.1) (2020-11-25)
+
+
+### Bug Fixes
+
+* **chatbot:** add support level ([c02cec4](https://github.com/ovh/manager/commit/c02cec46c98056a4103ad4fbd8c38e2fcceda1a1))
+* **deps:** upgrade ovh-api-services to v11.0.1 ([#4067](https://github.com/ovh/manager/issues/4067)) ([994f173](https://github.com/ovh/manager/commit/994f173072ab2e6920fa48049d477579f7364657))
+* **i18n:** add missing translations [CDS 674] ([464f1fd](https://github.com/ovh/manager/commit/464f1fd2a6e5a7fb166f71737829a8d040c6675f))
+
+
+### Performance Improvements
+
+* **chatbot:** delay the chatbot initialization ([0ad6d18](https://github.com/ovh/manager/commit/0ad6d1804519417b3a8d0a71e0d17a5a3909e7a7))
+
+
+
 # [15.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.6.1...@ovh-ux/manager-web@15.7.0) (2020-11-25)
 
 

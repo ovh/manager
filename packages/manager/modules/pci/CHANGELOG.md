@@ -1,3 +1,20 @@
+# [5.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.3.1...@ovh-ux/manager-pci@5.4.0) (2020-11-25)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 628] ([10a161a](https://github.com/ovh/manager/commit/10a161af128a2888159ef56b8afb8712fb837934))
+* **i18n:** add missing translations [CDS 669] ([25763aa](https://github.com/ovh/manager/commit/25763aa7762be342829829c7243289d48c273a20))
+* **i18n:** add missing translations [CDS 673] ([0e41c30](https://github.com/ovh/manager/commit/0e41c30ddbf6c6547b84c92648ede9a6073168e3))
+* **i18n:** add missing translations [CDS 674] ([464f1fd](https://github.com/ovh/manager/commit/464f1fd2a6e5a7fb166f71737829a8d040c6675f))
+
+
+### Features
+
+* **pci/ai/serving:** add framework and backend selection ([b8ed4cf](https://github.com/ovh/manager/commit/b8ed4cf894a11f241a901d4d54aeb7e18c66b047))
+
+
+
 ## [5.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.3.0...@ovh-ux/manager-pci@5.3.1) (2020-11-17)
 
 

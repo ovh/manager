@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-telecom-dashboard-app",
-  "version": "6.1.0",
+  "version": "6.1.1",
   "private": true,
   "description": "Telecom dashboard standalone application.",
   "repository": {

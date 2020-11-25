@@ -1,3 +1,18 @@
+## [4.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.3.1...@ovh-ux/manager-public-cloud@4.3.2) (2020-11-25)
+
+
+### Bug Fixes
+
+* **chatbot:** add support level ([3b506db](https://github.com/ovh/manager/commit/3b506db070fa94c91ef2bb1a56f52df2622110c7))
+* **deps:** upgrade ovh-api-services to v11.0.1 ([#4067](https://github.com/ovh/manager/issues/4067)) ([994f173](https://github.com/ovh/manager/commit/994f173072ab2e6920fa48049d477579f7364657))
+
+
+### Performance Improvements
+
+* **chatbot:** delay the chatbot initialization ([607d534](https://github.com/ovh/manager/commit/607d5347329b5866f27a1055ee8c243ffbea1824))
+
+
+
 ## [4.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.3.0...@ovh-ux/manager-public-cloud@4.3.1) (2020-11-16)
 
 

@@ -1,3 +1,27 @@
+# [4.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-config@3.6.1...@ovh-ux/manager-webpack-config@4.0.0) (2020-11-25)
+
+
+### Bug Fixes
+
+* disable es modules for url-loader ([#4050](https://github.com/ovh/manager/issues/4050)) ([147439b](https://github.com/ovh/manager/commit/147439b954a96c423533eb2e5b18c94659e052ec))
+
+
+### Features
+
+* **loader:** drop xml translation ([8a6f5dc](https://github.com/ovh/manager/commit/8a6f5dcbf16d1b6ff1917e390104c8f7dd37d8f1))
+
+
+### Performance Improvements
+
+* exclude bundled js modules from babel ([#4066](https://github.com/ovh/manager/issues/4066)) ([1bc4398](https://github.com/ovh/manager/commit/1bc43985012046e143714ded703aa63e62c157ab))
+
+
+### BREAKING CHANGES
+
+* **loader:** xml translation files are not supported anymore
+
+
+
 ## [3.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-config@3.6.0...@ovh-ux/manager-webpack-config@3.6.1) (2020-11-16)
 
 
