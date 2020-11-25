@@ -824,5 +824,9 @@
   "domain_tab_options_delete_error": "Si è verificato un errore durante la disattivazione dell'opzione.",
   "domain_tab_options_delete_cancel": "Annulla",
   "web_domain_zone_activation_success": "Attivazione eseguita correttamente La soluzione scelta sarà attiva entro pochi minuti.",
-  "web_domain_zone_activation_order_success": "Il tuo <a href=\"{{t0}}\" target=\"_blank\">ordine</a> è stato generato correttamente. Una volta convalidato, il servizio verrà attivato."
+  "web_domain_zone_activation_order_success": "Il tuo <a href=\"{{t0}}\" target=\"_blank\">ordine</a> è stato generato correttamente. Una volta convalidato, il servizio verrà attivato.",
+  "domain_dashboard_recommended_hosting_title_pro": "Hosting del sito Web",
+  "domain_dashboard_recommended_hosting_title_perso": "Hosting del blog o del sito Web",
+  "domain_dashboard_recommended_hosting_label": "- {{ reduction }} sull’hosting {{ type }} per il Black Friday.",
+  "domain_dashboard_recommended_hosting_discover": "Scopri le soluzioni "
 }
