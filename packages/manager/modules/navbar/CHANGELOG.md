@@ -1,3 +1,12 @@
+# [5.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@5.3.0...@ovh-ux/manager-navbar@5.4.0) (2020-11-25)
+
+
+### Features
+
+* **environment:** replace api calls by user env ([7afcf8b](https://github.com/ovh/manager/commit/7afcf8b22a832df90f95eec8e29da26455b65df0))
+
+
+
 # [5.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@5.2.1...@ovh-ux/manager-navbar@5.3.0) (2020-11-02)
 
 

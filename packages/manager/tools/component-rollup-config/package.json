@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/component-rollup-config",
-  "version": "7.3.0",
+  "version": "8.0.0",
   "description": "Extensible Rollup configuration to build OVHcloud components.",
   "keywords": [
     "build",

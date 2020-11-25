@@ -1,3 +1,17 @@
+# [8.0.0](https://github.com/ovh/manager/compare/@ovh-ux/component-rollup-config@7.3.0...@ovh-ux/component-rollup-config@8.0.0) (2020-11-25)
+
+
+### Features
+
+* **plugins:** rewrite translation inject and drop xml support ([6b5f368](https://github.com/ovh/manager/commit/6b5f368ede85a7602d2649557f78d099399f4f56)), closes [#1699](https://github.com/ovh/manager/issues/1699)
+
+
+### BREAKING CHANGES
+
+* **plugins:** translation xml files are not supported anymore
+
+
+
 # [7.3.0](https://github.com/ovh/manager/compare/@ovh-ux/component-rollup-config@7.2.1...@ovh-ux/component-rollup-config@7.3.0) (2020-10-28)
 
 

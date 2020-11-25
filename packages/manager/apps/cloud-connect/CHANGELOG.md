@@ -1,3 +1,12 @@
+## [1.0.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect-app@1.0.5...@ovh-ux/manager-cloud-connect-app@1.0.6) (2020-11-25)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v11.0.1 ([#4067](https://github.com/ovh/manager/issues/4067)) ([994f173](https://github.com/ovh/manager/commit/994f173072ab2e6920fa48049d477579f7364657))
+
+
+
 ## [1.0.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect-app@1.0.4...@ovh-ux/manager-cloud-connect-app@1.0.5) (2020-10-28)
 
 

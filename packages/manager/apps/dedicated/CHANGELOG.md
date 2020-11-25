@@ -1,3 +1,30 @@
+# [14.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.7.1...@ovh-ux/manager-dedicated@14.8.0) (2020-11-25)
+
+
+### Bug Fixes
+
+* **account.user.infos:** account birthdate validation ([#4077](https://github.com/ovh/manager/issues/4077)) ([c7b622d](https://github.com/ovh/manager/commit/c7b622d1b9b5528e0e9965edf048b1da98f04912))
+* **chatbot:** add support level ([9fb6854](https://github.com/ovh/manager/commit/9fb6854396cec69872c794faefc3f01dcc0f497e))
+* **dedicated:** filter guides by universe ([#3998](https://github.com/ovh/manager/issues/3998)) ([be72a76](https://github.com/ovh/manager/commit/be72a768215e45bf302238a2c45f78ee24479018))
+* **deps:** upgrade ovh-api-services to v11.0.1 ([#4067](https://github.com/ovh/manager/issues/4067)) ([994f173](https://github.com/ovh/manager/commit/994f173072ab2e6920fa48049d477579f7364657))
+* **i18n:** add missing translations [CDS 674] ([464f1fd](https://github.com/ovh/manager/commit/464f1fd2a6e5a7fb166f71737829a8d040c6675f))
+* **i18n:** add missing translations [CDS 677] ([81ae9b6](https://github.com/ovh/manager/commit/81ae9b6f3c988e6c3458033ed95afb92f1593929))
+* **i18n:** add missing translations [CDS 684] ([a73375e](https://github.com/ovh/manager/commit/a73375e5cdb1ff9a6eae7f2cb820b7c0055886f6))
+* **user-contacts:** not possible to change ldp contact ([bdb1434](https://github.com/ovh/manager/commit/bdb1434bc4000fabd05e34858fcbd01612363f65)), closes [#DTRSD-24621](https://github.com/ovh/manager/issues/DTRSD-24621)
+
+
+### Features
+
+* **dedicated:** add billing autorenew terminate tracking ([fde763e](https://github.com/ovh/manager/commit/fde763e1c3dc212587680eb76326d7f0f12d5e74))
+* **dedicated:** remove auto page tracking on service resiliation ([3acc9cd](https://github.com/ovh/manager/commit/3acc9cd7cd52cc94ac59ae4761a3e5f742a0e073))
+
+
+### Performance Improvements
+
+* **chatbot:** delay the chatbot initialization ([b6f3673](https://github.com/ovh/manager/commit/b6f36737c8c45ecb7c7e58cbe71e45d9660ca389))
+
+
+
 ## [14.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.7.0...@ovh-ux/manager-dedicated@14.7.1) (2020-11-18)
 
 

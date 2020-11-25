@@ -1,3 +1,12 @@
+## [7.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms-app@7.3.0...@ovh-ux/manager-sms-app@7.3.1) (2020-11-25)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v11.0.1 ([#4067](https://github.com/ovh/manager/issues/4067)) ([994f173](https://github.com/ovh/manager/commit/994f173072ab2e6920fa48049d477579f7364657))
+
+
+
 # [7.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms-app@7.2.9...@ovh-ux/manager-sms-app@7.3.0) (2020-10-28)
 
 

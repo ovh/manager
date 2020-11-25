@@ -1,3 +1,12 @@
+## [1.0.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.0.5...@ovh-ux/manager-vrack@1.0.6) (2020-11-25)
+
+
+### Bug Fixes
+
+* **vrack:** filter services expired ([49956b9](https://github.com/ovh/manager/commit/49956b96a8521c7a041c4d57ba861c277e68e8eb))
+
+
+
 ## [1.0.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.0.4...@ovh-ux/manager-vrack@1.0.5) (2020-10-28)
 
 
