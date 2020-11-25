@@ -393,10 +393,12 @@ angular.module('services').service(
           if (/(.+)\.$/.test(target)) {
             return this.WucValidator.isValidDomain(target.match(/(.+)\.$/)[1], {
               canBeginWithUnderscore: true,
+              canContainsUnderscore: true,
             });
           }
           return this.WucValidator.isValidSubDomain(target, {
             canBeginWithUnderscore: true,
+            canContainsUnderscore: true,
           });
         case 'TXT':
           return this.regex.TXT.test(target);
