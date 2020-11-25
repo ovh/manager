@@ -171,40 +171,44 @@ class ConfigurationTileService {
       : null;
 
     // return an object with calculated plans and price diff
-    return {
-      memory: {
-        plan: nextRamVpsPlan,
-        diff: nextRamVpsPlan
-          ? ConfigurationTileService.getPlanPriceDiff(
-              nextRamVpsPlan,
-              this.currentPlan,
-            )
-          : null,
-        upfrontDiff:
-          nextRamVpsPlan && this.isUpfront
-            ? ConfigurationTileService.getPlanUpfrontPriceDiff(
+    try {
+      return {
+        memory: {
+          plan: nextRamVpsPlan,
+          diff: nextRamVpsPlan
+            ? ConfigurationTileService.getPlanPriceDiff(
                 nextRamVpsPlan,
                 this.currentPlan,
               )
             : null,
-      },
-      storage: {
-        plan: nextStorageVpsPlan,
-        diff: nextStorageVpsPlan
-          ? ConfigurationTileService.getPlanPriceDiff(
-              nextStorageVpsPlan,
-              this.currentPlan,
-            )
-          : null,
-        upfrontDiff:
-          nextStorageVpsPlan && this.isUpfront
-            ? ConfigurationTileService.getPlanUpfrontPriceDiff(
+          upfrontDiff:
+            nextRamVpsPlan && this.isUpfront
+              ? ConfigurationTileService.getPlanUpfrontPriceDiff(
+                  nextRamVpsPlan,
+                  this.currentPlan,
+                )
+              : null,
+        },
+        storage: {
+          plan: nextStorageVpsPlan,
+          diff: nextStorageVpsPlan
+            ? ConfigurationTileService.getPlanPriceDiff(
                 nextStorageVpsPlan,
                 this.currentPlan,
               )
             : null,
-      },
-    };
+          upfrontDiff:
+            nextStorageVpsPlan && this.isUpfront
+              ? ConfigurationTileService.getPlanUpfrontPriceDiff(
+                  nextStorageVpsPlan,
+                  this.currentPlan,
+                )
+              : null,
+        },
+      };
+    } catch (error) {
+      return {};
+    }
   }
 }
 
