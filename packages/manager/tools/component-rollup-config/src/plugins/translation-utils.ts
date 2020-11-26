@@ -29,10 +29,10 @@ const injectTranslationImport = (languages, trads, id, subdirectory) => {
       result += `
       promises.push(
         $q.all({
-          use: import('./${relativePath}/Messages_' + $translate.use() + '.json')
+          use: import('.${path.sep}${relativePath}${path.sep}Messages_' + $translate.use() + '.json')
             .then((module) => module.default || module)
             .catch(() => ({})),
-          fallback: import('./${relativePath}/Messages_' + $translate.fallbackLanguage() + '.json')
+          fallback: import('.${path.sep}${relativePath}${path.sep}Messages_' + $translate.fallbackLanguage() + '.json')
             .then((module) => module.default || module)
             .catch(() => ({})),
         }).then((result) => Object.assign(result.fallback, result.use))
