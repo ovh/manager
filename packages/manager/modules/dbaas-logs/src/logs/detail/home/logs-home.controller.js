@@ -1,4 +1,5 @@
 import max from 'lodash/max';
+import { OFFER_TYPES } from '../detail.constants';
 
 import formatSportsTemplate from './formatsports/logs-home-formatsports.html';
 import passwordTemplate from '../account/password/logs-account-password.html';
@@ -54,11 +55,7 @@ export default class LogsHomeCtrl {
   }
 
   getPlanName() {
-    return this.accountDetails.service.plan
-      ? this.$translate.instant(
-          `logs_home_service_type_${this.accountDetails.service.plan.toLowerCase()}`,
-        )
-      : null;
+    return OFFER_TYPES[this.accountDetails.service.plan];
   }
 
   /**

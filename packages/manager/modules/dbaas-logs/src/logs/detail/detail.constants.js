@@ -24,6 +24,12 @@ export const GUIDES = {
   US: 'https://docs.us.ovhcloud.com',
 };
 
+export const OFFER_TYPES = {
+  STANDARD: 'Standard',
+  ENTERPRISE: 'Enterprise',
+};
+
 export default {
   GUIDES,
+  OFFER_TYPES,
 };
