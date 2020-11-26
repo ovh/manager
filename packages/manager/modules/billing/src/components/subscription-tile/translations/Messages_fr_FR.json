@@ -4,7 +4,6 @@
   "manager_billing_subscription_next_due_date": "Prochaine échéance",
   "manager_billing_subscription_engagement": "Engagement",
   "manager_billing_subscription_engagement_status_none": "Aucun",
-  "manager_billing_subscription_engagement_status_ended": "Terminé le {{ endDate }}",
   "manager_billing_subscription_contacts": "Contacts",
   "manager_billing_subscription_contacts_admin": "Administrateur",
   "manager_billing_subscription_contacts_tech": "Technique",

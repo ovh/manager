@@ -42,10 +42,6 @@ export default class ServicesActionsCtrl {
         return this.$q.all({
           serviceInfos,
           service: this.BillingService.getService(serviceInfos.serviceId),
-          engagement:
-            serviceInfos.hasEngagement() && this.withEngagement
-              ? this.BillingService.getEngagement(serviceInfos.serviceId)
-              : this.$q.when(null),
           canBeEngaged: this.withEngagement
             ? this.BillingService.getAvailableEngagement(serviceInfos.serviceId)
                 .then((availableEngagements) => availableEngagements.length > 0)
@@ -58,25 +54,16 @@ export default class ServicesActionsCtrl {
             : this.$q.when(false),
         });
       })
-      .then(
-        ({
-          canBeEngaged,
-          service,
-          engagement,
-          serviceInfos,
+      .then(({ canBeEngaged, service, serviceInfos, hasPendingEngagement }) => {
+        this.service = service;
+        this.serviceInfos = new ServiceInfos({
+          ...serviceInfos,
+          id: serviceInfos.serviceId,
+          serviceId: serviceInfos.domain,
+          canBeEngaged: canBeEngaged && serviceInfos.canCommit(),
           hasPendingEngagement,
-        }) => {
-          this.service = service;
-          this.engagement = engagement;
-          this.serviceInfos = new ServiceInfos({
-            ...serviceInfos,
-            id: serviceInfos.serviceId,
-            serviceId: serviceInfos.domain,
-            canBeEngaged: canBeEngaged && serviceInfos.canCommit(),
-            hasPendingEngagement,
-          });
-        },
-      )
+        });
+      })
       .catch((error) =>
         this.onError({
           error: this.$translate.instant('manager_billing_subscription_error', {
