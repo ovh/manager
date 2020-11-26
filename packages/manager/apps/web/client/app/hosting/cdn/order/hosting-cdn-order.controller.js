@@ -46,13 +46,11 @@ export default class {
     }
   }
 
-  async prepareCheckout() {
+  prepareCheckout() {
     this.trackClick('web::hosting::cdn::order::next');
     if (!this.cart && !this.checkoutLoading) {
       this.checkoutLoading = true;
-      const { cart, cartId, addonPlan, serviceId } = await this.prepareCart();
-
-      this.$timeout(() => {
+      this.prepareCart().then(({ cart, cartId, addonPlan, serviceId }) => {
         this.cart = cart;
         this.cartId = cartId;
         this.addonPlan = addonPlan;

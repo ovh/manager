@@ -1,6 +1,5 @@
 import find from 'lodash/find';
 import get from 'lodash/get';
-import includes from 'lodash/includes';
 
 import {
   HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_BASIC_FREE,
@@ -120,23 +119,21 @@ export default /* @ngInject */ ($stateProvider) => {
       user,
       $translate,
       HostingCdnOrderService,
-    ) => async () => {
-      try {
-        const cartId = await HostingCdnOrderService.prepareOrderCart(
-          user.ovhSubsidiary,
-        );
-
-        const cart = await HostingCdnOrderService.addItemToCart(
-          cartId,
-          serviceName,
-          serviceOption,
-        );
-
-        return { cart, cartId };
-      } catch (error) {
-        goBackWithError(get(error, 'data.message', error));
-        return {};
-      }
+    ) => () => {
+      const data = { cartId: null };
+      return HostingCdnOrderService.prepareOrderCart(user.ovhSubsidiary)
+        .then((cartId) => {
+          data.cartId = cartId;
+          return HostingCdnOrderService.addItemToCart(
+            cartId,
+            serviceName,
+            serviceOption,
+          );
+        })
+        .then((cart) => {
+          return { cart, cartId: data.cartId };
+        })
+        .catch((error) => goBackWithError(get(error, 'data.message', error)));
     },
 
     checkoutCart: /* @ngInject */ (
@@ -146,72 +143,35 @@ export default /* @ngInject */ ($stateProvider) => {
       $translate,
       $window,
       HostingCdnOrderService,
-    ) => async (autoPayWithPreferredPaymentMethod, cartId) => {
-      try {
-        const order = await HostingCdnOrderService.checkoutOrderCart(
-          autoPayWithPreferredPaymentMethod,
-          cartId,
-        );
-
-        if (isOptionFree || autoPayWithPreferredPaymentMethod) {
-          return goBack(
-            $translate.instant(
-              'hosting_dashboard_cdn_order_success_activation',
-            ),
-          );
-        }
-
-        return goBack(
-          $translate.instant('hosting_dashboard_cdn_v2_order_success', {
-            t0: order.url,
-          }),
-        );
-      } catch (error) {
-        return goBackWithError(get(error, 'data.message', error));
-      }
+    ) => (autoPayWithPreferredPaymentMethod, cartId) => {
+      return HostingCdnOrderService.checkoutOrderCart(
+        autoPayWithPreferredPaymentMethod,
+        cartId,
+      )
+        .then((order) => {
+          const message =
+            isOptionFree || autoPayWithPreferredPaymentMethod
+              ? $translate.instant(
+                  'hosting_dashboard_cdn_order_success_activation',
+                )
+              : $translate.instant('hosting_dashboard_cdn_v2_order_success', {
+                  t0: order.url,
+                });
+          return goBack(message);
+        })
+        .catch((error) => goBackWithError(get(error, 'data.message', error)));
     },
   };
   const resolveUpgrade = {
     prepareCart: /* @ngInject */ (
       goBackWithError,
       serviceName,
-      serviceOption,
-      user,
-      $translate,
       HostingCdnOrderService,
       HostingCdnSharedService,
-    ) => async () => {
-      try {
-        const { data: servInfo } = await HostingCdnSharedService.getServiceInfo(
-          serviceName,
-        );
-        const {
-          data: servOpts,
-        } = await HostingCdnSharedService.getServiceOptions(servInfo.serviceId);
-        const { serviceId } = find(
-          servOpts,
-          ({ billing }) =>
-            billing.plan.code.match('^cdn') &&
-            billing.plan.code.match('_business$'),
-        );
-        const {
-          data: addonPlans,
-        } = await HostingCdnSharedService.getCatalogAddonsPlan(serviceId);
-        const addonPlan = find(addonPlans, ({ planCode }) =>
-          includes(['cdn-basic', 'cdn-basic-free'], planCode),
-        );
-
-        const { data } = await HostingCdnOrderService.simulateCartForUpgrade(
-          serviceName,
-          addonPlan,
-          serviceId,
-        );
-
-        return { cart: data.order, addonPlan, serviceId };
-      } catch (error) {
-        goBackWithError(get(error, 'data.message', error));
-        return {};
-      }
+    ) => () => {
+      return HostingCdnSharedService.simulateUpgrade(
+        serviceName,
+      ).catch((error) => goBackWithError(get(error, 'data.message', error)));
     },
 
     autoPayFreeOffer: /* @ngInject */ (OvhApiMe) => ({ orderId }) =>
@@ -223,43 +183,37 @@ export default /* @ngInject */ ($stateProvider) => {
         ).$promise,
 
     checkoutCart: /* @ngInject */ (
+      $q,
+      $translate,
       goBack,
       goBackWithError,
-      isOptionFree,
-      $translate,
-      HostingCdnOrderService,
       isAutoPayable,
+      isOptionFree,
       autoPayFreeOffer,
-    ) => async (autoPayWithPreferredPaymentMethod, addonPlan, serviceId) => {
-      try {
-        const {
-          data,
-        } = await HostingCdnOrderService.checkoutOrderCartForUpgrade(
-          isAutoPayable(autoPayWithPreferredPaymentMethod),
-          addonPlan,
-          serviceId,
-        );
-
-        if (isOptionFree) {
-          await autoPayFreeOffer(data.order);
-        }
-
-        if (isOptionFree || autoPayWithPreferredPaymentMethod) {
-          return goBack(
-            $translate.instant(
-              'hosting_dashboard_cdn_upgrade_included_success',
-            ),
-          );
-        }
-
-        return goBack(
-          $translate.instant('hosting_dashboard_cdn_v2_order_success', {
-            t0: data.order.url,
-          }),
-        );
-      } catch (error) {
-        return goBackWithError(get(error, 'data.message', error));
-      }
+      HostingCdnSharedService,
+    ) => (autoPayWithPreferredPaymentMethod, serviceOption, serviceId) => {
+      const data = { order: null };
+      return HostingCdnSharedService.upgradeToSharedCDN(
+        isAutoPayable(autoPayWithPreferredPaymentMethod),
+        serviceOption,
+        serviceId,
+      )
+        .then(({ data: upgrade }) => {
+          data.order = upgrade.order;
+          return isOptionFree ? autoPayFreeOffer(upgrade.order) : $q.resolve();
+        })
+        .then(() => {
+          const message =
+            isOptionFree || autoPayWithPreferredPaymentMethod
+              ? $translate.instant(
+                  'hosting_dashboard_cdn_upgrade_included_success',
+                )
+              : $translate.instant('hosting_dashboard_cdn_v2_order_success', {
+                  t0: data.order.url,
+                });
+          return goBack(message);
+        })
+        .catch((error) => goBackWithError(get(error, 'data.message', error)));
     },
   };
   const atInternet = {
