@@ -1,3 +1,12 @@
+## [2.2.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.2.5...@ovh-ux/manager-vps@2.2.6) (2020-11-26)
+
+
+### Bug Fixes
+
+* **dashboard.configuration:** use current price from service ([#4096](https://github.com/ovh/manager/issues/4096)) ([b24d205](https://github.com/ovh/manager/commit/b24d205f34333e49bdafa18fd0e6cb6558b7ed3e))
+
+
+
 ## [2.2.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.2.4...@ovh-ux/manager-vps@2.2.5) (2020-11-16)
 
 
