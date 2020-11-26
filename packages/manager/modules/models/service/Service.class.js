@@ -3,9 +3,10 @@ import sumBy from 'lodash/sumBy';
 import Pricing from './Pricing.class';
 
 export default class Service {
-  constructor({ billing, serviceId, route, resource }) {
+  constructor({ billing, engagement, serviceId, route, resource }) {
     Object.assign(this, {
       billing,
+      engagement,
       serviceId,
       route: route || {},
       resource,
@@ -31,6 +32,18 @@ export default class Service {
 
   get nextBillingDate() {
     return moment(this.billing.nextBillingDate).format('LL');
+  }
+
+  get engagementEndDate() {
+    return (
+      this.isEngaged() &&
+      this.engagement &&
+      moment(this.engagement.endDate).format('LL')
+    );
+  }
+
+  get expirationDate() {
+    return moment(this.billing.expirationDate).format('LL');
   }
 
   get productType() {
@@ -62,5 +75,9 @@ export default class Service {
   addOptions(options) {
     this.options.push(...options);
     this.totalPrice += sumBy(options, 'totalPrice');
+  }
+
+  isEngaged() {
+    return !!this.billing.pricing.engagementConfiguration;
   }
 }

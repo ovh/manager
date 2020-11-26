@@ -1,11 +1,11 @@
 <div class="container-fluid">
     <oui-back-button on-click="$ctrl.goBack()">
         <span
-            data-ng-if="!$ctrl.engagement"
+            data-ng-if="!$ctrl.service.isEngaged()"
             data-translate="billing_commitment_commit"
         ></span>
         <span
-            data-ng-if="$ctrl.engagement"
+            data-ng-if="$ctrl.service.isEngaged()"
             data-translate="billing_commitment_commit_again"
         ></span>
     </oui-back-button>
@@ -17,7 +17,7 @@
 
     <div>
         <p
-            data-ng-if="!$ctrl.engagement"
+            data-ng-if="!$ctrl.service.isEngaged()"
             data-translate="billing_commitment_none"
             data-translate-values="{
                 serviceName: $ctrl.service.name,
@@ -25,7 +25,7 @@
             }"
         ></p>
         <p
-            data-ng-if="$ctrl.engagement"
+            data-ng-if="$ctrl.service.isEngaged()"
             data-translate="billing_commitment_commit_again_description"
             data-translate-values="{
                 serviceName: $ctrl.service.name,
@@ -84,7 +84,7 @@
         </oui-step-form>
 
         <oui-step-form
-            ng-if="!$ctrl.engagement"
+            ng-if="!$ctrl.service.isEngaged()"
             name="payment"
             header="{{:: 'billing_commitment_payment' | translate}}"
             on-focus="$ctrl.onPaymentStepFocus()"
@@ -145,7 +145,7 @@
             name="summary"
             header="{{:: 'billing_commitment_summary' | translate}}"
             on-cancel="$ctrl.goBack()"
-            on-focus="$ctrl.engagement ? $ctrl.onPaymentStepFocus() : null"
+            on-focus="$ctrl.service.isEngaged() ? $ctrl.onPaymentStepFocus() : null"
             loading="$ctrl.isPaymentStepLoading"
         >
             <ovh-payment-method-choice

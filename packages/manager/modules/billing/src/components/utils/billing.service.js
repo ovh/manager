@@ -1,6 +1,5 @@
 import {
   BillingService as ServiceInfos,
-  Engagement,
   Commitment,
   Service,
 } from '@ovh-ux/manager-models';
@@ -22,13 +21,6 @@ export default class BillingService {
     return this.$http
       .get(`/services/${serviceId}`)
       .then(({ data }) => new Service(data));
-  }
-
-  getEngagement(serviceId) {
-    return this.$http
-      .get(`/services/${serviceId}/billing/engagement`)
-      .then(({ data }) => new Engagement(data))
-      .catch((error) => (error.status === 404 ? null : this.$q.reject(error)));
   }
 
   getOptions(serviceId) {

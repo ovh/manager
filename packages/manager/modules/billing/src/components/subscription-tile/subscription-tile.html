@@ -59,24 +59,19 @@
             <div data-ng-if="!$ctrl.isLoading">
                 <span
                     class="oui-badge oui-badge_error"
-                    data-ng-if="!$ctrl.serviceInfos.hasEngagement()"
+                    data-ng-if="!$ctrl.service.isEngaged()"
                     data-translate="manager_billing_subscription_engagement_status_none"
                 ></span>
                 <span
-                    data-ng-if="$ctrl.serviceInfos.hasEngagement() && !$ctrl.engagement.hasEnded()"
+                    data-ng-if="$ctrl.service.isEngaged()"
                     data-translate="manager_billing_subscription_engagement_status_engaged"
-                    data-translate-values="{ endDate: $ctrl.engagement.endDate }"
-                ></span>
-                <span
-                    data-ng-if="$ctrl.serviceInfos.hasEngagement() && $ctrl.engagement.hasEnded()"
-                    data-translate="manager_billing_subscription_engagement_status_ended"
-                    data-translate-values="{ endDate: $ctrl.engagement.endDate }"
+                    data-translate-values="{ endDate: $ctrl.service.engagementEndDate || $ctrl.service.expirationDate }"
                 ></span>
             </div>
             <oui-button
                 variant="link"
                 icon-right="oui-icon-arrow-right"
-                ng-if="$ctrl.canBeEngaged && !$ctrl.hasPendingEngagement && (!$ctrl.engagement || $ctrl.highlightEngagement)"
+                ng-if="$ctrl.canBeEngaged && !$ctrl.hasPendingEngagement && (!$ctrl.service.hasEngagement() || $ctrl.highlightEngagement)"
                 on-click="$ctrl.commit()"
             >
                 <span
