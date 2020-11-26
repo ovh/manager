@@ -1,9 +1,9 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('dbaas-logs.onboarding', {
-    url: '/onboarding',
+  $stateProvider.state('dbaas-logs.welcome', {
+    url: '/welcome',
     views: {
       logsHeader: 'dbaasLogsListHeader',
-      logsContainer: 'dbaasLogsOnboarding',
+      logsContainer: 'dbaasLogsWelcome',
     },
   });
 };

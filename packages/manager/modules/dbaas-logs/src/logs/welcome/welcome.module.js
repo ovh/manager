@@ -4,11 +4,15 @@ import '@ovh-ux/manager-core';
 import '@ovh-ux/ng-ovh-cloud-universe-components';
 import '@uirouter/angularjs';
 import 'angular-translate';
+import '@ovh-ux/ng-ovh-doc-url';
 
-import component from './order.component';
-import routing from './order.routing';
+import './logs-welcome.less';
 
-const moduleName = 'ovhManagerDbaasLogsOrder';
+import component from './welcome.component';
+import listHeader from '../header/list/list.module';
+import routing from './welcome.routing';
+
+const moduleName = 'ovhManagerDbaasLogsWelcome';
 
 angular
   .module(moduleName, [
@@ -16,8 +20,10 @@ angular
     'ovhManagerCore',
     'pascalprecht.translate',
     'ui.router',
+    listHeader,
+    'ngOvhDocUrl',
   ])
   .config(routing)
-  .component('dbaasLogsOrder', component);
+  .component('dbaasLogsWelcome', component);
 
 export default moduleName;

@@ -88,14 +88,20 @@ export default /* @ngInject */ ($stateProvider) => {
         VpsService.getTaskInError(serviceName).then((tasks) =>
           head(filter(tasks, { type: 'migrate' })),
         ),
+      service: /* @ngInject */ ($http, serviceInfo) =>
+        $http
+          .get(`/services/${serviceInfo.serviceId}`)
+          .then(({ data }) => data),
 
       configurationTile: /* @ngInject */ (
         availableUpgrades,
         catalog,
+        service,
         stateVps, // from apiv6
         vps, // from 2api
       ) => ({
         upgrades: VpsConfigurationTile.setVps(vps, stateVps.model)
+          .setCurrentService(service)
           .setAvailableUpgrades(availableUpgrades)
           .getAvailableUpgrades(catalog),
         model: {
