@@ -88,10 +88,7 @@ export default class {
 
   onDurationChange(duration) {
     const commitments = this.availableEngagements[duration.duration];
-
-    if (this.service.isEngaged()) {
-      [this.model.engagement] = commitments;
-    }
+    [this.model.engagement] = commitments;
 
     const upfront = commitments.find((commitment) => commitment.isUpfront());
     const periodic = commitments.find((commitment) => commitment.isPeriodic());

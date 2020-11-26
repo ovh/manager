@@ -84,7 +84,6 @@
         </oui-step-form>
 
         <oui-step-form
-            ng-if="!$ctrl.service.isEngaged()"
             name="payment"
             header="{{:: 'billing_commitment_payment' | translate}}"
             on-focus="$ctrl.onPaymentStepFocus()"
@@ -145,7 +144,6 @@
             name="summary"
             header="{{:: 'billing_commitment_summary' | translate}}"
             on-cancel="$ctrl.goBack()"
-            on-focus="$ctrl.service.isEngaged() ? $ctrl.onPaymentStepFocus() : null"
             loading="$ctrl.isPaymentStepLoading"
         >
             <ovh-payment-method-choice
