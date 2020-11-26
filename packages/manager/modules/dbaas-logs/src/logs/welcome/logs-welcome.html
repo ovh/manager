@@ -1,0 +1,90 @@
+<div>
+    <div>
+        <cui-message-container
+            data-messages="ctrl.messages"
+        ></cui-message-container>
+    </div>
+    <div class="row">
+        <section class="cui-page__content log-welcome col-md-offset-2 col-md-8">
+            <h2 class="oui-heading_2" data-translate="logs_welcome_title"></h2>
+            <p
+                class="oui-paragraph"
+                data-translate="logs_welcome_description_1"
+            ></p>
+            <div class="row mt-5">
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                        <img
+                            alt="Graylog"
+                            data-ng-src="{{ ctrl.assets.graylog }}"
+                        />
+                        <div class="caption">
+                            <h5
+                                data-translate="logs_welcome_graylog_webui"
+                            ></h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                        <img
+                            alt="Grafana"
+                            data-ng-src="{{ ctrl.assets.grafana }}"
+                        />
+                        <div class="caption">
+                            <h5 data-translate="logs_welcome_grafana_saas"></h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                        <img
+                            alt="Kibana"
+                            data-ng-src="{{ ctrl.assets.kibana }}"
+                        />
+                        <div class="caption">
+                            <h5
+                                data-translate="logs_welcome_kibana_supported"
+                            ></h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p
+                class="oui-paragraph mt-4"
+                data-translate="logs_welcome_description_2"
+            ></p>
+            <a
+                class="oui-button oui-button_primary mt-5 w-100"
+                target="_blank"
+                ng-href="{{ctrl.urls.orderURL}}"
+                data-translate="logs_welcome_try"
+            >
+            </a>
+            <div class="text-center mt-4">
+                <span ng-if="ctrl.region !== 'CA'">
+                    <a
+                        class="p-2 oui-button_ghost"
+                        ng-href="{{ctrl.urls.productURL}}"
+                        target="_blank"
+                        data-translate="logs_welcome_product_page"
+                    ></a>
+                    |
+                </span>
+                <a
+                    class="p-2 oui-button_ghost"
+                    ng-href="{{ctrl.urls.docsUrl}}"
+                    target="_blank"
+                    data-translate="logs_welcome_documentation"
+                ></a>
+                |
+                <a
+                    class="p-2 oui-button_ghost"
+                    href="https://community.ovh.com/c/mobile-hosting/data-plateforms-lab"
+                    target="_blank"
+                    data-translate="logs_welcome_forum"
+                ></a>
+            </div>
+        </section>
+    </div>
+</div>

@@ -1,60 +1,53 @@
 import find from 'lodash/find';
 import get from 'lodash/get';
-import head from 'lodash/head';
 import startsWith from 'lodash/startsWith';
 
 class ConfigurationTileService {
   constructor() {
     this.vps = null;
     this.vpsModel = null;
+    this.service = null;
 
     this.availableUpgrades = null;
   }
 
   get currentPlan() {
-    return find(this.availableUpgrades, {
-      planCode: this.vpsModel.name,
-    });
+    return this.service.billing.plan;
+  }
+
+  get price() {
+    return this.service.billing.pricing;
   }
 
   get isUpfront() {
-    return startsWith(
-      get(this.currentPlan, 'prices[0].pricingMode'),
-      'upfront',
-    );
+    return startsWith(get(this.price, 'pricingMode'), 'upfront');
   }
 
-  static getPlanPriceDiff(upperPlan, currentPlan) {
+  static getPlanPriceDiff(upperPlan, currentPrice) {
     const upperPlanTotalPriceValue = ConfigurationTileService.getPlanPriceValue(
       upperPlan,
-    );
-    const currentPlanTotalPriceValue = ConfigurationTileService.getPlanPriceValue(
-      currentPlan,
     );
 
     return ConfigurationTileService.getPriceStructure(
-      upperPlanTotalPriceValue - currentPlanTotalPriceValue,
-      head(currentPlan.prices).price,
+      upperPlanTotalPriceValue - currentPrice.price.value,
+      currentPrice.price,
     );
   }
 
-  static getPlanUpfrontPriceDiff(upperPlan, currentPlan) {
+  static getPlanUpfrontPriceDiff(upperPlan, currentPrice) {
     const upperPlanTotalPriceValue = ConfigurationTileService.getPlanPriceValue(
       upperPlan,
-    );
-    const currentPlanTotalPriceValue = ConfigurationTileService.getPlanPriceValue(
-      currentPlan,
     );
     const priceWhoWillDetermineInterval = find(
       upperPlan.prices,
       ({ price }) => price.value > 0,
     );
 
-    const priceDiff = upperPlanTotalPriceValue - currentPlanTotalPriceValue;
+    const priceDiff = upperPlanTotalPriceValue - currentPrice.price.value;
 
     return ConfigurationTileService.getPriceStructure(
       priceDiff / priceWhoWillDetermineInterval.interval,
-      head(currentPlan.prices).price,
+      currentPrice.price,
     );
   }
 
@@ -96,6 +89,11 @@ class ConfigurationTileService {
   setAvailableUpgrades(availableUpgrades) {
     this.availableUpgrades = availableUpgrades;
 
+    return this;
+  }
+
+  setCurrentService(service) {
+    this.service = service;
     return this;
   }
 
@@ -177,14 +175,14 @@ class ConfigurationTileService {
         diff: nextRamVpsPlan
           ? ConfigurationTileService.getPlanPriceDiff(
               nextRamVpsPlan,
-              this.currentPlan,
+              this.price,
             )
           : null,
         upfrontDiff:
           nextRamVpsPlan && this.isUpfront
             ? ConfigurationTileService.getPlanUpfrontPriceDiff(
                 nextRamVpsPlan,
-                this.currentPlan,
+                this.price,
               )
             : null,
       },
@@ -193,14 +191,14 @@ class ConfigurationTileService {
         diff: nextStorageVpsPlan
           ? ConfigurationTileService.getPlanPriceDiff(
               nextStorageVpsPlan,
-              this.currentPlan,
+              this.price,
             )
           : null,
         upfrontDiff:
           nextStorageVpsPlan && this.isUpfront
             ? ConfigurationTileService.getPlanUpfrontPriceDiff(
                 nextStorageVpsPlan,
-                this.currentPlan,
+                this.price,
               )
             : null,
       },
