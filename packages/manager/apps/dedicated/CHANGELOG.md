@@ -1,3 +1,12 @@
+## [14.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.8.0...@ovh-ux/manager-dedicated@14.8.1) (2020-11-26)
+
+
+### Bug Fixes
+
+* **dedicated:** revert filter guides by universe ([#3998](https://github.com/ovh/manager/issues/3998)) ([451fd2d](https://github.com/ovh/manager/commit/451fd2d9835a34f7396ab1fd5d7a5b08fb258b00))
+
+
+
 # [14.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.7.1...@ovh-ux/manager-dedicated@14.8.0) (2020-11-25)
 
 

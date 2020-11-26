@@ -1,3 +1,12 @@
+# [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.2.0...@ovh-ux/manager-dbaas-logs@1.3.0) (2020-11-26)
+
+
+### Features
+
+* **ldp:** revert add new order process + empty state ([daf6668](https://github.com/ovh/manager/commit/daf6668672d55fb3d42b15db9c702caccf80c48f))
+
+
+
 # [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.1.0...@ovh-ux/manager-dbaas-logs@1.2.0) (2020-11-25)
 
 
