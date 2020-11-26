@@ -14,13 +14,13 @@ export const GUIDES = {
   PT: 'https://docs.ovh.com/pt/',
   SN: 'https://docs.ovh.com/gb/en/',
   TN: 'https://docs.ovh.com/gb/en/',
-  ASIA: 'https://docs.ovh.com/ca/en/',
-  AU: 'https://docs.ovh.com/ca/en/',
+  ASIA: 'https://docs.ovh.com/asia/en/',
+  AU: 'https://docs.ovh.com/au/en/',
   CA: 'https://docs.ovh.com/ca/en/',
   QC: 'https://docs.ovh.com/ca/fr/',
-  SG: 'https://docs.ovh.com/ca/en/',
-  WE: 'https://docs.ovh.com/ca/en/',
-  WS: 'https://docs.ovh.com/ca/en/',
+  SG: 'https://docs.ovh.com/sg/en/',
+  WE: 'https://docs.ovh.com/us/en/',
+  WS: 'https://docs.ovh.com/us/es/',
   US: 'https://docs.us.ovhcloud.com',
 };
 

@@ -22,7 +22,7 @@ export default class LogsOnboardingCtrl {
   }
 
   $onInit() {
-    this.guides = GUIDES.reduce(
+    this.guides = GUIDES[this.me.ovhSubsidiary].reduce(
       (list, guide) => [
         ...list,
         {

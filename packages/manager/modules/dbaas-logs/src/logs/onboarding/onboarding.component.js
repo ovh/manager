@@ -3,6 +3,7 @@ import template from './onboarding.html';
 
 export default {
   bindings: {
+    me: '<',
     orderLink: '<',
   },
   controller,
