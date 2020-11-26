@@ -19,6 +19,11 @@ export default class LogsListCtrl {
     this.messageHandler = this.CucCloudMessage.subscribe('dbaas-logs.list', {
       onMessage: () => this.refreshMessage(),
     });
+    this.CucOrderHelperService.buildUrl(this.LogsConstants.ORDER_URL).then(
+      (url) => {
+        this.orderURL = url;
+      },
+    );
   }
 
   refreshMessage() {
