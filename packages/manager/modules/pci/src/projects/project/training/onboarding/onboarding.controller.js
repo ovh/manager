@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import illustration from '../assets/training.png';
 import { GUIDES } from './onboarding.constants';
 
@@ -8,6 +9,7 @@ export default class PciServingOnboardingController {
     this.loading = false;
     this.PciProjectLabsService = PciProjectLabsService;
     this.$q = $q;
+    this.error = false;
   }
 
   $onInit() {
@@ -41,11 +43,18 @@ export default class PciServingOnboardingController {
       labPromise = this.$q.resolve();
     }
 
-    labPromise.then(() => {
-      if (this.isAuthorized) {
-        return this.submitJobLink();
-      }
-      return this.createAuthorization();
-    });
+    labPromise
+      .then(() => {
+        if (this.isAuthorized) {
+          return this.submitJobLink();
+        }
+        return this.createAuthorization();
+      })
+      .catch((error) => {
+        this.error = get(error, 'data.message');
+      })
+      .finally(() => {
+        this.loading = false;
+      });
   }
 }
