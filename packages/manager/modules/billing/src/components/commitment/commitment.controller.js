@@ -34,13 +34,11 @@ export default class {
     return this.$q
       .all({
         service: this.BillingService.getService(this.serviceId),
-        engagement: this.BillingService.getEngagement(this.serviceId),
         options: this.BillingService.getOptions(this.serviceId),
       })
-      .then(({ service, engagement, options }) => {
+      .then(({ service, options }) => {
         this.service = service;
         this.service.addOptions(options);
-        this.engagement = engagement;
         return this.BillingCommitmentService.getCatalogPrice(
           this.service,
           this.me,
