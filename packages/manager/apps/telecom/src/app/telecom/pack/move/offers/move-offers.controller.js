@@ -32,7 +32,7 @@ export default class PackMoveOffersCtrl {
       })
       .then(() => {
         if (this.eligibilityReferenceFiber) {
-          this.offers = [...this.listOffers, ...this.listOffersFiber];
+          this.offers = [...this.listOffersFiber, ...this.listOffers];
         } else {
           this.offers = [...this.listOffers];
         }
