@@ -1,7 +1,6 @@
 {
   "hosting_multisite_domain_configuration_home": "Cartella di root",
   "hosting_multisite_domain_configuration_myfolder": "miacartella",
-  "hosting_multisite_domain_configuration_ipv6": "Attiva l'IPv6",
   "hosting_multisite_domain_configuration_firewall": "Attiva il firewall",
   "hosting_multisite_domain_configuration_cdn": "Attiva la CDN",
   "hosting_multisite_domain_configuration_information": "Per far funzionare la configurazione, è necessario effettuare queste modifiche sul tuo dominio:",
@@ -9,7 +8,6 @@
   "hosting_multisite_domain_configuration_ownlog": "Log separati",
   "hosting_multisite_domain_configuration_runtime": "Programma d'esecuzione",
   "hosting_multisite_domain_configuration_options_choose": "Seleziona un'opzione",
-  "hosting_multisite_domain_configuration_ipv6_help": "Attiva il funzionamento del tuo sito in IPv6 per ampliare le modalità di accesso ai tuoi contenuti.",
   "hosting_multisite_domain_configuration_cdn_help": "Attiva la CDN e accelera la velocità di caricamento delle pagine del tuo sito in tutto il mondo.",
   "hosting_multisite_domain_configuration_country_ip_help": "Attiva l'IP specifico del paese per geolocalizzare il tuo sito e ottimizzarne il referianziamento.",
   "hosting_multisite_domain_configuration_firewall_help": "Attiva il firewall per garantire una maggiore protezione al tuo sito.",
