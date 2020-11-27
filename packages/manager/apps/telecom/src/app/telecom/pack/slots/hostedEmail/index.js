@@ -8,7 +8,7 @@ import 'ovh-api-services';
 import controller from './hostedEmail.controller';
 import template from './hostedEmail.html';
 
-const moduleName = 'ovhManagerTelecomPackXdslStatistics';
+const moduleName = 'ovhManagerTelecomPackHostedEmail';
 
 angular
   .module(moduleName, [
@@ -18,8 +18,7 @@ angular
     'ovh-api-services',
     'ui.router',
   ])
-  .controller('XdslStatisticsCtrl', controller)
-  .run(/* @ngTranslationsInject:json ./translations */)
+  .controller('PackHostedEmailCtrl', controller)
   .run(
     /* @ngInject */ ($templateCache) => {
       $templateCache.put(
@@ -27,6 +26,7 @@ angular
         template,
       );
     },
-  );
+  )
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

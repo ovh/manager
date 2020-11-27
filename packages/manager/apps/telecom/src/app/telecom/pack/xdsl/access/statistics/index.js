@@ -19,7 +19,6 @@ angular
     'ui.router',
   ])
   .controller('XdslStatisticsCtrl', controller)
-  .run(/* @ngTranslationsInject:json ./translations */)
   .run(
     /* @ngInject */ ($templateCache) => {
       $templateCache.put(
@@ -27,6 +26,7 @@ angular
         template,
       );
     },
-  );
+  )
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
