@@ -260,6 +260,12 @@
                 >
                 </oui-tile-definition>
                 <oui-tile-definition
+                    ng-if="ctrl.getPlanName()"
+                    data-term="{{::'logs_home_service_type'|translate}}"
+                    data-description="{{ ctrl.getPlanName() }}"
+                >
+                </oui-tile-definition>
+                <oui-tile-definition
                     data-term="{{::'logs_home_service'|translate}}"
                     data-description="{{ctrl.accountDetails.service.username}}"
                 >
