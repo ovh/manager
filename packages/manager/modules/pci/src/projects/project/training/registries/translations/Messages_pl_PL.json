@@ -1,0 +1,12 @@
+{
+  "pci_projects_project_training_registries_list_message_1": "W tej sekcji możesz zarządzać prywatnym rejestrem Docker",
+  "pci_projects_project_training_registries_list_message_2": "Dzięki tym obrazom będziesz mógł w prosty sposób uruchamiać zadania",
+  "pci_projects_project_training_registries_id": "ID",
+  "pci_projects_project_training_registries_region": "Region",
+  "pci_projects_project_training_registries_url": "URL",
+  "pci_projects_project_training_registries_creator": "Dodane przez",
+  "pci_projects_project_training_registries_username": "Nazwa użytkownika",
+  "pci_projects_project_training_registries_created": "Tworzenie",
+  "pci_projects_project_training_registries_delete": "Usuń",
+  "pci_projects_project_training_registries_list_add": "Dodaj"
+}

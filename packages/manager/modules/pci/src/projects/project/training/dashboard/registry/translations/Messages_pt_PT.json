@@ -1,0 +1,10 @@
+{
+  "pci_projects_project_training_registry_section_1_title": "Docker Registry partilhado",
+  "pci_projects_project_training_registry_section_1_title_info_1": "Armazenamos de forma padrão as imagens privadas dos seus projetos num Docker Registry gerido pela OVHcloud e partilhado entre os nossos clientes. As imagens armazenadas no website podem ser eliminadas a qualquer momento. Aconselhamos que utilize o seu registo privado para armazenar as suas próprias imagens.",
+  "pci_projects_project_training_registry_section_1_message_1": "Pode ligar-se ao Docker Registry partilhado através do seguinte comando:",
+  "pci_projects_project_training_registry_section_1_message_2": "A autenticação na plataforma pode ser realizada através de todos os ",
+  "pci_projects_project_training_registry_section_1_message_3": "utilizadores configurados",
+  "pci_projects_project_training_registry_section_1_message_4": " no mesmo projeto Public Cloud.",
+  "pci_projects_project_training_registry_section_1_message_5": "De seguida, poderá marcar as suas imagens e carregá-las para o registry.",
+  "pci_projects_project_training_registry_section_1_message_6": "A sua imagem pode ser utilizada num job AI Training."
+}

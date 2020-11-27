@@ -22,5 +22,7 @@
   "pci_projects_project_training_jobs_info_title_2": "Container",
   "pci_projects_project_training_jobs_info_title_3": "Risorse",
   "pci_projects_project_training_jobs_info_title_4": "Dati",
-  "pci_projects_project_training_jobs_info_title_actions": "Azioni"
+  "pci_projects_project_training_jobs_info_title_actions": "Azioni",
+  "pci_projects_project_training_job_logs_text_3": "Una volta terminato il job è possibile scaricare i log tramite l'Object Storage, nel container \"ai-training-log\"",
+  "pci_projects_project_training_jobs_info_title_5": "Timeline"
 }

@@ -7,7 +7,7 @@
   "pci_projects_project_training_onboarding_guides_install-eai-cli_title": "Install AI Training client",
   "pci_projects_project_training_onboarding_guides_install-eai-cli_description": "Learn how to quickly install the AI Training client on your work desktop.",
   "pci_projects_project_training_onboarding_guides_eai-prices_title": "Prices and Billing",
-  "pci_projects_project_training_onboarding_guides_eai-prices_description": "Price and billing details for AI Training solution.",
+  "pci_projects_project_training_onboarding_guides_eai-prices_description": "Price and billing details for the AI Training solution.",
   "pci_projects_project_training_onboarding_guides_eai-job-submit_title": "Scheduling jobs on GPU",
   "pci_projects_project_training_onboarding_guides_eai-job-submit_description": "Find out how to schedule jobs linked to your own data to run on GPU instances."
 }

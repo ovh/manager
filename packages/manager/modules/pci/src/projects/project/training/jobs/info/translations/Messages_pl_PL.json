@@ -22,5 +22,7 @@
   "pci_projects_project_training_jobs_info_title_2": "Kontener",
   "pci_projects_project_training_jobs_info_title_3": "Zasoby",
   "pci_projects_project_training_jobs_info_title_4": "Dane",
-  "pci_projects_project_training_jobs_info_title_actions": "Operacje"
+  "pci_projects_project_training_jobs_info_title_actions": "Operacje",
+  "pci_projects_project_training_job_logs_text_3": "Po zakończeniu zadania możesz pobrać Twoje logi za pośrednictwem Object Storage do kontenera \"ai-training-logs\"",
+  "pci_projects_project_training_jobs_info_title_5": "Oś czasu"
 }
