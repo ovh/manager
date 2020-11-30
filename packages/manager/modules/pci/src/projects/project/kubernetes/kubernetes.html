@@ -41,6 +41,18 @@
                 data-property="region"
             ></oui-datagrid-column>
             <oui-datagrid-column
+                data-title=":: 'kube_list_network_attached' | translate"
+            >
+                <span
+                    data-ng-if="!$row.privateNetworkId"
+                    data-translate="kube_list_network_public"
+                ></span>
+                <span
+                    data-ng-if="$row.privateNetworkId"
+                    data-ng-bind="$row.privateNetworkName"
+                ></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title=":: 'kube_list_version' | translate"
                 data-property="version"
             ></oui-datagrid-column>

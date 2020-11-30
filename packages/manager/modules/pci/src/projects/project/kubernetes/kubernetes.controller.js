@@ -1,9 +1,10 @@
 export default class {
   /* @ngInject */
-  constructor($translate, CucCloudMessage, OvhApiCloudProjectKube) {
+  constructor($translate, CucCloudMessage, OvhApiCloudProjectKube, Kubernetes) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.OvhApiCloudProjectKube = OvhApiCloudProjectKube;
+    this.Kubernetes = Kubernetes;
   }
 
   $onInit() {
@@ -22,10 +23,20 @@ export default class {
   }
 
   getKubernetes({ id: kubeId }) {
-    return this.OvhApiCloudProjectKube.v6().get({
-      serviceName: this.projectId,
-      kubeId,
-    }).$promise;
+    return this.OvhApiCloudProjectKube.v6()
+      .get({
+        serviceName: this.projectId,
+        kubeId,
+      })
+      .$promise.then((kube) => {
+        return {
+          ...kube,
+          privateNetworkName: this.Kubernetes.constructor.getPrivateNetworkName(
+            this.privateNetworks,
+            kube.privateNetworkId,
+          ),
+        };
+      });
   }
 
   getDetailsState(id) {

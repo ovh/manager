@@ -24,10 +24,15 @@ export default class {
 
   $onInit() {
     this.isAdding = false;
+    this.defaultPrivateNetwork = {
+      id: null,
+      name: this.$translate.instant('kubernetes_add_private_network_none'),
+    };
     this.cluster = {
       region: null,
       version: null,
       name: null,
+      privateNetwork: this.defaultPrivateNetwork,
       nodePool: {
         antiAffinity: false,
         flavor: null,
@@ -55,17 +60,19 @@ export default class {
     this.sendKubeTrack('add::confirm');
 
     this.isAdding = true;
+    const options = {
+      desiredNodes: this.cluster.nodePool.nodeCount,
+      flavorName: this.cluster.nodePool.flavor.name,
+      antiAffinity: this.cluster.nodePool.antiAffinity,
+      monthlyBilled: this.cluster.nodePool.monthlyBilling,
+    };
     return this.Kubernetes.createCluster(
       this.projectId,
       this.cluster.name,
       this.cluster.region.name,
       this.cluster.version,
-      {
-        desiredNodes: this.cluster.nodePool.nodeCount,
-        flavorName: this.cluster.nodePool.flavor.name,
-        antiAffinity: this.cluster.nodePool.antiAffinity,
-        monthlyBilled: this.cluster.nodePool.monthlyBilling,
-      },
+      this.cluster.privateNetwork.clusterRegion?.openstackId,
+      options,
     )
       .then((response) =>
         this.checkKubernetesStatus(this.projectId, response.data.id),
@@ -126,7 +133,26 @@ export default class {
       quota: find(this.quotas, { region: this.cluster.region.name }),
     });
     this.loadFlavors(this.cluster.region.name);
+    this.loadPrivateNetworks();
     this.displaySelectedRegion = true;
+  }
+
+  loadPrivateNetworks() {
+    this.availablePrivateNetworks = [
+      this.defaultPrivateNetwork,
+      ...this.Kubernetes.constructor.getAvailablePrivateNetworks(
+        this.privateNetworks,
+        this.cluster.region.name,
+      ),
+    ];
+    if (
+      this.cluster.privateNetwork &&
+      !find(this.availablePrivateNetworks, {
+        id: this.cluster.privateNetwork.id,
+      })
+    ) {
+      this.cluster.privateNetwork = this.defaultPrivateNetwork;
+    }
   }
 
   onNodePoolFocus() {
