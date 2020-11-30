@@ -1,0 +1,27 @@
+{
+  "pci_projects_project_training_install_section_1_title": "Installation du client",
+  "pci_projects_project_training_install_section_2_title": "Authentification",
+  "pci_projects_project_training_install_section_3_title": "Commandes",
+  "pci_projects_project_training_install_section_1_command_message_1": "Téléchargez le Zip suivant, et extrayez l'exécutable qu'il contient dans le répertoire d'installation souhaité",
+  "pci_projects_project_training_install_section_2_message_1": "L'authentification sur la plateforme peut se faire via tous les ",
+  "pci_projects_project_training_install_section_2_message_2": "utilisateurs configurés",
+  "pci_projects_project_training_install_section_2_message_3": " au sein du même projet Public Cloud.",
+  "pci_projects_project_training_install_section_2_message_4": "Les étapes d'authentification sont les suivantes :",
+  "pci_projects_project_training_install_section_2_message_5": "lancer ",
+  "pci_projects_project_training_install_section_2_message_6": "ouvrir l'URL affichée dans un navigateur",
+  "pci_projects_project_training_install_section_2_message_7": "renseigner les informations de connexion de l'utilisateur voulu",
+  "pci_projects_project_training_install_section_2_message_8": "copier le code affiché et le coller dans le terminal toujours ouvert",
+  "pci_projects_project_training_install_section_2_message_9": "Ce processus est maintenant terminé",
+
+  "pci_projects_project_training_install_section_3_message_1": "Lancez ",
+  "pci_projects_project_training_install_section_3_message_2": " afin d'obtenir une liste des actions disponibles.",
+
+  "pci_projects_project_training_install_section_4_title": "Registre d'image Docker",
+  "pci_projects_project_training_install_actions": "Actions",
+  "pci_projects_project_training_install_registry_attach": "Attacher un registre d'images Docker",
+  "pci_projects_project_training_install_registry_detach": "Détacher le registre d'images Docker",
+  "pci_projects_project_training_install_information": "Informations",
+
+  "pci_projects_project_training_install_registry": "Docker Registry",
+  "pci_projects_project_training_install_registry_shared": "Docker Registry partagé"
+}

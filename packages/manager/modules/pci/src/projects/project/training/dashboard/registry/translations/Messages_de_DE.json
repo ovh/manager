@@ -1,0 +1,10 @@
+{
+  "pci_projects_project_training_registry_section_1_title": "gemeinsam genutzte Docker Registry",
+  "pci_projects_project_training_registry_section_1_title_info_1": "Standardmäßig speichern wir private Images Ihrer Aufträge in einer Docker-Registry. Sie wird von OVHcloud verwaltet und von unseren Kunden gemeinsam genutzt. Die darauf gespeicherten Bilder können jederzeit gelöscht werden. Wir empfehlen Ihnen, Ihr Private Registry zu verwenden, um Ihre eigenen Images zu speichern.",
+  "pci_projects_project_training_registry_section_1_message_1": "Sie können sich über folgenden Befehl mit dem freigegebenen Docker Registry verbinden:",
+  "pci_projects_project_training_registry_section_1_message_2": "Die Authentifizierung auf der Plattform kann über alle ",
+  "pci_projects_project_training_registry_section_1_message_3": "konfigurierten Nutzer",
+  "pci_projects_project_training_registry_section_1_message_4": " innerhalb desselben Public Cloud Projekts vorgenommen werden.",
+  "pci_projects_project_training_registry_section_1_message_5": "Anschließend können Sie Ihre Images markieren und in die Registry laden.",
+  "pci_projects_project_training_registry_section_1_message_6": "Ihr Image kann nun in einem AI Training Auftrag verwendet werden."
+}

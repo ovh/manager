@@ -1,0 +1,12 @@
+{
+  "pci_projects_project_training_registries_list_message_1": "Puede gestionar sus registros privados Docker desde aquí.",
+  "pci_projects_project_training_registries_list_message_2": "A continuación, podrá lanzar fácilmente tareas con estas imágenes.",
+  "pci_projects_project_training_registries_id": "ID",
+  "pci_projects_project_training_registries_region": "Región",
+  "pci_projects_project_training_registries_url": "URL",
+  "pci_projects_project_training_registries_creator": "Añadido por",
+  "pci_projects_project_training_registries_username": "Nombre de usuario",
+  "pci_projects_project_training_registries_created": "Creación",
+  "pci_projects_project_training_registries_delete": "Eliminar",
+  "pci_projects_project_training_registries_list_add": "Añadir"
+}

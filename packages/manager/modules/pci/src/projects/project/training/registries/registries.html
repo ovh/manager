@@ -1,0 +1,113 @@
+<cui-message-container data-messages="$ctrl.messages"></cui-message-container>
+
+<div class="container-fluid" data-ui-view>
+    <p
+        data-translate="pci_projects_project_training_registries_list_message_1"
+    ></p>
+    <p
+        data-translate="pci_projects_project_training_registries_list_message_2"
+    ></p>
+
+    <oui-datagrid
+        id="publicCloudTrainingRegistrysDatagrid"
+        data-rows="$ctrl.registryList"
+    >
+        <oui-datagrid-column
+            data-title=":: 'pci_projects_project_training_registries_id' | translate"
+            data-property="id"
+            data-type="string"
+            data-searchable
+            data-filterable
+            data-sortable
+        >
+            <a data-ng-href="{{:: $ctrl.jobInfoLink($value) }}">
+                <span data-ng-bind="::$value"></span>
+            </a>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_projects_project_training_registries_region' | translate"
+            data-property="region"
+            data-type="string"
+            data-searchable
+            data-filterable
+            data-sortable
+        >
+            <span data-ng-bind="$value"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_projects_project_training_registries_url' | translate"
+            data-property="url"
+            data-type="string"
+            data-searchable
+            data-filterable
+            data-sortable
+        >
+            <span data-ng-bind="$value"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_projects_project_training_registries_username' | translate"
+            data-property="username"
+            data-type="string"
+            data-searchable
+            data-filterable
+            data-sortable
+        >
+            <span data-ng-bind="$value"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_projects_project_training_registries_creator' | translate"
+            data-property="user"
+            data-type="string"
+            data-searchable
+            data-filterable
+            data-sortable
+        >
+            <span data-ng-bind="$value"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'pci_projects_project_training_registries_created' | translate"
+            data-property="createdAt"
+            data-type="date"
+            data-searchable
+            data-filterable
+            data-sortable
+        >
+            <span data-ng-bind="$value | date:'medium'"></span>
+        </oui-datagrid-column>
+        <oui-action-menu data-align="end" data-compact>
+            <oui-action-menu-item data-on-click="$ctrl.deleteRegistry($row.id)">
+                <span
+                    data-translate="pci_projects_project_training_registries_delete"
+                ></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+        <oui-datagrid-topbar>
+            <button
+                data-ng-click="$ctrl.goToRegistryAdd()"
+                data-title="{{:: 'pci_projects_project_training_registries_list_submit' | translate }}"
+                class="oui-button oui-button_secondary oui-button_icon-left"
+                data-track-on="click"
+                data-track-name="public-cloud::pci::projects::project::training::registries::add-registry"
+                data-track-type="action"
+            >
+                <span
+                    class="oui-icon oui-icon-add pr-1"
+                    aria-hidden="true"
+                ></span>
+                <span
+                    data-translate="pci_projects_project_training_registries_list_add"
+                ></span>
+            </button>
+            <button
+                class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_s"
+                data-title="{{:: 'pci_projects_project_training_data_refresh' | translate }}"
+                data-ng-click="$ctrl.refreshState()"
+            >
+                <span
+                    class="oui-icon oui-icon-refresh"
+                    aria-hidden="true"
+                ></span>
+            </button>
+        </oui-datagrid-topbar>
+    </oui-datagrid>
+</div>

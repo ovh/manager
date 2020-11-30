@@ -126,6 +126,31 @@ export const MENU = [
   {
     subitems: [
       {
+        id: 'training',
+        beta: true,
+        options: {
+          state: 'pci.projects.project.training',
+        },
+        title: 'AI Training',
+        regions: ['CA', 'EU'],
+        feature: 'ai-training',
+      },
+      {
+        id: 'serving',
+        new: true,
+        options: {
+          state: 'pci.projects.project.serving',
+        },
+        title: 'ML Serving',
+        regions: ['EU', 'CA'],
+      },
+    ],
+    regions: ['EU', 'CA'],
+    title: 'AI & Machine Learning',
+  },
+  {
+    subitems: [
+      {
         id: 'analytics-data-platform',
         options: {
           state: 'pci.projects.project.analytics-data-platform',
@@ -140,15 +165,6 @@ export const MENU = [
           state: 'pci.projects.project.data-processing',
         },
         title: 'Data Processing',
-        regions: ['EU', 'CA'],
-      },
-      {
-        id: 'serving',
-        new: true,
-        options: {
-          state: 'pci.projects.project.serving',
-        },
-        title: 'ML Serving',
         regions: ['EU', 'CA'],
       },
     ],
