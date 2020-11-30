@@ -1,0 +1,10 @@
+{
+  "pci_projects_project_training_registry_section_1_title": "Docker Registry condiviso",
+  "pci_projects_project_training_registry_section_1_title_info_1": "Le immagini private dei job vengono archiviate di default in un Docker Registry gestito da OVHcloud e condiviso tra i clienti. Le immagini salvate su questo servizio possono essere eliminate in qualsiasi momento. Ti consigliamo di utilizzare il tuo Registry privato per salvare le immagini.",
+  "pci_projects_project_training_registry_section_1_message_1": "Per accedere al Docker Registry condiviso è possibile utilizzare questo comando:",
+  "pci_projects_project_training_registry_section_1_message_2": "Per autenticarsi sulla piattaforma è possibile utilizzare tutti gli ",
+  "pci_projects_project_training_registry_section_1_message_3": "utenti configurati",
+  "pci_projects_project_training_registry_section_1_message_4": " all'interno dello stesso progetto Public Cloud.",
+  "pci_projects_project_training_registry_section_1_message_5": "In seguito è possibile contrassegnare le immagini e caricarle sul Registry.",
+  "pci_projects_project_training_registry_section_1_message_6": "Adesso la tua immagine può essere utilizzata in un job AI Training."
+}

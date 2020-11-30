@@ -1,0 +1,89 @@
+<oui-modal
+    data-secondary-action="$ctrl.goBack()"
+    data-on-dismiss="$ctrl.goBack()"
+    data-size="'xl'"
+>
+    <h2>
+        {{:: 'pci_projects_project_training_install_section_1_title' | translate
+        }}
+    </h2>
+
+    <oui-tabs class="mb-4">
+        <oui-tabs-item
+            data-ng-repeat="(os, link) in $ctrl.osInstall track by os"
+            data-heading="{{:: os }}"
+        >
+            <p>
+                {{::
+                'pci_projects_project_training_install_section_1_command_message_1'
+                | translate }}
+            </p>
+            <p>
+                <a data-ng-href="{{:: link}}">
+                    {{:: link }}
+                </a>
+            </p>
+        </oui-tabs-item>
+    </oui-tabs>
+
+    <h2>
+        {{:: 'pci_projects_project_training_install_section_2_title' | translate
+        }}
+    </h2>
+
+    <p>
+        {{:: 'pci_projects_project_training_install_section_2_message_1' |
+        translate }}
+        <a href="{{:: $ctrl.userLink }}"
+            >{{:: 'pci_projects_project_training_install_section_2_message_2' |
+            translate }}</a
+        >
+        {{:: 'pci_projects_project_training_install_section_2_message_3' |
+        translate }}
+    </p>
+
+    <p>
+        {{:: 'pci_projects_project_training_install_section_2_message_4' |
+        translate }}
+    </p>
+
+    <ul>
+        <li>
+            {{:: 'pci_projects_project_training_install_section_2_message_5' |
+            translate }}<code
+                >{{:: 'pci_projects_project_training_parter_cli_name' |
+                translate }} login</code
+            >
+        </li>
+        <li>
+            {{:: 'pci_projects_project_training_install_section_2_message_6' |
+            translate }}
+        </li>
+        <li>
+            {{:: 'pci_projects_project_training_install_section_2_message_7' |
+            translate }}
+        </li>
+        <li>
+            {{:: 'pci_projects_project_training_install_section_2_message_8' |
+            translate }}
+        </li>
+        <li>
+            {{:: 'pci_projects_project_training_install_section_2_message_9' |
+            translate }}
+        </li>
+    </ul>
+
+    <h2>
+        {{:: 'pci_projects_project_training_install_section_3_title' | translate
+        }}
+    </h2>
+
+    <p>
+        {{:: 'pci_projects_project_training_install_section_3_message_1' |
+        translate }}<code
+            >{{:: 'pci_projects_project_training_parter_cli_name' | translate }}
+            --help</code
+        >{{:: 'pci_projects_project_training_install_section_3_message_2' |
+        translate }}
+    </p>
+</oui-modal>

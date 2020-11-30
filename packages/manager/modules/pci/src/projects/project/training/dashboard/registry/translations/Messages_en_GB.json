@@ -1,0 +1,10 @@
+{
+  "pci_projects_project_training_registry_section_1_title": "Shared Docker Registry",
+  "pci_projects_project_training_registry_section_1_title_info_1": "By default, we store private images of your jobs on a Docker Registry managed by OVHcloud, and shared with our customers. The images stored on it can be deleted at any time. We recommend using your private registry to store your own images.",
+  "pci_projects_project_training_registry_section_1_message_1": "You can connect to the shared Docker Registry via the following command:",
+  "pci_projects_project_training_registry_section_1_message_2": "You can authenticate on the platform via all ",
+  "pci_projects_project_training_registry_section_1_message_3": "configured users",
+  "pci_projects_project_training_registry_section_1_message_4": " within the same Public Cloud project.",
+  "pci_projects_project_training_registry_section_1_message_5": "You can then mark your images and upload them to the registry.",
+  "pci_projects_project_training_registry_section_1_message_6": "Your image can now be used in an AI Training job."
+}
