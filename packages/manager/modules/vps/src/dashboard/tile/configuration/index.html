@@ -35,7 +35,7 @@
                 data-on-change="$ctrl.goToUpgrade('memory')"
             >
                 <oui-radio
-                    data-value="$ctrl.currentPlan"
+                    data-value="$ctrl.configurationTile.currentPlan"
                     data-disabled="$ctrl.vpsUpgradeTask && !$ctrl.isInRescueMode"
                 >
                     <span
@@ -54,7 +54,7 @@
             <p
                 class="mt-2 mb-0"
                 data-translate="vps_dashboard_tile_configuration_memory_double"
-                data-translate-values="{ price: $ctrl.isUpfront ? $ctrl.configurationTile.upgrades.memory.upfrontDiff.text : $ctrl.configurationTile.upgrades.memory.diff.text }"
+                data-translate-values="{ price: $ctrl.configurationTile.isUpfront ? $ctrl.configurationTile.upgrades.memory.upfrontDiff.text : $ctrl.configurationTile.upgrades.memory.diff.text }"
             ></p>
         </oui-tile-description>
 
@@ -84,7 +84,7 @@
                 data-on-change="$ctrl.goToUpgrade('storage')"
             >
                 <oui-radio
-                    data-value="$ctrl.currentPlan"
+                    data-value="$ctrl.configurationTile.currentPlan"
                     data-disabled="$ctrl.vpsUpgradeTask && !$ctrl.isInRescueMode"
                 >
                     <span
@@ -103,7 +103,7 @@
             <p
                 class="mt-2 mb-0"
                 data-translate="vps_dashboard_tile_configuration_storage_double"
-                data-translate-values="{ price: $ctrl.isUpfront ? $ctrl.configurationTile.upgrades.storage.upfrontDiff.text : $ctrl.configurationTile.upgrades.storage.diff.text }"
+                data-translate-values="{ price: $ctrl.configurationTile.isUpfront ? $ctrl.configurationTile.upgrades.storage.upfrontDiff.text : $ctrl.configurationTile.upgrades.storage.diff.text }"
             ></p>
         </oui-tile-description>
 

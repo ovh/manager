@@ -1,40 +1,54 @@
 import find from 'lodash/find';
 import get from 'lodash/get';
+import head from 'lodash/head';
 import startsWith from 'lodash/startsWith';
+import sumBy from 'lodash/sumBy';
 
-class ConfigurationTileService {
-  constructor() {
-    this.vps = null;
-    this.vpsModel = null;
-    this.service = null;
+export default class ConfigurationTileService {
+  constructor(vps, model, catalog, availableUpgrades) {
+    this.vps = vps;
+    this.vpsModel = model;
+    this.catalog = catalog;
 
-    this.availableUpgrades = null;
+    this.availableUpgrades = availableUpgrades;
+    this.pricingMode = get(
+      head(get(head(this.availableUpgrades), 'prices')),
+      'pricingMode',
+    );
+
+    this.memory = model.memory;
+    this.storage = model.storage;
   }
 
   get currentPlan() {
-    return this.service.billing.plan;
+    return this.catalog.plans.find(
+      ({ planCode }) => planCode === this.vpsModel.name,
+    );
   }
 
   get price() {
-    return this.service.billing.pricing;
+    const prices = this.currentPlan.pricings.filter(
+      ({ mode }) => mode === this.pricingMode,
+    );
+    return sumBy(prices, 'price') / 100000000;
   }
 
   get isUpfront() {
-    return startsWith(get(this.price, 'pricingMode'), 'upfront');
+    return startsWith(this.pricingMode, 'upfront');
   }
 
-  static getPlanPriceDiff(upperPlan, currentPrice) {
+  getPlanPriceDiff(upperPlan) {
     const upperPlanTotalPriceValue = ConfigurationTileService.getPlanPriceValue(
       upperPlan,
     );
 
     return ConfigurationTileService.getPriceStructure(
-      upperPlanTotalPriceValue - currentPrice.price.value,
-      currentPrice.price,
+      upperPlanTotalPriceValue - this.price,
+      upperPlan.prices[0].price,
     );
   }
 
-  static getPlanUpfrontPriceDiff(upperPlan, currentPrice) {
+  getPlanUpfrontPriceDiff(upperPlan) {
     const upperPlanTotalPriceValue = ConfigurationTileService.getPlanPriceValue(
       upperPlan,
     );
@@ -43,11 +57,11 @@ class ConfigurationTileService {
       ({ price }) => price.value > 0,
     );
 
-    const priceDiff = upperPlanTotalPriceValue - currentPrice.price.value;
+    const priceDiff = upperPlanTotalPriceValue - this.price;
 
     return ConfigurationTileService.getPriceStructure(
       priceDiff / priceWhoWillDetermineInterval.interval,
-      currentPrice.price,
+      upperPlan.prices[0].price,
     );
   }
 
@@ -64,48 +78,12 @@ class ConfigurationTileService {
   }
 
   /**
-   *  Set the vps informations
-   *
-   *  @param {Object} vps      The informations provided by 2API
-   *  @param {Object} vpsModel The model attribute provided by
-   *                           GET /vps/{serviceName} (not present in 2API...)
-   *
-   *  @return {ConfigurationTileService}
-   */
-  setVps(vps, vpsModel) {
-    this.vps = vps;
-    this.vpsModel = vpsModel;
-
-    return this;
-  }
-
-  /**
-   *  Set available upgrades in order to get the current vps plan.
-   *
-   *  @param  {Array}   availableUpgrades response from the GET /order/upgrade/vps/{serviceName} API call.
-   *
-   *  @return {ConfigurationTileService}
-   */
-  setAvailableUpgrades(availableUpgrades) {
-    this.availableUpgrades = availableUpgrades;
-
-    return this;
-  }
-
-  setCurrentService(service) {
-    this.service = service;
-    return this;
-  }
-
-  /**
    *  Get informations about the upgrades available from configuration tile in the dashboard.
    *  These plans will be useful for upgrade modal.
    *
-   *  @param  {Object}  catalog           response from the GET /order/catalog/public/virtualprivateserver.
-   *
    *  @return {Object}
    */
-  getAvailableUpgrades(catalog) {
+  getAvailableUpgrades() {
     if (this.vpsModel.vcore === 8) {
       // if vps elite - no upgrade available from configuration tile
       return {
@@ -119,7 +97,7 @@ class ConfigurationTileService {
     }
 
     // get next ram plan infos
-    const nextRamVps = find(catalog.products, ({ blobs }) => {
+    const nextRamVps = find(this.catalog.products, ({ blobs }) => {
       if (!get(blobs, 'technical')) {
         return false;
       }
@@ -144,7 +122,7 @@ class ConfigurationTileService {
       : null;
 
     // get next storage plan infos
-    const nextStorageVps = find(catalog.products, ({ blobs }) => {
+    const nextStorageVps = find(this.catalog.products, ({ blobs }) => {
       if (!get(blobs, 'technical')) {
         return false;
       }
@@ -172,38 +150,22 @@ class ConfigurationTileService {
     return {
       memory: {
         plan: nextRamVpsPlan,
-        diff: nextRamVpsPlan
-          ? ConfigurationTileService.getPlanPriceDiff(
-              nextRamVpsPlan,
-              this.price,
-            )
-          : null,
+        diff: nextRamVpsPlan ? this.getPlanPriceDiff(nextRamVpsPlan) : null,
         upfrontDiff:
           nextRamVpsPlan && this.isUpfront
-            ? ConfigurationTileService.getPlanUpfrontPriceDiff(
-                nextRamVpsPlan,
-                this.price,
-              )
+            ? this.getPlanUpfrontPriceDiff(nextRamVpsPlan)
             : null,
       },
       storage: {
         plan: nextStorageVpsPlan,
         diff: nextStorageVpsPlan
-          ? ConfigurationTileService.getPlanPriceDiff(
-              nextStorageVpsPlan,
-              this.price,
-            )
+          ? this.getPlanPriceDiff(nextStorageVpsPlan)
           : null,
         upfrontDiff:
           nextStorageVpsPlan && this.isUpfront
-            ? ConfigurationTileService.getPlanUpfrontPriceDiff(
-                nextStorageVpsPlan,
-                this.price,
-              )
+            ? this.getPlanUpfrontPriceDiff(nextStorageVpsPlan)
             : null,
       },
     };
   }
 }
-
-export default new ConfigurationTileService();
