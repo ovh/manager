@@ -1,3 +1,12 @@
+# [4.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.3.2...@ovh-ux/manager-public-cloud@4.4.0) (2020-11-30)
+
+
+### Features
+
+* apply feature flipping to ai training section ([fb46e1a](https://github.com/ovh/manager/commit/fb46e1a708c245ff9030a802f7ecc079b7eeb876))
+
+
+
 ## [4.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.3.1...@ovh-ux/manager-public-cloud@4.3.2) (2020-11-25)
 
 
