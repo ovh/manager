@@ -44,5 +44,27 @@
             >
             </oui-select>
         </oui-field>
+        <!-- private network -->
+        <oui-field
+            data-label="{{ :: 'kubernetes_add_private_network_label' | translate }}"
+        >
+            <oui-select
+                data-name="privateNetwork"
+                data-model="$ctrl.model.privateNetwork"
+                data-items="$ctrl.availablePrivateNetworks"
+                data-match="name"
+                data-searchable
+            >
+            </oui-select>
+            <p>
+                <span
+                    data-translate="kubernetes_add_private_network_description"
+                ></span>
+                <a
+                    data-ng-href="{{:: $ctrl.addPrivateNetworksLink }}"
+                    data-translate="kubernetes_add_private_network_add"
+                ></a>
+            </p>
+        </oui-field>
     </oui-modal>
 </form>

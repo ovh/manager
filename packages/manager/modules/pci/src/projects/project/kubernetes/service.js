@@ -1,3 +1,5 @@
+import filter from 'lodash/filter';
+import find from 'lodash/find';
 import map from 'lodash/map';
 import set from 'lodash/set';
 import sortBy from 'lodash/sortBy';
@@ -77,16 +79,20 @@ export default class Kubernetes {
       .catch((error) => (error.status === 400 ? false : Promise.reject(error)));
   }
 
-  createCluster(projectId, name, region, version, nodepool) {
+  createCluster(projectId, name, region, version, privateNetworkId, nodepool) {
     if (nodepool.antiAffinity) {
       set(nodepool, 'maxNodes', ANTI_AFFINITY_MAX_NODES);
     }
-    return this.$http.post(`/cloud/project/${projectId}/kube`, {
+    const options = {
       region,
       name,
       version,
       nodepool,
-    });
+    };
+    if (privateNetworkId) {
+      options.privateNetworkId = privateNetworkId;
+    }
+    return this.$http.post(`/cloud/project/${projectId}/kube`, options);
   }
 
   createNodePool(projectId, kubeId, nodePool) {
@@ -188,5 +194,56 @@ export default class Kubernetes {
 
   resetInstancesCache() {
     this.OvhApiCloudProjectInstance.v6().resetCache();
+  }
+
+  getPrivateNetworks(projectId) {
+    return this.$http
+      .get(`/cloud/project/${projectId}/network/private`)
+      .then((networks) =>
+        filter(networks.data, {
+          type: 'private',
+        }),
+      );
+  }
+
+  static getPrivateNetwork(privateNetworks, openstackId) {
+    return find(privateNetworks, (network) =>
+      find(network.regions, (region) => region.openstackId === openstackId),
+    );
+  }
+
+  static getPrivateNetworkName(privateNetworks, privateNetworkId) {
+    if (!privateNetworkId) {
+      return privateNetworkId;
+    }
+    const network = Kubernetes.getPrivateNetwork(
+      privateNetworks,
+      privateNetworkId,
+    );
+    return network ? network.name : privateNetworkId;
+  }
+
+  static getAvailablePrivateNetworks(privateNetworks, regionName) {
+    return sortBy(
+      map(
+        filter(privateNetworks, (network) => {
+          return find(network.regions, {
+            region: regionName,
+            status: 'ACTIVE',
+          });
+        }),
+        (privateNetwork) => ({
+          ...privateNetwork,
+          name: `${privateNetwork.vlanId.toString().padStart(4, '0')} - ${
+            privateNetwork.name
+          }`,
+          clusterRegion: find(privateNetwork.regions, {
+            region: regionName,
+            status: 'ACTIVE',
+          }),
+        }),
+      ),
+      ['name'],
+    );
   }
 }

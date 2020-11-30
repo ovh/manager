@@ -34,6 +34,10 @@ export default class KubernetesServiceCtrl {
     this.STATUS = STATUS;
     this.loadingKubeConfig = false;
     this.loadMessages();
+    this.cluster.privateNetworkName = this.Kubernetes.constructor.getPrivateNetworkName(
+      this.privateNetworks,
+      this.cluster.privateNetworkId,
+    );
     return this.getRestrictions();
   }
 

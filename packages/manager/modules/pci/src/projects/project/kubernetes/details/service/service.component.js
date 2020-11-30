@@ -19,6 +19,8 @@ const component = {
     isVersionSupported: '<',
     restrictionsLink: '<',
     loadRestrictions: '<',
+    projectId: '<',
+    privateNetworks: '<',
   },
   template,
   controller,

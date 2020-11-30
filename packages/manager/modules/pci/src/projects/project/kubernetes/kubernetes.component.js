@@ -7,6 +7,7 @@ export default {
     guideUrl: '<',
     kubernetes: '<',
     projectId: '<',
+    privateNetworks: '<',
   },
   controller,
   template,
