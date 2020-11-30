@@ -1,3 +1,21 @@
+# [5.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.4.0...@ovh-ux/manager-pci@5.5.0) (2020-11-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 588] ([b271069](https://github.com/ovh/manager/commit/b2710699baa92b4d9880ccb1e02c4083a57c2c70))
+* **i18n:** add missing translations [CDS 601] ([f59b5f2](https://github.com/ovh/manager/commit/f59b5f26e8d7e10fa020fa71f5e65beae9285d99))
+* **i18n:** add missing translations [CDS 687] ([4bbf84f](https://github.com/ovh/manager/commit/4bbf84f81a85456ac8a5b551c4d88a9fc61a8f68))
+
+
+### Features
+
+* **pci:** rework AI Training section ([#3982](https://github.com/ovh/manager/issues/3982)) ([e89b1ed](https://github.com/ovh/manager/commit/e89b1ed2442e254db065cc99a1b8e13ec2e554a6))
+* apply feature flipping to ai training section ([fb46e1a](https://github.com/ovh/manager/commit/fb46e1a708c245ff9030a802f7ecc079b7eeb876))
+* **cloud.project.training:** add training platform section ([934f437](https://github.com/ovh/manager/commit/934f437d99208d8f8b82d47cab47037618bf48f2))
+
+
+
 # [5.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.3.1...@ovh-ux/manager-pci@5.4.0) (2020-11-25)
 
 
