@@ -29,7 +29,7 @@
                 class="d-block"
                 data-translate="vps_dashboard_tile_configuration_upgrade_action_price"
                 data-translate-values="{ price: $ctrl.resolve.configurationTile.upgrades[$ctrl.resolve.upgradeType].diff.text }"
-                data-ng-if="!$ctrl.isUpfront"
+                data-ng-if="!$ctrl.resolve.configurationTile.isUpfront"
             >
             </span>
 
@@ -37,7 +37,7 @@
                 class="d-block"
                 data-translate="vps_dashboard_tile_configuration_upgrade_action_validation"
                 data-translate-values="{ prorataPrice: $ctrl.resolve.upgradeInfo.order.prices.withTax.text }"
-                data-ng-if="!$ctrl.isUpfront && $ctrl.resolve.hasDefaultPaymentMethod"
+                data-ng-if="!$ctrl.resolve.configurationTile.isUpfront && $ctrl.resolve.hasDefaultPaymentMethod"
             >
             </span>
 
@@ -45,7 +45,7 @@
                 class="d-block"
                 data-translate="vps_dashboard_tile_configuration_upgrade_action_validation_with_no_payment_method_monthly"
                 data-translate-values="{ price: $ctrl.resolve.upgradeInfo.order.prices.withTax.text }"
-                data-ng-if="!$ctrl.isUpfront && !$ctrl.resolve.hasDefaultPaymentMethod"
+                data-ng-if="!$ctrl.resolve.configurationTile.isUpfront && !$ctrl.resolve.hasDefaultPaymentMethod"
             >
             </span>
 
@@ -53,7 +53,7 @@
                 class="d-block"
                 data-translate="vps_dashboard_tile_configuration_upgrade_action_validation_with_no_payment_method_upfront"
                 data-translate-values="{ price: $ctrl.resolve.upgradeInfo.order.prices.withTax.text }"
-                data-ng-if="$ctrl.isUpfront && !$ctrl.resolve.hasDefaultPaymentMethod"
+                data-ng-if="$ctrl.resolve.configurationTile.isUpfront && !$ctrl.resolve.hasDefaultPaymentMethod"
             >
             </span>
 
@@ -61,7 +61,7 @@
                 class="d-block"
                 data-translate="vps_dashboard_tile_configuration_upgrade_action_validation_with_payment_method_upfront"
                 data-translate-values="{ price: $ctrl.resolve.upgradeInfo.order.prices.withTax.text }"
-                data-ng-if="$ctrl.isUpfront && $ctrl.resolve.hasDefaultPaymentMethod"
+                data-ng-if="$ctrl.resolve.configurationTile.isUpfront && $ctrl.resolve.hasDefaultPaymentMethod"
             >
             </span>
         </div>

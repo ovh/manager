@@ -1,11 +1,4 @@
-import VpsConfigurationTile from './service';
-
 export default class VpsDashboardTileConfigurationCtrl {
-  constructor() {
-    this.currentPlan = VpsConfigurationTile.currentPlan;
-    this.isUpfront = VpsConfigurationTile.isUpfront;
-  }
-
   $onInit() {
     // @TODO: create a VPS model and manage that logic in it
     this.isMaxEliteVcore = this.vps.vcore === 8;
