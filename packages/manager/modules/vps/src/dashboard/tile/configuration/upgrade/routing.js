@@ -2,7 +2,6 @@ import get from 'lodash/get';
 import set from 'lodash/set';
 
 import { Environment } from '@ovh-ux/manager-config';
-import VpsConfigurationTile from '../service';
 import { ORDER_TRACKING_URLS } from './constants';
 
 import component from './component';
@@ -54,16 +53,8 @@ export default /* @ngInject */ ($stateProvider) => {
         .getAsync('configurationTile');
 
       return configurationTilePromise.then((configurationTile) => {
-        set(
-          configurationTile.model,
-          'memory',
-          VpsConfigurationTile.currentPlan,
-        );
-        set(
-          configurationTile.model,
-          'storage',
-          VpsConfigurationTile.currentPlan,
-        );
+        set(configurationTile.model, 'memory', configurationTile.currentPlan);
+        set(configurationTile.model, 'storage', configurationTile.currentPlan);
       });
     },
     component: component.name,
