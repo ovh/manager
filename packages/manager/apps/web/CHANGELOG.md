@@ -1,3 +1,12 @@
+## [15.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.7.1...@ovh-ux/manager-web@15.7.2) (2020-12-01)
+
+
+### Bug Fixes
+
+* **domain.zone:** allow zone deletion attached to web hosting ([#4111](https://github.com/ovh/manager/issues/4111)) ([cfd7eb2](https://github.com/ovh/manager/commit/cfd7eb2cacaa352c028c1265e792b3e1519218e7))
+
+
+
 ## [15.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.7.0...@ovh-ux/manager-web@15.7.1) (2020-11-25)
 
 

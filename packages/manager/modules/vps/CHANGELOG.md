@@ -1,3 +1,13 @@
+## [2.2.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.2.6...@ovh-ux/manager-vps@2.2.7) (2020-12-01)
+
+
+### Bug Fixes
+
+* check ftpBackup is defined ([a47ff4b](https://github.com/ovh/manager/commit/a47ff4b9553625b71cf95afaf1563e5ad1df7d69))
+* **dashboard:** use catalog to get current price ([fc712b9](https://github.com/ovh/manager/commit/fc712b9adfd30d5597d395b96638463ecabe180b))
+
+
+
 ## [2.2.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.2.5...@ovh-ux/manager-vps@2.2.6) (2020-11-26)
 
 
