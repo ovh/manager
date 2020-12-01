@@ -1,3 +1,12 @@
+## [3.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.5.2...@ovh-ux/manager-server-sidebar@3.5.3) (2020-12-01)
+
+
+### Bug Fixes
+
+* **constants:** change link for new order process ([6a72422](https://github.com/ovh/manager/commit/6a72422de3f138d227df4550f3f73a2860d9cbb1))
+
+
+
 ## [3.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.5.1...@ovh-ux/manager-server-sidebar@3.5.2) (2020-11-26)
 
 

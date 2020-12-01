@@ -1,3 +1,18 @@
+# [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.3.0...@ovh-ux/manager-dbaas-logs@1.4.0) (2020-12-01)
+
+
+### Bug Fixes
+
+* **ldp:** add guides on different languages ([b8920ba](https://github.com/ovh/manager/commit/b8920bae5f45be901213ac814406f1a591bfb7ed))
+* **ldp:** display enterprise in every languages ([42e86bb](https://github.com/ovh/manager/commit/42e86bb2ea306aca46462ea0176d720d04a23128))
+
+
+### Features
+
+* **ldp:** add new order process + empty state ([11e0dcc](https://github.com/ovh/manager/commit/11e0dcc03aa2dc06896c622d94f74cd608a33641))
+
+
+
 # [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.2.0...@ovh-ux/manager-dbaas-logs@1.3.0) (2020-11-26)
 
 
