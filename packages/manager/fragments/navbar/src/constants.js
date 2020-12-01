@@ -6,6 +6,7 @@ export const MESSAGES = {
   accountSidebarToggle: 'ovh.account-sidebar.toggle',
 
   navbarSearch: 'navbar.search',
+  navbarSetUniverse: 'navbar.universe.set',
 
   navigationSidebarShow: 'navigation-sidebar.show',
 
