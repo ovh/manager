@@ -19,6 +19,10 @@
         <span data-ng-bind-html="$ctrl.successMessage"></span>
     </oui-message>
 
+    <oui-message data-ng-if="$ctrl.infoMessage">
+        <span data-ng-bind-html="$ctrl.infoMessage"></span>
+    </oui-message>
+
     <div
         class="widget-presentation py-3 move-number-config ft-meeting"
         data-ng-if="$ctrl.showMeetingSlots && !ctrl.loading && !$ctrl.successMessage"

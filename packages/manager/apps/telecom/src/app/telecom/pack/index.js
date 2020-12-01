@@ -37,6 +37,17 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
         );
       },
     });
+
+    $stateProvider.state('telecom.xdsl-meetings.**', {
+      url: '/xdsl/:serviceName/meetings',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./meetings/index').then((mod) =>
+          $ocLazyLoad.inject(mod.default || mod),
+        );
+      },
+    });
   },
 );
 
