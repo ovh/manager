@@ -1,4 +1,5 @@
 import max from 'lodash/max';
+import { OFFER_TYPES } from '../detail.constants';
 
 import formatSportsTemplate from './formatsports/logs-home-formatsports.html';
 import passwordTemplate from '../account/password/logs-account-password.html';
@@ -51,6 +52,10 @@ export default class LogsHomeCtrl {
       this.canAccessToElasticsearch =
         this.indexIds.length + this.aliasIds.length > 0;
     }
+  }
+
+  getPlanName() {
+    return OFFER_TYPES[this.accountDetails.service.plan];
   }
 
   /**
