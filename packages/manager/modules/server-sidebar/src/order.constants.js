@@ -290,36 +290,7 @@ export const ORDER_URLS = {
         'https://www.ovhcloud.com/en/network-security/ovhcloud-connect/provider/',
     },
     dbaas_logs: {
-      FR:
-        "https://www.ovh.com/fr/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
-      CZ:
-        "https://www.ovh.cz/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
-      DE:
-        "https://www.ovh.de/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
-      ES:
-        "https://www.ovh.es/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
-      FI:
-        "https://www.ovh-hosting.fi/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
-      GB:
-        "https://www.ovh.co.uk/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
-      IE:
-        "https://www.ovh.ie/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
-      IT:
-        "https://www.ovh.it/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
-      LT:
-        "https://www.ovh.lt/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
-      MA:
-        "https://www.ovh.ma/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
-      NL:
-        "https://www.ovh.nl/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
-      PL:
-        "https://www.ovh.pl/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
-      PT:
-        "https://www.ovh.pt/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
-      SN:
-        "https://www.ovh.sn/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
-      TN:
-        "https://www.ovh.com/tn/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
+      EU: 'https://www.ovh.com/manager/dedicated/#/dbaas/logs/welcome',
     },
   },
   CA: {
@@ -377,20 +348,7 @@ export const ORDER_URLS = {
     },
     cloud_disk_array: {},
     dbaas_logs: {
-      ASIA:
-        "https://ca.ovh.com/asia/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
-      AU:
-        "https://ca.ovh.com/au/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
-      CA:
-        "https://ca.ovh.com/en/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
-      QC:
-        "https://ca.ovh.com/fr/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
-      SG:
-        "https://ca.ovh.com/sg/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
-      WE:
-        "https://us.ovh.com/us/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
-      WS:
-        "https://us.ovh.com/es/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
+      CA: 'https://ca.ovh.com/manager/dedicated/#/dbaas/logs/welcome',
     },
     veeam: {},
     veeam_enterprise: {
@@ -679,10 +637,9 @@ export const SIDEBAR_ORDER_CONFIG = [
     id: 'order-logs',
     title: 'logs',
     icon: 'fa fa-bar-chart',
-    linkId: 'dbaas_logs',
-    target: '_blank',
-    external: true,
-    app: [CLOUD],
+    linkId: 'DEDICATED',
+    linkPart: '#/dbaas/logs/order',
+    app: [DEDICATED],
     regions: ['EU', 'CA'],
     tracker: 'dedicated::orders::logs::order',
   },
