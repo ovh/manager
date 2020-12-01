@@ -6,6 +6,6 @@ const moduleName = 'ovhManagerBillingAgreementsDetails';
 angular
   .module(moduleName, ['ui.router'])
   .config(routing)
-  .controller('UserAccount.controllers.agreements.details', controller);
+  .controller('UserAccountAgreementsDetailsController', controller);
 
 export default moduleName;

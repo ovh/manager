@@ -3,7 +3,7 @@ import set from 'lodash/set';
 
 angular.module('App').controller(
   'SessionCtrl',
-  class {
+  class SessionCtrl {
     /* @ngInject */
     constructor($document, $scope, $state, $transitions, $translate, ducUser) {
       this.$document = $document;

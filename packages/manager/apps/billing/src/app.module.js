@@ -13,6 +13,7 @@ import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import ngQAllSettled from '@ovh-ux/ng-q-allsettled';
 
 import { billingManagement } from '@ovh-ux/manager-billing';
+import routing from './app.routing';
 
 Environment.setVersion(__VERSION__);
 
@@ -29,8 +30,12 @@ angular
     'ui.bootstrap',
     ngPaginationFront,
   ])
+  .config(routing)
   .config(
-    /* @ngInject */ ($locationProvider) => $locationProvider.hashPrefix(''),
+    /* @ngInject */ ($locationProvider, $urlRouterProvider) => {
+      $locationProvider.hashPrefix('');
+      $urlRouterProvider.otherwise('/billing/history');
+    },
   )
   .run(
     /* @ngInject */ ($rootScope, $transitions) => {
