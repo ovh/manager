@@ -22,7 +22,7 @@
     "@ovh-ux/manager-account-sidebar": "^2.0.0 || ^3.0.0",
     "@ovh-ux/manager-at-internet-configuration": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-banner": "^1.1.3",
-    "@ovh-ux/manager-billing": "^0.0.0 || ^1.0.0",
+    "@ovh-ux/manager-billing": "^1.0.0 || ^2.0.0",
     "@ovh-ux/manager-config": "^1.0.0 || ^2.0.0",
     "@ovh-ux/manager-core": "^10.0.0 || ^11.0.0",
     "@ovh-ux/manager-error-page": "^1.3.0 || ^2.0.0",
