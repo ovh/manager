@@ -6,7 +6,6 @@ export default class BillingAutoRenewDeleteCtrl {
   constructor($translate, atInternet) {
     this.$translate = $translate;
     this.atInternet = atInternet;
-    console.log('BillingAutoRenewDeleteCtrl');
   }
 
   $onInit() {
