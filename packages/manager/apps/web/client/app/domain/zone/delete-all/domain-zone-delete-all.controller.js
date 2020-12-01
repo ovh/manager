@@ -1,38 +1,17 @@
-import get from 'lodash/get';
-
 angular.module('App').controller(
   'DomainZoneDeleteAllCtrl',
   class DomainZoneDeleteAllCtrl {
-    constructor($scope, $translate, Alerter, Domain, Hosting) {
+    constructor($scope, $translate, Alerter, Domain) {
       this.$scope = $scope;
       this.$translate = $translate;
       this.alerter = Alerter;
       this.domainService = Domain;
-      this.hostingService = Hosting;
     }
 
     $onInit() {
       this.domain = this.$scope.currentActionData;
-      this.canDeleteAllZone = false;
-      this.loading = true;
+      this.loading = false;
       this.$scope.deleteAllZone = () => this.deleteAllZone();
-
-      this.checkAllZoneCanBeDelete(this.domain.name);
-    }
-
-    checkAllZoneCanBeDelete(name) {
-      this.loading = true;
-      return this.hostingService
-        .getHosting(name)
-        .then(() => {
-          this.canDeleteAllZone = false;
-        })
-        .catch((err) => {
-          this.canDeleteAllZone = get(err, 'status') === 404;
-        })
-        .finally(() => {
-          this.loading = false;
-        });
     }
 
     deleteAllZone() {
