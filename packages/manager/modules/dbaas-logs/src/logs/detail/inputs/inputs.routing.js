@@ -6,6 +6,10 @@ export default /* @ngInject */ ($stateProvider) => {
       views: {
         logsContent: 'dbaasLogsDetailInputs',
       },
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('dbaas_logs_inputs'),
+      },
     })
     .state('dbaas-logs.detail.inputs.input', {
       url: '/:inputId',
@@ -18,6 +22,7 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         inputId: /* @ngInject */ ($transition$) =>
           $transition$.params().inputId,
+        breadcrumb: /* @ngInject */ (inputId) => inputId,
       },
     });
 };

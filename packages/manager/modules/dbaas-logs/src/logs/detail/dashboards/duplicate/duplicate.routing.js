@@ -5,5 +5,8 @@ export default /* @ngInject */ ($stateProvider) => {
       dashboardName: null,
     },
     component: 'dbaasLogsDetailDashboardsCrud',
+    resolve: {
+      breadcrumb: () => null,
+    },
   });
 };

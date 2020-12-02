@@ -3,6 +3,8 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/follow',
     component: 'dbaasLogsDetailStreamsFollow',
     resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('dbaas_logs_streams_follow'),
     },
   });
 };

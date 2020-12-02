@@ -3,6 +3,8 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/members',
     component: 'dbaasLogsDetailRolesMembers',
     resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('dbaas_logs_roles_members'),
     },
   });
 };

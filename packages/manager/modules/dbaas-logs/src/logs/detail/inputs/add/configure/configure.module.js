@@ -24,6 +24,7 @@ angular
     'ui.router',
   ])
   .config(routing)
-  .component('dbaasLogsDetailInputsAddConfigure', component);
+  .component('dbaasLogsDetailInputsAddConfigure', component)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

@@ -30,6 +30,7 @@ angular
   ])
   .config(routing)
   .service('LogsDashboardsService', service)
-  .component('dbaasLogsDetailDashboards', component);
+  .component('dbaasLogsDetailDashboards', component)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
