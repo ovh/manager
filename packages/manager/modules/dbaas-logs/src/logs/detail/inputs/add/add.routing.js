@@ -7,11 +7,11 @@ export default /* @ngInject */ ($stateProvider) => {
         logsInputs: 'dbaasLogsDetailInputsAdd',
       },
     })
-    .state('dbaas-logs.detail.inputs.editwizard', {
-      url: '/input/:inputId',
-      redirectTo: 'dbaas-logs.detail.inputs.editwizard.edit',
-      views: {
-        logsInputs: 'dbaasLogsDetailInputsAdd',
+    .state('dbaas-logs.detail.inputs.input.editwizard', {
+      url: '/edit',
+      redirectTo: 'dbaas-logs.detail.inputs.input.editwizard.edit',
+      component: 'dbaasLogsDetailInputsAdd',
+      resolve: {
       },
     });
 };

@@ -9,6 +9,8 @@ import '@ovh-ux/ui-kit';
 
 import component from './dashboards.component';
 import crud from './crud/crud.module';
+import duplicate from './duplicate/duplicate.module';
+import edit from './edit/edit.module';
 import routing from './dashboards.routing';
 import service from './logs-dashboards.service';
 
@@ -23,6 +25,8 @@ angular
     'pascalprecht.translate',
     'ui.router',
     crud,
+    duplicate,
+    edit,
   ])
   .config(routing)
   .service('LogsDashboardsService', service)

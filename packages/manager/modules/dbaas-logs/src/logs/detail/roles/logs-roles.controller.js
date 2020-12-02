@@ -71,14 +71,14 @@ export default class LogsRolesCtrl {
   }
 
   manageMembers(info) {
-    this.$state.go('dbaas-logs.detail.members', {
+    this.$state.go('dbaas-logs.detail.roles.role.members', {
       serviceName: this.serviceName,
       roleId: info.roleId,
     });
   }
 
   editPermissions(info) {
-    this.$state.go('dbaas-logs.detail.permissions', {
+    this.$state.go('dbaas-logs.detail.roles.role.permissions', {
       serviceName: this.serviceName,
       roleId: info.roleId,
     });

@@ -5,4 +5,14 @@ export default /* @ngInject */ ($stateProvider) => {
       logsContent: 'dbaasLogsDetailDashboards',
     },
   });
+
+  $stateProvider.state('dbaas-logs.detail.dashboards.dashboard', {
+    url: '/:dashboardId',
+    redirectTo: 'dbaas-logs.detail.dashboards',
+    views: {
+      logsDashboardsCrud: {
+        template: '<div ui-view></div>',
+      },
+    },
+  });
 };

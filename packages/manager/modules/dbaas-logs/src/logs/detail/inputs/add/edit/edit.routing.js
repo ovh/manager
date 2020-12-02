@@ -1,15 +1,10 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider
-    .state('dbaas-logs.detail.inputs.addwizard.add', {
-      url: '/add',
+  $stateProvider.state('dbaas-logs.detail.inputs.input.editwizard.edit', {
+    url: '/details',
       views: {
         logsInputsAdd: 'dbaasLogsDetailInputsAddEdit',
       },
-    })
-    .state('dbaas-logs.detail.inputs.editwizard.edit', {
-      url: '/details',
-      views: {
-        logsInputsAdd: 'dbaasLogsDetailInputsAddEdit',
+    resolve: {
       },
     });
 };
