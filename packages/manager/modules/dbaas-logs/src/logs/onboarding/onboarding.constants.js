@@ -2,7 +2,7 @@ export const GUIDES = {
   CZ: [
     {
       id: 'overview',
-      link: 'https://ovhcloud.com/en/data-platforms/',
+      link: 'https://ovhcloud.com/en/data-platforms/logs',
       tracker: 'dbaas::logs::onboarding::go-to-presentation',
     },
     {
@@ -19,7 +19,7 @@ export const GUIDES = {
   DE: [
     {
       id: 'overview',
-      link: 'https://ovhcloud.com/de/data-platforms/',
+      link: 'https://ovhcloud.com/de/data-platforms/logs',
       tracker: 'dbaas::logs::onboarding::go-to-presentation',
     },
     {
@@ -36,7 +36,7 @@ export const GUIDES = {
   ES: [
     {
       id: 'overview',
-      link: 'https://ovhcloud.com/es-es/data-platforms/',
+      link: 'https://ovhcloud.com/es-es/data-platforms/logs',
       tracker: 'dbaas::logs::onboarding::go-to-presentation',
     },
     {
@@ -53,7 +53,7 @@ export const GUIDES = {
   FI: [
     {
       id: 'overview',
-      link: 'https://ovhcloud.com/en/data-platforms/',
+      link: 'https://ovhcloud.com/en/data-platforms/logs',
       tracker: 'dbaas::logs::onboarding::go-to-presentation',
     },
     {
@@ -70,7 +70,7 @@ export const GUIDES = {
   FR: [
     {
       id: 'overview',
-      link: 'https://ovhcloud.com/fr/data-platforms/',
+      link: 'https://ovhcloud.com/fr/data-platforms/logs',
       tracker: 'dbaas::logs::onboarding::go-to-presentation',
     },
     {
@@ -87,7 +87,7 @@ export const GUIDES = {
   GB: [
     {
       id: 'overview',
-      link: 'https://ovhcloud.com/en-gb/data-platforms/',
+      link: 'https://ovhcloud.com/en-gb/data-platforms/logs',
       tracker: 'dbaas::logs::onboarding::go-to-presentation',
     },
     {
@@ -104,7 +104,7 @@ export const GUIDES = {
   IE: [
     {
       id: 'overview',
-      link: 'https://ovhcloud.com/en-ie/data-platforms/',
+      link: 'https://ovhcloud.com/en-ie/data-platforms/logs',
       tracker: 'dbaas::logs::onboarding::go-to-presentation',
     },
     {
@@ -121,7 +121,7 @@ export const GUIDES = {
   IT: [
     {
       id: 'overview',
-      link: 'https://ovhcloud.com/it/data-platforms/',
+      link: 'https://ovhcloud.com/it/data-platforms/logs',
       tracker: 'dbaas::logs::onboarding::go-to-presentation',
     },
     {
@@ -138,7 +138,7 @@ export const GUIDES = {
   LT: [
     {
       id: 'overview',
-      link: 'https://ovhcloud.com/lt/data-platforms/',
+      link: 'https://ovhcloud.com/lt/data-platforms/logs',
       tracker: 'dbaas::logs::onboarding::go-to-presentation',
     },
     {
@@ -155,12 +155,12 @@ export const GUIDES = {
   MA: [
     {
       id: 'overview',
-      link: 'https://ovhcloud.com/fr-ma/data-platforms/',
+      link: 'https://ovhcloud.com/fr-ma/data-platforms/logs',
       tracker: 'dbaas::logs::onboarding::go-to-presentation',
     },
     {
       id: 'quick_start',
-      link: 'https://docs.ovh.com/gb/en/logs-data-platform/',
+      link: 'https://docs.ovh.com/gb/en/logs-data-platform',
       tracker: 'dbaas::logs::onboarding::go-to-doc',
     },
     {
@@ -172,7 +172,7 @@ export const GUIDES = {
   NL: [
     {
       id: 'overview',
-      link: 'https://ovhcloud.com/nl/data-platforms/',
+      link: 'https://ovhcloud.com/nl/data-platforms/logs',
       tracker: 'dbaas::logs::onboarding::go-to-presentation',
     },
     {
@@ -189,7 +189,7 @@ export const GUIDES = {
   PL: [
     {
       id: 'overview',
-      link: 'https://ovhcloud.com/pl/data-platforms/',
+      link: 'https://ovhcloud.com/pl/data-platforms/logs',
       tracker: 'dbaas::logs::onboarding::go-to-presentation',
     },
     {
@@ -206,7 +206,7 @@ export const GUIDES = {
   PT: [
     {
       id: 'overview',
-      link: 'https://ovhcloud.com/pt/data-platforms/',
+      link: 'https://ovhcloud.com/pt/data-platforms/logs',
       tracker: 'dbaas::logs::onboarding::go-to-presentation',
     },
     {
@@ -223,12 +223,12 @@ export const GUIDES = {
   SN: [
     {
       id: 'overview',
-      link: 'https://ovhcloud.com/fr-sn/data-platforms/',
+      link: 'https://ovhcloud.com/fr-sn/data-platforms/logs',
       tracker: 'dbaas::logs::onboarding::go-to-presentation',
     },
     {
       id: 'quick_start',
-      link: 'https://docs.ovh.com/gb/en/logs-data-platform/',
+      link: 'https://docs.ovh.com/gb/en/logs-data-platform',
       tracker: 'dbaas::logs::onboarding::go-to-doc',
     },
     {
@@ -240,12 +240,12 @@ export const GUIDES = {
   TN: [
     {
       id: 'overview',
-      link: 'https://ovhcloud.com/fr-tn/data-platforms/',
+      link: 'https://ovhcloud.com/fr-tn/data-platforms/logs',
       tracker: 'dbaas::logs::onboarding::go-to-presentation',
     },
     {
       id: 'quick_start',
-      link: 'https://docs.ovh.com/gb/en/logs-data-platform/',
+      link: 'https://docs.ovh.com/gb/en/logs-data-platform',
       tracker: 'dbaas::logs::onboarding::go-to-doc',
     },
     {
@@ -257,7 +257,7 @@ export const GUIDES = {
   ASIA: [
     {
       id: 'overview',
-      link: 'https://ovhcloud.com/asia/data-platforms/',
+      link: 'https://ovhcloud.com/asia/data-platforms/logs',
       tracker: 'dbaas::logs::onboarding::go-to-presentation',
     },
     {
@@ -274,7 +274,7 @@ export const GUIDES = {
   AU: [
     {
       id: 'overview',
-      link: 'https://ovhcloud.com/en-au/data-platforms/',
+      link: 'https://ovhcloud.com/en-au/data-platforms/logs',
       tracker: 'dbaas::logs::onboarding::go-to-presentation',
     },
     {
@@ -291,7 +291,7 @@ export const GUIDES = {
   CA: [
     {
       id: 'overview',
-      link: 'https://ovhcloud.com/en-ca/data-platforms/',
+      link: 'https://ovhcloud.com/en-ca/data-platforms/logs',
       tracker: 'dbaas::logs::onboarding::go-to-presentation',
     },
     {
@@ -308,7 +308,7 @@ export const GUIDES = {
   QC: [
     {
       id: 'overview',
-      link: 'https://ovhcloud.com/fr-ca/data-platforms/',
+      link: 'https://ovhcloud.com/fr-ca/data-platforms/logs',
       tracker: 'dbaas::logs::onboarding::go-to-presentation',
     },
     {
@@ -325,7 +325,7 @@ export const GUIDES = {
   SG: [
     {
       id: 'overview',
-      link: 'https://ovhcloud.com/en-sg/data-platforms/',
+      link: 'https://ovhcloud.com/en-sg/data-platforms/logs',
       tracker: 'dbaas::logs::onboarding::go-to-presentation',
     },
     {
@@ -342,7 +342,7 @@ export const GUIDES = {
   WE: [
     {
       id: 'overview',
-      link: 'https://ovhcloud.com/en/data-platforms/',
+      link: 'https://ovhcloud.com/en/data-platforms/logs',
       tracker: 'dbaas::logs::onboarding::go-to-presentation',
     },
     {
@@ -359,7 +359,7 @@ export const GUIDES = {
   WS: [
     {
       id: 'overview',
-      link: 'https://ovhcloud.com/es/data-platforms/',
+      link: 'https://ovhcloud.com/es/data-platforms/logs',
       tracker: 'dbaas::logs::onboarding::go-to-presentation',
     },
     {
