@@ -1,10 +1,11 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
+import meetings from './meetings';
 
 const moduleName = 'ovhManagerPacksLoading';
 
-angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
+angular.module(moduleName, ['ui.router', 'oc.lazyLoad', meetings]).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider
       .state('telecom.packs', {

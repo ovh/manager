@@ -2,7 +2,6 @@ import angular from 'angular';
 
 import access from './access';
 import modem from './modem';
-import meetings from './meetings';
 import resiliation from './resiliation';
 import orderFollowUp from './orderFollowUp';
 import tasks from './tasks';
@@ -17,7 +16,6 @@ const moduleName = 'ovhManagerTelecomPackXdsl';
 angular
   .module(moduleName, [
     access,
-    meetings,
     missingRio,
     modem,
     orderFollowUp,
