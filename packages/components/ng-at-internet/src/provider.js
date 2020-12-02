@@ -523,6 +523,87 @@ export default /* @ngInject */ function(AT_INTERNET_CUSTOM_VARS) {
           logDebugInfos('atinternet.trackEvent: ', eventData);
         }
       },
+      /**
+       * @ngdoc
+       * @name trackImpression
+       * @methodOf atInternet
+       * @param {Object} impressionData Impression data to be sent.
+       * @description
+       *
+       * Simplified tracking of impression.
+       * https://developers.atinternet-solutions.com/javascript-en/campaigns-javascript-en/on-site-ads-javascript-en/
+       *
+       * ```
+       * Impression Data {
+       *   impression: {
+       *     campaignId: 'id[label]',
+       *     creation: 'id[label]',
+       *     variant: 'id[label]',
+       *     format: '[120x40]',
+       *     generalPlacement: '[label]',
+       *     detailedPlacement: 'id[label]',
+       *     advertiserId: 'id[label]',
+       *     url: '[urlEncoded]'
+       *   }
+       * }
+       * ```
+       */
+      trackImpression(impressionData) {
+        if (isAtInternetTagAvailable()) {
+          updateData(impressionData);
+          if (!impressionData.campaignId) {
+            $log.error(
+              'atinternet.trackImpression missing impressionData attribute: ',
+              impressionData,
+            );
+            return;
+          }
+          atinternetTag.publisher.set({
+            impression: impressionData,
+          });
+          atinternetTag.dispatch();
+          logDebugInfos('atinternet.trackImpression: ', impressionData);
+        }
+      },
+      /**
+       * @ngdoc
+       * @name trackClickImpression
+       * @methodOf atInternet
+       * @param {Object} impressionData Click impression data to be sent.
+       * @description
+       *
+       * Simplified tracking of impression click event.
+       * https://developers.atinternet-solutions.com/javascript-en/campaigns-javascript-en/on-site-ads-javascript-en/
+       *
+       * ```
+       * Impression Data {
+       *   impression: {
+       *     campaignId: 'id[label]',
+       *     creation: 'id[label]',
+       *     variant: 'id[label]',
+       *     format: '[120x40]',
+       *     generalPlacement: '[label]',
+       *     detailedPlacement: 'id[label]',
+       *     advertiserId: 'id[label]',
+       *     url: '[urlEncoded]'
+       *   }
+       * }
+       * ```
+       */
+      trackClickImpression(impressionData) {
+        if (isAtInternetTagAvailable()) {
+          updateData(impressionData);
+          if (!impressionData.click) {
+            $log.error(
+              'atinternet.trackClickImpression missing impressionData attribute: ',
+              impressionData,
+            );
+            return;
+          }
+          atinternetTag.publisher.send(impressionData);
+          logDebugInfos('atinternet.trackClickImpression: ', impressionData);
+        }
+      },
     };
   };
 }

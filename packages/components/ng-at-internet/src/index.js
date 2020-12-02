@@ -2,7 +2,12 @@ import angular from 'angular';
 import { set } from 'lodash-es';
 
 import { AT_INTERNET_CUSTOM_VARS } from './constants';
-import { atInternetClickDirective, trackOnDirective } from './directive';
+import {
+  atInternetClickDirective,
+  trackOnDirective,
+  trackImpressionDirective,
+  trackImpressionClickDirective,
+} from './directive';
 import provider from './provider';
 
 const moduleName = 'ngAtInternet';
@@ -48,6 +53,8 @@ angular
   })
   .directive('atInternetClick', atInternetClickDirective)
   .directive('trackOn', trackOnDirective)
+  .directive('trackImpression', trackImpressionDirective)
+  .directive('trackImpressionClick', trackImpressionClickDirective)
   .provider('atInternet', provider);
 
 export default moduleName;
