@@ -20,10 +20,9 @@ import common from './plugins/common';
 
 const defaultName = path.basename(process.cwd());
 
-const mergeConfig = (config, customConfig) =>
-  mergeWith(config, customConfig, (obj, src) =>
-    Array.isArray(obj) && Array.isArray(src) ? src.concat(obj) : undefined,
-  );
+const mergeConfig = (config, customConfig) => mergeWith(config, customConfig, (obj, src) => (
+  Array.isArray(obj) && Array.isArray(src) ? src.concat(obj) : undefined
+));
 
 const getLanguages = (pluginsOpts) => {
   if (isString(process.env.LANGUAGES)) {
@@ -32,124 +31,94 @@ const getLanguages = (pluginsOpts) => {
   return get(pluginsOpts, 'translations.languages');
 };
 
-const generateConfig = (opts, pluginsOpts) =>
-  mergeConfig(
-    {
+const generateConfig = (opts, pluginsOpts) => mergeConfig({
+  plugins: [
+    peerdeps(),
+    html(),
+    json({
+      preferConst: true,
+      compact: true,
+      namedExports: false,
+    }),
+    lessTildeImporter(pluginsOpts.lessTildeImporter),
+    lessInject({
+      option: {
+        plugins: [
+          lessPluginRemcalc,
+        ],
+      },
+    }),
+    sass({
+      insert: true,
+      output: false,
+    }),
+    image({
+      output: `./dist/assets/${defaultName}`,
+    }),
+    resolve(),
+    commonjs(),
+    translationInject({
+      languages: getLanguages(pluginsOpts),
+    }),
+    translationUiRouter({
+      subdirectory: 'translations',
+      languages: getLanguages(pluginsOpts),
+    }),
+    dynamicImportVars(),
+    babel({
+      babelHelpers: 'bundled',
+      babelrc: false,
+      exclude: 'node_modules/**',
       plugins: [
-        peerdeps(),
-        html(),
-        json({
-          preferConst: true,
-          compact: true,
-          namedExports: false,
-        }),
-        lessTildeImporter(pluginsOpts.lessTildeImporter),
-        lessInject({
-          option: {
-            plugins: [lessPluginRemcalc],
-          },
-        }),
-        sass({
-          insert: true,
-          output: false,
-        }),
-        image({
-          output: `./dist/assets/${defaultName}`,
-        }),
-        resolve(),
-        commonjs(),
-        translationInject({
-          languages: getLanguages(pluginsOpts),
-        }),
-        translationUiRouter({
-          subdirectory: 'translations',
-          languages: getLanguages(pluginsOpts),
-        }),
-        dynamicImportVars({
-          exclude: /node_modules\//,
-        }),
-        babel({
-          babelHelpers: 'bundled',
-          babelrc: false,
-          exclude: 'node_modules/**',
-          plugins: [
-            '@babel/plugin-proposal-class-properties',
-            '@babel/plugin-proposal-optional-chaining',
-            '@babel/plugin-proposal-private-methods',
-            '@babel/plugin-syntax-dynamic-import',
-            'babel-plugin-angularjs-annotate',
-          ],
-          presets: [['@babel/preset-env']],
-          shouldPrintComment: (val) => !/@ngInject/.test(val),
-        }),
+        '@babel/plugin-proposal-class-properties',
+        '@babel/plugin-proposal-optional-chaining',
+        '@babel/plugin-proposal-private-methods',
+        '@babel/plugin-syntax-dynamic-import',
+        'babel-plugin-angularjs-annotate',
       ],
-    },
-    opts,
-  );
+      presets: [
+        ['@babel/preset-env'],
+      ],
+      shouldPrintComment: (val) => !/@ngInject/.test(val),
+    }),
+  ],
+}, opts);
 
-const cjs = (opts, pluginsOpts) =>
-  generateConfig(
-    mergeConfig(
-      {
-        output: {
-          dir: './dist/cjs',
-          format: 'cjs',
-          sourcemap: true,
-        },
-      },
-      opts,
-    ),
-    pluginsOpts,
-  );
+const cjs = (opts, pluginsOpts) => generateConfig(mergeConfig({
+  output: {
+    dir: './dist/cjs',
+    format: 'cjs',
+    sourcemap: true,
+  },
+}, opts), pluginsOpts);
 
-const umd = (opts, pluginsOpts) =>
-  generateConfig(
-    mergeConfig(
-      {
-        inlineDynamicImports: true,
-        output: {
-          name: defaultName,
-          file: `./dist/umd/${defaultName}.js`,
-          format: 'umd',
-          sourcemap: true,
-        },
-      },
-      opts,
-    ),
-    pluginsOpts,
-  );
+const umd = (opts, pluginsOpts) => generateConfig(mergeConfig({
+  inlineDynamicImports: true,
+  output: {
+    name: defaultName,
+    file: `./dist/umd/${defaultName}.js`,
+    format: 'umd',
+    sourcemap: true,
+  },
+}, opts), pluginsOpts);
 
-const es = (opts, pluginsOpts) =>
-  generateConfig(
-    mergeConfig(
-      {
-        output: {
-          dir: './dist/esm',
-          format: 'es',
-          sourcemap: true,
-        },
-      },
-      opts,
-    ),
-    pluginsOpts,
-  );
+const es = (opts, pluginsOpts) => generateConfig(mergeConfig({
+  output: {
+    dir: './dist/esm',
+    format: 'es',
+    sourcemap: true,
+  },
+}, opts), pluginsOpts);
 
-const iife = (opts, pluginsOpts) =>
-  generateConfig(
-    mergeConfig(
-      {
-        inlineDynamicImports: true,
-        output: {
-          name: camelcase(defaultName),
-          file: `./dist/iife/${defaultName}.js`,
-          format: 'iife',
-          sourcemap: true,
-        },
-      },
-      opts,
-    ),
-    pluginsOpts,
-  );
+const iife = (opts, pluginsOpts) => generateConfig(mergeConfig({
+  inlineDynamicImports: true,
+  output: {
+    name: camelcase(defaultName),
+    file: `./dist/iife/${defaultName}.js`,
+    format: 'iife',
+    sourcemap: true,
+  },
+}, opts), pluginsOpts);
 
 const config = (globalOpts = {}, pluginsOpts = {}) => ({
   cjs: (opts = {}) => cjs(mergeConfig(opts, globalOpts), pluginsOpts),
