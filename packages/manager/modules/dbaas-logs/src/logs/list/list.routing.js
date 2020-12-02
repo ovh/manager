@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('dbaas-logs.list', {
-    url: '/list',
+    url: '',
     views: {
       logsHeader: 'dbaasLogsListHeader',
       logsContainer: 'dbaasLogsList',
