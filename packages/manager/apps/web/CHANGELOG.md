@@ -1,3 +1,12 @@
+## [15.7.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.7.2...@ovh-ux/manager-web@15.7.3) (2020-12-02)
+
+
+### Bug Fixes
+
+* **private-database.order.clouddb:** fix typo [skip ci] ([9b7b3d2](https://github.com/ovh/manager/commit/9b7b3d2e02c070376358e68f9361180650387b32)), closes [#4120](https://github.com/ovh/manager/issues/4120)
+
+
+
 ## [15.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.7.1...@ovh-ux/manager-web@15.7.2) (2020-12-01)
 
 

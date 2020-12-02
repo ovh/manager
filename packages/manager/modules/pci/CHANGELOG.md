@@ -1,3 +1,12 @@
+## [5.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.5.0...@ovh-ux/manager-pci@5.5.1) (2020-12-02)
+
+
+### Bug Fixes
+
+* **pci.project.training.onboarding:** update cli doc url ([#4119](https://github.com/ovh/manager/issues/4119)) ([dc14bee](https://github.com/ovh/manager/commit/dc14bee104f21e24d21a630a39796a83c00894c5))
+
+
+
 # [5.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.4.0...@ovh-ux/manager-pci@5.5.0) (2020-11-30)
 
 
