@@ -13,6 +13,7 @@ import add from './add/add.module';
 import archives from './archives/archives.module';
 import alerts from './alerts/alerts.module';
 import component from './streams.component';
+import edit from './edit/edit.module';
 import follow from './follow/follow.module';
 import home from './home/home.module';
 import routing from './streams.routing';
@@ -31,6 +32,7 @@ angular
     add,
     alerts,
     archives,
+    edit,
     follow,
     home,
   ])

@@ -20,7 +20,8 @@ export default class LogsDashboardsCrudCtrl {
     this.LogsStreamsService = LogsStreamsService;
     this.isEdit = false;
     this.isDuplicate =
-      $state.$current.name === 'dbaas-logs.detail.dashboards.duplicate';
+      $state.$current.name ===
+      'dbaas-logs.detail.dashboards.dashboard.duplicate';
     this.dashboardName = this.$stateParams.dashboardName;
 
     this.initLoaders();

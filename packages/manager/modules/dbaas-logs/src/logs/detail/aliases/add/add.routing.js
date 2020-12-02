@@ -1,9 +1,9 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider
-    .state('dbaas-logs.detail.aliases.home.add', {
+  $stateProvider.state('dbaas-logs.detail.aliases.home.add', {
       url: '/add',
       views: {
-        logsAliasesAddEdit: 'dbaasLogsDetailAliasesAdd',
+      'logsAliasesAddEdit@dbaas-logs.detail.aliases.home':
+        'dbaasLogsDetailAliasesAdd',
       },
     })
     .state('dbaas-logs.detail.aliases.home.edit', {

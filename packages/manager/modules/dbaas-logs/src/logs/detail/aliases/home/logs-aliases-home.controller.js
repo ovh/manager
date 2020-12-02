@@ -51,7 +51,7 @@ export default class LogsAliasesHomeCtrl {
    * @memberof LogsAliasesHomeCtrl
    */
   edit(alias) {
-    this.$state.go('dbaas-logs.detail.aliases.home.edit', {
+    this.$state.go('dbaas-logs.detail.aliases.home.alias.edit', {
       serviceName: this.serviceName,
       aliasId: alias.aliasId,
     });
@@ -64,7 +64,7 @@ export default class LogsAliasesHomeCtrl {
    * @memberof LogsAliasesHomeCtrl
    */
   attachContent(aapiAlias) {
-    this.$state.go('dbaas-logs.detail.aliases.link', {
+    this.$state.go('dbaas-logs.detail.aliases.home.alias.link', {
       serviceName: this.serviceName,
       aliasId: aapiAlias.info.aliasId,
       defaultContent:

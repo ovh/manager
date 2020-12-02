@@ -139,7 +139,7 @@ export default class LogsInputsHomeCtrl {
    */
   edit(input) {
     this.CucCloudMessage.flushChildMessage();
-    this.$state.go('dbaas-logs.detail.inputs.editwizard.edit', {
+    this.$state.go('dbaas-logs.detail.inputs.input.editwizard.edit', {
       serviceName: this.serviceName,
       inputId: input.info.inputId,
     });
@@ -207,7 +207,7 @@ export default class LogsInputsHomeCtrl {
    */
   standardOutput(input) {
     this.CucCloudMessage.flushChildMessage();
-    this.$state.go('dbaas-logs.detail.inputs.console', {
+    this.$state.go('dbaas-logs.detail.inputs.input.console', {
       serviceName: this.serviceName,
       inputId: input.info.inputId,
     });

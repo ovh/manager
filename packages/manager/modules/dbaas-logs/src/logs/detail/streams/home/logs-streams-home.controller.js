@@ -83,7 +83,7 @@ export default class LogsStreamsHomeCtrl {
    * @memberof LogsStreamsHomeCtrl
    */
   edit(stream) {
-    this.$state.go('dbaas-logs.detail.streams.edit', {
+    this.$state.go('dbaas-logs.detail.streams.stream.edit', {
       serviceName: this.serviceName,
       streamId: stream.info.streamId,
     });
@@ -131,7 +131,7 @@ export default class LogsStreamsHomeCtrl {
    */
   manageAlerts(stream) {
     this.CucCloudMessage.flushChildMessage();
-    this.$state.go('dbaas-logs.detail.streams.alerts', {
+    this.$state.go('dbaas-logs.detail.streams.stream.alerts', {
       serviceName: this.serviceName,
       streamId: stream.info.streamId,
     });
@@ -193,7 +193,7 @@ export default class LogsStreamsHomeCtrl {
    */
   followLive(stream) {
     this.CucCloudMessage.flushChildMessage();
-    this.$state.go('dbaas-logs.detail.streams.follow', {
+    this.$state.go('dbaas-logs.detail.streams.stream.follow', {
       serviceName: this.serviceName,
       streamId: stream.info.streamId,
     });

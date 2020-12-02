@@ -54,7 +54,7 @@ export default class LogsDashboardsCtrl {
    * @memberof LogsDashboardsCtrl
    */
   edit(dashboard) {
-    this.$state.go('dbaas-logs.detail.dashboards.edit', {
+    this.$state.go('dbaas-logs.detail.dashboards.dashboard.edit', {
       serviceName: this.serviceName,
       dashboardId: dashboard.dashboardId,
     });
@@ -67,7 +67,7 @@ export default class LogsDashboardsCtrl {
    * @memberof LogsDashboardsCtrl
    */
   duplicate(dashboard) {
-    this.$state.go('dbaas-logs.detail.dashboards.duplicate', {
+    this.$state.go('dbaas-logs.detail.dashboards.dashboard.duplicate', {
       serviceName: this.serviceName,
       dashboardId: dashboard.dashboardId,
       dashboardName: dashboard.title,
