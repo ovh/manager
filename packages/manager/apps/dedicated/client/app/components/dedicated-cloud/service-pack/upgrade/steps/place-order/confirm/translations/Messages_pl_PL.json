@@ -9,5 +9,7 @@
   "confirm_order_question_monthly_deducting": "Twoje miesięczna opłata zmniejszy się o <strong>{{price}}</strong>.",
   "confirm_order_question_hourly_adding": "Twoje opłata za godzinę zwiększy się o <strong>{{price}}</strong>.",
   "confirm_order_question_hourly_deducting": "Twoja opłata za godzinę zmniejszy się o <strong>{{price}}</strong>.",
-  "confirm_order_question_confirm": "Czy na pewno chcesz wykonać tę operację?"
+  "confirm_order_question_confirm": "Czy na pewno chcesz wykonać tę operację?",
+  "confirm_order_question_monthly_same": "Miesięczna cena pozostanie niezmieniona.",
+  "confirm_order_question_hourly_same": "Cena za godzinę pozostanie niezmieniona."
 }
