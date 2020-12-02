@@ -1,8 +1,8 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('dbaas-logs.detail.streams.follow', {
-    url: '/:streamId/follow',
-    views: {
-      logsStreams: 'dbaasLogsDetailStreamsFollow',
+  $stateProvider.state('dbaas-logs.detail.streams.stream.follow', {
+    url: '/follow',
+    component: 'dbaasLogsDetailStreamsFollow',
+    resolve: {
     },
   });
 };

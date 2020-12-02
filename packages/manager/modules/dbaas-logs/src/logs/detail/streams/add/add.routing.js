@@ -1,6 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider
-    .state('dbaas-logs.detail.streams.add', {
+  $stateProvider.state('dbaas-logs.detail.streams.add', {
       url: '/add',
       views: {
         logsStreams: 'dbaasLogsDetailStreamsAdd',
