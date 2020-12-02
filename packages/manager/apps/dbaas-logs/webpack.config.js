@@ -34,6 +34,9 @@ module.exports = (env = {}) => {
       ),
       new webpack.DefinePlugin({
         __WEBPACK_REGION__: `'${REGION}'`,
+        __NODE_ENV__: process.env.NODE_ENV
+          ? `'${process.env.NODE_ENV}'`
+          : '"development"',
       }),
     ],
   });
