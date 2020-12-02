@@ -43,24 +43,17 @@ export default class MoveBuildingDetailsCtrl {
         ? this.$translate.instant('pack_move_building_details_unknown')
         : this.building.name;
 
-    const params = {
-      building: this.building.buildingReference,
-    };
-
     this.OvhApiConnectivityEligibilitySearch.v6()
-      .buildingDetails({}, params)
-      .$promise.then((buildingDetails) => {
+      .pollerBuildingDetails(this.$scope, {
+        building: this.building.buildingReference,
+      })
+      .then((buildingDetails) => {
         if (has(buildingDetails, 'result.stairs')) {
           this.building.stairs = buildingDetails.result.stairs.map((stair) =>
             this.convertStairs(stair),
           );
         }
       })
-      .catch(() =>
-        this.TucToast.error(
-          this.$translate.instant('pack_move_building_details_error'),
-        ),
-      )
       .finally(() => {
         this.model.selectedBuilding = this.building;
         this.changeSelection();
@@ -158,12 +151,11 @@ export default class MoveBuildingDetailsCtrl {
         !this.model.selectedBuilding.stairs ||
         this.model.selectedBuilding.stairs.length === 0
       ) {
-        const params = {
-          building: this.model.selectedBuilding.buildingReference,
-        };
         this.OvhApiConnectivityEligibilitySearch.v6()
-          .buildingDetails({}, params)
-          .$promise.then((buildingDetails) => {
+          .pollerBuildingDetails(this.$scope, {
+            building: this.model.selectedBuilding.reference,
+          })
+          .then((buildingDetails) => {
             if (has(buildingDetails, 'result.stairs')) {
               if (buildingDetails.result.stairs.length === 0) {
                 const stairModel = this.defaultStairsModel();

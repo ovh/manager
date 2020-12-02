@@ -142,5 +142,14 @@
   "telecom_pack_migration_promotion_installation_fees_offered": "Frais de mises en service offerts",
   "telecom_pack_migration_confirm_promotion": "Les frais d'installation et les {{ duration }} premiers mois de votre nouvel abonnement sont offerts (hors location de modem, options supplémentaires ou frais de transport).",
   "telecom_pack_migration_confirm_first_year_promo": "Réduction sur la première année",
-  "telecom_pack_migration_confirm_modem_rental": "Location modem"
+  "telecom_pack_migration_confirm_modem_rental": "Location modem",
+  "telecom_pack_migration_pack_access_error": "Nous ne parvenons pas à charger les informations concernant votre pack.",
+  "telecom_pack_migration_buildings_title": "Bâtiments rattachés à la ligne",
+  "telecom_pack_migration_buildings_available": "Nous avons trouvé les bâtiments suivants rattachés à votre ligne. Veuillez sélectionner un bâtiment.",
+  "telecom_pack_migration_buildings_name": "Nom",
+  "telecom_pack_migration_buildings_reference": "Référence",
+  "telecom_pack_migration_buildings_nro": "NRO",
+  "telecom_pack_migration_buildings_type": "Type",
+  "telecom_pack_migration_buildings_actions": "Action",
+  "telecom_pack_migration_buildings_select_building": "Sélectionner"
 }
