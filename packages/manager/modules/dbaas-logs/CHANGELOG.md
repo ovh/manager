@@ -1,3 +1,12 @@
+## [1.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.4.0...@ovh-ux/manager-dbaas-logs@1.4.1) (2020-12-02)
+
+
+### Bug Fixes
+
+* **logs.onboarding:** update guide URL for all subs ([#4118](https://github.com/ovh/manager/issues/4118)) ([965b940](https://github.com/ovh/manager/commit/965b940275fce12652d6538924c080133546267e))
+
+
+
 # [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.3.0...@ovh-ux/manager-dbaas-logs@1.4.0) (2020-12-01)
 
 
