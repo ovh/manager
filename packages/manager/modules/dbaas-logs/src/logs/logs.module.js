@@ -1,9 +1,10 @@
 import angular from 'angular';
+import 'angular-translate';
+import '@uirouter/angularjs';
 
+import '@ovh-ux/manager-at-internet-configuration';
 import '@ovh-ux/manager-core';
 import '@ovh-ux/ng-ovh-cloud-universe-components';
-import '@uirouter/angularjs';
-import 'angular-translate';
 import 'ovh-api-services';
 import '@ovh-ux/ui-kit';
 import 'angular-chart.js';
@@ -33,6 +34,7 @@ angular
     'pascalprecht.translate',
     'ui.bootstrap',
     'ui.router',
+    'ovhManagerAtInternetConfiguration',
     empty,
     logsOrder,
     logsDetail,
