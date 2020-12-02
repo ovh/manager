@@ -246,5 +246,9 @@
   "pack_move_resume_contact_owner": "Informations de contact",
   "pack_move_resume_contact_phone": "Numéro de téléphone sur lequel vous pourrez être contacté si nécessaire",
   "pack_move_resume_phone_form_error": "Le numéro saisi doit être valide.",
-  "pack_move_building_details_error": "Une erreur s'est produite lors de la récupération des informations sur votre bâtiment"
+  "pack_move_building_details_error": "Une erreur s'est produite lors de la récupération des informations sur votre bâtiment",
+  "pack_move_promotion_description": "Promotion disponible jusqu'au {{ endDate }}",
+  "pack_move_promotion_subscription_months_offered": "{{ duration }} mois offerts",
+  "pack_move_promotion_installation_fees_offered": "Frais de mises en service offerts",
+  "pack_move_resume_promotion": "Les frais d'installation et les {{ duration }} premiers mois de votre nouvel abonnement sont offerts (hors location de modem, options supplémentaires ou frais de transport)."
 }

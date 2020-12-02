@@ -2,6 +2,8 @@ import find from 'lodash/find';
 import isUndefined from 'lodash/isUndefined';
 import set from 'lodash/set';
 
+import { PROMO_DISPLAY } from '../pack-move.constant';
+
 export default class PackMoveOffersCtrl {
   /* @ngInject */
   constructor(
@@ -24,6 +26,8 @@ export default class PackMoveOffersCtrl {
     this.loading = {
       init: true,
     };
+
+    this.PROMO_DISPLAY = PROMO_DISPLAY;
 
     this.$q
       .all([this.getOptions(), this.getCopperOffers()])

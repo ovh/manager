@@ -4,6 +4,8 @@ import map from 'lodash/map';
 import set from 'lodash/set';
 import values from 'lodash/values';
 
+import { PROMO_DISPLAY } from '../pack-move.constant';
+
 export default class MoveResumeCtrl {
   /* @ngInject */
   constructor($scope, $timeout, $translate, OvhApiPackXdslMove, TucToast) {
@@ -19,6 +21,8 @@ export default class MoveResumeCtrl {
     this.model = {
       acceptContracts: false,
     };
+    this.PROMO_DISPLAY = PROMO_DISPLAY;
+
     this.modemTransportPrice = 9.99;
     this.choosedAdditionalOptions = filter(
       values(this.offer.selected.offer.options),

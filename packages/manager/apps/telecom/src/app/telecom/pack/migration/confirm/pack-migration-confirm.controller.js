@@ -2,6 +2,8 @@ import filter from 'lodash/filter';
 import get from 'lodash/get';
 import map from 'lodash/map';
 
+import { PROMO_DISPLAY } from '../pack-migration.constant';
+
 export default class TelecomPackMigrationConfirmCtrl {
   /* @ngInject */
   constructor($q, $translate, TucPackMigrationProcess, TucToast) {
@@ -20,10 +22,35 @@ export default class TelecomPackMigrationConfirmCtrl {
     this.model = {
       acceptContracts: false,
     };
+
+    this.PROMO_DISPLAY = PROMO_DISPLAY;
+
     this.modemTransportPrice = 9.99;
 
     this.process = this.TucPackMigrationProcess.getMigrationProcess();
     this.choosedAdditionalOptions = this.TucPackMigrationProcess.getOptionsSelected();
+
+    const modemRental = this.process.selectedOffer.modemRental
+      ? this.process.selectedOffer.modemRental.value
+      : 0;
+    const firstYearPromo = this.process.selectedOffer.firstYearPromo
+      ? this.process.selectedOffer.price.value -
+        this.process.selectedOffer.firstYearPromo.value
+      : 0;
+
+    let totalOfferPrice = 0;
+    if (this.choosedAdditionalOptions.length === 0) {
+      totalOfferPrice =
+        this.process.selectedOffer.price.value - firstYearPromo + modemRental;
+    } else {
+      totalOfferPrice =
+        this.process.selectedOffer.displayedPrice.value -
+        firstYearPromo +
+        modemRental;
+    }
+    this.process.selectedOffer.displayedPrice = this.TucPackMigrationProcess.getPriceStruct(
+      totalOfferPrice,
+    );
   }
 
   /*= ==============================
@@ -49,6 +76,21 @@ export default class TelecomPackMigrationConfirmCtrl {
       }),
       'name',
     ).join(', ');
+  }
+
+  getReductionPriceFirstYear() {
+    const value =
+      this.process.selectedOffer.price.value -
+      this.process.selectedOffer.firstYearPromo.value;
+    const priceText = this.process.selectedOffer.price.text.replace(
+      /\d+(?:[.,]\d+)?/,
+      value.toFixed(2),
+    );
+    return {
+      currencyCode: this.process.selectedOffer.price.currencyCode,
+      text: `- ${priceText}`,
+      value,
+    };
   }
 
   /* -----  End of HELPERS  ------*/
