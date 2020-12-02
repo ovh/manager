@@ -4,5 +4,9 @@ export default /* @ngInject */ ($stateProvider) => {
     views: {
       logsInputsAdd: 'dbaasLogsDetailInputsAddConfigure',
     },
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('dbaas_logs_inputs_configure'),
+    },
   });
 };

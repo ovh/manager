@@ -4,5 +4,8 @@ export default /* @ngInject */ ($stateProvider) => {
     views: {
       logsInputs: 'dbaasLogsDetailInputsHome',
     },
+    resolve: {
+      breadcrumb: () => null,
+    },
   });
 };

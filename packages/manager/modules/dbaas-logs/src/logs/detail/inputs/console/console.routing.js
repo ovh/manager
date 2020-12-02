@@ -3,6 +3,8 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/console',
     component: 'dbaasLogsDetailInputsConsole',
     resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('dbaas_logs_inputs_console'),
     },
   });
 };

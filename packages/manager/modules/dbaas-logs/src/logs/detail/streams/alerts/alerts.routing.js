@@ -3,6 +3,10 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/alerts',
     redirectTo: 'dbaas-logs.detail.streams.stream.alerts.home',
     component: 'dbaasLogsDetailStreamsAlerts',
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('dbaas_logs_streams_alerts'),
+    },
   });
 
   $stateProvider.state('dbaas-logs.detail.streams.stream.alerts.alert', {
@@ -15,6 +19,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       alertId: /* @ngInject */ ($transition$) => $transition$.params().alertId,
+      breadcrumb: /* @ngInject */ (alertId) => alertId,
     },
   });
 };

@@ -25,6 +25,7 @@ angular
   ])
   .config(routing)
   .service('LogsStreamsFollowService', service)
-  .component('dbaasLogsDetailStreamsFollow', component);
+  .component('dbaasLogsDetailStreamsFollow', component)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

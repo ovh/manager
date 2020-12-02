@@ -5,5 +5,8 @@ export default /* @ngInject */ ($stateProvider) => {
       'logsAliasesAddEdit@dbaas-logs.detail.aliases.home':
         'dbaasLogsDetailAliasesAdd',
     },
+    resolve: {
+      breadcrumb: () => null,
+    },
   });
 };

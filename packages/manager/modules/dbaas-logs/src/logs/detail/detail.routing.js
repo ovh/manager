@@ -15,6 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
         LogsHelperService.isAccountDisabled(service),
       accountSetupRequired: /* @ngInject */ (LogsHelperService, service) =>
         LogsHelperService.accountSetupRequired(service),
+      breadcrumb: /* @ngInject */ (serviceName) => serviceName,
     },
   });
 };

@@ -5,5 +5,8 @@ export default /* @ngInject */ ($stateProvider) => {
       logsHeader: 'dbaasLogsListHeader',
       logsContainer: 'dbaasLogsList',
     },
+    resolve: {
+      hideBreadcrumb: () => true,
+    },
   });
 };

@@ -2,9 +2,12 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
     .state('dbaas-logs.detail.aliases.home', {
       url: '',
-    views: {
-      logsAliases: 'dbaasLogsDetailAliasesHome',
-    },
+      views: {
+        logsAliases: 'dbaasLogsDetailAliasesHome',
+      },
+      resolve: {
+        breadcrumb: () => null,
+      },
     })
     .state('dbaas-logs.detail.aliases.home.alias', {
       url: '/:aliasId',
@@ -13,6 +16,7 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         aliasId: /* @ngInject */ ($transition$) =>
           $transition$.params().aliasId,
+        breadcrumb: /* @ngInject */ (aliasId) => aliasId,
       },
-  });
+    });
 };

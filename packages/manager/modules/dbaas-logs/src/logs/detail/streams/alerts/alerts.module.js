@@ -30,6 +30,7 @@ angular
   ])
   .config(routing)
   .service('LogsStreamsAlertsService', service)
-  .component('dbaasLogsDetailStreamsAlerts', component);
+  .component('dbaasLogsDetailStreamsAlerts', component)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

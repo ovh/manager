@@ -3,6 +3,8 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/permissions',
     component: 'dbaasLogsDetailRolesEditPermissions',
     resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('dbaas_logs_roles_permission'),
     },
   });
 };
