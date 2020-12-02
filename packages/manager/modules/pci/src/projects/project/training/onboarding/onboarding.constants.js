@@ -6,8 +6,8 @@ export const GUIDES = [
       'public-cloud::pci::projects::project::training::onboarding::go-to-docs-tasks',
   },
   {
-    id: 'install-eai-cli',
-    link: 'https://docs.ovh.com/gb/en/ai-training/install-eai-client/',
+    id: 'install-cli',
+    link: 'https://docs.ovh.com/gb/en/ai-training/install-client/',
     tracking:
       'public-cloud::pci::projects::project::training::onboarding::go-to-docs-install',
   },
