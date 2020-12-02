@@ -30,6 +30,8 @@ export default /* @ngInject */ ($stateProvider) => {
           .then(({ data }) => data)
           .catch(() => {}),
       orderLink: /* @ngInject */ ($state) => $state.href('dbaas-logs.order'),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('dbaas_logs'),
     },
   });
 };

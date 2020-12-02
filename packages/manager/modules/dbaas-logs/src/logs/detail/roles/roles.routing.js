@@ -4,6 +4,10 @@ export default /* @ngInject */ ($stateProvider) => {
     views: {
       logsContent: 'dbaasLogsDetailRoles',
     },
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('dbaas_logs_roles'),
+    },
   });
 
   $stateProvider.state('dbaas-logs.detail.roles.role', {
@@ -16,6 +20,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       roleId: /* @ngInject */ ($transition$) => $transition$.params().roleId,
+      breadcrumb: /* @ngInject */ (roleId) => roleId,
     },
   });
 };

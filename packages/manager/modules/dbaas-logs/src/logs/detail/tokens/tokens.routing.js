@@ -4,5 +4,9 @@ export default /* @ngInject */ ($stateProvider) => {
     views: {
       logsContent: 'dbaasLogsDetailTokens',
     },
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('dbaas_logs_token'),
+    },
   });
 };

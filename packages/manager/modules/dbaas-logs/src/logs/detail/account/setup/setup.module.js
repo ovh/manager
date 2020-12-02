@@ -22,6 +22,7 @@ angular
     'ui.router',
   ])
   .config(routing)
-  .component('dbaasLogsDetailAccountSetup', component);
+  .component('dbaasLogsDetailAccountSetup', component)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

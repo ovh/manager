@@ -22,6 +22,7 @@ angular
     'ui.router',
   ])
   .config(routing)
-  .component('dbaasLogsDetailRolesEditPermissions', component);
+  .component('dbaasLogsDetailRolesEditPermissions', component)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

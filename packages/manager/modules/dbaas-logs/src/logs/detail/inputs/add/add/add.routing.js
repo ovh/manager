@@ -4,5 +4,8 @@ export default /* @ngInject */ ($stateProvider) => {
     views: {
       logsInputsAdd: 'dbaasLogsDetailInputsAddEdit',
     },
+    resolve: {
+      breadcrumb: () => null,
+    },
   });
 };

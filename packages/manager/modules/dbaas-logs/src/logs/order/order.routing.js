@@ -76,6 +76,8 @@ export default /* @ngInject */ ($stateProvider) => {
             };
           });
       },
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('dbaas_logs_order'),
     },
   });
 };

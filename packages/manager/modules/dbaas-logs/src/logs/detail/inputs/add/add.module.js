@@ -30,6 +30,7 @@ angular
     edit,
   ])
   .config(routing)
-  .component('dbaasLogsDetailInputsAdd', component);
+  .component('dbaasLogsDetailInputsAdd', component)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

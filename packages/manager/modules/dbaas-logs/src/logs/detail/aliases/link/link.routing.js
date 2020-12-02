@@ -8,6 +8,8 @@ export default /* @ngInject */ ($stateProvider) => {
       'logsAliases@dbaas-logs.detail.aliases': 'dbaasLogsDetailAliasesLink',
     },
     resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('dbaas_logs_alias_link'),
     },
   });
 };

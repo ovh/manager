@@ -1,4 +1,5 @@
 {
+  "dbaas_logs": "Logs Data Platform",
   "logs_none": "Aucun",
   "logs_col_last_modified": "Dernière modification",
   "logs_notification_title": "Notification",
