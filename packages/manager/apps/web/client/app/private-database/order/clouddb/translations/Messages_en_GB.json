@@ -1,7 +1,7 @@
 {
   "private_database_order_clouddb_title": "Order a Cloud Database ",
   "private_database_order_clouddb_subtitle": "CloudDB requires a service which has access to the public network/internet.",
-  "private_database_order_clouddb_database_type": "Type of database",
+  "private_database_order_clouddb_database_type": "Database type",
   "private_database_order_clouddb_database_question": "What database offer would you like?",
   "private_database_order_clouddb_offer_title": "Cloud Databases",
   "private_database_order_clouddb_offer_subtitle": "Works perfectly alongside all of our OVH Cloud products, e.g. VPS, Dedicated Servers, Public Cloud Instances and Cloud Web hosting",

@@ -720,5 +720,5 @@
   "logs_order_default_error_close": "Chiudi l'alert",
   "logs_home_service_type": "Tipo di servizio",
   "logs_home_service_type_standard": "Standard",
-  "logs_home_service_type_enterprise": "Società"
+  "logs_home_service_type_enterprise": "Enterprise"
 }
