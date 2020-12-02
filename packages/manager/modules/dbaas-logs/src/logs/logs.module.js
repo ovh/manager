@@ -21,6 +21,7 @@ import logsList from './list/list.module';
 import logsOnboarding from './onboarding/onboarding.module';
 import logsOrder from './order/order.module';
 import routing from './logs.routing';
+import cuiDualList from '../components/dual-list';
 
 const moduleName = 'ovhManagerDbaasLogsDashboard';
 
@@ -35,6 +36,7 @@ angular
     'ui.bootstrap',
     'ui.router',
     'ovhManagerAtInternetConfiguration',
+    cuiDualList,
     empty,
     logsOrder,
     logsDetail,
