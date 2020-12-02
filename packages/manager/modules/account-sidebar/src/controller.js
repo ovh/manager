@@ -1,5 +1,4 @@
 import { Environment } from '@ovh-ux/manager-config';
-import constants from './constants';
 
 export default class OvhManagerAccountSidebarCtrl {
   /* @ngInject */
@@ -18,15 +17,20 @@ export default class OvhManagerAccountSidebarCtrl {
       this.isSidebarVisible = false;
       this.sidebarExpand = false;
     });
+
+    const unregisterListener = this.$rootScope.$on('ovh-chatbot:enable', () => {
+      this.hasChatbot = true;
+      this.links = this.getLinks();
+      unregisterListener();
+    });
   }
 
   $onInit() {
     if (!this.me) {
       this.me = Environment.getUser();
     }
-    this.hasChatbot = constants.CHATBOT_SUBSIDIARIES.includes(
-      this.me.ovhSubsidiary,
-    );
+
+    this.hasChatbot = false;
     return this.$translate
       .refresh()
       .then(() => this.getLinks())
