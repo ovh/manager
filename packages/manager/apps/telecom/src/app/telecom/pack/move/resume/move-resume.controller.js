@@ -53,7 +53,9 @@ export default class MoveResumeCtrl {
       );
     }
 
-    this.contactPhone = this.offer.selected.contactOwner.phone;
+    if (this.offer.selected.contactOwner) {
+      this.contactPhone = this.offer.selected.contactOwner.phone;
+    }
   }
 
   getDisplayedPrice(value) {
@@ -248,8 +250,8 @@ export default class MoveResumeCtrl {
         });
       }
 
-      // Set meetings for copper line creation if is set
       if (this.offer.selected.meetingSlots) {
+        // Set meetings for copper line creation if is set
         const meeting = {
           fakeMeeting: this.offer.selected.meetingSlots.fakeMeeting,
           meetingSlot: {
@@ -262,6 +264,64 @@ export default class MoveResumeCtrl {
         assign(moveData, {
           meeting,
         });
+
+        // Set address complements for copper line creation if set
+        if (this.offer.selected.searchAddress.residence) {
+          Object.assign(moveData, {
+            residence: this.offer.selected.searchAddress.residence,
+          });
+        }
+
+        if (
+          this.offer.selected.neighbourAddress &&
+          this.offer.selected.neighbourAddress.floor
+        ) {
+          assign(moveData, {
+            floor: this.offer.selected.neighbourAddress.floor,
+          });
+        } else if (this.offer.selected.address.floor) {
+          assign(moveData, {
+            floor: this.offer.selected.address.floor,
+          });
+        } else if (this.offer.selected.searchAddress.floor) {
+          assign(moveData, {
+            floor: this.offer.selected.searchAddress.floor,
+          });
+        }
+
+        if (
+          this.offer.selected.neighbourAddress &&
+          this.offer.selected.neighbourAddress.door
+        ) {
+          assign(moveData, {
+            door: this.offer.selected.neighbourAddress.door,
+          });
+        } else if (this.offer.selected.address.door) {
+          assign(moveData, {
+            door: this.offer.selected.address.door,
+          });
+        } else if (this.offer.selected.searchAddress.door) {
+          assign(moveData, {
+            door: this.offer.selected.searchAddress.door,
+          });
+        }
+
+        if (
+          this.offer.selected.neighbourAddress &&
+          this.offer.selected.neighbourAddress.stairs
+        ) {
+          assign(moveData, {
+            stair: this.offer.selected.neighbourAddress.stairs,
+          });
+        } else if (this.offer.selected.address.stairs) {
+          assign(moveData, {
+            stair: this.offer.selected.address.stairs,
+          });
+        } else if (this.offer.selected.searchAddress.stairs) {
+          assign(moveData, {
+            stair: this.offer.selected.searchAddress.stairs,
+          });
+        }
       } else if (!this.offer.selected.isFTTH) {
         assign(moveData, {
           meeting: {
