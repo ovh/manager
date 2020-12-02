@@ -4,96 +4,84 @@ export default /* @ngInject */ ($stateProvider) => {
     views: {
       'xdslView@telecom.packs.pack.xdsl.line': 'packXdslModem',
       'bridgeModeView@telecom.packs.pack.xdsl.line.modem': {
-        templateUrl:
-          'app/telecom/pack/xdsl/modem/bridgeMode/pack-xdsl-modem-bridgeMode.html',
+        templateUrl: 'app/telecom/pack/xdsl/modem/bridgeMode/bridgeMode.html',
         controller: 'XdslModemBridgeModeCtrl',
         controllerAs: 'BridgeCtrl',
       },
       'connectedDeviceView@telecom.packs.pack.xdsl.line.modem': {
         templateUrl:
-          'app/telecom/pack/xdsl/modem/connectedDevices/pack-xdsl-modem-connectedDevices.html',
+          'app/telecom/pack/xdsl/modem/connectedDevices/connectedDevices.html',
         controller: 'XdslModemConnectedDevicesCtrl',
         controllerAs: 'DeviceCtrl',
       },
       'dmzView@telecom.packs.pack.xdsl.line.modem': {
-        templateUrl: 'app/telecom/pack/xdsl/modem/dmz/pack-xdsl-modem-dmz.html',
+        templateUrl: 'app/telecom/pack/xdsl/modem/dmz/dmz.html',
         controller: 'XdslModemDmzCtrl',
         controllerAs: 'DmzCtrl',
       },
       'firewallView@telecom.packs.pack.xdsl.line.modem': {
-        templateUrl:
-          'app/telecom/pack/xdsl/modem/firewall/pack-xdsl-modem-firewall.html',
+        templateUrl: 'app/telecom/pack/xdsl/modem/firewall/firewall.html',
         controller: 'XdslModemFirewallCtrl',
         controllerAs: 'FirewallCtrl',
       },
       'managedByOvhView@telecom.packs.pack.xdsl.line.modem': {
         templateUrl:
-          'app/telecom/pack/xdsl/modem/managedByOvh/pack-xdsl-modem-managedByOvh.html',
+          'app/telecom/pack/xdsl/modem/managedByOvh/managedByOvh.html',
         controller: 'XdslModemManagedByCtrl',
         controllerAs: 'ManagedByCtrl',
       },
       'mtuView@telecom.packs.pack.xdsl.line.modem': {
-        templateUrl: 'app/telecom/pack/xdsl/modem/mtu/pack-xdsl-modem-mtu.html',
+        templateUrl: 'app/telecom/pack/xdsl/modem/mtu/mtu.html',
         controller: 'XdslModemMtuCtrl',
         controllerAs: 'MtuCtrl',
       },
       'modemRebootView@telecom.packs.pack.xdsl.line.modem': {
-        templateUrl:
-          'app/telecom/pack/xdsl/modem/reboot/pack-xdsl-modem-reboot.html',
+        templateUrl: 'app/telecom/pack/xdsl/modem/reboot/reboot.html',
         controller: 'XdslModemRebootCtrl',
         controllerAs: 'RebootCtrl',
       },
       'modemResetView@telecom.packs.pack.xdsl.line.modem': {
-        templateUrl:
-          'app/telecom/pack/xdsl/modem/reset/pack-xdsl-modem-reset.html',
+        templateUrl: 'app/telecom/pack/xdsl/modem/reset/reset.html',
         controller: 'XdslModemResetCtrl',
         controllerAs: 'ResetCtrl',
       },
       'routerView@telecom.packs.pack.xdsl.line.modem': {
-        templateUrl:
-          'app/telecom/pack/xdsl/modem/router/pack-xdsl-modem-router.html',
+        templateUrl: 'app/telecom/pack/xdsl/modem/router/router.html',
         controller: 'XdslModemRouterCtrl',
         controllerAs: 'RouterCtrl',
       },
       'routerBdhcpView@telecom.packs.pack.xdsl.line.modem': {
-        templateUrl:
-          'app/telecom/pack/xdsl/modem/router/dhcp/bdhcp/pack-xdsl-modem-dhcp-bdhcp.html',
+        templateUrl: 'app/telecom/pack/xdsl/modem/router/dhcp/bdhcp/bdhcp.html',
         controller: 'XdslModemDhcpBdhcpCtrl',
         controllerAs: 'BdhcpCtrl',
       },
       'routerDhcpView@telecom.packs.pack.xdsl.line.modem': {
-        templateUrl:
-          'app/telecom/pack/xdsl/modem/router/dhcp/pack-xdsl-modem-dhcp.html',
+        templateUrl: 'app/telecom/pack/xdsl/modem/router/dhcp/dhcp.html',
         controller: 'XdslModemDhcpCtrl',
         controllerAs: 'DhcpCtrl',
       },
       'routerLanView@telecom.packs.pack.xdsl.line.modem': {
-        templateUrl:
-          'app/telecom/pack/xdsl/modem/router/lan/pack-xdsl-modem-lan.html',
+        templateUrl: 'app/telecom/pack/xdsl/modem/router/lan/lan.html',
         controller: 'XdslModemLanCtrl',
         controllerAs: 'LanCtrl',
       },
       'routerPortView@telecom.packs.pack.xdsl.line.modem': {
-        templateUrl:
-          'app/telecom/pack/xdsl/modem/router/ports/pack-xdsl-modem-ports.html',
+        templateUrl: 'app/telecom/pack/xdsl/modem/router/ports/ports.html',
         controller: 'XdslModemPortsCtrl',
         controllerAs: 'PortCtrl',
       },
       'wifiView@telecom.packs.pack.xdsl.line.modem': {
-        templateUrl:
-          'app/telecom/pack/xdsl/modem/wifi/pack-xdsl-modem-wifi.html',
+        templateUrl: 'app/telecom/pack/xdsl/modem/wifi/wifi.html',
         controller: 'XdslModemWifiCtrl',
         controllerAs: 'WifiCtrl',
       },
       'firmwareView@telecom.packs.pack.xdsl.line.modem': {
-        templateUrl:
-          'app/telecom/pack/xdsl/modem/firmware/pack-xdsl-modem-firmware.html',
+        templateUrl: 'app/telecom/pack/xdsl/modem/firmware/firmware.html',
         controller: 'XdslModemFirmwareCtrl',
         controllerAs: '$ctrl',
       },
       'serviceView@telecom.packs.pack.xdsl.line.modem': {
-        templateUrl:
-          'app/telecom/pack/xdsl/modem/service/pack-xdsl-modem-service.html',
+        templateUrl: 'app/telecom/pack/xdsl/modem/service/service.html',
         controller: 'XdslModemServiceCtrl',
         controllerAs: '$ctrl',
       },

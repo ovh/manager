@@ -1,12 +1,10 @@
 import angular from 'angular';
 
 import packMove from '../move';
-import packVoipLineActivation from '../slots/voipLine/activation/pack-voipLine-activation.module';
-import hostedEmailDetail from '../slots/hostedEmail/detail';
+import packResiliation from '../resiliation/pack-resiliation';
 import xdsl from '../xdsl';
 import migration from '../migration';
-
-import templates from './pack.templates';
+import slots from '../slots';
 
 import controller from './pack.controller';
 import routing from './pack.routing';
@@ -14,16 +12,9 @@ import routing from './pack.routing';
 const moduleName = 'ovhManagerTelecomPack';
 
 angular
-  .module(moduleName, [
-    hostedEmailDetail,
-    packVoipLineActivation,
-    xdsl,
-    packMove,
-    migration,
-  ])
+  .module(moduleName, [migration, packMove, packResiliation, slots, xdsl])
   .controller('PackCtrl', controller)
   .config(routing)
-  .run(templates)
   .run(/* @ngTranslationsInject:json ../translations */);
 
 export default moduleName;

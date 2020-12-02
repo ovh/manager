@@ -1,6 +1,8 @@
-angular.module('managerApp').constant('PACK_XDSL_MODEM_TEMPLATE', {
+export const PACK_XDSL_MODEM_TEMPLATE = {
   errors: {
     duplicate: 'TemplateName',
     invalid: 'Invalid',
   },
-});
+};
+
+export default PACK_XDSL_MODEM_TEMPLATE;
