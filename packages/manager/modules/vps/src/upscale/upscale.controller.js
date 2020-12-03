@@ -66,16 +66,24 @@ export default class UpscaleController {
     };
   }
 
+  static convertFromCatalog(pricing) {
+    return {
+      ...pricing,
+      pricingMode: pricing.mode,
+      priceInUcents: pricing.price,
+    };
+  }
+
   getCurrentRangeInformation() {
     this.currentRangeConfiguration = UpscaleController.parseRangeConfiguration(
       this.vps.model.name,
     );
 
-    const currentRangePricing = this.getIndicativePricing(
-      this.upscaleOptions.find(
-        ({ planCode }) => planCode === this.vps.model.name,
-      ).prices,
-    );
+    const pricings = this.catalog.plans
+      .find(({ planCode }) => planCode === this.vps.model.name)
+      .pricings.map((pricing) => UpscaleController.convertFromCatalog(pricing));
+
+    const currentRangePricing = this.getIndicativePricing(pricings);
 
     this.currentRangeConfiguration.pricing = {
       ...currentRangePricing,
@@ -185,10 +193,13 @@ export default class UpscaleController {
 
       this.isNewPlanCodeDifferent = this.planCode !== this.vps.model.name;
 
-      const matchingPlanCode = this.upscaleOptions.find(
-        ({ planCode }) => planCode === this.planCode,
-      );
-      const renewPricing = this.getIndicativePricing(matchingPlanCode.prices);
+      const pricings = this.catalog.plans
+        .find(({ planCode }) => planCode === this.planCode)
+        .pricings.map((pricing) =>
+          UpscaleController.convertFromCatalog(pricing),
+        );
+
+      const renewPricing = this.getIndicativePricing(pricings);
 
       this.rangeConfiguration.pricing = {
         ...renewPricing,
