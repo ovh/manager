@@ -9,6 +9,7 @@ class CloudMainController {
     $transitions,
     $translate,
     CucProductsService,
+    ovhFeatureFlipping,
   ) {
     this.$document = $document;
     this.$interval = $interval;
@@ -17,6 +18,7 @@ class CloudMainController {
     this.$transitions = $transitions;
     this.$translate = $translate;
     this.CucProductsService = CucProductsService;
+    this.ovhFeatureFlipping = ovhFeatureFlipping;
     this.chatbotEnabled = false;
   }
 
@@ -26,7 +28,20 @@ class CloudMainController {
     this.currentLanguage = Environment.getUserLanguage();
     this.user = Environment.getUser();
     const unregisterListener = this.$scope.$on('app:started', () => {
-      this.chatbotEnabled = true;
+      const CHATBOT_FEATURE = 'chatbot';
+      this.ovhFeatureFlipping
+        .checkFeatureAvailability(CHATBOT_FEATURE)
+        .then((featureAvailability) => {
+          this.chatbotEnabled = featureAvailability.isFeatureAvailable(
+            CHATBOT_FEATURE,
+          );
+          if (this.chatbotEnabled) {
+            this.$rootScope.$broadcast(
+              'ovh-chatbot:enable',
+              this.chatbotEnabled,
+            );
+          }
+        });
       unregisterListener();
     });
 
