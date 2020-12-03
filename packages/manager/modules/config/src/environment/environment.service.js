@@ -8,6 +8,7 @@ import {
 export default class EnvironmentService {
   constructor() {
     this.region = DEFAULT_REGION;
+    this.universe = '';
     this.userLocale = findAvailableLocale(detectUserLocale(), this.region);
     this.version = null;
     this.user = {};
@@ -22,6 +23,14 @@ export default class EnvironmentService {
 
   getRegion() {
     return this.region;
+  }
+
+  setUniverse(universe) {
+    this.universe = universe;
+  }
+
+  getUniverse() {
+    return this.universe;
   }
 
   setUser(user) {
