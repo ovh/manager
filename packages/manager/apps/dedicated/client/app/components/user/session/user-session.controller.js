@@ -6,12 +6,22 @@ angular.module('App').controller(
   'SessionCtrl',
   class SessionCtrl {
     /* @ngInject */
-    constructor($document, $scope, $state, $transitions, $translate) {
+    constructor(
+      $document,
+      $rootScope,
+      $scope,
+      $state,
+      $transitions,
+      $translate,
+      ovhFeatureFlipping,
+    ) {
       this.$document = $document;
+      this.$rootScope = $rootScope;
       this.$scope = $scope;
       this.$state = $state;
       this.$transitions = $transitions;
       this.$translate = $translate;
+      this.ovhFeatureFlipping = ovhFeatureFlipping;
       this.chatbotEnabled = false;
     }
 
@@ -25,7 +35,20 @@ angular.module('App').controller(
       this.currentLanguage = Environment.getUserLanguage();
       this.user = Environment.getUser();
       const unregisterListener = this.$scope.$on('app:started', () => {
-        this.chatbotEnabled = true;
+        const CHATBOT_FEATURE = 'chatbot';
+        this.ovhFeatureFlipping
+          .checkFeatureAvailability(CHATBOT_FEATURE)
+          .then((featureAvailability) => {
+            this.chatbotEnabled = featureAvailability.isFeatureAvailable(
+              CHATBOT_FEATURE,
+            );
+            if (this.chatbotEnabled) {
+              this.$rootScope.$broadcast(
+                'ovh-chatbot:enable',
+                this.chatbotEnabled,
+              );
+            }
+          });
         unregisterListener();
       });
 
