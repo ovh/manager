@@ -178,9 +178,7 @@ angular
           // Poll virtual mac
           if (get(ipBlock, 'virtualMac.status') === 'PENDING') {
             IpVirtualMac.pollVirtualMacs(ipBlock.service).then(() => {
-              refreshIp(ipBlock.ipBlock).then((refreshedIp) => {
-                Object.assign(ipBlock, refreshedIp);
-              });
+              $rootScope.$broadcast('ips.table.refresh');
             });
           }
 
@@ -478,6 +476,10 @@ angular
         init();
         refreshTable();
         refreshAlerts();
+      });
+
+      $scope.$on('ips.table.refresh', () => {
+        refreshTable();
       });
 
       $scope.$on('organisation.change.done', () => {

@@ -2,7 +2,7 @@ angular
   .module('Module.ip.controllers')
   .controller(
     'IpDeleteVirtualMacCtrl',
-    ($scope, $rootScope, $translate, IpVirtualMac, Alerter) => {
+    ($scope, $rootScope, $timeout, $translate, IpVirtualMac, Alerter) => {
       $scope.data = $scope.currentActionData; // service and sub
 
       /* Action */
@@ -14,12 +14,9 @@ angular
           $scope.data.ipBlock.virtualMac.virtualMacs[$scope.data.ip.ip],
           $scope.data.ip.ip,
         )
+          .then(() => $timeout(angular.noop, 1000)) // add some delay for task to be created
           .then(() => {
-            $rootScope.$broadcast(
-              'ips.table.refreshBlock',
-              $scope.data.ipBlock,
-            );
-
+            $rootScope.$broadcast('ips.table.refresh');
             Alerter.success(
               $translate.instant('ip_virtualmac_delete_success', {
                 t0:
