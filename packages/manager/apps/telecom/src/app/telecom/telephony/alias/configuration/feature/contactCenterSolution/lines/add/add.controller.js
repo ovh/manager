@@ -139,4 +139,10 @@ export default class TelecomTelephonyAliasConfigurationLinesLineCtrl {
         this.loading = false;
       });
   }
+
+  goBack() {
+    return this.$state.go(
+      'telecom.telephony.billingAccount.alias.configuration.lines',
+    );
+  }
 }
