@@ -1,4 +1,4 @@
-import { Environment } from '@ovh-ux/manager-config';
+import { Environment, UNIVERSES } from '@ovh-ux/manager-config';
 import get from 'lodash/get';
 import has from 'lodash/has';
 import set from 'lodash/set';
@@ -255,11 +255,14 @@ angular
         const stateIncludes = Object.keys(transition.$to().includes);
 
         if (HPC_STATES.some((state) => stateIncludes.includes(state))) {
-          $rootScope.$broadcast('switchUniverse', 'hpc');
+          $rootScope.$broadcast(
+            'switchUniverse',
+            UNIVERSES.HOSTED_PRIVATE_CLOUD,
+          );
         } else if (
           !IGNORE_STATES.some((state) => stateIncludes.includes(state))
         ) {
-          $rootScope.$broadcast('switchUniverse', 'server');
+          $rootScope.$broadcast('switchUniverse', UNIVERSES.BARE_METAL_CLOUD);
         }
       });
 

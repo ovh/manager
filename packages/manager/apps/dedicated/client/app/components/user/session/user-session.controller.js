@@ -1,6 +1,6 @@
 import isString from 'lodash/isString';
 import set from 'lodash/set';
-import { Environment } from '@ovh-ux/manager-config';
+import { Environment, UNIVERSES } from '@ovh-ux/manager-config';
 
 angular.module('App').controller(
   'SessionCtrl',
@@ -17,8 +17,12 @@ angular.module('App').controller(
 
     $onInit() {
       this.$scope.$on('switchUniverse', (event, universe) => {
-        this.sidebarNamespace = universe === 'server' ? undefined : 'hpc';
+        this.sidebarNamespace =
+          universe === UNIVERSES.BARE_METAL_CLOUD
+            ? undefined
+            : UNIVERSES.HOSTED_PRIVATE_CLOUD;
         this.navbarOptions.universe = universe;
+        Environment.setUniverse(universe);
       });
 
       this.currentLanguage = Environment.getUserLanguage();
@@ -32,7 +36,7 @@ angular.module('App').controller(
         toggle: {
           event: 'sidebar:loaded',
         },
-        universe: 'server',
+        universe: UNIVERSES.BARE_METAL_CLOUD,
       };
 
       set(this.$document, 'title', this.$translate.instant('global_app_title'));
