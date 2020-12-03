@@ -1,3 +1,9 @@
+import endsWith from 'lodash/endsWith';
+import find from 'lodash/find';
+import get from 'lodash/get';
+import last from 'lodash/last';
+import split from 'lodash/split';
+
 import {
   CONTROLLER_NAME as CONFIRM_CONTROLLER_NAME,
   TEMPLATE_CACHE_KEY as CONFIRM_TEMPLATE_CACHE_KEY,
@@ -13,6 +19,7 @@ export default class {
     $uibModal,
     Alerter,
     OvhApiOrder,
+    OvhApiServices,
     servicePackUpgradePreferenceService,
   ) {
     this.$q = $q;
@@ -21,6 +28,7 @@ export default class {
     this.$uibModal = $uibModal;
     this.Alerter = Alerter;
     this.OvhApiOrder = OvhApiOrder;
+    this.OvhApiServices = OvhApiServices;
     this.servicePackUpgradePreferenceService = servicePackUpgradePreferenceService;
   }
 
@@ -84,15 +92,35 @@ export default class {
   }
 
   placeOrder() {
-    return this.OvhApiOrder.Upgrade()
-      .PrivateCloud()
-      .v6()
-      .post({
-        serviceName: `${this.currentService.serviceName}/servicepack`,
-        planCode: `pcc-servicepack-${this.servicePackToOrder.name}`,
-        quantity: 1,
-        autoPayWithPreferredPaymentMethod: this.hasDefaultMeansOfPayment,
-      }).$promise;
+    const serviceName = `${this.currentService.serviceName}/servicepack`;
+    const productName = `pcc-servicepack-${this.servicePackToOrder.name}`;
+    return this.OvhApiServices.v6()
+      .query()
+      .$promise.then((services) => {
+        let planCode = productName;
+        const currentService = find(services, (service) =>
+          find(get(service, 'route.vars'), {
+            value: this.currentService.serviceName,
+            key: 'serviceName',
+          }),
+        );
+        const currentServicePlanCode = get(currentService, 'billing.plan.code');
+        if (
+          endsWith(currentServicePlanCode, 'eu') ||
+          endsWith(currentServicePlanCode, 'ca')
+        ) {
+          planCode = `${planCode}_${last(split(currentServicePlanCode, '_'))}`;
+        }
+        return this.OvhApiOrder.Upgrade()
+          .PrivateCloud()
+          .v6()
+          .post({
+            serviceName,
+            planCode,
+            quantity: 1,
+            autoPayWithPreferredPaymentMethod: this.hasDefaultMeansOfPayment,
+          }).$promise;
+      });
   }
 
   savePreference() {
