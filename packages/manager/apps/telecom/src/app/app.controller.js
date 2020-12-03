@@ -5,11 +5,13 @@ export default class TelecomAppCtrl {
   constructor(
     $q,
     $state,
+    $rootScope,
     $scope,
     $transitions,
     $translate,
     betaPreferenceService,
     ovhUserPref,
+    ovhFeatureFlipping,
   ) {
     this.displayFallbackMenu = false;
     $transitions.onStart({}, () => this.closeSidebar());
@@ -17,9 +19,11 @@ export default class TelecomAppCtrl {
     this.$q = $q;
     this.$translate = $translate;
     this.$state = $state;
+    this.$rootScope = $rootScope;
     this.$scope = $scope;
     this.betaPreferenceService = betaPreferenceService;
     this.ovhUserPref = ovhUserPref;
+    this.ovhFeatureFlipping = ovhFeatureFlipping;
 
     this.chatbotEnabled = false;
   }
@@ -35,7 +39,20 @@ export default class TelecomAppCtrl {
     this.user = Environment.getUser();
 
     const unregisterListener = this.$scope.$on('app:started', () => {
-      this.chatbotEnabled = true;
+      const CHATBOT_FEATURE = 'chatbot';
+      this.ovhFeatureFlipping
+        .checkFeatureAvailability(CHATBOT_FEATURE)
+        .then((featureAvailability) => {
+          this.chatbotEnabled = featureAvailability.isFeatureAvailable(
+            CHATBOT_FEATURE,
+          );
+          if (this.chatbotEnabled) {
+            this.$rootScope.$broadcast(
+              'ovh-chatbot:enable',
+              this.chatbotEnabled,
+            );
+          }
+        });
       unregisterListener();
     });
 
