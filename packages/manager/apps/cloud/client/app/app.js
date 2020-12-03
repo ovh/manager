@@ -16,6 +16,7 @@ import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
 import ngOvhBrowserAlert from '@ovh-ux/ng-ovh-browser-alert';
 import ngOvhCheckboxTable from '@ovh-ux/ng-ovh-checkbox-table';
 import ngOvhDocUrl from '@ovh-ux/ng-ovh-doc-url';
+import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import ngOvhFormFlat from '@ovh-ux/ng-ovh-form-flat';
 import ngOvhJsplumb from '@ovh-ux/ng-ovh-jsplumb';
 import ngOvhResponsiveTabs from '@ovh-ux/ng-ovh-responsive-tabs';
@@ -74,6 +75,7 @@ angular
       ngOvhBrowserAlert,
       ngOvhCheckboxTable,
       ngOvhDocUrl,
+      ngOvhFeatureFlipping,
       ngOvhFormFlat,
       ngOvhSsoAuth,
       ngOvhSsoAuthModalPlugin,
@@ -235,6 +237,11 @@ angular
       });
     },
   )
-  .run(/* @ngTranslationsInject:json ./common/translations */);
+  .run(/* @ngTranslationsInject:json ./common/translations */)
+  .config(
+    /* @ngInject */ (ovhFeatureFlippingProvider) => {
+      ovhFeatureFlippingProvider.setApplicationName('cloud');
+    },
+  );
 
 export default moduleName;
