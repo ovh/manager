@@ -3,13 +3,21 @@ import { Environment } from '@ovh-ux/manager-config';
 
 export default class WebAppCtrl {
   /* @ngInject */
-  constructor($document, $rootScope, $scope, $timeout, $translate) {
+  constructor(
+    $document,
+    $rootScope,
+    $scope,
+    $timeout,
+    $translate,
+    ovhFeatureFlipping,
+  ) {
     this.$document = $document;
     this.$scope = $scope;
     this.$timeout = $timeout;
     this.$translate = $translate;
     this.$rootScope = $rootScope;
     this.chatbotEnabled = false;
+    this.ovhFeatureFlipping = ovhFeatureFlipping;
   }
 
   $onInit() {
@@ -33,8 +41,22 @@ export default class WebAppCtrl {
 
     this.currentLanguage = Environment.getUserLanguage();
     this.user = Environment.getUser();
+
     const unregisterListener = this.$scope.$on('app:started', () => {
-      this.chatbotEnabled = true;
+      const CHATBOT_FEATURE = 'chatbot';
+      this.ovhFeatureFlipping
+        .checkFeatureAvailability(CHATBOT_FEATURE)
+        .then((featureAvailability) => {
+          this.chatbotEnabled = featureAvailability.isFeatureAvailable(
+            CHATBOT_FEATURE,
+          );
+          if (this.chatbotEnabled) {
+            this.$rootScope.$broadcast(
+              'ovh-chatbot:enable',
+              this.chatbotEnabled,
+            );
+          }
+        });
       unregisterListener();
     });
 
