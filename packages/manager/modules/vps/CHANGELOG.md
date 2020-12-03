@@ -1,3 +1,12 @@
+## [2.2.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.2.7...@ovh-ux/manager-vps@2.2.8) (2020-12-03)
+
+
+### Bug Fixes
+
+* **upscale:** use price from catalog ([#4129](https://github.com/ovh/manager/issues/4129)) ([613bb85](https://github.com/ovh/manager/commit/613bb85b6f31ef8925f5306c45a5828d5b0e1855))
+
+
+
 ## [2.2.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.2.6...@ovh-ux/manager-vps@2.2.7) (2020-12-01)
 
 
