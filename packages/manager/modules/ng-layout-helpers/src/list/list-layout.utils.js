@@ -5,7 +5,7 @@ import mapValues from 'lodash/mapValues';
 import pickBy from 'lodash/pickBy';
 import startCase from 'lodash/startCase';
 
-import { DEFAULT_NUMBER_OF_COLUMNS } from './constants';
+import { DEFAULT_NUMBER_OF_COLUMNS, STRING_COLUMN_OPTIONS } from './constants';
 
 export const FILTER_OPERATORS = {
   contains: 'like',
@@ -61,16 +61,28 @@ export const matchingTypes = {
 const getMatchingType = (type) =>
   /Enum/.test(type) ? matchingTypes.enum : matchingTypes[type];
 
-const getTypeOptions = (schema, type, column) => ({
-  hideOperators: true,
-  values: schema.models[type].enum.reduce(
-    (values, value) => ({
-      ...values,
-      [value]: column.format ? column.format(value) : value,
-    }),
-    {},
-  ),
-});
+const getTypeOptions = (schema, type, column, columnType) => {
+  if (columnType === 'options') {
+    return {
+      hideOperators: true,
+      values: schema.models[type].enum.reduce(
+        (values, value) => ({
+          ...values,
+          [value]: column.format ? column.format(value) : value,
+        }),
+        {},
+      ),
+    };
+  }
+
+  if (columnType === 'string') {
+    return {
+      operators: STRING_COLUMN_OPTIONS,
+    };
+  }
+
+  return {};
+};
 
 export const getSorting = ({ sort, sortOrder }, property) =>
   sort === property ? sortOrder.toLowerCase() : true;
@@ -85,9 +97,7 @@ export const parseConfig = (columns, model, schema, sorting, tracking) =>
       ...(column.serviceLink ? { template: getLink(column, tracking) } : {}),
       ...(column.format ? { template: generateTemplate(column) } : {}),
       type,
-      ...(type === 'options'
-        ? { typeOptions: getTypeOptions(schema, propertyType, column) }
-        : {}),
+      typeOptions: getTypeOptions(schema, propertyType, column, type),
       searchable: true,
       filterable: true,
       sortable: getSorting(sorting, column.property),

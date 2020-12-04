@@ -1,6 +1,8 @@
 import get from 'lodash/get';
 import map from 'lodash/map';
 
+import { STRING_COLUMN_OPTIONS } from './constants';
+
 export default class ListLayoutCtrl {
   /* @ngInject */
   constructor($q, ouiDatagridService) {
@@ -19,7 +21,7 @@ export default class ListLayoutCtrl {
     }));
 
     this.stringColumnOptions = {
-      operators: ['contains', 'startsWith', 'endsWith', 'is', 'isNot'],
+      operators: STRING_COLUMN_OPTIONS,
     };
   }
 
