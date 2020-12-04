@@ -27,7 +27,7 @@ module.exports = class Sso {
   config;
 
   constructor(region) {
-    this.config = CONFIG.ssoAuth[region];
+    this.config = CONFIG.ssoAuth[region.toLowerCase()];
   }
 
   login(req, res) {
