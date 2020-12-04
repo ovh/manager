@@ -16,6 +16,13 @@
 
         <tuc-toast-message></tuc-toast-message>
 
+        <!-- BUILDINGS STEP -->
+        <div
+            data-ng-if="!$ctrl.loading.init && $ctrl.process.currentStep === 'buildings'"
+        >
+            <pack-migration-buildings></pack-migration-buildings>
+        </div>
+
         <!-- OFFER CHOICE STEP -->
         <div
             data-ng-if="!$ctrl.loading.init && $ctrl.process.currentStep === 'offers'"
