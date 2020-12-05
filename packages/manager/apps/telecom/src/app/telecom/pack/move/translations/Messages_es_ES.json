@@ -238,5 +238,13 @@
   "pack_move_resume_move_out_date": "Ha solicitado el traslado de su línea para el {{ moveOutDate }}.",
   "pack_move_resume_contact_owner": "Datos de contacto",
   "pack_move_resume_contact_phone": "Número de teléfono de contacto",
-  "pack_move_resume_phone_form_error": "El número introducido debe ser válido."
+  "pack_move_resume_phone_form_error": "El número introducido debe ser válido.",
+  "pack_move_eligibility_buildings_available": "Hemos encontrado los siguientes edificios correspondientes a su búsqueda. Por favor, seleccione un edificio.",
+  "pack_move_eligibility_building_name": "Apellidos",
+  "pack_move_eligibility_building_reference": "Referencia",
+  "pack_move_eligibility_building_nro": "ODN",
+  "pack_move_eligibility_building_type": "Tipo",
+  "pack_move_eligibility_building_actions": "Acción",
+  "pack_move_eligibility_building_select_building": "Seleccionar",
+  "pack_move_building_details_error": "Se ha producido un error al cargar la información de su edificio."
 }
