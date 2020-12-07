@@ -1,3 +1,12 @@
+## [13.6.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.6.7...@ovh-ux/manager-telecom@13.6.8) (2020-12-07)
+
+
+### Bug Fixes
+
+* **telephony:** case insensitive siret validation regex ([#4135](https://github.com/ovh/manager/issues/4135)) ([fd957cf](https://github.com/ovh/manager/commit/fd957cf2cb7a90a5c6f48769c06d5e70a017c576))
+
+
+
 ## [13.6.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.6.6...@ovh-ux/manager-telecom@13.6.7) (2020-11-25)
 
 

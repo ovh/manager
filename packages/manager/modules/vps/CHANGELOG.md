@@ -1,3 +1,12 @@
+## [2.2.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.2.8...@ovh-ux/manager-vps@2.2.9) (2020-12-07)
+
+
+### Bug Fixes
+
+* **upscale:** allow upgrades for starter ([#4144](https://github.com/ovh/manager/issues/4144)) ([18fdbfa](https://github.com/ovh/manager/commit/18fdbfa89f4f9c1a2306e368c86ca98ce455bdb6))
+
+
+
 ## [2.2.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.2.7...@ovh-ux/manager-vps@2.2.8) (2020-12-03)
 
 
