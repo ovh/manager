@@ -1,3 +1,12 @@
+## [14.8.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.8.1...@ovh-ux/manager-dedicated@14.8.2) (2020-12-07)
+
+
+### Bug Fixes
+
+* **ip:** add existing virtual mac ([#4137](https://github.com/ovh/manager/issues/4137)) ([70a3b14](https://github.com/ovh/manager/commit/70a3b14f40bf36ff91e16faf11955c871c7afd53))
+
+
+
 ## [14.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.8.0...@ovh-ux/manager-dedicated@14.8.1) (2020-11-26)
 
 

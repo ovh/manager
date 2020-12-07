@@ -1,3 +1,12 @@
+## [5.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.5.1...@ovh-ux/manager-pci@5.5.2) (2020-12-07)
+
+
+### Bug Fixes
+
+* **pci.dashboard:** remove maintenance message ([#4142](https://github.com/ovh/manager/issues/4142)) ([e957a69](https://github.com/ovh/manager/commit/e957a694944243f68b57347a30269610191299a9))
+
+
+
 ## [5.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.5.0...@ovh-ux/manager-pci@5.5.1) (2020-12-02)
 
 
