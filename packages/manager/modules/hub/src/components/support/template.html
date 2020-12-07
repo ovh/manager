@@ -20,10 +20,11 @@
             class="oui-table-responsive"
         >
             <table class="oui-table">
-                <tbody>
+                <tbody
+                    data-ng-if="$ctrl.tickets.length > 0 && !$ctrl.isLoading"
+                >
                     <tr
                         class="oui-table__row"
-                        data-ng-if="!$ctrl.isLoading"
                         data-ng-repeat="ticket in $ctrl.tickets track by ticket.ticketId"
                         data-navi-id="{{:: 'helpBlock-' + ticket.serviceName }}"
                     >
@@ -55,11 +56,9 @@
                             </a>
                         </td>
                     </tr>
-                    <tr
-                        class="oui-table__row"
-                        data-ng-if="$ctrl.isLoading"
-                        data-ng-repeat="loader in [1,2]"
-                    >
+                </tbody>
+                <tbody data-ng-if="$ctrl.isLoading">
+                    <tr class="oui-table__row" data-ng-repeat="loader in [1,2]">
                         <td
                             data-ng-repeat="skeleton in [1,2]"
                             class="oui-table__cell"
