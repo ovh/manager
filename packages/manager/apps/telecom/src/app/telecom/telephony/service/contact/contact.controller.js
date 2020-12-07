@@ -7,6 +7,7 @@ import pickBy from 'lodash/pickBy';
 import set from 'lodash/set';
 import some from 'lodash/some';
 import startsWith from 'lodash/startsWith';
+import toUpper from 'lodash/toUpper';
 import words from 'lodash/words';
 
 import { DIRECTORY_INFO } from './contact.constants';
@@ -332,7 +333,7 @@ export default /* @ngInject */ function TelecomTelephonyServiceContactCtrl(
                 serviceName: $stateParams.serviceName,
               },
               {
-                entrepriseNumber: siret,
+                entrepriseNumber: toUpper(siret),
               },
             )
             .$promise.then((infos) => {
