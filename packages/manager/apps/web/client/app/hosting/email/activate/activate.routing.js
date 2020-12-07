@@ -10,16 +10,17 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/activate',
     component: 'webHostingEmailActivate',
     resolve: {
-      domainNames: /* @ngInject */ ($q, Hosting, Domain) =>
+      domainNames: /* @ngInject */ ($http, $q, Hosting, Domain) =>
         $q
           .all({
             domains: Domain.getDomains(),
             hostings: Hosting.getHostings(),
+            zones: $http.get('/domain/zone').then(({ data }) => data),
           })
-          .then(({ domains, hostings }) =>
+          .then(({ domains, hostings, zones }) =>
             sortBy(
               filter(
-                union(domains, hostings),
+                union(domains, hostings, zones),
                 (domain) => !endsWith(domain, WEB_HOSTING_NOT_USABLE_DOMAINS),
               ),
             ),
