@@ -47,6 +47,7 @@ export const fetchConfiguration = () => {
     .then((config) => {
       _Environment.setRegion(config.region);
       _Environment.setUser(config.user);
+      _Environment.setApplicationURLs(config.applicationURLs);
       return config;
     })
     .catch(() => ({

@@ -11,6 +11,7 @@ export default class EnvironmentService {
     this.userLocale = findAvailableLocale(detectUserLocale(), this.region);
     this.version = null;
     this.user = {};
+    this.applicationURLs = {};
   }
 
   setRegion(region = DEFAULT_REGION) {
@@ -56,5 +57,17 @@ export default class EnvironmentService {
 
   getVersion() {
     return this.version;
+  }
+
+  setApplicationURLs(applicationURLs) {
+    this.applicationURLs = applicationURLs;
+  }
+
+  getApplicationURLs() {
+    return this.applicationURLs;
+  }
+
+  getApplicationURL(id) {
+    return this.applicationURLs[id];
   }
 }
