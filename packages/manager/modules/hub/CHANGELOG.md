@@ -1,3 +1,12 @@
+## [2.1.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@2.1.6...@ovh-ux/manager-hub@2.1.7) (2020-12-08)
+
+
+### Bug Fixes
+
+* **components.support:** prevent ngRepeat:dupes error ([#4145](https://github.com/ovh/manager/issues/4145)) ([5e0793f](https://github.com/ovh/manager/commit/5e0793f721bc28f37ebf7e3304d13144d07ae316))
+
+
+
 ## [2.1.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@2.1.5...@ovh-ux/manager-hub@2.1.6) (2020-11-17)
 
 

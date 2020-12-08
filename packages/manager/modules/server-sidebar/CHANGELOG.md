@@ -1,3 +1,12 @@
+## [3.5.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.5.3...@ovh-ux/manager-server-sidebar@3.5.4) (2020-12-08)
+
+
+### Bug Fixes
+
+* **web:** set correct domain order url for uk ie subs ([a2fc738](https://github.com/ovh/manager/commit/a2fc73881722cb1bc3fe493ee14ffb8896744f00))
+
+
+
 ## [3.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.5.2...@ovh-ux/manager-server-sidebar@3.5.3) (2020-12-01)
 
 

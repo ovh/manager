@@ -1,3 +1,13 @@
+## [9.0.7](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.0.6...@ovh-ux/ng-ovh-web-universe-components@9.0.7) (2020-12-08)
+
+
+### Bug Fixes
+
+* remove unused WucJavaEnum service ([40e1f38](https://github.com/ovh/manager/commit/40e1f385098c8e615d0ce4a5085d8a4f7767a6e9))
+* remove unused wucZoneNameValidator directive ([#4071](https://github.com/ovh/manager/issues/4071)) ([356ad0e](https://github.com/ovh/manager/commit/356ad0ebc1377ccefbad0cb90373593ff21c52d8))
+
+
+
 ## [9.0.6](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.0.5...@ovh-ux/ng-ovh-web-universe-components@9.0.6) (2020-10-28)
 
 

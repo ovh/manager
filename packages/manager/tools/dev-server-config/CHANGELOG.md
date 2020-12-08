@@ -1,3 +1,12 @@
+## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dev-server-config@1.1.0...@ovh-ux/manager-dev-server-config@1.1.1) (2020-12-08)
+
+
+### Bug Fixes
+
+* **sso:** avoid region config error ([#4140](https://github.com/ovh/manager/issues/4140)) ([3eb55c5](https://github.com/ovh/manager/commit/3eb55c5453d131557a7dee28efbe69994610e22d))
+
+
+
 # [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dev-server-config@1.0.0...@ovh-ux/manager-dev-server-config@1.1.0) (2020-11-16)
 
 

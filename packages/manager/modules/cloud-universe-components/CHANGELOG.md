@@ -1,3 +1,12 @@
+# [2.2.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.1.0...@ovh-ux/ng-ovh-cloud-universe-components@2.2.0) (2020-12-08)
+
+
+### Features
+
+* **vrack.service:** update getGroupedServiceTypes method ([0d7981c](https://github.com/ovh/manager/commit/0d7981cb966998a1886aa54afd9b889512c2690c))
+
+
+
 # [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.0.4...@ovh-ux/ng-ovh-cloud-universe-components@2.1.0) (2020-10-28)
 
 

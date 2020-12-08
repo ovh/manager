@@ -1,3 +1,12 @@
+# [7.1.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.0.3...@ovh-ux/ng-ovh-telecom-universe-components@7.1.0) (2020-12-08)
+
+
+### Features
+
+* **pack.move:** buildings for migration offers ([#4043](https://github.com/ovh/manager/issues/4043)) ([e811220](https://github.com/ovh/manager/commit/e81122062e34a24c286f3e75e2770e82b9f60048))
+
+
+
 ## [7.0.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.0.2...@ovh-ux/ng-ovh-telecom-universe-components@7.0.3) (2020-10-28)
 
 

@@ -1,3 +1,20 @@
+# [15.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.7.3...@ovh-ux/manager-web@15.8.0) (2020-12-08)
+
+
+### Bug Fixes
+
+* **domain.validator:** allow underscore in CNAME ([#4091](https://github.com/ovh/manager/issues/4091)) ([5cd8783](https://github.com/ovh/manager/commit/5cd87836ee63bae9934e311f363b33fb91679ce5))
+* **domain.zone.record:** set the SPF value according current region ([#4133](https://github.com/ovh/manager/issues/4133)) ([daf8526](https://github.com/ovh/manager/commit/daf8526f327f0480a70fe34d587c3a80ab165ebf))
+* **i18n:** add missing translations [CDS 685] ([6d69dc6](https://github.com/ovh/manager/commit/6d69dc69b27f9769ed955e1917f7d8d05267f292))
+* **i18n:** add missing translations [CDS 693] ([cc4fafa](https://github.com/ovh/manager/commit/cc4fafad05f59ecab600247686b99e7780039b28))
+
+
+### Features
+
+* set application in feature flipping ([#4124](https://github.com/ovh/manager/issues/4124)) ([365a35b](https://github.com/ovh/manager/commit/365a35babe4641131622ff0122160bb7d5198f92))
+
+
+
 ## [15.7.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.7.2...@ovh-ux/manager-web@15.7.3) (2020-12-02)
 
 
