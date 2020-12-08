@@ -3,14 +3,9 @@ import without from 'lodash/without';
 
 import { AVAILABLE_SERVICES } from './user-contacts.constants';
 
-angular
-  .module('UserAccount')
-  .service('UserAccount.services.Contacts', function UserAccountContactsService(
-    $rootScope,
-    OvhHttp,
-    constants,
-    Poller,
-  ) {
+export default class DedicatedAccountContactsService {
+  /* @ngInject */
+  constructor($rootScope, OvhHttp, constants, Poller) {
     const self = this;
     const apiChangeContact = '/me/task/contactChange';
     const cache = {
@@ -284,4 +279,5 @@ angular
         },
       });
     };
-  });
+  }
+}

@@ -6,16 +6,9 @@ import isPlainObject from 'lodash/isPlainObject';
 
 import { LANGUAGES } from '@ovh-ux/manager-config';
 
-angular.module('UserAccount').controller('UserAccount.controllers.update', [
-  'UserAccount.services.Contacts',
-  '$scope',
-  '$stateParams',
-  '$q',
-  '$location',
-  '$timeout',
-  '$translate',
-  'Alerter',
-  function UserAccountUpdateController(
+export default class DedicatedAccountContactsUpdateCtrl {
+  /* @ngInject */
+  constructor(
     Contacts,
     $scope,
     $stateParams,
@@ -256,5 +249,5 @@ angular.module('UserAccount').controller('UserAccount.controllers.update', [
       }, 100),
       true,
     );
-  },
-]);
+  }
+}
