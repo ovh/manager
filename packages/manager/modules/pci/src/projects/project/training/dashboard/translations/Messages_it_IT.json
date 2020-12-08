@@ -19,6 +19,6 @@
   "pci_projects_project_training_dashboard_jobs_list_none": "Al momento non sono presenti job in corso",
   "pci_projects_project_training_dashboard_users_list_name": "Nome",
   "pci_projects_project_training_dashboard_users_list_description": "Descrizione",
-  "pci_projects_project_training_dashboard_users_list_none": "Nessun utente creato con il ruolo \"AI Training Operator\" e \"ObjectStore Operator\"",
+  "pci_projects_project_training_dashboard_users_list_none": "Non hai creato utenti con i ruoli \"AI Training Operator\" e \"ObjectStore Operator\"",
   "pci_projects_project_training_dashboard_jobs_list_see_jobs": "Visualizza tutti i job"
 }

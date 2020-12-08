@@ -1,7 +1,7 @@
 {
   "private_database_order_clouddb_title": "Zamówienie bazy danych w chmurze (Cloud Databases)",
   "private_database_order_clouddb_subtitle": "Oferta Cloud Databases wymaga usługi z dostępem do publicznej sieci internet.",
-  "private_database_order_clouddb_database_type": "Typ bazy danych",
+  "private_database_order_clouddb_database_type": "Nazwa bazy danych",
   "private_database_order_clouddb_database_question": "Jaką ofertę baz danych chcesz wybrać?",
   "private_database_order_clouddb_offer_title": "Cloud Databases",
   "private_database_order_clouddb_offer_subtitle": "Idealne uzupełnienie wszystkich rozwiązań chmurowych OVH, takich jak VPS, serwery dedykowane, instancje Public Cloud i hosting Cloud Web",

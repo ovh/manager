@@ -14,18 +14,7 @@
                     <span
                         data-translate="telecom_pack_migration_building_details_select_building"
                     ></span>
-                    <oui-select
-                        name="building"
-                        data-model="$ctrl.model.selectedBuilding"
-                        data-title="{{:: 'telecom_pack_migration_building_details_select_a_building' | translate}}"
-                        placeholder="{{:: 'telecom_pack_migration_building_details_select_a_building' | translate}}"
-                        data-items="$ctrl.process.selectedOffer.buildings"
-                        required
-                        data-match="name"
-                        data-on-change="$ctrl.changeSelection()"
-                    >
-                        <span data-ng-bind="$item.name"></span>
-                    </oui-select>
+                    <p data-ng-bind="$ctrl.model.selectedBuilding.name"></p>
                 </div>
 
                 <div data-ng-if="$ctrl.model.selectedBuilding !== null">

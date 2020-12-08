@@ -13,6 +13,7 @@ import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin'
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
 import ngOvhContracts from '@ovh-ux/ng-ovh-contracts';
 import ngOvhExportCsv from '@ovh-ux/ng-ovh-export-csv';
+import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import ngOvhHttp from '@ovh-ux/ng-ovh-http';
 import ngOvhSsoAuth from '@ovh-ux/ng-ovh-sso-auth';
 import ngOvhSsoAuthModalPlugin from '@ovh-ux/ng-ovh-sso-auth-modal-plugin';
@@ -90,6 +91,7 @@ angular
       ngOvhContracts,
       ngOvhContracts,
       ngOvhExportCsv,
+      ngOvhFeatureFlipping,
       ngOvhHttp,
       ngOvhSsoAuth,
       ngOvhSsoAuthModalPlugin,
@@ -241,6 +243,11 @@ angular
     new RegExp('/useraccount/.*'),
     new RegExp('/billing/.*'),
   ])
+  .config(
+    /* @ngInject */ (ovhFeatureFlippingProvider) => {
+      ovhFeatureFlippingProvider.setApplicationName('web');
+    },
+  )
   .config([
     '$stateProvider',
     '$urlRouterProvider',

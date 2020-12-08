@@ -9,5 +9,7 @@
   "confirm_order_question_monthly_deducting": "La tariffazione mensile diminuirà di <strong>{{ price }}</strong>.",
   "confirm_order_question_hourly_adding": "La tariffazione oraria aumenterà di <strong>{{price}}</strong>.",
   "confirm_order_question_hourly_deducting": "La tariffazione oraria diminuirà di <strong>{{ price }}</strong>.",
-  "confirm_order_question_confirm": "Vuoi davvero effettuare questa operazione?"
+  "confirm_order_question_confirm": "Vuoi davvero effettuare questa operazione?",
+  "confirm_order_question_monthly_same": "La tariffazione mensile resterà invariata.",
+  "confirm_order_question_hourly_same": "La tariffazione oraria resterà invariata."
 }

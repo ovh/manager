@@ -17,7 +17,7 @@ export default class BillingTerminate {
     if (forceRefresh) {
       delete params.cache;
     }
-    return this.OvhHttp.get(`/service/${serviceId}`, params).then(
+    return this.OvhHttp.get(`/services/${serviceId}`, params).then(
       (service) =>
         new Service({
           serviceId,

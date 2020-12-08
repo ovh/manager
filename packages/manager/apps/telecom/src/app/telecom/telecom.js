@@ -1,5 +1,4 @@
 import './orders/orders.bundle';
-import './pack/dashboard/pack.bundle';
 import './pack';
 import './telephony';
 

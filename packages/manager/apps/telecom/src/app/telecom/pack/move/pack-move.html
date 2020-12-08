@@ -46,7 +46,6 @@
                         data-ng-if="$ctrl.moveStep === $ctrl.steps.eligibility"
                     >
                         <pack-move-eligibility
-                            data-submited="$ctrl.ongoingTest()"
                             data-method="$ctrl.method"
                             data-pack-name="$ctrl.packName"
                             data-test-line="$ctrl.testLine"
@@ -94,7 +93,7 @@
                         data-ng-if="$ctrl.moveStep === $ctrl.steps.buildingDetails"
                     >
                         <pack-move-building-details
-                            data-buildings="$ctrl.buildings"
+                            data-building="$ctrl.building"
                         ></pack-move-building-details>
                     </div>
                     <div

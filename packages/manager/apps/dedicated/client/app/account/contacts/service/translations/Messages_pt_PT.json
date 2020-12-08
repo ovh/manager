@@ -37,6 +37,6 @@
   "account_contacts_service_contact_billing": "Contacto de faturação",
   "account_contacts_service_infos": "Pode alterar as contas do administrador, do responsável técnico e do responsável pela faturação dos seus serviços.",
   "account_contacts_service_category_OVH_CLOUD_CONNECT": "OVHcloud Connect",
-  "account_contacts_service_category_ESSENTIALS": "Essentials",
+  "account_contacts_service_category_ESSENTIALS": "Managed Bare Metal",
   "account_contacts_service_category_LOGS": "Logs Data Platform"
 }

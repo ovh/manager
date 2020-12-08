@@ -5,11 +5,14 @@ import get from 'lodash/get';
 import forEach from 'lodash/forEach';
 import isEmpty from 'lodash/isEmpty';
 
+import { Environment } from '@ovh-ux/manager-config';
+
 export default class FlavorsListController {
   /* @ngInject */
-  constructor($q, $state, PciProjectFlavors) {
+  constructor($q, $state, OvhApiMe, PciProjectFlavors) {
     this.$q = $q;
     this.$state = $state;
+    this.OvhApiMe = OvhApiMe;
     this.PciProjectFlavors = PciProjectFlavors;
   }
 
@@ -17,9 +20,24 @@ export default class FlavorsListController {
     this.quotaUrl = this.$state.href('pci.projects.project.quota');
     this.isLoading = true;
     this.flavorCount = this.flavorCount || 1;
-    return this.getFlavors().finally(() => {
-      this.isLoading = false;
-    });
+    return this.$q
+      .all({
+        flavors: this.getFlavors(),
+        me: this.OvhApiMe.v6().get().$promise,
+      })
+      .then(({ me }) => {
+        this.PriceFormatter = new Intl.NumberFormat(
+          Environment.getUserLocale().replace('_', '-'),
+          {
+            style: 'currency',
+            currency: me.currency.code,
+            maximumFractionDigits: 5, // default is 2. But this rounds off the price
+          },
+        );
+      })
+      .finally(() => {
+        this.isLoading = false;
+      });
   }
 
   $onChanges(changesObj) {

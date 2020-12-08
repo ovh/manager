@@ -7,6 +7,7 @@ import angularTranslate from 'angular-translate';
 import component from './pack-migration.component';
 import routing from './pack-migration.routing';
 
+import buildings from './buildings';
 import buildingDetails from './building-details';
 import confirm from './confirm';
 import migration from './migration';
@@ -23,6 +24,7 @@ angular
     ngTranslateAsyncLoader,
     uiRouter,
     angularTranslate,
+    buildings,
     buildingDetails,
     confirm,
     migration,

@@ -1,8 +1,10 @@
+import assign from 'lodash/assign';
 import cloneDeep from 'lodash/cloneDeep';
 import difference from 'lodash/difference';
 import find from 'lodash/find';
 import flatten from 'lodash/flatten';
 import forEach from 'lodash/forEach';
+import get from 'lodash/get';
 import groupBy from 'lodash/groupBy';
 import has from 'lodash/has';
 import isArray from 'lodash/isArray';
@@ -111,6 +113,7 @@ export default class VrackMoveDialogCtrl {
 
     this.groupedServiceKeys = {
       dedicatedCloudDatacenter: 'dedicatedCloud.niceName',
+      managedBareMetalDatacenter: 'dedicatedCloud.niceName',
       dedicatedServerInterface: 'dedicatedServer.niceName',
     };
 
@@ -182,8 +185,19 @@ export default class VrackMoveDialogCtrl {
       .$promise.then((allServicesParam) => {
         let allServices = {
           ...allServicesParam,
-          dedicatedCloud: allServicesParam.dedicatedCloud.filter(
-            VrackMoveDialogCtrl.isServiceAllowed,
+          dedicatedCloud: allServicesParam.dedicatedCloud.filter((service) => {
+            return (
+              VrackMoveDialogCtrl.isServiceAllowed(service) &&
+              service.productReference === 'EPCC'
+            );
+          }),
+          managedBareMetal: allServicesParam.dedicatedCloud.filter(
+            (service) => {
+              return (
+                VrackMoveDialogCtrl.isServiceAllowed(service) &&
+                service.productReference === 'MBM'
+              );
+            },
           ),
           dedicatedServer: allServicesParam.dedicatedServer.filter(
             VrackMoveDialogCtrl.isServiceAllowed,
@@ -249,10 +263,48 @@ export default class VrackMoveDialogCtrl {
           return services;
         });
 
+        if (has(allServices, 'dedicatedCloud')) {
+          const groupedDedicatedCloud = groupBy(
+            allServices.dedicatedCloud,
+            (dedicatedCloud) => {
+              return dedicatedCloud.productReference === 'MBM'
+                ? 'managedBareMetal'
+                : 'dedicatedCloud';
+            },
+          );
+          allServices = assign(
+            allServices,
+            { dedicatedCloud: [] },
+            groupedDedicatedCloud,
+          );
+        }
         if (has(allServices, 'dedicatedCloudDatacenter')) {
-          allServices.dedicatedCloudDatacenter = groupBy(
+          let groupedDatacenters = groupBy(
             allServices.dedicatedCloudDatacenter,
-            this.groupedServiceKeys.dedicatedCloudDatacenter,
+            (datacenter) => {
+              return get(datacenter, 'dedicatedCloud.productReference') ===
+                'MBM'
+                ? 'managedBareMetalDatacenter'
+                : 'dedicatedCloudDatacenter';
+            },
+          );
+          groupedDatacenters = mapValues(
+            groupedDatacenters,
+            (datacenters, type) => {
+              return groupBy(
+                datacenters,
+                get(
+                  this.groupedServiceKeys,
+                  type,
+                  this.groupedServiceKeys.dedicatedCloudDatacenter,
+                ),
+              );
+            },
+          );
+          allServices = assign(
+            allServices,
+            { dedicatedCloudDatacenter: [] },
+            groupedDatacenters,
           );
         }
 
@@ -626,6 +678,7 @@ export default class VrackMoveDialogCtrl {
                 ).$promise;
               break;
             case 'dedicatedCloud':
+            case 'managedBareMetal':
               task = this.OvhApiVrack.DedicatedCloud()
                 .v6()
                 .create(
@@ -730,6 +783,7 @@ export default class VrackMoveDialogCtrl {
                 }).$promise;
               break;
             case 'dedicatedCloud':
+            case 'managedBareMetal':
               task = this.OvhApiVrack.DedicatedCloud()
                 .v6()
                 .delete({
@@ -908,6 +962,7 @@ export default class VrackMoveDialogCtrl {
         );
         break;
       case 'dedicatedCloud':
+      case 'managedBareMetal':
         formattedService = VrackMoveDialogCtrl.getDedicatedCloudNiceName(
           service,
         );

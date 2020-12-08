@@ -27,7 +27,9 @@ export default class CucVrackService {
   static getGroupedServiceTypes() {
     return [
       'dedicatedCloudDatacenter',
+      'managedBareMetalDatacenter',
       'dedicatedCloud',
+      'managedBareMetal',
       'dedicatedServerInterface',
     ];
   }

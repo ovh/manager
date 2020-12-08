@@ -1,4 +1,5 @@
 import angular from 'angular';
+
 import filter from 'lodash/filter';
 import find from 'lodash/find';
 import set from 'lodash/set';
@@ -254,6 +255,7 @@ export default /* @ngInject */ (
       primaryEmailAddress: newConfiguredAccount,
     })
       .then((account) => {
+        $scope.accountIds = $scope.accountIds.slice(1);
         set(account, 'completeDomain', {
           name: account.domain,
           displayName: punycode.toUnicode(account.domain),
@@ -264,12 +266,15 @@ export default /* @ngInject */ (
           account,
         );
       })
-      .catch((err) =>
+      .catch((err) => {
         $scope.setMessage(
           $translate.instant('emailpro_tab_ACCOUNTS_error_message'),
-          err,
-        ),
-      )
+          {
+            ...err,
+            type: err.type || 'error',
+          },
+        );
+      })
       .finally(() => {
         $scope.loadingNewConfiguredAccount = false;
       });

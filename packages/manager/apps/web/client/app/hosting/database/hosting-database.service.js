@@ -8,11 +8,10 @@ import { PRIVATE_SQL_PLAN_CODE } from './hosting-database.constants';
 angular.module('services').service(
   'HostingDatabase',
   class HostingDatabase {
-    constructor($q, $rootScope, Hosting, WucJavaEnum, OvhHttp, Poller) {
+    constructor($q, $rootScope, Hosting, OvhHttp, Poller) {
       this.$q = $q;
       this.$rootScope = $rootScope;
       this.Hosting = Hosting;
-      this.WucJavaEnum = WucJavaEnum;
       this.OvhHttp = OvhHttp;
       this.Poller = Poller;
     }
@@ -281,7 +280,7 @@ angular.module('services').service(
       return this.Hosting.getModels().then((models) => ({
         dumpDates: models.models[
           'hosting.web.database.dump.DateEnum'
-        ].enum.map((model) => this.WucJavaEnum.tr(model)),
+        ].enum.map((model) => snakeCase(model).toUpperCase()),
       }));
     }
 
@@ -303,7 +302,7 @@ angular.module('services').service(
         })
         .then(({ hosting, capabilities, models }) => ({
           availableDatabases: capabilities.map((capa) => ({
-            type: this.WucJavaEnum.tr(capa.type),
+            type: snakeCase(capa.type).toUpperCase(),
             quota: capa.quota,
             extraSqlQuota:
               capa.type === 'extraSqlPerso' ? `_${capa.quota.value}` : null,
@@ -311,7 +310,7 @@ angular.module('services').service(
           })),
           databaseTypes: models.models[
             'hosting.web.database.DatabaseCreationTypeEnum'
-          ].enum.map((m) => this.WucJavaEnum.tr(m)),
+          ].enum.map((m) => snakeCase(m).toUpperCase()),
           primaryLogin: hosting.primaryLogin,
         }));
     }

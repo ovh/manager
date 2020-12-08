@@ -86,5 +86,5 @@
   "terminate_service_legacy_type_kube": "Kubernetes",
   "terminate_service_legacy_type_webcoach": "WebCoach",
   "terminate_service_legacy_comments": "Komentarze",
-  "terminate_service_legacy_type_MBM": "Essentials"
+  "terminate_service_legacy_type_MBM": "Managed Bare Metal"
 }

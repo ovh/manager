@@ -1,7 +1,7 @@
 {
   "private_database_order_clouddb_title": "Solicitar um banco de dados de banco de dados em nuvem",
   "private_database_order_clouddb_subtitle": "A oferta de Bases de Dados em Nuvem requer um serviço com acesso à rede pública de Internet.",
-  "private_database_order_clouddb_database_type": "Tipo de Banco de Dados",
+  "private_database_order_clouddb_database_type": "Tipo de base de dados",
   "private_database_order_clouddb_database_question": "Que oferta de banco de dados você deseja?",
   "private_database_order_clouddb_offer_title": "Cloud Databases",
   "private_database_order_clouddb_offer_subtitle": "Ideal para além de todos os nossos produtos Cloud OVH como VPS, servidores dedicados, instâncias Public Cloud e Web Cloud Hosting",

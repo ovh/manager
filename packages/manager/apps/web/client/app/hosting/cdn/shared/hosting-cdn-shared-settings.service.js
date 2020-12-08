@@ -1,5 +1,6 @@
 import includes from 'lodash/includes';
 import find from 'lodash/find';
+import get from 'lodash/get';
 
 export default class HostingCdnSharedService {
   /* @ngInject */
@@ -223,6 +224,63 @@ export default class HostingCdnSharedService {
         quantity: price.minimumQuantity,
       },
     );
+  }
+
+  /**
+   * Allow to simulate a cart for an upgrade
+   * @param {string} serviceName: product name
+   * @param {Object} addonOption: addon option
+   * @param {number} serviceId: selected serviceId
+   * @returns {*}
+   */
+  simulateCartForUpgrade(serviceName, addonOption, serviceId) {
+    const price = find(addonOption.prices, ({ capacities }) =>
+      includes(capacities, 'upgrade'),
+    );
+
+    return this.simulateUpgradeToSharedCDN(
+      serviceId,
+      addonOption.planCode,
+      price,
+    );
+  }
+
+  /**
+   * Call this to know if upgrade is feasible
+   * @param {string} serviceName: product name
+   * @returns {*}
+   */
+  simulateUpgrade(serviceName) {
+    const data = { serviceId: null };
+    return this.getServiceInfo(serviceName)
+      .then(({ data: servInfo }) => {
+        return this.getServiceOptions(servInfo.serviceId);
+      })
+      .then(({ data: servOpts }) => {
+        const { serviceId } = find(servOpts, ({ billing }) => {
+          const planCode = get(billing, 'plan.code', '');
+          return planCode.match('^cdn') && planCode.match('_business$');
+        });
+        data.serviceId = serviceId;
+        return this.getCatalogAddonsPlan(serviceId);
+      })
+      .then(({ data: addonPlans }) => {
+        data.addonPlan = find(addonPlans, ({ planCode }) =>
+          includes(['cdn-basic', 'cdn-basic-free'], planCode),
+        );
+        return this.simulateCartForUpgrade(
+          serviceName,
+          data.addonPlan,
+          data.serviceId,
+        );
+      })
+      .then(({ data: upgradeResponse }) => {
+        return {
+          cart: upgradeResponse.order,
+          addonPlan: data.addonPlan,
+          serviceId: data.serviceId,
+        };
+      });
   }
 
   /**

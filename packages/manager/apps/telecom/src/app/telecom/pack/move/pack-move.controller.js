@@ -87,13 +87,20 @@ export default class PackMoveCtrl {
       this.selectedLine = selected.line;
       this.eligibilityReference = selected.line.eligibilityReference;
       this.eligibilityReferenceFiber = selected.line.eligibilityReferenceFiber;
+
       this.offer.selected = {
         address: selected.line.endpoint.address,
         portability: selected.line.endpoint.portability,
         copperInfo: selected.line.endpoint.copperInfo,
         moveOutDate: selected.moveOutDate,
         contactOwner: this.contactOwner,
+        searchAddress: selected.line.searchAddress,
+        building: selected.line.building,
       };
+      if (selected.line.endpoint.neighbourAddress) {
+        this.offer.selected.neighbourAddress =
+          selected.line.endpoint.neighbourAddress;
+      }
       if (this.selectedLine.status === ELIGIBILITY_LINE_STATUS.create) {
         this.offer.selected.futureLineNumber = null;
         this.isNewLine = true;
@@ -143,7 +150,7 @@ export default class PackMoveCtrl {
           this.moveStep = STEPS.resume;
         }
       } else {
-        this.buildings = [this.selectedLine.endpoint.fiberInfo];
+        this.building = this.offer.selected.building;
         this.moveStep = STEPS.buildingDetails;
       }
     });

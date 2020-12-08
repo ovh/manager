@@ -3,41 +3,39 @@ import includes from 'lodash/includes';
 
 export default class HostingCdnOrderService {
   /* @ngInject */
-  constructor(WucOrderCartService, HostingCdnSharedService) {
+  constructor($q, WucOrderCartService) {
+    this.$q = $q;
     this.WucOrderCartService = WucOrderCartService;
-    this.HostingCdnSharedService = HostingCdnSharedService;
   }
 
-  async getCatalogAddon(ovhSubsidiary, serviceOption) {
-    const { addons } = await this.WucOrderCartService.getProductPublicCatalog(
+  getCatalogAddon(ovhSubsidiary, serviceOption) {
+    return this.WucOrderCartService.getProductPublicCatalog(
       ovhSubsidiary,
       'webHosting',
-    );
-
-    const addonPlanCode = serviceOption.planCode;
-    const addon = find(addons, { planCode: addonPlanCode });
-
-    if (!addon) {
-      throw new Error(`No ${addonPlanCode} addon found`);
-    } else {
-      return addon;
-    }
+    ).then(({ addons }) => {
+      const addonPlanCode = serviceOption.planCode;
+      const addon = find(addons, { planCode: addonPlanCode });
+      return !addon
+        ? this.$q.reject(new Error(`No ${addonPlanCode} addon found`))
+        : addon;
+    });
   }
 
-  async prepareOrderCart(ovhSubsidiary) {
-    const { cartId } = await this.WucOrderCartService.createNewCart(
-      ovhSubsidiary,
-    );
-    await this.WucOrderCartService.assignCart(cartId);
-
-    return cartId;
+  prepareOrderCart(ovhSubsidiary) {
+    const data = { cartId: null };
+    return this.WucOrderCartService.createNewCart(ovhSubsidiary)
+      .then(({ cartId }) => {
+        data.cartId = cartId;
+        this.WucOrderCartService.assignCart(cartId);
+      })
+      .then(() => data.cartId);
   }
 
-  async addItemToCart(cartId, serviceName, serviceOption) {
+  addItemToCart(cartId, serviceName, serviceOption) {
     const price = find(serviceOption.prices, ({ capacities }) =>
       includes(capacities, 'renew'),
     );
-    await this.WucOrderCartService.addProductServiceOptionToCart(
+    return this.WucOrderCartService.addProductServiceOptionToCart(
       cartId,
       'webHosting',
       serviceName,
@@ -47,38 +45,12 @@ export default class HostingCdnOrderService {
         pricingMode: price.pricingMode,
         quantity: price.minimumQuantity,
       },
-    );
-
-    return this.WucOrderCartService.getCheckoutInformations(cartId);
-  }
-
-  async simulateCartForUpgrade(serviceName, addonOption, serviceId) {
-    const price = find(addonOption.prices, ({ capacities }) =>
-      includes(capacities, 'upgrade'),
-    );
-
-    return this.HostingCdnSharedService.simulateUpgradeToSharedCDN(
-      serviceId,
-      addonOption.planCode,
-      price,
-    );
+    ).then(() => this.WucOrderCartService.getCheckoutInformations(cartId));
   }
 
   checkoutOrderCart(autoPayWithPreferredPaymentMethod, cartId) {
     return this.WucOrderCartService.checkoutCart(cartId, {
       autoPayWithPreferredPaymentMethod,
     });
-  }
-
-  checkoutOrderCartForUpgrade(
-    autoPayWithPreferredPaymentMethod,
-    serviceOption,
-    serviceId,
-  ) {
-    return this.HostingCdnSharedService.upgradeToSharedCDN(
-      autoPayWithPreferredPaymentMethod,
-      serviceOption,
-      serviceId,
-    );
   }
 }

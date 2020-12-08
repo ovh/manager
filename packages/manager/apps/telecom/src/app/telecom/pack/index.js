@@ -1,10 +1,11 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
+import meetings from './meetings';
 
 const moduleName = 'ovhManagerPacksLoading';
 
-angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
+angular.module(moduleName, ['ui.router', 'oc.lazyLoad', meetings]).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider
       .state('telecom.packs', {
@@ -33,6 +34,17 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
         return import('./dashboard/pack.module').then((mod) =>
+          $ocLazyLoad.inject(mod.default || mod),
+        );
+      },
+    });
+
+    $stateProvider.state('telecom.xdsl-meetings.**', {
+      url: '/xdsl/:serviceName/meetings',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./meetings/index').then((mod) =>
           $ocLazyLoad.inject(mod.default || mod),
         );
       },

@@ -89,6 +89,7 @@ export default class {
         if (serviceType) {
           return find(services.list.results, {
             serviceType,
+            serviceId,
           });
         }
         return head(services.list.results);

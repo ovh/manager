@@ -308,6 +308,17 @@ export default /* @ngInject */ function($q, OvhApiPackXdsl, Poller) {
 
   /* -----  End of OFFERS  ------*/
 
+  /*= ==============================
+    =         Buildings            =
+    ================================ */
+  self.setSelectedBuilding = function setSelectedBuilding(building) {
+    migrationProcess.selectedBuilding = building;
+  };
+
+  self.setBuildings = function setBuildings(buildings) {
+    migrationProcess.buildings = buildings;
+  };
+
   /*= =====================================
     =            INITIALIZATION            =
     ====================================== */
@@ -336,6 +347,8 @@ export default /* @ngInject */ function($q, OvhApiPackXdsl, Poller) {
       migrationOffers: null,
       currentStep: '',
       selectedOffer: null,
+      buildings: null,
+      selectedBuilding: null,
     };
     return migrationProcess;
   };

@@ -4,11 +4,13 @@ import { FIBER_PTO, STAIR_FLOOR } from './migration-building-details.constant';
 export default class TelecomPackMigrationBuildingDetailsCtrl {
   /* @ngInject */
   constructor(
+    $scope,
     $translate,
     TucPackMigrationProcess,
     TucToast,
     OvhApiConnectivityEligibilitySearch,
   ) {
+    this.$scope = $scope;
     this.$translate = $translate;
     this.TucPackMigrationProcess = TucPackMigrationProcess;
     this.TucToast = TucToast;
@@ -37,40 +39,29 @@ export default class TelecomPackMigrationBuildingDetailsCtrl {
 
     this.process = this.TucPackMigrationProcess.getMigrationProcess();
 
-    this.process.selectedOffer.buildings.forEach((building, i) => {
-      // check if the building name is empty to set a name to display in the select component
-      if (building.name === '') {
-        this.process.selectedOffer.buildings[i].name = this.$translate.instant(
-          'telecom_pack_migration_building_details_unknown',
-        );
-      }
+    const building = this.process.selectedBuilding;
 
-      const params = {
-        building: building.reference,
-      };
-
-      this.OvhApiConnectivityEligibilitySearch.v6()
-        .buildingDetails({}, params)
-        .$promise.then((buildingDetails) => {
-          if (has(buildingDetails, 'result.stairs')) {
-            this.process.selectedOffer.buildings[
-              i
-            ].stairs = buildingDetails.result.stairs.map((stair) =>
-              this.convertStairs(stair),
-            );
-          }
-        })
-        .catch(() =>
-          this.TucToast.error(
-            this.$translate.instant(
-              'telecom_pack_migration_building_details_error',
-            ),
+    this.OvhApiConnectivityEligibilitySearch.v6()
+      .pollerBuildingDetails(this.$scope, { building: building.reference })
+      .then((buildingDetails) => {
+        if (has(buildingDetails, 'result.stairs')) {
+          this.process.selectedBuilding.stairs = buildingDetails.result.stairs.map(
+            (stair) => this.convertStairs(stair),
+          );
+        }
+      })
+      .catch(() =>
+        this.TucToast.error(
+          this.$translate.instant(
+            'telecom_pack_migration_building_details_error',
           ),
-        )
-        .finally(() => {
-          this.loading.init = false;
-        });
-    });
+        ),
+      )
+      .finally(() => {
+        this.model.selectedBuilding = building;
+        this.changeSelection();
+        this.loading.init = false;
+      });
   }
 
   /* -----  End of INITIALIZATION  ------*/
@@ -189,12 +180,11 @@ export default class TelecomPackMigrationBuildingDetailsCtrl {
   changeSelection(isFromStairs) {
     if (!isFromStairs) {
       if (this.model.selectedBuilding.stairs.length === 0) {
-        const params = {
-          building: this.model.selectedBuilding.reference,
-        };
         this.OvhApiConnectivityEligibilitySearch.v6()
-          .buildingDetails({}, params)
-          .$promise.then((buildingDetails) => {
+          .pollerBuildingDetails(this.$scope, {
+            building: this.model.selectedBuilding.reference,
+          })
+          .then((buildingDetails) => {
             if (has(buildingDetails, 'result.stairs')) {
               if (buildingDetails.result.stairs.length === 0) {
                 const stairModel = this.defaultStairsModel();

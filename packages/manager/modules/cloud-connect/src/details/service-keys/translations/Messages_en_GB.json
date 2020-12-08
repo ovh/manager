@@ -3,7 +3,7 @@
   "cloud_connect_service_keys_status_active": "Enabled",
   "cloud_connect_service_keys_status_cancelled": "Cancelled",
   "cloud_connect_service_keys_status_terminated": "Finished",
-  "cloud_connect_service_keys_status_toCheck": "Verify",
+  "cloud_connect_service_keys_status_toCheck": "Unavailable",
   "cloud_connect_service_keys_status": "Status",
   "cloud_connect_service_keys_id": "ID",
   "cloud_connect_service_keys_provider": "Provider",

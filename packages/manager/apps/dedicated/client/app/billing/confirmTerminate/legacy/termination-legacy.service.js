@@ -16,7 +16,7 @@ export default /* @ngInject */ function BillingTerminate($q, OvhHttp) {
     if (forceRefresh) {
       delete params.cache;
     }
-    return OvhHttp.get(`/service/${serviceId}`, params);
+    return OvhHttp.get(`/services/${serviceId}`, params);
   };
 
   this.getServiceInfo = function getServiceInfo(serviceId) {

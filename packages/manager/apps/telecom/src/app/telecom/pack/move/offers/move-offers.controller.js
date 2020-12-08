@@ -2,6 +2,8 @@ import find from 'lodash/find';
 import isUndefined from 'lodash/isUndefined';
 import set from 'lodash/set';
 
+import { PROMO_DISPLAY } from '../pack-move.constant';
+
 export default class PackMoveOffersCtrl {
   /* @ngInject */
   constructor(
@@ -25,6 +27,8 @@ export default class PackMoveOffersCtrl {
       init: true,
     };
 
+    this.PROMO_DISPLAY = PROMO_DISPLAY;
+
     this.$q
       .all([this.getOptions(), this.getCopperOffers()])
       .then(() => {
@@ -32,7 +36,7 @@ export default class PackMoveOffersCtrl {
       })
       .then(() => {
         if (this.eligibilityReferenceFiber) {
-          this.offers = [...this.listOffers, ...this.listOffersFiber];
+          this.offers = [...this.listOffersFiber, ...this.listOffers];
         } else {
           this.offers = [...this.listOffers];
         }
