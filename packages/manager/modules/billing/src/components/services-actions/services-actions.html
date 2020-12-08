@@ -97,7 +97,7 @@
     <!-- /Exchange -->
 
     <div
-        data-ng-if="(!$ctrl.service.shouldDeleteAtExpiration() || !$ctrl.service.isResiliated()) && !$ctrl.service.hasDebt()"
+        data-ng-if="(!$ctrl.service.shouldDeleteAtExpiration() || !$ctrl.service.isResiliated()) && !$ctrl.service.hasDebt() && !$ctrl.service.hasPendingResiliation()"
     >
         <oui-action-menu-item
             ng-if="$ctrl.service.canBeResiliated($ctrl.user.nichandle)"
