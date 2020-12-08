@@ -1,3 +1,12 @@
+# [5.4.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet@5.3.0...@ovh-ux/ng-at-internet@5.4.0) (2020-12-08)
+
+
+### Features
+
+* **directive:** add impression tracking ([#4073](https://github.com/ovh/manager/issues/4073)) ([941c9ef](https://github.com/ovh/manager/commit/941c9ef969e20594512d84e0b5298bdb6c81db05))
+
+
+
 # [5.3.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet@5.2.0...@ovh-ux/ng-at-internet@5.3.0) (2020-09-08)
 
 

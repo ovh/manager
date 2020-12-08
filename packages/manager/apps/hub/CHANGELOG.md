@@ -1,3 +1,12 @@
+# [2.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@2.3.2...@ovh-ux/manager-hub-app@2.4.0) (2020-12-08)
+
+
+### Features
+
+* set application in feature flipping ([#4124](https://github.com/ovh/manager/issues/4124)) ([365a35b](https://github.com/ovh/manager/commit/365a35babe4641131622ff0122160bb7d5198f92))
+
+
+
 ## [2.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@2.3.1...@ovh-ux/manager-hub-app@2.3.2) (2020-11-25)
 
 

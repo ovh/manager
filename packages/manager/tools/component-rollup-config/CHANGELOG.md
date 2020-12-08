@@ -1,3 +1,17 @@
+## [8.0.1](https://github.com/ovh/manager/compare/@ovh-ux/component-rollup-config@8.0.0...@ovh-ux/component-rollup-config@8.0.1) (2020-12-08)
+
+
+### Bug Fixes
+
+* exclude node_modules from dynamicImport processing ([#4105](https://github.com/ovh/manager/issues/4105)) ([#4128](https://github.com/ovh/manager/issues/4128)) ([9c3e2f2](https://github.com/ovh/manager/commit/9c3e2f2b2441f834153493f27615bfa24b399a60))
+
+
+### Reverts
+
+* Revert "build: exclude node_modules from dynamicImport processing (#4105)" ([745e05e](https://github.com/ovh/manager/commit/745e05ef9ab16c3bf8beba175403e6ada60cc537)), closes [#4105](https://github.com/ovh/manager/issues/4105)
+
+
+
 # [8.0.0](https://github.com/ovh/manager/compare/@ovh-ux/component-rollup-config@7.3.0...@ovh-ux/component-rollup-config@8.0.0) (2020-11-25)
 
 

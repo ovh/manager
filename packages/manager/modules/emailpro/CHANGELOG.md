@@ -1,3 +1,12 @@
+## [2.0.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@2.0.5...@ovh-ux/manager-emailpro@2.0.6) (2020-12-08)
+
+
+### Bug Fixes
+
+* **account:** not possible to create mx plan email account ([#4038](https://github.com/ovh/manager/issues/4038)) ([bea7deb](https://github.com/ovh/manager/commit/bea7deb85003404b0c5da14debc8de97707baae7))
+
+
+
 ## [2.0.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@2.0.4...@ovh-ux/manager-emailpro@2.0.5) (2020-10-28)
 
 

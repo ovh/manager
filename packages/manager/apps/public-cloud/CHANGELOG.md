@@ -1,3 +1,12 @@
+# [4.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.4.0...@ovh-ux/manager-public-cloud@4.5.0) (2020-12-08)
+
+
+### Features
+
+* set application in feature flipping ([#4124](https://github.com/ovh/manager/issues/4124)) ([365a35b](https://github.com/ovh/manager/commit/365a35babe4641131622ff0122160bb7d5198f92))
+
+
+
 # [4.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.3.2...@ovh-ux/manager-public-cloud@4.4.0) (2020-11-30)
 
 

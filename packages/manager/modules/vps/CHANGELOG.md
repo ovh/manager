@@ -1,3 +1,12 @@
+## [2.2.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.2.9...@ovh-ux/manager-vps@2.2.10) (2020-12-08)
+
+
+### Bug Fixes
+
+* **dashboard:** remove deprecated status tile ([#4087](https://github.com/ovh/manager/issues/4087)) ([5fb936c](https://github.com/ovh/manager/commit/5fb936ce44383784b8d32c901b354356d7a6171d))
+
+
+
 ## [2.2.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.2.8...@ovh-ux/manager-vps@2.2.9) (2020-12-07)
 
 

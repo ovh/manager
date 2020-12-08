@@ -1,3 +1,20 @@
+## [5.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.5.2...@ovh-ux/manager-pci@5.5.3) (2020-12-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 685] ([6d69dc6](https://github.com/ovh/manager/commit/6d69dc69b27f9769ed955e1917f7d8d05267f292))
+* **i18n:** add missing translations [CDS 688] ([fb31f81](https://github.com/ovh/manager/commit/fb31f8189347a80a613659573525a62fbafe0181))
+* **i18n:** add missing translations [CDS 690] ([5a8ce67](https://github.com/ovh/manager/commit/5a8ce67cdd385efa957af84f2672dbeb03850469))
+* **i18n:** add missing translations [CDS 692] ([6115b22](https://github.com/ovh/manager/commit/6115b223072c0aaf2a11a418b8c0f23f2793b388))
+* **i18n:** add missing translations [CDS 696] ([3224a7e](https://github.com/ovh/manager/commit/3224a7eb5d80b0ac985131d96068b53a714f8f93))
+* **i18n:** add missing translations [CDS 698] ([aa20628](https://github.com/ovh/manager/commit/aa2062854070bdca8b3711d7b0cbe12d7c0b30ef))
+* **i18n:** add missing translations [CDS 701] ([987b571](https://github.com/ovh/manager/commit/987b5716e73d5c240f480caf01c10f81b4dbc4b5))
+* **pci:** instance price precision ([#3501](https://github.com/ovh/manager/issues/3501)) ([3d75fec](https://github.com/ovh/manager/commit/3d75fec8a674b1d0a3e7056f3faeffcb0998da88))
+* **storages.container.constants:** set default values ([#4152](https://github.com/ovh/manager/issues/4152)) ([bf343e9](https://github.com/ovh/manager/commit/bf343e9dfa2205feb59df2f7e8f8fc66255c27ea))
+
+
+
 ## [5.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.5.1...@ovh-ux/manager-pci@5.5.2) (2020-12-07)
 
 

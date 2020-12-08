@@ -1,3 +1,22 @@
+# [14.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.8.2...@ovh-ux/manager-dedicated@14.9.0) (2020-12-08)
+
+
+### Bug Fixes
+
+* **billing.autorenew:** fix termination issue ([#4151](https://github.com/ovh/manager/issues/4151)) ([2830fc3](https://github.com/ovh/manager/commit/2830fc3b2eaded8f3d86a7210804ba6abe938540))
+* **dedicated:** fix price difference display when billing is zero ([14cb36a](https://github.com/ovh/manager/commit/14cb36ab9fca363bcb8d9d5e3768d7db93f4b8bd))
+* **i18n:** add missing translations [CDS 688] ([fb31f81](https://github.com/ovh/manager/commit/fb31f8189347a80a613659573525a62fbafe0181))
+* **i18n:** add missing translations [CDS 690] ([5a8ce67](https://github.com/ovh/manager/commit/5a8ce67cdd385efa957af84f2672dbeb03850469))
+* **i18n:** add missing translations [CDS 692] ([6115b22](https://github.com/ovh/manager/commit/6115b223072c0aaf2a11a418b8c0f23f2793b388))
+* **i18n:** add missing translations [CDS 694] ([db0eb58](https://github.com/ovh/manager/commit/db0eb5806ee057ac9c4775a327ecefc2cf8eb92c))
+
+
+### Features
+
+* **billing.confirm-terminate:** replace legacy apis ([#3518](https://github.com/ovh/manager/issues/3518)) ([7f14203](https://github.com/ovh/manager/commit/7f14203aad73c977e110c947f31036196825284a))
+
+
+
 ## [14.8.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.8.1...@ovh-ux/manager-dedicated@14.8.2) (2020-12-07)
 
 

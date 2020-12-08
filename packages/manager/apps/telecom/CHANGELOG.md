@@ -1,3 +1,23 @@
+# [13.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.6.8...@ovh-ux/manager-telecom@13.7.0) (2020-12-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 696] ([3224a7e](https://github.com/ovh/manager/commit/3224a7eb5d80b0ac985131d96068b53a714f8f93))
+* **i18n:** add missing translations [CDS 697] ([d7efd3a](https://github.com/ovh/manager/commit/d7efd3a18162dfc1c2d42999f594dcece25237b0))
+* **i18n:** add missing translations [CDS 698] ([aa20628](https://github.com/ovh/manager/commit/aa2062854070bdca8b3711d7b0cbe12d7c0b30ef))
+* **pack.meetings:** resolve route to access to meetings page ([#4021](https://github.com/ovh/manager/issues/4021)) ([33940e0](https://github.com/ovh/manager/commit/33940e0df3a4b6a7e412b76d1f581e06e3814aa3))
+
+
+### Features
+
+* **move.offers:** reorder offers for pack ([#4059](https://github.com/ovh/manager/issues/4059)) ([fab54b0](https://github.com/ovh/manager/commit/fab54b003d5ffbd75797ce4a30bb6db253fb59b7))
+* **pack:** display promotions on offers for move or migration ([#4084](https://github.com/ovh/manager/issues/4084)) ([6299b7b](https://github.com/ovh/manager/commit/6299b7b9114e646d8db14f7e7de9dd9f1323ab54))
+* **pack.move:** buildings for migration offers ([#4043](https://github.com/ovh/manager/issues/4043)) ([e811220](https://github.com/ovh/manager/commit/e81122062e34a24c286f3e75e2770e82b9f60048))
+* **pack.move:** retrieve buildings on move offer ([#4058](https://github.com/ovh/manager/issues/4058)) ([a490e32](https://github.com/ovh/manager/commit/a490e32e8a524bc9c4f8e4274f03585d550f47b2))
+
+
+
 ## [13.6.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.6.7...@ovh-ux/manager-telecom@13.6.8) (2020-12-07)
 
 
