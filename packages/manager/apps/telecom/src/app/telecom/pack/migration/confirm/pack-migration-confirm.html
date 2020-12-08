@@ -257,13 +257,38 @@
         </div>
     </div>
 
-    <div class="widget-presentation" data-ng-if="!$ctrl.loading.migrate">
-        <h2
-            class="widget-presentation-title"
-            data-translate="telecom_pack_migration_confirm_contracts_accept_title"
-        ></h2>
+    <form name="resumeForm" data-ng-submit="$ctrl.startMigration()">
+        <div
+            class="widget-presentation"
+            data-ng-if="!$ctrl.loading.migrate && $ctrl.process.selectedOffer.totalSubServiceToDelete > 0"
+        >
+            <h2
+                class="widget-presentation-title"
+                data-translate="telecom_pack_migration_confirm_resume_contact_owner"
+            ></h2>
+            <div class="d-inline-flex p-2 bd-highlight">
+                <oui-field
+                    data-label="{{::'telecom_pack_migration_confirm_resume_contact_phone' | translate}}"
+                    data-error-messages="{ pattern: ('pack_move_resume_phone_form_error' | translate)}"
+                >
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="contactPhone"
+                        name="contactPhone"
+                        data-ng-model="$ctrl.process.contactPhone"
+                        data-ui-validate="{ pattern: '$ctrl.constructor.checkContactPhone($value)' }"
+                    />
+                </oui-field>
+            </div>
+        </div>
 
-        <form data-ng-submit="$ctrl.startMigration()">
+        <div class="widget-presentation" data-ng-if="!$ctrl.loading.migrate">
+            <h2
+                class="widget-presentation-title"
+                data-translate="telecom_pack_migration_confirm_contracts_accept_title"
+            ></h2>
+
             <div class="checkbox">
                 <label for="acceptContracts">
                     <input
@@ -306,6 +331,6 @@
                 data-ng-disabled="!$ctrl.model.acceptContracts"
                 data-translate="telecom_pack_migration_confirm_contracts_accept_button"
             ></button>
-        </form>
-    </div>
+        </div>
+    </form>
 </div>

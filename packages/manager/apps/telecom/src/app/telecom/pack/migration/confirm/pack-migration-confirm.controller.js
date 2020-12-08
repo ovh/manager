@@ -93,6 +93,17 @@ export default class TelecomPackMigrationConfirmCtrl {
     };
   }
 
+  static checkContactPhone(value) {
+    if (value) {
+      return !!(
+        value.match(/^\+?(\d|\.| |#|-)+$/) &&
+        value.length < 26 &&
+        value.length > 2
+      );
+    }
+    return true;
+  }
+
   /* -----  End of HELPERS  ------*/
 
   /*= ==============================
