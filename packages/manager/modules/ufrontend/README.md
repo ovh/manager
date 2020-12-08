@@ -114,3 +114,43 @@ emit(
   },
 );
 ```
+
+### URL Builder
+
+URL builder is here to help us to build links between applications.
+When you want to build an URL for an outside application, you will use `url-builder` to build the URL.
+
+#### Examples
+
+Build the URL that redirect to `#/catalog` state from the `hub` application with query parameter (`expand`)
+
+```js
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+
+const url = buildURL('hub', '#/catalog', { expand: true });
+// use `url`;
+```
+
+Build multiples routes using an array of `{application, url, query}`
+
+```js
+import { buildURLs } from '@ovh-ux/ufrontend/url-builder';
+
+const [dashboard, catalog] = buildURLs([
+  { application: 'hub', url: '#/', query: { expand: true } },
+  { application: 'hub', url: '#/catalog' },
+]);
+// use `dashboard` and `catalog` URLs
+```
+
+Build multiples routes using an object of `{application, url, query}`
+
+```js
+import { buildURLs } from '@ovh-ux/ufrontend/url-builder';
+
+const { dashboard, catalog } = buildURLs({
+  dashboard: { application: 'hub', url: '#/', query: { expand: true } },
+  catalog: { application: 'hub', url: '#/catalog' },
+});
+// use `dashboard` and `catalog` URLs
+```
