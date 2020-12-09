@@ -17,12 +17,12 @@
         <script>
             var myApp = angular
                 .module('myApp', ['ui.router', 'ngUiRouterTitle'])
-                .config(function($stateProvider) {
+                .config(function ($stateProvider) {
                     $stateProvider.state('foo', {
                         url: '/foo',
                         template: '<h2>Foo</h2>',
                         resolve: {
-                            $title: function() {
+                            $title: function () {
                                 return 'foo';
                             },
                         },
@@ -31,7 +31,7 @@
                         url: '/bar',
                         template: '<h2>Bar</h2>',
                         resolve: {
-                            $title: function() {
+                            $title: function () {
                                 return 'bar';
                             },
                         },
@@ -40,7 +40,7 @@
                         url: '/baz',
                         template: '<h2>Baz</h2>',
                         resolve: {
-                            $title: function() {
+                            $title: function () {
                                 return 'baz';
                             },
                         },

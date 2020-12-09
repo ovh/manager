@@ -125,15 +125,13 @@
                                                 value="shortNumber"
                                                 selected="true"
                                                 data-translate="sms_sms_compose_sender_option_short_number"
-                                            >
-                                            </option>
+                                            ></option>
                                             <option
                                                 value="{{ sender.sender }}"
                                                 data-ng-repeat="sender in $ctrl.senders.virtual"
                                                 data-translate="sms_sms_compose_sender_option_virtual_number"
                                                 data-translate-values="{ sender: sender.sender }"
-                                            >
-                                            </option>
+                                            ></option>
                                         </optgroup>
                                         <optgroup
                                             label="- {{ ::'sms_sms_compose_sender_optgroup_label_alphanumeric' | translate }} -"
@@ -143,8 +141,7 @@
                                                 value="{{ sender.sender }}"
                                                 data-ng-repeat="sender in $ctrl.senders.alphanumeric"
                                                 data-ng-bind="sender.sender"
-                                            >
-                                            </option>
+                                            ></option>
                                         </optgroup>
                                         <optgroup
                                             label="- {{ ::'sms_sms_compose_sender_optgroup_label_other' | translate }} -"
@@ -154,8 +151,7 @@
                                                 value="{{ sender.sender }}"
                                                 data-ng-repeat="sender in $ctrl.senders.other"
                                                 data-ng-bind="'(' + sender.description + ') ' + sender.sender"
-                                            >
-                                            </option>
+                                            ></option>
                                         </optgroup>
                                     </select>
                                 </div>
@@ -603,8 +599,7 @@
                                         required
                                         data-ng-model="$ctrl.sms.class"
                                         data-ng-options="class as ('sms_sms_compose_class_' + class | translate) for class in $ctrl.enums.smsClass"
-                                    >
-                                    </select>
+                                    ></select>
                                 </div>
                             </div>
 

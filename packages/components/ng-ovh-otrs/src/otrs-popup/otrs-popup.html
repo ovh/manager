@@ -158,8 +158,7 @@
                         data-ng-model="OtrsPopupCtrl.ticket.type"
                         data-ng-options="type as ( 'otrs_types_'+type | translate ) for type in OtrsPopupCtrl.types"
                         data-ng-disabled="OtrsPopupCtrl.loaders.models"
-                    >
-                    </select>
+                    ></select>
                 </div>
                 <!-- END OF TYPE -->
 
@@ -181,8 +180,7 @@
                         data-ng-model="OtrsPopupCtrl.ticket.category"
                         data-ng-options="request as ( 'otrs_category_'+request | translate ) for request in OtrsPopupCtrl.requests"
                         data-ng-disabled="OtrsPopupCtrl.loaders.models"
-                    >
-                    </select>
+                    ></select>
                 </div>
                 <!-- END OF CATEGORY -->
 
@@ -207,8 +205,7 @@
                         data-ng-model="OtrsPopupCtrl.ticket.subcategory"
                         data-ng-options="subCategory as ('otrs_subCategory_' + OtrsPopupCtrl.ticket.category + '_' + subCategory | translate) for subCategory in OtrsPopupCtrl.subCategories[OtrsPopupCtrl.ticket.category]"
                         data-ng-disabled="OtrsPopupCtrl.loaders.models"
-                    >
-                    </select>
+                    ></select>
                 </div>
                 <!-- END OF SUBCATEGORY -->
 
@@ -397,8 +394,7 @@
                                 selected="selected"
                                 disabled
                                 data-translate="otrs_intervention_disk_slotID"
-                            >
-                            </option>
+                            ></option>
                         </select>
                         <span class="input-group-btn">
                             <button

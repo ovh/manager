@@ -14,8 +14,8 @@
             <form class="form-horizontal" name="privateDatabaseAddBddForm">
                 <!-- Hidden text and password field to prevent the browsers from autocompleting the email and password fields
                  with the nichandle and password. see http://stackoverflow.com/a/23234498 -->
-                <input type="text" style="display:none" />
-                <input type="password" style="display:none" />
+                <input type="text" style="display: none" />
+                <input type="password" style="display: none" />
 
                 <!-- DATABASE NAME-->
                 <div
@@ -117,8 +117,7 @@
                                     required
                                     data-ng-model="addBddCtrl.model.user.grant.value"
                                     data-ng-options="grant as addBddCtrl.getGrantLabel(grant) for grant in addBddCtrl.grantEnum track by grant"
-                                >
-                                </select>
+                                ></select>
                                 <span
                                     class="oui-icon oui-icon-chevron-down"
                                     aria-hidden="true"

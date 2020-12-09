@@ -52,8 +52,7 @@
                             data-ng-disabled="ctrl.optionsToCreateANewGroup == null"
                             data-ng-model="ctrl.groupToAdd.completeDomain"
                             data-ng-options="domain.displayName for domain in ctrl.optionsToCreateANewGroup.availableDomains | orderBy:'formattedName'"
-                        >
-                        </select>
+                        ></select>
                     </div>
                     <small
                         class="help-block"
@@ -194,8 +193,7 @@
                             data-ng-disabled="ctrl.optionsToCreateANewGroup == null"
                             data-ng-model="ctrl.groupToAdd.unsubscribeRestriction"
                             data-ng-options="('exchange_GROUPS_add_group_retriction_' + restriction) | translate for restriction in ctrl.optionsToCreateANewGroup.availableDepartRestrictions"
-                        >
-                        </select>
+                        ></select>
                         <span
                             class="oui-icon oui-icon-chevron-down"
                             aria-hidden="true"

@@ -27,8 +27,8 @@
                 data-ng-change="$ctrl.onContainerChangeHandler()"
                 required
             >
-                <option data-ng-value="undefined"
-                    >{{::
+                <option data-ng-value="undefined">
+                    {{::
                     'data_processing_submit_job_stepper_spark_swift_placeholder'
                     | translate }}
                 </option>
@@ -57,17 +57,13 @@
                 data-ng-change="$ctrl.onJobTypeChangeHandler()"
                 required
             >
-                <option data-ng-value="undefined"
-                    >{{::
+                <option data-ng-value="undefined">
+                    {{::
                     'data_processing_submit_job_stepper_spark_jobtype_placeholder'
                     | translate }}
                 </option>
-                <option value="java">
-                    Java/Scala
-                </option>
-                <option value="python">
-                    Python
-                </option>
+                <option value="java">Java/Scala</option>
+                <option value="python">Python</option>
             </select>
             <span
                 class="oui-icon oui-icon-chevron-down"

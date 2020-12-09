@@ -6,20 +6,20 @@
     <div
         data-ng-if="CloudProjectDetailsCtrl.loaders.init"
         class="text-center"
-        style="margin-top: 200px;"
+        style="margin-top: 200px"
     >
         <oui-spinner></oui-spinner>
     </div>
 
     <div
         class="col-xs-12 col-lg-10 col-lg-offset-1"
-        style="margin-top: 150px;"
+        style="margin-top: 150px"
         data-ng-if="!CloudProjectDetailsCtrl.loaders.init && CloudProjectDetailsCtrl.project"
         data-ng-switch="CloudProjectDetailsCtrl.project.status"
     >
         <!-- suspended -->
         <div data-ng-switch-when="suspended" class="text-center">
-            <i class="fa fa-times text-danger" style="font-size: 80px;"></i>
+            <i class="fa fa-times text-danger" style="font-size: 80px"></i>
             <h2
                 class="text-danger"
                 data-translate="cpd_project_suspended"

@@ -26,8 +26,7 @@
                         data-ng-model="rule.sequence"
                         data-ng-options="value as value.name for value in (constants.sequences | orderBy:'name')"
                         required
-                    >
-                    </select>
+                    ></select>
                 </div>
 
                 <div class="form-group">
@@ -71,8 +70,7 @@
                         data-ng-change="resetOptionField()"
                         data-ng-options="value as ('ip_firewall_rule_protocol_'+value | translate) for value in constants.protocols"
                         required
-                    >
-                    </select>
+                    ></select>
                 </div>
 
                 <div

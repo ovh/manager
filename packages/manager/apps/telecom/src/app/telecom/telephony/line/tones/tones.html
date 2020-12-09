@@ -43,8 +43,7 @@
                         data-ng-disabled="LineTonesCtrl.tonesForm.ringbackUpdating || LineTonesCtrl.tonesForm.ringbackUploading || LineTonesCtrl.tonesForm.ringbackUploadSuccess"
                         data-ng-options="type as LineTonesCtrl.getToneTypeLabel(type) for type in ['None', 'Custom sound']"
                         data-ng-change="LineTonesCtrl.updateTone('ringback')"
-                    >
-                    </select>
+                    ></select>
                 </div>
                 <div class="form-group">
                     <tuc-input-file
@@ -112,8 +111,7 @@
                         data-ng-disabled="LineTonesCtrl.tonesForm.onHoldUpdating || LineTonesCtrl.tonesForm.onHoldUploading || LineTonesCtrl.tonesForm.onHoldUploadSuccess"
                         data-ng-options="type as LineTonesCtrl.getToneTypeLabel(type) for type in LineTonesCtrl.tonesEnum"
                         data-ng-change="LineTonesCtrl.updateTone('onHold')"
-                    >
-                    </select>
+                    ></select>
                 </div>
                 <div class="form-group">
                     <tuc-input-file
@@ -181,8 +179,7 @@
                         data-ng-disabled="LineTonesCtrl.tonesForm.callWaitingUpdating || LineTonesCtrl.tonesForm.callWaitingUploading || LineTonesCtrl.tonesForm.callWaitingUploadSuccess"
                         data-ng-options="type as LineTonesCtrl.getToneTypeLabel(type) for type in ['None', 'Custom sound']"
                         data-ng-change="LineTonesCtrl.updateTone('callWaiting')"
-                    >
-                    </select>
+                    ></select>
                 </div>
                 <div class="form-group">
                     <tuc-input-file

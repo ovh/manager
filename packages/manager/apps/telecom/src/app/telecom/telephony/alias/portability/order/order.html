@@ -482,13 +482,11 @@
                             <option
                                 value="individual"
                                 data-translate="telephony_alias_portability_order_contact_social_reason_individual"
-                            >
-                            </option>
+                            ></option>
                             <option
                                 value="corporation"
                                 data-translate="telephony_alias_portability_order_contact_social_reason_corporation"
-                            >
-                            </option>
+                            ></option>
                         </select>
                     </div>
 
@@ -981,8 +979,7 @@
                             class="form-control text-capitalize"
                             data-ng-model="PortabilityOrderCtrl.order.displayUniversalDirectory"
                             data-ng-options="(i ? 'yes' : 'no' | translate) for i in [true, false]"
-                        >
-                        </select>
+                        ></select>
                     </div>
 
                     <div class="form-group">
@@ -1024,8 +1021,7 @@
                             class="form-control"
                             data-ng-model="PortabilityOrderCtrl.order.billingAccount"
                             data-ng-options="i.billingAccount as (i.description && i.description !== i.billingAccount) ? i.description + ' (' + i.billingAccount + ')' : i.billingAccount for i in PortabilityOrderCtrl.billingAccounts"
-                        >
-                        </select>
+                        ></select>
                     </div>
 
                     <!-- REDIRECT TO LINE -->
@@ -1129,19 +1125,19 @@
                                             class="text-right-sm"
                                             scope="col"
                                             data-translate="telephony_alias_portability_order_unit_price"
-                                            style="width:25%;"
+                                            style="width: 25%"
                                         ></th>
                                         <th
                                             class="text-right-sm"
                                             scope="col"
                                             data-translate="telephony_alias_portability_order_quantity"
-                                            style="width:12%;"
+                                            style="width: 12%"
                                         ></th>
                                         <th
                                             class="text-right-sm"
                                             scope="col"
                                             data-translate="telephony_alias_portability_order_total"
-                                            style="width:15%;"
+                                            style="width: 15%"
                                         ></th>
                                     </tr>
                                 </thead>

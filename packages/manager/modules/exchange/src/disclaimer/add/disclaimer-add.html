@@ -23,8 +23,7 @@
                                 required
                                 data-ng-model="ctrl.data.completeDomain"
                                 data-ng-options="domain.displayName for domain in ctrl.availableDomains | orderBy:'formattedName'"
-                            >
-                            </select>
+                            ></select>
                         </div>
                     </div>
 
@@ -35,8 +34,7 @@
                                 id="variableSelect"
                                 data-ng-model="ctrl.data.selectedAttribute"
                                 data-ng-options="('exchange_ACTION_add_disclaimer_option_' + variable) | translate for variable in ctrl.availableAttributes"
-                            >
-                            </select>
+                            ></select>
                             <span
                                 class="oui-icon oui-icon-chevron-down"
                                 aria-hidden="true"

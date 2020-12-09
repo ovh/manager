@@ -33,8 +33,7 @@
                     data-ng-model="$ctrl.queues.selected"
                     data-ng-options="queue as ('telephony_alias_configuration_records_queue' | translate:{ id: queue.queueId }) for queue in $ctrl.queues.raw"
                     data-ng-change="$ctrl.changeQueue()"
-                >
-                </select>
+                ></select>
             </div>
         </div>
 
@@ -108,8 +107,7 @@
                         data-ng-model="$ctrl.queueForm.recordDisablingLanguage"
                         data-ng-options="language as ('telephony_alias_configuration_records_form_record_disabling_language_' + language | translate) for language in $ctrl.enums"
                         data-ng-disabled="!($ctrl.queueForm.record && $ctrl.queueForm.askForRecordDisabling)"
-                    >
-                    </select>
+                    ></select>
                 </div>
 
                 <div class="form-group">
@@ -127,8 +125,7 @@
                         data-ng-model="$ctrl.queueForm.recordDisablingDigit"
                         data-ng-options="digit for digit in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]"
                         data-ng-disabled="!($ctrl.queueForm.record && $ctrl.queueForm.askForRecordDisabling)"
-                    >
-                    </select>
+                    ></select>
                 </div>
 
                 <div class="form-group">

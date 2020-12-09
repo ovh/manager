@@ -94,8 +94,7 @@
                                     data-ng-options="offer for offer in $ctrl.offers"
                                     data-ng-change="$ctrl.getOrderDurations()"
                                     data-ng-disabled="$ctrl.states.orderDone"
-                                >
-                                </select>
+                                ></select>
                             </div>
                             <div
                                 class="form-group"
@@ -114,8 +113,7 @@
                                     data-ng-model="$ctrl.orderModel.duration"
                                     data-ng-options="duration for duration in $ctrl.durations"
                                     data-ng-disabled="$ctrl.durations.length === 0 || $ctrl.loaders.durations || $ctrl.states.orderDone"
-                                >
-                                </select>
+                                ></select>
                             </div>
                             <div
                                 class="form-group"
@@ -167,8 +165,7 @@
                                         <option
                                             data-ng-repeat="device in $ctrl.devices track by device.deviceId"
                                             value="{{device.deviceId}}"
-                                        >
-                                        </option>
+                                        ></option>
                                     </datalist>
                                 </div>
                             </div>

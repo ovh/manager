@@ -460,7 +460,7 @@
                             class="table table-pretty table-hover table-striped shadow-z-1 no-space"
                         >
                             <thead>
-                                <th style="width: 30px;"></th>
+                                <th style="width: 30px"></th>
                                 <th data-translate="cpci_volume_type"></th>
                                 <th
                                     data-translate="cpci_volume_gb_price_month"
@@ -511,7 +511,7 @@
                                         </div>
                                     </td>
                                     <!-- GB PRICE CELL -->
-                                    <td style="width:40px;" class="text-center">
+                                    <td style="width: 40px" class="text-center">
                                         <span class="inline-block top-space-m2">
                                             {{ ::
                                             VolumeAddEditCtrl.volumeInEdition.getPrice(VolumeAddEditCtrl.volumeInEdition.region,volumeType).monthlyPrice.text
@@ -566,7 +566,7 @@
                                 <div
                                     flat-input-container
                                     class="input-group pull-right"
-                                    style="width:130px;"
+                                    style="width: 130px"
                                 >
                                     <input
                                         id="volumeSize"
@@ -637,7 +637,10 @@
                                         cuc-click-enter-on-keypress
                                     >
                                         <td
-                                            style="width: 50px; vertical-align: middle"
+                                            style="
+                                                width: 50px;
+                                                vertical-align: middle;
+                                            "
                                         >
                                             <flat-radio>
                                                 <input
@@ -696,11 +699,14 @@
                                     <!-- available regions but not activated -->
                                     <tr
                                         data-ng-repeat="region in VolumeAddEditCtrl.availableRegions.data"
-                                        style="cursor: not-allowed;"
+                                        style="cursor: not-allowed"
                                         data-ng-if="!VolumeAddEditCtrl.availableRegions.loading && VolumeAddEditCtrl.availableRegions.data.length > 0"
                                     >
                                         <td
-                                            style="width: 50px; vertical-align: middle"
+                                            style="
+                                                width: 50px;
+                                                vertical-align: middle;
+                                            "
                                         >
                                             <flat-radio>
                                                 <input

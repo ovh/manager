@@ -94,8 +94,7 @@
                                             aria-label="{{ 'server_tab_MONITORING_add_ip' | translate }}"
                                             data-ng-options="ip for ip in $ctrl.ips"
                                             data-ng-model="ctrlMonitoringAdd.monitoring.ip"
-                                        >
-                                        </select>
+                                        ></select>
                                     </td>
                                     <td>
                                         <select
@@ -106,8 +105,7 @@
                                             aria-label="{{ 'server_tab_MONITORING_add_protocol' | translate }}"
                                             data-ng-options="protocol for protocol in $ctrl.monitoringProtocolEnum"
                                             data-ng-model="ctrlMonitoringAdd.monitoring.protocol"
-                                        >
-                                        </select>
+                                        ></select>
                                     </td>
                                     <td>
                                         <input
@@ -152,8 +150,7 @@
                                             aria-label="{{ 'server_tab_MONITORING_add_interval' | translate }}"
                                             data-ng-options="interval for interval in $ctrl.monitoringIntervalEnum"
                                             data-ng-model="ctrlMonitoringAdd.monitoring.interval"
-                                        >
-                                        </select>
+                                        ></select>
                                     </td>
                                     <td>
                                         <div
@@ -250,8 +247,7 @@
                                         name="select-sms-account{{ $index }}"
                                         data-ng-options="smsAccount.name as smsAccount.name for smsAccount in $ctrl.sms"
                                         data-ng-model="smsNotification.smsAccount"
-                                    >
-                                    </select>
+                                    ></select>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -344,8 +340,7 @@
                                         name="select-lang-sms{{ $index }}"
                                         data-ng-options="lang as (('language_' + lang) | translate) for lang in $ctrl.languageEnum"
                                         data-ng-model="smsNotification.language"
-                                    >
-                                    </select>
+                                    ></select>
                                 </div>
                             </div>
                             <div class="text-right">
@@ -410,8 +405,7 @@
                                         data-ng-options="lang as (('language_' + lang) | translate) for lang in $ctrl.languageEnum"
                                         data-ng-model="emailNotification.language"
                                         data-ng-required="emailNotification.email"
-                                    >
-                                    </select>
+                                    ></select>
                                 </div>
                             </div>
                             <div class="text-right">
@@ -612,8 +606,7 @@
                                             aria-label="{{ 'server_tab_MONITORING_add_protocol' | translate }}"
                                             data-ng-options="protocol for protocol in $ctrl.monitoringProtocolEnum"
                                             data-ng-model="ctrlMonitoringUpdate.monitoring.protocol"
-                                        >
-                                        </select>
+                                        ></select>
                                     </td>
                                     <td>
                                         <input
@@ -657,8 +650,7 @@
                                             aria-label="{{ 'server_tab_MONITORING_add_interval' | translate }}"
                                             data-ng-options="interval for interval in $ctrl.monitoringIntervalEnum"
                                             data-ng-model="ctrlMonitoringUpdate.monitoring.interval"
-                                        >
-                                        </select>
+                                        ></select>
                                     </td>
                                     <td>
                                         <input
@@ -792,8 +784,7 @@
                                         data-ng-options="lang as (('language_' + lang) | translate) for lang in $ctrl.languageEnum"
                                         data-ng-model="emailNotification.language"
                                         data-ng-required="emailNotification.email"
-                                    >
-                                    </select>
+                                    ></select>
                                 </div>
 
                                 <div
@@ -879,8 +870,7 @@
                                         id="select-sms-account-update{{ $index }}"
                                         data-ng-options="smsAccount.name as smsAccount.name for smsAccount in $ctrl.sms"
                                         data-ng-model="smsNotification.smsAccount"
-                                    >
-                                    </select>
+                                    ></select>
                                 </div>
 
                                 <div class="form-group">
@@ -972,8 +962,7 @@
                                         name="select-lang-sms{{ $index }}"
                                         data-ng-options="lang as (('language_' + lang) | translate) for lang in $ctrl.languageEnum"
                                         data-ng-model="smsNotification.language"
-                                    >
-                                    </select>
+                                    ></select>
                                 </div>
 
                                 <div

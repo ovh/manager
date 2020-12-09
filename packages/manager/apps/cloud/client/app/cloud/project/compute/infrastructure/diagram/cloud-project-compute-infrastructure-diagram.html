@@ -1,7 +1,7 @@
 <!-- init loading -->
 <div
     class="text-center"
-    style="margin-top: 200px;"
+    style="margin-top: 200px"
     data-ng-if="ComputeInfrastructureDiagramCtrl.loaders.init"
 >
     <oui-spinner size="l" inline="true"></oui-spinner>
@@ -213,7 +213,7 @@
                                     ></span>
                                     <span
                                         class="ovh-font ovh-font-add-disk pull-right"
-                                        style="margin-top: 2px;"
+                                        style="margin-top: 2px"
                                         title="{{ 'cpci_volume_add'|translate }}"
                                         data-ng-if="!ComputeInfrastructureDiagramCtrl.volumes.unlinked.length"
                                         write-right-required
@@ -458,7 +458,7 @@
                                                     </div>
                                                     <div
                                                         data-ng-if="ComputeInfrastructureDiagramCtrl.dragDropHelper.currentDraggedVolume.draggableInfo.volume.type==='classic'"
-                                                        style="padding-top:5px;"
+                                                        style="padding-top: 5px"
                                                     >
                                                         <span
                                                             class="ovh-font ovh-font-harddisk"
@@ -1534,7 +1534,9 @@
                                                                     </div>
                                                                     <div
                                                                         data-ng-if="ComputeInfrastructureDiagramCtrl.dragDropHelper.currentDraggedVolume.draggableInfo.volume.type==='classic'"
-                                                                        style="padding-top:5px;"
+                                                                        style="
+                                                                            padding-top: 5px;
+                                                                        "
                                                                     >
                                                                         <span
                                                                             class="ovh-font ovh-font-harddisk"

@@ -39,8 +39,7 @@
                             data-ng-model="ServiceContactCtrl.directoryForm.legalForm"
                             data-ng-change="ServiceContactCtrl.onChangeLegalForm()"
                             data-ng-options="legalForm as ('telephony_service_contact_legalform_' + legalForm | translate) for legalForm in ['individual', 'professional', 'corporation']"
-                        >
-                        </select>
+                        ></select>
                         <p
                             class="form-control-static"
                             data-ng-if="!ServiceContactCtrl.isEditing && ServiceContactCtrl.directoryForm.legalForm"
@@ -587,8 +586,7 @@
                                 data-ng-repeat="key in ServiceContactCtrl.wayNumberExtraEnum track by $index"
                                 data-ng-bind="key"
                                 value="{{ key }}"
-                            >
-                            </option>
+                            ></option>
                         </select>
                         <p
                             class="form-control-static"
@@ -758,8 +756,7 @@
                             data-ng-model="ServiceContactCtrl.directoryForm.directoryServiceCode"
                             data-ng-disabled="!ServiceContactCtrl.directoryCodes"
                             data-ng-options="opt.directoryServiceCode as opt.directoryServiceDescription for opt in ServiceContactCtrl.directoryCodes"
-                        >
-                        </select>
+                        ></select>
                         <p
                             class="form-control-static text-capitalize"
                             data-ng-if="!ServiceContactCtrl.isEditing"
@@ -791,8 +788,7 @@
                             data-ng-if="ServiceContactCtrl.isEditing"
                             data-ng-model="ServiceContactCtrl.directoryForm.displayUniversalDirectory"
                             data-ng-options="opt as (opt ? 'yes' : 'no' | translate) for opt in [true, false]"
-                        >
-                        </select>
+                        ></select>
                         <p
                             class="form-control-static text-capitalize"
                             data-ng-if="!ServiceContactCtrl.isEditing"
@@ -818,8 +814,7 @@
                                 data-ng-if="ServiceContactCtrl.isEditing"
                                 data-ng-model="ServiceContactCtrl.directoryForm.displayMarketingDirectory"
                                 data-ng-options="opt as (opt ? 'yes' : 'no' | translate) for opt in [true, false]"
-                            >
-                            </select>
+                            ></select>
                             <p
                                 class="form-control-static text-capitalize"
                                 data-ng-if="!ServiceContactCtrl.isEditing"
@@ -842,8 +837,7 @@
                                 data-ng-if="ServiceContactCtrl.isEditing"
                                 data-ng-model="ServiceContactCtrl.directoryForm.displaySearchReverse"
                                 data-ng-options="opt as (opt ? 'yes' : 'no' | translate) for opt in [true, false]"
-                            >
-                            </select>
+                            ></select>
                             <p
                                 class="form-control-static text-capitalize"
                                 data-ng-if="!ServiceContactCtrl.isEditing"
@@ -869,8 +863,7 @@
                                 data-ng-if="ServiceContactCtrl.isEditing"
                                 data-ng-model="ServiceContactCtrl.directoryForm.displayFirstName"
                                 data-ng-options="opt as ServiceContactCtrl.getDisplayFirstNameOptions(opt) for opt in [true, false]"
-                            >
-                            </select>
+                            ></select>
                             <p
                                 class="form-control-static text-capitalize"
                                 data-ng-if="!ServiceContactCtrl.isEditing"
@@ -895,8 +888,7 @@
                                 data-ng-if="ServiceContactCtrl.isEditing"
                                 data-ng-model="ServiceContactCtrl.directoryForm.displayOnlyCity"
                                 data-ng-options="opt as ('telephony_service_contact_address_publish_' + (opt ? 'city' : 'full') | translate) for opt in [false, true]"
-                            >
-                            </select>
+                            ></select>
                             <p
                                 class="form-control-static text-capitalize"
                                 data-ng-if="!ServiceContactCtrl.isEditing"

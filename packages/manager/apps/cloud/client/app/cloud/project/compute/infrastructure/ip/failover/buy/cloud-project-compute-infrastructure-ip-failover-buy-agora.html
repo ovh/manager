@@ -51,8 +51,7 @@
                         name="product"
                         data-ng-model="$ctrl.product"
                         data-ng-options="p as p.details.product.description for p in $ctrl.catalog"
-                    >
-                    </select>
+                    ></select>
                 </div>
                 <div class="oui-field">
                     <label
@@ -67,8 +66,7 @@
                         name="instance"
                         data-ng-model="$ctrl.instance"
                         data-ng-options="instance as instance.name for instance in $ctrl.instances"
-                    >
-                    </select>
+                    ></select>
                 </div>
                 <div class="oui-field">
                     <label
@@ -83,8 +81,7 @@
                         name="country"
                         data-ng-model="$ctrl.country"
                         data-ng-options="c as ('country_' + c | translate) for c in $ctrl.getCountries($ctrl.product)"
-                    >
-                    </select>
+                    ></select>
                 </div>
                 <div class="oui-field">
                     <label

@@ -62,8 +62,7 @@
                                 data-ng-disabled="!$ctrl.canChangePrimary()"
                                 data-ng-model="$ctrl.selectedAccount.completeDomain"
                                 data-ng-options="domain.displayName for domain in $ctrl.newAccountOptions.availableDomains | orderBy:'formattedName'"
-                            >
-                            </select>
+                            ></select>
                         </div>
                         <small
                             class="help-block"
@@ -96,8 +95,7 @@
                             data-ng-options="('emailpro_ACTION_update_account_step1_type_' + type | translate) for type in $ctrl.newAccountOptions.availableTypes"
                             data-ng-model="$ctrl.selectedAccount.accountLicense"
                             data-required
-                        >
-                        </select>
+                        ></select>
                     </div>
                 </div>
                 <div class="form-group">
@@ -269,8 +267,7 @@
                             required
                             data-ng-options="$ctrl.convertBytesSize(quota, 'GB', 2) for quota in $ctrl.mxPlan.quotaArray"
                             data-ng-model="$ctrl.selectedAccount.quota"
-                        >
-                        </select>
+                        ></select>
                     </div>
                 </div>
             </form>

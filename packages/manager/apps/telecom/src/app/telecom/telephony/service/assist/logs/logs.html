@@ -92,8 +92,7 @@
                                 name="frequency"
                                 data-ng-model="LogsCtrl.edition.notifications.logs.frequency"
                                 data-ng-options="frequency as (['telephony_line_assist_support_logs_configs_frequency', frequency].join('_') | tucSnakeCase | translate ) for frequency in LogsCtrl.availableLogsFrequencies"
-                            >
-                            </select>
+                            ></select>
                         </div>
                         <!-- FREQUENCY -->
 
@@ -224,8 +223,7 @@
                                 data-ng-model="LogsCtrl.model.dayInterval"
                                 data-ng-change="LogsCtrl.onLogsFrequencySelectChange()"
                                 data-ng-options="dayInterval as (['telephony_line_assist_support_logs_list_days', dayInterval].join('_') | tucSnakeCase | translate ) for dayInterval in LogsCtrl.availableDayInterval"
-                            >
-                            </select>
+                            ></select>
                         </div>
                     </form>
 

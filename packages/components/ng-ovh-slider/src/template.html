@@ -9,9 +9,7 @@
 <div class="bubble limit high">
     {{ values.length ? values[ceiling || values.length - 1] : ceiling }}
 </div>
-<div class="bubble value low">
-    {{ display() }}
-</div>
+<div class="bubble value low">{{ display() }}</div>
 <div class="bubble value high">
     {{ values.length ? values[local.ngModelHigh] : local.ngModelHigh }}
 </div>

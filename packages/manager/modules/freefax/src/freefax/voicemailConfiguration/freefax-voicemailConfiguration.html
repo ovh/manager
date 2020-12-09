@@ -85,9 +85,7 @@
                                 data-ui-validate="VoicemailConf.validPassword($value)"
                                 data-translate-attr="{ 'placeholder': 'freefax_voicemail_change_password_confirm' }"
                             />
-                            <div data-ng-if="!VoicemailConf.editMode">
-                                ****
-                            </div>
+                            <div data-ng-if="!VoicemailConf.editMode">****</div>
                         </div>
 
                         <!-- activate password -->
@@ -182,8 +180,7 @@
                                 data-ng-model="VoicemailConf.voiceMail.audioFormat"
                                 data-ng-options="format as format.label for format in VoicemailConf.audioFormatList"
                                 data-ng-required="true"
-                            >
-                            </select>
+                            ></select>
                             <div
                                 data-ng-if="!VoicemailConf.editMode"
                                 data-ng-bind="VoicemailConf.voiceMail.audioFormat.label"

@@ -40,8 +40,7 @@
                 data-ng-model="OptionsResponseAddCtrl.trackingOptions.media"
                 data-ng-options="media as ('sms_options_response_tracking_add_media_' + media | translate) for media in OptionsResponseAddCtrl.availableTrackingMedia"
                 data-ng-change="OptionsResponseAddCtrl.resetTrackingOptions()"
-            >
-            </select>
+            ></select>
         </div>
 
         <!-- SENDER EMAIL -->
@@ -147,8 +146,7 @@
                 data-ng-model="OptionsResponseAddCtrl.trackingSender"
                 data-ng-options="sender as sender.sender for sender in OptionsResponseAddCtrl.senders track by sender.sender"
                 data-ng-change="OptionsResponseAddCtrl.handleTrackingSenderNumber()"
-            >
-            </select>
+            ></select>
         </div>
 
         <!-- TARGET NUMBER -->
