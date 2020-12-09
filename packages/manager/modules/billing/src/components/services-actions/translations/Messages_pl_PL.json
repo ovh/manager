@@ -17,5 +17,6 @@
   "billing_services_actions_menu_sms_credit": "Zasil konto",
   "billing_services_actions_menu_sms_renew": "Skonfiguruj automatyczne doładowanie",
   "billing_services_actions_menu_resiliate_cancel": "Anuluj rezygnację z usługi",
-  "billing_services_actions_menu_see_dashboard": "Wyświetl szczegółowe informacje o usłudze"
+  "billing_services_actions_menu_see_dashboard": "Wyświetl szczegółowe informacje o usłudze",
+  "billing_services_actions_menu_commit": "Zarządzanie usługą z opcją umowy terminowej"
 }
