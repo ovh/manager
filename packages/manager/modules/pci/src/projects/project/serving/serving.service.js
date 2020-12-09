@@ -33,11 +33,9 @@ export default class PciProjectServingService {
   }
 
   delete(projectId, { id: namespaceId }) {
-    return this.OvhApiCloudProjectAi.Serving()
-      .v6()
-      .delete({
-        serviceName: projectId,
-        namespaceId,
-      }).$promise;
+    return this.OvhApiCloudProjectAi.Serving().v6().delete({
+      serviceName: projectId,
+      namespaceId,
+    }).$promise;
   }
 }

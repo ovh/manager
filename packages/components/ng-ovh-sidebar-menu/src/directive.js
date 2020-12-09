@@ -14,7 +14,7 @@
 import controller from './controller';
 import template from './template.html';
 
-export default function() {
+export default function () {
   return {
     template,
     restrict: 'A',

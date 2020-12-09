@@ -62,14 +62,8 @@ export default () => {
   Chart.prototype.init = function init(el) {
     this.x = d3.time.scale();
     this.y = d3.scale.linear();
-    this.xAxis = d3.svg
-      .axis()
-      .scale(this.x)
-      .orient('bottom');
-    this.yAxis = d3.svg
-      .axis()
-      .scale(this.y)
-      .orient('left');
+    this.xAxis = d3.svg.axis().scale(this.x).orient('bottom');
+    this.yAxis = d3.svg.axis().scale(this.y).orient('left');
     this.line = d3.svg.line();
     this.area = d3.svg.area();
     this.g.svg = d3

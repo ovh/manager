@@ -940,49 +940,40 @@ class DedicatedCloudService {
   }
 
   createVMEncryptionKMS(serviceName, { ip, description, sslThumbprint }) {
-    return this.OvhApiDedicatedCloud.VMEncryption()
-      .kms()
-      .v6()
-      .create(
-        {
-          serviceName,
-        },
-        {
-          ip,
-          description,
-          sslThumbprint,
-        },
-      ).$promise;
+    return this.OvhApiDedicatedCloud.VMEncryption().kms().v6().create(
+      {
+        serviceName,
+      },
+      {
+        ip,
+        description,
+        sslThumbprint,
+      },
+    ).$promise;
   }
 
   deleteVMEncryptionKMS(serviceName, kmsId) {
-    return this.OvhApiDedicatedCloud.VMEncryption()
-      .kms()
-      .v6()
-      .delete(
-        {
-          serviceName,
-        },
-        {
-          kmsId,
-        },
-      ).$promise;
+    return this.OvhApiDedicatedCloud.VMEncryption().kms().v6().delete(
+      {
+        serviceName,
+      },
+      {
+        kmsId,
+      },
+    ).$promise;
   }
 
   editVMEncryptionKMS(serviceName, { kmsId, description, sslThumbprint }) {
-    return this.OvhApiDedicatedCloud.VMEncryption()
-      .kms()
-      .v6()
-      .changeProperties(
-        {
-          serviceName,
-          kmsId,
-        },
-        {
-          description,
-          sslThumbprint,
-        },
-      ).$promise;
+    return this.OvhApiDedicatedCloud.VMEncryption().kms().v6().changeProperties(
+      {
+        serviceName,
+        kmsId,
+      },
+      {
+        description,
+        sslThumbprint,
+      },
+    ).$promise;
   }
 
   startVMEncryptionKMSPoller(serviceName, taskId) {

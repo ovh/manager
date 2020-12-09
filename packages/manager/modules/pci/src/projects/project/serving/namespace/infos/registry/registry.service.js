@@ -5,35 +5,26 @@ export default class OvhManagerPciServingRegistryService {
   }
 
   get(serviceName, namespaceId) {
-    return this.OvhApiCloudProjectAi.Serving()
-      .Registry()
-      .v6()
-      .get({
-        serviceName,
-        namespaceId,
-      }).$promise;
+    return this.OvhApiCloudProjectAi.Serving().Registry().v6().get({
+      serviceName,
+      namespaceId,
+    }).$promise;
   }
 
   attach(serviceName, namespaceId, registry) {
-    return this.OvhApiCloudProjectAi.Serving()
-      .Registry()
-      .v6()
-      .save(
-        {
-          serviceName,
-          namespaceId,
-        },
-        registry,
-      ).$promise;
+    return this.OvhApiCloudProjectAi.Serving().Registry().v6().save(
+      {
+        serviceName,
+        namespaceId,
+      },
+      registry,
+    ).$promise;
   }
 
   detach(serviceName, namespaceId) {
-    return this.OvhApiCloudProjectAi.Serving()
-      .Registry()
-      .v6()
-      .delete({
-        serviceName,
-        namespaceId,
-      }).$promise;
+    return this.OvhApiCloudProjectAi.Serving().Registry().v6().delete({
+      serviceName,
+      namespaceId,
+    }).$promise;
   }
 }

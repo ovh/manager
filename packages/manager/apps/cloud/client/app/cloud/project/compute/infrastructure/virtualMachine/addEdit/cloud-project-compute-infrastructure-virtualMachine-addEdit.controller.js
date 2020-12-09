@@ -1355,9 +1355,7 @@ angular
 
         // Focus first elem
         $timeout(() => {
-          $('.cloud-vm-popover')
-            .find(':tabbable:first')
-            .focus();
+          $('.cloud-vm-popover').find(':tabbable:first').focus();
         }, 99);
       };
 

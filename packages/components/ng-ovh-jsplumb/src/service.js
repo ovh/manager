@@ -5,7 +5,7 @@
  *
  * Main service
  */
-export default /* @ngInject */ function($q) {
+export default /* @ngInject */ function ($q) {
   const initDeferred = $q.defer();
 
   /**

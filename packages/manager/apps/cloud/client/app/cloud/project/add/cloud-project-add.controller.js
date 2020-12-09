@@ -64,9 +64,7 @@ angular
         description: self.model.description,
       });
       OvhApiVrack.v6().resetCache();
-      OvhApiVrack.CloudProject()
-        .v6()
-        .resetQueryCache();
+      OvhApiVrack.CloudProject().v6().resetQueryCache();
     }
 
     /**
@@ -267,23 +265,14 @@ angular
     function initProject() {
       return $q
         .all({
-          projectIds: OvhApiCloud.Project()
-            .v6()
-            .query().$promise,
-          price: OvhApiCloud.Price()
-            .v6()
-            .query().$promise,
+          projectIds: OvhApiCloud.Project().v6().query().$promise,
+          price: OvhApiCloud.Price().v6().query().$promise,
           user: OvhApiMe.v6().get().$promise,
-          defaultPayment: OvhApiMe.PaymentMean()
-            .v6()
-            .getDefaultPaymentMean(),
-          availablePayment: OvhApiMe.AvailableAutomaticPaymentMeans()
-            .v6()
-            .get().$promise,
+          defaultPayment: OvhApiMe.PaymentMean().v6().getDefaultPaymentMean(),
+          availablePayment: OvhApiMe.AvailableAutomaticPaymentMeans().v6().get()
+            .$promise,
           fidelityAccount: initUserFidelityAccount(),
-          bill: OvhApiMe.Bill()
-            .v6()
-            .query().$promise,
+          bill: OvhApiMe.Bill().v6().query().$promise,
           creditCards: OvhApiMePaymentMeanCreditCard.v6().getCreditCards(),
         })
         .then((result) => {

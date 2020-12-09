@@ -43,10 +43,9 @@ angular.module('UserAccount').controller('UserAccount.controllers.agreements', [
           },
           (err) => {
             Alerter.error(
-              `${$translate.instant('user_agreements_error')} ${get(
-                err,
-                'message',
-              ) || err}`,
+              `${$translate.instant('user_agreements_error')} ${
+                get(err, 'message') || err
+              }`,
               'agreements_alerter',
             );
           },

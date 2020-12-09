@@ -44,9 +44,9 @@ export default class {
       })
       .catch((error) => {
         this.goBack(
-          `${this.$translate.instant(
-            'dedicatedCloud_USER_right_get_fail',
-          )} ${error.message || error}`,
+          `${this.$translate.instant('dedicatedCloud_USER_right_get_fail')} ${
+            error.message || error
+          }`,
           'danger',
         );
       })

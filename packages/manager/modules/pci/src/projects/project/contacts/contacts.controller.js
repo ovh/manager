@@ -1,6 +1,6 @@
 import indexOf from 'lodash/indexOf';
 
-export default /* @ngInject */ function(
+export default /* @ngInject */ function (
   $stateParams,
   $translate,
   $window,
@@ -111,10 +111,7 @@ export default /* @ngInject */ function(
   self.getRights = function getRights(clearCache) {
     self.loader = true;
     if (clearCache) {
-      OvhApiCloud.Project()
-        .Acl()
-        .v6()
-        .resetQueryCache();
+      OvhApiCloud.Project().Acl().v6().resetQueryCache();
     }
     return OvhApiCloud.Project()
       .Acl()
@@ -152,13 +149,10 @@ export default /* @ngInject */ function(
       })
       .then(
         () =>
-          OvhApiCloud.Project()
-            .Acl()
-            .v6()
-            .remove({
-              serviceName,
-              accountId: account.accountId,
-            }).$promise,
+          OvhApiCloud.Project().Acl().v6().remove({
+            serviceName,
+            accountId: account.accountId,
+          }).$promise,
       )
       .then(() => {
         self.getRights(true);
@@ -181,13 +175,10 @@ export default /* @ngInject */ function(
   };
 
   this.transformItem = function transformItem(account) {
-    return OvhApiCloud.Project()
-      .Acl()
-      .v6()
-      .get({
-        serviceName,
-        accountId: account.accountId,
-      }).$promise;
+    return OvhApiCloud.Project().Acl().v6().get({
+      serviceName,
+      accountId: account.accountId,
+    }).$promise;
   };
 
   // Controller initialization

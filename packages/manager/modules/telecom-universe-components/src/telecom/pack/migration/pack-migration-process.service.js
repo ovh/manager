@@ -11,7 +11,7 @@ import values from 'lodash/values';
 /**
  *  Service used to share data between differents steps of the pack migration process.
  */
-export default /* @ngInject */ function($q, OvhApiPackXdsl, Poller) {
+export default /* @ngInject */ function ($q, OvhApiPackXdsl, Poller) {
   const self = this;
   let migrationProcess = null;
 
@@ -64,13 +64,11 @@ export default /* @ngInject */ function($q, OvhApiPackXdsl, Poller) {
     ======================================== */
 
   function getMigrationTaskByStatus(taskStatus) {
-    return OvhApiPackXdsl.Task()
-      .v6()
-      .query({
-        packName: migrationProcess.pack.packName,
-        function: 'pendingMigration',
-        status: taskStatus,
-      }).$promise;
+    return OvhApiPackXdsl.Task().v6().query({
+      packName: migrationProcess.pack.packName,
+      function: 'pendingMigration',
+      status: taskStatus,
+    }).$promise;
   }
 
   self.checkForPendingMigration = function checkForPendingMigration() {

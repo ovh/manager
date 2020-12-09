@@ -44,9 +44,7 @@ export default class EnterpriseCloudDatabaseServiceDetailsBackupsCtrl {
       .getBackupDetails(this.clusterDetails.id, backupId)
       .then((backup) =>
         assign(backup, {
-          expirationDate: moment(backup.creationDate)
-            .add(90, 'days')
-            .format(),
+          expirationDate: moment(backup.creationDate).add(90, 'days').format(),
         }),
       );
   }

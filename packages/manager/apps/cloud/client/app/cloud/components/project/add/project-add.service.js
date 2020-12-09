@@ -184,9 +184,7 @@ import set from 'lodash/set';
         description,
       });
       this.Vrack.v6().resetCache();
-      this.Vrack.CloudProject()
-        .v6()
-        .resetQueryCache();
+      this.Vrack.CloudProject().v6().resetQueryCache();
     }
   }
   angular.module('managerApp').service('CloudProjectAdd', CloudProjectAdd);

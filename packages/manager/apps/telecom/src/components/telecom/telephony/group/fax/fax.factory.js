@@ -82,49 +82,43 @@ export default /* @ngInject */ ($q, OvhApiTelephony) => {
   TelephonyGroupFax.prototype.save = function save() {
     const self = this;
 
-    return OvhApiTelephony.Fax()
-      .v6()
-      .edit(
-        {
-          billingAccount: self.billingAccount,
-          serviceName: self.serviceName,
-        },
-        {
-          description: self.description,
-          notifications: self.notifications,
-        },
-      ).$promise;
+    return OvhApiTelephony.Fax().v6().edit(
+      {
+        billingAccount: self.billingAccount,
+        serviceName: self.serviceName,
+      },
+      {
+        description: self.description,
+        notifications: self.notifications,
+      },
+    ).$promise;
   };
 
   TelephonyGroupFax.prototype.terminate = function terminate(reason, details) {
     const self = this;
 
-    return OvhApiTelephony.Service()
-      .v6()
-      .delete(
-        {
-          billingAccount: self.billingAccount,
-          serviceName: self.serviceName,
-        },
-        {
-          reason,
-          details,
-        },
-      ).$promise;
+    return OvhApiTelephony.Service().v6().delete(
+      {
+        billingAccount: self.billingAccount,
+        serviceName: self.serviceName,
+      },
+      {
+        reason,
+        details,
+      },
+    ).$promise;
   };
 
   TelephonyGroupFax.prototype.cancelTermination = function cancelTermination() {
     const self = this;
 
-    return OvhApiTelephony.Service()
-      .v6()
-      .cancelTermination(
-        {
-          billingAccount: self.billingAccount,
-          serviceName: self.serviceName,
-        },
-        {},
-      ).$promise;
+    return OvhApiTelephony.Service().v6().cancelTermination(
+      {
+        billingAccount: self.billingAccount,
+        serviceName: self.serviceName,
+      },
+      {},
+    ).$promise;
   };
 
   /* ----------  TASK  ----------*/
@@ -147,14 +141,11 @@ export default /* @ngInject */ ($q, OvhApiTelephony) => {
             map(
               offerTaskIds,
               (id) =>
-                OvhApiTelephony.Service()
-                  .OfferTask()
-                  .v6()
-                  .get({
-                    billingAccount: self.billingAccount,
-                    serviceName: self.serviceName,
-                    taskId: id,
-                  }).$promise,
+                OvhApiTelephony.Service().OfferTask().v6().get({
+                  billingAccount: self.billingAccount,
+                  serviceName: self.serviceName,
+                  taskId: id,
+                }).$promise,
             ),
           )
           .then((tasks) => head(filter(tasks, { status: 'todo' }))),

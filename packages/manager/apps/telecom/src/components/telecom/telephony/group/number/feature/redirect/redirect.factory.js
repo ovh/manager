@@ -127,18 +127,16 @@ export default /* @ngInject */ ($q, OvhApiTelephony) => {
       return $q.when(self);
     }
 
-    return OvhApiTelephony.Redirect()
-      .v6()
-      .change(
-        {
-          billingAccount: self.billingAccount,
-          featureType: self.featureType,
-          serviceName: self.serviceName,
-        },
-        {
-          destination: self.destination,
-        },
-      ).$promise;
+    return OvhApiTelephony.Redirect().v6().change(
+      {
+        billingAccount: self.billingAccount,
+        featureType: self.featureType,
+        serviceName: self.serviceName,
+      },
+      {
+        destination: self.destination,
+      },
+    ).$promise;
   };
 
   /* ----------  HELPERS  ----------*/

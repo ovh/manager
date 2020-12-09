@@ -93,9 +93,10 @@ export default class DomainTabZoneDnsCtrl {
   }
 
   static getDomainToDisplay(record) {
-    return `${(record.subDomainToDisplay
-      ? `${record.subDomainToDisplay}.`
-      : '') + record.zoneToDisplay}.`;
+    return `${
+      (record.subDomainToDisplay ? `${record.subDomainToDisplay}.` : '') +
+      record.zoneToDisplay
+    }.`;
   }
 
   getZoneDns(domainName) {

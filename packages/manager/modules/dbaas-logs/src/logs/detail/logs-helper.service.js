@@ -18,9 +18,7 @@ export default class LogsHelperService {
     this.CucCloudPoll = CucCloudPoll;
     this.CucControllerModalHelper = CucControllerModalHelper;
     this.LogsConstants = LogsConstants;
-    this.OperationApiService = OvhApiDbaas.Logs()
-      .Operation()
-      .v6();
+    this.OperationApiService = OvhApiDbaas.Logs().Operation().v6();
     this.ovhDocUrl = ovhDocUrl;
     this.initGuides();
   }

@@ -26,14 +26,10 @@ angular
         data.offset = offset;
       }
       if (date) {
-        data.date = moment(date)
-          .startOf('day')
-          .toISOString();
+        data.date = moment(date).startOf('day').toISOString();
       }
       if (dateTo) {
-        data.dateTo = moment(dateTo)
-          .endOf('day')
-          .toISOString();
+        data.dateTo = moment(dateTo).endOf('day').toISOString();
       }
       data.ovhAccount = ovhAccount;
 

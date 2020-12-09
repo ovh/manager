@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-export default /* @ngInject */ function($scope) {
+export default /* @ngInject */ function ($scope) {
   $scope.updateShared = function updateShared(shared) {
     if (shared.state === $scope.stateOk) {
       $scope.setAction(

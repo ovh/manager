@@ -97,9 +97,7 @@ export default /* @ngInject */ function controller(
         self.attachSuccess = true;
 
         // Refresh cache and state
-        OvhApiTelephony.Line()
-          .v6()
-          .resetAllCache();
+        OvhApiTelephony.Line().v6().resetAllCache();
         TelephonyMediator.resetAllCache();
         $state.reload();
       })

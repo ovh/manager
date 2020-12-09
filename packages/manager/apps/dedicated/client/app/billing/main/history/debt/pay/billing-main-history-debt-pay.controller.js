@@ -47,19 +47,14 @@ angular.module('Billing').controller(
       let promise;
 
       if (this.$stateParams.debtId !== 'all') {
-        promise = this.OvhApiMe.DebtAccount()
-          .Debt()
-          .v6()
-          .pay(
-            {
-              debtId: this.$stateParams.debtId,
-            },
-            {},
-          ).$promise;
+        promise = this.OvhApiMe.DebtAccount().Debt().v6().pay(
+          {
+            debtId: this.$stateParams.debtId,
+          },
+          {},
+        ).$promise;
       } else {
-        promise = this.OvhApiMe.DebtAccount()
-          .v6()
-          .pay().$promise;
+        promise = this.OvhApiMe.DebtAccount().v6().pay().$promise;
       }
 
       return promise

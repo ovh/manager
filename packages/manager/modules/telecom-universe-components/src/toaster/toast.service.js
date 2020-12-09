@@ -7,7 +7,7 @@ import remove from 'lodash/remove';
 /**
  * ovh-angular-toaster replacement.
  */
-export default /* @ngInject */ function($timeout) {
+export default /* @ngInject */ function ($timeout) {
   const self = this;
 
   const defaultOptions = {

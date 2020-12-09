@@ -38,17 +38,10 @@ export default class EnterpriseCloudDatabaseService {
     this.OvhApiCloudDBEnterpriseServiceInfos = OvhApiCloudDBEnterprise.ServiceInfos().v6();
     this.OvhApiCloudDBEnterpriseUser = OvhApiCloudDBEnterprise.User().v6();
     this.OvhApiCloudDBEnterpriseWindow = OvhApiCloudDBEnterprise.MaintenanceWindow().v6();
-    this.OvhApiOrderEnterpriseCloudDB = OvhApiOrder.Catalog()
-      .Public()
-      .v6();
+    this.OvhApiOrderEnterpriseCloudDB = OvhApiOrder.Catalog().Public().v6();
     this.OvhApiOrderCart = OvhApiOrder.Cart().v6();
-    this.OvhApiOrderCartProduct = OvhApiOrder.Cart()
-      .Product()
-      .v6();
-    this.OvhApiOrderCartConfig = OvhApiOrder.Cart()
-      .Item()
-      .Configuration()
-      .v6();
+    this.OvhApiOrderCartProduct = OvhApiOrder.Cart().Product().v6();
+    this.OvhApiOrderCartConfig = OvhApiOrder.Cart().Item().Configuration().v6();
     this.OvhApiOrderCartServiceOption = OvhApiOrder.CartServiceOption()
       .EnterpriseCloudDatabases()
       .v6();

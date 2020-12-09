@@ -32,10 +32,9 @@ angular.module('UserAccount').controller('UserAccount.controllers.ssh.delete', [
         },
         (err) => {
           Alerter.error(
-            `${$translate.instant('user_ssh_delete_error_message')} ${get(
-              err,
-              'message',
-            ) || err}`,
+            `${$translate.instant('user_ssh_delete_error_message')} ${
+              get(err, 'message') || err
+            }`,
             'userSsh',
           );
         },

@@ -20,7 +20,7 @@
    </file>
    </example>
  */
-export default function() {
+export default function () {
   const CSS_FOCUS = 'flat-focus';
 
   return {

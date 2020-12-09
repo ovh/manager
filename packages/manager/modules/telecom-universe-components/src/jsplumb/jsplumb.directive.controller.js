@@ -1,4 +1,4 @@
-export default /* @ngInject */ function($timeout) {
+export default /* @ngInject */ function ($timeout) {
   const self = this;
   let repaintTimeout = null;
 

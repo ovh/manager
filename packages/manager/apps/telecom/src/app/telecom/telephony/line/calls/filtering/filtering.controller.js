@@ -21,10 +21,7 @@ export default /* @ngInject */ function TelecomTelephonyLineCallsFilteringCtrl(
   const self = this;
 
   self.fetchScreenLists = function fetchScreenLists() {
-    OvhApiTelephony.Screen()
-      .ScreenLists()
-      .v6()
-      .resetAllCache();
+    OvhApiTelephony.Screen().ScreenLists().v6().resetAllCache();
     return OvhApiTelephony.Screen()
       .ScreenLists()
       .v6()
@@ -38,14 +35,11 @@ export default /* @ngInject */ function TelecomTelephonyLineCallsFilteringCtrl(
             map(
               chunk(ids, 50),
               (chunkIds) =>
-                OvhApiTelephony.Screen()
-                  .ScreenLists()
-                  .v6()
-                  .getBatch({
-                    billingAccount: $stateParams.billingAccount,
-                    serviceName: $stateParams.serviceName,
-                    id: chunkIds,
-                  }).$promise,
+                OvhApiTelephony.Screen().ScreenLists().v6().getBatch({
+                  billingAccount: $stateParams.billingAccount,
+                  serviceName: $stateParams.serviceName,
+                  id: chunkIds,
+                }).$promise,
             ),
           )
           .then((chunkResult) => {
@@ -67,16 +61,13 @@ export default /* @ngInject */ function TelecomTelephonyLineCallsFilteringCtrl(
   };
 
   self.addScreenList = function addScreenList(screen) {
-    return OvhApiTelephony.Screen()
-      .ScreenLists()
-      .v6()
-      .create(
-        {
-          billingAccount: $stateParams.billingAccount,
-          serviceName: $stateParams.serviceName,
-        },
-        screen,
-      ).$promise;
+    return OvhApiTelephony.Screen().ScreenLists().v6().create(
+      {
+        billingAccount: $stateParams.billingAccount,
+        serviceName: $stateParams.serviceName,
+      },
+      screen,
+    ).$promise;
   };
 
   self.onScreenListAdded = function onScreenListAdded() {
@@ -84,32 +75,25 @@ export default /* @ngInject */ function TelecomTelephonyLineCallsFilteringCtrl(
   };
 
   self.removeScreenList = function removeScreenList(screen) {
-    return OvhApiTelephony.Screen()
-      .ScreenLists()
-      .v6()
-      .remove({
-        billingAccount: $stateParams.billingAccount,
-        serviceName: $stateParams.serviceName,
-        id: screen.id,
-      }).$promise;
+    return OvhApiTelephony.Screen().ScreenLists().v6().remove({
+      billingAccount: $stateParams.billingAccount,
+      serviceName: $stateParams.serviceName,
+      id: screen.id,
+    }).$promise;
   };
 
   self.fetchScreen = function fetchScreen() {
-    return OvhApiTelephony.Screen()
-      .v6()
-      .get({
-        billingAccount: $stateParams.billingAccount,
-        serviceName: $stateParams.serviceName,
-      }).$promise;
+    return OvhApiTelephony.Screen().v6().get({
+      billingAccount: $stateParams.billingAccount,
+      serviceName: $stateParams.serviceName,
+    }).$promise;
   };
 
   self.fetchOptions = function fetchOptions() {
-    return OvhApiTelephony.Line()
-      .v6()
-      .getOptions({
-        billingAccount: $stateParams.billingAccount,
-        serviceName: $stateParams.serviceName,
-      }).$promise;
+    return OvhApiTelephony.Line().v6().getOptions({
+      billingAccount: $stateParams.billingAccount,
+      serviceName: $stateParams.serviceName,
+    }).$promise;
   };
 
   function init() {
@@ -201,9 +185,7 @@ export default /* @ngInject */ function TelecomTelephonyLineCallsFilteringCtrl(
       });
 
     // reset initial values to be able to modify again the options
-    OvhApiTelephony.Line()
-      .v6()
-      .resetAllCache();
+    OvhApiTelephony.Line().v6().resetAllCache();
 
     init();
   };

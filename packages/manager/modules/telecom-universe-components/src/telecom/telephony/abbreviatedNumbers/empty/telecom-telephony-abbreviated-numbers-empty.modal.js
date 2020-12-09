@@ -1,7 +1,7 @@
 import angular from 'angular';
 import map from 'lodash/map';
 
-export default /* @ngInject */ function($q, $uibModalInstance, data) {
+export default /* @ngInject */ function ($q, $uibModalInstance, data) {
   const self = this;
 
   this.loading = {

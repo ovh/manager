@@ -215,8 +215,9 @@ export default class IpLoadBalancerServerFarmCtrl {
       zone = this.$translate.instant('iplb_zone_all');
     }
 
-    return `${this.$filter('uppercase')(farm.type) +
-      (farm.port ? `:${farm.port}` : '')} / ${zone}${serverText}`;
+    return `${
+      this.$filter('uppercase')(farm.type) + (farm.port ? `:${farm.port}` : '')
+    } / ${zone}${serverText}`;
   }
 
   getFarmName(farm) {

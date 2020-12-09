@@ -1,4 +1,4 @@
-export default function() {
+export default function () {
   return {
     restrict: 'A',
     link(scope, element, attr) {

@@ -62,7 +62,7 @@ angular
           hideAfter: false,
         });
 
-        this.$timeout(function() {
+        this.$timeout(function () {
           this.Toast.success('Done!', {
             id: 42,
           });
@@ -74,9 +74,9 @@ angular
           hideAfter: false,
         });
 
-        this.$timeout(function() {
+        this.$timeout(function () {
           this.Toast.hide(msg);
-          this.$timeout(function() {
+          this.$timeout(function () {
             this.Toast.show(msg);
           }, 2000);
         }, 2000);

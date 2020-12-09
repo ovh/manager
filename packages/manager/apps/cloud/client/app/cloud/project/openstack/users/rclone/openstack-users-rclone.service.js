@@ -35,9 +35,7 @@ class CloudProjectOpenstackUsersRcloneService {
   getRcloneFileInfo(projectId, userId, region) {
     let url = [
       (find(this.CONFIG_API.apis, { serviceType: 'apiv6' }) || {}).urlPrefix,
-      this.OvhApiCloud.Project()
-        .User()
-        .v6().services.rclone.url,
+      this.OvhApiCloud.Project().User().v6().services.rclone.url,
       '?',
       this.$httpParamSerializer({
         region,

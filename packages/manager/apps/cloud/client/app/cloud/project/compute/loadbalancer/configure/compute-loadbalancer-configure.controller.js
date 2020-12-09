@@ -182,39 +182,33 @@ class CloudProjectComputeLoadbalancerConfigureCtrl {
         configurePromise = configurePromise
           .then(
             () =>
-              this.OvhApiIpLoadBalancing.Farm()
-                .Http()
-                .v6()
-                .post(
-                  {
-                    serviceName: this.loadbalancerId,
-                  },
-                  {
-                    displayName: 'PublicCloud',
-                    port: 80,
-                    zone: 'all',
-                  },
-                ).$promise,
+              this.OvhApiIpLoadBalancing.Farm().Http().v6().post(
+                {
+                  serviceName: this.loadbalancerId,
+                },
+                {
+                  displayName: 'PublicCloud',
+                  port: 80,
+                  zone: 'all',
+                },
+              ).$promise,
           )
           .then((farm) => {
             this.loadbalancer.farm = farm;
           })
           .then(
             () =>
-              this.OvhApiIpLoadBalancing.Frontend()
-                .Http()
-                .v6()
-                .post(
-                  {
-                    serviceName: this.loadbalancerId,
-                  },
-                  {
-                    displayName: 'PublicCloud',
-                    port: 80,
-                    zone: 'all',
-                    defaultFarmId: this.loadbalancer.farm.farmId,
-                  },
-                ).$promise,
+              this.OvhApiIpLoadBalancing.Frontend().Http().v6().post(
+                {
+                  serviceName: this.loadbalancerId,
+                },
+                {
+                  displayName: 'PublicCloud',
+                  port: 80,
+                  zone: 'all',
+                  defaultFarmId: this.loadbalancer.farm.farmId,
+                },
+              ).$promise,
           )
           .then((frontend) => {
             this.loadbalancer.frontend = frontend;
@@ -230,37 +224,29 @@ class CloudProjectComputeLoadbalancerConfigureCtrl {
           modified = true;
           configurePromise = configurePromise.then(
             () =>
-              this.OvhApiIpLoadBalancing.Farm()
-                .Http()
-                .Server()
-                .v6()
-                .post(
-                  {
-                    serviceName: this.loadbalancerId,
-                    farmId: this.loadbalancer.farm.farmId,
-                  },
-                  {
-                    displayName,
-                    port: 80,
-                    address: ip,
-                    status: 'active',
-                  },
-                ).$promise,
+              this.OvhApiIpLoadBalancing.Farm().Http().Server().v6().post(
+                {
+                  serviceName: this.loadbalancerId,
+                  farmId: this.loadbalancer.farm.farmId,
+                },
+                {
+                  displayName,
+                  port: 80,
+                  address: ip,
+                  status: 'active',
+                },
+              ).$promise,
           );
         }
         if (!enable && this.attachedServers[ip]) {
           modified = true;
           configurePromise = configurePromise.then(
             () =>
-              this.OvhApiIpLoadBalancing.Farm()
-                .Http()
-                .Server()
-                .v6()
-                .delete({
-                  serviceName: this.loadbalancerId,
-                  serverId: this.attachedServers[ip].serverId,
-                  farmId: this.loadbalancer.farm.farmId,
-                }).$promise,
+              this.OvhApiIpLoadBalancing.Farm().Http().Server().v6().delete({
+                serviceName: this.loadbalancerId,
+                serverId: this.attachedServers[ip].serverId,
+                farmId: this.loadbalancer.farm.farmId,
+              }).$promise,
           );
         }
       });

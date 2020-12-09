@@ -13,9 +13,7 @@ const mapDateFilter = (comparator, value) => {
     case 'is':
       return {
         'date.from': value,
-        'date.to': moment(value)
-          .add(1, 'day')
-          .format('YYYY-MM-DD'),
+        'date.to': moment(value).add(1, 'day').format('YYYY-MM-DD'),
       };
     default:
       return {};
@@ -61,9 +59,7 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
       resolve: {
         ...omit(ListLayoutHelper.stateResolves, ['resources']),
         bills: /* @ngInject */ (OvhApiMe) =>
-          OvhApiMe.Bill()
-            .v6()
-            .query().$promise,
+          OvhApiMe.Bill().v6().query().$promise,
         // Override ListLayoutHelper resources to use native filters for date
         resources: /* @ngInject */ ($transition$, iceberg) => {
           const { filter, pageSize, sort, sortOrder } = $transition$.params();
@@ -146,10 +142,7 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
           OvhApiMe,
         ) =>
           coreConfig.isRegion('EU') && currentUser.canHaveInvoicesByPostalMail()
-            ? OvhApiMe.Billing()
-                .InvoicesByPostalMail()
-                .v6()
-                .get().$promise
+            ? OvhApiMe.Billing().InvoicesByPostalMail().v6().get().$promise
             : $q.when(null),
 
         hasDefaultPaymentMethod: /* @ngInject */ (ovhPaymentMethod) =>

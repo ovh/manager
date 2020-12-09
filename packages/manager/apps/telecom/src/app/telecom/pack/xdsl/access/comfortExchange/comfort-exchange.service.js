@@ -5,10 +5,8 @@ export default class XdslAccessComfortExchangeService {
   }
 
   getOpenedRMAs(xdslId) {
-    return this.OvhApiXdsl.RMA()
-      .v6()
-      .query({
-        xdslId,
-      }).$promise;
+    return this.OvhApiXdsl.RMA().v6().query({
+      xdslId,
+    }).$promise;
   }
 }

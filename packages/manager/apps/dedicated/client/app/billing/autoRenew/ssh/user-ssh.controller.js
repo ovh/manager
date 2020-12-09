@@ -102,10 +102,9 @@ export default class UserAccountSshCtrl {
       },
       (err) => {
         this.Alerter.error(
-          `${this.$translate.instant('user_ssh_default_error_message')} ${get(
-            err,
-            'message',
-          ) || err}`,
+          `${this.$translate.instant('user_ssh_default_error_message')} ${
+            get(err, 'message') || err
+          }`,
           'userSsh',
         );
       },

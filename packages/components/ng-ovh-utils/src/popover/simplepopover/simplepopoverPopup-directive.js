@@ -1,6 +1,6 @@
 import template from './simplepopover.html';
 
-export default function() {
+export default function () {
   return {
     restrict: 'A',
     replace: true,

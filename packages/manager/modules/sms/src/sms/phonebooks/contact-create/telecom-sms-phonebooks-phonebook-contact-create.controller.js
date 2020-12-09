@@ -22,9 +22,7 @@ export default class {
     this.TucPhonebookcontact = TucPhonebookcontact;
     this.api = {
       sms: {
-        phonebookContact: OvhApiSms.Phonebooks()
-          .PhonebookContact()
-          .v6(),
+        phonebookContact: OvhApiSms.Phonebooks().PhonebookContact().v6(),
       },
     };
     this.TelecomSmsPhoneBooksNumber = TelecomSmsPhoneBooksNumber;

@@ -175,14 +175,12 @@ import pull from 'lodash/pull';
     }
 
     acceptAgreement(agreementId) {
-      return this.User.Agreements()
-        .v6()
-        .accept(
-          {
-            id: agreementId,
-          },
-          {},
-        );
+      return this.User.Agreements().v6().accept(
+        {
+          id: agreementId,
+        },
+        {},
+      );
     }
 
     getDefaultPaymentMethod() {

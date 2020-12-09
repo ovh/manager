@@ -3,7 +3,7 @@ import isEmpty from 'lodash/isEmpty';
 import mapValues from 'lodash/mapValues';
 import omit from 'lodash/omit';
 
-export default /* @ngInject */ function($rootScope, $q, OvhApiXdsl, Poller) {
+export default /* @ngInject */ function ($rootScope, $q, OvhApiXdsl, Poller) {
   const self = this;
 
   this.capabilities = {

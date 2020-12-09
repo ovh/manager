@@ -16,9 +16,7 @@ angular.module('Billing.services').service('BillingdateRangeSelection', [
     let mode = $window.sessionStorage.getItem(`${STORAGE_KEY_PREFIX}_mode`);
     let dateFrom = loadDateFromStorage(
       'dateFrom',
-      moment()
-        .subtract(1, 'month')
-        .startOf('month'),
+      moment().subtract(1, 'month').startOf('month'),
     );
     let dateTo = loadDateFromStorage('dateTo', moment().endOf('day'));
 

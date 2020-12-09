@@ -213,9 +213,7 @@ export default /* @ngInject */ function TucPackMediator(
   self.getCount = function getCount() {
     return $q
       .all({
-        pack: OvhApiPackXdsl.v7()
-          .query()
-          .execute().$promise,
+        pack: OvhApiPackXdsl.v7().query().execute().$promise,
         xdsl: OvhApiXdsl.v7()
           .query()
           .addFilter('status', 'ne', 'deleting')

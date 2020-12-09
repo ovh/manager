@@ -14,18 +14,10 @@ export default /* @ngInject */ ($stateProvider) => {
       const $q = transition.injector().get('$q');
       return $q
         .all([
-          transition
-            .injector()
-            .get('OvhApiMe')
-            .v6()
-            .get().$promise,
-          transition
-            .injector()
-            .get('OvhApiCloudProjectServiceInfos')
-            .v6()
-            .get({
-              serviceName,
-            }).$promise,
+          transition.injector().get('OvhApiMe').v6().get().$promise,
+          transition.injector().get('OvhApiCloudProjectServiceInfos').v6().get({
+            serviceName,
+          }).$promise,
         ])
         .then(([me, serviceInfo]) =>
           me.nichandle !== serviceInfo.contactAdmin &&

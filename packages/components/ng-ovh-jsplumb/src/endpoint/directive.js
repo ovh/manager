@@ -84,7 +84,7 @@
  */
 import difference from 'lodash/difference';
 
-export default /* @ngInject */ function($rootScope, $parse) {
+export default /* @ngInject */ function ($rootScope, $parse) {
   return {
     restrict: 'A',
     require: '^jsplumbInstance',

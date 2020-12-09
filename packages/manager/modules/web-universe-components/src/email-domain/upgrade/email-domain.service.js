@@ -13,9 +13,7 @@ export default class EmailDomainService {
   constructor($q, $translate, OvhApiOrder) {
     this.$q = $q;
     this.$translate = $translate;
-    this.OvhApiOrderEmailDomain = OvhApiOrder.Email()
-      .Domain()
-      .v6();
+    this.OvhApiOrderEmailDomain = OvhApiOrder.Email().Domain().v6();
     this.OvhApiOrderSchema = OvhApiOrder.v6();
   }
 

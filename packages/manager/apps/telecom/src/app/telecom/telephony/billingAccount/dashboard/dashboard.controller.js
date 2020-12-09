@@ -146,12 +146,10 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountDashboardC
             map(
               slice(ids, ids.length - 5),
               (chunkIds) =>
-                OvhApiTelephony.HistoryConsumption()
-                  .v6()
-                  .getBatch({
-                    billingAccount: $stateParams.billingAccount,
-                    date: chunkIds,
-                  }).$promise,
+                OvhApiTelephony.HistoryConsumption().v6().getBatch({
+                  billingAccount: $stateParams.billingAccount,
+                  date: chunkIds,
+                }).$promise,
             ),
           )
           .then((chunkResult) => {

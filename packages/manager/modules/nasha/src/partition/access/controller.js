@@ -52,10 +52,7 @@ export default class NashaPartitionAccessCtrl {
   load(resetCache) {
     this.loaders.table = true;
     if (resetCache) {
-      this.OvhApiDedicatedNasha.Partition()
-        .Access()
-        .v6()
-        .resetCache();
+      this.OvhApiDedicatedNasha.Partition().Access().v6().resetCache();
     }
 
     this.$q
@@ -63,13 +60,10 @@ export default class NashaPartitionAccessCtrl {
         nasha: this.OvhApiDedicatedNasha.v6().get({
           serviceName: this.serviceName,
         }).$promise,
-        accesses: this.OvhApiDedicatedNasha.Partition()
-          .Access()
-          .v6()
-          .query({
-            serviceName: this.serviceName,
-            partitionName: this.partition,
-          }).$promise,
+        accesses: this.OvhApiDedicatedNasha.Partition().Access().v6().query({
+          serviceName: this.serviceName,
+          partitionName: this.partition,
+        }).$promise,
       })
       .then((data) => {
         this.data.nasha = data.nasha;

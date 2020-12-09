@@ -58,9 +58,9 @@ export default class {
       },
       (data) => {
         this.goBack(
-          `${this.$translate.instant(
-            'dedicatedCloud_order_loading_error',
-          )} ${data.data.message || data.message || data.data}`,
+          `${this.$translate.instant('dedicatedCloud_order_loading_error')} ${
+            data.data.message || data.message || data.data
+          }`,
           'danger',
         );
       },

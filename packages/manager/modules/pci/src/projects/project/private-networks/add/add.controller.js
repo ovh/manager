@@ -156,12 +156,10 @@ export default class NetworkAddCtrl {
           map(
             regions,
             (region) =>
-              this.OvhApiCloudProject.Region()
-                .v6()
-                .get({
-                  serviceName: this.projectId,
-                  id: region,
-                }).$promise,
+              this.OvhApiCloudProject.Region().v6().get({
+                serviceName: this.projectId,
+                id: region,
+              }).$promise,
           ),
         ),
       )

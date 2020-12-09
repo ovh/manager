@@ -26,17 +26,11 @@ export default /* @ngInject */ function voipTimeCondition(
     sip: {
       init: OvhApiTelephony.TimeCondition().v6().getOptions,
       save: OvhApiTelephony.TimeCondition().v6().setOptions,
-      condition: OvhApiTelephony.TimeCondition()
-        .Condition()
-        .v6(),
+      condition: OvhApiTelephony.TimeCondition().Condition().v6(),
     },
     easyHunting: {
-      init: OvhApiTelephony.EasyHunting()
-        .TimeConditions()
-        .v6().get,
-      save: OvhApiTelephony.EasyHunting()
-        .TimeConditions()
-        .v6().save,
+      init: OvhApiTelephony.EasyHunting().TimeConditions().v6().get,
+      save: OvhApiTelephony.EasyHunting().TimeConditions().v6().save,
       condition: OvhApiTelephony.EasyHunting()
         .TimeConditions()
         .Conditions()
@@ -100,10 +94,7 @@ export default /* @ngInject */ function voipTimeCondition(
     const second = splittedTimeStr[2];
     const minuteInt = parseInt(minute, 10);
     if (minuteInt % 15 === 0) {
-      const timeMoment = moment()
-        .hour(hour)
-        .minute(minute)
-        .second(second);
+      const timeMoment = moment().hour(hour).minute(minute).second(second);
       return timeMoment
         .startOf('minute')
         .subtract(1, 'second')
@@ -269,21 +260,15 @@ export default /* @ngInject */ function voipTimeCondition(
         if (followingIndex) {
           // first day
           const firstDayIndex = head(daysIndex);
-          const firstDay = moment()
-            .weekday(firstDayIndex)
-            .format('dd');
+          const firstDay = moment().weekday(firstDayIndex).format('dd');
 
           // last day
           const lastDayIndex = last(daysIndex);
-          const lastDay = moment()
-            .weekday(lastDayIndex)
-            .format('dd');
+          const lastDay = moment().weekday(lastDayIndex).format('dd');
           groupText = [firstDay, lastDay].join(' - ');
         } else {
           groupText = map(daysIndex, (dayIndex) =>
-            moment()
-              .weekday(dayIndex)
-              .format('dd'),
+            moment().weekday(dayIndex).format('dd'),
           ).join(', ');
         }
 
@@ -299,10 +284,7 @@ export default /* @ngInject */ function voipTimeCondition(
             $translate.instant('telephony_common_time_condition_slot_from'),
             slot.condition.getTimeMoment('from').format('HH:mm'),
             $translate.instant('telephony_common_time_condition_slot_to'),
-            slot.condition
-              .getTimeMoment('to')
-              .add(1, 'second')
-              .format('HH:mm'),
+            slot.condition.getTimeMoment('to').add(1, 'second').format('HH:mm'),
           ].join(' '),
         ).join(', ');
 

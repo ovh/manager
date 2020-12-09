@@ -5,7 +5,7 @@
  * @description
  * Provider allowing configuration for atInternetUiRouterPlugin.
  */
-export default /* @ngInject */ function() {
+export default /* @ngInject */ function () {
   let stateTrackEnabled = false;
   const stateFilters = [];
 

@@ -31,12 +31,10 @@ export default /* @ngInject */ function TelecomTelephonyLineTonesCtrl(
   }
 
   function fetchTones() {
-    return OvhApiTelephony.Line()
-      .v6()
-      .getTones({
-        billingAccount: $stateParams.billingAccount,
-        serviceName: $stateParams.serviceName,
-      }).$promise;
+    return OvhApiTelephony.Line().v6().getTones({
+      billingAccount: $stateParams.billingAccount,
+      serviceName: $stateParams.serviceName,
+    }).$promise;
   }
 
   function init() {
@@ -131,18 +129,16 @@ export default /* @ngInject */ function TelecomTelephonyLineTonesCtrl(
       )
       .then(
         (doc) =>
-          OvhApiTelephony.Line()
-            .v6()
-            .toneUpload(
-              {
-                billingAccount: $stateParams.billingAccount,
-                serviceName: $stateParams.serviceName,
-              },
-              {
-                type: toneType,
-                documentId: doc.id,
-              },
-            ).$promise,
+          OvhApiTelephony.Line().v6().toneUpload(
+            {
+              billingAccount: $stateParams.billingAccount,
+              serviceName: $stateParams.serviceName,
+            },
+            {
+              type: toneType,
+              documentId: doc.id,
+            },
+          ).$promise,
       )
       .then(() => {
         self.tonesForm[`${toneType}UploadSuccess`] = true;

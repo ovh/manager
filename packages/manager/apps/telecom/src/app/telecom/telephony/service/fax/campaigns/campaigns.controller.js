@@ -43,14 +43,11 @@ export default /* @ngInject */ function TelecomTelephonyServiceFaxCampaignsCtrl(
             map(
               campaignsIds,
               (id) =>
-                OvhApiTelephony.Fax()
-                  .Campaigns()
-                  .v6()
-                  .get({
-                    billingAccount: $stateParams.billingAccount,
-                    serviceName: $stateParams.serviceName,
-                    id,
-                  }).$promise,
+                OvhApiTelephony.Fax().Campaigns().v6().get({
+                  billingAccount: $stateParams.billingAccount,
+                  serviceName: $stateParams.serviceName,
+                  id,
+                }).$promise,
             ),
           )
           .then((campaigns) =>
@@ -103,14 +100,8 @@ export default /* @ngInject */ function TelecomTelephonyServiceFaxCampaignsCtrl(
 
   self.refresh = function refresh() {
     self.campaigns.isLoading = true;
-    OvhApiTelephony.Fax()
-      .Campaigns()
-      .v6()
-      .resetQueryCache();
-    OvhApiTelephony.Fax()
-      .Campaigns()
-      .v6()
-      .resetCache();
+    OvhApiTelephony.Fax().Campaigns().v6().resetQueryCache();
+    OvhApiTelephony.Fax().Campaigns().v6().resetCache();
     return fetchCampaigns()
       .then((campaigns) => {
         self.campaigns.raw = campaigns;

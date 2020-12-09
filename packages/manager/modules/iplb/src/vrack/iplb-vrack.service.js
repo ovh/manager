@@ -46,12 +46,10 @@ export default class IpLoadBalancerVrackService {
       .getCreationRules({ serviceName }, {})
       .$promise.then(
         (response) =>
-          this.OvhApiVrack.IpLoadBalancing()
-            .v6()
-            .delete({
-              serviceName: response.vrackName,
-              ipLoadbalancing: serviceName,
-            }).$promise,
+          this.OvhApiVrack.IpLoadBalancing().v6().delete({
+            serviceName: response.vrackName,
+            ipLoadbalancing: serviceName,
+          }).$promise,
       )
       .then((task) => task.data)
       .catch(
@@ -63,9 +61,7 @@ export default class IpLoadBalancerVrackService {
 
   getNetworkCreationRules(serviceName, config = { resetCache: false }) {
     if (config.resetCache) {
-      this.OvhApiIpLoadBalancing.Vrack()
-        .v6()
-        .resetCache();
+      this.OvhApiIpLoadBalancing.Vrack().v6().resetCache();
     }
 
     return this.OvhApiIpLoadBalancing.Vrack()
@@ -166,32 +162,19 @@ export default class IpLoadBalancerVrackService {
       .post({ serviceName }, omit(network, ['vrackNetworkId', 'farmId']))
       .$promise.then(
         (response) =>
-          this.OvhApiIpLoadBalancing.Vrack()
-            .v6()
-            .updateFarmId(
-              {
-                serviceName,
-                vrackNetworkId: response.vrackNetworkId,
-              },
-              { farmId: network.farmId },
-            ).$promise,
+          this.OvhApiIpLoadBalancing.Vrack().v6().updateFarmId(
+            {
+              serviceName,
+              vrackNetworkId: response.vrackNetworkId,
+            },
+            { farmId: network.farmId },
+          ).$promise,
       )
       .then((response) => {
-        this.OvhApiIpLoadBalancing.Farm()
-          .v6()
-          .resetQueryCache();
-        this.OvhApiIpLoadBalancing.Farm()
-          .Tcp()
-          .v6()
-          .resetCache();
-        this.OvhApiIpLoadBalancing.Farm()
-          .Udp()
-          .v6()
-          .resetCache();
-        this.OvhApiIpLoadBalancing.Farm()
-          .Http()
-          .v6()
-          .resetCache();
+        this.OvhApiIpLoadBalancing.Farm().v6().resetQueryCache();
+        this.OvhApiIpLoadBalancing.Farm().Tcp().v6().resetCache();
+        this.OvhApiIpLoadBalancing.Farm().Udp().v6().resetCache();
+        this.OvhApiIpLoadBalancing.Farm().Http().v6().resetCache();
         return response;
       })
       .then(() =>
@@ -215,32 +198,19 @@ export default class IpLoadBalancerVrackService {
             { serviceName, vrackNetworkId: network.vrackNetworkId },
             omit(network, ['vrackNetworkId', 'farmId']),
           ).$promise,
-        this.OvhApiIpLoadBalancing.Vrack()
-          .v6()
-          .updateFarmId(
-            {
-              serviceName,
-              vrackNetworkId: network.vrackNetworkId,
-            },
-            { farmId: network.farmId },
-          ).$promise,
+        this.OvhApiIpLoadBalancing.Vrack().v6().updateFarmId(
+          {
+            serviceName,
+            vrackNetworkId: network.vrackNetworkId,
+          },
+          { farmId: network.farmId },
+        ).$promise,
       ])
       .then((response) => {
-        this.OvhApiIpLoadBalancing.Farm()
-          .v6()
-          .resetQueryCache();
-        this.OvhApiIpLoadBalancing.Farm()
-          .Tcp()
-          .v6()
-          .resetCache();
-        this.OvhApiIpLoadBalancing.Farm()
-          .Udp()
-          .v6()
-          .resetCache();
-        this.OvhApiIpLoadBalancing.Farm()
-          .Http()
-          .v6()
-          .resetCache();
+        this.OvhApiIpLoadBalancing.Farm().v6().resetQueryCache();
+        this.OvhApiIpLoadBalancing.Farm().Tcp().v6().resetCache();
+        this.OvhApiIpLoadBalancing.Farm().Udp().v6().resetCache();
+        this.OvhApiIpLoadBalancing.Farm().Http().v6().resetCache();
         return response;
       })
       .then(() =>

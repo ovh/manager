@@ -72,10 +72,7 @@ class MetricService {
   }
 
   getTokens(serviceName) {
-    this.metrics
-      .Token()
-      .v6()
-      .resetAllCache();
+    this.metrics.Token().v6().resetAllCache();
     return this.metrics
       .Token()
       .v6()
@@ -86,26 +83,20 @@ class MetricService {
         this.$q.all(
           tokenList.map(
             (tokenID) =>
-              this.metrics
-                .Token()
-                .v6()
-                .get({
-                  serviceName,
-                  tokenID,
-                }).$promise,
+              this.metrics.Token().v6().get({
+                serviceName,
+                tokenID,
+              }).$promise,
           ),
         ),
       );
   }
 
   getToken(serviceName, tokenID) {
-    return this.metrics
-      .Token()
-      .v6()
-      .get({
-        serviceName,
-        tokenID,
-      }).$promise;
+    return this.metrics.Token().v6().get({
+      serviceName,
+      tokenID,
+    }).$promise;
   }
 
   addToken(token) {
@@ -114,10 +105,7 @@ class MetricService {
       .v6()
       .save(token)
       .$promise.then((response) => {
-        this.metrics
-          .Token()
-          .v6()
-          .resetAllCache();
+        this.metrics.Token().v6().resetAllCache();
         return this.acceptResponse(
           response,
           this.$translate.instant('metrics_token_created'),
@@ -141,10 +129,7 @@ class MetricService {
         description,
       })
       .$promise.then((response) => {
-        this.metrics
-          .Token()
-          .v6()
-          .resetAllCache();
+        this.metrics.Token().v6().resetAllCache();
         return this.acceptResponse(
           response,
           this.$translate.instant('metrics_token_updated'),
@@ -167,10 +152,7 @@ class MetricService {
         tokenID,
       })
       .$promise.then((response) => {
-        this.metrics
-          .Token()
-          .v6()
-          .resetAllCache();
+        this.metrics.Token().v6().resetAllCache();
         return this.acceptResponse(
           response,
           this.$translate.instant('metrics_token_revoked'),

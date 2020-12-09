@@ -33,12 +33,10 @@ export default /* @ngInject */ function TelecomTelephonyServiceVoicemailOptionsC
   }
 
   function fetchSettings() {
-    return OvhApiTelephony.Voicemail()
-      .v6()
-      .getSettings({
-        billingAccount: $stateParams.billingAccount,
-        serviceName: $stateParams.serviceName,
-      }).$promise;
+    return OvhApiTelephony.Voicemail().v6().getSettings({
+      billingAccount: $stateParams.billingAccount,
+      serviceName: $stateParams.serviceName,
+    }).$promise;
   }
 
   function fetchGreetings() {
@@ -92,12 +90,8 @@ export default /* @ngInject */ function TelecomTelephonyServiceVoicemailOptionsC
   }
 
   function refreshSettings() {
-    OvhApiTelephony.Voicemail()
-      .v6()
-      .resetCache();
-    OvhApiTelephony.Voicemail()
-      .v6()
-      .resetQueryCache();
+    OvhApiTelephony.Voicemail().v6().resetCache();
+    OvhApiTelephony.Voicemail().v6().resetQueryCache();
     return fetchSettings().then((settings) => {
       self.settings = settings;
       assign(self.recordingForm, pick(settings, ['doNotRecord']));
@@ -109,14 +103,8 @@ export default /* @ngInject */ function TelecomTelephonyServiceVoicemailOptionsC
   }
 
   function refreshGreetings() {
-    OvhApiTelephony.Voicemail()
-      .Greetings()
-      .v6()
-      .resetCache();
-    OvhApiTelephony.Voicemail()
-      .Greetings()
-      .v6()
-      .resetQueryCache();
+    OvhApiTelephony.Voicemail().Greetings().v6().resetCache();
+    OvhApiTelephony.Voicemail().Greetings().v6().resetQueryCache();
     return fetchGreetings().then((greetings) => {
       self.greetings = greetings;
       assign(self.recordingForm, pick(greetings, ['filename', 'url', 'dir']));
@@ -274,19 +262,16 @@ export default /* @ngInject */ function TelecomTelephonyServiceVoicemailOptionsC
           )
           .then(
             (doc) =>
-              OvhApiTelephony.Voicemail()
-                .Greetings()
-                .v6()
-                .create(
-                  {
-                    billingAccount: $stateParams.billingAccount,
-                    serviceName: $stateParams.serviceName,
-                  },
-                  {
-                    documentId: doc.id,
-                    dir: self.recordingForm.dir,
-                  },
-                ).$promise,
+              OvhApiTelephony.Voicemail().Greetings().v6().create(
+                {
+                  billingAccount: $stateParams.billingAccount,
+                  serviceName: $stateParams.serviceName,
+                },
+                {
+                  documentId: doc.id,
+                  dir: self.recordingForm.dir,
+                },
+              ).$promise,
           )
           .then(() => {
             /**
@@ -352,15 +337,13 @@ export default /* @ngInject */ function TelecomTelephonyServiceVoicemailOptionsC
     self.notificationForm.isUpdating = true;
     self.cancelAddEmail();
 
-    const update = OvhApiTelephony.Voicemail()
-      .v6()
-      .setSettings(
-        {
-          billingAccount: $stateParams.billingAccount,
-          serviceName: $stateParams.serviceName,
-        },
-        settings,
-      ).$promise;
+    const update = OvhApiTelephony.Voicemail().v6().setSettings(
+      {
+        billingAccount: $stateParams.billingAccount,
+        serviceName: $stateParams.serviceName,
+      },
+      settings,
+    ).$promise;
 
     return $q
       .all({
@@ -392,15 +375,13 @@ export default /* @ngInject */ function TelecomTelephonyServiceVoicemailOptionsC
     self.emailForm.isRemoving = true;
     set(redirection, 'removing', true);
 
-    const update = OvhApiTelephony.Voicemail()
-      .v6()
-      .setSettings(
-        {
-          billingAccount: $stateParams.billingAccount,
-          serviceName: $stateParams.serviceName,
-        },
-        settings,
-      ).$promise;
+    const update = OvhApiTelephony.Voicemail().v6().setSettings(
+      {
+        billingAccount: $stateParams.billingAccount,
+        serviceName: $stateParams.serviceName,
+      },
+      settings,
+    ).$promise;
 
     $q.all({
       noop: $timeout(angular.noop, 1000), // avoid clipping
@@ -424,15 +405,13 @@ export default /* @ngInject */ function TelecomTelephonyServiceVoicemailOptionsC
 
     self.emailForm.isAdding = true;
 
-    const update = OvhApiTelephony.Voicemail()
-      .v6()
-      .setSettings(
-        {
-          billingAccount: $stateParams.billingAccount,
-          serviceName: $stateParams.serviceName,
-        },
-        settings,
-      ).$promise;
+    const update = OvhApiTelephony.Voicemail().v6().setSettings(
+      {
+        billingAccount: $stateParams.billingAccount,
+        serviceName: $stateParams.serviceName,
+      },
+      settings,
+    ).$promise;
 
     $q.all({
       noop: $timeout(angular.noop, 500), // avoid clipping

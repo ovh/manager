@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-export default /* @ngInject */ function($scope, EmailPro) {
+export default /* @ngInject */ function ($scope, EmailPro) {
   $scope.stateOk = EmailPro.stateOk;
 
   $scope.updateResource = function updateResource(resource) {

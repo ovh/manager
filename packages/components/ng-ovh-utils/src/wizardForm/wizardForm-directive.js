@@ -1,7 +1,7 @@
 import wizardFormController from './wizardForm-controller';
 import template from './wizardForm.html';
 
-export default function() {
+export default function () {
   return {
     restrict: 'A',
     controller: wizardFormController,
@@ -11,13 +11,13 @@ export default function() {
       ctrl.initWatcher();
 
       if ($attr.wizardFormOnCancel) {
-        $scope.onCancel = function() {
+        $scope.onCancel = function () {
           $scope[$attr.wizardFormOnCancel]();
         };
       }
 
       if ($attr.wizardFormOnFinish) {
-        $scope.onFinish = function() {
+        $scope.onFinish = function () {
           $scope[$attr.wizardFormOnFinish]();
         };
       }

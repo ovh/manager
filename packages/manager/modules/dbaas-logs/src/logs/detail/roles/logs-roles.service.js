@@ -29,24 +29,12 @@ export default class LogsRolesService {
     this.LogsConstants = LogsConstants;
     this.CucCloudPoll = CucCloudPoll;
     this.LogsApiService = OvhApiDbaas.Logs().v6();
-    this.MembersApiService = OvhApiDbaas.Logs()
-      .Role()
-      .Member()
-      .v6();
-    this.PermissionsApiService = OvhApiDbaas.Logs()
-      .Role()
-      .Permission()
-      .v6();
+    this.MembersApiService = OvhApiDbaas.Logs().Role().Member().v6();
+    this.PermissionsApiService = OvhApiDbaas.Logs().Role().Permission().v6();
 
-    this.OperationApiService = OvhApiDbaas.Logs()
-      .Operation()
-      .v6();
-    this.RolesApiService = OvhApiDbaas.Logs()
-      .Role()
-      .v6();
-    this.RolesAapiService = OvhApiDbaas.Logs()
-      .Role()
-      .Aapi();
+    this.OperationApiService = OvhApiDbaas.Logs().Operation().v6();
+    this.RolesApiService = OvhApiDbaas.Logs().Role().v6();
+    this.RolesAapiService = OvhApiDbaas.Logs().Role().Aapi();
 
     this.newRole = {
       description: '',

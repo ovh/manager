@@ -1,6 +1,6 @@
 import map from 'lodash/map';
 
-export default function() {
+export default function () {
   const self = this;
 
   self.getTucToastInfos = function getTucToastInfos(

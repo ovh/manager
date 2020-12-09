@@ -2,7 +2,7 @@ import angular from 'angular';
 import forIn from 'lodash/forIn';
 import merge from 'lodash/merge';
 
-export default /* @ngInject */ function() {
+export default /* @ngInject */ function () {
   let requestProxy = '$http';
   let pollingApiOptions = null;
   let pathPrefix = '';

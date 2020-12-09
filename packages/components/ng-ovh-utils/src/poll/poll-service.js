@@ -3,7 +3,7 @@ import filter from 'lodash/filter';
 import find from 'lodash/find';
 import remove from 'lodash/remove';
 
-export default /* @ngInject */ function($q, $timeout, $http) {
+export default /* @ngInject */ function ($q, $timeout, $http) {
   const defaultInterval = 7e3;
 
   const tasks = [];

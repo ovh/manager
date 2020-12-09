@@ -230,29 +230,25 @@ export default /* @ngInject */ (
   TelephonyGroupNumberConference.prototype.lock = function lock() {
     const self = this;
 
-    return OvhApiTelephony.Conference()
-      .v6()
-      .lock(
-        {
-          billingAccount: self.billingAccount,
-          serviceName: self.serviceName,
-        },
-        {},
-      ).$promise;
+    return OvhApiTelephony.Conference().v6().lock(
+      {
+        billingAccount: self.billingAccount,
+        serviceName: self.serviceName,
+      },
+      {},
+    ).$promise;
   };
 
   TelephonyGroupNumberConference.prototype.unlock = function unlock() {
     const self = this;
 
-    return OvhApiTelephony.Conference()
-      .v6()
-      .unlock(
-        {
-          billingAccount: self.billingAccount,
-          serviceName: self.serviceName,
-        },
-        {},
-      ).$promise;
+    return OvhApiTelephony.Conference().v6().unlock(
+      {
+        billingAccount: self.billingAccount,
+        serviceName: self.serviceName,
+      },
+      {},
+    ).$promise;
   };
 
   TelephonyGroupNumberConference.prototype.getSettings = function getSettings() {
@@ -283,14 +279,11 @@ export default /* @ngInject */ (
             map(
               ids,
               (id) =>
-                OvhApiTelephony.Conference()
-                  .WebAccess()
-                  .v6()
-                  .get({
-                    billingAccount: self.billingAccount,
-                    serviceName: self.serviceName,
-                    id,
-                  }).$promise,
+                OvhApiTelephony.Conference().WebAccess().v6().get({
+                  billingAccount: self.billingAccount,
+                  serviceName: self.serviceName,
+                  id,
+                }).$promise,
             ),
           )
           .then((webAccess) => {
@@ -310,18 +303,15 @@ export default /* @ngInject */ (
           map(
             accessType,
             (type) =>
-              OvhApiTelephony.Conference()
-                .WebAccess()
-                .v6()
-                .create(
-                  {
-                    billingAccount: self.billingAccount,
-                    serviceName: self.serviceName,
-                  },
-                  {
-                    type,
-                  },
-                ).$promise,
+              OvhApiTelephony.Conference().WebAccess().v6().create(
+                {
+                  billingAccount: self.billingAccount,
+                  serviceName: self.serviceName,
+                },
+                {
+                  type,
+                },
+              ).$promise,
           ),
         )
         .then(() => self.getWebAccess()),
@@ -340,14 +330,11 @@ export default /* @ngInject */ (
         map(
           compact(ids),
           (id) =>
-            OvhApiTelephony.Conference()
-              .WebAccess()
-              .v6()
-              .remove({
-                billingAccount: self.billingAccount,
-                serviceName: self.serviceName,
-                id,
-              }).$promise,
+            OvhApiTelephony.Conference().WebAccess().v6().remove({
+              billingAccount: self.billingAccount,
+              serviceName: self.serviceName,
+              id,
+            }).$promise,
         ),
       )
       .then(() => {

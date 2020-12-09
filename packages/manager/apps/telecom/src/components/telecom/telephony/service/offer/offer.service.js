@@ -50,14 +50,11 @@ export default /* @ngInject */ function voipServiceOfferTask(
     serviceName,
     taskId,
   ) {
-    return OvhApiTelephony.Service()
-      .OfferTask()
-      .v6()
-      .get({
-        billingAccount,
-        serviceName,
-        taskId,
-      }).$promise;
+    return OvhApiTelephony.Service().OfferTask().v6().get({
+      billingAccount,
+      serviceName,
+      taskId,
+    }).$promise;
   };
 
   self.startPolling = function startPolling(

@@ -58,9 +58,9 @@ export default class {
       )
       .catch((error) =>
         this.goBack(
-          `${this.$translate.instant(
-            'dedicatedCloud_confirm_close_error',
-          )} ${error.message || error}`,
+          `${this.$translate.instant('dedicatedCloud_confirm_close_error')} ${
+            error.message || error
+          }`,
           'danger',
         ),
       );

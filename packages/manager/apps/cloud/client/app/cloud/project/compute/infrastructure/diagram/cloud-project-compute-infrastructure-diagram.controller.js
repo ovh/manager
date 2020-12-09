@@ -1812,9 +1812,7 @@ import uniq from 'lodash/uniq';
 
       // remove faded for current instance/ip/instance->ip link
       plumbLink.removeClass('faded-path');
-      $(instanceBox)
-        .find('.vm-infos')
-        .removeClass('faded-out');
+      $(instanceBox).find('.vm-infos').removeClass('faded-out');
       $(currentIps).removeClass('faded-out');
     }
 

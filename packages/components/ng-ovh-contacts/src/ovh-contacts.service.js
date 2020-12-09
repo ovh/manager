@@ -123,11 +123,9 @@ export default class OvhContactsService {
         .$promise.then((contactIds) =>
           this.$q.all(
             map(contactIds, (contactId) => {
-              const contactPromise = this.OvhApiMe.Contact()
-                .v6()
-                .get({
-                  contactId,
-                });
+              const contactPromise = this.OvhApiMe.Contact().v6().get({
+                contactId,
+              });
               return contactPromise.$promise;
             }),
           ),

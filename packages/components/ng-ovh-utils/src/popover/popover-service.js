@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-export default function() {
+export default function () {
   const defaultOptions = {
     placement: 'top',
     animation: true,
@@ -237,7 +237,7 @@ export default function() {
               }
             }
 
-            $scope.hide = function() {
+            $scope.hide = function () {
               hide();
             };
 

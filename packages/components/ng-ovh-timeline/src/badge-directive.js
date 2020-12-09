@@ -6,7 +6,7 @@
  * @description
  * Shown in the centre pane (or left on narrow devices) to indicate the activity.
  */
-export default /* @ngInject */ function() {
+export default /* @ngInject */ function () {
   return {
     require: '^timelineEvent',
     restrict: 'AE',

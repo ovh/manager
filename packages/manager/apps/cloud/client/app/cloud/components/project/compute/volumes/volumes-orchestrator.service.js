@@ -136,7 +136,7 @@ angular
         snapshot,
       ) {
         // eslint-disable-next-line no-shadow
-        const getVolumeFromSnapshot = function(snapshot) {
+        const getVolumeFromSnapshot = function (snapshot) {
           if (!snapshot || !snapshot.id) {
             return $q.reject({
               data: { message: 'Snapshot id cannot be found' },

@@ -12,7 +12,7 @@
  *
  * You typically embed a `timeline-badge` and `timeline-panel` element within a `timeline-event`.
  */
-export default /* @ngInject */ function() {
+export default /* @ngInject */ function () {
   return {
     require: '^timeline',
     restrict: 'AE',

@@ -97,9 +97,7 @@ angular
         };
         // set focus on popover
         $timeout(() => {
-          $('.cloud-ip-popover')
-            .find(':tabbable:first')
-            .focus();
+          $('.cloud-ip-popover').find(':tabbable:first').focus();
         }, 99);
         // set overlay
         $rootScope.$broadcast(

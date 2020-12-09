@@ -39,12 +39,8 @@ export default class {
       this.configurationStepName,
     );
 
-    this.OvhApiDedicatedCloud.Ip()
-      .v6()
-      .resetQueryCache();
-    this.OvhApiDedicatedCloud.Ip()
-      .v6()
-      .resetCache();
+    this.OvhApiDedicatedCloud.Ip().v6().resetQueryCache();
+    this.OvhApiDedicatedCloud.Ip().v6().resetCache();
 
     return this.$q
       .all({

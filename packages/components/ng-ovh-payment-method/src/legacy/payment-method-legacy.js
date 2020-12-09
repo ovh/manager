@@ -151,11 +151,7 @@ export default class OvhPaymentMethodLegacy {
    */
   getPaymentMeanResource(paymentMeanType) {
     return this.OvhApiMe.PaymentMean()
-      [
-        startCase(paymentMeanType)
-          .split(' ')
-          .join('')
-      ]()
+      [startCase(paymentMeanType).split(' ').join('')]()
       .v6();
   }
 

@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 
-export default /* @ngInject */ function(
+export default /* @ngInject */ function (
   $q,
   $translate,
   CucCloudMessage,

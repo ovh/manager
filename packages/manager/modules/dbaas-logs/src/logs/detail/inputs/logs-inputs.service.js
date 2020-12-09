@@ -17,23 +17,15 @@ export default class LogsInputsService {
     CucServiceHelper,
   ) {
     this.$q = $q;
-    this.DetailsAapiService = OvhApiDbaas.Logs()
-      .Details()
-      .Aapi();
+    this.DetailsAapiService = OvhApiDbaas.Logs().Details().Aapi();
     this.CucCloudMessage = CucCloudMessage;
     this.CucCloudPoll = CucCloudPoll;
-    this.InputsApiAapiService = OvhApiDbaas.Logs()
-      .Input()
-      .Aapi();
-    this.InputsApiLexiService = OvhApiDbaas.Logs()
-      .Input()
-      .v6();
+    this.InputsApiAapiService = OvhApiDbaas.Logs().Input().Aapi();
+    this.InputsApiLexiService = OvhApiDbaas.Logs().Input().v6();
     this.LogsConstants = LogsConstants;
     this.LogsHomeService = LogsHomeService;
     this.LogsOrderService = LogsOrderService;
-    this.OperationApiService = OvhApiDbaas.Logs()
-      .Operation()
-      .v6();
+    this.OperationApiService = OvhApiDbaas.Logs().Operation().v6();
     this.CucServiceHelper = CucServiceHelper;
     this.LogsHelperService = LogsHelperService;
     this.initializeData();

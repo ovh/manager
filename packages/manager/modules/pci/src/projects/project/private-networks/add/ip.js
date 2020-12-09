@@ -171,10 +171,7 @@ export default class IP {
     );
 
     if (reverse) {
-      return bytes
-        .split('')
-        .reverse()
-        .join('');
+      return bytes.split('').reverse().join('');
     }
 
     return bytes;

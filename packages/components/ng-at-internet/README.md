@@ -28,7 +28,7 @@ angular.module('myApp', [ngAtInternet]);
 ```js
 app.config([
   'atInternetProvider',
-  function(provider) {
+  function (provider) {
     provider.setEnabled(true); // enable tracking
     // provider.setDebug(true);
     provider.setDefaults({ level2: '1' }); // it is recommended to specify the level2 attribute as a default value
@@ -45,7 +45,7 @@ Please note that the level2 attribute must be your project ID ; configured in AT
 ```js
 app.config([
   'atInternetProvider',
-  function(provider) {
+  function (provider) {
     provider.setEnabled(true); // enable tracking
     // provider.setDebug(true);
     provider.setDefaults({

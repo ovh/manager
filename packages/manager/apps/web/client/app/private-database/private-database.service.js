@@ -1255,21 +1255,13 @@ export default class PrivateDatabase {
   static getStartTime(range) {
     switch (range) {
       case 'DAY':
-        return moment()
-          .subtract(1, 'days')
-          .valueOf();
+        return moment().subtract(1, 'days').valueOf();
       case 'WEEK':
-        return moment()
-          .subtract(1, 'weeks')
-          .valueOf();
+        return moment().subtract(1, 'weeks').valueOf();
       case 'MONTH':
-        return moment()
-          .subtract(1, 'months')
-          .valueOf();
+        return moment().subtract(1, 'months').valueOf();
       default:
-        return moment()
-          .subtract(1, 'days')
-          .valueOf();
+        return moment().subtract(1, 'days').valueOf();
     }
   }
 

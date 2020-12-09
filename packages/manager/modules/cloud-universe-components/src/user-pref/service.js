@@ -1,6 +1,6 @@
 import isString from 'lodash/isString';
 
-export default /* @ngInject */ function($q, ovhUserPref) {
+export default /* @ngInject */ function ($q, ovhUserPref) {
   this.get = function get(key) {
     if (isString(key)) {
       return ovhUserPref.getValue(key.toUpperCase()).then(

@@ -11,14 +11,8 @@ export default /* @ngInject */ ($stateProvider) => {
         type = 'success',
       ) => {
         if (message && type === 'success') {
-          OvhApiDedicatedCloud.VMEncryption()
-            .kms()
-            .v6()
-            .resetCache();
-          OvhApiDedicatedCloud.VMEncryption()
-            .kms()
-            .v6()
-            .resetQueryCache();
+          OvhApiDedicatedCloud.VMEncryption().kms().v6().resetCache();
+          OvhApiDedicatedCloud.VMEncryption().kms().v6().resetQueryCache();
         }
 
         return goBackToState('app.managedBaremetal.security', message, type);

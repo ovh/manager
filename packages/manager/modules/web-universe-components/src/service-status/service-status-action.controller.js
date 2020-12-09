@@ -51,9 +51,7 @@ export default class {
 
   getDate() {
     if (this.isInAutoRenew()) {
-      return moment(this.serviceInfos.expiration)
-        .add(1, 'days')
-        .format();
+      return moment(this.serviceInfos.expiration).add(1, 'days').format();
     }
     return this.serviceInfos.expiration;
   }

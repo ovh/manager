@@ -6,9 +6,7 @@ export default class LogsStreamsArchivesService {
     this.$http = $http;
     this.$q = $q;
     this.LogsConstants = LogsConstants;
-    this.ArchivesApiService = OvhApiDbaas.Logs()
-      .Archive()
-      .v6();
+    this.ArchivesApiService = OvhApiDbaas.Logs().Archive().v6();
     this.CucServiceHelper = CucServiceHelper;
   }
 

@@ -98,15 +98,11 @@ export default /* @ngInject */ function controller(
   };
 
   self.fetchQueueLiveStatistics = function fetchQueueLiveStatistics(queueId) {
-    return self.apiEndpoint
-      .Hunting()
-      .Queue()
-      .v6()
-      .getLiveStatistics({
-        billingAccount: $stateParams.billingAccount,
-        serviceName: $stateParams.serviceName,
-        queueId,
-      }).$promise;
+    return self.apiEndpoint.Hunting().Queue().v6().getLiveStatistics({
+      billingAccount: $stateParams.billingAccount,
+      serviceName: $stateParams.serviceName,
+      queueId,
+    }).$promise;
   };
 
   self.fetchQueueLiveCalls = function fetchQueueLiveCalls(queueId) {
@@ -125,29 +121,19 @@ export default /* @ngInject */ function controller(
           map(
             (callsIds || []).reverse(),
             (callId) =>
-              self.apiEndpoint
-                .Hunting()
-                .Queue()
-                .LiveCalls()
-                .v6()
-                .get({
-                  billingAccount: $stateParams.billingAccount,
-                  serviceName: $stateParams.serviceName,
-                  queueId,
-                  id: callId,
-                }).$promise,
+              self.apiEndpoint.Hunting().Queue().LiveCalls().v6().get({
+                billingAccount: $stateParams.billingAccount,
+                serviceName: $stateParams.serviceName,
+                queueId,
+                id: callId,
+              }).$promise,
           ),
         ),
       );
   };
 
   self.fetchAgentsLiveStatus = function fetchAgentsLiveStatus(queueId) {
-    self.apiEndpoint
-      .Hunting()
-      .Queue()
-      .Agent()
-      .v6()
-      .resetAllCache();
+    self.apiEndpoint.Hunting().Queue().Agent().v6().resetAllCache();
     return self.apiEndpoint
       .Hunting()
       .Queue()

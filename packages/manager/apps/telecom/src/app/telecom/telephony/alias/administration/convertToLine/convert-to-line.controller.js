@@ -62,12 +62,10 @@ export default /* @ngInject */ function TelecomTelephonyAliasAdministrationConve
   };
 
   self.getAvailableOffers = function getAvailableOffers(service) {
-    return OvhApiTelephony.Number()
-      .v6()
-      .convertToLineAvailableOffers({
-        billingAccount: service.billingAccount,
-        serviceName: service.serviceName,
-      }).$promise;
+    return OvhApiTelephony.Number().v6().convertToLineAvailableOffers({
+      billingAccount: service.billingAccount,
+      serviceName: service.serviceName,
+    }).$promise;
   };
 
   self.fetchConvertToLineTask = function fetchConvertToLineTask() {
@@ -86,14 +84,11 @@ export default /* @ngInject */ function TelecomTelephonyAliasAdministrationConve
             map(
               taskIds,
               (id) =>
-                OvhApiTelephony.Service()
-                  .OfferTask()
-                  .v6()
-                  .get({
-                    billingAccount: $stateParams.billingAccount,
-                    serviceName: $stateParams.serviceName,
-                    taskId: id,
-                  }).$promise,
+                OvhApiTelephony.Service().OfferTask().v6().get({
+                  billingAccount: $stateParams.billingAccount,
+                  serviceName: $stateParams.serviceName,
+                  taskId: id,
+                }).$promise,
             ),
           )
           .then((tasks) => head(filter(tasks, { status: 'todo' }))),

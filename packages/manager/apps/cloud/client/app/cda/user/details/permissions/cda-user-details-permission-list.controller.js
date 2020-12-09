@@ -22,10 +22,7 @@ angular
       };
 
       function initUserPermissions() {
-        OvhApiDedicatedCeph.User()
-          .Pool()
-          .v6()
-          .resetQueryCache();
+        OvhApiDedicatedCeph.User().Pool().v6().resetQueryCache();
 
         return OvhApiDedicatedCeph.User()
           .Pool()
@@ -41,9 +38,7 @@ angular
       }
 
       function initPools() {
-        OvhApiDedicatedCeph.Pool()
-          .v6()
-          .resetQueryCache();
+        OvhApiDedicatedCeph.Pool().v6().resetQueryCache();
 
         return OvhApiDedicatedCeph.Pool()
           .v6()

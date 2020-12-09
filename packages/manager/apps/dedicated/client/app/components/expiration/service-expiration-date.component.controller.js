@@ -41,9 +41,7 @@ import isString from 'lodash/isString';
 
     getDate() {
       if (this.isAutoRenew()) {
-        return moment(this.serviceInfos.expiration)
-          .add(1, 'days')
-          .format();
+        return moment(this.serviceInfos.expiration).add(1, 'days').format();
       }
       return this.serviceInfos.expiration;
     }

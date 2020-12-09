@@ -9,7 +9,7 @@
 
 import angular from 'angular';
 
-export default /* @ngInject */ function($q, ssoAuthentication) {
+export default /* @ngInject */ function ($q, ssoAuthentication) {
   return {
     /**
      * @ngdoc function

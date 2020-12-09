@@ -3,7 +3,7 @@ import angular from 'angular';
 import wizardController from './wizard-controller';
 import template from './wizard.html';
 
-export default /* @ngInject */ function($timeout) {
+export default /* @ngInject */ function ($timeout) {
   return {
     restrict: 'A',
     controller: wizardController,

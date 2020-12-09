@@ -54,20 +54,16 @@ export default /* @ngInject */ function TelecomTelephonyLinePhonePhonebookContac
           )
           .then(
             (doc) =>
-              OvhApiTelephony.Line()
-                .Phone()
-                .Phonebook()
-                .v6()
-                .import(
-                  {
-                    billingAccount: $stateParams.billingAccount,
-                    serviceName: $stateParams.serviceName,
-                    bookKey,
-                  },
-                  {
-                    documentId: doc.id,
-                  },
-                ).$promise,
+              OvhApiTelephony.Line().Phone().Phonebook().v6().import(
+                {
+                  billingAccount: $stateParams.billingAccount,
+                  serviceName: $stateParams.serviceName,
+                  bookKey,
+                },
+                {
+                  documentId: doc.id,
+                },
+              ).$promise,
           ),
       })
       .then((result) => {

@@ -3,7 +3,7 @@ import isEmpty from 'lodash/isEmpty';
 import isNull from 'lodash/isNull';
 import some from 'lodash/some';
 
-export default /* @ngInject */ function(TUC_TELEPHONY_PHONEBOOK) {
+export default /* @ngInject */ function (TUC_TELEPHONY_PHONEBOOK) {
   const self = this;
 
   self.getContactData = function getContactData(contact) {

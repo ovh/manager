@@ -33,12 +33,8 @@ export default /* @ngInject */ function TelecomTelephonyServiceFaxFilteringCtrl(
   =============================== */
 
   function clearCache() {
-    OvhApiTelephony.Fax()
-      .v6()
-      .resetCache();
-    OvhApiTelephony.Fax()
-      .v6()
-      .resetQueryCache();
+    OvhApiTelephony.Fax().v6().resetCache();
+    OvhApiTelephony.Fax().v6().resetQueryCache();
   }
 
   function fetchScreenLists() {
@@ -64,12 +60,10 @@ export default /* @ngInject */ function TelecomTelephonyServiceFaxFilteringCtrl(
 
   function fetchSettings() {
     clearCache();
-    return OvhApiTelephony.Fax()
-      .v6()
-      .getSettings({
-        billingAccount: $stateParams.billingAccount,
-        serviceName: $stateParams.serviceName,
-      }).$promise;
+    return OvhApiTelephony.Fax().v6().getSettings({
+      billingAccount: $stateParams.billingAccount,
+      serviceName: $stateParams.serviceName,
+    }).$promise;
   }
 
   self.getSelection = function getSelection() {
@@ -213,15 +207,13 @@ export default /* @ngInject */ function TelecomTelephonyServiceFaxFilteringCtrl(
 
     if (size(listQuery)) {
       queries = {
-        update: OvhApiTelephony.Fax()
-          .v6()
-          .updateScreenLists(
-            {
-              billingAccount: $stateParams.billingAccount,
-              serviceName: $stateParams.serviceName,
-            },
-            listQuery,
-          ).$promise,
+        update: OvhApiTelephony.Fax().v6().updateScreenLists(
+          {
+            billingAccount: $stateParams.billingAccount,
+            serviceName: $stateParams.serviceName,
+          },
+          listQuery,
+        ).$promise,
         noop: $timeout(angular.noop, 500),
       };
     }

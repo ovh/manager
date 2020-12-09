@@ -108,9 +108,7 @@ export default class MicrosoftOfficeLicenseConsumptionCtrl {
 
   static calculateExpirationDate(day, monthOffset = 0) {
     const month = moment().add(monthOffset, 'months');
-    const expirationDate = moment(month)
-      .set('date', day)
-      .subtract(1, 'days');
+    const expirationDate = moment(month).set('date', day).subtract(1, 'days');
     const maxExpirationDate = moment(month).endOf('month');
 
     return moment.min(expirationDate, maxExpirationDate).endOf('day');

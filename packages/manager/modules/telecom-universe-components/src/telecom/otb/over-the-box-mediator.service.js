@@ -1,4 +1,4 @@
-export default /* @ngInject */ function(OvhApiOverTheBox) {
+export default /* @ngInject */ function (OvhApiOverTheBox) {
   const self = this;
 
   /*= ============================

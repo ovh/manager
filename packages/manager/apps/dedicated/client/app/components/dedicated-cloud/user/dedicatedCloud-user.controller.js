@@ -23,9 +23,9 @@ export default class {
       })
       .catch((err) => {
         this.setMessage(
-          `${this.$translate.instant(
-            'dedicatedCloud_USER_edit_load_error',
-          )} ${err.message || err}`,
+          `${this.$translate.instant('dedicatedCloud_USER_edit_load_error')} ${
+            err.message || err
+          }`,
           'danger',
         );
       })

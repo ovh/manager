@@ -25,12 +25,10 @@ export default /* @ngInject */ ($stateProvider) => {
         partition,
         serviceName,
       ) =>
-        OvhApiDedicatedNasha.Partition()
-          .v6()
-          .get({
-            serviceName,
-            partitionName: partition,
-          }).$promise,
+        OvhApiDedicatedNasha.Partition().v6().get({
+          serviceName,
+          partitionName: partition,
+        }).$promise,
       access: /* @ngInject */ ($transition$) => $transition$.params().access,
       task: /* @ngInject */ ($transition$) => $transition$.params().task,
       isNew: /* @ngInject */ ($transition$) => $transition$.params().isNew,

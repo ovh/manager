@@ -21,27 +21,21 @@ export default class TelecomTelephonyAbbreviatedNumbersCtrl {
   }
 
   remove({ abbreviatedNumber }) {
-    return this.OvhApiTelephony.Line()
-      .AbbreviatedNumber()
-      .v6()
-      .remove({
-        billingAccount: this.billingAccount,
-        serviceName: this.serviceName,
-        abbreviatedNumber,
-      }).$promise;
+    return this.OvhApiTelephony.Line().AbbreviatedNumber().v6().remove({
+      billingAccount: this.billingAccount,
+      serviceName: this.serviceName,
+      abbreviatedNumber,
+    }).$promise;
   }
 
   insert(abbreviatedNumber) {
-    return this.OvhApiTelephony.Line()
-      .AbbreviatedNumber()
-      .v6()
-      .insert(
-        {
-          billingAccount: this.billingAccount,
-          serviceName: this.serviceName,
-        },
-        abbreviatedNumber,
-      ).$promise;
+    return this.OvhApiTelephony.Line().AbbreviatedNumber().v6().insert(
+      {
+        billingAccount: this.billingAccount,
+        serviceName: this.serviceName,
+      },
+      abbreviatedNumber,
+    ).$promise;
   }
 
   update(abbreviatedNumber) {

@@ -1,7 +1,7 @@
 import angular from 'angular';
 import forEach from 'lodash/forEach';
 
-export default /* @ngInject */ function($translate) {
+export default /* @ngInject */ function ($translate) {
   const self = this;
 
   self.inEdition = false;

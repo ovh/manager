@@ -10,7 +10,7 @@ import {
   some,
 } from 'lodash-es';
 
-export default function() {
+export default function () {
   const self = this;
 
   self.$get = /* @ngInject */ function $get(

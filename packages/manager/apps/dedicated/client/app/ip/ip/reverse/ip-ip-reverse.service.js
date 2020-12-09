@@ -18,17 +18,15 @@ export default class IpReverse {
       return this.deleteReverse(ipBlock.ipBlock, ip);
     }
 
-    return this.OvhApiIp.Reverse()
-      .v6()
-      .create(
-        {
-          ip: ipBlock.ipBlock,
-        },
-        {
-          ipReverse: ip,
-          reverse,
-        },
-      ).$promise;
+    return this.OvhApiIp.Reverse().v6().create(
+      {
+        ip: ipBlock.ipBlock,
+      },
+      {
+        ipReverse: ip,
+        reverse,
+      },
+    ).$promise;
   }
 
   getReverse(ipBlock, ip) {
@@ -50,20 +48,16 @@ export default class IpReverse {
   }
 
   getDelegations(ipBlock) {
-    return this.OvhApiIp.Delegation()
-      .v6()
-      .query({
-        ip: ipBlock,
-      }).$promise;
+    return this.OvhApiIp.Delegation().v6().query({
+      ip: ipBlock,
+    }).$promise;
   }
 
   getDelegation(ipBlock, target) {
-    return this.OvhApiIp.Delegation()
-      .v6()
-      .get({
-        ip: ipBlock,
-        target,
-      }).$promise;
+    return this.OvhApiIp.Delegation().v6().get({
+      ip: ipBlock,
+      target,
+    }).$promise;
   }
 
   setDelegation(ipBlock, target) {
@@ -80,12 +74,10 @@ export default class IpReverse {
   }
 
   deleteDelegation(ipBlock, target) {
-    return this.OvhApiIp.Delegation()
-      .v6()
-      .delete({
-        ip: ipBlock,
-        target,
-      }).$promise;
+    return this.OvhApiIp.Delegation().v6().delete({
+      ip: ipBlock,
+      target,
+    }).$promise;
   }
 }
 

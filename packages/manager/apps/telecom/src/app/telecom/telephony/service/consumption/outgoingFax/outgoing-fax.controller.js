@@ -29,14 +29,11 @@ export default /* @ngInject */ function TelecomTelephonyServiceConsumptionOutgoi
             map(
               chunk(ids, 50),
               (chunkIds) =>
-                OvhApiTelephony.Service()
-                  .FaxConsumption()
-                  .v6()
-                  .getBatch({
-                    billingAccount: $stateParams.billingAccount,
-                    serviceName: $stateParams.serviceName,
-                    consumptionId: chunkIds,
-                  }).$promise,
+                OvhApiTelephony.Service().FaxConsumption().v6().getBatch({
+                  billingAccount: $stateParams.billingAccount,
+                  serviceName: $stateParams.serviceName,
+                  consumptionId: chunkIds,
+                }).$promise,
             ),
           )
           .then((chunkResult) => flatten(chunkResult)),
@@ -86,24 +83,17 @@ export default /* @ngInject */ function TelecomTelephonyServiceConsumptionOutgoi
           }
           return 0.0;
         });
-        self.consumption.priceSum = `${Math.floor(
-          self.consumption.priceSum * 100.0,
-          2,
-        ) / 100.0} ${priceSuffix}`;
+        self.consumption.priceSum = `${
+          Math.floor(self.consumption.priceSum * 100.0, 2) / 100.0
+        } ${priceSuffix}`;
       },
       (err) => new TucToastError(err),
     );
   };
 
   self.refresh = function refresh() {
-    OvhApiTelephony.Service()
-      .FaxConsumption()
-      .v6()
-      .resetCache();
-    OvhApiTelephony.Service()
-      .FaxConsumption()
-      .v6()
-      .resetQueryCache();
+    OvhApiTelephony.Service().FaxConsumption().v6().resetCache();
+    OvhApiTelephony.Service().FaxConsumption().v6().resetQueryCache();
     self.$onInit();
   };
 

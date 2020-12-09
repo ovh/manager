@@ -146,13 +146,11 @@ export default class {
    *  @return {Promise}   That returns an Array of {@link https://eu.api.ovh.com/console/#/telephony/%7BbillingAccount%7D/service/%7BserviceName%7D/diagnosticReports#GET `telephony.DiagnosticReport`} objects.
    */
   fetchDiagnosticReports(billingAccount, serviceName, dayInterval) {
-    return this.OvhApiTelephony.Service()
-      .v6()
-      .diagnosticReports({
-        billingAccount,
-        serviceName,
-        dayInterval,
-      }).$promise;
+    return this.OvhApiTelephony.Service().v6().diagnosticReports({
+      billingAccount,
+      serviceName,
+      dayInterval,
+    }).$promise;
   }
 
   /**
@@ -207,14 +205,11 @@ export default class {
             map(
               offerTaskIds,
               (id) =>
-                this.OvhApiTelephony.Service()
-                  .OfferTask()
-                  .v6()
-                  .get({
-                    billingAccount: service.billingAccount,
-                    serviceName: service.serviceName,
-                    taskId: id,
-                  }).$promise,
+                this.OvhApiTelephony.Service().OfferTask().v6().get({
+                  billingAccount: service.billingAccount,
+                  serviceName: service.serviceName,
+                  taskId: id,
+                }).$promise,
             ),
           )
           .then((tasks) => head(filter(tasks, { status: 'todo' }))),
@@ -234,12 +229,10 @@ export default class {
    *  @return {Promise}  Promise that returns directory
    */
   getServiceDirectory(service) {
-    return this.OvhApiTelephony.Service()
-      .v6()
-      .directory({
-        billingAccount: service.billingAccount,
-        serviceName: service.serviceName,
-      }).$promise;
+    return this.OvhApiTelephony.Service().v6().directory({
+      billingAccount: service.billingAccount,
+      serviceName: service.serviceName,
+    }).$promise;
   }
 
   /**
@@ -307,14 +300,11 @@ export default class {
         this.$q.all(
           repaymentsIds.map(
             (repayment) =>
-              this.OvhApiTelephony.Service()
-                .RepaymentConsumption()
-                .v6()
-                .get({
-                  billingAccount,
-                  serviceName,
-                  consumptionId: repayment,
-                }).$promise,
+              this.OvhApiTelephony.Service().RepaymentConsumption().v6().get({
+                billingAccount,
+                serviceName,
+                consumptionId: repayment,
+              }).$promise,
           ),
         ),
       );

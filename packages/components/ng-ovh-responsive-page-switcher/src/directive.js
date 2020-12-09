@@ -3,7 +3,7 @@ import debounce from 'lodash/debounce';
 
 import controller from './controller';
 
-export default /* @ngInject */ function(
+export default /* @ngInject */ function (
   $rootScope,
   $timeout,
   $window,

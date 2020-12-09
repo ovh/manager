@@ -33,10 +33,7 @@ class MonoRepository {
   }
 
   static getReleaseVersion(version) {
-    const result = version
-      .toLowerCase()
-      .trim()
-      .replace(' ', '-');
+    const result = version.toLowerCase().trim().replace(' ', '-');
     return execa
       .command(`git tag -l '${version}*' --sort=taggerdate | tail -1`, {
         shell: true,
@@ -242,10 +239,7 @@ class Repository {
 
         const preReleaseFilePath = path.join(this.location, '.prerelease');
         if (checkPreReleaseFile && fs.existsSync(preReleaseFilePath)) {
-          preId = fs
-            .readFileSync(preReleaseFilePath)
-            .toString()
-            .trim();
+          preId = fs.readFileSync(preReleaseFilePath).toString().trim();
           preRelease = true;
         }
 

@@ -219,9 +219,7 @@ export default class TelecomTelephonyAliasConfigurationRedirectCtrl {
           ),
         );
         this.OvhApiTelephony.Number().resetCache();
-        this.OvhApiTelephony.Service()
-          .v6()
-          .resetCache();
+        this.OvhApiTelephony.Service().v6().resetCache();
         this.$onInit();
       })
       .catch((error) => {

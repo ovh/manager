@@ -77,9 +77,7 @@ angular
     function buildOpenrcUrl() {
       let url = [
         (find(CONFIG_API.apis, { serviceType: 'aapi' }) || {}).urlPrefix,
-        OvhApiCloud.Project()
-          .User()
-          .Aapi().services.openrc.url,
+        OvhApiCloud.Project().User().Aapi().services.openrc.url,
         '?',
         $httpParamSerializer({
           region: self.data.region,

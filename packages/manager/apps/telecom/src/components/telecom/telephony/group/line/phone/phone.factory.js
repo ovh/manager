@@ -185,18 +185,15 @@ export default /* @ngInject */ (
   TelephonyGroupLinePhone.prototype.resetConfig = function resetConfig(ip) {
     const self = this;
 
-    return OvhApiTelephony.Line()
-      .Phone()
-      .v6()
-      .resetConfig(
-        {
-          billingAccount: self.billingAccount,
-          serviceName: self.serviceName,
-        },
-        {
-          ip,
-        },
-      ).$promise;
+    return OvhApiTelephony.Line().Phone().v6().resetConfig(
+      {
+        billingAccount: self.billingAccount,
+        serviceName: self.serviceName,
+      },
+      {
+        ip,
+      },
+    ).$promise;
   };
 
   TelephonyGroupLinePhone.prototype.hasPhone = function hasPhone() {

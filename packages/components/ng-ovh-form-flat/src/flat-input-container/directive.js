@@ -40,7 +40,7 @@
 import angular from 'angular';
 import $ from 'jquery';
 
-export default function() {
+export default function () {
   const CSS_VALID = 'flat-valid';
   const CSS_INVALID = 'flat-invalid';
   const CSS_DIRTY = 'flat-dirty';
@@ -59,24 +59,24 @@ export default function() {
       let label;
       const items = {};
 
-      this.setElem = function(_elem) {
+      this.setElem = function (_elem) {
         elem = _elem;
       };
 
-      this.setLabel = function(_label) {
+      this.setLabel = function (_label) {
         label = _label;
       };
 
-      this.setInputs = function(_inputs) {
+      this.setInputs = function (_inputs) {
         inputs = _inputs;
       };
 
-      this.setItemValidity = function(_item, _isValid) {
+      this.setItemValidity = function (_item, _isValid) {
         items[_item] = _isValid; // eslint-disable-line no-underscore-dangle
         this.checkValidity();
       };
 
-      this.checkValidity = function() {
+      this.checkValidity = function () {
         let isValid = true;
 
         /* eslint-disable-next-line no-restricted-syntax */
@@ -96,7 +96,7 @@ export default function() {
         }
       };
 
-      this.setDirty = function(isDirty) {
+      this.setDirty = function (isDirty) {
         if (isDirty) {
           elem.addClass(CSS_DIRTY);
         } else {
@@ -104,7 +104,7 @@ export default function() {
         }
       };
 
-      this.setEmpty = function(isEmpty) {
+      this.setEmpty = function (isEmpty) {
         if (isEmpty) {
           elem.addClass(CSS_EMPTY);
         } else {
@@ -112,7 +112,7 @@ export default function() {
         }
       };
 
-      this.checkLabelVisibility = function(alwaysShow) {
+      this.checkLabelVisibility = function (alwaysShow) {
         if (angular.isUndefined(alwaysShow)) {
           alwaysShow = false; // eslint-disable-line no-param-reassign
         }
@@ -127,17 +127,13 @@ export default function() {
       };
     },
     compile: function compile(element) {
-      element.find('input, textarea').each(function() {
-        if (
-          $(this)
-            .parents('.input-group-btn')
-            .size() === 0
-        ) {
+      element.find('input, textarea').each(function () {
+        if ($(this).parents('.input-group-btn').size() === 0) {
           $(this).addClass('flat-item');
         }
       });
 
-      element.find('select').each(function() {
+      element.find('select').each(function () {
         $(this).addClass('flat-select');
       });
 
@@ -145,12 +141,8 @@ export default function() {
         post: function postLink(scope, elem, iAttrs, ctrl) {
           let label;
 
-          elem.find('label').each(function() {
-            if (
-              $(this)
-                .parents('.input-group-btn')
-                .size() === 0
-            ) {
+          elem.find('label').each(function () {
+            if ($(this).parents('.input-group-btn').size() === 0) {
               label = $(this);
             }
           });

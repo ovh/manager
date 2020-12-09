@@ -231,12 +231,10 @@ export default /* @ngInject */ function TelecomTelephonyLineManagementOfferChang
     }
 
     function callGetOfferChanges(billingAccount, serviceName) {
-      return OvhApiTelephony.Service()
-        .v6()
-        .offerChanges({
-          billingAccount,
-          serviceName,
-        }).$promise;
+      return OvhApiTelephony.Service().v6().offerChanges({
+        billingAccount,
+        serviceName,
+      }).$promise;
     }
 
     const promises = [];

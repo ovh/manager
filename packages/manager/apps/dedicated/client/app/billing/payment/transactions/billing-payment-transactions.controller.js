@@ -56,12 +56,9 @@ export default class BillingPaymentTransactionsCtrl {
   }
 
   getTransaction({ transactionId }) {
-    return this.OvhApiMe.Payment()
-      .Transaction()
-      .v6()
-      .get({
-        transactionId,
-      }).$promise;
+    return this.OvhApiMe.Payment().Transaction().v6().get({
+      transactionId,
+    }).$promise;
   }
 
   /* -----  End of DATAGRID  ------ */

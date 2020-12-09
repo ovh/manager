@@ -17,19 +17,14 @@ export default /* @ngInject */ function TelecomTelephonyAliasConfigurationCallsF
   const self = this;
 
   self.fetchStatus = function fetchStatus() {
-    return OvhApiTelephony.Screen()
-      .v6()
-      .get({
-        billingAccount: $stateParams.billingAccount,
-        serviceName: $stateParams.serviceName,
-      }).$promise;
+    return OvhApiTelephony.Screen().v6().get({
+      billingAccount: $stateParams.billingAccount,
+      serviceName: $stateParams.serviceName,
+    }).$promise;
   };
 
   self.fetchScreenLists = function fetchScreenLists() {
-    OvhApiTelephony.Screen()
-      .ScreenLists()
-      .v6()
-      .resetAllCache();
+    OvhApiTelephony.Screen().ScreenLists().v6().resetAllCache();
     return OvhApiTelephony.Screen()
       .ScreenLists()
       .v6()
@@ -43,14 +38,11 @@ export default /* @ngInject */ function TelecomTelephonyAliasConfigurationCallsF
             map(
               chunk(ids, 50),
               (chunkIds) =>
-                OvhApiTelephony.Screen()
-                  .ScreenLists()
-                  .v6()
-                  .getBatch({
-                    billingAccount: $stateParams.billingAccount,
-                    serviceName: $stateParams.serviceName,
-                    id: chunkIds,
-                  }).$promise,
+                OvhApiTelephony.Screen().ScreenLists().v6().getBatch({
+                  billingAccount: $stateParams.billingAccount,
+                  serviceName: $stateParams.serviceName,
+                  id: chunkIds,
+                }).$promise,
             ),
           )
           .then((chunkResult) => {
@@ -68,31 +60,25 @@ export default /* @ngInject */ function TelecomTelephonyAliasConfigurationCallsF
   };
 
   self.removeScreenList = function removeScreenList(screen) {
-    return OvhApiTelephony.Screen()
-      .ScreenLists()
-      .v6()
-      .remove({
-        billingAccount: $stateParams.billingAccount,
-        serviceName: $stateParams.serviceName,
-        id: screen.id,
-      }).$promise;
+    return OvhApiTelephony.Screen().ScreenLists().v6().remove({
+      billingAccount: $stateParams.billingAccount,
+      serviceName: $stateParams.serviceName,
+      id: screen.id,
+    }).$promise;
   };
 
   self.addScreenList = function addScreenList(screen) {
-    return OvhApiTelephony.Screen()
-      .ScreenLists()
-      .v6()
-      .create(
-        {
-          billingAccount: $stateParams.billingAccount,
-          serviceName: $stateParams.serviceName,
-        },
-        {
-          type: screen.type,
-          callNumber: screen.callNumber,
-          nature: screen.nature,
-        },
-      ).$promise;
+    return OvhApiTelephony.Screen().ScreenLists().v6().create(
+      {
+        billingAccount: $stateParams.billingAccount,
+        serviceName: $stateParams.serviceName,
+      },
+      {
+        type: screen.type,
+        callNumber: screen.callNumber,
+        nature: screen.nature,
+      },
+    ).$promise;
   };
 
   self.onScreenListAdded = function onScreenListAdded() {

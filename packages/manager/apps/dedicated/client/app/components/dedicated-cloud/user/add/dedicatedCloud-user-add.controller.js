@@ -34,9 +34,9 @@ export default class {
       },
       (err) => {
         this.goBack(
-          `${this.$translate.instant(
-            'dedicatedCloud_users_add_error',
-          )} ${err.message || err}`,
+          `${this.$translate.instant('dedicatedCloud_users_add_error')} ${
+            err.message || err
+          }`,
           'danger',
         );
       },

@@ -62,8 +62,9 @@ export default class {
           .map((serviceType) => ({
             ...serviceType,
             label: this.$translate.instant(
-              `ovhManagerSupport_new_serviceType_${serviceType.label ||
-                serviceType.name}`,
+              `ovhManagerSupport_new_serviceType_${
+                serviceType.label || serviceType.name
+              }`,
             ),
           }))
           .sort((a, b) =>

@@ -225,9 +225,7 @@ export default /* @ngInject */ function TelecomTelephonyLinePhoneCodecCtrl(
         });
       });
 
-    OvhApiTelephony.Line()
-      .Options()
-      .resetCache();
+    OvhApiTelephony.Line().Options().resetCache();
     TelephonyMediator.resetAllCache();
     TelephonyMediator.init();
 

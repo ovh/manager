@@ -16,15 +16,11 @@ export default class MicrosoftSharepointOrderService {
     return this.User.getUser()
       .then(
         ({ ovhSubsidiary }) =>
-          this.OvhApiOrder.Cart()
-            .v6()
-            .post({ ovhSubsidiary }).$promise,
+          this.OvhApiOrder.Cart().v6().post({ ovhSubsidiary }).$promise,
       )
       .then(
         ({ cartId }) =>
-          this.OvhApiOrder.Cart()
-            .v6()
-            .assign({ cartId }).$promise,
+          this.OvhApiOrder.Cart().v6().assign({ cartId }).$promise,
       )
       .then(({ cartId }) => cartId);
   }

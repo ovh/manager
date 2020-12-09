@@ -1,4 +1,4 @@
-export default function() {
+export default function () {
   let activeDayInfo = null;
   let firstDayInfo = null;
   let lastDayInfo = null;

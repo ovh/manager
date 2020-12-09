@@ -51,7 +51,7 @@
 import template from './template.html';
 import controller from './controller';
 
-export default function() {
+export default function () {
   return {
     restrict: 'E',
     transclude: true,
@@ -130,10 +130,7 @@ export default function() {
                   visiblePage.find('a:not(.focus-helper), button').first(),
                 )
               ) {
-                visiblePage
-                  .find('a:not(.focus-helper), button')
-                  .last()
-                  .focus();
+                visiblePage.find('a:not(.focus-helper), button').last().focus();
                 event.preventDefault();
               }
             } else if (
@@ -142,10 +139,7 @@ export default function() {
               ) ||
               $(event.target).is(focusHelper)
             ) {
-              visiblePage
-                .find('a:not(.focus-helper), button')
-                .first()
-                .focus();
+              visiblePage.find('a:not(.focus-helper), button').first().focus();
               event.preventDefault();
             }
           } else if (event.keyCode === 27) {

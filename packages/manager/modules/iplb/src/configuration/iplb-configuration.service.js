@@ -137,35 +137,29 @@ export default class IpLoadBalancerConfigurationService {
         .all(
           statuses.map(
             (status) =>
-              this.IpLoadBalancing.Task()
-                .v6()
-                .query({
-                  serviceName,
-                  action: 'refreshIplb',
-                  status,
-                }).$promise,
+              this.IpLoadBalancing.Task().v6().query({
+                serviceName,
+                action: 'refreshIplb',
+                status,
+              }).$promise,
           ),
         )
         .then((tasksResults) => flatten(tasksResults));
     } else {
-      tasksPromise = this.IpLoadBalancing.Task()
-        .v6()
-        .query({
-          serviceName,
-          action: 'refreshIplb',
-        }).$promise;
+      tasksPromise = this.IpLoadBalancing.Task().v6().query({
+        serviceName,
+        action: 'refreshIplb',
+      }).$promise;
     }
 
     return tasksPromise.then((ids) =>
       this.$q.all(
         ids.map(
           (id) =>
-            this.IpLoadBalancing.Task()
-              .v6()
-              .get({
-                serviceName,
-                taskId: id,
-              }).$promise,
+            this.IpLoadBalancing.Task().v6().get({
+              serviceName,
+              taskId: id,
+            }).$promise,
         ),
       ),
     );

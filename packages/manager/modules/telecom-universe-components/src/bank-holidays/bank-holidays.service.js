@@ -152,18 +152,12 @@ export default class {
 
     angular.forEach(countryBankHolidays, (bankDay) => {
       const bankHolidayDate = this.getHolidayDate(bankDay, year);
-      if (
-        moment()
-          .subtract(1, 'day')
-          .isBefore(bankHolidayDate)
-      ) {
+      if (moment().subtract(1, 'day').isBefore(bankHolidayDate)) {
         const isBankHolidayInEventRange = modalData.scheduler.isEventInExistingRange(
           {
             categories: 'holidays',
             dateStart: bankHolidayDate.toDate(),
-            dateEnd: moment(bankHolidayDate)
-              .endOf('day')
-              .toDate(),
+            dateEnd: moment(bankHolidayDate).endOf('day').toDate(),
           },
         );
         holidaysList.push({

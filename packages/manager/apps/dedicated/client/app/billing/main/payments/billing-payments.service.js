@@ -16,12 +16,8 @@ angular.module('Billing.services').service('BillingPayments', [
       paymentType = 0,
     }) => {
       const apiv7Ops = {
-        'date:ge': moment(dateFrom)
-          .startOf('day')
-          .toISOString(),
-        'date:le': moment(dateTo)
-          .endOf('day')
-          .toISOString(),
+        'date:ge': moment(dateFrom).startOf('day').toISOString(),
+        'date:le': moment(dateTo).endOf('day').toISOString(),
       };
 
       if (Array.isArray(paymentType)) {

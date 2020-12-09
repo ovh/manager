@@ -37,13 +37,10 @@ class CloudProjectComputeLoadbalancerService {
           .$promise.then(
             (frontendIds) =>
               (frontendIds.length &&
-                this.OvhApiIpLoadBalancing.Frontend()
-                  .Http()
-                  .v6()
-                  .get({
-                    serviceName: id,
-                    frontendId: frontendIds[0],
-                  }).$promise) ||
+                this.OvhApiIpLoadBalancing.Frontend().Http().v6().get({
+                  serviceName: id,
+                  frontendId: frontendIds[0],
+                }).$promise) ||
               loadbalancer,
           )
           .then((frontend) => {
@@ -53,13 +50,10 @@ class CloudProjectComputeLoadbalancerService {
             return (
               (frontend.frontendId &&
                 frontend.defaultFarmId &&
-                this.OvhApiIpLoadBalancing.Farm()
-                  .Http()
-                  .v6()
-                  .get({
-                    serviceName: id,
-                    farmId: frontend.defaultFarmId,
-                  }).$promise) ||
+                this.OvhApiIpLoadBalancing.Farm().Http().v6().get({
+                  serviceName: id,
+                  farmId: frontend.defaultFarmId,
+                }).$promise) ||
               loadbalancer
             );
           })
@@ -135,15 +129,11 @@ class CloudProjectComputeLoadbalancerService {
           map(
             serverIds,
             (serverId) =>
-              this.OvhApiIpLoadBalancing.Farm()
-                .Http()
-                .Server()
-                .v6()
-                .get({
-                  serviceName: loadbalancer.serviceName,
-                  farmId: loadbalancer.farm.farmId,
-                  serverId,
-                }).$promise,
+              this.OvhApiIpLoadBalancing.Farm().Http().Server().v6().get({
+                serviceName: loadbalancer.serviceName,
+                farmId: loadbalancer.farm.farmId,
+                serverId,
+              }).$promise,
           ),
         ),
       );

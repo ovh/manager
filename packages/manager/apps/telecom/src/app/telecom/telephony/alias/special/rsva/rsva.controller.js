@@ -279,9 +279,7 @@ export default class TelecomTelephonyAliasSpecialRsvaCtrl {
         });
 
       this.OvhApiTelephonyService.v6().resetCache();
-      this.OvhApiTelephony.Rsva()
-        .v6()
-        .resetCache();
+      this.OvhApiTelephony.Rsva().v6().resetCache();
       this.$onInit();
     };
   }

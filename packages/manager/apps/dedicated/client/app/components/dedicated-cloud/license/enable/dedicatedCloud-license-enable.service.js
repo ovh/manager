@@ -26,29 +26,25 @@ export default class {
           })
           .$promise.then(
             () =>
-              this.OvhApiOrder.CartServiceOption()
-                .v6()
-                .post(
-                  {
-                    productName: 'privateCloud',
-                    serviceName: service.serviceName,
-                  },
-                  {
-                    cartId,
-                    duration: offer.prices[0].duration,
-                    planCode: offer.planCode,
-                    pricingMode: offer.prices[0].pricingMode,
-                    quantity: 1,
-                  },
-                ).$promise,
+              this.OvhApiOrder.CartServiceOption().v6().post(
+                {
+                  productName: 'privateCloud',
+                  serviceName: service.serviceName,
+                },
+                {
+                  cartId,
+                  duration: offer.prices[0].duration,
+                  planCode: offer.planCode,
+                  pricingMode: offer.prices[0].pricingMode,
+                  quantity: 1,
+                },
+              ).$promise,
           )
           .then(
             () =>
-              this.OvhApiOrder.Cart()
-                .v6()
-                .getCheckout({
-                  cartId,
-                }).$promise,
+              this.OvhApiOrder.Cart().v6().getCheckout({
+                cartId,
+              }).$promise,
           ),
       )
       .then(({ contracts }) =>

@@ -1,7 +1,7 @@
 import angular from 'angular';
 import map from 'lodash/map';
 
-export default /* @ngInject */ function(
+export default /* @ngInject */ function (
   $stateParams,
   $translate,
   $q,

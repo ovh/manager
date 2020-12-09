@@ -110,13 +110,10 @@ export default /* @ngInject */ function TelecomTelephonyLineCallsCallWaitingCtrl
       )
       .then(
         () =>
-          OvhApiTelephony.Line()
-            .Options()
-            .v6()
-            .get({
-              billingAccount: $stateParams.billingAccount,
-              serviceName: $stateParams.serviceName,
-            }).$promise,
+          OvhApiTelephony.Line().Options().v6().get({
+            billingAccount: $stateParams.billingAccount,
+            serviceName: $stateParams.serviceName,
+          }).$promise,
       )
       .then((options) => {
         self.options = pick(options, ['callWaiting', 'intercom']);
@@ -200,9 +197,7 @@ export default /* @ngInject */ function TelecomTelephonyLineCallsCallWaitingCtrl
       });
 
     // reset initial values to be able to modify again the options
-    OvhApiTelephony.Line()
-      .Options()
-      .resetCache();
+    OvhApiTelephony.Line().Options().resetCache();
     init();
   };
 

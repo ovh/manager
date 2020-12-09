@@ -115,17 +115,14 @@ export default /* @ngInject */ (OvhApiTelephony) => {
   TelephonyGroupNumberConferenceParticipant.prototype.mute = function mute() {
     const self = this;
 
-    return OvhApiTelephony.Conference()
-      .Participants()
-      .v6()
-      .mute(
-        {
-          billingAccount: self.billingAccount,
-          serviceName: self.serviceName,
-          id: self.id,
-        },
-        {},
-      ).$promise;
+    return OvhApiTelephony.Conference().Participants().v6().mute(
+      {
+        billingAccount: self.billingAccount,
+        serviceName: self.serviceName,
+        id: self.id,
+      },
+      {},
+    ).$promise;
   };
 
   /**
@@ -136,17 +133,14 @@ export default /* @ngInject */ (OvhApiTelephony) => {
   TelephonyGroupNumberConferenceParticipant.prototype.unmute = function unmute() {
     const self = this;
 
-    return OvhApiTelephony.Conference()
-      .Participants()
-      .v6()
-      .unmute(
-        {
-          billingAccount: self.billingAccount,
-          serviceName: self.serviceName,
-          id: self.id,
-        },
-        {},
-      ).$promise;
+    return OvhApiTelephony.Conference().Participants().v6().unmute(
+      {
+        billingAccount: self.billingAccount,
+        serviceName: self.serviceName,
+        id: self.id,
+      },
+      {},
+    ).$promise;
   };
 
   /**
@@ -157,17 +151,14 @@ export default /* @ngInject */ (OvhApiTelephony) => {
   TelephonyGroupNumberConferenceParticipant.prototype.kick = function kick() {
     const self = this;
 
-    return OvhApiTelephony.Conference()
-      .Participants()
-      .v6()
-      .kick(
-        {
-          billingAccount: self.billingAccount,
-          serviceName: self.serviceName,
-          id: self.id,
-        },
-        {},
-      ).$promise;
+    return OvhApiTelephony.Conference().Participants().v6().kick(
+      {
+        billingAccount: self.billingAccount,
+        serviceName: self.serviceName,
+        id: self.id,
+      },
+      {},
+    ).$promise;
   };
 
   /**
@@ -178,17 +169,14 @@ export default /* @ngInject */ (OvhApiTelephony) => {
   TelephonyGroupNumberConferenceParticipant.prototype.deaf = function deaf() {
     const self = this;
 
-    return OvhApiTelephony.Conference()
-      .Participants()
-      .v6()
-      .deaf(
-        {
-          billingAccount: self.billingAccount,
-          serviceName: self.serviceName,
-          id: self.id,
-        },
-        {},
-      ).$promise;
+    return OvhApiTelephony.Conference().Participants().v6().deaf(
+      {
+        billingAccount: self.billingAccount,
+        serviceName: self.serviceName,
+        id: self.id,
+      },
+      {},
+    ).$promise;
   };
 
   /**
@@ -199,17 +187,14 @@ export default /* @ngInject */ (OvhApiTelephony) => {
   TelephonyGroupNumberConferenceParticipant.prototype.undeaf = function undeaf() {
     const self = this;
 
-    return OvhApiTelephony.Conference()
-      .Participants()
-      .v6()
-      .undeaf(
-        {
-          billingAccount: self.billingAccount,
-          serviceName: self.serviceName,
-          id: self.id,
-        },
-        {},
-      ).$promise;
+    return OvhApiTelephony.Conference().Participants().v6().undeaf(
+      {
+        billingAccount: self.billingAccount,
+        serviceName: self.serviceName,
+        id: self.id,
+      },
+      {},
+    ).$promise;
   };
 
   /**
@@ -222,19 +207,16 @@ export default /* @ngInject */ (OvhApiTelephony) => {
   ) {
     const self = this;
 
-    return OvhApiTelephony.Conference()
-      .Participants()
-      .v6()
-      .energy(
-        {
-          billingAccount: self.billingAccount,
-          serviceName: self.serviceName,
-          id: self.id,
-        },
-        {
-          value,
-        },
-      ).$promise;
+    return OvhApiTelephony.Conference().Participants().v6().energy(
+      {
+        billingAccount: self.billingAccount,
+        serviceName: self.serviceName,
+        id: self.id,
+      },
+      {
+        value,
+      },
+    ).$promise;
   };
 
   /* -----  End of PROTOTYPE METHODS  ------*/

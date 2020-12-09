@@ -32,14 +32,11 @@ export default /* @ngInject */ function TelecomTelephonyServiceVoicemailManageme
             map(
               chunk(ids, 50),
               (chunkIds) =>
-                OvhApiTelephony.Voicemail()
-                  .Directories()
-                  .v6()
-                  .getBatch({
-                    billingAccount: $stateParams.billingAccount,
-                    serviceName: $stateParams.serviceName,
-                    id: chunkIds,
-                  }).$promise,
+                OvhApiTelephony.Voicemail().Directories().v6().getBatch({
+                  billingAccount: $stateParams.billingAccount,
+                  serviceName: $stateParams.serviceName,
+                  id: chunkIds,
+                }).$promise,
             ),
           )
           .then((chunkResult) => {
@@ -129,14 +126,8 @@ export default /* @ngInject */ function TelecomTelephonyServiceVoicemailManageme
 
           // file is not ready to download, just retry
           return $timeout(() => {
-            OvhApiTelephony.Voicemail()
-              .Directories()
-              .v6()
-              .resetCache();
-            OvhApiTelephony.Voicemail()
-              .Directories()
-              .v6()
-              .resetQueryCache();
+            OvhApiTelephony.Voicemail().Directories().v6().resetCache();
+            OvhApiTelephony.Voicemail().Directories().v6().resetQueryCache();
             return tryDownload();
           }, 1000);
         });
@@ -188,14 +179,11 @@ export default /* @ngInject */ function TelecomTelephonyServiceVoicemailManageme
   this.deleteMessages = function deleteMessages(messageList) {
     const queries = messageList.map(
       (message) =>
-        OvhApiTelephony.Voicemail()
-          .Directories()
-          .v6()
-          .delete({
-            billingAccount: $stateParams.billingAccount,
-            serviceName: $stateParams.serviceName,
-            id: message.id,
-          }).$promise,
+        OvhApiTelephony.Voicemail().Directories().v6().delete({
+          billingAccount: $stateParams.billingAccount,
+          serviceName: $stateParams.serviceName,
+          id: message.id,
+        }).$promise,
     );
     self.messages.isDeleting = true;
     queries.push($timeout(angular.noop, 1000)); // avoid clipping
@@ -230,14 +218,8 @@ export default /* @ngInject */ function TelecomTelephonyServiceVoicemailManageme
 
   this.refresh = function refresh() {
     self.messages.isLoading = true;
-    OvhApiTelephony.Voicemail()
-      .Directories()
-      .v6()
-      .resetCache();
-    OvhApiTelephony.Voicemail()
-      .Directories()
-      .v6()
-      .resetQueryCache();
+    OvhApiTelephony.Voicemail().Directories().v6().resetCache();
+    OvhApiTelephony.Voicemail().Directories().v6().resetQueryCache();
     return $q
       .all({
         noop: $timeout(angular.noop, 1000), // avoid clipping

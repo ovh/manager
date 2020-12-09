@@ -1,6 +1,6 @@
 import assignIn from 'lodash/assignIn';
 
-export default /* @ngInject */ function($q, Poller) {
+export default /* @ngInject */ function ($q, Poller) {
   const self = this;
 
   /*= ==============================

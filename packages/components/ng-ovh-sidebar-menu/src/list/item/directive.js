@@ -16,7 +16,7 @@ import { filter } from 'lodash-es';
 
 import template from './template.html';
 
-export default /* @ngInject */ function($compile) {
+export default /* @ngInject */ function ($compile) {
   return {
     template,
     restrict: 'A',

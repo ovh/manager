@@ -66,9 +66,7 @@ angular
 
       function initPaymentMethods() {
         if (self.region !== 'US') {
-          return OvhApiMe.PaymentMean()
-            .v6()
-            .getDefaultPaymentMean();
+          return OvhApiMe.PaymentMean().v6().getDefaultPaymentMean();
         }
 
         return OvhApiMe.PaymentMethod()
@@ -79,11 +77,9 @@ angular
           .$promise.then((paymentMethodIds) =>
             map(paymentMethodIds, (paymentMethodId) =>
               $q.all(
-                OvhApiMe.PaymentMethod()
-                  .v6()
-                  .get({
-                    id: paymentMethodId,
-                  }).$promise,
+                OvhApiMe.PaymentMethod().v6().get({
+                  id: paymentMethodId,
+                }).$promise,
               ),
             ),
           )

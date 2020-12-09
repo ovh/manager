@@ -1,3 +1,3 @@
-export default /* @ngInject */ function(popoverFactory) {
+export default /* @ngInject */ function (popoverFactory) {
   return popoverFactory('linkedpopover', 'click');
 }

@@ -112,9 +112,7 @@ export default class SupportController {
           (!isFinite(a) && !isFinite(b) && moment(a).isSame(moment(b), 'days'))
         );
       case 'isAfter':
-        return moment(a)
-          .add(1, 'days')
-          .isAfter(moment(b));
+        return moment(a).add(1, 'days').isAfter(moment(b));
       case 'isBefore':
         return moment(a).isBefore(moment(b));
       case 'isNot':

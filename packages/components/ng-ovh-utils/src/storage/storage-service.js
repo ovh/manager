@@ -26,11 +26,11 @@
  * controller.$inject = ['$scope', 'storage'];
  * </code>
  */
-export default function() {
+export default function () {
   // polyfill
   if (!window.localStorage || !window.sessionStorage) {
-    (function() {
-      const Storage = function(type) {
+    (function () {
+      const Storage = function (type) {
         let data;
         const hoursInMilli = 24 * 60 * 60 * 1000;
 
@@ -168,7 +168,7 @@ export default function() {
    * @param {string} prefix the prefix keys
    * @return {storage} this
    */
-  this.setKeyPrefix = function(prefix) {
+  this.setKeyPrefix = function (prefix) {
     if (typeof prefix === 'string') {
       kp = prefix;
     }
@@ -184,7 +184,7 @@ export default function() {
    * @param {boolean} isSession sessionStorage or not
    * @return {storage} this
    */
-  this.add = function(key, value, isSession) {
+  this.add = function (key, value, isSession) {
     if (key !== undefined && value !== undefined) {
       if (!isSession) {
         window.localStorage.setItem(kp + key, value);
@@ -203,7 +203,7 @@ export default function() {
    * @param {boolean} isSession sessionStorage or not
    * @return {storage} this
    */
-  this.remove = function(key, isSession) {
+  this.remove = function (key, isSession) {
     if (key !== undefined) {
       if (isSession) {
         window.sessionStorage.removeItem(kp + key);
@@ -222,7 +222,7 @@ export default function() {
    * @param {boolean} isSession sessionStorage or not
    * @return {object} the stored value
    */
-  this.get = function(key, isSession) {
+  this.get = function (key, isSession) {
     if (key !== undefined) {
       if (isSession) {
         return window.sessionStorage.getItem(kp + key);

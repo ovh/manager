@@ -36,12 +36,9 @@ export default class PciProjectTrainingRegistryService {
   }
 
   delete(projectId, registryId) {
-    return this.OvhApiCloudProjectAi.Training()
-      .Registry()
-      .v6()
-      .delete({
-        serviceName: projectId,
-        registryId,
-      }).$promise;
+    return this.OvhApiCloudProjectAi.Training().Registry().v6().delete({
+      serviceName: projectId,
+      registryId,
+    }).$promise;
   }
 }

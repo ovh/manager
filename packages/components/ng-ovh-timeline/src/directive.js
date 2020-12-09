@@ -6,7 +6,7 @@
  * @description
  * Primary container for displaying a vertical set of timeline events.
  */
-export default /* @ngInject */ function() {
+export default /* @ngInject */ function () {
   return {
     restrict: 'AE',
     transclude: true,

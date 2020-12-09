@@ -1,7 +1,7 @@
 import angular from 'angular';
 import $ from 'jquery';
 
-export default /* @ngInject */ function() {
+export default /* @ngInject */ function () {
   return {
     restrict: 'A',
     scope: false,

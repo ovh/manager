@@ -1,4 +1,4 @@
-export default /* @ngInject */ function(
+export default /* @ngInject */ function (
   userAccountServiceInfos,
   Alerter,
   $translate,

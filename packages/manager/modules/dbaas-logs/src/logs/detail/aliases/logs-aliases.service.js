@@ -19,15 +19,9 @@ export default class LogsAliasesService {
     this.$q = $q;
     this.$translate = $translate;
     this.CucServiceHelper = CucServiceHelper;
-    this.AliasApiService = OvhApiDbaas.Logs()
-      .Alias()
-      .v6();
-    this.AliasAapiService = OvhApiDbaas.Logs()
-      .Alias()
-      .Aapi();
-    this.OperationApiService = OvhApiDbaas.Logs()
-      .Operation()
-      .v6();
+    this.AliasApiService = OvhApiDbaas.Logs().Alias().v6();
+    this.AliasAapiService = OvhApiDbaas.Logs().Alias().Aapi();
+    this.OperationApiService = OvhApiDbaas.Logs().Operation().v6();
     this.CucCloudPoll = CucCloudPoll;
     this.LogsHelperService = LogsHelperService;
     this.LogsConstants = LogsConstants;

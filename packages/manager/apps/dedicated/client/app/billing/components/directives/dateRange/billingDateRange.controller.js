@@ -10,9 +10,7 @@ angular
       $translate,
       BillingdateRangeSelection,
     ) {
-      this.today = moment()
-        .endOf('day')
-        .toISOString();
+      this.today = moment().endOf('day').toISOString();
       this.CUSTOM_RANGE_MODE = 'custom';
       this.model = {};
       this.dateRangeSelection = BillingdateRangeSelection;

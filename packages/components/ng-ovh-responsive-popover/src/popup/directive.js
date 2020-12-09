@@ -1,6 +1,6 @@
 import template from './template.html';
 
-export default function() {
+export default function () {
   return {
     replace: true,
     scope: {

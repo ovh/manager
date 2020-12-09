@@ -4,10 +4,7 @@ class UserSessionService {
   }
 
   getCurrentLocale() {
-    this.$translate
-      .use()
-      .replace('_', '-')
-      .toLowerCase();
+    this.$translate.use().replace('_', '-').toLowerCase();
   }
 
   loadTranslations() {

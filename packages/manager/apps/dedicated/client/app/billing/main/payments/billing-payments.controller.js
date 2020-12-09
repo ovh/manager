@@ -25,9 +25,7 @@ angular
             request = request.addFilter(
               'date',
               'le',
-              moment(crit.value)
-                .add(1, 'day')
-                .format('YYYY-MM-DD'),
+              moment(crit.value).add(1, 'day').format('YYYY-MM-DD'),
             );
             break;
           case 'isAfter':

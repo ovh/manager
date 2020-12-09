@@ -9,13 +9,10 @@ angular
     $q,
   ) {
     function getReadWriteAccounts(projectId) {
-      return OvhApiCloud.Project()
-        .Acl()
-        .v6()
-        .query({
-          serviceName: projectId,
-          type: 'readWrite',
-        }).$promise;
+      return OvhApiCloud.Project().Acl().v6().query({
+        serviceName: projectId,
+        type: 'readWrite',
+      }).$promise;
     }
 
     function getCurrentUserNic() {

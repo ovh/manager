@@ -40,9 +40,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $q
           .all({
             domains: OvhApiDomain.v6().query().$promise,
-            zones: OvhApiDomain.Zone()
-              .v6()
-              .query().$promise,
+            zones: OvhApiDomain.Zone().v6().query().$promise,
             emailDomains: iceberg('/email/domain')
               .query()
               .expand('CachedObjectList-Pages')

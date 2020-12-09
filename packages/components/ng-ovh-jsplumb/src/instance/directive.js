@@ -56,7 +56,7 @@ import angular from 'angular';
 
 import controller from './controller';
 
-export default /* @ngInject */ function($rootScope, $parse) {
+export default /* @ngInject */ function ($rootScope, $parse) {
   return {
     restrict: 'A',
     scope: true,

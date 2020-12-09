@@ -1,6 +1,6 @@
 import { defaults, filter, find, head, isFunction, sortBy } from 'lodash-es';
 
-export default /* @ngInject */ function($q, ovhContact) {
+export default /* @ngInject */ function ($q, ovhContact) {
   const self = this;
 
   self.loading = {

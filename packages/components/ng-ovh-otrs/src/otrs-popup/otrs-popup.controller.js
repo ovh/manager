@@ -12,7 +12,7 @@ import without from 'lodash/without';
 
 import { US_TERMS_LINKS } from './otrs-popup.constant';
 
-export default /* @ngInject */ function(
+export default /* @ngInject */ function (
   $http,
   $injector,
   $q,

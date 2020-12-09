@@ -1,4 +1,4 @@
-export default /* @ngInject */ function() {
+export default /* @ngInject */ function () {
   return {
     restrict: 'A',
     require: '^responsiveSwitch',
@@ -18,7 +18,7 @@ export default /* @ngInject */ function() {
         },
         post: ($scope, $element, attr, switchPageCtrl) => {
           $scope.pageIndex = switchPageCtrl.addPage($scope);
-          $scope.isMoveToLeft = function() {
+          $scope.isMoveToLeft = function () {
             const lastPageIndex = switchPageCtrl.getLastActivePage();
             if (
               lastPageIndex !== undefined &&

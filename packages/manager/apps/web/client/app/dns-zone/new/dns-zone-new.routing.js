@@ -14,13 +14,10 @@ export default /* @ngInject */ ($stateProvider) => {
       },
 
       catalog: /* @ngInject */ (OvhApiOrder, user) =>
-        OvhApiOrder.Catalog()
-          .Public()
-          .v6()
-          .get({
-            productName: 'dns',
-            ovhSubsidiary: user.ovhSubsidiary,
-          }).$promise,
+        OvhApiOrder.Catalog().Public().v6().get({
+          productName: 'dns',
+          ovhSubsidiary: user.ovhSubsidiary,
+        }).$promise,
 
       goBack: /* @ngInject */ ($state, $timeout, Alerter) => (
         message = false,

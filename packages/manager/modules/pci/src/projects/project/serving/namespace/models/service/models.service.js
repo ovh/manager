@@ -7,16 +7,13 @@ export default class OvhManagerPciServingModelService {
   }
 
   add(serviceName, namespaceId, modelCreation) {
-    return this.OvhApiCloudProjectAi.Serving()
-      .Model()
-      .v6()
-      .save(
-        {
-          serviceName,
-          namespaceId,
-        },
-        modelCreation,
-      ).$promise;
+    return this.OvhApiCloudProjectAi.Serving().Model().v6().save(
+      {
+        serviceName,
+        namespaceId,
+      },
+      modelCreation,
+    ).$promise;
   }
 
   getAll(serviceName, namespaceId) {
@@ -50,37 +47,28 @@ export default class OvhManagerPciServingModelService {
   }
 
   delete(serviceName, namespaceId, { id: modelId }) {
-    return this.OvhApiCloudProjectAi.Serving()
-      .Model()
-      .v6()
-      .delete({
-        serviceName,
-        namespaceId,
-        modelId,
-      }).$promise;
+    return this.OvhApiCloudProjectAi.Serving().Model().v6().delete({
+      serviceName,
+      namespaceId,
+      modelId,
+    }).$promise;
   }
 
   update(serviceName, namespaceId, modelId) {
-    return this.OvhApiCloudProjectAi.Serving()
-      .Model()
-      .v6()
-      .edit(
-        {
-          serviceName,
-          namespaceId,
-          modelId,
-        },
-        null,
-      ).$promise;
+    return this.OvhApiCloudProjectAi.Serving().Model().v6().edit(
+      {
+        serviceName,
+        namespaceId,
+        modelId,
+      },
+      null,
+    ).$promise;
   }
 
   getMetricsToken(projectId, namespaceId) {
-    return this.OvhApiCloudProjectAi.Serving()
-      .Metrics()
-      .v6()
-      .query({
-        serviceName: projectId,
-        namespaceId,
-      }).$promise;
+    return this.OvhApiCloudProjectAi.Serving().Metrics().v6().query({
+      serviceName: projectId,
+      namespaceId,
+    }).$promise;
   }
 }

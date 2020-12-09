@@ -66,10 +66,7 @@ export default /* @ngInject */ ($window) => {
   Chart.prototype.init = function init(el) {
     this.x = d3.scale.ordinal();
     this.y = d3.scale.linear();
-    this.xAxis = d3.svg
-      .axis()
-      .scale(this.x)
-      .orient('bottom');
+    this.xAxis = d3.svg.axis().scale(this.x).orient('bottom');
     this.g.svg = d3
       .select(el)
       .append('svg')

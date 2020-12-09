@@ -78,9 +78,7 @@ angular
     }
 
     function initTasks() {
-      OvhApiDedicatedCeph.Task()
-        .v6()
-        .resetQueryCache();
+      OvhApiDedicatedCeph.Task().v6().resetQueryCache();
       OvhApiDedicatedCeph.Task()
         .v6()
         .query({

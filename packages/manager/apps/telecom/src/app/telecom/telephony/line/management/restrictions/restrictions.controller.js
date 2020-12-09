@@ -20,12 +20,10 @@ export default /* @ngInject */ function TelecomTelephonyLineRestrictionsCtrl(
   const self = this;
 
   function fetchLineOptions() {
-    return OvhApiTelephony.Line()
-      .v6()
-      .getOptions({
-        billingAccount: $stateParams.billingAccount,
-        serviceName: $stateParams.serviceName,
-      }).$promise;
+    return OvhApiTelephony.Line().v6().getOptions({
+      billingAccount: $stateParams.billingAccount,
+      serviceName: $stateParams.serviceName,
+    }).$promise;
   }
 
   function fetchAccountRestrictions() {
@@ -37,12 +35,9 @@ export default /* @ngInject */ function TelecomTelephonyLineRestrictionsCtrl(
         $q.all(
           ids.map(
             (id) =>
-              OvhApiMe.Telephony()
-                .DefaultIpRestriction()
-                .v6()
-                .get({
-                  id,
-                }).$promise,
+              OvhApiMe.Telephony().DefaultIpRestriction().v6().get({
+                id,
+              }).$promise,
           ),
         ),
       )
@@ -167,22 +162,16 @@ export default /* @ngInject */ function TelecomTelephonyLineRestrictionsCtrl(
     );
     const deletePromise = map(changes.concat(toDelete), 'id').map(
       (id) =>
-        OvhApiMe.Telephony()
-          .DefaultIpRestriction()
-          .v6()
-          .remove({
-            id,
-          }).$promise,
+        OvhApiMe.Telephony().DefaultIpRestriction().v6().remove({
+          id,
+        }).$promise,
     );
     const addPromise = map(changes.concat(toAdd), 'subnet').map((ip) => {
       const subnet = ('' || ip).indexOf('/') >= 0 ? ip : `${ip}/32`;
-      return OvhApiMe.Telephony()
-        .DefaultIpRestriction()
-        .v6()
-        .create({
-          subnet,
-          type: 'sip',
-        }).$promise;
+      return OvhApiMe.Telephony().DefaultIpRestriction().v6().create({
+        subnet,
+        type: 'sip',
+      }).$promise;
     });
     self.isChangingAccountOptions = true;
     return $q
@@ -270,9 +259,7 @@ export default /* @ngInject */ function TelecomTelephonyLineRestrictionsCtrl(
     self.applyLineChanges();
 
     // reset initial values to be able to modify again the options
-    OvhApiTelephony.Line()
-      .v6()
-      .resetAllCache();
+    OvhApiTelephony.Line().v6().resetAllCache();
     init();
   };
 

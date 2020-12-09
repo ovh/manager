@@ -4,7 +4,7 @@ import filter from 'lodash/filter';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 
-export default /* @ngInject */ function(
+export default /* @ngInject */ function (
   $scope,
   $q,
   $timeout,

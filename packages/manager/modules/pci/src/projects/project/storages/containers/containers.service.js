@@ -339,9 +339,7 @@ export default class PciStoragesContainersService {
   }
 
   getObjectUrl(projectId, containerId, object) {
-    const expirationDate = moment()
-      .add(1, 'week')
-      .toISOString();
+    const expirationDate = moment().add(1, 'week').toISOString();
     return this.OvhApiCloudProjectStorage.v6()
       .getURL(
         {

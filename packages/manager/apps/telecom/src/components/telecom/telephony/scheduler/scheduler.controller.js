@@ -286,10 +286,7 @@ export default /* @ngInject */ function TelephonySchedulerCtrl(
         startImportTaskPolling(importDatas.importTask.taskId)
           .then(
             () => {
-              OvhApiTelephony.Scheduler()
-                .Events()
-                .v6()
-                .resetAllCache();
+              OvhApiTelephony.Scheduler().Events().v6().resetAllCache();
               $(uiCalendarConfig.calendars.eventsCalendar).fullCalendar(
                 'refetchEvents',
               );
@@ -312,11 +309,9 @@ export default /* @ngInject */ function TelephonySchedulerCtrl(
 
             // try to delete uploaded document
             if (importDatas.uploadedDocument) {
-              OvhApiMe.Document()
-                .v6()
-                .delete({
-                  id: importDatas.uploadedDocument.id,
-                });
+              OvhApiMe.Document().v6().delete({
+                id: importDatas.uploadedDocument.id,
+              });
             }
           });
       },
@@ -399,9 +394,7 @@ export default /* @ngInject */ function TelephonySchedulerCtrl(
             categories: 'holidays',
             status: 'TOCREATE',
             dateStart: event.date.toDate(),
-            dateEnd: moment(event.date)
-              .endOf('day')
-              .toDate(),
+            dateEnd: moment(event.date).endOf('day').toDate(),
           });
         });
         $(uiCalendarConfig.calendars.eventsCalendar).fullCalendar(

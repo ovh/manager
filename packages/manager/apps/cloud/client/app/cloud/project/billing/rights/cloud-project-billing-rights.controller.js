@@ -189,10 +189,7 @@ angular
       self.getRights = function getRights(clearCache) {
         self.loader = true;
         if (clearCache) {
-          OvhApiCloud.Project()
-            .Acl()
-            .v6()
-            .resetQueryCache();
+          OvhApiCloud.Project().Acl().v6().resetQueryCache();
         }
         return OvhApiCloud.Project()
           .Acl()
@@ -230,13 +227,10 @@ angular
           })
           .then(
             () =>
-              OvhApiCloud.Project()
-                .Acl()
-                .v6()
-                .remove({
-                  serviceName,
-                  accountId: account.accountId,
-                }).$promise,
+              OvhApiCloud.Project().Acl().v6().remove({
+                serviceName,
+                accountId: account.accountId,
+              }).$promise,
           )
           .then(() => {
             self.getRights(true);
@@ -259,13 +253,10 @@ angular
       };
 
       this.transformItem = function transformItem(account) {
-        return OvhApiCloud.Project()
-          .Acl()
-          .v6()
-          .get({
-            serviceName,
-            accountId: account.accountId,
-          }).$promise;
+        return OvhApiCloud.Project().Acl().v6().get({
+          serviceName,
+          accountId: account.accountId,
+        }).$promise;
       };
 
       // Controller initialization

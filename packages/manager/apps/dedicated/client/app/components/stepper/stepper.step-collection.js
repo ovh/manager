@@ -23,8 +23,9 @@ export default class {
 
     if (index >= this.steps.length) {
       throw new RangeError(
-        `Stepper: maximum allowed index is ${this.steps.length -
-          1} (input was ${index})`,
+        `Stepper: maximum allowed index is ${
+          this.steps.length - 1
+        } (input was ${index})`,
       );
     }
   }

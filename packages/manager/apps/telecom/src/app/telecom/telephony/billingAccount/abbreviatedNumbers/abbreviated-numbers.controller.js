@@ -19,24 +19,20 @@ export default class TelecomTelephonyAbbreviatedNumbersCtrl {
   }
 
   remove({ abbreviatedNumber }) {
-    return this.OvhApiTelephony.AbbreviatedNumber()
-      .v6()
-      .remove({
-        billingAccount: this.$stateParams.billingAccount,
-        abbreviatedNumber,
-      }).$promise;
+    return this.OvhApiTelephony.AbbreviatedNumber().v6().remove({
+      billingAccount: this.$stateParams.billingAccount,
+      abbreviatedNumber,
+    }).$promise;
   }
 
   insert(abbreviatedNumber) {
-    return this.OvhApiTelephony.AbbreviatedNumber()
-      .v6()
-      .insert(
-        {
-          billingAccount: this.$stateParams.billingAccount,
-          serviceName: this.$stateParams.serviceName,
-        },
-        abbreviatedNumber,
-      ).$promise;
+    return this.OvhApiTelephony.AbbreviatedNumber().v6().insert(
+      {
+        billingAccount: this.$stateParams.billingAccount,
+        serviceName: this.$stateParams.serviceName,
+      },
+      abbreviatedNumber,
+    ).$promise;
   }
 
   update(abbreviatedNumber) {
@@ -92,8 +88,9 @@ export default class TelecomTelephonyAbbreviatedNumbersCtrl {
         .get({ billingAccount: this.$stateParams.billingAccount })
         .$promise.then(
           (detail) => {
-            this.exportFilename = `ab_num_${detail.description ||
-              this.$stateParams.billingAccount}.csv`;
+            this.exportFilename = `ab_num_${
+              detail.description || this.$stateParams.billingAccount
+            }.csv`;
           },
           () => {
             this.exportFilename = `ab_num_${this.$stateParams.billingAccount}.csv`;

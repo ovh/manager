@@ -48,9 +48,7 @@ export default /* @ngInject */ () => ({
       topMenu.delegate('a', 'click', function click(e) {
         const href = $(this).attr('data-fake-href');
 
-        $('.contracts-list')
-          .stop()
-          .scrollTo(href, scrollToOptions);
+        $('.contracts-list').stop().scrollTo(href, scrollToOptions);
 
         e.preventDefault();
       });
@@ -147,10 +145,7 @@ export default /* @ngInject */ () => ({
         .filter(`[data-fake-href=#${lastId}]`)
         .addClass('active');
       window.setTimeout(() => {
-        $elm
-          .find('.contracts-list')
-          .stop()
-          .scrollTo(0);
+        $elm.find('.contracts-list').stop().scrollTo(0);
         menuItems = topMenu.find('a'); // because ngRepeat is not already here ;p
       }, 300);
     }

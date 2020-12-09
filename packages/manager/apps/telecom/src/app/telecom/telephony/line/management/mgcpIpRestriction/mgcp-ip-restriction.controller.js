@@ -22,13 +22,10 @@ export default /* @ngInject */ function TelecomTelephonyLineMgcpIpRestrictionCtr
     =============================== */
 
   function fetchPhone() {
-    return OvhApiTelephony.Line()
-      .Phone()
-      .v6()
-      .get({
-        billingAccount: $stateParams.billingAccount,
-        serviceName: $stateParams.serviceName,
-      }).$promise;
+    return OvhApiTelephony.Line().Phone().v6().get({
+      billingAccount: $stateParams.billingAccount,
+      serviceName: $stateParams.serviceName,
+    }).$promise;
   }
 
   function fetchDefaultMgcpIpRestriction() {
@@ -40,12 +37,9 @@ export default /* @ngInject */ function TelecomTelephonyLineMgcpIpRestrictionCtr
         $q.all(
           ids.map(
             (id) =>
-              OvhApiMe.Telephony()
-                .DefaultIpRestriction()
-                .v6()
-                .get({
-                  id,
-                }).$promise,
+              OvhApiMe.Telephony().DefaultIpRestriction().v6().get({
+                id,
+              }).$promise,
           ),
         ),
       )
@@ -125,13 +119,10 @@ export default /* @ngInject */ function TelecomTelephonyLineMgcpIpRestrictionCtr
     let subnet = get(self.mgcpDefaultIpRestrictionForm, 'subnet');
     subnet = subnet.indexOf('/') >= 0 ? subnet : `${subnet}/32`;
     if (isEmpty(self.mgcpDefaultIpRestriction)) {
-      promise = OvhApiMe.Telephony()
-        .DefaultIpRestriction()
-        .v6()
-        .create({
-          subnet,
-          type: 'mgcp',
-        }).$promise;
+      promise = OvhApiMe.Telephony().DefaultIpRestriction().v6().create({
+        subnet,
+        type: 'mgcp',
+      }).$promise;
     } else {
       promise = OvhApiMe.Telephony()
         .DefaultIpRestriction()
@@ -141,13 +132,10 @@ export default /* @ngInject */ function TelecomTelephonyLineMgcpIpRestrictionCtr
         })
         .$promise.then(() => {
           if (!isEmpty(subnet)) {
-            return OvhApiMe.Telephony()
-              .DefaultIpRestriction()
-              .v6()
-              .create({
-                subnet,
-                type: 'mgcp',
-              }).$promise;
+            return OvhApiMe.Telephony().DefaultIpRestriction().v6().create({
+              subnet,
+              type: 'mgcp',
+            }).$promise;
           }
           return null;
         });
@@ -261,10 +249,7 @@ export default /* @ngInject */ function TelecomTelephonyLineMgcpIpRestrictionCtr
         });
       });
 
-    OvhApiTelephony.Line()
-      .Phone()
-      .v6()
-      .resetAllCache();
+    OvhApiTelephony.Line().Phone().v6().resetAllCache();
 
     init();
   };

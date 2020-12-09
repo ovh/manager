@@ -26,13 +26,10 @@ export default class {
    *  @return {Promise}
    */
   getLineOptions({ billingAccount, serviceName }) {
-    return this.OvhApiTelephony.Line()
-      .Options()
-      .v6()
-      .get({
-        billingAccount,
-        serviceName,
-      }).$promise;
+    return this.OvhApiTelephony.Line().Options().v6().get({
+      billingAccount,
+      serviceName,
+    }).$promise;
   }
 
   /**
@@ -49,16 +46,13 @@ export default class {
    *  @return {Promise}
    */
   changeLineOptions({ billingAccount, serviceName }, options) {
-    return this.OvhApiTelephony.Line()
-      .Options()
-      .v6()
-      .update(
-        {
-          billingAccount,
-          serviceName,
-        },
-        options,
-      ).$promise;
+    return this.OvhApiTelephony.Line().Options().v6().update(
+      {
+        billingAccount,
+        serviceName,
+      },
+      options,
+    ).$promise;
   }
 
   /**
@@ -74,12 +68,9 @@ export default class {
    *  @return {Promise}
    */
   getPhone({ billingAccount, serviceName }) {
-    return this.OvhApiTelephony.Line()
-      .Phone()
-      .v6()
-      .get({
-        billingAccount,
-        serviceName,
-      }).$promise;
+    return this.OvhApiTelephony.Line().Phone().v6().get({
+      billingAccount,
+      serviceName,
+    }).$promise;
   }
 }

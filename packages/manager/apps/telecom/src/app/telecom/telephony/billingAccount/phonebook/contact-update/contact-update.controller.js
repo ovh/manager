@@ -64,17 +64,14 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountPhonebookC
     self.phonecontactForm.isAdding = true;
     return $q
       .all([
-        OvhApiTelephony.Phonebook()
-          .PhonebookContact()
-          .v6()
-          .update(
-            {
-              billingAccount: $stateParams.billingAccount,
-              bookKey: self.phonebook.bookKey,
-              id: self.contact.id,
-            },
-            TucPhonebookcontact.getContactData(self.phonecontactForm),
-          ).$promise,
+        OvhApiTelephony.Phonebook().PhonebookContact().v6().update(
+          {
+            billingAccount: $stateParams.billingAccount,
+            bookKey: self.phonebook.bookKey,
+            id: self.contact.id,
+          },
+          TucPhonebookcontact.getContactData(self.phonecontactForm),
+        ).$promise,
         $timeout(angular.noop, 1000),
       ])
       .then(

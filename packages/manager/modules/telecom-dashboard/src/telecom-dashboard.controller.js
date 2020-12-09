@@ -1,6 +1,6 @@
 import constant from './telecom-dashboard.constant';
 
-export default /* @ngInject */ function(OvhApiMeVipStatus, TucToastError) {
+export default /* @ngInject */ function (OvhApiMeVipStatus, TucToastError) {
   const self = this;
 
   self.loading = {

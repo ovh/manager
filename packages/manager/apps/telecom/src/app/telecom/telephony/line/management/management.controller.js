@@ -110,15 +110,12 @@ export default /* @ngInject */ function TelecomTelephonyLineManagementCtrl(
   }
 
   function getTasks() {
-    return OvhApiTelephony.Service()
-      .OfferTask()
-      .v6()
-      .query({
-        billingAccount: $stateParams.billingAccount,
-        serviceName: $stateParams.serviceName,
-        action: 'termination',
-        status: 'todo',
-      }).$promise;
+    return OvhApiTelephony.Service().OfferTask().v6().query({
+      billingAccount: $stateParams.billingAccount,
+      serviceName: $stateParams.serviceName,
+      action: 'termination',
+      status: 'todo',
+    }).$promise;
   }
 
   function getOffers() {

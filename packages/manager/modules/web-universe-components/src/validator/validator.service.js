@@ -4,7 +4,7 @@ import punycode from 'punycode';
 import ipaddr from 'ipaddr.js';
 import URI from 'URIjs';
 
-export default function() {
+export default function () {
   const self = this;
   this.MAX_DOMAIN_LENGTH = 63;
 

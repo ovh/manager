@@ -186,9 +186,7 @@ angular
         self.toggle.editVolumeName = !self.toggle.editVolumeName;
         // Focus first elem
         $timeout(() => {
-          $('.cloud-volume-popover')
-            .find(':tabbable:first')
-            .focus();
+          $('.cloud-volume-popover').find(':tabbable:first').focus();
         }, 99);
       };
 

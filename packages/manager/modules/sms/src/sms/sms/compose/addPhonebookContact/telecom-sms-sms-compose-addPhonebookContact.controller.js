@@ -39,9 +39,7 @@ export default class {
     this.api = {
       sms: {
         phonebooks: {
-          phonebookcontact: OvhApiSms.Phonebooks()
-            .PhonebookContact()
-            .v6(),
+          phonebookcontact: OvhApiSms.Phonebooks().PhonebookContact().v6(),
         },
       },
     };

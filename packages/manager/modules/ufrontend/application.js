@@ -8,10 +8,7 @@ export default function registerApplication() {
       if (!window.ovhMicroFrontend) {
         const ufrontend = new OvhMicroFrontend();
         window.ovhMicroFrontend = ufrontend;
-        ufrontend
-          .init()
-          .then(resolve)
-          .catch(reject);
+        ufrontend.init().then(resolve).catch(reject);
       }
 
       if (!window.customElements.get('ovh-fragment')) {

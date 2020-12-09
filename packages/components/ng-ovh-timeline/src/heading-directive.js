@@ -6,7 +6,7 @@
  * @description
  * Optional element to show the heading for a `timeline-panel`.
  */
-export default /* @ngInject */ function() {
+export default /* @ngInject */ function () {
   return {
     require: '^timelinePanel',
     restrict: 'AE',

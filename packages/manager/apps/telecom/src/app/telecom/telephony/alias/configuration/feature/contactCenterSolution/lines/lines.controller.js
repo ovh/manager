@@ -284,15 +284,8 @@ export default class TelecomTelephonyAliasConfigurationLinesCtrl {
           : angular.noop(),
       })
       .then(() => {
-        this.OvhApiTelephony.EasyHunting()
-          .Hunting()
-          .v6()
-          .resetCache();
-        this.OvhApiTelephony.EasyHunting()
-          .Hunting()
-          .Queue()
-          .v6()
-          .resetCache();
+        this.OvhApiTelephony.EasyHunting().Hunting().v6().resetCache();
+        this.OvhApiTelephony.EasyHunting().Hunting().Queue().v6().resetCache();
         this.OvhApiTelephony.EasyHunting()
           .Hunting()
           .Queue()

@@ -1,7 +1,7 @@
 import angular from 'angular';
 import assign from 'lodash/assign';
 
-export default /* @ngInject */ function(
+export default /* @ngInject */ function (
   $scope,
   $translate,
   APIEmailPro,

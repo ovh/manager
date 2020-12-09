@@ -37,11 +37,9 @@ export default /* @ngInject */ ($stateProvider) => {
             failoverIps: OvhApiCloudProjectIpFailover.v6().query({
               serviceName: projectId,
             }).$promise,
-            instances: OvhApiCloudProject.Instance()
-              .v6()
-              .query({
-                serviceName: projectId,
-              }).$promise,
+            instances: OvhApiCloudProject.Instance().v6().query({
+              serviceName: projectId,
+            }).$promise,
           })
           .then(({ failoverIps, instances }) =>
             map(failoverIps, (failoverIp) => ({

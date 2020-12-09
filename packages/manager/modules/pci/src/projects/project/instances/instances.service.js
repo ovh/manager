@@ -473,17 +473,15 @@ export default class PciProjectInstanceService {
       privateNetworks,
       (results, privateNetwork) => [
         ...results,
-        this.OvhApiCloudProjectInstance.Interface()
-          .v6()
-          .save(
-            {
-              serviceName: projectId,
-              instanceId,
-            },
-            {
-              networkId: privateNetwork.id,
-            },
-          ).$promise,
+        this.OvhApiCloudProjectInstance.Interface().v6().save(
+          {
+            serviceName: projectId,
+            instanceId,
+          },
+          {
+            networkId: privateNetwork.id,
+          },
+        ).$promise,
       ],
       [],
     );
@@ -529,9 +527,7 @@ export default class PciProjectInstanceService {
         .query({ ip })
         .$promise.then(([ipReverse]) =>
           ipReverse
-            ? this.OvhApiIp.Reverse()
-                .v6()
-                .get({ ip, ipReverse }).$promise
+            ? this.OvhApiIp.Reverse().v6().get({ ip, ipReverse }).$promise
             : null,
         )
         .catch((error) =>

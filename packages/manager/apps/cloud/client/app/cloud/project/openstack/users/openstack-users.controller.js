@@ -140,9 +140,7 @@ angular
         if (active) {
           setTimeout(() => {
             const areaheight = $(`#user_${id}`).prop('scrollHeight');
-            $(`#user_${id}`)
-              .height(areaheight)
-              .select();
+            $(`#user_${id}`).height(areaheight).select();
           }, 0);
         }
       };

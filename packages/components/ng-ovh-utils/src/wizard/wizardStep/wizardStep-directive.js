@@ -2,7 +2,7 @@ import angular from 'angular';
 
 import template from './wizardStep.html';
 
-export default /* @ngInject */ function($compile, $timeout, $q) {
+export default /* @ngInject */ function ($compile, $timeout, $q) {
   return {
     restrict: 'A',
     require: '^wizard',
@@ -72,7 +72,7 @@ export default /* @ngInject */ function($compile, $timeout, $q) {
             $('.wizard-container').delegate(
               '.helpTrigger',
               'click',
-              function() {
+              function () {
                 helpTrigger = $(this);
                 $scope.changeHelp();
               },
@@ -80,12 +80,12 @@ export default /* @ngInject */ function($compile, $timeout, $q) {
           }
 
           $scope.foundElements = foundElements.length;
-          $scope.hasHelp = function() {
+          $scope.hasHelp = function () {
             return $scope.foundElements > 0;
           };
 
           $scope.helpStateChanging = false;
-          $scope.changeHelp = function() {
+          $scope.changeHelp = function () {
             if (!$scope.helpStateChanging) {
               $scope.helpStateChanging = true;
               $scope.showHelp = !$scope.showHelp;
@@ -112,7 +112,7 @@ export default /* @ngInject */ function($compile, $timeout, $q) {
             }
           };
 
-          $scope.initHelper = function() {
+          $scope.initHelper = function () {
             helpTrigger = $(`#wizard-step-content-help-${$scope.stepNumber}`);
 
             $scope.showHelp = false;
@@ -131,7 +131,7 @@ export default /* @ngInject */ function($compile, $timeout, $q) {
             modalHelp.height(wizardContentHelp.height());
           };
 
-          $scope.resetHelper = function() {
+          $scope.resetHelper = function () {
             modalHelp.css('display', 'none');
             $scope.showHelp = true;
             $timeout(() => {
@@ -142,21 +142,21 @@ export default /* @ngInject */ function($compile, $timeout, $q) {
 
           $wizardCtrl.addStep($scope);
 
-          $scope.getCurrentStep = function() {
+          $scope.getCurrentStep = function () {
             return $wizardCtrl.currentStep;
           };
 
-          $scope.loadStep = function() {
+          $scope.loadStep = function () {
             $scope.onLoad();
           };
 
-          $scope.previousStep = function() {
+          $scope.previousStep = function () {
             $scope.resetHelper();
             $wizardCtrl.previousStep();
             $scope.onPrevious();
           };
 
-          $scope.nextStep = function() {
+          $scope.nextStep = function () {
             if (
               $attr.wizardStepOnNextStepValidPromise &&
               angular.isFunction($scope[$attr.wizardStepOnNextStepValidPromise])

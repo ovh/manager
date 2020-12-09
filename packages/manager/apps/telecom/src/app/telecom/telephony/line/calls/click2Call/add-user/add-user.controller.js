@@ -165,10 +165,7 @@ export default /* @ngInject */ function TelecomTelephonyLineClick2CallAddUserCtr
       });
 
     // reset initial values to be able to modify again the options
-    OvhApiTelephony.Line()
-      .Click2Call()
-      .User()
-      .resetCache();
+    OvhApiTelephony.Line().Click2Call().User().resetCache();
     self.close();
   };
 

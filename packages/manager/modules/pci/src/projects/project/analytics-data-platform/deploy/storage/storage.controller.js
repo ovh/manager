@@ -25,29 +25,27 @@ export default class {
   getStoragePerNode() {
     return isUndefined(this.data.hdfsEffectiveStorage)
       ? '-'
-      : `${(this.data.hdfsEffectiveStorage *
-          this.selectedCapability.hdfsReplicationFactor) /
-          this.nodesConfig.worker.count} ${this.$translate.instant(
-          'analytics_data_platform_common_unit_gb',
-        )}`;
+      : `${
+          (this.data.hdfsEffectiveStorage *
+            this.selectedCapability.hdfsReplicationFactor) /
+          this.nodesConfig.worker.count
+        } ${this.$translate.instant('analytics_data_platform_common_unit_gb')}`;
   }
 
   getTotalStorage() {
     return isUndefined(this.data.hdfsEffectiveStorage)
       ? '-'
-      : `${this.data.hdfsEffectiveStorage *
-          this.selectedCapability
-            .hdfsReplicationFactor} ${this.$translate.instant(
-          'analytics_data_platform_common_unit_gb',
-        )}`;
+      : `${
+          this.data.hdfsEffectiveStorage *
+          this.selectedCapability.hdfsReplicationFactor
+        } ${this.$translate.instant('analytics_data_platform_common_unit_gb')}`;
   }
 
   getTotalEffectiveStorage() {
     return isUndefined(this.data.edgeNodeStorage)
       ? '-'
-      : `${this.data.edgeNodeStorage *
-          this.nodesConfig.edge.count} ${this.$translate.instant(
-          'analytics_data_platform_common_unit_gb',
-        )}`;
+      : `${
+          this.data.edgeNodeStorage * this.nodesConfig.edge.count
+        } ${this.$translate.instant('analytics_data_platform_common_unit_gb')}`;
   }
 }

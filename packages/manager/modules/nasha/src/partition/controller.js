@@ -172,9 +172,7 @@ export default class NashaPartitionCtrl {
   }
 
   initTasks() {
-    this.OvhApiDedicatedNasha.Task()
-      .v6()
-      .resetCache();
+    this.OvhApiDedicatedNasha.Task().v6().resetCache();
 
     const tasksPromises = map(this.trackedTaskStatus, (status) =>
       this.getTasksPromise(status),

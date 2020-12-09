@@ -20,7 +20,7 @@
    </file>
    </example>
  */
-export default function() {
+export default function () {
   return {
     restrict: 'C',
     require: ['^flatInputContainer', 'ngModel'],

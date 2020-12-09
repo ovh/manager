@@ -67,19 +67,22 @@ export default class CdnSharedSettingsController {
 
   convertToUnitTime(ttl) {
     if (ttl % SHARED_CDN_SETTINGS_RULE_FACTOR_DAY === 0) {
-      return `${ttl /
-        SHARED_CDN_SETTINGS_RULE_FACTOR_DAY} ${this.$translate.instant(
+      return `${
+        ttl / SHARED_CDN_SETTINGS_RULE_FACTOR_DAY
+      } ${this.$translate.instant(
         'hosting_cdn_shared_modal_add_rule_field_time_to_live_unit_days',
       )}`;
     }
     if (ttl % SHARED_CDN_SETTINGS_RULE_FACTOR_HOUR === 0) {
-      return `${ttl /
-        SHARED_CDN_SETTINGS_RULE_FACTOR_HOUR} ${this.$translate.instant(
+      return `${
+        ttl / SHARED_CDN_SETTINGS_RULE_FACTOR_HOUR
+      } ${this.$translate.instant(
         'hosting_cdn_shared_modal_add_rule_field_time_to_live_unit_hours',
       )}`;
     }
-    return `${ttl /
-      SHARED_CDN_SETTINGS_RULE_FACTOR_MINUTE} ${this.$translate.instant(
+    return `${
+      ttl / SHARED_CDN_SETTINGS_RULE_FACTOR_MINUTE
+    } ${this.$translate.instant(
       'hosting_cdn_shared_modal_add_rule_field_time_to_live_unit_minutes',
     )}`;
   }

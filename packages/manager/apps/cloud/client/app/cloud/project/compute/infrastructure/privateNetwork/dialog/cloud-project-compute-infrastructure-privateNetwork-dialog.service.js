@@ -303,10 +303,7 @@ class CloudProjectComputeInfrastructurePrivateNetworkDialogService {
     }
 
     if (reverse) {
-      return byteString
-        .split('')
-        .reverse()
-        .join('');
+      return byteString.split('').reverse().join('');
     }
     return byteString;
   }

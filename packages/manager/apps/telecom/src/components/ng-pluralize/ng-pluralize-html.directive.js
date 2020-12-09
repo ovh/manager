@@ -16,8 +16,9 @@ angular
         const whensExpFns = {};
         const startSymbol = $interpolate.startSymbol();
         const endSymbol = $interpolate.endSymbol();
-        const braceReplacement = `${startSymbol +
-          numberExp}-${offset}${endSymbol}`;
+        const braceReplacement = `${
+          startSymbol + numberExp
+        }-${offset}${endSymbol}`;
         let watchRemover = angular.noop;
         let lastCount;
 
