@@ -5,6 +5,6 @@
   "vrack_move_dialog_choose_vrack_label": "Ziel-vRack:",
   "vrack_move_dialog_choose_vrack_default_option": "vRack auswählen",
   "vrack_move_dialog_request_error": "Das Verschieben des Rechenzentrums ist fehlgeschlagen.",
-  "vrack_move_dialog_title_managedBareMetalDatacenter": "Umzug eines Managed Bare Metal datacenter",
-  "vrack_move_dialog_intro_managedBareMetalDatacenter": "Sie haben einen Dienst vom Typ Managed Bare Metal datacenter gewählt. Dieser Dienst kann nicht allein stehen und muss in ein anderes vRack transferiert werden."
+  "vrack_move_dialog_title_managedBareMetalDatacenter": "Verschieben eines Managed Bare Metal Datacenters",
+  "vrack_move_dialog_intro_managedBareMetalDatacenter": "Sie haben eine Dienstleistung vom Typ Rechenzentrum Private Cloud gewählt. Dieser Dienst kann nicht allein stehen und muss in ein anderes vRack transferiert werden."
 }

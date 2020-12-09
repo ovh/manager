@@ -9,5 +9,7 @@
   "pci_projects_project_training_onboarding_guides_eai-prices_title": "Preço e Faturação",
   "pci_projects_project_training_onboarding_guides_eai-prices_description": "Detalhes dos preços e das informações de faturação para a solução AI Training.",
   "pci_projects_project_training_onboarding_guides_eai-job-submit_title": "Planificação de jobs em GPU",
-  "pci_projects_project_training_onboarding_guides_eai-job-submit_description": "Saiba como planear a execução de tarefas relacionadas com os seus próprios dados em instâncias GPU."
+  "pci_projects_project_training_onboarding_guides_eai-job-submit_description": "Saiba como planear a execução de tarefas relacionadas com os seus próprios dados em instâncias GPU.",
+  "pci_projects_project_training_onboarding_guides_install-eai-cli_title": "Instalar o cliente AI Training",
+  "pci_projects_project_training_onboarding_guides_install-eai-cli_description": "Saiba como instalar rapidamente o AI Training no seu ambiente de trabalho."
 }
