@@ -17,5 +17,6 @@
   "billing_services_actions_menu_sms_credit": "Guthaben hinzufügen",
   "billing_services_actions_menu_sms_renew": "Automatische Aufladung konfigurieren",
   "billing_services_actions_menu_resiliate_cancel": "Kündigung der Dienstes stornieren",
-  "billing_services_actions_menu_see_dashboard": "Dienstdetails anzeigen"
+  "billing_services_actions_menu_see_dashboard": "Dienstdetails anzeigen",
+  "billing_services_actions_menu_commit": "Meine Abonnementlaufzeit verwalten"
 }
