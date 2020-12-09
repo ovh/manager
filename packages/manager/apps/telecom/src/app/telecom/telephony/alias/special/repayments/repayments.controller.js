@@ -32,7 +32,15 @@ export default class TelecomTelephonyAliasSpecialRepaymentsCtrl {
       })
       .$promise.then((repayments) => {
         this.allRepayments = repayments;
-        this.repayments = repayments.slice(0, LIMIT);
+        this.repayments = repayments
+          .slice(0, LIMIT)
+          .sort(({ creationDatetime: dateA }, { creationDatetime: dateB }) => {
+            if (new Date(dateA) < new Date(dateB)) {
+              return 1;
+            }
+
+            return new Date(dateA) > new Date(dateB) ? -1 : 0;
+          });
 
         let otherRepayments = [];
         [this.repaymentsInfos.feesToPay, otherRepayments] = partition(
