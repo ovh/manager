@@ -17,5 +17,6 @@
   "billing_services_actions_menu_sms_credit": "Aggiungi credito",
   "billing_services_actions_menu_sms_renew": "Imposta la ricarica automatica",
   "billing_services_actions_menu_resiliate_cancel": "Annulla la disattivazione del servizio",
-  "billing_services_actions_menu_see_dashboard": "Mostra i dettagli del server"
+  "billing_services_actions_menu_see_dashboard": "Mostra i dettagli del server",
+  "billing_services_actions_menu_commit": "Gestisci il tuo impegno contrattuale"
 }
