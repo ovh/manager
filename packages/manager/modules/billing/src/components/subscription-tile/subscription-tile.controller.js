@@ -61,6 +61,7 @@ export default class ServicesActionsCtrl {
           id: serviceInfos.serviceId,
           serviceId: serviceInfos.domain,
           canBeEngaged: canBeEngaged && serviceInfos.canCommit(),
+          engagementDetails: service.billing.engagement,
           hasPendingEngagement,
         });
       })

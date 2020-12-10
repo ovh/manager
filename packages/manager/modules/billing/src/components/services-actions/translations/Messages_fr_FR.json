@@ -5,7 +5,7 @@
   "billing_services_actions_menu_manage_renew": "Configurer le renouvellement",
   "billing_services_actions_menu_exchange_update_accounts": "Configurer le renouvellement des comptes",
   "billing_services_actions_menu_anticipate_renew": "Anticiper le paiement",
-  "billing_services_actions_menu_resiliate": "Résilier à date d'échéance",
+  "billing_services_actions_menu_resiliate": "Résilier",
   "billing_services_actions_menu_renew_label": "Renouveler le service : {{ serviceName }} (Nouvelle fenêtre)",
   "billing_services_actions_menu_renew": "Renouveler le service",
   "billing_services_actions_menu_exchange_update": "Modifier la facturation",

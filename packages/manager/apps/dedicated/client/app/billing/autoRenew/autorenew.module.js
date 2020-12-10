@@ -4,7 +4,7 @@ import activation from './actions/activation/activation.module';
 import agreements from './agreements/user-agreements.module';
 import autorenewBlocked from './actions/autorenew-blocked/autorenew-blocked.module';
 import cancelCommitment from './cancel-commitment';
-import cancelResiliation from './actions/cancel-resiliation/cancel-resiliation.module';
+import cancelResiliation from './cancel-resiliation';
 import commitment from './commitment';
 import debtBeforePaying from './actions/debtBeforePaying/debtBeforePaying.module';
 import deleteModule from './actions/delete/delete.module';
@@ -12,6 +12,7 @@ import disable from './disable/disable.module';
 import disableDomainsBulk from './disable-domains-bulk/disable-domains-bulk.module';
 import exchangeRenew from './actions/exchange/exchange-renew.module';
 import enable from './enable/enable.module';
+import resiliation from './resiliation';
 import ssh from './ssh/ssh.module';
 import terminateEmail from './actions/terminateEmail/email.module';
 import terminateEnterpriseCloudDatabase from './actions/terminate-enterprise-cloud-database/terminate-enterprise-cloud-database.module';
@@ -44,6 +45,7 @@ angular
     disableDomainsBulk,
     exchangeRenew,
     enable,
+    resiliation,
     ssh,
     terminateEmail,
     terminateEnterpriseCloudDatabase,

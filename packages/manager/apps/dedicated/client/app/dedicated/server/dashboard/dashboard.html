@@ -283,7 +283,7 @@
                                 </oui-action-menu-item>
                                 <oui-action-menu-item
                                     data-ng-click="$ctrl.dedicatedServer.$scope.setAction('terminate/dedicated-server-terminate', $ctrl.server)"
-                                    data-if="!$ctrl.server.isExpired"
+                                    data-ng-if="!$ctrl.server.isExpired && !$ctrl.server.engagement"
                                 >
                                     <span
                                         data-translate="server_close_service"
@@ -483,6 +483,8 @@
                 with-engagement="$ctrl.isCommitmentAvailable"
                 go-to-commit="$ctrl.goToCommit()"
                 go-to-cancel-commit="$ctrl.goToCancelCommit()"
+                go-to-cancel-resiliation="$ctrl.goToCancelResiliation()"
+                go-to-resiliation="$ctrl.goToResiliation()"
                 service-infos="$ctrl.serviceInfos"
                 highlight-engagement="$ctrl.server.shouldReengage"
                 tracking-prefix="dedicated::dedicated::server::dashboard"

@@ -10,6 +10,8 @@ import ovhManagerBilling from '@ovh-ux/manager-billing';
 import advancedFeatures from './advanced-features';
 import commitment from './commitment';
 import cancelCommitment from './cancel-commitment';
+import cancelResiliation from './cancel-resiliation';
+import resiliation from './resiliation';
 
 import component from './dashboard.component';
 import routing from './dashboard.routing';
@@ -21,11 +23,13 @@ angular
     advancedFeatures,
     commitment,
     cancelCommitment,
+    cancelResiliation,
     atInternet,
     'oui',
     'pascalprecht.translate',
     'ui.router',
     ovhManagerBilling,
+    resiliation,
   ])
   .component('dedicatedServerDashboard', component)
   .config(routing)
