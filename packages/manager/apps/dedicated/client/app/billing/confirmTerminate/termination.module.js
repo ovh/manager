@@ -1,5 +1,4 @@
-import component from './confirm-terminate.component';
-import service from './billing-confirmTerminate.service';
+import billing from '@ovh-ux/manager-billing';
 import routing from './termination.routing';
 
 import legacyService from './legacy/termination-legacy.service';
@@ -7,11 +6,8 @@ import legacyService from './legacy/termination-legacy.service';
 const moduleName = 'ovhManagerBillingTermination';
 
 angular
-  .module(moduleName, ['ui.router'])
+  .module(moduleName, ['ui.router', billing])
   .config(routing)
-  .service('BillingTerminate', service)
-  .service('BillingTerminateLegacy', legacyService)
-  .component('billingConfirmTermination', component)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .service('BillingTerminateLegacy', legacyService);
 
 export default moduleName;
