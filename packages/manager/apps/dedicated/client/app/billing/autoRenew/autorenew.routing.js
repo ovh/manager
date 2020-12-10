@@ -113,6 +113,22 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
               $state.go('app.account.billing.autorenew.enable', {
                 services: map(services, 'id').join(','),
               }),
+            endStrategies: /* @ngInject */ (endStrategyEnum) =>
+              endStrategyEnum.reduce(
+                (object, strategy) => ({
+                  ...object,
+                  [strategy]: strategy,
+                }),
+                {},
+              ),
+            endStrategyEnum: /* @ngInject */ ($http) =>
+              $http
+                .get('/services.json')
+                .then(
+                  ({ data }) =>
+                    data.models['services.billing.engagement.EndStrategyEnum']
+                      ?.enum,
+                ),
             filters: /* @ngInject */ ($transition$) =>
               JSON.parse($transition$.params().filters),
             isEnterpriseCustomer: /* @ngInject */ (currentUser) =>

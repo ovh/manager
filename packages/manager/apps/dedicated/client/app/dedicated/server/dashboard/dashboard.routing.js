@@ -139,6 +139,14 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('app.dedicated.server.dashboard.cancel-commitment', {
           productId: serverName,
         }),
+      goToCancelResiliation: /* @ngInject */ ($state, serverName) => () =>
+        $state.href('app.dedicated.server.dashboard.cancel-resiliation', {
+          productId: serverName,
+        }),
+      goToResiliation: /* @ngInject */ ($state, serverName) => () =>
+        $state.href('app.dedicated.server.dashboard.resiliation', {
+          productId: serverName,
+        }),
       goToSgxIntroduction: /* @ngInject */ ($state, atInternet) => () => {
         atInternet.trackClick({
           name: 'dedicated::dedicated::server::dashboard::sgx::manage',

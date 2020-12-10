@@ -15,6 +15,7 @@ export default class ServicesActionsCtrl {
     const serviceTypeParam = this.service.serviceType
       ? `&serviceType=${this.service.serviceType}`
       : '';
+
     this.commitmentLink =
       (this.getCommitmentLink && this.getCommitmentLink(this.service)) ||
       `${this.autorenewLink}/${this.service.id}/commitment`;
@@ -25,12 +26,18 @@ export default class ServicesActionsCtrl {
     this.warningLink = `${this.autorenewLink}/warn-nic?nic=${this.service.contactBilling}`;
     this.billingLink = this.RedirectionService.getURL('billing');
     this.updateLink = `${this.autorenewLink}/update?serviceId=${this.service.serviceId}${serviceTypeParam}`;
-    this.cancelResiliationLink = `${this.autorenewLink}/cancel-resiliation?serviceId=${this.service.serviceId}${serviceTypeParam}`;
+    this.cancelResiliationLink =
+      (this.getCancelResiliationLink && this.getCancelResiliationLink()) ||
+      `${this.autorenewLink}/cancel-resiliation?serviceId=${this.service.serviceId}${serviceTypeParam}`;
     this.deleteLink =
       this.service.serviceType &&
       `${this.autorenewLink}/delete-${this.service.serviceType
         .replace(/_/g, '-')
         .toLowerCase()}?serviceId=${this.service.serviceId}`;
+
+    const resiliationByEndRuleLink =
+      (this.getResiliationLink && this.getResiliationLink()) ||
+      `${this.autorenewLink}/resiliation?serviceId=${this.service.id}&serviceName=${this.service.serviceId}`;
 
     switch (this.service.serviceType) {
       case SERVICE_TYPE.EXCHANGE:
@@ -46,7 +53,9 @@ export default class ServicesActionsCtrl {
         this.renewLink = `${this.CORE_MANAGER_URLS.telecom}sms/${this.service.serviceId}/options/recredit`;
         break;
       default:
-        this.resiliateLink = `${this.autorenewLink}/delete?serviceId=${this.service.serviceId}${serviceTypeParam}`;
+        this.resiliateLink = this.service.hasEngagementDetails()
+          ? resiliationByEndRuleLink
+          : `${this.autorenewLink}/delete?serviceId=${this.service.serviceId}${serviceTypeParam}`;
         break;
     }
   }
