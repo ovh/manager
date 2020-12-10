@@ -95,6 +95,10 @@ export default class BillingService {
     return !isNull(this.engagedUpTo) && moment().isBefore(this.engagedUpTo);
   }
 
+  hasEngagementDetails() {
+    return this.engagementDetails != null;
+  }
+
   setRenewPeriod(period) {
     this.renew.period = period;
   }
@@ -272,6 +276,25 @@ export default class BillingService {
 
   canBeResiliated(nichandle) {
     return this.canDeleteAtExpiration && this.hasAdminRights(nichandle);
+  }
+
+  canResiliateByEndRule() {
+    return (
+      this.hasEngagementDetails() &&
+      this.engagementDetails.endRule &&
+      this.engagementDetails.endRule.strategy === 'REACTIVATE_ENGAGEMENT' &&
+      this.engagementDetails.endRule.possibleStrategies.length > 0
+    );
+  }
+
+  canCancelResiliationByEndRule() {
+    return (
+      this.engagementDetails &&
+      this.engagementDetails.endRule &&
+      this.engagementDetails.endRule.possibleStrategies.includes(
+        'REACTIVATE_ENGAGEMENT',
+      )
+    );
   }
 
   canBeDeleted() {

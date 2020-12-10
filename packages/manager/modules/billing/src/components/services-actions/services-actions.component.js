@@ -8,6 +8,8 @@ export default {
     user: '<',
     getCommitmentLink: '&?',
     getCancelCommitmentLink: '&?',
+    getCancelResiliationLink: '&?',
+    getResiliationLink: '&?',
   },
   controller,
   template,

@@ -9,6 +9,8 @@ export default {
     eligibleData: '<',
     goToCommit: '<',
     goToCancelCommit: '<',
+    goToCancelResiliation: '<',
+    goToResiliation: '<',
     goToSgxIntroduction: '<',
     goToSgxManage: '<',
     isCommitmentAvailable: '<',

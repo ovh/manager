@@ -10,6 +10,8 @@ export default {
     goToCommit: '&',
     highlightEngagement: '<?',
     goToCancelCommit: '&',
+    goToCancelResiliation: '&',
+    goToResiliation: '&',
     trackingPrefix: '@',
     user: '<',
   },
