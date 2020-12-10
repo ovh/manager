@@ -398,7 +398,6 @@ export default function() {
       if (!deferredObj.logout) {
         deferredObj.logout = $q.defer();
         isLogged = false;
-        const self = this;
 
         // redirect to logout page
         $timeout(() => {
@@ -413,13 +412,13 @@ export default function() {
             }from=${encodeURIComponent(document.referrer)}`;
           }
           if (
-            logoutUrl.indexOf('ovhSubsidiary') === -1 &&
-            self.user &&
-            self.user.ovhSubsidiary
+            !logoutUrl.includes('ovhSubsidiary') &&
+            this.user &&
+            this.user.ovhSubsidiary
           ) {
             logoutUrl += `${
               logoutUrl.indexOf('?') > -1 ? '&' : '?'
-            }ovhSubsidiary=${self.user.ovhSubsidiary}`;
+            }ovhSubsidiary=${this.user.ovhSubsidiary}`;
           }
           $window.location.assign(logoutUrl);
         });
