@@ -27,6 +27,7 @@
   "pci_projects_project_training_jobs_state_INTERRUPTED": "Interrompu",
   "pci_projects_project_training_jobs_state_DONE": "Terminé",
   "pci_projects_project_training_jobs_state_RUNNING": "En cours",
+  "pci_projects_project_training_jobs_state_TIMEOUT": "Timeout",
   "pci_projects_project_training_jobs_state_OTHER": "Autre",
 
   "pci_projects_project_training_jobs_info": "Détails",

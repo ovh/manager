@@ -2,6 +2,7 @@ import includes from 'lodash/includes';
 
 export const STATE_ENUM = {
   RUNNING: 'RUNNING',
+  TIMEOUT: 'TIMEOUT',
   INITIALIZING: 'INITIALIZING',
   FINALIZING: 'FINALIZING',
   PENDING: 'PENDING',
@@ -42,6 +43,7 @@ export default class Job {
       case STATE_ENUM.FAILED:
       case STATE_ENUM.ERROR:
         return 'oui-status_error';
+      case STATE_ENUM.TIMEOUT:
       case STATE_ENUM.INTERRUPTING:
       case STATE_ENUM.INTERRUPTED:
         return 'oui-status_warning';
