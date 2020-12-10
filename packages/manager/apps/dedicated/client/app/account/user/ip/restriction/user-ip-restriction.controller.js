@@ -15,8 +15,7 @@ angular
     ) {
       $scope.ipRestrictionCurrentEdit = null;
       $scope.ipRestrictionCurrentEditBack = null;
-
-      $scope.defaultConfDisabled = false;
+      $scope.ipRestrictionDefaultRule = null;
 
       $scope.list = null;
       $scope.loaders = {
@@ -27,7 +26,6 @@ angular
 
       $scope.$on('ipRestriction.reload', () => {
         $scope.loadIpRestrictionsList();
-        $scope.updateRestrictionButtonDisabled();
       });
 
       $scope.initIpRestrictions = function initIpRestrictions() {
@@ -54,8 +52,8 @@ angular
           .then(
             (defaultRule) => {
               $scope.defaultRule = defaultRule;
+              $scope.ipRestrictionDefaultRule = { ...defaultRule };
               $scope.loaders.defaultRule = false;
-              $scope.updateRestrictionButtonDisabled();
             },
             (err) => {
               Alerter.alertFromSWS(
@@ -75,6 +73,7 @@ angular
         Service.updateDefaultRule($scope.defaultRule)
           .then(
             () => {
+              $scope.ipRestrictionDefaultRule = { ...$scope.defaultRule };
               Alerter.success(
                 $translate.instant('user_ipRestrictions_defaultRule_success'),
                 'ipRestrictionAlert',
@@ -93,21 +92,12 @@ angular
           });
       };
 
-      $scope.updateRestrictionButtonDisabled = function updateRestrictionButtonDisabled() {
-        $scope.defaultConfDisabled =
-          !$scope.loaders.list &&
-          !$scope.loaders.defaultRule &&
-          (!$scope.list || $scope.list.length === 0) &&
-          (!$scope.defaultRule || $scope.defaultRule.rule === 'deny');
-      };
-
       $scope.loadIpRestrictionsList = function loadIpRestrictionsList() {
         $scope.loaders.list = true;
         return Service.getList()
           .then(
             (ipRestrictions) => {
               $scope.list = ipRestrictions;
-              $scope.updateRestrictionButtonDisabled();
             },
             (data) => {
               Alerter.alertFromSWS(
@@ -155,6 +145,33 @@ angular
       $scope.cancelIpRestrictionCurrentEdit = function cancelIpRestrictionCurrentEdit() {
         $scope.ipRestrictionCurrentEdit = null;
         $scope.ipRestrictionCurrentEditBack = null;
+      };
+
+      /**
+       * Prevent set `ipRestrictionDefaultRule.rule` to `deny` with an empty
+       * list of IP address configured, otherwise it will automatically logout
+       * the user.
+       * @return {boolean}
+       */
+      $scope.preventSubmitIfDefaultRuleIsDeny = function preventSubmitIfDefaultRuleIsDeny() {
+        return (
+          $scope.list.length === 0 &&
+          $scope.ipRestrictionDefaultRule.rule === 'accept' &&
+          $scope.defaultRule.rule === 'deny'
+        );
+      };
+
+      /**
+       * Prevent removing the last IP address if `ipRestrictionDefaultRule.rule`
+       * is configured to `deny`, otherwise it will automatically logout the
+       * user.
+       * @return {boolean}
+       */
+      $scope.shouldDisplayWarningMessage = function shouldDisplayWarningMessage() {
+        return (
+          $scope.list.length === 1 &&
+          $scope.ipRestrictionDefaultRule.rule === 'deny'
+        );
       };
     },
   ]);
