@@ -1,4 +1,4 @@
-import map from 'lodash/map';
+import { map } from 'lodash-es';
 import { Service } from '@ovh-ux/manager-models';
 import { TERMINATION_FORM_NAME } from './confirm-terminate.constants';
 

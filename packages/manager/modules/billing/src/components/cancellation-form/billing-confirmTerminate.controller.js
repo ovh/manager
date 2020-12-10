@@ -18,7 +18,7 @@ export default class TerminateServiceCtrl {
 
   confirmTermination() {
     this.loading = true;
-    return this.BillingTerminate.confirmTermination(this.service, this.token)
+    return this.confirmTermination(this.service, this.token)
       .then(() => this.BillingTerminate.answerForm(this.service, this.model))
       .then(() =>
         this.Alerter.success(

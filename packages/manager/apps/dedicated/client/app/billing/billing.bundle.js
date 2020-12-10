@@ -88,9 +88,6 @@ import './components/directives/sortingFieldButton/billingSortingFieldButtonCtrl
 import './components/filters/renewFrequence';
 import './components/renewDate/billing-renew-date.component';
 import './components/renewLabel/billing-renew-label.component';
-import './confirmTerminate/billing-confirmTerminate.controller';
-import './confirmTerminate/billing-confirmTerminate.service';
-import './confirmTerminate/termination.routing';
 import './constants/autorenewEvent.constants';
 import './constants/fidelityEvent.constants';
 import './constants/ovhAccountEvent.constants';
