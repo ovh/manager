@@ -16,14 +16,16 @@ export default class TerminateServiceCtrl {
     return SPECIAL_CONDITIONS_SUBSIDIARIES.includes(this.user.ovhSubsidiary);
   }
 
-  confirmTermination() {
+  terminate() {
     this.loading = true;
-    return this.confirmTermination(this.service, this.token)
+    return this.confirmTermination(this.service)
       .then(() => this.BillingTerminate.answerForm(this.service, this.model))
       .then(() =>
-        this.Alerter.success(
-          this.$translate.instant('billing_confirm_termination_success'),
-        ),
+        this.goBack
+          ? this.goBack(true)
+          : this.Alerter.success(
+              this.$translate.instant('billing_confirm_termination_success'),
+            ),
       )
       .catch((error) =>
         this.Alerter.error(
