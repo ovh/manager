@@ -390,9 +390,20 @@
                             class="h-100"
                             data-heading="{{:: 'pci_projects_project_training_jobs_submit_validation_equivalent_command' | translate  }}"
                         >
+                            <span>
+                                {{::
+                                'pci_projects_project_training_jobs_submit_ovhai_info'
+                                | translate }}
+                            </span>
                             <pre>
 {{:: 'pci_projects_project_training_parter_cli_name' | translate  }} {{ $ctrl.cliCommand() }}</pre
                             >
+                            <span>
+                                {{::
+                                'pci_projects_project_training_jobs_submit_ovhai_help'
+                                | translate }}
+                            </span>
+                            <pre>ovhai job run --help</pre>
                         </oui-tile>
                     </div>
                 </div>

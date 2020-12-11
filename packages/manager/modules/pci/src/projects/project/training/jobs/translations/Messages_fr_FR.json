@@ -35,5 +35,7 @@
   "pci_projects_project_training_jobs_submit_data_mount_path": "Répertoire de montage",
   "pci_projects_project_training_jobs_submit_data_permission": "Permission",
   "pci_projects_project_training_jobs_submit_data_permission_RO": "Lecture Seule",
-  "pci_projects_project_training_jobs_submit_data_permission_RW": "Lecture & Ecriture"
+  "pci_projects_project_training_jobs_submit_data_permission_RW": "Lecture & Ecriture",
+  "pci_projects_project_training_jobs_submit_ovhai_info": "La commande suivante vous permet le lancer le même job grâce à notre CLI ovhai :",
+  "pci_projects_project_training_jobs_submit_ovhai_help": "Pour plus d'information sur les paramètres disponibles :"
 }
