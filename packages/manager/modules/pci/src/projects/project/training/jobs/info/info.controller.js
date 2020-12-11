@@ -1,4 +1,5 @@
 import moment from 'moment';
+import 'moment-duration-format';
 import { GUIDE_URL } from '../../training.constants';
 
 export default class PciTrainingJobsInfoController {
@@ -75,21 +76,22 @@ export default class PciTrainingJobsInfoController {
       duration += moment().diff(this.start) / 1000;
     }
 
+    // eslint-disable-next-line no-underscore-dangle
+    const d = moment.duration(duration, 'seconds');
+
     if (duration < 60) {
-      // eslint-disable-next-line no-underscore-dangle
-      return moment(moment.duration(duration, 'seconds')._data).format('ss[s]');
+      return d.format('ss[s]');
     }
+    // Display minutes only if no hours
     if (duration < 3600) {
-      // eslint-disable-next-line no-underscore-dangle
-      return moment(moment.duration(duration, 'seconds')._data).format(
-        'mm[m]:ss[s]',
-      );
+      return d.format('mm[m]:ss[s]');
+    }
+    // Display hours only if no days
+    if (duration < 86400) {
+      return d.format('HH[h]:mm[m]:ss[s]');
     }
 
-    // eslint-disable-next-line no-underscore-dangle
-    return moment(moment.duration(duration, 'seconds')._data).format(
-      'HH[h]:mm[m]:ss[s]',
-    );
+    return d.format('DDD[d]:HH[h]:mm[m]:ss[s]');
   }
 
   loadMessages() {
