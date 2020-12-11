@@ -362,7 +362,9 @@ angular
   )
   .config(
     /* @ngInject */ (ovhFeatureFlippingProvider) => {
-      ovhFeatureFlippingProvider.setApplicationName('dedicated');
+      ovhFeatureFlippingProvider.setApplicationName(
+        Environment.getApplicationName(),
+      );
     },
   );
 
