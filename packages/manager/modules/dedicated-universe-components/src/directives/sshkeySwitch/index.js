@@ -1,7 +1,6 @@
 import angular from 'angular';
 
 import sshKeySwitchDirective from './sshkeySwitch';
-import './sshkeySwitch.css';
 
 const moduleName = 'ducSshkeySwitch';
 
