@@ -75,21 +75,21 @@ export default class PciTrainingJobsInfoController {
       duration += moment().diff(this.start) / 1000;
     }
 
+    // eslint-disable-next-line no-underscore-dangle
+    const date = moment(moment.duration(duration, 'seconds')._data);
     if (duration < 60) {
-      // eslint-disable-next-line no-underscore-dangle
-      return moment(moment.duration(duration, 'seconds')._data).format('ss[s]');
+      return date.format('ss[s]');
     }
+    // Display minutes only if no hours
     if (duration < 3600) {
-      // eslint-disable-next-line no-underscore-dangle
-      return moment(moment.duration(duration, 'seconds')._data).format(
-        'mm[m]:ss[s]',
-      );
+      return date.format('mm[m]:ss[s]');
+    }
+    // Display hours only if no days
+    if (duration < 86400) {
+      return date.format('HH[h]:mm[m]:ss[s]')
     }
 
-    // eslint-disable-next-line no-underscore-dangle
-    return moment(moment.duration(duration, 'seconds')._data).format(
-      'HH[h]:mm[m]:ss[s]',
-    );
+    return date.format('DDD[d]:HH[h]:mm[m]:ss[s]');
   }
 
   loadMessages() {
