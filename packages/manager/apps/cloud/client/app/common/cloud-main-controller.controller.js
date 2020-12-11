@@ -23,6 +23,13 @@ class CloudMainController {
   $onInit() {
     this.expiringProject = null;
 
+    this.navbarOptions = {
+      toggle: {
+        event: 'sidebar:loaded',
+      },
+      universe: Environment.getUniverse(),
+    };
+
     this.currentLanguage = Environment.getUserLanguage();
     this.user = Environment.getUser();
     const unregisterListener = this.$scope.$on('app:started', () => {

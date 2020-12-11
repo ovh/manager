@@ -41,12 +41,7 @@
             <!-- /Skip to main content -->
 
             <ovh-manager-navbar
-                data-navbar-options="{
-                    toggle: {
-                        event: 'sidebar:loaded'
-                    },
-                    universe: 'server'
-                }"
+                data-navbar-options="$ctrl.navbarOptions"
                 data-universe-click="$ctrl.openSidebar()"
             >
             </ovh-manager-navbar>
