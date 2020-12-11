@@ -1,6 +1,7 @@
 import get from 'lodash/get';
 import remove from 'lodash/remove';
 import { nameGenerator } from '../../../data-processing/data-processing.utils';
+import { COMMUNITY_URL } from '../../training.constants';
 
 export default class PciTrainingJobsSubmitController {
   /* @ngInject */
@@ -20,6 +21,7 @@ export default class PciTrainingJobsSubmitController {
 
   $onInit() {
     this.volumesPermissions = ['RO', 'RW'];
+    this.communityUrl = COMMUNITY_URL;
     // Form payload
     this.job = {
       region: null,

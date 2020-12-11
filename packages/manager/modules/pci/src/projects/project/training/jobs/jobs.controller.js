@@ -1,11 +1,15 @@
 export default class PciTrainingJobController {
   /* @ngInject */
-  constructor(CucCloudMessage, CucRegionService) {
+  constructor(CucCloudMessage, CucRegionService, PciProjectTrainingJobService) {
     this.CucCloudMessage = CucCloudMessage;
     this.CucRegionService = CucRegionService;
+    this.PciProjectTrainingJobService = PciProjectTrainingJobService;
   }
 
   $onInit() {
+    this.PciProjectTrainingJobService.getAll(this.projectId).then((jobs) => {
+      this.jobList = jobs;
+    });
     this.loadMessages();
   }
 

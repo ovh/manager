@@ -1,4 +1,4 @@
-import { GUIDE_URL } from './training.constants';
+import { GUIDE_URL, COMMUNITY_URL } from './training.constants';
 
 export default class PciTrainingController {
   /* @ngInject */
@@ -10,6 +10,7 @@ export default class PciTrainingController {
   $onInit() {
     this.loadMessages();
     this.guideUrl = GUIDE_URL;
+    this.communityUrl = COMMUNITY_URL;
   }
 
   loadMessages() {
