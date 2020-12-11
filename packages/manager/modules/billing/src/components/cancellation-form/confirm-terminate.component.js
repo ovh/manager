@@ -8,6 +8,7 @@ export default {
     serviceId: '<',
     user: '<',
     confirmTermination: '<',
+    goBack: '<',
   },
   controller,
   template,

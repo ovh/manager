@@ -1,3 +1,6 @@
+<oui-back-button data-ng-if="$ctrl.goBack" on-click="$ctrl.goBack()">
+</oui-back-button>
+
 <oui-header
     data-heading="{{:: 'billing_confirm_termination_resiliate' | translate:{
         serviceName: $ctrl.service.domain
@@ -48,7 +51,7 @@
         </oui-field>
         <oui-button
             data-ng-if="!$ctrl.loading"
-            data-on-click="$ctrl.confirmTermination()"
+            data-on-click="$ctrl.terminate()"
             data-variant="primary"
             data-disabled="!terminationForm.$valid"
         >
