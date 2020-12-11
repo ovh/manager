@@ -12,6 +12,9 @@ export default class ServicesActionsCtrl {
   }
 
   $onInit() {
+    const serviceTypeParam = this.service.serviceType
+      ? `&serviceType=${this.service.serviceType}`
+      : '';
     this.commitmentLink =
       (this.getCommitmentLink && this.getCommitmentLink(this.service)) ||
       `${this.autorenewLink}/${this.service.id}/commitment`;
@@ -21,8 +24,8 @@ export default class ServicesActionsCtrl {
       `${this.autorenewLink}/${this.service.id}/cancel-commitment`;
     this.warningLink = `${this.autorenewLink}/warn-nic?nic=${this.service.contactBilling}`;
     this.billingLink = this.RedirectionService.getURL('billing');
-    this.updateLink = `${this.autorenewLink}/update?serviceId=${this.service.serviceId}&serviceType=${this.service.serviceType}`;
-    this.cancelResiliationLink = `${this.autorenewLink}/cancel-resiliation?serviceId=${this.service.serviceId}&serviceType=${this.service.serviceType}`;
+    this.updateLink = `${this.autorenewLink}/update?serviceId=${this.service.serviceId}${serviceTypeParam}`;
+    this.cancelResiliationLink = `${this.autorenewLink}/cancel-resiliation?serviceId=${this.service.serviceId}${serviceTypeParam}`;
     this.deleteLink =
       this.service.serviceType &&
       `${this.autorenewLink}/delete-${this.service.serviceType
@@ -43,7 +46,7 @@ export default class ServicesActionsCtrl {
         this.renewLink = `${this.CORE_MANAGER_URLS.telecom}sms/${this.service.serviceId}/options/recredit`;
         break;
       default:
-        this.resiliateLink = `${this.autorenewLink}/delete?serviceId=${this.service.serviceId}&serviceType=${this.service.serviceType}`;
+        this.resiliateLink = `${this.autorenewLink}/delete?serviceId=${this.service.serviceId}${serviceTypeParam}`;
         break;
     }
   }
