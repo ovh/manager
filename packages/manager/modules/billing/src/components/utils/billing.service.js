@@ -41,4 +41,10 @@ export default class BillingService {
       .get(`/services/${serviceId}/billing/engagement/request`)
       .then(({ data }) => data);
   }
+
+  putEndRuleStrategy(serviceId, strategy) {
+    return this.$http.put(`/services/${serviceId}/billing/engagement/endRule`, {
+      strategy,
+    });
+  }
 }
