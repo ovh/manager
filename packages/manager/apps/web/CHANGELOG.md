@@ -1,3 +1,12 @@
+## [15.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.8.0...@ovh-ux/manager-web@15.8.1) (2020-12-14)
+
+
+### Bug Fixes
+
+* **domain.dashboard.webhosting-enable:** display error message info ([#4162](https://github.com/ovh/manager/issues/4162)) ([9901e60](https://github.com/ovh/manager/commit/9901e608bd7eb422ac1e1732fea512549de1bff1))
+
+
+
 # [15.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.7.3...@ovh-ux/manager-web@15.8.0) (2020-12-08)
 
 
