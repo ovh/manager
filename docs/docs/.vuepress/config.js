@@ -12,7 +12,7 @@ module.exports = {
     ['link', { rel: 'apple-touch-icon', href: `/assets/img/touchicon-180.png` }],
   ],
   themeConfig: {
-    docsDir: 'docs',
+    docsDir: 'docs/docs',
     editLinks: true,
     logo: '/assets/img/logo-ovhcloud.svg',
     nav: [
