@@ -58,6 +58,21 @@ export default class Job {
     }
   }
 
+  isPreRunning() {
+    return (
+      this.status.state === STATE_ENUM.QUEUED ||
+      this.status.state === STATE_ENUM.PENDING ||
+      this.status.state === STATE_ENUM.INITIALIZING
+    );
+  }
+
+  isPostRunning() {
+    return (
+      this.status.state === STATE_ENUM.FINALIZING ||
+      this.status.state === STATE_ENUM.INTERRUPTING
+    );
+  }
+
   isSuccess() {
     return this.status.state === STATE_ENUM.DONE;
   }
@@ -76,7 +91,6 @@ export default class Job {
   isTerminal() {
     return [
       STATE_ENUM.FAILED,
-      STATE_ENUM.INTERRUPTING,
       STATE_ENUM.INTERRUPTED,
       STATE_ENUM.DONE,
       STATE_ENUM.ERROR,
