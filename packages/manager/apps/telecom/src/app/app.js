@@ -164,7 +164,9 @@ angular
     LineDiagnosticsProvider.setPathPrefix('/xdsl/{serviceName}');
   })
   .config((ovhFeatureFlippingProvider) => {
-    ovhFeatureFlippingProvider.setApplicationName('telecom');
+    ovhFeatureFlippingProvider.setApplicationName(
+      Environment.getApplicationName(),
+    );
   })
   .run(
     /* @ngInject */ ($translate) => {

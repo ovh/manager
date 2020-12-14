@@ -40,12 +40,7 @@
                 <!-- /Skip to main content -->
                 <div data-ui-view="navbar">
                     <ovh-manager-navbar
-                        data-navbar-options="{
-                            toggle: {
-                                event: 'sidebar:loaded'
-                            },
-                            universe: 'telecom'
-                        }"
+                        data-navbar-options="$ctrl.navbarOptions"
                         data-universe-click="$ctrl.openSidebar()"
                         data-global-search-link="{{ $ctrl.globalSearchLink }}"
                     >
