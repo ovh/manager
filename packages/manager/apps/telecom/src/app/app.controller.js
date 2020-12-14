@@ -25,6 +25,12 @@ export default class TelecomAppCtrl {
   }
 
   $onInit() {
+    this.navbarOptions = {
+      toggle: {
+        event: 'sidebar:loaded',
+      },
+      universe: Environment.getUniverse(),
+    };
     this.currentLanguage = Environment.getUserLanguage();
     this.user = Environment.getUser();
 
