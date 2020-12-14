@@ -16,7 +16,8 @@
     "application.js",
     "communication.js",
     "fragment.js",
-    "src/**/*"
+    "src/**/*",
+    "url-builder.js"
   ],
   "dependencies": {
     "@ovh-ux/manager-config": "^1.0.0 || ^2.0.0",
