@@ -233,6 +233,10 @@ export default /* @ngInject */ ($stateProvider) => {
       incidentStatus: /* @ngInject */ ($stateParams, Server) =>
         Server.getIncidentStatus($stateParams.productId),
       breadcrumb: () => null,
+      goToManualUpgrade: /* @ngInject */ ($state) => (selectedUpgrade) =>
+        $state.go('app.dedicated-server.server.dashboard.upgrade', {
+          selectedUpgrade,
+        }),
     },
   });
 };
