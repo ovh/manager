@@ -285,6 +285,7 @@
   "sign_up_form_enum_language_pt_PT": "Portuguese",
   "sign_up_form_enum_corporationtype_sapa": "SAPA",
   "sign_up_form_enum_corporationtype_sas": "SIMPLIFIED JOINT-STOCK COMPANY (SAS)?",
+  "sign_up_form_enum_corporationtype_sc": "SC",
   "sign_up_form_enum_corporationtype_scarl": "SCARL",
   "sign_up_form_enum_corporationtype_snc": "SNC",
   "sign_up_form_enum_corporationtype_spa": "SPA",
