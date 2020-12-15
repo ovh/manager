@@ -1,3 +1,12 @@
+## [7.0.7](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@7.0.6...@ovh-ux/ng-ovh-payment-method@7.0.7) (2020-12-15)
+
+
+### Bug Fixes
+
+* adjust threatmetrix configuration ([#4172](https://github.com/ovh/manager/issues/4172)) ([ccd98d8](https://github.com/ovh/manager/commit/ccd98d8522c939eb53b655e6af37bf3ae56126b0))
+
+
+
 ## [7.0.6](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@7.0.5...@ovh-ux/ng-ovh-payment-method@7.0.6) (2020-10-28)
 
 
