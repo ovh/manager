@@ -9,6 +9,7 @@ import '@ovh-ux/ui-kit';
 import advancedFeatures from './advanced-features';
 import subscriptions from './subscriptions';
 import technicalDetails from './technical-details';
+import upgradeRequest from './upgrade-request';
 
 import component from './dashboard.component';
 import routing from './dashboard.routing';
@@ -23,6 +24,7 @@ angular
     'pascalprecht.translate',
     subscriptions,
     technicalDetails,
+    upgradeRequest,
     'ui.router',
   ])
   .component('dedicatedServerDashboard', component)

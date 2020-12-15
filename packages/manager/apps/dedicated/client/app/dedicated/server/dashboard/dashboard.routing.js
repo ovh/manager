@@ -195,6 +195,18 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
       vrackInfos: /* @ngInject */ ($stateParams, Server) =>
         Server.getVrackInfos($stateParams.productId),
+      isRamUpgradable: /* @ngInject */ ($http, serverName) =>
+        $http
+          .get(`/order/upgrade/baremetalMemory/${serverName}`)
+          .then(({ data }) => data.length > 0),
+      isDataDiskUpgradable: /* @ngInject */ ($http, serverName) =>
+        $http
+          .get(`/order/upgrade/baremetalStorage/${serverName}`)
+          .then(({ data }) => data),
+      goToManualUpgrade: /* @ngInject */ ($state) => (selectedUpgrade) =>
+        $state.go('app.dedicated.server.dashboard.upgrade', {
+          selectedUpgrade,
+        }),
     },
   });
 };
