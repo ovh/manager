@@ -14,6 +14,7 @@ import cancelResiliation from './cancel-resiliation';
 import resiliation from './resiliation';
 import subscriptions from './subscriptions';
 import technicalDetails from './technical-details';
+import upgradeRequest from './upgrade-request';
 
 import component from './dashboard.component';
 import routing from './dashboard.routing';
@@ -31,6 +32,7 @@ angular
     'pascalprecht.translate',
     subscriptions,
     technicalDetails,
+    upgradeRequest,
     'ui.router',
     ovhManagerBilling,
     resiliation,

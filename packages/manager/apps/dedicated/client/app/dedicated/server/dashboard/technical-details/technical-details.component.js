@@ -4,6 +4,7 @@ import template from './technical-details.html';
 export default {
   bindings: {
     technicalDetails: '<',
+    goToManualUpgrade: '<',
   },
   controller,
   template,

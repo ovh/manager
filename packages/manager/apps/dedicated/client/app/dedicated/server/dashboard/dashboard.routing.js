@@ -222,6 +222,10 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
       vrackInfos: /* @ngInject */ ($stateParams, Server) =>
         Server.getVrackInfos($stateParams.productId),
+      goToManualUpgrade: /* @ngInject */ ($state) => (selectedUpgrade) =>
+        $state.go('app.dedicated.server.dashboard.upgrade', {
+          selectedUpgrade,
+        }),
     },
   });
 };
