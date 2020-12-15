@@ -4,6 +4,9 @@ import template from './technical-details.html';
 export default {
   bindings: {
     technicalDetails: '<',
+    goToManualUpgrade: '<',
+    isRamUpgradable: '<',
+    isDataDiskUpgradable: '<',
   },
   controller,
   template,
