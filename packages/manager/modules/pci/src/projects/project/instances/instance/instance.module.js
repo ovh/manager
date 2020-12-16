@@ -12,6 +12,8 @@ import deleteInstance from './delete';
 import edit from './edit';
 import hardReboot from './hard-reboot';
 import reinstall from './reinstall';
+import start from './start';
+import stop from './stop';
 import rescue from './rescue';
 import resume from './resume';
 import softReboot from './soft-reboot';
@@ -37,6 +39,8 @@ angular
     edit,
     hardReboot,
     reinstall,
+    start,
+    stop,
     rescue,
     resume,
     softReboot,

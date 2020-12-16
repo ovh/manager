@@ -198,4 +198,12 @@ export default class Instance {
   isDeleting() {
     return this.status === 'DELETING';
   }
+
+  isStarted() {
+    return this.status === 'ACTIVE';
+  }
+
+  isStopped() {
+    return this.status === 'SHUTOFF';
+  }
 }
