@@ -1,3 +1,5 @@
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+import { Environment } from '@ovh-ux/manager-config';
 import forEach from 'lodash/forEach';
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
@@ -17,7 +19,6 @@ export default class PrivateDatabaseCtrl {
     Hosting,
     PrivateDatabase,
     PrivateDatabaseExtension,
-    RedirectionService,
     User,
   ) {
     this.$q = $q;
@@ -30,7 +31,6 @@ export default class PrivateDatabaseCtrl {
     this.hostingService = Hosting;
     this.privateDatabaseExtensionService = PrivateDatabaseExtension;
     this.privateDatabaseService = PrivateDatabase;
-    this.RedirectionService = RedirectionService;
     this.userService = User;
   }
 
@@ -38,10 +38,12 @@ export default class PrivateDatabaseCtrl {
     this.productId = this.$stateParams.productId;
     this.isExpired = false;
 
-    this.contactManagementLink = this.RedirectionService.getURL(
-      'contactManagement',
-      { serviceName: this.productId },
-    );
+    this.contactManagementLink =
+      Environment.getRegion() === 'EU'
+        ? buildURL('dedicated', '#/contacts/services', {
+            serviceName: this.productId,
+          })
+        : '';
 
     this.$scope.alerts = {
       page: 'privateDataBase.alerts.page',

@@ -6,6 +6,7 @@ import isString from 'lodash/isString';
 import set from 'lodash/set';
 
 import { Environment } from '@ovh-ux/manager-config';
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
@@ -182,9 +183,9 @@ angular
     },
   ])
   .config(
-    /* @ngInject */ (ovhPaymentMethodProvider, RedirectionServiceProvider) => {
+    /* @ngInject */ (ovhPaymentMethodProvider) => {
       ovhPaymentMethodProvider.setPaymentMethodPageUrl(
-        RedirectionServiceProvider.$get().getURL('paymentMethod'),
+        buildURL('dedicated', '#/billing/payment/method'),
       );
     },
   )

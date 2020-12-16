@@ -1,3 +1,5 @@
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+import { Environment } from '@ovh-ux/manager-config';
 import get from 'lodash/get';
 import set from 'lodash/set';
 
@@ -15,7 +17,6 @@ angular.module('App').controller(
       Alerter,
       constants,
       OvhApiEmailDomain,
-      RedirectionService,
       User,
       WucEmails,
     ) {
@@ -28,7 +29,6 @@ angular.module('App').controller(
       this.Alerter = Alerter;
       this.constants = constants;
       this.OvhApiEmailDomain = OvhApiEmailDomain;
-      this.RedirectionService = RedirectionService;
       this.User = User;
       this.WucEmails = WucEmails;
     }
@@ -158,10 +158,15 @@ angular.module('App').controller(
       } else {
         this.urls.delete = `${this.constants.AUTORENEW_URL}?selectedType=EMAIL_DOMAIN&searchText=${this.$stateParams.productId}`;
       }
-      this.urls.manageContacts = this.RedirectionService.getURL(
-        'contactManagement',
-        { serviceName: this.$stateParams.productId, category: 'EMAIL_DOMAIN' },
-      );
+
+      this.urls.manageContacts =
+        Environment.getRegion() === 'EU'
+          ? buildURL('dedicated', '#/contacts/services', {
+              serviceName: this.$stateParams.productId,
+              category: 'EMAIL_DOMAIN',
+            })
+          : '';
+
       return this.User.getUrlOf('changeOwner')
         .then((link) => {
           this.urls.changeOwner = link;

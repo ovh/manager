@@ -1,13 +1,17 @@
+import { Environment } from '@ovh-ux/manager-config';
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import { SERVICE_STATES } from './payment-status-tile.constants';
 
 export default class PaymentStatusTileCtrl {
   /* @ngInject */
-  constructor(atInternet, RedirectionService) {
+  constructor(atInternet) {
     this.atInternet = atInternet;
 
     this.SERVICE_STATES = SERVICE_STATES;
 
-    this.autorenewLink = RedirectionService.getURL('autorenew');
+    this.autorenewLink = ['EU', 'CA'].includes(Environment.getRegion())
+      ? buildURL('dedicated', '#/billing/autorenew')
+      : '';
   }
 
   onLinkClick() {
