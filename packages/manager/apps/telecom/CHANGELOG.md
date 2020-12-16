@@ -1,3 +1,12 @@
+## [13.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.7.0...@ovh-ux/manager-telecom@13.7.1) (2020-12-16)
+
+
+### Bug Fixes
+
+* **pack.move:** set missing building from address eligibility test ([#4178](https://github.com/ovh/manager/issues/4178)) ([3788103](https://github.com/ovh/manager/commit/37881039bba479b7c6c797bf338b8ed44b4a23d0))
+
+
+
 # [13.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.6.8...@ovh-ux/manager-telecom@13.7.0) (2020-12-08)
 
 
