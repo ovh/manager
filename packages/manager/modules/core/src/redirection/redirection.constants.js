@@ -1,48 +1,8 @@
-const managerRoot = {
-  EU: 'https://www.ovh.com/manager',
-  CA: 'https://ca.ovh.com/manager',
-  US: 'https://us.ovhcloud.com/manager',
-};
-
 const guidesRoot = 'https://docs.ovh.com';
 const helpRoot = 'https://help.ovhcloud.com';
 
-const universes = {
-  dedicated: 'dedicated',
-};
-
-const URI = {
-  agreements: '#/billing/autorenew/agreements',
-  autorenew: '#/billing/autorenew',
-  billing: '#/billing/history',
-  catalog: '#/catalog',
-  contactManagement:
-    '#/contacts/services?serviceName=:serviceName&category=:category',
-  contacts: '#/contacts/services',
-  createTicket: '#/support/tickets/new',
-  debtPay: '#/billing/history/debt/all/pay',
-  domain: '#/configuration/domain/:domain',
-  order: '#/billing/order/:orderId',
-  orders: '#/billing/orders',
-  paymentMethod: '#/billing/payment/method',
-  services: '#/billing/autoRenew',
-  support: '#/ticket',
-  supportLevel: '#/useraccount/support/level',
-  ticket: '#/support/tickets/:ticketId',
-  userAccount: '#/useraccount/dashboard',
-  userEmails: '#/useraccount/emails',
-};
-
 export default {
   EU: {
-    agreements: `${managerRoot.EU}/${universes.dedicated}/${URI.agreements}`,
-    autorenew: `${managerRoot.EU}/${universes.dedicated}/${URI.autorenew}`,
-    billing: `${managerRoot.EU}/${universes.dedicated}/${URI.billing}`,
-    catalog: `${managerRoot.EU}/${URI.catalog}`,
-    contactManagement: `${managerRoot.EU}/${universes.dedicated}/${URI.contactManagement}`,
-    contacts: `${managerRoot.EU}/${universes.dedicated}/${URI.contacts}`,
-    createTicket: `${managerRoot.EU}/${universes.dedicated}/${URI.createTicket}`,
-    debtPay: `${managerRoot.EU}/${universes.dedicated}/${URI.debtPay}`,
     guides: {
       home: {
         CZ: `${guidesRoot}/cz/cs/`,
@@ -76,26 +36,9 @@ export default {
       SN: `${helpRoot}/fr-sn`,
       TN: `${helpRoot}/fr-tn`,
     },
-    order: `${managerRoot.EU}/${universes.dedicated}/${URI.order}`,
-    orders: `${managerRoot.EU}/${universes.dedicated}/${URI.orders}`,
-    paymentMethod: `${managerRoot.EU}/${universes.dedicated}/${URI.paymentMethod}`,
-    services: `${managerRoot.EU}/${universes.dedicated}/${URI.services}`,
-    support: `${managerRoot.EU}/${universes.dedicated}/${URI.support}`,
-    supportLevel: `${managerRoot.EU}/${universes.dedicated}/${URI.supportLevel}`,
     tasks: 'http://travaux.ovh.net/',
-    ticket: `${managerRoot.EU}/${universes.dedicated}/${URI.ticket}`,
-    userAccount: `${managerRoot.EU}/${universes.dedicated}/${URI.userAccount}`,
-    userEmails: `${managerRoot.EU}/${universes.dedicated}/${URI.userEmails}`,
   },
   CA: {
-    agreements: `${managerRoot.CA}/${universes.dedicated}/${URI.agreements}`,
-    autorenew: `${managerRoot.CA}/${universes.dedicated}/${URI.autorenew}`,
-    billing: `${managerRoot.CA}/${universes.dedicated}/${URI.billing}`,
-    catalog: `${managerRoot.CA}/${URI.catalog}`,
-    contactManagement: '',
-    contacts: '',
-    createTicket: `${managerRoot.CA}/${universes.dedicated}/${URI.createTicket}`,
-    debtPay: `${managerRoot.CA}/${universes.dedicated}/${URI.debtPay}`,
     guides: {
       home: {
         ASIA: `${guidesRoot}/ca/en/`,
@@ -116,26 +59,9 @@ export default {
       WE: `${helpRoot}/en`,
       WS: `${helpRoot}/es`,
     },
-    order: `${managerRoot.CA}/${universes.dedicated}/${URI.order}`,
-    orders: `${managerRoot.CA}/${universes.dedicated}/${URI.orders}`,
-    paymentMethod: `${managerRoot.CA}/${universes.dedicated}/${URI.paymentMethod}`,
-    services: `${managerRoot.CA}/${universes.dedicated}/${URI.services}`,
-    support: `${managerRoot.CA}/${universes.dedicated}/${URI.support}`,
-    supportLevel: `${managerRoot.CA}/${universes.dedicated}/${URI.supportLevel}`,
     tasks: 'http://travaux.ovh.net/',
-    ticket: `${managerRoot.CA}/${universes.dedicated}/${URI.ticket}`,
-    userAccount: `${managerRoot.CA}/${universes.dedicated}/${URI.userAccount}`,
-    userEmails: `${managerRoot.CA}/${universes.dedicated}/${URI.userEmails}`,
   },
   US: {
-    agreements: `${managerRoot.US}/${universes.dedicated}/${URI.agreements}`,
-    billing: `${managerRoot.US}/${universes.dedicated}/${URI.billing}`,
-    billingEnterprise: 'https://billing.us.ovhcloud.com/login',
-    catalog: `${managerRoot.US}/${URI.catalog}`,
-    contactManagement: '',
-    contacts: '',
-    debtPay: `${managerRoot.US}/${universes.dedicated}/${URI.debtPay}`,
-    domain: '',
     guides: {
       home: {
         US: 'https://support.us.ovhcloud.com',
@@ -144,15 +70,6 @@ export default {
     help: {
       US: 'https://us.ovhcloud.com/support',
     },
-    order: `${managerRoot.US}/${universes.dedicated}/${URI.order}`,
-    orders: `${managerRoot.US}/${universes.dedicated}/${URI.orders}`,
-    paymentMethod: `${managerRoot.US}/${universes.dedicated}/${URI.paymentMethod}`,
-    services: '',
-    support: `${managerRoot.US}/${universes.dedicated}/${URI.support}`,
-    supportLevel: '',
     tasks: '',
-    ticket: `${managerRoot.US}/${universes.dedicated}/${URI.ticket}`,
-    userAccount: `${managerRoot.US}/${universes.dedicated}/${URI.userAccount}`,
-    userEmails: '',
   },
 };

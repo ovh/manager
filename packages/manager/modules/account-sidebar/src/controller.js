@@ -1,4 +1,5 @@
 import { Environment } from '@ovh-ux/manager-config';
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import constants from './constants';
 
 export default class OvhManagerAccountSidebarCtrl {
@@ -72,17 +73,21 @@ export default class OvhManagerAccountSidebarCtrl {
         label: this.$translate.instant('hub_links_tasks'),
       },
       {
-        href: this.RedirectionService.getURL('support'),
+        href: buildURL('dedicated', '#/ticket'),
         tracking: `${trackingPrefix}::go-to-tickets`,
         icon: 'oui-icon oui-icon-envelop_concept',
         label: this.$translate.instant('hub_links_tickets'),
       },
-      {
-        href: this.RedirectionService.getURL('createTicket'),
-        tracking: `${trackingPrefix}::go-to-create-ticket`,
-        icon: 'oui-icon oui-icon-user-support_concept',
-        label: this.$translate.instant('hub_links_create_ticket'),
-      },
+      ...(['EU', 'CA'].includes(Environment.getRegion())
+        ? [
+            {
+              href: buildURL('dedicated', '#/support/tickets/new'),
+              tracking: `${trackingPrefix}::go-to-create-ticket`,
+              icon: 'oui-icon oui-icon-user-support_concept',
+              label: this.$translate.instant('hub_links_create_ticket'),
+            },
+          ]
+        : []),
     ];
   }
 }
