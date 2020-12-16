@@ -12,7 +12,8 @@
   "author": "OVH SAS",
   "main": "./src/index.js",
   "dependencies": {
-    "@ovh-ux/manager-models": "^1.0.0"
+    "@ovh-ux/manager-models": "^1.0.0",
+    "@ovh-ux/ufrontend": "^1.0.0"
   },
   "devDependencies": {
     "@ovh-ux/ui-kit": "^4.4.1",
@@ -21,6 +22,7 @@
   },
   "peerDependencies": {
     "@ovh-ux/manager-billing": "^1.0.5",
+    "@ovh-ux/manager-config": "^2.1.0",
     "@ovh-ux/manager-core": "^10.0.0 || ^11.0.0",
     "@ovh-ux/manager-ng-layout-helpers": "^1.0.0",
     "@ovh-ux/ng-at-internet": "^5.4.0",

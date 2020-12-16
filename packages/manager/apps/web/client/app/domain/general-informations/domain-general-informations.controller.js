@@ -1,3 +1,5 @@
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+import { Environment } from '@ovh-ux/manager-config';
 import find from 'lodash/find';
 import flattenDeep from 'lodash/flattenDeep';
 import forEach from 'lodash/forEach';
@@ -39,7 +41,6 @@ export default class DomainTabGeneralInformationsCtrl {
     isStart10mAvailable,
     OvhApiDomainRules,
     OvhApiScreenshot,
-    RedirectionService,
     User,
     WucAllDom,
     DOMAIN,
@@ -62,7 +63,6 @@ export default class DomainTabGeneralInformationsCtrl {
     this.isStart10mAvailable = isStart10mAvailable;
     this.OvhApiDomainRules = OvhApiDomainRules;
     this.OvhApiScreenshot = OvhApiScreenshot.Aapi();
-    this.RedirectionService = RedirectionService;
     this.User = User;
     this.constants = constants;
     this.DOMAIN = DOMAIN;
@@ -183,13 +183,14 @@ export default class DomainTabGeneralInformationsCtrl {
   }
 
   initActions() {
-    const contactManagementUrl = this.RedirectionService.getURL(
-      'contactManagement',
-      {
-        serviceName: this.domain.name,
-        category: PRODUCT_TYPE,
-      },
-    );
+    const contactManagementUrl =
+      Environment.getRegion() === 'EU'
+        ? buildURL('dedicated', '#/contacts/services', {
+            serviceName: this.domain.name,
+            category: PRODUCT_TYPE,
+          })
+        : '';
+
     this.actions = {
       manageContact: {
         text: this.$translate.instant('common_manage_contacts'),
