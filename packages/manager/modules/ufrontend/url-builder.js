@@ -6,13 +6,22 @@ const buildQueryString = (data) =>
     .join('&');
 
 export const buildURL = (application, url, query) => {
+  let applicationURL = Environment.getApplicationURL(application);
+  const currentApplicationURL = Environment.getApplicationURL(
+    Environment.getApplicationName(),
+  );
+
+  if (applicationURL === currentApplicationURL) {
+    applicationURL = `${window.location.origin}${window.location.pathname}`;
+  }
+
   let queryString = query ? buildQueryString(query) : '';
 
   if (queryString) {
     queryString = url.includes('?') ? `&${queryString}` : `?${queryString}`;
   }
 
-  return `${Environment.getApplicationURL(application)}${url}${queryString}`;
+  return `${applicationURL}${url}${queryString}`;
 };
 
 export const buildURLs = (routes) => {
