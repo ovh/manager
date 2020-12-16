@@ -17,7 +17,7 @@ export default class NetappService {
     }).then((share) => {
       return this.$q.all(
         share.map((item) =>
-          this.OvhHttp.get(`/dedicated/netapp/${netappId}/share/${item.id}`, {
+          this.OvhHttp.get(`/storage/netapp/${netappId}/share/${item.id}`, {
             rootPath: 'apiv6',
           }),
         ),

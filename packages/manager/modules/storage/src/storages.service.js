@@ -51,7 +51,7 @@ export default class StoragesService {
     }).then((pool) => {
       return this.$q.all(
         pool.map((item) =>
-          this.OvhHttp.get(`/dedicated/netapp/${item}`, {
+          this.OvhHttp.get(`/storage/netapp/${item}`, {
             rootPath: 'apiv6',
           }).then((res) => {
             return {
