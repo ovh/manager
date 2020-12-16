@@ -1,3 +1,6 @@
+import { Environment } from '@ovh-ux/manager-config';
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+
 import get from 'lodash/get';
 import isString from 'lodash/isString';
 import angular from 'angular';
@@ -7,11 +10,10 @@ import { RENEW_URL } from './service-expiration-date.component.constant';
 
 export default class {
   /* @ngInject */
-  constructor($scope, $rootScope, coreConfig, OvhApiMe, RedirectionService) {
+  constructor($scope, $rootScope, coreConfig, OvhApiMe) {
     $scope.tr = $rootScope.tr;
     this.coreConfig = coreConfig;
     this.OvhApiMe = OvhApiMe;
-    this.RedirectionService = RedirectionService;
   }
 
   $onInit() {
@@ -36,13 +38,17 @@ export default class {
   }
 
   getCancelTerminationUrl() {
-    const url = `${this.RedirectionService.getURL('autorenew')}?searchText=${
-      this.serviceName
-    }`;
-    if (isString(this.serviceType)) {
-      return `${url}&selectedType=${this.serviceType}`;
+    if (['EU', 'CA'].includes(Environment.getRegion())) {
+      const params = {
+        searchText: this.serviceName,
+      };
+      if (isString(this.serviceType)) {
+        params.selectedType = this.serviceType;
+      }
+
+      return buildURL('dedicated', '#/billing/autorenew', params);
     }
-    return url;
+    return '';
   }
 
   getOrderUrl() {

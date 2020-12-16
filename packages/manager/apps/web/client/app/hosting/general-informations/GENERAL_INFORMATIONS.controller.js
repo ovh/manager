@@ -1,3 +1,5 @@
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+import { Environment } from '@ovh-ux/manager-config';
 import head from 'lodash/head';
 import isEmpty from 'lodash/isEmpty';
 import isObject from 'lodash/isObject';
@@ -23,7 +25,6 @@ export default class HostingGeneralInformationsCtrl {
     HostingRuntimes,
     hostingSSLCertificate,
     OvhApiScreenshot,
-    RedirectionService,
   ) {
     this.$q = $q;
     this.$scope = $scope;
@@ -39,7 +40,6 @@ export default class HostingGeneralInformationsCtrl {
     this.HostingRuntimes = HostingRuntimes;
     this.hostingSSLCertificate = hostingSSLCertificate;
     this.OvhApiScreenshot = OvhApiScreenshot;
-    this.RedirectionService = RedirectionService;
   }
 
   $onInit() {
@@ -48,10 +48,14 @@ export default class HostingGeneralInformationsCtrl {
     this.serviceName = this.$stateParams.productId;
     this.defaultRuntime = null;
     this.availableOffers = [];
-    this.contactManagementLink = this.RedirectionService.getURL(
-      'contactManagement',
-      { serviceName: this.serviceName, category: 'HOSTING' },
-    );
+    this.contactManagementLink =
+      Environment.getRegion() === 'EU'
+        ? buildURL('dedicated', '#/contacts/services', {
+            serviceName: this.serviceName,
+            category: 'HOSTING',
+          })
+        : '';
+
     this.loading = {
       defaultRuntime: true,
       localSeo: true,

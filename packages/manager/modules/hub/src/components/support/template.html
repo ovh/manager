@@ -3,7 +3,7 @@
     data-button-text="{{ ::'hub_support_see_more' | translate }}"
     data-heading="{{ ::'hub_support_title' | translate }}"
     data-hide-heading="$ctrl.tickets.length === 0"
-    data-href="{{ ::$ctrl.RedirectionService.getURL('support') }}"
+    data-href="{{ ::$ctrl.SUPPORT_URL }}"
     data-on-click="$ctrl.onSeeMore()"
     data-navi-id="help-block"
 >
@@ -46,7 +46,7 @@
                         </td>
                         <td class="oui-table__cell text-right">
                             <a
-                                data-ng-href="{{:: $ctrl.RedirectionService.getURL('ticket', { ticketId: ticket.ticketId }) }}"
+                                data-ng-href="{{:: ticket.url }}"
                                 data-track-on="click"
                                 data-track-name="{{:: $ctrl.trackingPrefix + '::activity::assistance::go-to-ticket' }}"
                                 data-track-type="navigation"

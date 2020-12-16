@@ -25,11 +25,15 @@
     "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-account-migration' --include-dependencies -- yarn run dev",
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-account-migration' --include-dependencies -- yarn run dev:watch"
   },
+  "dependencies": {
+    "@ovh-ux/ufrontend": "^1.0.0"
+  },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^7.0.0 || ^8.0.0",
     "lodash": "^4.17.15"
   },
   "peerDependencies": {
+    "@ovh-ux/manager-config": "^2.1.0",
     "@ovh-ux/manager-core": "^9.0.0",
     "@ovh-ux/ng-at-internet": "^5.3.0",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.0.1",

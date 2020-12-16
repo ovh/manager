@@ -2,7 +2,8 @@ import get from 'lodash/get';
 import find from 'lodash/find';
 import set from 'lodash/set';
 
-import EnvironmentService from '@ovh-ux/manager-config';
+import { Environment } from '@ovh-ux/manager-config';
+import { buildURL } from '@ovh-ux/ufrontend';
 
 import component from './component';
 
@@ -60,7 +61,7 @@ export default /* @ngInject */ ($stateProvider) => {
             message: $translate.instant('pci_project_new_error_verify_paypal', {
               href: get(
                 PCI_REDIRECT_URLS,
-                `${EnvironmentService.Environment.region}.paymentMethods`,
+                `${Environment.getRegion()}.paymentMethods`,
               ),
             }),
             code: ELIGIBILITY_ACTION_ENUM.VERIFY_PAYPAL,
@@ -89,8 +90,10 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: () => null,
 
-      newSupportTicketLink: /* @ngInject */ (RedirectionService) =>
-        RedirectionService.getURL('createTicket'),
+      newSupportTicketLink: () =>
+        ['EU', 'CA'].includes(Environment.getRegion())
+          ? buildURL('dedicated', '#/support/tickets/new')
+          : '',
 
       cart: /* @ngInject */ ($transition$, me, pciProjectNew) =>
         !get($transition$.params(), 'cartId')

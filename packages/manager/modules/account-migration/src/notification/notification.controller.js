@@ -1,3 +1,5 @@
+import { Environment } from '@ovh-ux/manager-config';
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import { FAQ_LINK } from '../constants';
 
 export default class MigrationNotificationController {
@@ -9,7 +11,6 @@ export default class MigrationNotificationController {
     atInternet,
     accountMigrationService,
     OvhApiMe,
-    RedirectionService,
   ) {
     this.$q = $q;
     this.$state = $state;
@@ -18,11 +19,17 @@ export default class MigrationNotificationController {
     this.atInternet = atInternet;
     this.accountMigrationService = accountMigrationService;
     this.OvhApiMe = OvhApiMe;
-    this.RedirectionService = RedirectionService;
 
-    this.AGREEMENTS_URL = this.RedirectionService.getURL('agreements');
-    this.CONTACTS_URL = this.RedirectionService.getURL('contacts');
-    this.ORDERS_URL = this.RedirectionService.getURL('orders');
+    this.AGREEMENTS_URL = buildURL(
+      'dedicated',
+      '#/billing/autorenew/agreements',
+    );
+    this.CONTACTS_URL =
+      Environment.getRegion() === 'EU'
+        ? buildURL('dedicated', '#/contacts/services')
+        : '';
+    this.ORDERS_URL = buildURL('dedicated', '#/billing/orders');
+    this.DEBT_PAY_URL = buildURL('dedicated', '#/billing/history/debt/all/pay');
 
     this.migrationDetail = null;
     this.needMigration = false;

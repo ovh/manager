@@ -1,3 +1,4 @@
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import {
   WAITING_PAYMENT_LABEL,
   ERROR_STATUS,
@@ -6,9 +7,8 @@ import { maxBy } from 'lodash-es';
 
 export default class ManagerHubBillingSummaryCtrl {
   /* @ngInject */
-  constructor(RedirectionService) {
-    this.RedirectionService = RedirectionService;
-    this.ordersTrackingLink = RedirectionService.getURL('orders');
+  constructor() {
+    this.ordersTrackingLink = buildURL('dedicated', '#/billing/orders');
     this.ERROR_STATUS = ERROR_STATUS;
   }
 
@@ -20,7 +20,7 @@ export default class ManagerHubBillingSummaryCtrl {
           ? 'INVOICE_IN_PROGRESS'
           : 'custom_creation',
     };
-    this.orderTrackingLink = this.RedirectionService.getURL('order', {
+    this.orderTrackingLink = buildURL('dedicated', '#/billing/order/:orderId', {
       orderId: this.order.orderId,
     });
 
@@ -34,9 +34,11 @@ export default class ManagerHubBillingSummaryCtrl {
     return this.refresh()
       .then((order) => {
         this.order = order;
-        this.orderTrackingLink = this.RedirectionService.getURL('order', {
-          orderId: order.orderId,
-        });
+        this.orderTrackingLink = buildURL(
+          'dedicated',
+          '#/billing/order/:orderId',
+          { orderId: order.orderId },
+        );
       })
       .finally(() => {
         this.loading = false;
