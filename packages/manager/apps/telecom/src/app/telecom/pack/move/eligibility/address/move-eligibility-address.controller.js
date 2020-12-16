@@ -185,6 +185,7 @@ export default class {
         this.fiber,
         'address',
         ELIGIBILITY_LINE_STATUS.create,
+        building,
       );
       this.displayResult = true;
       this.displaySearchResult = true;
@@ -263,6 +264,7 @@ export default class {
                 this.fiber,
                 'address',
                 ELIGIBILITY_LINE_STATUS.create,
+                building,
               );
               this.displayResult = true;
               this.displaySearchResult = true;
