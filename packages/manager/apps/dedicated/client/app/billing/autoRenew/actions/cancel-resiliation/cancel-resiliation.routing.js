@@ -3,7 +3,7 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/cancel-resiliation?serviceId&serviceType',
     views: {
       modal: {
-        component: 'billingAutorenewCancelResiliation',
+        component: 'billingCancelResiliation',
       },
     },
     layout: 'modal',
@@ -20,6 +20,13 @@ export default /* @ngInject */ ($stateProvider) => {
         $transition$.params().serviceType,
       service: /* @ngInject */ (BillingAutoRenew, serviceId, serviceType) =>
         BillingAutoRenew.getService(serviceId, serviceType),
+      trackClickInformation: () => ({
+        name: 'autorenew::cancel-resiliation',
+        type: 'action',
+        chapter1: 'dedicated',
+        chapter2: 'account',
+        chapter3: 'billing',
+      }),
     },
   });
 };

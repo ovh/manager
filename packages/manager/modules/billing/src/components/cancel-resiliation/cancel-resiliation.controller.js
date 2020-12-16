@@ -1,20 +1,14 @@
-import get from 'lodash/get';
+import { get } from 'lodash-es';
 
 export default class {
   /* @ngInject */
-  constructor($translate, atInternet) {
+  constructor($translate) {
     this.$translate = $translate;
-    this.atInternet = atInternet;
   }
 
   confirmResiliationCancel() {
-    this.atInternet.trackClick({
-      name: 'autorenew::cancel-resiliation',
-      type: 'action',
-      chapter1: 'dedicated',
-      chapter2: 'account',
-      chapter3: 'billing',
-    });
+    this.trackClick();
+    this.loading = true;
 
     return this.cancelResiliation(this.service)
       .then(() =>
@@ -32,6 +26,9 @@ export default class {
           ),
           'danger',
         ),
-      );
+      )
+      .finally(() => {
+        this.loading = false;
+      });
   }
 }
