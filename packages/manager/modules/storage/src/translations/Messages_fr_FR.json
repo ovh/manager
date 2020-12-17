@@ -16,13 +16,13 @@
 
 
   "service_netapp_state": "Etat du service",
-  "service_netapp_statut": "Statut",
+  "service_netapp_status": "Statut",
 
   "service_netapp_plan": "Abonnement",
   "service_netapp_creation_date": "Date de création",
   "service_netapp_level": "Niveau de service",
 
-  "service_netapp_statut_": "Inconnu",
+  "service_netapp_status_": "Inconnu",
 
   "service_netapp_status_creating": "Création",
   "service_netapp_status_running": "Activé",
