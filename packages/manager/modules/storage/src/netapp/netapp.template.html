@@ -63,10 +63,9 @@
                         <span
                             class="oui-badge"
                             data-ng-class="{
-                                'oui-badge_success': ($ctrl.statusGroup($ctrl.service.status) === 'active'),
-                                'oui-badge_warning': ($ctrl.statusGroup($ctrl.service.status) === 'working'),
-                                'oui-badge_error': ($ctrl.statusGroup($ctrl.service.status) === 'deleted'),
-                                'oui-badge_info': ($ctrl.statusGroup($ctrl.service.status) === 'info'),
+                                'oui-badge_success': (['running'].includes($ctrl.service.status)),
+                                'oui-badge_warning': (['creating', 'reopenning', 'suspending', 'deleting'].includes($ctrl.service.status)),
+                                'oui-badge_error': (['suspended', 'deleted'].includes($ctrl.service.status)),
                             }"
                         >
                             <span

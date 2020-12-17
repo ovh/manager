@@ -27,17 +27,4 @@ export default class NetappCtrl {
   $onInit() {
     this.initGuides();
   }
-
-  statusGroup(status) {
-    if (['running'].includes(status)) {
-      return 'active';
-    }
-    if (['creating', 'reopenning', 'suspending', 'deleting'].includes(status)) {
-      return 'working';
-    }
-    if (['suspended', 'deleted'].includes(status)) {
-      return 'deleted';
-    }
-    return 'info';
-  }
 }
