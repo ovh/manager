@@ -63,10 +63,10 @@
                         <span
                             class="oui-badge"
                             data-ng-class="{
-                                'oui-badge_success': ($ctrl.service.statusGroup === 'ACTIVE'),
-                                'oui-badge_warning': ($ctrl.service.statusGroup === 'PENDING'),
-                                'oui-badge_error': ($ctrl.service.statusGroup === 'ERROR'),
-                                'oui-badge_info': ($ctrl.service.statusGroup === $ctrl.service.status && !['ACTIVE', 'PENDING', 'ERROR'].includes($ctrl.service.statusGroup)),
+                                'oui-badge_success': ($ctrl.statusGroup($ctrl.service.status) === 'active'),
+                                'oui-badge_warning': ($ctrl.statusGroup($ctrl.service.status) === 'working'),
+                                'oui-badge_error': ($ctrl.statusGroup($ctrl.service.status) === 'deleted'),
+                                'oui-badge_info': ($ctrl.statusGroup($ctrl.service.status) === 'info'),
                             }"
                         >
                             <span
@@ -92,7 +92,7 @@
                     data-term="{{:: 'service_netapp_creation_date' | translate }}"
                 >
                     <oui-tile-description>
-                        <span data-ng-bind="$ctrl.service.createdAt"></span>
+                        <span data-ng-bind="$ctrl.service.createdAt | date "></span>
                     </oui-tile-description>
                 </oui-tile-definition>
             </oui-tile>
