@@ -131,26 +131,31 @@ const url = buildURL('hub', '#/catalog', { expand: true });
 // use `url`;
 ```
 
-Build multiples routes using an array of `{application, url, query}`
+Build multiples routes using an array of `{application, path, params}`
 
 ```js
 import { buildURLs } from '@ovh-ux/ufrontend/url-builder';
 
 const [dashboard, catalog] = buildURLs([
-  { application: 'hub', url: '#/', query: { expand: true } },
-  { application: 'hub', url: '#/catalog' },
+  { application: 'hub', path: '#/', params: { expand: true } },
+  { application: 'hub', path: '#/catalog' },
 ]);
 // use `dashboard` and `catalog` URLs
 ```
 
-Build multiples routes using an object of `{application, url, query}`
+Build multiples routes using an object of `{application, path, params}`
 
 ```js
 import { buildURLs } from '@ovh-ux/ufrontend/url-builder';
 
 const { dashboard, catalog } = buildURLs({
-  dashboard: { application: 'hub', url: '#/', query: { expand: true } },
-  catalog: { application: 'hub', url: '#/catalog' },
+  dashboard: { application: 'hub', path: '#/', params: { expand: true } },
+  catalog: { application: 'hub', path: '#/catalog' },
+  emailDomainProducts: {
+    application: 'hub',
+    path: '#/:product',
+    params: { product: 'email_domain' },
+  },
 });
 // use `dashboard` and `catalog` URLs
 ```
