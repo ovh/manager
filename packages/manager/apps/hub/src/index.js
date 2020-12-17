@@ -10,7 +10,7 @@ import { BILLING_REDIRECTIONS } from './constants';
 
 attachPreloader(Environment.getUserLanguage());
 
-bootstrapApplication().then(({ region }) => {
+bootstrapApplication('hub').then(({ region }) => {
   BILLING_REDIRECTIONS.forEach((redirectionRegex) => {
     const hash = window.location.hash.replace('#', '');
     if (redirectionRegex.test(hash)) {

@@ -245,7 +245,9 @@ angular
   ])
   .config(
     /* @ngInject */ (ovhFeatureFlippingProvider) => {
-      ovhFeatureFlippingProvider.setApplicationName('web');
+      ovhFeatureFlippingProvider.setApplicationName(
+        Environment.getApplicationName(),
+      );
     },
   )
   .config([

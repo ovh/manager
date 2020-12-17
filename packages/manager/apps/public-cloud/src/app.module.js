@@ -81,7 +81,9 @@ angular
   )
   .config(
     /* @ngInject */ (ovhFeatureFlippingProvider) => {
-      ovhFeatureFlippingProvider.setApplicationName('public-cloud');
+      ovhFeatureFlippingProvider.setApplicationName(
+        Environment.getApplicationName(),
+      );
     },
   )
   .config(routing)

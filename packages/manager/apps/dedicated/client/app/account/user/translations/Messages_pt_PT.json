@@ -88,7 +88,7 @@
   "user_ipRestrictions_table_empty": "Não foi definida qualquer restrição ",
   "user_ipRestrictions_defaultRule_success": "A regra predefinida foi alterada.",
   "user_ipRestrictions_defaultRule_error": "Erro na alteração das regras predefinidas:",
-  "user_ipRestrictions_error_disable": "Atenção! Com a configuração atual não poderá continuar a aceder à sua interface Manager!",
+  "user_ipRestrictions_error_disable": "Antes de autorizar um endereço IP, não poderá aceder à Área de Cliente.",
   "user_ipRestrictions_error": "Erro ao carregar a informação.",
   "user_security_double_auth_activate": "Ativar a dupla autenticação",
   "user_security_double_auth_deactivate": "Desativar a dupla autenticação",
@@ -605,5 +605,6 @@
   "user_account_support_level_title": "O meu nível de suporte",
   "user_account_ssh_keys_title": "Chaves SSH",
   "user_account_users_management_title": "Gestão de utilizadores",
-  "user_account_advanced_title": "Configurações avançadas"
+  "user_account_advanced_title": "Configurações avançadas",
+  "user_ipRestrictions_warning_last_ip_with_deny": "Altere a regra predefinida para \"Autorizado\" para poder eliminar o último endereço IP."
 }

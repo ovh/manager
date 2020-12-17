@@ -60,7 +60,7 @@ export default class EnableWebHostingOrderCtrl {
           this.$translate.instant(
             'domain_configuration_enable_web_hosting_checkout_error',
             {
-              message: error.message,
+              message: get(error, 'data.message', error.message),
             },
           ),
         ),
@@ -97,7 +97,7 @@ export default class EnableWebHostingOrderCtrl {
           this.$translate.instant(
             'domain_configuration_enable_web_hosting_checkout_error',
             {
-              message: get(error, 'message'),
+              message: get(error, 'data.message', error.message),
             },
           ),
         ),

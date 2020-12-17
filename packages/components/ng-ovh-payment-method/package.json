@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-payment-method",
-  "version": "7.0.6",
+  "version": "7.0.7",
   "description": "Get payment methods from different OVHcloud APIs",
   "keywords": [
     "angularjs",

@@ -6,7 +6,7 @@ import { Environment } from '@ovh-ux/manager-config';
 
 attachPreloader(Environment.getUserLanguage());
 
-bootstrapApplication().then(({ region }) => {
+bootstrapApplication('cloud').then(({ region }) => {
   import(`./config-${region}`)
     .catch(() => {})
     .then(() => import('./app.module'))

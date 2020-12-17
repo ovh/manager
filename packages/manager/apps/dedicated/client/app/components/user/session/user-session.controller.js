@@ -19,6 +19,7 @@ angular.module('App').controller(
       this.$scope.$on('switchUniverse', (event, universe) => {
         this.sidebarNamespace = universe === 'server' ? undefined : 'hpc';
         this.navbarOptions.universe = universe;
+        Environment.setUniverse(universe);
       });
 
       this.currentLanguage = Environment.getUserLanguage();
