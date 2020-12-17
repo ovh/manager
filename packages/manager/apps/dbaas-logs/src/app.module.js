@@ -12,6 +12,7 @@ import ngOvhUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 
 import DbaasLogs from '@ovh-ux/manager-dbaas-logs';
+import atInternet from './components/at-internet';
 
 Environment.setVersion(__VERSION__);
 
@@ -24,6 +25,7 @@ angular
     ngUiRouterBreadcrumb,
     uiRouter,
     DbaasLogs,
+    atInternet,
   ])
   .config(
     /* @ngInject */ ($locationProvider) => $locationProvider.hashPrefix(''),
