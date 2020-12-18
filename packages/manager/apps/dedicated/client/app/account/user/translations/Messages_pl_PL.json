@@ -88,7 +88,7 @@
   "user_ipRestrictions_table_empty": "Nie zdefiniowano ograniczeń",
   "user_ipRestrictions_defaultRule_success": "Domyślna reguła została zmieniona.",
   "user_ipRestrictions_defaultRule_error": "Wystąpił błąd podczas modyfikowania domyślnej reguły:",
-  "user_ipRestrictions_error_disable": "Uwaga! W aktualnej konfiguracji nie będziesz mógł się zalogować do panelu manager!",
+  "user_ipRestrictions_error_disable": "Prosimy o uprzednie autoryzowanie adresu IP, w przeciwnym razie nie będziesz mógł się zalogować do Panelu klienta.",
   "user_ipRestrictions_error": "Wystąpił błąd podczas ładowania informacji.",
   "user_security_double_auth_activate": "Włącz weryfikację dwuetapową",
   "user_security_double_auth_deactivate": "Wyłącz weryfikację dwuetapową",
@@ -605,5 +605,6 @@
   "user_account_support_level_title": "Mój poziom wsparcia",
   "user_account_ssh_keys_title": "Moje klucze SSH",
   "user_account_users_management_title": "Zarządzanie użytkownikami",
-  "user_account_advanced_title": "Zaawansowane parametry"
+  "user_account_advanced_title": "Zaawansowane parametry",
+  "user_ipRestrictions_warning_last_ip_with_deny": "Zmień domyślną regułę na \"Dozwolony\", aby można było usunąć ostatni adres IP."
 }
