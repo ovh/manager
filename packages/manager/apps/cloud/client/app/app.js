@@ -6,6 +6,7 @@ import uiRouter, { RejectType } from '@uirouter/angularjs';
 import isString from 'lodash/isString';
 
 import { Environment } from '@ovh-ux/manager-config';
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import ovhManagerCore from '@ovh-ux/manager-core';
@@ -127,11 +128,7 @@ angular
     ].filter(isString),
   )
   .config(
-    /* @ngInject */ (
-      $urlServiceProvider,
-      $locationProvider,
-      CORE_MANAGER_URLSProvider, // eslint-disable-line camelcase
-    ) => {
+    /* @ngInject */ ($urlServiceProvider, $locationProvider) => {
       const dedicatedRedirections = [
         '/dbaas/logs',
         '/paas/veeam-enterprise',
@@ -146,10 +143,7 @@ angular
         $urlServiceProvider.rules.when(
           new RegExp(`^${redirectionPrefix}`),
           (match, { path }) => {
-            const { origin, pathname } = new URL(
-              CORE_MANAGER_URLSProvider.URLS.dedicated,
-            );
-            window.location.replace(`${origin}${pathname}#${path}`);
+            window.location.replace(buildURL('dedicated', path));
           },
         );
       });
