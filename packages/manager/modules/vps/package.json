@@ -13,6 +13,7 @@
   "main": "./src/index.js",
   "dependencies": {
     "@novnc/novnc": "git+https://github.com/ovh-ux/noVNC.git#build/websock_base64",
+    "@ovh-ux/ufrontend": "^1.0.0",
     "bootstrap4": "twbs/bootstrap#v4.0.0",
     "flag-icon-css": "~0.8.5",
     "font-awesome": "^4.0.0",
