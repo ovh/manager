@@ -1,3 +1,4 @@
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import get from 'lodash/get';
 
 import { PRICING_MODES } from '../../upscale/upscale.constants';
@@ -84,8 +85,7 @@ export default /* @ngInject */ ($stateProvider) => {
                 `,
             ),
           ),
-      supportTicketLink: /* @ngInject */ (coreConfig, CORE_MANAGER_URLS) =>
-        `${CORE_MANAGER_URLS.dedicated}/#ticket`,
+      supportTicketLink: () => buildURL('dedicated', '#ticket'),
       terminateOptions: ($translate, serviceInfo) =>
         Object.values(TERMINATE_OPTIONS)
           .filter((option) => {
