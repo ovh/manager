@@ -31,7 +31,7 @@ import sessionService from './session/session.service';
 import redirectionFilter from './redirection/redirection.filter';
 import redirectionService from './redirection/redirection.service';
 
-import { MANAGER_URLS, REDIRECT_URLS, URLS } from './manager-core.constants';
+import { URLS } from './manager-core.constants';
 
 const moduleName = 'ovhManagerCore';
 
@@ -50,14 +50,6 @@ angular
     ngOvhSsoAuth,
   ])
   .constant('constants', {})
-  .provider(
-    'CORE_MANAGER_URLS',
-    /* @ngInject */ (coreConfigProvider) => ({
-      URLS: MANAGER_URLS[coreConfigProvider.getRegion()],
-      $get: () => MANAGER_URLS[coreConfigProvider.getRegion()],
-    }),
-  )
-  .constant('CORE_REDIRECT_URLS', REDIRECT_URLS)
   .constant('CORE_URLS', URLS)
   .factory('TranslateInterceptor', translateFactory)
   .config(($translateProvider, translatePluggableLoaderProvider) => {
