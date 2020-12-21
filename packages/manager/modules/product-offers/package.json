@@ -17,7 +17,7 @@
   "peerDependencies": {
     "@ovh-ux/manager-catalog-price": "^1.0.0",
     "@ovh-ux/manager-config": "^1.0.0 || ^2.0.0",
-    "@ovh-ux/manager-core": "^10.0.0 || ^11.0.0",
+    "@ovh-ux/manager-core": "^11.0.0 || ^12.0.0",
     "@ovh-ux/manager-filters": "^0.1.0 || ^1.0.0",
     "@ovh-ux/ng-ovh-contracts": "^4.0.1",
     "@ovh-ux/ng-ovh-payment-method": "^7.0.6",
