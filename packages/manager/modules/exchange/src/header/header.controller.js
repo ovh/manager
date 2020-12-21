@@ -4,6 +4,7 @@ export default class HeaderController {
     $q,
     $rootScope,
     $translate,
+    atInternet,
     constants,
     coreURLBuilder,
     wucExchange,
@@ -16,7 +17,7 @@ export default class HeaderController {
     this.$q = $q;
     this.$rootScope = $rootScope;
     this.$translate = $translate;
-
+    this.atInternet = atInternet;
     this.constants = constants;
     this.coreURLBuilder = coreURLBuilder;
     this.wucExchange = wucExchange;
@@ -128,5 +129,37 @@ export default class HeaderController {
       .finally(() => {
         this.isSubmittingNewDisplayName = false;
       });
+  }
+
+  removeExchangeDialog() {
+    switch (this.Exchange.value.domain.split('-')[0]) {
+      case 'private':
+      case 'exchange':
+        this.atInternet.trackClick({
+          name: 'web::microsoft::exchange::dedicated::delete',
+          type: 'action',
+        });
+        this.atInternet.trackPage({
+          name: 'web::microsoft::exchange::dedicated::delete',
+          type: 'navigation',
+        });
+        break;
+      case 'hosted':
+        this.atInternet.trackClick({
+          name: 'web::microsoft::exchange::hosted::delete',
+          type: 'action',
+        });
+        this.atInternet.trackPage({
+          name: 'web::microsoft::exchange::hosted::delete',
+          type: 'navigation',
+        });
+        break;
+      default:
+        break;
+    }
+    this.navigation.setAction(
+      'exchange/header/remove/exchange-remove',
+      this.exchangeService,
+    );
   }
 }

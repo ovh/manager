@@ -6,6 +6,7 @@ export default class ExchangeRemoveExchangeCtrl {
     $scope,
     wucExchange,
     $translate,
+    atInternet,
     navigation,
     messaging,
     exchangeServiceInfrastructure,
@@ -13,7 +14,12 @@ export default class ExchangeRemoveExchangeCtrl {
   ) {
     this.services = {
       $scope,
+<<<<<<< HEAD
       wucExchange,
+=======
+      atInternet,
+      Exchange,
+>>>>>>> feat(web-cloud): add tracking to termination
       $translate,
       navigation,
       messaging,
@@ -48,6 +54,12 @@ export default class ExchangeRemoveExchangeCtrl {
   }
 
   submit() {
+    this.services.atInternet.trackClick({
+      name: `web::microsoft::exchange::${
+        this.exchange.domain.split('-')[0] === 'hosted' ? 'hosted' : 'dedicated'
+      }::delete::confirm`,
+      type: 'action',
+    });
     this.services.messaging.writeSuccess(
       this.services.$translate.instant('exchange_dashboard_action_doing'),
     );
