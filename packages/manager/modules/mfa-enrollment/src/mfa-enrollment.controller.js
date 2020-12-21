@@ -1,4 +1,5 @@
-import get from 'lodash/get';
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+
 import {
   DEFAULT_ASSET,
   DEFAULT_ASSET2X,
@@ -7,11 +8,9 @@ import {
 
 export default class mfaEnrollmentCtrl {
   /* @ngInject */
-  constructor($state, CORE_MANAGER_URLS) {
+  constructor($state) {
     this.$state = $state;
-    const mfaBaseUrl = get(CORE_MANAGER_URLS, 'dedicated');
-    const mfaUrlPath = '#/useraccount/security/mfa';
-    this.mfaUrl = `${mfaBaseUrl}/${mfaUrlPath}`;
+    this.mfaUrl = buildURL('dedicated', '#/useraccount/security/mfa');
 
     this.DEFAULT_ASSET = DEFAULT_ASSET;
     this.DEFAULT_ASSET2X = DEFAULT_ASSET2X;

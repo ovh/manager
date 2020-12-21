@@ -4,13 +4,12 @@ import { RENEW_URL, SERVICE_TYPE } from './service-actions.constants';
 
 export default class ServicesActionsCtrl {
   /* @ngInject */
-  constructor(atInternet, CORE_MANAGER_URLS) {
+  constructor(atInternet) {
     this.atInternet = atInternet;
     this.autorenewLink = ['EU', 'CA'].includes(Environment.getRegion())
       ? buildURL('dedicated', '#/billing/autorenew')
       : '';
 
-    this.CORE_MANAGER_URLS = CORE_MANAGER_URLS;
     this.SERVICE_TYPE = SERVICE_TYPE;
   }
 
@@ -35,8 +34,14 @@ export default class ServicesActionsCtrl {
         this.cancelResiliationLink = null;
         break;
       case SERVICE_TYPE.SMS:
-        this.buyingLink = `${this.CORE_MANAGER_URLS.telecom}/sms/${this.service.serviceId}/order`;
-        this.renewLink = `${this.CORE_MANAGER_URLS.telecom}sms/${this.service.serviceId}/options/recredit`;
+        this.buyingLink = buildURL('telecom', '#/sms/:serviceName/order', {
+          serviceName: this.service.serviceId,
+        });
+        this.renewLink = buildURL(
+          'telecom',
+          '#/sms/:serviceName/options/recredit',
+          { serviceName: this.service.serviceId },
+        );
         break;
       default:
         this.resiliateLink = `${this.autorenewLink}/delete?serviceId=${this.service.serviceId}&serviceType=${this.service.serviceType}`;

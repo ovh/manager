@@ -284,13 +284,12 @@ angular
         $urlRouterProvider.when(url, [
           '$window',
           '$location',
-          'CORE_MANAGER_URLS',
-          ($window, $location, CORE_MANAGER_URLS) => {
+          ($window, $location) => {
             const lastPartOfUrl = $location.url().substring(1);
             set(
               $window,
               'location',
-              `${CORE_MANAGER_URLS.dedicated}/#/${lastPartOfUrl}`,
+              buildURL('dedicated', `#/${lastPartOfUrl}`),
             );
           },
         ]);
@@ -413,16 +412,15 @@ angular
   ])
   .run([
     '$location',
-    'CORE_MANAGER_URLS',
     'URLS_REDIRECTED_TO_DEDICATED',
-    ($location, CORE_MANAGER_URLS, URLS_REDIRECTED_TO_DEDICATED) => {
+    ($location, URLS_REDIRECTED_TO_DEDICATED) => {
       forEach(
         filter(URLS_REDIRECTED_TO_DEDICATED, (url) =>
           url.test(window.location.href),
         ),
         () => {
           const lastPartOfUrl = $location.url().substring(1);
-          window.location = `${CORE_MANAGER_URLS.dedicated}/#/${lastPartOfUrl}`;
+          window.location = buildURL('dedicated', `#/${lastPartOfUrl}`);
         },
       );
     },
