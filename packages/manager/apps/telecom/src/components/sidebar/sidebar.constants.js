@@ -1,4 +1,4 @@
-export const URLS = {
+export const SIDEBAR_URLS = {
   number: {
     FR: 'https://www.ovhtelecom.fr/telephonie/numeros/',
   },
@@ -83,4 +83,4 @@ export const TELEPHONY_AVAILABILITY = {
   order: ['FR'],
 };
 
-export default { URLS, TELEPHONY_AVAILABILITY };
+export default { SIDEBAR_URLS, TELEPHONY_AVAILABILITY };

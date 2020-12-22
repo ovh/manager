@@ -1,14 +1,17 @@
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+
 export default /* @ngInject */ function PackDomainCtrl(
   $scope,
   OvhApiPackXdslDomainActivation,
   $stateParams,
   $window,
-  REDIRECT_URLS,
 ) {
   const self = this;
 
   this.getWebDomain = function getWebDomain(domainName) {
-    return REDIRECT_URLS.domain.replace('{domain}', domainName);
+    return buildURL('web', '#/configuration/domain/:productId', {
+      productId: domainName,
+    });
   };
 
   const init = function init() {

@@ -2,6 +2,8 @@ import filter from 'lodash/filter';
 import get from 'lodash/get';
 import set from 'lodash/set';
 
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+
 export default class EmailProTabInformationCtrl {
   /* @ngInject */
   constructor(
@@ -56,6 +58,17 @@ export default class EmailProTabInformationCtrl {
         productId: this.$stateParams.productId,
         domain: this.$scope.exchange.associatedDomainName,
       });
+    }
+
+    if (this.$scope.sharepoint) {
+      this.sharepointURL = buildURL(
+        'dedicated',
+        '#/configuration/sharepoint/:exchangeId/:productId',
+        {
+          exchangeId: this.$scope.exchange.domain,
+          productId: this.$scope.sharepoint?.domain,
+        },
+      );
     }
   }
 

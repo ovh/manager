@@ -1,4 +1,7 @@
-import get from 'lodash/get';
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+import { Environment } from '@ovh-ux/manager-config';
+
+import { RENEW_URL } from './metrics-dashboard.constants';
 
 (() => {
   class MetricsDashboardCtrl {
@@ -14,7 +17,6 @@ import get from 'lodash/get';
       METRICS_ENDPOINTS,
       CucRegionService,
       SidebarMenu,
-      REDIRECT_URLS,
     ) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
@@ -28,7 +30,6 @@ import get from 'lodash/get';
       this.graphs = METRICS_ENDPOINTS.graphs;
       this.CucRegionService = CucRegionService;
       this.SidebarMenu = SidebarMenu;
-      this.REDIRECT_URLS = REDIRECT_URLS;
 
       this.loading = {};
       this.limit = {
@@ -117,18 +118,25 @@ import get from 'lodash/get';
       this.actions = {
         autorenew: {
           text: this.$translate.instant('common_manage'),
-          href: this.CucControllerHelper.navigation.constructor.getUrl(
-            get(this.REDIRECT_URLS, 'renew'),
-            { serviceName: this.serviceName, serviceType: 'METRICS' },
-          ),
+          href:
+            Environment.getRegion() === 'EU'
+              ? buildURL('dedicated', '#/billing/autoRenew', {
+                  selectedType: 'METRICS',
+                  searchText: this.serviceName,
+                })
+              : RENEW_URL[Environment.getRegion()],
           isAvailable: () => true,
         },
         contacts: {
           text: this.$translate.instant('common_manage'),
-          href: this.CucControllerHelper.navigation.constructor.getUrl(
-            get(this.REDIRECT_URLS, 'contacts'),
-            { serviceName: this.serviceName },
-          ),
+
+          href:
+            Environment.getRegion() === 'EU'
+              ? buildURL('dedicated', '#/useraccount/contacts', {
+                  tab: 'SERVICES',
+                  serviceName: this.serviceName,
+                })
+              : null,
           isAvailable: () =>
             this.CucFeatureAvailabilityService.hasFeature('CONTACTS', 'manage'),
         },

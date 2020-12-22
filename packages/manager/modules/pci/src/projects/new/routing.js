@@ -3,7 +3,7 @@ import find from 'lodash/find';
 import set from 'lodash/set';
 
 import { Environment } from '@ovh-ux/manager-config';
-import { buildURL } from '@ovh-ux/ufrontend';
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 
 import component from './component';
 
@@ -15,8 +15,6 @@ import {
   ELIGIBILITY_ACTION_ENUM,
   ELIGIBILITY_ERROR_IMAGES_SRC,
 } from './constants';
-
-import { PCI_REDIRECT_URLS } from '../../constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.new', {
@@ -59,10 +57,7 @@ export default /* @ngInject */ ($stateProvider) => {
           redirectState = 'pci.error';
           redirectParams = {
             message: $translate.instant('pci_project_new_error_verify_paypal', {
-              href: get(
-                PCI_REDIRECT_URLS,
-                `${Environment.getRegion()}.paymentMethods`,
-              ),
+              href: buildURL('dedicated', '#/billing/payment/method'),
             }),
             code: ELIGIBILITY_ACTION_ENUM.VERIFY_PAYPAL,
             image: ELIGIBILITY_ERROR_IMAGES_SRC.VERIFY_PAYPAL,

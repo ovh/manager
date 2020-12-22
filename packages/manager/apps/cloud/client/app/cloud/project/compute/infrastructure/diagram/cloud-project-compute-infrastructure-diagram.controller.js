@@ -17,6 +17,8 @@ import some from 'lodash/some';
 import tail from 'lodash/tail';
 import uniq from 'lodash/uniq';
 
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+
 (() => {
   class CloudProjectComputeInfrastructureDiagramCtrl {
     constructor(
@@ -56,7 +58,6 @@ import uniq from 'lodash/uniq';
       CucRegionService,
       CLOUD_UNIT_CONVERSION,
       CLOUD_MONITORING,
-      REDIRECT_URLS,
       coreConfig,
       URLS,
     ) {
@@ -98,10 +99,11 @@ import uniq from 'lodash/uniq';
       this.CucRegionService = CucRegionService;
       this.conversion = CLOUD_UNIT_CONVERSION;
       this.CLOUD_MONITORING = CLOUD_MONITORING;
-      this.REDIRECT_URLS = REDIRECT_URLS;
       this.region = coreConfig.getRegion();
       this.URLS = URLS;
       this.CloudFlavorService = CloudFlavorService;
+
+      this.SUPPORT_URL = buildURL('dedicated', '#/support;');
     }
 
     $onInit() {

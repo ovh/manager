@@ -5,6 +5,7 @@ import find from 'lodash/find';
 import set from 'lodash/set';
 import punycode from 'punycode';
 
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import {
   SIZE_UNIT,
   STATE_TASK_DOING,
@@ -98,7 +99,13 @@ export default /* @ngInject */ (
   $scope.spamTooltipContent = $translate.instant(
     'emailpro_tab_ACCOUNTS_popover_span_text',
     {
-      t0: `#/support/tickets?filters={"comparator":"is","field":"serviceName","reference":["${$stateParams.productId}"]}`,
+      t0: buildURL('dedicated', '#/support/tickets', {
+        filters: JSON.stringify({
+          property: 'serviceName.value',
+          operator: 'contains',
+          value: $stateParams.productId,
+        }),
+      }),
     },
   );
 

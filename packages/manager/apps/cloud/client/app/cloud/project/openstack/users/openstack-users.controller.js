@@ -6,6 +6,9 @@ import isEmpty from 'lodash/isEmpty';
 import keys from 'lodash/keys';
 import some from 'lodash/some';
 
+import { Environment } from '@ovh-ux/manager-config';
+import { HORIZON_URL } from './openstack-users.constants';
+
 angular
   .module('managerApp')
   .controller(
@@ -18,12 +21,9 @@ angular
       Poller,
       $scope,
       OpenstackUsersPassword,
-      OpenstackUsersToken,
       $filter,
-      $q,
       CucControllerHelper,
       $window,
-      REDIRECT_URLS,
     ) {
       const self = this;
       const orderBy = $filter('orderBy');
@@ -337,7 +337,10 @@ angular
       // Open Openstack Horizon in a new navigator window, pre-filling the user login
       self.openHorizon = function openHorizon(user) {
         $window.open(
-          REDIRECT_URLS.horizon.replace('{username}', user.username),
+          HORIZON_URL[Environment.getRegion()].replace(
+            '{username}',
+            user.username,
+          ),
           '_blank',
         );
       };

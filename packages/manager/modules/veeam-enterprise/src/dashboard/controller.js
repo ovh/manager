@@ -1,6 +1,6 @@
 import 'moment';
 
-import { RENEW_URL } from '../constants';
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 
 export default class VeeamEnterpriseDashboardCtrl {
   /* @ngInject */
@@ -64,13 +64,10 @@ export default class VeeamEnterpriseDashboardCtrl {
     this.uiActions = {
       manageAutorenew: {
         text: this.$translate.instant('veeam_enterprise_manage'),
-        href: this.CucControllerHelper.navigation.constructor.getUrl(
-          RENEW_URL,
-          {
-            serviceName: this.serviceName,
-            serviceType: 'VEEAM_ENTERPRISE',
-          },
-        ),
+        href: buildURL('dedicated', '#/billing/autoRenew', {
+          searchText: this.serviceName,
+          selectedType: 'VEEAM_ENTERPRISE',
+        }),
         isAvailable: () => true,
       },
     };

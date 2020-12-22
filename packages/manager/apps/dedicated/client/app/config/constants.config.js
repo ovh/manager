@@ -764,9 +764,6 @@ const constants = {
       WE:
         'https://ca.ovh.com/fr/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
     },
-    REDIRECT_URLS: {
-      listTicket: 'https://www.ovh.com/manager/dedicated/index.html#/ticket',
-    },
     SUPPORT: {
       CZ: '+420 246 030 899',
       DE: '+49 (0)681 906730',
@@ -1164,9 +1161,6 @@ const constants = {
       WE:
         'https://ca.ovh.com/fr/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
     },
-    REDIRECT_URLS: {
-      listTicket: 'https://ca.ovh.com/manager/dedicated/index.html#/ticket',
-    },
     SUPPORT: {
       ASIA: '+65 3163 8340',
       AU: '1300 OVH AUS (684 287)',
@@ -1322,10 +1316,6 @@ const constants = {
         'https://www.ovh.com/tn/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
       WE:
         'https://ca.ovh.com/fr/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-    },
-    REDIRECT_URLS: {
-      listTicket:
-        'https://us.ovhcloud.com/manager/dedicated/index.html#/ticket',
     },
     SUPPORT: {
       US: '1-855-684-5463',

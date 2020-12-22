@@ -1,6 +1,8 @@
 import find from 'lodash/find';
 import map from 'lodash/map';
 
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+
 angular
   .module('managerApp')
   .controller(
@@ -9,7 +11,6 @@ angular
       $q,
       $stateParams,
       $translate,
-      REDIRECT_URLS,
       OvhApiCloudProject,
       OvhApiCloudProjectQuota,
       OvhApiMe,
@@ -40,12 +41,12 @@ angular
       };
 
       // PaymentMean URL (v6 dedicated) with sessionv6
-      this.paymentmeanUrl = REDIRECT_URLS.paymentMeans;
+      this.paymentmeanUrl = buildURL('dedicated', '#/billing/mean');
 
       self.regionService = CucRegionService;
 
       this.region = coreConfig.getRegion();
-      this.supportUrl = REDIRECT_URLS.support;
+      this.supportUrl = buildURL('dedicated', '#/support');
 
       function getAvailableRegions() {
         self.availableRegions = CucControllerHelper.request.getHashLoader({

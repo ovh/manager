@@ -12,6 +12,7 @@
   "author": "OVH SAS",
   "main": "src/index.js",
   "dependencies": {
+    "@ovh-ux/ufrontend": "^1.0.0",
     "filesize": "^3.6.1",
     "lodash": "^4.17.15"
   },

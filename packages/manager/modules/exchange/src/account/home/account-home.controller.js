@@ -16,6 +16,7 @@ import snakeCase from 'lodash/snakeCase';
 import sumBy from 'lodash/sumBy';
 import toUpper from 'lodash/toUpper';
 
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import { DATAGRID_COLUMN_PARAMETERS_PREFERENCE_NAME } from './account-home.constants';
 
 export default class ExchangeAccountHomeController {
@@ -62,7 +63,14 @@ export default class ExchangeAccountHomeController {
     this.hostname = this.Exchange.value.hostname;
     this.webUrl = this.Exchange.value.webUrl;
 
-    this.linkToSpamTicket = `#/support/tickets?filters={"comparator":"is","field":"serviceName","reference":["${this.$routerParams.productId}"]}`;
+    this.linkToSpamTicket = buildURL('dedicated', '#/support/tickets', {
+      filters: JSON.stringify({
+        operator: 'contains',
+        property: 'serviceName.value',
+        value: this.$routerParams.productId,
+      }),
+    });
+
     this.initialAccountRetrieval = true;
     this.atLeastOneDomainIsAssociatedToCurrentExchangeService = true;
     this.availableDomains = [];

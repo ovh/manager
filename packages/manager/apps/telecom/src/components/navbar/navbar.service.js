@@ -4,11 +4,11 @@ import { MENU } from './navbar.constants';
 
 export default class {
   /* @ngInject */
-  constructor($q, $rootScope, $translate, REDIRECT_URLS) {
+  constructor($q, $rootScope, $translate, URLS) {
     this.$q = $q;
     this.$rootScope = $rootScope;
     this.$translate = $translate;
-    this.REDIRECT_URLS = REDIRECT_URLS;
+    this.URLS = URLS;
   }
 
   getLinks(products) {
@@ -19,7 +19,7 @@ export default class {
       };
 
       if (item.urlKey) {
-        element.url = get(this.REDIRECT_URLS, item.urlKey);
+        element.url = get(this.URLS, item.urlKey);
       }
 
       if (!item.urlKey && !item.state) {

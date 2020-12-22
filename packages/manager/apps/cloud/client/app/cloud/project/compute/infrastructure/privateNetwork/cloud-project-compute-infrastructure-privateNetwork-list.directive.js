@@ -15,6 +15,8 @@ import some from 'lodash/some';
 import sortBy from 'lodash/sortBy';
 import values from 'lodash/values';
 
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+
 class PrivateNetworkListCtrl {
   constructor(
     $window,
@@ -27,7 +29,6 @@ class PrivateNetworkListCtrl {
     CloudProjectComputeInfrastructurePrivateNetworkService,
     OvhApiCloudProjectNetworkPrivate,
     OvhApiCloudProject,
-    REDIRECT_URLS,
     CucCloudMessage,
     OvhApiMe,
     URLS,
@@ -74,7 +75,9 @@ class PrivateNetworkListCtrl {
       },
     };
     this.urls = {
-      vrack: REDIRECT_URLS.vRack,
+      vrack: buildURL('dedicated', '#/configuration/vrack', {
+        landingTo: 'networks',
+      }),
     };
     this.models = {
       vrack: null,
