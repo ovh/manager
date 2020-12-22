@@ -1,3 +1,19 @@
+# [13.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.7.1...@ovh-ux/manager-telecom@13.8.0) (2020-12-22)
+
+
+### Bug Fixes
+
+* update to use latest list layout ([c0cad60](https://github.com/ovh/manager/commit/c0cad603c8cce8ca8833c58c95d444aebfff7622))
+* **contact-center-solution.lines.add:** fix go back button ([#4139](https://github.com/ovh/manager/issues/4139)) ([573f390](https://github.com/ovh/manager/commit/573f390f7b9e49f1869d4938ef5e20047883afab))
+* **i18n:** add missing translations [CDS 704] ([5693f69](https://github.com/ovh/manager/commit/5693f69cf0e10e7baed40c19ad490ef12ef7c13d))
+
+
+### Features
+
+* **env:** use application name and universe ([104b7bf](https://github.com/ovh/manager/commit/104b7bf41f1d3f261fd619169b8b4b6e6aa9adb8))
+
+
+
 ## [13.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.7.0...@ovh-ux/manager-telecom@13.7.1) (2020-12-16)
 
 

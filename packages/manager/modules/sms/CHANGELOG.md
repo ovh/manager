@@ -1,3 +1,13 @@
+## [8.0.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.0.10...@ovh-ux/manager-sms@8.0.11) (2020-12-22)
+
+
+### Bug Fixes
+
+* update to use latest list layout ([c0cad60](https://github.com/ovh/manager/commit/c0cad603c8cce8ca8833c58c95d444aebfff7622))
+* **sms:** display the full message in incoming sms popup ([#4158](https://github.com/ovh/manager/issues/4158)) ([6a9e047](https://github.com/ovh/manager/commit/6a9e047492a2eac5fbf941bfe4419f5b79125baa))
+
+
+
 ## [8.0.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.0.9...@ovh-ux/manager-sms@8.0.10) (2020-11-19)
 
 

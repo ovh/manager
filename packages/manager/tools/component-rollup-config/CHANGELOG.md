@@ -1,3 +1,12 @@
+## [8.0.2](https://github.com/ovh/manager/compare/@ovh-ux/component-rollup-config@8.0.1...@ovh-ux/component-rollup-config@8.0.2) (2020-12-22)
+
+
+### Bug Fixes
+
+* **plugins:** handle multiple translation injection comments ([#4157](https://github.com/ovh/manager/issues/4157)) ([8ee6d10](https://github.com/ovh/manager/commit/8ee6d10cbdfea8009c237806b2494cb8102bc52f))
+
+
+
 ## [8.0.1](https://github.com/ovh/manager/compare/@ovh-ux/component-rollup-config@8.0.0...@ovh-ux/component-rollup-config@8.0.1) (2020-12-08)
 
 

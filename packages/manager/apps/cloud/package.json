@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-cloud",
-  "version": "11.0.2",
+  "version": "11.1.0",
   "private": true,
   "description": "OVHcloud Cloud control panel.",
   "repository": {
@@ -30,7 +30,7 @@
     "@ovh-ux/manager-notifications-sidebar": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-preloader": "^1.0.0",
     "@ovh-ux/manager-server-sidebar": "^2.0.0 || ^3.0.0",
-    "@ovh-ux/ng-at-internet": "^5.3.0",
+    "@ovh-ux/ng-at-internet": "^5.4.0",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.1.0",
     "@ovh-ux/ng-ovh-actions-menu": "^5.0.7",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.8",
@@ -44,7 +44,7 @@
     "@ovh-ux/ng-ovh-jquery-ui-draggable": "^2.0.0",
     "@ovh-ux/ng-ovh-jquery-ui-droppable": "^2.0.0",
     "@ovh-ux/ng-ovh-jsplumb": "^6.0.0",
-    "@ovh-ux/ng-ovh-payment-method": "^7.0.6",
+    "@ovh-ux/ng-ovh-payment-method": "^7.0.7",
     "@ovh-ux/ng-ovh-proxy-request": "^2.0.0",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.0",
     "@ovh-ux/ng-ovh-responsive-page-switcher": "^2.0.0",

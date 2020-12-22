@@ -1,3 +1,27 @@
+# [3.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@2.4.0...@ovh-ux/manager-hub-app@3.0.0) (2020-12-22)
+
+
+### Bug Fixes
+
+* **product-list:** update to use latest list layout helper ([82982a8](https://github.com/ovh/manager/commit/82982a862ca92926a9f0cba5e1219296c09eba2d))
+* **products.dedicated-cloud:** update to use latest list layout ([#4068](https://github.com/ovh/manager/issues/4068)) ([fdea2db](https://github.com/ovh/manager/commit/fdea2db5451ba85d4b223758936b3decb601b7b7))
+
+
+### Features
+
+* **dashboard:** prevent crashing if services return an error ([#4160](https://github.com/ovh/manager/issues/4160)) ([ce65b9c](https://github.com/ovh/manager/commit/ce65b9c43785aa7d3deb24745f1da5ce728a7bc0))
+* **env:** use application name and universe ([5abfab5](https://github.com/ovh/manager/commit/5abfab5f208c1a3220ea06e97eb844a5db7dcb31))
+* **list:** add automatic column configuration if it is not provided ([ce54e71](https://github.com/ovh/manager/commit/ce54e712120ef308e1fb11a9b45aaba299ac398d))
+
+
+### BREAKING CHANGES
+
+* **list:** `dataModel` is now a mandatory resolve to provide in order to use the component
+
+Signed-off-by: Marie JONES <marie.jones@corp.ovh.com>
+
+
+
 # [2.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@2.3.2...@ovh-ux/manager-hub-app@2.4.0) (2020-12-08)
 
 

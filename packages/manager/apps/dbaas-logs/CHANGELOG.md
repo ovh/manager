@@ -1,3 +1,12 @@
+## [1.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs-app@1.3.1...@ovh-ux/manager-dbaas-logs-app@1.3.2) (2020-12-22)
+
+
+### Bug Fixes
+
+* add missing dependency ([#4170](https://github.com/ovh/manager/issues/4170)) ([3574479](https://github.com/ovh/manager/commit/35744790be3b921a8e861b54982b7cf65b5150cb))
+
+
+
 ## [1.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs-app@1.3.0...@ovh-ux/manager-dbaas-logs-app@1.3.1) (2020-12-08)
 
 

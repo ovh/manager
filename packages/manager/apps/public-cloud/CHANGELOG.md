@@ -1,3 +1,12 @@
+# [4.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.5.0...@ovh-ux/manager-public-cloud@4.6.0) (2020-12-22)
+
+
+### Features
+
+* **env:** use application name and universe ([f75a8f0](https://github.com/ovh/manager/commit/f75a8f0cc570a7cfdf128429bb40785b2424dfef))
+
+
+
 # [4.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.4.0...@ovh-ux/manager-public-cloud@4.5.0) (2020-12-08)
 
 

@@ -1,3 +1,12 @@
+## [2.1.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@2.1.7...@ovh-ux/manager-hub@2.1.8) (2020-12-22)
+
+
+### Bug Fixes
+
+* **product-list:** update to use latest list layout helper ([82982a8](https://github.com/ovh/manager/commit/82982a862ca92926a9f0cba5e1219296c09eba2d))
+
+
+
 ## [2.1.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@2.1.6...@ovh-ux/manager-hub@2.1.7) (2020-12-08)
 
 

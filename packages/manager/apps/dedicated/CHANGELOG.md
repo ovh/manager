@@ -1,3 +1,26 @@
+# [14.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.9.0...@ovh-ux/manager-dedicated@14.10.0) (2020-12-22)
+
+
+### Bug Fixes
+
+* **billing.history:** omit some layout helper params ([21bb31f](https://github.com/ovh/manager/commit/21bb31fe8a69250cda8f9f1cea1fa8a8032a122e))
+* **billing.main.history:** adapt layout use ([7e7fd1d](https://github.com/ovh/manager/commit/7e7fd1d4cacb7837d83d37375404913249c001fc))
+* **dedicated-cloud.datacenter.datastore:** datastore order plancode ([#4173](https://github.com/ovh/manager/issues/4173)) ([1f79824](https://github.com/ovh/manager/commit/1f798248c3b5feefa738bb5c4ac5d04aa07af20c))
+* **i18n:** add missing translations [CDS 708] ([6e08722](https://github.com/ovh/manager/commit/6e08722ed1bade9488054cac9a6f3918471714ed))
+* **i18n:** add missing translations [CDS 715] ([f73b0fd](https://github.com/ovh/manager/commit/f73b0fdaa77e2a6c14ca65366c6588fe57e47b35))
+* **i18n:** add missing translations [CDS 716] ([4b9523e](https://github.com/ovh/manager/commit/4b9523e0bb2bf99fa243081b31a7c50c690abaa0))
+* **i18n:** add missing translations [CDS 717] ([00c10dc](https://github.com/ovh/manager/commit/00c10dcdde238c35993003c6523523b6875ff7e7))
+* **i18n:** add missing translations [CDS 719] ([#4192](https://github.com/ovh/manager/issues/4192)) ([5862584](https://github.com/ovh/manager/commit/58625842384c9213e3814b57d7e5521ca7c52664))
+* **translations:** clean translations files ([#4194](https://github.com/ovh/manager/issues/4194)) ([cbd2ad2](https://github.com/ovh/manager/commit/cbd2ad273a0dc190ab33e93f7efc58b10768733f))
+* **user.ip.restriction:** prevent removing last ip on deny default rule ([#4075](https://github.com/ovh/manager/issues/4075)) ([8aeda27](https://github.com/ovh/manager/commit/8aeda27dd01b49122c6c7d611c0bbfd69e3f9293)), closes [#4052](https://github.com/ovh/manager/issues/4052)
+
+
+### Features
+
+* **env:** use application name and universe ([ece10f5](https://github.com/ovh/manager/commit/ece10f5bcce9bd3dcd15d3448378c59bf809bd4d))
+
+
+
 # [14.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.8.2...@ovh-ux/manager-dedicated@14.9.0) (2020-12-08)
 
 

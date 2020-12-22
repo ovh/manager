@@ -1,3 +1,12 @@
+## [2.1.3](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.1.2...@ovh-ux/sign-up@2.1.3) (2020-12-22)
+
+
+### Bug Fixes
+
+* **form.i18n:** add missing translation ([#4177](https://github.com/ovh/manager/issues/4177)) ([1b77b82](https://github.com/ovh/manager/commit/1b77b82dc319cb5b3610ab2e5758c383fafd4fa3))
+
+
+
 ## [2.1.2](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.1.1...@ovh-ux/sign-up@2.1.2) (2020-10-28)
 
 

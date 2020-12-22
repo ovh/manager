@@ -1,3 +1,12 @@
+## [7.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms-app@7.3.1...@ovh-ux/manager-sms-app@7.3.2) (2020-12-22)
+
+
+### Bug Fixes
+
+* update to use latest list layout ([c0cad60](https://github.com/ovh/manager/commit/c0cad603c8cce8ca8833c58c95d444aebfff7622))
+
+
+
 ## [7.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms-app@7.3.0...@ovh-ux/manager-sms-app@7.3.1) (2020-11-25)
 
 

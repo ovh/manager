@@ -1,3 +1,18 @@
+# [5.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.5.3...@ovh-ux/manager-pci@5.6.0) (2020-12-22)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 704] ([5693f69](https://github.com/ovh/manager/commit/5693f69cf0e10e7baed40c19ad490ef12ef7c13d))
+* **translations:** clean translations files ([#4194](https://github.com/ovh/manager/issues/4194)) ([cbd2ad2](https://github.com/ovh/manager/commit/cbd2ad273a0dc190ab33e93f7efc58b10768733f))
+
+
+### Features
+
+* **pci:** add vouchers polling ([#4148](https://github.com/ovh/manager/issues/4148)) ([cacfd54](https://github.com/ovh/manager/commit/cacfd54150da81ad62ee10c0ca2bb00e1d93dc0f))
+
+
+
 ## [5.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.5.2...@ovh-ux/manager-pci@5.5.3) (2020-12-08)
 
 

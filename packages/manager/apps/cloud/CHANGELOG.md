@@ -1,3 +1,19 @@
+# [11.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@11.0.2...@ovh-ux/manager-cloud@11.1.0) (2020-12-22)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 708] ([6e08722](https://github.com/ovh/manager/commit/6e08722ed1bade9488054cac9a6f3918471714ed))
+* **i18n:** add missing translations [CDS 713] ([ff2f29e](https://github.com/ovh/manager/commit/ff2f29e9b4ec93603b06877bd82aed80f36c41f2))
+* **i18n:** add missing translations [CDS 715] ([f73b0fd](https://github.com/ovh/manager/commit/f73b0fdaa77e2a6c14ca65366c6588fe57e47b35))
+
+
+### Features
+
+* **env:** use application name and universe ([3260e55](https://github.com/ovh/manager/commit/3260e5567ca6956f311e8d002ce2c6ca410e94e6))
+
+
+
 ## [11.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@11.0.1...@ovh-ux/manager-cloud@11.0.2) (2020-11-25)
 
 
