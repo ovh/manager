@@ -1,3 +1,13 @@
+# [2.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@2.1.0...@ovh-ux/manager-config@2.2.0) (2020-12-22)
+
+
+### Features
+
+* **base-urls:** add environment baseUrls ([a6e0b1d](https://github.com/ovh/manager/commit/a6e0b1d0107b4f931aba3782ddb34e2718c690f3))
+* **env:** add universe and application name ([9958157](https://github.com/ovh/manager/commit/9958157a0b3d79d84fe10f610b2aa12b0af8c8d0))
+
+
+
 # [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@2.0.1...@ovh-ux/manager-config@2.1.0) (2020-11-25)
 
 

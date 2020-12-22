@@ -1,3 +1,12 @@
+## [6.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.1.3...@ovh-ux/manager-overthebox@6.1.4) (2020-12-22)
+
+
+### Bug Fixes
+
+* update to use latest list layout ([c0cad60](https://github.com/ovh/manager/commit/c0cad603c8cce8ca8833c58c95d444aebfff7622))
+
+
+
 ## [6.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.1.2...@ovh-ux/manager-overthebox@6.1.3) (2020-10-28)
 
 

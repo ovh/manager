@@ -1,3 +1,14 @@
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/ufrontend@1.0.0...@ovh-ux/ufrontend@1.1.0) (2020-12-22)
+
+
+### Features
+
+* **url:** build url based on location when possible ([7c5eded](https://github.com/ovh/manager/commit/7c5ededa5ad1c943ffc31b4aa5bf0f6b25d64e87))
+* **url-builder:** add params pattern replacement ([1d39056](https://github.com/ovh/manager/commit/1d390567c671a5071706864fd1086648003e6456))
+* **url-builder:** add url-builder ([734b05c](https://github.com/ovh/manager/commit/734b05c50198424fcfffc9917db47a2abb92be3d))
+
+
+
 # [1.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ufrontend@0.0.0...@ovh-ux/ufrontend@1.0.0) (2020-11-16)
 
 

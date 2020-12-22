@@ -1,3 +1,12 @@
+## [1.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.4.2...@ovh-ux/manager-dbaas-logs@1.4.3) (2020-12-22)
+
+
+### Bug Fixes
+
+* **translations:** clean translations files ([#4194](https://github.com/ovh/manager/issues/4194)) ([cbd2ad2](https://github.com/ovh/manager/commit/cbd2ad273a0dc190ab33e93f7efc58b10768733f))
+
+
+
 ## [1.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.4.1...@ovh-ux/manager-dbaas-logs@1.4.2) (2020-12-08)
 
 

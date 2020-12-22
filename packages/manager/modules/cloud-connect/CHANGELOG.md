@@ -1,3 +1,19 @@
+## [1.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.0.3...@ovh-ux/manager-cloud-connect@1.0.4) (2020-12-22)
+
+
+### Bug Fixes
+
+* **details.overview:** update wording ([ba96aa4](https://github.com/ovh/manager/commit/ba96aa4fa08b729f6d13f6ca3951519ac0c3898a))
+* **details.service-keys:** fix regenerate key module name ([#4190](https://github.com/ovh/manager/issues/4190)) ([57237e0](https://github.com/ovh/manager/commit/57237e068d688270ba549a90f2a8f4bc307b8d6f))
+* **i18n:** add missing translations [CDS 702] ([acbc603](https://github.com/ovh/manager/commit/acbc6038b9c63e4b00cd0eeca79e08cae53e4869))
+* **i18n:** add missing translations [CDS 716] ([4b9523e](https://github.com/ovh/manager/commit/4b9523e0bb2bf99fa243081b31a7c50c690abaa0))
+* **i18n:** add missing translations [CDS 717] ([00c10dc](https://github.com/ovh/manager/commit/00c10dcdde238c35993003c6523523b6875ff7e7))
+* **i18n:** add missing translations [CDS 721] ([b2c7daf](https://github.com/ovh/manager/commit/b2c7dafa0ba97dbdbe89989f89a63cb48e178eb6))
+* **translations:** clean translations files ([#4194](https://github.com/ovh/manager/issues/4194)) ([cbd2ad2](https://github.com/ovh/manager/commit/cbd2ad273a0dc190ab33e93f7efc58b10768733f))
+* update service key check ([8fad547](https://github.com/ovh/manager/commit/8fad547e85bb43becadd49d4c4a0030b5124462e))
+
+
+
 ## [1.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.0.2...@ovh-ux/manager-cloud-connect@1.0.3) (2020-12-08)
 
 

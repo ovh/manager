@@ -1,3 +1,12 @@
+## [1.0.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.0.7...@ovh-ux/manager-vrack@1.0.8) (2020-12-22)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 704] ([5693f69](https://github.com/ovh/manager/commit/5693f69cf0e10e7baed40c19ad490ef12ef7c13d))
+
+
+
 ## [1.0.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.0.6...@ovh-ux/manager-vrack@1.0.7) (2020-12-08)
 
 

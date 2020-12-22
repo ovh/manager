@@ -1,3 +1,12 @@
+# [11.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@11.1.0...@ovh-ux/manager-core@11.2.0) (2020-12-22)
+
+
+### Features
+
+* **env:** add universe and application name ([9958157](https://github.com/ovh/manager/commit/9958157a0b3d79d84fe10f610b2aa12b0af8c8d0))
+
+
+
 # [11.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@11.0.4...@ovh-ux/manager-core@11.1.0) (2020-11-25)
 
 

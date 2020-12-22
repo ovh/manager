@@ -1,3 +1,18 @@
+# [15.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.8.1...@ovh-ux/manager-web@15.9.0) (2020-12-22)
+
+
+### Bug Fixes
+
+* **translations:** clean translations files ([#4194](https://github.com/ovh/manager/issues/4194)) ([cbd2ad2](https://github.com/ovh/manager/commit/cbd2ad273a0dc190ab33e93f7efc58b10768733f))
+
+
+### Features
+
+* **env:** use application name and universe ([bac5c66](https://github.com/ovh/manager/commit/bac5c66cb7e3edad7ddf3abfdeead6075a74661c))
+* **hosting.email.activate:** allow dns zone to activate email option ([#4147](https://github.com/ovh/manager/issues/4147)) ([44b4fad](https://github.com/ovh/manager/commit/44b4fadb94fdecea309f27d7eadd9698a011a1de))
+
+
+
 ## [15.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.8.0...@ovh-ux/manager-web@15.8.1) (2020-12-14)
 
 

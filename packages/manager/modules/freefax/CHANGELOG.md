@@ -1,3 +1,12 @@
+## [7.0.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.0.5...@ovh-ux/manager-freefax@7.0.6) (2020-12-22)
+
+
+### Bug Fixes
+
+* update to use latest list layout ([c0cad60](https://github.com/ovh/manager/commit/c0cad603c8cce8ca8833c58c95d444aebfff7622))
+
+
+
 ## [7.0.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.0.4...@ovh-ux/manager-freefax@7.0.5) (2020-10-28)
 
 
