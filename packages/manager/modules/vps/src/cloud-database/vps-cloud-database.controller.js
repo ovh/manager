@@ -7,7 +7,8 @@ import isString from 'lodash/isString';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 
-import { PRIVATE_DATABASE_URL } from '../constants';
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+import { Environment } from '@ovh-ux/manager-config';
 
 export default class {
   /* @ngInject */
@@ -195,10 +196,11 @@ export default class {
   goToCloudDatabase(database) {
     const { serviceName } = database;
     this.$window.open(
-      this.CucControllerHelper.navigation.constructor.getUrl(
-        get(PRIVATE_DATABASE_URL, this.coreConfig.getRegion()),
-        { serviceName },
-      ),
+      Environment.getRegion() === 'EU'
+        ? buildURL('web', '#/configuration/private_database/:serviceName', {
+            serviceName,
+          })
+        : null,
     );
   }
 }

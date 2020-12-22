@@ -1,5 +1,5 @@
 import { Environment } from '@ovh-ux/manager-config';
-import { buildURL } from '@ovh-ux/ufrontend';
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 
 export default class PciProjectNewPaymentChooseCtrl {
   /* @ngInject */

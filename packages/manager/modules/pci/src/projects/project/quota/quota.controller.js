@@ -1,3 +1,5 @@
+import { buildURLs } from '@ovh-ux/ufrontend/url-builder';
+
 import {
   RESTRICTED_CORES,
   RESTRICTED_RAM,
@@ -12,14 +14,12 @@ export default class {
     CucCloudMessage,
     CucRegionService,
     OvhApiCloudProject,
-    PCI_REDIRECT_URLS,
   ) {
     this.$state = $state;
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.CucRegionService = CucRegionService;
     this.OvhApiCloudProject = OvhApiCloudProject;
-    this.PCI_REDIRECT_URLS = PCI_REDIRECT_URLS;
   }
 
   $onInit() {
@@ -27,8 +27,10 @@ export default class {
 
     this.loadMessages();
 
-    this.paymentmeanUrl = this.PCI_REDIRECT_URLS[this.region].paymentMeans;
-    this.supportUrl = this.PCI_REDIRECT_URLS[this.region].support;
+    [this.paymentmeanUrl, this.supportUrl] = buildURLs([
+      { application: 'dedicated', path: '#/billing/mean' },
+      { application: 'dedicated', path: '#/support' },
+    ]);
   }
 
   loadMessages() {

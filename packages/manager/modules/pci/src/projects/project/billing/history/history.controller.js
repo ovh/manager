@@ -2,6 +2,8 @@ import find from 'lodash/find';
 import map from 'lodash/map';
 import 'moment';
 
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+
 const MESSAGES_CONTAINER_NAME = 'pci.projects.project.billing.history';
 
 export default class {
@@ -15,8 +17,6 @@ export default class {
     CucCloudMessage,
     OvhApiCloudProjectUsageCurrent,
     OvhApiCloudProjectUsageHistory,
-    PCI_REDIRECT_URLS,
-    coreConfig,
   ) {
     this.$q = $q;
     this.$state = $state;
@@ -49,7 +49,7 @@ export default class {
     };
 
     this.firstDayCurrentMonth = moment().startOf('month');
-    this.billingUrl = PCI_REDIRECT_URLS[coreConfig.getRegion()].billing;
+    this.billingUrl = buildURL('dedicated', '#/billing/history');
 
     this.year = validParams.year;
     this.month = validParams.month;

@@ -1,4 +1,5 @@
-import { STATUS, ADP_URL } from '../../../enterprise-cloud-database.constants';
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+import { STATUS } from '../../../enterprise-cloud-database.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('enterprise-cloud-database.service.details.logs', {
@@ -34,8 +35,7 @@ export default /* @ngInject */ ($stateProvider) => {
           },
         );
       },
-      ldpHomeUrl: /* @ngInject */ (coreConfig) =>
-        ADP_URL[coreConfig.getRegion()],
+      ldpHomeUrl: () => buildURL('dedicated', '#/dbaas/logs/list'),
       logs: /* @ngInject */ (clusterId, enterpriseCloudDatabaseService) =>
         enterpriseCloudDatabaseService.getLogs(clusterId),
       revokeAccess: /* @ngInject */ ($state, clusterId) => (ldpAccount) => {

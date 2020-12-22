@@ -38,7 +38,6 @@ export default class XdslAccessCtrl {
     XdslTaskPoller,
     PACK,
     PACK_IP,
-    REDIRECT_URLS,
     URLS,
   ) {
     this.$filter = $filter;
@@ -63,7 +62,6 @@ export default class XdslAccessCtrl {
     this.XdslTaskPoller = XdslTaskPoller;
     this.PACK = PACK;
     this.PACK_IP = PACK_IP;
-    this.REDIRECT_URLS = REDIRECT_URLS;
     this.URLS = URLS;
   }
 
@@ -273,7 +271,7 @@ export default class XdslAccessCtrl {
   }
 
   getOldV6TransfertUrl() {
-    return this.REDIRECT_URLS.oldV6ServiceTransfert;
+    return this.URLS.oldV6ServiceTransfert;
   }
 
   getIps() {

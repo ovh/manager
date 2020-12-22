@@ -1,7 +1,7 @@
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+
 export default /* @ngInject */ function TelecomTelephonyBillingAccountBillingCtrl(
   $translate,
-  TelephonyMediator,
-  REDIRECT_URLS,
 ) {
   const self = this;
 
@@ -82,7 +82,7 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountBillingCtr
       },
       {
         name: 'group_banking_management',
-        url: REDIRECT_URLS.billingMean,
+        url: buildURL('dedicated', '#/billing/mean'),
         isExternal: true,
         text: $translate.instant(
           'telephony_group_billing_actions_group_banking_management',
@@ -90,7 +90,7 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountBillingCtr
       },
       {
         name: 'group_delayed_account_transfert',
-        url: REDIRECT_URLS.ovhAccount,
+        url: buildURL('dedicated', '#/billing/ovhaccount'),
         isExternal: true,
         text: $translate.instant(
           'telephony_group_billing_actions_group_delayed_account_transfert',

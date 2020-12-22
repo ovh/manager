@@ -1,5 +1,4 @@
 import filter from 'lodash/filter';
-import get from 'lodash/get';
 import set from 'lodash/set';
 import groupBy from 'lodash/groupBy';
 import head from 'lodash/head';
@@ -8,9 +7,8 @@ import map from 'lodash/map';
 import values from 'lodash/values';
 import 'moment';
 
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import IplbHomeUpdateQuotaTemplate from './updateQuota/iplb-update-quota.html';
-
-import { RENEW_URL, CONTACTS_URL } from '../iplb-url.constants';
 
 export default class IpLoadBalancerHomeCtrl {
   /* @ngInject */
@@ -229,21 +227,19 @@ export default class IpLoadBalancerHomeCtrl {
       },
       manageAutorenew: {
         text: this.$translate.instant('iplb_manage'),
-        href: this.CucControllerHelper.navigation.constructor.getUrl(
-          get(RENEW_URL, this.coreConfig.getRegion(), 'EU'),
-          { serviceName: this.serviceName, serviceType: 'IP_LOADBALANCER' },
-        ),
+        href: buildURL('dedicated', '#/billing/autoRenew', {
+          searchText: this.serviceName,
+          selectedType: 'IP_LOADBALANCER',
+        }),
         isAvailable: () =>
           !this.subscription.loading && !this.subscription.hasErrors,
       },
       manageContact: {
         text: this.$translate.instant('iplb_manage'),
-        href: this.CucControllerHelper.navigation.constructor.getUrl(
-          get(CONTACTS_URL, this.coreConfig.getRegion(), 'EU'),
-          {
-            serviceName: this.serviceName,
-          },
-        ),
+        href: buildURL('dedicated', '#/useraccount/contacts', {
+          serviceName: this.serviceName,
+          tab: 'SERVICES',
+        }),
         isAvailable: () =>
           this.CucFeatureAvailabilityService.hasFeature('CONTACTS', 'manage') &&
           !this.subscription.loading &&

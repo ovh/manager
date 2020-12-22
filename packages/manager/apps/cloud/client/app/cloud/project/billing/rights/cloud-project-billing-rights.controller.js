@@ -1,5 +1,8 @@
 import indexOf from 'lodash/indexOf';
 
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+import { Environment } from '@ovh-ux/manager-config';
+
 angular
   .module('managerApp')
   .controller(
@@ -12,7 +15,6 @@ angular
       CucCloudMessage,
       CucControllerHelper,
       $translate,
-      REDIRECT_URLS,
       $window,
     ) {
       const self = this;
@@ -97,14 +99,16 @@ angular
        */
 
       self.canChangeContacts = function canChangeContacts() {
-        return REDIRECT_URLS.contacts;
+        return Environment.getRegion() === 'EU';
       };
 
       self.openContacts = function openContacts() {
         if (self.canChangeContacts()) {
-          let redirectUrl = REDIRECT_URLS.contacts;
-          redirectUrl = redirectUrl.replace('{serviceName}', serviceName);
-          $window.open(redirectUrl, '_blank');
+          const redirectURL = buildURL('dedicated', '#/useraccount/contacts', {
+            tab: 'SERVICES',
+            serviceName,
+          });
+          $window.open(redirectURL, '_blank');
         }
       };
 

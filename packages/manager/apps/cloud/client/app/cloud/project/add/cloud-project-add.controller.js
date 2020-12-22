@@ -3,6 +3,8 @@ import keyBy from 'lodash/keyBy';
 import remove from 'lodash/remove';
 import set from 'lodash/set';
 
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+
 angular
   .module('managerApp')
   .controller('CloudProjectAddCtrl', function CloudProjectAddCtrl(
@@ -11,7 +13,6 @@ angular
     $translate,
     atInternet,
     Toast,
-    REDIRECT_URLS,
     CucFeatureAvailabilityService,
     OvhApiCloud,
     OvhApiMe,
@@ -54,9 +55,11 @@ angular
     };
 
     // PaymentMean URL (v6 dedicated) with sessionv6
-    this.paymentmeanUrl = REDIRECT_URLS.paymentMeans;
+    this.paymentmeanUrl = buildURL('dedicated', '#/billing/mean');
     // Add credit card URL
-    this.addCreditCardUrl = REDIRECT_URLS.addCreditCard;
+    this.addCreditCardUrl = buildURL('dedicated', '#/billing/mean/add', {
+      meanType: 'creditCard',
+    });
 
     function updateManager(projectId) {
       CloudProjectSidebar.addToSection({

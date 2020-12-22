@@ -1,3 +1,5 @@
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+
 angular
   .module('managerApp')
   .controller('CloudProjectDetailsCtrl', function CloudProjectDetailsCtrl(
@@ -14,7 +16,6 @@ angular
     CucCloudMessage,
     $translate,
     $filter,
-    REDIRECT_URLS,
   ) {
     const self = this;
 
@@ -22,7 +23,7 @@ angular
     this.project = null;
     this.order = null;
 
-    this.supportUrl = REDIRECT_URLS.support;
+    this.supportUrl = buildURL('dedicated', '#/support');
 
     self.loaders = {
       cancelCreation: false,

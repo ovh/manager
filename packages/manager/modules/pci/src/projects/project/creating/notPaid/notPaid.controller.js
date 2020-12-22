@@ -1,9 +1,7 @@
-import EnvironmentService from '@ovh-ux/manager-config';
-
 import get from 'lodash/get';
 import has from 'lodash/has';
 
-import { NOT_PAID_REDIRECT_URLS } from './notPaid.constants';
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 
 export default class ProjectCreatingNotPaidCtrl {
   /* @ngInject */
@@ -18,10 +16,9 @@ export default class ProjectCreatingNotPaidCtrl {
       cancel: false,
     };
 
-    this.orderUrl = get(
-      NOT_PAID_REDIRECT_URLS,
-      `${EnvironmentService.Environment.region}.orders`,
-    );
+    this.orderUrl = buildURL('dedicated', '#/billing/orders', {
+      status: 'all',
+    });
   }
 
   onCancelProjectBtnClick() {

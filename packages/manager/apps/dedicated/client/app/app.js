@@ -1,4 +1,5 @@
 import { Environment } from '@ovh-ux/manager-config';
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import get from 'lodash/get';
 import has from 'lodash/has';
 import set from 'lodash/set';
@@ -317,10 +318,8 @@ angular
   .config(($qProvider) => {
     $qProvider.errorOnUnhandledRejections(false);
   })
-  .config((OtrsPopupProvider, constants) => {
-    OtrsPopupProvider.setBaseUrlTickets(
-      get(constants, 'REDIRECT_URLS.listTicket', null),
-    );
+  .config((OtrsPopupProvider) => {
+    OtrsPopupProvider.setBaseUrlTickets(buildURL('dedicated', '#/ticket'));
   })
   .run(
     /* @ngInject */ ($translate) => {

@@ -156,7 +156,10 @@ angular.module('App').controller(
           this.$stateParams.productId,
         )}/terminateEmail?tab=GENERAL_INFORMATIONS`;
       } else {
-        this.urls.delete = `${this.constants.AUTORENEW_URL}?selectedType=EMAIL_DOMAIN&searchText=${this.$stateParams.productId}`;
+        this.urls.delete = buildURL('dedicated', '#/billing/autoRenew', {
+          selectedType: 'EMAIL_DOMAIN',
+          searchText: this.$stateParams.productId,
+        });
       }
 
       this.urls.manageContacts =

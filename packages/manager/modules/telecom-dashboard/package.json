@@ -11,6 +11,9 @@
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "main": "./src/index.js",
+  "dependencies": {
+    "@ovh-ux/ufrontend": "^1.0.0"
+  },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^7.0.0 || ^8.0.0"
   },

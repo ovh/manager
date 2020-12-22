@@ -1,12 +1,13 @@
 import find from 'lodash/find';
 import map from 'lodash/map';
 
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+
 angular
   .module('managerApp')
   .controller(
     'CloudProjectBillingHistoryDetailsCtrl',
     function CloudProjectBillingHistoryDetailsCtrl(
-      $state,
       $q,
       $translate,
       $stateParams,
@@ -15,16 +16,13 @@ angular
       CloudProjectBillingService,
       OvhApiCloudProjectUsageHistory,
       OvhApiCloudProjectUsageCurrent,
-      OvhApiCloudProject,
-      OvhApiMe,
-      REDIRECT_URLS,
     ) {
       const self = this;
       self.year = null;
       self.month = null;
       self.data = {};
       self.monthBilling = null;
-      self.billingUrl = REDIRECT_URLS.billing;
+      self.billingUrl = buildURL('dedicated', '#/billing/history');
 
       self.getHourlyBillingDateInfo = function getHourlyBillingDateInfo() {
         const prev = moment(self.monthBilling).subtract(1, 'month');

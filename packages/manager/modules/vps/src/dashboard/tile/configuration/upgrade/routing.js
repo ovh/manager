@@ -1,8 +1,7 @@
 import get from 'lodash/get';
 import set from 'lodash/set';
 
-import { Environment } from '@ovh-ux/manager-config';
-import { ORDER_TRACKING_URLS } from './constants';
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 
 import component from './component';
 
@@ -180,10 +179,9 @@ export default /* @ngInject */ ($stateProvider) => {
       ) => () => {
         if (upgradeSuccess) {
           return $window.location.replace(
-            `${get(
-              ORDER_TRACKING_URLS,
-              Environment.getRegion(),
-            )}/${upgradeOrderId}`,
+            buildURL('dedicated', '#/billing/order/:orderId', {
+              orderId: upgradeOrderId,
+            }),
           );
         }
         if (upgradeInfo.error) {

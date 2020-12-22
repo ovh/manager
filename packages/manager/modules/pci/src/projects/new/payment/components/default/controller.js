@@ -1,16 +1,10 @@
-import get from 'lodash/get';
-
-import { PCI_REDIRECT_URLS } from '../../../../../constants';
+import { buildURLs } from '@ovh-ux/ufrontend/url-builder';
 
 export default class PciProjectNewPaymentDefaultCtrl {
-  /* @ngInject */
-  constructor(coreConfig) {
-    this.sectionUrls = {
-      payment: get(
-        PCI_REDIRECT_URLS,
-        `${coreConfig.getRegion()}.paymentMethods`,
-      ),
-      myAccount: get(PCI_REDIRECT_URLS, `${coreConfig.getRegion()}.myAccount`),
-    };
+  constructor() {
+    this.sectionUrls = buildURLs({
+      payment: { application: 'dedicated', path: '#/billing/payment/method' },
+      myAccount: { application: 'dedicated', path: '#/useraccount/dashboard' },
+    });
   }
 }

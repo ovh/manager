@@ -141,7 +141,6 @@ angular
     renew: config.constants.RENEW_URL,
     urls: config.constants.URLS,
     comodo: config.constants.COMODO,
-    AUTORENEW_URL: config.constants.AUTORENEW_URL,
     TOP_GUIDES: config.constants.TOP_GUIDES,
     swsProxyRootPath: 'apiv6/',
     aapiHeaderName: 'X-Ovh-Session',

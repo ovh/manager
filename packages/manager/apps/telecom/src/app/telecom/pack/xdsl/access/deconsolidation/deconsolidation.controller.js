@@ -7,7 +7,7 @@ export default /* @ngInject */ function XdslDeconsolidationCtrl(
   TucToast,
   $uibModal,
   TucToastError,
-  REDIRECT_URLS,
+  URLS,
   OvhApiPackXdsl,
   tucValidator,
   $stateParams,
@@ -51,7 +51,7 @@ export default /* @ngInject */ function XdslDeconsolidationCtrl(
   };
 
   this.getOldV6TransfertUrl = function getOldV6TransfertUrl() {
-    return REDIRECT_URLS.oldV6ServiceTransfert;
+    return URLS.oldV6ServiceTransfert;
   };
 
   this.checkRioCode = function checkRioCode() {

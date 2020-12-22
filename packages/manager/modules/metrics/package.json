@@ -13,7 +13,8 @@
   "main": "./src/index.js",
   "dependencies": {
     "lodash": "^4.17.15",
-    "moment": "^2.24.0"
+    "moment": "^2.24.0",
+    "@ovh-ux/ufrontend": "^1.0.0"
   },
   "peerDependencies": {
     "@ovh-ux/manager-config": "^2.0.0 || ^3.0.0",
