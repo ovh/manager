@@ -880,6 +880,16 @@
                 user="$ctrl.user"
             ></dedicated-server-dashboard-advanced-features>
         </div>
+
+        <!-- Advices -->
+        <div class="col-md-4" data-ng-if="!$ctrl.server.isExpired">
+            <dedicated-server-dashboard-advices
+                public-bandwidth-order-link="$ctrl.orderPublicBandwidthLink"
+                server="$ctrl.server"
+                existing-bandwidth="$ctrl.existingBandwidth"
+            >
+            </dedicated-server-dashboard-advices>
+        </div>
     </div>
 
     <!-- QUOTA -->

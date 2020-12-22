@@ -7,6 +7,7 @@ import 'angular-translate';
 import '@ovh-ux/ui-kit';
 
 import advancedFeatures from './advanced-features';
+import advices from './advices';
 
 import component from './dashboard.component';
 import routing from './dashboard.routing';
@@ -20,6 +21,7 @@ angular
     'oui',
     'pascalprecht.translate',
     'ui.router',
+    advices,
   ])
   .component('dedicatedServerDashboard', component)
   .config(routing)

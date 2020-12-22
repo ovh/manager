@@ -72,6 +72,10 @@ export default class DedicatedServerDashboard {
     });
 
     this.loadStatistics();
+    this.existingBandwidth = get(
+      this,
+      'specifications.bandwidth.OvhToInternet.value',
+    );
   }
 
   createChart(data) {
