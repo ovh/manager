@@ -614,7 +614,6 @@
   "domain_configuration_zonedns_reset_type_MX_title": "Adres serwera e-mail",
   "domain_configuration_zonedns_reset_type_A_title": "Adres IP hostingu",
   "domain_configuration_zonedns_delete_all_question": "Czy chcesz usunąć strefę DNS?",
-  "domain_configuration_zonedns_delete_all_blocked": "Twoja strefa DNS nie może zostać zaktualizowana, ponieważ jest powiązana z hostingiem.",
   "domain_configuration_zonedns_delete_all_warning": "Uwaga! Operacja ta spowoduje definitywne usunięcie wszystkich istniejących wpisów DNS.",
   "domain_configuration_zonedns_delete_all_success": "Rozpoczęliśmy operację usuwania strefy DNS. Prosimy o sprawdzenie skrzynki e-mail kontaktu administracyjnego strefy DNS i postępowanie według podanych instrukcji.",
   "domain_configuration_zonedns_delete_all_error": "Wystąpił problem podczas usuwania strefy DNS.",
@@ -825,10 +824,8 @@
   "domain_tab_options_delete_cancel": "Anuluj",
   "web_domain_zone_activation_success": "Aktywacja została ukończona pomyślnie. Usługa zostanie włączona za kilka minut.",
   "web_domain_zone_activation_order_success": "Twoje <a href=\"{{t0}}\" target=\"_blank\">zamówienie</a> zostało wygenerowane. Twoja usługa zostanie włączona, kiedy ją zatwierdzisz.",
-  "domain_dashboard_recommended_hosting_title_pro": "Hosting strony WWW",
-  "domain_dashboard_recommended_hosting_title_perso": "Hosting bloga lub strony WWW",
-  "domain_dashboard_recommended_hosting_label": "- {{reduction}} na hosting {{type}} z okazji Black Friday.",
-  "domain_dashboard_recommended_hosting_discover": "Sprawdź rozwiązania",
   "domain_dashboard_recommended_hosting_title_Pro": "Hosting strony WWW",
-  "domain_dashboard_recommended_hosting_title_Perso": "Hosting bloga lub strony WWW"
+  "domain_dashboard_recommended_hosting_title_Perso": "Hosting bloga lub strony WWW",
+  "domain_dashboard_recommended_hosting_label": "- {{reduction}} na hosting {{type}} z okazji Black Friday.",
+  "domain_dashboard_recommended_hosting_discover": "Sprawdź rozwiązania"
 }

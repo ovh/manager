@@ -23,10 +23,5 @@
   "hosting_cdn_shared_modal_add_rule_field_order_by_info": "Las reglas de caché se ejecutan en el orden de su clasificación. Si le asigna el número 1, la regla se ejecutará en primer lugar, y así sucesivamente.",
   "hosting_cdn_shared_modal_add_rule_btn_validate_rule": "Crear la regla",
   "hosting_cdn_shared_modal_add_rule_btn_set_rule": "Modificar la regla",
-  "hosting_cdn_shared_modal_add_rule_btn_cancel": "Cancelar",
-  "hosting_cdn_shared_modal_add_rule_field_url": "URI",
-  "hosting_cdn_shared_modal_field_url_error_required": "Complete este campo.",
-  "hosting_cdn_shared_modal_field_url_error_pattern": "Solo están autorizadas las extensiones.",
-  "hosting_cdn_shared_modal_field_url_error_duplicate": "Esta URI ya existe.",
-  "hosting_cdn_shared_modal_add_rule_field_url_info": "Una URL corresponde a un subconjunto de recursos de su sitio web. Puede indicar una subparte del sitio web de la siguiente forma: <br>/ruta/hacia/un/recurso. Para la solución CDN Basic, solo es posible introducir una extensión de archivo."
+  "hosting_cdn_shared_modal_add_rule_btn_cancel": "Cancelar"
 }
