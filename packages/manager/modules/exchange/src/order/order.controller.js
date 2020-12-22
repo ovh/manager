@@ -1,3 +1,5 @@
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+
 import head from 'lodash/head';
 import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
@@ -49,9 +51,16 @@ export default class ExchangeOrderCtrl {
 
   getExchangeOrderUrl() {
     if (this.alreadyHasAnExchange && this.firstExchangeAccount != null) {
-      return `#/configuration/${this.firstExchangeAccount.type.toLowerCase()}/${
-        this.firstExchangeAccount.organization
-      }/${this.firstExchangeAccount.name}?tab=ACCOUNT`;
+      return buildURL(
+        'exchange',
+        '#/configuration/:type/:organization/:productId',
+        {
+          type: this.firstExchangeAccount.type.toLowerCase(),
+          organization: this.firstExchangeAccount.organization,
+          productId: this.firstExchangeAccount.name,
+          tab: 'ACCOUNT',
+        },
+      );
     }
     return this.exchangeOrderUrl;
   }

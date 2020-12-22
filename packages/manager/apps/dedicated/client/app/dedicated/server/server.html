@@ -120,7 +120,6 @@
             data-ng-bind-html="'housing_support_phone' | translate:{ t0: housingPhoneNumber }"
         ></span>
     </div>
-
     <div
         class="alert alert-info"
         data-ng-if="!autoRenew && autoRenewable && !autoRenewStopBother && !loaders.autoRenew"
@@ -142,7 +141,7 @@
         </a>
         <a
             class="btn btn-info"
-            href="#/billing/autoRenew"
+            href="{{::RENEW_URL}}"
             data-ng-if="hasPaymentMean"
             data-translate="server_autorenew_activate"
         >

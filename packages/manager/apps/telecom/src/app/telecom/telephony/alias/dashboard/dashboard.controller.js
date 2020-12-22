@@ -29,7 +29,7 @@ export default class TelecomTelephonyAliasHomeController {
     TucToast,
     tucVoipService,
     tucVoipServiceAlias,
-    REDIRECT_URLS,
+    URLS,
   ) {
     this.$q = $q;
     this.$state = $state;
@@ -42,7 +42,7 @@ export default class TelecomTelephonyAliasHomeController {
     this.tucVoipService = tucVoipService;
     this.tucVoipServiceAlias = tucVoipServiceAlias;
 
-    this.REDIRECT_URLS = REDIRECT_URLS;
+    this.URLS = URLS;
 
     this.billingAccount = $stateParams.billingAccount;
     this.serviceName =

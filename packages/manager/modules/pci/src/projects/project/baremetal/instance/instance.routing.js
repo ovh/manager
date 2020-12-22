@@ -1,11 +1,7 @@
 import get from 'lodash/get';
 import head from 'lodash/head';
 
-import {
-  DEDICATED_IPS_URL,
-  FIREWALL_URL,
-  MITIGATION_URL,
-} from '../../instances/instance/instance.constants';
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.baremetal.instance', {
@@ -27,20 +23,25 @@ export default /* @ngInject */ ($stateProvider) => {
       ) =>
         PciProjectsProjectInstanceService.getInstancePrice(projectId, instance),
 
-      reverseDnsLink: /* @ngInject */ (coreConfig) =>
-        DEDICATED_IPS_URL[coreConfig.getRegion()],
+      reverseDnsLink: () => buildURL('dedicated', '#/configuration/ip'),
 
-      ipMitigationLink: /* @ngInject */ (coreConfig, instance) =>
-        MITIGATION_URL(
-          get(head(instance.publicIpV4), 'ip'),
-          coreConfig.getRegion(),
-        ),
+      ipMitigationLink: /* @ngInject */ (instance) => {
+        const ip = get(head(instance.publicIpV4), 'ip');
+        return buildURL('dedicated', '#/configuration/ip', {
+          action: 'mitigation',
+          ip,
+          ipBlock: ip,
+        });
+      },
 
-      firewallLink: /* @ngInject */ (coreConfig, instance) =>
-        FIREWALL_URL(
-          get(head(instance.publicIpV4), 'ip'),
-          coreConfig.getRegion(),
-        ),
+      firewallLink: /* @ngInject */ (instance) => {
+        const ip = get(head(instance.publicIpV4), 'ip');
+        return buildURL('dedicated', '#/configuration/ip', {
+          action: 'toggleFirewall',
+          ip,
+          ipBlock: ip,
+        });
+      },
 
       breadcrumb: /* @ngInject */ (instance) => instance.name,
 

@@ -1,6 +1,5 @@
 module.exports = {
   EU: {
-    AUTORENEW_URL: 'https://www.ovh.com/manager/dedicated/#/billing/autoRenew',
     RENEW_URL:
       'https://eu.ovh.com/fr/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
     HOSTING: {
@@ -821,7 +820,6 @@ module.exports = {
     },
   },
   CA: {
-    AUTORENEW_URL: 'https://ca.ovh.com/manager/dedicated/#/billing/autoRenew',
     RENEW_URL:
       'https://ca.ovh.com/fr/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
     DOMAIN: {

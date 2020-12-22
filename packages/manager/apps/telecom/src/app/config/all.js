@@ -89,70 +89,10 @@ angular
       },
     },
   })
-  .constant('REDIRECT_URLS', {
-    billing:
-      'https://www.ovh.com/manager/dedicated/index.html#/billing/history',
-    billingPayments:
-      'https://www.ovh.com/manager/dedicated/index.html#/billing/payments',
-    contacts:
-      'https://www.ovh.com/manager/dedicated/index.html#/useraccount/contacts?tab=SERVICES',
-    support: 'https://www.ovh.com/manager/dedicated/index.html#/support',
-    ordersInProgress:
-      'https://www.ovh.com/manager/dedicated/index.html#/billing/orders?status=in-progress',
-    orders:
-      'https://www.ovh.com/manager/dedicated/index.html#/billing/orders?status=all',
-    services:
-      'https://www.ovh.com/manager/dedicated/index.html#/billing/autoRenew',
-    servicesAgreements:
-      'https://www.ovh.com/manager/dedicated/index.html#/useraccount/agreements',
-    paymentMeans:
-      'https://www.ovh.com/manager/dedicated/index.html#/billing/mean',
-    billingMean:
-      'https://www.ovh.com/manager/dedicated/index.html#/billing/mean',
-    billingVouchers:
-      'https://www.ovh.com/manager/dedicated/index.html#/billing/vouchers',
-    billingRefunds:
-      'https://www.ovh.com/manager/dedicated/index.html#/billing/refunds',
-    billingFidelity:
-      'https://www.ovh.com/manager/dedicated/index.html#/billing/fidelity',
-    billingCredits:
-      'https://www.ovh.com/manager/dedicated/index.html#/billing/credits',
-    addCreditCard:
-      'https://www.ovh.com/manager/dedicated/index.html#/billing/mean/add?meanType=creditCard',
-    ovhAccount:
-      'https://www.ovh.com/manager/dedicated/index.html#/billing/ovhaccount',
-    debtAccount:
-      'https://www.ovh.com/manager/dedicated/index.html#/billing/statements',
-    userInfos:
-      'https://www.ovh.com/manager/dedicated/index.html#/useraccount/infos',
-    userSecurity:
-      'https://www.ovh.com/manager/dedicated/index.html#/useraccount/security',
-    userEmails:
-      'https://www.ovh.com/manager/dedicated/index.html#/useraccount/emails',
-    userSubscriptions:
-      'https://www.ovh.com/manager/dedicated/index.html#/useraccount/subscriptions',
-    userSSH:
-      'https://www.ovh.com/manager/dedicated/index.html#/useraccount/ssh',
-    userAdvanced:
-      'https://www.ovh.com/manager/dedicated/index.html#/useraccount/advanced',
-
-    telephony:
-      'https://www.ovh.com/managerv3/telephony2-main.pl#rdm/menu/grp/all/menu/number/num/{line}/page/home',
-    faxV4:
-      'https://www.ovh.com/managerv3/telephony2-main.pl#rdm/65459/page/line_fax_options/grp/all/menu/line/num/{fax}',
+  .constant('URLS', {
     telephonyV4: 'https://www.ovh.com/managerv3/telephony2-main.pl',
-    oldV6ServiceMove:
-      'https://www.ovhtelecom.fr/espaceclient/index.html#/administration/move/',
     oldV6ServiceTransfert:
       'https://www.ovhtelecom.fr/espaceclient/index.html#/administration/changeOffer/',
-    oldV6ServiceResiliate:
-      'https://www.ovhtelecom.fr/espaceclient/index.html#/administration/terminate/',
-    domain: 'https://www.ovh.com/manager/web/#/configuration/domain/{domain}',
-    deskaas: 'https://www.ovh.com/manager/sunrise/index.html#/deskaas',
-    exchangeAccount:
-      'https://www.ovh.com/manager/web/index.html#/configuration/exchange_hosted/{organizationName}/{exchangeService}?tab=ACCOUNT',
-  })
-  .constant('URLS', {
     support: 'https://www.ovh.com/fr/support/',
     support_contact: 'https://www.ovh.com/fr/support/nous-contacter/',
     guides: {

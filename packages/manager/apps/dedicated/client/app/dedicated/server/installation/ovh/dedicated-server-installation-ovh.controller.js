@@ -14,6 +14,8 @@ import some from 'lodash/some';
 import sortBy from 'lodash/sortBy';
 import take from 'lodash/take';
 
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+
 angular
   .module('App')
   .constant('TEMPLATE_OS_HARDWARE_RAID_ENUM', {
@@ -38,6 +40,8 @@ angular
       Alerter,
       TEMPLATE_OS_HARDWARE_RAID_ENUM,
     ) => {
+      $scope.LICENSE_URL = buildURL('dedicated', '#/configuration/license');
+
       $scope.units = {
         model: [
           {

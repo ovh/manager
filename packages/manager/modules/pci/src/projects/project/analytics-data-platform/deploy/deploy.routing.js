@@ -1,5 +1,4 @@
-import get from 'lodash/get';
-import { PCI_REDIRECT_URLS } from '../../../../constants';
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.analytics-data-platform.deploy', {
@@ -29,8 +28,7 @@ export default /* @ngInject */ ($stateProvider) => {
       hasDefaultPaymentMethod: (ovhPaymentMethod) =>
         ovhPaymentMethod.hasDefaultPaymentMethod(),
 
-      paymentMethodUrl: /* @ngInject */ (coreConfig) =>
-        get(PCI_REDIRECT_URLS, `${coreConfig.getRegion()}.paymentMethods`),
+      paymentMethodUrl: () => buildURL('dedicated', '#/billing/payment/method'),
 
       goToDeploy: ($state, CucCloudMessage, projectId) => (
         message = false,

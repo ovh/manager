@@ -1,19 +1,12 @@
 import indexOf from 'lodash/indexOf';
 
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+
 angular.module('App').controller(
   'NasDetailsCtrl',
   class NasDetailsCtrl {
-    constructor(
-      NASHA_URL,
-      $stateParams,
-      $scope,
-      Nas,
-      Alerter,
-      constants,
-      nasData,
-    ) {
+    constructor($stateParams, $scope, Nas, Alerter, constants, nasData) {
       // injections
-      this.NASHA_URL = NASHA_URL;
       this.$stateParams = $stateParams;
       this.$scope = $scope;
       this.Nas = Nas;
@@ -76,7 +69,11 @@ angular.module('App').controller(
      *  Load NAS
      */
     $onInit() {
-      this.redirectToCloud = `${this.NASHA_URL}/${this.nasData.nas.serviceName}/partitions`;
+      this.redirectToCloud = buildURL(
+        'dedicated',
+        '#/paas/nasha/:nashaId/partitions',
+        { nashaId: this.nasData.nas.serviceName },
+      );
       this.managePoll(); // who is poll ? :-P
 
       this.loaders.nas = true;

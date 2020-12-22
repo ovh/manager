@@ -1,11 +1,10 @@
 import find from 'lodash/find';
 import forOwn from 'lodash/forOwn';
-import get from 'lodash/get';
 import includes from 'lodash/includes';
 import kebabCase from 'lodash/kebabCase';
 import map from 'lodash/map';
 
-import { NEW_TICKET_URL } from './diagnostic.constants';
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 
 export default class ExchangeTabDiagnosticsCtrl {
   /* @ngInject */
@@ -38,8 +37,10 @@ export default class ExchangeTabDiagnosticsCtrl {
 
     this.POLL_NAMESPACE = 'exchange.diagnostic.poll';
     this.exchange = Exchange.value;
-    this.newTicketUrl =
-      get(NEW_TICKET_URL, constants.target, 'EU') + this.exchange.domain;
+    this.newTicketUrl = buildURL('dedicated', '#/support/tickets/new', {
+      serviceTypeName: 'email_exchange',
+      serviceName: this.exchange.domain,
+    });
 
     this.states = {
       REQUESTING_NEW_DIAGNOSTIC: 'REQUESTING_NEW_DIAGNOSTIC',

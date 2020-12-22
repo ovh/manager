@@ -1,6 +1,5 @@
 export default {
   orderExpressLite: 'https://www.ovhtelecom.fr/adsl/express-lite/',
-  billing: 'https://www.ovh.com/manager/dedicated/index.html#/billing/history',
   guides: {
     packActivate:
       'https://docs.ovh.com/fr/xdsl/comment-activer-mes-lignes-telephoniques-offre-adsl-vdsl/',

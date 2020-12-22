@@ -1,5 +1,7 @@
 import mapValues from 'lodash/mapValues';
 
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+
 angular
   .module('managerApp')
   .controller('CloudProjectDeleteCtrl', function CloudProjectDeleteCtrl(
@@ -21,7 +23,6 @@ angular
     OvhApiCloudProjectCredit,
     CloudProjectBillingService,
     coreConfig,
-    REDIRECT_URLS,
   ) {
     const self = this;
     const { projectId } = $stateParams;
@@ -109,7 +110,7 @@ angular
     }
 
     this.init = function init() {
-      this.supportUrl = REDIRECT_URLS.support;
+      this.supportUrl = buildURL('dedicated', '#/support');
 
       if (coreConfig.getRegion() !== 'US') {
         self.loaders.init = true;

@@ -1,6 +1,4 @@
-import get from 'lodash/get';
-
-import { AUTORENEW_URL } from './header.constants';
+import { buildURLs } from '@ovh-ux/ufrontend/url-builder';
 
 export default class HeaderController {
   /* @ngInject */
@@ -27,7 +25,6 @@ export default class HeaderController {
     this.messaging = messaging;
     this.navigation = navigation;
     this.officeAttach = officeAttach;
-    this.AUTORENEW_URL = get(AUTORENEW_URL, constants.target, 'EU');
   }
 
   $onInit() {
@@ -38,6 +35,28 @@ export default class HeaderController {
     this.displayNameToUpdate = this.remoteDisplayName;
     this.fetchingCanActivateSharepoint();
     this.fetchingCanActivateOfficeAttach();
+
+    this.URLS = buildURLs({
+      AUTORENEW: {
+        application: 'dedicated',
+        path: '#/billing/autoRenew',
+        params: {
+          searchText: this.exchangeService.domain,
+        },
+      },
+      ORDER_OFFICE_LICENCE: {
+        application: 'web',
+        path: '#/configuration/microsoft/office/license/order',
+      },
+      ACTIVATE_SHAREPOINT: {
+        application: 'web',
+        path: '#/configuration/sharepoint/activate/:organizationId/:exchangeId',
+        params: {
+          organizationId: this.exchangeService.organization,
+          exchangeId: this.exchangeService.domain,
+        },
+      },
+    });
   }
 
   fetchingCanActivateSharepoint() {

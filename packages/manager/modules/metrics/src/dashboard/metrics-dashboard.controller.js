@@ -1,6 +1,8 @@
-import get from 'lodash/get';
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+import { Environment } from '@ovh-ux/manager-config';
+
 import { graphs } from '../metrics.constant';
-import { REDIRECT_URLS } from './constants';
+import { RENEW_URL } from './constants';
 
 export default class MetricsDashboardCtrl {
   /* @ngInject */
@@ -9,7 +11,6 @@ export default class MetricsDashboardCtrl {
     $stateParams,
     $q,
     $translate,
-    coreConfig,
     CucCloudMessage,
     CucControllerHelper,
     CucFeatureAvailabilityService,
@@ -29,7 +30,6 @@ export default class MetricsDashboardCtrl {
     this.graphs = graphs;
     this.CucRegionService = CucRegionService;
     this.SidebarMenu = SidebarMenu;
-    this.coreConfig = coreConfig;
 
     this.loading = {};
     this.limit = {
@@ -118,18 +118,24 @@ export default class MetricsDashboardCtrl {
     this.actions = {
       autorenew: {
         text: this.$translate.instant('metrics_manage'),
-        href: this.CucControllerHelper.navigation.constructor.getUrl(
-          get(REDIRECT_URLS[this.coreConfig.getRegion()], 'renew'),
-          { serviceName: this.serviceName, serviceType: 'METRICS' },
-        ),
+        href:
+          Environment.getRegion() === 'EU'
+            ? buildURL('dedicated', '#/billing/autoRenew', {
+                selectedType: 'METRICS',
+                searchText: this.serviceName,
+              })
+            : RENEW_URL[Environment.getRegion()],
         isAvailable: () => true,
       },
       contacts: {
         text: this.$translate.instant('metrics_manage'),
-        href: this.CucControllerHelper.navigation.constructor.getUrl(
-          get(REDIRECT_URLS[this.coreConfig.getRegion()], 'contacts'),
-          { serviceName: this.serviceName },
-        ),
+        href:
+          Environment.getRegion() === 'EU'
+            ? buildURL('dedicated', '#/useraccount/contacts', {
+                tab: 'SERVICES',
+                serviceName: this.serviceName,
+              })
+            : null,
         isAvailable: () =>
           this.CucFeatureAvailabilityService.hasFeature('CONTACTS', 'manage'),
       },

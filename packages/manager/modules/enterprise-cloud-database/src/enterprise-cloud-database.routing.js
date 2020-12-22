@@ -1,6 +1,7 @@
 import map from 'lodash/map';
 import find from 'lodash/find';
 
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import { STATUS } from './enterprise-cloud-database.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -62,13 +63,20 @@ export default /* @ngInject */ ($stateProvider) => {
         serviceType,
       ) => {
         $window.location.replace(
-          `#/billing/autoRenew?searchText=${serviceName}&selectedType=${serviceType}`,
+          buildURL('dedicated', '#/billing/autoRenew', {
+            searchText: serviceName,
+            selectedType: serviceType,
+          }),
         );
         $window.location.reload();
       },
-      paymentMethodURL: /* @ngInject */ () => '#/billing/payment/method',
+      paymentMethodURL: /* @ngInject */ () =>
+        buildURL('dedicated', '#/billing/payment/method'),
       getOrdersURL: /* @ngInject */ () => (orderId) =>
-        `#/billing/orders?status=all&orderId=${orderId}`,
+        buildURL('dedicated', '#/billing/orders', {
+          status: 'all',
+          orderId,
+        }),
       goBackToList: /* @ngInject */ ($state, CucCloudMessage) => (
         message = false,
         type = STATUS.SUCCESS,

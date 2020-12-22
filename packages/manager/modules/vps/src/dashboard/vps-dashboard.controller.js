@@ -6,16 +6,14 @@ import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
 import 'moment';
 
+import { Environment } from '@ovh-ux/manager-config';
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+
 import {
   DASHBOARD_FEATURES,
   VPS_2014_AUTO_MIGRATION_DATE,
 } from './vps-dashboard.constants';
-import {
-  CHANGE_OWNER_URL,
-  CONTACTS_URL,
-  IP_URL,
-  RENEW_URL,
-} from '../constants';
+import { CHANGE_OWNER_URL, RENEW_URL } from '../constants';
 
 export default class {
   /* @ngInject */
@@ -335,10 +333,16 @@ export default class {
           },
           manageAutorenew: {
             text: this.$translate.instant('vps_common_manage'),
-            href: this.CucControllerHelper.navigation.constructor.getUrl(
-              get(RENEW_URL, this.coreConfig.getRegion()),
-              { serviceName: this.serviceName, serviceType: 'VPS' },
-            ),
+            href:
+              Environment.getRegion() === 'EU'
+                ? buildURL('dedicated', '#/billing/autoRenew', {
+                    selectedType: 'VPS',
+                    searchText: this.serviceName,
+                  })
+                : this.CucControllerHelper.navigation.constructor.getUrl(
+                    get(RENEW_URL, this.coreConfig.getRegion()),
+                    { serviceName: this.serviceName, serviceType: 'VPS' },
+                  ),
             isAvailable: () =>
               !this.loaders.plan &&
               this.hasFeature(DASHBOARD_FEATURES.autorenew) &&
@@ -347,10 +351,13 @@ export default class {
           },
           manageContact: {
             text: this.$translate.instant('vps_common_manage'),
-            href: this.CucControllerHelper.navigation.constructor.getUrl(
-              get(CONTACTS_URL, this.coreConfig.getRegion()),
-              { serviceName: this.serviceName },
-            ),
+            href:
+              Environment.getRegion() === 'EU'
+                ? buildURL('dedicated', '#/useraccount/contacts', {
+                    tab: 'SERVICES',
+                    serviceName: this.serviceName,
+                  })
+                : null,
             isAvailable:
               this.coreConfig.isRegion('EU') && !this.isMigrationInProgress,
           },
@@ -358,10 +365,10 @@ export default class {
             text: this.$translate.instant(
               'vps_configuration_add_ipv4_title_button',
             ),
-            href: this.CucControllerHelper.navigation.constructor.getUrl(
-              get(IP_URL, this.coreConfig.getRegion()),
-              { serviceName: this.serviceName },
-            ),
+            href: buildURL('dedicated', '#/configuration/ip', {
+              landingTo: 'ip',
+              serviceName: this.serviceName,
+            }),
             isAvailable: () => !this.loaders.ip && !this.isMigrationInProgress,
           },
           displayIps: {

@@ -1,9 +1,8 @@
-import get from 'lodash/get';
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 
 export default /* @ngInject */ function TelecomTelephonyServiceAssistSupportCtrl(
   $stateParams,
   TelephonyMediator,
-  REDIRECT_URLS,
   URLS,
 ) {
   const self = this;
@@ -14,7 +13,7 @@ export default /* @ngInject */ function TelecomTelephonyServiceAssistSupportCtrl
 
   self.service = null;
   self.guideUrl = URLS.guides.telephony;
-  self.supportUrl = get(REDIRECT_URLS, 'support');
+  self.supportUrl = buildURL('dedicated', '#/support');
 
   /*= =====================================
     =            INITIALIZATION            =

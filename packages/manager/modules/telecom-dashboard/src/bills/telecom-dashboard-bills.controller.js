@@ -1,10 +1,10 @@
-import constant from '../telecom-dashboard.constant';
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 
 export default /* @ngInject */ function(OvhApiMeBill, TucToastError) {
   const self = this;
 
   self.links = {
-    billing: constant.billing,
+    billing: buildURL('dedicated', '#/billing/history'),
   };
   self.amountBillsDisplayed = 6;
 

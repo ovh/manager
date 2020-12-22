@@ -1,6 +1,8 @@
 import filter from 'lodash/filter';
 import get from 'lodash/get';
 
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+
 angular
   .module('UserAccount')
   .controller('UserAccount.controllers.agreements.details', [
@@ -23,6 +25,8 @@ angular
       AGREEMENT_GENERIC_MORE_INFORMATIONS_URL,
     ) {
       const CGV_AGREEMENT_ID = 1635;
+
+      this.SUPPORT_URL = buildURL('dedicated', '#/support');
 
       this.$ngInit = () => {
         this.accepted = false;
