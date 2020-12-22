@@ -35,6 +35,7 @@
   "dedicatedCloud_USER_right_vmNetwork_READONLY": "Dostęp tylko do odczytu",
   "dedicatedCloud_USER_right_vmNetwork_readonly": "Dostęp tylko do odczytu",
   "dedicatedCloud_USER_right_vlan_EPCC": "Dostęp do sieci V(x)Lan",
+  "dedicatedCloud_USER_right_vlan_MBM": "Dostęp do sieci VLAN",
   "dedicatedCloud_USER_right_vlan_help": "Uprawnienia do zarządzania prywatną częścią sieci (VLan dla gamy Essentials lub Dedicated Cloud i VxLan dla Hosted Private Cloud Premier lub SDDC).",
   "dedicatedCloud_USER_right_vlan_ADMIN": "Pozwala na skonfigurowanie wirtualnych maszyn w sieci prywatnej",
   "dedicatedCloud_USER_right_vlan_admin": "Pozwala na skonfigurowanie wirtualnych maszyn w sieci prywatnej",
@@ -47,8 +48,5 @@
   "dedicatedCloud_USER_right_resources": "Dodawanie zasobów",
   "dedicatedCloud_USER_right_resources_help": "Uprawnienia do dodawania dodatkowych zasobów za pomocą wtyczki OVH w vSphere Client",
   "dedicatedCloud_USER_right_set_success": "Zmiana uprawnień dla {{t0}} dla centrum danych {{t1}} została przyjęta.",
-  "dedicatedCloud_USER_right_set_fail": "Wystąpił błąd podczas modyfikacji uprawnień dla {{t0}} dla centrum danych {{t1}}",
-  "dedicatedCloud_USER_right_vlan_MBM": "Dostęp do sieci VLAN",
-  "dedicatedCloud_USER_right_vlan_help_EPCC": "Uprawnienia do zarządzania w prywatnej części sieci (VxLan dla Dedicated Cloud i VLAN dla SDDC oraz pakiety Hosted Private Cloud Premier)",
-  "dedicatedCloud_USER_right_vlan_help_MBM": "Uprawnienia do zarządzania w prywatnej części sieci (VxLan dla Essentials i VLAN dla SDDC oraz pakiety Hosted Private Cloud Premier)"
+  "dedicatedCloud_USER_right_set_fail": "Wystąpił błąd podczas modyfikacji uprawnień dla {{t0}} dla centrum danych {{t1}}"
 }

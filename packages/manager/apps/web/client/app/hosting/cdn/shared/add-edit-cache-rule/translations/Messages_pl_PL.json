@@ -23,10 +23,5 @@
   "hosting_cdn_shared_modal_add_rule_field_order_by_info": "Reguły cache są wykonywane zgodnie z kolejnością ich klasyfikacji. Jeśli przypiszesz regule numer 1, reguła zostanie wykonana w pierwszej kolejności, itd.",
   "hosting_cdn_shared_modal_add_rule_btn_validate_rule": "Utwórz regułę",
   "hosting_cdn_shared_modal_add_rule_btn_set_rule": "Zmień regułę",
-  "hosting_cdn_shared_modal_add_rule_btn_cancel": "Anuluj",
-  "hosting_cdn_shared_modal_add_rule_field_url": "URI",
-  "hosting_cdn_shared_modal_field_url_error_required": "Wypełnij to pole.",
-  "hosting_cdn_shared_modal_field_url_error_pattern": "Dozwolone są tylko rozszerzenia",
-  "hosting_cdn_shared_modal_field_url_error_duplicate": "Uri już istnieje",
-  "hosting_cdn_shared_modal_add_rule_field_url_info": "Adres URL to podzbiór zasobów Twojej strony WWW. W ten sposób możesz wskazać podzbiór Twojej strony: <br>/sciezka/do/zasobu. W przypadku oferty CDN-Basic możesz wprowadzić tylko rozszerzenie pliku"
+  "hosting_cdn_shared_modal_add_rule_btn_cancel": "Anuluj"
 }

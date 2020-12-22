@@ -23,10 +23,5 @@
   "hosting_cdn_shared_modal_add_rule_field_order_by_info": "Your cache rules are run in the order that they are listed in. By assigning the number 1 to a rule, it will be executed first, and so on.",
   "hosting_cdn_shared_modal_add_rule_btn_validate_rule": "Create the rule",
   "hosting_cdn_shared_modal_add_rule_btn_set_rule": "Modify the rule ",
-  "hosting_cdn_shared_modal_add_rule_btn_cancel": "Cancel",
-  "hosting_cdn_shared_modal_add_rule_field_url": "URI",
-  "hosting_cdn_shared_modal_field_url_error_required": "Please fill in this field",
-  "hosting_cdn_shared_modal_field_url_error_pattern": "Only extensions are allowed",
-  "hosting_cdn_shared_modal_field_url_error_duplicate": "Existing URI",
-  "hosting_cdn_shared_modal_add_rule_field_url_info": "A URL corresponds to a subset of resources on your website. You can specify a sub-part of your website as follows: <br>/path/to/resource. For the Basic CDN solution, you can only enter a file extension"
+  "hosting_cdn_shared_modal_add_rule_btn_cancel": "Cancel"
 }

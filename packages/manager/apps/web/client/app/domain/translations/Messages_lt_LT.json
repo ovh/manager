@@ -614,7 +614,6 @@
   "domain_configuration_zonedns_reset_type_MX_title": "Mail server address ",
   "domain_configuration_zonedns_reset_type_A_title": "Webs hosting IP address ",
   "domain_configuration_zonedns_delete_all_question": "Do you want to delete the DNS zone? ",
-  "domain_configuration_zonedns_delete_all_blocked": "Your DNS zone cannot be deleted as it is currently linked to a website.",
   "domain_configuration_zonedns_delete_all_warning": "Warning! This will permanently delete all the existing DNS records.",
   "domain_configuration_zonedns_delete_all_success": "Deletion of the DNS zone has begun, to complete the request please follow the instructions in the email sent to the DNS zone's administrator account. ",
   "domain_configuration_zonedns_delete_all_error": "An error when deleting the DNS zone. ",
