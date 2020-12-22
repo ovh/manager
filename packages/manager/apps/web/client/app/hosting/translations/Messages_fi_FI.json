@@ -166,12 +166,11 @@
   "hosting_dashboard_service_change_offer_explanation_db": "A database starting at 100MB",
   "hosting_dashboard_service_change_offer_now": "Change solution now ",
   "hosting_dashboard_service_order_ssl": "Order an SSL certificate",
-  "hosting_dashboard_service_activate_cdn": "Enable a CDN",
-  "hosting_dashboard_service_order_cdn": "Order a CDN",
   "hosting_dashboard_service_flush_cdn": "Clear cache",
   "hosting_dashboard_service_flush_cdn_basic": "Purge the CDN cache",
   "hosting_dashboard_service_terminate_cdn": "Cancel the CDN",
   "hosting_dashboard_service_terminate_email": "Cancel the email option",
+  "hosting_dashboard_service_order_cdn": "Order a CDN",
   "hosting_dashboard_service_order_db": "Order SQL",
   "hosting_dashboard_service_filer": "Filer",
   "hosting_dashboard_service_urchin": "Statistics and logs",
@@ -1047,6 +1046,7 @@
   "hosting_tab_DATABASES_configuration_order_button_group": "Configure your databases ",
   "hosting_tab_DATABASES_configuration_order_info": "Database packages are not cumulative.",
   "hosting_tab_DATABASES_configuration_order_title_button": "Order a database",
+  "hosting_tab_DATABASES_configuration_order_title_button_public": "Order a Start SQL database",
   "hosting_tab_DATABASES_configuration_order_title_button_private": "Order a Private SQL database",
   "hosting_tab_DATABASES_configuration_order_title": "Order a database",
   "hosting_tab_DATABASES_configuration_order_title_private": "Order a Private SQL database",
@@ -1363,6 +1363,5 @@
   "hosting_dashboard_service_common_active": "Enabled",
   "hosting_dashboard_service_common_inactive": "Disabled",
   "hosting_dashboard_email_offer_get_error": "Unable to retrieve email address",
-  "hosting_tab_DATABASES_configuration_order_title_button_public": "Order a Start SQL database",
   "hosting_dashboard_stats_status": "Beta"
 }

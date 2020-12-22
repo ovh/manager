@@ -19,7 +19,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
             )
           : reverse(
               sortBy(
-                map(services.data.data, (service, productType) => ({
+                map(services.data?.data, (service, productType) => ({
                   ...service,
                   productType,
                 })),

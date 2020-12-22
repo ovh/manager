@@ -85,5 +85,9 @@
   "pack_move_eligibility_building_type": "Typ",
   "pack_move_eligibility_building_actions": "Operacja",
   "pack_move_eligibility_building_select_building": "Wybierz",
-  "pack_move_building_details_error": "Wystąpił błąd podczas pobierania informacji o budynku"
+  "pack_move_building_details_error": "Wystąpił błąd podczas pobierania informacji o budynku",
+  "pack_move_promotion_description": "Promocja ważna do {{endDate}}",
+  "pack_move_promotion_subscription_months_offered": "{{duration}} miesiąc/e gratis",
+  "pack_move_promotion_installation_fees_offered": "Brak opłaty instalacyjnej",
+  "pack_move_resume_promotion": "Brak opłaty instalacyjnej i {{duration}} pierwszych miesięcy gratis (z wyjątkiem dzierżawy modemu, dodatkowych opcji lub kosztów transportu)."
 }

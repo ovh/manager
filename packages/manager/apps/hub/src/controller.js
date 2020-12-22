@@ -11,6 +11,13 @@ export default class HubController {
   }
 
   $onInit() {
+    this.navbarOptions = {
+      universe: Environment.getUniverse(),
+      version: 'beta',
+      toggle: {
+        event: 'sidebar:loaded',
+      },
+    };
     this.currentLanguage = Environment.getUserLanguage();
     this.user = Environment.getUser();
     const unregisterListener = this.$scope.$on('app:started', () => {

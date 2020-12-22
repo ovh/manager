@@ -23,10 +23,5 @@
   "hosting_cdn_shared_modal_add_rule_field_order_by_info": "Le regole di cache vengono eseguite seguendo l'ordine di classificazione. Assegnando la cifra 1, ad esempio, la regola verrà eseguita per prima e così via.",
   "hosting_cdn_shared_modal_add_rule_btn_validate_rule": "Crea la regola",
   "hosting_cdn_shared_modal_add_rule_btn_set_rule": "Modifica la regola",
-  "hosting_cdn_shared_modal_add_rule_btn_cancel": "Annulla",
-  "hosting_cdn_shared_modal_add_rule_field_url": "URI",
-  "hosting_cdn_shared_modal_field_url_error_required": "Completa questo campo",
-  "hosting_cdn_shared_modal_field_url_error_pattern": "Sono autorizzate solo estensioni",
-  "hosting_cdn_shared_modal_field_url_error_duplicate": "Uri già esistente",
-  "hosting_cdn_shared_modal_add_rule_field_url_info": "Un URL corrisponde a un sottoinsieme di risorse del sito Web. Il sottoinsieme del sito può essere inserito in questo modo: <br>/percorso/verso/una/risorsa Per l'offerta CDN Basic è possibile inserire esclusivamente un'estensione di file"
+  "hosting_cdn_shared_modal_add_rule_btn_cancel": "Annulla"
 }

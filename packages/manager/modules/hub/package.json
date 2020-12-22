@@ -22,8 +22,8 @@
   "peerDependencies": {
     "@ovh-ux/manager-billing": "^1.0.5",
     "@ovh-ux/manager-core": "^10.0.0 || ^11.0.0",
-    "@ovh-ux/manager-ng-layout-helpers": "^1.0.0",
     "@ovh-ux/ng-at-internet": "^5.4.0",
+    "@ovh-ux/manager-ng-layout-helpers": "^1.0.0 || ^2.0.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^3.0.0",
     "@ovh-ux/ng-ovh-order-tracking": "^1.0.4",
     "@ovh-ux/ng-ovh-payment-method": "^7.0.6",

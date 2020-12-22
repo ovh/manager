@@ -164,11 +164,9 @@ export default class CloudConnect {
   }
 
   setServiceKeys(serviceKeys) {
-    if (find(serviceKeys, { status: STATUS.ACTIVE })) {
-      set(this, 'validServiceKey', true);
-    } else {
-      set(this, 'validServiceKey', false);
-    }
+    this.validServiceKey = serviceKeys.some(({ status }) =>
+      [STATUS.ACTIVE, STATUS.DOING, STATUS.TO_CHECK].includes(status),
+    );
     this.serviceKeys = serviceKeys;
   }
 

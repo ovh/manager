@@ -1,6 +1,6 @@
 {
   "cloud_connect_title": "OVHcloud Connect",
-  "cloud_connect_detail_decription": "A nossa solução OVHcloud Connect permite-lhe ligar a rede da sua empresa à sua rede privada vRack da OVHcloud, de forma segura e eficiente.",
+  "cloud_connect_detail_decription": "O nosso serviço OVHcloud Connect permite-lhe ligar a rede da sua empresa à sua rede privada vRack da OVHcloud, de forma segura e eficiente.",
   "cloud_connect_informations": "Informações",
   "cloud_connect_description": "Descrição",
   "cloud_connect_update": "Alterar",
@@ -42,9 +42,6 @@
   "cloud_connect_pop_get_configuration_error": "A recuperação da configuração PoP falhou: {{ message }}",
   "cloud_connect_pop_configuration_type": "Tipo de configuração",
   "cloud_connect_pop_status": "Estado",
-  "cloud_connect_pop_status_active": "Ativo",
-  "cloud_connect_pop_status_init": "Inicialização",
-  "cloud_connect_pop_status_toDelete": "Supressão",
   "cloud_connect_status_toDelete": "Supressão",
   "cloud_connect_pop_port_lock": "Bloqueio da porta",
   "cloud_connect_pop_port_id": "ID Port",

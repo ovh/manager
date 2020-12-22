@@ -26,8 +26,15 @@ export const findLanguage = _findLanguage;
 export const LANGUAGES = _LANGUAGES;
 export const localeStorageKey = _localeStorageKey;
 
-export const fetchConfiguration = () => {
-  return fetch('/engine/2api/configuration', {
+export const fetchConfiguration = (applicationName) => {
+  let configurationURL = '/engine/2api/configuration';
+  if (applicationName) {
+    _Environment.setApplicationName(applicationName);
+    configurationURL = `${configurationURL}?app=${encodeURIComponent(
+      applicationName,
+    )}`;
+  }
+  return fetch(configurationURL, {
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
       Accept: 'application/json',
@@ -47,6 +54,8 @@ export const fetchConfiguration = () => {
     .then((config) => {
       _Environment.setRegion(config.region);
       _Environment.setUser(config.user);
+      _Environment.setApplicationURLs(config.applicationURLs);
+      _Environment.setUniverse(config.universe);
       return config;
     })
     .catch(() => ({

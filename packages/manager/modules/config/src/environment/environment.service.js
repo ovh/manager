@@ -11,6 +11,9 @@ export default class EnvironmentService {
     this.userLocale = findAvailableLocale(detectUserLocale(), this.region);
     this.version = null;
     this.user = {};
+    this.applicationName = '';
+    this.universe = '';
+    this.applicationURLs = {};
   }
 
   setRegion(region = DEFAULT_REGION) {
@@ -56,5 +59,33 @@ export default class EnvironmentService {
 
   getVersion() {
     return this.version;
+  }
+
+  setApplicationName(name) {
+    this.applicationName = name;
+  }
+
+  getApplicationName() {
+    return this.applicationName;
+  }
+
+  setUniverse(universe) {
+    this.universe = universe;
+  }
+
+  getUniverse() {
+    return this.universe;
+  }
+
+  setApplicationURLs(applicationURLs) {
+    this.applicationURLs = applicationURLs;
+  }
+
+  getApplicationURLs() {
+    return this.applicationURLs;
+  }
+
+  getApplicationURL(id) {
+    return this.applicationURLs[id];
   }
 }

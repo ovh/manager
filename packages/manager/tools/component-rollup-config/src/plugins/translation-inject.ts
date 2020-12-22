@@ -19,11 +19,14 @@ export default (opts: any = {}) => {
     transform(code, id) {
       if (filtering && !filter(id)) return null;
       const magicString = new MagicString(code);
-      const annotationMatch = code.match(annotationRegex);
-
-      if (annotationMatch) {
-        const annotation = annotationMatch[0];
-        const { index } = annotationMatch;
+      const regex = new RegExp(annotationRegex, 'g');
+      for (
+        let match = regex.exec(code);
+        match !== null;
+        match = regex.exec(code)
+      ) {
+        const annotation = match[0];
+        const { index } = match;
         const translations = annotation.split(/\s+/).slice(2, -1);
         const transform = utils.injectTranslationImports(
           languages,

@@ -1,46 +1,33 @@
-import { get, pick } from 'lodash-es';
+import { get } from 'lodash-es';
 
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
-import { urlQueryParams, params, component, resolves } from './config';
+import { component, resolves } from './config';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dashboard.vrack', {
-    url: `vrack?${urlQueryParams}`,
-    params,
+    url: `vrack?${ListLayoutHelper.urlQueryParams}`,
+    params: ListLayoutHelper.stateParams,
     component,
     resolve: {
       ...resolves,
-      ...pick(ListLayoutHelper.stateResolves, [
-        'onListParamsChange',
-        'filter',
-        'sort',
-        'sortOrder',
-      ]),
       productType: /* @ngInject */ () => 'VRACK',
       apiPath: /* @ngInject */ () => '/vrack',
-      schema: /* @ngInject */ ($http, apiPath) =>
-        $http.get(`${apiPath}.json`).then(({ data }) => data),
-      rows: /* @ngInject */ ($http) =>
+      resources: /* @ngInject */ ($http) =>
         $http
           .get('/vracks', {
             serviceType: 'aapi',
           })
           .then(({ data }) => data),
-      paginationNumber: /* @ngInject */ ($transition$) =>
-        $transition$.paramsChanged().filter &&
-        !$transition$.paramsChanged().page
-          ? 1
-          : $transition$.params().page,
-      paginationSize: /* @ngInject */ ($transition$) =>
-        $transition$.params().pageSize,
-      paginationTotalCount: /* @ngInject */ (rows) => rows.length,
-      loadRow: /* @ngInject */ (products) => (service) => ({
-        ...service,
-        serviceName: service.id,
-        managerLink: get(
+      staticResources: () => true,
+      getServiceNameLink: /* @ngInject */ (products) => (service) =>
+        get(
           products.find(({ resource }) => resource.name === service.id),
           'url',
         ),
+
+      loadResource: /* @ngInject */ () => (service) => ({
+        ...service,
+        serviceName: service.id,
       }),
     },
     atInternet: {

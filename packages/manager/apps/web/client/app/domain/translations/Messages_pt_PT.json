@@ -614,7 +614,6 @@
   "domain_configuration_zonedns_reset_type_MX_title": "Endereço do seu servidor de e-mail",
   "domain_configuration_zonedns_reset_type_A_title": "Endereço IP do seu alojamento",
   "domain_configuration_zonedns_delete_all_question": "Deseja eliminar a zona DNS?",
-  "domain_configuration_zonedns_delete_all_blocked": "A zona DNS não pode ser eliminada, pois está associada a um alojamento web.",
   "domain_configuration_zonedns_delete_all_warning": "Atenção! Esta operação levará à eliminação definitiva de todos os registos DNS existentes.",
   "domain_configuration_zonedns_delete_all_success": "A operação da eliminação da zona DNS foi iniciada, queira consultar a caixa de e-mail do NIC administrador da zona DNS e siga as instruções para finalizar o pedido.",
   "domain_configuration_zonedns_delete_all_error": "Ocorreu um erro aquando da eliminação da sua zona DNS.",
@@ -825,10 +824,8 @@
   "domain_tab_options_delete_cancel": "Anular",
   "web_domain_zone_activation_success": "A sua ativação foi concluída com êxito. O seu produto ficará ativo dentro de alguns instantes.",
   "web_domain_zone_activation_order_success": "A sua <a href=\"{{t0}}\" target=\"_blank\">nota de encomenda</a> foi gerada com sucesso. O seu produto será ativado depois de o ter validado.",
-  "domain_dashboard_recommended_hosting_title_pro": "Alojamento do seu website",
-  "domain_dashboard_recommended_hosting_title_perso": "Alojamento do seu blogue ou do seu website",
-  "domain_dashboard_recommended_hosting_label": "- {{ reduction }} no seu alojamento {{ type }} durante a Black Friday.",
-  "domain_dashboard_recommended_hosting_discover": "Descobrir as soluções",
   "domain_dashboard_recommended_hosting_title_Pro": "Alojamento do seu website",
-  "domain_dashboard_recommended_hosting_title_Perso": "Alojamento do seu blogue ou do seu website"
+  "domain_dashboard_recommended_hosting_title_Perso": "Alojamento do seu blogue ou do seu website",
+  "domain_dashboard_recommended_hosting_label": "- {{ reduction }} no seu alojamento {{ type }} durante a Black Friday.",
+  "domain_dashboard_recommended_hosting_discover": "Descobrir as soluções"
 }

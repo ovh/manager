@@ -68,7 +68,9 @@ angular
   )
   .config(
     /* @ngInject */ (ovhFeatureFlippingProvider) => {
-      ovhFeatureFlippingProvider.setApplicationName('hub');
+      ovhFeatureFlippingProvider.setApplicationName(
+        Environment.getApplicationName(),
+      );
     },
   )
   .config(routing)

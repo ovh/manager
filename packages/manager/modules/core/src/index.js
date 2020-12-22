@@ -246,4 +246,5 @@ angular
 
 export default moduleName;
 
-export const bootstrapApplication = () => fetchConfiguration();
+export const bootstrapApplication = (applicationName) =>
+  fetchConfiguration(applicationName);
