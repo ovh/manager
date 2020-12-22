@@ -1,0 +1,16 @@
+<oui-tile
+    heading="{{ ::'uscs_heading' | translate }}"
+    description="{{ ::$ctrl.description }}"
+    data-ng-if="$ctrl.advicesAvailable"
+>
+    <div data-ng-repeat="advice in $ctrl.advices track by $index">
+        <oui-tile-button
+            data-ng-attr-href="{{ ::advice.href }}"
+            data-ng-click="$ctrl.onClick(advice)"
+            aria-label="{{ ::advice.ariaLabel || advice.localizedName }}"
+            external="advice.external"
+        >
+            <span data-translate="{{ advice.localizedName }}"></span>
+        </oui-tile-button>
+    </div>
+</oui-tile>
