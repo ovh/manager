@@ -163,7 +163,7 @@ export default class Instance {
     const user = get(this, 'image.user') || 'user';
     const ip = this.getDefaultIp();
     return get(this, 'image.type') === 'windows'
-      ? `rdekstop ${ip}`
+      ? `rdesktop ${ip}`
       : `ssh ${user}@${ip}`;
   }
 
