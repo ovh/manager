@@ -6,7 +6,7 @@
   "storage_localization": "Région",
   "storage_status": "Status",
 
-  "netapp_product_name": "Cloud Volume Service ",
+  "netapp_product_name": "Enterprise File Volume ",
 
   "service_netapp_global_news": "Informations générales",
 
@@ -56,7 +56,11 @@
   "share_description": "Description",
   "share_size": "Taille (Go)",
   "share_protocol": "Taille",
-  "share_status": "Statut"
+  "share_status": "Statut",
+
+  "netapp-cloud-volumes-premium-pool-1tb" : "1Tb Premium",
+  "netapp-cloud-volumes-premium-pool-10tb" : "10Tb Premium"
+
 
 
 }
