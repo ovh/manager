@@ -32,89 +32,98 @@
 <div class="py-4" data-ui-view>
     <div class="row">
         <div class="col-md-4">
-            <oui-tile
-                data-heading="{{ 'pci_projects_project_instances_instance_manage_title' | translate }}"
-            >
-                <oui-tile-button
-                    data-on-click="$ctrl.editInstance()"
-                    data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE'"
+            <div>
+                <oui-tile
+                    data-heading="{{ 'pci_projects_project_instances_instance_manage_title' | translate }}"
                 >
-                    <span
-                        data-translate="pci_projects_project_instances_instance_action_edit_label"
-                    ></span>
-                </oui-tile-button>
-                <oui-tile-button
-                    data-on-click="$ctrl.createBackupInstance()"
-                    data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE'"
-                    data-disabled="!$ctrl.instance.canAddSnapshot()"
-                >
-                    <span
-                        data-translate="pci_projects_project_instances_instance_action_createBackup_label"
-                    ></span>
-                </oui-tile-button>
-                <oui-tile-button
-                    data-on-click="$ctrl.scheduleAutoBackup($ctrl.instance)"
-                    data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE' && !$ctrl.coreConfig.isRegion('US')"
-                    data-disabled="!$ctrl.instance.canAddSnapshot()"
-                >
-                    <span
-                        data-translate="pci_projects_project_instances_autobackup_label"
-                    ></span>
-                </oui-tile-button>
-                <oui-tile-button
-                    data-on-click="$ctrl.startRescueInstance()"
-                    data-ng-if="$ctrl.instance.canBeHardRebooted()"
-                >
-                    <span
-                        data-translate="pci_projects_project_instances_instance_action_rescue_label"
-                    ></span>
-                </oui-tile-button>
-                <oui-tile-button
-                    data-on-click="$ctrl.endRescueInstance()"
-                    data-ng-if="$ctrl.instance.status === 'RESCUE'"
-                >
-                    <span
-                        data-translate="pci_projects_project_instances_instance_action_rescueEnd_label"
-                    ></span>
-                </oui-tile-button>
-                <oui-tile-button
-                    data-on-click="$ctrl.softRebootInstance()"
-                    data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE'"
-                >
-                    <span
-                        data-translate="pci_projects_project_instances_instance_action_softReboot_label"
-                    ></span>
-                </oui-tile-button>
-                <oui-tile-button
-                    data-on-click="$ctrl.hardRebootInstance()"
-                    data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE'"
-                >
-                    <span
-                        data-translate="pci_projects_project_instances_instance_action_hardReboot_label"
-                    ></span>
-                </oui-tile-button>
-                <oui-tile-button
-                    data-on-click="$ctrl.reinstallInstance()"
-                    data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE'"
-                >
-                    <span
-                        data-translate="pci_projects_project_instances_instance_action_reinstall_label"
-                    ></span>
-                </oui-tile-button>
-                <oui-tile-button
-                    data-on-click="$ctrl.resumeInstance()"
-                    data-ng-if="$ctrl.instance.statusGroup === 'SUSPENDED'"
-                >
-                    <span
-                        data-translate="pci_projects_project_instances_instance_action_resume_label"
-                    ></span>
-                </oui-tile-button>
-                <oui-tile-button data-on-click="$ctrl.deleteInstance()">
-                    <span
-                        data-translate="pci_projects_project_instances_instance_action_delete_label"
-                    ></span>
-                </oui-tile-button>
-            </oui-tile>
+                    <oui-tile-button
+                        data-on-click="$ctrl.editInstance()"
+                        data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE'"
+                    >
+                        <span
+                            data-translate="pci_projects_project_instances_instance_action_edit_label"
+                        ></span>
+                    </oui-tile-button>
+                    <oui-tile-button
+                        data-on-click="$ctrl.createBackupInstance()"
+                        data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE'"
+                        data-disabled="!$ctrl.instance.canAddSnapshot()"
+                    >
+                        <span
+                            data-translate="pci_projects_project_instances_instance_action_createBackup_label"
+                        ></span>
+                    </oui-tile-button>
+                    <oui-tile-button
+                        data-on-click="$ctrl.scheduleAutoBackup($ctrl.instance)"
+                        data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE' && !$ctrl.coreConfig.isRegion('US')"
+                        data-disabled="!$ctrl.instance.canAddSnapshot()"
+                    >
+                        <span
+                            data-translate="pci_projects_project_instances_autobackup_label"
+                        ></span>
+                    </oui-tile-button>
+                    <oui-tile-button
+                        data-on-click="$ctrl.startRescueInstance()"
+                        data-ng-if="$ctrl.instance.canBeHardRebooted()"
+                    >
+                        <span
+                            data-translate="pci_projects_project_instances_instance_action_rescue_label"
+                        ></span>
+                    </oui-tile-button>
+                    <oui-tile-button
+                        data-on-click="$ctrl.endRescueInstance()"
+                        data-ng-if="$ctrl.instance.status === 'RESCUE'"
+                    >
+                        <span
+                            data-translate="pci_projects_project_instances_instance_action_rescueEnd_label"
+                        ></span>
+                    </oui-tile-button>
+                    <oui-tile-button
+                        data-on-click="$ctrl.softRebootInstance()"
+                        data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE'"
+                    >
+                        <span
+                            data-translate="pci_projects_project_instances_instance_action_softReboot_label"
+                        ></span>
+                    </oui-tile-button>
+                    <oui-tile-button
+                        data-on-click="$ctrl.hardRebootInstance()"
+                        data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE'"
+                    >
+                        <span
+                            data-translate="pci_projects_project_instances_instance_action_hardReboot_label"
+                        ></span>
+                    </oui-tile-button>
+                    <oui-tile-button
+                        data-on-click="$ctrl.reinstallInstance()"
+                        data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE'"
+                    >
+                        <span
+                            data-translate="pci_projects_project_instances_instance_action_reinstall_label"
+                        ></span>
+                    </oui-tile-button>
+                    <oui-tile-button
+                        data-on-click="$ctrl.resumeInstance()"
+                        data-ng-if="$ctrl.instance.statusGroup === 'SUSPENDED'"
+                    >
+                        <span
+                            data-translate="pci_projects_project_instances_instance_action_resume_label"
+                        ></span>
+                    </oui-tile-button>
+                    <oui-tile-button data-on-click="$ctrl.deleteInstance()">
+                        <span
+                            data-translate="pci_projects_project_instances_instance_action_delete_label"
+                        ></span>
+                    </oui-tile-button>
+                </oui-tile>
+            </div>
+
+            <!-- Advices -->
+            <div class="mt-4">
+                <instance-advices
+                    data-instance-id="$ctrl.instanceId"
+                ></instance-advices>
+            </div>
         </div>
 
         <div class="col-md-4">

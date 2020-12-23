@@ -17,6 +17,7 @@ import resume from './resume';
 import softReboot from './soft-reboot';
 import unrescue from './unrescue';
 import vnc from './vnc';
+import advices from './advices';
 
 import component from './instance.component';
 import routing from './instance.routing';
@@ -42,6 +43,7 @@ angular
     softReboot,
     unrescue,
     vnc,
+    advices,
   ])
   .config(routing)
   .component('pciProjectsProjectInstancesInstance', component)

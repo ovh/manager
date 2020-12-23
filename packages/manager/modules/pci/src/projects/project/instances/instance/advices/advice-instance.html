@@ -1,0 +1,7 @@
+<ovh-advices
+    data-ng-if="!$ctrl.loading"
+    data-ng-repeat="adviceGroup in $ctrl.adviceGroups track by $index"
+    data-description="{{ ::adviceGroup.localizedDescription }}"
+    data-advices="adviceGroup.advices"
+>
+</ovh-advices>
