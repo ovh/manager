@@ -83,7 +83,9 @@
                     data-term="{{:: 'service_netapp_level' | translate }}"
                 >
                     <oui-tile-description>
-                        <span data-ng-bind="$ctrl.service.product | translate"></span>
+                        <span
+                            data-ng-bind="$ctrl.service.product | translate"
+                        ></span>
                     </oui-tile-description>
                 </oui-tile-definition>
 
@@ -91,7 +93,9 @@
                     data-term="{{:: 'service_netapp_creation_date' | translate }}"
                 >
                     <oui-tile-description>
-                        <span data-ng-bind="$ctrl.service.createdAt | date "></span>
+                        <span
+                            data-ng-bind="$ctrl.service.createdAt | date "
+                        ></span>
                     </oui-tile-description>
                 </oui-tile-definition>
             </oui-tile>
