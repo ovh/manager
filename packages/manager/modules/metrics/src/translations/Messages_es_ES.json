@@ -42,5 +42,14 @@
   "metrics_setting_update_failed": "No se ha podido actualizar el servicio.",
   "metrics_setting_name_updated": "Nombre del proyecto modificado",
   "metrics_upgrade_title": "Migrar a un plan superior",
-  "metrics_purchase": "Contratar"
+  "metrics_purchase": "Contratar",
+  "metrics_manage": "Gestionar",
+  "metrics_tile_subscription": "Suscripción",
+  "metrics_tile_subscription_contact": "Contactos",
+  "metrics_tile_subscription_contact_admin": "Administrador",
+  "metrics_tile_subscription_contact_billing": "Facturación",
+  "metrics_tile_subscription_contact_technical": "Técnico",
+  "metrics_tile_subscription_offer": "Producto",
+  "metrics_tile_subscription_creation_date": "Fecha de creación",
+  "metrics_tile_subscription_autorenew": "Renovación automática"
 }
