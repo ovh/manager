@@ -276,7 +276,11 @@ export default /* @ngInject */ function TelecomTelephonyServiceContactCtrl(
       //   (self.directoryForm.postCode || "").replace(/[^\d]/g, "").substring(0, 5);
 
       if (self.directoryForm.postCode !== self.directory.postCode) {
-        self.directoryForm.urbanDistrict = '';
+        self.directoryForm.urbanDistrict =
+          self.isUrbanDistrictRequired() &&
+          self.directoryForm.postCode.length === 5
+            ? self.directoryForm.postCode.substring(3, 5)
+            : '';
       }
 
       /*
