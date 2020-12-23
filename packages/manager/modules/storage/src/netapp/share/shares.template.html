@@ -57,10 +57,10 @@
         <span
             class="oui-badge"
             data-ng-class="{
-                    'oui-badge_success': $ctrl.constructor.toUpperSnakeCase($value) === 'OK',
-                    'oui-badge_warning': $ctrl.constructor.toUpperSnakeCase($value) === 'ERROR',
-                    'oui-badge_error': $ctrl.constructor.toUpperSnakeCase($value) === 'HACKED' || $ctrl.constructor.toUpperSnakeCase($value) === 'HACKED_BLOCKED'
-                    }"
+                                'oui-badge_success': (['AVAILABLE'].includes($ctrl.constructor.toUpperSnakeCase($value))),
+                                'oui-badge_warning': (['CREATING', 'DELETING'].includes($ctrl.constructor.toUpperSnakeCase($value))),
+                                'oui-badge_error': (['DELETED','ERROR','INACTIVE'].includes($ctrl.constructor.toUpperSnakeCase($value))),
+                            }"
             data-translate="{{:: 'share_netapp_status_' + $ctrl.constructor.toUpperSnakeCase($value) }}"
         ></span>
     </oui-datagrid-column>

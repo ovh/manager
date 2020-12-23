@@ -57,7 +57,7 @@ export default class StoragesService {
             return {
               id: res.id,
               region: res.region,
-              product: 'NetApp',
+              product: 'Enterprise File Volume',
               status: res.status,
             };
           }),
