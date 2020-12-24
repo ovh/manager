@@ -88,7 +88,7 @@
   "user_ipRestrictions_table_empty": "Keine Einschränkungen festgelegt",
   "user_ipRestrictions_defaultRule_success": "Die Standardregel wurde erfolgreich geändert.",
   "user_ipRestrictions_defaultRule_error": "Bei der Änderung der Standardregel ist ein Fehler aufgetreten:",
-  "user_ipRestrictions_error_disable": "Achtung! In der derzeitigen Konfiguration können Sie sich nicht mehr mit Ihrem Kundencenter verbinden!",
+  "user_ipRestrictions_error_disable": "Bitte autorisieren Sie eine IP-Adresse, da Sie sich sonst nicht mehr in Ihrem Kundencenter einloggen können.",
   "user_ipRestrictions_error": "Beim Laden der Informationen ist ein Fehler aufgetreten.",
   "user_security_double_auth_activate": "Die Zwei-Faktor-Authentifizierung aktivieren",
   "user_security_double_auth_deactivate": "Die Zwei-Faktor-Authentifizierung deaktivieren",
@@ -605,5 +605,6 @@
   "user_account_support_level_title": "Mein Support-Level",
   "user_account_ssh_keys_title": "Meine SSH-Schlüssel",
   "user_account_users_management_title": "Benutzerverwaltung",
-  "user_account_advanced_title": "Erweiterte Einstellungen"
+  "user_account_advanced_title": "Erweiterte Einstellungen",
+  "user_ipRestrictions_warning_last_ip_with_deny": "Bitte ändern Sie die Standardregel in „Erlaubt“, um die letzte IP-Adresse löschen zu können."
 }
