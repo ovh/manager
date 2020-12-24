@@ -3,11 +3,19 @@ import get from 'lodash/get';
 angular.module('App').controller(
   'HostingUserLogsCreateCtrl',
   class HostingUserLogsCreateCtrl {
-    constructor($scope, $stateParams, $translate, Alerter, Hosting) {
+    constructor(
+      $scope,
+      $stateParams,
+      $translate,
+      atInternet,
+      Alerter,
+      Hosting,
+    ) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
       this.$translate = $translate;
       this.Alerter = Alerter;
+      this.atInternet = atInternet;
       this.Hosting = Hosting;
     }
 
@@ -27,6 +35,9 @@ angular.module('App').controller(
       };
 
       this.$scope.createUser = () => this.createUser();
+      this.atInternet.trackPage({
+        name: 'web::hosting::logs::create-user',
+      });
     }
 
     isPasswordInvalid() {
@@ -73,6 +84,10 @@ angular.module('App').controller(
     }
 
     createUser() {
+      this.atInternet.trackClick({
+        name: 'web::hosting::logs::create-user::confirm',
+        type: 'action',
+      });
       this.$scope.resetAction();
       return this.Hosting.userLogsCreate(
         this.$stateParams.productId,

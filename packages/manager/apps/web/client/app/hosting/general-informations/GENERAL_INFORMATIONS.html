@@ -47,8 +47,8 @@
         <div class="row d-md-flex" data-ng-if="!hosting.isExpired">
             <div class="col-md-4 mb-5">
                 <oui-tile
+                    class="mb-3"
                     data-heading="{{ ::'hosting_dashboard_general_informations' | translate}}"
-                    class="h-100"
                 >
                     <oui-tile-definition
                         data-term="{{ ::'hosting_dashboard_service_state' | translate }}"
@@ -231,45 +231,39 @@
                             ></span>
                         </oui-tile-description>
                     </oui-tile-definition>
-                    <oui-tile-button
-                        aria-label="{{ ::'hosting_dashboard_service_home_ftp_newtab' | translate }}"
-                        data-href="{{ ftpUrl }}"
-                        data-external
-                    >
-                        <span
-                            data-translate="hosting_dashboard_service_home_ftp"
-                        ></span>
-                    </oui-tile-button>
-                    <oui-tile-button
-                        aria-label="{{ ::'hosting_dashboard_service_home_http_newtab' | translate }}"
-                        data-href="{{ httpUrl }}"
-                        data-external
-                    >
-                        <span
-                            data-translate="hosting_dashboard_service_home_http"
-                        ></span>
-                    </oui-tile-button>
-                    <oui-tile-button
-                        data-ng-if="logs"
-                        aria-label="{{ ::'hosting_tab_USER_LOGS_dashboard_stats_newtab' | translate }}"
-                        data-href="{{:: logs.statsUrl }}"
-                        data-external
-                    >
-                        <span
-                            data-translate="hosting_tab_USER_LOGS_dashboard_stats"
-                        ></span>
-                        <span
-                            class="oui-badge oui-badge_beta"
-                            data-translate="hosting_dashboard_stats_status"
-                        ></span>
-                    </oui-tile-button>
                 </oui-tile>
+                <div
+                    data-ng-class="{'mb-5': $ctrl.screenshot}"
+                    class="text-center"
+                    data-ng-if="!hosting.isExpired"
+                >
+                    <oui-spinner
+                        data-ng-if="$ctrl.loading.screenshot"
+                    ></oui-spinner>
+                    <a
+                        class="oui-box oui-box_light d-block p-0 text-truncate"
+                        target="_blank"
+                        title="{{hosting.serviceName}} ({{ 'common_newtab' | translate }})"
+                        data-ng-href="http://{{hosting.serviceName}}"
+                        data-ng-if="!$ctrl.loading.screenshot && $ctrl.screenshot"
+                        data-track-on="click"
+                        data-track-name="web::hosting::thumbnail"
+                        data-track-type="action"
+                    >
+                        <img
+                            class="h-100 mw-100"
+                            data-ng-src="data:image/png;base64,{{$ctrl.screenshot}}"
+                            width="600"
+                            alt="{{hosting.serviceName}}"
+                            data-ng-if="$ctrl.screenshot"
+                        />
+                    </a>
+                </div>
             </div>
 
             <div class="col-md-4 mb-5">
                 <oui-tile
                     data-heading="{{ ::'hosting_dashboard_configuration' | translate}}"
-                    class="h-100"
                 >
                     <oui-tile-definition
                         data-term="{{ ::'hosting_global_php_version' | translate }}"
@@ -653,30 +647,42 @@
                 </oui-tile>
             </div>
             <div class="col-md-4 mb-5">
-                <div
-                    class="text-center"
-                    data-ng-class="{'mb-5': $ctrl.screenshot}"
-                    data-ng-if="!hosting.isExpired"
+                <oui-tile
+                    heading="{{:: 'hosting_dashboard_useful_links' | translate }}"
+                    class="mb-3"
                 >
-                    <oui-spinner
-                        data-ng-if="$ctrl.loading.screenshot"
-                    ></oui-spinner>
-                    <a
-                        class="oui-box oui-box_light d-block p-0 text-truncate"
-                        target="_blank"
-                        title="{{hosting.serviceName}} ({{ 'common_newtab' | translate }})"
-                        data-ng-href="http://{{hosting.serviceName}}"
-                        data-ng-if="!$ctrl.loading.screenshot && $ctrl.screenshot"
+                    <oui-tile-button
+                        ng-if="logs"
+                        aria-label="{{ ::'hosting_tab_USER_LOGS_dashboard_stats_newtab' | translate }}"
+                        href="{{:: logs.statsUrl }}"
+                        external
+                        on-click="$ctrl.sendTrackClick('web::hosting::go-to-stats')"
                     >
-                        <img
-                            class="h-100 mw-100"
-                            data-ng-src="data:image/png;base64,{{$ctrl.screenshot}}"
-                            width="600"
-                            alt="{{hosting.serviceName}}"
-                            data-ng-if="$ctrl.screenshot"
-                        />
-                    </a>
-                </div>
+                        <span
+                            data-translate="hosting_dashboard_useful_links_user_logs"
+                        ></span>
+                    </oui-tile-button>
+                    <oui-tile-button
+                        aria-label="{{ ::'hosting_dashboard_service_home_ftp_newtab' | translate }}"
+                        href="{{ ftpUrl }}"
+                        external
+                        on-click="$ctrl.sendTrackClick('web::hosting::go-to-ftp-access')"
+                    >
+                        <span
+                            data-translate="hosting_dashboard_service_home_ftp"
+                        ></span>
+                    </oui-tile-button>
+                    <oui-tile-button
+                        aria-label="{{ ::'hosting_dashboard_service_home_http_newtab' | translate }}"
+                        href="{{ httpUrl }}"
+                        external
+                        on-click="$ctrl.sendTrackClick('web::hosting::go-to-http-access')"
+                    >
+                        <span
+                            data-translate="hosting_dashboard_service_home_http"
+                        ></span>
+                    </oui-tile-button>
+                </oui-tile>
                 <div
                     class="mb-5"
                     data-ng-if="!hosting.isExpired"
