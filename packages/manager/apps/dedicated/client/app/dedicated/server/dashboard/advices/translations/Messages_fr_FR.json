@@ -1,4 +1,5 @@
 {
-  "server_advices_dedicated_description": "Votre activité nécessite un trafic avec un débit constant ? Bénéficiez d’une bande passante publique dédiée de 1 Gbit/s",
-  "server_advices_dedicated_advice1": "Activer la bande passante garantie"
+  "server_advices_constant_trafic_description": "Votre activité nécessite un trafic avec un débit constant ? Bénéficiez d’une bande passante publique dédiée de 1 Gbit/s",
+  "server_advices_limit_reached_description": "Vous avez récemment atteint le plafond de votre bande passante ? Bénéficiez d’une bande passante publique avec un débit garanti de 1 Gbit/s ou plus",
+  "server_advices_action_activate_bandwidth": "Activer la bande passante garantie"
 }

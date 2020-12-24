@@ -1,5 +1,9 @@
 <ovh-up-sell-cross-sell
-    description="{{ ::'server_advices_dedicated_description' | translate }}"
+    data-ng-if="!$ctrl.loading"
+    description="{{ ::$ctrl.isBustCapacityLimitReached ?
+        'server_advices_limit_reached_description' :
+        'server_advices_constant_trafic_description' | translate
+    }}"
     advices="$ctrl.advices"
 >
 </ovh-up-sell-cross-sell>

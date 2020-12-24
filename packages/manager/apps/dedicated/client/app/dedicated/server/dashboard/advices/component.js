@@ -5,7 +5,6 @@ export default {
   bindings: {
     publicBandwidthOrderLink: '<',
     server: '<',
-    existingBandwidth: '<',
   },
   controller,
   template,
