@@ -387,6 +387,7 @@ export default class {
       'GENERAL_INFORMATIONS',
       'MULTISITE',
       'MODULE',
+      'USER_LOGS',
       'FTP',
       'DATABASE',
       'TASK',
@@ -457,12 +458,15 @@ export default class {
             target: 'CRON',
             type: 'SWITCH_TABS',
           },
-          {
-            label: this.$translate.instant('hosting_tab_USER_LOGS'),
-            target: 'USER_LOGS',
-            type: 'SWITCH_TABS',
-          },
         ]);
+
+        if (this.isLocalSeoAvailable) {
+          this.tabMenu.items.push({
+            label: this.$translate.instant('hosting_tab_LOCAL_SEO'),
+            target: 'LOCAL_SEO',
+            type: 'SWITCH_TABS',
+          });
+        }
 
         if (!hosting.isCloudWeb) {
           this.tabMenu.items.push({
@@ -486,10 +490,6 @@ export default class {
             target: 'FREEDOM',
             type: 'SWITCH_TABS',
           });
-        }
-
-        if (this.isLocalSeoAvailable) {
-          this.tabs.splice(indexOf(this.tabs, 'FTP'), 0, 'LOCAL_SEO');
         }
 
         if (user.ovhSubsidiary === 'FR') {

@@ -4,6 +4,8 @@ const moduleName = 'ovhManagerHostingGeneralInformations';
 
 angular
   .module(moduleName, [])
-  .controller('hostingGeneralInformationsCtrl', controller);
+  .controller('hostingGeneralInformationsCtrl', controller)
+  .run(/* @ngTranslationsInject:json ./translations */)
+  .run(/* @ngTranslationsInject:json ../translations */);
 
 export default moduleName;
