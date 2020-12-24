@@ -835,6 +835,17 @@
             </div>
         </div>
 
+        <div class="row d-md-flex">
+            <!-- Advices -->
+            <div class="col-md-4">
+                <ovh-advices
+                    service-name="{{ ::hosting.serviceName }}"
+                    service-type="hosting-web"
+                >
+                </ovh-advices>
+            </div>
+        </div>
+
         <div class="oui-tile mt-5" data-ng-if="!hosting.isCloudWeb">
             <h2
                 class="oui-tile__title oui-heading_4"
