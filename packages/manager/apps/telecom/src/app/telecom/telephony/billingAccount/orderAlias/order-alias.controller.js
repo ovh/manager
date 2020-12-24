@@ -20,7 +20,7 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountOrderAlias
       .then((user) =>
         TelecomTelephonyBillingAccountOrderAliasService.getOffers(
           $stateParams.billingAccount,
-          user.country,
+          user.ovhSubsidiary.toLowerCase(),
           {
             range: 'common',
           },
