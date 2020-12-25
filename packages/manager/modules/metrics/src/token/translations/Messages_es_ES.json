@@ -10,7 +10,7 @@
   "metrics_table_action": "Acción",
   "metrics_token_state_active": "Activo",
   "metrics_token_state_inactive": "Inactivo",
-  "metrics_token_explain": "Los tokens protegen el acceso a sus datos de series temporales. Cada token define los permisos y puede incluir «labels» o etiquetas (pareja llave-valor). Estas etiquetas se añaden automáticamente en forma de filtro durante la lectura y se asocian a cada dato escrito con el token que contiene estas etiquetas. Si desea más información, <a href=\"{{ guidesUrl }}\" target=\"_blank\">consulte nuestras guías.</a>  ",
+  "metrics_token_explain": "Los tokens protegen el acceso a sus datos de series temporales. Cada token define los permisos y puede incluir «labels» o etiquetas (pareja «llave-valor»). Los «labels» se añaden automáticamente como filtro en la lectura y se asocian a cada dato escrito con el token que lleva esas etiquetas. Para más información, <a href=\"{{ guidesUrl }}\" target=\"_blank\">consulte nuestras guías.</a>",
   "metrics_token_permission_read": "Lectura",
   "metrics_token_permission_write": "Escritura",
   "metrics_token_one": "Token",
@@ -41,5 +41,6 @@
   "metrics_token_err_get": "Se ha producido un error al obtener los tokens.",
   "metrics_token_err_create": "Se ha producido un error al crear el token.",
   "metrics_token_err_revoke": "Se ha producido un error al revocar el token.",
-  "metrics_token_err_update": "Se ha producido un error al actualizar el token"
+  "metrics_token_err_update": "Se ha producido un error al actualizar el token",
+  "metrics_expiry_date": "Fecha de expiración"
 }
