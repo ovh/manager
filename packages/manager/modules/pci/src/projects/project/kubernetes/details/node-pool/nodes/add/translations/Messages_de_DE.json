@@ -25,5 +25,7 @@
   "kube_nodes_add_same_flavor_message": "Sie können nur diesen Instanz-Typ auswählen, da der Node-Pool nur aus Nodes desselben Instanz-Typs bestehen kann.",
   "kube_nodes_add_select_nodes": "Wählen Sie die Anzahl der neu hinzuzufügenden Nodes aus",
   "kube_nodes_add_instance_type": "Instanz-Typ",
-  "kube_nodes_add_adding_message": "Größenanpassung des Pools"
+  "kube_nodes_add_adding_message": "Größenanpassung des Pools",
+  "kube_nodes_add_anti_affinity_active_info": "Die Anti-Affinität ist aktiviert: Der Node-Pool kann höchstens {{ maxNodes }} Nodes enthalten",
+  "kube_nodes_add_billing_type_unavailable": "Der Abrechnungsmodus für einen Node-Pool kann nicht geändert werden"
 }

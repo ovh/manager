@@ -29,5 +29,6 @@
   "telephony_group_line_terminating_bulk_all_success": "La résiliation a bien été appliquée aux services sélectionnés.",
   "telephony_group_line_terminating_bulk_some_success": "La résiliation a bien été appliquée à {{ count }} des services sélectionnés.",
   "telephony_group_line_terminating_bulk_error": "La résiliation n'a pu être appliquée au(x) service(s) suivant(s) :",
-  "telephony_group_line_terminating_bulk_on_error": "Oups ! Une erreur est survenue lors de la résiliation."
+  "telephony_group_line_terminating_bulk_on_error": "Oups ! Une erreur est survenue lors de la résiliation.",
+  "telephony_group_line_terminate_info_5": "Recibirá por correo electrónico la etiqueta de devolución que deberá adjuntar al hardware."
 }

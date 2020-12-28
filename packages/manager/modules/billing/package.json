@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-billing",
-  "version": "1.0.5",
+  "version": "1.0.8",
   "private": true,
   "description": "OVHcloud manager billing module",
   "repository": {
@@ -15,7 +15,7 @@
     "@ovh-ux/manager-core": "^9.0.0",
     "@ovh-ux/ng-at-internet": "^5.3.0",
     "@ovh-ux/ng-translate-async-loader": "^2.1.0",
-    "@ovh-ux/ui-kit": "^4.1.12",
+    "@ovh-ux/ui-kit": "^4.4.1",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1"
   }

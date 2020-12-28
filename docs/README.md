@@ -1,46 +1,31 @@
----
-home: true
-actionText: Get Started →
-actionLink: /guide/
-footer: BSD 3-Clause Licensed | Copyright © 2020-present OVH SAS
----
+# ovh.github.io/manager
 
-<div class="features">
-  <div class="feature">
-    <h2>Application</h2>
-    <p>Manage your services with ease by using our control panel.</p>
-    <a
-      href="https://ovh.com/manager/"
-      rel="noopener noreferrer"
-      target="_blank">
-      ovh.com/manager
-      <icon-external-link/>
-    </a>
-  </div>
-  <div class="feature">
-    <h2>Website</h2>
-    <p>To have more informations about our products, please visit our website</p>
-    <a
-      href="https://ovhcloud.com"
-      rel="noopener noreferrer"
-      target="_blank">
-      ovhcloud.com
-      <icon-external-link/>
-    </a>
-  </div>
-  <div class="feature">
-    <h2>Guides</h2>
-    <p>A good way to find answer to some "how to" questions about OVHcloud products.</p>
-    <a
-      href="https://docs.ovh.com"
-      rel="noopener noreferrer"
-      target="_blank">
-      docs.ovh.com
-      <icon-external-link/>
-    </a>
-  </div>
-</div>
+This site is built with [VuePress][]. Site content is written in Markdown format located in `docs`.
 
-::: warning COMPATIBILITY NOTE
-Manager requires [Node.js](https://nodejs.org) >=12.13 and [Yarn](https://yarnpkg.com/) >=1.21.1.
-:::
+## Developing
+
+1. Clone repository
+
+```sh
+$ git clone git@github.com:ovh/manager.git
+```
+
+2. Install dependencies
+
+```sh
+$ yarn
+```
+
+3. Start local development environment
+
+```sh
+$ yarn workspace @ovh-ux/manager-documentation run dev
+```
+
+## Deploying
+
+```sh
+$ yarn workspace @ovh-ux/manager-documentation run deploy
+```
+
+[VuePress]: https://vuepress.vuejs.org/

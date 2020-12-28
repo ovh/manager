@@ -1,0 +1,153 @@
+<h2 class="heading_underline" data-translate="sms_configure"></h2>
+
+<div class="form-group">
+    <form name="$ctrl.configuration" novalidate>
+        <div class="row" data-ng-if="$ctrl.isBatch">
+            <div class="col-md-8">
+                <oui-field
+                    label="{{:: 'sms_batches_create_name' | translate }}"
+                >
+                    <input
+                        class="oui-input"
+                        name="batchName"
+                        type="text"
+                        data-ng-model="$ctrl.model.batchName"
+                        required
+                    />
+                </oui-field>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <oui-field label="{{:: 'sms_sender' | translate }}">
+                    <oui-select
+                        group-by="$ctrl.groupSenders"
+                        name="sender"
+                        match="label"
+                        autofocus
+                        required
+                        model="$ctrl.model.sender"
+                        items="$ctrl.senders"
+                    >
+                    </oui-select>
+                </oui-field>
+            </div>
+            <div class="col-md-4">
+                <a
+                    class="d-inline-block mt-4"
+                    href="{{ ::$ctrl.sendersHref }}"
+                    data-translate="sms_sender_manage_senders"
+                >
+                </a>
+            </div>
+        </div>
+
+        <div
+            data-ng-if="$ctrl.constructor.mustDisplayAdvice($ctrl.model.sender)"
+        >
+            <strong
+                class="text-uppercase"
+                data-translate="sms_advise_title"
+            ></strong>
+            <p data-translate="sms_advice_info"></p>
+            <p>
+                <span data-translate="sms_advice_description_1"></span>
+                <a
+                    data-ng-href="{{:: $ctrl.sendersHref }}"
+                    data-translate="sms_advice_description_2"
+                >
+                </a>
+                <span data-translate="sms_advice_description_3"></span>
+            </p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <oui-field
+                    label="{{:: 'sms_receivers' | translate }}"
+                    error-messages="{
+                  'pattern': ('sms_receivers_error_pattern' | translate),
+                  'required': ('sms_receivers_error_required' | translate)
+                }"
+                >
+                    <input
+                        name="uniqueReceiver"
+                        class="oui-input"
+                        type="text"
+                        data-ng-model="$ctrl.model.uniqueReceiver"
+                        data-ng-pattern="/^(00|\+)[0-9]{7,15}$/"
+                        placeholder="{{:: 'sms_receivers_placeholder' | translate }}"
+                        data-ng-required="$ctrl.model.receivers.length === 0 && $ctrl.model.contacts.length === 0"
+                    />
+                </oui-field>
+            </div>
+        </div>
+    </form>
+
+    <div class="row">
+        <div class="col-md-8">
+            <oui-button
+                on-click="$ctrl.goToReceiversChoice($ctrl.model)"
+                type="secondary"
+                disabled="!$ctrl.receivers.length"
+            >
+                <span data-translate="sms_receivers_add_list"></span>
+            </oui-button>
+            <oui-button
+                on-click="$ctrl.goToPhonebooksContacts($ctrl.model)"
+                type="secondary"
+                disabled="!$ctrl.phonebooks.length"
+            >
+                <span data-translate="sms_phonebook_manage"></span>
+            </oui-button>
+        </div>
+    </div>
+
+    <div class="row mt-2 ml-5">
+        <ul class="col-md-6">
+            <li data-ng-if="$ctrl.model.receivers.length">
+                <strong data-ng-bind="$ctrl.model.receivers.length"></strong>
+                <span
+                    data-ng-pluralize
+                    data-count="$ctrl.model.receivers.length"
+                    data-when="{
+                      '1': ('sms_receivers_list_selected' | translate),
+                      'other': ('sms_receivers_list_selected_many' | translate)
+                    }"
+                ></span>
+                <button
+                    class="oui-button oui-button_secondary float-right"
+                    type="button"
+                    data-ng-click="$ctrl.model.receivers = []"
+                >
+                    <span
+                        class="oui-icon oui-icon-bin"
+                        aria-hidden="true"
+                    ></span>
+                </button>
+            </li>
+            <li data-ng-if="$ctrl.model.contacts.length">
+                <strong data-ng-bind="$ctrl.model.contacts.length"></strong>
+                <span
+                    data-ng-pluralize
+                    data-count="$ctrl.model.contacts.length"
+                    data-when="{
+                      '1': ('sms_contacts_selected' | translate),
+                      'other': ('sms_contacts_selected_many' | translate)
+                    }"
+                ></span>
+                <button
+                    class="oui-button oui-button_secondary float-right"
+                    type="button"
+                    data-ng-click="$ctrl.model.contacts = []"
+                >
+                    <span
+                        class="oui-icon oui-icon-bin"
+                        aria-hidden="true"
+                    ></span>
+                </button>
+            </li>
+        </ul>
+    </div>
+</div>

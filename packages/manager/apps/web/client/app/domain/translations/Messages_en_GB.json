@@ -614,7 +614,6 @@
   "domain_configuration_zonedns_reset_type_MX_title": "Mail server address ",
   "domain_configuration_zonedns_reset_type_A_title": "Webs hosting IP address ",
   "domain_configuration_zonedns_delete_all_question": "Do you want to delete the DNS zone? ",
-  "domain_configuration_zonedns_delete_all_blocked": "Your DNS zone cannot be deleted as it is currently linked to a website.",
   "domain_configuration_zonedns_delete_all_warning": "Warning! This will permanently delete all the existing DNS records.",
   "domain_configuration_zonedns_delete_all_success": "Deletion of the DNS zone has begun, to complete the request please follow the instructions in the email sent to the DNS zone's administrator account. ",
   "domain_configuration_zonedns_delete_all_error": "An error when deleting the DNS zone. ",
@@ -823,5 +822,9 @@
   "domain_tab_options_delete_error": "An error has occurred when cancelling the option.",
   "domain_tab_options_delete_cancel": "Cancel",
   "web_domain_zone_activation_success": "Your product has been enabled. Your product will be enabled shortly.",
-  "web_domain_zone_activation_order_success": "Your <a href=\"{{t0}}\" target=\"_blank\">order form</a> has been successfully generated. Your web hosting plan will be enabled once you have validated it."
+  "web_domain_zone_activation_order_success": "Your <a href=\"{{t0}}\" target=\"_blank\">order form</a> has been successfully generated. Your web hosting plan will be enabled once you have validated it.",
+  "domain_dashboard_recommended_hosting_title_Pro": "Hosting your website",
+  "domain_dashboard_recommended_hosting_title_Perso": "Hosting your blog or website",
+  "domain_dashboard_recommended_hosting_label": "{{ reduction }} off on your {{ type }} hosting plan for Black Friday.",
+  "domain_dashboard_recommended_hosting_discover": "Explore our solutions"
 }

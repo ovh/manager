@@ -1,0 +1,17 @@
+{
+  "dedicatedCloud_tab_drp": "Disaster Recovery Plan (DRP)",
+  "dedicatedCloud_datacenter_drp_subtitle": "Build your Disaster Recovery Plan with Zerto",
+  "dedicatedCloud_datacenter_drp_details_EPCC": "Protect your IT system by configuring your disaster recovery plan. Migrate your infrastructure in just 1 click, and in just a few minutes in the event of a malfunction or service interruption. Warning: you must have a secondary Private Cloud solution before enabling this option.",
+  "dedicatedCloud_datacenter_drp_warning": "Your current datacentre does not have any hosts. Please order one to use this datacentre for your DRP, or select a datacentre with at least one host.",
+  "dedicatedCloud_tab_drp_choice_plan_type": "Select a DRP:",
+  "dedicatedCloud_datacenter_ovh_choice_EPCC": "Between two OVHcloud Private Cloud solutions",
+  "dedicatedCloud_datacenter_onPremise_choice_EPCC": "Between your infrastructure and an OVHcloud Private Cloud solution",
+  "dedicatedCloud_datacenter_activate_zerto_drp": "Enable Zerto DRP",
+  "dedicatedCloud_datacenter_drp_confirm_delete_drp_success": "Deleting Zerto DRP. This will take a few minutes",
+  "dedicatedCloud_datacenter_drp_get_state_error": "An error has occurred retrieving information about your DRP.",
+  "dedicatedCloud_datacenter_install_plan": "Install",
+  "dedicatedCloud_datacenter_install_in_error": "An error has occurred installing the plan. Please contact support.",
+  "dedicatedCloud_datacenter_drp_details_MBM": "Protect your IT system by configuring your disaster recovery plan. Migrate your infrastructure in just 1 click, and in just a few minutes in the event of a malfunction or service interruption. Warning: you must have a secondary Managed Bare Metal solution before enabling this option.",
+  "dedicatedCloud_datacenter_ovh_choice_MBM": "Between two Managed Bare Metal servers",
+  "dedicatedCloud_datacenter_onPremise_choice_MBM": "Between your infrastructure and a Managed Bare Metal server"
+}

@@ -1,12 +1,25 @@
-import steps from './configuration-only.steps';
+import angular from 'angular';
+import '@uirouter/angularjs';
+import 'oclazyload';
 
-import { registerState } from './configuration-only.routing';
+const moduleName =
+  'ovhManagerPccServicePackUpgradeConfigurationOnlyLazyloading';
 
-const moduleName = 'ovhManagerPccServicePackUpgradeConfigurationOnly';
-
-angular
-  .module(moduleName, [...steps])
-  .config(registerState)
-  .run(/* @ngTranslationsInject:json ./translations */);
+angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
+  /* @ngInject */ ($stateProvider) => {
+    $stateProvider.state(
+      'app.dedicatedClouds.servicePackUpgrade.configurationOnly.**',
+      {
+        url: '/configurationOnly',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+          return import('./configuration-only.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
+      },
+    );
+  },
+);
 
 export default moduleName;

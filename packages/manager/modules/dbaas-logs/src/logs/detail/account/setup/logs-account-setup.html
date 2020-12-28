@@ -1,0 +1,56 @@
+<div class="cui-page__content logs-change-password">
+    <span
+        class="oui-heading_3"
+        data-translate="logs_password_get_started_title"
+    ></span>
+    <div class="mb-3">
+        <span
+            data-translate="logs_password_setup_message"
+            data-translate-values="{userFullName : ctrl.fullName, userName: ctrl.userName}"
+        ></span>
+    </div>
+    <form novalidate name="ctrl.form">
+        <div
+            class="oui-field"
+            data-ng-class="{'oui-field_error': ctrl.form.$submitted && ctrl.form.new_password.$invalid}"
+        >
+            <label
+                for="new_password"
+                class="oui-label"
+                data-translate="logs_password_setup_label"
+            ></label>
+            <div class="oui-field__content">
+                <div class="oui-field-control oui-field-control_5">
+                    <oui-password
+                        id="new_password"
+                        name="new_password"
+                        model="ctrl.newPassword"
+                        on-change="ctrl.validatePassword()"
+                        required
+                    >
+                        <oui-password-rule
+                            data-ng-repeat="rule in ctrl.passwordRules track by rule.message"
+                            validator="rule.validator(modelValue)"
+                        >
+                            <span
+                                data-translate="{{:: rule.message }}"
+                                data-translate-values="rule.translateParams"
+                            ></span>
+                        </oui-password-rule>
+                    </oui-password>
+                </div>
+            </div>
+        </div>
+        <div class="cui-form-actions">
+            <oui-spinner data-ng-if="ctrl.saving.loading"></oui-spinner>
+            <div data-ng-if="!ctrl.saving.loading">
+                <button
+                    type="submit"
+                    class="oui-button oui-button_primary"
+                    data-translate="logs_save"
+                    data-ng-click="ctrl.changePassword()"
+                ></button>
+            </div>
+        </div>
+    </form>
+</div>

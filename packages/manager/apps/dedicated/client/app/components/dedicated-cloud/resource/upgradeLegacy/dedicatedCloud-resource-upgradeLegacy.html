@@ -1,0 +1,129 @@
+<div
+    data-wizard
+    data-wizard-on-cancel="$ctrl.goBack.bind($ctrl)"
+    data-wizard-on-finish="$ctrl.upgradedResource.bind($ctrl)"
+    data-wizard-title=":: 'dedicatedCloud_updateResource_toMonthly' | translate"
+    data-wizard-bread-crumb
+>
+    <!-- Step 2: Durations -->
+    <div
+        data-wizard-step
+        data-wizard-step-on-load="$ctrl.getDurations.bind($ctrl)"
+        data-wizard-step-valid="$ctrl.model.duration"
+    >
+        <div class="text-center" data-ng-show="$ctrl.loading.durations">
+            <oui-spinner></oui-spinner>
+        </div>
+
+        <div data-ng-hide="$ctrl.loading.durations">
+            <p
+                data-translate="server_tab_USB_STORAGE_order_select_duration"
+            ></p>
+            <div
+                class="radio"
+                data-ng-repeat="duration in $ctrl.durations.available track by $index"
+            >
+                <label>
+                    <input
+                        type="radio"
+                        value="{{ duration }}"
+                        data-ng-model="$ctrl.model.duration"
+                        data-ng-disabled="$ctrl.loading.prices || $ctrl.durations.available.length == 1"
+                    />
+                    <span>
+                        <span
+                            data-ng-bind="duration | wucDuration:'longDate'"
+                        ></span>
+                        &nbsp;:&nbsp;
+                        <span
+                            data-ng-bind-html="$ctrl.durations.details[duration].prices | ducPrice:$ctrl.ovhSubsidiary"
+                        ></span>
+                        <oui-spinner
+                            data-ng-hide="$ctrl.durations.details[duration]"
+                            data-size="s"
+                        >
+                        </oui-spinner>
+                    </span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 3: Contracts -->
+    <div
+        data-wizard-step
+        data-wizard-step-on-load="$ctrl.loadContracts.bind($ctrl)"
+        data-wizard-step-valid="$ctrl.agree.value"
+    >
+        <div
+            data-contracts="$ctrl.durations.details[$ctrl.model.duration].contracts"
+            data-full-text="false"
+            data-ng-model="$ctrl.agree.value"
+        ></div>
+    </div>
+
+    <!-- Step 4: Resume and validation -->
+    <div
+        data-wizard-step
+        data-wizard-step-on-previous="$ctrl.backToContracts.bind($ctrl)"
+        data-wizard-step-valid="!$ctrl.loading.validation"
+    >
+        <div class="text-center" data-ng-show="$ctrl.loading.validation">
+            <oui-spinner></oui-spinner>
+        </div>
+
+        <div data-ng-show="!$ctrl.loading.validation">
+            <p data-translate="server_tab_USB_STORAGE_order_resume"></p>
+            <div class="table-responsive">
+                <table class="table">
+                    <tbody>
+                        <tr
+                            data-ng-repeat="detail in $ctrl.durations.details[$ctrl.model.duration].details track by $index"
+                        >
+                            <th
+                                scope="row"
+                                class="text-wrap"
+                                data-ng-bind="detail.description"
+                            ></th>
+                            <td
+                                class="text-right"
+                                data-ng-bind="$ctrl.getResumePrice(detail.totalPrice)"
+                            ></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2" class="text-right">
+                                <strong
+                                    data-translate="dedicatedCloud_order_price_HT"
+                                ></strong>
+                                <strong
+                                    class="text-danger"
+                                    data-ng-bind="$ctrl.durations.details[$ctrl.model.duration].prices.withoutTax.text"
+                                >
+                                </strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="text-right">
+                                <strong
+                                    data-translate="dedicatedCloud_order_price_TTC"
+                                ></strong>
+                                <strong
+                                    class="text-danger"
+                                    data-ng-bind="$ctrl.durations.details[$ctrl.model.duration].prices.withTax.text"
+                                >
+                                </strong>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <p data-translate="dedicatedCloud_order_final_txt"></p>
+            <p
+                class="font-italic text-muted"
+                data-translate="dedicatedCloud_order_final_txt2"
+            ></p>
+        </div>
+    </div>
+</div>

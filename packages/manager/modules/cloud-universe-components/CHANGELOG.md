@@ -1,3 +1,36 @@
+# [2.2.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.1.0...@ovh-ux/ng-ovh-cloud-universe-components@2.2.0) (2020-12-08)
+
+
+### Features
+
+* **vrack.service:** update getGroupedServiceTypes method ([0d7981c](https://github.com/ovh/manager/commit/0d7981cb966998a1886aa54afd9b889512c2690c))
+
+
+
+# [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.0.4...@ovh-ux/ng-ovh-cloud-universe-components@2.1.0) (2020-10-28)
+
+
+### Bug Fixes
+
+* **peer-deps:** upgrade @ovh-ux/ui-kit to v4.4.1 ([8254623](https://github.com/ovh/manager/commit/82546237336e185ae7d973a1bb2aabddbb50112e))
+
+
+### Features
+
+* **cui.dual-list:** move to cuc ([676c298](https://github.com/ovh/manager/commit/676c29871a136b086600329b744a5f363bd5ce40))
+* **moment-format:** add filter to cuc ([8427623](https://github.com/ovh/manager/commit/842762371f47adb5a23130c2a04f3588e4ed0774))
+
+
+
+## [2.0.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.0.3...@ovh-ux/ng-ovh-cloud-universe-components@2.0.4) (2020-10-20)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v11.0.0 ([#3869](https://github.com/ovh/manager/issues/3869)) ([df90e4d](https://github.com/ovh/manager/commit/df90e4de660920e3cd07b2ff6b4452b0aa861377))
+
+
+
 ## [2.0.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.0.2...@ovh-ux/ng-ovh-cloud-universe-components@2.0.3) (2020-08-18)
 
 

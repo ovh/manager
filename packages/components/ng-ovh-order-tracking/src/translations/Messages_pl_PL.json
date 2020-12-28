@@ -25,7 +25,7 @@
   "order_tracking_history_details_FRAUD_CHECK": "",
   "order_tracking_history_details_FRAUD_DOCS_REQUESTED": "",
   "order_tracking_history_details_FRAUD_MANUAL_REVIEW": "Realizacja zamówienia wymaga dodatkowego czasu. Może to potrwać około 48 godzin. Dział obsługi klienta OVHcloud może się z Tobą skontaktować w razie potrzeby.",
-  "order_tracking_history_details_FRAUD_REFUSED": "Otrzymasz w tej sprawie wiadomość e-mail.",
+  "order_tracking_history_details_FRAUD_REFUSED": "Dane powiązane z tym zamówieniem nie stanowią gwarancji niezbędnych do przeprowadzenia transakcji. Prosimy wykonać jeszcze raz operację, używając innego sposobu płatności.",
   "order_tracking_history_details_INVOICE_IN_PROGRESS": "",
   "order_tracking_history_details_INVOICE_SENT": "Możesz się z nią zapoznać i pobrać ją, przechodząc do sekcji « <a data-ng-href=\"{{ billingUrl }}\">Płatności</a> ».",
   "order_tracking_history_details_ORDER_ACCEPTED": "",

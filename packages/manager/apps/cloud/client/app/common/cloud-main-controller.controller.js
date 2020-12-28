@@ -1,29 +1,40 @@
+import { Environment } from '@ovh-ux/manager-config';
+
 class CloudMainController {
   constructor(
     $document,
     $interval,
+    $scope,
     $rootScope,
     $transitions,
     $translate,
     CucProductsService,
-    SessionService,
   ) {
     this.$document = $document;
     this.$interval = $interval;
+    this.$scope = $scope;
     this.$rootScope = $rootScope;
     this.$transitions = $transitions;
     this.$translate = $translate;
     this.CucProductsService = CucProductsService;
-    this.SessionService = SessionService;
+    this.chatbotEnabled = false;
   }
 
   $onInit() {
     this.expiringProject = null;
 
-    [this.currentLanguage] = this.$translate.use().split('_');
+    this.navbarOptions = {
+      toggle: {
+        event: 'sidebar:loaded',
+      },
+      universe: Environment.getUniverse(),
+    };
 
-    this.SessionService.getUser().then((user) => {
-      this.user = user;
+    this.currentLanguage = Environment.getUserLanguage();
+    this.user = Environment.getUser();
+    const unregisterListener = this.$scope.$on('app:started', () => {
+      this.chatbotEnabled = true;
+      unregisterListener();
     });
 
     this.$transitions.onStart({}, () => this.closeSidebar());

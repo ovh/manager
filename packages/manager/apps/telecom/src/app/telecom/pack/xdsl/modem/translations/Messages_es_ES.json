@@ -16,5 +16,6 @@
   "xdsl_model_access_error": "¡Vaya! No hemos podido cargar los datos de su pack.",
   "xdsl_model_task_error": "¡Vaya! No hemos podido cargar la pila de tareas en curso.",
   "xdsl_modem_modem_error": "¡Vaya! No hemos podido cargar los datos de su módem.",
-  "xdsl_modem_firmware": "Firmware"
+  "xdsl_modem_firmware": "Firmware",
+  "xdsl_modem_acs_backend": "Backend ACS"
 }

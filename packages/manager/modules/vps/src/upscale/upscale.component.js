@@ -4,6 +4,7 @@ import template from './upscale.html';
 export default {
   bindings: {
     agreements: '<',
+    catalog: '<',
     connectedUser: '<',
     defaultPaymentMethod: '<',
     getUpscaleInformation: '<',

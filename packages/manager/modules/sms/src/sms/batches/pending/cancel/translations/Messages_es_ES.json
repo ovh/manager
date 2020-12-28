@@ -1,0 +1,11 @@
+{
+  "sms_cancel_title": "Confirmación",
+  "sms_cancel_details_name": "Apellidos",
+  "sms_cancel_details_date": "Fecha de creación",
+  "sms_cancel_details_sender": "Remitente",
+  "sms_cancel_details_receivers": "Destinatarios",
+  "sms_cancel_details_message": "Mensaje",
+  "sms_cancel_question": "¿Seguro que quiere cancelar la campaña que se muestra a continuación?",
+  "sms_cancel_error": "No es posible cancelar la campaña. {{error}}",
+  "sms_cancel_success": "La campaña se ha cancelado."
+}

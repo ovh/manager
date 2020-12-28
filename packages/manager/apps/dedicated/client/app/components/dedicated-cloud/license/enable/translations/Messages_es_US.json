@@ -1,0 +1,6 @@
+{
+    "dedicatedCloud_tab_licences_active_spla_title": "Activación de la licencia SPLA",
+    "dedicatedCloud_tab_license_type": "Tipo",
+    "dedicatedCloud_tab_license_price": "Precio",
+    "dedicatedCloud_tab_licences_active_spla_load_fail": "Se ha producido un error al recuperar la información para activar la licencia SPLA."
+}

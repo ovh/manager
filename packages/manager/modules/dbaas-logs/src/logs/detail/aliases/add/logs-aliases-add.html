@@ -1,0 +1,48 @@
+<form novalidate name="ctrl.form">
+    <oui-modal
+        data-primary-action="ctrl.save()"
+        data-primary-label="{{ ::'logs_save' | translate }}"
+        data-secondary-action="ctrl.cancel()"
+        data-secondary-label="{{ ::'logs_cancel' | translate }}"
+        data-on-dismiss="ctrl.cancel()"
+        data-loading="ctrl.alias.loading || ctrl.saving.loading"
+        data-heading="{{ ::ctrl.title | translate }}"
+    >
+        <div data-ng-if="ctrl.isEdit" class="mb-3">
+            <span
+                data-translate="logs_aliases_update_description"
+                data-translate-values="{name: ctrl.alias.data.name}"
+            ></span>
+        </div>
+
+        <oui-field
+            data-ng-if="!ctrl.isEdit"
+            data-label="{{ ::'logs_aliases_col_title' | translate }}"
+            data-help-text="{{::'logs_aliases_title_description' | translate}}"
+        >
+            <input
+                type="text"
+                id="alias_name"
+                name="alias_name"
+                pattern="^[a-z0-9_-]+$"
+                class="oui-input mb-0"
+                data-ng-model="ctrl.alias.data.suffix"
+                data-ng-class="{'oui-input_error': ctrl.form.$submitted && ctrl.form.alias_name.$invalid}"
+                cuc-autofocus
+                required
+            />
+        </oui-field>
+
+        <oui-field
+            data-label="{{ ::'logs_aliases_col_description' | translate }}"
+        >
+            <textarea
+                id="alias_description"
+                name="alias_description"
+                class="oui-textarea"
+                data-ng-model="ctrl.alias.data.description"
+                required
+            ></textarea>
+        </oui-field>
+    </oui-modal>
+</form>

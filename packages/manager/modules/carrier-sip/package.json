@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-carrier-sip",
-  "version": "2.0.3",
+  "version": "2.0.5",
   "private": true,
   "description": "Carrier SIP Trunk product.",
   "repository": {
@@ -19,10 +19,10 @@
   "peerDependencies": {
     "@ovh-ux/manager-core": "^10.0.0 || ^11.0.0",
     "@ovh-ux/ng-ovh-telecom-universe-components": "^6.0.0 || ^7.0.0",
-    "@ovh-ux/ui-kit": "^4.1.12",
+    "@ovh-ux/ui-kit": "^4.4.1",
     "angular": "^1.7.8",
     "angular-translate": "^2.18.1",
-    "ovh-api-services": "^9.39.1",
+    "ovh-api-services": "^11.0.0",
     "ovh-ui-kit-bs": "^4.1.5"
   }
 }

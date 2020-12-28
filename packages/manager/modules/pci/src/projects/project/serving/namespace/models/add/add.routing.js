@@ -15,6 +15,27 @@ export default /* @ngInject */ ($stateProvider) => {
         OvhManagerPciServingNamespaceModelsAddServiceCapabilities.getFlavors(
           projectId,
         ),
+      features: /* @ngInject */ (
+        OvhManagerPciServingNamespaceModelsAddServiceCapabilities,
+        projectId,
+      ) =>
+        OvhManagerPciServingNamespaceModelsAddServiceCapabilities.getFeatures(
+          projectId,
+        ),
+      frameworks: /* @ngInject */ (
+        OvhManagerPciServingNamespaceModelsAddServiceCapabilities,
+        projectId,
+      ) =>
+        OvhManagerPciServingNamespaceModelsAddServiceCapabilities.getFrameworks(
+          projectId,
+        ),
+      backends: /* @ngInject */ (
+        OvhManagerPciServingNamespaceModelsAddServiceCapabilities,
+        projectId,
+      ) =>
+        OvhManagerPciServingNamespaceModelsAddServiceCapabilities.getBackends(
+          projectId,
+        ),
       pricesCatalog: /* @ngInject */ (
         OvhManagerPciServingNamespaceModelsAddServiceCapabilities,
         projectId,

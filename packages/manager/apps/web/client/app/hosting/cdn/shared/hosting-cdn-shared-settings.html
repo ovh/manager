@@ -1,0 +1,234 @@
+<div class="container-fluid px-0">
+    <div class="text-center" data-ng-if="!$ctrl.loading.init">
+        <oui-spinner data-size="l"></oui-spinner>
+    </div>
+
+    <div data-ovh-alert="cdnSharedSettingsError"></div>
+
+    <div>
+        <!--Description-->
+        <p class="oui-heading_4 mb-5">
+            <strong data-translate="hosting_cdn_shared_title"></strong>
+        </p>
+        <div
+            class="oui-paragraph"
+            data-translate="hosting_cdn_shared_info"
+        ></div>
+
+        <!--Always online-->
+        <div class="mb-4">
+            <p class="oui-heading_5 mb-1"><strong>Always online</strong></p>
+            <div
+                class="oui-paragraph"
+                data-translate="hosting_cdn_shared_option_always_online_info"
+            ></div>
+            <oui-switch
+                disabled="true"
+                data-ng-init="status = {inProgress: false}"
+                data-model="$ctrl.model.alwaysOnline.enabled"
+                data-on-change="$ctrl.updateSwitchOption($ctrl.model.alwaysOnline, modelValue, status)"
+            >
+            </oui-switch>
+            <strong
+                data-ng-bind="$ctrl.getSwitchBtnStatusText($ctrl.model.alwaysOnline.enabled)"
+            ></strong>
+        </div>
+
+        <!--HTTP/2-->
+        <div class="mb-4">
+            <p class="oui-heading_5 mb-1"><strong>HTTP/2</strong></p>
+            <div
+                class="oui-paragraph"
+                data-translate="hosting_cdn_shared_option_http_https_info"
+            ></div>
+            <oui-switch
+                disabled="true"
+                data-ng-init="status = {inProgress: false}"
+                data-model="$ctrl.model.http.enabled"
+                data-on-change="$ctrl.updateSwitchOption($ctrl.model.http, modelValue, status)"
+            >
+            </oui-switch>
+            <strong
+                data-ng-bind="$ctrl.getSwitchBtnStatusText($ctrl.model.http.enabled)"
+            ></strong>
+        </div>
+
+        <!--DEV-MODE-->
+        <div class="mb-4">
+            <p class="oui-heading_5 mb-1"><strong>Dev-mode</strong></p>
+            <div
+                class="oui-paragraph"
+                data-translate="hosting_cdn_shared_option_dev_mode_info"
+            ></div>
+            <oui-switch
+                data-ng-init="status = {inProgress: false}"
+                disabled="!$ctrl.model.devmode || status.inProgress"
+                data-model="$ctrl.model.devmode.enabled"
+                data-on-change="$ctrl.updateSwitchOption($ctrl.model.devmode, modelValue, status)"
+            >
+            </oui-switch>
+            <strong
+                data-ng-bind="$ctrl.getSwitchBtnStatusText($ctrl.model.devmode.enabled)"
+            ></strong>
+        </div>
+
+        <!--BROTLI-->
+        <div class="mb-4">
+            <p class="oui-heading_5 mb-1"><strong>Brotli</strong></p>
+            <div
+                class="oui-paragraph"
+                data-translate="hosting_cdn_shared_option_brotli_info"
+            ></div>
+            <oui-switch
+                disabled="!$ctrl.model.brotli || status.inProgress"
+                data-ng-init="status = {inProgress: false}"
+                data-model="$ctrl.model.brotli.enabled"
+                data-on-change="$ctrl.updateSwitchOption($ctrl.model.brotli, modelValue, status)"
+            >
+            </oui-switch>
+            <strong
+                data-ng-bind="$ctrl.getSwitchBtnStatusText($ctrl.model.brotli.enabled)"
+            ></strong>
+        </div>
+
+        <!--CACHE RULE-->
+        <div class="mb-4">
+            <p class="oui-heading_5 mb-1"><strong>Cache rule</strong></p>
+            <oui-button
+                class="mb-1"
+                data-variant="secondary"
+                data-icon-left="oui-icon-plus"
+                disabled="status.inProgress || ($ctrl.model.rules.length >= $ctrl.model.maxItems)"
+                data-ng-init="status = {inProgress: false}"
+                data-on-click="$ctrl.openCreatCacheRuleModal(status)"
+            >
+                <span
+                    data-translate="hosting_cdn_shared_option_cache_rule_btn_add_rule"
+                ></span>
+            </oui-button>
+            <div class="oui-field__helper">
+                <p
+                    data-translate="hosting_cdn_shared_option_cache_rule_add_rule_max_rules"
+                ></p>
+            </div>
+            <div>
+                <table class="oui-table">
+                    <thead class="oui-table__headers">
+                        <tr>
+                            <th
+                                class="oui-table__header oui-table__header_sortable"
+                                tabindex="0"
+                                data-translate="hosting_cdn_shared_option_cache_rule_table_header_order_by"
+                            ></th>
+                            <th
+                                class="oui-table__header"
+                                data-translate="hosting_cdn_shared_option_cache_rule_table_header_rule_name"
+                            ></th>
+                            <th
+                                class="oui-table__header"
+                                data-translate="hosting_cdn_shared_option_cache_rule_table_header_uri"
+                            ></th>
+                            <th
+                                class="oui-table__header"
+                                data-translate="hosting_cdn_shared_option_cache_rule_table_time_to_live"
+                            ></th>
+                            <th
+                                class="oui-table__header"
+                                data-translate="hosting_cdn_shared_option_cache_rule_table_status"
+                            ></th>
+                            <th
+                                class="oui-table__header"
+                                data-translate="hosting_cdn_shared_option_cache_rule_table_header_options"
+                            ></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            class="oui-table__row"
+                            data-ng-repeat="rule in $ctrl.model.rules | orderBy:'config.priority'"
+                            data-ng-init="status = {inProgress: false}"
+                        >
+                            <td class="oui-table__cell">
+                                <span
+                                    data-ng-bind="rule.config.priority"
+                                ></span>
+                            </td>
+                            <td class="oui-table__cell">
+                                <span data-ng-bind="::rule.name"></span>
+                            </td>
+                            <td class="oui-table__cell">
+                                <span data-ng-bind="::rule.pattern"></span>
+                            </td>
+                            <td class="oui-table__cell">
+                                <span
+                                    data-ng-bind="$ctrl.convertToUnitTime(rule.config.ttl)"
+                                ></span>
+                            </td>
+                            <td class="oui-table__cell">
+                                <oui-switch
+                                    disabled="status.inProgress"
+                                    data-model="rule.enabled"
+                                    data-on-change="$ctrl.updateSwitchRule(rule, modelValue, status)"
+                                >
+                                </oui-switch>
+                                <span
+                                    ><strong
+                                        data-ng-bind="$ctrl.getSwitchBtnStatusText(rule.enabled)"
+                                    ></strong
+                                ></span>
+                            </td>
+                            <td class="oui-table__cell">
+                                <oui-action-menu
+                                    aria-label="Actions"
+                                    data-compact
+                                    disabled="$ctrl.disabled"
+                                >
+                                    <oui-action-menu-item
+                                        data-on-click="$ctrl.openUpdateCacheRuleModal(rule)"
+                                    >
+                                        {{::
+                                        'hosting_cdn_shared_option_cache_rule_table_items_option_set_rule'
+                                        | translate}}
+                                    </oui-action-menu-item>
+                                    <oui-action-menu-item
+                                        disabled="status.inProgress"
+                                        data-ng-init="status = {inProgress: false}"
+                                        data-on-click="$ctrl.removeRule(rule, status)"
+                                    >
+                                        {{::
+                                        'hosting_cdn_shared_option_cache_rule_table_items_option_delete_rule'
+                                        | translate}}
+                                    </oui-action-menu-item>
+                                </oui-action-menu>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!--Cancel settings-->
+        <oui-button
+            size="l"
+            data-variant="secondary"
+            disabled="status.inProgress"
+            data-on-click="$ctrl.displayLeaveSettingsModal($ctrl.model, $ctrl.model.rules)"
+        >
+            <span
+                data-translate="hosting_cdn_shared_option_cache_rule_btn_cancel"
+            ></span>
+        </oui-button>
+
+        <!--Validate settings-->
+        <oui-button
+            size="l"
+            data-variant="primary"
+            data-on-click="$ctrl.openConfirmModal()"
+            disabled="!$ctrl.settingsToSave"
+        >
+            <span
+                data-translate="hosting_cdn_shared_option_cache_rule_btn_validate"
+            ></span>
+        </oui-button>
+    </div>
+</div>

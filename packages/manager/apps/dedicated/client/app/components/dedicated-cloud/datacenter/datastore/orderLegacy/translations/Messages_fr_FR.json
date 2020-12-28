@@ -1,0 +1,17 @@
+{
+  "dedicatedCloud_configuration_order_datastores_step1_question": "Sélectionner un profil de stockage :",
+  "dedicatedCloud_configuration_order_datastores_step1_profile": "Profil",
+  "dedicatedCloud_configuration_order_datastores_step1_type": "Type",
+  "dedicatedCloud_configuration_order_datastores_step2_details": "Résumé de votre commande datastore :",
+  "dedicatedCloud_configuration_order_datastores_step2_profile": "Profil :",
+  "dedicatedCloud_configuration_order_datastores_step2_monthly_price_HT": "Prix au mois HT :",
+  "dedicatedCloud_configuration_order_datastores_step2_monthly_price_TTC": "Prix au mois TTC :",
+  "dedicatedCloud_configuration_order_datastores_step2_confirm": "Afin de confirmer votre demande, veuillez procéder au règlement en cliquant sur le bouton \"Commander\" ci-dessous.",
+  "dedicatedCloud_configuration_order_datastores_step2_explication": "Un nouvel onglet s'ouvrira et vous serez automatiquement redirigé(e) vers l'interface de paiement OVH.",
+  "dedicatedCloud_configuration_order_datastores_step2_contracts": "Je reconnais avoir bien pris connaissance des conditions suivantes :",
+  "dedicatedCloud_configuration_order_datastores_rate": "Tarif",
+  "dedicatedCloud_configuration_order_datastores_monthly_rate": "(au mois)",
+  "dedicatedCloud_configuration_order_datastores_billing_quantity": "Quantité d'espace(s) à commander :",
+  "dedicatedCloud_configuration_order_datastores_finish_success": "La commande numéro <a href='{{t0}}' target='_blank'>{{t1}}</a> de datastore a bien été prise en compte.",
+  "dedicatedCloud_configuration_order_datastores_finish_fail": "Une erreur est survenue lors de la commande de datastore sur le datacentre {{t0}}"
+}

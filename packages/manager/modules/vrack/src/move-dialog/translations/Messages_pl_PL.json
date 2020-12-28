@@ -1,8 +1,10 @@
 {
-  "vrack_move_dialog_title": "Przeniesienie usługi Private Cloud",
-  "vrack_move_dialog_intro": "Wybrałeś usługę wirtualnego centrum danych Private Cloud.  Usługa musi zostać przeniesiona na inną usługę vRack.",
+  "vrack_move_dialog_title_dedicatedCloudDatacenter": "Przeniesienie usługi Private Cloud",
+  "vrack_move_dialog_intro_dedicatedCloudDatacenter": "Wybrałeś usługę wirtualnego centrum danych Private Cloud.  Usługa musi zostać przeniesiona do innej usługi vRack.",
   "vrack_move_dialog_warning_notice": "Operacja spowoduje około 5 minut przerwy w działaniu usługi.",
   "vrack_move_dialog_choose_vrack_label": "Docelowa usługa vRack:",
   "vrack_move_dialog_choose_vrack_default_option": "Wybierz usługę vRack",
-  "vrack_move_dialog_request_error": "Operacja przeniesienia wirtualnego centrum danych nie powiodła się."
+  "vrack_move_dialog_request_error": "Operacja przeniesienia wirtualnego centrum danych nie powiodła się.",
+  "vrack_move_dialog_title_managedBareMetalDatacenter": "Przeniesienie centrum danych Managed Bare Metal",
+  "vrack_move_dialog_intro_managedBareMetalDatacenter": "Wybrałeś usługę centrum danych Managed Bare Metal. Usługa musi zostać przeniesiona do innej usługi vRack."
 }

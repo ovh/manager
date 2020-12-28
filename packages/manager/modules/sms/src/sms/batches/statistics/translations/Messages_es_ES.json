@@ -1,0 +1,9 @@
+{
+  "sms_batches_statistics_title": "Estadísticas",
+  "sms_batches_statistics_load_error": "Se ha producido un error al cargar las estadísticas. {{error}}",
+  "sms_batches_statistics_date": "Fecha",
+  "sms_batches_statistics_details_link": "Más información",
+  "sms_batches_statistics_sent_number": "Número de SMS enviados",
+  "sms_batches_statistics_delivered_number": "Número de SMS entregados",
+  "sms_batches_statistics_stoplisted_number": "Número de bajas"
+}

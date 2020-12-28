@@ -88,21 +88,27 @@ export default /* @ngInject */ ($stateProvider) => {
         VpsService.getTaskInError(serviceName).then((tasks) =>
           head(filter(tasks, { type: 'migrate' })),
         ),
-
       configurationTile: /* @ngInject */ (
         availableUpgrades,
         catalog,
         stateVps, // from apiv6
         vps, // from 2api
-      ) => ({
-        upgrades: VpsConfigurationTile.setVps(vps, stateVps.model)
-          .setAvailableUpgrades(availableUpgrades)
-          .getAvailableUpgrades(catalog),
-        model: {
-          memory: VpsConfigurationTile.currentPlan,
-          storage: VpsConfigurationTile.currentPlan,
-        },
-      }),
+      ) => {
+        const tile = new VpsConfigurationTile(
+          vps,
+          stateVps.model,
+          catalog,
+          availableUpgrades,
+        );
+        return {
+          currentPlan: tile.currentPlan,
+          upgrades: tile.getAvailableUpgrades(),
+          model: {
+            memory: tile.currentPlan,
+            storage: tile.currentPlan,
+          },
+        };
+      },
 
       getUpscaleHref: /* @ngInject */ ($state) => () =>
         $state.href('vps.detail.upscale'),

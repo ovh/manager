@@ -4,7 +4,7 @@
  * @name actionsMenu
  *
  *  @requires [pascalprecht.translate](https://github.com/angular-translate/angular-translate)
- *  @requires [ng-ovh-responsive-popover](https://github.com/ovh-ux/ng-ovh-responsive-popover)
+ *  @requires [ng-ovh-responsive-popover](https://github.com/ovh/manager/tree/master/packages/components/ng-ovh-responsive-popover)
  *
  * @description
  * _An actions menu gives the opportunity to group a set of actions available for a specific

@@ -29,7 +29,7 @@
                         </label>
                         <p
                             class="form-control-static"
-                            data-ng-bind="('ip_service' + data.ipBlock.routedTo) | ducTranslateAlt: data.ipBlock.routedTo"
+                            data-ng-bind="('ip_service' + (data.ipBlock.routedTo.serviceName || '_PARK')) | ducTranslateAlt: data.ipBlock.routedTo.serviceName"
                         ></p>
                     </div>
                     <div class="form-group">

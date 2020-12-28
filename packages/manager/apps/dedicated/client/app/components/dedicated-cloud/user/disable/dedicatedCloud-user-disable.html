@@ -1,0 +1,12 @@
+<div
+    data-wizard
+    data-wizard-on-cancel="$ctrl.goBack.bind($ctrl)"
+    data-wizard-on-finish="$ctrl.disableUser.bind($ctrl)"
+    data-wizard-title=":: 'dedicatedCloud_USER_disable_title' | translate"
+>
+    <div data-wizard-step>
+        <p
+            data-ng-bind-html=":: 'dedicatedCloud_USER_disable_message' | translate:{ t0: $ctrl.user.name }"
+        ></p>
+    </div>
+</div>

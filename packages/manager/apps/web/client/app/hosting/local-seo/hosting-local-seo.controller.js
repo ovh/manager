@@ -13,6 +13,7 @@ angular.module('App').controller(
       $stateParams,
       $translate,
       $window,
+      atInternet,
       Alerter,
       Hosting,
       HostingLocalSeo,
@@ -23,6 +24,7 @@ angular.module('App').controller(
       this.$stateParams = $stateParams;
       this.$translate = $translate;
       this.$window = $window;
+      this.atInternet = atInternet;
       this.Alerter = Alerter;
       this.Hosting = Hosting;
       this.HostingLocalSeo = HostingLocalSeo;
@@ -30,6 +32,8 @@ angular.module('App').controller(
     }
 
     $onInit() {
+      this.atInternet.trackPage({ name: 'web::hosting::visibility-pro' });
+
       this.datagridId = 'localSeoDatagrid';
       this.loading = {
         locations: false,

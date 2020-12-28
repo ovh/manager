@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/testcafe-manager",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Tool to run end-to-end web testing using TestCafé.",
   "repository": {
     "type": "git",
@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "dotenv": "^8.2.0",
-    "testcafe": "^1.7.0"
+    "testcafe": "1.8.2"
   },
   "devDependencies": {
     "eslint": "^6.7.2",

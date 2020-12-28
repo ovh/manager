@@ -22,6 +22,7 @@ export default /* @ngInject */ function($compile) {
     restrict: 'A',
     scope: {
       item: '=sidebarMenuListItem',
+      namespace: '=sidebarMenuListItemNamespace',
     },
     require: ['sidebarMenuListItem', '^sidebarMenuList'],
     link($scope, $element, attribute, controllers) {
@@ -36,6 +37,7 @@ export default /* @ngInject */ function($compile) {
           $compile(`<sidebar-menu-list
                       data-sidebar-menu-list-items='ItemMenuCtrl.item.subItems'
                       data-sidebar-menu-list-level='ItemMenuCtrl.item.level + 1'
+                      data-sidebar-menu-list-namespace='ItemMenuCtrl.namespace'
                       class='sub-menu'>
                   </sidebar-menu-list>`)($scope, (cloned) => {
             navElement.append(cloned);

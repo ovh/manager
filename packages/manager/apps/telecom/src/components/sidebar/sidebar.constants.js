@@ -75,8 +75,12 @@ export const URLS = {
     FR: 'https://www.ovhtelecom.fr/fax/',
   },
   overTheBox: {
-    FR: '#/overTheBox/order',
+    FR: 'https://www.ovhtelecom.fr/overthebox/tarifs.xml',
   },
 };
 
-export default { URLS };
+export const TELEPHONY_AVAILABILITY = {
+  order: ['FR'],
+};
+
+export default { URLS, TELEPHONY_AVAILABILITY };

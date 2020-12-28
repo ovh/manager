@@ -1,0 +1,7 @@
+{
+  "dedicatedCloud_configuration_security_policy_logout_title": "Modifica la politica di disconnessione",
+  "dedicatedCloud_configuration_security_policy_logout_step1_question": "Politica di disconnessione in caso di connessione simultanea",
+  "dedicatedCloud_SECURITY_logout_policy_FIRST": "Disconnessione del primo utente connesso",
+  "dedicatedCloud_SECURITY_logout_policy_LAST": "Disconnessione dell'ultimo utente connesso",
+  "dedicatedCloud_configuration_security_policy_logout_step1_value": "Seleziona"
+}

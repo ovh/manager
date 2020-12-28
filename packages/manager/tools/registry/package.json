@@ -1,0 +1,39 @@
+{
+  "name": "@ovh-ux/manager-registry",
+  "version": "1.0.0",
+  "description": "Provide OVHcloud Manager registry",
+  "keywords": [
+    "registry",
+    "manager",
+    "ovh"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh/manager.git",
+    "directory": "packages/manager/tools/registry"
+  },
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
+  "main": "src/index.js",
+  "bin": {
+    "manager-registry": "bin/manager-registry.js",
+    "manager-registry-dev": "bin/manager-registry-dev.js",
+    "manager-registry-static": "bin/manager-registry-static.js",
+    "manager-registry-static-add": "bin/manager-registry-static-add.js",
+    "manager-registry-static-generate-manifests": "bin/manager-registry-static-generate-manifests.js",
+    "manager-registry-static-serve": "bin/manager-registry-static-serve.js",
+    "manager-registry-static-sync": "bin/manager-registry-static-sync.js"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "commander": "^4.0.0",
+    "express": "^4.17.1",
+    "fs-extra": "^9.0.1",
+    "multimatch": "^4.0.0",
+    "semver": "^7.3.2"
+  },
+  "engines": {
+    "node": ">=12.13",
+    "yarn": ">=1.21.1"
+  }
+}

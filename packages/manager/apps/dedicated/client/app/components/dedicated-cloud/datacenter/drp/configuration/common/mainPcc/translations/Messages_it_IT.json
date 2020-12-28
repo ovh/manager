@@ -1,0 +1,14 @@
+{
+  "dedicatedCloud_datacenter_pcc_name_EPCC": "Nome del Private Cloud: {{pcc}}",
+  "dedicatedCloud_datacenter_main_datacenter_name_EPCC": "Identificativo del datacenter Private Cloud corrispondente",
+  "dedicatedCloud_datacenter_main_datacenter_name_placeholder": "Scegli il datacenter principale",
+  "dedicatedCloud_datacenter_main_ip_address_pool_available": "Pool di indirizzi IP pubblici disponibile",
+  "dedicatedCloud_datacenter_main_ip_address_pool_available_placeholder": "Scegli un IP pubblico libero",
+  "dedicatedCloud_datacenter_local_vra_network": "Rete VRA Datacenter OVHcloud",
+  "dedicatedCloud_datacenter_local_vra_network_help": "È possibile scegliere la tua sottorete vRA locale o utilizzare quella proposta da OVHcloud.",
+  "dedicatedCloud_datacenter_local_vra_network_placeholder": "Inserisci la sottorete del vRA locale",
+  "dedicatedCloud_datacenter_no_ip_pool": "Non sono disponibili pool di indirizzi IP.",
+  "dedicatedCloud_datacenter_order_please": "È possibile ordinarli",
+  "dedicatedCloud_datacenter_pcc_name_MBM": "Nome della soluzione Essentials: {{pcc}}",
+  "dedicatedCloud_datacenter_main_datacenter_name_MBM": "Identificativo del datacenter Essentials corrispondente"
+}

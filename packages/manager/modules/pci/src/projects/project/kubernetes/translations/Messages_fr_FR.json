@@ -10,7 +10,7 @@
   "kube_common_cancel": "Annuler",
   "kube_common_delete": "Supprimer",
   "kube_common_node_pool_title": "Configurez votre pool de nœuds",
-  "kube_common_billing_type_title": "Mode de facturation",
+  "kube_common_billing_type_title": "Facturation et anti-affinité",
   "kube_common_create_node_pool": "Créer un pool de nœuds",
   "kube_common_flavor_load_error": "Échec du chargement des nœuds: {{message}}"
 }

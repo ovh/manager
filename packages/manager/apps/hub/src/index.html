@@ -33,13 +33,7 @@
         </div>
         <!-- /Skip to main content -->
         <ovh-manager-navbar
-            data-navbar-options="{
-                universe: 'hub',
-                version: 'beta',
-                toggle: {
-                    event: 'sidebar:loaded',
-                },
-            }"
+            data-navbar-options="$ctrl.navbarOptions"
             data-sidebar-expand="true"
             data-sidebar-links="{}"
         >
@@ -71,9 +65,10 @@
         </div>
 
         <ovh-chatbot
-            data-ng-if="$ctrl.user.ovhSubsidiary"
+            data-ng-if="$ctrl.chatbotEnabled"
             data-language="{{$ctrl.currentLanguage}}"
             data-country="{{$ctrl.user.ovhSubsidiary}}"
+            data-support-level="{{$ctrl.user.supportLevel.level}}"
         ></ovh-chatbot>
     </body>
 </html>

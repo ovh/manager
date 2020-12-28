@@ -102,9 +102,9 @@ export default class PackXdslCtrl {
   updateUIForState(state) {
     if (this.packName === PACK_XDSL.sdsl) {
       if (
-        state.name === 'telecom.packs.pack.xdsl' ||
-        state.name === 'telecom.packs.pack.xdsl.modem' ||
-        state.name === 'telecom.packs.pack.xdsl.tasks'
+        state.name === 'telecom.packs.pack.xdsl.line' ||
+        state.name === 'telecom.packs.pack.xdsl.line.modem' ||
+        state.name === 'telecom.packs.pack.xdsl.line.tasks'
       ) {
         this.setAnim('anim');
         return;
@@ -114,19 +114,19 @@ export default class PackXdslCtrl {
     this.smoothScroll(document.body);
 
     switch (state.name) {
-      case 'telecom.packs.pack.xdsl.modem.wifi':
-      case 'telecom.packs.pack.xdsl.modem.dmz':
-      case 'telecom.packs.pack.xdsl.access-notifications':
-      case 'telecom.packs.pack.xdsl.access-diagnostic':
-      case 'telecom.packs.pack.xdsl.access-migration':
-      case 'telecom.packs.pack.xdsl.access-ip':
-      case 'telecom.packs.pack.xdsl.access-deconsolidation':
-      case 'telecom.packs.pack.xdsl.access-order':
-      case 'telecom.packs.pack.xdsl.access-resiliation':
-      case 'telecom.packs.pack.xdsl.missing-rio':
-      case 'telecom.packs.pack.xdsl.line-diagnostic':
-      case 'telecom.packs.pack.xdsl.modem.templates':
-      case 'telecom.packs.pack.xdsl.access-modem-exchange':
+      case 'telecom.packs.pack.xdsl.line.modem.wifi':
+      case 'telecom.packs.pack.xdsl.line.modem.dmz':
+      case 'telecom.packs.pack.xdsl.line.access-notifications':
+      case 'telecom.packs.pack.xdsl.line.access-diagnostic':
+      case 'telecom.packs.pack.xdsl.line.access-migration':
+      case 'telecom.packs.pack.xdsl.line.access-ip':
+      case 'telecom.packs.pack.xdsl.line.access-deconsolidation':
+      case 'telecom.packs.pack.xdsl.line.access-order':
+      case 'telecom.packs.pack.xdsl.line.access-resiliation':
+      case 'telecom.packs.pack.xdsl.line.missing-rio':
+      case 'telecom.packs.pack.xdsl.line.line-diagnostic':
+      case 'telecom.packs.pack.xdsl.line.modem.templates':
+      case 'telecom.packs.pack.xdsl.line.access-modem-exchange':
         this.setAnim('invert-anim');
         this.content.back.state = '^';
         this.getXdsl().then((xdsl) => {
@@ -134,9 +134,9 @@ export default class PackXdslCtrl {
           this.content.accessType = xdsl.accessType;
         });
         break;
-      case 'telecom.packs.pack.xdsl.modem':
-      case 'telecom.packs.pack.xdsl.tasks':
-      case 'telecom.packs.pack.xdsl':
+      case 'telecom.packs.pack.xdsl.line.modem':
+      case 'telecom.packs.pack.xdsl.line.tasks':
+      case 'telecom.packs.pack.xdsl.line':
         this.setAnim('anim');
         this.content.back.state = 'telecom.packs.pack';
         this.getXdsl().then((xdsl) => {

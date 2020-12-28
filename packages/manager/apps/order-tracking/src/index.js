@@ -5,6 +5,9 @@ import ovhManagerCore from '@ovh-ux/manager-core';
 import ssoAuth from '@ovh-ux/ng-ovh-sso-auth';
 import ngOvhOrderTracking from '@ovh-ux/ng-ovh-order-tracking';
 
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
+
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 

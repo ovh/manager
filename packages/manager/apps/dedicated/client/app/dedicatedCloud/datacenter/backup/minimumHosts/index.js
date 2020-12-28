@@ -1,21 +1,24 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
-import '@ovh-ux/ng-translate-async-loader';
-import 'angular-translate';
+import 'oclazyload';
 
-import component from './component';
-import routing from './routing';
+const moduleName = 'ovhManagerDedicatedCloudBackupMinimumHostsLazyloading';
 
-const moduleName = 'ovhManagerDedicatedCloudBackupMinimumHosts';
-
-angular
-  .module(moduleName, [
-    'ngTranslateAsyncLoader',
-    'pascalprecht.translate',
-    'ui.router',
-  ])
-  .config(routing)
-  .component('dedicatedCloudDatacenterBackupMinimumHosts', component)
-  .run(/* @ngTranslationsInject:json ./translations */);
+angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
+  /* @ngInject */ ($stateProvider) => {
+    $stateProvider.state(
+      'app.dedicatedClouds.datacenter.backup.minimum-hosts.**',
+      {
+        url: '/minimum-hosts',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+          return import('./minimumHosts.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
+      },
+    );
+  },
+);
 
 export default moduleName;

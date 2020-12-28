@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-overthebox",
-  "version": "6.1.0",
+  "version": "6.1.4",
   "private": true,
   "description": "OverTheBox product.",
   "repository": {
@@ -15,19 +15,19 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^7.0.0"
+    "@ovh-ux/component-rollup-config": "^7.0.0 || ^8.0.0"
   },
   "peerDependencies": {
     "@ovh-ux/manager-core": "^10.0.0 || ^11.0.0",
-    "@ovh-ux/manager-ng-layout-helpers": "^1.0.0",
+    "@ovh-ux/manager-ng-layout-helpers": "^1.0.0 || ^2.0.0",
     "@ovh-ux/manager-telecom-styles": "^4.0.0",
-    "@ovh-ux/ng-ovh-contracts": "^4.0.0",
+    "@ovh-ux/ng-ovh-contracts": "^4.0.1",
     "@ovh-ux/ng-ovh-telecom-universe-components": "^6.0.0 || ^7.0.0",
     "@ovh-ux/ng-ovh-ui-confirm-modal": "^2.0.0",
     "@ovh-ux/ng-tail-logs": "^2.0.3",
     "@ovh-ux/ng-translate-async-loader": "^2.1.0",
     "@ovh-ux/ng-ui-router-title": "^3.0.0",
-    "@ovh-ux/ui-kit": "^4.1.12",
+    "@ovh-ux/ui-kit": "^4.4.1",
     "@uirouter/angularjs": "^1.0.15",
     "angular": "^1.7.5",
     "angular-translate": "^2.11.0",
@@ -35,7 +35,7 @@
     "bootstrap4": "twbs/bootstrap#v4.0.0",
     "moment": "^2.24.0",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^9.44.0",
+    "ovh-api-services": "^11.0.0",
     "ovh-manager-webfont": "^1.2.0",
     "ovh-ui-kit-bs": "^4.1.5"
   }

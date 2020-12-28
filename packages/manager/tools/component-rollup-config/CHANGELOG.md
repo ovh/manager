@@ -1,3 +1,58 @@
+## [8.0.2](https://github.com/ovh/manager/compare/@ovh-ux/component-rollup-config@8.0.1...@ovh-ux/component-rollup-config@8.0.2) (2020-12-22)
+
+
+### Bug Fixes
+
+* **plugins:** handle multiple translation injection comments ([#4157](https://github.com/ovh/manager/issues/4157)) ([8ee6d10](https://github.com/ovh/manager/commit/8ee6d10cbdfea8009c237806b2494cb8102bc52f))
+
+
+
+## [8.0.1](https://github.com/ovh/manager/compare/@ovh-ux/component-rollup-config@8.0.0...@ovh-ux/component-rollup-config@8.0.1) (2020-12-08)
+
+
+### Bug Fixes
+
+* exclude node_modules from dynamicImport processing ([#4105](https://github.com/ovh/manager/issues/4105)) ([#4128](https://github.com/ovh/manager/issues/4128)) ([9c3e2f2](https://github.com/ovh/manager/commit/9c3e2f2b2441f834153493f27615bfa24b399a60))
+
+
+### Reverts
+
+* Revert "build: exclude node_modules from dynamicImport processing (#4105)" ([745e05e](https://github.com/ovh/manager/commit/745e05ef9ab16c3bf8beba175403e6ada60cc537)), closes [#4105](https://github.com/ovh/manager/issues/4105)
+
+
+
+# [8.0.0](https://github.com/ovh/manager/compare/@ovh-ux/component-rollup-config@7.3.0...@ovh-ux/component-rollup-config@8.0.0) (2020-11-25)
+
+
+### Features
+
+* **plugins:** rewrite translation inject and drop xml support ([6b5f368](https://github.com/ovh/manager/commit/6b5f368ede85a7602d2649557f78d099399f4f56)), closes [#1699](https://github.com/ovh/manager/issues/1699)
+
+
+### BREAKING CHANGES
+
+* **plugins:** translation xml files are not supported anymore
+
+
+
+# [7.3.0](https://github.com/ovh/manager/compare/@ovh-ux/component-rollup-config@7.2.1...@ovh-ux/component-rollup-config@7.3.0) (2020-10-28)
+
+
+### Features
+
+* add core-js to polyfill ([1411e1c](https://github.com/ovh/manager/commit/1411e1ca873d1ffd715c43fcadfe96f26e5be874))
+
+
+
+## [7.2.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/component-rollup-config@7.2.0...@ovh-ux/component-rollup-config@7.2.1) (2020-10-13)
+
+
+### Bug Fixes
+
+* **plugins.uirouter:** check if item key is defined ([#3776](https://github.com/ovh-ux/manager/issues/3776)) ([b27c9a8](https://github.com/ovh-ux/manager/commit/b27c9a8185de6bc0c8e8824a0e6ff58b12cdcca3))
+
+
+
 # [7.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/component-rollup-config@7.1.0...@ovh-ux/component-rollup-config@7.2.0) (2020-07-08)
 
 

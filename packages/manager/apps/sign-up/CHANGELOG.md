@@ -1,3 +1,21 @@
+## [2.1.2](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@2.1.1...@ovh-ux/sign-up-app@2.1.2) (2020-10-28)
+
+
+### Bug Fixes
+
+* **deps:** upgrade webpack to v4.44.2 ([fc868d2](https://github.com/ovh/manager/commit/fc868d2670b0de220837c8917d90fa3020e6d4ca))
+
+
+
+## [2.1.1](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@2.1.0...@ovh-ux/sign-up-app@2.1.1) (2020-10-13)
+
+
+### Bug Fixes
+
+* **deps:** upgrade to @ovh-ux/manager-config v2.0.0 ([ca3f955](https://github.com/ovh/manager/commit/ca3f9554c13b1436cbdeed3de8ac69e399d5dd93))
+
+
+
 # [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@2.0.2...@ovh-ux/sign-up-app@2.1.0) (2020-09-30)
 
 

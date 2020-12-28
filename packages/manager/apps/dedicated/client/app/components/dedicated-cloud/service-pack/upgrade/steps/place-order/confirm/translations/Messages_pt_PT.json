@@ -1,0 +1,15 @@
+{
+  "confirm_order_confirm": "Confirmar",
+  "confirm_order_cancel": "Cancelar",
+  "confirm_order_basic_title": "Ativação de uma opção",
+  "confirm_order_basic_question_1": "Você está prestes a ativar o pacote de opções <strong>{{itemName}}</strong>.",
+  "confirm_order_certification_title": "Ativação de uma certificação",
+  "confirm_order_certification_question_1": "Você está prestes a ativar a certificação <strong>{{itemName}}</strong>.",
+  "confirm_order_question_monthly_adding": "Sua taxa mensal aumentará em <strong>{{price}}</strong>.",
+  "confirm_order_question_monthly_deducting": "O seu preço mensal diminuirá em <strong>{{ price }}</strong>.",
+  "confirm_order_question_hourly_adding": "A sua taxa horária aumentará em <strong>{{price}}</strong>.",
+  "confirm_order_question_hourly_deducting": "O seu preço à hora diminuirá em <strong>{{ price }}</strong>.",
+  "confirm_order_question_confirm": "Tens a certeza que queres fazer isto?",
+  "confirm_order_question_monthly_same": "O seu preço mensal permanecerá inalterado.",
+  "confirm_order_question_hourly_same": "O seu preço à hora permanecerá inalterado."
+}

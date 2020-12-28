@@ -5,6 +5,8 @@ import has from 'lodash/has';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 import isString from 'lodash/isString';
 
+import { Environment } from '@ovh-ux/manager-config';
+
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
@@ -41,6 +43,7 @@ import ovhManagerBanner from '@ovh-ux/manager-banner';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
 import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
 import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
+import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 
 import cloudUniverseComponents from '../cloudUniverseComponents';
 
@@ -106,6 +109,7 @@ angular
       ngOvhJqueryUiDraggable,
       ngOvhJqueryUiDroppable,
       ngOvhSlider,
+      ngOvhFeatureFlipping,
       ngTailLogs,
       'matchmedia-ng',
       'angular-websocket',
@@ -128,10 +132,12 @@ angular
       CORE_MANAGER_URLSProvider, // eslint-disable-line camelcase
     ) => {
       const dedicatedRedirections = [
+        '/dbaas/logs',
         '/paas/veeam-enterprise',
         '/paas/veeam',
         '/iaas/vps',
         '/paas/nasha',
+        '/dbaas/metrics',
         '/vrack',
       ];
 
@@ -193,6 +199,13 @@ angular
       CucConfigProvider.setRegion(coreConfigProvider.getRegion());
     },
   )
+  .config(
+    /* @ngInject */ (ovhFeatureFlippingProvider) => {
+      ovhFeatureFlippingProvider.setApplicationName(
+        Environment.getApplicationName(),
+      );
+    },
+  )
   .run(
     /* @ngInject */ ($state) => {
       $state.defaultErrorHandler((error) => {
@@ -217,6 +230,7 @@ angular
     /* @ngInject */ ($rootScope, $transitions) => {
       const unregisterHook = $transitions.onSuccess({}, () => {
         detachPreloader();
+        $rootScope.$broadcast('app:started');
         unregisterHook();
       });
     },

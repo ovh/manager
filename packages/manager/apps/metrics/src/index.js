@@ -1,0 +1,9 @@
+import 'script-loader!jquery'; // eslint-disable-line
+import '@ovh-ux/manager-metrics';
+import { Environment } from '@ovh-ux/manager-config';
+import angular from 'angular';
+import './index.less';
+
+Environment.setRegion(__WEBPACK_REGION__);
+
+angular.module('metricsApp', ['ovhManagerMetrics']);

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-server-sidebar",
-  "version": "3.1.1",
+  "version": "3.5.4",
   "private": true,
   "description": "Sidebar component shared across all control panel.",
   "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/modules/server-sidebar#readme",
@@ -32,20 +32,20 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^7.0.0",
+    "@ovh-ux/component-rollup-config": "^7.0.0 || ^8.0.0",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.0.0",
-    "@ovh-ux/ui-kit": "^4.2.3"
+    "@ovh-ux/ui-kit": "^4.4.1"
   },
   "peerDependencies": {
     "@ovh-ux/manager-config": "^1.0.0 || ^2.0.0",
     "@ovh-ux/manager-core": "^10.0.0 || ^11.0.0",
-    "@ovh-ux/ng-at-internet": "^5.3.0",
+    "@ovh-ux/ng-at-internet": "^5.4.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.0",
-    "@ovh-ux/ng-ovh-sidebar-menu": "^10.0.0",
+    "@ovh-ux/ng-ovh-sidebar-menu": "^10.1.0",
     "@ovh-ux/ng-translate-async-loader": "^2.1.0",
-    "@ovh-ux/ui-kit": "^4.1.12",
+    "@ovh-ux/ui-kit": "^4.4.1",
     "angular": "^1.7.8",
     "angular-translate": "^2.18.1",
-    "ovh-api-services": "^9.39.1"
+    "ovh-api-services": "^11.0.0"
   }
 }

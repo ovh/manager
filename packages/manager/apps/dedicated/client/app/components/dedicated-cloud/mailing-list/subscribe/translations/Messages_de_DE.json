@@ -1,0 +1,11 @@
+{
+  "dedicatedCloud_subscribe_mailing": "Anmeldung bei der Mailingliste",
+  "dedicatedCloud_subscribe_mailing_disabled_EPCC": "Das Abonnement zur Private Cloud Mailingliste ({{t0}}) ist für Sie nicht verfügbar.",
+  "dedicatedCloud_subscribe_mailing_step1_EPCC": "Geben Sie die E-Mail-Adresse an, für die Sie die Private Cloud Mailingsliste abonnieren möchten ({{t0}}):",
+  "dedicatedCloud_subscribe_mailing_step2_EPCC": "Sie melden {{t0}} zur Private Cloud Mailingliste an ({{t1}})",
+  "dedicatedCloud_subscribe_mailing_step2_success": "Ihre Anfrage zur Anmeldung von <b>{{t0}}</b> wurde erfolgreich durchgeführt",
+  "dedicatedCloud_subscribe_mailing_step2_error": "Bei der Anfrage zur Anmeldung von <b>{{t0}}</b> ist ein Fehler aufgetreten",
+  "dedicatedCloud_subscribe_mailing_disabled_MBM": "Das Abonnement der Mailingliste von Managed Bare Metal ({{t0}}) steht Ihnen nicht zur Verfügung.",
+  "dedicatedCloud_subscribe_mailing_step1_MBM": "Geben Sie die E-Mail-Adresse an, für die Sie die Mailingliste von Managed Bare Metal abonnieren möchten ({{t0}}):",
+  "dedicatedCloud_subscribe_mailing_step2_MBM": "Sie abonnieren nun die Managed Bare Metal Mailingliste ({{t1}}) für {{t0}}."
+}

@@ -1,0 +1,18 @@
+{
+  "dedicatedCloud_datacenter_order_ip": "Vous n’avez aucun pool d’adresses IP disponible. Veuillez en <a ui-sref=\"{{sref}}\">commander</a>",
+  "dedicatedCloud_datacenter_drp_confirm_create_success_part_one": "Votre PRA Zerto a été créé avec succès !",
+  "dedicatedCloud_datacenter_drp_confirm_create_success_part_two": "Vous avez reçu votre mot de passe ZSSP sur l’adresse email {{email}}.",
+  "dedicatedCloud_datacenter_drp_confirm_creation_pending": "Votre PRA Zerto est en cours d’activation. L’opération peut prendre jusqu’à une heure de délai.",
+  "dedicatedCloud_datacenter_drp_confirm_creation_pending_task_EPCC": "N’hésitez pas à vérifier la tâche enableDisasterRecovery du PCC principal pour suivre son avancement.",
+  "dedicatedCloud_datacenter_drp_confirm_create_error": "Une erreur est survenue lors de l’activation de votre PRA.",
+  "dedicatedCloud_datacenter_drp_confirm_summary_title": "Résumé de la configuration de votre PRA",
+  "dedicatedCloud_datacenter_drp_confirm_summary_drp_type": "Type de plan de reprise d’activité",
+  "dedicatedCloud_datacenter_drp_confirm_summary_secondary_datacenter": "Datacenter secondaire",
+  "dedicatedCloud_datacenter_drp_confirm_summary_secondary_pcc_EPCC": "Private Cloud secondaire",
+  "dedicatedCloud_datacenter_drp_confirm_delete_drp_title": "Supprimer définitivement votre PRA",
+  "dedicatedCloud_datacenter_drp_confirm_delete_drp_action_text": "Supprimer Zerto PRA",
+  "dedicatedCloud_datacenter_drp_confirm_delete_drp_modal_title": "Suppression du plan de reprise d’actitivé",
+  "dedicatedCloud_datacenter_drp_confirm_delete_drp_modal_question": "Êtes-vous sûr(e) de vouloir supprimer le PRA ? Cette action est irréversible.",
+  "dedicatedCloud_datacenter_drp_confirm_delete_drp_success": "Votre PRA Zerto est en cours de suppression. L’opération prendra quelques minutes",
+  "dedicatedCloud_datacenter_drp_confirm_delete_drp_error": "Une erreur est survenue lors de la suppression du plan de reprise d’activité"
+}

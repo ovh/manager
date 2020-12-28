@@ -88,7 +88,7 @@
   "user_ipRestrictions_table_empty": "Keine Einschränkungen festgelegt",
   "user_ipRestrictions_defaultRule_success": "Die Standardregel wurde erfolgreich geändert.",
   "user_ipRestrictions_defaultRule_error": "Bei der Änderung der Standardregel ist ein Fehler aufgetreten:",
-  "user_ipRestrictions_error_disable": "Achtung! In der derzeitigen Konfiguration können Sie sich nicht mehr mit Ihrem Kundencenter verbinden!",
+  "user_ipRestrictions_error_disable": "Bitte autorisieren Sie eine IP-Adresse, da Sie sich sonst nicht mehr in Ihrem Kundencenter einloggen können.",
   "user_ipRestrictions_error": "Beim Laden der Informationen ist ein Fehler aufgetreten.",
   "user_security_double_auth_activate": "Die Zwei-Faktor-Authentifizierung aktivieren",
   "user_security_double_auth_deactivate": "Die Zwei-Faktor-Authentifizierung deaktivieren",
@@ -574,7 +574,7 @@
   "user_account_security_double_auth_type_backup_code_info_u2f": "Verwenden Sie diese Codes, falls Sie Ihren USB-Token verloren oder keinen Zugriff darauf haben.",
   "user_account_security_double_auth_type_backup_code_action_manage": "Die Codes erneut erstellen",
   "user_account_security_double_auth_type_backup_code_action_generate": "Die Codes generieren",
-  "user_account_security_double_auth_type_backup_code_action_delete": "Die Codes löschen",
+  "user_account_security_double_auth_type_backup_code_action_delete": "2FA-Codes deaktivieren",
   "user_account_security_double_auth_type_backup_code_modal_title": "Zwei-Faktor-Authentifizierung per Notfall-Code",
   "user_account_security_double_auth_type_backup_code_modal_generate": "Die Notfall-Codes erhalten",
   "user_account_security_double_auth_type_backup_code_modal_generate_info": "Für den Fall des Verlusts oder Diebstahls Ihres Smartphones empfehlen wir Ihnen, die Liste der Notfall-Codes an einem gesicherten Ort aufzubewahren.",
@@ -605,5 +605,6 @@
   "user_account_support_level_title": "Mein Support-Level",
   "user_account_ssh_keys_title": "Meine SSH-Schlüssel",
   "user_account_users_management_title": "Benutzerverwaltung",
-  "user_account_advanced_title": "Erweiterte Einstellungen"
+  "user_account_advanced_title": "Erweiterte Einstellungen",
+  "user_ipRestrictions_warning_last_ip_with_deny": "Bitte ändern Sie die Standardregel in „Erlaubt“, um die letzte IP-Adresse löschen zu können."
 }

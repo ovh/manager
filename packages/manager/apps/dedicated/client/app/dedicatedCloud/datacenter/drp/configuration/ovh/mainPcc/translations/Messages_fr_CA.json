@@ -1,7 +1,0 @@
-{
-  "dedicatedCloud_datacenter_pcc_name": "Nom du Private Cloud : {{pcc}}",
-  "dedicatedCloud_datacenter_main_datacenter_name": "Identifiant du datacenter Private Cloud correspondant",
-  "dedicatedCloud_datacenter_main_datacenter_name_placeholder": "Choisissez votre datacenter principal",
-  "dedicatedCloud_datacenter_main_ip_address_pool_available": "Pool d’adresses IP publiques disponible",
-  "dedicatedCloud_datacenter_main_ip_address_pool_available_placeholder": "Choisissez une adresse IP publique libre"
-}

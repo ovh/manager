@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-account-sidebar",
-  "version": "3.0.1",
+  "version": "3.1.0",
   "private": true,
   "description": "A sidebar component shared across all control panel.",
   "repository": {
@@ -24,23 +24,24 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-account-sidebar' --include-dependencies -- yarn run dev:watch"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^7.0.0",
+    "@ovh-ux/component-rollup-config": "^7.0.0 || ^8.0.0",
     "@ovh-ux/manager-hub": "^1.0.0 || ^2.0.0",
     "lodash": "^4.17.15"
   },
   "peerDependencies": {
+    "@ovh-ux/manager-config": "^2.0.1",
     "@ovh-ux/manager-core": "^10.0.0 || ^11.0.0",
-    "@ovh-ux/ng-at-internet": "^5.1.0",
+    "@ovh-ux/ng-at-internet": "^5.3.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^3.0.0",
-    "@ovh-ux/ng-ovh-order-tracking": "^1.0.0",
-    "@ovh-ux/ng-ovh-payment-method": "^7.0.1",
+    "@ovh-ux/ng-ovh-order-tracking": "^1.0.4",
+    "@ovh-ux/ng-ovh-payment-method": "^7.0.6",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.1",
     "@ovh-ux/ng-translate-async-loader": "^2.1.0",
-    "@ovh-ux/ui-kit": "^4.1.12",
+    "@ovh-ux/ui-kit": "^4.4.1",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",
     "bootstrap4": "twbs/bootstrap#v4.0.0",
-    "ovh-api-services": "^9.39.1"
+    "ovh-api-services": "^11.0.0"
   }
 }

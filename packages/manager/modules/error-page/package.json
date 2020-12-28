@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-error-page",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "private": true,
   "description": "Error page component.",
   "repository": {
@@ -19,7 +19,7 @@
     "popper.js": "^1.14.7"
   },
   "peerDependencies": {
-    "@ovh-ux/ui-kit": "^4.1.12",
+    "@ovh-ux/ui-kit": "^4.4.1",
     "angular": "^1.7.5",
     "angular-aria": "^1.7.5",
     "angular-dynamic-locale": "^0.1.37",

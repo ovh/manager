@@ -1,3 +1,4 @@
+import flattenDeep from 'lodash/flattenDeep';
 import controller from './hosting.controller';
 import template from './hosting.html';
 
@@ -62,9 +63,9 @@ export default /* @ngInject */ ($stateProvider) => {
             )
           : $q.resolve([])
         ).then((servicesInformation) =>
-          servicesInformation
-            .filter((information) => information !== null)
-            .flatten(),
+          flattenDeep(
+            servicesInformation.filter((information) => information !== null),
+          ),
         ),
       pendingTasks: /* @ngInject */ (HostingTask, serviceName) =>
         HostingTask.getPending(serviceName).catch(() => []),
@@ -83,9 +84,11 @@ export default /* @ngInject */ ($stateProvider) => {
             ),
           )
           .then((privateDatabasesInformation) =>
-            privateDatabasesInformation
-              .filter((information) => information !== null)
-              .flatten(),
+            flattenDeep(
+              privateDatabasesInformation.filter(
+                (information) => information !== null,
+              ),
+            ),
           )
           .then((privateDatabasesInformation) =>
             $q.all(
@@ -151,6 +154,7 @@ export default /* @ngInject */ ($stateProvider) => {
         availableOptions.find(({ family }) => family === LOCAL_SEO_FAMILY),
     },
     translations: { value: ['.'], format: 'json' },
+    atInternet: { ignore: true },
   });
 
   $stateProvider.state('app.hosting.upgrade', {

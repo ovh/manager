@@ -1,0 +1,3 @@
+{
+  "dedicatedCloud_datacenter_backup_nospla_EPCC": "Your Private Cloud must have an SPLA licence before you can enable the backup. To activate the SPLA licence, please go to the <a href=\"{{ licenceLink }}\">Windows Licence</a> section for your product."
+}

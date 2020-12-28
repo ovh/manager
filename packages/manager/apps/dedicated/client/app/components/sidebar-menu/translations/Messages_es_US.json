@@ -34,15 +34,5 @@
   "otrs_service_category_CDN": "Content Delivery Network",
   "otrs_menu_userAccount_1": "Bonjour {{username}}",
   "otrs_menu_userAccount_2": "votre compte",
-  "global_logout": "Salir",
-  "universe_univers-cloud_name": "Cloud",
-  "universe_univers-dedicated_name": "Dedicado",
-  "universe_univers-telecom_name": "Telecom",
-  "universe_univers-web_name": "Web",
-  "universe_univers-sunrise_name": "Sunrise",
-  "universe_univers-portal_name": "MyOVH",
-  "universe_labs_chatbot": "Soporte virtual OVH",
-  "universe_univers-partners_name": "Asociados",
-  "universe_univers-labs_name": "UX Labs",
-  "sidebar_actions_menu_cloud_project": "Proyecto Cloud"
+  "global_logout": "Salir"
 }

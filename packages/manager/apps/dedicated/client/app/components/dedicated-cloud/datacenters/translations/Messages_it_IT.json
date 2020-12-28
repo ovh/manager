@@ -1,0 +1,10 @@
+{
+  "dedicatedCloud_datacenters_title": "Datacenter",
+  "dedicatedCloud_datacenters_add": "Aggiungi un datacenter",
+  "dedicatedCloud_datacenters_cpu": "CPU totale",
+  "dedicatedCloud_datacenters_ram": "RAM totale",
+  "dedicatedCloud_datacenters_disk": "Spazio disco totale",
+  "dedicatedCloud_datacenters_order_host": "Ordina un host",
+  "dedicatedCloud_datacenters_order_datastore": "Ordina un datastore",
+  "dedicatedCloud_datacenters_loading_error": "Si è verificato un errore durante il caricamento delle informazioni dei datacenter."
+}

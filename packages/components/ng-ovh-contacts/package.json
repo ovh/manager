@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-contacts",
-  "version": "4.0.0",
+  "version": "4.0.2",
   "description": "Helpers for managing OVH Contacts",
   "keywords": [
     "contacts",
@@ -41,18 +41,18 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^7.0.0"
+    "@ovh-ux/component-rollup-config": "^7.0.0 || ^8.0.0"
   },
   "peerDependencies": {
     "@ovh-ux/translate-async-loader": "^1.0.8",
-    "@ovh-ux/ui-kit": "^4.1.12",
+    "@ovh-ux/ui-kit": "^4.4.1",
     "angular": "^1.5.0",
     "angular-translate": "^2.17.0",
     "bootstrap": "~3.3.7",
     "bs4": "twbs/bootstrap#v4.0.0-beta",
     "flag-icon-css": "^3.2.1",
     "moment": "^2.20.1",
-    "ovh-api-services": "^9.0.0",
+    "ovh-api-services": "^11.0.0",
     "ui-select": "^0.19.8"
   }
 }

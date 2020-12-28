@@ -1,3 +1,0 @@
-{
-  "dedicatedCloud_datacenter_backup_nospla": "Es necesaria una licencia SPLA en su Hosted Private Cloud para poder activar la opción de backup. Para activar la licencia SPLA, acceda a la sección <a href=\"{{ licenceLink }}\">Licencia Windows</a> de su producto."
-}

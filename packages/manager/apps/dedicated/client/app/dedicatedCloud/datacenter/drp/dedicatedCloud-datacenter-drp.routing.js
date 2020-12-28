@@ -1,12 +1,13 @@
 import get from 'lodash/get';
 
-import component from './dedicatedCloud-datacenter-drp.component';
+import { DEDICATED_CLOUD_CONSTANTS } from '../../../components/dedicated-cloud/dedicatedCloud.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicatedClouds.datacenter.drp', {
     url: '/drp',
     views: {
-      'pccDatacenterView@app.dedicatedClouds.datacenter': component.name,
+      'pccDatacenterView@app.dedicatedClouds.datacenter':
+        'dedicatedCloudDatacenterDrp',
     },
     params: {
       selectedDrpType: null,
@@ -41,16 +42,15 @@ export default /* @ngInject */ ($stateProvider) => {
       setupConfiguration: /* @ngInject */ (
         $q,
         $translate,
-        $timeout,
         $window,
         dedicatedCloudDrp,
         displayErrorMessage,
         displayInfoMessage,
         displaySuccessMessage,
         goToPccDashboard,
+        pccType,
         setDisableSuccessAlertPreference,
         storeZertoOptionOrderInUserPref,
-        DEDICATED_CLOUD_CONSTANTS,
       ) => (drpInformations) =>
         dedicatedCloudDrp
           .enableDrp(
@@ -86,7 +86,7 @@ export default /* @ngInject */ ($stateProvider) => {
                     ${$translate.instant(
                       'dedicatedCloud_datacenter_drp_confirm_creation_pending',
                     )} ${$translate.instant(
-                    'dedicatedCloud_datacenter_drp_confirm_creation_pending_task',
+                    `dedicatedCloud_datacenter_drp_confirm_creation_pending_task_${pccType}`,
                   )}
                 `);
                 }
@@ -116,8 +116,8 @@ export default /* @ngInject */ ($stateProvider) => {
 
       displayErrorMessage: /* @ngInject */ (Alerter) => (errorMessage) =>
         Alerter.error(errorMessage, 'dedicatedCloudDatacenterDrpAlert'),
-      displayInfoMessage: /* @ngInject */ (Alerter) => (message) =>
-        Alerter.set('alert-info', message, null, 'dedicatedCloud_alert'),
+      displayInfoMessage: /* @ngInject */ (setMessage) => (message) =>
+        setMessage(message, 'info'),
       displaySuccessMessage: /* @ngInject */ (Alerter) => (successMessage) =>
         Alerter.success(successMessage, 'dedicatedCloud_alert'),
 

@@ -9,6 +9,9 @@ import '@ovh-ux/ui-kit';
 import component from './add.component';
 import routing from './add.routing';
 
+import antiAffinity from '../../../components/anti-affinity';
+import nodePool from '../../../components/node-pool';
+
 const moduleName = 'ovhManagerPciProjectKubernetesNodePoolsAdd';
 
 angular
@@ -19,6 +22,8 @@ angular
     'ovh-api-services',
     'ui.router',
     'ngOvhCloudUniverseComponents',
+    nodePool,
+    antiAffinity,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)

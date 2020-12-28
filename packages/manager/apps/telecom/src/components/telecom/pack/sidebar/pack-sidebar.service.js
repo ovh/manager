@@ -91,7 +91,7 @@ angular
                     id: xdsl.accessName,
                     title: xdsl.description || xdsl.accessName,
                     prefix: upperFirst(xdsl.accessType),
-                    state: 'telecom.packs.pack.xdsl',
+                    state: 'telecom.packs.pack.xdsl.line',
                     stateParams: {
                       packName: pack.packName,
                       serviceName: xdsl.accessName,
@@ -153,7 +153,7 @@ angular
             id: xdsl.accessName,
             title: xdsl.description || xdsl.accessName,
             prefix: upperFirst(xdsl.accessType),
-            loadOnState: 'telecom.packs.pack.xdsl',
+            loadOnState: 'telecom.packs.pack.xdsl.line',
             loadOnStateParams: {
               packName: xdsl.accessType,
               serviceName: xdsl.accessName,
@@ -177,7 +177,7 @@ angular
             {
               id: line.number,
               title: line.number,
-              state: 'telecom.packs.pack.xdsl',
+              state: 'telecom.packs.pack.xdsl.line',
               stateParams: {
                 packName: xdsl.accessType,
                 serviceName: xdsl.accessName,
@@ -259,7 +259,7 @@ angular
         allowSearch: !expand,
         infiniteScroll: true,
         ...(expand
-          ? { state: 'telecom.packs.internet-access.packs' }
+          ? { state: 'telecom.packs.index' }
           : { onLoad: self.fetchData }),
       });
 

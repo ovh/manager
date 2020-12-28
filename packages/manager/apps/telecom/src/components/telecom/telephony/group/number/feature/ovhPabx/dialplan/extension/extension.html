@@ -1,0 +1,495 @@
+<div
+    class="ovh-pabx-dialplan-extension"
+    data-ng-class="{ disabled: !$ctrl.extension.enabled }"
+>
+    <!-- EXTENSION DISPLAY -->
+    <div class="voip-plan__step">
+        <!-- POSITION -->
+        <div
+            class="voip-plan__step-icon voip-plan__step-icon--grip hover-grip extension-grip"
+            data-tuc-jsplumb-endpoint="$ctrl.numberCtrl.jsPlumbEndpointsOptions.topLeft"
+        >
+            <span
+                data-ng-class="$ctrl.isLoading() ? 'fa fa-spinner fa-pulse' :'ovh-font ovh-font-grip'"
+                data-tuc-jsplumb-connection="!$ctrl.extension.enabled ? $ctrl.numberCtrl.jsPlumbConnectionsOptions.disabled : null"
+                data-tuc-jsplumb-connection-target="incoming-call-{{ $ctrl.numberCtrl.number.serviceName }}"
+                aria-hidden="true"
+            >
+            </span>
+        </div>
+        <!-- POSITION -->
+
+        <!-- STEP NUMBER -->
+        <div
+            class="voip-plan__step-content voip-plan__step-content--node voip-plan__step-content--after-grip"
+            data-responsive-popover="'components/telecom/telephony/group/number/feature/ovhPabx/dialplan/extension/edit/edit.html'"
+            data-popover-placement="right"
+            data-popover-trigger="none"
+            data-popover-is-open="$ctrl.popoverStatus.isOpen"
+            data-popover-class="pretty-popover telephony-number-feature-popover telephony-number-ovh-pabx-actions-popup"
+            data-tuc-hide-outside-click="$ctrl.onExtensionOutsideClick()"
+        >
+            <div
+                class="voip-plan__invisible-anchor"
+                data-tuc-jsplumb-endpoint
+                data-tuc-jsplumb-endpoint-uuid="{{ $ctrl.getEndpointUuid() }}"
+            ></div>
+            <div class="voip-plan__step-description">
+                <span class="voip-plan__step-name">
+                    <span
+                        data-translate="telephony_number_feature_ovh_pabx_step_number"
+                        data-translate-values="{ position: $ctrl.extension.position }"
+                    >
+                    </span>
+                    <small>
+                        (<span
+                            data-translate="{{ $ctrl.extension.enabled ? 'telephony_number_feature_ovh_pabx_step_active' : 'telephony_number_feature_ovh_pabx_step_inactive' }}"
+                        ></span
+                        >)
+                    </small>
+                </span>
+
+                <div class="voip-plan__step-info">
+                    <span
+                        data-ng-if="$ctrl.getRulesCount() > 1"
+                        data-translate="telephony_number_feature_ovh_pabx_step_actions_count"
+                        data-translate-values="{ count: $ctrl.getRulesCount() }"
+                    >
+                    </span>
+
+                    <span
+                        data-ng-if="$ctrl.getRulesCount() <= 1"
+                        data-translate="telephony_number_feature_ovh_pabx_step_actions_count_single"
+                        data-translate-values="{ count: $ctrl.getRulesCount() }"
+                    >
+                    </span>
+                </div>
+
+                <!-- NO CONDITIONS -->
+                <span
+                    class="voip-plan__step-info"
+                    data-translate="telephony_number_feature_ovh_pabx_step_no_condition"
+                    data-ng-if="!$ctrl.extensionHasConditions()"
+                >
+                </span>
+                <!-- END OF NO CONDITIONS -->
+
+                <!-- CONDITIONS RESUME -->
+                <div
+                    data-ng-if="$ctrl.extensionHasConditions()"
+                    class="voip-plan__step-info"
+                >
+                    <div
+                        class="font-weight-bold mt-2"
+                        data-translate="telephony_number_feature_ovh_pabx_step_condition"
+                    ></div>
+                    <ul class="list-unstyled mb-0">
+                        <li
+                            class="elipse no-wrap"
+                            data-ng-if="$ctrl.getExtensionAttr('schedulerCategory')"
+                            data-translate-attr="{ title: 'telephony_number_feature_ovh_pabx_step_conditions_scheduler_' + $ctrl.getExtensionAttr('schedulerCategory') }"
+                        >
+                            <span
+                                data-translate="telephony_number_feature_ovh_pabx_step_conditions_scheduler"
+                            ></span>
+                            :
+                            <span
+                                data-translate="{{ 'telephony_number_feature_ovh_pabx_step_conditions_scheduler_' + $ctrl.getExtensionAttr('schedulerCategory') }}"
+                            ></span>
+                        </li>
+                        <li
+                            class="elipse no-wrap"
+                            data-ng-if="$ctrl.getExtensionAttr('timeConditions').length"
+                        >
+                            <span
+                                data-translate="telephony_number_feature_ovh_pabx_step_conditions_time_condition"
+                            ></span>
+                            :
+                            <span
+                                data-ng-if="$ctrl.getExtensionAttr('timeConditions').length > 1"
+                                data-translate="telephony_number_feature_ovh_pabx_step_conditions_time_condition_slot_count"
+                                data-translate-values="{ count: $ctrl.getExtensionAttr('timeConditions').length }"
+                            >
+                            </span>
+                            <span
+                                data-ng-if="$ctrl.getExtensionAttr('timeConditions').length === 1"
+                                data-translate="telephony_number_feature_ovh_pabx_step_conditions_time_condition_slot_count_single"
+                                data-translate-values="{ count: $ctrl.getExtensionAttr('timeConditions').length }"
+                            >
+                            </span>
+                        </li>
+                        <li
+                            class="elipse no-wrap"
+                            data-ng-if="$ctrl.getExtensionAttr('screenListType')"
+                        >
+                            <span
+                                data-translate="telephony_number_feature_ovh_pabx_step_conditions_screen_list"
+                            ></span>
+                            :
+                            <span
+                                data-translate="{{ 'telephony_number_feature_ovh_pabx_step_conditions_screen_list_type_' + ($ctrl.getExtensionAttr('screenListType') | tucSnakeCase) }}"
+                            ></span>
+                            <span
+                                data-ng-if="$ctrl.getExtensionAttr('screenListConditions').length"
+                                >-</span
+                            >
+                            <span
+                                data-translate="telephony_number_feature_ovh_pabx_step_conditions_screen_list_number_count"
+                                data-translate-values="{ count: $ctrl.getExtensionAttr('screenListConditions').length }"
+                                data-ng-if="$ctrl.getExtensionAttr('screenListConditions').length > 1"
+                            >
+                            </span>
+                            <span
+                                data-translate="telephony_number_feature_ovh_pabx_step_conditions_screen_list_number_count_single"
+                                data-translate-values="{ count: $ctrl.getExtensionAttr('screenListConditions').length }"
+                                data-ng-if="$ctrl.getExtensionAttr('screenListConditions').length === 1"
+                            >
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END OF CONDITIONS RESUME -->
+            </div>
+            <div
+                class="voip-plan__step-btn-container dropdown"
+                data-uib-dropdown
+            >
+                <button
+                    type="button"
+                    class="voip-plan__step-btn voip-plan__step-btn--included"
+                    data-attr-id="extension-{{ $ctrl.extension.extensionId }}-actions"
+                    data-uib-dropdown-toggle
+                >
+                    <span
+                        class="ovh-font ovh-font-dots"
+                        aria-hidden="true"
+                    ></span>
+                </button>
+                <!-- AVAILABLE ACTIONS -->
+                <ul
+                    class="dropdown-menu ovh-dropdown-menu"
+                    data-uib-dropdown-menu
+                    role="menu"
+                    aria-labelledby="extension-{{ $ctrl.extension.extensionId }}-actions"
+                >
+                    <!-- ACTIVATE/DESACTIVATE -->
+                    <li role="menuitem">
+                        <button
+                            type="button"
+                            class="btn btn-link w-100"
+                            data-translate="{{ !$ctrl.extension.enabled ? 'telephony_number_feature_ovh_pabx_step_activate' : 'telephony_number_feature_ovh_pabx_step_desactivate' }}"
+                            data-ng-click="$ctrl.toggleEnabledState()"
+                        ></button>
+                    </li>
+                    <!-- ACTIVATE/DESACTIVATE -->
+                    <li class="divider"></li>
+                    <!-- ADD RULE -->
+                    <li role="menuitem">
+                        <button
+                            type="button"
+                            class="btn btn-link w-100"
+                            data-translate="telephony_number_feature_ovh_pabx_step_add_rule"
+                            data-ng-click="$ctrl.addRule()"
+                        ></button>
+                    </li>
+                    <!-- ADD RULE -->
+                    <!-- MANAGE CONDITIONS -->
+                    <li role="menuitem">
+                        <button
+                            type="button"
+                            class="btn btn-link w-100"
+                            data-translate="telephony_number_feature_ovh_pabx_step_advanced"
+                            data-ng-click="$ctrl.onManageConditionBtnClick()"
+                        ></button>
+                    </li>
+                    <!-- MANAGE CONDITIONS -->
+                    <li class="divider"></li>
+                    <!-- COLLAPSE/EXPAND -->
+                    <li role="menuitem">
+                        <button
+                            type="button"
+                            class="btn btn-link w-100"
+                            data-translate="{{ $ctrl.displayHelpers.collapsed ? 'telephony_number_feature_ovh_pabx_step_expand' : 'telephony_number_feature_ovh_pabx_step_collapse'}}"
+                            data-ng-click="$ctrl.displayHelpers.collapsed = !$ctrl.displayHelpers.collapsed"
+                            data-ng-disabled="!$ctrl.extension.rules.length"
+                        ></button>
+                    </li>
+                    <!-- COLLAPSE/EXPAND -->
+                    <li class="divider"></li>
+                    <!-- DELETE STEP -->
+                    <li role="menuitem">
+                        <button
+                            type="button"
+                            class="btn btn-link w-100 text-danger"
+                            data-translate="telephony_number_feature_ovh_pabx_step_remove"
+                            data-ng-click="$ctrl.extension.status = 'DELETE_PENDING'"
+                        ></button>
+                    </li>
+                    <!-- DELETE STEP -->
+                </ul>
+                <!-- AVAILABLE ACTIONS -->
+            </div>
+            <div
+                class="voip-plan__step-confirm"
+                data-ng-if="$ctrl.extension.status === 'DELETE_PENDING'"
+            >
+                <div class="voip-plan__step-confirm-overlay"></div>
+                <div
+                    class="voip-plan__step-confirm-content animated fadeInRight flex-row-center"
+                >
+                    <button
+                        type="button"
+                        class="btn btn-default"
+                        data-translate="cancel"
+                        data-ng-click="$ctrl.extension.status = 'OK'"
+                    ></button>
+
+                    <button
+                        type="button"
+                        class="btn btn-danger"
+                        data-translate="common_confirm"
+                        data-ng-click="$ctrl.onConfirmDeleteBtnClick()"
+                    ></button>
+                </div>
+            </div>
+        </div>
+        <!-- STEP NUMBER -->
+    </div>
+    <!-- EXTENSION DISPLAY -->
+
+    <!-- INIT LOADING -->
+    <div class="voip-plan__subpart-extended" data-ng-if="$ctrl.loading.init">
+        <div class="voip-plan__step">
+            <div
+                class="voip-plan__step-icon voip-plan__step-icon--basic"
+                data-tuc-jsplumb-endpoint="$ctrl.numberCtrl.jsPlumbEndpointsOptions.topLeft"
+            >
+                <span
+                    class="fa fa-spinner fa-pulse"
+                    data-tuc-jsplumb-connection
+                    data-tuc-jsplumb-connection-target="{{ $ctrl.uuid }}"
+                >
+                </span>
+            </div>
+            <div class="voip-plan__step-description">
+                <span class="voip-plan__step-info" data-translate="loading">
+                </span>
+            </div>
+        </div>
+    </div>
+    <!-- INIT LOADING -->
+
+    <!-- RULE DISPLAY -->
+    <div data-ng-if="!$ctrl.loading.init">
+        <div class="voip-plan__subpart-extended">
+            <!-- ADDED RULES -->
+            <div
+                data-uib-collapse="$ctrl.displayHelpers.collapsed"
+                data-collapsing="$ctrl.onExtensionCollapsing()"
+                data-expanding="$ctrl.onExtensionExpanding()"
+                data-collapsed="$ctrl.onExtensionCollapsed()"
+                data-expanded="$ctrl.onExtensionExpanded()"
+            >
+                <div
+                    data-ui-sortable="$ctrl.rulesSortableOptions"
+                    data-ng-model="$ctrl.extension.rules"
+                >
+                    <div
+                        data-ng-repeat="rule in $ctrl.extension.rules track by rule.ruleId"
+                        data-smooth-scroll
+                        data-scroll-if="{{ rule.status === 'DRAFT' }}"
+                        data-offset="550"
+                        data-ng-if="$ctrl.displayHelpers.expanded"
+                    >
+                        <telephony-number-ovh-pabx-dialplan-extension-rule
+                            data-ng-if="$ctrl.getRuleAttr('action', rule) !== 'ivr'"
+                            data-rule="rule"
+                        >
+                        </telephony-number-ovh-pabx-dialplan-extension-rule>
+                        <telephony-number-ovh-pabx-menu
+                            data-ng-if="$ctrl.getRuleAttr('action', rule) === 'ivr'"
+                            data-ovh-pabx-menu="$ctrl.getRuleMenu(rule)"
+                            data-dialplan-rule="rule"
+                        >
+                        </telephony-number-ovh-pabx-menu>
+                    </div>
+                    <!-- ADDED RULES -->
+                </div>
+            </div>
+
+            <div
+                class="voip-plan__step"
+                style="margin-bottom: 64px;"
+                data-ng-if="!$ctrl.displayHelpers.expanded"
+            >
+                <div
+                    class="voip-plan__step-content voip-plan__step-content--after-grip voip-plan__step-content--node"
+                >
+                    <div
+                        class="voip-plan__step-description"
+                        data-ng-if="$ctrl.extension.rules.length"
+                    >
+                        <span
+                            class="voip-plan__step-info"
+                            data-translate="{{ $ctrl.extension.rules.length === 1 ? 'telephony_number_feature_ovh_pabx_step_count_single' : 'telephony_number_feature_ovh_pabx_step_count' }}"
+                            data-translate-values="{ count: $ctrl.extension.rules.length }"
+                        >
+                        </span>
+                        <button
+                            type="button"
+                            class="btn btn-link p-0 m-0"
+                            data-ng-click="$ctrl.displayHelpers.collapsed = false"
+                            data-translate="telephony_number_feature_ovh_pabx_step_expand"
+                        ></button>
+                    </div>
+                    <div
+                        class="voip-plan__step-description"
+                        data-ng-if="!$ctrl.extension.rules.length"
+                    >
+                        <span
+                            class="voip-plan__step-info"
+                            data-translate="telephony_number_feature_ovh_pabx_step_count_none"
+                        >
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ADD BTN -->
+            <div class="voip-plan__step">
+                <button
+                    type="button"
+                    class="voip-plan__step-btn voip-plan__step-btn--primary voip-plan__step-btn--add"
+                    data-tuc-jsplumb-endpoint="$ctrl.numberCtrl.jsPlumbEndpointsOptions.topLeft"
+                    data-translate-attr="{ title: 'telephony_number_feature_ovh_pabx_step_add_rule' }"
+                    data-ng-click="$ctrl.addRule(false)"
+                >
+                    <span
+                        class="ovh-font ovh-font-ajouter"
+                        data-ng-if="!$ctrl.extension.collapsed"
+                        data-tuc-jsplumb-connection="!$ctrl.extension.enabled ? $ctrl.numberCtrl.jsPlumbConnectionsOptions.disabled : null"
+                        data-tuc-jsplumb-connection-target="{{ $ctrl.uuid }}"
+                    >
+                    </span>
+                </button>
+            </div>
+            <!-- ADD BTN -->
+
+            <!-- CONDITION DISPLAY -->
+            <div
+                class="voip-plan__step"
+                data-ng-if="$ctrl.extensionHasConditions()"
+            >
+                <div
+                    class="voip-plan__step-icon voip-plan__step-icon--basic"
+                    data-tuc-jsplumb-endpoint="$ctrl.numberCtrl.jsPlumbEndpointsOptions.topLeft"
+                >
+                    <span
+                        class="ovh-font ovh-font-splittedArrows"
+                        data-tuc-jsplumb-connection="!$ctrl.extension.enabled ? $ctrl.numberCtrl.jsPlumbConnectionsOptions.disabled : null"
+                        data-tuc-jsplumb-connection-target="{{ $ctrl.uuid }}"
+                    >
+                    </span>
+                    <div
+                        class="voip-plan__invisible-anchor voip-plan__invisible-anchor--in-icon"
+                        data-tuc-jsplumb-endpoint
+                        data-tuc-jsplumb-endpoint-uuid="{{ $ctrl.getEndpointUuid() + '-condition' }}"
+                    ></div>
+                </div>
+                <div
+                    class="voip-plan__step-content voip-plan__step-content--after-grip voip-plan__step-content--node"
+                >
+                    <div class="voip-plan__step-description">
+                        <span
+                            class="voip-plan__step-info"
+                            data-ng-if="$ctrl.extension.negativeRules.length === 0"
+                            data-translate="telephony_number_feature_ovh_pabx_step_no_invalid_actions"
+                        >
+                        </span>
+                        <span
+                            class="voip-plan__step-info"
+                            data-ng-if="$ctrl.extension.negativeRules.length > 0"
+                            data-translate="{{ $ctrl.extension.negativeRules.length === 1 ? 'telephony_number_feature_ovh_pabx_step_invalid_actions_single' : 'telephony_number_feature_ovh_pabx_step_invalid_actions' }}"
+                            data-translate-values="{ count: $ctrl.extension.negativeRules.length }"
+                        >
+                        </span>
+                        <button
+                            type="button"
+                            class="btn btn-link p-0 m-0"
+                            data-ng-if="$ctrl.extension.negativeRules.length > 0"
+                            data-ng-click="$ctrl.displayHelpers.negativeCollapsed = !$ctrl.displayHelpers.negativeCollapsed"
+                            data-translate="{{ $ctrl.displayHelpers.negativeCollapsed ? 'telephony_number_feature_ovh_pabx_step_invalid_actions_show' : 'telephony_number_feature_ovh_pabx_step_invalid_actions_hide' }}"
+                        ></button>
+                    </div>
+                </div>
+            </div>
+            <!-- END OF CONDITION DISPLAY -->
+
+            <!-- NEGATIVE ACTION DISPLAY -->
+            <div
+                class="voip-plan__subpart"
+                data-ng-if="$ctrl.extensionHasConditions()"
+            >
+                <!-- RULE LIST -->
+                <div
+                    data-uib-collapse="$ctrl.displayHelpers.negativeCollapsed"
+                    data-collapsing="$ctrl.onExtensionCollapsing()"
+                    data-expanding="$ctrl.onExtensionExpanding(true)"
+                    data-collapsed="$ctrl.onExtensionCollapsed(true)"
+                    data-expanded="$ctrl.onExtensionExpanded()"
+                >
+                    <div
+                        data-ui-sortable="$ctrl.negativeRulesSortableOptions"
+                        data-ng-model="$ctrl.extension.negativeRules"
+                    >
+                        <!-- ADDED EXTENSIONS -->
+                        <div
+                            data-ng-repeat="rule in $ctrl.extension.negativeRules track by rule.ruleId"
+                            data-smooth-scroll
+                            data-scroll-if="{{ rule.status === 'DRAFT' }}"
+                            data-offset="550"
+                            data-ng-if="$ctrl.displayHelpers.negativeExpanded"
+                        >
+                            <telephony-number-ovh-pabx-dialplan-extension-rule
+                                data-ng-if="$ctrl.getRuleAttr('action', rule) !== 'ivr'"
+                                data-rule="rule"
+                            >
+                            </telephony-number-ovh-pabx-dialplan-extension-rule>
+                            <telephony-number-ovh-pabx-menu
+                                data-ng-if="$ctrl.getRuleAttr('action', rule) === 'ivr'"
+                                data-ovh-pabx-menu="$ctrl.getRuleMenu(rule)"
+                                data-dialplan-rule="rule"
+                            >
+                            </telephony-number-ovh-pabx-menu>
+                        </div>
+                        <!-- ADDED EXTENSIONS -->
+                    </div>
+                </div>
+                <!-- RULE LIST -->
+
+                <!-- ADD NEGATIVE ACTION BTN -->
+                <div class="voip-plan__step">
+                    <button
+                        type="button"
+                        class="voip-plan__step-btn voip-plan__step-btn--primary voip-plan__step-btn--add"
+                        data-tuc-jsplumb-endpoint="$ctrl.numberCtrl.jsPlumbEndpointsOptions.topLeft"
+                        data-translate-attr="{ title: 'telephony_number_feature_ovh_pabx_step_add_rule_invalid' }"
+                        data-ng-click="$ctrl.addRule(true)"
+                    >
+                        <span
+                            class="ovh-font ovh-font-ajouter"
+                            data-ng-if="!$ctrl.extension.collapsed"
+                            data-tuc-jsplumb-connection="!$ctrl.extension.enabled ? $ctrl.numberCtrl.jsPlumbConnectionsOptions.disabled : null"
+                            data-tuc-jsplumb-connection-target="{{ $ctrl.getEndpointUuid() + '-condition' }}"
+                            aria-hidden="true"
+                        >
+                        </span>
+                    </button>
+                </div>
+                <!-- ADD NEGATIVE ACTION BTN -->
+            </div>
+            <!-- END OF NEGATIVE ACTION DISPLAY -->
+        </div>
+    </div>
+    <!-- RULE DISPLAY -->
+</div>

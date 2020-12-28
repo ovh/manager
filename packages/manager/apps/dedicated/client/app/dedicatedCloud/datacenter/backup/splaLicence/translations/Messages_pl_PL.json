@@ -1,3 +1,0 @@
-{
-  "dedicatedCloud_datacenter_backup_nospla": "Aby aktywacja tworzenia kopii zapasowej była możliwa, Twoje rozwiązanie Private Cloud musi posiadać licencję SPLA. Aby włączyć licencję SPLA udaj się do sekcji <a href=\"{{ licenceLink }}\">Licence Windows</a> Twojego produktu."
-}

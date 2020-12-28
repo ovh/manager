@@ -1,0 +1,10 @@
+<oui-tile data-heading="{{:: 'sms_credit_balance' | translate }}">
+    <oui-tile-definition
+        term="{{:: 'sms_credit_remaining_sms' | translate}}"
+        description="{{:: $ctrl.credits }}"
+    >
+    </oui-tile-definition>
+    <oui-tile-button on-click="$ctrl.goToOrderCredits()">
+        <span data-translate="sms_credit_manage_credits"></span>
+    </oui-tile-button>
+</oui-tile>

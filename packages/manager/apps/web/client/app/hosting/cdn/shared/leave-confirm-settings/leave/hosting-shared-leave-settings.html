@@ -1,0 +1,91 @@
+<oui-modal
+    data-heading="{{:: 'hosting_cdn_shared_modal_leave_title' | translate}}"
+    data-primary-action="$ctrl.primaryAction()"
+    data-primary-label="{{'hosting_cdn_shared_modal_leave_btn_validate' | translate}}"
+    data-secondary-action="$ctrl.secondaryAction()"
+    data-secondary-label="{{:: 'hosting_cdn_shared_modal_leave_btn_cancel' | translate}}"
+    type="warning"
+    data-on-dismiss="$ctrl.modal.close(true)"
+>
+    <!--Description-->
+    <div
+        class="oui-paragraph"
+        data-ng-bind=":: 'hosting_cdn_shared_modal_leave_info' | translate"
+    ></div>
+
+    <!--Always online-->
+    <div class="mb-2">
+        <div class="row">
+            <div class="text-right col-md-6">
+                <p class="oui-heading_5 mb-1"><strong>Always online</strong></p>
+            </div>
+            <div class="text-left col-md-6">
+                <p
+                    class="mb-1"
+                    data-ng-bind="::'hosting_cdn_shared_state_' + ($ctrl.model.alwaysOnline.enabled ? 'enable' : 'disabled') | translate"
+                ></p>
+            </div>
+        </div>
+    </div>
+
+    <!--HTTP/2-->
+    <div class="mb-2">
+        <div class="row">
+            <div class="text-right col-md-6">
+                <p class="oui-heading_5 mb-1"><strong>HTTP/2</strong></p>
+            </div>
+            <div class="text-left col-md-6">
+                <p
+                    class="mb-1"
+                    data-ng-bind="::'hosting_cdn_shared_state_' + ($ctrl.model.http.enabled ? 'enable' : 'disabled') | translate"
+                ></p>
+            </div>
+        </div>
+    </div>
+
+    <!--DEV-MODE-->
+    <div class="mb-2">
+        <div class="row">
+            <div class="text-right col-md-6">
+                <p class="oui-heading_5 mb-1"><strong>Dev-mode</strong></p>
+            </div>
+            <div class="text-left col-md-6">
+                <p
+                    class="mb-1"
+                    data-ng-bind="::'hosting_cdn_shared_state_' + ($ctrl.model.devmode.enabled ? 'enable' : 'disabled') | translate"
+                ></p>
+            </div>
+        </div>
+    </div>
+
+    <!--BROTLI-->
+    <div class="mb-2">
+        <div class="row">
+            <div class="text-right col-md-6">
+                <p class="oui-heading_5 mb-1"><strong>Brotli</strong></p>
+            </div>
+            <div class="text-left col-md-6">
+                <p
+                    class="mb-1"
+                    data-ng-bind="::'hosting_cdn_shared_state_' + ($ctrl.model.brotli.enabled ? 'enable' : 'disabled') | translate"
+                ></p>
+            </div>
+        </div>
+    </div>
+
+    <!--CACHE_RULE-->
+    <div class="mb-2">
+        <div class="row">
+            <div class="text-right col-md-6">
+                <p class="oui-heading_5 mb-1"><strong>Cache rule</strong></p>
+            </div>
+            <div class="text-left col-md-6">
+                <p
+                    class="mb-1"
+                    data-ng-repeat="rule in ::$ctrl.model.rules track by $index"
+                    data-ng-bind="::rule.name"
+                ></p>
+            </div>
+        </div>
+    </div>
+</oui-modal>

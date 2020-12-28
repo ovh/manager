@@ -1,0 +1,5 @@
+{
+  "dedicatedCloud_datacenter_remote_vra_network": "VRA Datacentre on premises network",
+  "dedicatedCloud_datacenter_remote_vra_network_placeholder": "Enter the remote vRA sub-network",
+  "dedicatedCloud_datacenter_local_vra_network_help": "You can choose your vRA sub-network, or choose the one offered by OVHcloud above"
+}

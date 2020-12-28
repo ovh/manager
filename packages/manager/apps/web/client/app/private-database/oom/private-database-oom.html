@@ -5,10 +5,13 @@
         data-wizard-on-finish="orderMoreRam"
         data-wizard-confirm-button-text="'privateDatabase_modale_oom_confirm_button' | translate"
         data-wizard-cancel-button-text="'privateDatabase_modale_oom_close_button' | translate"
-        data-wizard-hide-confirm-button="oomCtrl.database.oom.realList.length >= oomCtrl.database.oom.nbOomError"
+        data-wizard-hide-confirm-button="oomCtrl.database.oom.realList.length >= oomCtrl.database.oom.nbOomError || !oomCtrl.canOrderRam"
         data-wizard-title="'privateDatabase_modale_oom_title' | translate"
     >
-        <div data-wizard-step>
+        <div class="text-center" data-ng-if="oomCtrl.isLoading">
+            <oui-spinner></oui-spinner>
+        </div>
+        <div data-wizard-step data-ng-if="!oomCtrl.isLoading">
             <p
                 data-ng-bind-html="'privateDatabase_modale_oom_info' | translate: { t0: oomCtrl.NB_DAY_OOM, t1: oomCtrl.NB_MAX_OOM }"
             ></p>
@@ -47,7 +50,7 @@
                 class="alert alert-info mt-3"
                 role="alert"
                 data-ng-bind-html="'privateDatabase_modale_oom_info_order' | translate: { t0: oomCtrl.displayType[oomCtrl.database.offer].value }"
-                data-ng-if="oomCtrl.database.oom.realList.length >= oomCtrl.database.oom.nbOomError"
+                data-ng-if="oomCtrl.database.oom.realList.length >= oomCtrl.database.oom.nbOomError && oomCtrl.canOrderRam"
             ></div>
         </div>
     </div>

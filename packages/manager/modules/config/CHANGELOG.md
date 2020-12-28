@@ -1,3 +1,49 @@
+# [2.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@2.1.0...@ovh-ux/manager-config@2.2.0) (2020-12-22)
+
+
+### Features
+
+* **base-urls:** add environment baseUrls ([a6e0b1d](https://github.com/ovh/manager/commit/a6e0b1d0107b4f931aba3782ddb34e2718c690f3))
+* **env:** add universe and application name ([9958157](https://github.com/ovh/manager/commit/9958157a0b3d79d84fe10f610b2aa12b0af8c8d0))
+
+
+
+# [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@2.0.1...@ovh-ux/manager-config@2.1.0) (2020-11-25)
+
+
+### Features
+
+* **environment:** add user in environment during bootstrap ([c9df248](https://github.com/ovh/manager/commit/c9df248543a739176a8253b17473010b4c636d1e))
+
+
+
+## [2.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@2.0.0...@ovh-ux/manager-config@2.0.1) (2020-10-28)
+
+
+### Bug Fixes
+
+* **environment.service:** temporarily fallback for cs_CZ language ([f527be7](https://github.com/ovh/manager/commit/f527be7afc8bea21b72991a0193ba47ecff682dd))
+* export localeStorageKey constant as default ([bbe4cdd](https://github.com/ovh/manager/commit/bbe4cdd05d6a6b8f971b3bc0fe8fedc1b25b1e6d))
+* **locale:** add missing cs_CZ entry ([9aedddb](https://github.com/ovh/manager/commit/9aedddb65553d80c967056bf52e2c33055987e65))
+
+
+
+# [2.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@1.1.1...@ovh-ux/manager-config@2.0.0) (2020-10-13)
+
+
+### Code Refactoring
+
+* **locale:** remove FI entry from language menu picker ([014d810](https://github.com/ovh/manager/commit/014d810e21f79b0ebf50d0aaf133328d37c4ba4b))
+
+
+### BREAKING CHANGES
+
+* **locale:** Remove entry `Suomi` from the language menu picker.
+  As `fr_FR` is the default locale, we explicitly redirect `fi_FI`
+  customer to the `en_GB` locale.
+
+
+
 ## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@1.1.0...@ovh-ux/manager-config@1.1.1) (2020-09-04)
 
 

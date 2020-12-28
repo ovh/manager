@@ -14,6 +14,10 @@ angular.module(moduleName, []).config(($stateProvider) => {
         controllerAs: 'SmsHlrCtrl',
       },
     },
+    resolve: {
+      goBack: /* @ngInject */ ($state, $transition$) => () =>
+        $state.go($transition$.from().name || '^'),
+    },
     translations: {
       value: ['../../dashboard', '.'],
       format: 'json',

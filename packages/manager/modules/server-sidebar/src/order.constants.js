@@ -6,21 +6,49 @@ export const ORDER_URLS = {
       FR: 'https://www.ovh.com/manager/dedicated/',
     },
     dedicated_cloud: {
-      CZ: 'https://www.ovh.cz/sddc/',
-      DE: 'https://www.ovh.de/sddc/',
-      ES: 'https://www.ovh.es/sddc/',
-      FI: 'https://www.ovh-hosting.fi/sddc/',
-      FR: 'https://www.ovh.com/fr/sddc/',
-      GB: 'https://www.ovh.co.uk/sddc/',
-      IE: 'https://www.ovh.ie/sddc/',
-      IT: 'https://www.ovh.it/sddc/',
-      LT: 'https://www.ovh.lt/sddc/',
-      MA: 'https://www.ovh.com/ma/sddc/',
-      NL: 'https://www.ovh.nl/sddc/',
-      PL: 'https://www.ovh.pl/sddc/',
-      PT: 'https://www.ovh.pt/sddc/',
-      SN: 'https://www.ovh.sn/sddc/',
-      TN: 'https://www.ovh.com/tn/sddc/',
+      DE:
+        'https://www.ovhcloud.com/de/enterprise/products/hosted-private-cloud/prices/',
+      ES:
+        'https://www.ovhcloud.com/es-es/enterprise/products/hosted-private-cloud/prices/',
+      FR:
+        'https://www.ovhcloud.com/fr/enterprise/products/hosted-private-cloud/prices/',
+      GB:
+        'https://www.ovhcloud.com/en-gb/enterprise/products/hosted-private-cloud/prices/',
+      IE:
+        'https://www.ovhcloud.com/en-ie/enterprise/products/hosted-private-cloud/prices/',
+      IT:
+        'https://www.ovhcloud.com/it/enterprise/products/hosted-private-cloud/prices/',
+      LT:
+        'https://www.ovhcloud.com/en-ie/enterprise/products/hosted-private-cloud/prices/',
+      MA:
+        'https://www.ovh.com/ma/enterprise/products/hosted-private-cloud/prices/',
+      NL:
+        'https://www.ovhcloud.com/nl/enterprise/products/hosted-private-cloud/prices/',
+      PL:
+        'https://www.ovhcloud.com/pl/enterprise/products/hosted-private-cloud/prices/',
+      PT:
+        'https://www.ovhcloud.com/pt/enterprise/products/hosted-private-cloud/prices/',
+      SN:
+        'https://www.ovhcloud.com/fr-sn/enterprise/products/hosted-private-cloud/prices/',
+      TN:
+        'https://www.ovhcloud.com/fr-tn/enterprise/products/hosted-private-cloud/prices/',
+    },
+    managed_bare_metal: {
+      CZ: 'https://www.ovhcloud.com/en-ie/managed-bare-metal/',
+      DE: 'https://www.ovhcloud.com/de/managed-bare-metal/',
+      ES: 'https://www.ovhcloud.com/es/managed-bare-metal/',
+      FI: 'https://www.ovhcloud.com/en-ie/managed-bare-metal/',
+      FR: 'https://www.ovhcloud.com/fr/managed-bare-metal/',
+      GB: 'https://www.ovhcloud.com/en-gb/managed-bare-metal/',
+      IE: 'https://www.ovhcloud.com/en-ie/managed-bare-metal/',
+      IT: 'https://www.ovhcloud.com/it/managed-bare-metal/',
+      LT: 'https://www.ovhcloud.com/en-ie/managed-bare-metal/',
+      MA: 'https://www.ovhcloud.com/fr-ma/managed-bare-metal/',
+      NL: 'https://www.ovhcloud.com/nl/managed-bare-metal/',
+      PL: 'https://www.ovhcloud.com/pl/managed-bare-metal/',
+      PT: 'https://www.ovhcloud.com/pt/managed-bare-metal/',
+      SN: 'https://www.ovhcloud.com/fr-sn/managed-bare-metal/',
+      TN: 'https://www.ovhcloud.com/fr-tn/managed-bare-metal/',
     },
     vrack: {
       CZ:
@@ -168,8 +196,8 @@ export const ORDER_URLS = {
       ES: 'https://www.ovh.es/order/domain/',
       FI: 'https://www.ovh-hosting.fi/cgi-bin/newOrder/order.cgi',
       FR: 'https://www.ovh.com/fr/order/domain/',
-      GB: 'https://www.ovh.co.uk/order/domain',
-      IE: 'https://www.ovh.ie/order/domain',
+      GB: 'https://www.ovh.co.uk/order/webcloud',
+      IE: 'https://www.ovh.ie/order/webcloud',
       IT: 'https://www.ovh.it/order/domain/',
       LT: 'https://www.ovh.lt/order/domain/',
       NL: 'https://www.ovh.nl/order/domain/',
@@ -262,36 +290,7 @@ export const ORDER_URLS = {
         'https://www.ovhcloud.com/en/network-security/ovhcloud-connect/provider/',
     },
     dbaas_logs: {
-      FR:
-        "https://www.ovh.com/fr/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
-      CZ:
-        "https://www.ovh.cz/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
-      DE:
-        "https://www.ovh.de/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
-      ES:
-        "https://www.ovh.es/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
-      FI:
-        "https://www.ovh-hosting.fi/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
-      GB:
-        "https://www.ovh.co.uk/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
-      IE:
-        "https://www.ovh.ie/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
-      IT:
-        "https://www.ovh.it/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
-      LT:
-        "https://www.ovh.lt/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
-      MA:
-        "https://www.ovh.ma/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
-      NL:
-        "https://www.ovh.nl/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
-      PL:
-        "https://www.ovh.pl/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
-      PT:
-        "https://www.ovh.pt/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
-      SN:
-        "https://www.ovh.sn/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
-      TN:
-        "https://www.ovh.com/tn/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
+      EU: 'https://www.ovh.com/manager/dedicated/#/dbaas/logs/welcome',
     },
   },
   CA: {
@@ -323,30 +322,33 @@ export const ORDER_URLS = {
       WS: 'https://www.ovh.com/world/es/hosting/',
     },
     dedicated_cloud: {
-      ASIA: 'https://www.ovh.com/asia/sddc/',
-      AU: 'https://www.ovh.com.au/sddc/',
-      CA: 'https://www.ovh.com/ca/en/sddc/',
-      QC: 'https://www.ovh.com/ca/fr/sddc/',
-      SG: 'https://www.ovh.com/sg/sddc/',
-      WE: 'https://www.ovh.com/world/sddc/',
-      WS: 'https://www.ovh.com/world/es/sddc/',
+      ASIA:
+        'https://www.ovhcloud.com/en-sg/enterprise/products/hosted-private-cloud/prices/',
+      AU:
+        'https://www.ovhcloud.com/en-au/enterprise/products/hosted-private-cloud/prices/',
+      CA:
+        'https://www.ovhcloud.com/en-ca/enterprise/products/hosted-private-cloud/prices/',
+      QC:
+        'https://www.ovhcloud.com/fr-ca/enterprise/products/hosted-private-cloud/prices/',
+      SG:
+        'https://www.ovhcloud.com/en-sg/enterprise/products/hosted-private-cloud/prices/',
+      WE:
+        'https://www.ovhcloud.com/en/enterprise/products/hosted-private-cloud/prices/',
+      WS:
+        'https://www.ovhcloud.com/es/enterprise/products/hosted-private-cloud/prices/',
+    },
+    managed_bare_metal: {
+      ASIA: 'https://www.ovhcloud.com/asia/managed-bare-metal/',
+      AU: 'https://www.ovhcloud.com/en-au/managed-bare-metal/',
+      CA: 'https://www.ovhcloud.com/en-ca/managed-bare-metal/',
+      QC: 'https://www.ovhcloud.com/fr-ca/managed-bare-metal/',
+      SG: 'https://www.ovhcloud.com/en-sg/managed-bare-metal/',
+      WE: 'https://www.ovhcloud.com/en/managed-bare-metal/',
+      WS: 'https://www.ovhcloud.com/es-es/managed-bare-metal/',
     },
     cloud_disk_array: {},
     dbaas_logs: {
-      ASIA:
-        "https://ca.ovh.com/asia/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
-      AU:
-        "https://ca.ovh.com/au/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
-      CA:
-        "https://ca.ovh.com/en/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
-      QC:
-        "https://ca.ovh.com/fr/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
-      SG:
-        "https://ca.ovh.com/sg/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
-      WE:
-        "https://us.ovh.com/us/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
-      WS:
-        "https://us.ovh.com/es/order/express/#/new/express/resume?products=~(~(planCode~'logs-account~productId~'logs))",
+      CA: 'https://ca.ovh.com/manager/dedicated/#/dbaas/logs/welcome',
     },
     veeam: {},
     veeam_enterprise: {
@@ -433,6 +435,9 @@ export const ORDER_URLS = {
     dedicated_cloud: {
       US: 'https://us.ovhcloud.com/enterprise/products/hosted-private-cloud',
     },
+    managed_bare_metal: {
+      US: 'https://us.ovhcloud.com/managed-bare-metal/',
+    },
     cloud_disk_array: {
       US: 'https://us.ovhcloud.com/cloud/cloud-disk-array/',
     },
@@ -474,16 +479,6 @@ export const SIDEBAR_ORDER_CONFIG = [
     app: [DEDICATED],
     regions: ['EU', 'CA', 'US'],
     tracker: 'dedicated::orders::public-cloud-project::order',
-  },
-  {
-    id: 'order-nas',
-    title: 'NAS',
-    icon: 'ovh-font ovh-font-cloudnas',
-    linkId: 'DEDICATED',
-    linkPart: '#/configuration/nas',
-    app: [DEDICATED],
-    regions: ['EU'],
-    tracker: 'dedicated::orders::nas::order',
   },
   {
     id: 'order-dedicated-server',
@@ -539,6 +534,17 @@ export const SIDEBAR_ORDER_CONFIG = [
     external: true,
     app: [CLOUD],
     tracker: 'dedicated::orders::vps::order',
+  },
+  {
+    id: 'order-managed-bare-metal',
+    title: 'managed_bare_metal',
+    icon: 'oui-icon oui-icon-cloud-essential_concept',
+    linkId: 'managed_bare_metal',
+    target: '_blank',
+    external: true,
+    app: [CLOUD],
+    regions: ['EU', 'CA', 'US'],
+    tracker: 'dedicated::orders::mbm::order',
   },
   {
     id: 'order-private-cloud',
@@ -631,10 +637,9 @@ export const SIDEBAR_ORDER_CONFIG = [
     id: 'order-logs',
     title: 'logs',
     icon: 'fa fa-bar-chart',
-    linkId: 'dbaas_logs',
-    target: '_blank',
-    external: true,
-    app: [CLOUD],
+    linkId: 'DEDICATED',
+    linkPart: '#/dbaas/logs/order',
+    app: [DEDICATED],
     regions: ['EU', 'CA'],
     tracker: 'dedicated::orders::logs::order',
   },

@@ -1,10 +1,10 @@
 {
   "navbar_universe_sunrise": "Sunrise",
   "navbar_universe_hub": "Painel de controlo",
-  "navbar_universe_partners": "Parceiros",
   "navbar_universe_public-cloud": "Public Cloud",
-  "navbar_universe_server": "Server",
+  "navbar_universe_server": "Bare Metal Cloud",
+  "navbar_universe_hpc": "Hosted Private Cloud",
   "navbar_universe_telecom": "Telecom",
-  "navbar_universe_web": "Web",
+  "navbar_universe_web": "Web Cloud",
   "navbar_search": "Pesquisar"
 }

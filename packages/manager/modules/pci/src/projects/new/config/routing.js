@@ -7,8 +7,8 @@ export default /* @ngInject */ ($stateProvider) => {
       '': component.name,
 
       'banner@pci.projects.new.config': {
-        componentProvider: /* @ngInject */ (ovhFeatureFlipping) =>
-          ovhFeatureFlipping.isFeatureActive('pci.onboarding.new.banner')
+        componentProvider: /* @ngInject */ (ovhPciFeatureFlipping) =>
+          ovhPciFeatureFlipping.isFeatureActive('pci.onboarding.new.banner')
             ? 'pciProjectNewConfigBanner'
             : null,
       },
@@ -20,12 +20,6 @@ export default /* @ngInject */ ($stateProvider) => {
     onEnter: /* @ngInject */ (activeStep, step) => {
       activeStep(step.name);
     },
-    redirectTo: (transition) =>
-      transition
-        .injector()
-        .getAsync('summary')
-        .then(() => false)
-        .catch(() => 'pci.projects'),
     resolve: {
       getActionHref: /* @ngInject */ ($state) => (action) => {
         const actionState =

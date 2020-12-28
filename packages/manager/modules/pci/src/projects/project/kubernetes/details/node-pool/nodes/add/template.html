@@ -13,6 +13,13 @@
         data-on-submit="$ctrl.displaySelectedFlavor = true"
         name="node_add_configuration"
     >
+        <oui-message type="info" data-ng-if="$ctrl.nodePool.antiAffinity">
+            <span
+                data-translate="kube_nodes_add_anti_affinity_active_info"
+                data-translate-values="{ maxNodes: $ctrl.antiAffinityMaxNodes }"
+            ></span>
+        </oui-message>
+
         <oui-field
             data-label="{{ ::'kube_nodes_add_select_nodes' | translate }}"
             data-size="xl"
@@ -70,13 +77,7 @@
         data-on-submit="$ctrl.addNode()"
         name="node_add_billing_info"
     >
-        <billing-type
-            data-flavor="$ctrl.intanceFlavor"
-            data-number="$ctrl.nodeAddCount"
-            data-monthly-billing="false"
-            data-description="{{ ::'kube_add_billing_type_description' | translate }}"
-        >
-        </billing-type>
+        <p data-translate="kube_nodes_add_billing_type_unavailable"></p>
 
         <div data-ng-if="$ctrl.isAdding" class="d-flex align-items-center">
             <oui-spinner data-size="m"></oui-spinner>

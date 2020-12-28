@@ -4,6 +4,8 @@ import reduce from 'lodash/reduce';
 import set from 'lodash/set';
 import union from 'lodash/union';
 
+import { IP_TYPE } from './ip-ip.constant';
+
 angular
   .module('Module.ip.services')
   .service('Ip', function Ip(
@@ -238,7 +240,7 @@ angular
                   set(ipBlock, 'ips', []);
                 }
 
-                if (ipBlock.version === 'IPV4') {
+                if (ipBlock.version === IP_TYPE.V4) {
                   if (/\/32$/.test(ipBlock.ipBlock)) {
                     set(ipBlock, 'isUniq', true);
                   } else {
@@ -338,13 +340,15 @@ angular
         =            IP DEL            =
         =============================== */
 
-    this.deleteIpBlock = (ipBlock) =>
-      OvhHttp.post('/ip/{block}/terminate', {
+    this.deleteIpBlock = (ipBlock) => {
+      const [ip, block] = ipBlock.split('/');
+      return OvhHttp.post('/ip/service/{serviceName}/terminate', {
         rootPath: 'apiv6',
         urlParams: {
-          block: ipBlock,
+          serviceName: `ip-${block === '32' ? ip : ipBlock}`,
         },
       });
+    };
 
     /*= ==============================
         =            IP MOVE            =

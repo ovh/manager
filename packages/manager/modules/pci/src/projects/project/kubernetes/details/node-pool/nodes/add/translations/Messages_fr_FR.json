@@ -25,5 +25,7 @@
   "kube_nodes_add_same_flavor_message": "Vous pouvez uniquement choisir ce type d'instance car le pool de nœuds ne peut être composé que de nœuds du même type d'instance.",
   "kube_nodes_add_select_nodes": "Sélectionnez le nombre de nouveaux nœuds à ajouter",
   "kube_nodes_add_instance_type": "Type d'instance",
-  "kube_nodes_add_adding_message": "Redimensionnement du pool"
+  "kube_nodes_add_adding_message": "Redimensionnement du pool",
+  "kube_nodes_add_anti_affinity_active_info": "L'anti-affinité est activée : le pool de nœuds ne pourra pas contenir plus de {{ maxNodes }} nœuds",
+  "kube_nodes_add_billing_type_unavailable": "Le mode de facturation d'un pool de nœuds ne peut être modifié"
 }

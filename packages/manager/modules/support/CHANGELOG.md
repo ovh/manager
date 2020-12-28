@@ -1,3 +1,49 @@
+## [1.0.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.0.7...@ovh-ux/manager-support@1.0.8) (2020-12-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 688] ([fb31f81](https://github.com/ovh/manager/commit/fb31f8189347a80a613659573525a62fbafe0181))
+
+
+
+## [1.0.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.0.6...@ovh-ux/manager-support@1.0.7) (2020-11-17)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 650] ([6e72d24](https://github.com/ovh/manager/commit/6e72d24aaa5dd085e207e67f8c557b27f2e9e29f))
+* **support:** add managed bare metal ([3f84427](https://github.com/ovh/manager/commit/3f84427f13df76d0211c3ee4aa204bc00ac38497)), closes [#MANAGER-5741](https://github.com/ovh/manager/issues/MANAGER-5741)
+
+
+
+## [1.0.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.0.5...@ovh-ux/manager-support@1.0.6) (2020-10-28)
+
+
+### Bug Fixes
+
+* **peer-deps:** upgrade @ovh-ux/ui-kit to v4.4.1 ([8254623](https://github.com/ovh/manager/commit/82546237336e185ae7d973a1bb2aabddbb50112e))
+
+
+
+## [1.0.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.0.4...@ovh-ux/manager-support@1.0.5) (2020-10-20)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v11.0.0 ([#3869](https://github.com/ovh/manager/issues/3869)) ([df90e4d](https://github.com/ovh/manager/commit/df90e4de660920e3cd07b2ff6b4452b0aa861377))
+
+
+
+## [1.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.0.3...@ovh-ux/manager-support@1.0.4) (2020-10-13)
+
+
+### Bug Fixes
+
+* **deps:** upgrade to @ovh-ux/manager-config v2.0.0 ([ca3f955](https://github.com/ovh/manager/commit/ca3f9554c13b1436cbdeed3de8ac69e399d5dd93))
+
+
+
 ## [1.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.0.2...@ovh-ux/manager-support@1.0.3) (2020-09-30)
 
 

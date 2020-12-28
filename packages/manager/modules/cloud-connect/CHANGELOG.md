@@ -1,3 +1,53 @@
+## [1.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.0.3...@ovh-ux/manager-cloud-connect@1.0.4) (2020-12-22)
+
+
+### Bug Fixes
+
+* **details.overview:** update wording ([ba96aa4](https://github.com/ovh/manager/commit/ba96aa4fa08b729f6d13f6ca3951519ac0c3898a))
+* **details.service-keys:** fix regenerate key module name ([#4190](https://github.com/ovh/manager/issues/4190)) ([57237e0](https://github.com/ovh/manager/commit/57237e068d688270ba549a90f2a8f4bc307b8d6f))
+* **i18n:** add missing translations [CDS 702] ([acbc603](https://github.com/ovh/manager/commit/acbc6038b9c63e4b00cd0eeca79e08cae53e4869))
+* **i18n:** add missing translations [CDS 716] ([4b9523e](https://github.com/ovh/manager/commit/4b9523e0bb2bf99fa243081b31a7c50c690abaa0))
+* **i18n:** add missing translations [CDS 717] ([00c10dc](https://github.com/ovh/manager/commit/00c10dcdde238c35993003c6523523b6875ff7e7))
+* **i18n:** add missing translations [CDS 721] ([b2c7daf](https://github.com/ovh/manager/commit/b2c7dafa0ba97dbdbe89989f89a63cb48e178eb6))
+* **translations:** clean translations files ([#4194](https://github.com/ovh/manager/issues/4194)) ([cbd2ad2](https://github.com/ovh/manager/commit/cbd2ad273a0dc190ab33e93f7efc58b10768733f))
+* update service key check ([8fad547](https://github.com/ovh/manager/commit/8fad547e85bb43becadd49d4c4a0030b5124462e))
+
+
+
+## [1.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.0.2...@ovh-ux/manager-cloud-connect@1.0.3) (2020-12-08)
+
+
+### Bug Fixes
+
+* **cloud-connect:** fix translation errors ([#3835](https://github.com/ovh/manager/issues/3835)) ([4b2a687](https://github.com/ovh/manager/commit/4b2a687f49154657cd7042228b50441f9e9e59fc))
+* **i18n:** add missing translations [CDS 693] ([cc4fafa](https://github.com/ovh/manager/commit/cc4fafad05f59ecab600247686b99e7780039b28))
+
+
+
+## [1.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.0.1...@ovh-ux/manager-cloud-connect@1.0.2) (2020-10-28)
+
+
+### Bug Fixes
+
+* **peer-deps:** upgrade @ovh-ux/ui-kit to v4.4.1 ([8254623](https://github.com/ovh/manager/commit/82546237336e185ae7d973a1bb2aabddbb50112e))
+* add missing dependencies ([c82ec7e](https://github.com/ovh/manager/commit/c82ec7e5c973727cc62c5a44955f859d045a16da))
+
+
+### Performance Improvements
+
+* avoid importing dependencies on lazy loaded module ([0d81a61](https://github.com/ovh/manager/commit/0d81a61a366702ea966234c21829cb229e737cb5))
+
+
+
+## [1.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.0.0...@ovh-ux/manager-cloud-connect@1.0.1) (2020-10-20)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v11.0.0 ([#3869](https://github.com/ovh/manager/issues/3869)) ([df90e4d](https://github.com/ovh/manager/commit/df90e4de660920e3cd07b2ff6b4452b0aa861377))
+
+
+
 # [1.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@0.0.0...@ovh-ux/manager-cloud-connect@1.0.0) (2020-09-28)
 
 

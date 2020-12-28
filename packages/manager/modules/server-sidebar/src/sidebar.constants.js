@@ -1,4 +1,4 @@
-import { DEDICATED, CLOUD } from './constants';
+import { DEDICATED, CLOUD, HPC_NAMESPACE } from './constants';
 
 export const DEDICATED_SERVER_CONFIG = {
   id: 'dedicatedServers',
@@ -46,16 +46,48 @@ export const DEDICATED_CLOUD_CONFIG = {
           state: 'app.dedicatedClouds.datacenter',
           stateParams: ['productId', 'datacenterId'],
           app: [DEDICATED],
+          namespace: HPC_NAMESPACE,
+          subType: 'EPCC',
         },
       ],
       state: 'app.dedicatedClouds',
       stateParams: ['productId'],
       icon: 'ovh-font ovh-font-dedicatedCloud',
       app: [DEDICATED],
+      namespace: HPC_NAMESPACE,
+      subType: 'EPCC',
     },
   ],
   loadOnState: 'app.dedicatedClouds',
   icon: 'ovh-font ovh-font-dedicatedCloud',
+  app: [DEDICATED],
+  regions: ['EU', 'CA', 'US'],
+  namespace: HPC_NAMESPACE,
+};
+
+export const MANAGED_BAREMETAL_CONFIG = {
+  id: 'managedBaremetal',
+  types: [
+    {
+      path: '/dedicatedCloud',
+      types: [
+        {
+          path: '/dedicatedCloud/:productId/datacenter',
+          state: 'app.managedBaremetal.datacenter',
+          stateParams: ['productId', 'datacenterId'],
+          app: [DEDICATED],
+          subType: 'MBM',
+        },
+      ],
+      state: 'app.managedBaremetal',
+      stateParams: ['productId'],
+      icon: 'oui-icon oui-icon-cloud-essential_concept',
+      app: [DEDICATED],
+      subType: 'MBM',
+    },
+  ],
+  loadOnState: 'app.managedBaremetal',
+  icon: 'oui-icon oui-icon-cloud-essential_concept',
   app: [DEDICATED],
   regions: ['EU', 'CA', 'US'],
 };
@@ -157,6 +189,7 @@ export const IP_CONFIG = {
   icon: 'ovh-font ovh-font-ip',
   app: [DEDICATED],
   regions: ['EU', 'CA', 'US'],
+  namespace: [undefined, HPC_NAMESPACE],
 };
 
 export const IAAS_CONFIG = {
@@ -194,6 +227,7 @@ export const PAAS_CONFIG = {
       app: [CLOUD],
       regions: ['EU', 'CA'],
       searchKeys: ['Cloud Disk Array', 'CDA'],
+      namespace: [undefined],
     },
     {
       path: '/veeamCloudConnect',
@@ -203,6 +237,7 @@ export const PAAS_CONFIG = {
       app: [DEDICATED],
       regions: ['EU', 'CA'],
       searchKeys: ['Veeam Cloud Connect', 'VEEAM'],
+      namespace: [undefined],
     },
     {
       path: '/veeam/veeamEnterprise',
@@ -212,11 +247,13 @@ export const PAAS_CONFIG = {
       app: [DEDICATED],
       regions: ['EU'],
       searchKeys: ['Veeam Enterprise', 'VEEAM_ENTERPRISE'],
+      namespace: [HPC_NAMESPACE],
     },
   ],
   icon: 'ovh-font ovh-font-cloud-package',
   app: [CLOUD],
   regions: ['EU', 'CA'],
+  namespace: [undefined, HPC_NAMESPACE],
 };
 
 export const METRICS_CONFIG = {
@@ -228,36 +265,38 @@ export const METRICS_CONFIG = {
       state: 'dbaas.metrics.detail.dashboard',
       stateParams: ['serviceName'],
       icon: 'ovh-font ovh-font-graph',
-      app: [CLOUD],
+      app: [DEDICATED],
       searchKeys: ['IOT', 'Metrics', 'Monitoring', 'Time Series', 'TimeSeries'],
     },
   ],
   icon: 'ovh-font ovh-font-graph',
-  app: [CLOUD],
+  app: [DEDICATED],
   regions: ['EU'],
 };
 
 export const LOGS_CONFIG = {
   id: 'logs',
-  loadOnState: 'dbaas.logs',
+  loadOnState: 'dbaas-logs',
+  state: 'dbaas-logs',
+  stateUrl: '#/dbaas/logs',
   types: [
     {
       path: '/dbaas/logs',
-      state: 'dbaas.logs.detail',
+      state: 'dbaas-logs.detail',
       stateParams: ['serviceName'],
-      app: [CLOUD],
+      app: [DEDICATED],
     },
   ],
   children: [
     {
       id: 'logs_all_accounts',
-      state: 'dbaas.logs',
+      state: 'dbaas-logs',
       stateUrl: '#/dbaas/logs/list',
-      app: [CLOUD],
+      app: [DEDICATED],
     },
   ],
   icon: 'fa fa-bar-chart',
-  app: [CLOUD],
+  app: [DEDICATED],
   regions: ['EU', 'CA'],
 };
 
@@ -284,6 +323,7 @@ export const DEDICATED_NETWORK_CONFIG = {
   forceDisplaySearch: true,
   app: [DEDICATED],
   regions: ['EU', 'CA', 'US'],
+  namespace: [undefined, HPC_NAMESPACE],
   icon: 'oui-icon oui-icon-bandwidth_concept',
   loadOnState: ['vrack', 'cloud-connect'],
   children: [
@@ -296,11 +336,13 @@ export const DEDICATED_NETWORK_CONFIG = {
           state: 'vrack',
           stateParams: ['vrackId'],
           app: [DEDICATED],
+          namespace: [undefined, HPC_NAMESPACE],
         },
       ],
       icon: 'ovh-font ovh-font-vRack',
       app: [DEDICATED],
       regions: ['EU', 'CA', 'US'],
+      namespace: [undefined, HPC_NAMESPACE],
     },
     {
       id: 'cloud_connect',
@@ -313,10 +355,12 @@ export const DEDICATED_NETWORK_CONFIG = {
           stateParams: ['ovhCloudConnectId'],
           app: [DEDICATED],
           regions: ['EU'],
+          namespace: [undefined, HPC_NAMESPACE],
         },
       ],
       icon: 'oui-icon oui-icon-line-communicating_concept',
       app: [DEDICATED],
+      namespace: [undefined, HPC_NAMESPACE],
     },
   ],
 };
@@ -341,6 +385,7 @@ export const CLOUD_DESKTOP_CONFIG = {
 
 export const SIDEBAR_CONFIG = [
   DEDICATED_SERVER_CONFIG,
+  MANAGED_BAREMETAL_CONFIG,
   DEDICATED_CLOUD_CONFIG,
   NETWORKS_CONFIG,
   ENTERPRISE_CLOUD_DATABASE,

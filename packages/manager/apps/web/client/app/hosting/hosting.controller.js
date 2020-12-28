@@ -11,6 +11,7 @@ import remove from 'lodash/remove';
 import set from 'lodash/set';
 import some from 'lodash/some';
 import union from 'lodash/union';
+import { HOSTING_CDN_ORDER_CDN_VERSION_V1 } from './cdn/order/hosting-cdn-order.constant';
 
 export default class {
   /* @ngInject */
@@ -28,6 +29,7 @@ export default class {
     Alerter,
     Navigator,
     constants,
+    availableOptions,
     emailOptionIds,
     emailOptionDetachInformation,
     isEmailDomainAvailable,
@@ -41,6 +43,8 @@ export default class {
     HostingIndy,
     HostingOvhConfig,
     HostingTask,
+    HostingCdnSharedService,
+    HostingCdnOrderService,
     logs,
     pendingTasks,
     PrivateDatabase,
@@ -65,6 +69,7 @@ export default class {
     this.Alerter = Alerter;
     this.Navigator = Navigator;
     this.constants = constants;
+    this.availableOptions = availableOptions;
     this.emailOptionIds = emailOptionIds;
     this.emailOptionDetachInformation = emailOptionDetachInformation;
     this.isEmailDomainAvailable = isEmailDomainAvailable;
@@ -78,6 +83,8 @@ export default class {
     this.HostingIndy = HostingIndy;
     this.HostingOvhConfig = HostingOvhConfig;
     this.HostingTask = HostingTask;
+    this.HostingCdnSharedService = HostingCdnSharedService;
+    this.HostingCdnOrderService = HostingCdnOrderService;
     this.pendingTasks = pendingTasks;
     this.PrivateDatabase = PrivateDatabase;
     this.privateDatabasesDetachable = privateDatabasesDetachable;
@@ -96,6 +103,7 @@ export default class {
       active: false,
     };
 
+    this.$scope.availableOptions = this.availableOptions;
     this.$scope.emailOptionIds = this.emailOptionIds;
     this.$scope.emailOptionDetachInformation = this.emailOptionDetachInformation;
     this.$scope.privateDatabasesDetachable = this.privateDatabasesDetachable;
@@ -112,6 +120,8 @@ export default class {
     this.$scope.displayMore = {
       value: false,
     };
+
+    this.$scope.ovhSubsidiary = this.user.ovhSubsidiary;
 
     this.$scope.alerts = {
       page: 'app.alerts.page',
@@ -503,6 +513,12 @@ export default class {
             },
           ]);
         }
+      })
+      .catch(() => {
+        this.Alerter.error(
+          this.$translate.instant('hosting_tab_generic_error'),
+          this.$scope.alerts.page,
+        );
       });
   }
 
@@ -739,7 +755,6 @@ export default class {
         this.$scope.sshUrl = `ssh://${hostingProxy.serviceManagementAccess.ssh.url}:${hostingProxy.serviceManagementAccess.ssh.port}/`;
         this.$scope.urls.hosting = hostingUrl;
         this.$scope.urlDomainOrder = domainOrderUrl;
-
         return this.User.getUrlOf('guides');
       })
       .then((guides) => {
@@ -808,6 +823,8 @@ export default class {
         this.Alerter.error(err);
       })
       .then(() => this.handlePrivateDatabases())
+      .then(() => this.handleCDNProperties())
+      .then(() => this.simulateUpgradeAvailability())
       .finally(() => {
         this.$scope.loadingHostingInformations = false;
       });
@@ -817,6 +834,44 @@ export default class {
     return this.getPrivateDatabases().then((privateDatabases) => {
       this.$scope.privateDatabases = privateDatabases;
     });
+  }
+
+  handleCDNProperties() {
+    return this.HostingCdnSharedService.getCDNProperties(
+      this.$scope.hosting.serviceName,
+    )
+      .then(({ data: cdn }) => {
+        this.$scope.cdnProperties = cdn;
+      })
+      .catch((err) => {
+        this.Alerter.error(err);
+        this.$scope.cdnProperties = null;
+      });
+  }
+
+  /**
+   * This function can be removed once all CDN has been migrated by AGORA
+   * The isUpgradable variable can also removed
+   * @returns {Promise<{}>}
+   */
+  simulateUpgradeAvailability() {
+    const cdnVersion = get(this.$scope.cdnProperties, 'version', '');
+    if (cdnVersion === HOSTING_CDN_ORDER_CDN_VERSION_V1) {
+      const { serviceName } = this.$scope.hosting;
+      return this.HostingCdnSharedService.simulateUpgrade(
+        serviceName,
+        this.HostingCdnOrderService,
+      )
+        .then(() => {
+          this.$scope.isUpgradable = true;
+        })
+        .catch(() => {
+          this.$scope.isUpgradable = false;
+          return this.$q.resolve();
+        });
+    }
+    this.$scope.isUpgradable = true;
+    return this.$q.resolve();
   }
 
   setSelectedTab(tab) {

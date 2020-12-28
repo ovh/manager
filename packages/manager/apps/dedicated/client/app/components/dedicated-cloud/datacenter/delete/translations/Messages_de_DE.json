@@ -1,0 +1,5 @@
+{
+  "dedicatedCloud_datacenter_delete_confirmation": "Möchten Sie das Datacenter {{t0}} wirklich löschen?",
+  "dedicatedCloud_datacenter_delete_success": "Das Datacenter {{t0}} wird in wenigen Augenblicken gelöscht.",
+  "dedicatedCloud_datacenter_delete_error": "Beim Löschen des Datacenters {{t0}} ist ein Fehler aufgetreten."
+}

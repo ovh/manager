@@ -31,6 +31,7 @@ import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-confi
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ovhManagerBanner from '@ovh-ux/manager-banner';
 import ovhManagerEnterpriseCloudDatabase from '@ovh-ux/manager-enterprise-cloud-database';
+import ovhManagerDbaasLogs from '@ovh-ux/manager-dbaas-logs';
 import ovhManagerMfaEnrollment from '@ovh-ux/mfa-enrollment';
 import ovhManagerNasha from '@ovh-ux/manager-nasha';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
@@ -41,6 +42,8 @@ import uiRouter, { RejectType } from '@uirouter/angularjs';
 import chartjs from 'angular-chart.js';
 
 import moduleExchange from '@ovh-ux/manager-exchange';
+import ovhManagerFilters from '@ovh-ux/manager-filters';
+import ovhManagerMetrics from '@ovh-ux/manager-metrics';
 import ovhManagerVeeamEnterprise from '@ovh-ux/manager-veeam-enterprise';
 import ovhManagerVeeamCloudConnect from '@ovh-ux/manager-veeam-cloud-connect';
 import ovhManagerVps from '@ovh-ux/manager-vps';
@@ -53,17 +56,12 @@ import ovhManagerAccountMigration from '@ovh-ux/manager-account-migration';
 import account from './account';
 import config from './config/config';
 import contactsService from './account/contacts/service/contacts-service.module';
-import dedicatedCloudDatacenterDrp from './dedicatedCloud/datacenter/drp';
-import dedicatedCloudDatacenterDashboardDeleteDrp from './dedicatedCloud/datacenter/dashboard/deleteDrp';
-import dedicatedCloudTerminate from './dedicatedCloud/terminate/terminate.module';
-import dedicatedCloudDashboard from './dedicatedCloud/dashboard';
+import dedicatedCloud from './dedicatedCloud';
 import dedicatedUniverseComponents from './dedicatedUniverseComponents';
+import managedBaremetal from './managedBaremetal';
 import errorPage from './error';
-import ovhManagerPccResourceUpgrade from './dedicatedCloud/resource/upgrade';
 
 import dedicatedServer from './dedicated/server';
-
-import datacenterBackup from './dedicatedCloud/datacenter/backup';
 import userContracts from './user-contracts';
 
 import { TRACKING } from './at-internet.constants';
@@ -84,11 +82,7 @@ angular
       chartjs,
       'controllers',
       contactsService,
-      datacenterBackup,
-      dedicatedCloudDatacenterDrp,
-      dedicatedCloudDatacenterDashboardDeleteDrp,
-      dedicatedCloudTerminate,
-      dedicatedCloudDashboard,
+      dedicatedCloud,
       dedicatedServer,
       dedicatedUniverseComponents,
       'directives',
@@ -97,6 +91,7 @@ angular
       'internationalPhoneNumber',
       'Module.download',
       Environment.getRegion() === 'CA' ? moduleExchange : undefined,
+      managedBaremetal,
       'Module.ip',
       'Module.license',
       'Module.otrs',
@@ -130,17 +125,19 @@ angular
       'ovh-api-services',
       ovhManagerAtInternetConfiguration,
       ovhManagerAccountMigration,
+      ovhManagerDbaasLogs,
       ovhManagerIplb,
-      ovhManagerPccResourceUpgrade,
       ovhManagerServerSidebar,
       ovhManagerSupport,
       ovhManagerVeeamEnterprise,
       ovhManagerVeeamCloudConnect,
       ovhNotificationsSidebar,
+      ovhManagerFilters,
       ngTailLogs,
       ovhContacts,
       ovhManagerBanner,
       ovhManagerEnterpriseCloudDatabase,
+      ovhManagerMetrics,
       ovhManagerNasha,
       ovhManagerNavbar,
       ovhManagerVps,
@@ -236,13 +233,35 @@ angular
 
       // if query params contains unescaped '<' value then
       // clear query params to avoid html injection
-      $transitions.onBefore({}, () => {
+      $transitions.onBefore({}, (transition) => {
         let invalidParams = false;
         values($location.search()).forEach((param) => {
           invalidParams = invalidParams || /</.test(param);
         });
         if (invalidParams) {
           $location.search('');
+        }
+
+        const HPC_STATES = [
+          'app.hpc',
+          'app.dedicatedClouds',
+          'veeam-enterprise',
+        ];
+        const IGNORE_STATES = [
+          'app.configuration',
+          'app.ip',
+          'vrack',
+          'cloud-connect',
+        ];
+
+        const stateIncludes = Object.keys(transition.$to().includes);
+
+        if (HPC_STATES.some((state) => stateIncludes.includes(state))) {
+          $rootScope.$broadcast('switchUniverse', 'hpc');
+        } else if (
+          !IGNORE_STATES.some((state) => stateIncludes.includes(state))
+        ) {
+          $rootScope.$broadcast('switchUniverse', 'server');
         }
       });
 
@@ -333,6 +352,7 @@ angular
     /* @ngInject */ ($rootScope, $transitions) => {
       const unregisterHook = $transitions.onSuccess({}, () => {
         detachPreloader();
+        $rootScope.$broadcast('app:started');
         unregisterHook();
       });
     },
@@ -344,7 +364,9 @@ angular
   )
   .config(
     /* @ngInject */ (ovhFeatureFlippingProvider) => {
-      ovhFeatureFlippingProvider.setApplicationName('dedicated');
+      ovhFeatureFlippingProvider.setApplicationName(
+        Environment.getApplicationName(),
+      );
     },
   );
 

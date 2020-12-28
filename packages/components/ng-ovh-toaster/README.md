@@ -7,7 +7,7 @@
 ---
 
 <div align="center">
-:bookmark: `ovh-angular-toaster` is now deprecated. Please take a look at our <a href="https://github.com/ovh-ux/ovh-ui-kit" target="_blank">OVH UI Kit - Master UI Framework</a>. You can find more details <a href="http://master.ui-kit.ovh/#!/ovh-ui-kit/message" target="_blank">here</a>.
+:bookmark: `ovh-angular-toaster` is now deprecated. Please take a look at our <a href="https://github.com/ovh/ovh-ui-kit" target="_blank">OVH UI Kit - Master UI Framework</a>. You can find more details <a href="https://ovh.github.io/ovh-ui-kit/?path=/story/design-system-components-message-webcomponent--default" target="_blank">here</a>.
 </div>
 
 ---

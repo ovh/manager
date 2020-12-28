@@ -1,31 +1,55 @@
 import angular from 'angular';
+import '@uirouter/angularjs';
+import 'oclazyload';
+import meetings from './meetings';
 
-import internetAccess from './internet-access';
-import packMove from './move';
-import packVoipLineActivation from './slots/voipLine/activation/pack-voipLine-activation.module';
-import hostedEmailDetail from './slots/hostedEmail/detail';
-import xdsl from './xdsl';
-import migration from './migration';
+const moduleName = 'ovhManagerPacksLoading';
 
-import templates from './pack.templates';
+angular.module(moduleName, ['ui.router', 'oc.lazyLoad', meetings]).config(
+  /* @ngInject */ ($stateProvider) => {
+    $stateProvider
+      .state('telecom.packs', {
+        url: '/pack',
+        redirectTo: 'telecom.packs.index',
+        views: {
+          'telecomView@telecom': {
+            template: '<div ui-view></div>',
+          },
+        },
+      })
+      .state('telecom.packs.index.**', {
+        url: '',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-import controller from './pack.controller';
-import routing from './pack.routing';
+          return import('./packs.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
+      });
 
-const moduleName = 'ovhManagerTelecomPack';
+    $stateProvider.state('telecom.packs.pack.**', {
+      url: '/:packName',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-angular
-  .module(moduleName, [
-    internetAccess,
-    hostedEmailDetail,
-    packVoipLineActivation,
-    xdsl,
-    packMove,
-    migration,
-  ])
-  .controller('PackCtrl', controller)
-  .config(routing)
-  .run(templates)
-  .run(/* @ngTranslationsInject:json ./translations */);
+        return import('./dashboard/pack.module').then((mod) =>
+          $ocLazyLoad.inject(mod.default || mod),
+        );
+      },
+    });
+
+    $stateProvider.state('telecom.xdsl-meetings.**', {
+      url: '/xdsl/:serviceName/meetings',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./meetings/index').then((mod) =>
+          $ocLazyLoad.inject(mod.default || mod),
+        );
+      },
+    });
+  },
+);
 
 export default moduleName;

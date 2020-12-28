@@ -1,0 +1,75 @@
+<div data-ui-view>
+    <ovh-manager-dedicated-cloud-datacenter-drp-alerts
+        data-current-drp="$ctrl.currentDrp"
+        data-current-user="$ctrl.currentUser"
+        data-go-to-vpn-configuration="$ctrl.goToVpnConfiguration"
+        data-pcc-type="$ctrl.pccType"
+    ></ovh-manager-dedicated-cloud-datacenter-drp-alerts>
+
+    <ovh-manager-pcc-dashboard-legacy
+        data-current-drp="$ctrl.currentDrp"
+        data-current-service="$ctrl.currentService"
+        data-current-user="$ctrl.currentUser"
+        data-datacenter-list="$ctrl.datacenterList"
+        data-delete-drp="$ctrl.deleteDrp"
+        data-disable-vmware-option="$ctrl.disableVmwareOption"
+        data-drp-global-status="$ctrl.drpGlobalStatus"
+        data-edit-details="$ctrl.editDetails"
+        data-go-to-drp="$ctrl.goToDrp"
+        data-go-to-drp-datacenter-selection="$ctrl.goToDrpDatacenterSelection"
+        data-go-to-vpn-configuration="$ctrl.goToVpnConfiguration"
+        data-is-drp-action-possible="$ctrl.isDrpActionPossible"
+        data-on-terminate="$ctrl.onTerminate"
+        data-on-ml-subscribe="$ctrl.onMlSubscribe"
+        data-order-security-option="$ctrl.orderSecurityOption"
+        data-order-vmware-option="$ctrl.orderVmwareOption"
+        data-product-id="$ctrl.productId"
+        data-show-mailing-list="$ctrl.isMailingListSubscriptionAvailable"
+        data-set-message="$ctrl.setMessage"
+        data-ng-if="$ctrl.currentService.usesLegacyOrder"
+    ></ovh-manager-pcc-dashboard-legacy>
+
+    <div
+        class="row d-md-flex mb-5"
+        data-ng-if="!$ctrl.currentService.usesLegacyOrder && !$ctrl.currentService.isExpired"
+    >
+        <div class="col-md-4">
+            <ovh-manager-pcc-dashboard-general-information
+                data-current-service="$ctrl.currentService"
+                data-edit-details="$ctrl.editDetails"
+                data-on-upgrade-version="$ctrl.onUpgradeVersion"
+                data-on-associate-ip-block="$ctrl.onAssociateIpBlock"
+                data-on-execution-date-change="$ctrl.onExecutionDateChange"
+                data-tracking-prefix="$ctrl.trackingPrefix"
+            ></ovh-manager-pcc-dashboard-general-information>
+        </div>
+
+        <div class="col-md-4">
+            <ovh-manager-pcc-dashboard-options
+                data-current-drp="$ctrl.currentDrp"
+                data-current-service="$ctrl.currentService"
+                data-current-user="$ctrl.currentUser"
+                data-datacenter-list="$ctrl.datacenterList"
+                data-delete-drp="$ctrl.deleteDrp"
+                data-drp-global-status="$ctrl.drpGlobalStatus"
+                data-go-to-drp="$ctrl.goToDrp"
+                data-go-to-drp-datacenter-selection="$ctrl.goToDrpDatacenterSelection"
+                data-go-to-vpn-configuration="$ctrl.goToVpnConfiguration"
+                data-is-drp-action-possible="$ctrl.isDrpActionPossible"
+                data-on-basic-options-upgrade="$ctrl.onBasicOptionsUpgrade(stateParams)"
+                data-on-certification-upgrade="$ctrl.onCertificationUpgrade(stateParams)"
+                data-on-configuration-only-upgrade="$ctrl.onConfigurationOnlyUpgrade(stateParams)"
+            ></ovh-manager-pcc-dashboard-options>
+        </div>
+
+        <div class="col-md-4">
+            <ovh-manager-pcc-dashboard-service-management
+                data-current-service="$ctrl.currentService"
+                data-current-user="$ctrl.currentUser"
+                data-show-mailing-list="$ctrl.isMailingListSubscriptionAvailable"
+                data-on-ml-subscribe="$ctrl.onMlSubscribe()"
+                data-on-terminate="$ctrl.onTerminate()"
+            ></ovh-manager-pcc-dashboard-service-management>
+        </div>
+    </div>
+</div>

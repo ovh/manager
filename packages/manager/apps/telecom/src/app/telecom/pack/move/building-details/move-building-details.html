@@ -10,18 +10,7 @@
             <span
                 data-translate="pack_move_building_details_select_building"
             ></span>
-            <oui-select
-                name="building"
-                data-model="$ctrl.model.selectedBuilding"
-                data-title="{{:: 'pack_move_building_details_select_a_building' | translate}}"
-                placeholder="{{:: 'pack_move_building_details_select_a_building' | translate}}"
-                data-items="$ctrl.buildings"
-                required
-                data-match="buildingName"
-                data-on-change="$ctrl.changeSelection()"
-            >
-                <span data-ng-bind="$item.buildingName"></span>
-            </oui-select>
+            <p data-ng-bind="$ctrl.model.selectedBuilding.name"></p>
         </div>
 
         <div data-ng-if="$ctrl.model.selectedBuilding !== null">

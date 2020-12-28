@@ -11,7 +11,11 @@ export default /* @ngInject */ ($transitions) => {
     }
   });
 
-  $transitions.onFinish({}, () => {
+  $transitions.onSuccess({}, () => {
+    NProgress.done();
+  });
+
+  $transitions.onError({}, () => {
     NProgress.done();
   });
 };

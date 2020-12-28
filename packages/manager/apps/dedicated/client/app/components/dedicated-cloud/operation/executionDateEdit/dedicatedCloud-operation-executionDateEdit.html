@@ -1,0 +1,28 @@
+<form
+    class="dedicatedCloud-operation-executionDateEdit"
+    novalidate
+    name="executionDateEditForm"
+    data-ng-submit="$ctrl.onExecutionDateEditFormSubmit()"
+>
+    <oui-modal
+        data-heading="{{ :: 'dedicated_cloud_operation_execution_date_edit_title' | translate }}"
+        data-primary-label="{{ :: 'wizard_modify' | translate }}"
+        data-secondary-label="{{ :: 'wizard_cancel' | translate }}"
+        data-secondary-action="$ctrl.goBack()"
+        data-on-dismiss="$ctrl.goBack()"
+        data-loading="$ctrl.loading.save"
+    >
+        <div class="text-center">
+            <oui-calendar
+                data-model="$ctrl.model.newExecutionDate"
+                data-inline
+                data-min-date="$ctrl.operationToEdit.maintenanceDateFrom.toString()"
+                data-max-date="$ctrl.operationToEdit.maintenanceDateTo.toString()"
+                data-enable-time="true"
+                data-format="Z"
+                data-alt-format="{{ $ctrl.dateFormat }}"
+            >
+            </oui-calendar>
+        </div>
+    </oui-modal>
+</form>

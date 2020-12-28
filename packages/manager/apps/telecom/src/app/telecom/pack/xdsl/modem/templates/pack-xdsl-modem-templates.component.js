@@ -1,5 +1,7 @@
+import XdslModemTemplateCtrl from './pack-xdsl-modem-templates.controller';
+import template from './pack-xdsl-modem-templates.html';
+
 angular.module('managerApp').component('xdslModemTemplates', {
-  templateUrl:
-    'app/telecom/pack/xdsl/modem/templates/pack-xdsl-modem-templates.html',
-  controller: 'XdslModemTemplateCtrl',
+  template,
+  controller: XdslModemTemplateCtrl,
 });

@@ -1,3 +1,30 @@
+## [2.1.3](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.1.2...@ovh-ux/sign-up@2.1.3) (2020-12-22)
+
+
+### Bug Fixes
+
+* **form.i18n:** add missing translation ([#4177](https://github.com/ovh/manager/issues/4177)) ([1b77b82](https://github.com/ovh/manager/commit/1b77b82dc319cb5b3610ab2e5758c383fafd4fa3))
+
+
+
+## [2.1.2](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.1.1...@ovh-ux/sign-up@2.1.2) (2020-10-28)
+
+
+### Bug Fixes
+
+* **peer-deps:** upgrade @ovh-ux/ui-kit to v4.4.1 ([8254623](https://github.com/ovh/manager/commit/82546237336e185ae7d973a1bb2aabddbb50112e))
+
+
+
+## [2.1.1](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.1.0...@ovh-ux/sign-up@2.1.1) (2020-10-13)
+
+
+### Bug Fixes
+
+* **deps:** upgrade to @ovh-ux/manager-config v2.0.0 ([ca3f955](https://github.com/ovh/manager/commit/ca3f9554c13b1436cbdeed3de8ac69e399d5dd93))
+
+
+
 # [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.0.1...@ovh-ux/sign-up@2.1.0) (2020-09-30)
 
 

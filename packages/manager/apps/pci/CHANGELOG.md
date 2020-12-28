@@ -1,3 +1,62 @@
+## [3.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@3.1.1...@ovh-ux/manager-pci-app@3.1.2) (2020-11-25)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v11.0.1 ([#4067](https://github.com/ovh/manager/issues/4067)) ([994f173](https://github.com/ovh/manager/commit/994f173072ab2e6920fa48049d477579f7364657))
+
+
+
+## [3.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@3.1.0...@ovh-ux/manager-pci-app@3.1.1) (2020-11-16)
+
+
+### Bug Fixes
+
+* **deps:** add missing deps ([1e6d9c5](https://github.com/ovh/manager/commit/1e6d9c5d9d3c20fb785dc8f7f0d10507d70918b6))
+
+
+
+# [3.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@3.0.7...@ovh-ux/manager-pci-app@3.1.0) (2020-10-28)
+
+
+### Bug Fixes
+
+* add regenerator-runtime ([982d03a](https://github.com/ovh/manager/commit/982d03a1054ecc3c6fb886f57c8b8f9afe0e7001))
+
+
+### Features
+
+* add core-js to polyfill ([1411e1c](https://github.com/ovh/manager/commit/1411e1ca873d1ffd715c43fcadfe96f26e5be874))
+
+
+
+## [3.0.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@3.0.6...@ovh-ux/manager-pci-app@3.0.7) (2020-10-20)
+
+
+### Bug Fixes
+
+* **deps:** add missing dependency ([#3874](https://github.com/ovh/manager/issues/3874)) ([0750a41](https://github.com/ovh/manager/commit/0750a418809a158262ea27cdb5c42080592dec90))
+
+
+
+## [3.0.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@3.0.5...@ovh-ux/manager-pci-app@3.0.6) (2020-10-20)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v11.0.0 ([#3869](https://github.com/ovh/manager/issues/3869)) ([df90e4d](https://github.com/ovh/manager/commit/df90e4de660920e3cd07b2ff6b4452b0aa861377))
+
+
+
+## [3.0.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@3.0.4...@ovh-ux/manager-pci-app@3.0.5) (2020-10-13)
+
+
+### Bug Fixes
+
+* **deps:** upgrade to @ovh-ux/manager-config v2.0.0 ([ca3f955](https://github.com/ovh/manager/commit/ca3f9554c13b1436cbdeed3de8ac69e399d5dd93))
+
+
+
 ## [3.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@3.0.3...@ovh-ux/manager-pci-app@3.0.4) (2020-09-10)
 
 

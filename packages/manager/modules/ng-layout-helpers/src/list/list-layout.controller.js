@@ -1,5 +1,7 @@
 import get from 'lodash/get';
-import set from 'lodash/set';
+import map from 'lodash/map';
+
+import { STRING_COLUMN_OPTIONS } from './constants';
 
 export default class ListLayoutCtrl {
   /* @ngInject */
@@ -9,6 +11,9 @@ export default class ListLayoutCtrl {
   }
 
   $onInit() {
+    this.datagridId = `dg-${this.id}`;
+    this.getDisplayedColumns(this.columns);
+
     this.criteria = JSON.parse(this.filter).map((criteria) => ({
       property: get(criteria, 'field') || this.defaultFilterColumn,
       operator: get(criteria, 'comparator'),
@@ -16,17 +21,11 @@ export default class ListLayoutCtrl {
     }));
 
     this.stringColumnOptions = {
-      operators: ['contains', 'startsWith', 'endsWith', 'is', 'isNot'],
+      operators: STRING_COLUMN_OPTIONS,
     };
   }
 
   loadPage() {
-    const currentOffset = (this.paginationNumber - 1) * this.paginationSize;
-    set(
-      this.ouiDatagridService,
-      `datagrids.${this.datagridId}.paging.offset`,
-      currentOffset + 1,
-    );
     return this.$q.resolve({
       data: get(this.resources, 'data'),
       meta: {
@@ -39,8 +38,19 @@ export default class ListLayoutCtrl {
     return this.sort === property ? this.sortOrder.toLowerCase() : '';
   }
 
+  getDisplayedColumns(columns) {
+    this.displayedColumns = columns
+      ? JSON.stringify(
+          map(
+            columns.filter(({ hidden }) => !hidden),
+            ({ name, property }) => name || property,
+          ),
+        )
+      : [];
+  }
+
   onPageChange({ pageSize, offset }) {
-    this.onListParamsChange({
+    this.onParamsChange({
       page: parseInt(offset / pageSize, 10) + 1,
       pageSize,
     });
@@ -53,15 +63,27 @@ export default class ListLayoutCtrl {
       reference: [criteria.value],
     }));
 
-    this.onListParamsChange({
+    this.onParamsChange({
       filter: JSON.stringify(filter),
     });
   }
 
   onSortChange({ name, order }) {
-    this.onListParamsChange({
+    this.onParamsChange({
       sort: name,
       sortOrder: order,
     });
+  }
+
+  onParamsChange(params) {
+    return this.onListParamsChange({
+      ...params,
+      columns: this.displayedColumns,
+    });
+  }
+
+  onColumnChange(id, columns) {
+    this.getDisplayedColumns(columns);
+    return this.onListParamsChange();
   }
 }

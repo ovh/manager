@@ -1,0 +1,10 @@
+{
+  "pci_projects_project_training_registry_section_1_title": "Registro Docker compartido",
+  "pci_projects_project_training_registry_section_1_title_info_1": "Las imágenes privadas de sus jobs se almacenan por defecto en un registro Docker gestionado por OVHcloud y compartido entre nuestros clientes. Las imágenes almacenadas en el registro pueden eliminarse en cualquier momento. Le recomendamos que utilice su registro privado para almacenar sus propias imágenes.",
+  "pci_projects_project_training_registry_section_1_message_1": "Para conectarse al registro Docker compartido utilice el siguiente comando:",
+  "pci_projects_project_training_registry_section_1_message_2": "Puede autenticarse en la plataforma utilizando cualquiera de los ",
+  "pci_projects_project_training_registry_section_1_message_3": "usuarios configurados",
+  "pci_projects_project_training_registry_section_1_message_4": " en un mismo proyecto de Public Cloud.",
+  "pci_projects_project_training_registry_section_1_message_5": "A continuación, puede seleccionar sus imágenes y cargarlas en el registro.",
+  "pci_projects_project_training_registry_section_1_message_6": "Ya puede utilizar su imagen en un job AI Training."
+}

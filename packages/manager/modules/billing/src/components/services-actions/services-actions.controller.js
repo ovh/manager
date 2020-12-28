@@ -16,6 +16,11 @@ export default class ServicesActionsCtrl {
     this.billingLink = this.RedirectionService.getURL('billing');
     this.updateLink = `${this.autorenewLink}/update?serviceId=${this.service.serviceId}&serviceType=${this.service.serviceType}`;
     this.cancelResiliationLink = `${this.autorenewLink}/cancel-resiliation?serviceId=${this.service.serviceId}&serviceType=${this.service.serviceType}`;
+    this.deleteLink = `${
+      this.autorenewLink
+    }/delete-${this.service.serviceType
+      .replace(/_/g, '-')
+      .toLowerCase()}?serviceId=${this.service.serviceId}`;
 
     switch (this.service.serviceType) {
       case SERVICE_TYPE.EXCHANGE:
@@ -25,16 +30,6 @@ export default class ServicesActionsCtrl {
       case SERVICE_TYPE.EMAIL_DOMAIN:
         this.resiliateLink = `${this.autorenewLink}/delete-email?serviceId=${this.service.serviceId}&name=${this.service.domain}`;
         this.cancelResiliationLink = null;
-        break;
-      case SERVICE_TYPE.ENTERPRISE_CLOUD_DATABASE:
-      case SERVICE_TYPE.HOSTING_WEB:
-      case SERVICE_TYPE.HOSTING_PRIVATE_DATABASE:
-      case SERVICE_TYPE.WEBCOACH:
-        this.resiliateLink = `${
-          this.autorenewLink
-        }/delete-${this.service.serviceType
-          .replace(/_/g, '-')
-          .toLowerCase()}?serviceId=${this.service.serviceId}`;
         break;
       case SERVICE_TYPE.SMS:
         this.buyingLink = `${this.CORE_MANAGER_URLS.telecom}/sms/${this.service.serviceId}/order`;

@@ -1,0 +1,87 @@
+<div id="main-container" data-ui-view="dedicatedCloudView">
+    <header class="oui-header">
+        <div class="oui-header__container">
+            <div class="oui-header__content">
+                <div class="d-flex">
+                    <h1
+                        class="oui-header__title"
+                        data-ng-bind="$ctrl.dedicatedCloud.description"
+                    ></h1>
+                    <button
+                        type="button"
+                        class="btn btn-icon ml-2"
+                        data-ng-click=":: $ctrl.editDescription($ctrl.dedicatedCloud.description)"
+                    >
+                        <span
+                            class="oui-icon oui-icon-pen_concept"
+                            aria-hidden="true"
+                        ></span>
+                        <span
+                            class="sr-only"
+                            data-translate="{{:: 'wizard_modify' | translate }}"
+                        ></span>
+                    </button>
+                </div>
+
+                <h2
+                    class="oui-header__description"
+                    data-ng-bind=":: $ctrl.dedicatedCloud.serviceName"
+                ></h2>
+            </div>
+        </div>
+
+        <oui-header-tabs>
+            <oui-header-tabs-item data-state="{{:: $ctrl.pccDashboardState }}"
+                ><span data-translate="dedicatedCloud_tab_dashboard"></span
+            ></oui-header-tabs-item>
+
+            <oui-header-tabs-item
+                data-ng-if=":: !$ctrl.dedicatedCloud.isExpired"
+                data-state="{{:: $ctrl.datacentersState }}"
+                ><span data-translate="dedicatedCloud_tab_datacenter"></span
+            ></oui-header-tabs-item>
+
+            <oui-header-tabs-item
+                data-ng-if=":: !$ctrl.dedicatedCloud.isExpired"
+                data-state="{{:: $ctrl.usersState }}"
+                ><span data-translate="dedicatedCloud_tab_user"></span
+            ></oui-header-tabs-item>
+
+            <oui-header-tabs-item
+                data-ng-if=":: !$ctrl.dedicatedCloud.isExpired"
+                data-state="{{:: $ctrl.securityState }}"
+                ><span data-translate="dedicatedCloud_tab_security"></span
+            ></oui-header-tabs-item>
+
+            <oui-header-tabs-item
+                data-ng-if=":: !$ctrl.dedicatedCloud.isExpired"
+                data-state="{{:: $ctrl.operationState }}"
+                ><span data-translate="dedicatedCloud_tab_operation"></span
+            ></oui-header-tabs-item>
+
+            <oui-header-tabs-item
+                data-ng-if=":: !$ctrl.dedicatedCloud.isExpired"
+                data-state="{{:: $ctrl.licenseState }}"
+                ><span data-translate="dedicatedCloud_tab_license"></span
+            ></oui-header-tabs-item>
+        </oui-header-tabs>
+    </header>
+
+    <div class="tab-content">
+        <div data-ovh-alert="dedicatedCloud"></div>
+
+        <oui-message class="mb-1" type="info" ng-if="$ctrl.surveyUrl">
+            <span data-translate="dedicatedCloud_survey"></span>
+            <a
+                data-ng-href="{{ $ctrl.surveyUrl }}"
+                data-track-on="click"
+                data-track-name="alert::hpc::go-to-hpc-survey"
+                target="_blank"
+                rel="noopener"
+            >
+                <span data-translate="dedicatedCloud_survey_link"></span>
+            </a>
+        </oui-message>
+        <div data-ui-view="pccView"></div>
+    </div>
+</div>

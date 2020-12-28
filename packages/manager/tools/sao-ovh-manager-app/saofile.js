@@ -17,6 +17,13 @@ module.exports = {
         default: this.outFolder,
         filter: (val) => val.toLowerCase(),
       },
+      {
+        name: 'description',
+        message: 'How would you describe the new app',
+        default({ name }) {
+          return `OVHcloud ${camelcase(name, { pascalCase: true })} app`;
+        },
+      },
     ];
   },
   actions() {

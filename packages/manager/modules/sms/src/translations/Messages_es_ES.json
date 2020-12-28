@@ -1,0 +1,9 @@
+{
+  "sms_title": "SMS",
+  "sms_name_label": "Apellidos",
+  "sms_description_label": "Descripción",
+  "sms_status_label": "Estado",
+  "sms_status_label_enable": "OK",
+  "sms_status_label_disable": "Desactivado",
+  "sms_view_sms_label": "Detalles"
+}

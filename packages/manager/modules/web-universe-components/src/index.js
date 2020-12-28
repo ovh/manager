@@ -14,7 +14,6 @@ import wucFileChange from './fileChange';
 import wucFileEditor from './fileEditor';
 import wucGuides from './guides';
 import wucIncrementNumber from './incrementNumber';
-import wucJavaEnum from './java-enum';
 import wucOrderCart from './order-cart';
 import wucOvhFileReader from './ovhFileReader';
 import wucProgressBarElementCounter from './progressBarElementCounter';
@@ -22,7 +21,6 @@ import wucServiceStatusAction from './service-status';
 import wucString from './string';
 import wucTabs from './tabs';
 import wucValidator from './validator';
-import wucZoneValidator from './zone-validator';
 
 const moduleName = 'ngOvhWebUniverseComponents';
 
@@ -41,7 +39,6 @@ angular.module(moduleName, [
   wucFileEditor,
   wucGuides,
   wucIncrementNumber,
-  wucJavaEnum,
   wucOrderCart,
   wucOvhFileReader,
   wucProgressBarElementCounter,
@@ -49,7 +46,6 @@ angular.module(moduleName, [
   wucString,
   wucTabs,
   wucValidator,
-  wucZoneValidator,
 ]);
 
 export default moduleName;

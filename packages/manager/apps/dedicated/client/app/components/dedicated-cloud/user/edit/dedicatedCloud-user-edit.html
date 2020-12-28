@@ -1,0 +1,120 @@
+<form name="userEditForm" data-ng-submit="$ctrl.editUser()" novalidate>
+    <oui-modal
+        data-primary-label="{{:: 'wizard_confirm' | translate }}"
+        data-secondary-label="{{:: 'wizard_close' | translate }}"
+        data-secondary-action="$ctrl.goBack()"
+        data-on-dismiss="$ctrl.goBack()"
+        data-loading="$ctrl.loading"
+        data-heading="{{:: 'dedicatedCloud_USER_modify' | translate }}"
+    >
+        <oui-field
+            data-label="{{:: 'dedicatedCloud_USER_firstname' | translate }}"
+        >
+            <input
+                type="text"
+                name="firstName"
+                class="form-control"
+                data-ng-model="$ctrl.user.firstName"
+            />
+        </oui-field>
+
+        <oui-field
+            data-label="{{:: 'dedicatedCloud_USER_lastname' | translate }}"
+        >
+            <input
+                type="text"
+                name="lastName"
+                class="form-control"
+                data-ng-model="$ctrl.user.lastName"
+            />
+        </oui-field>
+
+        <oui-field data-label="{{:: 'dedicatedCloud_USER_mail' | translate }}">
+            <input
+                type="email"
+                id="userEmail"
+                name="userEmail"
+                class="form-control"
+                data-ng-model="$ctrl.user.email"
+                data-ng-pattern="$ctrl.emailRegExp"
+            />
+        </oui-field>
+
+        <oui-field data-label="{{:: 'dedicatedCloud_USER_phone' | translate }}">
+            <input
+                type="text"
+                id="phoneNumber"
+                name="phoneNumber"
+                class="form-control"
+                placeholder="{{ $ctrl.phoneExample }}"
+                data-ng-model="$ctrl.user.phoneNumber"
+                data-ng-pattern="$ctrl.phoneRegExp"
+            />
+        </oui-field>
+
+        <oui-field
+            data-label="{{:: 'dedicatedCloud_USER_token_validator' | translate }}"
+        >
+            <div class="oui-switch">
+                <label class="oui-switch__label-container">
+                    <input
+                        type="checkbox"
+                        class="oui-switch__checkbox"
+                        id="tokenValidator"
+                        name="tokenValidator"
+                        data-ng-model="$ctrl.user.tokenValidator"
+                    />
+                    <span class="oui-switch__slider" aria-hidden="true"></span>
+                </label>
+            </div>
+        </oui-field>
+
+        <oui-field data-label="{{:: 'dedicatedCloud_USER_ip' | translate }}">
+            <div class="oui-switch">
+                <label class="oui-switch__label-container">
+                    <input
+                        type="checkbox"
+                        class="oui-switch__checkbox"
+                        id="canManageNetwork"
+                        name="canManageNetwork"
+                        data-ng-model="$ctrl.user.canManageNetwork"
+                    />
+                    <span class="oui-switch__slider" aria-hidden="true"></span>
+                </label>
+            </div>
+        </oui-field>
+
+        <oui-field data-label="{{:: 'dedicatedCloud_USER_ipfo' | translate }}">
+            <div class="oui-switch">
+                <label class="oui-switch__label-container">
+                    <input
+                        type="checkbox"
+                        class="oui-switch__checkbox"
+                        id="canManageIpFailOvers"
+                        name="canManageIpFailOvers"
+                        data-ng-model="$ctrl.user.canManageIpFailOvers"
+                    />
+                    <span class="oui-switch__slider" aria-hidden="true"></span>
+                </label>
+            </div>
+        </oui-field>
+
+        <oui-field
+            data-ng-if="$ctrl.optionsAvailable.includes('nsx')"
+            data-label="{{:: 'dedicatedCloud_USER_nsx' | translate }}"
+        >
+            <div class="oui-switch">
+                <label class="oui-switch__label-container">
+                    <input
+                        type="checkbox"
+                        class="oui-switch__checkbox"
+                        id="nsxRight"
+                        name="nsxRight"
+                        data-ng-model="$ctrl.user.nsxRight"
+                    />
+                    <span class="oui-switch__slider" aria-hidden="true"></span>
+                </label>
+            </div>
+        </oui-field>
+    </oui-modal>
+</form>

@@ -2,16 +2,18 @@ import get from 'lodash/get';
 import map from 'lodash/map';
 import some from 'lodash/some';
 import { OPENRC_VERSION } from './download-openrc/download-openrc.constants';
-import { ALPHA_CHARACTERS_REGEX } from './users.constants';
+import { ALPHA_CHARACTERS_REGEX, REGION_CAPACITY } from './users.constants';
 
 export default class PciProjectsProjectUsersService {
   /* @ngInject */
   constructor(
+    $http,
     $q,
     OvhApiCloudProject,
     OvhApiCloudProjectRegion,
     OvhApiCloudProjectUser,
   ) {
+    this.$http = $http;
     this.$q = $q;
     this.OvhApiCloudProject = OvhApiCloudProject;
     this.OvhApiCloudProjectRegion = OvhApiCloudProjectRegion;
@@ -66,9 +68,21 @@ export default class PciProjectsProjectUsersService {
   }
 
   getRegions(projectId) {
-    return this.OvhApiCloudProjectRegion.v6().query({
-      serviceName: projectId,
-    }).$promise;
+    return this.$http
+      .get(`/cloud/project/${projectId}/region`, {
+        headers: {
+          'X-Pagination-Mode': 'CachedObjectList-Pages',
+        },
+      })
+      .then(({ data }) => data);
+  }
+
+  getStorageRegions(projectId) {
+    return this.getRegions(projectId).then((regions) => {
+      return regions.filter(({ services }) =>
+        services.find(({ name }) => name === REGION_CAPACITY),
+      );
+    });
   }
 
   downloadOpenRc(projectId, { id: userId }, region, version) {

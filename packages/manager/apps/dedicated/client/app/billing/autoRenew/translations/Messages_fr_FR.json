@@ -75,6 +75,7 @@
   "billing_autorenew_service_type_dedicated_server": "Serveur Dédié",
   "billing_autorenew_service_type_DEDICATED_HOUSING": "Serveur Housing",
   "billing_autorenew_service_type_DEDICATED_CLOUD": "Private Cloud",
+  "billing_autorenew_service_type_ESSENTIALS": "Managed Bare Metal",
   "billing_autorenew_service_type_DOMAIN": "Domaine",
   "billing_autorenew_service_type_ENTERPRISE_CLOUD_DATABASE": "Enterprise Cloud Databases",
   "billing_autorenew_service_type_HOSTING_PRIVATE_DATABASE": "Hébergement base SQL privée",

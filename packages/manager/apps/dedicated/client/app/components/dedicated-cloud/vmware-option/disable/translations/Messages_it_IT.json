@@ -1,0 +1,18 @@
+{
+  "dedicatedCloud_vmware_cancelopt_title_vrops": "Disattiva l'opzione VMware vROps",
+  "dedicatedCloud_vmware_cancelopt_title_nsx": "Disattiva l'opzione VMware NSX",
+  "dedicatedCloud_vmware_cancelopt_desactivate": "Disattiva l'opzione",
+  "dedicatedCloud_vmware_cancelopt_message_nsx": "Vuoi davvero disattivare l'opzione NSX?",
+  "dedicatedCloud_vmware_cancelopt_message_vrops": "Vuoi davvero disattivare l'opzione vROps?",
+  "dedicatedCloud_vmware_orderopt_host_name": "Nome",
+  "dedicatedCloud_vmware_orderopt_datacenter_name": "Datacenter",
+  "dedicatedCloud_vmware_orderopt_current_price": "Fatturazione del mese corrente",
+  "dedicatedCloud_vmware_orderopt_next_price": "Fatturazione del prossimo mese*",
+  "dedicatedCloud_vmware_orderopt_price_hourly": "{{t0}}/ora",
+  "dedicatedCloud_vmware_price_free_spare": "Spare gratuito",
+  "dedicatedCloud_vmware_orderopt_price_info": "*escluse altre opzioni attivate prima di questa data ",
+  "dedicatedCloud_vmware_cancelopt_warning": "Attenzione, questa azione è definitiva e non può essere annullata. ",
+  "dedicatedCloud_vmware_orderopt_load_prices_error": "Si è verificato un errore durante il caricamento dei prezzi dell'opzione:",
+  "dedicatedCloud_vmware_cancelopt_unactivate_succes": "Disattivazione dell'opzione in corso...",
+  "dedicatedCloud_vmware_cancelopt_unactivate_error": "Si è verificato un errore durante la disattivazione dell'opzione:"
+}

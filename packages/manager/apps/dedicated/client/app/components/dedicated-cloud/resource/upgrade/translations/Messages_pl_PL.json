@@ -1,0 +1,14 @@
+{
+  "ovhManagerPccResourceUpgrade_heading": "Przejdź na abonament miesięczny",
+  "ovhManagerPccResourceUpgrade_form_renewalPeriods_label": "Okres odnowienia",
+  "ovhManagerPccResourceUpgrade_onlyOneRenewalPeriod_heading": "Podsumowanie zamówienia",
+  "ovhManagerPccResourceUpgrade_onlyOneRenewalPeriod_renewalPeriod": "Okres odnowienia",
+  "ovhManagerPccResourceUpgrade_onlyOneRenewalPeriod_renewalPeriod_month": "Miesięcznie",
+  "ovhManagerPccResourceUpgrade_onlyOneRenewalPeriod_renewalPeriod_year": "Rocznie",
+  "ovhManagerPccResourceUpgrade_onlyOneRenewalPeriod_price": "Cena (netto)",
+  "ovhManagerPccResourceUpgrade_clickOnValidateToPlaceYourOrder": "Kliknij przycisk {{ validateButtonText }}, aby potwierdzić złożenie zamówienia.",
+  "ovhManagerPccResourceUpgrade_willOpenNewTabAndRedirect": "Otworzy się nowa zakładka i zostaniesz automatycznie przekierowany do strony z płatnościami.",
+  "ovhManagerPccResourceUpgrade_validateButton": "Zatwierdź",
+  "ovhManagerPccResourceUpgrade_cancelButton": "Anuluj",
+  "dedicatedCloud_order_loading_error": "Wystąpił błąd podczas pobierania informacji."
+}

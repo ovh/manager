@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-webpack-dev-server",
-  "version": "2.7.0",
+  "version": "2.8.0",
   "description": "OVHcloud manager webpack development server configuration.",
   "keywords": [
     "webpack",
@@ -8,7 +8,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ovh-ux/manager.git",
+    "url": "git+https://github.com/ovh/manager.git",
     "directory": "packages/manager/tools/webpack-dev-server"
   },
   "license": "BSD-3-Clause",
@@ -26,11 +26,11 @@
     "test": "eslint --quiet src"
   },
   "dependencies": {
-    "@ovh-ux/manager-dev-server-config": "^1.0.0",
+    "@ovh-ux/manager-dev-server-config": "^1.1.0 || ^2.0.0",
     "duplicate-package-checker-webpack-plugin": "^3.0.0",
     "friendly-errors-webpack-plugin": "^1.7.0",
-    "webpack-dev-server": "^3.8.2",
-    "yn": "^3.1.1"
+    "webpack-dev-server": "^3.11.0",
+    "yn": "^4.0.0"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.11.0",

@@ -1,3 +1,26 @@
+# [10.1.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-sidebar-menu@10.0.1...@ovh-ux/ng-ovh-sidebar-menu@10.1.0) (2020-11-02)
+
+
+### Bug Fixes
+
+* **namespace:** add namespace support on list-item sub menu ([a449f38](https://github.com/ovh/manager/commit/a449f38145cb1f07f9d5e2f14fdfd9264403ce76))
+
+
+### Features
+
+* **menu.item:** add support for multiple namespace ([9a9b842](https://github.com/ovh/manager/commit/9a9b8425a5adf7a1f60c9de5fa1eb38975dc589b))
+
+
+
+## [10.0.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-sidebar-menu@10.0.0...@ovh-ux/ng-ovh-sidebar-menu@10.0.1) (2020-10-28)
+
+
+### Bug Fixes
+
+* **peer-deps:** upgrade @ovh-ux/ui-kit to v4.4.1 ([8254623](https://github.com/ovh/manager/commit/82546237336e185ae7d973a1bb2aabddbb50112e))
+
+
+
 # [10.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-sidebar-menu@9.1.2...@ovh-ux/ng-ovh-sidebar-menu@10.0.0) (2020-07-29)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-exchange",
-  "version": "2.0.1",
+  "version": "2.0.3",
   "private": true,
   "description": "Exchange product.",
   "repository": {
@@ -24,7 +24,7 @@
     "@ovh-ux/ng-ovh-utils": "^14.0.10",
     "@ovh-ux/ng-ovh-web-universe-components": "^8.0.0 || ^9.0.0",
     "@ovh-ux/ng-translate-async-loader": "^2.1.0",
-    "@ovh-ux/ui-kit": "^4.1.12",
+    "@ovh-ux/ui-kit": "^4.4.1",
     "@uirouter/angularjs": "^1.0.20",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",
@@ -32,6 +32,6 @@
     "moment": "^2.24.0",
     "ng-ckeditor": "^2.0.5",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^9.39.1"
+    "ovh-api-services": "^11.0.0"
   }
 }

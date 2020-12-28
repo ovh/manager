@@ -1,0 +1,85 @@
+<p
+    data-ng-bind-html=":: ('dedicatedCloud_datacenter_pcc_name_' + $ctrl.pccType) | translate: {
+        pcc: $ctrl.drpInformations.primaryPcc.description || $ctrl.drpInformations.primaryPcc.serviceName
+    }"
+></p>
+<form name="$ctrl.primaryPcc" novalidate>
+    <oui-field
+        data-label="{{:: ('dedicatedCloud_datacenter_main_datacenter_name_' + $ctrl.pccType) | translate }}"
+        data-size="l"
+    >
+        <oui-select
+            name="datacenterId"
+            data-match="formattedName"
+            data-model="$ctrl.drpInformations.primaryDatacenter"
+            data-items="$ctrl.availableDatacenters"
+            data-placeholder="{{:: 'dedicatedCloud_datacenter_main_datacenter_name_placeholder' | translate }}"
+            data-disabled="!$ctrl.drpInformations.hasDatacenterWithoutHosts"
+            data-required
+        >
+        </oui-select>
+    </oui-field>
+
+    <div data-ng-if="$ctrl.availableIpAddress.length === 0">
+        <oui-message data-type="warning">
+            <span data-translate="dedicatedCloud_datacenter_no_ip_pool"></span>
+            <a
+                class="oui-link"
+                data-ng-href="{{:: $ctrl.ipOrderLink }}"
+                data-translate="dedicatedCloud_datacenter_order_please"
+            ></a>
+        </oui-message>
+    </div>
+    <oui-field
+        data-label="{{:: 'dedicatedCloud_datacenter_main_ip_address_pool_available' | translate }}"
+        data-size="l"
+        data-ng-if="$ctrl.availableIpAddress.length > 0"
+    >
+        <oui-select
+            name="primaryEndpointIp"
+            data-match="ip"
+            data-model="$ctrl.selectedIpAddress"
+            data-on-change="$ctrl.setEndpointIp(modelValue.ip)"
+            data-items="$ctrl.availableIpAddress"
+            data-disabled="!$ctrl.drpInformations.primaryDatacenter"
+            data-placeholder="{{:: 'dedicatedCloud_datacenter_main_ip_address_pool_available_placeholder' | translate }}"
+            data-required
+        >
+        </oui-select>
+    </oui-field>
+
+    <oui-field
+        data-label="{{:: 'dedicatedCloud_datacenter_local_vra_network' | translate }}"
+        data-help-text="{{:: 'dedicatedCloud_datacenter_local_vra_network_help' | translate }}"
+        data-size="l"
+        data-ng-if="$ctrl.drpInformations.drpType === $ctrl.DRP_OPTIONS.onPremise"
+    >
+        <input
+            class="oui-input"
+            type="text"
+            name="localVraNetwork"
+            placeholder="{{:: 'dedicatedCloud_datacenter_local_vra_network_placeholder' | translate }}"
+            data-ng-model="$ctrl.drpInformations.localVraNetwork"
+            data-ng-pattern="$ctrl.IP_BLOCK_REG_EXP"
+            data-required
+        />
+    </oui-field>
+</form>
+
+<div class="mt-5">
+    <oui-button
+        data-variant="secondary"
+        data-variant-nav="previous"
+        data-on-click="$ctrl.goBackToChoice($ctrl.drpInformations.drpType)"
+    >
+        <span data-translate="common_previous"></span>
+    </oui-button>
+    <oui-button
+        data-variant="primary"
+        data-variant-nav="next"
+        data-on-click="$ctrl.goToNextStep($ctrl.drpInformations)"
+        data-disabled="!$ctrl.selectedIpAddress || ($ctrl.drpInformations.drpType === $ctrl.DRP_OPTIONS.onPremise && !$ctrl.drpInformations.localVraNetwork)"
+    >
+        <span data-translate="common_next"></span>
+    </oui-button>
+</div>

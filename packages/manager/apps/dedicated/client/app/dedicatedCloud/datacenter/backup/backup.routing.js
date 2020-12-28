@@ -4,14 +4,15 @@ import get from 'lodash/get';
 import map from 'lodash/map';
 import some from 'lodash/some';
 
-import Backup from './backup.class';
+import Backup from '../../../components/dedicated-cloud/datacenter/backup/backup.class';
 
 import {
   BACKUP_CONDITIONS_URL,
   BACKUP_GUIDES_URL,
-  BACKUP_TARIFF_URL,
   BACKUP_MINIMUM_HOST_COUNT,
-} from './backup.constants';
+} from '../../../components/dedicated-cloud/datacenter/backup/backup.constants';
+
+import { BACKUP_TARIFF_URL } from './backup.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicatedClouds.datacenter.backup', {
@@ -47,10 +48,6 @@ export default /* @ngInject */ ($stateProvider) => {
           return false;
         }),
     resolve: {
-      productId: /* @ngInject */ ($transition$) =>
-        $transition$.params().productId,
-      datacenterId: /* @ngInject */ ($transition$) =>
-        $transition$.params().datacenterId,
       datacenterBackups: /* @ngInject */ (
         $q,
         datacenterList,

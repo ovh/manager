@@ -6,6 +6,7 @@ export default {
     goBack: '&',
     onError: '&',
     onSuccess: '&',
+    serviceType: '@',
     terminateService: '&',
     title: '<',
   },

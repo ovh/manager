@@ -16,18 +16,23 @@ angular
     (
       $scope,
       $q,
+      $state,
       $stateParams,
       $location,
       $rootScope,
       $translate,
+      atInternet,
       Hosting,
       HOSTING,
+      HostingCdnSharedService,
       HOSTING_STATUS,
       HostingDomain,
       hostingSSLCertificate,
       hostingSSLCertificateType,
       Alerter,
     ) => {
+      atInternet.trackPage({ name: 'web::hosting::multisites' });
+
       $scope.domains = null;
       $scope.sslLinked = [];
       $scope.HOSTING = HOSTING;
@@ -44,6 +49,14 @@ angular
       };
 
       $scope.certificateTypes = hostingSSLCertificateType.constructor.getCertificateTypes();
+
+      function sendTrackClick(hit) {
+        atInternet.trackClick({
+          name: hit,
+          type: 'action',
+        });
+      }
+
       $scope.loadDomains = function loadDomains(count, offset) {
         $scope.loading.domains = true;
 
@@ -62,7 +75,15 @@ angular
           $scope.search.text,
         )
           .then((domains) => {
+            return HostingCdnSharedService.getSharedCDNDomains(
+              $scope.hosting.serviceName,
+            ).then(({ data: sharedDomains }) => {
+              return { domains, sharedDomains };
+            });
+          })
+          .then(({ domains, sharedDomains }) => {
             $scope.domains = domains;
+            $scope.sharedDomains = sharedDomains;
             $scope.hasResult = !isEmpty($scope.domains);
             $scope.domains.list.results.forEach((domain) => {
               if (domain.status === HOSTING_STATUS.UPDATING) {
@@ -153,6 +174,7 @@ angular
       };
 
       $scope.detachDomain = (domain) => {
+        sendTrackClick('web::hosting::multisites::detach-domain');
         $scope.setAction('multisite/delete/hosting-multisite-delete', domain);
       };
 
@@ -166,6 +188,7 @@ angular
         sslCertificate.status === HOSTING_STATUS.CREATING;
 
       $scope.modifyDomain = (domain) => {
+        sendTrackClick('web::hosting::multisites::modify-domain');
         $scope.setAction('multisite/update/hosting-multisite-update', domain);
       };
 
@@ -195,6 +218,27 @@ angular
               $scope.alerts.main,
             );
           });
+
+      $scope.activateDomain = (domain) => {
+        sendTrackClick('web::hosting::multisites::activate-domain');
+        $state.go('app.hosting.cdn.shared', {
+          domain,
+          domainName: domain.domain,
+        });
+      };
+
+      $scope.settingCdnDomain = (domain) => {
+        sendTrackClick('web::hosting::multisites::modify-cdn');
+        $state.go('app.hosting.cdn.shared', {
+          domain,
+          domainName: domain.domain,
+        });
+      };
+
+      $scope.flushCdn = (domain) => {
+        sendTrackClick('web::hosting::multisites::purge-cdn');
+        $scope.setAction('/cdn/flush/hosting-cdn-flush', { domain });
+      };
 
       $scope.$on('hostingDomain.restart.done', (response, data) => {
         assign(find($scope.domains.list.results, { name: data.domain }), {

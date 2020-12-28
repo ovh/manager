@@ -1,0 +1,14 @@
+{
+  "dedicatedCloud_datacenter_backup_upgrade_title": "Change backup solution",
+  "dedicatedCloud_datacenter_backup_upgrade_confirm": "Switch to the {{ name }} solution",
+  "dedicatedCloud_datacenter_backup_upgrade_cancel": "Cancel",
+  "dedicatedCloud_datacenter_backup_upgrade_description": "You are about to change your backup option from the <strong>{{ currentOffer }} solution</strong> to the <strong>{{ selectedOffer }} solution</strong>.",
+  "dedicatedCloud_datacenter_backup_upgrade_warning_EPCC": "If you have enabled backup in other datacentres for this private cloud, this solution will be applied to them, too.",
+  "dedicatedCloud_datacenter_backup_upgrade_description_features": "You will have the following settings:",
+  "dedicatedCloud_datacenter_backup_upgrade_description_confirmation": "Are you sure you want to change solutions?",
+  "dedicatedCloud_datacenter_backup_upgrade_description_billing": "You will be billed according to the number and size of virtual machines you back up.",
+  "dedicatedCloud_datacenter_backup_upgrade_replication_condition": "I approve of data replication",
+  "dedicatedCloud_datacenter_backup_upgrade_success_1": "The request to change your Veeam {{actualOffer}} solution to {{newOffer}} is being processed, and will take a few minutes.",
+  "dedicatedCloud_datacenter_backup_upgrade_success_2": "You can track the progress of the operation <a href=\"{{operationsUrl}}\">here</a>.",
+  "dedicatedCloud_datacenter_backup_upgrade_error": "An error has occurred changing your backup solution: {{ message }}"
+}

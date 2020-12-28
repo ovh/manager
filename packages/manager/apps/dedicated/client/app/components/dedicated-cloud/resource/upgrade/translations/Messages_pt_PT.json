@@ -1,0 +1,14 @@
+{
+  "ovhManagerPccResourceUpgrade_heading": "Passar para plano mensal",
+  "ovhManagerPccResourceUpgrade_form_renewalPeriods_label": "Período de renovação",
+  "ovhManagerPccResourceUpgrade_onlyOneRenewalPeriod_heading": "Resumo da nota de encomenda",
+  "ovhManagerPccResourceUpgrade_onlyOneRenewalPeriod_renewalPeriod": "Período de renovação",
+  "ovhManagerPccResourceUpgrade_onlyOneRenewalPeriod_renewalPeriod_month": "Mensal",
+  "ovhManagerPccResourceUpgrade_onlyOneRenewalPeriod_renewalPeriod_year": "Anual",
+  "ovhManagerPccResourceUpgrade_onlyOneRenewalPeriod_price": "Preço (sem IVA)",
+  "ovhManagerPccResourceUpgrade_clickOnValidateToPlaceYourOrder": "Clique no botão {{ validateButtonText }} para confirmar a sua encomenda.",
+  "ovhManagerPccResourceUpgrade_willOpenNewTabAndRedirect": "Será aberto um novo separador e será automaticamente reencaminhado para a interface de pagamentos.",
+  "ovhManagerPccResourceUpgrade_validateButton": "Validar",
+  "ovhManagerPccResourceUpgrade_cancelButton": "Cancelar",
+  "dedicatedCloud_order_loading_error": "Erro ao carregar a informação."
+}

@@ -16,5 +16,6 @@
   "xdsl_model_access_error": "Oups ! Nous n'avons pas pu récupérer les informations relatives à votre pack.",
   "xdsl_model_task_error": "Oups ! Nous n'avons pas pu récupérer la pile de tâches en cours.",
   "xdsl_modem_modem_error": "Oups ! Nous n'avons pas pu récupérer les informations relatives à votre modem.",
-  "xdsl_modem_firmware": "Firmware"
+  "xdsl_modem_firmware": "Firmware",
+  "xdsl_modem_acs_backend": "Backend ACS"
 }

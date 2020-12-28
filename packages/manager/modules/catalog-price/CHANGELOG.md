@@ -1,3 +1,27 @@
+# [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-price@1.2.2...@ovh-ux/manager-catalog-price@1.3.0) (2020-11-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 672] ([980aa6b](https://github.com/ovh/manager/commit/980aa6bf26b4281eb007effba060432cb3686bb8))
+
+
+### Features
+
+* add fromToPrice property ([9b351cf](https://github.com/ovh/manager/commit/9b351cfaf69c152f5398063ebe8cc79d54b58f32))
+* **hosting:** add Shared CDN ([7494079](https://github.com/ovh/manager/commit/7494079ea3307b20c9c2eccb2c3f70e3b1c1c6a9))
+
+
+
+## [1.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-price@1.2.1...@ovh-ux/manager-catalog-price@1.2.2) (2020-10-13)
+
+
+### Bug Fixes
+
+* **deps:** upgrade to @ovh-ux/manager-config v2.0.0 ([ca3f955](https://github.com/ovh/manager/commit/ca3f9554c13b1436cbdeed3de8ac69e399d5dd93))
+
+
+
 ## [1.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-price@1.2.0...@ovh-ux/manager-catalog-price@1.2.1) (2020-08-18)
 
 

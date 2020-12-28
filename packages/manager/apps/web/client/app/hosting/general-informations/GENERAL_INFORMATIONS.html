@@ -16,6 +16,34 @@
             ></span>
         </oui-message>
 
+        <oui-message
+            type="info"
+            aria-close-button-label="{{:: 'close' | translate }}"
+            on-dismiss="$ctrl.onDismiss()"
+            data-ng-if="::(hosting.offer !== 'START_10_M' && !cdnProperties) || (cdnProperties.version === '2013v1' && isUpgradable)"
+            dismissable
+        >
+            <span
+                data-translate="{{::$ctrl.getCDNBannerKeyToTranslate()}}"
+            ></span>
+            <a
+                data-ng-if="!hosting.hasCdn"
+                data-ng-href="{{::$ctrl.getCDNMoreInfoLink()}}"
+                data-ng-click="$ctrl.onMoreInfoLinkClicked()"
+                target="_blank"
+            >
+                <span
+                    data-translate="hosting_dashboard_service_cdn_customer_has_no_cdn_banner_msg_link"
+                ></span>
+            </a>
+            <button
+                data-ng-if="hosting.hasCdn"
+                class="oui-link"
+                data-translate="hosting_dashboard_service_cdn_customer_has_cdn_v1_banner_msg_link_upgrade"
+                data-ng-click="$ctrl.goToOrderOrUpgrade()"
+            ></button>
+        </oui-message>
+
         <div class="row d-md-flex" data-ng-if="!hosting.isExpired">
             <div class="col-md-4 mb-5">
                 <oui-tile
@@ -230,6 +258,10 @@
                         <span
                             data-translate="hosting_tab_USER_LOGS_dashboard_stats"
                         ></span>
+                        <span
+                            class="oui-badge oui-badge_beta"
+                            data-translate="hosting_dashboard_stats_status"
+                        ></span>
                     </oui-tile-button>
                 </oui-tile>
             </div>
@@ -348,7 +380,11 @@
                                 data-ng-bind=":: $ctrl.doesEmailOfferExists() ? ('hosting_dashboard_service_common_active' | translate) : ('hosting_dashboard_service_common_inactive' | translate)"
                             ></span>
                         </oui-tile-description>
-                        <oui-action-menu data-compact data-placement="end">
+                        <oui-action-menu
+                            data-compact
+                            data-placement="end"
+                            data-ng-if="availableOptions.length"
+                        >
                             <oui-action-menu-item
                                 data-on-click="$ctrl.activateEmailOffer()"
                                 data-ng-if="!$ctrl.doesEmailOfferExists()"
@@ -380,6 +416,15 @@
                         data-term="{{:: 'hosting_dashboard_service_cdn' | translate }}"
                     >
                         <oui-tile-description>
+                            <div
+                                data-ng-if="isUpgradable && cdnProperties.version === '2013v1'"
+                            >
+                                <span
+                                    class="oui-badge oui-badge_s oui-badge_new"
+                                    data-translate="hosting_dashboard_service_cdn_customer_has_cdn_v1_badge_new"
+                                ></span
+                                ><br />
+                            </div>
                             <span
                                 class="mr-2"
                                 data-ng-bind="::hosting.hasCdn ? ('common_yes' | translate) : ('common_no' | translate)"
@@ -396,30 +441,47 @@
                         </oui-tile-description>
                         <oui-action-menu
                             data-compact
-                            data-ng-if="flushCdnState === 'ok' && !hosting.hasCdn && hosting.offer!== 'START_10_M' || hosting.hasCdn && flushCdnState === 'ok' || hosting.hasCdn"
                             data-placement="end"
+                            data-ng-if="flushCdnState === 'ok' && !hosting.hasCdn && hosting.offer!== 'START_10_M' || hosting.hasCdn && flushCdnState === 'ok' || hosting.hasCdn"
                         >
                             <oui-action-menu-item
-                                data-ng-if="flushCdnState === 'ok' && !hosting.hasCdn && hosting.offer!== 'START_10_M'"
-                                data-href="{{:: $ctrl.$state.href('app.hosting.cdn.order') }}"
-                                ><span
-                                    data-ng-bind=":: (isCdnFree ? 'hosting_dashboard_service_activate_cdn' : 'hosting_dashboard_service_order_cdn') | translate"
-                                ></span
-                            ></oui-action-menu-item>
-                            <oui-action-menu-item
-                                data-ng-if="hosting.hasCdn && flushCdnState === 'ok'"
-                                data-on-click="setAction('cdn/flush/hosting-cdn-flush')"
+                                data-ng-if="isUpgradable && hosting.hasCdn && cdnProperties.version === '2013v1'"
+                                data-on-click="$ctrl.upgradeCdn()"
                             >
                                 <span
-                                    data-translate="hosting_dashboard_service_flush_cdn"
+                                    data-translate="hosting_dashboard_service_change_cdn_version"
                                 ></span>
                             </oui-action-menu-item>
                             <oui-action-menu-item
-                                data-ng-if="hosting.hasCdn"
-                                data-on-click="setAction('cdn/terminate/hosting-cdn-terminate')"
+                                data-ng-if="hosting.hasCdn && cdnProperties.version === 'cdn-hosting'"
+                                data-on-click="$ctrl.goToMultisite()"
+                            >
+                                <span
+                                    data-translate="hosting_dashboard_service_setting_cdn"
+                                ></span>
+                            </oui-action-menu-item>
+                            <oui-action-menu-item
+                                data-ng-if="hosting.hasCdn && (cdnProperties.version === '2013v1' || cdnProperties.version === 'cdn-hosting')"
+                                data-on-click="$ctrl.terminateCdn('cdn/terminate/hosting-cdn-terminate')"
                             >
                                 <span
                                     data-translate="hosting_dashboard_service_terminate_cdn"
+                                ></span>
+                            </oui-action-menu-item>
+                            <oui-action-menu-item
+                                data-ng-if="!hosting.hasCdn"
+                                data-on-click="$ctrl.orderCdn()"
+                            >
+                                <span
+                                    data-ng-bind=":: (isCdnFree ? 'hosting_dashboard_service_activate_cdn_option' : 'hosting_dashboard_service_order_cdn') | translate"
+                                ></span>
+                            </oui-action-menu-item>
+                            <oui-action-menu-item
+                                data-ng-if="hosting.hasCdn && cdnProperties.version === '2013v1' && flushCdnState === 'ok'"
+                                data-on-click="$ctrl.flushCdn('cdn/flush/hosting-cdn-flush')"
+                            >
+                                <span
+                                    data-translate="hosting_dashboard_service_flush_cdn"
                                 ></span>
                             </oui-action-menu-item>
                         </oui-action-menu>

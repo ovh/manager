@@ -589,6 +589,15 @@ export default /* @ngInject */ function($q, $timeout) {
     return self;
   };
 
+  SidebarMenuListItem.prototype.isValidNamespace = function isValidNamespace(
+    namespace,
+  ) {
+    if (Array.isArray(this.namespace)) {
+      return this.namespace.includes(namespace);
+    }
+    return this.namespace === namespace;
+  };
+
   /* -----  End of PROTOTYPE METHODS  ------*/
 
   return SidebarMenuListItem;

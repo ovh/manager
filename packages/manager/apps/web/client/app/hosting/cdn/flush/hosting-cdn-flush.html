@@ -6,7 +6,9 @@
         data-wizard-title="'hosting_dashboard_service_flush_cdn' | translate"
     >
         <div data-wizard-step>
-            <p data-translate="hosting_dashboard_cdn_flush_question"></p>
+            <p
+                data-translate="{{ :: cdnProperties.version === 'cdn-hosting' ? 'hosting_dashboard_cdn_v2_flush_question' : 'hosting_dashboard_cdn_flush_question' }}"
+            ></p>
         </div>
     </div>
 </div>

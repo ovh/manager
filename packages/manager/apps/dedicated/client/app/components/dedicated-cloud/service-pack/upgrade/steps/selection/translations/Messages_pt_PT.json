@@ -1,0 +1,14 @@
+{
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_stepper_header": "Escolha do setor de atividade",
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_priceDifferenceOnMonthlyBill": "{{ priceDifference }} no seu preço mensal",
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_priceDifferenceOnHourlyBill": "{{ priceDifference }} no seu preço à hora",
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_certification_howToConfigureMeansOfPayment_comeBackHereLater": "A seguir, terá de voltar aqui para finalizar a ativação da certificação.",
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_cancelButton": "Cancelar",
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_checkoutButton": "Alterar",
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_nextButton": "Seguinte",
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_checkoutDescription": "A encomenda foi bem-sucedida.",
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_checkoutLink": "Clique aqui para pagar.",
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_order_failure": "Falha na encomenda",
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_basic_option": "Selecione a opção que pretende ativar na sua infraestrutura.",
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_certification_option": "Selecione a opção do setor de atividade que pretende ativar no seu serviço."
+}

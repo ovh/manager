@@ -1,0 +1,21 @@
+{
+  "dedicatedCloudDashboardTilesOptionsOrderConfigureAccess_stepper_header": "Configure access",
+  "dedicatedCloud_servicePack_requiredConfiguration_header": "The vCenter access policy must be set to restricted access, and have at least one authorised IP address",
+  "dedicatedCloud_servicePack_requiredConfiguration_criterias_accessPolicy_definition": "vCenter access policy: {{accessPolicyValue}}.",
+  "dedicatedCloud_servicePack_requiredConfiguration_criterias_accessPolicy_value_OPEN": "open",
+  "dedicatedCloud_servicePack_requiredConfiguration_criterias_accessPolicy_value_FILTERED": "restricted",
+  "dedicatedCloud_servicePack_requiredConfiguration_criterias_numberOfAllowedIPAndBlocks_definition": "Number of IPs and blocks that are authorised to connect: {{numberOfAllowedIPsAndBlocks}}.",
+  "dedicatedCloud_servicePack_requiredConfiguration_ipTable_ipColumn": "IP address",
+  "dedicatedCloud_servicePack_requiredConfiguration_descriptionTable_descriptionColumn": "Description",
+  "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_accessPolicy_error_EPCC": "The access policy for your Private Cloud is not restricted",
+  "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_numberOfAllowedIPAndBlocks_error_EPCC": "The access policy for your Private Cloud does not have an authorised IP address",
+  "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_both_error_EPCC": "The access policy for your Private Cloud is not restricted, and does not have an authorised IP address.",
+  "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_whatToDoNow_1": "Please configure these elements in the ",
+  "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_whatToDoNow_security": "Security",
+  "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_whatToDoNow_2": " tab before you continue",
+  "dedicatedCloud_servicePack_requiredConfiguration_previousButton": "Previous",
+  "dedicatedCloud_servicePack_requiredConfiguration_nextButton": "Next",
+  "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_accessPolicy_error_MBM": "The access policy for your Essentials product is not restricted",
+  "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_numberOfAllowedIPAndBlocks_error_MBM": "The access policy for your Essentials product does not have an authorised IP address",
+  "dedicatedCloud_servicePack_requiredConfiguration_warningMessage_both_error_MBM": "The access policy for your Essentials product is not restricted, and does not have an authorised IP address."
+}

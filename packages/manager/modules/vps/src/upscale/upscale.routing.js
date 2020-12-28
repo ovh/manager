@@ -22,13 +22,39 @@ export default /* @ngInject */ function($stateProvider) {
           autoPayWithPreferredPaymentMethod: defaultPaymentMethod != null,
           quantity: 1,
         }),
-      upscaleOptions: /* @ngInject */ ($http, catalog, serviceName) =>
-        $http.get(`/order/upgrade/vps/${serviceName}`).then(({ data }) =>
-          data.map((option) => ({
-            ...option,
-            ...catalog.products.find(({ name }) => name === option.planCode),
-          })),
-        ),
+      upscaleOptions: /* @ngInject */ (
+        $http,
+        catalog,
+        connectedUser,
+        serviceName,
+        stateVps,
+      ) => {
+        const current = catalog.plans.find(
+          ({ planCode }) => planCode === stateVps.model.name,
+        );
+        return $http
+          .get(`/order/upgrade/vps/${serviceName}`)
+          .then(({ data }) => [
+            ...data.map((option) => ({
+              ...option,
+              ...catalog.products.find(({ name }) => name === option.planCode),
+            })),
+            {
+              ...current,
+              ...catalog.products.find(
+                ({ name }) => name === stateVps.model.name,
+              ),
+              prices: current.pricings.map((price) => ({
+                ...price,
+                price: {
+                  currencyCode: connectedUser.currency.code,
+                },
+                pricingMode: price.mode,
+                priceInUcents: price.price,
+              })),
+            },
+          ]);
+      },
     },
     views: {
       'vpsHeader@vps': {

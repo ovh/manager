@@ -1,3 +1,39 @@
+## [6.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.1.3...@ovh-ux/manager-overthebox@6.1.4) (2020-12-22)
+
+
+### Bug Fixes
+
+* update to use latest list layout ([c0cad60](https://github.com/ovh/manager/commit/c0cad603c8cce8ca8833c58c95d444aebfff7622))
+
+
+
+## [6.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.1.2...@ovh-ux/manager-overthebox@6.1.3) (2020-10-28)
+
+
+### Bug Fixes
+
+* **peer-deps:** upgrade @ovh-ux/ui-kit to v4.4.1 ([8254623](https://github.com/ovh/manager/commit/82546237336e185ae7d973a1bb2aabddbb50112e))
+
+
+
+## [6.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.1.1...@ovh-ux/manager-overthebox@6.1.2) (2020-10-20)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v11.0.0 ([#3869](https://github.com/ovh/manager/issues/3869)) ([df90e4d](https://github.com/ovh/manager/commit/df90e4de660920e3cd07b2ff6b4452b0aa861377))
+
+
+
+## [6.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.1.0...@ovh-ux/manager-overthebox@6.1.1) (2020-10-13)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 593] ([e561a94](https://github.com/ovh/manager/commit/e561a940e069e4b87b8c1b6f2be0348e4ab59911))
+
+
+
 # [6.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.0.5...@ovh-ux/manager-overthebox@6.1.0) (2020-09-30)
 
 

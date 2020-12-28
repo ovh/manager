@@ -1,0 +1,56 @@
+{
+  "name": "@ovh-ux/manager-fragment-navbar",
+  "version": "1.0.0",
+  "private": true,
+  "description": "OVHcloud navbar fragment",
+  "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/fragments/navbar#readme",
+  "bugs": {
+    "url": "https://github.com/ovh/manager/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh/manager.git",
+    "directory": "packages/manager/fragments/navbar"
+  },
+  "license": "BSD-3-Clause",
+  "main": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "webpack --mode=production && cp ./manifest.json ./dist",
+    "dev": "webpack --mode=development && cp ./manifest.json ./dist",
+    "dev:watch": "webpack --mode=development --watch && cp ./manifest.json ./dist",
+    "lint": "eslint ./src",
+    "prepare": "yarn run build",
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-fragment-navbar' --include-dependencies -- yarn run build",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-fragment-navbar' --include-dependencies -- yarn run dev",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-fragment-navbar' --include-dependencies -- yarn run dev:watch"
+  },
+  "dependencies": {
+    "@ovh-ux/manager-config": "^1.0.0 || ^2.0.0",
+    "@ovh-ux/ufrontend": "^0.0.0 || ^1.0.0",
+    "i18next": "^19.6.2",
+    "lodash-es": "^4.17.15",
+    "react": "^16.12.0",
+    "react-bootstrap": "^1.2.2",
+    "react-dom": "^16.12.0",
+    "react-i18next": "^11.7.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.2",
+    "@babel/plugin-transform-runtime": "^7.10.5",
+    "@babel/preset-react": "^7.7.0",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^3.6.0",
+    "eslint-plugin-react": "^7.20.3",
+    "prop-types": "^15.7.2",
+    "sass-loader": "^9.0.2",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.9"
+  },
+  "peerDependencies": {
+    "@ovh-ux/ui-kit": "^4.1.12"
+  }
+}

@@ -1,3 +1,21 @@
+## [5.0.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-line-diagnostics@5.0.2...@ovh-ux/ng-ovh-line-diagnostics@5.0.3) (2020-10-28)
+
+
+### Bug Fixes
+
+* **peer-deps:** upgrade @ovh-ux/ui-kit to v4.4.1 ([8254623](https://github.com/ovh/manager/commit/82546237336e185ae7d973a1bb2aabddbb50112e))
+
+
+
+## [5.0.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-line-diagnostics@5.0.1...@ovh-ux/ng-ovh-line-diagnostics@5.0.2) (2020-10-20)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v11.0.0 ([#3869](https://github.com/ovh/manager/issues/3869)) ([df90e4d](https://github.com/ovh/manager/commit/df90e4de660920e3cd07b2ff6b4452b0aa861377))
+
+
+
 ## [5.0.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-line-diagnostics@5.0.0...@ovh-ux/ng-ovh-line-diagnostics@5.0.1) (2020-09-18)
 
 

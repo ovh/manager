@@ -15,15 +15,22 @@ export default /* @ngInject */ ($stateProvider) => {
     });
   };
 
+  const commonResolvers = {
+    organization: /* @ngInject */ ($transition$) =>
+      $transition$.params().organization,
+    productId: /* @ngInject */ ($transition$) =>
+      $transition$.params().productId,
+    exchange: /* @ngInject */ (Exchange, organization, productId) =>
+      Exchange.getExchangeDetails(organization, productId),
+    reloadDashboard: /* @ngInject */ ($state) => () => {
+      return $state.reload();
+    },
+  };
+
   $stateProvider.state('app.exchange', {
     url: '/configuration/exchange/:organization/:productId',
     resolve: {
-      organization: /* @ngInject */ ($transition$) =>
-        $transition$.params().organization,
-      productId: /* @ngInject */ ($transition$) =>
-        $transition$.params().productId,
-      exchange: /* @ngInject */ (Exchange, organization, productId) =>
-        Exchange.getExchangeDetails(organization, productId),
+      ...commonResolvers,
     },
     redirectTo: (transition) =>
       transition
@@ -45,6 +52,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       navigationInformations: getNavigationInformations('exchange_dedicated'),
+      ...commonResolvers,
     },
   });
 
@@ -62,6 +70,7 @@ export default /* @ngInject */ ($stateProvider) => {
       navigationInformations: getNavigationInformations(
         'exchange_dedicatedCluster',
       ),
+      ...commonResolvers,
     },
   });
 
@@ -76,6 +85,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       navigationInformations: getNavigationInformations('exchange_hosted'),
+      ...commonResolvers,
     },
   });
 
@@ -90,6 +100,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       navigationInformations: getNavigationInformations('exchange_provider'),
+      ...commonResolvers,
     },
   });
 

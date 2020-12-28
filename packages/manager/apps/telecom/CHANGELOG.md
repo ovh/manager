@@ -1,3 +1,250 @@
+# [13.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.7.1...@ovh-ux/manager-telecom@13.8.0) (2020-12-22)
+
+
+### Bug Fixes
+
+* update to use latest list layout ([c0cad60](https://github.com/ovh/manager/commit/c0cad603c8cce8ca8833c58c95d444aebfff7622))
+* **contact-center-solution.lines.add:** fix go back button ([#4139](https://github.com/ovh/manager/issues/4139)) ([573f390](https://github.com/ovh/manager/commit/573f390f7b9e49f1869d4938ef5e20047883afab))
+* **i18n:** add missing translations [CDS 704] ([5693f69](https://github.com/ovh/manager/commit/5693f69cf0e10e7baed40c19ad490ef12ef7c13d))
+
+
+### Features
+
+* **env:** use application name and universe ([104b7bf](https://github.com/ovh/manager/commit/104b7bf41f1d3f261fd619169b8b4b6e6aa9adb8))
+
+
+
+## [13.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.7.0...@ovh-ux/manager-telecom@13.7.1) (2020-12-16)
+
+
+### Bug Fixes
+
+* **pack.move:** set missing building from address eligibility test ([#4178](https://github.com/ovh/manager/issues/4178)) ([3788103](https://github.com/ovh/manager/commit/37881039bba479b7c6c797bf338b8ed44b4a23d0))
+
+
+
+# [13.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.6.8...@ovh-ux/manager-telecom@13.7.0) (2020-12-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 696] ([3224a7e](https://github.com/ovh/manager/commit/3224a7eb5d80b0ac985131d96068b53a714f8f93))
+* **i18n:** add missing translations [CDS 697] ([d7efd3a](https://github.com/ovh/manager/commit/d7efd3a18162dfc1c2d42999f594dcece25237b0))
+* **i18n:** add missing translations [CDS 698] ([aa20628](https://github.com/ovh/manager/commit/aa2062854070bdca8b3711d7b0cbe12d7c0b30ef))
+* **pack.meetings:** resolve route to access to meetings page ([#4021](https://github.com/ovh/manager/issues/4021)) ([33940e0](https://github.com/ovh/manager/commit/33940e0df3a4b6a7e412b76d1f581e06e3814aa3))
+
+
+### Features
+
+* **move.offers:** reorder offers for pack ([#4059](https://github.com/ovh/manager/issues/4059)) ([fab54b0](https://github.com/ovh/manager/commit/fab54b003d5ffbd75797ce4a30bb6db253fb59b7))
+* **pack:** display promotions on offers for move or migration ([#4084](https://github.com/ovh/manager/issues/4084)) ([6299b7b](https://github.com/ovh/manager/commit/6299b7b9114e646d8db14f7e7de9dd9f1323ab54))
+* **pack.move:** buildings for migration offers ([#4043](https://github.com/ovh/manager/issues/4043)) ([e811220](https://github.com/ovh/manager/commit/e81122062e34a24c286f3e75e2770e82b9f60048))
+* **pack.move:** retrieve buildings on move offer ([#4058](https://github.com/ovh/manager/issues/4058)) ([a490e32](https://github.com/ovh/manager/commit/a490e32e8a524bc9c4f8e4274f03585d550f47b2))
+
+
+
+## [13.6.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.6.7...@ovh-ux/manager-telecom@13.6.8) (2020-12-07)
+
+
+### Bug Fixes
+
+* **telephony:** case insensitive siret validation regex ([#4135](https://github.com/ovh/manager/issues/4135)) ([fd957cf](https://github.com/ovh/manager/commit/fd957cf2cb7a90a5c6f48769c06d5e70a017c576))
+
+
+
+## [13.6.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.6.6...@ovh-ux/manager-telecom@13.6.7) (2020-11-25)
+
+
+### Bug Fixes
+
+* **chatbot:** add support level ([7755b4e](https://github.com/ovh/manager/commit/7755b4eb7d9dc946c0747e06b4d4618fe7266b3d))
+* **deps:** upgrade ovh-api-services to v11.0.1 ([#4067](https://github.com/ovh/manager/issues/4067)) ([994f173](https://github.com/ovh/manager/commit/994f173072ab2e6920fa48049d477579f7364657))
+
+
+### Performance Improvements
+
+* **chatbot:** delay the chatbot initialization ([7492586](https://github.com/ovh/manager/commit/7492586f40ffcb09026efec84392df44ca0dea32))
+
+
+
+## [13.6.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.6.5...@ovh-ux/manager-telecom@13.6.6) (2020-11-19)
+
+
+### Bug Fixes
+
+* update annotation comment ([e1707d0](https://github.com/ovh/manager/commit/e1707d085fb0f6940c91aa00d795d745bd0b155a))
+
+
+
+## [13.6.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.6.4...@ovh-ux/manager-telecom@13.6.5) (2020-11-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 636] ([da5b51b](https://github.com/ovh/manager/commit/da5b51b1df6466ec8fda13ce91397d0ede15f46c))
+* **i18n:** add missing translations [CDS 639] ([ddb4bd2](https://github.com/ovh/manager/commit/ddb4bd2daec6972c4ac7696aac6541da1d1a3e26))
+* **i18n:** add missing translations [CDS 642] ([d3a9a07](https://github.com/ovh/manager/commit/d3a9a071ff381bc5fed8bc913dbd83c91ffbb8c5))
+* **i18n:** add missing translations [CDS 646] ([2c2e07c](https://github.com/ovh/manager/commit/2c2e07cef0d49428e4957d32cf780cd194e328cb))
+* **pack.resiliation:** fix on resiliation date test ([#3927](https://github.com/ovh/manager/issues/3927)) ([f09c367](https://github.com/ovh/manager/commit/f09c367f082af2d6d360b96fa79e4d9c69381354))
+* **pack.xdsl.access:** remove disabled for ftth pack ([#3914](https://github.com/ovh/manager/issues/3914)) ([de854af](https://github.com/ovh/manager/commit/de854afd00863c79a68f8a13ca12dfc976ccbe2b))
+* **pack.xdsl.modem:** disable modem wifi config if remote config is disabled ([#3630](https://github.com/ovh/manager/issues/3630)) ([700dbf3](https://github.com/ovh/manager/commit/700dbf3e8eb1333cc0f0e3d4814ba27a45f6f019))
+* **telephony.service.voicemail:** replace aapi call with autocomplete ([d9d2fcd](https://github.com/ovh/manager/commit/d9d2fcdefe05d311c74c21770d0a359cd172f37c))
+
+
+### Performance Improvements
+
+* remove unused jquery-cookie dependency ([#4014](https://github.com/ovh/manager/issues/4014)) ([9114662](https://github.com/ovh/manager/commit/9114662d99b4a8d71d8060af7d6d6556dcf0d331))
+
+
+
+## [13.6.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.6.3...@ovh-ux/manager-telecom@13.6.4) (2020-11-12)
+
+
+### Bug Fixes
+
+* **portability:** add portability order lazy loading ([#4011](https://github.com/ovh/manager/issues/4011)) ([f2b3075](https://github.com/ovh/manager/commit/f2b3075994ae431483d4632fabfa635b5e91a123))
+
+
+
+## [13.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.6.2...@ovh-ux/manager-telecom@13.6.3) (2020-11-03)
+
+
+### Bug Fixes
+
+* **telephony:** avoid stateMatcher error with beta search ([#3973](https://github.com/ovh/manager/issues/3973)) ([0126fe0](https://github.com/ovh/manager/commit/0126fe07b366a7ca0186214136a8e829733b8691))
+
+
+
+## [13.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.6.1...@ovh-ux/manager-telecom@13.6.2) (2020-11-02)
+
+
+### Bug Fixes
+
+* **telecom.search:** import missing telephony module ([#3964](https://github.com/ovh/manager/issues/3964)) ([c86ab00](https://github.com/ovh/manager/commit/c86ab008afffb8b031c28b67cbf8504f0d2ef93b))
+
+
+
+## [13.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.6.0...@ovh-ux/manager-telecom@13.6.1) (2020-10-29)
+
+
+### Bug Fixes
+
+* **redirect.config:** restore config for redirect featureType ([#3949](https://github.com/ovh/manager/issues/3949)) ([3573cf0](https://github.com/ovh/manager/commit/3573cf02691df59facc6149a926e7bbc47047269))
+* **sidebar:** open otb link in new window ([#3955](https://github.com/ovh/manager/issues/3955)) ([ac34a9c](https://github.com/ovh/manager/commit/ac34a9c0826b6b11e84e0afac0d7befe7e292dc0))
+
+
+
+# [13.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.5.3...@ovh-ux/manager-telecom@13.6.0) (2020-10-28)
+
+
+### Bug Fixes
+
+* **deps:** upgrade webpack to v4.44.2 ([fc868d2](https://github.com/ovh/manager/commit/fc868d2670b0de220837c8917d90fa3020e6d4ca))
+* **i18n:** add missing translations [CDS 627] ([8abdcc9](https://github.com/ovh/manager/commit/8abdcc9ebbb092968f07f78e5ff688796eb651f3))
+* **preloader:** attach preloader with user language ([6eb9cc1](https://github.com/ovh/manager/commit/6eb9cc1cc362f8cc2426965d8563de1af9dee0c8))
+* **sidebar:** update overthebox url ([#3936](https://github.com/ovh/manager/issues/3936)) ([6ab266b](https://github.com/ovh/manager/commit/6ab266b293d7bfcec96d1b456839b1ec4303b8fe))
+* **telephony.group.consumption.pie-chart:** improve responsiveness ([#3755](https://github.com/ovh/manager/issues/3755)) ([2eff159](https://github.com/ovh/manager/commit/2eff15905dcfa640603776a8453d4bbb0706b269))
+* **telephony.line.management.terminate:** add missing terminate info ([#3800](https://github.com/ovh/manager/issues/3800)) ([ad2385a](https://github.com/ovh/manager/commit/ad2385a2a3f8bd560ec63c1df0ddbf7f79260d38))
+* **xdsl.move:** change label for move out date ([#3892](https://github.com/ovh/manager/issues/3892)) ([a30b855](https://github.com/ovh/manager/commit/a30b855371b6520cb558c522e9c849f16581892b))
+* add regenerator-runtime ([982d03a](https://github.com/ovh/manager/commit/982d03a1054ecc3c6fb886f57c8b8f9afe0e7001))
+
+
+### Features
+
+* **xdsl.meetings:** add meetings view for xDSL new line creation ([#3612](https://github.com/ovh/manager/issues/3612)) ([644ffd3](https://github.com/ovh/manager/commit/644ffd34eb327d78e9311edd6b48d4b2bc3ee54a))
+* **xdsl.modem:** add acs backend config ([#3646](https://github.com/ovh/manager/issues/3646)) ([ef4974c](https://github.com/ovh/manager/commit/ef4974cd00f8a1b77b053c4793199e55bd994785))
+* add core-js to polyfill ([1411e1c](https://github.com/ovh/manager/commit/1411e1ca873d1ffd715c43fcadfe96f26e5be874))
+
+
+
+## [13.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.5.2...@ovh-ux/manager-telecom@13.5.3) (2020-10-28)
+
+
+### Bug Fixes
+
+* **pack.migration:** restore migration page ([#3941](https://github.com/ovh/manager/issues/3941)) ([6042621](https://github.com/ovh/manager/commit/6042621e80b4b51e7a5f72df08470a4282708711))
+
+
+
+## [13.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.5.1...@ovh-ux/manager-telecom@13.5.2) (2020-10-28)
+
+
+### Bug Fixes
+
+* **pack.xdsl.line:** avoid to duplicate serviceName in url ([#3938](https://github.com/ovh/manager/issues/3938)) ([03a5f30](https://github.com/ovh/manager/commit/03a5f303fa2701ed3246377e92df14ddc9dc58af))
+
+
+
+## [13.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.5.0...@ovh-ux/manager-telecom@13.5.1) (2020-10-27)
+
+
+### Bug Fixes
+
+* **ccs.lines:** fix edit remove template ([#3929](https://github.com/ovh/manager/issues/3929)) ([9caf2ed](https://github.com/ovh/manager/commit/9caf2eda6f485d785178da382eacb716514a8d5d))
+* **svagenerator:** fix sva generator config ([#3931](https://github.com/ovh/manager/issues/3931)) ([8009c6c](https://github.com/ovh/manager/commit/8009c6c8b5fe6a479c957f1dc7d73d210aa90a9e))
+
+
+
+# [13.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.4.3...@ovh-ux/manager-telecom@13.5.0) (2020-10-27)
+
+
+### Bug Fixes
+
+* **pack.bundle:** remove invalid imports ([5a8740f](https://github.com/ovh/manager/commit/5a8740fd95c3975fd23596fcbb554431272f5420))
+
+
+### Features
+
+* **telephony:** add lazy loading ([d2b9815](https://github.com/ovh/manager/commit/d2b981500a1fc016e04d8b347a4f73bbdc2e461f))
+* **telephony:** add lazy loading on root state ([f9322d0](https://github.com/ovh/manager/commit/f9322d0f122378e84666cc6f6b978de7af00d050))
+
+
+
+## [13.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.4.2...@ovh-ux/manager-telecom@13.4.3) (2020-10-26)
+
+
+### Bug Fixes
+
+* **preloader:** attach preloader with user language ([6c65188](https://github.com/ovh/manager/commit/6c6518888146a4c90bd9268d0db40cb2d2df699f))
+
+
+
+## [13.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.4.1...@ovh-ux/manager-telecom@13.4.2) (2020-10-23)
+
+
+### Bug Fixes
+
+* **pack.move.offers:** update services to delete when select options ([#3857](https://github.com/ovh/manager/issues/3857)) ([db037c2](https://github.com/ovh/manager/commit/db037c22d67a85c79a9857bb37afb06747459c01))
+
+
+
+## [13.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.4.0...@ovh-ux/manager-telecom@13.4.1) (2020-10-20)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v11.0.0 ([#3869](https://github.com/ovh/manager/issues/3869)) ([df90e4d](https://github.com/ovh/manager/commit/df90e4de660920e3cd07b2ff6b4452b0aa861377))
+
+
+
+# [13.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.3.1...@ovh-ux/manager-telecom@13.4.0) (2020-10-13)
+
+
+### Bug Fixes
+
+* **deps:** upgrade to @ovh-ux/manager-config v2.0.0 ([ca3f955](https://github.com/ovh/manager/commit/ca3f9554c13b1436cbdeed3de8ac69e399d5dd93))
+* **i18n:** add missing translations [CDS 602] ([29f3a48](https://github.com/ovh/manager/commit/29f3a4872de300ced82b49b0755311c6f46e329b))
+* **i18n:** add missing translations [CDS 605] ([95c86b7](https://github.com/ovh/manager/commit/95c86b75448550a605e6569367bd0fef8fddbde0))
+* **telephony:** sort programmablekey BLF parameters ([#3707](https://github.com/ovh/manager/issues/3707)) ([db61611](https://github.com/ovh/manager/commit/db61611badd638ddc6d330f9ff9eb98623e9ac34))
+* **telephony.fax.campaigns:** allow to launch campaign ([fdc5e7b](https://github.com/ovh/manager/commit/fdc5e7b348d5a0a90501f9a5dec723452e9d9c0c))
+
+
+### Features
+
+* **pack.migration:** rework on building details pto input ([#3319](https://github.com/ovh/manager/issues/3319)) ([87abd19](https://github.com/ovh/manager/commit/87abd19473f8b19e50d00b7623f4d5b3f21eecaa))
+
+
+
 ## [13.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.3.0...@ovh-ux/manager-telecom@13.3.1) (2020-10-07)
 
 

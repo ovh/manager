@@ -1,14 +1,16 @@
-angular.module('App').config(($stateProvider) => {
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicatedClouds.operation', {
     url: '/operation',
     reloadOnSearch: false,
     views: {
-      pccView: {
-        templateUrl: 'dedicatedCloud/operation/dedicatedCloud-operation.html',
-        controller: 'DedicatedCloudOperationsCtrl',
-        controllerAs: '$ctrl',
-      },
+      pccView: 'ovhManagerPccOperation',
     },
-    translations: { value: ['./executionDateEdit'], format: 'json' },
+    resolve: {
+      goToExecutionDateEdit: /* @ngInject */ ($state, productId) => (task) =>
+        $state.go('app.dedicatedClouds.operation.execution-date-edit', {
+          productId,
+          operationToEdit: task,
+        }),
+    },
   });
-});
+};

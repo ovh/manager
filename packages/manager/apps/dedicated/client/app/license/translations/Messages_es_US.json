@@ -576,6 +576,7 @@
   "license_order_step2_option_WINDOWS_sqlversion": "Versión SQL",
   "license_order_step2_option_WORKLIGHT_lessThan1000Users": "Empresa de menos de 1.000 trabajadores",
   "license_order_step3_title": "3. Seleccione una duración",
+  "license_order_step3_pricing_warning": "The price will be calculated on a pro-rata basis depending on your services expiry date",
   "license_order_step4_title": "4. Aceptar",
   "license_order_step4_question": "Haga clic en «Generar la orden de pedido» para contratar la licencia.",
   "license_order_step4_contracts_ask": "Lea y acepte los siguientes contratos, y haga click en \"Crear la orden\":",

@@ -1,0 +1,15 @@
+{
+  "dedicatedCloud_datacenter_backup_upgrade_title": "Modifica la soluzione di backup",
+  "dedicatedCloud_datacenter_backup_upgrade_confirm": "Passa alla versione {{ name }}",
+  "dedicatedCloud_datacenter_backup_upgrade_cancel": "Annulla",
+  "dedicatedCloud_datacenter_backup_upgrade_description": "Hai scelto di modificare la tua soluzione di backup dall’<strong>offerta {{ currentOffer }}</strong> all’<strong>offerta {{ selectedOffer }}</strong>.",
+  "dedicatedCloud_datacenter_backup_upgrade_warning_EPCC": "Se in altri datacenter di questo Private Cloud risulta attivo un servizio di backup, la soluzione verrà applicata anche a questi datacenter.",
+  "dedicatedCloud_datacenter_backup_upgrade_description_features": "Questa è la configurazione corrente:",
+  "dedicatedCloud_datacenter_backup_upgrade_description_confirmation": "Vuoi davvero modificare il servizio attivo?",
+  "dedicatedCloud_datacenter_backup_upgrade_description_billing": "La fatturazione varierà in base al numero e alla dimensione delle macchine virtuali sottoposte a backup.",
+  "dedicatedCloud_datacenter_backup_upgrade_replication_condition": "Confermo la replica dei dati",
+  "dedicatedCloud_datacenter_backup_upgrade_success_1": "La richiesta di modifica dalla soluzione Veeam da {{actualOffer}} a {{newOffer}} è stata presa in carico e a breve diventerà effettiva.",
+  "dedicatedCloud_datacenter_backup_upgrade_success_2": "Lo stato di avanzamento dell’operazione è disponibile <a href='{{operationsUrl}}'>qui</a>.",
+  "dedicatedCloud_datacenter_backup_upgrade_error": "Si è verificato un errore durante la modifica del servizio di backup: {{message}}",
+  "dedicatedCloud_datacenter_backup_upgrade_warning_MBM": "Se il servizio di backup è attivo anche in altri datacenter di questa soluzione Essentials, questa offerta verrà applicata anche a questi datacenter."
+}

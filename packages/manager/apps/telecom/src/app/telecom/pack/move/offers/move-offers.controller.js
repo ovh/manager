@@ -2,6 +2,8 @@ import find from 'lodash/find';
 import isUndefined from 'lodash/isUndefined';
 import set from 'lodash/set';
 
+import { PROMO_DISPLAY } from '../pack-move.constant';
+
 export default class PackMoveOffersCtrl {
   /* @ngInject */
   constructor(
@@ -25,6 +27,8 @@ export default class PackMoveOffersCtrl {
       init: true,
     };
 
+    this.PROMO_DISPLAY = PROMO_DISPLAY;
+
     this.$q
       .all([this.getOptions(), this.getCopperOffers()])
       .then(() => {
@@ -32,7 +36,7 @@ export default class PackMoveOffersCtrl {
       })
       .then(() => {
         if (this.eligibilityReferenceFiber) {
-          this.offers = [...this.listOffers, ...this.listOffersFiber];
+          this.offers = [...this.listOffersFiber, ...this.listOffers];
         } else {
           this.offers = [...this.listOffers];
         }
@@ -77,6 +81,11 @@ export default class PackMoveOffersCtrl {
           );
         } else {
           this.listOffers = offers.result.offers;
+          this.listOffers = this.listOffers.map((offer) => ({
+            ...offer,
+            displayedPrice: offer.prices.price.price,
+            eligibilityReference: this.eligibilityReference,
+          }));
         }
         return this.listOffers;
       })
@@ -108,6 +117,11 @@ export default class PackMoveOffersCtrl {
           );
         } else {
           this.listOffersFiber = fiberOffers.result.offers;
+          this.listOffersFiber = this.listOffersFiber.map((offer) => ({
+            ...offer,
+            displayedPrice: offer.prices.price.price,
+            eligibilityReference: this.eligibilityReferenceFiber,
+          }));
         }
         return this.listOffersFiber;
       })
@@ -179,7 +193,48 @@ export default class PackMoveOffersCtrl {
     set(offer, 'displayedPrice', displayedPrice);
   }
 
+  static isChosen(option) {
+    return option.choosedValue > 0;
+  }
+
   selectOffer(offer) {
-    this.$scope.$emit('offerSelected', offer);
+    const selectedOffer = offer;
+
+    const params = {
+      eligibilityReference: selectedOffer.eligibilityReference,
+      offerName: selectedOffer.offerName,
+    };
+
+    // Retrieve option values (included and added)
+    const options = selectedOffer.options
+      .filter(
+        (option) => option.included > 0 || this.constructor.isChosen(option),
+      )
+      .map((option) => ({
+        quantity:
+          option.included +
+          (this.constructor.isChosen(option) ? option.choosedValue : 0),
+        name: option.name,
+      }));
+
+    if (options.length > 0) {
+      params.options = options;
+    }
+
+    return this.OvhApiPackXdslMove.v6()
+      .servicesToDelete({ packName: this.packName }, params)
+      .$promise.then((result) => {
+        selectedOffer.subServicesToDelete = result;
+        this.$scope.$emit('offerSelected', selectedOffer);
+
+        return result;
+      })
+      .catch((error) => {
+        this.TucToast.error(
+          this.$translate.instant('pack_move_choose_offer_error', {
+            error,
+          }),
+        );
+      });
   }
 }

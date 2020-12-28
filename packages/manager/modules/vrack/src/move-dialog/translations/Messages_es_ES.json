@@ -1,8 +1,10 @@
 {
-  "vrack_move_dialog_title": "Traslado de un datacenter Hosted Private Cloud",
-  "vrack_move_dialog_intro": "Ha seleccionado un servicio de tipo «datacenter» Hosted Private Cloud. Este servicio no puede ser huérfano, por lo que es necesario transferirlo a otro vRack.",
+  "vrack_move_dialog_title_dedicatedCloudDatacenter": "Traslado de un datacenter Hosted Private Cloud",
+  "vrack_move_dialog_intro_dedicatedCloudDatacenter": "Ha seleccionado un servicio de tipo «datacenter» Hosted Private Cloud. Este servicio no puede ser huérfano, por lo que es necesario transferirlo a otro vRack.",
   "vrack_move_dialog_warning_notice": "Esta operación implica una interrupción del servicio de unos 5 minutos.",
   "vrack_move_dialog_choose_vrack_label": "vRack de destino:",
   "vrack_move_dialog_choose_vrack_default_option": "Seleccione un vRack",
-  "vrack_move_dialog_request_error": "¡Vaya! La operación de traslado del datacenter no ha podido realizarse."
+  "vrack_move_dialog_request_error": "¡Vaya! La operación de traslado del datacenter no ha podido realizarse.",
+  "vrack_move_dialog_title_managedBareMetalDatacenter": "Traslado de un datacenter Managed Bare Metal",
+  "vrack_move_dialog_intro_managedBareMetalDatacenter": "Ha seleccionado un servicio de tipo datacenter Managed Bare Metal. Este servicio no puede ser huérfano, por lo que es necesario transferirlo a otro vRack."
 }

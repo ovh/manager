@@ -637,6 +637,7 @@
   "license_order_step2_option_WINDOWS_sqlversion": "Version SQL",
   "license_order_step2_option_WORKLIGHT_lessThan1000Users": "Société de moins de 1000 salariés",
   "license_order_step3_title": "3. Choisissez une durée",
+  "license_order_step3_pricing_warning": "En fonction de la date d'expiration de vos services un prorata peut être appliqué sur le prix.",
   "license_order_step4_title": "4. Validation",
   "license_order_step4_question": "Cliquez sur \"Générer le bon de commande\" pour commander votre licence.",
   "license_order_step4_contracts_ask": "Merci de lire et d'accepter les contrats ci-dessous, et cliquez sur \"Générer le bon de commande\" :",
@@ -687,5 +688,6 @@
   "license_potential_problem_isOsPleskOnyx": "Le serveur ne semble pas exécuter une distribution Plesk Onyx",
   "license_designation_CPANEL_premier_option": "jusqu'à {{ numberOfCPANEL }} comptes CPANEL",
   "license_designation_CPANEL_admin_option": "2-5 comptes CPANEL",
-  "license_designation_CPANEL_pro_option": "6-30 comptes CPANEL"
+  "license_designation_CPANEL_pro_option": "6-30 comptes CPANEL",
+  "license_designation_CPANEL_version_option-cpanel": "jusqu'à {{ licenseCount }} comptes CPANEL"
 }

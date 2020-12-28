@@ -1,0 +1,168 @@
+<form
+    id="add_cache_rule_form"
+    data-name="$ctrl.addCacheRuleForm"
+    data-ng-submit="$ctrl.addCacheRuleForm.$valid"
+>
+    <oui-modal
+        data-heading="{{:: 'hosting_cdn_shared_modal_' + (!$ctrl.rule ? 'add' : 'set') + '_rule_title' | translate}}"
+        data-primary-action="$ctrl.validateRule()"
+        data-primary-label="{{:: 'hosting_cdn_shared_modal_add_rule_btn_' + (!$ctrl.rule ? 'validate' : 'set') + '_rule' | translate}}"
+        data-secondary-action="$ctrl.leaveModal()"
+        data-secondary-label="{{:: 'hosting_cdn_shared_modal_add_rule_btn_cancel' | translate}}"
+        data-primary-disabled="$ctrl.addCacheRuleForm.$invalid"
+        data-on-dismiss="$ctrl.leaveModal()"
+    >
+        <!--Description-->
+        <div
+            class="oui-paragraph"
+            data-ng-bind="::'hosting_cdn_shared_modal_' + (!$ctrl.rule ? 'add' : 'set') + '_rule_info' | translate"
+        ></div>
+
+        <!--Rule name-->
+        <div class="mb-4">
+            <label
+                for="rule_name"
+                class="oui-field__label"
+                data-translate="hosting_cdn_shared_modal_add_rule_field_rule_name"
+            ></label>
+            <input
+                class="oui-input"
+                id="rule_name"
+                name="rule_name"
+                type="text"
+                data-ng-disabled="$ctrl.rule"
+                data-ng-model="$ctrl.ruleModel.name"
+                data-ng-change="$ctrl.isValidRuleName($ctrl.ruleModel)"
+                data-ng-pattern="/^[\w\d\-_]+$/"
+                required
+            />
+            <span
+                role="alert"
+                class="help-block has-error"
+                data-ng-if="$ctrl.addCacheRuleForm.rule_name.$touched && $ctrl.addCacheRuleForm.rule_name.$error"
+                data-ng-messages="$ctrl.addCacheRuleForm.rule_name.$error"
+            >
+                <span
+                    class="text-danger"
+                    data-ng-message="required"
+                    data-translate="hosting_cdn_shared_modal_field_rule_name_error_required"
+                ></span>
+                <span
+                    class="text-danger"
+                    data-ng-message="pattern"
+                    data-translate="hosting_cdn_shared_modal_field_rule_name_error_pattern"
+                ></span>
+                <span
+                    class="text-danger"
+                    data-ng-message="duplicateRuleName"
+                    data-translate="hosting_cdn_shared_modal_field_rule_name_error_duplicate_name"
+                ></span>
+            </span>
+        </div>
+
+        <!--Rule URI-->
+        <div class="mb-4">
+            <label
+                for="rule_pattern"
+                class="oui-field__label"
+                data-translate="hosting_cdn_shared_modal_add_rule_field_uri"
+            ></label>
+            <div
+                class="oui-paragraph mb-0"
+                data-translate="hosting_cdn_shared_modal_add_rule_field_uri_info"
+            ></div>
+            <input
+                class="oui-input"
+                id="rule_pattern"
+                name="rule_pattern"
+                type="text"
+                data-ng-disabled="$ctrl.rule"
+                data-ng-model="$ctrl.ruleModel.pattern"
+                data-ng-change="$ctrl.isValidRulePattern($ctrl.ruleModel)"
+                data-ng-pattern="/^[\w\d]+$/"
+                required
+            />
+            <span
+                role="alert"
+                class="help-block has-error"
+                data-ng-if="$ctrl.addCacheRuleForm.rule_pattern.$touched && $ctrl.addCacheRuleForm.rule_pattern.$error"
+                data-ng-messages="$ctrl.addCacheRuleForm.rule_pattern.$error"
+            >
+                <span
+                    class="text-danger"
+                    data-ng-message="required"
+                    data-translate="hosting_cdn_shared_modal_field_uri_error_required"
+                ></span>
+                <span
+                    class="text-danger"
+                    data-ng-message="pattern"
+                    data-translate="hosting_cdn_shared_modal_field_uri_error_pattern"
+                ></span>
+                <span
+                    class="text-danger"
+                    data-ng-message="duplicateRulePattern"
+                    data-translate="hosting_cdn_shared_modal_field_uri_error_duplicate"
+                ></span>
+            </span>
+        </div>
+
+        <!--Rule TTL-->
+        <div class="mb-4">
+            <label
+                for="rule_ttl"
+                class="oui-field__label"
+                data-translate="hosting_cdn_shared_modal_add_rule_field_time_to_live"
+            ></label>
+            <div
+                class="oui-paragraph mb-0"
+                data-translate="hosting_cdn_shared_modal_add_rule_field_time_to_live_info"
+            ></div>
+            <span>
+                <input
+                    class="oui-input oui-input_inline"
+                    id="rule_ttl"
+                    name="rule_ttl"
+                    type="number"
+                    min="0"
+                    pattern="\d*"
+                    data-ng-model="$ctrl.ruleModel.ttl.value"
+                    required
+                />
+
+                <oui-select
+                    data-id="rule_ttl_select"
+                    data-name="rule_ttl_select"
+                    data-match="unit"
+                    data-items="$ctrl.ruleModel.ttl.units"
+                    data-model="$ctrl.ruleModel.ttl.selected"
+                    data-placeholder=""
+                    data-inline
+                    data-required
+                >
+                </oui-select>
+            </span>
+        </div>
+
+        <!--Order position-->
+        <div>
+            <label
+                class="oui-field__label mb-1"
+                data-translate="hosting_cdn_shared_modal_add_rule_field_order_by"
+            ></label>
+            <div
+                class="oui-paragraph"
+                data-translate="hosting_cdn_shared_modal_add_rule_field_order_by_info"
+            ></div>
+
+            <span class="oui-field__control">
+                <oui-numeric
+                    data-id="rule_priority"
+                    data-name="rule_priority"
+                    data-min="$ctrl.ruleModel.priority.min"
+                    data-model="$ctrl.ruleModel.priority.value"
+                >
+                </oui-numeric>
+            </span>
+        </div>
+    </oui-modal>
+</form>

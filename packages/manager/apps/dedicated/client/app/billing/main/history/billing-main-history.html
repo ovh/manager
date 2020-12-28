@@ -50,6 +50,7 @@
         selectable-rows
         on-row-select="$ctrl.onRowSelect($rows)"
         columns="$ctrl.columnsConfig"
+        page="{{ $ctrl.paginationNumber }}"
     >
         <oui-datagrid-column
             title=":: 'billing_main_history_table_id' | translate"
@@ -168,6 +169,13 @@
             >
                 <span
                     data-translate="billing_main_history_table_debt_detail"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                ng-if="$row.debt && $row.debt.dueAmount.value > 0 && !$row.debt.paymentOrder.url"
+                on-click="$ctrl.payDebt($row.debt.debtId)"
+                ><span
+                    data-translate="billing_main_history_table_debt_pay"
                 ></span>
             </oui-action-menu-item>
         </oui-action-menu>

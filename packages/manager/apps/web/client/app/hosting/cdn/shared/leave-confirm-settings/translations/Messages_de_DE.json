@@ -1,0 +1,10 @@
+{
+  "hosting_cdn_shared_modal_confirm_title": "Die Konfiguration Ihres CDN Basic anwenden",
+  "hosting_cdn_shared_modal_confirm_info": "Klicken Sie auf \"Bestätigen\", um die Änderungen an Ihrer Konfiguration zu übernehmen. Wenn Sie auf \"Abbrechen\" klicken, gehen Ihre gesamten letzten Änderungen verloren.",
+  "hosting_cdn_shared_modal_confirm_btn_validate": "Bestätigen",
+  "hosting_cdn_shared_modal_confirm_btn_cancel": "Abbrechen",
+  "hosting_cdn_shared_modal_leave_title": "Geänderte Konfiguration des CDN Basic",
+  "hosting_cdn_shared_modal_leave_info": "Wenn Sie die Seite wechseln, gehen Ihre Änderungen an der Konfiguration Ihres CDN Basic verloren.",
+  "hosting_cdn_shared_modal_leave_btn_validate": "Verlassen ",
+  "hosting_cdn_shared_modal_leave_btn_cancel": "Abbrechen"
+}

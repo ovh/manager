@@ -575,5 +575,36 @@
                 </oui-tile-definition>
             </oui-tile>
         </div>
+
+        <div
+            class="oui-box col-md-4 mb-5"
+            data-ng-if="$ctrl.domain.recommendedHosting"
+        >
+            <h4
+                class="oui-box__heading"
+                data-translate="{{ 'domain_dashboard_recommended_hosting_title_' + $ctrl.domain.recommendedHosting.type }}"
+            ></h4>
+            <p
+                data-translate="domain_dashboard_recommended_hosting_label"
+                data-translate-values="{ 'reduction': $ctrl.domain.recommendedHosting.reduction, 'type': $ctrl.domain.recommendedHosting.type }"
+            ></p>
+            <a
+                class="oui-link_icon"
+                target="_blank"
+                rel="noopener"
+                data-track-on="click"
+                data-track-name="{{ $ctrl.domain.recommendedHosting.tracker }}"
+                data-track-type="navigation"
+                data-ng-href="{{ $ctrl.domain.recommendedHosting.url }}"
+            >
+                <span
+                    data-translate="domain_dashboard_recommended_hosting_discover"
+                ></span>
+                <span
+                    class="oui-icon oui-icon-arrow-right"
+                    aria-hidden="true"
+                ></span>
+            </a>
+        </div>
     </div>
 </div>

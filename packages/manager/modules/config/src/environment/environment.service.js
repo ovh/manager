@@ -10,6 +10,10 @@ export default class EnvironmentService {
     this.region = DEFAULT_REGION;
     this.userLocale = findAvailableLocale(detectUserLocale(), this.region);
     this.version = null;
+    this.user = {};
+    this.applicationName = '';
+    this.universe = '';
+    this.applicationURLs = {};
   }
 
   setRegion(region = DEFAULT_REGION) {
@@ -23,8 +27,20 @@ export default class EnvironmentService {
     return this.region;
   }
 
+  setUser(user) {
+    this.user = user;
+  }
+
+  getUser() {
+    return this.user;
+  }
+
   setUserLocale(userLocale) {
-    const locale = findAvailableLocale(userLocale, this.getRegion());
+    // TODO(@antleblanc): Remove it on February 4th, 2021.
+    const locale =
+      userLocale === 'cs_CZ'
+        ? userLocale
+        : findAvailableLocale(userLocale, this.getRegion());
     saveUserLocale(locale);
     this.userLocale = locale;
   }
@@ -43,5 +59,33 @@ export default class EnvironmentService {
 
   getVersion() {
     return this.version;
+  }
+
+  setApplicationName(name) {
+    this.applicationName = name;
+  }
+
+  getApplicationName() {
+    return this.applicationName;
+  }
+
+  setUniverse(universe) {
+    this.universe = universe;
+  }
+
+  getUniverse() {
+    return this.universe;
+  }
+
+  setApplicationURLs(applicationURLs) {
+    this.applicationURLs = applicationURLs;
+  }
+
+  getApplicationURLs() {
+    return this.applicationURLs;
+  }
+
+  getApplicationURL(id) {
+    return this.applicationURLs[id];
   }
 }

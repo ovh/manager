@@ -1,3 +1,53 @@
+# [11.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@11.1.0...@ovh-ux/manager-core@11.2.0) (2020-12-22)
+
+
+### Features
+
+* **env:** add universe and application name ([9958157](https://github.com/ovh/manager/commit/9958157a0b3d79d84fe10f610b2aa12b0af8c8d0))
+
+
+
+# [11.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@11.0.4...@ovh-ux/manager-core@11.1.0) (2020-11-25)
+
+
+### Features
+
+* **environment:** replace api calls by user env ([4d9dd9d](https://github.com/ovh/manager/commit/4d9dd9d229cdd5da219a9ec1602dfa6681615fe6))
+
+
+
+## [11.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@11.0.3...@ovh-ux/manager-core@11.0.4) (2020-11-17)
+
+
+### Bug Fixes
+
+* **core:** use user class ([91d92ae](https://github.com/ovh/manager/commit/91d92aefd0a8e45183d85c0eea1e5821857cd21a)), closes [#MANAGER-5922](https://github.com/ovh/manager/issues/MANAGER-5922)
+
+
+
+## [11.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@11.0.2...@ovh-ux/manager-core@11.0.3) (2020-10-28)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 619] ([f6c1b1d](https://github.com/ovh/manager/commit/f6c1b1d5b9e3f910e9f481a8082b2a403efcf8aa))
+* **i18n:** add missing translations [CDS 629] ([f228d28](https://github.com/ovh/manager/commit/f228d280763c30b89c357196bfb283807b5931d7))
+* **i18n:** add missing translations [CDS 634] ([a35adc9](https://github.com/ovh/manager/commit/a35adc9948ee3f648aaf1b82c4d84c5f39d97e6a))
+* **peer-deps:** upgrade @ovh-ux/ui-kit to v4.4.1 ([8254623](https://github.com/ovh/manager/commit/82546237336e185ae7d973a1bb2aabddbb50112e))
+
+
+
+## [11.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@11.0.1...@ovh-ux/manager-core@11.0.2) (2020-10-13)
+
+
+### Bug Fixes
+
+* **deps:** upgrade to @ovh-ux/manager-config v2.0.0 ([ca3f955](https://github.com/ovh/manager/commit/ca3f9554c13b1436cbdeed3de8ac69e399d5dd93))
+* **i18n:** add missing translations [CDS 611] ([35788d8](https://github.com/ovh/manager/commit/35788d843f5dfa6b5ae05f46663b027d56089c9c))
+* **oui-angular.translations:** add oui-back-button translations ([2b4a5d9](https://github.com/ovh/manager/commit/2b4a5d9b6055825a7e3a9527c1a04592c5644a79))
+
+
+
 ## [11.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@11.0.0...@ovh-ux/manager-core@11.0.1) (2020-09-21)
 
 

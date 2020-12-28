@@ -1,0 +1,17 @@
+{
+  "dedicatedCloud_dashboard_update_title": "Update schedule",
+  "dedicatedCloud_dashboard_update_actual_version": "Current version",
+  "dedicatedCloud_dashboard_update_target_version": "Target version",
+  "dedicatedCloud_dashboard_update_software_VSPHERE": "vSphere",
+  "dedicatedCloud_dashboard_update_software_VCLOUD": "vCloud",
+  "dedicatedCloud_dashboard_update_software_SYSTEMCENTER": "VMM",
+  "dedicatedCloud_dashboard_update_software_AZURE": "Azure",
+  "dedicatedCloud_dashboard_update_software_VCSA": "vCSA",
+  "dedicatedCloud_dashboard_update_description": "This operation will make your vSphere platform administration unavailable for around two hours.",
+  "dedicatedCloud_dashboard_update_info": "The update date will be sent to you by email. You can change it at any time, before its expiry date.",
+  "dedicatedCloud_dashboard_update_insufficient_rights": "You do not have sufficient rights to perform this operation.",
+  "dedicatedCloud_dashboard_update_cancel": "Cancel",
+  "dedicatedCloud_dashboard_update_confirm": "Schedule the update",
+  "dedicatedCloud_dashboard_update_error": "An error has occurred attempting to schedule the vSphere update: {{ message }}",
+  "dedicatedCloud_dashboard_update_success": "The {{sourceMajor}} (build {{sourceBuild}}) vSphere update to version {{targetMajor}} (build {{targetBuild}}) is scheduled. Please note that the task may take up to 30 seconds to schedule. <a href='{{operationsLink}}'>Track this operation</a>"
+}

@@ -1,14 +1,21 @@
-import component from './dedicatedCloud-datacenter-drp-ovh.component';
-import routing from './dedicatedCloud-datacenter-drp-ovh.routing';
+import angular from 'angular';
+import '@uirouter/angularjs';
+import 'oclazyload';
 
-import mainPccStep from './mainPcc';
-import secondPccStep from './secondPcc';
+const moduleName = 'dedicatedCloudDatacenterDrpOvhLazyloading';
 
-const moduleName = 'dedicatedCloudDatacenterDrpOvh';
-
-angular
-  .module(moduleName, [mainPccStep, secondPccStep])
-  .component(component.name, component)
-  .config(routing);
+angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
+  /* @ngInject */ ($stateProvider) => {
+    $stateProvider.state('app.dedicatedClouds.datacenter.drp.ovh.**', {
+      url: '/ovh',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+        return import(
+          './dedicatedCloud-datacenter-drp-ovh.module'
+        ).then((mod) => $ocLazyLoad.inject(mod.default || mod));
+      },
+    });
+  },
+);
 
 export default moduleName;

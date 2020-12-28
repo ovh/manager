@@ -1,0 +1,20 @@
+{
+  "dedicatedCloud_USER_change_password": "Modifica la password",
+  "dedicatedCloud_users_password_reset_not_allowed": "Per modificare la tua password, accedi all’interfaccia Web certificata disponibile all'indirizzo:",
+  "dedicatedCloud_USER_change_password_confirmation": "Inserisci la nuova password per l'utente <b>{{t0}}</b>:",
+  "dedicatedCloud_USER_change_password_new": "Nuova password",
+  "dedicatedCloud_USER_change_password_digitMandatory": "Almeno una cifra",
+  "dedicatedCloud_USER_change_password_letterMandatory": "Almeno una lettera",
+  "dedicatedCloud_USER_change_password_lowercaseLetterMandatory": "Deve contenere lettere minuscole",
+  "dedicatedCloud_USER_change_password_denied_chars": "Non deve contenere questi caratteri: {{ chars }}",
+  "dedicatedCloud_USER_change_password_specialMandatory": "Almeno un carattere speciale",
+  "dedicatedCloud_USER_change_password_uppercaseLetterMandatory": "Deve contenere lettere maiuscole",
+  "dedicatedCloud_USER_change_password_maxLength": "Lunghezza massima:",
+  "dedicatedCloud_USER_change_password_minLength": "Lunghezza minima:",
+  "dedicatedCloud_USER_change_password_repeat": "Conferma password",
+  "dedicatedCloud_USER_change_password_repeat_fail": "Le 2 password inserite devono essere uguali",
+  "dedicatedCloud_USER_change_password_informations": "Se non inserisci una password personalizzata, la generiamo casualmente e la inviamo per email.",
+  "dedicatedCloud_users_password_loading_done": "La modifica della password è stata effettuata correttamente.",
+  "dedicatedCloud_users_password_loading_error": "La modifica della password non è andata a buon fine",
+  "dedicatedCloud_users_password_reset_check_error": "Si è verificato un errore nel caricamento delle tue informazioni"
+}

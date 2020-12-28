@@ -22,8 +22,11 @@ angular
       Alerter,
       Domain,
       User,
+      atInternet,
       $q,
     ) => {
+      atInternet.trackPage({ name: 'web::hosting::multisites::modify-domain' });
+
       $scope.selectedOptions = {};
 
       const domainFromMultisite = clone($scope.currentActionData);
@@ -309,6 +312,11 @@ angular
 
       $scope.submit = () => {
         $scope.resetAction();
+
+        atInternet.trackClick({
+          name: 'web::hosting::multisites::modify-domain::confirm',
+          type: 'action',
+        });
 
         HostingDomain.modifyDomain(
           $scope.selected.domain.name,

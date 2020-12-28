@@ -2,7 +2,8 @@
 import { Environment } from '@ovh-ux/manager-config';
 
 /* eslint-disable import/no-webpack-loader-syntax, import/extensions */
-import 'babel-polyfill';
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
 import angular from 'angular';
 import ngAnimate from 'angular-animate';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
@@ -24,6 +25,7 @@ import ovhManagerCore from '@ovh-ux/manager-core';
 import ovhManagerMfaEnrollment from '@ovh-ux/mfa-enrollment';
 import ovhManagerPci from '@ovh-ux/manager-pci';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
+import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import ngOvhUserPref from '@ovh-ux/ng-ovh-user-pref';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import ngUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
@@ -59,6 +61,7 @@ angular
       ngUiRouterBreadcrumb,
       ngUiRouterLineProgress,
       ngOvhApiWrappers,
+      ngOvhFeatureFlipping,
       ngOvhSsoAuthModalPlugin,
       ngOvhUserPref,
       navbar,
@@ -75,6 +78,13 @@ angular
   .service('publicCloud', service)
   .config(
     /* @ngInject */ ($locationProvider) => $locationProvider.hashPrefix(''),
+  )
+  .config(
+    /* @ngInject */ (ovhFeatureFlippingProvider) => {
+      ovhFeatureFlippingProvider.setApplicationName(
+        Environment.getApplicationName(),
+      );
+    },
   )
   .config(routing)
   .run(
@@ -128,8 +138,14 @@ angular
     /* @ngInject */ ($rootScope, $transitions) => {
       const unregisterHook = $transitions.onSuccess({}, () => {
         detachPreloader();
+        $rootScope.$broadcast('app:started');
         unregisterHook();
       });
+    },
+  )
+  .config(
+    /* @ngInject */ (ovhFeatureFlippingProvider) => {
+      ovhFeatureFlippingProvider.setApplicationName('public-cloud');
     },
   );
 

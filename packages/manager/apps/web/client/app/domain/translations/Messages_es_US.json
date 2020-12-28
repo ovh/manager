@@ -608,7 +608,6 @@
   "domain_configuration_zonedns_reset_type_MX_title": "Dirección de su servidor de correo",
   "domain_configuration_zonedns_reset_type_A_title": "Dirección IP de su alojamiento",
   "domain_configuration_zonedns_delete_all_question": "¿Desea eliminar la zona DNS?",
-  "domain_configuration_zonedns_delete_all_blocked": "No es posible eliminar la zona DNS ya que está asociada a un web hosting.",
   "domain_configuration_zonedns_delete_all_warning": "¡Atención! Esta acción eliminará definitivamente todos los registros DNS existentes.",
   "domain_configuration_zonedns_delete_all_success": "Se ha iniciado el proceso de eliminación de la zona DNS. Usted recibirá un mensaje en la dirección de correo electrónico del NIC administrador de la zona DNS con las instrucciones para completar la operación. ",
   "domain_configuration_zonedns_delete_all_error": "Se ha producido un error al eliminar la zona DNS.",

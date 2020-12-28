@@ -1,3 +1,30 @@
+# [3.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@3.0.3...@ovh-ux/manager-account-sidebar@3.1.0) (2020-11-25)
+
+
+### Features
+
+* **environment:** replace api calls by user env ([25bce8a](https://github.com/ovh/manager/commit/25bce8a33dfaed0d73135b28a1720f36a6a89298))
+
+
+
+## [3.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@3.0.2...@ovh-ux/manager-account-sidebar@3.0.3) (2020-10-28)
+
+
+### Bug Fixes
+
+* **peer-deps:** upgrade @ovh-ux/ui-kit to v4.4.1 ([8254623](https://github.com/ovh/manager/commit/82546237336e185ae7d973a1bb2aabddbb50112e))
+
+
+
+## [3.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@3.0.1...@ovh-ux/manager-account-sidebar@3.0.2) (2020-10-20)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v11.0.0 ([#3869](https://github.com/ovh/manager/issues/3869)) ([df90e4d](https://github.com/ovh/manager/commit/df90e4de660920e3cd07b2ff6b4452b0aa861377))
+
+
+
 ## [3.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@3.0.0...@ovh-ux/manager-account-sidebar@3.0.1) (2020-08-18)
 
 

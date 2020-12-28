@@ -465,7 +465,7 @@
   "ip_order_abonnement": "Monthly subscription:",
   "ip_order_free": "FREE",
   "ip_order_bloc": "Block",
-  "ip_order_renew_PCC": "Your IPs will be automatically renewed with your Dedicated Cloud infrastructure.",
+  "ip_order_renew_EPCC": "Your IPs will be automatically renewed with your Dedicated Cloud infrastructure.",
   "ip_order_resume": "Order summary",
   "ip_order_resume_short": "Block/{{ blockSize }}: {{ price }} ex. VAT",
   "ip_order_price_HT": "Total price ex. VAT:",
@@ -670,5 +670,8 @@
   "ip_table_manage_add_ipv6block_validate": "Confirm",
   "ip_table_manage_add_ipv6block_cancel": "Cancel",
   "ip_table_header_ip_address_invalid": "Please enter a valid IPv6.",
-  "ip_table_header_reverse_invalid": "Please enter a valid reverse DNS"
+  "ip_table_header_reverse_invalid": "Please enter a valid reverse DNS",
+  "ip_filter_services__FAILOVER": "Failover IP",
+  "ip_description_edit_move": "Attach this IP block to another service",
+  "ip_order_renew_MBM": "Your IPs will be automatically renewed with your Managed Bare Metal infrastructure."
 }

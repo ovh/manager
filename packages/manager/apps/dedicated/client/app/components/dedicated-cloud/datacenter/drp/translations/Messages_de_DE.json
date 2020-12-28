@@ -1,0 +1,17 @@
+{
+  "dedicatedCloud_tab_drp": "Disaster Recovery Plan (DRP)",
+  "dedicatedCloud_datacenter_drp_subtitle": "Erstellen Sie Ihren Disaster Recovery Plan mit Zerto",
+  "dedicatedCloud_datacenter_drp_details_EPCC": "Stellen Sie den Schutz Ihres IT-Systems sicher, indem Sie Ihren Disaster Recovery Plan konfigurieren. Stellen Sie Ihre Infrastruktur mit 1 Klick binnen weniger Minuten um, falls eine Störung vorliegt oder ein Dienst unterbrochen wird. Bitte beachten Sie: Um diese Option zu aktivieren, müssen Sie über eine sekundäre Private Cloud verfügen.",
+  "dedicatedCloud_datacenter_drp_warning": "Ihr aktuelles Datacenter verfügt über keine Hosts. Bitte bestellen Sie einen Host, um dieses Datacenter für Ihren DRP zu verwenden, oder wählen Sie ein Datacenter mit mindestens einem Host aus.",
+  "dedicatedCloud_tab_drp_choice_plan_type": "Wählen Sie den gewünschten DRP-Typ aus:",
+  "dedicatedCloud_datacenter_ovh_choice_EPCC": "Zwischen zwei OVHcloud Private Clouds",
+  "dedicatedCloud_datacenter_onPremise_choice_EPCC": "Zwischen Ihrer Infrastruktur und einer OVHcloud Private Cloud",
+  "dedicatedCloud_datacenter_activate_zerto_drp": "Zerto DRP aktivieren",
+  "dedicatedCloud_datacenter_drp_confirm_delete_drp_success": "Zerto DRP wird gelöscht. Dieser Vorgang dauert einige Minuten",
+  "dedicatedCloud_datacenter_drp_get_state_error": "Beim Abrufen der Daten Ihres DRP ist ein Fehler aufgetreten.",
+  "dedicatedCloud_datacenter_install_plan": "Installieren",
+  "dedicatedCloud_datacenter_install_in_error": "Bei der Installation des Plans ist ein Fehler aufgetreten. Bitte kontaktieren Sie den Support",
+  "dedicatedCloud_datacenter_drp_details_MBM": "Stellen Sie den Schutz Ihres IT-Systems sicher, indem Sie Ihren Disaster Recovery Plan konfigurieren. Stellen Sie Ihre Infrastruktur mit 1 Klick binnen weniger Minuten um, falls eine Störung vorliegt oder ein Dienst unterbrochen wird. Bitte beachten Sie: Um diese Option zu aktivieren, müssen Sie über einen sekundären Managed Bare Metal Server verfügen.",
+  "dedicatedCloud_datacenter_ovh_choice_MBM": "Zwischen zwei Managed Bare Metal Servern",
+  "dedicatedCloud_datacenter_onPremise_choice_MBM": "Zwischen Ihrer Infrastruktur und einem Managed Bare Metal Server"
+}

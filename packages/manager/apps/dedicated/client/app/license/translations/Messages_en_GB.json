@@ -637,6 +637,7 @@
   "license_order_step2_option_WINDOWS_sqlversion": "SQL version",
   "license_order_step2_option_WORKLIGHT_lessThan1000Users": "Company of less than 1,000 employees",
   "license_order_step3_title": "3. Select a duration",
+  "license_order_step3_pricing_warning": "Depending on the expiry date of your services, a pro rata may be applied to the price.",
   "license_order_step4_title": "4. Validation",
   "license_order_step4_question": "Click on \"Generate purchase order\" to upgrade your licence.",
   "license_order_step4_contracts_ask": "Please read and accept the contracts below, then click on \"Generate the purchase order\":",
@@ -687,5 +688,6 @@
   "license_potential_problem_isOsPleskOnyx": "The server does not seem to run a Plesk Onyx distribution ",
   "license_designation_CPANEL_premier_option": "up to {{ numberOfCPANEL }} cPanel accounts",
   "license_designation_CPANEL_admin_option": "2-5 cPanel accounts",
-  "license_designation_CPANEL_pro_option": "6-30 cPanel accounts"
+  "license_designation_CPANEL_pro_option": "6-30 cPanel accounts",
+  "license_designation_CPANEL_version_option-cpanel": "up to {{ licenseCount }} cPanel accounts"
 }

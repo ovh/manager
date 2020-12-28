@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import kebabCase from 'lodash/kebabCase';
 
 export default class BillingAutoRenewDeleteCtrl {
   /* @ngInject */
@@ -7,9 +8,21 @@ export default class BillingAutoRenewDeleteCtrl {
     this.atInternet = atInternet;
   }
 
+  $onInit() {
+    this.atInternet.trackPage({
+      name: `autorenew::${kebabCase(this.service.serviceType)}::delete`,
+      type: 'navigation',
+      chapter1: 'dedicated',
+      chapter2: 'account',
+      chapter3: 'billing',
+    });
+  }
+
   deleteRenew() {
     this.atInternet.trackClick({
-      name: 'autorenew::delete',
+      name: `autorenew::${kebabCase(
+        this.service.serviceType,
+      )}::delete::confirm`,
       type: 'action',
       chapter1: 'dedicated',
       chapter2: 'account',

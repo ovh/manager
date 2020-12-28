@@ -1,0 +1,11 @@
+{
+  "dedicatedCloud_subscribe_mailing": "Zapisz się na listę mailingową",
+  "dedicatedCloud_subscribe_mailing_disabled_EPCC": "Wpisanie adresu e-mail na listę mailingową Private Cloud ({{t0}}) nie jest możliwe.",
+  "dedicatedCloud_subscribe_mailing_step1_EPCC": "Wprowadź adres e-mail, który chcesz zapisać na listę mailingową Private Cloud ({{t0}}):",
+  "dedicatedCloud_subscribe_mailing_step2_EPCC": "Zapisałeś adres e-mail {{t0}} na listę mailingową Private Cloud ({{t1}})",
+  "dedicatedCloud_subscribe_mailing_step2_success": "Zlecenie subskrypcji dla <b>{{t0}}</b> zostało zarejestrowane.",
+  "dedicatedCloud_subscribe_mailing_step2_error": "Wystąpił błąd podczas zlecania subskrypcji dla <b>{{t0}}</b>",
+  "dedicatedCloud_subscribe_mailing_disabled_MBM": "Dodanie adresu e-mial do listy mailingowej Managed Bare Metal ({{t0}}) jest niemożliwe.",
+  "dedicatedCloud_subscribe_mailing_step1_MBM": "Wprowadź adres e-mail, który chcesz dodać do listy mailingowej Managed Bare Metal ({{t0}}):",
+  "dedicatedCloud_subscribe_mailing_step2_MBM": "Zapisujesz się na listę mailingową Managed Bare Metal ({{t1}})"
+}

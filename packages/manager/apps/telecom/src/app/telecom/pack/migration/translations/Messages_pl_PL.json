@@ -131,5 +131,20 @@
   "telecom_pack_migration_pto_reference": "Wprowadź numer Twojego sieciowego terminala optycznego",
   "telecom_pack_migration_pto_where": "Gdzie znajdę numer sieciowego terminala optycznego?",
   "telecom_pack_migration_pto_where_description": "Numer terminala znajdziesz na obudowie. Składa się on ze znaków alfanumerycznych zapisanych w postaci ciągu: OO-XXXX-XXXX /C",
-  "telecom_pack_migration_pto_yes_not_known": "Na obudowie nie ma numeru"
+  "telecom_pack_migration_pto_yes_not_known": "Na obudowie nie ma numeru",
+  "telecom_pack_migration_promotion_description": "Promocja ważna do {{endDate}}",
+  "telecom_pack_migration_promotion_subscription_months_offered": "{{duration}} miesiąc/e gratis",
+  "telecom_pack_migration_promotion_installation_fees_offered": "Brak opłaty instalacyjnej",
+  "telecom_pack_migration_confirm_promotion": "Brak opłaty instalacyjnej i {{duration}} pierwszych miesięcy gratis (z wyjątkiem dzierżawy modemu, dodatkowych opcji lub kosztów transportu).",
+  "telecom_pack_migration_confirm_first_year_promo": "Rabat za pierwszy rok",
+  "telecom_pack_migration_confirm_modem_rental": "Dzierżawa modemu",
+  "telecom_pack_migration_pack_access_error": "Nie udało się załadować informacji dotyczących Twojego pakietu.",
+  "telecom_pack_migration_buildings_title": "Budynki przypisane do linii",
+  "telecom_pack_migration_buildings_available": "Znaleźliśmy następujące budynki przypisane do Twojej linii. Wybierz budynek",
+  "telecom_pack_migration_buildings_name": "Nazwisko",
+  "telecom_pack_migration_buildings_reference": "Opis",
+  "telecom_pack_migration_buildings_nro": "NRO",
+  "telecom_pack_migration_buildings_type": "Typ",
+  "telecom_pack_migration_buildings_actions": "Operacja",
+  "telecom_pack_migration_buildings_select_building": "Wybierz"
 }

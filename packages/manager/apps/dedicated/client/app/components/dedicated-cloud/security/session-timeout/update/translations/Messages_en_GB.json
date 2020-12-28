@@ -1,0 +1,10 @@
+{
+  "dedicatedCloud_configuration_security_update_session_timeout_title": "Modify session expiry period",
+  "dedicatedCloud_configuration_security_update_session_timeout_step1_never": "No session expiry",
+  "dedicatedCloud_configuration_security_update_session_timeout_step1_question": "Number of minutes before session expiry",
+  "dedicatedCloud_configuration_security_update_session_timeout_step2_question": "You are about to modify the number of minutes before a session expires from {{t0}} to {{t1}}.",
+  "dedicatedCloud_SECURITY_expiration_session_never": "Never",
+  "dedicatedCloud_SECURITY_expiration_session_value": "{{t0}} minutes",
+  "dedicatedCloud_configuration_SECURITY_update_session_timeout_success": "The session time limit will be modified shortly.",
+  "dedicatedCloud_configuration_SECURITY_update_session_timeout_fail": "An error has occurred modifying the session time limit."
+}

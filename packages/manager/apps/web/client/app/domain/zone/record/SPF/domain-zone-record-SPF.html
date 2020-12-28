@@ -4,7 +4,7 @@
         data-translate-values="{ t0: ctrl.domain.displayName }"
     ></p>
     <code
-        data-ng-bind="ctrl.domain.displayName + '. IN TXT &quot;v=spf1 include:mx.ovh.com ~all&quot;'"
+        data-ng-bind="ctrl.domain.displayName + '. IN TXT &quot;v=spf1 include:' + ctrl.constructor.getSPFIncludeName() + ' ~all&quot;'"
     ></code>
     <div class="mt-3">
         <button

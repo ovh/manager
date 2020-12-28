@@ -1,0 +1,8 @@
+{
+    "dedicatedCloud_tab_licences_active_spla_title": "Activation de la licence Windows spla",
+    "dedicatedCloud_tab_licences_active_spla_step1": "Veuillez valider les contrats de licences :",
+    "dedicatedCloud_tab_licences_active_spla_contacts": "Je reconnais avoir bien pris connaissance des conditions suivantes :",
+    "dedicatedCloud_tab_licences_active_spla_load_fail": "Une erreur est survenue lors de la récupération des informations pour l'activation de la licence spla.",
+    "dedicatedCloud_tab_licences_active_spla_success": "La commande numéro <a href='{{t0}}' target='_blank'>{{t1}}</a> d'une licence spla a bien été prise en compte.",
+    "dedicatedCloud_tab_licences_active_spla_fail": "Une erreur est survenue lors de la demande d'activation de la licence spla."
+}

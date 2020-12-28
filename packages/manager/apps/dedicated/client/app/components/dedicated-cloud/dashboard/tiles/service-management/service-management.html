@@ -1,0 +1,55 @@
+<oui-tile
+    class="h-100"
+    data-heading="{{:: 'ovhManagerPccDashboardServiceManagement_heading' | translate }}"
+>
+    <oui-tile-definition
+        data-term="{{:: 'ovhManagerPccDashboardServiceManagement_mailingList_term' | translate }}"
+        data-description="{{:: $ctrl.currentUser.email }}"
+        data-ng-if="::$ctrl.showMailingList"
+    >
+        <oui-action-menu data-compact data-placement="end">
+            <oui-action-menu-item data-on-click="$ctrl.onMlSubscribe()">
+                <span
+                    data-translate="ovhManagerPccDashboardServiceManagement_mailingList_actionMenu_subscribe"
+                ></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+    </oui-tile-definition>
+
+    <div class="oui-tile__item">
+        <dl class="oui-tile__definition">
+            <dt class="oui-tile__term">
+                <service-expiration-label
+                    data-service-infos="$ctrl.currentService.serviceInfos"
+                ></service-expiration-label>
+            </dt>
+            <dd class="oui-link">
+                <service-expiration-date
+                    data-service-name=":: $ctrl.currentService.name"
+                    data-service-type="'DEDICATED_CLOUD'"
+                    data-service-infos=":: $ctrl.currentService.serviceInfos"
+                    data-force-hide-renew-action="true"
+                ></service-expiration-date>
+            </dd>
+        </dl>
+
+        <div class="oui-tile__actions">
+            <oui-action-menu data-compact data-placement="end">
+                <oui-action-menu-item data-ui-sref="app.license.order">
+                    <span
+                        data-translate="ovhManagerPccDashboardServiceManagement_renewal_actionMenu_order"
+                    ></span>
+                </oui-action-menu-item>
+
+                <oui-action-menu-item
+                    data-ng-if="!$ctrl.currentUser.isEnterprise"
+                    data-on-click="$ctrl.onTerminate()"
+                >
+                    <span
+                        data-translate="ovhManagerPccDashboardServiceManagement_renewal_actionMenu_delete"
+                    ></span>
+                </oui-action-menu-item>
+            </oui-action-menu>
+        </div>
+    </div>
+</oui-tile>

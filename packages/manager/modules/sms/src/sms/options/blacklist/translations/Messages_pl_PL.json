@@ -1,16 +1,16 @@
 {
-  "sms_section_back_link": "Retour aux expéditeurs",
-  "sms_senders_blacklisted_manage_title": "Gérer les expéditeurs blacklistés",
+  "sms_section_back_link": "Powrót do opcji",
+  "sms_senders_blacklisted_manage_title": "Zarządzaj nadawcami z czarnej listy",
   "sms_senders_blacklisted_information_title": "Informacje",
-  "sms_senders_blacklisted_information_text_1": "Liste de vos destinataires qui ont bloqué les réceptions de SMS en provenance de l’un de vos expéditeurs.",
-  "sms_senders_blacklisted_information_text_2": "Si vous supprimez un numéro de la liste, la réception de SMS en provenance de vos expéditeurs sera rétablie vers ce destinataire.",
-  "sms_senders_blacklisted_delete_list": "Supprimer le numéro sélectionné",
-  "sms_senders_blacklisted_delete_lists": "Supprimer les {{ count }} numéros sélectionnés",
-  "sms_senders_blacklisted_delete_list_success": "Suppression en cours…",
+  "sms_senders_blacklisted_information_text_1": "Lista odbiorców, którzy nie chcą otrzymywać od Ciebie SMS-ów.",
+  "sms_senders_blacklisted_information_text_2": "Jeśli usuniesz numer z listy, odbiorca będzie znowu otrzymywał SMS-y wysyłane do niego przez nadawców.",
+  "sms_senders_blacklisted_delete_list": "Usuń wybrany numer",
+  "sms_senders_blacklisted_delete_lists": "Usuń {{count}} wybranych numerów",
+  "sms_senders_blacklisted_delete_list_success": "Usuwanie w trakcie...",
   "sms_senders_blacklisted_label_date": "Data",
   "sms_senders_blacklisted_label_number": "Numer",
-  "sms_senders_blacklisted_empty": "Aucun expéditeur blacklisté.",
-  "sms_senders_blacklisted_title": "Supprimer l’expéditeur blacklisté",
-  "sms_senders_blacklisted_confirm": "Voulez-vous vraiment supprimer l’expéditeur blacklisté <b>«{{ sender }}»</b> ?",
-  "sms_senders_blacklisted_sender_ko": "Impossible de supprimer l’expéditeur blacklisté.<br/>{{error}}"
+  "sms_senders_blacklisted_empty": "Brak nadawców figurujących na czarnej liście.",
+  "sms_senders_blacklisted_title": "Usuń nadawcę figurującego na czarnej liście",
+  "sms_senders_blacklisted_confirm": "Czy na pewno chcesz usunąć nadawcę figurującego na czarnej liście <b>«{{sender}}»</b>?",
+  "sms_senders_blacklisted_sender_ko": "Nie można usunąć nadawcy figurującego na czarnej liście.<br/>{{error}}"
 }

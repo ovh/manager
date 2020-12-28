@@ -1,11 +1,11 @@
 {
   "name": "@ovh-ux/sao-ovh-manager-app",
-  "version": "2.1.0",
+  "version": "2.3.0",
   "private": true,
   "description": "Scaffolding tool for standalone app.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ovh-ux/manager.git",
+    "url": "git+https://github.com/ovh/manager.git",
     "directory": "packages/manager/tools/sao-ovh-manager-app"
   },
   "license": "BSD-3-Clause",

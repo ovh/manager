@@ -4,10 +4,16 @@ import { FIBER_PTO, STAIR_FLOOR } from './move-building-details.constant';
 
 export default class MoveBuildingDetailsCtrl {
   /* @ngInject */
-  constructor($scope, $translate, OvhApiConnectivityEligibilitySearch) {
+  constructor(
+    $scope,
+    $translate,
+    OvhApiConnectivityEligibilitySearch,
+    TucToast,
+  ) {
     this.$scope = $scope;
     this.$translate = $translate;
     this.OvhApiConnectivityEligibilitySearch = OvhApiConnectivityEligibilitySearch;
+    this.TucToast = TucToast;
   }
 
   $onInit() {
@@ -31,33 +37,28 @@ export default class MoveBuildingDetailsCtrl {
       ptoReferenceNotKnown: false,
     };
 
-    this.buildings.forEach((building, i) => {
-      // check if the building name is empty to set a name to display in the select component
-      if (building.buildingName === '') {
-        this.buildings[i].buildingName = this.$translate.instant(
-          'pack_move_building_details_unknown',
-        );
-      }
+    // check if the building name is empty to set a name to display in the select component
+    this.building.name =
+      this.building.name === ''
+        ? this.$translate.instant('pack_move_building_details_unknown')
+        : this.building.name;
 
-      const params = {
-        building: building.buildingReference,
-      };
-
-      this.OvhApiConnectivityEligibilitySearch.v6()
-        .buildingDetails({}, params)
-        .$promise.then((buildingDetails) => {
-          if (has(buildingDetails, 'result.stairs')) {
-            this.buildings[
-              i
-            ].stairs = buildingDetails.result.stairs.map((stair) =>
-              this.convertStairs(stair),
-            );
-          }
-        })
-        .finally(() => {
-          this.loading.init = false;
-        });
-    });
+    this.OvhApiConnectivityEligibilitySearch.v6()
+      .pollerBuildingDetails(this.$scope, {
+        building: this.building.buildingReference,
+      })
+      .then((buildingDetails) => {
+        if (has(buildingDetails, 'result.stairs')) {
+          this.building.stairs = buildingDetails.result.stairs.map((stair) =>
+            this.convertStairs(stair),
+          );
+        }
+      })
+      .finally(() => {
+        this.model.selectedBuilding = this.building;
+        this.changeSelection();
+        this.loading.init = false;
+      });
   }
 
   nextStep() {
@@ -150,12 +151,11 @@ export default class MoveBuildingDetailsCtrl {
         !this.model.selectedBuilding.stairs ||
         this.model.selectedBuilding.stairs.length === 0
       ) {
-        const params = {
-          building: this.model.selectedBuilding.buildingReference,
-        };
         this.OvhApiConnectivityEligibilitySearch.v6()
-          .buildingDetails({}, params)
-          .$promise.then((buildingDetails) => {
+          .pollerBuildingDetails(this.$scope, {
+            building: this.model.selectedBuilding.reference,
+          })
+          .then((buildingDetails) => {
             if (has(buildingDetails, 'result.stairs')) {
               if (buildingDetails.result.stairs.length === 0) {
                 const stairModel = this.defaultStairsModel();
@@ -166,7 +166,12 @@ export default class MoveBuildingDetailsCtrl {
                 );
               }
             }
-          });
+          })
+          .catch(() =>
+            this.TucToast.error(
+              this.$translate.instant('pack_move_building_details_error'),
+            ),
+          );
       }
       if (this.model.selectedStair != null) {
         this.model.selectedStair = null;

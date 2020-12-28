@@ -29,6 +29,7 @@ export default class {
       version: null,
       name: null,
       nodePool: {
+        antiAffinity: false,
         flavor: null,
         nodeCount: DEFAULT_NODE_COUNT,
         monthlyBilling: false,
@@ -57,8 +58,12 @@ export default class {
       this.cluster.name,
       this.cluster.region.name,
       this.cluster.version,
-      this.cluster.nodePool.nodeCount,
-      this.cluster.nodePool.flavor.name,
+      {
+        desiredNodes: this.cluster.nodePool.nodeCount,
+        flavorName: this.cluster.nodePool.flavor.name,
+        antiAffinity: this.cluster.nodePool.antiAffinity,
+        monthlyBilled: this.cluster.nodePool.monthlyBilling,
+      },
     )
       .then((response) =>
         this.checkKubernetesStatus(this.projectId, response.data.id),
@@ -128,5 +133,8 @@ export default class {
 
   onNodePoolSubmit() {
     this.displaySelectedFlavor = true;
+    if (this.cluster.nodePool.nodeCount > this.antiAffinityMaxNodes) {
+      this.cluster.nodePool.antiAffinity = false;
+    }
   }
 }

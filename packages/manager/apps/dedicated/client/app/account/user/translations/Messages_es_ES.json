@@ -88,7 +88,7 @@
   "user_ipRestrictions_table_empty": "No se han establecido restricciones.",
   "user_ipRestrictions_defaultRule_success": "Se ha cambiado la regla por defecto.",
   "user_ipRestrictions_defaultRule_error": "Se ha producido un error al cambiar la regla por defecto:",
-  "user_ipRestrictions_error_disable": "Atención: ¡con la configuración actual no podrá volver a conectarse al área de cliente!",
+  "user_ipRestrictions_error_disable": "Por favor, autorice una dirección IP. De lo contrario, no podrá conectarse al área de cliente.",
   "user_ipRestrictions_error": "Se ha producido un error al cargar la información.",
   "user_security_double_auth_activate": "Activar la doble autenticación",
   "user_security_double_auth_deactivate": "Desactivar la doble autenticación",
@@ -574,7 +574,7 @@
   "user_account_security_double_auth_type_backup_code_info_u2f": "Utilice estos códigos si pierde o no puede acceder a su llave de seguridad.",
   "user_account_security_double_auth_type_backup_code_action_manage": "Regenerar los códigos",
   "user_account_security_double_auth_type_backup_code_action_generate": "Generar los códigos",
-  "user_account_security_double_auth_type_backup_code_action_delete": "Eliminar los códigos",
+  "user_account_security_double_auth_type_backup_code_action_delete": "Desactivar los códigos 2FA",
   "user_account_security_double_auth_type_backup_code_modal_title": "Doble autenticación por código de seguridad",
   "user_account_security_double_auth_type_backup_code_modal_generate": "Obtener los códigos de seguridad",
   "user_account_security_double_auth_type_backup_code_modal_generate_info": "Le recomendamos que guarde la lista de códigos de seguridad de un solo uso en un lugar seguro por si pierde o le roban su smartphone.",
@@ -605,5 +605,6 @@
   "user_account_support_level_title": "Mi nivel de soporte",
   "user_account_ssh_keys_title": "Mis llaves SSH",
   "user_account_users_management_title": "Gestión de los usuarios",
-  "user_account_advanced_title": "Configuración avanzada"
+  "user_account_advanced_title": "Configuración avanzada",
+  "user_ipRestrictions_warning_last_ip_with_deny": "Cambie la regla por defecto a «Autorizado» para poder eliminar la última dirección IP."
 }

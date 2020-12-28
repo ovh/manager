@@ -614,7 +614,6 @@
   "domain_configuration_zonedns_reset_type_MX_title": "Adresse Ihres Mail-Servers ",
   "domain_configuration_zonedns_reset_type_A_title": "IP-Adresse Ihres Hostings ",
   "domain_configuration_zonedns_delete_all_question": "Möchten Sie die DNS Zone löschen? ",
-  "domain_configuration_zonedns_delete_all_blocked": "Ihre DNS Zone kann nicht gelöscht werden, da sie zurzeit mit einem Webhosting verbunden ist.",
   "domain_configuration_zonedns_delete_all_warning": "Achtung! Mit dieser Aktion werden alle bestehenden DNS Einträge endgültig gelöscht.",
   "domain_configuration_zonedns_delete_all_success": "Die Löschung der DNS Zone wurde gestartet. Im Posteingang des Administrators der DNS Zone finden Sie nun eine Nachricht mit Anweisungen, um den Vorgang abzuschließen.",
   "domain_configuration_zonedns_delete_all_error": "Bei der Löschung Ihrer DNS Zone ist ein Fehler aufgetreten.",
@@ -824,5 +823,9 @@
   "domain_tab_options_delete_error": "Bei der Kündigung der Option ist ein Fehler aufgetreten.",
   "domain_tab_options_delete_cancel": "Abbrechen",
   "web_domain_zone_activation_success": "Ihre Aktivierung wurde erfolgreich abgeschlossen. Ihr Produkt wird in wenigen Minuten aktiviert.",
-  "web_domain_zone_activation_order_success": "Ihr <a href=\"{{t0}}\" target=\"_blank\">Bestellformular</a> wurde erfolgreich generiert. Ihr Produkt wird aktiviert, sobald Sie es validiert haben."
+  "web_domain_zone_activation_order_success": "Ihr <a href=\"{{t0}}\" target=\"_blank\">Bestellformular</a> wurde erfolgreich generiert. Ihr Produkt wird aktiviert, sobald Sie es validiert haben.",
+  "domain_dashboard_recommended_hosting_title_Pro": "Hosting für Ihre Website",
+  "domain_dashboard_recommended_hosting_title_Perso": "Hosting für Ihren Blog oder Ihre Website",
+  "domain_dashboard_recommended_hosting_label": "- {{ reduction }} auf Ihr Hosting {{ type }} zum Black Friday.",
+  "domain_dashboard_recommended_hosting_discover": "Zu den Lösungen"
 }

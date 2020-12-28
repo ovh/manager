@@ -67,13 +67,11 @@ export default class OvhPaymentMethodRegisterIframeVantivCtrl {
     if (responseCode === VANTIV_RESPONSE_CODE.SUCCESS) {
       // finalize the payment registration
       // then remove ThreatMetrix script and iframe (defined in directive's link function)
-      return this.integrationCtrl
-        .onIntegrationFinalize({
-          expirationMonth: parseInt(response.expMonth, 10),
-          expirationYear: parseInt(response.expYear, 10),
-          registrationId: response.paypageRegistrationId,
-        })
-        .finally(() => this.removeThreatMetrix());
+      return this.integrationCtrl.onIntegrationFinalize({
+        expirationMonth: parseInt(response.expMonth, 10),
+        expirationYear: parseInt(response.expYear, 10),
+        registrationId: response.paypageRegistrationId,
+      });
     }
 
     // transform response to an error structure similar to $http/$resource
@@ -86,19 +84,6 @@ export default class OvhPaymentMethodRegisterIframeVantivCtrl {
       },
     };
 
-    // remove ThreatMetrix script and iframe (defined in directive's link function)
-    this.removeThreatMetrix();
-
     return this.integrationCtrl.manageCallback('onSubmitError', { error });
   }
-
-  /* ============================
-  =            Hooks            =
-  ============================= */
-
-  $onDestroy() {
-    this.removeThreatMetrix(); // defined in directive's link function
-  }
-
-  /* -----  End of Hooks  ------ */
 }

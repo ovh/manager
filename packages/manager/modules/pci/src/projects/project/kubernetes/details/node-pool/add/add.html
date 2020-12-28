@@ -33,7 +33,7 @@
         data-valid="$ctrl.nodePool.flavor"
         data-navigation="$ctrl.nodePool.flavor"
         data-on-focus="$ctrl.displaySelectedFlavor = false"
-        data-on-submit="$ctrl.displaySelectedFlavor = true"
+        data-on-submit="$ctrl.onNodePoolSubmit()"
         name="nodepool_add_configuration"
         data-loading="$ctrl.loadingFlavors"
     >
@@ -50,7 +50,7 @@
     </oui-step-form>
 
     <oui-step-form
-        data-header="{{:: 'kube_common_billing_type_title' | translate }}"
+        data-header="{{:: 'kube_add_billing_anti_affinity_title' | translate }}"
         data-editable="!$ctrl.isAdding"
         data-valid="$ctrl.nodePool.flavor"
         data-navigation="$ctrl.nodePool.flavor && !$ctrl.isAdding"
@@ -60,13 +60,21 @@
         data-on-submit="$ctrl.create()"
         name="nodepool_add_billing_info"
     >
-        <billing-type
+        <node-pool-anti-affinity
+            data-node-pool="$ctrl.nodePool"
+            anti-affinity-max-nodes="$ctrl.antiAffinityMaxNodes"
+        >
+        </node-pool-anti-affinity>
+
+        <p data-translate="kube_add_billing_type_description"></p>
+        <pci-project-flavor-billing
             data-flavor="$ctrl.nodePool.flavor"
             data-number="$ctrl.nodePool.nodeCount"
             data-monthly-billing="$ctrl.nodePool.monthlyBilling"
-            data-description="{{ ::'kube_add_billing_type_description' | translate }}"
+            data-disabled="false"
         >
-        </billing-type>
+        </pci-project-flavor-billing>
+        <p data-translate="kube_add_billing_type_payment_method"></p>
 
         <div data-ng-if="$ctrl.isAdding" class="d-flex align-items-center">
             <oui-spinner data-size="m"></oui-spinner>

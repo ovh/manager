@@ -1,0 +1,72 @@
+<div>
+    <h2 data-translate="dedicatedCloud_datacenters_title"></h2>
+    <button
+        type="button"
+        class="btn btn-default mb-4"
+        data-ng-if="$ctrl.dedicatedCloud.canOrderDatacenter"
+        data-ng-click="$ctrl.addDatacenter()"
+        data-translate="dedicatedCloud_datacenters_add"
+    ></button>
+    <oui-datagrid data-rows-loader="$ctrl.loadDatacenters($config)">
+        <oui-datagrid-column
+            data-title=":: 'dedicatedCloud_datacenters_title' | translate"
+        >
+            <span data-ng-bind="$row.name"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'dedicatedCloud_datacenters_cpu' | translate"
+        >
+            <span
+                data-ng-if="$row.cpuSize === null || $row.cpuSize.value === null || $row.cpuSize.unit === null"
+                >-</span
+            >
+            <span
+                data-ng-if="$row.cpuSize !== null && $row.cpuSize.value !== null && $row.cpuSize.unit !== null"
+                data-ng-bind="$row.cpuSize.value + ' ' + ('unit_frequency_' + $row.cpuSize.unit | translate)"
+            >
+            </span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'dedicatedCloud_datacenters_ram' | translate"
+        >
+            <span
+                data-ng-if="$row.ramSize === null || $row.ramSize.value === null || $row.ramSize.unit === null"
+                >-</span
+            >
+            <span
+                data-ng-if="$row.ramSize !== null && $row.ramSize.value !== null && $row.ramSize.unit !== null"
+                data-ng-bind="$row.ramSize.value + ' ' + ('unit_size_' + $row.ramSize.unit | translate)"
+            >
+            </span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'dedicatedCloud_datacenters_disk' | translate"
+        >
+            <span
+                data-ng-if="$row.filerSize === null || $row.filerSize.value === null || $row.filerSize.unit === null"
+                >-</span
+            >
+            <span
+                data-ng-if="$row.filerSize !== null && $row.filerSize.value !== null && $row.filerSize.unit !== null"
+                data-ng-bind="$row.filerSize.value + ' ' + ('unit_size_' + $row.filerSize.unit | translate)"
+            >
+            </span>
+        </oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="end">
+            <oui-action-menu-item
+                data-disabled="$ctrl.getRight('host') && $ctrl.usesLegacyOrder"
+                data-ng-click="$ctrl.orderHost($row.id)"
+                ><span
+                    data-translate="dedicatedCloud_datacenters_order_host"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-ng-disabled="$ctrl.getRight('filer') && $ctrl.usesLegacyOrder"
+                data-ng-click="$ctrl.orderDatastore($row.id)"
+                ><span
+                    data-translate="dedicatedCloud_datacenters_order_datastore"
+                ></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+    </oui-datagrid>
+</div>

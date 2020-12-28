@@ -17,6 +17,8 @@ import moveUnbundling from './unbundling';
 import component from './pack-move.component';
 import routing from './pack-move.routing';
 
+import './pack-move.less';
+
 const moduleName = 'ovhManagerTelecomPackMove';
 
 angular

@@ -1,0 +1,10 @@
+{
+  "dedicatedCloud_datacenters_title": "Centra danych",
+  "dedicatedCloud_datacenters_add": "Dodanie centrum danych",
+  "dedicatedCloud_datacenters_cpu": "Całkowite zasoby procesora",
+  "dedicatedCloud_datacenters_ram": "Całkowita pamięć RAM",
+  "dedicatedCloud_datacenters_disk": "Całkowita przestrzeń dyskowa",
+  "dedicatedCloud_datacenters_order_host": "Zamów Hosta",
+  "dedicatedCloud_datacenters_order_datastore": "Zamów Datastore",
+  "dedicatedCloud_datacenters_loading_error": "Wystąpił błąd podczas pobierania informacji z centrów danych."
+}

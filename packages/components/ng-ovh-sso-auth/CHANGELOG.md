@@ -1,3 +1,12 @@
+## [4.2.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-sso-auth@4.2.3...@ovh-ux/ng-ovh-sso-auth@4.2.4) (2020-10-20)
+
+
+### Bug Fixes
+
+* **sso-auth:** add trailing slash in order to avoid 301 ([#3873](https://github.com/ovh/manager/issues/3873)) ([a48e61d](https://github.com/ovh/manager/commit/a48e61d472ca95fd31bc74eed774532286c3bacb))
+
+
+
 ## [4.2.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ovh-sso-auth@4.2.2...@ovh-ux/ng-ovh-sso-auth@4.2.3) (2019-10-17)
 
 

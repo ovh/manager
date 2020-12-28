@@ -162,7 +162,7 @@
                             <a
                                 class="service-button"
                                 data-ng-disabled="!$ctrl.mediator.capabilities.canChangeDMZ || ($ctrl.mediator.tasks.changeModemConfigDMZ === true)"
-                                data-ui-sref="telecom.packs.pack.xdsl.modem.dmz"
+                                data-ui-sref="telecom.packs.pack.xdsl.line.modem.dmz"
                             >
                                 <div class="service-button-description">
                                     <div
@@ -203,6 +203,20 @@
                     <div data-ui-view="firmwareView"></div>
                 </div>
             </section>
+        </div>
+        <div
+            class="my-3"
+            data-ng-class="{ 'disabled' : !$ctrl.mediator.capabilities.canChangeACS || $ctrl.mediator.tasks.changeModemConfigACS }"
+        >
+            <label
+                data-oui-tooltip="{{:: 'xdsl_modem_acs_backend_description' | translate}}"
+                data-translate="xdsl_modem_acs_backend"
+                oui-tooltip-placement="top-start"
+            >
+            </label>
+            <modem-acs-backend
+                service-name="$ctrl.serviceName"
+            ></modem-acs-backend>
         </div>
     </div>
 

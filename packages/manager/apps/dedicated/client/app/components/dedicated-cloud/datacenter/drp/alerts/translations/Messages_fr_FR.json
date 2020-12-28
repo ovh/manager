@@ -1,0 +1,14 @@
+{
+  "dedicatedCloud_options_zerto_delivered_message_part_one_EPCC": "Votre Plan Reprise d’Activité Zerto entre ce Private Cloud et ",
+  "dedicatedCloud_options_zerto_delivered_message_part_one_MBM": "Votre Plan Reprise d’Activité Zerto entre ce Essentials et ",
+  "dedicatedCloud_options_zerto_delivered_message_part_two_ovh_EPCC": "le Private Cloud {{pccId}} a été installé avec succès !",
+  "dedicatedCloud_options_zerto_delivered_message_part_two_ovh_MBM": "le Essentials {{pccId}} a été installé avec succès !",
+  "dedicatedCloud_options_zerto_delivered_message_part_two_onPremise": "votre infrastructure distante a été installé avec succès !",
+  "dedicatedCloud_options_zerto_delivered_message_part_three": "Vous avez reçu votre mot de passe ZSSP sur l’adresse email {{email}}.",
+  "dedicatedCloud_datacenter_drp_confirm_creation_pending": "Votre PRA Zerto est en cours d’activation. L’opération peut prendre jusqu’à une heure de délai.",
+  "dedicatedCloud_datacenter_drp_confirm_creation_pending_task_EPCC": "N’hésitez pas à vérifier la tâche enableDisasterRecovery du PCC principal pour suivre son avancement.",
+  "dedicatedCloud_datacenter_drp_confirm_creation_pending_task_MBM": "N’hésitez pas à vérifier la tâche enableDisasterRecovery du Essentials principal pour suivre son avancement.",
+  "dedicatedCloud_options_zerto_waiting_vpn_message_part_one": "Pour finaliser l’activation de votre PRA Zerto",
+  "dedicatedCloud_options_zerto_waiting_vpn_message_part_two": "nous vous invitons à ajouter les IPs du VPN dans les paramètres du PRA",
+  "dedicatedCloud_datacenter_drp_required_vpn_configuration": "Pour finaliser l’activation de votre PRA Zerto, nous vous invitons à ajouter les IPs du VPN ci-dessous"
+}

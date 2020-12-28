@@ -637,6 +637,7 @@
   "license_order_step2_option_WINDOWS_sqlversion": "Versión SQL",
   "license_order_step2_option_WORKLIGHT_lessThan1000Users": "Empresa de menos de 1.000 trabajadores",
   "license_order_step3_title": "3. Seleccione una duración",
+  "license_order_step3_pricing_warning": "En función de la fecha de expiración de sus servicios, podría aplicarse una parte proporcional sobre el precio.",
   "license_order_step4_title": "4. Acepte",
   "license_order_step4_question": "Haga clic en «Generar la orden de pedido» para contratar la licencia.",
   "license_order_step4_contracts_ask": "Lea y acepte los siguientes contratos y haga clic en «Generar la orden de pedido»:",
@@ -687,5 +688,6 @@
   "license_potential_problem_isOsPleskOnyx": "No parece que el hipervisor ejecute una distribución Plesk Onyx.",
   "license_designation_CPANEL_premier_option": "hasta {{ numberOfCPANEL }} cuentas cPanel",
   "license_designation_CPANEL_admin_option": "2-5 cuentas cPanel",
-  "license_designation_CPANEL_pro_option": "6-30 cuentas cPanel"
+  "license_designation_CPANEL_pro_option": "6-30 cuentas cPanel",
+  "license_designation_CPANEL_version_option-cpanel": "hasta {{ licenseCount }} cuentas cPanel"
 }

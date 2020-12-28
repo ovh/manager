@@ -1,3 +1,113 @@
+## [3.5.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.5.3...@ovh-ux/manager-server-sidebar@3.5.4) (2020-12-08)
+
+
+### Bug Fixes
+
+* **web:** set correct domain order url for uk ie subs ([a2fc738](https://github.com/ovh/manager/commit/a2fc73881722cb1bc3fe493ee14ffb8896744f00))
+
+
+
+## [3.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.5.2...@ovh-ux/manager-server-sidebar@3.5.3) (2020-12-01)
+
+
+### Bug Fixes
+
+* **constants:** change link for new order process ([6a72422](https://github.com/ovh/manager/commit/6a72422de3f138d227df4550f3f73a2860d9cbb1))
+
+
+
+## [3.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.5.1...@ovh-ux/manager-server-sidebar@3.5.2) (2020-11-26)
+
+
+### Bug Fixes
+
+* **provider:** revert change link for new order process ([85e13cf](https://github.com/ovh/manager/commit/85e13cf1149151a70aababcf6bb1bbd014a81253))
+
+
+
+## [3.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.5.0...@ovh-ux/manager-server-sidebar@3.5.1) (2020-11-25)
+
+
+### Bug Fixes
+
+* **provider:** change link for new order process ([0c07214](https://github.com/ovh/manager/commit/0c07214783d0e0efd733414ce00f35317cf7f860))
+
+
+
+# [3.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.4.0...@ovh-ux/manager-server-sidebar@3.5.0) (2020-11-17)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 644] ([d9426c2](https://github.com/ovh/manager/commit/d9426c2de58f544c096f1c58ee6568085b7dae6f))
+* **i18n:** add missing translations [CDS 650] ([6e72d24](https://github.com/ovh/manager/commit/6e72d24aaa5dd085e207e67f8c557b27f2e9e29f))
+
+
+### Features
+
+* add managed baremetal ([71ee67e](https://github.com/ovh/manager/commit/71ee67e667128367f29e0db0d3f15b55be1a8d64)), closes [#MANAGER-5673](https://github.com/ovh/manager/issues/MANAGER-5673)
+
+
+
+# [3.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.3.0...@ovh-ux/manager-server-sidebar@3.4.0) (2020-11-02)
+
+
+### Features
+
+* **hpc:** move products on hpc universe ([b83a29c](https://github.com/ovh/manager/commit/b83a29ca7529c11492cc1ce201f9ff7c34ad097d))
+* **server:** move dedicatedCloud in hpc namespace ([de09cbd](https://github.com/ovh/manager/commit/de09cbd31a067d63dacdee626073f5a08a7660db))
+
+
+
+# [3.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.2.2...@ovh-ux/manager-server-sidebar@3.3.0) (2020-10-28)
+
+
+### Bug Fixes
+
+* **order.constants:** update hpc urls ([#3925](https://github.com/ovh/manager/issues/3925)) ([da068ba](https://github.com/ovh/manager/commit/da068baebc338e047b62bf3284c46e6cbc5fbb12))
+* **peer-deps:** upgrade @ovh-ux/ui-kit to v4.4.1 ([8254623](https://github.com/ovh/manager/commit/82546237336e185ae7d973a1bb2aabddbb50112e))
+
+
+### Features
+
+* add dbaas log to dedicated ([df46d83](https://github.com/ovh/manager/commit/df46d8323ec9a494f9b1be544a830c2f23de4f12))
+
+
+
+## [3.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.2.1...@ovh-ux/manager-server-sidebar@3.2.2) (2020-10-21)
+
+
+### Bug Fixes
+
+* **nas:** remove order section for old nas references ([#3886](https://github.com/ovh/manager/issues/3886)) ([84183ab](https://github.com/ovh/manager/commit/84183ab17ace6ed1b0bb03181c3f01d5231b0930))
+
+
+
+## [3.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.2.0...@ovh-ux/manager-server-sidebar@3.2.1) (2020-10-20)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v11.0.0 ([#3869](https://github.com/ovh/manager/issues/3869)) ([df90e4d](https://github.com/ovh/manager/commit/df90e4de660920e3cd07b2ff6b4452b0aa861377))
+
+
+
+# [3.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.1.1...@ovh-ux/manager-server-sidebar@3.2.0) (2020-10-13)
+
+
+### Bug Fixes
+
+* **deps:** upgrade to @ovh-ux/manager-config v2.0.0 ([ca3f955](https://github.com/ovh/manager/commit/ca3f9554c13b1436cbdeed3de8ac69e399d5dd93))
+* **i18n:** add missing translations [CDS 598] ([e5be4ff](https://github.com/ovh/manager/commit/e5be4ff3567df1171c776fb7315c8be4d09c423f))
+* **web.order:** add private database order ([91bfb3b](https://github.com/ovh/manager/commit/91bfb3bb8d00a6becfeebbc5fd8ebb7a421b7e05))
+
+
+### Features
+
+* **features:** retrieve features dynamically ([#3745](https://github.com/ovh/manager/issues/3745)) ([b3064e7](https://github.com/ovh/manager/commit/b3064e7c6b3cdc8317841eb5c5c5edd77b28cba1))
+
+
+
 ## [3.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.1.0...@ovh-ux/manager-server-sidebar@3.1.1) (2020-10-07)
 
 

@@ -1,0 +1,14 @@
+{
+  "dedicatedCloud_host_order_title": "Zamów hosta",
+  "dedicatedCloud_host_order_info_EPCC": "Możesz spersonalizować swoją prywatną chmurę poprzez dodanie hostów. Zostaniesz przekierowany/-a do nowej zakładki, aby sfinalizować zamówienie.",
+  "dedicatedCloud_host_order_select": "Wybierz rodzaj hosta:",
+  "dedicatedCloud_host_order_host": "Host",
+  "dedicatedCloud_host_order_price": "Cena",
+  "dedicatedCloud_host_order_speed": "Prędkość procesora",
+  "dedicatedCloud_host_order_memory": "RAM",
+  "dedicatedCloud_host_order_cores": "Liczba rdzeni",
+  "dedicatedCloud_host_order_quantity": "Ilość:",
+  "dedicatedCloud_host_order_confirm": "Potwierdź zamówienie",
+  "dedicatedCloud_host_order_loading_error": "Wystąpił błąd podczas pobierania informacji na temat hostów.",
+  "dedicatedCloud_host_order_info_MBM": "Możesz spersonalizować usługę Essentials, dodając hosty. Zostaniesz przekierowany/-a do nowej zakładki, aby sfinalizować zamówienie."
+}

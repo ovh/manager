@@ -3,7 +3,7 @@
   "sms_sms_compose_title": "Invia un SMS",
   "sms_sms_compose_section_configure": "Configura il mittente e il destinatario",
   "sms_sms_compose_section_compose": "Componi un messaggio",
-  "sms_sms_compose_alert_not_enough_credits": "Il credito non è sufficiente per l'invio di SMS.",
+  "sms_sms_compose_alert_not_enough_credits": "I crediti disponibili non sono sufficienti per inviare SMS. Ricarica il tuo account.",
   "sms_sms_compose_alert_not_enough_credits_receivers": "Il credito potrebbe non essere sufficiente per consentire l'invio a tutti i contatti selezionati.",
   "sms_sms_compose_sender_label": "Mittente:",
   "sms_sms_compose_sender_optgroup_label_response": "Mittenti che permettono la risposta",
@@ -117,5 +117,8 @@
   "sms_sms_compose_add_phonebook_contact_added": "Lista dei contatti aggiornata!",
   "sms_sms_compose_add_phonebook_contact_ko": "Ops! Impossibile recuperare la lista dei contatti.",
   "sms_sms_compose_message_commercial_description": "Per motivi legali, gli SMS a carattere commerciale saranno inviati esclusivamente <strong>tra le 8:00 e le 20:00, dal lunedì al sabato</strong>.",
-  "sms_sms_compose_no_commercial_clause_label": "Dichiaro he l’SMS non è a carattere commerciale."
+  "sms_sms_compose_no_commercial_clause_label": "Dichiaro he l’SMS non è a carattere commerciale.",
+  "sms_credit_balance": "Saldo",
+  "sms_credit_remaining_sms": "SMS residui",
+  "sms_credit_manage_credits": "Gestisci i crediti SMS"
 }

@@ -13,6 +13,7 @@ import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin'
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
 import ngOvhContracts from '@ovh-ux/ng-ovh-contracts';
 import ngOvhExportCsv from '@ovh-ux/ng-ovh-export-csv';
+import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import ngOvhHttp from '@ovh-ux/ng-ovh-http';
 import ngOvhSsoAuth from '@ovh-ux/ng-ovh-sso-auth';
 import ngOvhSsoAuthModalPlugin from '@ovh-ux/ng-ovh-sso-auth-modal-plugin';
@@ -83,8 +84,6 @@ angular
       'directives',
       ngQAllSettled,
       'ngMessages',
-      'ngFlash',
-      'vs-repeat',
       'xeditable',
       ngAtInternet,
       ngAtInternetUiRouterPlugin,
@@ -92,6 +91,7 @@ angular
       ngOvhContracts,
       ngOvhContracts,
       ngOvhExportCsv,
+      ngOvhFeatureFlipping,
       ngOvhHttp,
       ngOvhSsoAuth,
       ngOvhSsoAuthModalPlugin,
@@ -243,6 +243,13 @@ angular
     new RegExp('/useraccount/.*'),
     new RegExp('/billing/.*'),
   ])
+  .config(
+    /* @ngInject */ (ovhFeatureFlippingProvider) => {
+      ovhFeatureFlippingProvider.setApplicationName(
+        Environment.getApplicationName(),
+      );
+    },
+  )
   .config([
     '$stateProvider',
     '$urlRouterProvider',
@@ -511,16 +518,6 @@ angular
     );
   })
   .constant('UNIVERSE', 'WEB')
-  .constant('MANAGER_URLS', {
-    web: 'https://www.ovh.com/manager/web/index.html#/',
-    dedicated: 'https://www.ovh.com/manager/dedicated/index.html#/',
-    cloud: 'https://www.ovh.com/manager/cloud/index.html#/',
-    telecom: 'https://www.ovhtelecom.fr/manager/index.html#/',
-    sunrise: 'https://www.ovh.com/manager/sunrise/index.html#/',
-    portal: 'https://www.ovh.com/manager/portal/index.html#/',
-    partners: 'https://www.ovh.com/manager/partners/',
-    labs: 'https://www.ovh.com/manager/sunrise/uxlabs/#!/',
-  })
   .run(
     /* @ngInject */ ($rootScope, $state) => {
       $state.defaultErrorHandler((error) => {
@@ -547,6 +544,7 @@ angular
     /* @ngInject */ ($rootScope, $transitions) => {
       const unregisterHook = $transitions.onSuccess({}, () => {
         detachPreloader();
+        $rootScope.$broadcast('app:started');
         unregisterHook();
       });
     },

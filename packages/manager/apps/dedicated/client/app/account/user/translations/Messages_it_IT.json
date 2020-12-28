@@ -88,7 +88,7 @@
   "user_ipRestrictions_table_empty": "Nessuna limitazione definita",
   "user_ipRestrictions_defaultRule_success": "La regola di default è stata modificata.",
   "user_ipRestrictions_defaultRule_error": "Si è verificato un errore durante la modifica delle regole di default:",
-  "user_ipRestrictions_error_disable": "Attenzione: con questa configurazione non potrai più accedere al tuo Spazio Cliente OVH!",
+  "user_ipRestrictions_error_disable": "Per continuare ad accedere allo Spazio Cliente è prima necessario autorizzare un indirizzo IP.",
   "user_ipRestrictions_error": "Si è verificato un errore durante il caricamento delle informazioni.",
   "user_security_double_auth_activate": "Attiva la doppia autenticazione",
   "user_security_double_auth_deactivate": "Disattiva la doppia autenticazione",
@@ -574,7 +574,7 @@
   "user_account_security_double_auth_type_backup_code_info_u2f": "Utilizza questi codici se smarrisci o non hai accesso alla tua chiave di sicurezza.",
   "user_account_security_double_auth_type_backup_code_action_manage": "Rigenera i codici",
   "user_account_security_double_auth_type_backup_code_action_generate": "Genera i codici",
-  "user_account_security_double_auth_type_backup_code_action_delete": "Elimina i codici",
+  "user_account_security_double_auth_type_backup_code_action_delete": "Disattiva i codici 2FA",
   "user_account_security_double_auth_type_backup_code_modal_title": "Doppia autenticazione tramite codice di backup",
   "user_account_security_double_auth_type_backup_code_modal_generate": "Ricevi i codici di sicurezza ",
   "user_account_security_double_auth_type_backup_code_modal_generate_info": "Salva in un luogo sicuro i codici di sicurezza temporanei in caso di furto o perdita del tuo smartphone.",
@@ -605,5 +605,6 @@
   "user_account_support_level_title": "Il tuo livello di supporto",
   "user_account_ssh_keys_title": "Le tue chiavi SSH",
   "user_account_users_management_title": "Gestione utenti",
-  "user_account_advanced_title": "Impostazioni avanzate"
+  "user_account_advanced_title": "Impostazioni avanzate",
+  "user_ipRestrictions_warning_last_ip_with_deny": "Modifica la regola predefinita in \"Autorizzato\" per poter eliminare l'ultimo indirizzo IP."
 }

@@ -16,8 +16,8 @@ const {
 
 program
   .option(
-    '-v, --version <version>',
-    'specify version name to release, otherwise it will be generated randomly',
+    '--release-name <releaseName>',
+    'specify release name, otherwise it will be generated randomly',
     '',
   )
   .option(
@@ -82,7 +82,7 @@ program
       })
       .then((repos) => {
         if (program.release && repos.length) {
-          return getReleaseVersion(program.version, program.seed)
+          return getReleaseVersion(program.releaseName, program.seed)
             .then((version) => release(version, repos))
             .then((version) => {
               if (program.token && program.organization) {

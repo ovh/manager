@@ -1,0 +1,4 @@
+{
+  "kubernetes_node_pool_anti_affinity": "Anti-Affinität",
+  "kubernetes_node_pool_anti_affinity_description": "Durch die Aktivierung der Anti-Affinität werden vorhandene und zukünftige Nodes auf verschiedenen Hypervisoren (physischen Servern) gestartet. Dies garantiert eine höhere Fehlertoleranz. Node-Pools mit Anti-Affinität können höchstens {{ maxNodes }} Nodes umfassen."
+}

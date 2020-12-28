@@ -637,6 +637,7 @@
   "license_order_step2_option_WINDOWS_sqlversion": "SQL version",
   "license_order_step2_option_WORKLIGHT_lessThan1000Users": "Company of less than 1,000 employees",
   "license_order_step3_title": "3. Select a duration",
+  "license_order_step3_pricing_warning": "The price will be calculated on a pro-rata basis depending on your services expiry date",
   "license_order_step4_title": "4. Validation",
   "license_order_step4_question": "Click on \"Generate purchase order\" to upgrade your licence.",
   "license_order_step4_contracts_ask": "Please read and accept the contracts below, then click on \"Generate the purchase order\":",

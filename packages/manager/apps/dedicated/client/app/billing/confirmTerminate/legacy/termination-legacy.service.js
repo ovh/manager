@@ -16,7 +16,7 @@ export default /* @ngInject */ function BillingTerminate($q, OvhHttp) {
     if (forceRefresh) {
       delete params.cache;
     }
-    return OvhHttp.get(`/service/${serviceId}`, params);
+    return OvhHttp.get(`/services/${serviceId}`, params);
   };
 
   this.getServiceInfo = function getServiceInfo(serviceId) {
@@ -35,6 +35,21 @@ export default /* @ngInject */ function BillingTerminate($q, OvhHttp) {
         }),
       )
       .then((serviceInfos) => ({ ...serviceInfos, serviceType }));
+  };
+
+  this.getServiceDetails = function getServiceDetails(serviceId) {
+    return this.getServiceApi(serviceId)
+      .then((serviceApi) => {
+        return serviceApi.route.url.replace(
+          serviceApi.resource.name,
+          window.encodeURIComponent(serviceApi.resource.name),
+        );
+      })
+      .then((url) =>
+        OvhHttp.get(`${url}`, {
+          rootPath: 'apiv6',
+        }),
+      );
   };
 
   this.confirmTermination = function confirmTermination(

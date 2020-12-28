@@ -22,10 +22,6 @@ angular
           url: '/paas/nasha/:nashaId',
           lazyLoad,
         })
-        .state('nasha-order-complete.**', {
-          url: '/nasha/order/complete',
-          lazyLoad,
-        })
         .state('nasha-add.**', {
           url: '/nasha/new',
           lazyLoad,

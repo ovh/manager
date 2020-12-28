@@ -1,0 +1,59 @@
+<oui-message
+    class="mb-3"
+    data-type="success"
+    data-ng-if="$ctrl.currentDrp.state === $ctrl.DRP_STATUS.delivered && !$ctrl.currentDrp.isSuccessAlertDisable"
+    data-on-dismiss="$ctrl.disableSuccessAlert()"
+>
+    <span
+        data-ng-bind=":: ('dedicatedCloud_options_zerto_delivered_message_part_one_' + $ctrl.pccType) | translate"
+    ></span>
+    <span
+        data-ng-bind=":: ('dedicatedCloud_options_zerto_delivered_message_part_two_ovh_' + $ctrl.pccType) | translate: {
+            pccId: $ctrl.currentDrp.remoteSiteInformation.serviceName
+        }"
+        data-ng-if="$ctrl.currentDrp.drpType === $ctrl.DRP_OPTIONS.ovh"
+    ></span>
+    <span
+        data-translate="dedicatedCloud_options_zerto_delivered_message_part_two_onPremise"
+        data-ng-if="$ctrl.currentDrp.drpType === $ctrl.DRP_OPTIONS.onPremise"
+    ></span>
+    <span
+        data-translate="dedicatedCloud_options_zerto_delivered_message_part_three"
+        data-translate-values="{ 'email': $ctrl.currentUser.email }"
+    ></span>
+</oui-message>
+
+<oui-message
+    class="mb-3"
+    data-type="info"
+    data-ng-if="$ctrl.currentDrp.state === $ctrl.DRP_STATUS.delivering"
+>
+    <span
+        data-translate="dedicatedCloud_datacenter_drp_confirm_creation_pending"
+    ></span>
+    <span
+        data-ng-bind=":: ('dedicatedCloud_datacenter_drp_confirm_creation_pending_task_' + $ctrl.pccType) | translate"
+    ></span>
+</oui-message>
+
+<oui-message
+    class="mb-3"
+    data-type="error"
+    data-ng-if="$ctrl.currentDrp.vpnStatus === $ctrl.DRP_VPN_STATUS.notConfigured"
+>
+    <div data-ng-if="!$ctrl.isOnSummaryState()">
+        <span
+            data-translate="dedicatedCloud_options_zerto_waiting_vpn_message_part_one"
+        ></span>
+        <button
+            type="button"
+            class="oui-link"
+            data-ng-click="$ctrl.goToVpnConfiguration()"
+            data-translate="dedicatedCloud_options_zerto_waiting_vpn_message_part_two"
+        ></button>
+    </div>
+    <span
+        data-ng-if="$ctrl.isOnSummaryState()"
+        data-translate="dedicatedCloud_datacenter_drp_required_vpn_configuration"
+    ></span>
+</oui-message>

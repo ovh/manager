@@ -1,3 +1,12 @@
+## [4.0.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contracts@4.0.0...@ovh-ux/ng-ovh-contracts@4.0.1) (2020-10-28)
+
+
+### Bug Fixes
+
+* **peer-deps:** upgrade @ovh-ux/ui-kit to v4.4.1 ([8254623](https://github.com/ovh/manager/commit/82546237336e185ae7d973a1bb2aabddbb50112e))
+
+
+
 # [4.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contracts@3.2.0...@ovh-ux/ng-ovh-contracts@4.0.0) (2020-07-29)
 
 

@@ -1,3 +1,21 @@
+## [1.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-at-internet-configuration@1.1.1...@ovh-ux/manager-at-internet-configuration@1.1.2) (2020-11-25)
+
+
+### Bug Fixes
+
+* **provider:** replacment rules now stack rules ([1c82c0d](https://github.com/ovh/manager/commit/1c82c0dd676295341f91b74e4475f15eebfc6b16))
+
+
+
+## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-at-internet-configuration@1.1.0...@ovh-ux/manager-at-internet-configuration@1.1.1) (2020-10-13)
+
+
+### Bug Fixes
+
+* **deps:** upgrade to @ovh-ux/manager-config v2.0.0 ([ca3f955](https://github.com/ovh/manager/commit/ca3f9554c13b1436cbdeed3de8ac69e399d5dd93))
+
+
+
 # [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-at-internet-configuration@1.0.1...@ovh-ux/manager-at-internet-configuration@1.1.0) (2020-09-30)
 
 

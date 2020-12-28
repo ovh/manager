@@ -1,3 +1,40 @@
+# [7.1.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.0.3...@ovh-ux/ng-ovh-telecom-universe-components@7.1.0) (2020-12-08)
+
+
+### Features
+
+* **pack.move:** buildings for migration offers ([#4043](https://github.com/ovh/manager/issues/4043)) ([e811220](https://github.com/ovh/manager/commit/e81122062e34a24c286f3e75e2770e82b9f60048))
+
+
+
+## [7.0.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.0.2...@ovh-ux/ng-ovh-telecom-universe-components@7.0.3) (2020-10-28)
+
+
+### Bug Fixes
+
+* **peer-deps:** upgrade @ovh-ux/ui-kit to v4.4.1 ([8254623](https://github.com/ovh/manager/commit/82546237336e185ae7d973a1bb2aabddbb50112e))
+* **tuc:** remove hit if no tracking on action ([7a5719d](https://github.com/ovh/manager/commit/7a5719de9ef481cf7e086191baf5206014c283bc))
+
+
+
+## [7.0.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.0.1...@ovh-ux/ng-ovh-telecom-universe-components@7.0.2) (2020-10-23)
+
+
+### Bug Fixes
+
+* **validator:** avoid null ip errors ([#3905](https://github.com/ovh/manager/issues/3905)) ([ed3c1d8](https://github.com/ovh/manager/commit/ed3c1d817b4fc43de2eee1d116a32990574fc67e))
+
+
+
+## [7.0.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.0.0...@ovh-ux/ng-ovh-telecom-universe-components@7.0.1) (2020-10-20)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v11.0.0 ([#3869](https://github.com/ovh/manager/issues/3869)) ([df90e4d](https://github.com/ovh/manager/commit/df90e4de660920e3cd07b2ff6b4452b0aa861377))
+
+
+
 # [7.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@6.0.1...@ovh-ux/ng-ovh-telecom-universe-components@7.0.0) (2020-09-18)
 
 

@@ -1,4 +1,4 @@
-module.exports = ({ name }) => ({
+module.exports = ({ name, description }) => ({
   name: `@ovh-ux/manager-${name}-app`,
   version: '0.0.0',
   private: true,
@@ -7,6 +7,7 @@ module.exports = ({ name }) => ({
     url: 'git+https://github.com/ovh/manager.git',
     directory: `packages/manager/apps/${name}`,
   },
+  description,
   license: 'BSD-3-Clause',
   author: 'OVH SAS',
   scripts: {
@@ -30,7 +31,7 @@ module.exports = ({ name }) => ({
     '@ovh-ux/ng-translate-async-loader': '2.1.0',
     '@ovh-ux/ng-ui-router-breadcrumb': '^1.0.0',
     '@ovh-ux/ng-ui-router-line-progress': '^1.2.2',
-    '@ovh-ux/ui-kit': '^4.1.11',
+    '@ovh-ux/ui-kit': '^4.4.1',
     '@uirouter/angularjs': '^1.0.23',
     angular: '^1.7.5',
     'angular-aria': '^1.7.8',
@@ -41,6 +42,7 @@ module.exports = ({ name }) => ({
     'angular-sanitize': '^1.7.8',
     'angular-translate': '^2.18.1',
     'angular-translate-loader-pluggable': '^1.3.1',
+    'core-js': '^3.6.5',
     jquery: '^2.1.3',
     'ovh-api-services': '^9.26.0',
     flatpickr: '~4.5.2',

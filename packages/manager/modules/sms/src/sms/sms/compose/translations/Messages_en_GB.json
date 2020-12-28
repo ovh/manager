@@ -3,7 +3,7 @@
   "sms_sms_compose_title": "Send an SMS",
   "sms_sms_compose_section_configure": "Configure the sender and recipient",
   "sms_sms_compose_section_compose": "Compose a message",
-  "sms_sms_compose_alert_not_enough_credits": "You do not have enough credit to send SMS messages.",
+  "sms_sms_compose_alert_not_enough_credits": "You do not have enough credit to send SMS messages. Please top up your account.",
   "sms_sms_compose_alert_not_enough_credits_receivers": "You may not have enough credit to send messages to all of the selected contacts.",
   "sms_sms_compose_sender_label": "Sender",
   "sms_sms_compose_sender_optgroup_label_response": "Senders that allow for replies",
@@ -37,8 +37,8 @@
   "sms_sms_compose_message_stop_info_end": "is added to the end of the SMS.",
   "sms_sms_compose_message_stop_description": "For legal reasons, your SMS will only be sent between <strong>08:00 and 20:00, from Monday to Friday</strong>.",
   "sms_sms_compose_message_advice_title": "Tip:",
-  "sms_sms_compose_message_advice_info": "It is preferable to use an alphabetical sender for sending SMS messages. You can avoid certain operator filters on digital senders, namely mobile numbers.",
-  "sms_sms_compose_message_advice_description_1": "Alphabetical sender customisation is offered by OVH, and you can request it via",
+  "sms_sms_compose_message_advice_info": "It is best to use alphabetical characters as a sender name for sending SMS messages. You can avoid certain operator filters on digital senders, namely mobile numbers.",
+  "sms_sms_compose_message_advice_description_1": "Alphabetical sender customisation is offered by OVHcloud, and you can request it via",
   "sms_sms_compose_message_advice_description_2": "this page",
   "sms_sms_compose_message_advice_description_3": "(automatic validation is immediate, manual validation is carried out within 24-48 hours).",
   "sms_sms_compose_message_error_required": "The “Message” field is mandatory.",
@@ -117,5 +117,8 @@
   "sms_sms_compose_add_phonebook_contact_added": "Contact list updated.",
   "sms_sms_compose_add_phonebook_contact_ko": "Oops! Unable to retrieve contact list.",
   "sms_sms_compose_message_commercial_description": "For legal reasons, commercial SMS messages will only be sent between <strong>08:00 and 20:00, from Monday to Friday</strong>.",
-  "sms_sms_compose_no_commercial_clause_label": "I formally certify that the SMS is not commercial."
+  "sms_sms_compose_no_commercial_clause_label": "I formally certify that the SMS is not commercial.",
+  "sms_credit_balance": "Balance",
+  "sms_credit_remaining_sms": "Remaining SMS messages",
+  "sms_credit_manage_credits": "Manage your SMS credits"
 }

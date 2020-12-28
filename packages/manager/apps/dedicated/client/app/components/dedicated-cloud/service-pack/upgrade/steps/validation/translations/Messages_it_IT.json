@@ -1,0 +1,15 @@
+{
+  "dedicatedCloudDashboardTilesOptionsOrderValidation_stepper_header": "Conferma della certificazione",
+  "dedicatedCloud_servicePack_summary_stepper_order": "Per saldare l’ordine, clicca su questo link: ",
+  "dedicatedCloud_servicePack_summary_stepper_order_warning": "Se non clicchi sul link qui sotto, l’ordine non verrà inviato.",
+  "dedicatedCloud_servicePack_summary_stepper_order_resume": "Una volta confermato l’ordine, è possibile accedere all’interfaccia di gestione (esclusivamente dagli IP autorizzati a connettersi al vCenter dell’infrastruttura) e confermare la certificazione utilizzando il codice ricevuto via SMS",
+  "dedicatedCloud_servicePack_summary_stepper_go_management_interface": "Per confermare la certificazione, accedi direttamente all’interfaccia di gestione e inserisci il codice ricevuto via SMS. Questa interfaccia è accessibile esclusivamente con gli indirizzi IP autorizzati a connettersi al vCenter dell’infrastruttura.",
+  "dedicatedCloud_servicePack_summary_stepper_go_management_interface_action": "Interfaccia di attivazione dell’SMS",
+  "dedicatedCloud_servicePack_summary_stepper_validation_header": "Per diventare effettiva la conferma potrebbe richiedere da 30 minuti a 4 ore.",
+  "dedicatedCloud_servicePack_summary_stepper_validation_part_one": "Una volta effettuata la convalida, l’infrastruttura risulterà conforme alla certificazione scelta.",
+  "dedicatedCloud_servicePack_summary_stepper_validation_part_two": "In seguito riceverai la documentazione relativa all’attivazione eseguita, con cui potrai completare la parte contrattuale.",
+  "dedicatedCloud_servicePack_summary_stepper_validation_part_three": "Il costo della certificazione verrà aggiunto alla fatturazione del mese successivo.",
+  "dedicatedCloud_servicePack_summary_stepper_finish": "Termina",
+  "dedicatedCloud_servicePack_summary_stepper_order_failed": "L’invio dell’ordine non è andato a buon fine.",
+  "dedicatedCloud_servicePack_summary_stepper_openNewTab": "Apre una nuova scheda"
+}

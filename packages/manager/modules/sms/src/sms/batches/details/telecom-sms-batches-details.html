@@ -1,0 +1,110 @@
+<header>
+    <oui-back-button data-on-click="$ctrl.goBack()">
+        <span
+            data-translate="sms_batches_details_title"
+            data-translate-values="{'name': $ctrl.batch.name}"
+        ></span>
+    </oui-back-button>
+</header>
+
+<section class="container-fluid">
+    <tuc-toast-message></tuc-toast-message>
+    <oui-message
+        type="error"
+        data-ng-if="$ctrl.error"
+        dismissable
+        on-dismiss="$ctrl.error = null"
+    >
+        <span
+            data-translate="sms_batches_error"
+            data-translate-values="{ 'error': $ctrl.error }"
+        ></span>
+    </oui-message>
+
+    <oui-message type="info" data-ng-if="$ctrl.isDownloading">
+        <span data-translate="sms_batches_details_downloading"></span>
+    </oui-message>
+
+    <div class="text-center" data-ng-if="$ctrl.isLoading">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <oui-datagrid
+        page-size="10"
+        rows="$ctrl.outgoingSms"
+        data-ng-if="!$ctrl.isLoading"
+    >
+        <oui-datagrid-topbar>
+            <oui-action-menu text="{{:: 'sms_batches_actions' | translate }}">
+                <oui-action-menu-item
+                    aria-label="{{:: 'sms_batches_actions_refresh' | translate }}"
+                    on-click="$ctrl.refreshData()"
+                    ><span data-translate="sms_batches_actions_refresh"></span
+                ></oui-action-menu-item>
+                <oui-action-menu-item
+                    aria-label="{{:: 'sms_batches_actions_statistics' | translate }}"
+                    on-click="$ctrl.goToStatistics($ctrl.batch)"
+                    ><span
+                        data-translate="sms_batches_actions_statistics"
+                    ></span
+                ></oui-action-menu-item>
+                <oui-action-menu-item
+                    aria-label="{{:: 'sms_batches_download' | translate }}"
+                    on-click="$ctrl.downloadLogs($ctrl.batch)"
+                    disabled="$ctrl.isDownloading"
+                    ><span data-translate="sms_batches_download"></span
+                ></oui-action-menu-item>
+            </oui-action-menu>
+        </oui-datagrid-topbar>
+        <oui-datagrid-column
+            property="sentAt"
+            title="::'sms_batches_datetime' | translate"
+        >
+            <span
+                data-ng-bind="($row.sentAt || $row.createdAt) | date: 'dd/MM/yyyy HH:mm'"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            property="message"
+            title="::'sms_batches_message' | translate"
+        >
+            <span data-ng-bind="$row.message | limitTo:20"></span>
+            <span data-ng-if="$row.message.length > 20">
+                …
+            </span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            property="receiver"
+            title="::'sms_batches_details_receiver' | translate"
+            searchable
+            filterable
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            property="deliveryReceipt"
+            title="::'sms_batches_status' | translate"
+        >
+            <span
+                data-ng-if="$row.deliveryReceipt === 1"
+                data-translate="sms_batches_details_delivered"
+            >
+            </span>
+            <span data-ng-if="$row.deliveryReceipt !== 1">
+                <span data-ng-if="$row.status.length >= 20">
+                    <span
+                        data-ng-bind="$row.status | limitTo: 20"
+                        data-oui-tooltip="{{ $row.status }}"
+                    >
+                    </span>
+                    …
+                </span>
+                <span
+                    data-ng-if="$row.status.length < 20"
+                    data-ng-bind="$row.status"
+                >
+                </span>
+                <span data-ng-if="!$row.status.length">-</span>
+            </span>
+        </oui-datagrid-column>
+    </oui-datagrid>
+</section>

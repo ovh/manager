@@ -3,12 +3,14 @@ export default class NashaAddCtrl {
   constructor(
     $translate,
     $state,
+    $window,
     CucCloudMessage,
     CucControllerHelper,
     NashaAddService,
   ) {
     this.$translate = $translate;
     this.$state = $state;
+    this.$window = $window;
     this.CucCloudMessage = CucCloudMessage;
     this.CucControllerHelper = CucControllerHelper;
     this.NashaAddService = NashaAddService;
@@ -31,11 +33,12 @@ export default class NashaAddCtrl {
     this.datacenters.load();
     this.offers.load();
     this.durations.load();
+    this.catalog.load();
   }
 
   order() {
-    this.NashaAddService.order(this.data).then((response) =>
-      this.$state.go('nasha-order-complete', { orderUrl: response.url }),
+    this.NashaAddService.order(this.data).then(({ url }) =>
+      this.$window.open(url, '_blank'),
     );
   }
 
@@ -55,11 +58,19 @@ export default class NashaAddCtrl {
     });
 
     this.offers = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.NashaAddService.getOffers(),
+      loaderFunction: () =>
+        this.NashaAddService.getOffers().then((offers) => {
+          this.allOffers = offers;
+          return offers;
+        }),
     });
 
     this.durations = this.CucControllerHelper.request.getArrayLoader({
       loaderFunction: () => this.NashaAddService.getDurations(),
+    });
+
+    this.catalog = this.CucControllerHelper.request.getArrayLoader({
+      loaderFunction: () => this.NashaAddService.getCatalog(),
     });
   }
 
@@ -74,6 +85,20 @@ export default class NashaAddCtrl {
         region: this.$translate.instant('nasha_order_datacenter_gra'),
         fallback: this.$translate.instant('nasha_order_datacenter_rbx'),
       }),
+    );
+  }
+
+  onDatacenterChanged() {
+    const plans = this.catalog.data.plans
+      .filter((plan) =>
+        plan.configurations[0].values.includes(
+          this.data.selectedDatacenter.toUpperCase(),
+        ),
+      )
+      .map(({ planCode }) => planCode);
+
+    this.offers.data = this.allOffers.filter((offer) =>
+      plans.includes(offer.planCode),
     );
   }
 }

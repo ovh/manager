@@ -1,0 +1,6 @@
+{
+  "xdsl_modem_acs_backend_description": "Solo los usuarios avanzados pueden modificar el valor del backend ACS.",
+  "xdsl_modem_acs_backend_doing": "Modificando la versión del backend ACS...",
+  "xdsl_modem_acs_backend_submit": "Aceptar",
+  "xdsl_modem_acs_an_error_ocurred": "Backend ACS: Se ha producido un error."
+}

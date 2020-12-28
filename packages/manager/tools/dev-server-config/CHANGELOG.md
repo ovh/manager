@@ -1,3 +1,22 @@
+## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dev-server-config@1.1.0...@ovh-ux/manager-dev-server-config@1.1.1) (2020-12-08)
+
+
+### Bug Fixes
+
+* **sso:** avoid region config error ([#4140](https://github.com/ovh/manager/issues/4140)) ([3eb55c5](https://github.com/ovh/manager/commit/3eb55c5453d131557a7dee28efbe69994610e22d))
+
+
+
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dev-server-config@1.0.0...@ovh-ux/manager-dev-server-config@1.1.0) (2020-11-16)
+
+
+### Features
+
+* **dev-server-config:** add registry proxy config ([bd61f39](https://github.com/ovh/manager/commit/bd61f396cea43c8c11a1e9c7dc0afb14bf924f89))
+* **dev-server-config:** add registryUrl in registry proxy config ([6809a49](https://github.com/ovh/manager/commit/6809a491d88446ae3f843ba115ebb4c14843f99a))
+
+
+
 # [1.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dev-server-config@0.0.0...@ovh-ux/manager-dev-server-config@1.0.0) (2020-07-08)
 
 

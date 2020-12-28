@@ -1,0 +1,137 @@
+<div class="text-center" data-ng-if="$ctrl.isValidatingVpnConfiguration">
+    <oui-spinner></oui-spinner>
+</div>
+
+<div data-ng-if="!$ctrl.isValidatingVpnConfiguration">
+    <div data-ng-if="$ctrl.drpStatus !== 'delivering'">
+        <h3
+            class="oui-heading_4"
+            data-translate="dedicatedCloud_datacenter_drp_confirm_summary_title"
+        ></h3>
+        <dl class="row">
+            <dt
+                class="col-md-5"
+                data-translate="dedicatedCloud_datacenter_drp_confirm_summary_drp_type"
+            ></dt>
+            <dd
+                class="col-md-7"
+                data-ng-bind="::'dedicatedCloud_datacenter_' + $ctrl.drpInformations.drpType + '_choice' | translate"
+            ></dd>
+            <dt
+                class="col-md-5"
+                data-ng-bind="::'dedicatedCloud_datacenter_drp_confirm_summary_first_' + $ctrl.drpInformations.drpType + '_datacenter' | translate"
+            ></dt>
+            <dd
+                class="col-md-7"
+                data-ng-bind="::$ctrl.drpInformations.primaryDatacenter.formattedName || '-'"
+            ></dd>
+            <dt
+                class="col-md-5"
+                data-ng-bind=":: ('dedicatedCloud_datacenter_drp_confirm_summary_first_' + $ctrl.drpInformations.drpType + '_pcc_' + $ctrl.pccType) | translate"
+            ></dt>
+            <dd
+                class="col-md-7"
+                data-ng-bind="::$ctrl.drpInformations.primaryPcc.serviceName || '-'"
+            ></dd>
+            <dt
+                class="col-md-5"
+                data-ng-if="!$ctrl.isDrpTypeOnPremise()"
+                data-translate="dedicatedCloud_datacenter_drp_confirm_summary_secondary_datacenter"
+            ></dt>
+            <dd
+                class="col-md-7"
+                data-ng-if="!$ctrl.isDrpTypeOnPremise()"
+                data-ng-bind="::$ctrl.drpInformations.secondaryDatacenter.formattedName || '-'"
+            ></dd>
+            <dt
+                class="col-md-5"
+                data-ng-if="!$ctrl.isDrpTypeOnPremise()"
+                data-ng-bind=":: ('dedicatedCloud_datacenter_drp_confirm_summary_secondary_pcc_' + $ctrl.pccType) | translate"
+            ></dt>
+            <dd
+                class="col-md-7"
+                data-ng-if="!$ctrl.isDrpTypeOnPremise()"
+                data-ng-bind="::$ctrl.drpInformations.secondaryPcc.serviceName || '-'"
+            ></dd>
+        </dl>
+    </div>
+
+    <div data-ng-if="$ctrl.canConfigureVpn">
+        <form class="mb-5" name="$ctrl.vpnConfiguration" novalidate>
+            <oui-field
+                data-label="{{:: 'dedicatedCloud_datacenter_drp_vpn_presharedkey' | translate }}"
+                data-size="l"
+            >
+                <input
+                    class="oui-input"
+                    name="preSharedKey"
+                    type="text"
+                    data-ng-model="$ctrl.drpInformations.vpnConfiguration.preSharedKey"
+                    required
+                />
+            </oui-field>
+            <oui-field
+                data-label="{{:: 'dedicatedCloud_datacenter_drp_vpn_remoteEndpointPublicIp' | translate }}"
+                data-error-messages="{ 'pattern': ('dedicatedCloud_datacenter_drp_vpn_ip_invalid' | translate) }"
+                data-size="l"
+            >
+                <input
+                    class="oui-input"
+                    name="remoteEndpointPublicIp"
+                    type="text"
+                    data-ng-model="$ctrl.drpInformations.vpnConfiguration.remoteEndpointPublicIp"
+                    data-ng-pattern="$ctrl.ipValidator"
+                    required
+                />
+            </oui-field>
+            <oui-field
+                data-label="{{:: 'dedicatedCloud_datacenter_drp_vpn_remoteEndpointInternalIp' | translate }}"
+                data-error-messages="{ 'pattern': ('dedicatedCloud_datacenter_drp_vpn_ip_invalid' | translate) }"
+                data-size="l"
+            >
+                <input
+                    class="oui-input"
+                    name="remoteEndpointInternalIp"
+                    type="text"
+                    data-ng-model="$ctrl.drpInformations.vpnConfiguration.remoteEndpointInternalIp"
+                    data-ng-pattern="$ctrl.ipValidator"
+                    required
+                />
+            </oui-field>
+            <oui-field
+                data-label="{{:: 'dedicatedCloud_datacenter_drp_vpn_remoteZvmInternalIp' | translate }}"
+                data-error-messages="{ 'pattern': ('dedicatedCloud_datacenter_drp_vpn_ip_invalid' | translate) }"
+                data-size="l"
+            >
+                <input
+                    class="oui-input"
+                    name="remoteZvmInternalIp"
+                    type="text"
+                    data-ng-model="$ctrl.drpInformations.vpnConfiguration.remoteZvmInternalIp"
+                    data-ng-pattern="$ctrl.ipValidator"
+                    required
+                />
+            </oui-field>
+            <oui-form-actions
+                data-disabled="$ctrl.vpnConfiguration.$invalid || $ctrl.currentDrp.vpnStatus === $ctrl.VPN_STATUS.configuring
+                 || $ctrl.currentDrp.vpnStatus === $ctrl.VPN_STATUS.error"
+                data-on-submit="$ctrl.validateVpnConfiguration()"
+                data-submit-text="{{:: ($ctrl.isVpnNotConfigured ? 'dedicatedCloud_datacenter_drp_vpn_validate' : 'dedicatedCloud_datacenter_drp_vpn_change_parameters') | translate }}"
+            ></oui-form-actions>
+        </form>
+    </div>
+
+    <h3
+        class="oui-heading_4 mt-5"
+        data-translate="dedicatedCloud_datacenter_drp_confirm_delete_drp_title"
+    ></h3>
+    <oui-button
+        data-variant="secondary"
+        data-on-click="$ctrl.goToDeleteDrpModal()"
+        data-disabled="!$ctrl.deleteActionAvailable || $ctrl.isProvisionning() || $ctrl.currentDrp.vpnStatus === $ctrl.VPN_STATUS.configuring"
+    >
+        <span
+            data-translate="dedicatedCloud_datacenter_drp_confirm_delete_drp_action_text"
+        ></span>
+    </oui-button>
+</div>

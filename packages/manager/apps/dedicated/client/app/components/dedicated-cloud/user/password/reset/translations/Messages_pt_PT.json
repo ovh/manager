@@ -1,0 +1,20 @@
+{
+  "dedicatedCloud_USER_change_password": "Alterar palavra-passe",
+  "dedicatedCloud_users_password_reset_not_allowed": "Para alterar a sua palavra-passe, utilize a sua interface web certificada ao aceder ao seguinte endereço:",
+  "dedicatedCloud_USER_change_password_confirmation": "Indique a nova palavra-passe para o utilizador <b>{{t0}}</b>:",
+  "dedicatedCloud_USER_change_password_new": "Nova palavra-passe",
+  "dedicatedCloud_USER_change_password_digitMandatory": "Um número no mínimo",
+  "dedicatedCloud_USER_change_password_letterMandatory": "Uma letra no mínimo",
+  "dedicatedCloud_USER_change_password_lowercaseLetterMandatory": "Deve conter letras minúsculas",
+  "dedicatedCloud_USER_change_password_denied_chars": "Não pode conter os seguintes caracteres: {{ chars }}",
+  "dedicatedCloud_USER_change_password_specialMandatory": "No mínimo um carácter especial",
+  "dedicatedCloud_USER_change_password_uppercaseLetterMandatory": "Deve conter letras maiúsculas",
+  "dedicatedCloud_USER_change_password_maxLength": "Comprimento máximo:",
+  "dedicatedCloud_USER_change_password_minLength": "Comprimento mínimo:",
+  "dedicatedCloud_USER_change_password_repeat": "Confirmação da palavra-passe",
+  "dedicatedCloud_USER_change_password_repeat_fail": "As duas palavras-passe devem ser idênticas",
+  "dedicatedCloud_USER_change_password_informations": "Se não indicar nenhuma palavra-passe, esta será gerada automaticamente e será enviada por e-mail.",
+  "dedicatedCloud_users_password_loading_done": "A alteração da palavra-passe foi efetuada com sucesso.",
+  "dedicatedCloud_users_password_loading_error": "A alteração da palavra-passe falhou.",
+  "dedicatedCloud_users_password_reset_check_error": "Erro ao carregar informações."
+}

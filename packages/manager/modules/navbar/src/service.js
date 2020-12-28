@@ -1,26 +1,21 @@
 import { User } from '@ovh-ux/manager-models';
+import { Environment } from '@ovh-ux/manager-config';
 
 export default class {
   /* @ngInject */
-  constructor($q, OvhApiMe, OvhApiUniverses) {
+  constructor($q, OvhApiUniverses) {
     this.$q = $q;
-    this.OvhApiMe = OvhApiMe;
     this.OvhApiUniverses = OvhApiUniverses;
   }
 
   getUser() {
-    return this.$q
-      .all({
-        user: this.OvhApiMe.v6().get().$promise,
-        certificates: this.OvhApiMe.v6().certificates().$promise,
-      })
-      .then(({ user, certificates }) => new User(user, certificates));
+    return this.$q.resolve(
+      new User(Environment.getUser(), Environment.getUser().certificates),
+    );
   }
 
   getSupportLevel() {
-    return this.OvhApiMe.v6()
-      .supportLevel()
-      .$promise.catch(() => Promise.resolve(null));
+    return this.$q.resolve(Environment.getUser().supportLevel);
   }
 
   getUniverses(version) {

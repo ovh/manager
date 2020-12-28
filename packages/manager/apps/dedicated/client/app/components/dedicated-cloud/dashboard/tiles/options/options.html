@@ -1,0 +1,192 @@
+<oui-tile
+    class="h-100"
+    data-heading="{{:: 'ovhManagerPccDashboardOptions_heading' | translate }}"
+>
+    <div data-ng-if="$ctrl.bindings.isLoading" class="text-center">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <div data-ng-if="!$ctrl.bindings.isLoading">
+        <oui-tile-definition
+            data-term="{{:: 'ovhManagerPccDashboardOptions_security_term' | translate }}"
+        >
+            <oui-tile-description>
+                <div
+                    data-translate="ovhManagerPccDashboardOptions_security_drp"
+                ></div>
+
+                <span
+                    class="oui-badge"
+                    data-ng-class="{
+                          'oui-badge_error': $ctrl.bindings.options.security.drpGlobalStatus.value.error,
+                          'oui-badge_warning': $ctrl.bindings.options.security.drpGlobalStatus.value.warning,
+                          'oui-badge_success': $ctrl.bindings.options.security.drpGlobalStatus.value.success
+                    }"
+                >
+                    <span
+                        data-translate="{{:: $ctrl.bindings.options.security.drpGlobalStatus.detail }}"
+                    ></span>
+                </span>
+            </oui-tile-description>
+
+            <oui-action-menu
+                data-ng-if="::$ctrl.bindings.options.security.actionMenu.exists"
+                data-compact
+                data-placement="end"
+            >
+                <oui-action-menu-item
+                    data-ng-if="::$ctrl.bindings.options.security.actionMenu.items.selectDatacenter.exists"
+                    data-on-click="$ctrl.bindings.options.security.actionMenu.items.selectDatacenter.action()"
+                >
+                    <span
+                        data-translate="ovhManagerPccDashboardOptions_security_drp_action_install"
+                    ></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item
+                    data-ng-if="::$ctrl.bindings.options.security.actionMenu.items.goToVpnConfiguration.exists"
+                    data-on-click="$ctrl.bindings.options.security.actionMenu.items.goToVpnConfiguration.action()"
+                >
+                    <span
+                        data-translate="ovhManagerPccDashboardOptions_security_drp_action_add_configuration"
+                    ></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item
+                    data-ng-if="::$ctrl.bindings.options.security.actionMenu.items.deleteDrp.exists"
+                    data-on-click="$ctrl.deleteDrp()"
+                >
+                    <span
+                        data-translate="ovhManagerPccDashboardOptions_security_drp_action_delete"
+                    ></span>
+                </oui-action-menu-item>
+            </oui-action-menu>
+        </oui-tile-definition>
+
+        <oui-tile-definition
+            class="pb-2"
+            data-ng-if="$ctrl.bindings.options.basic.description.available"
+            data-term="{{:: 'ovhManagerPccDashboardOptions_basicOptions_term' | translate }}"
+        >
+            <oui-tile-description class="oui-list oui-list_separated m-0">
+                <ul class="oui-list__items">
+                    <li
+                        data-ng-repeat="option in ::$ctrl.bindings.options.basic.description.items track by option.name"
+                        data-ng-if="option.available"
+                        data-ng-class="{
+                            'pb-3': !$last,
+                        }"
+                        class="oui-list__item oui-list__group pt-3"
+                    >
+                        <ovh-manager-pcc-dashboard-options-descriptions-basic-option
+                            data-current-user=":: $ctrl.bindings.currentUser"
+                            data-option-name=":: option.name"
+                            data-presentation-url=":: option.presentationUrl"
+                            data-status=":: option.status"
+                        >
+                        </ovh-manager-pcc-dashboard-options-descriptions-basic-option>
+                    </li>
+                </ul>
+            </oui-tile-description>
+
+            <oui-action-menu
+                data-ng-if=":: $ctrl.bindings.options.basic.actionMenu.exists"
+                data-compact
+                data-placement="end"
+            >
+                <oui-action-menu-item
+                    data-ng-if=":: $ctrl.bindings.options.basic.actionMenu.items.activate.exists"
+                    data-on-click="$ctrl.onBasicOptionsUpgrade($ctrl.bindings.options.basic.actionMenu.items.activate.stateParams)"
+                    ><span
+                        data-translate="ovhManagerPccDashboardOptions_basicOptions_actionMenu_activate"
+                    ></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item
+                    data-ng-if=":: $ctrl.bindings.options.basic.actionMenu.items.switch.exists"
+                    data-on-click="$ctrl.onBasicOptionsUpgrade($ctrl.bindings.options.basic.actionMenu.items.switch.stateParams)"
+                    ><span
+                        data-translate="ovhManagerPccDashboardOptions_basicOptions_actionMenu_switch"
+                    ></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item
+                    data-ng-if=":: $ctrl.bindings.options.basic.actionMenu.items.payCheckout.exists"
+                    data-href="{{:: $ctrl.bindings.options.basic.actionMenu.items.payCheckout.url }}"
+                    data-external
+                    ><span
+                        data-translate="ovhManagerPccDashboardOptions_basicOptions_actionMenu_payCheckout"
+                    ></span>
+                </oui-action-menu-item>
+            </oui-action-menu>
+        </oui-tile-definition>
+
+        <oui-tile-definition
+            data-ng-if=":: $ctrl.bindings.options.certification.exists && $ctrl.canManageSectorSpecificCompliance"
+            data-term="{{:: 'ovhManagerPccDashboardOptions_certification_term' | translate }}"
+        >
+            <oui-tile-description>
+                <div
+                    data-ng-if=":: !$ctrl.bindings.options.certification.description.exists"
+                >
+                    <p
+                        class="mb-0"
+                        data-translate="ovhManagerPccDashboardOptions_certification_description_name_none"
+                    ></p>
+
+                    <a
+                        data-ng-if=":: $ctrl.bindings.options.certification.description.presentation.exists"
+                        data-ng-href="{{:: $ctrl.bindings.options.certification.description.presentation.url }}"
+                        class="oui-link_icon d-block"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        <span
+                            data-translate="ovhManagerPccDashboardOptions_certification_description_presentation"
+                        ></span>
+                        <span
+                            class="oui-icon oui-icon-external-link"
+                            aria-hidden="true"
+                        ></span>
+                        <span
+                            class="sr-only"
+                            data-translate="ovhManagerPccDashboardOptions_openNewTab"
+                        ></span>
+                    </a>
+                </div>
+
+                <ovh-manager-pcc-dashboard-options-descriptions-certification
+                    data-ng-if=":: $ctrl.bindings.options.certification.description.exists"
+                    data-certification-name=":: $ctrl.bindings.options.certification.description.name"
+                    data-management-interface-url=":: $ctrl.bindings.options.certification.description.managementInterfaceUrl"
+                    data-status=":: $ctrl.bindings.options.certification.description.status"
+                >
+                </ovh-manager-pcc-dashboard-options-descriptions-certification>
+            </oui-tile-description>
+            <oui-action-menu
+                data-ng-if=":: $ctrl.bindings.options.certification.actionMenu.exists"
+                data-compact
+                data-placement="end"
+            >
+                <oui-action-menu-item
+                    data-ng-if=":: $ctrl.bindings.options.certification.actionMenu.items.activate.exists"
+                    data-on-click="$ctrl.onCertificationUpgrade($ctrl.bindings.options.certification.actionMenu.items.activate.stateParams)"
+                    ><span
+                        data-translate="ovhManagerPccDashboardOptions_certification_actionMenu_activate"
+                    ></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item
+                    data-ng-if=":: $ctrl.bindings.options.certification.actionMenu.items.configure.exists"
+                    data-on-click="$ctrl.onConfigurationOnlyUpgrade($ctrl.bindings.options.certification.actionMenu.items.configure.stateParams)"
+                    ><span
+                        data-translate="ovhManagerPccDashboardOptions_certification_actionMenu_configure"
+                    ></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item
+                    data-ng-if=":: $ctrl.bindings.options.certification.actionMenu.items.payCheckout.exists"
+                    data-href="{{:: $ctrl.bindings.options.certification.actionMenu.items.payCheckout.url }}"
+                    data-external
+                    ><span
+                        data-translate="ovhManagerPccDashboardOptions_certification_actionMenu_payCheckout"
+                    ></span>
+                </oui-action-menu-item>
+            </oui-action-menu>
+        </oui-tile-definition>
+    </div>
+</oui-tile>

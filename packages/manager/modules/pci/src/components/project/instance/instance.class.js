@@ -163,7 +163,7 @@ export default class Instance {
     const user = get(this, 'image.user') || 'user';
     const ip = this.getDefaultIp();
     return get(this, 'image.type') === 'windows'
-      ? `rdekstop ${ip}`
+      ? `rdesktop ${ip}`
       : `ssh ${user}@${ip}`;
   }
 
@@ -187,5 +187,15 @@ export default class Instance {
 
   isFlavorType(type) {
     return new Flavor(this.flavor || {}).isType(type);
+  }
+
+  /**
+   * Tell if instance is currently in deleting status.
+   * Based on: cloud.instance.InstanceStatusEnum
+   *
+   * @return {Boolean}
+   */
+  isDeleting() {
+    return this.status === 'DELETING';
   }
 }

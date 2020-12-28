@@ -1,3 +1,103 @@
+# [3.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@2.4.0...@ovh-ux/manager-hub-app@3.0.0) (2020-12-22)
+
+
+### Bug Fixes
+
+* **product-list:** update to use latest list layout helper ([82982a8](https://github.com/ovh/manager/commit/82982a862ca92926a9f0cba5e1219296c09eba2d))
+* **products.dedicated-cloud:** update to use latest list layout ([#4068](https://github.com/ovh/manager/issues/4068)) ([fdea2db](https://github.com/ovh/manager/commit/fdea2db5451ba85d4b223758936b3decb601b7b7))
+
+
+### Features
+
+* **dashboard:** prevent crashing if services return an error ([#4160](https://github.com/ovh/manager/issues/4160)) ([ce65b9c](https://github.com/ovh/manager/commit/ce65b9c43785aa7d3deb24745f1da5ce728a7bc0))
+* **env:** use application name and universe ([5abfab5](https://github.com/ovh/manager/commit/5abfab5f208c1a3220ea06e97eb844a5db7dcb31))
+* **list:** add automatic column configuration if it is not provided ([ce54e71](https://github.com/ovh/manager/commit/ce54e712120ef308e1fb11a9b45aaba299ac398d))
+
+
+### BREAKING CHANGES
+
+* **list:** `dataModel` is now a mandatory resolve to provide in order to use the component
+
+Signed-off-by: Marie JONES <marie.jones@corp.ovh.com>
+
+
+
+# [2.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@2.3.2...@ovh-ux/manager-hub-app@2.4.0) (2020-12-08)
+
+
+### Features
+
+* set application in feature flipping ([#4124](https://github.com/ovh/manager/issues/4124)) ([365a35b](https://github.com/ovh/manager/commit/365a35babe4641131622ff0122160bb7d5198f92))
+
+
+
+## [2.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@2.3.1...@ovh-ux/manager-hub-app@2.3.2) (2020-11-25)
+
+
+### Bug Fixes
+
+* **chatbot:** add support level ([a30811f](https://github.com/ovh/manager/commit/a30811f20ab9ebbe49b3bdfcb68864912d90279d))
+* **deps:** upgrade ovh-api-services to v11.0.1 ([#4067](https://github.com/ovh/manager/issues/4067)) ([994f173](https://github.com/ovh/manager/commit/994f173072ab2e6920fa48049d477579f7364657))
+
+
+### Performance Improvements
+
+* **chatbot:** delay the chatbot initialization ([6d0790c](https://github.com/ovh/manager/commit/6d0790ca28a3688a642d2b3ebf893e8c8b7ac5b0))
+
+
+
+## [2.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@2.3.0...@ovh-ux/manager-hub-app@2.3.1) (2020-11-17)
+
+
+### Bug Fixes
+
+* add essentials to hub ([accf87a](https://github.com/ovh/manager/commit/accf87a948dc9121ed40671cc2a03a48629264a8))
+
+
+
+# [2.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@2.2.4...@ovh-ux/manager-hub-app@2.3.0) (2020-10-28)
+
+
+### Bug Fixes
+
+* **peer-deps:** upgrade @ovh-ux/ui-kit to v4.4.1 ([8254623](https://github.com/ovh/manager/commit/82546237336e185ae7d973a1bb2aabddbb50112e))
+* **preloader:** attach preloader with user language ([6eb9cc1](https://github.com/ovh/manager/commit/6eb9cc1cc362f8cc2426965d8563de1af9dee0c8))
+* add regenerator-runtime ([982d03a](https://github.com/ovh/manager/commit/982d03a1054ecc3c6fb886f57c8b8f9afe0e7001))
+
+
+### Features
+
+* add core-js to polyfill ([1411e1c](https://github.com/ovh/manager/commit/1411e1ca873d1ffd715c43fcadfe96f26e5be874))
+
+
+
+## [2.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@2.2.3...@ovh-ux/manager-hub-app@2.2.4) (2020-10-26)
+
+
+### Bug Fixes
+
+* **preloader:** attach preloader with user language ([6c65188](https://github.com/ovh/manager/commit/6c6518888146a4c90bd9268d0db40cb2d2df699f))
+
+
+
+## [2.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@2.2.2...@ovh-ux/manager-hub-app@2.2.3) (2020-10-20)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v11.0.0 ([#3869](https://github.com/ovh/manager/issues/3869)) ([df90e4d](https://github.com/ovh/manager/commit/df90e4de660920e3cd07b2ff6b4452b0aa861377))
+
+
+
+## [2.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@2.2.1...@ovh-ux/manager-hub-app@2.2.2) (2020-10-13)
+
+
+### Bug Fixes
+
+* **deps:** upgrade to @ovh-ux/manager-config v2.0.0 ([ca3f955](https://github.com/ovh/manager/commit/ca3f9554c13b1436cbdeed3de8ac69e399d5dd93))
+
+
+
 ## [2.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@2.2.0...@ovh-ux/manager-hub-app@2.2.1) (2020-09-21)
 
 

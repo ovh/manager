@@ -1,0 +1,14 @@
+{
+  "ovhManagerPccResourceUpgrade_heading": "Passa al forfait mensile",
+  "ovhManagerPccResourceUpgrade_form_renewalPeriods_label": "Periodo di rinnovo",
+  "ovhManagerPccResourceUpgrade_onlyOneRenewalPeriod_heading": "Riepilogo dell’ordine",
+  "ovhManagerPccResourceUpgrade_onlyOneRenewalPeriod_renewalPeriod": "Periodo di rinnovo",
+  "ovhManagerPccResourceUpgrade_onlyOneRenewalPeriod_renewalPeriod_month": "Mensile",
+  "ovhManagerPccResourceUpgrade_onlyOneRenewalPeriod_renewalPeriod_year": "Annuale",
+  "ovhManagerPccResourceUpgrade_onlyOneRenewalPeriod_price": "Prezzo (IVA esclusa)",
+  "ovhManagerPccResourceUpgrade_clickOnValidateToPlaceYourOrder": "Clicca su {{ validateButtonText }} per confermare l’ordine.",
+  "ovhManagerPccResourceUpgrade_willOpenNewTabAndRedirect": "Si aprirà una nuova scheda e verrai reindirizzato automaticamente verso l'interfaccia di pagamento.",
+  "ovhManagerPccResourceUpgrade_validateButton": "Conferma",
+  "ovhManagerPccResourceUpgrade_cancelButton": "Annulla",
+  "dedicatedCloud_order_loading_error": "Si è verificato un errore durante il caricamento delle informazioni."
+}

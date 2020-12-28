@@ -1,0 +1,6 @@
+{
+  "globals": {
+    "__WEBPACK_REGION__": true,
+    "moment": true
+  }
+}

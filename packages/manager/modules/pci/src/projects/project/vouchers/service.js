@@ -3,9 +3,10 @@ import set from 'lodash/set';
 
 export default class CloudVouchersService {
   /* @ngInject */
-  constructor($q, $translate, OvhApiMeBill, OvhApiCloudProjectCredit) {
+  constructor($q, $translate, iceberg, OvhApiMeBill, OvhApiCloudProjectCredit) {
     this.$q = $q;
     this.$translate = $translate;
+    this.iceberg = iceberg;
     this.OvhApiMeBill = OvhApiMeBill;
     this.OvhApiCloudProjectCredit = OvhApiCloudProjectCredit;
   }
@@ -20,28 +21,23 @@ export default class CloudVouchersService {
       .catch(() => voucher);
   }
 
-  transformItem(projectId, voucherId, offer) {
-    return this.OvhApiCloudProjectCredit.v6()
-      .get({
-        serviceName: projectId,
-        creditId: voucherId,
-      })
-      .$promise.then((voucher) =>
-        voucher.bill ? this.futureVoucherWithPdfUrl(voucher) : voucher,
-      )
-      .then((voucher) => (offer ? { ...voucher, ...offer.voucher } : voucher));
-  }
-
   getVouchers(projectId, offer) {
-    return this.OvhApiCloudProjectCredit.v6()
-      .query({
-        serviceName: projectId,
-      })
-      .$promise.then((voucherIds) => {
-        const promises = map(voucherIds, (id) =>
-          this.transformItem(projectId, id, offer),
+    return this.iceberg('/cloud/project/:serviceName/credit')
+      .query()
+      .expand('CachedObjectList-Pages')
+      .execute({ serviceName: projectId })
+      .$promise.then(({ data }) => data)
+      .then((vouchers) => {
+        const promises = map(vouchers, (voucher) =>
+          voucher.bill ? this.futureVoucherWithPdfUrl(voucher) : voucher,
         );
-        return this.$q.all(promises);
+        return this.$q
+          .all(promises)
+          .then(() =>
+            map(vouchers, (voucher) =>
+              offer ? { ...voucher, ...offer.voucher } : voucher,
+            ),
+          );
       });
   }
 

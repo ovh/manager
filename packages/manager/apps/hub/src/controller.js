@@ -1,18 +1,28 @@
 import { isString } from 'lodash-es';
 
+import { Environment } from '@ovh-ux/manager-config';
+
 export default class HubController {
   /* @ngInject */
-  constructor($document, $translate, SessionService) {
+  constructor($document, $scope) {
     this.$document = $document;
-    this.$translate = $translate;
-    this.SessionService = SessionService;
+    this.$scope = $scope;
+    this.chatbotEnabled = false;
   }
 
   $onInit() {
-    [this.currentLanguage] = this.$translate.use().split('_');
-
-    this.SessionService.getUser().then((user) => {
-      this.user = user;
+    this.navbarOptions = {
+      universe: Environment.getUniverse(),
+      version: 'beta',
+      toggle: {
+        event: 'sidebar:loaded',
+      },
+    };
+    this.currentLanguage = Environment.getUserLanguage();
+    this.user = Environment.getUser();
+    const unregisterListener = this.$scope.$on('app:started', () => {
+      this.chatbotEnabled = true;
+      unregisterListener();
     });
   }
 

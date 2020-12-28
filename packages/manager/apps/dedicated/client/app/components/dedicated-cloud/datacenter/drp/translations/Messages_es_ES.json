@@ -1,0 +1,17 @@
+{
+  "dedicatedCloud_tab_drp": "Plan de recuperación ante desastres (DRP)",
+  "dedicatedCloud_datacenter_drp_subtitle": "Cree su plan de recuperación ante desastres con Zerto",
+  "dedicatedCloud_datacenter_drp_details_EPCC": "Proteja su sistema informático configurando su plan de recuperación ante desastres. En caso de fallo de funcionamiento o interrupción del servicio, podrá migrar su infraestructura en un clic y en solo cuestión de minutos. Atención: antes de activar esta opción, debe disponer de un Private Cloud secundario.",
+  "dedicatedCloud_datacenter_drp_warning": "Su datacenter actual no dispone de ningún host. Su datacenter actual no dispone de ningún host. Puede elegir entre contratar un host y utilizar este datacenter para su DRP, o seleccionar otro datacenter que disponga como mínimo de un host.",
+  "dedicatedCloud_tab_drp_choice_plan_type": "Seleccione el tipo de DRP:",
+  "dedicatedCloud_datacenter_ovh_choice_EPCC": "Entre dos Private Cloud de OVHcloud",
+  "dedicatedCloud_datacenter_onPremise_choice_EPCC": "Entre su infraestructura y un Private Cloud de OVHcloud",
+  "dedicatedCloud_datacenter_activate_zerto_drp": "Activar el DRP Zerto",
+  "dedicatedCloud_datacenter_drp_confirm_delete_drp_success": "Se está eliminando el DRP Zerto. La operación será efectiva en unos minutos.",
+  "dedicatedCloud_datacenter_drp_get_state_error": "Se ha producido un error al cargar la información de su DRP.",
+  "dedicatedCloud_datacenter_install_plan": "Instalar",
+  "dedicatedCloud_datacenter_install_in_error": "Se ha producido un error durante la instalación. Por favor, contacte con el soporte.",
+  "dedicatedCloud_datacenter_drp_details_MBM": "Proteja su sistema informático configurando su plan de recuperación ante desastres. En caso de fallo de funcionamiento o interrupción del servicio, podrá migrar su infraestructura en un clic y en solo cuestión de minutos. Atención: antes de activar esta opción, debe disponer de un Managed Bare Metal secundario.",
+  "dedicatedCloud_datacenter_ovh_choice_MBM": "Entre dos Managed Bare Metal",
+  "dedicatedCloud_datacenter_onPremise_choice_MBM": "Entre su infraestructura y un Managed Bare Metal"
+}

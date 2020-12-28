@@ -3,7 +3,7 @@
   "sms_sms_compose_title": "Eine SMS versenden",
   "sms_sms_compose_section_configure": "Configurer l’éxpéditeur et le destinataire",
   "sms_sms_compose_section_compose": "Composer un message",
-  "sms_sms_compose_alert_not_enough_credits": "Votre crédit est insuffisant pour permettre l’envoi de SMS.",
+  "sms_sms_compose_alert_not_enough_credits": "Ihr Guthaben reicht nicht aus, um SMS zu versenden. Account aufladen",
   "sms_sms_compose_alert_not_enough_credits_receivers": "Votre crédit risque d’être insuffisant pour permettre l’envoi à l’ensemble de vos contacts séléctionnés.",
   "sms_sms_compose_sender_label": "Absender",
   "sms_sms_compose_sender_optgroup_label_response": "Expéditeurs permettant les réponses",
@@ -114,5 +114,8 @@
   "sms_sms_compose_add_phonebook_contact_empty": "Kein Kontakt gefunden.",
   "sms_sms_compose_add_phonebook_contact_adding": "Mise à jour des contacts…",
   "sms_sms_compose_add_phonebook_contact_added": "Liste des contacts mise à jour !",
-  "sms_sms_compose_add_phonebook_contact_ko": "Oups ! Impossible de récupérer la liste des contacts."
+  "sms_sms_compose_add_phonebook_contact_ko": "Oups ! Impossible de récupérer la liste des contacts.",
+  "sms_credit_balance": "Guthaben",
+  "sms_credit_remaining_sms": "Verbleibende SMS",
+  "sms_credit_manage_credits": "SMS-Guthaben verwalten"
 }

@@ -1,20 +1,13 @@
+import { Environment } from '@ovh-ux/manager-config';
 import constants from './constants';
 
 export default class OvhManagerAccountSidebarCtrl {
   /* @ngInject */
-  constructor(
-    $q,
-    $rootScope,
-    $translate,
-    atInternet,
-    OvhApiMe,
-    RedirectionService,
-  ) {
+  constructor($q, $rootScope, $translate, atInternet, RedirectionService) {
     this.$q = $q;
     this.$rootScope = $rootScope;
     this.$translate = $translate;
     this.atInternet = atInternet;
-    this.OvhApiMe = OvhApiMe;
     this.RedirectionService = RedirectionService;
 
     this.$rootScope.$on('ovh::sidebar::toggle', () => {
@@ -28,15 +21,14 @@ export default class OvhManagerAccountSidebarCtrl {
   }
 
   $onInit() {
-    return this.$q
-      .when(this.me ? this.me : this.OvhApiMe.v6().get().$promise)
-      .then((me) => {
-        this.me = me;
-        this.hasChatbot = constants.CHATBOT_SUBSIDIARIES.includes(
-          me.ovhSubsidiary,
-        );
-      })
-      .then(() => this.$translate.refresh())
+    if (!this.me) {
+      this.me = Environment.getUser();
+    }
+    this.hasChatbot = constants.CHATBOT_SUBSIDIARIES.includes(
+      this.me.ovhSubsidiary,
+    );
+    return this.$translate
+      .refresh()
       .then(() => this.getLinks())
       .then((links) => {
         this.links = links;

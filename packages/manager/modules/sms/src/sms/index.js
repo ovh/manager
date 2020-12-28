@@ -3,12 +3,22 @@ import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
+import dashboard from './dashboard';
 import order from './order';
+
+import service from './telecom-sms.service';
 
 const moduleName = 'ovhManagerSmsService';
 
 angular
-  .module(moduleName, ['ui.router', 'oc.lazyLoad', 'ovhManagerCore', order])
+  .module(moduleName, [
+    'ui.router',
+    'oc.lazyLoad',
+    'ovhManagerCore',
+    dashboard,
+    order,
+  ])
+  .service('SmsService', service)
   .config(
     /* @ngInject */ ($stateProvider) => {
       $stateProvider.state('sms.service.**', {

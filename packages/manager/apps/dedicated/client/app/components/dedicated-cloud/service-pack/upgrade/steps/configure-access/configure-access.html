@@ -1,0 +1,76 @@
+<p data-translate="dedicatedCloud_servicePack_requiredConfiguration_header"></p>
+
+<ul>
+    <li>
+        <span
+            data-translate="dedicatedCloud_servicePack_requiredConfiguration_criterias_accessPolicy_definition"
+            data-translate-values="{
+                accessPolicyValue: ('dedicatedCloud_servicePack_requiredConfiguration_criterias_accessPolicy_value_' + $ctrl.currentService.userAccessPolicy | translate)
+            }"
+        ></span>
+    </li>
+    <li>
+        <span
+            data-translate="dedicatedCloud_servicePack_requiredConfiguration_criterias_numberOfAllowedIPAndBlocks_definition"
+            data-translate-values="{
+                numberOfAllowedIPsAndBlocks: $ctrl.allowedIPsAndBlocks.length
+            }"
+        ></span>
+    </li>
+</ul>
+
+<oui-datagrid
+    data-ng-if="$ctrl.configurationIsCorrect"
+    data-rows-loader="$ctrl.mapAllowedIPsAndBlocks()"
+>
+    <oui-datagrid-column
+        data-title=":: 'dedicatedCloud_servicePack_requiredConfiguration_ipTable_ipColumn' | translate"
+        data-property="network"
+        data-type="string"
+    ></oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'dedicatedCloud_servicePack_requiredConfiguration_descriptionTable_descriptionColumn' | translate"
+        data-property="description"
+        data-type="string"
+    ></oui-datagrid-column>
+</oui-datagrid>
+
+<oui-message
+    data-ng-if="!$ctrl.configurationIsCorrect"
+    data-type="warning"
+    class="mb-5"
+>
+    <span
+        data-ng-if="!$ctrl.userAccessPolicyIsCorrect && $ctrl.numberOfAllowedIPsAndBlocksIsAllowed"
+        data-ng-bind=":: ('dedicatedCloud_servicePack_requiredConfiguration_warningMessage_accessPolicy_error_' + $ctrl.pccType) | translate"
+    ></span>
+    <span
+        data-ng-if="$ctrl.userAccessPolicyIsCorrect && !$ctrl.numberOfAllowedIPsAndBlocksIsAllowed"
+        data-ng-bind=":: ('dedicatedCloud_servicePack_requiredConfiguration_warningMessage_numberOfAllowedIPAndBlocks_error_' + $ctrl.pccType) | translate"
+    ></span>
+    <span
+        data-ng-if="!$ctrl.userAccessPolicyIsCorrect && !$ctrl.numberOfAllowedIPsAndBlocksIsAllowed"
+        data-ng-bind=":: ('dedicatedCloud_servicePack_requiredConfiguration_warningMessage_both_error_' + $ctrl.pccType) | translate"
+    ></span>
+    <span
+        data-translate="dedicatedCloud_servicePack_requiredConfiguration_warningMessage_whatToDoNow_1"
+    ></span>
+    <a
+        data-translate="dedicatedCloud_servicePack_requiredConfiguration_warningMessage_whatToDoNow_security"
+        data-ui-sref="app.dedicatedClouds.security"
+    >
+    </a>
+    <span
+        data-translate="dedicatedCloud_servicePack_requiredConfiguration_warningMessage_whatToDoNow_2"
+    ></span>
+</oui-message>
+
+<oui-stepper-v-navigation-button data-navigation-type="previous">
+</oui-stepper-v-navigation-button>
+
+<oui-stepper-v-navigation-button
+    class="ml-3"
+    data-disabled="!$ctrl.configurationIsCorrect"
+    data-navigation-type="next"
+>
+</oui-stepper-v-navigation-button>

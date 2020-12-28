@@ -1,3 +1,48 @@
+# [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.0.6...@ovh-ux/manager-nasha@2.1.0) (2020-11-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 638] ([2b63404](https://github.com/ovh/manager/commit/2b6340470f11b3a5b019429abbbf3f94ba9c54b3))
+* **i18n:** add missing translations [CDS 639] ([ddb4bd2](https://github.com/ovh/manager/commit/ddb4bd2daec6972c4ac7696aac6541da1d1a3e26))
+* **i18n:** add missing translations [CDS 646] ([2c2e07c](https://github.com/ovh/manager/commit/2c2e07cef0d49428e4957d32cf780cd194e328cb))
+* **i18n:** add missing translations [CDS 655] ([7ee8d0e](https://github.com/ovh/manager/commit/7ee8d0efc0007fecbe8274c46f537a516e41bb16))
+
+
+### Features
+
+* **nasha.order:** improve order flow ([#4001](https://github.com/ovh/manager/issues/4001)) ([726835d](https://github.com/ovh/manager/commit/726835dd181eaa6e8cc5401651eec8545cce0b08))
+
+
+
+## [2.0.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.0.5...@ovh-ux/manager-nasha@2.0.6) (2020-10-28)
+
+
+### Bug Fixes
+
+* **peer-deps:** upgrade @ovh-ux/ui-kit to v4.4.1 ([8254623](https://github.com/ovh/manager/commit/82546237336e185ae7d973a1bb2aabddbb50112e))
+
+
+
+## [2.0.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.0.4...@ovh-ux/manager-nasha@2.0.5) (2020-10-20)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v11.0.0 ([#3869](https://github.com/ovh/manager/issues/3869)) ([df90e4d](https://github.com/ovh/manager/commit/df90e4de660920e3cd07b2ff6b4452b0aa861377))
+* **nasha.order:** filter offers by datacenter ([#3870](https://github.com/ovh/manager/issues/3870)) ([396760e](https://github.com/ovh/manager/commit/396760e0342d2357ef2a33695f9c45d2dd07a8d6))
+
+
+
+## [2.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.0.3...@ovh-ux/manager-nasha@2.0.4) (2020-10-13)
+
+
+### Bug Fixes
+
+* **deps:** upgrade to @ovh-ux/manager-config v2.0.0 ([ca3f955](https://github.com/ovh/manager/commit/ca3f9554c13b1436cbdeed3de8ac69e399d5dd93))
+
+
+
 ## [2.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.0.2...@ovh-ux/manager-nasha@2.0.3) (2020-08-18)
 
 

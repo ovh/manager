@@ -1,25 +1,40 @@
 import isString from 'lodash/isString';
 import set from 'lodash/set';
+import { Environment } from '@ovh-ux/manager-config';
 
 angular.module('App').controller(
   'SessionCtrl',
-  class {
+  class SessionCtrl {
     /* @ngInject */
-    constructor($document, $scope, $state, $transitions, $translate, User) {
+    constructor($document, $scope, $state, $transitions, $translate) {
       this.$document = $document;
       this.$scope = $scope;
       this.$state = $state;
       this.$transitions = $transitions;
       this.$translate = $translate;
-      this.User = User;
+      this.chatbotEnabled = false;
     }
 
     $onInit() {
-      [this.currentLanguage] = this.$translate.use().split('_');
-
-      this.User.getUser().then((user) => {
-        this.user = user;
+      this.$scope.$on('switchUniverse', (event, universe) => {
+        this.sidebarNamespace = universe === 'server' ? undefined : 'hpc';
+        this.navbarOptions.universe = universe;
+        Environment.setUniverse(universe);
       });
+
+      this.currentLanguage = Environment.getUserLanguage();
+      this.user = Environment.getUser();
+      const unregisterListener = this.$scope.$on('app:started', () => {
+        this.chatbotEnabled = true;
+        unregisterListener();
+      });
+
+      this.navbarOptions = {
+        toggle: {
+          event: 'sidebar:loaded',
+        },
+        universe: 'server',
+      };
 
       set(this.$document, 'title', this.$translate.instant('global_app_title'));
 

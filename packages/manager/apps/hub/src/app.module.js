@@ -12,6 +12,7 @@ import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import { isString, get, has } from 'lodash-es';
 
 import '@ovh-ux/ui-kit';
+import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import ovhManagerAccountSidebar from '@ovh-ux/manager-account-sidebar';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ovhManagerHub from '@ovh-ux/manager-hub';
@@ -44,6 +45,7 @@ angular
       dashboard,
       errorPage,
       'ngAnimate',
+      ngOvhFeatureFlipping,
       ngOvhSsoAuthModalPlugin,
       ngOvhUiRouterLineProgress,
       ngUiRouterBreadcrumb,
@@ -63,6 +65,13 @@ angular
   .controller('HubController', controller)
   .config(
     /* @ngInject */ ($locationProvider) => $locationProvider.hashPrefix(''),
+  )
+  .config(
+    /* @ngInject */ (ovhFeatureFlippingProvider) => {
+      ovhFeatureFlippingProvider.setApplicationName(
+        Environment.getApplicationName(),
+      );
+    },
   )
   .config(routing)
   .run(
@@ -115,6 +124,7 @@ angular
     /* @ngInject */ ($rootScope, $transitions) => {
       const unregisterHook = $transitions.onSuccess({}, () => {
         detachPreloader();
+        $rootScope.$broadcast('app:started');
         unregisterHook();
       });
     },

@@ -1,0 +1,15 @@
+{
+  "confirm_order_confirm": "Confirm",
+  "confirm_order_cancel": "Cancel",
+  "confirm_order_basic_title": "Enabling an option",
+  "confirm_order_basic_question_1": "You are about to enable the <strong>{{itemName}}</strong> option pack.",
+  "confirm_order_certification_title": "Certification activation",
+  "confirm_order_certification_question_1": "You are about to activate the <strong>{{itemName}}</strong> certification.",
+  "confirm_order_question_monthly_adding": "Your monthly bill will increase by <strong>{{price}}</strong>.",
+  "confirm_order_question_monthly_deducting": "Your monthly billing will decrease by <strong>{{ price }}</strong>.",
+  "confirm_order_question_hourly_adding": "Your hourly bill will increase by <strong>{{price}}</strong>.",
+  "confirm_order_question_hourly_deducting": "Your hourly billing will decrease by <strong>{{ price }}</strong>.",
+  "confirm_order_question_confirm": "Are you sure you want to do this?",
+  "confirm_order_question_monthly_same": "Your monthly billing will not change.",
+  "confirm_order_question_hourly_same": "Your hourly billing will not change."
+}

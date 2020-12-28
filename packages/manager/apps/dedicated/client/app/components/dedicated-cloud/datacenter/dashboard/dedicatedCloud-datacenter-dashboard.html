@@ -1,0 +1,182 @@
+<ovh-manager-dedicated-cloud-datacenter-drp-alerts
+    data-current-drp="$ctrl.currentDrp"
+    data-current-user="$ctrl.currentUser"
+    data-go-to-vpn-configuration="$ctrl.goToVpnConfiguration"
+    data-pcc-type="$ctrl.pccType"
+></ovh-manager-dedicated-cloud-datacenter-drp-alerts>
+
+<div class="mb-5 px-0">
+    <div class="row d-md-flex mb-5">
+        <div class="col-md-4">
+            <oui-tile
+                data-heading="{{:: 'dedicatedCloud_information_title' | translate }}"
+                data-loading="$ctrl.loading"
+            >
+                <oui-tile-definition
+                    data-term="{{:: 'dedicatedCloud_description' | translate }}"
+                    data-description="{{ $ctrl.datacenter.model.name }}"
+                >
+                    <oui-action-menu
+                        aria-label="{{:: 'menu_action_label' | translate:{ t0: ('common_change' | translate) } }}"
+                        data-compact
+                        data-placement="end"
+                    >
+                        <oui-action-menu-item
+                            aria-label="{{:: 'common_change' | translate }}"
+                            data-ng-click="$ctrl.editDescription($ctrl.datacenter.model.name, 'dedicatedCloud_datacenter_name')"
+                            ><span data-translate="common_change"></span>
+                        </oui-action-menu-item>
+                        <oui-action-menu-item
+                            aria-label="{{:: 'dedicatedCloud_datacenter_delete' | translate }}"
+                            data-on-click="$ctrl.deleteDatacenter()"
+                            ><span
+                                data-translate="dedicatedCloud_datacenter_delete"
+                            ></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{:: 'dedicatedCloud_datacenter_description' | translate }}"
+                    data-description="{{ $ctrl.datacenter.model.description }}"
+                >
+                    <oui-action-menu
+                        aria-label="{{:: 'menu_action_label' | translate:{ t0: ('dedicatedCloud_description' | translate) } }}"
+                        data-compact
+                        data-placement="end"
+                    >
+                        <oui-action-menu-item
+                            aria-label="{{:: 'common_change' | translate }}"
+                            data-ng-click="$ctrl.editDescription($ctrl.datacenter.model.description, 'dedicatedCloud_datacenter_description')"
+                            ><span data-translate="common_change"></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{:: 'dedicatedCloud_datacenter_commercial_name' | translate }}"
+                    data-description="{{:: ('dedicatedCloud_datacenter_commercial_name_' + $ctrl.datacenter.model.commercialName) | translate }}"
+                ></oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{:: 'dedicatedCloud_datacenter_host' | translate }}"
+                    data-description="{{:: $ctrl.datacenter.model.hosts }}"
+                ></oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{:: 'dedicatedCloud_datacenter_datastore' | translate }}"
+                    data-description="{{:: $ctrl.datacenter.model.filers }}"
+                ></oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{:: 'dedicatedCloud_datacenter_VM_Backup' | translate }}"
+                    data-description="{{:: 'dedicatedCloud_coming_soon' | translate }}"
+                ></oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{:: 'dedicatedCloud_datacenter_drp' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span
+                            class="oui-badge"
+                            data-ng-class="{
+                                  'oui-badge_error': $ctrl.drpGlobalStatus.error,
+                                  'oui-badge_warning': $ctrl.drpGlobalStatus.warning,
+                                  'oui-badge_success': $ctrl.drpGlobalStatus.success
+                            }"
+                        >
+                            <span
+                                data-ng-if="::!$ctrl.currentDrp.isWaitingVpnConfiguration"
+                                data-translate="{{ 'dedicatedCloud_options_zerto_status_' + $ctrl.drpStatus }}"
+                            ></span>
+                            <span
+                                data-ng-if="::$ctrl.currentDrp.isWaitingVpnConfiguration"
+                                data-translate="{{:: 'dedicatedCloud_options_zerto_status_vpn_' + $ctrl.currentDrp.vpnStatus }}"
+                            ></span>
+                        </span>
+                    </oui-tile-description>
+                    <oui-action-menu
+                        data-ng-if="::$ctrl.isDrpActionPossible"
+                        data-compact
+                        data-placement="end"
+                    >
+                        <oui-action-menu-item
+                            data-on-click="$ctrl.goToDrp()"
+                            data-ng-if="$ctrl.drpStatus === 'disabled'"
+                        >
+                            <span
+                                data-translate="dedicatedCloud_options_zerto_action_install"
+                            ></span>
+                        </oui-action-menu-item>
+                        <oui-action-menu-item
+                            data-on-click="$ctrl.goToDrpSummary()"
+                            data-ng-if="::$ctrl.currentDrp.vpnStatus === $ctrl.DRP_VPN_STATUS.notConfigured"
+                        >
+                            <span
+                                data-translate="dedicatedCloud_options_zerto_action_add_configuration"
+                            ></span>
+                        </oui-action-menu-item>
+                        <oui-action-menu-item
+                            data-ng-if="$ctrl.drpStatus === $ctrl.DRP_STATUS.delivered && $ctrl.drpRemotePccStatus === $ctrl.DRP_STATUS.delivered"
+                            data-on-click="$ctrl.goToDeleteDrp()"
+                        >
+                            <span
+                                data-translate="dedicatedCloud_options_zerto_action_delete"
+                            ></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{:: 'dedicatedCloud_subscription_links' | translate }}"
+                >
+                    <oui-tile-description class="oui-link">
+                        <a
+                            class="d-block"
+                            target="_blank"
+                            rel="noopener"
+                            title="{{:: 'dedicatedCloud_datacenter_go_vscope' | translate }}"
+                            data-ng-href="{{:: $ctrl.dedicatedCloud.vScopeUrl }}"
+                        >
+                            <span
+                                data-translate="dedicatedCloud_datacenter_go_vscope"
+                            ></span>
+                            <span
+                                class="fa fa-external-link"
+                                aria-hidden="true"
+                            >
+                            </span>
+                        </a>
+                        <a
+                            class="d-block"
+                            target="_blank"
+                            rel="noopener"
+                            title="{{:: 'dedicatedCloud_datacenter_go_web_interface' | translate }}"
+                            data-ng-if="$ctrl.dedicatedCloud.webInterfaceUrl"
+                            data-ng-href="{{:: $ctrl.dedicatedCloud.webInterfaceUrl }}"
+                        >
+                            <span
+                                data-translate="dedicatedCloud_datacenter_go_web_interface"
+                            ></span>
+                            <span
+                                class="fa fa-external-link"
+                                aria-hidden="true"
+                            >
+                            </span>
+                        </a>
+                        <a
+                            class="d-block"
+                            target="_blank"
+                            rel="noopener"
+                            title="{{:: 'dedicatedCloud_datacenter_go_certified_web_interface' | translate }}"
+                            data-ng-if="$ctrl.dedicatedCloud.certifiedInterfaceUrl && $ctrl.dedicatedCloud.advancedSecurity"
+                            data-ng-href="{{:: $ctrl.dedicatedCloud.certifiedInterfaceUrl }}"
+                        >
+                            <span
+                                data-translate="dedicatedCloud_datacenter_go_certified_web_interface"
+                            ></span>
+                            <span
+                                class="fa fa-external-link"
+                                aria-hidden="true"
+                            >
+                            </span>
+                        </a>
+                    </oui-tile-description>
+                </oui-tile-definition>
+            </oui-tile>
+        </div>
+    </div>
+</div>

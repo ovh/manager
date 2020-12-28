@@ -1,0 +1,10 @@
+{
+  "pci_projects_project_training_registry_section_1_title": "Współdzielony rejestr Docker",
+  "pci_projects_project_training_registry_section_1_title_info_1": "Domyślnie przechowujemy prywatne obrazy Twoich zadań w rejestrze Docker zarządzanym przez OVHcloud i współdzielonym z naszymi klientami. Obrazy przechowywane w rejestrze mogą zostać usunięte w dowolnym momencie. Zalecamy korzystanie z prywatnego rejestru do przechowywania Twoich własnych obrazów.",
+  "pci_projects_project_training_registry_section_1_message_1": "Możesz zalogować się do rejestru Docker udostępnionego za pomocą polecenia:",
+  "pci_projects_project_training_registry_section_1_message_2": "Uwierzytelnienie na platformie może zostać przeprowadzona z wykorzystaniem wszystkich ",
+  "pci_projects_project_training_registry_section_1_message_3": "skonfigurowanych użytkowników",
+  "pci_projects_project_training_registry_section_1_message_4": " w ramach tego samego projektu Public Cloud.",
+  "pci_projects_project_training_registry_section_1_message_5": "Następnie możesz oznaczyć obrazy i załadować je do rejestru.",
+  "pci_projects_project_training_registry_section_1_message_6": "Twój obraz jest teraz używany w zadaniu AI Training."
+}

@@ -123,5 +123,6 @@
   "ovhManagerSupport_all_serviceType": "Mostrar mais produtos",
   "ovhManagerSupport_new_serviceType_ovh_cloud_connect": "OVHcloud Connect",
   "ovhManagerSupport_new_creation_error_dedicated_server_already_opened": "Um ticket de intervenção já foi criado para este servidor.",
-  "ovhManagerSupport_new_creation_error_dedicated_server_service_mandatory": "Não pode ser solicitada qualquer intervenção deste tipo sem dispor de um servidor dedicado."
+  "ovhManagerSupport_new_creation_error_dedicated_server_service_mandatory": "Não pode ser solicitada qualquer intervenção deste tipo sem dispor de um servidor dedicado.",
+  "ovhManagerSupport_new_serviceType_managed_bare_metal": "Managed Bare Metal"
 }

@@ -1,3 +1,106 @@
+# [4.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.5.0...@ovh-ux/manager-public-cloud@4.6.0) (2020-12-22)
+
+
+### Features
+
+* **env:** use application name and universe ([f75a8f0](https://github.com/ovh/manager/commit/f75a8f0cc570a7cfdf128429bb40785b2424dfef))
+
+
+
+# [4.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.4.0...@ovh-ux/manager-public-cloud@4.5.0) (2020-12-08)
+
+
+### Features
+
+* set application in feature flipping ([#4124](https://github.com/ovh/manager/issues/4124)) ([365a35b](https://github.com/ovh/manager/commit/365a35babe4641131622ff0122160bb7d5198f92))
+
+
+
+# [4.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.3.2...@ovh-ux/manager-public-cloud@4.4.0) (2020-11-30)
+
+
+### Features
+
+* apply feature flipping to ai training section ([fb46e1a](https://github.com/ovh/manager/commit/fb46e1a708c245ff9030a802f7ecc079b7eeb876))
+
+
+
+## [4.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.3.1...@ovh-ux/manager-public-cloud@4.3.2) (2020-11-25)
+
+
+### Bug Fixes
+
+* **chatbot:** add support level ([3b506db](https://github.com/ovh/manager/commit/3b506db070fa94c91ef2bb1a56f52df2622110c7))
+* **deps:** upgrade ovh-api-services to v11.0.1 ([#4067](https://github.com/ovh/manager/issues/4067)) ([994f173](https://github.com/ovh/manager/commit/994f173072ab2e6920fa48049d477579f7364657))
+
+
+### Performance Improvements
+
+* **chatbot:** delay the chatbot initialization ([607d534](https://github.com/ovh/manager/commit/607d5347329b5866f27a1055ee8c243ffbea1824))
+
+
+
+## [4.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.3.0...@ovh-ux/manager-public-cloud@4.3.1) (2020-11-16)
+
+
+### Performance Improvements
+
+* remove unused angular-vs-repeat dependency ([#4010](https://github.com/ovh/manager/issues/4010)) ([4691d0c](https://github.com/ovh/manager/commit/4691d0cd429270e8fa16a7bcf16ce0b48d0e295c))
+
+
+
+# [4.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.2.6...@ovh-ux/manager-public-cloud@4.3.0) (2020-10-28)
+
+
+### Bug Fixes
+
+* **deps:** upgrade webpack to v4.44.2 ([fc868d2](https://github.com/ovh/manager/commit/fc868d2670b0de220837c8917d90fa3020e6d4ca))
+* **preloader:** attach preloader with user language ([6eb9cc1](https://github.com/ovh/manager/commit/6eb9cc1cc362f8cc2426965d8563de1af9dee0c8))
+* add regenerator-runtime ([982d03a](https://github.com/ovh/manager/commit/982d03a1054ecc3c6fb886f57c8b8f9afe0e7001))
+
+
+### Features
+
+* add core-js to polyfill ([1411e1c](https://github.com/ovh/manager/commit/1411e1ca873d1ffd715c43fcadfe96f26e5be874))
+
+
+
+## [4.2.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.2.5...@ovh-ux/manager-public-cloud@4.2.6) (2020-10-26)
+
+
+### Bug Fixes
+
+* **preloader:** attach preloader with user language ([6c65188](https://github.com/ovh/manager/commit/6c6518888146a4c90bd9268d0db40cb2d2df699f))
+
+
+
+## [4.2.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.2.4...@ovh-ux/manager-public-cloud@4.2.5) (2020-10-20)
+
+
+### Bug Fixes
+
+* **deps:** add missing dependency ([#3874](https://github.com/ovh/manager/issues/3874)) ([0750a41](https://github.com/ovh/manager/commit/0750a418809a158262ea27cdb5c42080592dec90))
+
+
+
+## [4.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.2.3...@ovh-ux/manager-public-cloud@4.2.4) (2020-10-20)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v11.0.0 ([#3869](https://github.com/ovh/manager/issues/3869)) ([df90e4d](https://github.com/ovh/manager/commit/df90e4de660920e3cd07b2ff6b4452b0aa861377))
+
+
+
+## [4.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.2.2...@ovh-ux/manager-public-cloud@4.2.3) (2020-10-13)
+
+
+### Bug Fixes
+
+* **deps:** upgrade to @ovh-ux/manager-config v2.0.0 ([ca3f955](https://github.com/ovh/manager/commit/ca3f9554c13b1436cbdeed3de8ac69e399d5dd93))
+
+
+
 ## [4.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.2.1...@ovh-ux/manager-public-cloud@4.2.2) (2020-10-02)
 
 

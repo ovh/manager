@@ -1,4 +1,4 @@
-<div data-ng-if="ipBlock.version === 'IPV6'" data-uib-dropdown>
+<div data-ng-if="ipBlock.version === IP_TYPE.V6" data-uib-dropdown>
     <button
         type="button"
         class="btn btn-link dropdown-toggle"
@@ -35,7 +35,7 @@
     </ul>
 </div>
 
-<div data-ng-if="ipBlock.version === 'IPV4'" data-uib-dropdown>
+<div data-ng-if="ipBlock.version === IP_TYPE.V4" data-uib-dropdown>
     <button
         type="button"
         class="btn btn-link dropdown-toggle"
@@ -85,13 +85,13 @@
                 class="btn btn-link"
                 data-ng-click="setAction('ip/virtual-mac/add/ip-ip-virtual-mac-add', { ipBlock: ipBlock, ip: ip })"
                 data-translate="ip_table_manage_add_virtualmac"
-                data-ng-disabled="ipBlock.service.category !== 'DEDICATED' || ipBlock.service.virtualmac.status !== 'OK' || ipBlock.service.virtualmac.virtualMacsByIp[ip.ip]"
+                data-ng-disabled="ipBlock.service.category !== 'DEDICATED' || (ipBlock.virtualMac && ipBlock.virtualMac.status !== 'OK') || ipBlock.virtualMac.virtualMacs[ip.ip]"
                 data-oui-tooltip-placement="left"
-                data-oui-tooltip="{{ ipBlock.service.category === 'DEDICATED' && ipBlock.service.virtualmac.status === 'OK' && ipBlock.service.virtualmac.virtualMacsByIp[ip.ip] ? getVirtualMacMessage(ipBlock) : '' }}"
+                data-oui-tooltip="{{ ipBlock.service.category === 'DEDICATED' && ipBlock.virtualMac.status === 'OK' && ipBlock.virtualMac.virtualMacs[ip.ip] ? getVirtualMacMessage(ipBlock) : '' }}"
             ></button>
         </li>
         <li
-            data-ng-if="ipBlock.service.category === 'DEDICATED' && ipBlock.type == 'FAILOVER' && ipBlock.service.virtualmac.status === 'OK' && ipBlock.service.virtualmac.virtualMacsByIp[ip.ip]"
+            data-ng-if="ipBlock.service.category === 'DEDICATED' && ipBlock.type == 'FAILOVER' && ipBlock.virtualMac.status === 'OK' && ipBlock.virtualMac.virtualMacs[ip.ip]"
         >
             <button
                 type="button"
@@ -101,7 +101,7 @@
             ></button>
         </li>
         <li
-            data-ng-if="ipBlock.service.category == 'DEDICATED' && ipBlock.type == 'FAILOVER' && ipBlock.service.virtualmac.status === 'OK' && ipBlock.service.virtualmac.virtualMacsByIp[ip.ip]"
+            data-ng-if="ipBlock.service.category == 'DEDICATED' && ipBlock.type == 'FAILOVER' && ipBlock.virtualMac.status === 'OK' && ipBlock.virtualMac.virtualMacs[ip.ip]"
         >
             <button
                 type="button"

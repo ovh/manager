@@ -8,9 +8,9 @@
     "title",
     "ui-router"
   ],
-  "homepage": "https://github.com/ovh-ux/manager/tree/master/packages/components/ng-ui-router-breadcrumb#readme",
+  "homepage": "https://github.com/ovh/manager/tree/master/packages/components/ng-ui-router-title#readme",
   "bugs": {
-    "url": "https://github.com/ovh-ux/manager/issues"
+    "url": "https://github.com/ovh/manager/issues"
   },
   "repository": {
     "type": "git",
@@ -38,7 +38,7 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^7.0.0"
+    "@ovh-ux/component-rollup-config": "^7.0.0 || ^8.0.0"
   },
   "peerDependencies": {
     "@uirouter/angularjs": "^1.0.0",

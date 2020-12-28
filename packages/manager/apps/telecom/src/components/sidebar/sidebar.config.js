@@ -4,10 +4,9 @@ import { FeatureAvailability } from '@ovh-ux/ng-ovh-telecom-universe-components'
 import { FREEFAX_AVAILABILITY } from '@ovh-ux/manager-freefax';
 import { OTB_AVAILABILITY } from '@ovh-ux/manager-overthebox';
 import { ALIAS_AVAILABILITY } from '../../app/telecom/orders/alias/orders-alias.constants';
-import { PACK_AVAILABILITY } from '../../app/telecom/pack/pack.constant';
-import { TELEPHONY_AVAILABILITY } from '../../app/telecom/telephony/telecom-telephony.constant';
+import { PACK_AVAILABILITY } from '../../app/telecom/pack/dashboard/pack.constant';
 
-import { URLS } from './sidebar.constants';
+import { URLS, TELEPHONY_AVAILABILITY } from './sidebar.constants';
 
 angular.module('managerApp').run(($translate, asyncLoader) => {
   asyncLoader.addTranslations(
@@ -251,6 +250,8 @@ angular
                               'telecom_sidebar_actions_menu_internet_otb',
                             ),
                             href: URLS.overTheBox.FR,
+                            target: '_blank',
+                            extrnal: true,
                           },
                         ]
                       : []),

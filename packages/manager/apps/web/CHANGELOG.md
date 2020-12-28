@@ -1,3 +1,221 @@
+# [15.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.8.1...@ovh-ux/manager-web@15.9.0) (2020-12-22)
+
+
+### Bug Fixes
+
+* **translations:** clean translations files ([#4194](https://github.com/ovh/manager/issues/4194)) ([cbd2ad2](https://github.com/ovh/manager/commit/cbd2ad273a0dc190ab33e93f7efc58b10768733f))
+
+
+### Features
+
+* **env:** use application name and universe ([bac5c66](https://github.com/ovh/manager/commit/bac5c66cb7e3edad7ddf3abfdeead6075a74661c))
+* **hosting.email.activate:** allow dns zone to activate email option ([#4147](https://github.com/ovh/manager/issues/4147)) ([44b4fad](https://github.com/ovh/manager/commit/44b4fadb94fdecea309f27d7eadd9698a011a1de))
+
+
+
+## [15.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.8.0...@ovh-ux/manager-web@15.8.1) (2020-12-14)
+
+
+### Bug Fixes
+
+* **domain.dashboard.webhosting-enable:** display error message info ([#4162](https://github.com/ovh/manager/issues/4162)) ([9901e60](https://github.com/ovh/manager/commit/9901e608bd7eb422ac1e1732fea512549de1bff1))
+
+
+
+# [15.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.7.3...@ovh-ux/manager-web@15.8.0) (2020-12-08)
+
+
+### Bug Fixes
+
+* **domain.validator:** allow underscore in CNAME ([#4091](https://github.com/ovh/manager/issues/4091)) ([5cd8783](https://github.com/ovh/manager/commit/5cd87836ee63bae9934e311f363b33fb91679ce5))
+* **domain.zone.record:** set the SPF value according current region ([#4133](https://github.com/ovh/manager/issues/4133)) ([daf8526](https://github.com/ovh/manager/commit/daf8526f327f0480a70fe34d587c3a80ab165ebf))
+* **i18n:** add missing translations [CDS 685] ([6d69dc6](https://github.com/ovh/manager/commit/6d69dc69b27f9769ed955e1917f7d8d05267f292))
+* **i18n:** add missing translations [CDS 693] ([cc4fafa](https://github.com/ovh/manager/commit/cc4fafad05f59ecab600247686b99e7780039b28))
+
+
+### Features
+
+* set application in feature flipping ([#4124](https://github.com/ovh/manager/issues/4124)) ([365a35b](https://github.com/ovh/manager/commit/365a35babe4641131622ff0122160bb7d5198f92))
+
+
+
+## [15.7.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.7.2...@ovh-ux/manager-web@15.7.3) (2020-12-02)
+
+
+### Bug Fixes
+
+* **private-database.order.clouddb:** fix typo [skip ci] ([9b7b3d2](https://github.com/ovh/manager/commit/9b7b3d2e02c070376358e68f9361180650387b32)), closes [#4120](https://github.com/ovh/manager/issues/4120)
+
+
+
+## [15.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.7.1...@ovh-ux/manager-web@15.7.2) (2020-12-01)
+
+
+### Bug Fixes
+
+* **domain.zone:** allow zone deletion attached to web hosting ([#4111](https://github.com/ovh/manager/issues/4111)) ([cfd7eb2](https://github.com/ovh/manager/commit/cfd7eb2cacaa352c028c1265e792b3e1519218e7))
+
+
+
+## [15.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.7.0...@ovh-ux/manager-web@15.7.1) (2020-11-25)
+
+
+### Bug Fixes
+
+* **chatbot:** add support level ([c02cec4](https://github.com/ovh/manager/commit/c02cec46c98056a4103ad4fbd8c38e2fcceda1a1))
+* **deps:** upgrade ovh-api-services to v11.0.1 ([#4067](https://github.com/ovh/manager/issues/4067)) ([994f173](https://github.com/ovh/manager/commit/994f173072ab2e6920fa48049d477579f7364657))
+* **i18n:** add missing translations [CDS 674] ([464f1fd](https://github.com/ovh/manager/commit/464f1fd2a6e5a7fb166f71737829a8d040c6675f))
+
+
+### Performance Improvements
+
+* **chatbot:** delay the chatbot initialization ([0ad6d18](https://github.com/ovh/manager/commit/0ad6d1804519417b3a8d0a71e0d17a5a3909e7a7))
+
+
+
+# [15.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.6.1...@ovh-ux/manager-web@15.7.0) (2020-11-25)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 682] ([15ad38e](https://github.com/ovh/manager/commit/15ad38eebe18712963cda0d15fcf80a2680c6ea5))
+
+
+### Features
+
+* **domain:** add recommended hosting offer ([8b0f386](https://github.com/ovh/manager/commit/8b0f386e6a7e49193be32ca9fee405395e94f319))
+
+
+
+## [15.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.6.0...@ovh-ux/manager-web@15.6.1) (2020-11-19)
+
+
+### Bug Fixes
+
+* **hosting:** update value base on switch modelValue ([#4060](https://github.com/ovh/manager/issues/4060)) ([3077322](https://github.com/ovh/manager/commit/307732258e85649b1afc06914e6eae48a5f628d8))
+
+
+
+# [15.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.5.2...@ovh-ux/manager-web@15.6.0) (2020-11-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 672] ([980aa6b](https://github.com/ovh/manager/commit/980aa6bf26b4281eb007effba060432cb3686bb8))
+
+
+### Features
+
+* **hosting:** add Shared CDN ([7494079](https://github.com/ovh/manager/commit/7494079ea3307b20c9c2eccb2c3f70e3b1c1c6a9))
+
+
+
+## [15.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.5.1...@ovh-ux/manager-web@15.5.2) (2020-11-16)
+
+
+### Bug Fixes
+
+* **translations:** clean translations files ([#4008](https://github.com/ovh/manager/issues/4008)) ([3dfc129](https://github.com/ovh/manager/commit/3dfc1296ce2e702b08b1f54c007123ad0c55a53a))
+
+
+### Performance Improvements
+
+* remove unused angular-flash-alert dependency ([#4012](https://github.com/ovh/manager/issues/4012)) ([81f51a5](https://github.com/ovh/manager/commit/81f51a55d6ffaa3f95980d99b15d4c873dcc959d))
+* remove unused angular-vs-repeat dependency ([#4010](https://github.com/ovh/manager/issues/4010)) ([4691d0c](https://github.com/ovh/manager/commit/4691d0cd429270e8fa16a7bcf16ce0b48d0e295c))
+* remove unused ckeditor import ([#3995](https://github.com/ovh/manager/issues/3995)) ([42b1a31](https://github.com/ovh/manager/commit/42b1a31dd836dbcc207ccdfe7fc421fc028e6061))
+* remove unused jquery-cookie dependency ([#4014](https://github.com/ovh/manager/issues/4014)) ([9114662](https://github.com/ovh/manager/commit/9114662d99b4a8d71d8060af7d6d6556dcf0d331))
+* remove unused lodash import ([#4013](https://github.com/ovh/manager/issues/4013)) ([980de2c](https://github.com/ovh/manager/commit/980de2ce8beba6d8fd4a9ae4892f96ad978ed065))
+
+
+
+## [15.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.5.0...@ovh-ux/manager-web@15.5.1) (2020-10-29)
+
+
+### Bug Fixes
+
+* **domain:** fix ds records edition ([#3928](https://github.com/ovh/manager/issues/3928)) ([e018654](https://github.com/ovh/manager/commit/e0186549e601780908cce1614c590363b47c0d23))
+* **hosting:** add `track by` to ensure that "More" tab will always be displayed ([#3933](https://github.com/ovh/manager/issues/3933)) ([55c58f8](https://github.com/ovh/manager/commit/55c58f8d73bd1b03d31a5d2604bc6cd2511863fd))
+* **hosting.cdn:** prevent checkout autopay if there are no payment mean ([#3893](https://github.com/ovh/manager/issues/3893)) ([e3ef7c8](https://github.com/ovh/manager/commit/e3ef7c8884e6df94e3e1f33808fcbcd22034c004))
+* **i18n:** add missing translations [CDS 635] ([7eaf0f5](https://github.com/ovh/manager/commit/7eaf0f5388c3c3cc6a94cf17a6a77b0f138926fc))
+
+
+
+# [15.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.4.0...@ovh-ux/manager-web@15.5.0) (2020-10-28)
+
+
+### Bug Fixes
+
+* **deps:** upgrade webpack to v4.44.2 ([fc868d2](https://github.com/ovh/manager/commit/fc868d2670b0de220837c8917d90fa3020e6d4ca))
+* **i18n:** add missing translations [CDS 634] ([a35adc9](https://github.com/ovh/manager/commit/a35adc9948ee3f648aaf1b82c4d84c5f39d97e6a))
+* **preloader:** attach preloader with user language ([6eb9cc1](https://github.com/ovh/manager/commit/6eb9cc1cc362f8cc2426965d8563de1af9dee0c8))
+* **web:** human readable private database versions ([#3841](https://github.com/ovh/manager/issues/3841)) ([b885636](https://github.com/ovh/manager/commit/b8856366f998a8e445f7a8a70e9837c293780066)), closes [#DTRSD-22071](https://github.com/ovh/manager/issues/DTRSD-22071)
+* add regenerator-runtime ([982d03a](https://github.com/ovh/manager/commit/982d03a1054ecc3c6fb886f57c8b8f9afe0e7001))
+* replace flatten usage ([#3839](https://github.com/ovh/manager/issues/3839)) ([aef1003](https://github.com/ovh/manager/commit/aef1003b64502147768a2983019d906197798d27))
+
+
+### Features
+
+* **hosting:** add beta badge to statistics & logs shortcut ([#3916](https://github.com/ovh/manager/issues/3916)) ([f7b5afe](https://github.com/ovh/manager/commit/f7b5afe8955b62219f3795cc795157227f7f3b04))
+* add core-js to polyfill ([1411e1c](https://github.com/ovh/manager/commit/1411e1ca873d1ffd715c43fcadfe96f26e5be874))
+
+
+
+# [15.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.3.9...@ovh-ux/manager-web@15.4.0) (2020-10-26)
+
+
+### Bug Fixes
+
+* **preloader:** attach preloader with user language ([6c65188](https://github.com/ovh/manager/commit/6c6518888146a4c90bd9268d0db40cb2d2df699f))
+
+
+### Features
+
+* **navbar:** rename web & server universes ([#3920](https://github.com/ovh/manager/issues/3920)) ([c740a60](https://github.com/ovh/manager/commit/c740a60a714ecf1ce1aa55cfd7bff99d95fc6eaf))
+
+
+
+## [15.3.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.3.8...@ovh-ux/manager-web@15.3.9) (2020-10-20)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v11.0.0 ([#3869](https://github.com/ovh/manager/issues/3869)) ([df90e4d](https://github.com/ovh/manager/commit/df90e4de660920e3cd07b2ff6b4452b0aa861377))
+
+
+
+## [15.3.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.3.7...@ovh-ux/manager-web@15.3.8) (2020-10-15)
+
+
+### Bug Fixes
+
+* **web.privatedb:** hide order ram button in oom modal if not possible ([#3842](https://github.com/ovh/manager/issues/3842)) ([182f5e4](https://github.com/ovh/manager/commit/182f5e42e2e1734daa8bfe29a050dc40628844bd))
+
+
+
+## [15.3.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.3.6...@ovh-ux/manager-web@15.3.7) (2020-10-13)
+
+
+### Bug Fixes
+
+* **deps:** upgrade to @ovh-ux/manager-config v2.0.0 ([ca3f955](https://github.com/ovh/manager/commit/ca3f9554c13b1436cbdeed3de8ac69e399d5dd93))
+* **domain.operation.update:** translate some form labels ([c84c175](https://github.com/ovh/manager/commit/c84c175b4eacc35805b8a57eb6a93ab5410df5df))
+* **i18n:** add missing translations [CDS 598] ([e5be4ff](https://github.com/ovh/manager/commit/e5be4ff3567df1171c776fb7315c8be4d09c423f))
+* **i18n:** add missing translations [CDS 603] ([4e2e675](https://github.com/ovh/manager/commit/4e2e675b06edca380c3e23a63c28bfd0db442d83))
+* **i18n:** add missing translations [CDS 608] ([3adf17d](https://github.com/ovh/manager/commit/3adf17d42e44f15a6c4775cab693b944495a07ee))
+* **private-database.order:** add missing translations ([7b0f1fd](https://github.com/ovh/manager/commit/7b0f1fd6984890ccd408c93195d548171e5c0b40))
+* **private-database.order:** prevent error message on landing ([4a33232](https://github.com/ovh/manager/commit/4a33232b55c579f7840faa3a299ec8846db3958a))
+
+
+
+## [15.3.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.3.5...@ovh-ux/manager-web@15.3.6) (2020-10-12)
+
+
+### Bug Fixes
+
+* **hosting:** prevent email activation if it is not possible ([#3808](https://github.com/ovh/manager/issues/3808)) ([d08a7f9](https://github.com/ovh/manager/commit/d08a7f959736fd70eea3cf90bb48b8705f05b71f))
+
+
+
 ## [15.3.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.3.4...@ovh-ux/manager-web@15.3.5) (2020-10-07)
 
 

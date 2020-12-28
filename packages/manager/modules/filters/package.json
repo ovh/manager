@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-filters",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "private": true,
   "description": "Set of filters for the manager application",
   "repository": {

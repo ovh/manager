@@ -1,3 +1,59 @@
+# [5.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@5.3.0...@ovh-ux/manager-navbar@5.4.0) (2020-11-25)
+
+
+### Features
+
+* **environment:** replace api calls by user env ([7afcf8b](https://github.com/ovh/manager/commit/7afcf8b22a832df90f95eec8e29da26455b65df0))
+
+
+
+# [5.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@5.2.1...@ovh-ux/manager-navbar@5.3.0) (2020-11-02)
+
+
+### Features
+
+* remove one time binding to swicth active link ([c4ebeaf](https://github.com/ovh/manager/commit/c4ebeaf25c4d040079ded5a2162ebd2daf2a56b3))
+* update translations ([337dcf4](https://github.com/ovh/manager/commit/337dcf4a6a29aca88081e271d33b8f50e599caba))
+
+
+
+## [5.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@5.2.0...@ovh-ux/manager-navbar@5.2.1) (2020-10-28)
+
+
+### Bug Fixes
+
+* **language.menu:** temporarily force display of cs_CZ language ([9069191](https://github.com/ovh/manager/commit/9069191b590b9d0c4737517b03cdc7e95601a82d))
+* **peer-deps:** upgrade @ovh-ux/ui-kit to v4.4.1 ([8254623](https://github.com/ovh/manager/commit/82546237336e185ae7d973a1bb2aabddbb50112e))
+
+
+
+# [5.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@5.1.2...@ovh-ux/manager-navbar@5.2.0) (2020-10-26)
+
+
+### Features
+
+* **navbar:** rename web & server universes ([#3920](https://github.com/ovh/manager/issues/3920)) ([c740a60](https://github.com/ovh/manager/commit/c740a60a714ecf1ce1aa55cfd7bff99d95fc6eaf))
+
+
+
+## [5.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@5.1.1...@ovh-ux/manager-navbar@5.1.2) (2020-10-20)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v11.0.0 ([#3869](https://github.com/ovh/manager/issues/3869)) ([df90e4d](https://github.com/ovh/manager/commit/df90e4de660920e3cd07b2ff6b4452b0aa861377))
+
+
+
+## [5.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@5.1.0...@ovh-ux/manager-navbar@5.1.1) (2020-10-13)
+
+
+### Bug Fixes
+
+* **deps:** upgrade to @ovh-ux/manager-config v2.0.0 ([ca3f955](https://github.com/ovh/manager/commit/ca3f9554c13b1436cbdeed3de8ac69e399d5dd93))
+
+
+
 # [5.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@5.0.0...@ovh-ux/manager-navbar@5.1.0) (2020-08-18)
 
 

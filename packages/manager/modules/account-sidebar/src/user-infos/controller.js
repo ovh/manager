@@ -1,66 +1,30 @@
 import toUpper from 'lodash/toUpper';
 
+import { Environment } from '@ovh-ux/manager-config';
 import { EXCLUDED_ROLES } from './constants';
 
 export default class ManagerHubUserInfosCtrl {
   /* @ngInject */
-  constructor(
-    $http,
-    $q,
-    atInternet,
-    OvhApiMe,
-    RedirectionService,
-    ssoAuthentication,
-  ) {
+  constructor($http, $q, atInternet, RedirectionService, ssoAuthentication) {
     this.$http = $http;
     this.$q = $q;
     this.atInternet = atInternet;
-    this.OvhApiMe = OvhApiMe;
     this.ssoAuthentication = ssoAuthentication;
     this.RedirectionService = RedirectionService;
   }
 
   $onInit() {
     this.userAccountUrl = this.RedirectionService.getURL('userAccount');
-    return this.$q.all([
-      this.fetchRole(),
-      this.fetchMe(),
-      this.fetchSupportLevel(),
-    ]);
-  }
 
-  fetchMe() {
-    return this.$q
-      .when(this.me ? this.me : this.OvhApiMe.v6().get().$promise)
-      .then((me) => {
-        this.me = me;
-      });
-  }
-
-  fetchSupportLevel() {
-    if (this.supportLevel) {
-      return this.$q.when(this.supportLevel);
+    if (!this.me) {
+      this.me = Environment.getUser();
     }
-    this.loading = true;
-    return this.OvhApiMe.v6()
-      .supportLevel()
-      .$promise.then((supportLevel) => {
-        this.supportLevel = supportLevel;
-      })
-      .catch(() => {
-        this.supportLevel = null;
-      })
-      .finally(() => {
-        this.loading = false;
-      });
-  }
-
-  fetchRole() {
-    return this.$http.get('/auth/details').then(({ data }) => {
-      if (!EXCLUDED_ROLES.includes(data.method)) {
-        this.role = data.method;
-      }
-    });
+    if (!this.supportLevel) {
+      this.supportLevel = this.me.supportLevel;
+    }
+    if (!EXCLUDED_ROLES.includes(this.me.auth.method)) {
+      this.role = this.me.auth.method;
+    }
   }
 
   getNameInitials() {

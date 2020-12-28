@@ -17,6 +17,7 @@ export default class {
     $translate,
     $stateParams,
     $uibModal,
+    goBack,
     OvhApiSms,
     TucSmsMediator,
     TucToast,
@@ -31,6 +32,7 @@ export default class {
         templates: OvhApiSms.Templates().v6(),
       },
     };
+    this.goBack = goBack;
     this.TucSmsMediator = TucSmsMediator;
     this.TucToast = TucToast;
     this.TucToastError = TucToastError;

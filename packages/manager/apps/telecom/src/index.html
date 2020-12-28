@@ -40,12 +40,7 @@
                 <!-- /Skip to main content -->
                 <div data-ui-view="navbar">
                     <ovh-manager-navbar
-                        data-navbar-options="{
-                            toggle: {
-                                event: 'sidebar:loaded'
-                            },
-                            universe: 'telecom'
-                        }"
+                        data-navbar-options="$ctrl.navbarOptions"
                         data-universe-click="$ctrl.openSidebar()"
                         data-global-search-link="{{ $ctrl.globalSearchLink }}"
                     >
@@ -88,9 +83,10 @@
                                     <ovh-browser-alert></ovh-browser-alert>
 
                                     <ovh-chatbot
-                                        data-ng-if="$ctrl.user.ovhSubsidiary"
+                                        data-ng-if="$ctrl.chatbotEnabled"
                                         data-language="{{$ctrl.currentLanguage}}"
                                         data-country="{{$ctrl.user.ovhSubsidiary}}"
+                                        data-support-level="{{$ctrl.user.supportLevel.level}}"
                                     ></ovh-chatbot>
 
                                     <div data-ui-view></div>

@@ -5,7 +5,7 @@ export default /* @ngInject */ ($stateProvider) => {
       url: '/service-key/:serviceKeyId/regenerate',
       views: {
         modal: {
-          component: 'cloudConnectRegenerateServiceKey',
+          component: 'cloudConnectDetailsRegenerateServiceKey',
         },
       },
       layout: 'modal',

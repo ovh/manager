@@ -10,6 +10,7 @@ export default class HostingCronsCtrl {
     $stateParams,
     $timeout,
     $translate,
+    atInternet,
     Alerter,
     Hosting,
     HostingCron,
@@ -19,6 +20,7 @@ export default class HostingCronsCtrl {
     this.$stateParams = $stateParams;
     this.$timeout = $timeout;
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.Alerter = Alerter;
     this.Hosting = Hosting;
     this.HostingCron = HostingCron;
@@ -26,6 +28,8 @@ export default class HostingCronsCtrl {
   }
 
   $onInit() {
+    this.atInternet.trackPage({ name: 'web::hosting::cron' });
+
     this.crons = {
       details: [],
     };

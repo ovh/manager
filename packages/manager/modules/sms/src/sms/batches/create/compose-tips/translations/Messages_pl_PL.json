@@ -1,0 +1,8 @@
+{
+  "sms_sms_compose_tip_compose_title": "Redagowanie wiadomości SMS",
+  "sms_sms_compose_tip_size_paragraphe_1": "Maksymalna długość SMS-a to 160 znaków (norma GSM 03.38).",
+  "sms_sms_compose_tip_size_paragraphe_2": "Dwie poniższe tabele zawierają listę dozwolonych znaków.",
+  "sms_sms_compose_tip_size_paragraphe_3": "<b>Uwaga:</b> użycie znaków niewymienionych w tych tabelach spowoduje przełączenie kodowania na Unicode i skrócenie maksymalnej długości wiadomości SMS do 70 znaków.",
+  "sms_sms_compose_tip_size_characters_basics": "Znaki podstawowe ",
+  "sms_sms_compose_tip_size_characters_extensions": "Rozszerzenia"
+}

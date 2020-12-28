@@ -1,3 +1,0 @@
-{
-  "dedicatedCloud_datacenter_backup_nospla": "Il servizio di backup richiede una licenza SPLA valida sul Private Cloud. Per attivare la licenza, accedi alla sezione <a href=\"{{ licenceLink }}\">Licenza Windows</a> del tuo servizio."
-}

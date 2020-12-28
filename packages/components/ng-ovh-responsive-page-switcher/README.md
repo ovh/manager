@@ -41,7 +41,7 @@ yarn test
 * [matchmedia-ng](https://github.com/AnalogJ/matchmedia-ng)
 * [angular-animate](https://docs.angularjs.org/api/ngAnimate)
 
-__Note__ : `ng-ovh-responsive-page-switcher` is suitable with [ng-ovh-responsive-popover](https://github.com/ovh-ux/ng-ovh-responsive-popover).
+__Note__ : `ng-ovh-responsive-page-switcher` is suitable with [ng-ovh-responsive-popover](https://github.com/ovh/manager/tree/master/packages/components/ng-ovh-responsive-popover).
 
 ## Module Components
 
@@ -54,7 +54,7 @@ __Note__ : `ng-ovh-responsive-page-switcher` is suitable with [ng-ovh-responsive
 
 ## Contributing
 
-Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh-ux/ng-ovh-responsive-page-switcher/issues/new) or working on some of the [open issues](https://github.com/ovh-ux/ng-ovh-responsive-page-switcher/issues), our [contributing guide](CONTRIBUTING.md) will help get you started.
+Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh/manager/issues/new) or working on some of the [open issues](https://github.com/ovh/manager/issues), our [contributing guide](https://github.com/ovh/manager/blob/master/CONTRIBUTING.md) will help get you started.
 
 ## License
 

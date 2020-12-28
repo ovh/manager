@@ -1,0 +1,66 @@
+<div class="dedicatedCloud-users-rights">
+    <div class="text-center" data-ng-if="$ctrl.loading.init">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <div data-ng-if="!$ctrl.loading.init">
+        <oui-back-button data-on-click="$ctrl.goBack()">
+            <span
+                data-translate="dedicatedCloud_USER_rights_management_by_datacenter"
+                data-translate-values="{ t0: $ctrl.selectedUser.name }"
+            ></span>
+        </oui-back-button>
+
+        <oui-datagrid data-rows-loader="$ctrl.loadUserRights($config)">
+            <oui-datagrid-column
+                data-title=":: 'dedicatedCloud_datacenter_count' | translate"
+                data-property="datacenterName"
+                data-type="text"
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'dedicatedCloud_USER_access_vsphere' | translate"
+            >
+                <span
+                    data-translate="{{ 'dedicatedCloud_USER_right_' + $row.right }}"
+                ></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'dedicatedCloud_USER_resource' | translate"
+            >
+                <span
+                    data-translate="common_yes"
+                    data-ng-if="$row.canAddResource"
+                >
+                </span>
+                <span
+                    data-translate="common_no"
+                    data-ng-if="!$row.canAddResource"
+                >
+                </span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'dedicatedCloud_USER_VM_NETWORK_ROLE' | translate"
+            >
+                <span
+                    data-translate="{{ 'dedicatedCloud_USER_right_' + $row.vmNetworkRole }}"
+                ></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: ('dedicatedCloud_USER_NETWORK_ROLE_' + $ctrl.pccType) | translate"
+            >
+                <span
+                    data-translate="{{ 'dedicatedCloud_USER_right_' + $row.networkRole }}"
+                ></span>
+            </oui-datagrid-column>
+            <oui-action-menu data-compact data-placement="end">
+                <oui-action-menu-item
+                    data-on-click="$ctrl.editRight($row.rightId)"
+                    ><span
+                        data-translate="dedicatedCloud_USER_right_modify"
+                    ></span>
+                </oui-action-menu-item>
+            </oui-action-menu>
+        </oui-datagrid>
+    </div>
+</div>

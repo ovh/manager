@@ -69,7 +69,66 @@ export /* @ngInject */ function trackOnDirective(atInternet) {
   };
 }
 
+/**
+ * @ngdoc directive
+ * @require atInternetProvider
+ * @name trackImpression
+ * @description
+ * Simple attribute directive to track impressions on DOM elements.
+ * https://developers.atinternet-solutions.com/javascript-en/campaigns-javascript-en/on-site-ads-javascript-en/
+ *
+ * Example:
+ * ```html
+ * <button data-track-impression="impressionData"></button>
+ * ```
+ */
+export /* @ngInject */ function trackImpressionDirective(atInternet) {
+  return {
+    restrict: 'A',
+    scope: {
+      trackImpression: '@',
+    },
+    link($scope, $element, $attr) {
+      atInternet.trackImpression($attr.trackImpression);
+    },
+  };
+}
+
+/**
+ * @ngdoc directive
+ * @require atInternetProvider
+ * @name trackImpressionClick
+ * @description
+ * Simple attribute directive to track impression click events on DOM elements.
+ * https://developers.atinternet-solutions.com/javascript-en/campaigns-javascript-en/on-site-ads-javascript-en/
+ *
+ * Example:
+ * ```html
+ * <button data-track-impression-click="impressionData"></button>
+ * ```
+ */
+export /* @ngInject */ function trackImpressionClickDirective(atInternet) {
+  return {
+    restrict: 'A',
+    scope: {
+      trackImpressionClick: '@',
+    },
+    link($scope, $element, $attr) {
+      $element.on('click', (event) => {
+        const impressionClickData = {
+          elem: this,
+          click: $attr.trackImpressionClick,
+          event,
+        };
+
+        atInternet.trackClickImpression(impressionClickData);
+      });
+    },
+  };
+}
 export default {
   atInternetClickDirective,
+  trackImpressionDirective,
+  trackImpressionClickDirective,
   trackOnDirective,
 };

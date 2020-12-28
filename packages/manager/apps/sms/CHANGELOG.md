@@ -1,3 +1,53 @@
+## [7.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms-app@7.3.1...@ovh-ux/manager-sms-app@7.3.2) (2020-12-22)
+
+
+### Bug Fixes
+
+* update to use latest list layout ([c0cad60](https://github.com/ovh/manager/commit/c0cad603c8cce8ca8833c58c95d444aebfff7622))
+
+
+
+## [7.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms-app@7.3.0...@ovh-ux/manager-sms-app@7.3.1) (2020-11-25)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v11.0.1 ([#4067](https://github.com/ovh/manager/issues/4067)) ([994f173](https://github.com/ovh/manager/commit/994f173072ab2e6920fa48049d477579f7364657))
+
+
+
+# [7.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms-app@7.2.9...@ovh-ux/manager-sms-app@7.3.0) (2020-10-28)
+
+
+### Bug Fixes
+
+* add regenerator-runtime ([982d03a](https://github.com/ovh/manager/commit/982d03a1054ecc3c6fb886f57c8b8f9afe0e7001))
+
+
+### Features
+
+* add core-js to polyfill ([1411e1c](https://github.com/ovh/manager/commit/1411e1ca873d1ffd715c43fcadfe96f26e5be874))
+
+
+
+## [7.2.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms-app@7.2.8...@ovh-ux/manager-sms-app@7.2.9) (2020-10-20)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v11.0.0 ([#3869](https://github.com/ovh/manager/issues/3869)) ([df90e4d](https://github.com/ovh/manager/commit/df90e4de660920e3cd07b2ff6b4452b0aa861377))
+
+
+
+## [7.2.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms-app@7.2.7...@ovh-ux/manager-sms-app@7.2.8) (2020-10-13)
+
+
+### Bug Fixes
+
+* **deps:** upgrade to @ovh-ux/manager-config v2.0.0 ([ca3f955](https://github.com/ovh/manager/commit/ca3f9554c13b1436cbdeed3de8ac69e399d5dd93))
+
+
+
 ## [7.2.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms-app@7.2.6...@ovh-ux/manager-sms-app@7.2.7) (2020-09-18)
 
 

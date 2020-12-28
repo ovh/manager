@@ -21,6 +21,9 @@ export default /* @ngInject */ ($stateProvider) => {
           OvhApiCloudDBEnterprise.v6().terminate({ clusterId: serviceId })
             .$promise,
       },
+      atInternet: {
+        ignore: true,
+      },
     },
   );
 };

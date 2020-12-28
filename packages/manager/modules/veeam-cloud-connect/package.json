@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-veeam-cloud-connect",
-  "version": "2.0.2",
+  "version": "2.0.4",
   "private": true,
   "description": "Veeam Cloud Connect product.",
   "repository": {
@@ -17,8 +17,8 @@
   "peerDependencies": {
     "@ovh-ux/manager-core": "^10.0.0 || ^11.0.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.0",
-    "@ovh-ux/ng-ui-router-layout": "^4.0.0",
-    "@ovh-ux/ui-kit": "^4.1.12",
+    "@ovh-ux/ng-ui-router-layout": "^4.0.1",
+    "@ovh-ux/ui-kit": "^4.4.1",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",
@@ -26,7 +26,7 @@
     "flag-icon-css": "~0.8.5",
     "moment": "^2.24.0",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^9.39.1",
+    "ovh-api-services": "^11.0.0",
     "ovh-ui-kit-bs": "^4.1.5"
   }
 }

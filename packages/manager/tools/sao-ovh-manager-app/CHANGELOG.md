@@ -1,3 +1,36 @@
+# [2.3.0](https://github.com/ovh/manager/compare/@ovh-ux/sao-ovh-manager-app@2.2.0...@ovh-ux/sao-ovh-manager-app@2.3.0) (2020-11-16)
+
+
+### Features
+
+* prompt new question to describe application ([1c52880](https://github.com/ovh/manager/commit/1c528803b55f39a39719b09135506716d35b2bd0))
+
+
+
+# [2.2.0](https://github.com/ovh/manager/compare/@ovh-ux/sao-ovh-manager-app@2.1.1...@ovh-ux/sao-ovh-manager-app@2.2.0) (2020-10-28)
+
+
+### Bug Fixes
+
+* scaffold app that use @ovh-ux/ui-kit v4.4.1 ([bbe5ac6](https://github.com/ovh/manager/commit/bbe5ac6df41f61b40587097caeed71907c901d98))
+* **template:** attach preloader with user language ([72e9cce](https://github.com/ovh/manager/commit/72e9cce9c98c77c07a3dc96c009ca9498675c113))
+
+
+### Features
+
+* **template:** add core-js to polyfill ([997fac7](https://github.com/ovh/manager/commit/997fac7f95400073310a12a8184b7ec24e63b4a3))
+
+
+
+## [2.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/sao-ovh-manager-app@2.1.0...@ovh-ux/sao-ovh-manager-app@2.1.1) (2020-10-26)
+
+
+### Bug Fixes
+
+* **template:** attach preloader with user language ([4616d7b](https://github.com/ovh-ux/manager/commit/4616d7b1423fd2bd937219689a55243a99fbd017))
+
+
+
 # [2.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/sao-ovh-manager-app@2.0.0...@ovh-ux/sao-ovh-manager-app@2.1.0) (2020-08-18)
 
 

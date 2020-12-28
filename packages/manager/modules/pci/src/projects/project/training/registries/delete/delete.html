@@ -1,0 +1,19 @@
+<form
+    id="trainingDeleteRegistry"
+    name="trainingDeleteRegistry"
+    data-ng-submit="trainingDeleteRegistry.$valid && $ctrl.deleteRegistryConfirm()"
+    novalidate
+>
+    <oui-modal
+        data-heading="{{:: 'pci_projects_project_training_registries_delete' | translate }}"
+        data-primary-label="{{:: 'pci_projects_project_training_registries_delete_common_delete' | translate }}"
+        data-secondary-label="{{:: 'pci_projects_project_training_registries_delete_common_cancel' | translate }}"
+        data-secondary-action="$ctrl.goBack()"
+        data-on-dismiss="$ctrl.goBack()"
+        data-loading="$ctrl.loading"
+    >
+        <p
+            data-translate="pci_projects_project_training_registries_delete_warning"
+        ></p>
+    </oui-modal>
+</form>

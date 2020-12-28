@@ -1,0 +1,13 @@
+{
+  "dedicatedCloud_host_order_title": "Order a host",
+  "dedicatedCloud_host_order_info_EPCC": "You can customise your Private Cloud by adding hosts. You will then be redirected to a new tab to complete your order.",
+  "dedicatedCloud_host_order_select": "Select a host type:",
+  "dedicatedCloud_host_order_host": "Host",
+  "dedicatedCloud_host_order_price": "Price",
+  "dedicatedCloud_host_order_speed": "CPU Speed",
+  "dedicatedCloud_host_order_memory": "RAM",
+  "dedicatedCloud_host_order_cores": "Number of cores",
+  "dedicatedCloud_host_order_quantity": "Quantity:",
+  "dedicatedCloud_host_order_confirm": "Confirm order",
+  "dedicatedCloud_host_order_loading_error": "An error has occurred loading the host information."
+}

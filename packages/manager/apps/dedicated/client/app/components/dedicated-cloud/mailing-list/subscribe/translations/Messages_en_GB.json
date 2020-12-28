@@ -1,0 +1,11 @@
+{
+  "dedicatedCloud_subscribe_mailing": "Sign up to the mailing list",
+  "dedicatedCloud_subscribe_mailing_disabled_EPCC": "Unable to sign up to the Hosted Private Cloud mailing list ({{t0}}).",
+  "dedicatedCloud_subscribe_mailing_step1_EPCC": "Enter your email address to sign up to the Hosted Private Cloud mailing list ({{t0}}):",
+  "dedicatedCloud_subscribe_mailing_step2_EPCC": "You are about to sign up {{t0}} to the Hosted Private Cloud mailing list ({{t1}})",
+  "dedicatedCloud_subscribe_mailing_step2_success": "Your request to sign up to <b>{{t0}}</b> has been registered",
+  "dedicatedCloud_subscribe_mailing_step2_error": "An error has occurred requesting to sign up to <b>{{t0}}</b>",
+  "dedicatedCloud_subscribe_mailing_disabled_MBM": "Unable to subscribe to the Managed Bare Metal mailing list ({{t0}}).",
+  "dedicatedCloud_subscribe_mailing_step1_MBM": "Please enter your email address to subscribe to the Managed Bare Metal mailing list ({{t0}}):",
+  "dedicatedCloud_subscribe_mailing_step2_MBM": "You are about to subscribe {{t0}} to the Managed Bare Metal mailing list ({{t1}})"
+}

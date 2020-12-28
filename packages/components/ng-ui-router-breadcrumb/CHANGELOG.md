@@ -1,3 +1,21 @@
+## [1.1.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ui-router-breadcrumb@1.1.1...@ovh-ux/ng-ui-router-breadcrumb@1.1.2) (2020-12-22)
+
+
+### Bug Fixes
+
+* **template:** prevent repeater error message ([#4191](https://github.com/ovh/manager/issues/4191)) ([7f15458](https://github.com/ovh/manager/commit/7f1545830cd43f8f55567f10ca113a9a1a6de240))
+
+
+
+## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ui-router-breadcrumb@1.1.0...@ovh-ux/ng-ui-router-breadcrumb@1.1.1) (2020-11-25)
+
+
+### Bug Fixes
+
+* **template:** prevent duplicate repeaters ([#4032](https://github.com/ovh/manager/issues/4032)) ([25a6c9e](https://github.com/ovh/manager/commit/25a6c9e7935ca7b17c305f7f26af9d9ee4cef940))
+
+
+
 # [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ui-router-breadcrumb@1.0.1...@ovh-ux/ng-ui-router-breadcrumb@1.1.0) (2020-04-01)
 
 

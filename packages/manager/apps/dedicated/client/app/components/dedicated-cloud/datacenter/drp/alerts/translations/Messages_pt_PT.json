@@ -1,0 +1,14 @@
+{
+  "dedicatedCloud_options_zerto_delivered_message_part_one_EPCC": "O seu plano de recuperação de desastres Zerto entre este Private Cloud e ",
+  "dedicatedCloud_options_zerto_delivered_message_part_two_ovh_EPCC": "o Private Cloud {{pccId}} foi instalado com êxito!",
+  "dedicatedCloud_options_zerto_delivered_message_part_two_onPremise": "a sua infraestrutura remota foi instalado com êxito!",
+  "dedicatedCloud_options_zerto_delivered_message_part_three": "Recebeu a sua palavra-passe ZSSP no endereço de e-mail {{email}}.",
+  "dedicatedCloud_datacenter_drp_confirm_creation_pending": "A ativação do seu DRP Zerto está em curso. A operação pode demorar até uma hora.",
+  "dedicatedCloud_datacenter_drp_confirm_creation_pending_task_EPCC": "Não hesite em verificar a tarefa enableDisasterRecovery do PCC principal para consultar o seu progresso.",
+  "dedicatedCloud_options_zerto_waiting_vpn_message_part_one": "Para finalizar a ativação do DRP Zerto",
+  "dedicatedCloud_options_zerto_waiting_vpn_message_part_two": "recomendamos que adicione os IP da VPN nos parâmetros do DRP",
+  "dedicatedCloud_datacenter_drp_required_vpn_configuration": "Para finalizar a ativação do DRP Zerto, recomendamos que adicione os IP da VPN abaixo",
+  "dedicatedCloud_options_zerto_delivered_message_part_one_MBM": "O seu plano de recuperação de desastres Zerto entre este serviço Essentials e ",
+  "dedicatedCloud_options_zerto_delivered_message_part_two_ovh_MBM": "o serviço Essentials {{pccId}} foi instalado com êxito!",
+  "dedicatedCloud_datacenter_drp_confirm_creation_pending_task_MBM": "Não hesite em verificar a tarefa enableDisasterRecovery do serviço Essentials principal para consultar o seu progresso."
+}

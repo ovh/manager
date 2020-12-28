@@ -1,0 +1,7 @@
+{
+  "dedicatedCloud_USER_enable_title": "Włącz użytkownika",
+  "dedicatedCloud_USER_enable_infos": "Ten użytkownik jest tymczasowym administratorem Twojej infrastruktury. Zostanie wyłączony za 2 godziny.",
+  "dedicatedCloud_USER_enable_message": "Czy chcesz włączyć użytkownika <strong>{{t0}}</strong>?",
+  "dedicatedCloud_USER_enable_success": "Użytkownik został włączony.",
+  "dedicatedCloud_USER_enable_fail": "Wystąpił błąd podczas aktywacji użytkownika:"
+}

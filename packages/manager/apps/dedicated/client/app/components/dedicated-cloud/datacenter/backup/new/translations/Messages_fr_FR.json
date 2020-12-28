@@ -1,0 +1,18 @@
+{
+  "dedicatedCloud_datacenter_backup_new_description1": "Il semblerait que vous n’avez pas activé de service de sauvegarde",
+  "dedicatedCloud_datacenter_backup_new_description2": "Vous pouvez choisir entre 3 nouvelles offres pour la sauvegarde de vos machines virtuelles (VM) : <strong>Standard</strong>, <strong>Advanced</strong> ou <strong>Premium</strong>.",
+  "dedicatedCloud_datacenter_backup_new_description3_EPCC": "L'offre choisie pour ce datacentre sera la seule disponible pour tous les autres datacentres de ce Private Cloud et la seule applicable à l'ensemble de vos machines virtuelles.",
+  "dedicatedCloud_datacenter_backup_new_description3_MBM": "L'offre choisie pour ce datacentre sera la seule disponible pour tous les autres datacentres de ce Essentials et la seule applicable à l'ensemble de vos machines virtuelles.",
+  "dedicatedCloud_datacenter_backup_new_tariff_url": "Consulter le détail des tarifs disponibles pour le backup Veeam",
+  "dedicatedCloud_datacenter_backup_new_restricted_offer_choice_EPCC": "L’offre {{offer}} a déjà été choisie sur le datacentre {{datacenterName}} de votre Private Cloud. Vous pouvez l’activer sur ce datacentre.",
+  "dedicatedCloud_datacenter_backup_new_restricted_offer_choice_MBM": "L’offre {{offer}} a déjà été choisie sur le datacentre {{datacenterName}} de votre Essentials. Vous pouvez l’activer sur ce datacentre.",
+  "dedicatedCloud_datacenter_backup_new_blocked_EPCC": "Une offre de sauvegarde est en cours de traitement dans un autre datacentre du Private Cloud. Vous ne pourrez pas activer de nouvelle offre tant que ce traitement n’est pas terminé.",
+  "dedicatedCloud_datacenter_backup_new_blocked_MBM": "Une offre de sauvegarde est en cours de traitement dans un autre datacentre du Essentials. Vous ne pourrez pas activer de nouvelle offre tant que ce traitement n’est pas terminé.",
+  "dedicatedCloud_datacenter_backup_new_choose_offer": "Choix de l'offre de sauvegarde",
+  "dedicatedCloud_datacenter_backup_new_choose_offer_action": "Choisir l'offre",
+  "dedicatedCloud_datacenter_backup_new_validate_conditions": "Validation des conditions d’utilisation",
+  "dedicatedCloud_datacenter_backup_new_activate_offer_action": "Activer l’offre",
+  "dedicatedCloud_datacenter_backup_new_create_success": "Votre demande d'activation de l'offre Veeam backup {{offerType}} est en cours. Vous pouvez suivre l'avancement des tâches <a href='{{operationsUrl}}'>ici</a>.",
+  "dedicatedCloud_datacenter_backup_new_order_success": "Votre <a target='_blank' rel='noopener' href='{{orderUrl}}'>bon de commande</a> d'activation de l'offre Veeam backup {{offerType}} a été généré avec succès. Une fois validé, vous pouvez suivre l'avancement des tâches <a href='{{operationsUrl}}'>ici</a>.",
+  "dedicatedCloud_datacenter_backup_new_create_error": "Impossible de créer une offre de sauvegarde : {{ message }}"
+}

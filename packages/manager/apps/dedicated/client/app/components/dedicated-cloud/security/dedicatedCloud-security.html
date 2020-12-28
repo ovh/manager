@@ -1,0 +1,216 @@
+<div class="dedicatedCloud-security">
+    <h2 data-translate="dedicatedCloud_tab_security"></h2>
+
+    <div class="text-center" data-ng-show="$ctrl.loaders.policiesInfo">
+        <oui-spinner></oui-spinner>
+    </div>
+    <div class="row" data-ng-if="!$ctrl.loaders.policiesInfo">
+        <div class="col-sm-9">
+            <dl>
+                <dt
+                    data-translate="dedicatedCloud_SECURITY_expiration_session"
+                ></dt>
+                <dd
+                    data-ng-bind="$ctrl.policies.info.userSessionTimeout == 0 && ('dedicatedCloud_SECURITY_expiration_session_never' | translate) || 'dedicatedCloud_SECURITY_expiration_session_value' | translate:{ t0: $ctrl.policies.info.userSessionTimeout }"
+                ></dd>
+                <dt
+                    data-translate="dedicatedCloud_SECURITY_nb_simultaneous_connection"
+                ></dt>
+                <dd
+                    data-ng-bind="$ctrl.policies.info.userLimitConcurrentSession == 0 && ('dedicatedCloud_SECURITY_nb_simultaneous_connection_none' | translate) || $ctrl.policies.info.userLimitConcurrentSession"
+                ></dd>
+                <dt
+                    data-translate="dedicatedCloud_SECURITY_userAccess_policy"
+                ></dt>
+                <dd
+                    data-translate="{{ 'dedicatedCloud_SECURITY_userAccess_policy_' + $ctrl.policies.info.userAccessPolicy }}"
+                ></dd>
+                <dt data-translate="dedicatedCloud_SECURITY_logout_policy"></dt>
+                <dd
+                    data-translate="{{ 'dedicatedCloud_SECURITY_logout_policy_' + $ctrl.policies.info.logoutPolicy }}"
+                ></dd>
+            </dl>
+            <div class="text-center" data-ng-show="$ctrl.loaders.table">
+                <oui-spinner></oui-spinner>
+            </div>
+            <div class="mb-5" data-ng-hide="$ctrl.loaders.table">
+                <p
+                    data-ng-bind=":: ('dedicatedCloud_SECURITY_title_' + $ctrl.pccType) | translate"
+                ></p>
+                <oui-datagrid
+                    data-rows-loader="$ctrl.loadPaginated($config)"
+                    data-on-row-select="$ctrl.globalCheckboxPoliciesStateChange($rows)"
+                    data-selectable-rows
+                >
+                    <oui-datagrid-column
+                        data-title="'dedicatedCloud_SECURITY_IP_name' | translate"
+                        data-property="network"
+                        data-type="string"
+                    ></oui-datagrid-column>
+                    <oui-datagrid-column
+                        data-title="'dedicatedCloud_SECURITY_allow' | translate"
+                        data-property="status"
+                    >
+                        <span
+                            class="oui-badge"
+                            data-ng-class="{
+                                'oui-badge_success': $row.status == 'ALLOWED',
+                                'oui-badge_error': $row.status == 'TO_DELETE',
+                                'oui-badge_warning': $row.status == 'TO_UPDATE'
+                            }"
+                        >
+                            <span
+                                data-translate="{{ 'dedicatedCloud_configuration_SECURITY_status_' + $row.status }}"
+                            ></span>
+                        </span>
+                    </oui-datagrid-column>
+                    <oui-datagrid-column
+                        data-title="'dedicatedCloud_SECURITY_description' | translate"
+                        data-property="description"
+                        data-type="string"
+                    ></oui-datagrid-column>
+                    <oui-action-menu
+                        data-ng-if="$row.status === 'ALLOWED'"
+                        aria-label="{{:: 'common_actions' | translate }}"
+                        data-compact
+                    >
+                        <oui-action-menu-item
+                            data-on-click="$ctrl.updateSecurity($row)"
+                        >
+                            <span
+                                data-translate="dedicatedCloud_SECURITY_modify"
+                            ></span>
+                        </oui-action-menu-item>
+                        <oui-action-menu-item
+                            data-on-click="$ctrl.deleteSecurity([$row.id], $ctrl.policies.model.list.results)"
+                        >
+                            <span
+                                data-translate="dedicatedCloud_SECURITY_delete"
+                            ></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+                </oui-datagrid>
+            </div>
+
+            <h3
+                class="oui-heading_2"
+                data-translate="dedicatedCloud_vm_encryption_kms_title"
+            ></h3>
+            <div class="mb-5">
+                <oui-datagrid
+                    data-rows-loader="$ctrl.getVMEncryptionKMSList($config)"
+                    data-row-loader="$ctrl.getVMEncryptionKMSDetail($row.id)"
+                    data-page-size="5"
+                >
+                    <oui-datagrid-column
+                        data-title="'dedicatedCloud_vm_encryption_kms_id' | translate"
+                        data-property="kmsId"
+                        data-type="string"
+                    ></oui-datagrid-column>
+                    <oui-datagrid-column
+                        data-title="'dedicatedCloud_vm_encryption_kms_description' | translate"
+                        data-property="description"
+                        data-type="string"
+                    ></oui-datagrid-column>
+                    <oui-datagrid-column
+                        data-title="'dedicatedCloud_vm_encryption_kms_ip' | translate"
+                        data-property="ip"
+                        data-type="string"
+                    ></oui-datagrid-column>
+                    <oui-datagrid-column
+                        data-title="'dedicatedCloud_vm_encryption_kms_port' | translate"
+                        data-property="kmsTcpPort"
+                        data-type="string"
+                    ></oui-datagrid-column>
+                    <oui-datagrid-column
+                        data-title="'dedicatedCloud_vm_encryption_kms_sslThumbprint' | translate"
+                        data-property="sslThumbprint"
+                        data-type="string"
+                    ></oui-datagrid-column>
+                    <oui-datagrid-column
+                        data-title="'dedicatedCloud_vm_encryption_kms_status' | translate"
+                        data-property="kmsId"
+                    >
+                        <span
+                            class="oui-badge"
+                            data-ng-class=":: 'oui-badge_' + $ctrl.constructor.formatKmsStatus($row.state)"
+                        >
+                            <span
+                                data-translate="{{:: 'dedicatedCloud_vm_encryption_kms_status_' + $row.state }}"
+                            ></span>
+                        </span>
+                    </oui-datagrid-column>
+                    <oui-action-menu
+                        aria-label="{{:: 'common_actions' | translate }}"
+                        data-compact
+                    >
+                        <oui-action-menu-item
+                            data-on-click="$ctrl.editKms($row)"
+                        >
+                            <span
+                                data-translate="dedicatedCloud_vm_encryption_edit_kms"
+                            ></span>
+                        </oui-action-menu-item>
+                        <oui-action-menu-item
+                            data-on-click="$ctrl.deleteKms($row)"
+                        >
+                            <span
+                                data-translate="dedicatedCloud_vm_encryption_delete_kms"
+                            ></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+                    <oui-datagrid-topbar>
+                        <oui-button
+                            class="mb-3"
+                            aria-label="{{:: 'dedicatedCloud_vm_encryption_kms_add' | translate }}"
+                            data-on-click="$ctrl.addKms()"
+                        >
+                            <span
+                                data-translate="dedicatedCloud_vm_encryption_kms_add"
+                            ></span>
+                        </oui-button>
+                    </oui-datagrid-topbar>
+                </oui-datagrid>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <button
+                type="button"
+                class="btn btn-block btn-default"
+                data-ng-click="$ctrl.updateSessionTimeout($ctrl.policies.info.userSessionTimeout)"
+                data-translate="dedicatedCloud_SECURITY_change_timeout"
+            ></button>
+            <button
+                type="button"
+                class="btn btn-block btn-default"
+                data-ng-click="$ctrl.updateMaxSimultaneousConnection($ctrl.policies.info.userLimitConcurrentSession)"
+                data-translate="dedicatedCloud_SECURITY_change_nb_simultaneous_connection"
+            ></button>
+            <button
+                type="button"
+                class="btn btn-block btn-default"
+                data-ng-click="$ctrl.securityAccess()"
+                data-translate="dedicatedCloud_SECURITY_access_policy"
+            ></button>
+            <button
+                type="button"
+                class="btn btn-block btn-default"
+                data-ng-click="$ctrl.securityLogout()"
+                data-translate="dedicatedCloud_SECURITY_change_logout_policy"
+            ></button>
+            <button
+                type="button"
+                class="btn btn-block btn-default"
+                data-ng-click="$ctrl.addSecurity()"
+                data-translate="dedicatedCloud_SECURITY_add_IP"
+            ></button>
+            <button
+                type="button"
+                class="btn btn-block btn-default"
+                data-ng-click="$ctrl.deleteSecurity($ctrl.selectedPolicies, $ctrl.policies.model.list.results)"
+                data-ng-disabled="$ctrl.selectedPolicies.length == 0"
+                data-translate="dedicatedCloud_SECURITY_delete_IP"
+            ></button>
+        </div>
+    </div>
+</div>

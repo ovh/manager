@@ -1,0 +1,4 @@
+{
+  "kubernetes_node_pool_anti_affinity": "Anti-affinité",
+  "kubernetes_node_pool_anti_affinity_description": "En activant l'anti-affinité, les nœuds présents et futurs seront lancés sur des hyperviseurs (serveurs physiques) différents, garantissant une plus grande tolérance à la panne. Les pools de nœuds avec anti-affinité ne peuvent compter que jusque {{ maxNodes }} nœuds."
+}

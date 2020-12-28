@@ -1326,5 +1326,6 @@
   "hosting_change_main_domain_warning_delete_emails": "Atención: Al eliminar el servicio de correo existente, se eliminarán todas las direcciones de correo creadas con su nombre de dominio. ",
   "hosting_dashboard_general_informations": "Información general",
   "hosting_dashboard_configuration": "Configuración",
-  "hosting_dashboard_access": "Accès"
+  "hosting_dashboard_access": "Accès",
+  "hosting_dashboard_stats_status": "Beta"
 }

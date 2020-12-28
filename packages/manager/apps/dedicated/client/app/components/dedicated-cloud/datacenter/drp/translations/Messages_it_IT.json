@@ -1,0 +1,17 @@
+{
+  "dedicatedCloud_tab_drp": "Disaster Recovery Plan (DRP)",
+  "dedicatedCloud_datacenter_drp_subtitle": "Crea il tuo Disaster Recovery Plan con Zerto",
+  "dedicatedCloud_datacenter_drp_details_EPCC": "Garantisci la sicurezza del tuo sistema IT configurando un Disaster Recovery Plan. Trasferisci la tua infrastruttura in 1 click e pochi minuti in caso di malfunzionamenti o interruzioni di servizio. Attenzione: prima di attivare questa opzione è necessario disporre di un Private Cloud secondario.",
+  "dedicatedCloud_datacenter_drp_warning": "Nel datacenter corrente non sono presenti host. Ordinane uno per utilizzare questo datacenter per il tuo DRP oppure scegline un altro con almeno un host disponibile.",
+  "dedicatedCloud_tab_drp_choice_plan_type": "Scegli il tipo di DRP:",
+  "dedicatedCloud_datacenter_ovh_choice_EPCC": "Tra due Private Cloud OVHcloud",
+  "dedicatedCloud_datacenter_onPremise_choice_EPCC": "Tra la tua infrastruttura e un Private Cloud OVHcloud",
+  "dedicatedCloud_datacenter_activate_zerto_drp": "Attiva Zerto DRP",
+  "dedicatedCloud_datacenter_drp_confirm_delete_drp_success": "Eliminazione di DRP Zerto in corso... L'operazione richiederà qualche minuto",
+  "dedicatedCloud_datacenter_drp_get_state_error": "Si è verificato un errore durante il recupero delle informazioni relative al tuo DRP.",
+  "dedicatedCloud_datacenter_install_plan": "Installa",
+  "dedicatedCloud_datacenter_install_in_error": "Si è verificato un errore durante il processo di installazione. Contatta il supporto",
+  "dedicatedCloud_datacenter_drp_details_MBM": "Garantisci la sicurezza del tuo sistema IT configurando un Disaster Recovery Plan. Trasferisci la tua infrastruttura in 1 click e pochi minuti in caso di malfunzionamenti o interruzioni di servizio. Attenzione: prima di attivare questa opzione è necessario disporre di un Managed Bare Metal secondario.",
+  "dedicatedCloud_datacenter_ovh_choice_MBM": "Tra due Managed Bare Metal",
+  "dedicatedCloud_datacenter_onPremise_choice_MBM": "Tra la tua infrastruttura e un Managed Bare Metal"
+}

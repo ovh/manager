@@ -32,12 +32,7 @@
             <!-- /Skip to main content -->
             <div>
                 <ovh-manager-navbar
-                    data-navbar-options="{
-                      toggle: {
-                        event: 'sidebar:loaded'
-                      },
-                      universe: 'web',
-                    }"
+                    data-navbar-options="$ctrl.navbarOptions"
                     data-universe-click="$ctrl.openSidebar()"
                 >
                 </ovh-manager-navbar>
@@ -76,10 +71,11 @@
 
                         <!-- /Skip content target -->
                         <ovh-chatbot
-                            data-ng-if="$ctrl.user.ovhSubsidiary"
+                            data-ng-if="$ctrl.chatbotEnabled"
                             data-universe="WEB"
                             data-language="{{$ctrl.currentLanguage}}"
                             data-country="{{$ctrl.user.ovhSubsidiary}}"
+                            data-support-level="{{$ctrl.user.supportLevel.level}}"
                         ></ovh-chatbot>
 
                         <div data-ui-view class="pb-5"></div>

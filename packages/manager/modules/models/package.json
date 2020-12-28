@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-models",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "private": true,
   "description": "Set of classes representing API data ",
   "repository": {

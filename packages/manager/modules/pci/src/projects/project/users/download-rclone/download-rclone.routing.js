@@ -19,7 +19,9 @@ export default /* @ngInject */ ($stateProvider) => {
         userId,
       ) => PciProjectsProjectUsersService.get(projectId, userId),
       regions: /* @ngInject */ (PciProjectsProjectUsersService, projectId) =>
-        PciProjectsProjectUsersService.getRegions(projectId),
+        PciProjectsProjectUsersService.getStorageRegions(
+          projectId,
+        ).then((regions) => regions.map(({ name }) => name)),
       rcloneGuide: /* @ngInject */ (SessionService) =>
         SessionService.getUser().then(({ ovhSubsidiary }) =>
           get(RCLONE_GUIDE, ovhSubsidiary),

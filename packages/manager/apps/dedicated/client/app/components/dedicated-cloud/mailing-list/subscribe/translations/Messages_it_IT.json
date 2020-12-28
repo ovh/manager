@@ -1,0 +1,11 @@
+{
+  "dedicatedCloud_subscribe_mailing": "Iscriviti alla mailing list",
+  "dedicatedCloud_subscribe_mailing_disabled_EPCC": "L'abbonamento alla mailing list Private Cloud ({{t0}}) non è disponibile.",
+  "dedicatedCloud_subscribe_mailing_step1_EPCC": "Inserisci l'indirizzo email da iscrivere alla mailing list Private Cloud ({{t0}}):",
+  "dedicatedCloud_subscribe_mailing_step2_EPCC": "Stai per iscrivere {{t0}} alla mailing list Private Cloud ({{t1}})",
+  "dedicatedCloud_subscribe_mailing_step2_success": "La tua richiesta di iscrizione per <b>{{t0}}</b> è stata presa in carico",
+  "dedicatedCloud_subscribe_mailing_step2_error": "Si è verificato un errore durante la richiesta di iscrizione di <b>{{t0}}</b>",
+  "dedicatedCloud_subscribe_mailing_disabled_MBM": "L'iscrizione alla mailing list Managed Bare Metal ({{t0}}) non è disponibile.",
+  "dedicatedCloud_subscribe_mailing_step1_MBM": "Inserisci l'indirizzo email da iscrivere alla mailing list Managed Bare Metal ({{t0}}):",
+  "dedicatedCloud_subscribe_mailing_step2_MBM": "Stai per iscrivere {{t0}} alla mailing list Managed Bare Metal ({{t1}})"
+}

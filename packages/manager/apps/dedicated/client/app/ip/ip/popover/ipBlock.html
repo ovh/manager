@@ -24,8 +24,18 @@
             ></button>
         </li>
 
+        <!-- MOVE TO ANOTHER SERVICE -->
+        <li data-ng-if="ipBlock.version === IP_TYPE.V4">
+            <a
+                data-ui-sref="app.ip.associate-ip-bloc({
+                    ips: [ipBlock.ipBlock]
+                })"
+                data-translate="ip_description_edit_move"
+            ></a>
+        </li>
+
         <!-- REVERSE:: only for ipv6block -->
-        <li data-ng-if="ipBlock.version === 'IPV6' && !ipBlock.isUniq">
+        <li data-ng-if="ipBlock.version === IP_TYPE.V6 && !ipBlock.isUniq">
             <button
                 type="button"
                 class="btn btn-link"

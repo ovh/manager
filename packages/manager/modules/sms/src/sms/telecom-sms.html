@@ -23,28 +23,39 @@
         </header>
 
         <oui-header-tabs>
-            <oui-header-tabs-item data-state="sms.service.dashboard"
+            <oui-header-tabs-item state="sms.service.dashboard"
                 ><span data-translate="sms_common_home"></span>
             </oui-header-tabs-item>
-            <oui-header-tabs-item data-state="sms.service.sms"
-                ><span data-translate="sms_tabs_sms"></span>
-            </oui-header-tabs-item>
-            <oui-header-tabs-item data-state="sms.service.receivers"
-                ><span data-translate="sms_tabs_contacts"></span>
-            </oui-header-tabs-item>
-            <oui-header-tabs-item data-state="sms.service.phonebooks"
-                ><span data-translate="sms_tabs_phonebooks"></span>
-            </oui-header-tabs-item>
-            <oui-header-tabs-item data-state="sms.service.senders"
+            <oui-header-tabs-dropdown
+                text="{{:: 'sms_tabs_messages_campaign' | translate }}"
+            >
+                <oui-header-tabs-item state="sms.service.sms">
+                    <span data-translate="sms_sublink_sms_compose"></span>
+                </oui-header-tabs-item>
+                <oui-header-tabs-item state="sms.service.batches">
+                    <span data-translate="sms_sublink_sms_campaign"></span>
+                </oui-header-tabs-item>
+            </oui-header-tabs-dropdown>
+            <oui-header-tabs-dropdown
+                text="{{:: 'sms_tabs_contacts' | translate }}"
+            >
+                <oui-header-tabs-item state="sms.service.phonebooks">
+                    <span data-translate="sms_sublink_phonebooks"></span>
+                </oui-header-tabs-item>
+                <oui-header-tabs-item state="sms.service.receivers">
+                    <span data-translate="sms_sublink_contact_list"></span>
+                </oui-header-tabs-item>
+            </oui-header-tabs-dropdown>
+            <oui-header-tabs-item state="sms.service.senders"
                 ><span data-translate="sms_tabs_senders"></span>
             </oui-header-tabs-item>
-            <oui-header-tabs-item data-state="sms.service.users"
+            <oui-header-tabs-item state="sms.service.users"
                 ><span data-translate="sms_tabs_api_users"></span>
             </oui-header-tabs-item>
-            <oui-header-tabs-item data-state="sms.service.options"
+            <oui-header-tabs-item state="sms.service.options"
                 ><span data-translate="sms_tabs_options"></span>
             </oui-header-tabs-item>
-            <oui-header-tabs-item data-state="sms.service.guides"
+            <oui-header-tabs-item state="sms.service.guides"
                 ><span data-translate="sms_tabs_guides"></span>
             </oui-header-tabs-item>
         </oui-header-tabs>

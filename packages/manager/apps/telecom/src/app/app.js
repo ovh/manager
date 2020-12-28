@@ -46,12 +46,11 @@ import uiRouter, { RejectType } from '@uirouter/angularjs';
 import TelecomAppCtrl from './app.controller';
 import pack from './telecom/pack';
 import telephony from './telecom/telephony';
+import telephonyComponents from '../components/telecom/telephony';
 
 import errorPage from './error-page/error-page.module';
 import searchPage from './search/search.module';
 import navbar from '../components/navbar';
-
-import portabilities from './telecom/telephony/alias/portability/portabilities/telecom-telephony-alias-portability-portabilities.module';
 
 import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 
@@ -136,7 +135,7 @@ angular
       'validation.match',
       pack,
       telephony,
-      portabilities,
+      telephonyComponents,
       searchPage,
       ngOvhFeatureFlipping,
       ...get(__NG_APP_INJECTIONS__, Environment.getRegion(), []),
@@ -165,7 +164,9 @@ angular
     LineDiagnosticsProvider.setPathPrefix('/xdsl/{serviceName}');
   })
   .config((ovhFeatureFlippingProvider) => {
-    ovhFeatureFlippingProvider.setApplicationName('telecom');
+    ovhFeatureFlippingProvider.setApplicationName(
+      Environment.getApplicationName(),
+    );
   })
   .run(
     /* @ngInject */ ($translate) => {
@@ -291,6 +292,7 @@ angular
     /* @ngInject */ ($rootScope, $transitions) => {
       const unregisterHook = $transitions.onSuccess({}, () => {
         detachPreloader();
+        $rootScope.$broadcast('app:started');
         unregisterHook();
       });
     },

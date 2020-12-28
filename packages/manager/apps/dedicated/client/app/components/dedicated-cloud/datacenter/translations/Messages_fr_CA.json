@@ -1,0 +1,9 @@
+{
+    "dedicatedCloud_datacenter_no_name": "Datacenter {{t0}}",
+    "dedicatedCloud_datacenter_no_description": "Ajouter une description",
+    "dedicatedCloud_tab_dashboard": "Informations générales",
+    "dedicatedCloud_tab_host": "Hosts",
+    "dedicatedCloud_tab_datastore": "Datastores",
+    "dedicatedCloud_tab_backup": "Backup",
+    "dedicatedCloud_tab_drp": "Plan de reprise d’activité (PRA)"
+}

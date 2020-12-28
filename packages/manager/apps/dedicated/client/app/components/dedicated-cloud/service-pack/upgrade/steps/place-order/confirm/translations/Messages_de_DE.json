@@ -1,0 +1,15 @@
+{
+  "confirm_order_confirm": "Bestätigen",
+  "confirm_order_cancel": "Abbrechen",
+  "confirm_order_basic_title": "Aktivierung einer Option",
+  "confirm_order_basic_question_1": "Sie sind gerade dabei, das Optionspaket <strong>{{itemName}}</strong> zu aktivieren.",
+  "confirm_order_certification_title": "Aktivierung eines Zertifikats",
+  "confirm_order_certification_question_1": "Sie sind gerade dabei, das Zertifikat <strong>{{itemName}}</strong> zu aktivieren.",
+  "confirm_order_question_monthly_adding": "Ihre monatliche Abrechnung steigt um <strong>{{price}}</strong>.",
+  "confirm_order_question_monthly_deducting": "Der Betrag Ihrer monatlichen Abrechnung verringert sich um <strong>{{price}}</strong>.",
+  "confirm_order_question_hourly_adding": "Ihre stündliche Abrechnung steigt um <strong>{{price}}</strong>.",
+  "confirm_order_question_hourly_deducting": "Der Betrag Ihrer stündlichen Abrechnung verringert sich um <strong>{{price}}</strong>.",
+  "confirm_order_question_confirm": "Sind Sie sicher, dass Sie fortfahren möchten?",
+  "confirm_order_question_monthly_same": "Ihre monatliche Abrechnung bleibt unverändert.",
+  "confirm_order_question_hourly_same": "Ihre stündliche Abrechnung bleibt unverändert."
+}

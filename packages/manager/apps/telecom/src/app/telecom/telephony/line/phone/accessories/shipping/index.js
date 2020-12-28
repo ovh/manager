@@ -5,9 +5,9 @@ import uiRouter from '@uirouter/angularjs';
 import angularTranslate from 'angular-translate';
 import '@ovh-ux/ui-kit';
 
-import shipping from './accessories-shipping.component';
+import shipping from './shipping.component';
 
-const moduleName = 'ovhTelecomLinePhoneAccessoriesShipping';
+const moduleName = 'ovhManagerTelecomTelephonyLinePhoneAccessoriesShipping';
 
 angular
   .module(moduleName, [

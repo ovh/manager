@@ -1,0 +1,17 @@
+{
+  "dedicatedCloud_move_ip_title": "Diesen IP-Block mit einem anderen Dienst verbinden",
+  "dedicatedCloud_move_ip_description": "Sie können einen bereits bestellten IP-Block einem anderen kompatiblen Dienst zuweisen. Diese Dienste werden nach Relevanz, Geolokalisierung und Rechenzentren gefiltert.",
+  "dedicatedCloud_move_ip_select_ip": "Wählen Sie den IP-Block aus, den Sie verschieben möchten:",
+  "dedicatedCloud_move_ip_select_target": "Wählen Sie den Dienst aus, zu dem Ihr IP-Block migriert werden soll:",
+  "dedicatedCloud_move_ip_select_next_hop": "Wählen Sie den Nexthop (nächstgelegenen Router) für Ihren Zieldienst aus:",
+  "dedicatedCloud_move_ip_option_hostingReseller": "Hosting Reseller",
+  "dedicatedCloud_move_ip_option_dedicatedServer": "Dedicated Server",
+  "dedicatedCloud_move_ip_option_dedicatedCloud": "Dedicated Cloud",
+  "dedicatedCloud_move_ip_option_vps": "VPS",
+  "dedicatedCloud_move_ip_option_cloudProject": "Cloud Projekt",
+  "dedicatedCloud_move_ip_option_ipLoadbalancing": "Loadbalancing-IP",
+  "dedicatedCloud_move_ip_cancel": "Abbrechen",
+  "dedicatedCloud_move_ip_confirm": "Bestätigen",
+  "dedicatedCloud_move_ip_error": "Beim Versuch, den IP-Block {{ipBlock}} mit der Dienstleistung {{service}} zu verbinden, ist ein Fehler aufgetreten: {{ message }}",
+  "dedicatedCloud_move_ip_success": "Der IP-Block {{ipBlock}} wird gerade dem Dienst {{service}} zugewiesen."
+}

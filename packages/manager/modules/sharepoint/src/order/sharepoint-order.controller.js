@@ -94,7 +94,7 @@ export default class SharepointOrderCtrl {
   }
 
   getExchanges() {
-    return this.Sharepoint.getExchangeServices()
+    return this.Sharepoint.getAllExchangeServices()
       .then((exchanges) =>
         map(exchanges, (exchange) => {
           const newExchange = angular.copy(exchange);

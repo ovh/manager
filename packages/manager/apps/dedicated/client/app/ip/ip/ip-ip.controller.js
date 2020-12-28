@@ -1,20 +1,24 @@
 import find from 'lodash/find';
 import filter from 'lodash/filter';
 import get from 'lodash/get';
-import head from 'lodash/head';
 import map from 'lodash/map';
+import orderBy from 'lodash/orderBy';
 import set from 'lodash/set';
-import values from 'lodash/values';
+import toInteger from 'lodash/toInteger';
+
+import { IP_TYPE } from './ip-ip.constant';
 
 angular
   .module('Module.ip.controllers')
   .controller(
     'IpDashboardCtrl',
     (
+      $http,
       $location,
       $q,
       $rootScope,
       $scope,
+      $state,
       $stateParams,
       $timeout,
       $translate,
@@ -29,89 +33,43 @@ angular
       Validator,
     ) => {
       $scope.currentView = 'table';
-      $scope.containsAllServices = false;
-      $scope.getAll = false;
+      $scope.alerts = {
+        mitigation: [],
+        antihack: [],
+        arp: [],
+        spam: [],
+      };
+      $scope.IP_TYPE = IP_TYPE;
 
-      /* Init */
+      // pagination
+      $scope.pageNumber = toInteger($stateParams.page) || 1;
+      $scope.pageSize = toInteger($stateParams.pageSize) || 1;
+      $scope.paginationOffset = 1 + ($scope.pageNumber - 1) * $scope.pageSize;
+      if ($scope.pageNumber < 1) {
+        $scope.pageNumber = 1;
+      }
+      if ($scope.pageSize < 10) {
+        $scope.pageSize = 10;
+      } else if ($scope.pageSize > 300) {
+        $scope.pageSize = 300;
+      }
 
       function init() {
-        $scope.alerts = {
-          mitigation: [],
-          antihack: [],
-          arp: [],
-          spam: [],
-        };
-
         $scope.loading = {};
         $scope.state = {};
-
         $scope.services = [];
-
-        $scope.filters = {
-          service: {},
-        };
+        $scope.selectedService = null;
+        $scope.serviceName = $stateParams.serviceName || '_ALL';
       }
 
-      $scope.loaders = {
-        reverseDelegations: false,
-      };
-
-      $scope.canImportIPFO = () =>
-        ipFeatureAvailability.allowIPFailoverImport();
-      $scope.canOrderIPFO = () => ipFeatureAvailability.allowIPFailoverOrder();
-      $scope.canOrderAgoraIPFO = () =>
-        ipFeatureAvailability.allowIPFailoverAgoraOrder();
-
-      $scope.canReverseDelegations = function canReverseDelegations(ipBlock) {
-        return (
-          ipBlock.version === 'IPV6' && /(\/64|\/56)$/.test(ipBlock.ipBlock)
-        );
-      };
-
-      $scope.getReverseDelegations = function getReverseDelegations(ipBlock) {
-        set(ipBlock, 'reverseDelegationsRefresh', true);
-        return IpReverse.getDelegations(ipBlock.ipBlock)
-          .then((reverseDelegations) => {
-            set(ipBlock, 'reverseDelegations', reverseDelegations);
+      function fetchServices() {
+        return $http
+          .get('/sws/products/services', {
+            serviceType: 'aapi',
           })
-          .catch((err) => {
-            set(ipBlock, 'reverseDelegationsErr', err);
-          })
-          .finally(() => {
-            set(ipBlock, 'reverseDelegationsRefresh', false);
-          });
-      };
-
-      function sortIp(a, b) {
-        if (a.version === 'IPV4') {
-          const aa = a.ipBlock.replace(/\/\d+$/, '').split('.');
-          const bb = b.ipBlock.replace(/\/\d+$/, '').split('.');
-
-          const resulta =
-            aa[0] * 0x1000000 + aa[1] * 0x10000 + aa[2] * 0x100 + aa[3];
-          const resultb =
-            bb[0] * 0x1000000 + bb[1] * 0x10000 + bb[2] * 0x100 + bb[3];
-
-          return resulta - resultb;
-        }
-        return 0;
-      }
-
-      function loadDashboard() {
-        $scope.loading.init = true;
-        $scope.ipsList = [];
-
-        Ip.getPriceForParking().then((price) => {
-          $scope.parkPrice = price;
-        });
-
-        Ip.getServicesList()
+          .then(({ data }) => data)
           .then((services) => {
-            // Get only trusted services, and sort them
-            $scope.services = services;
-
-            // Add others to the list of services
-            $scope.services.unshift(
+            $scope.services = [
               {
                 category: 'OTHER',
                 serviceName: '_ALL',
@@ -120,25 +78,47 @@ angular
                 category: 'OTHER',
                 serviceName: '_PARK',
               },
-            );
+              {
+                category: 'OTHER',
+                serviceName: '_FAILOVER',
+              },
+              ...orderBy(services, 'serviceName'),
+            ];
+            $scope.selectedService = find($scope.services, {
+              serviceName: $scope.serviceName,
+            });
+            $scope.serviceType = {};
+            $scope.services.forEach(({ category, serviceName }) => {
+              $scope.serviceType[serviceName] = category;
+            });
+          });
+      }
 
-            // Select service "ALL" by default
-            $scope.filters.service = head($scope.services);
+      $scope.canImportIPFO = () =>
+        ipFeatureAvailability.allowIPFailoverImport();
+      $scope.canOrderIPFO = () => ipFeatureAvailability.allowIPFailoverOrder();
+      $scope.canOrderAgoraIPFO = () =>
+        ipFeatureAvailability.allowIPFailoverAgoraOrder();
 
-            // If serviceName in URL param
-            if ($stateParams.serviceName) {
-              const selectedService = find($scope.services, {
-                serviceName: $stateParams.serviceName,
-              });
-              if (selectedService) {
-                $scope.filters.service = selectedService;
-              }
-            }
+      $scope.singleService = () =>
+        $scope.serviceName !== '_ALL' && $scope.serviceName !== 'FAILOVER';
 
-            $scope.selectService();
+      Ip.getPriceForParking().then((price) => {
+        $scope.parkPrice = price;
+      });
+
+      function refreshIp(ip) {
+        return $http
+          .get('/ips', {
+            params: {
+              extras: true,
+              ip,
+            },
+            serviceType: 'aapi',
           })
-          .finally(() => {
-            $scope.loading.init = false;
+          .then(({ data }) => data)
+          .then(({ count, data }) => {
+            return count === 1 ? data[0] : null;
           });
       }
 
@@ -195,6 +175,13 @@ angular
             });
           }
 
+          // Poll virtual mac
+          if (get(ipBlock, 'virtualMac.status') === 'PENDING') {
+            IpVirtualMac.pollVirtualMacs(ipBlock.service).then(() => {
+              $rootScope.$broadcast('ips.table.refresh');
+            });
+          }
+
           // Alerts
           if (ip.spam === 'BLOCKED_FOR_SPAM') {
             ipBlock.alerts.spam.push(ip.ip);
@@ -211,94 +198,117 @@ angular
         });
       }
 
-      function checkCloudIpSubtype(ipBlock) {
-        const isCloud =
-          ipBlock && ipBlock.service && ipBlock.service.category === 'CLOUD';
-        const isFailover = ipBlock && ipBlock.type === 'FAILOVER';
-
-        if (isCloud && isFailover && ipBlock.ips && ipBlock.ips.length) {
-          // since ips have the same subType in a given ipBlock,
-          // we are only checking the subType of the first IP to guess the block subType
-          return Ip.getCloudIpSubType(
-            ipBlock.service.serviceName,
-            head(ipBlock.ips).ip,
-          ).then((subType) => {
-            set(ipBlock, 'subType', subType);
-          });
+      function refreshAlerts(ips) {
+        $scope.loading.alerts = true;
+        const params = {
+          extras: true,
+          pageSize: 5000,
+        };
+        const ipsPromise = ips
+          ? $q.when(ips)
+          : $http
+              .get('/ips', {
+                params,
+                serviceType: 'aapi',
+              })
+              .then(({ data }) => data.data);
+        $scope.alerts = {
+          mitigation: [],
+          antihack: [],
+          arp: [],
+          spam: [],
+        };
+        if (
+          $scope.serviceName &&
+          $scope.serviceName !== '_ALL' &&
+          $scope.serviceName !== '_PARK' &&
+          $scope.serviceName !== '_FAILOVER'
+        ) {
+          params.serviceName = $scope.serviceName;
         }
-        return $q.when();
+        return ipsPromise
+          .then((ipList) => {
+            ipList.forEach((ip) => {
+              ip.alerts.antihack.forEach((alert) =>
+                $scope.alerts.antihack.push({ ip, alert }),
+              );
+              ip.alerts.mitigation.forEach((alert) =>
+                $scope.alerts.mitigation.push({ ip, alert }),
+              );
+              ip.alerts.arp.forEach((alert) =>
+                $scope.alerts.arp.push({ ip, alert }),
+              );
+              ip.alerts.spam.forEach((alert) =>
+                $scope.alerts.spam.push({ ip, alert }),
+              );
+            });
+          })
+          .finally(() => {
+            $scope.loading.alerts = false;
+          });
       }
 
-      function pollVirtualMacs(service) {
-        IpVirtualMac.pollVirtualMacs(service).then((vmacInfos) => {
-          set(service, 'virtualmac', vmacInfos);
-        });
-      }
-
-      function loadService(service) {
-        set(service, 'loading', {});
-        set(service, 'detailsLoaded', false);
-
-        return Ip.getIpsListForService(service.serviceName).then(
-          (_ipBlocks) => {
-            let ipBlocks = _ipBlocks;
-
-            if (!ipBlocks) {
-              return null;
-            }
-
-            angular.forEach(ipBlocks, (ipBlock) => {
-              // Add service pointer to each ipBlock
-              set(ipBlock, 'service', service);
-
-              // Sanitize IPs
-              checkIps(ipBlock);
+      function refreshTable() {
+        const params = {
+          extras: true,
+          pageSize: $scope.pageSize,
+          pageNumber: $scope.pageNumber,
+        };
+        $scope.loading.table = true;
+        $scope.ipsList = [];
+        if ($scope.serviceName === '_FAILOVER') {
+          params.type = 'failover';
+        } else if ($scope.serviceName === '_PARK') {
+          params.type = 'failover';
+          params.pageSize = 5000;
+          params.pageNumber = 1;
+          $location.search('page', undefined);
+          $location.search('pageSize', undefined);
+        } else if ($scope.serviceName && $scope.serviceName !== '_ALL') {
+          params.serviceName = $scope.serviceName;
+        }
+        const fetchServicesPromise = $scope.services.length
+          ? $q.when($scope.services)
+          : fetchServices();
+        return fetchServicesPromise
+          .then(() =>
+            $http.get('/ips', {
+              params,
+              serviceType: 'aapi',
+            }),
+          )
+          .then(({ data }) => data)
+          .then(({ count, data }) => {
+            $scope.ipsCount = count;
+            $scope.ipsList = map(data, (ip) => {
+              const serviceName = get(ip, 'routedTo.serviceName');
+              return {
+                ...ip,
+                collapsed: !ip.isUniq,
+                service: {
+                  serviceName,
+                  category: $scope.serviceType[serviceName],
+                },
+              };
             });
-
-            ipBlocks = ipBlocks.sort(sortIp);
-
-            const reverseDelegationPromise = $q.all(
-              values(
-                map(
-                  filter(ipBlocks, $scope.canReverseDelegations),
-                  $scope.getReverseDelegations,
-                ),
-              ),
-            );
-
-            let virtualMacPromise = $q.when();
-
-            const cloudIpSubTypePromise = $q.all(
-              ipBlocks.map(checkCloudIpSubtype),
-            );
-
-            // if service DEDICATED: get vmacs
-            if (service.category === 'DEDICATED') {
-              set(service, 'loading.virtualmac', true);
-              virtualMacPromise = IpVirtualMac.getVirtualMacList(service)
-                .then((vmacInfos) => {
-                  set(service, 'virtualmac', vmacInfos);
-
-                  if (vmacInfos && vmacInfos.status === 'PENDING') {
-                    pollVirtualMacs(service);
-                  }
-                })
-                .finally(() => {
-                  set(service, 'loading.virtualmac', false);
-                });
+            if ($scope.serviceName === '_PARK') {
+              $scope.ipsList = filter(
+                $scope.ipsList,
+                (ip) => !get(ip, 'routedTo.serviceName'),
+              );
             }
-
-            $q.all([
-              reverseDelegationPromise,
-              virtualMacPromise,
-              cloudIpSubTypePromise,
-            ]).then(() => {
-              set(service, 'detailsLoaded', true);
-            });
-
-            return ipBlocks;
-          },
-        );
+            $scope.ipsList.forEach(checkIps);
+          })
+          .catch((error) => {
+            Alerter.error(`
+              ${$translate.instant('ip_dashboard_error')}
+              <br />
+              ${get(error, 'data.message') || get(error, 'data', error)}
+            `);
+          })
+          .finally(() => {
+            $scope.loading.table = false;
+          });
       }
 
       $scope.getVirtualMacMessage = function getVirtualMacMessage(ipBlock) {
@@ -307,11 +317,11 @@ angular
             return $translate.instant('ip_virtualmac_add_impossible_server');
           }
 
-          if (ipBlock.service.virtualmac.status === 'PENDING') {
+          if (ipBlock.virtualMac.status === 'PENDING') {
             return $translate.instant('ip_virtualmac_add_impossible_status');
           }
 
-          if (ipBlock.service.virtualmac.status === 'OK') {
+          if (ipBlock.virtualMac.status === 'OK') {
             return $translate.instant('ip_virtualmac_add_impossible_exists');
           }
           return $translate.instant('ip_virtualmac_add_impossible_unavailable');
@@ -328,121 +338,26 @@ angular
         IpOrganisation.killAllPolling();
       }
 
-      function refreshAlerts() {
-        $scope.alerts = {
-          mitigation: [],
-          antihack: [],
-          arp: [],
-          spam: [],
-        };
-        angular.forEach($scope.ipsList, (ipBlock) => {
-          if (ipBlock.alerts) {
-            if (ipBlock.alerts.spam && ipBlock.alerts.spam.length) {
-              $scope.alerts.spam = $scope.alerts.spam.concat(
-                ipBlock.alerts.spam,
-              );
-            }
-            if (ipBlock.alerts.antihack && ipBlock.alerts.antihack.length) {
-              $scope.alerts.antihack = $scope.alerts.antihack.concat(
-                ipBlock.alerts.antihack,
-              );
-            }
-            if (ipBlock.alerts.arp && ipBlock.alerts.arp.length) {
-              $scope.alerts.arp = $scope.alerts.arp.concat(ipBlock.alerts.arp);
-            }
-            if (ipBlock.alerts.mitigation && ipBlock.alerts.mitigation.length) {
-              $scope.alerts.mitigation = $scope.alerts.mitigation.concat(
-                ipBlock.alerts.mitigation,
-              );
-            }
-          }
-        });
-      }
+      $scope.onPaginationChange = ({ offset, pageSize }) => {
+        $scope.pageSize = pageSize;
+        $scope.pageNumber = 1 + Math.floor((offset - 1) / pageSize);
+        $scope.paginationOffset = 1 + ($scope.pageNumber - 1) * $scope.pageSize;
+        $location.search('page', $scope.pageNumber);
+        $location.search('pageSize', $scope.pageSize);
+        refreshTable();
+      };
 
-      // If service selected: load only this service,
-      // else, load all of them
-      let mainQueue;
-      $scope.selectService = function selectService() {
-        killAllPolling();
+      $scope.selectService = ({ serviceName }) => {
+        $scope.pageNumber = 1;
+        $scope.serviceName = serviceName;
+        $location.search('page', $scope.pageNumber);
+        $location.search('serviceName', serviceName);
+        refreshTable();
+        refreshAlerts();
+      };
 
-        $scope.getAll = $scope.state.total === $scope.state.loaded;
-
-        $q.when(mainQueue)
-          .then(() => {
-            // We already have all services loaded, filter to select the one desired.
-            if (
-              $scope.containsAllServices &&
-              get($scope, 'filters.service.serviceName') === 'ALL'
-            ) {
-              $scope.ipsList = filter($scope.allIpsList, {
-                routedTo: $scope.filters.service.serviceName,
-              });
-              return null;
-            }
-
-            let queue = [];
-            $scope.ipsList = [];
-            $scope.servicesInError = [];
-            $scope.state.loaded = 0;
-            $scope.loading.table = true;
-
-            if (
-              $scope.filters.service &&
-              $scope.filters.service.serviceName === '_ALL'
-            ) {
-              $scope.state.total = $scope.services.length - 1; // -1 = "_ALL"
-
-              queue = $scope.services.map((service) => {
-                if (service.serviceName !== '_ALL') {
-                  return loadService(service)
-                    .then((ipBlocks) => {
-                      $scope.ipsList = $scope.ipsList.concat(ipBlocks);
-                    })
-                    .catch(() => {
-                      $scope.servicesInError.push(service.serviceName);
-                    })
-                    .finally(() => {
-                      $scope.state.loaded += 1;
-                    });
-                }
-                return null;
-              });
-            } else {
-              $scope.state.total = 1;
-              queue.push(
-                loadService($scope.filters.service)
-                  .then((ipBlocks) => {
-                    $scope.ipsList = $scope.ipsList.concat(ipBlocks);
-                  })
-                  .catch(() => {
-                    $scope.servicesInError.push(
-                      $scope.filters.service.serviceName,
-                    );
-                  })
-                  .finally(() => {
-                    $scope.state.loaded += 1;
-                  }),
-              );
-            }
-
-            mainQueue = $q.all(queue).then(() => {
-              if ($scope.servicesInError.length) {
-                Alerter.error(
-                  $translate.instant('ip_services_error', {
-                    t0: $scope.servicesInError.join(', '),
-                  }),
-                );
-              }
-              $scope.containsAllServices =
-                $scope.getAll && $scope.filters.service.serviceName === '_ALL';
-            });
-
-            return mainQueue;
-          })
-          .finally(() => {
-            $scope.loading.table = false;
-            refreshAlerts();
-          });
+      $scope.navigateToService = (serviceName) => {
+        $state.go('app.ip', { page: 1, serviceName }, { reload: true });
       };
 
       $scope.alertsCount = function alertsCount(ipBlock) {
@@ -496,8 +411,8 @@ angular
         set(ipBlock, 'loading', true);
         return Ip.getIpsForIpBlock(
           ipBlock.ipBlock,
-          ipBlock.service.serviceName,
-          ipBlock.service.category,
+          get(ipBlock, 'routedTo.serviceName'),
+          ipBlock.type,
         )
           .then((data) => {
             set(ipBlock, 'ips', data);
@@ -520,54 +435,24 @@ angular
         killAllPolling();
       });
 
-      // ---
-
-      $scope.$on('ips.table.refreshBlock', (e, ipBlock) => {
-        set(ipBlock, 'refreshing', true);
-        if ($scope.canReverseDelegations(ipBlock)) {
-          $scope.getReverseDelegations(ipBlock);
+      $scope.$on('ips.table.refreshBlock', (e, ip) => {
+        set(ip, 'refreshing', true);
+        if (ip.isUniq) {
+          return refreshIp(ip.ipBlock).then((refreshedIp) => {
+            Object.assign(ip, refreshedIp);
+            checkIps(ip);
+            set(ip, 'refreshing', false);
+          });
         }
-
-        const isUniqueIp = ipBlock.isUniq;
-        const updateReversePromise = isUniqueIp
-          ? loadService(ipBlock.service)
-          : Ip.getIpsForIpBlock(
-              ipBlock.ipBlock,
-              ipBlock.service.serviceName,
-              ipBlock.service.category,
-            );
-
-        return updateReversePromise.then((serviceIpBlock) => {
-          if (isUniqueIp) {
-            const updatedIpBlock = find(serviceIpBlock, {
-              ipBlock: ipBlock.ipBlock,
-            });
-
-            set(ipBlock, 'ips', updatedIpBlock.ips);
-          } else {
-            set(ipBlock, 'ips', serviceIpBlock);
-          }
-
-          checkIps(ipBlock);
-          set(ipBlock, 'refreshing', false);
+        return Ip.getIpsForIpBlock(
+          ip.ipBlock,
+          ip.service.serviceName,
+          ip.service.category,
+        ).then((ips) => {
+          set(ip, 'ips', ips);
+          checkIps(ip);
+          set(ip, 'refreshing', false);
         });
-      });
-
-      $scope.$on('ips.table.refreshVmac', (e, ipBlock) => {
-        if (ipBlock.service.category === 'DEDICATED') {
-          set(ipBlock, 'service.loading.virtualmac', true);
-          IpVirtualMac.getVirtualMacList(ipBlock.service)
-            .then((vmacInfos) => {
-              set(ipBlock, 'service.virtualmac', vmacInfos);
-
-              if (vmacInfos && vmacInfos.status === 'PENDING') {
-                pollVirtualMacs(ipBlock.service);
-              }
-            })
-            .finally(() => {
-              set(ipBlock, 'service.loading.virtualmac', false);
-            });
-        }
       });
 
       // Add only an Ipv6
@@ -589,12 +474,17 @@ angular
       // used by antispam view
       $scope.$on('ips.table.reload', () => {
         init();
-        loadDashboard();
+        refreshTable();
+        refreshAlerts();
+      });
+
+      $scope.$on('ips.table.refresh', () => {
+        refreshTable();
       });
 
       $scope.$on('organisation.change.done', () => {
         init();
-        loadDashboard();
+        refreshTable();
         Alerter.success(
           $translate.instant('ip_organisation_change_organisations_done'),
         );
@@ -626,15 +516,9 @@ angular
         $scope.currentView = 'organisation';
         $scope.$broadcast('ips.organisation.display');
       };
-
-      /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
       $scope.getStatePercent = function getStatePercent() {
         return Math.ceil(($scope.state.loaded / $scope.state.total) * 100);
       };
-
-      /*= =========  Reverse inline  ========== */
-
       $scope.reverseIsValid = function reverseIsValid(reverse) {
         return (
           !reverse ||
@@ -684,8 +568,6 @@ angular
         set(ip, 'reverseEdit', false);
       };
 
-      /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
       init();
 
       if (
@@ -725,8 +607,9 @@ angular
       ) {
         $scope.currentView = 'antispam';
       } else {
-        // Init the magic
-        loadDashboard();
+        refreshTable();
       }
+
+      refreshAlerts();
     },
   );

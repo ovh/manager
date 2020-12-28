@@ -1,0 +1,91 @@
+<div class="dedicatedCloud-datacenter-hosts">
+    <h2 data-translate="dedicatedCloud_tab_host"></h2>
+
+    <div class="text-center" data-ng-if="$ctrl.loading">
+        <oui-spinner></oui-spinner>
+    </div>
+    <div data-ng-if="!$ctrl.loading">
+        <div class="mb-3">
+            <button
+                type="button"
+                class="btn btn-default"
+                data-ng-disabled="!$ctrl.datacenter.model.canOrderHosts && $ctrl.usesLegacyOrder"
+                data-ng-click="$ctrl.orderHost($ctrl.datacenterId)"
+                data-translate="dedicatedCloud_order_Host"
+            ></button>
+        </div>
+        <oui-datagrid data-rows-loader="$ctrl.loadHosts($config)">
+            <oui-datagrid-column
+                data-title=":: 'dedicatedCloud_tab_host_id' | translate"
+                data-property="hostId"
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'dedicatedCloud_tab_host_name' | translate"
+                data-property="name"
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'dedicatedCloud_tab_host_profile' | translate"
+                data-property="profile"
+            >
+                <span data-ng-bind=":: $row.profile"></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'dedicatedCloud_tab_host_billing' | translate"
+            >
+                <span
+                    data-translate="{{ 'dedicatedCloud_tab_host_billing_' + $row.billingType }}"
+                ></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'dedicatedCloud_tab_host_status' | translate"
+            >
+                <span
+                    data-translate="{{ 'dedicatedCloud_tab_host_status_' + $row.status }}"
+                ></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'dedicatedCloud_tab_host_consumption' | translate"
+            >
+                <span
+                    data-ng-if="$row.billingType === $ctrl.RESOURCE_BILLING_TYPES.hourly"
+                >
+                    <span
+                        data-ng-if="!$row.consumption"
+                        data-translate="dedicatedCloud_tab_host_hourly_usage_na"
+                    ></span>
+
+                    <span
+                        data-ng-if="$row.consumption"
+                        data-ng-pluralize
+                        data-count="$row.consumption.value"
+                        data-when="{
+                            '0': ('dedicatedCloud_tab_host_hourly_usage_na' | translate),
+                            'one': ('dedicatedCloud_tab_host_hourly_usage_1' | translate),
+                            'other': ('dedicatedCloud_tab_host_hourly_usage_other' | translate: { count: $row.consumption.value })
+                        }"
+                        data-oui-tooltip="{{:: 'dedicatedCloud_tab_host_hourly_usage_update' | translate:{ t0: ($row.lastUpdate|date:'short') } }}"
+                        data-oui-tooltip-placement="top"
+                    ></span>
+                </span>
+            </oui-datagrid-column>
+            <oui-action-menu
+                data-compact
+                data-ng-if="$row.billingType === $ctrl.RESOURCE_BILLING_TYPES.hourly && $row.status === 'DELIVERED'"
+                data-placement="end"
+            >
+                <oui-action-menu-item
+                    data-on-click="$ctrl.resourceUpgrade(
+                        $row.hostId,
+                        $ctrl.RESOURCE_UPGRADE_TYPES.host,
+                        $ctrl.usesLegacyOrder ? $ctrl.datacenter.model.isUpgradable && 'demoToMonthly' || 'hourlyToMonthly' : undefined
+                    )"
+                    ><span
+                        data-translate="dedicatedCloud_updateResource_toMonthly"
+                    ></span
+                ></oui-action-menu-item>
+            </oui-action-menu>
+        </oui-datagrid>
+    </div>
+</div>

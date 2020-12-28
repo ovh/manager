@@ -1,0 +1,13 @@
+{
+    "dedicatedCloud_USER_modify": "Modifier",
+    "dedicatedCloud_USER_firstname": "Prénom",
+    "dedicatedCloud_USER_lastname": "Nom",
+    "dedicatedCloud_USER_mail": "Mail",
+    "dedicatedCloud_USER_phone": "Numéro de téléphone",
+    "dedicatedCloud_USER_token_validator": "Token validator",
+    "dedicatedCloud_USER_ip": "Ip",
+    "dedicatedCloud_USER_ipfo": "Ip FailOver",
+    "dedicatedCloud_USER_nsx": "Interface NSX",
+    "dedicatedCloud_USER_edit_success": "L'utilisateur a bien été modifié.",
+    "dedicatedCloud_USER_edit_error": "Une erreur est survenue lors de la modification de l'utilisateur."
+}

@@ -1,4 +1,5 @@
 import map from 'lodash/map';
+import set from 'lodash/set';
 import sortBy from 'lodash/sortBy';
 
 import NodePool from './details/node-pool/node-pool.class';
@@ -8,6 +9,8 @@ import {
   ERROR_STATUS,
   PROCESSING_STATUS,
 } from './details/constants';
+
+import { ANTI_AFFINITY_MAX_NODES } from './kubernetes.constants';
 
 export default class Kubernetes {
   /* @ngInject */
@@ -74,26 +77,25 @@ export default class Kubernetes {
       .catch((error) => (error.status === 400 ? false : Promise.reject(error)));
   }
 
-  createCluster(projectId, name, region, version, desiredNodes, flavorName) {
+  createCluster(projectId, name, region, version, nodepool) {
+    if (nodepool.antiAffinity) {
+      set(nodepool, 'maxNodes', ANTI_AFFINITY_MAX_NODES);
+    }
     return this.$http.post(`/cloud/project/${projectId}/kube`, {
       region,
       name,
       version,
-      nodepool: {
-        desiredNodes,
-        flavorName,
-      },
+      nodepool,
     });
   }
 
-  createNodePool(projectId, kubeId, desiredNodes, flavorName, name) {
+  createNodePool(projectId, kubeId, nodePool) {
+    if (nodePool.antiAffinity) {
+      set(nodePool, 'maxNodes', ANTI_AFFINITY_MAX_NODES);
+    }
     return this.$http.post(
       `/cloud/project/${projectId}/kube/${kubeId}/nodepool`,
-      {
-        name,
-        desiredNodes,
-        flavorName,
-      },
+      nodePool,
     );
   }
 

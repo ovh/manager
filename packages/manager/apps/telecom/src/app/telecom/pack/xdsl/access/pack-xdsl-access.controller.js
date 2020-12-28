@@ -190,7 +190,9 @@ export default class XdslAccessCtrl {
     ) {
       this.launchDiagnostic();
     }
-    return this.$state.go('telecom.packs.pack.xdsl.access-diagnostic-details');
+    return this.$state.go(
+      'telecom.packs.pack.xdsl.line.access-diagnostic-details',
+    );
   }
 
   launchDiagnostic() {
@@ -306,8 +308,7 @@ export default class XdslAccessCtrl {
   orderIps() {
     const modal = this.$uibModal.open({
       animation: true,
-      templateUrl:
-        'app/telecom/pack/xdsl/access/ip/order/pack-xdsl-access-ip-order.modal.html',
+      templateUrl: 'app/telecom/pack/xdsl/access/ip/order/order.modal.html',
       controller: 'XdslAccessIpOrderCtrl',
       controllerAs: 'ctrl',
       resolve: {
