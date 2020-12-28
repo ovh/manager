@@ -1,3 +1,13 @@
+## [13.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.8.0...@ovh-ux/manager-telecom@13.8.1) (2020-12-28)
+
+
+### Bug Fixes
+
+* **telecom.telephony.services:** add missing resolvers ([#4207](https://github.com/ovh/manager/issues/4207)) ([43ab2d9](https://github.com/ovh/manager/commit/43ab2d95df3234dd21d1df412e59320bc9816f05))
+* **telephony:** use user subsidiary to order alias ([#4209](https://github.com/ovh/manager/issues/4209)) ([a43a060](https://github.com/ovh/manager/commit/a43a060aff41ba231c9778d6183870770895d80e))
+
+
+
 # [13.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.7.1...@ovh-ux/manager-telecom@13.8.0) (2020-12-22)
 
 
