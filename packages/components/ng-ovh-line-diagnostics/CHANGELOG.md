@@ -1,3 +1,12 @@
+## [5.0.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-line-diagnostics@5.0.3...@ovh-ux/ng-ovh-line-diagnostics@5.0.4) (2020-12-28)
+
+
+### Bug Fixes
+
+* **line-diagnostic:** error on contact form ([#4211](https://github.com/ovh/manager/issues/4211)) ([62be569](https://github.com/ovh/manager/commit/62be569d4f125bf98c0a927277e5600bd69aa2ec))
+
+
+
 ## [5.0.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-line-diagnostics@5.0.2...@ovh-ux/ng-ovh-line-diagnostics@5.0.3) (2020-10-28)
 
 
