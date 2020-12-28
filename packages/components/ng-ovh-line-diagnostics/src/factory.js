@@ -1,4 +1,3 @@
-import bind from 'lodash/bind';
 import difference from 'lodash/difference';
 import filter from 'lodash/filter';
 import find from 'lodash/find';
@@ -78,7 +77,7 @@ export default () => {
     }
 
     getQuestionOptions(questionName) {
-      const question = find(this.data.toAnswer, bind('name', questionName));
+      const question = find(this.data.toAnswer, { name: questionName });
       return question.possibleValues;
     }
 
@@ -99,7 +98,7 @@ export default () => {
     }
 
     getQuestionDefaultValue(questionName) {
-      const question = find(this.data.toAnswer, bind('name', questionName));
+      const question = find(this.data.toAnswer, { name: questionName });
       return !isUndefined(question) ? question.defaultValue : null;
     }
 
