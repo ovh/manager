@@ -880,6 +880,14 @@
                 user="$ctrl.user"
             ></dedicated-server-dashboard-advanced-features>
         </div>
+        <!-- Advices -->
+        <div class="col-md-4" data-ng-if="!$ctrl.server.isExpired">
+            <ovh-advices
+                service-type="dedicated-server"
+                service-name="{{ ::$ctrl.server.name }}"
+            >
+            </ovh-advices>
+        </div>
     </div>
 
     <!-- QUOTA -->

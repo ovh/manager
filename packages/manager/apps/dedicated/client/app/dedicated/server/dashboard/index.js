@@ -5,6 +5,7 @@ import '@ovh-ux/ng-translate-async-loader';
 import '@uirouter/angularjs';
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
+import ovhManagerAdvices from '@ovh-ux/manager-advices';
 
 import advancedFeatures from './advanced-features';
 
@@ -20,6 +21,7 @@ angular
     'oui',
     'pascalprecht.translate',
     'ui.router',
+    ovhManagerAdvices,
   ])
   .component('dedicatedServerDashboard', component)
   .config(routing)
