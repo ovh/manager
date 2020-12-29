@@ -1302,17 +1302,12 @@ export default class PrivateDatabase {
         start: this.constructor.getStartTime(opts.range),
         queries: [
           {
-            metric: 'dbaas.metrics.docker_container_mem_usage_percent',
+            metric: 'dbaas.metrics.exec_memsw',
             aggregator: 'sum',
             downsample: downSample,
           },
           {
-            metric: 'dbaas.metrics.mysql_connexion_count',
-            aggregator: 'sum',
-            downsample: downSample,
-          },
-          {
-            metric: 'dbaas.metrics.mysql_query_time_average',
+            metric: 'dbaas.metrics.mysql_threads_connected',
             aggregator: 'sum',
             downsample: downSample,
           },
