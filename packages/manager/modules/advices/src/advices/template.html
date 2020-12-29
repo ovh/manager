@@ -10,7 +10,7 @@
             aria-label="{{ ::advice.ariaLabel || advice.localizedName }}"
             external="advice.external"
         >
-            <span data-translate="{{ advice.localizedName }}"></span>
+            <span data-ng-bind="advice.localizedName"></span>
         </oui-tile-button>
     </div>
 </oui-tile>
