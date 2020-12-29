@@ -1,5 +1,5 @@
 {
-  "metrics_tab_dashboard": "Home Page",
+  "metrics_tab_dashboard": "Home page",
   "metrics_tab_token": "Token",
   "metrics_tab_platform": "Piattaforme",
   "metrics_guides": "Guide",
@@ -34,8 +34,8 @@
   "metrics_token_created": "Token creato",
   "metrics_token_updated": "Token aggiornato",
   "metrics_token_revoked": "Token rimosso",
-  "metrics_quota_ddp_warning_message": "Hai quasi raggiunto il numero massimo giornaliero di punti. Per evitare di perdere dati, ti consigliamo di modificare la tua offerta.",
-  "metrics_quota_mads_warning_message": "Hai quasi raggiunto il numero massimo mensile di serie attive. Per evitare di perdere dati, ti consigliamo di modificare la tua offerta.",
+  "metrics_quota_ddp_warning_message": "Hai quasi raggiunto il numero massimo di punti al giorno. Per evitare di perdere dati, ti consigliamo di modificare la tua offerta.",
+  "metrics_quota_mads_warning_message": "Hai quasi raggiunto il numero massimo di serie attive al mese. Per evitare di perdere dati, ti consigliamo di modificare la tua offerta.",
   "metrics_setting_update": "Aggiorna",
   "metrics_setting_desc": "Descrizione del progetto",
   "metrics_setting_updated": "Servizio aggiornato",
