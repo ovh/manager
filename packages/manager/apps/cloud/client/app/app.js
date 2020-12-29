@@ -44,7 +44,6 @@ import ovhManagerBanner from '@ovh-ux/manager-banner';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
 import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
 import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
-import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 
 import cloudUniverseComponents from '../cloudUniverseComponents';
 
