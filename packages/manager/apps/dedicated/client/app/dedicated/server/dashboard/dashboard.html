@@ -954,7 +954,7 @@
                                     ></span>
                                 </div>
                             </div>
-                            <div>
+                            <div class="oui-select">
                                 <label
                                     for="typeChoice"
                                     class="oui-label d-inline-block align-middle mr-2"
@@ -965,7 +965,7 @@
                                     class="oui-select mb-0 oui-select_inline align-middle"
                                 >
                                     <select
-                                        class="form-control"
+                                        class="oui-select__input"
                                         id="typeChoice"
                                         name="datatype"
                                         data-ng-options="('server_tab_stats_type_' + type | translate) for type in $ctrl.serverStats.modelconst.types"
@@ -979,7 +979,7 @@
                                     ></span>
                                 </div>
                             </div>
-                            <div>
+                            <div class="oui-select">
                                 <label
                                     for="periodeChoice"
                                     class="oui-label d-inline-block align-middle mr-2"
@@ -990,7 +990,7 @@
                                     class="oui-select mb-0 oui-select_inline align-middle"
                                 >
                                     <select
-                                        class="form-control"
+                                        class="oui-select__input"
                                         id="periodeChoice"
                                         name="datatype"
                                         data-ng-options="('server_tab_stats_period_' + periode | translate) for periode in $ctrl.serverStats.modelconst.periods"
