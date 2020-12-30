@@ -3,7 +3,7 @@
         <oui-spinner></oui-spinner>
     </div>
 
-    <div class="telecom-section-header" data-ng-if="!$ctrl.loading.init">
+    <div data-ng-if="!$ctrl.loading.init" class="mb-4">
         <header class="oui-header">
             <div class="oui-header__container">
                 <div class="oui-header__content">
@@ -47,16 +47,14 @@
             </oui-header-tabs-item>
         </oui-header-tabs>
     </div>
-    <!-- .telecom-section-header -->
 
     <tuc-toast-message></tuc-toast-message>
 
     <div
-        class="telecom-section-content ui-view-container"
+        class="ui-view-container"
         data-ng-class="$ctrl.content.back.class"
         data-ng-if="!$ctrl.loading.init"
         data-ui-view="xdslView"
     ></div>
-    <!-- .telecom-section-content -->
 </section>
 <!-- .telecom-pack-xdsl -->

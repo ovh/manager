@@ -5,95 +5,84 @@
     </div>
 
     <div data-ng-if="!BillingAccountCtrl.loading.init">
-        <div class="telecom-section-header">
-            <header class="oui-header">
-                <div class="oui-header__container">
-                    <div class="oui-header__content">
-                        <tuc-editable-service-name
-                            data-tuc-editable-service-name-title="BillingAccountCtrl.group.getDisplayedName()"
-                            data-tuc-editable-service-name-title-on-save="BillingAccountCtrl.groupNameSave"
-                            data-tuc-editable-service-name-service-name="BillingAccountCtrl.group.billingAccount"
-                            data-maxlength="25"
-                        >
-                        </tuc-editable-service-name>
-                    </div>
+        <header class="oui-header">
+            <div class="oui-header__container">
+                <div class="oui-header__content">
+                    <tuc-editable-service-name
+                        data-tuc-editable-service-name-title="BillingAccountCtrl.group.getDisplayedName()"
+                        data-tuc-editable-service-name-title-on-save="BillingAccountCtrl.groupNameSave"
+                        data-tuc-editable-service-name-service-name="BillingAccountCtrl.group.billingAccount"
+                        data-maxlength="25"
+                    >
+                    </tuc-editable-service-name>
                 </div>
-            </header>
+            </div>
+        </header>
 
-            <!-- GROUP ACTIONS -->
-            <nav role="navigation">
-                <oui-header-tabs>
-                    <oui-header-tabs-item
-                        data-href="{{:: BillingAccountCtrl.billingAccountLink }}"
-                        data-active="BillingAccountCtrl.currentActiveLink() === BillingAccountCtrl.billingAccountLink"
-                        ><span
-                            data-translate="telephony_group_tab_dashboard"
-                        ></span>
-                    </oui-header-tabs-item>
-                    <oui-header-tabs-item
-                        data-href="{{:: BillingAccountCtrl.servicesLink }}"
-                        data-active="BillingAccountCtrl.currentActiveLink() === BillingAccountCtrl.servicesLink"
-                        ><span
-                            data-translate="telephony_group_tab_services"
-                        ></span>
-                    </oui-header-tabs-item>
-                    <oui-header-tabs-item
-                        data-href="{{:: BillingAccountCtrl.administrationLink }}"
-                        data-active="BillingAccountCtrl.currentActiveLink() === BillingAccountCtrl.administrationLink"
-                        ><span
-                            data-translate="telephony_group_tab_admin"
-                        ></span>
-                    </oui-header-tabs-item>
-                    <oui-header-tabs-item
-                        data-href="{{:: BillingAccountCtrl.billingLink }}"
-                        data-active="BillingAccountCtrl.currentActiveLink() === BillingAccountCtrl.billingLink"
-                        ><span
-                            data-translate="telephony_group_tab_billing"
-                        ></span>
-                    </oui-header-tabs-item>
-                    <oui-header-tabs-item
-                        data-href="{{:: BillingAccountCtrl.orderAliasLink }}"
-                        data-disabled="!BillingAccountCtrl.canOrderAlias"
-                        data-active="BillingAccountCtrl.currentActiveLink() === BillingAccountCtrl.orderAliasLink"
-                        ><span
-                            data-translate="telephony_group_tab_orderAlias"
-                        ></span>
-                    </oui-header-tabs-item>
-                    <oui-header-tabs-item
-                        data-href="{{:: BillingAccountCtrl.phonebookLink }}"
-                        data-disabled="BillingAccountCtrl.loading.init"
-                        data-active="BillingAccountCtrl.currentActiveLink() === BillingAccountCtrl.phonebookLink"
-                        ><span
-                            data-translate="telephony_group_tab_contacts_book"
-                        ></span>
-                    </oui-header-tabs-item>
-                    <oui-header-tabs-item
-                        data-href="{{:: BillingAccountCtrl.abbreviatedNumbersLink }}"
-                        data-disabled="BillingAccountCtrl.loading.init"
-                        data-active="BillingAccountCtrl.currentActiveLink() === BillingAccountCtrl.abbreviatedNumbersLink"
-                        ><span
-                            data-translate="telephony_group_tab_short_numbers"
-                        ></span>
-                    </oui-header-tabs-item>
-                    <oui-header-tabs-item
-                        data-href="{{:: BillingAccountCtrl.manageContactsLink }}"
-                        data-disabled="BillingAccountCtrl.loading.init"
-                        data-active="BillingAccountCtrl.currentActiveLink() === BillingAccountCtrl.manageContactsLink"
-                        ><span
-                            data-translate="telephony_group_tab_contacts_manage"
-                        ></span>
-                    </oui-header-tabs-item>
-                    <oui-header-tabs-item
-                        data-href="{{:: BillingAccountCtrl.guidesLink }}"
-                        data-active="BillingAccountCtrl.currentActiveLink() === BillingAccountCtrl.guidesLink"
-                        ><span
-                            data-translate="telephony_group_tab_guides"
-                        ></span>
-                    </oui-header-tabs-item>
-                </oui-header-tabs>
-            </nav>
-        </div>
-        <!-- /.telecom-section-header -->
+        <!-- GROUP ACTIONS -->
+        <nav role="navigation" class="mb-4">
+            <oui-header-tabs>
+                <oui-header-tabs-item
+                    data-href="{{:: BillingAccountCtrl.billingAccountLink }}"
+                    data-active="BillingAccountCtrl.currentActiveLink() === BillingAccountCtrl.billingAccountLink"
+                    ><span
+                        data-translate="telephony_group_tab_dashboard"
+                    ></span>
+                </oui-header-tabs-item>
+                <oui-header-tabs-item
+                    data-href="{{:: BillingAccountCtrl.servicesLink }}"
+                    data-active="BillingAccountCtrl.currentActiveLink() === BillingAccountCtrl.servicesLink"
+                    ><span data-translate="telephony_group_tab_services"></span>
+                </oui-header-tabs-item>
+                <oui-header-tabs-item
+                    data-href="{{:: BillingAccountCtrl.administrationLink }}"
+                    data-active="BillingAccountCtrl.currentActiveLink() === BillingAccountCtrl.administrationLink"
+                    ><span data-translate="telephony_group_tab_admin"></span>
+                </oui-header-tabs-item>
+                <oui-header-tabs-item
+                    data-href="{{:: BillingAccountCtrl.billingLink }}"
+                    data-active="BillingAccountCtrl.currentActiveLink() === BillingAccountCtrl.billingLink"
+                    ><span data-translate="telephony_group_tab_billing"></span>
+                </oui-header-tabs-item>
+                <oui-header-tabs-item
+                    data-href="{{:: BillingAccountCtrl.orderAliasLink }}"
+                    data-disabled="!BillingAccountCtrl.canOrderAlias"
+                    data-active="BillingAccountCtrl.currentActiveLink() === BillingAccountCtrl.orderAliasLink"
+                    ><span
+                        data-translate="telephony_group_tab_orderAlias"
+                    ></span>
+                </oui-header-tabs-item>
+                <oui-header-tabs-item
+                    data-href="{{:: BillingAccountCtrl.phonebookLink }}"
+                    data-disabled="BillingAccountCtrl.loading.init"
+                    data-active="BillingAccountCtrl.currentActiveLink() === BillingAccountCtrl.phonebookLink"
+                    ><span
+                        data-translate="telephony_group_tab_contacts_book"
+                    ></span>
+                </oui-header-tabs-item>
+                <oui-header-tabs-item
+                    data-href="{{:: BillingAccountCtrl.abbreviatedNumbersLink }}"
+                    data-disabled="BillingAccountCtrl.loading.init"
+                    data-active="BillingAccountCtrl.currentActiveLink() === BillingAccountCtrl.abbreviatedNumbersLink"
+                    ><span
+                        data-translate="telephony_group_tab_short_numbers"
+                    ></span>
+                </oui-header-tabs-item>
+                <oui-header-tabs-item
+                    data-href="{{:: BillingAccountCtrl.manageContactsLink }}"
+                    data-disabled="BillingAccountCtrl.loading.init"
+                    data-active="BillingAccountCtrl.currentActiveLink() === BillingAccountCtrl.manageContactsLink"
+                    ><span
+                        data-translate="telephony_group_tab_contacts_manage"
+                    ></span>
+                </oui-header-tabs-item>
+                <oui-header-tabs-item
+                    data-href="{{:: BillingAccountCtrl.guidesLink }}"
+                    data-active="BillingAccountCtrl.currentActiveLink() === BillingAccountCtrl.guidesLink"
+                    ><span data-translate="telephony_group_tab_guides"></span>
+                </oui-header-tabs-item>
+            </oui-header-tabs>
+        </nav>
 
         <div class="telecom-section-alert">
             <div
@@ -118,12 +107,10 @@
         <!-- /.telecom-section-alert -->
 
         <main
-            class="telecom-section-content"
             role="main"
             data-ng-if="!BillingAccountCtrl.loading.init"
             data-ui-view="groupInnerView"
         ></main>
-        <!-- /.telecom-section-content -->
     </div>
 </section>
 <!-- /.telecom-telephony-group -->

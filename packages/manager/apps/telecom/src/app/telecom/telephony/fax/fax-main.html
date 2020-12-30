@@ -4,7 +4,7 @@
         <oui-spinner data-size="l"></oui-spinner>
     </div>
 
-    <div class="telecom-section-header" data-ng-if="!$ctrl.loading.init">
+    <div class="mb-4" data-ng-if="!$ctrl.loading.init">
         <header class="oui-header">
             <div class="oui-header__container">
                 <div class="oui-header__content">
@@ -64,7 +64,6 @@
             </oui-header-tabs-item>
         </oui-header-tabs>
     </div>
-    <!-- .telecom-section-header -->
 
     <div class="telecom-section-alert" data-ng-if="!$ctrl.loading.init">
         <div
@@ -86,11 +85,9 @@
     </div>
 
     <main
-        class="telecom-section-content"
         role="main"
         data-ng-if="!$ctrl.loading.init"
         data-ui-view="faxInnerView"
     ></main>
-    <!-- .telecom-section-content -->
 </section>
 <!-- /.telecom-telephony-fax -->

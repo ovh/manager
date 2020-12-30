@@ -12,10 +12,7 @@
         <oui-spinner></oui-spinner>
     </div>
 
-    <div
-        class="telecom-section-content"
-        data-ng-if="!PhonebookCtrl.phonebook.isLoading"
-    >
+    <div data-ng-if="!PhonebookCtrl.phonebook.isLoading">
         <tuc-toast-message></tuc-toast-message>
 
         <div class="row" data-ng-if="!PhonebookCtrl.phonebook.bookKey">
@@ -681,6 +678,5 @@
             </div>
         </div>
     </div>
-    <!-- .telecom-section-content -->
 </section>
 <!-- .telecom-telephony-line-phone-phonebook -->

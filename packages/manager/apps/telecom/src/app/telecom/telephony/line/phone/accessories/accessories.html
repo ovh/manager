@@ -14,7 +14,7 @@
 
     <tuc-toast-message></tuc-toast-message>
 
-    <div data-ng-if="!$ctrl.loading.init" class="telecom-section-content">
+    <div data-ng-if="!$ctrl.loading.init">
         <div data-ng-if="$ctrl.process.currentView === 'choice'">
             <accessories-choice phone="$ctrl.phone"></accessories-choice>
         </div>

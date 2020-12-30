@@ -1,21 +1,19 @@
 <section class="telecom-section">
-    <div class="telecom-section-header">
-        <header role="banner">
-            <oui-back-button data-on-click="::$ctrl.goBack()">
-                <span
-                    data-ng-bind="$ctrl.pack.description || $ctrl.pack.packName"
-                ></span>
-            </oui-back-button>
-            <h1
-                data-translate="hosted_email_detail_title"
-                data-translate-values="{name: $ctrl.serviceName}"
-            ></h1>
-        </header>
-    </div>
+    <header role="banner" class="mb-4">
+        <oui-back-button data-on-click="::$ctrl.goBack()">
+            <span
+                data-ng-bind="$ctrl.pack.description || $ctrl.pack.packName"
+            ></span>
+        </oui-back-button>
+        <h1
+            data-translate="hosted_email_detail_title"
+            data-translate-values="{name: $ctrl.serviceName}"
+        ></h1>
+    </header>
 
     <tuc-toast-message></tuc-toast-message>
 
-    <main class="telecom-section-content" role="main">
+    <main role="main">
         <div class="text-center" data-ng-if="$ctrl.loading">
             <oui-spinner></oui-spinner>
         </div>
