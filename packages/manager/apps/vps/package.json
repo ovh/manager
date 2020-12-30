@@ -24,6 +24,7 @@
   "dependencies": {
     "@ovh-ux/manager-config": "^2.0.0 || ^3.0.0",
     "@ovh-ux/manager-core": "^11.0.0 || ^12.0.0",
+    "@ovh-ux/manager-advices": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-filters": "^0.1.0 || ^1.0.0",
     "@ovh-ux/manager-models": "^1.0.0",
     "@ovh-ux/manager-product-offers": "^3.0.0 || ^4.0.0",
