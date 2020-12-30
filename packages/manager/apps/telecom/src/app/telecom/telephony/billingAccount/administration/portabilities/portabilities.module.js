@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-import portabilities from '../../../alias/portability/portabilities/telecom-telephony-alias-portability-portabilities.module';
+import portabilities from '../../../alias/portability/portabilities/portabilities.module';
 
 import attach from './attach/portabilities-attach.module';
 import deleteModule from './delete/portabilities-delete.module';
