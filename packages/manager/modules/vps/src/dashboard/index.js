@@ -24,11 +24,13 @@ import ovhManagerVpsDashboardSnapshotTake from './modal/snapshot-take';
 import ovhManagerVpsDashboardTerminate from './terminate';
 import ovhManagerVpsDashboardTerminateOption from './modal/terminate-option';
 import ovhManagerVpsDashboardTile from './tile';
+import advices from './advices';
 
 const moduleName = 'ovhManagerVpsDashboard';
 
 angular
   .module(moduleName, [
+    advices,
     ovhManagerVpsDashboardRebuild,
     ovhManagerVpsDashboardTerminate,
     ovhManagerVpsDashboardDisplayIps,

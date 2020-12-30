@@ -29,6 +29,13 @@
 </oui-message>
 <section class="container-fluid cui-page__content cui-page__content-flex">
     <div class="row d-lg-flex">
+        <div class="col-xm-12 col-md-4">
+            <dedicated-cloud-vps-advices
+                service-name="$ctrl.serviceName"
+                service-type="$ctrl.SERVICE_TYPE"
+            >
+            </dedicated-cloud-vps-advices>
+        </div>
         <div class="col-xm-12 col-md-4" data-ng-if="$ctrl.isVpsNewRange">
             <vps-dashboard-tile-information
                 actions="$ctrl.actions"
