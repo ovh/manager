@@ -1,11 +1,9 @@
 <div class="telecom-pack-voipLine-activation">
-    <header>
-        <oui-back-button data-on-click="::$ctrl.goBack()">
-            <span data-translate="telephony_activation_return"></span>
-        </oui-back-button>
-        <h1 data-translate="telefony_activation_add_line_title"></h1>
-    </header>
-
+    <oui-back-button data-on-click="::$ctrl.goBack()"></oui-back-button>
+    <oui-header
+        heading="{{:: 'telefony_activation_add_line_title' | translate }}"
+    >
+    </oui-header>
     <div data-ng-hide="$ctrl.orderDone">
         <div class="widget-presentation">
             <h2

@@ -52,6 +52,5 @@
   "telephony_activation_order_nb_select_phones": "You have selected {{nbLines}} lines, please select {{nbLines}} products.",
   "telephony_activation_choice_sip_line_without_phone": "SIP line without telephone",
   "telephony_activation_hardware_setup_fees_label": "Setup fees",
-  "telephony_activation_choice_quantity_max": "You have reached the maximum number of products, you cannot add more.",
-  "telephony_activation_return": "Back"
+  "telephony_activation_choice_quantity_max": "You have reached the maximum number of products, you cannot add more."
 }

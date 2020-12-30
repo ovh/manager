@@ -4,9 +4,10 @@ import template from './telecom-sms-options-manage.html';
 
 const moduleName = 'ovhManageSmsOptionsManage';
 
-angular.module(moduleName, []).config(($stateProvider) => {
-  $stateProvider
-    .state('sms.service.options.manage', {
+angular
+  .module(moduleName, [])
+  .config(($stateProvider) => {
+    $stateProvider.state('sms.service.options.manage', {
       url: '/manage',
       views: {
         'smsView@sms.service': {
@@ -19,8 +20,8 @@ angular.module(moduleName, []).config(($stateProvider) => {
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant('sms_options_manage_title'),
       },
-    })
-    .run(/* @ngTranslationsInject:json ./translations */);
-});
+    });
+  })
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

@@ -8,6 +8,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       model: /* @ngInject */ ($transition$) => $transition$.params().model,
+      breadcrumb: () => null,
     },
     views: {
       modal: {

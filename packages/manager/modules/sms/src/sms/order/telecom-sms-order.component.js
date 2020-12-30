@@ -57,6 +57,10 @@ angular
           component: 'smsOrderComponent',
         },
       },
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('sms_order_title'),
+      },
     });
   })
   .run(/* @ngTranslationsInject:json ./translations */)

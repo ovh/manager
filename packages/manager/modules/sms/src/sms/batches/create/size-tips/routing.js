@@ -5,6 +5,7 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/size-tips',
     resolve: {
       close: /* @ngInject */ (goBack) => goBack,
+      breadcrumb: () => null,
     },
     views: {
       modal: {
