@@ -33,19 +33,25 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     resolve: {
-      currentLine($stateParams, OvhApiTelephony) {
+      serviceName: /* @ngInject */ ($transition$) =>
+        $transition$.params().serviceName,
+      currentLine: /* @ngInject */ (
+        $stateParams,
+        OvhApiTelephony,
+        serviceName,
+      ) => {
         return OvhApiTelephony.Line()
           .v6()
           .get({
             billingAccount: $stateParams.billingAccount,
-            serviceName: $stateParams.serviceName,
+            serviceName,
           })
           .$promise.then((line) =>
             OvhApiTelephony.Line()
               .v6()
               .simultaneousChannelsDetails({
                 billingAccount: $stateParams.billingAccount,
-                serviceName: $stateParams.serviceName,
+                serviceName,
               })
               .$promise.then((details) => details)
               .catch(() => null)
@@ -57,10 +63,10 @@ export default /* @ngInject */ ($stateProvider) => {
           )
           .catch(() => ({}));
       },
-      $title(translations, $stateParams, $translate, currentLine) {
+      $title: /* @ngInject */ ($translate, currentLine, serviceName) => {
         return $translate.instant(
           'telephony_line_page_title',
-          { name: currentLine.description || $stateParams.serviceName },
+          { name: currentLine.description || serviceName },
           null,
           null,
           'escape',

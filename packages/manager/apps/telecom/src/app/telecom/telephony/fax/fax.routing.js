@@ -34,9 +34,11 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     resolve: {
-      $title(translations, $translate, $stateParams) {
+      serviceName: /* @ngInject */ ($transition$) =>
+        $transition$.params().serviceName,
+      $title($translate, serviceName) {
         return $translate('telephony_fax_page_title', {
-          name: $stateParams.serviceName,
+          name: serviceName,
         });
       },
       faxDashboardLink: /* @ngInject */ ($state, $transition$) =>
