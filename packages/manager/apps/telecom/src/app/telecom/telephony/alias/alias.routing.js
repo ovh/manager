@@ -1,5 +1,4 @@
 import controller from './alias.controller';
-import template from './alias.html';
 import templateMain from './alias.main.html';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -17,9 +16,9 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/:serviceName',
     views: {
       'telephonyView@telecom.telephony': {
-        template,
+        template: '<div ui-view="aliasView"></div>',
       },
-      'aliasView@telecom.telephony.billingAccount.alias': {
+      'aliasView@telecom.telephony.billingAccount.alias.details': {
         template: templateMain,
         controller,
         controllerAs: '$ctrl',
