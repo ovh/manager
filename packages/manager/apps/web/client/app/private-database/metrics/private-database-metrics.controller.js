@@ -54,9 +54,7 @@ angular.module('App').controller(
             borderWidth: 1,
           },
         },
-        specificDatabaseVersionChartSelection: {
-          mysql_55: ['memoryUsages'],
-        },
+        specificDatabaseVersionChartSelection: {},
         specificChartSettings: [
           {
             chartName: 'memoryUsages',
@@ -67,7 +65,7 @@ angular.module('App').controller(
                 intersect: false,
                 callbacks: {
                   title: (items) => get(head(items), 'xLabel'),
-                  label: (item) => `${item.yLabel}%`,
+                  label: (item) => `${Math.round(item.yLabel / 1024 / 1024)}Mb`,
                 },
               },
               scales: {
@@ -86,7 +84,8 @@ angular.module('App').controller(
                     ticks: {
                       suggestedMin: 0,
                       suggestedMax: 100,
-                      callback: (label) => `${label}%`,
+                      callback: (label) =>
+                        `${Math.round(label / 1024 / 1024)}Mb`,
                     },
                   },
                 ],
@@ -136,55 +135,6 @@ angular.module('App').controller(
                     ticks: {
                       suggestedMin: 0,
                       stepSize: 1,
-                    },
-                  },
-                ],
-                xAxes: [
-                  {
-                    type: 'time',
-                    position: 'bottom',
-                    gridLines: {
-                      drawBorder: true,
-                      display: false,
-                    },
-                    time: {
-                      displayFormats: {
-                        hour: 'LT',
-                      },
-                    },
-                  },
-                ],
-              },
-            },
-          },
-          {
-            chartName: 'queryExecutionTimes',
-            dataFromAPIIndex: 2,
-            options: {
-              tooltips: {
-                mode: 'label',
-                intersect: false,
-                callbacks: {
-                  title: (items) => get(head(items), 'xLabel'),
-                  label: (item) => `${item.yLabel}ms`,
-                },
-              },
-              scales: {
-                yAxes: [
-                  {
-                    type: 'linear',
-                    display: true,
-                    position: 'left',
-                    scaleLabel: {
-                      display: true,
-                    },
-                    gridLines: {
-                      drawBorder: true,
-                      display: true,
-                    },
-                    ticks: {
-                      suggestedMin: 0,
-                      callback: (label) => `${label}ms`,
                     },
                   },
                 ],
