@@ -26,11 +26,6 @@ angular
   ])
   .config(routing)
   .component('ovhManagerSms', component)
-  .run(/* @ngTranslationsInject:json ./translations */)
-  .run(
-    /* @ngInject */ ($transitions, $translate) => {
-      $transitions.onBefore({ to: 'sms.**' }, () => $translate.refresh());
-    },
-  );
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
