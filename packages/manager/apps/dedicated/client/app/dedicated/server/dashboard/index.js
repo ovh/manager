@@ -5,6 +5,7 @@ import '@ovh-ux/ng-translate-async-loader';
 import '@uirouter/angularjs';
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
+import ovhManagerAdvices from '@ovh-ux/manager-advices';
 
 import ovhManagerBilling from '@ovh-ux/manager-billing';
 import advancedFeatures from './advanced-features';
@@ -30,6 +31,7 @@ angular
     'ui.router',
     ovhManagerBilling,
     resiliation,
+    ovhManagerAdvices,
   ])
   .component('dedicatedServerDashboard', component)
   .config(routing)
