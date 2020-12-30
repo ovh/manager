@@ -1,3 +1,12 @@
+## [3.5.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.5.4...@ovh-ux/manager-server-sidebar@3.5.5) (2020-12-30)
+
+
+### Bug Fixes
+
+* update link to order licenses ([#4219](https://github.com/ovh/manager/issues/4219)) ([b96e8ab](https://github.com/ovh/manager/commit/b96e8ab5921b70c0215c366ce047eb2b857652b2))
+
+
+
 ## [3.5.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.5.3...@ovh-ux/manager-server-sidebar@3.5.4) (2020-12-08)
 
 
