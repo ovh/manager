@@ -1,5 +1,6 @@
 import get from 'lodash/get';
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
+import { COLUMN_CONFIGURATION } from './services.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('telecom.telephony.billingAccount.services', {
@@ -18,6 +19,9 @@ export default /* @ngInject */ ($stateProvider) => {
         OvhApiTelephony.v6().schema().$promise,
       defaultFilterColumn: () => 'serviceName',
       dataModel: () => 'telephony.TelephonyService',
+      columnConfig: () => ({
+        data: COLUMN_CONFIGURATION,
+      }),
       telephonyFeatureTypes: /* @ngInject */ (schema) =>
         get(schema.models, 'telephony.TypeEnum').enum,
       telephonyServiceTypes: /* @ngInject */ (schema) =>

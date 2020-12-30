@@ -27,8 +27,6 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       billingAccount: /* @ngInject */ ($transition$) =>
         $transition$.params().billingAccount,
-      dataModel: () => 'telephony.BillingAccount',
-      defaultFilterColumn: () => 'billingAccount',
       billingAccountId: /* @ngInject */ (billingAccount) => billingAccount,
       initTelephony($q, $stateParams, TelephonyMediator) {
         // init all groups, lines and numbers
