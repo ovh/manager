@@ -178,5 +178,16 @@
                 </oui-tile-definition>
             </oui-tile>
         </div>
+        <!-- Advices -->
+        <div class="col-md-4">
+            <ovh-advices
+                service-type="dedicated-cloud"
+                service-name="{{ ::$ctrl.serviceName }}"
+                query-params="{
+                    datacenterId: $ctrl.datacenter.model.id,
+                }"
+            >
+            </ovh-advices>
+        </div>
     </div>
 </div>
