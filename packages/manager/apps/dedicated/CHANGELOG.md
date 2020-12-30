@@ -1,3 +1,13 @@
+## [14.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.10.0...@ovh-ux/manager-dedicated@14.10.1) (2020-12-30)
+
+
+### Bug Fixes
+
+* **billing.history:** omit displayedColumns resolve ([#4221](https://github.com/ovh/manager/issues/4221)) ([a074835](https://github.com/ovh/manager/commit/a07483517985311f02fc1201063fe22744af31f4))
+* **server:** borken mrtg select ([#4220](https://github.com/ovh/manager/issues/4220)) ([f92674e](https://github.com/ovh/manager/commit/f92674e614e2daa7559da2a7c5d26a86285aa445))
+
+
+
 # [14.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.9.0...@ovh-ux/manager-dedicated@14.10.0) (2020-12-22)
 
 

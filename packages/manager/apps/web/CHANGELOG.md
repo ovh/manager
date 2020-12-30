@@ -1,3 +1,12 @@
+# [15.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.9.0...@ovh-ux/manager-web@15.10.0) (2020-12-30)
+
+
+### Features
+
+* **private-database:** update metrics charts ([#4216](https://github.com/ovh/manager/issues/4216)) ([f41a831](https://github.com/ovh/manager/commit/f41a831511bbdeeecd604a0d3dd4bc3b85bf60be))
+
+
+
 # [15.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.8.1...@ovh-ux/manager-web@15.9.0) (2020-12-22)
 
 
