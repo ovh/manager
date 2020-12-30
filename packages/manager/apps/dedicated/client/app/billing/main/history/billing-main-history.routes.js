@@ -67,6 +67,7 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
           'schema',
           'apiModel',
           'configuration',
+          'displayedColumns',
         ]),
         bills: /* @ngInject */ (OvhApiMe) =>
           OvhApiMe.Bill()
