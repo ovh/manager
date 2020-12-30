@@ -6,7 +6,7 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       goBack: /* @ngInject */ ($state) => (packName) => {
         $state.go(
-          packName === 'sdsl' ? 'telecom.dashboard' : 'telecom.packs.pack',
+          packName === 'sdsl' ? 'telecom-dashboard' : 'telecom.packs.pack',
         );
       },
     },
