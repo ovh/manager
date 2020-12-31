@@ -58,6 +58,9 @@ export default /* @ngInject */ ($stateProvider) => {
       currentActiveLink: /* @ngInject */ ($state, $transition$) => () =>
         $state.href($state.current.name, $transition$.params()),
       breadcrumb: /* @ngInject */ (productId) => productId,
+      reloadDashboard: /* @ngInject */ ($state) => () => {
+        return $state.reload();
+      },
     },
   });
 

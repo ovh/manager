@@ -106,7 +106,7 @@ export default class ExchangeCtrl {
   }
 
   $onInit() {
-    this.services.Exchange.value = this.exchange;
+    this.services.wucExchange.value = this.exchange;
     if (!isEmpty(this.exchange.messages)) {
       this.services.messaging.writeError(
         this.services.$translate.instant('exchange_dashboard_loading_error'),
