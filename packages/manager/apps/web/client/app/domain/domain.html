@@ -51,20 +51,6 @@
                                 class="dropdown-menu dropdown-menu-right"
                                 data-uib-dropdown-menu
                             >
-                                <li data-ng-if="ctrlDomain.alldomURL">
-                                    <a
-                                        data-ng-href="{{ctrlDomain.alldomURL}}"
-                                        target="_blank"
-                                        title="{{ 'domain_configuration_order_alldom' | translate }} ({{ 'common_newtab' | translate }})"
-                                        data-track-on="click"
-                                        data-track-name="web::domain::order-pack-allDom"
-                                        data-track-click="action"
-                                    >
-                                        <span
-                                            data-translate="domain_configuration_order_alldom"
-                                        ></span>
-                                    </a>
-                                </li>
                                 <li
                                     data-ng-if="ctrlDomain.canOrderHosting && ctrlDomain.isAdminOrBilling && !ctrlDomain.domain.isExpired"
                                 >
