@@ -20,6 +20,6 @@ angular
     serviceVoicemailPassword,
   ])
   .config(routing)
-  .run(/* @ngTranslationsInject:json ./../translations */);
+  .run(/* @ngTranslationsInject:json ./../translations ./translations */);
 
 export default moduleName;
