@@ -10,6 +10,7 @@ angular
   .module(moduleName, [productOffers])
   .config(routing)
   .component('domainDnsZoneNew', component)
-  .service('newDnsZone', service);
+  .service('newDnsZone', service)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

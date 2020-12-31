@@ -260,7 +260,7 @@ export const WEB_ORDER_SIDEBAR_CONFIG = [
     id: 'orderZone',
     title: 'zone',
     icon: 'oui-icon oui-icon-domain-dns',
-    state: 'app.dns-zone-new',
+    state: 'app.zone.new',
     regions: ['EU', 'CA'],
     app: [WEB],
     tracker: 'web::orders::dns-zone::order',

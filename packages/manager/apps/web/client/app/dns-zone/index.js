@@ -42,6 +42,17 @@ angular
         },
       });
 
+      $stateProvider.state('app.zone.new.**', {
+        url: '/new',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+          return import('./new/index').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
+      });
+
       $urlRouterProvider.when(
         /^\/configuration\/zone/,
         /* @ngInject */ ($location) => {
