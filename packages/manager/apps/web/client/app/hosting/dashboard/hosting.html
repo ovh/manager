@@ -200,7 +200,9 @@
         >
             <span data-translate="hosting_tab_ENVVARS"></span>
         </oui-header-tabs-item>
-        <oui-header-tabs-dropdown data-text="{{:: $ctrl.tabMenu.title }}">
+        <oui-header-tabs-dropdown
+            data-text="{{:: 'hosting_dashboard_tabs_dropdown' | translate }}"
+        >
             <oui-header-tabs-item
                 href="{{ $ctrl.automatedEmailsLink }}"
                 active="$ctrl.currentActiveLink() === $ctrl.automatedEmailsLink"
