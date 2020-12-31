@@ -518,7 +518,7 @@ angular
       });
     },
   )
-  .run(/* @ngTranslationsInject:json ./translations */)
+  .run(/* @ngTranslationsInject:json ./core/translations */)
   .run(
     /* @ngInject */ ($rootScope, $transitions) => {
       const unregisterHook = $transitions.onSuccess({}, () => {

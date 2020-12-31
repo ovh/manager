@@ -90,6 +90,11 @@ angular
       );
     },
   )
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */)
+  .run(
+    /* @ngInject */ ($translate, $transitions) => {
+      $transitions.onBefore({ to: 'office.**' }, () => $translate.refresh());
+    },
+  );
 
 export default moduleName;

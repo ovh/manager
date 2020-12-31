@@ -76,6 +76,11 @@ angular
   .constant('EXCHANGE_CONFIG', EXCHANGE_CONFIG)
   .config(routing)
   .run(cacheTemplate)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */)
+  .run(
+    /* @ngInject */ ($translate, $transitions) => {
+      $transitions.onBefore({ to: 'exchange.**' }, () => $translate.refresh());
+    },
+  );
 
 export default moduleName;

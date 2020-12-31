@@ -30,8 +30,10 @@ export default class WebAppCtrl {
 
     this.$scope.$watch(
       () => this.$translate.instant('global_app_title'),
-      () => {
-        document.title = this.$translate.instant('global_app_title');
+      (newVal) => {
+        if (newVal !== 'global_app_title') {
+          document.title = newVal;
+        }
       },
     );
 
