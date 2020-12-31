@@ -1,12 +1,10 @@
-<div class="page-header mb-5">
-    <strong data-translate="sharepoint_dashboard_offer_type"></strong>
-    <h1
-        class="word-break"
-        data-ng-bind="SharepointUrlCtrl.sharepointDomain"
-    ></h1>
-</div>
+<oui-header
+    heading="{{:: SharepointUrlCtrl.sharepointDomain }}"
+    description="{{:: 'sharepoint_dashboard_offer_type' | translate }}"
+>
+</oui-header>
 
-<div class="container-fluid px-5">
+<div>
     <div class="row">
         <div class="col-md-9 col-lg-6">
             <div data-ovh-alert="{{SharepointUrlCtrl.alerts.main}}"></div>

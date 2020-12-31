@@ -272,35 +272,33 @@
 <div
     data-ng-if="!loadingHostingInformations && !loadingHostingError && !hosting.isExpired"
 >
-    <div class="tab-content">
-        <wuc-autorenew-invite
-            data-product-type="hosting"
-            data-service-infos="hosting.serviceInfos"
-            data-guide-url="{{:: autorenew.guide }}"
-            data-autorenew-url="{{:: autorenew.url }}"
-        >
-        </wuc-autorenew-invite>
+    <wuc-autorenew-invite
+        data-product-type="hosting"
+        data-service-infos="hosting.serviceInfos"
+        data-guide-url="{{:: autorenew.guide }}"
+        data-autorenew-url="{{:: autorenew.url }}"
+    >
+    </wuc-autorenew-invite>
 
-        <div data-ovh-alert="{{alerts.tabs}}"></div>
-        <div data-ovh-alert="{{alerts.database}}"></div>
+    <div data-ovh-alert="{{alerts.tabs}}"></div>
+    <div data-ovh-alert="{{alerts.database}}"></div>
 
-        <div
-            class="alert alert-dismissible alert-info"
-            role="alert"
-            data-ng-if="hostingProxy.recommendedOffer"
-        >
-            <button class="close" type="button" data-dismiss="alert"></button>
-            <span
-                data-ng-bind-html="'hosting_dashboard_service_offer_recommanded' | translate: { t0: hostingProxy.recommendedOffer }"
-            ></span>
-            <span
-                data-ng-bind-html="'hosting_dashboard_service_offer_recommanded_actions' | translate: { t0: urls.hosting, t1: '_blank' }"
-                data-ng-if="urls.hosting"
-            ></span>
-        </div>
-
-        <div ui-view></div>
+    <div
+        class="alert alert-dismissible alert-info"
+        role="alert"
+        data-ng-if="hostingProxy.recommendedOffer"
+    >
+        <button class="close" type="button" data-dismiss="alert"></button>
+        <span
+            data-ng-bind-html="'hosting_dashboard_service_offer_recommanded' | translate: { t0: hostingProxy.recommendedOffer }"
+        ></span>
+        <span
+            data-ng-bind-html="'hosting_dashboard_service_offer_recommanded_actions' | translate: { t0: urls.hosting, t1: '_blank' }"
+            data-ng-if="urls.hosting"
+        ></span>
     </div>
+
+    <div ui-view></div>
 </div>
 
 <div id="currentAction" class="modal fade currentAction" role="dialog">

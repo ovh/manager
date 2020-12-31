@@ -5,24 +5,27 @@
 </div>
 
 <div data-ng-if="!ctrlDomain.loading.domainsInfos && ctrlDomain.domain">
-    <div class="page-header">
-        <h1
-            data-translate="domain_tab_ZONE_named"
-            data-translate-values="{ t0: ctrlDomain.domain.displayName }"
-        ></h1>
-        <dl
-            data-ng-if="ctrlDomain.domain.nameServers && ctrlDomain.domain.nameServers.length > 0"
-        >
-            <dt>Name Servers</dt>
-            <dd
-                data-ng-repeat="serverName in ctrlDomain.domain.nameServers track by $index"
-                data-ng-bind="serverName"
-            ></dd>
-        </dl>
-    </div>
-
-    <div class="oui-header" data-ng-if="!ctrlDomain.domain.isExpired">
-        <oui-header-tabs>
+    <div class="oui-header">
+        <div class="oui-header__container">
+            <div class="oui-header__content">
+                <h1
+                    class="oui-header__title"
+                    data-translate="domain_tab_ZONE_named"
+                    data-translate-values="{ t0: ctrlDomain.domain.displayName }"
+                ></h1>
+                <dl
+                    class="oui-header__description "
+                    data-ng-if="ctrlDomain.domain.nameServers && ctrlDomain.domain.nameServers.length > 0"
+                >
+                    <dt class="oui-heading_6 mb-0">Name Servers</dt>
+                    <dd
+                        data-ng-repeat="serverName in ctrlDomain.domain.nameServers track by $index"
+                        data-ng-bind="serverName"
+                    ></dd>
+                </dl>
+            </div>
+        </div>
+        <oui-header-tabs data-ng-if="!ctrlDomain.domain.isExpired">
             <oui-header-tabs-item
                 data-state="app.zone.details.dashboard"
                 data-state-params="ctrlDomain.$stateParams"
@@ -57,7 +60,7 @@
             </oui-header-tabs-item>
         </oui-header-tabs>
     </div>
-    <div class="tab-content" data-ui-view="dnsZoneView"></div>
+    <div data-ui-view="dnsZoneView"></div>
 </div>
 
 <div id="currentAction" class="modal fade currentAction" role="dialog">

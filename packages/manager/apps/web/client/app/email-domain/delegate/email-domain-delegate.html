@@ -1,10 +1,8 @@
 <div data-ovh-alert="{{alerts.page}}"></div>
 
-<div class="page-header">
-    <h1 class="word-break" data-ng-bind="ctrlEmailDelegate.domain"></h1>
-</div>
+<oui-header heading="{{:: ctrlEmailDelegate.domain }}"> </oui-header>
 
-<div class="container-fluid" ui-view>
+<div ui-view>
     <div class="row">
         <div class="col-md-9">
             <div data-ovh-alert="{{alerts.main}}"></div>

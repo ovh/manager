@@ -1,9 +1,7 @@
-import template from './private-database-database.html';
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.private-database.dashboard.database', {
     url: '/database',
-    template,
+    template: '<div ui-view></div>',
     controller: 'PrivateDatabaseBDDsCtrl',
     redirectTo: 'app.private-database.dashboard.database.list',
     resolve: {
