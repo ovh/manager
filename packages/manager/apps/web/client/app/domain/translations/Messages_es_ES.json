@@ -231,7 +231,6 @@
   "domain_tab_ZONE_default_ttl_default_value_conditions": "El valor debe ser un número entero comprendido entre <strong>{{t0}}</strong> y <strong>{{t1}}</strong>.",
   "domain_configuration_dns_config": "Cambiar los servidores DNS",
   "domain_configuration_add_subdomain": "Añadir un subdominio",
-  "domain_configuration_order_alldom": "Contratar un pack AllDom",
   "domain_configuration_add_subdomain_subdomain": "subdominio",
   "domain_configuration_add_subdomain_tip": "Si deja este campo en blanco, la configuración se aplicará directamente al dominio.",
   "domain_configuration_add_subdomain_error": "El subdominio introducido no es válido.",

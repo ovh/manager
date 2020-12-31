@@ -231,7 +231,6 @@
   "domain_tab_ZONE_default_ttl_default_value_conditions": "Wartość musi być liczbą całkowitą zawartą między <strong>{{t0}}</strong> i <strong>{{t1}}</strong>.",
   "domain_configuration_dns_config": "Zmień serwery DNS",
   "domain_configuration_add_subdomain": "Dodaj subdomenę",
-  "domain_configuration_order_alldom": "Zamów pakiet allDom",
   "domain_configuration_add_subdomain_subdomain": "subdomena",
   "domain_configuration_add_subdomain_tip": "Jeśli pozostawisz to pole puste, konfiguracja zostanie zastosowana bezpośrednio dla domeny.",
   "domain_configuration_add_subdomain_error": "ta subdomena jest nieprawidłowa.",
