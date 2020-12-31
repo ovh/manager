@@ -42,6 +42,28 @@ angular
         },
       });
 
+      $stateProvider.state('app.private-database.order.**', {
+        url: '/order',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+          return import('./dashboard/private-database.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
+      });
+
+      $stateProvider.state('app.private-database-order-clouddb.**', {
+        url: '/order-cloud-db',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+          return import('./order/clouddb/index').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
+      });
+
       $urlRouterProvider.when(
         /^\/configuration\/private_database/,
         /* @ngInject */ ($location) => {

@@ -355,7 +355,7 @@ export const WEB_ORDER_SIDEBAR_CONFIG = [
     id: 'orderPrivateDatabase',
     title: 'privateDatabase',
     icon: 'ovh-font ovh-font-database',
-    state: 'app.private-database-order',
+    state: 'app.private-database.order',
     regions: ['EU', 'CA'],
     app: [WEB],
   },
