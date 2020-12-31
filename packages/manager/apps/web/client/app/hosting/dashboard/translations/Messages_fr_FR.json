@@ -1377,5 +1377,6 @@
   "hosting_dashboard_service_common_active": "Actif",
   "hosting_dashboard_service_common_inactive": "Inactif",
   "hosting_dashboard_email_offer_get_error": "Impossible de récupérer l'adresse e-mail",
-  "hosting_dashboard_stats_status": "Bêta"
+  "hosting_dashboard_stats_status": "Bêta",
+  "hosting_dashboard_service_setting_cdn": "Paramétrer le CDN"
 }
