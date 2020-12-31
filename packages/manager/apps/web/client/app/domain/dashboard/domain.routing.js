@@ -19,7 +19,7 @@ const commonResolves = {
           dynHost: false,
         }))
       : { dynHost: false },
-  breadcrumb: /* @ngInject */ (domainName) => domainName,
+  breadcrumb: /* @ngInject */ (domain) => domain.displayName,
 };
 
 export default /* @ngInject */ ($stateProvider) => {
