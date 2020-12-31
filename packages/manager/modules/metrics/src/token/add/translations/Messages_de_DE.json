@@ -1,12 +1,12 @@
 {
- "metrics_token_add_name": "Name (optional)",
- "metrics_token_add_permission": "Erlaubnis",
- "metrics_token_add_labels": "Label (optional)",
- "metrics_token_add_permission_read": "Lesen",
- "metrics_token_add_permission_write": "Schreiben",
- "metrics_token_add_labels_add": "Label hinzufügen",
- "metrics_token_add_labels_key": "Schlüssel",
- "metrics_token_add_labels_value": "Wert",
- "metrics_token_add_token": "Token hinzufügen",
- "metrics_token_add_confirmation": "Hinzufügen"
+  "metrics_token_add_name": "Name (optional)",
+  "metrics_token_add_permission": "Berechtigung",
+  "metrics_token_add_labels": "Label (optional)",
+  "metrics_token_add_permission_read": "Lesen",
+  "metrics_token_add_permission_write": "Schreiben",
+  "metrics_token_add_labels_add": "Label hinzufügen",
+  "metrics_token_add_labels_key": "Schlüssel",
+  "metrics_token_add_labels_value": "Wert",
+  "metrics_token_add_token": "Token hinzufügen",
+  "metrics_token_add_confirmation": "Hinzufügen"
 }
