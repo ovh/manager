@@ -1,3 +1,12 @@
+## [1.1.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-notifications-sidebar@1.1.4...@ovh-ux/manager-notifications-sidebar@1.1.5) (2021-01-04)
+
+
+### Bug Fixes
+
+* bump semver range for @ovh-ux/manager-config package ([23b469f](https://github.com/ovh/manager/commit/23b469f6264610c47076da908f688e8069f19c76))
+
+
+
 ## [1.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-notifications-sidebar@1.1.3...@ovh-ux/manager-notifications-sidebar@1.1.4) (2020-10-28)
 
 

@@ -1,3 +1,19 @@
+# [3.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@2.2.0...@ovh-ux/manager-config@3.0.0) (2021-01-04)
+
+
+### Code Refactoring
+
+* **locale:** remove FI entry from language menu picker ([1524814](https://github.com/ovh/manager/commit/15248143957b9f40933d08ba2322392a6329c2d1))
+
+
+### BREAKING CHANGES
+
+* **locale:** Remove entry `Suomi` from the language menu picker.
+ As `fr_FR` is the default locale, we explicitly redirect `fi_FI`
+ customer to the `en_GB` locale.
+
+
+
 # [2.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@2.1.0...@ovh-ux/manager-config@2.2.0) (2020-12-22)
 
 

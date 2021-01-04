@@ -1,3 +1,12 @@
+## [7.0.8](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@7.0.7...@ovh-ux/ng-ovh-payment-method@7.0.8) (2021-01-04)
+
+
+### Bug Fixes
+
+* bump semver range for @ovh-ux/manager-config package ([23b469f](https://github.com/ovh/manager/commit/23b469f6264610c47076da908f688e8069f19c76))
+
+
+
 ## [7.0.7](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@7.0.6...@ovh-ux/ng-ovh-payment-method@7.0.7) (2020-12-15)
 
 

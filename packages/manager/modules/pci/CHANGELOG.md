@@ -1,3 +1,13 @@
+## [5.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.6.0...@ovh-ux/manager-pci@5.6.1) (2021-01-04)
+
+
+### Bug Fixes
+
+* bump semver range for @ovh-ux/manager-config package ([23b469f](https://github.com/ovh/manager/commit/23b469f6264610c47076da908f688e8069f19c76))
+* **sidebar.constant:** rename entry menu label for quota ([#4228](https://github.com/ovh/manager/issues/4228)) ([e7a4dd8](https://github.com/ovh/manager/commit/e7a4dd8796d5258d1c74c58500ca879b1da5f276))
+
+
+
 # [5.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.5.3...@ovh-ux/manager-pci@5.6.0) (2020-12-22)
 
 
