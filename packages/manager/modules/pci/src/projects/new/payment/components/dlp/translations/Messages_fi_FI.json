@@ -1,6 +1,0 @@
-{
-  "pci_project_new_payment_dlp_title": "Digital Launch Pad credits",
-  "pci_project_new_payment_dlp_info": "As part of the DLP programme, you will have an individual pre-paid account.",
-  "pci_project_new_payment_dlp_amount_available": "Account amount: {{ amount }}",
-  "pci_project_new_payment_dlp_explain": "This total will be used to pay for your Public Cloud project resource usage. Once you have used up your credit, the payment method registered above will be automatically billed to ensure that your instances do not experience any downtime."
-}

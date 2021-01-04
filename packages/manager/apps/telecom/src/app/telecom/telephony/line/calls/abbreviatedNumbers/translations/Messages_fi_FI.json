@@ -1,5 +1,0 @@
-{
-  "telephony_line_actions_line_calls_abbreviated_numbers_title": "Lyhytvalintanumerot",
-  "telephony_line_actions_line_calls_abbreviated_numbers_explaination": "Lyhyvalintanumerot ovat kolmi- tai nelinumeroisia ja alkavat numerolla 2.",
-  "telephony_line_actions_line_calls_abbreviated_numbers_pattern_error": "Kentän täytyy sisältää kolmi- tai nelinumeroinen luku, joka alkaa numerolla 2."
-}

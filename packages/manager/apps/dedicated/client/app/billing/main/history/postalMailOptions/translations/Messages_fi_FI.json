@@ -1,8 +1,0 @@
-{
-  "billing_main_history_postal_mail_options_title": "Laskujen lähetysvaihtoehtojen muokkaus",
-  "billing_main_history_postal_mail_options_activation": "Haluatko aktivoida laskujen lähetyksen paperisena?",
-  "billing_main_history_postal_mail_options_desactivation": "Haluatko varmasti poistaa käytöstä laskujen lähetyksen paperisena?",
-  "billing_main_history_postal_mail_options_activate_success": "Astus päivitettiin. Saat tästä eteenpäin laskusi paperisena.",
-  "billing_main_history_postal_mail_options_desactivate_success": "Asetus päivitettiin. Et saa enää laskujasi paperisena.",
-  "billing_main_history_postal_mail_options_update_error": "Tapahtui virhe asetuksen päivityksessä"
-}

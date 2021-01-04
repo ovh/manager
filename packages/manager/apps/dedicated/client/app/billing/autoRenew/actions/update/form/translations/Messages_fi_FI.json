@@ -1,8 +1,0 @@
-{
-  "billing_autorenew_service_update_form_description": "Choose the type of renewal you would like (automatic or manual). For automatic renewal, you can also choose how often you pay.",
-  "billing_autorenew_service_update_form_service_renewal": "Renewal type",
-  "billing_autorenew_service_update_form_service_automatic": "Automatic",
-  "billing_autorenew_service_update_form_service_manualPayment": "Manual",
-  "billing_autorenew_service_update_form_service_period": "Frequency",
-  "billing_autorenew_service_update_form_service_period_value": "{{ month }} months"
-}
