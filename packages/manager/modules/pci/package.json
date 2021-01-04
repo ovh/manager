@@ -29,7 +29,7 @@
     "@ovh-ux/manager-account-migration": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-catalog-price": "^1.2.0",
     "@ovh-ux/manager-cloud-styles": "^0.4.0 || ^1.0.0",
-    "@ovh-ux/manager-config": "^1.0.0 || ^2.0.0",
+    "@ovh-ux/manager-config": "^2.0.0 || ^3.0.0",
     "@ovh-ux/manager-core": "^10.0.0 || ^11.0.0",
     "@ovh-ux/manager-error-page": "^0.0.0",
     "@ovh-ux/manager-telecom-styles": "^4.0.0",

@@ -202,7 +202,7 @@ export const MENU = [
         options: {
           state: 'pci.projects.project.quota',
         },
-        title: 'Quota and Localisation',
+        title: 'Quota and Regions',
       },
       {
         id: 'ssh-keys',

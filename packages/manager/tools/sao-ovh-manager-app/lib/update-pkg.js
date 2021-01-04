@@ -19,7 +19,7 @@ module.exports = ({ name, description }) => ({
     'start:watch': `lerna exec --stream --parallel --scope='@ovh-ux/manager-${name}-app' --include-dependencies -- npm run dev:watch --if-present`,
   },
   dependencies: {
-    '@ovh-ux/manager-config': '^1.0.0',
+    '@ovh-ux/manager-config': '^2.0.0 || ^3.0.0',
     '@ovh-ux/manager-core': '^10.0.0 || ^11.0.0',
     [`@ovh-ux/manager-${name}`]: '^0.0.0',
     '@ovh-ux/manager-preloader': '^1.1.0',
