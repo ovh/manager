@@ -37,10 +37,6 @@ export const LANGUAGES = {
       key: 'pt_PT',
     },
     {
-      name: 'Suomi',
-      key: 'fi_FI',
-    },
-    {
       name: 'Česky',
       key: 'cs_CZ',
     },
