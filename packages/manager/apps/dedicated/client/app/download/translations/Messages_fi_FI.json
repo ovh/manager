@@ -1,6 +1,0 @@
-{
-  "download_bill_error": "Tapahtui virhe laskun vastaanottamisessa. Pahoittelemme aiheutunutta harmia.",
-  "download_bill_title": "Latauksesi on alkanut.",
-  "download_bill_retry_label": "Jos latauksesi ei käynnisty automaattisesti,",
-  "download_bill_retry_link": "käynnistä lataus uudelleen"
-}

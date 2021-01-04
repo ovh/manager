@@ -1,8 +1,0 @@
-{
-  "xdsl_access_dslam_reset": "Nollaa",
-  "xdsl_access_dslam_reset_an_error_ocurred": "[Yhteysportin nollaus] Tapahtui virhe!",
-  "xdsl_access_dslam_reset_success": "Yhteysportin nollaus",
-  "xdsl_access_dslam_reset_really": "Haluatko varmasti nollata yhteysporttisi?",
-  "xdsl_access_dslam_reset_description": "Tällä toiminnolla voit nollata linjasi yhteysportin sen kiinnityskohdassa DSL-keskittimeen. Huom! Yhteys katkeaa muutaman minuutin ajaksi. ",
-  "xdsl_access_dslam_reset_warning": "Huom! Yhteytesi katkeaa muutana minuutin ajaksi."
-}

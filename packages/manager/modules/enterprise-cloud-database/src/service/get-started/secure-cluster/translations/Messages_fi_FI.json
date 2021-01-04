@@ -1,8 +1,0 @@
-{
-  "enterprise_cloud_database_service_get_started_secure_cluster_name": "Rename your cluster",
-  "enterprise_cloud_database_service_get_started_secure_cluster_name_help": "Your cluster name must contain between 1 and 255 characters. Only upper-case and lower-case letters, numbers, and the following characters are authorised: ‘-’, ‘_’",
-  "enterprise_cloud_database_service_get_started_secure_cluster_name_placeholder": "Enter a cluster name",
-  "enterprise_cloud_database_service_get_started_secure_cluster_trusted_sources_title": "Authorisation rules",
-  "enterprise_cloud_database_service_get_started_secure_cluster_trusted_sources_description1": "By default, your cluster does not accept exterior connections.",
-  "enterprise_cloud_database_service_get_started_secure_cluster_trusted_sources_description2": "To authorise these connections, please enter at least one rule below. All other sources will be denied."
-}

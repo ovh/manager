@@ -1,5 +1,0 @@
-{
-  "dedicated_vps_kvm_novnc_status_connecting": "Connecting...",
-  "dedicated_vps_kvm_novnc_status_connected": "Connected: {{ desktopName }}",
-  "dedicated_vps_kvm_novnc_status_disconnecting": "Disconnected"
-}
