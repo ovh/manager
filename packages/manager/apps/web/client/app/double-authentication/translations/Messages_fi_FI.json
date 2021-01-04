@@ -1,7 +1,0 @@
-{
-  "doubleauth_modal_alert_title": "Varmuuskoodi",
-  "doubleauth_modal_alert_message": "Huomioitavaa: sinulla ei ole tallennettuna kertakäyttöistä varmuuskoodia.",
-  "doubleauth_modal_alert_message_1": "Huomioitavaa: sinulla on vain yksi kertakäyttöinen varmuuskoodi.",
-  "doubleauth_modal_alert_message_other": "Huomioitavaa: sinulla on vain <strong>{{t0}}</strong> kertakäyttöistä varmuuskoodia.",
-  "doubleauth_modal_alert_message_regenerate": "Haluatko luoda uudet kertakäyttöiset varmuuskoodit?"
-}

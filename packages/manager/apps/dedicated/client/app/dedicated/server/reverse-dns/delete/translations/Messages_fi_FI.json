@@ -1,6 +1,0 @@
-{
-  "server_reversedns_delete_title": "Poista käänteisnimipalvelu",
-  "server_reversedns_delete_reversedns_confirmation": "Haluatko poistaa käänteisnimipalvelun: {{t0}} ?",
-  "server_reversedns_delete_loading_error": "Tapahtui virhe palvelun latauksessa.",
-  "server_reversedns_delete_confirm": "Poista käänteisnimipalvelu"
-}

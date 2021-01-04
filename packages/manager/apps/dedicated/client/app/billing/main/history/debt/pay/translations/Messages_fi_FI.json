@@ -1,8 +1,0 @@
-{
-  "billing_main_history_debt_pay_title": "Saldon maksu",
-  "billing_main_history_debt_pay_confirm": "Maksa saldo",
-  "billing_main_history_debt_pay_explanation": "Tämä toiminto luo tilauslomakkeen, jolla saldo voidaan maksaa välittömästi. Tilauslomake on voimassa tunnin ajan. ",
-  "billing_main_history_debt_pay_success": "<a href=\"{{t1}}\" target=\"_blank\" rel=\"noopener\">tilaus {{t0}}</a> muodostettiiin, jota voit maksaa saldosi.",
-  "billing_main_history_debt_pay_error": "Tapahtui virhe saldon maksussa.",
-  "billing_main_history_debt_pay_error_nothing_to_pay": "Vous n'avez actuellement aucun paiement en attente."
-}

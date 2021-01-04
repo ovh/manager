@@ -1,5 +1,0 @@
-{
-  "enterprise_cloud_database_service_security_group": "Security group",
-  "enterprise_cloud_database_service_security_group_help": "Your security group name must contain between 1 and 63 characters. Only upper-case and lower-case letters, numbers, and the following characters are authorised: ‘-’, ‘_’",
-  "enterprise_cloud_database_service_security_group_placeholder": "Security group name"
-}

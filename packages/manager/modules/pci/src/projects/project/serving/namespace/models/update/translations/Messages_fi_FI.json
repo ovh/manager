@@ -1,8 +1,0 @@
-{
-  "pci_projects_project_serving_namespace_models_update_success": "Your model has been updated",
-  "pci_projects_project_serving_namespace_models_update_error": "An error has occurred updating the model: {{ message }}",
-  "pci_projects_project_serving_namespace_models_update": "Update a model",
-  "pci_projects_project_serving_namespace_models_update_common_update": "Update",
-  "pci_projects_project_serving_namespace_models_update_common_cancel": "Cancel",
-  "pci_projects_project_serving_namespace_models_update_warning": "Your {{ modelId }} model will be rebuilt from the same repository in Object Storage. Please ensure you update your files before updating your model."
-}

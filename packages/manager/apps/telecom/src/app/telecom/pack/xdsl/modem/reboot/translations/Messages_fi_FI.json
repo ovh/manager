@@ -1,7 +1,0 @@
-{
-  "xdsl_modem_reboot": "Uudelleenkäynnistä modeemi",
-  "xdsl_modem_reboot_an_error_ocurred": "[Modeemin uudelleenkäynnistys] Tapahtui virhe!",
-  "xdsl_modem_reboot_success": "Modeemia käynnistetään uudelleen.",
-  "xdsl_modem_reboot_success_end": "Modeemin uudelleenkäynnistys on valmis.",
-  "xdsl_modem_reboot_really": "Haluatko varmasti käynnistää modeemin uudelleen?"
-}

@@ -1,8 +1,0 @@
-{
-  "telephony_service_consumption_incoming_fax_all": "Kaikki vastaanotetut faksit",
-  "telephony_service_consumption_incoming_fax_empty": "Ei vastaanotettuja fakseja",
-  "telephony_service_consumption_incoming_fax_period": "Jakso <strong>{{ start }}</strong> - <strong>{{ end }}</strong>",
-  "telephony_service_consumption_incoming_fax_not_found": "Mikään faksi ei vastannut hakua. ",
-  "telephony_service_consumption_incoming_fax_summary": "Vastaanotetut faksit: <strong>{{ fax }}</strong>, sivumäärä: <strong>{{ pages }}</strong>",
-  "telephony_service_consumption_incoming_fax_pages": "Sivut"
-}
