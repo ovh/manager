@@ -1,3 +1,12 @@
+## [4.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.6.0...@ovh-ux/manager-public-cloud@4.6.1) (2021-01-04)
+
+
+### Bug Fixes
+
+* bump semver range for @ovh-ux/manager-config package ([23b469f](https://github.com/ovh/manager/commit/23b469f6264610c47076da908f688e8069f19c76))
+
+
+
 # [4.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.5.0...@ovh-ux/manager-public-cloud@4.6.0) (2020-12-22)
 
 

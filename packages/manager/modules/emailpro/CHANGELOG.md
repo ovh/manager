@@ -1,3 +1,12 @@
+## [2.0.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@2.0.6...@ovh-ux/manager-emailpro@2.0.7) (2021-01-04)
+
+
+### Bug Fixes
+
+* bump semver range for @ovh-ux/manager-config package ([23b469f](https://github.com/ovh/manager/commit/23b469f6264610c47076da908f688e8069f19c76))
+
+
+
 ## [2.0.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@2.0.5...@ovh-ux/manager-emailpro@2.0.6) (2020-12-08)
 
 

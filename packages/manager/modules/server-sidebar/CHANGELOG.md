@@ -1,3 +1,12 @@
+## [3.5.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.5.5...@ovh-ux/manager-server-sidebar@3.5.6) (2021-01-04)
+
+
+### Bug Fixes
+
+* bump semver range for @ovh-ux/manager-config package ([23b469f](https://github.com/ovh/manager/commit/23b469f6264610c47076da908f688e8069f19c76))
+
+
+
 ## [3.5.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.5.4...@ovh-ux/manager-server-sidebar@3.5.5) (2020-12-30)
 
 
