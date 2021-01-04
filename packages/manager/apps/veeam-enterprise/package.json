@@ -19,7 +19,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-veeam-enterprise-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^1.0.0 || ^2.0.0",
+    "@ovh-ux/manager-config": "^2.0.0 || ^3.0.0",
     "@ovh-ux/manager-core": "^10.0.0 || ^11.0.0",
     "@ovh-ux/manager-veeam-enterprise": "^0.3.0 || ^1.0.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.8",

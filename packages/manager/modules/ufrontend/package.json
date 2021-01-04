@@ -20,7 +20,7 @@
     "url-builder.js"
   ],
   "dependencies": {
-    "@ovh-ux/manager-config": "^1.0.0 || ^2.0.0",
+    "@ovh-ux/manager-config": "^2.0.0 || ^3.0.0",
     "@webcomponents/webcomponentsjs": "^2.4.3",
     "semver": "^7.3.2",
     "whatwg-fetch": "^3.0.0"

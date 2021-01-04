@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@ovh-ux/manager-carrier-sip": "^1.0.0 || ^2.0.0",
-    "@ovh-ux/manager-config": "^1.0.0 || ^2.0.0",
+    "@ovh-ux/manager-config": "^2.0.0 || ^3.0.0",
     "@ovh-ux/manager-core": "^10.0.0 || ^11.0.0",
     "@ovh-ux/manager-telecom-styles": "^4.0.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.8",
