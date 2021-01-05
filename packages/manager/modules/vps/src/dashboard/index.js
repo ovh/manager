@@ -1,5 +1,6 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
+import ovhManagerAdvices from '@ovh-ux/manager-advices';
 
 import component from './vps-dashboard.component';
 import routing from './vps-dashboard.routing';
@@ -24,13 +25,12 @@ import ovhManagerVpsDashboardSnapshotTake from './modal/snapshot-take';
 import ovhManagerVpsDashboardTerminate from './terminate';
 import ovhManagerVpsDashboardTerminateOption from './modal/terminate-option';
 import ovhManagerVpsDashboardTile from './tile';
-import advices from './advices';
 
 const moduleName = 'ovhManagerVpsDashboard';
 
 angular
   .module(moduleName, [
-    advices,
+    ovhManagerAdvices,
     ovhManagerVpsDashboardRebuild,
     ovhManagerVpsDashboardTerminate,
     ovhManagerVpsDashboardDisplayIps,
