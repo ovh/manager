@@ -1,7 +1,7 @@
 {
   "storage_name": "Nom",
   "storage_title": "Stockages",
-  "storage_id": "id",
+  "storage_id": "Id",
   "storage_product": "Produit",
   "storage_localization": "Région",
   "storage_status": "Status",

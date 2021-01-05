@@ -2,12 +2,12 @@
   "name": "@ovh-ux/manager-storage",
   "version": "0.0.0",
   "private": true,
+  "description": "OVHcloud storage product",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh/manager.git",
     "directory": "packages/manager/modules/storages"
   },
-  "description": "OVHcloud storage product",
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "main": "src/index.js",
@@ -16,6 +16,7 @@
   },
   "peerDependencies": {
     "@ovh-ux/manager-core": "^9.0.0",
+    "@ovh-ux/ui-kit": "^4.4.1",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",

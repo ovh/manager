@@ -3,8 +3,6 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/share',
     component: 'netappShare',
     resolve: {
-      netappId: /* @ngInject */ ($transition$) =>
-        $transition$.params().netappId,
       shares: /* @ngInject */ (NetappService, netappId) =>
         NetappService.getShares(netappId),
     },
