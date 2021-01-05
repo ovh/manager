@@ -1,5 +1,7 @@
 import head from 'lodash/head';
 
+import { IG_MAP_URL, TRAVAUX_URL } from './informations.constants';
+
 export default /* @ngInject */ function PackInformationCtrl(
   $scope,
   $translate,
@@ -52,6 +54,12 @@ export default /* @ngInject */ function PackInformationCtrl(
 
   function init() {
     self.isLoading = true;
+
+    self.servicesStateLink = {
+      igmap: IG_MAP_URL,
+      travaux: TRAVAUX_URL,
+    };
+
     return $q
       .all({
         followUp: getResiliationFollowUp(),
