@@ -2,49 +2,64 @@ import controller from './controller';
 import template from './template.html';
 
 /**
- * advices: can be array or promise which can resolve to array.
- * In case of promise, component will not show advices untill promise is resolved.
+ * Makes 2api call to /adives to get advices for a given service type and name.
+ * It used serviceType, serviceName and queryParams to construct the URl.
+ *
+ * serviceType: type of service, refer 2api /advices documentation for list of service types supported.
+ *
+ * ServiceName: name of service
+ *
+ * queryParams: map of query params that need to pass to /advices api
  *
  * onAdviceClick: event handler to notify click on a advice
  *
- * advices must contain array of advice object.
- * advice object can have below properties
+ * Advices returned by the 2api has to be in below format
  * {
- *   localizedName: string, // this is shown on UI
- *   href: string, // optional, url to a page that need to be opened on clicking a advice
- *   tag: string, // optional, ng-internet tag, if provided click will be tracked (of type action)
- *   external: boolean, // optional, if true, external icon will be shown
+ *    adviceGroups: [
+ *      {
+ *        localizedDescription: '',
+ *        advices: [
+ *          {
+ *            localizedName: string, // this is shown on UI
+ *            href: string, // optional, url to a page that need to be opened on clicking a advice
+ *            tag: string, // optional, ng-internet tag, if provided click will be tracked (of type action)
+ *            external: boolean, // optional, if true, external icon will be shown
+ *          }
+ *        ]
+ *      }
+ *    ]
  * }
  *
- * either href or onAdviceClick must be provided
+ * either href or onAdviceClick must be included in each advices
  *
  * Example:
  * <ovh-advices
- *    description="{{ ::'server_advices_dedicated_description' | translate }}"
- *    advices="$ctrl.advices"
+ *    service-type="dedicated-server"
+ *    advice-name="{{ ::$ctrl.serviceName }}"
  *    on-advice-click="$ctrl.onAdviceClick(advice)">
  * </ovh-advices>
  *
- * advices array
- * [{
- *    localizedName: this.$translate.instant('server_advices_dedicated_advice1'),
- *    href: this.orderPublicBandwidthLink,
- *    tag: 'cross_sell::dedicated::bare_metal_advanced_without_guaranteed_bw::public_bandwidth_1gbps_unmetered_and_guaranteed',
- * }]
  */
 export default {
   bindings: {
     /**
-     * advice description, shown on advices tile
+     * service type
      * @type {string}
      */
-    description: '@',
+    serviceType: '@',
+
     /**
-     * can be array of advices or promise which can resolve to array of advices
-     * @type {Array} or
-     * @type {Promise}
+     * name of the service
+     * @type {string}
      */
-    advices: '<',
+    serviceName: '@',
+
+    /**
+     * map of query params
+     * @type {string}
+     */
+    queryParams: '<?',
+
     /**
      * event handler to notify click on a advice.
      * @type {Function}

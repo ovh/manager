@@ -17,6 +17,14 @@ import ovhManagerAdvices from '@ovh-ux/manager-advices';
 angular.module('myApp', [ovhManagerAdvices]);
 ```
 
+```html
+  <ovh-advices
+    service-type="dedicated-server"
+    advice-name="{{ ::$ctrl.serviceName }}"
+    on-advice-click="$ctrl.onAdviceClick(advice)">
+ </ovh-advices>
+```
+
 ## Contributing
 
 Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh/manager/issues/new) or working on some of the [open issues](https://github.com/ovh/manager/issues), our [contributing guide](https://github.com/ovh/manager/blob/master/CONTRIBUTING.md) will help get you started.

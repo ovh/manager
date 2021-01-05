@@ -1,9 +1,10 @@
 <oui-tile
+    data-ng-if="!$ctrl.loading"
     heading="{{ ::'advices_heading' | translate }}"
-    description="{{ ::$ctrl.description }}"
-    data-ng-if="$ctrl.advicesAvailable"
+    data-ng-repeat="adviceGroup in $ctrl.adviceGroups track by $index"
+    description="{{ ::adviceGroup.localizedDescription }}"
 >
-    <div data-ng-repeat="advice in $ctrl.advices track by $index">
+    <div data-ng-repeat="advice in adviceGroup.advices track by $index">
         <oui-tile-button
             data-ng-attr-href="{{ ::advice.href }}"
             data-ng-click="$ctrl.onClick(advice)"

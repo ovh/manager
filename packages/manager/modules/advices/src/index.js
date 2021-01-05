@@ -4,7 +4,6 @@ import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
 import 'angular-translate';
 import '@ovh-ux/ng-at-internet';
-import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 
 import advices from './advices';
 
@@ -16,7 +15,6 @@ angular
     'pascalprecht.translate',
     'ui.router',
     'ngAtInternet',
-    ngOvhFeatureFlipping,
     advices,
   ])
   .run(/* @ngTranslationsInject:json ./translations */);
