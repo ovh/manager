@@ -1,10 +1,11 @@
+import ovhManagerAdvices from '@ovh-ux/manager-advices';
+
 import controller from './GENERAL_INFORMATIONS.controller';
-import hostingAdvices from '../advices';
 
 const moduleName = 'ovhManagerHostingGeneralInformations';
 
 angular
-  .module(moduleName, [hostingAdvices])
+  .module(moduleName, [ovhManagerAdvices])
   .controller('hostingGeneralInformationsCtrl', controller);
 
 export default moduleName;
