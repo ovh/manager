@@ -832,7 +832,11 @@
         <div class="row d-md-flex">
             <!-- Advices -->
             <div class="col-md-4">
-                <hosting-advices data-hosting="hosting"></hosting-advices>
+                <ovh-advices
+                    service-name="{{ ::hosting.serviceName }}"
+                    service-type="hosting-web"
+                >
+                </ovh-advices>
             </div>
         </div>
 
