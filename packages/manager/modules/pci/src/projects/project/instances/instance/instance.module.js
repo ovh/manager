@@ -2,6 +2,7 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
+import ovhManagerAdvices from '@ovh-ux/manager-advices';
 
 import activeMonthlyBilling from './active-monthly-billing';
 import applicationAccess from './application-access';
@@ -17,7 +18,6 @@ import resume from './resume';
 import softReboot from './soft-reboot';
 import unrescue from './unrescue';
 import vnc from './vnc';
-import advices from './advices';
 
 import component from './instance.component';
 import routing from './instance.routing';
@@ -43,7 +43,7 @@ angular
     softReboot,
     unrescue,
     vnc,
-    advices,
+    ovhManagerAdvices,
   ])
   .config(routing)
   .component('pciProjectsProjectInstancesInstance', component)

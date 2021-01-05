@@ -120,9 +120,11 @@
 
             <!-- Advices -->
             <div class="mt-4">
-                <instance-advices
-                    data-instance-id="$ctrl.instanceId"
-                ></instance-advices>
+                <ovh-advices
+                    service-type="instance"
+                    service-name="{{ ::$ctrl.instanceId }}"
+                >
+                </ovh-advices>
             </div>
         </div>
 
