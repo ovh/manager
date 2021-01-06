@@ -12,7 +12,7 @@
   "pci_projects_project_instances_status_ACTIVE": "Activated",
   "pci_projects_project_instances_status_BUILDING": "Creation",
   "pci_projects_project_instances_status_DELETED": "Removed ",
-  "pci_projects_project_instances_status_DELETING": "Delete",
+  "pci_projects_project_instances_status_DELETING": "Deleted",
   "pci_projects_project_instances_status_ERROR": "Error",
   "pci_projects_project_instances_status_HARD_REBOOT": "Hard reboot",
   "pci_projects_project_instances_status_PASSWORD": "Password",
