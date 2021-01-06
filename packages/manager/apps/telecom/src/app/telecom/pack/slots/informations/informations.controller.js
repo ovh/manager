@@ -56,7 +56,7 @@ export default /* @ngInject */ function PackInformationCtrl(
     self.isLoading = true;
 
     self.servicesStateLink = {
-      igmap: IG_MAP_URL,
+      igmap: IG_MAP_URL.FR,
       travaux: TRAVAUX_URL,
     };
 
