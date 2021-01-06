@@ -342,8 +342,6 @@ module.exports = {
           'https://www.ovh.com/fr/order/domain/#/legacy/domain/trade/list',
         emailsOrder: 'https://www.ovh.com/emails/',
         exchangeOrder: 'https://www.ovh.com/fr/emails/hosted-exchange/',
-        alldomOrder:
-          'https://www.ovh.com/fr/order/domain/#/legacy/domain/alldom?domain=',
         start10mMarket:
           'https://www.ovh.com/fr/domaines/offre_hebergement_start10m.xml',
       },

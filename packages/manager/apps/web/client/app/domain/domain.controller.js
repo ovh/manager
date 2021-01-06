@@ -108,12 +108,6 @@ angular.module('App').controller(
             domain.contactAdmin === user.nichandle ||
             domain.contactBilling === user.nichandle;
           this.domainInfos = domain;
-          const alldomOrder = get(
-            this.constants,
-            `urls.${user.ovhSubsidiary}.alldomOrder`,
-          );
-          this.alldomURL =
-            !this.isAllDom && alldomOrder && `${alldomOrder}${domain.domain}`;
 
           if (this.isAllDom) {
             this.allDom = this.$stateParams.allDom;
