@@ -1,3 +1,4 @@
+import find from 'lodash/find';
 import flatten from 'lodash/flatten';
 import get from 'lodash/get';
 import keys from 'lodash/keys';
@@ -240,8 +241,12 @@ class DedicatedCloudDatacenterDrpService {
             }).$promise,
       )
       .then((offers) => {
-        const [firstOffer] = offers;
-        const [firstPrice] = firstOffer.prices;
+        const productName = get(
+          DEDICATEDCLOUD_DATACENTER_DRP_ORDER_OPTIONS.zertoProductName,
+          zertoOption,
+        );
+        const offer = find(offers, { productName });
+        const [firstPrice] = offer.prices;
 
         return this.OvhApiOrder.Cart()
           .ServiceOption()
@@ -255,7 +260,7 @@ class DedicatedCloudDatacenterDrpService {
             {
               cartId: zertoCartId,
               duration: DEDICATEDCLOUD_DATACENTER_DRP_ORDER_OPTIONS.duration,
-              planCode: zertoOption,
+              planCode: get(offer, 'planCode', zertoOption),
               pricingMode: firstPrice.pricingMode,
               quantity: DEDICATEDCLOUD_DATACENTER_DRP_ORDER_OPTIONS.quantity,
             },
