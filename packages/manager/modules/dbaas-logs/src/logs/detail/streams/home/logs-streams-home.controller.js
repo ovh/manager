@@ -143,13 +143,6 @@ export default class LogsStreamsHomeCtrl {
       .flat();
   }
 
-  storageInfo(stream) {
-    if (stream.info.isEditable && stream.info.currentStorage !== -1) {
-      return this.cucBytes(stream.info.currentStorage, 2, true);
-    }
-    return ' - ';
-  }
-
   findRetention(stream) {
     return find(
       this.retentions,
