@@ -1,3 +1,12 @@
+# [3.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.5.6...@ovh-ux/manager-server-sidebar@3.6.0) (2021-01-06)
+
+
+### Features
+
+* **order:** update webcloud url WW ([f1bb7fe](https://github.com/ovh/manager/commit/f1bb7feb2ac97e4edc29115f563b258c766b4d12))
+
+
+
 ## [3.5.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.5.5...@ovh-ux/manager-server-sidebar@3.5.6) (2021-01-04)
 
 

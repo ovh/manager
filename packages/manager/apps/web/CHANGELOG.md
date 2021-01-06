@@ -1,3 +1,12 @@
+# [15.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.10.1...@ovh-ux/manager-web@15.11.0) (2021-01-06)
+
+
+### Features
+
+* remove alldom order ([a93180f](https://github.com/ovh/manager/commit/a93180f93c288e8c7bbf46426bed5b304e574cfd))
+
+
+
 ## [15.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.10.0...@ovh-ux/manager-web@15.10.1) (2021-01-04)
 
 
