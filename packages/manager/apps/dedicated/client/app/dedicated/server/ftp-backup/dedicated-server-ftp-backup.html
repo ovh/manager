@@ -262,7 +262,7 @@
             ></button>
             <button
                 type="button"
-                class="btn btn-default btn-block {{ !disable.activeFtp || 'disabled' }}"
+                class="btn btn-default btn-block {{ disable.activeFtp && 'disabled' }}"
                 data-ng-if="featureAvailable && !ftpBackup.model"
                 data-ng-click="!disable.activeFtp && setAction('ftp-backup/activate/dedicated-server-ftp-backup-activate')"
             >
