@@ -152,7 +152,6 @@ angular
     new_bdd_user_grant_options: config.constants.new_bdd_user_grant_options,
     ORDER_URL: config.constants.ORDER_URL,
   })
-  .constant('LANGUAGES', config.constants.LANGUAGES)
   .constant('website_url', config.constants.website_url)
   .factory('serviceTypeInterceptor', () => ({
     // eslint-disable-next-line no-shadow
