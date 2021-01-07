@@ -209,6 +209,7 @@
   "domain_tab_ZONE_no_zone": "Vous n'avez pas de zone DNS rattachée à ce domaine.",
   "domain_tab_ZONE_delete_doing": "La réactivation de votre Zone DNS sera disponible d'ici environ 1 heure.",
   "domain_tab_ZONE_no_zone_activate_btn": "Activer la zone DNS",
+  "domain_tab_ZONE_no_zone_order_btn": "Commander une zone DNS",
   "domain_tab_ZONE_no_defaut_dns_used": "Vous utilisez actuellement les serveurs DNS suivants :",
   "domain_tab_ZONE_set_defaut_dns": "Pour que votre zone DNS ci-dessous soit prise en compte, veuillez utiliser les serveurs DNS suivants :",
   "domain_tab_ZONE_title": "Vous pouvez voir ici la configuration des diverses entrées de votre domaine.",
