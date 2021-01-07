@@ -4,7 +4,7 @@ import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import { attach as attachPreloader } from '@ovh-ux/manager-preloader';
 import { bootstrapApplication } from '@ovh-ux/manager-core';
-import { MANAGER_URLS } from '@ovh-ux/manager-core/src/manager-core.constants';
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import { Environment } from '@ovh-ux/manager-config';
 import { BILLING_REDIRECTIONS } from './constants';
 
@@ -14,9 +14,7 @@ bootstrapApplication('hub').then(({ region }) => {
   BILLING_REDIRECTIONS.forEach((redirectionRegex) => {
     const hash = window.location.hash.replace('#', '');
     if (redirectionRegex.test(hash)) {
-      window.location.assign(
-        `${MANAGER_URLS[region].dedicated}/${window.location.hash}`,
-      );
+      window.location.assign(buildURL('dedicated', window.location.hash));
     }
   });
 
