@@ -80,7 +80,7 @@ export default class {
           filters: JSON.stringify({
             property: 'serviceName.value',
             operator: 'contains',
-            value: $stateParams.productId,
+            value: this.$stateParams.productId,
           }),
         }),
       },
