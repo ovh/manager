@@ -10,7 +10,6 @@ const ALL_LANGUAGES = process.env.OVH_BUILD_LANGUAGES
       'en_GB',
       'es_ES',
       'es_US',
-      'fi_FI',
       'fr_CA',
       'fr_FR',
       'it_IT',
