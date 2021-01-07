@@ -61,6 +61,7 @@ import dedicatedCloud from './dedicatedCloud';
 import dedicatedUniverseComponents from './dedicatedUniverseComponents';
 import managedBaremetal from './managedBaremetal';
 import errorPage from './error';
+import expiredPage from './expired';
 
 import dedicatedServer from './dedicated/server';
 import userContracts from './user-contracts';
@@ -88,6 +89,7 @@ angular
       dedicatedUniverseComponents,
       'directives',
       errorPage,
+      expiredPage,
       'filters',
       'internationalPhoneNumber',
       'Module.download',
@@ -250,6 +252,7 @@ angular
         ];
         const IGNORE_STATES = [
           'app.configuration',
+          'app.expired',
           'app.ip',
           'vrack',
           'cloud-connect',
@@ -274,13 +277,14 @@ angular
           get(error, 'status') === 403 &&
           get(error, 'code') === 'FORBIDDEN_BILLING_ACCESS'
         ) {
+          error.handled = true;
           $rootScope.$emit('ovh::sidebar::hide');
           $state.go('app.error', { error });
         }
       });
 
       $state.defaultErrorHandler((error) => {
-        if (error.type === RejectType.ERROR) {
+        if (error.type === RejectType.ERROR && !error.handled) {
           $rootScope.$emit('ovh::sidebar::hide');
           $state.go(
             'error',
