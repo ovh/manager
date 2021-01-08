@@ -1,0 +1,37 @@
+<form
+    id="addPoolForm"
+    name="addPoolForm"
+    data-ng-submit="addPoolForm.$valid && CdaPoolAddCtrl.createPool()"
+>
+    <oui-modal
+        data-primary-label="{{ ::'cda_common_add' | translate }}"
+        data-secondary-action="CdaPoolAddCtrl.closeModal()"
+        data-secondary-label="{{ ::'cda_common_cancel' | translate }}"
+        data-on-dismiss="CdaPoolAddCtrl.closeModal()"
+        data-loading="CdaPoolAddCtrl.saving"
+    >
+        <cui-message-container
+            data-messages="CdaPoolAddCtrl.messages"
+        ></cui-message-container>
+
+        <h2
+            class="oui-modal__title"
+            data-ng-bind="::'cda_pool_add_title' | translate "
+        ></h2>
+
+        <oui-field
+            data-label="{{ ::'cda_pool_add_poolname_label' | translate }}"
+        >
+            <input
+                type="text"
+                class="oui-input"
+                id="poolName"
+                name="poolName"
+                data-ng-model="CdaPoolAddCtrl.model.poolName"
+                data-ng-maxlength="CdaPoolAddCtrl.options.poolName.maxLength"
+                data-ng-pattern="CdaPoolAddCtrl.options.poolName.pattern"
+                required
+            />
+        </oui-field>
+    </oui-modal>
+</form>

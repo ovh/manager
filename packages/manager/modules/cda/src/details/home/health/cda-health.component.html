@@ -1,0 +1,18 @@
+<dl class="cda-dl">
+    <dt data-translate="cda_health_status"></dt>
+    <dd>
+        <i
+            data-ng-if="$ctrl.detail.status === 'HEALTH_OK'"
+            class="glyphicon glyphicon-ok-circle cda-status-ok"
+        ></i>
+        <span
+            class="text-capitalize"
+            data-ng-bind="$ctrl.detail.status === 'HEALTH_OK' ? 'Ok' : $ctrl.detail.status"
+        ></span>
+    </dd>
+
+    <dt data-translate="cda_health_healthy"></dt>
+    <dd
+        data-translate="{{ 'cda_health_healthy_' + $ctrl.detail.healthy }}"
+    ></dd>
+</dl>

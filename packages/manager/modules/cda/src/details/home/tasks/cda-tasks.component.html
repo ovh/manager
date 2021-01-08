@@ -1,0 +1,24 @@
+<oui-datagrid data-rows="$ctrl.tasks">
+    <oui-datagrid-column
+        data-title="'cda_task_table_col_id' | translate"
+        data-property="id"
+        data-sortable
+    ></oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="'cda_task_table_col_name' | translate"
+        data-property="name"
+        data-sortable
+    ></oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="'cda_task_table_col_processing' | translate"
+        data-property="id"
+        data-sortable
+    >
+        <div
+            class="oui-progress oui-progress_info oui-progress_indeterminate"
+            role="progressbar"
+            aria-valuemin="0"
+            aria-valuemax="100"
+        ></div>
+    </oui-datagrid-column>
+</oui-datagrid>
