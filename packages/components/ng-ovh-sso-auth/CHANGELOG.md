@@ -1,3 +1,12 @@
+# [4.3.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-sso-auth@4.2.4...@ovh-ux/ng-ovh-sso-auth@4.3.0) (2021-01-08)
+
+
+### Features
+
+* **provider:** add ovhSubsidiary param in logout url ([#4143](https://github.com/ovh/manager/issues/4143)) ([78f5c3c](https://github.com/ovh/manager/commit/78f5c3c0b7041afdb1eeb4e042a6b24755dbcd7e))
+
+
+
 ## [4.2.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-sso-auth@4.2.3...@ovh-ux/ng-ovh-sso-auth@4.2.4) (2020-10-20)
 
 
