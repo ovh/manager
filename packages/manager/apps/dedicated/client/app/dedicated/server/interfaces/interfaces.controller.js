@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import { VIRTUAL_TYPE } from './interfaces.constants';
 
 export default class {
   /* @ngInject */
@@ -9,6 +10,7 @@ export default class {
   }
 
   $onInit() {
+    this.VIRTUAL_TYPE = VIRTUAL_TYPE;
     this.loading = true;
     this.taskPolling.promise
       .catch((error) =>
