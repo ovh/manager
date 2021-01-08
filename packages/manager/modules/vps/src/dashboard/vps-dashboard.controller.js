@@ -14,7 +14,7 @@ import {
   SERVICE_TYPE,
   VPS_2014_AUTO_MIGRATION_DATE,
 } from './vps-dashboard.constants';
-import { CHANGE_OWNER_URL, RENEW_URL } from '../constants';
+import { CHANGE_OWNER_URL, RENEW_URL } from '../vps/constants';
 
 export default class {
   /* @ngInject */
