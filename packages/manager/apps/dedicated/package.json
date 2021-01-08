@@ -26,6 +26,7 @@
     "@ovh-ux/manager-beta-preference": "^1.0.0",
     "@ovh-ux/manager-billing": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-catalog-price": "^1.0.1",
+    "@ovh-ux/manager-cda": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-cloud-connect": "^1.0.0",
     "@ovh-ux/manager-cloud-styles": "^0.4.0 || ^1.0.0",
     "@ovh-ux/manager-config": "^2.0.0 || ^3.0.0",
