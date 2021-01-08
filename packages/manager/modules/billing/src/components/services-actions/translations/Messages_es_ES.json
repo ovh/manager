@@ -5,7 +5,7 @@
   "billing_services_actions_menu_manage_renew": "Configurar la renovación",
   "billing_services_actions_menu_exchange_update_accounts": "Configurar la renovación de las cuentas",
   "billing_services_actions_menu_anticipate_renew": "Adelantar el pago",
-  "billing_services_actions_menu_resiliate": "Dar de baja en la fecha de expiración",
+  "billing_services_actions_menu_resiliate": "Dar de baja",
   "billing_services_actions_menu_renew_label": "Renovar el servicio: {{ serviceName }} (nueva ventana)",
   "billing_services_actions_menu_renew": "Renovar el servicio",
   "billing_services_actions_menu_exchange_update": "Modificar la facturación",
