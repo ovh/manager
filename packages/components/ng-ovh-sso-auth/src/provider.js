@@ -411,6 +411,15 @@ export default function() {
               logoutUrl.indexOf('?') > -1 ? '&' : '?'
             }from=${encodeURIComponent(document.referrer)}`;
           }
+          if (
+            !logoutUrl.includes('ovhSubsidiary') &&
+            this.user &&
+            this.user.ovhSubsidiary
+          ) {
+            logoutUrl += `${
+              logoutUrl.indexOf('?') > -1 ? '&' : '?'
+            }ovhSubsidiary=${this.user.ovhSubsidiary}`;
+          }
           $window.location.assign(logoutUrl);
         });
       }
