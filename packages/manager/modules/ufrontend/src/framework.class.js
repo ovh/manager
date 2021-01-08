@@ -1,4 +1,7 @@
-import { fetchConfiguration as fetch2APIConfig } from '@ovh-ux/manager-config';
+import {
+  fetchConfiguration as fetch2APIConfig,
+  EnvironmentService,
+} from '@ovh-ux/manager-config';
 import Deferred from './utils/deferred.class';
 import OvhMicroFrontendApplicationAPI from './api.application.class';
 import OvhMicroFrontendFragmentAPI from './api.fragment.class';
@@ -9,11 +12,19 @@ class OvhMicroFrontend {
     this.messages = [];
     this.listeners = [];
     this.config = new Deferred();
+    this.environment = new EnvironmentService();
   }
 
   init() {
     return fetch2APIConfig().then((config) => {
       this.config.resolve(config);
+      if (config.applicationName) {
+        this.environment.setApplicationName(config.applicationName);
+      }
+      this.environment.setRegion(config.region);
+      this.environment.setUser(config.user);
+      this.environment.setApplicationURLs(config.applicationURLs);
+      this.environment.setUniverse(config.universe);
       return {
         config,
         ufrontend: new OvhMicroFrontendApplicationAPI(this),

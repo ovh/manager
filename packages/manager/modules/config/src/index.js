@@ -1,4 +1,6 @@
-import _Environment from './environment';
+import _Environment, {
+  EnvironmentService as _EnvironmentService,
+} from './environment';
 import 'whatwg-fetch';
 
 import {
@@ -19,6 +21,7 @@ export const HOSTNAME_REGIONS = {
 };
 
 export const Environment = _Environment;
+export const EnvironmentService = _EnvironmentService;
 
 export const convertLanguageFromOVHToBCP47 = _convertLanguageFromOVHToBCP47;
 export const detectUserLocale = _detectUserLocale;
@@ -66,6 +69,7 @@ export const fetchConfiguration = (applicationName) => {
 export default {
   convertLanguageFromOVHToBCP47,
   Environment,
+  EnvironmentService,
   detectUserLocale,
   fetchConfiguration,
   findLanguage,

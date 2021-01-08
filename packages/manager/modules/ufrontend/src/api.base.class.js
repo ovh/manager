@@ -1,6 +1,18 @@
+import { buildURL } from '../url-builder';
+
 class OvhMicroFrontendBaseAPI {
   constructor(ufrontend) {
     this.ufrontend = ufrontend;
+  }
+
+  getEnvironment() {
+    return this.ufrontend.environment;
+  }
+
+  // Temporary disable as it is planned to use Environment and pass it
+  // eslint-disable-next-line class-methods-use-this
+  buildURL(application, path, params) {
+    return buildURL(application, path, params);
   }
 
   listen(arg0, arg1) {
