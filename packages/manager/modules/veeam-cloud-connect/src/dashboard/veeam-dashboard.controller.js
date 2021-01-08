@@ -3,7 +3,7 @@ import 'moment';
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import { Environment } from '@ovh-ux/manager-config';
 
-import { RENEW_URLS } from '../constants';
+import { RENEW_URLS } from '../details/constants';
 
 export default class VeeamCloudConnectDashboardCtrl {
   /* @ngInject */
