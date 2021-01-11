@@ -11,7 +11,9 @@ export default class BillingService {
   constructor(service) {
     Object.assign(this, service);
 
+    this.id = service.id || service.serviceId;
     this.expirationDate = moment(this.expiration);
+    this.creationDate = moment(this.creation);
 
     if (this.status) {
       this.state = this.isSuspended() ? 'EXPIRED' : 'UP';
@@ -24,6 +26,10 @@ export default class BillingService {
 
   get formattedExpiration() {
     return this.expirationDate.format('LL');
+  }
+
+  get formattedCreationDate() {
+    return this.creationDate.format('LL');
   }
 
   getRenew() {
@@ -87,6 +93,10 @@ export default class BillingService {
 
   hasEngagement() {
     return !isNull(this.engagedUpTo) && moment().isBefore(this.engagedUpTo);
+  }
+
+  hasEngagementDetails() {
+    return this.engagementDetails != null;
   }
 
   setRenewPeriod(period) {
@@ -246,6 +256,12 @@ export default class BillingService {
     };
   }
 
+  canCommit() {
+    return (
+      !this.isResiliated() && !this.isExpired() && !this.hasPendingResiliation()
+    );
+  }
+
   hasParticularRenew() {
     return ['EXCHANGE', 'SMS', 'EMAIL_DOMAIN'].includes(this.serviceType);
   }
@@ -260,6 +276,25 @@ export default class BillingService {
 
   canBeResiliated(nichandle) {
     return this.canDeleteAtExpiration && this.hasAdminRights(nichandle);
+  }
+
+  canResiliateByEndRule() {
+    return (
+      this.hasEngagementDetails() &&
+      this.engagementDetails.endRule &&
+      this.engagementDetails.endRule.strategy === 'REACTIVATE_ENGAGEMENT' &&
+      this.engagementDetails.endRule.possibleStrategies.length > 0
+    );
+  }
+
+  canCancelResiliationByEndRule() {
+    return (
+      this.engagementDetails &&
+      this.engagementDetails.endRule &&
+      this.engagementDetails.endRule.possibleStrategies.includes(
+        'REACTIVATE_ENGAGEMENT',
+      )
+    );
   }
 
   canBeDeleted() {

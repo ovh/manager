@@ -5,7 +5,7 @@
   "billing_services_actions_menu_manage_renew": "Configurer le renouvellement",
   "billing_services_actions_menu_exchange_update_accounts": "Configurer le renouvellement des comptes",
   "billing_services_actions_menu_anticipate_renew": "Anticiper le paiement",
-  "billing_services_actions_menu_resiliate": "Résilier à date d'échéance",
+  "billing_services_actions_menu_resiliate": "Résilier",
   "billing_services_actions_menu_renew_label": "Renouveler le service : {{ serviceName }} (Nouvelle fenêtre)",
   "billing_services_actions_menu_renew": "Renouveler le service",
   "billing_services_actions_menu_exchange_update": "Modifier la facturation",
@@ -17,5 +17,7 @@
   "billing_services_actions_menu_sms_credit": "Ajouter des crédits",
   "billing_services_actions_menu_sms_renew": "Configurer la recharge automatique",
   "billing_services_actions_menu_resiliate_cancel": "Annuler la résiliation du service",
-  "billing_services_actions_menu_see_dashboard": "Voir le détail du service"
+  "billing_services_actions_menu_see_dashboard": "Voir le détail du service",
+  "billing_services_actions_menu_commit": "Gérer mon engagement",
+  "billing_services_actions_menu_commit_cancel": "Annuler la demande d'engagement"
 }

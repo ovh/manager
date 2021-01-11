@@ -1,3 +1,12 @@
+## [3.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.1.0...@ovh-ux/manager-hub-app@3.1.1) (2021-01-11)
+
+
+### Bug Fixes
+
+* update module billing usage ([e88862b](https://github.com/ovh/manager/commit/e88862b0990b883ef55a5d1b20e965e1affac564))
+
+
+
 # [3.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.0.1...@ovh-ux/manager-hub-app@3.1.0) (2021-01-11)
 
 

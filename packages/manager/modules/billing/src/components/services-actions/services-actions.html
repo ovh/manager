@@ -24,7 +24,7 @@
     >
         <!-- Service in autorenew -->
         <oui-action-menu-item
-            ng-if="!$ctrl.service.isOneShot() && !$ctrl.service.hasForcedRenew() && !$ctrl.service.hasEngagement() && !$ctrl.service.isResiliated() && $ctrl.service.canHandleRenew()"
+            ng-if="!$ctrl.service.isOneShot() && !$ctrl.service.hasForcedRenew() && !$ctrl.service.isResiliated() && $ctrl.service.canHandleRenew() && !$ctrl.service.hasEngagement()"
             href="{{:: $ctrl.updateLink }}"
             on-click="$ctrl.trackAction('go-to-configure-renew')"
         >
@@ -33,7 +33,7 @@
             ></span>
         </oui-action-menu-item>
         <oui-action-menu-item
-            ng-if="!$ctrl.service.isOneShot() && !$ctrl.service.hasManualRenew() && $ctrl.service.canHandleRenew()"
+            ng-if="!$ctrl.service.isOneShot() && !$ctrl.service.hasManualRenew() && $ctrl.service.canHandleRenew() && !$ctrl.service.canBeEngaged && !$ctrl.service.hasPendingEngagement"
             href="{{:: $ctrl.getRenewUrl() }}"
             external
             on-click="$ctrl.trackAction('go-to-anticipate-payment')"
@@ -57,6 +57,21 @@
         </oui-action-menu-item>
         <!-- /Service in manual renew  -->
     </div>
+
+    <oui-action-menu-item
+        ng-if="$ctrl.service.canBeEngaged && !$ctrl.service.hasPendingEngagement"
+        href="{{:: $ctrl.commitmentLink }}"
+    >
+        <span data-translate="billing_services_actions_menu_commit"></span>
+    </oui-action-menu-item>
+    <oui-action-menu-item
+        ng-if="$ctrl.service.hasPendingEngagement"
+        href="{{:: $ctrl.cancelCommitmentLink }}"
+    >
+        <span
+            data-translate="billing_services_actions_menu_commit_cancel"
+        ></span>
+    </oui-action-menu-item>
 
     <!-- Exchange -->
     <div data-ng-if="$ctrl.service.serviceType === $ctrl.SERVICE_TYPE.EXCHANGE">
@@ -82,10 +97,11 @@
     <!-- /Exchange -->
 
     <div
-        data-ng-if="(!$ctrl.service.shouldDeleteAtExpiration() || !$ctrl.service.isResiliated()) && !$ctrl.service.hasDebt()"
+        data-ng-if="(!$ctrl.service.shouldDeleteAtExpiration() || !$ctrl.service.isResiliated()) && !$ctrl.service.hasDebt() && !$ctrl.service.hasPendingResiliation()"
     >
         <oui-action-menu-item
-            ng-if="$ctrl.service.canBeResiliated($ctrl.user.nichandle)"
+            ng-if="$ctrl.service.canBeResiliated($ctrl.user.nichandle) && !$ctrl.hasEngagementDetails() && !$ctrl.service.canBeEngaged
+            || $ctrl.service.canResiliateByEndRule()"
             href="{{:: $ctrl.resiliateLink }}"
             on-click="$ctrl.trackAction('go-to-resiliate')"
         >
@@ -131,8 +147,12 @@
 
     <!-- Service with termination asked by the customer -->
     <oui-action-menu-item
-        ng-if="$ctrl.service.canBeUnresiliated($ctrl.user.nichandle)
-            && $ctrl.cancelResiliationLink"
+        ng-if="$ctrl.cancelResiliationLink &&
+        (
+          ($ctrl.service.canBeUnresiliated($ctrl.user.nichandle) && !$ctrl.service.hasEngagementDetails())
+          ||
+          $ctrl.service.canCancelResiliationByEndRule()
+        )"
         href="{{:: $ctrl.cancelResiliationLink }}"
         on-click="$ctrl.trackAction('go-to-cancel-resiliation')"
     >

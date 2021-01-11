@@ -1,3 +1,13 @@
+# [11.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@11.2.1...@ovh-ux/manager-core@11.3.0) (2021-01-11)
+
+
+### Features
+
+* **redirection:** add addPaymentMethod url ([d102966](https://github.com/ovh/manager/commit/d102966c6d4dfb187f3a5538053b27ff6ee76eec))
+* **redirection:** add service renew redirection ([9513be5](https://github.com/ovh/manager/commit/9513be596689a8cc6dc98a67d1d3a1cd3145c34f))
+
+
+
 ## [11.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@11.2.0...@ovh-ux/manager-core@11.2.1) (2021-01-04)
 
 

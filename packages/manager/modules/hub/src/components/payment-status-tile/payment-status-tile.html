@@ -52,23 +52,7 @@
                     </td>
                     <td class="oui-table__cell d-md-table-cell d-block h-100">
                         <div class="d-block d-md-inline mb-1">
-                            <span
-                                class="oui-badge oui-badge_error"
-                                data-ng-if="service.hasDebt()"
-                                data-translate="ovh_manager_hub_payment_status_tile_status_pending_debt"
-                            >
-                            </span>
-                            <span data-ng-if="service.isOneShot()">-</span>
-                            <span
-                                class="mw-100 oui-badge"
-                                data-ng-class="{
-                                        'oui-badge_error': $ctrl.SERVICE_STATES.error.includes(service.getRenew()),
-                                        'oui-badge_warning': $ctrl.SERVICE_STATES.warning.includes(service.getRenew()),
-                                        'oui-badge_success': $ctrl.SERVICE_STATES.success.includes(service.getRenew()),
-                                    }"
-                                data-ng-if="!service.hasDebt() && !service.isOneShot()"
-                                data-translate="{{:: 'ovh_manager_hub_payment_status_tile_status_' + service.getRenew() | translate }}"
-                            ></span>
+                            <billing-status service="service"></billing-status>
                         </div>
                         <div class="d-lg-inline mb-1">
                             <span

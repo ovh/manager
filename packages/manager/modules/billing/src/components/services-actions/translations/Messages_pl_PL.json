@@ -5,7 +5,7 @@
   "billing_services_actions_menu_manage_renew": "Skonfiguruj odnowienie",
   "billing_services_actions_menu_exchange_update_accounts": "Skonfiguruj odnowienie kont",
   "billing_services_actions_menu_anticipate_renew": "Prognoza płatności",
-  "billing_services_actions_menu_resiliate": "Zrezygnuj z usługi w dniu wygaśnięcia",
+  "billing_services_actions_menu_resiliate": "Rezygnacja",
   "billing_services_actions_menu_renew_label": "Odnowienie usługi: {{serviceName}} (Nowe okno)",
   "billing_services_actions_menu_renew": "Odnów usługę",
   "billing_services_actions_menu_exchange_update": "Zmień płatności",
@@ -17,5 +17,7 @@
   "billing_services_actions_menu_sms_credit": "Zasil konto",
   "billing_services_actions_menu_sms_renew": "Skonfiguruj automatyczne doładowanie",
   "billing_services_actions_menu_resiliate_cancel": "Anuluj rezygnację z usługi",
-  "billing_services_actions_menu_see_dashboard": "Wyświetl szczegółowe informacje o usłudze"
+  "billing_services_actions_menu_see_dashboard": "Wyświetl szczegółowe informacje o usłudze",
+  "billing_services_actions_menu_commit": "Zarządzanie usługą z opcją umowy terminowej",
+  "billing_services_actions_menu_commit_cancel": "Anuluj zamówienie usługi z opcją umowy terminowej"
 }

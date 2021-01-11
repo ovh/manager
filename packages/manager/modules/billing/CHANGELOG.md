@@ -1,3 +1,36 @@
+# [2.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@1.0.8...@ovh-ux/manager-billing@2.0.0) (2021-01-11)
+
+
+### Bug Fixes
+
+* **deps:** update @ovh-ux/manager-config ([91b931d](https://github.com/ovh/manager/commit/91b931d17d09cee9fb2c529733c17829e910dbfc))
+* **i18n:** add missing translations [CDS 703] ([02388d2](https://github.com/ovh/manager/commit/02388d2393058720090dd40449df574628fe5f96))
+* **i18n:** add missing translations [CDS 742] ([65ae952](https://github.com/ovh/manager/commit/65ae952aeea81c15c852b2fc9a7011e77235b7f9))
+* **i18n:** add missing translations [CDS 746] ([32177bc](https://github.com/ovh/manager/commit/32177bc8073dc89f7c862a1fc9248749cca1d1db))
+* **services-actions:** limit resiliation display ([1df53a6](https://github.com/ovh/manager/commit/1df53a6ac779af5060f8e3fb336f36267393f512))
+
+
+### Features
+
+* **autorenew:** add resiliate new action ([b63470f](https://github.com/ovh/manager/commit/b63470f572fdb338c7d04724fd3236e60e6bf224))
+* **dedicated:** create new resiliation links ([3601465](https://github.com/ovh/manager/commit/36014651cfa45ce3e31adb3b51f9b538f34d6937))
+* **services-actions:** allow service type to be undefined ([837d058](https://github.com/ovh/manager/commit/837d0580e4594c557ec80feb5d882c822f4169f6))
+* add component for commitment ([e220356](https://github.com/ovh/manager/commit/e2203561b902102981516133aa3bf18ce38e1f91))
+* add tracking ([8eebca4](https://github.com/ovh/manager/commit/8eebca4feba4aa5f2b8b6a4961e2f84029b1bd62))
+* allow to cancel commitment ([8d216e0](https://github.com/ovh/manager/commit/8d216e0bca7f051ee6da547fda7f3bc04cc89925))
+* create billing tile ([701774c](https://github.com/ovh/manager/commit/701774c07802a22015c74582a15427652fd7ad60))
+* display engagement action ([e5c16a3](https://github.com/ovh/manager/commit/e5c16a3213673ad698bf93e356e10db536d930cb))
+* remove restrictions on commitment type ([8520ba0](https://github.com/ovh/manager/commit/8520ba07c337aedb8ecb950a22e2ea1e820b3f99))
+
+
+### BREAKING CHANGES
+
+* @ovh-ux/ng-ovh-feature-flipping is now a peer dep of module
+
+Signed-off-by: Marie JONES <marie.jones@corp.ovh.com>
+
+
+
 ## [1.0.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@1.0.7...@ovh-ux/manager-billing@1.0.8) (2020-10-28)
 
 

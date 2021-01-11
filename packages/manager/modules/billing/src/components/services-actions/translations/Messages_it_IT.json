@@ -5,7 +5,7 @@
   "billing_services_actions_menu_manage_renew": "Configura il rinnovo",
   "billing_services_actions_menu_exchange_update_accounts": "Configura il rinnovo degli account",
   "billing_services_actions_menu_anticipate_renew": "Anticipa il pagamento",
-  "billing_services_actions_menu_resiliate": "Disattiva il servizio alla data di scadenza",
+  "billing_services_actions_menu_resiliate": "Disattiva",
   "billing_services_actions_menu_renew_label": "Rinnova il servizio: {{ serviceName }} (Nuova finestra)",
   "billing_services_actions_menu_renew": "Rinnova il servizio",
   "billing_services_actions_menu_exchange_update": "Modifica la fatturazione",
@@ -17,5 +17,7 @@
   "billing_services_actions_menu_sms_credit": "Aggiungi credito",
   "billing_services_actions_menu_sms_renew": "Imposta la ricarica automatica",
   "billing_services_actions_menu_resiliate_cancel": "Annulla la disattivazione del servizio",
-  "billing_services_actions_menu_see_dashboard": "Mostra i dettagli del server"
+  "billing_services_actions_menu_see_dashboard": "Mostra i dettagli del server",
+  "billing_services_actions_menu_commit": "Gestisci il tuo impegno contrattuale",
+  "billing_services_actions_menu_commit_cancel": "Annulla la richiesta di sottoscrizione di un impegno contrattuale"
 }

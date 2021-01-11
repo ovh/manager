@@ -5,7 +5,7 @@
   "billing_services_actions_menu_manage_renew": "Configurar la renovación",
   "billing_services_actions_menu_exchange_update_accounts": "Configurar la renovación de las cuentas",
   "billing_services_actions_menu_anticipate_renew": "Adelantar el pago",
-  "billing_services_actions_menu_resiliate": "Dar de baja en la fecha de expiración",
+  "billing_services_actions_menu_resiliate": "Dar de baja",
   "billing_services_actions_menu_renew_label": "Renovar el servicio: {{ serviceName }} (nueva ventana)",
   "billing_services_actions_menu_renew": "Renovar el servicio",
   "billing_services_actions_menu_exchange_update": "Modificar la facturación",
@@ -17,5 +17,7 @@
   "billing_services_actions_menu_sms_credit": "Añadir crédito",
   "billing_services_actions_menu_sms_renew": "Configurar la recarga automática",
   "billing_services_actions_menu_resiliate_cancel": "Cancelar la baja del servicio",
-  "billing_services_actions_menu_see_dashboard": "Ver el detalle del servidor"
+  "billing_services_actions_menu_see_dashboard": "Ver el detalle del servidor",
+  "billing_services_actions_menu_commit": "Gestionar mi compromiso de permanencia",
+  "billing_services_actions_menu_commit_cancel": "Cancelar la solicitud de contratación con compromiso de permanencia"
 }
