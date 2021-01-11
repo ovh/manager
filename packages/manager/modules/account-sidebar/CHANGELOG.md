@@ -1,3 +1,12 @@
+# [3.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@3.1.1...@ovh-ux/manager-account-sidebar@3.2.0) (2021-01-11)
+
+
+### Features
+
+* **chatbot:** update chatbot availability ([2d80d80](https://github.com/ovh/manager/commit/2d80d80a06c283d5f8c177b3772c30155d78ae52))
+
+
+
 ## [3.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@3.1.0...@ovh-ux/manager-account-sidebar@3.1.1) (2021-01-04)
 
 

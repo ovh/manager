@@ -1,3 +1,12 @@
+# [14.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.10.2...@ovh-ux/manager-dedicated@14.11.0) (2021-01-11)
+
+
+### Features
+
+* **chatbot:** use feature flipping to enable chatbot ([503aafa](https://github.com/ovh/manager/commit/503aafa76fe9d20da1251c562029986fe08d5227))
+
+
+
 ## [14.10.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.10.1...@ovh-ux/manager-dedicated@14.10.2) (2021-01-04)
 
 

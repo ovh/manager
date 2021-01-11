@@ -1,3 +1,12 @@
+# [4.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.6.1...@ovh-ux/manager-public-cloud@4.7.0) (2021-01-11)
+
+
+### Features
+
+* **chatbot:** use feature flipping to enable chatbot ([5d5cf7b](https://github.com/ovh/manager/commit/5d5cf7b13ec3dca7c2b772f98d175bd827f63e4e))
+
+
+
 ## [4.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.6.0...@ovh-ux/manager-public-cloud@4.6.1) (2021-01-04)
 
 
