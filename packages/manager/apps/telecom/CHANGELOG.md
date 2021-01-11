@@ -1,3 +1,12 @@
+# [13.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.8.2...@ovh-ux/manager-telecom@13.9.0) (2021-01-11)
+
+
+### Features
+
+* **chatbot:** use feature flipping to enable chatbot ([8d0ae3d](https://github.com/ovh/manager/commit/8d0ae3d2baeff55a0abb09a9ebde9c1dcf6ba061))
+
+
+
 ## [13.8.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.8.1...@ovh-ux/manager-telecom@13.8.2) (2021-01-04)
 
 

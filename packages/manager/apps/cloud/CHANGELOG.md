@@ -1,3 +1,17 @@
+# [11.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@11.1.1...@ovh-ux/manager-cloud@11.2.0) (2021-01-11)
+
+
+### Bug Fixes
+
+* remove duplicates import of ngOvhFeatureFlipping ([#4215](https://github.com/ovh/manager/issues/4215)) ([44de398](https://github.com/ovh/manager/commit/44de3981aa4c06e68189ac158df291cb81dcd50e))
+
+
+### Features
+
+* **chatbot:** use feature flipping to enable chatbot ([f29b0cf](https://github.com/ovh/manager/commit/f29b0cf40675914ba9ce3e42e3d39cbd2c1e72fc))
+
+
+
 ## [11.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@11.1.0...@ovh-ux/manager-cloud@11.1.1) (2021-01-04)
 
 

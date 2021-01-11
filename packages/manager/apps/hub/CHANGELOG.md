@@ -1,3 +1,12 @@
+# [3.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.0.1...@ovh-ux/manager-hub-app@3.1.0) (2021-01-11)
+
+
+### Features
+
+* **chatbot:** use feature flipping to enable chatbot ([f9cf9bf](https://github.com/ovh/manager/commit/f9cf9bf7c5fb93e8d544a127975a7e99755c153f))
+
+
+
 ## [3.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.0.0...@ovh-ux/manager-hub-app@3.0.1) (2021-01-04)
 
 

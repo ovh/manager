@@ -1,3 +1,12 @@
+# [15.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.11.0...@ovh-ux/manager-web@15.12.0) (2021-01-11)
+
+
+### Features
+
+* **chatbot:** use feature flipping to enable chatbot ([d928855](https://github.com/ovh/manager/commit/d928855cb0b19cbb5b1ab7cbfe79305c745032d9))
+
+
+
 # [15.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.10.1...@ovh-ux/manager-web@15.11.0) (2021-01-06)
 
 
