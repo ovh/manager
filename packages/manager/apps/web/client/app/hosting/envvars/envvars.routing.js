@@ -5,5 +5,9 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/envvars',
     controller: 'HostingEnvvarsCtrl',
     template,
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('hosting_dashboard_envvars'),
+    },
   });
 };

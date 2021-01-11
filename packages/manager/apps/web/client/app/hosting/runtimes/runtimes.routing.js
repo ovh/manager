@@ -5,5 +5,9 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/runtimes',
     controller: 'HostingRuntimesCtrl',
     template,
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('hosting_dashboard_runtimes'),
+    },
   });
 };
