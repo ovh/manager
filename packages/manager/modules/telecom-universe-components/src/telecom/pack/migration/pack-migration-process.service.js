@@ -161,6 +161,13 @@ export default /* @ngInject */ function($q, OvhApiPackXdsl, Poller) {
       });
     }
 
+    // Set contact phone if is set
+    if (migrationProcess.contactPhone) {
+      Object.assign(postParams, {
+        contactPhone: migrationProcess.contactPhone,
+      });
+    }
+
     return OvhApiPackXdsl.v6().migrate(
       {
         packName: migrationProcess.pack.packName,
@@ -216,8 +223,27 @@ export default /* @ngInject */ function($q, OvhApiPackXdsl, Poller) {
       });
   }
 
+  /**
+   * Retrieve contact owner associated to the pack if it exists
+   */
+  function getCurrentContactOwner() {
+    migrationProcess.contactOwner = null;
+    return OvhApiPackXdsl.v6()
+      .getContactOwner({
+        packName: migrationProcess.pack.packName,
+      })
+      .$promise.then((result) => {
+        migrationProcess.contactOwner = result.data;
+        migrationProcess.contactPhone = migrationProcess.contactOwner?.phone;
+      });
+  }
+
   function getPackDetails() {
-    return $q.allSettled([getPackService(), getPackOptions()]);
+    return $q.allSettled([
+      getPackService(),
+      getPackOptions(),
+      getCurrentContactOwner(),
+    ]);
   }
 
   /* -----  End of CURRENT PACK  ------*/
@@ -349,6 +375,7 @@ export default /* @ngInject */ function($q, OvhApiPackXdsl, Poller) {
       selectedOffer: null,
       buildings: null,
       selectedBuilding: null,
+      contactPhone: null,
     };
     return migrationProcess;
   };

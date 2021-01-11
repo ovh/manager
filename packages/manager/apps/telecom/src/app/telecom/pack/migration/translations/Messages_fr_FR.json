@@ -151,5 +151,8 @@
   "telecom_pack_migration_buildings_nro": "NRO",
   "telecom_pack_migration_buildings_type": "Type",
   "telecom_pack_migration_buildings_actions": "Action",
-  "telecom_pack_migration_buildings_select_building": "Sélectionner"
+  "telecom_pack_migration_buildings_select_building": "Sélectionner",
+  "telecom_pack_migration_confirm_resume_contact_owner": "Informations de contact",
+  "telecom_pack_migration_confirm_resume_contact_phone": "Numéro de téléphone sur lequel vous pourrez être contacté si nécessaire",
+  "telecom_pack_migration_confirm_resume_phone_form_error": "Le numéro saisi doit être valide."
 }
