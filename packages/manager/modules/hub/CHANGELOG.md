@@ -1,3 +1,12 @@
+## [2.1.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@2.1.8...@ovh-ux/manager-hub@2.1.9) (2021-01-11)
+
+
+### Bug Fixes
+
+* update module billing usage ([e88862b](https://github.com/ovh/manager/commit/e88862b0990b883ef55a5d1b20e965e1affac564))
+
+
+
 ## [2.1.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@2.1.7...@ovh-ux/manager-hub@2.1.8) (2020-12-22)
 
 

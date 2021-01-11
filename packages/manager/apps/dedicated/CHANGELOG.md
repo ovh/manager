@@ -1,3 +1,25 @@
+# [14.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.11.0...@ovh-ux/manager-dedicated@14.12.0) (2021-01-11)
+
+
+### Bug Fixes
+
+* update module billing usage ([e88862b](https://github.com/ovh/manager/commit/e88862b0990b883ef55a5d1b20e965e1affac564))
+
+
+### Features
+
+* **billing.autorenew:** adapt existing cancel resiliation modal ([74cac3b](https://github.com/ovh/manager/commit/74cac3b34aecad001aaf21c5d9bcba1cce554d72))
+* **dedicated:** create new resiliation links ([3601465](https://github.com/ovh/manager/commit/36014651cfa45ce3e31adb3b51f9b538f34d6937))
+* **dedicated.server:** use feature flipping for engagement display ([2d2b1bf](https://github.com/ovh/manager/commit/2d2b1bf3a07aee63d9ffd0432b36f0a99130f835))
+* add tracking ([8eebca4](https://github.com/ovh/manager/commit/8eebca4feba4aa5f2b8b6a4961e2f84029b1bd62))
+* allow to cancel commitment ([8d216e0](https://github.com/ovh/manager/commit/8d216e0bca7f051ee6da547fda7f3bc04cc89925))
+* display engagement action ([e5c16a3](https://github.com/ovh/manager/commit/e5c16a3213673ad698bf93e356e10db536d930cb))
+* **dedicated.server.dashboard:** replace billing tile ([72cc8e2](https://github.com/ovh/manager/commit/72cc8e23d5c70cf6c28941b857707fa975f7efc0))
+* **payment-method.add:** allow to pass callback url ([d0bab7d](https://github.com/ovh/manager/commit/d0bab7da19511c2ca1e046bbcdf1ea365fcdb34c))
+* **redirection:** add addPaymentMethod url ([d102966](https://github.com/ovh/manager/commit/d102966c6d4dfb187f3a5538053b27ff6ee76eec))
+
+
+
 # [14.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.10.2...@ovh-ux/manager-dedicated@14.11.0) (2021-01-11)
 
 

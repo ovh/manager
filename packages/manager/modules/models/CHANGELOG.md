@@ -1,3 +1,21 @@
+# [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@1.4.3...@ovh-ux/manager-models@1.5.0) (2021-01-11)
+
+
+### Bug Fixes
+
+* **deps:** update @ovh-ux/manager-config ([91b931d](https://github.com/ovh/manager/commit/91b931d17d09cee9fb2c529733c17829e910dbfc))
+
+
+### Features
+
+* **dedicated:** create new resiliation links ([3601465](https://github.com/ovh/manager/commit/36014651cfa45ce3e31adb3b51f9b538f34d6937))
+* add component for commitment ([e220356](https://github.com/ovh/manager/commit/e2203561b902102981516133aa3bf18ce38e1f91))
+* display engagement action ([e5c16a3](https://github.com/ovh/manager/commit/e5c16a3213673ad698bf93e356e10db536d930cb))
+* **service:** expose product type ([928f2e3](https://github.com/ovh/manager/commit/928f2e353b7627e5b6a885e905745cd433de89bb))
+* enrich models for service billing management ([0308a3b](https://github.com/ovh/manager/commit/0308a3bed9205e146c27dfe96743f56e71ef451a))
+
+
+
 ## [1.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@1.4.2...@ovh-ux/manager-models@1.4.3) (2020-11-16)
 
 
