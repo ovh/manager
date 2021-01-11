@@ -4,6 +4,7 @@ import options from './navbar.config';
 export default class PublicCloudController {
   /* @ngInject */
   constructor(
+    $rootScope,
     $scope,
     $state,
     $timeout,
@@ -11,7 +12,9 @@ export default class PublicCloudController {
     atInternet,
     ovhUserPref,
     publicCloud,
+    ovhFeatureFlipping,
   ) {
+    this.$rootScope = $rootScope;
     this.$scope = $scope;
     this.$state = $state;
     this.$timeout = $timeout;
@@ -19,6 +22,7 @@ export default class PublicCloudController {
     this.atInternet = atInternet;
     this.ovhUserPref = ovhUserPref;
     this.publicCloud = publicCloud;
+    this.ovhFeatureFlipping = ovhFeatureFlipping;
     this.navbarOptions = options;
 
     this.chatbotEnabled = false;
@@ -36,7 +40,20 @@ export default class PublicCloudController {
     this.user = Environment.getUser();
 
     const unregisterListener = this.$scope.$on('app:started', () => {
-      this.chatbotEnabled = true;
+      const CHATBOT_FEATURE = 'chatbot';
+      this.ovhFeatureFlipping
+        .checkFeatureAvailability(CHATBOT_FEATURE)
+        .then((featureAvailability) => {
+          this.chatbotEnabled = featureAvailability.isFeatureAvailable(
+            CHATBOT_FEATURE,
+          );
+          if (this.chatbotEnabled) {
+            this.$rootScope.$broadcast(
+              'ovh-chatbot:enable',
+              this.chatbotEnabled,
+            );
+          }
+        });
       unregisterListener();
     });
   }
