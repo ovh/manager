@@ -18,5 +18,6 @@
   "billing_services_actions_menu_sms_renew": "Imposta la ricarica automatica",
   "billing_services_actions_menu_resiliate_cancel": "Annulla la disattivazione del servizio",
   "billing_services_actions_menu_see_dashboard": "Mostra i dettagli del server",
-  "billing_services_actions_menu_commit": "Gestisci il tuo impegno contrattuale"
+  "billing_services_actions_menu_commit": "Gestisci il tuo impegno contrattuale",
+  "billing_services_actions_menu_commit_cancel": "Annulla la richiesta di sottoscrizione di un impegno contrattuale"
 }

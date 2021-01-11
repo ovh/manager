@@ -11,5 +11,6 @@
   "manager_billing_subscription_contacts_billing": "Billing",
   "manager_billing_subscription_contacts_management": "Manage contacts",
   "manager_billing_subscription_error": "An error has occurred retrieving information: {{ message }}",
-  "manager_billing_subscription_engagement_status_engaged": "Ends {{ endDate }}"
+  "manager_billing_subscription_engagement_status_engaged": "Ends {{ endDate }}",
+  "manager_billing_subscription_engagement_status_engaged_expired": "Ends {{ endDate }}"
 }

@@ -24,5 +24,6 @@
   "billing_commitment_summary_description_payment": "El importe se cargará en su forma de pago por defecto: {{ paymentMethodType }} {{ paymentMethodName }}.",
   "billing_commitment_success": "La solicitud de contratación con compromiso de permanencia se ha enviado correctamente. ",
   "billing_commitment_success_purchase": "Ya puede abonar su <a href=\"{{url}}\" target=\"_blank\">orden de pedido</a>.",
-  "billing_commitment_error": "Se ha producido un error."
+  "billing_commitment_error": "Se ha producido un error.",
+  "billing_commitment_summary_description_end": "Después del {{ endDate }}, el servicio se renovará automáticamente por una duración idéntica a la de su último compromiso de permanencia."
 }
