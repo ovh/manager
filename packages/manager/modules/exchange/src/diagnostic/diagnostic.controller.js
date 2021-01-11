@@ -36,11 +36,11 @@ export default class ExchangeTabDiagnosticsCtrl {
     };
 
     this.POLL_NAMESPACE = 'exchange.diagnostic.poll';
+    this.exchange = wucExchange.value;
     this.newTicketUrl = buildURL('dedicated', '#/support/tickets/new', {
       serviceTypeName: 'email_exchange',
       serviceName: this.exchange.domain,
     });
-    this.exchange = wucExchange.value;
 
     this.states = {
       REQUESTING_NEW_DIAGNOSTIC: 'REQUESTING_NEW_DIAGNOSTIC',
