@@ -18,5 +18,6 @@
   "billing_services_actions_menu_sms_renew": "Configurar a recarga automática",
   "billing_services_actions_menu_resiliate_cancel": "Anular a rescisão do serviço",
   "billing_services_actions_menu_see_dashboard": "Ver os detalhes do serviço",
-  "billing_services_actions_menu_commit": "Gerir o meu compromisso"
+  "billing_services_actions_menu_commit": "Gerir o meu compromisso",
+  "billing_services_actions_menu_commit_cancel": "Anular o pedido de compromisso"
 }

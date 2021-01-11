@@ -11,5 +11,6 @@
   "manager_billing_subscription_contacts_billing": "Fatturazione",
   "manager_billing_subscription_contacts_management": "Gestisci i contatti",
   "manager_billing_subscription_error": "Si è verificato un errore durante il recupero delle informazioni: {{ message }}",
-  "manager_billing_subscription_engagement_status_engaged": "Termina il {{ endDate }}"
+  "manager_billing_subscription_engagement_status_engaged": "Termina il {{ endDate }}",
+  "manager_billing_subscription_engagement_status_engaged_expired": "Terminato il {{ endDate }}"
 }
