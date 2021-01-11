@@ -15,13 +15,14 @@
             <oui-spinner data-ng-if="ctrl.loading"></oui-spinner>
 
             <div data-ng-if="!ctrl.loading">
-                <div
-                    class="alert alert-info"
-                    role="alert"
-                    data-ng-bind-html="'exchange_tab_domain_no_domain_attached' | translate"
-                    data-ng-if="ctrl.noDomainAttached"
-                ></div>
-
+                <oui-message type="info" data-ng-if="ctrl.noDomainAttached">
+                    <span
+                        data-translate="exchange_tab_domain_no_domain_attached"
+                        data-translate-values="{
+                        url: ctrl.DOMAIN_ORDER_URL
+                    }"
+                    ></span>
+                </oui-message>
                 <form name="ctrl.exchangeAddDomainStep1Form">
                     <div
                         data-ng-if="ctrl.availableDomainsBuffer && ctrl.availableDomainsBuffer.length > 0"

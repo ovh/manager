@@ -181,7 +181,7 @@
   "exchange_tab_ACCOUNTS_menu_delete": "Usuń",
   "exchange_tab_ACCOUNTS_edit_account_tooltip": "Konfiguracja",
   "exchange_tab_ACCOUNTS_menu_account_tooltip": "Więcej operacji",
-  "exchange_tab_domain_no_domain_attached": "Twoja usługa Exchange jest prawie gotowa. Należy przypisać domenę do usługi. Jeśli nie posiadasz domeny, <a href=\"https://www.ovh.com/fr/cgi-bin/newOrder/order.cgi\" target=\"_blank\">kliknij tutaj</a>, aby ją zamówić.",
+  "exchange_tab_domain_no_domain_attached": "Twoja usługa Exchange jest prawie gotowa. Należy przypisać domenę do usługi. Jeśli nie posiadasz domeny, <a href=\"{{ url }}\" target=\"_blank\">kliknij tutaj</a>, aby ją zamówić.",
   "exchange_tab_ACCOUNTS_warning": "Uwaga!",
   "exchange_tab_ACCOUNTS_partial": "Niektóre konta nie mogły zostać poprawnie wyświetlone.  Odśwież stronę, aby rozwiązać problem.",
   "exchange_tab_ACCOUNTS_partial_account": "Konto zostało pobrane niepoprawnie.",

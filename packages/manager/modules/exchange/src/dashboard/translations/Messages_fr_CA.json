@@ -181,7 +181,7 @@
   "exchange_tab_ACCOUNTS_menu_delete": "Supprimer",
   "exchange_tab_ACCOUNTS_edit_account_tooltip": "Configuration",
   "exchange_tab_ACCOUNTS_menu_account_tooltip": "Plus d'actions",
-  "exchange_tab_domain_no_domain_attached": "Votre service Exchange est presque prêt. Vous devez attacher un domaine à votre service. Si vous n'en avez pas, <a href=\"https://www.ovh.com/fr/cgi-bin/newOrder/order.cgi\" target=\"_blank\">cliquez ici</a> pour en acheter un.",
+  "exchange_tab_domain_no_domain_attached": "Votre service Exchange est presque prêt. Vous devez attacher un domaine à votre service. Si vous n'en avez pas, <a href=\"{{ url }}\" target=\"_blank\">cliquez ici</a> pour en acheter un.",
   "exchange_tab_ACCOUNTS_warning": "Attention !",
   "exchange_tab_ACCOUNTS_partial": "Certains comptes n'ont pu être chargés correctement. Veuillez rafraîchir la page afin de résoudre le problème.",
   "exchange_tab_ACCOUNTS_partial_account": "Ce compte n'a pas été chargé correctement.",

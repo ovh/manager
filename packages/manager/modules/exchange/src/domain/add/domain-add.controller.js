@@ -7,8 +7,8 @@ import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
 
 import { Environment } from '@ovh-ux/manager-config';
-
 import punycode from 'punycode';
+import { DOMAIN_ORDER_URL } from './domain.constants';
 
 export default class ExchangeAddDomainController {
   /* @ngInject */
@@ -43,6 +43,9 @@ export default class ExchangeAddDomainController {
     this.OVH_DOMAIN = 'ovh-domain';
     this.NON_OVH_DOMAIN = 'non-ovh-domain';
     this.exchange = wucExchange.value;
+    this.DOMAIN_ORDER_URL =
+      DOMAIN_ORDER_URL[Environment.getUser().ovhSubsidiary] ||
+      DOMAIN_ORDER_URL.FR;
 
     this.debouncedResetName = debounce(this.search, 300);
 
