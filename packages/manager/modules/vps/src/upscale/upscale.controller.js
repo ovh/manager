@@ -1,10 +1,14 @@
 import capitalize from 'lodash/capitalize';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
 import get from 'lodash/get';
 import groupBy from 'lodash/groupBy';
 import has from 'lodash/has';
 import minBy from 'lodash/minBy';
 import maxBy from 'lodash/maxBy';
+import set from 'lodash/set';
 import sortBy from 'lodash/sortBy';
+import transform from 'lodash/transform';
 import uniqBy from 'lodash/uniqBy';
 
 import { Price } from '@ovh-ux/manager-models';
@@ -41,7 +45,10 @@ export default class UpscaleController {
       this.upscaleOptions,
       this.vps.model.name,
     );
-    upscaleRanges = this.filterLowerRanges(this.currentVpsRange, upscaleRanges);
+    upscaleRanges = UpscaleController.filterLowerRanges(
+      this.currentVpsRange,
+      upscaleRanges,
+    );
     upscaleRanges = upscaleRanges
       .filter(({ formattedName }) => formattedName !== RANGES.STARTER)
       .map((range) => this.formatRange(range));
@@ -214,18 +221,40 @@ export default class UpscaleController {
     }
   }
 
-  filterLowerRanges(currentRangeName, allRanges) {
+  static getRenewPrices(prices) {
+    return filter(
+      prices,
+      ({ capacities }) =>
+        capacities.includes(pricingConstants.PRICING_CAPACITIES.RENEW) &&
+        capacities.length === 1,
+    );
+  }
+
+  static filterLowerRanges(currentRangeName, allRanges) {
     const currentRange = allRanges.find(
       ({ formattedName }) => formattedName === capitalize(currentRangeName),
     );
     return allRanges.filter(({ prices }) => {
-      const renewPricing = this.getIndicativePricing(prices);
-      const currentRangeRenewPricing = this.getIndicativePricing(
-        currentRange.prices,
+      const renewPrices = UpscaleController.getRenewPrices(prices);
+      const matchedPricing = transform(
+        UpscaleController.getRenewPrices(currentRange.prices),
+        (result, price) => {
+          const matchedPrice = find(renewPrices, {
+            pricingMode: price.pricingMode,
+          });
+          if (matchedPrice) {
+            set(result, 'renewPricing', matchedPrice);
+            set(result, 'currentRangeRenewPricing', price);
+            return false;
+          }
+          return true;
+        },
+        {},
       );
 
       return (
-        renewPricing.priceInUcents >= currentRangeRenewPricing.priceInUcents
+        matchedPricing.renewPricing.priceInUcents >=
+        matchedPricing.currentRangeRenewPricing.priceInUcents
       );
     });
   }
