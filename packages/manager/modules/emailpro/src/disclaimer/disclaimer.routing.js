@@ -7,7 +7,7 @@ const state = {
   controller: 'EmailProDisclaimerCtrl',
   resolve: {
     breadcrumb: /* @ngInject */ ($translate) =>
-      $translate.instant('emailpro_domain'),
+      $translate.instant('emailpro_disclaimer'),
   },
 };
 
