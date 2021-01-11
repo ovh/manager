@@ -53,7 +53,6 @@ angular.module('App').controller(
         value: null,
       };
 
-      this.$scope.goToList = () => this.goToList();
       this.$scope.$on('hosting.databases.backup.restore', () =>
         this.reloadCurrentPage(),
       );
@@ -171,12 +170,6 @@ angular.module('App').controller(
         PHPMYADMIN_BASE_URL = `https://phpmyadmin.${this.hostingProxy.cluster}.hosting.ovh.net/index.php`;
       }
       return `${PHPMYADMIN_BASE_URL}?${queryString}`;
-    }
-
-    goToList() {
-      this.loading.init = true;
-      this.$scope.bdd = null;
-      this.$state.go('app.hosting.dashboard.database');
     }
 
     loadDatabases() {
