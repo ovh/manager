@@ -231,17 +231,7 @@
                 data-type-options="$ctrl.filtersOptions.status"
                 data-filterable
             >
-                <span
-                    class="oui-badge oui-badge_error"
-                    data-ng-if="$row.hasDebt()"
-                    data-translate="billing_autorenew_service_status_pending_debt"
-                >
-                </span>
-                <span data-ng-if="$row.isOneShot()">-</span>
-                <span
-                    data-ng-if="!$row.hasDebt() && !$row.isOneShot()"
-                    data-translate="{{:: 'billing_autorenew_service_status_' + $row.getRenew() | translate }}"
-                ></span>
+                <billing-status service="$row"> </billing-status>
             </oui-datagrid-column>
             <oui-datagrid-column
                 data-title="::'billing_autorenew_service_date' | translate"

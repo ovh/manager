@@ -6,6 +6,7 @@ export default {
     cancelResiliation: '<',
     goBack: '<',
     service: '<',
+    trackClick: '<',
   },
   controller,
   template,

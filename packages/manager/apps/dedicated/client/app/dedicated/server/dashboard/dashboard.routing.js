@@ -76,6 +76,13 @@ export default /* @ngInject */ ($stateProvider) => {
             return {};
           })
           .catch((error) => (error.status === 404 ? {} : $q.reject(error))),
+      isCommitmentAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability(['billing:commitment'])
+          .then((commitmentAvailability) =>
+            commitmentAvailability.isFeatureAvailable('billing:commitment'),
+          )
+          .catch(() => false),
       changeOwnerUrl: /* @ngInject */ (User) => User.getUrlOf('changeOwner'),
       eligibleData: /* @ngInject */ (Server, user) => {
         const isEligible = includes(
@@ -97,22 +104,26 @@ export default /* @ngInject */ ($stateProvider) => {
           isEligible: false,
         };
       },
-      goToDashboard: /* @ngInject */ ($state, Alerter) => (
-        params = {},
-        transitionParams,
+      goToDashboard: /* @ngInject */ ($state, Alerter, serverName) => (
+        message = false,
+        type = 'DONE',
       ) => {
+        const reload = message && type === 'DONE';
         const promise = $state.go(
           'app.dedicated.server.dashboard',
-          params,
-          transitionParams,
+          {
+            productId: serverName,
+          },
+          {
+            reload,
+          },
         );
 
-        const { message } = params;
         if (message) {
           promise.then(() => {
             Alerter.alertFromSWS(
-              message.text,
-              message.type,
+              message,
+              type,
               message.id || 'server_dashboard_alert',
             );
           });
@@ -120,6 +131,22 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
+      goToCommit: /* @ngInject */ ($state, serverName) => () =>
+        $state.href('app.dedicated.server.dashboard.commitment', {
+          productId: serverName,
+        }),
+      goToCancelCommit: /* @ngInject */ ($state, serverName) => () =>
+        $state.href('app.dedicated.server.dashboard.cancel-commitment', {
+          productId: serverName,
+        }),
+      goToCancelResiliation: /* @ngInject */ ($state, serverName) => () =>
+        $state.href('app.dedicated.server.dashboard.cancel-resiliation', {
+          productId: serverName,
+        }),
+      goToResiliation: /* @ngInject */ ($state, serverName) => () =>
+        $state.href('app.dedicated.server.dashboard.resiliation', {
+          productId: serverName,
+        }),
       goToSgxIntroduction: /* @ngInject */ ($state, atInternet) => () => {
         atInternet.trackClick({
           name: 'dedicated::dedicated::server::dashboard::sgx::manage',

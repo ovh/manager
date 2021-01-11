@@ -59,6 +59,28 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
             {},
             { inherit: false },
           ),
+        goToAutorenew: /* @ngInject */ ($state, $timeout, Alerter) => (
+          message = false,
+          type = 'success',
+        ) => {
+          const reload = message && type === 'success';
+
+          const promise = $state.go(
+            'app.account.billing.autorenew',
+            {},
+            {
+              reload,
+            },
+          );
+
+          if (message) {
+            promise.then(() =>
+              $timeout(() => Alerter.set(`alert-${type}`, message)),
+            );
+          }
+
+          return promise;
+        },
       },
       coreConfigProvider.region !== 'US'
         ? {
@@ -91,33 +113,26 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
               $state.go('app.account.billing.autorenew.enable', {
                 services: map(services, 'id').join(','),
               }),
+            endStrategies: /* @ngInject */ (endStrategyEnum) =>
+              endStrategyEnum.reduce(
+                (object, strategy) => ({
+                  ...object,
+                  [strategy]: strategy,
+                }),
+                {},
+              ),
+            endStrategyEnum: /* @ngInject */ ($http) =>
+              $http
+                .get('/services.json')
+                .then(
+                  ({ data }) =>
+                    data.models['services.billing.engagement.EndStrategyEnum']
+                      ?.enum,
+                ),
             filters: /* @ngInject */ ($transition$) =>
               JSON.parse($transition$.params().filters),
             isEnterpriseCustomer: /* @ngInject */ (currentUser) =>
               currentUser.isEnterprise,
-
-            goToAutorenew: /* @ngInject */ ($state, $timeout, Alerter) => (
-              message = false,
-              type = 'success',
-            ) => {
-              const reload = message && type === 'success';
-
-              const promise = $state.go(
-                'app.account.billing.autorenew',
-                {},
-                {
-                  reload,
-                },
-              );
-
-              if (message) {
-                promise.then(() =>
-                  $timeout(() => Alerter.set(`alert-${type}`, message)),
-                );
-              }
-
-              return promise;
-            },
 
             hasAutoRenew: /* @ngInject */ (billingRenewHelper) => (service) =>
               billingRenewHelper.serviceHasAutomaticRenew(service),
@@ -194,5 +209,17 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
       coreConfigProvider.region === 'US'
         ? 'app.account.billing.autorenew.ssh'
         : false,
+  });
+
+  $stateProvider.state('app.account.billing.autorenew.service', {
+    url: '/:serviceId',
+    template: '<div ui-view></div>',
+    redirectTo: 'app.account.billing.autorenew',
+    resolve: {
+      serviceId: /* @ngInject */ ($transition$) =>
+        $transition$.params().serviceId,
+      service: /* @ngInject */ ($http, serviceId) =>
+        $http.get(`/services/${serviceId}`).then(({ data }) => data),
+    },
   });
 };

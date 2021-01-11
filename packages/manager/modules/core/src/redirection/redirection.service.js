@@ -1,4 +1,5 @@
-import { forOwn, get, isString, keys } from 'lodash-es';
+import { forOwn, get, isString, keys, some, startsWith } from 'lodash-es';
+import { Environment } from '@ovh-ux/manager-config';
 
 import constants from './redirection.constants';
 
@@ -31,5 +32,11 @@ export default class RedirectionService {
     }
 
     return url;
+  }
+
+  static validate(url) {
+    return some(Object.values(Environment.getApplicationURLS()), (appURL) =>
+      startsWith(url, appURL),
+    );
   }
 }

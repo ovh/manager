@@ -1,13 +1,6 @@
 {
   "ovh_manager_hub_payment_status_tile_title": "Últimos estados del pago de los servicios",
   "ovh_manager_hub_payment_status_tile_see_all": "Ver todo",
-  "ovh_manager_hub_payment_status_tile_status_auto": "Renovación automática",
-  "ovh_manager_hub_payment_status_tile_status_automatic": "Renovación automática",
-  "ovh_manager_hub_payment_status_tile_status_manual": "Renovación manual",
-  "ovh_manager_hub_payment_status_tile_status_manualPayment": "Renovación manual",
-  "ovh_manager_hub_payment_status_tile_status_pending_debt": "Factura pendiente",
-  "ovh_manager_hub_payment_status_tile_status_delete_at_expiration": "Baja solicitada",
-  "ovh_manager_hub_payment_status_tile_status_expired": "Dado de baja",
   "ovh_manager_hub_payment_status_tile_now": "De inmediato",
   "ovh_manager_hub_payment_status_tile_before": "antes del {{ date }}",
   "ovh_manager_hub_payment_status_tile_renew": "desde el {{ date }}",
