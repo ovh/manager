@@ -7,6 +7,7 @@ export default {
     goToAliasManagement: '<',
     organization: '<',
     productId: '<',
+    securityLink: '<',
   },
   controller,
   template,
