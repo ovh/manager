@@ -10,6 +10,9 @@ export default class TelecomPackMigrationBuildingsCtrl {
   }
 
   selectBuilding(building) {
+    // initialize selected building
+    this.TucPackMigrationProcess.setSelectedBuilding(building);
+
     // check if the building name is empty to set a name to display in the select component
     this.process.selectedBuilding.name =
       building.name === ''
@@ -17,7 +20,6 @@ export default class TelecomPackMigrationBuildingsCtrl {
             'telecom_pack_migration_building_details_unknown',
           )
         : building.name;
-    this.TucPackMigrationProcess.setSelectedBuilding(building);
 
     // Display offers
     this.process.currentStep = 'offers';
