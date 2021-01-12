@@ -2,7 +2,7 @@ import controller from './cda-user-details.controller';
 import template from './cda-user-details.html';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('cda.dashboard.cda-details.cda-user.cda-user-details', {
+  $stateProvider.state('cda.dashboard.cda-user.cda-user-details', {
     url: '/{userName}/details',
     views: {
       cdaUserContent: {

@@ -2,8 +2,9 @@ import controller from './cda-details.controller';
 import template from './cda-details.html';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('cda.dashboard.cda-details', {
-    url: '',
+  $stateProvider.state('cda.dashboard', {
+    url: '/:serviceName',
+    redirectTo: 'cda.dashboard.cda-details-home',
     views: {
       cdaDetails: {
         template,
