@@ -1,3 +1,12 @@
+## [14.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.12.0...@ovh-ux/manager-dedicated@14.12.1) (2021-01-12)
+
+
+### Bug Fixes
+
+* **autorenew.cancel-resiliation:** fix lazyloading ([#4263](https://github.com/ovh/manager/issues/4263)) ([017fa89](https://github.com/ovh/manager/commit/017fa893e3c42736498b147cb1bf7843a4403d41))
+
+
+
 # [14.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.11.0...@ovh-ux/manager-dedicated@14.12.0) (2021-01-11)
 
 
