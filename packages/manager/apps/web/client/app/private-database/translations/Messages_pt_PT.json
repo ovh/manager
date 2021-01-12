@@ -389,7 +389,7 @@
   "privateDatabase_tabs_cron_configuration_delete_fail": "Erro ao processar eliminação da cópia de segurança agendada.",
   "privateDatabase_tab_METRICS": "Métricas",
   "privateDatabase_metrics_no_data": "Nenhum dado disponível",
-  "privateDatabase_metrics_memoryUsages_title": "Estatísticas de utilização da memória",
+  "privateDatabase_metrics_memoryUsages_title": "Estatísticas da memória utilizada",
   "privateDatabase_metrics_memoryUsages_graph_dbaas_metrics_exec_memsw": "Utilização da memória",
   "privateDatabase_metrics_activeConnections_title": "Estatísticas do total de ligações por minuto",
   "privateDatabase_metrics_activeConnections_graph_dbaas_metrics_mysql_threads_connected": "Total de ligações por minuto",

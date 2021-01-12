@@ -4,5 +4,5 @@
   "autorenew_service_cancel_resiliation_error": "Ocorreu um erro durante a anulação da rescisão {{ message }}",
   "autorenew_service_cancel_resiliation_confirm": "Deseja anular a rescisão do serviço {{ service }}?",
   "autorenew_service_cancel_resiliation_validate": "Confirmar a anulação",
-  "autorenew_service_cancel_resiliation_cancel": "Anular"
+  "autorenew_service_cancel_resiliation_cancel": "Cancelar"
 }

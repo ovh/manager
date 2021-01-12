@@ -6,7 +6,7 @@
   "billing_resiliation_choice_CANCEL_SERVICE": "Terminare l’impegno contrattuale e disdire il servizio alla data di scadenza.",
   "billing_resiliation_commitment_end_date": "Fine dell'impegno contrattuale prevista il:",
   "billing_resiliation_details_STOP_ENGAGEMENT_FALLBACK_DEFAULT_PRICE": "A partire da questa data manterrai attivo il servizio {{serviceName}}. Non potrai più usufruire dello sconto legato all'impegno contrattuale. Non sarai più vincolato all’impegno contrattuale e potrai disdire il servizio in qualsiasi momento.",
-  "billing_resiliation_details_CANCEL_SERVICE": "Alla data di scadenza riportata, perderai l’accesso al servizio e ai dati che può contenere. Potrai annullare questa operazione fino a 24 ore prima della data di scadenza.",
+  "billing_resiliation_details_CANCEL_SERVICE": "A questa data di scadenza, perderai l'accesso al servizio e quindi a tutti i dati che può contenere. È possibile annullare l'operazione entro 24 ore prima della data di scadenza.",
   "billing_resiliation_success": "La richiesta di disattivazione del servizio è stata inviata.",
   "billing_resiliation_error": "Si è verificato un errore durante la richiesta di disattivazione del servizio.",
   "billing_resiliation_cancel": "Annulla",

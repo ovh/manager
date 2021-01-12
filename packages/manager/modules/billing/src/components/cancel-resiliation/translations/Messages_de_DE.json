@@ -4,5 +4,5 @@
   "autorenew_service_cancel_resiliation_error": "Bei der Stornierung der Kündigung ist ein Fehler aufgetreten {{ message }}",
   "autorenew_service_cancel_resiliation_confirm": "Möchten Sie die Kündigung des Dienstes {{ service }} stornieren?",
   "autorenew_service_cancel_resiliation_validate": "Stornierung bestätigen",
-  "autorenew_service_cancel_resiliation_cancel": "Stornieren"
+  "autorenew_service_cancel_resiliation_cancel": "Abbrechen"
 }
