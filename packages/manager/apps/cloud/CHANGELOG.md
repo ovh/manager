@@ -1,3 +1,12 @@
+## [11.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@11.2.0...@ovh-ux/manager-cloud@11.2.1) (2021-01-12)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 749] ([d9ac5e5](https://github.com/ovh/manager/commit/d9ac5e5de117940ea0786f16326f9993be23a7dc))
+
+
+
 # [11.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@11.1.1...@ovh-ux/manager-cloud@11.2.0) (2021-01-11)
 
 
