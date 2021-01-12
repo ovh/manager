@@ -1,7 +1,7 @@
-import addTemplate from '../add/cda-pool-add.html';
-import deleteTemplate from '../delete/cda-pool-delete.html';
+import ipAddTemplate from './add/cda-ip-add.html';
+import ipDeleteTemplate from './delete/cda-ip-delete.html';
 
-export default class CdaPoolListCtrl {
+export default class CdaIpListCtrl {
   /* @ngInject */
   constructor(
     $q,
@@ -16,33 +16,32 @@ export default class CdaPoolListCtrl {
     self.loading = false;
 
     self.datas = {
-      pools: undefined,
+      ips: undefined,
     };
 
     self.modals = {
       add: {
-        template: addTemplate,
-        controller: 'CdaPoolAddCtrl',
+        template: ipAddTemplate,
+        controller: 'CdaIpAddCtrl',
       },
       remove: {
-        template: deleteTemplate,
-        controller: 'CdaPoolDeleteCtrl',
+        template: ipDeleteTemplate,
+        controller: 'CdaIpDeleteCtrl',
       },
     };
 
-    function initPools() {
-      OvhApiDedicatedCeph.Pool()
+    function initIps() {
+      OvhApiDedicatedCeph.Acl()
         .v6()
         .resetAllCache();
-
-      return OvhApiDedicatedCeph.Pool()
+      return OvhApiDedicatedCeph.Acl()
         .v6()
         .query({
           serviceName: $stateParams.serviceName,
         })
-        .$promise.then((pools) => {
-          self.datas.pools = pools;
-          return pools;
+        .$promise.then((ips) => {
+          self.datas.ips = ips;
+          return ips;
         });
     }
 
@@ -57,7 +56,7 @@ export default class CdaPoolListCtrl {
 
     function init() {
       self.loading = true;
-      initPools()
+      initIps()
         .catch((error) => {
           displayError(error);
         })
@@ -70,11 +69,11 @@ export default class CdaPoolListCtrl {
       self.openModal(self.modals.add.template, self.modals.add.controller);
     };
 
-    self.openDeleteModal = function openDeleteModal(pool) {
+    self.openDeleteModal = function openDeleteModal(ip) {
       self.openModal(
         self.modals.remove.template,
         self.modals.remove.controller,
-        { pool },
+        { ip },
       );
     };
 
@@ -90,7 +89,7 @@ export default class CdaPoolListCtrl {
       });
 
       modal.result.then(() => {
-        initPools();
+        initIps();
       });
     };
 
