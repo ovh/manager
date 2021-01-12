@@ -11,9 +11,8 @@ export default /* @ngInject */ ($stateProvider) => {
         controllerAs: 'CdaDetailsHomeCtrl',
       },
     },
-    translations: {
-      format: 'json',
-      value: ['.'],
+    resolve: {
+      breadcrumb: () => null,
     },
   });
 };

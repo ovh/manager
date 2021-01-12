@@ -15,9 +15,9 @@ export default /* @ngInject */ ($stateProvider) => {
           controllerAs: 'CdaUserDetailsPermissionListEditCtrl',
         },
       },
-      translations: {
-        format: 'json',
-        value: ['.'],
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('cda_user_details_permissions_list_edit_title'),
       },
     },
   );

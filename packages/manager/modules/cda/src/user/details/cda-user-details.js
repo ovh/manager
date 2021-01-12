@@ -11,9 +11,11 @@ export default /* @ngInject */ ($stateProvider) => {
         controllerAs: 'CdaUserDetailsCtrl',
       },
     },
-    translations: {
-      format: 'json',
-      value: ['.'],
+    redirectTo: 'cda.dashboard.cda-user',
+    resolve: {
+      userName: /* @ngInject */ ($transition$) =>
+        $transition$.params().userName,
+      breadcrumb: /* @ngInject */ (userName) => userName,
     },
   });
 };

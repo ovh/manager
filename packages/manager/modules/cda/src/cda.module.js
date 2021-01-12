@@ -8,11 +8,7 @@ import routing from './cda.routing';
 const moduleName = 'ovhManagerCDA';
 
 angular
-  .module(moduleName, [
-    'oui',
-    ListLayoutHelper.moduleName,
-    'ui.router',
-  ])
+  .module(moduleName, ['oui', ListLayoutHelper.moduleName, 'ui.router'])
   .config(routing);
 
 export default moduleName;
