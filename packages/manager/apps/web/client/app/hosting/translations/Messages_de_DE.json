@@ -1229,7 +1229,7 @@
   "hosting_action_config_edit_no_choice": "Es ist nur eine einzige Konfiguration in der History verfügbar, die Auswahl wurde deshalb deaktiviert. Klicken Sie auf \"Bestätigen\", um die unten angezeigten Werte anzuwenden.",
   "hosting_tab_USER_LOGS": "Statistiken und Logs",
   "hosting_tab_USER_LOGS_configuration_user_create_title": "Einen neuen Benutzer erstellen",
-  "hosting_tab_USER_LOGS_configuration_user_create_step1_question": "Dieser neue Benutzer steht dann zusätzlich zu den normalen Kontakten des Hostings (Admin-, Tech- und Rechnungskontakt) zur Verfügung.<br />Sie können jederzeit solche zusätzlichen Benutzer erstellen, ändern oder löschen.<br /><br />Es dauert lediglich einige Minuten, bis die jeweilige Operation aktiv ist.",
+  "hosting_tab_USER_LOGS_configuration_user_create_step1_question": "Dieser neue Nutzer erhält zusätzlich zu den üblichen Kontakten für das Hosting (Verwaltung, Technik und Abrechnung) Zugriff auf die Statistiken und Logs Ihrer Seiten. Sie können diese zusätzlichen Nutzer jederzeit hinzufügen, ändern oder löschen.",
   "hosting_tab_USER_LOGS_configuration_user_create_step1_user": "Benutzer",
   "hosting_tab_USER_LOGS_configuration_user_create_step1_user_error": "Benutzername ungültig",
   "hosting_tab_USER_LOGS_configuration_user_create_step1_desc_label": "Beschreibung",

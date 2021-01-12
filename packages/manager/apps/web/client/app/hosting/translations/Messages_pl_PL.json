@@ -1228,7 +1228,7 @@
   "hosting_action_config_edit_no_choice": "Tylko jedna dostępna konfiguracja w historii. Wybór jest więc wyłączony. Kliknij na \"Zatwierdź\", aby wprowadzić wartości podane poniżej.",
   "hosting_tab_USER_LOGS": "Statystyki i logi",
   "hosting_tab_USER_LOGS_configuration_user_create_title": "Utwórz nowego użytkownika",
-  "hosting_tab_USER_LOGS_configuration_user_create_step1_question": "Nowy użytkownik będzie dostępny dodatkowo poza normalnymi kontaktami dla hostingu (administracyjny, techniczny i księgowy).<br />Możesz dowolnie dodawać, edytować i usuwać dodatkowych użytkowników.<br /><br />Operacja ta może trwać kilka minut.",
+  "hosting_tab_USER_LOGS_configuration_user_create_step1_question": "Nowy użytkownik, oprócz danych osób kontaktowych (kontakt administracyjny, techniczny i księgowy), będzie miał dostęp do statystyk i logów stron WWW. Możesz dowolnie dodawać, modyfikować lub usuwać użytkowników.",
   "hosting_tab_USER_LOGS_configuration_user_create_step1_user": "Użytkownik",
   "hosting_tab_USER_LOGS_configuration_user_create_step1_user_error": "Nieprawidłowa nazwa użytkownika",
   "hosting_tab_USER_LOGS_configuration_user_create_step1_desc_label": "Opis",

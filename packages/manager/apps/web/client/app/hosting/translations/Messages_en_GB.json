@@ -1217,7 +1217,7 @@
   "hosting_action_config_edit_no_choice": "Only one configuration is available in your history of previous choices. As a result, the choice is disabled. Please click \"Confirm\" to apply the values ​​displayed below.",
   "hosting_tab_USER_LOGS": "Statistics and logs",
   "hosting_tab_USER_LOGS_configuration_user_create_title": "Create a new user",
-  "hosting_tab_USER_LOGS_configuration_user_create_step1_question": "This new user will be available in addition to the normal hosting contacts (administrative, technical and billing).<br />You can add, edit or delete the additional users.<br /> <br /> This may take several minutes.",
+  "hosting_tab_USER_LOGS_configuration_user_create_step1_question": "This new user will have access to your website statistics and logs, as well as the normal hosting contacts (administrative, technical and billing). You can freely add, edit or delete these additional users.",
   "hosting_tab_USER_LOGS_configuration_user_create_step1_user": "User",
   "hosting_tab_USER_LOGS_configuration_user_create_step1_user_error": "Invalid username",
   "hosting_tab_USER_LOGS_configuration_user_create_step1_desc_label": "Description",

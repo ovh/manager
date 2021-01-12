@@ -1230,7 +1230,7 @@
   "hosting_action_config_edit_no_choice": "Solo hay una configuración disponible en el historial. La opción de selección está desactivada. Haga clic en «Aceptar» para aplicar los valores que se presentan a continuación.",
   "hosting_tab_USER_LOGS": "Estadísticas y logs",
   "hosting_tab_USER_LOGS_configuration_user_create_title": "Crear un nuevo usuario ",
-  "hosting_tab_USER_LOGS_configuration_user_create_step1_question": "Este nuevo usuario estará disponible, además de los contactos normales del alojamiento (contacto administrador, técnico y de facturación). <br />Puede añadir, modificar o eliminar libremente estos usuarios adicionales.<br /><br />Esta operación se hará efectiva en los próximos minutos.",
+  "hosting_tab_USER_LOGS_configuration_user_create_step1_question": "El nuevo usuario tendrá acceso a sus estadísticas y a los logs de sus sitios web, además de a los contactos normales del alojamiento (administrativo, técnico y de facturación). Puede añadir, modificar o eliminar libremente estos usuarios adicionales.",
   "hosting_tab_USER_LOGS_configuration_user_create_step1_user": "Usuario",
   "hosting_tab_USER_LOGS_configuration_user_create_step1_user_error": "Nombre de usuario no válido",
   "hosting_tab_USER_LOGS_configuration_user_create_step1_desc_label": "Descripción",

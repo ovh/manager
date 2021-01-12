@@ -1229,7 +1229,7 @@
   "hosting_action_config_edit_no_choice": "Somente está disponível uma configuração no histórico. A escolha está então desativada. Clique em \"validar\" para aplicar os valores apresentados em baixo.",
   "hosting_tab_USER_LOGS": "Estatísticas e logs",
   "hosting_tab_USER_LOGS_configuration_user_create_title": "Criar um novo utilizador",
-  "hosting_tab_USER_LOGS_configuration_user_create_step1_question": "Este novo utilizador será disponível por baixo dos contactos normais do alojamento (administrador, técnico ou faturação).<br />Poderá adicionar livremente mais utilizadores adicionais, modificá-los e eliminá-los.<br /><br />Esta operação pode levar alguns minutos a ser efetuada.",
+  "hosting_tab_USER_LOGS_configuration_user_create_step1_question": "Este novo utilizador terá acesso às suas estatísticas e aos logs dos seus websites, além dos contactos normais do alojamento (administrativo, técnico e de faturação). Pode adicionar, modificar ou eliminar livremente estes utilizadores adicionais.",
   "hosting_tab_USER_LOGS_configuration_user_create_step1_user": "Utilizador",
   "hosting_tab_USER_LOGS_configuration_user_create_step1_user_error": "Nome de utilizador inválido",
   "hosting_tab_USER_LOGS_configuration_user_create_step1_desc_label": "Descrição ",
