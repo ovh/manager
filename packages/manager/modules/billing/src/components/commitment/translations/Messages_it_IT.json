@@ -23,7 +23,8 @@
   "billing_commitment_summary_description_upfront": "A partire dal {{ renewDate }}, per il servizio {{ serviceName }} sarà sottoscritto un impegno contrattuale fino al {{ engagementEndDate }}.",
   "billing_commitment_summary_description_payment": "L'importo verrà addebitato sul metodo di pagamento predefinito: {{ paymentMethodType }} {{ paymentMethodName }}.",
   "billing_commitment_success": "La richiesta di sottoscrizione di un impegno contrattuale per il servizio è stata presa in carico. ",
-  "billing_commitment_success_purchase": "Completa il pagamento del <a href=\"{{url}}\" target='_blank'>buono d'ordine</a>.",
+  "billing_commitment_success_purchase": "Completa il pagamento del tuo <a href=\"{{url}}\" target=\"_blank\"> buono d'ordine</a>.",
   "billing_commitment_error": "Si è verificato un errore,",
-  "billing_commitment_summary_description_end": "Dopo il {{ endDate }} il servizio verrà rinnovato tacitamente per una durata simile all'ultimo impegno contrattuale sottoscritto."
+  "billing_commitment_summary_description_end": "Dopo il {{ endDate }} il servizio verrà rinnovato tacitamente per una durata simile all'ultimo impegno contrattuale sottoscritto.",
+  "billing_commitment_summit": "Conferma"
 }
