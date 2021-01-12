@@ -6,5 +6,9 @@ export default /* @ngInject */ ($stateProvider) => {
     controller: 'ExchangeTabSharedAccountsCtrl',
     controllerAs: 'ctrl',
     template,
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('exchange_dashboard_shared_account'),
+    },
   });
 };
