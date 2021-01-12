@@ -1,7 +1,7 @@
 import 'script-loader!jquery'; // eslint-disable-line
 import { Environment } from '@ovh-ux/manager-config';
 import angular from 'angular';
-import '@ovh-ux/manager-cda';
+import ovhManagerCda from '@ovh-ux/manager-cda';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ngOvhCloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-components';
 
@@ -16,8 +16,8 @@ const moduleName = 'cdaApp';
 angular
   .module(moduleName, [
     ovhManagerCore,
-    'ovhManagerCda',
     ngOvhCloudUniverseComponents,
+    ovhManagerCda,
   ])
   .config(
     /* @ngInject */ (CucConfigProvider) => {

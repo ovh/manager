@@ -26,7 +26,7 @@ export default class CdaPoolAddCtrl {
     };
     this.saving = false;
     this.messages = [];
-    this.messageContainerName = 'cda.pool.add';
+    this.messageContainerName = 'cda.dashboard.pool.add';
   }
 
   $onInit() {
