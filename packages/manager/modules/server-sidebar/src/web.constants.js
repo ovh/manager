@@ -143,7 +143,7 @@ export const EMAIL_PRO_CONFIG = {
 
 export const EMAIL_CONFIG = {
   id: 'emails',
-  loadOnState: 'app.email.*',
+  loadOnState: ['app.email', 'mxplan', 'app.email-delegate'],
   types: [
     {
       path: '/email/domain',
