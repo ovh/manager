@@ -54,5 +54,7 @@
   "pci_projects_project_instances_vrack_none": "Jeszcze nie skonfigurowałeś sieci vRack.",
   "pci_projects_project_instances_vrack_create": "Utwórz vRack",
   "pci_projects_project_instances_autobackup_label": "Utwórz automatyzowane kopie zapasowe",
-  "pci_projects_project_instances_refresh": "Aktualizacja instancji"
+  "pci_projects_project_instances_refresh": "Aktualizacja instancji",
+  "pci_projects_project_instances_start_label": "Uruchom",
+  "pci_projects_project_instances_stop_label": "Zatrzymaj"
 }

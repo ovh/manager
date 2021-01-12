@@ -1,0 +1,8 @@
+{
+  "pci_projects_project_instances_instance_stop_title": "Arresto della tua istanza",
+  "pci_projects_project_instances_instance_stop_submit_label": "Conferma",
+  "pci_projects_project_instances_instance_stop_cancel_label": "Annulla",
+  "pci_projects_project_instances_instance_stop_content": "La tua istanza {{ instance }} verrà arrestata. Le risorse dedicate all'istanza Public Cloud sono sempre riservate (indirizzo IP incluso). Puoi riavviare l'istanza in qualsiasi momento. Nel frattempo, per la tua istanza, viene sempre fatturato lo stesso prezzo.",
+  "pci_projects_project_instances_instance_stop_success_message": "L’istanza {{ instance }} è stata arrestata.",
+  "pci_projects_project_instances_instance_stop_error_message": "Si è verificato un errore durante l’arresto dell'istanza {{ instance }} : {{ message }}."
+}
