@@ -12,5 +12,10 @@ export default /* @ngInject */ ($stateProvider) => {
         controllerAs: 'CdaDetailsCtrl',
       },
     },
+    resolve: {
+      serviceName: /* @ngInject */ ($transition$) =>
+        $transition$.params().serviceName,
+      breadcrumb: /* @ngInject */ (serviceName) => serviceName,
+    },
   });
 };

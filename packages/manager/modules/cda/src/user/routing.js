@@ -1,4 +1,4 @@
-import controller from './cda-user-list.controller'
+import controller from './cda-user-list.controller';
 import template from './cda-user.html';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -10,6 +10,10 @@ export default /* @ngInject */ ($stateProvider) => {
         controllerAs: 'CdaUserListCtrl',
         template,
       },
+    },
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('cda_user_breadcrumb'),
     },
   });
 };
