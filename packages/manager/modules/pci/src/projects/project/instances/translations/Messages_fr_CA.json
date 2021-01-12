@@ -44,6 +44,8 @@
   "pci_projects_project_instances_edit_label": "Editer",
   "pci_projects_project_instances_activeMonthlyBilling_label": "Passer au forfait mensuel",
   "pci_projects_project_instances_createBackup_label": "Créer un backup",
+  "pci_projects_project_instances_start_label": "Démarrer",
+  "pci_projects_project_instances_stop_label": "Arrêter",
   "pci_projects_project_instances_rescue_label": "Redémarrer en mode rescue",
   "pci_projects_project_instances_rescueEnd_label": "Sortir du mode rescue",
   "pci_projects_project_instances_softReboot_label": "Redémarrer à chaud (soft)",

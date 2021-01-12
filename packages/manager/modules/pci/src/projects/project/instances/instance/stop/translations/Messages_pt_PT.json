@@ -1,0 +1,8 @@
+{
+  "pci_projects_project_instances_instance_stop_title": "Interrupção da sua instância",
+  "pci_projects_project_instances_instance_stop_submit_label": "Confirmar",
+  "pci_projects_project_instances_instance_stop_cancel_label": "Cancelar",
+  "pci_projects_project_instances_instance_stop_content": "A instância {{ instance }} vai ser interrompida. Os recursos dedicados à sua instância Public Cloud estão sempre reservados (endereço IP incluído). Pode reiniciar a sua instância a qualquer momento. Entretanto, será sempre faturado ao mesmo preço para a sua instância.",
+  "pci_projects_project_instances_instance_stop_success_message": "A instância {{ instance }} foi interrompida.",
+  "pci_projects_project_instances_instance_stop_error_message": "Ocorreu um erro ao interromper a instância {{ instance }}: {{ message }}."
+}

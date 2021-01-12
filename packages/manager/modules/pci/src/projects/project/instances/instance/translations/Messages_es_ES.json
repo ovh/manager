@@ -44,5 +44,7 @@
   "pci_projects_project_instances_instance_private_networks_action_attach_label": "Asociar una red",
   "pci_projects_project_instances_instance_connection_info_label": "Datos de conexión",
   "pci_projects_project_instances_instance_ssh_key_label": "Llave SSH",
-  "pci_projects_project_instances_instance_gateway": "Puerta de acceso"
+  "pci_projects_project_instances_instance_gateway": "Puerta de acceso",
+  "pci_projects_project_instances_instance_action_start_label": "Iniciar",
+  "pci_projects_project_instances_instance_action_stop_label": "Detener"
 }

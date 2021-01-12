@@ -1,0 +1,8 @@
+{
+  "pci_projects_project_instances_instance_stop_title": "Zatrzymanie instancji",
+  "pci_projects_project_instances_instance_stop_submit_label": "Zatwierdź",
+  "pci_projects_project_instances_instance_stop_cancel_label": "Anuluj",
+  "pci_projects_project_instances_instance_stop_content": "Nastąpi zatrzymanie Twojej instancji {{instance}}. Zasoby przypisane do Twojej instancji Public Cloud są zawsze zarezerwowane (adres IP zawarty). Możesz w każdej chwili ponownie uruchomić Twoją instancję. W międzyczasie za instancję naliczana jest ta sama opłata.",
+  "pci_projects_project_instances_instance_stop_success_message": "Instancja {{instance}} została zatrzymana.",
+  "pci_projects_project_instances_instance_stop_error_message": "Wystąpił błąd podczas zatrzymywania instancji {{instance}}: {{message}}."
+}

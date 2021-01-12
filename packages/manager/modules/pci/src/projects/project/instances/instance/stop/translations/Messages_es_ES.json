@@ -1,0 +1,8 @@
+{
+  "pci_projects_project_instances_instance_stop_title": "Detención de su instancia",
+  "pci_projects_project_instances_instance_stop_submit_label": "Confirmar",
+  "pci_projects_project_instances_instance_stop_cancel_label": "Cancelar",
+  "pci_projects_project_instances_instance_stop_content": "Va a detener la instancia {{ instance }}. Los recursos dedicados a la instancia Public Cloud están reservados (dirección IP incluida). Puede reiniciar la instancia en cualquier momento. Mientras tanto, la instancia se facturará al mismo precio.",
+  "pci_projects_project_instances_instance_stop_success_message": "Se ha detenido la instancia {{ instance }}.",
+  "pci_projects_project_instances_instance_stop_error_message": "Se ha producido un error al detener la instancia {{ instance }}: {{ message }}."
+}
