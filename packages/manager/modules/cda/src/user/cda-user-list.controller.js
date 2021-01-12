@@ -1,5 +1,5 @@
-import addTemplate from '../add/cda-user-add.html';
-import deleteTemplate from '../delete/cda-user-delete.html';
+import addTemplate from './add/cda-user-add.html';
+import deleteTemplate from './delete/cda-user-delete.html';
 
 export default class CdaUserListCtrl {
   /* @ngInject */
