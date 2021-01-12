@@ -34,6 +34,21 @@ angular
       $urlRouterProvider.otherwise('/cda'),
   )
   .run(
+    /* @ngInject */ ($translate) => {
+      let lang = $translate.use();
+
+      if (['en_GB', 'es_US', 'fr_CA'].includes(lang)) {
+        lang = lang.toLowerCase().replace('_', '-');
+      } else {
+        [lang] = lang.split('_');
+      }
+
+      return import(`script-loader!moment/locale/${lang}.js`).then(() =>
+        moment.locale(lang),
+      );
+    },
+  )
+  .run(
     /* @ngInject */ ($transitions) => {
       const unregisterHook = $transitions.onSuccess({}, () => {
         detachPreloader();
