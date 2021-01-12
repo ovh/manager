@@ -4,5 +4,5 @@
   "billing_cancel_commitment_success": "O pedido de anulação de um compromisso foi corretamente enviado",
   "billing_cancel_commitment_error": "Erro ao processar a anulação.",
   "billing_cancel_commitment_confirm": "Validar",
-  "billing_cancel_commitment_cancel": "Anular"
+  "billing_cancel_commitment_cancel": "Cancelar"
 }

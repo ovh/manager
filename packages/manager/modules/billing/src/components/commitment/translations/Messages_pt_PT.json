@@ -25,5 +25,6 @@
   "billing_commitment_success": "O pedido de compromisso do serviço foi corretamente enviado. ",
   "billing_commitment_success_purchase": "Finalize o pagamento da sua <a href=\"{{url}}\" target=\"_blank\">nota de encomenda</a>.",
   "billing_commitment_error": "Ocorreu um erro.",
-  "billing_commitment_summary_description_end": "Depois de {{ endDate }}, o seu serviço será tacitamente reiniciado por um período semelhante ao seu último compromisso."
+  "billing_commitment_summary_description_end": "Depois de {{ endDate }}, o seu serviço será tacitamente reiniciado por um período semelhante ao seu último compromisso.",
+  "billing_commitment_summit": "Validar"
 }
