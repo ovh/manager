@@ -14,7 +14,7 @@ export default class CdaDetailEditCtrl {
     this.CucCloudMessage = CucCloudMessage;
     this.CdaService = CdaService;
     this.items = items;
-    this.messageContainerName = 'cda.detail.edit';
+    this.messageContainerName = 'cda.dashboard.detail.edit';
 
     this.model = {
       label: items.details.label,

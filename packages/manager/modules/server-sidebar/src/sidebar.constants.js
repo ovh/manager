@@ -225,7 +225,7 @@ export const PAAS_CONFIG = {
   types: [
     {
       path: '/dedicated/ceph',
-      state: 'cda.cda-details.cda-details-home',
+      state: 'cda.dashboard.cda-details.cda-details-home',
       stateParams: ['serviceName'],
       icon: 'ovh-font ovh-font-cloud-disk-array',
       app: [DEDICATED],

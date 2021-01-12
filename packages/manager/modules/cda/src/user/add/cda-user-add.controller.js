@@ -26,7 +26,7 @@ export default class CdaUserAddCtrl {
     };
     this.saving = false;
     this.messages = [];
-    this.messageContainerName = 'cda.user.add';
+    this.messageContainerName = 'cda.dashboard.user.add';
   }
 
   $onInit() {
