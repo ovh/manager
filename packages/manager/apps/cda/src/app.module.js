@@ -1,9 +1,11 @@
 import 'script-loader!jquery'; // eslint-disable-line
+import 'script-loader!moment/min/moment.min.js'; // eslint-disable-line
 import { Environment } from '@ovh-ux/manager-config';
 import angular from 'angular';
 import ovhManagerCda from '@ovh-ux/manager-cda';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ngOvhCloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-components';
+import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 
@@ -17,6 +19,7 @@ angular
   .module(moduleName, [
     ovhManagerCore,
     ngOvhCloudUniverseComponents,
+    ngUiRouterBreadcrumb,
     ovhManagerCda,
   ])
   .config(
