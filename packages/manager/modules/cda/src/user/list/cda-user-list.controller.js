@@ -92,7 +92,7 @@ export default class CdaUserListCtrl {
 
     self.viewPermissions = function viewPermissions(name) {
       return $state.go(
-        'cda.cda-details.cda-user.cda-user-details.cda-user-details-permission-list',
+        'cda.dashboard.cda-details.cda-user.cda-user-details.cda-user-details-permission-list',
         { userName: name },
       );
     };

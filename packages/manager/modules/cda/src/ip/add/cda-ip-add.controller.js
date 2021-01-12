@@ -20,7 +20,7 @@ export default class CdaIpAddCtrl {
     };
     this.saving = false;
     this.messages = [];
-    this.messageContainerName = 'cda.ip.add';
+    this.messageContainerName = 'cda.dashboard.ip.add';
   }
 
   $onInit() {
