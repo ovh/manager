@@ -12,6 +12,8 @@ export default /* @ngInject */ ($stateProvider) => {
         EmailDomainService.getOffers(serviceName).then((offers) =>
           sortBy(offers, 'duration.prices.withoutTax.value'),
         ),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('emailpro_upgrade'),
     },
   });
 };
