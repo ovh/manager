@@ -121,7 +121,7 @@ export default class CdaDetailHomeCtrl {
             link: {
               type: 'state',
               text: $translate.instant('cda_detail_info_create_user'),
-              state: 'cda.dashboard.cda-user.cda-user-list',
+              state: 'cda.dashboard.cda-user',
             },
           };
           CucCloudMessage.info(message);

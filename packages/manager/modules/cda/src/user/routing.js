@@ -1,3 +1,4 @@
+import controller from './cda-user-list.controller'
 import template from './cda-user.html';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -5,8 +6,9 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/user',
     views: {
       cdaDetailsTab: {
+        controller,
+        controllerAs: 'CdaUserListCtrl',
         template,
-        abstract: true,
       },
     },
   });
