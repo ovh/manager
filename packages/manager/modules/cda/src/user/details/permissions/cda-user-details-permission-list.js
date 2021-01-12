@@ -4,7 +4,7 @@ import permissionTemplate from './cda-user-details-permission-title.html';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'cda.dashboard.cda-details.cda-user.cda-user-details.cda-user-details-permission-list',
+    'cda.dashboard.cda-user.cda-user-details.cda-user-details-permission-list',
     {
       url: '/permission/list',
       views: {

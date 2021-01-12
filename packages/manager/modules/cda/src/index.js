@@ -27,11 +27,11 @@ angular
           },
         })
         .state('cda.dashboard.**', {
-          url: '/{serviceName}',
+        url: '/:serviceName',
           lazyLoad: ($transition$) => {
             const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-            return import('./dashboard/index').then((mod) =>
+          return import('./details/index').then((mod) =>
               $ocLazyLoad.inject(mod.default || mod),
             );
           },

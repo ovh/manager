@@ -3,7 +3,11 @@ import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('cda.index', {
     url: `?${ListLayoutHelper.urlQueryParams}`,
-    component: 'managerListLayout',
+    views: {
+      cdaDetails: {
+        component: 'managerListLayout',
+      },
+    },
     params: ListLayoutHelper.stateParams,
     resolve: {
       ...ListLayoutHelper.stateResolves,
