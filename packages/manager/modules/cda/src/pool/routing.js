@@ -2,18 +2,14 @@ import controller from './cda-pool-list.controller';
 import template from './cda-pool-list.html';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('cda.dashboard.cda-pool.cda-pool-list', {
-    url: '/list',
+  $stateProvider.state('cda.dashboard.cda-pool', {
+    url: '/pool',
     views: {
-      cdaPoolContent: {
+      cdaDetailsTab: {
         template,
         controller,
         controllerAs: 'CdaPoolListCtrl',
       },
-    },
-    translations: {
-      format: 'json',
-      value: ['.'],
     },
   });
 };

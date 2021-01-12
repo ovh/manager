@@ -1,4 +1,5 @@
-import template from './cda-ip.html';
+import controller from './cda-ip-list.controller';
+import template from './cda-ip-list.html';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('cda.dashboard.cda-ip', {
@@ -6,7 +7,8 @@ export default /* @ngInject */ ($stateProvider) => {
     views: {
       cdaDetailsTab: {
         template,
-        abstract: true,
+        controller,
+        controllerAs: 'CdaIpListCtrl',
       },
     },
   });
