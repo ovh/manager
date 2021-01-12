@@ -51,7 +51,9 @@ export default class AdvicesCtrl {
   trackClickImpression(advice) {
     return (
       advice.impression &&
-      this.atInternet.trackClickImpression(advice.impression)
+      this.atInternet.trackClickImpression({
+        click: advice.impression,
+      })
     );
   }
 }
