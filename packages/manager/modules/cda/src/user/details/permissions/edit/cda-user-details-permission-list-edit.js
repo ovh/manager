@@ -5,7 +5,7 @@ import './cda-user-details-permission-list-edit.less';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'cda.dashboard.cda-details.cda-user.cda-user-details.cda-user-details-permission-list.cda-user-details-permission-list-edit',
+    'cda.dashboard.cda-user.cda-user-details.cda-user-details-permission-list.cda-user-details-permission-list-edit',
     {
       url: '/edit',
       views: {

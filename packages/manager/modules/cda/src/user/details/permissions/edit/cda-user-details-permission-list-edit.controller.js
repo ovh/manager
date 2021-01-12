@@ -26,7 +26,7 @@ export default class CdaUserDetailsPermissionListEditCtrl {
 
     self.states = {
       permissionList:
-        'cda.dashboard.cda-details.cda-user.cda-user-details.cda-user-details-permission-list',
+        'cda.dashboard.cda-user.cda-user-details.cda-user-details-permission-list',
     };
 
     self.datas = {
