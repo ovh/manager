@@ -1228,7 +1228,7 @@
   "hosting_action_config_edit_no_choice": "Une seule configuration disponible dans l’historique. Le choix est donc désactivé, cliquez sur \"valider\" pour appliquer les valeurs présentées ci-dessous.",
   "hosting_tab_USER_LOGS": "Statistiques et logs",
   "hosting_tab_USER_LOGS_configuration_user_create_title": "Créer un nouvel utilisateur",
-  "hosting_tab_USER_LOGS_configuration_user_create_step1_question": "Ce nouvel utilisateur sera disponible en plus des contacts normaux de l'hébergement (administratif, technique et facturation).<br />Vous pouvez librement rajouter, modifier ou supprimer ces utilisateurs supplémentaires.<br /><br />Cette opération peut prendre plusieurs minutes avant d'être effective.",
+  "hosting_tab_USER_LOGS_configuration_user_create_step1_question": "Ce nouvel utilisateur aura accès à vos statistiques et aux logs de vos sites en plus des contacts normaux de l'hébergement (administratif, technique et facturation). Vous pouvez librement ajouter, modifier ou supprimer ces utilisateurs supplémentaires.",
   "hosting_tab_USER_LOGS_configuration_user_create_step1_user": "Utilisateur",
   "hosting_tab_USER_LOGS_configuration_user_create_step1_user_error": "Nom d'utilisateur invalide",
   "hosting_tab_USER_LOGS_configuration_user_create_step1_desc_label": "Description",
