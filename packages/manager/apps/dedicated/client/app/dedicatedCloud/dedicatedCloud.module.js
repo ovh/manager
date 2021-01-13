@@ -1,4 +1,5 @@
 import angular from 'angular';
+import get from 'lodash/get';
 
 import confirmTerminate from './confirm-terminate';
 import dashboard from './dashboard/dedicatedCloud-dashboard.module';
@@ -27,6 +28,17 @@ angular
     servicePackUpgrade,
     user,
   ])
-  .config(routing);
+  .config(routing)
+  .run(
+    /* @ngInject */ ($state, $transitions) => {
+      $transitions.onError({}, (transition) => {
+        const error = transition.error();
+        if (get(error, 'detail.code') === 460) {
+          error.handled = true;
+          $state.go('app.expired', { error });
+        }
+      });
+    },
+  );
 
 export default moduleName;

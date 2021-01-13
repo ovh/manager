@@ -187,15 +187,6 @@
                 ></dd>
 
                 <dt
-                    data-translate="hosting_tab_DOMAINS_configuration_add_step3_ipv6"
-                    data-ng-if="selected.mode === model.mode.OVH"
-                ></dt>
-                <dd
-                    data-ng-bind="'hosting_tab_DOMAINS_configuration_add_step3_ipv6_' + selected.ipv6Needed | translate"
-                    data-ng-if="selected.mode === model.mode.OVH"
-                ></dd>
-
-                <dt
                     data-translate="hosting_tab_DOMAINS_configuration_modify_step2_cdn"
                     data-ng-if="selected.mode === model.mode.OVH"
                 ></dt>
@@ -303,6 +294,16 @@
                     ></li>
                     <li
                         data-ng-bind-html="'hosting_tab_DOMAINS_configuration_add_step3_common_action' | translate: { t0: 'A', t1: getSelectedDomainToDisplay(), t2: getHostingIp(hosting, selected.activeCDN, false) }"
+                    ></li>
+                    <li
+                        data-ng-if="!selected.autoconfigure && !selected.ipv6Needed"
+                        data-translate="hosting_tab_DOMAINS_configuration_add_step3_delete_4a_records"
+                        data-translate-values="{ domain: getSelectedDomainToDisplay() }"
+                    ></li>
+                    <li
+                        data-ng-if="!selected.autoconfigure && !selected.ipv6Needed && needWwwDomain()"
+                        data-translate="hosting_tab_DOMAINS_configuration_add_step3_delete_4a_records"
+                        data-translate-values="{ domain: getSelectedDomainToDisplay(needWwwDomain()) }"
                     ></li>
                     <li
                         data-ng-bind-html="'hosting_tab_DOMAINS_configuration_add_step3_common_action' | translate: { t0: 'A', t1: getSelectedDomainToDisplay(true), t2: getHostingIp(hosting, selected.activeCDN, false) }"

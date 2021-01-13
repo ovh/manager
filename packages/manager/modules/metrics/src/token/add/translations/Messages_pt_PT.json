@@ -1,0 +1,12 @@
+{
+  "metrics_token_add_name": "Nome (facultativo)",
+  "metrics_token_add_permission": "Permissão",
+  "metrics_token_add_labels": "Labels (facultativo)",
+  "metrics_token_add_permission_read": "Leitura ",
+  "metrics_token_add_permission_write": "Escrita",
+  "metrics_token_add_labels_add": "Adicionar as labls",
+  "metrics_token_add_labels_key": "Chave",
+  "metrics_token_add_labels_value": "Valor",
+  "metrics_token_add_token": "Adicionar um token",
+  "metrics_token_add_confirmation": "Adicionar"
+}

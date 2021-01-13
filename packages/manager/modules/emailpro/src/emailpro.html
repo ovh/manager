@@ -111,7 +111,7 @@
                 </div>
                 <div data-ng-if="exchange.isMXPlan">
                     <oui-action-menu-item
-                        data-href="{{ '#/billing/autoRenew?selectedType=EMAIL_DOMAIN&searchText=' + exchange.associatedDomainName }}"
+                        data-href="{{:: MXPLAN_AUTORENEW_URL }}"
                         data-external
                     >
                         <span

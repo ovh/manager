@@ -1,6 +1,6 @@
 {
   "common_clipboard_copy_to_clipboard": "Copy to clipboard",
-  "common_clipboard_copied": "Copy",
+  "common_clipboard_copied": "Copied",
   "common_clipboard_not_supported": "Copying to clipboard is not supported. Please copy the text manually.",
   "common_criteria_adder_column_label": "Column",
   "common_criteria_adder_operator_label": "Condition",

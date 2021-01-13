@@ -1,3 +1,5 @@
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+import { Environment } from '@ovh-ux/manager-config';
 import find from 'lodash/find';
 import flattenDeep from 'lodash/flattenDeep';
 import forEach from 'lodash/forEach';
@@ -15,7 +17,6 @@ import some from 'lodash/some';
 
 import {
   DNSSEC_STATUS,
-  OWNER_CHANGE_URL,
   PRODUCT_TYPE,
   PROTECTION_TYPES,
 } from './general-information.constants';
@@ -39,12 +40,10 @@ export default class DomainTabGeneralInformationsCtrl {
     isStart10mAvailable,
     OvhApiDomainRules,
     OvhApiScreenshot,
-    RedirectionService,
     User,
     WucAllDom,
     DOMAIN,
     goToDnsAnycast,
-    CORE_MANAGER_URLS,
   ) {
     this.$scope = $scope;
     this.$rootScope = $rootScope;
@@ -62,12 +61,10 @@ export default class DomainTabGeneralInformationsCtrl {
     this.isStart10mAvailable = isStart10mAvailable;
     this.OvhApiDomainRules = OvhApiDomainRules;
     this.OvhApiScreenshot = OvhApiScreenshot.Aapi();
-    this.RedirectionService = RedirectionService;
     this.User = User;
     this.constants = constants;
     this.DOMAIN = DOMAIN;
     this.goToDnsAnycast = goToDnsAnycast;
-    this.CORE_MANAGER_URLS = CORE_MANAGER_URLS;
   }
 
   $onInit() {
@@ -183,13 +180,14 @@ export default class DomainTabGeneralInformationsCtrl {
   }
 
   initActions() {
-    const contactManagementUrl = this.RedirectionService.getURL(
-      'contactManagement',
-      {
-        serviceName: this.domain.name,
-        category: PRODUCT_TYPE,
-      },
-    );
+    const contactManagementUrl =
+      Environment.getRegion() === 'EU'
+        ? buildURL('dedicated', '#/contacts/services', {
+            serviceName: this.domain.name,
+            category: PRODUCT_TYPE,
+          })
+        : '';
+
     this.actions = {
       manageContact: {
         text: this.$translate.instant('common_manage_contacts'),
@@ -486,7 +484,14 @@ export default class DomainTabGeneralInformationsCtrl {
   getUpdateOwnerUrl(domain) {
     const ownerUrlInfo = { target: '', error: '' };
     if (has(domain, 'name') && has(domain, 'whoisOwner.id')) {
-      ownerUrlInfo.target = `${this.CORE_MANAGER_URLS.dedicated}/${OWNER_CHANGE_URL}${domain.name}/${domain.whoisOwner.id}`;
+      ownerUrlInfo.target = buildURL(
+        'dedicated',
+        '#/useraccount/contact/:currentDomain/:contactId',
+        {
+          currentDomain: domain.name,
+          contactId: domain.whoisOwner.id,
+        },
+      );
     } else if (!has(domain, 'name')) {
       ownerUrlInfo.error = this.$translate.instant(
         'domain_tab_REDIRECTION_add_step4_server_cname_error',

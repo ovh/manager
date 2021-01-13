@@ -15,10 +15,10 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^7.0.0 || ^8.0.0"
+    "@ovh-ux/component-rollup-config": "^8.0.0 || ^9.0.0"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^10.0.0 || ^11.0.0",
+    "@ovh-ux/manager-core": "^11.0.0 || ^12.0.0",
     "@ovh-ux/manager-telecom-styles": "^4.0.0",
     "@ovh-ux/ng-ovh-telecom-universe-components": "^6.0.0 || ^7.0.0",
     "@ovh-ux/ng-ui-router-title": "^3.0.0",

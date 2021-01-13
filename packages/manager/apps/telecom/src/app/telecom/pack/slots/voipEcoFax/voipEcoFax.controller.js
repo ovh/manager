@@ -10,7 +10,6 @@ export default class PackVoipEcoFaxCtrl {
     OvhApiPackXdslVoipBillingAccount,
     OvhApiPackXdslVoipEcofax,
     TucToast,
-    REDIRECT_URLS,
   ) {
     this.$q = $q;
     this.$scope = $scope;
@@ -19,7 +18,6 @@ export default class PackVoipEcoFaxCtrl {
     this.OvhApiPackXdslVoipBillingAccount = OvhApiPackXdslVoipBillingAccount;
     this.OvhApiPackXdslVoipEcofax = OvhApiPackXdslVoipEcofax;
     this.TucToast = TucToast;
-    this.REDIRECT_URLS = REDIRECT_URLS;
   }
 
   $onInit() {

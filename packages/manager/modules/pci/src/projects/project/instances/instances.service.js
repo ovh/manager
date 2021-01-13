@@ -21,6 +21,7 @@ import {
 export default class PciProjectInstanceService {
   /* @ngInject */
   constructor(
+    $http,
     $q,
     CucPriceHelper,
     CucRegionService,
@@ -35,6 +36,7 @@ export default class PciProjectInstanceService {
     OvhApiOrderCatalogPublic,
     PciProjectRegions,
   ) {
+    this.$http = $http;
     this.$q = $q;
     this.CucPriceHelper = CucPriceHelper;
     this.CucRegionService = CucRegionService;
@@ -190,6 +192,18 @@ export default class PciProjectInstanceService {
         imageId: imageId || image.id,
       },
     ).$promise;
+  }
+
+  start(projectId, { id: instanceId }) {
+    return this.$http.post(
+      `/cloud/project/${projectId}/instance/${instanceId}/start`,
+    );
+  }
+
+  stop(projectId, { id: instanceId }) {
+    return this.$http.post(
+      `/cloud/project/${projectId}/instance/${instanceId}/stop`,
+    );
   }
 
   reboot(projectId, { id: instanceId }, type) {

@@ -9,7 +9,6 @@ import './ng-pluralize/ng-pluralize.directive';
 import './notification/notification.component';
 import './notification/notification.service';
 import './sidebar/sidebar.config';
-import './sidebar/sidebar.constants';
 import './telecom/fax/sidebar/fax-sidebar.service';
 import './telecom/otb/sidebar/over-the-box-sidebar.service';
 import './telecom/pack/sidebar/pack-sidebar.service';

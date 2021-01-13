@@ -133,12 +133,20 @@ angular.module('App').controller(
     getTaskInProgress() {
       this.$q
         .all({
-          createBackupFTP: this.Server.getTaskInProgress('createBackupFTP'),
-          removeBackupFTP: this.Server.getTaskInProgress('removeBackupFTP'),
+          createBackupFTP: this.Server.getTaskInProgress(
+            this.$stateParams.productId,
+            'createBackupFTP',
+          ),
+          removeBackupFTP: this.Server.getTaskInProgress(
+            this.$stateParams.productId,
+            'removeBackupFTP',
+          ),
           changePasswordBackupFTP: this.Server.getTaskInProgress(
+            this.$stateParams.productId,
             'changePasswordBackupFTP',
           ),
           applyBackupFtpAcls: this.Server.getTaskInProgress(
+            this.$stateParams.productId,
             'applyBackupFtpAcls',
           ),
         })

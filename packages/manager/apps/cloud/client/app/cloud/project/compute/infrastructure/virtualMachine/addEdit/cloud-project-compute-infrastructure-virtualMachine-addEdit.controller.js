@@ -24,6 +24,8 @@ import thru from 'lodash/thru';
 import uniq from 'lodash/uniq';
 import uniqBy from 'lodash/uniqBy';
 
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+
 /* eslint-disable no-use-before-define, consistent-return */
 /**
  *  Add Edit VM Controller - Controls the vm creation popover
@@ -131,7 +133,6 @@ angular
       CLOUD_INSTANCE_CPU_FREQUENCY,
       CLOUD_INSTANCE_DEFAULT_FALLBACK,
       CLOUD_INSTANCE_HAS_GUARANTEED_RESSOURCES,
-      REDIRECT_URLS,
       coreConfig,
       URLS,
     ) {
@@ -252,7 +253,9 @@ angular
       self.urls = {
         vlansGuide: null,
         vlansApiGuide: null,
-        vrack: REDIRECT_URLS.vRack,
+        vrack: buildURL('dedicated', '#/configuration/vrack', {
+          landingTo: 'networks',
+        }),
         guidesSshkeyURL: null,
       };
 

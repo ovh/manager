@@ -1,3 +1,4 @@
+import { LANGUAGES } from '@ovh-ux/manager-config';
 import endsWith from 'lodash/endsWith';
 import find from 'lodash/find';
 import isEmpty from 'lodash/isEmpty';
@@ -22,7 +23,6 @@ angular.module('App').controller(
       $translate,
       Alerter,
       WucEmails,
-      LANGUAGES,
       User,
       constants,
     ) {

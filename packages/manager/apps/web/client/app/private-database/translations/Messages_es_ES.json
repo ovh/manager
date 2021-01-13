@@ -395,7 +395,7 @@
   "privateDatabase_metrics_activeConnections_graph_dbaas_metrics_mysql_threads_connected": "Total de conexiones por minuto",
   "privateDatabase_metrics_memoryUsages_graph_y": "Memoria RAM",
   "privateDatabase_metrics_activeConnections_graph_mysql_active_connections": "Conexiones activas ",
-  "privateDatabase_metrics_connections_graph_dbaas_metrics_mysql_threads_connected": "Conexiones activas ",
+  "privateDatabase_metrics_connections_graph_dbaas_metrics_mysql_threads_connected": "Conexiones activas",
   "privateDatabase_metrics_memory_graph_memory_rss": "Uso de memoria RAM",
   "privateDatabase_metrics_memory_graph_memory_hierarchical_memory_limit": "Límite máximo de memoria RAM",
   "privateDatabase_metrics_wrong_version": "Datos no disponibles para la(s) versión(es) {{t0}}.",

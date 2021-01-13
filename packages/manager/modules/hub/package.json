@@ -12,18 +12,20 @@
   "author": "OVH SAS",
   "main": "./src/index.js",
   "dependencies": {
-    "@ovh-ux/manager-models": "^1.0.0"
+    "@ovh-ux/manager-models": "^1.0.0",
+    "@ovh-ux/ufrontend": "^1.0.0"
   },
   "devDependencies": {
-    "@ovh-ux/ui-kit": "^4.4.1",
+    "@ovh-ux/ui-kit": "^4.4.3",
     "bootstrap": "^4.4.1",
     "lodash-es": "^4.17.15"
   },
   "peerDependencies": {
     "@ovh-ux/manager-billing": "^1.0.5 || ^2.0.0",
-    "@ovh-ux/manager-core": "^10.0.0 || ^11.0.0",
+    "@ovh-ux/manager-config": "^3.0.0",
+    "@ovh-ux/manager-core": "^11.0.0 || ^12.0.0",
+    "@ovh-ux/manager-ng-layout-helpers": "^2.0.0",
     "@ovh-ux/ng-at-internet": "^5.4.0",
-    "@ovh-ux/manager-ng-layout-helpers": "^1.0.0 || ^2.0.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^3.0.0",
     "@ovh-ux/ng-ovh-order-tracking": "^1.0.4",
     "@ovh-ux/ng-ovh-payment-method": "^7.0.8",

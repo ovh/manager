@@ -1,7 +1,6 @@
 {
   "hosting_multisite_domain_configuration_home": "Katalog główny",
   "hosting_multisite_domain_configuration_myfolder": "mojkatalog",
-  "hosting_multisite_domain_configuration_ipv6": "Włącz obsługę IPv6",
   "hosting_multisite_domain_configuration_firewall": "Włącz firewall",
   "hosting_multisite_domain_configuration_cdn": "Włącz CDN",
   "hosting_multisite_domain_configuration_information": "Aby konfiguracja działała, należy wykonać następujące operacje w ramach domeny:",
@@ -9,7 +8,6 @@
   "hosting_multisite_domain_configuration_ownlog": "Rozdzielone logi",
   "hosting_multisite_domain_configuration_runtime": "Framework",
   "hosting_multisite_domain_configuration_options_choose": "Wybierz opcję",
-  "hosting_multisite_domain_configuration_ipv6_help": "Włącz protokół IPv6 dla swojej witryny, aby poszerzyć dostęp do treści.",
   "hosting_multisite_domain_configuration_cdn_help": "Włącz opcję CDN, aby przyspieszyć wyświetlanie się Twojej strony na całym świecie.",
   "hosting_multisite_domain_configuration_country_ip_help": "Włącz geolokalizację adresu IP, aby zoptymalizować pozycjonowanie i dostępność strony WWW.",
   "hosting_multisite_domain_configuration_firewall_help": "Włącz firewall, aby zwiększyć ochrony Twojej strony WWW. ",

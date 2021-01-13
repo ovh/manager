@@ -6,7 +6,6 @@ import includes from 'lodash/includes';
 import isEqual from 'lodash/isEqual';
 import map from 'lodash/map';
 import set from 'lodash/set';
-import some from 'lodash/some';
 
 angular
   .module('App')
@@ -178,25 +177,9 @@ angular
 
             return null;
           })
-          .then(() =>
-            HostingDomain.getIPv6Configuration(
-              $scope.hosting.serviceName,
-              $scope.selected.domain.name.replace(
-                `.${$scope.hosting.serviceName}`,
-                '',
-              ),
-            ),
-          )
-          .then((records) => {
-            $scope.selected.domain.ipV6Enabled = some(
-              records,
-              (record) => $scope.hosting.clusterIpv6 === record.target,
-            );
-
-            if ($scope.selected.domain.ipV6Enabled) {
-              $scope.selected.domain.ipLocation = '';
-              $scope.selected.domain.ipV6Enabled = true;
-            }
+          .then(() => {
+            $scope.selected.domain.ipLocation = '';
+            $scope.selected.domain.ipV6Enabled = true;
           })
           .then(() => HostingDomain.getAddDomainOptions($stateParams.productId))
           .then((options) => {
@@ -246,6 +229,7 @@ angular
               $scope.selected.domain.cdn !== 'NONE'
             ) {
               $scope.selected.domain.cdn = 'ACTIVE';
+              $scope.selected.domain.ipV6Enabled = false;
             }
 
             if ($scope.selected.ssl) {

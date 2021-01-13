@@ -117,7 +117,6 @@ import './task/hosting-task.controller';
 import './task/hosting-task.service';
 import './user-logs/add/hosting-user-logs-add.controller';
 import './user-logs/delete/hosting-user-logs-delete.controller';
-import './user-logs/hosting-user-logs.controller';
 import './user-logs/password-update/hosting-user-logs-update-password.controller';
 import './user-logs/update/hosting-user-logs-update.controller';
 import './website-coach/website-coach.component';

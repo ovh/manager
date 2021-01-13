@@ -6,7 +6,7 @@ import { OTB_AVAILABILITY } from '@ovh-ux/manager-overthebox';
 import { ALIAS_AVAILABILITY } from '../../app/telecom/orders/alias/orders-alias.constants';
 import { PACK_AVAILABILITY } from '../../app/telecom/pack/dashboard/pack.constant';
 
-import { URLS, TELEPHONY_AVAILABILITY } from './sidebar.constants';
+import { SIDEBAR_URLS, TELEPHONY_AVAILABILITY } from './sidebar.constants';
 
 angular.module('managerApp').run(($translate, asyncLoader) => {
   asyncLoader.addTranslations(
@@ -40,7 +40,7 @@ angular
       TelecomMediator,
       TelephonySidebar,
       ORDER_URLS,
-      REDIRECT_URLS,
+      URLS,
       ovhFeatureFlipping,
     ) => {
       /*= =========================================
@@ -81,7 +81,7 @@ angular
           title: $translate.instant('telecom_sidebar_section_v4'),
           category: 'backToV4',
           icon: 'ovh-font ovh-font-backToV4',
-          url: REDIRECT_URLS.telephonyV4,
+          url: URLS.telephonyV4,
           onClick: setTracker('ManagerV4', 'navigation', 'Telecom', 'telecom'),
         });
       }
@@ -164,7 +164,8 @@ angular
           {
             title: $translate.instant('telecom_sidebar_actions_menu_domain'),
             icon: 'ovh-font ovh-font-domain',
-            href: URLS.domain[user.ovhSubsidiary] || URLS.domain.FR,
+            href:
+              SIDEBAR_URLS.domain[user.ovhSubsidiary] || SIDEBAR_URLS.domain.FR,
             target: '_blank',
             external: true,
             onClick: setTracker(
@@ -189,7 +190,7 @@ angular
                             title: $translate.instant(
                               'telecom_sidebar_actions_menu_internet_xdsl',
                             ),
-                            href: URLS.internet.xdsl.FR,
+                            href: SIDEBAR_URLS.internet.xdsl.FR,
                             target: '_blank',
                             external: true,
                             onClick: setTracker(
@@ -203,7 +204,7 @@ angular
                             title: $translate.instant(
                               'telecom_sidebar_actions_menu_internet_fiber',
                             ),
-                            href: URLS.internet.fiber.FR,
+                            href: SIDEBAR_URLS.internet.fiber.FR,
                             target: '_blank',
                             external: true,
                             onClick: setTracker(
@@ -217,7 +218,7 @@ angular
                             title: $translate.instant(
                               'telecom_sidebar_actions_menu_internet_sdsl',
                             ),
-                            href: URLS.internet.sdsl.FR,
+                            href: SIDEBAR_URLS.internet.sdsl.FR,
                             target: '_blank',
                             external: true,
                             onClick: setTracker(
@@ -231,7 +232,7 @@ angular
                             title: $translate.instant(
                               'telecom_sidebar_actions_menu_internet_adsl_creation',
                             ),
-                            href: URLS.internet.adslCreation.FR,
+                            href: SIDEBAR_URLS.internet.adslCreation.FR,
                             target: '_blank',
                             external: true,
                             onClick: setTracker(
@@ -249,7 +250,7 @@ angular
                             title: $translate.instant(
                               'telecom_sidebar_actions_menu_internet_otb',
                             ),
-                            href: URLS.overTheBox.FR,
+                            href: SIDEBAR_URLS.overTheBox.FR,
                             target: '_blank',
                             extrnal: true,
                           },
@@ -271,7 +272,7 @@ angular
                       title: $translate.instant(
                         'telecom_sidebar_actions_menu_telephony_voip',
                       ),
-                      href: URLS.telephony.voip.FR,
+                      href: SIDEBAR_URLS.telephony.voip.FR,
                       target: '_blank',
                       external: true,
                       onClick: setTracker(
@@ -285,7 +286,7 @@ angular
                       title: $translate.instant(
                         'telecom_sidebar_actions_menu_telephony_siptrunk',
                       ),
-                      href: URLS.telephony.siptrunk.FR,
+                      href: SIDEBAR_URLS.telephony.siptrunk.FR,
                       target: '_blank',
                       external: true,
                       onClick: setTracker(
@@ -299,7 +300,7 @@ angular
                       title: $translate.instant(
                         'telecom_sidebar_actions_menu_telephony_siptrunk_call',
                       ),
-                      href: URLS.telephony.siptrunkCall.FR,
+                      href: SIDEBAR_URLS.telephony.siptrunkCall.FR,
                       target: '_blank',
                       external: true,
                       onClick: setTracker(
@@ -328,7 +329,7 @@ angular
                   'telecom_sidebar_actions_menu_email_exchange',
                 ),
                 href:
-                  URLS.email.exchange[user.ovhSubsidiary] ||
+                  SIDEBAR_URLS.email.exchange[user.ovhSubsidiary] ||
                   ORDER_URLS.email.exchange.FR,
                 target: '_blank',
                 external: true,
@@ -344,7 +345,7 @@ angular
                   'telecom_sidebar_actions_menu_email_sharepoint',
                 ),
                 href:
-                  URLS.email.sharepoint[user.ovhSubsidiary] ||
+                  SIDEBAR_URLS.email.sharepoint[user.ovhSubsidiary] ||
                   ORDER_URLS.email.sharepoint.FR,
                 target: '_blank',
                 external: true,
@@ -374,7 +375,7 @@ angular
                   'telecom_sidebar_actions_menu_office_business',
                 ),
                 href:
-                  URLS.office.business[user.ovhSubsidiary] ||
+                  SIDEBAR_URLS.office.business[user.ovhSubsidiary] ||
                   ORDER_URLS.office.business.FR,
                 target: '_blank',
                 external: true,
@@ -390,7 +391,7 @@ angular
                   'telecom_sidebar_actions_menu_office_sharepoint',
                 ),
                 href:
-                  URLS.office.sharepoint[user.ovhSubsidiary] ||
+                  SIDEBAR_URLS.office.sharepoint[user.ovhSubsidiary] ||
                   ORDER_URLS.office.sharepoint.FR,
                 target: '_blank',
                 external: true,
@@ -421,7 +422,7 @@ angular
                             title: $translate.instant(
                               'telecom_sidebar_actions_menu_sms_hlr',
                             ),
-                            href: URLS.sms.hlr.FR,
+                            href: SIDEBAR_URLS.sms.hlr.FR,
                             target: '_blank',
                             external: true,
                             onClick: setTracker(
@@ -444,7 +445,7 @@ angular
                 {
                   title: $translate.instant('telecom_sidebar_actions_menu_fax'),
                   icon: 'ovh-font ovh-font-print',
-                  href: URLS.fax.FR,
+                  href: SIDEBAR_URLS.fax.FR,
                   target: '_blank',
                   external: true,
                   onClick: setTracker(

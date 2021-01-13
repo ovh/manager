@@ -185,6 +185,22 @@
             >
             </oui-action-menu-divider>
             <oui-action-menu-item
+                data-on-click="$ctrl.startInstance($row)"
+                data-disabled="$row.isStarted()"
+            >
+                <span
+                    data-translate="pci_projects_project_instances_start_label"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-on-click="$ctrl.stopInstance($row)"
+                data-disabled="$row.isStopped()"
+            >
+                <span
+                    data-translate="pci_projects_project_instances_stop_label"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
                 data-on-click="$ctrl.startRescueInstance($row)"
                 data-ng-if="$row.statusGroup === 'ACTIVE'"
             >

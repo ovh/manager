@@ -1,17 +1,18 @@
 import indexOf from 'lodash/indexOf';
 
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+import { Environment } from '@ovh-ux/manager-config';
+
 export default /* @ngInject */ function(
   $stateParams,
   $translate,
   $window,
-  coreConfig,
   CucCloudMessage,
   CucControllerHelper,
   guideUrl,
   OvhApiCloud,
   OvhApiCloudProjectServiceInfos,
   OvhApiMe,
-  PCI_REDIRECT_URLS,
 ) {
   const self = this;
   const serviceName = $stateParams.projectId;
@@ -97,14 +98,16 @@ export default /* @ngInject */ function(
    */
 
   self.canChangeContacts = function canChangeContacts() {
-    return PCI_REDIRECT_URLS[coreConfig.getRegion()].contacts;
+    return Environment.getRegion() === 'EU';
   };
 
   self.openContacts = function openContacts() {
     if (self.canChangeContacts()) {
-      let redirectUrl = PCI_REDIRECT_URLS[coreConfig.getRegion()].contacts;
-      redirectUrl = redirectUrl.replace('{serviceName}', serviceName);
-      $window.open(redirectUrl, '_blank');
+      const redirectURL = buildURL('dedicated', '/useraccount/contacts', {
+        tab: 'SERVICES',
+        serviceName,
+      });
+      $window.open(redirectURL, '_blank');
     }
   };
 

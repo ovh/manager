@@ -6,7 +6,7 @@ export default /* @ngInject */ function TelephonyMediator(
   $stateParams,
   OvhApiTelephony,
   TelephonyVoipService,
-  REDIRECT_URLS,
+  URLS,
   REDIRECT_V4_HASH,
 ) {
   const self = this;
@@ -40,7 +40,7 @@ export default /* @ngInject */ function TelephonyMediator(
   self.getV6ToV4RedirectionUrl = function getV6ToV4RedirectionUrl(
     constantPath,
   ) {
-    let url = REDIRECT_URLS.telephonyV4 + get(REDIRECT_V4_HASH, constantPath);
+    let url = URLS.telephonyV4 + get(REDIRECT_V4_HASH, constantPath);
 
     if ($stateParams.serviceName) {
       url = url.replace('{lineNumber}', $stateParams.serviceName);

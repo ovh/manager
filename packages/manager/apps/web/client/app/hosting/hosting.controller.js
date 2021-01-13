@@ -11,6 +11,8 @@ import remove from 'lodash/remove';
 import set from 'lodash/set';
 import some from 'lodash/some';
 import union from 'lodash/union';
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+
 import { HOSTING_CDN_ORDER_CDN_VERSION_V1 } from './cdn/order/hosting-cdn-order.constant';
 
 export default class {
@@ -385,6 +387,7 @@ export default class {
       'GENERAL_INFORMATIONS',
       'MULTISITE',
       'MODULE',
+      'USER_LOGS',
       'FTP',
       'DATABASE',
       'TASK',
@@ -455,12 +458,15 @@ export default class {
             target: 'CRON',
             type: 'SWITCH_TABS',
           },
-          {
-            label: this.$translate.instant('hosting_tab_USER_LOGS'),
-            target: 'USER_LOGS',
-            type: 'SWITCH_TABS',
-          },
         ]);
+
+        if (this.isLocalSeoAvailable) {
+          this.tabMenu.items.push({
+            label: this.$translate.instant('hosting_tab_LOCAL_SEO'),
+            target: 'LOCAL_SEO',
+            type: 'SWITCH_TABS',
+          });
+        }
 
         if (!hosting.isCloudWeb) {
           this.tabMenu.items.push({
@@ -484,10 +490,6 @@ export default class {
             target: 'FREEDOM',
             type: 'SWITCH_TABS',
           });
-        }
-
-        if (this.isLocalSeoAvailable) {
-          this.tabs.splice(indexOf(this.tabs, 'FTP'), 0, 'LOCAL_SEO');
         }
 
         if (user.ovhSubsidiary === 'FR') {
@@ -702,7 +704,10 @@ export default class {
   getAutorenewUrl(guides) {
     this.$scope.autorenew = {
       guide: guides.autorenew,
-      url: `${this.constants.AUTORENEW_URL}?selectedType=HOSTING_WEB&searchText=${this.$scope.hosting.serviceInfos.domain}`,
+      url: buildURL('dedicated', '#/billing/autoRenew', {
+        selectedType: 'HOSTING_WEB',
+        searchText: this.$scope.hosting.serviceInfos.domain,
+      }),
     };
   }
 

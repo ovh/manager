@@ -12,11 +12,13 @@
   "author": "OVH SAS",
   "main": "./src/index.js",
   "dependencies": {
+    "@ovh-ux/ufrontend": "^1.0.0",
     "bootstrap": "^4.3.1",
     "lodash": "^4.17.14",
     "moment": "^2.24.0"
   },
   "peerDependencies": {
+    "@ovh-ux/manager-config": "^2.1.0",
     "@ovh-ux/manager-core": "^11.0.0",
     "@ovh-ux/ng-at-internet": "^5.4.0",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.1.0",

@@ -63,8 +63,10 @@
         >
             <span
                 class="oui-badge oui-badge_info"
-                data-ng-bind="ctrl.storageInfo($row)"
+                data-ng-if="$row.info.isEditable"
+                data-ng-bind="($row.info.currentStorage | cucBytes:2:true)"
             ></span>
+            <span data-ng-if="!$row.info.isEditable"> - </span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title="::'logs_streams_col_archives' | translate"

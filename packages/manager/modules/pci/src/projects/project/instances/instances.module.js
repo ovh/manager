@@ -10,6 +10,8 @@ import backup from './backup';
 import hardReboot from './hard-reboot';
 import help from './help';
 import instance from './instance';
+import start from './start';
+import stop from './stop';
 import instancesDelete from './delete';
 import onboarding from './onboarding';
 import reinstall from './reinstall';
@@ -35,6 +37,8 @@ angular
     hardReboot,
     help,
     instance,
+    start,
+    stop,
     instancesDelete,
     onboarding,
     privateNetworks,

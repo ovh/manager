@@ -5,6 +5,8 @@ import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
 import set from 'lodash/set';
 
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+
 import { NO_AUTORENEW_COUNTRIES } from './server.constants';
 
 export default class ServerCtrl {
@@ -37,6 +39,8 @@ export default class ServerCtrl {
 
   $onInit() {
     this.errorStatus = ['customer_error', 'ovh_error', 'error', 'cancelled'];
+
+    this.$scope.RENEW_URL = buildURL('dedicated', '#/billing/autoRenew');
 
     this.$scope.$state = this.$state;
 

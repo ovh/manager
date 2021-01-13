@@ -12,13 +12,15 @@
   "author": "OVH SAS",
   "main": "./src/index.js",
   "dependencies": {
+    "@ovh-ux/ufrontend": "^1.0.0",
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@ovh-ux/ui-kit": "^4.4.1",
+    "@ovh-ux/ui-kit": "^4.4.3",
     "bootstrap": "^3.3.7"
   },
   "peerDependencies": {
+    "@ovh-ux/manager-config": "^2.1.0",
     "@ovh-ux/ng-ovh-http": "^5.0.0",
     "@ovh-ux/ng-ovh-payment-method": "^7.0.6",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.1",

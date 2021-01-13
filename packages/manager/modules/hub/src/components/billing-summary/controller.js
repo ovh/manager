@@ -1,16 +1,17 @@
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import { get } from 'lodash-es';
 
 export default class ManagerHubBillingSummaryCtrl {
   /* @ngInject */
-  constructor($http, $q, $translate, atInternet, RedirectionService) {
+  constructor($http, $q, $translate, atInternet) {
     this.$http = $http;
     this.$q = $q;
     this.$translate = $translate;
     this.atInternet = atInternet;
-    this.RedirectionService = RedirectionService;
   }
 
   $onInit() {
+    this.DEBT_PAY_URL = buildURL('dedicated', '#/billing/history/debt/all/pay');
     this.loading = true;
     const loadBills = this.$q
       .when(this.bills ? this.bills : this.fetchBills())
@@ -90,11 +91,9 @@ export default class ManagerHubBillingSummaryCtrl {
   }
 
   getBillingURL() {
-    const url = this.RedirectionService.getURL('billing');
-    const separator = url.indexOf('?') >= 0 ? '&' : '?';
-    return `${url}${separator}filter=${encodeURIComponent(
-      JSON.stringify(this.periodFilter),
-    )}`;
+    return buildURL('dedicated', '#/billing/history', {
+      filter: JSON.stringify(this.periodFilter),
+    });
   }
 
   fetchBills(monthlyPeriod = 1) {

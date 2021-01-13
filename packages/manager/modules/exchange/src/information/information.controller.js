@@ -4,6 +4,8 @@ import isEmpty from 'lodash/isEmpty';
 import isString from 'lodash/isString';
 import 'moment';
 
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+
 export default class ExchangeTabInformationCtrl {
   /* @ngInject */
   constructor(
@@ -76,6 +78,15 @@ export default class ExchangeTabInformationCtrl {
       .getSharepointService(this.exchange)
       .then((sharePoint) => {
         this.sharepoint = sharePoint;
+
+        this.SHAREPOINT_URL = buildURL(
+          'web',
+          '#/configuration/sharepoint/:exchangeId/:productId',
+          {
+            exchangeId: this.exchange.domain,
+            productId: this.sharepoint.domain,
+          },
+        );
       })
       .finally(() => {
         this.loading.sharePoint = false;

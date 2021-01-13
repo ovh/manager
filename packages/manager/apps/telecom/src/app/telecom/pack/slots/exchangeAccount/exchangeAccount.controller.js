@@ -2,12 +2,13 @@ import filter from 'lodash/filter';
 import get from 'lodash/get';
 import map from 'lodash/map';
 
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+
 export default /* @ngInject */ function PackExchangeAccountCtrl(
   $scope,
   $http,
   $stateParams,
   OvhApiPackXdslExchangeAccount,
-  REDIRECT_URLS,
 ) {
   const self = this;
 
@@ -39,9 +40,15 @@ export default /* @ngInject */ function PackExchangeAccountCtrl(
                   return angular.extend(service.value, {
                     organizationName: splittedPath[3],
                     exchangeService: splittedPath[5],
-                    managerUrl: REDIRECT_URLS.exchangeAccount
-                      .replace('{organizationName}', splittedPath[3])
-                      .replace('{exchangeService}', splittedPath[5]),
+                    managerUrl: buildURL(
+                      'exchange',
+                      '#/configuration/exchange_hosted/:organization/:productId',
+                      {
+                        organization: splittedPath[3],
+                        productId: splittedPath[5],
+                        tab: 'ACCOUNT',
+                      },
+                    ),
                   });
                 },
               ),

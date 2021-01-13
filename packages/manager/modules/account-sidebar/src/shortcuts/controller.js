@@ -1,54 +1,71 @@
+import { Environment } from '@ovh-ux/manager-config';
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import isEmpty from 'lodash/isEmpty';
 
 export default class ManagerHubShortcutsCtrl {
   /* @ngInject */
-  constructor($http, $translate, $q, RedirectionService) {
+  constructor($http, $translate, $q) {
     this.$http = $http;
     this.$translate = $translate;
     this.$q = $q;
-    this.RedirectionService = RedirectionService;
   }
 
   $onInit() {
     const shortcuts = [
-      {
-        id: 'services',
-        icon: 'oui-icon-multi-device_concept',
-        url: this.RedirectionService.getURL('services'),
-        tracking: 'hub::sidebar::shortcuts::go-to-services',
-      },
+      ...(['EU', 'CA'].includes(Environment.getRegion())
+        ? [
+            {
+              id: 'services',
+              icon: 'oui-icon-multi-device_concept',
+              url: buildURL('dedicated', '#/billing/autoRenew'),
+              tracking: 'hub::sidebar::shortcuts::go-to-services',
+            },
+          ]
+        : []),
       {
         id: 'bills',
         icon: 'oui-icon-receipt_concept',
         url: this.me.isEnterprise
-          ? this.RedirectionService.getURL('billingEnterprise')
-          : this.RedirectionService.getURL('billing'),
+          ? 'https://billing.us.ovhcloud.com/login'
+          : buildURL('dedicated', '#/billing/history'),
         tracking: 'hub::sidebar::shortcuts::go-to-bills',
       },
-      {
-        id: 'supportLevel',
-        icon: 'oui-icon-lifebuoy_concept',
-        url: this.RedirectionService.getURL('supportLevel'),
-        tracking: 'hub::sidebar::shortcuts::go-to-support-level',
-      },
+      ...(['EU', 'CA'].includes(Environment.getRegion())
+        ? [
+            {
+              id: 'supportLevel',
+              icon: 'oui-icon-lifebuoy_concept',
+              url: buildURL('dedicated', '#/useraccount/support/level'),
+              tracking: 'hub::sidebar::shortcuts::go-to-support-level',
+            },
+          ]
+        : []),
       {
         id: 'products',
         icon: 'oui-icon-book-open_concept',
         tracking: 'hub::sidebar::shortcuts::go-to-catalog',
-        url: this.RedirectionService.getURL('catalog'),
+        url: buildURL('hub', '#/catalog'),
       },
-      {
-        id: 'emails',
-        icon: 'oui-icon-envelop-letter_concept',
-        url: this.RedirectionService.getURL('userEmails'),
-        tracking: 'hub::sidebar::shortcuts::go-to-emails',
-      },
-      {
-        id: 'contacts',
-        icon: 'oui-icon-book-contact_concept',
-        url: this.RedirectionService.getURL('contacts'),
-        tracking: 'hub::sidebar::shortcuts::go-to-contacts',
-      },
+      ...(['EU', 'CA'].includes(Environment.getRegion())
+        ? [
+            {
+              id: 'emails',
+              icon: 'oui-icon-envelop-letter_concept',
+              url: buildURL('dedicated', '#/useraccount/emails'),
+              tracking: 'hub::sidebar::shortcuts::go-to-emails',
+            },
+          ]
+        : []),
+      ...(Environment.getRegion() === 'EU'
+        ? [
+            {
+              id: 'contacts',
+              icon: 'oui-icon-book-contact_concept',
+              url: buildURL('dedicated', '#/contacts/services'),
+              tracking: 'hub::sidebar::shortcuts::go-to-contacts',
+            },
+          ]
+        : []),
     ];
 
     return this.$translate

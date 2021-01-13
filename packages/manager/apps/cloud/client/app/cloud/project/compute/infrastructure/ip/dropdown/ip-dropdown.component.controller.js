@@ -3,12 +3,13 @@ import indexOf from 'lodash/indexOf';
 import keys from 'lodash/keys';
 import pickBy from 'lodash/pickBy';
 
+import { buildURL, buildURLs } from '@ovh-ux/ufrontend/url-builder';
+
 angular
   .module('managerApp')
   .controller('IpDropdownComponentCtrl', function IpDropdownComponentCtrl(
     $translate,
     $window,
-    REDIRECT_URLS,
     OvhApiIp,
     CucCloudMessage,
     CLOUD_GEOLOCALISATION,
@@ -19,28 +20,36 @@ angular
       self.onFailoverAttach({ ip });
     };
 
-    const ipActionUrlWithSession = REDIRECT_URLS.ipAction;
-    self.ipActionRedirections = {
-      firewall: ipActionUrlWithSession.replace('{action}', 'firewall'),
-      mitigation: ipActionUrlWithSession.replace('{action}', 'mitigation'),
-      reverse: ipActionUrlWithSession.replace('{action}', 'reverse'),
-    };
+    self.ipActionRedirections = buildURLs({
+      firewall: {
+        application: 'dedicated',
+        path: '#/configuration/ip',
+        params: { action: 'firewall' },
+      },
+      mitigation: {
+        application: 'dedicated',
+        path: '#/configuration/ip',
+        params: { action: 'mitigation' },
+      },
+      reverse: {
+        application: 'dedicated',
+        path: '#/configuration/ip',
+        params: { action: 'reverse' },
+      },
+    });
 
     self.ipActionRedirect = function ipActionRedirect(action, ip) {
       let url = null;
-      // eslint-disable-next-line no-shadow
-      const ipActionUrlWithSession = REDIRECT_URLS.ipAction;
       switch (action) {
         case 'reverse':
           if (self.isIpUserSameContinent(ip)) {
             OvhApiIp.v6().resetCache();
-            url = ipActionUrlWithSession
-              .replace('{action}', 'reverse')
-              .replace(
-                '{ipBlock}',
-                window.encodeURIComponent(ip.block || ip[self.ipAccessKey]),
-              )
-              .replace('{ip}', ip[self.ipAccessKey]);
+
+            url = buildURL('dedicated', '#/configuration/ip', {
+              action: 'reverse',
+              ip: ip[self.ipAccessKey],
+              ipBlock: ip.block || ip[self.ipAccessKey],
+            });
           } else {
             CucCloudMessage.info(
               $translate.instant('cpci_ip_reverse_info_soon'),
@@ -48,13 +57,11 @@ angular
           }
           break;
         default:
-          url = ipActionUrlWithSession
-            .replace('{action}', action)
-            .replace(
-              '{ipBlock}',
-              window.encodeURIComponent(ip.block || ip[self.ipAccessKey]),
-            )
-            .replace('{ip}', ip[self.ipAccessKey]);
+          url = buildURL('dedicated', '#/configuration/ip', {
+            action,
+            ip: ip[self.ipAccessKey],
+            ipBlock: ip.block || ip[self.ipAccessKey],
+          });
       }
       if (url) {
         $window.open(url);

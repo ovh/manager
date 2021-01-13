@@ -27,18 +27,19 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-server-sidebar' --include-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
+    "@ovh-ux/ufrontend": "^1.0.0",
     "font-awesome": "~4.7.0",
     "jsurl": "^0.1.5",
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^7.0.0 || ^8.0.0",
+    "@ovh-ux/component-rollup-config": "^8.0.0 || ^9.0.0",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.0.0",
-    "@ovh-ux/ui-kit": "^4.4.1"
+    "@ovh-ux/ui-kit": "^4.4.3"
   },
   "peerDependencies": {
     "@ovh-ux/manager-config": "^2.0.0 || ^3.0.0",
-    "@ovh-ux/manager-core": "^10.0.0 || ^11.0.0",
+    "@ovh-ux/manager-core": "^11.0.0 || ^12.0.0",
     "@ovh-ux/ng-at-internet": "^5.4.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.0",
     "@ovh-ux/ng-ovh-sidebar-menu": "^10.1.0",

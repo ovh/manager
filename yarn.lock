@@ -2878,6 +2878,13 @@
   dependencies:
     lodash "^4.17.20"
 
+"@ovh-ux/ng-ui-router-layout@^3.2.0":
+  version "3.3.3"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ui-router-layout/-/ng-ui-router-layout-3.3.3.tgz#9d3301b7a579bd2e57d6af347ccc77ed873850b3"
+  integrity sha512-Z6akGSsILzOH40W+ePHNJhkvD6GcP6jAleUrP70Fwiw1PRjx4BvptIbwwlP1AQvejLcjP+FVcVrvoPnmsrd/wA==
+  dependencies:
+    lodash-es "^4.17.15"
+
 "@ovh-ux/rollup-plugin-less-inject@^1.0.5":
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/@ovh-ux/rollup-plugin-less-inject/-/rollup-plugin-less-inject-1.0.5.tgz#02285367219f72056faf06deeacaeb357f16633c"
@@ -2901,10 +2908,10 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/translate-async-loader/-/translate-async-loader-1.0.8.tgz#7cbdc3dfed1042f511206ff6bb9f14c33b8406ba"
   integrity sha512-8yEhPeRTSxtEO9ODXRYZw6pzRQiV5ULCTi8mIzt39m/b9N2TcIF4ILTPsaa8xpE4npHKa/iYgL9z0HJUFi2LGQ==
 
-"@ovh-ux/ui-kit@^4.4.1":
-  version "4.4.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-4.4.1.tgz#3bd5a69df005854f013c8931f6f4842db51b214d"
-  integrity sha512-3e5lD54zX+K3xGohoqXU3eM9D6BufHqGBxpqlyWHUKhcJxCTIOb68bf8spYjAn4JtUpxbW5FbPtVIQCqPbp40w==
+"@ovh-ux/ui-kit@^4.4.3":
+  version "4.4.3"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-4.4.3.tgz#37c1c8d97bf50b21edd0ec6640e1bafcb0cfaac5"
+  integrity sha512-57oZYymSnNfSk2mBWP1cWcjgwWR5vh5zbhlBYtolY2cJ0etqmd0U6f8GiuqqjFoQzxdvcAHhfLlbKDfxBRFtZA==
 
 "@popperjs/core@^2.5.3":
   version "2.5.4"
@@ -10555,7 +10562,7 @@ flat-cache@^2.0.1:
     rimraf "2.6.3"
     write "1.0.3"
 
-flatpickr@4.6.3, flatpickr@^4.6.3:
+flatpickr@^4.6.3:
   version "4.6.3"
   resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.6.3.tgz#15a8b76b6e34e3a072861250503a5995b9d3bc60"
   integrity sha512-007VucCkqNOMMb9ggRLNuJowwaJcyOh4sKAFcdGfahfGc7JQbf94zSzjdBq/wVyHWUEs5o3+idhFZ0wbZMRmVQ==

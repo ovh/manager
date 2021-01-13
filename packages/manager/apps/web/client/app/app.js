@@ -6,6 +6,7 @@ import isString from 'lodash/isString';
 import set from 'lodash/set';
 
 import { Environment } from '@ovh-ux/manager-config';
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
@@ -140,7 +141,6 @@ angular
     renew: config.constants.RENEW_URL,
     urls: config.constants.URLS,
     comodo: config.constants.COMODO,
-    AUTORENEW_URL: config.constants.AUTORENEW_URL,
     TOP_GUIDES: config.constants.TOP_GUIDES,
     swsProxyRootPath: 'apiv6/',
     aapiHeaderName: 'X-Ovh-Session',
@@ -152,7 +152,6 @@ angular
     new_bdd_user_grant_options: config.constants.new_bdd_user_grant_options,
     ORDER_URL: config.constants.ORDER_URL,
   })
-  .constant('LANGUAGES', config.constants.LANGUAGES)
   .constant('website_url', config.constants.website_url)
   .factory('serviceTypeInterceptor', () => ({
     // eslint-disable-next-line no-shadow
@@ -182,9 +181,9 @@ angular
     },
   ])
   .config(
-    /* @ngInject */ (ovhPaymentMethodProvider, RedirectionServiceProvider) => {
+    /* @ngInject */ (ovhPaymentMethodProvider) => {
       ovhPaymentMethodProvider.setPaymentMethodPageUrl(
-        RedirectionServiceProvider.$get().getURL('paymentMethod'),
+        buildURL('dedicated', '#/billing/payment/method'),
       );
     },
   )
@@ -283,13 +282,12 @@ angular
         $urlRouterProvider.when(url, [
           '$window',
           '$location',
-          'CORE_MANAGER_URLS',
-          ($window, $location, CORE_MANAGER_URLS) => {
+          ($window, $location) => {
             const lastPartOfUrl = $location.url().substring(1);
             set(
               $window,
               'location',
-              `${CORE_MANAGER_URLS.dedicated}/#/${lastPartOfUrl}`,
+              buildURL('dedicated', `#/${lastPartOfUrl}`),
             );
           },
         ]);
@@ -412,16 +410,15 @@ angular
   ])
   .run([
     '$location',
-    'CORE_MANAGER_URLS',
     'URLS_REDIRECTED_TO_DEDICATED',
-    ($location, CORE_MANAGER_URLS, URLS_REDIRECTED_TO_DEDICATED) => {
+    ($location, URLS_REDIRECTED_TO_DEDICATED) => {
       forEach(
         filter(URLS_REDIRECTED_TO_DEDICATED, (url) =>
           url.test(window.location.href),
         ),
         () => {
           const lastPartOfUrl = $location.url().substring(1);
-          window.location = `${CORE_MANAGER_URLS.dedicated}/#/${lastPartOfUrl}`;
+          window.location = buildURL('dedicated', `#/${lastPartOfUrl}`);
         },
       );
     },

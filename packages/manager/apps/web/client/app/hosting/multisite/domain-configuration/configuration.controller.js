@@ -28,6 +28,7 @@ export default class MultisiteDomainConfigurationCtrl {
 
   onCDNChange(isCDNActive) {
     this.cdn = isCDNActive ? CDN_VALUES.ACTIVE : CDN_VALUES.NONE;
+    this.ipv6 = !isCDNActive;
   }
 
   onFirewallChange(isFirewallActive) {

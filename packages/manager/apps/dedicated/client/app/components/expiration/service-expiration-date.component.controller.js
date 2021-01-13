@@ -1,5 +1,6 @@
 import get from 'lodash/get';
 import isString from 'lodash/isString';
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 
 (() => {
   class ServiceExpirationDateComponentCtrl {
@@ -32,11 +33,14 @@ import isString from 'lodash/isString';
     }
 
     getAutoRenewUrl() {
-      const url = `#/billing/autoRenew?searchText=${this.serviceName}`;
+      const params = {
+        searchText: this.serviceName,
+      };
       if (isString(this.serviceType)) {
-        return `${url}&selectedType=${this.serviceType}`;
+        params.selectedType = this.serviceType;
       }
-      return url;
+
+      return buildURL('dedicated', '#/billing/autoRenew', params);
     }
 
     getDate() {

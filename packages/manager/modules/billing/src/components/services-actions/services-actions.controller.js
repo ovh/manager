@@ -1,13 +1,15 @@
+import { Environment } from '@ovh-ux/manager-config';
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import { RENEW_URL, SERVICE_TYPE } from './service-actions.constants';
 
 export default class ServicesActionsCtrl {
   /* @ngInject */
-  constructor(atInternet, RedirectionService, CORE_MANAGER_URLS) {
+  constructor(atInternet) {
     this.atInternet = atInternet;
-    this.RedirectionService = RedirectionService;
-    this.autorenewLink = RedirectionService.getURL('autorenew');
+    this.autorenewLink = ['EU', 'CA'].includes(Environment.getRegion())
+      ? buildURL('dedicated', '#/billing/autorenew')
+      : '';
 
-    this.CORE_MANAGER_URLS = CORE_MANAGER_URLS;
     this.SERVICE_TYPE = SERVICE_TYPE;
   }
 
@@ -24,7 +26,7 @@ export default class ServicesActionsCtrl {
         this.getCancelCommitmentLink(this.service)) ||
       `${this.autorenewLink}/${this.service.id}/cancel-commitment`;
     this.warningLink = `${this.autorenewLink}/warn-nic?nic=${this.service.contactBilling}`;
-    this.billingLink = this.RedirectionService.getURL('billing');
+    this.billingLink = buildURL('dedicated', '#/billing/history');
     this.updateLink = `${this.autorenewLink}/update?serviceId=${this.service.serviceId}${serviceTypeParam}`;
     this.cancelResiliationLink =
       (this.getCancelResiliationLink && this.getCancelResiliationLink()) ||
@@ -49,8 +51,14 @@ export default class ServicesActionsCtrl {
         this.cancelResiliationLink = null;
         break;
       case SERVICE_TYPE.SMS:
-        this.buyingLink = `${this.CORE_MANAGER_URLS.telecom}/sms/${this.service.serviceId}/order`;
-        this.renewLink = `${this.CORE_MANAGER_URLS.telecom}sms/${this.service.serviceId}/options/recredit`;
+        this.buyingLink = buildURL('telecom', '#/sms/:serviceName/order', {
+          serviceName: this.service.serviceId,
+        });
+        this.renewLink = buildURL(
+          'telecom',
+          '#/sms/:serviceName/options/recredit',
+          { serviceName: this.service.serviceId },
+        );
         break;
       default:
         this.resiliateLink = this.service.hasEngagementDetails()

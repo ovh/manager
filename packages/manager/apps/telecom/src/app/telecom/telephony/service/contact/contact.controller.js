@@ -276,7 +276,11 @@ export default /* @ngInject */ function TelecomTelephonyServiceContactCtrl(
       //   (self.directoryForm.postCode || "").replace(/[^\d]/g, "").substring(0, 5);
 
       if (self.directoryForm.postCode !== self.directory.postCode) {
-        self.directoryForm.urbanDistrict = '';
+        self.directoryForm.urbanDistrict =
+          self.isUrbanDistrictRequired() &&
+          self.directoryForm.postCode.length === 5
+            ? self.directoryForm.postCode.substring(3, 5)
+            : '';
       }
 
       /*
@@ -372,10 +376,10 @@ export default /* @ngInject */ function TelecomTelephonyServiceContactCtrl(
     };
   })();
 
-  // arrondissements pour paris 75xxx, marseille 13xxx et lyon 69xxx (92 izi?)
+  // districts for Paris (75xxx), Marseille (130xx) and Lyon (6900x)
   self.isUrbanDistrictRequired = function isUrbanDistrictRequired() {
     const p = self.directoryForm.postCode;
-    return startsWith(p, '75') || startsWith(p, '13') || startsWith(p, '69');
+    return startsWith(p, '75') || startsWith(p, '130') || startsWith(p, '6900');
   };
 
   self.onCityChange = function onCityChange() {

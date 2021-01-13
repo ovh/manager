@@ -22,6 +22,8 @@ export default {
     endRescueInstance: '<',
     softRebootInstance: '<',
     hardRebootInstance: '<',
+    startInstance: '<',
+    stopInstance: '<',
     reinstallInstance: '<',
     resumeInstance: '<',
     deleteInstance: '<',

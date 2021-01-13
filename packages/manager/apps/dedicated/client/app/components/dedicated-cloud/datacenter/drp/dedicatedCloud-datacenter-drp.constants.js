@@ -49,6 +49,10 @@ export const DEDICATEDCLOUD_DATACENTER_DRP_ORDER_OPTIONS = {
     ovh: 'pcc-option-zerto',
     onPremise: 'pcc-option-zerto-single',
   },
+  zertoProductName: {
+    'pcc-option-zerto': 'zerto',
+    'pcc-option-zerto-single': 'zerto-single',
+  },
   productName: 'privateCloud',
   duration: 'P1M',
   quantity: 1,

@@ -1,5 +1,6 @@
 import { get } from 'lodash-es';
 import { Ticket as SupportTicket } from '@ovh-ux/manager-models';
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import { MAX_TICKETS_TO_DISPLAY } from './constants';
 
 export default class ManagerHubSupportCtrl {
@@ -9,6 +10,7 @@ export default class ManagerHubSupportCtrl {
     this.$q = $q;
     this.atInternet = atInternet;
     this.RedirectionService = RedirectionService;
+    this.SUPPORT_URL = buildURL('dedicated', '#/ticket');
   }
 
   $onInit() {
@@ -21,9 +23,15 @@ export default class ManagerHubSupportCtrl {
       .when(this.tickets ? this.tickets : this.fetchTickets())
       .then(({ data, count }) => {
         if (Array.isArray(data)) {
-          this.tickets = data
-            .slice(0, MAX_TICKETS_TO_DISPLAY)
-            .map((ticket) => new SupportTicket(ticket));
+          this.tickets = data.slice(0, MAX_TICKETS_TO_DISPLAY).map(
+            (ticket) =>
+              new SupportTicket({
+                ...ticket,
+                url: buildURL('dedicated', '#/support/tickets/:ticketId', {
+                  ticketId: ticket.ticketId,
+                }),
+              }),
+          );
         }
         this.ticketsCount = count;
       })

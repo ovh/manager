@@ -1,4 +1,4 @@
-module.exports = ({ context, nic, target }) => ({
+module.exports = ({ context, target, pathRewrite, headers }) => ({
   target,
   context,
   changeOrigin: true,
@@ -7,10 +7,9 @@ module.exports = ({ context, nic, target }) => ({
     '^/apiv6/': '/',
     '^/engine/api/': '/',
     '^/engine/apiv6/': '/',
+    ...(pathRewrite || {}),
   },
-  headers: {
-    'X-Ovh-Nic': nic,
-  },
+  headers,
   secure: false,
   logLevel: 'debug',
 });

@@ -13,6 +13,7 @@
   "main": "./src/index.js",
   "dependencies": {
     "@novnc/novnc": "git+https://github.com/ovh-ux/noVNC.git#build/websock_base64",
+    "@ovh-ux/ufrontend": "^1.0.0",
     "bootstrap4": "twbs/bootstrap#v4.0.0",
     "flag-icon-css": "~0.8.5",
     "font-awesome": "^4.0.0",
@@ -20,7 +21,7 @@
   },
   "peerDependencies": {
     "@ovh-ux/manager-config": "^2.0.0 || ^3.0.0",
-    "@ovh-ux/manager-core": "^10.0.0 || ^11.0.0",
+    "@ovh-ux/manager-core": "^11.0.0 || ^12.0.0",
     "@ovh-ux/manager-filters": "^0.1.0 || ^1.0.0",
     "@ovh-ux/manager-models": "^1.0.0",
     "@ovh-ux/manager-product-offers": "^1.3.0",

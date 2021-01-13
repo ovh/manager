@@ -1,10 +1,13 @@
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+
 export default class ManagerHubPaymentMeanCtrl {
   /* @ngInject */
-  constructor($q, $translate, ovhPaymentMethod, RedirectionService) {
+  constructor($q, $translate, ovhPaymentMethod) {
     this.$q = $q;
     this.$translate = $translate;
     this.ovhPaymentMethod = ovhPaymentMethod;
-    this.RedirectionService = RedirectionService;
+
+    this.PAYMENT_METHOD_URL = buildURL('dedicated', '#/billing/payment/method');
   }
 
   $onInit() {

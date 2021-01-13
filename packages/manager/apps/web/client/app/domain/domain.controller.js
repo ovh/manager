@@ -1,6 +1,8 @@
 import filter from 'lodash/filter';
 import get from 'lodash/get';
 
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+
 angular.module('App').controller(
   'DomainCtrl',
   class DomainCtrl {
@@ -125,7 +127,10 @@ angular.module('App').controller(
         `urls.${subsidiary}.guides.autoRenew`,
         get(this.constants, `urls.FR.guides.autoRenew`),
       );
-      this.autorenewUrl = `${this.constants.AUTORENEW_URL}?selectedType=DOMAIN&searchText=${this.domainInfos.domain}`;
+      this.autorenewUrl = buildURL('dedicated', '#/billing/autoRenew', {
+        selectedType: 'DOMAIN',
+        searchText: this.domainInfos.domain,
+      });
     }
 
     loadDomain() {

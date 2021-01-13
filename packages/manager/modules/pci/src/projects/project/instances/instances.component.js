@@ -19,6 +19,8 @@ export default {
     instances: '<',
     projectId: '<',
     refreshInstances: '<',
+    startInstance: '<',
+    stopInstance: '<',
     reinstallInstance: '<',
     resumeInstance: '<',
     scheduleAutoBackup: '<',

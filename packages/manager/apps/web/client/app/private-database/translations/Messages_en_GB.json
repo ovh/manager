@@ -387,7 +387,7 @@
   "privateDatabase_tabs_cron_configuration_delete_fail": "An error has occurred deleting the scheduled backup.",
   "privateDatabase_tab_METRICS": "Metrics",
   "privateDatabase_metrics_no_data": "No data available. ",
-  "privateDatabase_metrics_memoryUsages_title": "Memory usage statistics ",
+  "privateDatabase_metrics_memoryUsages_title": "Memory usage statistics",
   "privateDatabase_metrics_memoryUsages_graph_dbaas_metrics_exec_memsw": "Memory usage",
   "privateDatabase_metrics_activeConnections_title": "Statistics for total connections per minute",
   "privateDatabase_metrics_activeConnections_graph_dbaas_metrics_mysql_threads_connected": "Total connections per minute",

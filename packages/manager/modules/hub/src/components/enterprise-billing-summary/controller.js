@@ -1,6 +1,6 @@
 export default class ManagerHubBillingSummaryCtrl {
   /* @ngInject */
-  constructor(RedirectionService) {
-    this.billingUrl = RedirectionService.getURL('billingEnterprise');
+  constructor() {
+    this.billingUrl = 'https://billing.us.ovhcloud.com/login';
   }
 }

@@ -13,7 +13,7 @@
   "sms_receivers_information_text_1_guide_start": "Consulta la guida sulla",
   "sms_receivers_information_text_1_guide_end": "lista dei destinatari",
   "sms_receivers_information_text_3": "OVH ti offre la possibilità di eliminare destinatari dal tuo database al costo di 0,1 crediti a contatto.",
-  "sms_receivers_information_text_4": "La rimozione di elementi dal database comporta la duplicazione dei contatti e l'eliminazione di quelli non validi.<br/>Il nuovo file sostituirà il precedente, che verrà salvato e resterà accessibile.  A operazione ultimata riceverai un report via email.",
+  "sms_receivers_information_text_4": "La pulizia degli elementi del database comporta l'eliminazione dei contatti duplicati e di quelli non validi.<br/>Il file rimosso sostituirà il precedente, che verrà salvato e resterà accessibile.  A operazione ultimata riceverai un report via email.",
   "sms_receivers_empty": "Nessun destinatario",
   "sms_receivers_delete_receiver": "Elimina il file selezionato",
   "sms_receivers_delete_receivers": "Elimina i {{ count }} file selezionati",

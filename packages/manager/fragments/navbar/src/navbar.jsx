@@ -22,12 +22,14 @@ function Navbar({ i18next, user, universe }) {
   const [LanguageMenu, setLanguageMenu] = useState();
   const [universes, setUniverses] = useState([]);
   const [searchURL, setSearchURL] = useState();
+  const [currentUniverse, setCurrentUniverse] = useState(universe);
 
   useEffect(() => {
-    listen(({ id, url }) => {
-      if (id === MESSAGES.navbarSearch) {
-        setSearchURL(url);
-      }
+    listen(MESSAGES.navbarSetUniverse, ({ universe: universeParam }) => {
+      setCurrentUniverse(universeParam);
+    });
+    listen(MESSAGES.navbarSearch, ({ url }) => {
+      setSearchURL(url);
     });
     fetchLanguageComponent().then((component) => {
       setLanguageMenu(component({ i18next }));
@@ -37,9 +39,9 @@ function Navbar({ i18next, user, universe }) {
 
   return (
     <div className={`oui-navbar ${style.navbar}`}>
-      <Hamburger universe={universe} universes={universes} />
+      <Hamburger universe={currentUniverse} universes={universes} />
       <Brand targetURL={getBrandURL(universes)} />
-      <Universes universe={universe} universes={universes} />
+      <Universes universe={currentUniverse} universes={universes} />
       <div className="oui-navbar-list oui-navbar-list_aside oui-navbar-list_end">
         {searchURL && (
           <div className="oui-navbar-list__item">

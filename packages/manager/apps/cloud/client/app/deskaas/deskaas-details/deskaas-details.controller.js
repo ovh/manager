@@ -5,6 +5,11 @@ import isEmpty from 'lodash/isEmpty';
 import mapValues from 'lodash/mapValues';
 import set from 'lodash/set';
 
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+import { Environment } from '@ovh-ux/manager-config';
+
+import { RENEW_URL } from './deskaas-details.constants';
+
 angular
   .module('managerApp')
   .controller('DeskaasDetailsCtrl', function DeskaasDetailsCtrl(
@@ -18,14 +23,11 @@ angular
     $q,
     DESKAAS_ACTIONS,
     $uibModal,
-    OvhApiMe,
-    deskaasSidebar,
     DeskaasService,
     DESKAAS_REFERENCES,
     SidebarMenu,
     CucFeatureAvailabilityService,
     CucServiceHelper,
-    REDIRECT_URLS,
   ) {
     const self = this;
 
@@ -80,18 +82,26 @@ angular
       },
       manageAutorenew: {
         text: $translate.instant('common_manage'),
-        href: CucControllerHelper.navigation.constructor.getUrl(
-          get(REDIRECT_URLS, 'renew'),
-          { serviceName: $stateParams.serviceName, serviceType: 'DESKAAS' },
-        ),
+
+        href:
+          Environment.getRegion() === 'EU'
+            ? buildURL('dedicated', '#/billing/autoRenew', {
+                selectedType: 'DESKAAS',
+                searchText: $stateParams.serviceName,
+              })
+            : RENEW_URL[Environment.getRegion()],
+
         isAvailable: () => true,
       },
       manageContact: {
         text: $translate.instant('common_manage'),
-        href: CucControllerHelper.navigation.constructor.getUrl(
-          get(REDIRECT_URLS, 'contacts'),
-          { serviceName: $stateParams.serviceName },
-        ),
+        href:
+          Environment.getRegion() === 'EU'
+            ? buildURL('dedicated', '#/useraccount/contacts', {
+                tab: 'SERVICES',
+                serviceName: $stateParams.serviceName,
+              })
+            : null,
         isAvailable: () =>
           CucFeatureAvailabilityService.hasFeature('CONTACTS', 'manage'),
       },

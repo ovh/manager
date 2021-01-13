@@ -8,12 +8,9 @@ const TARGET = {
 module.exports = (region, { local = false, registryUrl }) => ({
   target: registryUrl || TARGET[local ? 'local' : region.toLowerCase()],
   context: '/manager/fragments',
-  pathRewrite:
-    local || registryUrl
-      ? {
-          '^/manager/fragments/': '/',
-        }
-      : {},
+  pathRewrite: {
+    '^/manager/fragments/': '/',
+  },
   changeOrigin: true,
   logLevel: 'silent',
 });

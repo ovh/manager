@@ -1,0 +1,23 @@
+{
+  "cda_pool_pool_definition": "Puede crear sus pools aquí.",
+  "cda_pool_permission_definition": "Los pools son «contenedores» para sus datos. El acceso a los pools puede ser controlado por usuario.",
+  "cda_pool_add_button_text": "Añadir un pool",
+  "cda_pool_delete_button_text": "Eliminar",
+  "cda_pool_table_col_poolname": "Nombre",
+  "cda_pool_table_col_pooltype": "Tipo",
+  "cda_pool_table_col_replica": "Número de réplicas",
+  "cda_pool_table_col_minreplica": "Número mínimo de réplicas activas",
+  "cda_pool_table_col_backup": "Backup pool",
+  "cda_pool_table_col_actions": "Acciones",
+  "cda_pool_add_title": "Añadir un pool",
+  "cda_pool_add_poolname_label": "Nombre",
+  "cda_pool_add_poolname_required": "El nombre es necesario.",
+  "cda_pool_add_poolname_pattern": "El nombre no puede contener espacios.",
+  "cda_pool_add_poolname_maxlength": "El nombre no debe exceder los {{ maxlength }} caracteres.",
+  "cda_pool_add_success": "El pool se ha añadido correctamente.",
+  "cda_pool_delete_title": "Eliminar un pool",
+  "cda_pool_delete_poolname_label": "Apellidos",
+  "cda_pool_delete_confirm": "¿Está seguro(a) que desea eliminar el pool?",
+  "cda_pool_delete_success": "El pool se ha eliminado correctamente.",
+  "cda_pool_table_empty": "No hay pools."
+}

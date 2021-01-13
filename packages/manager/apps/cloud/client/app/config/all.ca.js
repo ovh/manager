@@ -1,69 +1,3 @@
-export const REDIRECT_URLS = {
-  support: 'https://ca.ovh.com/manager/index.html#/support',
-  billing: 'https://ca.ovh.com/manager/index.html#/billing/history',
-  billingPayments: 'https://ca.ovh.com/manager/index.html#/billing/payments',
-  billingMean: 'https://ca.ovh.com/manager/index.html#/billing/mean',
-  billingVouchers: 'https://ca.ovh.com/manager/index.html#/billing/vouchers',
-  billingRefunds: 'https://ca.ovh.com/manager/index.html#/billing/refunds',
-  billingFidelity: 'https://ca.ovh.com/manager/index.html#/billing/fidelity',
-  billingCredits: 'https://ca.ovh.com/manager/index.html#/billing/credits',
-  ordersInProgress:
-    'https://ca.ovh.com/manager/index.html#/billing/orders?status=in-progress',
-  orders: 'https://ca.ovh.com/manager/index.html#/billing/orders?status=all',
-  services: 'https://ca.ovh.com/manager/index.html#/billing/autoRenew',
-  servicesAgreements:
-    'https://ca.ovh.com/manager/index.html#/useraccount/agreements',
-  paymentMeans: 'https://ca.ovh.com/manager/index.html#/billing/mean',
-  addCreditCard:
-    'https://ca.ovh.com/manager/index.html#/billing/mean/add?meanType=creditCard',
-  ovhAccount: 'https://ca.ovh.com/manager/index.html#/billing/ovhaccount',
-  debtAccount: 'https://ca.ovh.com/manager/index.html#/billing/statements',
-  userInfos: 'https://ca.ovh.com/manager/index.html#/useraccount/infos',
-  userSecurity: 'https://ca.ovh.com/manager/index.html#/useraccount/security',
-  userEmails: 'https://ca.ovh.com/manager/index.html#/useraccount/emails',
-  userSubscriptions:
-    'https://ca.ovh.com/manager/index.html#/useraccount/subscriptions',
-  userSSH: 'https://ca.ovh.com/manager/index.html#/useraccount/ssh',
-  userAdvanced: 'https://ca.ovh.com/manager/index.html#/useraccount/advanced',
-  contacts: null, // not yet available to CA users
-  horizon:
-    'https://horizon.cloud.ovh.net/openstackdashboard?username={username}',
-  ipAction:
-    'https://ca.ovh.com/manager/index.html#/configuration/ip?action={action}&ip={ip}&ipBlock={ipBlock}',
-  vRack:
-    'https://ca.ovh.com/manager/index.html#/configuration/vrack?landingTo=networks',
-  nas:
-    'https://ca.ovh.com/manager/index.html#/configuration/nas?landingTo=networks',
-  nasPage:
-    'https://ca.ovh.com/manager/index.html#/configuration/nas/nas/nas_{nas}?landingTo=networks',
-  ip:
-    'https://ca.ovh.com/manager/index.html#/configuration/ip?landingTo=ip&serviceName={serviceName}',
-  license:
-    'https://ca.ovh.com/manager/index.html#/configuration/license?landingTo=licences',
-  housing:
-    'https://www.ovh.com/manager/dedicated/index.html#/configuration/housing/{housing}?landingTo=dedicatedServers',
-  dedicatedServers:
-    'https://ca.ovh.com/manager/index.html#/configuration?landingTo=dedicatedServers',
-  dedicatedServersPage:
-    'https://ca.ovh.com/manager/index.html#/configuration/server/{server}?landingTo=dedicatedServers',
-  dedicatedCloud:
-    'https://ca.ovh.com/manager/index.html#/configuration?landingTo=dedicatedClouds',
-  dedicatedCloudPage:
-    'https://ca.ovh.com/manager/index.html#/configuration/dedicated_cloud/{pcc}?landingTo=dedicatedClouds',
-  cloudDesktop: null, // not yet available to CA users
-  vps: 'https://ca.ovh.com/manager/index.html#/configuration?landingTo=vps',
-  vpsPage:
-    'https://ca.ovh.com/manager/index.html#/configuration/vps/{vps}?landingTo=vps',
-  networks:
-    'https://ca.ovh.com/manager/index.html#/configuration?landingTo=networks',
-  cdnPage:
-    'https://ca.ovh.com/manager/index.html#/configuration/cdn/{cdn}?landingTo=networks',
-  renew:
-    'https://ca.ovh.com/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-  licensePage:
-    'https://ca.ovh.com/manager/dedicated/index.html#/configuration/license/{license}/detail',
-};
-
 // CA eq to en_CA
 // QC eq to fr_CA
 // WS eq to es_US
@@ -304,4 +238,4 @@ export const URLS = {
   },
 };
 
-export default { REDIRECT_URLS, URLS };
+export default { URLS };

@@ -1,4 +1,5 @@
 import { Environment } from '@ovh-ux/manager-config';
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import get from 'lodash/get';
 import has from 'lodash/has';
 import set from 'lodash/set';
@@ -43,6 +44,8 @@ import chartjs from 'angular-chart.js';
 
 import moduleExchange from '@ovh-ux/manager-exchange';
 import ovhManagerFilters from '@ovh-ux/manager-filters';
+import ovhManagerMetrics from '@ovh-ux/manager-metrics';
+import ovhManagerCda from '@ovh-ux/manager-cda';
 import ovhManagerVeeamEnterprise from '@ovh-ux/manager-veeam-enterprise';
 import ovhManagerVeeamCloudConnect from '@ovh-ux/manager-veeam-cloud-connect';
 import ovhManagerVps from '@ovh-ux/manager-vps';
@@ -59,6 +62,7 @@ import dedicatedCloud from './dedicatedCloud';
 import dedicatedUniverseComponents from './dedicatedUniverseComponents';
 import managedBaremetal from './managedBaremetal';
 import errorPage from './error';
+import expiredPage from './expired';
 
 import dedicatedServer from './dedicated/server';
 import userContracts from './user-contracts';
@@ -86,6 +90,7 @@ angular
       dedicatedUniverseComponents,
       'directives',
       errorPage,
+      expiredPage,
       'filters',
       'internationalPhoneNumber',
       'Module.download',
@@ -136,6 +141,7 @@ angular
       ovhContacts,
       ovhManagerBanner,
       ovhManagerEnterpriseCloudDatabase,
+      ovhManagerMetrics,
       ovhManagerNasha,
       ovhManagerNavbar,
       ovhManagerVps,
@@ -153,6 +159,7 @@ angular
       'UserAccount',
       userContracts,
       'xeditable',
+      ovhManagerCda,
     ].filter(isString),
   )
   .constant('constants', {
@@ -247,6 +254,7 @@ angular
         ];
         const IGNORE_STATES = [
           'app.configuration',
+          'app.expired',
           'app.ip',
           'vrack',
           'cloud-connect',
@@ -271,13 +279,14 @@ angular
           get(error, 'status') === 403 &&
           get(error, 'code') === 'FORBIDDEN_BILLING_ACCESS'
         ) {
+          error.handled = true;
           $rootScope.$emit('ovh::sidebar::hide');
           $state.go('app.error', { error });
         }
       });
 
       $state.defaultErrorHandler((error) => {
-        if (error.type === RejectType.ERROR) {
+        if (error.type === RejectType.ERROR && !error.handled) {
           $rootScope.$emit('ovh::sidebar::hide');
           $state.go(
             'error',
@@ -315,10 +324,8 @@ angular
   .config(($qProvider) => {
     $qProvider.errorOnUnhandledRejections(false);
   })
-  .config((OtrsPopupProvider, constants) => {
-    OtrsPopupProvider.setBaseUrlTickets(
-      get(constants, 'REDIRECT_URLS.listTicket', null),
-    );
+  .config((OtrsPopupProvider) => {
+    OtrsPopupProvider.setBaseUrlTickets(buildURL('dedicated', '#/ticket'));
   })
   .run(
     /* @ngInject */ ($translate) => {

@@ -1,6 +1,4 @@
-import get from 'lodash/get';
-
-import { PCI_REDIRECT_URLS } from '../../../constants';
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 
 export default class PciProjectNewPaymentCtrl {
   /* @ngInject */
@@ -23,9 +21,9 @@ export default class PciProjectNewPaymentCtrl {
     this.OVH_PAYMENT_METHOD_INTEGRATION_TYPE = OVH_PAYMENT_METHOD_INTEGRATION_TYPE;
 
     // other attributes
-    this.paymentMethodUrl = get(
-      PCI_REDIRECT_URLS,
-      `${coreConfig.getRegion()}.paymentMethodAdd`,
+    this.paymentMethodUrl = buildURL(
+      'dedicated',
+      '#/billing/payment/method/add',
     );
     this.integrationSubmitFn = null;
 

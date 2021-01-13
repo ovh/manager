@@ -12,7 +12,7 @@
   "pci_projects_project_instances_status_ACTIVE": "Activa",
   "pci_projects_project_instances_status_BUILDING": "Creando",
   "pci_projects_project_instances_status_DELETED": "Eliminada",
-  "pci_projects_project_instances_status_DELETING": "Eliminando",
+  "pci_projects_project_instances_status_DELETING": "Eliminación",
   "pci_projects_project_instances_status_ERROR": "En error",
   "pci_projects_project_instances_status_HARD_REBOOT": "Reiniciando (hard)",
   "pci_projects_project_instances_status_PASSWORD": "Contraseña",
@@ -54,5 +54,7 @@
   "pci_projects_project_instances_vrack_none": "Todavía no ha configurado ningún vRack.",
   "pci_projects_project_instances_vrack_create": "Crear un vRack",
   "pci_projects_project_instances_autobackup_label": "",
-  "pci_projects_project_instances_refresh": "Actualizar las instancias"
+  "pci_projects_project_instances_refresh": "Actualizar las instancias",
+  "pci_projects_project_instances_start_label": "Iniciar",
+  "pci_projects_project_instances_stop_label": "Detener"
 }

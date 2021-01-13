@@ -389,7 +389,7 @@
   "privateDatabase_tabs_cron_configuration_delete_fail": "Si è verificato un errore durante l'eliminazione del backup pianificato.",
   "privateDatabase_tab_METRICS": "Metriche",
   "privateDatabase_metrics_no_data": "Nessun dato disponibile",
-  "privateDatabase_metrics_memoryUsages_title": "Statistiche dell'utilizzo ",
+  "privateDatabase_metrics_memoryUsages_title": "Statistiche della memoria utilizzata",
   "privateDatabase_metrics_memoryUsages_graph_dbaas_metrics_exec_memsw": "Utilizzo memoria",
   "privateDatabase_metrics_activeConnections_title": "Statistiche del totale di connessioni al minuto",
   "privateDatabase_metrics_activeConnections_graph_dbaas_metrics_mysql_threads_connected": "Totale di connessioni al minuto",

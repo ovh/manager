@@ -35,6 +35,12 @@ export default class TelecomTelephonyAliasConfigurationLinesLineCtrl {
         status: 'available',
         timeout: 20,
       },
+      defaultOptions: {
+        status: 'available',
+        timeout: 20,
+        simultaneousLines: 1,
+        wrapUpTime: 0,
+      },
     };
     this.linesToExclude = [];
     this.serviceInfos = {
@@ -89,8 +95,9 @@ export default class TelecomTelephonyAliasConfigurationLinesLineCtrl {
     remove(this.linesToExclude, (line) => line === lineToRemove);
   }
 
-  resetLinesToAdd() {
+  resetForm() {
     this.addLineForm.numbers = [{ value: null }];
+    this.addLineForm.options = { ...this.addLineForm.defaultOptions };
   }
 
   insertEmptyNumber() {

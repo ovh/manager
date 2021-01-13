@@ -1,7 +1,6 @@
 {
   "hosting_multisite_domain_configuration_home": "Wurzelverzeichnis",
   "hosting_multisite_domain_configuration_myfolder": "meinordner",
-  "hosting_multisite_domain_configuration_ipv6": "IPv6 aktivieren",
   "hosting_multisite_domain_configuration_firewall": "Firewall aktivieren",
   "hosting_multisite_domain_configuration_cdn": "CDN aktivieren",
   "hosting_multisite_domain_configuration_information": "Damit die Konfiguration funktionsfähig ist, müssen Sie bei Ihrer Domain folgende Operationen durchführen:",
@@ -9,7 +8,6 @@
   "hosting_multisite_domain_configuration_ownlog": "Getrennte Logs",
   "hosting_multisite_domain_configuration_runtime": "Runtime Engine",
   "hosting_multisite_domain_configuration_options_choose": "Wählen Sie eine Option aus",
-  "hosting_multisite_domain_configuration_ipv6_help": "Aktivieren Sie den IPv6-Betrieb, um die Zugriffsmöglichkeiten auf Ihre Inhalte zu erweitern.",
   "hosting_multisite_domain_configuration_cdn_help": "Aktivieren Sie das CDN, um weltweit den Zugriff auf Ihre Website zu beschleunigen.",
   "hosting_multisite_domain_configuration_country_ip_help": "Aktivieren Sie die IP des gewünschten Landes, um die internationalen Bereiche Ihrer Website zu geolokalisieren und deren Ranking zu verbessern.",
   "hosting_multisite_domain_configuration_firewall_help": "Aktivieren Sie die Firewall, um von einem verstärkten Schutz für Ihre Website zu profitieren.",

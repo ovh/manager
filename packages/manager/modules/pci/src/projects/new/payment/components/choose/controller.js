@@ -1,8 +1,13 @@
+import { Environment } from '@ovh-ux/manager-config';
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+
 export default class PciProjectNewPaymentChooseCtrl {
   /* @ngInject */
-  constructor(RedirectionService) {
+  constructor() {
     this.useNewPaymentMethod = false;
-    this.myServiceUrl = RedirectionService.getURL('services');
+    this.myServiceUrl = ['EU', 'CA'].includes(Environment.getRegion())
+      ? buildURL('dedicated', '#/billing/autoRenew')
+      : '';
   }
 
   /*= =============================

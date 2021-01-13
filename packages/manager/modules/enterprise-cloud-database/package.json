@@ -33,15 +33,16 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-enterprise-cloud-database' --include-dependencies -- yarn run dev"
   },
   "dependencies": {
+    "@ovh-ux/ufrontend": "^1.0.0",
     "flag-icon-css": "^3.2.0",
     "lodash": "^4.17.14",
     "zxcvbn": "^4.4.2"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^7.0.0 || ^8.0.0"
+    "@ovh-ux/component-rollup-config": "^8.0.0 || ^9.0.0"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^10.0.0 || ^11.0.0",
+    "@ovh-ux/manager-core": "^11.0.0 || ^12.0.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.0",
     "@ovh-ux/ng-ovh-contracts": "^4.0.1",
     "@ovh-ux/ng-ovh-payment-method": "^7.0.6",

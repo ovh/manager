@@ -1,7 +1,6 @@
 {
   "hosting_multisite_domain_configuration_home": "Pasta raiz",
   "hosting_multisite_domain_configuration_myfolder": "minhapasta",
-  "hosting_multisite_domain_configuration_ipv6": "Ativar o IPv6",
   "hosting_multisite_domain_configuration_firewall": "Ativar a firewall",
   "hosting_multisite_domain_configuration_cdn": "Ativar o CDN",
   "hosting_multisite_domain_configuration_information": "Para que a configuração seja funcional, deverá efetuar as seguintes operações sobre o seu nome de domínio:",
@@ -9,7 +8,6 @@
   "hosting_multisite_domain_configuration_ownlog": "Logs separados",
   "hosting_multisite_domain_configuration_runtime": "Aplicativo de software em tempo de execução",
   "hosting_multisite_domain_configuration_options_choose": "Escolha uma opção",
-  "hosting_multisite_domain_configuration_ipv6_help": "Ative o funcionamento do seu site em IPv6 para alargar as forma de acesso ao seu conteúdo.",
   "hosting_multisite_domain_configuration_cdn_help": "Ative o serviço CDN para acelerar o acesso aos seus conteúdos em todo o mundo.",
   "hosting_multisite_domain_configuration_country_ip_help": "Ative o endereço IP relacionado com distintas geolocalizações para poder ter partes \"internacionais\" do seu site com otimização em termos de SEO.",
   "hosting_multisite_domain_configuration_firewall_help": "Ative a firewall para beneficiar de uma proteção melhorada para o seu site.",

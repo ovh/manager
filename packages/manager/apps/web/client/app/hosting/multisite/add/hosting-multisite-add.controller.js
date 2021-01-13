@@ -68,7 +68,7 @@ angular
           : null,
         domainWww: null,
         domainWwwNeeded: true,
-        ipv6Needed: false,
+        ipv6Needed: true,
         mode: $scope.model.mode.OVH,
         path: '',
         pathFinal: null,
