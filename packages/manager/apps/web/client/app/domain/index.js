@@ -1,3 +1,4 @@
+import ovhManagerAdvices from '@ovh-ux/manager-advices';
 import generalInformationsState from './general-informations/domain-general-informations.state';
 
 import anycast from './anycast';
@@ -19,6 +20,7 @@ angular
     dnsZone,
     emailObfuscation,
     optin,
+    ovhManagerAdvices,
     webhosting,
     webhostingEnable,
     zoneActivation,
