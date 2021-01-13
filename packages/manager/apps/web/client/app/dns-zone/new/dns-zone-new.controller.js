@@ -11,8 +11,9 @@ import { TEMPLATES } from '../../domain/zone/activate/activate.constants';
 
 export default class newDnsZoneCtrl {
   /* @ngInject */
-  constructor($translate, Alerter, constants, newDnsZone) {
+  constructor($translate, atInternet, Alerter, constants, newDnsZone) {
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.Alerter = Alerter;
     this.newDnsZone = newDnsZone;
     this.URLS = constants.urls;
@@ -65,6 +66,10 @@ export default class newDnsZoneCtrl {
   }
 
   onDnsOrderSuccess() {
+    this.atInternet.trackClick({
+      name: 'web::dns-zone-new::activate',
+      type: 'action',
+    });
     return this.goBack(
       this.$translate.instant('domains_newdnszone_order_success'),
     );
