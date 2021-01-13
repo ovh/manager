@@ -182,6 +182,12 @@ angular
   })
   .constant('website_url', config.constants.website_url)
   .config(
+    /* @ngInject */ ($compileProvider, $logProvider) => {
+      $compileProvider.debugInfoEnabled(!config.prodMode);
+      $logProvider.debugEnabled(!config.prodMode);
+    },
+  )
+  .config(
     /* @ngInject */ (ovhProxyRequestProvider) => {
       ovhProxyRequestProvider.proxy('$http');
       ovhProxyRequestProvider.pathPrefix('apiv6');
