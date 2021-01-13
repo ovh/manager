@@ -12,5 +12,8 @@ export default /* @ngInject */ ($stateProvider) => {
         controllerAs: '$ctrl',
       },
     },
+    resolve: {
+      breadcrumb: () => null,
+    },
   });
 };

@@ -12,5 +12,10 @@ export default /* @ngInject */ ($stateProvider) => {
         controllerAs: 'MetricsDetailCtrl',
       },
     },
+    resolve: {
+      serviceName: /* @ngInject */ ($transition$) =>
+        $transition$.params().serviceName,
+      breadcrumb: /* @ngInject */ (serviceName) => serviceName,
+    },
   });
 };
