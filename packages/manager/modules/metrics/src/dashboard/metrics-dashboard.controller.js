@@ -1,7 +1,7 @@
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import { Environment } from '@ovh-ux/manager-config';
 
-import { graphs } from '../metrics.constant';
+import { graphs } from '../details/metrics.constant';
 import { RENEW_URL } from './constants';
 
 export default class MetricsDashboardCtrl {

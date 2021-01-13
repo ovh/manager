@@ -1,5 +1,5 @@
 import map from 'lodash/map';
-import { graphs, protos } from '../metrics.constant';
+import { graphs, protos } from '../details/metrics.constant';
 import { GUIDE } from './constants';
 
 export default class MetricsHeaderCtrl {

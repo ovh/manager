@@ -1,62 +1,45 @@
 import angular from 'angular';
-
-import '@ovh-ux/manager-core';
-import '@ovh-ux/ng-ovh-doc-url';
-import '@ovh-ux/ng-ovh-responsive-popover';
 import '@uirouter/angularjs';
+import 'oclazyload';
 
-import '@ovh-ux/ui-kit';
-import 'angular-translate';
-import 'angular-ui-bootstrap';
-import 'ovh-api-services';
+const moduleName = 'ovhManagerMetricsLazyLoading';
 
-import { Environment } from '@ovh-ux/manager-config';
+angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
+  /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
+    $stateProvider
+      .state('metrics', {
+        url: '/metrics',
+        template: '<div ui-view="metricsContainer"></div>',
+        redirectTo: 'metrics.index',
+      })
+      .state('metrics.index.**', {
+        url: '',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
-import ngOvhCloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-components';
-import ovhManagerDashboardChartPie from './dashboard/chart-pie';
+          return import('./metrics.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
+      })
+      .state('metrics.detail.**', {
+        url: '/{serviceName}',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-import MetricsDashboardCtrl from './dashboard/metrics-dashboard.controller';
-import MetricsDetailCtrl from './metrics-detail.controller';
-import MetricsHeaderCtrl from './header/metrics-header.controller';
-import MetricService from './metrics.service';
-import FormatSiFilter from './format-si.filter';
-import routing from './routing';
+          return import('./details/index').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
+      });
 
-import './dashboard/metrics-dashboard.less';
-import './platform/metrics-platform.less';
-import './token/metrics-token.less';
-import './token/add/metrics-token-add.less';
-import './token/preview/metrics-token-preview.less';
-
-const moduleName = 'ovhManagerMetrics';
-
-angular
-  .module(moduleName, [
-    ngOvhCloudUniverseComponents,
-    'ngOvhDocUrl',
-    'ngOvhResponsivePopover',
-    'oui',
-    'ovh-api-services',
-    'ovhManagerCore',
-    'pascalprecht.translate',
-    'ui.bootstrap',
-    'ui.router',
-    ovhManagerDashboardChartPie,
-    ovhManagerServerSidebar,
-  ])
-  .config(routing)
-  .config(
-    /* @ngInject */ ($qProvider, ovhDocUrlProvider) => {
-      ovhDocUrlProvider.setUserLocale(Environment.getUserLocale());
-      $qProvider.errorOnUnhandledRejections(false);
-    },
-  )
-  .controller('MetricsDashboardCtrl', MetricsDashboardCtrl)
-  .controller('MetricsDetailCtrl', MetricsDetailCtrl)
-  .controller('MetricsHeaderCtrl', MetricsHeaderCtrl)
-  .service('MetricService', MetricService)
-  .filter('formatSi', FormatSiFilter)
-  .run(/* @ngTranslationsInject:json ./translations */);
+    $urlRouterProvider.when('/dbaas/metrics', () => {
+      window.location.href = window.location.href.replace(
+        '/dbaas/metrics',
+        '/metrics',
+      );
+    });
+  },
+);
 
 export default moduleName;

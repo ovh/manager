@@ -1,17 +1,16 @@
-import MetricsDashboardCtrl from './dashboard/metrics-dashboard.controller';
+import MetricsDashboardCtrl from '../dashboard/metrics-dashboard.controller';
 import MetricsDetailCtrl from './metrics-detail.controller';
-import MetricsHeaderCtrl from './header/metrics-header.controller';
-import MetricsPlatformCtrl from './platform/metrics-platform.controller';
-import MetricsTokenCtrl from './token/metrics-token.controller';
-import MetricsTokenAddCtrl from './token/add/metrics-token-add.controller';
+import MetricsHeaderCtrl from '../header/metrics-header.controller';
+import MetricsPlatformCtrl from '../platform/metrics-platform.controller';
+import MetricsTokenCtrl from '../token/metrics-token.controller';
+import MetricsTokenAddCtrl from '../token/add/metrics-token-add.controller';
 
-import dashboardTemplate from './dashboard/metrics-dashboard.html';
+import dashboardTemplate from '../dashboard/metrics-dashboard.html';
 import detailTemplate from './metrics-detail.html';
-import headerTemplate from './header/metrics-header.html';
-import platformTemplate from './platform/metrics-platform.html';
-import template from './metrics.html';
-import tokenTemplate from './token/metrics-token.html';
-import tokenAddTemplate from './token/add/metrics-token-add.html';
+import headerTemplate from '../header/metrics-header.html';
+import platformTemplate from '../platform/metrics-platform.html';
+import tokenTemplate from '../token/metrics-token.html';
+import tokenAddTemplate from '../token/add/metrics-token-add.html';
 
 export default /* @ngInject */ ($stateProvider) => {
   const metricsHeader = {
@@ -21,27 +20,7 @@ export default /* @ngInject */ ($stateProvider) => {
   };
 
   $stateProvider
-    .state('dbaas', {
-      url: '/dbaas',
-      abstract: true,
-      template: `
-                  <div data-ui-view="dbaasContainer"></div>
-                `,
-    })
-    .state('dbaas.metrics', {
-      url: '/metrics',
-      views: {
-        dbaasContainer: {
-          template,
-        },
-      },
-      abstract: true,
-      translations: {
-        value: ['.'],
-        format: 'json',
-      },
-    })
-    .state('dbaas.metrics.detail', {
+    .state('metrics.detail', {
       url: '/{serviceName}',
       views: {
         metricsContainer: {
@@ -55,7 +34,7 @@ export default /* @ngInject */ ($stateProvider) => {
         format: 'json',
       },
     })
-    .state('dbaas.metrics.detail.dashboard', {
+    .state('metrics.detail.dashboard', {
       url: '/dashboard',
       views: {
         metricsHeader,
@@ -70,9 +49,9 @@ export default /* @ngInject */ ($stateProvider) => {
         format: 'json',
       },
     })
-    .state('dbaas.metrics.detail.token', {
+    .state('metrics.detail.token', {
       url: '/token',
-      redirectTo: 'dbaas.metrics.detail.token.home',
+      redirectTo: 'metrics.detail.token.home',
       views: {
         metricsHeader,
         metricsContent: {
@@ -86,7 +65,7 @@ export default /* @ngInject */ ($stateProvider) => {
         format: 'json',
       },
     })
-    .state('dbaas.metrics.detail.token.home', {
+    .state('metrics.detail.token.home', {
       url: '/',
       views: {
         metricsContent: {
@@ -100,7 +79,7 @@ export default /* @ngInject */ ($stateProvider) => {
         format: 'json',
       },
     })
-    .state('dbaas.metrics.detail.token.add', {
+    .state('metrics.detail.token.add', {
       url: '/add',
       views: {
         metricsContent: {
@@ -114,7 +93,7 @@ export default /* @ngInject */ ($stateProvider) => {
         format: 'json',
       },
     })
-    .state('dbaas.metrics.detail.platform', {
+    .state('metrics.detail.platform', {
       url: '/platform',
       views: {
         metricsHeader,

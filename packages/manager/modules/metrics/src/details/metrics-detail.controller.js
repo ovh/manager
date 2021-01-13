@@ -40,11 +40,10 @@ export default class MetricsDetailCtrl {
   }
 
   loadMessage() {
-    this.CucCloudMessage.unSubscribe('dbaas.metrics.detail');
-    this.messageHandler = this.CucCloudMessage.subscribe(
-      'dbaas.metrics.detail',
-      { onMessage: () => this.refreshMessage() },
-    );
+    this.CucCloudMessage.unSubscribe('metrics.detail');
+    this.messageHandler = this.CucCloudMessage.subscribe('metrics.detail', {
+      onMessage: () => this.refreshMessage(),
+    });
   }
 
   refreshMessage() {
