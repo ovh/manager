@@ -26,10 +26,10 @@ export default class {
       .then(() => {
         this.PhysicalInterface.v6().resetCache();
         this.VirtualInterface.v6().resetCache();
-        this.goBack(true);
+        return this.goBack(true);
       })
       .catch((error) => {
-        this.goBack().then(() =>
+        return this.goBack().then(() =>
           this.alertError(
             'dedicated_server_interfaces_ola_reset_error',
             get(error, 'data', error),
