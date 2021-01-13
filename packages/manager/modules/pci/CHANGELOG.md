@@ -1,3 +1,21 @@
+# [5.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.6.1...@ovh-ux/manager-pci@5.7.0) (2021-01-13)
+
+
+### Bug Fixes
+
+* **components.project.instance:** fix connectionInfos typo ([#4203](https://github.com/ovh/manager/issues/4203)) ([04b66a8](https://github.com/ovh/manager/commit/04b66a821658ecabbd60ad6b8c2803a2707262ba))
+* **i18n:** add missing translations [CDS 737] ([cdd27da](https://github.com/ovh/manager/commit/cdd27da24f3157f69b3017519faf5802105d7e53))
+* **i18n:** add missing translations [CDS 739] ([00dadde](https://github.com/ovh/manager/commit/00daddebbbd5ba4471902316aba5a20565af1cbf))
+* **i18n:** add missing translations [CDS 744] ([9491ab6](https://github.com/ovh/manager/commit/9491ab68014604910e1a0bb85d349bd2183ead47))
+* **i18n:** add missing translations [CDS 753] ([27e5eda](https://github.com/ovh/manager/commit/27e5edae85730837e3fb1684868f707d77b8f731))
+
+
+### Features
+
+* **instance:** add start and stop instance feature ([adbf04a](https://github.com/ovh/manager/commit/adbf04a13591081b4d2db2f58fd399e5706d8d23))
+
+
+
 ## [5.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.6.0...@ovh-ux/manager-pci@5.6.1) (2021-01-04)
 
 

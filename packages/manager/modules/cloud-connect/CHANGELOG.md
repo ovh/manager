@@ -1,3 +1,12 @@
+## [1.0.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.0.4...@ovh-ux/manager-cloud-connect@1.0.5) (2021-01-13)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 731] ([2f29413](https://github.com/ovh/manager/commit/2f294139802ae5e26d84e1149949451488dcf563))
+
+
+
 ## [1.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.0.3...@ovh-ux/manager-cloud-connect@1.0.4) (2020-12-22)
 
 

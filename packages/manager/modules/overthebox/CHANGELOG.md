@@ -1,3 +1,12 @@
+## [6.1.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.1.4...@ovh-ux/manager-overthebox@6.1.5) (2021-01-13)
+
+
+### Bug Fixes
+
+* update semver range for @ovh-ux/component-rollup-config ([dda59c6](https://github.com/ovh/manager/commit/dda59c6b71cb4ad9ab98f06a0bf995a7eb45a1d9))
+
+
+
 ## [6.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.1.3...@ovh-ux/manager-overthebox@6.1.4) (2020-12-22)
 
 

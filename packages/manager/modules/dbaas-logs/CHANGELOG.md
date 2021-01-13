@@ -1,3 +1,15 @@
+## [1.4.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.4.4...@ovh-ux/manager-dbaas-logs@1.4.5) (2021-01-13)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 738] ([7a58b8e](https://github.com/ovh/manager/commit/7a58b8e13aa2c136cab8a7493f63b83be9b2db64))
+* **i18n:** add missing translations [CDS 751] ([46c5cfb](https://github.com/ovh/manager/commit/46c5cfb6737b3c1da779008c4c79f629265d32de))
+* **ldp:** update wording in order section ([1c840b7](https://github.com/ovh/manager/commit/1c840b7d8948889fd37ebdb38b92e6a719202141))
+* **logs.detail.streams.home:** improve space used column ([#4243](https://github.com/ovh/manager/issues/4243)) ([4367bb2](https://github.com/ovh/manager/commit/4367bb280095e1db4126e4b83196dec830407751))
+
+
+
 ## [1.4.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.4.3...@ovh-ux/manager-dbaas-logs@1.4.4) (2021-01-04)
 
 

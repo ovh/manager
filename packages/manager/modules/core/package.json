@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-core",
-  "version": "11.3.0",
+  "version": "12.0.0",
   "private": true,
   "description": "Core functionalities shared across all control panel.",
   "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/modules/core#readme",
@@ -27,7 +27,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-core' --include-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
-    "@ovh-ux/ng-translate-async-loader": "^2.1.0",
+    "@ovh-ux/ng-translate-async-loader": "^2.1.1",
     "lodash-es": "^4.17.15"
   },
   "devDependencies": {
@@ -36,9 +36,9 @@
   "peerDependencies": {
     "@ovh-ux/manager-config": "^2.0.0 || ^3.0.0",
     "@ovh-ux/manager-models": "^1.0.0",
-    "@ovh-ux/ng-ovh-http": "^5.0.0",
+    "@ovh-ux/ng-ovh-http": "^5.0.1",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.0",
-    "@ovh-ux/ng-ovh-sso-auth": "^4.3.0",
+    "@ovh-ux/ng-ovh-sso-auth": "^4.4.0",
     "@ovh-ux/ui-kit": "^4.4.1",
     "@uirouter/angularjs": "^1.0.20",
     "angular": "^1.7.5",

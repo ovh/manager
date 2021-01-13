@@ -1,3 +1,24 @@
+# [13.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.9.0...@ovh-ux/manager-telecom@13.10.0) (2021-01-13)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 738] ([7a58b8e](https://github.com/ovh/manager/commit/7a58b8e13aa2c136cab8a7493f63b83be9b2db64))
+* **pack.migration:** initialize selected building first ([#4253](https://github.com/ovh/manager/issues/4253)) ([9ddfb5d](https://github.com/ovh/manager/commit/9ddfb5d90f6e6f5e9010c5771938ff9801ec01b8))
+* **pack.move:** update with correct dashboard state ([2060d3a](https://github.com/ovh/manager/commit/2060d3a357329132b2281320504e89f70fa21406))
+* **telephony.alias.lines.add:** cancel now clean all inputs ([#4239](https://github.com/ovh/manager/issues/4239)) ([acfa771](https://github.com/ovh/manager/commit/acfa77148b7fbaf0c2721d0a02597e3a0f9f55ad))
+* **telephony.service.contact:** fix postal code check for district input ([9ae0f3e](https://github.com/ovh/manager/commit/9ae0f3e0868605741044f27316cf5282e9ede150))
+* redirect order follow up for pack ([4cb7e4d](https://github.com/ovh/manager/commit/4cb7e4d85960d8f3f53e646fa69b2fdbebff5ca3))
+
+
+### Features
+
+* **chatbot:** use feature flipping to enable chatbot ([e9634eb](https://github.com/ovh/manager/commit/e9634eb7b1c7e8cd5fb75d419301de333cf997cd))
+* **pack.migration:** add contact phone on resume view for migration ([#4072](https://github.com/ovh/manager/issues/4072)) ([e8edd16](https://github.com/ovh/manager/commit/e8edd16749dfe45c0e9f6aa10ae707b6fe7df069))
+* **telphony.service.contact:** autofill urban district if required ([559b34b](https://github.com/ovh/manager/commit/559b34b577e992afd6b0c22f9923d888f3df955b))
+
+
+
 # [13.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.8.2...@ovh-ux/manager-telecom@13.9.0) (2021-01-11)
 
 

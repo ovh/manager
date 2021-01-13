@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-vrack",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "private": true,
   "description": "vRack product.",
   "keywords": [
@@ -34,7 +34,7 @@
     "@ovh-ux/manager-cloud-styles": "^0.4.0 || ^1.0.0",
     "@ovh-ux/manager-core": "^11.0.0 || ^12.0.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.0",
-    "@ovh-ux/ng-ovh-toaster": "^2.0.0",
+    "@ovh-ux/ng-ovh-toaster": "^2.0.1",
     "@ovh-ux/ui-kit": "^4.4.1",
     "@uirouter/angularjs": "^1.0.15",
     "angular": "^1.7.5",

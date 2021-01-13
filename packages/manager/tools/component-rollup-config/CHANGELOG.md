@@ -1,3 +1,17 @@
+# [9.0.0](https://github.com/ovh/manager/compare/@ovh-ux/component-rollup-config@8.0.2...@ovh-ux/component-rollup-config@9.0.0) (2021-01-13)
+
+
+### Code Refactoring
+
+* **plugins.translations.utils:** remove deprecated languages ([5e6d580](https://github.com/ovh/manager/commit/5e6d5804aeaf030b8897e0864bf7e149af5c1d0e)), closes [#4229](https://github.com/ovh/manager/issues/4229)
+
+
+### BREAKING CHANGES
+
+* **plugins.translations.utils:** remove deprecated fi_FI language
+
+
+
 ## [8.0.2](https://github.com/ovh/manager/compare/@ovh-ux/component-rollup-config@8.0.1...@ovh-ux/component-rollup-config@8.0.2) (2020-12-22)
 
 

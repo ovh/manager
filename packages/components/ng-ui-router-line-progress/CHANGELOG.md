@@ -1,3 +1,12 @@
+## [1.2.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ui-router-line-progress@1.2.3...@ovh-ux/ng-ui-router-line-progress@1.2.4) (2021-01-13)
+
+
+### Bug Fixes
+
+* update semver range for @ovh-ux/component-rollup-config ([dda59c6](https://github.com/ovh/manager/commit/dda59c6b71cb4ad9ab98f06a0bf995a7eb45a1d9))
+
+
+
 ## [1.2.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ui-router-line-progress@1.2.2...@ovh-ux/ng-ui-router-line-progress@1.2.3) (2020-11-16)
 
 

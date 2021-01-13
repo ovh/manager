@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-jquery-ui-droppable",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "AngularJS directive to wrap jQuery UI droppable module",
   "keywords": [
     "angularjs",

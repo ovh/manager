@@ -1,3 +1,18 @@
+# [3.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.6.0...@ovh-ux/manager-server-sidebar@3.7.0) (2021-01-13)
+
+
+### Bug Fixes
+
+* update semver range for @ovh-ux/component-rollup-config ([dda59c6](https://github.com/ovh/manager/commit/dda59c6b71cb4ad9ab98f06a0bf995a7eb45a1d9))
+
+
+### Features
+
+* add @ovh-ux/manager-cda to dedicated ([8ea0e90](https://github.com/ovh/manager/commit/8ea0e90d5f5815add990b9b2c39eee391ac7efee))
+* **metrics:** change redirection and remove refereence ([e204fc6](https://github.com/ovh/manager/commit/e204fc6ddf613bf11c2fcce69ff3269180ad396b))
+
+
+
 # [3.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.5.6...@ovh-ux/manager-server-sidebar@3.6.0) (2021-01-06)
 
 

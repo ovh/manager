@@ -1,3 +1,12 @@
+# [7.2.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.1.0...@ovh-ux/ng-ovh-telecom-universe-components@7.2.0) (2021-01-13)
+
+
+### Features
+
+* **pack.migration:** add contact phone on resume view for migration ([#4072](https://github.com/ovh/manager/issues/4072)) ([e8edd16](https://github.com/ovh/manager/commit/e8edd16749dfe45c0e9f6aa10ae707b6fe7df069))
+
+
+
 # [7.1.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.0.3...@ovh-ux/ng-ovh-telecom-universe-components@7.1.0) (2020-12-08)
 
 

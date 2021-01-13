@@ -1,3 +1,12 @@
+## [14.0.11](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-utils@14.0.10...@ovh-ux/ng-ovh-utils@14.0.11) (2021-01-13)
+
+
+### Bug Fixes
+
+* update semver range for @ovh-ux/component-rollup-config ([dda59c6](https://github.com/ovh/manager/commit/dda59c6b71cb4ad9ab98f06a0bf995a7eb45a1d9))
+
+
+
 ## [14.0.10](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-utils@14.0.9...@ovh-ux/ng-ovh-utils@14.0.10) (2020-07-29)
 
 

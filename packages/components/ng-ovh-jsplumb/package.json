@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-jsplumb",
-  "version": "6.0.0",
+  "version": "6.0.1",
   "description": "Allow to draw links between elements using [jsplumb toolkit](http://www.jsplumb.org/).",
   "keywords": [
     "angularjs",
