@@ -1,3 +1,14 @@
+## [4.0.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contracts@4.0.1...@ovh-ux/ng-ovh-contracts@4.0.2) (2021-01-13)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 750] ([486c31f](https://github.com/ovh/manager/commit/486c31f5cf9107da1220560eb12cffc6417123e8))
+* **summary:** update contract label ([89fdcaf](https://github.com/ovh/manager/commit/89fdcafebe73410573b70870aff72ad5cf74f395))
+* update semver range for @ovh-ux/component-rollup-config ([dda59c6](https://github.com/ovh/manager/commit/dda59c6b71cb4ad9ab98f06a0bf995a7eb45a1d9))
+
+
+
 ## [4.0.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contracts@4.0.0...@ovh-ux/ng-ovh-contracts@4.0.1) (2020-10-28)
 
 

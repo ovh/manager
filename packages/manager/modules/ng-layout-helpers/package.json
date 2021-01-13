@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-ng-layout-helpers",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "private": true,
   "description": "Set of utilities for layouts",
   "repository": {

@@ -1,3 +1,30 @@
+# [15.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.12.1...@ovh-ux/manager-dedicated@15.0.0) (2021-01-13)
+
+
+### Bug Fixes
+
+* add error page for expired services ([#4169](https://github.com/ovh/manager/issues/4169)) ([b3875cd](https://github.com/ovh/manager/commit/b3875cd44d342e2f214e1dda710e3aaea33cb799))
+* **backup:** fix handle when backup is doing ([#4236](https://github.com/ovh/manager/issues/4236)) ([3b39ffc](https://github.com/ovh/manager/commit/3b39ffcc9a38aecba5b388d6b9d159ca9442b3a3))
+* **dedicatedcloud.datacenter.drp:** fix zerto plancode ([#4141](https://github.com/ovh/manager/issues/4141)) ([4bd8301](https://github.com/ovh/manager/commit/4bd830107674d66985552e6d9b334c5ed805efdb))
+* **i18n:** add missing translations [CDS 724] ([df16d2b](https://github.com/ovh/manager/commit/df16d2bd2965a8a2aec02daeadbd59fbcc0c06fa))
+* **i18n:** add missing translations [CDS 738] ([7a58b8e](https://github.com/ovh/manager/commit/7a58b8e13aa2c136cab8a7493f63b83be9b2db64))
+
+
+### Features
+
+* add @ovh-ux/manager-cda to dedicated ([8ea0e90](https://github.com/ovh/manager/commit/8ea0e90d5f5815add990b9b2c39eee391ac7efee))
+* **chatbot:** use feature flipping to enable chatbot ([85dc448](https://github.com/ovh/manager/commit/85dc448c94f31cd387912a8ffb902d66e394a0a3))
+* **metrics:** change redirection and remove refereence ([e204fc6](https://github.com/ovh/manager/commit/e204fc6ddf613bf11c2fcce69ff3269180ad396b))
+* **metrics:** new module ([42e7993](https://github.com/ovh/manager/commit/42e7993ef97a345da9e4aa5b1c8778286ce560c4))
+* **metrics:** rebase with develop ([d359776](https://github.com/ovh/manager/commit/d35977697933a903ba01689e056e01c3553c7e41))
+
+
+### BREAKING CHANGES
+
+* **metrics:** init `@ovh-ux/manager-metrics` module
+
+
+
 ## [14.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.12.0...@ovh-ux/manager-dedicated@14.12.1) (2021-01-12)
 
 

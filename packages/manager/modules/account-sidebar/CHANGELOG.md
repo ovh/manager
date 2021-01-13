@@ -1,3 +1,17 @@
+# [3.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@3.2.0...@ovh-ux/manager-account-sidebar@3.3.0) (2021-01-13)
+
+
+### Bug Fixes
+
+* update semver range for @ovh-ux/component-rollup-config ([dda59c6](https://github.com/ovh/manager/commit/dda59c6b71cb4ad9ab98f06a0bf995a7eb45a1d9))
+
+
+### Features
+
+* **chatbot:** update chatbot availability ([202c62c](https://github.com/ovh/manager/commit/202c62cc80c5542e23cddb0b2d89f0a28b361d15))
+
+
+
 # [3.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@3.1.1...@ovh-ux/manager-account-sidebar@3.2.0) (2021-01-11)
 
 

@@ -1,3 +1,26 @@
+# [12.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@11.2.1...@ovh-ux/manager-cloud@12.0.0) (2021-01-13)
+
+
+### Bug Fixes
+
+* remove duplicates import of ngOvhFeatureFlipping ([#4215](https://github.com/ovh/manager/issues/4215)) ([2cc527c](https://github.com/ovh/manager/commit/2cc527c6c4fd5c910c4db889c3451aa8c5d728b3))
+
+
+### Features
+
+* add @ovh-ux/manager-cda to dedicated ([8ea0e90](https://github.com/ovh/manager/commit/8ea0e90d5f5815add990b9b2c39eee391ac7efee))
+* **chatbot:** use feature flipping to enable chatbot ([39a4656](https://github.com/ovh/manager/commit/39a46561ea51b165c23a57e0e8b1bc88838f2c30))
+* **metrics:** change redirection and remove refereence ([e204fc6](https://github.com/ovh/manager/commit/e204fc6ddf613bf11c2fcce69ff3269180ad396b))
+* **metrics:** new module ([42e7993](https://github.com/ovh/manager/commit/42e7993ef97a345da9e4aa5b1c8778286ce560c4))
+* **metrics:** rebase with develop ([d359776](https://github.com/ovh/manager/commit/d35977697933a903ba01689e056e01c3553c7e41))
+
+
+### BREAKING CHANGES
+
+* **metrics:** init `@ovh-ux/manager-metrics` module
+
+
+
 ## [11.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@11.2.0...@ovh-ux/manager-cloud@11.2.1) (2021-01-12)
 
 

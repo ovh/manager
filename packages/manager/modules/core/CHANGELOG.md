@@ -1,3 +1,19 @@
+# [12.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@11.3.0...@ovh-ux/manager-core@12.0.0) (2021-01-13)
+
+
+### Bug Fixes
+
+* update semver range for @ovh-ux/component-rollup-config ([dda59c6](https://github.com/ovh/manager/commit/dda59c6b71cb4ad9ab98f06a0bf995a7eb45a1d9))
+* **i18n:** add missing translations [CDS 737] ([cdd27da](https://github.com/ovh/manager/commit/cdd27da24f3157f69b3017519faf5802105d7e53))
+* **urls:** remove core constant URLs ([9ae89ec](https://github.com/ovh/manager/commit/9ae89ec2389ad2530eb38aa943d68b69e6fbb061))
+
+
+### BREAKING CHANGES
+
+* **urls:** remove CORE_MANAGER_URLS and CORE_REDIRECT_URLS
+
+
+
 # [11.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@11.2.1...@ovh-ux/manager-core@11.3.0) (2021-01-11)
 
 

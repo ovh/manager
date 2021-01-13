@@ -1,3 +1,12 @@
+## [5.0.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contact@5.0.2...@ovh-ux/ng-ovh-contact@5.0.3) (2021-01-13)
+
+
+### Bug Fixes
+
+* update semver range for @ovh-ux/component-rollup-config ([dda59c6](https://github.com/ovh/manager/commit/dda59c6b71cb4ad9ab98f06a0bf995a7eb45a1d9))
+
+
+
 ## [5.0.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contact@5.0.1...@ovh-ux/ng-ovh-contact@5.0.2) (2020-10-20)
 
 

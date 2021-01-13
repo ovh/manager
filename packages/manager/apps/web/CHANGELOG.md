@@ -1,3 +1,25 @@
+# [15.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.12.1...@ovh-ux/manager-web@15.13.0) (2021-01-13)
+
+
+### Bug Fixes
+
+* **hosting.email.activate:** remove typo ([#4242](https://github.com/ovh/manager/issues/4242)) ([86fd535](https://github.com/ovh/manager/commit/86fd53586e388966216c25cf678d9efff6f3b341))
+* **i18n:** add missing translations [CDS 743] ([ec8c962](https://github.com/ovh/manager/commit/ec8c9624b687bf977e537c4b770dc17247a08b5d))
+* **i18n:** add missing translations [CDS 744] ([9491ab6](https://github.com/ovh/manager/commit/9491ab68014604910e1a0bb85d349bd2183ead47))
+* **i18n:** add missing translations [CDS 747] ([bc95690](https://github.com/ovh/manager/commit/bc95690303f2dae4c6df6d5ae94de372b58d5c39))
+* **i18n:** add missing translations [CDS 748] ([f3ed05a](https://github.com/ovh/manager/commit/f3ed05aae065114a27093839828a4697ca060da3))
+* **i18n:** add missing translations [CDS 749] ([a18fae4](https://github.com/ovh/manager/commit/a18fae4dfee07262f58d1e13803e5c79e9ec361a))
+* **i18n:** add missing translations [CDS 754] ([364ef40](https://github.com/ovh/manager/commit/364ef4068022314cf2070335ea76e981251642cb))
+
+
+### Features
+
+* **chatbot:** use feature flipping to enable chatbot ([3d59847](https://github.com/ovh/manager/commit/3d598470b6fa0116c8f5c73ded0f86b4f52ee25a))
+* **hosting.multisite:** enforce ipv6 configuration for webhosting ([6c63b69](https://github.com/ovh/manager/commit/6c63b69ca6334aeed11e78f6a1745b322211cb9d))
+* **hosting.user-logs:** revamp statistics display ([b2a68f2](https://github.com/ovh/manager/commit/b2a68f24e25580426f3f001275acad1a2b44614b))
+
+
+
 ## [15.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.12.0...@ovh-ux/manager-web@15.12.1) (2021-01-12)
 
 

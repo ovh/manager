@@ -1,3 +1,17 @@
+# [4.4.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-sso-auth@4.3.0...@ovh-ux/ng-ovh-sso-auth@4.4.0) (2021-01-13)
+
+
+### Bug Fixes
+
+* update semver range for @ovh-ux/component-rollup-config ([dda59c6](https://github.com/ovh/manager/commit/dda59c6b71cb4ad9ab98f06a0bf995a7eb45a1d9))
+
+
+### Features
+
+* **provider:** add ovhSubsidiary param in logout url ([#4143](https://github.com/ovh/manager/issues/4143)) ([51cd16a](https://github.com/ovh/manager/commit/51cd16a9ee5c3443199eb3a7314f7fa91988eac4))
+
+
+
 # [4.3.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-sso-auth@4.2.4...@ovh-ux/ng-ovh-sso-auth@4.3.0) (2021-01-08)
 
 

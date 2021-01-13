@@ -1,3 +1,22 @@
+# [2.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dev-server-config@1.1.1...@ovh-ux/manager-dev-server-config@2.0.0) (2021-01-13)
+
+
+### Bug Fixes
+
+* **proxy:** fix registry proxy path rewrite ([#4234](https://github.com/ovh/manager/issues/4234)) ([a42b53a](https://github.com/ovh/manager/commit/a42b53a99fba7ad4c8d770587a661e42b15d30d3))
+
+
+### Features
+
+* allow to rewrite path and headers when using dev proxy ([2a71352](https://github.com/ovh/manager/commit/2a71352a5500e897b740a0ec47b9834eeb3eb3cc))
+
+
+### BREAKING CHANGES
+
+* nic property is removed in favor of headers to allow more customization
+
+
+
 ## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dev-server-config@1.1.0...@ovh-ux/manager-dev-server-config@1.1.1) (2020-12-08)
 
 

@@ -1,3 +1,17 @@
+# [3.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.1.1...@ovh-ux/manager-hub-app@3.2.0) (2021-01-13)
+
+
+### Bug Fixes
+
+* **url:** fix missing core url using url builder ([#4245](https://github.com/ovh/manager/issues/4245)) ([24ba7b9](https://github.com/ovh/manager/commit/24ba7b9d78cc1f884e329af851f8006963df562b))
+
+
+### Features
+
+* **chatbot:** use feature flipping to enable chatbot ([959d8df](https://github.com/ovh/manager/commit/959d8df1d2c83369460fe305a13ed8af85ad8106))
+
+
+
 ## [3.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.1.0...@ovh-ux/manager-hub-app@3.1.1) (2021-01-11)
 
 

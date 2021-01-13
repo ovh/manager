@@ -1,3 +1,14 @@
+## [8.0.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.0.12...@ovh-ux/manager-sms@8.0.13) (2021-01-13)
+
+
+### Bug Fixes
+
+* update semver range for @ovh-ux/component-rollup-config ([dda59c6](https://github.com/ovh/manager/commit/dda59c6b71cb4ad9ab98f06a0bf995a7eb45a1d9))
+* **i18n:** add missing translations [CDS 739] ([00dadde](https://github.com/ovh/manager/commit/00daddebbbd5ba4471902316aba5a20565af1cbf))
+* **sms.batches.create:** fix lazyloaded url ([b7302a2](https://github.com/ovh/manager/commit/b7302a2ba71b36149c1d1619b004a4cf8453d6e1))
+
+
+
 ## [8.0.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.0.11...@ovh-ux/manager-sms@8.0.12) (2021-01-04)
 
 

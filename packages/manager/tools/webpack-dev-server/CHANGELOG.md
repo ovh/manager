@@ -1,3 +1,12 @@
+## [2.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-dev-server@2.8.0...@ovh-ux/manager-webpack-dev-server@2.8.1) (2021-01-13)
+
+
+### Bug Fixes
+
+* update manager-dev-server-config usage ([0f729fe](https://github.com/ovh/manager/commit/0f729fe9c26be55825cb63ee39f1586b7dd82847))
+
+
+
 # [2.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-dev-server@2.7.1...@ovh-ux/manager-webpack-dev-server@2.8.0) (2020-11-16)
 
 
