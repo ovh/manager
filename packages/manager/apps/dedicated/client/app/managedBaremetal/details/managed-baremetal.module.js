@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-import get from 'lodash/get'
+import get from 'lodash/get';
 
 import confirmTerminate from '../confirm-terminate';
 import dashboard from '../dashboard/dashboard.module';
