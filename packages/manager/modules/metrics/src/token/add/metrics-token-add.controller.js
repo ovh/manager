@@ -32,7 +32,7 @@ export default class MetricsTokenAddCtrl {
     this.checkLabels();
     this.MetricService.addToken(this.token)
       .then(() =>
-        this.$state.go('dbaas.metrics.detail.token', {
+        this.$state.go('metrics.detail.token', {
           serviceName: this.serviceName,
         }),
       )

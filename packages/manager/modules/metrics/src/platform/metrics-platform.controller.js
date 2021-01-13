@@ -1,5 +1,5 @@
 import map from 'lodash/map';
-import { protos, suffix } from '../metrics.constant';
+import { protos, suffix } from '../details/metrics.constant';
 
 export default class MetricsPlatformCtrl {
   /* @ngInject */

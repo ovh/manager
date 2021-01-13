@@ -262,11 +262,11 @@ export const PAAS_CONFIG = {
 
 export const METRICS_CONFIG = {
   id: 'metrics',
-  loadOnState: 'dbaas.metrics',
+  loadOnState: 'metrics',
   types: [
     {
       path: '/metrics',
-      state: 'dbaas.metrics.detail.dashboard',
+      state: 'metrics.detail.dashboard',
       stateParams: ['serviceName'],
       icon: 'ovh-font ovh-font-graph',
       app: [DEDICATED],
