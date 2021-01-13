@@ -19,8 +19,13 @@ export const protos = [
 
 export const suffix = 'metrics.ovh.net';
 
+export const GUIDE = {
+  FR: 'https://docs.ovh.com/fr/',
+};
+
 export default {
   graphs,
   protos,
   suffix,
+  GUIDE,
 };
