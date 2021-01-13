@@ -122,6 +122,10 @@ angular.module('App').controller(
     }
 
     orderUpgrade() {
+      this.atInternet.trackClick({
+        name: 'web::hosting::upgrade::confirm',
+        type: 'action',
+      });
       this.loading.validation = true;
 
       const win = this.$window.open('', '_blank');

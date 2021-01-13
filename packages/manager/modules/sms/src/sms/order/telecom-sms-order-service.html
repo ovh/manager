@@ -197,10 +197,13 @@
                 <div class="mb-3" data-ng-if="$ctrl.prices.url">
                     <span data-translate="sms_order_bc"></span>
                     <a
-                        target="_blank"
+                        data-ng-href="{{:: $ctrl.prices.url }}"
                         rel="noopener"
                         title="{{:: 'sms_order_order' | translate}}"
-                        data-ng-href="{{$ctrl.prices.url}}"
+                        target="_blank"
+                        data-track-on="click"
+                        data-track-name="sms::order::display_order"
+                        data-track-type="action"
                     >
                         <span data-translate="sms_order_order_url"></span>
                         <span
