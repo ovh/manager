@@ -11,5 +11,9 @@ export default /* @ngInject */ ($stateProvider) => {
         controllerAs: 'MetricsPlatformCtrl',
       },
     },
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('metrics_platform_title'),
+    },
   });
 };

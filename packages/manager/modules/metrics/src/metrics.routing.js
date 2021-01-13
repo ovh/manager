@@ -34,6 +34,7 @@ export default /* @ngInject */ ($stateProvider) => {
             )
             .then((services) => services.filter((service) => !!service)),
         ),
+      hideBreadcrumb: () => true,
     },
   });
 };

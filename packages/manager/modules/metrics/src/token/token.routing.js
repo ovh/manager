@@ -11,5 +11,9 @@ export default /* @ngInject */ ($stateProvider) => {
         controllerAs: 'MetricsTokenCtrl',
       },
     },
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('metrics_token_title'),
+    },
   });
 };
