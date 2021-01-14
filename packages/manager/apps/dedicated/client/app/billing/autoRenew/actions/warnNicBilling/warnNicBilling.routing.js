@@ -11,6 +11,7 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       goBack: /* @ngInject */ (goToAutorenew) => goToAutorenew,
       nic: /* @ngInject */ ($transition$) => $transition$.params().nic,
+      breadcrumb: () => null,
     },
   });
 };
