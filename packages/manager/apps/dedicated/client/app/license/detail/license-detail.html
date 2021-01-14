@@ -1,8 +1,7 @@
 <div ui-view>
-    <div class="page-header">
-        <h1 data-translate="license_dashboard_title"></h1>
-    </div>
-    <div class="tab-content">
+    <oui-header heading="{{:: 'license_dashboard_title' | translate }}">
+    </oui-header>
+    <div>
         <div class="text-center" data-ng-if="loadLicense">
             <oui-spinner></oui-spinner>
         </div>

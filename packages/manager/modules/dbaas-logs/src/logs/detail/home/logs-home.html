@@ -1,15 +1,9 @@
-<section
-    data-ng-if="ctrl.service.loading"
-    class="container-fluid cui-page__content cui-page__content-flex logs-home"
->
+<section data-ng-if="ctrl.service.loading" class="logs-home">
     <div class="text-center">
         <oui-spinner data-size="l"></oui-spinner>
     </div>
 </section>
-<section
-    data-ng-if="!ctrl.service.loading"
-    class="container-fluid cui-page__content cui-page__content-flex logs-home"
->
+<section data-ng-if="!ctrl.service.loading" class="logs-home">
     <div
         class="oui-message oui-message_warning m-3"
         role="alert"

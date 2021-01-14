@@ -1,12 +1,14 @@
-<header class="page-header" role="banner">
-    <h1 data-translate="license_order_title"></h1>
-</header>
+<oui-header
+    heading="{{:: 'license_order_title' | translate }}"
+    description="My subtitle"
+>
+</oui-header>
 
 <div class="text-center" data-ng-show="loaders.ips">
     <oui-spinner></oui-spinner>
 </div>
 
-<div class="tab-content" data-ng-show="loaders.ips == false">
+<div data-ng-show="loaders.ips == false">
     <div data-ovh-alert="{{ alerts.order }}"></div>
 
     <a

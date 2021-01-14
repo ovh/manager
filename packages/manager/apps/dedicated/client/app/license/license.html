@@ -3,18 +3,10 @@
 ></oui-spinner>
 
 <div data-ng-hide="loadingLicensesInformations || loadingLicensesError">
-    <div class="page-header">
-        <div class="row">
-            <div class="col-sm-9">
-                <h1
-                    class="oui-heading_2"
-                    data-translate="license_dashboard_title"
-                ></h1>
-            </div>
-        </div>
-    </div>
+    <oui-header heading="{{:: 'license_dashboard_title' | translate}}">
+    </oui-header>
 
-    <div class="tab-content">
+    <div>
         <div class="row d-md-flex mb-3">
             <div class="col-md-6">
                 <h2
