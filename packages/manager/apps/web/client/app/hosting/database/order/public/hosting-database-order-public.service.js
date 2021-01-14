@@ -1,5 +1,6 @@
 import sortBy from 'lodash/sortBy';
 import toNumber from 'lodash/toNumber';
+import { Environment } from '@ovh-ux/manager-config';
 
 import { PRODUCT_NAME } from './hosting-database-order-public.constants';
 
@@ -9,14 +10,12 @@ export default class {
     $q,
     $translate,
     OvhApiHostingWeb,
-    OvhApiMe,
     OvhApiOrder,
     OvhApiOrderCatalogPublic,
   ) {
     this.$q = $q;
     this.$translate = $translate;
     this.OvhApiHostingWeb = OvhApiHostingWeb;
-    this.OvhApiMe = OvhApiMe;
     this.OvhApiOrder = OvhApiOrder;
     this.OvhApiOrderCatalogPublic = OvhApiOrderCatalogPublic;
   }
@@ -76,15 +75,10 @@ export default class {
   }
 
   getCatalog() {
-    return this.OvhApiMe.v6()
-      .get()
-      .$promise.then(
-        (user) =>
-          this.OvhApiOrderCatalogPublic.v6().get({
-            productName: PRODUCT_NAME,
-            ovhSubsidiary: user.ovhSubsidiary,
-          }).$promise,
-      );
+    return this.OvhApiOrderCatalogPublic.v6().get({
+      productName: PRODUCT_NAME,
+      ovhSubsidiary: Environment.getUser().ovhSubsidiary,
+    }).$promise;
   }
 
   getCharacteristicsOfAvailableProducts(serviceName) {
