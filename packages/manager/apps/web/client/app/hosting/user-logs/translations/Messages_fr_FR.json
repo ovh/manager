@@ -10,7 +10,7 @@
   "hosting_user_logs_dashboard_go_to_logs": "Voir les logs",
   "hosting_user_logs_dashboard_users": "Administration des utilisateurs",
   "hosting_user_logs_none": "Vous n'avez aucun utilisateur",
-  "hosting_user_logs_dashboard_information": "Les liens vers les espaces suivants vous permettent d'accéder aux statistiques et logs vos sites web :",
+  "hosting_user_logs_dashboard_information": "Les liens vers les espaces suivants vous permettent d'accéder aux statistiques et logs de vos sites web :",
   "hosting_user_logs_dashboard_logs_link": "Voir les Logs",
   "hosting_user_logs_table_header_login": "Utilisateur",
   "hosting_user_logs_table_header_description": "Description",
