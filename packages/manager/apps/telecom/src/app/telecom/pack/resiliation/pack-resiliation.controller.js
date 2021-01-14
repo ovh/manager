@@ -3,6 +3,7 @@ import map from 'lodash/map';
 import remove from 'lodash/remove';
 import set from 'lodash/set';
 import some from 'lodash/some';
+import { Environment } from '@ovh-ux/manager-config';
 
 export default /* @ngInject */ function PackResiliationCtrl(
   $stateParams,
@@ -15,7 +16,6 @@ export default /* @ngInject */ function PackResiliationCtrl(
   $uibModal,
   $timeout,
   $q,
-  OvhApiMe,
   TucPackMediator,
   resiliationNotification,
 ) {
@@ -131,9 +131,9 @@ export default /* @ngInject */ function PackResiliationCtrl(
    * @return promise with the symbol of the current currency
    */
   this.getCurrentCurrencySymbol = function getCurrentCurrencySymbol() {
-    return OvhApiMe.v6()
-      .get()
-      .$promise.then((me) => (me && me.currency ? me.currency.symbol : ''));
+    return $q
+      .when(Environment.getUser())
+      .then((me) => (me && me.currency ? me.currency.symbol : ''));
   };
 
   /**

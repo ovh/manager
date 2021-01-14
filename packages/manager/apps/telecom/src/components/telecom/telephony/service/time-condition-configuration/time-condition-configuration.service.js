@@ -1,3 +1,5 @@
+import { Environment } from '@ovh-ux/manager-config';
+
 export default class voipTimeConditionConfiguration {
   /* @ngInject */
   constructor($http, $q, $timeout, OvhApiMe) {
@@ -8,34 +10,32 @@ export default class voipTimeConditionConfiguration {
   }
 
   exportConfiguration(data) {
-    return this.OvhApiMe.v6()
-      .get()
-      .$promise.then((me) => {
-        const fileName = `${me.nichandle}_${moment().format(
-          'YYYY_MM_DD_HHmmss_SSS',
-        )}.json`;
-        const jsonData = JSON.stringify(data);
+    return this.$q.when(Environment.getUser()).then((me) => {
+      const fileName = `${me.nichandle}_${moment().format(
+        'YYYY_MM_DD_HHmmss_SSS',
+      )}.json`;
+      const jsonData = JSON.stringify(data);
 
-        const blob = new Blob([jsonData], { type: 'application/json' });
+      const blob = new Blob([jsonData], { type: 'application/json' });
 
-        if (window.navigator.msSaveOrOpenBlob) {
-          window.navigator.msSaveBlob(blob, fileName);
-        } else {
-          const downloadLink = document.createElement('a');
-          downloadLink.setAttribute('href', window.URL.createObjectURL(blob));
-          downloadLink.setAttribute('download', fileName);
-          downloadLink.setAttribute('target', '_blank');
-          downloadLink.setAttribute('style', 'visibility:hidden');
+      if (window.navigator.msSaveOrOpenBlob) {
+        window.navigator.msSaveBlob(blob, fileName);
+      } else {
+        const downloadLink = document.createElement('a');
+        downloadLink.setAttribute('href', window.URL.createObjectURL(blob));
+        downloadLink.setAttribute('download', fileName);
+        downloadLink.setAttribute('target', '_blank');
+        downloadLink.setAttribute('style', 'visibility:hidden');
 
-          document.body.appendChild(downloadLink);
-          this.$timeout(() => {
-            downloadLink.click();
-            document.body.removeChild(downloadLink);
-          });
-        }
+        document.body.appendChild(downloadLink);
+        this.$timeout(() => {
+          downloadLink.click();
+          document.body.removeChild(downloadLink);
+        });
+      }
 
-        return this.$q.when();
-      });
+      return this.$q.when();
+    });
   }
 
   importConfiguration(file) {

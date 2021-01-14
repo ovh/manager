@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import { Environment } from '@ovh-ux/manager-config';
 
 import { FeatureAvailability } from '@ovh-ux/ng-ovh-telecom-universe-components';
 import { FREEFAX_AVAILABILITY } from '@ovh-ux/manager-freefax';
@@ -33,7 +34,6 @@ angular
       betaPreferenceService,
       FaxSidebar,
       OverTheBoxSidebar,
-      OvhApiMe,
       PackSidebar,
       SidebarMenu,
       SmsSidebar,
@@ -490,7 +490,7 @@ angular
                 initSidebarMenuItems(count, featuresAvailabilities, beta);
               });
             })
-            .then(() => OvhApiMe.v6().get().$promise)
+            .then(() => Environment.getUser())
             .then((user) =>
               initSidebarMenuActionsOptions(user, featuresAvailabilities),
             ),

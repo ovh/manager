@@ -1,6 +1,7 @@
 import filter from 'lodash/filter';
 import get from 'lodash/get';
 import pick from 'lodash/pick';
+import { Environment } from '@ovh-ux/manager-config';
 
 export default /* @ngInject */ function TelecomTelephonyServiceAssistLogsCtrl(
   $q,
@@ -9,7 +10,6 @@ export default /* @ngInject */ function TelecomTelephonyServiceAssistLogsCtrl(
   $stateParams,
   tucVoipService,
   tucVoipLineFeature,
-  OvhApiMe,
   TucToast,
   PAGINATION_PER_PAGE,
   tucTelephonyBulk,
@@ -95,17 +95,9 @@ export default /* @ngInject */ function TelecomTelephonyServiceAssistLogsCtrl(
     // fetch user if not already done
     if (!self.user && !self.edition.notifications.logs.email) {
       self.loading.user = true;
-
-      // if request fail - no need to catch it
-      OvhApiMe.v6()
-        .get()
-        .$promise.then((user) => {
-          self.user = user;
-          self.edition.notifications.logs.email = self.user.email;
-        })
-        .finally(() => {
-          self.loading.user = false;
-        });
+      self.user = Environment.getUser();
+      self.edition.notifications.logs.email = self.user.email;
+      self.loading.user = false;
     } else if (!self.edition.notifications.logs.email) {
       self.edition.notifications.logs.email = self.user.email;
     }
