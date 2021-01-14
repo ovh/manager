@@ -1,20 +1,28 @@
-<header class="page-header" role="header">
-    <h1>
-        <span data-ng-bind="'otrs_detail_title' | translate"></span>
-        <span
-            data-ng-show="ticket.ticketNumber"
-            data-ng-bind="'otrs_detail_title2' | translate:{ t0: ticket.ticketNumber }"
-        >
-        </span>
-        <span
-            data-ng-show="ticket.state && !loaders.close"
-            data-translate="{{ 'otrs_detail_title3_' + ticket.state }}"
-        >
-        </span>
-        <oui-spinner data-ng-show="loaders.close" data-size="s"> </oui-spinner>
-    </h1>
+<header class="oui-header">
+    <div class="oui-header__container">
+        <div class="oui-header__content">
+            <h1
+                class="oui-header__title"
+                data-translate="otrs_detail_title"
+            ></h1>
+            <h2
+                class="oui-header__description"
+                data-ng-if="ticket.ticketNumber"
+                data-translate="otrs_detail_title2"
+                data-translate-values="{
+            t0: ticket.ticketNumber
+         }"
+            ></h2>
+            <h2
+                class="oui-header__description"
+                data-ng-if="ticket.state && !loaders.close"
+                data-translate="{{ 'otrs_detail_title3_' + ticket.state }}"
+            ></h2>
+            <oui-skeleton data-ng-if="loaders.close"></oui-skeleton>
+        </div>
+    </div>
 </header>
-<div class="tab-content pb-5">
+<div>
     <a
         class="d-inline-block mb-5"
         data-ng-href="#/ticket?currentPage={{ previousPage }}"

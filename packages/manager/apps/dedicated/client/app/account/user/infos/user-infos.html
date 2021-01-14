@@ -5,11 +5,11 @@
         data-ng-if="controls.validateEmailChange"
     ></h1>
 
-    <div class="tab-content text-center" data-ng-if="loading">
+    <div class="text-center" data-ng-if="loading">
         <oui-spinner data-size="l"></oui-spinner>
     </div>
 
-    <div class="tab-content" data-ng-if="!loading">
+    <div data-ng-if="!loading">
         <div data-ovh-alert="{{alerts.dashboardInfos}}"></div>
         <div data-ovh-alert="InfoAlert"></div>
 
