@@ -3,18 +3,17 @@ import includes from 'lodash/includes';
 import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
 import 'moment';
+import { Environment } from '@ovh-ux/manager-config';
 
 export default class {
   /* @ngInject */
   constructor(
     $q,
-    OvhApiMe,
     ovhPaymentMethod,
     ovhUserPref,
     WUC_SUBSIDIARIES_WITH_OPTIONAL_AUTORENEW,
   ) {
     this.$q = $q;
-    this.OvhApiMe = OvhApiMe;
     this.ovhPaymentMethod = ovhPaymentMethod;
     this.ovhUserPref = ovhUserPref;
 
@@ -55,9 +54,9 @@ export default class {
   }
 
   isAutorenewAllowed() {
-    return this.OvhApiMe.v6()
-      .get()
-      .$promise.then(({ ovhSubsidiary }) => {
+    return this.$q
+      .when(Environment.getUser())
+      .then(({ ovhSubsidiary }) => {
         this.isAutorenewAllowed = includes(
           this.WUC_SUBSIDIARIES_WITH_OPTIONAL_AUTORENEW,
           ovhSubsidiary,

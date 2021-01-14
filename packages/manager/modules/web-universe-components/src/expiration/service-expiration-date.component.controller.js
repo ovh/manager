@@ -10,10 +10,10 @@ import { RENEW_URL } from './service-expiration-date.component.constant';
 
 export default class {
   /* @ngInject */
-  constructor($scope, $rootScope, coreConfig, OvhApiMe) {
+  constructor($q, $scope, $rootScope, coreConfig) {
+    this.$q = $q;
     $scope.tr = $rootScope.tr;
     this.coreConfig = coreConfig;
-    this.OvhApiMe = OvhApiMe;
   }
 
   $onInit() {
@@ -24,9 +24,9 @@ export default class {
     this.loading = true;
     this.subsidiary = null;
 
-    return this.OvhApiMe.v6()
-      .get()
-      .$promise.then(({ ovhSubsidiary }) => {
+    return this.$q
+      .when(Environment.getUser())
+      .then(({ ovhSubsidiary }) => {
         this.subsidiary = ovhSubsidiary;
         this.orderUrl = `${RENEW_URL[this.coreConfig.getRegion()]}${
           this.serviceInfos.domain

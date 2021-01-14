@@ -4,14 +4,15 @@ import angular from 'angular';
 import 'moment';
 
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+import { Environment } from '@ovh-ux/manager-config';
 
 import { DEFAULT_TARGET, RENEW_URL } from './service-status-action.constant';
 
 export default class {
   /* @ngInject */
-  constructor(constants, OvhApiMe) {
+  constructor(constants, $q) {
     this.constants = constants;
-    this.OvhApiMe = OvhApiMe;
+    this.$q = $q;
   }
 
   $onInit() {
@@ -33,15 +34,13 @@ export default class {
   }
 
   getOrderUrl() {
-    return this.OvhApiMe.v6()
-      .get()
-      .$promise.then(({ ovhSubsidiary }) => {
-        this.orderUrl = `${get(
-          RENEW_URL,
-          ovhSubsidiary,
-          RENEW_URL[DEFAULT_TARGET],
-        )}${this.serviceInfos.domain}`;
-      });
+    return this.$q.when(Environment.getUser()).then(({ ovhSubsidiary }) => {
+      this.orderUrl = `${get(
+        RENEW_URL,
+        ovhSubsidiary,
+        RENEW_URL[DEFAULT_TARGET],
+      )}${this.serviceInfos.domain}`;
+    });
   }
 
   getAutoRenewUrl() {
