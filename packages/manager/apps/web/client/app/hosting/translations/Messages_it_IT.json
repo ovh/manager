@@ -1226,7 +1226,7 @@
   "hosting_action_config_edit_no_choice": "Nello storico è disponibile solo una configurazione. La selezione è disattivata, clicca su \"Conferma\" per applicare i valori seguenti.",
   "hosting_tab_USER_LOGS": "Statistiche e log",
   "hosting_tab_USER_LOGS_configuration_user_create_title": "Crea un nuovo utente",
-  "hosting_tab_USER_LOGS_configuration_user_create_step1_question": "Questo nuovo utente sarà disponibile in aggiunta ai normali contatti del tuo hosting (amministrativo, tecnico e di fatturazione).<br />Gli utenti supplementari possono essere aggiunti, modificati o eliminati liberamente.<br /><br /> Questa operazione potrebbe richiedere alcuni minuti.",
+  "hosting_tab_USER_LOGS_configuration_user_create_step1_question": "Questo nuovo utente avrà accesso alle statistiche e ai log dei tuoi siti oltre ai normali contatti dell'hosting (amministrativo, tecnico e di fatturazione). È possibile aggiungere, modificare o eliminare liberamente questi utenti supplementari.",
   "hosting_tab_USER_LOGS_configuration_user_create_step1_user": "Utente",
   "hosting_tab_USER_LOGS_configuration_user_create_step1_user_error": "Nome utente non valido",
   "hosting_tab_USER_LOGS_configuration_user_create_step1_desc_label": "Descrizione",
