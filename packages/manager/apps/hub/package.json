@@ -76,7 +76,7 @@
     "popper.js": "^1.16.1",
     "regenerator-runtime": "^0.13.7",
     "ui-select": "^0.19.8",
-    "whatwg-fetch": "^3.0.0"
+    "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
     "@ovh-ux/manager-webpack-config": "^3.3.0 || ^4.0.0",

@@ -125,7 +125,7 @@
     "ui-select": "^0.19.8",
     "uri.js": "medialize/URI.js#~1.15.0",
     "validator-js": "chriso/validator.js#~3.37.0",
-    "whatwg-fetch": "^3.0.0",
+    "whatwg-fetch": "^3.5.0",
     "xterm": "^3.8.1"
   },
   "devDependencies": {
