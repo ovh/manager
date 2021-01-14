@@ -32,6 +32,8 @@ export default /* @ngInject */ ($stateProvider) => {
         $transition$.params().serviceName,
       validate: /* @ngInject */ (BillingService, serviceId) => (strategy) =>
         BillingService.putEndRuleStrategy(serviceId, strategy),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('billing_autorenew_resiliate'),
     },
   });
 };

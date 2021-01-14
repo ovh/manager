@@ -14,6 +14,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $transition$.params().serviceId,
       terminateHosting: /* @ngInject */ (BillingAutoRenew, serviceId) => () =>
         BillingAutoRenew.terminateHosting(serviceId),
+      breadcrumb: () => null,
     },
   });
 };
