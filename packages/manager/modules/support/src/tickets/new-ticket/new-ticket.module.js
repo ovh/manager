@@ -75,6 +75,8 @@ angular
                 guide: get(CORE_URLS, `guides.home.${me.ovhSubsidiary}`),
                 forum: get(CORE_URLS, `forum.${me.ovhSubsidiary}`),
               })),
+          breadcrumb: /* @ngInject */ ($translate) =>
+            $translate.instant('ovhManagerSupport_new'),
         },
         url: '/new?categoryName&serviceName&serviceTypeName',
         views: {
