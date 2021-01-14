@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "lodash-es": "^4.17.15",
-    "whatwg-fetch": "^3.0.0"
+    "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^8.0.0 || ^9.0.0"
