@@ -6,5 +6,7 @@
   "vps_dashboard_auto_migration_warning": "Votre VPS Cloud 2013/2014 sera migré automatiquement vers un VPS de la nouvelle gamme dans {{days}} jours.",
   "vps_dashboard_migration_in_progress": "Votre VPS Cloud 2013/2014 est en cours de migration vers la nouvelle gamme.",
   "vps_dashboard_migration_in_error": "Une erreur s'est produite lors de la migration de votre VPS. La suite de la migration va être prise en charge par nos équipes.",
-  "vps_dashboard_migration_link": "Migrer vers la nouvelle gamme"
+  "vps_dashboard_migration_link": "Migrer vers la nouvelle gamme",
+  "vps_dashboard_rtm_missing": "Gagnez en visibilité sur les performances de votre serveur virtuel en activant gratuitement le suivi de vos données de consommation. Cliquez <a href=\"{{href}}\">ici</a> pour en savoir plus à propos de cette manipulation.",
+  "vps_dashboard_rtm_limit_warning": "Votre serveur privé virtuel atteindra bientôt ses limites de ressources (vCore, RAM, stockage). Vous pouvez les faire évoluer ou passer à la gamme supérieure."
 }

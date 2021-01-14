@@ -19,7 +19,7 @@
                 data-items="$ctrl.availableImages"
                 data-match="name"
                 data-model="$ctrl.image"
-                data-on-change="$ctrl.vpsOptions.imageId = modelValue.id"
+                data-on-change="$ctrl.onOsChange(modelValue)"
                 data-required
             >
             </oui-select>
@@ -37,6 +37,19 @@
                 data-model="$ctrl.vpsOptions.sshKey"
                 data-on-change="$ctrl.sshKey = modelValue.key"
             ></oui-select>
+        </oui-field>
+
+        <oui-field data-ng-if="$ctrl.rtmAvailable()">
+            <oui-checkbox
+                id="installRTM"
+                name="installRTM"
+                data-description="{{:: 'vps_configuration_rebuild_installRTM_alert' | translate }}"
+                data-model="$ctrl.vpsOptions.installRTM"
+            >
+                <span
+                    data-translate="vps_configuration_rebuild_installRTM"
+                ></span>
+            </oui-checkbox>
         </oui-field>
 
         <oui-field data-ng-if="$ctrl.vpsOptions.sshKey">

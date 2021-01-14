@@ -13,6 +13,8 @@ import {
   DASHBOARD_FEATURES,
   SERVICE_TYPE,
   VPS_2014_AUTO_MIGRATION_DATE,
+  GUIDE_RTM,
+  RTM_WARNING_VALUE,
 } from './vps-dashboard.constants';
 import { CHANGE_OWNER_URL, RENEW_URL } from '../vps/constants';
 
@@ -31,6 +33,7 @@ export default class {
     VpsService,
     vpsUpgradeTile,
   ) {
+    this.guide_rtm = GUIDE_RTM;
     this.$filter = $filter;
     this.$q = $q;
     this.$scope = $scope;
@@ -145,6 +148,15 @@ export default class {
       );
       this.loaders.ips = false;
     });
+  }
+
+  hasReachLimit() {
+    const limit = RTM_WARNING_VALUE.max;
+    const limitCpu = this.statistics.cpu > limit;
+    const limitRam = this.statistics.memory > limit;
+    const limitDisk = this.statistics.disk > limit;
+
+    return limitCpu || limitRam || limitDisk;
   }
 
   hasAdditionalDiskOption() {

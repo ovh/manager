@@ -167,6 +167,11 @@ export default /* @ngInject */ ($stateProvider) => {
         });
       },
       breadcrumb: () => null,
+      statistics: /* @ngInject */ ($http, serviceName) =>
+        $http
+          .get(`/vps/${serviceName}/statistics`)
+          .then(({ data }) => data)
+          .catch(() => null),
     },
   });
 };

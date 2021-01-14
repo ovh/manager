@@ -30,6 +30,7 @@ export default {
     vpsMigrationTask: '<',
     vpsMigrationTaskInError: '<',
     vpsUpgradeTask: '<',
+    statistics: '<',
   },
   controller,
   name: 'ovhManagerVpsDashboard',

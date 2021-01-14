@@ -11,6 +11,18 @@
     <oui-tile-definition
         data-term="{{ ::'vps_dashboard_tile_configuration_vcore' | translate }}"
     >
+        <oui-tile-description data-ng-if="$ctrl.statistics">
+            <progress
+                class="oui-progress"
+                data-ng-class="{ 
+                    'oui-progress_success': $ctrl.isCpuUsageNormal(),
+                    'oui-progress_warning' : $ctrl.isCpuUsageWarning(),
+                    'oui-progress_error': $ctrl.isCpuUsageHigh(),
+                  }"
+                value="{{ $ctrl.statistics.cpu }}"
+                max="100"
+            ></progress>
+        </oui-tile-description>
         <oui-tile-description>
             <span data-ng-bind=":: $ctrl.vps.vcore"></span>
             <p
@@ -34,6 +46,18 @@
     <oui-tile-definition
         data-term="{{ ::'vps_dashboard_tile_configuration_memory' | translate }}"
     >
+        <oui-tile-description data-ng-if="$ctrl.statistics">
+            <progress
+                class="oui-progress"
+                data-ng-class="{ 
+                    'oui-progress_success': $ctrl.isCpuUsageNormal(),
+                    'oui-progress_warning' : $ctrl.isCpuUsageWarning(),
+                    'oui-progress_error': $ctrl.isCpuUsageHigh(),
+                  }"
+                value="{{ $ctrl.statistics.memory }}"
+                max="100"
+            ></progress>
+        </oui-tile-description>
         <oui-tile-description
             data-ng-if="$ctrl.configurationTile.upgrades.memory.plan && !$ctrl.isVpsStarter"
         >
@@ -92,6 +116,18 @@
     <oui-tile-definition
         data-term="{{ ::'vps_dashboard_tile_configuration_storage' | translate }}"
     >
+        <oui-tile-description data-ng-if="$ctrl.statistics">
+            <progress
+                class="oui-progress"
+                data-ng-class="{ 
+                    'oui-progress_success': $ctrl.isCpuUsageNormal(),
+                    'oui-progress_warning' : $ctrl.isCpuUsageWarning(),
+                    'oui-progress_error': $ctrl.isCpuUsageHigh(),
+                  }"
+                value="{{ $ctrl.statistics.disk }}"
+                max="100"
+            ></progress>
+        </oui-tile-description>
         <oui-tile-description
             data-ng-if="$ctrl.configurationTile.upgrades.storage.plan && !$ctrl.isVpsStarter"
         >

@@ -28,14 +28,25 @@ export default /* @ngInject */ ($stateProvider) => {
         $translate,
         CucCloudMessage,
         serviceName,
-      ) => () =>
+      ) => (rtmActivated) =>
         CucCloudMessage.success(
-          $translate.instant('vps_configuration_reinstall_success', {
-            serviceName,
-          }),
+          $translate.instant(
+            `vps_configuration_reinstall${
+              rtmActivated ? '_with_rtm' : ''
+            }_success`,
+            {
+              serviceName,
+            },
+          ),
         ),
       sshKeys: /* @ngInject */ (VpsReinstallService) =>
         VpsReinstallService.getSshKeys().then((sshKeys) => sshKeys.sort()),
+      isRtmAvailable: /* @ngInject */ (ovhFeatureFlipping) => {
+        const rtmId = 'vps:rtm';
+        return ovhFeatureFlipping
+          .checkFeatureAvailability(rtmId)
+          .then((rtmFeature) => rtmFeature.isFeatureAvailable(rtmId));
+      },
     },
   });
 };
