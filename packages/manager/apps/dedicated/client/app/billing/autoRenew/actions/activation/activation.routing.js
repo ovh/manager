@@ -14,6 +14,7 @@ export default /* @ngInject */ ($stateProvider) => {
       activateAutorenew: /* @ngInject */ (BillingAutoRenew, nicRenew) => () =>
         BillingAutoRenew.enableAutorenew(head(nicRenew.renewDays)),
       goBack: /* @ngInject */ (goToAutorenew) => goToAutorenew,
+      breadcrumb: () => null,
     },
   });
 };

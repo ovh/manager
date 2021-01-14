@@ -1,4 +1,5 @@
 {
+  "billing_autorenew_disable_breadcrumb": "Désactiver le renouvellement automatique",
   "billing_autorenew_disable_title": "Désactiver le renouvellement automatique pour les services sélectionnés",
   "billing_autorenew_disable_description": "Vous avez souhaité désactiver le renouvellement automatique pour les services sélectionnés.",
   "billing_autorenew_disable_warning": "Dans ce mode de renouvellement, votre service n'est pas automatiquement reconduit lorsqu'il arrive à échéance. Plusieurs notifications vous seront envoyées par e-mails durant les semaines/jours précédents son terme, afin de vous prévenir de son expiration.",

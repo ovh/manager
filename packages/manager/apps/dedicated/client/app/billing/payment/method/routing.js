@@ -66,18 +66,20 @@ export default /* @ngInject */ (
           });
         }
       },
+      breadcrumb: /* @ngInject */ () => null,
     },
   });
 
   // add an abstract state that will handle actions on payment method
   $stateProvider.state(`${name}.action`, {
     url: '/{paymentMethodId:int}',
-    abstract: true,
+    redirectTo: 'app.account.billing.payment.method',
     resolve: {
       paymentMethod: /* @ngInject */ ($transition$, paymentMethods) =>
         find(paymentMethods, {
           paymentMethodId: $transition$.params().paymentMethodId,
         }),
+      breadcrumb: /* @ngInject */ (paymentMethod) => paymentMethod.name,
     },
   });
 

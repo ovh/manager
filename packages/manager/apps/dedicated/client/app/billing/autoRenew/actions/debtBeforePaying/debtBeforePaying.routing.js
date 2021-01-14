@@ -23,6 +23,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceName,
+      breadcrumb: () => null,
     },
   });
 };

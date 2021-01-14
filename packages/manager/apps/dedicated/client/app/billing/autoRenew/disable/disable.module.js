@@ -10,6 +10,7 @@ angular
   .module(moduleName, ['ui.router', bulk])
   .config(routing)
   .component('billingAutorenewDisable', component)
-  .service('BillingAutorenewDisable', service);
+  .service('BillingAutorenewDisable', service)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
