@@ -1,7 +1,7 @@
 import indexOf from 'lodash/indexOf';
+import { Environment } from '@ovh-ux/manager-config';
 
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-import { Environment } from '@ovh-ux/manager-config';
 
 export default /* @ngInject */ function(
   $stateParams,
@@ -12,7 +12,6 @@ export default /* @ngInject */ function(
   guideUrl,
   OvhApiCloud,
   OvhApiCloudProjectServiceInfos,
-  OvhApiMe,
 ) {
   const self = this;
   const serviceName = $stateParams.projectId;
@@ -72,19 +71,17 @@ export default /* @ngInject */ function(
         self.contactFormData.owner = infos.contactAdmin;
         self.model.billing = infos.contactBilling;
         self.contactFormData.billing = infos.contactBilling;
-        return OvhApiMe.v6()
-          .get()
-          .$promise.then((me) => {
-            if (me.nichandle === infos.contactAdmin) {
-              self.model.isAdmin = true;
-            }
-            if (me.country) {
-              // check if the user country is USA or Canada, in this case we display
-              // email instead of NIC handle
-              self.model.isUSorCA =
-                indexOf(['US', 'CA'], me.country.toUpperCase()) >= 0;
-            }
-          });
+
+        const me = Environment.getUser();
+        if (me.nichandle === infos.contactAdmin) {
+          self.model.isAdmin = true;
+        }
+        if (me.country) {
+          // check if the user country is USA or Canada, in this case we display
+          // email instead of NIC handle
+          self.model.isUSorCA =
+            indexOf(['US', 'CA'], me.country.toUpperCase()) >= 0;
+        }
       });
   }
 

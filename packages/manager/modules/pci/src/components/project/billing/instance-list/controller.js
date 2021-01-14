@@ -1,5 +1,6 @@
 import find from 'lodash/find';
 import map from 'lodash/map';
+import { Environment } from '@ovh-ux/manager-config';
 
 export default /* @ngInject */ function BillingInstanceListComponentCtrl(
   $q,
@@ -8,7 +9,6 @@ export default /* @ngInject */ function BillingInstanceListComponentCtrl(
   DetailsPopoverService,
   OvhApiCloudProjectImage,
   OvhApiCloudProjectInstance,
-  OvhApiMe,
   CucCloudMessage,
 ) {
   const self = this;
@@ -52,11 +52,9 @@ export default /* @ngInject */ function BillingInstanceListComponentCtrl(
   }
 
   function initUserCurrency() {
-    return OvhApiMe.v6()
-      .get()
-      .$promise.then((me) => {
-        self.currencySymbol = me.currency.symbol;
-      });
+    return $q.when(Environment.getUser()).then((me) => {
+      self.currencySymbol = me.currency.symbol;
+    });
   }
 
   function getImageTypeFromReference(reference) {

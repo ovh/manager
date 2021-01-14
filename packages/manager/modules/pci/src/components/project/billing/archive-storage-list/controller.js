@@ -1,9 +1,10 @@
+import { Environment } from '@ovh-ux/manager-config';
+
 export default /* @ngInject */ function BillingArchiveStorageListComponentCtrl(
   $q,
   $translate,
   CucCloudMessage,
   CucRegionService,
-  OvhApiMe,
 ) {
   const self = this;
 
@@ -14,11 +15,9 @@ export default /* @ngInject */ function BillingArchiveStorageListComponentCtrl(
   self.loading = false;
 
   function initUserCurrency() {
-    return OvhApiMe.v6()
-      .get()
-      .$promise.then((me) => {
-        self.currencySymbol = me.currency.symbol;
-      });
+    return $q.when(Environment.getUser()).then((me) => {
+      self.currencySymbol = me.currency.symbol;
+    });
   }
 
   self.$onInit = () => {

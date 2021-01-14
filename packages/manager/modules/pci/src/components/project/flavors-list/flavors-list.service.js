@@ -7,6 +7,7 @@ import map from 'lodash/map';
 import mapValues from 'lodash/mapValues';
 import omit from 'lodash/omit';
 import some from 'lodash/some';
+import { Environment } from '@ovh-ux/manager-config';
 
 import Flavor from './flavor.class';
 import FlavorGroup from './flavor-group.class';
@@ -23,13 +24,11 @@ export default class FlavorsList {
     $q,
     CucPriceHelper,
     OvhApiCloudProjectFlavor,
-    OvhApiMe,
     OvhApiOrderCatalogPublic,
   ) {
     this.$q = $q;
     this.CucPriceHelper = CucPriceHelper;
     this.OvhApiCloudProjectFlavor = OvhApiCloudProjectFlavor;
-    this.OvhApiMe = OvhApiMe;
     this.OvhApiOrderCatalogPublic = OvhApiOrderCatalogPublic;
   }
 
@@ -41,15 +40,10 @@ export default class FlavorsList {
           region: currentRegion,
         }).$promise,
         prices: this.CucPriceHelper.getPrices(serviceName),
-        catalog: this.OvhApiMe.v6()
-          .get()
-          .$promise.then(
-            ({ ovhSubsidiary }) =>
-              this.OvhApiOrderCatalogPublic.v6().get({
-                productName: 'cloud',
-                ovhSubsidiary,
-              }).$promise,
-          ),
+        catalog: this.OvhApiOrderCatalogPublic.v6().get({
+          productName: 'cloud',
+          ovhSubsidiary: Environment.getUser().ovhSubsidiary,
+        }).$promise,
       })
       .then(({ flavors, prices, catalog }) =>
         map(

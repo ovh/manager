@@ -24,6 +24,7 @@ import '@ovh-ux/ui-kit/dist/css/oui.css';
 import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 import 'font-awesome/css/font-awesome.css';
 import 'ovh-common-style/dist/ovh-common-style.css';
+import { Environment } from '@ovh-ux/manager-config';
 
 import components from './components';
 import error from './error';
@@ -82,7 +83,7 @@ angular
         abstract: true,
         template,
         resolve: {
-          me: /* @ngInject */ (OvhApiMe) => OvhApiMe.v6().get().$promise,
+          me: () => Environment.getUser(),
         },
       });
     },
