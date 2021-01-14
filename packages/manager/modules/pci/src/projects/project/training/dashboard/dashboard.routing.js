@@ -1,3 +1,5 @@
+import { Environment } from '@ovh-ux/manager-config';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.training.dashboard', {
     url: '/dashboard',
@@ -20,12 +22,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('pci.projects.project.training.dashboard.registry', {
           projectId,
         }),
-      currencySymbol: /* @ngInject */ (OvhApiMe) =>
-        OvhApiMe.v6()
-          .get()
-          .$promise.then((me) => {
-            return me.currency.symbol;
-          }),
+      currencySymbol: () => Environment.getUser().currency.symbol,
       goToJobs: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.training.jobs', {
           projectId,

@@ -3,6 +3,7 @@ import forEach from 'lodash/forEach';
 import get from 'lodash/get';
 import map from 'lodash/map';
 import set from 'lodash/set';
+import { Environment } from '@ovh-ux/manager-config';
 import {
   ANALYTICS_DATA_PLATFORM_STATUS,
   ANALYTICS_DATA_PLATFORM_CLOUD_CATALOG_NAME,
@@ -43,7 +44,6 @@ export default class AnalyticsDataPlatformService {
     this.OvhApiOrderCatalogPublic = OvhApiOrderCatalogPublic.v6();
     this.OvhApiMeOrder = OvhApiMe.Order().v6();
     this.OvhApiVrack = OvhApiVrack.v6();
-    this.OvhApiMe = OvhApiMe;
     this.Poller = Poller;
     this.CLOUD_CATALOG_NAME = ANALYTICS_DATA_PLATFORM_CLOUD_CATALOG_NAME;
     this.CLOUD_STATUS = ANALYTICS_DATA_PLATFORM_PUBLIC_CLOUD_STATUS;
@@ -187,7 +187,7 @@ export default class AnalyticsDataPlatformService {
    * @memberof AnalyticsDataPlatformService
    */
   getAccountDetails() {
-    return this.OvhApiMe.v6().get().$promise;
+    return this.$q.when(Environment.getUser());
   }
 
   /**

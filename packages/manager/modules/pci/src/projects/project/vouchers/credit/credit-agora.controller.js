@@ -1,6 +1,7 @@
 import get from 'lodash/get';
 import filter from 'lodash/filter';
 import head from 'lodash/head';
+import { Environment } from '@ovh-ux/manager-config';
 
 // we should avoid require, but JSURL don't provide an es6 export
 const { stringify } = require('jsurl');
@@ -15,7 +16,6 @@ export default class CloudProjectBillingVouchersAddcreditAgoraCtrl {
     $window,
     CucCloudMessage,
     CucCurrencyService,
-    OvhApiMe,
     OvhApiOrderCatalogPublic,
   ) {
     this.$http = $http;
@@ -25,7 +25,6 @@ export default class CloudProjectBillingVouchersAddcreditAgoraCtrl {
     this.$window = $window;
     this.CucCloudMessage = CucCloudMessage;
     this.CucCurrencyService = CucCurrencyService;
-    this.OvhApiMe = OvhApiMe;
     this.OvhApiOrderCatalogPublic = OvhApiOrderCatalogPublic;
     this.orderLimits = {
       min: 1,
@@ -36,37 +35,34 @@ export default class CloudProjectBillingVouchersAddcreditAgoraCtrl {
   $onInit() {
     this.amount = 10;
     this.loading = true;
-    return this.OvhApiMe.v6()
-      .get()
-      .$promise.then((me) =>
-        this.OvhApiOrderCatalogPublic.v6()
-          .get({ productName: 'cloud', ovhSubsidiary: me.ovhSubsidiary })
-          .$promise.then((result) => {
-            const pricing = head(
-              filter(
-                get(
-                  head(
-                    filter(
-                      get(result, 'plans'),
-                      (p) =>
-                        p.planCode === 'credit' && p.pricingType === 'purchase',
-                    ),
-                  ),
-                  'pricings',
+    const { ovhSubsidiary } = Environment.getUser();
+    return this.OvhApiOrderCatalogPublic.v6()
+      .get({ productName: 'cloud', ovhSubsidiary })
+      .$promise.then((result) => {
+        const pricing = head(
+          filter(
+            get(
+              head(
+                filter(
+                  get(result, 'plans'),
+                  (p) =>
+                    p.planCode === 'credit' && p.pricingType === 'purchase',
                 ),
-                (p) => p.capacities.includes('installation'),
               ),
-            );
-            this.price = pricing
-              ? {
-                  currencyCode: get(result, 'locale.currencyCode'),
-                  value: this.CucCurrencyService.convertUcentsToCurrency(
-                    pricing.price,
-                  ),
-                }
-              : undefined;
-          }),
-      )
+              'pricings',
+            ),
+            (p) => p.capacities.includes('installation'),
+          ),
+        );
+        this.price = pricing
+          ? {
+              currencyCode: get(result, 'locale.currencyCode'),
+              value: this.CucCurrencyService.convertUcentsToCurrency(
+                pricing.price,
+              ),
+            }
+          : undefined;
+      })
       .catch((err) => {
         this.CucCloudMessage.error(
           [

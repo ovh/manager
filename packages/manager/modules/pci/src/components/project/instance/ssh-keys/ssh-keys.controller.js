@@ -1,23 +1,17 @@
 import filter from 'lodash/filter';
 import get from 'lodash/get';
 import has from 'lodash/has';
+import { Environment } from '@ovh-ux/manager-config';
 
 import { GUIDE_URLS } from './ssh-keys.constants';
 
 export default class SshKeysController {
   /* @ngInject */
-  constructor(
-    $q,
-    $translate,
-    CucCloudMessage,
-    OvhApiCloudProjectSshKey,
-    OvhApiMe,
-  ) {
+  constructor($q, $translate, CucCloudMessage, OvhApiCloudProjectSshKey) {
     this.$q = $q;
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.OvhApiCloudProjectSshKey = OvhApiCloudProjectSshKey;
-    this.OvhApiMe = OvhApiMe;
   }
 
   $onInit() {
@@ -47,9 +41,9 @@ export default class SshKeysController {
 
   getGuideUrl() {
     this.loaders.guide = true;
-    return this.OvhApiMe.v6()
-      .get()
-      .$promise.then((me) => {
+    return this.$q
+      .when(Environment.getUser())
+      .then((me) => {
         this.guideUrl = get(GUIDE_URLS, me.ovhSubsidiary, GUIDE_URLS.WORLD);
       })
       .catch(() => {
