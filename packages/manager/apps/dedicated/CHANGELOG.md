@@ -1,3 +1,12 @@
+## [15.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@15.0.0...@ovh-ux/manager-dedicated@15.0.1) (2021-01-14)
+
+
+### Bug Fixes
+
+* **dedicated-cloud.security.kms:** error on adding KMS ([#4271](https://github.com/ovh/manager/issues/4271)) ([f98588d](https://github.com/ovh/manager/commit/f98588d6c441e21f7f861cfd3fb1595ed83d383d))
+
+
+
 # [15.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@14.12.1...@ovh-ux/manager-dedicated@15.0.0) (2021-01-13)
 
 
