@@ -13,8 +13,6 @@ export default class {
     this.$translate = $translate;
     this.DedicatedCloud = DedicatedCloud;
 
-    this.serviceName = this.productId;
-
     this.regex = {
       ip: VM_ENCRYPTION_KMS.regex.ip,
       sslThumbprint: VM_ENCRYPTION_KMS.regex.sslThumbprint,
@@ -22,6 +20,7 @@ export default class {
   }
 
   $onInit() {
+    this.serviceName = this.productId;
     this.creationTaskId = null;
     this.kms = {
       ip: null,
