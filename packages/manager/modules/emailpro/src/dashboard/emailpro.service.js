@@ -191,7 +191,7 @@ export default class EmailPro {
     );
   }
 
-  getSelected(forceRefresh) {
+  getSelected(forceRefresh, serviceName) {
     if (forceRefresh === true) {
       this.resetCache();
     }
@@ -201,12 +201,12 @@ export default class EmailPro {
       return this.$q.when(this.exchangeCache.get('exchange'));
     }
 
-    return this.gettingIsServiceMXPlan()
+    return this.gettingIsServiceMXPlan(serviceName)
       .then((isMXPlan) =>
         this.OvhHttp.get('/sws/emailpro/{exchange}', {
           rootPath: '2api',
           urlParams: {
-            exchange: this.$stateParams.productId,
+            exchange: serviceName || this.$stateParams.productId,
           },
           params: {
             isMXPlan,
@@ -1592,10 +1592,11 @@ export default class EmailPro {
     });
   }
 
-  gettingIsServiceMXPlan() {
+  gettingIsServiceMXPlan(serviceName) {
     return this.EMAIL_CAPABILITIES.isEmailProAvailable
       ? this.OvhHttp.get(
-          `/email/pro/${this.$stateParams.productId}/billingMigrated`,
+          `/email/pro/${serviceName ||
+            this.$stateParams.productId}/billingMigrated`,
           {
             rootPath: 'apiv6',
           },

@@ -11,7 +11,17 @@ export default /* @ngInject */ ($stateProvider) => {
     controller: emailproCtrl,
     controllerAs: '$ctrl',
     reloadOnSearch: false,
-    redirectTo: 'email-pro.dashboard.information',
+    redirectTo: (transition) => {
+      const EmailPro = transition.injector().get('EmailPro');
+      const productId = transition.injector().getAsync('productId');
+      return productId.then((serviceName) =>
+        EmailPro.getSelected(true, serviceName).then((exchange) =>
+          exchange.domainsNumber
+            ? 'email-pro.dashboard.information'
+            : 'email-pro.dashboard.domain.add',
+        ),
+      );
+    },
     resolve: {
       navigationInformations: /* @ngInject */ (Navigator, $rootScope) => {
         set($rootScope, 'currentSectionInformation', 'email_pro');

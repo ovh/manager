@@ -6,6 +6,7 @@ import 'ckeditor';
 import 'ng-ckeditor';
 import '@ovh-ux/ng-ovh-utils';
 import '@ovh-ux/ng-ovh-web-universe-components';
+import '@ovh-ux/ng-ui-router-layout';
 
 import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 
@@ -42,6 +43,7 @@ angular
     'ngSanitize',
     'ngOvhWebUniverseComponents',
     'ng.ckeditor',
+    'ngUiRouterLayout',
     controllers,
     services,
     upgrade,

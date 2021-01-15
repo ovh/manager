@@ -28,8 +28,6 @@ export default /* @ngInject */ function EmailProCtrl(
   EMAILPRO_CONFIG,
   coreConfig,
 ) {
-  let initialLoad = true;
-
   $scope.currentRegionCA = coreConfig.isRegion('CA');
   $scope.accountTypeDedicated = EmailPro.accountTypeDedicated;
   $scope.accountTypeHosted = EmailPro.accountTypeHosted;
@@ -208,19 +206,6 @@ export default /* @ngInject */ function EmailProCtrl(
           loadAaaaTooltip($scope.exchange);
           loadPtrTooltip($scope.exchange);
           loadPtrv6Tooltip($scope.exchange);
-        }
-
-        if (
-          !$scope.exchange.domainsNumber &&
-          !$scope.exchange.isMXPlan &&
-          initialLoad
-        ) {
-          initialLoad = false;
-          $timeout(() => {
-            $scope.setAction('emailpro/domain/add/emailpro-domain-add', {
-              noDomainAttached: true,
-            });
-          }, 1000);
         }
       })
       .catch((failure) => {
