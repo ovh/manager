@@ -19,7 +19,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('app.private-database.dashboard', {
           productId,
         }),
-      hideBreadcrumb: () => null,
+      hideBreadcrumb: () => true,
     },
   });
 };
