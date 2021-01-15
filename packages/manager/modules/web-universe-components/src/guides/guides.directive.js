@@ -1,8 +1,9 @@
 import get from 'lodash/get';
+import { Environment } from '@ovh-ux/manager-config';
 
 import template from './guides.html';
 
-export default /* @ngInject */ (OvhApiMe, WUC_GUIDES) => ({
+export default /* @ngInject */ (WUC_GUIDES) => ({
   restrict: 'A',
   template,
   scope: {
@@ -27,17 +28,14 @@ export default /* @ngInject */ (OvhApiMe, WUC_GUIDES) => ({
         }
       };
 
-      OvhApiMe.v6()
-        .get()
-        .$promise.then((user) => {
-          const ovhSubsidiary = get(user, 'ovhSubsidiary', 'FR');
+      const user = Environment.getUser();
+      const ovhSubsidiary = get(user, 'ovhSubsidiary', 'FR');
 
-          $scope.guideConfiguration = get(
-            WUC_GUIDES,
-            `${ovhSubsidiary}.${$scope.wucGuidesList}`,
-            get(WUC_GUIDES, `FR.${$scope.wucGuidesList}`, []),
-          );
-        });
+      $scope.guideConfiguration = get(
+        WUC_GUIDES,
+        `${ovhSubsidiary}.${$scope.wucGuidesList}`,
+        get(WUC_GUIDES, `FR.${$scope.wucGuidesList}`, []),
+      );
     },
   ],
 });
