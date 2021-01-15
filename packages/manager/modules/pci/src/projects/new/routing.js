@@ -126,13 +126,14 @@ export default /* @ngInject */ ($stateProvider) => {
             {},
             ovhPaymentMethodHelper.isValidIban,
           ),
+          defaultPaymentMethod: null,
           description: get(
             cart,
             'projectItem.descriptionConfiguration.value',
             null,
           ),
+          hds: cart.hdsItem !== undefined,
           paymentMethod: null,
-          defaultPaymentMethod: null,
           voucher: new PciVoucher({
             value: get(cart, 'projectItem.voucherConfiguration.value'),
           }),
