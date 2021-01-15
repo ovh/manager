@@ -9,11 +9,10 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
     $stateProvider.state('pci.projects.**', {
       url: '/projects',
       lazyLoad: ($transition$) => {
-        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-
-        return import('./projects.module').then((mod) =>
-          $ocLazyLoad.inject(mod.default || mod),
-        );
+        return import('./projects.module').then((mod) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+          return $ocLazyLoad.inject(mod.default || mod);
+        });
       },
     });
   },
