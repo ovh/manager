@@ -7,6 +7,7 @@
         ng-if="$ctrl.service.hasDebt() && !$ctrl.service.hasBillingRights($ctrl.user.nichandle)"
         href="{{:: $ctrl.warningLink }}"
         on-click="$ctrl.trackAction('go-to-pay-bill')"
+        data-navi-id="go-to-pay-bill"
     >
         <span data-translate="billing_services_actions_menu_pay_bill"></span>
     </oui-action-menu-item>
@@ -15,6 +16,7 @@
         ng-if="$ctrl.service.hasDebt() && $ctrl.service.hasBillingRights($ctrl.user.nichandle)"
         href="{{:: $ctrl.billingLink }}"
         on-click="$ctrl.trackAction('go-to-pay-bill')"
+        data-navi-id="go-to-pay-bill"
     >
         <span data-translate="billing_services_actions_menu_pay_bill"></span>
     </oui-action-menu-item>
@@ -27,6 +29,7 @@
             ng-if="!$ctrl.service.isOneShot() && !$ctrl.service.hasForcedRenew() && !$ctrl.service.isResiliated() && $ctrl.service.canHandleRenew() && !$ctrl.service.hasEngagement()"
             href="{{:: $ctrl.updateLink }}"
             on-click="$ctrl.trackAction('go-to-configure-renew')"
+            data-navi-id="go-to-configure-renew"
         >
             <span
                 data-translate="billing_services_actions_menu_manage_renew"
@@ -37,6 +40,7 @@
             href="{{:: $ctrl.getRenewUrl() }}"
             external
             on-click="$ctrl.trackAction('go-to-anticipate-payment')"
+            data-navi-id="go-to-anticipate-payment"
         >
             <span
                 data-translate="billing_services_actions_menu_anticipate_renew"
@@ -52,6 +56,7 @@
             href="{{:: $ctrl.getRenewUrl() }}"
             external
             on-click="$ctrl.trackAction('go-to-renew-manually')"
+            data-navi-id="go-to-renew-manually"
         >
             <span data-translate="billing_services_actions_menu_renew"></span>
         </oui-action-menu-item>
@@ -79,6 +84,7 @@
             ng-if="$ctrl.service.menuItems.manageEmailAccountsInBilling"
             href="{{:: $ctrl.getExchangeBilling() }}"
             on-click="$ctrl.trackAction('go-to-modify-billing-Exchange')"
+            data-navi-id="go-to-modify-billing-Exchange"
         >
             <span
                 data-translate="billing_services_actions_menu_exchange_update"
@@ -88,6 +94,7 @@
             ng-if="$ctrl.service.menuItems.manageEmailAccountsInExchange"
             href="{{ $ctrl.renewLink }}"
             on-click="$ctrl.trackAction('go-to-modify-billing-ExchangeAccounts')"
+            data-navi-id="go-to-modify-billing-ExchangeAccounts"
         >
             <span
                 data-translate="billing_services_actions_menu_exchange_update_accounts"
@@ -104,6 +111,7 @@
             || $ctrl.service.canResiliateByEndRule()"
             href="{{:: $ctrl.resiliateLink }}"
             on-click="$ctrl.trackAction('go-to-resiliate')"
+            data-navi-id="go-to-resiliate"
         >
             <span
                 data-translate="billing_services_actions_menu_resiliate"
@@ -114,6 +122,7 @@
             ng-if="$ctrl.service.canBeDeleted()"
             href="{{:: $ctrl.deleteLink }}"
             on-click="$ctrl.trackAction('go-to-resiliate')"
+            data-navi-id="go-to-delete"
         >
             <span
                 data-translate="{{:: 'billing_services_actions_menu_resiliate_' + $ctrl.service.serviceType }}"
@@ -127,6 +136,7 @@
             href="{{:: $ctrl.buyingLink }}"
             external
             on-click="$ctrl.trackAction('go-to-buy-SMScredits')"
+            data-navi-id="go-to-buy-SMScredits"
         >
             <span
                 data-translate="billing_services_actions_menu_sms_credit"
@@ -137,6 +147,7 @@
             href="{{:: $ctrl.renewLink }}"
             external
             on-click="$ctrl.trackAction('go-to-configure-SMSautoreload')"
+            data-navi-id="go-to-configure-SMSautoreload"
         >
             <span
                 data-translate="billing_services_actions_menu_sms_renew"
@@ -155,6 +166,7 @@
         )"
         href="{{:: $ctrl.cancelResiliationLink }}"
         on-click="$ctrl.trackAction('go-to-cancel-resiliation')"
+        data-navi-id="go-to-cancel-resiliation"
     >
         <span
             data-translate="billing_services_actions_menu_resiliate_cancel"
@@ -166,6 +178,7 @@
         ng-if="$ctrl.service.url"
         href="{{:: $ctrl.service.url }}"
         on-click="$ctrl.trackAction('go-to-service')"
+        data-navi-id="go-to-service"
     >
         <span
             data-translate="billing_services_actions_menu_see_dashboard"
