@@ -30,9 +30,9 @@
   "skipJsErrors": true,
   "skipUncaughtErrors": true,
   "concurrency": 1,
-  "selectorTimeout": 10000,
-  "assertionTimeout": 10000,
-  "pageLoadTimeout": 10000,
+  "selectorTimeout": 20000,
+  "assertionTimeout": 20000,
+  "pageLoadTimeout": 20000,
   "speed": 1,
   "developmentMode": false,
   "qrCode": false
