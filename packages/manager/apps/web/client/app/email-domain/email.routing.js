@@ -40,7 +40,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $http.get(`${apiPath}/${domain}`).then(({ data }) => data),
       defaultFilterColumn: () => 'domain',
       header: /* @ngInject */ ($translate) =>
-        $translate.instant('emails_domain_title'),
+        $translate.instant('emails_domain_delegate_title'),
       customizableColumns: () => true,
       getServiceNameLink: /* @ngInject */ ($state) => ({ domain: productId }) =>
         $state.href('app.email-delegate.dashboard', {
