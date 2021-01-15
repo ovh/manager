@@ -9,7 +9,7 @@ import some from 'lodash/some';
 import union from 'lodash/union';
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 
-import { HOSTING_CDN_ORDER_CDN_VERSION_V1 } from './cdn/order/hosting-cdn-order.constant';
+import { HOSTING_CDN_ORDER_CDN_VERSION_V1 } from '../cdn/order/hosting-cdn-order.constant';
 
 export default class {
   /* @ngInject */
