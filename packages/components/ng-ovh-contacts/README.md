@@ -2,7 +2,7 @@
 
 > Help you to manage OVHcloud contacts
 
-[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-contacts)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-contacts) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-contacts)](https://npmjs.com/package/@ovh-ux/ng-ovh-contacts) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-contacts)](https://npmjs.com/package/@ovh-ux/ng-ovh-contacts?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-contacts)](https://npmjs.com/package/@ovh-ux/ng-ovh-contacts?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-contacts)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-contacts) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-contacts)](https://npmjs.com/package/@ovh-ux/ng-ovh-contacts) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-contacts)](https://npmjs.com/package/@ovh-ux/ng-ovh-contacts?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-contacts)](https://npmjs.com/package/@ovh-ux/ng-ovh-contacts?activeTab=dependencies)
 
 ## Install
 

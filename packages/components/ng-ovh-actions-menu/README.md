@@ -2,7 +2,7 @@
 
 > An actions menu gives the opportunity to group a set of actions available for a specific context under a single menu.
 
-[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-actions-menu)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-actions-menu) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-actions-menu)](https://npmjs.com/package/@ovh-ux/ng-ovh-actions-menu) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-actions-menu)](https://npmjs.com/package/@ovh-ux/ng-ovh-actions-menu?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-actions-menu)](https://npmjs.com/package/@ovh-ux/ng-ovh-actions-menu?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-actions-menu)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-actions-menu) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-actions-menu)](https://npmjs.com/package/@ovh-ux/ng-ovh-actions-menu) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-actions-menu)](https://npmjs.com/package/@ovh-ux/ng-ovh-actions-menu?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-actions-menu)](https://npmjs.com/package/@ovh-ux/ng-ovh-actions-menu?activeTab=dependencies)
 
 ## Install
 

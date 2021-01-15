@@ -2,7 +2,7 @@
 
 > OVH manager webpack development server configuration.
 
-[![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-webpack-dev-server)](https://npmjs.com/package/@ovh-ux/manager-webpack-dev-server) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/tools/webpack-dev-server)](https://npmjs.com/package/@ovh-ux/manager-webpack-dev-server?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/tools/webpack-dev-server)](https://npmjs.com/package/@ovh-ux/manager-webpack-dev-server?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-webpack-dev-server)](https://npmjs.com/package/@ovh-ux/manager-webpack-dev-server) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/tools/webpack-dev-server)](https://npmjs.com/package/@ovh-ux/manager-webpack-dev-server?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/tools/webpack-dev-server)](https://npmjs.com/package/@ovh-ux/manager-webpack-dev-server?activeTab=dependencies)
 
 ## Install
 

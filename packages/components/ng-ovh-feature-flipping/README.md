@@ -2,7 +2,7 @@
 
 > Check features availabilities.
 
-[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-feature-flipping)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-feature-flipping) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-feature-flipping)](https://npmjs.com/package/@ovh-ux/ng-ovh-feature-flipping) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-feature-flipping)](https://npmjs.com/package/@ovh-ux/ng-ovh-feature-flipping?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-feature-flipping)](https://npmjs.com/package/@ovh-ux/ng-ovh-feature-flipping?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-feature-flipping)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-feature-flipping) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-feature-flipping)](https://npmjs.com/package/@ovh-ux/ng-ovh-feature-flipping) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-feature-flipping)](https://npmjs.com/package/@ovh-ux/ng-ovh-feature-flipping?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-feature-flipping)](https://npmjs.com/package/@ovh-ux/ng-ovh-feature-flipping?activeTab=dependencies)
 
 ## Install
 

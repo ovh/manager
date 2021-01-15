@@ -2,7 +2,7 @@
 
 > Registry for OVHcloud Manager.
 
-[![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-registry)](https://npmjs.com/package/@ovh-ux/manager-registry) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/tools/registry)](https://npmjs.com/package/@ovh-ux/manager-registry?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/tools/registry)](https://npmjs.com/package/@ovh-ux/manager-registry?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-registry)](https://npmjs.com/package/@ovh-ux/manager-registry) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/tools/registry)](https://npmjs.com/package/@ovh-ux/manager-registry?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/tools/registry)](https://npmjs.com/package/@ovh-ux/manager-registry?activeTab=dependencies)
 
 ## Installation
 

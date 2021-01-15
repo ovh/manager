@@ -2,7 +2,7 @@
 
 > Extensible Rollup configuration to build OVHcloud components.
 
-[![Downloads](https://badgen.net/npm/dt/@ovh-ux/component-rollup-config)](https://npmjs.com/package/@ovh-ux/component-rollup-config) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/tools/component-rollup-config)](https://npmjs.com/package/@ovh-ux/component-rollup-config?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/tools/component-rollup-config)](https://npmjs.com/package/@ovh-ux/component-rollup-config?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![Downloads](https://badgen.net/npm/dt/@ovh-ux/component-rollup-config)](https://npmjs.com/package/@ovh-ux/component-rollup-config) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/tools/component-rollup-config)](https://npmjs.com/package/@ovh-ux/component-rollup-config?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/tools/component-rollup-config)](https://npmjs.com/package/@ovh-ux/component-rollup-config?activeTab=dependencies)
 
 ## Install
 

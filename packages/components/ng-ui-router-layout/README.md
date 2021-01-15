@@ -2,7 +2,7 @@
 
 > Enhance [UI-Router](https://ui-router.github.io/ng1/) by adding a layout decorator.
 
-[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ui-router-layout)](https://www.npmjs.com/package/@ovh-ux/ng-ui-router-layout) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ui-router-layout)](https://npmjs.com/package/@ovh-ux/ng-ui-router-layout) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ui-router-layout)](https://npmjs.com/package/@ovh-ux/ng-ui-router-layout?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ui-router-layout)](https://npmjs.com/package/@ovh-ux/ng-ui-router-layout?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ui-router-layout)](https://www.npmjs.com/package/@ovh-ux/ng-ui-router-layout) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ui-router-layout)](https://npmjs.com/package/@ovh-ux/ng-ui-router-layout) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ui-router-layout)](https://npmjs.com/package/@ovh-ux/ng-ui-router-layout?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ui-router-layout)](https://npmjs.com/package/@ovh-ux/ng-ui-router-layout?activeTab=dependencies)
 
 ## Install
 

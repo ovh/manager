@@ -2,7 +2,7 @@
 
 > OVH Manager Telecom Universe Components
 
-[![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-telecom-universe-components)](https://npmjs.com/package/@ovh-ux/ng-ovh-telecom-universe-components) [![Dependencies](https://badgen.net/david/dep/ovh-ux/ng-ovh-telecom-universe-components)](https://npmjs.com/package/@ovh-ux/ng-ovh-telecom-universe-components?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/ng-ovh-telecom-universe-components)](https://npmjs.com/package/@ovh-ux/ng-ovh-telecom-universe-components?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-telecom-universe-components)](https://npmjs.com/package/@ovh-ux/ng-ovh-telecom-universe-components) [![Dependencies](https://badgen.net/david/dep/ovh-ux/ng-ovh-telecom-universe-components)](https://npmjs.com/package/@ovh-ux/ng-ovh-telecom-universe-components?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/ng-ovh-telecom-universe-components)](https://npmjs.com/package/@ovh-ux/ng-ovh-telecom-universe-components?activeTab=dependencies)
 
 We extracted all the components of the [telecom control panel](https://github.com/ovh/manager/tree/master/packages/manager/apps/telecom) in order to interconnect them
 both in our upcoming [monorepo](https://github.com/ovh/manager) but also in the current stack.

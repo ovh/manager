@@ -2,7 +2,7 @@
 
 > Set of components and services to handle option order with different workflows.
 
-[![npm version](https://badgen.net/npm/v/@ovh-ux/manager-product-offers)](https://www.npmjs.com/package/@ovh-ux/manager-product-offers) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-product-offers)](https://npmjs.com/package/@ovh-ux/manager-product-offers) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/manager-product-offers)](https://npmjs.com/package/@ovh-ux/manager-product-offers?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/manager-product-offers)](https://npmjs.com/package/@ovh-ux/manager-product-offers?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/manager-product-offers)](https://www.npmjs.com/package/@ovh-ux/manager-product-offers) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-product-offers)](https://npmjs.com/package/@ovh-ux/manager-product-offers) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/manager-product-offers)](https://npmjs.com/package/@ovh-ux/manager-product-offers?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/manager-product-offers)](https://npmjs.com/package/@ovh-ux/manager-product-offers?activeTab=dependencies)
 
 ## Install
 

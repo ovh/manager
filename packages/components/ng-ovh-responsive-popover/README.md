@@ -2,7 +2,7 @@
 
 > AngularJS module used to display a popover and adapt it to the screen dimension.
 
-[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-responsive-popover)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-responsive-popover) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-responsive-popover)](https://npmjs.com/package/@ovh-ux/ng-ovh-responsive-popover) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-responsive-popover)](https://npmjs.com/package/@ovh-ux/ng-ovh-responsive-popover?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-responsive-popover)](https://npmjs.com/package/@ovh-ux/ng-ovh-responsive-popover?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-responsive-popover)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-responsive-popover) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-responsive-popover)](https://npmjs.com/package/@ovh-ux/ng-ovh-responsive-popover) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-responsive-popover)](https://npmjs.com/package/@ovh-ux/ng-ovh-responsive-popover?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-responsive-popover)](https://npmjs.com/package/@ovh-ux/ng-ovh-responsive-popover?activeTab=dependencies)
 
 ## Install
 
