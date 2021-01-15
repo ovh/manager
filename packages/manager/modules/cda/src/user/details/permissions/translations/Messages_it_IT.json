@@ -1,6 +1,6 @@
 {
   "cda_user_details_permission_title": "Permessi del pool",
-  "cda_user_details_permission_description": "I permessi vengono definiti per Cloud Disk Array OSD (Object Storage Daemon). Di default gli utenti possiedono il permesso \"allow r\" per il monitoraggio (MON). I permessi MDS (Metadata Server Daemon) al momento non vengono utilizzati.",
+  "cda_user_details_permission_description": "I permessi sono definiti per Cloud Disk Array OSD. Di default, un utente possiede il permesso \"allow r\" per il MONs. I permessi MDS non sono attualmente utilizzati.",
   "cda_user_details_permissions_edit_button_text": "Modifica i permessi",
   "cda_user_details_permissions_table_col_poolname": "Pool",
   "cda_user_details_permissions_table_col_read": "Lettura",
