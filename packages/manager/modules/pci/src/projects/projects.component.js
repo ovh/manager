@@ -7,6 +7,8 @@ export default {
     getProject: '<',
     goToProject: '<',
     goToProjects: '<',
+    isHdsAvailable: '<',
+    isValidHdsSupportLevel: '<',
     projects: '<',
     terminateProject: '<',
   },
