@@ -4,7 +4,7 @@
 
 ![](/manager/assets/img/control-panel.jpg)
 
-Visit [ovh.com/manager](https://ovh.com/manager) to manage your products or visit our [Gitter](https://gitter.im/ovh/ux) to send us feedback.
+Visit [ovh.com/manager](https://ovh.com/manager) to manage your products or visit our [GitHub Discussions](https://github.com/ovh/manager/discussions) to send us feedback.
 
 Follow [@ovhcloud](https://twitter.com/ovhcloud) on Twitter for important
 announcements.
