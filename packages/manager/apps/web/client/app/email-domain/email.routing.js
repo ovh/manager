@@ -31,6 +31,13 @@ export default /* @ngInject */ ($stateProvider) => {
         $http.get('/email/domain.json').then(({ data }) => data),
       apiPath: () => '/email/domain/delegatedAccount',
       dataModel: () => 'email.domain.AccountDelegated',
+      staticResources: () => true,
+      resources: /* @ngInject */ ($http, apiPath) =>
+        $http
+          .get(apiPath)
+          .then(({ data }) => data.map((domain) => ({ domain }))),
+      loadResource: /* @ngInject */ ($http, apiPath) => ({ domain }) =>
+        $http.get(`${apiPath}/${domain}`).then(({ data }) => data),
       defaultFilterColumn: () => 'domain',
       header: /* @ngInject */ ($translate) =>
         $translate.instant('emails_domain_title'),
