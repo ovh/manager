@@ -1,6 +1,6 @@
 # manager-server-sidebar
 
-[![npm version](https://badgen.net/npm/v/@ovh-ux/manager-server-sidebar)](https://www.npmjs.com/package/@ovh-ux/manager-server-sidebar) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-server-sidebar)](https://npmjs.com/package/@ovh-ux/manager-server-sidebar) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/modules/server-sidebar)](https://npmjs.com/package/@ovh-ux/manager-server-sidebar?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/modules/server-sidebar)](https://npmjs.com/package/@ovh-ux/manager-server-sidebar?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/manager-server-sidebar)](https://www.npmjs.com/package/@ovh-ux/manager-server-sidebar) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-server-sidebar)](https://npmjs.com/package/@ovh-ux/manager-server-sidebar) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/modules/server-sidebar)](https://npmjs.com/package/@ovh-ux/manager-server-sidebar?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/modules/server-sidebar)](https://npmjs.com/package/@ovh-ux/manager-server-sidebar?activeTab=dependencies)
 
 ## Install
 

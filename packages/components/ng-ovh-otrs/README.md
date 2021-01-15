@@ -2,7 +2,7 @@
 
 > Manage OVH OTRS tickets
 
-[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-otrs)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-otrs) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-otrs)](https://npmjs.com/package/@ovh-ux/ng-ovh-otrs) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-otrs)](https://npmjs.com/package/@ovh-ux/ng-ovh-otrs?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-otrs)](https://npmjs.com/package/@ovh-ux/ng-ovh-otrs?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-otrs)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-otrs) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-otrs)](https://npmjs.com/package/@ovh-ux/ng-ovh-otrs) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-otrs)](https://npmjs.com/package/@ovh-ux/ng-ovh-otrs?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-otrs)](https://npmjs.com/package/@ovh-ux/ng-ovh-otrs?activeTab=dependencies)
 
 # Install
 

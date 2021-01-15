@@ -2,7 +2,7 @@
 
 > AngularJS directive to wrap jQuery UI droppable module
 
-[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-jquery-ui-droppable)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-jquery-ui-droppable) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-jquery-ui-droppable)](https://npmjs.com/package/@ovh-ux/ng-ovh-jquery-ui-droppable) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-jquery-ui-droppable)](https://npmjs.com/package/@ovh-ux/ng-ovh-jquery-ui-droppable?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-jquery-ui-droppable)](https://npmjs.com/package/@ovh-ux/ng-ovh-jquery-ui-droppable?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-jquery-ui-droppable)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-jquery-ui-droppable) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-jquery-ui-droppable)](https://npmjs.com/package/@ovh-ux/ng-ovh-jquery-ui-droppable) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-jquery-ui-droppable)](https://npmjs.com/package/@ovh-ux/ng-ovh-jquery-ui-droppable?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-jquery-ui-droppable)](https://npmjs.com/package/@ovh-ux/ng-ovh-jquery-ui-droppable?activeTab=dependencies)
 
 ## Install
 

@@ -2,7 +2,7 @@
 
 > Extensible webpack configuration for the OVH Manager.
 
-[![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-webpack-config)](https://npmjs.com/package/@ovh-ux/manager-webpack-config) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/tools/webpack-config)](https://npmjs.com/package/@ovh-ux/manager-webpack-config?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/tools/webpack-config)](https://npmjs.com/package/@ovh-ux/manager-webpack-config?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-webpack-config)](https://npmjs.com/package/@ovh-ux/manager-webpack-config) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/tools/webpack-config)](https://npmjs.com/package/@ovh-ux/manager-webpack-config?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/tools/webpack-config)](https://npmjs.com/package/@ovh-ux/manager-webpack-config?activeTab=dependencies)
 
 ## Install
 
