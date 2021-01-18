@@ -1,3 +1,12 @@
+## [1.0.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.0.5...@ovh-ux/manager-cloud-connect@1.0.6) (2021-01-18)
+
+
+### Bug Fixes
+
+* add others subs guide links ([1db4d3b](https://github.com/ovh/manager/commit/1db4d3b3299b547793f054632db214f02e358d06))
+
+
+
 ## [1.0.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.0.4...@ovh-ux/manager-cloud-connect@1.0.5) (2021-01-13)
 
 
