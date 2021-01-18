@@ -53,7 +53,7 @@
     <oui-button
         data-variant="link"
         class="d-block"
-        data-ng-if="hosting.isCloudWeb && cdnProperties.version === '2013v1'"
+        data-ng-if="hosting.isCloudWeb"
         data-disabled="domain.status !== HOSTING_STATUS.CREATED"
         data-on-click="restartDomain(domain)"
     >

@@ -354,7 +354,6 @@ export const DEDICATED_NETWORK_CONFIG = {
           state: 'cloud-connect.details',
           stateParams: ['ovhCloudConnectId'],
           app: [DEDICATED],
-          regions: ['EU'],
           namespace: [undefined, HPC_NAMESPACE],
         },
       ],
