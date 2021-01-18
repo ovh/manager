@@ -137,7 +137,7 @@ angular.module('Module.ip.controllers').controller(
           }
 
           if (get(infos, 'vpsInfos.model.version') === '2019v1') {
-            return this.$state.go('app.ip.agora-order', {
+            return this.$state.go('app.ip.dashboard.agora-order', {
               service: this.$scope.model.service,
               user: this.$scope.currentUser,
             });
