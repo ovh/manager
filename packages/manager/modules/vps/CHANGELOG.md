@@ -1,3 +1,12 @@
+## [2.2.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.2.11...@ovh-ux/manager-vps@2.2.12) (2021-01-18)
+
+
+### Bug Fixes
+
+* **deps:** update @novnc/novnc package ([#4294](https://github.com/ovh/manager/issues/4294)) ([e6bfb31](https://github.com/ovh/manager/commit/e6bfb31e048579563bf1869489fdd3523cb30119))
+
+
+
 ## [2.2.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.2.10...@ovh-ux/manager-vps@2.2.11) (2021-01-04)
 
 

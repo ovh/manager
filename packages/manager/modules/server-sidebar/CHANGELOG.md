@@ -1,3 +1,12 @@
+# [3.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.7.0...@ovh-ux/manager-server-sidebar@3.8.0) (2021-01-18)
+
+
+### Features
+
+* **sidebar.constants:** remove regions config and let feature flipping ([fa19bae](https://github.com/ovh/manager/commit/fa19bae24b8251bbefe9406d41dfc0e5167a33f0))
+
+
+
 # [3.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.6.0...@ovh-ux/manager-server-sidebar@3.7.0) (2021-01-13)
 
 

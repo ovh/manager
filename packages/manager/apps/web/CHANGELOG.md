@@ -1,3 +1,12 @@
+## [15.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.13.0...@ovh-ux/manager-web@15.13.1) (2021-01-18)
+
+
+### Bug Fixes
+
+* **hosting.multisite:** change restart rule ([#4292](https://github.com/ovh/manager/issues/4292)) ([1663257](https://github.com/ovh/manager/commit/166325757c9aa7292ff191e50ded6ac879f58425))
+
+
+
 # [15.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.12.1...@ovh-ux/manager-web@15.13.0) (2021-01-13)
 
 
