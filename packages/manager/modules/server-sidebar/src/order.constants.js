@@ -1,4 +1,4 @@
-import { DEDICATED, CLOUD } from './constants';
+import { DEDICATED } from './constants';
 
 export const ORDER_URLS = {
   EU: {
@@ -495,7 +495,6 @@ export const SIDEBAR_ORDER_CONFIG = [
     tracker: 'dedicated::orders::licences::order',
   },
 
-  // CLOUD
   {
     id: 'order-kube',
     title: 'kube',
@@ -503,7 +502,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     linkId: 'publicCloudKubernetes',
     target: '_blank',
     external: true,
-    app: [CLOUD],
+    app: [DEDICATED],
     regions: ['EU'],
     tracker: 'dedicated::orders::managed-kubernetes::order',
   },
@@ -514,7 +513,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     linkId: 'vps',
     target: '_blank',
     external: true,
-    app: [CLOUD],
+    app: [DEDICATED],
     tracker: 'dedicated::orders::vps::order',
   },
   {
@@ -524,7 +523,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     linkId: 'managed_bare_metal',
     target: '_blank',
     external: true,
-    app: [CLOUD],
+    app: [DEDICATED],
     regions: ['EU', 'CA', 'US'],
     tracker: 'dedicated::orders::mbm::order',
   },
@@ -535,7 +534,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     linkId: 'dedicated_cloud',
     target: '_blank',
     external: true,
-    app: [CLOUD],
+    app: [DEDICATED],
     regions: ['EU', 'CA', 'US'],
     tracker: 'dedicated::orders::hpc::order',
   },
@@ -546,7 +545,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     linkId: 'cloud_disk_array',
     target: '_blank',
     external: true,
-    app: [CLOUD],
+    app: [DEDICATED],
     regions: ['EU', 'CA'],
     tracker: 'dedicated::orders::cloud-disk-array::order',
   },
@@ -567,7 +566,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     linkId: 'veeam',
     target: '_blank',
     external: true,
-    app: [CLOUD],
+    app: [DEDICATED],
     regions: ['EU'],
     tracker: 'dedicated::orders::veeam-cc::order',
   },
@@ -578,7 +577,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     linkId: 'veeam_enterprise',
     target: '_blank',
     external: true,
-    app: [CLOUD],
+    app: [DEDICATED],
     regions: ['EU', 'CA'],
     tracker: 'dedicated::orders::veeam-enterprise::order',
   },
@@ -600,7 +599,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     linkId: 'load_balancer',
     target: '_blank',
     external: true,
-    app: [CLOUD],
+    app: [DEDICATED],
     regions: ['EU'],
     tracker: 'dedicated::orders::ip-load-balancer::order',
   },
