@@ -1,4 +1,4 @@
-import { DEDICATED, CLOUD, HPC_NAMESPACE } from './constants';
+import { DEDICATED, HPC_NAMESPACE } from './constants';
 
 export const DEDICATED_SERVER_CONFIG = {
   id: 'dedicatedServers',
@@ -364,24 +364,6 @@ export const DEDICATED_NETWORK_CONFIG = {
   ],
 };
 
-export const CLOUD_DESKTOP_CONFIG = {
-  id: 'cloud_desktop',
-  loadOnState: 'deskaas',
-  types: [
-    {
-      path: '/deskaas',
-      state: 'deskaas.details',
-      stateParams: ['serviceName'],
-      icon: 'ovh-font ovh-font-cloud-desktop',
-      app: [CLOUD],
-      searchKeys: ['Cloud Desktop', 'deskaas', 'vdi'],
-    },
-  ],
-  icon: 'ovh-font ovh-font-cloud-desktop',
-  app: [CLOUD],
-  regions: ['EU'],
-};
-
 export const SIDEBAR_CONFIG = [
   DEDICATED_SERVER_CONFIG,
   MANAGED_BAREMETAL_CONFIG,
@@ -396,7 +378,6 @@ export const SIDEBAR_CONFIG = [
   LOGS_CONFIG,
   IPLB_CONFIG,
   DEDICATED_NETWORK_CONFIG,
-  CLOUD_DESKTOP_CONFIG,
 
   // DEDICATED END
   MICROSOFT_CONFIG,
