@@ -11,10 +11,10 @@
   "service_netapp_global_news": "Informations générales",
 
   "service_netapp_name": "Nom du service",
-  "service_netapp_id": "Id de service",
+  "service_netapp_id": "ID du service",
   "service_netapp_region": "Localisation",
 
-  "service_netapp_state": "Etat du service",
+  "service_netapp_state": "État du service",
   "service_netapp_status": "Statut",
 
   "service_netapp_plan": "Abonnement",
@@ -29,7 +29,7 @@
   "service_netapp_status_suspending": "Suspension en cours",
   "service_netapp_status_suspended": "Suspendu",
   "service_netapp_status_deleting": "Suppression en cours",
-  "service_netapp_status_deleted": "Supprimer",
+  "service_netapp_status_deleted": "Supprimé",
 
   "share_netapp_status_": "Inconnu",
   "share_netapp_status_AVAILABLE": "Disponible",
@@ -48,13 +48,13 @@
   "netapp_guides_header_all_guides": "Tous les guides",
 
   "share_title": "Volumes",
-  "share_id": "Id",
+  "share_id": "ID",
   "share_name": "Nom",
   "share_description": "Description",
   "share_size": "Taille (Go)",
   "share_protocol": "Protocole",
   "share_status": "Statut",
 
-  "netapp-cloud-volumes-premium-pool-1tb": "1Tb Premium",
-  "netapp-cloud-volumes-premium-pool-10tb": "10Tb Premium"
+  "netapp-cloud-volumes-premium-pool-1tb": "1 To Premium",
+  "netapp-cloud-volumes-premium-pool-10tb": "10 To Premium"
 }
