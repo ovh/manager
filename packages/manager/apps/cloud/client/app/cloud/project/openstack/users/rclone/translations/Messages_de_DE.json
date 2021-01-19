@@ -1,8 +1,0 @@
-{
- "cpou_rclone_modal_title": "Rclone Konfigurationsdatei herunterladen",
- "cpou_rclone_modal_explanation": "Bitte laden Sie eine Konfigurationsdatei herunter, um sich mit Rclone zu verbinden.",
- "cpou_rclone_modal_explanation_more_info_link_text": "Mehr Informationen",
- "cpou_rclone_modal_input_region_label": "Wählen Sie die Region aus, in der diese Datei angewandt wird:",
- "cpou_rclone_modal_security_note": "Aus Sicherheitsgründen enthält die Konfigurationsdatei nicht Ihr Passwort. Bearbeiten Sie daher die Konfigurationsdatei und fügen Sie Ihr Passwort manuell hinzu.",
- "cpou_rclone_modal_loading_error": "Beim Laden der zugehörigen Daten der Rclone Datei ist ein Fehler aufgetreten: {{ message }}"
-}

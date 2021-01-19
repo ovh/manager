@@ -1,9 +1,0 @@
-{
-  "cloud_project_rename_loading_error": "Se ha producido un error al cargar la descripción.",
-  "cloud_project_rename_error": "Se ha producido un error al cambiar la descripción.",
-  "cpb_details_project_delete": "Eliminar este proyecto",
-  "cpb_details_project_rename_reset": "Cancelar",
-  "cpb_details_project_rename_ok": "Guardar",
-  "cpb_details_project_rename": "Renombrar",
-  "cpb_details_project_description": "Descripción del proyecto"
-}

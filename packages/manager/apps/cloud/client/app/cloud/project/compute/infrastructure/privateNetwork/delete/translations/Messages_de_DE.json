@@ -1,6 +1,0 @@
-{
- "cpci_private_network_delete_title": "Privates Netzwerk löschen",
- "cpci_private_network_delete_confirm": "Sind Sie sicher, dass Sie das private Netzwerk löschen möchten?",
- "cpci_private_network_delete_success": "Das private Netzwerk wurde erfolgreich gelöscht",
- "cpci_private_network_delete_error": "Beim Löschen des privaten Netzwerks ist ein Fehler aufgetreten"
-}

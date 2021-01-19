@@ -1,8 +1,0 @@
-{
- "cpou_rclone_modal_title": "Pobierz plik konfiguracyjny rClone",
- "cpou_rclone_modal_explanation": "Aby połączyć się z rClone, pobierz plik konfiguracyjny.",
- "cpou_rclone_modal_explanation_more_info_link_text": "Więcej informacji",
- "cpou_rclone_modal_input_region_label": "Wybierz region, dla którego ma zostać zastosowany ten plik:",
- "cpou_rclone_modal_security_note": "Ze względów bezpieczeństwa plik konfiguracyjny nie zawiera Twojego hasła. Edytuj plik, aby dodać hasło ręcznie.",
- "cpou_rclone_modal_loading_error": "Wystąpił błąd podczas ładowania danych powiązanych z plikiem: {{ message }}"
-}

@@ -1,6 +1,0 @@
-{
- "cpcivm_delete_title": "Eliminação de uma instância",
- "cpcivm_delete_info": "O pagamento do mês em curso para este servidor não será \"re-aproveitado\" e será perdido.",
- "cpcivm_failover_info": "Os seguintes endereços IP Failover serão eliminados definitivamente:",
- "cpcivm_delete_confirm": "Têm a certeza de que deseja eliminar esta instância?"
-}
