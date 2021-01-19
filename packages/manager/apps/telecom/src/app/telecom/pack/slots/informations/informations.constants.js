@@ -3,7 +3,7 @@ export const IG_MAP_URL = {
 };
 
 export const TRAVAUX_URL =
-  'https://travaux.ovh.net/?project=20&status=all&perpage=50';
+  'http://travaux.ovh.net/?project=20&status=all&perpage=50';
 
 export default {
   IG_MAP_URL,
