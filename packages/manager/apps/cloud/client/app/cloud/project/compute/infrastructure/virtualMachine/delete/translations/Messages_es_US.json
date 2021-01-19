@@ -1,6 +1,0 @@
-{
-  "cpcivm_delete_title": "Eliminación de una instancia",
-  "cpcivm_delete_info": "El paquete mensual vigente para este servidor ya se ha facturado y se perderá.",
-  "cpcivm_failover_info": "¡Atención! Las siguientes direcciones IP failover se eliminarán definitivamente:",
-  "cpcivm_delete_confirm": "¿Está seguro(a) que desea eliminar la instancia?"
-}

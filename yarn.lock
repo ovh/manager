@@ -4073,11 +4073,6 @@ acorn@^7.1.1:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-7.4.0.tgz#e1ad486e6c54501634c6c397c5c121daa383607c"
   integrity sha512-+G7P8jJmCHr+S+cLfQxygbWhXy+8YTVGzAkpEbcLo2mLoL7tij/VG41QSHACSf5QgYRhMZYHuNc6drJaO0Da+w==
 
-add-matchers@0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/add-matchers/-/add-matchers-0.5.0.tgz#502190e4750cd5721618393268b61a157366e765"
-  integrity sha1-UCGQ5HUM1XIWGDkyaLYaFXNm52U=
-
 add-stream@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/add-stream/-/add-stream-1.0.0.tgz#6a7990437ca736d5e1288db92bd3266d5f5cb2aa"
@@ -4238,7 +4233,7 @@ amdefine@>=0.0.4:
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
   integrity sha1-SlKCrBZHKek2Gbz9OtFR+BfOkfU=
 
-angular-animate@^1.7.5, angular-animate@~1.7.8:
+angular-animate@^1.7.5:
   version "1.7.9"
   resolved "https://registry.yarnpkg.com/angular-animate/-/angular-animate-1.7.9.tgz#a397f82434c1e7ed5b7a298fa70fc3de989a6785"
   integrity sha512-fV+AISy/HTzurQH2ngsJg+lLIvfu0ahc1h4AYKauaXVw97rZc2k4iUA1bMstiEyClsdayQX568kjQc1NK+oYhw==
@@ -4261,7 +4256,7 @@ angular-cookies@1.7.x, "angular-cookies@>=1.2.26 <1.8", angular-cookies@^1.6.0, 
   resolved "https://registry.yarnpkg.com/angular-cookies/-/angular-cookies-1.7.9.tgz#0f0cd2a9d1c81e5b8d6c6711d41f0909f9d0b8e0"
   integrity sha512-3eRq/aPrtCZKDWQnc3nW3sFoMbLiHkCkyDF2O9u7VXnqvVsUPaipk5R1ZqahgcSQHQrN/F5IU4T4nrz52qAZmA==
 
-angular-dynamic-locale@^0.1.0, angular-dynamic-locale@^0.1.27, angular-dynamic-locale@^0.1.37, angular-dynamic-locale@~0.1.27:
+angular-dynamic-locale@^0.1.27, angular-dynamic-locale@^0.1.37, angular-dynamic-locale@~0.1.27:
   version "0.1.37"
   resolved "https://registry.yarnpkg.com/angular-dynamic-locale/-/angular-dynamic-locale-0.1.37.tgz#7e89fbd2ec45bdd6abc89f36cda8893838e49354"
   integrity sha512-m5Kyk8W8/mOZSqRxuByOwHBjv8labLBAgvl0Z3iQx2xT/tWCqb94imKUPwumudszdPDjxeopwyucQvm8Sw7ogw==
@@ -4290,17 +4285,12 @@ angular-leaflet-directive@0.8.5:
   resolved "https://registry.yarnpkg.com/angular-leaflet-directive/-/angular-leaflet-directive-0.8.5.tgz#8eb275587e54eb00f4aa3090284ea0a81a44290d"
   integrity sha1-jrJ1WH5U6wD0qjCQKE6gqBpEKQ0=
 
-angular-messages@1.7.x, angular-messages@^1.6.0, angular-messages@^1.7.5, angular-messages@^1.7.6, angular-messages@~1.7.8:
+angular-messages@1.7.x, angular-messages@^1.6.0, angular-messages@^1.7.5, angular-messages@^1.7.6:
   version "1.7.9"
   resolved "https://registry.yarnpkg.com/angular-messages/-/angular-messages-1.7.9.tgz#6403b7f56df4b17b62d88762ac5e6b1702347fd2"
   integrity sha512-OdJihuO6AW+m1/r9OdW5riCwacn3dL1agQvgu6Cww3a7OARXXN0vxOpsZCNk4yg4CuD7Et3tiz4DymhvZkydvw==
 
-angular-mock@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/angular-mock/-/angular-mock-1.0.0.tgz#67431849bf0add225b1d49e0a771659a4b360ba5"
-  integrity sha1-Z0MYSb8K3SJbHUngp3Flmks2C6U=
-
-angular-mocks@^1.5.5, angular-mocks@^1.7.5, angular-mocks@~1.7.8:
+angular-mocks@^1.5.5, angular-mocks@^1.7.5:
   version "1.7.9"
   resolved "https://registry.yarnpkg.com/angular-mocks/-/angular-mocks-1.7.9.tgz#0a3b7e28b9a493b4e3010ed2b0f69a68e9b4f79b"
   integrity sha512-LQRqqiV3sZ7NTHBnNmLT0bXtE5e81t97+hkJ56oU0k3dqKv1s6F+nBWRlOVzqHWPGFOiPS8ZJVdrS8DFzHyNIA==
@@ -4352,15 +4342,6 @@ angular-sanitize@1.7.x, angular-sanitize@^1.6.9, angular-sanitize@^1.7.5, angula
   version "1.7.9"
   resolved "https://registry.yarnpkg.com/angular-sanitize/-/angular-sanitize-1.7.9.tgz#6b4d5e826abdabd352b13a7c65c8c74daf6a7b15"
   integrity sha512-nB/xe7JQWF9nLvhHommAICQ3eWrfRETo0EVGFESi952CDzDa+GAJ/2BFBNw44QqQPxj1Xua/uYKrbLsOGWZdbQ==
-
-angular-scroll-glue@luegg/angularjs-scroll-glue#~2.2:
-  version "2.2.0"
-  resolved "https://codeload.github.com/luegg/angularjs-scroll-glue/tar.gz/5990d90cbf84efdf837edcbf26cefe9adb676f5b"
-
-angular-strap@~2.3:
-  version "2.3.12"
-  resolved "https://registry.yarnpkg.com/angular-strap/-/angular-strap-2.3.12.tgz#fae21655cd77079671bf918ab7ed6227783062fa"
-  integrity sha1-+uIWVc13B5Zxv5GKt+1iJ3gwYvo=
 
 angular-translate-loader-partial@^2.11.0, angular-translate-loader-partial@^2.18.1:
   version "2.18.1"
@@ -4426,21 +4407,11 @@ angular-ui-sortable@^0.16.1:
   resolved "https://registry.yarnpkg.com/angular-ui-sortable/-/angular-ui-sortable-0.16.1.tgz#b5909b029947e31ec3935b01d96775a2fee78a63"
   integrity sha1-tZCbAplH4x7Dk1sB2Wd1ov7nimM=
 
-angular-ui-sortable@~0.14:
-  version "0.14.4"
-  resolved "https://registry.yarnpkg.com/angular-ui-sortable/-/angular-ui-sortable-0.14.4.tgz#6cbdd8b9781eeebac5e74633286d254e9edb9624"
-  integrity sha1-bL3YuXge7rrF50YzKG0lTp7bliQ=
-
 angular-ui-utils@angular-ui/ui-utils#0.2.3:
   version "0.0.0"
   resolved "https://codeload.github.com/angular-ui/ui-utils/tar.gz/125cb72d692f9f116454f338f6a5471f3088f9b9"
 
-angular-ui-validate@^1.2.3, angular-ui-validate@~1.2:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/angular-ui-validate/-/angular-ui-validate-1.2.3.tgz#beb141f64409bfddba65c12f7581b893ddf59321"
-  integrity sha1-vrFB9kQJv926ZcEvdYG4k931kyE=
-
-angular-ui-validate@angular-ui/ui-validate#~1.2.2:
+angular-ui-validate@^1.2.3, angular-ui-validate@angular-ui/ui-validate#~1.2.2:
   version "1.2.3"
   resolved "https://codeload.github.com/angular-ui/ui-validate/tar.gz/0d982055360032be2421b969fa1c83bf053e735a"
 
@@ -4451,7 +4422,7 @@ angular-validation-match@^1.9.0:
   dependencies:
     angular ">=1.3.0 <2.0.0"
 
-angular-websocket@^2.0.0, angular-websocket@^2.0.1:
+angular-websocket@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/angular-websocket/-/angular-websocket-2.0.1.tgz#0fb4d60ed9018be583d031eec4e56b457cb8dcee"
   integrity sha1-D7TWDtkBi+WD0DHuxOVrRXy43O4=
@@ -4481,7 +4452,7 @@ angularjs-scroll-glue@^2.2.0:
   resolved "https://registry.yarnpkg.com/angularjs-scroll-glue/-/angularjs-scroll-glue-2.2.0.tgz#07d3399ac16ca874c63b6b5ee2ee30558b37e5d1"
   integrity sha1-B9M5msFsqHTGO2te4u4wVYs35dE=
 
-animate.css@^3.5.0, animate.css@^3.7.2, animate.css@~3.7.2:
+animate.css@^3.5.0, animate.css@^3.7.2:
   version "3.7.2"
   resolved "https://registry.yarnpkg.com/animate.css/-/animate.css-3.7.2.tgz#e73e0d50e92cb1cfef1597d9b38a9481020e08ea"
   integrity sha512-0bE8zYo7C0KvgOYrSVfrzkbYk6IOTVPNqkiHg2cbyF4Pq/PXzilz4BRWA3hwEUBoMp5VBgrC29lQIZyhRWdBTw==
@@ -13130,13 +13101,6 @@ jasmine-core@^2.4.1:
   resolved "https://registry.yarnpkg.com/jasmine-core/-/jasmine-core-2.99.1.tgz#e6400df1e6b56e130b61c4bcd093daa7f6e8ca15"
   integrity sha1-5kAN8ea1bhMLYcS80JPap/boyhU=
 
-jasmine-expect@^3.8.0:
-  version "3.8.4"
-  resolved "https://registry.yarnpkg.com/jasmine-expect/-/jasmine-expect-3.8.4.tgz#099d3923f0b3746c01e50faaa64689fd76fc9c2f"
-  integrity sha512-XliRILF8hX+yREQAtAxr4isXeMTL1H01etWJcG5BlBGKckfEOhCyM0ZlrrcV/4+MqknWlVa8nLxSZ/EVztAlug==
-  dependencies:
-    add-matchers "0.5.0"
-
 javascript-stringify@^1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/javascript-stringify/-/javascript-stringify-1.6.0.tgz#142d111f3a6e3dae8f4a9afd77d45855b5a9cce3"
@@ -13165,16 +13129,6 @@ jquery-ui@>=1.12.x, jquery-ui@^1.12.1:
   version "1.12.1"
   resolved "https://registry.yarnpkg.com/jquery-ui/-/jquery-ui-1.12.1.tgz#bcb4045c8dd0539c134bc1488cdd3e768a7a9e51"
   integrity sha1-vLQEXI3QU5wTS8FIjN0+dop6nlE=
-
-jquery-ui@components/jqueryui#~1.11.2:
-  version "1.11.4"
-  resolved "https://codeload.github.com/components/jqueryui/tar.gz/c34f8dbf3ba57b3784b93f26119f436c0e8288e1"
-
-jquery.scrollTo@flesler/jquery.scrollTo#~1.4.14:
-  version "1.4.14"
-  resolved "https://codeload.github.com/flesler/jquery.scrollTo/tar.gz/025405d6bc60e810130ba33a63acc37fe32cdadc"
-  dependencies:
-    jquery ">=1.4"
 
 jquery.scrollto@2.1.2:
   version "2.1.2"
@@ -13292,7 +13246,7 @@ json-stringify-safe@^5.0.1, json-stringify-safe@~5.0.1:
   resolved "https://registry.yarnpkg.com/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz#1296a2d58fd45f19a0f6ce01d65701e2c735b6eb"
   integrity sha1-Epai1Y/UXxmg9s4B1lcB4sc1tus=
 
-json3@3.3.2, json3@bestiejs/json3#~3.3.1:
+json3@3.3.2:
   version "3.3.2"
   resolved "https://codeload.github.com/bestiejs/json3/tar.gz/dec5c2a5dc723ff867caa32a81ed93ab814f7426"
 
@@ -13364,10 +13318,6 @@ jsplumb@^2.11.2, jsplumb@^2.12.0:
   version "2.12.6"
   resolved "https://registry.yarnpkg.com/jsplumb/-/jsplumb-2.12.6.tgz#4fd4e3a25492fd76ce1981dbd5d93dfa840b3d7a"
   integrity sha512-flQBX7wdnVdW208yKuxNY+8rvaw5cKCz0sO80QIShY+S/L6813qFf3ncKG1ikACluJ1Htctz/puiAT8B2rZOew==
-
-jsplumb@sporritt/jsPlumb#1.7.4:
-  version "1.7.4"
-  resolved "https://codeload.github.com/sporritt/jsPlumb/tar.gz/43f6931055fb6eea3a368a7dd677bb6e9903b27b"
 
 jsprim@^1.2.2:
   version "1.4.1"
@@ -13611,11 +13561,6 @@ less-loader@^7.0.2:
     klona "^2.0.4"
     loader-utils "^2.0.0"
     schema-utils "^3.0.0"
-
-less-plugin-remcalc@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/less-plugin-remcalc/-/less-plugin-remcalc-0.0.1.tgz#f6a52d0d340964935e07be0e7d6f752210ea53a7"
-  integrity sha1-9qUtDTQJZJNeB74OfW91IhDqU6c=
 
 less-plugin-remcalc@^0.1.0:
   version "0.1.0"
@@ -14439,7 +14384,7 @@ match-url-wildcard@0.0.4:
   dependencies:
     escape-string-regexp "^1.0.5"
 
-matchmedia-ng@^1.0.8, matchmedia-ng@~1.0:
+matchmedia-ng@^1.0.8:
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/matchmedia-ng/-/matchmedia-ng-1.0.8.tgz#d3dd438c6fbe55b2c8b0b06f1929f54bdc9bd014"
   integrity sha1-091DjG++VbLIsLBvGSn1S9yb0BQ=
@@ -14455,10 +14400,6 @@ matchmedia@^0.1.2:
   integrity sha1-z9R/K/aPvH9eob06PPFxXsujwb0=
   dependencies:
     css-mediaquery "^0.1.2"
-
-matchmedia@paulirish/matchMedia.js#~0.2.0:
-  version "0.0.0"
-  resolved "https://codeload.github.com/paulirish/matchMedia.js/tar.gz/3c67d9bfb525b1b0549448aa27769a289ba5be98"
 
 math-random@^1.0.1:
   version "1.0.4"
@@ -15971,13 +15912,6 @@ osenv@0, osenv@^0.1.4, osenv@^0.1.5:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.0"
 
-ovh-angular-list-view@ovh-ux/ovh-angular-list-view#^0.1.5:
-  version "0.1.5"
-  resolved "https://codeload.github.com/ovh-ux/ovh-angular-list-view/tar.gz/e0b8ed735bc2431f10f32f73d665d78da93dd77a"
-  dependencies:
-    angular-mock "^1.0.0"
-    less-plugin-remcalc "^0.0.1"
-
 ovh-angular-responsive-tabs@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/ovh-angular-responsive-tabs/-/ovh-angular-responsive-tabs-4.0.0.tgz#85b66d7032612c3ed1a14cb29f83d1331b50c1df"
@@ -15990,7 +15924,7 @@ ovh-api-services@^11.0.1:
   dependencies:
     lodash "^4.17.20"
 
-ovh-common-style@^3.2.2, ovh-common-style@ovh-ux/ovh-common-style#^3.2.2:
+ovh-common-style@^3.2.2:
   version "3.2.2"
   resolved "https://codeload.github.com/ovh-ux/ovh-common-style/tar.gz/cd9f7bea9240b7e2334ae5cd7e74529478b271d4"
 
@@ -21495,10 +21429,6 @@ uri-js@^4.2.2:
   dependencies:
     punycode "^2.1.0"
 
-uri.js@medialize/URI.js#~1.15.0:
-  version "1.15.2"
-  resolved "https://codeload.github.com/medialize/URI.js/tar.gz/c51da7e8c0bdf46ae926d2388d3032e2347c61db"
-
 urijs@^1.18.0, urijs@^1.19.1, urijs@^1.19.2:
   version "1.19.2"
   resolved "https://registry.yarnpkg.com/urijs/-/urijs-1.19.2.tgz#f9be09f00c4c5134b7cb3cf475c1dd394526265a"
@@ -21684,10 +21614,6 @@ validator-js@^0.2.1:
   integrity sha1-EgmnRukG8NZOo08NA/mDcLVsCNE=
   dependencies:
     underscore "*"
-
-validator-js@chriso/validator.js#~3.37.0:
-  version "3.37.0"
-  resolved "https://codeload.github.com/chriso/validator.js/tar.gz/415a54e82d4aef157b8926e77aabb70b342a4eb5"
 
 validator@^10.11.0:
   version "10.11.0"
@@ -22551,7 +22477,7 @@ xmlhttprequest@1:
   resolved "https://registry.yarnpkg.com/xtend/-/xtend-4.0.2.tgz#bb72779f5fa465186b1f438f674fa347fdb5db54"
   integrity sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==
 
-xterm@^3.14.5, xterm@^3.8.1:
+xterm@^3.14.5:
   version "3.14.5"
   resolved "https://registry.yarnpkg.com/xterm/-/xterm-3.14.5.tgz#c9d14e48be6873aa46fb429f22f2165557fd2dea"
   integrity sha512-DVmQ8jlEtL+WbBKUZuMxHMBgK/yeIZwkXB81bH+MGaKKnJGYwA+770hzhXPfwEIokK9On9YIFPRleVp/5G7z9g==

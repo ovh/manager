@@ -1,7 +1,0 @@
-{
- "cpcivm_monthly_title": "Przejście na abonament miesięczny",
- "cpcivm_monthly_info": "Zmniejsz cenę o 50% zmieniając abonament na miesięczny dla tej maszyny (abonament płatny z góry).",
- "cpcivm_monthly_prorata_warning": "Otrzymasz natychmiast fakturę na kwotę odpowiadającą liczbie dni do końca miesiąca.",
- "cpcivm_monthly_success": "Ten serwer zostanie zintegrowany z abonamentem miesięcznym w ciągu kilku minut.",
- "cpcivm_monthly_fail": "Wystąpił błąd podczas przechodzenia na abonament miesięczny."
-}
