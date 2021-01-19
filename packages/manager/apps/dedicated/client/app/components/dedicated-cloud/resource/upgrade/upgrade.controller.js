@@ -20,7 +20,7 @@ export default class {
     this.bindings = {
       isLoading: false,
     };
-
+    this.optionPlanCode = null;
     return this.fetchInitialData();
   }
 
@@ -70,6 +70,8 @@ export default class {
   fetchServiceOptionPlanCode(target) {
     const targetPlanCode = target.profileCode || target.profile || null;
     const targetFamily = this.type;
+    this.optionPlanCode = targetPlanCode;
+
     return this.$http
       .get(`/order/cartServiceOption/privateCloud/${this.productId}`)
       .then((data) => get(data, 'data'))
@@ -77,7 +79,7 @@ export default class {
         find(
           options,
           ({ planCode, family }) =>
-            planCode.startsWith(targetPlanCode) && family === targetFamily,
+            planCode === targetPlanCode && family === targetFamily,
         ),
       )
       .then(({ planCode }) => planCode);
@@ -153,6 +155,14 @@ export default class {
   }
 
   placeOrder() {
+    if (!this.plan) {
+      return this.goBack(
+        this.$translate.instant('ovhManagerPccResourceUpgrade_plan_not_found', {
+          planCode: this.optionPlanCode,
+        }),
+        'danger',
+      );
+    }
     const stringifiedExpressParameters = JSURL.stringify([
       {
         productId: ORDER_PARAMETERS.productId,
@@ -179,6 +189,6 @@ export default class {
     window.location = `${this.expressURL}review?products=${stringifiedExpressParameters}`;
     window.target = '_blank';
 
-    this.goBack();
+    return this.goBack();
   }
 }
