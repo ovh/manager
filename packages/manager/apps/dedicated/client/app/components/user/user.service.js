@@ -1,4 +1,5 @@
 import flatten from 'lodash/flatten';
+import { Environment } from '@ovh-ux/manager-config';
 
 import { User } from '@ovh-ux/manager-models';
 
@@ -21,9 +22,7 @@ angular.module('services').service('User', [
         userPromise = $q.when('start').then(() =>
           $q
             .all({
-              me: OvhHttp.get('/me', {
-                rootPath: 'apiv6',
-              }),
+              me: () => Environment.getUser(),
               certificates: this.getUserCertificates(),
             })
             .then((result) => {

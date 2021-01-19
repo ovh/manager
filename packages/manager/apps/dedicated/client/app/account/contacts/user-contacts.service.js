@@ -1,11 +1,13 @@
 import set from 'lodash/set';
 import without from 'lodash/without';
+import { Environment } from '@ovh-ux/manager-config';
 
 import { AVAILABLE_SERVICES } from './user-contacts.constants';
 
 angular
   .module('UserAccount')
   .service('UserAccount.services.Contacts', function UserAccountContactsService(
+    $q,
     $rootScope,
     OvhHttp,
     constants,
@@ -25,7 +27,7 @@ angular
     self.excludeNics = [/^ovhtel-[0-9]+/];
 
     self.getMe = function getMe() {
-      return OvhHttp.get('/me', { rootPath: 'apiv6', cache: cache.me });
+      return $q.when(Environment.getUser());
     };
 
     self.getContactChangeTasks = function getContactChangeTasks(params) {

@@ -1,12 +1,14 @@
 import identity from 'lodash/identity';
 import pickBy from 'lodash/pickBy';
 import set from 'lodash/set';
+import { Environment } from '@ovh-ux/manager-config';
 
 angular
   .module('Module.otrs.services')
   .service('Module.otrs.services.otrs', [
+    '$q',
     'OvhHttp',
-    function OtrsOtrsService(OvhHttp) {
+    function OtrsOtrsService($q, OvhHttp) {
       const self = this;
       const cache = {
         models: 'UNIVERS_MODULE_OTRS_MODELS',
@@ -35,10 +37,7 @@ angular
       };
 
       this.getMe = function getMe() {
-        return OvhHttp.get('/me', {
-          rootPath: 'apiv6',
-          cache: cache.me,
-        });
+        return $q.when(Environment.getUser());
       };
 
       this.isVIP = function isVIP() {
