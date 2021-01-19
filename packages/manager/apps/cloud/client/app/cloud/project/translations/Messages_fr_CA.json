@@ -1,6 +1,0 @@
-{
- "cpc_tab_billing": "Consommation",
- "cpc_tab_openstack_users": "Openstack",
- "cpb_details_compute_error_message": "Oups, nous n'arrivons pas à récupérer les informations concernant les infrastructures.",
- "cpb_read_only_access_alert": "Votre compte est en lecture seule, certaines opérations sont inaccessibles. Pour obtenir un privilège d'écriture, contactez votre administrateur."
-}

@@ -1,7 +1,0 @@
-{
- "cpcivm_vnc_title": "VNC Konsole",
- "cpcivm_vnc_tip": "Hinweis: Falls die Eingabe nicht funktioniert, klicken Sie unten auf den blauen Balken.",
- "cpcivm_vnc_window": "In einem neuen Fenster öffnen",
- "cpcivm_vnc_error": "Beim Öffnen der VNC Konsole ist ein Fehler aufgetreten.",
- "cpcivm_vnc_linuxinfo": "Um die VNC Konsole auf einer Linux Maschine nutzen zu können, müssen Sie sich zuerst per SSH mit dieser verbinden und einen Benutzer mit Passwort konfigurieren."
-}

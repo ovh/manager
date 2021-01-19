@@ -1,9 +1,0 @@
-{
-  "cpc_tab_infra": "Infraestructura",
-  "cpc_tab_snapshot": "Copias de seguridad",
-  "cpc_tab_volume": "Discos adicionales",
-  "cpc_tab_ssh": "Clés SSH",
-  "cpc_tab_loadbalancer": "Balanceador de carga",
-  "cpc_tab_project": "Gestión y consumo del proyecto",
-  "cpb_tab_quota": "Límite"
-}
