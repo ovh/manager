@@ -1,3 +1,12 @@
+## [2.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@2.0.2...@ovh-ux/manager-billing@2.0.3) (2021-01-19)
+
+
+### Bug Fixes
+
+* **subscription-tile:** fix contact management link ([#4303](https://github.com/ovh/manager/issues/4303)) ([a3d469d](https://github.com/ovh/manager/commit/a3d469dc5791aa653ae3ea52412fe8ea9813ea0f))
+
+
+
 ## [2.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@2.0.1...@ovh-ux/manager-billing@2.0.2) (2021-01-13)
 
 
