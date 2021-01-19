@@ -6,13 +6,18 @@ export default /* @ngInject */ ($stateProvider) => {
     params: {
       error: null,
     },
-    component: 'managerErrorPage',
+    views: {
+      'container@': {
+        component: 'managerErrorPage',
+      },
+    },
     resolve: {
       cancelLink: /* @ngInject */ ($state) =>
         $state.href('app.configuration', { reload: true }),
       error: /* @ngInject */ ($transition$) =>
         get($transition$.params(), 'error'),
       translationsRefresh: /* @ngInject */ ($translate) => $translate.refresh(),
+      breadcrumb: () => null,
     },
   });
 };

@@ -54,7 +54,7 @@
                 style="overflow: auto"
                 data-ui-view="app"
             >
-                <div class="row">
+                <div class="row h-100">
                     <ovh-manager-server-sidebar
                         universe="'DEDICATED'"
                         namespace="$ctrl.sidebarNamespace"
@@ -72,7 +72,8 @@
                     ></div>
 
                     <div
-                        class="col-md-9 col-md-offset-3 col-lg-10 col-lg-offset-2 px-0"
+                        class="col-md-9 col-md-offset-3 col-lg-10 col-lg-offset-2 px-0 h-100"
+                        ui-view="container"
                     >
                         <!-- Skip content target -->
                         <div class="skiptarget">
