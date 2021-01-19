@@ -20,7 +20,7 @@ angular.module('myApp', [ovhManagerAdvices]);
 ```html
   <ovh-advices
     service-type="dedicated-server"
-    advice-name="{{ ::$ctrl.serviceName }}"
+    service-name="{{ ::$ctrl.serviceName }}"
     on-advice-click="$ctrl.onAdviceClick(advice)">
  </ovh-advices>
 ```

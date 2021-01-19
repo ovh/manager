@@ -2,14 +2,14 @@ import controller from './controller';
 import template from './template.html';
 
 /**
- * Makes 2api call to /adives to get advices for a given service type and name.
- * It used serviceType, serviceName and queryParams to construct the URl.
+ * Makes 2api call to /advices to get advices for a given service type and name.
+ * It uses serviceType, serviceName and queryParams to construct the URL.
  *
- * serviceType: type of service, refer 2api /advices documentation for list of service types supported.
+ * serviceType: type of service used in /advices 2api, ex: dedicated-server, hosting, vpn etc.
  *
- * ServiceName: name of service
+ * serviceName: name of service
  *
- * queryParams: map of query params that need to pass to /advices api
+ * queryParams: object of query params that need to pass to /advices api
  *
  * onAdviceClick: event handler to notify click on a advice
  *
@@ -56,7 +56,7 @@ export default {
 
     /**
      * map of query params
-     * @type {string}
+     * @type {object}
      */
     queryParams: '<?',
 
