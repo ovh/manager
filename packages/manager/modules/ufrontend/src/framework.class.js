@@ -15,8 +15,8 @@ class OvhMicroFrontend {
     this.environment = new EnvironmentService();
   }
 
-  init() {
-    return fetch2APIConfig().then((config) => {
+  init(app) {
+    return fetch2APIConfig(app).then((config) => {
       this.config.resolve(config);
       if (config.applicationName) {
         this.environment.setApplicationName(config.applicationName);
