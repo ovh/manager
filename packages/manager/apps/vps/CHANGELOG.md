@@ -1,3 +1,12 @@
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps-app@1.1.2...@ovh-ux/manager-vps-app@1.2.0) (2021-01-20)
+
+
+### Features
+
+* **vps-advice-upsell:** add upsell advice for vps ([cc731ac](https://github.com/ovh/manager/commit/cc731ac134cf04352c76944f2feffc76d59ccc89))
+
+
+
 ## [1.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps-app@1.1.1...@ovh-ux/manager-vps-app@1.1.2) (2021-01-04)
 
 

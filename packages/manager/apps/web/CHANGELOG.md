@@ -1,3 +1,21 @@
+# [15.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.13.1...@ovh-ux/manager-web@15.14.0) (2021-01-20)
+
+
+### Bug Fixes
+
+* fix review comments ([49011c8](https://github.com/ovh/manager/commit/49011c809ced7311b28fc1cd49bd961b1eb8976d))
+* **domain.anycast:** add anycast order tags ([#4312](https://github.com/ovh/manager/issues/4312)) ([9512567](https://github.com/ovh/manager/commit/9512567774360d1b80e4cdd6a95c91fb59e4d74b))
+* **hosting:** reduce tile marging bottom ([7a265cc](https://github.com/ovh/manager/commit/7a265cc22e26e84073d78172dd498c225f49ea97))
+* **web:** add domain advices ([cae8513](https://github.com/ovh/manager/commit/cae8513ff080632ed11902525567ba0785793105)), closes [#MANAGER-6075](https://github.com/ovh/manager/issues/MANAGER-6075)
+* **web:** hosting advices ([c5a757b](https://github.com/ovh/manager/commit/c5a757b289affc3fc2e446c59653139808d7f262)), closes [#MANAGER-6069](https://github.com/ovh/manager/issues/MANAGER-6069)
+
+
+### Features
+
+* add some missing tracking ([#4244](https://github.com/ovh/manager/issues/4244)) ([c263813](https://github.com/ovh/manager/commit/c263813cb2766efd5c3bfb8fd883d99debfe27da))
+
+
+
 ## [15.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.13.0...@ovh-ux/manager-web@15.13.1) (2021-01-18)
 
 
