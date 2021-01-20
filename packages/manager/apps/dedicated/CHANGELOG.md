@@ -1,3 +1,27 @@
+# [16.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@15.0.1...@ovh-ux/manager-dedicated@16.0.0) (2021-01-20)
+
+
+### Bug Fixes
+
+* **dedicated-server:** bandwidth plans filter ([a56315b](https://github.com/ovh/manager/commit/a56315b495dd84511e3dd77860cbc50415af527e))
+
+
+### Features
+
+* add some missing tracking ([#4244](https://github.com/ovh/manager/issues/4244)) ([c263813](https://github.com/ovh/manager/commit/c263813cb2766efd5c3bfb8fd883d99debfe27da))
+* **dedicated:** add dedicated cloud datacenter advices ([f1f8054](https://github.com/ovh/manager/commit/f1f8054ddd820ffaf86e1bc2897cff69975ec270)), closes [#MANAGER-6073](https://github.com/ovh/manager/issues/MANAGER-6073)
+* **uscs:** add  dvices module ([d20c873](https://github.com/ovh/manager/commit/d20c873e2c8101fdad2924d4bb04e9c94cd77bf2))
+* **vps-advice-upsell:** add upsell advice for vps ([cc731ac](https://github.com/ovh/manager/commit/cc731ac134cf04352c76944f2feffc76d59ccc89))
+
+
+### BREAKING CHANGES
+
+* **uscs:** init `@ovh-ux/manager-advices` module
+
+Signed-off-by: Ravindra Adireddy <ravindra.adireddy@ovhcloud.com>
+
+
+
 ## [15.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@15.0.0...@ovh-ux/manager-dedicated@15.0.1) (2021-01-14)
 
 

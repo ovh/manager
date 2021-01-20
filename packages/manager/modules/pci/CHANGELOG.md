@@ -1,3 +1,12 @@
+# [5.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.7.0...@ovh-ux/manager-pci@5.8.0) (2021-01-20)
+
+
+### Features
+
+* **public-cloud:** add instance advice ([2bb43ee](https://github.com/ovh/manager/commit/2bb43ee9456c9159b0790e434761e9cbb4951dcf)), closes [#MANAGER-6076](https://github.com/ovh/manager/issues/MANAGER-6076)
+
+
+
 # [5.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.6.1...@ovh-ux/manager-pci@5.7.0) (2021-01-13)
 
 
