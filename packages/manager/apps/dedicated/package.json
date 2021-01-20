@@ -49,6 +49,7 @@
     "@ovh-ux/manager-notifications-sidebar": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-preloader": "^1.0.0",
     "@ovh-ux/manager-server-sidebar": "^2.0.0 || ^3.0.0",
+    "@ovh-ux/manager-storage": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-support": "^0.6.0 || ^0.7.0 || ^1.0.0",
     "@ovh-ux/manager-veeam-cloud-connect": "^1.0.0 || ^2.0.0",
     "@ovh-ux/manager-veeam-enterprise": "^0.3.0 || ^1.0.0",
