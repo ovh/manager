@@ -36,12 +36,9 @@ import 'ng-slide-down';
 import 'script-loader!matchmedia-ng/matchmedia-ng.js';
 import 'ovh-api-services';
 import 'script-loader!clipboard/dist/clipboard.min.js';
-import 'script-loader!bootstrap-tour/build/js/bootstrap-tour-standalone.min.js';
 
 // Ckeditor 4.x
 import 'ng-ckeditor';
-
-import 'bootstrap-tour/build/css/bootstrap-tour.min.css';
 
 /* eslint-enable import/no-webpack-loader-syntax, import/no-unresolved, import/extensions */
 

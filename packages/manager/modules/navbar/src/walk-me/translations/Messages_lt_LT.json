@@ -1,9 +1,0 @@
-{
- "walkme_title": "New",
- "walkme_content_server": "<strong>The menu has been updated to save you time!</strong> Find your VPS, dedicated server and Private Cloud products easily",
- "walkme_content_server_US": "<strong>The menu has been updated to save you time!</strong> Find your dedicated server and Private Cloud products easily",
- "walkme_content_server_mobile": "<strong>The menu has been updated!</strong> The new “server” tab regroups all your products: dedicated servers, Private Cloud, and more.",
- "walkme_content_cloud": "Find all of your Public Cloud projects and now enjoy a <span class=\"oui-font-semibold\">new simplified interface...</strong>",
- "walkme_content_cloud_US": "Find all of your Public Cloud projects and now enjoy a <span class=\"oui-font-semibold\">new simplified interface...</strong>",
- "walkme_content_cloud_mobile": "Find all your projects in the Public Cloud tab and now enjoy a <span class=\"oui-font-semibold\">new simplified interface...</strong>"
-}

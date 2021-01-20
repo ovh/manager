@@ -5847,19 +5847,11 @@ bootstrap-additions@~0.3.1:
   resolved "https://registry.yarnpkg.com/bootstrap-additions/-/bootstrap-additions-0.3.1.tgz#9ab976c2d88b9ab747c376c757a80031f2ccf83e"
   integrity sha1-mrl2wtiLmrdHw3bHV6gAMfLM+D4=
 
-bootstrap-tour@^0.12.0:
-  version "0.12.0"
-  resolved "https://registry.yarnpkg.com/bootstrap-tour/-/bootstrap-tour-0.12.0.tgz#c56eb48debe9cf788378a20184ef5a761b13b650"
-  integrity sha512-J+Nure5q3eHKVAy0Oi0Y7bGhdVsnCl2bfaAYFg7hNcdWK+lyXtS3fLHIUqzbvdW//wcy2FRMHSr7G6EuisBWoA==
-  dependencies:
-    bootstrap "~3"
-    jquery ">=1.8"
-
 bootstrap4@twbs/bootstrap#v4.0.0:
   version "4.0.0"
   resolved "https://codeload.github.com/twbs/bootstrap/tar.gz/8a628b943cf31ca0a002c08af661a95772480225"
 
-bootstrap@^3.3.6, bootstrap@^3.3.7, bootstrap@^3.4.1, bootstrap@~3, bootstrap@~3.4.1:
+bootstrap@^3.3.6, bootstrap@^3.3.7, bootstrap@^3.4.1, bootstrap@~3.4.1:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-3.4.1.tgz#c3a347d419e289ad11f4033e3c4132b87c081d72"
   integrity sha512-yN5oZVmRCwe5aKwzRj6736nSmKDX7pLYwsXiCj/EYmo16hODaBiT4En5btW/jhBF/seV+XMx3aYwukYC3A49DA==

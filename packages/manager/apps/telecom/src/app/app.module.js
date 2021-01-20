@@ -62,10 +62,7 @@ import 'ovh-ng-input-password';
 import '@ovh-ux/ui-kit';
 import 'angular-translate-loader-pluggable';
 import '@ovh-ux/manager-telecom-styles';
-import 'script-loader!bootstrap-tour/build/js/bootstrap-tour-standalone.min.js';
 /* eslint-enable */
-
-import 'bootstrap-tour/build/css/bootstrap-tour.min.css';
 
 import moduleName from './app';
 
