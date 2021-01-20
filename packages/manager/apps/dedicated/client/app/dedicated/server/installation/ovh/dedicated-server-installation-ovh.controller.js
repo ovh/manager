@@ -14,7 +14,10 @@ import some from 'lodash/some';
 import sortBy from 'lodash/sortBy';
 import take from 'lodash/take';
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-import { RTM_GUIDE_URLS } from './dedicated-server-installation-ovh.constants';
+import {
+  RTM_GUIDE_URLS,
+  RTM_INSTALL_FEATURE,
+} from './dedicated-server-installation-ovh.constants';
 
 angular
   .module('App')
@@ -38,6 +41,7 @@ angular
       Server,
       $filter,
       Alerter,
+      ovhFeatureFlipping,
       TEMPLATE_OS_HARDWARE_RAID_ENUM,
     ) => {
       $scope.LICENSE_URL = buildURL('dedicated', '#/configuration/license');
@@ -325,8 +329,20 @@ angular
             $scope.sshList = data;
           },
         );
+        const getRtmInstallAvailability = ovhFeatureFlipping
+          .checkFeatureAvailability(RTM_INSTALL_FEATURE)
+          .then((rtmFeatureResult) => {
+            $scope.isRtmAvailable = rtmFeatureResult.isFeatureAvailable(
+              RTM_INSTALL_FEATURE,
+            );
+          });
 
-        $q.all([getHardRaid, getOvhTemplates, getSshKeys]).finally(() => {
+        $q.all([
+          getHardRaid,
+          getOvhTemplates,
+          getSshKeys,
+          getRtmInstallAvailability,
+        ]).finally(() => {
           $scope.loader.loading = false;
         });
       };
@@ -2325,6 +2341,7 @@ angular
           variablePartition: null,
           validForm: true,
         };
+
         if (
           $scope.installation.customInstall &&
           $scope.informations.gabaritName

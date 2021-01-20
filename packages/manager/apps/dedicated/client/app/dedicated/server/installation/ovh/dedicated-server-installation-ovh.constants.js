@@ -8,6 +8,9 @@ export const RTM_GUIDE_URLS = {
   PT: 'https://docs.ovh.com/pt/dedicated/instalar-rtm/',
 };
 
+export const RTM_INSTALL_FEATURE = 'dedicated-server:install:ovh:installRTM';
+
 export default {
   RTM_GUIDE_URLS,
+  RTM_INSTALL_FEATURE,
 };
