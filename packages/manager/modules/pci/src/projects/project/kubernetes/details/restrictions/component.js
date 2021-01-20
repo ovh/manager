@@ -3,17 +3,12 @@ import template from './template.html';
 
 const component = {
   bindings: {
-    cluster: '<',
-    containersLink: '<',
-    currentActiveLink: '<',
-    guideUrl: '<',
-    nodePoolsLink: '<',
-    serviceLink: '<',
-    restrictionsLink: '<',
     restrictions: '<',
+    updateRestrictions: '<',
+    deleteRestriction: '<',
   },
-  template,
   controller,
+  template,
 };
 
 export default component;

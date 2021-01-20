@@ -34,6 +34,7 @@ export default class KubernetesServiceCtrl {
     this.STATUS = STATUS;
     this.loadingKubeConfig = false;
     this.loadMessages();
+    return this.getRestrictions();
   }
 
   loadMessages() {
@@ -48,6 +49,17 @@ export default class KubernetesServiceCtrl {
 
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
+  }
+
+  getRestrictions() {
+    this.loadingRestrictions = true;
+    return this.loadRestrictions()
+      .then((restrictions) => {
+        this.restrictions = restrictions;
+      })
+      .finally(() => {
+        this.loadingRestrictions = false;
+      });
   }
 
   downloadConfigFile() {
