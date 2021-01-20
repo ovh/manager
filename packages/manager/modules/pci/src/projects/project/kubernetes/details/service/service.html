@@ -135,17 +135,6 @@
                     <span data-ng-bind="$ctrl.cluster.version"></span>
                 </oui-tile-description>
             </oui-tile-definition>
-            <!-- upgrade policy -->
-            <oui-tile-definition
-                data-term="{{ ::'kube_service_upgrade_policy' | translate }}"
-            >
-                <oui-tile-description>
-                    <span
-                        data-translate="{{ 'kube_service_upgrade_policy_' + $ctrl.cluster.updatePolicy }}"
-                    ></span>
-                </oui-tile-description>
-            </oui-tile-definition>
-            <!-- end of upgrade policy -->
             <oui-tile-definition
                 data-term="{{:: 'kube_service_cluster_region' | translate }}"
                 data-description="{{:: $ctrl.cluster.region }}"
@@ -159,15 +148,21 @@
                     ></oui-clipboard>
                 </oui-tile-description>
             </oui-tile-definition>
+        </oui-tile>
+    </div>
+    <div class="col-md-4">
+        <oui-tile heading="{{:: 'kube_service_access_security' | translate }}">
+            <!-- upgrade policy -->
             <oui-tile-definition
-                data-term="{{:: 'kube_service_cluster_api_url' | translate }}"
+                data-term="{{ ::'kube_service_upgrade_policy' | translate }}"
             >
                 <oui-tile-description>
-                    <oui-clipboard
-                        data-model="$ctrl.cluster.url"
-                    ></oui-clipboard>
+                    <span
+                        data-translate="{{ 'kube_service_upgrade_policy_' + $ctrl.cluster.updatePolicy }}"
+                    ></span>
                 </oui-tile-description>
             </oui-tile-definition>
+            <!-- end of upgrade policy -->
             <div class="oui-tile__item">
                 <dl class="oui-tile__definition">
                     <dt class="oui-tile__term">
@@ -218,6 +213,15 @@
                     </dd>
                 </dl>
             </div>
+            <oui-tile-definition
+                data-term="{{:: 'kube_service_cluster_api_url' | translate }}"
+            >
+                <oui-tile-description>
+                    <oui-clipboard
+                        data-model="$ctrl.cluster.url"
+                    ></oui-clipboard>
+                </oui-tile-description>
+            </oui-tile-definition>
         </oui-tile>
     </div>
 </div>
