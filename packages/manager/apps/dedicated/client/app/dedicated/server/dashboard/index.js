@@ -12,7 +12,7 @@ import commitment from './commitment';
 import cancelCommitment from './cancel-commitment';
 import cancelResiliation from './cancel-resiliation';
 import resiliation from './resiliation';
-import subscriptions from './subscriptions';
+import professionalUse from './professional-use';
 import technicalDetails from './technical-details';
 import upgradeRequest from './upgrade-request';
 
@@ -30,7 +30,7 @@ angular
     atInternet,
     'oui',
     'pascalprecht.translate',
-    subscriptions,
+    professionalUse,
     technicalDetails,
     upgradeRequest,
     'ui.router',

@@ -1,7 +1,7 @@
 import filter from 'lodash/filter';
 import get from 'lodash/get';
 
-export default class TechnicalDetails {
+export default class TechnicalDetailsController {
   /* @ngInject */
   constructor($translate) {
     this.$translate = $translate;
