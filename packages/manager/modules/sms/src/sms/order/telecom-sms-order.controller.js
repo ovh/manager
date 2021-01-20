@@ -190,6 +190,11 @@ export default class {
    * @return {Promise}
    */
   doOrder() {
+    this.atInternet.trackClick({
+      name: 'sms::order::generate_order',
+      type: 'action',
+    });
+
     this.loading.order = true;
     this.prices.url = null;
     if (this.isAccountCreation()) {
@@ -226,13 +231,6 @@ export default class {
       .catch(() => this.TucToast.error(this.$translate.instant('sms_order_ko')))
       .finally(() => {
         this.loading.order = false;
-        return this.atInternet.trackClick({
-          cta: 'Generate purchase order',
-          name: 'Generate_BC',
-          type: 'action',
-          level2: 'Telecom',
-          chpater1: 'telecom',
-        });
       });
   }
 }

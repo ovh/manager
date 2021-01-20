@@ -11,6 +11,7 @@ import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 
 import {
   DASHBOARD_FEATURES,
+  SERVICE_TYPE,
   VPS_2014_AUTO_MIGRATION_DATE,
 } from './vps-dashboard.constants';
 import { CHANGE_OWNER_URL, RENEW_URL } from '../constants';
@@ -42,6 +43,7 @@ export default class {
     this.VpsService = VpsService;
     this.vpsUpgradeTile = vpsUpgradeTile;
     this.DASHBOARD_FEATURES = DASHBOARD_FEATURES;
+    this.SERVICE_TYPE = SERVICE_TYPE;
 
     this.loaders = {
       disk: false,

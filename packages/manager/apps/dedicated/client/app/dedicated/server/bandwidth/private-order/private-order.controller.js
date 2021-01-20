@@ -1,5 +1,4 @@
 import find from 'lodash/find';
-import get from 'lodash/get';
 
 export default class {
   /* @ngInject */
@@ -13,13 +12,6 @@ export default class {
     this.model = {};
     this.plans = null;
     this.isLoading = false;
-    this.existingBandwidth = get(this, 'specifications.vrack.bandwidth.value');
-
-    if (!this.existingBandwidth) {
-      this.plans = [];
-      this.isLoading = false;
-      return;
-    }
 
     this.steps = [
       {
@@ -29,13 +21,9 @@ export default class {
           this.isLoading = true;
           return this.Server.getBareMetalPrivateBandwidthOptions(
             this.serverName,
-            this.existingBandwidth,
           )
             .then((plans) => {
-              this.plans = this.Server.getValidBandwidthPlans(
-                plans,
-                this.existingBandwidth,
-              );
+              this.plans = this.Server.getValidBandwidthPlans(plans);
             })
             .catch((error) => {
               this.goBack().then(() =>

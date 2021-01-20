@@ -2,8 +2,9 @@ import get from 'lodash/get';
 
 export default class {
   /* @ngInject */
-  constructor($translate) {
+  constructor($translate, atInternet) {
     this.$translate = $translate;
+    this.atInternet = atInternet;
   }
 
   getCheckout() {
@@ -39,6 +40,10 @@ export default class {
   }
 
   preparePayment() {
+    this.atInternet.trackClick({
+      name: 'web::domain::product::webhosting::order::pay',
+      type: 'action',
+    });
     this.stepper.autoPayWithPreferredPaymentMethod = !!this
       .defaultPaymentMethod;
   }

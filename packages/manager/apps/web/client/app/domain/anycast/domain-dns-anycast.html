@@ -75,16 +75,18 @@
                     </span>
                 </label>
             </div>
-            <oui-button
-                class="mt-4"
-                data-on-click="$ctrl.orderDnsanycast()"
-                data-disabled="!$ctrl.contractsValidated"
-                data-variant="primary"
+            <button
+                class="oui-button oui-button_primary mt-4"
+                data-ng-disabled="!$ctrl.contractsValidated"
+                data-ng-click="$ctrl.orderDnsanycast()"
+                data-track-on="click"
+                data-track-type="action"
+                data-track-name="web::domain::dns_anycast::activate"
             >
                 <span
                     data-translate="domain_configuration_action_enable"
                 ></span>
-            </oui-button>
+            </button>
         </div>
 
         <div data-ng-if="$ctrl.order">
@@ -116,14 +118,16 @@
                         ></span>
                     </div>
                 </div>
-                <oui-button
-                    class="mt-4"
-                    data-on-click="$ctrl.displayBC()"
-                    data-disabled="!$ctrl.contractsValidated"
-                    data-variant="primary"
+                <button
+                    class="oui-button oui-button_primary mt-4"
+                    data-ng-disabled="!$ctrl.contractsValidated"
+                    data-ng-click="$ctrl.displayBC()"
+                    data-track-on="click"
+                    data-track-type="action"
+                    data-track-name="web::domain::dns_anycast::pay"
                 >
                     <span data-translate="wizard_pay"></span>
-                </oui-button>
+                </button>
             </div>
         </div>
     </div>

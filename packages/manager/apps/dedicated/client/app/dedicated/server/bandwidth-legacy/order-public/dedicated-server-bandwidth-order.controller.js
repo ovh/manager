@@ -7,7 +7,6 @@ angular
     'ServerOrderLegacyBandwidthCtrl',
     ($scope, $state, $stateParams, $translate, Alerter, Server, User) => {
       $scope.orderable = null;
-
       $scope.orderableBandwidth = {
         value: [],
       };
