@@ -1,0 +1,54 @@
+<oui-header data-heading="{{ :: 'storage_title' | translate }}"></oui-header>
+<div class="container-fluid my-5">
+    <oui-datagrid id="dg-storage" data-rows="$ctrl.storages">
+        <oui-datagrid-column
+            data-title=":: 'storage_id' | translate"
+            data-property="id"
+            data-searchable
+            data-filterable
+            data-sortable
+            data-type="string"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            title=":: 'storage_product' | translate"
+            data-property="product"
+            data-searchable
+            data-filterable
+            data-sortable
+            data-type="string"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'storage_localization' | translate"
+            data-property="datacenter"
+            data-searchable
+            data-filterable
+            data-sortable
+            data-type="options"
+            data-type-options="$ctrl.datacenterEnumFilter"
+        >
+            <span
+                data-ng-bind="$ctrl.CucRegionService.getTranslatedMicroRegion($ctrl.storage.region)"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'storage_status' | translate"
+            data-property="state"
+            data-filterable
+            data-sortable
+            data-type="options"
+            data-type-options="$ctrl.stateEnumFilter"
+        >
+            <span
+                class="oui-badge"
+                data-ng-class="{
+                    'oui-badge_success': $ctrl.constructor.toUpperSnakeCase($value) === 'OK',
+                    'oui-badge_warning': $ctrl.constructor.toUpperSnakeCase($value) === 'ERROR',
+                    'oui-badge_error': $ctrl.constructor.toUpperSnakeCase($value) === 'HACKED' || $ctrl.constructor.toUpperSnakeCase($value) === 'HACKED_BLOCKED'
+                    }"
+                data-translate="{{:: 'server_configuration_state_' + $ctrl.constructor.toUpperSnakeCase($value) }}"
+            ></span>
+        </oui-datagrid-column>
+    </oui-datagrid>
+</div>

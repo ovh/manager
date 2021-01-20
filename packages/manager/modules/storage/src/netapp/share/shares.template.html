@@ -1,0 +1,67 @@
+<!-- SHARE -->
+<h4 class="oui-heading_4" data-translate="share_title"></h4>
+<oui-datagrid id="dg-share" data-rows="$ctrl.shares">
+    <oui-datagrid-column
+        data-title=":: 'share_id' | translate"
+        data-property="id"
+        data-searchable
+        data-filterable
+        data-sortable
+        data-type="string"
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        title=":: 'share_name' | translate"
+        data-property="name"
+        data-searchable
+        data-filterable
+        data-sortable
+        data-type="string"
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        title=":: 'share_description' | translate"
+        data-property="description"
+        data-searchable
+        data-filterable
+        data-sortable
+        data-type="string"
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        title=":: 'share_protocol' | translate"
+        data-property="protocol"
+        data-searchable
+        data-filterable
+        data-sortable
+        data-type="string"
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        title=":: 'share_size' | translate"
+        data-property="size"
+        data-searchable
+        data-filterable
+        data-sortable
+        data-type="string"
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'share_status' | translate"
+        data-property="status"
+        data-filterable
+        data-sortable
+        data-type="options"
+        data-type-options="$ctrl.stateEnumFilter"
+    >
+        <span
+            class="oui-badge"
+            data-ng-class="{
+                                'oui-badge_success': (['AVAILABLE'].includes($ctrl.constructor.toUpperSnakeCase($value))),
+                                'oui-badge_warning': (['CREATING', 'DELETING'].includes($ctrl.constructor.toUpperSnakeCase($value))),
+                                'oui-badge_error': (['DELETED','ERROR','INACTIVE'].includes($ctrl.constructor.toUpperSnakeCase($value))),
+                            }"
+            data-translate="{{:: 'share_netapp_status_' + $ctrl.constructor.toUpperSnakeCase($value) }}"
+        ></span>
+    </oui-datagrid-column>
+</oui-datagrid>
