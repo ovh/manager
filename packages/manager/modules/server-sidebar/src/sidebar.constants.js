@@ -114,6 +114,16 @@ export const NETWORKS_CONFIG = {
       regions: ['EU'],
       searchKeys: ['Content Delivery Network'],
     },
+  ],
+  loadOnState: ['app.networks'],
+  icon: 'ovh-font ovh-font-network',
+  app: [DEDICATED],
+  regions: ['EU', 'CA'],
+};
+
+export const STORAGE_CONFIG = {
+  id: 'storage',
+  types: [
     {
       path: '/dedicated/nas',
       state: 'app.dedicated-nas.details',
@@ -132,13 +142,22 @@ export const NETWORKS_CONFIG = {
       regions: ['EU', 'CA'],
       searchKeys: ['NAS', 'NASHA', 'NAS-HA'],
     },
+    {
+      path: '/storage/netapp',
+      state: 'netapp',
+      stateParams: ['netappId'],
+      icon: 'ovh-font ovh-font-cloudnas',
+      app: [DEDICATED],
+      regions: ['EU', 'CA'],
+      searchKeys: ['NETAPP'],
+    },
   ],
   loadOnState: [
     'nasha.dashboard.nasha-partitions',
-    'app.networks',
-    'dedicated-nas',
+    'netapp',
+    'app.networks.nas',
   ],
-  icon: 'ovh-font ovh-font-network',
+  icon: 'ovh-font ovh-font-cloudnas',
   app: [DEDICATED],
   regions: ['EU', 'CA'],
 };
@@ -375,6 +394,7 @@ export const SIDEBAR_CONFIG = [
   MANAGED_BAREMETAL_CONFIG,
   DEDICATED_CLOUD_CONFIG,
   NETWORKS_CONFIG,
+  STORAGE_CONFIG,
   ENTERPRISE_CLOUD_DATABASE,
 
   // CLOUD IMPORT
