@@ -192,7 +192,7 @@ export const IP_CONFIG = {
   namespace: [undefined, HPC_NAMESPACE],
 };
 
-export const IAAS_CONFIG = {
+export const VPS_CONFIG = {
   id: 'vps',
   loadOnState: 'vps',
   types: [
@@ -366,13 +366,13 @@ export const DEDICATED_NETWORK_CONFIG = {
 
 export const SIDEBAR_CONFIG = [
   DEDICATED_SERVER_CONFIG,
+  VPS_CONFIG,
   MANAGED_BAREMETAL_CONFIG,
   DEDICATED_CLOUD_CONFIG,
   NETWORKS_CONFIG,
   ENTERPRISE_CLOUD_DATABASE,
 
   // CLOUD IMPORT
-  IAAS_CONFIG,
   PAAS_CONFIG,
   METRICS_CONFIG,
   LOGS_CONFIG,
