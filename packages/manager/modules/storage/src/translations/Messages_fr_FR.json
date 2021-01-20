@@ -1,0 +1,58 @@
+{
+  "storage_name": "Nom",
+  "storage_title": "Stockages",
+  "storage_id": "Id",
+  "storage_product": "Produit",
+  "storage_localization": "Région",
+  "storage_status": "Statut",
+
+  "service_netapp_global_news": "Informations générales",
+
+  "service_netapp_name": "Nom du service",
+  "service_netapp_id": "ID du service",
+  "service_netapp_region": "Localisation",
+
+  "service_netapp_state": "État du service",
+  "service_netapp_status": "Statut",
+
+  "service_netapp_plan": "Abonnement",
+  "service_netapp_creation_date": "Date de création",
+  "service_netapp_level": "Niveau de service",
+
+  "service_netapp_status_": "Inconnu",
+
+  "service_netapp_status_creating": "Création",
+  "service_netapp_status_running": "Activé",
+  "service_netapp_status_reopening": "Ré-ouverture",
+  "service_netapp_status_suspending": "Suspension en cours",
+  "service_netapp_status_suspended": "Suspendu",
+  "service_netapp_status_deleting": "Suppression en cours",
+  "service_netapp_status_deleted": "Supprimé",
+
+  "share_netapp_status_": "Inconnu",
+  "share_netapp_status_AVAILABLE": "Disponible",
+  "share_netapp_status_CREATING": "Création",
+  "share_netapp_status_DELETING": "Suppression en cours",
+  "share_netapp_status_DELETED": "Supprimé",
+  "share_netapp_status_ERROR": "Erreur",
+  "share_netapp_status_INACTIVE": "Inactif",
+
+  "share_netapp_status_suspended": "Suspendu",
+
+  "netapp_tab_global_news": "Informations générales",
+  "netapp_tab_share": "Volumes",
+
+  "netapp_guides_header": "Guides",
+  "netapp_guides_header_all_guides": "Tous les guides",
+
+  "share_title": "Volumes",
+  "share_id": "ID",
+  "share_name": "Nom",
+  "share_description": "Description",
+  "share_size": "Taille (Go)",
+  "share_protocol": "Protocole",
+  "share_status": "Statut",
+
+  "netapp-cloud-volumes-premium-pool-1tb": "1 To Premium",
+  "netapp-cloud-volumes-premium-pool-10tb": "10 To Premium"
+}

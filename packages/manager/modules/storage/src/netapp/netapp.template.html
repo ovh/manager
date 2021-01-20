@@ -1,0 +1,102 @@
+<oui-header data-heading="Enterprise File Storage - {{ $ctrl.netappId }}">
+    <oui-header-tabs>
+        <oui-header-tabs-item
+            data-href="{{:: $ctrl.serviceLink }}"
+            data-active="$ctrl.currentActiveLink() === $ctrl.serviceLink"
+            ><span data-translate="netapp_tab_global_news"></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-href="{{ $ctrl.shareLink }}"
+            data-active="$ctrl.currentActiveLink() === $ctrl.shareLink"
+            ><span data-translate="netapp_tab_share"></span>
+        </oui-header-tabs-item>
+    </oui-header-tabs>
+    <oui-guide-menu data-text="{{:: 'netapp_guides_header' | translate }}">
+        <oui-guide-menu-item href="{{ $ctrl.guideUrl }}" data-external>
+            <span data-translate="netapp_guides_header_all_guides"></span>
+        </oui-guide-menu-item>
+    </oui-guide-menu>
+</oui-header>
+
+<div class="container-fluid" data-ui-view>
+    <div class="row">
+        <div class="col-md-4">
+            <oui-tile
+                data-heading="{{:: 'service_netapp_global_news' | translate }}"
+            >
+                <oui-tile-definition
+                    data-term="{{:: 'service_netapp_name' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span data-ng-bind="$ctrl.service.displayName"></span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+
+                <oui-tile-definition
+                    data-term="{{:: 'service_netapp_id' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span data-ng-bind="$ctrl.service.id"></span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+
+                <oui-tile-definition
+                    data-term="{{:: 'service_netapp_region' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span
+                            data-ng-bind="$ctrl.CucRegionService.getTranslatedMicroRegion($ctrl.service.region)"
+                        ></span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+            </oui-tile>
+        </div>
+
+        <div class="col-md-4">
+            <oui-tile data-heading="{{:: 'service_netapp_state' | translate }}">
+                <oui-tile-definition
+                    data-term="{{:: 'service_netapp_status' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span
+                            class="oui-badge"
+                            data-ng-class="{
+                                'oui-badge_success': ($ctrl.isRunning()),
+                                'oui-badge_warning': ($ctrl.isWarning()),
+                                'oui-badge_error': ($ctrl.isError()),
+                            }"
+                        >
+                            <span
+                                data-ng-bind="'service_netapp_status_' + $ctrl.service.status | translate"
+                            ></span>
+                        </span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+            </oui-tile>
+        </div>
+
+        <div class="col-md-4">
+            <oui-tile data-heading="{{:: 'service_netapp_plan' | translate }}">
+                <oui-tile-definition
+                    data-term="{{:: 'service_netapp_level' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span
+                            data-ng-bind="$ctrl.service.product | translate"
+                        ></span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+
+                <oui-tile-definition
+                    data-term="{{:: 'service_netapp_creation_date' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span
+                            data-ng-bind="$ctrl.service.createdAt | date"
+                        ></span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+            </oui-tile>
+        </div>
+    </div>
+</div>
