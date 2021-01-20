@@ -576,6 +576,15 @@
             </oui-tile>
         </div>
 
+        <!-- Advices -->
+        <div class="col-md-4 mb-5">
+            <ovh-advices
+                service-name="{{ ::$ctrl.domain.name }}"
+                service-type="domain-web"
+            >
+            </ovh-advices>
+        </div>
+
         <div
             class="oui-box col-md-4 mb-5"
             data-ng-if="$ctrl.domain.recommendedHosting"

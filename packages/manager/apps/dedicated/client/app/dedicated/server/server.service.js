@@ -1,4 +1,3 @@
-import assign from 'lodash/assign';
 import camelCase from 'lodash/camelCase';
 import compact from 'lodash/compact';
 import filter from 'lodash/filter';
@@ -1496,7 +1495,7 @@ export default class ServerF {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  getValidBandwidthPlans(plans, existingBandwidth) {
+  getValidBandwidthPlans(plans) {
     const list = map(plans, (plan) => {
       // Not to include already included plans (existing plan)
       if (!plan.planCode.includes('included')) {
@@ -1504,11 +1503,10 @@ export default class ServerF {
         const bandwidth = parseInt(
           head(filter(plan.productName.split('-'), (ele) => /^\d+$/.test(ele))),
         );
-        assign(plan, { bandwidth });
-
-        if (bandwidth !== existingBandwidth) {
-          return plan;
-        }
+        return {
+          ...plan,
+          bandwidth,
+        };
       }
       return null;
     });
