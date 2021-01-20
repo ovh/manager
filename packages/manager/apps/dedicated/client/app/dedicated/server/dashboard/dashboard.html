@@ -529,14 +529,38 @@
             </div>
         </div>
 
-        <!-- SUBSCRIPTIONS -->
+        <!-- SUBSCRIPTION -->
         <div class="col-md-4" data-ng-if="!$ctrl.technicalDetails">
-            <dedicated-server-dashboard-subscriptions
-                change-owner-url="$ctrl.changeOwnerUrl"
-                dedicated-server="$ctrl.dedicatedServer"
-                world-part="$ctrl.worldPart"
+            <billing-subscription-tile
+                on-error="$ctrl.onBillingInformationError(error)"
+                service-path="{{ '/dedicated/server/' + $ctrl.server.name }}"
+                with-engagement="$ctrl.isCommitmentAvailable"
+                go-to-commit="$ctrl.goToCommit()"
+                go-to-cancel-commit="$ctrl.goToCancelCommit()"
+                go-to-cancel-resiliation="$ctrl.goToCancelResiliation()"
+                go-to-resiliation="$ctrl.goToResiliation()"
+                service-infos="$ctrl.serviceInfos"
+                highlight-engagement="$ctrl.server.shouldReengage"
+                tracking-prefix="dedicated::dedicated::server::dashboard"
+                user="$ctrl.user"
             >
-            </dedicated-server-dashboard-subscriptions>
+                <billing-contact-actions>
+                    <oui-action-menu-item
+                        data-href="{{:: $ctrl.changeOwnerUrl }}"
+                        data-external
+                        data-disabled="$ctrl.server.state === 'HACKED' || $ctrl.server.state === 'HACKED_BLOCKED'"
+                    >
+                        <span data-translate="core_change_owner"></span>
+                    </oui-action-menu-item>
+                </billing-contact-actions>
+                <billing-extra-information>
+                    <dedicated-server-dashboard-professional-use
+                        server="$ctrl.dedicatedServer.server"
+                        service-infos="$ctrl.dedicatedServer.serviceInfos"
+                    >
+                    </dedicated-server-dashboard-professional-use>
+                </billing-extra-information>
+            </billing-subscription-tile>
         </div>
     </div>
     <div class="row d-md-flex mb-5">
@@ -774,12 +798,36 @@
 
         <!-- SUBSCRIPTIONS -->
         <div class="col-md-4" data-ng-if="$ctrl.technicalDetails">
-            <dedicated-server-dashboard-subscriptions
-                change-owner-url="$ctrl.changeOwnerUrl"
-                dedicated-server="$ctrl.dedicatedServer"
-                world-part="$ctrl.worldPart"
+            <billing-subscription-tile
+                on-error="$ctrl.onBillingInformationError(error)"
+                service-path="{{ '/dedicated/server/' + $ctrl.server.name }}"
+                with-engagement="$ctrl.isCommitmentAvailable"
+                go-to-commit="$ctrl.goToCommit()"
+                go-to-cancel-commit="$ctrl.goToCancelCommit()"
+                go-to-cancel-resiliation="$ctrl.goToCancelResiliation()"
+                go-to-resiliation="$ctrl.goToResiliation()"
+                service-infos="$ctrl.serviceInfos"
+                highlight-engagement="$ctrl.server.shouldReengage"
+                tracking-prefix="dedicated::dedicated::server::dashboard"
+                user="$ctrl.user"
             >
-            </dedicated-server-dashboard-subscriptions>
+                <billing-contact-actions>
+                    <oui-action-menu-item
+                        data-href="{{:: $ctrl.changeOwnerUrl }}"
+                        data-external
+                        data-disabled="$ctrl.server.state === 'HACKED' || $ctrl.server.state === 'HACKED_BLOCKED'"
+                    >
+                        <span data-translate="core_change_owner"></span>
+                    </oui-action-menu-item>
+                </billing-contact-actions>
+                <billing-extra-information>
+                    <dedicated-server-dashboard-professional-use
+                        server="$ctrl.dedicatedServer.server"
+                        service-infos="$ctrl.dedicatedServer.serviceInfos"
+                    >
+                    </dedicated-server-dashboard-professional-use>
+                </billing-extra-information>
+            </billing-subscription-tile>
         </div>
 
         <div

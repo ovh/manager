@@ -5,9 +5,9 @@ import '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ui-kit';
 import '@uirouter/angularjs';
 
-import component from './subscriptions.component';
+import component from './professional-use.component';
 
-const moduleName = 'ovhManagerDedicatedServerDashboardSubscriptions';
+const moduleName = 'ovhManagerDedicatedServerDashboardProfessionalUse';
 
 angular
   .module(moduleName, [
@@ -16,7 +16,7 @@ angular
     'pascalprecht.translate',
     'ui.router',
   ])
-  .component('dedicatedServerDashboardSubscriptions', component)
+  .component('dedicatedServerDashboardProfessionalUse', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
