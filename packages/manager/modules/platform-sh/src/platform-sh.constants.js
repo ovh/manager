@@ -9,6 +9,11 @@ export const STATUS = {
   ERROR: 'ERROR',
 };
 
+export const X_PAGINATION_MODE = 'X-Pagination-Mode';
+export const CACHED_OBJECT_LIST_PAGES = 'CachedObjectList-Pages';
+
 export default {
+  CACHED_OBJECT_LIST_PAGES,
   STATUS,
+  X_PAGINATION_MODE,
 };

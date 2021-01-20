@@ -1,5 +1,5 @@
 {
-  "platform_sh_title": "Vos projets web powered by Platform.sh ",
+  "platform_sh_title": "Vos projets Web PaaS powered by Platform.sh",
   "platform_sh_project": "Projet",
   "platform_sh_region": "Région",
   "platform_sh_status": "Statut du projet",
@@ -8,7 +8,7 @@
   "platform_sh_plan_vcpu": "vCPU",
   "platform_sh_plan_env": "Environnement",
   "platform_sh_plan_storage": "Stockage",
-  "platform_sh_open_in_platform_sh_console": "Accéder à Platform.sh",
+  "platform_sh_open_in_platform_sh_console": "Accéder à Web PaaS",
   "platform_sh_goto_dashbboard": "Voir le tableau de bord",
   "platform_sh_cancel_project": "Supprimer le projet",
   "platform_sh_create_project": "Nouveau projet"

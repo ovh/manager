@@ -12,6 +12,7 @@ import ngOvhCloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-componen
 import ovhManagerProductOffers from '@ovh-ux/manager-product-offers';
 
 import './index.scss';
+import './index.less';
 
 const moduleName = 'ovhManagerPlatformShLazyLoad';
 
@@ -29,7 +30,7 @@ angular
   .config(
     /* @ngInject */ ($stateProvider) => {
       $stateProvider.state('platform-sh.**', {
-        url: '/pass/platform-sh',
+        url: '/paas/webpaas',
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 

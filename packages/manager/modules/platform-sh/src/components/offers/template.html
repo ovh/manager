@@ -21,21 +21,21 @@
                 data-match="name"
                 data-model="$ctrl.selectedVcpu"
                 name="vcpu"
-                required>
+                required
+            >
             </oui-select>
         </oui-select-picker-section>
         <oui-select-picker-footer>
-            <span
-                data-translate="platform_sh_offer_price_from"
-            ></span>
+            <span data-translate="platform_sh_offer_price_from"></span>
             <ovh-manager-catalog-price
                 data-price="offer.price"
                 data-user="$ctrl.user"
             >
             </ovh-manager-catalog-price>
-            <span
-                data-translate="platform_sh_offer_price_per_month"
-            ></span>
+            <span data-translate="platform_sh_offer_price_per_month"></span>
         </oui-select-picker-footer>
     </oui-select-picker>
+</div>
+<div class="row m-3">
+    <span data-translate="platform_sh_offer_warning"></span>
 </div>

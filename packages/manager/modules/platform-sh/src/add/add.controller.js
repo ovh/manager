@@ -7,22 +7,45 @@ import { WORKFLOW_OPTIONS } from './add.constants';
 
 export default class {
   /* @ngInject */
-  constructor($translate, $q, CucCloudMessage, PlatformSh, WucOrderCartService) {
+  constructor(
+    $translate,
+    $q,
+    $window,
+    CucCloudMessage,
+    PlatformSh,
+    WucOrderCartService,
+  ) {
     this.$translate = $translate;
     this.$q = $q;
+    this.$window = $window;
     this.CucCloudMessage = CucCloudMessage;
     this.PlatformSh = PlatformSh;
     this.WucOrderCartService = WucOrderCartService;
+    this.WORKFLOW_OPTIONS = WORKFLOW_OPTIONS;
   }
 
   $onInit() {
     this.isAdding = false;
     this.isEditingTemplate = false;
     this.isEditingOffers = false;
-    this.availableStorages = [{
-      value: 5,
-      name: '5 GB',
-    }];
+    this.availableStorages = [
+      {
+        value: 5,
+        name: '5 GB',
+      },
+    ];
+    this.availableEnvironments = [
+      {
+        value: 1,
+        name: '1 Environment',
+      },
+    ];
+    this.availableUserLicenses = [
+      {
+        value: 1,
+        name: '1 User License',
+      },
+    ];
     this.project = {
       region: null,
       offer: null,
@@ -33,6 +56,8 @@ export default class {
       },
       configuration: {
         storage: this.availableStorages[0],
+        environment: this.availableEnvironments[0],
+        license: this.availableUserLicenses[0],
       },
     };
 
@@ -55,10 +80,9 @@ export default class {
 
   loadMessages() {
     this.CucCloudMessage.unSubscribe('platform-sh.add');
-    this.messageHandler = this.CucCloudMessage.subscribe(
-      'platform-sh.add',
-      { onMessage: () => this.refreshMessages() },
-    );
+    this.messageHandler = this.CucCloudMessage.subscribe('platform-sh.add', {
+      onMessage: () => this.refreshMessages(),
+    });
   }
 
   refreshMessages() {
@@ -69,7 +93,7 @@ export default class {
     this.loadCapabilities(this.project.offer);
   }
 
-  onOptionsSubmit() {}
+  // onOptionsSubmit() {}
 
   onPlanSelect(plan) {
     this.project.offer = plan;
@@ -96,39 +120,50 @@ export default class {
   }
 
   getConfiguration() {
-    const config = [{
-      label: 'region',
-      value: this.project.region,
-    }, {
-      label: 'project_title',
-      value: this.project.name,
-    }];
+    const config = [
+      {
+        label: 'region',
+        value: this.project.region,
+      },
+      {
+        label: 'project_title',
+        value: this.project.name,
+      },
+    ];
     if (!this.project.template.createNew) {
       config.push({
         label: 'options_url',
         value: this.project.template.templateUrl,
-      })
+      });
     }
     return config;
   }
 
   loadCapabilities(planCode) {
     this.loadingCapabilities = true;
-    return this.PlatformSh.getCapabilities(planCode)
+    return this.PlatformSh.getCapabilities(
+      planCode,
+      this.project.template.createNew,
+    )
       .then((capabilities) => {
         this.capabilities = capabilities;
-        if (this.capabilities.availableRegions &&
-            this.capabilities.availableRegions.length === 1) {
-          this.project.region = this.capabilities.availableRegions[0];
+        if (
+          this.capabilities.regions &&
+          this.capabilities.regions.length === 1
+        ) {
+          [this.project.region] = this.capabilities.regions;
         }
       })
-      .catch(() => this.CucCloudMessage.error('Regions not abailable. Try again.'))
+      .catch(() =>
+        this.CucCloudMessage.error('Regions not abailable. Try again.'),
+      )
       .finally(() => {
         this.loadingCapabilities = false;
-      })
+      });
   }
 
-  onPlatformOrderSuccess() {
+  onPlatformOrderSuccess(checkout) {
+    this.$window.open(checkout.url, '_blank', 'noopener');
     return this.goBack(
       this.$translate.instant('platform_sh_add_project_success'),
     );
@@ -143,7 +178,7 @@ export default class {
   }
 
   getPlanCode() {
-    return WORKFLOW_OPTIONS.planCode;
+    return this.WORKFLOW_OPTIONS.planCode;
   }
 
   getOrderState(state) {

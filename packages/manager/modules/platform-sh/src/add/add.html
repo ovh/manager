@@ -5,14 +5,17 @@
     >
     </oui-header>
     <div class="container-fluid">
-        <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
+        <cui-message-container
+            data-messages="$ctrl.messages"
+        ></cui-message-container>
         <ovh-manager-product-offers
             pricing-type="$ctrl.productOffers.pricingType"
             user=":: $ctrl.productOffers.user"
             workflow-options=":: $ctrl.productOffers.workflowOptions"
             workflow-type=":: $ctrl.productOffers.workflowType"
             on-success=":: $ctrl.onPlatformOrderSuccess(checkout)"
-            on-error=":: $ctrl.onPlatformOrderError(error)">
+            on-error=":: $ctrl.onPlatformOrderError(error)"
+        >
             <oui-step-form
                 data-header="{{:: 'platform_sh_add_project_choose_offer' | translate }}"
                 data-submit-text="{{:: 'platform_sh_add_project_next' | translate }}"
@@ -45,7 +48,8 @@
             >
                 <oui-field
                     data-label="{{:: 'platform_sh_add_project_name' | translate }}"
-                    data-size="xl">
+                    data-size="xl"
+                >
                     <input
                         class="oui-input mb-2"
                         type="text"
@@ -57,14 +61,16 @@
                 </oui-field>
                 <oui-field
                     data-label="{{:: 'platform_sh_add_project_region' | translate }}"
-                    data-size="xl">
+                    data-size="xl"
+                >
                     <oui-select
-                        disabled="$ctrl.project.region && $ctrl.capabilities.availableRegions.length === 1"
-                        items="$ctrl.capabilities.availableRegions"
+                        disabled="$ctrl.project.region && $ctrl.capabilities.regions.length === 1"
+                        items="$ctrl.capabilities.regions"
                         model="$ctrl.project.region"
                         name="projectRegion"
                         required
-                        placeholder="{{:: 'platform_sh_add_project_select_region' | translate }}">
+                        placeholder="{{:: 'platform_sh_add_project_select_region' | translate }}"
+                    >
                     </oui-select>
                 </oui-field>
             </oui-step-form>
@@ -92,7 +98,9 @@
                         data-ng-if="$ctrl.isEditingTemplate || $ctrl.project.template.createNew"
                     >
                         <oui-select-picker-section>
-                            <span data-translate="platform_sh_add_project_template_create_description"></span>
+                            <span
+                                data-translate="platform_sh_add_project_template_create_description"
+                            ></span>
                         </oui-select-picker-section>
                     </oui-select-picker>
                     <oui-select-picker
@@ -106,14 +114,16 @@
                         data-ng-if="$ctrl.isEditingTemplate || !$ctrl.project.template.createNew"
                     >
                         <oui-select-picker-section>
-                            <span data-translate="platform_sh_add_project_template_existing_description"></span>
+                            <span
+                                data-translate="platform_sh_add_project_template_existing_description"
+                            ></span>
                         </oui-select-picker-section>
                     </oui-select-picker>
                 </div>
                 <platform-sh-project-template
                     data-ng-if="!$ctrl.project.template.createNew"
                     data-project="$ctrl.project"
-                    data-templates="$ctrl.capabilities.availableTemplates"
+                    data-templates="$ctrl.capabilities.templates"
                     data-disabled="false"
                     data-on-select="$ctrl.onTemplateSelect(template)"
                     data-preview-mode="!$ctrl.isEditingTemplate"
@@ -133,22 +143,51 @@
             >
                 <oui-field
                     data-label="{{:: 'platform_sh_add_project_options_storage' | translate}}"
-                    data-size="xl">
+                    data-size="xl"
+                    label-popover="{{ ::'platform_sh_add_project_options_storage_popover' | translate }}"
+                >
                     <oui-select
                         disabled="$ctrl.project.configuration.storage && $ctrl.availableStorages.length === 1"
                         items="$ctrl.availableStorages"
                         match="name"
                         model="$ctrl.project.configuration.storage"
                         name="project-storage"
-                        required>
+                        required
+                    >
+                        <span data-ng-bind="$item.name"></span>
+                    </oui-select>
+                </oui-field>
+                <oui-field
+                    data-label="{{:: 'platform_sh_add_project_options_environment' | translate}}"
+                    data-size="xl"
+                >
+                    <oui-select
+                        disabled="$ctrl.project.configuration.environment && $ctrl.availableEnvironments.length === 1"
+                        items="$ctrl.availableEnvironments"
+                        match="name"
+                        model="$ctrl.project.configuration.environment"
+                        name="project-environment"
+                        required
+                    >
+                        <span data-ng-bind="$item.name"></span>
+                    </oui-select>
+                </oui-field>
+                <oui-field
+                    data-label="{{:: 'platform_sh_add_project_options_license' | translate}}"
+                    data-size="xl"
+                >
+                    <oui-select
+                        disabled="$ctrl.project.configuration.license && $ctrl.availableUserLicenses.length === 1"
+                        items="$ctrl.availableUserLicenses"
+                        match="name"
+                        model="$ctrl.project.configuration.license"
+                        name="project-license"
+                        required
+                    >
                         <span data-ng-bind="$item.name"></span>
                     </oui-select>
                 </oui-field>
             </oui-step-form>
         </ovh-manager-product-offers>
     </div>
-
 </div>
-<!-- <h1 data-translate="platform_sh_add_project_title"></h1> -->
-
-

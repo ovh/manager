@@ -252,11 +252,11 @@ export const PSH_CONFIG = {
     {
       id: 'psh_all_accounts',
       state: 'platform-sh',
-      stateUrl: '/pass/platform-sh/projects',
+      stateUrl: '/paas/webpaas/projects',
       app: [WEB],
     },
   ],
-  icon: 'oui-icon oui-icon-platformsh_concept',
+  icon: 'oui-icon oui-icon-partner-platformsh_concept',
   app: [WEB],
   regions: ['EU', 'CA', 'US'],
 };
@@ -388,7 +388,7 @@ export const WEB_ORDER_SIDEBAR_CONFIG = [
   {
     id: 'orderPsh',
     title: 'psh',
-    icon: 'oui-icon oui-icon-platformsh_concept',
+    icon: 'oui-icon oui-icon-partner-platformsh_concept',
     state: 'platform-sh.add',
     regions: ['EU', 'CA', 'US'],
     app: [WEB],

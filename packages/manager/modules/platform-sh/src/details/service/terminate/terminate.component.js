@@ -3,7 +3,7 @@ import template from './terminate.html';
 
 const component = {
   bindings: {
-    ProjectName: '<',
+    projectName: '<',
     projectId: '<',
     goBack: '<',
   },

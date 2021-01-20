@@ -1,44 +1,45 @@
 import map from 'lodash/map';
 
 import Project from './project.class';
+import {
+  CACHED_OBJECT_LIST_PAGES,
+  X_PAGINATION_MODE,
+} from './platform-sh.constants';
 
 export default class PlatformShService {
   /* @ngInject */
-  constructor(
-    $http,
-    $q,
-    $translate,
-    PlatformShMockData,
-    WucOrderCartService,
-  ) {
+  constructor($http, $q, $translate, WucOrderCartService) {
     this.$http = $http;
     this.$q = $q;
     this.$translate = $translate;
-    this.PlatformShMockData = PlatformShMockData;
     this.WucOrderCartService = WucOrderCartService;
   }
 
-  // getProjects() {
-  //   return this.$http
-  //     .get(`/1.0/webPaaS/subscription`)
-  //     .then((projects) => map(projects.data, (project) => new Project(project)));
-  // }
-
   getProjects() {
-    return this.PlatformShMockData
-      .getProjects()
-      .then((projects) => map(projects, (project) => new Project(project)));
+    return this.$http
+      .get('/webPaaS/subscription', {
+        headers: {
+          [X_PAGINATION_MODE]: CACHED_OBJECT_LIST_PAGES,
+        },
+      })
+      .then(({ data }) => data);
   }
 
   getProjectDetails(projectId) {
-    return this.PlatformShMockData
-      .getProjectDetails()
-      .then((project) => new Project(project));
+    return this.$http
+      .get(`/webPaaS/subscription/${projectId}`)
+      .then(({ data }) => new Project(data));
   }
 
-  getCapabilities() {
-    return this.PlatformShMockData
-      .getCapabilities();
+  getCapabilities(planCode, useTemplate) {
+    return this.$http
+      .get('/webPaaS/capabilities', {
+        params: {
+          planCode,
+          useTemplate,
+        },
+      })
+      .then((res) => res.data);
   }
 
   updateName(projectId, name) {
@@ -46,7 +47,13 @@ export default class PlatformShService {
   }
 
   terminateProject(projectId) {
-    return this.$q.when(true);
+    return this.$http
+      .post(`/webPaaS/subscription/${projectId}/terminate`, {
+        params: {
+          serviceName: projectId,
+        },
+      })
+      .then(({ data }) => data);
   }
 
   getCatalog(ovhSubsidiary) {
@@ -54,14 +61,16 @@ export default class PlatformShService {
       ovhSubsidiary,
       'webPaaS',
     ).then((catalog) => {
-      map(catalog.plans, plan => {
-        plan.vcpus = [{
-          name: '1 vCPU',
-          value: 1,
-        }];
+      map(catalog.plans, (plan) => {
+        plan.vcpus = [
+          {
+            name: '1 vCPU',
+            value: 1,
+          },
+        ];
         return plan;
       });
       return catalog;
-    })
+    });
   }
 }

@@ -1,7 +1,5 @@
 <div data-ui-view>
-    <oui-header
-        data-heading="{{ ::'platform_sh_title' | translate }}"
-    >
+    <oui-header data-heading="{{ ::'platform_sh_title' | translate }}">
     </oui-header>
     <div class="container-fluid w-100 h-100 pt-4 px-3 px-md-5">
         <!-- error messages -->
@@ -11,19 +9,19 @@
 
         <oui-datagrid
             data-rows="$ctrl.projects"
-            data-row-loader="$ctrl.getProjectDetails($row.projectId)"
+            data-row-loader="$ctrl.getProjectDetails($row.serviceId)"
         >
             <oui-datagrid-column
                 data-title=":: 'platform_sh_project' | translate"
-                data-property="displayName"
+                data-property="projectName"
                 data-searchable
                 data-filterable
                 data-type="string"
             >
                 <a
                     class="oui-link"
-                    data-ng-click="$ctrl.viewDetails($row.projectId)"
-                    data-ng-bind="$row.displayName"
+                    data-ng-click="$ctrl.viewDetails($row.serviceId)"
+                    data-ng-bind="$row.projectName"
                 >
                 </a>
             </oui-datagrid-column>
@@ -49,36 +47,25 @@
             >
                 {{ $row.metadata.project.renewDate | date:medium }}
             </oui-datagrid-column>
-            <oui-datagrid-column
-                data-title=":: 'platform_sh_plan_vcpu' | translate"
-                data-property="metadata.project.vcpu"
-            ></oui-datagrid-column>
-            <oui-datagrid-column
-                data-title=":: 'platform_sh_plan_storage' | translate"
-                data-property="metadata.project.storage"
-            ></oui-datagrid-column>
-            <oui-action-menu
-                data-compact
-                data-placement="end">
+            <oui-action-menu data-compact data-placement="end">
                 <oui-action-menu-item
                     data-on-click="$ctrl.openPartnerConsole($row)"
-                    data-data-disabled="!$row.isActive()">
+                    data-data-disabled="!$row.isActive()"
+                >
                     <span
                         data-translate="platform_sh_open_in_platform_sh_console"
                     ></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
-                    data-on-click="$ctrl.viewDetails($row.projectId)">
-                    <span
-                        data-translate="platform_sh_goto_dashbboard"
-                    ></span>
+                    data-on-click="$ctrl.viewDetails($row.serviceId)"
+                >
+                    <span data-translate="platform_sh_goto_dashbboard"></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
                     data-on-click="$ctrl.terminateProject($row)"
-                    data-data-disabled="!$row.isActive()">
-                    <span
-                        data-translate="platform_sh_cancel_project"
-                    ></span>
+                    data-data-disabled="!$row.isActive()"
+                >
+                    <span data-translate="platform_sh_cancel_project"></span>
                 </oui-action-menu-item>
             </oui-action-menu>
             <oui-datagrid-topbar>
@@ -99,4 +86,3 @@
         </oui-datagrid>
     </div>
 </div>
-

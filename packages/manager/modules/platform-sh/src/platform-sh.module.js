@@ -14,7 +14,7 @@ import service from './platform-sh.service';
 import terminateProject from './terminate';
 import projectStatus from './components/project-status';
 
-import mockData from './platform-sh.data';
+// import mockData from './platform-sh.data';
 
 const moduleName = 'ovhManagerPlatformSh';
 
@@ -34,7 +34,7 @@ angular
   .config(routing)
   .component('platformSh', component)
   .service('PlatformSh', service)
-  .service('PlatformShMockData', mockData)
+  // .service('PlatformShMockData', mockData)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

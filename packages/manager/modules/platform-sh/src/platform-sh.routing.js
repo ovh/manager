@@ -1,15 +1,13 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('platform-sh', {
-    url: '/pass/platform-sh/projects',
+    url: '/paas/webpaas/projects',
     component: 'platformSh',
     redirectTo: (transition) =>
       transition
         .injector()
         .getAsync('projects')
         .then((projects) =>
-          projects.length === 0
-            ? { state: 'platform-sh.onboarding' }
-            : false,
+          projects.length === 0 ? { state: 'platform-sh.onboarding' } : false,
         ),
     resolve: {
       user: /* @ngInject */ (OvhApiMe) => OvhApiMe.v6().get().$promise,
@@ -22,7 +20,7 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
       terminateProject: /* @ngInject */ ($state) => (project) =>
         $state.go('platform-sh.cancel', {
-          projectId: project.projectId,
+          projectId: project.serviceId,
           projectName: project.projectName,
         }),
       openPartnerConsole: /* @ngInject */ ($window) => (project) =>
@@ -33,12 +31,9 @@ export default /* @ngInject */ ($stateProvider) => {
       ) => {
         const reload = message && type === 'success';
 
-        const promise = $state.go(
-          'platform-sh',
-          {
-            reload,
-          },
-        );
+        const promise = $state.go('platform-sh', {
+          reload,
+        });
 
         if (message) {
           promise.then(() => CucCloudMessage[type](message, 'platform-sh'));
@@ -51,4 +46,3 @@ export default /* @ngInject */ ($stateProvider) => {
     },
   });
 };
-
