@@ -45,7 +45,7 @@
         </oui-message>
 
         <div class="row d-md-flex" data-ng-if="!hosting.isExpired">
-            <div class="col-md-4 mb-5">
+            <div class="col-md-4 mb-2">
                 <oui-tile
                     class="mb-3"
                     data-heading="{{ ::'hosting_dashboard_general_informations' | translate}}"
@@ -233,7 +233,7 @@
                     </oui-tile-definition>
                 </oui-tile>
                 <div
-                    data-ng-class="{'mb-5': $ctrl.screenshot}"
+                    data-ng-class="{'mb-2': $ctrl.screenshot}"
                     class="text-center"
                     data-ng-if="!hosting.isExpired"
                 >
@@ -261,7 +261,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4 mb-5">
+            <div class="col-md-4 mb-2">
                 <oui-tile
                     data-heading="{{ ::'hosting_dashboard_configuration' | translate}}"
                 >
@@ -646,7 +646,7 @@
                     </oui-tile-definition>
                 </oui-tile>
             </div>
-            <div class="col-md-4 mb-5">
+            <div class="col-md-4 mb-2">
                 <oui-tile
                     heading="{{:: 'hosting_dashboard_useful_links' | translate }}"
                     class="mb-3"
@@ -684,7 +684,7 @@
                     </oui-tile-button>
                 </oui-tile>
                 <div
-                    class="mb-5"
+                    class="mb-2"
                     data-ng-if="!hosting.isExpired"
                     data-ng-show="hosting.trafficQuotaPercent != null && hosting.trafficQuotaPercent >= 0"
                 >
