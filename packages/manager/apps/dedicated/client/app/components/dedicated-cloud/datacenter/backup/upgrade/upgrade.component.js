@@ -13,6 +13,7 @@ export default {
     operationsUrl: '<',
     pccType: '<',
     productId: '<',
+    trackingPrefix: '<',
   },
   controller,
   template,

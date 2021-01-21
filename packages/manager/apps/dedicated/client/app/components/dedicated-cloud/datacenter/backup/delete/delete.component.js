@@ -7,6 +7,7 @@ export default {
     datacenterId: '<',
     goToBackup: '<',
     productId: '<',
+    trackingPrefix: '<',
   },
   controller,
   template,

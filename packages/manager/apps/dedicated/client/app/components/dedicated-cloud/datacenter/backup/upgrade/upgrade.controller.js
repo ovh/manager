@@ -5,8 +5,9 @@ import { BACKUP_OFFER_NAME } from '../backup.constants';
 
 export default class {
   /* @ngInject */
-  constructor($translate, dedicatedCloudDatacenterBackupService) {
+  constructor($translate, atInternet, dedicatedCloudDatacenterBackupService) {
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.dedicatedCloudDatacenterBackupService = dedicatedCloudDatacenterBackupService;
 
     this.BACKUP_OFFER_NAME = BACKUP_OFFER_NAME;
@@ -26,6 +27,10 @@ export default class {
   }
 
   upgrade() {
+    this.atInternet.trackClick({
+      name: `${this.trackingPrefix}::datacenter::backup::upgrade::validate`,
+      type: 'action',
+    });
     this.upgrading = true;
     return this.dedicatedCloudDatacenterBackupService
       .updateBackupCapabilities(this.productId, this.datacenterId, this.backup)
