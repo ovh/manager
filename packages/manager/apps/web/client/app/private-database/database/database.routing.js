@@ -11,8 +11,13 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('app.private-database.dashboard.database.dashboard.dump', {
           databaseName: database.databaseName,
         }),
-      goToExtensions: /* @ngInject */ ($state) => () =>
-        $state.go('app.private-database.dashboard.database.extension'),
+      goToExtensions: /* @ngInject */ ($state) => ({ databaseName }) =>
+        $state.go(
+          'app.private-database.dashboard.database.dashboard.extension',
+          {
+            databaseName,
+          },
+        ),
       goToArchives: /* @ngInject */ ($state) => () =>
         $state.go('app.private-database.dashboard.database.archive.list'),
       goToArchivesDump: /* @ngInject */ ($state) => (database) =>

@@ -27,7 +27,7 @@ angular.module('App').controller(
 
       this.$scope.goToExtension = (bdd) => {
         this.$scope.bdd = bdd;
-        this.goToExtensions();
+        this.goToExtensions(bdd);
       };
 
       this.$scope.goToArchivesList = () => {
