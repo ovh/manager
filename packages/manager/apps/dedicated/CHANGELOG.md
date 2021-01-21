@@ -1,3 +1,12 @@
+## [16.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.0.0...@ovh-ux/manager-dedicated@16.0.1) (2021-01-21)
+
+
+### Bug Fixes
+
+* **dedicated:** add veaam backup trackers ([#4319](https://github.com/ovh/manager/issues/4319)) ([48bc63d](https://github.com/ovh/manager/commit/48bc63d3e11d90ad644ddb814136e37deb3e074e))
+
+
+
 # [16.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@15.0.1...@ovh-ux/manager-dedicated@16.0.0) (2021-01-20)
 
 
