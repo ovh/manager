@@ -5,14 +5,7 @@ import { MESSAGES_CONTAINER_NAME } from './edit.constant';
 
 export default class ProjectEditController {
   /* @ngInject */
-  constructor(
-    $stateParams,
-    $translate,
-    CucCloudMessage,
-    OvhApiCloudProject,
-    ovhUserPref,
-  ) {
-    this.$stateParams = $stateParams;
+  constructor($translate, CucCloudMessage, OvhApiCloudProject, ovhUserPref) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.OvhApiCloudProject = OvhApiCloudProject;
@@ -24,6 +17,8 @@ export default class ProjectEditController {
   }
 
   $onInit() {
+    this.checkCartId();
+
     this.serviceName = this.project.project_id;
 
     this.messageHandler = this.CucCloudMessage.subscribe(
