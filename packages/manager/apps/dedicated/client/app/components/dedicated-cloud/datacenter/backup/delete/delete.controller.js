@@ -4,9 +4,15 @@ import { BACKUP_OFFER_NAME, BACKUP_STATE_REMOVING } from '../backup.constants';
 
 export default class {
   /* @ngInject */
-  constructor($translate, Alerter, dedicatedCloudDatacenterBackupService) {
+  constructor(
+    $translate,
+    Alerter,
+    atInternet,
+    dedicatedCloudDatacenterBackupService,
+  ) {
     this.$translate = $translate;
     this.alerter = Alerter;
+    this.atInternet = atInternet;
     this.dedicatedCloudDatacenterBackupService = dedicatedCloudDatacenterBackupService;
   }
 
@@ -18,6 +24,10 @@ export default class {
     if (!this.backup.isActive()) {
       return null;
     }
+    this.atInternet.trackClick({
+      name: `${this.trackingPrefix}::datacenter::backup::delete::validate`,
+      type: 'action',
+    });
     this.deleting = true;
     return this.dedicatedCloudDatacenterBackupService
       .disableBackup(this.productId, this.datacenterId)

@@ -5,6 +5,7 @@ export default {
   bindings: {
     backupTariffUrl: '<',
     enabledBackupOffer: '<',
+    trackingPrefix: '<',
   },
   controller,
   template,
