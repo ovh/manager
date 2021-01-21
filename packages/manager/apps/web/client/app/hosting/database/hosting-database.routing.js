@@ -6,6 +6,21 @@ export default /* @ngInject */ ($stateProvider) => {
     template,
     controller: 'HostingTabDatabasesCtrl',
     resolve: {
+      goToDatabase: /* @ngInject */ ($state, $timeout, Alerter) => (
+        message = false,
+        type = 'success',
+        target = 'app.alerts.main',
+      ) => {
+        const promise = $state.go('app.hosting.dashboard.database', {});
+
+        if (message) {
+          promise.then(() =>
+            $timeout(() => Alerter.set(`alert-${type}`, message, null, target)),
+          );
+        }
+
+        return promise;
+      },
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('hosting_database'),
     },

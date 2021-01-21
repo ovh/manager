@@ -15,7 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
         HostingDatabaseOrderPublicService.getCharacteristicsOfAvailableProducts(
           serviceName,
         ),
-      goBack: /* @ngInject */ (goToHosting) => goToHosting,
+      goBack: /* @ngInject */ (goToDatabase) => goToDatabase,
       hosting: /* @ngInject */ (Hosting, serviceName) =>
         Hosting.getSelected(serviceName, true),
       onError: /* @ngInject */ ($translate, goBack) => (error) =>

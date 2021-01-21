@@ -72,7 +72,7 @@ export default /* @ngInject */ ($stateProvider) => {
       getDatacenter: (HostingDatabaseOrderPrivateService) => (serviceName) =>
         HostingDatabaseOrderPrivateService.getDatacenter(serviceName),
 
-      goBack: /* @ngInject */ (goToHosting) => goToHosting,
+      goBack: /* @ngInject */ (goToDatabase) => goToDatabase,
 
       prepareOrderCart: /* @ngInject */ (
         cartId,
