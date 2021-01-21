@@ -1,10 +1,11 @@
+import controller from './dedicated-housing.controller';
 import template from './dedicated-housing.html';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('dedicated-housing.dashboard', {
     url: '/:productId',
     template,
-    controller: 'HousingCtrl',
+    controller,
     resolve: {
       name: /* @ngInject */ ($transition$) => $transition$.params().productId,
 

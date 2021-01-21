@@ -1,6 +1,6 @@
 import assign from 'lodash/assign';
 
-export default function /* @ngInject */ HousingCtrl(
+export default /* @ngInject */ function HousingCtrl(
   $scope,
   $stateParams,
   $timeout,

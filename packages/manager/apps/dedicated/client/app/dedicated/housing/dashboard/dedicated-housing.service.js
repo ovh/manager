@@ -1,9 +1,8 @@
 import assign from 'lodash/assign';
 import map from 'lodash/map';
 
-export default function /* @ngInject */ Housing(
+export default /* @ngInject */ function Housing(
   $q,
-  constants,
   $rootScope,
   Polling,
   OvhHttp,
