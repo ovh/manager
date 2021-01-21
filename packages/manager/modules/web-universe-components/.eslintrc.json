@@ -1,7 +1,6 @@
 {
   "globals": {
     "Chart": true,
-    "moment": true,
     "URI": true
   }
 }
