@@ -57,6 +57,15 @@ import emailDomainUpgradeModule from './email-domain/upgrade';
 import hostingEmail from './hosting/email';
 import hostingEmailActivateModule from './hosting/email/activate';
 
+import wucAlldom from './components/alldom';
+import wucAutorenewInvite from './components/autorenew-invite';
+import wucCron from './components/cron';
+import wucCronValidator from './components/cron-validator';
+import wucExpiration from './components/expiration';
+import wucOvhFileReader from './components/ovhFileReader';
+import wucProgressBarElementCounter from './components/progressBarElementCounter';
+import wucServiceStatus from './components/service-status';
+
 import './css/source.less';
 import './css/source.scss';
 
@@ -131,6 +140,14 @@ angular
       emailDomainUpgradeModule,
       hostingEmail,
       hostingEmailActivateModule,
+      wucAlldom,
+      wucAutorenewInvite,
+      wucCron,
+      wucCronValidator,
+      wucExpiration,
+      wucOvhFileReader,
+      wucProgressBarElementCounter,
+      wucServiceStatus,
       ...get(__NG_APP_INJECTIONS__, Environment.getRegion(), []),
     ].filter(isString),
   )

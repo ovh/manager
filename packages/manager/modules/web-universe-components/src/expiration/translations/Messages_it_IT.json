@@ -1,9 +1,0 @@
-{
-  "expiration_new_tab": "Apri in una nuova scheda",
-  "expiration_expired_date": "Scaduto il <strong>{{t0}}</strong>",
-  "expiration_renew_date": "Rinnovo automatico previsto tra <strong>{{t0}}</strong>",
-  "expiration_resiliation_cancel_label": "Annulla chiusura ",
-  "expiration_wizard_renew": "Rinnova",
-  "expiration_resiliation_date": "Disattivazione prevista il <strong>{{t0}}</strong>",
-  "expiration_expiration_date": "Scade il <strong>{{t0}}</strong>"
-}
