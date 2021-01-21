@@ -15,6 +15,7 @@ export default {
     scrollToTop: '<',
     goToDeleteBackup: '<',
     guideUrl: '<',
+    trackingPrefix: '<',
   },
   controller,
   template,

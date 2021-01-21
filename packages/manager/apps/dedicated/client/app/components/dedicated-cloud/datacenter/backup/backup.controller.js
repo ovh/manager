@@ -8,11 +8,13 @@ export default class {
     $timeout,
     $translate,
     Alerter,
+    atInternet,
     dedicatedCloudDatacenterBackupService,
   ) {
     this.$timeout = $timeout;
     this.$translate = $translate;
     this.alerter = Alerter;
+    this.atInternet = atInternet;
     this.dedicatedCloudDatacenterBackupService = dedicatedCloudDatacenterBackupService;
   }
 
@@ -38,6 +40,13 @@ export default class {
         this.alertMain,
       );
     }
+  }
+
+  onGuideClick() {
+    this.atInternet.trackClick({
+      name: `${this.trackingPrefix}::datacenter::backup::read-guide`,
+      type: 'action',
+    });
   }
 
   updateBackupCapabilities() {

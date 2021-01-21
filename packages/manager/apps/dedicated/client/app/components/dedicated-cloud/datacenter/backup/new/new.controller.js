@@ -9,10 +9,17 @@ import {
 
 export default class {
   /* @ngInject */
-  constructor($q, $translate, Alerter, dedicatedCloudDatacenterBackupService) {
+  constructor(
+    $q,
+    $translate,
+    Alerter,
+    atInternet,
+    dedicatedCloudDatacenterBackupService,
+  ) {
     this.$q = $q;
     this.$translate = $translate;
     this.alerter = Alerter;
+    this.atInternet = atInternet;
     this.dedicatedCloudDatacenterBackupService = dedicatedCloudDatacenterBackupService;
 
     this.BACKUP_OFFER_NAME = BACKUP_OFFER_NAME;
@@ -57,6 +64,10 @@ export default class {
   }
 
   createBackupOrder() {
+    this.atInternet.trackClick({
+      name: `${this.trackingPrefix}::datacenter::backup::select`,
+      type: 'action',
+    });
     this.data.backupOrder = null;
     this.data.orderCreationInProgress = true;
     this.data.selectedOfferDetails = find(this.backupOffers, {
@@ -81,6 +92,10 @@ export default class {
   }
 
   orderBackup() {
+    this.atInternet.trackClick({
+      name: `${this.trackingPrefix}::datacenter::backup::activate_${this.data.selectedOffer.backupOffer}`,
+      type: 'action',
+    });
     this.data.orderInProgress = true;
     return (this.backup.isLegacy()
       ? this.dedicatedCloudDatacenterBackupService.updateBackupCapabilities(
