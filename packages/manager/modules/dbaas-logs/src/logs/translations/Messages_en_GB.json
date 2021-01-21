@@ -670,7 +670,7 @@
   "logs_streams_col_retention": "Retention",
   "streams_45_days": " days",
   "inputs_nb_instance": "Instances",
-  "logs_index_col_nb_shard": "Partitions",
+  "logs_index_col_nb_shard": "shards",
   "logs_save": "Save",
   "logs_cancel": "Cancel",
   "logs_yes": "Yes",

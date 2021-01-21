@@ -37,5 +37,5 @@
   "cda_detail_edit_crushTunable_required": "El CRUSH tunable es obligatorio.",
   "cda_detail_edit_success": "La información se ha modificado correctamente.",
   "cda_detail_info_no_user": "Es necesario tener al menos un usuario para poder utilizar el cluster.",
-  "cda_detail_info_create_user": "Crear un nuevo usuario "
+  "cda_detail_info_create_user": "Crear un nuevo usuario"
 }

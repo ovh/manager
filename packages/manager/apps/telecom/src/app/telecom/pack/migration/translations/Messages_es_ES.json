@@ -136,5 +136,8 @@
   "telecom_pack_migration_pto_yes": "Tengo una caja con la siguiente referencia:",
   "telecom_pack_migration_pto_yes_description": "Procederemos a la eliminación de la fibra óptica (PTO) existente.",
   "telecom_pack_migration_pto_no_description": "Un técnico realizará la instalación de una toma óptica (PTO) durante su intervención.",
-  "telecom_pack_migration_pto_yes_not_known_description": "¿Ha comprobado que no dispone de la referencia de la toma óptica (PTO)? Esto podría afectar al tiempo de conexión."
+  "telecom_pack_migration_pto_yes_not_known_description": "¿Ha comprobado que no dispone de la referencia de la toma óptica (PTO)? Esto podría afectar al tiempo de conexión.",
+  "telecom_pack_migration_confirm_resume_contact_owner": "Datos de contacto",
+  "telecom_pack_migration_confirm_resume_contact_phone": "Número de teléfono de contacto",
+  "telecom_pack_migration_confirm_resume_phone_form_error": "El número introducido debe ser válido."
 }

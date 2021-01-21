@@ -1,6 +1,6 @@
 {
   "cda_user_details_permissions_list_edit_btn_back": "Volver",
-  "cda_user_details_permissions_list_edit_title": "Cambiar los permisos",
+  "cda_user_details_permissions_list_edit_title": "Modificar los permisos",
   "cda_user_details_permissions_list_username": "Nombre de usuario",
   "cda_user_details_permissions_list_label_permission": "Permisos",
   "cda_user_details_permissions_list_edit_success": "La información se ha modificado correctamente.",
