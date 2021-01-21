@@ -83,7 +83,17 @@ export const LINKS = [
   },
 ];
 
+export const PCI_HDS_ADDON = {
+  productName: 'cloud',
+  family: 'certification-hds',
+  parentPlanCode: 'project.2018',
+  planCodeScope: 'certification.hds',
+  certifiedProject: 'publiccloud-certification-hds',
+  planCode: 'certification.hds.2018',
+};
+
 export default {
   ACTIONS,
   LINKS,
+  PCI_HDS_ADDON,
 };
