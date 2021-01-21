@@ -16,6 +16,9 @@
         rel="noopener"
         class="oui-link_icon"
         data-ng-href="{{ ::$ctrl.backupTariffUrl }}"
+        data-track-on="click"
+        data-track-name="{{:: $ctrl.trackingPrefix + '::datacenter::backup::check-prices' }}"
+        data-track-type="action"
     >
         <strong
             data-translate="dedicatedCloud_datacenter_backup_new_tariff_url"
@@ -30,15 +33,20 @@
     <dedicated-cloud-datacenter-backup-legacy
         data-backup-tariff-url="::$ctrl.backupTariffUrl"
         data-enabled-backup-offer="$ctrl.enabledBackupOffer"
+        data-tracking-prefix="$ctrl.trackingPrefix"
     ></dedicated-cloud-datacenter-backup-legacy>
-    <oui-button
-        class="mt-3"
-        data-on-click="$ctrl.showOrderFlow = true"
+    <button
+        class="oui-button oui-button_primary mt-3"
         data-ng-if="!$ctrl.showOrderFlow"
-        ><span
+        data-ng-click="$ctrl.showOrderFlow = true"
+        data-track-on="click"
+        data-track-name="{{:: $ctrl.trackingPrefix + '::datacenter::backup::update' }}"
+        data-track-type="action"
+    >
+        <span
             data-translate="dedicatedCloud_datacenter_backup_legacy_update_button"
-        ></span
-    ></oui-button>
+        ></span>
+    </button>
 </div>
 
 <div

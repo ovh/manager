@@ -11,6 +11,7 @@
         <oui-guide-menu-item
             data-ng-href="{{:: $ctrl.guideUrl }}"
             data-external="true"
+            data-on-click="$ctrl.onGuideClick()"
         >
             <span
                 data-translate="dedicatedCloud_datacenter_backup_title"
@@ -30,6 +31,9 @@
                         checked="checked"
                         onchange="this.checked=true"
                         data-ng-click="$ctrl.goToDeleteBackup()"
+                        data-track-on="click"
+                        data-track-name="{{:: $ctrl.trackingPrefix + '::datacenter::backup::delete::toggle' }}"
+                        data-track-type="action"
                     />
                     <span class="oui-switch__slider" aria-hidden="true"></span>
                 </label>

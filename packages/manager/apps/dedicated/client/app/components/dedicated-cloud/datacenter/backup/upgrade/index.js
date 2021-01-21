@@ -1,4 +1,5 @@
 import angular from 'angular';
+import ngAtInternet from '@ovh-ux/ng-at-internet';
 import '@ovh-ux/ng-translate-async-loader';
 import 'ovh-api-services';
 import '@ovh-ux/ui-kit';
@@ -19,6 +20,7 @@ angular
     'oui',
     'ovhManagerCore',
     'pascalprecht.translate',
+    ngAtInternet,
     termsOfUse,
     'ui.router',
   ])

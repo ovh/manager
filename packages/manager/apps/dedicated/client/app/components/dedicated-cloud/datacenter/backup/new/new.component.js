@@ -17,6 +17,7 @@ export default {
     productId: '<',
     operationsUrl: '<',
     scrollToTop: '<',
+    trackingPrefix: '<',
   },
   controller,
   template,
