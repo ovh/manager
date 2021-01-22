@@ -99,7 +99,7 @@ export const NETWORKS_CONFIG = {
       path: '/cdn/dedicated',
       types: [
         {
-          path: '/cdn/dedicated/:productId/domains/:domain',
+          path: '/cdn/dedicated/:productId/domains',
           state: 'app.networks.cdn.dedicated.manage.domain.dashboard',
           stateParams: ['productId', 'domain'],
           app: [DEDICATED],
@@ -107,6 +107,7 @@ export const NETWORKS_CONFIG = {
         },
       ],
       state: 'app.networks.cdn.dedicated',
+      loadOnState: 'app.networks.cdn.dedicated',
       stateParams: ['productId'],
       icon: 'ovh-font ovh-font-cdn',
       app: [DEDICATED],
