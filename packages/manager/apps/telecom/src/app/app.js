@@ -226,21 +226,19 @@ angular
 
   /*= =========  CHECK IF STILL LOGGED IN  ========== */
   .run((ssoAuthentication, $transitions) => {
-    ssoAuthentication.login().then(() => {
-      $transitions.onStart({}, (transition) => {
-        const next = transition.to();
-        let authenticate;
+    $transitions.onStart({}, (transition) => {
+      const next = transition.to();
+      let authenticate;
 
-        if (next.authenticate !== undefined) {
-          authenticate = next.authenticate;
-        } else {
-          authenticate = true;
-        }
+      if (next.authenticate !== undefined) {
+        authenticate = next.authenticate;
+      } else {
+        authenticate = true;
+      }
 
-        if (authenticate) {
-          ssoAuthentication.sessionCheckOrGoLogin();
-        }
-      });
+      if (authenticate) {
+        ssoAuthentication.sessionCheckOrGoLogin();
+      }
     });
   })
 

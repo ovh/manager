@@ -441,21 +441,6 @@ angular
     },
   ])
   .run([
-    'ssoAuthentication',
-    'URLS_REDIRECTED_TO_DEDICATED',
-    (authentication, URLS_REDIRECTED_TO_DEDICATED) => {
-      forEach(
-        filter(
-          URLS_REDIRECTED_TO_DEDICATED,
-          (url) => !url.test(window.location.href),
-        ),
-        () => {
-          authentication.login();
-        },
-      );
-    },
-  ])
-  .run([
     '$rootScope',
     ($rootScope) => {
       $rootScope.$on('$locationChangeStart', () => {
