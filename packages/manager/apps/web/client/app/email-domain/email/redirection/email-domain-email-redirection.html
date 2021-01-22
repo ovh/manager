@@ -41,10 +41,13 @@
             <oui-datagrid
                 data-rows="ctrlEmailDomainEmailRedirection.redirections"
                 data-row-loader="ctrlEmailDomainEmailRedirection.transformItem($row)"
+                data-page-size="{{ ctrlEmailDomainEmailRedirection.pageSize }}"
+                data-on-page-change="ctrlEmailDomainEmailRedirection.savePageSizePreference($pagination)"
             >
                 <oui-datagrid-column
                     data-title="'emails_common_from' | translate"
                     data-property="from"
+                    sortable="asc"
                 ></oui-datagrid-column>
                 <oui-datagrid-column
                     data-title="'emails_common_to' | translate"
