@@ -22,7 +22,7 @@ angular.module('services').service('User', [
         userPromise = $q.when('start').then(() =>
           $q
             .all({
-              me: () => Environment.getUser(),
+              me: Environment.getUser(),
               certificates: this.getUserCertificates(),
             })
             .then((result) => {
