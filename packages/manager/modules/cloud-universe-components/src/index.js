@@ -6,7 +6,6 @@ import cucAutofocus from './autofocus';
 import cucBytes from './bytes';
 import cucConfig from './config';
 import cucConsumption from './consumption';
-import cucContracts from './contracts';
 import cucCurrency from './currency';
 import cucFeatureAvailability from './featureAvailability';
 import cucFlavor from './flavor';
@@ -32,7 +31,6 @@ angular.module(moduleName, [
   cucBytes,
   cucConfig,
   cucConsumption,
-  cucContracts,
   cucCurrency,
   cucFeatureAvailability,
   cucFlavor,
