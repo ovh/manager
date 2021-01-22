@@ -32,7 +32,7 @@
   "vps_upscale_summary_price_ex_vat": "Prezzo IVA esclusa:",
   "vps_upscale_summary_price_monthly": "Prezzo al prorata per il mese in corso",
   "vps_upscale_summary_price_upfront": "Prezzo per il periodo contrattuale restante",
-  "vps_upscale_summary_price_monthly_with_payment_method_validation": "Confermando questa scelta sarà necessario pagare un importo di {{ prorataPrice }}, corrispondente al prorata temporis per il mese in corso.",
+  "vps_upscale_summary_price_monthly_with_payment_method_validation": "Confermando questa scelta sarà necessario pagare un importo di {{ price }} , corrispondente al prorata temporis per il mese in corso.",
   "vps_upscale_summary_price_monthly_without_payment_method_validation": "Confermando questa scelta verrai reindirizzato al buono d’ordine da cui sarà possibile pagare l’importo di {{ price }} dovuto per il prorata temporis.",
   "vps_upscale_summary_price_upfront_with_payment_method_validation": "Confermando questa scelta verrà fatturato un importo di {{ price }} per il periodo restante incluso nell’impegno contrattuale.",
   "vps_upscale_summary_price_upfront_without_payment_method_validation": "Confermando questa scelta verrai reindirizzato al buono d’ordine da cui sarà possibile pagare l’importo supplementare di {{ price }} per il periodo restante incluso nell’impegno contrattuale.",

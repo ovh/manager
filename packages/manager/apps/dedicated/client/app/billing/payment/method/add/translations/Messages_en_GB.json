@@ -18,7 +18,7 @@
   "billing_payment_method_add_billing_address_create": "Add a new address",
   "billing_payment_method_add_payment_method": "Payment method information",
   "billing_payment_method_add_info": "A new tab should open to a secure page, for you to finish adding your payment method. If the tab has not opened, please click <a href=\"{{ paymentUrl }}\" target=\"_blank\" rel=\"noopener\">here</a>.",
-  "billing_payment_method_add_bank_account_success": "The bank account has been added, it will be enabled as soon as it has been validated. Please follow the <a href=\"{{ url }}\" target=\"_blank\">procedure in this document</a> to validate the payment method to be sent by post.  Your bank account will be validated within 24 to 48 hours from the moment we receive your authorisation for direct debit.",
+  "billing_payment_method_add_bank_account_success": "The bank account has been added, it will be enabled as soon as it has been validated. Please follow the <a href=\"{{t0}}\" target=\"_blank\">procedure described in this document</a> to confirm the payment method to be sent by post. Your bank account will be validated within 24 to 48 hours from the moment we receive your authorisation for direct debit.",
   "billing_payment_method_add_load_error": "An error has occurred loading the page.",
   "billing_payment_method_add_status_cancel": "The request to add the payment method has been cancelled. Your payment method is not linked to your OVHcloud account.",
   "billing_payment_method_add_status_error": "An error has occurred adding the payment method.",

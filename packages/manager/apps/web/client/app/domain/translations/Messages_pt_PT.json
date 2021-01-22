@@ -436,7 +436,7 @@
   "domain_configuration_dns_entry_delete_step1_subdomain": "Sub-domínio",
   "domain_configuration_dns_entry_delete_step1_target": "Destino",
   "domain_configuration_dns_entry_mass_delete_step1_question_1": "Deseja realmente eliminar esta entrada da zona DNS?",
-  "domain_configuration_dns_entry_mass_delete_step1_question_other": "Tem a certeza de que quer eliminar estas {} entradas da zona DNS?",
+  "domain_configuration_dns_entry_mass_delete_step1_question_other": "Tem a certeza de que quer eliminar estas {{t0}} entradas da zona DNS?",
   "domain_configuration_dns_entry_delete_success": "A entrada foi eliminada da zona DNS.",
   "domain_configuration_dns_entry_delete_fail": "Ocorreu um erro na eliminação da entrada {{t0}} da zona DNS.",
   "domain_configuration_dns_entry_delete_mass_success": "As entradas foram eliminadas com sucesso da sua zona DNS.",

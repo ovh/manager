@@ -1,5 +1,5 @@
 {
-  "billing_autorenew_service_update_manual_sumup": "You have selected manual renewal for your {{ service }} service",
+  "billing_autorenew_service_update_manual_sumup": "You have selected manual renewal for your {{ serviceName }} service",
   "billing_autorenew_service_update_manual_non_automatic": "With this renewal method, your service will not be renewed automatically when it reaches its expiry date.",
   "billing_autorenew_service_update_manual_expiration": "You will be sent several email notifications in the weeks and days before the expiry date, and they will alert you regarding the expiry on {{ expiration }}.",
   "billing_autorenew_service_update_manual_renew": "You will simply need to renew your service if you want to keep using it.",

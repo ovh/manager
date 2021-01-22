@@ -1,5 +1,5 @@
 {
-  "telephony_order_geographical_title_country": "Commander un numéro géographique",
+  "telephony_order_geographical_title_country": "Encomendar um número geográfico ({{country}})",
   "telephony_order_geographical_title": "Commander un numéro géographique",
   "telephony_order_geographical_submit_title": "Commander un numéro géographique",
   "telephony_order_geographical_back_link": "Retour au choix des types de numéros",

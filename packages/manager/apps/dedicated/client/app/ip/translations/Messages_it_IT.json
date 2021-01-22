@@ -414,7 +414,7 @@
   "ip_table_manage_move_ipblock_ipcanbemovedto": "L'IP può essere spostato verso questo servizio:",
   "ip_table_manage_move_ipblock_validation": "Clicca su \"Conferma\" per spostare l'IP. Sarà disponibile in “{{t0}}” entro pochi minuti.",
   "ip_table_manage_move_ipblock_resume_on": "su {{t0}}",
-  "ip_table_manage_move_ipblock_success": "L'IP {{t0}} sarà disponibile in “{{t0}}” entro pochi minuti.",
+  "ip_table_manage_move_ipblock_success": "L'IP {{t0}} sarà disponibile in \"{{t1}}\" entro pochi minuti.",
   "ip_table_manage_move_ipblock_failure": "Si è verificato un errore durante il trasferimento dell'IP {{t0}} verso {{t1}}.",
   "ip_servicetype_DEDICATED": "Server dedicato",
   "ip_servicetype_dedicatedServer": "Server dedicato",

@@ -1,6 +1,6 @@
 {
   "cda_ip_ip_definition": "You can create your IP access control list here.",
-  "cda_ip_permission_definition": "Your Cloud Disk Array cluster will accept only such network traffic which matches created Access Controls.",
+  "cda_ip_permission_definition": "Your Cloud Disk Array cluster will only accept network traffic that matches the created Access Controls.",
   "cda_ip_add_button_text": "Add IP Access Control",
   "cda_ip_delete_button_text": "Delete",
   "cda_ip_table_col_network": "IP",

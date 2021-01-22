@@ -17,5 +17,5 @@
   "domain_configuration_enable_web_hosting_activate": "Attiva",
   "domain_configuration_enable_web_hosting_success": "L’attivazione dell’hosting è in corso. L’operazione potrebbe richiedere alcuni minuti.",
   "domain_configuration_enable_web_hosting_checkout_error": "Si è verificato un errore: {{message}}",
-  "domain_configuration_enable_web_hosting_error": "Si è verificato un errore durante l'attivazione dell’hosting: {{error}}"
+  "domain_configuration_enable_web_hosting_error": "Si è verificato un errore durante l'attivazione dell’hosting. {{ message }}"
 }

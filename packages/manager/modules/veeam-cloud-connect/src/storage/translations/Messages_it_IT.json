@@ -8,5 +8,5 @@
   "veeam_storage_update_quota_information": "Definire la quota massima dello spazio di archiviazione. Il valore è compreso tra 1.000 GB e {{maxquota}}} GB.",
   "veeam_storage_update_quota_cancel": "Annulla",
   "veeam_storage_update_quota_confirm": "Modifica",
-  "veeam_storage_update_step_error": "Inserisci un multiplo di {{passo }}}."
+  "veeam_storage_update_step_error": "Inserisci un multiplo di {{ step }}."
 }

@@ -1182,7 +1182,7 @@
   "hosting_action_config_edit_container_version_enum_jessie_i386": "Jessie.i386",
   "hosting_action_config_edit_container_help_main_title": "Hosting configuration ",
   "hosting_action_config_edit_container_help_values_title": "Recommended values:",
-  "hosting_action_config_edit_container_help_values_text": "Operating system: stable <br/> Version of php 7.0 <br/> Engine: php <br/> Mode: production <br/> Application firewall: disabled",
+  "hosting_action_config_edit_container_help_values_text": "Runtime environment: stable <br/> PHP version {{ phpVersion }} <br/> Engine: PHP <br/> Mode: production <br/> Application firewall: disabled",
   "hosting_action_config_edit_engine_version": "PHP version",
   "hosting_action_config_edit_environment": "Mode",
   "hosting_action_config_edit_environment_help": "In development mode, no cache is stored",
@@ -1363,5 +1363,6 @@
   "hosting_dashboard_service_common_inactive": "Disabled",
   "hosting_dashboard_email_offer_get_error": "Unable to retrieve email address",
   "hosting_dashboard_stats_status": "Beta",
-  "hosting_tab_DOMAINS_configuration_add_step3_delete_4a_records": "Delete the AAAA records for your {{domain}} domain"
+  "hosting_tab_DOMAINS_configuration_add_step3_delete_4a_records": "Delete the AAAA records for your {{domain}} domain",
+  "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_information": "Configuration to be applied to the DNS zone"
 }

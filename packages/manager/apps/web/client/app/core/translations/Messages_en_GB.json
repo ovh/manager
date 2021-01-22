@@ -509,7 +509,7 @@
   "navigation_switch_help5": "In expert mode, you can:",
   "navigation_switch_help6": "be faster and more efficient by editing your settings directly in the various tables in the OVH Control Panel.",
   "navigation_more": "More +",
-  "old_manager_alert": "For the next few weeks, you will still be able to manage your services via the <a href=\"{0}\">old OVH Control Panel interface</a>.",
+  "old_manager_alert": "For a few weeks, you can still manage your services via the <a href=\"{{t0}}\">legacy OVHcloud Control Panel</a>.",
   "ovh_account_alert": "Your prepaid account is in debit by {{t2}} as of {{t0}}. Please go to <a href=\"{{t1}}\">the Billing section</a> to credit your account.",
   "ovh_account_cb_expire_alert": "Your bank card will expire in {{t0}} day(s).  Please go to the  <a href=\"{{t1}}\">Billing section</a> to update it.",
   "ovh_account_cb_expired_alert": "Your default payment card has expired. Please go to the <a href=\"{{t0}}\">the Billing section</a> to update it.",

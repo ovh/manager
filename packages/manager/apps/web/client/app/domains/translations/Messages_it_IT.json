@@ -63,7 +63,7 @@
   "domains_configuration_dnssec_simple_deactivate_success": "La tua richiesta di modifica del DNSSEC è stata presa in carico.",
   "domains_configuration_dnssec_simple_deactivate_fail": "Si è verificato un errore nella richiesta di modifica del DNSSEC.",
   "domains_configuration_dnssec_simple_activate_title": "Attiva DNSSEC",
-  "domains_configuration_dnssec_simple_activate_step1_question": "Vuoi davvero attivare DNSSEC sul dominio <span class=\"italic\">{{t0}}</span>?Vuoi davvero attivare DNSSEC per il dominio <span class=\"italic\">{{t0}}</span>?",
+  "domains_configuration_dnssec_simple_activate_step1_question": "Vuoi davvero attivare DNSSEC per il dominio <span class=\"italic\">{{t0}}</span>?",
   "domains_configuration_dnssec_simple_activate_success": "La tua richiesta di modifica DNSSEC è stata presa in carico.",
   "domains_configuration_dnssec_simple_activate_fail": "Si è verificato un errore nella richiesta di modifica del DNSSEC.",
   "domains_action_export_csv_form_service_name_label": "Dominio ASCII",
