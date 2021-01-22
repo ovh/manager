@@ -15,7 +15,7 @@ angular
           translations: { value: ['..'], format: 'json' },
           resolve: {
             breadcrumb: /* @ngInject */ ($translate) =>
-              $translate.instant('dedicated_server_ftp_backup'),
+              $translate.instant('dedicated_server_firewall'),
           },
         });
       }
