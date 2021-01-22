@@ -132,19 +132,22 @@ export default /* @ngInject */ ($stateProvider) => {
         return promise;
       },
       goToCommit: /* @ngInject */ ($state, serverName) => () =>
-        $state.href('app.dedicated.server.dashboard.commitment', {
+        $state.href('app.dedicated-server.server.dashboard.commitment', {
           productId: serverName,
         }),
       goToCancelCommit: /* @ngInject */ ($state, serverName) => () =>
-        $state.href('app.dedicated.server.dashboard.cancel-commitment', {
+        $state.href('app.dedicated-server.server.dashboard.cancel-commitment', {
           productId: serverName,
         }),
       goToCancelResiliation: /* @ngInject */ ($state, serverName) => () =>
-        $state.href('app.dedicated.server.dashboard.cancel-resiliation', {
-          productId: serverName,
-        }),
+        $state.href(
+          'app.dedicated-server.server.dashboard.cancel-resiliation',
+          {
+            productId: serverName,
+          },
+        ),
       goToResiliation: /* @ngInject */ ($state, serverName) => () =>
-        $state.href('app.dedicated.server.dashboard.resiliation', {
+        $state.href('app.dedicated-server.server.dashboard.resiliation', {
           productId: serverName,
         }),
       goToSgxIntroduction: /* @ngInject */ ($state, atInternet) => () => {

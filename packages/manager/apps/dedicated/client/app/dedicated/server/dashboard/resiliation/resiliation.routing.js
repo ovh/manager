@@ -1,10 +1,10 @@
 import { BillingService as Service } from '@ovh-ux/manager-models';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicated.server.dashboard.resiliation', {
+  $stateProvider.state('app.dedicated-server.server.dashboard.resiliation', {
     url: '/resiliation',
     views: {
-      'tabView@app.dedicated.server': {
+      'tabView@app.dedicated-server.server': {
         component: 'ovhManagerBillingResiliation',
       },
     },
@@ -46,6 +46,8 @@ export default /* @ngInject */ ($stateProvider) => {
         $http
           .get(`/services/${serviceId}`)
           .then(({ data }) => new Service(data)),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('dedicated_server_dashboard_resiliate'),
     },
   });
 };
