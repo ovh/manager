@@ -1,12 +1,10 @@
 <div class="telecom-pack-migration">
-    <header>
-        <oui-back-button data-on-click="$ctrl.goBack()">
-            <span
-                data-translate="telecom_pack_migration_back_link_title"
-            ></span>
-        </oui-back-button>
-        <h1 data-translate="telecom_pack_migration_title"></h1>
-    </header>
+    <oui-back-button
+        data-on-click="$ctrl.goBack()"
+        previous-page="{{:: 'telecom_pack_migration_back_link_title' | translate }}"
+    >
+        <span data-translate="telecom_pack_migration_title"></span>
+    </oui-back-button>
     <!-- LOADER -->
     <div class="text-center" data-ng-if="$ctrl.loading.init">
         <oui-spinner></oui-spinner>
