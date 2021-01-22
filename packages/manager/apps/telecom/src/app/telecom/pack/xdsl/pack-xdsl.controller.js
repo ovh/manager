@@ -128,7 +128,6 @@ export default class PackXdslCtrl {
       case 'telecom.packs.pack.xdsl.line.modem.templates':
       case 'telecom.packs.pack.xdsl.line.access-modem-exchange':
         this.setAnim('invert-anim');
-        this.content.back.state = '^';
         this.getXdsl().then((xdsl) => {
           this.content.status = xdsl.status;
           this.content.accessType = xdsl.accessType;
@@ -138,7 +137,6 @@ export default class PackXdslCtrl {
       case 'telecom.packs.pack.xdsl.line.tasks':
       case 'telecom.packs.pack.xdsl.line':
         this.setAnim('anim');
-        this.content.back.state = 'telecom.packs.pack';
         this.getXdsl().then((xdsl) => {
           this.content.status = xdsl.status;
           this.content.accessType = xdsl.accessType;
@@ -146,7 +144,6 @@ export default class PackXdslCtrl {
         break;
       default:
         this.setAnim('anim');
-        this.content.back = {};
         break;
     }
   }

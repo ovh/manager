@@ -30,6 +30,8 @@ export default /* @ngInject */ ($stateProvider) => {
             }),
           );
       },
+      goToPack: /* @ngInject */ ($state) => () =>
+        $state.go('telecom.packs.pack'),
       packName: /* @ngInject */ ($transition$) =>
         $transition$.params().packName,
       breadcrumb: /* @ngInject */ (packName) => packName,
