@@ -4,7 +4,7 @@ export default /* @ngInject */ ($stateProvider) => {
     component: 'dbaasLogsDetailStreamsAdd',
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
-        $translate.instant('dbaas_logs_streams_add'),
+        $translate.instant('dbaas_logs_streams_edit'),
     },
   });
 };
