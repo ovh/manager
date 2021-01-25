@@ -172,7 +172,7 @@ export default class LogsStreamsHomeCtrl {
    */
   gotoArchives(stream) {
     this.CucCloudMessage.flushChildMessage();
-    this.$state.go('dbaas-logs.detail.streams.archives', {
+    this.$state.go('dbaas-logs.detail.streams.stream.archives', {
       serviceName: this.serviceName,
       streamId: stream.info.streamId,
     });
