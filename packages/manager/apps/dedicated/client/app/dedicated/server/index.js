@@ -11,6 +11,7 @@ import interfaces from './interfaces/interfaces.module';
 import monitoring from './monitoring';
 import servers from './servers/servers.module';
 import task from './task';
+import install from './install';
 
 import bandwidthVrackOrderService from './server.bandwidth-vrack-order.service';
 import component from './server.component';
@@ -26,6 +27,7 @@ angular
   .module(moduleName, [
     bandwidth,
     dashboard,
+    install,
     interfaces,
     monitoring,
     'oui',

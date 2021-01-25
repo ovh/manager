@@ -2403,4 +2403,10 @@ export default class ServerF {
         return `${cpu.description}, ${memory.invoiceName}`;
       });
   }
+
+  getBringYourOwnImage(serviceName) {
+    return this.$http
+      .get(`/dedicated/server/${serviceName}/bringYourOwnImage`)
+      .then(({ data }) => data);
+  }
 }

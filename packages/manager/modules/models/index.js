@@ -30,6 +30,8 @@ export {
   User,
 };
 
+export * from './dedicated-server';
+
 export default {
   Bill,
   BillingService,

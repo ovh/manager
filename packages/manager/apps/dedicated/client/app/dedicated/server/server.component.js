@@ -9,6 +9,7 @@ export default {
     specifications: '<',
     user: '<',
     worldPart: '<',
+    bringYourOwnImage: '<',
   },
   controller,
   template,

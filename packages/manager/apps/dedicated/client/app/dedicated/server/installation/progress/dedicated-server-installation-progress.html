@@ -9,8 +9,15 @@
         data-wizard-keydown-disabled
     >
         <div data-wizard-step data-wizard-step-on-load="load">
-            <div class="text-center" data-ng-if="!progress.installationTask">
-                <oui-spinner></oui-spinner>
+            <div data-ng-if="!progress.installationTask">
+                <span
+                    data-ng-if="isBringYourOwnImageInit()"
+                    data-translate="server_configuration_installation_progress_info"
+                >
+                </span>
+                <div class="text-center">
+                    <oui-spinner></oui-spinner>
+                </div>
             </div>
 
             <div data-ng-if="progress.installationTask">
@@ -63,7 +70,7 @@
                         type="button"
                         class="btn btn-default"
                         data-ng-if="progress.errorMessage"
-                        data-ng-click="setAction('installation/choice/dedicated-server-installation-choice', progress.server)"
+                        data-ng-click="setAction('installation/choice/dedicated-server-installation-choice', { server: progress.server, user: currentActionData.user, serverCtrl: currentActionData.serverCtrl })"
                         data-translate="server_configuration_installation_progress_cancel_retry"
                     ></button>
                 </div>
