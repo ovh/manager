@@ -67,6 +67,7 @@ export default /* @ngInject */ (
         }
       },
       breadcrumb: /* @ngInject */ () => null,
+      hideBreadcrumb: () => true,
     },
   });
 

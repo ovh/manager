@@ -205,6 +205,7 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
 
             breadcrumb: /* @ngInject */ ($translate) =>
               $translate.instant('billing_title'),
+            hideBreadcrumb: () => true,
           }
         : {},
     ),

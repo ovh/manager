@@ -174,6 +174,7 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
             debtId,
           }),
         breadcrumb: () => null,
+        hideBreadcrumb: () => true,
       },
     });
   }
