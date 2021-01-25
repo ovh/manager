@@ -51,9 +51,6 @@ export default class DialplanExtensionRuleEditCtrl {
     // set ovh pabx ref
     this.ovhPabx = this.parentCtrl.numberCtrl.number.feature;
 
-    // Change style to prevent another extension edition
-    this.constructor.changeDisplay();
-
     // start rule edition
     this.rule.startEdition();
 
@@ -289,7 +286,6 @@ export default class DialplanExtensionRuleEditCtrl {
       this.rule.status === 'DRAFT' ? this.rule.create() : this.rule.save();
 
     this.parentCtrl.popoverStatus.isOpen = false;
-    this.constructor.resetDisplay();
 
     return actionPromise
       .then(() => {
@@ -311,7 +307,6 @@ export default class DialplanExtensionRuleEditCtrl {
   }
 
   onCancelBtnClick() {
-    this.constructor.resetDisplay();
     this.parentCtrl.popoverStatus.isOpen = false;
     this.parentCtrl.popoverStatus.move = false;
 
@@ -321,20 +316,5 @@ export default class DialplanExtensionRuleEditCtrl {
       // check for collapsing or not the rules into extension component view
       this.parentCtrl.extensionCtrl.checkForDisplayHelpers();
     }
-  }
-
-  static changeDisplay() {
-    document.getElementById('groupNumber').style.visibility = 'hidden';
-    document.getElementById('ruleEdit').classList.add('popover');
-    document.getElementById('ruleEdit').classList.add('pretty-popover');
-    document.getElementById('ruleEdit').style.display = 'block';
-    document.getElementById('ruleEdit').style.visibility = 'visible';
-  }
-
-  static resetDisplay() {
-    document.getElementById('groupNumber').style.visibility = 'visible';
-    document.getElementById('ruleEdit').classList.remove('popover');
-    document.getElementById('ruleEdit').classList.remove('pretty-popover');
-    document.getElementById('ruleEdit').style.display = 'none';
   }
 }
