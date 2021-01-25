@@ -6,6 +6,7 @@ const moduleName = 'ovhManagerVpsCloudDatabaseOrder';
 angular
   .module(moduleName, [])
   .component(component.name, component)
-  .config(routing);
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
