@@ -54,6 +54,7 @@
   "dedicated_server_interfaces_type_private_label": "Privée",
   "dedicated_server_interfaces_type_vrack_label": "Privée",
   "dedicated_server_interfaces_type_vrack_aggregation_label": "Agrégation Privée",
+  "dedicated_server_interfaces_type_public_aggregation_label": "Agrégation Publique",
   "dedicated_server_interfaces_type_isolated_label": "Isolée",
   "dedicated_server_interfaces_mac_label": "Adresse MAC",
   "dedicated_server_interfaces_bandwidth_label": "Bande passante",

@@ -6,6 +6,7 @@ const moduleName = 'ovhManagerDedicatedServerInterfacesOlaPendingTask';
 angular
   .module(moduleName, ['ui.router'])
   .config(routing)
-  .component('dedicatedServerInterfacesOlaPendingTask', component);
+  .component('dedicatedServerInterfacesOlaPendingTask', component)
+  .run(/* @ngTranslationsInject:json ../translations */);
 
 export default moduleName;

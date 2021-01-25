@@ -10,7 +10,6 @@ export default /* @ngInject */ ($stateProvider) => {
       interface: null,
     },
     layout: 'modal',
-    translations: { value: ['.'], format: 'json' },
     resolve: {
       goBack: /* @ngInject */ (goToInterfaces) => goToInterfaces,
       interface: /* @ngInject */ ($transition$) =>

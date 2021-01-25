@@ -81,5 +81,6 @@
   "server_vrack_detach_in_progress": "Scollegamento della vRack {{vRackname}} in corso...",
   "dedicated_server_interfaces_step_checker_list_bandwidth_extension": "Estensione della banda passante",
   "dedicated_server_interfaces_ola_alert_configuration_needed_small": "Sarà necessario effettuare una configurazione manuale tramite KVM IPMI.",
-  "dedicated_server_interfaces_bandwith_ola_warning": "Nell’ambito di una configurazione di aggregazione completa, l’opzione di banda passante pubblica in uscita non verrà utilizzata perché l’interfaccia dedicata alla rete pubblica sarà usata per la rete privata."
+  "dedicated_server_interfaces_bandwith_ola_warning": "Nell’ambito di una configurazione di aggregazione completa, l’opzione di banda passante pubblica in uscita non verrà utilizzata perché l’interfaccia dedicata alla rete pubblica sarà usata per la rete privata.",
+  "dedicated_server_interfaces_type_public_aggregation_label": "Aggregazione pubblica"
 }

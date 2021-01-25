@@ -24,6 +24,13 @@ export default class {
           )
             .then((plans) => {
               this.plans = this.Server.getValidBandwidthPlans(plans);
+              this.plans.sort(
+                (a, b) =>
+                  a.prices.find((el) => el.capacities.includes('renew'))
+                    .priceInUcents -
+                  b.prices.find((el) => el.capacities.includes('renew'))
+                    .priceInUcents,
+              );
             })
             .catch((error) => {
               this.goBack().then(() =>

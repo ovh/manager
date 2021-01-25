@@ -33,6 +33,7 @@ export const VIRTUAL_TYPE = {
   public: 'public',
   vrack: 'vrack',
   vrackAggregation: 'vrack_aggregation',
+  publicAggregation: 'public_aggregation',
 };
 
 export default {

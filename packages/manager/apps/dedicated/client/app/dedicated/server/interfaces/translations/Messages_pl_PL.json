@@ -81,5 +81,6 @@
   "server_vrack_detach_in_progress": "Trwa odłączanie vRack {{vRackname}}",
   "dedicated_server_interfaces_step_checker_list_bandwidth_extension": "Zwiększenie przepustowości",
   "dedicated_server_interfaces_ola_alert_configuration_needed_small": "Konieczne będzie przeprowadzenie konfiguracji ręcznej przez KVM IPMI.",
-  "dedicated_server_interfaces_bandwith_ola_warning": "W przypadku pełnej konfiguracji agregacji prywatnej opcja przepustowości do sieci publicznej nie będzie używana, ponieważ interfejs dedykowany dla sieci publicznej będzie używany do obsługi sieci prywatnej."
+  "dedicated_server_interfaces_bandwith_ola_warning": "W przypadku pełnej konfiguracji agregacji prywatnej opcja przepustowości do sieci publicznej nie będzie używana, ponieważ interfejs dedykowany dla sieci publicznej będzie używany do obsługi sieci prywatnej.",
+  "dedicated_server_interfaces_type_public_aggregation_label": "Agregacja Publiczna"
 }

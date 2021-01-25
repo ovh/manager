@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-import { ISSUE_TYPE_ID } from './upgrade.constants';
+import { ISSUE_TYPE_ID, UPGRADE_TRACKING_PREFIX } from './upgrade.constants';
 
 export default class DedicatedUpgradeController {
   /* @ngInject */
@@ -17,7 +17,7 @@ export default class DedicatedUpgradeController {
 
   cancel() {
     this.atInternet.trackClick({
-      name: `dedicated::dedicated::server::dashboard::upgrade::${this.selectedUpgrade}::cancel`,
+      name: `${UPGRADE_TRACKING_PREFIX}::${this.selectedUpgrade}::cancel`,
       type: 'action',
     });
     this.goBack();
@@ -27,7 +27,7 @@ export default class DedicatedUpgradeController {
     this.isLoading = true;
 
     this.atInternet.trackClick({
-      name: `dedicated::dedicated::server::dashboard::upgrade::${this.selectedUpgrade}::confirm`,
+      name: `${UPGRADE_TRACKING_PREFIX}::${this.selectedUpgrade}::confirm`,
       type: 'action',
     });
 
@@ -52,7 +52,6 @@ export default class DedicatedUpgradeController {
           ),
           'server_dashboard_alert',
         );
-        this.goBack();
       })
       .catch((err) => {
         this.Alerter.error(
@@ -64,9 +63,9 @@ export default class DedicatedUpgradeController {
           ),
           'server_dashboard_alert',
         );
-        this.goBack();
       })
       .finally(() => {
+        this.goBack();
         this.isLoading = false;
       });
   }

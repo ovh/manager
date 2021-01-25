@@ -228,7 +228,7 @@ export default class ServerCtrl {
     this.$scope.$on('dedicated.informations.reboot', (e, _task) => {
       let task = _task;
       this.$scope.disable.reboot = true;
-      task = task.data;
+      task = task.data ? task.data : task;
       task.id = task.taskId;
       this.startPollRestart(task);
     });
@@ -417,6 +417,7 @@ export default class ServerCtrl {
   }
 
   getTaskInProgress() {
+    console.log('getTaskInProgress');
     return this.$q
       .all({
         hardRebootTasks: this.Server.getTaskInProgress(
@@ -433,7 +434,9 @@ export default class ServerCtrl {
         ),
       })
       .then(({ hardRebootTasks, resetIPMITasks, reinstallServerTasks }) => {
+        console.log(hardRebootTasks);
         if (isArray(hardRebootTasks) && !isEmpty(hardRebootTasks)) {
+          console.log('isRebooting');
           this.$scope.$broadcast(
             'dedicated.informations.reboot',
             hardRebootTasks[0],
@@ -459,6 +462,7 @@ export default class ServerCtrl {
   }
 
   startPollRestart(task) {
+    console.log('start polls');
     this.Server.addTask(this.$stateParams.productId, task, this.$scope.$id)
       .then((state) => {
         if (this.Polling.isResolve(state)) {

@@ -15,7 +15,8 @@ export default /* @ngInject */ ($stateProvider) => {
 
       'config@app.dedicated-server.server.install.image': configComponent.name,
 
-      'options@app.dedicated-server.server.install.image': optionsComponent.name,
+      'options@app.dedicated-server.server.install.image':
+        optionsComponent.name,
 
       'configDrive@app.dedicated-server.server.install.image':
         configDriveComponent.name,

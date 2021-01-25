@@ -81,5 +81,6 @@
   "server_vrack_detach_in_progress": "Das vRack {{vRackname}} wird gerade abgetrennt",
   "dedicated_server_interfaces_step_checker_list_bandwidth_extension": "Erweiterung der Bandbreite",
   "dedicated_server_interfaces_ola_alert_configuration_needed_small": "Hierzu ist eine manuelle Konfiguration via IPMI-KVM erforderlich.",
-  "dedicated_server_interfaces_bandwith_ola_warning": "Im Rahmen einer kompletten Konfiguration in „private aggregation“ kommt Ihre Option für die ausgehende öffentliche Bandbreite nicht zum Einsatz, da das Interface für das öffentliche Netzwerk für das private Netzwerk genutzt wird."
+  "dedicated_server_interfaces_bandwith_ola_warning": "Im Rahmen einer kompletten Konfiguration in „private aggregation“ kommt Ihre Option für die ausgehende öffentliche Bandbreite nicht zum Einsatz, da das Interface für das öffentliche Netzwerk für das private Netzwerk genutzt wird.",
+  "dedicated_server_interfaces_type_public_aggregation_label": "Öffentliche Aggregation"
 }

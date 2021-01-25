@@ -1,5 +1,3 @@
-import filter from 'lodash/filter';
-
 export default class {
   /* @ngInject */
   constructor($location, $state) {
@@ -33,9 +31,8 @@ export default class {
   }
 
   hasBandwidthExtension() {
-    const specs = filter(this.ola.availableModes, {
-      interfaces: [{ count: 4, aggregation: true }],
-    });
-    return specs.length > 0;
+    return this.ola.availableModes.some((mode) =>
+      mode.interfaces.find((int) => int.count === 4 && int.aggregation),
+    );
   }
 }

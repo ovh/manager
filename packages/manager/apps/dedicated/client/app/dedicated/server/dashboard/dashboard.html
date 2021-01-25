@@ -10,7 +10,7 @@
         <span data-translate="server_tab_dashboard_install_progress"> </span>
         <button
             type="button"
-            class="oui-button oui-button__link p-0"
+            class="oui-button oui-button__link p-1"
             data-translate="server_tab_dashboard_install_progress_link"
             data-ng-click="$ctrl.dedicatedServer.$scope.setAction('installation/progress/dedicated-server-installation-progress', { server: $ctrl.server, serverCtrl: $ctrl.dedicatedServer })"
         ></button>
@@ -162,16 +162,7 @@
                                 <oui-action-menu-item
                                     data-on-click="$ctrl.dedicatedServer.$scope.setAction('installation/choice/dedicated-server-installation-choice', { server: $ctrl.server, serverCtrl: $ctrl.dedicatedServer, user: $ctrl.user })"
                                     data-disabled="$ctrl.dedicatedServer.$scope.disable.reboot || $ctrl.dedicatedServer.$scope.disable.byOtherTask || $ctrl.ola.isConfigured()"
-                                    data-ng-if="$ctrl.server.os && !$ctrl.dedicatedServer.$scope.disable.installationInProgress && !$ctrl.ola.isConfigured()"
-                                >
-                                    <span
-                                        data-translate="server_configuration_installation_button"
-                                    ></span>
-                                </oui-action-menu-item>
-                                <oui-action-menu-item
-                                    data-on-click="$ctrl.dedicatedServer.$scope.setAction('installation/choice/dedicated-server-installation-choice', { server: $ctrl.server, serverCtrl: $ctrl.dedicatedServer, user: $ctrl.user })"
-                                    data-disabled="$ctrl.dedicatedServer.$scope.disable.reboot || $ctrl.dedicatedServer.$scope.disable.byOtherTask || $ctrl.ola.isConfigured()"
-                                    data-ng-if="!$ctrl.server.os && !$ctrl.dedicatedServer.$scope.disable.installationInProgress && !$ctrl.ola.isConfigured()"
+                                    data-ng-if="!$ctrl.dedicatedServer.$scope.disable.installationInProgress && !$ctrl.ola.isConfigured()"
                                 >
                                     <span
                                         data-translate="server_configuration_installation_button"
@@ -232,7 +223,10 @@
                             ></dt>
                             <dd
                                 class="oui-tile__description"
-                                data-translate="{{'server_datacenter_' + $ctrl.server.datacenter}}"
+                                data-translate="{{'server_datacenter_' + $ctrl.server.datacenter.split('_')[0]}}"
+                                data-translate-values="{
+                                    number: $ctrl.server.datacenter.split('_')[1]
+                                  }"
                             ></dd>
                         </dl>
                     </div>
@@ -373,6 +367,7 @@
                                 aria-label="{{:: 'menu_action_label' | translate:{t0: ('server_configuration_monitoring' | translate)} }}"
                                 data-compact
                                 data-placement="end"
+                                data-disabled="$ctrl.ola.isConfigured()"
                             >
                                 <oui-action-menu-item
                                     data-ui-sref="app.dedicated-server.server.dashboard.monitoringUpdate"
@@ -459,6 +454,7 @@
                                         <li class="oui-list__item">
                                             <a
                                                 class="oui-list__link oui-button_ghost"
+                                                ng-if="$ctrl.servicesStateLinks.vms"
                                                 href="{{:: $ctrl.servicesStateLinks.vms}}"
                                                 target="_blank"
                                                 rel="noopener"
@@ -866,7 +862,10 @@
     ></div>
 
     <!-- MRTG -->
-    <div class="oui-tile mb-5" data-ng-if="!$ctrl.server.isExpired">
+    <div
+        class="oui-tile mb-5"
+        data-ng-if="!$ctrl.server.isExpired && !$ctrl.technicalDetails"
+    >
         <h4
             class="oui-tile__title oui-heading_4"
             data-translate="server_tab_stats_legend_mrtg"

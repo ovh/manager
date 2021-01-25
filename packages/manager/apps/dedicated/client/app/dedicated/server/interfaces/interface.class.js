@@ -21,7 +21,11 @@ export default class Interface {
   }
 
   isPublic() {
-    return [PHYSICAL_TYPE.public, VIRTUAL_TYPE.public].includes(this.type);
+    return [
+      PHYSICAL_TYPE.public,
+      VIRTUAL_TYPE.public,
+      VIRTUAL_TYPE.publicAggregation,
+    ].includes(this.type);
   }
 
   isPrivate() {

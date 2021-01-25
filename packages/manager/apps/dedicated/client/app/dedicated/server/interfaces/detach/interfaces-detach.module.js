@@ -6,6 +6,7 @@ const moduleName = 'ovhManagerDedicatedServerInterfacesDetach';
 angular
   .module(moduleName, ['ui.router'])
   .config(routing)
-  .component('dedicatedServerInterfacesDetach', component);
+  .component('dedicatedServerInterfacesDetach', component)
+  .run(/* @ngTranslationsInject:json ../translations */);
 
 export default moduleName;

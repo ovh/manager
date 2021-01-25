@@ -5,7 +5,7 @@
     <oui-tile-definition
         term="{{:: 'dedicated_server_dashboard_technical_details_cpu' | translate }}"
     >
-        <oui-tile-description>
+        <oui-tile-description class="word-break-normal">
             <span data-ng-bind=":: $ctrl.formattedCPU"></span>
         </oui-tile-description>
     </oui-tile-definition>
@@ -46,18 +46,6 @@
             data-translate="dedicated_server_dashboard_technical_details_data_disk_upgrade"
         ></span>
     </oui-tile-button>
-    <!--
-    <oui-tile-definition
-        term="{{:: 'dedicated_server_dashboard_technical_details_cache_disk_many' | translate }}"
-    >
-        <oui-tile-description>
-            <p
-                data-ng-repeat="formattedDisk in $ctrl.formattedCacheDisks track by $index"
-                data-ng-bind=":: formattedDisk"
-            ></p>
-        </oui-tile-description>
-    </oui-tile-definition>
-    -->
     <oui-tile-definition
         term="{{:: 'dedicated_server_dashboard_technical_details_extension_card_many' | translate }}"
     >

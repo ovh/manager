@@ -10,7 +10,6 @@ export default /* @ngInject */ ($stateProvider) => {
         component: 'dedicatedServerInterfaces',
       },
     },
-    translations: { value: ['.'], format: 'json' },
     redirectTo,
     resolve: {
       alertError: /* @ngInject */ ($timeout, $translate, Alerter) => (

@@ -100,7 +100,7 @@
     >
         <oui-datagrid-column
             data-title=":: 'dedicated_server_interfaces_ola_column_name' | translate"
-            data-property="name"
+            data-property="mac"
         >
         </oui-datagrid-column>
         <oui-datagrid-column
@@ -157,7 +157,7 @@
             <span class="oui-icon oui-icon-arrow-down font-inherit"></span>
             <span
                 data-ng-if="$row.isPublic()"
-                data-ng-bind="$ctrl.specifications.bandwidth.InternetToOvh | ducBandwidth"
+                data-ng-bind="$ctrl.specifications.connection | ducBandwidth"
             >
             </span>
             <span
@@ -203,7 +203,7 @@
                     data-ng-bind="'dedicated_server_interfaces_ola_field_mode_choice_' + $ctrl.configuration.mode | translate"
                     rowspan="{{ $ctrl.selectedInterfaces.length }}"
                 ></td>
-                <td class="oui-table__cell" data-ng-bind="interface.name"></td>
+                <td class="oui-table__cell" data-ng-bind="interface.mac"></td>
                 <td class="oui-table__cell">
                     <span
                         class="oui-icon oui-icon-arrow-up font-inherit"

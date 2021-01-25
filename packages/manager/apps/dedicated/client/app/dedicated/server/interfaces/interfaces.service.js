@@ -179,15 +179,9 @@ export default class DedicatedServerInterfacesService {
           return task.status === 'ovhError' || task.status === 'customerError';
         },
       },
-    ).then(
-      () => true,
-      (error) => {
-        if (error.status === 404) {
-          return true;
-        }
-        return Promise.reject(error);
-      },
-    );
+    )
+      .then(() => true)
+      .catch((error) => (error.status === 404 ? true : Promise.reject(error)));
   }
 
   resetOlaInterfaces(serverName, olaInterfaces) {

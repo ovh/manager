@@ -81,5 +81,6 @@
   "server_vrack_detach_in_progress": "El vRack {{vRackname}} se está desvinculando...",
   "dedicated_server_interfaces_step_checker_list_bandwidth_extension": "Extensión del ancho de banda",
   "dedicated_server_interfaces_ola_alert_configuration_needed_small": "Va a ser necesario realizar una configuración manual a través del KVM/IPMI.",
-  "dedicated_server_interfaces_bandwith_ola_warning": "Con una configuración de agregación privada completa, no se utilizará la opción de ancho de banda saliente público, ya que la interfaz dedicada a la red pública se utilizará para la red privada."
+  "dedicated_server_interfaces_bandwith_ola_warning": "Con una configuración de agregación privada completa, no se utilizará la opción de ancho de banda saliente público, ya que la interfaz dedicada a la red pública se utilizará para la red privada.",
+  "dedicated_server_interfaces_type_public_aggregation_label": "Agregación pública"
 }

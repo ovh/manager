@@ -64,7 +64,7 @@ export default class TechnicalDetailsController {
     return disks.map((disk) => {
       const number = get(disk, 'number', 1);
       const technology = get(disk, 'technology', '');
-      const interf = get(disk, 'interface', '');
+      const diskInterface = get(disk, 'interface', '');
       let capacity = Number(get(disk, 'capacity'));
 
       if (Number.isNaN(capacity)) {
@@ -75,7 +75,7 @@ export default class TechnicalDetailsController {
         capacity = `${capacity} GB`;
       }
 
-      return `${number}×${capacity} ${technology} ${interf}`;
+      return `${number}×${capacity} ${technology} ${diskInterface}`;
     });
   }
 }
