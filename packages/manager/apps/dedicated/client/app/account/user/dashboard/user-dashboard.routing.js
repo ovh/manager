@@ -29,6 +29,7 @@ export default /* @ngInject */ ($stateProvider) => {
           href: shortcut.state ? $state.href(shortcut.state) : shortcut.href,
         })),
       breadcrumb: () => null,
+      hideBreadcrumb: () => true,
     },
   });
 };
