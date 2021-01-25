@@ -34,7 +34,7 @@ angular
         this.$window = $window;
         this.Alerter = Alerter;
         this.WucEmails = WucEmails;
-        this.$scope.PAGE_SIZE_STORAGE_KEY = PAGE_SIZE_STORAGE_KEY;
+        this.PAGE_SIZE_STORAGE_KEY = PAGE_SIZE_STORAGE_KEY;
       }
 
       $onInit() {
@@ -99,16 +99,14 @@ angular
       }
 
       fetchPageSizePreference() {
-        return this.$window.localStorage.getItem(
-          this.$scope.PAGE_SIZE_STORAGE_KEY,
-        );
+        return this.$window.localStorage.getItem(this.PAGE_SIZE_STORAGE_KEY);
       }
 
       savePageSizePreference(newPageSize) {
         if (!localStorage) return;
 
         this.$window.localStorage.setItem(
-          this.$scope.PAGE_SIZE_STORAGE_KEY,
+          this.PAGE_SIZE_STORAGE_KEY,
           newPageSize.pageSize,
         );
       }
