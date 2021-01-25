@@ -1,3 +1,12 @@
+# [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@1.5.0...@ovh-ux/manager-models@1.6.0) (2021-01-25)
+
+
+### Features
+
+* **server.install:** bring your own image ([f00a937](https://github.com/ovh/manager/commit/f00a9372a1f27cae590eb8f8e3e5234d007ac974)), closes [#3489](https://github.com/ovh/manager/issues/3489)
+
+
+
 # [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@1.4.3...@ovh-ux/manager-models@1.5.0) (2021-01-11)
 
 
