@@ -7,7 +7,7 @@ import '@ovh-ux/ui-kit';
 
 import bandwidth from '../bandwidth/bandwidth.module';
 import dashboard from '../dashboard';
-import install from './install';
+import install from '../install';
 import interfaces from '../interfaces/interfaces.module';
 import monitoring from '../monitoring';
 import task from '../task';
