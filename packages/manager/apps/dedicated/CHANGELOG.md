@@ -1,3 +1,12 @@
+## [16.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.1.0...@ovh-ux/manager-dedicated@16.1.1) (2021-01-25)
+
+
+### Bug Fixes
+
+* **deps:** add missing dependency ([#4337](https://github.com/ovh/manager/issues/4337)) ([be8b0e6](https://github.com/ovh/manager/commit/be8b0e6fe72f6fb90e0fab3e85c726b9d3501f90)), closes [#4103](https://github.com/ovh/manager/issues/4103)
+
+
+
 # [16.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.0.1...@ovh-ux/manager-dedicated@16.1.0) (2021-01-25)
 
 
