@@ -21,9 +21,7 @@ angular
   .run(/* @ngTranslationsInject:json ./translations */)
   .run(
     /* @ngInject */ ($translate, $transitions) => {
-      $transitions.onBefore({ to: 'vrack-home.**' }, () =>
-        $translate.refresh(),
-      );
+      $transitions.onBefore({ to: 'vrack.**' }, () => $translate.refresh());
     },
   );
 
