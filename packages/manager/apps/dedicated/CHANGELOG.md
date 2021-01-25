@@ -1,3 +1,19 @@
+# [16.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.0.1...@ovh-ux/manager-dedicated@16.1.0) (2021-01-25)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 763] ([4d25e9a](https://github.com/ovh/manager/commit/4d25e9a91e387ef3a9ef5d6fc021b0c4ceb57031))
+
+
+### Features
+
+* **server.install:** add feature flipping to display byoi and RTM ([260ea59](https://github.com/ovh/manager/commit/260ea593d57354b62a62908e00f5b32f7dc659ac))
+* **server.install:** add RTM installation ([600d9ae](https://github.com/ovh/manager/commit/600d9aeb1490a79da9cf6fa59cefb4f7f84f88b2))
+* **server.install:** bring your own image ([f00a937](https://github.com/ovh/manager/commit/f00a9372a1f27cae590eb8f8e3e5234d007ac974)), closes [#3489](https://github.com/ovh/manager/issues/3489)
+
+
+
 ## [16.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.0.0...@ovh-ux/manager-dedicated@16.0.1) (2021-01-21)
 
 
