@@ -1,7 +1,7 @@
 {
   "cda_user_details_permission_title": "Permissões da pool",
-  "cda_user_details_permission_description": "As permissões são definidas por um Cloud Disk Array OSD. De forma padrão, um utilizador possui a permissão \"allow r\" para os MONs. As permissões MDS não são de momento utilizadas.",
-  "cda_user_details_permissions_edit_button_text": "Modificar as permissões",
+  "cda_user_details_permission_description": "As permissões são definidas para Cloud Disk Array OSD. Por predefinição, um utilizador possui a permissão \"allow r\" para MONs. As permissões MDS não são atualmente utilizadas.",
+  "cda_user_details_permissions_edit_button_text": "Editar permissões",
   "cda_user_details_permissions_table_col_poolname": "Pool",
   "cda_user_details_permissions_table_col_read": "Leitura ",
   "cda_user_details_permissions_table_col_write": "Escrita",

@@ -1376,5 +1376,6 @@
   "hosting_dashboard_service_common_inactive": "Inativo",
   "hosting_dashboard_email_offer_get_error": "Não é possível recuperar o endereço de e-mail",
   "hosting_dashboard_stats_status": "Beta",
-  "hosting_tab_DOMAINS_configuration_add_step3_delete_4a_records": "Elimine os campos AAAA do seu domínio {{domain}}"
+  "hosting_tab_DOMAINS_configuration_add_step3_delete_4a_records": "Elimine os campos AAAA do seu domínio {{domain}}",
+  "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_information": "Configuração a aplicar na zona DNS"
 }
