@@ -1,0 +1,15 @@
+{
+  "dedicated_server_install_image_config": "Paramètres de l'image personnalisée",
+  "dedicated_server_install_image_config_url": "URL de l'image",
+  "dedicated_server_install_image_config_url_invalid": "Veuillez entrer une URL valide",
+  "dedicated_server_install_image_config_http_header": "En-tête http (optionnel)",
+  "dedicated_server_install_image_config_http_header_key": "Clé",
+  "dedicated_server_install_image_config_http_header_value": "Valeur",
+  "dedicated_server_install_image_config_http_header_add": "Ajouter un entête http",
+  "dedicated_server_install_image_config_http_header_delete": "Supprimer l'entête http",
+  "dedicated_server_install_image_config_http_header_explain": "Nécessaire uniquement pour télécharger l'image",
+  "dedicated_server_install_image_config_image_type": "Type d'image",
+  "dedicated_server_install_image_config_checksum_type": "Type de checksum",
+  "dedicated_server_install_image_config_checksum": "Checksum de l'image",
+  "dedicated_server_install_image_config_description": "Description de l'image (optionnel)"
+}

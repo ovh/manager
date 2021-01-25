@@ -1,5 +1,11 @@
+import get from 'lodash/get';
 import head from 'lodash/head';
 import includes from 'lodash/includes';
+
+import {
+  BYOI_STATUS_ENUM,
+  BYOI_STARTING_MESSAGE,
+} from '../../server.constants';
 
 angular
   .module('App')
@@ -12,8 +18,10 @@ angular
       // waitingStatus = ["init", "todo"]
       const errorStatus = ['customer_error', 'ovh_error', 'error', 'cancelled'];
 
+      $scope.serverCtrl = $scope.currentActionData.serverCtrl;
+
       $scope.progress = {
-        server: $scope.currentActionData,
+        server: $scope.currentActionData.server,
         installationTask: null,
         installationCancel: false,
         endInstallation: false,
@@ -56,25 +64,43 @@ angular
 
       // Detail of install status
       function checkInstallationProgress() {
-        Server.progressInstallation($stateParams.productId).then(
-          (task) => {
-            $scope.progress.failStatut = false;
+        // if task status is init, it's maybe because of byoi install
+        // (which does not have status response yet).
+        // we have to wait that the message of byoi change from 'starting' to anything else in
+        // order to have a response from status API.
+        if ($scope.isBringYourOwnImageInit()) {
+          startPollReinstall();
+        } else {
+          Server.progressInstallation($stateParams.productId).then(
+            (task) => {
+              $scope.progress.failStatut = false;
 
-            // doing installation or error installation
-            $scope.progress.installationTask = task;
-            $scope.progress.nbStep = task.progress.length;
-            $scope.refreshStepProgress();
-            startPollReinstall();
-          },
-          (err) => {
-            if (err.status === 404) {
-              $scope.reduce();
-            }
-            $scope.progress.failStatut = true;
-            startPollReinstall();
-          },
-        );
+              // doing installation or error installation
+              $scope.progress.installationTask = task;
+              $scope.progress.nbStep = task.progress.length;
+              $scope.refreshStepProgress();
+              startPollReinstall();
+            },
+            (err) => {
+              if (err.status === 404) {
+                $scope.reduce();
+              }
+              $scope.progress.failStatut = true;
+              startPollReinstall();
+            },
+          );
+        }
       }
+
+      $scope.isBringYourOwnImageInit = function isBringYourOwnImageInit() {
+        return (
+          get($scope.progress.task, 'status') === 'init' &&
+          get($scope.serverCtrl.$scope.byoi, 'status') ===
+            BYOI_STATUS_ENUM.DOING &&
+          get($scope.serverCtrl.$scope.byoi, 'message') ===
+            BYOI_STARTING_MESSAGE
+        );
+      };
 
       $scope.load = function load() {
         Server.getTaskInProgress(
@@ -135,6 +161,7 @@ angular
             $scope.progress.ws = $translate.instant(
               'server_configuration_installation_progress_cancel_success',
             );
+            $scope.serverCtrl.$scope.disable.installationInProgress = false;
           },
           (data) => {
             $scope.progress.disableCancel = true;

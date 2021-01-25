@@ -13,8 +13,11 @@ import set from 'lodash/set';
 import some from 'lodash/some';
 import sortBy from 'lodash/sortBy';
 import take from 'lodash/take';
-
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+import {
+  RTM_GUIDE_URLS,
+  RTM_INSTALL_FEATURE,
+} from './dedicated-server-installation-ovh.constants';
 
 angular
   .module('App')
@@ -38,6 +41,7 @@ angular
       Server,
       $filter,
       Alerter,
+      ovhFeatureFlipping,
       TEMPLATE_OS_HARDWARE_RAID_ENUM,
     ) => {
       $scope.LICENSE_URL = buildURL('dedicated', '#/configuration/license');
@@ -63,7 +67,8 @@ angular
       $scope.countFilter = [];
 
       $scope.constants = {
-        server: angular.copy($scope.currentActionData),
+        server: angular.copy($scope.currentActionData.server),
+        user: $scope.currentActionData.user,
 
         // get by Server.getOvhPartitionSchemesTemplates
         raidList: null, // Map[nbDisk, available raid]
@@ -286,6 +291,12 @@ angular
 
       $scope.sshList = [];
 
+      $scope.rtmGuideLink = get(
+        RTM_GUIDE_URLS,
+        $scope.constants.user.ovhSubsidiary,
+        get(RTM_GUIDE_URLS, 'GB'),
+      );
+
       // ------STEP1------
       $scope.load = function load() {
         $scope.loader.loading = true;
@@ -318,8 +329,20 @@ angular
             $scope.sshList = data;
           },
         );
+        const getRtmInstallAvailability = ovhFeatureFlipping
+          .checkFeatureAvailability(RTM_INSTALL_FEATURE)
+          .then((rtmFeatureResult) => {
+            $scope.isRtmAvailable = rtmFeatureResult.isFeatureAvailable(
+              RTM_INSTALL_FEATURE,
+            );
+          });
 
-        $q.all([getHardRaid, getOvhTemplates, getSshKeys]).finally(() => {
+        $q.all([
+          getHardRaid,
+          getOvhTemplates,
+          getSshKeys,
+          getRtmInstallAvailability,
+        ]).finally(() => {
           $scope.loader.loading = false;
         });
       };
@@ -2318,6 +2341,7 @@ angular
           variablePartition: null,
           validForm: true,
         };
+
         if (
           $scope.installation.customInstall &&
           $scope.informations.gabaritName
@@ -2448,6 +2472,7 @@ angular
           $scope.informations.gabaritName,
           {
             language: camelCase($scope.installation.selectLanguage),
+            installRTM: $scope.installation.options.installRTM || false,
             customHostname: $scope.installation.options.customHostname,
             installSqlServer: $scope.installation.options.installSqlServer,
             postInstallationScriptLink:
@@ -2480,7 +2505,10 @@ angular
             $rootScope.$broadcast('dedicated.informations.reinstall', task);
             $scope.setAction(
               'installation/progress/dedicated-server-installation-progress',
-              $scope.constants.server,
+              {
+                ...$scope.currentActionData,
+                server: $scope.constants.server,
+              },
             );
             $scope.loader.loading = false;
           },
