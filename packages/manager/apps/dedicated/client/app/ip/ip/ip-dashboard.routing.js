@@ -22,6 +22,7 @@ export default /* @ngInject */ ($stateProvider) => {
           ip: ip.ip,
         }),
       breadcrumb: () => null,
+      hideBreadcrumb: () => true,
     },
   });
 
