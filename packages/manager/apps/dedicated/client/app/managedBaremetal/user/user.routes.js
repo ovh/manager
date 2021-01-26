@@ -24,18 +24,22 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
       deleteUser: /* @ngInject */ ($state) => (user) =>
         $state.go('app.managedBaremetal.details.users.user.delete', {
+          userId: user.userId,
           user,
         }),
       disableUser: /* @ngInject */ ($state) => (user) =>
         $state.go('app.managedBaremetal.details.users.user.disable', {
+          userId: user.userId,
           user,
         }),
       editUser: /* @ngInject */ ($state) => (user) =>
         $state.go('app.managedBaremetal.details.users.user.edit', {
+          userId: user.userId,
           user,
         }),
       enableUser: /* @ngInject */ ($state) => (user) =>
         $state.go('app.managedBaremetal.details.users.user.enable', {
+          userId: user.userId,
           user,
         }),
       modifyUserRights: /* @ngInject */ ($state) => (userId) =>
@@ -46,15 +50,16 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('app.managedBaremetal.details.users.user.password-reset', {
           passwordPolicy,
           user,
+          userId: user.userId,
         }),
       breadcrumb: /* @ngInject */ ($translate) =>
-        $translate.instant('managed_baremetal_user_rights'),
+        $translate.instant('managed_baremetal_user'),
     },
   });
 
-  $stateProvider.state('app.dedicatedCloud.details.users.user', {
+  $stateProvider.state('app.managedBaremetal.details.users.user', {
     url: '/:userId',
-    redirectTo: 'app.dedicatedCloud.details.users',
+    redirectTo: 'app.managedBaremetal.details.users',
     resolve: {
       userId: /* @ngInject */ ($transition$) => $transition$.params().userId,
       breadcrumb: /* @ngInject */ (userId) => userId,

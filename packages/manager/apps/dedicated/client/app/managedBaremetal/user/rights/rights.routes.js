@@ -2,7 +2,8 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.managedBaremetal.details.users.user.rights', {
     url: '/rights',
     views: {
-      pccUserView: 'dedicatedCloudUserRights',
+      'pccUserView@app.managedBaremetal.details.users':
+        'dedicatedCloudUserRights',
     },
     resolve: {
       editRight: /* @ngInject */ ($state, userId) => (rightId) =>
