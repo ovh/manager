@@ -4,7 +4,7 @@
   "billing_confirm_termination_information_text": "El servicio se dará de baja al final del período de renovación. Tenga en cuenta que, una vez confirmada la baja del servicio, todos los datos y backups asociados <strong>se eliminarán definitivamente</strong>. Antes de confirmar la supresión del servicio, deberá adoptar todas las medidas necesarias para conservar sus datos. Una vez iniciado este proceso, no podrá detenerlo. OVHcloud se exime de toda responsabilidad a este respecto.",
   "billing_confirm_termination_question_reason": "Ha solicitado dar de baja el servicio. Para ayudarnos a mejorar, ¿podría indicarnos la razón principal de su baja?",
   "billing_confirm_termination_question_future_use": "¿Qué tiene previsto hacer?",
-  "billing_confirm_termination_question_comment": "No dude en compartir con nosotros los motivos de la baja de este servicio.",
+  "billing_confirm_termination_question_commentary": "No dude en compartir con nosotros los motivos de la baja de este servicio.",
   "billing_confirm_termination_reason_LACK_OF_PERFORMANCES": "La calidad del servicio (fallos, incidencias) no responde a mis expectativas.",
   "billing_confirm_termination_reason_NOT_NEEDED_ANYMORE": "El proyecto asociado a este producto o servicio ha cambiado o ya ha terminado.",
   "billing_confirm_termination_reason_TOO_EXPENSIVE": "Los precios son demasiado altos.",

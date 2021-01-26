@@ -4,7 +4,7 @@
   "billing_confirm_termination_information_text": "Świadczenie usługi zostanie zakończone z końcem opłaconego okresu dzierżawy. Po potwierdzeniu rezygnacji z usługi wszystkie dane i kopie zapasowe związane z usługą <strong>zostaną nieodwracalnie usunięte</strong>.  Dlatego przed potwierdzeniem woli usunięcia usługi podejmij wszelkie niezbędne kroki mające na celu zachowanie danych.  Po rozpoczęciu procesu niemożliwe jest jego anulowanie.  W takim przypadku OVHcloud nie ponosi odpowiedzialności za utratę danych.",
   "billing_confirm_termination_question_reason": "Podjąłeś decyzję o rezygnacji z usługi. Ponieważ chcemy stale udoskonalać nasze usługi, będziemy wdzięczni za wskazanie przyczyny rezygnacji.",
   "billing_confirm_termination_question_future_use": "Co chcesz zrobić?",
-  "billing_confirm_termination_question_comment": "Opowiedz nam więcej o przyczynach rezygnacji z usługi.",
+  "billing_confirm_termination_question_commentary": "Opowiedz nam więcej o przyczynach rezygnacji z usługi.",
   "billing_confirm_termination_reason_LACK_OF_PERFORMANCES": "Jakość usługi (awarie, incydenty) nie spełnia moich oczekiwań.",
   "billing_confirm_termination_reason_NOT_NEEDED_ANYMORE": "Projekt powiązany z tym produktem/usługą rozwija się lub został zakończony.",
   "billing_confirm_termination_reason_TOO_EXPENSIVE": "Ceny są zbyt wysokie.",
