@@ -1,207 +1,204 @@
 import find from 'lodash/find';
 
-angular
-  .module('UserAccount')
-  .controller('UserAccount.controllers.contacts.requestsSend', [
-    '$scope',
-    '$translate',
-    'UserAccount.services.Contacts',
-    'Alerter',
-    'User',
+export default /* @ngInject */ function UserAccountContactsRequestSendController(
+  $scope,
+  $translate,
+  UserAccountContactsService,
+  Alerter,
+  User,
+) {
+  const self = this;
+  self.contactTasksDetails = [];
 
-    function UserAccountContactsRequestSendController(
-      $scope,
-      $translate,
-      Contacts,
-      Alerter,
-      User,
-    ) {
-      const self = this;
-      self.contactTasksDetails = [];
+  self.loaders = {
+    tasks: false,
+  };
 
-      self.loaders = {
-        tasks: false,
-      };
-
-      function getUser() {
-        return User.getUser().then(
-          (user) => {
-            self.user = user;
-          },
-          (err) => {
-            Alerter.alertFromSWS(
-              $translate.instant('user_account_contacts_error'),
-              err,
-              'useraccount.alerts.dashboardContacts',
-            );
-          },
+  function getUser() {
+    return User.getUser().then(
+      (user) => {
+        self.user = user;
+      },
+      (err) => {
+        Alerter.alertFromSWS(
+          $translate.instant('user_account_contacts_error'),
+          err,
+          'useraccount.alerts.dashboardContacts',
         );
-      }
+      },
+    );
+  }
 
-      function init() {
-        self.addMode = false;
-        self.contactTasksDetails = [];
-        getUser().then(() => {
-          self.getContactChangeTasks();
-        });
-      }
+  function init() {
+    self.addMode = false;
+    self.contactTasksDetails = [];
+    getUser().then(() => {
+      self.getContactChangeTasks();
+    });
+  }
 
-      self.getContactChangeTasks = function getContactChangeTasks() {
-        self.loaders.tasks = true;
-        self.contactTasksIds = [];
-        self.contactTasksDetails = [];
-        return Contacts.getContactChangeTasks({
-          askingAccount: self.user.nichandle,
-        })
-          .then(
-            (tasks) => {
-              self.contactTasksIds = tasks
-                .sort((a, b) => {
-                  if (a < b) {
-                    return -1;
-                  }
-                  if (a > b) {
-                    return 1;
-                  }
-                  return 0;
-                })
-                .reverse();
-            },
-            (err) => {
-              Alerter.alertFromSWS(
-                $translate.instant('user_account_contacts_error'),
-                err,
-                'useraccount.alerts.dashboardContacts',
-              );
-            },
-          )
-          .finally(() => {
-            self.loaders.tasks = false;
-          });
-      };
-
-      self.transformItem = function transformItem(id) {
-        self.loaders.tasks = true;
-        return Contacts.getContactChangeTaskDetail(id);
-      };
-
-      self.onTransformItemDone = function onTransformItemDone() {
-        self.loaders.tasks = false;
-        setTimeout(() => {
-          Contacts.killAllPolling({ namespace: 'user.contacts.sendRequest' });
-          Contacts.killAllPolling({ namespace: 'user.contacts.send.poll' });
-
-          const pendingChanges = Contacts.getPendingChanges({
-            key: 'Contacts::PendingChangeSent',
-          });
-          if (pendingChanges) {
-            pendingChanges.forEach((pending) => {
-              Contacts.pollState({
-                namespace: 'user.contacts.sendRequest',
-                id: pending.split('_')[1],
-                successSates: ['doing', 'refused', 'aborted'],
-              });
-            });
-          }
-
-          self.contactTasksDetails.forEach((task) => {
-            if (
-              pendingChanges.indexOf(
-                [self.user.nichandle, task.id].join('_'),
-              ) === -1
-            ) {
-              switch (task.state) {
-                case 'todo':
-                  Contacts.pollState({
-                    id: task.id,
-                    successSates: [
-                      'validatingByCustomers',
-                      'checkValidity',
-                      'refused',
-                    ],
-                    namespace: 'user.contacts.send.poll',
-                  });
-                  break;
-                case 'doing':
-                  Contacts.pollState({
-                    id: task.id,
-                    successSates: ['done', 'refused'],
-                    namespace: 'user.contacts.send.poll',
-                  });
-                  break;
-                case 'checkValidity':
-                  Contacts.pollState({
-                    id: task.id,
-                    successSates: ['validatingByCustomers', 'doing'],
-                    namespace: 'user.contacts.send.poll',
-                  });
-                  break;
-                case 'validatingByCustomers':
-                  Contacts.pollState({
-                    id: task.id,
-                    successSates: ['doing', 'refused'],
-                    namespace: 'user.contacts.send.poll',
-                  });
-                  break;
-                default:
-                  break;
+  self.getContactChangeTasks = function getContactChangeTasks() {
+    self.loaders.tasks = true;
+    self.contactTasksIds = [];
+    self.contactTasksDetails = [];
+    return UserAccountContactsService.getContactChangeTasks({
+      askingAccount: self.user.nichandle,
+    })
+      .then(
+        (tasks) => {
+          self.contactTasksIds = tasks
+            .sort((a, b) => {
+              if (a < b) {
+                return -1;
               }
-            }
-          });
-        }, 0);
-      };
+              if (a > b) {
+                return 1;
+              }
+              return 0;
+            })
+            .reverse();
+        },
+        (err) => {
+          Alerter.alertFromSWS(
+            $translate.instant('user_account_contacts_error'),
+            err,
+            'useraccount.alerts.dashboardContacts',
+          );
+        },
+      )
+      .finally(() => {
+        self.loaders.tasks = false;
+      });
+  };
 
-      $scope.$on('user.contacts.sendRequest.start', (pollObject, id) => {
-        angular.noop(pollObject);
-        const contactChange = find(
-          self.contactTasksDetails,
-          (contact) => contact.id === parseInt(id, 10),
-        );
+  self.transformItem = function transformItem(id) {
+    self.loaders.tasks = true;
+    return UserAccountContactsService.getContactChangeTaskDetail(id);
+  };
 
-        if (contactChange) {
-          contactChange.hasPendingChange = true;
-        }
+  self.onTransformItemDone = function onTransformItemDone() {
+    self.loaders.tasks = false;
+    setTimeout(() => {
+      UserAccountContactsService.killAllPolling({
+        namespace: 'user.contacts.sendRequest',
+      });
+      UserAccountContactsService.killAllPolling({
+        namespace: 'user.contacts.send.poll',
       });
 
-      $scope.$on('user.contacts.sendRequest.done', (pollObject, task) => {
-        angular.noop(pollObject);
-        Contacts.removePendingChange({
-          key: 'Contacts::PendingChangeSent',
-          data: [self.user.nichandle, task.id].join('_'),
+      const pendingChanges = UserAccountContactsService.getPendingChanges({
+        key: 'Contacts::PendingChangeSent',
+      });
+      if (pendingChanges) {
+        pendingChanges.forEach((pending) => {
+          UserAccountContactsService.pollState({
+            namespace: 'user.contacts.sendRequest',
+            id: pending.split('_')[1],
+            successSates: ['doing', 'refused', 'aborted'],
+          });
         });
-        const contactChange = find(
-          self.contactTasksDetails,
-          (_contactChange) => _contactChange.id === task.id,
-        );
+      }
 
-        if (contactChange) {
-          if (contactChange.state === 'doing') {
-            self.getContactChangeTasks();
-            return;
+      self.contactTasksDetails.forEach((task) => {
+        if (
+          pendingChanges.indexOf([self.user.nichandle, task.id].join('_')) ===
+          -1
+        ) {
+          switch (task.state) {
+            case 'todo':
+              UserAccountContactsService.pollState({
+                id: task.id,
+                successSates: [
+                  'validatingByCustomers',
+                  'checkValidity',
+                  'refused',
+                ],
+                namespace: 'user.contacts.send.poll',
+              });
+              break;
+            case 'doing':
+              UserAccountContactsService.pollState({
+                id: task.id,
+                successSates: ['done', 'refused'],
+                namespace: 'user.contacts.send.poll',
+              });
+              break;
+            case 'checkValidity':
+              UserAccountContactsService.pollState({
+                id: task.id,
+                successSates: ['validatingByCustomers', 'doing'],
+                namespace: 'user.contacts.send.poll',
+              });
+              break;
+            case 'validatingByCustomers':
+              UserAccountContactsService.pollState({
+                id: task.id,
+                successSates: ['doing', 'refused'],
+                namespace: 'user.contacts.send.poll',
+              });
+              break;
+            default:
+              break;
           }
-          contactChange.hasPendingChange = true;
-          contactChange.state = 'doing';
-          Contacts.pollState({
-            namespace: 'user.contacts.send.poll',
-            id: contactChange.id,
-            successSates: ['done', 'refused'],
-          });
         }
       });
+    }, 0);
+  };
 
-      $scope.$on('user.contacts.send.poll.done', () => {
+  $scope.$on('user.contacts.sendRequest.start', (pollObject, id) => {
+    angular.noop(pollObject);
+    const contactChange = find(
+      self.contactTasksDetails,
+      (contact) => contact.id === parseInt(id, 10),
+    );
+
+    if (contactChange) {
+      contactChange.hasPendingChange = true;
+    }
+  });
+
+  $scope.$on('user.contacts.sendRequest.done', (pollObject, task) => {
+    angular.noop(pollObject);
+    UserAccountContactsService.removePendingChange({
+      key: 'Contacts::PendingChangeSent',
+      data: [self.user.nichandle, task.id].join('_'),
+    });
+    const contactChange = find(
+      self.contactTasksDetails,
+      (_contactChange) => _contactChange.id === task.id,
+    );
+
+    if (contactChange) {
+      if (contactChange.state === 'doing') {
         self.getContactChangeTasks();
+        return;
+      }
+      contactChange.hasPendingChange = true;
+      contactChange.state = 'doing';
+      UserAccountContactsService.pollState({
+        namespace: 'user.contacts.send.poll',
+        id: contactChange.id,
+        successSates: ['done', 'refused'],
       });
+    }
+  });
 
-      $scope.$on('useraccount.contact.request.changed', () => {
-        self.getContactChangeTasks();
-      });
+  $scope.$on('user.contacts.send.poll.done', () => {
+    self.getContactChangeTasks();
+  });
 
-      $scope.$on('$destroy', () => {
-        Contacts.killAllPolling({ namespace: 'user.contacts.sendRequest' });
-        Contacts.killAllPolling({ namespace: 'user.contacts.send.poll' });
-      });
+  $scope.$on('useraccount.contact.request.changed', () => {
+    self.getContactChangeTasks();
+  });
 
-      init();
-    },
-  ]);
+  $scope.$on('$destroy', () => {
+    UserAccountContactsService.killAllPolling({
+      namespace: 'user.contacts.sendRequest',
+    });
+    UserAccountContactsService.killAllPolling({
+      namespace: 'user.contacts.send.poll',
+    });
+  });
+
+  init();
+}

@@ -1,4 +1,4 @@
-export default class {
+export default class UserContactsServiceController {
   /* @ngInject */
   constructor($translate, AccountContactsService) {
     this.$translate = $translate;
