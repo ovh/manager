@@ -4,7 +4,6 @@ const moduleName = 'ovhManagerDedicatedAccount';
 
 angular
   .module(moduleName, [
-    'Module.otrs',
     'oui',
     'pascalprecht.translate',
     'ui.bootstrap',

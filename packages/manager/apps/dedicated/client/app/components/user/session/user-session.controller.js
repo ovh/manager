@@ -66,9 +66,11 @@ angular.module('App').controller(
           this.closeSidebar();
         }),
         this.$transitions.onSuccess({}, () => {
-          this.displayAccountSidebar = ['support', 'app.account'].some((name) =>
-            this.$state.includes(name),
-          );
+          this.displayAccountSidebar = [
+            'support',
+            'app.account',
+            'app.otrs',
+          ].some((name) => this.$state.includes(name));
         }),
       ];
 
