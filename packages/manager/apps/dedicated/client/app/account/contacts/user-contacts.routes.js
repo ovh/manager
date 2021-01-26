@@ -1,26 +1,26 @@
-angular
-  .module('UserAccount')
-  .config(($stateProvider, $urlRouterProvider) => {
-    const name = 'app.account.contacts';
+import controller from './user-contacts.controller';
+import template from './user-contacts.html';
 
-    $stateProvider.state(name, {
-      url: '/contacts',
-      templateUrl: 'account/contacts/user-contacts.html',
-      controller: 'UserAccount.controllers.contactCtrl',
-      controllerAs: 'contactCtrl',
-      redirectTo: 'app.account.contacts.services',
-      translations: {
-        format: 'json',
-        value: ['../user'],
-      },
-      resolve: {
-        breadcrumb: /* @ngInject */ ($translate) =>
-          $translate.instant('user_account_contacts'),
-      },
-    });
+export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
+  const name = 'app.account.contacts';
 
-    $urlRouterProvider.when(/^\/useraccount\/contacts/, ($location, $state) =>
-      $state.go(`${name}.services`, $location.search()),
-    );
-  })
-  .run(/* @ngTranslationsInject:json ./translations */);
+  $stateProvider.state(name, {
+    url: '/contacts',
+    template,
+    controller,
+    controllerAs: 'contactCtrl',
+    redirectTo: 'app.account.contacts.services',
+    translations: {
+      format: 'json',
+      value: ['../user'],
+    },
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('user_account_contacts'),
+    },
+  });
+
+  $urlRouterProvider.when(/^\/useraccount\/contacts/, ($location, $state) =>
+    $state.go(`${name}.services`, $location.search()),
+  );
+};

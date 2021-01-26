@@ -61,7 +61,6 @@ import './css/source.scss';
 import moduleName from './app';
 import './app.routes';
 
-import './account/contacts/service/edit/edit.module';
 import './account/user/advanced/advanced.module';
 import './account/user/dashboard/user-dahboard.module';
 import './account/user/newAccountForm/new-account-form.module';
