@@ -1207,7 +1207,7 @@
   "lockoutDuration_required_error": "Pole obowiązkowe",
   "lockoutDuration_pattern_error": "Czas blokady musi być liczbą całkowitą.",
   "exchange_ACTION_configure_success": "Zmiany zostaną zarejestrowane",
-  "exchange_ACTION_configure_error": "Błąd podczas zapytania. Zmiany nie zostaną zastosowane.",
+  "exchange_ACTION_configure_error": "Wystąpił błąd podczas wysyłania żądania. Zmiany nie zostaną zastosowane: {{error}}",
   "exchange_ACTION_configure_step2_intro": "Podsumowanie konfiguracji Twojej usługi Exchange <strong>{0}</strong>",
   "exchange_ACTION_configure_step2_label_lockoutDuration": "Czas blokady konta:",
   "exchange_ACTION_configure_step2_label_lockoutObservationWindow": "Okno obserwacyjne dla blokady kont:",
@@ -1592,13 +1592,13 @@
   "exchange_tab_ACCOUNTS_owa_mfa_disabled": "Weryfikacja dwuetapowa jest wyłączona w Twojej usłudze Exchange. Zmiany wprowadzone w konfiguracji weryfikacji dwuetapowej nie będą miały żadnego wpływu na działanie konta. Możesz włączyć weryfikację dwuetapową w ustawieniach bezpieczeństwa usługi Exchange.",
   "exchange_tab_ACCOUNTS_owa_mfa_link": "Przejdź do ustawień bezpieczeństwa",
   "exchange_tab_ACCOUNTS_actions": "Operacje",
-  "exchange_enable_mfa_error": "Wystąpił błąd podczas aktywacji weryfikacji dwuetapowej:",
+  "exchange_enable_mfa_error": "Wystąpił błąd podczas włączania weryfikacji dwuetapowej: {{error}}",
   "exchange_enable_mfa_success": "Weryfikacja dwuetapowa została włączona.",
-  "exchange_disable_mfa_error": "Wystąpił błąd podczas wyłączania weryfikacji dwuetapowej:",
+  "exchange_disable_mfa_error": "Wystąpił błąd podczas wyłączania weryfikacji dwuetapowej: {{error}}",
   "exchange_disable_mfa_success": "Dwuetapowa weryfikacja została wyłączona.",
-  "exchange_reset_mfa_error": "Wystąpił błąd podczas dezaktywacji weryfikacji dwuetapowej za pomocą wiadomości SMS.",
+  "exchange_reset_mfa_error": "Wystąpił błąd podczas resetu weryfikacji dwuetapowej: {{error}}",
   "exchange_reset_mfa_success": "Dwuetapowa weryfikacja została zresetowana.",
-  "exchange_mfa_error": "Wystąpił błąd.",
+  "exchange_mfa_error": "Wystąpił błąd: {{error}}",
   "exchange_delete_mfa_success": "Weryfikacja dwuetapowa za pomocą wiadomości SMS została usunięta.",
-  "exchange_delete_mfa_error": "Wystąpił błąd podczas usuwania weryfikacji dwuetapowej:"
+  "exchange_delete_mfa_error": "Wystąpił błąd podczas usuwania weryfikacji dwuetapowej: {{error}}"
 }

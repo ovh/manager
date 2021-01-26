@@ -1221,5 +1221,6 @@
   "server_configuration_installation_form_rtm_explain": " RTM permette di monitorare il server e l'attività dei suoi componenti (Processore, RAM, partizione disco, ecc...). Attivando l'opzione, RTM verrà installato di default: <a href=\"{{ href }}\" target=\"_blank\" rel=\"noopener\">Clicca qui per leggere la documentazione</a>.",
   "server_configuration_installation_form_rtm_deactivated": "Disattivato",
   "server_configuration_installation_form_rtm_activated": "Attivo",
-  "server_configuration_installation_image": "Installare a partire da un'immagine personalizzata"
+  "server_configuration_installation_image": "Installare a partire da un'immagine personalizzata",
+  "server_configuration_distribution_byoi": "BringYourOwnImage"
 }

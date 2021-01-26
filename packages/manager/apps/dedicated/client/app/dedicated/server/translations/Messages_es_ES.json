@@ -1221,5 +1221,6 @@
   "server_configuration_installation_form_rtm_explain": " RTM permite monitorizar el servidor y la actividad de sus componentes (procesador, memoria RAM, partición de discos, etc.). Si activa la opción, el agente RTM se instalará por defecto: <a href=\"{{ href }}\" target=\"_blank\" rel=\"noopener\">Haga clic aquí para leer la documentación</a>.",
   "server_configuration_installation_form_rtm_deactivated": "Desactivada",
   "server_configuration_installation_form_rtm_activated": "Activada",
-  "server_configuration_installation_image": "Instalar desde una imagen personalizada"
+  "server_configuration_installation_image": "Instalar desde una imagen personalizada",
+  "server_configuration_distribution_byoi": "BringYourOwnImage"
 }

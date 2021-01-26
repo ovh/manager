@@ -54,7 +54,7 @@
   "cdn_configuration_cacherule_update_fail": "Wystąpił błąd podczas zmiany reguły cache.",
   "cdn_configuration_cacherule_deactivate_title_button": "Wyłącz regułę",
   "cdn_configuration_cacherule_deactivate_title": "Wyłącz regułę",
-  "cdn_configuration_cacherule_deactivate_question": "Czy chcesz wyłączyć regułę cache?",
+  "cdn_configuration_cacherule_deactivate_question": "Czy chcesz wyłączyć regułę cache {{t0}}?",
   "cdn_configuration_cacherule_deactivate_success": "Reguła cache zostanie wyłączona",
   "cdn_configuration_cacherule_deactivate_fail": "Wystąpił błąd podczas wyłączania reguły cache.",
   "cdn_configuration_cacherule_activate_title_button": "Włącz regułę",

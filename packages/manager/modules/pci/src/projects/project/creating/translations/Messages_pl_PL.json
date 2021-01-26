@@ -2,7 +2,7 @@
   "pci_projects_project_creating_main_title": "Rozpoczynasz korzystanie z usług Public Cloud",
   "pci_projects_project_creating_secondary_title": "Trwa tworzenie Twojego projektu",
   "pci_projects_project_creating_explain1": "Aby zakończyć tworzenie projektu, ureguluj należność za zamówienie <a href=\"{{ href }}\">{{ orderId }}</a>.",
-  "pci_projects_project_creating_explain2": "Jeśli ta strona wciąż wyświetla się kilka minut po dokonaniu płatności, prosimy o kontakt z <a href=\"{{ url }}\">działem obsługi klienta OVH</a>.",
+  "pci_projects_project_creating_explain2": "Jeśli ta strona wciąż wyświetla się kilka minut po dokonaniu płatności, prosimy o kontakt z <a href=\"{{ href }}\">działem obsługi klienta OVHcloud</a>.",
   "pci_projects_project_creating_finalize": "Zapłać za zamówienie",
   "pci_projects_project_creating_finalize_title": "{{ orderId }}: zapłać za zamówienie",
   "pci_projects_project_creating_cancel": "Anuluj zamówienie",

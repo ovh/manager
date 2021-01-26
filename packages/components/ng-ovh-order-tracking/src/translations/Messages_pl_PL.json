@@ -34,7 +34,7 @@
   "order_tracking_history_details_PAYMENT_INITIATED": "",
   "order_tracking_history_details_PAYMENT_RECEIVED": "",
   "order_tracking_history_details_REGISTERED_PAYMENT_INITIATED": "",
-  "order_tracking_history_details_custom_payment_waiting": "Trwa oczekiwanie na płatność. Może być to spowodowane dwiema sytuacjami: <ul><li> wygenerowałeś <a data-ng-href=\"{{{{url }}\" rel=\"external\" target=\"_blank\">zamówienie</a> lecz nie dokonałeś płatności;</li><li> opłaciłeś zamówienie, używając czeku lub przelewu bankowego. Realizacja zamówienia wymaga dodatkowego czasu.</li></ul>",
+  "order_tracking_history_details_custom_payment_waiting": "Trwa oczekiwanie na płatność. Może się tak dziać z dwóch powodów: <ul><li>wygenerowałeś <a data-ng-href=\"{{ url }}\" rel=\"external\" target=\"_blank\">zamówienie</a> i nie uregulowałeś płatności;</li><li>opłaciłeś to zamówienie czekiem lub przelewem bankowym. Realizacja zamówienia wymaga dodatkowego czasu.</li></ul>",
   "order_tracking_history_details_custom_creation": "",
   "order_tracking_estimated_delivery_time": "Szacowany czas dostawy",
   "order_tracking_estimated_delivery_time_info": "Podany czas dostawy jest orientacyjny. Niektóre czynniki mogą czasami spowolnić realizację zamówienia.",
