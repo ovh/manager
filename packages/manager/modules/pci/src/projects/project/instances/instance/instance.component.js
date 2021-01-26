@@ -27,6 +27,7 @@ export default {
     reinstallInstance: '<',
     resumeInstance: '<',
     deleteInstance: '<',
+    shelveInstance: '<',
     goToBlockStorages: '<',
     applicationAccess: '<',
     attachVolume: '<',
