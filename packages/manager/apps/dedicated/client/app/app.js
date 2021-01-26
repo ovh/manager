@@ -55,7 +55,6 @@ import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 import ovhManagerAccountMigration from '@ovh-ux/manager-account-migration';
 import account from './account';
 import config from './config/config';
-import contactsService from './account/contacts/service/contacts-service.module';
 import dedicatedCloud from './dedicatedCloud';
 import dedicatedUniverseComponents from './dedicatedUniverseComponents';
 import managedBaremetal from './managedBaremetal';
@@ -83,7 +82,6 @@ angular
       'Billing',
       chartjs,
       'controllers',
-      contactsService,
       dedicatedCloud,
       dedicatedServer,
       dedicatedUniverseComponents,
