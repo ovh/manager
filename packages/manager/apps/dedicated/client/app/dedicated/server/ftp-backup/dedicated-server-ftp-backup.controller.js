@@ -43,7 +43,7 @@ angular.module('App').controller(
       this.$scope.featureAvailable = this.DedicatedServerFeatureAvailability.hasDedicatedServerBackupStorage();
       this.$scope.loadFtpBackupTable = this.loadFtpBackupTable.bind(this);
 
-      this.$scope.$on('server.ftpbackup.reload', this.$onInit);
+      this.$scope.$on('server.ftpbackup.reload', this.$onInit.bind(this));
       this.$scope.$on('server.ftpBackup.access.reload', () => {
         this.$scope.doReloadAccess = false;
         this.$scope.$broadcast('paginationServerSide.reload', 'backupTable');
