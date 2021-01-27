@@ -1,9 +1,9 @@
 import angular from 'angular';
 
-import 'angular-translate';
+import angularTranslate from 'angular-translate';
 import '@ovh-ux/ui-kit';
-import '@ovh-ux/ng-translate-async-loader';
-import '@ovh-ux/ng-ovh-contacts';
+import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
+import ngOvhContacts from '@ovh-ux/ng-ovh-contacts';
 
 import component from './component';
 import './index.scss';
@@ -12,10 +12,10 @@ const moduleName = 'ovhBillingPaymentMethodAddBillingContactView';
 
 angular
   .module(moduleName, [
+    angularTranslate,
     'oui',
-    'ngTranslateAsyncLoader',
-    'pascalprecht.translate',
-    'ngOvhContacts',
+    ngTranslateAsyncLoader,
+    ngOvhContacts,
   ])
   .run(/* @ngTranslationsInject:json ./translations */)
   .component(component.name, component);

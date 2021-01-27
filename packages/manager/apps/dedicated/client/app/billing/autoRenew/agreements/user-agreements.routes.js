@@ -1,3 +1,4 @@
+import controller from './user-agreements.controller';
 import template from './user-agreements.html';
 
 export default /* @ngInject */ (
@@ -9,7 +10,7 @@ export default /* @ngInject */ (
     $stateProvider.state('app.account.billing.autorenew.agreements', {
       url: '/agreements',
       template,
-      controller: 'UserAccount.controllers.agreements',
+      controller,
       resolve: {
         gotoAcceptAllAgreements: /* @ngInject */ ($state, atInternet) => (
           agreements,

@@ -1,11 +1,11 @@
 import angular from 'angular';
-import '@uirouter/angularjs';
 import ovhManagerBilling from '@ovh-ux/manager-billing';
+import uiRouter from '@uirouter/angularjs';
 
 import routing from './cancel-resiliation.routing';
 
 const moduleName = 'ovhManagerBillingAutorenewCancelResiliation';
 
-angular.module(moduleName, ['ui.router', ovhManagerBilling]).config(routing);
+angular.module(moduleName, [ovhManagerBilling, uiRouter]).config(routing);
 
 export default moduleName;

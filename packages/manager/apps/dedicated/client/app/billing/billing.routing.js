@@ -1,3 +1,4 @@
+import controller from './billing.controller';
 import template from './billing.html';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -6,7 +7,7 @@ export default /* @ngInject */ ($stateProvider) => {
     abstract: true,
     translations: { value: ['.'], format: 'json' },
     template,
-    controller: 'BillingCtrl',
+    controller,
     resolve: {
       denyEnterprise: ($q, $state, currentUser) => {
         if (

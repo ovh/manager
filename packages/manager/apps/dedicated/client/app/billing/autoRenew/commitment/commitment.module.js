@@ -1,13 +1,13 @@
 import angular from 'angular';
-import '@uirouter/angularjs';
 import ovhManagerBilling from '@ovh-ux/manager-billing';
+import uiRouter from '@uirouter/angularjs';
 
 import routing from './commitment.routing';
 
 const moduleName = 'ovhManagerBillingAutorenewCommitment';
 
 angular
-  .module(moduleName, ['ui.router', ovhManagerBilling])
+  .module(moduleName, [ovhManagerBilling, uiRouter])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
 
