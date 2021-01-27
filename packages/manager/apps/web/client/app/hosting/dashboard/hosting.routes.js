@@ -6,15 +6,35 @@ import { LOCAL_SEO_FAMILY } from '../local-seo/local-seo.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.hosting.dashboard', {
-    url: '/:productId',
+    url: '/:productId?tab',
     template,
     controller,
     controllerAs: '$ctrl',
     reloadOnSearch: false,
-    redirectTo: 'app.hosting.dashboard.information',
+    redirectTo: (transition) => {
+      const params = { ...transition.params(), tab: null };
+      const { tab } = transition.params();
+      return tab
+        ? {
+            state: `app.hosting.dashboard.${tab
+              .toLowerCase()
+              .replace('_', '-')}`,
+            params,
+          }
+        : {
+            state: 'app.hosting.dashboard.general-informations',
+            params,
+          };
+    },
+    params: {
+      tab: null,
+    },
     resolve: {
       generalInformationLink: /* @ngInject */ ($state, $transition$) =>
-        $state.href('app.hosting.dashboard.information', $transition$.params()),
+        $state.href(
+          'app.hosting.dashboard.general-informations',
+          $transition$.params(),
+        ),
       multisiteLink: /* @ngInject */ ($state, $transition$) =>
         $state.href('app.hosting.dashboard.multisite', $transition$.params()),
       moduleLink: /* @ngInject */ ($state, $transition$) =>
