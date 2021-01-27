@@ -82,6 +82,18 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
         );
       },
     });
+
+    $stateProvider.state('app.dashboard.ovh_cloud_connect.**', {
+      url: ':ovh_cloud_connect',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./products-list.module').then((mod) =>
+          $ocLazyLoad.inject(mod.default || mod),
+        );
+      },
+    });
   },
 );
+
 export default moduleName;
