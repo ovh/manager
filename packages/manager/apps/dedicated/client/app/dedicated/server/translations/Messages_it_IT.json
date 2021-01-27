@@ -160,7 +160,7 @@
   "server_configuration_firewall_not_yet_activated_short": "Non configurato",
   "server_configuration_firewall_enable_button_title": "Attiva",
   "server_configuration_firewall_disable_button_title": "Disattiva",
-  "server_configuration_firewall_current_ip": "IP: {{{{t0}}}}}}",
+  "server_configuration_firewall_current_ip": "IP : {{t0}}",
   "server_configuration_firewall_add_summary": "Riepilogo:",
   "server_configuration_firewall_add_title": "Aggiungi una regola",
   "server_configuration_firewall_add_rule_success": "La nuova regola è stata aggiunta.",
@@ -804,7 +804,7 @@
   "server_configuration_installation_ovh_step2_error_partition_type_primary": "Non è possibile avere più di 4 partizioni primarie. Modifica il tipo di una partizione primaria in un altro tipo per poter aggiungere altre partizioni.",
   "server_configuration_installation_ovh_step2_error_partition_type_lv_swap": "La partizione swap non è compatibile con il tipo LV",
   "server_configuration_installation_ovh_step2_error_set": "Si è verificato un errore durante la modifica della partizione {{t0}} ({{t1}})",
-  "server_configuration_installation_ovh_step2_error_delete": "Si è verificato un errore nell'eliminazione della partizione {{t0}}",
+  "server_configuration_installation_ovh_step2_error_delete": "Si è verificato un errore nell'eliminazione della partizione {{t0}} ({{t1}})",
   "server_configuration_installation_ovh_step2_error_add": "Si è verificato un errore durante l'aggiunta della partizione {{t0}} ({{t1}})",
   "server_configuration_installation_ovh_step2_error_raid_diskUse": "I dischi disponibili non sono sufficienti per creare questo schema di partizione. Il livello del RAID di almeno una partizione è troppo elevato",
   "server_configuration_installation_ovh_step2_error_raid_diskUse_icon": "Il livello del raid di questa partizione è troppo elevato rispetto al numero di dischi utilizzati.",
@@ -850,7 +850,7 @@
   "server_configuration_installation_progress_button_modal": "Riduci",
   "server_configuration_installation_progress_end": "Installazione completata",
   "server_configuration_installation_progress_cancel_success": "La richiesta di annullamento dell'installazione è stata presa in carico",
-  "server_configuration_installation_progress_cancel_fail": "Si è verificato un errore durante la richiesta di annullamento dell'installazione ({0})",
+  "server_configuration_installation_progress_cancel_fail": "Si è verificato un errore durante la richiesta di annullamento dell'installazione ({{t0}})",
   "server_configuration_installation_progress_cancel_button": "Annulla l'installazione",
   "server_configuration_installation_progress_cancel_retry": "Reinstalla",
   "server_configuration_installation_progress_cancel_info": "Attenzione: l’operazione di annullamento potrebbe avere alcune conseguenze. È possibile che sia necessario reinstallare il server.",
@@ -1221,5 +1221,6 @@
   "server_configuration_installation_form_rtm_explain": " RTM permette di monitorare il server e l'attività dei suoi componenti (Processore, RAM, partizione disco, ecc...). Attivando l'opzione, RTM verrà installato di default: <a href=\"{{ href }}\" target=\"_blank\" rel=\"noopener\">Clicca qui per leggere la documentazione</a>.",
   "server_configuration_installation_form_rtm_deactivated": "Disattivato",
   "server_configuration_installation_form_rtm_activated": "Attivo",
-  "server_configuration_installation_image": "Installare a partire da un'immagine personalizzata"
+  "server_configuration_installation_image": "Installare a partire da un'immagine personalizzata",
+  "server_configuration_distribution_byoi": "BringYourOwnImage"
 }

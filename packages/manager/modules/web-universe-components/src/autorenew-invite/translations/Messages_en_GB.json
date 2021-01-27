@@ -1,8 +1,3 @@
 {
-  "autorenew_alert": "Make your life easier by enabling automatic renewal for your {{{product}}! No more reminders or unwanted deletions.",
-  "autorenew_alert_domain": "domain name",
-  "autorenew_alert_hosting": "web hosting",
-  "autorenew_activate": "Activate automatic renewal",
-  "autorenew_guide": "See the guide ",
-  "autorenew_new_tab": "Open in a new tab"
+  "autorenew_alert": "Simplify the way you manage your infrastructure, and use automatic renewal for your {{ product }}. This will put an end to all the reminders, and any risk of accidental deletions."
 }

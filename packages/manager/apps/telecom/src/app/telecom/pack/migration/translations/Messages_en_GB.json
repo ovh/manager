@@ -136,5 +136,8 @@
   "telecom_pack_migration_pto_yes": "I have a box with the following reference",
   "telecom_pack_migration_pto_yes_description": "We will proceed to remove the existing fibre termination point (FTP) socket.",
   "telecom_pack_migration_pto_no_description": "A technician will proceed to install a fibre termination point (FTP) socket during their intervention.",
-  "telecom_pack_migration_pto_yes_not_known_description": "Have you checked that you do not have the fibre termination box (FTP) reference? This may impact your connection time. "
+  "telecom_pack_migration_pto_yes_not_known_description": "Have you checked that you do not have the fibre termination box (FTP) reference? This may impact your connection time. ",
+  "telecom_pack_migration_confirm_resume_contact_owner": "Contact information",
+  "telecom_pack_migration_confirm_resume_contact_phone": "Telephone number you can be reached on, if required",
+  "telecom_pack_migration_confirm_resume_phone_form_error": "The number you enter must be valid."
 }

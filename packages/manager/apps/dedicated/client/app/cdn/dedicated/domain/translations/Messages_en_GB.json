@@ -38,7 +38,7 @@
   "cdn_network_ipv4": "IPv4",
   "cdn_network_servers": "Server",
   "cdn_configuration_cacherule_flush_title_button": "Clear the rule",
-  "cdn_configuration_flush_confirmation": "Do you want to clear the cache rule {{{t0}} ? <br/> This action will force the static content to expire in all POPs.",
+  "cdn_configuration_flush_confirmation": "Do you want to clear the cache rule {{t0}}? <br/> This action forces the static content to expire in all PoPs.",
   "cdn_configuration_flush_rule_success": "A task was created. A task has been created. The operation will be effective in approximately 10 minutes.",
   "cdn_configuration_add_rule_error": "An error occurred on requesting to clear the cache rule {{t0}}.",
   "cdn_configuration_cacherule_update_title_button": "Modify the rule ",

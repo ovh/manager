@@ -123,7 +123,7 @@
   "dedicatedCloud_network_vpn_group_name": "Nazwa grupy:",
   "dedicatedCloud_network_vpn_secret": "Dostęp:",
   "dedicatedCloud_network_vpn_create_account_text": "Faktura za utworzenie konta, opiewająca na kwotę {{t0}} PLN, zostanie wystawiona pod koniec miesiąca",
-  "dedicatedCloud_network_vpn_confirm_create_account": "Czy potwierdzasz utworzenie konta {{t0}}? <br /> Należność w wysokości {t0}} PLN zostanie zafakturowana pod koniec miesiąca.",
+  "dedicatedCloud_network_vpn_confirm_create_account": "Potwierdzasz założenie konta {{t0}}? <br /> Na koniec miesiąca otrzymasz fakturę opiewającą na {{t0}}€ ",
   "dedicatedCloud_updateResource_toMonthly": "Przejdź na abonament miesięczny",
   "dedicatedCloud_order_price_HT": "Cena netto:",
   "dedicatedCloud_order_price_TTC": "Cena brutto:",

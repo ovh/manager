@@ -436,7 +436,7 @@
   "domain_configuration_dns_entry_delete_step1_subdomain": "Sub-domain",
   "domain_configuration_dns_entry_delete_step1_target": "Target ",
   "domain_configuration_dns_entry_mass_delete_step1_question_1": "Do you really want to delete this entry from the DNS zone?",
-  "domain_configuration_dns_entry_mass_delete_step1_question_other": "Do you really want to delete these {} entries from the DNS zone?",
+  "domain_configuration_dns_entry_mass_delete_step1_question_other": "Are you sure you want to delete these {{t0}} records from the DNS zone?",
   "domain_configuration_dns_entry_delete_success": "The entry has been deleted from the DNS zone.",
   "domain_configuration_dns_entry_delete_fail": "Error occurred when deleting {{t0}} DNS zone entry.",
   "domain_configuration_dns_entry_delete_mass_success": "The entries have been deleted from your DNS zone.",
@@ -825,5 +825,6 @@
   "domain_dashboard_recommended_hosting_title_Pro": "Hosting your website",
   "domain_dashboard_recommended_hosting_title_Perso": "Hosting your blog or website",
   "domain_dashboard_recommended_hosting_label": "{{ reduction }} off on your {{ type }} hosting plan for Black Friday.",
-  "domain_dashboard_recommended_hosting_discover": "Explore our solutions"
+  "domain_dashboard_recommended_hosting_discover": "Explore our solutions",
+  "domain_tab_ZONE_no_zone_order_btn": "Order a DNS zone"
 }

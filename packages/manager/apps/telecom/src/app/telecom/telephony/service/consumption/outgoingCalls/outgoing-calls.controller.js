@@ -21,7 +21,7 @@ export default /* @ngInject */ function TelecomTelephonyServiceConsumptionOutgoi
       })
       .then((result) =>
         result
-          .filter((conso) => conso.wayType !== 'incoming' && conso.duration > 0)
+          .filter((conso) => conso.wayType !== 'incoming')
           .map((conso) => {
             set(conso, 'durationAsDate', new Date(conso.duration * 1000));
             return conso;

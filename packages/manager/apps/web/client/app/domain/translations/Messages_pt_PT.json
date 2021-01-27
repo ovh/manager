@@ -436,7 +436,7 @@
   "domain_configuration_dns_entry_delete_step1_subdomain": "Sub-domínio",
   "domain_configuration_dns_entry_delete_step1_target": "Destino",
   "domain_configuration_dns_entry_mass_delete_step1_question_1": "Deseja realmente eliminar esta entrada da zona DNS?",
-  "domain_configuration_dns_entry_mass_delete_step1_question_other": "Tem a certeza de que quer eliminar estas {} entradas da zona DNS?",
+  "domain_configuration_dns_entry_mass_delete_step1_question_other": "Tem a certeza de que quer eliminar estas {{t0}} entradas da zona DNS?",
   "domain_configuration_dns_entry_delete_success": "A entrada foi eliminada da zona DNS.",
   "domain_configuration_dns_entry_delete_fail": "Ocorreu um erro na eliminação da entrada {{t0}} da zona DNS.",
   "domain_configuration_dns_entry_delete_mass_success": "As entradas foram eliminadas com sucesso da sua zona DNS.",
@@ -826,5 +826,6 @@
   "domain_dashboard_recommended_hosting_title_Pro": "Alojamento do seu website",
   "domain_dashboard_recommended_hosting_title_Perso": "Alojamento do seu blogue ou do seu website",
   "domain_dashboard_recommended_hosting_label": "- {{ reduction }} no seu alojamento {{ type }} durante a Black Friday.",
-  "domain_dashboard_recommended_hosting_discover": "Descobrir as soluções"
+  "domain_dashboard_recommended_hosting_discover": "Descobrir as soluções",
+  "domain_tab_ZONE_no_zone_order_btn": "Encomendar uma zona DNS"
 }

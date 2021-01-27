@@ -2,7 +2,7 @@
 
 > AngularJS module for updating browser title based on the current ui-router state.
 
-[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ui-router-title)](https://www.npmjs.com/package/@ovh-ux/ng-ui-router-title) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ui-router-title)](https://npmjs.com/package/@ovh-ux/ng-ui-router-title) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ui-router-title)](https://npmjs.com/package/@ovh-ux/ng-ui-router-title?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ui-router-title)](https://npmjs.com/package/@ovh-ux/ng-ui-router-title?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ui-router-title)](https://www.npmjs.com/package/@ovh-ux/ng-ui-router-title) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ui-router-title)](https://npmjs.com/package/@ovh-ux/ng-ui-router-title) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ui-router-title)](https://npmjs.com/package/@ovh-ux/ng-ui-router-title?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ui-router-title)](https://npmjs.com/package/@ovh-ux/ng-ui-router-title?activeTab=dependencies)
 
 ## Install
 

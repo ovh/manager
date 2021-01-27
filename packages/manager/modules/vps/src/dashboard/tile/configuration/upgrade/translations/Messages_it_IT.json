@@ -5,7 +5,7 @@
   "vps_dashboard_tile_configuration_upgrade_storage_action_details": "Stai per aggiungere {{ storageQuantity }} GB di storage al tuo VPS.",
   "vps_dashboard_tile_configuration_upgrade_action_price": "Questo upgrade comporta una fatturazione aggiuntiva di {{ price }}/mese",
   "vps_dashboard_tile_configuration_upgrade_action_validation": "Confermando questa scelta sarà necessario pagare un importo di {{ prorataPrice }}, corrispondente al prorata temporis per il mese in corso. Ti ricordiamo che l'importo finale della fattura può includere eventuali opzioni aggiuntive a tua disposizione (ad esempio Snapshot, backup automatizzato, ecc...)",
-  "vps_dashboard_tile_configuration_upgrade_action_validation_with_no_payment_method_monthly": "Cliccando su “Conferma e paga” verrai reindirizzato al buono d’ordine da cui sarà possibile pagare l’importo di {{ prorataPrice }}, corrispondente al prorata temporis.",
+  "vps_dashboard_tile_configuration_upgrade_action_validation_with_no_payment_method_monthly": "Cliccando su “Conferma e paga” verrai reindirizzato al buono d’ordine da cui sarà possibile pagare l’importo di {{ price }}, corrispondente al prorata temporis.",
   "vps_dashboard_tile_configuration_upgrade_action_validation_with_no_payment_method_upfront": "Cliccando su “Conferma e paga” verrai reindirizzato al buono d’ordine da cui sarà possibile pagare l’importo supplementare di {{ price }} per il tempo restante incluso nell’impegno contrattuale.",
   "vps_dashboard_tile_configuration_upgrade_action_validate_and_pay": "Conferma e paga",
   "vps_dashboard_tile_configuration_upgrade_action_cancel": "Annulla",

@@ -22,13 +22,28 @@
                 ></div>
             </div>
             <div class="col-md-3 text-right">
-                <button
-                    class="btn btn-block btn-default"
-                    type="button"
-                    data-translate="domain_tab_ZONE_no_zone_activate_btn"
-                    data-ng-disabled="!ctrlDomainTabZoneDns.displayActivateZone"
-                    data-ng-click="ctrlDomainTabZoneDns.activateZone()"
-                ></button>
+                <oui-button
+                    variant="secondary"
+                    data-disabled="!ctrlDomainTabZoneDns.displayActivateZone"
+                    data-on-click="ctrlDomainTabZoneDns.activateZone()"
+                    data-ng-if="ctrlDomainTabZoneDns.region !== 'CA'"
+                    block
+                >
+                    <span
+                        data-translate="domain_tab_ZONE_no_zone_activate_btn"
+                    ></span>
+                </oui-button>
+                <oui-button
+                    variant="secondary"
+                    data-disabled="!ctrlDomainTabZoneDns.displayActivateZone"
+                    data-on-click="ctrlDomainTabZoneDns.orderZone()"
+                    data-ng-if="ctrlDomainTabZoneDns.region === 'CA'"
+                    block
+                >
+                    <span
+                        data-translate="domain_tab_ZONE_no_zone_order_btn"
+                    ></span>
+                </oui-button>
             </div>
         </div>
 

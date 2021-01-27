@@ -1,5 +1,6 @@
 import find from 'lodash/find';
 import forEach from 'lodash/forEach';
+import { Environment } from '@ovh-ux/manager-config';
 
 export default /* @ngInject */ function(
   $q,
@@ -8,7 +9,6 @@ export default /* @ngInject */ function(
   CucCloudMessage,
   DetailsPopoverService,
   OvhApiCloudProjectVolume,
-  OvhApiMe,
 ) {
   const self = this;
   self.DetailsPopoverService = DetailsPopoverService;
@@ -65,11 +65,9 @@ export default /* @ngInject */ function(
   }
 
   function initUserCurrency() {
-    return OvhApiMe.v6()
-      .get()
-      .$promise.then((me) => {
-        self.currencySymbol = me.currency.symbol;
-      });
+    return $q.when(Environment.getUser()).then((me) => {
+      self.currencySymbol = me.currency.symbol;
+    });
   }
 
   self.$onInit = () => {

@@ -5,7 +5,7 @@
   "vps_terminate_confirm": "Confirmar",
   "vps_terminate_success": "La solicitud de supresión del servicio se ha enviado. Recibirá un mensaje de correo electrónico para confirmar la supresión.",
   "vps_terminate_error": "Se ha producido un error al eliminar el servicio.",
-  "vps_terminate_unavailable": "You purchased this subscription with a {{ monthCount }} month commitment. If you have any question, please contact customer support via chat or by submitting a <a href=\"{{supportLink}}\" target=\"_blank\" rel=\"noopener\">support ticket </a>. Thank you for your understanding.",
+  "vps_terminate_unavailable": "Ha contratado el servicio con un compromiso de {{ monthCount }} meses. Si tiene cualquier pregunta o necesita más información, puede ponerse en contacto con nuestro servicio de soporte por chat o mediante un <a class=\"oui-link\" href=\"{{supportTicketLink}}\" target=\"_blank\" rel=\"noopener\">tíquet de asistencia </a>. ¡Gracias por su comprensión!",
   "vps_terminate_option_terminate_at_expiration": "Eliminar el servicio en la fecha de expiración",
   "vps_terminate_option_cancel_terminate_at_expiration": "Cancelar la eliminación del servicio",
   "vps_terminate_option_terminate_now": "Eliminar el servicio de inmediato",

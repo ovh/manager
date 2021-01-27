@@ -131,5 +131,8 @@
   "telecom_pack_migration_pto_reference": "Saisissez votre référence PTO",
   "telecom_pack_migration_pto_where": "Où trouver votre numéro de référence du boîtier PTO ?",
   "telecom_pack_migration_pto_where_description": "Cette référence est inscrite sur le boîtier PTO et est composée de chiffres et de lettres sous la forme OO-XXXX-XXXX /C",
-  "telecom_pack_migration_pto_yes_not_known": "J'ai un boîtier mais je ne connais pas son numéro"
+  "telecom_pack_migration_pto_yes_not_known": "J'ai un boîtier mais je ne connais pas son numéro",
+  "telecom_pack_migration_confirm_resume_contact_owner": "Informações de contacto",
+  "telecom_pack_migration_confirm_resume_contact_phone": "Número de telefone através do qual poderá ser contactado, se necessário",
+  "telecom_pack_migration_confirm_resume_phone_form_error": "O número introduzido deve ser válido."
 }

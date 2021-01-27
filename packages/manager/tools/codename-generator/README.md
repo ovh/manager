@@ -2,7 +2,7 @@
 
 > Generate a random codename
 
-[![Downloads](https://badgen.net/npm/dt/@ovh-ux/codename-generator)](https://npmjs.com/package/@ovh-ux/codename-generator) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/tools/codename-generator)](https://npmjs.com/package/@ovh-ux/codename-generator?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/tools/codename-generator)](https://npmjs.com/package/@ovh-ux/codename-generator?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![Downloads](https://badgen.net/npm/dt/@ovh-ux/codename-generator)](https://npmjs.com/package/@ovh-ux/codename-generator) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/tools/codename-generator)](https://npmjs.com/package/@ovh-ux/codename-generator?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/tools/codename-generator)](https://npmjs.com/package/@ovh-ux/codename-generator?activeTab=dependencies)
 
 ## Installation
 

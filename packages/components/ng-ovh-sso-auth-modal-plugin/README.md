@@ -2,7 +2,7 @@
 
 > Plugin for ng-ovh-sso-auth library.
 
-[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-sso-auth-modal-plugin)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-sso-auth-modal-plugin) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-sso-auth-modal-plugin)](https://npmjs.com/package/@ovh-ux/ng-ovh-sso-auth-modal-plugin) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-sso-auth-modal-plugin)](https://npmjs.com/package/@ovh-ux/ng-ovh-sso-auth-modal-plugin?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-sso-auth-modal-plugin)](https://npmjs.com/package/@ovh-ux/ng-ovh-sso-auth-modal-plugin?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-sso-auth-modal-plugin)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-sso-auth-modal-plugin) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-sso-auth-modal-plugin)](https://npmjs.com/package/@ovh-ux/ng-ovh-sso-auth-modal-plugin) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-sso-auth-modal-plugin)](https://npmjs.com/package/@ovh-ux/ng-ovh-sso-auth-modal-plugin?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-sso-auth-modal-plugin)](https://npmjs.com/package/@ovh-ux/ng-ovh-sso-auth-modal-plugin?activeTab=dependencies)
 
 ## Install
 

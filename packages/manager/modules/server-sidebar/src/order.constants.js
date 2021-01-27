@@ -1,4 +1,4 @@
-import { DEDICATED, CLOUD } from './constants';
+import { DEDICATED } from './constants';
 
 export const ORDER_URLS = {
   EU: {
@@ -97,23 +97,6 @@ export const ORDER_URLS = {
       NL: 'https://www.ovh.nl/storage-solutions/veeam-enterprise.xml',
       PL: 'https://www.ovh.pl/storage-solutions/veeam-enterprise.xml',
       PT: 'https://www.ovh.pt/storage-solutions/veeam-enterprise.xml',
-    },
-    cloud_desktop: {
-      CZ: 'https://www.ovh.cz/cloud/cloud-desktop/',
-      DE: 'https://www.ovh.de/cloud/cloud-desktop/',
-      ES: 'https://www.ovh.es/cloud/cloud-desktop/',
-      FI: 'https://www.ovh-hosting.fi/cloud/cloud-desktop/',
-      FR: 'https://www.ovh.com/fr/cloud/cloud-desktop/',
-      GB: 'https://www.ovh.co.uk/cloud/cloud-desktop/',
-      IE: 'https://www.ovh.ie/cloud/cloud-desktop/',
-      IT: 'https://www.ovh.it/cloud/cloud-desktop/',
-      LT: 'https://www.ovh.lt/cloud/cloud-desktop/',
-      MA: 'https://www.ovh.ma/cloud/cloud-desktop/',
-      NL: 'https://www.ovh.nl/cloud/cloud-desktop/',
-      PL: 'https://www.ovh.pl/cloud/cloud-desktop/',
-      PT: 'https://www.ovh.pt/cloud/cloud-desktop/',
-      SN: 'https://www.ovh.sn/cloud/cloud-desktop/',
-      TN: 'https://www.ovh.com/tn/cloud/cloud-desktop/',
     },
     load_balancer: {
       CZ: 'https://www.ovh.cz/reseni/ip-load-balancing/',
@@ -371,7 +354,6 @@ export const ORDER_URLS = {
       WS:
         "https://us.ovh.com/es/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
     },
-    cloud_desktop: {},
     load_balancer: {
       ASIA: 'https://www.ovh.com/asia/solutions/ip-load-balancing/',
       AU: 'https://www.ovh.com.au/solutions/ip-load-balancing/',
@@ -447,7 +429,6 @@ export const ORDER_URLS = {
       US:
         "https://us.ovhcloud.com/order/express/#/express/review?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
     },
-    cloud_desktop: {},
     load_balancer: {
       US: 'https://us.ovhcloud.com/solutions/ip-load-balancing/',
     },
@@ -514,7 +495,6 @@ export const SIDEBAR_ORDER_CONFIG = [
     tracker: 'dedicated::orders::licences::order',
   },
 
-  // CLOUD
   {
     id: 'order-kube',
     title: 'kube',
@@ -522,7 +502,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     linkId: 'publicCloudKubernetes',
     target: '_blank',
     external: true,
-    app: [CLOUD],
+    app: [DEDICATED],
     regions: ['EU'],
     tracker: 'dedicated::orders::managed-kubernetes::order',
   },
@@ -533,7 +513,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     linkId: 'vps',
     target: '_blank',
     external: true,
-    app: [CLOUD],
+    app: [DEDICATED],
     tracker: 'dedicated::orders::vps::order',
   },
   {
@@ -543,7 +523,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     linkId: 'managed_bare_metal',
     target: '_blank',
     external: true,
-    app: [CLOUD],
+    app: [DEDICATED],
     regions: ['EU', 'CA', 'US'],
     tracker: 'dedicated::orders::mbm::order',
   },
@@ -554,7 +534,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     linkId: 'dedicated_cloud',
     target: '_blank',
     external: true,
-    app: [CLOUD],
+    app: [DEDICATED],
     regions: ['EU', 'CA', 'US'],
     tracker: 'dedicated::orders::hpc::order',
   },
@@ -565,7 +545,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     linkId: 'cloud_disk_array',
     target: '_blank',
     external: true,
-    app: [CLOUD],
+    app: [DEDICATED],
     regions: ['EU', 'CA'],
     tracker: 'dedicated::orders::cloud-disk-array::order',
   },
@@ -586,7 +566,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     linkId: 'veeam',
     target: '_blank',
     external: true,
-    app: [CLOUD],
+    app: [DEDICATED],
     regions: ['EU'],
     tracker: 'dedicated::orders::veeam-cc::order',
   },
@@ -597,7 +577,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     linkId: 'veeam_enterprise',
     target: '_blank',
     external: true,
-    app: [CLOUD],
+    app: [DEDICATED],
     regions: ['EU', 'CA'],
     tracker: 'dedicated::orders::veeam-enterprise::order',
   },
@@ -613,24 +593,13 @@ export const SIDEBAR_ORDER_CONFIG = [
     tracker: 'dedicated::orders::vrack::order',
   },
   {
-    id: 'order-cloud-desktop',
-    title: 'clouddesktop',
-    icon: 'ovh-font ovh-font-cloud-desktop',
-    linkId: 'cloud_desktop',
-    target: '_blank',
-    external: true,
-    app: [CLOUD],
-    regions: ['EU', 'CA'],
-    tracker: 'dedicated::orders::cloud-desktop-infrastructure::order',
-  },
-  {
     id: 'order-loadbalancer',
     title: 'iplb',
     icon: 'ovh-font ovh-font-ip',
     linkId: 'load_balancer',
     target: '_blank',
     external: true,
-    app: [CLOUD],
+    app: [DEDICATED],
     regions: ['EU'],
     tracker: 'dedicated::orders::ip-load-balancer::order',
   },

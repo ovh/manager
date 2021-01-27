@@ -1,6 +1,5 @@
 import { Selector, t } from 'testcafe';
 import { URL } from 'url';
-import XPathSelector from '../../utils/xpath-selector';
 
 export default class AuthLoginPage {
   constructor(config) {
@@ -35,11 +34,7 @@ export default class AuthLoginPage {
   }
 
   async logout() {
-    await t
-      .navigateTo(this.getLogoutUrl())
-      .expect(
-        XPathSelector('//*[@id="login-form"]/div[1]/form/div[1]').innerText,
-      )
-      .contains('You have logged out successfully');
+    await t.navigateTo(this.getLogoutUrl());
+    await t.expect(this.passwordInput.visible).ok();
   }
 }

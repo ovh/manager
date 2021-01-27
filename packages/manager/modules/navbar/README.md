@@ -1,6 +1,6 @@
 # manager-navbar
 
-[![npm version](https://badgen.net/npm/v/@ovh-ux/manager-navbar)](https://www.npmjs.com/package/@ovh-ux/manager-navbar) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-navbar)](https://npmjs.com/package/@ovh-ux/manager-navbar) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/modules/navbar)](https://npmjs.com/package/@ovh-ux/manager-navbar?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/modules/navbar)](https://npmjs.com/package/@ovh-ux/manager-navbar?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/manager-navbar)](https://www.npmjs.com/package/@ovh-ux/manager-navbar) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-navbar)](https://npmjs.com/package/@ovh-ux/manager-navbar) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/modules/navbar)](https://npmjs.com/package/@ovh-ux/manager-navbar?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/modules/navbar)](https://npmjs.com/package/@ovh-ux/manager-navbar?activeTab=dependencies)
 
 ## Install
 

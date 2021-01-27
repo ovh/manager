@@ -31,6 +31,6 @@
   "private_database_order_clouddb_payment_get_checkout_error": "Si è verificato un errore durante il recupero delle informazioni del tuo carrello.",
   "private_database_order_clouddb_payment_get_payment_method_error": "Si è verificato un errore durante il recupero dei metodi di pagamento",
   "private_database_order_clouddb_payment_checkout_error": "Si è verificato un errore durante il pagamento degli articoli nel carrello.",
-  "private_database_order_clouddb_payment_checkout_success": "L'ordine per il database dei database dei database Cloud è stato elaborato con successo. Il tuo account {{accountId}}} è stato addebitato da {{prezzo}}}. <a class=\"d-block\" target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">Vedi la mia fattura</a>.",
+  "private_database_order_clouddb_payment_checkout_success": "L'ordine per il database dei database dei database Cloud è stato elaborato con successo. L’addebito di {{price}} è stato effettuato correttamente sull’account {{accountId}}. <a class=\"d-block\" target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">Visualizza la tua fattura</a>",
   "private_database_order_clouddb_bill_success": "Il tuo <a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">ordine</a> è stato generato correttamente. Il tuo database Cloud Database sarà attivo dopo il pagamento."
 }

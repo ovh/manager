@@ -9,10 +9,9 @@ import { Environment } from '@ovh-ux/manager-config';
 
 export default class FlavorsListController {
   /* @ngInject */
-  constructor($q, $state, OvhApiMe, PciProjectFlavors) {
+  constructor($q, $state, PciProjectFlavors) {
     this.$q = $q;
     this.$state = $state;
-    this.OvhApiMe = OvhApiMe;
     this.PciProjectFlavors = PciProjectFlavors;
   }
 
@@ -23,7 +22,7 @@ export default class FlavorsListController {
     return this.$q
       .all({
         flavors: this.getFlavors(),
-        me: this.OvhApiMe.v6().get().$promise,
+        me: Environment.getUser(),
       })
       .then(({ me }) => {
         this.PriceFormatter = new Intl.NumberFormat(

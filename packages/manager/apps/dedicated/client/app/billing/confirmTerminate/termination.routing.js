@@ -15,6 +15,11 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
       url: '/confirmTerminate?id&token',
       component: 'billingConfirmTermination',
       resolve: {
+        confirmTermination: /* @ngInject */ (
+          BillingTerminate,
+          service,
+          token,
+        ) => () => BillingTerminate.confirmTermination(service, token),
         questions: /* @ngInject */ (BillingTerminate, serviceId) =>
           BillingTerminate.getTerminationForm(serviceId).then(
             ({ questions }) => questions,

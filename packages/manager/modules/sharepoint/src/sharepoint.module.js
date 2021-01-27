@@ -1,5 +1,7 @@
 import angular from 'angular';
 
+import incrementNumber from './account/add-legacy/incrementNumber';
+
 import routing from './sharepoint.routes';
 import accountCtrl from './account/sharepoint-account.controller';
 import accountAddCtrl from './account/add/sharepoint-account-add.controller';
@@ -45,7 +47,7 @@ import domainTpl from './domain/DOMAIN.html';
 const moduleName = 'Module.sharepoint';
 
 angular
-  .module('Module.sharepoint.controllers', [])
+  .module('Module.sharepoint.controllers', [incrementNumber])
   .controller('SharepointCtrl', sharepointCtrl)
   .controller('SharepointTabsCtrl', tabsCtrl)
   .controller('SharepointAccountsCtrl', accountCtrl)

@@ -2,7 +2,7 @@
   "pci_projects_creating_main_title": "¡Ya ha comenzado la aventura de Public Cloud!",
   "pci_projects_creating_secondary_title": "Estamos creando su proyecto. ",
   "pci_projects_creating_explain1": "Para terminar de crear el proyecto, debe abonar la orden de pedido <a href=\"{{ href }}\">{{ orderId }}</a>.",
-  "pci_projects_creating_explain2": "Si esta página sigue apareciendo unos minutos después de realizar el pago, contacte con el <a href=\"{{ url }}\">soporte</a>.",
+  "pci_projects_creating_explain2": "Si esta página sigue apareciendo unos minutos después de realizar el pago, contacte con el <a href=\"{{ href }}\">soporte</a>.",
   "pci_projects_creating_long_time": "Esta operación puede tardar unos minutos.",
   "pci_projects_creating_long_time_wait": "Mientras tanto, puede consultar nuestras guías o sus otros proyectos.",
   "pci_projects_creating_guides": "Guías de Public Cloud",

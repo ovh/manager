@@ -2,7 +2,7 @@
 
 > AngularJS translate asynchronous loader
 
-[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-sso-auth)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-sso-auth) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-sso-auth)](https://npmjs.com/package/@ovh-ux/ng-ovh-sso-auth) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-sso-auth)](https://npmjs.com/package/@ovh-ux/ng-ovh-sso-auth?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-sso-auth)](https://npmjs.com/package/@ovh-ux/ng-ovh-sso-auth?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-sso-auth)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-sso-auth) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-sso-auth)](https://npmjs.com/package/@ovh-ux/ng-ovh-sso-auth) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-sso-auth)](https://npmjs.com/package/@ovh-ux/ng-ovh-sso-auth?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-sso-auth)](https://npmjs.com/package/@ovh-ux/ng-ovh-sso-auth?activeTab=dependencies)
 
 ## Install
 

@@ -28,6 +28,6 @@
   "hosting_database_order_private_payment_total_price_without_tax": "Precio (sin IVA):",
   "hosting_database_order_private_payment_total_price_with_tax": "Precio (IVA incl.):",
   "hosting_database_order_private_error": "Se ha producido un error al contratar una base de datos: {{message}}",
-  "hosting_database_order_private_success": "La <a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">orden de pedido</a> se ha generado. Su producto se activará una vez que lo haya validado.",
+  "hosting_database_order_private_success": "La <a href=\"{{t0}}\" target=\"_blank\">orden de pedido</a> se ha generado correctamente. El producto se activará una vez que lo haya validado.",
   "hosting_database_order_private_success_activation": "Su activación fue exitosa. Su producto se activará en unos momentos."
 }

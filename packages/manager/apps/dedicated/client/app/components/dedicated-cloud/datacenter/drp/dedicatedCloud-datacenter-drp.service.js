@@ -2,6 +2,7 @@ import find from 'lodash/find';
 import flatten from 'lodash/flatten';
 import get from 'lodash/get';
 import keys from 'lodash/keys';
+import { Environment } from '@ovh-ux/manager-config';
 
 import {
   DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS,
@@ -215,15 +216,10 @@ class DedicatedCloudDatacenterDrpService {
 
   createZertoOptionCart(drpInformations, zertoOption) {
     let zertoCartId;
-    return this.OvhApiMe.v6()
-      .get()
-      .$promise.then(
-        ({ ovhSubsidiary }) =>
-          this.OvhApiOrder.Cart()
-            .v6()
-            .post({}, { ovhSubsidiary }).$promise,
-      )
-      .then(({ cartId }) => {
+    return this.OvhApiOrder.Cart()
+      .v6()
+      .post({}, { ovhSubsidiary: Environment.getUser().ovhSubsidiary })
+      .$promise.then(({ cartId }) => {
         zertoCartId = cartId;
         return this.OvhApiOrder.Cart()
           .v6()

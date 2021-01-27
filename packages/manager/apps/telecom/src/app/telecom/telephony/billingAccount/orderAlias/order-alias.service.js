@@ -6,13 +6,13 @@ import isArray from 'lodash/isArray';
 import map from 'lodash/map';
 import pull from 'lodash/pull';
 import set from 'lodash/set';
+import { Environment } from '@ovh-ux/manager-config';
 
 import { TELEPHONY_NUMBER_OFFER } from './order-alias.constant';
 
 export default /* @ngInject */ function TelecomTelephonyBillingAccountOrderAliasService(
   $q,
   OvhApiTelephony,
-  OvhApiMe,
 ) {
   /**
    * Replace all spaces by no-breaking-spaces
@@ -44,9 +44,9 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountOrderAlias
    * @returns {Promise}
    */
   this.getUser = function getUser() {
-    return OvhApiMe.v6()
-      .get()
-      .$promise.then((user) => {
+    return $q
+      .when(Environment.getUser())
+      .then((user) => {
         set(user, 'country', user.country.toLowerCase());
         set(
           user,

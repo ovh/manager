@@ -24,10 +24,10 @@
   "hosting_database_order_private_version_mongodb": "MongoDB {{version}}",
   "hosting_database_order_private_version_redis": "Redis {{version}}",
   "hosting_database_order_private_duration": "Jak długo chcesz korzystać z bazy?",
-  "hosting_database_order_private_duration_label": "Czas trwania",
+  "hosting_database_order_private_duration_label": "{{duration}} :",
   "hosting_database_order_private_payment_total_price_without_tax": "Cena netto:",
   "hosting_database_order_private_payment_total_price_with_tax": "Cena brutto:",
   "hosting_database_order_private_error": "Wystąpił błąd podczas zamawiania bazy danych SQL: {{message}}",
-  "hosting_database_order_private_success": "Twoje <a href=\"{{t0}\" target=\"_blank\">zamówienie zakupu</a> zostało pomyślnie wygenerowane. Twój produkt zostanie aktywowany po zatwierdzeniu go.",
+  "hosting_database_order_private_success": "<a href=\"{{t0}}\" target=\"_blank\">Zamówienie</a> zostało wygenerowane. Twoja usługa zostanie włączona, kiedy ją zatwierdzisz.",
   "hosting_database_order_private_success_activation": "Twoja aktywacja była udana. Twój produkt zostanie aktywowany w ciągu kilku chwil."
 }

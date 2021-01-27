@@ -24,7 +24,7 @@ module.exports = {
           { text: 'Manager', link: 'https://ovh.com/manager' },
           {
             text: 'Stay Tuned',
-            items: [{ text: 'Gitter', link: 'https://gitter.im/ovh/ux' }],
+            items: [{ text: 'Discussions', link: 'https://github.com/ovh/manager/discussions' }],
           },
           {
             text: 'Contributing',

@@ -20,7 +20,7 @@
   "private_registry_delete_confirmation": "Vuoi eliminare il Registry privato {{ registryName }}?",
   "private_registry_delete_warning": "Questa azione non può essere annullata.",
   "private_registry_delete_enter": "Inserisci DELETE nel campo qui sotto per confermare l’operazione.",
-  "private_registry_delete_success": "Elimina il Registry privato {{ nom_registre }}",
+  "private_registry_delete_success": "Elimina il Registro privato {{ registryName }}",
   "private_registry_delete_error": "Si è verificato un errore durante l’eliminazione del Registry privato {{ registryName }}: {{ message }} ",
   "private_registry_common_status_ERROR": "Errore",
   "private_registry_common_status_READY": "OK",

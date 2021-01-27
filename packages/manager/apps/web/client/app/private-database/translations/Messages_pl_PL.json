@@ -389,7 +389,7 @@
   "privateDatabase_tabs_cron_configuration_delete_fail": "Wystąpił błąd podczas usuwania planowanej kopii zapasowej.",
   "privateDatabase_tab_METRICS": "Metryki",
   "privateDatabase_metrics_no_data": "Brak danych",
-  "privateDatabase_metrics_memoryUsages_title": "Statystyki wykorzystanej pamięci",
+  "privateDatabase_metrics_memoryUsages_title": "Statystyki dotyczące wykorzystanej pamięci",
   "privateDatabase_metrics_memoryUsages_graph_dbaas_metrics_exec_memsw": "Wykorzystanie pamięci",
   "privateDatabase_metrics_activeConnections_title": "Statystyki całkowitej liczby połączeń na minutę",
   "privateDatabase_metrics_activeConnections_graph_dbaas_metrics_mysql_threads_connected": "Całkowita liczba połączeń na minutę",

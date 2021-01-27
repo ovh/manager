@@ -1,5 +1,6 @@
 import get from 'lodash/get';
 import includes from 'lodash/includes';
+import { Environment } from '@ovh-ux/manager-config';
 
 angular.module('UserAccount').controller(
   'UserAccount.controllers.contactCtrl',
@@ -13,7 +14,6 @@ angular.module('UserAccount').controller(
       AccountCreationURLS,
       Alerter,
       atInternet,
-      OvhApiMe,
     ) {
       this.$location = $location;
       this.$q = $q;
@@ -23,7 +23,6 @@ angular.module('UserAccount').controller(
       this.AccountCreationURLS = AccountCreationURLS;
       this.Alerter = Alerter;
       this.atInternet = atInternet;
-      this.OvhApiMe = OvhApiMe;
     }
 
     $onInit() {
@@ -57,22 +56,8 @@ angular.module('UserAccount').controller(
         }
       };
 
-      return this.OvhApiMe.v6()
-        .get()
-        .$promise.then((user) => {
-          this.user = user;
-        })
-        .catch((err) => {
-          this.Alerter.alertFromSWS(
-            this.$translate.instant('user_account_contacts_error'),
-            err,
-            'useraccount.alerts.dashboardContacts',
-          );
-          return this.$q.reject(err);
-        })
-        .finally(() => {
-          this.loaders.init = false;
-        });
+      this.user = Environment.getUser();
+      this.loaders.init = false;
     }
 
     getAccountCreationUrl() {

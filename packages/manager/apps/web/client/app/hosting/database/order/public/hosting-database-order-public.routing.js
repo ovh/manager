@@ -1,3 +1,4 @@
+import { Environment } from '@ovh-ux/manager-config';
 import component from './hosting-database-order-public.component';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -40,7 +41,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().productId,
-      user: /* @ngInject */ (OvhApiMe) => OvhApiMe.v6().get().$promise,
+      user: () => Environment.getUser(),
     },
   });
 };

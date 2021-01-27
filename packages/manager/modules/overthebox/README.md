@@ -1,6 +1,6 @@
 # manager-overthebox
 
-[![npm version](https://badgen.net/npm/v/@ovh-ux/manager-overthebox)](https://www.npmjs.com/package/@ovh-ux/manager-overthebox) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-overthebox)](https://npmjs.com/package/@ovh-ux/manager-overthebox) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/modules/overthebox)](https://npmjs.com/package/@ovh-ux/manager-overthebox?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/modules/overthebox)](https://npmjs.com/package/@ovh-ux/manager-overthebox?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/manager-overthebox)](https://www.npmjs.com/package/@ovh-ux/manager-overthebox) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-overthebox)](https://npmjs.com/package/@ovh-ux/manager-overthebox) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/modules/overthebox)](https://npmjs.com/package/@ovh-ux/manager-overthebox?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/modules/overthebox)](https://npmjs.com/package/@ovh-ux/manager-overthebox?activeTab=dependencies)
 
 ## Install
 

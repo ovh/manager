@@ -31,6 +31,6 @@
   "private_database_order_clouddb_payment_get_checkout_error": "Se ha producido un error al recuperar la información de su carrito.",
   "private_database_order_clouddb_payment_get_payment_method_error": "Se ha producido un error al intentar cargar las formas de pago",
   "private_database_order_clouddb_payment_checkout_error": "Se ha producido un error durante el pago de su cesta.",
-  "private_database_order_clouddb_payment_checkout_success": "Su pedido de sus bases de datos en la nube ha sido procesado. Su cuenta {{accountId}} se ha cargado en {{principio}}. <a class=\"d-block\" target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">Ver mi factura</a>",
+  "private_database_order_clouddb_payment_checkout_success": "Su pedido de sus bases de datos en la nube ha sido procesado. Se ha cargado un importe de {{price}} a su cuenta {{accountId}}. <a class=\"d-block\" target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">Ver mi factura</a>",
   "private_database_order_clouddb_bill_success": "La <a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">orden de pedido</a> se ha generado. Sus bases de datos en la nube estarán activas después de que usted haya pagado por ellas."
 }

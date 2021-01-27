@@ -182,6 +182,12 @@ angular
   })
   .constant('website_url', config.constants.website_url)
   .config(
+    /* @ngInject */ ($compileProvider, $logProvider) => {
+      $compileProvider.debugInfoEnabled(!config.prodMode);
+      $logProvider.debugEnabled(!config.prodMode);
+    },
+  )
+  .config(
     /* @ngInject */ (ovhProxyRequestProvider) => {
       ovhProxyRequestProvider.proxy('$http');
       ovhProxyRequestProvider.pathPrefix('apiv6');
@@ -219,9 +225,6 @@ angular
     ROUTABLE_BLOCK: /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\/(\d|[1-2]\d|3[0-2]))$/,
     ROUTABLE_IP: /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/,
     ROUTABLE_BLOCK_OR_IP: /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\/(\d|[1-2]\d|3[0-2]))?$/,
-  })
-  .run((ssoAuthentication, User) => {
-    ssoAuthentication.login().then(() => User.getUser());
   })
   .run(
     /* @ngInject */ (

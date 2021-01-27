@@ -2,7 +2,7 @@
 
 > The official [OVHcloud](https://ovhcloud.com) control panel also known as the **[Manager](https://ovh.com/manager)**.
 
-![Contributors](https://badgen.net/github/contributors/ovh/manager) ![Last commit](https://badgen.net/github/last-commit/ovh/manager) [![License](https://badgen.net/github/license/ovh/manager)](https://github.com/ovh/manager/blob/master/LICENSE) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+![Contributors](https://badgen.net/github/contributors/ovh/manager) ![Last commit](https://badgen.net/github/last-commit/ovh/manager) [![License](https://badgen.net/github/license/ovh/manager)](https://github.com/ovh/manager/blob/master/LICENSE)
 
 [![OVHcloud control panel UI](docs/docs/.vuepress/public/assets/img/control-panel.jpg)](https://ovh.com/manager)
 
@@ -45,8 +45,8 @@ Always feel free to help out! Whether it's [filing bugs and feature requests](ht
 
 ## Stay Tuned
 
-- [GitHub issues](https://github.com/ovh/manager/issues)
-- [Gitter](https://gitter.im/ovh/ux)
+- [GitHub Issues](https://github.com/ovh/manager/issues)
+- [GitHub Discussions](https://github.com/ovh/manager/discussions)
 
 ## License
 

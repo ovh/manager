@@ -2,7 +2,7 @@
 
 > Multi checkbox management for table
 
-[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-checkbox-table)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-checkbox-table) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-checkbox-table)](https://npmjs.com/package/@ovh-ux/ng-ovh-checkbox-table) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-checkbox-table)](https://npmjs.com/package/@ovh-ux/ng-ovh-checkbox-table?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-checkbox-table)](https://npmjs.com/package/@ovh-ux/ng-ovh-checkbox-table?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-checkbox-table)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-checkbox-table) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-checkbox-table)](https://npmjs.com/package/@ovh-ux/ng-ovh-checkbox-table) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-checkbox-table)](https://npmjs.com/package/@ovh-ux/ng-ovh-checkbox-table?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-checkbox-table)](https://npmjs.com/package/@ovh-ux/ng-ovh-checkbox-table?activeTab=dependencies)
 
 ## Install
 

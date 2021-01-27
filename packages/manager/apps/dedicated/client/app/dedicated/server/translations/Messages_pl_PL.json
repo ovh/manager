@@ -368,7 +368,7 @@
   "server_configuration_delete_secondary_dns_fail": "Wystąpił błąd podczas usuwania DNS secondary.",
   "server_configuration_add_secondary_dns_title": "Dodaj domenę",
   "server_configuration_secondarydns_add_step1": "Podaj DNS secondary, który chcesz dodać do swojego serwera dedykowanego:",
-  "server_configuration_secondarydns_add_step2": "Musimy się upewnić, że jesteś właścicielem domeny. Prosimy o dodanie pola <b>{t0}</b> do strefy DNS domeny <b>{{t1}}</b>, z subdomeną <b>{{t2}}</b> i wartością <b>{{t3}}</b>. Po wykonaniu tej operacji przeładuj strefę w celu dodania DNS secondary.",
+  "server_configuration_secondarydns_add_step2": "Musimy się upewnić, że jesteś właścicielem domeny. W tym celu prosimy o dodanie pola <b>{{t0}}</b> do strefy DNS domeny <b>{{t1}}</b>, z subdomeną <b>{{t2}}</b> i wartością <b>{{t3}}</b>. Po wykonaniu tej operacji przeładuj strefę w celu dodania DNS secondary.",
   "server_configuration_secondarydns_add_step2_error": "Wystąpił błąd podczas pobierania informacji o tokenie domeny.",
   "server_configuration_secondarydns_add_step3": "Potwierdź informacje na temat nowego DNS secondary:",
   "server_configuration_secondarydns_add_success": "DNS secondary '{{t0}}' został poprawnie dodany.",
@@ -595,7 +595,7 @@
   "server_configuration_impi_off": "Moduł IPMI nie jest dostępny w tym serwerze.",
   "server_configuration_impi_off_kvm": "Jeśli chcesz korzystać z tej funkcjonalności, możesz skorzystać z usługi KVM.",
   "server_configuration_impi_order_kvm": "Zamów KVM",
-  "server_configuration_impi_disabled": "Status serwera: <b>{{t0}}</b>. Moduł IPMI jest więc wyłączony.",
+  "server_configuration_impi_disabled": "Status serwera to <b>{{t0}</b>. Moduł IPMI jest więc wyłączony.",
   "server_configuration_impi_test": "Przetestuj IPMI",
   "server_configuration_impi_http": "Test dostępu do modułu IPMI (HTTP)",
   "server_configuration_impi_password": "Inicjowanie sesji IPMI (uwierzytelnianie)",
@@ -768,7 +768,7 @@
   "server_configuration_installation_ovh_step2_total_size": "Całkowita przestrzeń:",
   "server_configuration_installation_ovh_step2_remaining_size": "Pozostała przestrzeń:",
   "server_configuration_installation_ovh_step2_remaining_size_button": "Pozostała przestrzeń",
-  "server_configuration_installation_ovh_step2_info": "Konfiguracja układu partycji dla dystrybucji <b>{{t0}}</b>",
+  "server_configuration_installation_ovh_step2_info": "Konfiguracja układu partycji dla dystrybucji <b>{{t0}</b>",
   "server_configuration_installation_ovh_step2_scheme": "Wybór układu partycji:",
   "server_configuration_installation_ovh_step2_raid_hard": "(RAID Hard)",
   "server_configuration_installation_ovh_step2_info_partition_cachecade": "W konfiguracji CacheCade przestrzeń dyskowa przeznaczona na cache nie może zostać podzielona na partycje.",
@@ -1221,5 +1221,6 @@
   "server_configuration_installation_form_rtm_explain": " RTM umożliwia monitorowanie serwera i aktywności jego komponentów (procesora, pamięci RAM, partycji dysków, etc...). Po włączeniu opcji agent RTM zostanie zainstalowany domyślnie: <a href=\"{{ href }}\" target=\"_blank\" rel=\"noopener\">Kliknij tutaj, aby przeczytać dokumentację</a>.",
   "server_configuration_installation_form_rtm_deactivated": "Wyłączony",
   "server_configuration_installation_form_rtm_activated": "Aktywny",
-  "server_configuration_installation_image": "Instalacja z wykorzystaniem spersonalizowanego obrazu"
+  "server_configuration_installation_image": "Instalacja z wykorzystaniem spersonalizowanego obrazu",
+  "server_configuration_distribution_byoi": "BringYourOwnImage"
 }

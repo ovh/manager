@@ -2,7 +2,7 @@
 
 > It detects available width for displaying page in 2 distinct modes
 
-[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-responsive-page-switcher)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-responsive-page-switcher) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-responsive-page-switcher)](https://npmjs.com/package/@ovh-ux/ng-ovh-responsive-page-switcher) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-responsive-page-switcher)](https://npmjs.com/package/@ovh-ux/ng-ovh-responsive-page-switcher?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-responsive-page-switcher)](https://npmjs.com/package/@ovh-ux/ng-ovh-responsive-page-switcher?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-responsive-page-switcher)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-responsive-page-switcher) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-responsive-page-switcher)](https://npmjs.com/package/@ovh-ux/ng-ovh-responsive-page-switcher) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-responsive-page-switcher)](https://npmjs.com/package/@ovh-ux/ng-ovh-responsive-page-switcher?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-responsive-page-switcher)](https://npmjs.com/package/@ovh-ux/ng-ovh-responsive-page-switcher?activeTab=dependencies)
 
 ## Install
 

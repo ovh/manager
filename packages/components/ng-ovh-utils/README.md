@@ -2,7 +2,7 @@
 
 > A collection of directives for AngularJS.
 
-[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-utils)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-utils) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-utils)](https://npmjs.com/package/@ovh-ux/ng-ovh-utils) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-utils)](https://npmjs.com/package/@ovh-ux/ng-ovh-utils?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-utils)](https://npmjs.com/package/@ovh-ux/ng-ovh-utils?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-utils)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-utils) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-utils)](https://npmjs.com/package/@ovh-ux/ng-ovh-utils) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-utils)](https://npmjs.com/package/@ovh-ux/ng-ovh-utils?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-utils)](https://npmjs.com/package/@ovh-ux/ng-ovh-utils?activeTab=dependencies)
 
 ## Install
 

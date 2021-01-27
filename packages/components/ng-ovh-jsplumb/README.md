@@ -2,7 +2,7 @@
 
 > Allow to draw links between elements using [jsplumb toolkit](http://www.jsplumb.org/).
 
-[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-jsplumb)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-jsplumb) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-jsplumb)](https://npmjs.com/package/@ovh-ux/ng-ovh-jsplumb) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-jsplumb)](https://npmjs.com/package/@ovh-ux/ng-ovh-jsplumb?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-jsplumb)](https://npmjs.com/package/@ovh-ux/ng-ovh-jsplumb?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-jsplumb)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-jsplumb) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-jsplumb)](https://npmjs.com/package/@ovh-ux/ng-ovh-jsplumb) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-jsplumb)](https://npmjs.com/package/@ovh-ux/ng-ovh-jsplumb?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-jsplumb)](https://npmjs.com/package/@ovh-ux/ng-ovh-jsplumb?activeTab=dependencies)
 
 ## Install
 

@@ -13,6 +13,7 @@
   "main": "./src/index.js",
   "dependencies": {
     "@ovh-ux/manager-models": "^1.0.0",
+    "@ovh-ux/testcafe-manager": "^0.0.1 || ^0.1.0 || ^1.0.0",
     "@ovh-ux/ufrontend": "^1.0.0"
   },
   "devDependencies": {

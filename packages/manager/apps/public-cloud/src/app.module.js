@@ -13,7 +13,6 @@ import 'jquery-ui/ui/widgets/draggable';
 import 'script-loader!moment/min/moment.min.js';
 import 'script-loader!angular-ui-validate/dist/validate.js';
 import '@ovh-ux/ui-kit';
-import 'script-loader!bootstrap-tour/build/js/bootstrap-tour-standalone.min';
 /* eslint-enable import/no-webpack-loader-syntax, import/extensions */
 
 import get from 'lodash/get';

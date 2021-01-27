@@ -2,7 +2,7 @@
 
 > An Angular.js directive that generates a responsive, data-driven vertical timeline to tell a story, show history or describe a sequence of events.
 
-[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-timeline)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-timeline) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-timeline)](https://npmjs.com/package/@ovh-ux/ng-ovh-timeline) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-timeline)](https://npmjs.com/package/@ovh-ux/ng-ovh-timeline?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-timeline)](https://npmjs.com/package/@ovh-ux/ng-ovh-timeline?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-timeline)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-timeline) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-timeline)](https://npmjs.com/package/@ovh-ux/ng-ovh-timeline) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-timeline)](https://npmjs.com/package/@ovh-ux/ng-ovh-timeline?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-timeline)](https://npmjs.com/package/@ovh-ux/ng-ovh-timeline?activeTab=dependencies)
 
 ## Install
 

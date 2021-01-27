@@ -25,10 +25,12 @@ This will launch all the tests.
 You can run specific tests, using the `--test-meta` parameter:
 
 ```bash
-$ yarn run test:e2e:chromium:headless -- --test-meta="service=ovh.com-fr-manager,severity=critical,priority=high,type=regression"
+$ yarn run test:e2e:chromium:headless --test-meta="service=ovh.com-manager,severity=critical,priority=high,type=regression"
 ```
 
 This command will launch only tests with requested meta parameters.
+
+You can skip a specific test or fixture by putting ".skip" after "fixture" or "test" inside the test cases file.
 
 ## Documentation
 
@@ -88,6 +90,14 @@ They will be automatically loaded.
 You can put a JSON file to give in input of the tests. Just create a `input.json` file in the `packages/manager/tools/testcafe/config/` folder.
 
 It'll be automatically loaded and available in config variable `config.dataset`, and usable inside the tests.
+
+Variables currently in use:
+
+```bash
+{
+  "hubProduct": "YOUR_PRODUCT_NAME"
+}
+```
 
 ## How-tos
 

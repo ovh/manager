@@ -826,5 +826,6 @@
   "domain_dashboard_recommended_hosting_title_Pro": "Alojamiento de su sitio web",
   "domain_dashboard_recommended_hosting_title_Perso": "Alojamiento de su blog o sitio web",
   "domain_dashboard_recommended_hosting_label": "- {{ reduction }} en su alojamiento {{ type }} durante el Black Friday.",
-  "domain_dashboard_recommended_hosting_discover": "Descubrir las soluciones"
+  "domain_dashboard_recommended_hosting_discover": "Descubrir las soluciones",
+  "domain_tab_ZONE_no_zone_order_btn": "Contratar una zona DNS"
 }

@@ -1194,7 +1194,7 @@
   "hosting_action_config_edit_container_version_enum_jessie_i386": "Jessie.i386",
   "hosting_action_config_edit_container_help_main_title": "Hosting-Konfiguration",
   "hosting_action_config_edit_container_help_values_title": "Empfohlene Werte:",
-  "hosting_action_config_edit_container_help_values_text": "Ausführungsumgebung: stabile <br/> PHP-Version 7.0 <br/> Engine: php <br/> Modus: Produktion <br/> Application Firewall: deaktiviert",
+  "hosting_action_config_edit_container_help_values_text": "Ausführungsumgebung: stabil <br/> php-Version {{ phpVersion }} <br/> Engine: php <br/> Modus: Produktion <br/> Firewall-Anwendung: deaktiviert",
   "hosting_action_config_edit_engine_version": "PHP Version",
   "hosting_action_config_edit_environment": "Modus",
   "hosting_action_config_edit_environment_help": "Im Entwicklungsmodus ist der Datei-Cache nicht aktiv",
@@ -1376,5 +1376,6 @@
   "hosting_dashboard_service_common_inactive": "Inaktiv",
   "hosting_dashboard_email_offer_get_error": "Es ist unmöglich, die E-Mail-Adresse wiederherzustellen.",
   "hosting_dashboard_stats_status": "Beta",
-  "hosting_tab_DOMAINS_configuration_add_step3_delete_4a_records": "Löschen Sie die Felder AAAA aus Ihrer Domain {{domain}}"
+  "hosting_tab_DOMAINS_configuration_add_step3_delete_4a_records": "Löschen Sie die Felder AAAA aus Ihrer Domain {{domain}}",
+  "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_information": "Auf die DNS Zone anzuwendende Konfiguration"
 }

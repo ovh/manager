@@ -1,5 +1,5 @@
 {
-  "telephony_order_geographical_title_country": "Contratar un número geográfico",
+  "telephony_order_geographical_title_country": "Contratar un número geográfico ({{country}})",
   "telephony_order_geographical_title": "Contratar un número geográfico",
   "telephony_order_geographical_submit_title": "Contratar un número geográfico",
   "telephony_order_geographical_back_link": "Volver a la elección de los tipos de números",

@@ -510,7 +510,7 @@
   "me_alerts_DEBTACCOUNT_DEBT": "Zadłużenie na Twoim koncie wynosi <strong>{{t0}}</strong>. Przejdź do <a href=\"{{t1}}\" class=\"alert-link\">sekcji płatności</a>, aby uregulować fakturę. ",
   "me_alerts_OVHACCOUNT_ALERTTHRESHOLD": "Twoje konto prepaid osiągnęło zdefiniowany próg. Przejdź do <a href=\"#/billing/ovhaccount\" class=\"alert-link\">sekcji płatności</a>, aby uzyskać więcej informacji.",
   "me_alerts_ORDERS_DOCUMENTSREQUESTED": "Liczba oczekujących zamówień, dla których wymagane są dokumenty: <strong>{{t0}}</strong>. Przejdź do <a href=\"#/billing/orders?status=in-progress\" class=\"alert-link\">sekcji \"Moje zamówienia\"</a>, aby dokonać aktualizacji.",
-  "me_alerts_AGREEMENTS_TODO": "Liczba regulaminów do zatwierdzenia:",
+  "me_alerts_AGREEMENTS_TODO": "Liczba umów do zatwierdzenia: <strong>{{t0}}</strong>.",
   "me_alerts_CONTACTCHANGE_VALIDATINGBYCUSTOMERS": "Liczba zleceń zmiany kontaktów: <strong>{{t0}}</strong>",
   "me_alerts_AUTORENEW_INVITE": "Włącz automatyczne odnawianie <a href=\"{{ link }}\">Twoich usług</a>!",
   "core_service_expiration_label": "Data wygasania",

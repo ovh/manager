@@ -436,7 +436,7 @@
   "domain_configuration_dns_entry_delete_step1_subdomain": "Subdomena",
   "domain_configuration_dns_entry_delete_step1_target": "Adres docelowy",
   "domain_configuration_dns_entry_mass_delete_step1_question_1": "Czy na pewno chcesz usunąć ten wpis ze strefy DNS?",
-  "domain_configuration_dns_entry_mass_delete_step1_question_other": "Czy na pewno chcesz usunąć te {} rekordy ze strefy DNS?",
+  "domain_configuration_dns_entry_mass_delete_step1_question_other": "Czy na pewno chcesz usunąć te {{t0}} rekordy ze strefy DNS?",
   "domain_configuration_dns_entry_delete_success": "Wpis został usunięty ze strefy DNS.",
   "domain_configuration_dns_entry_delete_fail": "Wystąpił błąd podczas usuwania wpisu {{t0}} ze strefy DNS.",
   "domain_configuration_dns_entry_delete_mass_success": "Wpisy zostały usunięte ze strefy DNS.",
@@ -826,5 +826,6 @@
   "domain_dashboard_recommended_hosting_title_Pro": "Hosting strony WWW",
   "domain_dashboard_recommended_hosting_title_Perso": "Hosting bloga lub strony WWW",
   "domain_dashboard_recommended_hosting_label": "- {{reduction}} na hosting {{type}} z okazji Black Friday.",
-  "domain_dashboard_recommended_hosting_discover": "Sprawdź rozwiązania"
+  "domain_dashboard_recommended_hosting_discover": "Sprawdź rozwiązania",
+  "domain_tab_ZONE_no_zone_order_btn": "Zamów strefę DNS"
 }

@@ -513,7 +513,7 @@
   "old_manager_alert": "Jeszcze przez kilka tygodni będziesz mógł zarządzać usługami w <a href=\"{{t0}}\">starszej wersji Panelu klienta</a>.",
   "ovh_account_alert": "Twoje konto posiada saldo ujemne na kwotę {{t2}} na dzień {{t0}}. Przejdź do <a href=\"{{t1}}\">sekcji płatności</a>, aby uregulować płatność.",
   "ovh_account_cb_expire_alert": "Ważność Twojej karty kredytowej ustawionej jako domyślny sposób płatności wygaśnie za {{t0}} dni. Przejdź do <a href=\"{{t1}}\">sekcji płatności</a>, aby ją zaktualizować. ",
-  "ovh_account_cb_expired_alert": "Ważność Twojej karty kredytowej ustawionej jako domyślny sposób płatności wygasła. Przejdź do <a href=\"{{t1}}\">sekcji płatności</a>, aby ją zaktualizować. ",
+  "ovh_account_cb_expired_alert": "Twoja domyślna karta bankowa wygasła. Przejdź do <a href=\"{{t0}}\">sekcji płatności</a>, aby ją zaktualizować.",
   "refresh": "Aktualizacja",
   "core_new_window": "Nowe okno",
   "core_change_owner": "Zmień właściciela",

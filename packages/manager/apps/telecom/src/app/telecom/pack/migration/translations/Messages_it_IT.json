@@ -131,5 +131,8 @@
   "telecom_pack_migration_pto_reference": "Inserisci il codice identificativo del tuo box ottico",
   "telecom_pack_migration_pto_where": "Dove si trova il codice identificativo del box ottico?",
   "telecom_pack_migration_pto_where_description": "Questo codice si trova sul dispositivo ed è composto da cifre e lettere in formato OO-XXXX-XXXX /C",
-  "telecom_pack_migration_pto_yes_not_known": "Hai un box ottico ma non sai dove si trova il suo codice"
+  "telecom_pack_migration_pto_yes_not_known": "Hai un box ottico ma non sai dove si trova il suo codice",
+  "telecom_pack_migration_confirm_resume_contact_owner": "Informazioni di contatto",
+  "telecom_pack_migration_confirm_resume_contact_phone": "Numero di telefono sul quale potrai essere contattato se necessario",
+  "telecom_pack_migration_confirm_resume_phone_form_error": "Il numero inserito deve essere valido."
 }

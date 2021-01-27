@@ -13,6 +13,7 @@ export default class ListLayoutCtrl {
   $onInit() {
     this.datagridId = `dg-${this.id}`;
     this.getDisplayedColumns(this.columns);
+    this.dataNaviId = `${this.id}-list`;
 
     this.criteria = JSON.parse(this.filter).map((criteria) => ({
       property: get(criteria, 'field') || this.defaultFilterColumn,

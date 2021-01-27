@@ -2,7 +2,7 @@
 
 > Simply stop event
 
-[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-stop-event)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-stop-event) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-stop-event)](https://npmjs.com/package/@ovh-ux/ng-ovh-stop-event) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-stop-event)](https://npmjs.com/package/@ovh-ux/ng-ovh-stop-event?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-stop-event)](https://npmjs.com/package/@ovh-ux/ng-ovh-stop-event?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-stop-event)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-stop-event) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-stop-event)](https://npmjs.com/package/@ovh-ux/ng-ovh-stop-event) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-stop-event)](https://npmjs.com/package/@ovh-ux/ng-ovh-stop-event?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-stop-event)](https://npmjs.com/package/@ovh-ux/ng-ovh-stop-event?activeTab=dependencies)
 
 ## Install
 

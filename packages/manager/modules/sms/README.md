@@ -1,6 +1,6 @@
 # manager-sms
 
-[![npm version](https://badgen.net/npm/v/@ovh-ux/manager-sms)](https://www.npmjs.com/package/@ovh-ux/manager-sms) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-sms)](https://npmjs.com/package/@ovh-ux/manager-sms) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/modules/sms)](https://npmjs.com/package/@ovh-ux/manager-sms?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/modules/sms)](https://npmjs.com/package/@ovh-ux/manager-sms?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/manager-sms)](https://www.npmjs.com/package/@ovh-ux/manager-sms) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-sms)](https://npmjs.com/package/@ovh-ux/manager-sms) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/modules/sms)](https://npmjs.com/package/@ovh-ux/manager-sms?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/modules/sms)](https://npmjs.com/package/@ovh-ux/manager-sms?activeTab=dependencies)
 
 ## Install
 

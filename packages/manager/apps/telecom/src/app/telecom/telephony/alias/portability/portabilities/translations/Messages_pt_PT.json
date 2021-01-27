@@ -43,5 +43,5 @@
   "telephony_alias_portabilities_cancel_doing": "Annulation en cours…",
   "telephony_alias_portabilities_cancel_success": "La demande de portabilité a bien été annulée.",
   "telephony_alias_portabilities_cancel_error": "Oups ! Une erreur est survenue lors de l'annulation de votre demande de portabilité.",
-  "telephony_alias_portabilities_load_error": "Oups ! Une erreur est survenue lors du chargement des portabilités en cours."
+  "telephony_alias_portabilities_load_error": "Ups! Ocorreu um erro aquando do carregamento das portabilidades: {{error}}."
 }

@@ -108,8 +108,8 @@
   "xdsl_details_action": "Azioni",
   "xdsl_details_transfert": "Modifica la tua offerta",
   "xdsl_modem_comfort_exchange_subtitle": "Sostituzione del modem",
-  "xdsl_modem_comfort_exchange_description_part1": "Hai la possibilità di sostituire il tuo modem esistente con un modello Zyxel VMG8824.",
-  "xdsl_modem_comfort_exchange_description_part2": "Il costo della sostituzione è di 70 € +IVA (84 € IVA incl.).",
+  "xdsl_modem_comfort_exchange_description_part1": "Hai la possibilità di sostituire il modem esistente con un modello {{ newModel }}.",
+  "xdsl_modem_comfort_exchange_description_part2": "Il costo dello scambio è di {{ priceHT }} € +IVA (cioè {{ priceTTC }} € IVA incl.).",
   "xdsl_modem_comfort_exchange_description_part3": "Il nuovo modem verrà inviato automaticamente all'indirizzo di registrazione della linea",
   "xdsl_modem_exchange": "Sostituisci il tuo modem",
   "xdsl_modem_exchange_title": "Sostituisci"

@@ -2,7 +2,7 @@
 
 > OVH Manager Cloud Universe Components
 
-[![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-cloud-universe-components)](https://npmjs.com/package/@ovh-ux/ng-ovh-cloud-universe-components) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/modules/cloud-universe-components)](https://npmjs.com/package/@ovh-ux/ng-ovh-cloud-universe-components?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/modules/cloud-universe-components)](https://npmjs.com/package/@ovh-ux/ng-ovh-cloud-universe-components?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-cloud-universe-components)](https://npmjs.com/package/@ovh-ux/ng-ovh-cloud-universe-components) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/modules/cloud-universe-components)](https://npmjs.com/package/@ovh-ux/ng-ovh-cloud-universe-components?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/modules/cloud-universe-components)](https://npmjs.com/package/@ovh-ux/ng-ovh-cloud-universe-components?activeTab=dependencies)
 
 ## Install
 

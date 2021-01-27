@@ -8,12 +8,12 @@ import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import reject from 'lodash/reject';
 import set from 'lodash/set';
+import { Environment } from '@ovh-ux/manager-config';
 
 export default class CloudProjectBillingService {
   /* @ngInject */
-  constructor($q, OvhApiMe) {
+  constructor($q) {
     this.$q = $q;
-    this.OvhApiMe = OvhApiMe;
   }
 
   static roundNumber(number, decimals) {
@@ -365,11 +365,7 @@ export default class CloudProjectBillingService {
         },
       },
     };
-    return this.OvhApiMe.v6()
-      .get()
-      .$promise.then((me) => {
-        this.data.totals.currencySymbol = me.currency.symbol;
-        return this.data;
-      });
+    this.data.totals.currencySymbol = Environment.getUser().currency.symbol;
+    return this.$q.when(this.data);
   }
 }

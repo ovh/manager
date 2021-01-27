@@ -2,7 +2,7 @@
 
 > Dev server for OVHcloud Manager.
 
-[![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-dev-server)](https://npmjs.com/package/@ovh-ux/manager-dev-server) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/tools/dev-server)](https://npmjs.com/package/@ovh-ux/manager-dev-server?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/tools/dev-server)](https://npmjs.com/package/@ovh-ux/manager-dev-server?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-dev-server)](https://npmjs.com/package/@ovh-ux/manager-dev-server) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/tools/dev-server)](https://npmjs.com/package/@ovh-ux/manager-dev-server?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/tools/dev-server)](https://npmjs.com/package/@ovh-ux/manager-dev-server?activeTab=dependencies)
 
 ## Installation
 

@@ -1,6 +1,6 @@
 {
   "cda_pool_pool_definition": "Here is where you can create your pools.",
-  "cda_pool_permission_definition": "Pools are \"containers\" for your data. The user can manage access to the pools. ",
+  "cda_pool_permission_definition": "Pools are containers for your data. Access to pools can be controlled for each user.",
   "cda_pool_add_button_text": "Add a pool",
   "cda_pool_delete_button_text": "Delete",
   "cda_pool_table_col_poolname": "Name",
