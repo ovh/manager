@@ -7,7 +7,7 @@ import { WEB } from './constants';
 
 export const DOMAIN_CONFIG = {
   id: 'domains',
-  loadOnState: 'app.domain',
+  loadOnState: ['app.domain', 'app.alldom.domain', 'app.zone.details'],
   children: [
     {
       id: 'domain_bulk',
@@ -68,6 +68,7 @@ export const DOMAIN_CONFIG = {
       state: 'app.zone.details',
       stateParams: ['productId'],
       icon: 'oui-icon oui-icon-domain-dns',
+      loadOnState: 'app.zone.details',
       app: [WEB],
       filter: {
         category: 'DOMAIN',
