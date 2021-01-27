@@ -1,3 +1,12 @@
+## [9.0.8](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.0.7...@ovh-ux/ng-ovh-web-universe-components@9.0.8) (2021-01-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 768] ([2b61ff8](https://github.com/ovh/manager/commit/2b61ff8d8042acb9db3344a36f05f930f3e66e63))
+
+
+
 ## [9.0.7](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.0.6...@ovh-ux/ng-ovh-web-universe-components@9.0.7) (2020-12-08)
 
 

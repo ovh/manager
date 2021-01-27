@@ -1,3 +1,12 @@
+## [3.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.8.0...@ovh-ux/manager-server-sidebar@3.8.1) (2021-01-27)
+
+
+### Bug Fixes
+
+* **sidebar:** remove deskaas ([#4301](https://github.com/ovh/manager/issues/4301)) ([b8d298f](https://github.com/ovh/manager/commit/b8d298f31c1fa9d76dd8fd73327e9d4062a18256))
+
+
+
 # [3.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.7.0...@ovh-ux/manager-server-sidebar@3.8.0) (2021-01-18)
 
 

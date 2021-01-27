@@ -1,3 +1,12 @@
+# [8.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.1.0...@ovh-ux/manager-sms@8.2.0) (2021-01-27)
+
+
+### Features
+
+* add some missing tracking ([#4244](https://github.com/ovh/manager/issues/4244)) ([9c240c9](https://github.com/ovh/manager/commit/9c240c9166be35655e80e41b8bf1824e60d29734))
+
+
+
 # [8.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.0.13...@ovh-ux/manager-sms@8.1.0) (2021-01-20)
 
 
