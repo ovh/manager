@@ -313,7 +313,6 @@
   "hosting_tab_DOMAINS_search_placeholder": "Suche...",
   "hosting_tab_DOMAINS_table_popover_restart": "Neu starten",
   "hosting_tab_DOMAINS_multisite_logs_generation": "Erstellung des Links",
-  "hosting_tab_DOMAINS_multisite_logs_generation_error": "Bei der Erstellung des Zugangslinks zu den Logs ist ein Fehler aufgetreten.",
   "hosting_tab_DOMAINS_multisite_logs_link": "Zugang zu den Logs",
   "hosting_tab_DOMAINS_multisite_restart_done": "Die Domain wurde erfolgreich neu gestartet: {{t0}}",
   "hosting_tab_DOMAINS_multisite_restart_error": "Beim Neustart der Domain ist ein Fehler aufgetreten.",

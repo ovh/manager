@@ -312,7 +312,6 @@
   "hosting_tab_DOMAINS_search_placeholder": "Searching...",
   "hosting_tab_DOMAINS_table_popover_restart": "Restart",
   "hosting_tab_DOMAINS_multisite_logs_generation": "Generating the link",
-  "hosting_tab_DOMAINS_multisite_logs_generation_error": "An error has occurred generating the access link to logs",
   "hosting_tab_DOMAINS_multisite_logs_link": "Access the logs ",
   "hosting_tab_DOMAINS_multisite_restart_done": "Your domain has been restarted: {{t0}}",
   "hosting_tab_DOMAINS_multisite_restart_error": "An error has occurred restarting your domain.",

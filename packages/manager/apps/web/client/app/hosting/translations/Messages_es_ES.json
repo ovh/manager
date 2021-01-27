@@ -314,7 +314,6 @@
   "hosting_tab_DOMAINS_search_placeholder": "Buscar...",
   "hosting_tab_DOMAINS_table_popover_restart": "Reiniciar",
   "hosting_tab_DOMAINS_multisite_logs_generation": "Generación del enlace",
-  "hosting_tab_DOMAINS_multisite_logs_generation_error": "Se ha producido un error al generar el enlace de acceso a los logs.",
   "hosting_tab_DOMAINS_multisite_logs_link": "Acceder a los logs",
   "hosting_tab_DOMAINS_multisite_restart_done": "El multisitio se ha reinstalado correctamente: {{t0}}",
   "hosting_tab_DOMAINS_multisite_restart_error": "Se ha producido un error al reinstalar el multisitio.",
