@@ -5,7 +5,7 @@
   "server_sidebar_item_empty_title": "No services",
   "server_sidebar_item_dedicatedServers_title": "Dedicated Servers",
   "server_sidebar_item_dedicatedClouds_title": "Hosted Private Cloud",
-  "server_sidebar_item_networks_title": "NAS and CDN",
+  "server_sidebar_item_networks_title": "CDN",
   "server_sidebar_item_licences_title": "Licences",
   "server_sidebar_item_ip_title": "IP",
   "server_sidebar_item_microsoft_title": "Microsoft",
@@ -68,6 +68,8 @@
   "server_sidebar_order_item_managed_bare_metal_title": "Managed Bare Metal",
   "server_sidebar_item_domain_bulk_title": "Batch actions",
   "server_sidebar_item_web_paas_title": "Web PaaS",
-  "server_sidebar_item_web_paas_all_accounts_title": "All projects",
-  "server_sidebar_order_item_web_paas_title": "Web PaaS"
+  "server_sidebar_item_web_paas_all_accounts_title": "All accounts",
+  "server_sidebar_order_item_web_paas_title": "Web PaaS",
+  "server_sidebar_item_storage_title": "NAS and storage",
+  "server_sidebar_item_storage_all_title": "All my storage"
 }
