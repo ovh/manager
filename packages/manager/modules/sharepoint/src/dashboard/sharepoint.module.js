@@ -8,7 +8,7 @@ import '@ovh-ux/ng-ovh-web-universe-components';
 
 import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 
-import incrementNumber from './account/add-legacy/incrementNumber';
+import incrementNumber from '../account/add-legacy/incrementNumber';
 
 import routing from './sharepoint.routes';
 import accountCtrl from '../account/sharepoint-account.controller';
