@@ -1,8 +1,8 @@
 {
   "pci_projects_project_creating_main_title": "Ihr Public Cloud Abenteuer beginnt in Kürze",
   "pci_projects_project_creating_secondary_title": "Ihr Projekt wird erstellt",
-  "pci_projects_project_creating_explain1": "Um die Erstellung Ihres Projekts abzuschließen, begleichen Sie bitte den Bestellschein <a href=\"{{href }}\">{{d }}</a>.",
-  "pci_projects_project_creating_explain2": "Wird diese Seite mehrere Minuten nach der Zahlung weiterhin angezeigt, wenden Sie sich bitte an <a href=\"{{ url }}\">unseren Kundendienst</a>.",
+  "pci_projects_project_creating_explain1": "Um die Erstellung Ihres Projekts abzuschließen, begleichen Sie bitten den Bestellschein <a href=\"{{ href }}\">{{ orderId }}</a>.",
+  "pci_projects_project_creating_explain2": "Wird diese Seite mehrere Minuten nach der Zahlung weiterhin angezeigt, wenden Sie sich bitte an <a href=\"{{ href }}\">unseren Kundendienst</a>.",
   "pci_projects_project_creating_finalize": "Meine Bestellung abschließen",
   "pci_projects_project_creating_finalize_title": "{{ orderId }}: Meine Bestellung abschließen",
   "pci_projects_project_creating_cancel": "Meine Bestellung stornieren",

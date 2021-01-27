@@ -43,7 +43,7 @@
   "telephony_alias_portabilities_cancel_doing": "Annulation en cours…",
   "telephony_alias_portabilities_cancel_success": "La demande de portabilité a bien été annulée.",
   "telephony_alias_portabilities_cancel_error": "Oups ! Une erreur est survenue lors de l'annulation de votre demande de portabilité.",
-  "telephony_alias_portabilities_load_error": "Oups ! Une erreur est survenue lors du chargement des portabilités en cours.",
+  "telephony_alias_portabilities_load_error": "Oops! Beim Laden der Übertragbarkeit ist ein Fehler aufgetreten: {{error}}",
   "telephony_alias_portabilities_attach_list_files": "Liste der gesendeten Dokumente",
   "telephony_alias_portabilities_attach_file_name": "Name des Dokuments",
   "telephony_alias_portabilities_attach_delete": "Löschen"

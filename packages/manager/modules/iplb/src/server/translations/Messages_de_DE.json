@@ -18,7 +18,7 @@
   "iplb_server_edit_name": "Name (optional)",
   "iplb_server_edit_address": "IPv4 Adresse",
   "iplb_server_edit_port": "Port",
-  "iplb_server_edit_port_tip": "Anschluss an Ihren Server (1 - {{portMax}). Übernimmt standardmäßig den Port des Clusters.",
+  "iplb_server_edit_port_tip": "Mit Ihrem Server verbundene Ports (1 bis {{portMax}}). Übernimmt standardmäßig den Port des Clusters.",
   "iplb_server_edit_advanced_options": "Erweiterte Einstellungen",
   "iplb_server_edit_advanced_options_info": "Die neuesten Standardwerte sind vordefiniert. , Sie können diese jederzeit ändern.",
   "iplb_server_edit_advanced_options_show": "Anzeigen",

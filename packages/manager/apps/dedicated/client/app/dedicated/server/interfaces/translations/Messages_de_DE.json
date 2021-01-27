@@ -1,5 +1,5 @@
 {
-  "dedicated_server_interfaces_step_checker_text4": "Sichern Sie sich das Startangebot für 0 € statt 20 € / Monat (zzgl. MwSt.) für die ersten 3 Monate.",
+  "dedicated_server_interfaces_step_checker_text4": "Sichern Sie sich das Startangebot für {{ discountPrice }} statt {{ price }} / Monat (zzgl. MwSt.) für die ersten 3 Monate.",
   "dedicated_server_interfaces_current_operation": "Es wird gerade eine Operation auf diesem Server durchgeführt ",
   "dedicated_server_interfaces_task_error": "Bei der Konfiguration ist ein Fehler aufgetreten: {{ errorMessage }}",
   "dedicated_server_interfaces_title": "Netzwerk",
