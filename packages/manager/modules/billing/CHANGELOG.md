@@ -1,3 +1,18 @@
+# [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@2.0.3...@ovh-ux/manager-billing@2.1.0) (2021-01-27)
+
+
+### Bug Fixes
+
+* **cancellation-form:** update field label ([#4343](https://github.com/ovh/manager/issues/4343)) ([6c93cc2](https://github.com/ovh/manager/commit/6c93cc2e22991574e3c7f8b2c7a4bbae8c8cec80))
+* **i18n:** add missing translations [CDS 768] ([2b61ff8](https://github.com/ovh/manager/commit/2b61ff8d8042acb9db3344a36f05f930f3e66e63))
+
+
+### Features
+
+* **cancellation-form:** display form when require delete at expiration ([e89d1a6](https://github.com/ovh/manager/commit/e89d1a655ddff5393325dcc89a34727b80d24189))
+
+
+
 ## [2.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@2.0.2...@ovh-ux/manager-billing@2.0.3) (2021-01-19)
 
 

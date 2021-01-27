@@ -1,3 +1,17 @@
+# [1.0.0](https://github.com/ovh/manager/compare/@ovh-ux/testcafe-manager@0.1.0...@ovh-ux/testcafe-manager@1.0.0) (2021-01-27)
+
+
+### Features
+
+* **pages:** first iteration of regression tests ([9844cb0](https://github.com/ovh/manager/commit/9844cb09a84a1842b316d3ea31d53a1d4ccbf02d))
+
+
+### BREAKING CHANGES
+
+* **pages:** implement some regression tests
+
+
+
 # [0.1.0](https://github.com/ovh/manager/compare/@ovh-ux/testcafe-manager@0.0.1...@ovh-ux/testcafe-manager@0.1.0) (2020-11-25)
 
 

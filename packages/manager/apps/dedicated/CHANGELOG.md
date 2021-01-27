@@ -1,3 +1,30 @@
+# [16.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.1.1...@ovh-ux/manager-dedicated@16.2.0) (2021-01-27)
+
+
+### Bug Fixes
+
+* **account.user.advanced:** replace gitter url with GitHub Discussions ([e7b1bcc](https://github.com/ovh/manager/commit/e7b1bcce495c6947022f967f38456c37fbb108c9))
+* **expired:** update expired page style ([#4300](https://github.com/ovh/manager/issues/4300)) ([efc29f5](https://github.com/ovh/manager/commit/efc29f5b2bc6f9121765dd75d7c734f193bcefc0))
+* **i18n:** add missing translations [CDS 767] ([e640f88](https://github.com/ovh/manager/commit/e640f8820b5c142c1dd9745e2ceadc22c76427a6))
+* **i18n:** add missing translations [CDS 768] ([2b61ff8](https://github.com/ovh/manager/commit/2b61ff8d8042acb9db3344a36f05f930f3e66e63))
+* **i18n:** add missing translations [CDS 773] ([2c3a548](https://github.com/ovh/manager/commit/2c3a548aa8de28c9e84b89596f703f622e7224fe))
+* **i18n:** add missing translations [CDS 775] ([79d4412](https://github.com/ovh/manager/commit/79d44129b838b5da855369bfaabbd0e01f533c2a))
+* **user:** return value instead of function ([#4330](https://github.com/ovh/manager/issues/4330)) ([16f1c52](https://github.com/ovh/manager/commit/16f1c52c6c81734f3a4656abc6c797342c450aa6))
+
+
+### Features
+
+* **cancellation-form:** display form when require delete at expiration ([e89d1a6](https://github.com/ovh/manager/commit/e89d1a655ddff5393325dcc89a34727b80d24189))
+* add some missing tracking ([#4244](https://github.com/ovh/manager/issues/4244)) ([9c240c9](https://github.com/ovh/manager/commit/9c240c9166be35655e80e41b8bf1824e60d29734))
+
+
+### Performance Improvements
+
+* avoid unecessary ssoAuth login call ([#4327](https://github.com/ovh/manager/issues/4327)) ([4bfadd7](https://github.com/ovh/manager/commit/4bfadd70b442e03af1ea9ac71c842282554f754c))
+* disable angularjs debugging in production ([#4275](https://github.com/ovh/manager/issues/4275)) ([ae6eac6](https://github.com/ovh/manager/commit/ae6eac65b402366c96368fd3de32f859d877c78b))
+
+
+
 ## [16.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.1.0...@ovh-ux/manager-dedicated@16.1.1) (2021-01-25)
 
 

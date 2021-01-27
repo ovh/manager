@@ -1,3 +1,14 @@
+## [1.4.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.4.5...@ovh-ux/manager-dbaas-logs@1.4.6) (2021-01-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 767] ([e640f88](https://github.com/ovh/manager/commit/e640f8820b5c142c1dd9745e2ceadc22c76427a6))
+* **i18n:** add missing translations [CDS 768] ([2b61ff8](https://github.com/ovh/manager/commit/2b61ff8d8042acb9db3344a36f05f930f3e66e63))
+* **i18n:** add missing translations [CDS 775] ([79d4412](https://github.com/ovh/manager/commit/79d44129b838b5da855369bfaabbd0e01f533c2a))
+
+
+
 ## [1.4.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.4.4...@ovh-ux/manager-dbaas-logs@1.4.5) (2021-01-13)
 
 
