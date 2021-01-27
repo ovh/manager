@@ -1,3 +1,4 @@
+import controller from './user-agreements-details.controller';
 import template from './user-agreements-details.html';
 
 export default /* @ngInject */ (
@@ -9,7 +10,7 @@ export default /* @ngInject */ (
     $stateProvider.state('app.account.billing.autorenew.agreements.agreement', {
       url: '/details/{id:int}',
       template,
-      controller: 'UserAccount.controllers.agreements.details',
+      controller,
       controllerAs: 'ctrl',
       resolve: {
         agreementId: /* @ngInject */ ($transition$) => $transition$.params().id,

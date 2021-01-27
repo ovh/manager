@@ -1,3 +1,5 @@
+import config from '../../config/config';
+
 angular.module('Module.license').controller('LicenseDetailsCtrl', [
   '$q',
   '$scope',
@@ -7,7 +9,6 @@ angular.module('Module.license').controller('LicenseDetailsCtrl', [
   '$timeout',
   '$location',
   'constants',
-  'Billing.URLS',
   '$window',
   'Alerter',
   'ovhFeatureFlipping',
@@ -21,7 +22,6 @@ angular.module('Module.license').controller('LicenseDetailsCtrl', [
     $timeout,
     $location,
     constants,
-    billingUrls,
     $window,
     Alerter,
     ovhFeatureFlipping,
@@ -172,7 +172,8 @@ angular.module('Module.license').controller('LicenseDetailsCtrl', [
       if (!$scope.user) {
         return constants.renew.replace('{serviceName}', '');
       }
-      const renewUrl = billingUrls.renew[$scope.user.ovhSubsidiary];
+      const renewUrl = config.constants.billingRenew[$scope.user.ovhSubsidiary];
+
       if (!renewUrl) {
         return constants.renew.replace('{serviceName}', '');
       }

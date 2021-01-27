@@ -1,23 +1,11 @@
-{
-  class controller {
-    constructor(billingRenewHelper) {
-      this.billingRenewHelper = billingRenewHelper;
-    }
+import controller from './billing-renew-label.controller';
+import template from './billing-renew-label.html';
 
-    $onInit() {
-      this.content = this.billingRenewHelper.getRenewLabel(this.serviceInfos);
-    }
-
-    $onChanges() {
-      this.$onInit();
-    }
-  }
-
-  angular.module('Billing.directives').component('billingRenewLabel', {
-    bindings: {
-      serviceInfos: '<',
-    },
-    controller,
-    templateUrl: 'billing/components/renewLabel/billing-renew-label.html',
-  });
-}
+export default {
+  name: 'billingRenewLabel',
+  bindings: {
+    serviceInfos: '<',
+  },
+  controller,
+  template,
+};

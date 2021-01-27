@@ -1,50 +1,48 @@
-angular
-  .module('Billing')
-  .config(
-    /* @ngInject */ (
-      $stateProvider,
-      $urlRouterProvider,
-      coreConfigProvider,
-    ) => {
-      if (coreConfigProvider.isRegion(['EU', 'CA'])) {
-        const name = 'app.account.billing.payment.ovhaccount';
+import controller from './billing-ovhAccount.controller';
+import template from './billing-ovhAccount.html';
 
-        $stateProvider.state(name, {
-          url: '/ovhaccount',
-          templateUrl: 'billing/payment/ovhAccount/billing-ovhAccount.html',
-          controller: 'Billing.controllers.OvhAccount',
-          resolve: {
-            goToOvhAccount: /* @ngInject */ ($state, $timeout, Alerter) => (
-              message = false,
-              type = 'success',
-            ) => {
-              const reload = message && type === 'success';
+export default /* @ngInject */ (
+  $stateProvider,
+  $urlRouterProvider,
+  coreConfigProvider,
+) => {
+  if (coreConfigProvider.isRegion(['EU', 'CA'])) {
+    const name = 'app.account.billing.payment.ovhaccount';
 
-              const promise = $state.go(
-                'app.account.billing.payment.ovhaccount',
-                {},
-                {
-                  reload,
-                },
-              );
+    $stateProvider.state(name, {
+      url: '/ovhaccount',
+      template,
+      controller,
+      resolve: {
+        goToOvhAccount: /* @ngInject */ ($state, $timeout, Alerter) => (
+          message = false,
+          type = 'success',
+        ) => {
+          const reload = message && type === 'success';
 
-              if (message) {
-                promise.then(() =>
-                  $timeout(() => Alerter.set(`alert-${type}`, message)),
-                );
-              }
-
-              return promise;
+          const promise = $state.go(
+            'app.account.billing.payment.ovhaccount',
+            {},
+            {
+              reload,
             },
-            breadcrumb: /* @ngInject */ ($translate) =>
-              $translate.instant('billing_payment_ovhaccount'),
-          },
-        });
+          );
 
-        $urlRouterProvider.when(/^\/billing\/ovhaccount/, ($location, $state) =>
-          $state.go(name),
-        );
-      }
-    },
-  )
-  .run(/* @ngTranslationsInject:json ./translations */);
+          if (message) {
+            promise.then(() =>
+              $timeout(() => Alerter.set(`alert-${type}`, message)),
+            );
+          }
+
+          return promise;
+        },
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('billing_payment_ovhaccount'),
+      },
+    });
+
+    $urlRouterProvider.when(/^\/billing\/ovhaccount/, ($location, $state) =>
+      $state.go(name),
+    );
+  }
+};
