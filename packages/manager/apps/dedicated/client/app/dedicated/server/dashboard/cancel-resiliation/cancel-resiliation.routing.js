@@ -1,3 +1,6 @@
+import find from 'lodash/find';
+import { BillingService } from '@ovh-ux/manager-models';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicated.server.dashboard.cancel-resiliation', {
     url: '/cancel-resiliation',
@@ -11,8 +14,9 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       goBack: /* @ngInject */ (goToDashboard) => goToDashboard,
       cancelResiliation: /* @ngInject */ (
-        BillingAutoRenew,
+        $q,
         engagement,
+        OvhApiBillingAutorenewServices,
         setReactivateEngagementStrategy,
       ) => (service) => {
         if (engagement) {
@@ -20,7 +24,14 @@ export default /* @ngInject */ ($stateProvider) => {
         }
 
         service.cancelResiliation();
-        return BillingAutoRenew.updateService(service);
+        return OvhApiBillingAutorenewServices.Aapi()
+          .put({}, { updateList: [service] })
+          .$promise.then((result) => {
+            if (result.state === 'OK') {
+              return result;
+            }
+            return $q.reject(result);
+          });
       },
       endStrategies: /* @ngInject */ (endStrategyEnum) =>
         endStrategyEnum.reduce(
@@ -42,11 +53,18 @@ export default /* @ngInject */ ($stateProvider) => {
           ? Server.getSelected(service.serviceId)
           : Promise.resolve({ engagement: null })
         ).then(({ engagement }) => engagement),
-      service: /* @ngInject */ ($transition$, BillingAutoRenew) =>
-        BillingAutoRenew.getService(
-          $transition$.params().productId,
-          'DEDICATED_SERVER',
-        ),
+      service: /* @ngInject */ ($transition$, OvhApiBillingAutorenewServices) =>
+        OvhApiBillingAutorenewServices.Aapi()
+          .query({
+            search: $transition$.params().productId,
+          })
+          .$promise.then((services) =>
+            find(services.list.results, {
+              serviceType: 'DEDICATED_SERVER',
+              serviceId: $transition$.params().productId,
+            }),
+          )
+          .then((service) => new BillingService(service)),
       setReactivateEngagementStrategy: /* @ngInject */ (
         $http,
         endStrategies,

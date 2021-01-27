@@ -7,9 +7,8 @@ angular.module('services').service('User', [
   '$http',
   '$q',
   'constants',
-  'Billing.constants',
   'OvhHttp',
-  function userF($http, $q, constants, billingConstants, OvhHttp) {
+  function userF($http, $q, constants, OvhHttp) {
     const self = this;
     let user = null;
     let userPromise;
@@ -167,7 +166,12 @@ angular.module('services').service('User', [
     };
 
     this.getValidPaymentMeansIds = function getValidPaymentMeansIds() {
-      const means = billingConstants.paymentMeans;
+      const means = [
+        'bankAccount',
+        'paypal',
+        'creditCard',
+        'deferredPaymentAccount',
+      ];
       const baseUrl = `${constants.swsProxyRootPath}me/paymentMean`;
       const meanRequests = [];
       means.forEach((paymentMethod) => {

@@ -1,6 +1,7 @@
 import get from 'lodash/get';
 import isArray from 'lodash/isArray';
 import remove from 'lodash/remove';
+import config from '../config/config';
 
 angular.module('Module.license').controller('LicenseCtrl', [
   '$scope',
@@ -8,8 +9,7 @@ angular.module('Module.license').controller('LicenseCtrl', [
   'License',
   '$timeout',
   'constants',
-  'Billing.URLS',
-  ($scope, $state, License, $timeout, constants, billingUrls) => {
+  ($scope, $state, License, $timeout, constants) => {
     $scope.licencesTableLoading = false;
     $scope.licenses = null;
     $scope.licenseTypes = {
@@ -133,7 +133,7 @@ angular.module('Module.license').controller('LicenseCtrl', [
       if (!$scope.user) {
         return constants.renew.replace('{serviceName}', '');
       }
-      const renewUrl = billingUrls.renew[$scope.user.ovhSubsidiary];
+      const renewUrl = config.constants.billingRenew[$scope.user.ovhSubsidiary];
       if (!renewUrl) {
         return constants.renew.replace('{serviceName}', '');
       }

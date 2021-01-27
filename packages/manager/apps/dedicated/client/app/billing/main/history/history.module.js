@@ -12,12 +12,17 @@ import ovhManagerCore from '@ovh-ux/manager-core';
 import component from './history.component';
 import routing from './billing-main-history.routes';
 
+import balance from './balance/billing-history-balance.module';
+import debt from './debt/billing-main-history-debt.module';
 import legacyHistory from './legacy/history.module';
+import postalMailOptions from './postalMailOptions/billing-main-history-postal-mail-options.module';
 
 const moduleName = 'ovhManagerDedicatedBillingHistory';
 
 angular
   .module(moduleName, [
+    balance,
+    debt,
     legacyHistory,
     ngAtInternet,
     ngOvhApiWrappers,
@@ -26,12 +31,12 @@ angular
     'ovh-api-services',
     ovhManagerCore,
     'pascalprecht.translate',
+    postalMailOptions,
     'ui.bootstrap',
     'ui.router',
   ])
   .config(routing)
   .component('billingHistory', component)
-  .run(/* @ngTranslationsInject:json ./translations */)
-  .run(/* @ngTranslationsInject:json ./postalMailOptions/translations */);
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

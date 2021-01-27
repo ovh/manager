@@ -1,11 +1,13 @@
-angular.module('Billing').config(($stateProvider, $urlServiceProvider) => {
+import controller from './billing-credits-movements.controller';
+import template from './billing-credits-movements.html';
+
+export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
   const name = 'app.account.billing.payment.credits.movements';
 
   $stateProvider.state(name, {
     url: '/:balanceName',
-    templateUrl:
-      'billing/payment/credits/movements/billing-credits-movements.html',
-    controller: 'Billing.controllers.CreditsMovements',
+    template,
+    controller,
     controllerAs: '$ctrl',
     resolve: {
       balanceName: /* @ngInject */ ($transition$) =>
@@ -18,4 +20,4 @@ angular.module('Billing').config(($stateProvider, $urlServiceProvider) => {
     '/billing/payment/credits/movements/:name',
     '/billing/payment/credits/:name',
   );
-});
+};

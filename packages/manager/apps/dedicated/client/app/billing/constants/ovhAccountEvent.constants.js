@@ -1,5 +1,9 @@
-angular.module('Billing.constants').constant('OVH_ACCOUNT_EVENT', {
-  CREDIT: 'PrepaidAccountCredit',
-  TRANSFER_TO_BANK_ACCOUNT: 'PrepaidAccountTransferToBankAccount',
-  ALERT: 'PrepaidAccountAlert',
-});
+export const CREDIT = 'PrepaidAccountCredit';
+export const TRANSFER_TO_BANK_ACCOUNT = 'PrepaidAccountTransferToBankAccount';
+export const ALERT = 'PrepaidAccountAlert';
+
+export default {
+  CREDIT,
+  TRANSFER_TO_BANK_ACCOUNT,
+  ALERT,
+};

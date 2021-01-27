@@ -1,30 +1,29 @@
-angular
-  .module('Billing')
-  .config([
-    '$stateProvider',
-    '$urlRouterProvider',
-    'coreConfigProvider',
-    ($stateProvider, $urlRouterProvider, coreConfigProvider) => {
-      if (
-        coreConfigProvider.getRegion() === 'EU' ||
-        coreConfigProvider.getRegion() === 'CA'
-      ) {
-        const name = 'app.account.billing.payment.ovhaccount';
+import controller from './billing-ovhAccount.controller';
+import template from './billing-ovhAccount.html';
 
-        $stateProvider.state(name, {
-          url: '/ovhaccount',
-          templateUrl: 'billing/payment/ovhAccount/billing-ovhAccount.html',
-          controller: 'Billing.controllers.OvhAccount',
-          resolve: {
-            breadcrumb: /* @ngInject */ ($translate) =>
-              $translate.instant('billing_payment_ovhaccount'),
-          },
-        });
+export default /* @ngInject */ (
+  $stateProvider,
+  $urlRouterProvider,
+  coreConfigProvider,
+) => {
+  if (
+    coreConfigProvider.getRegion() === 'EU' ||
+    coreConfigProvider.getRegion() === 'CA'
+  ) {
+    const name = 'app.account.billing.payment.ovhaccount';
 
-        $urlRouterProvider.when(/^\/billing\/ovhaccount/, ($location, $state) =>
-          $state.go(name),
-        );
-      }
-    },
-  ])
-  .run(/* @ngTranslationsInject:json ./translations */);
+    $stateProvider.state(name, {
+      url: '/ovhaccount',
+      template,
+      controller,
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('billing_payment_ovhaccount'),
+      },
+    });
+
+    $urlRouterProvider.when(/^\/billing\/ovhaccount/, ($location, $state) =>
+      $state.go(name),
+    );
+  }
+};

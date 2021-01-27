@@ -1,20 +1,20 @@
-angular
-  .module('Billing')
-  .config(($stateProvider, $urlRouterProvider) => {
-    const name = 'app.account.billing.payment.refunds';
+import controller from './billing-refunds.controller';
+import template from './billing-refunds.html';
 
-    $stateProvider.state(name, {
-      url: '/refunds',
-      templateUrl: 'billing/payment/refunds/billing-refunds.html',
-      controller: 'Billing.controllers.Refunds',
-      resolve: {
-        breadcrumb: /* @ngInject */ ($translate) =>
-          $translate.instant('billing_payment_refunds'),
-      },
-    });
+export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
+  const name = 'app.account.billing.payment.refunds';
 
-    $urlRouterProvider.when(/^\/billing\/refunds/, ($location, $state) =>
-      $state.go(name),
-    );
-  })
-  .run(/* @ngTranslationsInject:json ./translations */);
+  $stateProvider.state(name, {
+    url: '/refunds',
+    template,
+    controller,
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('billing_payment_refunds'),
+    },
+  });
+
+  $urlRouterProvider.when(/^\/billing\/refunds/, ($location, $state) =>
+    $state.go(name),
+  );
+};

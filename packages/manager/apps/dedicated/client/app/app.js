@@ -61,6 +61,7 @@ import managedBaremetal from './managedBaremetal';
 import errorPage from './error';
 import expiredPage from './expired';
 
+import billing from './billing';
 import dedicatedServer from './dedicated/server';
 import userContracts from './user-contracts';
 import otrs from './otrs';
@@ -77,9 +78,9 @@ angular
     [
       ...get(__NG_APP_INJECTIONS__, Environment.getRegion(), []),
       account,
+      billing,
       ovhManagerAccountSidebar,
       ovhManagerCore,
-      'Billing',
       chartjs,
       'controllers',
       dedicatedCloud,
