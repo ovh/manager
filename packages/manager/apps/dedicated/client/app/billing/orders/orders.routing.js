@@ -23,10 +23,11 @@ export default /* @ngInject */ ($stateProvider) => {
           .execute(null, true)
           .$promise.then(({ data }) => data),
       /* @ngInject */
-      timeNow: (BillingAuth) =>
-        BillingAuth.getCurrentTimestamp().then((timestamp) =>
-          moment(timestamp),
-        ),
+      timeNow: ($http) =>
+        $http
+          .get('/auth/time', { serviceType: 'apiv6' })
+          .then((result) => parseInt(result.data, 10))
+          .then((timestamp) => moment(timestamp)),
       filter: /* @ngInject */ ($transition$) => $transition$.params().filter,
       criteria: /* @ngInject */ ($log, filter) => {
         if (filter) {

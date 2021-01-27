@@ -2,14 +2,10 @@ import flatten from 'lodash/flatten';
 
 import { User } from '@ovh-ux/manager-models';
 
-angular.module('services').service('User', [
-  '$http',
-  '$q',
-  'constants',
-  'coreConfig',
-  'Billing.constants',
-  'OvhHttp',
-  function userF($http, $q, constants, coreConfig, billingConstants, OvhHttp) {
+angular.module('services').service(
+  'User',
+  /* @ngInject */
+  function userF($http, $q, constants, coreConfig, OvhHttp) {
     const self = this;
     let user = null;
     let userPromise;
@@ -167,7 +163,12 @@ angular.module('services').service('User', [
     };
 
     this.getValidPaymentMeansIds = function getValidPaymentMeansIds() {
-      const means = billingConstants.paymentMeans;
+      const means = [
+        'bankAccount',
+        'paypal',
+        'creditCard',
+        'deferredPaymentAccount',
+      ];
       const baseUrl = `${constants.swsProxyRootPath}me/paymentMean`;
       const meanRequests = [];
       means.forEach((paymentMethod) => {
@@ -191,4 +192,4 @@ angular.module('services').service('User', [
       });
     };
   },
-]);
+);

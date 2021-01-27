@@ -1,95 +1,87 @@
 import filter from 'lodash/filter';
 import get from 'lodash/get';
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 
-angular
-  .module('UserAccount')
-  .controller('UserAccount.controllers.agreements.details', [
-    '$q',
-    'UserAccountServicesAgreements',
-    'Alerter',
-    'agreementId',
-    '$translate',
-    'User',
-    'GDPR_AGREEMENTS_INFOS',
-    'AGREEMENT_GENERIC_MORE_INFORMATIONS_URL',
-    'coreURLBuilder',
-    function UserAccountAgreementsDtailsController(
-      $q,
-      Service,
-      Alerter,
-      agreementId,
-      $translate,
-      User,
-      GDPR_AGREEMENTS_INFOS,
-      AGREEMENT_GENERIC_MORE_INFORMATIONS_URL,
-      coreURLBuilder,
-    ) {
-      const CGV_AGREEMENT_ID = 1635;
+import {
+  AGREEMENT_GENERIC_MORE_INFORMATIONS_URL,
+  GDPR_AGREEMENTS_INFOS,
+} from '../user-agreements.constant';
 
-      this.SUPPORT_URL = coreURLBuilder.buildURL('dedicated', '#/support');
+export default /* @ngInject */ function UserAccountAgreementsDtailsController(
+  $q,
+  UserAccountServicesAgreements,
+  Alerter,
+  agreementId,
+  $translate,
+  User,
+  coreURLBuilder,
+) {
+  const CGV_AGREEMENT_ID = 1635;
 
-      this.$ngInit = () => {
-        this.accepted = false;
-        this.loading = true;
-        this.confirmed = false;
-        this.alreadyAccepted = false;
+  this.SUPPORT_URL = buildURL('dedicated', '#/support');
+  this.SUPPORT_URL = coreURLBuilder.buildURL('dedicated', '#/support');
 
-        $q.all([
-          Service.getAgreement(agreementId),
-          Service.getContract(agreementId),
-          User.getUser(),
-        ])
-          .then(([agreement, contract, user]) => {
-            this.agreement = agreement;
-            this.contract = contract;
-            this.isIndividual = user.legalform === 'individual';
-            this.alreadyAccepted = this.agreement.agreed === 'ok';
-            this.confirmed = this.alreadyAccepted;
-            this.accepted = this.alreadyAccepted;
-            this.isCGVContract = this.agreement.contractId === CGV_AGREEMENT_ID;
+  this.$ngInit = () => {
+    this.accepted = false;
+    this.loading = true;
+    this.confirmed = false;
+    this.alreadyAccepted = false;
 
-            this.appendicesLink = get(
-              filter(
-                GDPR_AGREEMENTS_INFOS,
-                (el) => el.subsidiary === user.ovhSubsidiary,
-              ),
-              '[0].more_informations_url',
-              AGREEMENT_GENERIC_MORE_INFORMATIONS_URL,
-            );
-          })
-          .catch((err) => {
-            Alerter.error(
-              $translate.instant('user_agreements_error'),
-              'agreements_details_alerter',
-            );
-            return $q.reject(err);
-          })
-          .finally(() => {
-            this.loading = false;
-          });
-      };
+    $q.all([
+      UserAccountServicesAgreements.getAgreement(agreementId),
+      UserAccountServicesAgreements.getContract(agreementId),
+      User.getUser(),
+    ])
+      .then(([agreement, contract, user]) => {
+        this.agreement = agreement;
+        this.contract = contract;
+        this.isIndividual = user.legalform === 'individual';
+        this.alreadyAccepted = this.agreement.agreed === 'ok';
+        this.confirmed = this.alreadyAccepted;
+        this.accepted = this.alreadyAccepted;
+        this.isCGVContract = this.agreement.contractId === CGV_AGREEMENT_ID;
 
-      this.accept = () => {
-        Service.accept({
-          ...this.agreement,
-          ...this.contract,
-        })
-          .then(() => {
-            this.accepted = true;
-            Alerter.success(
-              $translate.instant('user_agreement_details_success'),
-              'agreements_details_alerter',
-            );
-          })
-          .catch((err) => {
-            Alerter.error(
-              $translate.instant('user_agreement_details_error'),
-              'agreements_details_alerter',
-            );
-            $q.reject(err);
-          });
-      };
+        this.appendicesLink = get(
+          filter(
+            GDPR_AGREEMENTS_INFOS,
+            (el) => el.subsidiary === user.ovhSubsidiary,
+          ),
+          '[0].more_informations_url',
+          AGREEMENT_GENERIC_MORE_INFORMATIONS_URL,
+        );
+      })
+      .catch((err) => {
+        Alerter.error(
+          $translate.instant('user_agreements_error'),
+          'agreements_details_alerter',
+        );
+        return $q.reject(err);
+      })
+      .finally(() => {
+        this.loading = false;
+      });
+  };
 
-      this.$ngInit();
-    },
-  ]);
+  this.accept = () => {
+    UserAccountServicesAgreements.accept({
+      ...this.agreement,
+      ...this.contract,
+    })
+      .then(() => {
+        this.accepted = true;
+        Alerter.success(
+          $translate.instant('user_agreement_details_success'),
+          'agreements_details_alerter',
+        );
+      })
+      .catch((err) => {
+        Alerter.error(
+          $translate.instant('user_agreement_details_error'),
+          'agreements_details_alerter',
+        );
+        $q.reject(err);
+      });
+  };
+
+  this.$ngInit();
+}

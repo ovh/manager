@@ -1,19 +1,13 @@
+import { DISABLE_AUTOMATIC_PAYMENT_FOR_DOMAINS } from '../../constants/autorenewEvent.constants';
+
 export default class BillingAutorenewDisableDomainsBulkCtrl {
   /* @ngInject */
-  constructor(
-    $scope,
-    $translate,
-    atInternet,
-    BillingAutoRenew,
-    AUTORENEW_EVENT,
-  ) {
+  constructor($scope, $translate, atInternet, BillingAutoRenew) {
     this.$scope = $scope;
     this.$translate = $translate;
 
     this.atInternet = atInternet;
     this.BillingAutoRenew = BillingAutoRenew;
-
-    this.AUTORENEW_EVENT = AUTORENEW_EVENT;
   }
 
   $onInit() {
@@ -26,9 +20,7 @@ export default class BillingAutorenewDisableDomainsBulkCtrl {
 
     return this.disableDomainsBulk()
       .then(() => {
-        this.$scope.$emit(
-          this.AUTORENEW_EVENT.DISABLE_AUTOMATIC_PAYMENT_FOR_DOMAINS,
-        );
+        this.$scope.$emit(DISABLE_AUTOMATIC_PAYMENT_FOR_DOMAINS);
         this.goBack(
           this.$translate.instant(
             'autorenew_service_disable_all_domains_success',

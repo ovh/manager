@@ -1,4 +1,7 @@
-angular.module('Billing').config(($stateProvider) => {
+import controller from './billing-payments-details.controller';
+import template from './billing-payments-details.html';
+
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.account.billing.main.payments.payment', {
     url: '/:id',
     template: '<div ui-view></div>',
@@ -11,11 +14,11 @@ angular.module('Billing').config(($stateProvider) => {
 
   $stateProvider.state('app.account.billing.main.payments.payment.details', {
     url: '/details',
-    templateUrl: 'billing/main/payments/details/billing-payments-details.html',
-    controller: 'Billing.PaymentDetailsCtrl',
+    template,
+    controller,
     controllerAs: '$ctrl',
     resolve: {
       breadcrumb: () => null,
     },
   });
-});
+};

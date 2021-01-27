@@ -84,7 +84,7 @@
         </tbody>
         <tbody data-ng-show="!loaders.movements && movements.length > 0">
             <tr
-                data-ng-repeat="movement in movements track by movement.movementId"
+                data-ng-repeat="movement in movements track by movement.movementId+$index"
             >
                 <th scope="row" data-ng-bind="::movement.movementId"></th>
                 <td data-ng-bind="::movement.description"></td>
