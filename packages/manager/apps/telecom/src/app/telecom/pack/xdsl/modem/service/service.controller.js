@@ -31,10 +31,10 @@ export default class XdslModemServiceCtrl {
       .get({
         xdslId: this.$stateParams.serviceName,
       })
-      .$promise.then(({ xdslTask }) => {
+      .$promise.then(({ data }) => {
         blocIP.isDefined = true;
-        blocIP.value = xdslTask === 'enabled';
-        return xdslTask;
+        blocIP.value = data === 'enabled';
+        return data;
       })
       .finally(() => {
         this.modemServices.push(blocIP);
@@ -84,10 +84,10 @@ export default class XdslModemServiceCtrl {
       .get({
         xdslId: this.$stateParams.serviceName,
       })
-      .$promise.then(({ xdslTask }) => {
+      .$promise.then(({ data }) => {
         callWaiting.isDefined = true;
-        callWaiting.value = xdslTask === 'enabled';
-        return xdslTask;
+        callWaiting.value = data === 'enabled';
+        return data;
       })
       .finally(() => {
         this.modemServices.push(callWaiting);
@@ -137,10 +137,10 @@ export default class XdslModemServiceCtrl {
       .get({
         xdslId: this.$stateParams.serviceName,
       })
-      .$promise.then(({ xdslTask }) => {
-        contentSharing.value = xdslTask === 'enabled';
+      .$promise.then(({ data }) => {
+        contentSharing.value = data === 'enabled';
         contentSharing.isDefined = true;
-        return xdslTask;
+        return data;
       })
       .finally(() => {
         this.modemServices.push(contentSharing);
@@ -204,10 +204,10 @@ export default class XdslModemServiceCtrl {
       .get({
         xdslId: this.$stateParams.serviceName,
       })
-      .$promise.then(({ xdslTask }) => {
-        ftp.value = xdslTask === 'enabled';
+      .$promise.then(({ data }) => {
+        ftp.value = data === 'enabled';
         ftp.isDefined = true;
-        return xdslTask;
+        return data;
       })
       .finally(() => {
         this.modemServices.push(ftp);
@@ -255,10 +255,10 @@ export default class XdslModemServiceCtrl {
       .get({
         xdslId: this.$stateParams.serviceName,
       })
-      .$promise.then(({ xdslTask }) => {
-        ipsecAlg.value = xdslTask === 'enabled';
+      .$promise.then(({ data }) => {
+        ipsecAlg.value = data === 'enabled';
         ipsecAlg.isDefined = true;
-        return xdslTask;
+        return data;
       })
       .finally(() => {
         this.modemServices.push(ipsecAlg);
@@ -308,10 +308,10 @@ export default class XdslModemServiceCtrl {
       .get({
         xdslId: this.$stateParams.serviceName,
       })
-      .$promise.then(({ xdslTask }) => {
-        sipAlg.value = xdslTask === 'enabled';
+      .$promise.then(({ data }) => {
+        sipAlg.value = data === 'enabled';
         sipAlg.isDefined = true;
-        return xdslTask;
+        return data;
       })
       .finally(() => {
         this.modemServices.push(sipAlg);
@@ -362,7 +362,6 @@ export default class XdslModemServiceCtrl {
         xdslId: this.$stateParams.serviceName,
       })
       .$promise.then(({ data }) => {
-        console.log('upnp xdslTask', data);
         upnp.value = data === 'enabled';
         upnp.isDefined = true;
         return data;
@@ -445,7 +444,6 @@ export default class XdslModemServiceCtrl {
         this.updateSipAlg(value ? 'enabled' : 'disabled');
         break;
       case 'upnp':
-        console.log('upnp value', value);
         this.updateUPnP(value ? 'enabled' : 'disabled');
         break;
       default:
