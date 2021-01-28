@@ -13,6 +13,7 @@ import line from '../line';
 import abbreviatedNumbers from './abbreviatedNumbers';
 import administration from './administration';
 import billing from './billing';
+import convertToVoiceFax from './convertToVoicefax';
 import dashboard from './dashboard';
 import guides from './guides';
 import manageContacts from './manageContacts';
@@ -40,6 +41,7 @@ angular
     abbreviatedNumbers,
     administration,
     billing,
+    convertToVoiceFax,
     dashboard,
     guides,
     manageContacts,

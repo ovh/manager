@@ -20,7 +20,13 @@ export default /* @ngInject */ ($stateProvider) => {
           controllerAs: '$ctrl',
         },
       },
+      redirectTo: (transition) =>
+        transition.params().serviceName === 'null'
+          ? 'telecom.telephony.billingAccount.convertToVoicefax'
+          : false,
       resolve: {
+        backLink: /* @ngInject */ ($state) =>
+          $state.href('telecom.telephony.billingAccount.fax.dashboard.fax'),
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant(
             'telephony_fax_fax_convert_to_voice_fax_breadcrumb',

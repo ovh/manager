@@ -1,5 +1,5 @@
 export default /* @ngInject */ function TelecomTelephonyFaxFaxConvertToVoiceFaxCtrl(
-  $stateParams,
+  backLink,
 ) {
-  this.noService = $stateParams.serviceName === 'null';
+  this.backLink = backLink;
 }
