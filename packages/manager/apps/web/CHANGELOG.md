@@ -1,3 +1,12 @@
+## [15.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.15.0...@ovh-ux/manager-web@15.15.1) (2021-01-28)
+
+
+### Bug Fixes
+
+* **dns-zone:** fix dependency injection ([#4351](https://github.com/ovh/manager/issues/4351)) ([a5cadc0](https://github.com/ovh/manager/commit/a5cadc0c20a1f7a58c78362d448e1433b6eb88e9))
+
+
+
 # [15.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.14.0...@ovh-ux/manager-web@15.15.0) (2021-01-27)
 
 
