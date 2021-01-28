@@ -361,10 +361,11 @@ export default class XdslModemServiceCtrl {
       .get({
         xdslId: this.$stateParams.serviceName,
       })
-      .$promise.then(({ xdslTask }) => {
-        upnp.value = xdslTask === 'enabled';
+      .$promise.then(({ data }) => {
+        console.log('upnp xdslTask', data);
+        upnp.value = data === 'enabled';
         upnp.isDefined = true;
-        return xdslTask;
+        return data;
       })
       .finally(() => {
         this.modemServices.push(upnp);
@@ -444,6 +445,7 @@ export default class XdslModemServiceCtrl {
         this.updateSipAlg(value ? 'enabled' : 'disabled');
         break;
       case 'upnp':
+        console.log('upnp value', value);
         this.updateUPnP(value ? 'enabled' : 'disabled');
         break;
       default:
