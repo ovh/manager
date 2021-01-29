@@ -11,6 +11,7 @@ angular.module('Module.license').controller('LicenseCtrl', [
   '$timeout',
   '$translate',
   'constants',
+<<<<<<< HEAD
   'ovhFeatureFlipping',
   (
     $scope,
@@ -21,6 +22,10 @@ angular.module('Module.license').controller('LicenseCtrl', [
     constants,
     ovhFeatureFlipping,
   ) => {
+=======
+  'Billing.URLS',
+  ($scope, $state, atInternet, License, $timeout, constants, billingUrls) => {
+>>>>>>> feat(dedicated-cloud): add tracking to termination
     $scope.licencesTableLoading = false;
     $scope.licenses = null;
     $scope.licenseTypes = {
@@ -151,6 +156,16 @@ angular.module('Module.license').controller('LicenseCtrl', [
       return renewUrl.replace('{serviceName}', '');
     };
 
+    $scope.trackDelete = () => {
+      atInternet.trackPage({
+        name: 'dedicated::license::delete',
+        type: 'navigation',
+      });
+      atInternet.trackClick({
+        name: 'dedicated::license::delete',
+        type: 'action',
+      });
+    };
     $scope.resetAction();
 
     $scope.formatName = (license) => {

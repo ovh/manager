@@ -2,9 +2,10 @@ import head from 'lodash/head';
 
 export default class {
   /* @ngInject */
-  constructor($state, $translate, OvhApiDedicatedCloud) {
+  constructor($state, $translate, atInternet, OvhApiDedicatedCloud) {
     this.$state = $state;
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.OvhApiDedicatedCloud = OvhApiDedicatedCloud;
 
     this.terminateConfirmForm = null;
@@ -37,6 +38,11 @@ export default class {
     if (!this.terminateConfirmForm.$valid) {
       return false;
     }
+
+    this.atInternet.trackClick({
+      name: 'dedicated::dedicatedClouds::dashboard::terminate::confirm',
+      type: 'action',
+    });
 
     this.loading.confirm = true;
 

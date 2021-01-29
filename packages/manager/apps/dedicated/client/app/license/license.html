@@ -135,7 +135,7 @@
                 </oui-action-menu-item>
                 <oui-action-menu-item
                     data-ng-if="$row.type !== licenseTypes.SPLA && !$row.isExpired"
-                    on-click="setAction('delete/license-delete', { 'license': $row })"
+                    on-click="setAction('delete/license-delete', { 'license': $row }); trackDelete()"
                     ><span
                         data-translate="license_dashboard_table_popover_delete"
                     ></span>

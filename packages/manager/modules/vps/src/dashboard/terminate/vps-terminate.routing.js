@@ -19,6 +19,7 @@ export default /* @ngInject */ ($stateProvider) => {
       confirm: /* @ngInject */ (
         $http,
         $translate,
+        atInternet,
         displayErrorMessage,
         displaySuccessMessage,
         resiliationCapability,
@@ -26,8 +27,12 @@ export default /* @ngInject */ ($stateProvider) => {
         serviceName,
         vps,
         vpsTerminate,
-      ) => () =>
-        (vps.engagement && !!resiliationCapability?.message
+      ) => () => {
+        atInternet.trackClick({
+          name: 'vps::detail::dashboard::terminate::confirm',
+          type: 'action',
+        });
+        return (vps.engagement && !!resiliationCapability?.message
           ? $http
               .post(`/support/service/terminateSBG`, {
                 serviceId: serviceInfo.serviceId,
@@ -46,9 +51,9 @@ export default /* @ngInject */ ($stateProvider) => {
               )
         ).catch(() =>
           displayErrorMessage($translate.instant('vps_terminate_error')),
-        ),
+        );
+      },
       degressivityInformation: /* @ngInject */ (
-        serviceName,
         availableUpgrades,
       ) =>
         availableUpgrades.find(({ prices }) =>
