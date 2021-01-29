@@ -28,6 +28,7 @@ export default {
     resumeInstance: '<',
     deleteInstance: '<',
     shelveInstance: '<',
+    unshelveInstance: '<',
     goToBlockStorages: '<',
     applicationAccess: '<',
     attachVolume: '<',

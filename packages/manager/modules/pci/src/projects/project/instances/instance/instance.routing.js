@@ -122,6 +122,11 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           instanceId: instance.id,
         }),
+      unshelveInstance: /* @ngInject */ ($state, instance, projectId) => () =>
+        $state.go('pci.projects.project.instances.instance.unshelve', {
+          projectId,
+          instanceId: instance.id,
+        }),
       reinstallInstance: /* @ngInject */ ($state, instance, projectId) => () =>
         $state.go('pci.projects.project.instances.instance.reinstall', {
           projectId,

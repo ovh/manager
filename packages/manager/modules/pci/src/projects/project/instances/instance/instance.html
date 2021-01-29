@@ -118,6 +118,14 @@
                     ></span>
                 </oui-tile-button>
                 <oui-tile-button
+                    data-on-click="$ctrl.unshelveInstance()"
+                    data-disabled="!$ctrl.instance.isValidToUnshelve()"
+                >
+                    <span
+                        data-translate="pci_projects_project_instances_instance_action_unshelve_label"
+                    ></span>
+                </oui-tile-button>
+                <oui-tile-button
                     data-on-click="$ctrl.reinstallInstance()"
                     data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE'"
                 >

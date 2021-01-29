@@ -20,6 +20,7 @@ import softReboot from './soft-reboot';
 import start from './start';
 import stop from './stop';
 import unrescue from './unrescue';
+import unshelve from './unshelve';
 import vnc from './vnc';
 
 import component from './instance.component';
@@ -49,6 +50,7 @@ angular
     start,
     stop,
     unrescue,
+    unshelve,
     vnc,
   ])
   .config(routing)
