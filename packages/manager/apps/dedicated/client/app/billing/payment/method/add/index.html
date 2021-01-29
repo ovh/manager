@@ -46,6 +46,7 @@
             >
                 <!-- Choose payment method type step -->
                 <oui-step-form
+                    data-on-focus="$ctrl.initializeStepper()"
                     data-header="{{ :: 'billing_payment_method_add_choose_type' | translate }}"
                     data-submit-text="{{ $ctrl.isLastStep('paymentMethodType') ? 'common_add' : 'common_next' | translate }}"
                     data-disabled="$ctrl.loading.paymentMethodTypes"
@@ -53,6 +54,7 @@
                 >
                     <ovh-payment-method-register
                         data-model="$ctrl.model"
+                        data-default-payment-method-integration="{{:: $ctrl.defaultPaymentMethodIntegration }}"
                         data-registered-payment-methods="$ctrl.paymentMethods"
                         data-show-set-as-default-choice="true"
                         data-on-initialized="$ctrl.addSteps.paymentMethodType.loading = false"
@@ -183,6 +185,25 @@
                 </oui-step-form>
                 <!-- End of Payment method -->
             </oui-stepper>
+
+            <!-- Component Payment method -->
+            <div
+                class="mx-5 pl-2"
+                data-ng-if="$ctrl.model.selectedPaymentMethodType.isHandleByComponent() && ($ctrl.componentInitialParams || $ctrl.defaultPaymentMethodIntegration)"
+            >
+                <h3
+                    data-translate="billing_payment_method_add_bank_account_informations"
+                ></h3>
+
+                <ovh-payment-method-integration
+                    data-initial-params="$ctrl.componentInitialParams"
+                    data-on-submit="$ctrl.onPaymentMethodIntegrationSubmit.bind($ctrl)"
+                    data-on-submit-error="$ctrl.onPaymentMethodIntegrationSubmitError.bind($ctrl)"
+                    data-on-submit-success="$ctrl.onPaymentMethodIntegrationSuccess.bind($ctrl)"
+                    data-payment-method-type="$ctrl.model.selectedPaymentMethodType"
+                >
+                </ovh-payment-method-integration>
+            </div>
         </div>
     </div>
 </div>

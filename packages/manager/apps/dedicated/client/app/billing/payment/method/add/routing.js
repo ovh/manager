@@ -1,5 +1,4 @@
 import get from 'lodash/get';
-
 import component from './component';
 
 export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
@@ -68,7 +67,6 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
           isLastStep: () => false,
         },
         paymentMethodIntegration: {
-          // for US only
           name: 'paymentMethodIntegration',
           position: 2,
           loading: false,
@@ -77,6 +75,17 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
           isLastStep: () => true,
         },
       }),
+
+      defaultPaymentMethodIntegration: /* @ngInject */ (
+        $location,
+        ovhPaymentMethodHelper,
+      ) => {
+        return Object.keys($location.search()).length > 0
+          ? ovhPaymentMethodHelper.constructor.getCallbackIntegrationTypeRelated(
+              $location.search(),
+            )
+          : null;
+      },
 
       getBackButtonHref: /* @ngInject */ ($state, $transition$) => () =>
         $state.href(get($transition$.params(), 'from', '^')),
@@ -121,6 +130,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
           get($transition$.params(), 'from', null),
         );
       },
+
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('billing_payment_method_add_title'),
     },
