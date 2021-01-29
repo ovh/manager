@@ -9,11 +9,15 @@ export default /* @ngInject */ ($stateProvider) => {
       ...ListLayoutHelper.stateResolves,
       apiPath: () => '/license/office',
       dataModel: () => 'license.office.OfficeTenant',
-      defaultFilterColumn: () => 'displayName',
+      defaultFilterColumn: () => 'serviceName',
       header: /* @ngInject */ ($translate) =>
         $translate.instant('office_title'),
       customizableColumns: () => true,
       hideBreadcrumb: () => true,
+      getServiceNameLink: /* @ngInject */ ($state) => ({ serviceName }) =>
+        $state.href('office.product', {
+          serviceName,
+        }),
     },
   });
 };
