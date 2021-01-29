@@ -202,6 +202,14 @@
             </oui-action-menu-item>
             <oui-action-menu-divider></oui-action-menu-divider>
             <oui-action-menu-item
+                data-on-click="$ctrl.unshelveInstance($row)"
+                data-disabled="!$row.isValidToUnshelve()"
+            >
+                <span
+                    data-translate="pci_projects_project_instances_unshelve_label"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
                 data-on-click="$ctrl.startRescueInstance($row)"
                 data-ng-if="$row.statusGroup === 'ACTIVE'"
             >
@@ -240,6 +248,14 @@
             >
                 <span
                     data-translate="pci_projects_project_instances_shelve_label"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-on-click="$ctrl.unshelveInstance($row)"
+                data-disabled="!$row.isValidToUnshelve()"
+            >
+                <span
+                    data-translate="pci_projects_project_instances_unshelve_label"
                 ></span>
             </oui-action-menu-item>
             <oui-action-menu-divider></oui-action-menu-divider>

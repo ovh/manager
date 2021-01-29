@@ -21,6 +21,7 @@ import softReboot from './soft-reboot';
 import start from './start';
 import stop from './stop';
 import unrescue from './unrescue';
+import unshelve from './unshelve';
 
 import privateNetworks from '../private-networks/private-networks.module';
 
@@ -50,6 +51,7 @@ angular
     start,
     stop,
     unrescue,
+    unshelve,
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
     'ovh-api-services',

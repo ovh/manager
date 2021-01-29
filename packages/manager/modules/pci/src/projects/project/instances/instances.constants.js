@@ -12,6 +12,7 @@ export const TYPES_TO_EXCLUDE = [/baremetal/];
 
 export const POLLER_INSTANCE_NAMESPACE = {
   SHELVE: 'cloud.project.instance.shelve',
+  UNSHELVE: 'cloud.project.instance.unshelve',
 };
 
 export default {

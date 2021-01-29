@@ -24,6 +24,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
     onExit: /* @ngInject */ (killTasks) => {
       killTasks({ namespace: POLLER_INSTANCE_NAMESPACE.SHELVE });
+      killTasks({ namespace: POLLER_INSTANCE_NAMESPACE.UNSHELVE });
     },
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
@@ -121,6 +122,11 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           instanceId: instance.id,
         }),
+      unshelveInstance: /* @ngInject */ ($state, projectId) => (instance) =>
+        $state.go('pci.projects.project.instances.unshelve', {
+          projectId,
+          instanceId: instance.id,
+        }),
       reinstallInstance: /* @ngInject */ ($state, projectId) => (instance) =>
         $state.go('pci.projects.project.instances.reinstall', {
           projectId,
@@ -186,8 +192,8 @@ export default /* @ngInject */ ($stateProvider) => {
       killTasks: /* @ngInject */ (Poller) => (pattern) => Poller.kill(pattern),
 
       /** If one/some instances is still in shelving we run a sub task until the instance is shelved
-          Also, the sub tasks are killed if changed state is different from instances.*
-      */
+       * Also, the sub tasks are killed if changed state is different from instances.*
+       */
       pollShelvingInstances: /* @ngInject */ (
         $translate,
         CucCloudMessage,
@@ -197,7 +203,7 @@ export default /* @ngInject */ ($stateProvider) => {
         refreshInstances,
       ) => {
         instances.forEach((instance) => {
-          if (new Instance(instance).isShelving()) {
+          if (instance.isShelving()) {
             const endPointUrl = `/cloud/project/${projectId}/instance/${instance.id}`;
             Poller.poll(endPointUrl, null, {
               interval: 5000,
@@ -212,6 +218,43 @@ export default /* @ngInject */ ($stateProvider) => {
                 CucCloudMessage.success(
                   $translate.instant(
                     'pci_projects_project_instances_instance_shelve_success_message',
+                    {
+                      instance: instance.name,
+                    },
+                  ),
+                ),
+              );
+          }
+        });
+      },
+
+      /** If one/some instances is still in unshelving we run a sub task until the instance is active
+       * Also, the sub tasks are killed if changed state is different from instances.*
+       */
+      pollUnshelvingInstances: /* @ngInject */ (
+        $translate,
+        CucCloudMessage,
+        Poller,
+        instances,
+        projectId,
+        refreshInstances,
+      ) => {
+        instances.forEach((instance) => {
+          if (instance.isUnshelving()) {
+            const endPointUrl = `/cloud/project/${projectId}/instance/${instance.id}`;
+            Poller.poll(endPointUrl, null, {
+              interval: 5000,
+              successRule(i) {
+                return new Instance(i).isStarted();
+              },
+              namespace: POLLER_INSTANCE_NAMESPACE.UNSHELVE,
+              notifyOnError: false,
+            })
+              .then(() => refreshInstances())
+              .then(() =>
+                CucCloudMessage.success(
+                  $translate.instant(
+                    'pci_projects_project_instances_instance_unshelve_success_message',
                     {
                       instance: instance.name,
                     },

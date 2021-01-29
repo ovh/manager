@@ -27,6 +27,7 @@ export default {
     startInstance: '<',
     stopInstance: '<',
     shelveInstance: '<',
+    unshelveInstance: '<',
     viewInstance: '<',
     vrack: '<',
     vrackLink: '<',

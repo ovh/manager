@@ -212,6 +212,12 @@ export default class PciProjectInstanceService {
     );
   }
 
+  unshelve(projectId, { id: instanceId }) {
+    return this.$http.post(
+      `/cloud/project/${projectId}/instance/${instanceId}/unshelve`,
+    );
+  }
+
   reboot(projectId, { id: instanceId }, type) {
     return this.OvhApiCloudProjectInstance.v6().reboot(
       {
