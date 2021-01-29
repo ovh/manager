@@ -1,4 +1,4 @@
-<section class="cloud-legacy vrack cui-page" data-ng-if="$ctrl.serviceName">
+<section class="cloud-legacy vrack" data-ng-if="$ctrl.serviceName">
     <header class="vrack__header" data-ng-if="$ctrl.nameEditing">
         <form
             name="nameForm"
@@ -88,9 +88,7 @@
     <div>
         <section>
             <div ng-if="$ctrl.description || $ctrl.descriptionEditing">
-                <cui-page-content-title
-                    data-text="'vrack_description_title' | translate"
-                ></cui-page-content-title>
+                <h3 data-translate="vrack_description_title"></h3>
                 <form
                     name="descriptionForm"
                     data-ng-class="{'has-error': descriptionForm.description.$invalid}"
@@ -183,9 +181,7 @@
         </section>
 
         <section>
-            <cui-page-content-title
-                data-text="'vrack_introduction_title' | translate"
-            ></cui-page-content-title>
+            <h3 data-translate="vrack_introduction_title"></h3>
             <p data-translate="vrack_introduction_description"></p>
             <p
                 data-ng-if="$ctrl.changeOwnerUrl"

@@ -1,11 +1,9 @@
 <div data-ng-if="!$ctrl.loaders.init">
-    <div>
-        <cui-message-container
-            data-messages="$ctrl.messages"
-            data-grouped-types="['error', 'warning']"
-        >
-        </cui-message-container>
-    </div>
+    <cui-message-container
+        data-messages="$ctrl.messages"
+        data-grouped-types="['error', 'warning']"
+    >
+    </cui-message-container>
     <div>
         <div data-ui-view="vpsContent"></div>
     </div>

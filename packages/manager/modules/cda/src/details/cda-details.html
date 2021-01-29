@@ -1,4 +1,4 @@
-<div class="cui-page">
+<div>
     <oui-header
         data-ng-if="!CdaDetailsCtrl.loading"
         heading="{{ CdaDetailsCtrl.CdaService.currentService.label || CdaDetailsCtrl.serviceName }}"
@@ -38,6 +38,7 @@
     </oui-header>
 
     <cui-message-container
+        class="mb-3"
         data-messages="CdaDetailsCtrl.messages"
     ></cui-message-container>
 
