@@ -118,6 +118,9 @@ export default class OvhPaymentMethodRegisterCtrl {
           this.availablePaymentMethodTypes.list,
           {
             paymentType: this.defaultPaymentMethodType,
+            ...(this.defaultPaymentMethodIntegration
+              ? { integration: this.defaultPaymentMethodIntegration }
+              : {}),
           },
         );
 

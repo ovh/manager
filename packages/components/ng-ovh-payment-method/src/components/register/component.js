@@ -7,6 +7,7 @@ export default {
   template,
   bindings: {
     defaultPaymentMethodType: '@?',
+    defaultPaymentMethodIntegration: '@?',
     model: '<',
     paymentMethodTypesOrder: '<?',
     paymentMethodTypesPerLine: '<?',

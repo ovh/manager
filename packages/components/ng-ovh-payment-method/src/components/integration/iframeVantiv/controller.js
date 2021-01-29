@@ -58,7 +58,8 @@ export default class OvhPaymentMethodRegisterIframeVantivCtrl {
         this.eProtectClient.getPaypageRegistrationId({
           id: `PM${this.integrationCtrl.paymentValidation.paymentMethodId}`,
         });
-      });
+      })
+      .catch(() => {});
   }
 
   onIframeSubmitted(response) {
