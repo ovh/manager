@@ -6,7 +6,7 @@ const moduleName = 'dedicatedCloudUserEditLazyloading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.dedicatedCloud.details.users.user.edit.**', {
+    $stateProvider.state('app.dedicatedCloud.details.users.edit.**', {
       url: '/edit',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');

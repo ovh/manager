@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.managedBaremetal.details.users.user.edit', {
+  $stateProvider.state('app.managedBaremetal.details.users.edit', {
     url: '/edit',
     params: {
       user: null,

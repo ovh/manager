@@ -23,7 +23,7 @@ export default /* @ngInject */ ($stateProvider) => {
           passwordPolicy,
         }),
       deleteUser: /* @ngInject */ ($state) => (user) =>
-        $state.go('app.dedicatedCloud.details.users.user.delete', {
+        $state.go('app.dedicatedCloud.details.users.delete', {
           userId: user.userId,
           user,
         }),
@@ -33,7 +33,7 @@ export default /* @ngInject */ ($stateProvider) => {
           user,
         }),
       editUser: /* @ngInject */ ($state) => (user) =>
-        $state.go('app.dedicatedCloud.details.users.user.edit', {
+        $state.go('app.dedicatedCloud.details.users.edit', {
           user,
           userId: user.userId,
         }),
@@ -47,7 +47,7 @@ export default /* @ngInject */ ($stateProvider) => {
           userId,
         }),
       passwordReset: /* @ngInject */ ($state) => (user, passwordPolicy) =>
-        $state.go('app.dedicatedCloud.details.users.user.password-reset', {
+        $state.go('app.dedicatedCloud.details.users.password-reset', {
           userId: user.userId,
           passwordPolicy,
           user,

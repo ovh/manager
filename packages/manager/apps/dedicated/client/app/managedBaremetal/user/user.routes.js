@@ -23,7 +23,7 @@ export default /* @ngInject */ ($stateProvider) => {
           passwordPolicy,
         }),
       deleteUser: /* @ngInject */ ($state) => (user) =>
-        $state.go('app.managedBaremetal.details.users.user.delete', {
+        $state.go('app.managedBaremetal.details.users.delete', {
           userId: user.userId,
           user,
         }),
@@ -33,7 +33,7 @@ export default /* @ngInject */ ($stateProvider) => {
           user,
         }),
       editUser: /* @ngInject */ ($state) => (user) =>
-        $state.go('app.managedBaremetal.details.users.user.edit', {
+        $state.go('app.managedBaremetal.details.users.edit', {
           userId: user.userId,
           user,
         }),
@@ -47,7 +47,7 @@ export default /* @ngInject */ ($stateProvider) => {
           userId,
         }),
       passwordReset: /* @ngInject */ ($state) => (user, passwordPolicy) =>
-        $state.go('app.managedBaremetal.details.users.user.password-reset', {
+        $state.go('app.managedBaremetal.details.users.password-reset', {
           passwordPolicy,
           user,
           userId: user.userId,
