@@ -1,0 +1,6 @@
+{
+  "manager_hub_dashboard_feedback": "Nuevo panel de control: no dude en <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">enviarnos sus comentarios</a>",
+  "manager_hub_dashboard_overview": "Vista general de mi actividad",
+  "manager_hub_dashboard_services": "Mis productos y servicios",
+  "manager_hub_dashboard": "Panel de control"
+}
