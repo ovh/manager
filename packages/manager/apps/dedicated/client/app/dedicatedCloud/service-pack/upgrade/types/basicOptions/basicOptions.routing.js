@@ -20,6 +20,8 @@ export const state = {
       ),
     steps: /* @ngInject */ (pccServicePackUpgradeService) =>
       pccServicePackUpgradeService.buildSteps(stepModuleNames),
+    breadcrumb: /* @ngInject */ ($translate) =>
+      $translate.instant('dedicated_cloud_servicepack_upgrade_basicoptions'),
   },
   url: '/basicOptions',
   views: {
