@@ -1,6 +1,11 @@
 import { get } from 'lodash-es';
 
-import { IBAN_BIC_RULES } from './payment-method.constants';
+import {
+  IBAN_BIC_RULES,
+  TYPE_INTEGRATION_ENUM,
+} from './payment-method.constants';
+
+import AdyenService from './components/integration/component/adyen/service';
 
 export default class OvhPaymentMethodHelperService {
   /* @ngInject */
@@ -33,6 +38,12 @@ export default class OvhPaymentMethodHelperService {
         typeParam,
       ).toLowerCase()}`,
     );
+  }
+
+  static getCallbackIntegrationTypeRelated(locationSearch) {
+    return AdyenService.hasCallbackUrlParams(locationSearch)
+      ? TYPE_INTEGRATION_ENUM.COMPONENT
+      : TYPE_INTEGRATION_ENUM.REDIRECT;
   }
 
   /* -----  End of Public methods  ------ */

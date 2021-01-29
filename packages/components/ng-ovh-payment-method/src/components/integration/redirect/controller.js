@@ -12,17 +12,20 @@ export default class OvhPaymentMethodIntegrationRedirectCtrl {
   }
 
   submit() {
-    return this.integrationCtrl.onIntegrationSubmit().then((response) => {
-      const { paymentMethodType } = this.integrationCtrl;
+    return this.integrationCtrl
+      .onIntegrationSubmit()
+      .then((response) => {
+        const { paymentMethodType } = this.integrationCtrl;
 
-      if (
-        paymentMethodType.integration === TYPE_INTEGRATION_ENUM.REDIRECT &&
-        response.url
-      ) {
-        this.$window.location = response.url;
-      }
-      return response;
-    });
+        if (
+          paymentMethodType.integration === TYPE_INTEGRATION_ENUM.REDIRECT &&
+          response.url
+        ) {
+          this.$window.location = response.url;
+        }
+        return response;
+      })
+      .catch(() => {});
   }
 
   /* ============================

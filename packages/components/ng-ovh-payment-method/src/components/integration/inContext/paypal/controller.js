@@ -45,6 +45,7 @@ export default class OvhPaymentMethodIntegrationInContextPaypalCtrl {
   submit() {
     return this.inContextCtrl.integrationCtrl
       .onIntegrationSubmit()
-      .then(({ formSessionId }) => formSessionId);
+      .then(({ formSessionId }) => formSessionId)
+      .catch(() => {});
   }
 }

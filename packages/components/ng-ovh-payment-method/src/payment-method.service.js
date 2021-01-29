@@ -13,6 +13,7 @@ import OvhPaymentMethodLegacy from './legacy/payment-method-legacy';
 export default class OvhPaymentMethodService {
   /* @ngInject */
   constructor(
+    $http,
     $log,
     $q,
     $translate,
@@ -22,6 +23,7 @@ export default class OvhPaymentMethodService {
     paymentMethodPageUrl,
     userLocale,
   ) {
+    this.$http = $http;
     this.$q = $q;
     this.$translate = $translate;
     this.$window = $window;
@@ -224,6 +226,13 @@ export default class OvhPaymentMethodService {
         },
         { challenge },
       ).$promise;
+  }
+
+  addPaymentDetails(paymentMethodId, details) {
+    return this.$http.post(
+      `/me/payment/method/${paymentMethodId}/details`,
+      details,
+    );
   }
 
   /**

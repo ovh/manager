@@ -40,6 +40,7 @@ export default class OvhPaymentMethodIntegrationCtrl {
     // build from scratch to be sure that old query parameters are reset
     // (in case of previous payment error when integration is REDIRECT)
     const { location } = this.$window;
+
     // take all hash param except callbackStatusParamUrlName if present in current location
     const hashParams = omit(this.$location.search(), [
       this.callbackStatusParamUrlName,
@@ -116,10 +117,10 @@ export default class OvhPaymentMethodIntegrationCtrl {
     return renderOptions || {};
   }
 
-  onIntegrationSubmit() {
+  onIntegrationSubmit(additionalParams = {}) {
     return new Promise((resolve) => {
       // call onInitialized callback
-      const onSubmitReturn = this.manageCallback('onSubmit');
+      const onSubmitReturn = this.manageCallback('onSubmit', additionalParams);
 
       return resolve(onSubmitReturn);
     }).then((postParams = {}) => {
@@ -143,8 +144,10 @@ export default class OvhPaymentMethodIntegrationCtrl {
           // call onSubmitSuccess callback
           if (
             !this.paymentMethodType.isRequiringFinalization() &&
-            this.paymentMethodType.integration !==
-              TYPE_INTEGRATION_ENUM.REDIRECT
+            ![
+              TYPE_INTEGRATION_ENUM.COMPONENT,
+              TYPE_INTEGRATION_ENUM.REDIRECT,
+            ].includes(this.paymentMethodType.integration)
           ) {
             this.manageCallback('onSubmitSuccess', { paymentValidation });
           }
@@ -154,6 +157,7 @@ export default class OvhPaymentMethodIntegrationCtrl {
         .catch((error) => {
           // in all case (even with finalize required) call onSubmitError callback
           this.manageCallback('onSubmitError', { error });
+          return Promise.reject(error);
         });
     });
   }
