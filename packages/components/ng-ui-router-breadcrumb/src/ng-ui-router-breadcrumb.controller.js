@@ -14,6 +14,6 @@ export default class BreadcrumbController {
 
   updateBreadcrumb() {
     this.breadcrumb = this.uiRouterBreadcrumbService.getBreadcrumb();
-    document.querySelector('#manager-breadcrumb').elements = this.breadcrumb;
+    // document.querySelector('#manager-breadcrumb').elements = this.breadcrumb;
   }
 }

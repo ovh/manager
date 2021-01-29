@@ -35,13 +35,11 @@
     "start:dev": "lerna exec --stream --scope='@ovh-ux/ng-ui-router-breadcrumb' --include-dependencies -- yarn run dev",
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ng-ui-router-breadcrumb' --include-dependencies -- yarn run dev:watch"
   },
-  "dependencies": {
-    "@ovh-ux/manager-breadcrumb": "^0.0.0 || ^1.0.0"
-  },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^8.0.0 || ^9.0.0"
   },
   "peerDependencies": {
+    "@ovh-ux/ng-breadcrumb": "^0.0.0 || ^1.0.0",
     "@uirouter/angularjs": "^1.0.22",
     "angular": "^1.5.0"
   }

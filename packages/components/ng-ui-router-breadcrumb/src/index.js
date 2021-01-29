@@ -1,7 +1,7 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
 
-import { defineCustomElements } from '@ovh-ux/manager-breadcrumb';
+import '@ovh-ux/ng-breadcrumb';
 
 import component from './ng-ui-router-breadcrumb.component';
 import service from './ng-ui-router-breadcrumb.service';
@@ -9,7 +9,7 @@ import service from './ng-ui-router-breadcrumb.service';
 const moduleName = 'ngUiRouterBreadcrumb';
 
 angular
-  .module(moduleName, ['ui.router'])
+  .module(moduleName, ['ui.router', 'ngBreadcrumb'])
   .component('uiRouterBreadcrumb', component)
   .service('uiRouterBreadcrumbService', service)
   .run(
@@ -19,7 +19,5 @@ angular
       });
     },
   );
-
-defineCustomElements();
 
 export default moduleName;

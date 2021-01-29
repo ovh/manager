@@ -1,0 +1,27 @@
+{
+  "name": "@ovh-ux/ng-breadcrumb",
+  "version": "0.0.0",
+  "description": "AngularJS wrapper",
+  "license": "MIT",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "build": "rollup -c --environment BUILD:production",
+    "dev": "rollup -c --environment BUILD:development",
+    "dev:watch": "yarn run dev --watch",
+    "prepare": "yarn run build",
+    "start": "lerna exec --stream --scope='@ovh-ux/ng-breadcrumb' --include-dependencies -- yarn run build",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/ng-breadcrumb' --include-dependencies -- yarn run dev",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ng-breadcrumb' --include-dependencies -- yarn run dev:watch"
+  },
+  "devDependencies": {
+    "@ovh-ux/component-rollup-config": "^9.0.0"
+  },
+  "peerDependencies": {
+    "@ovh-ux/manager-breadcrumb": "^0.0.0",
+    "angular": "~1.7.x"
+  }
+}
