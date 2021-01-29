@@ -5,7 +5,7 @@
   "license": "MIT",
   "main": "./dist/index.cjs.js",
   "unpkg": "dist/breadcrumb/breadcrumb.js",
-  "module": "dist/custom-elements/index.js",
+  "module": "dist/index.js",
   "types": "dist/types/index.d.ts",
   "files": [
     "dist/",
