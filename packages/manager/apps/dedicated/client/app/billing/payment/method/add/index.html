@@ -66,12 +66,6 @@
                             >
                                 <div data-ng-switch-when="CREDIT_CARD">
                                     <p
-                                        data-ng-if="$ctrl.currentUser.ovhSubsidiary === 'FR'"
-                                        data-translate="billing_payment_method_add_credit_card_selected_explain"
-                                        data-translate-values="{ amount: $ctrl.creditCardFootprintAmount }"
-                                    ></p>
-                                    <p
-                                        data-ng-if="$ctrl.model.selectedPaymentMethodType.integration !== $ctrl.OVH_PAYMENT_METHOD_INTEGRATION_TYPE.IFRAME_VANTIV && $ctrl.currentUser.ovhSubsidiary !== 'FR'"
                                         data-translate="billing_payment_method_add_credit_card_selected_explain_generic"
                                     ></p>
                                     <p

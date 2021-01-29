@@ -2,11 +2,11 @@
   "billing_payment_method_add_title": "Ajouter un moyen de paiement",
   "billing_payment_method_add_back_btn_title": "Retourner à mes moyens de paiement",
   "billing_payment_method_add_choose_type": "Choix du moyen de paiement",
-  "billing_payment_method_add_selected_common_redirect": "En cliquant sur \"Ajouter\", vous allez être redirigé vers la plateforme de paiement sécurisé.",
+
+  "billing_payment_method_add_selected_common_redirect": "Vous allez être redirigé·e vers l’interface sécurisée de notre prestataire pour enregistrer une nouvelle carte bancaire.",
   "billing_payment_method_add_selected_paypal_redirect": "En cliquant sur le bouton \"Paypal\", une fenêtre contextuelle s'ouvrira afin de finaliser l'ajout du moyen de paiement.",
   "billing_payment_method_add_selected_original_credit_card_redirect": "En cliquant sur le bouton \"Ajouter\", un document sera téléchargé. Veuillez suivre la procédure décrite dans le document pour valider le moyen de paiement.",
   "billing_payment_method_add_credit_card_selected": "Votre carte bancaire sera activée immédiatement.",
-  "billing_payment_method_add_credit_card_selected_explain": "Pour enregistrer une nouvelle carte bancaire, une empreinte de {{ amount }} est faite auprès de votre organisme bancaire afin de valider la saisie et la validité de votre carte. Le montant de {{ amount }} ne sera pas prélevé.",
   "billing_payment_method_add_credit_card_selected_explain_generic": "Pour enregistrer une nouvelle carte bancaire, une empreinte financière est faite auprès de votre organisme bancaire afin de valider la saisie et la validité de votre carte. Aucun montant ne sera prélevé.",
   "billing_payment_method_add_bank_account_selected": "Votre compte bancaire sera validé entre 24 et 48h à partir du moment où vous aurez signé la procédure (document qui sera téléchargeable à la fin de l'ajout du compte bancaire).",
   "billing_payment_method_add_default_payment": "Ce moyen de paiement sera utilisé pour les paiements automatiques de votre produit. Vous pouvez à tout moment modifier celui-ci dans vos moyens de paiements. Vous serez notifié par e-mail avant chaque nouvelle échéance.",
