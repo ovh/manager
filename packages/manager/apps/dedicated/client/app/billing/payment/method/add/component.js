@@ -8,6 +8,7 @@ export default {
   bindings: {
     addSteps: '<',
     currentUser: '<',
+    defaultPaymentMethodIntegration: '<',
     isLastStep: '<',
     isStepVisible: '<',
     getBackButtonHref: '<',

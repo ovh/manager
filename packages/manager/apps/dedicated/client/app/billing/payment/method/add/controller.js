@@ -32,25 +32,32 @@ export default class BillingPaymentMethodAddCtrl {
     this.hostname = window.location.hostname;
   }
 
+  initializeStepper() {
+    this.componentInitialParams = null;
+  }
+
   /* ================================
   =            Callbacks            =
   ================================= */
 
   /* ----------  Integration callbacks  ---------- */
 
-  onPaymentMethodIntegrationInitialized(submitFn) {
+  onPaymentMethodIntegrationInitialized(submitFn, initialParams = {}) {
     // set integration submit function to give the possibility to submit
     // some integration types (e.g.: redirect, vantivIframe).
     this.integrationSubmitFunction = submitFn;
 
     // return specific options for integration rendering
     // depending on the payment method type integration value.
-    return {};
+    return initialParams;
   }
 
-  onPaymentMethodIntegrationSubmit() {
+  onPaymentMethodIntegrationSubmit(componentAdditionalParams = {}) {
     const postParams = {
       default: this.model.setAsDefault,
+      ...(this.model.selectedPaymentMethodType.isHandleByComponent()
+        ? componentAdditionalParams
+        : {}),
     };
 
     if (this.model.selectedPaymentMethodType.isRequiringContactId()) {
@@ -99,6 +106,16 @@ export default class BillingPaymentMethodAddCtrl {
   /* ----------  OuiStepper callbacks  ---------- */
 
   onPaymentMethodAddStepperFinish() {
+    if (this.model.selectedPaymentMethodType.isHandleByComponent()) {
+      this.componentInitialParams = this.onPaymentMethodIntegrationInitialized(
+        null,
+        {
+          paymentMethod: this.model.selectedPaymentMethodType,
+          setAsDefault: this.model.setAsDefault,
+        },
+      );
+    }
+
     // call integrationSubmitFunction if provided
     if (isFunction(this.integrationSubmitFunction)) {
       return this.integrationSubmitFunction();
