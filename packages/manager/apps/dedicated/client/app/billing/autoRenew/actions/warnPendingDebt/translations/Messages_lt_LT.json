@@ -1,6 +1,0 @@
-{
-  "autorenew_service_debt_warn_title": "Important information",
-  "autorenew_service_debt_warn_settle": "Pay",
-  "autorenew_service_debt_warn_cancel": "Cancel",
-  "autorenew_service_debt_warn_deletion": "The service cannot be cancelled until the remaining amount due has been settled. Please go to the Billing section to pay the invoice for the <strong>{{service}}</strong> service."
-}

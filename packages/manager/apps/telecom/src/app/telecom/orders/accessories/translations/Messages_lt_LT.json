@@ -1,7 +1,0 @@
-{
-  "telecom_orders_accessories_title": "Order accessories",
-  "telecom_orders_accessories_group_choice": "Telephony group",
-  "telecom_orders_accessories_group_choice_label": "Select the telephony group you want to link your accessories order to:",
-  "telecom_orders_accessories_group_load_error": "Oops! Unable to load your telephony groups.",
-  "telecom_orders_accessories_order_error": "This group does not include any lines to order accessories for."
-}

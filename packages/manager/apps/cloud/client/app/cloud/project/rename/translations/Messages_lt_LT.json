@@ -1,9 +1,0 @@
-{
- "cloud_project_rename_loading_error": "Error. Unable to load description.",
- "cloud_project_rename_error": "Error. Unable to change description.",
- "cpb_details_project_delete": "Delete this project ",
- "cpb_details_project_rename_reset": "Cancel",
- "cpb_details_project_rename_ok": "Save",
- "cpb_details_project_rename": "Rename",
- "cpb_details_project_description": "Project description "
-}

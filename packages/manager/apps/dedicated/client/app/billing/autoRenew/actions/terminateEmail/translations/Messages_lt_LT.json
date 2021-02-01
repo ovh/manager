@@ -1,8 +1,0 @@
-{
-  "autorenew_service_EMAIL_DOMAIN_terminate": "Delete MX Plan immediately",
-  "autorenew_service_EMAIL_DOMAIN_terminate_info": "Deleting an MX Plan will permanently erase all corresponding data. The process of deleting an MX Plan does not entitle you to a refund.",
-  "autorenew_service_EMAIL_DOMAIN_terminate_info_impossible": "You cannot delete your email account because it is linked to a web hosting plan.",
-  "autorenew_service_EMAIL_DOMAIN_terminate_procedure": "You will get an email containing the procedure to close your MX Plan, so you can confirm that you want it deleted immediately. ",
-  "autorenew_service_EMAIL_DOMAIN_terminate_success": "Your request to close the MX Plan has been processed. You have been sent an email detailing the procedure to follow.",
-  "autorenew_service_EMAIL_DOMAIN_terminate_error": "An error has occurred requesting to close your MX Plan: {{ message }}"
-}

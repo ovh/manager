@@ -1,6 +1,0 @@
-{
-  "server_reversedns_delete_title": "Pašalinti DNS reversą",
-  "server_reversedns_delete_reversedns_confirmation": "Ar norite pašalinti DNS reversą: {{t0}}?",
-  "server_reversedns_delete_loading_error": "Klaida įkeliant paslaugą.",
-  "server_reversedns_delete_confirm": "Pašalinti DNS reversą"
-}
