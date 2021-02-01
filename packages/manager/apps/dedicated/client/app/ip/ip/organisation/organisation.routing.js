@@ -1,10 +1,11 @@
+import controller from './ip-ip-organisation.controller';
 import template from './ip-ip-organisation.html';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.ip.dashboard.organisation', {
     url: '/organisation',
     template,
-    controller: 'IpOrganisationCtrl',
+    controller,
     controllerAs: '$ctrl',
     reloadOnSearch: false,
     resolve: {
