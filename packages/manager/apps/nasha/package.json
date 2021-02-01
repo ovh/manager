@@ -22,7 +22,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-nasha-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^2.0.0 || ^3.0.0",
+    "@ovh-ux/manager-config": "^3.0.0 || ^4.0.0",
     "@ovh-ux/manager-core": "^11.0.0 || ^12.0.0",
     "@ovh-ux/manager-nasha": "^1.0.0 || ^2.0.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.8",
