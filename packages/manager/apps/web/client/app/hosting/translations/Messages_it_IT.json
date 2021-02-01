@@ -314,7 +314,6 @@
   "hosting_tab_DOMAINS_search_placeholder": "Ricerca in corso...",
   "hosting_tab_DOMAINS_table_popover_restart": "Riavvia",
   "hosting_tab_DOMAINS_multisite_logs_generation": "Genera il link",
-  "hosting_tab_DOMAINS_multisite_logs_generation_error": "Si è verificato un errore durante la generazione del link di accesso ai log",
   "hosting_tab_DOMAINS_multisite_logs_link": "Accedi ai log",
   "hosting_tab_DOMAINS_multisite_restart_done": "Il dominio è stato riavviato correttamente: {{t0}}",
   "hosting_tab_DOMAINS_multisite_restart_error": "Si è verificato un errore durante il riavvio del dominio.",

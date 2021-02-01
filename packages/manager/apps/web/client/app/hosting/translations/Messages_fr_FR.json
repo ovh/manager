@@ -314,7 +314,6 @@
   "hosting_tab_DOMAINS_search_placeholder": "Recherche...",
   "hosting_tab_DOMAINS_table_popover_restart": "Redémarrer",
   "hosting_tab_DOMAINS_multisite_logs_generation": "Génération du lien",
-  "hosting_tab_DOMAINS_multisite_logs_generation_error": "Une erreur est survenue lors de la génération du lien d'accès aux logs",
   "hosting_tab_DOMAINS_multisite_logs_link": "Accéder aux logs",
   "hosting_tab_DOMAINS_multisite_restart_done": "Le domaine a été redémarré avec succès : {{t0}}",
   "hosting_tab_DOMAINS_multisite_restart_error": "Une erreur est survenue lors du redémarrage du domaine.",

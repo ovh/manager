@@ -284,7 +284,6 @@
   "hosting_tab_DOMAINS_search_placeholder": "Buscar...",
   "hosting_tab_DOMAINS_table_popover_restart": "Redémarrer",
   "hosting_tab_DOMAINS_multisite_logs_generation": "Generar enlace",
-  "hosting_tab_DOMAINS_multisite_logs_generation_error": "Se ha producido un error al generar el enlace de acceso a los logs.",
   "hosting_tab_DOMAINS_multisite_logs_link": "Acceder a los logs",
   "hosting_tab_DOMAINS_multisite_restart_done": "Le domaine a été redémarré avec succès : {{t0}}",
   "hosting_tab_DOMAINS_multisite_restart_error": "Une erreur est survenue lors du redémarrage du domaine.",
