@@ -8,5 +8,6 @@
   "billing_autorenew_enable_bulk": "La renovación automática se activará en todos los servicios seleccionados.",
   "billing_autorenew_enable_bulk_single": "La renovación automática se activará en el servicio {{ serviceName }}.",
   "billing_autorenew_enable_success": "La renovación de los servicios se ha actualizado.",
-  "billing_autorenew_enable_error": "Se ha producido un error al activar la renovación automática: {{message}}."
+  "billing_autorenew_enable_error": "Se ha producido un error al activar la renovación automática: {{message}}.",
+  "billing_autorenew_enable_breadcrumb": "Activar la renovación automática"
 }

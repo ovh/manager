@@ -606,5 +606,6 @@
   "user_account_ssh_keys_title": "Le tue chiavi SSH",
   "user_account_users_management_title": "Gestione utenti",
   "user_account_advanced_title": "Impostazioni avanzate",
-  "user_ipRestrictions_warning_last_ip_with_deny": "Modifica la regola predefinita in \"Autorizzato\" per poter eliminare l'ultimo indirizzo IP."
+  "user_ipRestrictions_warning_last_ip_with_deny": "Modifica la regola predefinita in \"Autorizzato\" per poter eliminare l'ultimo indirizzo IP.",
+  "user_account": "Il tuo account"
 }
