@@ -1,3 +1,12 @@
+## [13.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.11.0...@ovh-ux/manager-telecom@13.11.1) (2021-02-01)
+
+
+### Bug Fixes
+
+* **xdsl.modem:** display the correct value for upnp service ([#4359](https://github.com/ovh/manager/issues/4359)) ([8e64244](https://github.com/ovh/manager/commit/8e642442c0a0f4e1853293dd4afa2d0db4449159))
+
+
+
 # [13.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.10.0...@ovh-ux/manager-telecom@13.11.0) (2021-01-27)
 
 
