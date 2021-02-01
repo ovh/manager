@@ -68,7 +68,7 @@
   "billing_autorenew_service_type_DEDICATED_SERVER": "Dedicated Server",
   "billing_autorenew_service_type_dedicated_server": "Dedicated Server",
   "billing_autorenew_service_type_DEDICATED_HOUSING": "Housing server ",
-  "billing_autorenew_service_type_DEDICATED_CLOUD": "Private Cloud",
+  "billing_autorenew_service_type_DEDICATED_CLOUD": "Hosted Private Cloud",
   "billing_autorenew_service_type_DOMAIN": "Domain",
   "billing_autorenew_service_type_ENTERPRISE_CLOUD_DATABASE": "Enterprise Cloud Database",
   "billing_autorenew_service_type_HOSTING_PRIVATE_DATABASE": "Private SQL hosting",

@@ -57,7 +57,7 @@
   "otrs_service_type_hosting_web": "Hosting WWW",
   "otrs_service_type_hubic": "Hubic",
   "otrs_service_type_OTHER": "Inne",
-  "otrs_service_type_dedicated_cloud": "Private Cloud",
+  "otrs_service_type_dedicated_cloud": "Hosted Private Cloud",
   "otrs_service_type_cloud": "Public Cloud",
   "otrs_service_type_telephony": "Telefonia",
   "otrs_service_type_telephony_fax": "Faks",
