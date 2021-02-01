@@ -10,6 +10,7 @@ const moduleName = 'ovhManagerDbaasLogsDetailStreamsAlertsEdit';
 
 angular
   .module(moduleName, ['pascalprecht.translate', 'ui.router', add])
-  .config(routing);
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
