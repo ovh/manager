@@ -20,6 +20,7 @@ angular
         },
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant('telecom_orders_follow_up_title'),
+        hideBreadcrumb: () => true,
       },
     });
   })
