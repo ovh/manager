@@ -1,3 +1,12 @@
+## [1.0.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.0.7...@ovh-ux/manager-iplb@1.0.8) (2021-02-01)
+
+
+### Bug Fixes
+
+* **frontends.edit:** remove allowedSource on UDP frontends requests ([#4361](https://github.com/ovh/manager/issues/4361)) ([d68553e](https://github.com/ovh/manager/commit/d68553e00db60d9b1b966c410fc906c25d6e2e16))
+
+
+
 ## [1.0.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.0.6...@ovh-ux/manager-iplb@1.0.7) (2021-01-27)
 
 
