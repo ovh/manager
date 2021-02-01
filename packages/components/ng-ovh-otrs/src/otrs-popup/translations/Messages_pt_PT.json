@@ -57,7 +57,7 @@
   "otrs_service_type_hosting_web": "Alojamento Web",
   "otrs_service_type_hubic": "hubiC",
   "otrs_service_type_OTHER": "Outro",
-  "otrs_service_type_dedicated_cloud": "Private Cloud",
+  "otrs_service_type_dedicated_cloud": "Hosted Private Cloud",
   "otrs_service_type_cloud": "Public Cloud",
   "otrs_service_type_telephony": "Serviço Telefónico",
   "otrs_service_type_telephony_fax": "Fax",

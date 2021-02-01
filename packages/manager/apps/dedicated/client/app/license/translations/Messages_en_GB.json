@@ -654,7 +654,7 @@
   "license_order_filter_block_type_all": "All",
   "license_order_filter_block_type_DEDICATED": "Dedicated",
   "license_order_filter_block_type_FAILOVER": "Failover",
-  "license_order_filter_block_type_PCC": "Private Cloud",
+  "license_order_filter_block_type_PCC": "Hosted Private Cloud",
   "license_order_filter_block_type_VPS": "VPS",
   "license_order_filter_block_type_VRACK": "vRack",
   "license_order_filter_block_search": "Search:",
