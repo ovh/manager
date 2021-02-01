@@ -1,5 +1,0 @@
-{
-  "pci_project_new_payment_default_title": "Your payment method",
-  "pci_project_new_payment_default_explain": "This payment method below will be used to pay for your Public Cloud project resource usage. If you do not use any resources, you will not be debited and nothing will be withdrawn. To change it, go to <a href=\"{{ paymentMehodSection }}\">\"My payment methods\"</a> in the <a href=\"{{ myAccountSection }}\">\"My account\"</a> section.",
-  "pci_project_new_payment_default_method": "Default payment method"
-}

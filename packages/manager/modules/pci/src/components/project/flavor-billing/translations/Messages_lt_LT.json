@@ -1,6 +1,0 @@
-{
- "pci_project_flavors_billing_hourly": "Hourly ",
- "pci_project_flavors_billing_monthly": "Monthly",
- "pci_project_flavors_billing_price_hourly": "{{price}} excl. VAT/hour",
- "pci_project_flavors_billing_price_monthly": "{{price}} excl. VAT/month"
-}
