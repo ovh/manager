@@ -134,6 +134,7 @@ export default class IpLoadBalancerFrontendsEditCtrl {
       case 'udp':
         this.type = 'udp';
         delete this.frontend.port;
+        delete this.frontend.allowedSource;
         this.frontend.ssl = false;
         break;
       case 'tls':
@@ -228,7 +229,7 @@ export default class IpLoadBalancerFrontendsEditCtrl {
         break;
     }
 
-    if (has(frontend, 'allowedSource.length')) {
+    if (this.type !== 'udp' && has(frontend, 'allowedSource.length')) {
       set(frontend, 'allowedSource', frontend.allowedSource.join(', '));
     }
 
@@ -265,6 +266,9 @@ export default class IpLoadBalancerFrontendsEditCtrl {
       );
     } else {
       request.allowedSource = [];
+    }
+    if (this.type === 'udp') {
+      delete request.allowedSource;
     }
 
     delete request.protocol;
