@@ -6,6 +6,7 @@ const moduleName = 'ovhManagerDedicatedServerServers';
 angular
   .module(moduleName, [])
   .component('dedicatedServerServers', component)
-  .config(routing);
+  .config(routing)
+  .run(/* @ngTranslationsInject ./translations ./details/translations */);
 
 export default moduleName;

@@ -6,7 +6,6 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(name, {
     url: '?page&pageSize&sort&sortOrder&filter',
     component: 'dedicatedServerServers',
-    translations: { value: ['.', '../'], format: 'json' },
     params: {
       page: {
         value: '1',
