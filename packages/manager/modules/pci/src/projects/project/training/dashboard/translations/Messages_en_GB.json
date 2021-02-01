@@ -16,7 +16,7 @@
   "pci_projects_project_training_dashboard_active_jobs": "Active jobs",
   "pci_projects_project_training_dashboard_active_users": "AI Training users",
   "pci_projects_project_training_dashboard_users_managements": "User management",
-  "pci_projects_project_training_dashboard_jobs_list_none": "You have no jobs in progress right now",
+  "pci_projects_project_training_dashboard_jobs_list_none": "You have no jobs running right now",
   "pci_projects_project_training_dashboard_users_list_name": "Name",
   "pci_projects_project_training_dashboard_users_list_description": "Description",
   "pci_projects_project_training_dashboard_users_list_none": "You have not created any users with the role \"AI Training Operator\" and \"ObjectStore Operator\"",
