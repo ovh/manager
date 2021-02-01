@@ -19,6 +19,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     resolve: {
+      hideBreadcrumb: () => true,
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('otrs_title'),
     },

@@ -42,6 +42,7 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
         onListParamsChange: /* @ngInject */ ($state) => (params) =>
           $state.go('app.account.billing.main.history', params),
         breadcrumb: () => null,
+        hideBreadcrumb: () => true,
       },
     });
   } else {
