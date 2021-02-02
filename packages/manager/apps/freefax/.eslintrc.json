@@ -1,0 +1,6 @@
+{
+  "globals": {
+    "__VERSION__": true,
+    "moment": true
+  }
+}

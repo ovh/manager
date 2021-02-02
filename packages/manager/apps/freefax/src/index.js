@@ -6,10 +6,11 @@ import angular from 'angular';
 
 import { attach as attachPreloader } from '@ovh-ux/manager-preloader';
 import registerApplication from '@ovh-ux/ufrontend/application';
-
 import { Environment } from '@ovh-ux/manager-config';
 
 attachPreloader(Environment.getUserLanguage());
+
+Environment.setVersion(__VERSION__);
 
 registerApplication('freefax').then(({ region }) => {
   import(`./config-${region}`)
