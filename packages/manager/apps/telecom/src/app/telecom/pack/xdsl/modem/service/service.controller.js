@@ -1,3 +1,5 @@
+import { SERVICE_STATUS } from './service.constants';
+
 export default class XdslModemServiceCtrl {
   /* @ngInject */
   constructor(
@@ -33,7 +35,7 @@ export default class XdslModemServiceCtrl {
       })
       .$promise.then(({ data }) => {
         blocIP.isDefined = true;
-        blocIP.value = data === 'enabled';
+        blocIP.value = data === SERVICE_STATUS.enabled;
         return data;
       })
       .finally(() => {
@@ -86,7 +88,7 @@ export default class XdslModemServiceCtrl {
       })
       .$promise.then(({ data }) => {
         callWaiting.isDefined = true;
-        callWaiting.value = data === 'enabled';
+        callWaiting.value = data === SERVICE_STATUS.enabled;
         return data;
       })
       .finally(() => {
@@ -138,7 +140,7 @@ export default class XdslModemServiceCtrl {
         xdslId: this.$stateParams.serviceName,
       })
       .$promise.then(({ data }) => {
-        contentSharing.value = data === 'enabled';
+        contentSharing.value = data === SERVICE_STATUS.enabled;
         contentSharing.isDefined = true;
         return data;
       })
@@ -205,7 +207,7 @@ export default class XdslModemServiceCtrl {
         xdslId: this.$stateParams.serviceName,
       })
       .$promise.then(({ data }) => {
-        ftp.value = data === 'enabled';
+        ftp.value = data === SERVICE_STATUS.enabled;
         ftp.isDefined = true;
         return data;
       })
@@ -256,7 +258,7 @@ export default class XdslModemServiceCtrl {
         xdslId: this.$stateParams.serviceName,
       })
       .$promise.then(({ data }) => {
-        ipsecAlg.value = data === 'enabled';
+        ipsecAlg.value = data === SERVICE_STATUS.enabled;
         ipsecAlg.isDefined = true;
         return data;
       })
@@ -309,7 +311,7 @@ export default class XdslModemServiceCtrl {
         xdslId: this.$stateParams.serviceName,
       })
       .$promise.then(({ data }) => {
-        sipAlg.value = data === 'enabled';
+        sipAlg.value = data === SERVICE_STATUS.enabled;
         sipAlg.isDefined = true;
         return data;
       })
@@ -362,7 +364,7 @@ export default class XdslModemServiceCtrl {
         xdslId: this.$stateParams.serviceName,
       })
       .$promise.then(({ data }) => {
-        upnp.value = data === 'enabled';
+        upnp.value = data === SERVICE_STATUS.enabled;
         upnp.isDefined = true;
         return data;
       })
@@ -407,10 +409,14 @@ export default class XdslModemServiceCtrl {
   changeValue(name, value) {
     switch (name) {
       case 'blocIP':
-        this.updateBlocIp(value ? 'enabled' : 'disabled');
+        this.updateBlocIp(
+          value ? SERVICE_STATUS.enabled : SERVICE_STATUS.disabled,
+        );
         break;
       case 'callWaiting':
-        this.updateCallWaiting(value ? 'enabled' : 'disabled');
+        this.updateCallWaiting(
+          value ? SERVICE_STATUS.enabled : SERVICE_STATUS.disabled,
+        );
         break;
       case 'contentSharing':
         this.$uibModal
@@ -429,22 +435,32 @@ export default class XdslModemServiceCtrl {
                 break;
               }
               default:
-                this.updateContentSharing(value ? 'enabled' : 'disabled');
+                this.updateContentSharing(
+                  value ? SERVICE_STATUS.enabled : SERVICE_STATUS.disabled,
+                );
                 break;
             }
           });
         break;
       case 'ftp':
-        this.updateFTP(value ? 'enabled' : 'disabled');
+        this.updateFTP(
+          value ? SERVICE_STATUS.enabled : SERVICE_STATUS.disabled,
+        );
         break;
       case 'ipsecAlg':
-        this.updateIpsecAlg(value ? 'enabled' : 'disabled');
+        this.updateIpsecAlg(
+          value ? SERVICE_STATUS.enabled : SERVICE_STATUS.disabled,
+        );
         break;
       case 'sipAlg':
-        this.updateSipAlg(value ? 'enabled' : 'disabled');
+        this.updateSipAlg(
+          value ? SERVICE_STATUS.enabled : SERVICE_STATUS.disabled,
+        );
         break;
       case 'upnp':
-        this.updateUPnP(value ? 'enabled' : 'disabled');
+        this.updateUPnP(
+          value ? SERVICE_STATUS.enabled : SERVICE_STATUS.disabled,
+        );
         break;
       default:
         break;
