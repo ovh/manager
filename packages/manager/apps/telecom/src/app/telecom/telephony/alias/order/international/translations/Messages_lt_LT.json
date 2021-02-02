@@ -1,6 +1,0 @@
-{
-  "telephony_order_international_title": "Užsakyti tarptautinį numerį",
-  "telephony_order_international_order_success": "Tarptautiniai numeriai užsakyti. Prašome patvirtinti pagrindinę sutartį ir užbaigt užsakymą.",
-  "telephony_order_international_order_error": "Klaida užsakant geografinius numerius. Prašome pabandyti vėliau.",
-  "telephony_order_international_countries_error": "Negalima gauti šalių sąrašo."
-}

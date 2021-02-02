@@ -1,4 +1,0 @@
-{
-  "ovh_payment_method_register_force_as_default": "This payment method will be used for your product's automatic payments. You can change it at any time via your payment methods. You will receive an email notification before each renewal date.",
-  "ovh_payment_method_register_set_as_default_choice": "I want to choose this as my default payment method as soon as it is validated."
-}

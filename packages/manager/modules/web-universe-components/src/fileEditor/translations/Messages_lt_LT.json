@@ -1,7 +1,0 @@
-{
-  "file_editor_common_add": "Pridėti",
-  "file_editor_common_delete_all": "Pašalinti viską",
-  "file_editor_common_go_to_next_error": "Pereiti prie kitos klaidos",
-  "file_editor_mailing_list_common_addr_errors_1": "<strong>1</strong> klaidingas adresas",
-  "file_editor_mailing_list_common_addr_errors_other": "Klaidingų adresų: <strong>{{t0}}</strong>"
-}

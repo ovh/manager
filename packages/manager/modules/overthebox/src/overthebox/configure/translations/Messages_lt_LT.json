@@ -1,6 +1,0 @@
-{
- "overthebox_configure_reset": "You have restarted your OverTheBox",
- "overthebox_configure_order": "You have received your OverTheBox",
- "overthebox_configure_reset_explaination": "Your device has changed ID. Go to \"Device > Device ID\" and attach the new ID to an existing service:",
- "overthebox_configure_order_explaination": "You have just got a new device. You now have to <a href=\"{{hash}}\">subscribe to a new service</a>."
-}

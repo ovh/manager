@@ -39,7 +39,7 @@
     "@ovh-ux/component-rollup-config": "^8.0.0 || ^9.0.0"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-config": "^2.0.0 || ^3.0.0",
+    "@ovh-ux/manager-config": "^3.0.0 || ^4.0.0",
     "@ovh-ux/manager-core": "^11.0.0 || ^12.0.0",
     "@ovh-ux/ng-at-internet": "^5.4.1",
     "angular": "^1.7.8",
