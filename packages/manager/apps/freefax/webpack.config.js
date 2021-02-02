@@ -1,6 +1,7 @@
 const merge = require('webpack-merge');
 const path = require('path');
 const webpackConfig = require('@ovh-ux/manager-webpack-config');
+const webpack = require('webpack'); // eslint-disable-line
 
 module.exports = (env = {}) => {
   const { config } = webpackConfig(
@@ -22,5 +23,11 @@ module.exports = (env = {}) => {
       ],
       mainFields: ['module', 'browser', 'main'],
     },
+    plugins: [
+      new webpack.ContextReplacementPlugin(
+        /moment[/\\]locale$/,
+        /cs|de|en-gb|es|es-us|fi|fr-ca|fr|it|lt|pl|pt/,
+      ),
+    ],
   });
 };
