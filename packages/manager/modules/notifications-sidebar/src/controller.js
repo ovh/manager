@@ -9,24 +9,20 @@ export default class NotificationsCtrl {
   constructor(
     $document,
     $element,
-    $q,
     $timeout,
     $rootScope,
     $translate,
     atInternet,
     NavbarNotifications,
-    ovhManagerNavbarMenuHeaderBuilder,
     ouiNavbarConfiguration,
   ) {
     this.$document = $document;
     this.$element = $element;
-    this.$q = $q;
     this.$timeout = $timeout;
     this.$rootScope = $rootScope;
     this.$translate = $translate;
     this.atInternet = atInternet;
     this.toggle = false;
-    this.NavbarBuilder = ovhManagerNavbarMenuHeaderBuilder;
     this.NavbarNotifications = NavbarNotifications;
     this.translations = ouiNavbarConfiguration.translations;
 
@@ -81,15 +77,9 @@ export default class NotificationsCtrl {
 
     return this.$translate
       .refresh()
-      .then(() =>
-        this.$q.all({
-          menuTitle: this.getMenuTitle(),
-          sublinks: this.getSublinks(),
-        }),
-      )
-      .then(({ menuTitle, sublinks }) => {
+      .then(() => this.getSublinks())
+      .then((sublinks) => {
         this.NavbarNotifications.setRefreshTime(sublinks);
-        this.menuTitle = menuTitle;
         if (sublinks.length > MAX_NOTIFICATIONS) {
           this.sublinks = sublinks.slice(0, MAX_NOTIFICATIONS);
         } else {
@@ -139,12 +129,6 @@ export default class NotificationsCtrl {
         );
         return notification;
       },
-    );
-  }
-
-  getMenuTitle() {
-    return this.NavbarBuilder.buildMenuHeader(
-      this.$translate.instant('navbar_notification_title'),
     );
   }
 
