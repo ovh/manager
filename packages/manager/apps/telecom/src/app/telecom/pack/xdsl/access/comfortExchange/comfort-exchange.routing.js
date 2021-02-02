@@ -7,6 +7,8 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       xdslId: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceName,
+      packName: /* @ngInject */ ($transition$) =>
+        $transition$.params().packName,
       openedRMAs: /* @ngInject */ (XdslAccessComfortExchangeService, xdslId) =>
         XdslAccessComfortExchangeService.getOpenedRMAs(xdslId),
       breadcrumb: /* @ngInject */ ($translate) =>

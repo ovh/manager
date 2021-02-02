@@ -74,22 +74,42 @@
                     data-translate="xdsl_access_comfort_exchange_warning_part2"
                 ></p>
             </oui-message>
-            <div
-                class="mb-2"
-                data-translate="xdsl_access_comfort_exchange_confirm_title"
-            ></div>
-            <div
-                class="mb-2"
-                data-translate="xdsl_access_comfort_exchange_confirm_subtitle"
-            ></div>
+            <!-- CONTACT CHOICE -->
+            <div class="contact-choice col-xs-12 col-md-6">
+                <h3
+                    data-translate="xdsl_access_comfort_exchange_shipping_contact"
+                    class="mb-3"
+                ></h3>
 
-            <oui-button
-                data-variant="primary"
-                data-ng-disabled="$ctrl.isAvailable"
-                data-ng-click="$ctrl.comfortExchange()"
-            >
-                <span data-translate="xdsl_modem_exchange"></span>
-            </oui-button>
+                <ovh-contact
+                    data-ng-model="$ctrl.shipping"
+                    data-ovh-contact-choice-options="$ctrl.ovhContactOptions"
+                >
+                    <div class="text-center">
+                        <oui-spinner></oui-spinner>
+                    </div>
+                </ovh-contact>
+            </div>
+            <!-- CONTACT CHOICE -->
+
+            <div class="col-md-8 mt-2 mb-3">
+                <div
+                    class="mb-2"
+                    data-translate="xdsl_access_comfort_exchange_confirm_title"
+                ></div>
+                <div
+                    class="mb-2"
+                    data-translate="xdsl_access_comfort_exchange_confirm_subtitle"
+                ></div>
+
+                <oui-button
+                    data-variant="primary"
+                    data-ng-disabled="$ctrl.isAvailable"
+                    data-ng-click="$ctrl.comfortExchange()"
+                >
+                    <span data-translate="xdsl_modem_exchange"></span>
+                </oui-button>
+            </div>
         </div>
 
         <div data-ng-if="$ctrl.exchange.isSuccess">
