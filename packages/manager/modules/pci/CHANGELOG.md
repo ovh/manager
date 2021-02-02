@@ -1,3 +1,12 @@
+## [5.8.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.8.1...@ovh-ux/manager-pci@5.8.2) (2021-02-02)
+
+
+### Bug Fixes
+
+* bump semver range for @ovh-ux/manager-config package ([ca04d19](https://github.com/ovh/manager/commit/ca04d19b7a038544f1b5e3b211d0a1c3b70a0d5b))
+
+
+
 ## [5.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.8.0...@ovh-ux/manager-pci@5.8.1) (2021-01-27)
 
 

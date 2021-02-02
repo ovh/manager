@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-web",
-  "version": "15.15.1",
+  "version": "15.15.2",
   "private": true,
   "description": "OVHcloud Web control panel.",
   "repository": {
@@ -48,7 +48,7 @@
     "@ovh-ux/ng-ovh-feature-flipping": "^1.0.2",
     "@ovh-ux/ng-ovh-form-flat": "^5.0.1",
     "@ovh-ux/ng-ovh-http": "^5.0.1",
-    "@ovh-ux/ng-ovh-payment-method": "^7.0.9",
+    "@ovh-ux/ng-ovh-payment-method": "^7.0.10",
     "@ovh-ux/ng-ovh-proxy-request": "^2.0.1",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.0",
     "@ovh-ux/ng-ovh-responsive-popover": "^5.0.3",
