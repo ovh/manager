@@ -1,8 +1,0 @@
-{
-  "telephony_service_consumption_outgoing_all": "Visi išeinantys skambučiai",
-  "telephony_service_consumption_outgoing_empty": "Jokio išeinančio skambučio.",
-  "telephony_service_consumption_outgoing_not_found": "Joks skambutis neatitinka šio filtro.",
-  "telephony_service_consumption_outgoing_period": "Periodas nuo <strong>{{ start }}</strong> iki <strong>{{ end }}</strong>",
-  "telephony_service_consumption_outgoing_priceplan": "Abonementas: skambutis(-čiai): <strong>{{ calls }}</strong>, trukmė: <strong>{{ duration }}</strong>",
-  "telephony_service_consumption_outgoing_outplan": "Už papildomą kainą: skambutis(-čiai): <strong>{{ calls }}</strong>, trukmė: <strong>{{ duration }}</strong>, kaina: <strong>{{ price }}</strong> be PVM"
-}

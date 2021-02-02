@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-metrics",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "OVHcloud Metrics product",
   "repository": {
@@ -17,7 +17,7 @@
     "moment": "^2.24.0"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-config": "^2.0.0 || ^3.0.0",
+    "@ovh-ux/manager-config": "^3.0.0 || ^4.0.0",
     "@ovh-ux/manager-core": "^11.0.0 || ^12.0.0",
     "@ovh-ux/manager-server-sidebar": "^2.0.0 || ^3.0.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.0",

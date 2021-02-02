@@ -1,3 +1,12 @@
+## [1.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs-app@1.3.3...@ovh-ux/manager-dbaas-logs-app@1.3.4) (2021-02-02)
+
+
+### Bug Fixes
+
+* bump semver range for @ovh-ux/manager-config package ([ca04d19](https://github.com/ovh/manager/commit/ca04d19b7a038544f1b5e3b211d0a1c3b70a0d5b))
+
+
+
 ## [1.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs-app@1.3.2...@ovh-ux/manager-dbaas-logs-app@1.3.3) (2021-01-04)
 
 

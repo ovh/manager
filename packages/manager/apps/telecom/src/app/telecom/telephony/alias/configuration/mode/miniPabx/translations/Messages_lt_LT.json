@@ -1,9 +1,0 @@
-{
-  "telephony_alias_configuration_mode_mini_pabx_queue_size": "Didžiausias eilėje laukiančių skambučių kiekis",
-  "telephony_alias_configuration_mode_mini_pabx_queue_size_info": "<strong>Maksimalus skambinančių skaičius eilėje</strong>: Maksimalus skambučių kiekis laukimo eilėje.",
-  "telephony_alias_configuration_mode_mini_pabx_on_hold_timer": "Durée maximum d'attente dans la file",
-  "telephony_alias_configuration_mode_mini_pabx_on_hold_timer_info": "<strong>Maksimali laukimo trukmė eilėje</strong>: Maksimali trukmė, kiek skambutis laikomas laukimo eilėje.",
-  "telephony_alias_configuration_mode_mini_pabx_loading_error": "Une erreur est survenue lors du chargement des options de votre miniPabx.",
-  "telephony_alias_configuration_mode_mini_pabx_save_success": "Les modifications apportées à votre miniPabx ont été appliquées avec succès.",
-  "telephony_alias_configuration_mode_mini_pabx_save_error": "Oups ! Une erreur est survenue lors de la modification des options de votre miniPabx."
-}

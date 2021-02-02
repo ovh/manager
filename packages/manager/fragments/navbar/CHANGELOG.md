@@ -1,3 +1,12 @@
+## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-fragment-navbar@1.1.0...@ovh-ux/manager-fragment-navbar@1.1.1) (2021-02-02)
+
+
+### Bug Fixes
+
+* bump semver range for @ovh-ux/manager-config package ([ca04d19](https://github.com/ovh/manager/commit/ca04d19b7a038544f1b5e3b211d0a1c3b70a0d5b))
+
+
+
 # [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-fragment-navbar@1.0.1...@ovh-ux/manager-fragment-navbar@1.1.0) (2021-01-13)
 
 
