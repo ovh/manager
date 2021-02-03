@@ -11,6 +11,7 @@ import uiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import ovhManagerFreeFax from '@ovh-ux/manager-freefax';
 import managerNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 import managerAccountSidebar from '@ovh-ux/manager-account-sidebar';
+import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import { Environment } from '@ovh-ux/manager-config';
 
@@ -28,9 +29,17 @@ angular
     uiRouterBreadcrumb,
     managerNotificationsSidebar,
     managerAccountSidebar,
+    ngOvhFeatureFlipping,
     ...get(__NG_APP_INJECTIONS__, Environment.getRegion(), []),
   ])
   .controller('FreefaxAppController', controller)
+  .config(
+    /* @ngInject */ (ovhFeatureFlippingProvider) => {
+      ovhFeatureFlippingProvider.setApplicationName(
+        Environment.getApplicationName(),
+      );
+    },
+  )
   .config(
     /* @ngInject */ ($locationProvider) => $locationProvider.hashPrefix(''),
   )

@@ -3,13 +3,17 @@ import { Environment } from '@ovh-ux/manager-config';
 
 export default class FreefaxAppController {
   /* @ngInject */
-  constructor($timeout, $rootScope) {
+  constructor($timeout, $scope, $rootScope, ovhFeatureFlipping) {
+    this.$scope = $scope;
     this.$rootScope = $rootScope;
     this.$timeout = $timeout;
+    this.ovhFeatureFlipping = ovhFeatureFlipping;
   }
 
   $onInit() {
+    this.chatbotEnabled = false;
     this.user = Environment.getUser();
+    this.currentLanguage = Environment.getUserLanguage();
     emit({ id: 'ovh.account-sidebar.ready' });
 
     this.$rootScope.$on('ovh::notifications::count', (event, count) => {
@@ -30,6 +34,24 @@ export default class FreefaxAppController {
           this.$rootScope.$broadcast(eventName);
         }, 0);
       }
+    });
+
+    const unregisterListener = this.$scope.$on('app:started', () => {
+      const CHATBOT_FEATURE = 'chatbot';
+      this.ovhFeatureFlipping
+        .checkFeatureAvailability(CHATBOT_FEATURE)
+        .then((featureAvailability) => {
+          this.chatbotEnabled = featureAvailability.isFeatureAvailable(
+            CHATBOT_FEATURE,
+          );
+          if (this.chatbotEnabled) {
+            this.$rootScope.$broadcast(
+              'ovh-chatbot:enable',
+              this.chatbotEnabled,
+            );
+          }
+        });
+      unregisterListener();
     });
   }
 }
