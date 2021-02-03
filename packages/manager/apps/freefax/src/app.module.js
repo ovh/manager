@@ -10,10 +10,13 @@ import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
 import uiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import ovhManagerFreeFax from '@ovh-ux/manager-freefax';
 import managerNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
+import managerAccountSidebar from '@ovh-ux/manager-account-sidebar';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import { Environment } from '@ovh-ux/manager-config';
 
 import controller from './controller';
+
+import './index.scss';
 
 const moduleName = 'freefaxApp';
 
@@ -24,6 +27,7 @@ angular
     ovhManagerFreeFax,
     uiRouterBreadcrumb,
     managerNotificationsSidebar,
+    managerAccountSidebar,
     ...get(__NG_APP_INJECTIONS__, Environment.getRegion(), []),
   ])
   .controller('FreefaxAppController', controller)
