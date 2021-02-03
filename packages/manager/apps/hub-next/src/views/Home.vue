@@ -2,7 +2,9 @@
   <div class="container">
     <suspense>
       <template #default>
-        <hub></hub>
+        <keep-alive>
+          <hub></hub>
+        </keep-alive>
       </template>
       <template #fallback>
         <div>Loading...</div>

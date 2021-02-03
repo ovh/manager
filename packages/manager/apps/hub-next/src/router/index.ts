@@ -6,6 +6,12 @@ const routes: Array<RouteRecordRaw> = [
     path: '/',
     name: 'Home',
     component: Home,
+    children: [
+      {
+        path: 'payment-status-tile',
+        component: () => import('@/components/ui/Tile'),
+      },
+    ],
   },
   {
     path: '/about',

@@ -14,7 +14,7 @@ export interface HubResponseData {
   debt: StatusObject<Debt>;
   lastOrder: StatusObject<LastOrder>;
   me: StatusObject<User>;
-  notifications: StatusObject<Notifications>;
+  notifications: StatusObject<OvhNotification>;
   paymentMethods: StatusObject<{}>;
   services: StatusObject<Services>;
   support: StatusObject<SupportObject>;
@@ -34,10 +34,10 @@ export interface Auth {
 
 export interface SupportObject {
   count: number;
-  data: Support[];
+  data: SupportDemand[];
 }
 
-export interface Support {
+export interface SupportDemand {
   subject: string;
   serviceName: string;
   state: string;
@@ -45,11 +45,11 @@ export interface Support {
 }
 
 export interface BillingServicesObject {
-  data: BillingServices[];
+  data: BillingService[];
   count: number;
 }
 
-export interface BillingServices {
+export interface BillingService {
   canDeleteAtExpiration: boolean;
   contactAdmin: string;
   contactBilling: string;
@@ -169,7 +169,7 @@ export interface User {
   currency: Currency;
 }
 
-export interface Notifications {
+export interface OvhNotification {
   id: string;
   date: string;
   description: string;
@@ -187,53 +187,53 @@ export interface URLDetails {
 
 export interface Services {
   count: number;
-  data: LicensesObject[];
+  data: Products;
 }
 
 // TODO: Not satisfied with this generation, come back to it
-export interface Licenses {
-  CLOUD_PROJECT: LicensesObject;
-  LICENSE_OFFICE: LicensesObject;
-  TELEPHONY: LicensesObject;
-  IP_SERVICE: LicensesObject;
-  EMAIL_EXCHANGE_SERVICE: LicensesObject;
-  VPS: LicensesObject;
-  DEDICATED_SERVER: LicensesObject;
-  HOSTING_PRIVATE_DATABASE: LicensesObject;
-  DOMAIN: LicensesObject;
-  EMAIL_DOMAIN: LicensesObject;
-  VRACK: LicensesObject;
-  HOSTING_WEB: LicensesObject;
-  SMS: LicensesObject;
-  DOMAIN_ZONE: LicensesObject;
-  DEDICATED_HOUSING: LicensesObject;
-  METRICS: LicensesObject;
-  FREEFAX: LicensesObject;
-  MS_SERVICES_SHAREPOINT: LicensesObject;
-  CDN_DEDICATED: LicensesObject;
-  DBAAS_LOGS: LicensesObject;
-  EMAIL_PRO: LicensesObject;
-  VEEAM_CLOUD_CONNECT: LicensesObject;
-  PACK_XDSL: LicensesObject;
-  IP_LOADBALANCING: LicensesObject;
-  LICENSE_WINDOWS: LicensesObject;
-  VEEAM_VEEAM_ENTERPRISE: LicensesObject;
-  DEDICATED_CEPH: LicensesObject;
-  LICENSE_PLESK: LicensesObject;
-  DEDICATED_NASHA: LicensesObject;
-  LICENSE_CPANEL: LicensesObject;
-  LICENSE_SQLSERVER: LicensesObject;
-  LICENSE_WORKLIGHT: LicensesObject;
-  XDSL: LicensesObject;
-  OVH_CLOUD_CONNECT: LicensesObject;
-  CLOUD_DB_ENTERPRISE_CLUSTER: LicensesObject;
-  DEDICATED_CLOUD: LicensesObject;
-  ESSENTIALS: LicensesObject;
+export interface Products {
+  CLOUD_PROJECT: Service;
+  LICENSE_OFFICE: Service;
+  TELEPHONY: Service;
+  IP_SERVICE: Service;
+  EMAIL_EXCHANGE_SERVICE: Service;
+  VPS: Service;
+  DEDICATED_SERVER: Service;
+  HOSTING_PRIVATE_DATABASE: Service;
+  DOMAIN: Service;
+  EMAIL_DOMAIN: Service;
+  VRACK: Service;
+  HOSTING_WEB: Service;
+  SMS: Service;
+  DOMAIN_ZONE: Service;
+  DEDICATED_HOUSING: Service;
+  METRICS: Service;
+  FREEFAX: Service;
+  MS_SERVICES_SHAREPOINT: Service;
+  CDN_DEDICATED: Service;
+  DBAAS_LOGS: Service;
+  EMAIL_PRO: Service;
+  VEEAM_CLOUD_CONNECT: Service;
+  PACK_XDSL: Service;
+  IP_LOADBALANCING: Service;
+  LICENSE_WINDOWS: Service;
+  VEEAM_VEEAM_ENTERPRISE: Service;
+  DEDICATED_CEPH: Service;
+  LICENSE_PLESK: Service;
+  DEDICATED_NASHA: Service;
+  LICENSE_CPANEL: Service;
+  LICENSE_SQLSERVER: Service;
+  LICENSE_WORKLIGHT: Service;
+  XDSL: Service;
+  OVH_CLOUD_CONNECT: Service;
+  CLOUD_DB_ENTERPRISE_CLUSTER: Service;
+  DEDICATED_CLOUD: Service;
+  ESSENTIALS: Service;
 }
 
-export interface LicensesObject {
+export interface Service {
   count: number;
-  data: LicensesData[];
+  data: ProductsData[];
 }
 
 export enum LicensePropertyIDsEnum {
@@ -291,7 +291,7 @@ export enum Eu {
   Web = 'web',
 }
 
-export interface LicensesData {
+export interface ProductsData {
   resource: Resource;
   route: Route;
   serviceId: number;

@@ -1,87 +1,33 @@
 <template>
   <div class="hub-dashboard-content">
+    <hub-section :title="t('manager_hub_dashboard_welcome', { name: user.firstname })">
+      <template #content>
+        <div class="d-flex flex-wrap w-100 minw-0 align-items-center justify-content-between">
+          <div class="ovh-manager-hub-carousel w-100">
+            <!-- TODO : Create carousel component -->
+            <div class="oui-message oui-message_error">
+              <span class="oui-message__icon oui-icon oui-icon-warning"></span>
+              <span
+                v-for="notification in warningNotifications.splice(0, 1)"
+                :key="notification.id"
+                v-html="notification.description"
+                class="oui-message__body"
+              >
+              </span>
+            </div>
+          </div>
+        </div>
+      </template>
+    </hub-section>
     <hub-section :title="t('manager_hub_dashboard_overview')">
       <!-- TODO: refactor into proper business components  -->
       <template #content>
-        <tile
-          class="col-md-8 mb-3 mb-md-4"
-          :title="t('ovh_manager_hub_payment_status_tile_title')"
-          :count="billingServices.data.length"
-        >
-          <template #body>
-            <table>
-              <tr v-for="billingService in billingServices.data" :key="billingService.id">
-                <td>
-                  <a href="">{{ billingService.domain }}</a>
-                  <div>{{ t(`manager_hub_products_${billingService.serviceType}`) }}</div>
-                </td>
-                <td></td>
-                <td></td>
-              </tr>
-            </table>
-          </template>
-        </tile>
-        <tile
-          class="col-md-4 mb-3 mb-md-4 order-3 order-md-2"
-          :title="t('hub_billing_summary_title')"
-        >
-          <template #body>
-            <span>TextToFill</span>
-          </template>
-        </tile>
-        <tile
-          class="col-md-8 mb-3 mb-md-4 order-2 order-md-3"
-          :title="t('hub_support_title')"
-          :count="support.data.length"
-        >
-          <template #body>
-            <div class="oui-table-responsive">
-              <table class="oui-table">
-                <tr class="oui-table__row" v-for="ticket in support.data" :key="ticket.ticketId">
-                  <td class="oui-table__cell">
-                    {{
-                      ticket?.serviceName
-                        ? ticket?.serviceName.toUpperCase()
-                        : t('hub_support_account_management')
-                    }}
-                  </td>
-                  <td class="oui-table__cell">{{ ticket.subject }}</td>
-                  <td class="oui-table__cell">{{ t(`hub_support_state_${ticket.state}`) }}</td>
-                  <td class="oui-table__cell"></td>
-                </tr>
-              </table>
-            </div>
-          </template>
-        </tile>
-        <tile class="col-md-4 order-4" :title="t('hub_order_tracking_title')">
-          <template #body>
-            <span>N° {{ lastOrder.orderId }}</span>
-            <b></b>
-          </template>
-        </tile>
+        <activity></activity>
       </template>
     </hub-section>
     <hub-section :title="t('manager_hub_dashboard_services')">
       <template #content>
-        <tile
-          v-for="(service, name) in services.data"
-          :key="name"
-          class="col-md-6 col-lg-4 mb-2 mb-md-4 oui-list"
-          :title="t(`manager_hub_products_${name}`)"
-          :count="service.data.length"
-        >
-          <template #body>
-            <ul class="oui-list__items">
-              <li
-                v-for="details in service.data.slice(0, 4)"
-                class="oui-list__item"
-                :key="details.serviceId"
-              >
-                <a href="">{{ details.resource.displayName }}</a>
-              </li>
-            </ul>
-          </template>
-        </tile>
+        <products-list :max-items-per-product="4"></products-list>
       </template>
     </hub-section>
   </div>
@@ -91,11 +37,13 @@
 import { defineAsyncComponent, defineComponent } from 'vue';
 import { mapGetters, useStore } from 'vuex';
 import { useI18n } from 'vue-i18n';
+import { OvhNotification } from '@/models/hub.d';
 
 export default defineComponent({
   async setup() {
     const { locale, t } = useI18n();
     const store = useStore();
+
     await store.dispatch('fetchHubData');
     return {
       t,
@@ -105,23 +53,26 @@ export default defineComponent({
   },
   components: {
     HubSection: defineAsyncComponent(() => import('@/components/HubSection.vue')),
-    Tile: defineAsyncComponent(() => import('@/components/ui/Tile.vue')),
+    Activity: defineAsyncComponent(() => import('@/views/Activity.vue')),
+    ProductsList: defineAsyncComponent(() => import('@/views/ProductsList.vue')),
   },
   computed: {
     ...mapGetters({
       // 'getBills',
-      billingServices: 'getBillingServices',
       // 'getCatalog',
       // 'getCertificates',
       // 'getDebt',
-      lastOrder: 'getLastOrder',
-      // 'getUser',
-      // 'getNotifications',
+
+      user: 'getUser',
+      notifications: 'getNotifications',
       // 'getPaymentMethods',
-      services: 'getServices',
-      support: 'getSupport',
       // 'getSupportLevel',
     }),
+    warningNotifications(): OvhNotification[] {
+      return this.notifications.filter(
+        (notification: OvhNotification) => notification.level === 'warning',
+      );
+    },
   },
 });
 </script>
@@ -148,5 +99,55 @@ export default defineComponent({
 
 .hub-dashboard-product {
   margin-top: 2.5rem;
+}
+
+.ovh-manager-hub-carousel {
+  @import '@ovh-ux/ui-kit/dist/scss/_tokens';
+
+  .oui-message {
+    padding: 1rem 3rem;
+
+    &__next {
+      position: absolute;
+      top: 50%;
+      right: 0.5rem;
+      margin-top: -1rem;
+
+      .oui-icon {
+        font-size: 1.5rem;
+      }
+    }
+
+    &__bullets {
+      text-align: center;
+    }
+
+    &__body {
+      font-weight: 600;
+    }
+  }
+
+  a.oui-message__body {
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration-color: $ae-500;
+      color: $ae-500;
+    }
+  }
+
+  .circular-tile {
+    display: inline-block;
+    margin: 0.25rem;
+    border-radius: 0.625rem;
+    background-color: $p-000-white;
+    padding: 0.1875rem;
+    border: $ae-500;
+    cursor: pointer;
+
+    &_active {
+      background-color: $ae-500;
+    }
+  }
 }
 </style>
