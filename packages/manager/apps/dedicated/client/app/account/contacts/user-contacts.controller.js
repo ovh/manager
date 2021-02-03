@@ -1,25 +1,16 @@
 import get from 'lodash/get';
 import includes from 'lodash/includes';
 import { Environment } from '@ovh-ux/manager-config';
+import config from '../../config/config';
 
 export default class AccountUserContactsController {
   /* @ngInject */
-  constructor(
-    $location,
-    $q,
-    $scope,
-    $state,
-    $timeout,
-    AccountCreationURLS,
-    Alerter,
-    atInternet,
-  ) {
+  constructor($location, $q, $scope, $state, $timeout, Alerter, atInternet) {
     this.$location = $location;
     this.$q = $q;
     this.$scope = $scope;
     this.$state = $state;
     this.$timeout = $timeout;
-    this.AccountCreationURLS = AccountCreationURLS;
     this.Alerter = Alerter;
     this.atInternet = atInternet;
   }
@@ -63,8 +54,8 @@ export default class AccountUserContactsController {
     const subs = get(this.user, 'ovhSubsidiary', 'default');
     const languageSpecificSubs = '{$language}_{$subs}';
     const newNicUrl =
-      this.AccountCreationURLS[languageSpecificSubs] ||
-      this.AccountCreationURLS[subs];
+      config.constants.accountCreation[languageSpecificSubs] ||
+      config.constants.accountCreation[subs];
     return newNicUrl;
   }
 

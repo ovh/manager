@@ -5,10 +5,12 @@ import indexOf from 'lodash/indexOf';
 import isObject from 'lodash/isObject';
 import map from 'lodash/map';
 import startsWith from 'lodash/startsWith';
-
 import { LANGUAGES } from '@ovh-ux/manager-config';
+import config from '../new-account-form-component.constants';
 
-angular.module('ovhSignupApp').component('newAccountFormField', {
+import template from './new-account-form-field-component.html';
+
+export default {
   require: {
     newAccountForm: '^newAccountForm',
   },
@@ -16,14 +18,13 @@ angular.module('ovhSignupApp').component('newAccountFormField', {
     rule: '<', // api rule
     fieldset: '<', // parent form fieldset
   },
-  template: '<div data-ng-include="getTemplateUrl()"></div>',
+  template,
   controller: [
     '$filter',
     '$scope',
     '$timeout',
     '$translate',
     'atInternet',
-    'NewAccountFormConfig',
 
     function newAccountFormFieldController(
       $filter,
@@ -31,7 +32,6 @@ angular.module('ovhSignupApp').component('newAccountFormField', {
       $timeout,
       $translate,
       atInternet,
-      NewAccountFormConfig,
     ) {
       $scope.getTemplateUrl = () =>
         'account/user/components/newAccountForm/field/new-account-form-field-component.html';
@@ -50,7 +50,7 @@ angular.module('ovhSignupApp').component('newAccountFormField', {
         this.setInitialValue();
 
         // set default debounce value
-        this.debounce = NewAccountFormConfig.debounce;
+        this.debounce = config.debounce;
 
         // cache for enum translations
         this.translatedEnumCache = null;
@@ -80,7 +80,7 @@ angular.module('ovhSignupApp').component('newAccountFormField', {
               const rule = find(rules, { fieldName: 'phoneCountry' });
               this.phoneCountryList = map(get(rule, 'in'), (country) => ({
                 country,
-                prefix: NewAccountFormConfig.phonePrefix[country],
+                prefix: config.phonePrefix[country],
                 label: $translate.instant(`signup_enum_country_${country}`),
               }));
               this.phoneCountryList = $filter('orderBy')(
@@ -411,4 +411,4 @@ angular.module('ovhSignupApp').component('newAccountFormField', {
       };
     },
   ],
-});
+};

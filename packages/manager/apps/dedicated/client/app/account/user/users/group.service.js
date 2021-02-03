@@ -1,23 +1,20 @@
-angular.module('UserAccount').service(
-  'UseraccountGroupsService',
-  class UseraccountGroupsService {
-    constructor(OvhHttp) {
-      this.ovhHttp = OvhHttp;
-    }
+export default /* @ngInject */ class UseraccountGroupsService {
+  constructor(OvhHttp) {
+    this.ovhHttp = OvhHttp;
+  }
 
-    getGroups() {
-      return this.ovhHttp.get('/me/identity/group', {
-        rootPath: 'apiv6',
-      });
-    }
+  getGroups() {
+    return this.ovhHttp.get('/me/identity/group', {
+      rootPath: 'apiv6',
+    });
+  }
 
-    getGroup(group) {
-      return this.ovhHttp.get('/me/identity/group/{group}', {
-        rootPath: 'apiv6',
-        urlParams: {
-          group,
-        },
-      });
-    }
-  },
-);
+  getGroup(group) {
+    return this.ovhHttp.get('/me/identity/group/{group}', {
+      rootPath: 'apiv6',
+      urlParams: {
+        group,
+      },
+    });
+  }
+}

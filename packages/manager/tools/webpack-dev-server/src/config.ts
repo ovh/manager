@@ -36,7 +36,7 @@ export = (env) => {
     mode: 'development',
     plugins: [
       new DuplicatePackageCheckerPlugin(),
-      new FriendlyErrorsWebpackPlugin(),
+      //new FriendlyErrorsWebpackPlugin(),
     ],
     devServer: {
       before(app) {

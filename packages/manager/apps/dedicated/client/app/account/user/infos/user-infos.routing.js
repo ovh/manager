@@ -1,22 +1,20 @@
-angular
-  .module('UserAccount')
-  .config(
-    /* @ngInject */ ($stateProvider) => {
-      const name = 'app.account.user.infos';
+import controller from './user-infos.controller';
+import template from './user-infos.html';
 
-      $stateProvider.state(name, {
-        url: '/infos',
-        templateUrl: 'account/user/infos/user-infos.html',
-        controller: 'UserAccount.controllers.Infos',
-        translations: {
-          format: 'json',
-          value: ['../newAccountForm'],
-        },
-        resolve: {
-          breadcrumb: /* @ngInject */ ($translate) =>
-            $translate.instant('user_infos'),
-        },
-      });
+export default /* @ngInject */ ($stateProvider) => {
+  const name = 'app.account.user.infos';
+
+  $stateProvider.state(name, {
+    url: '/infos',
+    template,
+    controller,
+    translations: {
+      format: 'json',
+      value: ['../components/newAccountForm'],
     },
-  )
-  .run(/* @ngTranslationsInject:json ./translations */);
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('user_infos'),
+    },
+  });
+};

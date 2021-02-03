@@ -3,6 +3,7 @@ import dedicated from './add/dedicated/user-ssh-add-dedicated.html';
 import deleteTemplate from './delete/user-ssh-delete.html';
 
 import controller from './user-ssh.controller';
+import filter from './sshkeyMin';
 import routing from './ssh.routing';
 
 const moduleName = 'ovhManagerBillingSshKeys';
@@ -10,6 +11,7 @@ const moduleName = 'ovhManagerBillingSshKeys';
 angular
   .module(moduleName, ['ui.router'])
   .config(routing)
+  .filter('sshkeyMin', filter)
   .run(
     /* @ngInject */ ($templateCache) => {
       $templateCache.put(
