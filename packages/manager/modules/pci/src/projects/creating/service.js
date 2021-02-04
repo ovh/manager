@@ -2,7 +2,8 @@ import map from 'lodash/map';
 
 export default class ProjectCreation {
   /* @ngInject */
-  constructor(OvhApiMeOrder) {
+  constructor($http, OvhApiMeOrder) {
+    this.$http = $http;
     this.OvhApiMeOrder = OvhApiMeOrder;
   }
 
@@ -10,6 +11,11 @@ export default class ProjectCreation {
     return this.OvhApiMeOrder.v6().followUp({
       orderId,
     }).$promise;
+  }
+
+  getOrderItemDetails(orderId, orderDetailId) {
+    const url = `/me/order/${orderId}/details/${orderDetailId}/extension`;
+    return this.$http.get(url).then(({ data }) => data);
   }
 
   getOrderDetails(orderId) {
