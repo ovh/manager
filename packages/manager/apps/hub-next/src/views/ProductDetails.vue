@@ -13,8 +13,11 @@ export default defineComponent({
   setup() {
     const route = useRoute();
     const productDetails = ref([]);
+    const config = {
+      data: { serviceType: 'aapi' },
+    };
     if (route.query.productApiUrl) {
-      axios.get(`/engine/2api${route.query.productApiUrl.toString()}`).then((data) => {
+      axios.get(`/engine/apiv6${route.query.productApiUrl.toString()}`, config).then((data) => {
         console.log(data);
       });
     }
@@ -105,12 +108,7 @@ export default defineComponent({
   },
   computed: {
     dataRows(): any {
-      // TODO: replace with proper conversion when api is ready
-      return this.jsonMock.map((object) => [
-        object.name,
-        object.lastUpdate,
-        object.hasDnsAnycast.toString(),
-      ]);
+      return this.jsonMock.map((object) => Object.keys(object).map((key) => key.toString()));
     },
   },
 });
