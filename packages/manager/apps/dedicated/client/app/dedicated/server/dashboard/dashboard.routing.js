@@ -212,6 +212,7 @@ export default /* @ngInject */ ($stateProvider) => {
             data?.baremetalServers?.storage ? data?.baremetalServers : null,
           )
           .catch(() => null),
+      trackingPrefix: () => 'dedicated::server::dashboard',
       trafficInformations: /* @ngInject */ (
         $q,
         $stateParams,

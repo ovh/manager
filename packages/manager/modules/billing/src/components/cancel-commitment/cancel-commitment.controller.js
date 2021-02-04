@@ -9,10 +9,9 @@ export default class ServicesActionsCtrl {
   cancelCommitment() {
     this.isLoading = true;
 
-    // track action
-    if (this.confirmCancelTracking) {
+    if (this.trackingPrefix) {
       this.atInternet.trackClick({
-        name: this.confirmCancelTracking,
+        name: `${this.trackingPrefix}::cancel-commitment::confirm`,
         type: 'action',
       });
     }

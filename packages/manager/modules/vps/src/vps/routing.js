@@ -34,6 +34,7 @@ export default /* @ngInject */ ($stateProvider) => {
           ),
       defaultPaymentMethod: /* @ngInject */ (ovhPaymentMethod) =>
         ovhPaymentMethod.getDefaultPaymentMethod(),
+      engagement: /* @ngInject */ (vps) => vps.engagement,
       hasCloudDatabaseFeature: /* @ngInject */ (
         CucFeatureAvailabilityService,
       ) =>
@@ -66,8 +67,18 @@ export default /* @ngInject */ ($stateProvider) => {
         creation: moment(serviceInfo.creation).format('LL'),
         expiration: moment(serviceInfo.expiration).format('LL'),
       }),
-      serviceInfo: /* @ngInject */ (serviceName, VpsService) =>
-        VpsService.getServiceInfos(serviceName),
+      serviceInfo: /* @ngInject */ (
+        resiliationCapability,
+        serviceName,
+        VpsService,
+      ) =>
+        VpsService.getServiceInfos(serviceName).then((serviceInfo) => ({
+          ...serviceInfo,
+          status: resiliationCapability.billingInformation
+            ? 'FORCED_MANUAL'
+            : serviceInfo.status,
+          statusHelp: resiliationCapability.billingInformation,
+        })),
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceName,
       scrollToTop: () => () => {
