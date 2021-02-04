@@ -6,6 +6,9 @@ export default class ServicesActionsCtrl {
   }
 
   cancelCommitment() {
+    if (this.trackClick) {
+      this.trackClick();
+    }
     this.isLoading = true;
     return this.$http
       .delete(`/services/${this.serviceId}/billing/engagement/request`)

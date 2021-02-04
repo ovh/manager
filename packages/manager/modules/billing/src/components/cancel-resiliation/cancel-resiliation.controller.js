@@ -7,7 +7,9 @@ export default class {
   }
 
   confirmResiliationCancel() {
-    this.trackClick();
+    if (this.trackClick) {
+      this.trackClick();
+    }
     this.loading = true;
 
     return this.cancelResiliation(this.service)

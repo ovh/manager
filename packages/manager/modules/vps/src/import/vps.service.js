@@ -1,6 +1,7 @@
 import get from 'lodash/get';
 import head from 'lodash/head';
 import includes from 'lodash/includes';
+import isString from 'lodash/isString';
 import remove from 'lodash/remove';
 import set from 'lodash/set';
 import 'moment';
@@ -1464,6 +1465,13 @@ export default /* @ngInject */ function VpsService(
         })
         .catch(CucServiceHelper.errorHandler('vps_dashboard_loading_error')),
     );
+  };
+
+  this.getEngagement = function getEngagement(serviceId) {
+    return $http
+      .get(`/services/${serviceId}/billing/engagement`)
+      .then((response) => (isString(response.data) ? null : response.data))
+      .catch(() => null);
   };
 
   this.isAutoRenewable = function isAutoRenewable(serviceName) {

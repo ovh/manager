@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicated.server.dashboard.cancel-commitment', {
+  $stateProvider.state('vps.detail.dashboard.cancel-commitment', {
     url: '/cancel-commitment',
     views: {
       modal: {
@@ -8,14 +8,13 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     layout: 'modal',
     resolve: {
-      goBack: /* @ngInject */ (goToDashboard) => goToDashboard,
-      serviceId: /* @ngInject */ (serviceInfos) => serviceInfos.serviceId,
+      serviceId: /* @ngInject */ (serviceInfo) => serviceInfo.serviceId,
       trackClick: /* @ngInject */ (atInternet) => () =>
         atInternet.trackClick({
           name: 'cancel-commitment::confirm',
           type: 'action',
-          chapter1: 'dedicated',
-          chapter2: 'server',
+          chapter1: 'vps',
+          chapter2: 'detail',
           chapter3: 'dashboard',
         }),
     },

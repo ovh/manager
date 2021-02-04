@@ -5,6 +5,7 @@ export default {
   bindings: {
     goBack: '<',
     serviceId: '<',
+    trackClick: '<',
   },
   controller,
   template,

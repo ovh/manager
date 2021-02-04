@@ -12,6 +12,14 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         goBack: /* @ngInject */ (goToAutorenew) => goToAutorenew,
         breadcrumb: () => null,
+        trackClick: /* @ngInject */ (atInternet) => () =>
+          atInternet.trackClick({
+            name: 'autorenew::cancel-commitment::confirm',
+            type: 'action',
+            chapter1: 'dedicated',
+            chapter2: 'account',
+            chapter3: 'billing',
+          }),
       },
     },
   );

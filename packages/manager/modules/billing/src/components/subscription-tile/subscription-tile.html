@@ -62,7 +62,7 @@
                 data-ng-if="$ctrl.serviceInfos.canBeEngaged && !$ctrl.serviceInfos.hasPendingEngagement && (!$ctrl.service.isEngaged() || $ctrl.highlightEngagement)"
                 class="oui-link_icon"
                 data-ng-href="{{ $ctrl.goToCommit() }}"
-                data-ng-click="$ctrl.trackClick('cancel-commit')"
+                data-ng-click="$ctrl.trackClick('go-to-commit')"
             >
                 <span
                     data-ng-if="!$ctrl.service.isEngaged()"
