@@ -1,3 +1,14 @@
+## [5.8.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.8.2...@ovh-ux/manager-pci@5.8.3) (2021-02-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 784] ([03ab003](https://github.com/ovh/manager/commit/03ab003638f105083189ce0811521a165ed1b79d))
+* **training:** fix data container missing after removing volume ([#4375](https://github.com/ovh/manager/issues/4375)) ([15b4148](https://github.com/ovh/manager/commit/15b41485a71fd146f08c72c880f6f7df2f47ac97))
+* **training:** minor improvements ([d4d3812](https://github.com/ovh/manager/commit/d4d381203bac269e3db880218fba56db0905b993))
+
+
+
 ## [5.8.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.8.1...@ovh-ux/manager-pci@5.8.2) (2021-02-02)
 
 
