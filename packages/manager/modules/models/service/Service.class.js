@@ -74,7 +74,7 @@ export default class Service {
   }
 
   get planCode() {
-    return this.billing.plan.code;
+    return get(this, 'billing.plan.code');
   }
 
   addOptions(options) {
@@ -101,6 +101,6 @@ export default class Service {
   }
 
   isEngaged() {
-    return !!get(this.billing, 'pricing.engagementConfiguration');
+    return !!this.billing.engagement;
   }
 }
