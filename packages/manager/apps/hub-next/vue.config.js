@@ -2,22 +2,31 @@
 const devServer = require('@ovh-ux/manager-webpack-dev-server');
 
 const env = {
-  dev: [
-    // custom configuration to proxy some routes
-    {
-      context: ['http://localhost:8080'],
-      target: ['/engine/2api', '/engine/apiv6'], // API path to target
-    },
-  ],
   host: '0.0.0.0', // If you want your server to be accessible externally
   https: false, // true to enable https
-  local2API: true, // true to make 2API calls on local 8080 port
-  port: 8080, // Specify a port number to listen for requests.
+  local2API: false, // true to make 2API calls on local 8080 port
+  port: 9000, // Specify a port number to listen for requests.
   region: 'EU', // manager region (EU, CA, US)
 };
 
 const devConfig = devServer.config(env);
-devConfig.devServer.proxy = { ...devConfig.devServer.proxy };
+
+const proxyConfig = devConfig.devServer.proxy.reduce(
+  (allProxy, proxy) => {
+    if (Array.isArray(proxy.context)) {
+      return {
+        ...allProxy,
+        ...proxy.context.reduce((allContext, context) => ({ ...allContext, [context]: proxy }), {}),
+      };
+    }
+    return {
+      ...allProxy,
+      [proxy.context]: proxy,
+    };
+  }, {},
+);
+
+devConfig.devServer.proxy = proxyConfig;
 
 module.exports = {
   configureWebpack: devConfig,
