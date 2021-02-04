@@ -8,7 +8,6 @@ import '@ovh-ux/ng-ovh-payment-method';
 import '@ovh-ux/ng-ovh-onboarding';
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 
-import ngOvhCloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-components';
 import ovhManagerProductOffers from '@ovh-ux/manager-product-offers';
 
 import './index.scss';
@@ -24,7 +23,6 @@ angular
     'ngUiRouterLayout',
     'ngOvhPaymentMethod',
     'ngOvhOnboarding',
-    ngOvhCloudUniverseComponents,
     ovhManagerProductOffers,
   ])
   .config(

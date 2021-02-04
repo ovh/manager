@@ -5,9 +5,7 @@
     >
     </oui-header>
     <div class="container-fluid">
-        <cui-message-container
-            data-messages="$ctrl.messages"
-        ></cui-message-container>
+        <div data-ovh-alert="{{$ctrl.alerts.add}}"></div>
         <ovh-manager-product-offers
             pricing-type="$ctrl.productOffers.pricingType"
             user=":: $ctrl.productOffers.user"

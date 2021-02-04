@@ -1,3 +1,5 @@
+import set from 'lodash/set';
+
 import {
   pricingConstants,
   workflowConstants,
@@ -7,37 +9,33 @@ import { WORKFLOW_OPTIONS } from './add.constants';
 
 export default class {
   /* @ngInject */
-  constructor($translate, $q, $window, WebPaas, WucOrderCartService) {
-    this.$translate = $translate;
+  constructor(
+    $q,
+    $scope,
+    $translate,
+    $window,
+    Alerter,
+    WebPaas,
+    WucOrderCartService,
+  ) {
     this.$q = $q;
+    this.$scope = $scope;
+    this.$translate = $translate;
     this.$window = $window;
+    this.Alerter = Alerter;
     this.WebPaas = WebPaas;
     this.WucOrderCartService = WucOrderCartService;
     this.WORKFLOW_OPTIONS = WORKFLOW_OPTIONS;
+    this.$scope.alerts = {
+      add: 'web_paas_add',
+    };
   }
 
   $onInit() {
     this.isAdding = false;
     this.isEditingTemplate = false;
     this.isEditingOffers = false;
-    this.availableStorages = [
-      {
-        value: 5,
-        name: '5 GB',
-      },
-    ];
-    this.availableEnvironments = [
-      {
-        value: 1,
-        name: '1 Environment',
-      },
-    ];
-    this.availableUserLicenses = [
-      {
-        value: 1,
-        name: '1 User License',
-      },
-    ];
+
     this.project = {
       region: null,
       offer: null,
@@ -46,12 +44,9 @@ export default class {
         createNew: true,
         templateUrl: null,
       },
-      configuration: {
-        storage: this.availableStorages[0],
-        environment: this.availableEnvironments[0],
-        license: this.availableUserLicenses[0],
-      },
     };
+
+    this.setStaticOptions();
 
     this.productOffers = {
       pricingType: pricingConstants.PRICING_CAPACITIES.RENEW,
@@ -136,7 +131,10 @@ export default class {
         }
       })
       .catch(() =>
-        this.CucCloudMessage.error('Regions not abailable. Try again.'),
+        this.Alerter.alertFromSWS(
+          this.$translate.instant('web_paas_add_project_region_na'),
+          'error',
+        ),
       )
       .finally(() => {
         this.loadingCapabilities = false;
@@ -149,18 +147,50 @@ export default class {
   }
 
   onPlatformOrderError(error) {
-    return this.CucCloudMessage.error(
-      this.$translate.instant('web_paas_add_project_error', {
-        message: error.message,
-      }),
+    return this.alerter.alertFromSWS(
+      this.$translate.instant('web_paas_add_project_error'),
+      error,
+      this.$scope.alerts.add,
     );
   }
 
   getPlanCode() {
-    return this.WORKFLOW_OPTIONS.planCode;
+    return this.project.offer;
   }
 
   getOrderState(state) {
     this.characteristics.isEditable = !state.isLoading;
+  }
+
+  setStaticOptions() {
+    this.availableStorages = [
+      {
+        value: this.plans[0].getStorage(),
+        name: this.$translate.instant('web_paas_add_project_storage', {
+          storageSize: this.plans[0].getStorage(),
+        }),
+      },
+    ];
+    this.availableEnvironments = [
+      {
+        value: this.plans[0].getProdEnvironment(),
+        name: this.$translate.instant('web_paas_add_project_environment', {
+          count: this.plans[0].getProdEnvironment(),
+        }),
+      },
+    ];
+    this.availableUserLicenses = [
+      {
+        value: this.plans[0].getMaxLicenses(),
+        name: this.$translate.instant('web_paas_add_project_license', {
+          count: this.plans[0].getMaxLicenses(),
+        }),
+      },
+    ];
+    set(this.project, 'configuration', {
+      storage: this.availableStorages[0],
+      environment: this.availableEnvironments[0],
+      license: this.availableUserLicenses[0],
+    });
   }
 }

@@ -1,8 +1,24 @@
 import { STATUS } from './web-paas.constants';
 
 export default class Project {
-  constructor(project) {
-    Object.assign(this, project);
+  constructor({
+    offer,
+    partnerProjectId,
+    projectName,
+    serviceId,
+    startDate,
+    status,
+    provider,
+  }) {
+    Object.assign(this, {
+      offer,
+      partnerProjectId,
+      projectName,
+      serviceId,
+      startDate,
+      status,
+      provider,
+    });
     if (this.partnerProjectId) {
       this.displayName = `${this.projectName} - ${this.partnerProjectId}`;
     } else {
@@ -19,6 +35,6 @@ export default class Project {
   }
 
   isProcessing() {
-    return this.status === STATUS.PENDING || this.status === STATUS.CANCELLING;
+    return [STATUS.PENDING, STATUS.CANCELLING].includes(this.status);
   }
 }

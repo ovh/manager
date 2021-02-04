@@ -14,8 +14,8 @@
         <oui-select-picker-section>
             <web-paas-offer-details data-offer="offer"></web-paas-offer-details>
             <oui-select
-                disabled="$ctrl.selectedVcpu && offer.vcpus.length === 1"
-                data-items="offer.vcpus"
+                disabled="$ctrl.selectedVcpu && offer.cpu.length === 1"
+                data-items="offer.cpu"
                 data-match="name"
                 data-model="$ctrl.selectedVcpu"
                 name="vcpu"

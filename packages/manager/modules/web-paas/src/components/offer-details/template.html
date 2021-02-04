@@ -1,22 +1,22 @@
 <ul>
     <li
         data-translate="web_paas_offer_num_prod_env"
-        data-translate-values="{ numProdEnvironment: 1 }"
+        data-translate-values="{ numProdEnvironment: $ctrl.offer.getProdEnvironment() }"
     ></li>
     <li
         data-translate="web_paas_offer_num_test_env"
-        data-translate-values="{ numTestEnvironment: 1 }"
+        data-translate-values="{ numTestEnvironment: $ctrl.offer.getTestEnvironment() }"
     ></li>
     <li
         data-translate="web_paas_offer_storage_size"
         data-translate-values="{
-            storageSize: 5,
+            storageSize: $ctrl.offer.getStorage(),
         }"
     ></li>
     <li
         data-translate="web_paas_offer_num_licence"
         data-translate-values="{
-            numLicence: 1,
+            numLicence: $ctrl.offer.getMaxLicenses(),
         }"
     ></li>
 </ul>

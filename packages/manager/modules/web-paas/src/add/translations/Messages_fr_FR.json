@@ -21,5 +21,8 @@
   "web_paas_add_project_options_license": "Ajoutez du license",
   "web_paas_add_project_options_storage_popover": "Vous ne pouvez pas sélectionner de stockage en version bêta",
   "web_paas_add_project_options_license_popover": "Vous ne pouvez pas sélectionner de licence en version bêta",
-  "web_paas_add_project_options_environment_popover": "Vous ne pouvez pas sélectionner l'environnement en version bêta"
+  "web_paas_add_project_options_environment_popover": "Vous ne pouvez pas sélectionner l'environnement en version bêta",
+  "web_paas_add_project_region_na": "Régions non disponibles. Réessayer.",
+  "web_paas_add_project_environment": "{{count}} Environnement",
+  "web_paas_add_project_license": "{{count}} Licence utilisateur"
 }

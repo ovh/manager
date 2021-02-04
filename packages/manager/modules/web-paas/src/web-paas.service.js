@@ -2,6 +2,8 @@ import map from 'lodash/map';
 import set from 'lodash/set';
 
 import Project from './project.class';
+import Plan from './plan.class';
+
 import {
   CACHED_OBJECT_LIST_PAGES,
   X_PAGINATION_MODE,
@@ -29,7 +31,9 @@ export default class WebPaasService {
   getProjectDetails(projectId) {
     return this.$http
       .get(`/webPaaS/subscription/${projectId}`)
-      .then(({ data }) => new Project(data));
+      .then(({ data }) => {
+        return new Project(data);
+      });
   }
 
   getCapabilities(planCode, useTemplate) {
@@ -58,15 +62,13 @@ export default class WebPaasService {
       ovhSubsidiary,
       'webPaaS',
     ).then((catalog) => {
-      map(catalog.plans, (plan) => {
-        set(plan, 'vcpus', [
-          {
-            name: '1 vCPU',
-            value: 1,
-          },
-        ]);
-        return plan;
-      });
+      set(
+        catalog,
+        'plans',
+        map(catalog.plans, (plan) => {
+          return new Plan(plan);
+        }),
+      );
       return catalog;
     });
   }
