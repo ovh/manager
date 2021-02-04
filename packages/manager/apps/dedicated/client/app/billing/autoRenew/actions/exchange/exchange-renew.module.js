@@ -1,6 +1,7 @@
 import angular from 'angular';
-import 'angular-translate';
-import '@ovh-ux/ng-translate-async-loader';
+import angularTranslate from 'angular-translate';
+import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
+import uiRouter from '@uirouter/angularjs';
 
 import moduleExchange from '@ovh-ux/manager-exchange';
 
@@ -10,10 +11,10 @@ const moduleName = 'ovhManagerBillingAutorenewExchangeRenew';
 
 angular
   .module(moduleName, [
+    angularTranslate,
     moduleExchange,
-    'ngTranslateAsyncLoader',
-    'pascalprecht.translate',
-    'ui.router',
+    ngTranslateAsyncLoader,
+    uiRouter,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);

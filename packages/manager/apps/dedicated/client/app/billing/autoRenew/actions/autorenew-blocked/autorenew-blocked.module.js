@@ -1,8 +1,9 @@
 import angular from 'angular';
-import 'angular-translate';
+import angularTranslate from 'angular-translate';
 import atInternet from '@ovh-ux/ng-at-internet';
-import '@ovh-ux/ng-translate-async-loader';
+import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ui-kit';
+import uiRouter from '@uirouter/angularjs';
 
 import component from './autorenew-blocked.component';
 import routing from './autorenew-blocked.routing';
@@ -11,11 +12,11 @@ const moduleName = 'ovhManagerBillingAutorenewBlocked';
 
 angular
   .module(moduleName, [
-    'ui.router',
-    'oui',
-    'ngTranslateAsyncLoader',
-    'pascalprecht.translate',
+    angularTranslate,
     atInternet,
+    ngTranslateAsyncLoader,
+    'oui',
+    uiRouter,
   ])
   .config(routing)
   .component('billingAutorenewBlocked', component);

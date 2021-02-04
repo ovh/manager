@@ -1,9 +1,9 @@
 import angular from 'angular';
-import 'angular-translate';
+import angularTranslate from 'angular-translate';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
-import '@ovh-ux/ng-translate-async-loader';
+import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ui-kit';
-import '@uirouter/angularjs';
+import uiRouter from '@uirouter/angularjs';
 import ovhManagerBilling from '@ovh-ux/manager-billing';
 import ovhManagerCore from '@ovh-ux/manager-core';
 
@@ -40,15 +40,9 @@ const moduleName = 'ovhManagerBillingAutorenew';
 
 angular
   .module(moduleName, [
-    ngAtInternet,
-    'ngTranslateAsyncLoader',
-    'oui',
-    'pascalprecht.translate',
-    'ui.router',
-    ovhManagerBilling,
-    ovhManagerCore,
     activation,
     agreements,
+    angularTranslate,
     autorenewBlocked,
     bulk,
     cancelCommitment,
@@ -60,6 +54,11 @@ angular
     disableDomainsBulk,
     exchangeRenew,
     enable,
+    ngAtInternet,
+    ngTranslateAsyncLoader,
+    ovhManagerBilling,
+    ovhManagerCore,
+    'oui',
     resiliation,
     ssh,
     terminate,
@@ -68,6 +67,7 @@ angular
     terminateHostingWeb,
     terminatePrivateDatabase,
     terminateWebCoach,
+    uiRouter,
     update,
     warnNicBilling,
     warnPendingDebt,

@@ -1,3 +1,4 @@
+import uiRouter from '@uirouter/angularjs';
 import sshAddCloud from './add/cloud/user-ssh-add-cloud.module';
 import sshAddDedicated from './add/dedicated/user-ssh-add-dedicated.module';
 import sshDelete from './delete/user-ssh-delete.module';
@@ -13,7 +14,7 @@ angular
     sshAddDedicated,
     sshDelete,
     sshView,
-    'ui.router',
+    uiRouter,
   ])
   .config(routing)
   .service('UseraccountSshService', service)

@@ -1,7 +1,7 @@
 import angular from 'angular';
-import 'angular-translate';
-import '@ovh-ux/ng-translate-async-loader';
-import '@uirouter/angularjs';
+import angularTranslate from 'angular-translate';
+import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
+import uiRouter from '@uirouter/angularjs';
 
 import bulk from '../bulk/bulk.module';
 
@@ -13,10 +13,10 @@ const moduleName = 'ovhManagerBillingAutorenewEnable';
 
 angular
   .module(moduleName, [
-    'ngTranslateAsyncLoader',
-    'pascalprecht.translate',
-    'ui.router',
+    angularTranslate,
     bulk,
+    ngTranslateAsyncLoader,
+    uiRouter,
   ])
   .config(routing)
   .component('billingAutorenewEnable', component)

@@ -1,7 +1,8 @@
 import angular from 'angular';
-import 'angular-translate';
-import '@ovh-ux/ng-translate-async-loader';
+import angularTranslate from 'angular-translate';
+import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ui-kit';
+import uiRouter from '@uirouter/angularjs';
 
 import billing from '@ovh-ux/manager-billing';
 import component from './delete.component';
@@ -11,11 +12,11 @@ const moduleName = 'ovhManagerBillingAutorenewDelete';
 
 angular
   .module(moduleName, [
+    angularTranslate,
     billing,
-    'ngTranslateAsyncLoader',
+    ngTranslateAsyncLoader,
     'oui',
-    'pascalprecht.translate',
-    'ui.router',
+    uiRouter,
   ])
   .config(routing)
   .component('billingAutorenewDelete', component)

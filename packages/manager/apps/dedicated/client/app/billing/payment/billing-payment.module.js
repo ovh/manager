@@ -1,8 +1,8 @@
 import angular from 'angular';
-import 'angular-translate';
-import '@ovh-ux/ng-translate-async-loader';
+import angularTranslate from 'angular-translate';
+import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ui-kit';
-import '@uirouter/angularjs';
+import uiRouter from '@uirouter/angularjs';
 
 import credits from './credits/billing-credits.module';
 import fidelity from './fidelity/billing-fidelity.module';
@@ -18,17 +18,16 @@ const moduleName = 'ovhManagerBillingPayment';
 
 angular
   .module(moduleName, [
-    'ngTranslateAsyncLoader',
-    'oui',
-    'pascalprecht.translate',
-    'ui.router',
+    angularTranslate,
+    ngTranslateAsyncLoader,
     credits,
     fidelity,
     method,
+    'oui',
     ovhAccount,
     refunds,
     transactions,
-    'ui.router',
+    uiRouter,
     vouchers,
   ])
   .config(routing)

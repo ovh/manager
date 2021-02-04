@@ -1,5 +1,5 @@
 import angular from 'angular';
-import 'angular-translate';
+import angularTranslate from 'angular-translate';
 import '@ovh-ux/ui-kit';
 
 import component from './history.component';
@@ -7,7 +7,7 @@ import component from './history.component';
 const moduleName = 'ovhManagerDedicatedBillingLegacyHistory';
 
 angular
-  .module(moduleName, ['oui', 'pascalprecht.translate'])
+  .module(moduleName, [angularTranslate, 'oui'])
   .component('billingLegacyHistory', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 

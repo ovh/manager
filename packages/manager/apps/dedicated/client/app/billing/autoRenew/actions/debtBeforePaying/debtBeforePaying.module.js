@@ -1,7 +1,8 @@
 import angular from 'angular';
-import 'angular-translate';
-import '@ovh-ux/ng-translate-async-loader';
+import angularTranslate from 'angular-translate';
+import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ui-kit';
+import uiRouter from '@uirouter/angularjs';
 
 import component from './debtBeforePaying.component';
 import routing from './debtBeforePaying.routing';
@@ -10,10 +11,10 @@ const moduleName = 'ovhManagerBillingAutorenewDebtBeforePaying';
 
 angular
   .module(moduleName, [
-    'ngTranslateAsyncLoader',
+    angularTranslate,
+    ngTranslateAsyncLoader,
     'oui',
-    'pascalprecht.translate',
-    'ui.router',
+    uiRouter,
   ])
   .config(routing)
   .component('billingAutorenewDebtBeforePaying', component);

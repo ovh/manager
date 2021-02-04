@@ -1,19 +1,15 @@
 import angular from 'angular';
 
-import 'angular-translate';
+import angularTranslate from 'angular-translate';
 import '@ovh-ux/ui-kit';
-import '@ovh-ux/ng-translate-async-loader';
+import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 
 import component from './component';
 
 const moduleName = 'ovhBillingPaymentMethodAddLegacyBillingAddressView';
 
 angular
-  .module(moduleName, [
-    'oui',
-    'ngTranslateAsyncLoader',
-    'pascalprecht.translate',
-  ])
+  .module(moduleName, [angularTranslate, 'oui', ngTranslateAsyncLoader])
   .run(/* @ngTranslationsInject:json ./translations */)
   .component(component.name, component);
 

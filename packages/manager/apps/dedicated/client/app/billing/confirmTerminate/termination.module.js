@@ -1,8 +1,8 @@
 import angular from 'angular';
-import 'angular-translate';
-import '@ovh-ux/ng-translate-async-loader';
+import angularTranslate from 'angular-translate';
+import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ui-kit';
-import '@uirouter/angularjs';
+import uiRouter from '@uirouter/angularjs';
 
 import billing from '@ovh-ux/manager-billing';
 import routing from './termination.routing';
@@ -13,11 +13,11 @@ const moduleName = 'ovhManagerBillingTermination';
 
 angular
   .module(moduleName, [
-    'ngTranslateAsyncLoader',
-    'oui',
-    'pascalprecht.translate',
-    'ui.router',
+    angularTranslate,
     billing,
+    ngTranslateAsyncLoader,
+    'oui',
+    uiRouter,
   ])
   .config(routing)
   .service('BillingTerminateLegacy', legacyService);

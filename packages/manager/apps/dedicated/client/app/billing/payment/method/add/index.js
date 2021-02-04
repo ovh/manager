@@ -1,10 +1,10 @@
 import angular from 'angular';
 
-import 'angular-translate';
+import angularTranslate from 'angular-translate';
 import '@ovh-ux/ui-kit';
-import '@ovh-ux/ng-translate-async-loader';
-import '@ovh-ux/ng-ovh-payment-method';
-import '@ovh-ux/manager-core';
+import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
+import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
+import ovhManagerCore from '@ovh-ux/manager-core';
 
 import routing from './routing';
 import component from './component';
@@ -17,11 +17,11 @@ const moduleName = 'ovhBillingPaymentMethodAdd';
 
 angular
   .module(moduleName, [
+    angularTranslate,
     'oui',
-    'ngTranslateAsyncLoader',
-    'pascalprecht.translate',
-    'ngOvhPaymentMethod',
-    'ovhManagerCore',
+    ngTranslateAsyncLoader,
+    ngOvhPaymentMethod,
+    ovhManagerCore,
     billingContactViewModule,
     legacyBankAccountViewModule,
     legacyBillingAddressViewModule,

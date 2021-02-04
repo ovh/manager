@@ -1,9 +1,9 @@
 import angular from 'angular';
-import 'angular-translate';
+import angularTranslate from 'angular-translate';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
-import '@ovh-ux/ng-translate-async-loader';
+import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ui-kit';
-import '@uirouter/angularjs';
+import uiRouter from '@uirouter/angularjs';
 
 import acceptAll from './popup-agreement/popup-agreement.module';
 import details from './details/details.module';
@@ -14,13 +14,13 @@ const moduleName = 'ovhManagerBillingAgreements';
 
 angular
   .module(moduleName, [
-    ngAtInternet,
-    'ngTranslateAsyncLoader',
-    'oui',
-    'pascalprecht.translate',
-    'ui.router',
     acceptAll,
+    angularTranslate,
     details,
+    ngAtInternet,
+    ngTranslateAsyncLoader,
+    'oui',
+    uiRouter,
   ])
   .config(routing)
   .service('UserAccountServicesAgreements', service)

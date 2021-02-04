@@ -1,7 +1,8 @@
 import angular from 'angular';
-import 'angular-translate';
-import '@ovh-ux/ng-translate-async-loader';
+import angularTranslate from 'angular-translate';
+import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ui-kit';
+import uiRouter from '@uirouter/angularjs';
 
 import component from './terminate-webcoach.component';
 import routing from './terminate-webcoach.routing';
@@ -12,11 +13,11 @@ const moduleName = 'ovhManagerBillingAutorenewTerminateWebCoach';
 
 angular
   .module(moduleName, [
-    'ngTranslateAsyncLoader',
+    angularTranslate,
+    ngTranslateAsyncLoader,
     'oui',
-    'pascalprecht.translate',
     terminate,
-    'ui.router',
+    uiRouter,
   ])
   .config(routing)
   .component('billingAutorenewTerminateWebCoach', component);
