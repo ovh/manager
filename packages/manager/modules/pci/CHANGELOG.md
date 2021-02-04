@@ -1,3 +1,12 @@
+## [5.8.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.8.3...@ovh-ux/manager-pci@5.8.4) (2021-02-04)
+
+
+### Bug Fixes
+
+* **training.jobs:** display correct id ([#4393](https://github.com/ovh/manager/issues/4393)) ([315b9fe](https://github.com/ovh/manager/commit/315b9fef8a74f93ac84523136480c8a2b433d8d5))
+
+
+
 ## [5.8.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.8.2...@ovh-ux/manager-pci@5.8.3) (2021-02-04)
 
 
