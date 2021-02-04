@@ -14,8 +14,8 @@ export default /* @ngInject */ ($stateProvider) => {
               resourcesUsage: [],
             };
           }),
-      installLink: /* @ngInject */ ($state, projectId) =>
-        $state.href('pci.projects.project.training.dashboard.install', {
+      goToInstallDetails: /* @ngInject */ ($state, projectId) => () =>
+        $state.go('pci.projects.project.training.dashboard.install', {
           projectId,
         }),
       goToRegistryDetails: /* @ngInject */ ($state, projectId) => () =>

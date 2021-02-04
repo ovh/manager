@@ -5,7 +5,6 @@ export default {
   controller,
   template,
   bindings: {
-    installLink: '<',
     jobInfoLink: '<',
     jobsLink: '<',
     registriesLink: '<',

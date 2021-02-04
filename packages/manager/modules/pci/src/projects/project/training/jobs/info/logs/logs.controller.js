@@ -3,6 +3,7 @@ export default class PciTrainingJobsInfoLogsController {
   constructor($interval, PciProjectTrainingJobService) {
     this.$interval = $interval;
     this.pciProjectTrainingJobService = PciProjectTrainingJobService;
+    this.currentJob = this.job;
   }
 
   $onDestroy() {
@@ -12,14 +13,22 @@ export default class PciTrainingJobsInfoLogsController {
   }
 
   $onInit() {
-    if (this.job.isRunning()) {
-      this.interval = this.$interval(() => {
-        this.pciProjectTrainingJobService
-          .logs(this.projectId, this.jobId)
-          .then((jobLog) => {
-            this.jobLog = jobLog;
-          });
-      }, 3000);
-    }
+    this.pollJob();
+    this.interval = this.$interval(() => {
+      this.pollJob();
+      this.pciProjectTrainingJobService
+        .logs(this.projectId, this.jobId)
+        .then((jobLog) => {
+          this.jobLog = jobLog;
+        });
+    }, 3000);
+  }
+
+  pollJob() {
+    this.pciProjectTrainingJobService
+      .get(this.projectId, this.jobId)
+      .then((currentJob) => {
+        this.currentJob = currentJob;
+      });
   }
 }
