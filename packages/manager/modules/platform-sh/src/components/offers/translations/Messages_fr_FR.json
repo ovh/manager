@@ -1,7 +1,0 @@
-{
-  "platform_sh_offer_start-1": "Starter",
-  "platform_sh_offer_current_offer": "Offre actuelle",
-  "platform_sh_offer_price_per_month": "{{ price }}/Mois",
-  "platform_sh_offer_price_from": "À partir de {{price}}",
-  "platform_sh_offer_warning": "Le plan est sélectionné par défaut en version bêta"
-}

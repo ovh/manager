@@ -1,8 +1,0 @@
-{
-  "platform_sh_service_terminate_common_confirm": "Confirmer",
-  "platform_sh_service_terminate_common_cancel": "Annuler",
-  "platform_sh_service_terminate_title": "Supprimer le project",
-  "platform_sh_service_terminate_description": "Êtes-vous sûr d'annuler votre projet {{projectName}} dans Manager et dans Platform SH?",
-  "platform_sh_service_terminate_success": "Votre demande de suppression du Platform SH project a bien été prise en compte. Un email a été envoyé afin d'accuser réception de votre demande.",
-  "platform_sh_service_terminate_error": "An error occurred while deleting your project: {{message}}"
-}

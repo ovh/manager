@@ -1,6 +1,0 @@
-{
-  "platform_sh_offer_num_prod_env": "{{ numProdEnvironment }} environnement de production",
-  "platform_sh_offer_num_test_env": "{{ numTestEnvironment }} environnement de test",
-  "platform_sh_offer_storage_size": "{{ storageSize }} Go de stockage",
-  "platform_sh_offer_num_licence": "{{ numLicence }} licence utilisateur"
-}
