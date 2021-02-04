@@ -6,7 +6,7 @@ const env = {
     // custom configuration to proxy some routes
     {
       context: ['http://localhost:8080'],
-      target: '/engine/2api', // API path to target
+      target: ['/engine/2api', '/engine/apiv6'], // API path to target
     },
   ],
   host: '0.0.0.0', // If you want your server to be accessible externally

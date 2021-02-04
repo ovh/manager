@@ -12,7 +12,7 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 
-fetchConfiguration('hub-next').then(() => {
+fetchConfiguration('hub-next').then(async () => {
   const locale = Environment.getUserLocale();
 
   const fallbackLocale = LANGUAGES.fallback;
@@ -23,19 +23,9 @@ fetchConfiguration('hub-next').then(() => {
   });
 
   router.beforeEach(async (to, from, next) => {
-    const translationFolders = [
-      'products',
-      'payment-status-tile',
-      'order-tracking',
-      'enterprise-billing-summary',
-      'catalog-items',
-      'carousel',
-      'billing-summary',
-      'support',
-      'welcome',
-    ];
+    const translationFolders = to.meta.relatedTranslations;
     await loadLocaleMessages(i18n, locale, translationFolders);
-    // TODO: also await fallbackMessages
+    await loadLocaleMessages(i18n, fallbackLocale, translationFolders);
     return next();
   });
 

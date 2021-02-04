@@ -5,9 +5,8 @@
         <h3 class="oui-tile__title" :class="link ? 'space-between' : ''">
           <span>
             {{ title }}
-            <span v-if="count" class="oui-badge oui-badge_info">
-              {{ count }}
-            </span>
+            <badge v-if="count" level="info" :text-content="count.toString()">
+            </badge>
           </span>
 
           <button
@@ -29,7 +28,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
+import { defineAsyncComponent, defineComponent, PropType } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { RouteRecordRaw, useRouter } from 'vue-router';
 
@@ -53,8 +52,11 @@ export default defineComponent({
     textColor: String,
     link: {} as PropType<string | RouteRecordRaw>,
   },
+  components: {
+    Badge: defineAsyncComponent(() => import('@/components/ui/Badge.vue')),
+  },
   methods: {
-    goTo(link: string | RouteRecordRaw): void {
+    goTo(link: string | {}): void {
       if (typeof link === 'string') {
         window.open(link, '_blank');
         return;

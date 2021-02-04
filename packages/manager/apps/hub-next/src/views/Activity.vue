@@ -3,25 +3,10 @@
     class="col-md-8 mb-3 mb-md-4"
     :title="t('ovh_manager_hub_payment_status_tile_title')"
     :count="billingServices.data.length"
-    :link="{ path: '/about' }"
+    :link="{ path: '/' }"
   >
     <template #body>
-      <div class="oui-table-responsive">
-        <table class="oui-table">
-          <tr
-            class="oui-table__row"
-            v-for="billingService in billingServices.data"
-            :key="billingService.id"
-          >
-            <td class="oui-table__cell">
-              <a href="">{{ billingService.domain }}</a>
-              <div>{{ t(`manager_hub_products_${billingService.serviceType}`) }}</div>
-            </td>
-            <td class="oui-table__cell"></td>
-            <td class="oui-table__cell"></td>
-          </tr>
-        </table>
-      </div>
+      <data-table :rows="billingServicesCellValues"></data-table>
     </template>
   </tile>
   <div class="col-md-4 mb-3 mb-md-4 order-3 order-md-2">
@@ -44,24 +29,7 @@
     :count="support.data.length"
   >
     <template #body>
-      <div class="oui-table-responsive" v-if="support.data.length">
-        <table class="oui-table">
-          <tr class="oui-table__row" v-for="ticket in support.data" :key="ticket.ticketId">
-            <td class="oui-table__cell">
-              {{
-                ticket?.serviceName
-                  ? ticket?.serviceName.toUpperCase()
-                  : t('hub_support_account_management')
-              }}
-            </td>
-            <td class="oui-table__cell">{{ ticket.subject }}</td>
-            <td class="oui-table__cell">{{ t(`hub_support_state_${ticket.state}`) }}</td>
-            <td class="oui-table__cell">
-              <a href="">{{ t('hub_support_read') }}</a>
-            </td>
-          </tr>
-        </table>
-      </div>
+      <data-table v-if="support.data.length" :rows="supportCellValues"></data-table>
       <div v-else>
         <div class="manager-hub-support__illustration"></div>
         <h3 class="oui-heading_4">{{ t('hub_support_need_help') }}</h3>
@@ -81,8 +49,12 @@
     >
       <template #body>
         <div>
-          <a class="mb-2 oui-badge oui-badge_info">N° {{ lastOrder.orderId }}</a>
-          <b></b>
+          <badge
+            class="mb-2"
+            html-tag="a"
+            :href="lastOrder.url"
+            :text-content="`N° ${lastOrder.orderId}`"
+          ></badge>
         </div>
       </template>
     </tile>
@@ -91,9 +63,11 @@
 
 <script lang="ts">
 import { defineAsyncComponent, defineComponent } from 'vue';
+import { BillingService, SupportDemand } from '@/models/hub.d';
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
 import { mapGetters } from 'vuex';
+import Badge from '@/components/ui/Badge.vue';
 
 export default defineComponent({
   setup() {
@@ -106,6 +80,8 @@ export default defineComponent({
   },
   components: {
     Tile: defineAsyncComponent(() => import('@/components/ui/Tile.vue')),
+    DataTable: defineAsyncComponent(() => import('@/components/ui/DataTable.vue')),
+    Badge,
   },
   computed: {
     ...mapGetters({
@@ -114,6 +90,40 @@ export default defineComponent({
       support: 'getSupport',
       lastOrder: 'getLastOrder',
     }),
+    supportCellValues(): [] {
+      return this.support.data.map((ticket: SupportDemand) => [
+        [
+          {
+            tag: 'span',
+            attrs: {
+              class: 'font-weight-bold',
+            },
+            value: ticket?.serviceName
+              ? ticket.serviceName
+              : this.t('hub_support_account_management'),
+          },
+        ],
+        ticket.subject,
+        this.t(`hub_support_state_${ticket.state}`),
+        [
+          {
+            tag: 'a',
+            attrs: {
+              href: `https://www.ovh.com/manager/dedicated/#/support/tickets/${ticket.ticketId}`,
+            },
+            value: this.t('hub_support_read'),
+          },
+        ],
+      ]);
+    },
+    billingServicesCellValues(): [] {
+      return this.billingServices.data.map((billingService: BillingService) => [
+        [
+          { tag: 'a', attrs: { href: billingService.url }, value: billingService.domain },
+          { tag: 'div', value: this.t(`manager_hub_products_${billingService.serviceType}`) },
+        ],
+      ]);
+    },
   },
 });
 </script>

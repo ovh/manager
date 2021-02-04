@@ -20,7 +20,6 @@
       </template>
     </hub-section>
     <hub-section :title="t('manager_hub_dashboard_overview')">
-      <!-- TODO: refactor into proper business components  -->
       <template #content>
         <activity></activity>
       </template>
@@ -58,15 +57,8 @@ export default defineComponent({
   },
   computed: {
     ...mapGetters({
-      // 'getBills',
-      // 'getCatalog',
-      // 'getCertificates',
-      // 'getDebt',
-
       user: 'getUser',
       notifications: 'getNotifications',
-      // 'getPaymentMethods',
-      // 'getSupportLevel',
     }),
     warningNotifications(): OvhNotification[] {
       return this.notifications.filter(

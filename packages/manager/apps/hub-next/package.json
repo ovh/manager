@@ -6,9 +6,6 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "serve": "vue-cli-service serve",
-    "start": "lerna exec --stream --scope='@ovh-ux/manager-hub-next' --include-dependencies -- vue-cli-service build --if-present",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-hub-next' --include-dependencies -- vue-cli-service serve --if-present",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-hub-next' --include-dependencies -- npm run dev:watch --if-present",
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {

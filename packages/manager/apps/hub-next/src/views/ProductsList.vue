@@ -5,6 +5,10 @@
     class="col-md-6 col-lg-4 mb-2 mb-md-4 oui-list"
     :title="t(`manager_hub_products_${name}`)"
     :count="service.data.length"
+    :link="{
+      path: '/product-details',
+      query: { productApiUrl: getRouteQueryApiUrl(service.data[0].route.path) },
+    }"
   >
     <template #body>
       <ul class="oui-list__items">
@@ -45,6 +49,13 @@ export default defineComponent({
     ...mapGetters({
       services: 'getServices',
     }),
+  },
+  methods: {
+    getRouteQueryApiUrl(url: string): string {
+      if (url.indexOf('{') < 0) return url;
+
+      return url.replace(/\{(.*?)\}/, '');
+    },
   },
 });
 </script>
