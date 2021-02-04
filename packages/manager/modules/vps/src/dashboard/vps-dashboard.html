@@ -117,6 +117,7 @@
                 </div>
                 <oui-tile-button
                     data-on-click="$ctrl.actions.terminate.callback()"
+                    data-ng-if="$ctrl.actions.terminate.isAvailable()"
                 >
                     <span data-translate="vps_configuration_terminate"></span>
                 </oui-tile-button>
@@ -559,103 +560,20 @@
         </div>
 
         <div class="col-xm-12 col-md-4">
-            <oui-tile
-                data-heading="{{ ::'vps_tile_subscription' | translate }}"
-                class="h-100"
+            <billing-subscription-tile
+                on-error="$ctrl.onBillingInformationError(error)"
+                service-path="{{ ::'/vps/' + $ctrl.serviceName }}"
+                with-engagement="$ctrl.isCommitmentAvailable"
+                go-to-commit="$ctrl.goToCommit()"
+                go-to-cancel-commit="$ctrl.goToCancelCommit()"
+                go-to-cancel-resiliation="$ctrl.goToCancelResiliation()"
+                go-to-resiliation="$ctrl.goToResiliation()"
+                service-infos="$ctrl.serviceInfo"
+                highlight-engagement="$ctrl.shouldReengage"
+                tracking-prefix="{{ ::$ctrl.trackingPrefix }}"
+                user="$ctrl.connectedUser"
             >
-                <oui-tile-definition
-                    data-ng-if="$ctrl.plan.offer"
-                    data-term="{{ ::'vps_tile_subscription_offer' | translate }}"
-                    data-description="{{ ::$ctrl.plan.offer }}"
-                >
-                    <oui-action-menu
-                        data-compact
-                        data-ng-if="$ctrl.actions.upgrade.isAvailable() && $ctrl.hasFeature($ctrl.DASHBOARD_FEATURES.upgrade)"
-                        data-placement="end"
-                    >
-                        <div class="oui-dropdown-menu__item">
-                            <a
-                                class="oui-dropdown-option"
-                                data-ui-sref="{{ $ctrl.actions.upgrade.state + $ctrl.constructor.getActionStateParamString($ctrl.actions.upgrade.stateParams) }}"
-                                rel="noopener"
-                            >
-                                <span
-                                    data-ng-bind="::$ctrl.actions.upgrade.text"
-                                ></span>
-                            </a>
-                        </div>
-                    </oui-action-menu>
-                </oui-tile-definition>
-                <oui-tile-definition
-                    data-term="{{($ctrl.plan.renew.forced || $ctrl.plan.renew.automatic) ? 'vps_tile_subscription_autorenew' : 'vps_tile_subscription_expiration_date' | translate}}"
-                    data-description="{{ ::$ctrl.plan.expiration }}"
-                >
-                    <oui-action-menu
-                        data-compact
-                        data-ng-if="$ctrl.actions.manageAutorenew.isAvailable()"
-                        data-placement="end"
-                    >
-                        <oui-action-menu-item
-                            aria-label="{{ ::$ctrl.actions.manageAutorenew.text }}"
-                            data-href="{{ ::$ctrl.actions.manageAutorenew.href }}"
-                            data-external="$ctrl.actions.manageAutorenew.external"
-                            ><span
-                                data-ng-bind="::$ctrl.actions.manageAutorenew.text"
-                            ></span>
-                        </oui-action-menu-item>
-                    </oui-action-menu>
-                </oui-tile-definition>
-                <oui-tile-definition
-                    data-term="{{::'vps_tile_subscription_contact' | translate}}"
-                >
-                    <oui-tile-description>
-                        <ul class="list-unstyled">
-                            <li>
-                                <span
-                                    data-ng-bind="::$ctrl.plan.contactAdmin"
-                                ></span>
-                                <small
-                                    data-translate="vps_tile_subscription_contact_admin"
-                                ></small>
-                            </li>
-                            <li>
-                                <span
-                                    data-ng-bind="::$ctrl.plan.contactBilling"
-                                ></span>
-                                <small
-                                    data-translate="vps_tile_subscription_contact_billing"
-                                ></small>
-                            </li>
-                            <li>
-                                <span
-                                    data-ng-bind="::$ctrl.plan.contactTech"
-                                ></span>
-                                <small
-                                    data-translate="vps_tile_subscription_contact_technical"
-                                ></small>
-                            </li>
-                        </ul>
-                    </oui-tile-description>
-                    <oui-action-menu
-                        data-compact
-                        data-ng-if="$ctrl.actions.manageContact.isAvailable"
-                        data-placement="end"
-                    >
-                        <oui-action-menu-item
-                            aria-label="{{ ::$ctrl.actions.manageContact.text }}"
-                            data-href="{{ ::$ctrl.actions.manageContact.href }}"
-                            ><span
-                                data-ng-bind="::$ctrl.actions.manageContact.text"
-                            ></span>
-                        </oui-action-menu-item>
-                    </oui-action-menu>
-                </oui-tile-definition>
-                <oui-tile-definition
-                    data-term="{{ ::'vps_tile_subscription_creation_date' | translate }}"
-                    data-description="{{ ::$ctrl.plan.creation }}"
-                >
-                </oui-tile-definition>
-            </oui-tile>
+            </billing-subscription-tile>
         </div>
         <!-- advices -->
         <div class="col-xm-12 col-md-4" data-ng-if="!$ctrl.vps.isExpired">

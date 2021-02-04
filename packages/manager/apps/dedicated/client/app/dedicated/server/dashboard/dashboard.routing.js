@@ -203,6 +203,7 @@ export default /* @ngInject */ ($stateProvider) => {
             ),
       serviceMonitoring: /* @ngInject */ ($stateParams, Server) =>
         Server.getAllServiceMonitoring($stateParams.productId),
+      trackingPrefix: () => 'dedicated::server::dashboard',
       trafficInformations: /* @ngInject */ (
         $q,
         $stateParams,

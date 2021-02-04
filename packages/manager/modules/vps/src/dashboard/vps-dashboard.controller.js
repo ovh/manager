@@ -188,6 +188,10 @@ export default class {
       });
   }
 
+  onBillingInformationError(error) {
+    return this.CucCloudMessage.error(error);
+  }
+
   initBackupStorageActions() {
     this.backupStorageActions = {
       manage: {
@@ -444,6 +448,7 @@ export default class {
           },
           terminate: {
             callback: () => this.$state.go('vps.detail.dashboard.terminate'),
+            isAvailable: () => !this.engagement,
           },
           terminateAdditionalDiskOption: {
             text: this.$translate.instant(

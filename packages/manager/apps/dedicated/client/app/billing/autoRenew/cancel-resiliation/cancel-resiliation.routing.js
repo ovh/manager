@@ -11,17 +11,19 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       goBack: /* @ngInject */ (goToAutorenew) => goToAutorenew,
       cancelResiliation: /* @ngInject */ (
+        $q,
         BillingAutoRenew,
         engagement,
         hasEndRuleStrategies,
         setReactivateEngagementStrategy,
       ) => (service) => {
-        if (engagement && hasEndRuleStrategies) {
-          return setReactivateEngagementStrategy();
-        }
-
-        service.cancelResiliation();
-        return BillingAutoRenew.updateService(service);
+        return (engagement && hasEndRuleStrategies
+          ? setReactivateEngagementStrategy()
+          : $q.when(0)
+        ).then(() => {
+          service.cancelResiliation();
+          return BillingAutoRenew.updateService(service);
+        });
       },
       engagement: /* @ngInject */ ($http, service) =>
         (service.canHaveEngagement()
@@ -52,14 +54,6 @@ export default /* @ngInject */ ($stateProvider) => {
           service.id,
           endStrategies.REACTIVATE_ENGAGEMENT,
         ),
-      trackClick: /* @ngInject */ (atInternet) => () =>
-        atInternet.trackClick({
-          name: 'autorenew::cancel-resiliation',
-          type: 'action',
-          chapter1: 'dedicated',
-          chapter2: 'account',
-          chapter3: 'billing',
-        }),
       breadcrumb: () => null,
     },
   });

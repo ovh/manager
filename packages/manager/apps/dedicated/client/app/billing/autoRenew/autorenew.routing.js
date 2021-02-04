@@ -89,6 +89,7 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
             )
             .catch(() => false),
         hideBreadcrumb: /* @ngInject */ () => true,
+        trackingPrefix: () => 'dedicated::account::billing::autorenew',
       },
       coreConfigProvider.region !== 'US'
         ? {

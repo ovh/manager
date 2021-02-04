@@ -27,6 +27,7 @@ export default /* @ngInject */ ($stateProvider) => {
           ),
       defaultPaymentMethod: /* @ngInject */ (ovhPaymentMethod) =>
         ovhPaymentMethod.getDefaultPaymentMethod(),
+      engagement: /* @ngInject */ (vps) => vps.engagement,
       hasCloudDatabaseFeature: /* @ngInject */ (
         CucFeatureAvailabilityService,
       ) =>
