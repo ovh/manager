@@ -1,0 +1,10 @@
+<span
+    class="oui-badge"
+    data-ng-class="{
+                'oui-badge_success' : $ctrl.project.isActive(),
+                'oui-badge_warning' : $ctrl.project.isProcessing(),
+                'oui-badge_error' : $ctrl.project.isError(),
+                }"
+    data-translate="{{ 'web_paas_project_status_' + $ctrl.project.status }}"
+>
+</span>

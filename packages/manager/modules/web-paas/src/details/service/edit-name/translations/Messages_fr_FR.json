@@ -1,0 +1,8 @@
+{
+  "web_paas_details_service_name_edit": "Modifier",
+  "web_paas_details_service_name_cancel": "Annuler",
+  "web_paas_details_service_name_title": "Modifier le nom",
+  "web_paas_details_service_name": "Project nom",
+  "web_paas_details_service_name_success": "Le nom du project a été mis à jour.",
+  "web_paas_details_service_name_error": "Une erreur est survenue lors du renommage du project : {{ message }}"
+}

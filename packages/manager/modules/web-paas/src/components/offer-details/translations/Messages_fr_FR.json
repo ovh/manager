@@ -1,0 +1,6 @@
+{
+  "web_paas_offer_num_prod_env": "{{ numProdEnvironment }} environnement de production",
+  "web_paas_offer_num_test_env": "{{ numTestEnvironment }} environnement de test",
+  "web_paas_offer_storage_size": "{{ storageSize }} Go de stockage",
+  "web_paas_offer_num_licence": "{{ numLicence }} licence utilisateur"
+}

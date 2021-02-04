@@ -1,0 +1,7 @@
+{
+  "web_paas_offer_start-1": "Starter",
+  "web_paas_offer_current_offer": "Offre actuelle",
+  "web_paas_offer_price_per_month": "{{ price }}/Mois",
+  "web_paas_offer_price_from": "À partir de {{price}}",
+  "web_paas_offer_warning": "Le plan est sélectionné par défaut en version bêta"
+}
