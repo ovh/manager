@@ -1,3 +1,12 @@
+## [16.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.2.1...@ovh-ux/manager-dedicated@16.2.2) (2021-02-04)
+
+
+### Bug Fixes
+
+* remove useless apiv7 header ([#4386](https://github.com/ovh/manager/issues/4386)) ([2a9f3a1](https://github.com/ovh/manager/commit/2a9f3a12da37818a1f4478edca6ed2bf1ba9f4b1))
+
+
+
 ## [16.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.2.0...@ovh-ux/manager-dedicated@16.2.1) (2021-02-02)
 
 
