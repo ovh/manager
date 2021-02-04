@@ -95,6 +95,7 @@ export default class PciTrainingJobsSubmitController {
       (vol) =>
         vol.region === container.region && vol.container === container.name,
     );
+    this.filterContainers();
   }
 
   cliCommand() {
