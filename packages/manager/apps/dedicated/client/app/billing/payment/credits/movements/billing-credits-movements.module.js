@@ -1,9 +1,9 @@
 import angular from 'angular';
-import 'angular-translate';
+import angularTranslate from 'angular-translate';
 import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
-import '@ovh-ux/ng-translate-async-loader';
+import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ui-kit';
-import '@uirouter/angularjs';
+import uiRouter from '@uirouter/angularjs';
 
 import routing from './billing-payment-credits-movements.routes';
 
@@ -11,11 +11,11 @@ const moduleName = 'ovhManagerBillingPaymentCreditsMovements';
 
 angular
   .module(moduleName, [
+    angularTranslate,
     ngOvhUtils,
-    'ngTranslateAsyncLoader',
+    ngTranslateAsyncLoader,
     'oui',
-    'pascalprecht.translate',
-    'ui.router',
+    uiRouter,
   ])
   .config(routing);
 

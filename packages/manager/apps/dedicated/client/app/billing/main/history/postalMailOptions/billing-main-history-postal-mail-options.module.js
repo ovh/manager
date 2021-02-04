@@ -1,9 +1,9 @@
 import angular from 'angular';
-import 'angular-translate';
+import angularTranslate from 'angular-translate';
 import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
-import '@ovh-ux/ng-translate-async-loader';
+import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ui-kit';
-import '@uirouter/angularjs';
+import uiRouter from '@uirouter/angularjs';
 
 import controller from './billing-main-history-postal-mail-options.controller';
 import template from './billing-main-history-postal-mail-options.html';
@@ -12,11 +12,11 @@ const moduleName = 'ovhManagerBillingMainHistoryPostalMailOptions';
 
 angular
   .module(moduleName, [
+    angularTranslate,
     ngOvhUtils,
-    'ngTranslateAsyncLoader',
+    ngTranslateAsyncLoader,
     'oui',
-    'pascalprecht.translate',
-    'ui.router',
+    uiRouter,
   ])
   .controller('BillingHistoryPostalMailOptionsCtrl', controller)
   .run(

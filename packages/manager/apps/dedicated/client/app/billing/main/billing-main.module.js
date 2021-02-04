@@ -1,9 +1,9 @@
 import angular from 'angular';
-import 'angular-translate';
+import angularTranslate from 'angular-translate';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import '@ovh-ux/ui-kit';
-import '@ovh-ux/ng-translate-async-loader';
-import '@uirouter/angularjs';
+import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
+import uiRouter from '@uirouter/angularjs';
 
 import history from './history/history.module';
 import payments from './payments/billing-payments.module';
@@ -15,14 +15,14 @@ const moduleName = 'ovhManagerBillingMain';
 
 angular
   .module(moduleName, [
-    'ngTranslateAsyncLoader',
+    angularTranslate,
+    history,
+    ngTranslateAsyncLoader,
     'oui',
     ovhManagerCore,
-    'pascalprecht.translate',
-    'ui.router',
-    history,
     payments,
     payAsYouGo,
+    uiRouter,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);

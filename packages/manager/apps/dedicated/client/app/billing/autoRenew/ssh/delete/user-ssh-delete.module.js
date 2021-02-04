@@ -1,7 +1,7 @@
 import angular from 'angular';
-import 'angular-translate';
+import angularTranslate from 'angular-translate';
 import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
-import '@uirouter/angularjs';
+import uiRouter from '@uirouter/angularjs';
 
 import controller from './user-ssh-delete.controller';
 import template from './user-ssh-delete.html';
@@ -9,7 +9,7 @@ import template from './user-ssh-delete.html';
 const moduleName = 'ovhManagerBillingAutorenewSshDelete';
 
 angular
-  .module(moduleName, [ngOvhUtils, 'pascalprecht.translate', 'ui.router'])
+  .module(moduleName, [angularTranslate, ngOvhUtils, uiRouter])
   .controller('UserAccount.controllers.ssh.delete', controller)
   .run(
     /* @ngInject */ ($templateCache) => {

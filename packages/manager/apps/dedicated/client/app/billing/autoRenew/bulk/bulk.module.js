@@ -1,7 +1,8 @@
 import angular from 'angular';
-import 'angular-translate';
-import '@ovh-ux/ng-translate-async-loader';
+import angularTranslate from 'angular-translate';
+import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ui-kit';
+import uiRouter from '@uirouter/angularjs';
 
 import component from './bulk.component';
 
@@ -9,10 +10,10 @@ const moduleName = 'ovhManagerBillingAutorenewBulk';
 
 angular
   .module(moduleName, [
-    'ngTranslateAsyncLoader',
+    angularTranslate,
+    ngTranslateAsyncLoader,
     'oui',
-    'pascalprecht.translate',
-    'ui.router',
+    uiRouter,
   ])
   .component('billingAutorenewBulk', component)
   .run(/* @ngTranslationsInject:json ./translations */);

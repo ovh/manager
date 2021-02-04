@@ -1,8 +1,9 @@
 import angular from 'angular';
-import 'angular-translate';
+import angularTranslate from 'angular-translate';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
-import '@ovh-ux/ng-translate-async-loader';
+import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ui-kit';
+import uiRouter from '@uirouter/angularjs';
 
 import component from './terminate-enterprise-cloud-database.component';
 import routing from './terminate-enterprise-cloud-database.routing';
@@ -13,12 +14,12 @@ const moduleName = 'ovhManagerBillingAutorenewTerminateEnterpriseCloudDatabase';
 
 angular
   .module(moduleName, [
+    angularTranslate,
     ngAtInternet,
-    'ngTranslateAsyncLoader',
+    ngTranslateAsyncLoader,
     'oui',
-    'pascalprecht.translate',
     terminate,
-    'ui.router',
+    uiRouter,
   ])
   .config(routing)
   .component('billingAutorenewTerminateEnterpriseCloudDatabase', component);

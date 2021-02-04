@@ -1,10 +1,13 @@
 import angular from 'angular';
 import ngOvhExportCsv from '@ovh-ux/ng-ovh-export-csv';
 import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
-import '@ovh-ux/ng-translate-async-loader';
+import ngRoute from 'angular-route';
+import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
+import ngSanitize from 'angular-sanitize';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import set from 'lodash/set';
-import '@uirouter/angularjs';
+import uiBootstrap from 'angular-ui-bootstrap';
+import uiRouter from '@uirouter/angularjs';
 
 import autorenew from './autoRenew/autorenew.module';
 import billingMain from './main/billing-main.module';
@@ -34,22 +37,22 @@ const moduleName = 'Billing';
 
 angular
   .module(moduleName, [
-    ovhManagerCore,
     autorenew,
     billingMain,
-    'ngRoute',
-    'ngSanitize',
-    order,
-    orders,
     ngOvhExportCsv,
     ngOvhUtils,
-    'ngTranslateAsyncLoader',
-    sla,
-    termination,
-    'ui.bootstrap',
-    'ui.router',
+    ngRoute,
+    ngSanitize,
+    ngTranslateAsyncLoader,
+    order,
+    orders,
+    ovhManagerCore,
     payment,
     paymentMehtod,
+    sla,
+    termination,
+    uiBootstrap,
+    uiRouter,
   ])
   .config(routing)
   .service('billingFeatureAvailability', featureAvailability)

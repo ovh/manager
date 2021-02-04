@@ -1,6 +1,6 @@
 import angular from 'angular';
-import 'angular-translate';
-import '@uirouter/angularjs';
+import angularTranslate from 'angular-translate';
+import uiRouter from '@uirouter/angularjs';
 
 import controller from './user-ssh-view.controller';
 import template from './user-ssh-view.html';
@@ -8,7 +8,7 @@ import template from './user-ssh-view.html';
 const moduleName = 'ovhManagerBillingAutorenewSshView';
 
 angular
-  .module(moduleName, ['pascalprecht.translate', 'ui.router'])
+  .module(moduleName, [angularTranslate, uiRouter])
   .controller('UserAccount.controllers.ssh.view', controller)
   .run(
     /* @ngInject */ ($templateCache) => {

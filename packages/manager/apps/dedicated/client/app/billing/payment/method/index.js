@@ -1,9 +1,9 @@
 import angular from 'angular';
 
-import 'angular-translate';
+import angularTranslate from 'angular-translate';
 import '@ovh-ux/ui-kit';
-import '@ovh-ux/ng-translate-async-loader';
-import '@ovh-ux/ng-ovh-payment-method';
+import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
+import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
 
 import addModule from './add';
 import defaultModule from './default';
@@ -17,10 +17,10 @@ const moduleName = 'ovhBillingPaymentMethod';
 
 angular
   .module(moduleName, [
+    angularTranslate,
     'oui',
-    'ngTranslateAsyncLoader',
-    'pascalprecht.translate',
-    'ngOvhPaymentMethod',
+    ngTranslateAsyncLoader,
+    ngOvhPaymentMethod,
     addModule,
     defaultModule,
     deleteModule,

@@ -1,9 +1,9 @@
 import angular from 'angular';
-import 'angular-translate';
+import angularTranslate from 'angular-translate';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
-import '@ovh-ux/ng-translate-async-loader';
+import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ui-kit';
-import '@uirouter/angularjs';
+import uiRouter from '@uirouter/angularjs';
 
 import component from './activation.component';
 import routing from './activation.routing';
@@ -12,11 +12,11 @@ const moduleName = 'ovhManagerBillingAutorenewActivation';
 
 angular
   .module(moduleName, [
+    angularTranslate,
     ngAtInternet,
-    'ngTranslateAsyncLoader',
+    ngTranslateAsyncLoader,
     'oui',
-    'pascalprecht.translate',
-    'ui.router',
+    uiRouter,
   ])
   .config(routing)
   .component('billingAutorenewActivation', component);

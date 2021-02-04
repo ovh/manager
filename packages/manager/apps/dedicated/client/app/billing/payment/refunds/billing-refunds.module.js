@@ -1,8 +1,8 @@
 import angular from 'angular';
-import 'angular-translate';
-import '@ovh-ux/ng-translate-async-loader';
+import angularTranslate from 'angular-translate';
+import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ui-kit';
-import '@uirouter/angularjs';
+import uiRouter from '@uirouter/angularjs';
 
 import routing from './billing-payment-refunds.routes';
 import service from './billing-refunds.service';
@@ -11,10 +11,10 @@ const moduleName = 'ovhManagerBillingPaymentRefund';
 
 angular
   .module(moduleName, [
-    'ngTranslateAsyncLoader',
+    angularTranslate,
+    ngTranslateAsyncLoader,
     'oui',
-    'pascalprecht.translate',
-    'ui.router',
+    uiRouter,
   ])
   .config(routing)
   .service('BillingRefunds', service)

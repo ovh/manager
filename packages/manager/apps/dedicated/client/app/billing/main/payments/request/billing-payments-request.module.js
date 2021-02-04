@@ -1,9 +1,9 @@
 import angular from 'angular';
-import 'angular-translate';
+import angularTranslate from 'angular-translate';
 import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
 import '@ovh-ux/ui-kit';
-import '@ovh-ux/ng-translate-async-loader';
-import '@uirouter/angularjs';
+import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
+import uiRouter from '@uirouter/angularjs';
 
 import routing from './billing-payments-request.routes';
 
@@ -11,11 +11,11 @@ const moduleName = 'ovhManagerBillingMainPaymentsRequest';
 
 angular
   .module(moduleName, [
-    'ngTranslateAsyncLoader',
+    angularTranslate,
+    ngTranslateAsyncLoader,
     'oui',
     ngOvhUtils,
-    'pascalprecht.translate',
-    'ui.router',
+    uiRouter,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);

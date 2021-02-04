@@ -1,20 +1,15 @@
 import angular from 'angular';
-import 'angular-translate';
+import angularTranslate from 'angular-translate';
 import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
 import '@ovh-ux/ui-kit';
-import '@uirouter/angularjs';
+import uiRouter from '@uirouter/angularjs';
 
 import routing from './billing-payments-details.routes';
 
 const moduleName = 'ovhManagerBillingMainPaymentsDetails';
 
 angular
-  .module(moduleName, [
-    ngOvhUtils,
-    'oui',
-    'pascalprecht.translate',
-    'ui.router',
-  ])
+  .module(moduleName, [angularTranslate, ngOvhUtils, 'oui', uiRouter])
   .config(routing);
 
 export default moduleName;
