@@ -11,23 +11,22 @@ const env = {
 
 const devConfig = devServer.config(env);
 
-const proxyConfig = devConfig.devServer.proxy.reduce(
-  (allProxy, proxy) => {
-    if (Array.isArray(proxy.context)) {
-      return {
-        ...allProxy,
-        ...proxy.context.reduce((allContext, context) => ({ ...allContext, [context]: proxy }), {}),
-      };
-    }
+const proxyConfig = devConfig.devServer.proxy.reduce((allProxy, proxy) => {
+  if (Array.isArray(proxy.context)) {
     return {
       ...allProxy,
-      [proxy.context]: proxy,
+      ...proxy.context.reduce((allContext, context) => ({ ...allContext, [context]: proxy }), {}),
     };
-  }, {},
-);
+  }
+  return {
+    ...allProxy,
+    [proxy.context]: proxy,
+  };
+}, {});
 
 devConfig.devServer.proxy = proxyConfig;
 
 module.exports = {
+  publicPath: process.env.NODE_ENV === 'production' ? '/hub-next/' : '/',
   configureWebpack: devConfig,
 };
