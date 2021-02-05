@@ -154,5 +154,6 @@
   "telecom_pack_migration_buildings_select_building": "Sélectionner",
   "telecom_pack_migration_confirm_resume_contact_owner": "Informations de contact",
   "telecom_pack_migration_confirm_resume_contact_phone": "Numéro de téléphone sur lequel vous pourrez être contacté si nécessaire",
-  "telecom_pack_migration_confirm_resume_phone_form_error": "Le numéro saisi doit être valide."
+  "telecom_pack_migration_confirm_resume_phone_form_error": "Le numéro saisi doit être valide.",
+  "telecom_pack_migration_choose_offer_error": "Une erreur est survenue durant la récupération des offres : {{ error }}."
 }
