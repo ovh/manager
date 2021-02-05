@@ -40,7 +40,7 @@
   "domains_configuration_renew_step1_question": "Para renovar sus dominios, debe utilizar la interfaz de renovación OVH (fuera del área de cliente Web).",
   "domains_configuration_renew_step1_unable_to_renew": "Debido a que usted no es el contacto de facturación, no puede renovar algunos de los dominios seleccionados (<span class=\"italic\">{{t0}}</span>).",
   "domains_configuration_renew_step1_unable_ignored": "Esos dominios se ignorarán al realizar la renovación.",
-  "domains_configuration_renew_step1_no_selected_domains": "No ha seleccionado ningún dominio para renovar, o no está autorizado para renovarlos.",
+  "domains_configuration_renew_step1_no_selected_domains": "No ha seleccionado ningún dominio para renovar, o tiene autorización para renovar los dominios.",
   "domains_configuration_renew_step1_confirmation": "Haga clic en el botón «Contratar» para abrir una nueva ventana y renovar sus nombres de dominio.",
   "domains_configuration_renew_step1_information": "Se abrirá una nueva pestaña y el sistema le redirigirá automáticamente a la interfaz de renovación de OVH.",
   "domains_configuration_renew_step1_alert": "Tenga en cuenta que es necesario un plazo aproximado de 2 horas desde la aceptación del pago para que las renovaciones se reflejen en su área de cliente Web.",

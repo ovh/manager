@@ -85,5 +85,8 @@
   "pack_promotion_code_confirm": "Adquirir un nuevo compromiso",
   "pack_rename_error": "No se ha podido renombrar el pack {{serviceName}}.",
   "pack_offer_migration": "Cambiar de plan",
-  "pack_xdsl_oops_an_error_is_occured": "¡Vaya! No hemos podido cargar los datos de su pack."
+  "pack_xdsl_oops_an_error_is_occured": "¡Vaya! No hemos podido cargar los datos de su pack.",
+  "pack_xdsl_information_links": "Enlaces",
+  "pack_xdsl_information_links_igmap": "Mapa de incidencias genéricas",
+  "pack_xdsl_information_links_travaux": "Status"
 }
