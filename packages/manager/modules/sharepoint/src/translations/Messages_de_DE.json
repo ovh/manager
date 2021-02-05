@@ -30,7 +30,7 @@
   "sharepoint_dashboard_display_name_error": "Bei der Aktualisierung der Informationen ist ein Fehler aufgetreten.",
   "sharepoint_tab_INFORMATION": "Allgemeine Informationen",
   "sharepoint_tab_ACCOUNT": "Benutzer",
-  "sharepoint_tab_DOMAIN": "Domains",
+  "sharepoint_tab_DOMAIN": "Domainnamen",
   "sharepoint_tab_TASK": "Aktuelle Tasks",
   "sharepoint_tabs_tasks_function": "Funktion",
   "sharepoint_tabs_tasks_status": "Status",

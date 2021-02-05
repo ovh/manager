@@ -20,7 +20,7 @@
   "cdn_configuration_quota_remaining_default": "Keine Daten",
   "cdn_configuration_quota_estimation": "Geschätztes Datum, an dem der Traffic aufgebraucht sein wird",
   "cdn_configuration_info_title": "Informationen",
-  "cdn_configuration_domains": "Domains",
+  "cdn_configuration_domains": "Domainnamen",
   "cdn_configuration_domain": "0 domain",
   "cdn_configuration_domain_1": "1 domain",
   "cdn_configuration_domain_other": "{}  domains",

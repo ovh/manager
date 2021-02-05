@@ -30,7 +30,7 @@
   "sharepoint_dashboard_display_name_error": "Erro ao processar a atualização das informações.",
   "sharepoint_tab_INFORMATION": "Informações gerais",
   "sharepoint_tab_ACCOUNT": "Utilizadores",
-  "sharepoint_tab_DOMAIN": "Domínios",
+  "sharepoint_tab_DOMAIN": "Nomes de domínio",
   "sharepoint_tab_TASK": "Operações recentes",
   "sharepoint_tabs_tasks_function": "Função",
   "sharepoint_tabs_tasks_status": "Estado",

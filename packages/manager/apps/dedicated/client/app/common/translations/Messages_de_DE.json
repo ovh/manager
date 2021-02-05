@@ -455,7 +455,7 @@
   "dedicated_server_dashboard_ovhTasks_description": "Status Tasks anzeigen",
   "core_top_guides_header": "Für weitere Informationen lesen Sie bitte <a href=\"{{t0}}\" target=\"_blank\">unsere Anleitungen</a>. ",
   "core_top_guides_header_fr": "Wenn Sie Hilfe oder genauere Informationen zu Ihren Diensten benötigen, gehen Sie bitte auf folgende Seite:",
-  "core_type_of_guide_vps": "VPS",
+  "core_type_of_guide_vps": "Virtual Private Server",
   "core_all_guides": "Alle unsere Hilfen",
   "core_vps_top_guide_1_title": "Erstellung von SSH-Keys ",
   "core_vps_top_guide_2_title": "Migration von VPS 2014 auf das Angebot 2016 ",

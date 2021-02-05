@@ -26,7 +26,7 @@
   "ovhManagerSupport_new_serviceType_telephony_line": "Telefonia (linea VoIP)",
   "ovhManagerSupport_new_serviceType_telephony_number": "Telefonia (numero)",
   "ovhManagerSupport_new_serviceType_sms": "SMS",
-  "ovhManagerSupport_new_serviceType_vps": "VPS",
+  "ovhManagerSupport_new_serviceType_vps": "Server Privati Virtuali",
   "ovhManagerSupport_new_serviceType_xdsl": "Accesso Internet (ADSL, SDSL, VDSL, FTTH)",
   "ovhManagerSupport_new_serviceType_vrack": "vRack",
   "ovhManagerSupport_new_serviceType_domain": "Dominio",

@@ -81,7 +81,7 @@
   "terminate_service_legacy_type_telephony_lines": "Telefonía",
   "terminate_service_legacy_type_telephony_trunks": "Telefonía",
   "terminate_service_legacy_type_veeamCloudConnect": "Veeam Cloud Connect",
-  "terminate_service_legacy_type_vps": "VPS",
+  "terminate_service_legacy_type_vps": "Servidores privados virtuales",
   "terminate_service_legacy_type_xdsl": "Línea xDSL",
   "terminate_service_legacy_type_kube": "Kubernetes",
   "terminate_service_legacy_type_webcoach": "WebCoach",

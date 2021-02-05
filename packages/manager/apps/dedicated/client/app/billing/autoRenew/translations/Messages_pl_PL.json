@@ -91,7 +91,7 @@
   "billing_autorenew_service_type_TELEPHONY": "Telefonia",
   "billing_autorenew_service_type_EXCHANGE": "Exchange",
   "billing_autorenew_service_type_SMS": "SMS",
-  "billing_autorenew_service_type_VPS": "VPS",
+  "billing_autorenew_service_type_VPS": "Prywatne serwery wirtualne",
   "billing_autorenew_service_type_MIS": "Infrastruktura zarządzana",
   "billing_autorenew_service_type_HOSTING_RESELLER": "Hosting dla resellera",
   "billing_autorenew_service_type_EMAIL_DOMAIN": "MX Plan",
