@@ -77,10 +77,6 @@ export default class TelecomPackMigrationOffersCtrl {
     );
   }
 
-  static isChosen(option) {
-    return option.choosedValue > 0;
-  }
-
   selectOffer(offer) {
     const selectedOffer = offer;
     const params = {
@@ -91,11 +87,11 @@ export default class TelecomPackMigrationOffersCtrl {
     const options = [];
 
     Object.entries(selectedOffer.options).map(([key, option]) => {
-      if (option.included > 0 || this.constructor.isChosen(option)) {
+      if (option.included > 0 || option.choosedValue > 0) {
         options.push({
           quantity:
             option.included +
-            (this.constructor.isChosen(option) ? option.choosedValue : 0),
+            (option.choosedValue > 0 ? option.choosedValue : 0),
           name: option.name,
         });
       }
