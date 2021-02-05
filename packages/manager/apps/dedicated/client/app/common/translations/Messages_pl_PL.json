@@ -456,7 +456,7 @@
   "dedicated_server_dashboard_ovhTasks_description": "Sprawdź \"Prace OVH\"",
   "core_top_guides_header": "Aby uzyskać więcej informacji, sprawdź <a href=\"{{t0}}\" target=\"_blank\">nasze przewodniki</a>.",
   "core_top_guides_header_fr": "Aby uzyskać wsparcie lub szczegółowe informacje dotyczące Twoich usług, wejdź na stronę:",
-  "core_type_of_guide_vps": "VPS",
+  "core_type_of_guide_vps": "Prywatne serwery wirtualne",
   "core_all_guides": "Wszystkie nasze przewodniki",
   "core_vps_top_guide_1_title": "Tworzenie kluczy SSH",
   "core_vps_top_guide_2_title": "Migracja z oferty VPS 2014 na ofertę 2016",

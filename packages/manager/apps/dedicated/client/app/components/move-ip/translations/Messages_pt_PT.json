@@ -7,7 +7,7 @@
   "dedicatedCloud_move_ip_option_hostingReseller": "Hosting Reseller",
   "dedicatedCloud_move_ip_option_dedicatedServer": "Servidores dedicados",
   "dedicatedCloud_move_ip_option_dedicatedCloud": "Dedicated Cloud",
-  "dedicatedCloud_move_ip_option_vps": "VPS",
+  "dedicatedCloud_move_ip_option_vps": "Servidores privados virtuais",
   "dedicatedCloud_move_ip_option_cloudProject": "Projeto Cloud",
   "dedicatedCloud_move_ip_option_ipLoadbalancing": "IP Load Balancer",
   "dedicatedCloud_move_ip_cancel": "Cancelar",

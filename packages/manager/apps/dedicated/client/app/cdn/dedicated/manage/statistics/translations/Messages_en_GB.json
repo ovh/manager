@@ -20,7 +20,7 @@
   "cdn_configuration_quota_remaining_default": "No data",
   "cdn_configuration_quota_estimation": "Estimation before depletion ",
   "cdn_configuration_info_title": "Information",
-  "cdn_configuration_domains": "Domains",
+  "cdn_configuration_domains": "Domain names",
   "cdn_configuration_domain": "O domain",
   "cdn_configuration_domain_1": "1 domain",
   "cdn_configuration_domain_other": "{} domains",
