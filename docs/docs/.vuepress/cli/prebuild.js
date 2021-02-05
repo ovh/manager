@@ -18,7 +18,7 @@ const packages = getMonorepoPackages(directoryPath).map(
 );
 
 // Group packages by their corresponding workspaces.
-const groupedWorkspaces = workspaces.map((workspace) => {
+const groupedWorkspaces = (Array.isArray(workspaces) ? workspaces : workspaces.packages).map((workspace) => {
   const packagesList = packages.filter((pkg) => {
     // Remove the pattern `/*` from the workspace name.
     if (workspace.includes('/*') && pkg.location.includes(workspace.slice(0, -2))) {

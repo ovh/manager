@@ -4,14 +4,22 @@
   "private": true,
   "description": "OVH Control Panel also known as Manager",
   "license": "BSD-3-Clause",
-  "workspaces": [
-    "docs",
-    "packages/components/*",
-    "packages/manager/apps/*",
-    "packages/manager/modules/*",
-    "packages/manager/tools/*",
-    "packages/manager/fragments/*"
-  ],
+  "workspaces": {
+    "packages": [
+      "docs",
+      "packages/components/*",
+      "packages/manager/apps/*",
+      "packages/manager/modules/*",
+      "packages/manager/tools/*",
+      "packages/manager/fragments/*"
+    ],
+    "nohoist": [
+      "**/vue",
+      "**/vue/**",
+      "**/vue-server-renderer",
+      "**/vue-server-renderer/**"
+    ]
+  },
   "scripts": {
     "build": "node --experimental-worker scripts/build.js",
     "clean": "lerna clean -y && yarn run clean:dist && rimraf node_modules",

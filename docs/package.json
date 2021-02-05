@@ -11,6 +11,8 @@
   "devDependencies": {
     "get-monorepo-packages": "^1.2.0",
     "gh-pages": "^2.2.0",
+    "vue": "^2.6.10",
+    "vue-server-renderer": "^2.6.10",
     "vuepress": "^1.7.1"
   }
 }
