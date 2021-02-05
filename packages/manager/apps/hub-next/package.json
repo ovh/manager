@@ -4,8 +4,11 @@
   "private": true,
   "scripts": {
     "build": "vue-cli-service build",
+    "dev": "yarn serve",
     "lint": "vue-cli-service lint",
     "serve": "vue-cli-service serve",
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-hub-next' --include-dependencies -- npm run build --if-present",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-hub-next' --include-dependencies -- npm run dev --if-present",
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
