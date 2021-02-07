@@ -477,7 +477,7 @@
   "core_sd_top_guide_7_title": "Modalità Rescue",
   "core_sd_top_guide_8_title": "Crea un RAID hardware dal tuo Spazio Ciente OVH",
   "core_sd_top_guide_firewall_title": "Configura il Firewall Network",
-  "core_type_of_guide_pcc": "Dedicated Cloud",
+  "core_type_of_guide_pcc": "Hosted Private Cloud",
   "core_pcc_top_guide_1_title": "Accedi a vSphere",
   "core_pcc_top_guide_2_title": "Configura la tua prima macchina virtuale",
   "core_pcc_top_guide_3_title": "Configura un indirizzo IP su una macchina virtuale",
