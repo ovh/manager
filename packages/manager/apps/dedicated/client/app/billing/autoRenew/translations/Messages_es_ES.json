@@ -68,7 +68,7 @@
   "billing_autorenew_service_type_DEDICATED_SERVER": "Servidor dedicado",
   "billing_autorenew_service_type_dedicated_server": "Servidor dedicado",
   "billing_autorenew_service_type_DEDICATED_HOUSING": "Servidor en housing",
-  "billing_autorenew_service_type_DEDICATED_CLOUD": "Hosted Private Cloud",
+  "billing_autorenew_service_type_DEDICATED_CLOUD": "Cloud de Alojamiento Privado",
   "billing_autorenew_service_type_DOMAIN": "Dominio",
   "billing_autorenew_service_type_ENTERPRISE_CLOUD_DATABASE": "Enterprise Cloud Databases",
   "billing_autorenew_service_type_HOSTING_PRIVATE_DATABASE": "Alojamiento BD SQL Privado",
