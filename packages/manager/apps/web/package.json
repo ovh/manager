@@ -39,7 +39,7 @@
     "@ovh-ux/manager-product-offers": "^3.0.0 || ^4.0.0",
     "@ovh-ux/manager-server-sidebar": "^2.0.0 || ^3.0.0",
     "@ovh-ux/manager-sharepoint": "^1.0.0 || ^2.0.0",
-    "@ovh-ux/manager-web-paas": "^0.0.0",
+    "@ovh-ux/manager-web-paas": "^0.0.0 || ^1.0.0",
     "@ovh-ux/mfa-enrollment": "^1.0.0 || ^2.0.0",
     "@ovh-ux/ng-at-internet": "^5.4.1",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.1.1",

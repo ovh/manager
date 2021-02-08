@@ -239,15 +239,8 @@ export const MICROSOFT_CONFIG = {
 
 export const PSH_CONFIG = {
   id: 'web_paas',
+  feature: 'web:web-paas',
   loadOnState: 'web-paas',
-  // types: [
-  //   {
-  //     path: '/pass/web-paas',
-  //     state: 'web-paas',
-  //     stateParams: ['serviceName'],
-  //     app: [WEB],
-  //   },
-  // ],
   children: [
     {
       id: 'web_paas_all_accounts',
@@ -258,7 +251,6 @@ export const PSH_CONFIG = {
   ],
   icon: 'oui-icon oui-icon-partner-platformsh_concept',
   app: [WEB],
-  regions: ['EU', 'CA', 'US'],
 };
 
 export const WEB_SIDEBAR_CONFIG = [
@@ -386,8 +378,9 @@ export const WEB_ORDER_SIDEBAR_CONFIG = [
     app: [WEB],
   },
   {
-    id: 'orderPsh',
-    title: 'psh',
+    id: 'orderWebPaas',
+    title: 'web_paas',
+    feature: 'web-paas',
     icon: 'oui-icon oui-icon-partner-platformsh_concept',
     state: 'web-paas.add',
     regions: ['EU', 'CA', 'US'],
