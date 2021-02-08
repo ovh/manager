@@ -7,12 +7,29 @@ import { MESSAGES } from './constants';
 function NavbarNotifications() {
   const { t } = useTranslation();
   const [notificationsCount, setNotificationsCount] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     listen(MESSAGES.notificationsCount, ({ count }) => {
       setNotificationsCount(count);
     });
+
+    listen(MESSAGES.notificationsStatusChange, ({ status }) => {
+      setIsOpen(status);
+    });
   }, []);
+
+  function onClick() {
+    if (isOpen) {
+      emit({
+        id: MESSAGES.notificationsHide,
+      });
+    } else {
+      emit({
+        id: MESSAGES.notificationsOpen,
+      });
+    }
+  }
 
   return (
     <button
@@ -22,14 +39,7 @@ function NavbarNotifications() {
       title={t('navbar_notifications')}
       aria-label={t('navbar_notifications')}
       disabled={notificationsCount === null}
-      onClick={() => {
-        emit({
-          id: MESSAGES.accountSidebarHide,
-        });
-        emit({
-          id: MESSAGES.notificationsToggle,
-        });
-      }}
+      onClick={onClick}
     >
       <span className="oui-icon oui-icon-bell" aria-hidden="true">
         {notificationsCount !== null && (

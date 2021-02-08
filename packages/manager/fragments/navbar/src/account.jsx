@@ -30,9 +30,6 @@ function NavbarAccount({ user }) {
       aria-label={t('navbar_account')}
       onClick={() => {
         emit({
-          id: MESSAGES.notificationsHide,
-        });
-        emit({
           id: MESSAGES.accountSidebarToggle,
         });
       }}
