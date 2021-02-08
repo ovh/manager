@@ -1,3 +1,4 @@
+import { Environment } from '@ovh-ux/manager-config';
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 
 export default class PciProjectNewPaymentCtrl {
@@ -94,6 +95,9 @@ export default class PciProjectNewPaymentCtrl {
           this.$translate.instant('pci_project_new_payment_checkout_error'),
           'pci.projects.new.payment',
         );
+
+        this.componentInitialParams = null;
+        this.hasComponentRedirectCallback = false;
       })
       .finally(() => {
         this.globalLoading.finalize = false;
@@ -105,6 +109,14 @@ export default class PciProjectNewPaymentCtrl {
   /* =============================
   =            Events            =
   ============================== */
+
+  initComponentInitialParams() {
+    this.componentInitialParams = {
+      locale: Environment.getUser().language,
+      paymentMethod: this.model.paymentMethod,
+      setAsDefault: true,
+    };
+  }
 
   onPaymentFormSubmit() {
     let challengePromise = Promise.resolve(true);
@@ -196,10 +208,11 @@ export default class PciProjectNewPaymentCtrl {
     this.integrationSubmitFn = integrationSubmitFn;
   }
 
-  static onIntegrationSubmit() {
+  static onIntegrationSubmit(additionalParams = {}) {
     return {
       default: true,
       register: true,
+      ...additionalParams,
     };
   }
 
@@ -212,6 +225,9 @@ export default class PciProjectNewPaymentCtrl {
       this.$translate.instant('pci_project_new_payment_create_error'),
       'pci.projects.new.payment',
     );
+
+    this.componentInitialParams = null;
+    this.hasComponentRedirectCallback = false;
   }
 
   /* -----  End of Callbacks  ------ */

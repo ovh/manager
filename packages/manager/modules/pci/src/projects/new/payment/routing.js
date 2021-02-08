@@ -48,6 +48,8 @@ export default /* @ngInject */ ($stateProvider) => {
       activeStep(step.name);
     },
     resolve: {
+      callback: /* @ngInject */ ($location) => $location.search(),
+
       paymentStatus: /* @ngInject */ ($transition$) =>
         $transition$.params().paymentStatus,
 
@@ -65,6 +67,23 @@ export default /* @ngInject */ ($stateProvider) => {
         // set valid payment methods of eligibility in order to centralize requirements
         eligibility.setValidPaymentMethods(validPaymentMethods);
         return validPaymentMethods;
+      },
+
+      hasComponentRedirectCallback: /* @ngInject */ (
+        callback,
+        ovhPaymentMethodHelper,
+        paymentStatus,
+        OVH_PAYMENT_METHOD_INTEGRATION_TYPE,
+      ) => {
+        const displayComponent =
+          paymentStatus !== null
+            ? ovhPaymentMethodHelper.constructor.getCallbackIntegrationTypeRelated(
+                callback,
+              )
+            : null;
+        return (
+          displayComponent === OVH_PAYMENT_METHOD_INTEGRATION_TYPE.COMPONENT
+        );
       },
 
       defaultPaymentMethod: /* @ngInject */ (paymentMethods) =>
