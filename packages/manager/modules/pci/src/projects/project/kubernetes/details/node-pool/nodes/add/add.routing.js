@@ -40,9 +40,6 @@ export default /* @ngInject */ ($stateProvider) => {
             },
           ),
         goBack: /* @ngInject */ (goToNodes) => goToNodes,
-        quotas: /* @ngInject */ (OvhApiCloudProjectQuota, projectId) =>
-          OvhApiCloudProjectQuota.v6().query({ serviceName: projectId })
-            .$promise,
         maxInstances: /* @ngInject */ (quotas, cluster, nodePool) => {
           const quota = find(quotas, { region: cluster.region });
           const maxNodes =
