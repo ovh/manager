@@ -22,7 +22,7 @@ export default class NotificationsCtrl {
     this.$rootScope = $rootScope;
     this.$translate = $translate;
     this.atInternet = atInternet;
-    this.toggle = false;
+    this.isOpen = false;
     this.NavbarNotifications = NavbarNotifications;
     this.translations = ouiNavbarConfiguration.translations;
 
@@ -35,7 +35,8 @@ export default class NotificationsCtrl {
 
     // Will be bound to the click event on $document
     this.readAllNotifications = () => {
-      this.toggle = false;
+      this.isOpen = false;
+      this.$rootScope.$emit('ovh::notifications::statuschange', false);
 
       // Automatically set all unread messages to read
       // when we close the notifications menu
@@ -52,27 +53,39 @@ export default class NotificationsCtrl {
       this.$document.off('click', this.readAllNotifications);
     };
 
-    this.$rootScope.$on('ovh::notifications::toggle', () => {
-      this.toggle = !this.toggle;
-      if (this.toggle) {
-        // Handle the click outside the notifications menu
-        this.$document.on('click', this.readAllNotifications);
+    const open = () => {
+      this.isOpen = true;
+      this.$rootScope.$emit('ovh::notifications::statuschange', true);
 
-        this.atInternet.trackClick({
-          name: 'navbar::action::notifications',
-          type: 'action',
-        });
+      this.$document.on('click', this.readAllNotifications);
+
+      this.atInternet.trackClick({
+        name: 'navbar::action::notifications',
+        type: 'action',
+      });
+    };
+
+    const close = () => {
+      this.isOpen = false;
+      this.$rootScope.$emit('ovh::notifications::statuschange', false);
+      // We unbind the click event in this function
+      this.readAllNotifications();
+    };
+
+    this.$rootScope.$on('ovh::notifications::toggle', () => {
+      if (this.isOpen) {
+        close();
       } else {
-        // We unbind the click event in this function
-        this.readAllNotifications();
+        open();
       }
     });
 
-    this.$rootScope.$on('ovh::notifications::hide', () => {
-      this.toggle = false;
+    this.$rootScope.$on('ovh::notifications::open', () => {
+      open();
+    });
 
-      // We unbind the click event in this function
-      this.readAllNotifications();
+    this.$rootScope.$on('ovh::notifications::hide', () => {
+      close();
     });
 
     return this.$translate
