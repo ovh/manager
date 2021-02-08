@@ -4,7 +4,7 @@
   "billing_confirm_termination_information_text": "Die Dienstleistung wird am Ende des Verlängerungszeitraums gekündigt. Bitte beachten Sie: Wenn Sie die Kündigung bestätigen, werden alle Daten in Verbindung mit diesem Dienst und alle Backups <strong>unwiderruflich gelöscht</strong>.  Es obliegt Ihnen, alle notwendigen Maßnahmen zur Sicherung Ihrer Daten zu treffen, bevor Sie die Kündigung Ihrer Dienstleistung bestätigen. Wenn Sie diesen Vorgang begonnen haben, können Sie ihn nicht anhalten. OVHcloud lehnt in diesem Fall jede Verantwortung für Datenverlust ab.",
   "billing_confirm_termination_question_reason": "Sie haben sich dafür entschlossen, Ihre Dienstleistung zu kündigen. Bitte helfen Sie uns, besser zu werden. Würden Sie dafür bitte den Hauptgrund Ihrer Kündigung angeben?",
   "billing_confirm_termination_question_future_use": "Was sind Ihre weiteren Pläne?",
-  "billing_confirm_termination_question_commentary": "Wenn Sie möchten, können Sie uns sehr gerne weitere Gründe angeben, aus denen Sie die Dienstleistung kündigen.",
+  "billing_confirm_termination_question_commentary": "Gerne können Sie weitere Gründe für die Kündigung dieses Dienstes angeben.",
   "billing_confirm_termination_reason_LACK_OF_PERFORMANCES": "Die Qualität der Dienstleistung (Pannen, Störungen) entspricht nicht meinen Erwartungen.",
   "billing_confirm_termination_reason_NOT_NEEDED_ANYMORE": "Dieses Produkt/diese Dienstleistung war mit einem Projekt verbunden, das nun beendet ist/sich weiterentwickelt hat.",
   "billing_confirm_termination_reason_TOO_EXPENSIVE": "Die Preise sind zu hoch.",
