@@ -82,8 +82,8 @@
                     data-disabled="
                         ($ctrl.eligibility.isChallengePaymentMethodRequired() && !$ctrl.model.challenge.isValid($ctrl.defaultPaymentMethod.paymentType))
                         || (!$ctrl.model.paymentMethod && $ctrl.eligibility.isAddPaymentMethodRequired())
-                        || (!$ctrl.defaultPaymentMethod && 
-                            !$ctrl.model.defaultPaymentMethod && 
+                        || (!$ctrl.defaultPaymentMethod &&
+                            !$ctrl.model.defaultPaymentMethod &&
                             $ctrl.eligibility.isDefaultPaymentMethodChoiceRequired())
                         || $ctrl.model.challenge.checking
                         || $ctrl.globalLoading.finalize
@@ -92,6 +92,18 @@
                 >
                     <span
                         data-translate="pci_project_new_payment_btn_continue_default"
+                    ></span>
+                </oui-button>
+
+                <oui-button
+                    variant="primary"
+                    type="button"
+                    on-click="$ctrl.initComponentInitialParams()"
+                    data-ng-if="$ctrl.model.paymentMethod.isHandleByComponent() && !$ctrl.componentInitialParams"
+                    disabled="$ctrl.globalLoading.finalize"
+                >
+                    <span
+                        data-translate="pci_project_new_payment_btn_continue_bank_account"
                     ></span>
                 </oui-button>
 
@@ -112,10 +124,30 @@
             </form>
 
             <a
+                data-ng-if="!$ctrl.model.paymentMethod.isHandleByComponent() || !$ctrl.componentInitialParams"
                 data-ng-href="{{ $ctrl.getCancelHref() }}"
                 data-translate="pci_project_new_payment_btn_cancel"
             >
             </a>
         </div>
+
+        <h2
+            class="oui-heading_underline"
+            data-ng-if="$ctrl.model.paymentMethod.isHandleByComponent() && $ctrl.componentInitialParams"
+            data-translate="pci_project_new_payment_information"
+        ></h2>
+
+        <ovh-payment-method-integration
+            data-ng-if="($ctrl.model.paymentMethod.isHandleByComponent() && $ctrl.componentInitialParams) || $ctrl.hasComponentRedirectCallback"
+            data-callback-status-param-url-name="paymentStatus"
+            data-callback="$ctrl.callback"
+            data-cancel-href="{{ $ctrl.getCancelHref() }}"
+            data-initial-params="$ctrl.componentInitialParams"
+            data-on-submit="$ctrl.onIntegrationSubmit.bind($ctrl)"
+            data-on-submit-error="$ctrl.onIntegrationSubmitError.bind($ctrl)"
+            data-on-submit-success="$ctrl.onIntegrationSubmitSuccess.bind($ctrl)"
+            data-payment-method-type="$ctrl.model.paymentMethod"
+        >
+        </ovh-payment-method-integration>
     </div>
 </div>
