@@ -6,5 +6,6 @@
   "kube_nodes": "Nodes",
   "kube_flavor": "{{ name }} ({{ cpuNumber }} CPU {{ ramCapacity }} GB RAM {{ diskCapacity }} GB Festplatte)",
   "kube_containers_and_services": "Container und Dienste",
-  "kube_node_pools": "Node-Pools"
+  "kube_node_pools": "Node-Pools",
+  "kube_restrictions": "Zugang zum APIServer"
 }

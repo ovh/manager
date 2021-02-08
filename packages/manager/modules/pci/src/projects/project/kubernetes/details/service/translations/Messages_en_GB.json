@@ -55,5 +55,11 @@
   "kube_service_cluster_version_not_supported_message": "Your version of Kubernetes is no longer supported. Please upgrade to a supported version.",
   "kube_service_cluster_versions_guide": "You can find more information about the versions supported in our official <a href=\"{{ versionGuideUrl }}\" rel=\"noopener\" target=\"_blank\">End-of-Support and End-of-Life policy</a> documentation.",
   "kube_service_cluster_status_REDEPLOYING": "Redeploying...",
-  "kube_service_reset_kubeconfig": "Reset kubeconfig"
+  "kube_service_reset_kubeconfig": "Reset kubeconfig",
+  "kube_service_access_security": "Access and security",
+  "kube_service_restrictions": "Access limit to APIServer",
+  "kube_service_restrictions_no_count": "No limit",
+  "kube_service_restrictions_count": "{{ count }} IP ranges",
+  "kube_service_restrictions_one": "1 IP range",
+  "kube_service_restrictions_edit": "Modify limitations"
 }
