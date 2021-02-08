@@ -47,6 +47,10 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           jobId,
         }),
+      jobResubmit: /* @ngInject */ ($state) => (jobId) =>
+        $state.go('pci.projects.project.training.jobs.resubmit', {
+          jobId,
+        }),
       jobKill: /* @ngInject */ ($state, projectId) => (jobId) =>
         $state.go('pci.projects.project.training.jobs.kill', {
           projectId,

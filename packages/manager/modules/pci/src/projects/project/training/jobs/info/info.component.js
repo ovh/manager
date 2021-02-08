@@ -7,6 +7,7 @@ export default {
   bindings: {
     job: '<',
     goToJobKill: '<',
+    goToJobResubmit: '<',
     user: '<',
     getTax: '<',
     getPrice: '<',

@@ -24,6 +24,7 @@ export default {
     billingLink: '<',
     jobInfo: '<',
     jobKill: '<',
+    jobResubmit: '<',
     jobInfoLink: '<',
     allUsers: '<',
     userLink: '<',

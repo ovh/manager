@@ -249,6 +249,11 @@
                 class="h-100"
                 data-heading="{{ 'pci_projects_project_training_jobs_info_title_actions' | translate  }}"
             >
+                <oui-tile-button data-on-click="$ctrl.goToJobResubmit()">
+                    <span
+                        data-translate="pci_projects_project_training_jobs_resubmit"
+                    ></span>
+                </oui-tile-button>
                 <oui-tile-button
                     data-on-click="$ctrl.goToJobKill()"
                     data-disabled="!$ctrl.job.canBeKilled()"
