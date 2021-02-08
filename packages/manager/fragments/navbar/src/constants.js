@@ -12,7 +12,8 @@ export const MESSAGES = {
 
   notificationsCount: 'ovh.notifications.count',
   notificationsHide: 'ovh.notifications.hide',
-  notificationsToggle: 'ovh.notifications.toggle',
+  notificationsOpen: 'ovh.notifications.open',
+  notificationsStatusChange: 'ovh.notifications.status.change',
 
   localeChange: 'locale.change',
 };
