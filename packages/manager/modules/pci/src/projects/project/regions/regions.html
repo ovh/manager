@@ -20,12 +20,13 @@
         >
             <div class="row">
                 <oui-select-picker
-                    class="col-md-6 col-lg-4 mb-1"
+                    class="col-md-6 col-lg-4 mb-1 icon-success-no-opacity"
                     data-ng-repeat="(region, datacenters) in $ctrl.regionsByDatacenter"
                     name="region"
                     data-disabled="true"
                     data-label="{{ ::region }}"
                     data-variant="light"
+                    picture="oui-icon oui-icon-success-circle"
                 >
                     <oui-select-picker-section
                         data-ng-repeat="datacenter in datacenters track by datacenter.microRegion.code"
@@ -41,12 +42,13 @@
         >
             <div class="row">
                 <oui-select-picker
-                    class="col-md-6 col-lg-4 mb-1"
+                    class="col-md-6 col-lg-4 mb-1 icon-success-no-opacity"
                     data-ng-repeat="(region, datacenters) in regions"
                     name="region"
                     data-disabled="true"
                     data-label="{{ ::region }}"
                     data-variant="light"
+                    picture="oui-icon oui-icon-success-circle"
                 >
                     <oui-select-picker-section
                         data-ng-repeat="datacenter in datacenters track by datacenter.microRegion.code"

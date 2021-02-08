@@ -1,14 +1,9 @@
-import controller from './project.controller';
-import template from './project.html';
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project', {
     url: '/{projectId:[0-9a-zA-Z]{32}}',
     views: {
       '@pci': {
-        controller,
-        controllerAs: '$ctrl',
-        template,
+        component: 'pciProject',
       },
     },
     redirectTo: (transition) => {
@@ -37,11 +32,13 @@ export default /* @ngInject */ ($stateProvider) => {
         OvhApiCloudProject.v6().get({
           serviceName: projectId,
         }).$promise,
+      quotas: /* @ngInject */ (PciProjectsService, projectId) =>
+        PciProjectsService.getQuotas(projectId),
       breadcrumb: /* @ngInject */ (project) =>
         project.status !== 'creating' ? project.description : null,
-      sidebarVisible: /* @ngInject */ (project) =>
-        project.status !== 'creating',
       user: /* @ngInject */ (SessionService) => SessionService.getUser(),
+      getQuotaUrl: /* @ngInject */ ($state) => () =>
+        $state.href('pci.projects.project.quota'),
     },
   });
 };
