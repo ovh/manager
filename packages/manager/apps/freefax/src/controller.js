@@ -10,47 +10,84 @@ export default class FreefaxAppController {
     this.ovhFeatureFlipping = ovhFeatureFlipping;
   }
 
+  emitEvents() {
+    // emit AngularJS events to ufrontend
+    const emitEvents = {
+      'ovh::notifications::count': {
+        id: 'ovh.notifications.count',
+        property: 'count',
+      },
+      'ovh::notifications::statuschange': {
+        id: 'ovh.notifications.status.change',
+        property: 'status',
+      },
+    };
+
+    Object.keys(emitEvents).forEach((eventName) => {
+      const { id, property } = emitEvents[eventName];
+      this.$rootScope.$on(eventName, (event, data) => {
+        emit({
+          id,
+          [property]: data,
+        });
+      });
+    });
+  }
+
+  broadcastEvents() {
+    // brodcast ufrontend events to AngularJS
+    const broadcastEvents = {
+      'ovh.notifications.toggle': 'ovh::notifications::toggle',
+      'ovh.notifications.hide': 'ovh::notifications::hide',
+      'ovh.notifications.open': [
+        'ovh::notifications::open',
+        'ovh::sidebar::hide',
+      ],
+      'ovh.account-sidebar.toggle': 'ovh::sidebar::toggle',
+      'ovh.account-sidebar.hide': 'ovh::sidebar::hide',
+    };
+
+    listen(({ id }) => {
+      const eventName = broadcastEvents[id] || undefined;
+      if (eventName) {
+        this.$timeout(() => {
+          if (Array.isArray(eventName)) {
+            eventName.forEach((event) => {
+              this.$rootScope.$broadcast(event);
+            });
+          } else {
+            this.$rootScope.$broadcast(eventName);
+          }
+        }, 0);
+      }
+    });
+  }
+
+  checkChatbotFeature() {
+    const CHATBOT_FEATURE = 'chatbot';
+    this.ovhFeatureFlipping
+      .checkFeatureAvailability(CHATBOT_FEATURE)
+      .then((featureAvailability) => {
+        this.chatbotEnabled = featureAvailability.isFeatureAvailable(
+          CHATBOT_FEATURE,
+        );
+        if (this.chatbotEnabled) {
+          this.$rootScope.$broadcast('ovh-chatbot:enable', this.chatbotEnabled);
+        }
+      });
+  }
+
   $onInit() {
     this.chatbotEnabled = false;
     this.user = Environment.getUser();
     this.currentLanguage = Environment.getUserLanguage();
     emit({ id: 'ovh.account-sidebar.ready' });
 
-    this.$rootScope.$on('ovh::notifications::count', (event, count) => {
-      emit({ id: 'ovh.notifications.count', count });
-    });
-
-    const forwardEvents = {
-      'ovh.notifications.toggle': 'ovh::notifications::toggle',
-      'ovh.notifications.hide': 'ovh::notifications::hide',
-      'ovh.account-sidebar.toggle': 'ovh::sidebar::toggle',
-      'ovh.account-sidebar.hide': 'ovh::sidebar::hide',
-    };
-
-    listen(({ id }) => {
-      const eventName = forwardEvents[id] || undefined;
-      if (eventName) {
-        this.$timeout(() => {
-          this.$rootScope.$broadcast(eventName);
-        }, 0);
-      }
-    });
+    this.emitEvents();
+    this.broadcastEvents();
 
     const unregisterListener = this.$scope.$on('app:started', () => {
-      const CHATBOT_FEATURE = 'chatbot';
-      this.ovhFeatureFlipping
-        .checkFeatureAvailability(CHATBOT_FEATURE)
-        .then((featureAvailability) => {
-          this.chatbotEnabled = featureAvailability.isFeatureAvailable(
-            CHATBOT_FEATURE,
-          );
-          if (this.chatbotEnabled) {
-            this.$rootScope.$broadcast(
-              'ovh-chatbot:enable',
-              this.chatbotEnabled,
-            );
-          }
-        });
+      this.checkChatbotFeature();
       unregisterListener();
     });
   }
