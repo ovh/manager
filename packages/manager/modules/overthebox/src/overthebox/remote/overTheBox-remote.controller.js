@@ -86,7 +86,9 @@ export default class OverTheBoxRemoteCtrl {
           (remotes) => {
             this.remotes = remotes;
           },
-          this.TucToastError,
+          () => {
+            this.remotes = [];
+          },
           (remotes) => {
             this.remotes = remotes;
           },
