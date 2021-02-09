@@ -1,8 +1,6 @@
 import chunk from 'lodash/chunk';
 import every from 'lodash/every';
 import filter from 'lodash/filter';
-import map from 'lodash/map';
-import set from 'lodash/set';
 
 export default class TelecomPackMigrationServiceDeleteCtrl {
   /* @ngInject */
@@ -13,16 +11,15 @@ export default class TelecomPackMigrationServiceDeleteCtrl {
   $onInit() {
     this.process = null;
     this.process = this.TucPackMigrationProcess.getMigrationProcess();
-    this.process.selectedOffer.subServicesToDelete.forEach((subService) => {
-      set(
-        subService,
-        'services',
-        map(subService.services, (service, index, originalArray) => ({
+    this.process.selectedOffer.subServicesToDelete = this.process.selectedOffer.subServicesToDelete.map(
+      (subService) => ({
+        ...subService,
+        services: subService.services.map((service, index, originalArray) => ({
           name: service,
           selected: originalArray.length === subService.numberToDelete,
         })),
-      );
-    });
+      }),
+    );
 
     this.chunkedSubServices = chunk(
       this.process.selectedOffer.subServicesToDelete,

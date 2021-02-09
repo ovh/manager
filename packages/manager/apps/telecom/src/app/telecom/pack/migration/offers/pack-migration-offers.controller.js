@@ -84,9 +84,9 @@ export default class TelecomPackMigrationOffersCtrl {
     };
 
     // Retrieve option values (included and added)
-    const options = Object.entries(selectedOffer.options)
-      .filter(([, option]) => option.included > 0 || option.choosedValue > 0)
-      .map(([, option]) => ({
+    const options = Object.values(selectedOffer.options)
+      .filter((option) => option.included > 0 || option.choosedValue > 0)
+      .map((option) => ({
         quantity:
           option.included + (option.choosedValue > 0 ? option.choosedValue : 0),
         name: option.name,
