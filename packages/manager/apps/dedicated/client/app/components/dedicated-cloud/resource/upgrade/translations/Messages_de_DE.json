@@ -10,5 +10,6 @@
   "ovhManagerPccResourceUpgrade_willOpenNewTabAndRedirect": "Es wird ein neuer Tab geöffnet, und Sie werden automatisch auf das Zahlungsinterface weitergeleitet.",
   "ovhManagerPccResourceUpgrade_validateButton": "Bestätigen",
   "ovhManagerPccResourceUpgrade_cancelButton": "Abbrechen",
-  "dedicatedCloud_order_loading_error": "Beim Laden der Informationen ist ein Fehler aufgetreten."
+  "dedicatedCloud_order_loading_error": "Beim Laden der Informationen ist ein Fehler aufgetreten.",
+  "ovhManagerPccResourceUpgrade_plan_not_found": "Die Option {{ planCode }} ist nicht verfügbar."
 }
