@@ -84,19 +84,13 @@ export default class TelecomPackMigrationOffersCtrl {
     };
 
     // Retrieve option values (included and added)
-    const options = [];
-
-    Object.entries(selectedOffer.options).map(([key, option]) => {
-      if (option.included > 0 || option.choosedValue > 0) {
-        options.push({
-          quantity:
-            option.included +
-            (option.choosedValue > 0 ? option.choosedValue : 0),
-          name: option.name,
-        });
-      }
-      return key;
-    });
+    const options = Object.entries(selectedOffer.options)
+      .filter(([, option]) => option.included > 0 || option.choosedValue > 0)
+      .map(([, option]) => ({
+        quantity:
+          option.included + (option.choosedValue > 0 ? option.choosedValue : 0),
+        name: option.name,
+      }));
 
     if (options.length > 0) {
       params.options = options;
@@ -107,7 +101,6 @@ export default class TelecomPackMigrationOffersCtrl {
       .$promise.then((result) => {
         selectedOffer.subServicesToDelete = result;
         this.TucPackMigrationProcess.selectOffer(selectedOffer);
-
         return result;
       })
       .catch((error) => {
