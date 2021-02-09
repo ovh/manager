@@ -19,11 +19,6 @@ export default class Project {
       status,
       provider,
     });
-    if (this.partnerProjectId) {
-      this.displayName = `${this.projectName} - ${this.partnerProjectId}`;
-    } else {
-      this.displayName = this.projectName;
-    }
   }
 
   isActive() {

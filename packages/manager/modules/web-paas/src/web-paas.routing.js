@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('web-paas', {
-    url: '/paas/webpaas/projects',
+    url: '/paas/webpaas',
     component: 'webPaas',
     redirectTo: (transition) =>
       transition
@@ -15,7 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
       createProject: /* @ngInject */ ($state) => () =>
         $state.go('web-paas.add'),
       viewDetails: /* @ngInject */ ($state) => (projectId) =>
-        $state.go('web-paas.details', {
+        $state.go('web-paas.dashboard', {
           projectId,
         }),
       terminateProject: /* @ngInject */ ($state) => (project) =>

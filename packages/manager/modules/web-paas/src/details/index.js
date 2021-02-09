@@ -6,7 +6,7 @@ const moduleName = 'ovhManagerWebPaasDetailsLazyloading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('web-paas.details.**', {
+    $stateProvider.state('web-paas.dashboard.**', {
       url: '/:projectId',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');

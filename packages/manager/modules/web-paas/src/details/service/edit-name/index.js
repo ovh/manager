@@ -6,7 +6,7 @@ const moduleName = 'ovhManagerWebPaasDetailsServiceEditNameLazyloading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('web-paas.details.service.edit-name.**', {
+    $stateProvider.state('web-paas.dashboard.service.edit-name.**', {
       url: '/edit-name',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');

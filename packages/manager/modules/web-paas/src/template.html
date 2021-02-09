@@ -3,9 +3,6 @@
     </oui-header>
     <div class="container-fluid w-100 h-100 pt-4 px-3 px-md-5">
         <!-- error messages -->
-        <!-- <cui-message-container
-            data-messages="$ctrl.messages"
-        ></cui-message-container> -->
         <div data-ovh-alert="{{$ctrl.alerts.list}}"></div>
         <oui-datagrid
             data-rows="$ctrl.projects"
@@ -33,8 +30,16 @@
                 data-title=":: 'web_paas_status' | translate"
                 data-property="status"
             >
-                <web-paas-project-status data-project="$row">
-                </web-paas-project-status>
+                <span
+                    class="oui-badge"
+                    data-ng-class="{
+                                'oui-badge_success' : $row.isActive(),
+                                'oui-badge_warning' : $row.isProcessing(),
+                                'oui-badge_error' : $row.isError(),
+                                }"
+                    data-translate="{{ 'web_paas_project_status_' + $row.status }}"
+                >
+                </span>
             </oui-datagrid-column>
             <oui-datagrid-column
                 data-title=":: 'web_paas_plan_type' | translate"

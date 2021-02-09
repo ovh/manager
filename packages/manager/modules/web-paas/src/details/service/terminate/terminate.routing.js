@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('web-paas.details.service.cancel', {
+  $stateProvider.state('web-paas.dashboard.service.cancel', {
     url: '/cancel',
     views: {
       modal: {

@@ -8,8 +8,5 @@ export default class WebPaasProjectCtrl {
     this.$scope.alerts = {
       dashboard: 'web_paas_dashboard_alert',
     };
-    this.$scope.$on('changeWebPaasProjectName', (event, displayName) => {
-      this.project.projectName = displayName;
-    });
   }
 }

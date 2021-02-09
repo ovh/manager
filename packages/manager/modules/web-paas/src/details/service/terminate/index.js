@@ -6,7 +6,7 @@ const moduleName = 'ovhManagerWebPaasDetailsServiceTerminateLazyloading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('web-paas.details.service.cancel.**', {
+    $stateProvider.state('web-paas.dashboard.service.cancel.**', {
       url: '/cancel',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');

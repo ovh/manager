@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('web-paas.details', {
+  $stateProvider.state('web-paas.dashboard', {
     url: '/:projectId',
     component: 'webPaasDetailComponent',
     resolve: {
@@ -9,7 +9,7 @@ export default /* @ngInject */ ($stateProvider) => {
         WebPaas.getProjectDetails(projectId),
       projectName: /* @ngInject */ (project) => project.projectName,
       serviceLink: /* @ngInject */ ($state, projectId) =>
-        $state.href('web-paas.details.service', {
+        $state.href('web-paas.dashboard.service', {
           projectId,
         }),
       currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
@@ -19,7 +19,7 @@ export default /* @ngInject */ ($stateProvider) => {
         type = 'success',
       ) => {
         const reload = message && type === 'success';
-        const promise = $state.go('web-paas.details', {
+        const promise = $state.go('web-paas.dashboard', {
           reload,
         });
         if (message) {
@@ -32,6 +32,6 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       breadcrumb: /* @ngInject */ (project) => project.projectName,
     },
-    redirectTo: 'web-paas.details.service',
+    redirectTo: 'web-paas.dashboard.service',
   });
 };
