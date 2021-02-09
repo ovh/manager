@@ -1,7 +1,7 @@
 import debounce from 'lodash/debounce';
 import max from 'lodash/max';
 import values from 'lodash/values';
-import 'd3';
+import d3 from 'd3';
 
 /**
  * A simple consumption chart directive using d3 js library for rendering.

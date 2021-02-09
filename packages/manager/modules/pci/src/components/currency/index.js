@@ -1,7 +1,6 @@
 import angular from 'angular';
 import 'ovh-api-services';
-
-import cucConfig from '../config';
+import cloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-components';
 
 import filter from './filter';
 import service from './service';
@@ -9,7 +8,7 @@ import service from './service';
 const moduleName = 'cucCurrency';
 
 angular
-  .module(moduleName, [cucConfig, 'ovh-api-services'])
+  .module(moduleName, [cloudUniverseComponents, 'ovh-api-services'])
   .filter('cucUcentsToCurrency', filter)
   .service('CucCurrencyService', service)
   .run(
