@@ -15,5 +15,5 @@
   "components_notification_5m": "Co 5 minut",
   "components_notification_1h": "Co godzinę",
   "components_notification_6h": "Co 6 godzin",
-  "components_notification_sms_detail_warning": "Uwaga, wszystkie środki na koncie {{smsAccount} zostały wyczerpane, brak możliwości wysyłania nowych SMS-ów."
+  "components_notification_sms_detail_warning": "Uwaga, wszystkie środki na koncie {{smsAccount}} zostały wyczerpane, brak możliwości wysyłania nowych SMS-ów."
 }

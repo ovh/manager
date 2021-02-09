@@ -17,5 +17,5 @@
   "domain_configuration_enable_web_hosting_activate": "Włącz",
   "domain_configuration_enable_web_hosting_success": "Trwa włączanie hostingu. Może to zająć kilka minut.",
   "domain_configuration_enable_web_hosting_checkout_error": "Wystąpił błąd: {{message}}",
-  "domain_configuration_enable_web_hosting_error": "Wystąpił błąd podczas włączania Twojego hostingu:{{error}}."
+  "domain_configuration_enable_web_hosting_error": "Wystąpił błąd podczas włączania Twojego hostingu:{{message}}."
 }
