@@ -47,18 +47,20 @@ export default class FreefaxAppController {
       'ovh.account-sidebar.hide': 'ovh::sidebar::hide',
     };
 
-    listen(({ id }) => {
+    listen(({ id, origin, ...props }) => {
       const eventName = broadcastEvents[id] || undefined;
       if (eventName) {
         this.$timeout(() => {
           if (Array.isArray(eventName)) {
             eventName.forEach((event) => {
-              this.$rootScope.$broadcast(event);
+              this.$rootScope.$broadcast(event, props);
             });
           } else {
-            this.$rootScope.$broadcast(eventName);
+            this.$rootScope.$broadcast(eventName, props);
           }
         }, 0);
+      } else if (id === 'locale.change') {
+        this.$rootScope.$broadcast('lang.onChange', { lang: props.locale });
       }
     });
   }
