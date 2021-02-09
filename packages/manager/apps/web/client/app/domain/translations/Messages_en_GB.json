@@ -763,7 +763,7 @@
   "domain_update_owner_gender_female": "Female",
   "domain_update_owner_gender_male": "Male",
   "domain_update_owner_language": "Language",
-  "domain_update_owner_error": "An error occurred when updating the owner",
+  "domain_update_owner_error": "An error has occurred updating the holder",
   "domain_update_owner_success": "Owner updated",
   "domain_update_owner_change_owner": "Assign new owner to the service",
   "domain_update_owner_tooltip_will_pay": "You will be charged for transferring the following extensions: be, de, eu, fr, re, uk, lu,ch, li, cn, tw, us, cz, lt, nu",

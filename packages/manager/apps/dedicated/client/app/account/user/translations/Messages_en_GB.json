@@ -358,7 +358,7 @@
   "useraccount_contacts_owner_gender_female": "Female",
   "useraccount_contacts_owner_gender_male": "Male",
   "useraccount_contacts_owner_language": "Language",
-  "useraccount_contacts_owner_error": "An error occurred when updating the owner",
+  "useraccount_contacts_owner_error": "An error has occurred updating the holder",
   "useraccount_contacts_owner_success": "Owner updated",
   "useraccount_contacts_owner_change_owner": "If you want to assign a new owner to the service ",
   "useraccount_contacts_owner_tooltip_will_pay": "There is a fee for the procedure for the following extensions: be, de, eu, fr, re, uk, lu,ch, li, cn, tw, us, cz, lt, nu",

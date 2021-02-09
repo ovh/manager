@@ -85,5 +85,8 @@
   "pack_promotion_code_confirm": "Je me réengage",
   "pack_rename_error": "Nie można zmienić nazwy pakietu {{serviceName}}.",
   "pack_offer_migration": "Zmień ofertę",
-  "pack_xdsl_oops_an_error_is_occured": "Oups ! Nous n'avons pas pu récupérer les informations relatives à votre pack."
+  "pack_xdsl_oops_an_error_is_occured": "Oups ! Nous n'avons pas pu récupérer les informations relatives à votre pack.",
+  "pack_xdsl_information_links": "Pomocne linki",
+  "pack_xdsl_information_links_igmap": "Mapa incydentów",
+  "pack_xdsl_information_links_travaux": "Prace serwisowe OVHcloud"
 }

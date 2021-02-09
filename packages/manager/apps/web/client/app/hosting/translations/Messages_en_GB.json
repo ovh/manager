@@ -452,7 +452,7 @@
   "database_restore_bdd_confirm": "Do you want to restore the <strong>{{t0}}</strong> backup on the <strong>{{t1}}</strong> database?",
   "database_restore_bdd_confirm_daily": "Would you like to restore <strong>yesterday’s</strong> backup on the <strong>{{t0}}</strong> database?",
   "database_restore_bdd_confirm_weekly": "Would you like to restore the <strong>one week old</strong> backup on the <strong>{{t0}}</strong> database?",
-  "database_restore_bdd_get_last_error": "An error has occurred when retrieving the last backup:",
+  "database_restore_bdd_get_last_error": "An error has occurred retrieving the last backup:",
   "hosting_tab_DATABASES_configuration_import_title": "Database import ",
   "hosting_tab_DATABASES_table_popover_import_step0_new_file_mode": "Import a new file",
   "hosting_tab_DATABASES_table_popover_import_step0_existing_file_mode": "Use an existing file ",
