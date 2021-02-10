@@ -1,48 +1,50 @@
 <template>
   <div>
-    <data-table :rows="dataRows" :column-names="dataColumnNames"></data-table>
+    <data-table
+      :rows="dataRows"
+      :column-names="dataColumnNames"
+      :page="+currentPageNumber"
+      :page-size="+pageSize"
+      :total-count="+totalCount"
+      pagination
+      @page-change="loadProducts($event, pageSize)"
+    ></data-table>
   </div>
 </template>
 
 <script>
 import {
-  defineAsyncComponent,
-  defineComponent,
-  inject,
-  ref,
+  defineAsyncComponent, defineComponent, inject, ref,
 } from 'vue';
 import axios from 'axios';
 import { useRoute } from 'vue-router';
 
 export default defineComponent({
   setup() {
+    const pageSize = ref(10);
+    const totalCount = ref(0);
     const route = useRoute();
     const productDetails = ref([]);
     const jsonArray = ref([]);
     const productRangeName = inject('productRangeName');
-    productRangeName.value = route.query.productName;
-    const headers = {
-      'x-pagination-sort': 'name',
-      'X-Pagination-Mode': 'CachedObjectList-Pages',
-    };
 
-    // TODO: this is ugly, here just to work with data, refactor into reusable
-    // axios request
-    const config = {
-      data: { serviceType: 'aapi' },
-      headers,
-    };
-    if (route.query.productApiUrl) {
-      axios.get(`/engine/apiv6${route.query.productApiUrl.toString()}`, config).then((data) => {
-        jsonArray.value = data.data;
-      });
-    }
+    productRangeName.value = route.query.productName;
 
     return {
       route,
       productDetails,
       jsonArray,
+      pageSize,
+      totalCount,
     };
+  },
+  data() {
+    return {
+      currentPageNumber: 1,
+    };
+  },
+  created() {
+    this.loadProducts(this.currentPageNumber, this.pageSize);
   },
   components: {
     DataTable: defineAsyncComponent(() => import('@/components/ui/DataTable.vue')),
@@ -50,7 +52,7 @@ export default defineComponent({
   computed: {
     dataRows() {
       return this.jsonArray.map((object) => Object.values(object).map((value) => {
-        if (Array.isArray(value) || typeof value === 'object' || Date.parse(value)) return '';
+        if (Array.isArray(value) || typeof value === 'object' || Date.parse(value)) return null;
         if (object.name === value) {
           return [
             {
@@ -76,7 +78,28 @@ export default defineComponent({
       return noDate[0];
     },
   },
+  methods: {
+    loadProducts(paginationNumber, paginationSize) {
+      if (this.currentPageNumber !== paginationNumber) this.currentPageNumber = paginationNumber;
+      const headers = {
+        'X-Pagination-Mode': 'CachedObjectList-Pages',
+        'X-Pagination-Number': paginationNumber,
+        'X-Pagination-Size': paginationSize,
+      };
+
+      // TODO: this is ugly, here just to work with data, refactor into reusable
+      // axios request
+      const config = {
+        data: { serviceType: 'aapi' },
+        headers,
+      };
+      if (this.route.query.productApiUrl) {
+        axios.get(`/engine/apiv6${this.route.query.productApiUrl}`, config).then((data) => {
+          this.totalCount = data.headers['x-pagination-elements'];
+          this.jsonArray = data.data;
+        });
+      }
+    },
+  },
 });
 </script>
-
-<style scoped></style>
