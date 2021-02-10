@@ -9,6 +9,8 @@ const component = {
     guideUrl: '<',
     nodePoolsLink: '<',
     serviceLink: '<',
+    restrictionsLink: '<',
+    restrictions: '<',
   },
   template,
   controller,

@@ -4,5 +4,5 @@
   "autorenew_service_EMAIL_DOMAIN_terminate_info_impossible": "Nie możesz usunąć konta e-mail, ponieważ stanowi ono cześć pakietu hostingowego.",
   "autorenew_service_EMAIL_DOMAIN_terminate_procedure": "Otrzymasz e-mail z opisem procedury zamknięcia usługi MX Plan.",
   "autorenew_service_EMAIL_DOMAIN_terminate_success": "Zlecenie zamknięcia usługi MX Plan zostało zarejestrowane. Otrzymasz e-mail z opisem dalszej procedury.",
-  "autorenew_service_EMAIL_DOMAIN_terminate_error": "Wystąpił błąd podczas zlecenia zamknięcia usługi MX Plan: { message}}."
+  "autorenew_service_EMAIL_DOMAIN_terminate_error": "Wystąpił błąd podczas zlecenia zamknięcia usługi MX Plan: {{ message}}."
 }

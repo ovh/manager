@@ -2,12 +2,19 @@ import get from 'lodash/get';
 import has from 'lodash/has';
 import last from 'lodash/last';
 
-angular.module('UserAccount').config(($stateProvider, $urlRouterProvider) => {
+import controller from './user-contacts-request.controller';
+import template from './user-contacts-request.html';
+
+export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
   $stateProvider.state('app.account.contacts.requests', {
     url: '/requests?taskId&token',
-    templateUrl: 'account/contacts/request/user-contacts-request.html',
-    controller: 'UserAccount.controllers.contacts.requests',
+    template,
+    controller,
     controllerAs: 'ctrlContactRequests',
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('user_account_contacts_request'),
+    },
   });
 
   // ensure compatibility with links sended by emails
@@ -29,4 +36,4 @@ angular.module('UserAccount').config(($stateProvider, $urlRouterProvider) => {
       return $state.go('app.account.contacts.requests', { taskId, token });
     },
   );
-});
+};

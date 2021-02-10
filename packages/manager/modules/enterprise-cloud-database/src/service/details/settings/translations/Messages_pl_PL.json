@@ -13,5 +13,5 @@
   "enterprise_cloud_database_service_details_settings_add_a_rule": "Dodawanie reguły",
   "enterprise_cloud_database_service_details_settings_edit_group": "Edytuj grupę",
   "enterprise_cloud_database_service_details_settings_delete_group": "Usuń grupę",
-  "enterprise_cloud_database_service_details_settings_rules_error": "Wystąpił błąd podczas pobierania informacji o regułach."
+  "enterprise_cloud_database_service_details_settings_rules_error": "Wystąpił błąd podczas pobierania informacji o regułach. {{message}}"
 }

@@ -8,8 +8,8 @@ angular.module('Module.ip.controllers').controller('IplbDashboardCtrl', [
   '$translate',
   'Alerter',
   'Iplb',
-  'UserAccount.services.Contacts',
-  ($location, $q, $rootScope, $scope, $translate, Alerter, Iplb, Contacts) => {
+  'User',
+  ($location, $q, $rootScope, $scope, $translate, Alerter, Iplb, User) => {
     $scope.loading = {};
 
     // ---
@@ -36,7 +36,7 @@ angular.module('Module.ip.controllers').controller('IplbDashboardCtrl', [
           }
           set($rootScope, 'preselectedIplb', $scope.selectedIplb);
         } else {
-          Contacts.getUrlOf('iplbOrder').then((orderUrl) => {
+          User.getUrlOf('iplbOrder').then((orderUrl) => {
             $scope.iplbOrderUrl = orderUrl;
           });
         }

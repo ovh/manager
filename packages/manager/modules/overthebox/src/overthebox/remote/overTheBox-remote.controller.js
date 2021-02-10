@@ -86,7 +86,9 @@ export default class OverTheBoxRemoteCtrl {
           (remotes) => {
             this.remotes = remotes;
           },
-          this.TucToastError,
+          () => {
+            this.remotes = [];
+          },
           (remotes) => {
             this.remotes = remotes;
           },
@@ -171,8 +173,7 @@ export default class OverTheBoxRemoteCtrl {
    * @param {Date} when Date to compare
    * @return {Boolean}
    */
-  // eslint-disable-next-line class-methods-use-this
-  isInFuture(when) {
+  static isInFuture(when) {
     return !when || moment(when).isAfter(new Date());
   }
 
@@ -181,8 +182,7 @@ export default class OverTheBoxRemoteCtrl {
    * @param remote
    * @returns {string}
    */
-  // eslint-disable-next-line class-methods-use-this
-  getSshConnectionHelp(remote) {
+  static getSshConnectionHelp(remote) {
     return remote && remote.connectionInfos && remote.connectionInfos.ip
       ? `ssh -p ${remote.connectionInfos.port} root@${remote.connectionInfos.ip}`
       : '';
@@ -193,8 +193,7 @@ export default class OverTheBoxRemoteCtrl {
    * @param remote
    * @returns {string}
    */
-  // eslint-disable-next-line class-methods-use-this
-  getHttpConnectionHelp(remote) {
+  static getHttpConnectionHelp(remote) {
     return remote && remote.connectionInfos && remote.connectionInfos.port
       ? `https://${remote.connectionInfos.ip}:${remote.connectionInfos.port}/`
       : '';

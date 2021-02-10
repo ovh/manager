@@ -18,6 +18,11 @@ export default /* @ngInject */ ($stateProvider) => {
           kubeId,
           projectId,
         }),
+      restrictionsLink: /* @ngInject */ ($state, kubeId, projectId) =>
+        $state.href('pci.projects.project.kubernetes.details.restrictions', {
+          kubeId,
+          projectId,
+        }),
       currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
         $state.href($state.current.name, $transition$.params()),
       goToKubernetesDetails: ($state, CucCloudMessage, kubeId, projectId) => (
@@ -56,6 +61,11 @@ export default /* @ngInject */ ($stateProvider) => {
           kubeId,
           projectId,
         }),
+      loadRestrictions: /* @ngInject */ ($http, kubeId, projectId) => () =>
+        $http
+          .get(`/cloud/project/${projectId}/kube/${kubeId}/ipRestrictions`)
+          .then(({ data }) => data)
+          .catch(() => []),
     },
 
     redirectTo: 'pci.projects.project.kubernetes.details.service',

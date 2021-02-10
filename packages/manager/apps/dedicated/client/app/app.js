@@ -1,5 +1,4 @@
 import { Environment } from '@ovh-ux/manager-config';
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import get from 'lodash/get';
 import has from 'lodash/has';
 import set from 'lodash/set';
@@ -12,7 +11,6 @@ import ngOvhBrowserAlert from '@ovh-ux/ng-ovh-browser-alert';
 import ngOvhExportCsv from '@ovh-ux/ng-ovh-export-csv';
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import ngOvhHttp from '@ovh-ux/ng-ovh-http';
-import ngOvhOtrs from '@ovh-ux/ng-ovh-otrs';
 import ngOvhProxyRequest from '@ovh-ux/ng-ovh-proxy-request';
 import ngOvhSsoAuth from '@ovh-ux/ng-ovh-sso-auth';
 import ngOvhSsoAuthModalPlugin from '@ovh-ux/ng-ovh-sso-auth-modal-plugin';
@@ -57,7 +55,6 @@ import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 import ovhManagerAccountMigration from '@ovh-ux/manager-account-migration';
 import account from './account';
 import config from './config/config';
-import contactsService from './account/contacts/service/contacts-service.module';
 import dedicatedCloud from './dedicatedCloud';
 import dedicatedUniverseComponents from './dedicatedUniverseComponents';
 import managedBaremetal from './managedBaremetal';
@@ -66,6 +63,7 @@ import expiredPage from './expired';
 
 import dedicatedServer from './dedicated/server';
 import userContracts from './user-contracts';
+import otrs from './otrs';
 
 import { TRACKING } from './at-internet.constants';
 
@@ -84,7 +82,6 @@ angular
       'Billing',
       chartjs,
       'controllers',
-      contactsService,
       dedicatedCloud,
       dedicatedServer,
       dedicatedUniverseComponents,
@@ -98,7 +95,7 @@ angular
       managedBaremetal,
       'Module.ip',
       'Module.license',
-      'Module.otrs',
+      otrs,
       ovhManagerMfaEnrollment,
       'ng.ckeditor',
       'ngMessages',
@@ -108,7 +105,6 @@ angular
       ngOvhBrowserAlert,
       ngOvhFeatureFlipping,
       ngOvhHttp,
-      ngOvhOtrs,
       ngOvhProxyRequest,
       ngOvhSsoAuth,
       ngOvhSsoAuthModalPlugin,
@@ -326,9 +322,6 @@ angular
   })
   .config(($qProvider) => {
     $qProvider.errorOnUnhandledRejections(false);
-  })
-  .config((OtrsPopupProvider) => {
-    OtrsPopupProvider.setBaseUrlTickets(buildURL('dedicated', '#/ticket'));
   })
   .run(
     /* @ngInject */ ($translate) => {

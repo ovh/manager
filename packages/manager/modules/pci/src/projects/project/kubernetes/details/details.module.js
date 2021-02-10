@@ -12,6 +12,7 @@ import routing from './details.routing';
 import containersComponent from './containers/index';
 import nodePools from './node-pool';
 import serviceComponent from './service/index';
+import restrictions from './restrictions';
 
 import './index.scss';
 
@@ -28,6 +29,7 @@ angular
     containersComponent,
     nodePools,
     serviceComponent,
+    restrictions,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)

@@ -1,6 +1,6 @@
 {
   "user_users_title": "Zarządzanie użytkownikami ",
-  "user_users_info": "Aby zalogować się do interfejsu, wprowadź identyfikator klienta <strong>{{CustomerCode}}</strong> i nazwę użytkownika oraz hasło. Identyfikator i nazwa użytkownika muszą być oddzielone ukośnikiem (\"/\").",
+  "user_users_info": "Aby zalogować się do interfejsu, wprowadź identyfikator klienta <strong>{{customerCode}}</strong> i nazwę użytkownika oraz hasło. Identyfikator i nazwa użytkownika muszą być oddzielone ukośnikiem (\"/\").",
   "user_users_info_example": "Przykład: <strong>{{customerCode}}/{{login}}</strong>",
   "user_users_add_user": "Dodaj użytkownika",
   "user_users_login": "Nazwa użytkownika",

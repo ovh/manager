@@ -23,6 +23,8 @@ export default /* @ngInject */ ($stateProvider) => {
         $transition$.params().organization,
       updateRenew: /* @ngInject */ (Exchange, exchange) => (accounts) =>
         Exchange.updateRenew(exchange.organization, exchange.domain, accounts),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('billing_autorenew_exchange'),
     },
   });
 };

@@ -9,5 +9,6 @@
   "billing_autorenew_disable_error": "Wystąpił błąd podczas wyłączania automatycznego odnowienia {{message}}.",
   "billing_autorenew_disable_bulk_unavailable_one": "Automatyczne odnowienie zostanie wyłączone dla wszystkich wybranych usług, z wyjątkiem jednej usługi:",
   "billing_autorenew_disable_bulk": "Automatyczne odnowienie zostanie wyłączone dla wszystkich wybranych usług.",
-  "billing_autorenew_disable_bulk_single": "Automatyczne odnowienie usługi {{serviceName}} zostanie wyłączone."
+  "billing_autorenew_disable_bulk_single": "Automatyczne odnowienie usługi {{serviceName}} zostanie wyłączone.",
+  "billing_autorenew_disable_breadcrumb": "Wyłącz automatyczne odnowienie"
 }

@@ -53,9 +53,7 @@ export default class {
         const availableServices = filter(services, (service) =>
           AVAILABLE_SERVICES.includes(service.category),
         );
-        return sortBy(availableServices, ['serviceName', 'category']).map(
-          (service) => new BillingService(service),
-        );
+        return sortBy(availableServices, ['serviceName', 'category']);
       });
   }
 

@@ -1,6 +1,0 @@
-{
- "cpci_volume_type": "Typ",
- "cpci_volume_gb_price_month": "Preis ohne MwSt GB / Monat",
- "cpci_volume_gb_price_value_month": "{{ price }} ohne MwSt / GB / Monat",
- "cpci_volume_price_per_month": "{{ price }} zzgl. MwSt / Monat"
-}

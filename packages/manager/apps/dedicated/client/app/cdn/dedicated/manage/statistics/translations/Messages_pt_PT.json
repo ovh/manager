@@ -20,7 +20,7 @@
   "cdn_configuration_quota_remaining_default": "Nenhum dado",
   "cdn_configuration_quota_estimation": "Estimativa até ao final do saldo",
   "cdn_configuration_info_title": "Informações",
-  "cdn_configuration_domains": "Domínios",
+  "cdn_configuration_domains": "Nomes de domínio",
   "cdn_configuration_domain": "0 domínio",
   "cdn_configuration_domain_1": "1 domínio",
   "cdn_configuration_domain_other": "{} domínios",

@@ -38,7 +38,7 @@
   "exchangeLite": "Exchange (Lite)",
   "exchangeOrganization": "Exchange (Organisation)",
   "siteBuilderFull": "Site Builder (Complet)",
-  "siteBuilderStart": "Outil créateur de site",
+  "siteBuilderStart": "Site Builder",
   "voipAlias": "Alias",
   "informations": "Informations Générales",
   "exchangeIndividual": "Exchange (Individuel)",
@@ -68,7 +68,7 @@
   "pack_xdsl_resiliation_date": "Date de résiliation",
   "pack_xdsl_pack_link_address": "Adresse de raccordement",
   "still_pending": "en cours de création",
-  "account_name": "Courriel",
+  "account_name": "Email",
   "all_fields_are_required": "Tous les champs sont obligatoires",
   "required_fields_are_tag_with_a_star": " Les champs obligatoires sont signalés par un astérisque",
   "in_validation": "Votre demande est en cours",
@@ -85,5 +85,8 @@
   "pack_promotion_code_confirm": "Je me réengage",
   "pack_rename_error": "Impossible de renommer votre pack {{serviceName}}.",
   "pack_offer_migration": "Changer d'offre",
-  "pack_xdsl_oops_an_error_is_occured": "Oups ! Nous n'avons pas pu récupérer les informations relatives à votre pack."
+  "pack_xdsl_oops_an_error_is_occured": "Oups ! Nous n'avons pas pu récupérer les informations relatives à votre pack.",
+  "pack_xdsl_information_links": "Liens",
+  "pack_xdsl_information_links_igmap": "Carte des incidents génériques",
+  "pack_xdsl_information_links_travaux": "Travaux"
 }

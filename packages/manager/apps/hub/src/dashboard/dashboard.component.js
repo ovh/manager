@@ -4,7 +4,6 @@ export default {
   bindings: {
     bills: '<',
     debt: '<',
-    feedbackUrl: '<',
     me: '<',
     billingServices: '<',
     expand: '<',

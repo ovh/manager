@@ -12,6 +12,7 @@ export default /* @ngInject */ ($stateProvider) => {
       disableDomainsBulk: /* @ngInject */ (BillingAutoRenew) => () =>
         BillingAutoRenew.disableAutoRenewForDomains(),
       goBack: /* @ngInject */ (goToAutorenew) => goToAutorenew,
+      breadcrumb: () => null,
     },
   });
 };

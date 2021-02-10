@@ -9,5 +9,6 @@
   "billing_autorenew_disable_error": "Ocorreu um erro ao desativar a renovação automática {{ message }}",
   "billing_autorenew_disable_bulk_unavailable_one": "A renovação automática será desativada para todos os serviços selecionados, exceto para 1 serviço:",
   "billing_autorenew_disable_bulk": "A renovação automática será desativada para todos os serviços selecionados.",
-  "billing_autorenew_disable_bulk_single": "A renovação automática do seu serviço {{ serviceName }} será desativada."
+  "billing_autorenew_disable_bulk_single": "A renovação automática do seu serviço {{ serviceName }} será desativada.",
+  "billing_autorenew_disable_breadcrumb": "Desativar a renovação automática"
 }

@@ -101,6 +101,8 @@ export default /* @ngInject */ ($stateProvider) => {
 
       services: /* @ngInject */ (AccountContactsService) =>
         AccountContactsService.getServices(),
+      breadcrumb: () => null,
+      hideBreadcrumb: () => true,
     },
   });
 };

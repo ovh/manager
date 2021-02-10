@@ -9,11 +9,13 @@ import '@ovh-ux/ng-ovh-doc-url';
 import { Environment } from '@ovh-ux/manager-config';
 
 import logs from './logs';
+import cuiDualList from './components/dual-list';
 
 const moduleName = 'ovhManagerDbaasLogs';
 
 angular
   .module(moduleName, [
+    cuiDualList,
     'ngOvhDocUrl',
     'ovhManagerCore',
     'ngAtInternet',

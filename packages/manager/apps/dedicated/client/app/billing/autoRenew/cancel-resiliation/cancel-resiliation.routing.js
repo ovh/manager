@@ -57,6 +57,7 @@ export default /* @ngInject */ ($stateProvider) => {
           chapter2: 'account',
           chapter3: 'billing',
         }),
+      breadcrumb: () => null,
     },
   });
 };

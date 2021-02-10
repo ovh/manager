@@ -624,7 +624,7 @@
   "license_order_step1_ip_block": "Blok IP",
   "license_order_step1_ip_block_none": "Brak",
   "license_order_step1_ip": "IP",
-  "license_order_step1_no_license_available": "Brak licencji dostępnych dla ip {ip}",
+  "license_order_step1_no_license_available": "Brak licencji dostępnych dla ip {{ip}}",
   "license_order_step2_title": "2. Wybierz opcje",
   "license_order_step2_version": "Wersja",
   "license_order_step2_option_VIRTUOZZO_containerNumber": "Liczba kontenerów",

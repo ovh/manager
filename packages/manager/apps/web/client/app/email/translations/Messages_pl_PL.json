@@ -64,7 +64,7 @@
   "email_tab_modal_create_account_account_password_error": "Hasło jest nieprawidłowe.",
   "email_tab_modal_create_account_account_password_match_error": "Hasła nie są identyczne.",
   "email_tab_modal_create_account_account_validation_text": "Potwierdzenie założenia konta e-mail",
-  "email_tab_modal_create_account_success": "Trwa tworzenie konta {{email}}. Będzie dostępny/e za 5 - 10 minut.",
+  "email_tab_modal_create_account_success": "Trwa tworzenie konta. Będzie dostępny/e za 5 - 10 minut.",
   "email_tab_modal_create_account_error": "Wystąpił błąd podczas tworzenia konta:",
   "email_tab_modal_create_account_devices_MAC": "Mac",
   "email_tab_modal_create_account_devices_OUTLOOK": "Outlook Windows",

@@ -30,7 +30,7 @@
   "dedicatedCloud_OPERATIONS_related_userId": "Użytkownik: {{t0}}",
   "dedicatedCloud_OPERATIONS_related_orderId": "Zamówienie: {{t0}}",
   "dedicatedCloud_OPERATIONS_related_datacenterId": "Centrum danych: {{t0}}",
-  "dedicatedCloud_OPERATIONS_related_hostId": "Host: {type}",
+  "dedicatedCloud_OPERATIONS_related_hostId": "Host: {{t0}}",
   "dedicatedCloud_OPERATIONS_related_filerId": "Datastore: {{t0}}",
   "dedicatedCloud_OPERATIONS_related_networkAccessId": "Sieć: {{t0}}",
   "dedicatedCloud_OPERATIONS_related_parentTaskId": "Zadanie: {{t0}}",

@@ -1,4 +1,5 @@
 {
+  "user_account": "Mon compte",
   "back": "Retour",
   "todo": "A venir",
   "details": "Détails",
@@ -358,7 +359,7 @@
   "useraccount_contacts_owner_gender_female": "Femme",
   "useraccount_contacts_owner_gender_male": "Homme",
   "useraccount_contacts_owner_language": "Langage",
-  "useraccount_contacts_owner_error": "Une erreur est survenu lors de la mise à jour du propriétaire",
+  "useraccount_contacts_owner_error": "Une erreur est survenue lors de la mise à jour du propriétaire",
   "useraccount_contacts_owner_success": "Propriétaire mis à jour",
   "useraccount_contacts_owner_change_owner": "Si vous souhaitez affecter un nouveau propriétaire au service",
   "useraccount_contacts_owner_tooltip_will_pay": "Cette procédure est payante pour les extensions : be, de, eu, fr, re, uk, lu,ch, li, cn, tw, us, cz, lt, nu",

@@ -24,7 +24,7 @@
   "cdn_configuration_quota_estimation": "Estimation avant épuisement",
 
   "cdn_configuration_info_title": "Informations",
-  "cdn_configuration_domains": "Domaines",
+  "cdn_configuration_domains": "Noms de domaine",
   "cdn_configuration_domain": "0 domaine",
   "cdn_configuration_domain_1": "1 domaine",
   "cdn_configuration_domain_other": "{} domaines",

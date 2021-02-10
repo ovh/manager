@@ -17,6 +17,8 @@ const component = {
     updateCluster: '<',
     updatePolicy: '<',
     isVersionSupported: '<',
+    restrictionsLink: '<',
+    loadRestrictions: '<',
   },
   template,
   controller,

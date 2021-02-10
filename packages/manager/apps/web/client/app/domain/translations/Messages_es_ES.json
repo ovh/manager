@@ -763,7 +763,7 @@
   "domain_update_owner_gender_female": "Mujer",
   "domain_update_owner_gender_male": "Hombre",
   "domain_update_owner_language": "Lenguaje",
-  "domain_update_owner_error": "Se ha producido un error al actualizar el propietario. ",
+  "domain_update_owner_error": "Se ha producido un error al actualizar el propietario.",
   "domain_update_owner_success": "Propietario actualizado",
   "domain_update_owner_change_owner": "Designar un nuevo propietario del servicio",
   "domain_update_owner_tooltip_will_pay": "Este procedimiento es de pago para las siguientes extensiones: be, de, eu, fr, re, uk, lu, ch, li, cn, tw, us, cz, lt, nu.",

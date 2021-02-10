@@ -357,7 +357,7 @@
   "useraccount_contacts_owner_gender_female": "Mujer",
   "useraccount_contacts_owner_gender_male": "Hombre",
   "useraccount_contacts_owner_language": "Lenguaje",
-  "useraccount_contacts_owner_error": "Se ha producido un error al actualizar el propietario. ",
+  "useraccount_contacts_owner_error": "Se ha producido un error al actualizar el propietario.",
   "useraccount_contacts_owner_success": "Propietario actualizado",
   "useraccount_contacts_owner_change_owner": "Si desea asignar un nuevo propietario al servicio",
   "useraccount_contacts_owner_tooltip_will_pay": "Este procedimiento es de pago para las extensiones: be, de, eu, fr, re, uk, lu,ch, li, cn, tw, us, cz, lt, nu",
@@ -606,5 +606,6 @@
   "user_account_ssh_keys_title": "Mis llaves SSH",
   "user_account_users_management_title": "Gestión de los usuarios",
   "user_account_advanced_title": "Configuración avanzada",
-  "user_ipRestrictions_warning_last_ip_with_deny": "Cambie la regla por defecto a «Autorizado» para poder eliminar la última dirección IP."
+  "user_ipRestrictions_warning_last_ip_with_deny": "Cambie la regla por defecto a «Autorizado» para poder eliminar la última dirección IP.",
+  "user_account": "Mi cuenta"
 }

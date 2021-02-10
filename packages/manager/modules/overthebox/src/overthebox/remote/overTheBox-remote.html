@@ -161,13 +161,13 @@
                                     >
                                         <pre
                                             data-ng-if="remote.exposedPort===22"
-                                            data-ng-bind="$ctrl.getSshConnectionHelp(remote)"
+                                            data-ng-bind="$ctrl.constructor.getSshConnectionHelp(remote)"
                                         ></pre>
                                         <a
                                             data-ng-if="remote.exposedPort===443"
-                                            href="{{$ctrl.getHttpConnectionHelp(remote)}}"
+                                            href="{{$ctrl.constructor.getHttpConnectionHelp(remote)}}"
                                             target="_blank"
-                                            data-ng-bind="$ctrl.getHttpConnectionHelp(remote)"
+                                            data-ng-bind="$ctrl.constructor.getHttpConnectionHelp(remote)"
                                         ></a>
                                         <span
                                             data-ng-if="(remote.exposedPort!==443) && (remote.exposedPort!==22)"
@@ -304,7 +304,7 @@
                                     data-datepicker-options="$ctrl.datepickerOptions"
                                     data-ng-model="$ctrl.newRemote.expirationDate"
                                     data-ng-focus="$ctrl.openDatePicker($event)"
-                                    data-ui-validate="{date: '$ctrl.validator.isDate($value) || !$value', future: '$ctrl.isInFuture($value)'}"
+                                    data-ui-validate="{date: '$ctrl.validator.isDate($value) || !$value', future: '$ctrl.constructor.isInFuture($value)'}"
                                     data-ng-disabled="$ctrl.adding"
                                     data-is-open="$ctrl.pickerOpened"
                                     data-show-button-bar="false"

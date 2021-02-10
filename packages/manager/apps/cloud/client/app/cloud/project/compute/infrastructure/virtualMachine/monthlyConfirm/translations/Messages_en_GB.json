@@ -1,7 +1,0 @@
-{
- "cpcivm_monthly_title": "Switching to a monthly package",
- "cpcivm_monthly_info": "Switch to monthly billing for this machine and save 50%! (paid in advance)",
- "cpcivm_monthly_prorata_warning": "A pro-rata bill for the remaining days of the month will automatically be generated. ",
- "cpcivm_monthly_success": "This server will be placed into the monthly package in a few moments. ",
- "cpcivm_monthly_fail": "An error occurred when switching to monthly billing."
-}

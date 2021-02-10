@@ -9,5 +9,6 @@
   "billing_autorenew_disable_error": "Beim Deaktivieren der automatischen Verlängerung ist ein Fehler aufgetreten {{message}}",
   "billing_autorenew_disable_bulk_unavailable_one": "Die automatische Verlängerung wird für alle ausgewählten Dienste deaktiviert, mit Ausnahme von 1 Dienst:",
   "billing_autorenew_disable_bulk": "Die automatische Verlängerung wird für alle ausgewählten Dienste deaktiviert.",
-  "billing_autorenew_disable_bulk_single": "Die automatische Verlängerung für Ihren Dienst {{ serviceName }} wird deaktiviert."
+  "billing_autorenew_disable_bulk_single": "Die automatische Verlängerung für Ihren Dienst {{ serviceName }} wird deaktiviert.",
+  "billing_autorenew_disable_breadcrumb": "Automatische Verlängerung deaktivieren"
 }

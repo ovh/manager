@@ -1,9 +1,0 @@
-{
- "cpc_tab_infra": "Instanzen",
- "cpc_tab_snapshot": "Snapshots",
- "cpc_tab_volume": "Zusätzliche Festplatten ",
- "cpc_tab_ssh": "SSH-Schlüssel",
- "cpc_tab_loadbalancer": "Loadbalancer",
- "cpc_tab_project": "Verwaltung und Verbrauch des Projekts",
- "cpb_tab_quota": "Quota"
-}

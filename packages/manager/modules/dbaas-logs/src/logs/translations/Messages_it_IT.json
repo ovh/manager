@@ -10,7 +10,7 @@
   "logs_next": "Continua",
   "logs_previous": "Indietro",
   "logs_later": "Più tardi",
-  "logs_details_error": "Si è verificato un errore durante il caricamento dei dettagli del servizio: {message}",
+  "logs_details_error": "Si è verificato un errore durante il caricamento dei dettagli del servizio: {{message}}",
   "logs_dashboards_title": "Dashboard Graylog",
   "logs_dashboards_description": "Le dashboard sono rappresentazioni grafiche dei log. Grazie ai diversi moduli (curve, diagrammi circolari, contatori, statistiche, ecc...) è possibile ottenere una visione sintetica dei dati. Quanti errori si sono verificati nelle ultime 24 ore? Sono in aumento o in calo? Qual è la pagina più visitata oggi? Quanti clienti si sono connessi questo mese? Tutte queste informazioni saranno disponibili immediatamente. L’utilizzo di diverse dashboard permette di visualizzare i dati in base a contesti specifici e facilita la leggibilità delle informazioni.",
   "logs_dashboards_add": "Aggiungi una dashboard",

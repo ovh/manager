@@ -12,7 +12,7 @@ export default /* @ngInject */ ($stateProvider) => {
     template,
     controller,
     controllerAs: '$ctrl',
-    translations: { value: ['.', '../'], format: 'json' },
+    translations: { value: ['../'], format: 'json' },
     resolve: {
       orders: /* @ngInject */ (iceberg) =>
         iceberg('/me/order')
@@ -43,20 +43,20 @@ export default /* @ngInject */ ($stateProvider) => {
       schema: /* @ngInject */ (OvhApiMe) => OvhApiMe.v6().schema().$promise,
 
       getOrderTrackingHref: /* @ngInject */ ($state) => (order, filter) =>
-        $state.href('app.account.billing.order', {
+        $state.href('app.account.billing.orders.order', {
           orderId: order.orderId,
           ordersFilter: filter,
         }),
 
       goToOrder: /* @ngInject */ ($state) => (order, filter) =>
-        $state.go('app.account.billing.order', {
+        $state.go('app.account.billing.orders.order', {
           orderId: order.orderId,
           ordersFilter: filter,
         }),
 
       goToOrderRetractation: /* @ngInject */ ($state) => ({ orderId }) =>
-        $state.go('app.account.billing.retract', {
-          id: orderId,
+        $state.go('app.account.billing.orders.order.retract', {
+          orderId,
         }),
       updateFilterParam: /* @ngInject */ ($state) => (filter) =>
         $state.go(
@@ -68,6 +68,9 @@ export default /* @ngInject */ ($stateProvider) => {
             reload: false,
           },
         ),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('orders_page_title'),
+      hideBreadcrumb: () => true,
     },
   });
 };

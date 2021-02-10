@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@ovh-ux/manager-account-migration": "^1.1.0",
+    "@ovh-ux/manager-advices": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-cloud-styles": "^0.4.0 || ^1.0.0",
     "@ovh-ux/manager-config": "^3.0.0 || ^4.0.0",
     "@ovh-ux/manager-core": "^11.0.0 || ^12.0.0",
@@ -31,7 +32,6 @@
     "@ovh-ux/ng-ovh-contacts": "^4.0.3",
     "@ovh-ux/ng-ovh-contracts": "^4.0.2",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.0.2",
-    "@ovh-ux/ng-ovh-form-flat": "^5.0.1",
     "@ovh-ux/ng-ovh-http": "^5.0.1",
     "@ovh-ux/ng-ovh-payment-method": "^7.0.10",
     "@ovh-ux/ng-ovh-proxy-request": "^2.0.1",

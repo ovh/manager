@@ -6,5 +6,5 @@
   "enterprise_cloud_database_logs_note": "Notatka",
   "enterprise_cloud_database_logs_status": "Status",
   "enterprise_cloud_database_logs_revoke_access": "Usunięcie prawa dostępu",
-  "enterprise_cloud_database_logs_grant_access": "Udziel prawa dostępu do konta OVHcloud Logs Data Platform {{ldpName}}"
+  "enterprise_cloud_database_logs_grant_access": "Udziel prawa dostępu do konta OVHcloud Logs Data Platform"
 }

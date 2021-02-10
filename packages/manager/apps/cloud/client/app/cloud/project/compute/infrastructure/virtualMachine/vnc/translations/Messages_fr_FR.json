@@ -1,7 +1,0 @@
-{
-  "cpcivm_vnc_title": "Console VNC",
-  "cpcivm_vnc_tip": "Astuce : Si la saisie ne fonctionne pas, cliquez sur la barre bleue ci-dessous.",
-  "cpcivm_vnc_window": "Ouvrir dans une nouvelle fenêtre",
-  "cpcivm_vnc_error": "Une erreur est survenue lors de l'ouverture de la console VNC.",
-  "cpcivm_vnc_linuxinfo": "Pour utiliser la console VNC sur une machine Linux, vous devez préalablement vous y connecter via SSH et configurer un utilisateur avec mot de passe."
-}

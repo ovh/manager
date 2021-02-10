@@ -20,6 +20,11 @@
                 data-active="$ctrl.currentActiveLink() === $ctrl.containersLink"
                 ><span data-translate="kube_containers_and_services"></span>
             </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-href="{{:: $ctrl.restrictionsLink }}"
+                data-active="$ctrl.currentActiveLink() === $ctrl.restrictionsLink"
+                ><span data-translate="kube_restrictions"></span>
+            </oui-header-tabs-item>
         </oui-header-tabs>
         <oui-guide-menu
             data-text="{{:: 'pci_project_guides_header' | translate }}"

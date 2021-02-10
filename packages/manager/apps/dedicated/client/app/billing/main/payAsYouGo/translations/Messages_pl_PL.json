@@ -12,5 +12,6 @@
   "billing_main_pay_as_you_go_table_current": "Aktualne saldo",
   "billing_main_pay_as_you_go_table_current_forecast": "Prognoza",
   "billing_main_pay_as_you_go_table_action_manage": "Zarządzanie",
-  "billing_main_pay_as_you_go_table_action_switch_monthly": "Przejdź na abonament miesięczny"
+  "billing_main_pay_as_you_go_table_action_switch_monthly": "Przejdź na abonament miesięczny",
+  "billing_main_pay_as_you_go": "Zużycie Pay As You Go"
 }

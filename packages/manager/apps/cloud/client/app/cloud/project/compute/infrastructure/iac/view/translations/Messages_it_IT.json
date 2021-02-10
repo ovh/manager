@@ -1,8 +1,0 @@
-{
- "cpciiac_view_title": "Seleziona un'infrastruttura da creare",
- "cpciiac_view_intro": "Crea in modo facile e veloce una \"Infrastructure as code\" (IaC) non gestita nel tuo progetto Cloud. Bastano pochi click grazie ai nostri script per la creazione di infrastrutture.",
- "cpciiac_view_general_ERROR": "Si è verificato un errore durante il recupero dei template di \"Infrastructure as code\": {{message}}",
- "cpciiac_view_stack_terraform-ovh-publiccloud-k8s": "Kubernetes",
- "cpciiac_view_stack_ovh-analytics-openstack": "Hadoop",
- "cpciiac_view_deployment_ERROR": "Si è verificato un errore durante la richiesta di creazione dell'infrastruttura: {{message}}"
-}
