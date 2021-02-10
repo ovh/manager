@@ -68,6 +68,10 @@ export default class ProductListCtrl extends ListLayoutHelper.ListLayoutCtrl {
 }
 
 ```
+
+### Onboarding component
+[Click here for documentation](src/onboarding/README.md)
+
 ## Build
 
 ```sh
