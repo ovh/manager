@@ -15,9 +15,11 @@ const routes = [
         'enterprise-billing-summary',
         'catalog-items',
         'carousel',
+        'billing',
         'billing-summary',
         'support',
         'welcome',
+        'ovh-order-tracking',
       ],
     },
   },
@@ -27,13 +29,10 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/ProductDetails.vue'),
+    component: () => import('../views/ProductDetails.vue'),
     query: {
       productApiUrl: '',
     },
-    // query: {
-    //   apiUrl: '',
-    // },
   },
 ];
 

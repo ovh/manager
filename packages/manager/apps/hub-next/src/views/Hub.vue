@@ -7,13 +7,15 @@
             <!-- TODO : Create carousel component -->
             <div class="oui-message oui-message_error">
               <span class="oui-message__icon oui-icon oui-icon-warning"></span>
-              <span
-                v-for="notification in warningNotifications.splice(0, 1)"
-                :key="notification.id"
+              <!-- <span
+                v-for="notification in warningNotifications"
                 v-html="notification.description"
+                :key="notification.id"
                 class="oui-message__body"
               >
-              </span>
+              </span> -->
+              <!-- This is temporary -->
+              <span v-html="warningNotifications[0].description" class="oui-message__body"></span>
             </div>
           </div>
         </div>
@@ -61,6 +63,9 @@ export default defineComponent({
       notifications: 'getNotifications',
     }),
     warningNotifications(): OvhNotification[] {
+      console.log(this.notifications.filter(
+        (notification: OvhNotification) => notification.level === 'warning',
+      ));
       return this.notifications.filter(
         (notification: OvhNotification) => notification.level === 'warning',
       );

@@ -2,8 +2,8 @@
   <tile
     class="col-md-8 mb-3 mb-md-4"
     :title="t('ovh_manager_hub_payment_status_tile_title')"
-    :count="billingServices.data.length"
-    :link="{ path: '/' }"
+    :count="billingServices.count"
+    link="https://www.ovh.com/manager/dedicated/#/billing/autorenew"
   >
     <template #body>
       <data-table :rows="billingServicesCellValues"></data-table>
@@ -27,6 +27,7 @@
     class="col-md-8 mb-3 mb-md-4 order-2 order-md-3"
     :title="t('hub_support_title')"
     :count="support.data.length"
+    :link="support.data ? 'https://www.ovh.com/manager/dedicated/#/ticket' : ''"
   >
     <template #body>
       <data-table v-if="support.data.length" :rows="supportCellValues"></data-table>
@@ -55,6 +56,8 @@
             :href="lastOrder.url"
             :text-content="`N° ${lastOrder.orderId}`"
           ></badge>
+          <p class="font-weight-bold">{{ format(new Date(lastOrder.date), 'dd/MM/yyyy') }}</p>
+          <span class="mr-1">{{ t('order_tracking_history_custom_creation') }}</span>
         </div>
       </template>
     </tile>
@@ -67,7 +70,9 @@ import { BillingService, SupportDemand } from '@/models/hub.d';
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
 import { mapGetters } from 'vuex';
+import { format } from 'date-fns';
 import Badge from '@/components/ui/Badge.vue';
+import { SERVICE_STATES } from '../constants/service_states';
 
 export default defineComponent({
   setup() {
@@ -122,8 +127,33 @@ export default defineComponent({
           { tag: 'a', attrs: { href: billingService.url }, value: billingService.domain },
           { tag: 'div', value: this.t(`manager_hub_products_${billingService.serviceType}`) },
         ],
+        [
+          {
+            tag: Badge,
+            attrs: {
+              level: this.getServiceStateClass(billingService),
+              // TODO: The logic here is simplified, it is more complex than this, come back later
+              textContent:
+                billingService.renewalType === 'manual'
+                  ? this.t('manager_billing_service_status_manual')
+                  : this.t(`manager_billing_service_status_${billingService.status.toLowerCase()}`),
+            },
+          },
+        ],
       ]);
     },
+  },
+  methods: {
+    getServiceStateClass(service: BillingService): string {
+      if (SERVICE_STATES.error.includes(service.renewalType)) return 'error';
+
+      if (SERVICE_STATES.warning.includes(service.renewalType)) return 'warning';
+
+      if (SERVICE_STATES.success.includes(service.renewalType)) return 'success';
+
+      return '';
+    },
+    format,
   },
 });
 </script>

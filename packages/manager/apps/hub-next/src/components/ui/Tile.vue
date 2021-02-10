@@ -5,8 +5,7 @@
         <h3 class="oui-tile__title" :class="link ? 'space-between' : ''">
           <span>
             {{ title }}
-            <badge v-if="count" level="info" :text-content="count.toString()">
-            </badge>
+            <badge v-if="count" level="info" :text-content="count.toString()"> </badge>
           </span>
 
           <button
@@ -17,6 +16,7 @@
             <span class="hub-button__text">
               {{ t('manager_hub_products_see_all') }}
             </span>
+            <span class="oui-icon oui-icon-arrow-right"></span>
           </button>
         </h3>
       </div>

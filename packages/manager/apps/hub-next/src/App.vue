@@ -1,12 +1,43 @@
 <template>
   <div class="container-fluid hub-main-view_container">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/product-details">About</router-link>
+      <!-- TODO: Convert this to breadcrumbs -->
+      <div v-if="showNavigation">
+        <router-link to="/"> {{ t('manager_hub_dashboard') }} </router-link> |
+        <router-link to="/product-details"> {{ productRangeName }} </router-link>
+      </div>
     </div>
     <router-view />
   </div>
 </template>
+<script lang="ts">
+import {
+  computed,
+  defineComponent,
+  provide,
+  ref,
+} from 'vue';
+import { useI18n } from 'vue-i18n';
+import { useRoute } from 'vue-router';
+
+export default defineComponent({
+  setup() {
+    const route = useRoute();
+    const showNavigation = computed(() => route.name !== 'Home');
+    const { t } = useI18n();
+    const productRangeName = ref('');
+
+    provide('productRangeName', productRangeName);
+
+    return {
+      t,
+      route,
+      showNavigation,
+      productRangeName,
+    };
+  },
+});
+</script>
 
 <style lang="scss">
 #nav {

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --report",
     "dev": "yarn serve",
     "lint": "vue-cli-service lint",
     "serve": "vue-cli-service serve",
@@ -19,6 +19,8 @@
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "core-js": "^3.6.5",
+    "date-fns": "^2.17.0",
+    "lodash-es": "^4.17.20",
     "vue": "^3.0.0",
     "vue-i18n": "^9.0.0-rc.4",
     "vue-router": "^4.0.0-0",

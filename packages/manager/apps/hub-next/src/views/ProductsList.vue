@@ -7,7 +7,10 @@
     :count="service.data.length"
     :link="{
       path: '/product-details',
-      query: { productApiUrl: getRouteQueryApiUrl(service.data[0].route.path) },
+      query: {
+        productApiUrl: getRouteQueryApiUrl(service.data[0].route.path),
+        productName: t(`manager_hub_products_${name}`),
+      },
     }"
   >
     <template #body>
@@ -17,7 +20,7 @@
           class="oui-list__item"
           :key="details.serviceId"
         >
-          <a href="">{{ details.resource.displayName }}</a>
+          <a :href="details.url" target="_blank">{{ details.resource.displayName }}</a>
         </li>
       </ul>
     </template>
