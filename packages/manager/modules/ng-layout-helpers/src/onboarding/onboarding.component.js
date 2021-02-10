@@ -1,5 +1,5 @@
-import controller from './empty.controller';
-import template from './empty.html';
+import controller from './onboarding.controller';
+import template from './onboarding.html';
 
 export default {
   controller,

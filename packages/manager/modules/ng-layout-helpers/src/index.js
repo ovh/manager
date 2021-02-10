@@ -1,5 +1,9 @@
 import ListLayoutHelper from './list';
+import OnboardingLayoutHelper from './onboarding';
 
-export { ListLayoutHelper };
+export { ListLayoutHelper, OnboardingLayoutHelper };
 
-export default { ListLayoutHelper };
+export default {
+  ListLayoutHelper,
+  OnboardingLayoutHelper,
+};
