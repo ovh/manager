@@ -1,3 +1,12 @@
+## [2.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.1.2...@ovh-ux/manager-nasha@2.1.3) (2021-02-10)
+
+
+### Performance Improvements
+
+* move out non-reused components ([#4051](https://github.com/ovh/manager/issues/4051)) ([62c12a0](https://github.com/ovh/manager/commit/62c12a025ba5ff4d3ff2bf39f00c5d9a3168e001))
+
+
+
 ## [2.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.1.1...@ovh-ux/manager-nasha@2.1.2) (2021-02-02)
 
 

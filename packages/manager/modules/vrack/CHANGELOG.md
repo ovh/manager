@@ -1,3 +1,17 @@
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.0.9...@ovh-ux/manager-vrack@1.1.0) (2021-02-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 789] ([80a81c4](https://github.com/ovh/manager/commit/80a81c4f8bc7c79ed80b8a2eb2e049e0bab1cc4c))
+
+
+### Features
+
+* rename Private cloud to Hosted private cloud ([c7baae8](https://github.com/ovh/manager/commit/c7baae88b9ef55bb213cf448984bc17764c251d1))
+
+
+
 ## [1.0.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.0.8...@ovh-ux/manager-vrack@1.0.9) (2021-01-13)
 
 

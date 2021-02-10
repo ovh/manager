@@ -1,3 +1,12 @@
+## [4.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-styles@4.0.2...@ovh-ux/manager-telecom-styles@4.0.3) (2021-02-10)
+
+
+### Bug Fixes
+
+* remove unused css rule ([7f3e6bc](https://github.com/ovh/manager/commit/7f3e6bcaf52f8b8b4d1ef497f458623221b3161f))
+
+
+
 ## [4.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-styles@4.0.1...@ovh-ux/manager-telecom-styles@4.0.2) (2021-01-13)
 
 

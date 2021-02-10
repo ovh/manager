@@ -1,3 +1,17 @@
+## [2.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@2.1.1...@ovh-ux/manager-billing@2.1.2) (2021-02-10)
+
+
+### Bug Fixes
+
+* **commitment.constants:** add VPS to the catalog ([#4349](https://github.com/ovh/manager/issues/4349)) ([c645824](https://github.com/ovh/manager/commit/c645824395828ca08b2352dace31dce34926344a))
+* **i18n:** add missing translations [CDS 777] ([713eb36](https://github.com/ovh/manager/commit/713eb369f242fe1475f9c95f12c1458bc8567ebd))
+* **i18n:** add missing translations [CDS 778] ([c0ea393](https://github.com/ovh/manager/commit/c0ea393b37c7eae5e23faafc1b15579b8357cd6a))
+* **i18n:** add missing translations [CDS 790] ([ec3ba71](https://github.com/ovh/manager/commit/ec3ba716c97997348bc9ef0174a8ac768ae05a2d))
+* **i18n:** add missing translations [CDS 793] ([2041d9a](https://github.com/ovh/manager/commit/2041d9a296621fbefa8c0fd8179a3830ce436b2b))
+* **translations:** fix invalids translations (variables) ([#4404](https://github.com/ovh/manager/issues/4404)) ([bbdcd79](https://github.com/ovh/manager/commit/bbdcd79046ce59663ebf2028b57f3404264696e0))
+
+
+
 ## [2.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@2.1.0...@ovh-ux/manager-billing@2.1.1) (2021-02-02)
 
 

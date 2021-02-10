@@ -1,3 +1,13 @@
+## [3.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.2.1...@ovh-ux/manager-hub-app@3.2.2) (2021-02-10)
+
+
+### Bug Fixes
+
+* **dashboard:** remove survey banner ([#4390](https://github.com/ovh/manager/issues/4390)) ([2dd5a53](https://github.com/ovh/manager/commit/2dd5a53c48fdb01a373b614463240a8ab2e3e345))
+* **dev-deps:** update @ovh-ux/ovh-ui-kit version ([#4398](https://github.com/ovh/manager/issues/4398)) ([ede1bd2](https://github.com/ovh/manager/commit/ede1bd27dbe096dae60afc86787f32a475ce65bb))
+
+
+
 ## [3.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.2.0...@ovh-ux/manager-hub-app@3.2.1) (2021-02-02)
 
 

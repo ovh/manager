@@ -1,3 +1,12 @@
+## [1.0.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.0.9...@ovh-ux/manager-iplb@1.0.10) (2021-02-10)
+
+
+### Bug Fixes
+
+* **translations:** fix invalids translations (variables) ([#4404](https://github.com/ovh/manager/issues/4404)) ([bbdcd79](https://github.com/ovh/manager/commit/bbdcd79046ce59663ebf2028b57f3404264696e0))
+
+
+
 ## [1.0.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.0.8...@ovh-ux/manager-iplb@1.0.9) (2021-02-02)
 
 

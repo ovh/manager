@@ -1,3 +1,25 @@
+# [5.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.8.4...@ovh-ux/manager-pci@5.9.0) (2021-02-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 777] ([713eb36](https://github.com/ovh/manager/commit/713eb369f242fe1475f9c95f12c1458bc8567ebd))
+* **i18n:** add missing translations [CDS 791] ([9965f58](https://github.com/ovh/manager/commit/9965f58466b245ae9ba78f783410f3ac94270ff7))
+* **translations:** fix invalids translations (variables) ([#4404](https://github.com/ovh/manager/issues/4404)) ([bbdcd79](https://github.com/ovh/manager/commit/bbdcd79046ce59663ebf2028b57f3404264696e0))
+
+
+### Features
+
+* **kube:** add ip restrictions ([cf94f8e](https://github.com/ovh/manager/commit/cf94f8e38338deddc496b0f49f860a0418b139b0))
+* **kube:** create access and security tile ([e0a376c](https://github.com/ovh/manager/commit/e0a376cf67d18b9450f55cc33818d06c8b32116c))
+
+
+### Performance Improvements
+
+* move out non-reused components ([#4051](https://github.com/ovh/manager/issues/4051)) ([62c12a0](https://github.com/ovh/manager/commit/62c12a025ba5ff4d3ff2bf39f00c5d9a3168e001))
+
+
+
 ## [5.8.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.8.3...@ovh-ux/manager-pci@5.8.4) (2021-02-04)
 
 

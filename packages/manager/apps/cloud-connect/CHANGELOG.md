@@ -1,3 +1,12 @@
+## [1.0.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect-app@1.0.8...@ovh-ux/manager-cloud-connect-app@1.0.9) (2021-02-10)
+
+
+### Bug Fixes
+
+* **deps:** remove @ovh-ux/ng-ovh-form-flat dependency ([ce8f916](https://github.com/ovh/manager/commit/ce8f916b0bda7dd93d1ce331f08afe953ac4b7f3))
+
+
+
 ## [1.0.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect-app@1.0.7...@ovh-ux/manager-cloud-connect-app@1.0.8) (2021-02-02)
 
 

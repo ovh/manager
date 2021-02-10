@@ -1,3 +1,48 @@
+# [16.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.2.2...@ovh-ux/manager-dedicated@16.3.0) (2021-02-10)
+
+
+### Bug Fixes
+
+* **account:** prevent account contacts freezing ([1256306](https://github.com/ovh/manager/commit/12563066366e8be399f55d3c418c307d0bc3edfa))
+* **billing.autorenew:** add padding ([735fbe3](https://github.com/ovh/manager/commit/735fbe328cbe7aa5825ef90fc1e504ca3c1f5fad))
+* **dedicated:** add billing orders ui-view ([b2aab2f](https://github.com/ovh/manager/commit/b2aab2f824fb21805a90137c14baf38b22e789e0))
+* **dedicated-cloud.upgrade:** switch datastore from hourly to monthly ([e05721f](https://github.com/ovh/manager/commit/e05721fab569b217a46872cf085979942e20b5e5))
+* **deps:** remove @ovh-ux/ng-ovh-form-flat dependency ([ce8f916](https://github.com/ovh/manager/commit/ce8f916b0bda7dd93d1ce331f08afe953ac4b7f3))
+* **i18n:** add missing translations [CDS 776] ([d582b98](https://github.com/ovh/manager/commit/d582b9860b2d1c2defb29d6043d1a115ea6d5c77))
+* **i18n:** add missing translations [CDS 779] ([ce10d28](https://github.com/ovh/manager/commit/ce10d28bdbc6b2b2e1816d9f88412b9e7252b544))
+* **i18n:** add missing translations [CDS 781] ([3bc24f5](https://github.com/ovh/manager/commit/3bc24f521c4f897c2f938f155f0b54ed79ab346f))
+* **i18n:** add missing translations [CDS 782] ([b71385d](https://github.com/ovh/manager/commit/b71385d3267b279186bbf4896a4484ac1d91fee6))
+* **i18n:** add missing translations [CDS 786] ([11f108d](https://github.com/ovh/manager/commit/11f108dad4e6da501e7f0712e02ec9acbbdd4403))
+* **i18n:** add missing translations [CDS 787] ([daf4f31](https://github.com/ovh/manager/commit/daf4f31b7299194da96295884969d87068bb22fe))
+* **i18n:** add missing translations [CDS 788] ([4f500af](https://github.com/ovh/manager/commit/4f500af76b1a15d81bbb69c2e903a16006449fd4))
+* **i18n:** add missing translations [CDS 789] ([80a81c4](https://github.com/ovh/manager/commit/80a81c4f8bc7c79ed80b8a2eb2e049e0bab1cc4c))
+* **i18n:** add missing translations [CDS 792] ([76ba99f](https://github.com/ovh/manager/commit/76ba99f1de5a30ee93a680ea9b098b495a38cf9f))
+* **i18n:** add missing translations [CDS 793] ([2041d9a](https://github.com/ovh/manager/commit/2041d9a296621fbefa8c0fd8179a3830ce436b2b))
+* **i18n:** fix some typos ([#4354](https://github.com/ovh/manager/issues/4354)) ([df5565f](https://github.com/ovh/manager/commit/df5565f42d87e28be02e23e49a68ee7af8990cd7)), closes [#4350](https://github.com/ovh/manager/issues/4350)
+* **translations:** fix invalids translations (variables) ([#4404](https://github.com/ovh/manager/issues/4404)) ([bbdcd79](https://github.com/ovh/manager/commit/bbdcd79046ce59663ebf2028b57f3404264696e0))
+* add missing breadcrumb translations ([91a2ebc](https://github.com/ovh/manager/commit/91a2ebcfbd8f3714a4ff49b9510c8b0078f1e265))
+* hide breadcrumb on main listing page ([ae6b9f7](https://github.com/ovh/manager/commit/ae6b9f77a154b944993db29dcd2daa0559de9f4c))
+* **operation.execution-date-edit:** add error details ([#4344](https://github.com/ovh/manager/issues/4344)) ([e9c5432](https://github.com/ovh/manager/commit/e9c54324ea8b76ddf12167fba2aa095e0f0beefc))
+* **server.interfaces:** display garentee for bandwidth ([bda3166](https://github.com/ovh/manager/commit/bda3166920f78053f1cd75c0b02be7190bc5b834))
+
+
+### Features
+
+* **account:** add lazy loading for contacts section ([8cf225f](https://github.com/ovh/manager/commit/8cf225f7312d31a9ffd3b41ae882157947a7574a))
+* rename Private cloud to Hosted private cloud ([c7baae8](https://github.com/ovh/manager/commit/c7baae88b9ef55bb213cf448984bc17764c251d1))
+* rename vps and domain ([cf5f7ba](https://github.com/ovh/manager/commit/cf5f7ba206ec81e2bc5c09e569f1701fca26dd63))
+* **billing:** add breadcrumb ([161d5b4](https://github.com/ovh/manager/commit/161d5b40b11f153b1fc1d977770e9a6c6c18269f))
+* **billing:** add intermediate state ([13c5738](https://github.com/ovh/manager/commit/13c573840e81bdc538ba9c01aa5565d2e0d32d65))
+* **useraccount:** add breadcrumb ([49f2403](https://github.com/ovh/manager/commit/49f2403f41383ca913ba7b1e9da3f41364abe0c8))
+
+
+### Performance Improvements
+
+* lazy load otrs section ([#4340](https://github.com/ovh/manager/issues/4340)) ([421940b](https://github.com/ovh/manager/commit/421940b3602cfd6f41c7145058d9b9933bcd0295))
+* move out non-reused components ([#4051](https://github.com/ovh/manager/issues/4051)) ([62c12a0](https://github.com/ovh/manager/commit/62c12a025ba5ff4d3ff2bf39f00c5d9a3168e001))
+
+
+
 ## [16.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.2.1...@ovh-ux/manager-dedicated@16.2.2) (2021-02-04)
 
 

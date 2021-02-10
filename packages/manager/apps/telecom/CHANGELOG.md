@@ -1,3 +1,16 @@
+## [13.11.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.11.2...@ovh-ux/manager-telecom@13.11.3) (2021-02-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 787] ([daf4f31](https://github.com/ovh/manager/commit/daf4f31b7299194da96295884969d87068bb22fe))
+* **i18n:** add missing translations [CDS 790] ([ec3ba71](https://github.com/ovh/manager/commit/ec3ba716c97997348bc9ef0174a8ac768ae05a2d))
+* **i18n:** add missing translations [CDS 793] ([2041d9a](https://github.com/ovh/manager/commit/2041d9a296621fbefa8c0fd8179a3830ce436b2b))
+* **telephony:** get all events related to current month ([#4378](https://github.com/ovh/manager/issues/4378)) ([183b215](https://github.com/ovh/manager/commit/183b21516ac023ed1d6d62dfc058d1a8bc7eeb39)), closes [#4362](https://github.com/ovh/manager/issues/4362)
+* **translations:** fix invalids translations (variables) ([#4404](https://github.com/ovh/manager/issues/4404)) ([bbdcd79](https://github.com/ovh/manager/commit/bbdcd79046ce59663ebf2028b57f3404264696e0))
+
+
+
 ## [13.11.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.11.1...@ovh-ux/manager-telecom@13.11.2) (2021-02-02)
 
 

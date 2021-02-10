@@ -1,3 +1,13 @@
+## [1.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-metrics-app@1.0.1...@ovh-ux/manager-metrics-app@1.0.2) (2021-02-10)
+
+
+### Bug Fixes
+
+* **deps:** remove @ovh-ux/ng-ovh-form-flat dependency ([ce8f916](https://github.com/ovh/manager/commit/ce8f916b0bda7dd93d1ce331f08afe953ac4b7f3))
+* **metrics:** remove unused less file ([0bf69c9](https://github.com/ovh/manager/commit/0bf69c9182fe8b4a326a08c25aada5454ad114c2))
+
+
+
 ## [1.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-metrics-app@1.0.0...@ovh-ux/manager-metrics-app@1.0.1) (2021-02-02)
 
 

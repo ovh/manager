@@ -1,3 +1,13 @@
+## [3.1.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@3.1.4...@ovh-ux/manager-pci-app@3.1.5) (2021-02-10)
+
+
+### Bug Fixes
+
+* **deps:** add missing deps @ovh-ux/manager-advices ([#4381](https://github.com/ovh/manager/issues/4381)) ([adbadec](https://github.com/ovh/manager/commit/adbadec509d95a912802582d1cc7230924f1aca9))
+* **deps:** remove @ovh-ux/ng-ovh-form-flat dependency ([ce8f916](https://github.com/ovh/manager/commit/ce8f916b0bda7dd93d1ce331f08afe953ac4b7f3))
+
+
+
 ## [3.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@3.1.3...@ovh-ux/manager-pci-app@3.1.4) (2021-02-02)
 
 
