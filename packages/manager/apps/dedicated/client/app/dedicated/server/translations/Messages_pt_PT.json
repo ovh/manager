@@ -838,7 +838,7 @@
   "server_configuration_installation_gabarit_step2_server": "Servidor:",
   "server_configuration_installation_gabarit_step2_os": "Template:",
   "server_configuration_installation_gabarit_step2_lang": "Linguagem:",
-  "server_configuration_installation_gabarit_step2_hardwareRaid": "({t0}}} ({t1}} discos)",
+  "server_configuration_installation_gabarit_step2_hardwareRaid": "{{t0}} ({{t1}} discos)",
   "server_configuration_installation_gabarit_step2_hardwareRaid_incompatible_disks": "Este servidor só dispõe de {{t0}} disco(s), sendo que o template necessita de no mínimo {{t1}} discos.",
   "server_configuration_installation_gabarit_step2_hardwareRaid_incompatible_noHardwareRaid": "Não é possível instalar este template num servidor sem RAID por hardware.",
   "server_configuration_installation_gabarit_step2_saveGabarit": "Modificar e guardar as opções do template:",

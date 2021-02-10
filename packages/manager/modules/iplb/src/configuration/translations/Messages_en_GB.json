@@ -9,7 +9,7 @@
   "iplb_configuration_changes_1": "1 change",
   "iplb_configuration_changes_count": "{{count}} changes",
   "iplb_configuration_changesApplied": "Application complete",
-  "iplb_configuration_excludedZones_some": "The configuration of the following datacentres is already in use: {{{datacenters}}.",
+  "iplb_configuration_excludedZones_some": "The configuration of the following datacentres is already in use: {{datacenters}}.",
   "iplb_configuration_excludedZones_all": "All selected datacentres are already being configured.",
   "iplb_configuration_excludedZones_explanation": "A configuration can only be applied to datacentres where no changes are in progress.",
   "iplb_configuration_info_error": "An error has occurred recovering information on the Load Balancer: {{message}}",

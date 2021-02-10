@@ -11,7 +11,7 @@
   "kube_nodes_delete_success": "Usuwanie węzłów",
   "kube_nodes_delete_error": "Wystąpił błąd podczas usuwania węzłów: {{message}}.",
   "kube_nodes_node": "Węzeł",
-  "kube_nodes_error": "Wystąpił błąd podczas pobierania węzłów: {{message}}",
+  "kube_nodes_error": "Wystąpił błąd podczas pobierania węzłów",
   "kube_nodes_refresh": "Odśwież tabelę",
   "kube_nodes_flavor": "Model instancji",
   "kube_nodes_flavor_error": "Wystąpił błąd podczas pobierania powiązanego typu instancji",

@@ -4,7 +4,7 @@
   "dedicatedCloud_datacenter_backup_state_enabled": "Usługa tworzenia kopii zapasowych włączona",
   "dedicatedCloud_datacenter_backup_state_enabling": "Zlecenie aktywacji usługi Veeam Backup jest przetwarzane. <a href=\"{{operationsUrl}}\">Tutaj</a>możesz śledzić status zadań.",
   "dedicatedCloud_datacenter_backup_state_migrating": "Zlecenie modyfikacji usługi Veeam Backup jest przetwarzane. <a href=\"{{operationsUrl}}\">Tutaj</a>możesz śledzić status zadań.",
-  "dedicatedCloud_datacenter_backup_state_removing": "Zlecenie wyłączenia usługi Veeam {{name} jest przetwarzane. Operacja zajmie 24 godziny.",
+  "dedicatedCloud_datacenter_backup_state_removing": "Zlecenie wyłączenia usługi Veeam {{name}} jest przetwarzane. Operacja zajmie 24 godziny.",
   "dedicatedCloud_datacenter_backup_state_error": "Wystąpił błąd tworzenia kopii zapasowej.",
   "dedicatedCloud_datacenter_backup_upgrade_blocked_EPCC": "Usługa tworzenia kopii zapasowych jest realizowana w innym centrum danych, w którym hostowane jest rozwiązanie Private Cloud. Dopóki realizacja nie dobiegnie końca, nie możesz zmodyfikować usługi tworzenia kopii zapasowych.",
   "dedicatedCloud_datacenter_backup_choose_offers": "Usługa tworzenia kopii zapasowych",
