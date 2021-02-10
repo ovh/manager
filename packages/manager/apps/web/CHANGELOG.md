@@ -1,3 +1,28 @@
+# [15.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.15.2...@ovh-ux/manager-web@15.16.0) (2021-02-10)
+
+
+### Bug Fixes
+
+* **deps:** remove @ovh-ux/ng-ovh-form-flat dependency ([ce8f916](https://github.com/ovh/manager/commit/ce8f916b0bda7dd93d1ce331f08afe953ac4b7f3))
+* **hosting.multisite.logs:** supress error for logs url ([#4346](https://github.com/ovh/manager/issues/4346)) ([df00c00](https://github.com/ovh/manager/commit/df00c00b9728e6c3a7874d39e35b099e37311925))
+* **i18n:** add missing translations [CDS 779] ([ce10d28](https://github.com/ovh/manager/commit/ce10d28bdbc6b2b2e1816d9f88412b9e7252b544))
+* **i18n:** add missing translations [CDS 781] ([3bc24f5](https://github.com/ovh/manager/commit/3bc24f521c4f897c2f938f155f0b54ed79ab346f))
+* **i18n:** add missing translations [CDS 782] ([b71385d](https://github.com/ovh/manager/commit/b71385d3267b279186bbf4896a4484ac1d91fee6))
+* **i18n:** add missing translations [CDS 786] ([11f108d](https://github.com/ovh/manager/commit/11f108dad4e6da501e7f0712e02ec9acbbdd4403))
+* **i18n:** add missing translations [CDS 787] ([daf4f31](https://github.com/ovh/manager/commit/daf4f31b7299194da96295884969d87068bb22fe))
+* **i18n:** add missing translations [CDS 788] ([4f500af](https://github.com/ovh/manager/commit/4f500af76b1a15d81bbb69c2e903a16006449fd4))
+* **i18n:** add missing translations [CDS 793] ([2041d9a](https://github.com/ovh/manager/commit/2041d9a296621fbefa8c0fd8179a3830ce436b2b))
+* **i18n:** fix some typos ([#4354](https://github.com/ovh/manager/issues/4354)) ([df5565f](https://github.com/ovh/manager/commit/df5565f42d87e28be02e23e49a68ee7af8990cd7)), closes [#4350](https://github.com/ovh/manager/issues/4350)
+* **i18n:** fix some typos ([#4364](https://github.com/ovh/manager/issues/4364)) ([fde6b6c](https://github.com/ovh/manager/commit/fde6b6ccc667f2c790b508626006622edd434122)), closes [#4363](https://github.com/ovh/manager/issues/4363)
+* **translations:** fix invalids translations (variables) ([#4404](https://github.com/ovh/manager/issues/4404)) ([bbdcd79](https://github.com/ovh/manager/commit/bbdcd79046ce59663ebf2028b57f3404264696e0))
+
+
+### Features
+
+* rename vps and domain ([cf5f7ba](https://github.com/ovh/manager/commit/cf5f7ba206ec81e2bc5c09e569f1701fca26dd63))
+
+
+
 ## [15.15.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.15.1...@ovh-ux/manager-web@15.15.2) (2021-02-02)
 
 

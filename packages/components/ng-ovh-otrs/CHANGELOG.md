@@ -1,3 +1,20 @@
+# [9.2.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-otrs@9.1.3...@ovh-ux/ng-ovh-otrs@9.2.0) (2021-02-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 786] ([11f108d](https://github.com/ovh/manager/commit/11f108dad4e6da501e7f0712e02ec9acbbdd4403))
+* **i18n:** add missing translations [CDS 789] ([80a81c4](https://github.com/ovh/manager/commit/80a81c4f8bc7c79ed80b8a2eb2e049e0bab1cc4c))
+* **popup:** remove unused css rule ([b88e7d8](https://github.com/ovh/manager/commit/b88e7d8f108607a04eeacb7210465e82b83c1fc8))
+
+
+### Features
+
+* rename Private cloud to Hosted private cloud ([c7baae8](https://github.com/ovh/manager/commit/c7baae88b9ef55bb213cf448984bc17764c251d1))
+* rename vps and domain ([cf5f7ba](https://github.com/ovh/manager/commit/cf5f7ba206ec81e2bc5c09e569f1701fca26dd63))
+
+
+
 ## [9.1.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-otrs@9.1.2...@ovh-ux/ng-ovh-otrs@9.1.3) (2021-01-27)
 
 

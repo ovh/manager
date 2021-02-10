@@ -1,3 +1,12 @@
+## [2.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.3.2...@ovh-ux/manager-vps@2.3.3) (2021-02-10)
+
+
+### Bug Fixes
+
+* add missing breadcrumb translations ([91a2ebc](https://github.com/ovh/manager/commit/91a2ebcfbd8f3714a4ff49b9510c8b0078f1e265))
+
+
+
 ## [2.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.3.1...@ovh-ux/manager-vps@2.3.2) (2021-02-02)
 
 

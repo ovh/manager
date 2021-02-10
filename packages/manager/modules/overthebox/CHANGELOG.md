@@ -1,3 +1,12 @@
+## [6.1.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.1.6...@ovh-ux/manager-overthebox@6.1.7) (2021-02-10)
+
+
+### Bug Fixes
+
+* **overthebox.remote:** update poller when tab switching before result ([47d35db](https://github.com/ovh/manager/commit/47d35dbef8670e3dbac640963badba5c407c8c62))
+
+
+
 ## [6.1.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.1.5...@ovh-ux/manager-overthebox@6.1.6) (2021-02-02)
 
 

@@ -1,3 +1,18 @@
+## [1.4.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.4.7...@ovh-ux/manager-dbaas-logs@1.4.8) (2021-02-10)
+
+
+### Bug Fixes
+
+* **i18n:** fix some typos ([#4354](https://github.com/ovh/manager/issues/4354)) ([df5565f](https://github.com/ovh/manager/commit/df5565f42d87e28be02e23e49a68ee7af8990cd7)), closes [#4350](https://github.com/ovh/manager/issues/4350)
+* **translations:** fix invalids translations (variables) ([#4404](https://github.com/ovh/manager/issues/4404)) ([bbdcd79](https://github.com/ovh/manager/commit/bbdcd79046ce59663ebf2028b57f3404264696e0))
+
+
+### Performance Improvements
+
+* move out non-reused components ([#4051](https://github.com/ovh/manager/issues/4051)) ([62c12a0](https://github.com/ovh/manager/commit/62c12a025ba5ff4d3ff2bf39f00c5d9a3168e001))
+
+
+
 ## [1.4.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.4.6...@ovh-ux/manager-dbaas-logs@1.4.7) (2021-02-02)
 
 

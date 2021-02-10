@@ -1,3 +1,12 @@
+## [1.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb-app@1.1.3...@ovh-ux/manager-iplb-app@1.1.4) (2021-02-10)
+
+
+### Bug Fixes
+
+* **deps:** remove @ovh-ux/ng-ovh-form-flat dependency ([ce8f916](https://github.com/ovh/manager/commit/ce8f916b0bda7dd93d1ce331f08afe953ac4b7f3))
+
+
+
 ## [1.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb-app@1.1.2...@ovh-ux/manager-iplb-app@1.1.3) (2021-02-02)
 
 

@@ -1,3 +1,17 @@
+# [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sharepoint@2.0.2...@ovh-ux/manager-sharepoint@2.1.0) (2021-02-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 786] ([11f108d](https://github.com/ovh/manager/commit/11f108dad4e6da501e7f0712e02ec9acbbdd4403))
+
+
+### Features
+
+* rename vps and domain ([cf5f7ba](https://github.com/ovh/manager/commit/cf5f7ba206ec81e2bc5c09e569f1701fca26dd63))
+
+
+
 ## [2.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-sharepoint@2.0.1...@ovh-ux/manager-sharepoint@2.0.2) (2020-10-28)
 
 

@@ -1,3 +1,17 @@
+## [1.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-app@1.1.3...@ovh-ux/manager-vrack-app@1.1.4) (2021-02-10)
+
+
+### Bug Fixes
+
+* **deps:** remove @ovh-ux/ng-ovh-form-flat dependency ([ce8f916](https://github.com/ovh/manager/commit/ce8f916b0bda7dd93d1ce331f08afe953ac4b7f3))
+
+
+### Performance Improvements
+
+* move out non-reused components ([#4051](https://github.com/ovh/manager/issues/4051)) ([62c12a0](https://github.com/ovh/manager/commit/62c12a025ba5ff4d3ff2bf39f00c5d9a3168e001))
+
+
+
 ## [1.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-app@1.1.2...@ovh-ux/manager-vrack-app@1.1.3) (2021-02-02)
 
 

@@ -1,3 +1,12 @@
+## [1.3.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs-app@1.3.4...@ovh-ux/manager-dbaas-logs-app@1.3.5) (2021-02-10)
+
+
+### Bug Fixes
+
+* **deps:** remove @ovh-ux/ng-ovh-form-flat dependency ([ce8f916](https://github.com/ovh/manager/commit/ce8f916b0bda7dd93d1ce331f08afe953ac4b7f3))
+
+
+
 ## [1.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs-app@1.3.3...@ovh-ux/manager-dbaas-logs-app@1.3.4) (2021-02-02)
 
 

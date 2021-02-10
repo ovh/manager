@@ -1,3 +1,12 @@
+## [8.0.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-mondial-relay@8.0.3...@ovh-ux/ng-ovh-mondial-relay@8.0.4) (2021-02-10)
+
+
+### Bug Fixes
+
+* **translations:** fix invalids translations (variables) ([#4404](https://github.com/ovh/manager/issues/4404)) ([bbdcd79](https://github.com/ovh/manager/commit/bbdcd79046ce59663ebf2028b57f3404264696e0))
+
+
+
 ## [8.0.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-mondial-relay@8.0.2...@ovh-ux/ng-ovh-mondial-relay@8.0.3) (2021-01-13)
 
 

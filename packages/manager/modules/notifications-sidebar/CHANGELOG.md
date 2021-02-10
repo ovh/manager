@@ -1,3 +1,12 @@
+## [1.1.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-notifications-sidebar@1.1.6...@ovh-ux/manager-notifications-sidebar@1.1.7) (2021-02-10)
+
+
+### Bug Fixes
+
+* **notifications:** remove unwanted ovhManagerNavbar dependency ([#4379](https://github.com/ovh/manager/issues/4379)) ([ec67bd9](https://github.com/ovh/manager/commit/ec67bd976783f07f1a3d02759bc446445cba2f33))
+
+
+
 ## [1.1.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-notifications-sidebar@1.1.5...@ovh-ux/manager-notifications-sidebar@1.1.6) (2021-02-02)
 
 

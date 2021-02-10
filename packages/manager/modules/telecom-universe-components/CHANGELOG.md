@@ -1,3 +1,12 @@
+## [7.2.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.2.0...@ovh-ux/ng-ovh-telecom-universe-components@7.2.1) (2021-02-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 788] ([4f500af](https://github.com/ovh/manager/commit/4f500af76b1a15d81bbb69c2e903a16006449fd4))
+
+
+
 # [7.2.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.1.0...@ovh-ux/ng-ovh-telecom-universe-components@7.2.0) (2021-01-13)
 
 
