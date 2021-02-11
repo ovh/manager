@@ -83,25 +83,47 @@
                     </div>
 
                     <div
+                        class="form-group"
                         data-ng-if="ctrl.model.responderDuration === 'temporary'"
                     >
-                        <div class="col-md-offset-4 col-md-6">
-                            <oui-field
-                                data-label="{{ :: 'email_tab_modal_create_responder_start' | translate }} / {{ :: 'email_tab_modal_create_responder_end' | translate }}"
-                                data-size="l"
+                        <label
+                            class="col-md-4 control-label text-lg-right oui-label"
+                            for="date-responder-from"
+                            data-translate="email_tab_modal_create_responder_start"
+                        ></label>
+                        <div class="col-md-8">
+                            <oui-calendar
+                                id="date-responder-from"
+                                name="responderDateFrom"
+                                data-model="ctrl.model.from"
+                                data-format="Y-m-d H:i"
+                                data-enable-time
+                                data-required
                             >
-                                <oui-calendar
-                                    id="date-responder"
-                                    name="responderDate"
-                                    data-mode="range"
-                                    data-model="ctrl.model.responderDates"
-                                    data-on-close="ctrl.responderDatesChanged(selectedDates)"
-                                    data-format="Y-m-d H:i"
-                                    data-enable-time
-                                    data-required
-                                >
-                                </oui-calendar>
-                            </oui-field>
+                            </oui-calendar>
+                        </div>
+                    </div>
+
+                    <div
+                        class="form-group"
+                        data-ng-if="ctrl.model.responderDuration === 'temporary'"
+                    >
+                        <label
+                            class="col-md-4 control-label text-lg-right oui-label"
+                            for="date-responder-to"
+                            data-translate="email_tab_modal_create_responder_end"
+                        ></label>
+                        <div class="col-md-8">
+                            <oui-calendar
+                                id="date-responder-to"
+                                name="responderDateTo"
+                                data-model="ctrl.model.to"
+                                data-min-date="ctrl.model.from"
+                                data-format="Y-m-d H:i"
+                                data-enable-time
+                                data-required
+                            >
+                            </oui-calendar>
                         </div>
                     </div>
 
