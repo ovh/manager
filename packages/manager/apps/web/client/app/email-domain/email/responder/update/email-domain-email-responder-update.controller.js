@@ -32,15 +32,14 @@ angular.module('App').controller(
       this.loading = false;
       this.responder = this.$scope.currentActionData.responder;
       this.model = {
-        from: (this.responder.from && moment(this.responder.from)) || '',
-        to: (this.responder.to && moment(this.responder.to)) || '',
+        from: this.responder.from,
+        to: this.responder.to,
         content: this.responder.content,
         responderDuration:
           !this.responder.from && !this.responder.to
             ? 'permanent'
             : 'temporary',
       };
-      this.model.responderDates = [this.responder.from, this.responder.to];
 
       this.$scope.updateResponder = () => this.updateResponder();
     }
@@ -53,10 +52,6 @@ angular.module('App').controller(
           moment(this.model.to).isAfter(this.model.from) &&
           moment(this.model.to).isAfter(new Date()))
       );
-    }
-
-    responderDatesChanged(selectedDates) {
-      [this.model.from, this.model.to] = selectedDates;
     }
 
     updateResponder() {
