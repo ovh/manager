@@ -77,11 +77,13 @@ import { SERVICE_STATES } from '../constants/service_states';
 
 export default defineComponent({
   setup() {
-    const { t } = useI18n();
+    const { t, d, locale } = useI18n();
     const router = useRouter();
     return {
       t,
+      d,
       router,
+      locale,
     };
   },
   components: {
@@ -135,7 +137,11 @@ export default defineComponent({
         const billingService = new BillingServiceClass(billing);
         return [
           [
-            { tag: 'a', attrs: { class: 'oui-link', href: billingService.url }, value: billingService.domain },
+            {
+              tag: 'a',
+              attrs: { class: 'oui-link', href: billingService.url },
+              value: billingService.domain,
+            },
             {
               tag: 'p',
               attrs: { class: 'mb-0 hub-payment-status_small ' },
@@ -147,7 +153,6 @@ export default defineComponent({
               tag: Badge,
               attrs: {
                 level: this.getServiceStateClass(billingService),
-                // TODO: The logic here is simplified, it is more complex than this, come back later
                 textContent: this.t(
                   `manager_billing_service_status_${
                     billingService.status === 'OK'
@@ -156,6 +161,10 @@ export default defineComponent({
                   }`,
                 ),
               },
+            },
+            {
+              tag: 'div',
+              value: this.getStateText(billing),
             },
           ],
         ];
@@ -186,6 +195,40 @@ export default defineComponent({
         default:
           return 'error';
       }
+    },
+    getStateText(service: BillingService): string {
+      const billingService = new BillingServiceClass(service);
+      const dateLocale = this.locale.replace('_', '-');
+      if (
+        billingService.hasManualRenew()
+        && !billingService.isResiliated()
+        && !billingService.hasDebt()
+      ) {
+        return this.t('ovh_manager_hub_payment_status_tile_before', {
+          date: this.d(billingService.expirationDate, 'short', dateLocale),
+        });
+      }
+
+      if (billingService.isResiliated() || billingService.hasPendingResiliation()) {
+        return this.t('ovh_manager_hub_payment_status_tile_renew', {
+          date: this.d(billingService.expirationDate, 'short', dateLocale),
+        });
+      }
+
+      if (
+        billingService.hasAutomaticRenew()
+        && !billingService.isOneShot()
+        && !billingService.hasDebt()
+        && !billingService.hasPendingResiliation()
+      ) {
+        return this.d(billingService.expirationDate, 'short', dateLocale);
+      }
+
+      if (billingService.hasDebt()) {
+        return this.t('ovh_manager_hub_payment_status_tile_now');
+      }
+
+      return '';
     },
   },
 });

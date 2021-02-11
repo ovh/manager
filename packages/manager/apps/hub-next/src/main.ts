@@ -14,12 +14,17 @@ import store from './store';
 
 fetchConfiguration('hub-next').then(async () => {
   const locale = Environment.getUserLocale();
-
   const fallbackLocale = LANGUAGES.fallback;
 
+  const datetimeFormats = {
+    [locale.replace('_', '-')]: {
+      short: { year: 'numeric', month: 'short', day: 'numeric' },
+    },
+  };
   const i18n = createI18n({
     locale,
     fallbackLocale,
+    datetimeFormats,
   });
 
   router.beforeEach(async (to, from, next) => {

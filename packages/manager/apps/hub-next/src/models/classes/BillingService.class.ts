@@ -35,10 +35,6 @@ export default class BillingServiceClass implements BillingService {
     }
   }
 
-  get formattedExpiration() {
-    return format(this.expirationDate, 'LL');
-  }
-
   getRenew() {
     if (this.hasManualRenew()) {
       return 'manualPayment';
