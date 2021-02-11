@@ -45,7 +45,7 @@
                     data-ng-if="$ctrl.currentEditedRow === $rowIndex"
                     size="s"
                     variant="secondary"
-                    disabled="$ctrl.isLoading && !$ctrl.isIPValid()"
+                    disabled="$ctrl.isLoading || !$ctrl.isIPValid()"
                     on-click="$ctrl.saveRestrictions($rowIndex)"
                 >
                     <span
@@ -62,7 +62,7 @@
                     size="s"
                     variant="secondary"
                     disabled="$ctrl.isLoading"
-                    on-click="$ctrl.selectRow($ctrl.ips.length)"
+                    on-click="$ctrl.cancelRestriction($rowIndex)"
                 >
                     <span
                         class="oui-icon oui-icon-close"
