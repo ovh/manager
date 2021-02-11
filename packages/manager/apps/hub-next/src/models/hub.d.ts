@@ -54,9 +54,9 @@ export interface BillingService {
   contactAdmin: string;
   contactBilling: string;
   domain: string;
-  id: number;
+  id: number | string;
   status: string;
-  engagedUpTo: unknown;
+  engagedUpTo: Date;
   expiration: string;
   renew: Renew;
   renewalType: string;

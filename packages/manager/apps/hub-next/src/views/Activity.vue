@@ -18,8 +18,8 @@
     >
       <template #body>
         <span class="manager-hub-billing-summary__bill-total">
-          {{ `${bills.total} ${bills.currency.symbol}` }}</span
-        >
+          {{ `${bills.total} ${bills.currency.symbol}` }}
+        </span>
       </template>
     </tile>
   </div>
@@ -72,6 +72,7 @@ import { useRouter } from 'vue-router';
 import { mapGetters } from 'vuex';
 import format from 'date-fns/format';
 import Badge from '@/components/ui/Badge.vue';
+import BillingServiceClass from '@/models/classes/BillingService.class';
 import { SERVICE_STATES } from '../constants/service_states';
 
 export default defineComponent({
@@ -109,7 +110,15 @@ export default defineComponent({
           },
         ],
         ticket.subject,
-        this.t(`hub_support_state_${ticket.state}`),
+        [
+          {
+            tag: Badge,
+            attrs: {
+              level: this.getStateCategory(ticket),
+              textContent: this.t(`hub_support_state_${ticket.state}`),
+            },
+          },
+        ],
         [
           {
             tag: 'a',
@@ -122,38 +131,62 @@ export default defineComponent({
       ]);
     },
     billingServicesCellValues(): [] {
-      return this.billingServices.data.map((billingService: BillingService) => [
-        [
-          { tag: 'a', attrs: { href: billingService.url }, value: billingService.domain },
-          { tag: 'div', value: this.t(`manager_hub_products_${billingService.serviceType}`) },
-        ],
-        [
-          {
-            tag: Badge,
-            attrs: {
-              level: this.getServiceStateClass(billingService),
-              // TODO: The logic here is simplified, it is more complex than this, come back later
-              textContent:
-                billingService.renewalType === 'manual'
-                  ? this.t('manager_billing_service_status_manual')
-                  : this.t(`manager_billing_service_status_${billingService.status.toLowerCase()}`),
+      return this.billingServices.data.map((billing: BillingService) => {
+        const billingService = new BillingServiceClass(billing);
+        return [
+          [
+            { tag: 'a', attrs: { class: 'oui-link', href: billingService.url }, value: billingService.domain },
+            {
+              tag: 'p',
+              attrs: { class: 'mb-0 hub-payment-status_small ' },
+              value: this.t(`manager_hub_products_${billingService.serviceType}`),
             },
-          },
-        ],
-      ]);
+          ],
+          [
+            {
+              tag: Badge,
+              attrs: {
+                level: this.getServiceStateClass(billingService),
+                // TODO: The logic here is simplified, it is more complex than this, come back later
+                textContent: this.t(
+                  `manager_billing_service_status_${
+                    billingService.status === 'OK'
+                      ? billingService.getRenew()
+                      : billingService.status.toLowerCase()
+                  }`,
+                ),
+              },
+            },
+          ],
+        ];
+      });
     },
   },
   methods: {
     getServiceStateClass(service: BillingService): string {
-      if (SERVICE_STATES.error.includes(service.renewalType)) return 'error';
+      const billingService = new BillingServiceClass(service);
 
-      if (SERVICE_STATES.warning.includes(service.renewalType)) return 'warning';
+      if (SERVICE_STATES.error.includes(billingService.getRenew())) return 'error';
 
-      if (SERVICE_STATES.success.includes(service.renewalType)) return 'success';
+      if (SERVICE_STATES.warning.includes(billingService.getRenew())) return 'warning';
+
+      if (SERVICE_STATES.success.includes(billingService.getRenew())) return 'success';
 
       return '';
     },
     format,
+    getStateCategory(ticket: SupportDemand) {
+      switch (ticket.state) {
+        case 'open':
+          return 'success';
+        case 'closed':
+          return 'info';
+        case 'unknown':
+          return 'warning';
+        default:
+          return 'error';
+      }
+    },
   },
 });
 </script>
