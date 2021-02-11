@@ -5,6 +5,7 @@ const component = {
   bindings: {
     project: '<',
     projectId: '<',
+    guideUrl: '<',
     currentActiveLink: '<',
     serviceLink: '<',
   },

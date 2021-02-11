@@ -9,11 +9,12 @@ export const STATUS = {
   ERROR: 'ERROR',
 };
 
-export const X_PAGINATION_MODE = 'X-Pagination-Mode';
-export const CACHED_OBJECT_LIST_PAGES = 'CachedObjectList-Pages';
+export const GUIDELINK = {
+  EN: 'https://docs.ovh.com/gb/en/web-paas/',
+  FR: 'https://docs.ovh.com/gb/en/web-paas/',
+};
 
 export default {
-  CACHED_OBJECT_LIST_PAGES,
+  GUIDELINK,
   STATUS,
-  X_PAGINATION_MODE,
 };

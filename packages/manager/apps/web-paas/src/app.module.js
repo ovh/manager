@@ -6,6 +6,7 @@ import ovhManagerCore from '@ovh-ux/manager-core';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import ngOvhUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
+import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
 
 import WebPaas from '@ovh-ux/manager-web-paas';
 
@@ -18,6 +19,7 @@ const moduleName = 'WebPaasApp';
 angular
   .module(moduleName, [
     ovhManagerCore,
+    ngOvhApiWrappers,
     ngOvhUiRouterLineProgress,
     ngUiRouterBreadcrumb,
     uiRouter,

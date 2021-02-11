@@ -1,5 +1,12 @@
 <div data-ui-view>
     <oui-header data-heading="{{ ::'web_paas_title' | translate }}">
+        <oui-guide-menu data-text="{{ ::'web_paas_guides' | translate }}">
+            <oui-guide-menu-item
+                data-href="{{:: $ctrl.guideUrl }}"
+                data-external
+                ><span data-translate="web_paas_guides_main"></span>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
     </oui-header>
     <div class="container-fluid w-100 h-100 pt-4 px-3 px-md-5">
         <!-- error messages -->

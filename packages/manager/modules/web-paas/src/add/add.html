@@ -1,7 +1,8 @@
 <div>
     <oui-header
-        class="mb-3"
+        class="mb-3 add-page-header"
         data-heading="{{:: 'web_paas_add_project_title' | translate }}"
+        data-description="{{:: 'web_paas_add_project_description' | translate }}"
     >
     </oui-header>
     <div class="container-fluid">
@@ -16,6 +17,7 @@
         >
             <oui-step-form
                 data-header="{{:: 'web_paas_add_project_choose_offer' | translate }}"
+                data-description="{{:: 'web_paas_add_project_choose_offer_description' | translate }}"
                 data-submit-text="{{:: 'web_paas_add_project_next' | translate }}"
                 data-prevent-next="true"
                 data-valid="$ctrl.project.offer"
@@ -131,6 +133,7 @@
 
             <oui-step-form
                 data-header="{{:: 'web_paas_add_project_options' | translate }}"
+                data-description="{{:: 'web_paas_add_project_options_description' | translate }}"
                 data-submit-text="{{:: 'web_paas_add_project_next' | translate }}"
                 data-prevent-next="true"
                 data-valid="$ctrl.project.configuration.storage"
@@ -142,7 +145,6 @@
                 <oui-field
                     data-label="{{:: 'web_paas_add_project_options_storage' | translate}}"
                     data-size="xl"
-                    label-popover="{{ ::'web_paas_add_project_options_storage_popover' | translate }}"
                 >
                     <oui-select
                         disabled="$ctrl.project.configuration.storage && $ctrl.availableStorages.length === 1"

@@ -4,28 +4,22 @@ import set from 'lodash/set';
 import Project from './project.class';
 import Plan from './plan.class';
 
-import {
-  CACHED_OBJECT_LIST_PAGES,
-  X_PAGINATION_MODE,
-} from './web-paas.constants';
-
 export default class WebPaasService {
   /* @ngInject */
-  constructor($http, $q, $translate, WucOrderCartService) {
+  constructor($http, $q, $translate, WucOrderCartService, iceberg) {
     this.$http = $http;
     this.$q = $q;
+    this.iceberg = iceberg;
     this.$translate = $translate;
     this.WucOrderCartService = WucOrderCartService;
   }
 
   getProjects() {
-    return this.$http
-      .get('/webPaaS/subscription', {
-        headers: {
-          [X_PAGINATION_MODE]: CACHED_OBJECT_LIST_PAGES,
-        },
-      })
-      .then(({ data }) => data);
+    return this.iceberg('/webPaaS/subscription')
+      .query()
+      .expand('CachedObjectList-Pages')
+      .execute({}, true)
+      .$promise.then(({ data }) => data);
   }
 
   getProjectDetails(projectId) {

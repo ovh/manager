@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import { GUIDELINK } from './web-paas.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('web-paas', {
     url: '/paas/webpaas',
@@ -11,6 +14,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
     resolve: {
       user: /* @ngInject */ (OvhApiMe) => OvhApiMe.v6().get().$promise,
+      guideUrl: /* @ngInject */ (user) => get(GUIDELINK, user.ovhSubsidiary),
       projects: /* @ngInject */ (WebPaas) => WebPaas.getProjects(),
       createProject: /* @ngInject */ ($state) => () =>
         $state.go('web-paas.add'),

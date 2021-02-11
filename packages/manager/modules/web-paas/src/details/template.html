@@ -5,6 +5,13 @@
         data-heading="{{:: $ctrl.project.projectName }}"
         data-description="{{::$ctrl.project.projectId }}"
     >
+        <oui-guide-menu data-text="{{ ::'web_paas_guides' | translate }}">
+            <oui-guide-menu-item
+                data-href="{{:: $ctrl.guideUrl }}"
+                data-external
+                ><span data-translate="web_paas_guides_main"></span>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
         <oui-header-tabs>
             <oui-header-tabs-item
                 data-href="{{:: $ctrl.serviceLink }}"

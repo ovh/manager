@@ -19,5 +19,7 @@
   "web_paas_project_status_CANCELLING": "Annuler en cours",
   "web_paas_project_status_CANCELLATION_REQUESTED": "Annulation demandée",
   "web_paas_project_status_TERMINATED": "Révoquée",
-  "web_paas_project_status_SUSPENDED": "Suspendu"
+  "web_paas_project_status_SUSPENDED": "Suspendu",
+  "web_paas_guides": "Guides",
+  "web_paas_guides_main": "Web PaaS"
 }

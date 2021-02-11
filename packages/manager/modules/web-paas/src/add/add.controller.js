@@ -9,24 +9,15 @@ import { WORKFLOW_OPTIONS } from './add.constants';
 
 export default class {
   /* @ngInject */
-  constructor(
-    $q,
-    $scope,
-    $translate,
-    $window,
-    Alerter,
-    WebPaas,
-    WucOrderCartService,
-  ) {
+  constructor($q, $translate, $window, Alerter, WebPaas, WucOrderCartService) {
     this.$q = $q;
-    this.$scope = $scope;
     this.$translate = $translate;
     this.$window = $window;
     this.Alerter = Alerter;
     this.WebPaas = WebPaas;
     this.WucOrderCartService = WucOrderCartService;
     this.WORKFLOW_OPTIONS = WORKFLOW_OPTIONS;
-    this.$scope.alerts = {
+    this.alerts = {
       add: 'web_paas_add',
     };
   }
@@ -134,6 +125,7 @@ export default class {
         this.Alerter.alertFromSWS(
           this.$translate.instant('web_paas_add_project_region_na'),
           'error',
+          this.alerts.add,
         ),
       )
       .finally(() => {
@@ -143,14 +135,21 @@ export default class {
 
   onPlatformOrderSuccess(checkout) {
     this.$window.open(checkout.url, '_blank', 'noopener');
-    return this.goBack(this.$translate.instant('web_paas_add_project_success'));
+    $('html, body').animate(
+      { scrollTop: $('.add-page-header').offset().top },
+      500,
+    );
+    return this.Alerter.success(
+      this.$translate.instant('web_paas_add_project_success'),
+      this.alerts.add,
+    );
   }
 
   onPlatformOrderError(error) {
-    return this.alerter.alertFromSWS(
+    return this.Alerter.alertFromSWS(
       this.$translate.instant('web_paas_add_project_error'),
       error,
-      this.$scope.alerts.add,
+      this.alerts.add,
     );
   }
 

@@ -5,6 +5,7 @@ export default {
   bindings: {
     createProject: '<',
     projects: '<',
+    guideUrl: '<',
     viewDetails: '<',
     openPartnerConsole: '<',
     terminateProject: '<',
