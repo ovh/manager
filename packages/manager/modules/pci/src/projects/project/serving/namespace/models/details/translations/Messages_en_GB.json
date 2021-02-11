@@ -21,7 +21,7 @@
   "pci_projects_project_serving_namespace_models_version_status_built": "OK",
   "pci_projects_project_serving_namespace_models_version_status_build-error": "Error",
   "pci_projects_project_serving_namespace_models_version_status_deploying": "Deployment",
-  "pci_projects_project_serving_namespace_models_version_status_deployed": "Deployed",
+  "pci_projects_project_serving_namespace_models_version_status_deployed": "Running",
   "pci_projects_project_serving_namespace_models_version_status_rollback": "Cancellation",
   "pci_projects_project_serving_namespace_models_version_status_failed": "Failed",
   "pci_projects_project_serving_models_details_configuration_flavor_label": "Flavor",
