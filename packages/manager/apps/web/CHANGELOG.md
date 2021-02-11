@@ -1,3 +1,14 @@
+## [15.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.16.0...@ovh-ux/manager-web@15.16.1) (2021-02-11)
+
+
+### Bug Fixes
+
+* **responder:** fix dates UI on creation form ([9ba03f9](https://github.com/ovh/manager/commit/9ba03f9779eb1a25bd71734527e08447c0b03969))
+* **responder:** fix dates UI on update form ([86d8620](https://github.com/ovh/manager/commit/86d8620f0978fe9ad8819c60bd3f9398d538719e))
+* **subscriber:** avoid undefined runtime error ([#4410](https://github.com/ovh/manager/issues/4410)) ([b5071fa](https://github.com/ovh/manager/commit/b5071fa96765ac6bdf21d488946b82f7209d1e41))
+
+
+
 # [15.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.15.2...@ovh-ux/manager-web@15.16.0) (2021-02-10)
 
 

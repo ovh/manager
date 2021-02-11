@@ -1,3 +1,12 @@
+## [16.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.3.0...@ovh-ux/manager-dedicated@16.3.1) (2021-02-11)
+
+
+### Bug Fixes
+
+* **server.installation:** remove wrong parameter ([#4411](https://github.com/ovh/manager/issues/4411)) ([9f07e9a](https://github.com/ovh/manager/commit/9f07e9af711aa3a008fbe41f843859f2073ac887))
+
+
+
 # [16.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.2.2...@ovh-ux/manager-dedicated@16.3.0) (2021-02-10)
 
 

@@ -1,3 +1,12 @@
+## [14.0.12](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-utils@14.0.11...@ovh-ux/ng-ovh-utils@14.0.12) (2021-02-11)
+
+
+### Bug Fixes
+
+* **contracts:** fix directive ([#4412](https://github.com/ovh/manager/issues/4412)) ([9f207a8](https://github.com/ovh/manager/commit/9f207a83ebe8e4ce947394ddea82590e1f22aff4))
+
+
+
 ## [14.0.11](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-utils@14.0.10...@ovh-ux/ng-ovh-utils@14.0.11) (2021-01-13)
 
 
