@@ -5,10 +5,12 @@ import { BillingService } from '@ovh-ux/manager-models';
 
 export default class {
   /* @ngInject */
-  constructor($translate, atInternet, Alerter) {
+  constructor($http, $translate, atInternet, Alerter) {
+    this.$http = $http;
     this.$translate = $translate;
     this.atInternet = atInternet;
     this.Alerter = Alerter;
+    this.isLoading = false;
   }
 
   $onInit() {
@@ -18,6 +20,18 @@ export default class {
     this.model = {
       agreements: this.autorenewAgreements.length === 0,
     };
+
+    return this.$http
+      .get(`${get(this, 'billingService.route.url')}/serviceInfos`)
+      .then(({ data }) => {
+        this.billingService.possibleRenewPeriod = get(
+          data,
+          'possibleRenewPeriod',
+        );
+      })
+      .finally(() => {
+        this.isLoading = false;
+      });
   }
 
   switchStep() {
