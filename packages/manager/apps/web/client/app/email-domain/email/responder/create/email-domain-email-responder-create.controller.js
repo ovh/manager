@@ -110,13 +110,6 @@ angular.module('App').controller(
       );
     }
 
-    responderDatesChanged(selectedDates) {
-      [
-        this.model.responderDateStart,
-        this.model.responderDateEnd,
-      ] = selectedDates;
-    }
-
     responderDurationCheck() {
       return (
         this.model.responderDuration === 'permanent' ||
