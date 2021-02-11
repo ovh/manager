@@ -1,6 +1,6 @@
 <script>
 import { defineComponent, h } from 'vue';
-import { startCase } from 'lodash-es';
+import startCase from 'lodash-es/startCase';
 
 export default defineComponent({
   props: {
@@ -40,9 +40,10 @@ export default defineComponent({
       <tr class="oui-table__row"> {dataElementPerRow(row)} </tr>
     ));
 
-    const headerColumns = this.columnNames?.map((name) => (
-      <th class="oui-table__header">{startCase(name)}</th>
-    ));
+    const headerColumns = this.columnNames?.map((name) => {
+      if (!name) return '';
+      return (<th class="oui-table__header">{startCase(name)}</th>);
+    });
     const header = (columns) => <tr>{columns}</tr>;
     let paginationFooter;
 

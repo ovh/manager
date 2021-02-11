@@ -2,7 +2,6 @@
   <tile
     v-for="(service, name) in services.data"
     :key="name"
-    class="col-md-6 col-lg-4 mb-2 mb-md-4 oui-list"
     :title="t(`manager_hub_products_${name}`)"
     :count="service.data.length"
     :link="{
@@ -12,6 +11,7 @@
         productName: t(`manager_hub_products_${name}`),
       },
     }"
+    class="col-md-6 col-lg-4 mb-2 mb-md-4 oui-list"
   >
     <template #body>
       <ul class="oui-list__items">
@@ -43,6 +43,10 @@ export default defineComponent({
     maxItemsPerProduct: {
       type: Number,
       default: 4,
+    },
+    maxProductsToShow: {
+      type: Number,
+      default: 6,
     },
   },
   components: {

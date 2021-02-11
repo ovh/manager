@@ -17,6 +17,7 @@ import {
   defineAsyncComponent, defineComponent, inject, ref,
 } from 'vue';
 import axios from 'axios';
+import parseISO from 'date-fns/parseISO';
 import { useRoute } from 'vue-router';
 
 export default defineComponent({
@@ -67,11 +68,15 @@ export default defineComponent({
     },
     dataColumnNames() {
       const noDate = this.jsonArray.map((object) => {
-        const newObject = Object.keys(object).filter((key) => {
-          if (!Date.parse(object[key])) return object;
+        const newObject = Object.keys(object).filter(
+          (key) => {
+            // Using this instead of Date.parse because Date.parse doesn't return
+            // the same thing depending on navigator
+            if (this.parseISO(object[key]).toString() === 'Invalid Date') return object;
 
-          return null;
-        });
+            return null;
+          },
+        );
         return newObject;
       });
 
@@ -100,6 +105,7 @@ export default defineComponent({
         });
       }
     },
+    parseISO,
   },
 });
 </script>

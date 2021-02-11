@@ -31,6 +31,11 @@
         <products-list :max-items-per-product="4"></products-list>
       </template>
     </hub-section>
+    <div class="text-center">
+      <button class="oui-button oui-button_icon-right oui-button_ghost">
+        <span> {{ t('manager_hub_products_see_more') }} </span>
+      </button>
+    </div>
   </div>
 </template>
 
@@ -63,9 +68,11 @@ export default defineComponent({
       notifications: 'getNotifications',
     }),
     warningNotifications(): OvhNotification[] {
-      console.log(this.notifications.filter(
-        (notification: OvhNotification) => notification.level === 'warning',
-      ));
+      console.log(
+        this.notifications.filter(
+          (notification: OvhNotification) => notification.level === 'warning',
+        ),
+      );
       return this.notifications.filter(
         (notification: OvhNotification) => notification.level === 'warning',
       );

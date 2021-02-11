@@ -70,7 +70,7 @@ import { BillingService, SupportDemand } from '@/models/hub.d';
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
 import { mapGetters } from 'vuex';
-import { format } from 'date-fns';
+import format from 'date-fns/format';
 import Badge from '@/components/ui/Badge.vue';
 import { SERVICE_STATES } from '../constants/service_states';
 
