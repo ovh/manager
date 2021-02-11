@@ -1,14 +1,14 @@
 <template>
   <tile
-    v-for="(service, name) in services.data"
-    :key="name"
-    :title="t(`manager_hub_products_${name}`)"
-    :count="service.data.length"
+    v-for="service in slicedServices"
+    :key="service.serviceName"
+    :title="t(`manager_hub_products_${service.serviceName}`)"
+    :count="service.count"
     :link="{
       path: '/product-details',
       query: {
         productApiUrl: getRouteQueryApiUrl(service.data[0].route.path),
-        productName: t(`manager_hub_products_${name}`),
+        productName: t(`manager_hub_products_${service.serviceName}`),
       },
     }"
     class="col-md-6 col-lg-4 mb-2 mb-md-4 oui-list"
@@ -31,6 +31,7 @@
 import { defineAsyncComponent, defineComponent } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { mapGetters } from 'vuex';
+import { PRODUCTS_TO_SHOW_DEFAULT } from '@/constants/products_consts';
 
 export default defineComponent({
   setup() {
@@ -46,7 +47,7 @@ export default defineComponent({
     },
     maxProductsToShow: {
       type: Number,
-      default: 6,
+      default: PRODUCTS_TO_SHOW_DEFAULT,
     },
   },
   components: {
@@ -56,6 +57,15 @@ export default defineComponent({
     ...mapGetters({
       services: 'getServices',
     }),
+    formattedServices(): Array<{}> {
+      return Object.keys(this.services.data).map((key) => ({
+        serviceName: key,
+        ...this.services.data[key],
+      }));
+    },
+    slicedServices(): Array<{}> {
+      return this.formattedServices.slice(0, this.maxProductsToShow);
+    },
   },
   methods: {
     getRouteQueryApiUrl(url: string): string {

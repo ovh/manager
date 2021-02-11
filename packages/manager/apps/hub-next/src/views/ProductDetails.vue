@@ -1,5 +1,4 @@
 <template>
-  <div>
     <data-table
       :rows="dataRows"
       :column-names="dataColumnNames"
@@ -9,7 +8,6 @@
       pagination
       @page-change="loadProducts($event, pageSize)"
     ></data-table>
-  </div>
 </template>
 
 <script>
