@@ -95,7 +95,7 @@ export default function() {
               .removeClass('active')
               .parent()
               .end()
-              .filter(`[data-fake-href=#${id}]`)
+              .filter(`[data-fake-href="#${id}]"`)
               .addClass('active');
           }
         });
@@ -128,7 +128,7 @@ export default function() {
           .removeClass('active')
           .parent()
           .end()
-          .filter(`[data-fake-href=#${lastId}]`)
+          .filter(`[data-fake-href="#${lastId}"]`)
           .addClass('active');
         window.setTimeout(() => {
           $elm

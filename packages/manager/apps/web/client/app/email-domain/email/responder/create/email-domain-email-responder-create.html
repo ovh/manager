@@ -232,24 +232,52 @@
                     </div>
                 </div>
 
-                <div data-ng-if="ctrl.model.responderDuration === 'temporary'">
-                    <div class="col-md-offset-4 col-md-6">
-                        <oui-field
-                            data-label="{{ :: 'email_tab_modal_create_responder_start' | translate }} / {{ :: 'email_tab_modal_create_responder_end' | translate }}"
-                            data-size="l"
-                        >
+                <div
+                    class="form-group"
+                    data-ng-if="ctrl.model.responderDuration === 'temporary'"
+                >
+                    <label
+                        class="control-label col-md-4 required"
+                        for="select-account"
+                        data-translate="email_tab_modal_create_responder_start"
+                    ></label>
+                    <div class="col-md-8">
+                        <div class="input-group">
                             <oui-calendar
-                                id="date-responder"
-                                name="responderDate"
-                                data-mode="range"
-                                data-model="ctrl.model.responderDates"
-                                data-on-close="ctrl.responderDatesChanged(selectedDates)"
+                                id="date-responder-start"
+                                name="responderDateStart"
+                                data-model="ctrl.model.responderDateStart"
                                 data-format="Y-m-d H:i"
                                 data-enable-time
                                 data-required
                             >
                             </oui-calendar>
-                        </oui-field>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="form-group"
+                    data-ng-if="ctrl.model.responderDuration === 'temporary'"
+                >
+                    <label
+                        class="control-label col-md-4 required"
+                        for="select-account"
+                        data-translate="email_tab_modal_create_responder_end"
+                    ></label>
+                    <div class="col-md-8">
+                        <div class="input-group">
+                            <oui-calendar
+                                id="date-responder-end"
+                                name="responderDateEnd"
+                                data-model="ctrl.model.responderDateEnd"
+                                data-format="Y-m-d H:i"
+                                data-min-date="ctrl.model.responderDateStart"
+                                data-enable-time
+                                data-required
+                            >
+                            </oui-calendar>
+                        </div>
                     </div>
                 </div>
 

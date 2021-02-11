@@ -24,7 +24,7 @@
   "pci_projects_project_training_jobs_state_INTERRUPTING": "Interruption",
   "pci_projects_project_training_jobs_state_INTERRUPTED": "Interrupted",
   "pci_projects_project_training_jobs_state_DONE": "Terminated",
-  "pci_projects_project_training_jobs_state_RUNNING": "In progress",
+  "pci_projects_project_training_jobs_state_RUNNING": "Running",
   "pci_projects_project_training_jobs_state_OTHER": "Other",
   "pci_projects_project_training_jobs_info": "Details",
   "pci_projects_project_training_jobs_kill": "Stop",
