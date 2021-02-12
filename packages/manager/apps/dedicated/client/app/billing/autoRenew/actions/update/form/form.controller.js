@@ -11,24 +11,25 @@ export default class {
   }
 
   $onInit() {
-    this.PERIODS = this.BillingAutorenewUpdateForm.getAvailableRenewPeriods(
-      this.service,
+    this.BillingAutorenewUpdateForm.getAvailableRenewPeriods(this.service).then(
+      (periods) => {
+        this.PERIODS = periods;
+        this.RENEWAL_TYPES = this.BillingAutorenewUpdateForm.getRenewalTypes();
+        this.model = {
+          renewalType:
+            find(this.RENEWAL_TYPES, { type: this.service.getRenew() }) ||
+            head(this.RENEWAL_TYPES),
+          period:
+            find(this.PERIODS, { period: this.service.renew.period }) ||
+            head(this.PERIODS),
+        };
+      },
     );
-    this.RENEWAL_TYPES = this.BillingAutorenewUpdateForm.getRenewalTypes();
 
     if (this.service.getRenew() === RENEWAL_TYPES.MANUAL) {
       remove(this.RENEWAL_TYPES, { type: RENEWAL_TYPES.MANUAL });
       this.service.setAutomaticRenew();
     }
-
-    this.model = {
-      renewalType:
-        find(this.RENEWAL_TYPES, { type: this.service.getRenew() }) ||
-        head(this.RENEWAL_TYPES),
-      period:
-        find(this.PERIODS, { period: this.service.renew.period }) ||
-        head(this.PERIODS),
-    };
   }
 
   onRenewalTypeChange(renewalType) {
