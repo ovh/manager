@@ -16,5 +16,6 @@ module.exports = ({ name, description }) => ({
     '@uirouter/angularjs': '^1.0.23',
     angular: '^1.7.5',
     'angular-translate': '^2.18.1',
+    oclazyload: '^1.1.0',
   },
 });

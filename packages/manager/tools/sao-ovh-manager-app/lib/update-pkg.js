@@ -46,6 +46,7 @@ module.exports = ({ name, description }) => ({
     jquery: '^2.1.3',
     'ovh-api-services': '^9.26.0',
     flatpickr: '~4.5.2',
+    oclazyload: '^1.1.0',
     'whatwg-fetch': '^3.0.0',
   },
   devDependencies: {
