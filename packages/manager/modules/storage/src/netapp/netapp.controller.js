@@ -2,9 +2,8 @@ import { Environment } from '@ovh-ux/manager-config';
 
 export default class NetappCtrl {
   /* @ngInject */
-  constructor(CORE_URLS, User) {
+  constructor(CORE_URLS) {
     this.CORE_URLS = CORE_URLS;
-    this.User = User;
   }
 
   isStatusIn(sublist) {
