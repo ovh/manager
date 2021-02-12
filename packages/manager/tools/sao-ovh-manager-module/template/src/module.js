@@ -5,7 +5,8 @@ import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
 import 'angular-translate';
 
-import component from './component';
+import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
+
 import routing from './routing';
 
 const moduleName = 'ovhManager<%= pascalcasedName %>';
@@ -15,9 +16,9 @@ angular
     'ovhManagerCore',
     'pascalprecht.translate',
     'ui.router',
+    ListLayoutHelper.moduleName,
   ])
   .config(routing)
-  .component('<%= pascalcasedName %>', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

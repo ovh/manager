@@ -9,6 +9,14 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state('app', {
       url: '/<%= name %>',
+      template: '<div data-ui-view></div>',
+      redirectTo: 'app.index',
+      resolve: {
+        breadcrumb: () => '<%= name %>',
+      },
+    });
+    $stateProvider.state('app.index.**', {
+      url: '',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 

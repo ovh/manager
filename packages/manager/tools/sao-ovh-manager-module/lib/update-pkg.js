@@ -11,8 +11,12 @@ module.exports = ({ name, description }) => ({
   license: 'BSD-3-Clause',
   author: 'OVH SAS',
   main: './src/index.js',
+  dependencies: {
+    bootstrap4: 'twbs/bootstrap#v4.0.0',
+  },
   peerDependencies: {
     '@ovh-ux/manager-core': '^10.0.0 || ^11.0.0',
+    '@ovh-ux/manager-ng-layout-helpers': '^2.0.0',
     '@uirouter/angularjs': '^1.0.23',
     angular: '^1.7.5',
     'angular-translate': '^2.18.1',

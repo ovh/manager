@@ -24,6 +24,27 @@ module.exports = {
           return `OVHcloud ${camelcase(name, { pascalCase: true })} product`;
         },
       },
+      {
+        name: 'apiPath',
+        message: 'What API base route is used',
+        default({ name }) {
+          return `/${camelcase(name)}`;
+        },
+      },
+      {
+        name: 'apiModel',
+        message: 'What API model describes an instance of a product',
+        default({ name }) {
+          return `${camelcase(name)}.${camelcase(name)}`;
+        },
+      },
+      {
+        name: 'serviceName',
+        message: 'What property is used as unique identifier',
+        default() {
+          return 'serviceName';
+        },
+      },
     ];
   },
   actions() {
