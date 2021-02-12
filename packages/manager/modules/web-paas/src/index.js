@@ -5,10 +5,10 @@ import 'oclazyload';
 import '@ovh-ux/manager-core';
 import '@ovh-ux/ng-ui-router-layout';
 import '@ovh-ux/ng-ovh-payment-method';
-import '@ovh-ux/ng-ovh-onboarding';
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 
 import ovhManagerProductOffers from '@ovh-ux/manager-product-offers';
+import { OnboardingLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
 import './index.scss';
 import './index.less';
@@ -22,7 +22,7 @@ angular
     'oc.lazyLoad',
     'ngUiRouterLayout',
     'ngOvhPaymentMethod',
-    'ngOvhOnboarding',
+    OnboardingLayoutHelper,
     ovhManagerProductOffers,
   ])
   .config(

@@ -3,6 +3,7 @@ import { STATUS } from './web-paas.constants';
 export default class Project {
   constructor({
     offer,
+    metadata,
     partnerProjectId,
     projectName,
     serviceId,
@@ -12,6 +13,7 @@ export default class Project {
   }) {
     Object.assign(this, {
       offer,
+      metadata,
       partnerProjectId,
       projectName,
       serviceId,

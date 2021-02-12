@@ -4,6 +4,7 @@ export default class {
   /* @ngInject */
   constructor($translate) {
     this.$translate = $translate;
+    this.guides = [this.guideUrl];
   }
 
   $onInit() {
