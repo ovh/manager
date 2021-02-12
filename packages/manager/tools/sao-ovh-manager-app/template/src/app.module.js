@@ -7,6 +7,8 @@ import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import ngOvhUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 
+import '@ovh-ux/ui-kit/dist/css/oui.css';
+
 import <%= pascalcasedName %> from '@ovh-ux/manager-<%= name %>';
 
 Environment.setVersion(__VERSION__);
@@ -19,13 +21,19 @@ angular
     ngOvhUiRouterLineProgress,
     ngUiRouterBreadcrumb,
     uiRouter,
+    errorPage,
     <%= pascalcasedName %>
   ])
   .config(
     /* @ngInject */ ($locationProvider) => $locationProvider.hashPrefix(''),
   )
+  .config(
+    /* @ngInject */ ($urlRouterProvider) => {
+      $urlRouterProvider.otherwise('/<%= name %>');
+    },
+  )
   .run(
-    /* @ngInject */ ($rootScope, $transitions) => {
+    /* @ngInject */ ($transitions) => {
       const unregisterHook = $transitions.onSuccess({}, () => {
         detachPreloader();
         unregisterHook();

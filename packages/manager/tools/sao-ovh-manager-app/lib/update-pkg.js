@@ -22,6 +22,7 @@ module.exports = ({ name, description }) => ({
     '@ovh-ux/manager-config': '^3.0.0 || ^4.0.0',
     '@ovh-ux/manager-core': '^10.0.0 || ^11.0.0',
     [`@ovh-ux/manager-${name}`]: '^0.0.0',
+    '@ovh-ux/manager-ng-layout-helpers': '^2.0.0',
     '@ovh-ux/manager-preloader': '^1.1.0',
     '@ovh-ux/ng-ovh-api-wrappers': '^4.0.4',
     '@ovh-ux/ng-ovh-http': '^5.0.0',
