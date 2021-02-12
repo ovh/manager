@@ -27,6 +27,7 @@ export default class {
     OvhApiBillingAutorenewServices,
     OvhApiEmailExchange,
     OvhApiMeAutorenew,
+    ovhFeatureFlipping,
     OvhHttp,
     ovhPaymentMethod,
   ) {
@@ -38,17 +39,28 @@ export default class {
     this.DucUserContractService = DucUserContractService;
     this.OvhApiBillingAutorenewServices = OvhApiBillingAutorenewServices;
     this.OvhApiEmailExchange = OvhApiEmailExchange;
+    this.ovhFeatureFlipping = ovhFeatureFlipping;
     this.OvhHttp = OvhHttp;
     this.ovhPaymentMethod = ovhPaymentMethod;
     this.OvhApiMeAutorenew = OvhApiMeAutorenew;
+    this.isLegacy = $q.defer();
 
     this.events = {
       AUTORENEW_CHANGES: AUTORENEW_EVENT,
     };
+
+    this.checkIfLegacy();
   }
 
-  getAllServices() {
-    return this.OvhApiBillingAutorenewServices.Aapi().query().$promise;
+  checkIfLegacy() {
+    return this.ovhFeatureFlipping
+      .checkFeatureAvailability(['billing:billingServices'])
+      .then((availability) =>
+        this.isLegacy.resolve(
+          !availability.isFeatureAvailable('billing:billingServices'),
+        ),
+      )
+      .catch(() => this.isLegacy.resolve(true));
   }
 
   getServices(
@@ -62,33 +74,35 @@ export default class {
     order,
     nicBilling,
   ) {
-    // @TODO FF on route
-    return this.OvhHttp.get('/billing/services', {
-      rootPath: '2api',
-      params: {
-        count,
-        offset,
-        search,
-        type,
-        renewDateType,
-        status,
-        state,
-        order: JSON.stringify(order),
-        nicBilling,
-      },
+    return this.isLegacy.promise.then((isLegacy) => {
+      if (isLegacy) {
+        return this.OvhApiBillingAutorenewServices.Aapi().query({
+          count,
+          offset,
+          search,
+          type,
+          renewDateType,
+          status,
+          state,
+          order: JSON.stringify(order),
+          nicBilling,
+        }).$promise;
+      }
+      return this.OvhHttp.get('/billing/services', {
+        rootPath: '2api',
+        params: {
+          count,
+          offset,
+          search,
+          type,
+          renewDateType,
+          status,
+          state,
+          order: JSON.stringify(order),
+          nicBilling,
+        },
+      });
     });
-    /*
-    return this.OvhApiBillingAutorenewServices.Aapi().query({
-      count,
-      offset,
-      search,
-      type,
-      renewDateType,
-      status,
-      state,
-      order: JSON.stringify(order),
-      nicBilling,
-    }).$promise; */
   }
 
   /**
@@ -97,40 +111,43 @@ export default class {
    *  serviceType : domain and email-domain)
    */
   getService(serviceId, serviceType) {
-    return this.OvhHttp.get('/billing/services', {
-      rootPath: '2api',
-      params: {
-        search: serviceId,
-        type: serviceType,
-        count: 1,
-        offset: 0,
-      },
-    })
-      .then((services) => {
-        if (serviceType) {
-          return find(services.list.results, {
-            serviceType,
-            serviceId,
-          });
-        }
-        return head(services.list.results);
+    return this.isLegacy.promise.then((isLegacy) => {
+      if (isLegacy) {
+        return this.OvhApiBillingAutorenewServices.Aapi()
+          .query({
+            search: serviceId,
+          })
+          .$promise.then((services) => {
+            if (serviceType) {
+              return find(services.list.results, {
+                serviceType,
+                serviceId,
+              });
+            }
+            return head(services.list.results);
+          })
+          .then((service) => new BillingService(service));
+      }
+      return this.OvhHttp.get('/billing/services', {
+        rootPath: '2api',
+        params: {
+          search: serviceId,
+          type: serviceType,
+          count: 1,
+          offset: 0,
+        },
       })
-      .then((service) => new BillingService(service));
-
-    /* return this.OvhApiBillingAutorenewServices.Aapi()
-      .query({
-        search: serviceId,
-      })
-      .$promise.then((services) => {
-        if (serviceType) {
-          return find(services.list.results, {
-            serviceType,
-            serviceId,
-          });
-        }
-        return head(services.list.results);
-      })
-      .then((service) => new BillingService(service)); */
+        .then((services) => {
+          if (serviceType) {
+            return find(services.list.results, {
+              serviceType,
+              serviceId,
+            });
+          }
+          return head(services.list.results);
+        })
+        .then((service) => new BillingService(service));
+    });
   }
 
   getServicesTypes(services) {
