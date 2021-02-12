@@ -13,6 +13,12 @@ export default /* @ngInject */ ($stateProvider) => {
       defaultFilterColumn: () => '<%= serviceName %>',
       header: () => '<%= name %>',
       customizableColumns: () => true,
+      getServiceNameLink: /* @ngInject */ ($state) => ({
+        <%= serviceName %>,
+      }) =>
+        $state.href('app.dashboard', {
+          serviceName: <%= serviceName %>,
+        }),
       hideBreadcrumb: () => true,
     },
   });
