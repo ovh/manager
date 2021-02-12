@@ -1,27 +1,30 @@
 export default class NetappService {
   /* @ngInject */
-  constructor($q, OvhHttp) {
+  constructor($q, iceberg) {
     this.$q = $q;
-    this.OvhHttp = OvhHttp;
+    this.iceberg = iceberg;
   }
 
   getService(netappId) {
-    return this.OvhHttp.get(`/storage/netapp/${netappId}`, {
-      rootPath: 'apiv6',
-    });
+    return this.iceberg(`/storage/netapp/${netappId}`)
+      .query()
+      .execute()
+      .$promise.then(({ data: service }) => service);
   }
 
   getShares(netappId) {
-    return this.OvhHttp.get(`/storage/netapp/${netappId}/share`, {
-      rootPath: 'apiv6',
-    }).then((share) => {
-      return this.$q.all(
-        share.map((item) =>
-          this.OvhHttp.get(`/storage/netapp/${netappId}/share/${item.id}`, {
-            rootPath: 'apiv6',
-          }),
-        ),
-      );
-    });
+    return this.iceberg(`/storage/netapp/${netappId}/share`)
+      .query()
+      .execute()
+      .$promise.then(({ data: share }) => {
+        return this.$q.all(
+          share.map((item) =>
+            this.iceberg(`/storage/netapp/${netappId}/share/${item.id}`)
+              .query()
+              .execute()
+              .$promise.then(({ data: shareItem }) => shareItem),
+          ),
+        );
+      });
   }
 }
