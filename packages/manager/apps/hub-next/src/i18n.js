@@ -1,4 +1,5 @@
 import { nextTick } from 'vue';
+import axios from 'axios';
 
 /* eslint-disable no-param-reassign */
 export function setI18nLanguage(i18n, locale) {
@@ -8,6 +9,7 @@ export function setI18nLanguage(i18n, locale) {
     i18n.global.locale.value = locale;
   }
 
+  axios.defaults.headers.common['Content-Language'] = locale;
   document.querySelector('html').setAttribute('lang', locale);
 }
 

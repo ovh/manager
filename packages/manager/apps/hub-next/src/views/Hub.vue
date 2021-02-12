@@ -2,7 +2,10 @@
   <div class="hub-dashboard-content">
     <hub-section :title="t('manager_hub_dashboard_welcome', { name: user.firstname })">
       <template #content>
-        <div class="d-flex flex-wrap w-100 minw-0 align-items-center justify-content-between">
+        <div
+          v-if="warningNotifications.length"
+          class="d-flex flex-wrap w-100 minw-0 align-items-center justify-content-between"
+        >
           <div class="ovh-manager-hub-carousel w-100">
             <!-- TODO : Create carousel component -->
             <div class="oui-message oui-message_error">
@@ -37,9 +40,7 @@
     <div class="text-center">
       <button
         @click="
-          changeMoreProducts(
-            areAllProductsShown ? PRODUCTS_TO_SHOW_DEFAULT : servicesLength,
-          )
+          changeProductsListSize(areAllProductsShown ? PRODUCTS_TO_SHOW_DEFAULT : servicesLength)
         "
         class="oui-button oui-button_icon-right oui-button_ghost"
       >
@@ -92,9 +93,11 @@ export default defineComponent({
       services: 'getServices',
     }),
     warningNotifications(): OvhNotification[] {
-      return this.notifications.filter(
-        (notification: OvhNotification) => notification.level === 'warning',
-      );
+      return Array.isArray(this.notifications)
+        ? this.notifications.filter(
+          (notification: OvhNotification) => notification.level === 'warning',
+        )
+        : [];
     },
     areAllProductsShown(): boolean {
       return this.maxProductsToShow !== PRODUCTS_TO_SHOW_DEFAULT;
@@ -104,7 +107,7 @@ export default defineComponent({
     },
   },
   methods: {
-    changeMoreProducts(numberOfProducts: number): void {
+    changeProductsListSize(numberOfProducts: number): void {
       this.maxProductsToShow = numberOfProducts;
     },
   },

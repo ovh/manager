@@ -13,7 +13,6 @@ import {
   User,
 } from '@/models/hub.d';
 import { createStore } from 'vuex';
-import { useI18n } from 'vue-i18n';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 
 export default createStore({
@@ -111,17 +110,8 @@ export default createStore({
         return Promise.resolve();
       }
 
-      const { locale } = useI18n();
-
-      const config = {
-        data: { serviceType: 'aapi' },
-        headers: {
-          'Content-Language': locale.value,
-        },
-      };
-
       return axios
-        .get<HubResponse>('/engine/2api/hub', config)
+        .get<HubResponse>('/engine/2api/hub')
         .then((data: AxiosResponse<HubResponse>) => dispatch('initState', data.data.data))
         .catch((error: AxiosError) => {
           console.error(error.message);

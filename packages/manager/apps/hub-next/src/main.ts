@@ -19,6 +19,7 @@ fetchConfiguration('hub-next').then(async () => {
   const datetimeFormats = {
     [locale.replace('_', '-')]: {
       short: { year: 'numeric', month: 'short', day: 'numeric' },
+      shortNumeric: { year: 'numeric', month: 'numeric', day: 'numeric' },
     },
   };
   const i18n = createI18n({

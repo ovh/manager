@@ -1,9 +1,9 @@
 <template>
-  <div class="tile" :style="`color:${textColor}`">
+  <div class="tile">
     <div :class="isShadowed ? 'oui-tile' : ''">
       <div class="ovh-manager-hub-tile__header" v-if="title">
         <h3 class="oui-tile__title" :class="link ? 'space-between' : ''">
-          <span>
+          <span :style="`color:${textColor}`">
             {{ title }}
             <badge v-if="count" level="info" :text-content="count.toString()"> </badge>
           </span>
