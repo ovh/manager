@@ -6,6 +6,17 @@ export default /* @ngInject */ ($stateProvider) => {
     url: `?${ListLayoutHelper.urlQueryParams}`,
     component: 'managerListLayout',
     params: ListLayoutHelper.stateParams,
+    redirectTo: (transition) =>
+      transition
+        .injector()
+        .getAsync('resources')
+        .then((services) =>
+          services.length === 0
+            ? {
+                state: 'app.onboarding',
+              }
+            : false,
+        ),
     resolve: {
       ...ListLayoutHelper.stateResolves,
       apiPath: () => '<%= apiPath %>',
