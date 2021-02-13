@@ -40,7 +40,7 @@
   "domains_configuration_renew_step1_question": "To renew your domains, you will need to use the OVH renewal interface (outside of the Web Control Panel).",
   "domains_configuration_renew_step1_unable_to_renew": "You are not the billing contact, so you cannot renew some of the domains selected (<span class=\"italic\">{{t0}}</span>).",
   "domains_configuration_renew_step1_unable_ignored": "These domains will not be included for renewal.",
-  "domains_configuration_renew_step1_no_selected_domains": "You haven't selected any domains to be renewed, or you are not authorised to renew any.",
+  "domains_configuration_renew_step1_no_selected_domains": "You have not selected any domains to renew, or you are not authorised to renew any.",
   "domains_configuration_renew_step1_confirmation": "Click the \"Order\" button to open a new window and renew your domain names.",
   "domains_configuration_renew_step1_information": "A new tab will open, and you will automatically be redirected to the OVH renewal interface.",
   "domains_configuration_renew_step1_alert": "Please note that after your payment has been accepted, it will take approximately 2 hours for the renewal to appear in the Web Control Panel.",
