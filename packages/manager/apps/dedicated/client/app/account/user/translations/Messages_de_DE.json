@@ -357,7 +357,7 @@
   "useraccount_contacts_owner_gender_female": "Weiblich",
   "useraccount_contacts_owner_gender_male": "Männlich",
   "useraccount_contacts_owner_language": "Sprache",
-  "useraccount_contacts_owner_error": "Beim Update des Inhabers ist ein Fehler aufgetreten",
+  "useraccount_contacts_owner_error": "Bei der Aktualisierung des Inhabers ist ein Fehler aufgetreten",
   "useraccount_contacts_owner_success": "Update des Inhabers durchgeführt",
   "useraccount_contacts_owner_change_owner": "Wenn Sie einen neuen Inhaber eintragen möchten für die Dienstleistung",
   "useraccount_contacts_owner_tooltip_will_pay": "Diese Operation ist kostenpflichtig für folgende Endungen: be, de, eu, fr, re, uk, lu,ch, li, cn, tw, us, cz, lt, nu",

@@ -763,7 +763,7 @@
   "domain_update_owner_gender_female": "Weiblich",
   "domain_update_owner_gender_male": "Männlich",
   "domain_update_owner_language": "Sprache",
-  "domain_update_owner_error": "Beim Update des Inhabers ist ein Fehler aufgetreten",
+  "domain_update_owner_error": "Bei der Aktualisierung des Inhabers ist ein Fehler aufgetreten",
   "domain_update_owner_success": "Update des Inhabers durchgeführt",
   "domain_update_owner_change_owner": "Der Dienstleistung einen neuen Inhaber zuweisen",
   "domain_update_owner_tooltip_will_pay": "Diese Opearion ist für folgende Domainendungen kostenpflichtig: be, de, eu, fr, re, uk, lu, ch, li, cn, tw, us, cz, lt, nu",
