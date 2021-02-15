@@ -1,3 +1,12 @@
+## [5.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.9.1...@ovh-ux/manager-pci@5.9.2) (2021-02-15)
+
+
+### Bug Fixes
+
+* **kube.restrictions:** handle first input ([#4419](https://github.com/ovh/manager/issues/4419)) ([45eba00](https://github.com/ovh/manager/commit/45eba00f293ec2f199c85a60d9b942d333d105a0))
+
+
+
 ## [5.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.9.0...@ovh-ux/manager-pci@5.9.1) (2021-02-11)
 
 
