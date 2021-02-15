@@ -7,8 +7,15 @@ import component from './component';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('vps.detail.dashboard.configuration.upgrade', {
-    url: '/upgrade/{upgradeType:memory|storage}?upgradeStatus&upgradeOrderId',
+    url:
+      '/upgrade/{upgradeType:memory|storage}?upgradeStatus&upgradeOrderId&from&to',
     layout: 'ouiModal',
+    atInternet: {
+      rename: /* @ngInject */ ($state) => {
+        const { upgradeType, from, to } = $state.transition.params();
+        return `vps::detail::dashboard::upgrade-${upgradeType}-${from}-to-${to}`;
+      },
+    },
     redirectTo: (transition) => {
       const $q = transition.injector().get('$q');
       const upgradeTypePromise = transition.injector().getAsync('upgradeType');
@@ -58,6 +65,8 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     component: component.name,
     resolve: {
+      from: /* @ngInject */ ($transition$) => $transition$.params().from,
+      to: /* @ngInject */ ($transition$) => $transition$.params().to,
       upgradeType: /* @ngInject */ ($transition$) =>
         $transition$.params().upgradeType,
 
@@ -162,9 +171,9 @@ export default /* @ngInject */ ($stateProvider) => {
       },
 
       primaryAction: /* @ngInject */ (
-        $state,
         $translate,
         $window,
+        atInternet,
         configurationTile,
         goBack,
         goToUpgradeSuccess,
@@ -176,6 +185,8 @@ export default /* @ngInject */ ($stateProvider) => {
         upgradeSuccess,
         upgradeType,
         vpsUpgrade,
+        from,
+        to,
       ) => () => {
         if (upgradeSuccess) {
           return $window.location.replace(
@@ -188,8 +199,13 @@ export default /* @ngInject */ ($stateProvider) => {
           return goBack();
         }
 
+        atInternet.trackClick({
+          name: `vps::detail::dashboard::upgrade-${upgradeType}-${from}-to-${to}::confirm`,
+          type: 'action',
+        });
         // launch the upgrade
         set(loaders, 'upgrade', true);
+
         return vpsUpgrade
           .startUpgrade(
             serviceName,

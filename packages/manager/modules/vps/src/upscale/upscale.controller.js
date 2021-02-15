@@ -15,8 +15,9 @@ import { PRICING_MODES, RANGES } from './upscale.constants';
 
 export default class UpscaleController {
   /* @ngInject */
-  constructor($translate, ovhManagerProductOffersService) {
+  constructor($translate, atInternet, ovhManagerProductOffersService) {
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.ovhManagerProductOffersService = ovhManagerProductOffersService;
   }
 
@@ -473,6 +474,11 @@ export default class UpscaleController {
   }
 
   performUpscaleService() {
+    this.atInternet.trackClick({
+      name: `vps::detail::upscale::order-${this.range.formattedName}`,
+      type: 'action',
+    });
+
     this.loading.performUpscale = true;
     const planCode = this.planCode || this.range.planCode;
 
