@@ -1,28 +1,43 @@
 <template>
-  <suspense>
-    <template #default>
-      <keep-alive>
-        <hub></hub>
-      </keep-alive>
-    </template>
-    <template #fallback>
-      <div>Loading...</div>
-    </template>
-  </suspense>
+  <hub v-if="status"></hub>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import Hub from '@/views/Hub.vue';
+import { mapGetters, useStore } from 'vuex';
 
 export default defineComponent({
   name: 'Home',
+  setup() {
+    const store = useStore();
+
+    store.dispatch('fetchHubData');
+    return {
+      store,
+    };
+  },
   components: {
     Hub,
+  },
+  computed: {
+    ...mapGetters({
+      status: 'getHubStatus',
+    }),
   },
 });
 </script>
 <style lang="scss">
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
 .hub-main-view_container {
   max-width: 80rem;
   margin: auto;

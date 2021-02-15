@@ -19,7 +19,7 @@
         <span class="oui-icon" aria-hidden="true" :class="orderSuccessClassIcon"></span>
       </div>
       <a
-        href="https://www.ovh.com/manager/dedicated/#/billing/orders"
+        :href="buildURL('dedicated','#/billing/orders')"
         class="oui-button oui-button_primary oui-button_icon-right">
         <span> {{ t('hub_order_tracking_see_all') }} </span>
         <span class="oui-icon oui-icon-arrow-right"></span>
@@ -32,6 +32,7 @@
 import { LastOrder } from '@/models/hub.d';
 import { ERROR_STATUS, WAITING_PAYMENT_LABEL } from '@/constants/order-tracking_consts';
 import { computed, defineAsyncComponent, defineComponent } from 'vue';
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import { useAxios } from '@vueuse/integrations';
 import { useI18n } from 'vue-i18n';
 import { useStore } from 'vuex';
@@ -40,6 +41,7 @@ export default defineComponent({
   setup() {
     const store = useStore();
     const lastOrder = computed((): LastOrder => store.getters.getLastOrder);
+    const { t, d, locale } = useI18n();
     const { data, finished } = useAxios(
       `/engine/apiv6/me/order/${lastOrder.value?.orderId}/status`,
     );
@@ -48,8 +50,8 @@ export default defineComponent({
     // TODO: this is not correct, needs to fetch some other data from order url
     // we should use buildURL, for now this will always return false
     const isWaitingPayment = computed(() => data.value === WAITING_PAYMENT_LABEL);
-    const { t, d, locale } = useI18n();
     const formattedLocale = computed(() => locale.value.replace('_', '-'));
+
     return {
       status,
       finished,
@@ -76,6 +78,9 @@ export default defineComponent({
 
       return '';
     },
+  },
+  methods: {
+    buildURL,
   },
 });
 </script>

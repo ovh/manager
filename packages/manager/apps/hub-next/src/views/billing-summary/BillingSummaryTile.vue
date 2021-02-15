@@ -22,14 +22,14 @@
           {{ t('hub_billing_summary_debt_pay') }}
         </a>
       </p>
-      <p
-        v-if="bills.total === 0"
-        class="mt-3"
-      >
+      <p v-if="bills.total === 0" class="mt-3">
         {{ t('hub_billing_summary_debt_no_bills') }}
       </p>
 
-      <a href="" class="oui-button oui-button_primary oui-button_icon-right">
+      <a
+        :href="billingHistoryURL"
+        class="oui-button oui-button_primary oui-button_icon-right"
+      >
         <span> {{ t('hub_billing_summary_display_bills') }} </span>
         <span class="oui-icon oui-icon-arrow-right"></span>
       </a>
@@ -40,6 +40,7 @@
 <script lang="ts">
 import { defineAsyncComponent, defineComponent } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import { mapGetters } from 'vuex';
 
 export default defineComponent({
@@ -57,6 +58,12 @@ export default defineComponent({
       bills: 'getBills',
       debt: 'getDebt',
     }),
+    billingHistoryURL(): string {
+      return this.buildURL('dedicated', '#/billing/history');
+    },
+  },
+  methods: {
+    buildURL,
   },
 });
 </script>

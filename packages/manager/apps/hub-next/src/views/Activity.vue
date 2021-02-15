@@ -3,7 +3,7 @@
     class="col-md-8 mb-3 mb-md-4"
     :title="t('ovh_manager_hub_payment_status_tile_title')"
     :count="billingServices.count"
-    link="https://www.ovh.com/manager/dedicated/#/billing/autorenew"
+    :link="buildURL('dedicated','#/billing/autorenew')"
   >
     <template #body>
       <data-table :rows="billingServicesCellValues"></data-table>
@@ -16,7 +16,7 @@
     class="col-md-8 mb-3 mb-md-4 order-2 order-md-3"
     :title="t('hub_support_title')"
     :count="support.data.length"
-    :link="support.data ? 'https://www.ovh.com/manager/dedicated/#/ticket' : ''"
+    :link="support.data ? buildURL('dedicated','#/ticket') : ''"
   >
     <template #body>
       <data-table v-if="support.data.length" :rows="supportCellValues"></data-table>
@@ -39,6 +39,7 @@
 <script lang="ts">
 import { defineAsyncComponent, defineComponent } from 'vue';
 import { BillingService, SupportDemand } from '@/models/hub.d';
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
 import { mapGetters } from 'vuex';
@@ -97,7 +98,8 @@ export default defineComponent({
           {
             tag: 'a',
             attrs: {
-              href: `https://www.ovh.com/manager/dedicated/#/support/tickets/${ticket.ticketId}`,
+              target: '_blank',
+              href: this.buildURL('dedicated', `#/support/tickets/${ticket.ticketId}`),
             },
             value: this.t('hub_support_read'),
           },
@@ -147,7 +149,7 @@ export default defineComponent({
     getServiceStateClass(service: BillingService): string {
       const billingService = new BillingServiceClass(service);
 
-      if (SERVICE_STATES.error.includes(billingService.getRenew())) return 'error';
+      if (SERVICE_STATES.error.includes(billingService.getRenew()) || billingService.hasDebt()) return 'error';
 
       if (SERVICE_STATES.warning.includes(billingService.getRenew())) return 'warning';
 
@@ -202,6 +204,7 @@ export default defineComponent({
 
       return '';
     },
+    buildURL,
   },
 });
 </script>

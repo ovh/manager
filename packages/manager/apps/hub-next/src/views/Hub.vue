@@ -64,11 +64,10 @@ import { OvhNotification } from '@/models/hub.d';
 import { PRODUCTS_TO_SHOW_DEFAULT } from '@/constants/products_consts';
 
 export default defineComponent({
-  async setup() {
+  setup() {
     const { locale, t } = useI18n();
     const store = useStore();
 
-    await store.dispatch('fetchHubData');
     return {
       t,
       locale,

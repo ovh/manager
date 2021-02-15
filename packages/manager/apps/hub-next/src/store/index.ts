@@ -13,7 +13,9 @@ import {
   User,
 } from '@/models/hub.d';
 import { createStore } from 'vuex';
+import { detach } from '@ovh-ux/manager-preloader';
 import axios, { AxiosError, AxiosResponse } from 'axios';
+import { nextTick } from 'vue';
 
 export default createStore({
   state: {
@@ -104,6 +106,11 @@ export default createStore({
 
       // If we're up to this point, it means data loading has succeeded somewhere else before
       commit('setStatus', true);
+
+      // Wait for next DOM update cycle before detaching preloader for a smooth transition
+      nextTick(() => {
+        detach();
+      });
     },
     async fetchHubData({ dispatch }) {
       if (this.getters.getHubStatus) {

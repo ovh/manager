@@ -1,6 +1,6 @@
 import { createApp } from 'vue';
 import { createI18n } from 'vue-i18n';
-
+import { attach } from '@ovh-ux/manager-preloader';
 import { fetchConfiguration, Environment, LANGUAGES } from '@ovh-ux/manager-config';
 import { loadLocaleMessages } from '@/i18n';
 
@@ -12,16 +12,17 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 
-fetchConfiguration('hub-next').then(async () => {
+fetchConfiguration('hub').then(async () => {
   const locale = Environment.getUserLocale();
   const fallbackLocale = LANGUAGES.fallback;
-
   const datetimeFormats = {
     [locale.replace('_', '-')]: {
       short: { year: 'numeric', month: 'short', day: 'numeric' },
       shortNumeric: { year: 'numeric', month: 'numeric', day: 'numeric' },
     },
   };
+  attach(Environment.getUserLanguage());
+
   const i18n = createI18n({
     locale,
     fallbackLocale,

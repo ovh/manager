@@ -40,12 +40,12 @@ export default class BillingServiceClass implements BillingService {
       return 'manualPayment';
     }
 
-    if (this.isExpired()) {
-      return 'expired';
-    }
-
     if (this.shouldDeleteAtExpiration() && !this.isResiliated()) {
       return 'delete_at_expiration';
+    }
+
+    if (this.isResiliated()) {
+      return 'expired';
     }
 
     if (this.hasAutomaticRenew() || this.hasForcedRenew()) {
@@ -64,9 +64,7 @@ export default class BillingServiceClass implements BillingService {
   }
 
   isExpired() {
-    return (
-      this.status.toLowerCase() === 'expired' || compareAsc(Date.now(), this.expirationDate) === -1
-    );
+    return this.status.toLowerCase() === 'expired';
   }
 
   shouldDeleteAtExpiration() {
@@ -82,7 +80,12 @@ export default class BillingServiceClass implements BillingService {
   }
 
   isResiliated() {
-    return this.isExpired() && !this.hasAutomaticRenew() && !this.hasForcedRenew();
+    return (
+      this.isExpired()
+      || (compareAsc(Date.now(), this.expirationDate) === 1
+        && !this.hasAutomaticRenew()
+        && !this.hasForcedRenew())
+    );
   }
 
   hasDebt() {
@@ -90,7 +93,7 @@ export default class BillingServiceClass implements BillingService {
   }
 
   hasEngagement() {
-    return !this.engagedUpTo && compareAsc(Date.now(), this.engagedUpTo) === 1;
+    return !this.engagedUpTo && compareAsc(Date.now(), this.engagedUpTo) === -1;
   }
 
   setRenewPeriod(period: number) {

@@ -3,11 +3,7 @@ import axios from 'axios';
 
 /* eslint-disable no-param-reassign */
 export function setI18nLanguage(i18n, locale) {
-  if (i18n.mode === 'legacy') {
-    i18n.global.locale = locale;
-  } else {
-    i18n.global.locale.value = locale;
-  }
+  i18n.global.locale.value = locale;
 
   axios.defaults.headers.common['Content-Language'] = locale;
   document.querySelector('html').setAttribute('lang', locale);
