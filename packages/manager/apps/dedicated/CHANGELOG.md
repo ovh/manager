@@ -1,3 +1,12 @@
+## [16.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.3.1...@ovh-ux/manager-dedicated@16.3.2) (2021-02-15)
+
+
+### Bug Fixes
+
+* **license:** error back license dashboard ([#4427](https://github.com/ovh/manager/issues/4427)) ([4be04b7](https://github.com/ovh/manager/commit/4be04b72e91c1d8f2c69d6b68695c0bad87e359f))
+
+
+
 ## [16.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.3.0...@ovh-ux/manager-dedicated@16.3.1) (2021-02-11)
 
 
