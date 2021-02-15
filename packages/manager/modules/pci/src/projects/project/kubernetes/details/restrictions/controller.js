@@ -36,6 +36,14 @@ export default class KubernetesRestrictionsCtrl {
     this.currentEditedRow = index;
   }
 
+  cancelRestriction(index) {
+    if (!this.ips[index].address) {
+      this.editRestriction(index);
+    } else {
+      this.selectRow(this.ips.length);
+    }
+  }
+
   addRestriction() {
     this.currentIp = null;
     this.ips.push({});
