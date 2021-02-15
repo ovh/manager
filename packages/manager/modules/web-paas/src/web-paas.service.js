@@ -30,12 +30,11 @@ export default class WebPaasService {
       });
   }
 
-  getCapabilities(planCode, useTemplate) {
+  getCapabilities(planCode) {
     return this.$http
       .get('/webPaaS/capabilities', {
         params: {
           planCode,
-          useTemplate,
         },
       })
       .then((res) => res.data);

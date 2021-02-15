@@ -1,5 +1,3 @@
-import set from 'lodash/set';
-
 import {
   pricingConstants,
   workflowConstants,
@@ -108,10 +106,7 @@ export default class {
 
   loadCapabilities(planCode) {
     this.loadingCapabilities = true;
-    return this.WebPaas.getCapabilities(
-      planCode,
-      this.project.template.createNew,
-    )
+    return this.WebPaas.getCapabilities(planCode)
       .then((capabilities) => {
         this.capabilities = capabilities;
         if (
@@ -140,7 +135,9 @@ export default class {
       500,
     );
     return this.Alerter.success(
-      this.$translate.instant('web_paas_add_project_success'),
+      this.$translate.instant('web_paas_add_project_success', {
+        orderURL: this.getOrdersURL(checkout.orderId),
+      }),
       this.alerts.add,
     );
   }
@@ -186,10 +183,11 @@ export default class {
         }),
       },
     ];
-    set(this.project, 'configuration', {
+    this.project.configuration = {
+      ...this.project.configuration,
       storage: this.availableStorages[0],
       environment: this.availableEnvironments[0],
       license: this.availableUserLicenses[0],
-    });
+    };
   }
 }

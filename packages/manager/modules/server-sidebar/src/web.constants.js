@@ -249,6 +249,14 @@ export const PSH_CONFIG = {
       app: [WEB],
     },
   ],
+  types: [
+    {
+      path: '/webPaaS/subscription',
+      state: 'web-paas.dashboard',
+      stateParams: ['projectId'],
+      app: [WEB],
+    },
+  ],
   icon: 'oui-icon oui-icon-partner-platformsh_concept',
   app: [WEB],
 };
@@ -380,10 +388,10 @@ export const WEB_ORDER_SIDEBAR_CONFIG = [
   {
     id: 'orderWebPaas',
     title: 'web_paas',
-    feature: 'web-paas',
+    feature: 'web:web-paas',
     icon: 'oui-icon oui-icon-partner-platformsh_concept',
     state: 'web-paas.add',
-    regions: ['EU', 'CA', 'US'],
+    regions: ['EU'],
     app: [WEB],
   },
 ];

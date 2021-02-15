@@ -16,7 +16,12 @@
             <img src="{{ template.image }}" alt="{{ template.name }}" />
         </oui-select-picker-picture>
         <oui-select-picker-section>
-            <span data-ng-bind="template.description"></span>
+            <ul>
+                <li
+                    data-ng-repeat="feature in template.features"
+                    data-ng-bind="feature"
+                ></li>
+            </ul>
         </oui-select-picker-section>
     </oui-select-picker>
 </div>

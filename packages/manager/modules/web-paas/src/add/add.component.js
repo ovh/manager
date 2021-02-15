@@ -3,6 +3,7 @@ import template from './add.html';
 
 export default {
   bindings: {
+    getOrdersURL: '<',
     goBack: '<',
     catalog: '<',
     user: '<',

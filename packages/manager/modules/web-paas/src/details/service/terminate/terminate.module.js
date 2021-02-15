@@ -1,14 +1,13 @@
 import angular from 'angular';
 
-import component from './terminate.component';
+import terminate from '../../../components/terminate';
 import routing from './terminate.routing';
 
 const moduleName = 'ovhManagerWebPaasDetailsServiceTerminate';
 
 angular
-  .module(moduleName, [])
+  .module(moduleName, [terminate])
   .config(routing)
-  .component('webPaasDetailsServiceTerminate', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

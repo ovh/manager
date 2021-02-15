@@ -3,7 +3,7 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/cancel',
     views: {
       modal: {
-        component: 'webPaasDetailsServiceTerminate',
+        component: 'webPaasProjectTerminate',
       },
     },
     layout: 'modal',

@@ -12,17 +12,18 @@
   "author": "OVH SAS",
   "main": "./src/index.js",
   "dependencies": {
+    "@ovh-ux/ufrontend": "^1.0.0",
     "lodash": "^4.17.14"
   },
   "peerDependencies": {
     "@ovh-ux/manager-catalog-price": "^1.2.0",
-    "@ovh-ux/manager-core": "^11.0.0 || ^12.0.0",
+    "@ovh-ux/manager-core": "^12.0.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.0.0",
-    "@ovh-ux/manager-product-offers": "^3.0.0 || ^4.0.0",
+    "@ovh-ux/manager-product-offers": "^4.0.0",
     "@ovh-ux/ng-ovh-contracts": "^4.0.0",
     "@ovh-ux/ng-ovh-payment-method": "^7.0.1",
     "@ovh-ux/ng-ovh-toaster": "^2.0.0",
-    "@ovh-ux/ng-ovh-web-universe-components": "^8.0.0 || ^9.0.0",
+    "@ovh-ux/ng-ovh-web-universe-components": "^9.0.0",
     "@ovh-ux/ng-translate-async-loader": "^2.1.0",
     "@ovh-ux/ng-ui-router-layout": "^4.0.0",
     "@ovh-ux/ui-kit": "^4.1.12",

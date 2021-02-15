@@ -1,9 +1,9 @@
-import controller from './edit-name.controller';
-import template from './edit-name.html';
+import controller from './controller';
+import template from './template.html';
 
 const component = {
   bindings: {
-    project: '<',
+    projectName: '<',
     projectId: '<',
     goBack: '<',
   },

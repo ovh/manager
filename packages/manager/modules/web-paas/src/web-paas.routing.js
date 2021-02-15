@@ -37,7 +37,7 @@ export default /* @ngInject */ ($stateProvider) => {
         });
 
         if (message) {
-          Alerter.alertFromSWS(message, type);
+          Alerter.alertFromSWS(message, type, 'web_paas_dashboard_list');
         }
 
         return promise;

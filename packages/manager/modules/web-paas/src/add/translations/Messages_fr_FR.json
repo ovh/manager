@@ -1,7 +1,7 @@
 {
   "web_paas_add_project_title": "Création de votre projet Web PaaS",
   "web_paas_add_project_description": "Créez votre nouveau projet Web PaaS powered by Platform.sh. La plateforme de développement pensée pour les développeurs et leurs équipes, afin de concevoir, déployer et exécuter des applications web.",
-  "web_paas_add_project_success": "Votre commande a été effectuée avec succès. Votre projet Web Paas performed by Platform.sh est en cours de création et sera disponible dans quelques minutes.",
+  "web_paas_add_project_success": "Votre commande a été effectuée avec succès. Votre projet Web Paas performed by Platform.sh est en cours de création et sera disponible dans quelques minutes. Vous pouvez suivre l’évolution de sa livraison dans votre compte, rubrique <a href='{{orderURL}}'>Mes commandes</a>",
   "web_paas_add_project_error": "Une erreur est survenue lors de la création de votre Web PaaS project: {{ message }}",
   "web_paas_add_project_loading": "La création du Web PaaS project est en cours",
   "web_paas_add_project_select_region": "Sélectionnez une région",
