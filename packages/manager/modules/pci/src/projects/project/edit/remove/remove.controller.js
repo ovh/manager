@@ -2,8 +2,9 @@ import { MESSAGES_CONTAINER_NAME } from '../edit.constant';
 
 export default class {
   /* @ngInject */
-  constructor($translate, CucCloudMessage) {
+  constructor($translate, atInternet, CucCloudMessage) {
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.CucCloudMessage = CucCloudMessage;
     this.isLoading = false;
   }
@@ -19,6 +20,11 @@ export default class {
     ) {
       promises.push(this.unFavProject());
     }
+
+    this.atInternet.trackClick({
+      name: 'PublicCloud::pci::projects::project::edit::remove::confirm',
+      type: 'action',
+    });
 
     return Promise.all(promises)
       .then(() => {
