@@ -113,10 +113,20 @@ export default /* @ngInject */ ($stateProvider) => {
       getUpscaleHref: /* @ngInject */ ($state) => () =>
         $state.href('vps.detail.upscale'),
 
-      goToUpgrade: /* @ngInject */ ($state) => (upgradeType) =>
-        $state.go(`vps.detail.dashboard.configuration.upgrade`, {
+      goToUpgrade: /* @ngInject */ ($state, stateVps) => (upgradeType) => {
+        let from = 0;
+        if (upgradeType === 'memory') {
+          from = stateVps.model[upgradeType] / 1024;
+        } else if (upgradeType === 'storage') {
+          from = stateVps.model.disk;
+        }
+        const to = from * 2;
+        return $state.go(`vps.detail.dashboard.configuration.upgrade`, {
           upgradeType,
-        }),
+          from,
+          to,
+        });
+      },
 
       vpsMigration: /* @ngInject */ ($http, serviceName) =>
         $http.get(`/vps/${serviceName}/migration2014`),
