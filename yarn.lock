@@ -3004,10 +3004,10 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/translate-async-loader/-/translate-async-loader-1.0.8.tgz#7cbdc3dfed1042f511206ff6bb9f14c33b8406ba"
   integrity sha512-8yEhPeRTSxtEO9ODXRYZw6pzRQiV5ULCTi8mIzt39m/b9N2TcIF4ILTPsaa8xpE4npHKa/iYgL9z0HJUFi2LGQ==
 
-"@ovh-ux/ui-kit@^4.4.3":
-  version "4.4.3"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-4.4.3.tgz#37c1c8d97bf50b21edd0ec6640e1bafcb0cfaac5"
-  integrity sha512-57oZYymSnNfSk2mBWP1cWcjgwWR5vh5zbhlBYtolY2cJ0etqmd0U6f8GiuqqjFoQzxdvcAHhfLlbKDfxBRFtZA==
+"@ovh-ux/ui-kit@^4.4.4":
+  version "4.4.4"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-4.4.4.tgz#e8e02598dd3e984b77959de6a1ac451c6a164bcb"
+  integrity sha512-QOnMhtzbiwQZJC3QCAiEFg9VT3/fn6R9pF0oFKasfqLBsCzt+vefF1jTN9AJ8Q6GhSX/n5kFIKawbbQyJpnQiw==
 
 "@popperjs/core@^2.5.3":
   version "2.5.4"
