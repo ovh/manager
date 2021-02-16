@@ -1,5 +1,6 @@
 import { BillingService as ServiceInfos } from '@ovh-ux/manager-models';
 
+import { Environment } from '@ovh-ux/manager-config';
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 
 export default class ServicesActionsCtrl {
@@ -21,6 +22,8 @@ export default class ServicesActionsCtrl {
   }
 
   $onInit() {
+    this.displayServiceActions = ['EU', 'CA'].includes(Environment.getRegion());
+
     this.withEngagement =
       this.withEngagement || this.$attrs.withEngagement === '';
     this.isLoading = true;
