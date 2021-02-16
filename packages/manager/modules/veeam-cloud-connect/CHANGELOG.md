@@ -1,3 +1,12 @@
+## [2.0.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-cloud-connect@2.0.6...@ovh-ux/manager-veeam-cloud-connect@2.0.7) (2021-02-16)
+
+
+### Bug Fixes
+
+* **contacts:** update contacts links ([93a27e0](https://github.com/ovh/manager/commit/93a27e0e92b46df11dcd1fb52e39598034fee8d6))
+
+
+
 ## [2.0.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-cloud-connect@2.0.5...@ovh-ux/manager-veeam-cloud-connect@2.0.6) (2021-02-02)
 
 

@@ -1,3 +1,12 @@
+## [1.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-metrics@1.0.1...@ovh-ux/manager-metrics@1.0.2) (2021-02-16)
+
+
+### Bug Fixes
+
+* **contacts:** update contacts links ([93a27e0](https://github.com/ovh/manager/commit/93a27e0e92b46df11dcd1fb52e39598034fee8d6))
+
+
+
 ## [1.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-metrics@1.0.0...@ovh-ux/manager-metrics@1.0.1) (2021-02-02)
 
 

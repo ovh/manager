@@ -1,3 +1,12 @@
+## [5.9.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.9.2...@ovh-ux/manager-pci@5.9.3) (2021-02-16)
+
+
+### Bug Fixes
+
+* **contacts:** update contacts links ([93a27e0](https://github.com/ovh/manager/commit/93a27e0e92b46df11dcd1fb52e39598034fee8d6))
+
+
+
 ## [5.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.9.1...@ovh-ux/manager-pci@5.9.2) (2021-02-15)
 
 

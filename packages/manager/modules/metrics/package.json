@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-metrics",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "description": "OVHcloud Metrics product",
   "repository": {
