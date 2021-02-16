@@ -1,3 +1,12 @@
+## [15.16.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.16.1...@ovh-ux/manager-web@15.16.2) (2021-02-16)
+
+
+### Bug Fixes
+
+* **contact:** update contact link and state ([2d51500](https://github.com/ovh/manager/commit/2d5150028b62270442d2d01ec4e2aaf0a4bb887a))
+
+
+
 ## [15.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.16.0...@ovh-ux/manager-web@15.16.1) (2021-02-11)
 
 

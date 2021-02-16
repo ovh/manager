@@ -1,3 +1,12 @@
+## [2.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.3.3...@ovh-ux/manager-vps@2.3.4) (2021-02-16)
+
+
+### Bug Fixes
+
+* **contacts:** update contacts links ([93a27e0](https://github.com/ovh/manager/commit/93a27e0e92b46df11dcd1fb52e39598034fee8d6))
+
+
+
 ## [2.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.3.2...@ovh-ux/manager-vps@2.3.3) (2021-02-10)
 
 

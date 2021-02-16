@@ -1,3 +1,12 @@
+## [1.0.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.0.10...@ovh-ux/manager-iplb@1.0.11) (2021-02-16)
+
+
+### Bug Fixes
+
+* **contacts:** update contacts links ([93a27e0](https://github.com/ovh/manager/commit/93a27e0e92b46df11dcd1fb52e39598034fee8d6))
+
+
+
 ## [1.0.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.0.9...@ovh-ux/manager-iplb@1.0.10) (2021-02-10)
 
 
