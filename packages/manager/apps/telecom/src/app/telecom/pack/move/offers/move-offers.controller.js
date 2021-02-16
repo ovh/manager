@@ -29,8 +29,7 @@ export default class PackMoveOffersCtrl {
 
     this.PROMO_DISPLAY = PROMO_DISPLAY;
 
-    this.$q
-      .all([this.getOptions()])
+    this.getOptions()
       .then(() => {
         if (
           (this.currentOffer.isFTTH && !this.eligibilityReferenceFiber) ||
@@ -47,14 +46,14 @@ export default class PackMoveOffersCtrl {
       .then(() => {
         if (this.currentOffer.isFTTH && this.eligibilityReferenceFiber) {
           // For FTTH customer eligible to fiber, display fiber offers ONLY
-          this.offers = [...this.listOffersFiber];
+          this.offers = this.listOffersFiber;
         } else if (
           this.eligibilityReferenceFiber &&
           !this.currentOffer.isFTTH
         ) {
           this.offers = [...this.listOffersFiber, ...this.listOffers];
         } else {
-          this.offers = [...this.listOffers];
+          this.offers = this.listOffers;
         }
       })
       .finally(() => {
