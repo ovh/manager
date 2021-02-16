@@ -131,7 +131,7 @@ export default class MetricsDashboardCtrl {
         text: this.$translate.instant('metrics_manage'),
         href:
           Environment.getRegion() === 'EU'
-            ? buildURL('dedicated', '#/useraccount/contacts', {
+            ? buildURL('dedicated', '#/contacts/services', {
                 tab: 'SERVICES',
                 serviceName: this.serviceName,
               })
