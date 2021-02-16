@@ -1,10 +1,12 @@
 {
-  "vps_dashboard_upgrade_done": "Ihr VPS wurde aktualisiert. Bitte denken Sie daran, Ihren VPS neu zu starten, damit die neue Konfiguration funktioniert.",
-  "vps_dashboard_upgrade_error": "Bei der Anfrage für das Upgrade Ihres VPS ist ein Fehler aufgetreten.",
-  "vps_dashboard_upgrade_doing": "Ihr VPS wird aktualisiert. Sie erhalten eine Benachrichtigung, sobald Sie Ihren Server neu starten können, um die neue Konfiguration zu aktivieren.",
+  "vps_dashboard_upgrade_done": "Das Upgrade Ihres VPS ist abgeschlossen. Bitte starten Sie ihn neu, um die neue Konfiguration zu aktivieren.",
+  "vps_dashboard_upgrade_error": "Bei der Anfrage nach dem Upgrade für Ihren VPS ist ein Fehler aufgetreten.",
+  "vps_dashboard_upgrade_doing": "Das Upgrade wird gerade auf Ihrem VPS ausgeführt. Sie werden benachrichtigt, wenn Sie Ihren Server zur Aktivierung der neuen Konfiguration neu starten können.",
   "vps_dashboard_migration_warning": "Ihr VPS Cloud 2013/2014 wird ab dem {{date}} automatisch umgestellt. Wenn Sie möchten, können Sie diesen Vorgang bereits jetzt vorprogrammieren.",
   "vps_dashboard_migration_link": "Zur neuen Reihe wechseln",
   "vps_dashboard_auto_migration_warning": "Ihr VPS Cloud 2013/2014 wird in {{days}} Tagen automatisch auf einen VPS der neuen Reihe umgestellt.",
   "vps_dashboard_migration_in_progress": "Ihr VPS Cloud 2013/2014 wird gerade auf die neue Reihe umgestellt.",
-  "vps_dashboard_migration_in_error": "Bei der Umstellung Ihres VPS ist ein Fehler aufgetreten. Unsere Teams werden sich um den weiteren Verlauf der Umstellung kümmern."
+  "vps_dashboard_migration_in_error": "Bei der Umstellung Ihres VPS ist ein Fehler aufgetreten. Unsere Teams werden sich um den weiteren Verlauf der Umstellung kümmern.",
+  "vps_dashboard_rtm_missing": "Gewinnen Sie einen besseren Überblick über die Leistung Ihres virtuellen Servers: Aktivieren Sie kostenlos die Nachverfolgung Ihrer Verbrauchsdaten aktivieren. Klicken Sie <a href=\"{{href}}\">hier</a>, um mehr darüber zu erfahren.",
+  "vps_dashboard_rtm_limit_warning": "Ihr virtueller privater Server erreicht bald die Grenzen seiner Ressourcen (vCore, RAM, Storage). Sie können die Ressourcen skalieren oder zu einer noch leistungsstärkeren Reihe wechseln."
 }

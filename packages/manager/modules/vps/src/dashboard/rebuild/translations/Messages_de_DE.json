@@ -1,5 +1,7 @@
 {
   "vps_configuration_rebuild_cancel": "Abbrechen",
   "vps_configuration_rebuild_confirm": "Bestätigen",
-  "vps_configuration_rebuild_doNotSendPassword": "Ich möchte die Zugangsdaten zu meinem VPS nicht per E-Mail erhalten."
+  "vps_configuration_rebuild_doNotSendPassword": "Ich möchte die Zugangsdaten zu meinem VPS nicht per E-Mail erhalten.",
+  "vps_configuration_rebuild_installRTM": "Nachverfolgung Ihrer Verbrauchsdaten",
+  "vps_configuration_rebuild_installRTM_alert": "Weisen Sie gezielt die Ressourcen Ihres virtuellen Servers (vCPU, Arbeitsspeicher, Storage) zu. Nutzen Sie als Grundlage dafür deren Nutzung in den letzten 24 Stunden."
 }

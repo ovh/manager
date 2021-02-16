@@ -1,5 +1,7 @@
 {
   "vps_configuration_rebuild_cancel": "Anuluj",
   "vps_configuration_rebuild_confirm": "Zatwierdź",
-  "vps_configuration_rebuild_doNotSendPassword": "Nie chcę otrzymać wiadomości e-mail z danymi do logowania dla mojego serwera VPS."
+  "vps_configuration_rebuild_doNotSendPassword": "Nie chcę otrzymać wiadomości e-mail z danymi do logowania dla mojego serwera VPS.",
+  "vps_configuration_rebuild_installRTM": "Informacje o wykorzystanych zasobach",
+  "vps_configuration_rebuild_installRTM_alert": "Zarządzaj zasobami serwera wirtualnego (vCPU, pamięć, przestrzeń dyskowa) w zależności od ich wykorzystania w ciągu ostatnich 24 godzin."
 }

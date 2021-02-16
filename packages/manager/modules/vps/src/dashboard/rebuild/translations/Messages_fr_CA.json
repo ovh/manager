@@ -1,5 +1,8 @@
 {
   "vps_configuration_rebuild_cancel": "Annuler",
   "vps_configuration_rebuild_confirm": "Confirmer",
-  "vps_configuration_rebuild_doNotSendPassword": "Je ne souhaite pas recevoir par e-mail les codes d’authentification de mon VPS."
+  "vps_configuration_rebuild_doNotSendPassword": "Je ne souhaite pas recevoir par e-mail les codes d’authentification de mon VPS.",
+  "vps_configuration_rebuild_installRTM": "Suivi de vos données de consommation",
+  "vps_configuration_rebuild_installRTM_alert": "Administrez les ressources de votre serveur virtuel (vCPU, mémoire, stockage) en fonction de leur utilisation au cours des dernières 24 heures.",
+  "vps_configuration_rebuild_rtm_deactivation_warning": "Le suivi de vos données de consommation ne sera pas activé lors de la réinstallation de votre serveur. Les données cesseront d'être affichées dans un délai de 24h00."
 }

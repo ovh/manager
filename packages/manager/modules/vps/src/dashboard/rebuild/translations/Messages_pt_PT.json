@@ -1,5 +1,7 @@
 {
-  "vps_configuration_rebuild_cancel": "Anular",
+  "vps_configuration_rebuild_cancel": "Cancelar",
   "vps_configuration_rebuild_confirm": "Confirmar",
-  "vps_configuration_rebuild_doNotSendPassword": "Não quero receber por e-mail os códigos de autenticação do meu VPS."
+  "vps_configuration_rebuild_doNotSendPassword": "Não quero receber por e-mail os códigos de autenticação do meu VPS.",
+  "vps_configuration_rebuild_installRTM": "Acompanhamento dos seus dados de consumo",
+  "vps_configuration_rebuild_installRTM_alert": "Administre os recursos do seu servidor virtual (vCPU, memória, armazenamento) em função da sua utilização nas últimas 24 horas."
 }

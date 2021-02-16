@@ -1,5 +1,7 @@
 {
   "vps_configuration_rebuild_cancel": "Annulla",
   "vps_configuration_rebuild_confirm": "Conferma",
-  "vps_configuration_rebuild_doNotSendPassword": "Non voglio ricevere via email i codici di autenticazione del mio VPS."
+  "vps_configuration_rebuild_doNotSendPassword": "Non voglio ricevere via email i codici di autenticazione del mio VPS.",
+  "vps_configuration_rebuild_installRTM": "Controllo dei tuoi dati sui consumi",
+  "vps_configuration_rebuild_installRTM_alert": "Gestisci le risorse del tuo server virtuale (vCPU, memoria, storage) in base al loro utilizzo nelle ultime 24 ore."
 }

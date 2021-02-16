@@ -6,5 +6,7 @@
   "vps_dashboard_migration_link": "Migruj do nowej gamy",
   "vps_dashboard_auto_migration_warning": "Twój VPS Cloud 2013/2014 zostanie automatycznie przeniesiony do VPS z nowej gamy w ciągu {{days}} dni.",
   "vps_dashboard_migration_in_progress": "Aktualnie trwa migracja VPS Cloud 2013/2014 do nowej gamy.",
-  "vps_dashboard_migration_in_error": "Wystąpił błąd podczas migracji VPS. Dalszym ciągiem migracji zajmie się zespół OVHcloud."
+  "vps_dashboard_migration_in_error": "Wystąpił błąd podczas migracji VPS. Dalszym ciągiem migracji zajmie się zespół OVHcloud.",
+  "vps_dashboard_rtm_missing": "Aktywuj bezpłatne monitorowanie wykorzystania zasobów i zyskaj przejrzysty obraz wydajności wirtualnego serwera. Kliknij <a href=\"{{href}}\">tutaj</a>, aby uzyskać więcej informacji na temat tej operacji.",
+  "vps_dashboard_rtm_limit_warning": "Wkrótce Twój prywatny serwer wirtualny osiągnie limity zasobów (vCore, RAM, przestrzeń dyskowa). Możesz go skalować lub zmienić ofertę na wyższą."
 }
