@@ -1,4 +1,5 @@
 import find from 'lodash/find';
+import get from 'lodash/get';
 import head from 'lodash/head';
 import map from 'lodash/map';
 import pick from 'lodash/pick';
@@ -330,11 +331,11 @@ export default class {
     const agreementsPromise = service.hasAutomaticRenew()
       ? this.DucUserContractService.acceptAgreements(agreements)
       : Promise.resolve([]);
-    return agreementsPromise.then(() =>
-      this.updateServices([
-        pick(service, ['serviceId', 'serviceType', 'renew']),
-      ]),
-    );
+    return agreementsPromise.then(() => {
+      const toUpdate = pick(service, ['serviceId', 'serviceType', 'renew']);
+      toUpdate.route = get(service, 'route.url');
+      return this.updateServices([toUpdate]);
+    });
   }
 
   /* eslint-disable class-methods-use-this */

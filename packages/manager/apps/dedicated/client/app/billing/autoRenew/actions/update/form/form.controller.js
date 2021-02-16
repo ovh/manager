@@ -23,6 +23,8 @@ export default class {
             find(this.PERIODS, { period: this.service.renew.period }) ||
             head(this.PERIODS),
         };
+        this.onRenewalTypeChange(this.model.renewalType);
+        this.onPeriodChange(this.model.period);
       },
     );
 
