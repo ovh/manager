@@ -6,6 +6,7 @@ export default /* @ngInject */ function TelecomTelephonyFaxManagementTerminateCt
   $q,
   $stateParams,
   $translate,
+  atInternet,
   TelephonyMediator,
   voipServiceOfferTask,
   TucToast,
@@ -91,6 +92,11 @@ export default /* @ngInject */ function TelecomTelephonyFaxManagementTerminateCt
   ============================== */
 
   self.onTerminateFormSubmit = function onTerminateFormSubmit() {
+    atInternet.trackClick({
+      name:
+        'telecom::telephony::billingAccount::fax::management::terminate::confirm',
+      type: 'action',
+    });
     self.loading.terminate = true;
 
     return self.fax
@@ -120,6 +126,11 @@ export default /* @ngInject */ function TelecomTelephonyFaxManagementTerminateCt
   };
 
   self.onCancelTerminationClick = function onCancelTerminationClick() {
+    atInternet.trackClick({
+      name:
+        'telecom::telephony::billingAccount::fax::management::terminate::cancel-delete',
+      type: 'action',
+    });
     self.loading.cancel = true;
 
     return self.fax
@@ -180,11 +191,20 @@ export default /* @ngInject */ function TelecomTelephonyFaxManagementTerminateCt
       reason: self.reason,
       details: self.details,
     };
-
+    atInternet.trackPage({
+      name:
+        'telecom::telephony::billingAccount::fax::management::terminate-bulk',
+      type: 'navigation',
+    });
     return data;
   };
 
   self.onBulkSuccess = function onBulkSuccess(bulkResult) {
+    atInternet.trackClick({
+      name:
+        'telecom::telephony::billingAccount::fax::management::terminate-bulk::confirm',
+      type: 'action',
+    });
     // display message of success or error
     tucTelephonyBulk
       .getTucToastInfos(bulkResult, {

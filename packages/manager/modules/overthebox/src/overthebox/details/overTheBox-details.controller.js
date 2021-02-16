@@ -12,6 +12,7 @@ export default class OverTheBoxDetailsCtrl {
     $filter,
     $translate,
     $q,
+    atInternet,
     OVER_THE_BOX,
     OVERTHEBOX_DETAILS,
     OvhApiOverTheBox,
@@ -24,6 +25,7 @@ export default class OverTheBoxDetailsCtrl {
     this.$filter = $filter;
     this.$translate = $translate;
     this.$q = $q;
+    this.atInternet = atInternet;
     this.OVER_THE_BOX = OVER_THE_BOX;
     this.OVERTHEBOX_DETAILS = OVERTHEBOX_DETAILS;
     this.OvhApiOverTheBox = OvhApiOverTheBox;
@@ -582,11 +584,22 @@ export default class OverTheBoxDetailsCtrl {
     if (!this.serviceInfos || !this.serviceInfos.renew) {
       return false;
     }
-    return (
+    const canDelete =
       !this.serviceInfos.renew.deleteAtExpiration &&
       !this.serviceInfos.undoDeleteAtExpiration &&
-      this.serviceInfos.canDeleteAtExpiration
-    );
+      this.serviceInfos.canDeleteAtExpiration;
+    if (canDelete) {
+      this.atInternet.trackClick({
+        name: 'overTheBoxes::overTheBox::delete',
+        type: 'action',
+      });
+      this.atInternet.trackPage({
+        name: 'overTheBoxes::overTheBox::delete',
+        type: 'navigation',
+      });
+    }
+
+    return canDelete;
   }
 
   /**
@@ -611,6 +624,10 @@ export default class OverTheBoxDetailsCtrl {
    * @return {Promise}
    */
   resiliate() {
+    this.atInternet.trackClick({
+      name: 'overTheBoxes::overTheBox::delete::confirm',
+      type: 'action',
+    });
     this.loaders.resiliating = true;
     return this.OvhApiOverTheBox.v6()
       .deleteAtExpiration(
@@ -649,6 +666,11 @@ export default class OverTheBoxDetailsCtrl {
    * @return {Promise}
    */
   cancelResiliation() {
+    this.atInternet.trackClick({
+      name: 'overTheBoxes::overTheBox::cancel-resiliation',
+      type: 'action',
+    });
+
     this.loaders.cancellingResiliation = true;
     return this.OvhApiOverTheBox.v6()
       .keepAtExpiration(

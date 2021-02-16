@@ -3,6 +3,7 @@ import get from 'lodash/get';
 export default /* @ngInject */ function TelecomTelephonyLineTerminateCtrl(
   $stateParams,
   $state,
+  atInternet,
   TelephonyMediator,
   TucToast,
   $translate,
@@ -22,6 +23,11 @@ export default /* @ngInject */ function TelecomTelephonyLineTerminateCtrl(
   self.hasPhone = false;
 
   self.terminate = function terminate() {
+    atInternet.trackClick({
+      name: 'telecom::telephony::billingAccount::line::terminate',
+      type: 'action',
+    });
+
     self.loading.terminate = true;
 
     return self.line
@@ -119,6 +125,11 @@ export default /* @ngInject */ function TelecomTelephonyLineTerminateCtrl(
   };
 
   self.onBulkSuccess = function onBulkSuccess(bulkResult) {
+    atInternet.trackClick({
+      name: 'telecom::telephony::billingAccount::line::terminate-bulk',
+      type: 'action',
+    });
+
     // display message of success or error
     tucTelephonyBulk
       .getTucToastInfos(bulkResult, {

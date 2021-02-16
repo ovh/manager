@@ -3,6 +3,7 @@ import set from 'lodash/set';
 export default /* @ngInject */ function TelecomTelephonyLineTerminateCancelCtrl(
   $stateParams,
   $state,
+  atInternet,
   TelephonyMediator,
   OvhApiTelephony,
   TucToast,
@@ -20,6 +21,12 @@ export default /* @ngInject */ function TelecomTelephonyLineTerminateCancelCtrl(
   self.taskDetails = {};
 
   self.cancelTerminate = function cancelTerminate() {
+    atInternet.trackClick({
+      name:
+        'telecom::telephony::billingAccount::line::terminate::cancel::confirm',
+      type: 'action',
+    });
+
     self.loading.cancelTerminate = true;
     if (self.taskDetails.executionDate) {
       return OvhApiTelephony.Service()
