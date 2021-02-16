@@ -30,6 +30,10 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('exchange_group'),
     },
+    onEnter: /* @ngInject */ (trackTab) => trackTab('group'),
+    atInternet: {
+      ignore: true,
+    },
   });
 
   $stateProvider.state('exchange.dashboard.group.mailing-list', {

@@ -21,21 +21,17 @@ export default /* @ngInject */ ($stateProvider) => {
         goToLicenseActivate: /* @ngInject */ ($state) => () =>
           $state.go('veeam-enterprise.details.dashboard.license.activate'),
         goToLicenseUpdate: /* @ngInject */ ($state) => () =>
-<<<<<<< HEAD:packages/manager/modules/veeam-enterprise/src/details/routing.js
           $state.go('veeam-enterprise.details.dashboard.license.update'),
-        goToLicenseTerminate: /* @ngInject */ ($state) => () =>
-          $state.go('veeam-enterprise.details.dashboard.license.terminate'),
-        breadcrumb: /* @ngInject */ (serviceName) => serviceName,
-=======
-          $state.go('veeam-enterprise.dashboard.license.update'),
         goToLicenseTerminate: /* @ngInject */ ($state, atInternet) => () => {
           atInternet.trackClick({
             name: 'veeam-enterprise::dashboard::license::terminate',
             type: 'action',
           });
-          return $state.go('veeam-enterprise.dashboard.license.terminate');
+          return $state.go(
+            'veeam-enterprise.details.dashboard.license.terminate',
+          );
         },
->>>>>>> feat(dedicated-cloud): add tracking to termination:packages/manager/modules/veeam-enterprise/src/routing.js
+        breadcrumb: /* @ngInject */ (serviceName) => serviceName,
       },
     })
     .state('veeam-enterprise.details.dashboard', {

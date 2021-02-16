@@ -132,7 +132,7 @@ export default class HeaderController {
   }
 
   removeExchangeDialog() {
-    switch (this.Exchange.value.domain.split('-')[0]) {
+    switch (this.wucExchange.value.domain.split('-')[0]) {
       case 'private':
       case 'exchange':
         this.atInternet.trackClick({
@@ -151,6 +151,16 @@ export default class HeaderController {
         });
         this.atInternet.trackPage({
           name: 'web::microsoft::exchange::hosted::delete',
+          type: 'navigation',
+        });
+        break;
+      case 'provider':
+        this.atInternet.trackClick({
+          name: 'web::microsoft::exchange::provider::delete',
+          type: 'action',
+        });
+        this.atInternet.trackPage({
+          name: 'web::microsoft::exchange::provider::delete',
           type: 'navigation',
         });
         break;

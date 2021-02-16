@@ -12,11 +12,11 @@ angular
       };
 
       $scope.deleteLicense = function deleteLicense() {
-        $scope.atInternet.trackClick({
-          name: 'dedicated::license::delete::confirm',
-          type: 'action',
-        });
         if (!$scope.model.deleting && !$scope.model.deleted) {
+          atInternet.trackClick({
+            name: 'dedicated::license::delete::confirm',
+            type: 'action',
+          });
           $scope.model.deleting = true;
           License.terminate($scope.model.license.id, $scope.model.license)
             .then(

@@ -5,6 +5,7 @@ export default {
   bindings: {
     canDeleteAtExpiration: '<',
     goBack: '<',
+    trackingPrefix: '<',
     serviceInfos: '<',
     serviceName: '<',
   },

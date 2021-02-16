@@ -15,5 +15,9 @@ export default /* @ngInject */ ($stateProvider) => {
       goToShared: /* @ngInject */ ($state, $transition$) => () =>
         $state.href('exchange.dashboard.shared', $transition$.params()),
     },
+    onEnter: /* @ngInject */ (trackTab) => trackTab('shared'),
+    atInternet: {
+      ignore: true,
+    },
   });
 };

@@ -11,5 +11,9 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('exchange_security'),
     },
+    onEnter: /* @ngInject */ (trackTab) => trackTab('security'),
+    atInternet: {
+      ignore: true,
+    },
   });
 };

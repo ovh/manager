@@ -145,13 +145,12 @@
                         ></span>
                     </oui-action-menu-item>
 
-<<<<<<< HEAD
                     <oui-action-menu-divider
                         data-ng-if="$ctrl.exchangeService.deleteOptionAvailable"
                     ></oui-action-menu-divider>
                     <oui-action-menu-item
                         data-ng-if="$ctrl.exchangeService.deleteOptionAvailable"
-                        data-on-click="$ctrl.navigation.setAction('exchange/header/remove/exchange-remove', $ctrl.exchangeService)"
+                        data-on-click="$ctrl.removeExchangeDialog()"
                     >
                         <span
                             data-ng-if="$ctrl.exchangeService.renewType.deleteAtExpiration"
@@ -165,24 +164,5 @@
                 </oui-action-menu>
             </div>
         </div>
-=======
-            <oui-action-menu-divider
-                data-ng-if="$ctrl.exchangeService.deleteOptionAvailable"
-            ></oui-action-menu-divider>
-            <oui-action-menu-item
-                data-ng-if="$ctrl.exchangeService.deleteOptionAvailable"
-                data-on-click="$ctrl.removeExchangeDialog()"
-            >
-                <span
-                    data-ng-if="$ctrl.exchangeService.renewType.deleteAtExpiration"
-                    data-translate="exchange_resilitation_action_button_cancel"
-                ></span>
-                <span
-                    data-ng-if="!$ctrl.exchangeService.renewType.deleteAtExpiration"
-                    data-translate="exchange_resilitation_action_button"
-                ></span>
-            </oui-action-menu-item>
-        </oui-action-menu>
->>>>>>> feat(web-cloud): add tracking to termination
     </div>
 </div>

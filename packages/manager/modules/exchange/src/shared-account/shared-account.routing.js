@@ -10,5 +10,9 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('exchange_dashboard_shared_account'),
     },
+    onEnter: /* @ngInject */ (trackTab) => trackTab('shared-account'),
+    atInternet: {
+      ignore: true,
+    },
   });
 };

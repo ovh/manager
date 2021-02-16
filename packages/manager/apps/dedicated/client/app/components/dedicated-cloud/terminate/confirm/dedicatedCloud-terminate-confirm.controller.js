@@ -38,12 +38,6 @@ export default class {
     if (!this.terminateConfirmForm.$valid) {
       return false;
     }
-
-    this.atInternet.trackClick({
-      name: 'dedicated::dedicatedClouds::dashboard::terminate::confirm',
-      type: 'action',
-    });
-
     this.loading.confirm = true;
 
     return this.OvhApiDedicatedCloud.v6()

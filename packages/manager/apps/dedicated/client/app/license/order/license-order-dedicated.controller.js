@@ -164,7 +164,6 @@ angular
             if (translateKey !== translateValue) {
               set(licenseType, 'productName', translateValue);
             }
-            console.log(licenseType);
             return licenseType;
           });
           $scope.selected.version = null;

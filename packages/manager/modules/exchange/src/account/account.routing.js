@@ -18,6 +18,10 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('exchange_account'),
     },
+    onEnter: /* @ngInject */ (trackTab) => trackTab('account'),
+    atInternet: {
+      ignore: true,
+    },
   });
 
   $stateProvider.state('exchange.dashboard.account.email', {

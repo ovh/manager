@@ -1,7 +1,6 @@
 export default class exchangeHeaderService {
   /* @ngInject */
-  constructor(atInternet, OvhHttp) {
-    this.atInternet = atInternet;
+  constructor(OvhHttp) {
     this.OvhHttp = OvhHttp;
   }
 

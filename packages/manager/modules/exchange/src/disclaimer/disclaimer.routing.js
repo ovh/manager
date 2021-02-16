@@ -10,5 +10,9 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('exchange_disclaimer'),
     },
+    onEnter: /* @ngInject */ (trackTab) => trackTab('disclaimer'),
+    atInternet: {
+      ignore: true,
+    },
   });
 };

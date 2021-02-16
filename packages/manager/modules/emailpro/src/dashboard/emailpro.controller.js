@@ -11,16 +11,12 @@ export default /* @ngInject */ function EmailProCtrl(
   $location,
   $stateParams,
   $translate,
-<<<<<<< HEAD:packages/manager/modules/emailpro/src/dashboard/emailpro.controller.js
   accountLink,
+  atInternet,
   currentActiveLink,
   disclaimerLink,
   domainLink,
   externalContactLink,
-=======
-  atInternet,
-  navigation,
->>>>>>> feat(web-cloud): add tracking to termination:packages/manager/modules/emailpro/src/emailpro.controller.js
   EmailPro,
   APIEmailPro,
   WucUser,
@@ -32,13 +28,7 @@ export default /* @ngInject */ function EmailProCtrl(
   coreConfig,
   coreURLBuilder,
 ) {
-<<<<<<< HEAD:packages/manager/modules/emailpro/src/dashboard/emailpro.controller.js
-=======
-  this.getTabLink = getTabLink;
-  let initialLoad = true;
-
   $scope.atInternet = atInternet;
->>>>>>> feat(web-cloud): add tracking to termination:packages/manager/modules/emailpro/src/emailpro.controller.js
   $scope.currentRegionCA = coreConfig.isRegion('CA');
   $scope.accountTypeDedicated = EmailPro.accountTypeDedicated;
   $scope.accountTypeHosted = EmailPro.accountTypeHosted;
