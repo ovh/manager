@@ -80,6 +80,16 @@ export default /* @ngInject */ (TucVoipService, tucVoipService) => {
       return this.description || this.billingAccount;
     }
 
+    /**
+     * Check if a billing accoung is expired or not.
+     * A billing account is considered to supended if currentOutplan superior
+     * or equal to allowedOutplan.
+     * @return {Boolean}
+     */
+    isSupended() {
+      return this.currentOutplan.value >= this.allowedOutplan.value;
+    }
+
     /* ======================================
     =            Service section            =
     ======================================= */

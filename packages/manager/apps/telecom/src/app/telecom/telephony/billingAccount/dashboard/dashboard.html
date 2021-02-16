@@ -3,6 +3,19 @@
         <oui-spinner></oui-spinner>
     </div>
 
+    <!-- supended group alert -->
+    <oui-message
+        data-ng-if="!DashboardCtrl.loading.init && DashboardCtrl.isGroupSuspended()"
+        data-type="info"
+        data-dismissable
+    >
+        <span
+            data-translate="telephony_group_billing_dashboard_suspended_info"
+            data-translate-values="{ billingDepositHref: DashboardCtrl.billingDepositLink }"
+        >
+        </span>
+    </oui-message>
+
     <tuc-toast-message></tuc-toast-message>
 
     <div
