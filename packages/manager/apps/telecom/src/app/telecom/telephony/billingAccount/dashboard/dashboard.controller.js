@@ -14,6 +14,7 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountDashboardC
   $q,
   $window,
   $timeout,
+  billingDepositLink,
   TelephonyMediator,
   OvhApiTelephony,
   TucToastError,
@@ -26,6 +27,10 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountDashboardC
       return self.group.status === 'expired';
     }
     return true;
+  }
+
+  function isSuspended() {
+    return self.group ? self.group.isSuspended() : false;
   }
 
   function getGroup() {
@@ -264,6 +269,10 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountDashboardC
       });
   }
 
+  this.isGroupSuspended = function isGroupSuspended() {
+    return isExpired() && isSuspended();
+  };
+
   /*= =====================================
     =            INITIALIZATION            =
     ====================================== */
@@ -286,6 +295,8 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountDashboardC
             orderBy: "",
             orderDesc: true */,
     };
+
+    self.billingDepositLink = billingDepositLink;
 
     getGroup().then(() => {
       self.actions = [
