@@ -121,7 +121,9 @@
                                     <a
                                         data-ng-if="subitem.options.url"
                                         class="oui-sidebar-link oui-link_icon d-flex align-items-center"
-                                        data-ng-href="{{:: subitem.options.url[$ctrl.REGION] }}"
+                                        data-ng-href="{{:: subitem.options.url[$ctrl.REGION]
+                                            ? subitem.options.url[$ctrl.REGION]
+                                            : subitem.options.url }}"
                                         data-ng-click="$ctrl.onMenuItemClick(subitem)"
                                         target="{{:: subitem.options.target }}"
                                     >
@@ -130,6 +132,7 @@
                                             data-ng-bind=":: subitem.title"
                                         ></span>
                                         <span
+                                            data-ng-if="subitem.options.external"
                                             class="oui-icon oui-icon-external-link"
                                             aria-hidden="true"
                                         ></span>
