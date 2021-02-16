@@ -100,7 +100,7 @@ export default /* @ngInject */ function(
 
   self.openContacts = function openContacts() {
     if (self.canChangeContacts()) {
-      const redirectURL = buildURL('dedicated', '/useraccount/contacts', {
+      const redirectURL = buildURL('dedicated', '/contacts/services', {
         tab: 'SERVICES',
         serviceName,
       });
