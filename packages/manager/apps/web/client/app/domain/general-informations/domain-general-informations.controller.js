@@ -486,7 +486,7 @@ export default class DomainTabGeneralInformationsCtrl {
     if (has(domain, 'name') && has(domain, 'whoisOwner.id')) {
       ownerUrlInfo.target = buildURL(
         'dedicated',
-        '#/useraccount/contact/:currentDomain/:contactId',
+        '#/contact/:currentDomain/:contactId',
         {
           currentDomain: domain.name,
           contactId: domain.whoisOwner.id,

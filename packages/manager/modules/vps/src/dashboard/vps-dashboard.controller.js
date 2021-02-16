@@ -355,7 +355,7 @@ export default class {
             text: this.$translate.instant('vps_common_manage'),
             href:
               Environment.getRegion() === 'EU'
-                ? buildURL('dedicated', '#/useraccount/contacts', {
+                ? buildURL('dedicated', '#/contacts/services', {
                     tab: 'SERVICES',
                     serviceName: this.serviceName,
                   })
