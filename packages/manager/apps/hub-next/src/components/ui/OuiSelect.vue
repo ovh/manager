@@ -51,6 +51,17 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+$select-background: #4bb2f6;
+$select-hover-background: #0050d7;
+$select-max-width: 15rem;
+$select-left-right-padding: 1rem;
+$select-icon-max-height: 2rem;
+$select-icon-font-size: 1.5rem;
+$select-border-radius: 0.25rem;
+$select-border-width: 2px;
+$option-vertical-padding: 0.3rem;
+$fake-input-vertical-padding: 0.1rem;
+
 .v-oui-select {
   text-align: left;
   position: relative;
@@ -59,27 +70,27 @@ export default defineComponent({
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 2px solid white;
-    border-radius: 0.25rem;
-    max-width: 15rem;
+    border: $select-border-width solid white;
+    border-radius: $select-border-radius;
+    max-width: $select-max-width;
     margin: auto;
-    padding: 0.1rem 1rem;
+    padding: $fake-input-vertical-padding $select-left-right-padding;
 
     &:hover {
       cursor: pointer;
     }
 
     .oui-icon {
-      font-size: 1.5rem;
-      max-height: 2rem;
+      font-size: $select-icon-font-size;
+      max-height: $select-icon-max-height;
     }
   }
 
   .v-oui-select-dropdown {
-    border: 2px solid white;
-    max-width: 15rem;
+    border: $select-border-width solid white;
+    max-width: $select-max-width;
     margin: auto;
-    background: #4bb2f6;
+    background: $select-background;
     position: absolute;
     transform-origin: center top 0px;
     left: 0;
@@ -92,10 +103,10 @@ export default defineComponent({
       .v-oui-option {
         list-style: none;
         margin: 0;
-        padding: 0.3rem 1rem;
+        padding: $option-vertical-padding $select-left-right-padding;
 
         &:hover {
-          background: #0050d7;
+          background: $select-hover-background;
           cursor: pointer;
         }
       }
