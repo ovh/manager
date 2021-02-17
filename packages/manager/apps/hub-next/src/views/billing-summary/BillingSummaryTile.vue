@@ -6,6 +6,10 @@
     :is-shadowed="false"
   >
     <template #body>
+      <oui-select
+        @select-option="refreshBills($event)"
+        :options="filterDatesOptions"
+      ></oui-select>
       <span class="manager-hub-billing-summary__bill-total">
         {{ `${bills.total} ${bills.currency.symbol}` }}
       </span>
@@ -26,10 +30,7 @@
         {{ t('hub_billing_summary_debt_no_bills') }}
       </p>
 
-      <a
-        :href="billingHistoryURL"
-        class="oui-button oui-button_primary oui-button_icon-right"
-      >
+      <a :href="billingHistoryURL" class="oui-button oui-button_primary oui-button_icon-right">
         <span> {{ t('hub_billing_summary_display_bills') }} </span>
         <span class="oui-icon oui-icon-arrow-right"></span>
       </a>
@@ -41,17 +42,39 @@
 import { defineAsyncComponent, defineComponent } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-import { mapGetters } from 'vuex';
+import { mapGetters, useStore } from 'vuex';
+import axios from 'axios';
 
 export default defineComponent({
   setup() {
     const { t } = useI18n();
+    const store = useStore();
     return {
       t,
+      store,
+    };
+  },
+  data() {
+    return {
+      filterDatesOptions: [
+        {
+          key: 1,
+          value: this.t('hub_billing_summary_period_1'),
+        },
+        {
+          key: 3,
+          value: this.t('hub_billing_summary_period_3'),
+        },
+        {
+          key: 6,
+          value: this.t('hub_billing_summary_period_6'),
+        },
+      ],
     };
   },
   components: {
     Tile: defineAsyncComponent(() => import('@/components/ui/Tile.vue')),
+    OuiSelect: defineAsyncComponent(() => import('@/components/ui/OuiSelect.vue')),
   },
   computed: {
     ...mapGetters({
@@ -64,6 +87,11 @@ export default defineComponent({
   },
   methods: {
     buildURL,
+    refreshBills(option: any): void {
+      axios.get(`engine/2api/hub/bills?billingPeriod=${option.key}`).then((data) => {
+        this.store.commit('setBills', data.data.data.bills.data);
+      });
+    },
   },
 });
 </script>
