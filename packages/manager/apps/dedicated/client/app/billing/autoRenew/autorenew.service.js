@@ -132,21 +132,13 @@ export default class {
       return this.OvhHttp.get('/billing/services', {
         rootPath: '2api',
         params: {
-          search: serviceId,
-          type: serviceType,
+          resourceName: serviceId,
+          serviceType,
           count: 1,
           offset: 0,
         },
       })
-        .then((services) => {
-          if (serviceType) {
-            return find(services.list.results, {
-              serviceType,
-              serviceId,
-            });
-          }
-          return head(services.list.results);
-        })
+        .then((services) => head(services.list.results))
         .then((service) => new BillingService(service));
     });
   }
