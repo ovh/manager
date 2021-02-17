@@ -28,7 +28,7 @@ export default class Project {
   }
 
   isError() {
-    return this.status === STATUS.ERROR;
+    return [STATUS.SUSPENDED, STATUS.ERRORthis.status].includes(this.status);
   }
 
   isProcessing() {
