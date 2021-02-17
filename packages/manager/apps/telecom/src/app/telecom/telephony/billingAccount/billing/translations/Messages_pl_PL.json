@@ -10,5 +10,6 @@
   "telephony_group_billing_actions_group_group_called_fees": "Coûts SVA du groupe",
   "telephony_group_billing_actions_group_called_fees_history": "Historique des coûts SVA",
   "telephony_group_billing_actions_group_banking_management": "Zmień dane bankowe",
-  "telephony_group_billing_actions_group_delayed_account_transfert": "Przelew na konto bankowe"
+  "telephony_group_billing_actions_group_delayed_account_transfert": "Przelew na konto bankowe",
+  "telephony_group_billing_breadcrumb": "Płatności"
 }

@@ -3,5 +3,6 @@
   "telephony_line_management_actions_line_consumption_outgoing_calls": "Chiamate effettuate",
   "telephony_line_management_actions_line_consumption_incoming_fax": "Fax ricevuti",
   "telephony_line_management_actions_line_consumption_outgoing_fax": "Fax trasmessi",
-  "telephony_line_consumption_back_link": "Ritorna alla gestione dei tuoi consumi"
+  "telephony_line_consumption_back_link": "Ritorna alla gestione dei tuoi consumi",
+  "telephony_line_management_actions_line_consumption_breadcrumb": "Consumo"
 }

@@ -5,5 +5,6 @@
   "telephony_group_line_calls_click2call_changePassword_success": "Utente <strong>{{name}}</strong> modificato! ",
   "telephony_group_line_calls_click2call_changePassword_fail": "Ops! Impossibile modificare la password dell'utente <strong>{{name}}</strong>.",
   "telephony_group_line_calls_click2call_changePassword_rule_size": "Deve contenere tra 8 e 20 caratteri",
-  "telephony_group_line_calls_click2call_changePassword_rule_special": "Deve contenere cifre, lettere non accentate o {{list}}"
+  "telephony_group_line_calls_click2call_changePassword_rule_special": "Deve contenere cifre, lettere non accentate o {{list}}",
+  "telephony_group_line_calls_click2call_changePassword": "Modifica la password"
 }

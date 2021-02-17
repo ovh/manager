@@ -25,5 +25,6 @@
   "sms_batches_status_FAILED": "Błąd",
   "sms_batches_error": "Wystąpił błąd: {{error}}",
   "sms_batches_delete_success": "Usuwanie kampanii zostało zakończone.",
-  "sms_batches_details": "Wyświetl szczegóły"
+  "sms_batches_details": "Wyświetl szczegóły",
+  "sms_batches_breadcrumb": "Zarządzanie kampaniami"
 }

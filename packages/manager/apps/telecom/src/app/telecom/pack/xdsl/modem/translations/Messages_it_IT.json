@@ -16,5 +16,6 @@
   "xdsl_model_access_error": "Ops! Impossibile recuperare le informazioni relative al tuo pack.",
   "xdsl_model_task_error": "Ops! Impossibile recuperare le operazioni in corso.",
   "xdsl_modem_modem_error": "Ops! Impossibile recuperare le informazioni relative al tuo modem.",
-  "xdsl_modem_firmware": "Firmware"
+  "xdsl_modem_firmware": "Firmware",
+  "xdsl_modem_breadcrumb": "Modem"
 }

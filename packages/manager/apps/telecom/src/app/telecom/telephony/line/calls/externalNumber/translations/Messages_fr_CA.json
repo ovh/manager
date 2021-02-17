@@ -1,4 +1,5 @@
 {
+  "telephony_trunk_external_number": "Numéros externes",
   "telephony_trunk_external_number_info1": "Votre offre SIP trunk vous permet de présenter des numéros externes au réseau OVH sur votre ligne.",
   "telephony_trunk_external_number_info2": "Votre nombre de lignes simultanées vous permet de configurer jusqu'à {{ count }} numéros externes.",
   "telephony_trunk_external_number_info2_single": "Votre nombre de lignes simultanées vous permet de configurer jusqu'à 1 numéro externe.",
@@ -8,7 +9,7 @@
   "telephony_trunk_external_number_presented_list_no_number": "Aucun numéro externe configuré",
   "telephony_trunk_external_number_presented_list_number_status": "Statut",
   "telephony_trunk_external_number_presented_list_number_status_waiting_validation": "En cours de validation",
-  "telephony_trunk_external_number_presented_list_number_status_enabled": "Validée",
+  "telephony_trunk_external_number_presented_list_number_status_enabled": "Validé",
   "telephony_trunk_external_number_presented_list_number_status_refused": "Numéro refusé",
   "telephony_trunk_external_number_presented_list_number_status_to_delete": "Numéro à supprimer",
   "telephony_trunk_external_number_presented_list_number_delete": "Supprimer le numéro externe de la liste",

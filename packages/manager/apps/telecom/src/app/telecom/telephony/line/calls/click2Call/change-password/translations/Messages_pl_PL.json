@@ -5,5 +5,6 @@
   "telephony_group_line_calls_click2call_changePassword_success": "Użytkownik <strong>{{name}}</strong> został zmodyfikowany. ",
   "telephony_group_line_calls_click2call_changePassword_fail": "Nie mogliśmy zmienić hasła dla użytkownika <strong>{{name}}</strong>.",
   "telephony_group_line_calls_click2call_changePassword_rule_size": "Musi zawierać od 8 do 20 znaków",
-  "telephony_group_line_calls_click2call_changePassword_rule_special": "Musi zawierać cyfry, litery bez akcentów lub {{list}}"
+  "telephony_group_line_calls_click2call_changePassword_rule_special": "Musi zawierać cyfry, litery bez akcentów lub {{list}}",
+  "telephony_group_line_calls_click2call_changePassword": "Zmień hasło"
 }

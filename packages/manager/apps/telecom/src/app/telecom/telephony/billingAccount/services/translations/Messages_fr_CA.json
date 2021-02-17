@@ -1,0 +1,11 @@
+{
+  "telephony_billing_account_line_breadcrumb": "Lignes",
+  "telephony_billing_account_line_number": "Service",
+  "telephony_billing_account_services_description_title": "Description",
+  "telephony_billing_account_line_service": "Type",
+  "telephony_billing_account_line_service_line": "Ligne",
+  "telephony_billing_account_line_service_alias": "Alias",
+  "telephony_billing_account_line_feature": "Type de service",
+  "telephony_billing_account_line_feature_no_configuration": "Aucun type",
+  "telephony_billing_account_services_view_label": "Détail du service"
+}

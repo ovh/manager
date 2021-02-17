@@ -7,5 +7,6 @@
   "telephony_line_phone_actions_line_phone_upgrade_firmware": "Mise à jour du firmware",
   "telephony_line_phone_actions_line_phone_reboot": "Riavviare",
   "telephony_line_phone_actions_line_order_accessories": "Commander des accessoires",
-  "telephony_group_line_phone_section_back_link": "Retour à la gestion du téléphone"
+  "telephony_group_line_phone_section_back_link": "Retour à la gestion du téléphone",
+  "telephony_line_phone_actions_line_details_phone_breadcrumb": "Telefono"
 }

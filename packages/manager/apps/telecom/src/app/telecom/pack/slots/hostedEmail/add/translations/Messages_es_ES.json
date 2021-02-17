@@ -2,5 +2,6 @@
   "add_an_account": "Añadir una cuenta Hosted",
   "account_informations": "Información sobre la cuenta",
   "success_validation": "La solicitud se ha enviado.",
-  "an_error_ocurred": "Se ha producido un error al crear la cuenta."
+  "an_error_ocurred": "Se ha producido un error al crear la cuenta.",
+  "hosted_email_add_an_account": "Añadir una cuenta Hosted"
 }
