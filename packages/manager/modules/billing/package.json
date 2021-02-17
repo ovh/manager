@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-billing",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "private": true,
   "description": "OVHcloud manager billing module",
   "repository": {

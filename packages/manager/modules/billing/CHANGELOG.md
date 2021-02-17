@@ -1,3 +1,13 @@
+## [2.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@2.1.2...@ovh-ux/manager-billing@2.1.3) (2021-02-17)
+
+
+### Bug Fixes
+
+* **billing:** remove unwanted links in US ([#4441](https://github.com/ovh/manager/issues/4441)) ([b0193c6](https://github.com/ovh/manager/commit/b0193c68adaf0b58df93b297904b25a5c0ef4079))
+* **commitment:** filter commitment types ([#4444](https://github.com/ovh/manager/issues/4444)) ([06bc435](https://github.com/ovh/manager/commit/06bc435cf2e5f651a15c24225a24030969e064a7))
+
+
+
 ## [2.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@2.1.1...@ovh-ux/manager-billing@2.1.2) (2021-02-10)
 
 

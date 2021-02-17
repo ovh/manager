@@ -1,3 +1,12 @@
+## [1.1.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-notifications-sidebar@1.1.7...@ovh-ux/manager-notifications-sidebar@1.1.8) (2021-02-17)
+
+
+### Bug Fixes
+
+* **notifications:** duplicates repeater track by ([#4440](https://github.com/ovh/manager/issues/4440)) ([2de289d](https://github.com/ovh/manager/commit/2de289dff365209e8df173a4958dd2d9975c7aec))
+
+
+
 ## [1.1.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-notifications-sidebar@1.1.6...@ovh-ux/manager-notifications-sidebar@1.1.7) (2021-02-10)
 
 
