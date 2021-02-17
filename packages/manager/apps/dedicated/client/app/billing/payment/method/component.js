@@ -7,8 +7,13 @@ export default {
   template,
   bindings: {
     getActionHref: '<',
+    goToSplitPaymentAction: '<',
     guides: '<',
     paymentMethods: '<',
     currentUser: '<',
+    isSplitPaymentAvailable: '<',
+    splitPayment: '<',
+    splitPaymentInformationHref: '@?',
+    tagStatusEnum: '<',
   },
 };
