@@ -108,26 +108,18 @@
                 <!-- END OF ENABLE / DISABLE -->
 
                 <!-- TIMEOUT -->
-                <div class="form-group clearfix">
-                    <label
-                        class="service-title"
-                        for="timeout"
-                        data-translate="telephony_time_condition_old_pabx_params_timeout"
+                <oui-field
+                    label="{{ :: 'telephony_time_condition_old_pabx_params_timeout' | translate }}"
+                >
+                    <oui-select
+                        disabled="$ctrl.number.feature.timeCondition.status === 'SAVING'"
+                        items="$ctrl.availableTimeoutValues"
+                        match="value"
+                        name="timeout"
+                        model="$ctrl.number.feature.timeCondition.timeout"
                     >
-                    </label>
-                    <div class="input-group col-xs-3">
-                        <select
-                            data-flat-select
-                            class="form-control"
-                            id="timeout"
-                            name="timeout"
-                            data-ng-options="timeout.value as timeout.label for timeout in $ctrl.availableTimeoutValues"
-                            data-ng-model="$ctrl.number.feature.timeCondition.timeout"
-                            data-ng-disabled="$ctrl.number.feature.timeCondition.status === 'SAVING'"
-                        >
-                        </select>
-                    </div>
-                </div>
+                    </oui-select>
+                </oui-field>
                 <!-- END OF TIMEOUT -->
             </div>
             <!-- END OF GLOBAL PARAMETERS -->

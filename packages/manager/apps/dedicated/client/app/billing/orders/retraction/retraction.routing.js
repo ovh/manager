@@ -2,19 +2,20 @@ import template from './billing-orders-retraction.html';
 import controller from './billing-orders-retraction.controller';
 
 export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
-  $stateProvider.state('app.account.billing.retract', {
-    url: '/orders/retract/:id',
+  $stateProvider.state('app.account.billing.orders.order.retract', {
+    url: '/retract',
     template,
     controller,
     controllerAs: '$ctrl',
     translations: { value: ['../../..'], format: 'json' },
     resolve: {
-      orderId: /* @ngInject */ ($transition$) => $transition$.params().id,
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('billing_orders_retractation'),
     },
   });
 
   $urlServiceProvider.rules.when(
-    '/billing/orders/:id/retract',
     '/billing/orders/retract/:id',
+    '/billing/orders/:id/retract',
   );
 };

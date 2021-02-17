@@ -254,7 +254,7 @@
   "server_configuration_mitigation_force_title": "Schutz erzwingen",
   "server_configuration_mitigation_force_question": "Sind Sie sicher, dass Sie den Schutz für die IP-Adresse {{t0}} erzwingen möchten?",
   "server_configuration_mitigation_force_success": "Die Aktivierung des Schutzes für die IP {{t0}} wird in einigen Augenblicken erzwungen",
-  "server_configuration_mitigation_force_failed": "Beim Aktivieren des permanenten Modus auf der IP {0} ist ein Fehler aufgetreten",
+  "server_configuration_mitigation_force_failed": "Beim Aktivieren des permanenten Modus auf der IP {{t0}} ist ein Fehler aufgetreten",
   "server_configuration_mitigation_auto_title_button": "Schutz auf automatischen Modus umstellen",
   "server_configuration_mitigation_auto_title": "Schutz auf automatischen Modus umstellen",
   "server_configuration_mitigation_auto_question": "Sind Sie sicher, dass Sie den Schutz für die IP {{t0}} auf den automatischen Modus umstellen möchten?",

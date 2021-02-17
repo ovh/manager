@@ -1,3 +1,5 @@
+import { SERVICE_STATUS } from './service.constants';
+
 export default class XdslModemServiceCtrl {
   /* @ngInject */
   constructor(
@@ -31,10 +33,10 @@ export default class XdslModemServiceCtrl {
       .get({
         xdslId: this.$stateParams.serviceName,
       })
-      .$promise.then(({ xdslTask }) => {
+      .$promise.then(({ data }) => {
         blocIP.isDefined = true;
-        blocIP.value = xdslTask === 'enabled';
-        return xdslTask;
+        blocIP.value = data === SERVICE_STATUS.enabled;
+        return data;
       })
       .finally(() => {
         this.modemServices.push(blocIP);
@@ -84,10 +86,10 @@ export default class XdslModemServiceCtrl {
       .get({
         xdslId: this.$stateParams.serviceName,
       })
-      .$promise.then(({ xdslTask }) => {
+      .$promise.then(({ data }) => {
         callWaiting.isDefined = true;
-        callWaiting.value = xdslTask === 'enabled';
-        return xdslTask;
+        callWaiting.value = data === SERVICE_STATUS.enabled;
+        return data;
       })
       .finally(() => {
         this.modemServices.push(callWaiting);
@@ -137,10 +139,10 @@ export default class XdslModemServiceCtrl {
       .get({
         xdslId: this.$stateParams.serviceName,
       })
-      .$promise.then(({ xdslTask }) => {
-        contentSharing.value = xdslTask === 'enabled';
+      .$promise.then(({ data }) => {
+        contentSharing.value = data === SERVICE_STATUS.enabled;
         contentSharing.isDefined = true;
-        return xdslTask;
+        return data;
       })
       .finally(() => {
         this.modemServices.push(contentSharing);
@@ -204,10 +206,10 @@ export default class XdslModemServiceCtrl {
       .get({
         xdslId: this.$stateParams.serviceName,
       })
-      .$promise.then(({ xdslTask }) => {
-        ftp.value = xdslTask === 'enabled';
+      .$promise.then(({ data }) => {
+        ftp.value = data === SERVICE_STATUS.enabled;
         ftp.isDefined = true;
-        return xdslTask;
+        return data;
       })
       .finally(() => {
         this.modemServices.push(ftp);
@@ -255,10 +257,10 @@ export default class XdslModemServiceCtrl {
       .get({
         xdslId: this.$stateParams.serviceName,
       })
-      .$promise.then(({ xdslTask }) => {
-        ipsecAlg.value = xdslTask === 'enabled';
+      .$promise.then(({ data }) => {
+        ipsecAlg.value = data === SERVICE_STATUS.enabled;
         ipsecAlg.isDefined = true;
-        return xdslTask;
+        return data;
       })
       .finally(() => {
         this.modemServices.push(ipsecAlg);
@@ -308,10 +310,10 @@ export default class XdslModemServiceCtrl {
       .get({
         xdslId: this.$stateParams.serviceName,
       })
-      .$promise.then(({ xdslTask }) => {
-        sipAlg.value = xdslTask === 'enabled';
+      .$promise.then(({ data }) => {
+        sipAlg.value = data === SERVICE_STATUS.enabled;
         sipAlg.isDefined = true;
-        return xdslTask;
+        return data;
       })
       .finally(() => {
         this.modemServices.push(sipAlg);
@@ -361,10 +363,10 @@ export default class XdslModemServiceCtrl {
       .get({
         xdslId: this.$stateParams.serviceName,
       })
-      .$promise.then(({ xdslTask }) => {
-        upnp.value = xdslTask === 'enabled';
+      .$promise.then(({ data }) => {
+        upnp.value = data === SERVICE_STATUS.enabled;
         upnp.isDefined = true;
-        return xdslTask;
+        return data;
       })
       .finally(() => {
         this.modemServices.push(upnp);
@@ -407,10 +409,14 @@ export default class XdslModemServiceCtrl {
   changeValue(name, value) {
     switch (name) {
       case 'blocIP':
-        this.updateBlocIp(value ? 'enabled' : 'disabled');
+        this.updateBlocIp(
+          value ? SERVICE_STATUS.enabled : SERVICE_STATUS.disabled,
+        );
         break;
       case 'callWaiting':
-        this.updateCallWaiting(value ? 'enabled' : 'disabled');
+        this.updateCallWaiting(
+          value ? SERVICE_STATUS.enabled : SERVICE_STATUS.disabled,
+        );
         break;
       case 'contentSharing':
         this.$uibModal
@@ -429,22 +435,32 @@ export default class XdslModemServiceCtrl {
                 break;
               }
               default:
-                this.updateContentSharing(value ? 'enabled' : 'disabled');
+                this.updateContentSharing(
+                  value ? SERVICE_STATUS.enabled : SERVICE_STATUS.disabled,
+                );
                 break;
             }
           });
         break;
       case 'ftp':
-        this.updateFTP(value ? 'enabled' : 'disabled');
+        this.updateFTP(
+          value ? SERVICE_STATUS.enabled : SERVICE_STATUS.disabled,
+        );
         break;
       case 'ipsecAlg':
-        this.updateIpsecAlg(value ? 'enabled' : 'disabled');
+        this.updateIpsecAlg(
+          value ? SERVICE_STATUS.enabled : SERVICE_STATUS.disabled,
+        );
         break;
       case 'sipAlg':
-        this.updateSipAlg(value ? 'enabled' : 'disabled');
+        this.updateSipAlg(
+          value ? SERVICE_STATUS.enabled : SERVICE_STATUS.disabled,
+        );
         break;
       case 'upnp':
-        this.updateUPnP(value ? 'enabled' : 'disabled');
+        this.updateUPnP(
+          value ? SERVICE_STATUS.enabled : SERVICE_STATUS.disabled,
+        );
         break;
       default:
         break;

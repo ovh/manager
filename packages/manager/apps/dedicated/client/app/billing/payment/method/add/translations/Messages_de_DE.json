@@ -18,7 +18,7 @@
   "billing_payment_method_add_billing_address_create": "Neue Adresse hinzufügen",
   "billing_payment_method_add_payment_method": "Zahlungsmittelinformation",
   "billing_payment_method_add_info": "Es wird eine gesicherte Seite in einem neuen Tab geöffnet, um das Hinzufügen des neuen Zahlungsmittels abzuschließen. Wenn kein neuer Tab geöffnet wurde, klicken Sie bitte <a href=\"{{ paymentUrl }}\" target=\"_blank\" rel=\"noopener\">hier</a>.",
-  "billing_payment_method_add_bank_account_success": "Das Bankkonto wurde hinzugefügt und wird nach der Validierung aktiviert. Bitte folgen Sie der <a href=\"{{ url }}\" target=\"_blank\">in diesem Dokument beschriebenen Vorgehensweise</a>, um das Zahlungsmittel zu bestätigen (Rücksendung erbeten). Ihr Bankkonto wird 24 bis 48 Stunden nach Eingang Ihrer Einzugsermächtigung freigeschaltet.",
+  "billing_payment_method_add_bank_account_success": "Das Bankkonto wurde hinzugefügt und wird nach der Validierung aktiviert. Bitte gehen Sie <a href=\"{{t0}}\" target=\"_blank\">wie in diesem Dokument beschrieben vor</a>, um das Zahlungsmittel zu bestätigen. Wir bitten um Zusendung per Post. Ihr Bankkonto wird 24 bis 48 Stunden nach Eingang Ihrer Einzugsermächtigung freigeschaltet.",
   "billing_payment_method_add_load_error": "Beim Laden der Seite ist ein Fehler aufgetreten.",
   "billing_payment_method_add_status_cancel": "Die Anfrage zum Hinzufügen des Zahlungsmittels wurde storniert. Ihr Zahlungsmittel wurde somit nicht mit Ihrem OVH Account verbunden.",
   "billing_payment_method_add_status_error": "Beim Hinzufügen des Zahlungsmittels ist ein Fehler aufgetreten.",

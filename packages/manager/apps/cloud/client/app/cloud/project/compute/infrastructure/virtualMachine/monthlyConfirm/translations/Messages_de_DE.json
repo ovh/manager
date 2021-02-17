@@ -1,7 +1,0 @@
-{
- "cpcivm_monthly_title": "Umstellung auf das monatliche Abo",
- "cpcivm_monthly_info": "Reduzieren Sie den Preis um 50% durch Umstellung dieser Maschine auf das monatliche Abo (im Voraus abgerechnet).",
- "cpcivm_monthly_prorata_warning": "Es wird dann eine anteilige Rechnung für die verbleibenden Tage des Monats erstellt.",
- "cpcivm_monthly_success": "Dieser Server wird in wenigen Augenblicken auf das monatliche Abo umgestellt.",
- "cpcivm_monthly_fail": "Bei der Umstellung auf das monatliche Abo ist ein Fehler aufgetreten."
-}

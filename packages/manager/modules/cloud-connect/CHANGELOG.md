@@ -1,3 +1,21 @@
+## [1.0.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.0.7...@ovh-ux/manager-cloud-connect@1.0.8) (2021-02-02)
+
+
+### Bug Fixes
+
+* bump semver range for @ovh-ux/manager-config package ([ca04d19](https://github.com/ovh/manager/commit/ca04d19b7a038544f1b5e3b211d0a1c3b70a0d5b))
+
+
+
+## [1.0.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.0.6...@ovh-ux/manager-cloud-connect@1.0.7) (2021-01-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 768] ([2b61ff8](https://github.com/ovh/manager/commit/2b61ff8d8042acb9db3344a36f05f930f3e66e63))
+
+
+
 ## [1.0.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.0.5...@ovh-ux/manager-cloud-connect@1.0.6) (2021-01-18)
 
 

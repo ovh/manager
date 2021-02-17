@@ -1,3 +1,22 @@
+## [2.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.3.1...@ovh-ux/manager-vps@2.3.2) (2021-02-02)
+
+
+### Bug Fixes
+
+* bump semver range for @ovh-ux/manager-config package ([ca04d19](https://github.com/ovh/manager/commit/ca04d19b7a038544f1b5e3b211d0a1c3b70a0d5b))
+
+
+
+## [2.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.3.0...@ovh-ux/manager-vps@2.3.1) (2021-01-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 767] ([e640f88](https://github.com/ovh/manager/commit/e640f8820b5c142c1dd9745e2ceadc22c76427a6))
+* **i18n:** add missing translations [CDS 768] ([2b61ff8](https://github.com/ovh/manager/commit/2b61ff8d8042acb9db3344a36f05f930f3e66e63))
+
+
+
 # [2.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.2.12...@ovh-ux/manager-vps@2.3.0) (2021-01-20)
 
 

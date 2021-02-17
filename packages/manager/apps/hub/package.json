@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-hub-app",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "private": true,
   "description": "OVHcloud Dashboard control panel.",
   "repository": {
@@ -23,7 +23,7 @@
     "@ovh-ux/manager-at-internet-configuration": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-banner": "^1.1.3",
     "@ovh-ux/manager-billing": "^1.0.0 || ^2.0.0",
-    "@ovh-ux/manager-config": "^3.0.0",
+    "@ovh-ux/manager-config": "^3.0.0 || ^4.0.0",
     "@ovh-ux/manager-core": "^11.0.0 || ^12.0.0",
     "@ovh-ux/manager-error-page": "^1.3.0 || ^2.0.0",
     "@ovh-ux/manager-hub": "^1.0.0 || ^2.0.0",
@@ -37,8 +37,8 @@
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.8",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.0.2",
     "@ovh-ux/ng-ovh-http": "^5.0.1",
-    "@ovh-ux/ng-ovh-order-tracking": "^1.0.5",
-    "@ovh-ux/ng-ovh-payment-method": "^7.0.9",
+    "@ovh-ux/ng-ovh-order-tracking": "^1.0.6",
+    "@ovh-ux/ng-ovh-payment-method": "^7.0.10",
     "@ovh-ux/ng-ovh-proxy-request": "^2.0.1",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.0",
     "@ovh-ux/ng-ovh-sso-auth": "^4.4.0",

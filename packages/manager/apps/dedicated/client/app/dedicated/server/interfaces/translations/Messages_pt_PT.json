@@ -4,7 +4,7 @@
   "dedicated_server_interfaces_vrack_information": "Tenha em conta que não existe nenhum IP predefinido para a rede privada (vRack). Precisará de criar uma rede privada (vRack) antes, adicionar-lhe o seu servidor e configurar os IP.",
   "dedicated_server_interfaces_vrack_information_link_label": "Saber mais sobre o vRack",
   "dedicated_server_interfaces_step_checker_title": "OLA: OVHcloud Link Aggregation",
-  "dedicated_server_interfaces_step_checker_activate": "Ativar OLA",
+  "dedicated_server_interfaces_step_checker_activate": "Ativar a opção OLA",
   "dedicated_server_interfaces_step_checker_guides_text": "Para mais informações,",
   "dedicated_server_interfaces_step_checker_guides_link": "consulte os nossos manuais",
   "dedicated_server_interfaces_step_checker_list_connectivity": "Conetividade redundada",
@@ -69,8 +69,9 @@
   "dedicated_server_interfaces_bandwith_public": "Largura de banda pública",
   "dedicated_server_interfaces_bandwith_private": "Largura de banda privada",
   "dedicated_server_interfaces_current_operation": "Está em curso uma operação no servidor ",
-  "dedicated_server_interfaces_task_error": "Ocorreu um erro durante a configuração: {{ errorMessage }}.",
+  "dedicated_server_interfaces_task_error": "Ocorreu um erro durante a configuração: {{ errorMessage }}",
   "dedicated_server_interfaces_guides": "Manuais",
   "dedicated_server_interfaces_guides_ola": "Como configurar o OLA?",
-  "dedicated_server_interfaces_new_tab": "Abre-se numa nova janela"
+  "dedicated_server_interfaces_new_tab": "(Abre-se numa nova janela)",
+  "dedicated_server_interfaces_vrack_aggregation_guarantee": "garantida"
 }

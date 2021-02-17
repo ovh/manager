@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-dbaas-logs",
-  "version": "1.4.5",
+  "version": "1.4.7",
   "private": true,
   "description": "OVHcloud Logs Data Platform",
   "repository": {
@@ -12,7 +12,7 @@
   "author": "OVH SAS",
   "main": "./src/index.js",
   "dependencies": {
-    "@ovh-ux/manager-config": "^2.0.0 || ^3.0.0",
+    "@ovh-ux/manager-config": "^3.0.0 || ^4.0.0",
     "lodash": "^4.17.20",
     "oclazyload": "^1.1.0"
   },

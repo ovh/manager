@@ -1,3 +1,21 @@
+## [8.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.2.0...@ovh-ux/manager-sms@8.2.1) (2021-02-02)
+
+
+### Bug Fixes
+
+* bump semver range for @ovh-ux/manager-config package ([ca04d19](https://github.com/ovh/manager/commit/ca04d19b7a038544f1b5e3b211d0a1c3b70a0d5b))
+
+
+
+# [8.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.1.0...@ovh-ux/manager-sms@8.2.0) (2021-01-27)
+
+
+### Features
+
+* add some missing tracking ([#4244](https://github.com/ovh/manager/issues/4244)) ([9c240c9](https://github.com/ovh/manager/commit/9c240c9166be35655e80e41b8bf1824e60d29734))
+
+
+
 # [8.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.0.13...@ovh-ux/manager-sms@8.1.0) (2021-01-20)
 
 

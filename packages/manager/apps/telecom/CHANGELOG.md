@@ -1,3 +1,48 @@
+## [13.11.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.11.1...@ovh-ux/manager-telecom@13.11.2) (2021-02-02)
+
+
+### Bug Fixes
+
+* bump semver range for @ovh-ux/manager-config package ([ca04d19](https://github.com/ovh/manager/commit/ca04d19b7a038544f1b5e3b211d0a1c3b70a0d5b))
+
+
+
+## [13.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.11.0...@ovh-ux/manager-telecom@13.11.1) (2021-02-01)
+
+
+### Bug Fixes
+
+* **xdsl.modem:** display the correct value for upnp service ([#4359](https://github.com/ovh/manager/issues/4359)) ([8e64244](https://github.com/ovh/manager/commit/8e642442c0a0f4e1853293dd4afa2d0db4449159))
+
+
+
+# [13.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.10.0...@ovh-ux/manager-telecom@13.11.0) (2021-01-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 758] ([c0f4c71](https://github.com/ovh/manager/commit/c0f4c71df8db0ae7ec351c8af6a041e421e56068))
+* **i18n:** add missing translations [CDS 767] ([e640f88](https://github.com/ovh/manager/commit/e640f8820b5c142c1dd9745e2ceadc22c76427a6))
+* **i18n:** add missing translations [CDS 768] ([2b61ff8](https://github.com/ovh/manager/commit/2b61ff8d8042acb9db3344a36f05f930f3e66e63))
+* **i18n:** add missing translations [CDS 772] ([cefefc3](https://github.com/ovh/manager/commit/cefefc3434184b86ac96ffd25c5488445b5224f3))
+* **i18n:** add missing translations [CDS 773] ([2c3a548](https://github.com/ovh/manager/commit/2c3a548aa8de28c9e84b89596f703f622e7224fe))
+* **i18n:** add missing translations [CDS 775] ([79d4412](https://github.com/ovh/manager/commit/79d44129b838b5da855369bfaabbd0e01f533c2a))
+* **telephony.alias.configuration.sounds:** allow to configure trunks ([#4274](https://github.com/ovh/manager/issues/4274)) ([79f0d1d](https://github.com/ovh/manager/commit/79f0d1d0d5d88163ccdfff455da83569dedda9db))
+* **telephony.service.outgoing:** display all calls no matter duration ([#4273](https://github.com/ovh/manager/issues/4273)) ([7040978](https://github.com/ovh/manager/commit/704097884daae68bc740ed136e355f3d3808f298))
+
+
+### Features
+
+* **pack:** add links for ig map and travaux ([#4235](https://github.com/ovh/manager/issues/4235)) ([c4af40f](https://github.com/ovh/manager/commit/c4af40fc8866af4a02d9ac3272b424bdf40d10a5))
+* **telephony.alias:** allow to terminate portability alias ([#4201](https://github.com/ovh/manager/issues/4201)) ([72b066e](https://github.com/ovh/manager/commit/72b066eb6f81808511603df3a6e17362494cd157))
+
+
+### Performance Improvements
+
+* avoid unecessary ssoAuth login call ([#4327](https://github.com/ovh/manager/issues/4327)) ([4bfadd7](https://github.com/ovh/manager/commit/4bfadd70b442e03af1ea9ac71c842282554f754c))
+
+
+
 # [13.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.9.0...@ovh-ux/manager-telecom@13.10.0) (2021-01-13)
 
 

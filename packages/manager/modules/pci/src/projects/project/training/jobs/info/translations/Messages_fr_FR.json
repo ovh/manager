@@ -1,7 +1,9 @@
 {
   "pci_projects_project_training_job_logs_text_1": "Les dernières 100 lignes de logs sont visibles dans cet onglet",
   "pci_projects_project_training_job_logs_text_2": "Pour accéder à l'integralité des logs du job via la ligne de commande, lancer la commande suivante :",
-  "pci_projects_project_training_job_logs_text_3": "Une fois le job terminé, vous pouvez télécharger vos logs via l'object storage, dans le container \"ai-training-logs\"",
+  "pci_projects_project_training_job_logs_text_3": "Le job vient de se terminer. Quand la synchronisation avec l'object storage sera finalisée vous pourrez télécharger vos logs via le container \"ai-training-logs\" dans la region choisie pour lancer le job.",
+  "pci_projects_project_training_job_logs_text_5": "Le job est terminé, vous pouvez télécharger vos logs via l'object storage, dans le container \"ai-training-logs\" dans la region choisie pour lancer le job.",
+  "pci_projects_project_training_job_logs_text_4": "Vous pouvez également utiliser la commande suivante pour les télécharger directement :",
   "pci_projects_project_training_job_info": "Job: ",
   "pci_projects_project_training_job_info_header": "Job informations",
   "pci_projects_project_training_job_logs_header": "Logs",
@@ -25,5 +27,6 @@
   "pci_projects_project_training_jobs_info_title_3": "Ressources",
   "pci_projects_project_training_jobs_info_title_4": "Données",
   "pci_projects_project_training_jobs_info_title_5": "Timeline",
-  "pci_projects_project_training_jobs_info_title_actions": "Actions"
+  "pci_projects_project_training_jobs_info_title_actions": "Actions",
+  "pci_projects_project_training_job_logs_text_pre_running": "Le job est encore en attente de démarrage… L'onglet se rafraîchira automatiquement une fois que le job aura commencé."
 }

@@ -8,5 +8,6 @@
   "billing_autorenew_enable_bulk": "Automatic renewal will be enabled for all of the services selected",
   "billing_autorenew_enable_bulk_single": "Automatic renewal for the {{ serviceName }} service will be enabled",
   "billing_autorenew_enable_success": "The service renewals have been updated",
-  "billing_autorenew_enable_error": "An error has occurred enabling automatic renewal {{ message }}"
+  "billing_autorenew_enable_error": "An error has occurred enabling automatic renewal {{ message }}",
+  "billing_autorenew_enable_breadcrumb": "Enable automatic renewal"
 }

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci",
-  "version": "5.8.0",
+  "version": "5.8.3",
   "private": true,
   "description": "Public Cloud Instance product.",
   "repository": {
@@ -31,7 +31,7 @@
     "@ovh-ux/manager-advices": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-catalog-price": "^1.2.0",
     "@ovh-ux/manager-cloud-styles": "^0.4.0 || ^1.0.0",
-    "@ovh-ux/manager-config": "^2.0.0 || ^3.0.0",
+    "@ovh-ux/manager-config": "^3.0.0 || ^4.0.0",
     "@ovh-ux/manager-core": "^11.0.0 || ^12.0.0",
     "@ovh-ux/manager-error-page": "^0.0.0",
     "@ovh-ux/manager-telecom-styles": "^4.0.0",
@@ -40,7 +40,7 @@
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.0",
     "@ovh-ux/ng-ovh-contracts": "^4.0.2",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.0.2",
-    "@ovh-ux/ng-ovh-payment-method": "^7.0.9",
+    "@ovh-ux/ng-ovh-payment-method": "^7.0.10",
     "@ovh-ux/ng-ovh-proxy-request": "^2.0.1",
     "@ovh-ux/ng-ovh-responsive-popover": "^5.0.3",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.2",
@@ -63,6 +63,7 @@
     "font-awesome": "^4.0.0",
     "jquery-ui": "components/jqueryui#~1.11.2",
     "moment": "^2.24.0",
+    "moment-duration-format": "^2.3.2",
     "oclazyload": "^1.1.0",
     "ovh-api-services": "^11.0.0",
     "ovh-common-style": "^5.0.0",

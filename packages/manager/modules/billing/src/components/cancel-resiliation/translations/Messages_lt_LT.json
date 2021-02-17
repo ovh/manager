@@ -1,8 +1,0 @@
-{
-  "autorenew_service_cancel_resiliation_title": "Cancel the termination of a service",
-  "autorenew_service_cancel_resiliation_success": "Termination of the {{ service }} service has been cancelled.",
-  "autorenew_service_cancel_resiliation_error": "An error has occurred cancelling the termination {{ message }}",
-  "autorenew_service_cancel_resiliation_confirm": "Are you sure you want to cancel termination for the {{ service }} service?",
-  "autorenew_service_cancel_resiliation_validate": "Confirm cancellation",
-  "autorenew_service_cancel_resiliation_cancel": "Cancel"
-}

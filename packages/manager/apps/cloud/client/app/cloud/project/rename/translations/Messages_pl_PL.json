@@ -1,9 +1,0 @@
-{
- "cloud_project_rename_loading_error": "Wystąpił błąd podczas pobierania opisu.",
- "cloud_project_rename_error": "Wystąpił błąd podczas zmieniania opisu.",
- "cpb_details_project_delete": "Usuń ten projekt",
- "cpb_details_project_rename_reset": "Anuluj",
- "cpb_details_project_rename_ok": "Zapisz",
- "cpb_details_project_rename": "Zmień nazwę",
- "cpb_details_project_description": "Opis projektu"
-}

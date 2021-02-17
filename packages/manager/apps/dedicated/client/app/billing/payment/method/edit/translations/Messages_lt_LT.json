@@ -1,7 +1,0 @@
-{
-  "billing_payment_method_edit_title": "Modify the description",
-  "billing_payment_method_edit_action_save": "Save the description ",
-  "billing_payment_method_edit_description": "Enter a new description",
-  "billing_payment_method_edit_error": "An error has occurred changing the description: {{ errorMessage }}",
-  "billing_payment_method_edit_success": "The change to your payment method description has been saved."
-}

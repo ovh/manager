@@ -1,7 +1,0 @@
-{
- "pci_projects_project_failoverip_imports_title": "Import a failover IP",
- "pci_projects_project_failoverip_imports_block": "Failover IP",
- "pci_projects_project_failoverip_imports_geoloc": "Country",
- "pci_projects_project_failoverip_imports_id": "Associated service",
- "pci_projects_project_failoverip_imports_importIp": "Import this failover IP"
-}

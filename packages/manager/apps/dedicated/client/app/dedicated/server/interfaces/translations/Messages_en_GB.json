@@ -1,7 +1,7 @@
 {
   "dedicated_server_interfaces_title": "Network",
   "dedicated_server_interfaces_guides": "Guides",
-  "dedicated_server_interfaces_guides_ola": "How to configure OLA?",
+  "dedicated_server_interfaces_guides_ola": "How do I configure OLA?",
   "dedicated_server_interfaces_introduction": "In this section, you can find all information related to your server’s network interfaces.",
   "dedicated_server_interfaces_vrack_information": "Please note that by default, no IPs exist for the private network (vRack). You will need to create a private network (vRack) beforehand, add your server to it, then configure your IPs.",
   "dedicated_server_interfaces_vrack_information_link_label": "Find out more about the vRack",
@@ -13,7 +13,7 @@
   "dedicated_server_interfaces_step_checker_list_security": "Secure servers",
   "dedicated_server_interfaces_step_checker_list_reversible": "Easily reversible",
   "dedicated_server_interfaces_step_checker_list_free": "Free for the launch",
-  "dedicated_server_interfaces_step_checker_text1": "With OLA, you can now use your OVH server’s two network connections.",
+  "dedicated_server_interfaces_step_checker_text1": "With OLA, you can now use your OVHcloud server’s two network connections.",
   "dedicated_server_interfaces_step_checker_text2": "You can make a private or public connection redundant, and still add extra bandwidth.",
   "dedicated_server_interfaces_step_checker_text3": "Currently available for the vRack private network only ",
   "dedicated_server_interfaces_step_checker_text4": "Get the launch offer for {{ discountPrice }} instead of {{ price }} ex. VAT/month for the first three months.",
@@ -65,12 +65,13 @@
   "dedicated_server_interfaces_attach_private_network_button": "Attach",
   "dedicated_server_interfaces_detach_private_network_button": "Detach",
   "dedicated_server_interfaces_detach_private_network_text": "Are you sure you want to detach the “{{vrack}}” vRack from the {{interface}} interface?",
-  "dedicated_server_interfaces_resiliate_label": "Cancel",
+  "dedicated_server_interfaces_resiliate_label": "Close",
   "dedicated_server_interfaces_bandwith_title": "Bandwidth",
   "dedicated_server_interfaces_bandwith_description": "Incoming public bandwidth (to and from the internet) is not limited. You can increase your public and private bandwidth by signing up to the following options:",
   "dedicated_server_interfaces_bandwith_public": "Public bandwidth",
   "dedicated_server_interfaces_bandwith_private": "Private bandwidth",
   "dedicated_server_interfaces_current_operation": "An operation is in progress on this server ",
   "dedicated_server_interfaces_task_error": "An error has occurred during configuration: {{ errorMessage }}",
-  "dedicated_server_interfaces_new_tab": "Open in a new tab"
+  "dedicated_server_interfaces_new_tab": "(Opens in a new tab)",
+  "dedicated_server_interfaces_vrack_aggregation_guarantee": "guaranteed"
 }

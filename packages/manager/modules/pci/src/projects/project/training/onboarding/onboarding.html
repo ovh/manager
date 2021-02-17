@@ -14,9 +14,9 @@
         data-on-accept="$ctrl.acceptLab(accepted)"
     ></pci-project-lab-agreements>
 
-    <span data-ng-if="$ctrl.error">
+    <oui-message type="error" data-ng-if="$ctrl.error">
         {{ $ctrl.error }}
-    </span>
+    </oui-message>
 
     <button
         type="button"

@@ -15,7 +15,7 @@
   "pci_projects_project_training_jobs_access_url": "Accesso HTTP",
   "pci_projects_project_training_jobs_access_url_link": "Accesso",
   "pci_projects_project_training_jobs_resource_usage_url": "Dettagli sulle risorse",
-  "pci_projects_project_training_jobs_resource_usage_url_link": "Utilizzo le risorse",
+  "pci_projects_project_training_jobs_resource_usage_url_link": "Utilizzo delle risorse",
   "pci_projects_project_training_jobs_link_not_available": "Non disponibile",
   "pci_projects_project_training_jobs_time": "Tempo di esecuzione",
   "pci_projects_project_training_jobs_info_title_1": "Informazioni del job",
@@ -23,6 +23,9 @@
   "pci_projects_project_training_jobs_info_title_3": "Risorse",
   "pci_projects_project_training_jobs_info_title_4": "Dati",
   "pci_projects_project_training_jobs_info_title_actions": "Azioni",
-  "pci_projects_project_training_job_logs_text_3": "Una volta terminato il job è possibile scaricare i log tramite l'Object Storage, nel container \"ai-training-log\"",
-  "pci_projects_project_training_jobs_info_title_5": "Timeline"
+  "pci_projects_project_training_job_logs_text_3": "Il job e' appena finito. Una volta completata la sincronizzazione con l'Object Storage, potrai scaricare i tuoi log tramite il container \"ai-training-log\" nella regione scelta per avviare il job.",
+  "pci_projects_project_training_jobs_info_title_5": "Timeline",
+  "pci_projects_project_training_job_logs_text_5": "Il job è terminato, puoi scaricare i log tramite l'Object Storage, nel container \"ai-training-log\" nella regione scelta per avviare il job.",
+  "pci_projects_project_training_job_logs_text_4": "Per scaricarli direttamente, utilizza il seguente comando:",
+  "pci_projects_project_training_job_logs_text_pre_running": "Il job è ancora in attesa di avvio... la scheda si raffredderà automaticamente una volta che il job avrà inizio."
 }

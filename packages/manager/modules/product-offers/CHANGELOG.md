@@ -1,3 +1,12 @@
+## [4.0.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-product-offers@4.0.5...@ovh-ux/manager-product-offers@4.0.6) (2021-02-02)
+
+
+### Bug Fixes
+
+* bump semver range for @ovh-ux/manager-config package ([ca04d19](https://github.com/ovh/manager/commit/ca04d19b7a038544f1b5e3b211d0a1c3b70a0d5b))
+
+
+
 ## [4.0.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-product-offers@4.0.4...@ovh-ux/manager-product-offers@4.0.5) (2021-01-04)
 
 

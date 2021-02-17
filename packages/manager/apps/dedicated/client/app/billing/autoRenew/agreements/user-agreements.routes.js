@@ -10,7 +10,6 @@ export default /* @ngInject */ (
       url: '/agreements',
       template,
       controller: 'UserAccount.controllers.agreements',
-      translations: { value: ['.'], format: 'json' },
       resolve: {
         gotoAcceptAllAgreements: /* @ngInject */ ($state, atInternet) => (
           agreements,
@@ -27,6 +26,8 @@ export default /* @ngInject */ (
             },
           );
         },
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('user_agreements_list_title'),
       },
     });
 
