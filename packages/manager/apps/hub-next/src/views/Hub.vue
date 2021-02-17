@@ -3,24 +3,10 @@
     <hub-section :title="t('manager_hub_dashboard_welcome', { name: user.firstname })">
       <template #content>
         <div
-          v-if="warningNotifications.length"
+          v-if="warningNotifications"
           class="d-flex flex-wrap w-100 minw-0 align-items-center justify-content-between"
         >
-          <div class="ovh-manager-hub-carousel w-100">
-            <!-- TODO : Create carousel component -->
-            <div class="oui-message oui-message_error">
-              <span class="oui-message__icon oui-icon oui-icon-warning"></span>
-              <!-- <span
-                v-for="notification in warningNotifications"
-                v-html="notification.description"
-                :key="notification.id"
-                class="oui-message__body"
-              >
-              </span> -->
-              <!-- This is temporary -->
-              <span v-html="warningNotifications[0].description" class="oui-message__body"></span>
-            </div>
-          </div>
+          <carousel level="warning" :messages="warningNotifications"></carousel>
         </div>
       </template>
     </hub-section>
@@ -84,6 +70,7 @@ export default defineComponent({
     HubSection: defineAsyncComponent(() => import('@/components/HubSection.vue')),
     Activity: defineAsyncComponent(() => import('@/views/Activity.vue')),
     ProductsList: defineAsyncComponent(() => import('@/views/ProductsList.vue')),
+    Carousel: defineAsyncComponent(() => import('@/components/ui/Carousel.vue')),
   },
   computed: {
     ...mapGetters({
@@ -93,9 +80,9 @@ export default defineComponent({
     }),
     warningNotifications(): OvhNotification[] {
       return Array.isArray(this.notifications)
-        ? this.notifications.filter(
-          (notification: OvhNotification) => notification.level === 'warning',
-        )
+        ? this.notifications
+          .filter((notification: OvhNotification) => notification.level === 'warning')
+          .map((notification) => notification.description)
         : [];
     },
     areAllProductsShown(): boolean {
@@ -135,55 +122,5 @@ export default defineComponent({
 
 .hub-dashboard-product {
   margin-top: 2.5rem;
-}
-
-.ovh-manager-hub-carousel {
-  @import '@ovh-ux/ui-kit/dist/scss/_tokens';
-
-  .oui-message {
-    padding: 1rem 3rem;
-
-    &__next {
-      position: absolute;
-      top: 50%;
-      right: 0.5rem;
-      margin-top: -1rem;
-
-      .oui-icon {
-        font-size: 1.5rem;
-      }
-    }
-
-    &__bullets {
-      text-align: center;
-    }
-
-    &__body {
-      font-weight: 600;
-    }
-  }
-
-  a.oui-message__body {
-    &:hover,
-    &:focus,
-    &:active {
-      text-decoration-color: $ae-500;
-      color: $ae-500;
-    }
-  }
-
-  .circular-tile {
-    display: inline-block;
-    margin: 0.25rem;
-    border-radius: 0.625rem;
-    background-color: $p-000-white;
-    padding: 0.1875rem;
-    border: $ae-500;
-    cursor: pointer;
-
-    &_active {
-      background-color: $ae-500;
-    }
-  }
 }
 </style>

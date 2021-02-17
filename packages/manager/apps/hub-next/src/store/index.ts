@@ -106,11 +106,6 @@ export default createStore({
 
       // If we're up to this point, it means data loading has succeeded somewhere else before
       commit('setStatus', true);
-
-      // Wait for next DOM update cycle before detaching preloader for a smooth transition
-      nextTick(() => {
-        detach();
-      });
     },
     async fetchHubData({ dispatch }) {
       if (this.getters.getHubStatus) {
@@ -119,7 +114,14 @@ export default createStore({
 
       return axios
         .get<HubResponse>('/engine/2api/hub')
-        .then((data: AxiosResponse<HubResponse>) => dispatch('initState', data.data.data))
+        .then((data: AxiosResponse<HubResponse>) => {
+          dispatch('initState', data.data.data).then(() => {
+            // Wait for next DOM update cycle before detaching preloader for a smooth transition
+            nextTick(() => {
+              detach();
+            });
+          });
+        })
         .catch((error: AxiosError) => {
           console.error(error.message);
         });
