@@ -1,0 +1,40 @@
+<h2 data-translate="billing_payment_method_split_payment_title"></h2>
+
+<p
+    class="oui-badge"
+    data-ng-class="{
+      'oui-badge_error': $ctrl.tagInfo.canBeActivated,
+      'oui-badge_success': $ctrl.tagInfo.canBeDeactivated,
+      'oui-badge_warning': !$ctrl.tagInfo.canBeDeactivated && !$ctrl.tagInfo.canBeActivated,
+    }"
+    data-ng-bind="$ctrl.getFormattedStatus($ctrl.tagInfo.status, $ctrl.tagStatusEnum)"
+></p>
+
+<div class="my-2">
+    <p data-translate="billing_payment_method_split_payment_information"></p>
+    <a
+        class="oui-link_icon"
+        data-ng-href="{{:: $ctrl.splitPaymentInformationHref }}"
+        rel="noopener"
+        target="_blank"
+    >
+        <span
+            data-translate="billing_payment_method_split_payment_information_link"
+        ></span>
+        <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
+    </a>
+</div>
+
+<oui-button
+    on-click="$ctrl.goToSplitPaymentAction()"
+    disabled="!$ctrl.tagInfo.canBeActivated && !$ctrl.tagInfo.canBeDeactivated"
+>
+    <span
+        data-ng-if="!$ctrl.tagInfo.canBeDeactivated"
+        data-translate="billing_payment_method_split_payment_activate"
+    ></span>
+    <span
+        data-ng-if="$ctrl.tagInfo.canBeDeactivated"
+        data-translate="billing_payment_method_split_payment_deactivate"
+    ></span>
+</oui-button>
