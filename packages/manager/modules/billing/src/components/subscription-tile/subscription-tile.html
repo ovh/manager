@@ -22,6 +22,7 @@
         </oui-tile-description>
         <oui-tile-actions data-ng-if="!$ctrl.isLoading">
             <billing-services-actions
+                data-ng-if="$ctrl.displayServiceActions"
                 service="$ctrl.serviceInfos"
                 tracking-prefix="{{ $ctrl.trackingPrefix }}"
                 user="$ctrl.user"
