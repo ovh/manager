@@ -8,18 +8,12 @@ import Notifications from './notifications.jsx';
 import Account from './account.jsx';
 import Search from './search.jsx';
 import Hamburger from './hamburger-menu.jsx';
+import LanguageMenu from './language.jsx';
 import { fetchUniverses, getBrandURL } from './service';
 import style from './navbar.scss';
 import { MESSAGES } from './constants';
 
-function fetchLanguageComponent() {
-  return import('./language.jsx').then(({ default: component }) => component);
-}
-
-// note: since the language component is dynamically imported
-// we need to pass it the i18next instance
-function Navbar({ i18next, user, universe }) {
-  const [LanguageMenu, setLanguageMenu] = useState();
+function Navbar({ user, universe }) {
   const [universes, setUniverses] = useState([]);
   const [searchURL, setSearchURL] = useState();
   const [currentUniverse, setCurrentUniverse] = useState(universe);
@@ -30,9 +24,6 @@ function Navbar({ i18next, user, universe }) {
     });
     listen(MESSAGES.navbarSearch, ({ url }) => {
       setSearchURL(url);
-    });
-    fetchLanguageComponent().then((component) => {
-      setLanguageMenu(component({ i18next }));
     });
     fetchUniverses().then(setUniverses);
   }, []);
@@ -48,7 +39,9 @@ function Navbar({ i18next, user, universe }) {
             <Search targetURL={searchURL} />
           </div>
         )}
-        <div className="oui-navbar-list__item">{LanguageMenu}</div>
+        <div className="oui-navbar-list__item">
+          <LanguageMenu></LanguageMenu>
+        </div>
         <div className="oui-navbar-list__item">
           <Notifications />
         </div>
@@ -61,7 +54,6 @@ function Navbar({ i18next, user, universe }) {
 }
 
 Navbar.propTypes = {
-  i18next: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
   universe: PropTypes.string,
 };
