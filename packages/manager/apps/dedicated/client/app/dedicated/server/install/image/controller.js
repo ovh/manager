@@ -5,7 +5,8 @@ import { BYOI_GUIDE_URLS } from './constants';
 
 export default class DedicatedServerInstallImageCtrl {
   /* @ngInject */
-  constructor(dedicatedServerInstallImage) {
+  constructor(atInternet, dedicatedServerInstallImage) {
+    this.atInternet = atInternet;
     this.dedicatedServerInstallImage = dedicatedServerInstallImage;
 
     this.launchInstallError = null;
@@ -30,6 +31,11 @@ export default class DedicatedServerInstallImageCtrl {
   ============================== */
 
   onImageFormSubmit() {
+    this.atInternet.trackClick({
+      name:
+        'dedicated::dedicated::server::system-install::personalized-image::install',
+      type: 'action',
+    });
     this.loaders.launchInstall = true;
     this.launchInstallError = null;
 

@@ -26,6 +26,7 @@ export default {
     serviceMonitoring: '<',
     specifications: '<',
     technicalDetails: '<',
+    trackingPrefix: '<',
     trafficInformations: '<',
     user: '<',
     vrackInfos: '<',

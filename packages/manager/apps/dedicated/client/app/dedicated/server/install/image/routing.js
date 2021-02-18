@@ -9,7 +9,7 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicated-server.server.install.image', {
     url: '/image',
     views: {
-      '@app.dedicated': {
+      '@app.dedicated-server': {
         component: component.name,
       },
 

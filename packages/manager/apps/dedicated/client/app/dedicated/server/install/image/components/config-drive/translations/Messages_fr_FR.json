@@ -1,6 +1,7 @@
 {
   "dedicated_server_install_image_config_drive": "Activation de ConfigDrive",
-  "dedicated_server_install_image_config_drive_eplain": "Le ConfigDrive est une partition nécessaire pour utiliser par Cloud-init au premier boot de votre serveur afin d’établir la configuration souhaitée. Vous pouvez choisir d’activer ou non cette option. <a href=\"{{ href }}\" target=\"_blank\" rel=\"noopener\">Cliquer ici pour lire la documentation.</a>",
+  "dedicated_server_install_image_config_drive_eplain": "Le ConfigDrive est une partition nécessaire pour utiliser par Cloud-init au premier boot de votre serveur afin d’établir la configuration souhaitée. Vous pouvez choisir d’activer ou non cette option.",
+  "dedicated_server_install_image_config_drive_eplain_link_name": "Cliquer ici pour lire la documentation.",
   "dedicated_server_install_image_config_drive_activated": "Activé",
   "dedicated_server_install_image_config_drive_deactivated": "Désactivé",
   "dedicated_server_install_image_config_drive_hostname": "Hostname du serveur",

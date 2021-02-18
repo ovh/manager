@@ -3,7 +3,9 @@ import some from 'lodash/some';
 import { DOCUMENTATION_LINK, SUPPORTED_SSH_KEY_FORMATS } from './constants';
 
 export default class DedicatedServerInstallImageConfigDriveCtrl {
-  constructor() {
+  /* @ngInject */
+  constructor(atInternet) {
+    this.atInternet = atInternet;
     this.documentationLink = DOCUMENTATION_LINK;
     this.supportedSshFormatsNames = SUPPORTED_SSH_KEY_FORMATS.map(
       ({ name }) => name,
@@ -45,6 +47,17 @@ export default class DedicatedServerInstallImageConfigDriveCtrl {
 
   onMetadataDeleteBtnClick(index) {
     this.model.configdrive.metadata.splice(index, 1);
+  }
+
+  trackSwitch(value) {
+    this.atInternet.trackClick({
+      name: `${
+        this.trackingPrefix
+      }::system-install::public-catalog::configdrive::${
+        value ? 'activate' : 'deactivate'
+      }`,
+      type: 'action',
+    });
   }
 
   /* -----  End of Events  ------*/

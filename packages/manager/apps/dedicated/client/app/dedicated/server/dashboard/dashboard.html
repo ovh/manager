@@ -151,7 +151,7 @@
                                 data-disabled="$ctrl.ola.isConfigured()"
                             >
                                 <oui-action-menu-item
-                                    data-on-click="$ctrl.dedicatedServer.$scope.setAction('installation/progress/dedicated-server-installation-progress', { server: $ctrl.server, serverCtrl: $ctrl.dedicatedServer, user: $ctrl.user })"
+                                    data-on-click="$ctrl.openOsInstallation('progress')"
                                     data-disabled="$ctrl.dedicatedServer.$scope.disable.reboot || $ctrl.dedicatedServer.$scope.disable.byOtherTask"
                                     data-ng-if="$ctrl.dedicatedServer.$scope.disable.installationInProgress"
                                 >
@@ -160,9 +160,18 @@
                                     ></span>
                                 </oui-action-menu-item>
                                 <oui-action-menu-item
-                                    data-on-click="$ctrl.dedicatedServer.$scope.setAction('installation/choice/dedicated-server-installation-choice', { server: $ctrl.server, serverCtrl: $ctrl.dedicatedServer, user: $ctrl.user })"
+                                    data-on-click="$ctrl.openOsInstallation('choice')"
                                     data-disabled="$ctrl.dedicatedServer.$scope.disable.reboot || $ctrl.dedicatedServer.$scope.disable.byOtherTask || $ctrl.ola.isConfigured()"
                                     data-ng-if="!$ctrl.dedicatedServer.$scope.disable.installationInProgress && !$ctrl.ola.isConfigured()"
+                                >
+                                    <span
+                                        data-translate="server_configuration_installation_button"
+                                    ></span>
+                                </oui-action-menu-item>
+                                <oui-action-menu-item
+                                    data-on-click="$ctrl.openOsInstallation('choice')"
+                                    data-disabled="$ctrl.dedicatedServer.$scope.disable.reboot || $ctrl.dedicatedServer.$scope.disable.byOtherTask"
+                                    data-ng-if="!$ctrl.server.os && !$ctrl.dedicatedServer.$scope.disable.installationInProgress"
                                 >
                                     <span
                                         data-translate="server_configuration_installation_button"
