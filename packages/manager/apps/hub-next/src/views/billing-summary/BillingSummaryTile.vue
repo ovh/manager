@@ -88,7 +88,7 @@ export default defineComponent({
   methods: {
     buildURL,
     refreshBills(option: any): void {
-      axios.get(`engine/2api/hub/bills?billingPeriod=${option.key}`).then((data) => {
+      axios.get(`/engine/2api/hub/bills?billingPeriod=${option.key}`).then((data) => {
         this.store.commit('setBills', data.data.data.bills.data);
       });
     },
