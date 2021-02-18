@@ -108,10 +108,6 @@ export default createStore({
       commit('setStatus', true);
     },
     async fetchHubData({ dispatch }) {
-      if (this.getters.getHubStatus) {
-        return Promise.resolve();
-      }
-
       return axios
         .get<HubResponse>('/engine/2api/hub')
         .then((data: AxiosResponse<HubResponse>) => {

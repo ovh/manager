@@ -11,13 +11,13 @@
         {{ `${bills.total} ${bills.currency.symbol}` }}
       </span>
       <p
-        v-if="bills.total > 0 && debt.dueAmount.value === 0"
+        v-if="bills.total && debt.dueAmount.value === 0"
         class="manager-hub-billing-summary__bill-status"
       >
         <span class="oui-icon align-middle mr-2 oui-icon-success-circle"></span>
         <span> {{ t('hub_billing_summary_debt_null') }} </span>
       </p>
-      <p v-if="debt.dueAmount.value > 0">
+      <p v-if="debt.dueAmount.value">
         <span> {{ t('hub_billing_summary_debt', { debt: debt.dueAmount.text }) }} </span>
         <a class="d-block" target="_blank" rel="noopener">
           {{ t('hub_billing_summary_debt_pay') }}

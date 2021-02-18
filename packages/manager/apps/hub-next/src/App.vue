@@ -7,7 +7,11 @@
         <router-link to="/product-details"> {{ productRangeName }} </router-link>
       </div>
     </div>
-    <router-view />
+    <router-view v-slot="{ Component }">
+        <keep-alive include="Home">
+          <component :is="Component" />
+        </keep-alive>
+    </router-view>
   </div>
 </template>
 <script lang="ts">
