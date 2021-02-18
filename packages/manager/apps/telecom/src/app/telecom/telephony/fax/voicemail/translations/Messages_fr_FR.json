@@ -1,5 +1,6 @@
 {
   "telephony_group_fax_voicemail_back_link": "Retour à la gestion du répondeur",
+  "telephony_group_fax_voicemail_breadcrumb": "Gestion du répondeur",
   "telephony_group_fax_voicemail_action_management": "Ecoute et gestion des messages",
   "telephony_group_fax_voicemail_action_default": "Choix de la messagerie par défaut",
   "telephony_group_fax_voicemail_action_password": "Mot de passe accès répondeur",

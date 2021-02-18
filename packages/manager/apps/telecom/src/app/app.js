@@ -26,6 +26,7 @@ import ngOvhSsoAuth from '@ovh-ux/ng-ovh-sso-auth';
 import ngOvhSsoAuthModalPlugin from '@ovh-ux/ng-ovh-sso-auth-modal-plugin';
 import ngOvhSwimmingPoll from '@ovh-ux/ng-ovh-swimming-poll';
 import ngOvhTelecomUniverseComponents from '@ovh-ux/ng-ovh-telecom-universe-components';
+import ngOvhUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import ngOvhUiRouterLayout from '@ovh-ux/ng-ui-router-layout';
 import ngOvhUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ngOvhUiRouterTitle from '@ovh-ux/ng-ui-router-title';
@@ -94,13 +95,13 @@ angular
       ngPaginationFront,
       ngTailLogs,
       ngTranslateAsyncLoader,
+      ngOvhUiRouterBreadcrumb,
       ngOvhUiRouterLayout,
       ngOvhUiRouterLineProgress,
       ngOvhUiRouterTitle,
       ngOvhContact,
       ngOvhLineDiagnostics,
       ngQAllSettled,
-      'ovh-angular-responsive-tabs',
       ngOvhSidebarMenu,
       ngOvhSimpleCountryList,
       ngOvhTimeline,
@@ -293,6 +294,11 @@ angular
         $rootScope.$broadcast('app:started');
         unregisterHook();
       });
+    },
+  )
+  .run(
+    /* @ngInject */ ($translate, $transitions) => {
+      $transitions.onBefore({ to: 'telecom.**' }, () => $translate.refresh());
     },
   );
 

@@ -54,5 +54,6 @@
   "sms_senders_terminate_sender_info_cancel": "¿Seguro que quiere cancelar la solicitud de baja del número virtual «<b>{{ number }}</b>»?",
   "sms_senders_terminate_sender_ko": "¡Vaya! No se ha podido dar de baja el número virtual.<br/>{{error}}",
   "sms_senders_add_warning": "Trataremos su solicitud en un plazo de 48 horas.",
-  "sms_senders_label_comment": "Comentario"
+  "sms_senders_label_comment": "Comentario",
+  "sms_senders_breadcrumb": "Remitentes"
 }

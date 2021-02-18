@@ -44,7 +44,7 @@ export default class TelecomTelephonyLinePhoneCtrl {
     this.actions = [
       {
         name: 'line_details_phon_offer',
-        sref: 'telecom.telephony.billingAccount.line.phone.details',
+        sref: 'telecom.telephony.billingAccount.line.dashboard.phone.details',
         text: this.$translate.instant(
           'telephony_line_phone_actions_line_details_phon_offer',
         ),
@@ -52,7 +52,7 @@ export default class TelecomTelephonyLinePhoneCtrl {
       },
       {
         name: 'line_codecs_management',
-        sref: 'telecom.telephony.billingAccount.line.phone.codec',
+        sref: 'telecom.telephony.billingAccount.line.dashboard.phone.codec',
         text: this.$translate.instant(
           'telephony_line_phone_actions_line_codecs_management',
         ),
@@ -62,7 +62,8 @@ export default class TelecomTelephonyLinePhoneCtrl {
         name: 'line_plug_and_phone_custom_parameters_list',
         disabled:
           !this.line.phone || this.line.phone.configurations.length === 0,
-        sref: 'telecom.telephony.billingAccount.line.phone.configuration',
+        sref:
+          'telecom.telephony.billingAccount.line.dashboard.phone.configuration',
         text: this.$translate.instant(
           'telephony_line_phone_actions_line_plug_and_phone_custom_parameters_list',
         ),
@@ -74,7 +75,8 @@ export default class TelecomTelephonyLinePhoneCtrl {
         main: true,
         disabled: !this.line.hasPhone,
         picto: 'ovh-font-programmableKeys',
-        sref: 'telecom.telephony.billingAccount.line.phone.programmableKeys',
+        sref:
+          'telecom.telephony.billingAccount.line.dashboard.phone.programmableKeys',
         text: this.$translate.instant(
           'telephony_line_phone_actions_line_programmable_keys',
         ),
@@ -84,7 +86,7 @@ export default class TelecomTelephonyLinePhoneCtrl {
       {
         name: 'line_phone_reboot',
         disabled: !this.line.hasPhone,
-        sref: 'telecom.telephony.billingAccount.line.phone.reboot',
+        sref: 'telecom.telephony.billingAccount.line.dashboard.phone.reboot',
         text: this.$translate.instant(
           'telephony_line_phone_actions_line_phone_reboot',
         ),
@@ -92,7 +94,7 @@ export default class TelecomTelephonyLinePhoneCtrl {
       },
       {
         name: 'line_phone_order_plug_and_phone',
-        sref: 'telecom.telephony.billingAccount.line.phone.order',
+        sref: 'telecom.telephony.billingAccount.line.dashboard.phone.order',
         text: this.line.hasPhone
           ? this.$translate.instant(
               'telephony_line_phone_actions_line_phone_change_phone',
@@ -106,7 +108,8 @@ export default class TelecomTelephonyLinePhoneCtrl {
       },
       {
         name: 'line_order_accessories',
-        sref: 'telecom.telephony.billingAccount.line.phone.accessories',
+        sref:
+          'telecom.telephony.billingAccount.line.dashboard.phone.accessories',
         disabled: !(
           this.isAllowedOrder('accessory') || this.isAllowedOrder('accessories')
         ),
@@ -121,7 +124,7 @@ export default class TelecomTelephonyLinePhoneCtrl {
         main: true,
         disabled: !this.line.hasPhone || !this.line.hasSupportsPhonebook,
         picto: 'ovh-font-contacts',
-        sref: 'telecom.telephony.billingAccount.line.phone.phonebook',
+        sref: 'telecom.telephony.billingAccount.line.dashboard.phone.phonebook',
         text: this.$translate.instant(
           'telephony_line_phone_actions_line_phonebook',
         ),
@@ -129,7 +132,7 @@ export default class TelecomTelephonyLinePhoneCtrl {
       },
       {
         name: 'line_phone_order_attach',
-        sref: 'telecom.telephony.billingAccount.line.phone.attach',
+        sref: 'telecom.telephony.billingAccount.line.dashboard.phone.attach',
         disabled:
           (!this.line.hasPhone && this.line.isAttachedToOtherLinesPhone) ||
           this.line.hasPhone,

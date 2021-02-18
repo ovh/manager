@@ -7,5 +7,9 @@ export default /* @ngInject */ ($stateProvider) => {
     template,
     controller,
     controllerAs: 'PackHubicActivation',
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('hubic_activation_widget-title'),
+    },
   });
 };

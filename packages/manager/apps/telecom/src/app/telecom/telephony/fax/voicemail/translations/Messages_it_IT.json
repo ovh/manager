@@ -4,5 +4,6 @@
   "telephony_group_fax_voicemail_action_default": "Scegli la segreteria predefinita",
   "telephony_group_fax_voicemail_action_password": "Password di accesso alla segreteria",
   "telephony_group_fax_voicemail_action_options": "Configurazione della segreteria",
-  "telephony_group_fax_voicemail_action_status": "Activer/désactiver le répondeur"
+  "telephony_group_fax_voicemail_action_status": "Activer/désactiver le répondeur",
+  "telephony_group_fax_voicemail_breadcrumb": "Gestisci la segreteria"
 }

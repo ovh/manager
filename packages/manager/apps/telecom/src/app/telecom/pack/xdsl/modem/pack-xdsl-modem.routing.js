@@ -88,10 +88,11 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       number: /* @ngInject */ ($transition$) => $transition$.params().number,
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('xdsl_modem_breadcrumb'),
     },
     translations: {
       value: [
-        '.',
         './connectedDevices',
         './bridgeMode',
         './dmz',

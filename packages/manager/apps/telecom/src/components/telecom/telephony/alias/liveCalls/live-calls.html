@@ -1,10 +1,10 @@
-<div class="telecom-section-content text-center" data-ng-if="$ctrl.isLoading">
+<div class="text-center" data-ng-if="$ctrl.isLoading">
     <oui-spinner data-size="l"></oui-spinner>
     <h2 data-translate="loading"></h2>
 </div>
 
 <!-- STATS -->
-<div class="telecom-section-content" data-ng-if="!$ctrl.isLoading">
+<div data-ng-if="!$ctrl.isLoading">
     <div class="widget-presentation">
         <header class="widget-presentation-header">
             <h2
@@ -47,7 +47,7 @@
 <!-- stats -->
 
 <!-- CALLS -->
-<div class="telecom-section-content" data-ng-if="!$ctrl.isLoading">
+<div data-ng-if="!$ctrl.isLoading">
     <div class="widget-presentation">
         <header class="widget-presentation-header">
             <h2
@@ -149,7 +149,7 @@
 <!-- calls -->
 
 <!-- AGENTS -->
-<div class="telecom-section-content" data-ng-if="!$ctrl.isLoading">
+<div data-ng-if="!$ctrl.isLoading">
     <div class="widget-presentation">
         <header class="widget-presentation-header">
             <h2

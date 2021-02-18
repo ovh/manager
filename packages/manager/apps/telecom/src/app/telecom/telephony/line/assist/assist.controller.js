@@ -22,14 +22,15 @@ export default /* @ngInject */ function TelecomTelephonyLineAssistCtrl(
     self.actions = [
       {
         name: 'line_view_logs_new',
-        sref: 'telecom.telephony.billingAccount.line.assist.logs',
+        sref: 'telecom.telephony.billingAccount.line.dashboard.assist.logs',
         text: $translate.instant(
           'telephony_line_assist_actions_line_view_logs_new',
         ),
       },
       {
         name: 'line_phone_assistance',
-        sref: 'telecom.telephony.billingAccount.line.assist.troubleshooting',
+        sref:
+          'telecom.telephony.billingAccount.line.dashboard.assist.troubleshooting',
         disabled:
           !sectionLine.hasPhone ||
           sectionLine.phone.brand === 'phone.polycom.ip5000',
@@ -39,14 +40,14 @@ export default /* @ngInject */ function TelecomTelephonyLineAssistCtrl(
       },
       {
         name: 'line_orders_following_up',
-        sref: 'telecom.telephony.billingAccount.line.assist.orders',
+        sref: 'telecom.telephony.billingAccount.line.dashboard.assist.orders',
         text: $translate.instant(
           'telephony_line_assist_actions_line_orders_following_up',
         ),
       },
       {
         name: 'line_sav_rma_status',
-        sref: 'telecom.telephony.billingAccount.line.assist.rma',
+        sref: 'telecom.telephony.billingAccount.line.dashboard.assist.rma',
         text: $translate.instant(
           'telephony_line_assist_actions_line_sav_rma_status',
         ),
@@ -55,7 +56,7 @@ export default /* @ngInject */ function TelecomTelephonyLineAssistCtrl(
         name: 'line_contact_support_and_guides',
         main: true,
         picto: 'ovh-font-docs',
-        sref: 'telecom.telephony.billingAccount.line.assist.support',
+        sref: 'telecom.telephony.billingAccount.line.dashboard.assist.support',
         text: $translate.instant(
           'telephony_line_assist_actions_line_contact_support_and_guides',
         ),

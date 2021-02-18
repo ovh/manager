@@ -4,10 +4,7 @@
         <oui-spinner></oui-spinner>
     </div>
 
-    <div
-        class="telecom-section-header"
-        data-ng-if="!TelecomSmsCtrl.loading.init"
-    >
+    <div class="mb-4" data-ng-if="!TelecomSmsCtrl.loading.init">
         <header class="oui-header">
             <div class="oui-header__container">
                 <div class="oui-header__content">
@@ -60,15 +57,13 @@
             </oui-header-tabs-item>
         </oui-header-tabs>
     </div>
-    <!-- .telecom-section-header -->
 
-    <main class="telecom-section-content" role="main">
+    <main role="main">
         <tuc-toast-message></tuc-toast-message>
         <div
             data-ng-if="!TelecomSmsCtrl.loading.init"
             data-ui-view="smsInnerView"
         ></div>
     </main>
-    <!-- .telecom-section-content -->
 </section>
 <!-- /.telecom-sms -->

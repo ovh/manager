@@ -5,5 +5,6 @@
   "telephony_line_fax_action_line_white_label_domains": "Dominios Ecofax marca blanca",
   "telephony_line_fax_action_line_filtering": "Filtrado de los faxes",
   "telephony_line_fax_action_line_campaigns": "Campañas de fax",
-  "telephony_line_fax_action_line_convert_to_voicefax": "Convertir un Ecofax Perso"
+  "telephony_line_fax_action_line_convert_to_voicefax": "Convertir un Ecofax Perso",
+  "telephony_line_fax_breadcrumb": "Fax"
 }

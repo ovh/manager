@@ -48,6 +48,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('telecom.telephony.billingAccount.services', {
           billingAccount,
         }),
+      hideBreadcrumb: () => true,
     },
   });
 };

@@ -25,5 +25,6 @@
   "sms_batches_status_FAILED": "Fehler",
   "sms_batches_error": "Es ist ein Fehler aufgetreten. {{error}}",
   "sms_batches_delete_success": "Wurde erfolgreich gelöscht.",
-  "sms_batches_details": "Details anzeigen"
+  "sms_batches_details": "Details anzeigen",
+  "sms_batches_breadcrumb": "Verwaltung der Kampagnen"
 }

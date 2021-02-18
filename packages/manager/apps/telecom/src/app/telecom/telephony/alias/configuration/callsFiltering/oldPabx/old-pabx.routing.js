@@ -3,15 +3,19 @@ import template from './old-pabx.html';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'telecom.telephony.billingAccount.alias.configuration.callsFiltering.oldPabx',
+    'telecom.telephony.billingAccount.alias.details.configuration.callsFiltering.oldPabx',
     {
       url: '/oldPabx',
       views: {
-        'aliasView@telecom.telephony.billingAccount.alias': {
+        'aliasView@telecom.telephony.billingAccount.alias.details': {
           template,
           controller,
           controllerAs: '$ctrl',
         },
+      },
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('telephony_line_calls_filtering_oldpabx'),
       },
     },
   );

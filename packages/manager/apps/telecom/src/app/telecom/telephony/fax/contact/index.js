@@ -9,6 +9,7 @@ const moduleName = 'ovhManagerTelecomTelephonyFaxContact';
 
 angular
   .module(moduleName, ['ovh-api-services', 'ui.router', serviceContact])
-  .config(routing);
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

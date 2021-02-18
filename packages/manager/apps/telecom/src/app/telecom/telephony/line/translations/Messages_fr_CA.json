@@ -1,4 +1,5 @@
 {
+  "telephony_line_breacrumb": "Lignes",
   "telephony_line_page_title": "Ligne \"{{name}}\"",
   "telephony_line_tab_manage": "Gestion",
   "telephony_line_tab_consumption": "Consommation",
@@ -8,7 +9,7 @@
   "telephony_line_tab_phone": "Téléphone",
   "telephony_line_tab_contact_details": "Coordonnées",
   "telephony_line_tab_assist": "Assistance",
-  "telephony_line_tab_fax": "Télécopieur",
+  "telephony_line_tab_fax": "Fax",
   "telephony_line_rename_error": "Impossible de renommer votre ligne {{serviceName}}.",
   "telephony_line_offer_type_individual": "SIP découverte",
   "telephony_line_offer_type_priceplan": "SIP Entreprise",

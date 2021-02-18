@@ -43,7 +43,7 @@ angular
           .$promise.then((lines) => {
             if (lines.length) {
               return $state.go(
-                'telecom.telephony.billingAccount.line.phone.accessories',
+                'telecom.telephony.billingAccount.line.dashboard.phone.accessories',
                 {
                   billingAccount: self.model.billingAccount.billingAccount,
                   serviceName: lines[0],

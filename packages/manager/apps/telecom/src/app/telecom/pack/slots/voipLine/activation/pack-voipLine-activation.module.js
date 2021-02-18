@@ -20,6 +20,7 @@ angular
     'oui',
   ])
   .component('packVoipLineActivation', component)
-  .config(routing);
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

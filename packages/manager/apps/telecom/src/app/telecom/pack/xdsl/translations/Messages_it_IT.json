@@ -4,5 +4,6 @@
   "xdsl_tabs_modem": "Il tuo modem",
   "xdsl_tabs_line": "Il tuo accesso",
   "xdsl_tabs_tasks": "Operazioni",
-  "xdsl_rename_error": "Impossibile rinominare il tuo accesso {{serviceName}}."
+  "xdsl_rename_error": "Impossibile rinominare il tuo accesso {{serviceName}}.",
+  "xdsl_back_to_pack": "Dettagli del pack"
 }

@@ -1,9 +1,10 @@
 {
- "sms_sms_compose": "Invia un SMS",
- "sms_sms_history": "Storico invii",
- "sms_sms_received": "SMS ricevuti",
- "sms_sms_pending": "SMS pianificati",
- "sms_sms_manage_hlrs": "HLR",
- "sms_sms_manage_templates": "Gestisci i modelli",
- "sms_actions_credit_account": "Accreditare il mio account"
+  "sms_sms_compose": "Invia un SMS",
+  "sms_sms_history": "Storico invii",
+  "sms_sms_received": "SMS ricevuti",
+  "sms_sms_pending": "SMS pianificati",
+  "sms_sms_manage_hlrs": "HLR",
+  "sms_sms_manage_templates": "Gestisci i modelli",
+  "sms_actions_credit_account": "Accreditare il mio account",
+  "sms_sms_breadcrumb": "SMS"
 }

@@ -3,5 +3,6 @@
   "telephony_line_answer_actions_line_default_voicemail": "Choix de la messagerie par défaut",
   "telephony_line_answer_actions_line_voicemail_password": "Mot de passe accès répondeur",
   "telephony_line_answer_actions_line_voicemail_options": "Konfiguracja autorespondera",
-  "telephony_line_answer_actions_line_voicemail_management": "Odsłuchiwanie i zarządzanie wiadomościami"
+  "telephony_line_answer_actions_line_voicemail_management": "Odsłuchiwanie i zarządzanie wiadomościami",
+  "telephony_line_answer_breadcrumb": "Zarządzanie autoresponderem"
 }

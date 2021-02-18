@@ -68,9 +68,10 @@
   "sms_phonebooks_phonebook_contact_import_file_invalid": "Formato del file non supportato.",
   "sms_phonebooks_phonebook_contact_importing": "Importazione dei contatti in corso...",
   "sms_phonebooks_phonebook_contact_imported": "Importazione dei contatti completata!",
-  "sms_phonebooks_phonebook_contact_import_ko": "Ops! Impossibile importare i contatti: <br/>{{ error }}",
+  "sms_phonebooks_phonebook_contact_import_ko": "Ops! Impossibile importare i tuoi contatti.<br/>{{ error }}",
   "sms_phonebooks_phonebook_contact_import_alert_task": "Importazione dei contatti in corso...",
   "sms_phonebooks_phonebook_contact_export": "Esporta",
   "sms_phonebooks_phonebook_contact_export_ok": "Esportazione dei contatti completata!",
-  "sms_phonebooks_phonebook_contact_export_ko": "Ops! Impossibile esportare i contatti."
+  "sms_phonebooks_phonebook_contact_export_ko": "Impossibile esportare i tuoi contatti.",
+  "sms_phonebooks_phonebook_breadcrumb": "Rubrica di indirizzi"
 }

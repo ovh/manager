@@ -4,7 +4,7 @@ import 'oclazyload';
 
 import '@ovh-ux/manager-core';
 
-const moduleName = 'ovhManagerFreeFax';
+const moduleName = 'ovhManagerFreeFaxDashboard';
 
 angular
   .module(moduleName, ['ui.router', 'ovhManagerCore', 'oc.lazyLoad'])

@@ -1,5 +1,6 @@
 {
   "telephony_line_calls_back_link": "Retour à la gestion des appels",
+  "telephony_line_calls_breadcrumb": "Gestion des appels",
   "telephony_line_calls_actions_line_manage_onboarding": "Cliquez &amp; glissez sur l'agenda pour créer une plage horaire",
   "telephony_line_calls_actions_line_manage_filtering_lists_new": "Filtrage d'appels",
   "telephony_line_calls_actions_line_locking": "Verrouillage des appels sortants",

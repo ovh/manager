@@ -7,9 +7,9 @@
   "telephony_fax_tab_fax": "Fax",
   "telephony_fax_tab_contact": "Coordenadas",
   "telephony_fax_tab_assist": "Soporte",
-  "telephony_fax_no_service_back_link": "Retour à la gestion du groupe",
-  "telephony_fax_section_back_link": "Volver a la configuración del fax",
+  "telephony_fax_section_back_link": "Gestión del fax",
   "telephony_fax_rename_error": "No se ha podido renombrar el fax {{serviceName}}.",
   "telephony_fax_termination_warning": "La ligne sera résiliée le <strong>{{ date }}</strong>.",
-  "telephony_fax_termination_warning_cancel": "Puede cancelar haciendo clic aquí."
+  "telephony_fax_termination_warning_cancel": "Puede cancelar haciendo clic aquí.",
+  "telephony_fax_breadcrumb": "Fax"
 }
