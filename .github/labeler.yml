@@ -1,0 +1,44 @@
+build:
+  - packages/manager/tools/!(testcafe)/**
+continous-integration:
+  - .github/**
+dependencies:
+  - ./**/package.json
+documentation:
+  - docs/**
+tests:
+  - packages/manager/tools/testcafe/**
+translation required:
+  - packages/**/Messages_fr_FR.json
+univers-public-cloud:
+  - packages/manager/*/pci/**
+  - packages/manager/apps/public-cloud/**
+universe-bare-metal-cloud:
+  - packages/manager/apps/dedicated/**/!(dedicatedCloud)/**
+  - packages/manager/*/cda/**
+  - packages/manager/*/cloud-connect/**
+  - packages/manager/*/dbaas-logs/**
+  - packages/manager/*/enterprise-cloud-database/**
+  - packages/manager/*/iplb/**
+  - packages/manager/*/metrics/**
+  - packages/manager/*/nasha/**
+  - packages/manager/*/veeam-*/**
+  - packages/manager/*/vps/**
+  - packages/manager/*/vps/**
+  - packages/manager/*/vrack/**
+universe-hosted-private-cloud:
+  - packages/manager/apps/dedicated/client/app/dedicatedCloud/**
+universe-hub:
+  - packages/manager/*/hub/**
+universe-telecom:
+  - packages/manager/*/carrier-sip/**
+  - packages/manager/*/telecom?(-*)/**
+  - packages/manager/*/freefax/**
+  - packages/manager/*/overthebox/**
+  - packages/manager/*/sms/**
+universe-web-cloud:
+  - packages/manager/*/web?(-*)/**
+  - packages/manager/*/emailpro/**
+  - packages/manager/*/exchange/**
+  - packages/manager/*/office/**
+  - packages/manager/*/sharepoint/**
