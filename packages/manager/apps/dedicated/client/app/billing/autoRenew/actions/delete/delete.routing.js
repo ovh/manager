@@ -1,4 +1,3 @@
-import get from 'lodash/get';
 import kebabCase from 'lodash/kebabCase';
 import { BillingService } from '@ovh-ux/manager-models';
 
@@ -63,7 +62,7 @@ export default /* @ngInject */ ($stateProvider) => {
           serviceId: service.domain,
           serviceType: service.serviceType,
           renew: service.renew,
-          route: get(service, 'route.url'),
+          route: service.route?.url,
         });
       },
       questions: /* @ngInject */ (BillingTerminate, service) =>

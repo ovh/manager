@@ -1,8 +1,6 @@
 import find from 'lodash/find';
-import get from 'lodash/get';
 import head from 'lodash/head';
 import map from 'lodash/map';
-import pick from 'lodash/pick';
 import reduce from 'lodash/reduce';
 import set from 'lodash/set';
 import values from 'lodash/values';
@@ -324,9 +322,15 @@ export default class {
       ? this.DucUserContractService.acceptAgreements(agreements)
       : Promise.resolve([]);
     return agreementsPromise.then(() => {
-      const toUpdate = pick(service, ['serviceId', 'serviceType', 'renew']);
-      toUpdate.route = get(service, 'route.url');
-      return this.updateServices([toUpdate]);
+      const { serviceId, serviceType, renew } = service;
+      return this.updateServices([
+        {
+          serviceId,
+          serviceType,
+          renew,
+          route: service.route?.url,
+        },
+      ]);
     });
   }
 

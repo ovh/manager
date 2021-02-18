@@ -1,5 +1,4 @@
 import kebabCase from 'lodash/kebabCase';
-import get from 'lodash/get';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.account.billing.autorenew.cancel-resiliation', {
@@ -34,11 +33,13 @@ export default /* @ngInject */ ($stateProvider) => {
         }
 
         service.cancelResiliation();
+
+        const { serviceId, serviceType, renew } = service;
         return BillingAutoRenew.updateService({
-          serviceId: service.serviceId,
-          serviceType: service.serviceType,
-          renew: service.renew,
-          route: get(service, 'route.url'),
+          serviceId,
+          serviceType,
+          renew,
+          route: service.route?.url,
         });
       },
       engagement: /* @ngInject */ ($http, service) =>
