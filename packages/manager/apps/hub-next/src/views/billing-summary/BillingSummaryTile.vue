@@ -6,10 +6,7 @@
     :is-shadowed="false"
   >
     <template #body>
-      <oui-select
-        @select-option="refreshBills($event)"
-        :options="filterDatesOptions"
-      ></oui-select>
+      <oui-select @select-option="refreshBills($event)" :options="filterDatesOptions"></oui-select>
       <span class="manager-hub-billing-summary__bill-total">
         {{ `${bills.total} ${bills.currency.symbol}` }}
       </span>
@@ -87,7 +84,7 @@ export default defineComponent({
   },
   methods: {
     buildURL,
-    refreshBills(option: any): void {
+    refreshBills(option: { key: string; value: string }): void {
       axios.get(`/engine/2api/hub/bills?billingPeriod=${option.key}`).then((data) => {
         this.store.commit('setBills', data.data.data.bills.data);
       });
