@@ -26,6 +26,7 @@ export default class PciInstancesAddController {
     cucUcentsToCurrencyFilter,
     OvhApiCloudProjectInstance,
     PciProjectsProjectInstanceService,
+    atInternet,
   ) {
     this.$q = $q;
     this.$translate = $translate;
@@ -34,6 +35,7 @@ export default class PciInstancesAddController {
     this.cucUcentsToCurrencyFilter = cucUcentsToCurrencyFilter;
     this.OvhApiCloudProjectInstance = OvhApiCloudProjectInstance;
     this.PciProjectsProjectInstanceService = PciProjectsProjectInstanceService;
+    this.atInternet = atInternet;
   }
 
   $onInit() {
@@ -62,6 +64,7 @@ export default class PciInstancesAddController {
       sshKey: null,
       isInstanceFlex: false,
     };
+    this.selectedCategory = null;
 
     this.instanceNamePattern = PATTERN;
 
@@ -130,6 +133,10 @@ export default class PciInstancesAddController {
   onFlavorChange() {
     this.displaySelectedFlavor = true;
     this.getFilteredRegions();
+  }
+
+  onFlavorCategorySelect(flavor, category) {
+    this.selectedCategory = category;
   }
 
   onRegionFocus() {
@@ -298,6 +305,14 @@ export default class PciInstancesAddController {
     return 'UNKWOWN';
   }
 
+  trackCreate() {
+    const mode = this.instance.monthlyBilling ? 'monthly' : 'hourly';
+    this.atInternet.trackClick({
+      name: `instances_create_${this.selectedCategory}_${mode}`,
+      type: 'action',
+    });
+  }
+
   create() {
     this.isLoading = true;
 
@@ -313,6 +328,7 @@ export default class PciInstancesAddController {
       };
     }
 
+    this.trackCreate();
     return this.PciProjectsProjectInstanceService.save(
       this.projectId,
       this.instance,
