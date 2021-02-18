@@ -28,11 +28,7 @@ registerFragment('navbar').then(({ parent, config }) => {
 
       ReactDOM.render(
         <React.StrictMode>
-          <Navbar
-            i18next={i18next}
-            universe={config.universe}
-            user={config.user}
-          />
+          <Navbar universe={config.universe} user={config.user} />
         </React.StrictMode>,
         parent,
       );
