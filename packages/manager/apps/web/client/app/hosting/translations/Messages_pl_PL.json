@@ -313,6 +313,7 @@
   "hosting_tab_DOMAINS_search_placeholder": "Wyszukiwanie...",
   "hosting_tab_DOMAINS_table_popover_restart": "Restart",
   "hosting_tab_DOMAINS_multisite_logs_generation": "Generowanie linka",
+  "hosting_tab_DOMAINS_multisite_logs_generation_error": "Wystąpił błąd podczas generowania linku dostępowego do logów",
   "hosting_tab_DOMAINS_multisite_logs_link": "Dostęp do logów",
   "hosting_tab_DOMAINS_multisite_restart_done": "Domena została reaktywowana: {{t0}}",
   "hosting_tab_DOMAINS_multisite_restart_error": "Wystąpił błąd podczas reaktywacji domeny.",

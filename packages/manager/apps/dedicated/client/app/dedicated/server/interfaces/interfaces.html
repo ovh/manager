@@ -191,11 +191,6 @@
             <span
                 data-ng-bind="$ctrl.specifications.vrack.bandwidth | ducBandwidth"
             ></span>
-            <span
-                class="font-weight-bold"
-                ng-if="$row.type === $ctrl.VIRTUAL_TYPE.vrackAggregation"
-                data-translate="dedicated_server_interfaces_vrack_aggregation_guarantee"
-            ></span>
         </div>
     </oui-datagrid-column>
     <oui-datagrid-column
@@ -211,11 +206,6 @@
             <span class="oui-icon oui-icon-arrow-down font-inherit"></span>
             <span
                 data-ng-bind="$ctrl.specifications.vrack.bandwidth | ducBandwidth"
-            ></span>
-            <span
-                class="font-weight-bold"
-                ng-if="$row.type === $ctrl.VIRTUAL_TYPE.vrackAggregation"
-                data-translate="dedicated_server_interfaces_vrack_aggregation_guarantee"
             ></span>
         </div>
     </oui-datagrid-column>

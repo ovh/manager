@@ -6,8 +6,5 @@ export default /* @ngInject */ ($stateProvider) => {
     template,
     controller: 'Billing.controllers.Sla',
     translations: { value: ['..'], format: 'json' },
-    resolve: {
-      hideBreadcrumb: () => true,
-    },
   });
 };

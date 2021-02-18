@@ -26,7 +26,6 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
         $transition$.params().serviceId,
       terminateEmail: /* @ngInject */ (BillingAutoRenew, serviceId) => () =>
         BillingAutoRenew.terminateEmail(serviceId),
-      breadcrumb: () => null,
     },
     atInternet: {
       ignore: true,

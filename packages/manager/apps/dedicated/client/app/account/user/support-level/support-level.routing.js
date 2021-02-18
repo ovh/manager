@@ -6,13 +6,15 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(name, {
     url: '/support/level',
     component: 'accountUserSupportLevel',
+    translations: {
+      format: 'json',
+      value: ['./'],
+    },
     resolve: {
       partnerLevel: /* @ngInject */ ($http) =>
         $http
           .get('/me/partnerLevel')
           .then(({ data: partnerLevel }) => new PartnerLevel(partnerLevel)),
-      breadcrumb: /* @ngInject */ ($translate) =>
-        $translate.instant('user_account_support_level_section_title'),
     },
   });
 };

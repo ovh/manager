@@ -69,7 +69,7 @@
   "ip_migration_step2_error_INCOMPATIBLE": "Der Server {{t1}} ist nicht mit {{t0}} kompatibel",
   "ip_migration_step2_error_EXPIRED": "Der Dienst {{t1}} ist abgelaufen.",
   "ip_migration_step2_checkservice": "Überprüfung der Migrationsbedingungen...",
-  "ip_migration_step2_success": "Der Server {{t1}} ist mit {{t0}} kompatibel.",
+  "ip_migration_step2_success": "Der Server {{t1}} ist mit {0} kompatibel",
   "ip_migration_step3_question": "Wählen Sie die Laufzeit aus:",
   "ip_migration_step3_error": "Beim Abruf der Laufzeiten ist ein Fehler aufgetreten",
   "ip_migration_step5_question": "Zusammenfassung Ihrer Bestellung",

@@ -8,7 +8,6 @@ const moduleName = 'ovhManagerBillingAgreements';
 
 angular
   .module(moduleName, ['ui.router', acceptAll, atInternet, details])
-  .config(routing)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .config(routing);
 
 export default moduleName;

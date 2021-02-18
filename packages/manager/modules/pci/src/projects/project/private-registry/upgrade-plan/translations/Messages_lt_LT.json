@@ -1,0 +1,6 @@
+{
+  "private_registry_upgrade_plan": "Change plan",
+  "private_registry_upgrade_plan_breadcrumb": "Change plan",
+  "private_registry_upgrade_plan_success": "Your plan has been modified",
+  "private_registry_upgrade_plan_error": "An error has occurred modifying your plan: {{ message }}"
+}

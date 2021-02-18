@@ -4,7 +4,7 @@
   "billing_confirm_termination_information_text": "The service will be cancelled at the end of the renewal period. Once you confirm the cancellation, please note that any data linked to this service and any backups <strong>will be permanently deleted</strong>. You will need to take the necessary measures to conserve your data before you confirm your cancellation. Once the process has been launched, it cannot be cancelled. OVHcloud does not accept any responsibility for data loss in this scenario.",
   "billing_confirm_termination_question_reason": "You have opted to cancel your service. To help us improve our service, please tell us the main reason you have chosen to cancel.",
   "billing_confirm_termination_question_future_use": "What do you plan to do?",
-  "billing_confirm_termination_question_commentary": "Please tell us more about the reasons you have chosen to cancel this service",
+  "billing_confirm_termination_question_comment": "Please tell us more about the reasons you have chosen to cancel this service",
   "billing_confirm_termination_reason_LACK_OF_PERFORMANCES": "The quality of service (outages, incidents) does not meet my expectations.",
   "billing_confirm_termination_reason_NOT_NEEDED_ANYMORE": "The project associated with this product/service has changed, or is complete.",
   "billing_confirm_termination_reason_TOO_EXPENSIVE": "The prices are too high.",

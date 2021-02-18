@@ -72,6 +72,5 @@
   "dedicated_server_interfaces_task_error": "Si è verificato un errore durante la configurazione: {{ errorMessage }}",
   "dedicated_server_interfaces_guides": "Guide",
   "dedicated_server_interfaces_guides_ola": "Come configurare OLA?",
-  "dedicated_server_interfaces_new_tab": "(apri in una nuova scheda)",
-  "dedicated_server_interfaces_vrack_aggregation_guarantee": "garantita"
+  "dedicated_server_interfaces_new_tab": "Apri in una nuova scheda"
 }

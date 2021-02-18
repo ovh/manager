@@ -6,7 +6,6 @@ export default {
   template,
   bindings: {
     job: '<',
-    projectId: '<',
     jobInfo: '<',
     jobKill: '<',
     submitJobLink: '<',
@@ -14,6 +13,7 @@ export default {
     regions: '<',
     jobInfoLink: '<',
     refreshState: '<',
+    jobList: '<',
     getPrice: '<',
     user: '<',
     goToJobSubmit: '<',

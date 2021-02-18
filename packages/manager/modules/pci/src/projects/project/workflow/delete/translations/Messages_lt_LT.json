@@ -1,0 +1,9 @@
+{
+  "pci_workflow_delete_confirmation": "Are you sure you want to delete the '{{ workflowName }}' workflow schedule?",
+  "pci_workflow_delete_warning": "This action cannot be cancelled or undone.",
+  "pci_workflow_delete_enter": "Enter DELETE into the following field to confirm your action.",
+  "pci_workflow_delete_success": "The '{{ workflowName }}' workflow schedule has been deleted.",
+  "pci_workflow_delete_error": "An error has occurred during the deletion: {{ message }}",
+  "pci_workflow_common_delete": "Delete",
+  "pci_workflow_common_cancel": "Cancel"
+}

@@ -1,0 +1,154 @@
+<table class="oui-table">
+    <thead class="oui-table__headers">
+        <tr>
+            <th
+                class="oui-table__header oui-table__header_sortable"
+                data-ng-click="orderStorages('type')"
+                data-ng-class="{'oui-table__header_sorted' : order.by === 'type'}"
+            >
+                <span data-translate="storage_type"></span>
+                <span
+                    aria-hidden="true"
+                    class="oui-icon oui-icon-sort-inactive"
+                    data-ng-class="{
+                        'oui-icon-sort-inactive': order.by !== 'type',
+                        'oui-icon-sort-up': order.by === 'type' && !order.reverse,
+                        'oui-icon-sort-down' : order.by === 'type' && order.reverse
+                    }"
+                >
+                </span>
+            </th>
+            <th
+                class="oui-table__header oui-table__header_sortable"
+                data-ng-click="orderStorages('name')"
+                data-ng-class="{'oui-table__header_sorted' : order.by === 'name'}"
+            >
+                <span data-translate="storage_name"></span>
+                <span
+                    aria-hidden="true"
+                    class="oui-icon oui-icon-sort-inactive"
+                    data-ng-class="{
+                        'oui-icon-sort-inactive': order.by !== 'name',
+                        'oui-icon-sort-up': order.by === 'name' && !order.reverse,
+                        'oui-icon-sort-down' : order.by === 'name' && order.reverse
+                    }"
+                >
+                </span>
+            </th>
+            <th
+                class="oui-table__header oui-table__header_sortable"
+                data-translate="storage_nb_files"
+            ></th>
+            <th
+                class="oui-table__header oui-table__header_sortable"
+                data-ng-click="orderStorages('region')"
+                data-ng-class="{'oui-table__header_sorted' : order.by === 'region'}"
+            >
+                <span data-translate="storage_region"></span>
+                <span
+                    aria-hidden="true"
+                    class="oui-icon oui-icon-sort-inactive"
+                    data-ng-class="{
+                        'oui-icon-sort-inactive': order.by !== 'region',
+                        'oui-icon-sort-up': order.by === 'region' && !order.reverse,
+                        'oui-icon-sort-down' : order.by === 'region' && order.reverse
+                    }"
+                >
+                </span>
+            </th>
+            <th class="oui-table__header" data-translate="storage_size"></th>
+            <th
+                class="oui-table__header oui-table__cell_action"
+                write-right-required
+            >
+                &#160;
+            </th>
+        </tr>
+    </thead>
+    <tbody
+        class="oui-table__body"
+        data-ng-if="storagesPaginated.length === 0 && filter.enabled"
+    >
+        <tr>
+            <td colspan="6">
+                <span data-translate="storage_search_not_found" />
+            </td>
+        </tr>
+    </tbody>
+    <tbody data-ng-if="storagesPaginated.length > 0" class="oui-table__body">
+        <tr
+            data-ng-repeat="storage in storagesPaginated | filter:filter.name track by storage.id"
+            class="oui-table__row"
+            tabindex="0"
+        >
+            <td
+                class="oui-table__cell"
+                data-title="{{ 'storage_type' | translate }}"
+            >
+                <img
+                    class="storage-table-type-icon"
+                    data-ng-if="storage.shortcut && storage.shortcut !== 'error'"
+                    data-ng-src="assets/images/add/storage/{{ storage.shortcut }}.svg"
+                    alt=""
+                />
+                <span data-ng-if="!storage.shortcut" class="text-center">
+                    <oui-spinner size="s"></oui-spinner>
+                </span>
+                <i
+                    class="glyphicon glyphicon-exclamation-sign"
+                    data-ng-show="storage.shortcut === 'error'"
+                />
+            </td>
+            <td
+                class="oui-table__cell max-width-400"
+                data-title="{{ 'storage_name' | translate }}"
+            >
+                <div class="text-truncate">
+                    <a
+                        class="oui-link"
+                        data-ui-sref="iaas.pci-project.compute.storage.detail-container({ storageId: storage.id})"
+                    >
+                        {{ storage.name }}
+                    </a>
+                </div>
+            </td>
+            <td
+                class="oui-table__cell"
+                data-title="{{ 'storage_nb_files' | translate }}"
+            >
+                {{storage.storedObjects}}
+            </td>
+            <td
+                class="oui-table__cell"
+                data-title="{{ 'storage_region' | translate }}"
+            >
+                {{ regionService.getTranslatedMicroRegion(storage.region) }}
+            </td>
+            <td
+                class="oui-table__cell"
+                data-title="{{ 'storage_size' | translate }}"
+            >
+                {{storage.storedBytes | RAUnitsBits}}
+            </td>
+            <td
+                class="oui-table__cell oui-table__cell_action"
+                data-title="{{ 'storage_actions' | translate }}"
+                write-right-required
+            >
+                <button
+                    type="button"
+                    class="no-style pull-right"
+                    data-ng-show="storage.status != 'deleting'"
+                    data-ng-click="delete(storage)"
+                >
+                    <i class="glyphicon glyphicon-trash"></i>
+                </button>
+                <oui-spinner
+                    size="s"
+                    class="pull-right"
+                    data-ng-if="storage.status === 'deleting'"
+                ></oui-spinner>
+            </td>
+        </tr>
+    </tbody>
+</table>

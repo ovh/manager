@@ -18,6 +18,7 @@ export default /* @ngInject */ ($stateProvider) => {
           return null;
         })
         .catch(() => null),
+    translations: { value: ['.'], format: 'json' },
     resolve: {
       addPaymentMean: /* @ngInject */ ($state) => () =>
         $state.go('app.account.billing.payment.method.add'),
@@ -34,8 +35,6 @@ export default /* @ngInject */ ($stateProvider) => {
       /* @ngInject */
       updateRenew: (BillingAutoRenew) => (service, agreements) =>
         BillingAutoRenew.updateRenew(service, agreements),
-      breadcrumb: /* @ngInject */ ($translate) =>
-        $translate.instant('billing_autorenew_service_update_title'),
     },
   });
 };

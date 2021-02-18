@@ -202,10 +202,6 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
 
             sort: /* @ngInject */ ($transition$) =>
               JSON.parse($transition$.params().sort),
-
-            breadcrumb: /* @ngInject */ ($translate) =>
-              $translate.instant('billing_title'),
-            hideBreadcrumb: () => true,
           }
         : {},
     ),
@@ -224,7 +220,6 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
         $transition$.params().serviceId,
       service: /* @ngInject */ ($http, serviceId) =>
         $http.get(`/services/${serviceId}`).then(({ data }) => data),
-      breadcrumb: /* @ngInject */ (serviceId) => serviceId,
     },
   });
 };

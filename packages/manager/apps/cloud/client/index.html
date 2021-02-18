@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html class="h-100">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="x-ua-compatible" content="ie=edge" />
+        <title>OVHcloud - Cloud</title>
+        <meta name="description" content="OVH - Cloud Manager" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="shortcut icon" href="assets/images/favicon.png" />
+        <link rel="apple-touch-icon" href="assets/images/touchicon-180.png" />
+        <style type="text/css">
+            .ng-cloak {
+                display: none !important;
+            }
+        </style>
+    </head>
+    <body
+        data-ng-controller="CloudMainController as $ctrl"
+        data-ng-cloak
+        class="ng-cloak h-100 ovh-manager-cloud-app"
+        data-ng-class="{ 'global-message-top-container': $ctrl.expiringProject }"
+        style="overflow: hidden;"
+    >
+        <div class="h-100 d-flex flex-column overflow-hidden">
+            <div
+                class="global-message-top"
+                data-ng-if="$ctrl.expiringProject"
+                data-ng-include="'app/common/cloud-project-voucher-alert.html'"
+            ></div>
+
+            <!-- Skip to main content -->
+            <div class="skipnav">
+                <a
+                    class="oui-button oui-button_ghost"
+                    href
+                    data-translate="common_skip_to_main_content"
+                    data-ng-click="$ctrl.scrollTo('maincontent')"
+                >
+                </a>
+            </div>
+            <!-- /Skip to main content -->
+
+            <ovh-manager-navbar
+                data-navbar-options="$ctrl.navbarOptions"
+                data-universe-click="$ctrl.openSidebar()"
+            >
+            </ovh-manager-navbar>
+            <ovh-manager-account-sidebar me="$ctrl.user">
+            </ovh-manager-account-sidebar>
+            <ovh-manager-notifications-sidebar>
+            </ovh-manager-notifications-sidebar>
+
+            <button
+                style="position: absolute; top: 0; left: 0; width: 48px; height: 44px; background-color: transparent; border: 0;"
+                data-ng-if="$ctrl.sidebarIsOpen"
+                data-ng-click="$ctrl.closeSidebar()"
+            ></button>
+
+            <div
+                class="container-fluid h-100 w-100"
+                style="overflow: auto"
+                data-ui-view="root"
+            >
+                <div class="row">
+                    <!-- SIDE MENU -->
+                    <ovh-manager-server-sidebar
+                        universe="'CLOUD'"
+                        data-on-click="$ctrl.closeSidebar()"
+                        data-is-open="$ctrl.sidebarIsOpen"
+                    >
+                    </ovh-manager-server-sidebar>
+
+                    <!-- CONTENT -->
+                    <div
+                        id="content"
+                        class="col-md-9 col-md-offset-3 col-lg-10 col-lg-offset-2"
+                    >
+                        <!-- Skip content target -->
+                        <div class="skiptarget">
+                            <a id="maincontent" href>-</a>
+                        </div>
+                        <!-- /Skip content target -->
+
+                        <ovh-browser-alert></ovh-browser-alert>
+                        <account-migration-notification></account-migration-notification>
+                        <ovh-chatbot
+                            data-ng-if="$ctrl.chatbotEnabled"
+                            data-language="{{$ctrl.currentLanguage}}"
+                            data-country="{{$ctrl.user.ovhSubsidiary}}"
+                            data-support-level="{{$ctrl.user.supportLevel.level}}"
+                        ></ovh-chatbot>
+
+                        <div data-ui-view></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,30 +1,3 @@
-## [1.0.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.0.8...@ovh-ux/manager-iplb@1.0.9) (2021-02-02)
-
-
-### Bug Fixes
-
-* bump semver range for @ovh-ux/manager-config package ([ca04d19](https://github.com/ovh/manager/commit/ca04d19b7a038544f1b5e3b211d0a1c3b70a0d5b))
-
-
-
-## [1.0.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.0.7...@ovh-ux/manager-iplb@1.0.8) (2021-02-01)
-
-
-### Bug Fixes
-
-* **frontends.edit:** remove allowedSource on UDP frontends requests ([#4361](https://github.com/ovh/manager/issues/4361)) ([d68553e](https://github.com/ovh/manager/commit/d68553e00db60d9b1b966c410fc906c25d6e2e16))
-
-
-
-## [1.0.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.0.6...@ovh-ux/manager-iplb@1.0.7) (2021-01-27)
-
-
-### Bug Fixes
-
-* **i18n:** add missing translations [CDS 775] ([79d4412](https://github.com/ovh/manager/commit/79d44129b838b5da855369bfaabbd0e01f533c2a))
-
-
-
 ## [1.0.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.0.5...@ovh-ux/manager-iplb@1.0.6) (2021-01-04)
 
 

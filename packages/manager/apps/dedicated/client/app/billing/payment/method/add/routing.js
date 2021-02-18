@@ -121,8 +121,6 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
           get($transition$.params(), 'from', null),
         );
       },
-      breadcrumb: /* @ngInject */ ($translate) =>
-        $translate.instant('billing_payment_method_add_title'),
     },
   });
 

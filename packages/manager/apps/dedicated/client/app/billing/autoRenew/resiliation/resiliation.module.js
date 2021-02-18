@@ -9,7 +9,6 @@ const moduleName = 'ovhManagerBillingAutorenewResiliation';
 
 angular
   .module(moduleName, ['ui.router', ngUiRouterLayout, ovhManagerBilling])
-  .config(routing)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .config(routing);
 
 export default moduleName;

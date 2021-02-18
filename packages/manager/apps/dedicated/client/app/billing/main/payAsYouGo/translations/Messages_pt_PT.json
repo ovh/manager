@@ -12,6 +12,5 @@
   "billing_main_pay_as_you_go_table_current": "Saldo atual",
   "billing_main_pay_as_you_go_table_current_forecast": "Previsão",
   "billing_main_pay_as_you_go_table_action_manage": "Gerir",
-  "billing_main_pay_as_you_go_table_action_switch_monthly": "Passar para pagamento mensal",
-  "billing_main_pay_as_you_go": "Consumo Pay As You Go"
+  "billing_main_pay_as_you_go_table_action_switch_monthly": "Passar para pagamento mensal"
 }

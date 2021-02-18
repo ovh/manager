@@ -42,11 +42,9 @@ export default class {
       )
       .catch((error) =>
         this.goBack(
-          `${this.$translate.instant('dedicatedCloud_OPERATIONS_error')} ${get(
-            error,
-            'message',
-            '',
-          )}`,
+          this.$translate.instant('dedicatedCloud_OPERATIONS_error', {
+            message: get(error, 'message'),
+          }),
           'danger',
         ),
       );

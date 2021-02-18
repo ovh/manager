@@ -37,7 +37,7 @@ export default class {
   }
 
   getCurrentLang() {
-    // TODO(@antleblanc): Remove it on March 1, 2021.
+    // TODO(@antleblanc): Remove it on February 4th, 2021.
     if (localStorage[localeStorageKey] === 'cs_CZ') {
       return this.availableLangs.find(({ key }) => key === 'cs_CZ');
     }

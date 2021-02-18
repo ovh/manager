@@ -30,8 +30,6 @@ export default /* @ngInject */ ($stateProvider) => {
             return service;
           }),
         ),
-      breadcrumb: /* @ngInject */ ($translate) =>
-        $translate.instant('billing_autorenew_enable_breadcrumb'),
     },
   });
 };

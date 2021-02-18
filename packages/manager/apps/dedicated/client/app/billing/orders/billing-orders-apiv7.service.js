@@ -26,6 +26,9 @@ angular
 
       return $http.get(`/me/order?${getQueryString(params)}`, {
         cache: cache.orderQuery,
+        headers: {
+          'X-Ovh-ApiVersion': 'beta',
+        },
         serviceType: 'apiv7',
         transformResponse(data, headers, status) {
           if (status !== 200) {
@@ -45,6 +48,9 @@ angular
 
       return $http.get(`/me/order/*/status?${getQueryString(params)}`, {
         cache: cache.status,
+        headers: {
+          'X-Ovh-ApiVersion': 'beta',
+        },
         serviceType: 'apiv7',
         transformResponse(data, headers, status) {
           if (status !== 200) {

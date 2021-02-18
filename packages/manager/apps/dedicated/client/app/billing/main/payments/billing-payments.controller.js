@@ -117,7 +117,7 @@ angular
     this.displayActionsCol = () => coreConfig.getRegion() !== 'US';
 
     this.depositDetailsHref = ({ depositId }) =>
-      $state.href('app.account.billing.main.payments.payment.details', {
+      $state.href('app.account.billing.main.payments.details', {
         id: depositId,
       });
 

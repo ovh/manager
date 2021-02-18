@@ -1,6 +1,6 @@
 {
   "cda_pool_pool_definition": "Hier können Sie Ihre Pools erstellen. ",
-  "cda_pool_permission_definition": "Pools sind \"Container\" für Ihre Daten. Der Zugang zu den Pools kann vom Nutzer kontrolliert werden.",
+  "cda_pool_permission_definition": "Pools sind \"Container\" für Ihre Daten. Der Zugriff auf diese Pools kann für jeden Benutzer einzeln festgelegt werden. ",
   "cda_pool_add_button_text": "Pool hinzufügen ",
   "cda_pool_delete_button_text": "Löschen",
   "cda_pool_table_col_poolname": "Name",
@@ -16,7 +16,7 @@
   "cda_pool_add_poolname_maxlength": "Der Name darf maximal {{ maxlength }} Zeichen umfassen. ",
   "cda_pool_add_success": "Pool erfolgreich hinzugefügt. ",
   "cda_pool_delete_title": "Pool löschen ",
-  "cda_pool_delete_poolname_label": "Name:",
+  "cda_pool_delete_poolname_label": "Name",
   "cda_pool_delete_confirm": "Wollen Sie diesen Pool wirklich löschen? ",
   "cda_pool_delete_success": "Pool erfolgreich gelöscht. ",
   "cda_pool_table_empty": "Keine Pools vorhanden. "

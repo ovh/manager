@@ -4,7 +4,7 @@
   "billing_confirm_termination_information_text": "Il servizio verrà disattivato alla scadenza. Ti ricordiamo che, una volta confermata la disattivazione, tutti i dati e backup associati al servizio <strong>verranno definitivamente cancellati</strong>. Prima di proseguire con l’operazione è quindi necessario adottare tutte le misure necessarie alla conservazione dei dati. Una volta avviato, il processo non potrà essere sospeso. OVHcloud declina qualsiasi responsabilità associata all’eventuale perdita di dati.",
   "billing_confirm_termination_question_reason": "Hai deciso di disattivare il servizio. Ti chiediamo di specificare il motivo della tua scelta: ci aiuterà a migliorare.",
   "billing_confirm_termination_question_future_use": "Cosa pensi di fare?",
-  "billing_confirm_termination_question_commentary": "Non esitare a fornirci ulteriori dettagli sulle motivazioni della disattivazione del servizio.",
+  "billing_confirm_termination_question_comment": "Non esitare a fornirci ulteriori dettagli sulle motivazioni della disattivazione del servizio.",
   "billing_confirm_termination_reason_LACK_OF_PERFORMANCES": "La qualità del servizio (guasti, incidenti) non risponde alle mie aspettative",
   "billing_confirm_termination_reason_NOT_NEEDED_ANYMORE": "Il progetto associato a questo prodotto/servizio si è evoluto o è concluso",
   "billing_confirm_termination_reason_TOO_EXPENSIVE": "Le tariffe sono troppo elevate",

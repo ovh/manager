@@ -1,0 +1,6 @@
+{
+  "kubernetes_add_node_pool_description": "Configure an initial node pool when creating the cluster. A node pool is a group of worker nodes that all have the same configuration. You can then create, delete or resize multiple node pools.",
+  "kubernetes_add_node_pool_warning": "It is recommended that you configure a pool with a minimum of 3 nodes in order to optimise the rolling upgrade when you carry out security updates (patch updates) or minor version upgrades.",
+  "kubernetes_add_node_pool_node_count": "Number of nodes in the pool",
+  "kubernetes_add_node_pool_node_type": "Node type"
+}

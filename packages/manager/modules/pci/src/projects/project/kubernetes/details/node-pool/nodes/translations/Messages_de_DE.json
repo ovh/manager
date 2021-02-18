@@ -11,7 +11,7 @@
   "kube_nodes_delete_success": "Löschen der Nodes",
   "kube_nodes_delete_error": "Beim Löschen der Nodes ist ein Fehler aufgetreten: {{ message }}",
   "kube_nodes_node": "Node",
-  "kube_nodes_error": "Beim Laden der Nodes ist ein Fehler aufgetreten.",
+  "kube_nodes_error": "Beim Laden der Nodes ist ein Fehler aufgetreten: {{message}}",
   "kube_nodes_refresh": "Tabelle neu laden",
   "kube_nodes_flavor": "Instanz-Typ",
   "kube_nodes_flavor_error": "Beim Laden des Instanz-Typs ist ein Fehler aufgetreten.",

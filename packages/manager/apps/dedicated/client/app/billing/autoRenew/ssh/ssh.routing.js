@@ -6,9 +6,6 @@ export default /* @ngInject */ ($stateProvider) => {
     template,
     controller: 'UserAccount.controllers.ssh',
     controllerAs: 'ctrlSsh',
-    resolve: {
-      breadcrumb: /* @ngInject */ ($translate) =>
-        $translate.instant('user_ssh_title'),
-    },
+    translations: { value: ['.'], format: 'json' },
   });
 };

@@ -1,0 +1,6 @@
+{
+  "cpcivm_delete_title": "Usunięcie instancji",
+  "cpcivm_delete_info": "Opłata za bieżący miesiąc za ten serwer została już uregulowana. Pozostała kwota nie ulega zwrotowi.",
+  "cpcivm_failover_info": "Te adresy IP Failover zostaną definitywnie usunięte:",
+  "cpcivm_delete_confirm": "Czy na pewno chcesz usunąć instancję <strong>{{name}}</strong>?"
+}

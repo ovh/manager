@@ -26,7 +26,6 @@ angular
       );
     },
   )
-  .controller('UserAccount.controllers.ssh', controller)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .controller('UserAccount.controllers.ssh', controller);
 
 export default moduleName;

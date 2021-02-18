@@ -61,38 +61,9 @@
                             </oui-select-picker-section>
                         </oui-select-picker>
                     </div>
-                    <div class="col-md-6 col-xl-4 my-3">
-                        <oui-select-picker
-                            data-name="missing"
-                            data-description="{{:: 'pci_projects_project_training_jobs_submit_select_image_preset_request' | translate }}"
-                            data-picture=""
-                            data-label="{{:: 'pci_projects_project_training_jobs_submit_select_image_preset_missing_framework' | translate }}"
-                            data-variant="light"
-                            data-values="[preset]"
-                            data-required
-                            data-model="$ctrl.job.image"
-                            data-on-change="$ctrl.generateName()"
-                        >
-                            <oui-select-picker-section
-                                class="oui-select-picker__section"
-                            >
-                                <a
-                                    target="_blank"
-                                    class="oui-button oui-button_ghost"
-                                    rel="noopener"
-                                    data-ng-href="{{ $ctrl.communityUrl }}"
-                                >
-                                    <span>OVH AI Community</span>
-                                    <i
-                                        class="oui-icon oui-icon-external-link"
-                                        aria-hidden="true"
-                                    ></i>
-                                </a>
-                            </oui-select-picker-section>
-                        </oui-select-picker>
-                    </div>
                 </div>
             </div>
+
             <button
                 class="oui-button sizing__advanced-button oui-button_ghost mb-3"
                 oui-tooltip="{{:: 'pci_projects_project_training_jobs_submit_select_image_advanced_tips' | translate  }}"
@@ -202,8 +173,8 @@
                                         value="{{perm}}"
                                         >{{::
                                         'pci_projects_project_training_jobs_submit_data_permission_'
-                                        + perm | translate }}
-                                    </option>
+                                        + perm | translate }}</option
+                                    >
                                 </select>
                                 <span
                                     class="oui-icon oui-icon-chevron-down"
@@ -419,17 +390,9 @@
                             class="h-100"
                             data-heading="{{:: 'pci_projects_project_training_jobs_submit_validation_equivalent_command' | translate  }}"
                         >
-                            <span
-                                data-translate="pci_projects_project_training_jobs_submit_ovhai_info"
-                            ></span>
                             <pre>
-{{:: 'pci_projects_project_training_parter_cli_name' | translate
-                                }} {{ $ctrl.cliCommand() }}</pre
+{{:: 'pci_projects_project_training_parter_cli_name' | translate  }} {{ $ctrl.cliCommand() }}</pre
                             >
-                            <span
-                                data-translate="pci_projects_project_training_jobs_submit_ovhai_help"
-                            ></span>
-                            <pre>ovhai job run --help</pre>
                         </oui-tile>
                     </div>
                 </div>

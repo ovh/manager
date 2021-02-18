@@ -2,7 +2,6 @@ import includes from 'lodash/includes';
 
 export const STATE_ENUM = {
   RUNNING: 'RUNNING',
-  TIMEOUT: 'TIMEOUT',
   INITIALIZING: 'INITIALIZING',
   FINALIZING: 'FINALIZING',
   PENDING: 'PENDING',
@@ -43,7 +42,6 @@ export default class Job {
       case STATE_ENUM.FAILED:
       case STATE_ENUM.ERROR:
         return 'oui-status_error';
-      case STATE_ENUM.TIMEOUT:
       case STATE_ENUM.INTERRUPTING:
       case STATE_ENUM.INTERRUPTED:
         return 'oui-status_warning';
@@ -60,20 +58,6 @@ export default class Job {
     }
   }
 
-  isPreRunning() {
-    return [
-      STATE_ENUM.QUEUED,
-      STATE_ENUM.PENDING,
-      STATE_ENUM.INITIALIZING,
-    ].includes(this.status.state);
-  }
-
-  isPostRunning() {
-    return [STATE_ENUM.FINALIZING, STATE_ENUM.INTERRUPTING].includes(
-      this.status.state,
-    );
-  }
-
   isSuccess() {
     return this.status.state === STATE_ENUM.DONE;
   }
@@ -83,12 +67,16 @@ export default class Job {
   }
 
   isFailed() {
-    return [STATE_ENUM.FAILED, STATE_ENUM.ERROR].includes(this.status.state);
+    return (
+      this.status.state === STATE_ENUM.FAILED ||
+      this.status.state === STATE_ENUM.ERROR
+    );
   }
 
   isTerminal() {
     return [
       STATE_ENUM.FAILED,
+      STATE_ENUM.INTERRUPTING,
       STATE_ENUM.INTERRUPTED,
       STATE_ENUM.DONE,
       STATE_ENUM.ERROR,

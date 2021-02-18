@@ -3,8 +3,5 @@ angular.module('App').config(($stateProvider) => {
     url: '/configuration',
     component: 'configuration',
     translations: { value: ['../common'], format: 'json' },
-    resolve: {
-      hideBreadcrumb: () => true,
-    },
   });
 });

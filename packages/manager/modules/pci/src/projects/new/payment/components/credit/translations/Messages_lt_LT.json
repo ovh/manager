@@ -1,0 +1,6 @@
+{
+  "pci_project_new_payment_credit_explain": "Every Public Cloud project has its own individual credit account. If there is not enough credit in your account, you will need to settle the remaining amount as soon as possible with a payment method registered to your account.",
+  "pci_project_new_payment_credit_info": "*Credits cannot be transferred or refunded, and do not have any monetary value. Any credit that has not been used within 13 months of purchase will be lost. Click “Credit and create my project”, and you will be redirected to an invoice to pay for your credits via payment card or PayPal.",
+  "pci_project_new_payment_credit_amount_other": "Other amount",
+  "pci_project_new_payment_credit_amount_other_label": "Amount to credit"
+}

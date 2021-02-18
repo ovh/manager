@@ -1,0 +1,11 @@
+{
+  "kube_node_pool_name": "Pool name",
+  "kube_node_pool_creation_date": "Creation date",
+  "kube_node_pool_node_count": "Number of nodes",
+  "kube_node_pool_edit": "Edit pool",
+  "kube_node_pool_delete": "Delete pool",
+  "kube_node_pool_add": "Add a node pool",
+  "kube_node_pool_refreh": "Reload table",
+  "kube_node_pool_title": "Node pools",
+  "kube_add_billing_type_description": "You can switch from hourly billing to monthly billing for each node in the node pool edit view."
+}

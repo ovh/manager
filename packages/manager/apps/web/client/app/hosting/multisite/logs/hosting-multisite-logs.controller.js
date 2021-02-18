@@ -67,7 +67,12 @@ angular.module('App').controller(
           }
         })
         .catch(() => {
-          domain.logUrl = null;
+          this.Alerter.error(
+            this.$translate.instant(
+              'hosting_tab_DOMAINS_multisite_logs_generation_error',
+            ),
+            this.$scope.alerts.main,
+          );
         })
         .finally(() => {
           domain.logsLoading = false;

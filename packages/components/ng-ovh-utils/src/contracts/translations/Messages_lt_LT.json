@@ -1,0 +1,10 @@
+{
+  "ua_contract_next": "Next",
+  "ua_contract_previous": "Previous",
+  "ua_download_contract": "Open \"{{name}}\" contract as PDF",
+  "ua_contract_help": "Scroll down to the contracts in order to confirm them.",
+  "ua_contracts_list_title": "There are {{count}} contracts to read.",
+  "ua_contract_list_title": "There is 1 contract to read.",
+  "ua_contracts_agree": "Accept the contracts",
+  "ua_contract_agree": "Accept the contract"
+}

@@ -13,8 +13,5 @@ angular.module('App').config(($stateProvider) => {
       redirectTo: 'app.account.billing.main.history',
     },
     translations: { value: ['.'], format: 'json' },
-    resolve: {
-      breadcrumb: () => null,
-    },
   });
 });

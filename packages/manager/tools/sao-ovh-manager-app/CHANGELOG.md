@@ -1,12 +1,3 @@
-## [2.3.2](https://github.com/ovh/manager/compare/@ovh-ux/sao-ovh-manager-app@2.3.1...@ovh-ux/sao-ovh-manager-app@2.3.2) (2021-02-02)
-
-
-### Bug Fixes
-
-* bump semver range for @ovh-ux/manager-config ([db758b9](https://github.com/ovh/manager/commit/db758b928c7fe6407330dc2806abc54ba1092e47))
-
-
-
 ## [2.3.1](https://github.com/ovh/manager/compare/@ovh-ux/sao-ovh-manager-app@2.3.0...@ovh-ux/sao-ovh-manager-app@2.3.1) (2021-01-04)
 
 

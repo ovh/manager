@@ -1,0 +1,3 @@
+{
+  "pci_projects_project_baremetal_instance_reinstall_success_message": "Your {{ instance }} instance is being re-installed. This may take up to 15 minutes."
+}

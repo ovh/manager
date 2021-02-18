@@ -156,7 +156,7 @@
   "emails_export_csv_expl": "Der Export Ihrer Accounts kann einige Minuten in Anspruch nehmen (je nach Anzahl Ihrer Accounts).",
   "emails_export_csv_confirm": "Sind Sie sicher, dass Sie Ihre Accounts exportieren möchten?",
   "emails_export_csv_doing": "Export wird durchgeführt...",
-  "email_tab_modal_accounts_export_csv_success": "Die Datei wurde erfolgreich erstellt. Wenn der Download nicht automatisch startet, können Sie die Datei <a target=\"_blank\" href=\"{{t0}}\" download>manuell herunterladen</a>.",
+  "email_tab_modal_accounts_export_csv_success": "Die Datei wurde erfolgreich erstellt. Falls der Download nicht automatisch startet, können Sie die Datei auch <a target=\"_blank\" href=\"{0}\" download>manuell herunterladen</a>.",
   "email_tab_modal_accounts_export_csv_error": "Beim CSV Export Ihrer Accounts ist ein Fehler aufgetreten.",
   "email_tab_redirections_management_title": "Verwaltung der Weiterleitungen",
   "email_tab_redirections_management_heading": "Verwaltung der Weiterleitungen des Accounts",

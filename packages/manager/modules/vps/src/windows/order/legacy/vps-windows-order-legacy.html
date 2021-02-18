@@ -58,12 +58,12 @@
                     data-on-submit="$ctrl.orderOption()"
                     data-on-cancel="$ctrl.cancel()"
                 >
-                    <ovh-contracts-summary
-                        name="agreeContracts"
-                        data-items="$ctrl.durations.details[$ctrl.model.duration].contracts"
-                        data-model="$ctrl.model.contractsValidated"
-                    >
-                    </ovh-contracts-summary>
+                    <div
+                        class="mb-4"
+                        data-cuc-contracts="$ctrl.durations.details[$ctrl.model.duration].contracts"
+                        data-cuc-contracts-validated="$ctrl.model.contractsValidated"
+                        data-full-text="false"
+                    ></div>
                 </oui-step-form>
                 <oui-step-form
                     data-header="{{ ::'vps_order_windows_step3_title' | translate }}"

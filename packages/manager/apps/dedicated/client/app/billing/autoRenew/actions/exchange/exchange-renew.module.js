@@ -4,9 +4,6 @@ import routing from './exchange-renew.routing';
 
 const moduleName = 'ovhManagerBillingAutorenewExchangeRenew';
 
-angular
-  .module(moduleName, [moduleExchange, 'ui.router'])
-  .config(routing)
-  .run(/* @ngTranslationsInject:json ./translations */);
+angular.module(moduleName, [moduleExchange, 'ui.router']).config(routing);
 
 export default moduleName;

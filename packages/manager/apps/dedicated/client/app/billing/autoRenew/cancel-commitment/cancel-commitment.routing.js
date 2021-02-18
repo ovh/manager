@@ -11,7 +11,6 @@ export default /* @ngInject */ ($stateProvider) => {
       layout: 'modal',
       resolve: {
         goBack: /* @ngInject */ (goToAutorenew) => goToAutorenew,
-        breadcrumb: () => null,
       },
     },
   );

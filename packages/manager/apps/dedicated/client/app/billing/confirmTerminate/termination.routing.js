@@ -9,9 +9,6 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
       controller,
       controllerAs: 'TerminateServiceCtrl',
       translations: { value: ['./legacy', '../autoRenew'], format: 'json' },
-      resolve: {
-        hideBreadcrumb: () => true,
-      },
     });
   } else {
     $stateProvider.state('app.account.billing.confirmTerminate', {
@@ -32,7 +29,6 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
         serviceId: /* @ngInject */ ($transition$) => $transition$.params().id,
         token: /* @ngInject */ ($transition$) => $transition$.params().token,
         user: /* @ngInject */ (currentUser) => currentUser,
-        hideBreadcrumb: () => true,
       },
     });
   }

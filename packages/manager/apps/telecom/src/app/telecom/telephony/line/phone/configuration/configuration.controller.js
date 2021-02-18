@@ -17,6 +17,7 @@ import { TELEPHONY_LINE_PHONE_ADDITIONAL_INFOS } from '../phone.constant';
 export default /* @ngInject */ function TelecomTelephonyLinePhoneConfigurationCtrl(
   $scope,
   $q,
+  $timeout,
   $state,
   $stateParams,
   $translate,
@@ -155,8 +156,11 @@ export default /* @ngInject */ function TelecomTelephonyLinePhoneConfigurationCt
   self.onExpertModeChange = function onExpertModeChange() {
     self.loading.grouping = true;
 
-    refreshChunkedGroups();
-    self.loading.grouping = false;
+    // use of timeout because display is bad when using ovh-form-flat selects
+    $timeout(() => {
+      refreshChunkedGroups();
+      self.loading.grouping = false;
+    });
   };
 
   self.onTextInputBlur = function onTextInputBlur(config) {

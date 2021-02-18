@@ -23,9 +23,6 @@
   "pci_projects_project_training_jobs_info_title_3": "Ressourcen",
   "pci_projects_project_training_jobs_info_title_4": "Daten",
   "pci_projects_project_training_jobs_info_title_actions": "Aktionen",
-  "pci_projects_project_training_job_logs_text_3": "Der Auftrag wurde gerade beendet. Sobald die Synchronisierung mit dem Object Storage abgeschlossen ist, können Sie Ihre Logs herunterladen: Dies geschieht über den Container „ai-training-logs\" in der Region, die für den Auftrag ausgewählt wurde.",
-  "pci_projects_project_training_jobs_info_title_5": "Timeline",
-  "pci_projects_project_training_job_logs_text_5": "Der Auftrag ist beendet. Sie können Ihre Logs herunterladen: Dies geschieht über den Object Storage im Container „ai-training-logs\" in der Region, die für den Auftrag ausgewählt wurde.",
-  "pci_projects_project_training_job_logs_text_4": "Mit folgendem Befehl können Sie sie auch direkt herunterladen:",
-  "pci_projects_project_training_job_logs_text_pre_running": "Der Auftrag wurde noch nicht gestartet... Der Tab wird automatisch aktualisiert, sobald der Auftrag gestartet wurde."
+  "pci_projects_project_training_job_logs_text_3": "Nach Abschluss des Auftrags können Sie Ihre Logs über den Object Storage im Container „ai-training-logs“ herunterladen",
+  "pci_projects_project_training_jobs_info_title_5": "Timeline"
 }

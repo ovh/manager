@@ -27,7 +27,7 @@
   "cda_space_usage_available": "Verfügbarer Speicherplatz",
   "cda_task_table_col_id": "ID",
   "cda_task_table_col_name": "Name",
-  "cda_task_table_col_processing": "Fortschritt",
+  "cda_task_table_col_processing": "Fortschritt ",
   "cda_task_table_empty": "Keine aktiven Tasks. ",
   "cda_detail_edit_title": "Cluster-Informationen bearbeiten ",
   "cda_detail_edit_label": "Name",
@@ -37,5 +37,5 @@
   "cda_detail_edit_crushTunable_required": "Crush Tunable erforderlich. ",
   "cda_detail_edit_success": "Die Informationen wurden erfolgreich geändert. ",
   "cda_detail_info_no_user": "Sie brauchen mindestens einen Benutzer um Ihr Cluster zu verwenden.",
-  "cda_detail_info_create_user": "Einen neuen Nutzer erstellen"
+  "cda_detail_info_create_user": "Einen neuen Benutzer erstellen"
 }

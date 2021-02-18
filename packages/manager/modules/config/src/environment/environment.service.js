@@ -36,7 +36,7 @@ export default class EnvironmentService {
   }
 
   setUserLocale(userLocale) {
-    // TODO(@antleblanc): Remove it on March 1, 2021.
+    // TODO(@antleblanc): Remove it on February 4th, 2021.
     const locale =
       userLocale === 'cs_CZ'
         ? userLocale

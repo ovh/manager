@@ -1,12 +1,3 @@
-## [6.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax-app@6.1.3...@ovh-ux/manager-freefax-app@6.1.4) (2021-02-02)
-
-
-### Bug Fixes
-
-* bump semver range for @ovh-ux/manager-config package ([ca04d19](https://github.com/ovh/manager/commit/ca04d19b7a038544f1b5e3b211d0a1c3b70a0d5b))
-
-
-
 ## [6.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax-app@6.1.2...@ovh-ux/manager-freefax-app@6.1.3) (2021-01-04)
 
 

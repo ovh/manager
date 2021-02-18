@@ -606,6 +606,5 @@
   "user_account_ssh_keys_title": "Meine SSH-Schlüssel",
   "user_account_users_management_title": "Benutzerverwaltung",
   "user_account_advanced_title": "Erweiterte Einstellungen",
-  "user_ipRestrictions_warning_last_ip_with_deny": "Bitte ändern Sie die Standardregel in „Erlaubt“, um die letzte IP-Adresse löschen zu können.",
-  "user_account": "Mein Account"
+  "user_ipRestrictions_warning_last_ip_with_deny": "Bitte ändern Sie die Standardregel in „Erlaubt“, um die letzte IP-Adresse löschen zu können."
 }

@@ -7,6 +7,7 @@ export default /* @ngInject */ function TelecomTelephonyLineCallsDisplayNumberCt
   $scope,
   $stateParams,
   $translate,
+  $timeout,
   OvhApiTelephonyLineOptions,
   TucToast,
   TucToastError,
@@ -81,8 +82,11 @@ export default /* @ngInject */ function TelecomTelephonyLineCallsDisplayNumberCt
   };
 
   self.reset = function reset() {
-    self.form.displayedService = angular.copy(self.displayedService);
-    self.form.identificationRestriction = self.identificationRestriction;
+    // $timeout is here so flat-checkbox is corretly refreshed ...
+    $timeout(() => {
+      self.form.displayedService = angular.copy(self.displayedService);
+      self.form.identificationRestriction = self.identificationRestriction;
+    });
   };
 
   self.update = function update() {

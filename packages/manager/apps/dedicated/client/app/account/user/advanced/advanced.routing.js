@@ -3,9 +3,5 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/advanced',
     component: 'accountUserAdvanced',
     translations: ['../'],
-    resolve: {
-      breadcrumb: /* @ngInject */ ($translate) =>
-        $translate.instant('user_advanced'),
-    },
   });
 };

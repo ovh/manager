@@ -14,7 +14,6 @@ export default /* @ngInject */ ($stateProvider) => {
         $transition$.params().serviceId,
       terminateWebCoach: /* @ngInject */ (OvhApiWebCoach, serviceId) => () =>
         OvhApiWebCoach.v6().terminate({ serviceName: serviceId }).$promise,
-      breadcrumb: () => null,
     },
     atInternet: {
       ignore: true,

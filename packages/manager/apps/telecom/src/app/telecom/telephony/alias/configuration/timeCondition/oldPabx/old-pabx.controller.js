@@ -341,7 +341,7 @@ export default /* @ngInject */ function TelecomTelephonyAliasConfigurationTimeCo
           status: self.number.feature.timeCondition.enable
             ? 'enabled'
             : 'disabled',
-          timeout: self.number.feature.timeCondition.timeout.value,
+          timeout: self.number.feature.timeCondition.timeout,
           unavailableNumber: self.number.feature.timeCondition.slots[4].number,
           unavailableType: self.number.feature.timeCondition.slots[4].type,
         };

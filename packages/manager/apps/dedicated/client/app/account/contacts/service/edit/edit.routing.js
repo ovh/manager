@@ -33,7 +33,6 @@ export default /* @ngInject */ ($stateProvider) => {
         $transition$.params().service,
       categoryType: /* @ngInject */ ($transition$) =>
         $transition$.params().categoryType,
-      breadcrumb: () => null,
     },
   });
 };

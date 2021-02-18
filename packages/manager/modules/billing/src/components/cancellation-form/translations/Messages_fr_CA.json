@@ -4,7 +4,7 @@
   "billing_confirm_termination_information_text": "Le service sera résilié à la fin de la période de renouvellement. Une fois que vous confirmez la résiliation, veuillez noter que toutes les données liées à ce service et toutes les sauvegardes <strong>seront définitivement supprimées</strong>. Il vous appartient de prendre toutes les mesures nécessaires pour conserver vos données avant de donner votre confirmation de supprimer votre service. Une fois le processus initié, vous ne pourrez pas le stopper. OVHcloud décline toute responsabilité de perte de données dans ce cas.",
   "billing_confirm_termination_question_reason": "Vous avez choisi de résilier votre service. Pour nous aider à nous améliorer, pourriez-vous s'il vous plaît nous en préciser la raison principale ?",
   "billing_confirm_termination_question_future_use": "Que prévoyez-vous de faire ?",
-  "billing_confirm_termination_question_commentary": "N’hésitez pas à nous raconter davantage les raisons de l’arrêt de ce service",
+  "billing_confirm_termination_question_comment": "N’hésitez pas à nous raconter davantage les raisons de l’arrêt de ce service",
   "billing_confirm_termination_reason_LACK_OF_PERFORMANCES": "La qualité de service (pannes, incidents) ne répond pas à mes attentes.",
   "billing_confirm_termination_reason_NOT_NEEDED_ANYMORE": "Le projet associé à ce produit/service évolue, ou est terminé.",
   "billing_confirm_termination_reason_TOO_EXPENSIVE": "Les tarifs sont trop élevés.",

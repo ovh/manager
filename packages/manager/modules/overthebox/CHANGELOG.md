@@ -1,12 +1,3 @@
-## [6.1.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.1.5...@ovh-ux/manager-overthebox@6.1.6) (2021-02-02)
-
-
-### Bug Fixes
-
-* **overthebox.details:** fix restart button ([#4369](https://github.com/ovh/manager/issues/4369)) ([6f3495b](https://github.com/ovh/manager/commit/6f3495b90836d1dfc8015dd95587b13d085fda06))
-
-
-
 ## [6.1.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.1.4...@ovh-ux/manager-overthebox@6.1.5) (2021-01-13)
 
 

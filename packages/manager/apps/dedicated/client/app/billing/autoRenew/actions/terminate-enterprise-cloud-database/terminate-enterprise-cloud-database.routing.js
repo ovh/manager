@@ -20,7 +20,6 @@ export default /* @ngInject */ ($stateProvider) => {
         ) => () =>
           OvhApiCloudDBEnterprise.v6().terminate({ clusterId: serviceId })
             .$promise,
-        breadcrumb: () => null,
       },
       atInternet: {
         ignore: true,

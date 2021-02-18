@@ -606,6 +606,5 @@
   "user_account_support_level_title": "Level of Support",
   "user_account_ssh_keys_title": "My SSH keys",
   "user_account_users_management_title": "User management",
-  "user_account_advanced_title": "Advanced settings",
-  "user_account": "My account"
+  "user_account_advanced_title": "Advanced settings"
 }

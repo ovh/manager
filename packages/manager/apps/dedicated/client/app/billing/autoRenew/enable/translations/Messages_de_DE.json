@@ -8,6 +8,5 @@
   "billing_autorenew_enable_bulk": "Die automatische Verlängerung wird für alle ausgewählten Dienste aktiviert.",
   "billing_autorenew_enable_bulk_single": "Die automatische Verlängerung für Ihren Dienst {{ serviceName }} wird aktiviert.",
   "billing_autorenew_enable_success": "Die Verlängerung der Dienste wurde erfolgreich aktualisiert",
-  "billing_autorenew_enable_error": "Beim Aktivieren der automatischen Verlängerung ist ein Fehler aufgetreten {{message}}",
-  "billing_autorenew_enable_breadcrumb": "Automatische Verlängerung aktivieren"
+  "billing_autorenew_enable_error": "Beim Aktivieren der automatischen Verlängerung ist ein Fehler aufgetreten {{message}}"
 }

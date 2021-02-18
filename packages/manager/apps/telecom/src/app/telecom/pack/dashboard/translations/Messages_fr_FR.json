@@ -85,8 +85,5 @@
   "pack_promotion_code_confirm": "Je me réengage",
   "pack_rename_error": "Impossible de renommer votre pack {{serviceName}}.",
   "pack_offer_migration": "Changer d'offre",
-  "pack_xdsl_oops_an_error_is_occured": "Oups ! Nous n'avons pas pu récupérer les informations relatives à votre pack.",
-  "pack_xdsl_information_links": "Liens",
-  "pack_xdsl_information_links_igmap": "Carte des incidents génériques",
-  "pack_xdsl_information_links_travaux": "Travaux"
+  "pack_xdsl_oops_an_error_is_occured": "Oups ! Nous n'avons pas pu récupérer les informations relatives à votre pack."
 }

@@ -6,9 +6,6 @@ import routing from './commitment.routing';
 
 const moduleName = 'ovhManagerBillingAutorenewCommitment';
 
-angular
-  .module(moduleName, ['ui.router', ovhManagerBilling])
-  .config(routing)
-  .run(/* @ngTranslationsInject:json ./translations */);
+angular.module(moduleName, ['ui.router', ovhManagerBilling]).config(routing);
 
 export default moduleName;

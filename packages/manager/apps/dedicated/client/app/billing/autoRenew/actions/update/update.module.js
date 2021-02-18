@@ -11,7 +11,6 @@ const moduleName = 'ovhManagerBillingAutorenewUpdate';
 angular
   .module(moduleName, [automatic, form, manualPayment, noPaymentMean])
   .config(routing)
-  .component('billingAutorenewUpdate', component)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .component('billingAutorenewUpdate', component);
 
 export default moduleName;

@@ -1,0 +1,21 @@
+{
+  "billing_services_actions_menu_label": "Further actions on this service ",
+  "billing_autorenew_service_enable_autorenew": "Enable automatic payment",
+  "billing_services_actions_menu_pay_bill": "Pay my bill",
+  "billing_services_actions_menu_manage_renew": "Configure renewal",
+  "billing_services_actions_menu_exchange_update_accounts": "Configure renewal for accounts",
+  "billing_services_actions_menu_anticipate_renew": "Bring forward payment",
+  "billing_services_actions_menu_resiliate": "Cancel on expiry date",
+  "billing_services_actions_menu_renew_label": "Renew the following service: {{ serviceName }} (New window)",
+  "billing_services_actions_menu_renew": "Renew service",
+  "billing_services_actions_menu_exchange_update": "Modify billing",
+  "billing_services_actions_menu_resiliate_EMAIL_DOMAIN": "Delete MX Plan immediately",
+  "billing_services_actions_menu_resiliate_ENTERPRISE_CLOUD_DATABASE": "Delete Enterprise Cloud Database immediately",
+  "billing_services_actions_menu_resiliate_HOSTING_WEB": "Delete web hosting plan immediately",
+  "billing_services_actions_menu_resiliate_HOSTING_PRIVATE_DATABASE": "Delete my Private SQL hosting service",
+  "billing_services_actions_menu_resiliate_WEBCOACH": "Delete my Web Coach",
+  "billing_services_actions_menu_sms_credit": "Add credits",
+  "billing_services_actions_menu_sms_renew": "Configure automatic reloading",
+  "billing_services_actions_menu_resiliate_cancel": "Stop cancellation of service",
+  "billing_services_actions_menu_see_dashboard": "View service details"
+}

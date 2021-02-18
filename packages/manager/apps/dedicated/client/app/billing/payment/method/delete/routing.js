@@ -58,7 +58,6 @@ export default /* @ngInject */ ($stateProvider) => {
       secondaryAction: /* @ngInject */ (goPaymentList) => goPaymentList,
 
       loading: /* @ngInject */ (loaders) => () => loaders.deleting,
-      breadcrumb: () => null,
     },
   });
 };

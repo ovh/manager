@@ -19,7 +19,6 @@ export default /* @ngInject */ ($stateProvider) => {
           });
           return $state.go('app.account.billing.autorenew.agreements');
         },
-        breadcrumb: () => null,
       },
     },
   );

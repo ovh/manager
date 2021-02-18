@@ -1,12 +1,3 @@
-## [9.0.1](https://github.com/ovh/manager/compare/@ovh-ux/component-rollup-config@9.0.0...@ovh-ux/component-rollup-config@9.0.1) (2021-01-27)
-
-
-### Bug Fixes
-
-* **deps:** add missing @babel/core deps ([#4332](https://github.com/ovh/manager/issues/4332)) ([db70ac7](https://github.com/ovh/manager/commit/db70ac7ae5eca3a9865eb86b9e20427db4223b1f))
-
-
-
 # [9.0.0](https://github.com/ovh/manager/compare/@ovh-ux/component-rollup-config@8.0.2...@ovh-ux/component-rollup-config@9.0.0) (2021-01-13)
 
 

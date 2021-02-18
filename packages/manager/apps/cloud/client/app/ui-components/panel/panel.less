@@ -1,0 +1,21 @@
+.cui-panel {
+  &:not(:last-child) {
+    margin-bottom: rem-calc(24);
+  }
+
+  &__header {
+    background-color: #f2f2f2;
+    border: 1px solid #bbbdbf;
+    border-bottom: 1px solid #bbbdbf;
+    border-radius: @base-border-radius-small @base-border-radius-small 0 0;
+    padding: rem-calc(24);
+  }
+
+  &__body {
+    padding: rem-calc(24);
+    border-color: #bbbdbf;
+    border-style: solid;
+    border-width: 0 1px 1px 1px;
+    border-radius: 0 0 @base-border-radius-small @base-border-radius-small;
+  }
+}

@@ -1,21 +1,11 @@
-angular.module('Billing').config(($stateProvider, $urlServiceProvider) => {
+angular.module('Billing').config(($stateProvider) => {
   const name = 'app.account.billing.payment.credits.movements';
 
   $stateProvider.state(name, {
-    url: '/:balanceName',
+    url: '/movements/:balanceName',
     templateUrl:
       'billing/payment/credits/movements/billing-credits-movements.html',
     controller: 'Billing.controllers.CreditsMovements',
     controllerAs: '$ctrl',
-    resolve: {
-      balanceName: /* @ngInject */ ($transition$) =>
-        $transition$.params().balanceName,
-      breadcrumb: /* @ngInject */ (balanceName) => balanceName,
-    },
   });
-
-  $urlServiceProvider.rules.when(
-    '/billing/payment/credits/movements/:name',
-    '/billing/payment/credits/:name',
-  );
 });

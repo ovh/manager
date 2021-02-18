@@ -23,19 +23,13 @@ angular
           url: '/ticket',
           templateUrl: 'account/otrs/otrs.html',
           controller: 'otrsCtrl',
-          resolve: {
-            breadcrumb: /* @ngInject */ ($translate) =>
-              $translate.instant('otrs_title'),
-          },
+          translations: { value: ['../otrs'], format: 'json' },
         });
         $stateProvider.state('app.account.otrs-ticket-us', {
           url: '/support',
           templateUrl: 'account/otrs/otrs.html',
           controller: 'otrsCtrl',
-          resolve: {
-            breadcrumb: /* @ngInject */ ($translate) =>
-              $translate.instant('otrs_title'),
-          },
+          translations: { value: ['../otrs'], format: 'json' },
         });
       } else {
         $stateProvider.state('app.account.otrs-ticket', {
@@ -45,31 +39,20 @@ angular
       }
 
       if (region === 'US') {
-        $stateProvider.state('app.account.otrs-ticket.otrs-ticket-details', {
-          url: '/:ticketId',
+        $stateProvider.state('app.account.otrs-ticket-details', {
+          url: '/ticket/:ticketId',
           templateUrl: 'account/otrs/detail/otrs-detail.html',
           controller: 'otrsDetailCtrl',
-          resolve: {
-            ticketId: /* @ngInject */ ($transition$) =>
-              $transition$.params().ticketId,
-            breadcrumb: /* @ngInject */ (ticketId) => ticketId,
-          },
+          translations: { value: ['../otrs'], format: 'json' },
         });
-        $stateProvider.state(
-          'app.account.otrs-ticket-us.otrs-ticket-details-support',
-          {
-            url: '/tickets/:ticketId',
-            templateUrl: 'account/otrs/detail/otrs-detail.html',
-            controller: 'otrsDetailCtrl',
-            resolve: {
-              ticketId: /* @ngInject */ ($transition$) =>
-                $transition$.params().ticketId,
-              breadcrumb: /* @ngInject */ (ticketId) => ticketId,
-            },
-          },
-        );
+        $stateProvider.state('app.account.otrs-ticket-details-support', {
+          url: '/support/tickets/:ticketId',
+          templateUrl: 'account/otrs/detail/otrs-detail.html',
+          controller: 'otrsDetailCtrl',
+          translations: { value: ['../otrs'], format: 'json' },
+        });
       } else {
-        $stateProvider.state('app.account.otrs-ticket.otrs-ticket-details', {
+        $stateProvider.state('app.account.otrs-ticket-details', {
           url: '/ticket/:ticketId',
           redirectTo: 'support.tickets.ticket',
         });
@@ -81,5 +64,4 @@ angular
     (Otrs) => {
       Otrs.init();
     },
-  ])
-  .run(/* @ngTranslationsInject:json ./translations */);
+  ]);

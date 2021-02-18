@@ -9,7 +9,6 @@ const moduleName = 'ovhManagerDedicatedAccountUserSupportLevel';
 angular
   .module(moduleName, [])
   .config(routing)
-  .component('accountUserSupportLevel', component)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .component('accountUserSupportLevel', component);
 
 export default moduleName;

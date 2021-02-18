@@ -1,9 +1,9 @@
 import controller from './billing-order-tracking.controller';
 import template from './billing-order-tracking.html';
 
-export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
-  $stateProvider.state('app.account.billing.orders.order', {
-    url: '/:orderId',
+export default /* @ngInject */ ($stateProvider) => {
+  $stateProvider.state('app.account.billing.order', {
+    url: '/order/:orderId',
     params: {
       ordersFilter: {
         value: '',
@@ -24,13 +24,7 @@ export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
       ordersFilter: /* @ngInject */ ($transition$) =>
         $transition$.params().ordersFilter,
       goToOrders: /* @ngInject */ ($state, ordersFilter) => () =>
-        $state.go('app.account.billing.orders', {
-          filter: ordersFilter,
-        }),
-      orderId: /* @ngInject */ ($transition$) => $transition$.params().orderId,
-      breadcrumb: /* @ngInject */ (orderId) => orderId,
+        $state.go('app.account.billing.orders', { filter: ordersFilter }),
     },
   });
-
-  $urlServiceProvider.rules.when('/billing/order/:id', '/billing/orders/:id');
 };

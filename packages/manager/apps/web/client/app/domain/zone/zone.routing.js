@@ -17,8 +17,6 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       activateZone: /* @ngInject */ ($state) => () =>
         $state.go('app.domain.product.zone.activate'),
-      orderZone: /* @ngInject */ ($state) => () =>
-        $state.go('app.dns-zone-new'),
       goToZone: /* @ngInject */ ($state, Alerter) => (
         message = false,
         type = 'success',
@@ -53,8 +51,6 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       activateZone: /* @ngInject */ ($state) => () =>
         $state.go('app.domain.alldom.zone.activate'),
-      orderZone: /* @ngInject */ ($state) => () =>
-        $state.go('app.dns-zone-new'),
       goToZone: /* @ngInject */ ($state) => () =>
         $state.go('app.domain.alldom.zone'),
     },

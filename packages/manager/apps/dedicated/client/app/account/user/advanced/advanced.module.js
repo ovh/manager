@@ -9,7 +9,6 @@ const moduleName = 'ovhManagerDedicatedAccountUserAdvanced';
 angular
   .module(moduleName, [ovhManagerBetaPreference])
   .config(routing)
-  .component('accountUserAdvanced', component)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .component('accountUserAdvanced', component);
 
 export default moduleName;

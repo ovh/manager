@@ -1,12 +1,3 @@
-## [1.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-metrics@1.0.0...@ovh-ux/manager-metrics@1.0.1) (2021-02-02)
-
-
-### Bug Fixes
-
-* bump semver range for @ovh-ux/manager-config package ([ca04d19](https://github.com/ovh/manager/commit/ca04d19b7a038544f1b5e3b211d0a1c3b70a0d5b))
-
-
-
 # [1.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-metrics@0.0.0...@ovh-ux/manager-metrics@1.0.0) (2021-01-13)
 
 

@@ -5,6 +5,7 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.account.billing.autorenew.disable', {
     url: '/disable?services',
     component: 'billingAutorenewDisable',
+    translations: { value: ['.'], format: 'json' },
     resolve: {
       goBack: /* @ngInject */ (goToAutorenew) => goToAutorenew,
       servicesId: /* @ngInject */ ($transition$) =>
@@ -29,8 +30,6 @@ export default /* @ngInject */ ($stateProvider) => {
             return service;
           }),
         ),
-      breadcrumb: /* @ngInject */ ($translate) =>
-        $translate.instant('billing_autorenew_disable_breadcrumb'),
     },
   });
 };

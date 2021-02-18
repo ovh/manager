@@ -313,6 +313,7 @@
   "hosting_tab_DOMAINS_search_placeholder": "Buscando...",
   "hosting_tab_DOMAINS_table_popover_restart": "Reiniciar ",
   "hosting_tab_DOMAINS_multisite_logs_generation": "Geração do URL de download",
+  "hosting_tab_DOMAINS_multisite_logs_generation_error": "Ocorreu um erro na geração do link de acesso aos logs.",
   "hosting_tab_DOMAINS_multisite_logs_link": "Aceder aos logs",
   "hosting_tab_DOMAINS_multisite_restart_done": "O domínio foi reiniciado com êxito: {{t0}}",
   "hosting_tab_DOMAINS_multisite_restart_error": "Ocorreu um erro ao reiniciar o domínio.",

@@ -1,0 +1,11 @@
+{
+  "dedicatedCloud_options_zerto_delivered_message_part_one_EPCC": "Your Zerto Disaster Recovery Plan between this Private and the ",
+  "dedicatedCloud_options_zerto_delivered_message_part_two_ovh_EPCC": "{{pccId}} Private Cloud has been set up successfully.",
+  "dedicatedCloud_options_zerto_delivered_message_part_two_onPremise": "your remote infrastructure has been set up successfully.",
+  "dedicatedCloud_options_zerto_delivered_message_part_three": "Your ZSSP password has been sent to {{email}}.",
+  "dedicatedCloud_datacenter_drp_confirm_creation_pending": "Enabling Zerto DRP. The operation could take up to an hour to complete.",
+  "dedicatedCloud_datacenter_drp_confirm_creation_pending_task_EPCC": "Please check the enableDisasterRecovery task on your primary Private Cloud to track its progress.",
+  "dedicatedCloud_options_zerto_waiting_vpn_message_part_one": "To finish enabling your Zerto DRP,",
+  "dedicatedCloud_options_zerto_waiting_vpn_message_part_two": "please add the VPN IP addresses in the DRP settings",
+  "dedicatedCloud_datacenter_drp_required_vpn_configuration": "To finish enabling your Zerto DRP, please add the IPs of the VPN below"
+}

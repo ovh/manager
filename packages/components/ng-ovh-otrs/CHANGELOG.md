@@ -1,12 +1,3 @@
-## [9.1.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-otrs@9.1.2...@ovh-ux/ng-ovh-otrs@9.1.3) (2021-01-27)
-
-
-### Bug Fixes
-
-* **i18n:** add missing translations [CDS 768] ([2b61ff8](https://github.com/ovh/manager/commit/2b61ff8d8042acb9db3344a36f05f930f3e66e63))
-
-
-
 ## [9.1.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-otrs@9.1.1...@ovh-ux/ng-ovh-otrs@9.1.2) (2021-01-13)
 
 

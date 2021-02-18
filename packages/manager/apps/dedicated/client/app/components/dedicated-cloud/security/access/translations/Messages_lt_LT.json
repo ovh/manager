@@ -1,0 +1,9 @@
+{
+    "dedicatedCloud_configuration_security_policy_access_title": "Modify vCenter access policy",
+    "dedicatedCloud_configuration_security_policy_access_step1_question": "Access policy to apply",
+    "dedicatedCloud_SECURITY_access_policy_FILTERED": "Restricted",
+    "dedicatedCloud_SECURITY_access_policy_OPEN": "Open",
+    "dedicatedCloud_configuration_security_policy_access_step1_value": "Select",
+    "dedicatedCloud_configuration_SECURITY_policy_access_success": "The access policy was successfully changed.",
+    "dedicatedCloud_configuration_SECURITY_policy_access_fail": "An error has occurred modifying the access policy."
+}

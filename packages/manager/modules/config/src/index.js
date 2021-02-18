@@ -70,5 +70,5 @@ export default {
   fetchConfiguration,
   findLanguage,
   LANGUAGES,
-  localeStorageKey, // TODO(@antleblanc): Remove it on March 1, 2021.
+  localeStorageKey, // TODO(@antleblanc): Remove it on February 4th, 2021.
 };

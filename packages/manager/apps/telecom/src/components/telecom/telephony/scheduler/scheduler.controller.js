@@ -70,8 +70,8 @@ export default /* @ngInject */ function TelephonySchedulerCtrl(
 
     return self.scheduler
       .getEvents({
-        'dateStart.to': end.format(),
-        'dateEnd.from': start.format(),
+        'dateStart.from': start.format(),
+        'dateEnd.to': end.format(),
       })
       .then((events) => events)
       .catch((error) => {

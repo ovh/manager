@@ -1,0 +1,5 @@
+{
+  "autorenew_service_autorenew_blocked_title": "Atnaujinimo konfigūracija negalima",
+  "autorenew_service_autorenew_blocked_description": "Pagal senas sutartis automatinis atnaujinimas nebeįmanomas. Perskaitykite ir sutikite su naujomis sutartimis, kad galėtumėte automatiškai atnaujinti savo gaminius.",
+  "autorenew_service_autorenew_blocked_confirm": "Perskaitykite ir priimkite naujas pardavimo sąlygas"
+}

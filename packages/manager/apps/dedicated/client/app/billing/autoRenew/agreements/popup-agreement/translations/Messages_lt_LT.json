@@ -1,0 +1,7 @@
+{
+  "user_agreements_accept_all_count": "Sutartis   {{current}}/{{total}}",
+  "user_agreements_accept_all_accept_and_next": "Sutikti ir pereiti prie kito",
+  "user_agreements_accept_all_read_and_accepted": "Aš perskaičiau ir sutinku su {{contractTitle}}",
+  "user_agreements_accept_all_annexes": "Norėdami susipažinti su priedais, kurie yra neatsiejama sutarties dalimi (ypač Bendrosios sąlygos, Specialiosios sąlygos, Asmens duomenų tvarkymo priedas (DPA)), <a href='{{url}}' target='_blank' rel='noopener' class='oui-link_icon'> žiūrėkite šią nuorodą </a>",
+  "user_agreements_accept_all_error": "Apdorojant sutartį įvyko klaida: {{message}}"
+}

@@ -1,0 +1,11 @@
+{
+  "hosting_cdn_order_title": "Order a CDN",
+  "hosting_cdn_order_duration_label": "{{duration}}:",
+  "hosting_cdn_order_step_header_activation": "Activation",
+  "hosting_cdn_order_step_header_payment": "Payment",
+  "hosting_cdn_order_step_description_activation": "To confirm your request, please accept the Terms & Conditions of Use.",
+  "hosting_cdn_order_step_description_payment": "To confirm your request, please choose a payment method, and accept the Terms & Conditions of Use.",
+  "hosting_cdn_order_submit_activate": "Enable",
+  "hosting_cdn_order_submit_pay": "Pay",
+  "hosting_cdn_order_cancel": "Cancel"
+}

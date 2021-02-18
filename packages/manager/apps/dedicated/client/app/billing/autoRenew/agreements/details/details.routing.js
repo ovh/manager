@@ -13,7 +13,6 @@ export default /* @ngInject */ (
       controllerAs: 'ctrl',
       resolve: {
         agreementId: /* @ngInject */ ($transition$) => $transition$.params().id,
-        breadcrumb: /* @ngInject */ (agreementId) => agreementId,
       },
     });
 

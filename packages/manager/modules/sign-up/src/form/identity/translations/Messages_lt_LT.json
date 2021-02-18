@@ -1,0 +1,5 @@
+{
+  "sign_up_identity_field_name": "Surname",
+  "sign_up_identity_field_firstname": "First name",
+  "sign_up_identity_field_email": "Email address"
+}

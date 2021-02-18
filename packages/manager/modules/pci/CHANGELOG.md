@@ -1,35 +1,3 @@
-## [5.8.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.8.2...@ovh-ux/manager-pci@5.8.3) (2021-02-04)
-
-
-### Bug Fixes
-
-* **i18n:** add missing translations [CDS 784] ([03ab003](https://github.com/ovh/manager/commit/03ab003638f105083189ce0811521a165ed1b79d))
-* **training:** fix data container missing after removing volume ([#4375](https://github.com/ovh/manager/issues/4375)) ([15b4148](https://github.com/ovh/manager/commit/15b41485a71fd146f08c72c880f6f7df2f47ac97))
-* **training:** minor improvements ([d4d3812](https://github.com/ovh/manager/commit/d4d381203bac269e3db880218fba56db0905b993))
-
-
-
-## [5.8.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.8.1...@ovh-ux/manager-pci@5.8.2) (2021-02-02)
-
-
-### Bug Fixes
-
-* bump semver range for @ovh-ux/manager-config package ([ca04d19](https://github.com/ovh/manager/commit/ca04d19b7a038544f1b5e3b211d0a1c3b70a0d5b))
-
-
-
-## [5.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.8.0...@ovh-ux/manager-pci@5.8.1) (2021-01-27)
-
-
-### Bug Fixes
-
-* **i18n:** add missing translations [CDS 767] ([e640f88](https://github.com/ovh/manager/commit/e640f8820b5c142c1dd9745e2ceadc22c76427a6))
-* **i18n:** add missing translations [CDS 768] ([2b61ff8](https://github.com/ovh/manager/commit/2b61ff8d8042acb9db3344a36f05f930f3e66e63))
-* **i18n:** add missing translations [CDS 773] ([2c3a548](https://github.com/ovh/manager/commit/2c3a548aa8de28c9e84b89596f703f622e7224fe))
-* **i18n:** add missing translations [CDS 775] ([79d4412](https://github.com/ovh/manager/commit/79d44129b838b5da855369bfaabbd0e01f533c2a))
-
-
-
 # [5.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.7.0...@ovh-ux/manager-pci@5.8.0) (2021-01-20)
 
 

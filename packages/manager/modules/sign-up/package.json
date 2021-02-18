@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/sign-up",
-  "version": "2.1.6",
+  "version": "2.1.5",
   "private": true,
   "description": "Sign-Up form component.",
   "repository": {
@@ -21,7 +21,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/sign-up' --include-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^3.0.0 || ^4.0.0",
+    "@ovh-ux/manager-config": "^2.0.0 || ^3.0.0",
     "flag-icon-css": "^3.4.2",
     "lodash": "^4.17.15"
   },

@@ -66,8 +66,6 @@ export default /* @ngInject */ ($stateProvider) => {
           ({ questions }) => questions,
         ),
       user: /* @ngInject */ (currentUser) => currentUser,
-      breadcrumb: /* @ngInject */ ($translate) =>
-        $translate.instant('autorenew_service_delete_title'),
     },
     atInternet: {
       rename: /* @ngInject */ ($state) =>

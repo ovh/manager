@@ -1,0 +1,10 @@
+{
+  "sms_actions": "I want to...",
+  "sms_actions_send_sms": "Send an SMS",
+  "sms_actions_credit_account": "Credit my account",
+  "sms_actions_create_contact": "Create a contact",
+  "sms_actions_create_sender": "Create a sender",
+  "sms_actions_create_api_user": "Create an API user",
+  "sms_actions_clean_contact_list": "Clean my contact list",
+  "sms_consumed_last_recharge": "Last re-credit"
+}

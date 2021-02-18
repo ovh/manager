@@ -1,12 +1,3 @@
-## [1.0.6](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-order-tracking@1.0.5...@ovh-ux/ng-ovh-order-tracking@1.0.6) (2021-01-27)
-
-
-### Bug Fixes
-
-* **i18n:** add missing translations [CDS 773] ([2c3a548](https://github.com/ovh/manager/commit/2c3a548aa8de28c9e84b89596f703f622e7224fe))
-
-
-
 ## [1.0.5](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-order-tracking@1.0.4...@ovh-ux/ng-ovh-order-tracking@1.0.5) (2021-01-13)
 
 
