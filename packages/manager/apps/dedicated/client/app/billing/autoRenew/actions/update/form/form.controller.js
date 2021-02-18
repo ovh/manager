@@ -5,14 +5,15 @@ import { RENEWAL_TYPES } from './form.constants';
 
 export default class {
   /* @ngInject */
-  constructor($translate, BillingAutorenewUpdateForm) {
+  constructor($translate, Alerter, BillingAutorenewUpdateForm) {
+    this.Alerter = Alerter;
     this.$translate = $translate;
     this.BillingAutorenewUpdateForm = BillingAutorenewUpdateForm;
   }
 
   $onInit() {
-    this.BillingAutorenewUpdateForm.getAvailableRenewPeriods(this.service).then(
-      (periods) => {
+    this.BillingAutorenewUpdateForm.getAvailableRenewPeriods(this.service)
+      .then((periods) => {
         this.PERIODS = periods;
         this.RENEWAL_TYPES = this.BillingAutorenewUpdateForm.getRenewalTypes();
         this.model = {
@@ -25,8 +26,15 @@ export default class {
         };
         this.onRenewalTypeChange(this.model.renewalType);
         this.onPeriodChange(this.model.period);
-      },
-    );
+      })
+      .catch((error) =>
+        this.Alerter.set(
+          'alert-danger',
+          this.$translate.instant('billing_autorenew_service_update_error', {
+            message: error.data?.message,
+          }),
+        ),
+      );
 
     if (this.service.getRenew() === RENEWAL_TYPES.MANUAL) {
       remove(this.RENEWAL_TYPES, { type: RENEWAL_TYPES.MANUAL });
