@@ -41,16 +41,12 @@ export default class BillingService {
       return this.status.toLowerCase();
     }
 
-    if (this.hasManualRenew()) {
-      return 'manualPayment';
-    }
-
-    if (this.shouldDeleteAtExpiration() && !this.isResiliated()) {
-      return 'delete_at_expiration';
-    }
-
     if (this.isResiliated()) {
       return 'expired';
+    }
+
+    if (this.shouldDeleteAtExpiration()) {
+      return 'delete_at_expiration';
     }
 
     if (this.hasAutomaticRenew() || this.hasForcedRenew()) {
@@ -71,7 +67,7 @@ export default class BillingService {
   }
 
   isExpired() {
-    return this.status.toLowerCase() === 'expired';
+    return ['expired', 'unrenewed'].includes(this.status.toLowerCase());
   }
 
   shouldDeleteAtExpiration() {
