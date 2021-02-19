@@ -31,10 +31,7 @@ export default class PackMoveOffersCtrl {
 
     this.getOptions()
       .then(() => {
-        if (
-          (this.currentOffer.isFTTH && !this.eligibilityReferenceFiber) ||
-          !this.currentOffer.isFTTH
-        ) {
+        if (!this.currentOffer.isFTTH || !this.eligibilityReferenceFiber) {
           // Retrieve copper offers for xDSL customer or FTTH customer not eligible to fiber
           return this.getCopperOffers();
         }
