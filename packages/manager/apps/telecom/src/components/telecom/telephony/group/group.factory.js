@@ -100,6 +100,10 @@ export default /* @ngInject */ (
     return allServices;
   };
 
+  TelephonyGroup.prototype.shouldIncreaseDeposit = function shouldIncreaseDeposit() {
+    return this.currentOutplan.value >= this.allowedOutplan.value;
+  };
+
   /* ----------  API CALLS  ----------*/
 
   TelephonyGroup.prototype.save = function save() {
