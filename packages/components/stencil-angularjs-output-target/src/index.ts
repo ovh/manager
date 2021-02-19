@@ -1,0 +1,1 @@
+export { angularJSOutputTarget } from './plugin';
