@@ -6,6 +6,7 @@ import isObject from 'lodash/isObject';
 
 import { CAPABILITIES } from './instance.constants';
 import Flavor from '../flavors-list/flavor.class';
+import { IMAGE_STATUS } from '../image/image.constants';
 
 export default class Instance {
   constructor(resource) {
@@ -169,6 +170,10 @@ export default class Instance {
 
   isApplicationImage() {
     return includes(get(this, 'image.tags', []), 'application');
+  }
+
+  isDeprecatedImage() {
+    return this.image?.status === IMAGE_STATUS.DEPRECATED;
   }
 
   getDefaultIp() {
