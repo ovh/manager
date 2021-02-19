@@ -18,7 +18,7 @@ export default class DialplanExtensionCtrl {
     this.$scope = $scope;
     this.$timeout = $timeout;
     this.$translate = $translate;
-    this.tucToast = TucToast;
+    this.TucToast = TucToast;
     this.tucUiSortableHelpers = TUC_UI_SORTABLE_HELPERS;
   }
 
@@ -113,7 +113,7 @@ export default class DialplanExtensionCtrl {
       'ovhPabx_diaplan_extension_'.concat(this.extension.extensionId),
     );
 
-    if (['DRAFT', 'IN_CREATION'].indexOf(this.extension.status) === -1) {
+    if (!['DRAFT', 'IN_CREATION'].includes(this.extension.status)) {
       initPromise = this.$q.allSettled([
         this.extension.getRules(),
         this.extension.getScreenListConditions(),
@@ -130,17 +130,16 @@ export default class DialplanExtensionCtrl {
     return (
       this.loading.init ||
       (this.extension &&
-        (['OK', 'DELETE_PENDING'].indexOf(this.extension.status) === -1 ||
+        (!['OK', 'DELETE_PENDING'].includes(this.extension.status) ||
           some(
             this.extension.screenListConditions,
             (screenListCondition) =>
-              ['CREATING', 'DELETING'].indexOf(screenListCondition.state) !==
-              -1,
+              !['CREATING', 'DELETING'].includes(screenListCondition.state),
           ) ||
           some(
             this.extension.timeConditions,
             (timeCondition) =>
-              ['CREATING', 'DELETING'].indexOf(timeCondition.state) !== -1,
+              !['CREATING', 'DELETING'].includes(timeCondition.state),
           )))
     );
   }

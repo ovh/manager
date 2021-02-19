@@ -32,7 +32,7 @@ export default class DialplanCtrl {
     this.ovhPabx = null;
 
     let sortInterval = null;
-    let initPromise = this.$q.when(true);
+    let initPromise = this.$q.when();
     this.loading.init = true;
 
     // set ovhPabx instance
