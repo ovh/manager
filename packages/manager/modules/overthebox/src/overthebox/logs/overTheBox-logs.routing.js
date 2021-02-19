@@ -4,9 +4,9 @@ export default /* @ngInject */ ($stateProvider) => {
     views: {
       otbView: 'overTheBoxLogs',
     },
-    translations: {
-      value: ['.'],
-      format: 'json',
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('overTheBox_logs_breadcrumb'),
     },
   });
 };

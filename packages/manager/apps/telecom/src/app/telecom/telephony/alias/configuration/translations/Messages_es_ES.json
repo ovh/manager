@@ -112,5 +112,6 @@
   "telephony_alias_config_conference_report_status_none": "Aucun rapport",
   "telephony_alias_config_conference_report_status_other": "Recevoir sur une autre adresse e-mail",
   "telephony_alias_config_conference_report_status_customer": "Recevoir sur l’adresse e-mail de mon compte",
-  "telephony_alias_config_conference_invalid_file_format": "Formato de archivo no autorizado."
+  "telephony_alias_config_conference_invalid_file_format": "Formato de archivo no autorizado.",
+  "telephony_alias_configuration_breadcrumb": "Configuración"
 }

@@ -25,10 +25,9 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     resolve: {
-      billingAccountId: /* @ngInject */ ($transition$) =>
+      billingAccount: /* @ngInject */ ($transition$) =>
         $transition$.params().billingAccount,
-      dataModel: () => 'telephony.BillingAccount',
-      defaultFilterColumn: () => 'billingAccount',
+      billingAccountId: /* @ngInject */ (billingAccount) => billingAccount,
       initTelephony($q, $stateParams, TelephonyMediator) {
         // init all groups, lines and numbers
         TelephonyMediator.init().then(() =>
@@ -58,8 +57,6 @@ export default /* @ngInject */ ($stateProvider) => {
             }),
           );
       },
-      isBetaActive: /* @ngInject */ (betaPreferenceService) =>
-        betaPreferenceService.isBetaActive(),
       currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
         $state.href($state.current.name, $transition$.params()),
 
@@ -103,6 +100,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('telecom.telephony.billingAccount.billing.deposit', {
           billingAccount: billingAccountId,
         }),
+      breadcrumb: /* @ngInject */ (billingAccount) => billingAccount,
     },
     translations: { value: ['..', '.', './dashboard'], format: 'json' },
   });

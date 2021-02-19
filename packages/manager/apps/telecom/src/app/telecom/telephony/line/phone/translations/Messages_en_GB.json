@@ -12,5 +12,6 @@
   "telephony_line_phone_actions_line_phonebook": "Address books",
   "telephony_group_line_phone_section_back_link": "Return to telephone management",
   "telephony_line_phone_actions_line_phone_order_attach": "Attach line to current hardware",
-  "telephony_line_phone_actions_line_phone_order_detach": "Detach a telephone line"
+  "telephony_line_phone_actions_line_phone_order_detach": "Detach a telephone line",
+  "telephony_line_phone_actions_line_details_phone_breadcrumb": "Phone"
 }

@@ -52,6 +52,5 @@
   "telephony_activation_order_nb_select_phones": "Vous avez sélectionné {{nbLines}} lignes, merci de sélectionner {{nbLines}} produits.",
   "telephony_activation_choice_sip_line_without_phone": "Ligne SIP sans téléphone",
   "telephony_activation_hardware_setup_fees_label": "Frais d'activation",
-  "telephony_activation_choice_quantity_max": "Vous avez atteint le maximum de produits, vous ne pouvez pas en ajouter plus.",
-  "telephony_activation_return": "Retour"
+  "telephony_activation_choice_quantity_max": "Vous avez atteint le maximum de produits, vous ne pouvez pas en ajouter plus."
 }

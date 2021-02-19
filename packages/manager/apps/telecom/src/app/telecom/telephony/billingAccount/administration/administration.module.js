@@ -5,6 +5,8 @@ import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 import 'ovh-api-services';
 
+import portabilities from './portabilities/portabilities.module';
+
 import routing from './administration.routing';
 
 const moduleName = 'ovhManagerTelecomTelephonyBillingAccountAdministration';
@@ -16,6 +18,7 @@ angular
     'pascalprecht.translate',
     'ovh-api-services',
     'ui.router',
+    portabilities,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations ./../billing/translations */);

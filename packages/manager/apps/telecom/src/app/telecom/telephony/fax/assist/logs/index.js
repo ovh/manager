@@ -7,6 +7,9 @@ import routing from './logs.routing';
 
 const moduleName = 'ovhManagerTelecomTelephonyFaxAssistLogs';
 
-angular.module(moduleName, ['ui.router', serviceAssistLogs]).config(routing);
+angular
+  .module(moduleName, ['ui.router', serviceAssistLogs])
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

@@ -23,6 +23,8 @@ export default /* @ngInject */ ($stateProvider) => {
           batchId: batch.id,
         });
       },
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('sms_batches_statistics_title'),
     },
     atInternet: {
       rename: 'sms::service::campaign::reports',

@@ -1,4 +1,5 @@
 {
+  "telephony_alias_configuration_breadcrumb": "Configuration",
   "telephony_alias_configuration_back_link": "Retour à la configuration du numéro",
   "telephony_alias_configuration_change_type": "Modifier le type du numéro",
   "telephony_alias_configuration_actions_number_modification_new": "Modifier le type du numéro",

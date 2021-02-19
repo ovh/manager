@@ -40,6 +40,8 @@ export default /* @ngInject */ ($stateProvider) => {
             ),
         ),
       reloadPage: /* @ngInject */ ($state) => () => $state.reload(),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('sms_batches_pending_breadcrumb'),
     },
     atInternet: {
       rename: 'sms::service::campaign::pending',

@@ -69,7 +69,7 @@ export default class {
     )
       .then((availableEngagements) => {
         this.availableEngagements = groupBy(
-          availableEngagements,
+          availableEngagements.filter((engagement) => engagement.isPeriodic()),
           'durationInMonths',
         );
         this.availableDurations = map(

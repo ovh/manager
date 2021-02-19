@@ -10,5 +10,6 @@
   "telephony_group_billing_actions_group_group_called_fees": "Costes SVA del grupo",
   "telephony_group_billing_actions_group_called_fees_history": "Historial de costes SVA",
   "telephony_group_billing_actions_group_banking_management": "Cambiar mis datos bancarios",
-  "telephony_group_billing_actions_group_delayed_account_transfert": "Transferencia a una cuenta bancaria   "
+  "telephony_group_billing_actions_group_delayed_account_transfert": "Transferencia a una cuenta bancaria   ",
+  "telephony_group_billing_breadcrumb": "Facturación"
 }

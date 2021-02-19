@@ -86,10 +86,13 @@ export default /* @ngInject */ function TelecomTelephonyLineClick2CallAddUserCtr
   };
 
   this.close = function close() {
-    $state.go('telecom.telephony.billingAccount.line.click2call', {
-      billingAccount: $stateParams.billingAccount,
-      serviceName: $stateParams.serviceName,
-    });
+    $state.go(
+      'telecom.telephony.billingAccount.line.dashboard.calls.click2call',
+      {
+        billingAccount: $stateParams.billingAccount,
+        serviceName: $stateParams.serviceName,
+      },
+    );
   };
 
   /* ===========================

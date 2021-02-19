@@ -8,6 +8,7 @@ export default {
     attachMandate: '<',
     deleteDocument: '<',
     documentId: '<',
+    serviceName: '<',
   },
   controller,
   template,

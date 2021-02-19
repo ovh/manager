@@ -15,5 +15,6 @@
   "telephony_line_expire_date": "Il servizio scade il {{date}}.",
   "telephony_line_expire_link": "Per annullare, clicca qui.",
   "telephony_line_convert_date": "Questa linea sarà convertita in numero il {{ date }}.",
-  "telephony_line_convert_link": "Vous pourrez annuler dans la section suivante."
+  "telephony_line_convert_link": "Vous pourrez annuler dans la section suivante.",
+  "telephony_line_breacrumb": "Linee"
 }

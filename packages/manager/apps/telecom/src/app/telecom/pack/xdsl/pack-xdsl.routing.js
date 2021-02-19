@@ -11,6 +11,7 @@ export default /* @ngInject */ ($stateProvider) => {
         OvhApiXdslLines.v6().query({
           xdslId: serviceName,
         }).$promise,
+      breadcrumb: /* @ngInject */ (serviceName) => serviceName,
     },
     redirectTo: (transition) =>
       transition
@@ -67,9 +68,22 @@ export default /* @ngInject */ ($stateProvider) => {
             $translate('xdsl_page_title', { name: $stateParams.serviceName }),
           );
       },
-      goBack: /* @ngInject */ ($state) => (backState) => {
-        $state.go(backState);
-      },
+      goBack: /* @ngInject */ (goToPack) => goToPack,
+      lineLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href('telecom.packs.pack.xdsl.line', $transition$.params()),
+      modemLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href(
+          'telecom.packs.pack.xdsl.line.modem',
+          $transition$.params(),
+        ),
+      taskLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href(
+          'telecom.packs.pack.xdsl.line.tasks',
+          $transition$.params(),
+        ),
+      currentActiveLink: /* @ngInject */ ($state, $transition$) => () =>
+        $state.href($state.current.name, $transition$.params()),
+      breadcrumb: () => null,
     },
   });
 };

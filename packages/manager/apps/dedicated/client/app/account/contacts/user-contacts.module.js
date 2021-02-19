@@ -4,8 +4,7 @@ import ngOvhSwimmingPoll from '@ovh-ux/ng-ovh-swimming-poll';
 import contactsService from './service/contacts-service.module';
 import contactsServiceEdit from './service/edit/edit.module';
 import routing from './user-contacts.routes';
-import service from './user-contacts.service';
-import update from './update/user-contacts-update.module';
+
 import contactsRequest from './request/user-contacts-request.module';
 
 const moduleName = 'UserAccountContacts';
@@ -21,9 +20,7 @@ angular
     'pascalprecht.translate',
     contactsRequest,
     'ui.router',
-    update,
   ])
-  .service('UserAccountContactsService', service)
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
 

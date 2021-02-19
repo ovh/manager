@@ -116,7 +116,7 @@ export default class VeeamCloudConnectDashboardCtrl {
         text: this.$translate.instant('veeam_common_manage'),
         href:
           Environment.getRegion() === 'EU'
-            ? buildURL('dedicated', '#/useraccount/contacts', {
+            ? buildURL('dedicated', '#/contacts/services', {
                 serviceName: this.serviceName,
                 tab: 'SERVICES',
               })

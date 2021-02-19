@@ -3,7 +3,7 @@ import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('freefaxes.index', {
     url: `?${ListLayoutHelper.urlQueryParams}`,
-    component: 'ovhManagerFreefaxes',
+    component: 'ovhManagerFreefax',
     params: ListLayoutHelper.stateParams,
     resolve: {
       apiPath: () => '/freefax',
@@ -14,6 +14,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('freefaxes.freefax', { serviceName: fax.number }),
       viewFreefax: /* @ngInject */ ($state) => (fax) =>
         $state.go('freefaxes.freefax', { serviceName: fax.number }),
+      hideBreadcrumb: () => true,
     },
   });
 };

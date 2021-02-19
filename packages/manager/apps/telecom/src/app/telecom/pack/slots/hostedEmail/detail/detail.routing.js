@@ -7,6 +7,7 @@ export default /* @ngInject */ ($stateProvider) => {
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceName,
       goBack: /* @ngInject */ ($state) => () => $state.go('telecom.packs.pack'),
+      breadcrumb: /* @ngInject */ (serviceName) => serviceName,
     },
   });
 };

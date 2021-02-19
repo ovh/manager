@@ -1,22 +1,31 @@
-<% const pascalcasedName = this.camelcase(name, { pascalCase: true }) -%>import angular from 'angular';
-
-import '@ovh-ux/manager-core';
+<% const pascalcasedName = this.camelcase(name, { pascalCase: true }) -%>
+import angular from 'angular';
 import '@uirouter/angularjs';
-import 'angular-translate';
+import 'oclazyload';
 
-import component from './component';
-import routing from './routing';
+const moduleName = 'ovhManager<%= pascalcasedName %>LazyLoading';
 
-const moduleName = 'ovhManager<%= pascalcasedName %>';
+angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
+  /* @ngInject */ ($stateProvider) => {
+    $stateProvider.state('app', {
+      url: '/<%= name %>',
+      template: '<div data-ui-view></div>',
+      redirectTo: 'app.index',
+      resolve: {
+        breadcrumb: () => '<%= name %>',
+      },
+    });
+    $stateProvider.state('app.index.**', {
+      url: '',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-angular
-  .module(moduleName, [
-    'ovhManagerCore',
-    'pascalprecht.translate',
-    'ui.router',
-  ])
-  .config(routing)
-  .component('<%= pascalcasedName %>', component)
-  .run(/* @ngTranslationsInject:json ./translations */);
+        return import('./module').then((mod) =>
+          $ocLazyLoad.inject(mod.default || mod),
+        );
+      },
+    });
+  },
+);
 
 export default moduleName;

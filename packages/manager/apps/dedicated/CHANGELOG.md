@@ -1,3 +1,12 @@
+## [16.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.3.2...@ovh-ux/manager-dedicated@16.3.3) (2021-02-16)
+
+
+### Bug Fixes
+
+* **contact:** update contact link and state ([2d51500](https://github.com/ovh/manager/commit/2d5150028b62270442d2d01ec4e2aaf0a4bb887a))
+
+
+
 ## [16.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.3.1...@ovh-ux/manager-dedicated@16.3.2) (2021-02-15)
 
 

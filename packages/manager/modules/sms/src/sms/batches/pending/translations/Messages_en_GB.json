@@ -4,5 +4,6 @@
   "sms_batches_pending_actions_cancel": "Cancel",
   "sms_batches_pending_actions_cancel_one": "Cancel selected campaign",
   "sms_batches_pending_actions_cancel_many": "Cancel selected campaigns",
-  "sms_batches_pending_cancel_success": "Cancellation successful"
+  "sms_batches_pending_cancel_success": "Cancellation successful",
+  "sms_batches_pending_breadcrumb": "Scheduled campaigns"
 }

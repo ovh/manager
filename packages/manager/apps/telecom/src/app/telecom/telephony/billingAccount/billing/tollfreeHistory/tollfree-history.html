@@ -9,59 +9,53 @@
             data-translate="telephony_group_billing_tollfree_history_title"
         ></h1>
     </header>
+    <div class="widget-presentation">
+        <h2
+            class="widget-presentation-title"
+            data-translate="telephony_group_billing_tollfree_history_list_title"
+            data-translate-values="{ groupName: TollfreeHistoryCtrl.group.getDisplayedName() }"
+        ></h2>
 
-    <div class="telecom-section-content">
-        <div class="widget-presentation">
-            <h2
-                class="widget-presentation-title"
-                data-translate="telephony_group_billing_tollfree_history_list_title"
-                data-translate-values="{ groupName: TollfreeHistoryCtrl.group.getDisplayedName() }"
-            ></h2>
+        <tuc-toast-message></tuc-toast-message>
 
-            <tuc-toast-message></tuc-toast-message>
-
-            <div class="row">
-                <div class="col-xs-12">
-                    <oui-datagrid
-                        data-rows="TollfreeHistoryCtrl.consumptionData"
+        <div class="row">
+            <div class="col-xs-12">
+                <oui-datagrid data-rows="TollfreeHistoryCtrl.consumptionData">
+                    <oui-datagrid-column
+                        data-title="'telephony_group_billing_tollfree_history_list_date' | translate"
+                        data-property="date"
+                        data-sortable="desc"
                     >
-                        <oui-datagrid-column
-                            data-title="'telephony_group_billing_tollfree_history_list_date' | translate"
-                            data-property="date"
-                            data-sortable="desc"
+                        <span
+                            class="text-nowrap"
+                            data-ng-bind="$row.date | date:'shortDate'"
                         >
-                            <span
-                                class="text-nowrap"
-                                data-ng-bind="$row.date | date:'shortDate'"
-                            >
-                            </span>
-                        </oui-datagrid-column>
-                        <oui-datagrid-column
-                            data-title="'telephony_group_billing_tollfree_history_list_price' | translate"
-                            data-property="date"
-                            data-sortable
+                        </span>
+                    </oui-datagrid-column>
+                    <oui-datagrid-column
+                        data-title="'telephony_group_billing_tollfree_history_list_price' | translate"
+                        data-property="date"
+                        data-sortable
+                    >
+                        <span
+                            class="text-nowrap"
+                            data-ng-bind="$row.price.text.replace('-', '')"
                         >
-                            <span
-                                class="text-nowrap"
-                                data-ng-bind="$row.price.text.replace('-', '')"
-                            >
-                            </span>
-                        </oui-datagrid-column>
+                        </span>
+                    </oui-datagrid-column>
 
-                        <oui-action-menu data-compact data-placement="end">
-                            <oui-action-menu-item
-                                on-click="TollfreeHistoryCtrl.download($row)"
-                            >
-                                <span
-                                    data-translate="telephony_group_billing_tollfree_history_list_download_csv"
-                                ></span>
-                            </oui-action-menu-item>
-                        </oui-action-menu>
-                    </oui-datagrid>
-                </div>
+                    <oui-action-menu data-compact data-placement="end">
+                        <oui-action-menu-item
+                            on-click="TollfreeHistoryCtrl.download($row)"
+                        >
+                            <span
+                                data-translate="telephony_group_billing_tollfree_history_list_download_csv"
+                            ></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+                </oui-datagrid>
             </div>
         </div>
     </div>
-    <!-- /.telecom-section-content -->
 </section>
 <!-- /.telecom-telephony-billing-account-billing-tollfree-history -->

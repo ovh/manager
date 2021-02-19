@@ -41,7 +41,10 @@ angular
           component: 'smsOrderComponent',
         },
       },
-      translations: { value: ['.'], format: 'json' },
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('sms_order_title'),
+      },
     });
 
     $stateProvider.state('sms.order', {
@@ -54,9 +57,13 @@ angular
           component: 'smsOrderComponent',
         },
       },
-      translations: { value: ['.'], format: 'json' },
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('sms_order_title'),
+      },
     });
   })
+  .run(/* @ngTranslationsInject:json ./translations */)
   .constant('SMS_ORDER_PREFIELDS_VALUES', [
     100,
     500,

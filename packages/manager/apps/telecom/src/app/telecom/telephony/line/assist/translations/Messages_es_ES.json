@@ -5,5 +5,6 @@
   "telephony_line_assist_actions_line_switch_password": "Activer le nouveau téléphone",
   "telephony_line_assist_actions_line_sav_rma_status": "Suivi RMA",
   "telephony_line_assist_actions_line_contact_support_and_guides": "Guides et support",
-  "telephony_line_assist_back_link": "Retour à l'assistance"
+  "telephony_line_assist_back_link": "Retour à l'assistance",
+  "telephony_line_assist_breadcrumb": "Soporte"
 }

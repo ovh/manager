@@ -2,5 +2,6 @@
   "sms_options_manage": "Opcje ogólne",
   "sms_options_response": "Opcje odpowiedzi",
   "sms_options_recredit": "Automatyczne ładowanie",
-  "sms_options_blacklist": "Zarządzaj nadawcami z czarnej listy"
+  "sms_options_blacklist": "Zarządzaj nadawcami z czarnej listy",
+  "sms_options_breadcrumb": "Opcje"
 }

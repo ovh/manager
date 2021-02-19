@@ -6,6 +6,8 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       goBack: /* @ngInject */ ($state) => () => $state.go('telecom.packs.pack'),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('telecom_pack_migration_title'),
     },
   });
 };

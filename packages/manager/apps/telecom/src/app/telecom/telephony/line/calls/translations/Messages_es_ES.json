@@ -11,5 +11,6 @@
   "telephony_line_calls_actions_line_callWaiting": "Llamada en espera e Intercom",
   "telephony_line_calls_actions_line_abbreviated_numbers": "Números abreviados",
   "telephony_line_calls_actions_line_click2call": "Llamada en un clic (Click2Call)",
-  "telephony_line_calls_actions_line_external_number_display": "Presentación de un número externo"
+  "telephony_line_calls_actions_line_external_number_display": "Presentación de un número externo",
+  "telephony_line_calls_breadcrumb": "Gestión de llamadas"
 }

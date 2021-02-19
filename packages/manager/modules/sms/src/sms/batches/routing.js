@@ -33,6 +33,8 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('^', {}, options),
       schema: /* @ngInject */ ($http) =>
         $http.get('/sms.json').then(({ data: schema }) => schema),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('sms_batches_breadcrumb'),
     },
     atInternet: {
       rename: 'sms::service::campaign',

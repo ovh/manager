@@ -1,6 +1,6 @@
 <div
     class="manager-notifications_content position-relative d-flex"
-    data-ng-repeat="menuLink in $ctrl.sublinks track by menuLink.id"
+    data-ng-repeat="menuLink in $ctrl.sublinks track by $index"
     data-ng-class="{
         'manager-navbar-notification_content__highlight' : menuLink.url
     }"

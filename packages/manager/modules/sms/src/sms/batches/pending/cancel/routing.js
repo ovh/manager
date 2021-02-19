@@ -31,6 +31,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
+      resolve: () => null,
     },
     layout: 'modal',
   });

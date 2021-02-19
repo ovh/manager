@@ -13,5 +13,9 @@ export default /* @ngInject */ ($stateProvider) =>
           controllerAs: 'GroupRepaymentsCtrl',
         },
       },
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('telephony_group_billing_group_repayments_title'),
+      },
     },
   );

@@ -2,6 +2,7 @@ import angular from 'angular';
 
 import '@ovh-ux/ng-ovh-telecom-universe-components';
 import '@ovh-ux/manager-telecom-styles';
+import '@ovh-ux/ng-ui-router-breadcrumb';
 import '@ovh-ux/ng-ui-router-title';
 import 'angular-ui-bootstrap';
 import 'ovh-api-services';
@@ -17,6 +18,7 @@ import template from './task.html';
 export default angular
   .module('OvhManagerTelecomTaskComponent', [
     'ngOvhTelecomUniverseComponents',
+    'ngUiRouterBreadcrumb',
     'ngUiRouterTitle',
     'ovh-api-services',
     'ui.bootstrap',
@@ -40,6 +42,7 @@ export default angular
         $title(translations, $translate) {
           return $translate('telecom_task_page_title');
         },
+        hideBreadcrumb: () => true,
       },
       component: 'ovhManagerTelecomTaskComponent',
     });

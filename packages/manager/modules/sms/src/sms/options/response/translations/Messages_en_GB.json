@@ -55,5 +55,6 @@
   "sms_options_response_tracking_remove_confirm": "Are you sure you want to delete the following notification:",
   "sms_options_response_tracking_remove_option_removing": "Deleting notification...",
   "sms_options_response_tracking_remove_option_removed": "Notification deleted. ",
-  "sms_options_response_tracking_remove_option_ko": "Unable to delete notification.<br/>{{error}}"
+  "sms_options_response_tracking_remove_option_ko": "Unable to delete notification.<br/>{{error}}",
+  "sms_options_response_breacrumb": "Reply options"
 }

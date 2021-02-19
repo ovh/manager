@@ -71,7 +71,7 @@ angular
           addServiceMenuItems(
             sortedAlias,
             {
-              state: 'telecom.telephony.billingAccount.alias',
+              state: 'telecom.telephony.billingAccount.alias.details',
               prefix: $translate.instant(
                 'telecom_sidebar_section_telephony_number',
               ),
@@ -107,7 +107,7 @@ angular
             addServiceMenuItems(
               sortedSipLines,
               {
-                state: 'telecom.telephony.billingAccount.line',
+                state: 'telecom.telephony.billingAccount.line.dashboard',
                 prefix(lineService) {
                   return lineService.isSipTrunk() ? sipTrunkPrefix : sipPrefix;
                 },
@@ -127,7 +127,7 @@ angular
             addServiceMenuItems(
               sortedPlugAndFaxLines,
               {
-                state: 'telecom.telephony.billingAccount.line',
+                state: 'telecom.telephony.billingAccount.line.dashboard',
                 prefix: $translate.instant(
                   'telecom_sidebar_section_telephony_plug_fax',
                 ),
@@ -147,7 +147,7 @@ angular
             addServiceMenuItems(
               sortedFaxLines,
               {
-                state: 'telecom.telephony.billingAccount.fax',
+                state: 'telecom.telephony.billingAccount.fax.dashboard',
                 prefix: $translate.instant(
                   'telecom_sidebar_section_telephony_fax',
                 ),
@@ -165,7 +165,7 @@ angular
             addServiceMenuItems(
               sortedCarrierSipLines,
               {
-                state: 'telecom.telephony.billingAccount.carrierSip',
+                state: 'telecom.telephony.billingAccount.carrierSip.dashboard',
                 prefix: $translate.instant(
                   'telecom_sidebar_section_telephony_carrier_sip',
                 ),

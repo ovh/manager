@@ -34,6 +34,7 @@
     "@ovh-ux/ng-ovh-telecom-universe-components": "^6.0.0 || ^7.0.0",
     "@ovh-ux/ng-ovh-ui-confirm-modal": "^2.0.1",
     "@ovh-ux/ng-tail-logs": "^2.0.4",
+    "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.0",
     "@ovh-ux/ng-ui-router-title": "^3.0.1",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",

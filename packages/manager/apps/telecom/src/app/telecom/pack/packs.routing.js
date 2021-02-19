@@ -29,6 +29,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('telecom.packs.pack', {
           packName,
         }),
+      hideBreadcrumb: () => true,
     },
   });
 };

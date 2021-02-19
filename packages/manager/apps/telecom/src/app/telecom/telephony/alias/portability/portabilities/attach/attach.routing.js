@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'telecom.telephony.billingAccount.alias.portabilities.attach',
+    'telecom.telephony.billingAccount.alias.details.portabilities.attach',
     {
       url: '/attach?portabilityId',
       views: {
@@ -19,6 +19,7 @@ export default /* @ngInject */ ($stateProvider) => {
         portabilityId: /* @ngInject */ ($transition$) =>
           $transition$.params().portabilityId,
         goBack: /* @ngInject */ (goToPortabilities) => goToPortabilities,
+        breadcrumb: () => null,
       },
     },
   );

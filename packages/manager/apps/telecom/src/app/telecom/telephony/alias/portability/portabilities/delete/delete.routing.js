@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'telecom.telephony.billingAccount.alias.portabilities.delete',
+    'telecom.telephony.billingAccount.alias.details.portabilities.delete',
     {
       url: '/delete?portabilityId&documentId',
       views: {
@@ -21,6 +21,7 @@ export default /* @ngInject */ ($stateProvider) => {
         documentId: /* @ngInject */ ($transition$) =>
           $transition$.params().documentId,
         goBack: /* @ngInject */ (goToPortabilities) => goToPortabilities,
+        breadcrumb: () => null,
       },
     },
   );

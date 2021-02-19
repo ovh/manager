@@ -72,5 +72,6 @@
   "sms_phonebooks_phonebook_contact_import_alert_task": "Ya existe una tarea de importación de contactos.",
   "sms_phonebooks_phonebook_contact_export": "Exportar",
   "sms_phonebooks_phonebook_contact_export_ok": "La exportación de los contactos ha finalizado.",
-  "sms_phonebooks_phonebook_contact_export_ko": "¡Vaya! No se han podido exportar los contactos."
+  "sms_phonebooks_phonebook_contact_export_ko": "¡Vaya! No se han podido exportar los contactos.",
+  "sms_phonebooks_phonebook_breadcrumb": "Agenda de contactos"
 }

@@ -16,6 +16,7 @@ export default /* @ngInject */ ($stateProvider) => {
           .expand('CachedObjectList-Pages')
           .execute()
           .$promise.then(({ data }) => data),
+      breadcrumb: () => null,
     },
     views: {
       modal: {

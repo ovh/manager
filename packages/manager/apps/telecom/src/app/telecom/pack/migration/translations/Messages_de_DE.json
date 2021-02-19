@@ -1,5 +1,5 @@
 {
-  "telecom_pack_migration_back_link_title": "Retour vers le détail du pack",
+  "telecom_pack_migration_back_link_title": "Details zum Paket",
   "telecom_pack_migration_title": "Angebotswechsel",
   "telecom_pack_migration_current_offer": "Offre actuelle : {{ offerName }}",
   "telecom_pack_migration_monthly_subscription": "Monatsabo ",

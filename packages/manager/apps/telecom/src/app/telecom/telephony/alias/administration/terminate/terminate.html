@@ -1,7 +1,7 @@
 <section class="telephony-group-alias-redirect">
     <header>
         <oui-back-button
-            data-state="telecom.telephony.billingAccount.alias.dashboard"
+            data-state="telecom.telephony.billingAccount.alias.details.dashboard"
         >
             <span
                 data-translate="telephony_alias_administration_terminate_title"
@@ -13,10 +13,7 @@
         <oui-spinner></oui-spinner>
     </div>
 
-    <div
-        class="telecom-section-content"
-        data-ng-if="!AliasTerminateCtrl.isLoading"
-    >
+    <div data-ng-if="!AliasTerminateCtrl.isLoading">
         <tuc-toast-message></tuc-toast-message>
 
         <div class="row">
@@ -156,6 +153,5 @@
             <!-- /.widget-presentation -->
         </div>
     </div>
-    <!-- /.telecom-section-content -->
 </section>
 <!-- /.telephony-group-alias-redirect -->

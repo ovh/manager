@@ -35,8 +35,12 @@ angular
           controllerAs: 'TelecomSmsSmsCtrl',
         },
       },
-      translations: { value: ['.'], format: 'json' },
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('sms_sms_breadcrumb'),
+      },
     });
-  });
+  })
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

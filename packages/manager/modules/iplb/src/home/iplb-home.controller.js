@@ -236,7 +236,7 @@ export default class IpLoadBalancerHomeCtrl {
       },
       manageContact: {
         text: this.$translate.instant('iplb_manage'),
-        href: buildURL('dedicated', '#/useraccount/contacts', {
+        href: buildURL('dedicated', '#/contacts/services', {
           serviceName: this.serviceName,
           tab: 'SERVICES',
         }),
