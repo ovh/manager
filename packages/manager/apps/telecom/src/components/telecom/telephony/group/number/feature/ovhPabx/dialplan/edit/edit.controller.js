@@ -4,7 +4,7 @@ export default class DialplanEditCtrl {
     this.$q = $q;
     this.$scope = $scope;
     this.$translate = $translate;
-    this.tucToast = TucToast;
+    this.TucToast = TucToast;
   }
 
   $onInit() {
