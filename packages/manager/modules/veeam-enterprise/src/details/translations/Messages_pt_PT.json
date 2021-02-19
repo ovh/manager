@@ -1,6 +1,6 @@
 {
   "veeam_enterprise_tab_dashboard": "Página Inicial",
-  "veeam_enterprise_infos_general_load_error": "Ocorreu um erro ao carregar as informações gerais.",
+  "veeam_enterprise_infos_general_load_error": "Ocorreu um erro aquando do carregamento das informações gerais.",
   "veeam_enterprise_infos_configuration_load_error": "Ocorreu um erro ao carregar as informações de configuração.",
   "veeam_enterprise_infos_subscription_load_error": "Ocorreu um erro ao carregar as informações de subscrição.",
   "veeam_enterprise_infos_license_register_error": "Ocorreu um erro ao ativar a sua licença Veeam Enterprise.",
@@ -15,7 +15,7 @@
   "veeam_enterprise_tile_subscription_contact": "Contactos",
   "veeam_enterprise_tile_subscription_contact_admin": "Administrador",
   "veeam_enterprise_tile_subscription_contact_billing": "Faturação",
-  "veeam_enterprise_tile_subscription_contact_technical": "Técnico ",
+  "veeam_enterprise_tile_subscription_contact_technical": "Técnico",
   "veeam_enterprise_tile_subscription_creation_date": "Data de criação",
   "veeam_enterprise_tile_subscription_autorenew": "Renovação automática",
   "veeam_enterprise_tile_subscription_expiration_date": "Data de expiração"

@@ -4,7 +4,7 @@
   "nasha_dashboard_update_success_disabled": "Gebrauchsmeldungen sind deaktiviert.",
   "nasha_dashboard_update_error": "Bei der Bearbeitung der Informationen des HA-NAS ist ein Fehler aufgetreten. ",
   "nasha_dashboard_ip": "IP",
-  "nasha_dashboard_datacenter": "Rechenzentrum",
+  "nasha_dashboard_datacenter": "Datacenter",
   "nasha_dashboard_capacity": "Gesamtkapazität",
   "nasha_dashboard_capacity_delay_text": "Bitte beachten Sie, dass die Storage-Informationen nicht in Echtzeit aktualisiert werden. ",
   "nasha_dashboard_creation_date": "Erstellungsdatum",

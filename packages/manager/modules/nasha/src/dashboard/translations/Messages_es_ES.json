@@ -22,13 +22,13 @@
   "nasha_dashboard_space_usage_help": "El contacto administrador y el contacto técnico recibirán una alerta por correo electrónico cuando el NAS alcance el 90% de espacio ocupado.",
   "nasha_new_window": "Nueva ventana",
   "nasha_guide_title": "Guías",
-  "nash_guide_footer": "Todas las guías de OVH",
+  "nash_guide_footer": "Todas las guías de OVHcloud",
   "nash_guide_name": "NAS-HA",
   "nasha_common_add": "Añadir",
   "nasha_common_renew": "Renovar",
   "nasha_common_validate": "Aceptar",
   "nasha_common_cancel": "Cancelar",
   "nasha_common_confirm": "Confirmar",
-  "nasha_common_remove": "Quitar",
+  "nasha_common_remove": "Retirar",
   "nasha_common_modify": "Editar"
 }

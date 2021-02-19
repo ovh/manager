@@ -20,5 +20,6 @@
   "nasha_partitions_access_readwrite": "Odczyt/Zapis",
   "nasha_partitions_access_permissions": "Uprawnienia",
   "nasha_partitions_access_permissions_warning_cifs": "Tryb tylko do odczytu jest dostępny tylko przez NFS.",
-  "nasha_partitions_access_notice": "Aktualnie z usługi NAS-HA można korzystać wyłącznie z IP OVH (serwer dedykowany / VPS / Public Cloud / Private Cloud / SoYouStart / Kimsufi)."
+  "nasha_partitions_access_notice": "Aktualnie z usługi NAS-HA można korzystać wyłącznie z IP OVH (serwer dedykowany / VPS / Public Cloud / Private Cloud / SoYouStart / Kimsufi).",
+  "nasha_access_breadcrumb": "Partycja"
 }

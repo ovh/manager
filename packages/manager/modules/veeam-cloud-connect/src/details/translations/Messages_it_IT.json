@@ -1,5 +1,5 @@
 {
-  "veeam_tab_dashboard": "Home Page",
+  "veeam_tab_dashboard": "Home page",
   "veeam_tab_storage": "Spazio di storage",
   "veeam_quota": "Quota",
   "veeam_infos_general_load_error": "Errore durante il caricamento delle informazioni generali.",
@@ -26,7 +26,7 @@
   "veeam_tasks_pending": "Operazioni in corso ",
   "veeam_action_upgrade_offer_no_upgrade": "Al momento non è possibile effettuare un upgrade dell'offerta {{offer}}.",
   "veeam_action_add_storage_unavailable_offer": "Sull'offerta {{offer}} non può essere aggiunto spazio di storage.",
-  "veeam_action_add_storage_unavailable_storage_number": "Hai raggiunto la quota massima di spazio di storage disponibile. Le operazioni di aggiunta sono disattivate.",
+  "veeam_action_add_storage_unavailable_storage_number": "Hai raggiunto la quota massima di spazio di storage disponibile. Le operazioni di scrittura sono disattivate.",
   "veeam_action_add_storage_unavailable_usage_percentage": "Per poter aggiungere storage è necessario utilizzare almeno il {{usagePercentage}}% dello spazio disponibile.",
   "veeam_common_action_unavailable": "Azione non disponibile",
   "veeam_common_cancel": "Annulla",

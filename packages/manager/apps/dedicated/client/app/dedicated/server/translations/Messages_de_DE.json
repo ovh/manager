@@ -4,6 +4,6 @@
   "dedicated_servers_status": "Status",
   "dedicated_servers_reverse": "Reverse",
   "dedicated_servers_localization": "Standort",
-  "dedicated_servers_model": "Instanz-Typ",
+  "dedicated_servers_model": "Modell",
   "dedicated_servers_order": "Dedicated Server bestellen"
 }

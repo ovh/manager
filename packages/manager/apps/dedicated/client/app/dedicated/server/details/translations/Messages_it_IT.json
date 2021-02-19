@@ -446,7 +446,7 @@
   "server_configuration_ftpbackup_table_ip_cancel": "Annulla la modifica",
   "server_configuration_ftpbackup_table_fail": "Si è verificato un errore durante il caricamento degli accessi al backup storage.",
   "server_configuration_ftpbackup_set_success": "La modifica dell'accesso <b>{{t0}}</b>è stata presa in carico. Potrebbe richiedere alcuni minuti.",
-  "server_configuration_ftpbackup_set_fail": "Si è verificato un errore durante la modifica dell'accesso <b>{{t0}}</b>",
+  "server_configuration_ftpbackup_set_fail": "Si è verificato un errore durante la modifica dell'accesso <b>{{access}}</b>",
   "server_configuration_ftpbackup_add": "Aggiungi un accesso",
   "server_configuration_ftpbackup_add_info": "Scegli il blocco IP che vuoi autorizzare e le opzioni di accesso.",
   "server_configuration_ftpbackup_add_info1": "Lista dei blocchi:",

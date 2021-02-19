@@ -73,5 +73,6 @@
   "dedicated_server_interfaces_guides": "Manuais",
   "dedicated_server_interfaces_guides_ola": "Como configurar o OLA?",
   "dedicated_server_interfaces_new_tab": "(Abre-se numa nova janela)",
-  "dedicated_server_interfaces_vrack_aggregation_guarantee": "garantida"
+  "dedicated_server_interfaces_vrack_aggregation_guarantee": "garantida",
+  "dedicated_server_interfaces": "Interfaces de rede"
 }

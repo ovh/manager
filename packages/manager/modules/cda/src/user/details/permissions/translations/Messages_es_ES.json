@@ -8,5 +8,6 @@
   "cda_user_details_permissions_table_col_execute": "Ejecución",
   "cda_user_details_permissions_table_col_classread": "Class-read",
   "cda_user_details_permissions_table_col_classwrite": "Class-write",
-  "cda_user_details_permissions_table_empty": "El usuario no tiene permisos."
+  "cda_user_details_permissions_table_empty": "El usuario no tiene permisos.",
+  "cda_user_details_permission_breadcrumb": "Permisos"
 }

@@ -20,5 +20,6 @@
   "nasha_partitions_access_readwrite": "Lesen/Schreiben",
   "nasha_partitions_access_permissions": "Berechtigungen",
   "nasha_partitions_access_permissions_warning_cifs": "„Read-only“ ist nur bei NFS verfügbar. ",
-  "nasha_partitions_access_notice": "Derzeit ist der HA-NAS nur mit OVHcloud IPs verwendbar (Dedicated Server / VPS / Public Cloud / Private Cloud / So you Start / Kimsufi / ADSL). "
+  "nasha_partitions_access_notice": "Derzeit ist der HA-NAS nur mit OVHcloud IPs verwendbar (Dedicated Server / VPS / Public Cloud / Private Cloud / So you Start / Kimsufi / ADSL). ",
+  "nasha_access_breadcrumb": "Partition"
 }

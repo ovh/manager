@@ -7,7 +7,7 @@
   "veeam_infos_subscription_load_error": "An error has occurred loading subscription information.",
   "veeam_offer_prices_load_error": "An error has occurred loading products and prices.",
   "veeam_orderable_offer_load_error": "An error has occurred loading available solutions.",
-  "veeam_update_offer_post_success": "<a href=\"{{orderUrl}}\" target=\"_blank\">{{orderId}}</a> purchase order successfully created. ",
+  "veeam_update_offer_post_success": "The <a href=\"{{orderUrl}}\" target=\"_blank\">{{orderId}}</a> purchase order has been created.",
   "veeam_update_offer_post_error": "An error has occurred creating the purchase order.",
   "veeam_add_repository_pending": "Creating your storage. ",
   "veeam_add_repository_error": "An error has occurred creating storage.",
@@ -34,12 +34,12 @@
   "veeam_common_manage": "Manage",
   "veeam_common_term_and_contracts": "Terms and conditions ",
   "veeam_common_term_and_contracts_accept": "I have read and accepted the terms and conditions. ",
-  "veeam_common_tile_subscription": "Plan",
+  "veeam_common_tile_subscription": "Subscription",
   "veeam_common_tile_subscription_contact": "Contacts",
   "veeam_common_tile_subscription_contact_admin": "Administrator",
   "veeam_common_tile_subscription_contact_billing": "Billing",
   "veeam_common_tile_subscription_contact_technical": "Technical",
   "veeam_common_tile_subscription_creation_date": "Creation date",
-  "veeam_common_tile_subscription_offer": "Solution",
+  "veeam_common_tile_subscription_offer": "Solution ",
   "veeam_common_tile_subscription_autorenew": "Automatic renewal"
 }

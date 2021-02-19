@@ -9,5 +9,6 @@
   "enterprise_cloud_database_restored_instances_current_usage": "Aktualne zużycie",
   "enterprise_cloud_database_restored_instances_size": "Rozmiar przywróconej instancji: {{size}}",
   "enterprise_cloud_database_restored_instances_info": "Przywrócenie instancji może potrwać od kilku minut do kilku godzin, w zależności od ilości danych do zapisania.",
-  "enterprise_cloud_database_restored_instances_popover": "Łączny rozmiar wszystkich przywróconych instancji"
+  "enterprise_cloud_database_restored_instances_popover": "Łączny rozmiar wszystkich przywróconych instancji",
+  "enterprise_cloud_database_restored_instances": "Przywrócone instancje"
 }

@@ -91,5 +91,6 @@
   "iplb_farm_delete_title": "Delete cluster",
   "iplb_farm_delete_question": "Are you sure you want to delete the following cluster: {{farm}}?",
   "iplb_farm_delete_error": "An error has occurred deleting the cluster: {{message}}",
-  "iplb_farm_delete_success": "The cluster has been successfully deleted."
+  "iplb_farm_delete_success": "The cluster has been successfully deleted.",
+  "iplb_farm_edit_server_breadcrumb": "Edit server"
 }

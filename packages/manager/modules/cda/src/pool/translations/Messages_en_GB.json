@@ -19,5 +19,6 @@
   "cda_pool_delete_poolname_label": "Name:",
   "cda_pool_delete_confirm": "Are you sure you want to delete this pool?",
   "cda_pool_delete_success": "Pool successfully deleted",
-  "cda_pool_table_empty": "No pools"
+  "cda_pool_table_empty": "No pools",
+  "cda_pool_breadcrumb": "Pool"
 }

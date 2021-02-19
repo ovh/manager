@@ -14,5 +14,6 @@
   "cda_ip_delete_ip_label": "IP with netmask",
   "cda_ip_delete_confirm": "Are you sure you want do delete this ACL?",
   "cda_ip_delete_success": "The ACL has been deleted.",
-  "cda_ip_table_empty": "No ACL available."
+  "cda_ip_table_empty": "No ACL available.",
+  "cda_ip_breadcrumb": "Access control"
 }

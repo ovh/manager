@@ -11,5 +11,6 @@
   "cloud_connect_service_keys_decription": "Lista de todas las claves de servicio Solo puede ser válida una única clave de servicio al mismo tiempo. Si no se encuentra ninguna clave de servicio activa, se mostrará una acción para definir una clave de servicio como activa.",
   "cloud_connect_service_keys_active": "Activar",
   "cloud_connect_close": "Cerrar",
-  "cloud_connect_regenerate": "Regenerar"
+  "cloud_connect_regenerate": "Regenerar",
+  "cloud_connect_service_keys": "Claves de servicio"
 }

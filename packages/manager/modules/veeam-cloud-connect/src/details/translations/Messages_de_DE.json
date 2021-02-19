@@ -7,7 +7,7 @@
   "veeam_infos_subscription_load_error": "Beim Laden der Abonnementinformationen ist ein Fehler aufgetreten.",
   "veeam_offer_prices_load_error": "Beim Laden der Angebote und Angebotspreise ist ein Fehler aufgetreten.",
   "veeam_orderable_offer_load_error": "Beim Laden der verfügbaren Angebote ist ein Fehler aufgetreten.",
-  "veeam_update_offer_post_success": "Der Bestellschein <a href=\"{{orderUrl}}\" target=\"_blank\">{{orderId}}</a> wurde erfolgreich gelöscht.",
+  "veeam_update_offer_post_success": "Der Bestellschein <a href=\"{{orderUrl}}\" target=\"_blank\">{{orderId}}</a> wurde erstellt.",
   "veeam_update_offer_post_error": "Bei der Erstellung des Bestellscheins ist ein Fehler aufgetreten.",
   "veeam_add_repository_pending": "Die Erstellung Ihres Storage wird durchgeführt.",
   "veeam_add_repository_error": "Bei der Erstellung Ihres Storage ist ein Fehler aufgetreten.",

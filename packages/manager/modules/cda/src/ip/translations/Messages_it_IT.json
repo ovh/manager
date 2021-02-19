@@ -14,5 +14,6 @@
   "cda_ip_delete_ip_label": "IP con maschera di sottorete",
   "cda_ip_delete_confirm": "Vuoi davvero eliminare questa lista di controllo degli accessi?",
   "cda_ip_delete_success": "Lista di controllo degli accessi eliminata correttamente.",
-  "cda_ip_table_empty": "Nessuna lista di controllo degli accessi."
+  "cda_ip_table_empty": "Nessuna lista di controllo degli accessi.",
+  "cda_ip_breadcrumb": "Controllo degli accessi"
 }

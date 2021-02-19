@@ -36,5 +36,6 @@
   "cdn_configuration_ssl_add_step1": "Introduzca los datos relativos al certificado:",
   "cdn_configuration_ssl_add_step2": "Se va a añadir el siguiente certificado:",
   "cdn_configuration_add_ssl_success": "El certificado SSL estará activo enseguida.",
-  "cdn_configuration_add_ssl_fail": "Se ha producido un error al añadir el certificado SSL."
+  "cdn_configuration_add_ssl_fail": "Se ha producido un error al añadir el certificado SSL.",
+  "cdn_dedicated_ssl": "SSL"
 }

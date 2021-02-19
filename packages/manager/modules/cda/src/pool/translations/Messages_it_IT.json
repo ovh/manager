@@ -1,6 +1,6 @@
 {
   "cda_pool_pool_definition": "Crea qui i tuoi pool.",
-  "cda_pool_permission_definition": "I pool sono \"container\" per i dati, il cui accesso viene gestito individualmente dagli utenti.",
+  "cda_pool_permission_definition": "I pool sono \"container\" per i tuoi dati. Si può effettuare un controllo per utente dell’accesso ai pool.",
   "cda_pool_add_button_text": "Aggiungi un pool",
   "cda_pool_delete_button_text": "Elimina",
   "cda_pool_table_col_poolname": "Nome",
@@ -19,5 +19,6 @@
   "cda_pool_delete_poolname_label": "Nome",
   "cda_pool_delete_confirm": "Vuoi davvero eliminare questo pool?",
   "cda_pool_delete_success": "Pool eliminato correttamente.",
-  "cda_pool_table_empty": "Nessun pool."
+  "cda_pool_table_empty": "Nessun pool.",
+  "cda_pool_breadcrumb": "Pool"
 }

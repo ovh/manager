@@ -14,5 +14,6 @@
   "cda_ip_delete_ip_label": "IP con máscara de subred",
   "cda_ip_delete_confirm": "¿Seguro que quiere eliminar el control de acceso?",
   "cda_ip_delete_success": "El control de acceso se ha eliminado correctamente.",
-  "cda_ip_table_empty": "No hay controles de accesos."
+  "cda_ip_table_empty": "No hay controles de accesos.",
+  "cda_ip_breadcrumb": "Control de accesos"
 }

@@ -22,7 +22,7 @@
   "nasha_dashboard_space_usage_help": "The administration contact and the technical contact will both get an email alert when the NAS reaches 90% capacity",
   "nasha_new_window": "New window",
   "nasha_guide_title": "Guides",
-  "nash_guide_footer": "All OVH guides ",
+  "nash_guide_footer": "All OVHcloud guides ",
   "nash_guide_name": "HA-NAS",
   "nasha_common_add": "Add",
   "nasha_common_renew": "Renew",
@@ -30,5 +30,5 @@
   "nasha_common_cancel": "Cancel",
   "nasha_common_confirm": "Confirm",
   "nasha_common_remove": "Remove ",
-  "nasha_common_modify": "Modify"
+  "nasha_common_modify": "Edit"
 }

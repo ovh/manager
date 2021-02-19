@@ -21,5 +21,6 @@
   "enterprise_cloud_database_backups_auto_heading": "Backup automatico",
   "enterprise_cloud_database_backups_manual_heading": "Backup manuale",
   "enterprise_cloud_database_backups_manual_included": "Prezzo:incluso nell'offerta pack",
-  "enterprise_cloud_database_backups_manual_popover": "Volume totale del backup manuale"
+  "enterprise_cloud_database_backups_manual_popover": "Volume totale del backup manuale",
+  "enterprise_cloud_database_backup": "Backup"
 }

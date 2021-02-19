@@ -73,5 +73,6 @@
   "dedicated_server_interfaces_current_operation": "An operation is in progress on this server ",
   "dedicated_server_interfaces_task_error": "An error has occurred during configuration: {{ errorMessage }}",
   "dedicated_server_interfaces_new_tab": "(Opens in a new tab)",
-  "dedicated_server_interfaces_vrack_aggregation_guarantee": "guaranteed"
+  "dedicated_server_interfaces_vrack_aggregation_guarantee": "guaranteed",
+  "dedicated_server_interfaces": "Network interfaces"
 }

@@ -20,5 +20,6 @@
   "nasha_partitions_access_readwrite": "Leitura/Escrita",
   "nasha_partitions_access_permissions": "Permissões ",
   "nasha_partitions_access_permissions_warning_cifs": "O modo leitura apenas está disponível em NFS.",
-  "nasha_partitions_access_notice": "Atualmente a NAS-HA é unicamente utilizável a partir de endereços IP OVH (Servidor dedicado / VPS / Public Cloud / Private Cloud / SoYouStart / Kimsufi / ADSL)."
+  "nasha_partitions_access_notice": "Atualmente a NAS-HA é unicamente utilizável a partir de endereços IP OVH (Servidor dedicado / VPS / Public Cloud / Private Cloud / SoYouStart / Kimsufi / ADSL).",
+  "nasha_access_breadcrumb": "Partição"
 }

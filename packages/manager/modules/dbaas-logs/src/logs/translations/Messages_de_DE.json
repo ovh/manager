@@ -722,5 +722,6 @@
   "logs_home_service_type_standard": "Standard",
   "logs_home_service_type_enterprise": "Enterprise",
   "logs_order_selection_details_standard_description_7": "Vorhaltezeit wählbar: 14 Tage/1 Monat/3 Monate/1 Jahr",
-  "logs_order_selection_details_enterprise_description_4": "eine individuell wählbare Vorhaltezeit on demand"
+  "logs_order_selection_details_enterprise_description_4": "eine individuell wählbare Vorhaltezeit on demand",
+  "dbaas_logs": "Logs Data Platform"
 }

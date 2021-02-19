@@ -17,5 +17,6 @@
   "cda_user_delete_username_label": "Nome",
   "cda_user_delete_confirm": "Vuoi davvero eliminare questo utente?",
   "cda_user_delete_success": "L'utente è stato eliminato.",
-  "cda_user_table_empty": "Nessun utente "
+  "cda_user_table_empty": "Nessun utente ",
+  "cda_user_breadcrumb": "Utenti"
 }

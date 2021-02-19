@@ -1,8 +1,8 @@
 {
   "veeam_enterprise_tab_dashboard": "Start",
   "veeam_enterprise_infos_general_load_error": "Beim Laden der allgemeinen Informationen ist ein Fehler aufgetreten.",
-  "veeam_enterprise_infos_configuration_load_error": "Beim Laden der Informationen zur Konfiguration ist ein Fehler aufgetreten.",
-  "veeam_enterprise_infos_subscription_load_error": "Beim Laden der Informationen zum Abbonnement ist ein Fehler aufgetreten.",
+  "veeam_enterprise_infos_configuration_load_error": "Beim Laden der Konfigurationsinformationen ist ein Fehler aufgetreten.",
+  "veeam_enterprise_infos_subscription_load_error": "Beim Laden der Abonnementinformationen ist ein Fehler aufgetreten.",
   "veeam_enterprise_infos_license_register_error": "Bei der Aktivierung Ihrer Veeam Enterprise Lizenz ist ein Fehler aufgetreten.",
   "veeam_enterprise_infos_license_register_success": "Aktivierung Ihrer Veeam Enterprise Lizenz läuft.",
   "veeam_enterprise_infos_license_update_error": "Bei der Aktualisierung Ihrer Veeam Enterprise Lizenz ist ein Fehler aufgetreten.",

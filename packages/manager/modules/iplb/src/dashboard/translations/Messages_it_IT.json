@@ -1,10 +1,10 @@
 {
-  "iplb_back_home": "Ritorna",
+  "iplb_back_home": "Indietro",
   "iplb_guides": "Guide",
   "iplb_guides_title": "IPLB",
   "iplb_guide_footer": "Tutte le guide OVH",
-  "iplb_tab_home": "Home Page",
-  "iplb_tab_frontends": "Frontend",
+  "iplb_tab_home": "Home page",
+  "iplb_tab_frontends": "Front end",
   "iplb_tab_server_farm": "Server Farm",
   "iplb_tab_ssl_certificate": "Certificati SSL",
   "iplb_tab_vrack": "Reti private",
