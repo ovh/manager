@@ -128,7 +128,11 @@ export default class {
 
   commit() {
     this.atInternet.trackClick({
-      name: `${this.trackingPrefix}::commit::confirm_${this.model.duration.duration}m_${this.model.engagement.commitmentType}`,
+      name: `${
+        this.trackingPrefix
+      }::commit::confirm_${this.model.duration.duration.toLowerCase()}_${
+        this.model.engagement.commitmentType
+      }`,
       type: 'action',
     });
     return this.BillingCommitmentService.commit(
