@@ -5,5 +5,7 @@
   "pci_projects_project_instances_instance_reinstall_content": "Êtes-vous sûr de vouloir réinstaller l'instance {{ instance }} ?",
   "pci_projects_project_instances_instance_reinstall_erase_message": "Toutes les données seront supprimées.",
   "pci_projects_project_instances_instance_reinstall_success_message": "La réinstallation de l'instance {{ instance }} a commencé.",
-  "pci_projects_project_instances_instance_reinstall_error_reinstall": "Une erreur est survenue lors de la réinstallation de l'instance {{ instance }} : {{ message }}."
+  "pci_projects_project_instances_instance_reinstall_error_reinstall": "Une erreur est survenue lors de la réinstallation de l'instance {{ instance }} : {{ message }}.",
+  "pci_projects_project_instances_instance_reinstall_deprecated_image": "L'image que vous avez choisie lors de la création de l'instance ( {{ image }} ) n’est plus maintenue et ne peut donc être réinstallée. Vous pouvez néanmoins installer une nouvelle image parmi celles que nous vous proposons.",
+  "pci_projects_project_instances_instance_reinstall_deprecated_image_format_message": "Attention, toutes les données sont formatées lors de l’installation d’une nouvelle image."
 }
