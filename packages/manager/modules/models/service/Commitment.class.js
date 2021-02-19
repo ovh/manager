@@ -27,10 +27,7 @@ export default class Commitment {
   }
 
   get durationInMonths() {
-    return (
-      moment.duration(this.pricing.duration).asMonths() *
-      moment.duration(this.configuration.duration).asMonths()
-    );
+    return moment.duration(this.configuration.duration).asMonths();
   }
 
   get totalPrice() {
