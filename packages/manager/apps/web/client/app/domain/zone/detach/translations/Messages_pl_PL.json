@@ -1,6 +1,0 @@
-{
-  "web_domain_zone_detach": "Odłącz strefę DNS",
-  "web_domain_zone_detach_description": "Po odłączeniu opcji można ją odnowić niezależnie od hostingu. Możesz nadal wykorzystywać strefę DNS dla nazwy domeny zarejestrowanej w innym rejestrze.",
-  "web_domain_zone_detach_error": "Wystąpił błąd podczas odłączania strefy.{{message}}",
-  "web_domain_zone_detach_success_autopay": "Strefa została odłączonona."
-}

@@ -1,6 +1,0 @@
-{
-  "web_domain_zone_detach": "Editar mi zona DNS",
-  "web_domain_zone_detach_description": "Desvincular esta zona DNS le permitirá renovarla de forma independiente de su dominio. De este modo, podrá seguir utilizando su zona DNS para un dominio registrado con otro registro.",
-  "web_domain_zone_detach_error": "Se ha producido un error al desvincular la zona: {{ message }}",
-  "web_domain_zone_detach_success_autopay": "La zona se ha desvinculado correctamente."
-}

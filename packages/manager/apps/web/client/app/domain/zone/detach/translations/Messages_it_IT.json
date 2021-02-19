@@ -1,6 +1,0 @@
-{
-  "web_domain_zone_detach": "Scollegare la zona DNS",
-  "web_domain_zone_detach_description": "Scollegare questa zona DNS permette di rinnovarla in modo indipendente rispetto al dominio. In questo modo è possibile continuare a utilizzare la zona DNS per un dominio registrato presso un altro Registrar.",
-  "web_domain_zone_detach_error": "Si è verificato un errore durante l’operazione di scollegamento della zona: {{ message }}",
-  "web_domain_zone_detach_success_autopay": "Lo scollegamento della zona è stato effettuato correttamente"
-}

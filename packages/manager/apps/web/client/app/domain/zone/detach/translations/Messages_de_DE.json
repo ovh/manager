@@ -1,6 +1,0 @@
-{
-  "web_domain_zone_detach": "Meine DNS-Zone abtrennen",
-  "web_domain_zone_detach_description": "Wenn Sie diese DNS-Zone abtrennen, können Sie sie unabhängig von Ihrer Domain erneuern. Somit können Sie Ihre DNS-Zone weiterhin auch für einen Domainnamen in einem anderen Registry verwenden.",
-  "web_domain_zone_detach_error": "Beim Abtrennen der Zone ist ein Fehler aufgetreten: {{message}}",
-  "web_domain_zone_detach_success_autopay": "Die Zone wurde abgetrennt."
-}

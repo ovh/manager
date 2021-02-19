@@ -1,6 +1,0 @@
-{
-  "web_domain_zone_detach": "Desassociar a minha zona DNS",
-  "web_domain_zone_detach_description": "Desassociar esta zona DNS permite-lhe renová-la de forma independente do seu domínio. Isto permite-lhe continuar a utilizar a sua zona DNS para um nome de domínio registado noutro registry.",
-  "web_domain_zone_detach_error": "Ocorreu um erro ao desassociar a zona: {{ message }}",
-  "web_domain_zone_detach_success_autopay": "A zona foi desassociada com êxito."
-}
