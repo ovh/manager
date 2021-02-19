@@ -28,6 +28,7 @@
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",
     "bootstrap": "~3.3.7",
-    "bootstrap4": "twbs/bootstrap#v4.0.0"
+    "bootstrap4": "twbs/bootstrap#v4.0.0",
+    "moment": "^2.24.0"
   }
 }

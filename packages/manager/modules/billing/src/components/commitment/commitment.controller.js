@@ -70,8 +70,8 @@ export default class {
     )
       .then((availableEngagements) => {
         this.availableEngagements = groupBy(
-          availableEngagements.filter((engagement) => engagement.isPeriodic()),
-          'durationInMonths',
+          availableEngagements,
+          'configuration.duration',
         );
         this.availableDurations = map(
           this.availableEngagements,
@@ -94,7 +94,10 @@ export default class {
   onDurationChange(duration) {
     const commitments = this.availableEngagements[duration.duration];
     [this.model.engagement] = commitments;
+  }
 
+  getDiscount() {
+    const commitments = this.availableEngagements[this.model.duration.duration];
     const upfront = commitments.find((commitment) => commitment.isUpfront());
     const periodic = commitments.find((commitment) => commitment.isPeriodic());
 
@@ -108,6 +111,7 @@ export default class {
 
   onPaymentStepFocus() {
     this.isPaymentStepLoading = true;
+    this.getDiscount();
     return this.ovhPaymentMethod
       .getDefaultPaymentMethod()
       .then((paymentMethod) => {
