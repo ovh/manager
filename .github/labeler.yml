@@ -1,11 +1,16 @@
 build:
   - packages/manager/tools/!(testcafe)/**
-continous-integration:
+  - scripts/**
+continuous-integration:
   - .github/**
 dependencies:
   - ./**/package.json
 documentation:
   - docs/**
+  - AUTHORS
+  - ./**/*.md
+  - CONTRIBUTORS
+  - MAINTAINERS
 tests:
   - packages/manager/tools/testcafe/**
 translation required:
