@@ -12,8 +12,9 @@
 
 <script>
 import {
-  defineAsyncComponent, defineComponent, inject, ref,
+  defineAsyncComponent, defineComponent, inject, nextTick, ref,
 } from 'vue';
+import { detach } from '@ovh-ux/manager-preloader';
 import axios from 'axios';
 import parseISO from 'date-fns/parseISO';
 import { useRoute } from 'vue-router';
@@ -100,6 +101,10 @@ export default defineComponent({
         axios.get(`/engine/apiv6${this.route.query.productApiUrl}`, config).then((data) => {
           this.totalCount = data.headers['x-pagination-elements'];
           this.jsonArray = data.data;
+
+          nextTick(() => {
+            detach();
+          });
         });
       }
     },

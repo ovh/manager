@@ -1,8 +1,7 @@
 import { createApp } from 'vue';
-import { createI18n } from 'vue-i18n';
 import { attach } from '@ovh-ux/manager-preloader';
-import { fetchConfiguration, Environment, LANGUAGES } from '@ovh-ux/manager-config';
-import { loadLocaleMessages } from '@/i18n';
+import { fetchConfiguration, Environment } from '@ovh-ux/manager-config';
+import { setupI18n } from '@/i18n';
 
 // css
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -13,28 +12,8 @@ import router from './router';
 import store from './store';
 
 fetchConfiguration('hub').then(async () => {
-  const locale = Environment.getUserLocale();
-  const fallbackLocale = LANGUAGES.fallback;
-  const datetimeFormats = {
-    [locale.replace('_', '-')]: {
-      short: { year: 'numeric', month: 'short', day: 'numeric' },
-      shortNumeric: { year: 'numeric', month: 'numeric', day: 'numeric' },
-    },
-  };
   attach(Environment.getUserLanguage());
-
-  const i18n = createI18n({
-    locale,
-    fallbackLocale,
-    datetimeFormats,
-  });
-
-  router.beforeEach(async (to, from, next) => {
-    const translationFolders = to.meta.relatedTranslations;
-    await loadLocaleMessages(i18n, locale, translationFolders);
-    await loadLocaleMessages(i18n, fallbackLocale, translationFolders);
-    return next();
-  });
+  const i18n = setupI18n();
 
   createApp(App)
     .use(store)

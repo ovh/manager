@@ -16,7 +16,7 @@
     class="col-md-8 mb-3 mb-md-4 order-2 order-md-3"
     :title="t('hub_support_title')"
     :count="support.data.length"
-    :link="support.data ? buildURL('dedicated','#/ticket') : ''"
+    :link="support.data.length ? buildURL('dedicated','#/ticket') : ''"
   >
     <template #body>
       <data-table v-if="support.data.length" :rows="supportCellValues"></data-table>
@@ -24,7 +24,7 @@
         <div class="manager-hub-support__illustration"></div>
         <h3 class="oui-heading_4">{{ t('hub_support_need_help') }}</h3>
         <p>{{ t('hub_support_need_help_more') }}</p>
-        <a href="" class="manager-hub-support__link">
+        <a :href="`https://docs.ovh.com/${userLanguage}`" class="manager-hub-support__link">
           <span>{{ t('hub_support_help') }}</span>
           <span class="oui-icon oui-icon-arrow-right"></span>
         </a>
@@ -37,7 +37,7 @@
 </template>
 
 <script lang="ts">
-import { defineAsyncComponent, defineComponent } from 'vue';
+import { defineAsyncComponent, defineComponent, ref } from 'vue';
 import { BillingService, SupportDemand } from '@/models/hub.d';
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import { useI18n } from 'vue-i18n';
@@ -45,6 +45,7 @@ import { useRouter } from 'vue-router';
 import { mapGetters } from 'vuex';
 import format from 'date-fns/format';
 import Badge from '@/components/ui/Badge.vue';
+import { Environment } from '@ovh-ux/manager-config';
 import BillingServiceClass from '@/models/classes/BillingService.class';
 import { SERVICE_STATES } from '../constants/service_states';
 
@@ -52,11 +53,13 @@ export default defineComponent({
   setup() {
     const { t, d, locale } = useI18n();
     const router = useRouter();
+    const userLanguage = ref(Environment.getUserLanguage());
     return {
       t,
       d,
       router,
       locale,
+      userLanguage,
     };
   },
   components: {

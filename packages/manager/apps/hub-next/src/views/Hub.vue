@@ -43,21 +43,44 @@
 </template>
 
 <script lang="ts">
-import { defineAsyncComponent, defineComponent } from 'vue';
+import { defineAsyncComponent, defineComponent, nextTick } from 'vue';
 import { mapGetters, useStore } from 'vuex';
 import { useI18n } from 'vue-i18n';
 import { OvhNotification } from '@/models/hub.d';
 import { PRODUCTS_TO_SHOW_DEFAULT } from '@/constants/products_consts';
+import { loadLocaleMessages } from '@/i18n';
 
 export default defineComponent({
-  setup() {
-    const { locale, t } = useI18n();
+  async setup() {
+    const { locale, t, fallbackLocale } = useI18n();
+    const i18n = useI18n();
     const store = useStore();
+
+    const translationFolders = [
+      'preload-welcome',
+      'products',
+      'payment-status-tile',
+      'order-tracking',
+      'enterprise-billing-summary',
+      'catalog-items',
+      'carousel',
+      'billing',
+      'billing-summary',
+      'support',
+      'welcome',
+      'ovh-order-tracking',
+    ];
+
+    await loadLocaleMessages(i18n, locale.value, translationFolders);
+    await loadLocaleMessages(i18n, fallbackLocale.value, translationFolders);
+    await nextTick();
+    await store.dispatch('fetchHubData');
 
     return {
       t,
       locale,
       store,
+      fallbackLocale,
     };
   },
   data() {
@@ -77,6 +100,7 @@ export default defineComponent({
       user: 'getUser',
       notifications: 'getNotifications',
       services: 'getServices',
+      status: 'getHubStatus',
     }),
     warningNotifications(): OvhNotification[] {
       return Array.isArray(this.notifications)

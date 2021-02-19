@@ -4472,6 +4472,14 @@
     vuepress-plugin-container "^2.0.2"
     vuepress-plugin-smooth-scroll "^0.0.3"
 
+"@vueuse/core@^4.1.1":
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/@vueuse/core/-/core-4.1.1.tgz#9136952bc435dfc42263959bea8dac35965bac43"
+  integrity sha512-a+fu7FUHDzLpgcOGwbgyNZXLbm85NHEf4jkPkyqTtqHEHqU4aVbdyM0Vzl90PpFEDe92pJjoYJnZEQQgq9nEHw==
+  dependencies:
+    "@vueuse/shared" "4.1.1"
+    vue-demi latest
+
 "@vueuse/integrations@^4.1.0":
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/@vueuse/integrations/-/integrations-4.1.0.tgz#aa149ff10747c0e00d054c5b82ab18989b45fcbf"
@@ -4490,6 +4498,13 @@
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/@vueuse/shared/-/shared-4.1.0.tgz#60d2a7b2d43173657816ae27dbb76d46dde480f4"
   integrity sha512-E0g3MGu2RKLjPm6+EEsl93Q8+SDt1FDBnnzLz0iiUjpdo8KmHM6ivcGNe58B44/fNi9p+y0db53fubT0d/XJJQ==
+  dependencies:
+    vue-demi latest
+
+"@vueuse/shared@4.1.1":
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/@vueuse/shared/-/shared-4.1.1.tgz#58e4333d5ab45927e25578fad83bc81cecfea475"
+  integrity sha512-M1bNwOaJZypu/AUYKrOU87pQLRp8VgMYHQyL1hVc6V3hi3ZcUBSjZuyFVaUdxGk0OeA0NPzHoYbByTMrpxElug==
   dependencies:
     vue-demi latest
 

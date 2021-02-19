@@ -1,17 +1,17 @@
 <template>
-  <div class="v-oui-select">
+  <div class="v-oui-select" ref="select">
     <div @click="toggleList" class="fake-input-wrapper">
-      <span type="text" class="v-oui-select-input fake-input"> {{ selectedOption.value }} </span>
+      <span type="text" class="v-oui-select-input fake-input"> {{ currentOption.value }} </span>
       <span class="oui-icon oui-icon-chevron-down"></span>
     </div>
     <div v-if="dropdownShown" class="v-oui-select-dropdown">
       <ul class="v-oui-select" role="listbox">
         <li
-          class="v-oui-option"
-          :value="option.value"
           v-for="option in options"
           :key="option.key"
-          @click="selectOption(option)"
+          :value="option.value"
+          @click="selectOption(option.key)"
+          class="v-oui-option"
         >
           {{ option.value }}
         </li>
@@ -21,7 +21,8 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue';
+import { defineComponent, ref, computed } from 'vue';
+import { onClickOutside } from '@vueuse/core';
 
 export default defineComponent({
   props: {
@@ -29,12 +30,26 @@ export default defineComponent({
       type: Array,
       default: () => [],
     },
+    selectedOption: {
+      type: Number,
+      default: 1,
+    },
   },
   emits: ['select-option'],
-  data() {
+  setup(props) {
+    const dropdownShown = ref(false);
+    const select = ref(null);
+    const currentOption = computed(() => props.options
+      .filter((o) => o.key === props.selectedOption)[0]);
+
+    onClickOutside(select, () => {
+      dropdownShown.value = false;
+    });
+
     return {
-      dropdownShown: false,
-      selectedOption: this.options.find((o) => o.selected) ?? this.options[0],
+      select,
+      dropdownShown,
+      currentOption,
     };
   },
   methods: {
@@ -42,7 +57,6 @@ export default defineComponent({
       this.dropdownShown = !this.dropdownShown;
     },
     selectOption(option) {
-      this.selectedOption = option;
       this.$emit('select-option', option);
       this.toggleList();
     },

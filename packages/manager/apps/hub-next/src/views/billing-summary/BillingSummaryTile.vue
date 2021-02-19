@@ -6,7 +6,11 @@
     :is-shadowed="false"
   >
     <template #body>
-      <oui-select @select-option="refreshBills($event)" :options="filterDatesOptions"></oui-select>
+      <oui-select
+        @select-option="refreshBills($event)"
+        :selected-option="selectedOption"
+        :options="filterDatesOptions"
+      ></oui-select>
       <span class="manager-hub-billing-summary__bill-total">
         {{ `${bills.total} ${bills.currency.symbol}` }}
       </span>
@@ -36,42 +40,44 @@
 </template>
 
 <script lang="ts">
-import { defineAsyncComponent, defineComponent } from 'vue';
+import {
+  defineAsyncComponent, defineComponent, computed, ref,
+} from 'vue';
 import { useI18n } from 'vue-i18n';
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import { mapGetters, useStore } from 'vuex';
+import OuiSelect from '@/components/ui/OuiSelect.vue';
 import axios from 'axios';
 
 export default defineComponent({
   setup() {
     const { t } = useI18n();
     const store = useStore();
+    const selectedOption = ref(1);
+    const filterDatesOptions = computed(() => [
+      {
+        key: 1,
+        value: t('hub_billing_summary_period_1'),
+      },
+      {
+        key: 3,
+        value: t('hub_billing_summary_period_3'),
+      },
+      {
+        key: 6,
+        value: t('hub_billing_summary_period_6'),
+      },
+    ]);
     return {
       t,
       store,
-    };
-  },
-  data() {
-    return {
-      filterDatesOptions: [
-        {
-          key: 1,
-          value: this.t('hub_billing_summary_period_1'),
-        },
-        {
-          key: 3,
-          value: this.t('hub_billing_summary_period_3'),
-        },
-        {
-          key: 6,
-          value: this.t('hub_billing_summary_period_6'),
-        },
-      ],
+      filterDatesOptions,
+      selectedOption,
     };
   },
   components: {
     Tile: defineAsyncComponent(() => import('@/components/ui/Tile.vue')),
-    OuiSelect: defineAsyncComponent(() => import('@/components/ui/OuiSelect.vue')),
+    OuiSelect,
   },
   computed: {
     ...mapGetters({
@@ -84,8 +90,9 @@ export default defineComponent({
   },
   methods: {
     buildURL,
-    refreshBills(option: { key: string; value: string }): void {
-      axios.get(`/engine/2api/hub/bills?billingPeriod=${option.key}`).then((data) => {
+    refreshBills(billKey: number): void {
+      this.selectedOption = billKey;
+      axios.get(`/engine/2api/hub/bills?billingPeriod=${billKey}`).then((data) => {
         this.store.commit('setBills', data.data.data.bills.data);
       });
     },
