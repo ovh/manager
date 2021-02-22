@@ -93,6 +93,7 @@ export default class BillingMainHistoryCtrl extends ListLayoutHelper.ListLayoutC
 
   $onInit() {
     this.selectedBills = [];
+    this.defaultFilterColumn = 'billId';
 
     super.$onInit();
 
