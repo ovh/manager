@@ -6,7 +6,7 @@
   "billing_autorenew_service_disable_autorenew": "Desativar pagamento automático",
   "billing_autorenew_service_align_renew": "Alinhar datas de renovação",
   "billing_autorenew_service_enable_autorenew": "Ativar pagamento automático",
-  "billing_autorenew_service_disable_all_dom": "Desativar o pagamento automático para os domínios",
+  "billing_autorenew_service_disable_all_dom": "Desativar a renovação automática para todos os domínios.",
   "billing_autorenew_service_status": "Estado",
   "billing_autorenew_service_status_auto": "Renovação automática",
   "billing_autorenew_service_status_automatic": "Renovação automática",
