@@ -2,7 +2,7 @@
   "billing_payment_method_add_title": "Añadir una forma de pago",
   "billing_payment_method_add_back_btn_title": "Volver a mis formas de pago",
   "billing_payment_method_add_choose_type": "Selección de la forma de pago",
-  "billing_payment_method_add_selected_common_redirect": "Al hacer clic en el botón «Añadir», será redirigido a la plataforma de pago seguro.",
+  "billing_payment_method_add_selected_common_redirect": "Será redirigido a la página de pago seguro de nuestro proveedor, donde podrá registrar la nueva tarjeta bancaria.",
   "billing_payment_method_add_selected_paypal_redirect": "Al hacer clic en el botón «Paypal», se abrirá una ventana emergente en la que podrá añadir la forma de pago.",
   "billing_payment_method_add_selected_original_credit_card_redirect": "Al hacer clic en el botón «Añadir», se descargará un documento. Por favor, siga los pasos que se describen en él para validar la forma de pago.",
   "billing_payment_method_add_credit_card_selected": "Su tarjeta bancaria se activará de inmediato.",
