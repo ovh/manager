@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-import terminate from '../components/terminate';
+import terminate from '../../components/terminate';
 import routing from './terminate.routing';
 
 const moduleName = 'ovhManagerWebPaasTerminate';

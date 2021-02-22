@@ -1,9 +1,10 @@
-export default class WebPaasCtrl {
+export default class WebPaasProjectsCtrl {
   /* @ngInject */
-  constructor($translate, WebPaas, Alerter) {
-    this.$translate = $translate;
+  constructor(WebPaas) {
     this.WebPaas = WebPaas;
-    this.Alerter = Alerter;
+  }
+
+  $onInit() {
     this.alerts = {
       list: 'web_paas_dashboard_list',
     };

@@ -7,7 +7,10 @@
     >
     </oui-header>
     <div class="container-fluid">
-        <div data-ovh-alert="{{$ctrl.alerts.add}}"></div>
+        <div
+            id="web-pass-add-alert"
+            data-ovh-alert="{{$ctrl.alerts.add}}"
+        ></div>
         <ovh-manager-product-offers
             pricing-type="$ctrl.productOffers.pricingType"
             user=":: $ctrl.productOffers.user"

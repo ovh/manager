@@ -5,27 +5,15 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('web-paas', {
     url: '/paas/webpaas',
     component: 'webPaas',
-    redirectTo: (transition) =>
-      transition
-        .injector()
-        .getAsync('projects')
-        .then((projects) =>
-          projects.length === 0 ? { state: 'web-paas.onboarding' } : false,
-        ),
+    redirectTo: 'web-paas.projects',
     resolve: {
       user: /* @ngInject */ (OvhApiMe) => OvhApiMe.v6().get().$promise,
       guideUrl: /* @ngInject */ (user) => get(GUIDELINK, user.ovhSubsidiary),
-      projects: /* @ngInject */ (WebPaas) => WebPaas.getProjects(),
       createProject: /* @ngInject */ ($state) => () =>
         $state.go('web-paas.add'),
       viewDetails: /* @ngInject */ ($state) => (projectId) =>
         $state.go('web-paas.dashboard', {
           projectId,
-        }),
-      terminateProject: /* @ngInject */ ($state) => (project) =>
-        $state.go('web-paas.cancel', {
-          projectId: project.serviceId,
-          projectName: project.projectName,
         }),
       openPartnerConsole: /* @ngInject */ ($window) => (project) =>
         $window.open(project.metadata.partnerConsole, '_blank', 'noopener'),

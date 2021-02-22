@@ -139,7 +139,10 @@ export default class {
 
   scrollToTop() {
     this.$timeout(() => {
-      document.getElementById('web-pass-add-header').scrollIntoView(true);
+      document.getElementById('web-pass-add-header').scrollIntoView({
+        behavior: 'smooth',
+      });
+      document.getElementById('web-pass-add-alert').focus();
     });
   }
 
@@ -147,22 +150,22 @@ export default class {
     if (checkout.prices && checkout.prices.withTax.value > 0) {
       this.$window.open(checkout.url, '_blank', 'noopener');
     }
-    this.scrollToTop();
-    return this.Alerter.success(
+    this.Alerter.success(
       this.$translate.instant('web_paas_add_project_success', {
         orderURL: this.getOrdersURL(checkout.orderId),
       }),
       this.alerts.add,
     );
+    this.scrollToTop();
   }
 
   onPlatformOrderError(error) {
-    this.scrollToTop();
-    return this.Alerter.alertFromSWS(
+    this.Alerter.alertFromSWS(
       this.$translate.instant('web_paas_add_project_error'),
       error,
       this.alerts.add,
     );
+    this.scrollToTop();
   }
 
   getPlanCode() {

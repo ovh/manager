@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('web-paas.cancel', {
-    url: '/cancel',
+  $stateProvider.state('web-paas.projects.cancel', {
+    url: '/:projectId/cancel',
     views: {
       modal: {
         component: 'webPaasProjectTerminate',

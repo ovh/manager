@@ -8,9 +8,9 @@ import add from './add';
 import component from './web-paas.component';
 import details from './details';
 import onboarding from './onboarding';
+import projects from './projects';
 import routing from './web-paas.routing';
 import service from './web-paas.service';
-import terminateProject from './terminate';
 
 const moduleName = 'ovhManagerWebPaas';
 
@@ -22,8 +22,8 @@ angular
     'oui',
     'ui.router',
     details,
-    terminateProject,
     add,
+    projects,
   ])
   .config(routing)
   .component('webPaas', component)
