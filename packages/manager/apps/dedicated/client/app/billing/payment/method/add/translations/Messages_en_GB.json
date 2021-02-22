@@ -2,7 +2,7 @@
   "billing_payment_method_add_title": "Add a payment method ",
   "billing_payment_method_add_back_btn_title": "Back to my payment methods",
   "billing_payment_method_add_choose_type": "Choose a payment method",
-  "billing_payment_method_add_selected_common_redirect": "By clicking \"Add\", you will be redirected to the secure payment platform.",
+  "billing_payment_method_add_selected_common_redirect": "You will be redirected to our service provider's secure interface to save a new bank card.",
   "billing_payment_method_add_selected_paypal_redirect": "When you click on the PayPal button, a pop-up window will open in order for you to finish adding your payment method.",
   "billing_payment_method_add_selected_original_credit_card_redirect": "By clicking \"Add\", a document will be downloaded. Please follow the procedure outlined in the document to confirm the payment method.",
   "billing_payment_method_add_credit_card_selected": "Your credit card will be activated automatically.",
