@@ -1,3 +1,12 @@
+## [16.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.3.3...@ovh-ux/manager-dedicated@16.3.4) (2021-02-22)
+
+
+### Bug Fixes
+
+* **billing.history:** fix search ([#4458](https://github.com/ovh/manager/issues/4458)) ([bb697a1](https://github.com/ovh/manager/commit/bb697a1a5d973fa3017a2245f70c0f981b6183f4))
+
+
+
 ## [16.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.3.2...@ovh-ux/manager-dedicated@16.3.3) (2021-02-16)
 
 
