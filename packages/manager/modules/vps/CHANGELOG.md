@@ -1,3 +1,12 @@
+## [2.3.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.3.4...@ovh-ux/manager-vps@2.3.5) (2021-02-22)
+
+
+### Bug Fixes
+
+* **vps:** add missing isUpfront flag to configuration tile ([#4449](https://github.com/ovh/manager/issues/4449)) ([76be12d](https://github.com/ovh/manager/commit/76be12d1482ac0df375723c88b5f324e04a9d64b))
+
+
+
 ## [2.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.3.3...@ovh-ux/manager-vps@2.3.4) (2021-02-16)
 
 
