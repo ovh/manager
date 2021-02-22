@@ -19,8 +19,9 @@
         <span class="oui-icon" aria-hidden="true" :class="orderSuccessClassIcon"></span>
       </div>
       <a
-        :href="buildURL('dedicated','#/billing/orders')"
-        class="oui-button oui-button_primary oui-button_icon-right">
+        :href="buildURL('dedicated', '#/billing/orders')"
+        class="oui-button oui-button_primary oui-button_icon-right"
+      >
         <span> {{ t('hub_order_tracking_see_all') }} </span>
         <span class="oui-icon oui-icon-arrow-right"></span>
       </a>
@@ -29,32 +30,29 @@
 </template>
 
 <script lang="ts">
-import { LastOrder } from '@/models/hub.d';
 import { ERROR_STATUS, WAITING_PAYMENT_LABEL } from '@/constants/order-tracking_consts';
-import { computed, defineAsyncComponent, defineComponent } from 'vue';
+import {
+  computed, defineAsyncComponent, defineComponent, ref,
+} from 'vue';
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-import { useAxios } from '@vueuse/integrations';
 import { useI18n } from 'vue-i18n';
-import { useStore } from 'vuex';
+import axios from 'axios';
 
 export default defineComponent({
-  setup() {
-    const store = useStore();
-    const lastOrder = computed((): LastOrder => store.getters.getLastOrder);
+  async setup() {
     const { t, d, locale } = useI18n();
-    const { data, finished } = useAxios(
-      `/engine/apiv6/me/order/${lastOrder.value?.orderId}/status`,
-    );
-
-    const status = computed(() => (data.value === 'delivered' ? 'INVOICE_IN_PROGRESS' : 'custom_creation'));
-    // TODO: this is not correct, needs to fetch some other data from order url
-    // we should use buildURL, for now this will always return false
-    const isWaitingPayment = computed(() => data.value === WAITING_PAYMENT_LABEL);
+    const lastOrderResponse = await axios.get('/engine/2api/hub/lastOrder');
+    const lastOrder = ref(lastOrderResponse.data.data.lastOrder.data);
+    const orderStatus = await axios.get(`/engine/apiv6/me/order/${lastOrder.value?.orderId}/status`);
+    const orderStatusData = ref(orderStatus.data);
+    const status = computed(() => (orderStatusData.value === 'delivered' ? 'INVOICE_IN_PROGRESS' : 'custom_creation'));
+    // // TODO: this is not correct, needs to fetch some other data from order url
+    // // we should use buildURL, for now this will always return false
+    const isWaitingPayment = computed(() => orderStatusData.value === WAITING_PAYMENT_LABEL);
     const formattedLocale = computed(() => locale.value.replace('_', '-'));
 
     return {
       status,
-      finished,
       t,
       isWaitingPayment,
       lastOrder,

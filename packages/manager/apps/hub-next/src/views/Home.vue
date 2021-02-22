@@ -25,7 +25,6 @@ export default defineComponent({
 });
 </script>
 <style lang="scss">
-
 .hub-main-view_container {
   max-width: 80rem;
   margin: auto;

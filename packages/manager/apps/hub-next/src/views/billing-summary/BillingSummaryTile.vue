@@ -45,14 +45,12 @@ import {
 } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-import { mapGetters, useStore } from 'vuex';
 import OuiSelect from '@/components/ui/OuiSelect.vue';
 import axios from 'axios';
 
 export default defineComponent({
-  setup() {
+  async setup() {
     const { t } = useI18n();
-    const store = useStore();
     const selectedOption = ref(1);
     const filterDatesOptions = computed(() => [
       {
@@ -68,11 +66,25 @@ export default defineComponent({
         value: t('hub_billing_summary_period_6'),
       },
     ]);
+    const bills = ref({});
+
+    const refreshBills = async (billKey: number) => {
+      selectedOption.value = billKey;
+      await axios.get(`/engine/2api/hub/bills?billingPeriod=${billKey}`).then((data) => {
+        bills.value = data.data.data.bills.data;
+      });
+    };
+
+    await refreshBills(selectedOption.value);
+    const debtResponse = await axios.get('/engine/2api/hub/debt');
+    const debt = ref(debtResponse.data.data.debt.data);
     return {
       t,
-      store,
       filterDatesOptions,
       selectedOption,
+      refreshBills,
+      bills,
+      debt,
     };
   },
   components: {
@@ -80,22 +92,12 @@ export default defineComponent({
     OuiSelect,
   },
   computed: {
-    ...mapGetters({
-      bills: 'getBills',
-      debt: 'getDebt',
-    }),
     billingHistoryURL(): string {
       return this.buildURL('dedicated', '#/billing/history');
     },
   },
   methods: {
     buildURL,
-    refreshBills(billKey: number): void {
-      this.selectedOption = billKey;
-      axios.get(`/engine/2api/hub/bills?billingPeriod=${billKey}`).then((data) => {
-        this.store.commit('setBills', data.data.data.bills.data);
-      });
-    },
   },
 });
 </script>

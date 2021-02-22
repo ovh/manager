@@ -28,16 +28,23 @@
 </template>
 
 <script lang="ts">
-import { defineAsyncComponent, defineComponent } from 'vue';
+import { defineAsyncComponent, defineComponent, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { mapGetters } from 'vuex';
 import { PRODUCTS_TO_SHOW_DEFAULT } from '@/constants/products_consts';
+import axios from 'axios';
+import { useStore } from 'vuex';
 
 export default defineComponent({
-  setup() {
+  async setup() {
     const { t } = useI18n();
+    const store = useStore();
+    const servicesResponse = await axios.get('/engine/2api/hub/services');
+    const services = ref(servicesResponse.data.data.services.data);
+    store.commit('setServices', services);
+
     return {
       t,
+      services,
     };
   },
   props: {
@@ -54,9 +61,6 @@ export default defineComponent({
     Tile: defineAsyncComponent(() => import('@/components/ui/Tile.vue')),
   },
   computed: {
-    ...mapGetters({
-      services: 'getServices',
-    }),
     formattedServices(): Array<{}> {
       return Object.keys(this.services.data).map((key) => ({
         serviceName: key,
