@@ -5,6 +5,7 @@ export default {
   bindings: {
     goBack: '<',
     serviceId: '<',
+    confirmCancelTracking: '<',
   },
   controller,
   template,
