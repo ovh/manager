@@ -102,6 +102,7 @@ export default /* @ngInject */ ($stateProvider) => {
         );
         return {
           currentPlan: tile.currentPlan,
+          isUpfront: tile.isUpfront,
           upgrades: tile.getAvailableUpgrades(),
           model: {
             memory: tile.currentPlan,
