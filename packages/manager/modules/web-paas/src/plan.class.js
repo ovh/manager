@@ -1,6 +1,5 @@
 import get from 'lodash/get';
 import find from 'lodash/find';
-import { STATUS } from './web-paas.constants';
 
 export default class Plan {
   constructor({
@@ -53,17 +52,5 @@ export default class Plan {
     return find(get(this, 'blobs.commercial.features'), {
       name: 'max_user_licences',
     }).value;
-  }
-
-  isActive() {
-    return this.status === STATUS.ACTIVE;
-  }
-
-  isError() {
-    return this.status === STATUS.ERROR;
-  }
-
-  isProcessing() {
-    return [STATUS.PENDING, STATUS.CANCELLING].includes(this.status);
   }
 }

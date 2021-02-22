@@ -7,7 +7,7 @@
   "web_paas_service_project_region": "Région",
   "web_paas_service_project_upgrade": "Passer à l’offre supérieure",
   "web_paas_service_project_user_licence": "{{ numLicence }} licence utilisateur",
-  "web_paas_service_project_user_licence_available": "{{ numLicenceAvailable }} utilisateur licence disponible",
+  "web_paas_service_project_user_licence_available": "{{ numLicenceAvailable }} licence utilisateur disponible",
   "web_paas_service_project_new": "Nouveau projet",
   "web_paas_service_project_access": "Accéder au projet",
   "web_paas_service_project_cancel": "Supprimer le projet",

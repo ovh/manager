@@ -25,9 +25,7 @@ export default class WebPaasService {
   getProjectDetails(projectId) {
     return this.$http
       .get(`/webPaaS/subscription/${projectId}`)
-      .then(({ data }) => {
-        return new Project(data);
-      });
+      .then(({ data }) => new Project(data));
   }
 
   getCapabilities(planCode) {
@@ -58,9 +56,7 @@ export default class WebPaasService {
       set(
         catalog,
         'plans',
-        map(catalog.plans, (plan) => {
-          return new Plan(plan);
-        }),
+        map(catalog.plans, (plan) => new Plan(plan)),
       );
       return catalog;
     });

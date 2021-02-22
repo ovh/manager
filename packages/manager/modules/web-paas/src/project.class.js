@@ -9,7 +9,6 @@ export default class Project {
     serviceId,
     startDate,
     status,
-    provider,
   }) {
     Object.assign(this, {
       offer,
@@ -19,7 +18,6 @@ export default class Project {
       serviceId,
       startDate,
       status,
-      provider,
     });
   }
 
@@ -28,7 +26,7 @@ export default class Project {
   }
 
   isError() {
-    return [STATUS.SUSPENDED, STATUS.ERRORthis.status].includes(this.status);
+    return [STATUS.SUSPENDED, STATUS.ERROR].includes(this.status);
   }
 
   isProcessing() {

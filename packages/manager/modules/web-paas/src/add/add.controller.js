@@ -7,8 +7,17 @@ import { WORKFLOW_OPTIONS } from './add.constants';
 
 export default class {
   /* @ngInject */
-  constructor($q, $translate, $window, Alerter, WebPaas, WucOrderCartService) {
+  constructor(
+    $q,
+    $timeout,
+    $translate,
+    $window,
+    Alerter,
+    WebPaas,
+    WucOrderCartService,
+  ) {
     this.$q = $q;
+    this.$timeout = $timeout;
     this.$translate = $translate;
     this.$window = $window;
     this.Alerter = Alerter;
@@ -128,12 +137,17 @@ export default class {
       });
   }
 
+  scrollToTop() {
+    this.$timeout(() => {
+      document.getElementById('web-pass-add-header').scrollIntoView(true);
+    });
+  }
+
   onPlatformOrderSuccess(checkout) {
-    this.$window.open(checkout.url, '_blank', 'noopener');
-    $('html, body').animate(
-      { scrollTop: $('.add-page-header').offset().top },
-      500,
-    );
+    if (checkout.prices && checkout.prices.withTax.value > 0) {
+      this.$window.open(checkout.url, '_blank', 'noopener');
+    }
+    this.scrollToTop();
     return this.Alerter.success(
       this.$translate.instant('web_paas_add_project_success', {
         orderURL: this.getOrdersURL(checkout.orderId),
@@ -143,6 +157,7 @@ export default class {
   }
 
   onPlatformOrderError(error) {
+    this.scrollToTop();
     return this.Alerter.alertFromSWS(
       this.$translate.instant('web_paas_add_project_error'),
       error,
