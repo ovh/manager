@@ -14,5 +14,8 @@
   "telephony_line_management_actions_line_password_canchange_SIP_error": "Le mot de passe ne peut être changé que sur une ligne SIP.",
   "telephony_line_management_actions_line_password_canchange_plugnphone_error": "Le mot de passe ne peut pas être changé sur un Plug'N'Phone.",
   "telephony_line_management_actions_line_password_canchange_pack_error": "Le mot de passe ne peut pas être changé sur une ligne xDSL inclue dans un pack.",
-  "telephony_line_management_actions_line_cancel_delete_line_new": "Annuler la résiliation de la ligne"
+  "telephony_line_management_actions_line_cancel_delete_line_new": "Annuler la résiliation de la ligne",
+  "telephony_line_antihack_title": "Anti-Hack",
+  "telephony_line_antihack_text": "Des appels suspects ont été détectés depuis votre ligne et leurs destinations ont été bloquées.",
+  "telephony_line_antihack_link": "Cliquez ici pour gérer ces restrictions."
 }

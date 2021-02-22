@@ -7,8 +7,13 @@ export default /* @ngInject */ function TelecomTelephonyLineManagementCtrl(
   TelecomMediator,
   TelephonyMediator,
   OvhApiTelephony,
+  displayAntihackAlert,
+  filteringLink,
 ) {
   const self = this;
+
+  this.displayAntihackAlert = displayAntihackAlert;
+  this.filteringLink = filteringLink;
 
   this.loading = {
     init: true,
