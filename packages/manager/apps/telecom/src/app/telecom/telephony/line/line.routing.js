@@ -72,6 +72,15 @@ export default /* @ngInject */ ($stateProvider) => {
           'escape',
         );
       },
+      displayAntihackAlert: /* @ngInject */ (
+        $http,
+        billingAccount,
+        serviceName,
+      ) =>
+        $http
+          .get(`/telephony/${billingAccount}/line/${serviceName}/antihack`)
+          .then(({ data }) => data.length > 0)
+          .catch(() => false),
       lineLink: /* @ngInject */ ($state, $transition$) =>
         $state.href(
           'telecom.telephony.billingAccount.line.dashboard',
@@ -115,6 +124,11 @@ export default /* @ngInject */ ($stateProvider) => {
       faxLink: /* @ngInject */ ($state, $transition$) =>
         $state.href(
           'telecom.telephony.billingAccount.line.dashboard.fax',
+          $transition$.params(),
+        ),
+      filteringLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href(
+          'telecom.telephony.billingAccount.line.dashboard.calls.filtering',
           $transition$.params(),
         ),
       currentActiveLink: /* @ngInject */ ($state, $transition$) => () =>
