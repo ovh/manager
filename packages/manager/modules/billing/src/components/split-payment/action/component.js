@@ -8,6 +8,8 @@ export default {
     errorMessageKey: '<',
     goBack: '<',
     successMessageKey: '<',
+    trackClick: '<',
+    trackPage: '<',
   },
   controller,
   template,
