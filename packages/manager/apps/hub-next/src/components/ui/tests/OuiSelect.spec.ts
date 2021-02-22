@@ -7,11 +7,11 @@ describe('OuiSelect', () => {
   const options = [
     {
       value: 'Option 1',
-      key: 'option1',
+      key: 1,
     },
     {
-      value: 'Option 1',
-      key: 'option1',
+      value: 'Option 2',
+      key: 3,
     },
   ];
 
@@ -19,6 +19,7 @@ describe('OuiSelect', () => {
     wrapper = mount(OuiSelect, {
       props: {
         options,
+        selectedOption: 1,
       },
     });
   });

@@ -39,8 +39,9 @@ export default defineComponent({
   setup(props) {
     const dropdownShown = ref(false);
     const select = ref(null);
-    const currentOption = computed(() => props.options
-      .filter((o) => o.key === props.selectedOption)[0]);
+    const currentOption = computed(
+      () => props.options.filter((o) => o.key === props.selectedOption)[0],
+    );
 
     onClickOutside(select, () => {
       dropdownShown.value = false;

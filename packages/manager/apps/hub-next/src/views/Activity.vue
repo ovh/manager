@@ -47,6 +47,7 @@ import format from 'date-fns/format';
 import Badge from '@/components/ui/Badge.vue';
 import { Environment } from '@ovh-ux/manager-config';
 import BillingServiceClass from '@/models/classes/BillingService.class';
+import Dropdown from '@/components/ui/Dropdown.vue';
 import { SERVICE_STATES } from '../constants/service_states';
 
 export default defineComponent({
@@ -142,6 +143,27 @@ export default defineComponent({
             {
               tag: 'div',
               value: this.getStateText(billing),
+            },
+          ],
+          [
+            {
+              tag: Dropdown,
+              attrs: {
+                // TODO: fetch links
+                entries: ['First entry', 'Second entry', 'Last entry'],
+              },
+              value: [{
+                tag: 'button',
+                attrs: {
+                  class: 'oui-action-button oui-dropdown__trigger',
+                },
+                value: [{
+                  tag: 'span',
+                  attrs: {
+                    class: 'oui-icon oui-icon-ellipsis',
+                  },
+                }],
+              }],
             },
           ],
         ];
