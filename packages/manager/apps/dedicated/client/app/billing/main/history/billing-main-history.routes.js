@@ -122,7 +122,7 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
             data: bills.data.map((bill) => new Bill(bill)),
           }));
         },
-        defaultFilterColumn: () => 'date',
+        defaultFilterColumn: () => 'billId',
         getDebt: /* @ngInject */ ($http, $q) => (bill) =>
           $http
             .get(`/me/bill/${bill.billId}/debt`)
