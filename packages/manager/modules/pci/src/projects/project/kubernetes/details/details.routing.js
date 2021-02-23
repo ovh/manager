@@ -23,6 +23,11 @@ export default /* @ngInject */ ($stateProvider) => {
           kubeId,
           projectId,
         }),
+      auditLogsLink: /* @ngInject */ ($state, kubeId, projectId) =>
+        $state.href('pci.projects.project.kubernetes.details.logs', {
+          kubeId,
+          projectId,
+        }),
       currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
         $state.href($state.current.name, $transition$.params()),
       goToKubernetesDetails: ($state, CucCloudMessage, kubeId, projectId) => (
