@@ -53,7 +53,7 @@ export default defineComponent({
     link: {} as PropType<string | RouteRecordRaw>,
   },
   components: {
-    Badge: defineAsyncComponent(() => import('@/components/ui/Badge.vue')),
+    Badge: defineAsyncComponent(() => import('@/components/ui/Badge')),
   },
   methods: {
     goTo(link: string | {}): void {

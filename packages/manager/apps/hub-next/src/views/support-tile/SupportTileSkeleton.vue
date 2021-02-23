@@ -1,11 +1,9 @@
 <template>
   <tile title=" ">
     <template #body>
-      <!-- <h3 class="oui-heading_4"> -->
-        <div class="custom-skeleton-header oui-skeleton oui-skeleton_s">
-          <span class="oui-skeleton__loader"></span>
-        </div>
-      <!-- </h3> -->
+      <div class="custom-skeleton-header oui-skeleton oui-skeleton_s">
+        <span class="oui-skeleton__loader"></span>
+      </div>
       <div class="oui-skeleton oui-skeleton_m">
         <span class="oui-skeleton__loader"></span>
       </div>

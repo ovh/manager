@@ -16,7 +16,7 @@ import {
 } from 'vue';
 import axios from 'axios';
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-import Badge from '@/components/ui/Badge.vue';
+import Badge from '@/components/ui/Badge';
 import Dropdown from '@/components/ui/Dropdown.vue';
 import BillingServiceClass from '@/models/classes/BillingService.class';
 import { BillingService, BillingServicesObject } from '@/models/hub.d';

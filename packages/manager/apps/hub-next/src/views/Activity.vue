@@ -42,7 +42,7 @@
 </template>
 
 <script lang="ts">
-import { defineAsyncComponent, defineComponent, ref } from 'vue';
+import { defineComponent, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
 import { Environment } from '@ovh-ux/manager-config';
@@ -50,6 +50,10 @@ import LastOrderSkeleton from '@/views/last-order/LastOrderSkeleton.vue';
 import BillingSummarySkeleton from '@/views/billing-summary/BillingSummarySkeleton.vue';
 import SupportTileSkeleton from '@/views/support-tile/SupportTileSkeleton.vue';
 import PaymentStatusSkeleton from '@/views/payment-status-tile/PaymentStatusSkeleton.vue';
+import BillingSummaryTile from '@/views/billing-summary/BillingSummaryTile.vue';
+import PaymentStatusTile from '@/views/payment-status-tile/PaymentStatusTile.vue';
+import LastOrderTile from '@/views/last-order/LastOrderTile.vue';
+import SupportTile from '@/views/support-tile/SupportTile.vue';
 
 export default defineComponent({
   setup() {
@@ -66,10 +70,10 @@ export default defineComponent({
     };
   },
   components: {
-    LastOrderTile: defineAsyncComponent(() => import('@/views/last-order/LastOrderTile.vue')),
-    BillingSummaryTile: defineAsyncComponent(() => import('@/views/billing-summary/BillingSummaryTile.vue')),
-    PaymentStatusTile: defineAsyncComponent(() => import('@/views/payment-status-tile/PaymentStatusTile.vue')),
-    SupportTile: defineAsyncComponent(() => import('@/views/support-tile/SupportTile.vue')),
+    LastOrderTile,
+    BillingSummaryTile,
+    PaymentStatusTile,
+    SupportTile,
     PaymentStatusSkeleton,
     SupportTileSkeleton,
     BillingSummarySkeleton,

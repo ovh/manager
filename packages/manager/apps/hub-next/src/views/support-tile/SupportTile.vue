@@ -26,7 +26,7 @@ import { useI18n } from 'vue-i18n';
 import { SupportDemand } from '@/models/hub.d';
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import { Environment } from '@ovh-ux/manager-config';
-import Badge from '@/components/ui/Badge.vue';
+import Badge from '@/components/ui/Badge';
 
 export default defineComponent({
   async setup() {
