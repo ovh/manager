@@ -630,7 +630,7 @@
   "logs_streams_select_indexing_retention": "Choice of retention",
   "logs_streams_indexing_max_size": "Storage threshold (GB)",
   "logs_streams_alert_notification_detail": "Notify me via email when the stream is about to reach {{t0}} GB",
-  "logs_streams_pause_indexing_title": "Hard Limit",
+  "logs_streams_pause_indexing_title": "Hard limit",
   "logs_streams_pause_indexing_detail": "Pause indexing when its stored volume reaches {{t0}} GB",
   "streams_disk_full": "Disk full",
   "logs_none": "None",
