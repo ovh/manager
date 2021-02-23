@@ -109,10 +109,10 @@ export default class FlavorsListController {
     }
   }
 
-  onFlavorChange(flavor) {
+  onFlavorChange(flavor, category) {
     this.selectedFlavor = flavor;
     if (this.onChange) {
-      this.onChange({ flavor: this.selectedFlavor });
+      this.onChange({ flavor: this.selectedFlavor, category });
     }
   }
 

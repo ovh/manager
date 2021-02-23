@@ -34,7 +34,7 @@
                         data-label="{{:: flavor.name | uppercase }}"
                         data-values="[flavor]"
                         data-variant="light"
-                        data-on-change="$ctrl.onFlavorChange(modelValue)"
+                        data-on-change="$ctrl.onFlavorChange(modelValue, flavorByCategory.category)"
                         data-disabled="($ctrl.region && !$ctrl.region.hasEnoughQuotaForFlavors(flavor, $ctrl.flavorCount)) || !$ctrl.hasEnoughDisk(flavor)"
                         data-required
                     >
