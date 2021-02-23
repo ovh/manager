@@ -190,45 +190,8 @@ export interface Services {
   data: Products;
 }
 
-// TODO: Not satisfied with this generation, come back to it
 export interface Products {
-  CLOUD_PROJECT: Service;
-  LICENSE_OFFICE: Service;
-  TELEPHONY: Service;
-  IP_SERVICE: Service;
-  EMAIL_EXCHANGE_SERVICE: Service;
-  VPS: Service;
-  DEDICATED_SERVER: Service;
-  HOSTING_PRIVATE_DATABASE: Service;
-  DOMAIN: Service;
-  EMAIL_DOMAIN: Service;
-  VRACK: Service;
-  HOSTING_WEB: Service;
-  SMS: Service;
-  DOMAIN_ZONE: Service;
-  DEDICATED_HOUSING: Service;
-  METRICS: Service;
-  FREEFAX: Service;
-  MS_SERVICES_SHAREPOINT: Service;
-  CDN_DEDICATED: Service;
-  DBAAS_LOGS: Service;
-  EMAIL_PRO: Service;
-  VEEAM_CLOUD_CONNECT: Service;
-  PACK_XDSL: Service;
-  IP_LOADBALANCING: Service;
-  LICENSE_WINDOWS: Service;
-  VEEAM_VEEAM_ENTERPRISE: Service;
-  DEDICATED_CEPH: Service;
-  LICENSE_PLESK: Service;
-  DEDICATED_NASHA: Service;
-  LICENSE_CPANEL: Service;
-  LICENSE_SQLSERVER: Service;
-  LICENSE_WORKLIGHT: Service;
-  XDSL: Service;
-  OVH_CLOUD_CONNECT: Service;
-  CLOUD_DB_ENTERPRISE_CLUSTER: Service;
-  DEDICATED_CLOUD: Service;
-  ESSENTIALS: Service;
+  [key: string]: Service;
 }
 
 export interface Service {

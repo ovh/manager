@@ -1,9 +1,9 @@
 <template>
   <div class="container-fluid hub-main-view_container">
-    <div id="nav">
+    <div class="breadcrumbs">
       <!-- TODO: Convert this to breadcrumbs -->
       <div v-if="showNavigation">
-        <router-link to="/"> {{ t('manager_hub_dashboard') }} </router-link> |
+        <router-link to="/"> {{ t('manager_hub_dashboard') }} </router-link> /
         <router-link to="/product-details"> {{ productRangeName }} </router-link>
       </div>
     </div>
@@ -63,15 +63,14 @@ export default defineComponent({
   opacity: 0;
 }
 
-#nav {
-  padding: 30px;
+.breadcrumbs {
+  padding: 30px 0;
   text-align: left;
   a {
-    font-weight: bold;
-    color: #2c3e50;
 
     &.router-link-exact-active {
-      color: #42b983;
+      color: #4d5592;
+      font-weight: normal;
     }
   }
 }

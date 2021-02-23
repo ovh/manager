@@ -25,22 +25,40 @@
       </ul>
     </template>
   </tile>
+  <div class="centered-button">
+    <button
+      v-if="servicesLength"
+      @click="
+        changeProductsListSize(areAllProductsShown ? PRODUCTS_TO_SHOW_DEFAULT : servicesLength)
+      "
+      class="oui-button oui-button_icon-right oui-button_ghost"
+    >
+      <span>
+        {{
+          areAllProductsShown
+            ? t('manager_hub_products_see_less')
+            : t('manager_hub_products_see_more')
+        }}
+      </span>
+    </button>
+  </div>
 </template>
 
 <script lang="ts">
-import { defineAsyncComponent, defineComponent, ref } from 'vue';
+import {
+  defineAsyncComponent, defineComponent, ref,
+} from 'vue';
 import { useI18n } from 'vue-i18n';
 import { PRODUCTS_TO_SHOW_DEFAULT } from '@/constants/products_consts';
 import axios from 'axios';
-import { useStore } from 'vuex';
+import { Services } from '@/models/hub.d';
 
 export default defineComponent({
   async setup() {
     const { t } = useI18n();
-    const store = useStore();
+    const services = ref({} as Services);
     const servicesResponse = await axios.get('/engine/2api/hub/services');
-    const services = ref(servicesResponse.data.data.services.data);
-    store.commit('setServices', services);
+    services.value = servicesResponse.data.data.services.data;
 
     return {
       t,
@@ -52,23 +70,31 @@ export default defineComponent({
       type: Number,
       default: 4,
     },
-    maxProductsToShow: {
-      type: Number,
-      default: PRODUCTS_TO_SHOW_DEFAULT,
-    },
+  },
+  data() {
+    return {
+      PRODUCTS_TO_SHOW_DEFAULT,
+      maxProductsToShow: PRODUCTS_TO_SHOW_DEFAULT,
+    };
   },
   components: {
     Tile: defineAsyncComponent(() => import('@/components/ui/Tile.vue')),
   },
   computed: {
     formattedServices(): Array<{}> {
-      return Object.keys(this.services.data).map((key) => ({
+      return Object.keys(this.services?.data).map((key) => ({
         serviceName: key,
-        ...this.services.data[key],
+        ...this.services?.data[key],
       }));
     },
     slicedServices(): Array<{}> {
       return this.formattedServices.slice(0, this.maxProductsToShow);
+    },
+    areAllProductsShown(): boolean {
+      return this.maxProductsToShow !== PRODUCTS_TO_SHOW_DEFAULT;
+    },
+    servicesLength(): number {
+      return this.services?.data ? Object.keys(this.services?.data).length : 0;
     },
   },
   methods: {
@@ -77,8 +103,18 @@ export default defineComponent({
 
       return url.replace(/\{(.*?)\}/, '');
     },
+    changeProductsListSize(numberOfProducts: number): void {
+      this.maxProductsToShow = numberOfProducts;
+    },
   },
 });
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+.centered-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style>

@@ -22,7 +22,7 @@ import { defineAsyncComponent, defineComponent } from 'vue';
 export default defineComponent({
   components: {
     Tile: defineAsyncComponent(() => import('@/components/ui/Tile.vue')),
-    Badge: defineAsyncComponent(() => import('@/components/ui/Badge.ts')),
+    Badge: defineAsyncComponent(() => import('@/components/ui/Badge')),
   },
 });
 </script>

@@ -1,6 +1,6 @@
 import { h } from 'vue';
 
-const Badge = (props: any) => h(props.htmlTag, { class: `oui-badge oui-badge_${props.level}` }, props.textContent);
+const Badge = (props) => h(props.htmlTag, { class: `oui-badge oui-badge_${props.level}` }, props.textContent);
 
 Badge.props = {
   level: {

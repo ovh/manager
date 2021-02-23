@@ -24,9 +24,7 @@
     "src/**/*.tsx",
     "src/**/*.vue",
     "tests/**/*.ts",
-    "tests/**/*.tsx",
-    "src/components/ui/DataTable.jsx",
-    "src/components/ui/DataTable.jsx"
+    "tests/**/*.tsx"
   ],
   "exclude": ["node_modules"]
 }

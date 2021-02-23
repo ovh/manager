@@ -1,6 +1,6 @@
 <template>
   <div class="hub-dashboard-content">
-    <hub-section :title="t('manager_hub_dashboard_welcome', { name: user.firstname })">
+    <hub-section :title="welcomeMessage">
       <template #content>
         <div
           v-if="warningNotifications.length"
@@ -19,10 +19,7 @@
       <template #content>
         <Suspense>
           <template #default>
-            <products-list
-              :max-products-to-show="maxProductsToShow"
-              :max-items-per-product="4"
-            ></products-list>
+            <products-list :max-items-per-product="4"></products-list>
           </template>
           <template #fallback>
             <products-list-skeleton></products-list-skeleton>
@@ -30,23 +27,6 @@
         </Suspense>
       </template>
     </hub-section>
-    <div class="text-center">
-      <button
-        v-if="servicesLength"
-        @click="
-          changeProductsListSize(areAllProductsShown ? PRODUCTS_TO_SHOW_DEFAULT : servicesLength)
-        "
-        class="oui-button oui-button_icon-right oui-button_ghost"
-      >
-        <span>
-          {{
-            areAllProductsShown
-              ? t('manager_hub_products_see_less')
-              : t('manager_hub_products_see_more')
-          }}
-        </span>
-      </button>
-    </div>
   </div>
 </template>
 
@@ -54,7 +34,6 @@
 import {
   defineAsyncComponent, defineComponent, nextTick, Ref, ref,
 } from 'vue';
-import { mapGetters, useStore } from 'vuex';
 import { useI18n } from 'vue-i18n';
 import { OvhNotification, User } from '@/models/hub.d';
 import { PRODUCTS_TO_SHOW_DEFAULT } from '@/constants/products_consts';
@@ -67,7 +46,6 @@ export default defineComponent({
   async setup() {
     const { locale, t, fallbackLocale } = useI18n();
     const i18n = useI18n();
-    const store = useStore();
     const notifications = ref();
     const user: Ref<User> = ref({} as User);
 
@@ -101,7 +79,6 @@ export default defineComponent({
     return {
       t,
       locale,
-      store,
       fallbackLocale,
       notifications,
       user,
@@ -121,26 +98,15 @@ export default defineComponent({
     ProductsListSkeleton,
   },
   computed: {
-    ...mapGetters({
-      services: 'getServices',
-    }),
+    welcomeMessage(): string {
+      return this.t('manager_hub_dashboard_welcome', { name: this.user?.firstname });
+    },
     warningNotifications(): OvhNotification[] {
       return Array.isArray(this.notifications)
         ? this.notifications
           .filter((notification: OvhNotification) => notification.level === 'warning')
           .map((notification) => notification.description)
         : [];
-    },
-    areAllProductsShown(): boolean {
-      return this.maxProductsToShow !== PRODUCTS_TO_SHOW_DEFAULT;
-    },
-    servicesLength(): number {
-      return this.services?.data ? Object.keys(this.services?.data).length : 0;
-    },
-  },
-  methods: {
-    changeProductsListSize(numberOfProducts: number): void {
-      this.maxProductsToShow = numberOfProducts;
     },
   },
 });
