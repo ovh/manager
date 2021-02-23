@@ -11,6 +11,15 @@ export default class TelecomPackMigrationServiceDeleteCtrl {
   $onInit() {
     this.process = null;
     this.process = this.TucPackMigrationProcess.getMigrationProcess();
+    this.process.selectedOffer.subServicesToDelete = this.process.selectedOffer.subServicesToDelete.map(
+      (subService) => ({
+        ...subService,
+        services: subService.services.map((service, index, originalArray) => ({
+          name: service,
+          selected: originalArray.length === subService.numberToDelete,
+        })),
+      }),
+    );
 
     this.chunkedSubServices = chunk(
       this.process.selectedOffer.subServicesToDelete,
