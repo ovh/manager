@@ -10,6 +10,7 @@ export default /* @ngInject */ ($stateProvider) => {
           projects.length > 0 ? { state: 'web-paas' } : false,
         ),
     resolve: {
+      projects: /* @ngInject */ (WebPaas) => WebPaas.getProjects(),
       breadcrumb: () => null, // Hide breadcrumb
     },
   });
