@@ -1,3 +1,12 @@
+## [2.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.1.3...@ovh-ux/manager-nasha@2.1.4) (2021-02-24)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 809] ([e4f239f](https://github.com/ovh/manager/commit/e4f239f8cb2016510eacba73e43ac3f561acebbf))
+
+
+
 ## [2.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.1.2...@ovh-ux/manager-nasha@2.1.3) (2021-02-10)
 
 

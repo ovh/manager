@@ -1,3 +1,17 @@
+# [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-ng-layout-helpers@2.0.1...@ovh-ux/manager-ng-layout-helpers@2.1.0) (2021-02-24)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 809] ([e4f239f](https://github.com/ovh/manager/commit/e4f239f8cb2016510eacba73e43ac3f561acebbf))
+
+
+### Features
+
+* add OnboardingLayoutHelper component ([1ec9e80](https://github.com/ovh/manager/commit/1ec9e802997854ba7d479568f778c5bf3afc8b74))
+
+
+
 ## [2.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-ng-layout-helpers@2.0.0...@ovh-ux/manager-ng-layout-helpers@2.0.1) (2021-01-13)
 
 

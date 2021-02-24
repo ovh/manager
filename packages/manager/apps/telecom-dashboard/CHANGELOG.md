@@ -1,3 +1,17 @@
+# [6.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard-app@6.1.3...@ovh-ux/manager-telecom-dashboard-app@6.2.0) (2021-02-24)
+
+
+### Bug Fixes
+
+* **deps:** bump @ovh-ux/ui-kit to v4.4.4 ([#4430](https://github.com/ovh/manager/issues/4430)) ([2f12ce6](https://github.com/ovh/manager/commit/2f12ce6b724fe90a98ce8b7cd02ace6803527306))
+
+
+### Features
+
+* add breadcrumb ([#3400](https://github.com/ovh/manager/issues/3400)) ([00d8d19](https://github.com/ovh/manager/commit/00d8d19c180bc98029263eec738b60b7b5e49c82))
+
+
+
 ## [6.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard-app@6.1.2...@ovh-ux/manager-telecom-dashboard-app@6.1.3) (2021-02-02)
 
 

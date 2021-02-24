@@ -1,3 +1,12 @@
+# [5.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox-app@5.2.4...@ovh-ux/manager-overthebox-app@5.3.0) (2021-02-24)
+
+
+### Features
+
+* add breadcrumb ([a6f013a](https://github.com/ovh/manager/commit/a6f013a949abcae485c65d960ef74b3d5b4819b6))
+
+
+
 ## [5.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox-app@5.2.3...@ovh-ux/manager-overthebox-app@5.2.4) (2021-02-02)
 
 

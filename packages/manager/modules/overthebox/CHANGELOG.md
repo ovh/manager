@@ -1,3 +1,18 @@
+# [6.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.1.7...@ovh-ux/manager-overthebox@6.2.0) (2021-02-24)
+
+
+### Bug Fixes
+
+* add missing translations ([466875b](https://github.com/ovh/manager/commit/466875b37a3be1b5fea75e92785a99be3640ae89))
+
+
+### Features
+
+* add breadcrumb ([a64a5f0](https://github.com/ovh/manager/commit/a64a5f0e081ab6acd2f6aad4d272d5c1cbebab3a))
+* add breadcrumb ([a6f013a](https://github.com/ovh/manager/commit/a6f013a949abcae485c65d960ef74b3d5b4819b6))
+
+
+
 ## [6.1.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.1.6...@ovh-ux/manager-overthebox@6.1.7) (2021-02-10)
 
 

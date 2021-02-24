@@ -1,3 +1,38 @@
+# [13.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.11.3...@ovh-ux/manager-telecom@13.12.0) (2021-02-24)
+
+
+### Bug Fixes
+
+* **billing-account:** avoid using null as url parameter ([c097927](https://github.com/ovh/manager/commit/c097927229a448d4a72f26615a5224f9a7c5d5bc))
+* **deps:** add missing dependency ([2572262](https://github.com/ovh/manager/commit/25722625a5a33a7af5182a7d93e7e20808f4a882))
+* **deps:** bump @ovh-ux/ui-kit to v4.4.4 ([#4430](https://github.com/ovh/manager/issues/4430)) ([2f12ce6](https://github.com/ovh/manager/commit/2f12ce6b724fe90a98ce8b7cd02ace6803527306))
+* **i18n:** add missing translations [CDS 805] ([27bbbf4](https://github.com/ovh/manager/commit/27bbbf49daf87035e8c542d420e16461f43d66b1))
+* **pack:** fix back button title ([09d0816](https://github.com/ovh/manager/commit/09d0816469e1046fc2697c2fa086addab1d19acf))
+* **pack:** fix back button wording and redirection ([78dd835](https://github.com/ovh/manager/commit/78dd835bf82ba9e9df28c813a83ede10dc300b59))
+* **pack.migration:** update list for services to delete ([#4396](https://github.com/ovh/manager/issues/4396)) ([9c6e8b7](https://github.com/ovh/manager/commit/9c6e8b71e77e6f22e6eb27a848664d704c2c991d))
+* **telecom.orders:** hide breadcrumb ([4f0eacc](https://github.com/ovh/manager/commit/4f0eacc0a199d4b33747e038f1aa7b2e7355c796))
+* **telephony:** inject translations ([8afdfe6](https://github.com/ovh/manager/commit/8afdfe662b1df8b01d9bd33321191cf9855a8909))
+* add missing breadcrumb translations ([7710523](https://github.com/ovh/manager/commit/7710523c1dca5541c0e41c6027437db2fd148352))
+* add missing translations for breadcrumb ([d39cd77](https://github.com/ovh/manager/commit/d39cd77d980a52a0d3b5ebbd42f982094ab7b286))
+* refresh translation before entering state ([8596ee1](https://github.com/ovh/manager/commit/8596ee1c09fa1d877ee5915aef81231fa00aeb95))
+* **telephony.alias:** fix dashboard display ([c61c9ce](https://github.com/ovh/manager/commit/c61c9ced1a4e9c3925df2255c7608b59ad3287a0))
+* **telephony.billing-account:** allow to display portabilities ([96b26e0](https://github.com/ovh/manager/commit/96b26e098c39b4546499b868fbf81674eeedff37))
+* **telephony.service:** fix state params declaration ([16ee94d](https://github.com/ovh/manager/commit/16ee94d04f80370c840af84829403e6820b38692))
+* **telephony.services:** fix list display ([230ea36](https://github.com/ovh/manager/commit/230ea36e22e1bd2b34cfc7117d364f343b71fd54))
+
+
+### Features
+
+* display breadcrumb ([a8539a7](https://github.com/ovh/manager/commit/a8539a7f5fc21ea8863d46e8120693361646e4fd))
+* **pack:** add breadcrumb ([#4057](https://github.com/ovh/manager/issues/4057)) ([cd11069](https://github.com/ovh/manager/commit/cd110697eaffc3da16224e84c27e7ee530babd10))
+* **telephony:** add breadcrumb ([0a12728](https://github.com/ovh/manager/commit/0a127281571f1a9f7379589e5d1bd9300de9362a))
+* **telephony.alias:** add intermediate state ([#3781](https://github.com/ovh/manager/issues/3781)) ([4aedc27](https://github.com/ovh/manager/commit/4aedc271a1fcce54cef6b9376e5f7b7e37ca11ec))
+* **telephony.billing-account:** always display services tab ([1f2663b](https://github.com/ovh/manager/commit/1f2663b4b16165028a6a396380e8d82b0240a033))
+* **telephony.fax:** add intermediate state ([4a79324](https://github.com/ovh/manager/commit/4a793249644ecd235a8e1e28d59e1bd9432d9ffa))
+* **telephony.line:** add intermediate state ([#3991](https://github.com/ovh/manager/issues/3991)) ([6cb242d](https://github.com/ovh/manager/commit/6cb242dea56d3ba3fb3cab7a0f070421e0586937))
+
+
+
 ## [13.11.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.11.2...@ovh-ux/manager-telecom@13.11.3) (2021-02-10)
 
 

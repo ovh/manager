@@ -1,3 +1,22 @@
+# [16.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.3.5...@ovh-ux/manager-dedicated@16.4.0) (2021-02-24)
+
+
+### Bug Fixes
+
+* **billing:** update wording ([0b57cc5](https://github.com/ovh/manager/commit/0b57cc51db6d91cea46a736417add6fcf1cc66bb))
+* **deps:** bump @ovh-ux/ui-kit to v4.4.4 ([#4430](https://github.com/ovh/manager/issues/4430)) ([2f12ce6](https://github.com/ovh/manager/commit/2f12ce6b724fe90a98ce8b7cd02ace6803527306))
+* **i18n:** add missing translations [CDS 801] ([1577805](https://github.com/ovh/manager/commit/1577805296161f985f73571cbe254532aabf6256))
+* **i18n:** add missing translations [CDS 802] ([77d0e5b](https://github.com/ovh/manager/commit/77d0e5ba01886a65666dd3a3183fee24ff4d183a))
+* **i18n:** add missing translations [CDS 806] ([2eed4bd](https://github.com/ovh/manager/commit/2eed4bdeeb4c9cfb72ff4d1ee92479b8d7b2828a))
+* **i18n:** add missing translations [CDS 814] ([1e77e39](https://github.com/ovh/manager/commit/1e77e393e4414f38bd87f2d960211c848669cbb5))
+
+
+### Features
+
+* **dedicated-sever:** add tracking in baremetal commitment ([#4434](https://github.com/ovh/manager/issues/4434)) ([9f28ed5](https://github.com/ovh/manager/commit/9f28ed5301dd96835098926fb91c52ccf31d7039))
+
+
+
 ## [16.3.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.3.4...@ovh-ux/manager-dedicated@16.3.5) (2021-02-22)
 
 

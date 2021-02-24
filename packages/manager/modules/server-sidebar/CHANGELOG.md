@@ -1,3 +1,12 @@
+## [3.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.9.0...@ovh-ux/manager-server-sidebar@3.9.1) (2021-02-24)
+
+
+### Bug Fixes
+
+* **deps:** bump @ovh-ux/ui-kit to v4.4.4 ([#4430](https://github.com/ovh/manager/issues/4430)) ([2f12ce6](https://github.com/ovh/manager/commit/2f12ce6b724fe90a98ce8b7cd02ace6803527306))
+
+
+
 # [3.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.8.2...@ovh-ux/manager-server-sidebar@3.9.0) (2021-02-10)
 
 
