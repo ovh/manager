@@ -32,49 +32,32 @@
 
 <script lang="ts">
 import {
-  defineAsyncComponent, defineComponent, nextTick, Ref, ref,
+  defineAsyncComponent, defineComponent, Ref, ref,
 } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { OvhNotification, User } from '@/models/hub.d';
 import { PRODUCTS_TO_SHOW_DEFAULT } from '@/constants/products_consts';
-import { loadLocaleMessages } from '@/i18n';
-import { detach } from '@ovh-ux/manager-preloader';
+import Activity from '@/views/Activity.vue';
 import ProductsListSkeleton from '@/views/products-list/ProductsListSkeleton.vue';
 import axios from 'axios';
+import useLoadTranslations from '@/composables/useLoadTranslations';
 
 export default defineComponent({
   async setup() {
     const { locale, t, fallbackLocale } = useI18n();
-    const i18n = useI18n();
     const notifications = ref();
     const user: Ref<User> = ref({} as User);
 
     const translationFolders = [
-      'preload-welcome',
-      'products',
-      'payment-status-tile',
-      'order-tracking',
-      'enterprise-billing-summary',
-      'catalog-items',
-      'carousel',
-      'billing',
-      'billing-summary',
-      'support',
       'welcome',
-      'ovh-order-tracking',
     ];
     axios.get('/engine/2api/hub/notifications').then((response) => {
       notifications.value = response.data.data.notifications.data;
     });
 
-    await loadLocaleMessages(i18n, locale.value, translationFolders);
-    await loadLocaleMessages(i18n, fallbackLocale.value, translationFolders);
-    await nextTick();
+    await useLoadTranslations(translationFolders);
     const userReponse = await axios.get('/engine/2api/hub/me');
     user.value = userReponse.data.data.me.data;
-    await nextTick(() => {
-      detach();
-    });
 
     return {
       t,
@@ -92,7 +75,7 @@ export default defineComponent({
   },
   components: {
     HubSection: defineAsyncComponent(() => import('@/components/HubSection.vue')),
-    Activity: defineAsyncComponent(() => import('@/views/Activity.vue')),
+    Activity,
     ProductsList: defineAsyncComponent(() => import('@/views/products-list/ProductsList.vue')),
     Carousel: defineAsyncComponent(() => import('@/components/ui/Carousel.vue')),
     ProductsListSkeleton,

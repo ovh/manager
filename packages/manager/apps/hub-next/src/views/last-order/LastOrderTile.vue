@@ -37,10 +37,16 @@ import {
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import { useI18n } from 'vue-i18n';
 import axios from 'axios';
+import useLoadTranslations from '@/composables/useLoadTranslations';
 
 export default defineComponent({
   async setup() {
     const { t, d, locale } = useI18n();
+    const translationFolders = [
+      'order-tracking',
+      'ovh-order-tracking',
+    ];
+    await useLoadTranslations(translationFolders);
     const lastOrderResponse = await axios.get('/engine/2api/hub/lastOrder');
     const lastOrder = ref(lastOrderResponse.data.data.lastOrder.data);
     const orderStatus = await axios.get(`/engine/apiv6/me/order/${lastOrder.value?.orderId}/status`);

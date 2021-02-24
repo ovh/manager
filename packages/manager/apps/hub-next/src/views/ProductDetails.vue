@@ -101,10 +101,6 @@ export default defineComponent({
         axios.get(`/engine/apiv6${this.route.query.productApiUrl}`, config).then((data) => {
           this.totalCount = data.headers['x-pagination-elements'];
           this.jsonArray = data.data;
-
-          nextTick(() => {
-            detach();
-          });
         });
       }
     },

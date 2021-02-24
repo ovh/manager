@@ -21,11 +21,19 @@ import Dropdown from '@/components/ui/Dropdown.vue';
 import BillingServiceClass from '@/models/classes/BillingService.class';
 import { BillingService, BillingServicesObject } from '@/models/hub.d';
 import { useI18n } from 'vue-i18n';
+import useLoadTranslations from '@/composables/useLoadTranslations';
+
 import { SERVICE_STATES } from '../../constants/service_states';
 
 export default defineComponent({
   async setup() {
     const { t, locale, d } = useI18n();
+    const translationFolders = [
+      'products',
+      'payment-status-tile',
+      'billing',
+    ];
+    await useLoadTranslations(translationFolders);
     const billingServices: Ref<BillingServicesObject> = ref({} as BillingServicesObject);
     const response = await axios.get(
       '/engine/2api/hub/billingServices',

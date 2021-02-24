@@ -18,21 +18,30 @@
 import {
   computed,
   defineComponent,
+  nextTick,
   provide,
   ref,
 } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRoute } from 'vue-router';
-import { loadLocaleMessages } from './i18n';
+import { detach } from '@ovh-ux/manager-preloader';
+import useLoadTranslations from './composables/useLoadTranslations';
 
 export default defineComponent({
   setup() {
+    const productRangeName = ref('');
+    provide('productRangeName', productRangeName);
     const route = useRoute();
     const showNavigation = computed(() => route.name !== 'Home');
     const { t, locale, fallbackLocale } = useI18n();
-    const productRangeName = ref('');
+    const translationFolders = [
+      '/',
+    ];
 
-    provide('productRangeName', productRangeName);
+    useLoadTranslations(translationFolders);
+    nextTick(() => {
+      detach();
+    });
 
     return {
       t,
@@ -42,12 +51,6 @@ export default defineComponent({
       fallbackLocale,
       locale,
     };
-  },
-  async mounted() {
-    await this.$nextTick(async () => {
-      await loadLocaleMessages(this.$i18n, this.locale);
-      await loadLocaleMessages(this.$i18n, this.fallbackLocale);
-    });
   },
 });
 </script>

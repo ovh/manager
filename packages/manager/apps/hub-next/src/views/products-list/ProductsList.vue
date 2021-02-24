@@ -52,10 +52,15 @@ import { useI18n } from 'vue-i18n';
 import { PRODUCTS_TO_SHOW_DEFAULT } from '@/constants/products_consts';
 import axios from 'axios';
 import { Services } from '@/models/hub.d';
+import useLoadTranslations from '@/composables/useLoadTranslations';
 
 export default defineComponent({
   async setup() {
     const { t } = useI18n();
+    const translationFolders = [
+      'products',
+    ];
+    await useLoadTranslations(translationFolders);
     const services = ref({} as Services);
     const servicesResponse = await axios.get('/engine/2api/hub/services');
     services.value = servicesResponse.data.data.services.data;

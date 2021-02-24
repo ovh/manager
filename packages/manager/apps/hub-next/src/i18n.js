@@ -1,11 +1,10 @@
-import { nextTick } from 'vue';
 import { createI18n } from 'vue-i18n';
 import { Environment, LANGUAGES } from '@ovh-ux/manager-config';
 import axios from 'axios';
 
 /* eslint-disable no-param-reassign */
 export function setI18nLanguage(i18n, locale) {
-  i18n.global.locale = locale;
+  i18n.locale = locale;
 
   axios.defaults.headers.common['Content-Language'] = locale;
   document.querySelector('html').setAttribute('lang', locale);
@@ -46,25 +45,23 @@ async function loadMessagesFromPaths(arrayPaths, callback) {
  * @param {Array<string>} folderNames : Array of names/paths of folders to load locales from
  * @param {*} locale
  */
-export async function loadLocaleMessages(i18n, locale, folderNames = []) {
+export async function loadLocaleMessages(locale, oldMessages, folderNames = []) {
   const translationsFolder = 'translations';
-
-  let messages = await import(`./${translationsFolder}/Messages_${locale}.json`);
+  let messages = { ...oldMessages };
 
   const setMessages = async () => {
     await loadMessagesFromPaths(folderNames, async (folderName) => {
-      const newMessages = await import(`./${translationsFolder}/${folderName}/Messages_${locale}.json`);
-      messages = { ...messages, ...newMessages };
-    });
+      let newMessages;
+      if (folderName === '/') {
+        newMessages = await import(`./${translationsFolder}/Messages_${locale}.json`);
+      } else {
+        newMessages = await import(`./${translationsFolder}/${folderName}/Messages_${locale}.json`);
+      }
 
-    // set locale and locale message
-    try {
-      i18n.global.setLocaleMessage(locale, messages);
-    } catch {
-      i18n.setLocaleMessage(locale, messages);
-    }
+      messages = { ...messages, ...newMessages.default };
+    });
   };
 
-  setMessages();
-  return nextTick();
+  await setMessages();
+  return messages;
 }

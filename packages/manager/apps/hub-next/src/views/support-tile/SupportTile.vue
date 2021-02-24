@@ -27,10 +27,15 @@ import { SupportDemand } from '@/models/hub.d';
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import { Environment } from '@ovh-ux/manager-config';
 import Badge from '@/components/ui/Badge';
+import useLoadTranslations from '@/composables/useLoadTranslations';
 
 export default defineComponent({
   async setup() {
     const { t } = useI18n();
+    const translationFolders = [
+      'support',
+    ];
+    await useLoadTranslations(translationFolders);
     const userLanguage = ref(Environment.getUserLanguage());
     const supportResponse = await axios.get('/engine/2api/hub/support');
     const support = ref(supportResponse.data.data.support.data);
