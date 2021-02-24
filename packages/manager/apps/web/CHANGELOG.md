@@ -1,3 +1,16 @@
+## [15.16.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.16.2...@ovh-ux/manager-web@15.16.3) (2021-02-24)
+
+
+### Bug Fixes
+
+* **deps:** bump @ovh-ux/ui-kit to v4.4.4 ([#4430](https://github.com/ovh/manager/issues/4430)) ([2f12ce6](https://github.com/ovh/manager/commit/2f12ce6b724fe90a98ce8b7cd02ace6803527306))
+* **i18n:** add missing translations [CDS 799] ([265e215](https://github.com/ovh/manager/commit/265e215a2bfb2c54dec729dabe1c12e0704573ca))
+* **i18n:** add missing translations [CDS 801] ([1577805](https://github.com/ovh/manager/commit/1577805296161f985f73571cbe254532aabf6256))
+* **i18n:** add missing translations [CDS 802] ([77d0e5b](https://github.com/ovh/manager/commit/77d0e5ba01886a65666dd3a3183fee24ff4d183a))
+* **i18n:** add missing translations [CDS 810] ([#4461](https://github.com/ovh/manager/issues/4461)) ([b73484f](https://github.com/ovh/manager/commit/b73484f070eed8bc2288e3f894e94e93698242b5))
+
+
+
 ## [15.16.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.16.1...@ovh-ux/manager-web@15.16.2) (2021-02-16)
 
 

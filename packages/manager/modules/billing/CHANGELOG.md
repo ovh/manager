@@ -1,3 +1,17 @@
+# [2.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@2.1.3...@ovh-ux/manager-billing@2.2.0) (2021-02-24)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 811] ([ac008c1](https://github.com/ovh/manager/commit/ac008c1c0145d1aafff254ae1c444a433d8d4165))
+
+
+### Features
+
+* **dedicated-sever:** add tracking in baremetal commitment ([#4434](https://github.com/ovh/manager/issues/4434)) ([9f28ed5](https://github.com/ovh/manager/commit/9f28ed5301dd96835098926fb91c52ccf31d7039))
+
+
+
 ## [2.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@2.1.2...@ovh-ux/manager-billing@2.1.3) (2021-02-17)
 
 

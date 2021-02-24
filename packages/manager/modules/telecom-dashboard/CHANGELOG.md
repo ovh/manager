@@ -1,3 +1,12 @@
+# [6.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard@6.0.6...@ovh-ux/manager-telecom-dashboard@6.1.0) (2021-02-24)
+
+
+### Features
+
+* add breadcrumb ([#3400](https://github.com/ovh/manager/issues/3400)) ([00d8d19](https://github.com/ovh/manager/commit/00d8d19c180bc98029263eec738b60b7b5e49c82))
+
+
+
 ## [6.0.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard@6.0.5...@ovh-ux/manager-telecom-dashboard@6.0.6) (2021-01-13)
 
 

@@ -1,3 +1,19 @@
+# [5.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.9.3...@ovh-ux/manager-pci@5.10.0) (2021-02-24)
+
+
+### Bug Fixes
+
+* use managerOnBoardingLayout component ([d36a1e7](https://github.com/ovh/manager/commit/d36a1e7f23ca8511c34bc75bb7f831722cb8bae8))
+
+
+### Features
+
+* **instances:** add tracking on instance create ([#4450](https://github.com/ovh/manager/issues/4450)) ([b74bc2f](https://github.com/ovh/manager/commit/b74bc2fe91bb308b1b973989d10ffc7a623b9bd8))
+* **sidebar:** add logs data platform ([#4421](https://github.com/ovh/manager/issues/4421)) ([723b7c3](https://github.com/ovh/manager/commit/723b7c38b6321c9c5b4988826d187088e64429be))
+* add OnboardingLayoutHelper component ([1ec9e80](https://github.com/ovh/manager/commit/1ec9e802997854ba7d479568f778c5bf3afc8b74))
+
+
+
 ## [5.9.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.9.2...@ovh-ux/manager-pci@5.9.3) (2021-02-16)
 
 

@@ -1,3 +1,20 @@
+# [2.4.0](https://github.com/ovh/manager/compare/@ovh-ux/sao-ovh-manager-app@2.3.2...@ovh-ux/sao-ovh-manager-app@2.4.0) (2021-02-24)
+
+
+### Bug Fixes
+
+* update dependencies ([22ed621](https://github.com/ovh/manager/commit/22ed62119e95621d7c587ec5617c482f57e3dd17))
+
+
+### Features
+
+* add dashboard template ([1cb0d30](https://github.com/ovh/manager/commit/1cb0d30b84cee542a58fa2c3ba505af7e4dff9c2))
+* add error page layout ([71233f2](https://github.com/ovh/manager/commit/71233f2688450ab7ae0cd20da9ce1e8313da7e73))
+* add listing page template ([19a5a53](https://github.com/ovh/manager/commit/19a5a53d8b2b6f2ffc08a0f16257aeb974870b3e))
+* lazyload root state ([3692505](https://github.com/ovh/manager/commit/36925050d052096e4e4489bf36dd3936157c6b3f))
+
+
+
 ## [2.3.2](https://github.com/ovh/manager/compare/@ovh-ux/sao-ovh-manager-app@2.3.1...@ovh-ux/sao-ovh-manager-app@2.3.2) (2021-02-02)
 
 

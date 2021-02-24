@@ -1,3 +1,17 @@
+# [7.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.0.7...@ovh-ux/manager-freefax@7.1.0) (2021-02-24)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 805] ([27bbbf4](https://github.com/ovh/manager/commit/27bbbf49daf87035e8c542d420e16461f43d66b1))
+
+
+### Features
+
+* add breadcrumb ([efd9b1c](https://github.com/ovh/manager/commit/efd9b1c46b88b835d410eb47583e7d13cb23e92e))
+
+
+
 ## [7.0.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.0.6...@ovh-ux/manager-freefax@7.0.7) (2021-01-13)
 
 

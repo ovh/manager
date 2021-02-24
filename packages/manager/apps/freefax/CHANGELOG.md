@@ -1,3 +1,24 @@
+# [6.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax-app@6.1.4...@ovh-ux/manager-freefax-app@6.2.0) (2021-02-24)
+
+
+### Bug Fixes
+
+* **deps:** bump @ovh-ux/ui-kit to v4.4.4 ([#4430](https://github.com/ovh/manager/issues/4430)) ([2f12ce6](https://github.com/ovh/manager/commit/2f12ce6b724fe90a98ce8b7cd02ace6803527306))
+* **freefax:** handle locale change ([dda3d6e](https://github.com/ovh/manager/commit/dda3d6e83beee58a7b6d740a14065ecde600b968))
+* **sidebar:** sync sidebar visibility ([71145ae](https://github.com/ovh/manager/commit/71145aee365f899752b10394c4a6b50b8c25194c))
+* **template:** update html template ([48d8f60](https://github.com/ovh/manager/commit/48d8f60f348cf21dd192286b39c7c6721681ce0e))
+
+
+### Features
+
+* **chatbot:** add chatbot with feature flipping ([0841e42](https://github.com/ovh/manager/commit/0841e42d883f24e32d7d4655d1b4f3b394162596))
+* **freefax:** add notifications sidebar ([a1ab2aa](https://github.com/ovh/manager/commit/a1ab2aab7c8eb69bf71eb1f69e0ce3edc140d7c8))
+* **freefax:** update freefax app to add preloader and navbar ([e82cc75](https://github.com/ovh/manager/commit/e82cc75210c3644af09cd87cd034dd9cd8314743))
+* **user:** add user sidebar ([5ad4bad](https://github.com/ovh/manager/commit/5ad4bad49fd28a320639e63838beebb95c3474ea))
+* add breadcrumb ([efd9b1c](https://github.com/ovh/manager/commit/efd9b1c46b88b835d410eb47583e7d13cb23e92e))
+
+
+
 ## [6.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax-app@6.1.3...@ovh-ux/manager-freefax-app@6.1.4) (2021-02-02)
 
 

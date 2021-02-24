@@ -1,3 +1,12 @@
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-notifications-sidebar@1.1.8...@ovh-ux/manager-notifications-sidebar@1.2.0) (2021-02-24)
+
+
+### Features
+
+* **event:** allow to update notifications sidebar visibility ([3dfcc63](https://github.com/ovh/manager/commit/3dfcc63b4990f89d2a77e72433e319ae5091d40c))
+
+
+
 ## [1.1.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-notifications-sidebar@1.1.7...@ovh-ux/manager-notifications-sidebar@1.1.8) (2021-02-17)
 
 

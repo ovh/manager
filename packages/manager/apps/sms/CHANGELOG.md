@@ -1,3 +1,12 @@
+# [7.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms-app@7.3.4...@ovh-ux/manager-sms-app@7.4.0) (2021-02-24)
+
+
+### Features
+
+* add breadcrumb ([a64a5f0](https://github.com/ovh/manager/commit/a64a5f0e081ab6acd2f6aad4d272d5c1cbebab3a))
+
+
+
 ## [7.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms-app@7.3.3...@ovh-ux/manager-sms-app@7.3.4) (2021-02-02)
 
 

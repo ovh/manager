@@ -1,3 +1,20 @@
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/sao-ovh-manager-module@1.1.0...@ovh-ux/sao-ovh-manager-module@1.2.0) (2021-02-24)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 811] ([ac008c1](https://github.com/ovh/manager/commit/ac008c1c0145d1aafff254ae1c444a433d8d4165))
+
+
+### Features
+
+* add dashboard template ([1cb0d30](https://github.com/ovh/manager/commit/1cb0d30b84cee542a58fa2c3ba505af7e4dff9c2))
+* add listing page template ([19a5a53](https://github.com/ovh/manager/commit/19a5a53d8b2b6f2ffc08a0f16257aeb974870b3e))
+* add onboarding layout ([79129c9](https://github.com/ovh/manager/commit/79129c9e718a7bd91b5751a1d49c7d9df2f679e2))
+* lazyload root state ([3692505](https://github.com/ovh/manager/commit/36925050d052096e4e4489bf36dd3936157c6b3f))
+
+
+
 # [1.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/sao-ovh-manager-module@1.0.3...@ovh-ux/sao-ovh-manager-module@1.1.0) (2020-08-18)
 
 

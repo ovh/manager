@@ -1,3 +1,22 @@
+# [8.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.2.1...@ovh-ux/manager-sms@8.3.0) (2021-02-24)
+
+
+### Bug Fixes
+
+* **deps:** bump @ovh-ux/ui-kit to v4.4.4 ([#4430](https://github.com/ovh/manager/issues/4430)) ([2f12ce6](https://github.com/ovh/manager/commit/2f12ce6b724fe90a98ce8b7cd02ace6803527306))
+* **i18n:** add missing translations [CDS 805] ([27bbbf4](https://github.com/ovh/manager/commit/27bbbf49daf87035e8c542d420e16461f43d66b1))
+* add missing translations ([466875b](https://github.com/ovh/manager/commit/466875b37a3be1b5fea75e92785a99be3640ae89))
+* add missing translations for breadcrumb ([d39cd77](https://github.com/ovh/manager/commit/d39cd77d980a52a0d3b5ebbd42f982094ab7b286))
+* refresh translation before entering state ([8596ee1](https://github.com/ovh/manager/commit/8596ee1c09fa1d877ee5915aef81231fa00aeb95))
+* **guides:** inject translations ([0e56c60](https://github.com/ovh/manager/commit/0e56c60416956ea2694e71db45cf8fba2ad6f825))
+
+
+### Features
+
+* add breadcrumb ([a64a5f0](https://github.com/ovh/manager/commit/a64a5f0e081ab6acd2f6aad4d272d5c1cbebab3a))
+
+
+
 ## [8.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.2.0...@ovh-ux/manager-sms@8.2.1) (2021-02-02)
 
 

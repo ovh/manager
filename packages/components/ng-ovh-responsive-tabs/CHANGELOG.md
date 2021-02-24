@@ -1,3 +1,12 @@
+## [7.0.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-responsive-tabs@7.0.2...@ovh-ux/ng-ovh-responsive-tabs@7.0.3) (2021-02-24)
+
+
+### Bug Fixes
+
+* **deps:** bump @ovh-ux/ui-kit to v4.4.4 ([#4430](https://github.com/ovh/manager/issues/4430)) ([2f12ce6](https://github.com/ovh/manager/commit/2f12ce6b724fe90a98ce8b7cd02ace6803527306))
+
+
+
 ## [7.0.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-responsive-tabs@7.0.1...@ovh-ux/ng-ovh-responsive-tabs@7.0.2) (2021-01-13)
 
 

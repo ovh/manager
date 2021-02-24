@@ -1,3 +1,13 @@
+## [3.1.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@3.1.5...@ovh-ux/manager-pci-app@3.1.6) (2021-02-24)
+
+
+### Bug Fixes
+
+* **deps:** bump @ovh-ux/ui-kit to v4.4.4 ([#4430](https://github.com/ovh/manager/issues/4430)) ([2f12ce6](https://github.com/ovh/manager/commit/2f12ce6b724fe90a98ce8b7cd02ace6803527306))
+* use managerOnBoardingLayout component ([d36a1e7](https://github.com/ovh/manager/commit/d36a1e7f23ca8511c34bc75bb7f831722cb8bae8))
+
+
+
 ## [3.1.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@3.1.4...@ovh-ux/manager-pci-app@3.1.5) (2021-02-10)
 
 

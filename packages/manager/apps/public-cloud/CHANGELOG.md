@@ -1,3 +1,13 @@
+## [4.9.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.9.2...@ovh-ux/manager-public-cloud@4.9.3) (2021-02-24)
+
+
+### Bug Fixes
+
+* **deps:** add missing @ovh-ux/manager-ng-layout-helpers deps ([#4445](https://github.com/ovh/manager/issues/4445)) ([26d538d](https://github.com/ovh/manager/commit/26d538d46fe2b514038727415f38e3867ffed664))
+* **deps:** bump @ovh-ux/ui-kit to v4.4.4 ([#4430](https://github.com/ovh/manager/issues/4430)) ([2f12ce6](https://github.com/ovh/manager/commit/2f12ce6b724fe90a98ce8b7cd02ace6803527306))
+
+
+
 ## [4.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.9.1...@ovh-ux/manager-public-cloud@4.9.2) (2021-02-10)
 
 

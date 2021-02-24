@@ -1,3 +1,12 @@
+## [1.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-fragment-navbar@1.1.1...@ovh-ux/manager-fragment-navbar@1.1.2) (2021-02-24)
+
+
+### Bug Fixes
+
+* **styles:** update navbar styles ([d75bcb6](https://github.com/ovh/manager/commit/d75bcb654ab01ef585e4e95ac9edb2278e639b4f))
+
+
+
 ## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-fragment-navbar@1.1.0...@ovh-ux/manager-fragment-navbar@1.1.1) (2021-02-02)
 
 
