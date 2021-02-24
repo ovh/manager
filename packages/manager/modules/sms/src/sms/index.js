@@ -32,6 +32,13 @@ angular
         },
       });
     },
+  )
+  .run(
+    /* @ngInject */ ($transitions, $translate) => {
+      $transitions.onBefore({ to: 'sms.service.**' }, () =>
+        $translate.refresh(),
+      );
+    },
   );
 
 export default moduleName;

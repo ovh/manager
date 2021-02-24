@@ -43,6 +43,7 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
       outgoingSms: /* @ngInject */ (batch, getOutgoingSms) =>
         getOutgoingSms(batch),
+      breadcrumb: /* @ngInject */ (batchId) => batchId,
     },
     atInternet: {
       rename: 'sms::service::campaign::details',

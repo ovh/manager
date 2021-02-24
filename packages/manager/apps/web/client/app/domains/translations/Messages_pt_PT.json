@@ -40,7 +40,7 @@
   "domains_configuration_renew_step1_question": "A renovação dos domínios deve ser realizada através da interface de renovação OVH (fora do Área de Cliente).",
   "domains_configuration_renew_step1_unable_to_renew": "Não está registado como contacto (responsável) de faturação. Como tal, não tem permissões para renovar alguns dos domínios selecionados (<span class=\"italic\">{{t0}}</span>).",
   "domains_configuration_renew_step1_unable_ignored": "Estes domínios não serão renovados",
-  "domains_configuration_renew_step1_no_selected_domains": "Não selecionou domínios para renovação, ou não tem permissões para renová-los.",
+  "domains_configuration_renew_step1_no_selected_domains": "Não selecionou domínios para renovação, ou não tem permissões para os renovar.",
   "domains_configuration_renew_step1_confirmation": "Clique no botão \"Encomendar\" para renovar os seus domínios.",
   "domains_configuration_renew_step1_information": "Irá surgir um novo separador e será reencaminhado para a interface de renovação OVH.",
   "domains_configuration_renew_step1_alert": "Atenção: após a validação do pagamento, a informação sobre a renovação pode demorar duas horas até ser atualizada na Área de Cliente.",

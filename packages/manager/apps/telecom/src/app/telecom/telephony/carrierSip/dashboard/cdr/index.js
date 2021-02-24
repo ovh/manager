@@ -8,16 +8,19 @@ const moduleName = 'ovhManagerTelecomCarrierSipDashboardCdrLazyLoading';
 
 angular.module(moduleName, [oclazyload, uiRouter]).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('telecom.telephony.billingAccount.carrierSip.cdr.**', {
-      url: '/cdr',
-      lazyLoad: ($transition$) => {
-        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+    $stateProvider.state(
+      'telecom.telephony.billingAccount.carrierSip.dashboard.cdr.**',
+      {
+        url: '/cdr',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-        return import('./cdr.module').then((mod) =>
-          $ocLazyLoad.inject(mod.default || mod),
-        );
+          return import('./cdr.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
       },
-    });
+    );
   },
 );
 export default moduleName;

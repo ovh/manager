@@ -5,6 +5,7 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/compose-tips',
     resolve: {
       close: /* @ngInject */ (goBack) => goBack,
+      breadcrumb: () => null,
     },
     views: {
       modal: {

@@ -1,6 +1,7 @@
 {
+  "xdsl_modem_template_config_breadcrumb": "Templates disponibles",
   "xdsl_modem_template_config_list_title": "Liste des templates de modem disponibles",
-  "xdsl_modem_template_config_table_name": "Nom du gabarit",
+  "xdsl_modem_template_config_table_name": "Nom du template",
   "xdsl_modem_template_config_creation_date": "Date de création",
   "xdsl_modem_template_config_table_is_empty": "Configuration vide",
   "xdsl_modem_template_config_error_missing": "Template non existant !",

@@ -30,16 +30,18 @@ function NavbarAccount({ user }) {
       aria-label={t('navbar_account')}
       onClick={() => {
         emit({
-          id: MESSAGES.notificationsHide,
-        });
-        emit({
           id: MESSAGES.accountSidebarToggle,
         });
       }}
       disabled={!sidebarReady}
     >
-      <i className="oui-icon oui-icon-user_extra-thin" aria-hidden="true"></i>
-      {`${firstName} ${lastName}`}
+      <span className="oui-navbar-link__wrapper oui-navbar-link__wrapper_border">
+        <span
+          className="oui-icon navbar-oui-icon oui-icon-user"
+          aria-hidden="true"
+        ></span>
+        <span className="oui-navbar-link__text">{`${firstName} ${lastName}`}</span>
+      </span>
     </button>
   );
 }

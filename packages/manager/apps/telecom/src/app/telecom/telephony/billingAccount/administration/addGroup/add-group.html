@@ -11,7 +11,7 @@
     <div class="text-center" data-ng-if="AddGroupCtrl.loading">
         <oui-spinner></oui-spinner>
     </div>
-    <div class="telecom-section-content" data-ng-if="!AddGroupCtrl.loading">
+    <div data-ng-if="!AddGroupCtrl.loading">
         <tuc-toast-message></tuc-toast-message>
 
         <div data-ng-if="!AddGroupCtrl.order">
@@ -60,5 +60,4 @@
             </a>
         </oui-message>
     </div>
-    <!-- /.telecom-section-content -->
 </section>

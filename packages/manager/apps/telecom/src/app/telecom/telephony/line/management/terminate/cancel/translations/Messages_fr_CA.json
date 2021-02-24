@@ -1,5 +1,6 @@
 {
-  "telephony_group_line_cancel_terminate_title": "Annulé la résiliation de la ligne \"{{ line }}\"",
+  "telephony_group_line_cancel_terminate_title": "Annuler la résiliation de la ligne \"{{ line }}\"",
+  "telephony_group_line_cancel_terminate": "Annuler la résiliation",
   "telephony_group_line_cancel_terminate_info_title": "Informations",
   "telephony_group_line_cancel_terminate_info_1": "Cette page vous permet d'annuler votre demande de résiliation de votre ligne.",
   "telephony_group_line_cancel_terminate_action_title": "Annuler la résiliation de la ligne",

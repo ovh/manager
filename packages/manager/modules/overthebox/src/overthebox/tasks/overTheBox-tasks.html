@@ -1,47 +1,45 @@
 <div class="telecom-overTheBox-tasks">
-    <div class="telecom-section-content">
-        <tuc-toast-message></tuc-toast-message>
+    <tuc-toast-message></tuc-toast-message>
 
-        <div class="widget-presentation">
-            <h2
-                class="widget-presentation-title"
-                data-translate="overTheBox_tasks_list"
-            ></h2>
+    <div class="widget-presentation">
+        <h2
+            class="widget-presentation-title"
+            data-translate="overTheBox_tasks_list"
+        ></h2>
 
-            <oui-datagrid
-                data-rows="$ctrl.taskIds"
-                data-row-loader="$ctrl.transformItem($row)"
+        <oui-datagrid
+            data-rows="$ctrl.taskIds"
+            data-row-loader="$ctrl.transformItem($row)"
+        >
+            <oui-datagrid-column
+                data-title="'overTheBox_tasks_name' | translate"
+                data-property="name"
+                data-sortable="asc"
+            ></oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="'overTheBox_tasks_id' | translate"
+                data-property="taskId"
+                data-sortable
+            ></oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="'overTheBox_tasks_status' | translate"
+                data-property="status"
+                data-sortable
             >
-                <oui-datagrid-column
-                    data-title="'overTheBox_tasks_name' | translate"
-                    data-property="name"
-                    data-sortable="asc"
-                ></oui-datagrid-column>
-                <oui-datagrid-column
-                    data-title="'overTheBox_tasks_id' | translate"
-                    data-property="taskId"
-                    data-sortable
-                ></oui-datagrid-column>
-                <oui-datagrid-column
-                    data-title="'overTheBox_tasks_status' | translate"
-                    data-property="status"
-                    data-sortable
-                >
-                    <span
-                        class="oui-status"
-                        data-ng-class="{
+                <span
+                    class="oui-status"
+                    data-ng-class="{
                                 'oui-status_success': $row.status === 'done',
                                 'oui-status_danger': $row.status === 'error',
                                 'oui-status_info': $row.status === 'doing',
                                 'oui-status_warning': $row.status === 'todo'
                             }"
-                    >
-                        <span
-                            data-ng-bind="'overTheBox_tasks_status_' + $row.status | translate"
-                        ></span>
-                    </span>
-                </oui-datagrid-column>
-            </oui-datagrid>
-        </div>
+                >
+                    <span
+                        data-ng-bind="'overTheBox_tasks_status_' + $row.status | translate"
+                    ></span>
+                </span>
+            </oui-datagrid-column>
+        </oui-datagrid>
     </div>
 </div>

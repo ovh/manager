@@ -39,6 +39,8 @@ export default /* @ngInject */ ($stateProvider) => {
           previousState: 'sms.service.batches.history',
         });
       },
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('sms_batches_history_title'),
     },
     views: {
       'smsView@sms.service': {

@@ -64,5 +64,6 @@
   "sms_receivers_remove_receiver_confirm": "¿Seguro que quiere eliminar el archivo de destinatarios «<b>{{ receiver }}</b>»?",
   "sms_receivers_remove_receiver_removing": "Eliminando el archivo de destinatarios…",
   "sms_receivers_remove_receiver_removed": "Archivo de destinatarios eliminado",
-  "sms_receivers_remove_receiver_ko": "No se ha podido eliminar el archivo de destinatarios.<br/>{{error}}"
+  "sms_receivers_remove_receiver_ko": "No se ha podido eliminar el archivo de destinatarios.<br/>{{error}}",
+  "sms_receivers_breadcrumb": "Contactos"
 }

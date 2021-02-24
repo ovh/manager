@@ -1,7 +1,7 @@
 <section class="telephony-group-line-simultaneousLines">
     <header>
         <oui-back-button
-            data-ui-sref="telecom.telephony.billingAccount.line.calls"
+            data-ui-sref="telecom.telephony.billingAccount.line.dashboard.calls"
             ><span
                 data-translate="telephony_line_actions_line_calls_simultaneous_line_title"
             ></span
@@ -12,7 +12,7 @@
         <oui-spinner></oui-spinner>
     </div>
 
-    <div class="telecom-section-content" data-ng-if="!$ctrl.trunkRates.loading">
+    <div data-ng-if="!$ctrl.trunkRates.loading">
         <tuc-toast-message></tuc-toast-message>
 
         <oui-message data-type="info">

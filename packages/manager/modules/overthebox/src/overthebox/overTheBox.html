@@ -1,44 +1,41 @@
 <section class="telecom-legacy" id="over-the-box">
-    <div class="telecom-section-header">
-        <header class="oui-header">
-            <div class="oui-header__container">
-                <div class="oui-header__content">
-                    <tuc-editable-service-name
-                        data-tuc-editable-service-name-title="$ctrl.service.customerDescription || ('overTheBox_dashboard_title' | translate)"
-                        data-disabled="false"
-                        data-tuc-editable-service-name-title-on-save="$ctrl.updateName"
-                        data-tuc-editable-service-name-service-name="$ctrl.service.serviceName"
-                    >
-                    </tuc-editable-service-name>
-                </div>
+    <header class="oui-header">
+        <div class="oui-header__container">
+            <div class="oui-header__content">
+                <tuc-editable-service-name
+                    data-tuc-editable-service-name-title="$ctrl.service.customerDescription || ('overTheBox_dashboard_title' | translate)"
+                    data-disabled="false"
+                    data-tuc-editable-service-name-title-on-save="$ctrl.updateName"
+                    data-tuc-editable-service-name-service-name="$ctrl.service.serviceName"
+                >
+                </tuc-editable-service-name>
             </div>
-        </header>
+        </div>
+    </header>
 
-        <oui-header-tabs>
-            <oui-header-tabs-item data-state="overTheBoxes.overTheBox.details">
-                <span data-translate="overTheBox_tabs_detail"></span>
-            </oui-header-tabs-item>
-            <oui-header-tabs-item
-                data-state="overTheBoxes.overTheBox.remote"
-                disabled="$ctrl.disabledRemote"
-            >
-                <span data-translate="overTheBox_tabs_remote"></span>
-            </oui-header-tabs-item>
-            <oui-header-tabs-item data-state="overTheBoxes.overTheBox.tasks">
-                <span data-translate="overTheBox_tabs_tasks"></span>
-            </oui-header-tabs-item>
-            <oui-header-tabs-item data-state="overTheBoxes.overTheBox.actions">
-                <span data-translate="overTheBox_tabs_actions"></span>
-            </oui-header-tabs-item>
-            <oui-header-tabs-item data-state="overTheBoxes.overTheBox.logs">
-                <span data-translate="overTheBox_tabs_logs"></span>
-            </oui-header-tabs-item>
-            <oui-header-tabs-item data-state="overTheBoxes.overTheBox.docs">
-                <span data-translate="overTheBox_tabs_docs"></span>
-            </oui-header-tabs-item>
-        </oui-header-tabs>
-    </div>
-    <!-- /.telecom-section-header -->
+    <oui-header-tabs class="mb-4">
+        <oui-header-tabs-item data-state="overTheBoxes.overTheBox.details">
+            <span data-translate="overTheBox_tabs_detail"></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-state="overTheBoxes.overTheBox.remote"
+            disabled="$ctrl.disabledRemote"
+        >
+            <span data-translate="overTheBox_tabs_remote"></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item data-state="overTheBoxes.overTheBox.tasks">
+            <span data-translate="overTheBox_tabs_tasks"></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item data-state="overTheBoxes.overTheBox.actions">
+            <span data-translate="overTheBox_tabs_actions"></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item data-state="overTheBoxes.overTheBox.logs">
+            <span data-translate="overTheBox_tabs_logs"></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item data-state="overTheBoxes.overTheBox.docs">
+            <span data-translate="overTheBox_tabs_docs"></span>
+        </oui-header-tabs-item>
+    </oui-header-tabs>
 
     <main class="ui-view-container" role="main" data-ui-view="otbView"></main>
 </section>

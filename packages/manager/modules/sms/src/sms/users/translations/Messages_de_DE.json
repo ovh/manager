@@ -119,5 +119,6 @@
   "sms_users_remove_user_confirm": "Voulez-vous vraiment supprimer l’utilisateur <b>«{{ user }}»</b> ?",
   "sms_users_remove_user_removing": "Suppression de l’utilisateur en cours…",
   "sms_users_remove_user_removed": "Utilisateur supprimé",
-  "sms_users_remove_user_ko": "Impossible de supprimer l’utilisateur.<br/>{{error}}"
+  "sms_users_remove_user_ko": "Impossible de supprimer l’utilisateur.<br/>{{error}}",
+  "sms_users_breadcrumb": "Nutzer"
 }

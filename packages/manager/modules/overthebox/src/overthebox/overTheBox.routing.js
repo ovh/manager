@@ -1,7 +1,7 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('overTheBoxes.overTheBox', {
     url: '/:serviceName',
-    abstract: true,
+    redirectTo: 'overTheBoxes.overTheBox.details',
     component: 'ovhManagerOverTheBoxComponent',
     resolve: {
       service: /* @ngInject */ (OvhApiOverTheBox, $stateParams) =>
@@ -35,6 +35,7 @@ export default /* @ngInject */ ($stateProvider) => {
             }),
           );
       },
+      breadcrumb: /* @ngInject */ (serviceName) => serviceName,
     },
     translations: {
       value: ['.', './details', './warning', './remote'],

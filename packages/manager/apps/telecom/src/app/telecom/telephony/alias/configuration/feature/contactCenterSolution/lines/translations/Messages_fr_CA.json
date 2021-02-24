@@ -1,4 +1,5 @@
 {
+  "telephony_alias_config_contactCenterSolution_lines": "Gestion des lignes",
   "telephony_alias_config_contactCenterSolution_lines_title": "File d’appels : gestion des lignes dans la file",
   "telephony_alias_config_contactCenterSolution_lines_subtitle": "Afin de mettre en place une {{feature}}, vous devez y ajouter au moins une ligne (ex. ligne fixe externe, ligne mobile, ligne SIP OVH, etc...)",
   "telephony_alias_config_contactCenterSolution_lines_organization": "Organisation de vos lignes",
@@ -18,7 +19,7 @@
   "telephony_alias_config_contactCenterSolution_lines_seconds": "{{ amount }} sec.",
   "telephony_alias_config_contactCenterSolution_lines_display_number": "Numéro à afficher",
   "telephony_alias_config_contactCenterSolution_lines_display_number_help": "Il s’agit du numéro qui sera visible sur le téléphone de la personne qui reçoit l’appel.",
-  "telephony_alias_config_contactCenterSolution_lines_display_number_caller": "Le numéro de l'appelant",
+  "telephony_alias_config_contactCenterSolution_lines_display_number_caller": "Le numéro de l’appelant",
   "telephony_alias_config_contactCenterSolution_lines_display_number_both": "Les deux numéros",
   "telephony_alias_config_contactCenterSolution_lines_display_number_alias": "Le numéro de la file d’appels",
   "telephony_alias_config_contactCenterSolution_lines_strategy": "Stratégie de sonnerie",

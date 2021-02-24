@@ -1,6 +1,0 @@
-{
-  "telephony_order_international_title": "Zamów numer międzynarodowy",
-  "telephony_order_international_order_success": "Zamówione numery międzynarodowe. Prosimy o opłacenie zamówienia.",
-  "telephony_order_international_order_error": "Zamówienie dotyczące numerów geograficznych nie powiodło się. Spróbuj ponownie później.",
-  "telephony_order_international_countries_error": "Nie można pobrać listy krajów."
-}

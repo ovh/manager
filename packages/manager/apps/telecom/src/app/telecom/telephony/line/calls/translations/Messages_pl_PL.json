@@ -11,5 +11,6 @@
   "telephony_line_calls_actions_line_callWaiting": "Double appel et Intercom",
   "telephony_line_calls_actions_line_abbreviated_numbers": "Numery skrócone",
   "telephony_line_calls_actions_line_click2call": "Appel en 1 clic (Click2Call)",
-  "telephony_line_calls_actions_line_external_number_display": "Présentation d'un numéro externe"
+  "telephony_line_calls_actions_line_external_number_display": "Présentation d'un numéro externe",
+  "telephony_line_calls_breadcrumb": "Zarządzanie połączeniami"
 }

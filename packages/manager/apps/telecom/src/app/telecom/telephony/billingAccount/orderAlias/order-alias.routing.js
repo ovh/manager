@@ -15,5 +15,9 @@ export default /* @ngInject */ ($stateProvider) => {
         controllerAs: 'AliasOrderCtrl',
       },
     },
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('telephony_order_title'),
+    },
   });
 };

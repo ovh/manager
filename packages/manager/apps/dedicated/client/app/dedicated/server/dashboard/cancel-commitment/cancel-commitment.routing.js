@@ -10,6 +10,8 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       goBack: /* @ngInject */ (goToDashboard) => goToDashboard,
       serviceId: /* @ngInject */ (serviceInfos) => serviceInfos.serviceId,
+      confirmCancelTracking: () =>
+        'dedicated::dedicated::server::dashboard::cancel-commitment::confirm',
     },
   });
 };

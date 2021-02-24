@@ -1,6 +1,6 @@
 {
   "autorenew_service_disable_all_domains_title": "Disable automatic renewal",
-  "autorenew_service_disable_all_domains_desc1": "Automatic payment for <strong>all of your domain names</strong> will only be disabled if you are the billing contact.",
+  "autorenew_service_disable_all_domains_desc1": "This action will disable automatic renewal for <strong>all domain names</strong> that you are the billing contact for.",
   "autorenew_service_disable_all_domains_desc2": "To keep using your services, you will need to make your next payments before their expiry date.",
   "autorenew_service_disable_all_domains_desc3": "By default, your services <strong>will close automatically on their expiry</strong>. The data associated with automatic payment for your services will be automatically and permanently deleted. This process cannot be undone.",
   "autorenew_service_disable_all_domains_desc4": "You can reactivate automatic payment for your services up to 24 days before they expire.",

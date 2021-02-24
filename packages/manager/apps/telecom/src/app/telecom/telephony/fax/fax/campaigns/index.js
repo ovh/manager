@@ -19,6 +19,7 @@ angular
     'ui.router',
     serviceFaxCampaigns,
   ])
-  .config(routing);
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

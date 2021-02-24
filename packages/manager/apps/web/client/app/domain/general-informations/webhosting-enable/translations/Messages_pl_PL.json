@@ -7,7 +7,7 @@
   "domain_configuration_enable_web_hosting_dns_configuration": "Konfiguracja DNS",
   "domain_configuration_web_hosting_dns_info_NO_CHANGE": "Pomimo uruchomienia nowego hostingu, domena nadal wskazuje na aktualne rekordy. Musisz wprowadzić zmiany w strefie DNS, gdy Twoja nowa strona będzie gotowa.  Jest to idealny wybór, jeśli nie chcesz wyłączyć strony, która jest już online.",
   "domain_configuration_enable_web_hosting_dns_configuration_A": "Rekord DNS A",
-  "domain_configuration_enable_web_hosting_dns_configuration_MX": "Rekord DNS A",
+  "domain_configuration_enable_web_hosting_dns_configuration_MX": "Rekord DNS MX",
   "domain_configuration_web_hosting_dns_info_A": "Jeśli dysponujesz adresem e-mail dla swojej domeny, ale nie posiadasz strony internetowej, możesz zmienić tylko rekord A. W ten sposób Twoja domena będzie wskazywać na nowy hosting, a konta e-mail będą nadal działać w ramach dotychczasowej usługi.",
   "domain_configuration_web_hosting_dns_info_MX": "Ta opcja pozwala na używanie wyłącznie adresów e-mail hostingu, bez modyfikowania wpisów dotyczących wskazywania strony www.  Domena nadal wskazuje na aktualną stronę, a adresy e-mail są obsługiwane na serwerach OVH.",
   "domain_configuration_enable_web_hosting_offer_price": "Cennik",

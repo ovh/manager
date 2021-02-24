@@ -9,6 +9,7 @@ export default class TelecomTelephonyAliasCtrl {
     $state,
     $stateParams,
     $translate,
+    serviceName,
     SidebarMenu,
     TelephonyMediator,
     TucToast,
@@ -25,8 +26,7 @@ export default class TelecomTelephonyAliasCtrl {
     this.tucVoipServiceAlias = tucVoipServiceAlias;
 
     this.billingAccount = $stateParams.billingAccount;
-    this.serviceName =
-      $stateParams.serviceName !== 'default' ? $stateParams.serviceName : null;
+    this.serviceName = serviceName !== 'default' ? serviceName : null;
   }
 
   $onInit() {

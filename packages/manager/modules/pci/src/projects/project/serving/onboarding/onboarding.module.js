@@ -4,22 +4,21 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
 import '@ovh-ux/ng-at-internet';
+import { OnboardingLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
 import component from './onboarding.component';
 import routing from './onboarding.routing';
-
-import empty from '../../../../components/project/empty';
 
 const moduleName = 'ovhManagerPciServingOnboarding';
 
 angular
   .module(moduleName, [
-    empty,
     'ui.router',
     'oui',
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
     'ngAtInternet',
+    OnboardingLayoutHelper,
   ])
   .config(routing)
   .component('pciProjectServingOnboarding', component)

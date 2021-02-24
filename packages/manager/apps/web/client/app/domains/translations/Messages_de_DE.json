@@ -40,7 +40,7 @@
   "domains_configuration_renew_step1_question": "Um Ihre Domains zu verlängern müssen Sie das Verlängerungs-Interface von OVH verwenden.",
   "domains_configuration_renew_step1_unable_to_renew": "Sie sind nicht der Rechnungskontakt für einige der ausgewählten Domains und können diese deshalb nicht verlängern (<span class=\"italic\">{{t0}}</span>).",
   "domains_configuration_renew_step1_unable_ignored": "Diese Domains werden bei der Verlängerung ignoriert.",
-  "domains_configuration_renew_step1_no_selected_domains": "Sie haben keine zu verlängernden Domains ausgewählt, oder Sie haben keine Berechtigung zur Verlängerung der Domains.",
+  "domains_configuration_renew_step1_no_selected_domains": "Sie haben entweder keine Domains zur Verlängerung ausgewählt, oder Sie verfügen nicht über die Berechtigung dazu.",
   "domains_configuration_renew_step1_confirmation": "Klicken Sie auf \"Bestellen\", um ein neues Fenster zu öffnen und Ihre Domains zu verlängern.",
   "domains_configuration_renew_step1_information": "Es wird dann ein neuer Browser-Tab geöffnet und Sie werden automatisch auf das Verlängerungs-Interface von OVH weitergeleitet.",
   "domains_configuration_renew_step1_alert": "Bitte beachten Sie, dass es nach dem Eingang der Zahlung etwa zwei Stunden dauert, bis die Verlängerung in Ihrem Web Kundencenter aktiv ist.",

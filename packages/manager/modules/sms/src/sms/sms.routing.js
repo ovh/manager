@@ -11,7 +11,7 @@ export default /* @ngInject */ ($stateProvider) => {
         controllerAs: 'TelecomSmsCtrl',
       },
     },
-    abstract: true,
+    redirectTo: 'sms.service.dashboard',
     resolve: {
       batches: /* @ngInject */ (getBatches) => getBatches(),
       getBatches: /* @ngInject */ ($http, serviceName) => () =>
@@ -24,6 +24,7 @@ export default /* @ngInject */ ($stateProvider) => {
             ),
           )
           .catch(() => []),
+
       initSms: ($q, $stateParams, TucSmsMediator) => {
         // init sms services
         TucSmsMediator.initAll().then((smsDetails) =>
@@ -57,6 +58,7 @@ export default /* @ngInject */ ($stateProvider) => {
           null,
           'escape',
         ),
+      breadcrumb: /* @ngInject */ (serviceName) => serviceName,
     },
     translations: {
       value: ['.'],

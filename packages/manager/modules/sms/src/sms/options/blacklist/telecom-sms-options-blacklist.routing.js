@@ -4,6 +4,9 @@ export default /* @ngInject */ ($stateProvider) => {
     views: {
       'smsView@sms.service': 'telecomSmsOptionsBlacklist',
     },
-    translations: { value: ['.'], format: 'json' },
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('sms_senders_blacklisted_manage_title'),
+    },
   });
 };

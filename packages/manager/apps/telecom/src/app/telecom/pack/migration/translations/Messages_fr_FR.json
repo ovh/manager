@@ -1,5 +1,5 @@
 {
-  "telecom_pack_migration_back_link_title": "Retour vers le détail du pack",
+  "telecom_pack_migration_back_link_title": "Détail du pack",
   "telecom_pack_migration_title": "Changement d'offre",
   "telecom_pack_migration_current_offer": "Offre actuelle : {{ offerName }}",
   "telecom_pack_migration_monthly_subscription": "Abonnement mensuel",
@@ -154,5 +154,6 @@
   "telecom_pack_migration_buildings_select_building": "Sélectionner",
   "telecom_pack_migration_confirm_resume_contact_owner": "Informations de contact",
   "telecom_pack_migration_confirm_resume_contact_phone": "Numéro de téléphone sur lequel vous pourrez être contacté si nécessaire",
-  "telecom_pack_migration_confirm_resume_phone_form_error": "Le numéro saisi doit être valide."
+  "telecom_pack_migration_confirm_resume_phone_form_error": "Le numéro saisi doit être valide.",
+  "telecom_pack_migration_choose_offer_error": "Une erreur est survenue durant la récupération des offres : {{ error }}."
 }

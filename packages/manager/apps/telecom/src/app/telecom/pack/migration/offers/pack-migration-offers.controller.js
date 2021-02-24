@@ -7,9 +7,16 @@ import { PROMO_DISPLAY } from '../pack-migration.constant';
 
 export default class TelecomPackMigrationOffersCtrl {
   /* @ngInject */
-  constructor($q, $translate, TucPackMigrationProcess, TucToast) {
+  constructor(
+    $q,
+    $translate,
+    OvhApiPackXdsl,
+    TucPackMigrationProcess,
+    TucToast,
+  ) {
     this.$q = $q;
     this.$translate = $translate;
+    this.OvhApiPackXdsl = OvhApiPackXdsl;
     this.TucPackMigrationProcess = TucPackMigrationProcess;
     this.TucToast = TucToast;
   }
@@ -71,7 +78,38 @@ export default class TelecomPackMigrationOffersCtrl {
   }
 
   selectOffer(offer) {
-    this.TucPackMigrationProcess.selectOffer(offer);
+    const selectedOffer = offer;
+    const params = {
+      offerName: selectedOffer.offerName,
+    };
+
+    // Retrieve option values (included and added)
+    const options = Object.values(selectedOffer.options)
+      .filter((option) => option.included > 0 || option.choosedValue > 0)
+      .map((option) => ({
+        quantity:
+          option.included + (option.choosedValue > 0 ? option.choosedValue : 0),
+        name: option.name,
+      }));
+
+    if (options.length > 0) {
+      params.options = options;
+    }
+
+    return this.OvhApiPackXdsl.v6()
+      .servicesToDelete({ packName: this.process.pack.packName }, params)
+      .$promise.then((result) => {
+        selectedOffer.subServicesToDelete = result;
+        this.TucPackMigrationProcess.selectOffer(selectedOffer);
+        return result;
+      })
+      .catch((error) => {
+        this.TucToast.error(
+          this.$translate.instant('telecom_pack_migration_choose_offer_error', {
+            error,
+          }),
+        );
+      });
   }
 
   /* -----  End of ACTIONS  ------*/

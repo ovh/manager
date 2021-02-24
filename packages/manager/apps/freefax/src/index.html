@@ -1,9 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html class="h-100">
     <head>
-        <title>FreeFax App</title>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+
+        <link rel="shortcut icon" href="assets/images/favicon.png" />
+        <link rel="apple-touch-icon" href="assets/images/touchicon-180.png" />
+        <title>OVHcloud</title>
+        <style type="text/css">
+            .ng-cloak {
+                display: none !important;
+            }
+        </style>
     </head>
-    <body data-ng-app="freefaxApp">
-        <div data-ui-view></div>
+    <body>
+        <ovh-fragment
+            fragment-id="navbar"
+            fragment-version="1.x.x"
+        ></ovh-fragment>
+        <div
+            data-ng-controller="FreefaxAppController as $ctrl"
+            class="ng-cloak"
+        >
+            <ui-router-breadcrumb></ui-router-breadcrumb>
+            <div data-ui-view></div>
+            <ovh-manager-notifications-sidebar></ovh-manager-notifications-sidebar>
+            <ovh-manager-account-sidebar
+                me="$ctrl.user"
+            ></ovh-manager-account-sidebar>
+            <ovh-chatbot
+                data-ng-if="$ctrl.chatbotEnabled"
+                data-language="{{$ctrl.currentLanguage}}"
+                data-country="{{$ctrl.user.ovhSubsidiary}}"
+                data-support-level="{{$ctrl.user.supportLevel.level}}"
+            ></ovh-chatbot>
+        </div>
     </body>
 </html>

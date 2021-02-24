@@ -4,7 +4,8 @@ export default /* @ngInject */ ($stateProvider) => {
     component: 'packVoipLineActivation',
     resolve: {
       goBack: /* @ngInject */ ($state) => () => $state.go('telecom.packs.pack'),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('telefony_activation_add_line_title'),
     },
-    translations: { value: ['.'], format: 'json' },
   });
 };

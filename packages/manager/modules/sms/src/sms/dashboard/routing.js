@@ -26,6 +26,7 @@ export default /* @ngInject */ ($stateProvider) => {
           )
           .then((statisticsList) => statisticsList.flat()),
       translationsRefresh: /* @ngInject */ ($translate) => $translate.refresh(),
+      breadcrumb: () => null,
     },
     views: {
       'smsInnerView@sms.service': {

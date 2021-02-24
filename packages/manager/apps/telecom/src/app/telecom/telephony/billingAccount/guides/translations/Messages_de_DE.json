@@ -15,5 +15,6 @@
   "telephony_guides_update_sounds": "Modifier les musiques et sonneries de votre ligne",
   "telephony_guides_restrict_sip_line": "Restreindre sa ligne SIP OVH par IP",
   "telephony_guides_section_phone_troubleshooting": "Diagnostic et dépannage",
-  "telephony_guides_phone_troubleshooting_pap": "Dépanner son téléphone Plug and Phone"
+  "telephony_guides_phone_troubleshooting_pap": "Dépanner son téléphone Plug and Phone",
+  "telephony_guides_breadcrumb": "Anleitungen"
 }

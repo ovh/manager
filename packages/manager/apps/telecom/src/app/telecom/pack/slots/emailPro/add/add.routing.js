@@ -7,5 +7,9 @@ export default /* @ngInject */ ($stateProvider) => {
     template,
     controller,
     controllerAs: '$ctrl',
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('emailpro_add_an_account'),
+    },
   });
 };

@@ -54,6 +54,8 @@ export default angular
         format: 'json',
       },
       resolve: {
+        serviceName: /* @ngInject */ ($transition$) =>
+          $transition$.params().serviceName,
         $title(translations, $translate, $stateParams) {
           return $translate.instant(
             'freefax_page_title',
@@ -63,6 +65,7 @@ export default angular
             'escape',
           );
         },
+        breadcrumb: /* @ngInject */ (serviceName) => serviceName,
       },
       component: 'ovhManagerFreefaxComponent',
     });

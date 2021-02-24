@@ -11,5 +11,9 @@ export default /* @ngInject */ ($stateProvider) => {
         template,
       },
     },
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('pack_xdsl_access_ip_title'),
+    },
   });
 };
