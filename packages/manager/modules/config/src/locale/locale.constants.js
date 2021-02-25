@@ -32,10 +32,6 @@ export const LANGUAGES = {
       name: 'Português',
       key: 'pt_PT',
     },
-    {
-      name: 'Česky',
-      key: 'cs_CZ',
-    },
   ],
   defaultLoc: 'fr_FR',
   fallback: 'fr_FR',
