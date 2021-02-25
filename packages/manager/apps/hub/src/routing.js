@@ -13,7 +13,7 @@ const parseErrors = (data) =>
   );
 
 const transformBillingServices = (services) => {
-  return services.error
+  return services.status === 'ERROR'
     ? services
     : {
         count: get(services, 'data.count'),
@@ -55,8 +55,8 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       billingServices: /* @ngInject */ (hub) =>
         transformBillingServices(hub.billingServices),
       refreshBillingServices: /* @ngInject */ (refresh) => () =>
-        refresh('billingServices').then((billingServices) =>
-          transformBillingServices(billingServices),
+        refresh('billingServices').then((hub) =>
+          transformBillingServices(hub.billingServices),
         ),
       bills: /* @ngInject */ (hub) => hub.bills,
       debt: /* @ngInject */ (hub) => hub.debt,
