@@ -2,6 +2,8 @@ import filter from 'lodash/filter';
 import get from 'lodash/get';
 
 export default /* @ngInject */ function TelecomTelephonyServiceVoicemailPasswordCtrl(
+  $http,
+  $q,
   $state,
   $stateParams,
   $translate,
@@ -21,15 +23,27 @@ export default /* @ngInject */ function TelecomTelephonyServiceVoicemailPassword
 
     self.isFax = $state.current.name.indexOf('fax') > -1;
 
-    return OvhApiTelephony.Voicemail()
-      .v6()
-      .getNumbersSettings({
-        billingAccount: $stateParams.billingAccount,
-        serviceName: $stateParams.serviceName,
-      })
-      .$promise.then((options) => {
-        self.options = options;
-      })
+    return $q
+      .all([
+        $http
+          .get(
+            `/telephony/${$stateParams.billingAccount}/voicemail/${$stateParams.serviceName}/settings`,
+          )
+          .then(({ data }) => data)
+          .then((settings) => {
+            self.settings = settings;
+            self.forcePassword = settings.forcePassword;
+          }),
+        OvhApiTelephony.Voicemail()
+          .v6()
+          .getNumbersSettings({
+            billingAccount: $stateParams.billingAccount,
+            serviceName: $stateParams.serviceName,
+          })
+          .$promise.then((options) => {
+            self.options = options;
+          }),
+      ])
       .catch((err) => new TucToastError(err))
       .finally(() => {
         self.loading = false;
@@ -43,6 +57,13 @@ export default /* @ngInject */ function TelecomTelephonyServiceVoicemailPassword
     }
   };
 
+  self.hasChanges = function hasChanges() {
+    return (
+      (!self.password && self.settings.forcePassword !== self.forcePassword) ||
+      (self.password && self.password === self.passwordConfirm)
+    );
+  };
+
   self.reset = function reset() {
     self.password = '';
     self.passwordConfirm = '';
@@ -52,18 +73,43 @@ export default /* @ngInject */ function TelecomTelephonyServiceVoicemailPassword
   self.submitPasswordChange = function submitPasswordChange(form) {
     self.submitting = true;
     self.success = false;
-    return OvhApiTelephony.Voicemail()
-      .v6()
-      .changePassword(
-        {
-          billingAccount: $stateParams.billingAccount,
-          serviceName: $stateParams.serviceName,
-        },
-        {
-          password: self.password,
-        },
-      )
-      .$promise.then(() => {
+
+    const tasks = [];
+
+    if (self.password) {
+      tasks.push(
+        OvhApiTelephony.Voicemail()
+          .v6()
+          .changePassword(
+            {
+              billingAccount: $stateParams.billingAccount,
+              serviceName: $stateParams.serviceName,
+            },
+            {
+              password: self.password,
+            },
+          ).$promise,
+      );
+    }
+
+    if (self.forcePassword !== self.settings.forcePassword) {
+      tasks.push(
+        $http
+          .put(
+            `/telephony/${$stateParams.billingAccount}/voicemail/${$stateParams.serviceName}/settings`,
+            {
+              forcePassword: self.forcePassword,
+            },
+          )
+          .then(() => {
+            self.settings.forcePassword = self.forcePassword;
+          }),
+      );
+    }
+
+    return $q
+      .all([tasks])
+      .then(() => {
         self.success = true;
         $timeout(() => {
           self.reset();
@@ -88,16 +134,31 @@ export default /* @ngInject */ function TelecomTelephonyServiceVoicemailPassword
     serviceName: $stateParams.serviceName,
     infos: {
       name: 'password',
-      actions: [
-        {
-          name: 'password',
-          route:
-            '/telephony/{billingAccount}/voicemail/{serviceName}/settings/changePassword',
-          method: 'POST',
-          params: null,
-        },
-      ],
+      actions: [],
     },
+  };
+
+  self.getBulkDataInfos = function getBulkDataInfos() {
+    self.bulkDatas.infos.actions = [];
+
+    if (self.password) {
+      self.bulkDatas.infos.actions.push({
+        name: 'password',
+        route:
+          '/telephony/{billingAccount}/voicemail/{serviceName}/settings/changePassword',
+        method: 'POST',
+        params: null,
+      });
+    }
+
+    self.bulkDatas.infos.actions.push({
+      name: 'forcePassword',
+      route: '/telephony/{billingAccount}/voicemail/{serviceName}/settings',
+      method: 'PUT',
+      params: null,
+    });
+
+    return self.bulkDatas.infos;
   };
 
   self.filterServices = function filterServices(services) {
@@ -108,10 +169,19 @@ export default /* @ngInject */ function TelecomTelephonyServiceVoicemailPassword
     );
   };
 
-  self.getBulkParams = function getBulkParams() {
-    return {
-      password: self.password,
-    };
+  self.getBulkParams = function getBulkParams(action) {
+    switch (action) {
+      case 'password':
+        return {
+          password: self.password,
+        };
+      case 'forcePassword':
+        return {
+          forcePassword: self.forcePassword,
+        };
+      default:
+        return false;
+    }
   };
 
   self.onBulkSuccess = function onBulkSuccess(bulkResult) {
