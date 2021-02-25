@@ -50,12 +50,10 @@ export async function loadLocaleMessages(locale, oldMessages, folderNames = []) 
 
   const setMessages = async () => {
     await loadMessagesFromPaths(folderNames, async (folderName) => {
-      let newMessages;
-      if (folderName === '/') {
-        newMessages = await import(`./${translationsFolder}/Messages_${locale}.json`);
-      } else {
-        newMessages = await import(`./${translationsFolder}/${folderName}/Messages_${locale}.json`);
-      }
+      const newMessages =
+        folderName === '/'
+          ? await import(`./${translationsFolder}/Messages_${locale}.json`)
+          : await import(`./${translationsFolder}/${folderName}/Messages_${locale}.json`);
 
       messages = { ...messages, ...newMessages.default };
     });

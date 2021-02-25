@@ -9,7 +9,7 @@
     "serve": "vue-cli-service serve",
     "start": "lerna exec --stream --scope='@ovh-ux/manager-hub-next' --include-dependencies -- npm run build --if-present",
     "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-hub-next' --include-dependencies -- npm run dev --if-present",
-    "test:unit": "vue-cli-service test:unit"
+    "test": "vue-cli-service test:unit"
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^3.0.1",
