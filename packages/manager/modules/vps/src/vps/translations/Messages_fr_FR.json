@@ -183,6 +183,7 @@
   "vps_configuration_reinstall_step2_alert2": "Attention : la réinstallation engendrera la perte de toutes vos données !",
   "vps_configuration_reinstall_windows_option": "Si vous souhaitez bénéficier d'un système d'exploitation windows, pensez à prendre l'option.",
   "vps_configuration_reinstall_success": "Le VPS {{serviceName}} va être réinstallé",
+  "vps_configuration_reinstall_with_rtm_success": "Le VPS {{serviceName}} va être réinstallé. Vous avez également activé gratuitement le suivi de vos données de consommation.",
   "vps_configuration_reinstall_fail": "Une erreur est survenue lors de la demande de réinstallation {{message}}",
   "vps_configuration_delete_snapshot_title_button": "Supprimer le Snapshot",
   "vps_configuration_delete_snapshot_title": "Supprimer le Snapshot",

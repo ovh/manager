@@ -530,5 +530,6 @@
   "vps_new_range_available_call_to_upgrade_1": "Per approfittare delle novità disponibili, <a href=\"{{href}}\">ordina un nuovo modello </a> dallo Spazio Cliente e trasferisci tutti i tuoi dati prima di disattivare il server precedente.",
   "vps_new_range_available_call_to_upgrade_2": "Per approfittarne, effettua un upgrade della tua macchina <a href=\"{{href}}\"> in pochi click </a>.",
   "vps_dashboard_task_migrate": "Al momento il tuo VPS Cloud 2013/2014 è in corso di migrazione verso la nuova gamma.",
-  "vps_dashboard_task_internalTask": "Operazione interna in corso..."
+  "vps_dashboard_task_internalTask": "Operazione interna in corso...",
+  "vps_configuration_reinstall_with_rtm_success": "Il VPS {{serviceName}} verrà reinstallato. Hai attivato gratuitamente anche il controllo dei tuoi dati sui consumi."
 }

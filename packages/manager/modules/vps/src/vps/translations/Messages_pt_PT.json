@@ -530,5 +530,6 @@
   "vps_new_range_available_call_to_upgrade_1": "Para usufruir das novidades, <a href=\"{{href}}\">encomende um novo modelo</a> na sua Área de Cliente, transfira os seus dados e rescinda o seu antigo servidor.",
   "vps_new_range_available_call_to_upgrade_2": "Faça a sua máquina evoluir <a href=\"{{href}}\">em apenas alguns cliques.</a>",
   "vps_dashboard_task_migrate": "O seu VPS está a ser migrado para a nova gama",
-  "vps_dashboard_task_internalTask": "Tarefa interna em curso"
+  "vps_dashboard_task_internalTask": "Tarefa interna em curso",
+  "vps_configuration_reinstall_with_rtm_success": "O VPS {{serviceName}} será reinstalado. Também ativou gratuitamente o seguimento dos seus dados de consumo."
 }
