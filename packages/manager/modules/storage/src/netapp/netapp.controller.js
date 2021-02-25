@@ -10,6 +10,23 @@ export default class NetappCtrl {
     return sublist.includes(this.service.status);
   }
 
+  isRunning() {
+    return this.isStatusIn(['running']);
+  }
+
+  isWarning() {
+    return this.isStatusIn([
+      'creating',
+      'reopenning',
+      'suspending',
+      'deleting',
+    ]);
+  }
+
+  isError() {
+    return this.isStatusIn(['suspended', 'deleted']);
+  }
+
   initGuides() {
     const user = Environment.getUser();
     this.guideUrl =

@@ -61,9 +61,9 @@
                         <span
                             class="oui-badge"
                             data-ng-class="{
-                                'oui-badge_success': ($ctrl.isStatusIn(['running'])),
-                                'oui-badge_warning': ($ctrl.isStatusIn(['creating', 'reopenning', 'suspending', 'deleting'])),
-                                'oui-badge_error': ($ctrl.isStatusIn(['suspended', 'deleted'])),
+                                'oui-badge_success': ($ctrl.isRunning()),
+                                'oui-badge_warning': ($ctrl.isWarning()),
+                                'oui-badge_error': ($ctrl.isError()),
                             }"
                         >
                             <span
