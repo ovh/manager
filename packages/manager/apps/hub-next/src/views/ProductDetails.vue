@@ -1,20 +1,17 @@
 <template>
-    <data-table
-      :rows="dataRows"
-      :column-names="dataColumnNames"
-      :page="+currentPageNumber"
-      :page-size="+pageSize"
-      :total-count="+totalCount"
-      pagination
-      @page-change="loadProducts($event, pageSize)"
-    ></data-table>
+  <data-table
+    :rows="dataRows"
+    :column-names="dataColumnNames"
+    :page="+currentPageNumber"
+    :page-size="+pageSize"
+    :total-count="+totalCount"
+    pagination
+    @page-change="loadProducts($event, pageSize)"
+  ></data-table>
 </template>
 
 <script>
-import {
-  defineAsyncComponent, defineComponent, inject, nextTick, ref,
-} from 'vue';
-import { detach } from '@ovh-ux/manager-preloader';
+import { defineAsyncComponent, defineComponent, inject, ref } from 'vue';
 import axios from 'axios';
 import parseISO from 'date-fns/parseISO';
 import { useRoute } from 'vue-router';
@@ -51,31 +48,31 @@ export default defineComponent({
   },
   computed: {
     dataRows() {
-      return this.jsonArray.map((object) => Object.values(object).map((value) => {
-        if (Array.isArray(value) || typeof value === 'object' || Date.parse(value)) return null;
-        if (object.name === value) {
-          return [
-            {
-              tag: 'a',
-              value,
-            },
-          ];
-        }
+      return this.jsonArray.map((object) =>
+        Object.values(object).map((value) => {
+          if (Array.isArray(value) || typeof value === 'object' || Date.parse(value)) return null;
+          if (object.name === value) {
+            return [
+              {
+                tag: 'a',
+                value,
+              },
+            ];
+          }
 
-        return value?.toString();
-      }));
+          return value?.toString();
+        }),
+      );
     },
     dataColumnNames() {
       const noDate = this.jsonArray.map((object) => {
-        const newObject = Object.keys(object).filter(
-          (key) => {
-            // Using this instead of Date.parse because Date.parse doesn't return
-            // the same thing depending on navigator
-            if (this.parseISO(object[key]).toString() === 'Invalid Date') return object;
+        const newObject = Object.keys(object).filter((key) => {
+          // Using this instead of Date.parse because Date.parse doesn't return
+          // the same thing depending on navigator
+          if (this.parseISO(object[key]).toString() === 'Invalid Date') return object;
 
-            return null;
-          },
-        );
+          return null;
+        });
         return newObject;
       });
 

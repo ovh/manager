@@ -34,7 +34,8 @@ export default defineComponent({
       return data?.map((entry) => h(entry.tag, { ...entry.attrs }, formatData(entry.value)));
     };
 
-    const dataElementPerRow = (row) => row.map((data) => <td class="oui-table__cell"> {formatData(data)}</td>);
+    const dataElementPerRow = (row) =>
+      row.map((data) => <td class="oui-table__cell"> {formatData(data)}</td>);
 
     const rowElements = this.rows.map((row) => (
       <tr class="oui-table__row"> {dataElementPerRow(row)} </tr>
@@ -42,7 +43,7 @@ export default defineComponent({
 
     const headerColumns = this.columnNames?.map((name) => {
       if (!name) return '';
-      return (<th class="oui-table__header">{startCase(name)}</th>);
+      return <th class="oui-table__header">{startCase(name)}</th>;
     });
     const header = (columns) => <tr>{columns}</tr>;
     let paginationFooter;
@@ -67,7 +68,8 @@ export default defineComponent({
           <button
             disabled={this.page === 1}
             onClick={() => (this.page > 1 ? this.changePage(this.page - 1) : '')}
-            class="oui-pagination-nav__previous oui-button oui-button_secondary oui-button_s">
+            class="oui-pagination-nav__previous oui-button oui-button_secondary oui-button_s"
+          >
             <span class="oui-icon oui-icon-chevron-left"></span>
           </button>
           <label class="oui-select oui-select_inline oui-pagination-items__control">
@@ -77,7 +79,8 @@ export default defineComponent({
           <button
             disabled={this.page === numberOfPages}
             onClick={() => (this.page < numberOfPages ? this.changePage(this.page + 1) : '')}
-            class="oui-pagination-nav__next oui-button oui-button_secondary oui-button_s">
+            class="oui-pagination-nav__next oui-button oui-button_secondary oui-button_s"
+          >
             <span class="oui-icon oui-icon-chevron-right"></span>
           </button>
         </div>

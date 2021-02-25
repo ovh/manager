@@ -32,9 +32,7 @@ import useLoadTranslations from '@/composables/useLoadTranslations';
 export default defineComponent({
   async setup() {
     const { t } = useI18n();
-    const translationFolders = [
-      'support',
-    ];
+    const translationFolders = ['support'];
     await useLoadTranslations(translationFolders);
     const userLanguage = ref(Environment.getUserLanguage());
     const supportResponse = await axios.get('/engine/2api/hub/support');

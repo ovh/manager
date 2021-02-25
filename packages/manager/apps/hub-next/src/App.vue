@@ -8,24 +8,18 @@
       </div>
     </div>
     <router-view v-slot="{ Component }">
-        <keep-alive include="Home">
-            <component :is="Component" />
-        </keep-alive>
+      <keep-alive include="Home">
+        <component :is="Component" />
+      </keep-alive>
     </router-view>
   </div>
 </template>
 <script lang="ts">
-import {
-  computed,
-  defineComponent,
-  nextTick,
-  provide,
-  ref,
-} from 'vue';
+import { computed, defineComponent, nextTick, provide, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRoute } from 'vue-router';
 import { detach } from '@ovh-ux/manager-preloader';
-import useLoadTranslations from './composables/useLoadTranslations';
+import useLoadTranslations from '@/composables/useLoadTranslations';
 
 export default defineComponent({
   setup() {
@@ -34,9 +28,7 @@ export default defineComponent({
     const route = useRoute();
     const showNavigation = computed(() => route.name !== 'Home');
     const { t, locale, fallbackLocale } = useI18n();
-    const translationFolders = [
-      '/',
-    ];
+    const translationFolders = ['/'];
 
     useLoadTranslations(translationFolders);
     nextTick(() => {
@@ -70,7 +62,6 @@ export default defineComponent({
   padding: 30px 0;
   text-align: left;
   a {
-
     &.router-link-exact-active {
       color: #4d5592;
       font-weight: normal;

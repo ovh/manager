@@ -31,7 +31,6 @@ export function setupI18n() {
   return i18n;
 }
 
-
 async function loadMessagesFromPaths(arrayPaths, callback) {
   for (let index = 0; index < arrayPaths.length; index += 1) {
     // eslint-disable-next-line no-await-in-loop

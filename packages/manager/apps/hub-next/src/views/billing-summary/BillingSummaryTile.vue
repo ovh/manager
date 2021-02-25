@@ -40,9 +40,7 @@
 </template>
 
 <script lang="ts">
-import {
-  defineAsyncComponent, defineComponent, computed, ref,
-} from 'vue';
+import { defineAsyncComponent, defineComponent, computed, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import OuiSelect from '@/components/ui/OuiSelect.vue';
@@ -53,9 +51,7 @@ export default defineComponent({
   async setup() {
     const { t } = useI18n();
     const selectedOption = ref(1);
-    const translationFolders = [
-      'billing-summary',
-    ];
+    const translationFolders = ['billing-summary'];
     await useLoadTranslations(translationFolders);
     const filterDatesOptions = computed(() => [
       {

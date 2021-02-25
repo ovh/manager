@@ -14,18 +14,20 @@ export default defineComponent({
     const rows = Array.from({ length: 4 });
     const cols = Array.from({ length: 3 });
 
-    const skeletonLoaderRows = rows.map(() => cols.map(() => [
-      {
-        tag: 'div',
-        attrs: { class: 'custom-cell oui-skeleton' },
-        value: [
-          {
-            tag: 'span',
-            attrs: { class: 'oui-skeleton__loader' },
-          },
-        ],
-      },
-    ]));
+    const skeletonLoaderRows = rows.map(() =>
+      cols.map(() => [
+        {
+          tag: 'div',
+          attrs: { class: 'custom-cell oui-skeleton' },
+          value: [
+            {
+              tag: 'span',
+              attrs: { class: 'oui-skeleton__loader' },
+            },
+          ],
+        },
+      ]),
+    );
     return {
       skeletonLoaderRows,
     };

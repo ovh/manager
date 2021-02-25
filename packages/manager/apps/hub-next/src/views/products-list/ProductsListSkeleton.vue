@@ -7,11 +7,7 @@
   >
     <template #body>
       <ul class="oui-list__items">
-        <li
-          v-for="details in fakeProducts"
-          class="oui-list__item"
-          :key="details"
-        >
+        <li v-for="details in fakeProducts" class="oui-list__item" :key="details">
           <div class="oui-skeleton oui-skeleton_m">
             <span class="oui-skeleton__loader"></span>
           </div>

@@ -8,7 +8,6 @@
         <li class="entry" v-for="entry in entries" :key="entry">{{ entry }}</li>
       </ul>
     </div>
-
   </div>
 </template>
 

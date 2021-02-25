@@ -7,8 +7,8 @@ import { setupI18n } from '@/i18n';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 
+import router from '@/router';
 import App from './App.vue';
-import router from './router';
 
 fetchConfiguration('hub').then(async () => {
   attach(Environment.getUserLanguage());

@@ -31,9 +31,7 @@
 </template>
 
 <script lang="ts">
-import {
-  defineAsyncComponent, defineComponent, Ref, ref,
-} from 'vue';
+import { defineAsyncComponent, defineComponent, Ref, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { OvhNotification, User } from '@/models/hub.d';
 import { PRODUCTS_TO_SHOW_DEFAULT } from '@/constants/products_consts';
@@ -48,9 +46,7 @@ export default defineComponent({
     const notifications = ref();
     const user: Ref<User> = ref({} as User);
 
-    const translationFolders = [
-      'welcome',
-    ];
+    const translationFolders = ['welcome'];
     axios.get('/engine/2api/hub/notifications').then((response) => {
       notifications.value = response.data.data.notifications.data;
     });
@@ -87,8 +83,8 @@ export default defineComponent({
     warningNotifications(): OvhNotification[] {
       return Array.isArray(this.notifications)
         ? this.notifications
-          .filter((notification: OvhNotification) => notification.level === 'warning')
-          .map((notification) => notification.description)
+            .filter((notification: OvhNotification) => notification.level === 'warning')
+            .map((notification) => notification.description)
         : [];
     },
   },

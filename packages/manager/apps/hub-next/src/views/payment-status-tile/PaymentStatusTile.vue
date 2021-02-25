@@ -11,9 +11,7 @@
 </template>
 
 <script lang="ts">
-import {
-  defineAsyncComponent, defineComponent, Ref, ref,
-} from 'vue';
+import { defineAsyncComponent, defineComponent, Ref, ref } from 'vue';
 import axios from 'axios';
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import Badge from '@/components/ui/Badge';
@@ -23,21 +21,15 @@ import { BillingService, BillingServicesObject } from '@/models/hub.d';
 import { useI18n } from 'vue-i18n';
 import useLoadTranslations from '@/composables/useLoadTranslations';
 
-import { SERVICE_STATES } from '../../constants/service_states';
+import { SERVICE_STATES } from '@/constants/service_states';
 
 export default defineComponent({
   async setup() {
     const { t, locale, d } = useI18n();
-    const translationFolders = [
-      'products',
-      'payment-status-tile',
-      'billing',
-    ];
+    const translationFolders = ['products', 'payment-status-tile', 'billing'];
     await useLoadTranslations(translationFolders);
     const billingServices: Ref<BillingServicesObject> = ref({} as BillingServicesObject);
-    const response = await axios.get(
-      '/engine/2api/hub/billingServices',
-    );
+    const response = await axios.get('/engine/2api/hub/billingServices');
     billingServices.value = response.data.data.billingServices.data;
 
     return {
@@ -121,7 +113,8 @@ export default defineComponent({
     getServiceStateClass(service: BillingService): string {
       const billingService = new BillingServiceClass(service);
 
-      if (SERVICE_STATES.error.includes(billingService.getRenew()) || billingService.hasDebt()) return 'error';
+      if (SERVICE_STATES.error.includes(billingService.getRenew()) || billingService.hasDebt())
+        return 'error';
 
       if (SERVICE_STATES.warning.includes(billingService.getRenew())) return 'warning';
 
@@ -133,9 +126,9 @@ export default defineComponent({
       const billingService = new BillingServiceClass(service);
       const dateLocale = this.locale.replace('_', '-');
       if (
-        billingService.hasManualRenew()
-        && !billingService.isResiliated()
-        && !billingService.hasDebt()
+        billingService.hasManualRenew() &&
+        !billingService.isResiliated() &&
+        !billingService.hasDebt()
       ) {
         return this.t('ovh_manager_hub_payment_status_tile_before', {
           date: this.d(billingService.expirationDate, 'short', dateLocale),
@@ -149,10 +142,10 @@ export default defineComponent({
       }
 
       if (
-        billingService.hasAutomaticRenew()
-        && !billingService.isOneShot()
-        && !billingService.hasDebt()
-        && !billingService.hasPendingResiliation()
+        billingService.hasAutomaticRenew() &&
+        !billingService.isOneShot() &&
+        !billingService.hasDebt() &&
+        !billingService.hasPendingResiliation()
       ) {
         return this.d(billingService.expirationDate, 'short', dateLocale);
       }

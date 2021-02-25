@@ -81,10 +81,10 @@ export default class BillingServiceClass implements BillingService {
 
   isResiliated() {
     return (
-      this.isExpired()
-      || (compareAsc(Date.now(), this.expirationDate) === 1
-        && !this.hasAutomaticRenew()
-        && !this.hasForcedRenew())
+      this.isExpired() ||
+      (compareAsc(Date.now(), this.expirationDate) === 1 &&
+        !this.hasAutomaticRenew() &&
+        !this.hasForcedRenew())
     );
   }
 
@@ -131,10 +131,10 @@ export default class BillingServiceClass implements BillingService {
 
   setForResiliation() {
     if (
-      this.hasAutomaticRenew()
-      && !(
-        this.isAutomaticallyRenewed()
-        || ['automaticV2014', 'automaticV2016'].includes(this.renewalType)
+      this.hasAutomaticRenew() &&
+      !(
+        this.isAutomaticallyRenewed() ||
+        ['automaticV2014', 'automaticV2016'].includes(this.renewalType)
       )
     ) {
       this.setManualRenew();
