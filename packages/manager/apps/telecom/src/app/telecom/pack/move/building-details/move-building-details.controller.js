@@ -45,7 +45,7 @@ export default class MoveBuildingDetailsCtrl {
 
     this.OvhApiConnectivityEligibilitySearch.v6()
       .pollerBuildingDetails(this.$scope, {
-        building: this.building.buildingReference,
+        building: this.building.reference,
       })
       .then((buildingDetails) => {
         if (has(buildingDetails, 'result.stairs')) {
@@ -62,7 +62,7 @@ export default class MoveBuildingDetailsCtrl {
   }
 
   nextStep() {
-    this.selectedOffer.buildingReference = this.model.selectedBuilding.buildingReference;
+    this.selectedOffer.buildingReference = this.model.selectedBuilding.reference;
     this.selectedOffer.stair = this.model.selectedStair.stair.value;
     this.selectedOffer.floor = this.model.selectedFloor.value;
     this.selectedOffer.pto = [
