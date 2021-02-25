@@ -617,7 +617,7 @@ export default class OverTheBoxDetailsCtrl {
         },
         null,
       )
-      .$promise.then(() => this.getServiceInfos)
+      .$promise.then(() => this.getServiceInfos())
       .then((data) => {
         this.TucToast.success(
           this.$translate.instant('overTheBox_resiliation_success', {
@@ -655,7 +655,7 @@ export default class OverTheBoxDetailsCtrl {
         },
         null,
       )
-      .$promise.then(() => this.getServiceInfos)
+      .$promise.then(() => this.getServiceInfos())
       .then((data) => {
         this.TucToast.success(
           this.$translate.instant('overTheBox_cancel_resiliation_success', {
