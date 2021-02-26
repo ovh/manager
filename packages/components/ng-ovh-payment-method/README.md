@@ -22,6 +22,9 @@ angular.module('myApp', [ngOvhPaymentMethod]).config(
     // Set the url of payment method list page, where the user
     // should be redirected when he has no default payment method.
     ovhPaymentMethodProvider.setPaymentMethodPageUrl(constants.target);
+
+    // set user locale
+    ovhPaymentMethodProvider.setUserLocale('fr_FR');
   },
 );
 ```
