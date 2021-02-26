@@ -19,6 +19,7 @@ import ovhManagerHub from '@ovh-ux/manager-hub';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
 import ovhManagerOrderTracking from '@ovh-ux/ng-ovh-order-tracking';
 import ngOvhSsoAuthModalPlugin from '@ovh-ux/ng-ovh-sso-auth-modal-plugin';
+import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 
@@ -56,6 +57,7 @@ angular
       ovhManagerNavbar,
       ovhManagerOrderTracking,
       ovhNotificationsSidebar,
+      ngOvhPaymentMethod,
       'pascalprecht.translate',
       'ui.bootstrap',
       uiRouter,
@@ -74,6 +76,11 @@ angular
     },
   )
   .config(routing)
+  .config(
+    /* @ngInject */ (ovhPaymentMethodProvider) => {
+      ovhPaymentMethodProvider.setUserLocale(Environment.getUserLocale());
+    },
+  )
   .run(
     /* @ngInject */ ($anchorScroll, $rootScope, $translate, $transitions) => {
       $transitions.onBefore({ to: 'app.**' }, () => $translate.refresh());

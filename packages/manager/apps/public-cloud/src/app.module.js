@@ -29,6 +29,7 @@ import ngOvhUserPref from '@ovh-ux/ng-ovh-user-pref';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import ngUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ngOvhSsoAuthModalPlugin from '@ovh-ux/ng-ovh-sso-auth-modal-plugin';
+import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 
@@ -61,6 +62,7 @@ angular
       ngUiRouterLineProgress,
       ngOvhApiWrappers,
       ngOvhFeatureFlipping,
+      ngOvhPaymentMethod,
       ngOvhSsoAuthModalPlugin,
       ngOvhUserPref,
       navbar,
@@ -86,6 +88,11 @@ angular
     },
   )
   .config(routing)
+  .config(
+    /* @ngInject */ (ovhPaymentMethodProvider) => {
+      ovhPaymentMethodProvider.setUserLocale(Environment.getUserLocale());
+    },
+  )
   .run(
     /* @ngInject */ ($translate) => {
       let lang = $translate.use();

@@ -41,6 +41,7 @@ import ngOvhContact from '@ovh-ux/ng-ovh-contact';
 import ngOvhTimeline from '@ovh-ux/ng-ovh-timeline';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
+import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
 import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 
 import uiRouter, { RejectType } from '@uirouter/angularjs';
@@ -95,6 +96,7 @@ angular
       ngPaginationFront,
       ngTailLogs,
       ngTranslateAsyncLoader,
+      ngOvhPaymentMethod,
       ngOvhUiRouterBreadcrumb,
       ngOvhUiRouterLayout,
       ngOvhUiRouterLineProgress,
@@ -169,6 +171,11 @@ angular
       Environment.getApplicationName(),
     );
   })
+  .config(
+    /* @ngInject */ (ovhPaymentMethodProvider) => {
+      ovhPaymentMethodProvider.setUserLocale(Environment.getUserLocale());
+    },
+  )
   .run(
     /* @ngInject */ ($translate) => {
       let lang = $translate.use();

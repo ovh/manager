@@ -206,6 +206,7 @@ angular
       ovhPaymentMethodProvider.setPaymentMethodPageUrl(
         buildURL('dedicated', '#/billing/payment/method'),
       );
+      ovhPaymentMethodProvider.setUserLocale(Environment.getUserLocale());
     },
   )
   .config(
