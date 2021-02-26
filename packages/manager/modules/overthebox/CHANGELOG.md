@@ -1,3 +1,13 @@
+## [6.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.2.0...@ovh-ux/manager-overthebox@6.2.1) (2021-02-26)
+
+
+### Bug Fixes
+
+* **overthebox.details:** fix errors on resiliate and cancel resiliation ([#4481](https://github.com/ovh/manager/issues/4481)) ([3fee082](https://github.com/ovh/manager/commit/3fee08218e7f7ed92530b2508fb7ab6e2ac21510))
+* **overthebox.remote:** remove useless test on exposed port ([#4479](https://github.com/ovh/manager/issues/4479)) ([025bfac](https://github.com/ovh/manager/commit/025bfacd72098ec8294eda2c86e1a10e47839b48))
+
+
+
 # [6.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.1.7...@ovh-ux/manager-overthebox@6.2.0) (2021-02-24)
 
 
