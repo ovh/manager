@@ -5,10 +5,10 @@ import { CATALOG_PRODUCT } from './private-database.constant';
 
 export default class OrderPrivateDatabaseService {
   /* @ngInject */
-  constructor($filter, Hosting, WucOrderCartService) {
+  constructor($filter, Hosting, OrderCartService) {
     this.$filter = $filter;
     this.Hosting = Hosting;
-    this.WucOrderCartService = WucOrderCartService;
+    this.OrderCartService = OrderCartService;
   }
 
   static getCatalogProducts(catalog, products) {
@@ -23,10 +23,7 @@ export default class OrderPrivateDatabaseService {
 
   async getCatalog(ovhSubsidiary) {
     const { name } = CATALOG_PRODUCT;
-    return this.WucOrderCartService.getProductPublicCatalog(
-      ovhSubsidiary,
-      name,
-    );
+    return this.OrderCartService.getProductPublicCatalog(ovhSubsidiary, name);
   }
 
   async getServices() {

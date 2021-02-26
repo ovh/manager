@@ -1,3 +1,5 @@
+import ovhManagerOrder from '@ovh-ux/manager-order';
+
 import component from './order.component';
 import routing from './order.routing';
 import service from './email-domain-order.service';
@@ -10,6 +12,7 @@ angular
     'ovhManagerCore',
     'pascalprecht.translate',
     'ui.router',
+    ovhManagerOrder,
   ])
   .config(routing)
   .component('emailDomainOrder', component)

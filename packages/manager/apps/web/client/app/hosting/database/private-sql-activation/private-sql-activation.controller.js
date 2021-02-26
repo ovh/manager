@@ -5,10 +5,10 @@ import map from 'lodash/map';
 
 export default class PrivateSqlActivationController {
   /* @ngInject */
-  constructor($q, $translate, WucOrderCartService, OvhApiHostingWeb) {
+  constructor($q, $translate, OrderCartService, OvhApiHostingWeb) {
     this.$q = $q;
     this.$translate = $translate;
-    this.WucOrderCartService = WucOrderCartService;
+    this.OrderCartService = OrderCartService;
     this.OvhApiHostingWeb = OvhApiHostingWeb;
   }
 
@@ -72,13 +72,13 @@ export default class PrivateSqlActivationController {
     );
     this.loading.checkout = true;
     this.error.checkout = null;
-    return this.WucOrderCartService.createNewCart(this.me.ovhSubsidiary)
+    return this.OrderCartService.createNewCart(this.me.ovhSubsidiary)
       .then(({ cartId }) => cartId)
       .then((cartId) =>
-        this.WucOrderCartService.assignCart(cartId).then(() => cartId),
+        this.OrderCartService.assignCart(cartId).then(() => cartId),
       )
       .then((cartId) =>
-        this.WucOrderCartService.addProductServiceOptionToCart(
+        this.OrderCartService.addProductServiceOptionToCart(
           cartId,
           'webHosting',
           this.hosting,
@@ -91,7 +91,7 @@ export default class PrivateSqlActivationController {
         ).then(({ itemId }) => ({ itemId, cartId })),
       )
       .then(({ itemId, cartId }) =>
-        this.WucOrderCartService.addConfigurationItem(
+        this.OrderCartService.addConfigurationItem(
           cartId,
           itemId,
           'dc',
@@ -99,7 +99,7 @@ export default class PrivateSqlActivationController {
         ).then(() => ({ itemId, cartId })),
       )
       .then(({ itemId, cartId }) =>
-        this.WucOrderCartService.addConfigurationItem(
+        this.OrderCartService.addConfigurationItem(
           cartId,
           itemId,
           'engine',
@@ -107,7 +107,7 @@ export default class PrivateSqlActivationController {
         ).then(() => cartId),
       )
       .then((cartId) =>
-        this.WucOrderCartService.getCheckoutInformations(
+        this.OrderCartService.getCheckoutInformations(
           cartId,
         ).then((checkout) => ({ cartId, checkout })),
       )
@@ -126,7 +126,7 @@ export default class PrivateSqlActivationController {
   performCheckout() {
     this.loading.checkout = true;
     this.error.checkout = null;
-    return this.WucOrderCartService.checkoutCart(this.cartId, {
+    return this.OrderCartService.checkoutCart(this.cartId, {
       autoPayWithPreferredPaymentMethod: false,
       waiveRetractionPeriod: false,
     })

@@ -3,13 +3,13 @@ import includes from 'lodash/includes';
 
 export default class HostingCdnOrderService {
   /* @ngInject */
-  constructor($q, WucOrderCartService) {
+  constructor($q, OrderCartService) {
     this.$q = $q;
-    this.WucOrderCartService = WucOrderCartService;
+    this.OrderCartService = OrderCartService;
   }
 
   getCatalogAddon(ovhSubsidiary, serviceOption) {
-    return this.WucOrderCartService.getProductPublicCatalog(
+    return this.OrderCartService.getProductPublicCatalog(
       ovhSubsidiary,
       'webHosting',
     ).then(({ addons }) => {
@@ -23,10 +23,10 @@ export default class HostingCdnOrderService {
 
   prepareOrderCart(ovhSubsidiary) {
     const data = { cartId: null };
-    return this.WucOrderCartService.createNewCart(ovhSubsidiary)
+    return this.OrderCartService.createNewCart(ovhSubsidiary)
       .then(({ cartId }) => {
         data.cartId = cartId;
-        this.WucOrderCartService.assignCart(cartId);
+        this.OrderCartService.assignCart(cartId);
       })
       .then(() => data.cartId);
   }
@@ -35,7 +35,7 @@ export default class HostingCdnOrderService {
     const price = find(serviceOption.prices, ({ capacities }) =>
       includes(capacities, 'renew'),
     );
-    return this.WucOrderCartService.addProductServiceOptionToCart(
+    return this.OrderCartService.addProductServiceOptionToCart(
       cartId,
       'webHosting',
       serviceName,
@@ -45,11 +45,11 @@ export default class HostingCdnOrderService {
         pricingMode: price.pricingMode,
         quantity: price.minimumQuantity,
       },
-    ).then(() => this.WucOrderCartService.getCheckoutInformations(cartId));
+    ).then(() => this.OrderCartService.getCheckoutInformations(cartId));
   }
 
   checkoutOrderCart(autoPayWithPreferredPaymentMethod, cartId) {
-    return this.WucOrderCartService.checkoutCart(cartId, {
+    return this.OrderCartService.checkoutCart(cartId, {
       autoPayWithPreferredPaymentMethod,
     });
   }

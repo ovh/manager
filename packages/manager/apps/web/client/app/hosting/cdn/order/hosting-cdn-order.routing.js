@@ -44,8 +44,8 @@ export default /* @ngInject */ ($stateProvider) => {
           current: planCode.includes(cdnProperties?.type),
         })),
 
-    catalog: /* @ngInject */ (user, WucOrderCartService) =>
-      WucOrderCartService.getProductPublicCatalog(
+    catalog: /* @ngInject */ (user, OrderCartService) =>
+      OrderCartService.getProductPublicCatalog(
         user.ovhSubsidiary,
         HOSTING_PRODUCT_NAME,
       ),

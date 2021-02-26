@@ -14,8 +14,8 @@ const commonResolves = {
       })
       .$promise.catch(() => $q.resolve([])),
 
-  dnsAvailableOptions: /* @ngInject */ (domainName, WucOrderCartService) =>
-    WucOrderCartService.getProductServiceOptions(
+  dnsAvailableOptions: /* @ngInject */ (domainName, OrderCartService) =>
+    OrderCartService.getProductServiceOptions(
       'dns',
       domainName,
     ).catch(() => []),

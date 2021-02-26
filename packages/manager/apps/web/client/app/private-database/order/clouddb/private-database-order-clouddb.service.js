@@ -10,12 +10,12 @@ import {
 
 export default class PrivateDatabaseOrderCloudDb {
   /* @ngInject */
-  constructor(WucOrderCartService) {
-    this.WucOrderCartService = WucOrderCartService;
+  constructor(OrderCartService) {
+    this.OrderCartService = OrderCartService;
   }
 
   getCloudDBCatalog(ovhSubsidiary) {
-    return this.WucOrderCartService.getProductPublicCatalog(
+    return this.OrderCartService.getProductPublicCatalog(
       ovhSubsidiary,
       PRODUCT_NAME,
     );
@@ -23,7 +23,7 @@ export default class PrivateDatabaseOrderCloudDb {
 
   getDurationsFromRamOption(cartId, ramSize) {
     const ramRegExp = new RegExp(ramSize);
-    return this.WucOrderCartService.getProductOffers(cartId, PRODUCT_NAME).then(
+    return this.OrderCartService.getProductOffers(cartId, PRODUCT_NAME).then(
       (offers) =>
         offers
           .find(({ planCode }) => ramRegExp.test(planCode))
@@ -36,7 +36,7 @@ export default class PrivateDatabaseOrderCloudDb {
   }
 
   prepareCheckout(cartId, cartOption) {
-    return this.WucOrderCartService.deleteAllItems(cartId)
+    return this.OrderCartService.deleteAllItems(cartId)
       .then(() => this.addCloudDBToCart(cartId, cartOption))
       .then(({ itemId }) =>
         this.addConfiguration(
@@ -46,13 +46,13 @@ export default class PrivateDatabaseOrderCloudDb {
           cartOption.engine,
         ),
       )
-      .then(() => this.WucOrderCartService.getCheckoutInformations(cartId));
+      .then(() => this.OrderCartService.getCheckoutInformations(cartId));
   }
 
   addCloudDBToCart(cartId, cloudDBOptions) {
     const planCode = PLAN_CODE_TEMPLATE.replace('xxxx', cloudDBOptions.ramSize);
 
-    return this.WucOrderCartService.addProductToCart(cartId, PRODUCT_NAME, {
+    return this.OrderCartService.addProductToCart(cartId, PRODUCT_NAME, {
       duration: cloudDBOptions.duration,
       planCode,
       pricingMode: cloudDBOptions.pricingMode,
@@ -63,13 +63,13 @@ export default class PrivateDatabaseOrderCloudDb {
   addConfiguration(cartId, itemId, datacenter, version) {
     const datacenterLabel = DATACENTER_CONFIGURATION_KEY;
     const versionLabel = ENGINE_CONFIGURATION_KEY;
-    return this.WucOrderCartService.addConfigurationItem(
+    return this.OrderCartService.addConfigurationItem(
       cartId,
       itemId,
       datacenterLabel,
       datacenter,
     ).then(() =>
-      this.WucOrderCartService.addConfigurationItem(
+      this.OrderCartService.addConfigurationItem(
         cartId,
         itemId,
         versionLabel,
@@ -79,7 +79,7 @@ export default class PrivateDatabaseOrderCloudDb {
   }
 
   validateCheckout(cartId, checkout) {
-    return this.WucOrderCartService.checkoutCart(cartId, checkout);
+    return this.OrderCartService.checkoutCart(cartId, checkout);
   }
 
   static filterOrderableItems(plans, filterKey) {

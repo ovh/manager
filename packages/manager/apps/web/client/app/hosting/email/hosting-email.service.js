@@ -12,9 +12,9 @@ import {
 
 export default class HostingEmailService {
   /* @ngInject */
-  constructor($translate, WucOrderCartService, OvhApiHostingWeb, OvhApiOrder) {
+  constructor($translate, OrderCartService, OvhApiHostingWeb, OvhApiOrder) {
     this.$translate = $translate;
-    this.OrderService = WucOrderCartService;
+    this.OrderService = OrderCartService;
     this.OvhApiHostingWebEmailOption = OvhApiHostingWeb.EmailOption().v6();
     this.OvhApiOrderCart = OvhApiOrder.Cart().v6();
   }

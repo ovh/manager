@@ -1,5 +1,6 @@
 import angular from 'angular';
 import 'angular-translate';
+import ovhManagerOrder from '@ovh-ux/manager-order';
 
 import component from './activate.component';
 import routing from './activate.routing';
@@ -8,7 +9,7 @@ import zoneActivateService from './activate.service';
 const moduleName = 'ovhManagerWebDomainZoneActivateModule';
 
 angular
-  .module(moduleName, ['oui', 'pascalprecht.translate'])
+  .module(moduleName, ['oui', 'pascalprecht.translate', ovhManagerOrder])
   .config(routing)
   .component('domainZoneActivate', component)
   .service('DomainDnsZoneActivateService', zoneActivateService)

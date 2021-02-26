@@ -12,8 +12,8 @@ export default /* @ngInject */ ($stateProvider) => {
     params: {
       domain: null,
     },
-    onExit: /* @ngInject */ ($q, cart, WucOrderCartService) =>
-      WucOrderCartService.deleteCart(cart).catch((error) =>
+    onExit: /* @ngInject */ ($q, cart, OrderCartService) =>
+      OrderCartService.deleteCart(cart).catch((error) =>
         error.status === 404 ? $q.resolve() : $q.reject(error),
       ),
     resolve: {
@@ -22,19 +22,17 @@ export default /* @ngInject */ ($stateProvider) => {
         product,
         domain,
       ) => MXPlanService.addDomainConfiguration(cart, item, product, domain),
-      cart: /* @ngInject */ (WucOrderCartService, user) =>
-        WucOrderCartService.createNewCart(
-          user.ovhSubsidiary,
-        ).then(({ cartId }) =>
-          WucOrderCartService.assignCart(cartId).then(() => cartId),
+      cart: /* @ngInject */ (OrderCartService, user) =>
+        OrderCartService.createNewCart(user.ovhSubsidiary).then(({ cartId }) =>
+          OrderCartService.assignCart(cartId).then(() => cartId),
         ),
       catalog: /* @ngInject */ (OvhApiOrderCatalogPublicV6, user) =>
         OvhApiOrderCatalogPublicV6.get({
           productName: PRODUCT_NAME,
           ovhSubsidiary: user.ovhSubsidiary,
         }).$promise,
-      deleteItem: /* @ngInject */ ($q, cart, WucOrderCartService) => (item) =>
-        item ? WucOrderCartService.deleteItem(cart, item.itemId) : $q.resolve(),
+      deleteItem: /* @ngInject */ ($q, cart, OrderCartService) => (item) =>
+        item ? OrderCartService.deleteItem(cart, item.itemId) : $q.resolve(),
       domain: /* @ngInject */ ($transition$) => $transition$.params().domain,
       domains: /* @ngInject */ ($q, iceberg, OvhApiDomain) =>
         $q
@@ -56,19 +54,18 @@ export default /* @ngInject */ ($stateProvider) => {
               (domain) => !includes(domainNames, domain),
             ).sort();
           }),
-      getCheckout: /* @ngInject */ (cart, WucOrderCartService) => () =>
-        WucOrderCartService.getCheckoutInformations(cart),
-      order: /* @ngInject */ (cart, WucOrderCartService) => (
+      getCheckout: /* @ngInject */ (cart, OrderCartService) => () =>
+        OrderCartService.getCheckoutInformations(cart),
+      order: /* @ngInject */ (cart, OrderCartService) => (
         autoPayWithPreferredPaymentMethod,
       ) =>
-        WucOrderCartService.checkoutCart(cart, {
+        OrderCartService.checkoutCart(cart, {
           autoPayWithPreferredPaymentMethod,
         }),
-      products: /* @ngInject */ (cart, WucOrderCartService) =>
-        WucOrderCartService.getProductOffers(
-          cart,
-          PRODUCT_NAME,
-        ).then((offers) => map(offers, (offer) => new EmailDomainOffer(offer))),
+      products: /* @ngInject */ (cart, OrderCartService) =>
+        OrderCartService.getProductOffers(cart, PRODUCT_NAME).then((offers) =>
+          map(offers, (offer) => new EmailDomainOffer(offer)),
+        ),
       hideBreadcrumb: () => true,
     },
     translations: { value: ['.'], format: 'json' },

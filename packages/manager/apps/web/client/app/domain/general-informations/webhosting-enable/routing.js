@@ -1,7 +1,7 @@
 const commonResolves = {
-  cart: /* @ngInject */ (user, WucOrderCartService) =>
-    WucOrderCartService.createNewCart(user.ovhSubsidiary).then((cart) =>
-      WucOrderCartService.assignCart(cart.cartId).then(() => cart),
+  cart: /* @ngInject */ (OrderCartService, user) =>
+    OrderCartService.createNewCart(user.ovhSubsidiary).then((cart) =>
+      OrderCartService.assignCart(cart.cartId).then(() => cart),
     ),
   addOption: /* @ngInject */ (cart, domainName, WebhostingEnableService) => (
     item,
@@ -18,15 +18,11 @@ const commonResolves = {
   defaultPaymentMethod: /* @ngInject */ (ovhPaymentMethod) =>
     ovhPaymentMethod.getDefaultPaymentMethod(),
 
-  getCheckout: /* @ngInject */ (cart, WucOrderCartService) => () =>
-    WucOrderCartService.getCheckoutInformations(cart.cartId),
+  getCheckout: /* @ngInject */ (cart, OrderCartService) => () =>
+    OrderCartService.getCheckoutInformations(cart.cartId),
 
-  order: /* @ngInject */ (
-    cart,
-    defaultPaymentMethod,
-    WucOrderCartService,
-  ) => () =>
-    WucOrderCartService.checkoutCart(cart.cartId, {
+  order: /* @ngInject */ (cart, defaultPaymentMethod, OrderCartService) => () =>
+    OrderCartService.checkoutCart(cart.cartId, {
       autoPayWithPreferredPaymentMethod: !!defaultPaymentMethod,
       waiveRetractationPeriod: true,
     }),

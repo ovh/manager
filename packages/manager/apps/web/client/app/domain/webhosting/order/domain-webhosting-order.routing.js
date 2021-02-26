@@ -2,8 +2,8 @@ import get from 'lodash/get';
 import component from './domain-webhosting-order.component';
 
 const resolve = {
-  assignCart: /* @ngInject */ (WucOrderCartService) => (cartId) =>
-    WucOrderCartService.assignCart(cartId),
+  assignCart: /* @ngInject */ (OrderCartService) => (cartId) =>
+    OrderCartService.assignCart(cartId),
   /* @ngInject */
   getAvailableModules: (cartId, WebHostingOrder) => (offer) =>
     WebHostingOrder.getAvailableModules(cartId, offer),
@@ -11,12 +11,12 @@ const resolve = {
     WebHostingOrder.getAvailableOffers(cartId, user.ovhSubsidiary),
   cartId: /* @ngInject */ (assignCart, createCart) =>
     createCart().then(({ cartId }) => assignCart(cartId).then(() => cartId)),
-  createCart: /* @ngInject */ (WucOrderCartService, user) => () =>
-    WucOrderCartService.createNewCart(user.ovhSubsidiary),
+  createCart: /* @ngInject */ (OrderCartService, user) => () =>
+    OrderCartService.createNewCart(user.ovhSubsidiary),
   defaultPaymentMethod: /* @ngInject */ (ovhPaymentMethod) =>
     ovhPaymentMethod.getDefaultPaymentMethod(),
-  deleteCartItems: /* @ngInject */ (cartId, WucOrderCartService) => () =>
-    WucOrderCartService.deleteAllItems(cartId),
+  deleteCartItems: /* @ngInject */ (cartId, OrderCartService) => () =>
+    OrderCartService.deleteAllItems(cartId),
   displayErrorMessage: /* @ngInject */ ($translate, Alerter) => (
     translationId,
   ) =>

@@ -2,12 +2,12 @@ import find from 'lodash/find';
 
 export default class DomainDnsZoneActivateService {
   /* @ngInject */
-  constructor(WucOrderCartService) {
-    this.WucOrderCartService = WucOrderCartService;
+  constructor(OrderCartService) {
+    this.OrderCartService = OrderCartService;
   }
 
   getServiceOption(serviceName) {
-    return this.WucOrderCartService.getProductServiceOptions(
+    return this.OrderCartService.getProductServiceOptions(
       'domain',
       serviceName,
     ).then((serviceOptions) => {
@@ -21,13 +21,13 @@ export default class DomainDnsZoneActivateService {
   }
 
   prepareOrderCart(ovhSubsidiary) {
-    return this.WucOrderCartService.createNewCart(ovhSubsidiary).then((cart) =>
-      this.WucOrderCartService.assignCart(cart.cartId).then(() => cart),
+    return this.OrderCartService.createNewCart(ovhSubsidiary).then((cart) =>
+      this.OrderCartService.assignCart(cart.cartId).then(() => cart),
     );
   }
 
   addItemToCart(cartId, serviceName, serviceOption, price) {
-    return this.WucOrderCartService.addProductServiceOptionToCart(
+    return this.OrderCartService.addProductServiceOptionToCart(
       cartId,
       'domain',
       serviceName,
@@ -39,7 +39,7 @@ export default class DomainDnsZoneActivateService {
       },
     )
       .then((cart) =>
-        this.WucOrderCartService.addConfigurationItem(
+        this.OrderCartService.addConfigurationItem(
           cartId,
           cart.itemId,
           'zone',
@@ -47,18 +47,18 @@ export default class DomainDnsZoneActivateService {
         ).then(() => cart),
       )
       .then((cart) =>
-        this.WucOrderCartService.addConfigurationItem(
+        this.OrderCartService.addConfigurationItem(
           cartId,
           cart.itemId,
           'template',
           'minimized',
         ),
       )
-      .then(() => this.WucOrderCartService.getCheckoutInformations(cartId));
+      .then(() => this.OrderCartService.getCheckoutInformations(cartId));
   }
 
   checkoutOrderCart(autoPayWithPreferredPaymentMethod, cartId) {
-    return this.WucOrderCartService.checkoutCart(cartId, {
+    return this.OrderCartService.checkoutCart(cartId, {
       autoPayWithPreferredPaymentMethod,
       waiveRetractationPeriod: true,
     });

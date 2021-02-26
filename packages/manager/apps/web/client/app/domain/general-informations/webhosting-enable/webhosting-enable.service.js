@@ -2,18 +2,18 @@ import map from 'lodash/map';
 
 export default class WebhostingEnableService {
   /* @ngInject */
-  constructor($q, WucOrderCartService) {
+  constructor($q, OrderCartService) {
     this.$q = $q;
-    this.WucOrderCartService = WucOrderCartService;
+    this.OrderCartService = OrderCartService;
   }
 
   updateOption(cart, previousItem, domainName, offer, configuration) {
     const deleteItem = previousItem
-      ? this.WucOrderCartService.deleteItem(cart.cartId, previousItem.itemId)
+      ? this.OrderCartService.deleteItem(cart.cartId, previousItem.itemId)
       : this.$q.resolve();
 
     return deleteItem.then(() =>
-      this.WucOrderCartService.addProductServiceOptionToCart(
+      this.OrderCartService.addProductServiceOptionToCart(
         cart.cartId,
         'domain',
         domainName,
@@ -28,7 +28,7 @@ export default class WebhostingEnableService {
           item,
           configuration: this.$q.all(
             map(configuration, (value, label) =>
-              this.WucOrderCartService.addConfigurationItem(
+              this.OrderCartService.addConfigurationItem(
                 cart.cartId,
                 item.itemId,
                 label,
