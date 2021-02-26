@@ -1,0 +1,18 @@
+{
+  "name": "@ovh-ux/manager-order",
+  "version": "0.0.0",
+  "private": true,
+  "description": "OVHcloud Order module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh/manager.git",
+    "directory": "packages/manager/modules/order"
+  },
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
+  "main": "./src/index.js",
+  "peerDependencies": {
+    "angular": "^1.7.5",
+    "ovh-api-services": "^11.0.0"
+  }
+}
