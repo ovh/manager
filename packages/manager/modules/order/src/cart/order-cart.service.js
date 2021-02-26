@@ -93,19 +93,19 @@ export default class OrderCartService {
    *
    * @param  {string} cartId          Identification number of the cart
    * @param  {string} productName     Name of the product
-   * @param  {string} productPlanCode Plan code of the selected product (ex:
+   * @param  {string} planCode        Plan code of the selected product (ex:
    * for the product 'webHosting', get options for the plan code 'cloudweb1')
    * @return {Promise<Array>}         Promise of the product available list of
    * options
    */
-  getProductOptions(cartId, productName, productPlanCode) {
+  getProductOptions(cartId, productName, planCode) {
     return this.OvhApiOrder.Cart()
       .Product()
       .v6()
       .getOptions({
         cartId,
         productName,
-        ...productPlanCode,
+        planCode,
       }).$promise;
   }
 
@@ -193,6 +193,20 @@ export default class OrderCartService {
   }
 
   /**
+   * Get a summary of your current order
+   *
+   * @param  {string} cartId    Identification number of the cart
+   * @return {Promise<Object>}  Promise of the checkout order information
+   */
+  getSummary(cartId) {
+    return this.OvhApiOrder.Cart()
+      .v6()
+      .summary({
+        cartId,
+      }).$promise;
+  }
+
+  /**
    * Checkout an order
    *
    * @param  {string} cartId   Identification number of the cart
@@ -212,7 +226,7 @@ export default class OrderCartService {
       ).$promise;
 
     if (
-      !checkout.autoPayWithPreferredPaymentMethod &&
+      !checkout?.autoPayWithPreferredPaymentMethod &&
       order.prices.withTax.value === 0
     ) {
       await this.OvhApiMe.Order()

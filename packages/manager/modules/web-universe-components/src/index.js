@@ -10,7 +10,6 @@ import wucExchangePassword from './exchange-password';
 import wucFileChange from './fileChange';
 import wucFileEditor from './fileEditor';
 import wucGuides from './guides';
-import wucOrderCart from './order-cart';
 import wucString from './string';
 import wucUser from './user';
 import wucValidator from './validator';
@@ -28,7 +27,6 @@ angular.module(moduleName, [
   wucFileChange,
   wucFileEditor,
   wucGuides,
-  wucOrderCart,
   wucString,
   wucUser,
   wucValidator,
