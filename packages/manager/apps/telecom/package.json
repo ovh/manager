@@ -50,7 +50,7 @@
     "@ovh-ux/ng-ovh-http": "^5.0.1",
     "@ovh-ux/ng-ovh-line-diagnostics": "^5.0.6",
     "@ovh-ux/ng-ovh-mondial-relay": "^8.0.5",
-    "@ovh-ux/ng-ovh-payment-method": "^7.0.11",
+    "@ovh-ux/ng-ovh-payment-method": "^7.0.11 || ^8.0.0",
     "@ovh-ux/ng-ovh-proxy-request": "^2.0.1",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.0",
     "@ovh-ux/ng-ovh-responsive-popover": "^5.0.3",
