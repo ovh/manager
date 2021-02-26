@@ -66,12 +66,12 @@ export default class OrderWorkflow extends Workflow {
    *      value: configurationValue (ex: 'www.ovhcloud.com'),
    *    }
    *  ];
-   * @param {Object} WucOrderCartService Service to handle order cart
+   * @param {Object} OrderCartService Service to handle order cart
    */
   /* @ngInject */
-  constructor($q, $timeout, $translate, workflowOptions, WucOrderCartService) {
+  constructor($q, $timeout, $translate, workflowOptions, OrderCartService) {
     super($q, $timeout, $translate, workflowOptions);
-    this.WucOrderCartService = WucOrderCartService;
+    this.OrderCartService = OrderCartService;
 
     if (!this.catalog) {
       throw new Error('ovhProductOffers-OrderWorkflow requires a catalog');
@@ -128,10 +128,10 @@ export default class OrderWorkflow extends Workflow {
    * @return {Promise} Promise of the created cart
    */
   createNewCart() {
-    return this.WucOrderCartService.createNewCart(this.user.ovhSubsidiary).then(
+    return this.OrderCartService.createNewCart(this.user.ovhSubsidiary).then(
       (cart) => {
         this.cartId = cart.cartId;
-        return this.WucOrderCartService.assignCart(this.cartId);
+        return this.OrderCartService.assignCart(this.cartId);
       },
     );
   }
@@ -166,13 +166,13 @@ export default class OrderWorkflow extends Workflow {
       .then(() => this.createNewCart())
       .then(() =>
         isString(serviceName) && !isEmpty(serviceName)
-          ? this.WucOrderCartService.addProductServiceOptionToCart(
+          ? this.OrderCartService.addProductServiceOptionToCart(
               this.cartId,
               this.productName,
               serviceName,
               checkoutInformations.product,
             )
-          : this.WucOrderCartService.addProductToCart(
+          : this.OrderCartService.addProductToCart(
               this.cartId,
               this.productName,
               checkoutInformations.product,
@@ -181,7 +181,7 @@ export default class OrderWorkflow extends Workflow {
       .then(({ itemId }) =>
         this.$q.all(
           checkoutInformations.configuration.map(({ label, value }) =>
-            this.WucOrderCartService.addConfigurationItem(
+            this.OrderCartService.addConfigurationItem(
               this.cartId,
               itemId,
               label,
@@ -190,7 +190,7 @@ export default class OrderWorkflow extends Workflow {
           ),
         ),
       )
-      .then(() => this.WucOrderCartService.getCheckoutInformations(this.cartId))
+      .then(() => this.OrderCartService.getCheckoutInformations(this.cartId))
       .then(({ contracts, prices, details }) => {
         this.prorataDurationDate = this.constructor.getDurationProrataDate(
           details,
@@ -228,7 +228,7 @@ export default class OrderWorkflow extends Workflow {
     return this.$q
       .when()
       .then(() =>
-        this.WucOrderCartService.checkoutCart(this.cartId, checkoutParameters),
+        this.OrderCartService.checkoutCart(this.cartId, checkoutParameters),
       )
       .then((checkout) => {
         const validatedOrder = {

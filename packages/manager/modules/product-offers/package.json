@@ -19,6 +19,7 @@
     "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
     "@ovh-ux/manager-filters": "^0.1.0 || ^1.0.0",
+    "@ovh-ux/manager-order": "^0.0.0 || ^1.0.0",
     "@ovh-ux/ng-ovh-contracts": "^4.0.4",
     "@ovh-ux/ng-ovh-payment-method": "^8.1.2",
     "@ovh-ux/ng-ovh-web-universe-components": "^6.0.1",

@@ -11,14 +11,14 @@ export default class ProductOffersController {
     $translate,
     coreConfig,
     ovhManagerProductOffersActionService,
-    WucOrderCartService,
+    OrderCartService,
   ) {
     this.$q = $q;
     this.$timeout = $timeout;
     this.$translate = $translate;
     this.coreConfig = coreConfig;
     this.actionService = ovhManagerProductOffersActionService;
-    this.WucOrderCartService = WucOrderCartService;
+    this.OrderCartService = OrderCartService;
   }
 
   $onInit() {
@@ -39,7 +39,7 @@ export default class ProductOffersController {
           this.$timeout,
           this.$translate,
           this.workflowOptions,
-          this.WucOrderCartService,
+          this.OrderCartService,
         );
         break;
       case WORKFLOW_TYPES.SERVICES:

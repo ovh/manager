@@ -2,6 +2,7 @@ import angular from 'angular';
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
 import ovhManagerCatalogPrice from '@ovh-ux/manager-catalog-price';
+import ovhManagerOrder from '@ovh-ux/manager-order';
 import ngOvhContracts from '@ovh-ux/ng-ovh-contracts';
 import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
 import ngOvhWebUniverseComponents from '@ovh-ux/ng-ovh-web-universe-components';
@@ -30,6 +31,7 @@ angular
     ngOvhWebUniverseComponents,
     ngTranslateAsyncLoader,
     ovhManagerCatalogPrice,
+    ovhManagerOrder,
     'pascalprecht.translate',
   ])
   .component('ovhManagerProductOffers', component)

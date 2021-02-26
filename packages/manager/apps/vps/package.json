@@ -30,6 +30,7 @@
     "@ovh-ux/manager-filters": "^0.1.0 || ^1.0.0",
     "@ovh-ux/manager-incident-banner": "^1.1.0",
     "@ovh-ux/manager-models": "^1.0.0",
+    "@ovh-ux/manager-order": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-ng-layout-helpers": "^1.1.0 || ^2.0.0",
     "@ovh-ux/manager-preloader": "^1.0.0",
     "@ovh-ux/manager-product-offers": "^4.0.0 || ^5.0.0",
