@@ -54,8 +54,12 @@ export default class {
   }
 
   onFinish() {
+    const type = this.service.renew.automatic ? 'auto' : 'manual';
+    const period = this.service.renew.period
+      ? `_${this.service.renew.period}m`
+      : '';
     this.atInternet.trackClick({
-      name: 'autorenew::validate-config',
+      name: `autorenew::update::${type}${period}`,
       type: 'action',
       chapter1: 'dedicated',
       chapter2: 'account',
