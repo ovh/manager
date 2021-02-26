@@ -97,14 +97,13 @@ export default class XdslAccessComfortExchangeCtrl {
   }
 
   comfortExchange() {
-    // console.log('contact options', this.ovhContactOptions, this.shipping);
     return this.OvhApiXdsl.Modem()
       .v6()
       .comfortExchange(
         {
           xdslId: this.xdslId,
         },
-        {},
+        { contactShipping: this.shipping.id },
       )
       .$promise.then((result) => {
         this.exchange.isSuccess = true;
