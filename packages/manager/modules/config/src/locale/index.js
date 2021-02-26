@@ -37,7 +37,14 @@ export const findLanguage = (language, country) => {
 };
 
 export const findAvailableLocale = (userLocale, region) => {
-  const splittedLocale = userLocale.match(localeRegex);
+  let splittedLocale = null;
+
+  // Handle specific browser locales gracefully, example : 'es-419'
+  if (userLocale.match(/[-_][0-9]+$/)) {
+    splittedLocale = userLocale.split(/(-|_)/)[0].match(localeRegex);
+  } else {
+    splittedLocale = userLocale.match(localeRegex);
+  }
 
   if (!splittedLocale) {
     return userLocale || LANGUAGES.defaultLoc;
