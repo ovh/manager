@@ -24,7 +24,7 @@ import '@ovh-ux/ng-ovh-request-tagger';
 
 import '@uirouter/angularjs';
 
-import coreConfig from './config';
+import managerCoreConfig from './config';
 import ouiConfig from './oui-angular';
 import translateFactory from './translate/translate.factory';
 import sessionService from './session/session.service';
@@ -42,7 +42,7 @@ angular
     'ngOvhRequestTagger',
     'pascalprecht.translate',
     'tmh.dynamicLocale',
-    coreConfig,
+    managerCoreConfig,
     ngTranslateAsyncLoader,
     ouiConfig,
     ovhOuiAngularTranslations,
@@ -76,66 +76,68 @@ angular
   // Fix security issue: https://github.com/angular-translate/angular-translate/issues/1418
   .factory(
     'translateMissingTranslationHandler',
-    ($sanitize) => (translationId) => $sanitize(translationId),
+    /* @ngInject */ ($sanitize) => (translationId) => $sanitize(translationId),
   )
-  .run((tmhDynamicLocaleCache, tmhDynamicLocale) => {
-    const injectAngularLocale = (lang) =>
-      tmhDynamicLocaleCache.put(
-        lang,
-        angular.injector(['ngLocale']).get('$locale'),
-      );
-    const defaultLanguage = Environment.getUserLocale();
-    const angularLocale = kebabCase(defaultLanguage);
-
-    let angularLocalePromise;
-    switch (angularLocale) {
-      case 'de-de':
-        angularLocalePromise = import('angular-i18n/angular-locale_de-de.js');
-        break;
-      case 'en-gb':
-        angularLocalePromise = import('angular-i18n/angular-locale_en-gb.js');
-        break;
-      case 'en-us':
-        angularLocalePromise = import('angular-i18n/angular-locale_en-us.js');
-        break;
-      case 'es-es':
-        angularLocalePromise = import('angular-i18n/angular-locale_es-es.js');
-        break;
-      case 'fr-ca':
-        angularLocalePromise = import('angular-i18n/angular-locale_fr-ca.js');
-        break;
-      case 'it-it':
-        angularLocalePromise = import('angular-i18n/angular-locale_it-it.js');
-        break;
-      case 'pl-pl':
-        angularLocalePromise = import('angular-i18n/angular-locale_pl-pl.js');
-        break;
-      case 'pt-pt':
-        angularLocalePromise = import('angular-i18n/angular-locale_pt-pt.js');
-        break;
-      case 'fr-fr':
-      default:
-        angularLocalePromise = import('angular-i18n/angular-locale_fr-fr.js');
-        break;
-    }
-
-    angularLocalePromise
-      .then(() => injectAngularLocale(angularLocale))
-      .then(() => tmhDynamicLocale.set(angularLocale));
-  })
   .run(
-    /* @ngInject */ ($rootScope) => {
+    /* @ngInject */ (tmhDynamicLocaleCache, tmhDynamicLocale, coreConfig) => {
+      const injectAngularLocale = (lang) =>
+        tmhDynamicLocaleCache.put(
+          lang,
+          angular.injector(['ngLocale']).get('$locale'),
+        );
+      const defaultLanguage = coreConfig.getUserLocale();
+      const angularLocale = kebabCase(defaultLanguage);
+
+      let angularLocalePromise;
+      switch (angularLocale) {
+        case 'de-de':
+          angularLocalePromise = import('angular-i18n/angular-locale_de-de.js');
+          break;
+        case 'en-gb':
+          angularLocalePromise = import('angular-i18n/angular-locale_en-gb.js');
+          break;
+        case 'en-us':
+          angularLocalePromise = import('angular-i18n/angular-locale_en-us.js');
+          break;
+        case 'es-es':
+          angularLocalePromise = import('angular-i18n/angular-locale_es-es.js');
+          break;
+        case 'fr-ca':
+          angularLocalePromise = import('angular-i18n/angular-locale_fr-ca.js');
+          break;
+        case 'it-it':
+          angularLocalePromise = import('angular-i18n/angular-locale_it-it.js');
+          break;
+        case 'pl-pl':
+          angularLocalePromise = import('angular-i18n/angular-locale_pl-pl.js');
+          break;
+        case 'pt-pt':
+          angularLocalePromise = import('angular-i18n/angular-locale_pt-pt.js');
+          break;
+        case 'fr-fr':
+        default:
+          angularLocalePromise = import('angular-i18n/angular-locale_fr-fr.js');
+          break;
+      }
+
+      angularLocalePromise
+        .then(() => injectAngularLocale(angularLocale))
+        .then(() => tmhDynamicLocale.set(angularLocale));
+    },
+  )
+  .run(
+    /* @ngInject */ ($rootScope, coreConfig) => {
       $rootScope.$on('lang.onChange', (event, { lang }) => {
-        Environment.setUserLocale(lang);
+        coreConfig.setUserLocale(lang);
         window.location.reload();
       });
     },
   )
   .run(
-    /* @ngInject */ ($document) => {
+    /* @ngInject */ ($document, coreConfig) => {
       $document
         .querySelectorAll('html')[0]
-        .setAttribute('lang', Environment.getUserLanguage());
+        .setAttribute('lang', coreConfig.getUserLanguage());
     },
   )
   .run((ssoAuthentication /* , User */) => {
@@ -225,8 +227,8 @@ angular
     },
   )
   .run(
-    /* @ngInject */ (OvhNgRequestTaggerInterceptor) => {
-      OvhNgRequestTaggerInterceptor.setHeaderVersion(Environment.getVersion());
+    /* @ngInject */ (OvhNgRequestTaggerInterceptor, coreConfig) => {
+      OvhNgRequestTaggerInterceptor.setHeaderVersion(coreConfig.getVersion());
     },
   );
 
