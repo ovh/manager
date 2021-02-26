@@ -1,5 +1,6 @@
 import angular from 'angular';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
+import ovhManagerOrder from '@ovh-ux/manager-order';
 import '@ovh-ux/ng-ovh-swimming-poll';
 import '@ovh-ux/ng-translate-async-loader';
 import 'ovh-api-services';
@@ -27,6 +28,7 @@ angular
     backupOfferDetails,
     backupOffers,
     ngAtInternet,
+    ovhManagerOrder,
   ])
   .component('dedicatedCloudDatacenterBackup', component)
   .service('dedicatedCloudDatacenterBackupService', backupService)
