@@ -41,9 +41,6 @@ export default class TelecomPackMigrationCtrl {
           this.process.migrationTaskId = head(pendingTasks);
           this.process.migrationDoing = true;
         } else {
-          // Display offers
-          this.process.currentStep = 'offers';
-
           this.getPackAccess();
         }
         return this.process;
@@ -71,6 +68,8 @@ export default class TelecomPackMigrationCtrl {
           // Retrieve line associated to the service
           return this.getLine(service);
         }
+        // Display offers
+        this.process.currentStep = 'offers';
         return packServices;
       })
       .catch((error) => {
@@ -120,6 +119,9 @@ export default class TelecomPackMigrationCtrl {
               );
 
             this.TucPackMigrationProcess.setSelectedBuilding(building);
+
+            // Display offers
+            this.process.currentStep = 'offers';
           }
           return data;
         }

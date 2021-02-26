@@ -253,13 +253,19 @@ export default /* @ngInject */ function($q, OvhApiPackXdsl, Poller) {
     ============================== */
 
   function getMigrationOffers() {
+    let params = {};
+    if (migrationProcess.selectedBuilding) {
+      params = {
+        buildingReference: migrationProcess.selectedBuilding.reference,
+      };
+    }
     return Poller.poll(
       ['/pack/xdsl', migrationProcess.pack.packName, 'migration/offers'].join(
         '/',
       ),
       null,
       {
-        postData: {},
+        postData: params,
         successRule: {
           status(elem) {
             return elem.status === 'error' || elem.status === 'ok';
