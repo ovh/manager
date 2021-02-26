@@ -1,3 +1,12 @@
+## [4.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@4.0.0...@ovh-ux/manager-config@4.0.1) (2021-02-26)
+
+
+### Bug Fixes
+
+* **locale:** handle iso user locales ([#4482](https://github.com/ovh/manager/issues/4482)) ([dcc80b9](https://github.com/ovh/manager/commit/dcc80b906a37d3a5d46c7952e5121339bcdafdba))
+
+
+
 # [4.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@3.0.1...@ovh-ux/manager-config@4.0.0) (2021-02-02)
 
 
