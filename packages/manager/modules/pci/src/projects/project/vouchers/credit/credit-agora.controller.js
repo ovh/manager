@@ -1,7 +1,6 @@
 import get from 'lodash/get';
 import filter from 'lodash/filter';
 import head from 'lodash/head';
-import { Environment } from '@ovh-ux/manager-config';
 
 // we should avoid require, but JSURL don't provide an es6 export
 const { stringify } = require('jsurl');
@@ -14,6 +13,7 @@ export default class CloudProjectBillingVouchersAddcreditAgoraCtrl {
     $translate,
     $uibModalInstance,
     $window,
+    coreConfig,
     CucCloudMessage,
     CucCurrencyService,
     OvhApiOrderCatalogPublic,
@@ -23,6 +23,7 @@ export default class CloudProjectBillingVouchersAddcreditAgoraCtrl {
     this.$translate = $translate;
     this.$uibModalInstance = $uibModalInstance;
     this.$window = $window;
+    this.coreConfig = coreConfig;
     this.CucCloudMessage = CucCloudMessage;
     this.CucCurrencyService = CucCurrencyService;
     this.OvhApiOrderCatalogPublic = OvhApiOrderCatalogPublic;
@@ -35,7 +36,7 @@ export default class CloudProjectBillingVouchersAddcreditAgoraCtrl {
   $onInit() {
     this.amount = 10;
     this.loading = true;
-    const { ovhSubsidiary } = Environment.getUser();
+    const { ovhSubsidiary } = this.coreConfig.getUser();
     return this.OvhApiOrderCatalogPublic.v6()
       .get({ productName: 'cloud', ovhSubsidiary })
       .$promise.then((result) => {

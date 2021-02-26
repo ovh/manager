@@ -6,14 +6,15 @@ import map from 'lodash/map';
 import union from 'lodash/union';
 import words from 'lodash/words';
 
-import { Environment, LANGUAGES } from '@ovh-ux/manager-config';
+import { LANGUAGES } from '@ovh-ux/manager-config';
 
 import { LANG_PATTERN } from './constants';
 
 export default class {
   /* @ngInject */
-  constructor($rootScope) {
+  constructor($rootScope, coreConfig) {
     this.$rootScope = $rootScope;
+    this.coreConfig = coreConfig;
   }
 
   $onInit() {
@@ -34,7 +35,7 @@ export default class {
 
   getCurrentLang() {
     return this.availableLangs.find(
-      ({ key }) => key === Environment.getUserLocale(),
+      ({ key }) => key === this.coreConfig.getUserLocale(),
     );
   }
 

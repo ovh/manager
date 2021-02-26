@@ -1,4 +1,3 @@
-import { Environment } from '@ovh-ux/manager-config';
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import { FAQ_LINK } from '../constants';
 
@@ -10,6 +9,7 @@ export default class MigrationNotificationController {
     $state,
     atInternet,
     accountMigrationService,
+    coreConfig,
     OvhApiMe,
   ) {
     this.$q = $q;
@@ -25,7 +25,7 @@ export default class MigrationNotificationController {
       '#/billing/autorenew/agreements',
     );
     this.CONTACTS_URL =
-      Environment.getRegion() === 'EU'
+      coreConfig.getRegion() === 'EU'
         ? buildURL('dedicated', '#/contacts/services')
         : '';
     this.ORDERS_URL = buildURL('dedicated', '#/billing/orders');

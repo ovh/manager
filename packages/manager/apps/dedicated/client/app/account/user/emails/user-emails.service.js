@@ -1,10 +1,6 @@
-import { Environment } from '@ovh-ux/manager-config';
-
-angular.module('UserAccount').service('UserAccount.services.emails', [
-  '$q',
-  'constants',
-  'OvhHttp',
-  function UserAccountEmailsService($q, constants, OvhHttp) {
+angular.module('UserAccount').service(
+  'UserAccount.services.emails',
+  /* @ngInject */ function UserAccountEmailsService($q, coreConfig, OvhHttp) {
     const cache = {
       models: 'UNIVERS_MODULE_OTRS_MODELS',
       me: 'UNIVERS_MODULE_OTRS_ME',
@@ -19,7 +15,7 @@ angular.module('UserAccount').service('UserAccount.services.emails', [
     };
 
     this.getMe = function getMe() {
-      return $q.when(Environment.getUser());
+      return $q.when(coreConfig.getUser());
     };
 
     this.getEmails = function getEmails(opts) {
@@ -39,4 +35,4 @@ angular.module('UserAccount').service('UserAccount.services.emails', [
       });
     };
   },
-]);
+);

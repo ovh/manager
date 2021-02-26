@@ -1,12 +1,12 @@
 import { emit, listen } from '@ovh-ux/ufrontend/communication';
-import { Environment } from '@ovh-ux/manager-config';
 
 export default class FreefaxAppController {
   /* @ngInject */
-  constructor($timeout, $scope, $rootScope, ovhFeatureFlipping) {
+  constructor($timeout, $scope, $rootScope, coreConfig, ovhFeatureFlipping) {
     this.$scope = $scope;
     this.$rootScope = $rootScope;
     this.$timeout = $timeout;
+    this.coreConfig = coreConfig;
     this.ovhFeatureFlipping = ovhFeatureFlipping;
   }
 
@@ -81,8 +81,8 @@ export default class FreefaxAppController {
 
   $onInit() {
     this.chatbotEnabled = false;
-    this.user = Environment.getUser();
-    this.currentLanguage = Environment.getUserLanguage();
+    this.user = this.coreConfig.getUser();
+    this.currentLanguage = this.coreConfig.getUserLanguage();
     emit({ id: 'ovh.account-sidebar.ready' });
 
     this.emitEvents();

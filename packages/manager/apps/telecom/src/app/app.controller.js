@@ -1,5 +1,3 @@
-import { Environment } from '@ovh-ux/manager-config';
-
 export default class TelecomAppCtrl {
   /* @ngInject */
   constructor(
@@ -10,6 +8,7 @@ export default class TelecomAppCtrl {
     $transitions,
     $translate,
     betaPreferenceService,
+    coreConfig,
     ovhUserPref,
     ovhFeatureFlipping,
   ) {
@@ -22,6 +21,7 @@ export default class TelecomAppCtrl {
     this.$rootScope = $rootScope;
     this.$scope = $scope;
     this.betaPreferenceService = betaPreferenceService;
+    this.coreConfig = coreConfig;
     this.ovhUserPref = ovhUserPref;
     this.ovhFeatureFlipping = ovhFeatureFlipping;
 
@@ -33,10 +33,10 @@ export default class TelecomAppCtrl {
       toggle: {
         event: 'sidebar:loaded',
       },
-      universe: Environment.getUniverse(),
+      universe: this.coreConfig.getUniverse(),
     };
-    this.currentLanguage = Environment.getUserLanguage();
-    this.user = Environment.getUser();
+    this.currentLanguage = this.coreConfig.getUserLanguage();
+    this.user = this.coreConfig.getUser();
 
     const unregisterListener = this.$scope.$on('app:started', () => {
       const CHATBOT_FEATURE = 'chatbot';

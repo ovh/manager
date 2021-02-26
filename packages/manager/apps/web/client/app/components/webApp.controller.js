@@ -1,5 +1,4 @@
 import isString from 'lodash/isString';
-import { Environment } from '@ovh-ux/manager-config';
 
 export default class WebAppCtrl {
   /* @ngInject */
@@ -9,6 +8,7 @@ export default class WebAppCtrl {
     $scope,
     $timeout,
     $translate,
+    coreConfig,
     ovhFeatureFlipping,
   ) {
     this.$document = $document;
@@ -17,6 +17,7 @@ export default class WebAppCtrl {
     this.$translate = $translate;
     this.$rootScope = $rootScope;
     this.chatbotEnabled = false;
+    this.coreConfig = coreConfig;
     this.ovhFeatureFlipping = ovhFeatureFlipping;
   }
 
@@ -25,7 +26,7 @@ export default class WebAppCtrl {
       toggle: {
         event: 'sidebar:loaded',
       },
-      universe: Environment.getUniverse(),
+      universe: this.coreConfig.getUniverse(),
     };
 
     this.$scope.$watch(
@@ -41,8 +42,8 @@ export default class WebAppCtrl {
       this.isNavbarLoaded = true;
     });
 
-    this.currentLanguage = Environment.getUserLanguage();
-    this.user = Environment.getUser();
+    this.currentLanguage = this.coreConfig.getUserLanguage();
+    this.user = this.coreConfig.getUser();
 
     const unregisterListener = this.$scope.$on('app:started', () => {
       const CHATBOT_FEATURE = 'chatbot';

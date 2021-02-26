@@ -1,5 +1,4 @@
 import get from 'lodash/get';
-import { Environment } from '@ovh-ux/manager-config';
 
 import { FeatureAvailability } from '@ovh-ux/ng-ovh-telecom-universe-components';
 import { FREEFAX_AVAILABILITY } from '@ovh-ux/manager-freefax';
@@ -32,6 +31,7 @@ angular
       $q,
       atInternet,
       betaPreferenceService,
+      coreConfig,
       FaxSidebar,
       OverTheBoxSidebar,
       PackSidebar,
@@ -490,7 +490,7 @@ angular
                 initSidebarMenuItems(count, featuresAvailabilities, beta);
               });
             })
-            .then(() => Environment.getUser())
+            .then(() => coreConfig.getUser())
             .then((user) =>
               initSidebarMenuActionsOptions(user, featuresAvailabilities),
             ),

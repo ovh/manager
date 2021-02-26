@@ -1,11 +1,11 @@
 import find from 'lodash/find';
 import map from 'lodash/map';
-import { Environment } from '@ovh-ux/manager-config';
 
 export default /* @ngInject */ function BillingInstanceListComponentCtrl(
   $q,
   $stateParams,
   $translate,
+  coreConfig,
   DetailsPopoverService,
   OvhApiCloudProjectImage,
   OvhApiCloudProjectInstance,
@@ -52,7 +52,7 @@ export default /* @ngInject */ function BillingInstanceListComponentCtrl(
   }
 
   function initUserCurrency() {
-    return $q.when(Environment.getUser()).then((me) => {
+    return $q.when(coreConfig.getUser()).then((me) => {
       self.currencySymbol = me.currency.symbol;
     });
   }

@@ -12,8 +12,6 @@ import 'angular-ui-bootstrap';
 import 'ovh-api-services';
 import '@ovh-ux/ui-kit';
 
-import { Environment } from '@ovh-ux/manager-config';
-
 import NashaCtrl from './controller';
 import NashaAddCtrl from '../add/nasha-add.controller';
 import NashaUnavailableCtrl from '../add/nasha-unavailable.controller';
@@ -50,8 +48,8 @@ angular
   ])
   .config(routing)
   .config(
-    /* @ngInject */ ($qProvider, ovhDocUrlProvider) => {
-      ovhDocUrlProvider.setUserLocale(Environment.getUserLocale());
+    /* @ngInject */ ($qProvider, coreConfigProvider, ovhDocUrlProvider) => {
+      ovhDocUrlProvider.setUserLocale(coreConfigProvider.getUserLocale());
       $qProvider.errorOnUnhandledRejections(false);
     },
   )

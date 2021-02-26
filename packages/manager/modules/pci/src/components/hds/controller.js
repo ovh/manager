@@ -1,9 +1,9 @@
-import { Environment } from '@ovh-ux/manager-config';
 import { HDS_INFO, SUPPORT_LEVEL_INFO } from './hds.constant';
 
 export default class HdsComponentController {
-  constructor() {
-    this.ovhSubsidiary = Environment.getUser().ovhSubsidiary;
+  /* @ngInject */
+  constructor(coreConfig) {
+    this.ovhSubsidiary = coreConfig.getUser().ovhSubsidiary;
     this.hdsInfoLink = this.getHdsInfoLink();
     this.supportLevelInfoLink = this.getSupportLevelInfoLink();
   }

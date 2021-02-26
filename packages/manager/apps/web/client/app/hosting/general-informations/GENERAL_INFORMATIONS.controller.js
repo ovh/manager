@@ -1,5 +1,4 @@
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-import { Environment } from '@ovh-ux/manager-config';
 import head from 'lodash/head';
 import isEmpty from 'lodash/isEmpty';
 import isObject from 'lodash/isObject';
@@ -18,6 +17,7 @@ export default class HostingGeneralInformationsCtrl {
     $stateParams,
     $translate,
     atInternet,
+    coreConfig,
     Alerter,
     boostLink,
     localSEOLink,
@@ -37,6 +37,7 @@ export default class HostingGeneralInformationsCtrl {
     this.$translate = $translate;
 
     this.atInternet = atInternet;
+    this.coreConfig = coreConfig;
     this.Alerter = Alerter;
     this.boostLink = boostLink;
     this.localSEOLink = localSEOLink;
@@ -57,7 +58,7 @@ export default class HostingGeneralInformationsCtrl {
     this.defaultRuntime = null;
     this.availableOffers = [];
     this.contactManagementLink =
-      Environment.getRegion() === 'EU'
+      this.coreConfig.getRegion() === 'EU'
         ? buildURL('dedicated', '#/contacts/services', {
             serviceName: this.serviceName,
             category: 'HOSTING',

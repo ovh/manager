@@ -10,8 +10,6 @@ import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ngOvhCloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-components';
 import ngOvhDocUrl from '@ovh-ux/ng-ovh-doc-url';
 
-import { Environment } from '@ovh-ux/manager-config';
-
 import cdaDetailsHome from './home';
 import cdaIp from '../ip';
 import cdaPool from '../pool';
@@ -43,8 +41,8 @@ angular
   ])
   .config(routing)
   .config(
-    /* @ngInject */ ($qProvider, ovhDocUrlProvider) => {
-      ovhDocUrlProvider.setUserLocale(Environment.getUserLocale());
+    /* @ngInject */ ($qProvider, coreConfigProvider, ovhDocUrlProvider) => {
+      ovhDocUrlProvider.setUserLocale(coreConfigProvider.getUserLocale());
       $qProvider.errorOnUnhandledRejections(false);
     },
   )

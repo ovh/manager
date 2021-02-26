@@ -1,5 +1,4 @@
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-import { Environment } from '@ovh-ux/manager-config';
 
 import { graphs } from '../details/metrics.constant';
 import { RENEW_URL } from './constants';
@@ -11,6 +10,7 @@ export default class MetricsDashboardCtrl {
     $stateParams,
     $q,
     $translate,
+    coreConfig,
     CucCloudMessage,
     CucControllerHelper,
     CucFeatureAvailabilityService,
@@ -23,6 +23,7 @@ export default class MetricsDashboardCtrl {
     this.$q = $q;
     this.$translate = $translate;
     this.serviceName = $stateParams.serviceName;
+    this.coreConfig = coreConfig;
     this.CucControllerHelper = CucControllerHelper;
     this.CucCloudMessage = CucCloudMessage;
     this.CucFeatureAvailabilityService = CucFeatureAvailabilityService;
@@ -119,18 +120,18 @@ export default class MetricsDashboardCtrl {
       autorenew: {
         text: this.$translate.instant('metrics_manage'),
         href:
-          Environment.getRegion() === 'EU'
+          this.coreConfig.getRegion() === 'EU'
             ? buildURL('dedicated', '#/billing/autoRenew', {
                 selectedType: 'METRICS',
                 searchText: this.serviceName,
               })
-            : RENEW_URL[Environment.getRegion()],
+            : RENEW_URL[this.coreConfig.getRegion()],
         isAvailable: () => true,
       },
       contacts: {
         text: this.$translate.instant('metrics_manage'),
         href:
-          Environment.getRegion() === 'EU'
+          this.coreConfig.getRegion() === 'EU'
             ? buildURL('dedicated', '#/contacts/services', {
                 tab: 'SERVICES',
                 serviceName: this.serviceName,

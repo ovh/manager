@@ -6,7 +6,6 @@ import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
 import 'moment';
 
-import { Environment } from '@ovh-ux/manager-config';
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 
 import {
@@ -335,16 +334,15 @@ export default class {
           },
           manageAutorenew: {
             text: this.$translate.instant('vps_common_manage'),
-            href:
-              Environment.getRegion() === 'EU'
-                ? buildURL('dedicated', '#/billing/autoRenew', {
-                    selectedType: 'VPS',
-                    searchText: this.serviceName,
-                  })
-                : this.CucControllerHelper.navigation.constructor.getUrl(
-                    get(RENEW_URL, this.coreConfig.getRegion()),
-                    { serviceName: this.serviceName, serviceType: 'VPS' },
-                  ),
+            href: this.coreConfig.isRegion('EU')
+              ? buildURL('dedicated', '#/billing/autoRenew', {
+                  selectedType: 'VPS',
+                  searchText: this.serviceName,
+                })
+              : this.CucControllerHelper.navigation.constructor.getUrl(
+                  get(RENEW_URL, this.coreConfig.getRegion()),
+                  { serviceName: this.serviceName, serviceType: 'VPS' },
+                ),
             isAvailable: () =>
               !this.loaders.plan &&
               this.hasFeature(DASHBOARD_FEATURES.autorenew) &&
@@ -353,13 +351,12 @@ export default class {
           },
           manageContact: {
             text: this.$translate.instant('vps_common_manage'),
-            href:
-              Environment.getRegion() === 'EU'
-                ? buildURL('dedicated', '#/contacts/services', {
-                    tab: 'SERVICES',
-                    serviceName: this.serviceName,
-                  })
-                : null,
+            href: this.coreConfig.isRegion('EU')
+              ? buildURL('dedicated', '#/contacts/services', {
+                  tab: 'SERVICES',
+                  serviceName: this.serviceName,
+                })
+              : null,
             isAvailable:
               this.coreConfig.isRegion('EU') && !this.isMigrationInProgress,
           },

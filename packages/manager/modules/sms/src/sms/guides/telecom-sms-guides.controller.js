@@ -3,12 +3,17 @@ import has from 'lodash/has';
 import isString from 'lodash/isString';
 import snakeCase from 'lodash/snakeCase';
 
-import { Environment } from '@ovh-ux/manager-config';
-
 export default class {
   /* @ngInject */
-  constructor($translate, TucSmsMediator, TucToastError, SMS_GUIDES) {
+  constructor(
+    $translate,
+    coreConfig,
+    TucSmsMediator,
+    TucToastError,
+    SMS_GUIDES,
+  ) {
     this.$translate = $translate;
+    this.coreConfig = coreConfig;
     this.TucSmsMediator = TucSmsMediator;
     this.TucToastError = TucToastError;
     this.constant = { SMS_GUIDES };
@@ -26,7 +31,7 @@ export default class {
     return this.TucSmsMediator.initDeferred.promise
       .then(() => {
         this.guides = this.constant.SMS_GUIDES;
-        this.language = Environment.getUserLanguage();
+        this.language = this.coreConfig.getUserLanguage();
         this.injectTitleInUrl();
       })
       .catch((err) => {

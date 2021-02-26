@@ -1,6 +1,5 @@
 import get from 'lodash/get';
 import includes from 'lodash/includes';
-import { Environment } from '@ovh-ux/manager-config';
 
 export default class AccountUserContactsController {
   /* @ngInject */
@@ -13,6 +12,7 @@ export default class AccountUserContactsController {
     AccountCreationURLS,
     Alerter,
     atInternet,
+    coreConfig,
   ) {
     this.$location = $location;
     this.$q = $q;
@@ -22,6 +22,7 @@ export default class AccountUserContactsController {
     this.AccountCreationURLS = AccountCreationURLS;
     this.Alerter = Alerter;
     this.atInternet = atInternet;
+    this.coreConfig = coreConfig;
   }
 
   $onInit() {
@@ -55,7 +56,7 @@ export default class AccountUserContactsController {
       }
     };
 
-    this.user = Environment.getUser();
+    this.user = this.coreConfig.getUser();
     this.loaders.init = false;
   }
 

@@ -1,16 +1,15 @@
 import get from 'lodash/get';
 import isEqual from 'lodash/isEqual';
 
-import { Environment } from '@ovh-ux/manager-config';
-
 import { VM_ENCRYPTION_KMS } from '../../dedicatedCloud-security.constants';
 import config from '../../../../../config/config';
 
 export default class {
   /* @ngInject */
-  constructor($timeout, $translate, DedicatedCloud) {
+  constructor($timeout, $translate, coreConfig, DedicatedCloud) {
     this.$timeout = $timeout;
     this.$translate = $translate;
+    this.coreConfig = coreConfig;
     this.DedicatedCloud = DedicatedCloud;
 
     this.regex = {
@@ -36,7 +35,7 @@ export default class {
     };
 
     this.pollRequestPending = false;
-    const usedLanguage = Environment.getUserLocale();
+    const usedLanguage = this.coreConfig.getUserLocale();
     if (usedLanguage) {
       const frenchLanguages = ['fr_FR', 'fr_CA'];
       this.vmEncryptionGuide = frenchLanguages.includes(usedLanguage)

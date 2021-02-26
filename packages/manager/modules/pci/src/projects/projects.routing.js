@@ -1,5 +1,4 @@
 import map from 'lodash/map';
-import { Environment } from '@ovh-ux/manager-config';
 import { SupportLevel } from '@ovh-ux/manager-models';
 
 import Project from './Project.class';
@@ -70,8 +69,8 @@ export default /* @ngInject */ ($stateProvider) => {
           .then((hdsFeature) => hdsFeature.isFeatureAvailable(hdsId));
       },
 
-      isValidHdsSupportLevel: () => {
-        const { supportLevel } = Environment.getUser();
+      isValidHdsSupportLevel: /* @ngInject */ (coreConfig) => {
+        const { supportLevel } = coreConfig.getUser();
         const sl = new SupportLevel(supportLevel);
         return sl.isEnterprise() || sl.isBusiness();
       },

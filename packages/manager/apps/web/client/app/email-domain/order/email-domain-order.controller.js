@@ -1,7 +1,6 @@
 import find from 'lodash/find';
 import get from 'lodash/get';
 import includes from 'lodash/includes';
-import { Environment } from '@ovh-ux/manager-config';
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 
 export default class MXPlanOrderCtrl {
@@ -97,7 +96,7 @@ export default class MXPlanOrderCtrl {
         }
 
         this.orderTrackingLink =
-          Environment.getRegion() === 'EU'
+          this.coreConfig.getRegion() === 'EU'
             ? buildURL('dedicated', '#/billing/order/:orderId', {
                 orderId: order.orderId,
               })

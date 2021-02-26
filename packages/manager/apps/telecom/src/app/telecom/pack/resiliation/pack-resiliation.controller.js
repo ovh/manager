@@ -3,7 +3,6 @@ import map from 'lodash/map';
 import remove from 'lodash/remove';
 import set from 'lodash/set';
 import some from 'lodash/some';
-import { Environment } from '@ovh-ux/manager-config';
 
 export default /* @ngInject */ function PackResiliationCtrl(
   $stateParams,
@@ -18,6 +17,7 @@ export default /* @ngInject */ function PackResiliationCtrl(
   $q,
   TucPackMediator,
   resiliationNotification,
+  coreConfig,
 ) {
   const self = this;
   self.model = {
@@ -132,7 +132,7 @@ export default /* @ngInject */ function PackResiliationCtrl(
    */
   this.getCurrentCurrencySymbol = function getCurrentCurrencySymbol() {
     return $q
-      .when(Environment.getUser())
+      .when(coreConfig.getUser())
       .then((me) => (me && me.currency ? me.currency.symbol : ''));
   };
 

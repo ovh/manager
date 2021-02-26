@@ -90,7 +90,7 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
             .catch(() => false),
         hideBreadcrumb: /* @ngInject */ () => true,
       },
-      coreConfigProvider.region !== 'US'
+      !coreConfigProvider.isRegion('US')
         ? {
             activationLink: /* @ngInject */ ($state) =>
               $state.href('app.account.billing.autorenew.activation'),

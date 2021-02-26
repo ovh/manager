@@ -4,7 +4,7 @@ angular
   .module('App')
   .config(
     /* @ngInject */ ($stateProvider, coreConfigProvider) => {
-      if (coreConfigProvider.region !== 'US') {
+      if (!coreConfigProvider.isRegion('US')) {
         $stateProvider.state('app.dedicated-server.server.firewall', {
           url: '/firewall',
           views: {

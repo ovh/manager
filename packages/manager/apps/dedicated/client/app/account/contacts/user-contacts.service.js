@@ -1,6 +1,5 @@
 import set from 'lodash/set';
 import without from 'lodash/without';
-import { Environment } from '@ovh-ux/manager-config';
 
 import { AVAILABLE_SERVICES } from './user-contacts.constants';
 
@@ -9,6 +8,7 @@ export default /* @ngInject */ function UserAccountContactsService(
   $rootScope,
   OvhHttp,
   constants,
+  coreConfig,
   Poller,
 ) {
   const self = this;
@@ -25,7 +25,7 @@ export default /* @ngInject */ function UserAccountContactsService(
   self.excludeNics = [/^ovhtel-[0-9]+/];
 
   self.getMe = function getMe() {
-    return $q.when(Environment.getUser());
+    return $q.when(coreConfig.getUser());
   };
 
   self.getContactChangeTasks = function getContactChangeTasks(params) {

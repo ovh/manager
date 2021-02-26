@@ -1,7 +1,5 @@
 import { isString } from 'lodash-es';
 
-import { Environment } from '@ovh-ux/manager-config';
-
 export default class HubController {
   /* @ngInject */
   constructor(
@@ -10,6 +8,7 @@ export default class HubController {
     $scope,
     $state,
     $rootScope,
+    coreConfig,
     ovhFeatureFlipping,
   ) {
     this.$document = $document;
@@ -18,20 +17,21 @@ export default class HubController {
     this.$state = $state;
     this.$rootScope = $rootScope;
     this.chatbotEnabled = false;
+    this.coreConfig = coreConfig;
     this.ovhFeatureFlipping = ovhFeatureFlipping;
   }
 
   $onInit() {
     this.servicesImpactedWithIncident = [];
     this.navbarOptions = {
-      universe: Environment.getUniverse(),
+      universe: this.coreConfig.getUniverse(),
       version: 'beta',
       toggle: {
         event: 'sidebar:loaded',
       },
     };
-    this.currentLanguage = Environment.getUserLanguage();
-    this.user = Environment.getUser();
+    this.currentLanguage = this.coreConfig.getUserLanguage();
+    this.user = this.coreConfig.getUser();
     const unregisterListener = this.$scope.$on('app:started', () => {
       const CHATBOT_FEATURE = 'chatbot';
       this.ovhFeatureFlipping

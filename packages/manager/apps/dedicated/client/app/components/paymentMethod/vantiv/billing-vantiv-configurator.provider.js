@@ -1,12 +1,13 @@
 angular.module('services').provider(
   'BillingVantivConfigurator',
   class BillingVantivConfigurator {
+    /* @ngInject */
     constructor(coreConfigProvider) {
       this.coreConfig = coreConfigProvider;
     }
 
     setScriptUrl(url) {
-      if (this.coreConfig.getRegion() !== 'US') {
+      if (!this.coreConfig.isRegion('US')) {
         return;
       }
 

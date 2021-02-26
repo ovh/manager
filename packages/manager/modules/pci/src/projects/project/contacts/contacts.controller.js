@@ -1,5 +1,4 @@
 import indexOf from 'lodash/indexOf';
-import { Environment } from '@ovh-ux/manager-config';
 
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 
@@ -7,6 +6,7 @@ export default /* @ngInject */ function(
   $stateParams,
   $translate,
   $window,
+  coreConfig,
   CucCloudMessage,
   CucControllerHelper,
   guideUrl,
@@ -72,7 +72,7 @@ export default /* @ngInject */ function(
         self.model.billing = infos.contactBilling;
         self.contactFormData.billing = infos.contactBilling;
 
-        const me = Environment.getUser();
+        const me = coreConfig.getUser();
         if (me.nichandle === infos.contactAdmin) {
           self.model.isAdmin = true;
         }
@@ -95,7 +95,7 @@ export default /* @ngInject */ function(
    */
 
   self.canChangeContacts = function canChangeContacts() {
-    return Environment.getRegion() === 'EU';
+    return coreConfig.getRegion() === 'EU';
   };
 
   self.openContacts = function openContacts() {

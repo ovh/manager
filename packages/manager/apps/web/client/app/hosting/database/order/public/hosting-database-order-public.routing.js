@@ -1,4 +1,3 @@
-import { Environment } from '@ovh-ux/manager-config';
 import component from './hosting-database-order-public.component';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -39,9 +38,11 @@ export default /* @ngInject */ ($stateProvider) => {
           'success',
           'app.alerts.database',
         ),
-      user: () => Environment.getUser(),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('ovhManagerHostingDatabaseOrderPublic_title'),
+      serviceName: /* @ngInject */ ($transition$) =>
+        $transition$.params().productId,
+      user: /* @ngInject */ (coreConfig) => coreConfig.getUser(),
     },
   });
 };

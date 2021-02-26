@@ -1,13 +1,11 @@
-import { Environment } from '@ovh-ux/manager-config';
-
 import get from 'lodash/get';
 import has from 'lodash/has';
 import isEmpty from 'lodash/isEmpty';
 
 export default /* @ngInject */
-function userService($http, $q, constants, OvhHttp) {
+function userService($http, $q, constants, coreConfig, OvhHttp) {
   this.getUser = () => {
-    const user = Environment.getUser();
+    const user = coreConfig.getUser();
     const webUser = {
       nichandle: user.nichandle,
       email: user.email,

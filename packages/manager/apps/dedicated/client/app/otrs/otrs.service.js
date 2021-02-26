@@ -1,12 +1,12 @@
 import identity from 'lodash/identity';
 import pickBy from 'lodash/pickBy';
 import set from 'lodash/set';
-import { Environment } from '@ovh-ux/manager-config';
 
 export default /* @ngInject */ function OtrsOtrsService(
   $compile,
   $q,
   $rootScope,
+  coreConfig,
   OvhHttp,
 ) {
   const self = this;
@@ -38,7 +38,7 @@ export default /* @ngInject */ function OtrsOtrsService(
   };
 
   this.getMe = function getMe() {
-    return $q.when(Environment.getUser());
+    return $q.when(coreConfig.getUser());
   };
 
   this.isVIP = function isVIP() {

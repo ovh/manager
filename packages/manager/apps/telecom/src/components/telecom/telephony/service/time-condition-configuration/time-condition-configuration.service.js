@@ -1,16 +1,15 @@
-import { Environment } from '@ovh-ux/manager-config';
-
 export default class voipTimeConditionConfiguration {
   /* @ngInject */
-  constructor($http, $q, $timeout, OvhApiMe) {
+  constructor($http, $q, $timeout, coreConfig, OvhApiMe) {
     this.$http = $http;
     this.$q = $q;
     this.$timeout = $timeout;
+    this.coreConfig = coreConfig;
     this.OvhApiMe = OvhApiMe;
   }
 
   exportConfiguration(data) {
-    return this.$q.when(Environment.getUser()).then((me) => {
+    return this.$q.when(this.coreConfig.getUser()).then((me) => {
       const fileName = `${me.nichandle}_${moment().format(
         'YYYY_MM_DD_HHmmss_SSS',
       )}.json`;
