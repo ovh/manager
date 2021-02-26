@@ -5,6 +5,10 @@ export default class OvhPaymentMethodProvider {
     this.paymentMethodPageUrl = pageUrl;
   }
 
+  setUserLocale(userLocale) {
+    this.userLocale = userLocale;
+  }
+
   /* @ngInject */
   $get($log, $q, $translate, $window, coreConfig, OvhApiMe) {
     return new OvhPaymentMethodService(
@@ -15,6 +19,7 @@ export default class OvhPaymentMethodProvider {
       coreConfig,
       OvhApiMe,
       this.paymentMethodPageUrl,
+      this.userLocale,
     );
   }
 }
