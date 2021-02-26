@@ -3,9 +3,9 @@ import template from 'lodash/template';
 
 export default class PciProjectNewConfigCtrl {
   /* @ngInject */
-  constructor($q, orderCart, pciProjectNew) {
+  constructor($q, OrderCartService, pciProjectNew) {
     this.$q = $q;
-    this.orderCart = orderCart;
+    this.orderCart = OrderCartService;
     this.pciProjectNew = pciProjectNew;
   }
 

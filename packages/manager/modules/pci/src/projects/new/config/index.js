@@ -4,6 +4,7 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
 import '@ovh-ux/ng-ovh-contracts';
+import ovhManagerOrder from '@ovh-ux/manager-order';
 
 import routing from './routing';
 import component from './component';
@@ -20,6 +21,7 @@ angular
     'pascalprecht.translate',
     'ngOvhContracts',
     components,
+    ovhManagerOrder,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)

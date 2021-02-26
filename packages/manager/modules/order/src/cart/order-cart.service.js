@@ -13,6 +13,18 @@ export default class OrderCartService {
   }
 
   /**
+   * Gets the cart by cartId
+   *
+   * @param  {string} cartId        The cart Id
+   * @return {Promise<Object>}      Promise of the cart
+   */
+  getCart(cartId) {
+    return this.OvhApiOrder.Cart()
+      .v6()
+      .get({ cartId }).$promise;
+  }
+
+  /**
    * Will create a new cart for the user
    *
    * @param  {string} ovhSubsidiary OVHcloud Subsidiary in order to propose
@@ -86,6 +98,32 @@ export default class OrderCartService {
         },
         product,
       ).$promise;
+  }
+
+  /**
+   * Add an option to the cloud project
+   *
+   * @param  {string} cartId       Identification number of the cart
+   * @param  {string} option       The new option
+   * @return {Promise<Object>}     Promise of the new added option
+   */
+  addNewOptionToProject(cartId, option) {
+    return this.$http
+      .post(`/order/cart/${cartId}/cloud/options `, option)
+      .then(({ data: item }) => item);
+  }
+
+  /**
+   * Add a cloud option to cart
+   *
+   * @param  {string} serviceName  The cloud project id
+   * @param  {string} option       The new option
+   * @return {Promise<Object>}     Promise of the new added option
+   */
+  addOptionToCart(serviceName, option) {
+    return this.$http
+      .post(`/order/cartServiceOption/cloud/${serviceName}`, option)
+      .then(({ data }) => data);
   }
 
   /**

@@ -2,11 +2,17 @@ import { MESSAGES_CONTAINER_NAME } from '../edit.constant';
 
 export default class ProjectHdsController {
   /* @ngInject */
-  constructor($translate, $timeout, atInternet, orderCart, CucCloudMessage) {
+  constructor(
+    $translate,
+    $timeout,
+    atInternet,
+    OrderCartService,
+    CucCloudMessage,
+  ) {
     this.$translate = $translate;
     this.$timeout = $timeout;
     this.atInternet = atInternet;
-    this.orderCart = orderCart;
+    this.orderCart = OrderCartService;
     this.CucCloudMessage = CucCloudMessage;
 
     this.isCheckout = false;
@@ -59,8 +65,7 @@ export default class ProjectHdsController {
     this.sendTracking();
 
     this.isCheckout = true;
-    return this.orderCart
-      .checkoutCart(this.cart.cartId)
+    return this.OrderCartService.checkoutCart(this.cart.cartId)
       .then(() => {
         this.hds.isCertifiedProject = true;
         return this.$timeout().then(() =>

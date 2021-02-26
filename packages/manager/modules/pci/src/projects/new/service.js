@@ -8,8 +8,8 @@ import { PCI_PROJECT_ORDER_CART } from './constants';
 
 export default class PciProjectNewService {
   /* @ngInject */
-  constructor(orderCart, OvhApiCloud, OvhApiOrder) {
-    this.orderCart = orderCart;
+  constructor(OrderCartService, OvhApiCloud, OvhApiOrder) {
+    this.orderCart = OrderCartService;
     this.OvhApiCloud = OvhApiCloud;
     this.OvhApiOrder = OvhApiOrder;
   }

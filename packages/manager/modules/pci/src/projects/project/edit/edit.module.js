@@ -12,7 +12,6 @@ import hds from './hds';
 
 import component from './edit.component';
 import routing from './edit.routing';
-import orderCart from '../../order-cart.service';
 
 const moduleName = 'ovhManagerPciProjectEdit';
 
@@ -28,7 +27,6 @@ angular
   ])
   .config(routing)
   .component('pciProjectEdit', component)
-  .run(/* @ngTranslationsInject:json ./translations */)
-  .service('orderCart', orderCart);
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

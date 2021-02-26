@@ -18,15 +18,14 @@ export default /* @ngInject */ ($stateProvider) => {
       cart: /* @ngInject */ (
         $transition$,
         prepareCart,
-        project,
-        orderCart,
+        OrderCartService,
         hds,
       ) => {
         if (hds.option && !hds.isCertifiedProject && hds.isValidSupportLevel) {
           return $transition$.params().cartId
-            ? orderCart
-                .getCart($transition$.params().cartId)
-                .catch(() => prepareCart())
+            ? OrderCartService.getCart($transition$.params().cartId).catch(() =>
+                prepareCart(),
+              )
             : prepareCart();
         }
 
@@ -121,35 +120,37 @@ export default /* @ngInject */ ($stateProvider) => {
       prepareCart: /* @ngInject */ (
         coreConfig,
         project,
-        orderCart,
+        OrderCartService,
         hds,
       ) => () => {
         const { ovhSubsidiary } = coreConfig.getUser();
-        return orderCart
-          .createNewCart(ovhSubsidiary, hds.option.planCode)
-          .then((cart) => orderCart.assignCart(cart.cartId).then(() => cart))
+        return OrderCartService.createNewCart(
+          ovhSubsidiary,
+          hds.option.planCode,
+        )
+          .then((cart) =>
+            OrderCartService.assignCart(cart.cartId).then(() => cart),
+          )
           .then((cart) => {
             const priceMode = hds.option.prices.find(({ capacities }) =>
               capacities.includes('renew'),
             );
 
-            return orderCart
-              .addOptionToCart(project.project_id, {
-                cartId: cart.cartId,
-                duration: priceMode.duration,
-                planCode: hds.option.planCode,
-                pricingMode: priceMode.pricingMode,
-                quantity: 1,
-              })
-              .then(() => cart);
+            return OrderCartService.addOptionToCart(project.project_id, {
+              cartId: cart.cartId,
+              duration: priceMode.duration,
+              planCode: hds.option.planCode,
+              pricingMode: priceMode.pricingMode,
+              quantity: 1,
+            }).then(() => cart);
           });
       },
 
       setDefault: /* @ngInject */ (PciProjectsService) => (projectId) =>
         PciProjectsService.setAsDefaultProject(projectId),
 
-      summary: /* @ngInject */ (cart, orderCart) =>
-        cart ? orderCart.getSummary(cart.cartId) : null,
+      summary: /* @ngInject */ (cart, OrderCartService) =>
+        cart ? OrderCartService.getSummary(cart.cartId) : null,
 
       unFavProject: /* @ngInject */ (PciProjectsService) => () =>
         PciProjectsService.removeDefaultProject(),

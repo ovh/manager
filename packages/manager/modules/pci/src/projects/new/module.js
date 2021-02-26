@@ -1,8 +1,9 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
 import 'ovh-api-services';
-import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
+import '@ovh-ux/ng-translate-async-loader';
+import ovhManagerOrder from '@ovh-ux/manager-order';
 
 import components from './components';
 import config from './config';
@@ -11,8 +12,6 @@ import payment from './payment';
 import routing from './routing';
 import component from './component';
 import service from './service';
-
-import orderCart from '../order-cart.service'; // TODO remove it
 
 import './index.scss';
 
@@ -26,12 +25,12 @@ angular
     'pascalprecht.translate',
     components,
     config,
+    ovhManagerOrder,
     payment,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)
   .component(component.name, component)
-  .service('pciProjectNew', service)
-  .service('orderCart', orderCart);
+  .service('pciProjectNew', service);
 
 export default moduleName;

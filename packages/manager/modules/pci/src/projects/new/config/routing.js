@@ -50,20 +50,21 @@ export default /* @ngInject */ ($stateProvider) => {
         };
       },
 
-      hdsAddonOption: /* @ngInject */ (orderCart, cart) =>
-        orderCart.getHdsAddon(
+      hdsAddonOption: /* @ngInject */ (OrderCartService, cart) =>
+        OrderCartService.getProductOptions(
           cart.cartId,
           PCI_PROJECT_ORDER_CART.productName,
           PCI_PROJECT_ORDER_CART.planCode,
-          PCI_HDS_ADDON.planCode,
+        ).then((addons) =>
+          addons.find((addon) => addon.planCode === PCI_HDS_ADDON.planCode),
         ),
 
       step: /* @ngInject */ (getStep) => getStep('configuration'),
 
-      summary: /* @ngInject */ (cart, getSummary) => getSummary(),
+      summary: /* @ngInject */ (getSummary) => getSummary(),
 
-      getSummary: /* @ngInject */ (cart, orderCart) => () =>
-        orderCart.getSummary(cart.cartId),
+      getSummary: /* @ngInject */ (cart, OrderCartService) => () =>
+        OrderCartService.getSummary(cart.cartId),
 
       trackClick: /* @ngInject */ (atInternet) => (hit) => {
         atInternet.trackClick({
