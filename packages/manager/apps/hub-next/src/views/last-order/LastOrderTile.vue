@@ -31,29 +31,29 @@
 
 <script lang="ts">
 import { ERROR_STATUS, WAITING_PAYMENT_LABEL } from '@/constants/order-tracking_consts';
-import { computed, defineAsyncComponent, defineComponent, ref } from 'vue';
+import { computed, defineAsyncComponent, defineComponent } from 'vue';
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import { useI18n } from 'vue-i18n';
 import axios from 'axios';
 import useLoadTranslations from '@/composables/useLoadTranslations';
+import { HubResponse, LastOrder } from '@/models/hub';
 
 export default defineComponent({
   async setup() {
     const { t, d, locale } = useI18n();
     const translationFolders = ['order-tracking', 'ovh-order-tracking'];
     await useLoadTranslations(translationFolders);
-    const lastOrderResponse = await axios.get('/engine/2api/hub/lastOrder');
-    const lastOrder = ref(lastOrderResponse.data.data.lastOrder.data);
-    const orderStatus = await axios.get(
-      `/engine/apiv6/me/order/${lastOrder.value?.orderId}/status`,
-    );
-    const orderStatusData = ref(orderStatus.data);
+
+    const lastOrderResponse = await axios.get<HubResponse>('/engine/2api/hub/lastOrder');
+    const lastOrder: LastOrder = lastOrderResponse.data.data.lastOrder.data;
+    const orderStatus = await axios.get(`/engine/apiv6/me/order/${lastOrder?.orderId}/status`);
+    const orderStatusData = orderStatus.data;
     const status = computed(() =>
-      orderStatusData.value === 'delivered' ? 'INVOICE_IN_PROGRESS' : 'custom_creation',
+      orderStatusData === 'delivered' ? 'INVOICE_IN_PROGRESS' : 'custom_creation',
     );
     // // TODO: this is not correct, needs to fetch some other data from order url
     // // we should use buildURL, for now this will always return false
-    const isWaitingPayment = computed(() => orderStatusData.value === WAITING_PAYMENT_LABEL);
+    const isWaitingPayment = computed(() => orderStatusData === WAITING_PAYMENT_LABEL);
     const formattedLocale = computed(() => locale.value.replace('_', '-'));
 
     return {

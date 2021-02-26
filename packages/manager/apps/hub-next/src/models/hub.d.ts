@@ -14,7 +14,7 @@ export interface HubResponseData {
   debt: StatusObject<Debt>;
   lastOrder: StatusObject<LastOrder>;
   me: StatusObject<User>;
-  notifications: StatusObject<OvhNotification>;
+  notifications: StatusObject<OvhNotification[]>;
   paymentMethods: StatusObject<{}>;
   services: StatusObject<Services>;
   support: StatusObject<SupportObject>;

@@ -11,13 +11,13 @@
 </template>
 
 <script lang="ts">
-import { defineAsyncComponent, defineComponent, Ref, ref } from 'vue';
+import { defineAsyncComponent, defineComponent } from 'vue';
 import axios from 'axios';
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import Badge from '@/components/ui/Badge';
 import Dropdown from '@/components/ui/Dropdown.vue';
 import BillingServiceClass from '@/models/classes/BillingService.class';
-import { BillingService, BillingServicesObject } from '@/models/hub.d';
+import { BillingService, BillingServicesObject, HubResponse } from '@/models/hub.d';
 import { useI18n } from 'vue-i18n';
 import useLoadTranslations from '@/composables/useLoadTranslations';
 
@@ -28,9 +28,8 @@ export default defineComponent({
     const { t, locale, d } = useI18n();
     const translationFolders = ['products', 'payment-status-tile', 'billing'];
     await useLoadTranslations(translationFolders);
-    const billingServices: Ref<BillingServicesObject> = ref({} as BillingServicesObject);
-    const response = await axios.get('/engine/2api/hub/billingServices');
-    billingServices.value = response.data.data.billingServices.data;
+    const response = await axios.get<HubResponse>('/engine/2api/hub/billingServices');
+    const billingServices: BillingServicesObject = response.data.data.billingServices.data;
 
     return {
       t,

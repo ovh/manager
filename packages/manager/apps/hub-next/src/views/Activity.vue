@@ -42,7 +42,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { computed, defineComponent } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
 import { Environment } from '@ovh-ux/manager-config';
@@ -59,7 +59,7 @@ export default defineComponent({
   setup() {
     const { t, d, locale } = useI18n();
     const router = useRouter();
-    const userLanguage = ref(Environment.getUserLanguage());
+    const userLanguage = computed(() => Environment.getUserLanguage());
 
     return {
       t,

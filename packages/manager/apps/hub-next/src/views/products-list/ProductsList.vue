@@ -45,11 +45,11 @@
 </template>
 
 <script lang="ts">
-import { defineAsyncComponent, defineComponent, ref } from 'vue';
+import { defineAsyncComponent, defineComponent } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { PRODUCTS_TO_SHOW_DEFAULT } from '@/constants/products_consts';
 import axios from 'axios';
-import { Services } from '@/models/hub.d';
+import { HubResponse, Services } from '@/models/hub.d';
 import useLoadTranslations from '@/composables/useLoadTranslations';
 
 export default defineComponent({
@@ -57,9 +57,9 @@ export default defineComponent({
     const { t } = useI18n();
     const translationFolders = ['products'];
     await useLoadTranslations(translationFolders);
-    const services = ref({} as Services);
-    const servicesResponse = await axios.get('/engine/2api/hub/services');
-    services.value = servicesResponse.data.data.services.data;
+
+    const servicesResponse = await axios.get<HubResponse>('/engine/2api/hub/services');
+    const services: Services = servicesResponse.data.data.services.data;
 
     return {
       t,

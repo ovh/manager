@@ -13,7 +13,7 @@
 <script>
 import { defineAsyncComponent, defineComponent, inject, ref } from 'vue';
 import axios from 'axios';
-import parseISO from 'date-fns/parseISO';
+import { parseISO } from 'date-fns';
 import { useRoute } from 'vue-router';
 
 export default defineComponent({

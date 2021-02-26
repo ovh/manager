@@ -6,22 +6,6 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
-    meta: {
-      relatedTranslations: [
-        'preload-welcome',
-        'products',
-        'payment-status-tile',
-        'order-tracking',
-        'enterprise-billing-summary',
-        'catalog-items',
-        'carousel',
-        'billing',
-        'billing-summary',
-        'support',
-        'welcome',
-        'ovh-order-tracking',
-      ],
-    },
   },
   {
     path: '/product-details',

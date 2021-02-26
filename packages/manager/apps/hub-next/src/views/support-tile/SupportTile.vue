@@ -20,10 +20,10 @@
 </template>
 
 <script lang="ts">
-import { defineAsyncComponent, defineComponent, ref } from 'vue';
+import { computed, defineAsyncComponent, defineComponent } from 'vue';
 import axios from 'axios';
 import { useI18n } from 'vue-i18n';
-import { SupportDemand } from '@/models/hub.d';
+import { HubResponse, SupportDemand, SupportObject } from '@/models/hub.d';
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import { Environment } from '@ovh-ux/manager-config';
 import Badge from '@/components/ui/Badge';
@@ -34,9 +34,9 @@ export default defineComponent({
     const { t } = useI18n();
     const translationFolders = ['support'];
     await useLoadTranslations(translationFolders);
-    const userLanguage = ref(Environment.getUserLanguage());
-    const supportResponse = await axios.get('/engine/2api/hub/support');
-    const support = ref(supportResponse.data.data.support.data);
+    const userLanguage = computed(() => Environment.getUserLanguage());
+    const supportResponse = await axios.get<HubResponse>('/engine/2api/hub/support');
+    const support: SupportObject = supportResponse.data.data.support.data;
 
     return {
       t,
@@ -49,7 +49,7 @@ export default defineComponent({
     DataTable: defineAsyncComponent(() => import('@/components/ui/DataTable.vue')),
   },
   computed: {
-    supportCellValues(): [] {
+    supportCellValues(): Array<any> {
       return this.support.data.map((ticket: SupportDemand) => [
         [
           {

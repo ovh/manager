@@ -1,7 +1,6 @@
 <template>
   <div class="container-fluid hub-main-view_container">
     <div class="breadcrumbs">
-      <!-- TODO: Convert this to breadcrumbs -->
       <div v-if="showNavigation">
         <router-link to="/"> {{ t('manager_hub_dashboard') }} </router-link> /
         <router-link to="/product-details"> {{ productRangeName }} </router-link>

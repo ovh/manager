@@ -1,8 +1,5 @@
-import includes from 'lodash-es/includes';
-import snakeCase from 'lodash-es/snakeCase';
-import parseISO from 'date-fns/parseISO';
-import format from 'date-fns/format';
-import compareAsc from 'date-fns/compareAsc';
+import { includes, snakeCase } from 'lodash-es';
+import { parseISO, format, compareAsc } from 'date-fns';
 import { BillingService, Renew } from '@/models/hub.d';
 
 import { DEBT_STATUS } from '@/constants/billing-services_consts';

@@ -33,7 +33,7 @@
 <script lang="ts">
 import { defineAsyncComponent, defineComponent, Ref, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { OvhNotification, User } from '@/models/hub.d';
+import { HubResponse, OvhNotification, User } from '@/models/hub.d';
 import { PRODUCTS_TO_SHOW_DEFAULT } from '@/constants/products_consts';
 import Activity from '@/views/Activity.vue';
 import ProductsListSkeleton from '@/views/products-list/ProductsListSkeleton.vue';
@@ -43,17 +43,15 @@ import useLoadTranslations from '@/composables/useLoadTranslations';
 export default defineComponent({
   async setup() {
     const { locale, t, fallbackLocale } = useI18n();
-    const notifications = ref();
-    const user: Ref<User> = ref({} as User);
-
+    const notifications: Ref<OvhNotification[]> = ref([] as OvhNotification[]);
     const translationFolders = ['welcome'];
-    axios.get('/engine/2api/hub/notifications').then((response) => {
+    axios.get<HubResponse>('/engine/2api/hub/notifications').then((response) => {
       notifications.value = response.data.data.notifications.data;
     });
 
     await useLoadTranslations(translationFolders);
-    const userReponse = await axios.get('/engine/2api/hub/me');
-    user.value = userReponse.data.data.me.data;
+    const userReponse = await axios.get<HubResponse>('/engine/2api/hub/me');
+    const user: User = userReponse.data.data.me.data;
 
     return {
       t,
@@ -71,16 +69,16 @@ export default defineComponent({
   },
   components: {
     HubSection: defineAsyncComponent(() => import('@/components/HubSection.vue')),
-    Activity,
     ProductsList: defineAsyncComponent(() => import('@/views/products-list/ProductsList.vue')),
     Carousel: defineAsyncComponent(() => import('@/components/ui/Carousel.vue')),
+    Activity,
     ProductsListSkeleton,
   },
   computed: {
     welcomeMessage(): string {
       return this.t('manager_hub_dashboard_welcome', { name: this.user?.firstname });
     },
-    warningNotifications(): OvhNotification[] {
+    warningNotifications(): string[] {
       return Array.isArray(this.notifications)
         ? this.notifications
             .filter((notification: OvhNotification) => notification.level === 'warning')

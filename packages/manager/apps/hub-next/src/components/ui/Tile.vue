@@ -1,7 +1,7 @@
 <template>
   <div class="tile">
     <div :class="isShadowed ? 'oui-tile' : ''">
-      <div class="ovh-manager-hub-tile__header" v-if="title">
+      <div v-if="title" class="ovh-manager-hub-tile__header">
         <h3 class="oui-tile__title" :class="link ? 'space-between' : ''">
           <span :style="`color:${textColor}`">
             {{ title }}
