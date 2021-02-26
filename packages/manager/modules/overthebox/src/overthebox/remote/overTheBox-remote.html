@@ -158,26 +158,22 @@
                                     class="col-md-8 service-item"
                                     data-ng-show="remote.connectionInfos.ip"
                                 >
+                                    <pre
+                                        data-ng-if="remote.exposedPort===22"
+                                        data-ng-bind="$ctrl.constructor.getSshConnectionHelp(remote)"
+                                    ></pre>
+                                    <a
+                                        data-ng-if="remote.exposedPort===443"
+                                        href="{{$ctrl.constructor.getHttpConnectionHelp(remote)}}"
+                                        target="_blank"
+                                        data-ng-bind="$ctrl.constructor.getHttpConnectionHelp(remote)"
+                                    ></a>
                                     <span
                                         data-ng-if="(remote.exposedPort!==443) && (remote.exposedPort!==22)"
                                     >
-                                        <pre
-                                            data-ng-if="remote.exposedPort===22"
-                                            data-ng-bind="$ctrl.constructor.getSshConnectionHelp(remote)"
-                                        ></pre>
-                                        <a
-                                            data-ng-if="remote.exposedPort===443"
-                                            href="{{$ctrl.constructor.getHttpConnectionHelp(remote)}}"
-                                            target="_blank"
-                                            data-ng-bind="$ctrl.constructor.getHttpConnectionHelp(remote)"
-                                        ></a>
-                                        <span
-                                            data-ng-if="(remote.exposedPort!==443) && (remote.exposedPort!==22)"
-                                        >
-                                            {{remote.connectionInfos.ip}}
-                                            <strong>/</strong>
-                                            {{remote.connectionInfos.port}}
-                                        </span>
+                                        {{remote.connectionInfos.ip}}
+                                        <strong>/</strong>
+                                        {{remote.connectionInfos.port}}
                                     </span>
                                 </div>
                             </div>
