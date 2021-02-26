@@ -1,5 +1,3 @@
-import { Environment } from '@ovh-ux/manager-config';
-
 angular.module('App').config(($stateProvider) => {
   $stateProvider.state('app', {
     abstract: true,
@@ -12,7 +10,7 @@ angular.module('App').config(($stateProvider) => {
       isEmailDomainAvailable: /* @ngInject */ (coreConfig) =>
         coreConfig.isRegion('EU'),
       rootState: () => 'app.configuration',
-      user: () => Environment.getUser(),
+      user: /* @ngInject */ (coreConfig) => coreConfig.getUser(),
     },
   });
 

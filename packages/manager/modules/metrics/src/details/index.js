@@ -10,8 +10,6 @@ import 'angular-translate';
 import 'angular-ui-bootstrap';
 import 'ovh-api-services';
 
-import { Environment } from '@ovh-ux/manager-config';
-
 import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
 import ngOvhCloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-components';
 
@@ -45,8 +43,8 @@ angular
   ])
   .config(routing)
   .config(
-    /* @ngInject */ ($qProvider, ovhDocUrlProvider) => {
-      ovhDocUrlProvider.setUserLocale(Environment.getUserLocale());
+    /* @ngInject */ ($qProvider, coreConfigProvider, ovhDocUrlProvider) => {
+      ovhDocUrlProvider.setUserLocale(coreConfigProvider.getUserLocale());
       $qProvider.errorOnUnhandledRejections(false);
     },
   )

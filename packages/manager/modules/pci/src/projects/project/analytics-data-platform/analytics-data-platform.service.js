@@ -3,7 +3,6 @@ import forEach from 'lodash/forEach';
 import get from 'lodash/get';
 import map from 'lodash/map';
 import set from 'lodash/set';
-import { Environment } from '@ovh-ux/manager-config';
 import {
   ANALYTICS_DATA_PLATFORM_STATUS,
   ANALYTICS_DATA_PLATFORM_CLOUD_CATALOG_NAME,
@@ -15,6 +14,7 @@ export default class AnalyticsDataPlatformService {
   constructor(
     $q,
     $translate,
+    coreConfig,
     OvhApiAnalytics,
     OvhApiCloudProject,
     OvhApiMe,
@@ -25,6 +25,7 @@ export default class AnalyticsDataPlatformService {
   ) {
     this.$q = $q;
     this.$translate = $translate;
+    this.coreConfig = coreConfig;
     this.OvhApiAnalyticsPlatforms = OvhApiAnalytics.Platforms().v6();
     this.OvhApiAnalyticsPlatformsNode = OvhApiAnalytics.Platforms()
       .Node()
@@ -187,7 +188,7 @@ export default class AnalyticsDataPlatformService {
    * @memberof AnalyticsDataPlatformService
    */
   getAccountDetails() {
-    return this.$q.when(Environment.getUser());
+    return this.$q.when(this.coreConfig.getUser());
   }
 
   /**

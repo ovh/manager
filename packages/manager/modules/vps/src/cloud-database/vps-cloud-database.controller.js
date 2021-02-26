@@ -8,7 +8,6 @@ import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-import { Environment } from '@ovh-ux/manager-config';
 
 export default class {
   /* @ngInject */
@@ -196,7 +195,7 @@ export default class {
   goToCloudDatabase(database) {
     const { serviceName } = database;
     this.$window.open(
-      Environment.getRegion() === 'EU'
+      this.coreConfig.isRegion('EU')
         ? buildURL('web', '#/configuration/private_database/:serviceName', {
             serviceName,
           })

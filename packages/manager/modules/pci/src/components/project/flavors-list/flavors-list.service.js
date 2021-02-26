@@ -7,7 +7,6 @@ import map from 'lodash/map';
 import mapValues from 'lodash/mapValues';
 import omit from 'lodash/omit';
 import some from 'lodash/some';
-import { Environment } from '@ovh-ux/manager-config';
 
 import Flavor from './flavor.class';
 import FlavorGroup from './flavor-group.class';
@@ -22,11 +21,13 @@ export default class FlavorsList {
   /* @ngInject */
   constructor(
     $q,
+    coreConfig,
     CucPriceHelper,
     OvhApiCloudProjectFlavor,
     OvhApiOrderCatalogPublic,
   ) {
     this.$q = $q;
+    this.coreConfig = coreConfig;
     this.CucPriceHelper = CucPriceHelper;
     this.OvhApiCloudProjectFlavor = OvhApiCloudProjectFlavor;
     this.OvhApiOrderCatalogPublic = OvhApiOrderCatalogPublic;
@@ -42,7 +43,7 @@ export default class FlavorsList {
         prices: this.CucPriceHelper.getPrices(serviceName),
         catalog: this.OvhApiOrderCatalogPublic.v6().get({
           productName: 'cloud',
-          ovhSubsidiary: Environment.getUser().ovhSubsidiary,
+          ovhSubsidiary: this.coreConfig.getUser().ovhSubsidiary,
         }).$promise,
       })
       .then(({ flavors, prices, catalog }) =>

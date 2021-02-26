@@ -1,18 +1,18 @@
-import { Environment } from '@ovh-ux/manager-config';
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import isEmpty from 'lodash/isEmpty';
 
 export default class ManagerHubShortcutsCtrl {
   /* @ngInject */
-  constructor($http, $translate, $q) {
+  constructor($http, $translate, $q, coreConfig) {
     this.$http = $http;
     this.$translate = $translate;
     this.$q = $q;
+    this.coreConfig = coreConfig;
   }
 
   $onInit() {
     const shortcuts = [
-      ...(['EU', 'CA'].includes(Environment.getRegion())
+      ...(this.coreConfig.isRegion(['EU', 'CA'])
         ? [
             {
               id: 'services',
@@ -30,7 +30,7 @@ export default class ManagerHubShortcutsCtrl {
           : buildURL('dedicated', '#/billing/history'),
         tracking: 'hub::sidebar::shortcuts::go-to-bills',
       },
-      ...(['EU', 'CA'].includes(Environment.getRegion())
+      ...(this.coreConfig.isRegion(['EU', 'CA'])
         ? [
             {
               id: 'supportLevel',
@@ -46,7 +46,7 @@ export default class ManagerHubShortcutsCtrl {
         tracking: 'hub::sidebar::shortcuts::go-to-catalog',
         url: buildURL('hub', '#/catalog'),
       },
-      ...(['EU', 'CA'].includes(Environment.getRegion())
+      ...(this.coreConfig.isRegion(['EU', 'CA'])
         ? [
             {
               id: 'emails',
@@ -56,7 +56,7 @@ export default class ManagerHubShortcutsCtrl {
             },
           ]
         : []),
-      ...(Environment.getRegion() === 'EU'
+      ...(this.coreConfig.isRegion('EU')
         ? [
             {
               id: 'contacts',

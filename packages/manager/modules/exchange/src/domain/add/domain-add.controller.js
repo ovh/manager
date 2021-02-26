@@ -6,7 +6,6 @@ import head from 'lodash/head';
 import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
 
-import { Environment } from '@ovh-ux/manager-config';
 import punycode from 'punycode';
 import { DOMAIN_ORDER_URL } from './domain.constants';
 
@@ -17,6 +16,7 @@ export default class ExchangeAddDomainController {
     $scope,
     wucExchange,
     ExchangeDomains,
+    coreConfig,
     messaging,
     navigation,
     ovhUserPref,
@@ -31,6 +31,7 @@ export default class ExchangeAddDomainController {
       $scope,
       wucExchange,
       ExchangeDomains,
+      coreConfig,
       messaging,
       navigation,
       ovhUserPref,
@@ -44,7 +45,7 @@ export default class ExchangeAddDomainController {
     this.NON_OVH_DOMAIN = 'non-ovh-domain';
     this.exchange = wucExchange.value;
     this.DOMAIN_ORDER_URL =
-      DOMAIN_ORDER_URL[Environment.getUser().ovhSubsidiary] ||
+      DOMAIN_ORDER_URL[coreConfig.getUser().ovhSubsidiary] ||
       DOMAIN_ORDER_URL.FR;
 
     this.debouncedResetName = debounce(this.search, 300);
@@ -161,14 +162,12 @@ export default class ExchangeAddDomainController {
     delete this.model.displayName;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   getDefaultLanguage() {
-    return Environment.getUserLocale();
+    return this.services.coreConfig.getUserLocale();
   }
 
-  // eslint-disable-next-line class-methods-use-this
   isFrenchLanguage() {
-    return Environment.getUserLanguage() === 'fr';
+    return this.services.coreConfig.getUserLanguage() === 'fr';
   }
 
   loadDomainData() {

@@ -12,7 +12,6 @@
   "author": "OVH SAS",
   "main": "./src/index.js",
   "dependencies": {
-    "@ovh-ux/manager-config": "^4.0.0 || ^5.0.0",
     "lodash": "^4.17.20",
     "oclazyload": "^1.1.0"
   },

@@ -1,4 +1,3 @@
-import { Environment } from '@ovh-ux/manager-config';
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 
 import get from 'lodash/get';
@@ -25,7 +24,7 @@ export default class {
     this.subsidiary = null;
 
     return this.$q
-      .when(Environment.getUser())
+      .when(this.coreConfig.getUser())
       .then(({ ovhSubsidiary }) => {
         this.subsidiary = ovhSubsidiary;
         this.orderUrl = `${RENEW_URL[this.coreConfig.getRegion()]}${
@@ -38,7 +37,7 @@ export default class {
   }
 
   getCancelTerminationUrl() {
-    if (['EU', 'CA'].includes(Environment.getRegion())) {
+    if (['EU', 'CA'].includes(this.coreConfig.getRegion())) {
       const params = {
         searchText: this.serviceName,
       };

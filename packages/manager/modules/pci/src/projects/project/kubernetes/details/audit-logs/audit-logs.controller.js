@@ -1,13 +1,12 @@
-import { Environment } from '@ovh-ux/manager-config';
 import { HTTP_STATUS, LOGS_INFO } from './audit-logs.constant';
 
 export default class KubernetesLogsCtrl {
   /* @ngInject */
-  constructor($translate, $http, TailLogs) {
+  constructor($translate, $http, coreConfig, TailLogs) {
     this.$translate = $translate;
     this.$http = $http;
     this.TailLogs = TailLogs;
-    this.user = Environment.getUser();
+    this.user = coreConfig.getUser();
   }
 
   $onInit() {

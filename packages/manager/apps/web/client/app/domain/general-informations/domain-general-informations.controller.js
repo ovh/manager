@@ -1,5 +1,4 @@
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-import { Environment } from '@ovh-ux/manager-config';
 import find from 'lodash/find';
 import flattenDeep from 'lodash/flattenDeep';
 import forEach from 'lodash/forEach';
@@ -32,6 +31,7 @@ export default class DomainTabGeneralInformationsCtrl {
     $translate,
     Alerter,
     constants,
+    coreConfig,
     dnsAvailableOptions,
     Domain,
     emailObfuscationLink,
@@ -67,6 +67,7 @@ export default class DomainTabGeneralInformationsCtrl {
     this.OvhApiScreenshot = OvhApiScreenshot.Aapi();
     this.WucUser = WucUser;
     this.constants = constants;
+    this.coreConfig = coreConfig;
     this.DOMAIN = DOMAIN;
     this.goToDnsAnycast = goToDnsAnycast;
   }
@@ -185,7 +186,7 @@ export default class DomainTabGeneralInformationsCtrl {
 
   initActions() {
     const contactManagementUrl =
-      Environment.getRegion() === 'EU'
+      this.coreConfig.getRegion() === 'EU'
         ? buildURL('dedicated', '#/contacts/services', {
             serviceName: this.domain.name,
             category: PRODUCT_TYPE,

@@ -2,7 +2,6 @@ import find from 'lodash/find';
 import flatten from 'lodash/flatten';
 import get from 'lodash/get';
 import keys from 'lodash/keys';
-import { Environment } from '@ovh-ux/manager-config';
 
 import {
   DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS,
@@ -20,6 +19,7 @@ class DedicatedCloudDatacenterDrpService {
   constructor(
     $http,
     $q,
+    coreConfig,
     OvhApiDedicatedCloud,
     OvhApiMe,
     OvhApiOrder,
@@ -28,6 +28,7 @@ class DedicatedCloudDatacenterDrpService {
   ) {
     this.$http = $http;
     this.$q = $q;
+    this.coreConfig = coreConfig;
     this.OvhApiDedicatedCloud = OvhApiDedicatedCloud;
     this.OvhApiMe = OvhApiMe;
     this.OvhApiOrder = OvhApiOrder;
@@ -218,7 +219,7 @@ class DedicatedCloudDatacenterDrpService {
     let zertoCartId;
     return this.OvhApiOrder.Cart()
       .v6()
-      .post({}, { ovhSubsidiary: Environment.getUser().ovhSubsidiary })
+      .post({}, { ovhSubsidiary: this.coreConfig.getUser().ovhSubsidiary })
       .$promise.then(({ cartId }) => {
         zertoCartId = cartId;
         return this.OvhApiOrder.Cart()

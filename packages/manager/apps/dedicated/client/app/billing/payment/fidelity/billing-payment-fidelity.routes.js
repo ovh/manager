@@ -1,11 +1,9 @@
 angular
   .module('Billing')
-  .config([
-    '$stateProvider',
-    '$urlRouterProvider',
-    'coreConfigProvider',
+  .config(
+    /* @ngInject */
     ($stateProvider, $urlRouterProvider, coreConfigProvider) => {
-      if (coreConfigProvider.getRegion() === 'EU') {
+      if (coreConfigProvider.isRegion('EU')) {
         const name = 'app.account.billing.payment.fidelity';
 
         $stateProvider.state(name, {
@@ -23,5 +21,5 @@ angular
         );
       }
     },
-  ])
+  )
   .run(/* @ngTranslationsInject:json ./translations */);

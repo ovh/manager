@@ -3,7 +3,6 @@ import get from 'lodash/get';
 import head from 'lodash/head';
 import isEmpty from 'lodash/isEmpty';
 import pick from 'lodash/pick';
-import { Environment } from '@ovh-ux/manager-config';
 
 export default /* @ngInject */ function PackDomainActivationController(
   $scope,
@@ -12,6 +11,7 @@ export default /* @ngInject */ function PackDomainActivationController(
   $q,
   $state,
   $timeout,
+  coreConfig,
   OvhApiPackXdslDomainActivation,
   TucToast,
   OvhSimpleCountryList,
@@ -19,7 +19,7 @@ export default /* @ngInject */ function PackDomainActivationController(
   const self = this;
 
   function getUser() {
-    return $q.when(Environment.getUser());
+    return $q.when(coreConfig.getUser());
   }
 
   function loadAvailableTlds() {

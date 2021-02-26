@@ -1,5 +1,4 @@
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-import { Environment } from '@ovh-ux/manager-config';
 import get from 'lodash/get';
 import set from 'lodash/set';
 
@@ -16,6 +15,7 @@ angular.module('App').controller(
       $translate,
       Alerter,
       constants,
+      coreConfig,
       OvhApiEmailDomain,
       WucUser,
       WucEmails,
@@ -28,6 +28,7 @@ angular.module('App').controller(
       this.$translate = $translate;
       this.Alerter = Alerter;
       this.constants = constants;
+      this.coreConfig = coreConfig;
       this.OvhApiEmailDomain = OvhApiEmailDomain;
       this.WucUser = WucUser;
       this.WucEmails = WucEmails;
@@ -163,7 +164,7 @@ angular.module('App').controller(
       }
 
       this.urls.manageContacts =
-        Environment.getRegion() === 'EU'
+        this.coreConfig.getRegion() === 'EU'
           ? buildURL('dedicated', '#/contacts/services', {
               serviceName: this.$stateParams.productId,
               category: 'EMAIL_DOMAIN',

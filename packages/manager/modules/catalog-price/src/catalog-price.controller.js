@@ -1,8 +1,6 @@
 import get from 'lodash/get';
 import isUndefined from 'lodash/isUndefined';
 
-import { Environment } from '@ovh-ux/manager-config';
-
 import {
   ASIA_FORMAT,
   FRENCH_FORMAT,
@@ -13,8 +11,9 @@ import {
 
 export default class {
   /* @ngInject */
-  constructor($attrs) {
+  constructor($attrs, coreConfig) {
     this.$attrs = $attrs;
+    this.coreConfig = coreConfig;
     this.isUndefined = isUndefined;
   }
 
@@ -49,7 +48,7 @@ export default class {
    * @returns {string} the formatted and regionalized prices, appended with currency unit.
    */
   getPriceText(priceInCents) {
-    const locale = Environment.getUserLocale().replace('_', '-');
+    const locale = this.coreConfig.getUserLocale().replace('_', '-');
 
     let price = priceInCents / 100000000;
     price = this.performRounding

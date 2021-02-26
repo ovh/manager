@@ -1,5 +1,4 @@
 import { groupBy, map } from 'lodash-es';
-import { Environment } from '@ovh-ux/manager-config';
 import CommitmentDuration from './CommitmentDuration.class';
 
 export default class {
@@ -11,6 +10,7 @@ export default class {
     atInternet,
     BillingService,
     BillingCommitmentService,
+    coreConfig,
     ovhPaymentMethod,
     RedirectionService,
   ) {
@@ -20,12 +20,13 @@ export default class {
     this.atInternet = atInternet;
     this.BillingService = BillingService;
     this.BillingCommitmentService = BillingCommitmentService;
+    this.coreConfig = coreConfig;
     this.ovhPaymentMethod = ovhPaymentMethod;
     this.RedirectionService = RedirectionService;
   }
 
   $onInit() {
-    this.user = Environment.getUser();
+    this.user = this.coreConfig.getUser();
     this.isLoadingService = true;
     this.paymentMethod = null;
     this.model = {

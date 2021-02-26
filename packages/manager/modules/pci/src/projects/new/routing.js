@@ -2,7 +2,6 @@ import get from 'lodash/get';
 import find from 'lodash/find';
 import set from 'lodash/set';
 
-import { Environment } from '@ovh-ux/manager-config';
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 
 import component from './component';
@@ -85,8 +84,8 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: () => null,
 
-      newSupportTicketLink: () =>
-        ['EU', 'CA'].includes(Environment.getRegion())
+      newSupportTicketLink: /* @ngInject */ (coreConfig) =>
+        coreConfig.isRegion(['EU', 'CA'])
           ? buildURL('dedicated', '#/support/tickets/new')
           : '',
 

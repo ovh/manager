@@ -6,8 +6,7 @@ const moduleName = 'ovhManagerOtrsLazyloading';
 
 angular.module(moduleName, ['oc.lazyLoad', 'ui.router']).config(
   /* @ngInject */ ($stateProvider, $urlRouterProvider, coreConfigProvider) => {
-    const region = coreConfigProvider.getRegion();
-    if (region === 'US') {
+    if (coreConfigProvider.isRegion('US')) {
       $stateProvider.state('app.otrs.**', {
         url: '/ticket',
         lazyLoad: ($transition$) => {

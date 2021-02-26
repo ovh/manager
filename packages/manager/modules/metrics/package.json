@@ -12,14 +12,13 @@
   "author": "OVH SAS",
   "main": "./src/index.js",
   "dependencies": {
-    "@ovh-ux/manager-ng-layout-helpers": "^2.0.0",
     "@ovh-ux/ufrontend": "^1.0.0",
     "lodash": "^4.17.15",
     "moment": "^2.24.0"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-config": "^4.0.0 || ^5.0.0",
     "@ovh-ux/manager-core": "^11.0.0 || ^12.0.0",
+    "@ovh-ux/manager-ng-layout-helpers": "^2.0.0",
     "@ovh-ux/manager-server-sidebar": "^2.0.0 || ^3.0.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.0",
     "@ovh-ux/ng-ovh-doc-url": "^2.0.1",

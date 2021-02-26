@@ -29,8 +29,8 @@ angular
     ovhManagerIplb,
   ])
   .config(
-    /* @ngInject */ (CucConfigProvider, coreConfigProvider) => {
-      CucConfigProvider.setRegion(coreConfigProvider.getRegion());
+    /* @ngInject */ (CucConfigProvider) => {
+      CucConfigProvider.setRegion(Environment.getRegion());
     },
   )
   .config(

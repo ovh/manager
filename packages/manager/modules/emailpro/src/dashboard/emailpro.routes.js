@@ -1,6 +1,5 @@
 import set from 'lodash/set';
 
-import { Environment } from '@ovh-ux/manager-config';
 import emailproCtrl from './emailpro.controller';
 import emailproTpl from './emailpro.html';
 
@@ -46,8 +45,8 @@ export default /* @ngInject */ ($stateProvider) => {
       disclaimerLink: /* @ngInject */ ($state, $transition$) =>
         $state.href('email-pro.dashboard.disclaimer', $transition$.params()),
       // TODO: Replace with Feature flipping
-      taskLink: /* @ngInject */ ($state, $transition$) =>
-        Environment.getRegion() === 'EU'
+      taskLink: /* @ngInject */ ($state, $transition$, coreConfig) =>
+        coreConfig.isRegion('EU')
           ? $state.href('email-pro.dashboard.task', $transition$.params())
           : null,
       mailingListLink: () => null,
@@ -113,16 +112,16 @@ export default /* @ngInject */ ($stateProvider) => {
       disclaimerLink: /* @ngInject */ ($state, $transition$) =>
         $state.href('mxplan.dashboard.disclaimer', $transition$.params()),
       // TODO: Replace with Feature flipping
-      taskLink: /* @ngInject */ ($state, $transition$) =>
-        Environment.getRegion() === 'EU'
+      taskLink: /* @ngInject */ ($state, $transition$, coreConfig) =>
+        coreConfig.isRegion('EU')
           ? $state.href('mxplan.dashboard.task', $transition$.params())
           : null,
-      mailingListLink: /* @ngInject */ ($state, $transition$) =>
-        Environment.getRegion() === 'EU'
+      mailingListLink: /* @ngInject */ ($state, $transition$, coreConfig) =>
+        coreConfig.isRegion('EU')
           ? $state.href('mxplan.dashboard.mailing-list', $transition$.params())
           : null,
-      redirectionLink: /* @ngInject */ ($state, $transition$) =>
-        Environment.getRegion() === 'EU'
+      redirectionLink: /* @ngInject */ ($state, $transition$, coreConfig) =>
+        coreConfig.isRegion('EU')
           ? $state.href('mxplan.dashboard.redirection', $transition$.params())
           : null,
 

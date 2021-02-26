@@ -7,8 +7,6 @@ import map from 'lodash/map';
 import some from 'lodash/some';
 import xor from 'lodash/xor';
 
-import { Environment } from '@ovh-ux/manager-config';
-
 export default class DomainTabZoneDnsCtrl {
   /* @ngInject */
   constructor(
@@ -16,6 +14,7 @@ export default class DomainTabZoneDnsCtrl {
     $q,
     $translate,
     activateZone,
+    coreConfig,
     orderZone,
     Alerter,
     Domain,
@@ -30,7 +29,7 @@ export default class DomainTabZoneDnsCtrl {
 
     this.activateZone = activateZone;
     this.orderZone = orderZone;
-    this.region = Environment.getRegion();
+    this.region = coreConfig.getRegion();
   }
 
   $onInit() {

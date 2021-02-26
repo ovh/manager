@@ -1,7 +1,6 @@
 import groupBy from 'lodash/groupBy';
 import filter from 'lodash/filter';
 
-import { Environment } from '@ovh-ux/manager-config';
 import { MAX_NOTIFICATIONS } from './constants';
 
 export default class NotificationsCtrl {
@@ -13,6 +12,7 @@ export default class NotificationsCtrl {
     $rootScope,
     $translate,
     atInternet,
+    coreConfig,
     NavbarNotifications,
     ouiNavbarConfiguration,
   ) {
@@ -22,11 +22,12 @@ export default class NotificationsCtrl {
     this.$rootScope = $rootScope;
     this.$translate = $translate;
     this.atInternet = atInternet;
+    this.coreConfig = coreConfig;
     this.isOpen = false;
     this.NavbarNotifications = NavbarNotifications;
     this.translations = ouiNavbarConfiguration.translations;
 
-    this.REGION = Environment.getRegion();
+    this.REGION = this.coreConfig.getRegion();
   }
 
   $onInit() {
@@ -147,7 +148,7 @@ export default class NotificationsCtrl {
 
   getSublinks() {
     return this.NavbarNotifications.getNotifications(
-      Environment.getUserLocale(),
+      this.coreConfig.getUserLocale(),
       this.REGION,
     )
       .then((notifications) =>

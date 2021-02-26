@@ -1,12 +1,11 @@
-import { Environment } from '@ovh-ux/manager-config';
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import { RENEW_URL, SERVICE_TYPE } from './service-actions.constants';
 
 export default class ServicesActionsCtrl {
   /* @ngInject */
-  constructor(atInternet) {
+  constructor(atInternet, coreConfig) {
     this.atInternet = atInternet;
-    this.autorenewLink = ['EU', 'CA'].includes(Environment.getRegion())
+    this.autorenewLink = ['EU', 'CA'].includes(coreConfig.getRegion())
       ? buildURL('dedicated', '#/billing/autorenew')
       : '';
 

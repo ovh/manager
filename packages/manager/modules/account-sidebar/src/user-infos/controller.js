@@ -1,15 +1,15 @@
 import toUpper from 'lodash/toUpper';
 
-import { Environment } from '@ovh-ux/manager-config';
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import { EXCLUDED_ROLES } from './constants';
 
 export default class ManagerHubUserInfosCtrl {
   /* @ngInject */
-  constructor($http, $q, atInternet, ssoAuthentication) {
+  constructor($http, $q, atInternet, coreConfig, ssoAuthentication) {
     this.$http = $http;
     this.$q = $q;
     this.atInternet = atInternet;
+    this.coreConfig = coreConfig;
     this.ssoAuthentication = ssoAuthentication;
   }
 
@@ -17,7 +17,7 @@ export default class ManagerHubUserInfosCtrl {
     this.userAccountUrl = buildURL('dedicated', '#/useraccount/dashboard');
 
     if (!this.me) {
-      this.me = Environment.getUser();
+      this.me = this.coreConfig.getUser();
     }
     if (!this.supportLevel) {
       this.supportLevel = this.me.supportLevel;

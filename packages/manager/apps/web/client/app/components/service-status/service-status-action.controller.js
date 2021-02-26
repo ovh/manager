@@ -4,14 +4,14 @@ import angular from 'angular';
 import 'moment';
 
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-import { Environment } from '@ovh-ux/manager-config';
 
 import { DEFAULT_TARGET, RENEW_URL } from './service-status-action.constant';
 
 export default class {
   /* @ngInject */
-  constructor(constants, $q) {
+  constructor(constants, coreConfig, $q) {
     this.constants = constants;
+    this.coreConfig = coreConfig;
     this.$q = $q;
   }
 
@@ -34,7 +34,7 @@ export default class {
   }
 
   getOrderUrl() {
-    return this.$q.when(Environment.getUser()).then(({ ovhSubsidiary }) => {
+    return this.$q.when(this.coreConfig.getUser()).then(({ ovhSubsidiary }) => {
       this.orderUrl = `${get(
         RENEW_URL,
         ovhSubsidiary,

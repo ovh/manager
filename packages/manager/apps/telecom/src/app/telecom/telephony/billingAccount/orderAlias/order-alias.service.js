@@ -6,12 +6,12 @@ import isArray from 'lodash/isArray';
 import map from 'lodash/map';
 import pull from 'lodash/pull';
 import set from 'lodash/set';
-import { Environment } from '@ovh-ux/manager-config';
 
 import { TELEPHONY_NUMBER_OFFER } from './order-alias.constant';
 
 export default /* @ngInject */ function TelecomTelephonyBillingAccountOrderAliasService(
   $q,
+  coreConfig,
   OvhApiTelephony,
 ) {
   /**
@@ -45,7 +45,7 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountOrderAlias
    */
   this.getUser = function getUser() {
     return $q
-      .when(Environment.getUser())
+      .when(coreConfig.getUser())
       .then((user) => {
         set(user, 'country', user.country.toLowerCase());
         set(
