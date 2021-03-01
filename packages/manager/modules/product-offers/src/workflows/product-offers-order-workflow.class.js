@@ -12,6 +12,7 @@ import { CATALOG_ITEM_TYPE_NAMES } from './product-offers-workflow.constants';
  */
 export default class OrderWorkflow extends Workflow {
   /**
+   * @param {string} locale          User locale
    * @param {Object} $translate      AngularJS provider
    * @param {Object} workflowOptions Specific options for this workflow,
    *  must contains the following values:
@@ -66,9 +67,8 @@ export default class OrderWorkflow extends Workflow {
    *  ];
    * @param {Object} WucOrderCartService Service to handle order cart
    */
-  /* @ngInject */
-  constructor($q, $translate, workflowOptions, WucOrderCartService) {
-    super($q, $translate, workflowOptions);
+  constructor(locale, $q, $translate, workflowOptions, WucOrderCartService) {
+    super(locale, $q, $translate, workflowOptions);
     this.WucOrderCartService = WucOrderCartService;
 
     if (!this.catalog) {

@@ -3,13 +3,15 @@ import sumBy from 'lodash/sumBy';
 import Pricing from './Pricing.class';
 
 export default class Service {
-  constructor({ billing, serviceId, route, resource }) {
+  constructor({ billing, serviceId, route, resource }, locale) {
     Object.assign(this, {
       billing,
       serviceId,
       route: route || {},
       resource,
     });
+
+    this.locale = locale;
 
     this.options = [];
 
@@ -59,13 +61,16 @@ export default class Service {
   }
 
   get price() {
-    return new Pricing({
-      ...this.billing.pricing,
-      price: {
-        ...this.billing.pricing.price,
-        value: this.totalPrice,
+    return new Pricing(
+      {
+        ...this.billing.pricing,
+        price: {
+          ...this.billing.pricing.price,
+          value: this.totalPrice,
+        },
       },
-    });
+      this.locale,
+    );
   }
 
   get planCode() {

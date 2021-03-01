@@ -6,9 +6,10 @@ import {
 
 export default class BillingService {
   /* @ngInject */
-  constructor($q, $http) {
+  constructor($q, $http, coreConfig) {
     this.$q = $q;
     this.$http = $http;
+    this.coreConfig = coreConfig;
   }
 
   getServiceInfos(servicePath) {
@@ -20,20 +21,28 @@ export default class BillingService {
   getService(serviceId) {
     return this.$http
       .get(`/services/${serviceId}`)
-      .then(({ data }) => new Service(data));
+      .then(({ data }) => new Service(data, this.coreConfig.getUserLocale()));
   }
 
   getOptions(serviceId) {
     return this.$http
       .get(`/services/${serviceId}/options`)
-      .then(({ data }) => data.map((option) => new Service(option)));
+      .then(({ data }) =>
+        data.map(
+          (option) => new Service(option, this.coreConfig.getUserLocale()),
+        ),
+      );
   }
 
   getAvailableEngagement(serviceId) {
     return this.$http
       .get(`/services/${serviceId}/billing/engagement/available`)
       .then(({ data }) => data)
-      .then((commitments) => commitments.map((c) => new Commitment(c)));
+      .then((commitments) =>
+        commitments.map(
+          (c) => new Commitment(c, this.coreConfig.getUserLocale()),
+        ),
+      );
   }
 
   getPendingEngagement(serviceId) {

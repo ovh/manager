@@ -9,12 +9,14 @@ export default class ProductOffersController {
     $q,
     $timeout,
     $translate,
+    coreConfig,
     ovhManagerProductOffersDetachService,
     WucOrderCartService,
   ) {
     this.$q = $q;
     this.$timeout = $timeout;
     this.$translate = $translate;
+    this.coreConfig = coreConfig;
     this.detachService = ovhManagerProductOffersDetachService;
     this.WucOrderCartService = WucOrderCartService;
   }
@@ -33,6 +35,7 @@ export default class ProductOffersController {
     switch (this.workflowType) {
       case WORKFLOW_TYPES.ORDER:
         this.workflow = new OrderWorkflow(
+          this.coreConfig.getUserLocale(),
           this.$q,
           this.$translate,
           this.workflowOptions,
@@ -41,6 +44,7 @@ export default class ProductOffersController {
         break;
       case WORKFLOW_TYPES.SERVICES:
         this.workflow = new ServicesWorkflow(
+          this.coreConfig.getUserLocale(),
           this.$q,
           this.$timeout,
           this.$translate,
