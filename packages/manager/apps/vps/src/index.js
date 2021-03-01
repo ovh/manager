@@ -16,8 +16,6 @@ import ovhManagerVps from '@ovh-ux/manager-vps';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
 
-import { momentConfiguration } from './config';
-
 import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 
 Environment.setRegion(__WEBPACK_REGION__);
@@ -40,7 +38,9 @@ angular
       ovhPaymentMethodProvider.setUserLocale(Environment.getUserLocale());
     },
   )
-  .config(momentConfiguration)
+  .config(() => {
+    moment.locale(Environment.getUserLanguage());
+  })
   .config(
     /* @ngInject */ ($qProvider) => {
       $qProvider.errorOnUnhandledRejections(false);

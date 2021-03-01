@@ -15,8 +15,6 @@ import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ovhManagerIplb from '@ovh-ux/manager-iplb';
 
-import { momentConfiguration } from './config';
-
 import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 
 Environment.setRegion(__WEBPACK_REGION__);
@@ -33,12 +31,14 @@ angular
       CucConfigProvider.setRegion(Environment.getRegion());
     },
   )
+  .config(() => {
+    moment.locale(Environment.getUserLanguage());
+  })
   .config(
     /* @ngInject */ ($qProvider) => {
       $qProvider.errorOnUnhandledRejections(false);
     },
   )
-  .config(momentConfiguration)
   .config(
     /* @ngInject */ ($urlRouterProvider) => {
       $urlRouterProvider.otherwise('/iplb');

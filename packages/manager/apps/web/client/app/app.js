@@ -47,7 +47,7 @@ import sharepoint from '@ovh-ux/manager-sharepoint';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import WebPaas from '@ovh-ux/manager-web-paas';
 
-import config from './config/config';
+import getConfig from './config/config';
 import domain from './domain';
 import domainDnsZone from './dns-zone';
 import emailDomain from './email-domain';
@@ -76,6 +76,8 @@ import './css/source.scss';
 import { TRACKING } from './at-internet.constants';
 
 Environment.setVersion(__VERSION__);
+
+const config = getConfig(Environment.getRegion());
 
 const moduleName = 'App';
 

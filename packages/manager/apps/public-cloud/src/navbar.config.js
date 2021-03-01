@@ -1,8 +1,6 @@
-import { Environment } from '@ovh-ux/manager-config';
-
-export default {
+export default (universe) => ({
   toggle: {
     event: 'sidebar:loaded',
   },
-  universe: Environment.getUniverse(),
-};
+  universe,
+});

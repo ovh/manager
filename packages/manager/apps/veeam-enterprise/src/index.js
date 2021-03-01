@@ -7,12 +7,11 @@ import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
 import angular from 'angular';
+import { Environment } from '@ovh-ux/manager-config';
 
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ovhManagerVeeamEnterprise from '@ovh-ux/manager-veeam-enterprise';
-
-import { momentConfiguration } from './config';
 
 angular
   .module('veeamEnterpriseApp', [
@@ -20,7 +19,9 @@ angular
     ovhManagerCore,
     ovhManagerVeeamEnterprise,
   ])
-  .config(momentConfiguration)
+  .config(() => {
+    moment.locale(Environment.getUserLanguage());
+  })
   .config(
     /* @ngInject */ ($urlRouterProvider) => {
       $urlRouterProvider.otherwise('/veeam-enterprise');
