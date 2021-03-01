@@ -1,15 +1,13 @@
-import { Environment } from '@ovh-ux/manager-config';
 import * as constantsConfig from './constants.config';
 
 const aapiRootPath = '/engine/2api/';
 const swsProxyRootPath = 'apiv6/';
-const target = Environment.getRegion();
 const prodMode = !!WEBPACK_ENV.production;
 
-export default {
+export default (region) => ({
   aapiRootPath,
   swsProxyRootPath,
-  constants: constantsConfig[target],
+  constants: constantsConfig[region],
   prodMode,
-  target,
-};
+  target: region,
+});

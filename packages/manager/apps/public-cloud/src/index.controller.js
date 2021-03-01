@@ -1,4 +1,4 @@
-import options from './navbar.config';
+import getNavbarConfig from './navbar.config';
 
 export default class PublicCloudController {
   /* @ngInject */
@@ -24,7 +24,7 @@ export default class PublicCloudController {
     this.ovhUserPref = ovhUserPref;
     this.publicCloud = publicCloud;
     this.ovhFeatureFlipping = ovhFeatureFlipping;
-    this.navbarOptions = options;
+    this.navbarOptions = getNavbarConfig(coreConfig.getUniverse());
 
     this.chatbotEnabled = false;
 
