@@ -22,10 +22,10 @@ export default /* @ngInject */ ($stateProvider) => {
         goBack().then(() => {
           Alerter.success(successMessage);
         }),
-      service: /* @ngInject */ ($http, serviceId) =>
+      service: /* @ngInject */ ($http, coreConfig, serviceId) =>
         $http
           .get(`/services/${serviceId}`)
-          .then(({ data }) => new Service(data)),
+          .then(({ data }) => new Service(data, coreConfig.getUserLocale())),
       serviceId: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceId,
       serviceName: /* @ngInject */ ($transition$) =>

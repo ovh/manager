@@ -7,6 +7,7 @@ import Workflow from './product-offers-workflow.class';
  */
 export default class ServicesWorkflow extends Workflow {
   /**
+   * @param {string} locale          User locale
    * @param {Object} $q              AngularJS provider
    * @param {Object} $translate      AngularJS provider
    * @param {Object} workflowOptions Specific options
@@ -19,8 +20,15 @@ export default class ServicesWorkflow extends Workflow {
    * @param {Object} DetachService   Service to handle request to perform a
    * detach action, see /services API schema
    */
-  constructor($q, $timeout, $translate, workflowOptions, detachService) {
-    super($q, $translate, workflowOptions);
+  constructor(
+    locale,
+    $q,
+    $timeout,
+    $translate,
+    workflowOptions,
+    detachService,
+  ) {
+    super(locale, $q, $translate, workflowOptions);
     this.$timeout = $timeout;
     this.workflowService = detachService;
 

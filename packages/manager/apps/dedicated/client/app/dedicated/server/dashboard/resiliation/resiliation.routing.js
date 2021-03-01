@@ -42,10 +42,10 @@ export default /* @ngInject */ ($stateProvider) => {
       serviceId: /* @ngInject */ (serviceInfos) => serviceInfos.serviceId,
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().productId,
-      service: /* @ngInject */ ($http, serviceId) =>
+      service: /* @ngInject */ ($http, coreConfig, serviceId) =>
         $http
           .get(`/services/${serviceId}`)
-          .then(({ data }) => new Service(data)),
+          .then(({ data }) => new Service(data, coreConfig.getUserLocale())),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('dedicated_server_dashboard_resiliate'),
     },

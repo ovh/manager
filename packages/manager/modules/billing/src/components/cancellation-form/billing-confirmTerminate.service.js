@@ -4,7 +4,8 @@ import { TERMINATION_FORM_NAME } from './confirm-terminate.constants';
 
 export default class BillingTerminate {
   /* @ngInject */
-  constructor(OvhApiServices, OvhHttp) {
+  constructor(coreConfig, OvhApiServices, OvhHttp) {
+    this.coreConfig = coreConfig;
     this.OvhApiServices = OvhApiServices;
     this.OvhHttp = OvhHttp;
   }
@@ -19,10 +20,13 @@ export default class BillingTerminate {
     }
     return this.OvhHttp.get(`/services/${serviceId}`, params).then(
       (service) =>
-        new Service({
-          serviceId,
-          ...service,
-        }),
+        new Service(
+          {
+            serviceId,
+            ...service,
+          },
+          this.coreConfig.getUserLocale(),
+        ),
     );
   }
 
