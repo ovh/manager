@@ -30,6 +30,7 @@ import translateFactory from './translate/translate.factory';
 import sessionService from './session/session.service';
 import redirectionFilter from './redirection/redirection.filter';
 import redirectionService from './redirection/redirection.service';
+import managerCoreUrlBuilder from './url-builder';
 
 import { URLS } from './manager-core.constants';
 
@@ -43,6 +44,7 @@ angular
     'pascalprecht.translate',
     'tmh.dynamicLocale',
     managerCoreConfig,
+    managerCoreUrlBuilder,
     ngTranslateAsyncLoader,
     ouiConfig,
     ovhOuiAngularTranslations,
