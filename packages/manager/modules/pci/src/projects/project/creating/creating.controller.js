@@ -1,10 +1,8 @@
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-
 import { SLIDE_ANIMATION_INTERVAL, SLIDE_IMAGES } from './creating.constants';
 
 export default class ProjectCreatingCtrl {
   /* @ngInject */
-  constructor($q, $timeout, Poller) {
+  constructor($q, $timeout, coreURLBuilder, Poller) {
     // dependencies injections
     this.$q = $q;
     this.$timeout = $timeout;
@@ -21,7 +19,7 @@ export default class ProjectCreatingCtrl {
       list: SLIDE_IMAGES,
     };
 
-    this.supportUrl = buildURL('dedicated', '#/support');
+    this.supportUrl = coreURLBuilder.buildURL('dedicated', '#/support');
   }
 
   startOrderPolling() {

@@ -1,8 +1,4 @@
-import { Environment } from '@ovh-ux/manager-config';
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-
 const getPaymentMethodTimeoutLimit = 30000;
-
 export default class PciProjectNewPaymentCtrl {
   /* @ngInject */
   constructor(
@@ -11,6 +7,7 @@ export default class PciProjectNewPaymentCtrl {
     $q,
     $window,
     coreConfig,
+    coreURLBuilder,
     CucCloudMessage,
     pciProjectNew,
     ovhPaymentMethod,
@@ -24,10 +21,16 @@ export default class PciProjectNewPaymentCtrl {
     this.pciProjectNew = pciProjectNew;
     this.ovhPaymentMethod = ovhPaymentMethod;
     this.OVH_PAYMENT_METHOD_INTEGRATION_TYPE = OVH_PAYMENT_METHOD_INTEGRATION_TYPE;
+    this.coreConfig = coreConfig;
 
     // other attributes
-    this.paymentMethodUrl = buildURL('dedicated', '#/billing/payment/method');
-    this.paymentMethodAddUrl = `${this.paymentMethodUrl}/add`;
+    [
+      this.paymentMethodUrl,
+      this.paymentMethodAddUrl,
+    ] = coreURLBuilder.buildURLs([
+      { application: 'dedicated', path: '#/billing/payment/method' },
+      { application: 'dedicated', path: '#/billing/payment/method/add' },
+    ]);
     this.integrationSubmitFn = null;
 
     this.message = {
@@ -152,7 +155,7 @@ export default class PciProjectNewPaymentCtrl {
 
   initComponentInitialParams() {
     this.componentInitialParams = {
-      locale: Environment.getUser().language,
+      locale: this.coreConfig.getUser().language,
       paymentMethod: this.model.paymentMethod,
       setAsDefault: true,
     };

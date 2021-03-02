@@ -1,11 +1,9 @@
 import get from 'lodash/get';
 import has from 'lodash/has';
 
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-
 export default class ProjectCreatingNotPaidCtrl {
   /* @ngInject */
-  constructor($state, CucCloudMessage, projectCreating) {
+  constructor($state, CucCloudMessage, coreURLBuilder, projectCreating) {
     // dependencies injections
     this.$state = $state;
     this.CucCloudMessage = CucCloudMessage;
@@ -16,7 +14,7 @@ export default class ProjectCreatingNotPaidCtrl {
       cancel: false,
     };
 
-    this.orderUrl = buildURL('dedicated', '#/billing/orders', {
+    this.orderUrl = coreURLBuilder.buildURL('dedicated', '#/billing/orders', {
       status: 'all',
     });
   }

@@ -1,5 +1,3 @@
-import { buildURLs } from '@ovh-ux/ufrontend/url-builder';
-
 export default class HeaderController {
   /* @ngInject */
   constructor(
@@ -7,6 +5,7 @@ export default class HeaderController {
     $rootScope,
     $translate,
     constants,
+    coreURLBuilder,
     wucExchange,
     exchangeHeader,
     exchangeServiceInfrastructure,
@@ -19,6 +18,7 @@ export default class HeaderController {
     this.$translate = $translate;
 
     this.constants = constants;
+    this.coreURLBuilder = coreURLBuilder;
     this.wucExchange = wucExchange;
     this.exchangeHeader = exchangeHeader;
     this.exchangeServiceInfrastructure = exchangeServiceInfrastructure;
@@ -36,7 +36,7 @@ export default class HeaderController {
     this.fetchingCanActivateSharepoint();
     this.fetchingCanActivateOfficeAttach();
 
-    this.URLS = buildURLs({
+    this.URLS = this.coreURLBuilder.buildURLs({
       AUTORENEW: {
         application: 'dedicated',
         path: '#/billing/autoRenew',

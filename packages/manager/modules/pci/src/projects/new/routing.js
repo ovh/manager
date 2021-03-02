@@ -2,8 +2,6 @@ import get from 'lodash/get';
 import find from 'lodash/find';
 import set from 'lodash/set';
 
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-
 import component from './component';
 
 import PciEligibility from './classes/eligibility.class';
@@ -21,6 +19,9 @@ export default /* @ngInject */ ($stateProvider) => {
     redirectTo: (transition) => {
       const translatePromise = transition.injector().getAsync('$translate');
       const windowPromise = transition.injector().getAsync('$window');
+      const coreURLBuilderPromise = transition
+        .injector()
+        .getAsync('coreURLBuilder');
       const cartPromise = transition.injector().getAsync('cart');
       const eligibilityPromise = transition.injector().getAsync('eligibility');
       const newSupportTicketLink = transition
@@ -31,7 +32,8 @@ export default /* @ngInject */ ($stateProvider) => {
         windowPromise,
         cartPromise,
         eligibilityPromise,
-      ]).then(([$translate, $window, cart, eligibility]) => {
+        coreURLBuilderPromise,
+      ]).then(([$translate, $window, cart, eligibility, coreURLBuilder]) => {
         let redirectState = 'pci.projects.new.config';
         let redirectParams = transition.params();
         const redirectOptions = {
@@ -56,7 +58,10 @@ export default /* @ngInject */ ($stateProvider) => {
           redirectState = 'pci.error';
           redirectParams = {
             message: $translate.instant('pci_project_new_error_verify_paypal', {
-              href: buildURL('dedicated', '#/billing/payment/method'),
+              href: coreURLBuilder.buildURL(
+                'dedicated',
+                '#/billing/payment/method',
+              ),
             }),
             code: ELIGIBILITY_ACTION_ENUM.VERIFY_PAYPAL,
             image: ELIGIBILITY_ERROR_IMAGES_SRC.VERIFY_PAYPAL,
@@ -84,9 +89,9 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: () => null,
 
-      newSupportTicketLink: /* @ngInject */ (coreConfig) =>
+      newSupportTicketLink: /* @ngInject */ (coreConfig, coreURLBuilder) =>
         coreConfig.isRegion(['EU', 'CA'])
-          ? buildURL('dedicated', '#/support/tickets/new')
+          ? coreURLBuilder.buildURL('dedicated', '#/support/tickets/new')
           : '',
 
       cart: /* @ngInject */ ($transition$, me, pciProjectNew) =>

@@ -1,16 +1,15 @@
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import { SERVICE_STATES } from './payment-status-tile.constants';
 
 export default class PaymentStatusTileCtrl {
   /* @ngInject */
-  constructor(atInternet, coreConfig) {
+  constructor(atInternet, coreConfig, coreURLBuilder) {
     this.atInternet = atInternet;
     this.coreConfig = coreConfig;
 
     this.SERVICE_STATES = SERVICE_STATES;
 
     this.autorenewLink = this.coreConfig.isRegion(['EU', 'CA'])
-      ? buildURL('dedicated', '#/billing/autorenew')
+      ? coreURLBuilder.buildURL('dedicated', '#/billing/autorenew')
       : '';
   }
 

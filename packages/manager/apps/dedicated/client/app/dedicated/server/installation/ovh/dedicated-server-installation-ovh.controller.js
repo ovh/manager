@@ -13,7 +13,6 @@ import set from 'lodash/set';
 import some from 'lodash/some';
 import sortBy from 'lodash/sortBy';
 import take from 'lodash/take';
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import {
   RTM_GUIDE_URLS,
   RTM_INSTALL_FEATURE,
@@ -32,7 +31,7 @@ angular
   })
   .controller(
     'ServerInstallationOvhCtrl',
-    (
+    /* @ngInject */ (
       $rootScope,
       $scope,
       $q,
@@ -44,8 +43,13 @@ angular
       Alerter,
       ovhFeatureFlipping,
       TEMPLATE_OS_HARDWARE_RAID_ENUM,
+      coreURLBuilder,
     ) => {
-      $scope.LICENSE_URL = buildURL('dedicated', '#/configuration/license');
+      $scope.LICENSE_URL = coreURLBuilder.buildURL(
+        'dedicated',
+        '#/configuration/license',
+      );
+
       $scope.units = {
         model: [
           {
@@ -297,7 +301,7 @@ angular
         get(RTM_GUIDE_URLS, 'GB'),
       );
 
-      $scope.trackClick = function(name) {
+      $scope.trackClick = function trackClick(name) {
         atInternet.trackClick({
           name,
           type: 'action',

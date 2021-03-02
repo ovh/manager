@@ -1,4 +1,3 @@
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import { STATUS } from '../../../enterprise-cloud-database.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -31,7 +30,8 @@ export default /* @ngInject */ ($stateProvider) => {
           },
         );
       },
-      ldpHomeUrl: () => buildURL('dedicated', '#/dbaas/logs/list'),
+      ldpHomeUrl: /* @ngInject */ (coreURLBuilder) =>
+        coreURLBuilder.buildURL('dedicated', '#/dbaas/logs/list'),
       logs: /* @ngInject */ (clusterId, enterpriseCloudDatabaseService) =>
         enterpriseCloudDatabaseService.getLogs(clusterId),
       revokeAccess: /* @ngInject */ ($state, clusterId) => (ldpAccount) => {

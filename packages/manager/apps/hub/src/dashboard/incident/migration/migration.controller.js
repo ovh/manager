@@ -1,9 +1,8 @@
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-
 export default class IncidentMigrationController {
   /* @ngInject */
-  constructor(atInternet) {
+  constructor(atInternet, coreURLBuilder) {
     this.atInternet = atInternet;
+    this.coreURLBuilder = coreURLBuilder;
   }
 
   $onInit() {
@@ -12,11 +11,11 @@ export default class IncidentMigrationController {
 
     this.followUpUrl =
       this.servicesToMigrate.length === 1
-        ? buildURL(
+        ? this.coreURLBuilder.buildURL(
             'dedicated',
             `#/billing/orders/${this.servicesToMigrate[0].orderId}`,
           )
-        : buildURL('dedicated', '#/billing/orders');
+        : this.coreURLBuilder.buildURL('dedicated', '#/billing/orders');
 
     this.selectAllServices = false;
     this.servicesToMigrate = {};

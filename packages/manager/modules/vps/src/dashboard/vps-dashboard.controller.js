@@ -6,8 +6,6 @@ import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
 import 'moment';
 
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-
 import {
   DASHBOARD_FEATURES,
   SERVICE_TYPE,
@@ -24,6 +22,7 @@ export default class {
     $state,
     $translate,
     coreConfig,
+    coreURLBuilder,
     CucCloudMessage,
     CucControllerHelper,
     CucRegionService,
@@ -36,6 +35,7 @@ export default class {
     this.$state = $state;
     this.$translate = $translate;
     this.coreConfig = coreConfig;
+    this.coreURLBuilder = coreURLBuilder;
     this.CucControllerHelper = CucControllerHelper;
     this.CucCloudMessage = CucCloudMessage;
     this.CucRegionService = CucRegionService;
@@ -335,10 +335,14 @@ export default class {
           manageAutorenew: {
             text: this.$translate.instant('vps_common_manage'),
             href: this.coreConfig.isRegion('EU')
-              ? buildURL('dedicated', '#/billing/autoRenew', {
-                  selectedType: 'VPS',
-                  searchText: this.serviceName,
-                })
+              ? this.coreURLBuilder.buildURL(
+                  'dedicated',
+                  '#/billing/autoRenew',
+                  {
+                    selectedType: 'VPS',
+                    searchText: this.serviceName,
+                  },
+                )
               : this.CucControllerHelper.navigation.constructor.getUrl(
                   get(RENEW_URL, this.coreConfig.getRegion()),
                   { serviceName: this.serviceName, serviceType: 'VPS' },
@@ -352,10 +356,14 @@ export default class {
           manageContact: {
             text: this.$translate.instant('vps_common_manage'),
             href: this.coreConfig.isRegion('EU')
-              ? buildURL('dedicated', '#/contacts/services', {
-                  tab: 'SERVICES',
-                  serviceName: this.serviceName,
-                })
+              ? this.coreURLBuilder.buildURL(
+                  'dedicated',
+                  '#/contacts/services',
+                  {
+                    tab: 'SERVICES',
+                    serviceName: this.serviceName,
+                  },
+                )
               : null,
             isAvailable:
               this.coreConfig.isRegion('EU') && !this.isMigrationInProgress,
@@ -364,10 +372,14 @@ export default class {
             text: this.$translate.instant(
               'vps_configuration_add_ipv4_title_button',
             ),
-            href: buildURL('dedicated', '#/configuration/ip', {
-              landingTo: 'ip',
-              serviceName: this.serviceName,
-            }),
+            href: this.coreURLBuilder.buildURL(
+              'dedicated',
+              '#/configuration/ip',
+              {
+                landingTo: 'ip',
+                serviceName: this.serviceName,
+              },
+            ),
             isAvailable: () => !this.loaders.ip && !this.isMigrationInProgress,
           },
           displayIps: {

@@ -3,15 +3,14 @@ import isString from 'lodash/isString';
 import angular from 'angular';
 import 'moment';
 
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-
 import { DEFAULT_TARGET, RENEW_URL } from './service-status-action.constant';
 
 export default class {
   /* @ngInject */
-  constructor(constants, coreConfig, $q) {
+  constructor(constants, coreConfig, coreURLBuilder, $q) {
     this.constants = constants;
     this.coreConfig = coreConfig;
+    this.coreURLBuilder = coreURLBuilder;
     this.$q = $q;
   }
 
@@ -50,7 +49,11 @@ export default class {
     if (isString(this.serviceType)) {
       params.selectedType = this.serviceType;
     }
-    return buildURL('dedicated', '#/billing/autoRenew', params);
+    return this.coreURLBuilder.buildURL(
+      'dedicated',
+      '#/billing/autoRenew',
+      params,
+    );
   }
 
   getDate() {

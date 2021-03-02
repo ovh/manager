@@ -1,16 +1,16 @@
 import { get } from 'lodash-es';
 import { Ticket as SupportTicket } from '@ovh-ux/manager-models';
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import { MAX_TICKETS_TO_DISPLAY } from './constants';
 
 export default class ManagerHubSupportCtrl {
   /* @ngInject */
-  constructor($http, $q, atInternet, RedirectionService) {
+  constructor($http, $q, atInternet, coreURLBuilder, RedirectionService) {
     this.$http = $http;
     this.$q = $q;
     this.atInternet = atInternet;
+    this.coreURLBuilder = coreURLBuilder;
     this.RedirectionService = RedirectionService;
-    this.SUPPORT_URL = buildURL('dedicated', '#/ticket');
+    this.SUPPORT_URL = this.coreURLBuilder.buildURL('dedicated', '#/ticket');
   }
 
   $onInit() {
@@ -27,9 +27,13 @@ export default class ManagerHubSupportCtrl {
             (ticket) =>
               new SupportTicket({
                 ...ticket,
-                url: buildURL('dedicated', '#/support/tickets/:ticketId', {
-                  ticketId: ticket.ticketId,
-                }),
+                url: this.coreURLBuilder.buildURL(
+                  'dedicated',
+                  '#/support/tickets/:ticketId',
+                  {
+                    ticketId: ticket.ticketId,
+                  },
+                ),
               }),
           );
         }

@@ -29,6 +29,7 @@ export default class ExchangeAccountHomeController {
     $translate,
     wucExchange,
     coreConfig,
+    coreURLBuilder,
     exchangeAccount,
     exchangeAccountTypes,
     exchangeAccountOutlook,
@@ -47,6 +48,7 @@ export default class ExchangeAccountHomeController {
 
     this.Exchange = wucExchange;
     this.coreConfig = coreConfig;
+    this.coreURLBuilder = coreURLBuilder;
     this.exchangeAccount = exchangeAccount;
     this.exchangeAccountTypes = exchangeAccountTypes;
     this.exchangeAccountOutlook = exchangeAccountOutlook;
@@ -63,7 +65,18 @@ export default class ExchangeAccountHomeController {
     this.hostname = this.Exchange.value.hostname;
     this.webUrl = this.Exchange.value.webUrl;
 
-    this.linkToSpamTicket = `#/support/tickets?filters={"comparator":"is","field":"serviceName","reference":["${this.productId}"]}`;
+    this.linkToSpamTicket = this.coreURLBuilder.buildURL(
+      'dedicated',
+      '#/support/tickets',
+      {
+        filters: JSON.stringify({
+          comparator: 'is',
+          field: 'serviceName',
+          reference: [this.productId],
+        }),
+      },
+    );
+
     this.initialAccountRetrieval = true;
     this.atLeastOneDomainIsAssociatedToCurrentExchangeService = true;
     this.availableDomains = [];

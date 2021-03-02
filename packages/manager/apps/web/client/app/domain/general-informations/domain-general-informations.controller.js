@@ -1,4 +1,3 @@
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import find from 'lodash/find';
 import flattenDeep from 'lodash/flattenDeep';
 import forEach from 'lodash/forEach';
@@ -32,6 +31,7 @@ export default class DomainTabGeneralInformationsCtrl {
     Alerter,
     constants,
     coreConfig,
+    coreURLBuilder,
     dnsAvailableOptions,
     Domain,
     emailObfuscationLink,
@@ -68,6 +68,7 @@ export default class DomainTabGeneralInformationsCtrl {
     this.WucUser = WucUser;
     this.constants = constants;
     this.coreConfig = coreConfig;
+    this.coreURLBuilder = coreURLBuilder;
     this.DOMAIN = DOMAIN;
     this.goToDnsAnycast = goToDnsAnycast;
   }
@@ -187,7 +188,7 @@ export default class DomainTabGeneralInformationsCtrl {
   initActions() {
     const contactManagementUrl =
       this.coreConfig.getRegion() === 'EU'
-        ? buildURL('dedicated', '#/contacts/services', {
+        ? this.coreURLBuilder.buildURL('dedicated', '#/contacts/services', {
             serviceName: this.domain.name,
             category: PRODUCT_TYPE,
           })
@@ -489,7 +490,7 @@ export default class DomainTabGeneralInformationsCtrl {
   getUpdateOwnerUrl(domain) {
     const ownerUrlInfo = { target: '', error: '' };
     if (has(domain, 'name') && has(domain, 'whoisOwner.id')) {
-      ownerUrlInfo.target = buildURL(
+      ownerUrlInfo.target = this.coreURLBuilder.buildURL(
         'dedicated',
         '#/contact/:currentDomain/:contactId',
         {

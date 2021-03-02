@@ -7,7 +7,6 @@ import merge from 'lodash/merge';
 import set from 'lodash/set';
 import some from 'lodash/some';
 import union from 'lodash/union';
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 
 import { HOSTING_CDN_ORDER_CDN_VERSION_V1 } from '../cdn/order/hosting-cdn-order.constant';
 
@@ -30,6 +29,7 @@ export default class {
     boostLink,
     constants,
     availableOptions,
+    coreURLBuilder,
     cronLink,
     currentActiveLink,
     databaseLink,
@@ -88,6 +88,7 @@ export default class {
     this.boostLink = boostLink;
     this.constants = constants;
     this.availableOptions = availableOptions;
+    this.coreURLBuilder = coreURLBuilder;
     this.cronLink = cronLink;
     this.currentActiveLink = currentActiveLink;
     this.databaseLink = databaseLink;
@@ -622,7 +623,7 @@ export default class {
   getAutorenewUrl(guides) {
     this.$scope.autorenew = {
       guide: guides.autorenew,
-      url: buildURL('dedicated', '#/billing/autoRenew', {
+      url: this.coreURLBuilder.buildURL('dedicated', '#/billing/autoRenew', {
         selectedType: 'HOSTING_WEB',
         searchText: this.$scope.hosting.serviceInfos.domain,
       }),

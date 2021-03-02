@@ -1,5 +1,3 @@
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-
 import get from 'lodash/get';
 import isString from 'lodash/isString';
 import angular from 'angular';
@@ -9,10 +7,11 @@ import { RENEW_URL } from './service-expiration-date.component.constant';
 
 export default class {
   /* @ngInject */
-  constructor($q, $scope, $rootScope, coreConfig) {
+  constructor($q, $scope, $rootScope, coreConfig, coreURLBuilder) {
     this.$q = $q;
     $scope.tr = $rootScope.tr;
     this.coreConfig = coreConfig;
+    this.coreURLBuilder = coreURLBuilder;
   }
 
   $onInit() {
@@ -45,7 +44,11 @@ export default class {
         params.selectedType = this.serviceType;
       }
 
-      return buildURL('dedicated', '#/billing/autorenew', params);
+      return this.coreURLBuilder.buildURL(
+        'dedicated',
+        '#/billing/autorenew',
+        params,
+      );
     }
     return '';
   }

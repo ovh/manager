@@ -1,10 +1,9 @@
 import indexOf from 'lodash/indexOf';
 
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-
 angular.module('App').controller(
   'NasDetailsCtrl',
   class NasDetailsCtrl {
+    /* @ngInject */
     constructor(
       $stateParams,
       $scope,
@@ -14,6 +13,7 @@ angular.module('App').controller(
       Nas,
       Alerter,
       constants,
+      coreURLBuilder,
       nasData,
     ) {
       // injections
@@ -23,6 +23,7 @@ angular.module('App').controller(
       this.Alerter = Alerter;
       this.constants = constants;
       this.nasData = nasData;
+      this.coreURLBuilder = coreURLBuilder;
 
       this.currentActiveLink = currentActiveLink;
       this.dashboardLink = dashboardLink;
@@ -83,7 +84,7 @@ angular.module('App').controller(
      *  Load NAS
      */
     $onInit() {
-      this.redirectToCloud = buildURL(
+      this.redirectToCloud = this.coreURLBuilder.buildURL(
         'dedicated',
         '#/paas/nasha/:nashaId/partitions',
         { nashaId: this.nasData.nas.serviceName },

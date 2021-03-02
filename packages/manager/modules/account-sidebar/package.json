@@ -23,9 +23,6 @@
     "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-account-sidebar' --include-dependencies -- yarn run dev",
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-account-sidebar' --include-dependencies -- yarn run dev:watch"
   },
-  "dependencies": {
-    "@ovh-ux/ufrontend": "^1.0.0"
-  },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^8.0.0 || ^9.0.0",
     "@ovh-ux/manager-hub": "^1.0.0 || ^2.0.0",

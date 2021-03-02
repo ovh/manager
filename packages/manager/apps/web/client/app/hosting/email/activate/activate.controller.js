@@ -1,12 +1,12 @@
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import get from 'lodash/get';
 
 export default class EmailOfferActivateCtrl {
   /* @ngInject */
-  constructor($translate, hostingEmailService, Alerter) {
+  constructor($translate, hostingEmailService, Alerter, coreURLBuilder) {
     this.$translate = $translate;
     this.hostingEmailService = hostingEmailService;
     this.Alerter = Alerter;
+    this.coreURLBuilder = coreURLBuilder;
   }
 
   $onInit() {
@@ -50,9 +50,13 @@ export default class EmailOfferActivateCtrl {
       .then((order) =>
         this.goToHosting(
           this.$translate.instant('hosting_email_address_activation_success', {
-            orderTrackURL: buildURL('dedicated', '#/billing/order/:orderId', {
-              orderId: order.orderId,
-            }),
+            orderTrackURL: this.coreURLBuilder.buildURL(
+              'dedicated',
+              '#/billing/order/:orderId',
+              {
+                orderId: order.orderId,
+              },
+            ),
           }),
         ),
       )

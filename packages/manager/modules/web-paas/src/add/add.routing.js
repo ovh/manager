@@ -1,6 +1,4 @@
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-
-export default /* @ngInject */ ($stateProvider) => {
+export default /* @ngInject */ ($stateProvider, coreURLBuilder) => {
   $stateProvider.state('web-paas.add', {
     url: '/new',
     component: 'webPaasAdd',
@@ -10,7 +8,7 @@ export default /* @ngInject */ ($stateProvider) => {
       plans: /* @ngInject */ (catalog) => catalog.plans,
       goBack: /* @ngInject */ (goToWebPaas) => goToWebPaas,
       getOrdersURL: /* @ngInject */ () => (orderId) =>
-        buildURL('dedicated', '#/billing/orders', {
+        coreURLBuilder.buildURL('dedicated', '#/billing/orders', {
           status: 'all',
           orderId,
         }),

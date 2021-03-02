@@ -1,12 +1,11 @@
 import 'moment';
 
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-
 export default class VeeamEnterpriseDashboardCtrl {
   /* @ngInject */
   constructor(
     $stateParams,
     $translate,
+    coreURLBuilder,
     CucControllerHelper,
     CucFeatureAvailabilityService,
     VeeamEnterpriseService,
@@ -16,6 +15,7 @@ export default class VeeamEnterpriseDashboardCtrl {
   ) {
     this.$stateParams = $stateParams;
     this.$translate = $translate;
+    this.coreURLBuilder = coreURLBuilder;
     this.CucControllerHelper = CucControllerHelper;
     this.CucFeatureAvailabilityService = CucFeatureAvailabilityService;
     this.VeeamEnterpriseService = VeeamEnterpriseService;
@@ -64,7 +64,7 @@ export default class VeeamEnterpriseDashboardCtrl {
     this.uiActions = {
       manageAutorenew: {
         text: this.$translate.instant('veeam_enterprise_manage'),
-        href: buildURL('dedicated', '#/billing/autoRenew', {
+        href: this.coreURLBuilder.buildURL('dedicated', '#/billing/autoRenew', {
           searchText: this.serviceName,
           selectedType: 'VEEAM_ENTERPRISE',
         }),

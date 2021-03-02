@@ -1,7 +1,6 @@
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-
 export default /* @ngInject */ function TelecomTelephonyBillingAccountBillingCtrl(
   $translate,
+  coreURLBuilder,
 ) {
   const self = this;
 
@@ -82,7 +81,7 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountBillingCtr
       },
       {
         name: 'group_banking_management',
-        url: buildURL('dedicated', '#/billing/mean'),
+        url: coreURLBuilder.buildURL('dedicated', '#/billing/mean'),
         isExternal: true,
         text: $translate.instant(
           'telephony_group_billing_actions_group_banking_management',
@@ -90,7 +89,7 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountBillingCtr
       },
       {
         name: 'group_delayed_account_transfert',
-        url: buildURL('dedicated', '#/billing/ovhaccount'),
+        url: coreURLBuilder.buildURL('dedicated', '#/billing/ovhaccount'),
         isExternal: true,
         text: $translate.instant(
           'telephony_group_billing_actions_group_delayed_account_transfert',

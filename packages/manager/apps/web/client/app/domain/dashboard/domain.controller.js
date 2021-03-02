@@ -1,8 +1,6 @@
 import filter from 'lodash/filter';
 import get from 'lodash/get';
 
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-
 angular.module('App').controller(
   'DomainCtrl',
   class DomainCtrl {
@@ -16,6 +14,7 @@ angular.module('App').controller(
       $translate,
       Alerter,
       constants,
+      coreURLBuilder,
       Domain,
       associatedHostings,
       goToWebhostingOrder,
@@ -37,6 +36,7 @@ angular.module('App').controller(
       this.Alerter = Alerter;
       this.constants = constants;
       this.Domain = Domain;
+      this.coreURLBuilder = coreURLBuilder;
       this.associatedHostings = associatedHostings;
       this.goToWebhostingOrder = goToWebhostingOrder;
       this.isEmailDomainTabAvailable = isEmailDomainAvailable && hasEmailDomain;
@@ -127,10 +127,14 @@ angular.module('App').controller(
         `urls.${subsidiary}.guides.autoRenew`,
         get(this.constants, `urls.FR.guides.autoRenew`),
       );
-      this.autorenewUrl = buildURL('dedicated', '#/billing/autoRenew', {
-        selectedType: 'DOMAIN',
-        searchText: this.domainInfos.domain,
-      });
+      this.autorenewUrl = this.coreURLBuilder.buildURL(
+        'dedicated',
+        '#/billing/autoRenew',
+        {
+          selectedType: 'DOMAIN',
+          searchText: this.domainInfos.domain,
+        },
+      );
     }
 
     loadDomain() {

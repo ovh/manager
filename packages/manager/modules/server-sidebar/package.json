@@ -27,7 +27,6 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-server-sidebar' --include-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
-    "@ovh-ux/ufrontend": "^1.0.0",
     "font-awesome": "~4.7.0",
     "jsurl": "^0.1.5",
     "lodash": "^4.17.15"
