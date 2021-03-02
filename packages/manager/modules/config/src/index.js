@@ -7,10 +7,7 @@ import {
   findLanguage as _findLanguage,
 } from './locale';
 
-import {
-  LANGUAGES as _LANGUAGES,
-  localeStorageKey as _localeStorageKey,
-} from './locale/locale.constants';
+import { LANGUAGES as _LANGUAGES } from './locale/locale.constants';
 
 export const HOSTNAME_REGIONS = {
   'www.ovh.com': 'EU',
@@ -24,7 +21,6 @@ export const convertLanguageFromOVHToBCP47 = _convertLanguageFromOVHToBCP47;
 export const detectUserLocale = _detectUserLocale;
 export const findLanguage = _findLanguage;
 export const LANGUAGES = _LANGUAGES;
-export const localeStorageKey = _localeStorageKey;
 
 export const fetchConfiguration = (applicationName) => {
   let configurationURL = '/engine/2api/configuration';
@@ -70,5 +66,4 @@ export default {
   fetchConfiguration,
   findLanguage,
   LANGUAGES,
-  localeStorageKey, // TODO(@antleblanc): Remove it on March 1, 2021.
 };
