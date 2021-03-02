@@ -1,3 +1,19 @@
+# [5.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@4.0.1...@ovh-ux/manager-config@5.0.0) (2021-03-02)
+
+
+### Code Refactoring
+
+* **locale:** remove LT entry from language menu picker ([9fa851b](https://github.com/ovh/manager/commit/9fa851beebb089109a4a107954fc367a4b5cf0d0))
+
+
+### BREAKING CHANGES
+
+* **locale:** Remove entry `Česky` from the language menu picker.
+ As `fr_FR` is the default locale, we explicitly redirect `cs_CZ`
+ customer to the `en_GB` locale.
+
+
+
 ## [4.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@4.0.0...@ovh-ux/manager-config@4.0.1) (2021-02-26)
 
 

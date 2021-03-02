@@ -1,3 +1,12 @@
+## [1.0.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect-app@1.0.10...@ovh-ux/manager-cloud-connect-app@1.0.11) (2021-03-02)
+
+
+### Bug Fixes
+
+* bump semver range for @ovh-ux/manager-config package ([5f3eda1](https://github.com/ovh/manager/commit/5f3eda16abd4df3b46cdde241c827a1d1d6dc80c))
+
+
+
 ## [1.0.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect-app@1.0.9...@ovh-ux/manager-cloud-connect-app@1.0.10) (2021-02-24)
 
 

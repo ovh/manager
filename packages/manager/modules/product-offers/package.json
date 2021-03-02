@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-product-offers",
-  "version": "4.0.6",
+  "version": "4.0.7",
   "private": true,
   "description": "Set of components and services to handle option order with different workflows",
   "repository": {
@@ -20,7 +20,7 @@
     "@ovh-ux/manager-core": "^11.0.0 || ^12.0.0",
     "@ovh-ux/manager-filters": "^0.1.0 || ^1.0.0",
     "@ovh-ux/ng-ovh-contracts": "^4.0.2",
-    "@ovh-ux/ng-ovh-payment-method": "^7.0.10",
+    "@ovh-ux/ng-ovh-payment-method": "^7.0.11",
     "@ovh-ux/ng-ovh-web-universe-components": "^6.0.1",
     "@ovh-ux/ng-translate-async-loader": "^2.1.1",
     "@ovh-ux/ui-kit": "^4.4.1",

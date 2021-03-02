@@ -1,3 +1,13 @@
+## [16.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.4.0...@ovh-ux/manager-dedicated@16.4.1) (2021-03-02)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 828] ([#4491](https://github.com/ovh/manager/issues/4491)) ([afe630b](https://github.com/ovh/manager/commit/afe630b261404254292984b445067aeb8e893808))
+* bump semver range for @ovh-ux/manager-config package ([5f3eda1](https://github.com/ovh/manager/commit/5f3eda16abd4df3b46cdde241c827a1d1d6dc80c))
+
+
+
 # [16.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.3.5...@ovh-ux/manager-dedicated@16.4.0) (2021-02-24)
 
 

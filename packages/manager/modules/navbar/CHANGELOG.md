@@ -1,3 +1,13 @@
+## [5.4.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@5.4.4...@ovh-ux/manager-navbar@5.4.5) (2021-03-02)
+
+
+### Bug Fixes
+
+* bump semver range for @ovh-ux/manager-config package ([5f3eda1](https://github.com/ovh/manager/commit/5f3eda16abd4df3b46cdde241c827a1d1d6dc80c))
+* **language.menu:** remove force display of cs_CZ language ([78dcbf6](https://github.com/ovh/manager/commit/78dcbf6c9935c072fbce5805c08d1ae525a41a0b))
+
+
+
 ## [5.4.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@5.4.3...@ovh-ux/manager-navbar@5.4.4) (2021-02-24)
 
 
