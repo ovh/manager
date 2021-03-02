@@ -122,37 +122,47 @@ When you want to build an URL for an outside application, you will use `url-buil
 
 #### Examples
 
-Build the URL that redirect to `#/catalog` state from the `hub` application with query parameter (`expand`)
+Build the URL that redirect to `#/catalog` state from the `https://www.ovh.com/manager/` base URL with query parameter (`expand`)
 
 ```js
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 
-const url = buildURL('hub', '#/catalog', { expand: true });
+const url = buildURL('https://www.ovh.com/manager/', '#/catalog', {
+  expand: true,
+});
 // use `url`;
 ```
 
-Build multiples routes using an array of `{application, path, params}`
+Build multiples routes using an array of `{baseURL, path, params}`
 
 ```js
 import { buildURLs } from '@ovh-ux/ufrontend/url-builder';
 
 const [dashboard, catalog] = buildURLs([
-  { application: 'hub', path: '#/', params: { expand: true } },
-  { application: 'hub', path: '#/catalog' },
+  {
+    baseURL: 'https://www.ovh.com/manager/',
+    path: '#/',
+    params: { expand: true },
+  },
+  { baseURL: 'https://www.ovh.com/manager/', path: '#/catalog' },
 ]);
 // use `dashboard` and `catalog` URLs
 ```
 
-Build multiples routes using an object of `{application, path, params}`
+Build multiples routes using an object of `{baseURL, path, params}`
 
 ```js
 import { buildURLs } from '@ovh-ux/ufrontend/url-builder';
 
 const { dashboard, catalog } = buildURLs({
-  dashboard: { application: 'hub', path: '#/', params: { expand: true } },
-  catalog: { application: 'hub', path: '#/catalog' },
+  dashboard: {
+    baseURL: 'https://www.ovh.com/manager/',
+    path: '#/',
+    params: { expand: true },
+  },
+  catalog: { baseURL: 'https://www.ovh.com/manager/', path: '#/catalog' },
   emailDomainProducts: {
-    application: 'hub',
+    baseURL: 'https://www.ovh.com/manager/',
     path: '#/:product',
     params: { product: 'email_domain' },
   },

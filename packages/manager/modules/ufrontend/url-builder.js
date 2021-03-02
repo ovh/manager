@@ -1,18 +1,3 @@
-import { Environment } from '@ovh-ux/manager-config';
-
-const getApplicationBaseURL = (applicationName) => {
-  const applicationURL = Environment.getApplicationURL(applicationName);
-  const currentApplicationURL = Environment.getApplicationURL(
-    Environment.getApplicationName(),
-  );
-
-  if (applicationURL === currentApplicationURL) {
-    return `${window.location.origin}${window.location.pathname}`;
-  }
-
-  return applicationURL;
-};
-
 const buildURLPattern = (pattern, params) => {
   let url = pattern;
   let filteredParams = params;
@@ -49,9 +34,7 @@ const buildQueryString = (data) =>
     .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
     .join('&');
 
-export const buildURL = (application, path, params) => {
-  const applicationURL = getApplicationBaseURL(application);
-
+export const buildURL = (baseURL, path, params) => {
   const { url: buildedPath, params: queryObject } = buildURLPattern(
     path,
     params,
@@ -64,20 +47,20 @@ export const buildURL = (application, path, params) => {
       : `?${queryString}`;
   }
 
-  return `${applicationURL}${buildedPath}${queryString}`;
+  return `${baseURL}${buildedPath}${queryString}`;
 };
 
 export const buildURLs = (routes) => {
   if (Array.isArray(routes)) {
-    return routes.map(({ application, path, params }) =>
-      buildURL(application, path, params),
+    return routes.map(({ baseURL, path, params }) =>
+      buildURL(baseURL, path, params),
     );
   }
   return Object.keys(routes).reduce((result, name) => {
-    const { application, path, params } = routes[name];
+    const { baseURL, path, params } = routes[name];
     return {
       ...result,
-      [name]: buildURL(application, path, params),
+      [name]: buildURL(baseURL, path, params),
     };
   }, {});
 };
