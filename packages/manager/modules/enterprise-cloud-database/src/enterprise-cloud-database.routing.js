@@ -1,7 +1,6 @@
 import map from 'lodash/map';
 import find from 'lodash/find';
 
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import { STATUS } from './enterprise-cloud-database.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -54,22 +53,22 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
       createCluster: /* @ngInject */ ($state) => () =>
         $state.go('enterprise-cloud-database.create'),
-      goToMyServices: /* @ngInject */ ($window) => (
+      goToMyServices: /* @ngInject */ ($window, coreURLBuilder) => (
         serviceName,
         serviceType,
       ) => {
         $window.location.replace(
-          buildURL('dedicated', '#/billing/autoRenew', {
+          coreURLBuilder.buildURL('dedicated', '#/billing/autoRenew', {
             searchText: serviceName,
             selectedType: serviceType,
           }),
         );
         $window.location.reload();
       },
-      paymentMethodURL: /* @ngInject */ () =>
-        buildURL('dedicated', '#/billing/payment/method'),
-      getOrdersURL: /* @ngInject */ () => (orderId) =>
-        buildURL('dedicated', '#/billing/orders', {
+      paymentMethodURL: /* @ngInject */ (coreURLBuilder) =>
+        coreURLBuilder.buildURL('dedicated', '#/billing/payment/method'),
+      getOrdersURL: /* @ngInject */ (coreURLBuilder) => (orderId) =>
+        coreURLBuilder.buildURL('dedicated', '#/billing/orders', {
           status: 'all',
           orderId,
         }),

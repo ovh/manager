@@ -1,8 +1,6 @@
 import get from 'lodash/get';
 import head from 'lodash/head';
 
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.instances.instance', {
     url: '/:instanceId',
@@ -23,20 +21,21 @@ export default /* @ngInject */ ($stateProvider) => {
       ) =>
         PciProjectsProjectInstanceService.getInstancePrice(projectId, instance),
 
-      reverseDnsLink: () => buildURL('dedicated', '#/configuration/ip'),
+      reverseDnsLink: /* @ngInject */ (coreURLBuilder) =>
+        coreURLBuilder.buildURL('dedicated', '#/configuration/ip'),
 
-      ipMitigationLink: /* @ngInject */ (instance) => {
+      ipMitigationLink: /* @ngInject */ (coreURLBuilder, instance) => {
         const ip = get(head(instance.publicIpV4), 'ip');
-        return buildURL('dedicated', '#/configuration/ip', {
+        return coreURLBuilder.buildURL('dedicated', '#/configuration/ip', {
           action: 'mitigation',
           ip,
           ipBlock: ip,
         });
       },
 
-      firewallLink: /* @ngInject */ (instance) => {
+      firewallLink: /* @ngInject */ (coreURLBuilder, instance) => {
         const ip = get(head(instance.publicIpV4), 'ip');
-        return buildURL('dedicated', '#/configuration/ip', {
+        return coreURLBuilder.buildURL('dedicated', '#/configuration/ip', {
           action: 'toggleFirewall',
           ip,
           ipBlock: ip,

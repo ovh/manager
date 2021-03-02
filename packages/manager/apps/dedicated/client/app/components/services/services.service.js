@@ -1,5 +1,3 @@
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-
 import kebabCase from 'lodash/kebabCase';
 import get from 'lodash/get';
 import has from 'lodash/has';
@@ -9,10 +7,12 @@ import { SERVICES_TARGET_URLS } from './services.constants';
 angular.module('App').service(
   'ServicesHelper',
   class ServicesHelper {
-    constructor($http, $q) {
+    /* @ngInject */
+    constructor($http, $q, coreURLBuilder) {
       this.$http = $http;
       this.$q = $q;
       this.SERVICES_TARGET_URLS = SERVICES_TARGET_URLS;
+      this.coreURLBuilder = coreURLBuilder;
     }
 
     getServiceDetails(service) {
@@ -31,9 +31,13 @@ angular.module('App').service(
 
       const target = get(this.SERVICES_TARGET_URLS, get(service, 'route.path'));
 
-      return buildURL(kebabCase(target.universe), target.url, {
-        serviceName: get(service, 'resource.name'),
-      });
+      return this.coreURLBuilder.buildURL(
+        kebabCase(target.universe),
+        target.url,
+        {
+          serviceName: get(service, 'resource.name'),
+        },
+      );
     }
 
     getServiceType(service) {

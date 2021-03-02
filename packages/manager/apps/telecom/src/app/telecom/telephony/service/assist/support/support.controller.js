@@ -1,7 +1,6 @@
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-
 export default /* @ngInject */ function TelecomTelephonyServiceAssistSupportCtrl(
   $stateParams,
+  coreURLBuilder,
   TelephonyMediator,
   URLS,
 ) {
@@ -13,7 +12,7 @@ export default /* @ngInject */ function TelecomTelephonyServiceAssistSupportCtrl
 
   self.service = null;
   self.guideUrl = URLS.guides.telephony;
-  self.supportUrl = buildURL('dedicated', '#/support');
+  self.supportUrl = coreURLBuilder.buildURL('dedicated', '#/support');
 
   /*= =====================================
     =            INITIALIZATION            =

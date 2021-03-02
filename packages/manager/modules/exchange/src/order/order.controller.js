@@ -1,5 +1,3 @@
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-
 import head from 'lodash/head';
 import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
@@ -7,7 +5,14 @@ import set from 'lodash/set';
 
 export default class ExchangeOrderCtrl {
   /* @ngInject */
-  constructor($scope, wucExchange, OvhApiEmailExchange, WucUser) {
+  constructor(
+    $scope,
+    coreURLBuilder,
+    wucExchange,
+    OvhApiEmailExchange,
+    WucUser,
+  ) {
+    this.coreURLBuilder = coreURLBuilder;
     this.services = {
       $scope,
       wucExchange,
@@ -52,7 +57,7 @@ export default class ExchangeOrderCtrl {
 
   getExchangeOrderUrl() {
     if (this.alreadyHasAnExchange && this.firstExchangeAccount != null) {
-      return buildURL(
+      return this.coreURLBuilder.buildURL(
         'exchange',
         '#/configuration/:type/:organization/:productId',
         {

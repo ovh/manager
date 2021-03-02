@@ -5,7 +5,6 @@ import find from 'lodash/find';
 import set from 'lodash/set';
 import punycode from 'punycode';
 
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import {
   SIZE_UNIT,
   STATE_TASK_DOING,
@@ -17,22 +16,24 @@ import {
 export default class {
   /* @ngInject */
   constructor(
-    $scope,
-    EmailPro,
     $q,
+    $scope,
     $stateParams,
     $translate,
+    coreURLBuilder,
     goToAccounts,
     goToAliases,
+    EmailPro,
     WucConverterService,
   ) {
-    this.$scope = $scope;
-    this.EmailPro = EmailPro;
     this.$q = $q;
+    this.$scope = $scope;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
+    this.coreURLBuilder = coreURLBuilder;
     this.goToAccounts = goToAccounts;
     this.goToAliases = goToAliases;
+    this.EmailPro = EmailPro;
     this.WucConverterService = WucConverterService;
 
     this.$scope.stateCreating = EmailPro.stateCreating;
@@ -76,7 +77,7 @@ export default class {
     this.$scope.spamTooltipContent = this.$translate.instant(
       'emailpro_tab_ACCOUNTS_popover_span_text',
       {
-        t0: buildURL('dedicated', '#/support/tickets', {
+        t0: this.coreURLBuilder.buildURL('dedicated', '#/support/tickets', {
           filters: JSON.stringify({
             property: 'serviceName.value',
             operator: 'contains',

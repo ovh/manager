@@ -7,7 +7,6 @@ import map from 'lodash/map';
 import values from 'lodash/values';
 import 'moment';
 
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import IplbHomeUpdateQuotaTemplate from './updateQuota/iplb-update-quota.html';
 
 export default class IpLoadBalancerHomeCtrl {
@@ -17,6 +16,7 @@ export default class IpLoadBalancerHomeCtrl {
     $stateParams,
     $translate,
     coreConfig,
+    coreURLBuilder,
     CucControllerHelper,
     CucCloudMessage,
     CucFeatureAvailabilityService,
@@ -36,6 +36,7 @@ export default class IpLoadBalancerHomeCtrl {
     this.$stateParams = $stateParams;
     this.$translate = $translate;
     this.coreConfig = coreConfig;
+    this.coreURLBuilder = coreURLBuilder;
     this.CucControllerHelper = CucControllerHelper;
     this.CucCloudMessage = CucCloudMessage;
     this.CucFeatureAvailabilityService = CucFeatureAvailabilityService;
@@ -227,7 +228,7 @@ export default class IpLoadBalancerHomeCtrl {
       },
       manageAutorenew: {
         text: this.$translate.instant('iplb_manage'),
-        href: buildURL('dedicated', '#/billing/autoRenew', {
+        href: this.coreURLBuilder.buildURL('dedicated', '#/billing/autoRenew', {
           searchText: this.serviceName,
           selectedType: 'IP_LOADBALANCER',
         }),
@@ -236,7 +237,7 @@ export default class IpLoadBalancerHomeCtrl {
       },
       manageContact: {
         text: this.$translate.instant('iplb_manage'),
-        href: buildURL('dedicated', '#/contacts/services', {
+        href: this.coreURLBuilder.buildURL('dedicated', '#/contacts/services', {
           serviceName: this.serviceName,
           tab: 'SERVICES',
         }),

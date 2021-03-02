@@ -4,14 +4,13 @@ import includes from 'lodash/includes';
 import kebabCase from 'lodash/kebabCase';
 import map from 'lodash/map';
 
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-
 export default class ExchangeTabDiagnosticsCtrl {
   /* @ngInject */
   constructor(
     $scope,
     $q,
     constants,
+    coreURLBuilder,
     diagnostic,
     WucUser,
     EXCHANGE_CONFIG,
@@ -36,11 +35,16 @@ export default class ExchangeTabDiagnosticsCtrl {
     };
 
     this.POLL_NAMESPACE = 'exchange.diagnostic.poll';
+
     this.exchange = wucExchange.value;
-    this.newTicketUrl = buildURL('dedicated', '#/support/tickets/new', {
-      serviceTypeName: 'email_exchange',
-      serviceName: this.exchange.domain,
-    });
+    this.newTicketUrl = coreURLBuilder.buildURL(
+      'dedicated',
+      '#/support/tickets/new',
+      {
+        serviceTypeName: 'email_exchange',
+        serviceName: this.exchange.domain,
+      },
+    );
 
     this.states = {
       REQUESTING_NEW_DIAGNOSTIC: 'REQUESTING_NEW_DIAGNOSTIC',

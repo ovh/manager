@@ -1,16 +1,15 @@
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-
 export default class BannerController {
   /* @ngInject */
-  constructor($http, $q, ovhFeatureFlipping) {
+  constructor($http, $q, coreURLBuilder, ovhFeatureFlipping) {
     this.$http = $http;
     this.$q = $q;
     this.ovhFeatureFlipping = ovhFeatureFlipping;
+    this.coreURLBuilder = coreURLBuilder;
   }
 
   $onInit() {
     this.isActive = false;
-    this.migrationLink = buildURL(
+    this.migrationLink = this.coreURLBuilder.buildURL(
       'hub',
       `#/incident/${this.incident.toUpperCase()}/migration`,
     );

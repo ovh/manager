@@ -1,11 +1,9 @@
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-
 export default class PciProjectNewPaymentChooseCtrl {
   /* @ngInject */
-  constructor(coreConfig) {
+  constructor(coreConfig, coreURLBuilder) {
     this.useNewPaymentMethod = false;
     this.myServiceUrl = coreConfig.isRegion(['EU', 'CA'])
-      ? buildURL('dedicated', '#/billing/autoRenew')
+      ? coreURLBuilder.buildURL('dedicated', '#/billing/autoRenew')
       : '';
   }
 

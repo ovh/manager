@@ -1,4 +1,3 @@
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import head from 'lodash/head';
 import isEmpty from 'lodash/isEmpty';
 import isObject from 'lodash/isObject';
@@ -18,6 +17,7 @@ export default class HostingGeneralInformationsCtrl {
     $translate,
     atInternet,
     coreConfig,
+    coreURLBuilder,
     Alerter,
     boostLink,
     localSEOLink,
@@ -38,6 +38,7 @@ export default class HostingGeneralInformationsCtrl {
 
     this.atInternet = atInternet;
     this.coreConfig = coreConfig;
+    this.coreURLBuilder = coreURLBuilder;
     this.Alerter = Alerter;
     this.boostLink = boostLink;
     this.localSEOLink = localSEOLink;
@@ -59,7 +60,7 @@ export default class HostingGeneralInformationsCtrl {
     this.availableOffers = [];
     this.contactManagementLink =
       this.coreConfig.getRegion() === 'EU'
-        ? buildURL('dedicated', '#/contacts/services', {
+        ? this.coreURLBuilder.buildURL('dedicated', '#/contacts/services', {
             serviceName: this.serviceName,
             category: 'HOSTING',
           })

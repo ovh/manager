@@ -1,4 +1,3 @@
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import { FAQ_LINK } from '../constants';
 
 export default class MigrationNotificationController {
@@ -10,6 +9,7 @@ export default class MigrationNotificationController {
     atInternet,
     accountMigrationService,
     coreConfig,
+    coreURLBuilder,
     OvhApiMe,
   ) {
     this.$q = $q;
@@ -20,16 +20,19 @@ export default class MigrationNotificationController {
     this.accountMigrationService = accountMigrationService;
     this.OvhApiMe = OvhApiMe;
 
-    this.AGREEMENTS_URL = buildURL(
+    this.AGREEMENTS_URL = coreURLBuilder.buildURL(
       'dedicated',
       '#/billing/autorenew/agreements',
     );
     this.CONTACTS_URL =
       coreConfig.getRegion() === 'EU'
-        ? buildURL('dedicated', '#/contacts/services')
+        ? coreURLBuilder.buildURL('dedicated', '#/contacts/services')
         : '';
-    this.ORDERS_URL = buildURL('dedicated', '#/billing/orders');
-    this.DEBT_PAY_URL = buildURL('dedicated', '#/billing/history/debt/all/pay');
+    this.ORDERS_URL = coreURLBuilder.buildURL('dedicated', '#/billing/orders');
+    this.DEBT_PAY_URL = coreURLBuilder.buildURL(
+      'dedicated',
+      '#/billing/history/debt/all/pay',
+    );
 
     this.migrationDetail = null;
     this.needMigration = false;

@@ -1,5 +1,3 @@
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-
 import {
   DEFAULT_ASSET,
   DEFAULT_ASSET2X,
@@ -8,9 +6,12 @@ import {
 
 export default class mfaEnrollmentCtrl {
   /* @ngInject */
-  constructor($state) {
+  constructor($state, coreURLBuilder) {
     this.$state = $state;
-    this.mfaUrl = buildURL('dedicated', '#/useraccount/security/mfa');
+    this.mfaUrl = coreURLBuilder.buildURL(
+      'dedicated',
+      '#/useraccount/security/mfa',
+    );
 
     this.DEFAULT_ASSET = DEFAULT_ASSET;
     this.DEFAULT_ASSET2X = DEFAULT_ASSET2X;

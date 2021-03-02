@@ -1,17 +1,25 @@
 import find from 'lodash/find';
 import get from 'lodash/get';
 import includes from 'lodash/includes';
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 
 export default class MXPlanOrderCtrl {
   /* @ngInject */
-  constructor($q, $timeout, $translate, $window, Alerter, coreConfig) {
+  constructor(
+    $q,
+    $timeout,
+    $translate,
+    $window,
+    Alerter,
+    coreConfig,
+    coreURLBuilder,
+  ) {
     this.$q = $q;
     this.$timeout = $timeout;
     this.$translate = $translate;
     this.$window = $window;
     this.Alerter = Alerter;
     this.coreConfig = coreConfig;
+    this.coreURLBuilder = coreURLBuilder;
   }
 
   $onInit() {
@@ -97,9 +105,13 @@ export default class MXPlanOrderCtrl {
 
         this.orderTrackingLink =
           this.coreConfig.getRegion() === 'EU'
-            ? buildURL('dedicated', '#/billing/order/:orderId', {
-                orderId: order.orderId,
-              })
+            ? this.coreURLBuilder.buildURL(
+                'dedicated',
+                '#/billing/order/:orderId',
+                {
+                  orderId: order.orderId,
+                },
+              )
             : null;
 
         return this.orderTrackingLink;

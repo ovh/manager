@@ -21,7 +21,12 @@ bootstrapApplication('hub').then(({ region, message }) => {
   BILLING_REDIRECTIONS.forEach((redirectionRegex) => {
     const hash = window.location.hash.replace('#', '');
     if (redirectionRegex.test(hash)) {
-      window.location.assign(buildURL('dedicated', window.location.hash));
+      window.location.assign(
+        buildURL(
+          Environment.getApplicationURL('dedicated'),
+          window.location.hash,
+        ),
+      );
     }
   });
 

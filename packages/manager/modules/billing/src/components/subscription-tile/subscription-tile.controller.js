@@ -1,7 +1,5 @@
 import { BillingService as ServiceInfos } from '@ovh-ux/manager-models';
 
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-
 export default class ServicesActionsCtrl {
   /* @ngInject */
   constructor(
@@ -10,6 +8,7 @@ export default class ServicesActionsCtrl {
     $translate,
     atInternet,
     coreConfig,
+    coreURLBuilder,
     BillingService,
     ovhFeatureFlipping,
   ) {
@@ -19,6 +18,7 @@ export default class ServicesActionsCtrl {
     this.atInternet = atInternet;
     this.BillingService = BillingService;
     this.coreConfig = coreConfig;
+    this.coreURLBuilder = coreURLBuilder;
     this.ovhFeatureFlipping = ovhFeatureFlipping;
   }
 
@@ -37,7 +37,7 @@ export default class ServicesActionsCtrl {
           : this.BillingService.getServiceInfos(this.servicePath);
       })
       .then((serviceInfos) => {
-        this.contactManagementUrl = buildURL(
+        this.contactManagementUrl = this.coreURLBuilder.buildURL(
           'dedicated',
           '#/contacts/services',
           {

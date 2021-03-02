@@ -33,7 +33,6 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-enterprise-cloud-database' --include-dependencies -- yarn run dev"
   },
   "dependencies": {
-    "@ovh-ux/ufrontend": "^1.0.0",
     "flag-icon-css": "^3.2.0",
     "lodash": "^4.17.14",
     "zxcvbn": "^4.4.2"

@@ -12,7 +12,6 @@
   "author": "OVH SAS",
   "main": "src/index.js",
   "dependencies": {
-    "@ovh-ux/ufrontend": "^1.0.0",
     "lodash": "^4.17.15",
     "punycode": "^1.4.1",
     "validator": "^11.1.0"

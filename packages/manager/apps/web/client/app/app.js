@@ -6,7 +6,6 @@ import isString from 'lodash/isString';
 import set from 'lodash/set';
 
 import { Environment } from '@ovh-ux/manager-config';
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
@@ -208,9 +207,12 @@ angular
     },
   ])
   .config(
-    /* @ngInject */ (ovhPaymentMethodProvider) => {
+    /* @ngInject */ (ovhPaymentMethodProvider, coreURLBuilderProvider) => {
       ovhPaymentMethodProvider.setPaymentMethodPageUrl(
-        buildURL('dedicated', '#/billing/payment/method'),
+        coreURLBuilderProvider.buildURL(
+          'dedicated',
+          '#/billing/payment/method',
+        ),
       );
       ovhPaymentMethodProvider.setUserLocale(Environment.getUserLocale());
     },
@@ -277,11 +279,13 @@ angular
       );
     },
   )
-  .config([
-    '$stateProvider',
-    '$urlRouterProvider',
-    'URLS_REDIRECTED_TO_DEDICATED',
-    ($stateProvider, $urlRouterProvider, URLS_REDIRECTED_TO_DEDICATED) => {
+  .config(
+    /* @ngInject */
+    (
+      $urlRouterProvider,
+      coreURLBuilderProvider,
+      URLS_REDIRECTED_TO_DEDICATED,
+    ) => {
       forEach(URLS_REDIRECTED_TO_DEDICATED, (url) => {
         $urlRouterProvider.when(url, [
           '$window',
@@ -291,7 +295,10 @@ angular
             set(
               $window,
               'location',
-              buildURL('dedicated', `#/${lastPartOfUrl}`),
+              coreURLBuilderProvider.buildURL(
+                'dedicated',
+                `#/${lastPartOfUrl}`,
+              ),
             );
           },
         ]);
@@ -299,7 +306,7 @@ angular
 
       $urlRouterProvider.otherwise('/configuration');
     },
-  ])
+  )
   .constant('COMPOSED_TLD', [
     'org.pl',
     'net.pl',
@@ -412,21 +419,23 @@ angular
     'travel.pl',
     'turystyka.pl',
   ])
-  .run([
-    '$location',
-    'URLS_REDIRECTED_TO_DEDICATED',
-    ($location, URLS_REDIRECTED_TO_DEDICATED) => {
+  .run(
+    /* @ngInject */
+    ($location, URLS_REDIRECTED_TO_DEDICATED, coreURLBuilder) => {
       forEach(
         filter(URLS_REDIRECTED_TO_DEDICATED, (url) =>
           url.test(window.location.href),
         ),
         () => {
           const lastPartOfUrl = $location.url().substring(1);
-          window.location = buildURL('dedicated', `#/${lastPartOfUrl}`);
+          window.location = coreURLBuilder.buildURL(
+            'dedicated',
+            `#/${lastPartOfUrl}`,
+          );
         },
       );
     },
-  ])
+  )
   .run([
     '$rootScope',
     ($rootScope) => {

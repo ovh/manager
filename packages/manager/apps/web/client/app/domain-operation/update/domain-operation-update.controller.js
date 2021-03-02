@@ -2,7 +2,6 @@ import clone from 'lodash/clone';
 import isArray from 'lodash/isArray';
 import join from 'lodash/join';
 import map from 'lodash/map';
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 
 angular.module('App').controller(
   'DomainOperationUpdateCtrl',
@@ -13,6 +12,7 @@ angular.module('App').controller(
       $translate,
       Alerter,
       WucUser,
+      coreURLBuilder,
       domainOperationService,
     ) {
       this.$scope = $scope;
@@ -20,6 +20,7 @@ angular.module('App').controller(
       this.$translate = $translate;
       this.Alerter = Alerter;
       this.WucUser = WucUser;
+      this.coreURLBuilder = coreURLBuilder;
       this.domainOperationService = domainOperationService;
     }
 
@@ -49,7 +50,7 @@ angular.module('App').controller(
         this.todoOperation = 'accelerate';
       }
 
-      this.contactUrl = buildURL('dedicated', '#/contact');
+      this.contactUrl = this.coreURLBuilder.buildURL('dedicated', '#/contact');
 
       this.$scope.updateOperation = () => this.updateOperation();
 

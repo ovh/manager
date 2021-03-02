@@ -1,8 +1,6 @@
 import get from 'lodash/get';
 import set from 'lodash/set';
 
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-
 import component from './component';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -175,6 +173,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $window,
         atInternet,
         configurationTile,
+        coreURLBuilder,
         goBack,
         goToUpgradeSuccess,
         hasDefaultPaymentMethod,
@@ -190,7 +189,7 @@ export default /* @ngInject */ ($stateProvider) => {
       ) => () => {
         if (upgradeSuccess) {
           return $window.location.replace(
-            buildURL('dedicated', '#/billing/order/:orderId', {
+            coreURLBuilder.buildURL('dedicated', '#/billing/order/:orderId', {
               orderId: upgradeOrderId,
             }),
           );

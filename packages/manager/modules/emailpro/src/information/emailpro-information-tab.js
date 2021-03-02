@@ -2,8 +2,6 @@ import filter from 'lodash/filter';
 import get from 'lodash/get';
 import set from 'lodash/set';
 
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-
 export default class EmailProTabInformationCtrl {
   /* @ngInject */
   constructor(
@@ -12,6 +10,7 @@ export default class EmailProTabInformationCtrl {
     $state,
     $stateParams,
     $translate,
+    coreURLBuilder,
     Alerter,
     EmailPro,
     EmailProMXPlanMailingLists,
@@ -22,6 +21,7 @@ export default class EmailProTabInformationCtrl {
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
+    this.coreURLBuilder = coreURLBuilder;
     this.Alerter = Alerter;
     this.EmailPro = EmailPro;
     this.EmailProMXPlanMailingLists = EmailProMXPlanMailingLists;
@@ -61,7 +61,7 @@ export default class EmailProTabInformationCtrl {
     }
 
     if (this.$scope.sharepoint) {
-      this.sharepointURL = buildURL(
+      this.sharepointURL = this.coreURLBuilder.buildURL(
         'dedicated',
         '#/sharepoint/:exchangeId/:productId',
         {

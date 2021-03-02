@@ -1,7 +1,5 @@
 import 'moment';
 
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-
 import { RENEW_URLS } from '../details/constants';
 
 export default class VeeamCloudConnectDashboardCtrl {
@@ -10,6 +8,7 @@ export default class VeeamCloudConnectDashboardCtrl {
     $stateParams,
     $translate,
     coreConfig,
+    coreURLBuilder,
     CucControllerHelper,
     CucFeatureAvailabilityService,
     CucRegionService,
@@ -18,6 +17,7 @@ export default class VeeamCloudConnectDashboardCtrl {
     this.$stateParams = $stateParams;
     this.$translate = $translate;
     this.coreConfig = coreConfig;
+    this.coreURLBuilder = coreURLBuilder;
     this.CucControllerHelper = CucControllerHelper;
     this.CucFeatureAvailabilityService = CucFeatureAvailabilityService;
     this.CucRegionService = CucRegionService;
@@ -102,7 +102,7 @@ export default class VeeamCloudConnectDashboardCtrl {
       manageAutorenew: {
         text: this.$translate.instant('veeam_common_manage'),
         href: this.coreConfig.isRegion('EU')
-          ? buildURL('dedicated', '#/billing/autoRenew', {
+          ? this.coreURLBuilder.buildURL('dedicated', '#/billing/autoRenew', {
               searchText: this.serviceName,
               selectedType: 'VEEAM_CLOUD_CONNECT',
             })
@@ -113,7 +113,7 @@ export default class VeeamCloudConnectDashboardCtrl {
       manageContact: {
         text: this.$translate.instant('veeam_common_manage'),
         href: this.coreConfig.isRegion('EU')
-          ? buildURL('dedicated', '#/contacts/services', {
+          ? this.coreURLBuilder.buildURL('dedicated', '#/contacts/services', {
               serviceName: this.serviceName,
               tab: 'SERVICES',
             })

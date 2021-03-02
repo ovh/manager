@@ -1,4 +1,3 @@
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import forEach from 'lodash/forEach';
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
@@ -15,6 +14,7 @@ export default class PrivateDatabaseCtrl {
     $timeout,
     $translate,
     coreConfig,
+    coreURLBuilder,
     Alerter,
     allowedIPsLink,
     configurationLink,
@@ -38,6 +38,7 @@ export default class PrivateDatabaseCtrl {
     this.$timeout = $timeout;
     this.$translate = $translate;
     this.coreConfig = coreConfig;
+    this.coreURLBuilder = coreURLBuilder;
     this.alerter = Alerter;
     this.allowedIPsLink = allowedIPsLink;
     this.configurationLink = configurationLink;
@@ -61,7 +62,7 @@ export default class PrivateDatabaseCtrl {
 
     this.contactManagementLink =
       this.coreConfig.getRegion() === 'EU'
-        ? buildURL('dedicated', '#/contacts/services', {
+        ? this.coreURLBuilder.buildURL('dedicated', '#/contacts/services', {
             serviceName: this.productId,
           })
         : '';

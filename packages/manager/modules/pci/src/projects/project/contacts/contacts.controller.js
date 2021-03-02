@@ -1,12 +1,11 @@
 import indexOf from 'lodash/indexOf';
 
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-
 export default /* @ngInject */ function(
   $stateParams,
   $translate,
   $window,
   coreConfig,
+  coreURLBuilder,
   CucCloudMessage,
   CucControllerHelper,
   guideUrl,
@@ -100,10 +99,14 @@ export default /* @ngInject */ function(
 
   self.openContacts = function openContacts() {
     if (self.canChangeContacts()) {
-      const redirectURL = buildURL('dedicated', '/contacts/services', {
-        tab: 'SERVICES',
-        serviceName,
-      });
+      const redirectURL = coreURLBuilder.buildURL(
+        'dedicated',
+        '/contacts/services',
+        {
+          tab: 'SERVICES',
+          serviceName,
+        },
+      );
       $window.open(redirectURL, '_blank');
     }
   };
