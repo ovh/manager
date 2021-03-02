@@ -54,6 +54,20 @@ export default class CoreConfig {
     return this.environment.getApplicationURL(id);
   }
 
+  getApplicationBaseURL(id) {
+    const applicationURL = this.environment.getApplicationURL(id);
+    if (applicationURL === this.getCurrentApplicationURL()) {
+      return `${window.location.origin}${window.location.pathname}`;
+    }
+    return applicationURL;
+  }
+
+  getCurrentApplicationURL() {
+    return this.environment.getApplicationURL(
+      this.environment.getApplicationName(),
+    );
+  }
+
   setMessage(message) {
     return this.environment.setMessage(message);
   }
@@ -82,6 +96,8 @@ export default class CoreConfig {
 
       getApplicationURLs: () => this.getApplicationURLs(),
       getApplicationURL: (id) => this.getApplicationURL(id),
+      getApplicationBaseURL: (id) => this.getApplicationBaseURL(id),
+      getCurrentApplicationURL: () => this.getCurrentApplicationURL(),
 
       setMessage: (message) => this.setMessage(message),
       getMessage: () => this.getMessage(),

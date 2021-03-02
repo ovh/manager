@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "@ovh-ux/ng-translate-async-loader": "^2.1.1",
+    "@ovh-ux/ufrontend": "^2.0.0",
     "lodash-es": "^4.17.15"
   },
   "devDependencies": {
