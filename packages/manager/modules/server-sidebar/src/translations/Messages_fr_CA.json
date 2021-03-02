@@ -19,7 +19,9 @@
   "server_sidebar_item_logs_title": "Logs Data Platform",
   "server_sidebar_item_logs_all_accounts_title": "Tous les comptes",
   "server_sidebar_item_load_balancer_title": "Load Balancer",
+  "server_sidebar_item_dedicated_network_title": "Network",
   "server_sidebar_item_vrack_title": "vRack",
+  "server_sidebar_item_cloud_connect_title": "OVHcloud Connect",
   "server_sidebar_item_cloud_desktop_title": "Cloud Desktop",
   "server_sidebar_item_domains_title": "Noms de domaine",
   "server_sidebar_item_hostings_title": "Hébergements",
@@ -63,5 +65,6 @@
   "server_sidebar_order_item_sharepoint_title": "Sharepoint",
   "server_sidebar_order_item_zone_title": "Zone DNS",
   "server_sidebar_order_item_enterprise_cloud_database_title": "Enterprise Cloud Database",
-  "server_sidebar_order_item_cloudDatabase_title": "Cloud DB"
+  "server_sidebar_order_item_cloudDatabase_title": "Cloud DB",
+  "server_sidebar_order_item_ovh_cloud_connect_title": "OVHcloud Connect"
 }
