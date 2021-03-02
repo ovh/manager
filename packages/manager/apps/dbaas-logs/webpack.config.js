@@ -56,7 +56,7 @@ module.exports = (env = {}) => {
     plugins: [
       new webpack.ContextReplacementPlugin(
         /moment[/\\]locale$/,
-        /cs|de|en-gb|es|es-us|fi|fr-ca|fr|it|lt|pl|pt/,
+        /de|en-gb|es|es-us|fr-ca|fr|it|pl|pt/,
       ),
       new webpack.DefinePlugin({
         __WEBPACK_REGION__: `'${REGION}'`,
