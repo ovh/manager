@@ -1,3 +1,12 @@
+## [16.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.4.2...@ovh-ux/manager-dedicated@16.4.3) (2021-03-03)
+
+
+### Bug Fixes
+
+* **ip:** display pagination for parking ([#4499](https://github.com/ovh/manager/issues/4499)) ([1498d27](https://github.com/ovh/manager/commit/1498d27571fbe1014b4e990f06e592d46e44e812))
+
+
+
 ## [16.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.4.1...@ovh-ux/manager-dedicated@16.4.2) (2021-03-03)
 
 
