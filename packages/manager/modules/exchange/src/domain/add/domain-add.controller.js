@@ -7,13 +7,15 @@ import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
 
 import { Environment } from '@ovh-ux/manager-config';
+import punycode from 'punycode';
+import { DOMAIN_ORDER_URL } from './domain.constants';
 
 export default class ExchangeAddDomainController {
   /* @ngInject */
   constructor(
     $rootScope,
     $scope,
-    Exchange,
+    wucExchange,
     ExchangeDomains,
     messaging,
     navigation,
@@ -22,12 +24,12 @@ export default class ExchangeAddDomainController {
     WucValidator,
     exchangeVersion,
     exchangeServiceInfrastructure,
-    User,
+    WucUser,
   ) {
     this.services = {
       $rootScope,
       $scope,
-      Exchange,
+      wucExchange,
       ExchangeDomains,
       messaging,
       navigation,
@@ -40,11 +42,14 @@ export default class ExchangeAddDomainController {
 
     this.OVH_DOMAIN = 'ovh-domain';
     this.NON_OVH_DOMAIN = 'non-ovh-domain';
-    this.exchange = Exchange.value;
+    this.exchange = wucExchange.value;
+    this.DOMAIN_ORDER_URL =
+      DOMAIN_ORDER_URL[Environment.getUser().ovhSubsidiary] ||
+      DOMAIN_ORDER_URL.FR;
 
     this.debouncedResetName = debounce(this.search, 300);
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
     this.noDomainAttached = get(
       navigation.currentActionData,
       'noDomainAttached',
@@ -75,7 +80,7 @@ export default class ExchangeAddDomainController {
     $scope.checkDomainType = () => this.checkDomainType();
     $scope.isStep3Valid = () => this.isStep3Valid();
 
-    User.getUser().then((currentUser) => {
+    WucUser.getUser().then((currentUser) => {
       this.canOpenWizard = currentUser.ovhSubsidiary !== 'CA';
     });
   }

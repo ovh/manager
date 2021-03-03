@@ -4,7 +4,9 @@ export default class ExchangeTabGroupAliasCtrl {
   /* @ngInject */
   constructor(
     $scope,
-    Exchange,
+    wucExchange,
+    goToGroup,
+    mailingList,
     navigation,
     messaging,
     $translate,
@@ -12,18 +14,20 @@ export default class ExchangeTabGroupAliasCtrl {
   ) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       navigation,
       messaging,
       $translate,
       exchangeStates,
     };
 
-    this.$routerParams = Exchange.getParams();
-    this.aliasMaxLimit = this.services.Exchange.aliasMaxLimit;
+    this.$routerParams = wucExchange.getParams();
+    this.aliasMaxLimit = this.services.wucExchange.aliasMaxLimit;
     this.aliasesParams = {};
+    this.goToGroup = goToGroup;
+    this.mailingList = mailingList;
 
-    $scope.$on(this.services.Exchange.events.groupsChanged, () =>
+    $scope.$on(this.services.wucExchange.events.groupsChanged, () =>
       this.refreshList(),
     );
     $scope.getAliases = (pageSize, offset) => this.getAliases(pageSize, offset);
@@ -34,13 +38,14 @@ export default class ExchangeTabGroupAliasCtrl {
     this.aliasesParams.pageSize = pageSize;
     this.aliasesParams.offset = offset;
 
-    return this.services.Exchange.getGroupAliasList(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-      this.services.navigation.selectedGroup.mailingListAddress,
-      pageSize,
-      offset - 1,
-    )
+    return this.services.wucExchange
+      .getGroupAliasList(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        this.mailingList.mailingListAddress,
+        pageSize,
+        offset - 1,
+      )
       .then((data) => {
         this.aliases = data.list.results;
         this.aliasesParams.results = {
@@ -60,13 +65,14 @@ export default class ExchangeTabGroupAliasCtrl {
   }
 
   refreshList() {
-    this.services.Exchange.getGroupAliasList(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-      this.services.navigation.selectedGroup.mailingListAddress,
-      this.aliasesParams.pageSize,
-      this.aliasesParams.offset - 1,
-    )
+    this.services.wucExchange
+      .getGroupAliasList(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        this.mailingList.mailingListAddress,
+        this.aliasesParams.pageSize,
+        this.aliasesParams.offset - 1,
+      )
       .then((data) => {
         this.aliasesParams.results.meta.totalCount = data.count;
         for (let i = 0; i < data.list.results.length; i += 1) {
@@ -88,16 +94,12 @@ export default class ExchangeTabGroupAliasCtrl {
       );
   }
 
-  hide() {
-    this.services.$scope.$emit('showGroups');
-  }
-
   deleteGroupAlias(alias) {
     if (!alias.taskPendingId) {
       this.services.navigation.setAction(
         'exchange/group/alias/remove/group-alias-remove',
         {
-          selectedGroup: this.services.navigation.selectedGroup,
+          selectedGroup: this.mailingList,
           alias,
         },
       );
@@ -106,23 +108,21 @@ export default class ExchangeTabGroupAliasCtrl {
 
   addGroupAlias() {
     if (
-      this.services.navigation.selectedGroup &&
-      this.services.navigation.selectedGroup.aliases <= this.aliasMaxLimit &&
-      this.services.exchangeStates.constructor.isOk(
-        this.services.navigation.selectedGroup,
-      )
+      this.mailingList &&
+      this.mailingList.aliases <= this.aliasMaxLimit &&
+      this.services.exchangeStates.constructor.isOk(this.mailingList)
     ) {
       this.services.navigation.setAction(
         'exchange/group/alias/add/group-alias-add',
-        this.services.navigation.selectedGroup,
+        this.mailingList,
       );
     }
   }
 
   getAddAliasTooltip() {
     if (
-      has(this.services.navigation.selectedGroup, 'aliases') &&
-      this.services.navigation.selectedGroup.aliases >= this.aliasMaxLimit
+      has(this.mailingList, 'aliases') &&
+      this.mailingList.aliases >= this.aliasMaxLimit
     ) {
       return this.services.$translate.instant(
         'exchange_tab_ALIAS_add_alias_limit_tooltip',

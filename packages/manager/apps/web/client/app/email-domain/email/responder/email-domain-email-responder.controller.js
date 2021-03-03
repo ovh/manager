@@ -21,6 +21,9 @@ angular.module('App').controller(
       $timeout,
       $translate,
       Alerter,
+      emails,
+      goToEmail,
+      quotas,
       WucEmails,
     ) {
       this.$q = $q;
@@ -29,6 +32,9 @@ angular.module('App').controller(
       this.$timeout = $timeout;
       this.$translate = $translate;
       this.Alerter = Alerter;
+      this.emails = emails;
+      this.goToEmail = goToEmail;
+      this.quotas = quotas;
       this.WucEmails = WucEmails;
     }
 

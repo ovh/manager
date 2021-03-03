@@ -4,29 +4,31 @@ export default class ExchangeTabPublicFolderPermissionsCtrl {
   /* @ngInject */
   constructor(
     $scope,
-    Exchange,
+    wucExchange,
     ExchangePublicFolders,
+    goToShared,
     messaging,
     navigation,
     $translate,
   ) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       ExchangePublicFolders,
       messaging,
       navigation,
       $translate,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
     this.search = {
       value: null,
     };
     this.selectedFolder = $scope.selectedFolder;
     this.permissionsLoading = false;
+    this.goToShared = goToShared;
 
-    $scope.$on(Exchange.events.publicFoldersChanged, () => {
+    $scope.$on(wucExchange.events.publicFoldersChanged, () => {
       $scope.$broadcast('paginationServerSide.reload', 'permissionsTable');
     });
 

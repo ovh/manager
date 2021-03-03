@@ -1,45 +1,20 @@
 import angular from 'angular';
-import ovhManagerCore from '@ovh-ux/manager-core';
+import 'angular-translate';
+import '@ovh-ux/ui-kit';
+import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
+import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
-import ExchangeAccountMfaCreate from './account/mfa/create';
-import ExchangeAccountMfaDelete from './account/mfa/delete';
+import routing from './exchange.routing';
 
-import components from './exchangeComponents.module';
-import controllers from './exchangeControllers.module';
-import directives from './exchangeDirectives.module';
-import services from './exchangeServices.module';
-import routing from './exchange.routes';
-import cacheTemplate from './exchange.template';
-
-import {
-  EXCHANGE_MX_CONFIG,
-  EXCHANGE_CONFIG_URL,
-  EXCHANGE_CONFIG,
-} from './exchange.constants';
-
-import './css/exchangeDiagnostic.css';
-
-const moduleName = 'Module.exchange';
+const moduleName = 'ovhManagerExchange';
 
 angular
   .module(moduleName, [
-    'ngOvhUtils',
-    'ngRoute',
-    'ui.bootstrap',
-    'ngSanitize',
-    'ng.ckeditor',
-    components,
-    controllers,
-    directives,
-    ovhManagerCore,
-    services,
-    ExchangeAccountMfaCreate,
-    ExchangeAccountMfaDelete,
+    ngTranslateAsyncLoader,
+    'oui',
+    'pascalprecht.translate',
+    ListLayoutHelper.moduleName,
   ])
-  .constant('EXCHANGE_MX_CONFIG', EXCHANGE_MX_CONFIG)
-  .constant('EXCHANGE_CONFIG_URL', EXCHANGE_CONFIG_URL)
-  .constant('EXCHANGE_CONFIG', EXCHANGE_CONFIG)
-  .config(routing)
-  .run(cacheTemplate);
+  .config(routing);
 
 export default moduleName;

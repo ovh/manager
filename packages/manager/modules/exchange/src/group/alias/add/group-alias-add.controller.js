@@ -6,16 +6,16 @@ import isString from 'lodash/isString';
 
 export default class ExchangeAddGroupAliasCtrl {
   /* @ngInject */
-  constructor($scope, Exchange, navigation, messaging, $translate) {
+  constructor($scope, wucExchange, navigation, messaging, $translate) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       navigation,
       messaging,
       $translate,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
     this.selectedMailingList = navigation.currentActionData;
     this.availableDomains = null;
     this.model = {};
@@ -26,12 +26,13 @@ export default class ExchangeAddGroupAliasCtrl {
   }
 
   loadDomainData() {
-    this.services.Exchange.getNewAliasOptions(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-      this.selectedMailingList.mailingListName,
-      'MAILING_LIST',
-    )
+    this.services.wucExchange
+      .getNewAliasOptions(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        this.selectedMailingList.mailingListName,
+        'MAILING_LIST',
+      )
       .then((data) => {
         if (isEmpty(data.availableDomains)) {
           this.services.messaging.writeError(
@@ -79,12 +80,13 @@ export default class ExchangeAddGroupAliasCtrl {
   }
 
   addGroupAlias() {
-    this.services.Exchange.addGroupAlias(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-      this.selectedMailingList.mailingListName,
-      this.model,
-    )
+    this.services.wucExchange
+      .addGroupAlias(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        this.selectedMailingList.mailingListName,
+        this.model,
+      )
       .then((data) => {
         this.services.messaging.writeSuccess(
           this.services.$translate.instant(

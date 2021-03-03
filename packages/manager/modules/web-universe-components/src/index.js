@@ -5,12 +5,14 @@ import wucChartjs from './chartjs';
 import wucConverter from './converter';
 import wucDuration from './duration';
 import wucEmailDomain from './email-domain';
+import wucExchange from './exchange';
+import wucExchangePassword from './exchange-password';
 import wucFileChange from './fileChange';
 import wucFileEditor from './fileEditor';
 import wucGuides from './guides';
 import wucOrderCart from './order-cart';
 import wucString from './string';
-import wucTabs from './tabs';
+import wucUser from './user';
 import wucValidator from './validator';
 
 const moduleName = 'ngOvhWebUniverseComponents';
@@ -21,12 +23,14 @@ angular.module(moduleName, [
   wucConverter,
   wucDuration,
   wucEmailDomain,
+  wucExchange,
+  wucExchangePassword,
   wucFileChange,
   wucFileEditor,
   wucGuides,
   wucOrderCart,
   wucString,
-  wucTabs,
+  wucUser,
   wucValidator,
 ]);
 

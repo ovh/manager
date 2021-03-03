@@ -2,7 +2,7 @@ export default class ExchangeRemovePublicFolderPermissionCtrl {
   /* @ngInject */
   constructor(
     $scope,
-    Exchange,
+    wucExchange,
     ExchangePublicFolders,
     messaging,
     navigation,
@@ -10,14 +10,14 @@ export default class ExchangeRemovePublicFolderPermissionCtrl {
   ) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       ExchangePublicFolders,
       messaging,
       navigation,
       $translate,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
 
     this.folder = navigation.currentActionData.folder;
     this.permission = navigation.currentActionData.permission;

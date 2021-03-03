@@ -5,7 +5,7 @@ export default class ExchangeUpdateDomainCtrl {
   /* @ngInject */
   constructor(
     $scope,
-    Exchange,
+    wucExchange,
     $rootScope,
     ExchangeDomains,
     WucValidator,
@@ -17,7 +17,7 @@ export default class ExchangeUpdateDomainCtrl {
   ) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       $rootScope,
       ExchangeDomains,
       WucValidator,
@@ -28,7 +28,7 @@ export default class ExchangeUpdateDomainCtrl {
       exchangeServiceInfrastructure,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
     this.originalValue = cloneDeep(navigation.currentActionData);
 
     this.selectedDomain = {
@@ -38,7 +38,7 @@ export default class ExchangeUpdateDomainCtrl {
     };
 
     this.domainTypes = navigation.currentActionData.domainTypes;
-    this.exchange = Exchange.value;
+    this.exchange = wucExchange.value;
 
     $scope.cancel = () => this.cancel();
     $scope.submit = () => this.submit();
@@ -64,7 +64,7 @@ export default class ExchangeUpdateDomainCtrl {
   cancel() {
     // Make sure the type in the select widget is reset to its initial value
     this.services.$rootScope.$broadcast(
-      this.services.Exchange.events.domainsChanged,
+      this.services.wucExchange.events.domainsChanged,
     );
     this.services.navigation.resetAction();
   }
@@ -192,7 +192,7 @@ export default class ExchangeUpdateDomainCtrl {
       })
       .finally(() => {
         this.services.$rootScope.$broadcast(
-          this.services.Exchange.events.domainsChanged,
+          this.services.wucExchange.events.domainsChanged,
         );
         this.services.navigation.resetAction();
       });

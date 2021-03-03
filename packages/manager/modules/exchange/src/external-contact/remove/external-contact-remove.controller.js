@@ -2,7 +2,7 @@ export default class ExchangeExternalContactsDeleteCtrl {
   /* @ngInject */
   constructor(
     $scope,
-    Exchange,
+    wucExchange,
     ExchangeExternalContacts,
     navigation,
     $translate,
@@ -10,14 +10,14 @@ export default class ExchangeExternalContactsDeleteCtrl {
   ) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       ExchangeExternalContacts,
       navigation,
       $translate,
       messaging,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
     this.model = {
       externalEmailAddress: navigation.currentActionData,
     };

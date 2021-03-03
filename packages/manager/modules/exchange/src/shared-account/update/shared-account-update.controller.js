@@ -9,7 +9,7 @@ export default class ExchangeUpdateSharedAccountCtrl {
   /* @ngInject */
   constructor(
     $scope,
-    Exchange,
+    wucExchange,
     ExchangeSharedAccounts,
     Alerter,
     navigation,
@@ -19,7 +19,7 @@ export default class ExchangeUpdateSharedAccountCtrl {
   ) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       ExchangeSharedAccounts,
       Alerter,
       navigation,
@@ -28,7 +28,7 @@ export default class ExchangeUpdateSharedAccountCtrl {
       formValidation,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
     this.isLoading = false;
     this.errors = {
       emailIsAlreadyTaken: false,

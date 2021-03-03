@@ -1,4 +1,4 @@
-<div class="container-fluid px-0" data-ng-controller="EmailProTabDomainsCtrl">
+<div data-ng-controller="EmailProTabDomainsCtrl">
     <div class="row">
         <div
             data-ng-class="{
@@ -333,12 +333,11 @@
         </div>
 
         <div class="col-md-3 mt-5 mt-lg-0" data-ng-if="canAddDomain">
-            <button
-                class="btn btn-block btn-default"
-                type="button"
+            <a
+                class="oui-button oui-button_block oui-button_secondary"
+                data-ui-sref=".add"
                 data-translate="emailpro_tab_domain_add_domain"
-                data-ng-click="setAction('emailpro/domain/add/emailpro-domain-add', {})"
-            ></button>
+            ></a>
         </div>
     </div>
 </div>

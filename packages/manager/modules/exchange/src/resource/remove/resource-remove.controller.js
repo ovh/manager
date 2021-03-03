@@ -2,7 +2,7 @@ export default class ExchangeRemoveResourceCtrl {
   /* @ngInject */
   constructor(
     $scope,
-    Exchange,
+    wucExchange,
     ExchangeResources,
     navigation,
     messaging,
@@ -10,14 +10,14 @@ export default class ExchangeRemoveResourceCtrl {
   ) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       ExchangeResources,
       navigation,
       messaging,
       $translate,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
     this.resource = navigation.currentActionData;
 
     $scope.submit = () => this.submit();

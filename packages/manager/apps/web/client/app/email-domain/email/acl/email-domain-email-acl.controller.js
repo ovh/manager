@@ -14,7 +14,7 @@ angular.module('App').controller(
      * @param Alerter
      * @param WucEmails
      * @param LANGUAGES
-     * @param User
+     * @param WucUser
      * @param constants
      */
     constructor(
@@ -22,17 +22,19 @@ angular.module('App').controller(
       $stateParams,
       $translate,
       Alerter,
+      goToEmail,
       WucEmails,
-      User,
+      WucUser,
       constants,
     ) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
       this.$translate = $translate;
       this.Alerter = Alerter;
+      this.goToEmail = goToEmail;
       this.WucEmails = WucEmails;
       this.LANGUAGES = LANGUAGES;
-      this.User = User;
+      this.WucUser = WucUser;
       this.constants = constants;
     }
 
@@ -45,7 +47,7 @@ angular.module('App').controller(
         acls: false,
       };
 
-      this.User.getUser()
+      this.WucUser.getUser()
         .then((user) => {
           const nicLanguage = find(this.LANGUAGES, (language) =>
             endsWith(language.value, user.ovhSubsidiary),

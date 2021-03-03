@@ -11,10 +11,10 @@ angular.module('App').controller(
       $translate,
       $window,
       Alerter,
+      atInternet,
       Hosting,
       HostingModule,
-      User,
-      atInternet,
+      WucUser,
     ) {
       this.$scope = $scope;
       this.$state = $state;
@@ -22,10 +22,10 @@ angular.module('App').controller(
       this.$translate = $translate;
       this.$window = $window;
       this.Alerter = Alerter;
+      this.atInternet = atInternet;
       this.Hosting = Hosting;
       this.HostingModule = HostingModule;
-      this.User = User;
-      this.atInternet = atInternet;
+      this.WucUser = WucUser;
     }
 
     $onInit() {
@@ -49,7 +49,7 @@ angular.module('App').controller(
           );
         });
 
-      this.User.getUrlOf('guides').then((guides) => {
+      this.WucUser.getUrlOf('guides').then((guides) => {
         if (guides && guides.hostingModule) {
           this.guide = guides.hostingModule;
         }

@@ -9,17 +9,28 @@ angular.module('App').controller(
      * @param Alerter
      * @param WucEmails
      */
-    constructor($scope, $stateParams, $translate, Alerter, WucEmails) {
+    constructor(
+      $scope,
+      $stateParams,
+      $translate,
+      Alerter,
+      email,
+      emails,
+      goToEmail,
+      WucEmails,
+    ) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
       this.$translate = $translate;
       this.Alerter = Alerter;
+      this.email = email;
+      this.emails = emails;
+      this.goToEmail = goToEmail;
       this.WucEmails = WucEmails;
     }
 
     $onInit() {
-      this.currentAccount =
-        this.$scope.ctrlEmailDomainEmail.currentViewData || null;
+      this.currentAccount = this.email || null;
 
       this.$scope.$on('hosting.tabs.emails.filters.refresh', () =>
         this.refreshTableFilters(),

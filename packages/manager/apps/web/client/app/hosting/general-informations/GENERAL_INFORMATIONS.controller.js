@@ -19,6 +19,10 @@ export default class HostingGeneralInformationsCtrl {
     $translate,
     atInternet,
     Alerter,
+    boostLink,
+    localSEOLink,
+    multisiteLink,
+    runtimesLink,
     Hosting,
     hostingEmailService,
     HostingLocalSeo,
@@ -34,6 +38,10 @@ export default class HostingGeneralInformationsCtrl {
 
     this.atInternet = atInternet;
     this.Alerter = Alerter;
+    this.boostLink = boostLink;
+    this.localSEOLink = localSEOLink;
+    this.multisiteLink = multisiteLink;
+    this.runtimesLink = runtimesLink;
     this.Hosting = Hosting;
     this.hostingEmailService = hostingEmailService;
     this.HostingLocalSeo = HostingLocalSeo;
@@ -228,19 +236,15 @@ export default class HostingGeneralInformationsCtrl {
 
   changeOffer() {
     this.sendTrackClick('web::hostname::general-informations::change-offer');
-    this.$state.go('app.hosting.upgrade', { productId: this.serviceName });
-  }
-
-  goToBoostTab() {
-    this.$scope.$parent.$ctrl.setSelectedTab('BOOST');
-  }
-
-  goToMultisiteTab() {
-    this.$scope.$parent.$ctrl.setSelectedTab('MULTISITE');
+    this.$state.go('app.hosting.dashboard.upgrade', {
+      productId: this.serviceName,
+    });
   }
 
   goToPrivateSqlActivation() {
-    return this.$state.go('app.hosting.database.private-sql-activation');
+    return this.$state.go(
+      'app.hosting.dashboard.database.private-sql-activation',
+    );
   }
 
   doesEmailOfferExists() {
@@ -249,7 +253,9 @@ export default class HostingGeneralInformationsCtrl {
   }
 
   activateEmailOffer() {
-    this.$state.go('app.hosting.activate', { serviceName: this.serviceName });
+    this.$state.go('app.hosting.dashboard.activate', {
+      serviceName: this.serviceName,
+    });
   }
 
   getCDNBannerKeyToTranslate() {
@@ -275,14 +281,13 @@ export default class HostingGeneralInformationsCtrl {
     this.sendTrackClick('web::hosting::alert::order-cdn');
     return this.$state.go(
       this.$scope.hosting.hasCdn
-        ? 'app.hosting.cdn.upgrade'
-        : 'app.hosting.cdn.order',
+        ? 'app.hosting.dashboard.cdn.upgrade'
+        : 'app.hosting.dashboard.cdn.order',
     );
   }
 
   goToMultisite() {
     this.sendTrackClick('web::hosting::configure-cdn');
-    this.goToMultisiteTab();
   }
 
   orderCdn() {
@@ -291,12 +296,12 @@ export default class HostingGeneralInformationsCtrl {
         ? 'web::hosting::activate-cdn'
         : 'web::hosting::order-cdn',
     );
-    this.$state.go('app.hosting.cdn.order');
+    this.$state.go('app.hosting.dashboard.cdn.order');
   }
 
   upgradeCdn() {
     this.sendTrackClick('web::hosting::upgrade-cdn');
-    this.$state.go('app.hosting.cdn.upgrade');
+    this.$state.go('app.hosting.dashboard.cdn.upgrade');
   }
 
   terminateCdn(action) {

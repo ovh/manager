@@ -7,19 +7,19 @@ import { WEB } from './constants';
 
 export const DOMAIN_CONFIG = {
   id: 'domains',
-  loadOnState: 'app.domain',
+  loadOnState: ['app.domain', 'app.alldom.domain', 'app.zone.details'],
   children: [
     {
-      id: 'domain_all',
+      id: 'domain_bulk',
       state: 'app.domain.all',
-      stateUrl: '#/configuration/domains',
+      stateUrl: '#/domain/bulk',
       icon: 'ovh-font ovh-font-network',
       app: [WEB],
     },
     {
       id: 'domain_operations',
       state: 'app.domain.operation',
-      stateUrl: '#/configuration/domains_operations',
+      stateUrl: '#/domain/operations',
       icon: 'ovh-font ovh-font-config',
       app: [WEB],
     },
@@ -28,7 +28,7 @@ export const DOMAIN_CONFIG = {
     {
       path: '/allDom',
       category: 'ALLDOM',
-      loadOnState: 'app.domain.alldom',
+      loadOnState: 'app.alldom.domain',
       stateParams: ['productId'],
       loadOnStateParams: ['allDom'],
       app: [WEB],
@@ -38,7 +38,7 @@ export const DOMAIN_CONFIG = {
         {
           path: '/allDom/:productId/domain',
           category: 'ALLDOM',
-          state: 'app.domain.alldom',
+          state: 'app.alldom.domain',
           stateParams: ['allDom', 'productId'],
           app: [WEB],
           icon: 'ovh-font ovh-font-domain',
@@ -65,9 +65,10 @@ export const DOMAIN_CONFIG = {
     {
       path: '/domain/zone',
       category: 'ZONE',
-      state: 'app.domain.dns-zone',
+      state: 'app.zone.details',
       stateParams: ['productId'],
       icon: 'oui-icon oui-icon-domain-dns',
+      loadOnState: 'app.zone.details',
       app: [WEB],
       filter: {
         category: 'DOMAIN',
@@ -89,12 +90,12 @@ export const DOMAIN_CONFIG = {
 
 export const HOSTING_CONFIG = {
   id: 'hostings',
-  loadOnState: 'app.hosting',
+  loadOnState: 'app.hosting.dashboard',
   types: [
     {
       path: '/hosting/web',
       category: 'HOSTING',
-      state: 'app.hosting',
+      state: 'app.hosting.dashboard',
       stateParams: ['productId'],
       icon: 'ovh-font ovh-font-server',
       app: [WEB],
@@ -107,12 +108,12 @@ export const HOSTING_CONFIG = {
 
 export const PRIVATE_DATABASE_CONFIG = {
   id: 'privateDatabases',
-  loadOnState: 'app.private-database',
+  loadOnState: 'app.private-database.dashboard',
   types: [
     {
       path: '/hosting/privateDatabase',
       category: 'PRIVATE_DATABASE',
-      state: 'app.private-database',
+      state: 'app.private-database.dashboard',
       stateParams: ['productId'],
       icon: 'ovh-font ovh-font-database',
       app: [WEB],
@@ -125,12 +126,12 @@ export const PRIVATE_DATABASE_CONFIG = {
 
 export const EMAIL_PRO_CONFIG = {
   id: 'emailPros',
-  loadOnState: 'app.email-pro',
+  loadOnState: 'email-pro.dashboard',
   types: [
     {
       path: '/email/pro',
       category: 'EMAIL_PRO',
-      state: 'app.email-pro',
+      state: 'email-pro.dashboard',
       stateParams: ['productId'],
       icon: 'ovh-font ovh-font-mail',
       app: [WEB],
@@ -143,7 +144,7 @@ export const EMAIL_PRO_CONFIG = {
 
 export const EMAIL_CONFIG = {
   id: 'emails',
-  loadOnState: 'app.email.*',
+  loadOnState: ['app.email', 'mxplan', 'app.email-delegate'],
   types: [
     {
       path: '/email/domain',
@@ -157,9 +158,9 @@ export const EMAIL_CONFIG = {
     {
       path: '/email/mxplan',
       category: 'EMAIL_MXPLAN',
-      state: 'app.email.mxplan',
+      state: 'mxplan.dashboard',
       stateParams: ['productId'],
-      loadOnState: 'app.email.mxplan',
+      loadOnState: 'mxplan.dashboard',
       icon: 'ovh-font ovh-font-mail',
       app: [WEB],
       regions: ['EU', 'CA'],
@@ -167,9 +168,9 @@ export const EMAIL_CONFIG = {
     {
       path: '/email/domain/delegatedAccount',
       category: 'EMAIL_DELEGATE',
-      state: 'app.email.delegate',
+      state: 'app.email-delegate.dashboard',
       stateParams: ['productId'],
-      loadOnState: 'app.email.delegate',
+      loadOnState: 'app.email-delegate.dashboard',
       icon: 'ovh-font ovh-font-mail',
       app: [WEB],
       regions: ['EU'],
@@ -189,12 +190,12 @@ export const MICROSOFT_CONFIG = {
         {
           path: '/email/exchange',
           icon: 'ms-Icon ms-Icon--ExchangeLogo',
-          state: 'app.exchange',
+          state: 'exchange.dashboard',
           stateParams: ['organization', 'productId'],
           app: [WEB],
         },
       ],
-      loadOnState: 'app.microsoft.exchange',
+      loadOnState: 'exchange.dashboard',
       icon: 'ms-Icon ms-Icon--ExchangeLogo',
       app: [WEB],
     },
@@ -204,12 +205,12 @@ export const MICROSOFT_CONFIG = {
         {
           path: '/license/office',
           icon: 'ms-Icon ms-Icon--OfficeLogo',
-          state: 'app.microsoft.office.product',
+          state: 'office.product',
           stateParams: ['serviceName'],
           app: [WEB],
         },
       ],
-      loadOnState: 'app.microsoft.office',
+      loadOnState: 'office',
       icon: 'ms-Icon ms-Icon--OfficeLogo',
       app: [WEB],
     },
@@ -219,12 +220,12 @@ export const MICROSOFT_CONFIG = {
         {
           path: '/msServices/*/sharepoint',
           icon: 'ms-Icon ms-Icon--SharepointLogo',
-          state: 'app.microsoft.sharepoint.product',
+          state: 'sharepoint.product',
           stateParams: ['exchangeId', 'productId'],
           app: [WEB],
         },
       ],
-      loadOnState: 'app.microsoft.sharepoint',
+      loadOnState: 'sharepoint',
       icon: 'ms-Icon ms-Icon--SharepointLogo',
       app: [WEB],
     },
@@ -260,7 +261,7 @@ export const WEB_ORDER_SIDEBAR_CONFIG = [
     id: 'orderZone',
     title: 'zone',
     icon: 'oui-icon oui-icon-domain-dns',
-    state: 'app.dns-zone-new',
+    state: 'app.zone.new',
     regions: ['EU', 'CA'],
     app: [WEB],
     tracker: 'web::orders::dns-zone::order',
@@ -308,7 +309,7 @@ export const WEB_ORDER_SIDEBAR_CONFIG = [
     id: 'orderExchange',
     title: 'exchange',
     icon: 'ms-Icon ms-Icon--ExchangeLogo',
-    state: 'app.microsoft.exchange.order',
+    state: 'exchange.order',
     regions: ['EU'],
     app: [WEB],
     tracker: 'web::orders::email-microsoft-exchange::order',
@@ -337,7 +338,7 @@ export const WEB_ORDER_SIDEBAR_CONFIG = [
     id: 'orderSharepoint',
     title: 'sharepoint',
     icon: 'ms-Icon ms-Icon--SharepointLogo',
-    state: 'app.microsoft.sharepoint.order',
+    state: 'sharepoint.order',
     regions: ['EU'],
     app: [WEB],
     tracker: 'web::orders::microsoft-sharepoint::order',
@@ -355,7 +356,7 @@ export const WEB_ORDER_SIDEBAR_CONFIG = [
     id: 'orderPrivateDatabase',
     title: 'privateDatabase',
     icon: 'ovh-font ovh-font-database',
-    state: 'app.private-database-order',
+    state: 'app.private-database.order',
     regions: ['EU', 'CA'],
     app: [WEB],
   },

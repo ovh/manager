@@ -1,0 +1,166 @@
+<div data-ovh-alert="{{alerts.page}}"></div>
+
+<div class="text-center" data-ng-if="SharepointCtrl.loaders.init">
+    <oui-spinner data-size="l"></oui-spinner>
+</div>
+
+<div data-ng-if="!SharepointCtrl.loaders.init">
+    <div class="oui-header">
+        <div class="oui-header__container">
+            <div class="oui-header__content row">
+                <div class="col-sm-9">
+                    <strong>
+                        <span
+                            data-translate="sharepoint_dashboard_offer_type"
+                        ></span>
+                        <span
+                            data-translate="sharepoint_dashboard_offer_type_standalone"
+                            data-ng-if="SharepointCtrl.isStandAlone"
+                        ></span>
+                    </strong>
+                    <div class="mb-3" data-ng-show="!SharepointCtrl.editMode">
+                        <div class="d-flex">
+                            <h1
+                                class="d-inline-block mb-0 word-break"
+                                data-ng-bind="SharepointCtrl.sharepoint.displayName || SharepointCtrl.sharepoint.domain"
+                            ></h1>
+                            <button
+                                class="btn btn-icon my-auto ml-2"
+                                type="button"
+                                data-ng-click="SharepointCtrl.editDisplayName()"
+                            >
+                                <span
+                                    class="oui-icon oui-icon-pen_concept"
+                                    aria-hidden="true"
+                                ></span>
+                                <span
+                                    class="sr-only"
+                                    data-translate="sharepoint_dashboard_display_name_edit"
+                                ></span>
+                            </button>
+                        </div>
+                        <span
+                            class="font-italic"
+                            data-ng-bind="SharepointCtrl.sharepointDomain"
+                            data-ng-if="SharepointCtrl.sharepoint.displayName && SharepointCtrl.sharepoint.domain !== SharepointCtrl.sharepoint.displayName"
+                        ></span>
+                    </div>
+                    <form
+                        class="my-4"
+                        name="sharePointDisplayNameForm"
+                        novalidate
+                        data-ng-show="SharepointCtrl.editMode"
+                        data-ng-submit="SharepointCtrl.saveDisplayName()"
+                    >
+                        <div class="oui-input-group">
+                            <input
+                                type="text"
+                                class="oui-input"
+                                id="displayNameField"
+                                name="displayNameField"
+                                maxlength="50"
+                                data-ng-model="SharepointCtrl.displayName"
+                            />
+                            <button
+                                class="oui-button oui-button_s"
+                                type="submit"
+                                aria-label="{{ 'sharepoint_dashboard_display_name_save' | translate }}"
+                                data-ng-disabled="sharePointDisplayNameForm.displayNameField.$invalid"
+                            >
+                                <span
+                                    class="oui-icon oui-icon-success"
+                                    aria-hidden="true"
+                                ></span>
+                            </button>
+                            <button
+                                class="oui-button oui-button_s"
+                                type="button"
+                                aria-label="{{ 'common_cancel' | translate }}"
+                                data-ng-click="SharepointCtrl.resetDisplayName()"
+                            >
+                                <span
+                                    class="oui-icon oui-icon-error"
+                                    aria-hidden="true"
+                                ></span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-sm-3 d-flex">
+                    <div class="btn-group ml-auto mt-4" data-uib-dropdown>
+                        <button
+                            class="oui-button oui-button_dropdown mb-0"
+                            type="button"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                            data-uib-dropdown-toggle
+                        >
+                            <span data-translate="common_actions"></span>
+                            <span
+                                class="oui-icon oui-icon-chevron-down"
+                                aria-hidden="true"
+                            ></span>
+                        </button>
+                        <ul
+                            class="dropdown-menu dropdown-menu-right"
+                            data-uib-dropdown-menu
+                        >
+                            <li>
+                                <button
+                                    class="btn btn-link"
+                                    type="button"
+                                    data-translate="sharepoint_exchange_update_billing_button_title"
+                                    data-ng-click="setAction('renew/update/sharepoint-renew-update', SharepointCtrl.sharepointDomain)"
+                                ></button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div data-ng-if="!SharepointCtrl.sharepoint.isExpired">
+        <oui-header-tabs class="mb-3">
+            <oui-header-tabs-item
+                href="{{:: SharepointCtrl.informationLink }}"
+                active="SharepointCtrl.informationLink === SharepointCtrl.currentActiveLink()"
+            >
+                <span data-translate="sharepoint_tab_INFORMATION"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-ng-if="!SharepointCtrl.associatedExchange"
+                href="{{:: SharepointCtrl.domainLink }}"
+                active="SharepointCtrl.domainLink === SharepointCtrl.currentActiveLink()"
+            >
+                <span data-translate="sharepoint_tab_DOMAIN"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                href="{{:: SharepointCtrl.accountLink }}"
+                active="SharepointCtrl.accountLink === SharepointCtrl.currentActiveLink()"
+            >
+                <span data-translate="sharepoint_tab_ACCOUNT"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                href="{{:: SharepointCtrl.taskLink }}"
+                active="SharepointCtrl.taskLink === SharepointCtrl.currentActiveLink()"
+            >
+                <span data-translate="sharepoint_tab_TASK"></span>
+            </oui-header-tabs-item>
+        </oui-header-tabs>
+
+        <div data-ovh-alert="{{alerts.tabs}}"></div>
+        <div class="tab-pane active platform" ui-view></div>
+    </div>
+
+    <div id="currentAction" class="modal fade currentAction" role="dialog">
+        <div class="modal-dialog">
+            <div
+                id="modal-container"
+                class="modal-content"
+                data-ng-include="SharepointCtrl.stepPath"
+            ></div>
+            <div id="modal-help" class="help4wizards"></div>
+        </div>
+    </div>
+</div>

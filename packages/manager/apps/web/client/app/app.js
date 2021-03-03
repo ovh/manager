@@ -26,6 +26,7 @@ import ngPaginationFront from '@ovh-ux/ng-pagination-front';
 import ngQAllSettled from '@ovh-ux/ng-q-allsettled';
 import ngTailLogs from '@ovh-ux/ng-tail-logs';
 import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
+import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import ngUiRouterLayout from '@ovh-ux/ng-ui-router-layout';
 import ngUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ovhManagerAccountSidebar from '@ovh-ux/manager-account-sidebar';
@@ -47,9 +48,10 @@ import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import config from './config/config';
 import domain from './domain';
 import domainDnsZone from './dns-zone';
+import emailDomain from './email-domain';
 import emailDomainOrder from './email-domain/order';
 import errorPage from './error-page/error-page.module';
-import hosting from './hosting/hosting.module';
+import hosting from './hosting';
 import privateDatabase from './private-database';
 import zone from './domain/zone/zone.module';
 
@@ -110,6 +112,7 @@ angular
       ngOvhUserPref,
       ngOvhWebUniverseComponents,
       ngTranslateAsyncLoader,
+      ngUiRouterBreadcrumb,
       ngUiRouterLayout,
       ngUiRouterLineProgress,
       ovhManagerServerSidebar,
@@ -132,6 +135,7 @@ angular
       sharepoint,
       domain,
       domainDnsZone,
+      emailDomain,
       emailDomainOrder,
       errorPage,
       hosting,
@@ -271,30 +275,6 @@ angular
     '$urlRouterProvider',
     'URLS_REDIRECTED_TO_DEDICATED',
     ($stateProvider, $urlRouterProvider, URLS_REDIRECTED_TO_DEDICATED) => {
-      /**
-       * ALL DOM
-       */
-      $stateProvider.state('app.alldom', {
-        url: '/configuration/all_dom/:allDom/:productId',
-        templateUrl: 'domain/domain.html',
-        controller: 'DomainCtrl',
-        resolve: {
-          navigationInformations: [
-            'Navigator',
-            '$rootScope',
-            (Navigator, $rootScope) => {
-              set($rootScope, 'currentSectionInformation', 'all_dom');
-              return Navigator.setNavigationInformation({
-                leftMenuVisible: true,
-                configurationSelected: true,
-              });
-            },
-          ],
-          currentSection: () => 'all_dom',
-        },
-        translations: { value: ['domain', 'hosting'], format: 'json' },
-      });
-
       forEach(URLS_REDIRECTED_TO_DEDICATED, (url) => {
         $urlRouterProvider.when(url, [
           '$window',
@@ -538,7 +518,7 @@ angular
       });
     },
   )
-  .run(/* @ngTranslationsInject:json ./translations */)
+  .run(/* @ngTranslationsInject:json ./core/translations */)
   .run(
     /* @ngInject */ ($rootScope, $transitions) => {
       const unregisterHook = $transitions.onSuccess({}, () => {
@@ -546,6 +526,11 @@ angular
         $rootScope.$broadcast('app:started');
         unregisterHook();
       });
+    },
+  )
+  .run(
+    /* @ngInject */ ($translate, $transitions) => {
+      $transitions.onBefore({ to: 'app.**' }, () => $translate.refresh());
     },
   );
 

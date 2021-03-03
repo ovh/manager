@@ -2,13 +2,7 @@ import find from 'lodash/find';
 import get from 'lodash/get';
 import head from 'lodash/head';
 
-export default /* @ngInject */ (
-  $scope,
-  $stateParams,
-  $translate,
-  EmailPro,
-  navigation,
-) => {
+export default /* @ngInject */ ($scope, $stateParams, $translate, EmailPro) => {
   $scope.data = {
     content: '',
     outsideOnly: false,
@@ -43,9 +37,9 @@ export default /* @ngInject */ (
   };
 
   $scope.selectCurrentDomain = function selectCurrentDomain() {
-    if (get(navigation, 'currentActionData.domain.name')) {
+    if (get($scope, 'currentActionData.domain.name')) {
       $scope.data.completeDomain = find($scope.availableDomains, {
-        name: navigation.currentActionData.domain.name,
+        name: $scope.currentActionData.domain.name,
       });
     }
     if (!$scope.data.completeDomain) {

@@ -1,13 +1,8 @@
-<div
-    class="row"
-    data-ng-controller="EmailDomainEmailFilterCtrl as ctrlEmailDomainEmailFilter"
->
+<div class="row">
     <div class="col-md-9">
         <div data-ovh-alert="{{alerts.main}}"></div>
 
-        <oui-back-button
-            data-on-click="ctrlEmailDomainEmail.resetInitialView()"
-        >
+        <oui-back-button data-on-click="ctrlEmailDomainEmailFilter.goToEmail()">
             <span data-translate="common_back"></span>
         </oui-back-button>
         <h2>
@@ -46,7 +41,7 @@
                     data-on-click="setAction('email-domain/email/filter/edit/email-domain-email-filter-edit', {
                                           account: ctrlEmailDomainEmailFilter.currentAccount,
                                           filter: $row,
-                                          accounts: ctrlEmailDomainEmail.emails
+                                          accounts: ctrlEmailDomainEmailFilter.emails
                                       })"
                     ><span
                         data-translate="email_tab_popover_filter_edit"
@@ -73,7 +68,7 @@
                 data-translate="email_tab_button_emails_create_filter"
                 data-ng-click="setAction('email-domain/email/filter/create/email-domain-email-filter-create', {
                         account: ctrlEmailDomainEmailFilter.currentAccount,
-                        accounts: ctrlEmailDomainEmail.emails,
+                        accounts: ctrlEmailDomainEmailFilter.emails,
                         filterNames: ctrlEmailDomainEmailFilter.filters
                     })"
             ></button>

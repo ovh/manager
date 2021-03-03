@@ -6,14 +6,14 @@ export default class SharepointActivateOfficeCtrl {
     $stateParams,
     $scope,
     $translate,
-    User,
+    WucUser,
   ) {
     this.alerter = Alerter;
     this.sharepointService = MicrosoftSharepointLicenseService;
     this.$stateParams = $stateParams;
     this.$scope = $scope;
     this.$translate = $translate;
-    this.userService = User;
+    this.userService = WucUser;
   }
 
   $onInit() {

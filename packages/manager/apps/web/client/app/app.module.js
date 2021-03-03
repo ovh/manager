@@ -46,7 +46,6 @@ import moduleName from './app';
 import './app.routes';
 import './app.controller';
 
-import './components/angular-ui-router/angular-ui-router.module';
 import './components/components.module';
 import './components/directives.module';
 import './components/filters.module';
@@ -59,26 +58,20 @@ import './error-page/error-page.module';
 import './hosting/cdn/flush/hosting-cdn-flush.module';
 import './hosting/cdn/order/hosting-cdn-order.module';
 import './hosting/cdn/terminate/hosting-cdn-terminate.module';
-import './hosting/database/hosting-database.module';
 import './hosting/email/activate/activate.module';
 import './hosting/email/terminate/hosting-email-terminate.module';
-import './hosting/general-informations/general-informations.module';
-import './hosting/hosting.module';
-import './hosting/website-coach/website-coach.module';
 
 import './components/user/user-session.service';
 import './components/user/user.controller';
-import './components/user/user.service';
 import './components/webApp.controller';
 
 import './config/config.bundle';
 import './configuration/configuration.bundle';
-import './dns-zone/dns-zone.bundle';
-import './domain/domain.bundle';
+import './domain/dashboard/domain.bundle';
 import './domain-operation/domain-operation.bundle';
 import './domains/domains.bundle';
 import './double-authentication/double-authentication.bundle';
-import './email-domain/email-domain.bundle';
+import './email-domain/dashboard/email-domain.bundle';
 import './hosting/hosting.bundle';
 import './incident/incident.bundle';
 import './private-database/private-database.bundle';

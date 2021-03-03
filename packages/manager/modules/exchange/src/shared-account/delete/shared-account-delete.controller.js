@@ -2,7 +2,7 @@ export default class ExchangeDeleteSharedAccountCtrl {
   /* @ngInject */
   constructor(
     $scope,
-    Exchange,
+    wucExchange,
     ExchangeSharedAccounts,
     navigation,
     messaging,
@@ -10,14 +10,14 @@ export default class ExchangeDeleteSharedAccountCtrl {
   ) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       ExchangeSharedAccounts,
       navigation,
       messaging,
       $translate,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
     this.account = navigation.currentActionData;
 
     $scope.submitting = () => this.submitting();

@@ -1,11 +1,10 @@
-<div
-    class="row"
-    data-ng-controller="EmailDelegateResponderCtrl as ctrlEmailDelegateResponder"
->
+<div class="row">
     <div class="col-md-9">
         <div data-ovh-alert="{{alerts.main}}"></div>
 
-        <oui-back-button data-on-click="ctrlEmailDelegate.resetInitialView()">
+        <oui-back-button
+            data-on-click="ctrlEmailDelegateResponder.goToDelegations()"
+        >
             <span data-translate="common_back"></span>
         </oui-back-button>
         <h2 data-translate="email_tab_responders_management_heading"></h2>

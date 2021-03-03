@@ -1,14 +1,18 @@
 import template from '../../domain/redirection/REDIRECTION.html';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.domain.dns-zone.redirection', {
+  $stateProvider.state('app.zone.details.redirection', {
     url: '/redirection',
     views: {
-      'dnsZoneView@app.domain.dns-zone': {
+      'dnsZoneView@app.zone.details': {
         controller: 'controllers.Domain.Redirection',
         controllerAs: 'ctrlDomainRedirection',
         template,
       },
+    },
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('dnszone_redirection'),
     },
   });
 };

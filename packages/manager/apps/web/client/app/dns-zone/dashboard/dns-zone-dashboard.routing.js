@@ -4,9 +4,9 @@ import template from '../../domain/zone/domain-zone-dns.html';
 import { SUCCESS_TYPE } from './dns-zone-dashboard.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.domain.dns-zone.dashboard', {
+  $stateProvider.state('app.zone.details.dashboard', {
     views: {
-      'dnsZoneView@app.domain.dns-zone': {
+      'dnsZoneView@app.zone.details': {
         controller,
         controllerAs: 'ctrlDomainTabZoneDns',
         template,
@@ -33,6 +33,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
+      breadcrumb: () => null,
     },
   });
 };

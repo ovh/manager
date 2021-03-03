@@ -11,7 +11,7 @@ export default class WizardHostedCreationController {
     $rootScope,
     $timeout,
     $translate,
-    Exchange,
+    wucExchange,
     exchangeStates,
     messaging,
     navigation,
@@ -24,7 +24,7 @@ export default class WizardHostedCreationController {
     this.$timeout = $timeout;
     this.$translate = $translate;
 
-    this.Exchange = Exchange;
+    this.wucExchange = wucExchange;
     this.exchangeStates = exchangeStates;
     this.messaging = messaging;
     this.navigation = navigation;
@@ -34,7 +34,7 @@ export default class WizardHostedCreationController {
   }
 
   $onInit() {
-    this.$routerParams = this.Exchange.getParams();
+    this.$routerParams = this.wucExchange.getParams();
     this.navigationState = '';
 
     return this.fetchingIfShouldDisplayWizard().then((shouldDisplayWizard) => {

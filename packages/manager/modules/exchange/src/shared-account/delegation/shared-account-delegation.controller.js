@@ -8,7 +8,7 @@ export default class ExchangeSharedAccountDelegationCtrl {
   /* @ngInject */
   constructor(
     $scope,
-    Exchange,
+    wucExchange,
     $timeout,
     ExchangeSharedAccounts,
     messaging,
@@ -17,7 +17,7 @@ export default class ExchangeSharedAccountDelegationCtrl {
   ) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       $timeout,
       ExchangeSharedAccounts,
       messaging,
@@ -25,12 +25,12 @@ export default class ExchangeSharedAccountDelegationCtrl {
       navigation,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
     this.primaryEmailAddress = navigation.currentActionData.primaryEmailAddress;
     this.isLoading = false;
     this.searchValue = null;
 
-    $scope.$on(Exchange.events.accountsChanged, () => {
+    $scope.$on(wucExchange.events.accountsChanged, () => {
       $scope.retrievingAccounts();
     });
 

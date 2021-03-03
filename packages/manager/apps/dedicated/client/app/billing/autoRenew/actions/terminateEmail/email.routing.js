@@ -13,7 +13,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       isHosting: /* @ngInject */ (email) => /hosting/.test(email.offer),
       redirection: /* @ngInject */ ($q, isHosting, email) => {
         if (isHosting) {
-          window.location.href = `/web/#/configuration/hosting/${encodeURIComponent(
+          window.location.href = `/web/#/hosting/${encodeURIComponent(
             email.domain,
           )}/terminateEmail?tab=GENERAL_INFORMATIONS`;
           return $q.defer().promise;

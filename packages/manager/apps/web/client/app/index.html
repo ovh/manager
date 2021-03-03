@@ -78,7 +78,10 @@
                             data-support-level="{{$ctrl.user.supportLevel.level}}"
                         ></ovh-chatbot>
 
-                        <div data-ui-view class="pb-5"></div>
+                        <div class="container-fluid px-md-5 px-3 mt-3">
+                            <ui-router-breadcrumb></ui-router-breadcrumb>
+                            <div data-ui-view class="pb-5 mt-3"></div>
+                        </div>
                     </div>
                 </div>
             </div>

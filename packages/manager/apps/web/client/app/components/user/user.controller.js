@@ -1,13 +1,13 @@
 angular.module('App').controller('UserCtrl', [
   '$scope',
-  'User',
+  'WucUser',
   'ssoAuthentication',
-  ($scope, User, authentication) => {
+  ($scope, WucUser, authentication) => {
     $scope.user = null;
 
     $scope.logout = () => authentication.logout();
 
-    User.getUser().then((user) => {
+    WucUser.getUser().then((user) => {
       $scope.user = user;
     });
   },

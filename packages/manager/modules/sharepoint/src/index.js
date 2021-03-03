@@ -2,44 +2,71 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
+import '@ovh-ux/ng-ui-router-breadcrumb';
+import '@ovh-ux/ui-kit/dist/css/oui.css';
+
 const moduleName = 'ovhManagerSharepointLazyLoading';
 
-angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
-  /* @ngInject */ ($stateProvider) => {
-    const routeBase = 'app.microsoft.sharepoint';
-    const lazyLoad = ($transition$) => {
-      const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+angular
+  .module(moduleName, ['ui.router', 'ngUiRouterBreadcrumb', 'oc.lazyLoad'])
+  .config(
+    /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
+      const routeBase = 'sharepoint';
+      const lazyLoad = ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-      return import('./sharepoint.module').then((mod) =>
-        $ocLazyLoad.inject(mod.default || mod),
-      );
-    };
+        return import('./dashboard/sharepoint.module').then((mod) =>
+          $ocLazyLoad.inject(mod.default || mod),
+        );
+      };
 
-    $stateProvider
-      .state(routeBase, {
-        abstract: true,
-        template: '<div ui-view></div>',
-        translations: {
-          value: ['.'],
-          format: 'json',
+      $stateProvider
+        .state(routeBase, {
+          url: '/sharepoint',
+          redirectTo: 'sharepoint.index',
+          template: '<div ui-view></div>',
+          resolve: {
+            breadcrumb: /* @ngInject */ ($translate) =>
+              $translate.instant('sharepoint_title'),
+          },
+        })
+        .state(`${routeBase}.index.**`, {
+          url: '',
+          lazyLoad: ($transition$) => {
+            const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+            return import('./sharepoint.module').then((mod) =>
+              $ocLazyLoad.inject(mod.default || mod),
+            );
+          },
+        })
+        .state(`${routeBase}.order.**`, {
+          url: '/order',
+          lazyLoad,
+        })
+        .state(`${routeBase}.config.**`, {
+          url: '/activate/:organizationId/:exchangeId',
+          lazyLoad,
+        })
+        .state(`${routeBase}.product.**`, {
+          url: '/:exchangeId/:productId',
+          lazyLoad,
+        })
+        .state(`${routeBase}.product.setUrl.**`, {
+          url: '/setUrl',
+          lazyLoad,
+        });
+
+      $urlRouterProvider.when(
+        /^\/configuration\/microsoft\/sharepoint/,
+        /* @ngInject */ ($location) => {
+          $location.url(
+            $location.url().replace('/configuration/microsoft', ''),
+          );
         },
-      })
-      .state(`${routeBase}.order.**`, {
-        url: '/configuration/microsoft/sharepoint/order',
-        lazyLoad,
-      })
-      .state(`${routeBase}.config.**`, {
-        url: '/configuration/sharepoint/activate/:organizationId/:exchangeId',
-        lazyLoad,
-      })
-      .state(`${routeBase}.product.**`, {
-        url: '/configuration/sharepoint/:exchangeId/:productId?tab',
-        lazyLoad,
-      })
-      .state(`${routeBase}.setUrl.**`, {
-        url: '/configuration/sharepoint/:exchangeId/:productId/setUrl',
-        lazyLoad,
-      });
-  },
-);
+      );
+    },
+  )
+  .run(/* @ngTranslationsInject:json ./translations */);
+
 export default moduleName;

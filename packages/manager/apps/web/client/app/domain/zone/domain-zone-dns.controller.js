@@ -19,14 +19,14 @@ export default class DomainTabZoneDnsCtrl {
     orderZone,
     Alerter,
     Domain,
-    User,
+    WucUser,
   ) {
     this.$scope = $scope;
     this.$q = $q;
     this.$translate = $translate;
     this.Alerter = Alerter;
     this.Domain = Domain;
-    this.User = User;
+    this.WucUser = WucUser;
 
     this.activateZone = activateZone;
     this.orderZone = orderZone;
@@ -91,7 +91,7 @@ export default class DomainTabZoneDnsCtrl {
           () => null,
         ),
         zoneServiceInfo: this.Domain.getZoneServiceInfo(domainName),
-        user: this.User.getUser(),
+        user: this.WucUser.getUser(),
       })
       .then(({ domainServiceInfo, zoneServiceInfo, user }) => {
         this.allowModification =

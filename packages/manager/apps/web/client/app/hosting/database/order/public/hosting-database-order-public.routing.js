@@ -2,7 +2,7 @@ import { Environment } from '@ovh-ux/manager-config';
 import component from './hosting-database-order-public.component';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.hosting.database.order-public', {
+  $stateProvider.state('app.hosting.dashboard.database.order-public', {
     url: '/order-public',
     component: component.name,
     resolve: {
@@ -15,7 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
         HostingDatabaseOrderPublicService.getCharacteristicsOfAvailableProducts(
           serviceName,
         ),
-      goBack: /* @ngInject */ (goToHosting) => goToHosting,
+      goBack: /* @ngInject */ (goToDatabase) => goToDatabase,
       hosting: /* @ngInject */ (Hosting, serviceName) =>
         Hosting.getSelected(serviceName, true),
       onError: /* @ngInject */ ($translate, goBack) => (error) =>
@@ -39,9 +39,9 @@ export default /* @ngInject */ ($stateProvider) => {
           'success',
           'app.alerts.database',
         ),
-      serviceName: /* @ngInject */ ($transition$) =>
-        $transition$.params().productId,
       user: () => Environment.getUser(),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('ovhManagerHostingDatabaseOrderPublic_title'),
     },
   });
 };

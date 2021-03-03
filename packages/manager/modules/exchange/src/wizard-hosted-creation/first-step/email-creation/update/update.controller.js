@@ -10,8 +10,8 @@ import reduce from 'lodash/reduce';
 export default class ExchangeWizardHostedCreationEmailCreationUpdateController {
   /* @ngInject */
   constructor(
-    Exchange,
-    ExchangePassword,
+    wucExchange,
+    wucExchangePassword,
     messaging,
     navigation,
     $rootScope,
@@ -20,8 +20,8 @@ export default class ExchangeWizardHostedCreationEmailCreationUpdateController {
     $translate,
     wizardHostedCreationEmailCreation,
   ) {
-    this.Exchange = Exchange;
-    this.ExchangePassword = ExchangePassword;
+    this.wucExchange = wucExchange;
+    this.wucExchangePassword = wucExchangePassword;
     this.messaging = messaging;
     this.navigation = navigation;
     this.$rootScope = $rootScope;
@@ -32,7 +32,7 @@ export default class ExchangeWizardHostedCreationEmailCreationUpdateController {
   }
 
   $onInit() {
-    this.$routerParams = this.Exchange.getParams();
+    this.$routerParams = this.wucExchange.getParams();
     this.formerPrimaryEmailAddress = this.navigation.currentActionData.primaryEmailAddress;
 
     this.model = {
@@ -113,7 +113,7 @@ export default class ExchangeWizardHostedCreationEmailCreationUpdateController {
     const passwordIsComplexEnough =
       isBoolean(this.serviceParameters.complexityEnabled) &&
       this.serviceParameters.complexityEnabled
-        ? this.ExchangePassword.passwordComplexityCheck(this.model.password)
+        ? this.wucExchangePassword.passwordComplexityCheck(this.model.password)
         : true;
     this.addForm.password.$setValidity(
       'passwordComplexity',

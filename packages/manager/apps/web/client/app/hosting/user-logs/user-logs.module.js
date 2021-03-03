@@ -1,13 +1,13 @@
 import angular from 'angular';
 import 'angular-translate';
 
-import controller from './hosting-user-logs.controller';
+import routing from './user-logs.routing';
 
 const moduleName = 'ovhManagerHostingUserLogs';
 
 angular
-  .module(moduleName, ['pascalprecht.translate'])
-  .controller('HostingTabUserLogsCtrl', controller)
+  .module(moduleName, [])
+  .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

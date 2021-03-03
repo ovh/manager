@@ -1,13 +1,15 @@
-angular.module('App').config(
-  /* @ngInject */ ($stateProvider) => {
-    ['product', 'alldom'].forEach((stateType) => {
-      $stateProvider.state(`app.domain.${stateType}.optin`, {
-        url: '/optin',
-        views: {
-          domainView: 'domainOptin',
-        },
-        translations: { value: ['.'], format: 'json' },
-      });
-    });
-  },
-);
+export default /* @ngInject */ ($stateProvider) => {
+  const state = {
+    url: '/optin',
+    views: {
+      domainView: 'domainOptin',
+    },
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('domain_optin_back_button'),
+    },
+  };
+
+  $stateProvider.state('app.domain.product.optin', { ...state });
+  $stateProvider.state('app.alldom.domain.optin', { ...state });
+};

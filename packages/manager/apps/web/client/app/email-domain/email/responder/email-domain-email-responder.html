@@ -1,10 +1,8 @@
-<div class="row" data-ng-controller="EmailDomainEmailResponderCtrl as $ctrl">
+<div class="row">
     <div class="col-md-9">
         <div data-ovh-alert="{{alerts.main}}"></div>
 
-        <oui-back-button
-            data-on-click="ctrlEmailDomainEmail.resetInitialView()"
-        >
+        <oui-back-button data-on-click="$ctrl.goToEmail()">
             <span data-translate="common_back"></span>
         </oui-back-button>
         <h2 data-translate="email_tab_responders_management_heading"></h2>
@@ -16,22 +14,22 @@
         <div data-ng-if="!$ctrl.loading.responders">
             <dl
                 class="dl-horizontal dl-lg"
-                data-ng-if="ctrlEmailDomainEmail.quotas.responder > 0"
+                data-ng-if="$ctrl.quotas.responder > 0"
             >
                 <dt data-translate="email_tab_responders_quota"></dt>
                 <dd
                     class="text-nowrap"
-                    data-ng-bind="$ctrl.responders.length + ' / ' + (ctrlEmailDomainEmail.quotas.responder || '0')"
+                    data-ng-bind="$ctrl.responders.length + ' / ' + ($ctrl.quotas.responder || '0')"
                 ></dd>
             </dl>
 
             <oui-message
-                data-ng-if="$ctrl.responders.length >= ctrlEmailDomainEmail.quotas.responder"
+                data-ng-if="$ctrl.responders.length >= $ctrl.quotas.responder"
                 data-type="error"
             >
                 <span
                     data-translate="email_tab_table_emails_responder_quota_excedeed"
-                    data-translate-values="{ t0: $ctrl.responders.length, t1: ctrlEmailDomainEmail.quotas.responder }"
+                    data-translate-values="{ t0: $ctrl.responders.length, t1: $ctrl.quotas.responder }"
                 ></span>
             </oui-message>
 
@@ -130,9 +128,9 @@
                 type="button"
                 data-translate="email_tab_modal_create_responder_title"
                 data-ng-click="setAction('email-domain/email/responder/create/email-domain-email-responder-create', {
-                        accounts: ctrlEmailDomainEmail.emails
+                        accounts: $ctrl.emails
                     })"
-                data-ng-if="$ctrl.responders.length < ctrlEmailDomainEmail.quotas.responder"
+                data-ng-if="$ctrl.responders.length < $ctrl.quotas.responder"
             ></button>
         </div>
         <div

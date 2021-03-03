@@ -6,16 +6,16 @@ import isString from 'lodash/isString';
 
 export default class ExchangeAddAccountAliasCtrl {
   /* @ngInject */
-  constructor($scope, Exchange, navigation, messaging, $translate) {
+  constructor($scope, wucExchange, navigation, messaging, $translate) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       navigation,
       messaging,
       $translate,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
     this.selectedAccount = navigation.currentActionData;
     this.data = null;
     this.model = {};
@@ -27,12 +27,13 @@ export default class ExchangeAddAccountAliasCtrl {
   }
 
   loadDomainData() {
-    this.services.Exchange.getNewAliasOptions(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-      this.selectedAccount.primaryEmailAddress,
-      'ACCOUNT',
-    )
+    this.services.wucExchange
+      .getNewAliasOptions(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        this.selectedAccount.primaryEmailAddress,
+        'ACCOUNT',
+      )
       .then((data) => {
         if (isEmpty(data.availableDomains)) {
           this.services.messaging.writeError(
@@ -80,12 +81,13 @@ export default class ExchangeAddAccountAliasCtrl {
   }
 
   addAccountAlias() {
-    return this.services.Exchange.addAlias(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-      this.selectedAccount.primaryEmailAddress,
-      this.model,
-    )
+    return this.services.wucExchange
+      .addAlias(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        this.selectedAccount.primaryEmailAddress,
+        this.model,
+      )
       .then(() => {
         this.services.messaging.writeSuccess(
           this.services.$translate.instant(

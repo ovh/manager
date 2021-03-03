@@ -18,13 +18,24 @@ angular.module('App').controller(
      * @param WucEmails
      * @param constants
      */
-    constructor($scope, $q, $translate, Alerter, WucEmails, User) {
+    constructor(
+      $scope,
+      $stateParams,
+      $q,
+      $translate,
+      Alerter,
+      goToEmail,
+      WucEmails,
+      WucUser,
+    ) {
       this.$scope = $scope;
+      this.$stateParams = $stateParams;
       this.$q = $q;
       this.$translate = $translate;
       this.Alerter = Alerter;
+      this.goToEmail = goToEmail;
       this.WucEmails = WucEmails;
-      this.User = User;
+      this.WucUser = WucUser;
     }
 
     $onInit() {
@@ -33,8 +44,7 @@ angular.module('App').controller(
         HOSTED_EXCHANGE: 'HOSTED EXCHANGE',
         PRIVATE_EXCHANGE: 'PRIVATE EXCHANGE',
       };
-      this.email =
-        this.$scope.ctrlEmailDomainEmail.accountMigrationEmail || null;
+      this.email = this.$stateParams.email || null;
 
       this.loaders = {
         isInitialRetrievalRunning: true,
@@ -56,10 +66,10 @@ angular.module('App').controller(
       this.$scope.alerts.migrate = 'domain_alert_migrate';
       this.$scope.migrateAccount = () => this.migrateAccount();
 
-      this.User.getUrlOf('guides').then((guides) => {
+      this.WucUser.getUrlOf('guides').then((guides) => {
         this.allGuides = get(guides, 'all');
       });
-      this.User.getUrlOf('emailsOrder').then((url) => {
+      this.WucUser.getUrlOf('emailsOrder').then((url) => {
         this.emailsOrder = url;
       });
 
@@ -220,7 +230,7 @@ angular.module('App').controller(
             );
           }
 
-          this.$scope.ctrlEmailDomainEmail.displayEmailsList();
+          this.goToEmail();
         })
         .catch((err) => this.handleError(err))
         .finally(() => {

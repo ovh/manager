@@ -10,122 +10,120 @@
     </oui-guide-menu>
 </oui-header>
 
-<div class="px-5">
-    <div data-ovh-alert="{{$ctrl.alerts.main}}"></div>
-    <p data-translate="domains_newdnszone_order_example"></p>
-    <p class="font-italic" data-translate="domains_newdnszone_order_usage"></p>
+<div data-ovh-alert="{{$ctrl.alerts.main}}"></div>
+<p data-translate="domains_newdnszone_order_example"></p>
+<p class="font-italic" data-translate="domains_newdnszone_order_usage"></p>
 
-    <oui-message data-type="warning">
-        <span data-translate="domains_newdnszone_order_reminder"></span>
-    </oui-message>
+<oui-message data-type="warning">
+    <span data-translate="domains_newdnszone_order_reminder"></span>
+</oui-message>
 
-    <ovh-manager-product-offers
-        workflow-type="$ctrl.WORKFLOW_TYPE"
-        workflow-options="$ctrl.WORKFLOW_OPTIONS"
-        pricing-type="$ctrl.PRICING_TYPE"
-        user="$ctrl.user"
-        on-success="$ctrl.onDnsOrderSuccess(checkout)"
-        on-error="$ctrl.onDnsOrderError(error)"
+<ovh-manager-product-offers
+    workflow-type="$ctrl.WORKFLOW_TYPE"
+    workflow-options="$ctrl.WORKFLOW_OPTIONS"
+    pricing-type="$ctrl.PRICING_TYPE"
+    user="$ctrl.user"
+    on-success="$ctrl.onDnsOrderSuccess(checkout)"
+    on-error="$ctrl.onDnsOrderError(error)"
+>
+    <oui-step-form
+        header="{{:: 'domains_newdnszone_order_step1_title' | translate }}"
+        name="zoneNameForm"
+        id="zoneNameForm"
+        valid="$ctrl.zoneNameisValid"
+        prevent-next="!$ctrl.zoneNameisValid"
     >
-        <oui-step-form
-            header="{{:: 'domains_newdnszone_order_step1_title' | translate }}"
-            name="zoneNameForm"
-            id="zoneNameForm"
-            valid="$ctrl.zoneNameisValid"
-            prevent-next="!$ctrl.zoneNameisValid"
+        <oui-field
+            data-label="{{:: 'domains_newdnszone_order_step1_zonename' | translate }}"
         >
-            <oui-field
-                data-label="{{:: 'domains_newdnszone_order_step1_zonename' | translate }}"
+            <input
+                class="oui-input mb-2"
+                type="text"
+                id="dnsZoneName"
+                name="dnsZoneName"
+                data-ng-model="$ctrl.configuration.zone"
+                data-ng-change="$ctrl.checkZoneName()"
+                data-ng-model-options="{ debounce: 300 }"
+                required
+            />
+            <div data-ng-if="$ctrl.isLoading">
+                <oui-spinner size="s"></oui-spinner>
+                <span
+                    data-translate="domains_newdnszone_order_step1_zonename_pending"
+                ></span>
+            </div>
+            <div
+                class="oui-field__error d-block"
+                data-ng-if="$ctrl.configuration.zone && !$ctrl.zoneNameisValid && !$ctrl.isLoading"
             >
-                <input
-                    class="oui-input mb-2"
-                    type="text"
-                    id="dnsZoneName"
-                    name="dnsZoneName"
-                    data-ng-model="$ctrl.configuration.zone"
-                    data-ng-change="$ctrl.checkZoneName()"
-                    data-ng-model-options="{ debounce: 300 }"
-                    required
-                />
-                <div data-ng-if="$ctrl.isLoading">
-                    <oui-spinner size="s"></oui-spinner>
+                <span role="alert">
                     <span
-                        data-translate="domains_newdnszone_order_step1_zonename_pending"
+                        class="oui-icon oui-icon-error"
+                        aria-hidden="true"
                     ></span>
-                </div>
-                <div
-                    class="oui-field__error d-block"
-                    data-ng-if="$ctrl.configuration.zone && !$ctrl.zoneNameisValid && !$ctrl.isLoading"
-                >
-                    <span role="alert">
-                        <span
-                            class="oui-icon oui-icon-error"
-                            aria-hidden="true"
-                        ></span>
-                        <span
-                            data-translate="domains_newdnszone_zone_invalid_title"
-                        ></span>
-                    </span>
-                    <ul>
-                        <li
-                            data-translate="domains_newdnszone_zone_invalid_domain_active"
-                        ></li>
-                        <li
-                            data-translate="domains_newdnszone_zone_invalid_domain_soa"
-                        ></li>
-                        <li
-                            data-translate="domains_newdnszone_zone_invalid_domain_a"
-                        ></li>
-                        <li
-                            data-translate="domains_newdnszone_zone_invalid_domain_zone"
-                        ></li>
-                        <li data-ng-if="ctrlNewDnsZone.guideForExternal">
-                            <a
-                                data-ng-href="{{ctrlNewDnsZone.guideForExternal}}"
-                                target="_blank"
-                            >
-                                <span
-                                    data-translate="domains_newdnszone_zone_invalid_domain_guide"
-                                ></span>
-                                <span
-                                    class="fa fa-external-link"
-                                    aria-hidden="true"
-                                ></span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </oui-field>
-        </oui-step-form>
-        <oui-step-form
-            header="{{:: 'domains_newdnszone_order_step2_title' | translate }}"
-            name="configurationForm"
-            id="configurationForm"
-            on-submit="$ctrl.generateConfiguration()"
+                    <span
+                        data-translate="domains_newdnszone_zone_invalid_title"
+                    ></span>
+                </span>
+                <ul>
+                    <li
+                        data-translate="domains_newdnszone_zone_invalid_domain_active"
+                    ></li>
+                    <li
+                        data-translate="domains_newdnszone_zone_invalid_domain_soa"
+                    ></li>
+                    <li
+                        data-translate="domains_newdnszone_zone_invalid_domain_a"
+                    ></li>
+                    <li
+                        data-translate="domains_newdnszone_zone_invalid_domain_zone"
+                    ></li>
+                    <li data-ng-if="ctrlNewDnsZone.guideForExternal">
+                        <a
+                            data-ng-href="{{ctrlNewDnsZone.guideForExternal}}"
+                            target="_blank"
+                        >
+                            <span
+                                data-translate="domains_newdnszone_zone_invalid_domain_guide"
+                            ></span>
+                            <span
+                                class="fa fa-external-link"
+                                aria-hidden="true"
+                            ></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </oui-field>
+    </oui-step-form>
+    <oui-step-form
+        header="{{:: 'domains_newdnszone_order_step2_title' | translate }}"
+        name="configurationForm"
+        id="configurationForm"
+        on-submit="$ctrl.generateConfiguration()"
+    >
+        <oui-field
+            data-label="{{:: 'domains_newdnszone_order_step2_minimized' | translate}}"
+            data-size="xl"
         >
-            <oui-field
-                data-label="{{:: 'domains_newdnszone_order_step2_minimized' | translate}}"
-                data-size="xl"
+            <oui-radio
+                data-model="$ctrl.configuration.template"
+                name="zone-template"
+                value="$ctrl.TEMPLATES.MINIMIZED"
             >
-                <oui-radio
-                    data-model="$ctrl.configuration.template"
-                    name="zone-template"
-                    value="$ctrl.TEMPLATES.MINIMIZED"
-                >
-                    <span
-                        data-translate="domains_newdnszone_order_step2_minimized_yes"
-                    ></span>
-                </oui-radio>
-                <oui-radio
-                    data-model="$ctrl.configuration.template"
-                    name="zone-template"
-                    value="$ctrl.TEMPLATES.BASIC"
-                >
-                    <span
-                        data-translate="domains_newdnszone_order_step2_minimized_no"
-                    ></span>
-                </oui-radio>
-            </oui-field>
-        </oui-step-form>
-    </ovh-manager-product-offers>
-</div>
+                <span
+                    data-translate="domains_newdnszone_order_step2_minimized_yes"
+                ></span>
+            </oui-radio>
+            <oui-radio
+                data-model="$ctrl.configuration.template"
+                name="zone-template"
+                value="$ctrl.TEMPLATES.BASIC"
+            >
+                <span
+                    data-translate="domains_newdnszone_order_step2_minimized_no"
+                ></span>
+            </oui-radio>
+        </oui-field>
+    </oui-step-form>
+</ovh-manager-product-offers>

@@ -54,7 +54,7 @@ export default class EmailProTabInformationCtrl {
           : this.getRedirections(),
       });
 
-      this.upgradeLink = this.$state.href('app.email.mxplan.upgrade', {
+      this.upgradeLink = this.$state.href('mxplan.dashboard.upgrade', {
         productId: this.$stateParams.productId,
         domain: this.$scope.exchange.associatedDomainName,
       });
@@ -63,7 +63,7 @@ export default class EmailProTabInformationCtrl {
     if (this.$scope.sharepoint) {
       this.sharepointURL = buildURL(
         'dedicated',
-        '#/configuration/sharepoint/:exchangeId/:productId',
+        '#/sharepoint/:exchangeId/:productId',
         {
           exchangeId: this.$scope.exchange.domain,
           productId: this.$scope.sharepoint?.domain,

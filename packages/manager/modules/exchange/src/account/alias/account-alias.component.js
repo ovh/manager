@@ -6,5 +6,6 @@ export default {
   template,
   bindings: {
     account: '<',
+    goToAccounts: '<',
   },
 };
