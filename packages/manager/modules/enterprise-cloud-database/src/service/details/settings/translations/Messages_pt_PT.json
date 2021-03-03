@@ -13,5 +13,6 @@
   "enterprise_cloud_database_service_details_settings_add_a_rule": "Adicionar uma regra",
   "enterprise_cloud_database_service_details_settings_edit_group": "Editar um grupo",
   "enterprise_cloud_database_service_details_settings_delete_group": "Eliminar um grupo",
-  "enterprise_cloud_database_service_details_settings_rules_error": "Ocorreu um erro ao recuperar regras: {{ message }}"
+  "enterprise_cloud_database_service_details_settings_rules_error": "Ocorreu um erro ao recuperar regras: {{ message }}",
+  "enterprise_cloud_database_service_details_settings": "Parâmetros"
 }

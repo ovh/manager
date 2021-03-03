@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'app.managedBaremetal.datacenter.drp.summary.deleteDrp',
+    'app.managedBaremetal.details.datacenters.datacenter.drp.summary.deleteDrp',
     {
       url: '/deleteDrp',
       views: {
@@ -14,6 +14,7 @@ export default /* @ngInject */ ($stateProvider) => {
           dedicatedCloudDrp.constructor.getPlanServiceInformations(currentDrp),
 
         goBack: /* @ngInject */ ($state) => () => $state.go('^'),
+        breadcrumb: () => null,
       },
     },
   );

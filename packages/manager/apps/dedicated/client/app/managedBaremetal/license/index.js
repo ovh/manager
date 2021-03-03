@@ -6,7 +6,7 @@ const moduleName = 'managedBaremetalLicenseLazyloading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.managedBaremetal.license.**', {
+    $stateProvider.state('app.managedBaremetal.details.license.**', {
       url: '/license',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');

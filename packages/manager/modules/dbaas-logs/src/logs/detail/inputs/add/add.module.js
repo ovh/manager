@@ -10,6 +10,7 @@ import '@ovh-ux/ui-kit';
 import './logs-inputs-add.less';
 
 import component from './add.component';
+import add from './add/add.module';
 import configure from './configure/configure.module';
 import edit from './edit/edit.module';
 import routing from './add.routing';
@@ -24,10 +25,12 @@ angular
     'ovh-api-services',
     'pascalprecht.translate',
     'ui.router',
+    add,
     configure,
     edit,
   ])
   .config(routing)
-  .component('dbaasLogsDetailInputsAdd', component);
+  .component('dbaasLogsDetailInputsAdd', component)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

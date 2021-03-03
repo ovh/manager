@@ -6,6 +6,9 @@ import userRightsComponent from '../../../components/dedicated-cloud/user/rights
 
 const moduleName = 'dedicatedCloudUserRightsModule';
 
-angular.module(moduleName, [edit, userRightsComponent]).config(routing);
+angular
+  .module(moduleName, [edit, userRightsComponent])
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

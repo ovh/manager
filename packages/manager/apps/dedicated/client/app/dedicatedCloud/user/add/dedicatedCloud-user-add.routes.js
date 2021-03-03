@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicatedClouds.users.add', {
+  $stateProvider.state('app.dedicatedCloud.details.users.add', {
     url: '/add',
     params: {
       passwordPolicy: null,
@@ -13,6 +13,7 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       passwordPolicy: /* @ngInject */ ($transition$) =>
         $transition$.params().passwordPolicy,
+      breadcrumb: () => null,
     },
   });
 };

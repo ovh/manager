@@ -68,6 +68,7 @@ export default {
     servicePacksWithPrices: resolveServicePacksWithPrices,
     servicePackToOrder: resolveServicePackToOrder,
     subHeader: resolveSubHeader,
+    breadcrumb: () => null,
   },
   translations: { value: ['.'], format: 'json' },
 };

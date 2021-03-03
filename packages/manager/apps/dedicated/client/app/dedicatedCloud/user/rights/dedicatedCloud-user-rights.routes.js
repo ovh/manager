@@ -1,19 +1,18 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicatedClouds.users.rights', {
-    url: '/:userId/rights',
-    params: {
-      userId: null,
-    },
+  $stateProvider.state('app.dedicatedCloud.details.users.user.rights', {
+    url: '/rights',
     views: {
-      pccUserView: 'dedicatedCloudUserRights',
+      'pccUserView@app.dedicatedCloud.details.users':
+        'dedicatedCloudUserRights',
     },
     resolve: {
       editRight: /* @ngInject */ ($state, userId) => (rightId) =>
-        $state.go('app.dedicatedClouds.users.rights.edit', {
+        $state.go('app.dedicatedCloud.details.users.user.rights.edit', {
           rightId,
           userId,
         }),
-      userId: /* @ngInject */ ($transition$) => $transition$.params().userId,
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('dedicated_cloud_users_rights'),
     },
   });
 };

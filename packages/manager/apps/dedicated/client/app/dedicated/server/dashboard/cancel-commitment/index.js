@@ -9,7 +9,7 @@ const moduleName =
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'app.dedicated.server.dashboard.cancel-commitment.**',
+      'app.dedicated-server.server.dashboard.cancel-commitment.**',
       {
         url: '/cancel-commitment',
         lazyLoad: ($transition$) => {

@@ -14,5 +14,6 @@
   "cloud_connect_tasks_status_doing": "W realizacji",
   "cloud_connect_tasks_status_done": "Zakończone",
   "cloud_connect_tasks_status_error": "Błąd",
-  "cloud_connect_tasks_status": "Status"
+  "cloud_connect_tasks_status": "Status",
+  "cloud_connect_tasks": "Zadania"
 }

@@ -1,12 +1,12 @@
 <oui-header heading="{{:: 'billing_main_title' | translate }}">
     <oui-header-tabs>
-        <oui-header-tabs-item
-            ng-if=":: $ctrl.coreConfig.getRegion() === 'US'"
-            state="app.account.billing.main.pay-as-you-go"
-            ><span data-translate="billing_main_pay_as_you_go_tab"></span
-        ></oui-header-tabs-item>
         <oui-header-tabs-item state="app.account.billing.main.history"
             ><span data-translate="billing_main_bills_tab"></span
+        ></oui-header-tabs-item>
+        <oui-header-tabs-item
+            ng-if="$ctrl.isPayAsYouGoAvailable"
+            state="app.account.billing.main.pay-as-you-go"
+            ><span data-translate="billing_main_pay_as_you_go_tab"></span
         ></oui-header-tabs-item>
         <oui-header-tabs-item state="app.account.billing.main.payments"
             ><span data-translate="billing_main_payments_tab"></span
@@ -14,8 +14,6 @@
     </oui-header-tabs>
 </oui-header>
 
-<div class="tab-content">
-    <div data-ovh-alert="billing_main_alert"></div>
+<div data-ovh-alert="billing_main_alert"></div>
 
-    <div data-ui-view></div>
-</div>
+<div data-ui-view></div>

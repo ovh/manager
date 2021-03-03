@@ -4,5 +4,8 @@ export default /* @ngInject */ ($stateProvider) => {
     views: {
       logsAccountContent: 'dbaasLogsDetailHomeAccount',
     },
+    resolve: {
+      breacrumb: () => null,
+    },
   });
 };

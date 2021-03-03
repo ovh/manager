@@ -1,8 +1,9 @@
 <div data-ng-init="init()">
     <div class="module-useraccount-sections-contacts-details-container">
-        <div class="page-header p-5">
-            <h2 data-translate="useraccount_contacts_details"></h2>
-        </div>
+        <oui-header
+            heading="{{:: 'useraccount_contacts_details' | translate }}"
+        >
+        </oui-header>
 
         <div data-ovh-alert="{{alerts.updateOwner}}"></div>
 

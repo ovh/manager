@@ -81,6 +81,14 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
 
           return promise;
         },
+        isAutorenewManagementAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
+          ovhFeatureFlipping
+            .checkFeatureAvailability(['billing:management'])
+            .then((commitmentAvailability) =>
+              commitmentAvailability.isFeatureAvailable('billing:management'),
+            )
+            .catch(() => false),
+        hideBreadcrumb: /* @ngInject */ () => true,
       },
       coreConfigProvider.region !== 'US'
         ? {
@@ -205,14 +213,18 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
 
             breadcrumb: /* @ngInject */ ($translate) =>
               $translate.instant('billing_title'),
-            hideBreadcrumb: () => true,
           }
         : {},
     ),
-    redirectTo: /* @ngInject */ () =>
-      coreConfigProvider.region === 'US'
-        ? 'app.account.billing.autorenew.ssh'
-        : false,
+    redirectTo: (transition) =>
+      transition
+        .injector()
+        .getAsync('isAutorenewManagementAvailable')
+        .then(
+          (isAutorenewManagementAvailable) =>
+            !isAutorenewManagementAvailable &&
+            'app.account.billing.autorenew.ssh',
+        ),
   });
 
   $stateProvider.state('app.account.billing.autorenew.service', {

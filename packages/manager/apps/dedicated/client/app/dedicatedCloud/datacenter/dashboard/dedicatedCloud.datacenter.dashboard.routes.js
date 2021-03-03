@@ -1,8 +1,14 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicatedClouds.datacenter.dashboard', {
-    views: {
-      'pccDatacenterView@app.dedicatedClouds.datacenter':
-        'ovhManagerDedicatedCloudDatacenterDashboard',
+  $stateProvider.state(
+    'app.dedicatedCloud.details.datacenter.details.dashboard',
+    {
+      views: {
+        'pccDatacenterView@app.dedicatedCloud.details.datacenter.details':
+          'ovhManagerDedicatedCloudDatacenterDashboard',
+      },
+      resolve: {
+        breadcrumb: () => null,
+      },
     },
-  });
+  );
 };

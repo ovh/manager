@@ -7,7 +7,7 @@ const moduleName = 'managedBaremetalVmwareOptionOrderLazyloading';
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'app.managedBaremetal.dashboard.vmware-option-order.**',
+      'app.managedBaremetal.details.dashboard.vmware-option-order.**',
       {
         url: '/vmware-option-order',
         lazyLoad: ($transition$) => {

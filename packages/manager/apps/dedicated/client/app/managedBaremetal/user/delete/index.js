@@ -6,7 +6,7 @@ const moduleName = 'managedBaremetalUserDeleteLazyloading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.managedBaremetal.users.delete.**', {
+    $stateProvider.state('app.managedBaremetal.details.users.delete.**', {
       url: '/delete',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');

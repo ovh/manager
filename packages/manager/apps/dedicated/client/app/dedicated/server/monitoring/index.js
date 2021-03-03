@@ -13,6 +13,7 @@ angular
   .module(moduleName, ['oui', 'pascalprecht.translate', 'ui.router'])
   .component('dedicatedServerMonitoring', component)
   .config(routing)
-  .run(/* @ngTranslationsInject:json ../translations */);
+  .run(/* @ngTranslationsInject:json ../translations */)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

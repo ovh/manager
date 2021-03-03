@@ -26,6 +26,7 @@ angular
   ])
   .config(routing)
   .component('dbaasLogsDetailKibana', component)
-  .service('LogsKibanaService', service);
+  .service('LogsKibanaService', service)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

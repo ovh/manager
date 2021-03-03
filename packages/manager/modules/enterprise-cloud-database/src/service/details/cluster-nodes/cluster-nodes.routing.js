@@ -7,6 +7,7 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
     'enterprise-cloud-database.service.details.cluster-nodes',
     {
+      url: '/cluster-nodes',
       cache: false,
       component: 'enterpriseCloudDatabaseServiceDetailsClusterSizeComponent',
       resolve: {
@@ -42,12 +43,11 @@ export default /* @ngInject */ ($stateProvider) => {
           enterpriseCloudDatabaseService.resetHostsCache();
           return $state.reload();
         },
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant(
+            'enterprise_cloud_database_service_details_cluster_nodes',
+          ),
       },
-      translations: {
-        value: ['.'],
-        format: 'json',
-      },
-      url: '/cluster-nodes',
     },
   );
 };

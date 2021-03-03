@@ -4,7 +4,7 @@ import { STATUS } from '../../sgx.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'app.dedicated.server.dashboard.sgx.manage.confirmation',
+    'app.dedicated-server.server.dashboard.sgx.manage.confirmation',
     {
       params: {
         activationMode: null,
@@ -65,10 +65,11 @@ export default /* @ngInject */ ($stateProvider) => {
         },
         goBack: /* @ngInject */ ($state) => (params = {}, transitionParams) =>
           $state.go(
-            'app.dedicated.server.dashboard.sgx.manage',
+            'app.dedicated-server.server.dashboard.sgx.manage',
             params,
             transitionParams,
           ),
+        breadcrumb: () => null,
       },
       atInternet: {
         rename: 'dedicated::dedicated::server::sgx::manage::confirm',

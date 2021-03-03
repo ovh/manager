@@ -6,15 +6,12 @@ export default /* @ngInject */ ($stateProvider) => {
         component: 'cloudConnectDetailsDatacenterAdd',
       },
     },
-    translations: {
-      value: ['.'],
-      format: 'json',
-    },
     layout: 'modal',
     resolve: {
       goBack: /* @ngInject */ (goToCloudConnectPage) => goToCloudConnectPage,
       popId: /* @ngInject */ (cloudConnect) =>
         cloudConnect.getFirstPopConfiguration().id,
+      breadcrumb: () => null,
     },
   });
 };

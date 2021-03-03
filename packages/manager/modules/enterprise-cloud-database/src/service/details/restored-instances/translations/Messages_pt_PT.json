@@ -9,5 +9,6 @@
   "enterprise_cloud_database_restored_instances_current_usage": "Consumo atual",
   "enterprise_cloud_database_restored_instances_size": "Volume total restaurado: {{ size }}",
   "enterprise_cloud_database_restored_instances_info": "O restauro da instância pode demorar alguns minutos ou algumas horas em função do tamanho dos dados de backup.",
-  "enterprise_cloud_database_restored_instances_popover": "Volume total de todas as instâncias restauradas"
+  "enterprise_cloud_database_restored_instances_popover": "Volume total de todas as instâncias restauradas",
+  "enterprise_cloud_database_restored_instances": "Instâncias restauradas"
 }

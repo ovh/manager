@@ -1,12 +1,10 @@
-<header class="page-header" role="banner">
-    <h1 data-translate="license_order_title"></h1>
-</header>
+<oui-header heading="{{:: 'license_order_title' | translate }}"> </oui-header>
 
 <div class="text-center" data-ng-show="loaders.ips">
     <oui-spinner></oui-spinner>
 </div>
 
-<div class="tab-content" data-ng-show="loaders.ips == false">
+<div data-ng-show="loaders.ips == false">
     <div data-ovh-alert="{{ alerts.order }}"></div>
 
     <a
@@ -34,7 +32,7 @@
     </oui-message>
 
     <div class="row d-md-flex" data-ng-if="availableIpBlock.ips.length > 0">
-        <div class="col-md-10 col-lg-6 mx-md-auto">
+        <div class="col-md-10 col-lg-6">
             <!-- step 1 -->
             <h2 data-translate="license_order_step1_title"></h2>
 

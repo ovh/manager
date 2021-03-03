@@ -54,6 +54,7 @@ import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 import ovhManagerAccountMigration from '@ovh-ux/manager-account-migration';
 import account from './account';
+import cdn from './cdn';
 import config from './config/config';
 import dedicatedCloud from './dedicatedCloud';
 import dedicatedUniverseComponents from './dedicatedUniverseComponents';
@@ -62,6 +63,8 @@ import errorPage from './error';
 import expiredPage from './expired';
 
 import dedicatedServer from './dedicated/server';
+import dedicatedNas from './dedicated/nas';
+import dedicatedHousing from './dedicated/housing';
 import userContracts from './user-contracts';
 import otrs from './otrs';
 
@@ -82,7 +85,10 @@ angular
       'Billing',
       chartjs,
       'controllers',
+      cdn,
       dedicatedCloud,
+      dedicatedHousing,
+      dedicatedNas,
       dedicatedServer,
       dedicatedUniverseComponents,
       'directives',
@@ -121,7 +127,6 @@ angular
       ngOvhExportCsv,
       ngPaginationFront,
       ngQAllSettled,
-      'ovh-angular-responsive-tabs',
       'ovh-api-services',
       ovhManagerAtInternetConfiguration,
       ovhManagerAccountMigration,
@@ -248,7 +253,7 @@ angular
 
         const HPC_STATES = [
           'app.hpc',
-          'app.dedicatedClouds',
+          'app.dedicatedCloud',
           'veeam-enterprise',
         ];
         const IGNORE_STATES = [

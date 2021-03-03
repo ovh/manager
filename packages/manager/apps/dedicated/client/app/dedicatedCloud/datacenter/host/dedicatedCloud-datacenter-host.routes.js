@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicatedClouds.datacenter.hosts', {
+  $stateProvider.state('app.dedicatedCloud.details.datacenter.details.hosts', {
     reloadOnSearch: false,
     url: '/hosts',
     views: {
@@ -16,8 +16,8 @@ export default /* @ngInject */ ($stateProvider) => {
       ) =>
         $state.go(
           usesLegacyOrder
-            ? 'app.dedicatedClouds.datacenter.hosts.resourceUpgradeLegacy'
-            : 'app.dedicatedClouds.datacenter.hosts.resourceUpgrade',
+            ? 'app.dedicatedCloud.details.datacenter.details.hosts.resourceUpgradeLegacy'
+            : 'app.dedicatedCloud.details.datacenter.details.hosts.resourceUpgrade',
           {
             id,
             type,
@@ -33,7 +33,7 @@ export default /* @ngInject */ ($stateProvider) => {
         const reload = message && type === 'success';
 
         const promise = $state.go(
-          'app.dedicatedClouds.datacenter.hosts',
+          'app.dedicatedCloud.details.datacenter.details.hosts',
           { productId: currentService.serviceName },
           {
             reload,
@@ -46,6 +46,8 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('dedicated_cloud_datacenters_datacenter_hosts'),
     },
   });
 };

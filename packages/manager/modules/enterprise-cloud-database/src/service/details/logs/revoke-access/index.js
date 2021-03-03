@@ -26,6 +26,7 @@ angular
             logId: /* @ngInject */ ($stateParams) => $stateParams.logId,
             ldpAccount: /* @ngInject */ ($stateParams) =>
               $stateParams.ldpAccount,
+            breadcrumb: () => null,
           },
         },
       );

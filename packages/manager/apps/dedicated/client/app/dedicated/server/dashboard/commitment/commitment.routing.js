@@ -1,8 +1,8 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicated.server.dashboard.commitment', {
+  $stateProvider.state('app.dedicated-server.server.dashboard.commitment', {
     url: '/commitment?duration',
     views: {
-      'dashboard@app.dedicated.server.dashboard': 'billingCommitment',
+      'dashboard@app.dedicated-server.server.dashboard': 'billingCommitment',
     },
     resolve: {
       goBack: /* @ngInject */ (goToDashboard) => goToDashboard,
@@ -11,6 +11,8 @@ export default /* @ngInject */ ($stateProvider) => {
       serviceId: /* @ngInject */ (serviceInfos) => serviceInfos.serviceId,
       me: /* @ngInject */ (currentUser) => currentUser,
       trackingPrefix: () => 'dedicated::server::dashboard',
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('dedicated_server_dashboard_commit'),
     },
   });
 };

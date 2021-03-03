@@ -33,11 +33,12 @@
     </div>
 
     <div data-ng-if="!TerminateServiceCtrl.globalError">
-        <div class="page-header">
-            <h1 data-translate="terminate_service_legacy_title"></h1>
-        </div>
+        <oui-header
+            heading="{{:: 'terminate_service_legacy_title' | translate }}"
+        >
+        </oui-header>
 
-        <div class="tab-content">
+        <div>
             <div data-ng-if="!TerminateServiceCtrl.userLoading">
                 <oui-message
                     data-type="warning"

@@ -3,7 +3,7 @@ const moduleName = 'managedBaremetalDatacenterDashboardDeleteDrpModule';
 angular.module(moduleName, []).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'app.managedBaremetal.datacenter.dashboard.deleteDrp',
+      'app.managedBaremetal.details.datacenters.datacenter.dashboard.deleteDrp',
       {
         url: '/deleteDrp',
         views: {
@@ -19,6 +19,7 @@ angular.module(moduleName, []).config(
             ),
 
           goBack: /* @ngInject */ ($state) => () => $state.go('^'),
+          breadcrumb: () => null,
         },
       },
     );

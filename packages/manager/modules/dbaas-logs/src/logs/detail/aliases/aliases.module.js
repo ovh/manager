@@ -9,6 +9,7 @@ import '@ovh-ux/ui-kit';
 
 import add from './add/add.module';
 import component from './aliases.component';
+import edit from './edit/edit.module';
 import home from './home/home.module';
 import link from './link/link.module';
 import routing from './aliases.routing';
@@ -25,11 +26,13 @@ angular
     'pascalprecht.translate',
     'ui.router',
     add,
+    edit,
     home,
     link,
   ])
   .config(routing)
   .service('LogsAliasesService', service)
-  .component('dbaasLogsDetailAliases', component);
+  .component('dbaasLogsDetailAliases', component)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

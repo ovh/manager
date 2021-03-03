@@ -2,7 +2,8 @@ import component from '../../../../../components/dedicated-cloud/service-pack/up
 import stepModuleNames from '../../../../../components/dedicated-cloud/service-pack/upgrade/types/basicOptions/basicOptions.steps';
 
 export const state = {
-  name: 'app.managedBaremetal.servicePackUpgrade.basicOptions',
+  url: '/basicOptions',
+  name: 'app.managedBaremetal.details.servicePackUpgrade.basicOptions',
   params: {
     activationType: 'basic',
   },
@@ -20,10 +21,11 @@ export const state = {
       ),
     steps: /* @ngInject */ (pccServicePackUpgradeService) =>
       pccServicePackUpgradeService.buildSteps(stepModuleNames),
+    breadcrumb: /* @ngInject */ ($translate) =>
+      $translate.instant('managed_baremetal_servicepack_upgrade_basicoptions'),
   },
-  url: '/basicOptions',
   views: {
-    'pccView@app.managedBaremetal': component.name,
+    'pccView@app.managedBaremetal.details': component.name,
   },
 };
 

@@ -1,7 +1,16 @@
 angular.module('App').controller(
   'CdnManageCtrl',
   class CdnManageCtrl {
-    constructor($scope, $q, $stateParams, $filter, $translate, Cdn) {
+    constructor(
+      $scope,
+      $q,
+      $stateParams,
+      $filter,
+      $translate,
+      Cdn,
+      currentActiveLink,
+      domainsLink,
+    ) {
       // injections
       this.$scope = $scope;
       this.$q = $q;
@@ -9,6 +18,8 @@ angular.module('App').controller(
       this.$filter = $filter;
       this.$translate = $translate;
       this.Cdn = Cdn;
+      this.currentActiveLink = currentActiveLink;
+      this.domainsLink = domainsLink;
 
       // attributes used in view
       this.cdn = null;

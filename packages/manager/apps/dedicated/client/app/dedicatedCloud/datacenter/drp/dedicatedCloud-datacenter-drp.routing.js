@@ -3,10 +3,10 @@ import get from 'lodash/get';
 import { DEDICATED_CLOUD_CONSTANTS } from '../../../components/dedicated-cloud/dedicatedCloud.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicatedClouds.datacenter.drp', {
+  $stateProvider.state('app.dedicatedCloud.details.datacenter.details.drp', {
     url: '/drp',
     views: {
-      'pccDatacenterView@app.dedicatedClouds.datacenter':
+      'pccDatacenterView@app.dedicatedCloud.details.datacenter.details':
         'dedicatedCloudDatacenterDrp',
     },
     params: {
@@ -28,7 +28,7 @@ export default /* @ngInject */ ($stateProvider) => {
         pccStep,
       ) =>
         $state.href(
-          `app.dedicatedClouds.datacenter.drp.${drpType}.${pccStep}.${
+          `app.dedicatedCloud.details.datacenter.details.drp.${drpType}.${pccStep}.${
             isLegacyOrder ? 'legacyOrderIp' : 'orderIp'
           }`,
         ),
@@ -125,13 +125,18 @@ export default /* @ngInject */ ($stateProvider) => {
         drpInformations,
         stateToGo,
       ) =>
-        $state.go(`app.dedicatedClouds.datacenter.drp.${stateToGo}`, {
-          drpInformations,
-        }),
+        $state.go(
+          `app.dedicatedCloud.details.datacenter.details.drp.${stateToGo}`,
+          {
+            drpInformations,
+          },
+        ),
       goToSummary: /* @ngInject */ ($state) => (drpInformations) =>
-        $state.go('app.dedicatedClouds.datacenter.drp.summary', {
+        $state.go('app.dedicatedCloud.details.datacenter.details.drp.summary', {
           drpInformations,
         }),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('dedicated_cloud_datacenters_datacenter_drp'),
     },
   });
 };

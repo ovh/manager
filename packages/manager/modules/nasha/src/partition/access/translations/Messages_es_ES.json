@@ -20,5 +20,6 @@
   "nasha_partitions_access_readwrite": "Lectura y escritura",
   "nasha_partitions_access_permissions": "Permisos",
   "nasha_partitions_access_permissions_warning_cifs": "El modo de solo lectura solo está disponible en NFS.",
-  "nasha_partitions_access_notice": "Actualmente solo se puede utilizar el NAS-HA desde las IP de OVH (servidor dedicado / VPS / Public Cloud / Private Cloud / So you Start / Kimsufi)."
+  "nasha_partitions_access_notice": "Actualmente solo se puede utilizar el NAS-HA desde las IP de OVH (servidor dedicado / VPS / Public Cloud / Private Cloud / So you Start / Kimsufi).",
+  "nasha_access_breadcrumb": "Partición"
 }

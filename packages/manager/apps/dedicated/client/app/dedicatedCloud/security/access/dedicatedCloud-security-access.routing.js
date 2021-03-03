@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicatedClouds.security.access', {
+  $stateProvider.state('app.dedicatedCloud.details.security.access', {
     url: '/access',
     views: {
       modal: {
@@ -7,5 +7,8 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     layout: 'modal',
+    resolve: {
+      breadcrumb: () => null,
+    },
   });
 };

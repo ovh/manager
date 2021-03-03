@@ -7,7 +7,7 @@ const moduleName = 'managedBaremetalDatacenterDrpOvhMainPccStepLazyloading';
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'app.managedBaremetal.datacenter.drp.ovh.mainPccStep.**',
+      'app.managedBaremetal.details.datacenters.datacenter.drp.ovh.mainPccStep.**',
       {
         url: '/mainPcc',
         lazyLoad: ($transition$) => {

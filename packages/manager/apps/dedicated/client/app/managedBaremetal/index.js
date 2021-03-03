@@ -4,18 +4,48 @@ import 'oclazyload';
 
 const moduleName = 'managedBaremetalLazyloading';
 
-angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
-  /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.managedBaremetal.**', {
-      url: '/configuration/managedBaremetal/:productId',
-      lazyLoad: ($transition$) => {
-        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-        return import('./managed-baremetal.module').then((mod) =>
-          $ocLazyLoad.inject(mod.default || mod),
+angular
+  .module(moduleName, ['ui.router', 'oc.lazyLoad'])
+  .config(
+    /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
+      $stateProvider.state('app.managedBaremetal', {
+        url: '/managedBaremetal',
+        template: '<div ui-view></div>',
+        redirectTo: 'app.managedBaremetal.index',
+        resolve: {
+          breadcrumb: /* @ngInject */ ($translate) =>
+            $translate.instant('managed_baremetal_title'),
+        },
+      });
+
+      $stateProvider.state('app.managedBaremetal.index.**', {
+        url: '',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+          return import('./managed-baremetal.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
+      });
+
+      $stateProvider.state('app.managedBaremetal.details.**', {
+        url: '/:productId',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+          return import('./details/managed-baremetal.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
+      });
+
+      $urlRouterProvider.when(/^\/configuration\/managedBaremetal/, () => {
+        window.location.href = window.location.href.replace(
+          'configuration',
+          '',
         );
-      },
-    });
-  },
-);
+      });
+    },
+  )
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

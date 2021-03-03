@@ -22,5 +22,6 @@ export default {
     activationType: resolveActivationType,
     currentService: resolveCurrentService,
     servicePackToOrder: resolveServicePackToOrder,
+    breadcrumb: () => null,
   },
 };

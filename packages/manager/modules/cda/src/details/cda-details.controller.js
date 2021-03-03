@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 
-import { GUIDE_URLS } from '../cda.constants';
+import { GUIDE_URLS } from './cda.constants';
 
 export default class CdaDetailsCtrl {
   /* @ngInject */

@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('nasha.nasha-partitions.add', {
+  $stateProvider.state('nasha.dashboard.nasha-partitions.add', {
     url: '/add',
     views: {
       modal: {
@@ -7,5 +7,8 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     layout: 'modal',
+    resolve: {
+      breadcrumb: () => null,
+    },
   });
 };

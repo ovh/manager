@@ -1,0 +1,16 @@
+{
+  "ceph_common_error": "Lamentamos, mas ocorreu um erro:",
+  "cda_tab_home": "Índice",
+  "cda_tab_user": "Utilizadores",
+  "cda_tab_ip": "Controlo do acesso IP",
+  "cda_tab_pool": "Pools",
+  "cda_guide_title": "Manuais",
+  "cda_guide_name": "Cloud Disk Array (CDA)",
+  "cda_guide_footer": "Manuais OVH",
+  "cda_new_window": "Nova janela",
+  "cda_guide_retrieval_error": "Ocorreu um erro ao recuperar o manual sobre Cloud Disk Array (CDA).",
+  "cda_common_cancel": "Cancelar",
+  "cda_common_modify": "Alterar",
+  "cda_common_add": "Adicionar",
+  "cda_common_delete": "Eliminar"
+}

@@ -84,6 +84,7 @@ export default /* @ngInject */ ($stateProvider) => {
         isAccountDisabled
           ? $q.when(null)
           : LogsAliasesService.getAliasesIds(serviceName),
+      breadcrumb: () => null,
     },
   });
 };

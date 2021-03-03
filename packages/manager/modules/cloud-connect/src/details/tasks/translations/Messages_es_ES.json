@@ -14,5 +14,6 @@
   "cloud_connect_tasks_status_doing": "En proceso",
   "cloud_connect_tasks_status_done": "Finalizado",
   "cloud_connect_tasks_status_error": "Error",
-  "cloud_connect_tasks_status": "Estado"
+  "cloud_connect_tasks_status": "Estado",
+  "cloud_connect_tasks": "Tareas"
 }

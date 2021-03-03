@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicatedClouds.users', {
+  $stateProvider.state('app.dedicatedCloud.details.users', {
     url: '/users',
     reloadOnSearch: false,
     views: {
@@ -12,41 +12,58 @@ export default /* @ngInject */ ($stateProvider) => {
         reload = undefined,
       ) => {
         return goBackToState(
-          'app.dedicatedClouds.users',
+          'app.dedicatedCloud.details.users',
           message,
           type,
           reload,
         );
       },
       addUser: /* @ngInject */ ($state) => (passwordPolicy) =>
-        $state.go('app.dedicatedClouds.users.add', {
+        $state.go('app.dedicatedCloud.details.users.add', {
           passwordPolicy,
         }),
       deleteUser: /* @ngInject */ ($state) => (user) =>
-        $state.go('app.dedicatedClouds.users.delete', {
+        $state.go('app.dedicatedCloud.details.users.delete', {
+          userId: user.userId,
           user,
         }),
       disableUser: /* @ngInject */ ($state) => (user) =>
-        $state.go('app.dedicatedClouds.users.disable', {
+        $state.go('app.dedicatedCloud.details.users.user.disable', {
+          userId: user.userId,
           user,
         }),
       editUser: /* @ngInject */ ($state) => (user) =>
-        $state.go('app.dedicatedClouds.users.edit', {
+        $state.go('app.dedicatedCloud.details.users.edit', {
           user,
+          userId: user.userId,
         }),
       enableUser: /* @ngInject */ ($state) => (user) =>
-        $state.go('app.dedicatedClouds.users.enable', {
+        $state.go('app.dedicatedCloud.details.users.user.enable', {
+          userId: user.userId,
           user,
         }),
       modifyUserRights: /* @ngInject */ ($state) => (userId) =>
-        $state.go('app.dedicatedClouds.users.rights', {
+        $state.go('app.dedicatedCloud.details.users.user.rights', {
           userId,
         }),
       passwordReset: /* @ngInject */ ($state) => (user, passwordPolicy) =>
-        $state.go('app.dedicatedClouds.users.password-reset', {
+        $state.go('app.dedicatedCloud.details.users.password-reset', {
+          userId: user.userId,
           passwordPolicy,
           user,
         }),
+
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('dedicated_cloud_users'),
+    },
+  });
+
+  $stateProvider.state('app.dedicatedCloud.details.users.user', {
+    url: '/:userId',
+    redirectTo: 'app.dedicatedCloud.details.users',
+    resolve: {
+      userId: /* @ngInject */ ($transition$) => $transition$.params().userId,
+      breadcrumb: /* @ngInject */ (userId) => userId,
     },
   });
 };

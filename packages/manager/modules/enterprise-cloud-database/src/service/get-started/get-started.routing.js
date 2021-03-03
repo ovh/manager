@@ -1,5 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('enterprise-cloud-database.service.get-started', {
+    url: '/get-started',
     component: 'enterpriseCloudDatabaseServiceGetStartedComponent',
     params: {
       data: null,
@@ -12,28 +13,29 @@ export default /* @ngInject */ ($stateProvider) => {
           'enterprise-cloud-database.service.get-started.add-replicas',
           { callback, clusterId, hostList },
         ),
-      /* @ngInject */
-      endPoints: (clusterId, enterpriseCloudDatabaseService) =>
+      endPoints: /* @ngInject */ (clusterId, enterpriseCloudDatabaseService) =>
         enterpriseCloudDatabaseService.getEndpointsWithDetails(clusterId),
-      /* @ngInject */
-      hostList: (clusterId, enterpriseCloudDatabaseService) =>
+      hostList: /* @ngInject */ (clusterId, enterpriseCloudDatabaseService) =>
         enterpriseCloudDatabaseService.getHosts(clusterId),
-      /* @ngInject */
-      maintenanceWindow: (clusterId, enterpriseCloudDatabaseService) =>
-        enterpriseCloudDatabaseService.getMaintenanceWindow(clusterId),
-      /* @ngInject */
-      regionInfo: (clusterDetails, enterpriseCloudDatabaseService) =>
+      maintenanceWindow: /* @ngInject */ (
+        clusterId,
+        enterpriseCloudDatabaseService,
+      ) => enterpriseCloudDatabaseService.getMaintenanceWindow(clusterId),
+      regionInfo: /* @ngInject */ (
+        clusterDetails,
+        enterpriseCloudDatabaseService,
+      ) =>
         enterpriseCloudDatabaseService.getRegionDetails(
           clusterDetails.regionName,
         ),
-      /* @ngInject */
-      securityGroups: (clusterId, enterpriseCloudDatabaseService) =>
-        enterpriseCloudDatabaseService.getSecurityGroupList(clusterId),
+      securityGroups: /* @ngInject */ (
+        clusterId,
+        enterpriseCloudDatabaseService,
+      ) => enterpriseCloudDatabaseService.getSecurityGroupList(clusterId),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant(
+          'enterprise_cloud_database_service_get_started_title',
+        ),
     },
-    translations: {
-      value: ['.'],
-      format: 'json',
-    },
-    url: '/get-started',
   });
 };

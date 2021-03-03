@@ -1,14 +1,22 @@
-angular.module('App').config(($stateProvider) => {
-  $stateProvider.state('app.networks.cdn.dedicated.domain.statistics', {
-    url: '/statistics',
-    views: {
-      cdnDomainView: {
-        templateUrl:
-          'cdn/dedicated/domain/statistics/cdn-dedicated-domain-statistics.html',
-        controller: 'CdnDomainStatisticsCtrl',
-        controllerAs: '$ctrl',
+angular
+  .module('App')
+  .config(($stateProvider) => {
+    $stateProvider.state(
+      'app.networks.cdn.dedicated.manage.domain.dashboard.statistics',
+      {
+        url: '/statistics',
+        views: {
+          cdnDomainView: {
+            templateUrl:
+              'cdn/dedicated/domain/statistics/cdn-dedicated-domain-statistics.html',
+            controller: 'CdnDomainStatisticsCtrl',
+            controllerAs: '$ctrl',
+          },
+        },
+        resolve: {
+          breadcrumb: () => null,
+        },
       },
-      translations: { value: ['.'], format: 'json' },
-    },
-  });
-});
+    );
+  })
+  .run(/* @ngTranslationsInject:json ./translations */);

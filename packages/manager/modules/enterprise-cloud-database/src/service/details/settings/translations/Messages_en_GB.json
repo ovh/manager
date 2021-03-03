@@ -13,5 +13,6 @@
   "enterprise_cloud_database_service_details_settings_add_a_rule": "Add a rule",
   "enterprise_cloud_database_service_details_settings_edit_group": "Edit group",
   "enterprise_cloud_database_service_details_settings_delete_group": "Delete group",
-  "enterprise_cloud_database_service_details_settings_rules_error": "An error occurred while trying to retrieve rules: {{ message }}"
+  "enterprise_cloud_database_service_details_settings_rules_error": "An error occurred while trying to retrieve rules: {{ message }}",
+  "enterprise_cloud_database_service_details_settings": "Settings"
 }

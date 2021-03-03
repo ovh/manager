@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicated.server.interfaces.attach', {
+  $stateProvider.state('app.dedicated-server.server.interfaces.attach', {
     url: '/attach',
     views: {
       modal: {
@@ -16,6 +16,7 @@ export default /* @ngInject */ ($stateProvider) => {
       interface: /* @ngInject */ ($transition$) =>
         $transition$.params().interface,
       vracks: /* @ngInject */ (OvhApiVrack) => OvhApiVrack.v6().query(),
+      breadcrumb: () => null,
     },
   });
 };

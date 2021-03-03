@@ -11,5 +11,6 @@
   "cloud_connect_service_keys_decription": "Liste aller Serviceschlüssel Es kann nur ein Serviceschlüssel gültig sein. Wird kein aktiver Serviceschlüssel gefunden, so wird eine Aktion sichtbar, um einen Serviceschlüssel als „aktiv“ zu bestimmen.",
   "cloud_connect_service_keys_active": "Aktivieren",
   "cloud_connect_close": "Schließen",
-  "cloud_connect_regenerate": "Neu erstellen"
+  "cloud_connect_regenerate": "Neu erstellen",
+  "cloud_connect_service_keys": "Serviceschlüssel"
 }

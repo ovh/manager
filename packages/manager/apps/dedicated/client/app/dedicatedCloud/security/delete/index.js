@@ -6,7 +6,7 @@ const moduleName = 'dedicatedCloudSecurityDeleteLazyloading';
 
 angular.module(moduleName, ['oc.lazyLoad', 'ui.router']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.dedicatedClouds.security.delete.**', {
+    $stateProvider.state('app.dedicatedCloud.details.security.delete.**', {
       url: '/delete',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');

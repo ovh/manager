@@ -9,5 +9,6 @@
   "enterprise_cloud_database_restored_instances_current_usage": "Consumo attuale",
   "enterprise_cloud_database_restored_instances_size": "Volume totale ripristinato: {{ size }}",
   "enterprise_cloud_database_restored_instances_info": "Il ripristino dell’istanza potrebbe richiedere da qualche minuto a diverse ore, in base alla dimensione dei dati del backup.",
-  "enterprise_cloud_database_restored_instances_popover": "Volume totale delle istanze ripristinate"
+  "enterprise_cloud_database_restored_instances_popover": "Volume totale delle istanze ripristinate",
+  "enterprise_cloud_database_restored_instances": "Istanze ripristinate"
 }

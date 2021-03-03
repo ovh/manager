@@ -1,15 +1,9 @@
-<section
-    data-ng-if="ctrl.service.loading"
-    class="container-fluid cui-page__content cui-page__content-flex logs-home"
->
+<section data-ng-if="ctrl.service.loading" class="logs-home">
     <div class="text-center">
         <oui-spinner data-size="l"></oui-spinner>
     </div>
 </section>
-<section
-    data-ng-if="!ctrl.service.loading"
-    class="container-fluid cui-page__content cui-page__content-flex logs-home"
->
+<section data-ng-if="!ctrl.service.loading" class="logs-home">
     <div
         class="oui-message oui-message_warning m-3"
         role="alert"
@@ -26,7 +20,7 @@
             data-translate-values="{ disabledDate: ctrl.lastUpdatedDate }"
         ></p>
     </div>
-    <div class="row d-lg-flex">
+    <div class="row d-lg-flex mb-3">
         <div class="col-xm-12 col-md-4" data-ng-if="!ctrl.isAccountDisabled">
             <oui-tile
                 class="oui-tile-h-100"
@@ -248,7 +242,7 @@
             </oui-tile>
         </div>
     </div>
-    <div class="row d-lg-flex">
+    <div class="row d-lg-flex mb-3">
         <div class="col-xm-12 col-md-4" data-ng-if="!ctrl.isAccountDisabled">
             <oui-tile
                 class="oui-tile-h-100"

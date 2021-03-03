@@ -25,9 +25,9 @@ angular
   .config(
     /* @ngInject */ ($stateProvider) => {
       $stateProvider
-        .state('network.iplb.detail.server-farm', {
+        .state('iplb.detail.server-farm', {
           url: '/serverfarm',
-          redirectTo: 'network.iplb.detail.server-farm.home',
+          redirectTo: 'iplb.detail.server-farm.home',
           views: {
             iplbHeader: {
               template: IplbHeaderTemplate,
@@ -39,12 +39,16 @@ angular
             },
           },
           translations: {
-            value: ['.', '../server'],
+            value: ['../server'],
             format: 'json',
           },
+          resolve: {
+            breadcrumb: /* @ngInject */ ($translate) =>
+              $translate.instant('iplb_farm_title'),
+          },
         })
-        .state('network.iplb.detail.server-farm.home', {
-          url: '/',
+        .state('iplb.detail.server-farm.home', {
+          url: '',
           views: {
             iplbFarms: {
               template: IplbServerFormTemplate,
@@ -52,8 +56,11 @@ angular
               controllerAs: 'ctrl',
             },
           },
+          resolve: {
+            breadcrumb: () => null,
+          },
         })
-        .state('network.iplb.detail.server-farm.add', {
+        .state('iplb.detail.server-farm.add', {
           url: '/add',
           views: {
             iplbFarms: {
@@ -62,35 +69,72 @@ angular
               controllerAs: 'ctrl',
             },
           },
+          resolve: {
+            breadcrumb: /* @ngInject */ ($translate) =>
+              $translate.instant('iplb_farm_add'),
+          },
         })
-        .state('network.iplb.detail.server-farm.update', {
+        .state('iplb.detail.server-farm.dashboard', {
           url: '/:farmId',
+          redirectTo: 'iplb.detail.server-farm',
           views: {
             iplbFarms: {
-              template: IplbServerFormEditTemplate,
-              controller: 'IpLoadBalancerServerFarmEditCtrl',
-              controllerAs: 'ctrl',
+              template: '<div ui-view></div>',
             },
           },
-        })
-        .state('network.iplb.detail.server-farm.server-add', {
-          url: '/:farmId/server/add',
-          views: {
-            iplbFarms: {
-              template: IplbServerEditTemplate,
-              controller: 'IpLoadBalancerServerEditCtrl',
-              controllerAs: 'ctrl',
-            },
+          resolve: {
+            farmId: /* @ngInject */ ($transition$) =>
+              $transition$.params().farmId,
+            breadcrumb: /* @ngInject */ (farmId) => farmId,
           },
         })
-        .state('network.iplb.detail.server-farm.server-update', {
-          url: '/:farmId/server/:serverId',
-          views: {
-            iplbFarms: {
-              template: IplbServerEditTemplate,
-              controller: 'IpLoadBalancerServerEditCtrl',
-              controllerAs: 'ctrl',
-            },
+        .state('iplb.detail.server-farm.dashboard.update', {
+          url: '/update',
+          template: IplbServerFormEditTemplate,
+          controller: 'IpLoadBalancerServerFarmEditCtrl',
+          controllerAs: 'ctrl',
+          resolve: {
+            breadcrumb: /* @ngInject */ ($translate) =>
+              $translate.instant('iplb_farm_update_title'),
+          },
+        })
+        .state('iplb.detail.server-farm.dashboard.server', {
+          url: '/server',
+          redirectTo: 'iplb.detail.server-farm.dashboard',
+          template: '<div ui-view></div>',
+          resolve: {
+            breadcrumb: /* @ngInject */ ($translate) =>
+              $translate.instant('iplb_farm_server_list_col_server'),
+          },
+        })
+        .state('iplb.detail.server-farm.dashboard.server.add', {
+          url: '/add',
+          template: IplbServerEditTemplate,
+          controller: 'IpLoadBalancerServerEditCtrl',
+          controllerAs: 'ctrl',
+          resolve: {
+            breadcrumb: /* @ngInject */ ($translate) =>
+              $translate.instant('iplb_farm_add_server'),
+          },
+        })
+        .state('iplb.detail.server-farm.dashboard.server.dashboard', {
+          url: '/:serverId',
+          redirectTo: 'iplb.detail.server-farm.dashboard.server',
+          template: '<div ui-view></div>',
+          resolve: {
+            serverId: /* @ngInject */ ($transition$) =>
+              $transition$.params().serverId,
+            breadcrumb: /* @ngInject */ (serverId) => serverId,
+          },
+        })
+        .state('iplb.detail.server-farm.dashboard.server.dashboard.update', {
+          url: '/update',
+          template: IplbServerEditTemplate,
+          controller: 'IpLoadBalancerServerEditCtrl',
+          controllerAs: 'ctrl',
+          resolve: {
+            breadcrumb: /* @ngInject */ ($translate) =>
+              $translate.instant('iplb_farm_edit_server_breadcrumb'),
           },
         });
     },

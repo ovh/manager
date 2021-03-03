@@ -7,7 +7,7 @@ const moduleName = 'managedBaremetalDashboardAssociateIpBlocLazyloading';
 angular.module(moduleName, ['oc.lazyLoad', 'ui.router']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'app.managedBaremetal.dashboard.associate-ip-bloc.**',
+      'app.managedBaremetal.details.dashboard.associate-ip-bloc.**',
       {
         url: '/associate-ip-bloc',
         lazyLoad: ($transition$) => {

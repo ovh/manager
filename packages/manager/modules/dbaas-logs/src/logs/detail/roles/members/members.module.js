@@ -24,6 +24,7 @@ angular
     add,
   ])
   .config(routing)
-  .component('dbaasLogsDetailRolesMembers', component);
+  .component('dbaasLogsDetailRolesMembers', component)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

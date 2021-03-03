@@ -2,7 +2,8 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-const moduleName = 'enterpriseCloudDatabaseServiceDetailsClusterSizeAdd';
+const moduleName =
+  'enterpriseCloudDatabaseServiceDetailsClusterSizeAddLazyLoading';
 
 angular.module(moduleName, ['oc.lazyLoad', 'ui.router']).config(
   /* @ngInject */ ($stateProvider) => {

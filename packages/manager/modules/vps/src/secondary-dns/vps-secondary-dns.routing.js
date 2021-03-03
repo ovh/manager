@@ -15,6 +15,8 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('vps.detail.secondary-dns.delete', { domain }),
       goBackToSecondaryDns: /* @ngInject */ ($state) => () =>
         $state.go('vps.detail.secondary-dns'),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('vps_secondary_dns'),
     },
   });
 };

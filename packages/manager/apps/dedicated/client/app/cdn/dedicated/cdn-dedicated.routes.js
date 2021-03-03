@@ -1,6 +1,6 @@
-angular.module('App').config(($stateProvider) => {
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.networks.cdn.dedicated', {
-    url: '/cdn/:productId',
+    url: '/:productId',
     redirectTo: 'app.networks.cdn.dedicated.manage',
     views: {
       '': {
@@ -8,5 +8,10 @@ angular.module('App').config(($stateProvider) => {
         controller: 'CdnCtrl',
       },
     },
+    resolve: {
+      serviceName: /* @ngInject */ ($transition$) =>
+        $transition$.params().productId,
+      breadcrumb: /* @ngInject */ (serviceName) => serviceName,
+    },
   });
-});
+};

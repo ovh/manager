@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.managedBaremetal.users.rights.edit', {
+  $stateProvider.state('app.managedBaremetal.details.users.user.rights.edit', {
     url: '/edit',
     params: {
       rightId: null,
@@ -17,7 +17,7 @@ export default /* @ngInject */ ($stateProvider) => {
         type = 'success',
       ) => {
         return goBackToState(
-          'app.managedBaremetal.users.rights',
+          'app.managedBaremetal.details.users.user.rights',
           message,
           type,
         );
@@ -25,6 +25,7 @@ export default /* @ngInject */ ($stateProvider) => {
       rightId: /* @ngInject */ ($transition$) => $transition$.params().rightId,
       user: /* @ngInject */ (DedicatedCloud, productId, userId) =>
         DedicatedCloud.getUserDetail(productId, userId),
+      breadcrumb: () => null,
     },
   });
 };

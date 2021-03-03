@@ -21,5 +21,6 @@
   "enterprise_cloud_database_backups_auto_heading": "Copias de seguridad automáticas",
   "enterprise_cloud_database_backups_manual_heading": "Copias de seguridad manuales",
   "enterprise_cloud_database_backups_manual_included": "Precio:incluidas en la solución",
-  "enterprise_cloud_database_backups_manual_popover": "Volumen total de las copias de seguridad manuales"
+  "enterprise_cloud_database_backups_manual_popover": "Volumen total de las copias de seguridad manuales",
+  "enterprise_cloud_database_backup": "Copias de seguridad"
 }

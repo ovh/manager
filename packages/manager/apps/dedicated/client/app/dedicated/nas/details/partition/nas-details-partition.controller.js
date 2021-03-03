@@ -89,13 +89,13 @@ angular
     };
 
     self.displayAccess = (partition) => {
-      $state.go('app.networks.nas.details.partition.access', {
+      $state.go('app.dedicated-nas.details.partition.access', {
         partitionName: partition.partitionName,
       });
     };
 
     self.displaySnapshots = (partition) => {
-      $state.go('app.networks.nas.details.partition.snapshot', {
+      $state.go('app.dedicated-nas.details.partition.snapshot', {
         partitionName: partition.partitionName,
       });
     };

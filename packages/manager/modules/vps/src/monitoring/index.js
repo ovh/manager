@@ -9,6 +9,7 @@ const moduleName = 'ovhManagerVpsMonitoring';
 angular
   .module(moduleName, ['ui.router'])
   .component(component.name, component)
-  .config(routing);
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

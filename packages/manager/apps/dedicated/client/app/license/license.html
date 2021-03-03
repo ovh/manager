@@ -3,18 +3,10 @@
 ></oui-spinner>
 
 <div data-ng-hide="loadingLicensesInformations || loadingLicensesError">
-    <div class="page-header">
-        <div class="row">
-            <div class="col-sm-9">
-                <h1
-                    class="oui-heading_2"
-                    data-translate="license_dashboard_title"
-                ></h1>
-            </div>
-        </div>
-    </div>
+    <oui-header heading="{{:: 'license_dashboard_title' | translate}}">
+    </oui-header>
 
-    <div class="tab-content">
+    <div>
         <div class="row d-md-flex mb-3">
             <div class="col-md-6">
                 <h2
@@ -120,7 +112,7 @@
                 </oui-action-menu-item>
                 <oui-action-menu-item
                     data-ng-if="$row.canBeUpgraded === true && !$row.isExpired"
-                    href="{{ $state.href('app.license.upgrade', { licenseId: getLicenseId($row) }) }}"
+                    href="{{ $state.href('app.license.detail.upgrade', { licenseId: getLicenseId($row) }) }}"
                     ><span
                         data-translate="license_dashboard_table_popover_upgrade"
                     ></span>

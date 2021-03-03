@@ -6,7 +6,7 @@ const moduleName = 'dedicatedCloudSecurityKmsDeleteLazyloading';
 
 angular.module(moduleName, ['oc.lazyLoad', 'ui.router']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.dedicatedClouds.security.kms-delete.**', {
+    $stateProvider.state('app.dedicatedCloud.details.security.kms-delete.**', {
       url: '/kms-delete',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');

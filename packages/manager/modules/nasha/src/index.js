@@ -3,8 +3,7 @@ import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-import cucAutoComplete from './components/autocomplete';
-import cucSpaceMeter from './components/space-meter';
+import '@ovh-ux/ng-ui-router-breadcrumb';
 
 const moduleName = 'ovhManagerNashaLazyLoading';
 
@@ -13,32 +12,56 @@ angular
     'ui.router',
     'oc.lazyLoad',
     'ovhManagerCore',
-    cucAutoComplete,
-    cucSpaceMeter,
+    'ngUiRouterBreadcrumb',
   ])
   .config(
-    /* @ngInject */ ($stateProvider) => {
+    /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       const lazyLoad = ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-        return import('./nasha.module').then((mod) =>
+        return import('./dashboard/nasha.module').then((mod) =>
           $ocLazyLoad.inject(mod.default || mod),
         );
       };
 
       $stateProvider
-        .state('nasha.**', {
-          url: '/paas/nasha/:nashaId',
+        .state('nasha', {
+          url: '/nasha',
+          redirectTo: 'nasha.index',
+          template: '<div ui-view></div>',
+          resolve: {
+            breadcrumb: () => 'NASHA',
+          },
+        })
+        .state('nasha.index.**', {
+          url: '',
+          lazyLoad: ($transition$) => {
+            const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+            return import('./nasha.module').then((mod) =>
+              $ocLazyLoad.inject(mod.default || mod),
+            );
+          },
+        })
+        .state('nasha.dashboard.**', {
+          url: '/:nashaId',
           lazyLoad,
         })
-        .state('nasha-add.**', {
-          url: '/nasha/new',
+        .state('nasha.nasha-add.**', {
+          url: '/new',
           lazyLoad,
         })
-        .state('nasha-unavailable.**', {
-          url: '/nasha/unavailable',
+        .state('nasha.nasha-unavailable.**', {
+          url: '/unavailable',
           lazyLoad,
         });
+
+      $urlRouterProvider.when(/^\/paas\/nasha/, () => {
+        window.location.href = window.location.href.replace(
+          '/paas/nasha',
+          '/nasha',
+        );
+      });
     },
   );
 export default moduleName;

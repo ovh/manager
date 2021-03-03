@@ -2,18 +2,45 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-const moduleName = 'ovhManagerDedicatedCloudLazyloading';
+const moduleName = 'ovhManagerDedicatedCloudLazyLoading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
-  /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.dedicatedClouds.**', {
-      url: '/configuration/dedicated_cloud/:productId',
+  /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
+    $stateProvider.state('app.dedicatedCloud', {
+      url: '/dedicated_cloud',
+      redirectTo: 'app.dedicatedCloud.index',
+      template: '<div data-ui-view></div>',
+      resolve: {
+        breadcrumb: /* @ngInject */ () => 'Private Cloud',
+      },
+    });
+
+    $stateProvider.state('app.dedicatedCloud.index.**', {
+      url: '',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-        return import('./dedicatedCloud.module').then((mod) =>
+
+        return import('./dedicatedClouds.module').then((mod) =>
           $ocLazyLoad.inject(mod.default || mod),
         );
       },
+    });
+
+    $stateProvider.state('app.dedicatedCloud.details.**', {
+      url: '/:productId',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+        return import('./details/dedicatedCloud.module').then((mod) =>
+          $ocLazyLoad.inject(mod.default || mod),
+        );
+      },
+    });
+
+    $urlRouterProvider.when(/^configuration\/dedicated_cloud/, () => {
+      window.location.hash = window.location.hash.replace(
+        /^configuration\//,
+        '',
+      );
     });
   },
 );

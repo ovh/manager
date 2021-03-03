@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'app.dedicatedClouds.security.simultaneous-connection-update',
+    'app.dedicatedCloud.details.security.simultaneous-connection-update',
     {
       url: '/simultaneous-connection-update',
       params: {
@@ -15,6 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         userLimitConcurrentSession: /* @ngInject */ ($transition$) =>
           $transition$.params().userLimitConcurrentSession,
+        breadcrumb: () => null,
       },
     },
   );
