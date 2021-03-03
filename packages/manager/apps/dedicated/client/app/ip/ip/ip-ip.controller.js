@@ -201,7 +201,7 @@ angular
         $scope.loading.alerts = true;
         const params = {
           extras: true,
-          pageSize: 10,
+          pageSize: 5000,
         };
         const ipsPromise = ips
           ? $q.when(ips)
@@ -259,8 +259,6 @@ angular
           params.type = 'failover';
         } else if ($scope.serviceName === '_PARK') {
           params.type = 'failover';
-          params.pageSize = 10;
-          params.pageNumber = 1;
           params.serviceName = $scope.serviceName;
           $location.search('page', params.pageNumber);
           $location.search('pageSize', params.pageSize);
