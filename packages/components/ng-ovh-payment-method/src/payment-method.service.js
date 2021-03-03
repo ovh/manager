@@ -41,6 +41,10 @@ export default class OvhPaymentMethodService {
     this.userLocale = userLocale;
   }
 
+  getUserLocale() {
+    return this.userLocale;
+  }
+
   /**
    *  Check if connected user has a default payment method
    *  @return {Boolean}
