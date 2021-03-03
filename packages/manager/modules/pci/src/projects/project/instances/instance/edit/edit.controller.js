@@ -3,6 +3,7 @@ import reduce from 'lodash/reduce';
 import { PATTERN } from '../../../../../components/project/instance/name/constants';
 import Flavor from '../../../../../components/project/flavors-list/flavor.class';
 import Instance from '../../../../../components/project/instance/instance.class';
+import { EDIT_PAGE_SECTIONS } from '../instance.constants';
 
 export default class PciInstanceEditController {
   /* @ngInject */
@@ -16,6 +17,7 @@ export default class PciInstanceEditController {
     this.CucCloudMessage = CucCloudMessage;
     this.CucRegionService = CucRegionService;
     this.PciProjectsProjectInstanceService = PciProjectsProjectInstanceService;
+    this.EDIT_PAGE_SECTIONS = EDIT_PAGE_SECTIONS;
   }
 
   $onInit() {
