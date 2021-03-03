@@ -49,7 +49,7 @@ export default defineComponent({
     DataTable: defineAsyncComponent(() => import('@/components/ui/DataTable.vue')),
   },
   computed: {
-    supportCellValues(): Array<any> {
+    supportCellValues(): Array<{}> {
       return this.support.data.map((ticket: SupportDemand) => [
         [
           {

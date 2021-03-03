@@ -43,7 +43,7 @@ import useLoadTranslations from '@/composables/useLoadTranslations';
 export default defineComponent({
   async setup() {
     const { locale, t, fallbackLocale } = useI18n();
-    const notifications: Ref<OvhNotification[]> = ref([] as OvhNotification[]);
+    const notifications: Ref<OvhNotification[]> = ref([]);
     const translationFolders = ['welcome'];
     axios.get<HubResponse>('/engine/2api/hub/notifications').then((response) => {
       notifications.value = response.data.data.notifications.data;

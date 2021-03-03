@@ -26,7 +26,6 @@
         @click="nextMessage"
       >
         <span class="oui-icon oui-icon-arrow-right" aria-hidden="true"></span>
-        <span class="sr-only"> {{ t('manager_hub_carousel_see_next') }} </span>
       </button>
     </div>
   </div>
@@ -34,17 +33,9 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { useI18n } from 'vue-i18n';
 
 export default defineComponent({
   name: 'carousel',
-  setup() {
-    const { t } = useI18n();
-
-    return {
-      t,
-    };
-  },
   props: {
     messages: {
       type: Array as PropType<Array<string>>,
