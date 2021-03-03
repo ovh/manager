@@ -1,3 +1,23 @@
+## [16.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.4.2...@ovh-ux/manager-dedicated@16.4.3) (2021-03-03)
+
+
+### Bug Fixes
+
+* **ip:** display pagination for parking ([#4499](https://github.com/ovh/manager/issues/4499)) ([1498d27](https://github.com/ovh/manager/commit/1498d27571fbe1014b4e990f06e592d46e44e812))
+
+
+
+## [16.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.4.1...@ovh-ux/manager-dedicated@16.4.2) (2021-03-03)
+
+
+### Bug Fixes
+
+* **dedicated:** remove period in autorenew action ([e3d9d71](https://github.com/ovh/manager/commit/e3d9d712d8bbcb7b6a6f0debbc557723535b077e))
+* **i18n:** add missing translations [CDS 831] ([73742fa](https://github.com/ovh/manager/commit/73742faf028d2131bbb9c479ad86cdb155ed3464))
+* **ip:** paginate ip parking ([1a65922](https://github.com/ovh/manager/commit/1a659224e8f8a9e70a47eaf0cc81bddfa50736e2))
+
+
+
 ## [16.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.4.0...@ovh-ux/manager-dedicated@16.4.1) (2021-03-02)
 
 
