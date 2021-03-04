@@ -646,7 +646,7 @@ angular
         $scope.loader.buttonStart = true;
         const withGeolocation =
           !includes(['HIL_1', 'VIN_1'], $scope.server.datacenter) &&
-          coreConfig.getRegion() === 'US';
+          coreConfig.isRegion('US');
         return Server.ipmiStartConnection({
           serviceName: $stateParams.productId,
           type: 'kvmipJnlp',

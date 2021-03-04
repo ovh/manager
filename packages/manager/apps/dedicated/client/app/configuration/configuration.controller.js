@@ -51,7 +51,7 @@ angular.module('App').controller(
     fetchingGuideSectionNames() {
       const sectionNames = ['sd'];
 
-      if (this.coreConfig.getRegion() === 'US') {
+      if (this.coreConfig.isRegion('US')) {
         return this.OvhHttp.get('/dedicatedCloud', {
           rootPath: 'apiv6',
         }).then((ids) => {

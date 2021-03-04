@@ -41,7 +41,7 @@ export default class DedicatedServerInterfacesOlaActivationCtrl {
       suffix = 'ca';
     }
 
-    if (this.coreConfig.getRegion() === 'US') {
+    if (this.coreConfig.isRegion('US')) {
       planCode = `${OLA_PLAN_CODE}-${suffix}`;
     }
 

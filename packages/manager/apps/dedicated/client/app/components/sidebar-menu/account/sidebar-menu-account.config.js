@@ -17,7 +17,7 @@ angular
       }
 
       function buildBillingMenu() {
-        if (coreConfig.getRegion() === 'US') {
+        if (coreConfig.isRegion('US')) {
           SidebarMenu.addMenuItem({
             name: 'billingMenu',
             title: $translate.instant('menu_bills'),
@@ -105,7 +105,7 @@ angular
               });
             }
 
-            if (coreConfig.getRegion() === 'EU') {
+            if (coreConfig.isRegion('EU')) {
               SidebarMenu.addMenuItem({
                 name: 'billingContacts',
                 title: $translate.instant('menu_contacts'),
@@ -114,7 +114,7 @@ angular
               });
             }
 
-            if (coreConfig.getRegion() === 'US') {
+            if (coreConfig.isRegion('US')) {
               SidebarMenu.addMenuItem({
                 name: 'support',
                 title: $translate.instant('menu_support'),

@@ -94,7 +94,7 @@ export default /* @ngInject */ function(
    */
 
   self.canChangeContacts = function canChangeContacts() {
-    return coreConfig.getRegion() === 'EU';
+    return coreConfig.isRegion('EU');
   };
 
   self.openContacts = function openContacts() {

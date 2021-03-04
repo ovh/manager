@@ -10,8 +10,9 @@ export default class {
   }
 
   $onInit() {
-    this.allowDedicatedServerComplianceOptions =
-      this.coreConfig.getRegion() !== 'US';
+    this.allowDedicatedServerComplianceOptions = !this.coreConfig.isRegion(
+      'US',
+    );
   }
 
   openModalToEditDescription() {

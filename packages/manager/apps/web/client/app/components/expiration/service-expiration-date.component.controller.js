@@ -36,7 +36,7 @@ export default class {
   }
 
   getCancelTerminationUrl() {
-    if (['EU', 'CA'].includes(this.coreConfig.getRegion())) {
+    if (this.coreConfig.isRegion(['EU', 'CA'])) {
       const params = {
         searchText: this.serviceName,
       };

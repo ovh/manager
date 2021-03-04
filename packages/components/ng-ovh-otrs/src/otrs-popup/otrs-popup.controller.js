@@ -503,7 +503,7 @@ export default /* @ngInject */ function(
         this.serviceTypes = get(results, 'apiSchema.data.apis')
           .concat(
             OTRS_POPUP_API_EXTRAS_ENDPOINTS.filter((extra) =>
-              includes(extra.region, coreConfig.getRegion()),
+              coreConfig.isRegion(extra.region),
             ),
           )
           .filter(

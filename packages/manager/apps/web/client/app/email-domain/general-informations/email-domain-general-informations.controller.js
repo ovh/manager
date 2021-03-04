@@ -168,13 +168,12 @@ angular.module('App').controller(
         );
       }
 
-      this.urls.manageContacts =
-        this.coreConfig.getRegion() === 'EU'
-          ? this.coreURLBuilder.buildURL('dedicated', '#/contacts/services', {
-              serviceName: this.$stateParams.productId,
-              category: 'EMAIL_DOMAIN',
-            })
-          : '';
+      this.urls.manageContacts = this.coreConfig.isRegion('EU')
+        ? this.coreURLBuilder.buildURL('dedicated', '#/contacts/services', {
+            serviceName: this.$stateParams.productId,
+            category: 'EMAIL_DOMAIN',
+          })
+        : '';
 
       return this.WucUser.getUrlOf('changeOwner')
         .then((link) => {

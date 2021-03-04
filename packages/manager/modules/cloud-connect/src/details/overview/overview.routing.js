@@ -65,7 +65,7 @@ export default /* @ngInject */ ($stateProvider) => {
       getCancelTerminationUrl: /* @ngInject */ (coreConfig, coreURLBuilder) => (
         serviceName,
       ) =>
-        ['EU', 'CA'].includes(coreConfig.getRegion())
+        coreConfig.isRegion(['EU', 'CA'])
           ? coreURLBuilder.buildURL('dedicated', '#/billing/autorenew', {
               searchText: serviceName,
             })

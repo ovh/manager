@@ -58,13 +58,12 @@ export default class HostingGeneralInformationsCtrl {
     this.serviceName = this.$stateParams.productId;
     this.defaultRuntime = null;
     this.availableOffers = [];
-    this.contactManagementLink =
-      this.coreConfig.getRegion() === 'EU'
-        ? this.coreURLBuilder.buildURL('dedicated', '#/contacts/services', {
-            serviceName: this.serviceName,
-            category: 'HOSTING',
-          })
-        : '';
+    this.contactManagementLink = this.coreConfig.isRegion('EU')
+      ? this.coreURLBuilder.buildURL('dedicated', '#/contacts/services', {
+          serviceName: this.serviceName,
+          category: 'HOSTING',
+        })
+      : '';
 
     this.loading = {
       defaultRuntime: true,

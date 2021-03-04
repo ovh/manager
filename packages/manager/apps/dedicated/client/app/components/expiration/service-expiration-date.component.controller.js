@@ -22,7 +22,7 @@ import isString from 'lodash/isString';
     }
 
     getRenewUrl() {
-      return this.coreConfig.getRegion() === 'CA'
+      return this.coreConfig.isRegion('CA')
         ? this.getOrderUrl()
         : this.getAutoRenewUrl();
     }

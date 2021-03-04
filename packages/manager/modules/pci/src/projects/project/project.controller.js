@@ -28,8 +28,7 @@ export default class ProjectController {
 
     const filterByRegion = (list) =>
       list.filter(
-        ({ regions }) =>
-          isNil(regions) || regions.includes(coreConfig.getRegion()),
+        ({ regions }) => isNil(regions) || coreConfig.isRegion(regions),
       );
 
     this.actions = filterByRegion(ACTIONS);

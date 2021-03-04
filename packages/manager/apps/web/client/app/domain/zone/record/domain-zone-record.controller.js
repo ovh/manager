@@ -703,7 +703,7 @@ angular.module('App').controller(
 
     useSpfOvh() {
       this.model.target = {};
-      this.model.target.include = DomainZoneRecordAddCtrl.getSPFIncludeName();
+      this.model.target.include = this.getSPFIncludeName();
       this.model.target.all = '~all';
       this.setTargetValue('spf');
       this.checkIfRecordCanBeAdd();
@@ -772,8 +772,8 @@ angular.module('App').controller(
         });
     }
 
-    static getSPFIncludeName() {
-      return `mx.ovh.${this.coreConfig.getRegion() === 'CA' ? 'ca' : 'com'}`;
+    getSPFIncludeName() {
+      return `mx.ovh.${this.coreConfig.isRegion('CA') ? 'ca' : 'com'}`;
     }
   },
 );
