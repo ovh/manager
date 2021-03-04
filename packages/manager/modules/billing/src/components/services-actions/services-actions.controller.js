@@ -5,7 +5,7 @@ export default class ServicesActionsCtrl {
   constructor(atInternet, coreConfig, coreURLBuilder) {
     this.atInternet = atInternet;
     this.coreURLBuilder = coreURLBuilder;
-    this.autorenewLink = ['EU', 'CA'].includes(coreConfig.getRegion())
+    this.autorenewLink = coreConfig.isRegion(['EU', 'CA'])
       ? coreURLBuilder.buildURL('dedicated', '#/billing/autorenew')
       : '';
 

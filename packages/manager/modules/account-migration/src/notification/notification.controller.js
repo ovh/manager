@@ -24,10 +24,9 @@ export default class MigrationNotificationController {
       'dedicated',
       '#/billing/autorenew/agreements',
     );
-    this.CONTACTS_URL =
-      coreConfig.getRegion() === 'EU'
-        ? coreURLBuilder.buildURL('dedicated', '#/contacts/services')
-        : '';
+    this.CONTACTS_URL = coreConfig.isRegion('EU')
+      ? coreURLBuilder.buildURL('dedicated', '#/contacts/services')
+      : '';
     this.ORDERS_URL = coreURLBuilder.buildURL('dedicated', '#/billing/orders');
     this.DEBT_PAY_URL = coreURLBuilder.buildURL(
       'dedicated',

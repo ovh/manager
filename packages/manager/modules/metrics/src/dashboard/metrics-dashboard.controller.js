@@ -119,24 +119,22 @@ export default class MetricsDashboardCtrl {
     this.actions = {
       autorenew: {
         text: this.$translate.instant('metrics_manage'),
-        href:
-          this.coreConfig.getRegion() === 'EU'
-            ? this.coreURLBuilder.buildURL('dedicated', '#/billing/autoRenew', {
-                selectedType: 'METRICS',
-                searchText: this.serviceName,
-              })
-            : RENEW_URL[this.coreConfig.getRegion()],
+        href: this.coreConfig.isRegion('EU')
+          ? this.coreURLBuilder.buildURL('dedicated', '#/billing/autoRenew', {
+              selectedType: 'METRICS',
+              searchText: this.serviceName,
+            })
+          : RENEW_URL[this.coreConfig.getRegion()],
         isAvailable: () => true,
       },
       contacts: {
         text: this.$translate.instant('metrics_manage'),
-        href:
-          this.coreConfig.getRegion() === 'EU'
-            ? this.coreURLBuilder.buildURL('dedicated', '#/contacts/services', {
-                tab: 'SERVICES',
-                serviceName: this.serviceName,
-              })
-            : null,
+        href: this.coreConfig.isRegion('EU')
+          ? this.coreURLBuilder.buildURL('dedicated', '#/contacts/services', {
+              tab: 'SERVICES',
+              serviceName: this.serviceName,
+            })
+          : null,
         isAvailable: () =>
           this.CucFeatureAvailabilityService.hasFeature('CONTACTS', 'manage'),
       },

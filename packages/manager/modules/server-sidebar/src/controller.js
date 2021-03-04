@@ -122,7 +122,7 @@ export default class OvhManagerServerSidebarController {
       return this.featuresAvailabilities.isFeatureAvailable(service.feature);
     }
     if (has(service, 'regions')) {
-      return includes(service.regions, this.coreConfig.getRegion());
+      return this.coreConfig.isRegion(service.regions);
     }
     return true;
   }
@@ -130,7 +130,7 @@ export default class OvhManagerServerSidebarController {
   filterRegions(items) {
     return filter(items, (item) => {
       if (has(item, 'regions')) {
-        return includes(item.regions, this.coreConfig.getRegion());
+        return this.coreConfig.isRegion(item.regions);
       }
       return true;
     });

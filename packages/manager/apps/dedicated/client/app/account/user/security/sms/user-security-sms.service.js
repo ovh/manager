@@ -150,7 +150,7 @@ angular.module('UserAccount').service(
      * @return {Boolean}
      */
     isSupported() {
-      return this.coreConfig.getRegion() === 'EU';
+      return this.coreConfig.isRegion('EU');
     }
   },
 );

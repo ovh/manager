@@ -12,7 +12,7 @@ export default class {
   $onInit() {
     this.user.tokenValidator = this.user.isTokenValidator;
     this.emailRegExp = /^(?:\S+@\S+\.\S+)?$/;
-    if (this.coreConfig.getRegion() === 'US') {
+    if (this.coreConfig.isRegion('US')) {
       this.phoneRegExp = /\+1\.[0-9]{10}/;
     } else {
       this.phoneRegExp = /\+[0-9]{1,4}\.[0-9]{5,15}/;

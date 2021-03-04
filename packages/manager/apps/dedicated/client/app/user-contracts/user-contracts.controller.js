@@ -11,7 +11,7 @@ export default class UserContractsCtrl {
   }
 
   $onInit() {
-    this.agreeTosAndPpOnManagerLoad = this.coreConfig.getRegion() === 'US';
+    this.agreeTosAndPpOnManagerLoad = this.coreConfig.isRegion('US');
 
     if (this.agreeTosAndPpOnManagerLoad) {
       this.DucUserContractService.getAgreementsToValidate((contract) =>

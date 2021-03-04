@@ -22,7 +22,7 @@ export default /* @ngInject */ ($stateProvider) => {
       shortcuts: /* @ngInject */ ($state, coreConfig, currentUser) =>
         USER_DASHBOARD_SHORTCUTS.filter(
           ({ regions, isAvailable }) =>
-            (!regions || regions.includes(coreConfig.getRegion())) &&
+            (!regions || coreConfig.isRegion(regions)) &&
             (!isAvailable || isAvailable(currentUser)),
         ).map((shortcut) => ({
           ...shortcut,

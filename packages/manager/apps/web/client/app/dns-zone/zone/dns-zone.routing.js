@@ -17,7 +17,7 @@ export default /* @ngInject */ ($stateProvider) => {
         coreURLBuilder,
         serviceName,
       ) =>
-        coreConfig.getRegion() === 'EU'
+        coreConfig.isRegion('EU')
           ? coreURLBuilder.buildURL('dedicated', '#/contacts/services', {
               serviceName,
             })

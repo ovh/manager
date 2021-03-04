@@ -103,16 +103,15 @@ export default class MXPlanOrderCtrl {
           );
         }
 
-        this.orderTrackingLink =
-          this.coreConfig.getRegion() === 'EU'
-            ? this.coreURLBuilder.buildURL(
-                'dedicated',
-                '#/billing/order/:orderId',
-                {
-                  orderId: order.orderId,
-                },
-              )
-            : null;
+        this.orderTrackingLink = this.coreConfig.isRegion('EU')
+          ? this.coreURLBuilder.buildURL(
+              'dedicated',
+              '#/billing/order/:orderId',
+              {
+                orderId: order.orderId,
+              },
+            )
+          : null;
 
         return this.orderTrackingLink;
       })
