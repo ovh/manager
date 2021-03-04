@@ -11,10 +11,12 @@
 </template>
 
 <script>
-import { defineAsyncComponent, defineComponent, inject, ref } from 'vue';
+import { defineAsyncComponent, defineComponent, inject, ref, nextTick } from 'vue';
 import axios from 'axios';
 import { parseISO } from 'date-fns';
 import { useRoute } from 'vue-router';
+import { detach } from '@ovh-ux/manager-preloader';
+import useLoadTranslations from '@/composables/useLoadTranslations';
 
 export default defineComponent({
   setup() {
@@ -26,6 +28,12 @@ export default defineComponent({
     const productRangeName = inject('productRangeName');
 
     productRangeName.value = route.query.productName;
+    const translationFolders = ['/', 'products'];
+    useLoadTranslations(translationFolders);
+
+    nextTick(() => {
+      detach();
+    });
 
     return {
       route,

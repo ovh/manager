@@ -1,6 +1,8 @@
 import { createApp } from 'vue';
 import { attach } from '@ovh-ux/manager-preloader';
-import { fetchConfiguration, Environment } from '@ovh-ux/manager-config';
+import { Environment } from '@ovh-ux/manager-config';
+import registerApplication from '@ovh-ux/ufrontend/application';
+import { listen } from '@ovh-ux/ufrontend/communication';
 import { setupI18n } from '@/i18n';
 
 // css
@@ -10,12 +12,13 @@ import '@ovh-ux/ui-kit/dist/css/oui.css';
 import router from '@/router';
 import App from './App.vue';
 
-fetchConfiguration('hub').then(async () => {
+registerApplication('hub').then(() => {
   attach(Environment.getUserLanguage());
-  const i18n = setupI18n();
+  const i18n = setupI18n(Environment.getUserLocale());
 
-  createApp(App)
+  const app = createApp(App)
     .use(router)
-    .use(i18n)
-    .mount('#app');
+    .use(i18n);
+
+  app.mount('#app');
 });

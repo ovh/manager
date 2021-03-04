@@ -14,11 +14,21 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, nextTick } from 'vue';
+import { detach } from '@ovh-ux/manager-preloader';
 import Hub from '@/views/Hub.vue';
+import useLoadTranslations from '@/composables/useLoadTranslations';
 
 export default defineComponent({
   name: 'Home',
+  setup() {
+    const translationFolders = ['/'];
+    useLoadTranslations(translationFolders);
+
+    nextTick(() => {
+      detach();
+    });
+  },
   components: {
     Hub,
   },
@@ -37,7 +47,6 @@ export default defineComponent({
   width: 100%;
   height: 100%;
   background-color: #fff;
-  z-index: 9999;
   display: flex !important;
   align-items: center;
   justify-content: center;

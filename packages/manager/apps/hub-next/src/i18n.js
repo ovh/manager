@@ -1,5 +1,6 @@
 import { createI18n } from 'vue-i18n';
-import { Environment, LANGUAGES } from '@ovh-ux/manager-config';
+import { ref } from 'vue';
+import { LANGUAGES } from '@ovh-ux/manager-config';
 import axios from 'axios';
 
 /* eslint-disable no-param-reassign */
@@ -10,8 +11,8 @@ export function setI18nLanguage(i18n, locale) {
   document.querySelector('html').setAttribute('lang', locale);
 }
 
-export function setupI18n() {
-  const locale = Environment.getUserLocale();
+export function setupI18n(newLocale) {
+  const locale = newLocale;
   const fallbackLocale = LANGUAGES.fallback;
   const datetimeFormats = {
     [locale.replace('_', '-')]: {

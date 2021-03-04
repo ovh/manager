@@ -43,6 +43,7 @@ import useLoadTranslations from '@/composables/useLoadTranslations';
 export default defineComponent({
   async setup() {
     const { locale, t, fallbackLocale } = useI18n();
+
     const notifications: Ref<OvhNotification[]> = ref([]);
     const translationFolders = ['welcome'];
     axios.get<HubResponse>('/engine/2api/hub/notifications').then((response) => {
@@ -65,6 +66,7 @@ export default defineComponent({
     return {
       PRODUCTS_TO_SHOW_DEFAULT,
       maxProductsToShow: PRODUCTS_TO_SHOW_DEFAULT,
+      reload: 0,
     };
   },
   components: {
@@ -84,6 +86,12 @@ export default defineComponent({
             .filter((notification: OvhNotification) => notification.level === 'warning')
             .map((notification) => notification.description)
         : [];
+    },
+  },
+  methods: {
+    forceRerender() {
+      console.log('in');
+      this.$forceUpdate();
     },
   },
 });

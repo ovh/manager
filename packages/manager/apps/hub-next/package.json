@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^3.0.1",
+    "@ovh-ux/manager-fragment-navbar": "^1.1.0",
     "@ovh-ux/manager-preloader": "^1.2.1",
     "@ovh-ux/manager-webpack-dev-server": "^2.8.1",
     "@ovh-ux/ufrontend": "^1.0.0",
@@ -26,7 +27,8 @@
     "lodash-es": "^4.17.20",
     "vue": "^3.0.0",
     "vue-i18n": "^9.0.0",
-    "vue-router": "^4.0.0-0"
+    "vue-router": "^4.0.0-0",
+    "vuera": "^0.2.7"
   },
   "devDependencies": {
     "@types/jest": "^24.0.19",
