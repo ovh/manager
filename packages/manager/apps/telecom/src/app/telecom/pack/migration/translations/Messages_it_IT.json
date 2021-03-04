@@ -134,5 +134,6 @@
   "telecom_pack_migration_pto_yes_not_known": "Hai un box ottico ma non sai dove si trova il suo codice",
   "telecom_pack_migration_confirm_resume_contact_owner": "Informazioni di contatto",
   "telecom_pack_migration_confirm_resume_contact_phone": "Numero di telefono sul quale potrai essere contattato se necessario",
-  "telecom_pack_migration_confirm_resume_phone_form_error": "Il numero inserito deve essere valido."
+  "telecom_pack_migration_confirm_resume_phone_form_error": "Il numero inserito deve essere valido.",
+  "telecom_pack_migration_choose_offer_error": "Si è verificato un errore durante il recupero delle offerte: {{ error }}"
 }
