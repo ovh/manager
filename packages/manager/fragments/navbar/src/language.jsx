@@ -23,7 +23,7 @@ function LanguageMenu() {
   );
 
   const selectNewLang = (locale) => {
-    setCurrentLanguage(locale);
+    setCurrentLanguage(LANGUAGES.available.find(({ key }) => key === locale));
     emit({
       id: MESSAGES.localeChange,
       locale,
