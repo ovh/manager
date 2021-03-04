@@ -10,18 +10,25 @@ import LanguageList from './language/list.jsx';
 
 function LanguageMenu() {
   const ref = useRef();
+  const [currentLanguage, setCurrentLanguage] = useState(
+    LANGUAGES.available.find(({ key }) => key === Environment.getUserLocale()),
+  );
   const [show, setShow] = useState(false);
   const handleRootClose = () => setShow(false);
 
   useClickAway(ref, handleRootClose);
 
-  const currentLanguage = LANGUAGES.available.find(
-    ({ key }) => key === Environment.getUserLocale(),
-  );
-
   const availableLanguages = LANGUAGES.available.filter(
     ({ key }) => key !== Environment.getUserLocale(),
   );
+
+  const selectNewLang = (locale) => {
+    setCurrentLanguage(locale);
+    emit({
+      id: MESSAGES.localeChange,
+      locale,
+    });
+  };
 
   return (
     <div className="oui-navbar-dropdown" ref={ref}>
@@ -30,12 +37,7 @@ function LanguageMenu() {
       </LanguageButton>
       <LanguageList
         languages={availableLanguages}
-        onSelect={(locale) =>
-          emit({
-            id: MESSAGES.localeChange,
-            locale,
-          })
-        }
+        onSelect={(locale) => selectNewLang(locale)}
       ></LanguageList>
     </div>
   );
