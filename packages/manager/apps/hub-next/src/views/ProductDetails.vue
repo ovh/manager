@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { defineAsyncComponent, defineComponent, inject, ref, nextTick } from 'vue';
+import { defineAsyncComponent, defineComponent, ref, nextTick } from 'vue';
 import axios from 'axios';
 import { parseISO } from 'date-fns';
 import { useRoute } from 'vue-router';
@@ -25,9 +25,6 @@ export default defineComponent({
     const route = useRoute();
     const productDetails = ref([]);
     const jsonArray = ref([]);
-    const productRangeName = inject('productRangeName');
-
-    productRangeName.value = route.query.productName;
     const translationFolders = ['/', 'products'];
     useLoadTranslations(translationFolders);
 

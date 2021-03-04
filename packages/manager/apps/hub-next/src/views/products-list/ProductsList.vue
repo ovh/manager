@@ -8,7 +8,7 @@
       path: '/product-details',
       query: {
         productApiUrl: getRouteQueryApiUrl(service.data[0].route.path),
-        productName: t(`manager_hub_products_${service.serviceName}`),
+        productName: service.serviceName,
       },
     }"
     class="col-md-6 col-lg-4 mb-2 mb-md-4 oui-list"

@@ -24,11 +24,10 @@ import { setI18nLanguage } from './i18n';
 export default defineComponent({
   setup() {
     const renderKey = ref(0);
-    const productRangeName = ref('');
-    provide('productRangeName', productRangeName);
     const route = useRoute();
     const showNavigation = computed(() => route.name !== 'Home');
     const { t, locale, fallbackLocale } = useI18n();
+    const productRangeName = computed(() => t(`manager_hub_products_${route.query.productName}`));
     const dashboardTitle = computed(() => t('manager_hub_dashboard'));
 
     return {
