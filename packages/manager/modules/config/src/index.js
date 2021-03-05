@@ -25,9 +25,10 @@ export const findAvailableLocale = _findAvailableLocale;
 export const LANGUAGES = _LANGUAGES;
 
 export const fetchConfiguration = (applicationName) => {
+  const environment = new Environment();
   let configurationURL = '/engine/2api/configuration';
   if (applicationName) {
-    _Environment.setApplicationName(applicationName);
+    environment.setApplicationName(applicationName);
     configurationURL = `${configurationURL}?app=${encodeURIComponent(
       applicationName,
     )}`;
@@ -50,12 +51,12 @@ export const fetchConfiguration = (applicationName) => {
       return response.json();
     })
     .then((config) => {
-      _Environment.setRegion(config.region);
-      _Environment.setUser(config.user);
-      _Environment.setApplicationURLs(config.applicationURLs);
-      _Environment.setUniverse(config.universe);
-      _Environment.setMessage(config.message);
-      return config;
+      environment.setRegion(config.region);
+      environment.setUser(config.user);
+      environment.setApplicationURLs(config.applicationURLs);
+      environment.setUniverse(config.universe);
+      environment.setMessage(config.message);
+      return environment;
     })
     .catch(() => ({
       region: HOSTNAME_REGIONS[window.location.hostname],
