@@ -8,21 +8,21 @@ class OvhMicroFrontend {
     this.fragments = {};
     this.messages = [];
     this.listeners = [];
-    this.config = new Deferred();
+    this.environment = new Deferred();
   }
 
   init(applicationName) {
-    return fetch2APIConfig(applicationName).then((config) => {
-      this.config.resolve(config);
+    return fetch2APIConfig(applicationName).then((environment) => {
+      this.environment.resolve(environment);
       return {
-        config,
+        environment,
         ufrontend: new OvhMicroFrontendApplicationAPI(this),
       };
     });
   }
 
-  getConfig() {
-    return this.config.promise;
+  getEnvironment() {
+    return this.environment.promise;
   }
 
   addListener(callback) {
@@ -79,12 +79,12 @@ class OvhMicroFrontend {
     }
     // ensure that the fragment is not loaded yet
     if (fragment.isPending()) {
-      Promise.all([this.getConfig(), fragment.resolve()])
-        .then(([config, resolvedFragment]) => {
+      Promise.all([this.getEnvironment(), fragment.resolve()])
+        .then(([environment, resolvedFragment]) => {
           // render the fragment into the dom
           resolve({
             parent: resolvedFragment,
-            config,
+            environment,
             ufrontend: new OvhMicroFrontendFragmentAPI(this, resolvedFragment),
           });
         })

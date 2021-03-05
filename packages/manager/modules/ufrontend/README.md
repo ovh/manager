@@ -15,13 +15,13 @@ yarn add @ovh-ux/ufrontend
 For a standalone application, you need to register it using the *registerApplication*
 method exported by the *@ovh-ux/ufrontend/application* package. This call acts as a bootstrap
 for the application, initializing the micro frontend framework and returning a promise
-that will resolve to an initial configuration. See *@ovh-ux/manager-config* for configuration
+that will resolve to an initial environment. See *@ovh-ux/manager-config* for environment
 attributes.
 
 ```js
 import registerApplication from '@ovh-ux/ufrontend/application';
 
-registerApplication().then(({ config }) => {
+registerApplication('myApplicationName').then(({ environment }) => {
   // initialization your application here
 });
 ```
@@ -31,7 +31,7 @@ registerApplication().then(({ config }) => {
 Fragments have a dedicated *registerFragment* method that is exported by the *@ovh-ux/ufrontend/fragment*
 package. This method needs to be called in order to initialize, load asynchronously and inject the
 fragment at runtime. It returns a promise that resolve with the *parent* element of the fragment and with
-the initial configuration object.
+the initial environment object.
 
 Each fragment is identified with a unique identifier, passed when registering the fragment. Please ensure
 the uniqueness of the fragment name when registering a new one.
@@ -40,7 +40,7 @@ the uniqueness of the fragment name when registering a new one.
 ```js
 import registerFragment from '@ovh-ux/ufrontend/fragment';
 
-registerFragment('myFragmentId').then(({ parent, config }) => {
+registerFragment('myFragmentId').then(({ parent, environment }) => {
   // render the fragment on 'parent' element
 });
 ```
