@@ -5,7 +5,7 @@ import {
   saveUserLocale,
 } from '../locale';
 
-export default class EnvironmentService {
+export default class Environment {
   constructor() {
     this.region = DEFAULT_REGION;
     this.userLocale = findAvailableLocale(detectUserLocale(), this.region);
