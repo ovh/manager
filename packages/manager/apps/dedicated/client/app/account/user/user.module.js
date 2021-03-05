@@ -2,7 +2,7 @@ import set from 'lodash/set';
 
 import './newAccountForm/new-account-form.module';
 import advanced from './advanced/advanced.module';
-import config from '../../config/config';
+import config, { getConstants } from '../../config/config';
 import dashboard from './dashboard/user-dahboard.module';
 import supportLevel from './support-level/support-level.module';
 
@@ -19,10 +19,13 @@ angular
     swsProxyRootPath: config.swsProxyRootPath,
     target: config.target,
   })
-  .constant('CountryConstants', {
-    support: config.constants.URLS.support,
-  })
-  .constant('AccountCreationURLS', config.constants.accountCreation)
+  .provider(
+    'AccountCreationURLS',
+    /* @ngInject */ () => ({
+      $get: /* @ngInject */ (coreConfig) =>
+        getConstants(coreConfig.getRegion()).accountCreation,
+    }),
+  )
   .constant('sshkey-regex', [
     {
       name: 'RSA',

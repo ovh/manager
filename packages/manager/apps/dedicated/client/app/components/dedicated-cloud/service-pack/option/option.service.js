@@ -1,7 +1,7 @@
 import find from 'lodash/find';
 import get from 'lodash/get';
 
-import config from '../../../../config/config';
+import { getConstants } from '../../../../config/config';
 import { OPTIONS } from './option.constants';
 
 const moduleName = 'ovhManagerPccServicePackOptionService';
@@ -9,8 +9,9 @@ export const name = 'ovhManagerPccServicePackOptionService';
 
 const ServicePackOptionService = class ServicePackOptionService {
   /* @ngInject */
-  constructor($q, OvhApiDedicatedCloud) {
+  constructor($q, coreConfig, OvhApiDedicatedCloud) {
     this.$q = $q;
+    this.coreConfig = coreConfig;
     this.OvhApiDedicatedCloud = OvhApiDedicatedCloud;
   }
 
@@ -37,7 +38,7 @@ const ServicePackOptionService = class ServicePackOptionService {
   }
 
   static getPresentationUrl(optionName, subsidiary) {
-    const urls = config.constants.URLS;
+    const urls = getConstants(this.coreConfig.getRegion()).URLS;
     return get(urls, subsidiary, urls.FR).presentations[optionName];
   }
 

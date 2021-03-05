@@ -1,46 +1,28 @@
-/* eslint-disable import/no-webpack-loader-syntax, import/extensions */
-import 'script-loader!jquery';
-import 'script-loader!moment/min/moment-with-locales.min';
-import 'script-loader!chart.js/dist/Chart.min.js';
-/* eslint-enable import/no-webpack-loader-syntax, import/extensions */
-
+import 'script-loader!jquery'; // eslint-disable-line
+import 'whatwg-fetch';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
+import {
+  attach as attachPreloader,
+  displayMessage,
+} from '@ovh-ux/manager-preloader';
 
-import { Environment } from '@ovh-ux/manager-config';
+import registerApplication from '@ovh-ux/ufrontend/application';
+import { findAvailableLocale, detectUserLocale } from '@ovh-ux/manager-config';
 
-import angular from 'angular';
-import ngOvhCloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-components';
-import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
-import ovhManagerCore from '@ovh-ux/manager-core';
-import ovhManagerIplb from '@ovh-ux/manager-iplb';
+attachPreloader(findAvailableLocale(detectUserLocale()));
 
-import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
+registerApplication('iplb').then(({ environment }) => {
+  environment.setVersion(__VERSION__);
 
-Environment.setRegion(__WEBPACK_REGION__);
+  if (environment.getMessage()) {
+    displayMessage(environment.getMessage(), environment.getUserLanguage());
+  }
 
-angular
-  .module('iplbApp', [
-    ngOvhCloudUniverseComponents,
-    ngUiRouterBreadcrumb,
-    ovhManagerCore,
-    ovhManagerIplb,
-  ])
-  .config(
-    /* @ngInject */ (CucConfigProvider) => {
-      CucConfigProvider.setRegion(Environment.getRegion());
-    },
-  )
-  .config(() => {
-    moment.locale(Environment.getUserLanguage());
-  })
-  .config(
-    /* @ngInject */ ($qProvider) => {
-      $qProvider.errorOnUnhandledRejections(false);
-    },
-  )
-  .config(
-    /* @ngInject */ ($urlRouterProvider) => {
-      $urlRouterProvider.otherwise('/iplb');
-    },
-  );
+  import(`./config-${environment.getRegion()}`)
+    .catch(() => {})
+    .then(() => import('./app.module'))
+    .then(({ default: startApplication }) => {
+      startApplication(document.body, environment);
+    });
+});

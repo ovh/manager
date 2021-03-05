@@ -2,15 +2,25 @@ import isObject from 'lodash/isObject';
 import map from 'lodash/map';
 import set from 'lodash/set';
 
-import config from '../../../../../config/config';
+import { getConstants } from '../../../../../config/config';
 import { DEDICATED_CLOUD_CONSTANTS } from '../../../dedicatedCloud.constant';
 
 export default class {
   /* @ngInject */
-  constructor($q, $scope, $translate, DedicatedCloud, Poller, User) {
+  constructor(
+    $q,
+    $scope,
+    $translate,
+    coreConfig,
+    DedicatedCloud,
+    Poller,
+    User,
+  ) {
     this.$q = $q;
     this.$scope = $scope;
     this.$translate = $translate;
+    this.coreConfig = coreConfig;
+    this.coreConstants = getConstants(coreConfig.getRegion());
     this.DedicatedCloud = DedicatedCloud;
     this.Poller = Poller;
     this.User = User;
@@ -68,9 +78,9 @@ export default class {
         set(
           this.guides,
           optionName,
-          config.constants.URLS[user.ovhSubsidiary].guides[optionName] ||
-            config.constants.URLS[user.ovhSubsidiary].presentations.home ||
-            config.constants.URLS.FR.presentations.home,
+          this.coreConstants.URLS[user.ovhSubsidiary].guides[optionName] ||
+            this.coreConstants.URLS[user.ovhSubsidiary].presentations.home ||
+            this.coreConstants.URLS.FR.presentations.home,
         );
       });
     });

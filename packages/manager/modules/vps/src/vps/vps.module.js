@@ -12,6 +12,7 @@ import ngUiRouterLayout from '@ovh-ux/ng-ui-router-layout';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ngOvhCloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-components';
 import ngOvhDocUrl from '@ovh-ux/ng-ovh-doc-url';
+import ngOvhUserPref from '@ovh-ux/ng-ovh-user-pref';
 
 import VpsTaskService from './vps-task.service';
 import VpsNotificationIpv6Service from '../import/notification.service';
@@ -52,6 +53,7 @@ angular
     ngOvhDocUrl,
     ngOvhCloudUniverseComponents,
     ngUiRouterLayout,
+    ngOvhUserPref,
     ovhManagerVpsAdditionnalDisk,
     ovhManagerVpsBackupStorage,
     ovhManagerVpsCloudDatabase,

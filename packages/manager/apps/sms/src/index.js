@@ -1,31 +1,28 @@
-/* eslint-disable import/no-webpack-loader-syntax */
-import 'script-loader!jquery';
-import 'script-loader!lodash';
-import 'script-loader!moment/min/moment.min';
-/* eslint-enable import/no-webpack-loader-syntax */
-
+import 'script-loader!jquery'; // eslint-disable-line
+import 'whatwg-fetch';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
+import {
+  attach as attachPreloader,
+  displayMessage,
+} from '@ovh-ux/manager-preloader';
 
-import angular from 'angular';
-import 'angular-translate';
-import uiRouter from '@uirouter/angularjs';
+import registerApplication from '@ovh-ux/ufrontend/application';
+import { findAvailableLocale, detectUserLocale } from '@ovh-ux/manager-config';
 
-import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
+attachPreloader(findAvailableLocale(detectUserLocale()));
 
-import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
-import ovhManagerSms from '@ovh-ux/manager-sms';
+registerApplication('sms').then(({ environment }) => {
+  environment.setVersion(__VERSION__);
 
-angular
-  .module('smsApp', [
-    ngOvhApiWrappers,
-    ngUiRouterBreadcrumb,
-    ovhManagerSms,
-    'pascalprecht.translate',
-    uiRouter,
-  ])
-  .config(
-    /* @ngInject */ ($urlRouterProvider) => {
-      $urlRouterProvider.otherwise('/sms');
-    },
-  );
+  if (environment.getMessage()) {
+    displayMessage(environment.getMessage(), environment.getUserLanguage());
+  }
+
+  import(`./config-${environment.getRegion()}`)
+    .catch(() => {})
+    .then(() => import('./app.module'))
+    .then(({ default: startApplication }) => {
+      startApplication(document.body, environment);
+    });
+});

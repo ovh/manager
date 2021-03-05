@@ -15,7 +15,7 @@ import sla from './sla/sla.module';
 import termination from './confirmTerminate/termination.module';
 import paymentMehtod from './payment/method';
 
-import config from '../config/config';
+import config, { getConstants } from '../config/config';
 import routing from './billing.routing';
 
 angular
@@ -55,9 +55,13 @@ angular
     ],
     target: config.target,
   })
-  .constant('Billing.URLS', {
-    renew: config.constants.billingRenew,
-  })
+  .provider(
+    'Billing.URLS',
+    /* @ngInject */ () => ({
+      $get: /* @ngInject */ (coreConfig) =>
+        getConstants(coreConfig.getRegion()).billingRenew,
+    }),
+  )
   .config(routing)
   .service('billingFeatureAvailability', featureAvailability)
   .run(

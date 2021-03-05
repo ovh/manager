@@ -1,8 +1,8 @@
-const _ = require('lodash');
+const fs = require('fs');
+const glob = require('glob');
 const path = require('path');
 const webpack = require('webpack'); // eslint-disable-line
 const merge = require('webpack-merge');
-const fs = require('fs');
 const webpackConfig = require('@ovh-ux/manager-webpack-config');
 
 function readNgAppInjections(file) {
@@ -31,8 +31,6 @@ function getNgAppInjections(regions) {
 }
 
 module.exports = (env = {}) => {
-  const REGION = _.upperCase(env.region || process.env.REGION || 'EU');
-
   const { config } = webpackConfig(
     {
       template: './src/index.html',
@@ -40,11 +38,21 @@ module.exports = (env = {}) => {
       lessPath: ['./node_modules'],
       root: path.resolve(__dirname, './src'),
     },
-    REGION ? Object.assign(env, { region: REGION }) : env,
+    env,
   );
 
+  // Extra config files
+  const extras = glob.sync(`./.extras/**/*.js`);
+
   return merge(config, {
-    entry: path.resolve('./src/index.js'),
+    entry: {
+      main: path.resolve('./src/index.js'),
+      ...(extras.length > 0 ? { extras } : {}),
+    },
+    output: {
+      path: path.join(__dirname, 'dist'),
+      filename: '[name].[chunkhash].bundle.js',
+    },
     resolve: {
       modules: [
         './node_modules',
@@ -58,17 +66,12 @@ module.exports = (env = {}) => {
         /moment[/\\]locale$/,
         /de|en-gb|es|es-us|fr-ca|fr|it|pl|pt/,
       ),
+
       new webpack.DefinePlugin({
-        __WEBPACK_REGION__: `'${REGION}'`,
         __NODE_ENV__: process.env.NODE_ENV
           ? `'${process.env.NODE_ENV}'`
           : '"development"',
-      }),
-      new webpack.DefinePlugin({
         __NG_APP_INJECTIONS__: getNgAppInjections(['EU', 'CA', 'US']),
-        __NODE_ENV__: process.env.NODE_ENV
-          ? `'${process.env.NODE_ENV}'`
-          : '"development"',
       }),
     ],
   });
