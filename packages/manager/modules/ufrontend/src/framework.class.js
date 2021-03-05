@@ -11,8 +11,8 @@ class OvhMicroFrontend {
     this.config = new Deferred();
   }
 
-  init() {
-    return fetch2APIConfig().then((config) => {
+  init(applicationName) {
+    return fetch2APIConfig(applicationName).then((config) => {
       this.config.resolve(config);
       return {
         config,
