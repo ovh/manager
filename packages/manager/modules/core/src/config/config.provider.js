@@ -1,8 +1,6 @@
-import { Environment } from '@ovh-ux/manager-config';
-
 export default class CoreConfig {
-  constructor() {
-    this.environment = Environment;
+  setEnvironment(environment) {
+    this.environment = environment;
   }
 
   getRegion() {
