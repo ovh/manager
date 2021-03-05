@@ -41,7 +41,7 @@
     "@ovh-ux/component-rollup-config": "^8.0.0 || ^9.0.0"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^11.0.0 || ^12.0.0",
+    "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.0",
     "@ovh-ux/ng-ovh-contracts": "^4.0.2",
     "@ovh-ux/ng-ovh-payment-method": "^8.0.0",
