@@ -5,6 +5,7 @@ import {
   convertLanguageFromOVHToBCP47 as _convertLanguageFromOVHToBCP47,
   detectUserLocale as _detectUserLocale,
   findLanguage as _findLanguage,
+  findAvailableLocale as _findAvailableLocale,
 } from './locale';
 
 import { LANGUAGES as _LANGUAGES } from './locale/locale.constants';
@@ -20,6 +21,7 @@ export const Environment = _Environment;
 export const convertLanguageFromOVHToBCP47 = _convertLanguageFromOVHToBCP47;
 export const detectUserLocale = _detectUserLocale;
 export const findLanguage = _findLanguage;
+export const findAvailableLocale = _findAvailableLocale;
 export const LANGUAGES = _LANGUAGES;
 
 export const fetchConfiguration = (applicationName) => {
@@ -66,5 +68,6 @@ export default {
   detectUserLocale,
   fetchConfiguration,
   findLanguage,
+  findAvailableLocale,
   LANGUAGES,
 };
