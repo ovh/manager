@@ -3,6 +3,7 @@ import '@uirouter/angularjs';
 import 'oclazyload';
 
 import '@ovh-ux/manager-core';
+import '@ovh-ux/ng-ovh-utils';
 import '@ovh-ux/ng-ui-router-layout';
 import '@ovh-ux/ng-ovh-payment-method';
 import '@ovh-ux/ui-kit/dist/css/oui.css';
@@ -19,6 +20,7 @@ angular
     'ui.router',
     'ovhManagerCore',
     'oc.lazyLoad',
+    'ngOvhUtils',
     'ngUiRouterLayout',
     'ngOvhPaymentMethod',
     OnboardingLayoutHelper,

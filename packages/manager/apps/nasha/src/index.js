@@ -1,28 +1,28 @@
-/* eslint-disable import/no-webpack-loader-syntax, import/extensions */
-
-import 'script-loader!jquery';
-import 'script-loader!moment/min/moment.min.js';
-
+import 'script-loader!jquery'; // eslint-disable-line
+import 'whatwg-fetch';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
+import {
+  attach as attachPreloader,
+  displayMessage,
+} from '@ovh-ux/manager-preloader';
 
-import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
-import '@ovh-ux/ui-kit/dist/css/oui.css';
+import registerApplication from '@ovh-ux/ufrontend/application';
+import { findAvailableLocale, detectUserLocale } from '@ovh-ux/manager-config';
 
-/* eslint-enable import/no-webpack-loader-syntax, import/extensions */
+attachPreloader(findAvailableLocale(detectUserLocale()));
 
-import { Environment } from '@ovh-ux/manager-config';
-import angular from 'angular';
+registerApplication('nasha').then(({ environment }) => {
+  environment.setVersion(__VERSION__);
 
-import ovhManagerNasha from '@ovh-ux/manager-nasha';
-import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
+  if (environment.getMessage()) {
+    displayMessage(environment.getMessage(), environment.getUserLanguage());
+  }
 
-import './index.scss';
-
-Environment.setRegion(__WEBPACK_REGION__);
-
-angular.module('nashaApp', [ovhManagerNasha, ngUiRouterBreadcrumb]).config(
-  /* @ngInject */ ($urlRouterProvider) => {
-    $urlRouterProvider.otherwise('/nasha');
-  },
-);
+  import(`./config-${environment.getRegion()}`)
+    .catch(() => {})
+    .then(() => import('./app.module'))
+    .then(({ default: startApplication }) => {
+      startApplication(document.body, environment);
+    });
+});

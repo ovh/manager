@@ -1,8 +1,9 @@
+import 'script-loader!moment/min/moment.min.js'; // eslint-disable-line
 import 'babel-polyfill';
-import { Environment } from '@ovh-ux/manager-config';
 import angular from 'angular';
+import 'angular-translate';
 import uiRouter from '@uirouter/angularjs';
-import ovhManagerCore from '@ovh-ux/manager-core';
+import { registerCoreModule } from '@ovh-ux/manager-core';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import ngOvhUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
@@ -10,32 +11,54 @@ import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
 
 import WebPaas from '@ovh-ux/manager-web-paas';
 
-import { momentConfiguration } from './config';
+export default (containerEl, environment) => {
+  const moduleName = 'WebPaasApp';
 
-Environment.setVersion(__VERSION__);
+  angular
+    .module(moduleName, [
+      'pascalprecht.translate',
+      registerCoreModule(environment),
+      ngOvhApiWrappers,
+      ngOvhUiRouterLineProgress,
+      ngUiRouterBreadcrumb,
+      uiRouter,
+      WebPaas,
+    ])
+    .config(
+      /* @ngInject */ ($locationProvider) => $locationProvider.hashPrefix(''),
+    )
+    .config(
+      /* @ngInject */ ($urlRouterProvider) =>
+        $urlRouterProvider.otherwise('/paas/webpaas'),
+    )
+    .run(
+      /* @ngInject */ ($translate) => {
+        let lang = $translate.use();
 
-const moduleName = 'WebPaasApp';
+        if (['en_GB', 'es_US', 'fr_CA'].includes(lang)) {
+          lang = lang.toLowerCase().replace('_', '-');
+        } else {
+          [lang] = lang.split('_');
+        }
 
-angular
-  .module(moduleName, [
-    ovhManagerCore,
-    ngOvhApiWrappers,
-    ngOvhUiRouterLineProgress,
-    ngUiRouterBreadcrumb,
-    uiRouter,
-    WebPaas,
-  ])
-  .config(
-    /* @ngInject */ ($locationProvider) => $locationProvider.hashPrefix(''),
-  )
-  .config(momentConfiguration)
-  .run(
-    /* @ngInject */ ($rootScope, $transitions) => {
-      const unregisterHook = $transitions.onSuccess({}, () => {
-        detachPreloader();
-        unregisterHook();
-      });
-    },
-  );
+        return import(`script-loader!moment/locale/${lang}.js`).then(() =>
+          moment.locale(lang),
+        );
+      },
+    )
+    .run(
+      /* @ngInject */ ($rootScope, $transitions) => {
+        const unregisterHook = $transitions.onSuccess({}, () => {
+          detachPreloader();
+          $rootScope.$broadcast('app:started');
+          unregisterHook();
+        });
+      },
+    );
 
-export default moduleName;
+  angular.bootstrap(containerEl, [moduleName], {
+    strictDi: true,
+  });
+
+  return moduleName;
+};

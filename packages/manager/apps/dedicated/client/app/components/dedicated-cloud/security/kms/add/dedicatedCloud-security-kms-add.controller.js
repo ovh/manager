@@ -2,7 +2,7 @@ import get from 'lodash/get';
 import isEqual from 'lodash/isEqual';
 
 import { VM_ENCRYPTION_KMS } from '../../dedicatedCloud-security.constants';
-import config from '../../../../../config/config';
+import { getConstants } from '../../../../../config/config';
 
 export default class {
   /* @ngInject */
@@ -39,8 +39,8 @@ export default class {
     if (usedLanguage) {
       const frenchLanguages = ['fr_FR', 'fr_CA'];
       this.vmEncryptionGuide = frenchLanguages.includes(usedLanguage)
-        ? config.constants.URLS.FR.guides.vmEncryption
-        : config.constants.URLS.GB.guides.vmEncryption;
+        ? getConstants(this.coreConfig.getRegion()).URLS.FR.guides.vmEncryption
+        : getConstants(this.coreConfig.getRegion()).URLS.GB.guides.vmEncryption;
     }
   }
 

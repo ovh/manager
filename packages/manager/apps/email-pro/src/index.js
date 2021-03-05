@@ -2,18 +2,27 @@ import 'regenerator-runtime/runtime';
 import 'script-loader!jquery'; // eslint-disable-line
 import 'script-loader!filesize/lib/filesize.js'; // eslint-disable-line
 import 'whatwg-fetch';
-import { attach as attachPreloader } from '@ovh-ux/manager-preloader';
-import { bootstrapApplication } from '@ovh-ux/manager-core';
+import {
+  attach as attachPreloader,
+  displayMessage,
+} from '@ovh-ux/manager-preloader';
 
-attachPreloader();
+import registerApplication from '@ovh-ux/ufrontend/application';
+import { findAvailableLocale, detectUserLocale } from '@ovh-ux/manager-config';
 
-bootstrapApplication().then(({ region }) => {
-  import(`./config-${region}`)
+attachPreloader(findAvailableLocale(detectUserLocale()));
+
+registerApplication('email-pro').then(({ environment }) => {
+  environment.setVersion(__VERSION__);
+
+  if (environment.getMessage()) {
+    displayMessage(environment.getMessage(), environment.getUserLanguage());
+  }
+
+  import(`./config-${environment.getRegion()}`)
     .catch(() => {})
     .then(() => import('./app.module'))
-    .then(({ default: application }) => {
-      angular.bootstrap(document.body, [application], {
-        strictDi: true,
-      });
+    .then(({ default: startApplication }) => {
+      startApplication(document.body, environment);
     });
 });

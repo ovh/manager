@@ -4,22 +4,22 @@ import {
   attach as attachPreloader,
   displayMessage,
 } from '@ovh-ux/manager-preloader';
-import { bootstrapApplication } from '@ovh-ux/manager-core';
-import { Environment } from '@ovh-ux/manager-config';
+import registerApplication from '@ovh-ux/ufrontend/application';
+import { findAvailableLocale, detectUserLocale } from '@ovh-ux/manager-config';
 
-attachPreloader(Environment.getUserLanguage());
+attachPreloader(findAvailableLocale(detectUserLocale()));
 
-bootstrapApplication('telecom').then(({ region, message }) => {
-  if (message) {
-    displayMessage(message, Environment.getUserLanguage());
+registerApplication('telecom').then(({ environment }) => {
+  environment.setVersion(__VERSION__);
+
+  if (environment.getMessage()) {
+    displayMessage(environment.getMessage(), environment.getUserLanguage());
   }
 
-  import(`./config-${region}`)
+  import(`./config-${environment.getRegion()}`)
     .catch(() => {})
     .then(() => import('./app.module'))
-    .then(({ default: application }) => {
-      angular.bootstrap(document.body, [application], {
-        strictDi: false,
-      });
+    .then(({ default: startApplication }) => {
+      startApplication(document.body, environment);
     });
 });

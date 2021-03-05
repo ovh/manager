@@ -1,30 +1,29 @@
-/* eslint-disable import/no-webpack-loader-syntax */
-import 'script-loader!jquery';
-import 'script-loader!moment/min/moment-with-locales.min';
-/* eslint-enable import/no-webpack-loader-syntax */
-
+import 'script-loader!jquery'; // eslint-disable-line
+import 'whatwg-fetch';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
-import angular from 'angular';
+import {
+  attach as attachPreloader,
+  displayMessage,
+} from '@ovh-ux/manager-preloader';
 
-// Module dependencies.
-import ovhManagerCarrierSip from '@ovh-ux/manager-carrier-sip';
-import uiRouter from '@uirouter/angularjs';
-import { Environment } from '@ovh-ux/manager-config';
+import registerApplication from '@ovh-ux/ufrontend/application';
+import { findAvailableLocale, detectUserLocale } from '@ovh-ux/manager-config';
 
-import cdr from './cdr';
-import endpoints from './endpoints';
+attachPreloader(findAvailableLocale(detectUserLocale()));
 
-// Routing and configuration.
-import routing from './routing';
+registerApplication('carrier-sip').then(({ environment }) => {
+  environment.setVersion(__VERSION__);
 
-// Styles.
-import '@ovh-ux/ui-kit/dist/css/oui.css';
+  if (environment.getMessage()) {
+    displayMessage(environment.getMessage(), environment.getUserLanguage());
+  }
 
-angular
-  .module('carrierSipApp', [cdr, endpoints, ovhManagerCarrierSip, uiRouter])
-  .config(routing)
-  .config(() => {
-    moment.locale(Environment.getUserLanguage());
-  });
+  import(`./config-${environment.getRegion()}`)
+    .catch(() => {})
+    .then(() => import('./app.module'))
+    .then(({ default: startApplication }) => {
+      startApplication(document.body, environment);
+    });
+});

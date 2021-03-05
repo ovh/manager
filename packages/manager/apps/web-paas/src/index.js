@@ -1,20 +1,20 @@
 /* eslint-disable import/no-webpack-loader-syntax */
 import 'script-loader!jquery';
-import 'script-loader!moment/min/moment-with-locales.min';
 /* eslint-enable import/no-webpack-loader-syntax */
 import 'whatwg-fetch';
 import { attach as attachPreloader } from '@ovh-ux/manager-preloader';
-import { bootstrapApplication } from '@ovh-ux/manager-core';
+import registerApplication from '@ovh-ux/ufrontend/application';
+import { findAvailableLocale, detectUserLocale } from '@ovh-ux/manager-config';
 
-attachPreloader();
+attachPreloader(findAvailableLocale(detectUserLocale()));
 
-bootstrapApplication().then(({ region }) => {
-  import(`./config-${region}`)
+registerApplication('web-paas').then(({ environment }) => {
+  environment.setVersion(__VERSION__);
+
+  import(`./config-${environment.getRegion()}`)
     .catch(() => {})
     .then(() => import('./app.module'))
-    .then(({ default: application }) => {
-      angular.bootstrap(document.body, [application], {
-        strictDi: true,
-      });
+    .then(({ default: startApplication }) => {
+      startApplication(document.body, environment);
     });
 });
