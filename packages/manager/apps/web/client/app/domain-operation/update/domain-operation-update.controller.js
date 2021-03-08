@@ -2,6 +2,7 @@ import clone from 'lodash/clone';
 import isArray from 'lodash/isArray';
 import join from 'lodash/join';
 import map from 'lodash/map';
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 
 angular.module('App').controller(
   'DomainOperationUpdateCtrl',
@@ -47,6 +48,8 @@ angular.module('App').controller(
       } else if (this.operation.canAccelerate) {
         this.todoOperation = 'accelerate';
       }
+
+      this.contactUrl = buildURL('dedicated', '#/contact');
 
       this.$scope.updateOperation = () => this.updateOperation();
 
