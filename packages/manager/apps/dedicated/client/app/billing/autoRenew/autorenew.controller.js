@@ -4,6 +4,7 @@ import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import set from 'lodash/set';
 import upperFirst from 'lodash/upperFirst';
+import { BillingService } from '@ovh-ux/manager-models';
 
 import { RENEW_URL } from '@ovh-ux/manager-billing';
 import {
@@ -18,6 +19,7 @@ export default class AutorenewCtrl {
   constructor(
     $filter,
     $q,
+    $timeout,
     $translate,
     atInternet,
     BillingAutoRenew,
@@ -27,6 +29,7 @@ export default class AutorenewCtrl {
   ) {
     this.$filter = $filter;
     this.$q = $q;
+    this.$timeout = $timeout;
     this.$translate = $translate;
     this.atInternet = atInternet;
     this.BillingAutoRenew = BillingAutoRenew;
@@ -84,6 +87,15 @@ export default class AutorenewCtrl {
             }
           : column,
       );
+    }
+
+    this.pollServices();
+  }
+
+  $onDestroy() {
+    if (this.pollingTimeout) {
+      this.$timeout.cancel(this.pollingTimeout);
+      this.scopeDestroyed = true;
     }
   }
 
@@ -181,6 +193,42 @@ export default class AutorenewCtrl {
       },
       data: this.billingServices,
     });
+  }
+
+  pollServices() {
+    const displayedServices = get(
+      this.ouiDatagridService,
+      'datagrids.services.displayedRows',
+      [],
+    );
+    return this.BillingAutoRenew.getServices(
+      this.pageSize,
+      this.offset,
+      this.searchText,
+      this.selectedType,
+      this.filters.expiration,
+      this.filters.status,
+      this.filters.state,
+      this.sort,
+      this.nicBilling,
+    )
+      .then((results) => {
+        const services = get(results, 'list.results');
+        services.forEach((service) => {
+          const billingService = new BillingService(service);
+          const serviceToUpdate = find(displayedServices, {
+            serviceId: service.serviceId,
+          });
+          if (serviceToUpdate) {
+            Object.assign(serviceToUpdate, billingService);
+          }
+        });
+      })
+      .finally(() => {
+        if (!this.scopeDestroyed) {
+          this.pollingTimeout = this.$timeout(() => this.pollServices(), 5000);
+        }
+      });
   }
 
   onPageChange({ pageSize, offset }) {

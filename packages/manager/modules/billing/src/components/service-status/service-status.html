@@ -15,6 +15,6 @@
         'oui-badge_info': $ctrl.SERVICE_STATES.info.includes($ctrl.service.getRenew()),
     }"
         data-ng-if="!$ctrl.service.hasDebt() && !$ctrl.service.isOneShot()"
-        data-translate="{{:: 'manager_billing_service_status_' + $ctrl.service.getRenew() | translate }}"
+        data-translate="{{'manager_billing_service_status_' + $ctrl.service.getRenew() | translate }}"
     ></span>
 </div>
