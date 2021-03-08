@@ -13,7 +13,8 @@ import angular from 'angular';
 import 'angular-sanitize';
 import 'angular-translate';
 import '@uirouter/angularjs';
-import ovhManagerCore from '@ovh-ux/manager-core';
+import { registerCoreModule } from '@ovh-ux/manager-core';
+
 import ngOvhSsoAuth from '@ovh-ux/ng-ovh-sso-auth'; // peerDep of manager-core
 import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
@@ -33,7 +34,8 @@ import { TRACKING } from './at-internet.constants';
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 import './index.scss';
 
-Environment.setRegion(__WEBPACK_REGION__);
+const environment = new Environment();
+environment.setRegion(__WEBPACK_REGION__);
 
 angular
   .module(
@@ -43,7 +45,7 @@ angular
       'ui.router',
       'ngSanitize',
       'pascalprecht.translate',
-      ovhManagerCore,
+      registerCoreModule(environment),
       ovhManagerAtInternetConfiguration,
       ngAtInternet,
       ngAtInternetUiRouterPlugin,
@@ -82,7 +84,7 @@ angular
         'en';
 
       const userLocale = findLanguage(language);
-      Environment.setUserLocale(userLocale);
+      environment.setUserLocale(userLocale);
       $translateProvider.use(userLocale);
     },
   )
