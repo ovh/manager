@@ -9,23 +9,23 @@
     </div>
     <router-view v-slot="{ Component }">
       <keep-alive include="Home">
-        <component :key="renderKey" :is="Component" />
+        <component :is="Component" />
       </keep-alive>
     </router-view>
   </div>
 </template>
 <script lang="ts">
-import { computed, defineComponent, provide, ref } from 'vue';
+import { computed, defineComponent } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRoute } from 'vue-router';
 import { listen } from '@ovh-ux/ufrontend/communication';
-import { setI18nLanguage } from './i18n';
+import { Environment } from '@ovh-ux/manager-config';
 
 export default defineComponent({
   setup() {
-    const renderKey = ref(0);
     const route = useRoute();
     const showNavigation = computed(() => route.name !== 'Home');
+    const i18n = useI18n();
     const { t, locale, fallbackLocale } = useI18n();
     const productRangeName = computed(() => t(`manager_hub_products_${route.query.productName}`));
     const dashboardTitle = computed(() => t('manager_hub_dashboard'));
@@ -37,22 +37,17 @@ export default defineComponent({
       productRangeName,
       fallbackLocale,
       locale,
-      renderKey,
       dashboardTitle,
+      i18n,
     };
   },
   mounted() {
-    listen(({ id, locale }: any) => {
+    listen(async ({ id, locale }: any) => {
       if (id === 'locale.change') {
-        setI18nLanguage(this.$i18n, locale);
-        this.rerender();
+        Environment.setUserLocale(locale);
+        window.location.reload();
       }
     });
-  },
-  methods: {
-    rerender() {
-      this.renderKey += 1;
-    },
   },
 });
 </script>

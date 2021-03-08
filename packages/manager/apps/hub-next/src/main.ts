@@ -2,7 +2,6 @@ import { createApp } from 'vue';
 import { attach } from '@ovh-ux/manager-preloader';
 import { Environment } from '@ovh-ux/manager-config';
 import registerApplication from '@ovh-ux/ufrontend/application';
-import { listen } from '@ovh-ux/ufrontend/communication';
 import { setupI18n } from '@/i18n';
 
 // css

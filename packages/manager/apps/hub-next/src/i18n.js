@@ -1,5 +1,4 @@
 import { createI18n } from 'vue-i18n';
-import { ref } from 'vue';
 import { LANGUAGES } from '@ovh-ux/manager-config';
 import axios from 'axios';
 
