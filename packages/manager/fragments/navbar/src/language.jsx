@@ -1,9 +1,11 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import useClickAway from 'react-use/lib/useClickAway';
 
-import { Environment, LANGUAGES } from '@ovh-ux/manager-config';
+import { LANGUAGES } from '@ovh-ux/manager-config';
 import { emit } from '@ovh-ux/ufrontend/communication';
 import { MESSAGES } from './constants';
+
+import { useEnvironment } from './environment';
 
 import LanguageButton from './language/button.jsx';
 import LanguageList from './language/list.jsx';
@@ -15,13 +17,23 @@ function LanguageMenu() {
 
   useClickAway(ref, handleRootClose);
 
-  const currentLanguage = LANGUAGES.available.find(
-    ({ key }) => key === Environment.getUserLocale(),
-  );
+  const userLocale = useEnvironment().getUserLocale();
+  const [currentLanguage, setCurrentLanguage] = useState(null);
+  const [availableLanguages, setAvailableLanguages] = useState([]);
 
-  const availableLanguages = LANGUAGES.available.filter(
-    ({ key }) => key !== Environment.getUserLocale(),
-  );
+  useEffect(() => {
+    setCurrentLanguage(
+      LANGUAGES.available.find(({ key }) => key === userLocale),
+    );
+
+    setAvailableLanguages(
+      LANGUAGES.available.filter(({ key }) => key !== userLocale),
+    );
+  }, [userLocale]);
+
+  if (!currentLanguage && availableLanguages.length === 0) {
+    return <div></div>;
+  }
 
   return (
     <div className="oui-navbar-dropdown" ref={ref}>
