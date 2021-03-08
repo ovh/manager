@@ -19,8 +19,8 @@ module.exports = ({ name, description }) => ({
     'start:watch': `lerna exec --stream --parallel --scope='@ovh-ux/manager-${name}-app' --include-dependencies -- npm run dev:watch --if-present`,
   },
   dependencies: {
-    '@ovh-ux/manager-config': '^4.0.0 || ^5.0.0',
-    '@ovh-ux/manager-core': '^12.0.0',
+    '@ovh-ux/manager-config': '^5.0.0 || ^6.0.0',
+    '@ovh-ux/manager-core': '^12.0.0 || ^13.0.0',
     '@ovh-ux/manager-error-page': '^2.0.0',
     [`@ovh-ux/manager-${name}`]: '^0.0.0 || ^1.0.0',
     '@ovh-ux/manager-ng-layout-helpers': '^2.0.0',
@@ -33,6 +33,7 @@ module.exports = ({ name, description }) => ({
     '@ovh-ux/ng-translate-async-loader': '^2.1.0',
     '@ovh-ux/ng-ui-router-breadcrumb': '^1.0.0',
     '@ovh-ux/ng-ui-router-line-progress': '^1.2.2',
+    '@ovh-ux/ufrontend': '^1.1.1 || ^2.0.0',
     '@ovh-ux/ui-kit': '^4.4.3',
     '@uirouter/angularjs': '^1.0.23',
     angular: '^1.7.5',
@@ -46,6 +47,7 @@ module.exports = ({ name, description }) => ({
     'angular-translate-loader-pluggable': '^1.3.1',
     'core-js': '^3.6.5',
     jquery: '^2.1.3',
+    'lodash-es': '^4.17.15',
     'ovh-api-services': '^11.0.0',
     flatpickr: '~4.5.2',
     oclazyload: '^1.1.0',
@@ -54,6 +56,7 @@ module.exports = ({ name, description }) => ({
   devDependencies: {
     '@ovh-ux/manager-webpack-config': '^4.0.1',
     lodash: '^4.17.15',
+    glob: '^7.1.6',
     'webpack-merge': '^4.2.2',
   },
 });
