@@ -267,7 +267,7 @@ export default class BillingService {
   }
 
   hasParticularRenew() {
-    return ['EXCHANGE', 'SMS', 'EMAIL_DOMAIN'].includes(this.serviceType);
+    return ['EMAIL_EXCHANGE', 'SMS', 'EMAIL_DOMAIN'].includes(this.serviceType);
   }
 
   canHandleRenew() {
