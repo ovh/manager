@@ -1,4 +1,5 @@
 import find from 'lodash/find';
+import filter from 'lodash/filter';
 import get from 'lodash/get';
 import map from 'lodash/map';
 import orderBy from 'lodash/orderBy';
@@ -263,7 +264,8 @@ angular.module('Module.ip.controllers').controller(
         params.type = 'failover';
       } else if ($scope.serviceName === '_PARK') {
         params.type = 'failover';
-        params.serviceName = $scope.serviceName;
+        params.pageSize = 5000;
+        params.pageNumber = 1;
         $location.search('page', params.pageNumber);
         $location.search('pageSize', params.pageSize);
       } else if ($scope.serviceName && $scope.serviceName !== '_ALL') {
@@ -282,6 +284,12 @@ angular.module('Module.ip.controllers').controller(
         .then(({ data }) => data)
         .then(({ count, data }) => {
           $scope.ipsCount = count;
+          if ($scope.serviceName === '_PARK') {
+            $scope.ipsList = filter(
+              $scope.ipsList,
+              (ip) => !get(ip, 'routedTo.serviceName'),
+            );
+          }
           $scope.ipsList = map(data, (ip) => {
             const serviceName = get(ip, 'routedTo.serviceName');
             return {

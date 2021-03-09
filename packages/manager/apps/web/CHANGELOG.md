@@ -1,3 +1,12 @@
+## [15.16.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.16.4...@ovh-ux/manager-web@15.16.5) (2021-03-08)
+
+
+### Bug Fixes
+
+* **domain-operation.update:** redirect to the right form ([#4503](https://github.com/ovh/manager/issues/4503)) ([a2264bf](https://github.com/ovh/manager/commit/a2264bf05823116a4073e491e0a422c94752cae3)), closes [#4495](https://github.com/ovh/manager/issues/4495)
+
+
+
 ## [15.16.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.16.3...@ovh-ux/manager-web@15.16.4) (2021-03-02)
 
 
