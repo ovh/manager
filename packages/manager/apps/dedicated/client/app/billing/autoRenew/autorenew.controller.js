@@ -101,8 +101,8 @@ export default class AutorenewCtrl {
   $onDestroy() {
     if (this.pollingTimeout) {
       this.$timeout.cancel(this.pollingTimeout);
-      this.scopeDestroyed = true;
     }
+    this.scopeDestroyed = true;
   }
 
   getCriterionTitle(type, value) {
@@ -227,6 +227,7 @@ export default class AutorenewCtrl {
           const billingService = new BillingService(service);
           const serviceToUpdate = find(displayedServices, {
             serviceId: service.serviceId,
+            serviceType: service.serviceType,
           });
           if (serviceToUpdate) {
             Object.assign(serviceToUpdate, billingService);
