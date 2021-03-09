@@ -1,3 +1,12 @@
+## [5.10.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.10.1...@ovh-ux/manager-pci@5.10.2) (2021-03-09)
+
+
+### Bug Fixes
+
+* **users:** use horizon URL based on customer region ([#4508](https://github.com/ovh/manager/issues/4508)) ([eb74ce4](https://github.com/ovh/manager/commit/eb74ce4408b4baf40a3537f7f94c8fe3e1155366))
+
+
+
 ## [5.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.10.0...@ovh-ux/manager-pci@5.10.1) (2021-03-02)
 
 

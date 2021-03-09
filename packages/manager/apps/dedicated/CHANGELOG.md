@@ -1,3 +1,12 @@
+## [16.4.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.4.3...@ovh-ux/manager-dedicated@16.4.4) (2021-03-09)
+
+
+### Bug Fixes
+
+* **ip:** paginate ip parking ([#4512](https://github.com/ovh/manager/issues/4512)) ([76800ec](https://github.com/ovh/manager/commit/76800ec5d316a0c42d97a5f1c921311b623144ba))
+
+
+
 ## [16.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.4.2...@ovh-ux/manager-dedicated@16.4.3) (2021-03-03)
 
 
