@@ -975,13 +975,15 @@ export default /* @ngInject */ function VpsService(
       );
   };
 
-  /*
+  /**
    * Get content of veeam tab
+   * @param serviceName {String}: Internal VPS service name
+   * @returns {Promise}: return current schedule backup
    */
   this.getVeeamInfo = function getVeeamInfo(serviceName) {
     return $http
       .get([swsVpsProxypass, serviceName, 'automatedBackup'].join('/'))
-      .then((response) => response.data);
+      .then(({ data }) => data);
   };
 
   this.getVeeamAttachedBackup = function getVeeamAttachedBackup(serviceName) {
@@ -1486,5 +1488,40 @@ export default /* @ngInject */ function VpsService(
     return $http.put(`${swsVpsProxypass}/${serviceInfo.domain}/serviceInfos`, {
       renew: serviceInfo.renew,
     });
+  };
+
+  // Schedule backup
+
+  /**
+   * return vps details
+   * @param serviceName {String}: Internal VPS service name
+   * @returns {Promise}
+   */
+  this.getVpsInfo = function getVpsInfo(serviceName) {
+    return $http.get(`/vps/${serviceName}`).then(({ data }) => data);
+  };
+
+  /**
+   * return vps option details
+   * @param serviceName {String}: Internal VPS service name
+   * @param option {String}: Internal option name to get
+   * @returns {Promise}
+   */
+  this.getVpsOption = function getVpsOption(serviceName, option) {
+    return $http
+      .get(`/vps/${serviceName}/option/${option}`)
+      .then(({ data }) => data);
+  };
+
+  /**
+   * Update the scheduled backup time
+   * @param serviceName {String}: Internal VPS service name
+   * @param schedule {datetime}: New scheduled backup time
+   * @returns {Promise}
+   */
+  this.scheduleBackup = function scheduleBackup(serviceName, schedule) {
+    return $http
+      .post(`/vps/${serviceName}/automatedBackup/reschedule`, { schedule })
+      .then(({ data }) => data);
   };
 }
