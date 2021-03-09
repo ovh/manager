@@ -1,5 +1,4 @@
 import find from 'lodash/find';
-import filter from 'lodash/filter';
 import get from 'lodash/get';
 import map from 'lodash/map';
 import orderBy from 'lodash/orderBy';
@@ -260,10 +259,9 @@ angular
           params.type = 'failover';
         } else if ($scope.serviceName === '_PARK') {
           params.type = 'failover';
-          params.pageSize = 5000;
-          params.pageNumber = 1;
-          $location.search('page', undefined);
-          $location.search('pageSize', undefined);
+          params.serviceName = $scope.serviceName;
+          $location.search('page', params.pageNumber);
+          $location.search('pageSize', params.pageSize);
         } else if ($scope.serviceName && $scope.serviceName !== '_ALL') {
           params.serviceName = $scope.serviceName;
         }
@@ -291,12 +289,6 @@ angular
                 },
               };
             });
-            if ($scope.serviceName === '_PARK') {
-              $scope.ipsList = filter(
-                $scope.ipsList,
-                (ip) => !get(ip, 'routedTo.serviceName'),
-              );
-            }
             $scope.ipsList.forEach(checkIps);
           })
           .catch((error) => {
