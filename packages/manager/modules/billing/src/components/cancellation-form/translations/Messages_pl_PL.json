@@ -20,6 +20,5 @@
   "billing_confirm_termination_future_use_SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR": "Chcę zamówić podobną usługę w konkurencyjnej firmie.",
   "billing_confirm_termination_terminate": "Zatwierdź",
   "billing_confirm_termination_success": "Twoja usługa została wyłączona. W ciągu kilku minut otrzymasz wiadomość e-mail z potwierdzeniem.  W przypadku pytań skontaktuj się z Obsługą Klienta OVHcloud.",
-  "billing_confirm_termination_error": "Wystąpił błąd podczas rezygnacji z usługi {{message}}.",
-  "billing_confirm_termination_question_comment": "Dodatkowe informacje o przyczynach rezygnacji z usługi."
+  "billing_confirm_termination_error": "Wystąpił błąd podczas rezygnacji z usługi {{message}}."
 }

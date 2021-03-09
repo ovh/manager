@@ -20,6 +20,5 @@
   "billing_confirm_termination_future_use_SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR": "Einen ähnlichen Dienst bei einem Mitbewerber abonnieren.",
   "billing_confirm_termination_terminate": "Bestätigen",
   "billing_confirm_termination_success": "Ihre Dienstleistung wurde gekündigt. Sie erhalten in den nächsten Minuten eine Bestätigung per E-Mail. Für weitere Fragen und Informationen steht Ihnen unser Team gerne zur Verfügung.",
-  "billing_confirm_termination_error": "Bei der Kündigung der Dienstleistung ist ein Fehler aufgetreten {{ message }}",
-  "billing_confirm_termination_question_comment": "Gerne können Sie weitere Gründe angeben, aus denen Sie die Dienstleistung kündigen."
+  "billing_confirm_termination_error": "Bei der Kündigung der Dienstleistung ist ein Fehler aufgetreten {{ message }}"
 }
