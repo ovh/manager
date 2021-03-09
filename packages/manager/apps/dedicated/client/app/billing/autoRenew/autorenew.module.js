@@ -36,6 +36,7 @@ import warnPendingDebt from './actions/warnPendingDebt/pending-debt.module';
 import component from './autorenew.component';
 import routing from './autorenew.routing';
 import service from './autorenew.service';
+import paramsMemoization from './autorenew-params-memoization.provider';
 
 const moduleName = 'ovhManagerBillingAutorenew';
 
@@ -77,6 +78,7 @@ angular
   .config(routing)
   .component('autoRenew', component)
   .service('BillingAutoRenew', service)
+  .provider('BillingAutoRenewParamsMemoization', paramsMemoization)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

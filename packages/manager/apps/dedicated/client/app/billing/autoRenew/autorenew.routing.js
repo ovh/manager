@@ -59,15 +59,25 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
             {},
             { inherit: false },
           ),
-        goToAutorenew: /* @ngInject */ ($state, $timeout, Alerter) => (
-          message = false,
-          type = 'success',
+        memoizeParams: /* @ngInject */ (
+          $transition$,
+          BillingAutoRenewParamsMemoization,
         ) => {
+          if ($transition$.to()?.name === 'app.account.billing.autorenew') {
+            BillingAutoRenewParamsMemoization.setParams($transition$.params());
+          }
+        },
+        goToAutorenew: /* @ngInject */ (
+          $state,
+          $timeout,
+          Alerter,
+          BillingAutoRenewParamsMemoization,
+        ) => (message = false, type = 'success') => {
           const reload = message && type === 'success';
 
           const promise = $state.go(
             'app.account.billing.autorenew',
-            {},
+            BillingAutoRenewParamsMemoization.getParams(),
             {
               reload,
             },
