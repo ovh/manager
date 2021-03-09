@@ -36,5 +36,7 @@
   "telephony_group_billing_dashboard_RMA_status_received": "Ricezione del pacco",
   "telephony_group_billing_dashboard_no_phone": "Linea naked",
   "telephony_group_billing_dashboard_RMA_title": "RMA",
-  "telephony_group_billing_dashboard_calls": "Chiamate"
+  "telephony_group_billing_dashboard_calls": "Chiamate",
+  "telephony_group_billing_dashboard_suspended_info": "Questo gruppo è attualmente sospeso.",
+  "telephony_group_billing_dashboard_suspended_info_link": "Clicca qui per aumentare il tuo deposito cauzionale."
 }
