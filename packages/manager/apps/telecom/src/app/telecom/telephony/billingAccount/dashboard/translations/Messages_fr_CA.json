@@ -13,7 +13,7 @@
   "telephony_group_billing_dashboard_line": "Ligne",
   "telephony_group_billing_dashboard_aliases": "Numéros",
   "telephony_group_billing_dashboard_alias": "Numéro",
-  "telephony_group_billing_dashboard_fax": "Télécopieur",
+  "telephony_group_billing_dashboard_fax": "Fax",
   "telephony_group_billing_dashboard_mac": "Adresse MAC",
   "telephony_group_billing_dashboard_status": "État",
   "telephony_group_billing_dashboard_status_closed": "Fermé",
@@ -36,5 +36,7 @@
   "telephony_group_billing_dashboard_RMA_status_received": "Réception du colis",
   "telephony_group_billing_dashboard_no_phone": "Ligne nue",
   "telephony_group_billing_dashboard_RMA_title": "RMA",
-  "telephony_group_billing_dashboard_calls": "Appels"
+  "telephony_group_billing_dashboard_calls": "Appels",
+  "telephony_group_billing_dashboard_suspended_info": "Ce groupe est actuellement suspendu.",
+  "telephony_group_billing_dashboard_suspended_info_link": "Cliquez ici pour augmenter votre dépôt de garantie."
 }
