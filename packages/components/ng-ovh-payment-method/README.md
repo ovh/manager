@@ -25,6 +25,9 @@ angular.module('myApp', [ngOvhPaymentMethod]).config(
 
     // set user locale
     ovhPaymentMethodProvider.setUserLocale('fr_FR');
+
+    // set region
+    ovhPaymentMethodProvider.setRegion('EU');
   },
 );
 ```
@@ -34,6 +37,10 @@ angular.module('myApp', [ngOvhPaymentMethod]).config(
 ```sh
 $ yarn test
 ```
+
+## Related
+
+* [ng-ovh-feature-flipping](https://github.com/ovh/manager/tree/master/packages/components/ng-ovh-feature-flipping) - Check features availabilities
 
 ## Contributing
 

@@ -17,16 +17,17 @@ export default class OvhPaymentMethodService {
     $q,
     $translate,
     $window,
-    coreConfig,
     OvhApiMe,
+    ovhFeatureFlipping,
     paymentMethodPageUrl,
+    region,
     userLocale,
   ) {
     this.$q = $q;
     this.$translate = $translate;
     this.$window = $window;
-    this.coreConfig = coreConfig;
     this.OvhApiMe = OvhApiMe;
+    this.ovhFeatureFlipping = ovhFeatureFlipping;
 
     this.ovhPaymentMethodLegacy = new OvhPaymentMethodLegacy(
       $log,
@@ -34,7 +35,7 @@ export default class OvhPaymentMethodService {
       $translate,
       $window,
       OvhApiMe,
-      coreConfig.getRegion(),
+      region,
     );
 
     this.paymentMethodPageUrl = paymentMethodPageUrl;
@@ -307,6 +308,39 @@ export default class OvhPaymentMethodService {
   }
 
   /**
+   *  Check if the payment mean feature is available
+   *
+   *  @return {Promise} That returns a boolean
+   */
+  usePaymentMeans() {
+    const feature = 'payment-method:payment-mean';
+    return this.ovhFeatureFlipping
+      .checkFeatureAvailability([feature])
+      .then((featureAvailability) =>
+        featureAvailability.isFeatureAvailable(feature),
+      )
+      .catch(() => false);
+  }
+
+  /**
+   *  Get all payment means (returned by /me/paymentMean/*)
+   *  @param  {Obejct}  options           Options to get the payment methods
+   *  @param  {Boolean} options.onlyValid Gets only valid payment methods
+   *  @param  {Boolean} options.transform Flag telling if legacy payment methods needs to be
+   *                                      transformed to new payment method object
+   *  @return {Promise}                   That returns an Array of payment methods merged
+   *                                      with legacy payment methods.
+   */
+  getPaymentMeans(options) {
+    return this.usePaymentMeans().then((usePaymentMeans) => {
+      if (!usePaymentMeans) {
+        return [];
+      }
+      return this.ovhPaymentMethodLegacy.getPaymentMeans(options);
+    });
+  }
+
+  /**
    *  Get all payment methods, even the legacy one returned by /me/paymentMean/*
    *  and /me/paymentMethod APIs routes.
    *  @param  {Obejct}  options           Options to get the payment methods
@@ -319,9 +353,7 @@ export default class OvhPaymentMethodService {
   getAllPaymentMethods(options = DEFAULT_OPTIONS) {
     return this.$q
       .all({
-        legacies: !this.coreConfig.isRegion('US')
-          ? this.ovhPaymentMethodLegacy.getPaymentMeans(options)
-          : this.$q.when([]),
+        legacies: this.getPaymentMeans(options),
         paymentMethods: this.getPaymentMethods(options),
       })
       .then(({ legacies, paymentMethods }) => {

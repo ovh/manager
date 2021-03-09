@@ -1,7 +1,7 @@
 import angular from 'angular';
 import 'angular-translate';
+import '@ovh-ux/ng-ovh-feature-flipping';
 import '@ovh-ux/ng-translate-async-loader';
-import '@ovh-ux/manager-core';
 
 import 'ovh-api-services';
 
@@ -21,10 +21,10 @@ const moduleName = 'ngOvhPaymentMethod';
 angular
   .module(moduleName, [
     components,
+    'ngOvhFeatureFlipping',
     'ngTranslateAsyncLoader',
     'ovh-api-services',
     'pascalprecht.translate',
-    'ovhManagerCore',
   ])
   .run(/* @ngTranslationsInject:json ./translations */)
   .constant('OVH_PAYMENT_MEAN_STATUS', PAYMENT_MEAN_STATUS_ENUM)
