@@ -89,7 +89,11 @@ export default class AutorenewCtrl {
       );
     }
 
-    this.pollServices();
+    this.BillingAutoRenew.isLegacy().then((isLegacy) => {
+      if (!isLegacy) {
+        this.pollServices();
+      }
+    });
   }
 
   $onDestroy() {
@@ -226,7 +230,7 @@ export default class AutorenewCtrl {
       })
       .finally(() => {
         if (!this.scopeDestroyed) {
-          this.pollingTimeout = this.$timeout(() => this.pollServices(), 5000);
+          this.pollingTimeout = this.$timeout(() => this.pollServices(), 7000);
         }
       });
   }

@@ -42,7 +42,7 @@ export default class {
     this.OvhHttp = OvhHttp;
     this.ovhPaymentMethod = ovhPaymentMethod;
     this.OvhApiMeAutorenew = OvhApiMeAutorenew;
-    this.isLegacy = $q.defer();
+    this.isLegacyDeferred = $q.defer();
 
     this.events = {
       AUTORENEW_CHANGES: AUTORENEW_EVENT,
@@ -55,11 +55,15 @@ export default class {
     return this.ovhFeatureFlipping
       .checkFeatureAvailability(['billing:billingServices'])
       .then((availability) =>
-        this.isLegacy.resolve(
+        this.isLegacyDeferred.resolve(
           !availability.isFeatureAvailable('billing:billingServices'),
         ),
       )
-      .catch(() => this.isLegacy.resolve(true));
+      .catch(() => this.isLegacyDeferred.resolve(true));
+  }
+
+  isLegacy() {
+    return this.isLegacyDeferred.promise;
   }
 
   getServices(
@@ -73,7 +77,7 @@ export default class {
     order,
     nicBilling,
   ) {
-    return this.isLegacy.promise.then((isLegacy) => {
+    return this.isLegacy().then((isLegacy) => {
       if (isLegacy) {
         return this.OvhApiBillingAutorenewServices.Aapi().query({
           count,
@@ -110,7 +114,7 @@ export default class {
    *  serviceType : domain and email-domain)
    */
   getService(serviceId, serviceType) {
-    return this.isLegacy.promise.then((isLegacy) => {
+    return this.isLegacy().then((isLegacy) => {
       if (isLegacy) {
         return this.OvhApiBillingAutorenewServices.Aapi()
           .query({
