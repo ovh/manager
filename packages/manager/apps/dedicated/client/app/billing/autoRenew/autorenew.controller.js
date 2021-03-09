@@ -91,7 +91,9 @@ export default class AutorenewCtrl {
 
     this.BillingAutoRenew.isLegacy().then((isLegacy) => {
       if (!isLegacy) {
-        this.pollServices();
+        this.$timeout(() => {
+          this.pollServices();
+        }, 10000);
       }
     });
   }
@@ -200,6 +202,9 @@ export default class AutorenewCtrl {
   }
 
   pollServices() {
+    if (this.scopeDestroyed) {
+      return this.$q.when();
+    }
     const displayedServices = get(
       this.ouiDatagridService,
       'datagrids.services.displayedRows',
@@ -229,9 +234,7 @@ export default class AutorenewCtrl {
         });
       })
       .finally(() => {
-        if (!this.scopeDestroyed) {
-          this.pollingTimeout = this.$timeout(() => this.pollServices(), 7000);
-        }
+        this.pollingTimeout = this.$timeout(() => this.pollServices(), 7000);
       });
   }
 
