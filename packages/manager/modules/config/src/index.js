@@ -52,6 +52,7 @@ export const fetchConfiguration = (applicationName) => {
       _Environment.setUser(config.user);
       _Environment.setApplicationURLs(config.applicationURLs);
       _Environment.setUniverse(config.universe);
+      _Environment.setMessage(config.message);
       return config;
     })
     .catch(() => ({
