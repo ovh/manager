@@ -28,15 +28,13 @@ export default class {
         serviceName: this.projectId,
         kubeId,
       })
-      .$promise.then((kube) => {
-        return {
-          ...kube,
-          privateNetworkName: this.Kubernetes.constructor.getPrivateNetworkName(
-            this.privateNetworks,
-            kube.privateNetworkId,
-          ),
-        };
-      });
+      .$promise.then((kube) => ({
+        ...kube,
+        privateNetworkName: this.Kubernetes.constructor.getPrivateNetworkName(
+          this.privateNetworks,
+          kube.privateNetworkId,
+        ),
+      }));
   }
 
   getDetailsState(id) {
