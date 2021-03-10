@@ -2,7 +2,10 @@ import 'script-loader!jquery'; // eslint-disable-line
 import 'whatwg-fetch';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
-import { attach as attachPreloader } from '@ovh-ux/manager-preloader';
+import {
+  attach as attachPreloader,
+  displayMessage,
+} from '@ovh-ux/manager-preloader';
 import { bootstrapApplication } from '@ovh-ux/manager-core';
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import { Environment } from '@ovh-ux/manager-config';
@@ -10,7 +13,11 @@ import { BILLING_REDIRECTIONS } from './constants';
 
 attachPreloader(Environment.getUserLanguage());
 
-bootstrapApplication('hub').then(({ region }) => {
+bootstrapApplication('hub').then(({ region, message }) => {
+  if (message) {
+    displayMessage(message, Environment.getUserLanguage());
+  }
+
   BILLING_REDIRECTIONS.forEach((redirectionRegex) => {
     const hash = window.location.hash.replace('#', '');
     if (redirectionRegex.test(hash)) {
