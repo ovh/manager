@@ -1,3 +1,12 @@
+## [5.10.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.10.2...@ovh-ux/manager-pci@5.10.3) (2021-03-10)
+
+
+### Bug Fixes
+
+* **banner:** add banner text ([43ed181](https://github.com/ovh/manager/commit/43ed181013ecf4966b2a627c4d7217585cfabb89))
+
+
+
 ## [5.10.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.10.1...@ovh-ux/manager-pci@5.10.2) (2021-03-09)
 
 
