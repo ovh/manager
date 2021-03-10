@@ -61,5 +61,7 @@
   "kube_service_restrictions_no_count": "No limit",
   "kube_service_restrictions_count": "{{ count }} IP ranges",
   "kube_service_restrictions_one": "1 IP range",
-  "kube_service_restrictions_edit": "Modify limitations"
+  "kube_service_restrictions_edit": "Modify limitations",
+  "kube_service_cluster_network_public": "Public",
+  "kube_service_cluster_network_attached": "Attached network"
 }

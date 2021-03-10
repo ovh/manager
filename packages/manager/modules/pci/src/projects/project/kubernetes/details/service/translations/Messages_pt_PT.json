@@ -61,5 +61,7 @@
   "kube_service_restrictions_no_count": "Nenhum limite",
   "kube_service_restrictions_count": "{{ count }} intervalos IP",
   "kube_service_restrictions_one": "1 intervalo IP",
-  "kube_service_restrictions_edit": "Modificar as limitações"
+  "kube_service_restrictions_edit": "Modificar as limitações",
+  "kube_service_cluster_network_public": "Público",
+  "kube_service_cluster_network_attached": "Rede associada"
 }
