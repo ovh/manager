@@ -48,6 +48,7 @@
   "kube_service_cluster_status_SUSPENDED": "Suspended",
   "kube_service_cluster_status_USER_ERROR": "Error",
   "kube_service_cluster_status_USER_QUOTA_ERROR": "Quota issue",
+  "kube_service_cluster_status_MAINTENANCE": "Under maintenance",
   "kube_service_cluster_minor_update_available": "A minor update is available.",
   "kube_service_manage_title": "Management",
   "kube_service_common_edit_security_update_policy": "Change security policy",
@@ -62,5 +63,6 @@
   "kube_service_restrictions_count": "{{ count }} IP ranges",
   "kube_service_restrictions_one": "1 IP range",
   "kube_service_restrictions_edit": "Modify limitations",
-  "kube_service_cluster_status_MAINTENANCE": "Under maintenance"
+  "kube_service_cluster_network_public": "Public",
+  "kube_service_cluster_network_attached": "Attached network"
 }

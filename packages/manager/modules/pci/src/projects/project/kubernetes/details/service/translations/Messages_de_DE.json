@@ -48,6 +48,7 @@
   "kube_service_common_edit_security_update_policy": "Verwaltung der Sicherheitseinstellungen",
   "kube_service_minor_version_upgrade": "Auf die nächste Nebenversion upgraden",
   "kube_service_cluster_status_SUSPENDING": "Wird geschlossen",
+  "kube_service_cluster_status_MAINTENANCE": "Wartungsarbeiten laufen",
   "kube_service_cluster_status_REOPENING": "Wird geöffnet",
   "kube_service_cluster_status_SUSPENDED": "Geschlossen",
   "kube_service_cluster_status_USER_ERROR": "Fehler",
@@ -62,5 +63,6 @@
   "kube_service_restrictions_count": "{{ count }} IP-Bereiche",
   "kube_service_restrictions_one": "1 IP-Bereich",
   "kube_service_restrictions_edit": "Die Einschränkungen ändern",
-  "kube_service_cluster_status_MAINTENANCE": "Wartungsarbeiten laufen"
+  "kube_service_cluster_network_public": "Öffentlich",
+  "kube_service_cluster_network_attached": "Verbundenes Netzwerk"
 }
