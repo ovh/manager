@@ -12,6 +12,7 @@ import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import { isString, get, has } from 'lodash-es';
 
 import '@ovh-ux/ui-kit';
+import ovhManagerBanner from '@ovh-ux/manager-banner';
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import ovhManagerAccountSidebar from '@ovh-ux/manager-account-sidebar';
 import ovhManagerCore from '@ovh-ux/manager-core';
@@ -56,6 +57,7 @@ angular
       ovhManagerNavbar,
       ovhManagerOrderTracking,
       ovhNotificationsSidebar,
+      ovhManagerBanner,
       'pascalprecht.translate',
       'ui.bootstrap',
       uiRouter,

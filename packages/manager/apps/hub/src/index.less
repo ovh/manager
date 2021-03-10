@@ -5,8 +5,16 @@
   margin-right: @ovh-sidebar-width;
 }
 
+ovh-manager-banner-text .notification-banner {
+  padding-right: @ovh-sidebar-width !important;
+}
+
 @media screen and (max-width: @device-breakpoint-medium-max-width) {
   .hub-main-view {
     margin-right: 0;
+  }
+
+  ovh-manager-banner-text .notification-banner {
+    padding-right: 0 !important;
   }
 }

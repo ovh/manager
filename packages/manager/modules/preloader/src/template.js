@@ -1,4 +1,4 @@
-const buildTemplate = (loaded, message) => {
+export const buildTemplate = (loaded, message) => {
   const loadedClass = loaded ? 'loaded' : '';
 
   let messageHtml = '';
@@ -59,4 +59,15 @@ const buildTemplate = (loaded, message) => {
   </div>`;
 };
 
-export default buildTemplate;
+export const buildIncident = (message) => {
+  const subject = message.subject ? `<strong>${message.subject}</strong>` : '';
+  return `<div class="banner-message">
+  ${subject}
+  <span>${message.description}</span>
+</div>`;
+};
+
+export default {
+  buildTemplate,
+  buildIncident,
+};

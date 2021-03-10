@@ -5,7 +5,7 @@ import {
   SWITCH_PARAMETER,
   MANAGER_BASE_URLS,
 } from './constants';
-import buildTemplate from './template';
+import { buildTemplate, buildIncident } from './template';
 
 import './style.css';
 
@@ -41,6 +41,7 @@ export const attach = (language = 'en') => {
   const message = Object.keys(messageSource).includes(language)
     ? messageSource[language]
     : messageSource.en;
+
   template.innerHTML = buildTemplate(false, message);
 
   document.body.appendChild(document.importNode(template.content, true));
@@ -54,7 +55,20 @@ export const detach = () => {
   NProgress.done();
 };
 
+export const displayMessage = (message, language = 'en') => {
+  const bannerMessage = Object.keys(message).includes(language)
+    ? message[language]
+    : message.en;
+
+  const template = document.createElement('template');
+  template.innerHTML = buildIncident(bannerMessage);
+  document
+    .querySelector('#managerPreloader')
+    .prepend(document.importNode(template.content, true));
+};
+
 export default {
   attach,
   detach,
+  displayMessage,
 };
