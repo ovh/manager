@@ -2,6 +2,7 @@ import filter from 'lodash/filter';
 import find from 'lodash/find';
 import map from 'lodash/map';
 import set from 'lodash/set';
+import some from 'lodash/some';
 import sortBy from 'lodash/sortBy';
 
 import NodePool from './details/node-pool/node-pool.class';
@@ -208,7 +209,7 @@ export default class Kubernetes {
 
   static getPrivateNetwork(privateNetworks, openstackId) {
     return find(privateNetworks, (network) =>
-      find(network.regions, (region) => region.openstackId === openstackId),
+      some(network.regions, (region) => region.openstackId === openstackId),
     );
   }
 

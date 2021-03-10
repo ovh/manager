@@ -1,5 +1,6 @@
 import find from 'lodash/find';
 import get from 'lodash/get';
+import some from 'lodash/some';
 
 import Datacenter from '../../../../components/project/regions-list/datacenter.class';
 import { READY_STATUS, DEFAULT_NODE_COUNT } from './add.constants';
@@ -144,9 +145,8 @@ export default class {
       ),
     ];
     if (
-      this.cluster.privateNetwork &&
-      !find(this.availablePrivateNetworks, {
-        id: this.cluster.privateNetwork.id,
+      !some(this.availablePrivateNetworks, {
+        id: this.cluster.privateNetwork?.id,
       })
     ) {
       this.cluster.privateNetwork = this.defaultPrivateNetwork;
