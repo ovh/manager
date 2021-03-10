@@ -22,8 +22,11 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('pci.projects.project.users.add', {
           projectId,
         }),
-      openStackHorizonLink: /* @ngInject */ () => (user) =>
-        HORIZON_LINK.replace('{username}', user.username),
+      openStackHorizonLink: /* @ngInject */ (coreConfig) => (user) =>
+        HORIZON_LINK[coreConfig.getRegion()].replace(
+          '{username}',
+          user.username,
+        ),
       downloadOpenStackOpenRc: /* @ngInject */ ($state, projectId) => (user) =>
         $state.go('pci.projects.project.users.download-openrc', {
           projectId,

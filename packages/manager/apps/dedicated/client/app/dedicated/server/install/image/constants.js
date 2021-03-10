@@ -5,6 +5,7 @@ export const BYOI_GUIDE_URLS = {
   ES: 'https://docs.ovh.com/es/dedicated/bringyourownimage/',
   IT: 'https://docs.ovh.com/it/dedicated/bringyourownimage/',
   PT: 'https://docs.ovh.com/pt/dedicated/bringyourownimage/',
+  US: 'https://support.us.ovhcloud.com/hc/en-us/articles/360018521100',
 };
 
 export default {

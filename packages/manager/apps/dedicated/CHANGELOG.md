@@ -1,3 +1,21 @@
+## [16.4.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.4.4...@ovh-ux/manager-dedicated@16.4.5) (2021-03-09)
+
+
+### Bug Fixes
+
+* **dedicated-server.install:** add BringYourOwnImage guide URL for US ([#4500](https://github.com/ovh/manager/issues/4500)) ([11edb9a](https://github.com/ovh/manager/commit/11edb9aec60be3c3da793570c1b8e9199384539e))
+
+
+
+## [16.4.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.4.3...@ovh-ux/manager-dedicated@16.4.4) (2021-03-09)
+
+
+### Bug Fixes
+
+* **ip:** paginate ip parking ([#4512](https://github.com/ovh/manager/issues/4512)) ([76800ec](https://github.com/ovh/manager/commit/76800ec5d316a0c42d97a5f1c921311b623144ba))
+
+
+
 ## [16.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.4.2...@ovh-ux/manager-dedicated@16.4.3) (2021-03-03)
 
 
