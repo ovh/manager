@@ -32,6 +32,12 @@ export default class DedicatedServerInstallImageCtrl {
 
   onImageFormSubmit() {
     this.atInternet.trackClick({
+      name: `dedicated::dedicated::server::system-install::public-catalog::configdrive::${
+        this.model.configdrive.enabled ? 'activate' : 'deactivate'
+      }`,
+      type: 'action',
+    });
+    this.atInternet.trackClick({
       name:
         'dedicated::dedicated::server::system-install::personalized-image::install',
       type: 'action',

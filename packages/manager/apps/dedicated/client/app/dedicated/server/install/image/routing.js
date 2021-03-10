@@ -45,5 +45,8 @@ export default /* @ngInject */ ($stateProvider) => {
       checksumTypeEnum: /* @ngInject */ (dedicatedApiSchema) =>
         get(dedicatedApiSchema, 'models["dedicated.CheckSumTypesEnum"].enum'),
     },
+    atInternet: {
+      ignore: true,
+    },
   });
 };

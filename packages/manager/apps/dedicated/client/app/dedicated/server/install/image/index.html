@@ -11,15 +11,23 @@
                             data-translate="dedicated_server_install_image_title"
                         ></h1>
                         <h2 class="oui-header__description">
-                            <span
-                                data-translate="dedicated_server_install_image_explain"
-                            ></span>
-                            <span
-                                class="d-block"
-                                data-translate="dedicated_server_install_image_doc"
-                                data-translate-values="{ href: $ctrl.byoiGuideLink }"
-                            >
-                            </span>
+                            <p>
+                                <span
+                                    data-translate="dedicated_server_install_image_explain"
+                                ></span>
+                                <a
+                                    data-ng-href="{{ ::$ctrl.byoiGuideLink }}"
+                                    target="_blank"
+                                    rel="noopener"
+                                    data-track-on="click"
+                                    data-track-name="dedicated::dedicated::server::system-install::personalized-image::byoi-documentation"
+                                    data-track-type="action"
+                                >
+                                    <span
+                                        data-translate="dedicated_server_install_image_doc_link_name"
+                                    ></span>
+                                </a>
+                            </p>
                         </h2>
                     </div>
                 </div>

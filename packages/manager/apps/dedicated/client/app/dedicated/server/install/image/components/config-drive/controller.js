@@ -48,17 +48,5 @@ export default class DedicatedServerInstallImageConfigDriveCtrl {
   onMetadataDeleteBtnClick(index) {
     this.model.configdrive.metadata.splice(index, 1);
   }
-
-  trackSwitch(value) {
-    this.atInternet.trackClick({
-      name: `${
-        this.trackingPrefix
-      }::system-install::public-catalog::configdrive::${
-        value ? 'activate' : 'deactivate'
-      }`,
-      type: 'action',
-    });
-  }
-
   /* -----  End of Events  ------*/
 }

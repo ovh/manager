@@ -8,7 +8,6 @@ export default {
     server: '<',
     serviceInfos: '<',
     specifications: '<',
-    trackingPrefix: '<',
     user: '<',
     worldPart: '<',
     bringYourOwnImage: '<',
