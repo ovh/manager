@@ -1,3 +1,12 @@
+## [1.2.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-banner@1.2.7...@ovh-ux/manager-banner@1.2.8) (2021-03-10)
+
+
+### Bug Fixes
+
+* **banner:** add banner text ([43ed181](https://github.com/ovh/manager/commit/43ed181013ecf4966b2a627c4d7217585cfabb89))
+
+
+
 ## [1.2.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-banner@1.2.6...@ovh-ux/manager-banner@1.2.7) (2021-03-02)
 
 

@@ -1,3 +1,12 @@
+# [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-preloader@1.2.1...@ovh-ux/manager-preloader@1.3.0) (2021-03-10)
+
+
+### Features
+
+* **banner:** add preloader banner message ([c3db240](https://github.com/ovh/manager/commit/c3db2403a8f8d9eafaeef5723061588e7ce24bc1))
+
+
+
 ## [1.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-preloader@1.2.0...@ovh-ux/manager-preloader@1.2.1) (2021-01-13)
 
 

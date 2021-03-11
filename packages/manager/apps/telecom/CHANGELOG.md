@@ -1,3 +1,14 @@
+## [13.12.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.12.1...@ovh-ux/manager-telecom@13.12.2) (2021-03-10)
+
+
+### Bug Fixes
+
+* **banner:** add banner text ([43ed181](https://github.com/ovh/manager/commit/43ed181013ecf4966b2a627c4d7217585cfabb89))
+* **message:** add content ([87324b3](https://github.com/ovh/manager/commit/87324b31855f412165df58ddd0559724831a1c29))
+* **preloader:** display message in preloader ([980020e](https://github.com/ovh/manager/commit/980020e2f25f9cc9f0e164f02e876f400ffdb1e0))
+
+
+
 ## [13.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.12.0...@ovh-ux/manager-telecom@13.12.1) (2021-03-02)
 
 

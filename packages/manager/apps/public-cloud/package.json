@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-public-cloud",
-  "version": "4.9.4",
+  "version": "4.9.5",
   "private": true,
   "description": "OVHcloud Public Cloud control panel.",
   "repository": {
@@ -12,7 +12,7 @@
   "author": "OVH SAS",
   "main": "./src/index.js",
   "scripts": {
-    "build": "webpack --env.production ",
+    "build": "webpack --env.production",
     "dev": "webpack-dev-server",
     "dev:watch": "yarn run dev",
     "start": "lerna exec --stream --scope='@ovh-ux/manager-public-cloud' --include-dependencies -- npm run build --if-present",
@@ -24,6 +24,7 @@
     "@ovh-ux/manager-account-sidebar": "^2.0.0 || ^3.0.0",
     "@ovh-ux/manager-advices": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-at-internet-configuration": "^0.0.0 || ^1.0.0",
+    "@ovh-ux/manager-banner": "^1.2.7",
     "@ovh-ux/manager-cloud-styles": "^0.4.0 || ^1.0.0",
     "@ovh-ux/manager-config": "^4.0.0 || ^5.0.0",
     "@ovh-ux/manager-core": "^11.0.0 || ^12.0.0",

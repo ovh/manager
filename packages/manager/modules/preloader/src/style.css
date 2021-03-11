@@ -68,3 +68,14 @@
     opacity: 1;
   }
 }
+
+#managerPreloader .banner-message {
+  padding: 0.5rem 1rem;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+  background-color: #feea86;
+  color: #8b6111;
+  position: absolute;
+}

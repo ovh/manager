@@ -14,6 +14,7 @@ export default class EnvironmentService {
     this.applicationName = '';
     this.universe = '';
     this.applicationURLs = {};
+    this.message = {};
   }
 
   setRegion(region = DEFAULT_REGION) {
@@ -83,5 +84,13 @@ export default class EnvironmentService {
 
   getApplicationURL(id) {
     return this.applicationURLs[id];
+  }
+
+  setMessage(message) {
+    this.message = message;
+  }
+
+  getMessage() {
+    return this.message;
   }
 }

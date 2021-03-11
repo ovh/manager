@@ -1,3 +1,14 @@
+## [16.4.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.4.5...@ovh-ux/manager-dedicated@16.4.6) (2021-03-10)
+
+
+### Bug Fixes
+
+* **banner:** add banner text ([43ed181](https://github.com/ovh/manager/commit/43ed181013ecf4966b2a627c4d7217585cfabb89))
+* **message:** add content ([87324b3](https://github.com/ovh/manager/commit/87324b31855f412165df58ddd0559724831a1c29))
+* **preloader:** display message in preloader ([acfe960](https://github.com/ovh/manager/commit/acfe960e8e3f1f77a97c1ed14f39291c22ebb075))
+
+
+
 ## [16.4.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.4.4...@ovh-ux/manager-dedicated@16.4.5) (2021-03-09)
 
 

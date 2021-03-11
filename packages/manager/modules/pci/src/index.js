@@ -17,6 +17,7 @@ import '@ovh-ux/ui-kit';
 import '@ovh-ux/manager-account-migration';
 import '@ovh-ux/ng-pagination-front';
 import 'angular-ui-bootstrap';
+import '@ovh-ux/manager-banner';
 
 import '@ovh-ux/manager-cloud-styles';
 import 'ovh-manager-webfont/dist/css/ovh-font.css';
@@ -75,6 +76,7 @@ angular
     'ovh-api-services',
     'oui',
     'ui.bootstrap',
+    'ovhManagerBanner',
   ])
   .config(
     /* @ngInject */ ($stateProvider) => {

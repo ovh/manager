@@ -1,3 +1,15 @@
+## [3.2.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.2.4...@ovh-ux/manager-hub-app@3.2.5) (2021-03-10)
+
+
+### Bug Fixes
+
+* **banner:** add banner text ([43ed181](https://github.com/ovh/manager/commit/43ed181013ecf4966b2a627c4d7217585cfabb89))
+* **message:** add content ([87324b3](https://github.com/ovh/manager/commit/87324b31855f412165df58ddd0559724831a1c29))
+* **preloader:** display message in preloader ([bb1f44b](https://github.com/ovh/manager/commit/bb1f44bd38019ef5ccb9bf5cbfb36ba252d46832))
+* **style:** update banner style to display with account sidebar ([bac9627](https://github.com/ovh/manager/commit/bac9627c07c680a087bf6279a392ca5b3be68b7a))
+
+
+
 ## [3.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.2.3...@ovh-ux/manager-hub-app@3.2.4) (2021-03-02)
 
 
