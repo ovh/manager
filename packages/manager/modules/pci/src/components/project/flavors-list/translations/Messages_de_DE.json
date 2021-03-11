@@ -17,5 +17,7 @@
   "pci_project_flavors_price_monthly": "Ab {{price}} / Monat (zzgl. MwSt.)",
   "pci_project_flavors_quota": "Mein Quota erhöhen",
   "pci_project_flavors_quota_info": "Das Quota Ihres Projekts erlaubt es nicht, eine Maschine dieser Art in dieser Region hinzuzufügen.",
-  "pci_project_flavors_quota_manage": "Mein Quota verwalten."
+  "pci_project_flavors_quota_manage": "Mein Quota verwalten.",
+  "pci_project_flavors_category_new": "Neu",
+  "pci_project_flavors_category_definition_discovery": "Instanzen mit geteilten Ressourcen (Discovery) sind geeignet für Tests sowie Präproduktions-und Entwicklungsumgebungen. Ihre Performance kann im Laufe der Zeit leicht variieren."
 }

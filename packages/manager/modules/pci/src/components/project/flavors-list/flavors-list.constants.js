@@ -27,6 +27,12 @@ export const CATEGORIES = [
     pattern: /vps/,
   },
   {
+    category: 'discovery',
+    title: 'Discovery',
+    pattern: /d2/,
+    isNew: true,
+  },
+  {
     category: 'iops',
     title: 'IOPS',
     pattern: /ovh\.iops/,
@@ -42,7 +48,7 @@ export const FLEX_TYPE = /flex$/;
 
 export const LEGACY_FLAVORS = /eg|sp|hg|vps-ssd/;
 
-export const SSD_DISK_TYPES = [/ssd/, /nvme/, /iops/, /baremetal/];
+export const SSD_DISK_TYPES = [/ssd/, /nvme/, /iops/, /baremetal/, /d2/];
 
 export const CPU_FREQUENCY = {
   'ovh.vps-ssd': 2.4,

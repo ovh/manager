@@ -17,5 +17,7 @@
   "pci_project_flavors_price_monthly": "Desde {{price}}/mes + IVA",
   "pci_project_flavors_quota": "Aumentar los límites de mi cuota",
   "pci_project_flavors_quota_info": "El límite de su proyecto no permite añadir este tipo de máquina en esta región.",
-  "pci_project_flavors_quota_manage": "Gestionar mis límites"
+  "pci_project_flavors_quota_manage": "Gestionar mis límites",
+  "pci_project_flavors_category_new": "Novedad",
+  "pci_project_flavors_category_definition_discovery": "Las instancias con recursos compartidos (Discovery) son adecuadas para pruebas y entornos de desarrollo y preproducción. Su rendimiento puede variar ligeramente a lo largo del tiempo."
 }
