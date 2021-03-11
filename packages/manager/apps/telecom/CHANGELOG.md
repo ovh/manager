@@ -1,3 +1,12 @@
+## [13.12.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.12.2...@ovh-ux/manager-telecom@13.12.3) (2021-03-11)
+
+
+### Bug Fixes
+
+* **message:** remove content ([60e26f2](https://github.com/ovh/manager/commit/60e26f2175ac8886330d93c3dd0a447419bd99cc))
+
+
+
 ## [13.12.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.12.1...@ovh-ux/manager-telecom@13.12.2) (2021-03-10)
 
 

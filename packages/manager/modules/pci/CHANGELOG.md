@@ -1,3 +1,17 @@
+# [5.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.10.3...@ovh-ux/manager-pci@5.11.0) (2021-03-11)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 846] ([a6331db](https://github.com/ovh/manager/commit/a6331db7503da3c937ed2d0059e771eae8646e26))
+
+
+### Features
+
+* **public-cloud:** support discovery instances ([b802ba5](https://github.com/ovh/manager/commit/b802ba5590aa79f1506ffcb0d0f95364407d6747))
+
+
+
 ## [5.10.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.10.2...@ovh-ux/manager-pci@5.10.3) (2021-03-10)
 
 

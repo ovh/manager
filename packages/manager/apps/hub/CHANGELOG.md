@@ -1,3 +1,12 @@
+## [3.2.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.2.5...@ovh-ux/manager-hub-app@3.2.6) (2021-03-11)
+
+
+### Bug Fixes
+
+* **message:** remove content ([60e26f2](https://github.com/ovh/manager/commit/60e26f2175ac8886330d93c3dd0a447419bd99cc))
+
+
+
 ## [3.2.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.2.4...@ovh-ux/manager-hub-app@3.2.5) (2021-03-10)
 
 
