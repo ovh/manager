@@ -11,9 +11,12 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('app.account.billing.autorenew.cancelResiliation', {
           serviceId,
         }),
-      engagement: /* @ngInject */ (Server, service) =>
+      engagement: /* @ngInject */ ($http, service) =>
         (service.canHaveEngagement()
-          ? Server.getSelected(service.domain)
+          ? $http
+              .get(`/services/${service.id}/billing/engagement`)
+              .then((data) => ({ engagement: data }))
+              .catch({ engagement: null })
           : Promise.resolve({ engagement: null })
         ).then(({ engagement }) => engagement),
 
