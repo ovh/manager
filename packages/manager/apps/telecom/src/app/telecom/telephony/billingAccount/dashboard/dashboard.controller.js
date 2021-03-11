@@ -19,8 +19,11 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountDashboardC
   OvhApiTelephony,
   TucToastError,
   TelephonyGroupLinePhone,
+  billingAccountId,
 ) {
   const self = this;
+
+  self.billingAccountId = billingAccountId;
 
   function isExpired() {
     return self.group ? self.group.status === 'expired' : false;

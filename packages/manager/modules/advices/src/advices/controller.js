@@ -22,12 +22,30 @@ export default class AdvicesCtrl {
 
   loadAdvices() {
     return this.$http
-      .get(`/advices/${this.serviceType}/${this.serviceName}`, {
+      .get(this.getUrl(), {
         serviceType: 'aapi',
         params: this.queryParams,
       })
       .then(({ data }) => data.data.adviceGroups)
       .catch(() => []); // do not show any advices on error
+  }
+
+  getUrl() {
+    if (this.serviceType && this.serviceName) {
+      return `/advices/${this.serviceType}/${this.serviceName}`;
+    }
+    if (this.url && this.urlParams) {
+      const url = AdvicesCtrl.formatUrl(this.url, this.urlParams);
+      return url.startsWith('/') ? `/advices${url}` : `/advices/${url}`;
+    }
+    return '/advices';
+  }
+
+  static formatUrl(url, params) {
+    return url.replace(
+      /(^|\/):(\w+)(?=\/|$)/g,
+      (m, g1, g2) => g1 + (params[g2] || m),
+    );
   }
 
   /**

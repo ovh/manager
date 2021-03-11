@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-md-9">
             <div class="row d-md-flex">
-                <div class="col-sm-6 mb-5">
+                <div class="col-sm-6 mb-3">
                     <oui-tile
                         class="h-100"
                         data-heading="{{:: 'exchange_tab_INFORMATIONS_summary' | translate}}"
@@ -306,6 +306,20 @@
                     </oui-tile-description>
                 </oui-tile-definition>
             </oui-tile>
+        </div>
+    </div>
+    <div class="row">
+        <!-- Advices -->
+        <div class="col-md-9">
+            <div class="row d-md-flex">
+                <div class="col-sm-6">
+                    <ovh-advices
+                        service-type="exchange"
+                        service-name="{{ ::ctrl.exchange.domain }}"
+                    >
+                    </ovh-advices>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -1,18 +1,24 @@
 <oui-tile
-    data-ng-if="!$ctrl.loading"
+    data-ng-if="!$ctrl.loading && $ctrl.adviceGroups.length > 0"
     heading="{{ ::'advices_heading' | translate }}"
-    data-ng-repeat="adviceGroup in $ctrl.adviceGroups track by $index"
-    description="{{ ::adviceGroup.localizedDescription }}"
-    class="oui-background-p-075"
+    class="oui-advice-tile oui-background-p-075"
 >
-    <div data-ng-repeat="advice in adviceGroup.advices track by $index">
-        <oui-tile-button
-            data-ng-attr-href="{{ ::advice.href }}"
-            data-ng-click="$ctrl.onClick(advice)"
-            aria-label="{{ ::advice.ariaLabel || advice.localizedName }}"
-            external="advice.external"
-        >
-            <span data-ng-bind="advice.localizedName"></span>
-        </oui-tile-button>
-    </div>
+    <oui-tile-definition
+        data-ng-repeat="adviceGroup in $ctrl.adviceGroups track by $index"
+    >
+        <oui-tile-term
+            data-ng-bind="::adviceGroup.localizedDescription"
+        ></oui-tile-term>
+        <oui-tile-description>
+            <oui-tile-button
+                data-ng-repeat="advice in adviceGroup.advices track by $index"
+                data-href="{{ ::advice.href }}"
+                data-ng-click="$ctrl.onClick(advice)"
+                aria-label="{{ ::advice.ariaLabel || advice.localizedName }}"
+                external="advice.external"
+            >
+                <span data-ng-bind="advice.localizedName"></span>
+            </oui-tile-button>
+        </oui-tile-description>
+    </oui-tile-definition>
 </oui-tile>

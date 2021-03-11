@@ -68,6 +68,16 @@ export default class ServicesActionsCtrl {
           engagementDetails: service.billing.engagement,
           hasPendingEngagement,
         });
+        if (
+          this.withEngagement &&
+          ServicesActionsCtrl.showCommit(
+            this.serviceInfos,
+            this.service.isEngaged(),
+            this.highlightEngagement,
+          )
+        ) {
+          this.trackImpression();
+        }
       })
       .catch((error) =>
         this.onError({
@@ -92,9 +102,34 @@ export default class ServicesActionsCtrl {
   }
 
   trackClick(action) {
+    if (this.withEngagement) {
+      this.trackClickImpression();
+    }
     return this.atInternet.trackClick({
       name: `${this.trackingPrefix}::${action}`,
       type: 'action',
     });
+  }
+
+  trackImpression() {
+    if (this.commitImpressionData) {
+      this.atInternet.trackImpression(this.commitImpressionData);
+    }
+  }
+
+  trackClickImpression() {
+    if (this.commitImpressionData) {
+      this.atInternet.trackClickImpression({
+        click: this.commitImpressionData,
+      });
+    }
+  }
+
+  static showCommit(serviceInfos, isEngaged, highlightEngagement) {
+    return (
+      serviceInfos.canBeEngaged &&
+      !serviceInfos.hasPendingEngagement &&
+      (!isEngaged || highlightEngagement)
+    );
   }
 }

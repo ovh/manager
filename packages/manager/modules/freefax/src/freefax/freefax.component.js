@@ -5,6 +5,7 @@ import '@ovh-ux/manager-telecom-styles';
 import '@ovh-ux/ng-ui-router-title';
 import ngOvhUiConfirmModal from '@ovh-ux/ng-ovh-ui-confirm-modal';
 import 'ovh-api-services';
+import ovhManagerAdvices from '@ovh-ux/manager-advices';
 
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
@@ -31,11 +32,15 @@ export default angular
     faxConfiguration,
     notifications,
     voicemailConfiguration,
+    ovhManagerAdvices,
   ])
   .component('ovhManagerFreefaxComponent', {
     template,
     controller,
     controllerAs: 'FreeFax',
+    bindings: {
+      serviceName: '<',
+    },
   })
   .run(
     /* @ngInject */ ($templateCache) => {

@@ -7,11 +7,13 @@ export default class PciInstanceBackupController {
     $translate,
     CucCloudMessage,
     PciProjectsProjectInstanceService,
+    atInternet,
   ) {
     this.$filter = $filter;
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.PciProjectsProjectInstanceService = PciProjectsProjectInstanceService;
+    this.atInternet = atInternet;
   }
 
   $onInit() {
@@ -26,6 +28,7 @@ export default class PciInstanceBackupController {
 
   createBackup() {
     this.isLoading = true;
+    this.trackBackupCreate();
     return this.PciProjectsProjectInstanceService.createBackup(
       this.projectId,
       this.instance,
@@ -56,5 +59,12 @@ export default class PciInstanceBackupController {
       .finally(() => {
         this.isLoading = false;
       });
+  }
+
+  trackBackupCreate() {
+    this.atInternet.trackClick({
+      name: 'PublicCloud::pci::projects::project::instances::backup::confirm',
+      type: 'action',
+    });
   }
 }

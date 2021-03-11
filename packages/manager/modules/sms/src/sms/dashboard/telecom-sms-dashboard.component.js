@@ -10,6 +10,7 @@ export default {
     getReloadCreditLink: '<',
 
     trackClick: '<',
+    serviceName: '<',
   },
   controller,
   name: 'ovhManagerSmsDashboard',
