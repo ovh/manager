@@ -1,3 +1,12 @@
+## [16.4.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.4.6...@ovh-ux/manager-dedicated@16.4.7) (2021-03-11)
+
+
+### Bug Fixes
+
+* **message:** remove content ([60e26f2](https://github.com/ovh/manager/commit/60e26f2175ac8886330d93c3dd0a447419bd99cc))
+
+
+
 ## [16.4.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.4.5...@ovh-ux/manager-dedicated@16.4.6) (2021-03-10)
 
 
