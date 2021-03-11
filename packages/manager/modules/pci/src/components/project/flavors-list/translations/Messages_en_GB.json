@@ -17,5 +17,7 @@
   "pci_project_flavors_price_monthly": "From {{price}} ex. VAT/month",
   "pci_project_flavors_quota": "Increase your quota",
   "pci_project_flavors_quota_info": "Your project quota will not allow you to add this machine type in this region.",
-  "pci_project_flavors_quota_manage": "Manage my quota"
+  "pci_project_flavors_quota_manage": "Manage my quota",
+  "pci_project_flavors_category_new": "New",
+  "pci_project_flavors_category_definition_discovery": "Instances with shared resources (Discovery) are adapted for tests, recipes and development environments. Their performance may vary slightly over time."
 }
