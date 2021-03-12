@@ -1,0 +1,192 @@
+<div>
+    <h1 data-translate="manager_hub_incident_migration"></h1>
+    <oui-message type="error" ng-if="$ctrl.message">
+        <span data-ng-bind=":: $ctrl.message"></span>
+    </oui-message>
+
+    <oui-message type="info" data-ng-if="$ctrl.isAllMigrated">
+        <span
+            data-translate="manager_hub_incident_migration_replacement_done"
+        ></span>
+        <a data-ng-href="{{$ctrl.followUpUrl}}" class="oui-link_icon">
+            <span
+                data-translate="manager_hub_incident_migration_replacement_follow"
+            ></span>
+            <span
+                class="oui-icon oui-icon-arrow-right"
+                aria-hidden="true"
+            ></span>
+        </a>
+    </oui-message>
+
+    <div data-ng-if="!$ctrl.isAllMigrated" class="pb-5">
+        <p data-translate="manager_hub_incident_migration_description"></p>
+        <oui-button
+            class="mb-2"
+            variant="primary"
+            disabled="!$ctrl.isServiceSelected"
+            on-click="$ctrl.migrate($ctrl.servicesToMigrate)"
+        >
+            <span
+                data-translate="manager_hub_incident_migration_replace_bulk"
+            ></span>
+        </oui-button>
+        <div class="oui-datagrid-responsive">
+            <table class="oui-datagrid">
+                <thead>
+                    <tr>
+                        <th class="oui-datagrid__header oui-datagrid__header_s">
+                            <oui-checkbox
+                                model="$ctrl.selectAllServices"
+                                name="select-all"
+                                on-change="$ctrl.selectAll(modelValue)"
+                                inline
+                            >
+                            </oui-checkbox>
+                        </th>
+                        <th
+                            class="oui-datagrid__header"
+                            data-translate="manager_hub_incident_migration_impacted_service"
+                        ></th>
+                        <th
+                            class="oui-datagrid__header"
+                            data-translate="manager_hub_incident_migration_replacement_service"
+                        ></th>
+                        <th class="oui-datagrid__header">
+                            <span
+                                data-translate="manager_hub_incident_migration_discount"
+                            ></span>
+                            <sup>(1)(2)</sup>
+                        </th>
+                        <th class="oui-datagrid__header"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr
+                        data-ng-repeat="service in $ctrl.impactedServices track by $index"
+                        class="oui-datagrid__row"
+                    >
+                        <td
+                            class="oui-datagrid__cell oui-datagrid__cell_s align-top"
+                        >
+                            <oui-checkbox
+                                model="$ctrl.servicesToMigrate[service.serviceToMigrate.serviceId]"
+                                name="select-{{service.serviceToMigrate.serviceId}}"
+                                on-change="$ctrl.select(modelValue, service.serviceToMigrate.serviceId)"
+                                inline
+                            >
+                            </oui-checkbox>
+                        </td>
+                        <td class="oui-datagrid__cell align-top">
+                            <a
+                                data-ng-href="{{service.serviceToMigrate.url}}"
+                                data-ng-bind="service.serviceToMigrate.serviceName"
+                            ></a>
+                            <dl class="oui-description align-bottom">
+                                <dt>
+                                    <span
+                                        data-translate="manager_hub_incident_migration_commercial_name"
+                                        data-translate-values="{
+                                            name: service.serviceToMigrate.description
+                                        }"
+                                    ></span>
+                                    <span
+                                        class="oui-badge oui-badge_info"
+                                        data-ng-if="service.serviceToMigrate.status"
+                                        data-translate="{{:: 'manager_hub_incident_migration_status_' + service.serviceToMigrate.status}}"
+                                    ></span>
+                                </dt>
+                                <dd
+                                    data-ng-repeat="description in service.serviceToMigrate.addonsDescription track by $index"
+                                    data-ng-bind="description"
+                                    class="mb-0"
+                                ></dd>
+                                <dt
+                                    data-translate="manager_hub_incident_migration_datacenter"
+                                ></dt>
+                                <dd
+                                    data-translate="{{:: 'manager_hub_incident_migration_datacenter_' + $ctrl.constructor.getDatacenterRegion(service.serviceToMigrate.datacenter)}}"
+                                    data-translate-values="{
+                                        datacenter: service.serviceToMigrate.datacenter
+                                    }"
+                                ></dd>
+                            </dl>
+                        </td>
+                        <td class="oui-datagrid__cell align-bottom">
+                            <dl class="oui-description">
+                                <dt
+                                    data-translate="manager_hub_incident_migration_commercial_name"
+                                    data-translate-values="{
+                                        name: service.proposedOffer.plan.productName
+                                    }"
+                                ></dt>
+                                <dd
+                                    data-ng-repeat="description in service.proposedOffer.addonsDescription track by $index"
+                                    data-ng-bind="description"
+                                    class="mb-0"
+                                ></dd>
+                                <dt
+                                    data-translate="manager_hub_incident_migration_datacenter"
+                                ></dt>
+                                <dd
+                                    data-translate="{{:: 'manager_hub_incident_migration_datacenter_' + $ctrl.constructor.getDatacenterRegion(service.proposedOffer.datacenter)}}"
+                                    data-translate-values="{
+                                        datacenter: service.proposedOffer.datacenter
+                                    }"
+                                ></dd>
+                            </dl>
+                        </td>
+                        <td class="oui-datagrid__cell">
+                            <strong
+                                class="d-block mb-0"
+                                data-ng-pluralize
+                                count="service.proposedOffer.promotionDuration"
+                                when="{
+                                    '1': ('manager_hub_incident_migration_discount_duration_one' | translate:{count: service.proposedOffer.promotionDuration}),
+                                    'other': ('manager_hub_incident_migration_discount_duration_multi' | translate:{count: service.proposedOffer.promotionDuration})
+                                }"
+                            ></strong>
+                            <span
+                                data-translate="{{:: $ctrl.shouldDisplayPriceTTC ? 'manager_hub_incident_migration_price_TTC' : 'manager_hub_incident_migration_price_HT' }}"
+                                data-translate-values="{
+                                    'price': service.proposedOffer.price
+                                }"
+                            ></span>
+                        </td>
+                        <td class="oui-datagrid__cell oui-datagrid__cell_s">
+                            <oui-action-menu compact placement="end">
+                                <oui-action-menu-item
+                                    href="{{service.serviceToMigrate.url}}"
+                                    on-click="$ctrl.trackClick('go-to-service-detail')"
+                                >
+                                    <span
+                                        data-translate="manager_hub_incident_migration_see"
+                                    ></span>
+                                </oui-action-menu-item>
+                                <oui-action-menu-item
+                                    on-click="$ctrl.migrateService(service)"
+                                >
+                                    <span
+                                        data-translate="manager_hub_incident_migration_replace"
+                                    ></span>
+                                </oui-action-menu-item>
+                            </oui-action-menu>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p>
+            <sup>(1)</sup>
+            <span
+                data-translate="manager_hub_incident_migration_discount_sidenote_1"
+            ></span>
+        </p>
+        <p>
+            <sup>(2)</sup>
+            <span
+                data-translate="manager_hub_incident_migration_discount_sidenote_2"
+            ></span>
+        </p>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+<form name="contractsToAgree" novalidate>
+    <oui-modal
+        heading="{{:: 'manager_hub_incident_migration_contract' | translate}}"
+        primary-action="$ctrl.agreeContracts()"
+        primary-label="{{:: 'manager_hub_incident_migration_contract_continue' | translate }}"
+        primary-disabled="!$ctrl.agree"
+        secondary-action="$ctrl.cancel()"
+        secondary-label="{{:: 'manager_hub_incident_migration_contract_cancel' | translate }}"
+        on-dismiss="$ctrl.cancel()"
+        loading="$ctrl.isLoading"
+    >
+        <h3>
+            <span
+                data-translate="manager_hub_incident_migration_contract_title"
+            ></span>
+            <span data-ng-bind="$ctrl.contractIndex + 1"></span> /
+            <span data-ng-bind="$ctrl.totalContracts"></span>
+        </h3>
+
+        <div
+            ovh-contracts="$ctrl.contractToValidate"
+            ovh-contracts-validated="$ctrl.agree"
+        ></div>
+    </oui-modal>
+</form>
