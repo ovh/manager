@@ -23,8 +23,7 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       addPaymentMean: /* @ngInject */ ($state) => () =>
         $state.go('app.account.billing.payment.method.add'),
-      /* @ngInject */
-      autorenewAgreements: (BillingAutoRenew) =>
+      autorenewAgreements: /* @ngInject */ (BillingAutoRenew) =>
         BillingAutoRenew.getAutorenewAgreements(),
       goBack: /* @ngInject */ (goToAutorenew) => goToAutorenew,
       serviceId: /* @ngInject */ ($transition$) =>

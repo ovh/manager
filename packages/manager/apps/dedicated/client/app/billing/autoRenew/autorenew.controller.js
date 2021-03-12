@@ -4,7 +4,6 @@ import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import set from 'lodash/set';
 import upperFirst from 'lodash/upperFirst';
-import { BillingService } from '@ovh-ux/manager-models';
 
 import { RENEW_URL } from '@ovh-ux/manager-billing';
 import {
@@ -88,21 +87,6 @@ export default class AutorenewCtrl {
           : column,
       );
     }
-
-    this.BillingAutoRenew.isLegacy().then((isLegacy) => {
-      if (!isLegacy) {
-        this.$timeout(() => {
-          this.pollServices();
-        }, 10000);
-      }
-    });
-  }
-
-  $onDestroy() {
-    if (this.pollingTimeout) {
-      this.$timeout.cancel(this.pollingTimeout);
-    }
-    this.scopeDestroyed = true;
   }
 
   getCriterionTitle(type, value) {
@@ -199,44 +183,6 @@ export default class AutorenewCtrl {
       },
       data: this.billingServices,
     });
-  }
-
-  pollServices() {
-    if (this.scopeDestroyed) {
-      return this.$q.when();
-    }
-    const displayedServices = get(
-      this.ouiDatagridService,
-      'datagrids.services.displayedRows',
-      [],
-    );
-    return this.BillingAutoRenew.getServices(
-      this.pageSize,
-      this.offset,
-      this.searchText,
-      this.selectedType,
-      this.filters.expiration,
-      this.filters.status,
-      this.filters.state,
-      this.sort,
-      this.nicBilling,
-    )
-      .then((results) => {
-        const services = get(results, 'list.results');
-        services.forEach((service) => {
-          const billingService = new BillingService(service);
-          const serviceToUpdate = find(displayedServices, {
-            serviceId: service.serviceId,
-            serviceType: service.serviceType,
-          });
-          if (serviceToUpdate) {
-            Object.assign(serviceToUpdate, billingService);
-          }
-        });
-      })
-      .finally(() => {
-        this.pollingTimeout = this.$timeout(() => this.pollServices(), 7000);
-      });
   }
 
   onPageChange({ pageSize, offset }) {
