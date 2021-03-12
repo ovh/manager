@@ -1,3 +1,12 @@
+## [5.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.11.0...@ovh-ux/manager-pci@5.11.1) (2021-03-12)
+
+
+### Bug Fixes
+
+* **pci.instances:** return generated value of formatted storage ([#4527](https://github.com/ovh/manager/issues/4527)) ([ae80856](https://github.com/ovh/manager/commit/ae80856c9bc0410046a2680a2a2331599eac3309))
+
+
+
 # [5.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.10.3...@ovh-ux/manager-pci@5.11.0) (2021-03-11)
 
 
