@@ -64,6 +64,16 @@ export const RENEW_URL = {
     'https://us.ovhcloud.com/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
 };
 
+export const VPS = {
+  OPTIONS: {
+    AUTOMATED_BACKUP: 'automatedBackup',
+  },
+  OPTION_STATES: {
+    SUBSCRIBED: 'subscribed',
+    RELEASED: 'released',
+  },
+};
+
 export default {
   BOOT_MODE,
   CHANGE_OWNER_URL,
@@ -71,4 +81,5 @@ export default {
   ORDER_EXPRESS_BASE_URL,
   PRODUCT_NAME,
   RENEW_URL,
+  VPS,
 };
