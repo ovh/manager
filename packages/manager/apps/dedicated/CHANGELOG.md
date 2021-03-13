@@ -1,3 +1,12 @@
+# [16.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.4.7...@ovh-ux/manager-dedicated@16.5.0) (2021-03-13)
+
+
+### Features
+
+* **ip:** add notification on slowness ipfo actions ([#4531](https://github.com/ovh/manager/issues/4531)) ([9be484e](https://github.com/ovh/manager/commit/9be484e3861f679e9436c943544b20c480969c03))
+
+
+
 ## [16.4.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.4.6...@ovh-ux/manager-dedicated@16.4.7) (2021-03-11)
 
 
