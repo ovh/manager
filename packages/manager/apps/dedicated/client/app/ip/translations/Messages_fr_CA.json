@@ -1,6 +1,5 @@
 {
   "module_ip_dashboard_title": "Gérer les IPs",
-  "ip_ipfo_slowness_information": "En raison d'un pic exceptionnel dans le volume des demandes, chaque réponse pourrait prendre beaucoup plus de temps que d'habitude. Néanmoins, toutes les demandes seront traitées en quelques heures. Nous nous excusons pour le désagrément.",
   "ip_dashboard_error": "Une erreur est survenue lors du chargement de vos informations.",
   "ip_services_error": "Une erreur est survenue lors du chargement de ces services : {{t0}}. Veuillez réessayer plus tard.",
   "ip_block_error": "Une erreur est survenue lors du chargement des informations de {{t0}}.",
