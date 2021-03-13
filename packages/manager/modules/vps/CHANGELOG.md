@@ -1,3 +1,12 @@
+## [2.3.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.3.6...@ovh-ux/manager-vps@2.3.7) (2021-03-13)
+
+
+### Bug Fixes
+
+* **vps:** remove cluster information ([#4534](https://github.com/ovh/manager/issues/4534)) ([bf20be6](https://github.com/ovh/manager/commit/bf20be683ed760a59f1f54b3a3e5928c90c52a42))
+
+
+
 ## [2.3.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.3.5...@ovh-ux/manager-vps@2.3.6) (2021-03-02)
 
 
