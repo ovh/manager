@@ -10,6 +10,5 @@
   "pci_projects_project_failoverip_mitigation": "Activer/Désactiver la mitigation",
   "pci_projects_project_failoverip_firewall": "Configurer le pare-feu",
   "pci_projects_project_failoverip_actions": "Actions",
-  "pci_projects_project_failoverip_order": "Acheter des IP Failover",
-  "pci_projects_project_failoverip_slowness_information": "En raison d'un pic exceptionnel dans le volume des demandes, chaque réponse pourrait prendre beaucoup plus de temps que d'habitude. Néanmoins, toutes les demandes seront traitées en quelques heures. Nous nous excusons pour le désagrément."
+  "pci_projects_project_failoverip_order": "Acheter des IP Failover"
 }
