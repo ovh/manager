@@ -1,3 +1,12 @@
+# [5.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.11.1...@ovh-ux/manager-pci@5.12.0) (2021-03-13)
+
+
+### Features
+
+* **ip:** add notification on slowness ipfo actions ([#4531](https://github.com/ovh/manager/issues/4531)) ([9be484e](https://github.com/ovh/manager/commit/9be484e3861f679e9436c943544b20c480969c03))
+
+
+
 ## [5.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.11.0...@ovh-ux/manager-pci@5.11.1) (2021-03-12)
 
 
