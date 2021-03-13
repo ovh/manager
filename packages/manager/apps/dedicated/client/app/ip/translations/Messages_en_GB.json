@@ -1,5 +1,6 @@
 {
   "module_ip_dashboard_title": "Manage IPs",
+  "ip_ipfo_slowness_information": "Due to an exceptional peak in the volume of requests, each response could take much longer than usual. Nevertheless, all requests will be processed within a few hours. We apologise for the inconvenience.",
   "ip_dashboard_error": "An error has occurred loading your data.",
   "ip_services_error": "An error occurred when loading {{t0}} solutions. Please try again later.",
   "ip_block_error": "An error occurred on loading the {{t0}} data.",

@@ -1,5 +1,6 @@
 {
   "module_ip_dashboard_title": "Gestionar las direcciones IP",
+  "ip_ipfo_slowness_information": "Due to an exceptional peak in the volume of requests, each response could take much longer than usual. Nevertheless, all requests will be processed within a few hours. We apologise for the inconvenience.",
   "ip_dashboard_error": "Se ha producido un error al cargar la información.",
   "ip_services_error": "Se ha producido un error al cargar los servicios: {{t0}}. Por favor, vuelva a intentarlo más tarde.",
   "ip_block_error": "Se ha producido un error al cargar la información de {{t0}}.",

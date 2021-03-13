@@ -2,6 +2,9 @@
     <div class="text-center" data-ng-if="loading.init">
         <oui-spinner></oui-spinner>
     </div>
+    <oui-message class="mb-3" data-type="warning" data-dismissable>
+        <span data-translate="ip_ipfo_slowness_information"> </span>
+    </oui-message>
 
     <div data-ng-if="!loading.init" ui-view>
         <div class="row">
