@@ -1,5 +1,6 @@
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
+import ovhManagerIncidentBanner from '@ovh-ux/manager-incident-banner';
 
 import component from './dedicatedCloud.component';
 import drpService from './datacenter/drp/dedicatedCloud-datacenter-drp.service';
@@ -17,6 +18,7 @@ angular
     drpService,
     ngAtInternet,
     ngOvhFeatureFlipping,
+    ovhManagerIncidentBanner,
     OptionsService,
     ServicePackService,
   ])
