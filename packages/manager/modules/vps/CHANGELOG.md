@@ -1,3 +1,12 @@
+# [2.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.3.7...@ovh-ux/manager-vps@2.4.0) (2021-03-14)
+
+
+### Features
+
+* **dashboard:** display incident banner ([b0d7541](https://github.com/ovh/manager/commit/b0d754169ed2de913f59b6302effed0ffcf3d33d))
+
+
+
 ## [2.3.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.3.6...@ovh-ux/manager-vps@2.3.7) (2021-03-13)
 
 

@@ -1,3 +1,12 @@
+# [5.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.12.1...@ovh-ux/manager-pci@5.13.0) (2021-03-14)
+
+
+### Features
+
+* add incident banner ([31936f8](https://github.com/ovh/manager/commit/31936f870a483928078c543fc64e3faa51569173))
+
+
+
 ## [5.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.12.0...@ovh-ux/manager-pci@5.12.1) (2021-03-13)
 
 
