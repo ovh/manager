@@ -1,3 +1,12 @@
+# [3.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.2.6...@ovh-ux/manager-hub-app@3.3.0) (2021-03-14)
+
+
+### Features
+
+* add incident status listing ([#4543](https://github.com/ovh/manager/issues/4543)) ([b676514](https://github.com/ovh/manager/commit/b676514271f0498464741752107cfdfb24d82e3b))
+
+
+
 ## [3.2.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.2.5...@ovh-ux/manager-hub-app@3.2.6) (2021-03-11)
 
 
