@@ -40,6 +40,9 @@
                             </oui-header-tabs>
                         </oui-header>
                         <div class="py-5" data-ui-view="contentTab">
+                            <ovh-manager-incident-banner
+                                service-name="$ctrl.project.project_id"
+                            ></ovh-manager-incident-banner>
                             <oui-message data-type="info">
                                 <p
                                     data-translate="pci_projects_project_quota_warning_message"
