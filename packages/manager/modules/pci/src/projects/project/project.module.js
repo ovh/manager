@@ -5,6 +5,7 @@ import '@ovh-ux/ng-ovh-api-wrappers'; // should be a peer dependency of ovh-api-
 import 'angular-translate';
 import 'ovh-api-services';
 import '@ovh-ux/ui-kit';
+import '@ovh-ux/manager-incident-banner';
 
 import analyticsDataPlatform from './analytics-data-platform';
 import baremetal from './baremetal';
@@ -56,6 +57,7 @@ angular
     privateRegistry,
     'oui',
     'ovhManagerCore',
+    'ovhManagerIncidentBanner',
     'ovh-api-services',
     'pascalprecht.translate',
     sshKeys,
