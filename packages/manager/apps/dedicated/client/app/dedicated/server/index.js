@@ -1,5 +1,6 @@
 import angular from 'angular';
 
+import ovhManagerIncidentBanner from '@ovh-ux/manager-incident-banner';
 import '@ovh-ux/ng-translate-async-loader';
 import '@uirouter/angularjs';
 import 'angular-translate';
@@ -31,6 +32,7 @@ angular
     interfaces,
     monitoring,
     'oui',
+    ovhManagerIncidentBanner,
     'pascalprecht.translate',
     servers,
     task,
