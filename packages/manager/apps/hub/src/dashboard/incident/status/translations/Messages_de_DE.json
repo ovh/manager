@@ -12,11 +12,11 @@
   "manager_hub_incident_status_service_status_NON_RECOVERABLE_description": "services affected during the incident that cannot be restored",
   "manager_hub_incident_status_service_status_TO_ASSESS_description": "services which may be partly recoverable* or non-recoverable (diagnostics currently in progress)",
   "manager_hub_incident_status_service_status_RECOVERABLE_sidenote": "Due to the exceptional situation, there is still a possibility that services listed as \"Recoverable\" cannot be recovered, despite all our efforts.",
-  "manager_hub_incident_status_product_CLOUD_PROJECT": "Projets PCI",
-  "manager_hub_incident_status_product_DEDICATED_SERVER": "Serveurs Dédiés",
+  "manager_hub_incident_status_product_CLOUD_PROJECT": "PCI projects",
+  "manager_hub_incident_status_product_DEDICATED_SERVER": "Dedicated servers",
   "manager_hub_incident_status_product_DEDICATED_CLOUD": "Hosted Private Cloud",
-  "manager_hub_incident_status_product_DEDICATED_NASHA": "NASHA",
-  "manager_hub_incident_status_product_VPS": "Serveurs privés virtuels",
+  "manager_hub_incident_status_product_DEDICATED_NASHA": "HA NAS",
+  "manager_hub_incident_status_product_VPS": "Virtual private servers",
   "manager_hub_incident_status_product_PCS-PCA": "PCS-PCA",
   "manager_hub_incident_status_faq": "View our FAQs"
 }
