@@ -4,15 +4,25 @@ import { Environment } from '@ovh-ux/manager-config';
 
 export default class HubController {
   /* @ngInject */
-  constructor($document, $scope, $rootScope, ovhFeatureFlipping) {
+  constructor(
+    $document,
+    $http,
+    $scope,
+    $state,
+    $rootScope,
+    ovhFeatureFlipping,
+  ) {
     this.$document = $document;
+    this.$http = $http;
     this.$scope = $scope;
+    this.$state = $state;
     this.$rootScope = $rootScope;
     this.chatbotEnabled = false;
     this.ovhFeatureFlipping = ovhFeatureFlipping;
   }
 
   $onInit() {
+    this.servicesImpactedWithIncident = [];
     this.navbarOptions = {
       universe: Environment.getUniverse(),
       version: 'beta',
@@ -39,6 +49,8 @@ export default class HubController {
         });
       unregisterListener();
     });
+
+    return this.getServicesImpactedByIncident();
   }
 
   /**
@@ -51,5 +63,22 @@ export default class HubController {
       const [element] = this.$document.find(`#${id}`);
       element.focus();
     }
+  }
+
+  getServicesImpactedByIncident() {
+    return this.$http
+      .get('/incident-status', {
+        serviceType: 'aapi',
+      })
+      .then(({ data }) => {
+        this.servicesImpactedWithIncident = data;
+      })
+      .catch(() => []);
+  }
+
+  goToIncidentStatus() {
+    return this.$state.go('app.dashboard.incident.status', {
+      incidentName: 'SBG',
+    });
   }
 }

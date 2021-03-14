@@ -1,0 +1,74 @@
+<h1 data-translate="manager_hub_incident_status"></h1>
+<p data-translate="manager_hub_incident_status_description"></p>
+<strong
+    class="d-block"
+    data-translate="manager_hub_incident_status_definition"
+></strong>
+<ul>
+    <li>
+        <strong
+            data-translate="manager_hub_incident_status_service_RECOVERABLE"
+        ></strong>
+        <span
+            data-translate="manager_hub_incident_status_service_status_RECOVERABLE_description"
+        ></span>
+    </li>
+    <li>
+        <strong
+            data-translate="manager_hub_incident_status_service_NON_RECOVERABLE"
+        ></strong>
+        <span
+            data-translate="manager_hub_incident_status_service_status_NON_RECOVERABLE_description"
+        ></span>
+    </li>
+    <li>
+        <strong
+            data-translate="manager_hub_incident_status_service_TO_ASSESS"
+        ></strong>
+        <span
+            data-translate="manager_hub_incident_status_service_status_TO_ASSESS_description"
+        ></span>
+    </li>
+</ul>
+<p>
+    <sup aria-label="(1)">*</sup>
+    <span
+        data-translate="manager_hub_incident_status_service_status_RECOVERABLE_sidenote"
+    ></span>
+</p>
+<a
+    data-ng-href="{{$ctrl.faqLink}}"
+    data-translate="manager_hub_incident_status_faq"
+></a>
+<oui-datagrid rows="$ctrl.services">
+    <oui-datagrid-column
+        title="::'manager_hub_incident_status_service_name' | translate"
+        property="serviceName"
+        searchable
+        filterable
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        title="::'manager_hub_incident_status_service_type' | translate"
+        property="productType"
+        filterable
+        type="options"
+        type-options="$ctrl.filtersOptions.products"
+    >
+        <span
+            data-translate="{{ 'manager_hub_incident_status_product_' + $row.productType }}"
+        ></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        title="::'manager_hub_incident_status_service_status' | translate"
+        property="status"
+        filterable
+        type="options"
+        type-options="$ctrl.filtersOptions.status"
+    >
+        <span
+            data-translate="{{:: 'manager_hub_incident_status_service_status_' + $row.status }}"
+        >
+        </span>
+    </oui-datagrid-column>
+</oui-datagrid>
