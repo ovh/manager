@@ -1,4 +1,6 @@
 import angular from 'angular';
+
+import '@ovh-ux/ng-translate-async-loader';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
