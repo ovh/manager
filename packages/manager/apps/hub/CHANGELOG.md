@@ -1,3 +1,12 @@
+# [3.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.5.0...@ovh-ux/manager-hub-app@3.6.0) (2021-03-15)
+
+
+### Features
+
+* **hub:** add datacenters and regions to incident services status ([#4550](https://github.com/ovh/manager/issues/4550)) ([aef7be5](https://github.com/ovh/manager/commit/aef7be52fc8b38008d4a5a9dc4bcfc017a46551c))
+
+
+
 # [3.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.4.0...@ovh-ux/manager-hub-app@3.5.0) (2021-03-15)
 
 
