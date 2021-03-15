@@ -104,8 +104,40 @@
         </div>
     </div>
 
+    <div class="m-3 text-right">
+        <label for="manualQuotaSwitch" class="d-inline-block">
+            <span
+                data-translate="pci_projects_project_quota_autoscaling"
+            ></span>
+            <button
+                type="button"
+                class="oui-popover-button"
+                oui-popover="{{ :: ('pci_projects_project_quota_autoscaling_help' | translate ) }}"
+            ></button>
+        </label>
+        <oui-switch
+            class="mx-2"
+            data-model="$ctrl.model.manualQuota"
+            data-id="manualQuotaSwitch"
+            data-name="manualQuotaSwitch"
+            data-on-change="$ctrl.onManualQuotaSwitchChange(modelValue)"
+            data-disabled="$ctrl.loaders.manualQuota"
+        >
+        </oui-switch>
+        <label
+            for="manualQuotaSwitch"
+            class="d-inline-block"
+            data-translate="{{ $ctrl.model.manualQuota ? 'pci_projects_project_quota_autoscaling_on' : 'pci_projects_project_quota_autoscaling_off' }}"
+        >
+        </label>
+    </div>
+
     <!-- QUOTA TABLE -->
-    <strong data-translate="pci_projects_project_quota_current_limit"></strong>
+    <strong
+        class="d-inline-block mb-2"
+        data-translate="pci_projects_project_quota_current_limit"
+    >
+    </strong>
 
     <oui-datagrid data-rows="$ctrl.quotas">
         <oui-datagrid-column
