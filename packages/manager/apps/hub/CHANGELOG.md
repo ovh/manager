@@ -1,3 +1,12 @@
+# [3.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.3.0...@ovh-ux/manager-hub-app@3.4.0) (2021-03-15)
+
+
+### Features
+
+* **hub:** add service url in incident status list ([#4546](https://github.com/ovh/manager/issues/4546)) ([58f1010](https://github.com/ovh/manager/commit/58f1010dce715180bea589228c1bc85143be20ce))
+
+
+
 # [3.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.2.6...@ovh-ux/manager-hub-app@3.3.0) (2021-03-14)
 
 
