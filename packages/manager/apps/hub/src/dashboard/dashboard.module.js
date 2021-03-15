@@ -4,6 +4,7 @@ import ngAtInternet from '@ovh-ux/ng-at-internet';
 
 import ovhManagerHub from '@ovh-ux/manager-hub';
 import catalog from './catalog';
+import incident from './incident';
 import listingPage from './products-list';
 import orderDashboard from './order-dashboard';
 import welcome from './welcome';
@@ -18,6 +19,7 @@ const moduleName = 'ovhManagerHubDashboard';
 angular
   .module(moduleName, [
     catalog,
+    incident,
     listingPage,
     ngAtInternet,
     orderDashboard,
