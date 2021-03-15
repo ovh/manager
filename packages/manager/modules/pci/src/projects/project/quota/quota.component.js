@@ -5,6 +5,7 @@ export default {
   bindings: {
     hasDefaultPaymentMethod: '<',
     guideUrl: '<',
+    project: '<',
     projectId: '<',
     quotas: '<',
     region: '<',
