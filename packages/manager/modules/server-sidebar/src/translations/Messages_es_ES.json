@@ -66,5 +66,8 @@
   "server_sidebar_order_item_ovh_cloud_connect_title": "OVHcloud Connect",
   "server_sidebar_item_managedBaremetal_title": "Managed Bare Metal",
   "server_sidebar_order_item_managed_bare_metal_title": "Managed Bare Metal",
-  "server_sidebar_item_domain_bulk_title": "Acciones masivas"
+  "server_sidebar_item_domain_bulk_title": "Acciones masivas",
+  "server_sidebar_item_web_paas_title": "Web PaaS",
+  "server_sidebar_item_web_paas_all_accounts_title": "Todas las cuentas",
+  "server_sidebar_order_item_web_paas_title": "Web PaaS"
 }
