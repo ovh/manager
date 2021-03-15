@@ -47,6 +47,10 @@
         searchable
         filterable
     >
+        <a
+            data-ng-href="{{:: $row.url }}"
+            data-ng-bind="::$row.serviceName"
+        ></a>
     </oui-datagrid-column>
     <oui-datagrid-column
         title="::'manager_hub_incident_status_service_type' | translate"
