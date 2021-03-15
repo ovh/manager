@@ -36,7 +36,7 @@
             ></span>
         </oui-action-menu-item>
         <oui-action-menu-item
-            ng-if="!$ctrl.service.isOneShot() && !$ctrl.service.hasManualRenew() && $ctrl.service.canHandleRenew() && !$ctrl.service.canBeEngaged && !$ctrl.service.hasPendingEngagement"
+            ng-if="$ctrl.canAnticipateRenew() && !$ctrl.service.isOneShot() && !$ctrl.service.hasManualRenew() && $ctrl.service.canHandleRenew() && !$ctrl.service.canBeEngaged && !$ctrl.service.hasPendingEngagement"
             href="{{:: $ctrl.getRenewUrl() }}"
             external
             on-click="$ctrl.trackAction('go-to-anticipate-payment')"
