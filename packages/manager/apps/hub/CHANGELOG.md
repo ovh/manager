@@ -1,3 +1,12 @@
+# [3.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.4.0...@ovh-ux/manager-hub-app@3.5.0) (2021-03-15)
+
+
+### Features
+
+* **dasboard:** add banner incident for non FR customer ([#4548](https://github.com/ovh/manager/issues/4548)) ([11da491](https://github.com/ovh/manager/commit/11da4913a531381c2c10f39aeeb021c7e2799302))
+
+
+
 # [3.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.3.0...@ovh-ux/manager-hub-app@3.4.0) (2021-03-15)
 
 
