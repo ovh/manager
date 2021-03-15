@@ -9,6 +9,8 @@
   "manager_hub_incident_status_service_RECOVERABLE": "recoverable*: ",
   "manager_hub_incident_status_service_NON_RECOVERABLE": "non-recoverable:",
   "manager_hub_incident_status_service_TO_ASSESS": "under investigation:",
+  "manager_hub_incident_status_service_datacenter": "Datacenter",
+  "manager_hub_incident_status_service_region": "OpenStack Zone",
   "manager_hub_incident_status_description": "In addition to the email(s) you have received, please find a summary of the status of your services below",
   "manager_hub_incident_status_definition": "Definitions:",
   "manager_hub_incident_status_service_status_RECOVERABLE_description": "services that have been isolated as a security measure and which may be partially or fully reactivated in the near future",
