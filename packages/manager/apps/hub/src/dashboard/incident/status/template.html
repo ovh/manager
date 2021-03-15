@@ -40,7 +40,10 @@
     data-ng-href="{{$ctrl.faqLink}}"
     data-translate="manager_hub_incident_status_faq"
 ></a>
-<oui-datagrid rows="$ctrl.services">
+<oui-datagrid
+    rows="$ctrl.services"
+    columns-parameters="$ctrl.datagridParameters"
+>
     <oui-datagrid-column
         title="::'manager_hub_incident_status_service_name' | translate"
         property="serviceName"
@@ -62,6 +65,22 @@
         <span
             data-translate="{{ 'manager_hub_incident_status_product_' + $row.productType }}"
         ></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        title="::'manager_hub_incident_status_service_region' | translate"
+        property="region"
+        filterable
+        type="options"
+        type-options="$ctrl.filtersOptions.regions"
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        title="::'manager_hub_incident_status_service_datacenter' | translate"
+        property="datacenter"
+        filterable
+        type="options"
+        type-options="$ctrl.filtersOptions.datacenters"
+    >
     </oui-datagrid-column>
     <oui-datagrid-column
         title="::'manager_hub_incident_status_service_status' | translate"
