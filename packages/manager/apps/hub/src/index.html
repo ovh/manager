@@ -56,6 +56,36 @@
                         <span data-translate="manager_hub_sbg_incident"></span>
                     </button>
                 </oui-message>
+
+                <oui-message
+                    class="incident-banner"
+                    type="warning"
+                    data-ng-if="$ctrl.servicesImpactedWithIncident.length && $ctrl.user.ovhSubsidiary !== 'FR'"
+                >
+                    Information : Situation update in Strasbourg via
+                    <a
+                        class="oui-link external"
+                        href="https://www.ovh.ie/news/press/cpl1786.fire-our-strasbourg-site"
+                        target="_blank"
+                        >status
+                        <span
+                            class="oui-icon oui-icon-external-link small"
+                            aria-hidden="true"
+                        ></span
+                    ></a>
+                    and
+                    <a
+                        href="https://help.ovhcloud.com/en-gb/faq/strasbourg-incident/"
+                        class="oui-link"
+                        target="_blank"
+                        >FAQ
+                        <span
+                            class="oui-icon oui-icon-external-link small"
+                            aria-hidden="true"
+                        ></span></a
+                    >.
+                </oui-message>
+
                 <ovh-manager-banner-text></ovh-manager-banner-text>
                 <div class="mb-5" data-ui-view="app">
                     <!-- Skip content target -->
