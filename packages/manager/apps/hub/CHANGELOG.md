@@ -1,3 +1,12 @@
+## [3.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.6.1...@ovh-ux/manager-hub-app@3.6.2) (2021-03-16)
+
+
+### Bug Fixes
+
+* **hub:** update pci types in services incident status ([#4559](https://github.com/ovh/manager/issues/4559)) ([d148b1b](https://github.com/ovh/manager/commit/d148b1b5bd5e2a8762bea64ea37e9daf6207d566))
+
+
+
 ## [3.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.6.0...@ovh-ux/manager-hub-app@3.6.1) (2021-03-16)
 
 
