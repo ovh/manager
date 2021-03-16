@@ -42,5 +42,8 @@
   "pci_projects_project_training_jobs_submit_ovhai_help": "Pour plus d'information sur les paramètres disponibles :",
   "pci_projects_project_training_jobs_common_cancel": "Annuler",
   "pci_projects_project_training_jobs_resubmit_success": "Le job a correctement été relancé",
-  "pci_projects_project_training_jobs_resubmit_error": "Une erreur s'est produite durant le relancement du job : {{ message }}"
+  "pci_projects_project_training_jobs_resubmit_error": "Une erreur s'est produite durant le relancement du job : {{ message }}",
+  "pci_projects_project_training_jobs_submit_select_data_select": "Je souhaite associer des volumes de données au job",
+  "pci_projects_project_training_jobs_submit_add_volume": "Ajouter",
+  "pci_projects_project_training_jobs_submit_add_volume_warning": "Attention un ou plusieurs volumes n'ont pas été ajouté, veuillez corriger pour passer à l'étape suivante."
 }
