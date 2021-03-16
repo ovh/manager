@@ -62,6 +62,11 @@ export default /* @ngInject */ ($stateProvider) => {
         $transition$.params().serviceType,
       service: /* @ngInject */ (BillingAutoRenew, serviceId, serviceType) =>
         BillingAutoRenew.getService(serviceId, serviceType),
+      fetchRenewInfos: /* @ngInject */ ($http, service) =>
+        $http
+          .get(`${service.route.url}/serviceInfos`)
+          .then(({ data }) => data)
+          .then(({ renew }) => Object.assign(service, { renew })),
       setReactivateEngagementStrategy: /* @ngInject */ (
         BillingService,
         endStrategies,
