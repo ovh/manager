@@ -23,5 +23,7 @@
   "manager_hub_incident_status_product_DEDICATED_NASHA": "HA NAS",
   "manager_hub_incident_status_product_VPS": "Virtual private servers",
   "manager_hub_incident_status_product_PCS-PCA": "PCS-PCA",
+  "manager_hub_incident_status_product_PCS": "Public Cloud Storage",
+  "manager_hub_incident_status_product_PCA": "Public Cloud Archive",
   "manager_hub_incident_status_faq": "View our FAQs"
 }
