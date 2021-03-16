@@ -1363,5 +1363,6 @@
   "hosting_dashboard_email_offer_get_error": "Unable to retrieve email address",
   "hosting_dashboard_stats_status": "Beta",
   "hosting_tab_DOMAINS_configuration_add_step3_delete_4a_records": "Delete the AAAA records for your {{domain}} domain",
-  "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_information": "Configuration to be applied to the DNS zone"
+  "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_information": "Configuration to be applied to the DNS zone",
+  "hosting_dashboard_service_state_DELETE_AT_EXPIRATION": "Delete on expiry"
 }

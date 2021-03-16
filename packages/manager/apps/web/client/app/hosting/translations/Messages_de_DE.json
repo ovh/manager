@@ -1376,5 +1376,6 @@
   "hosting_dashboard_email_offer_get_error": "Es ist unmöglich, die E-Mail-Adresse wiederherzustellen.",
   "hosting_dashboard_stats_status": "Beta",
   "hosting_tab_DOMAINS_configuration_add_step3_delete_4a_records": "Löschen Sie die Felder AAAA aus Ihrer Domain {{domain}}",
-  "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_information": "Auf die DNS Zone anzuwendende Konfiguration"
+  "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_information": "Auf die DNS Zone anzuwendende Konfiguration",
+  "hosting_dashboard_service_state_DELETE_AT_EXPIRATION": "Wird am Ablaufdatum entfernt"
 }
