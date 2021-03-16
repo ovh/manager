@@ -1,7 +1,6 @@
 import compact from 'lodash/compact';
 import flatten from 'lodash/flatten';
 import map from 'lodash/map';
-import startsWith from 'lodash/startsWith';
 
 import Workflow from './Workflow.class';
 
@@ -46,29 +45,40 @@ export default /* @ngInject */ ($stateProvider) => {
 
       workflows: /* @ngInject */ (
         $q,
-        OvhApiCloudProjectRegion,
+        iceberg,
         OvhApiCloudProjectRegionWorkflowBackup,
         projectId,
       ) =>
-        OvhApiCloudProjectRegion.v6()
-          .query({
-            serviceName: projectId,
+        iceberg('/cloud/project/:serviceName/region')
+          .query()
+          .expand('CachedObjectList-Pages')
+          .execute({ serviceName: projectId })
+          .$promise.then(({ data }) => {
+            return data.reduce((regions, { name, services }) => {
+              if (
+                services.find(
+                  ({ name: serviceName, status: serviceStatus }) =>
+                    serviceName === 'workflow' && serviceStatus === 'UP',
+                )
+              ) {
+                return [...regions, name];
+              }
+              return [...regions];
+            }, []);
           })
-          .$promise.then((regions) => {
-            const workflows = map(
-              regions.filter((region) => !startsWith(region, 'SBG')),
-              (region) =>
-                OvhApiCloudProjectRegionWorkflowBackup.v6()
-                  .query({
-                    serviceName: projectId,
-                    regionName: region,
-                  })
-                  .$promise.then((regionWorkflows) =>
-                    map(regionWorkflows, (workflow) => new Workflow(workflow)),
-                  )
-                  .catch((error) =>
-                    error.status === 400 ? null : $q.reject(error),
-                  ),
+          .then((regions) => {
+            const workflows = map(regions, (region) =>
+              OvhApiCloudProjectRegionWorkflowBackup.v6()
+                .query({
+                  serviceName: projectId,
+                  regionName: region,
+                })
+                .$promise.then((regionWorkflows) =>
+                  map(regionWorkflows, (workflow) => new Workflow(workflow)),
+                )
+                .catch((error) =>
+                  error.status === 400 ? null : $q.reject(error),
+                ),
             );
             return $q
               .all(workflows)
