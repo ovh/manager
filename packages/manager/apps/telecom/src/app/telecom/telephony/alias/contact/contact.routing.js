@@ -7,7 +7,7 @@ export default /* @ngInject */ ($stateProvider) => {
         'aliasInnerView@telecom.telephony.billingAccount.alias.details': {
           templateUrl: 'app/telecom/telephony/service/contact/contact.html',
           controller: 'TelecomTelephonyServiceContactCtrl',
-          controllerAs: 'ServiceContactCtrl',
+          controllerAs: '$ctrl',
         },
       },
       resolve: {
