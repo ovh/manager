@@ -1,3 +1,12 @@
+## [5.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.13.0...@ovh-ux/manager-pci@5.13.1) (2021-03-16)
+
+
+### Bug Fixes
+
+* **projects:** add missing suspended status ([85b77ea](https://github.com/ovh/manager/commit/85b77eaa2e465da17456d04adc20c30943226a7d))
+
+
+
 # [5.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.12.1...@ovh-ux/manager-pci@5.13.0) (2021-03-14)
 
 

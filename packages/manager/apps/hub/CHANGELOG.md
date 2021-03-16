@@ -1,3 +1,12 @@
+## [3.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.6.0...@ovh-ux/manager-hub-app@3.6.1) (2021-03-16)
+
+
+### Bug Fixes
+
+* **dashboard:** add service type to services status ([#4555](https://github.com/ovh/manager/issues/4555)) ([b55c583](https://github.com/ovh/manager/commit/b55c583518be9b8ac30bebdad710c0a293516a59))
+
+
+
 # [3.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.5.0...@ovh-ux/manager-hub-app@3.6.0) (2021-03-15)
 
 
