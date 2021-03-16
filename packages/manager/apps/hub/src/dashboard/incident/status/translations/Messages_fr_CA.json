@@ -17,7 +17,7 @@
   "manager_hub_incident_status_service_status_NON_RECOVERABLE_description": "service affecté au cours de cet événement qui ne pourra pas être rétabli",
   "manager_hub_incident_status_service_status_TO_ASSESS_description": "service dont une partie peut être éventuellement récupérable* ou non récupérable (diagnostic en cours)",
   "manager_hub_incident_status_service_status_RECOVERABLE_sidenote": "Compte tenu de la situation exceptionnelle, et malgré tous nos efforts, il est possible que des services indiqués comme « Récupérables » ne soient malheureusement pas rétablis.",
-  "manager_hub_incident_status_product_CLOUD_PROJECT": "Projets PCI",
+  "manager_hub_incident_status_product_CLOUD_PROJECT": "Public Cloud Instances",
   "manager_hub_incident_status_product_DEDICATED_SERVER": "Serveurs Dédiés",
   "manager_hub_incident_status_product_DEDICATED_CLOUD": "Hosted Private Cloud",
   "manager_hub_incident_status_product_DEDICATED_NASHA": "NASHA",
