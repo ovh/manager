@@ -1,15 +1,15 @@
 <div class="telecom-telephony-service-contact">
-    <div class="text-center" data-ng-if="ServiceContactCtrl.isLoading">
+    <div class="text-center" data-ng-if="$ctrl.isLoading">
         <oui-spinner></oui-spinner>
     </div>
 
-    <div class="row" data-ng-if="!ServiceContactCtrl.isLoading">
+    <div class="row" data-ng-if="!$ctrl.isLoading">
         <div class="col-xs-12 col-md-8">
             <tuc-toast-message></tuc-toast-message>
 
             <form
                 name="contactForm"
-                data-ng-submit="ServiceContactCtrl.applyChanges()"
+                data-ng-submit="$ctrl.applyChanges()"
                 novalidate
             >
                 <!-- INFOS -->
@@ -20,10 +20,7 @@
                     ></h2>
 
                     <!-- LEGAL FORM -->
-                    <div
-                        class="form-group"
-                        data-ng-if="!ServiceContactCtrl.isShortForm()"
-                    >
+                    <div class="form-group" data-ng-if="!$ctrl.isShortForm()">
                         <label
                             for="contactLegalForm"
                             class="control-label"
@@ -35,15 +32,15 @@
                             name="contactLegalForm"
                             class="form-control"
                             required
-                            data-ng-model="ServiceContactCtrl.directoryForm.legalForm"
-                            data-ng-change="ServiceContactCtrl.onChangeLegalForm()"
+                            data-ng-model="$ctrl.directoryForm.legalForm"
+                            data-ng-change="$ctrl.onChangeLegalForm()"
                             data-ng-options="legalForm as ('telephony_service_contact_legalform_' + legalForm | translate) for legalForm in ['individual', 'professional', 'corporation']"
                         >
                         </select>
                     </div>
 
                     <div
-                        data-ng-if="ServiceContactCtrl.directoryForm.legalForm === 'individual' || ServiceContactCtrl.isShortForm()"
+                        data-ng-if="$ctrl.directoryForm.legalForm === 'individual' || $ctrl.isShortForm()"
                     >
                         <!-- LAST NAME -->
                         <oui-field
@@ -57,7 +54,7 @@
                                 class="oui-input"
                                 autofocus
                                 required
-                                data-ng-model="ServiceContactCtrl.directoryForm.name"
+                                data-ng-model="$ctrl.directoryForm.name"
                             />
                         </oui-field>
 
@@ -73,14 +70,14 @@
                                 class="oui-input"
                                 autofocus
                                 required
-                                data-ng-model="ServiceContactCtrl.directoryForm.firstName"
+                                data-ng-model="$ctrl.directoryForm.firstName"
                             />
                         </oui-field>
                     </div>
 
                     <div
                         class="form-group"
-                        data-ng-if="ServiceContactCtrl.directoryForm.legalForm === 'professional' && !ServiceContactCtrl.isShortForm()"
+                        data-ng-if="$ctrl.directoryForm.legalForm === 'professional' && !$ctrl.isShortForm()"
                     >
                         <!-- OCCUPATION -->
                         <oui-field
@@ -91,14 +88,14 @@
                                 id="contactOccupation"
                                 name="contactOccupation"
                                 class="oui-input"
-                                data-ng-model="ServiceContactCtrl.directoryForm.occupation"
+                                data-ng-model="$ctrl.directoryForm.occupation"
                             />
                         </oui-field>
                     </div>
 
                     <div
                         class="form-group"
-                        data-ng-if="ServiceContactCtrl.directoryForm.legalForm !== 'individual' && !ServiceContactCtrl.isShortForm()"
+                        data-ng-if="$ctrl.directoryForm.legalForm !== 'individual' && !$ctrl.isShortForm()"
                         data-ng-class="{
                              'has-error': contactForm.contactSiret.$invalid && contactForm.contactSiret.$touched
                          }"
@@ -114,8 +111,8 @@
                                 name="contactSiret"
                                 class="oui-input"
                                 autofocus
-                                data-ng-change="ServiceContactCtrl.onSiretChange(contactForm.contactSiret)"
-                                data-ng-model="ServiceContactCtrl.directoryForm.siret"
+                                data-ng-change="$ctrl.onSiretChange(contactForm.contactSiret)"
+                                data-ng-model="$ctrl.directoryForm.siret"
                                 data-ng-model-options="{ debounce: 500 }"
                                 maxlength="20"
                                 data-ng-pattern="/^(be0)?\d{9,}$/i"
@@ -133,7 +130,7 @@
                                 name="contactApe"
                                 class="oui-input"
                                 data-ng-pattern="/^\d{4}\w$/"
-                                data-ng-model="ServiceContactCtrl.directoryForm.ape"
+                                data-ng-model="$ctrl.directoryForm.ape"
                                 data-ng-model-options="{ debounce: 500 }"
                             />
                         </oui-field>
@@ -149,7 +146,7 @@
                                 name="contactSocialNomination"
                                 class="oui-input"
                                 required
-                                data-ng-model="ServiceContactCtrl.directoryForm.socialNomination"
+                                data-ng-model="$ctrl.directoryForm.socialNomination"
                                 data-ng-model-options="{ debounce: 500 }"
                             />
                         </oui-field>
@@ -164,7 +161,7 @@
                                 id="contactSocialNominationExtra"
                                 name="contactSocialNominationExtra"
                                 class="oui-input"
-                                data-ng-model="ServiceContactCtrl.directoryForm.socialNominationExtra"
+                                data-ng-model="$ctrl.directoryForm.socialNominationExtra"
                             />
                         </oui-field>
                     </div>
@@ -178,7 +175,7 @@
                             id="contactEmail"
                             name="contactEmail"
                             class="oui-input"
-                            data-ng-model="ServiceContactCtrl.directoryForm.email"
+                            data-ng-model="$ctrl.directoryForm.email"
                         />
                     </oui-field>
                 </div>
@@ -201,7 +198,7 @@
                             id="contactCountry"
                             name="contactCountry"
                             class="oui-input text-uppercase"
-                            data-ng-model="ServiceContactCtrl.directoryForm.country"
+                            data-ng-model="$ctrl.directoryForm.country"
                             disabled
                         />
                     </oui-field>
@@ -217,8 +214,8 @@
                             name="contactPostCode"
                             class="oui-input"
                             required
-                            data-ng-change="ServiceContactCtrl.onPostCodeChange()"
-                            data-ng-model="ServiceContactCtrl.directoryForm.postCode"
+                            data-ng-change="$ctrl.onPostCodeChange()"
+                            data-ng-model="$ctrl.directoryForm.postCode"
                             data-ng-model-options="{ debounce: 500 }"
                         />
                     </oui-field>
@@ -234,14 +231,14 @@
                             name="contactCity"
                             class="oui-input"
                             required
-                            data-ng-model="ServiceContactCtrl.directoryForm.city"
+                            data-ng-model="$ctrl.directoryForm.city"
                         />
                     </oui-field>
 
                     <!-- URBAN DISTRICT -->
                     <oui-field
                         label="{{:: 'telephony_service_contact_urbandistrict' | translate }}"
-                        data-ng-if="ServiceContactCtrl.isUrbanDistrictRequired()"
+                        data-ng-if="$ctrl.isUrbanDistrictRequired()"
                         error-messages="{ 'required': ('telephony_service_contact_must_fill' | translate) }"
                     >
                         <input
@@ -250,7 +247,7 @@
                             name="contactUrbanDistrict"
                             class="oui-input"
                             required
-                            data-ng-model="ServiceContactCtrl.directoryForm.urbanDistrict"
+                            data-ng-model="$ctrl.directoryForm.urbanDistrict"
                         />
                     </oui-field>
 
@@ -264,7 +261,7 @@
                             id="contactCedex"
                             name="contactCedex"
                             class="oui-input"
-                            data-ng-model="ServiceContactCtrl.directoryForm.cedex"
+                            data-ng-model="$ctrl.directoryForm.cedex"
                         />
                     </oui-field>
 
@@ -278,7 +275,7 @@
                             id="contactWaynumber"
                             name="contactWaynumber"
                             class="oui-input"
-                            data-ng-model="ServiceContactCtrl.directoryForm.wayNumber"
+                            data-ng-model="$ctrl.directoryForm.wayNumber"
                         />
                     </oui-field>
 
@@ -291,8 +288,8 @@
                             id="contactWaynumberExtra"
                             name="contactWaynumberExtra"
                             class="text-uppercase"
-                            model="ServiceContactCtrl.directoryForm.wayNumberExtra"
-                            items="ServiceContactCtrl.wayNumberExtraEnum"
+                            model="$ctrl.directoryForm.wayNumberExtra"
+                            items="$ctrl.wayNumberExtraEnum"
                             match="key"
                         ></oui-select>
                     </oui-field>
@@ -307,7 +304,7 @@
                             id="contactAddress"
                             name="contactAddress"
                             class="oui-input"
-                            data-ng-model="ServiceContactCtrl.directoryForm.address"
+                            data-ng-model="$ctrl.directoryForm.address"
                             data-ng-model-options="{ debounce: 300 }"
                         />
                     </oui-field>
@@ -322,7 +319,7 @@
                             id="contactAddressExtra"
                             name="contactAddressExtra"
                             class="oui-input"
-                            data-ng-model="ServiceContactCtrl.directoryForm.addressExtra"
+                            data-ng-model="$ctrl.directoryForm.addressExtra"
                             data-ng-pattern="/^[A-Za-z0-9 ]*$/"
                         />
                     </oui-field>
@@ -333,7 +330,7 @@
                 <!-- UNIVERSAL DIRECTORY -->
                 <div
                     class="widget-presentation"
-                    data-ng-if="!ServiceContactCtrl.isShortForm()"
+                    data-ng-if="!$ctrl.isShortForm()"
                 >
                     <h2
                         class="widget-presentation-title"
@@ -343,7 +340,7 @@
                     <!-- PJ SOCIAL DENOMINATION -->
                     <div
                         class="form-group"
-                        data-ng-if="ServiceContactCtrl.directoryForm.legalForm !== 'individual'"
+                        data-ng-if="$ctrl.directoryForm.legalForm !== 'individual'"
                     >
                         <oui-field
                             label="{{:: 'telephony_service_contact_pjdenomination' | translate }}"
@@ -354,7 +351,7 @@
                                 id="contactPjdenomination"
                                 name="contactPjdenomination"
                                 class="form-control"
-                                data-ng-model="ServiceContactCtrl.directoryForm.socialNomination"
+                                data-ng-model="$ctrl.directoryForm.socialNomination"
                             />
                         </oui-field>
                     </div>
@@ -362,9 +359,9 @@
                     <!-- DIRECTORY SERVICE CODE -->
                     <div
                         class="form-group"
-                        data-ng-if="ServiceContactCtrl.directoryForm.legalForm !== 'individual'"
+                        data-ng-if="$ctrl.directoryForm.legalForm !== 'individual'"
                         data-ng-class="{
-                             'has-error': !ServiceContactCtrl.directoryForm.siret
+                             'has-error': !$ctrl.directoryForm.siret
                          }"
                     >
                         <label
@@ -378,15 +375,15 @@
                             id="directoryServiceCode"
                             name="directoryServiceCode"
                             class="form-control text-capitalize"
-                            data-ng-model="ServiceContactCtrl.directoryForm.directoryServiceCode"
-                            data-ng-disabled="!ServiceContactCtrl.directoryCodes"
-                            data-ng-options="opt.directoryServiceCode as opt.directoryServiceDescription for opt in ServiceContactCtrl.directoryCodes"
+                            data-ng-model="$ctrl.directoryForm.directoryServiceCode"
+                            data-ng-disabled="!$ctrl.directoryCodes"
+                            data-ng-options="opt.directoryServiceCode as opt.directoryServiceDescription for opt in $ctrl.directoryCodes"
                         >
                         </select>
                         <span
                             class="help-block"
                             role="alert"
-                            data-ng-if="!ServiceContactCtrl.directoryForm.siret"
+                            data-ng-if="!$ctrl.directoryForm.siret"
                         >
                             <span
                                 data-translate="telephony_service_contact_directory_code_siret_warn"
@@ -406,14 +403,14 @@
                             id="displayUniversalDirectory"
                             name="displayUniversalDirectory"
                             class="form-control text-capitalize"
-                            data-ng-model="ServiceContactCtrl.directoryForm.displayUniversalDirectory"
+                            data-ng-model="$ctrl.directoryForm.displayUniversalDirectory"
                             data-ng-options="opt as (opt ? 'yes' : 'no' | translate) for opt in [true, false]"
                         >
                         </select>
                     </div>
 
                     <div
-                        data-ng-if="ServiceContactCtrl.directoryForm.displayUniversalDirectory"
+                        data-ng-if="$ctrl.directoryForm.displayUniversalDirectory"
                     >
                         <!-- DISPLAY MARKETING DIRECTORY -->
                         <div class="form-group">
@@ -427,7 +424,7 @@
                                 id="displayMarketingDirectory"
                                 name="displayMarketingDirectory"
                                 class="form-control text-capitalize"
-                                data-ng-model="ServiceContactCtrl.directoryForm.displayMarketingDirectory"
+                                data-ng-model="$ctrl.directoryForm.displayMarketingDirectory"
                                 data-ng-options="opt as (opt ? 'yes' : 'no' | translate) for opt in [true, false]"
                             >
                             </select>
@@ -445,7 +442,7 @@
                                 id="displaySearchReverse"
                                 name="displaySearchReverse"
                                 class="form-control text-capitalize"
-                                data-ng-model="ServiceContactCtrl.directoryForm.displaySearchReverse"
+                                data-ng-model="$ctrl.directoryForm.displaySearchReverse"
                                 data-ng-options="opt as (opt ? 'yes' : 'no' | translate) for opt in [true, false]"
                             >
                             </select>
@@ -454,7 +451,7 @@
                         <!-- DISPLAY FIRST NAME -->
                         <div
                             class="form-group"
-                            data-ng-if="ServiceContactCtrl.directoryForm.legalForm === 'individual'"
+                            data-ng-if="$ctrl.directoryForm.legalForm === 'individual'"
                         >
                             <label
                                 for="contactDisplayFirstName"
@@ -466,8 +463,8 @@
                                 id="contactDisplayFirstName"
                                 name="contactDisplayFirstName"
                                 class="form-control text-capitalize mb-4"
-                                data-ng-model="ServiceContactCtrl.directoryForm.displayFirstName"
-                                data-ng-options="opt as ServiceContactCtrl.getDisplayFirstNameOptions(opt) for opt in [true, false]"
+                                data-ng-model="$ctrl.directoryForm.displayFirstName"
+                                data-ng-options="opt as $ctrl.getDisplayFirstNameOptions(opt) for opt in [true, false]"
                             >
                             </select>
 
@@ -481,7 +478,7 @@
                             <select
                                 id="displayOnlyCity"
                                 class="form-control text-capitalize"
-                                data-ng-model="ServiceContactCtrl.directoryForm.displayOnlyCity"
+                                data-ng-model="$ctrl.directoryForm.displayOnlyCity"
                                 data-ng-options="opt as ('telephony_service_contact_address_publish_' + (opt ? 'city' : 'full') | translate) for opt in [false, true]"
                             >
                             </select>
@@ -497,7 +494,7 @@
                                 id="contactServiceDescription"
                                 name="contactServiceDescription"
                                 class="form-control"
-                                data-ng-model="ServiceContactCtrl.directoryForm.lineDescription"
+                                data-ng-model="$ctrl.directoryForm.lineDescription"
                             />
                         </oui-field>
                     </div>
@@ -511,7 +508,7 @@
                         </label>
                         <p
                             class="form-control-static"
-                            data-ng-bind=":: ServiceContactCtrl.getStatusLabel()"
+                            data-ng-bind=":: $ctrl.getStatusLabel()"
                         ></p>
                     </div>
                 </div>
@@ -524,24 +521,24 @@
                             <hr />
                             <tuc-telephony-bulk-action
                                 data-service-type="all"
-                                data-billing-account="{{ ServiceContactCtrl.bulkDatas.billingAccount }}"
-                                data-service-name="{{ ServiceContactCtrl.bulkDatas.serviceName }}"
+                                data-billing-account="{{ $ctrl.bulkDatas.billingAccount }}"
+                                data-service-name="{{ $ctrl.bulkDatas.serviceName }}"
                                 data-custom-class="link d-block pl-0 mb-3"
-                                data-ng-disabled="ServiceContactCtrl.isLoading || contactForm.$invalid"
-                                data-bulk-infos="ServiceContactCtrl.bulkDatas.infos"
-                                data-get-bulk-params="ServiceContactCtrl.getBulkParams"
-                                data-on-success="ServiceContactCtrl.onBulkSuccess"
-                                data-on-error="ServiceContactCtrl.onBulkError"
+                                data-ng-disabled="$ctrl.isLoading || contactForm.$invalid"
+                                data-bulk-infos="$ctrl.bulkDatas.infos"
+                                data-get-bulk-params="$ctrl.getBulkParams"
+                                data-on-success="$ctrl.onBulkSuccess"
+                                data-on-error="$ctrl.onBulkError"
                             >
                             </tuc-telephony-bulk-action>
                             <button
                                 type="submit"
                                 class="btn btn-primary"
-                                data-ng-disabled="ServiceContactCtrl.isUpdating || contactForm.$invalid"
+                                data-ng-disabled="$ctrl.isUpdating || contactForm.$invalid"
                             >
                                 <oui-spinner
                                     class="mr-2"
-                                    data-ng-if="ServiceContactCtrl.isUpdating"
+                                    data-ng-if="$ctrl.isUpdating"
                                     data-size="s"
                                 >
                                 </oui-spinner>
