@@ -35,137 +35,66 @@
                             name="contactLegalForm"
                             class="form-control"
                             required
-                            data-ng-if="ServiceContactCtrl.isEditing"
                             data-ng-model="ServiceContactCtrl.directoryForm.legalForm"
                             data-ng-change="ServiceContactCtrl.onChangeLegalForm()"
                             data-ng-options="legalForm as ('telephony_service_contact_legalform_' + legalForm | translate) for legalForm in ['individual', 'professional', 'corporation']"
                         >
                         </select>
-                        <p
-                            class="form-control-static"
-                            data-ng-if="!ServiceContactCtrl.isEditing && ServiceContactCtrl.directoryForm.legalForm"
-                            data-ng-bind="'telephony_service_contact_legalform_' + ServiceContactCtrl.directoryForm.legalForm | translate"
-                        ></p>
-                        <p
-                            class="form-control-static"
-                            data-ng-if="!ServiceContactCtrl.isEditing && !ServiceContactCtrl.directoryForm.legalForm"
-                        >
-                            -
-                        </p>
                     </div>
 
-                    <!-- LAST NAME -->
                     <div
-                        class="form-group"
                         data-ng-if="ServiceContactCtrl.directoryForm.legalForm === 'individual' || ServiceContactCtrl.isShortForm()"
-                        data-ng-class="{
-                             'has-error': contactForm.contactLastName.$invalid && contactForm.contactLastName.$touched
-                         }"
                     >
-                        <label
-                            for="contactLastName"
-                            class="control-label"
-                            data-translate="telephony_service_contact_lastname"
+                        <!-- LAST NAME -->
+                        <oui-field
+                            label="{{:: 'telephony_service_contact_lastname' | translate }}"
+                            error-messages="{ 'required': ('telephony_service_contact_must_fill' | translate) }"
                         >
-                        </label>
-                        <input
-                            type="text"
-                            id="contactLastName"
-                            name="contactLastName"
-                            class="form-control"
-                            autofocus
-                            required
-                            data-ng-if="ServiceContactCtrl.isEditing"
-                            data-ng-model="ServiceContactCtrl.directoryForm.name"
-                        />
-                        <p
-                            class="form-control-static"
-                            data-ng-if="!ServiceContactCtrl.isEditing"
-                            data-ng-bind="ServiceContactCtrl.directoryForm.name || '-'"
-                        ></p>
-                        <span
-                            class="help-block"
-                            role="alert"
-                            data-ng-if="contactForm.contactLastName.$touched"
-                            data-ng-messages="contactForm.contactLastName.$error"
+                            <input
+                                type="text"
+                                id="contactLastName"
+                                name="contactLastName"
+                                class="oui-input"
+                                autofocus
+                                required
+                                data-ng-model="ServiceContactCtrl.directoryForm.name"
+                            />
+                        </oui-field>
+
+                        <!-- FIRST NAME -->
+                        <oui-field
+                            label="{{:: 'telephony_service_contact_firstname' | translate }}"
+                            error-messages="{ 'required': ('telephony_service_contact_must_fill' | translate) }"
                         >
-                            <span
-                                data-ng-message="required"
-                                data-translate="telephony_service_contact_must_fill"
-                            >
-                            </span>
-                        </span>
+                            <input
+                                type="text"
+                                id="contactFirstName"
+                                name="contactFirstName"
+                                class="oui-input"
+                                required
+                                data-ng-model="ServiceContactCtrl.directoryForm.firstName"
+                            />
+                        </oui-field>
                     </div>
 
-                    <!-- FIRST NAME -->
-                    <div
-                        class="form-group"
-                        data-ng-if="ServiceContactCtrl.directoryForm.legalForm === 'individual' || ServiceContactCtrl.isShortForm()"
-                        data-ng-class="{
-                             'has-error': contactForm.contactFirstName.$invalid && contactForm.contactFirstName.$touched
-                         }"
-                    >
-                        <label
-                            for="contactFirstName"
-                            class="control-label"
-                            data-translate="telephony_service_contact_firstname"
-                        >
-                        </label>
-                        <input
-                            type="text"
-                            id="contactFirstName"
-                            name="contactFirstName"
-                            class="form-control"
-                            required
-                            data-ng-if="ServiceContactCtrl.isEditing"
-                            data-ng-model="ServiceContactCtrl.directoryForm.firstName"
-                        />
-                        <p
-                            class="form-control-static"
-                            data-ng-if="!ServiceContactCtrl.isEditing"
-                            data-ng-bind="ServiceContactCtrl.directoryForm.firstName || '-'"
-                        ></p>
-                        <span
-                            class="help-block"
-                            role="alert"
-                            data-ng-if="contactForm.contactFirstName.$touched"
-                            data-ng-messages="contactForm.contactFirstName.$error"
-                        >
-                            <span
-                                data-ng-message="required"
-                                data-translate="telephony_service_contact_must_fill"
-                            >
-                            </span>
-                        </span>
-                    </div>
-
-                    <!-- OCCUPATION -->
                     <div
                         class="form-group"
                         data-ng-if="ServiceContactCtrl.directoryForm.legalForm === 'professional' && !ServiceContactCtrl.isShortForm()"
                     >
-                        <label
-                            for="contactOccupation"
-                            class="control-label"
-                            data-translate="telephony_service_contact_occupation"
+                        <!-- OCCUPATION -->
+                        <oui-field
+                            label="{{:: 'telephony_service_contact_occupation' | translate }}"
                         >
-                        </label>
-                        <input
-                            type="text"
-                            id="contactOccupation"
-                            name="contactOccupation"
-                            class="form-control"
-                            data-ng-if="ServiceContactCtrl.isEditing"
-                            data-ng-model="ServiceContactCtrl.directoryForm.occupation"
-                        />
-                        <p
-                            class="form-control-static"
-                            data-ng-if="!ServiceContactCtrl.isEditing"
-                            data-ng-bind="ServiceContactCtrl.directoryForm.occupation || '-'"
-                        ></p>
+                            <input
+                                type="text"
+                                id="contactOccupation"
+                                name="contactOccupation"
+                                class="oui-input"
+                                data-ng-model="ServiceContactCtrl.directoryForm.occupation"
+                            />
+                        </oui-field>
                     </div>
 
-                    <!-- SIRET -->
                     <div
                         class="form-group"
                         data-ng-if="ServiceContactCtrl.directoryForm.legalForm !== 'individual' && !ServiceContactCtrl.isShortForm()"
@@ -173,188 +102,84 @@
                              'has-error': contactForm.contactSiret.$invalid && contactForm.contactSiret.$touched
                          }"
                     >
-                        <label
-                            for="contactSiret"
-                            class="control-label"
-                            data-translate="telephony_service_contact_siret"
+                        <!-- SIRET -->
+                        <oui-field
+                            label="{{:: 'telephony_service_contact_siret' | translate }}"
+                            error-messages="{ 'pattern': ('telephony_service_contact_siret_invalid' | translate) }"
                         >
-                        </label>
-                        <input
-                            type="text"
-                            id="contactSiret"
-                            name="contactSiret"
-                            class="form-control"
-                            autofocus
-                            data-ng-if="ServiceContactCtrl.isEditing"
-                            data-ng-change="ServiceContactCtrl.onSiretChange(contactForm.contactSiret)"
-                            data-ng-model="ServiceContactCtrl.directoryForm.siret"
-                            data-ng-model-options="{ debounce: 500 }"
-                            maxlength="20"
-                            data-ng-pattern="/^(be0)?\d{9,}$/i"
-                        />
-                        <p
-                            class="form-control-static"
-                            data-ng-if="!ServiceContactCtrl.isEditing"
-                            data-ng-bind="ServiceContactCtrl.directoryForm.siret || '-'"
-                        ></p>
-                        <span
-                            class="help-block"
-                            role="alert"
-                            data-ng-if="contactForm.contactSiret.$invalid && contactForm.contactSiret.$touched"
-                            data-ng-messages="contactForm.contactSiret.$error"
-                        >
-                            <span
-                                data-ng-message="siret"
-                                data-translate="telephony_service_contact_siret_invalid"
-                            >
-                            </span>
-                            <span
-                                data-ng-message="pattern"
-                                data-translate="telephony_service_contact_siret_invalid"
-                            >
-                            </span>
-                        </span>
-                    </div>
+                            <input
+                                type="text"
+                                id="contactSiret"
+                                name="contactSiret"
+                                class="oui-input"
+                                autofocus
+                                data-ng-change="ServiceContactCtrl.onSiretChange(contactForm.contactSiret)"
+                                data-ng-model="ServiceContactCtrl.directoryForm.siret"
+                                data-ng-model-options="{ debounce: 500 }"
+                                maxlength="20"
+                                data-ng-pattern="/^(be0)?\d{9,}$/i"
+                            />
+                        </oui-field>
 
-                    <!-- APE -->
-                    <div
-                        class="form-group"
-                        data-ng-if="ServiceContactCtrl.directoryForm.legalForm !== 'individual' && !ServiceContactCtrl.isShortForm()"
-                        data-ng-class="{
-                             'has-error': contactForm.contactApe.$invalid && contactForm.contactApe.$touched
-                         }"
-                    >
-                        <label
-                            for="contactApe"
-                            class="control-label"
-                            data-translate="telephony_service_contact_ape"
+                        <!-- APE -->
+                        <oui-field
+                            label="{{:: 'telephony_service_contact_ape' | translate }}"
+                            error-messages="{ 'pattern': ('telephony_service_contact_ape_invalid' | translate) }"
                         >
-                        </label>
-                        <input
-                            type="text"
-                            id="contactApe"
-                            name="contactApe"
-                            class="form-control"
-                            data-ng-if="ServiceContactCtrl.isEditing"
-                            data-ng-pattern="/^\d{4}\w$/"
-                            data-ng-model="ServiceContactCtrl.directoryForm.ape"
-                            data-ng-model-options="{ debounce: 500 }"
-                        />
-                        <p
-                            class="form-control-static"
-                            data-ng-if="!ServiceContactCtrl.isEditing"
-                            data-ng-bind="ServiceContactCtrl.directoryForm.ape || '-'"
-                        ></p>
-                        <span
-                            class="help-block"
-                            role="alert"
-                            data-ng-if="contactForm.contactApe.$invalid && contactForm.contactApe.$touched"
-                            data-ng-messages="contactForm.contactApe.$error"
-                        >
-                            <span
-                                data-ng-message="pattern"
-                                data-translate="telephony_service_contact_ape_invalid"
-                            >
-                            </span>
-                        </span>
-                    </div>
+                            <input
+                                type="text"
+                                id="contactApe"
+                                name="contactApe"
+                                class="oui-input"
+                                data-ng-pattern="/^\d{4}\w$/"
+                                data-ng-model="ServiceContactCtrl.directoryForm.ape"
+                                data-ng-model-options="{ debounce: 500 }"
+                            />
+                        </oui-field>
 
-                    <!-- SOCIAL NOMINATION -->
-                    <div
-                        class="form-group"
-                        data-ng-if="ServiceContactCtrl.directoryForm.legalForm !== 'individual' && !ServiceContactCtrl.isShortForm()"
-                        data-ng-class="{
-                             'has-error': contactForm.contactSocialNomination.$invalid && contactForm.contactSocialNomination.$touched
-                         }"
-                    >
-                        <label
-                            for="contactSocialNomination"
-                            class="control-label"
-                            data-translate="telephony_service_contact_social_nomination"
+                        <!-- SOCIAL NOMINATION -->
+                        <oui-field
+                            label="{{:: 'telephony_service_contact_social_nomination' | translate }}"
+                            error-messages="{ 'required': ('telephony_service_contact_required' | translate) }"
                         >
-                        </label>
-                        <input
-                            type="text"
-                            id="contactSocialNomination"
-                            name="contactSocialNomination"
-                            class="form-control"
-                            data-ng-if="ServiceContactCtrl.isEditing"
-                            data-ng-model="ServiceContactCtrl.directoryForm.socialNomination"
-                            data-ng-touched
-                            data-required
-                        />
-                        <p
-                            class="form-control-static"
-                            data-ng-if="!ServiceContactCtrl.isEditing"
-                            data-ng-bind="ServiceContactCtrl.directoryForm.socialNomination || '-'"
-                        ></p>
-                        <span
-                            class="help-block"
-                            role="alert"
-                            data-ng-if="contactForm.contactSocialNomination.$invalid && contactForm.contactSocialNomination.$touched"
-                            data-ng-messages="contactForm.contactSocialNomination.$error"
-                        >
-                            <span
-                                data-ng-message="required"
-                                data-translate="telephony_service_contact_required"
-                            >
-                            </span>
-                        </span>
-                    </div>
+                            <input
+                                type="text"
+                                id="contactSocialNomination"
+                                name="contactSocialNomination"
+                                class="oui-input"
+                                required
+                                data-ng-model="ServiceContactCtrl.directoryForm.socialNomination"
+                                data-ng-model-options="{ debounce: 500 }"
+                            />
+                        </oui-field>
 
-                    <!-- SOCIAL NOMINATION EXTRA -->
-                    <div
-                        class="form-group"
-                        data-ng-if="ServiceContactCtrl.directoryForm.legalForm !== 'individual' && !ServiceContactCtrl.isShortForm()"
-                    >
-                        <label
-                            for="contactSocialNominationExtra"
-                            class="control-label"
-                            data-translate="telephony_service_contact_social_nomination_extra"
+                        <!-- SOCIAL NOMINATION EXTRA -->
+                        <oui-field
+                            label="{{:: 'telephony_service_contact_social_nomination_extra' | translate }}"
+                            error-messages="{ 'required': ('telephony_service_contact_required' | translate) }"
                         >
-                        </label>
-                        <input
-                            type="text"
-                            id="contactSocialNominationExtra"
-                            name="contactSocialNominationExtra"
-                            class="form-control"
-                            data-ng-if="ServiceContactCtrl.isEditing"
-                            data-ng-model="ServiceContactCtrl.directoryForm.socialNominationExtra"
-                        />
-                        <p
-                            class="form-control-static"
-                            data-ng-if="!ServiceContactCtrl.isEditing"
-                            data-ng-bind="ServiceContactCtrl.directoryForm.socialNominationExtra || '-'"
-                        ></p>
+                            <input
+                                type="text"
+                                id="contactSocialNominationExtra"
+                                name="contactSocialNominationExtra"
+                                class="oui-input"
+                                data-ng-model="ServiceContactCtrl.directoryForm.socialNominationExtra"
+                            />
+                        </oui-field>
                     </div>
 
                     <!-- EMAIL ADDRESS -->
-                    <div
-                        class="form-group"
-                        data-ng-class="{
-                             'has-error': contactForm.contactEmail.$invalid && contactForm.contactEmail.$touched
-                         }"
+                    <oui-field
+                        label="{{:: 'telephony_service_contact_email' | translate }}"
                     >
-                        <label
-                            for="contactEmail"
-                            class="control-label"
-                            data-translate="telephony_service_contact_email"
-                        >
-                        </label>
                         <input
                             type="email"
                             id="contactEmail"
                             name="contactEmail"
-                            class="form-control"
-                            data-ng-if="ServiceContactCtrl.isEditing"
+                            class="oui-input"
                             data-ng-model="ServiceContactCtrl.directoryForm.email"
                         />
-                        <p
-                            class="form-control-static"
-                            data-ng-if="!ServiceContactCtrl.isEditing"
-                            data-ng-bind="ServiceContactCtrl.directoryForm.email || '-'"
-                        ></p>
-                    </div>
+                    </oui-field>
                 </div>
                 <!-- End of INFOS -->
                 <!-- /.widget-presentation -->
@@ -367,328 +192,139 @@
                     ></h2>
 
                     <!-- COUNTRY -->
-                    <div class="form-group">
-                        <label
-                            for="contactCountry"
-                            class="control-label"
-                            data-translate="telephony_service_contact_country"
-                        >
-                        </label>
+                    <oui-field
+                        label="{{:: 'telephony_service_contact_country' | translate }}"
+                    >
                         <input
                             type="text"
                             id="contactCountry"
                             name="contactCountry"
-                            disabled
-                            class="form-control text-uppercase"
-                            data-ng-if="ServiceContactCtrl.isEditing"
+                            class="oui-input text-uppercase"
                             data-ng-model="ServiceContactCtrl.directoryForm.country"
+                            disabled
                         />
-                        <p
-                            class="form-control-static text-uppercase"
-                            data-ng-if="!ServiceContactCtrl.isEditing"
-                            data-ng-bind="ServiceContactCtrl.directoryForm.country || '-'"
-                        ></p>
-                    </div>
+                    </oui-field>
 
                     <!-- POST CODE -->
-                    <div
-                        class="form-group"
-                        data-ng-class="{
-                             'has-error': contactForm.contactPostCode.$invalid && contactForm.contactPostCode.$touched
-                         }"
+                    <oui-field
+                        label="{{:: 'telephony_service_contact_zipcode' | translate }}"
+                        error-messages="{ 'required': ('telephony_service_contact_must_fill' | translate) }"
                     >
-                        <label
-                            for="contactPostCode"
-                            class="control-label"
-                            data-translate="telephony_service_contact_zipcode"
-                        >
-                        </label>
                         <input
                             type="text"
                             id="contactPostCode"
                             name="contactPostCode"
-                            class="form-control"
+                            class="oui-input"
                             required
                             data-ng-change="ServiceContactCtrl.onPostCodeChange()"
-                            data-ng-if="ServiceContactCtrl.isEditing"
                             data-ng-model="ServiceContactCtrl.directoryForm.postCode"
                             data-ng-model-options="{ debounce: 500 }"
                         />
-                        <p
-                            class="form-control-static"
-                            data-ng-if="!ServiceContactCtrl.isEditing"
-                            data-ng-bind="ServiceContactCtrl.directoryForm.postCode || '-'"
-                        ></p>
-                        <span
-                            class="help-block"
-                            role="alert"
-                            data-ng-if="contactForm.contactPostCode.$touched"
-                            data-ng-messages="contactForm.contactPostCode.$error"
-                        >
-                            <span
-                                data-ng-message="required"
-                                data-translate="telephony_service_contact_must_fill"
-                            >
-                            </span>
-                        </span>
-                    </div>
+                    </oui-field>
 
                     <!-- CITY -->
-                    <div
-                        class="form-group"
-                        data-ng-class="{
-                             'has-error': contactForm.contactCity.$invalid && contactForm.contactCity.$touched
-                         }"
+                    <oui-field
+                        label="{{:: 'telephony_service_contact_city' | translate }}"
+                        error-messages="{ 'required': ('telephony_service_contact_must_fill' | translate) }"
                     >
-                        <label for="contactCity" class="control-label">
-                            <span
-                                data-translate="telephony_service_contact_city"
-                            ></span>
-                            <oui-spinner
-                                class="ml-1"
-                                data-ng-if="ServiceContactCtrl.isCityListLoading"
-                                data-size="s"
-                            >
-                            </oui-spinner>
-                        </label>
                         <input
                             type="text"
                             id="contactCity"
                             name="contactCity"
-                            class="form-control"
+                            class="oui-input"
                             required
-                            data-ng-if="ServiceContactCtrl.isEditing"
                             data-ng-model="ServiceContactCtrl.directoryForm.city"
                         />
-                        <p
-                            class="form-control-static"
-                            data-ng-if="!ServiceContactCtrl.isEditing"
-                            data-ng-bind="ServiceContactCtrl.directoryForm.city || '-'"
-                        ></p>
-                        <span
-                            class="help-block"
-                            role="alert"
-                            data-ng-if="contactForm.contactCity.$touched"
-                            data-ng-messages="contactForm.contactCity.$error"
-                        >
-                            <span
-                                data-ng-message="required"
-                                data-translate="telephony_service_contact_must_fill"
-                            >
-                            </span>
-                        </span>
-                    </div>
+                    </oui-field>
 
                     <!-- URBAN DISTRICT -->
-                    <div
-                        class="form-group"
+                    <oui-field
+                        label="{{:: 'telephony_service_contact_urbandistrict' | translate }}"
                         data-ng-if="ServiceContactCtrl.isUrbanDistrictRequired()"
-                        data-ng-class="{
-                             'has-error': contactForm.contactUrbanDistrict.$invalid && contactForm.contactUrbanDistrict.$touched
-                         }"
+                        error-messages="{ 'required': ('telephony_service_contact_must_fill' | translate) }"
                     >
-                        <label
-                            for="contactUrbanDistrict"
-                            class="control-label"
-                            data-translate="telephony_service_contact_urbandistrict"
-                        >
-                        </label>
                         <input
                             type="text"
                             id="contactUrbanDistrict"
                             name="contactUrbanDistrict"
-                            class="form-control"
+                            class="oui-input"
                             required
-                            data-ng-if="ServiceContactCtrl.isEditing"
                             data-ng-model="ServiceContactCtrl.directoryForm.urbanDistrict"
                         />
-                        <p
-                            class="form-control-static"
-                            data-ng-if="!ServiceContactCtrl.isEditing"
-                            data-ng-bind="ServiceContactCtrl.directoryForm.urbanDistrict || '-'"
-                        ></p>
-                        <span
-                            class="help-block"
-                            role="alert"
-                            data-ng-if="contactForm.contactUrbanDistrict.$touched"
-                            data-ng-messages="contactForm.contactUrbanDistrict.$error"
-                        >
-                            <span
-                                data-ng-message="required"
-                                data-translate="telephony_service_contact_must_fill"
-                            >
-                            </span>
-                        </span>
-                    </div>
+                    </oui-field>
 
                     <!-- CEDEX -->
-                    <div class="form-group">
-                        <label
-                            for="contactCedex"
-                            class="control-label"
-                            data-translate="telephony_service_contact_cedex"
-                        >
-                        </label>
+                    <oui-field
+                        label="{{:: 'telephony_service_contact_cedex' | translate }}"
+                        error-messages="{ 'required': ('telephony_service_contact_must_fill' | translate) }"
+                    >
                         <input
                             type="text"
                             id="contactCedex"
                             name="contactCedex"
-                            class="form-control"
-                            data-ng-if="ServiceContactCtrl.isEditing"
+                            class="oui-input"
                             data-ng-model="ServiceContactCtrl.directoryForm.cedex"
                         />
-                        <p
-                            class="form-control-static"
-                            data-ng-if="!ServiceContactCtrl.isEditing"
-                            data-ng-bind="ServiceContactCtrl.directoryForm.cedex || '-'"
-                        ></p>
-                    </div>
+                    </oui-field>
 
                     <!-- WAY NUMBER -->
-                    <div class="form-group">
-                        <label
-                            for="contactWaynumber"
-                            class="control-label"
-                            data-translate="telephony_service_contact_waynumber"
-                        >
-                        </label>
+                    <oui-field
+                        label="{{:: 'telephony_service_contact_waynumber' | translate }}"
+                        error-messages="{ 'required': ('telephony_service_contact_must_fill' | translate) }"
+                    >
                         <input
                             type="text"
                             id="contactWaynumber"
                             name="contactWaynumber"
-                            class="form-control"
-                            data-ng-if="ServiceContactCtrl.isEditing"
+                            class="oui-input"
                             data-ng-model="ServiceContactCtrl.directoryForm.wayNumber"
                         />
-                        <p
-                            class="form-control-static"
-                            data-ng-if="!ServiceContactCtrl.isEditing"
-                            data-ng-bind="ServiceContactCtrl.directoryForm.wayNumber || '-'"
-                        ></p>
-                    </div>
+                    </oui-field>
 
                     <!-- WAY NUMBER EXTRA -->
-                    <div class="form-group">
-                        <label
-                            for="contactWaynumberExtra"
-                            class="control-label"
-                            data-translate="telephony_service_contact_waynumberextra"
-                        >
-                        </label>
-                        <select
+                    <oui-field
+                        label="{{:: 'telephony_service_contact_waynumberextra' | translate }}"
+                        error-messages="{ 'required': ('telephony_service_contact_must_fill' | translate) }"
+                    >
+                        <oui-select
                             id="contactWaynumberExtra"
                             name="contactWaynumberExtra"
-                            class="form-control text-uppercase"
-                            data-ng-if="ServiceContactCtrl.isEditing"
-                            data-ng-model="ServiceContactCtrl.directoryForm.wayNumberExtra"
-                        >
-                            <option data-ng-bind="" value=""></option>
-                            <option
-                                data-ng-repeat="key in ServiceContactCtrl.wayNumberExtraEnum track by $index"
-                                data-ng-bind="key"
-                                value="{{ key }}"
-                            >
-                            </option>
-                        </select>
-                        <p
-                            class="form-control-static"
-                            data-ng-if="!ServiceContactCtrl.isEditing"
-                            data-ng-bind="ServiceContactCtrl.directoryForm.wayNumberExtra || '-'"
-                        ></p>
-                    </div>
+                            class="text-uppercase"
+                            model="ServiceContactCtrl.directoryForm.wayNumberExtra"
+                            items="ServiceContactCtrl.wayNumberExtraEnum"
+                            match="key"
+                        ></oui-select>
+                    </oui-field>
 
                     <!-- ADDRESS -->
-                    <div
-                        class="form-group"
-                        data-ng-class="{
-                             'has-error': contactForm.contactAddress.$invalid && contactForm.contactAddress.$touched
-                         }"
+                    <oui-field
+                        label="{{:: 'telephony_service_contact_address' | translate }}"
+                        error-messages="{ 'required': ('telephony_service_contact_must_fill' | translate) }"
                     >
-                        <label for="contactAddress" class="control-label">
-                            <span
-                                data-translate="telephony_service_contact_address"
-                            ></span>
-                            <oui-spinner
-                                class="ml-1"
-                                data-ng-if="ServiceContactCtrl.isWayListLoading"
-                                data-size="s"
-                            >
-                            </oui-spinner>
-                        </label>
                         <input
                             type="text"
                             id="contactAddress"
                             name="contactAddress"
-                            class="form-control"
-                            required
-                            data-ng-if="ServiceContactCtrl.isEditing"
+                            class="oui-input"
                             data-ng-model="ServiceContactCtrl.directoryForm.address"
                             data-ng-model-options="{ debounce: 300 }"
                         />
-                        <p
-                            class="form-control-static"
-                            data-ng-if="!ServiceContactCtrl.isEditing"
-                            data-ng-bind="ServiceContactCtrl.directoryForm.address || '-'"
-                        ></p>
-                        <span
-                            class="help-block"
-                            role="alert"
-                            data-ng-if="contactForm.contactAddress.$touched"
-                            data-ng-messages="contactForm.contactAddress.$error"
-                        >
-                            <span
-                                data-ng-message="required"
-                                data-translate="telephony_service_contact_must_fill"
-                            >
-                            </span>
-                        </span>
-                    </div>
+                    </oui-field>
 
                     <!-- ADDRESS EXTRA-->
-                    <div
-                        class="form-group"
-                        data-ng-class="{
-                            'has-error': contactForm.contactAddressExtra.$invalid && contactForm.contactAddressExtra.$touched
-                         }"
+                    <oui-field
+                        label="{{:: 'telephony_service_contact_addressextra' | translate }}"
+                        error-messages="{ 'required': ('telephony_service_contact_must_fill' | translate) }"
                     >
-                        <label
-                            for="contactAddressExtra"
-                            class="control-label"
-                            data-translate="telephony_service_contact_addressextra"
-                        >
-                        </label>
                         <input
                             type="text"
                             id="contactAddressExtra"
                             name="contactAddressExtra"
-                            class="form-control"
-                            data-ng-if="ServiceContactCtrl.isEditing"
+                            class="oui-input"
                             data-ng-model="ServiceContactCtrl.directoryForm.addressExtra"
                             data-ng-pattern="/^[A-Za-z0-9 ]*$/"
                         />
-                        <p
-                            class="form-control-static"
-                            data-ng-if="!ServiceContactCtrl.isEditing"
-                            data-ng-bind="ServiceContactCtrl.directoryForm.addressExtra || '-'"
-                        ></p>
-                        <span
-                            class="help-block"
-                            role="alert"
-                            data-ng-if="contactForm.contactAddressExtra.$invalid && contactForm.contactAddressExtra.$touched"
-                            data-ng-messages="contactForm.contactAddressExtra.$error"
-                        >
-                            <span
-                                data-ng-message="addressExtra"
-                                data-translate="telephony_service_contact_addressextra_invalid"
-                            >
-                            </span>
-                            <span
-                                data-ng-message="pattern"
-                                data-translate="telephony_service_contact_addressextra_invalid"
-                            >
-                            </span>
-                        </span>
-                    </div>
+                    </oui-field>
                 </div>
                 <!-- End of ADDRESS -->
                 <!-- /.widget-presentation -->
@@ -708,32 +344,18 @@
                         class="form-group"
                         data-ng-if="ServiceContactCtrl.directoryForm.legalForm !== 'individual'"
                     >
-                        <label
-                            for="contactPjdenomination"
-                            class="control-label"
+                        <oui-field
+                            label="{{:: 'telephony_service_contact_pjdenomination' | translate }}"
+                            label-popover="{{:: 'telephony_service_contact_pjdenomination_help' | translate }}"
                         >
-                            <span
-                                data-translate="telephony_service_contact_pjdenomination"
-                            ></span>
-                            <i
-                                class="ovh-font ovh-font-info"
-                                data-uib-tooltip="{{:: 'telephony_service_contact_pjdenomination_help' | translate }}"
-                                data-tooltip-append-to-body="true"
-                            ></i>
-                        </label>
-                        <input
-                            type="text"
-                            id="contactPjdenomination"
-                            name="contactPjdenomination"
-                            class="form-control"
-                            data-ng-if="ServiceContactCtrl.isEditing"
-                            data-ng-model="ServiceContactCtrl.directoryForm.socialNomination"
-                        />
-                        <p
-                            class="form-control-static"
-                            data-ng-if="!ServiceContactCtrl.isEditing"
-                            data-ng-bind="ServiceContactCtrl.directoryForm.PJSocialNomination || '-'"
-                        ></p>
+                            <input
+                                type="text"
+                                id="contactPjdenomination"
+                                name="contactPjdenomination"
+                                class="form-control"
+                                data-ng-model="ServiceContactCtrl.directoryForm.socialNomination"
+                            />
+                        </oui-field>
                     </div>
 
                     <!-- DIRECTORY SERVICE CODE -->
@@ -741,7 +363,7 @@
                         class="form-group"
                         data-ng-if="ServiceContactCtrl.directoryForm.legalForm !== 'individual'"
                         data-ng-class="{
-                             'has-error': ServiceContactCtrl.isEditing && !ServiceContactCtrl.directoryForm.siret
+                             'has-error': !ServiceContactCtrl.directoryForm.siret
                          }"
                     >
                         <label
@@ -750,25 +372,20 @@
                             data-translate="telephony_service_contact_directory_code"
                         >
                         </label>
+
                         <select
                             id="directoryServiceCode"
                             name="directoryServiceCode"
                             class="form-control text-capitalize"
-                            data-ng-if="ServiceContactCtrl.isEditing"
                             data-ng-model="ServiceContactCtrl.directoryForm.directoryServiceCode"
                             data-ng-disabled="!ServiceContactCtrl.directoryCodes"
                             data-ng-options="opt.directoryServiceCode as opt.directoryServiceDescription for opt in ServiceContactCtrl.directoryCodes"
                         >
                         </select>
-                        <p
-                            class="form-control-static text-capitalize"
-                            data-ng-if="!ServiceContactCtrl.isEditing"
-                            data-ng-bind="ServiceContactCtrl.findDirectoryService().directoryServiceDescription"
-                        ></p>
                         <span
                             class="help-block"
                             role="alert"
-                            data-ng-if="ServiceContactCtrl.isEditing && !ServiceContactCtrl.directoryForm.siret"
+                            data-ng-if="!ServiceContactCtrl.directoryForm.siret"
                         >
                             <span
                                 data-translate="telephony_service_contact_directory_code_siret_warn"
@@ -788,16 +405,10 @@
                             id="displayUniversalDirectory"
                             name="displayUniversalDirectory"
                             class="form-control text-capitalize"
-                            data-ng-if="ServiceContactCtrl.isEditing"
                             data-ng-model="ServiceContactCtrl.directoryForm.displayUniversalDirectory"
                             data-ng-options="opt as (opt ? 'yes' : 'no' | translate) for opt in [true, false]"
                         >
                         </select>
-                        <p
-                            class="form-control-static text-capitalize"
-                            data-ng-if="!ServiceContactCtrl.isEditing"
-                            data-ng-bind="ServiceContactCtrl.directoryForm.displayUniversalDirectory ? 'yes' : 'no' | translate"
-                        ></p>
                     </div>
 
                     <div
@@ -815,16 +426,10 @@
                                 id="displayMarketingDirectory"
                                 name="displayMarketingDirectory"
                                 class="form-control text-capitalize"
-                                data-ng-if="ServiceContactCtrl.isEditing"
                                 data-ng-model="ServiceContactCtrl.directoryForm.displayMarketingDirectory"
                                 data-ng-options="opt as (opt ? 'yes' : 'no' | translate) for opt in [true, false]"
                             >
                             </select>
-                            <p
-                                class="form-control-static text-capitalize"
-                                data-ng-if="!ServiceContactCtrl.isEditing"
-                                data-ng-bind="ServiceContactCtrl.directoryForm.displayMarketingDirectory ? 'yes' : 'no' | translate"
-                            ></p>
                         </div>
 
                         <!-- DISPLAY SEARCH REVERSE -->
@@ -839,16 +444,10 @@
                                 id="displaySearchReverse"
                                 name="displaySearchReverse"
                                 class="form-control text-capitalize"
-                                data-ng-if="ServiceContactCtrl.isEditing"
                                 data-ng-model="ServiceContactCtrl.directoryForm.displaySearchReverse"
                                 data-ng-options="opt as (opt ? 'yes' : 'no' | translate) for opt in [true, false]"
                             >
                             </select>
-                            <p
-                                class="form-control-static text-capitalize"
-                                data-ng-if="!ServiceContactCtrl.isEditing"
-                                data-ng-bind="ServiceContactCtrl.directoryForm.displaySearchReverse ? 'yes' : 'no' | translate"
-                            ></p>
                         </div>
 
                         <!-- DISPLAY FIRST NAME -->
@@ -865,24 +464,13 @@
                             <select
                                 id="contactDisplayFirstName"
                                 name="contactDisplayFirstName"
-                                class="form-control text-capitalize"
-                                data-ng-if="ServiceContactCtrl.isEditing"
+                                class="form-control text-capitalize mb-4"
                                 data-ng-model="ServiceContactCtrl.directoryForm.displayFirstName"
                                 data-ng-options="opt as ServiceContactCtrl.getDisplayFirstNameOptions(opt) for opt in [true, false]"
                             >
                             </select>
-                            <p
-                                class="form-control-static text-capitalize"
-                                data-ng-if="!ServiceContactCtrl.isEditing"
-                                data-ng-bind="ServiceContactCtrl.directoryForm.displayFirstName ? 'yes' : 'no' | translate"
-                            ></p>
-                        </div>
 
-                        <!-- DISPLAY ONLY CITY -->
-                        <div
-                            class="form-group"
-                            data-ng-if="ServiceContactCtrl.directoryForm.legalForm === 'individual'"
-                        >
+                            <!-- DISPLAY ONLY CITY -->
                             <label
                                 for="displayOnlyCity"
                                 class="control-label"
@@ -892,47 +480,25 @@
                             <select
                                 id="displayOnlyCity"
                                 class="form-control text-capitalize"
-                                data-ng-if="ServiceContactCtrl.isEditing"
                                 data-ng-model="ServiceContactCtrl.directoryForm.displayOnlyCity"
                                 data-ng-options="opt as ('telephony_service_contact_address_publish_' + (opt ? 'city' : 'full') | translate) for opt in [false, true]"
                             >
                             </select>
-                            <p
-                                class="form-control-static text-capitalize"
-                                data-ng-if="!ServiceContactCtrl.isEditing"
-                                data-ng-bind="ServiceContactCtrl.directoryForm.displayOnlyCity ? 'yes' : 'no' | translate"
-                            ></p>
                         </div>
 
                         <!-- LINE DESCRIPTION -->
-                        <div class="form-group">
-                            <label
-                                for="contactServiceDescription"
-                                class="control-label"
-                            >
-                                <span
-                                    data-translate="telephony_service_contact_service_description"
-                                ></span>
-                                <i
-                                    class="ovh-font ovh-font-info ml-1"
-                                    data-uib-tooltip="{{:: 'telephony_service_contact_service_description_help' | translate }}"
-                                    data-tooltip-append-to-body="true"
-                                ></i>
-                            </label>
+                        <oui-field
+                            label="{{:: 'telephony_service_contact_service_description' | translate }}"
+                            label-popover="{{:: 'telephony_service_contact_service_description_help' | translate }}"
+                        >
                             <input
                                 type="text"
                                 id="contactServiceDescription"
                                 name="contactServiceDescription"
                                 class="form-control"
-                                data-ng-if="ServiceContactCtrl.isEditing"
                                 data-ng-model="ServiceContactCtrl.directoryForm.lineDescription"
                             />
-                            <p
-                                class="form-control-static"
-                                data-ng-if="!ServiceContactCtrl.isEditing"
-                                data-ng-bind="ServiceContactCtrl.directoryForm.lineDescription || '-'"
-                            ></p>
-                        </div>
+                        </oui-field>
                     </div>
 
                     <!-- DIRECTORY STATUS -->
@@ -957,10 +523,10 @@
                             <hr />
                             <tuc-telephony-bulk-action
                                 data-service-type="all"
-                                data-billing-account="{{ ServiceContactCtrl.bulkDatas.billingAccount }}"
-                                data-service-name="{{ ServiceContactCtrl.bulkDatas.serviceName }}"
+                                data-billing-account="{{:: ServiceContactCtrl.bulkDatas.billingAccount }}"
+                                data-service-name="{{:: ServiceContactCtrl.bulkDatas.serviceName }}"
                                 data-custom-class="link d-block pl-0 mb-3"
-                                data-ng-disabled="!ServiceContactCtrl.isEditing || ServiceContactCtrl.isLoading ||  contactForm.$invalid"
+                                data-ng-disabled="ServiceContactCtrl.isLoading || contactForm.$invalid"
                                 data-bulk-infos="ServiceContactCtrl.bulkDatas.infos"
                                 data-get-bulk-params="ServiceContactCtrl.getBulkParams"
                                 data-on-success="ServiceContactCtrl.onBulkSuccess"
@@ -968,17 +534,9 @@
                             >
                             </tuc-telephony-bulk-action>
                             <button
-                                type="button"
-                                class="btn btn-default"
-                                data-ng-if="!ServiceContactCtrl.isEditing"
-                                data-translate="telephony_service_contact_edit"
-                                data-ng-click="ServiceContactCtrl.isEditing = true"
-                            ></button>
-                            <button
                                 type="submit"
                                 class="btn btn-primary"
-                                data-ng-if="ServiceContactCtrl.isEditing"
-                                data-ng-disabled="!ServiceContactCtrl.isEditing || ServiceContactCtrl.isUpdating || contactForm.$invalid"
+                                data-ng-disabled="ServiceContactCtrl.isUpdating || contactForm.$invalid"
                             >
                                 <oui-spinner
                                     class="mr-2"
@@ -990,13 +548,6 @@
                                     data-translate="telephony_service_contact_apply"
                                 ></span>
                             </button>
-                            <button
-                                type="button"
-                                class="btn btn-link"
-                                data-ng-if="ServiceContactCtrl.isEditing"
-                                data-translate="cancel"
-                                data-ng-click="ServiceContactCtrl.cancelEdition()"
-                            ></button>
                         </div>
                     </div>
                 </div>
