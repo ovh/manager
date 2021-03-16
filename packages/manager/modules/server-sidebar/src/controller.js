@@ -442,6 +442,10 @@ export default class OvhManagerServerSidebarController {
       .$promise.then((items) => ({
         type: typeDefinition,
         items,
+      }))
+      .catch(() => ({
+        type: typeDefinition,
+        items: [],
       }));
   }
 }
