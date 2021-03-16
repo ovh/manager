@@ -1,3 +1,13 @@
+## [15.16.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.16.7...@ovh-ux/manager-web@15.16.8) (2021-03-16)
+
+
+### Bug Fixes
+
+* **hosting:** state label more explicit ([24ffb16](https://github.com/ovh/manager/commit/24ffb16cdf61fd3107c11e206011ce79e8aea91e))
+* **i18n:** add missing translations [CDS 854] ([eb4a424](https://github.com/ovh/manager/commit/eb4a42449ef2e71f70b576ee6dec2f5914d4603d))
+
+
+
 ## [15.16.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.16.6...@ovh-ux/manager-web@15.16.7) (2021-03-11)
 
 

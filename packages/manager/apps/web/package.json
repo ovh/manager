@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-web",
-  "version": "15.16.7",
+  "version": "15.16.8",
   "private": true,
   "description": "OVHcloud Web control panel.",
   "repository": {

@@ -1,3 +1,12 @@
+## [4.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.10.0...@ovh-ux/manager-public-cloud@4.10.1) (2021-03-16)
+
+
+### Bug Fixes
+
+* **sidebar:** do not open by default on responsive mode ([#4558](https://github.com/ovh/manager/issues/4558)) ([d91b225](https://github.com/ovh/manager/commit/d91b225f43b330fa4e159622e49eb37151d53c8c))
+
+
+
 # [4.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.9.6...@ovh-ux/manager-public-cloud@4.10.0) (2021-03-14)
 
 

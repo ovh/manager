@@ -1,3 +1,12 @@
+## [3.9.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.9.2...@ovh-ux/manager-server-sidebar@3.9.3) (2021-03-16)
+
+
+### Bug Fixes
+
+* **api:** display available results ([#4520](https://github.com/ovh/manager/issues/4520)) ([3a3a8ea](https://github.com/ovh/manager/commit/3a3a8eaea15aef8e1f58c8b37296449ad9ab2e34))
+
+
+
 ## [3.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.9.1...@ovh-ux/manager-server-sidebar@3.9.2) (2021-03-02)
 
 
