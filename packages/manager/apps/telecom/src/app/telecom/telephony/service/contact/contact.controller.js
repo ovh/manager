@@ -10,7 +10,10 @@ import startsWith from 'lodash/startsWith';
 import toUpper from 'lodash/toUpper';
 import words from 'lodash/words';
 
-import { DIRECTORY_INFO } from './contact.constants';
+import {
+  DIRECTORY_INFO,
+  DIRECTORY_WAY_NUMBER_EXTRA_ENUM,
+} from './contact.constants';
 
 export default /* @ngInject */ function TelecomTelephonyServiceContactCtrl(
   $state,
@@ -27,29 +30,24 @@ export default /* @ngInject */ function TelecomTelephonyServiceContactCtrl(
   const self = this;
 
   function buildWayInfo(directory) {
+    const newDirectory = directory;
     if (!directory.wayNumber.length) {
-      set(directory, 'wayNumber', directory.address.replace(/\D/g, ''));
+      newDirectory.wayNumber = directory.address.replace(/\D/g, '');
     }
 
     if (!directory.wayNumberExtra.length) {
-      set(
-        directory,
-        'wayNumberExtra',
-        find(self.wayNumberExtraEnum, (extra) =>
-          some(words(directory.address), (word) => word === extra),
-        ),
+      newDirectory.wayNumberExtra = find(self.wayNumberExtraEnum, (extra) =>
+        some(words(directory.address), (word) => word === extra),
       );
     }
 
     if (!directory.wayName.length) {
-      set(
-        directory,
-        'wayName',
-        directory.address
-          .replace(/\d+/g, '')
-          .replace(directory.wayNumberExtra, ''),
-      );
+      newDirectory.wayName = directory.address
+        .replace(/\d+/g, '')
+        .replace(directory.wayNumberExtra, '');
     }
+
+    return newDirectory;
   }
 
   function fetchDirectory() {
@@ -83,41 +81,10 @@ export default /* @ngInject */ function TelecomTelephonyServiceContactCtrl(
 
   function init() {
     self.isLoading = true;
-    self.isEditing = false;
 
     // TODO : remove once bulk action for fax is available
     self.isFax = $state.current.name.indexOf('fax') > -1;
-
-    self.wayNumberExtraEnum = [
-      'bis',
-      'ter',
-      'quater',
-      'quinquies',
-      'sexto',
-      'septimo',
-      'octimo',
-      'nono',
-      'A',
-      'D',
-      'E',
-      'F',
-      'G',
-      'H',
-      'I',
-      'J',
-      'K',
-      'L',
-      'M',
-      'N',
-      'O',
-      'S',
-      'U',
-      'V',
-      'W',
-      'X',
-      'Y',
-      'Z',
-    ];
+    self.wayNumberExtraEnum = DIRECTORY_WAY_NUMBER_EXTRA_ENUM;
     self.directoryCodes = null;
     return $q
       .all({
@@ -125,8 +92,7 @@ export default /* @ngInject */ function TelecomTelephonyServiceContactCtrl(
         directory: fetchDirectory(),
       })
       .then((res) => {
-        self.directory = res.directory;
-        buildWayInfo(self.directory);
+        self.directory = buildWayInfo(res.directory);
 
         self.directoryForm = angular.copy(self.directory);
         self.cityList = [{ name: self.directory.city }];
@@ -202,7 +168,6 @@ export default /* @ngInject */ function TelecomTelephonyServiceContactCtrl(
       )
       .$promise.then(() => {
         self.directory = angular.copy(self.directoryForm);
-        self.isEditing = false;
         TucToast.success(
           $translate.instant('telephony_service_contact_success'),
         );
@@ -363,12 +328,12 @@ export default /* @ngInject */ function TelecomTelephonyServiceContactCtrl(
                   },
                 );
               }
-              model.$setValidity('siret', true);
+              model.$setValidity('pattern', true);
             } else {
               self.directoryForm.ape = null;
               self.directoryForm.socialNomination = null;
               self.directoryCodes = null;
-              model.$setValidity('siret', false);
+              model.$setValidity('pattern', false);
             }
           })
           .catch((err) => new TucToastError(err));
@@ -433,7 +398,6 @@ export default /* @ngInject */ function TelecomTelephonyServiceContactCtrl(
   };
 
   self.cancelEdition = function cancelEdition() {
-    self.isEditing = false;
     self.directoryForm = angular.copy(self.directory);
   };
 
