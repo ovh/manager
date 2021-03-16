@@ -15,6 +15,7 @@
   "hosting_dashboard_service_state_BLOQUED": "Bloqué",
   "hosting_dashboard_service_state_MAINTENANCE": "Désactivé",
   "hosting_dashboard_service_state_DELETE": "Résilié",
+  "hosting_dashboard_service_state_DELETE_AT_EXPIRATION": "Suppression à l'expiration",
   "hosting_state_info_MAINTENANCE": "infos sur l'état désactivé",
   "hosting_state_info_BLOQUED": "infos sur l'état bloqué",
   "hosting_state_info_title": "Accéder aux guides (nouvelle fenêtre)",
