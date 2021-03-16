@@ -7,7 +7,7 @@ export default /* @ngInject */ ($stateProvider) => {
         'faxInnerView@telecom.telephony.billingAccount.fax.dashboard': {
           templateUrl: 'app/telecom/telephony/service/contact/contact.html',
           controller: 'TelecomTelephonyServiceContactCtrl',
-          controllerAs: 'ServiceContactCtrl',
+          controllerAs: '$ctrl',
         },
       },
       resolve: {
