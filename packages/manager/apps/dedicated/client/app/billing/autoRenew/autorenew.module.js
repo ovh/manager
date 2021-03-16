@@ -7,6 +7,7 @@ import '@ovh-ux/ui-kit';
 import uiRouter from '@uirouter/angularjs';
 import ovhManagerBilling from '@ovh-ux/manager-billing';
 import ovhManagerCore from '@ovh-ux/manager-core';
+import 'punycode';
 
 import activation from './actions/activation/activation.module';
 import agreements from './agreements/user-agreements.module';
@@ -79,6 +80,7 @@ angular
   .component('autoRenew', component)
   .service('BillingAutoRenew', service)
   .provider('BillingAutoRenewParamsMemoization', paramsMemoization)
+  .filter('punycodeToUnicode', () => (input) => punycode.toUnicode(input))
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
