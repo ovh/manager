@@ -50,7 +50,9 @@ export default class {
       event: `autorenew::${kebabCase(
         this.service.serviceType,
       )}::validate-config`,
-      page: 'dedicated::account::billing::autorenew::validate-config',
+      page: `dedicated::account::billing::autorenew::${kebabCase(
+        this.service.serviceType,
+      )}::validate-config`,
       chapter1: 'dedicated',
       chapter2: 'account',
       chapter3: 'billing',
