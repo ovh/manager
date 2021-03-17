@@ -1,3 +1,17 @@
+# [3.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.6.2...@ovh-ux/manager-hub-app@3.7.0) (2021-03-17)
+
+
+### Bug Fixes
+
+* **hub:** remove useless prefix for warning notifications ([#4569](https://github.com/ovh/manager/issues/4569)) ([94051db](https://github.com/ovh/manager/commit/94051db1616a758affc079fc731c5a8bfc0bda4f))
+
+
+### Features
+
+* **hub:** add veeamcc service type to incident status page ([#4572](https://github.com/ovh/manager/issues/4572)) ([d55f9fa](https://github.com/ovh/manager/commit/d55f9faca3743d72490ed78460b4697973679b90))
+
+
+
 ## [3.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.6.1...@ovh-ux/manager-hub-app@3.6.2) (2021-03-16)
 
 
