@@ -1,3 +1,12 @@
+# [3.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@3.3.3...@ovh-ux/manager-account-sidebar@3.4.0) (2021-03-17)
+
+
+### Features
+
+* add incident migration banner ([f05c541](https://github.com/ovh/manager/commit/f05c541b027a1af92f211c7d17bb08c8c466eb50))
+
+
+
 ## [3.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-sidebar@3.3.2...@ovh-ux/manager-account-sidebar@3.3.3) (2021-03-02)
 
 

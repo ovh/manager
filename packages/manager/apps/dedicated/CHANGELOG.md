@@ -1,3 +1,12 @@
+# [16.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.6.0...@ovh-ux/manager-dedicated@16.7.0) (2021-03-17)
+
+
+### Features
+
+* add incident migration banner ([f05c541](https://github.com/ovh/manager/commit/f05c541b027a1af92f211c7d17bb08c8c466eb50))
+
+
+
 # [16.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.5.1...@ovh-ux/manager-dedicated@16.6.0) (2021-03-14)
 
 
