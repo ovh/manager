@@ -1,3 +1,12 @@
+## [3.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.7.0...@ovh-ux/manager-hub-app@3.7.1) (2021-03-17)
+
+
+### Bug Fixes
+
+* **incident:** add padding to display pagination ([#4576](https://github.com/ovh/manager/issues/4576)) ([c6de14b](https://github.com/ovh/manager/commit/c6de14b937d970303d0f806f128d9e02caee4a1a))
+
+
+
 # [3.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.6.2...@ovh-ux/manager-hub-app@3.7.0) (2021-03-17)
 
 
