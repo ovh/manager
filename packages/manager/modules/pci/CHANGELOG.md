@@ -1,3 +1,13 @@
+## [5.13.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.13.1...@ovh-ux/manager-pci@5.13.2) (2021-03-16)
+
+
+### Bug Fixes
+
+* **workflow:** check workflow availability by region ([3ebf4d4](https://github.com/ovh/manager/commit/3ebf4d4df88a07dcdd773d015fb80225795e1b18))
+* **workflow:** disable region ([786fd61](https://github.com/ovh/manager/commit/786fd6197e43423ab2c0eafda348265a146e0003))
+
+
+
 ## [5.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.13.0...@ovh-ux/manager-pci@5.13.1) (2021-03-16)
 
 

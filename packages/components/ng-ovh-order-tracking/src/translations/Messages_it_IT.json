@@ -42,5 +42,6 @@
   "order_tracking_status": "Storico degli ordini",
   "order_tracking_status_more": "Visualizza lo storico",
   "order_tracking_error": "Si è verificato un errore durante il recupero dell'ordine.",
-  "order_tracking_try_again": "Riprova"
+  "order_tracking_try_again": "Riprova",
+  "order_tracking_bare_metal_delivery_delay": "A causa della domanda attuale, i tempi di consegna dei nostri servizi Bare Metal potrebbero essere più lunghi del solito. I nostri team sono all’opera e stanno facendo di tutto per consegnarli il prima possibile."
 }

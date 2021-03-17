@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-order-tracking@1.0.6...@ovh-ux/ng-ovh-order-tracking@1.1.0) (2021-03-16)
+
+
+### Features
+
+* **order-tracking:** add information on bare metal delivery ([#4568](https://github.com/ovh/manager/issues/4568)) ([25f4350](https://github.com/ovh/manager/commit/25f435006d6fdff5ec7d99e8f9c8c346803dccbd))
+
+
+
 ## [1.0.6](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-order-tracking@1.0.5...@ovh-ux/ng-ovh-order-tracking@1.0.6) (2021-01-27)
 
 

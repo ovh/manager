@@ -1374,5 +1374,6 @@
   "hosting_dashboard_service_common_inactive": "Nieaktywny",
   "hosting_dashboard_email_offer_get_error": "Nie można pobrać adresu e-mail",
   "hosting_dashboard_stats_status": "Beta",
-  "hosting_tab_DOMAINS_configuration_add_step3_delete_4a_records": "Usuń pola AAAA domeny {{domain}}"
+  "hosting_tab_DOMAINS_configuration_add_step3_delete_4a_records": "Usuń pola AAAA domeny {{domain}}",
+  "hosting_dashboard_service_state_DELETE_AT_EXPIRATION": "Usunięcie usługi w dniu wygaśnięcia"
 }

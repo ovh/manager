@@ -1377,5 +1377,6 @@
   "hosting_dashboard_email_offer_get_error": "No se ha podido cargar la dirección de correo.",
   "hosting_dashboard_stats_status": "Beta",
   "hosting_tab_DOMAINS_configuration_add_step3_delete_4a_records": "Elimine los registros AAA del dominio {{domain}}",
-  "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_information": "Configuración de la zona DNS"
+  "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_information": "Configuración de la zona DNS",
+  "hosting_dashboard_service_state_DELETE_AT_EXPIRATION": "Eliminación en la fecha de expiración"
 }
