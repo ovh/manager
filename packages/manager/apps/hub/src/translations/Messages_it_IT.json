@@ -1,5 +1,5 @@
 {
-  "manager_hub_notification_warning": "Attenzione: {{ content }}",
+  "manager_hub_notification_warning": "{{ content }}",
   "manager_hub_skip_to_main_content": "Vai al contenuto principale",
   "manager_hub_sbg_incident": "View the status of your services in Strasbourg (SBG)"
 }
