@@ -293,6 +293,20 @@
                         ></oui-select>
                     </oui-field>
 
+                    <!-- WAY NAME -->
+                    <oui-field
+                        label="{{:: 'telephony_service_contact_wayname' | translate }}"
+                    >
+                        <input
+                            class="oui-input"
+                            id="contactWayName"
+                            type="text"
+                            name="contactWayName"
+                            data-ng-model="ServiceContactCtrl.directoryForm.wayName"
+                            data-ng-pattern="/[\w|\W|\s]+/"
+                        />
+                    </oui-field>
+
                     <!-- ADDRESS -->
                     <oui-field
                         label="{{:: 'telephony_service_contact_address' | translate }}"
