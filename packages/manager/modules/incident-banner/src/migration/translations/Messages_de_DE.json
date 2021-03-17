@@ -1,4 +1,4 @@
 {
-  "manager_incident_migration_banner_description": "One or more of your Bare Metal services were affected by the incident in the Strasbourg datacentre (SBG).  We offer you the replacement of these services free of charge for a specified period.",
-  "manager_incident_migration_banner_cta": "Replace my services"
+  "manager_incident_migration_banner_description": "Einer oder mehrere Ihrer Bare-Metal-Dienste sind vom Brand im Straßburger Rechenzentrum (SBG) betroffen. Wir bieten Ihnen an, diese(n) Dienst(e) für einen bestimmten Zeitraum kostenlos zu ersetzen.",
+  "manager_incident_migration_banner_cta": "Meine Dienste ersetzen"
 }

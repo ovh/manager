@@ -1,7 +1,7 @@
 {
-  "manager_hub_incident_migration_warning_replace": "Service replacement",
-  "manager_hub_incident_migration_warning_see_contracts": "Validate the contracts",
-  "manager_hub_incident_migration_warning_cancel": "Cancel",
-  "manager_hub_incident_migration_warning_description": "To replace your services, you must validate the associated contracts.",
-  "manager_hub_incident_migration_warning_purchase": "You will then be redirected to the order form with the information about your new services."
+  "manager_hub_incident_migration_warning_replace": "Meine Dienste ersetzen",
+  "manager_hub_incident_migration_warning_see_contracts": "Die Verträge bestätigen",
+  "manager_hub_incident_migration_warning_cancel": "Abbrechen",
+  "manager_hub_incident_migration_warning_description": "Um Ihre Dienste zu ersetzen, bestätigen Sie bitte die dazugehörigen Verträge.",
+  "manager_hub_incident_migration_warning_purchase": "Anschließend werden Sie zum Bestellschein weitergeleitet, der die Informationen zu Ihren neuen Diensten enthält."
 }

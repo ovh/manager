@@ -1,7 +1,7 @@
 {
-  "manager_hub_incident_migration_contract": "Contracts",
-  "manager_hub_incident_migration_contract_title": "Contract",
-  "manager_hub_incident_migration_contract_continue": "Continue",
-  "manager_hub_incident_migration_contract_cancel": "Cancel",
-  "manager_hub_incident_migration_contract_error": "An error has occured while creating the order."
+  "manager_hub_incident_migration_contract": "Verträge",
+  "manager_hub_incident_migration_contract_title": "Vertrag",
+  "manager_hub_incident_migration_contract_continue": "Weiter",
+  "manager_hub_incident_migration_contract_cancel": "Abbrechen",
+  "manager_hub_incident_migration_contract_error": "Es ist ein Fehler aufgetreten."
 }
