@@ -1,3 +1,12 @@
+## [1.2.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps-app@1.2.4...@ovh-ux/manager-vps-app@1.2.5) (2021-03-18)
+
+
+### Bug Fixes
+
+* **deps:** add missing @ovh-ux/manager-incident-banner dependency ([#4582](https://github.com/ovh/manager/issues/4582)) ([91d0a05](https://github.com/ovh/manager/commit/91d0a05118b9bed4cda5c59eac9efbd8df51fd42))
+
+
+
 ## [1.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps-app@1.2.3...@ovh-ux/manager-vps-app@1.2.4) (2021-03-02)
 
 

@@ -1,3 +1,12 @@
+## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-incident-banner@1.1.0...@ovh-ux/manager-incident-banner@1.1.1) (2021-03-18)
+
+
+### Bug Fixes
+
+* add missing translations ([c0b6bbf](https://github.com/ovh/manager/commit/c0b6bbf3adeee350c48795c436c8430f3c44daf1))
+
+
+
 # [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-incident-banner@1.0.0...@ovh-ux/manager-incident-banner@1.1.0) (2021-03-17)
 
 
