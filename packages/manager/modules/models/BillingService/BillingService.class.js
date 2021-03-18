@@ -15,7 +15,11 @@ export default class BillingService {
     this.expirationDate = moment(this.expiration);
     this.creationDate = moment(this.creation);
 
-    if (this.status) {
+    // if the availability is provided use it otherwise
+    // try to guess the state from the status
+    if (this.availability) {
+      this.state = this.availability;
+    } else if (this.status) {
       this.state = this.isSuspended() ? 'EXPIRED' : 'UP';
     }
   }
@@ -319,6 +323,10 @@ export default class BillingService {
 
   canBeUnresiliated(nichandle) {
     return this.hasPendingResiliation() && this.hasResiliationRights(nichandle);
+  }
+
+  isAvailable() {
+    return this.state === 'UP';
   }
 
   isSuspended() {

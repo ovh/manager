@@ -218,8 +218,8 @@
             <span
                 class="oui-badge"
                 data-ng-class="{
-                        'oui-badge_success': !$row.isSuspended(),
-                        'oui-badge_error': $row.isSuspended()
+                        'oui-badge_success': $row.isAvailable(),
+                        'oui-badge_error': !$row.isAvailable(),
                     }"
                 data-translate="{{ 'billing_autorenew_service_state_' + $row.state | translate }}"
             >
