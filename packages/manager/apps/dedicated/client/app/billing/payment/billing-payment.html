@@ -29,14 +29,6 @@
                 data-active="$ctrl.$state.includes('app.account.billing.payment.vouchers')"
                 ><span data-translate="billing_payment_vouchers_title"></span>
             </oui-header-tabs-item>
-            <oui-header-tabs-item
-                data-ng-if="$ctrl.coreConfig.getRegion() === 'EU'"
-                data-href="{{ $ctrl.$state.href('app.account.billing.payment.transactions') }}"
-                data-active="$ctrl.$state.includes('app.account.billing.payment.transactions')"
-                ><span
-                    data-translate="billing_payment_transations_title"
-                ></span>
-            </oui-header-tabs-item>
         </oui-header-tabs>
     </oui-header>
 
