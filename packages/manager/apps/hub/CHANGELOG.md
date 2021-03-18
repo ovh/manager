@@ -1,3 +1,12 @@
+## [3.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.8.0...@ovh-ux/manager-hub-app@3.8.1) (2021-03-18)
+
+
+### Bug Fixes
+
+* add missing translations ([c0b6bbf](https://github.com/ovh/manager/commit/c0b6bbf3adeee350c48795c436c8430f3c44daf1))
+
+
+
 # [3.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.7.1...@ovh-ux/manager-hub-app@3.8.0) (2021-03-17)
 
 
