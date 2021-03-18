@@ -1,0 +1,8 @@
+{
+  "voucher_credit_code_add_label": "Añadir un código promocional",
+  "voucher_credit_code_add_placeholder": "Código",
+  "voucher_credit_code_add_submit": "Añadir",
+  "voucher_credit_code_success": "Su recarga de <strong>{{t0}}</strong> se ha generado correctamente. Ya puede realizar su pedido.",
+  "voucher_credit_code_error": "El código promocional no es válido.",
+  "voucher_credit_code_cancel": "Annuler"
+}

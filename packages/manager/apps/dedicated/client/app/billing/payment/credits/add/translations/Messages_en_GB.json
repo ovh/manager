@@ -1,0 +1,8 @@
+{
+  "voucher_credit_code_add_label": "Add a voucher code",
+  "voucher_credit_code_add_placeholder": "Code",
+  "voucher_credit_code_add_submit": "Add",
+  "voucher_credit_code_success": "Your <strong>{{t0}}</strong> credit has been generated. You can proceed with your order.",
+  "voucher_credit_code_error": "Invalid voucher code.",
+  "voucher_credit_code_cancel": "Annuler"
+}

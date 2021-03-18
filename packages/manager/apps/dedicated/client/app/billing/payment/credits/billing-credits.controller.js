@@ -2,34 +2,25 @@ import get from 'lodash/get';
 import head from 'lodash/head';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
-import set from 'lodash/set';
 
 angular.module('Billing.controllers').controller(
   'Billing.controllers.Credits',
   class BillingCreditsCtrl {
-    constructor(Alerter, $translate, BillingCredits, BillingUser) {
+    constructor(
+      $translate,
+      addVoucherLink,
+      Alerter,
+      balances,
+      BillingCredits,
+      BillingUser,
+    ) {
+      this.addVoucherLink = addVoucherLink;
       this.Alerter = Alerter;
       this.$translate = $translate;
       this.billingCredits = BillingCredits;
       this.User = BillingUser;
 
-      this.balances = null;
-      this.paginatedBalances = null;
-
-      // for pagination-front
-      this.currentPage = 1;
-      this.itemsPerPage = 10;
-      this.nbPages = null;
-
-      this.loading = {
-        init: false,
-        getBalance: false,
-        creditCode: false,
-      };
-
-      this.model = {
-        creditCode: null,
-      };
+      this.balances = balances;
     }
 
     /* ==============================
@@ -75,92 +66,14 @@ angular.module('Billing.controllers').controller(
 
     /* -----  End of HELPERS  ------ */
 
-    /* ===================================
-    =            VOUCHER FORM            =
-    ==================================== */
-
-    addCreditCode() {
-      this.loading.creditCode = true;
-      return this.User.addCreditCode(this.model.creditCode)
-        .then((result) => {
-          this.Alerter.success(
-            this.$translate.instant('voucher_credit_code_success', {
-              t0: result.amount.text,
-            }),
-          );
-          this.model.creditCode = null;
-          this.$onInit();
-        })
-        .catch((err) => {
-          this.Alerter.alertFromSWS(
-            this.$translate.instant('voucher_credit_code_error'),
-            err,
-          );
-        })
-        .finally(() => {
-          this.loading.creditCode = false;
-        });
+    getBalanceDetails({ balanceName }) {
+      return this.billingCredits.getBalance(balanceName).then((balance) => ({
+        ...balance,
+        expiringDetails:
+          balance.expiring && balance.expiring.length
+            ? this.constructor.getExpiringDetails(balance.expiring)
+            : null,
+      }));
     }
-
-    /* -----  End of VOUCHER FORM  ------ */
-
-    /* =======================================
-    =            PAGINATION FRONT            =
-    ======================================== */
-
-    getBalanceDetails(balanceName) {
-      this.loading.getBalance = true;
-      return this.billingCredits.getBalance(balanceName);
-    }
-
-    pushBalanceDetails(balanceDetails) {
-      set(
-        balanceDetails,
-        'expiringDetails',
-        balanceDetails.expiring && balanceDetails.expiring.length
-          ? this.constructor.getExpiringDetails(balanceDetails.expiring)
-          : null,
-      );
-      this.paginatedBalances.push(balanceDetails);
-    }
-
-    onDetailsDone() {
-      this.loading.getBalance = false;
-    }
-
-    /* -----  End of PAGINATION FRONT  ------ */
-
-    /* =====================================
-    =            INITIALIZATION            =
-    ====================================== */
-
-    $onInit() {
-      this.loading.init = true;
-
-      this.balances = null;
-      this.paginatedBalances = [];
-
-      return this.billingCredits
-        .queryBalance()
-        .then((balances) => {
-          this.balances = balances;
-        })
-        .catch((error) => {
-          this.Alerter.set(
-            'alert-danger',
-            [
-              this.$translate.instant(
-                'billing_credit_balance_movements_load_error',
-              ),
-              get(error, 'message'),
-            ].join(' '),
-          );
-        })
-        .finally(() => {
-          this.loading.init = false;
-        });
-    }
-
-    /* -----  End of INITIALIZATION  ------ */
   },
 );
