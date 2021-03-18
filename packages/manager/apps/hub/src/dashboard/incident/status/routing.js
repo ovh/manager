@@ -3,13 +3,7 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/status',
     component: 'hubIncidentStatus',
     resolve: {
-      services: /* @ngInject */ ($http) =>
-        $http
-          .get('/incident-status', {
-            serviceType: 'aapi',
-          })
-          .then(({ data }) => data)
-          .catch(() => []),
+      services: /* @ngInject */ (servicesStatus) => servicesStatus,
       translatedStatusEnum: /* @ngInject */ ($translate, services) =>
         services
           .map((service) => service.status)
