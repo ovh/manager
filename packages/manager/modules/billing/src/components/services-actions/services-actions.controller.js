@@ -74,12 +74,6 @@ export default class ServicesActionsCtrl {
     }
   }
 
-  canAnticipateRenew() {
-    return !['PACK_XDSL', 'TELEPHONY', 'XDSL'].includes(
-      this.service.serviceType,
-    );
-  }
-
   getRenewUrl() {
     return `${RENEW_URL[this.user.ovhSubsidiary] || RENEW_URL.default}${
       this.service.serviceId

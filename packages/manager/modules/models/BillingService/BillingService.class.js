@@ -271,7 +271,15 @@ export default class BillingService {
   }
 
   hasParticularRenew() {
-    return ['EMAIL_EXCHANGE', 'SMS', 'EMAIL_DOMAIN'].includes(this.serviceType);
+    return [
+      'EMAIL_EXCHANGE',
+      'EMAIL_DOMAIN',
+      'EMAIL_PRO',
+      'SMS',
+      'PACK_XDSL',
+      'TELEPHONY',
+      'XDSL',
+    ].includes(this.serviceType);
   }
 
   canHandleRenew() {
@@ -283,6 +291,7 @@ export default class BillingService {
   }
 
   canBeResiliated(nichandle) {
+    if (this.serviceType === 'EMAIL_PRO') return false;
     return this.canDeleteAtExpiration && this.hasAdminRights(nichandle);
   }
 
