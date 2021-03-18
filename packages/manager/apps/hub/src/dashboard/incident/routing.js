@@ -5,6 +5,13 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       incidentName: /* @ngInject */ ($transition$) =>
         $transition$.params().incidentName.toLowerCase(),
+      servicesStatus: /* @ngInject */ ($http) =>
+        $http
+          .get('/incident-status', {
+            serviceType: 'aapi',
+          })
+          .then(({ data }) => data)
+          .catch(() => []),
     },
   });
 };

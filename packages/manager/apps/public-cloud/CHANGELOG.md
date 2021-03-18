@@ -1,3 +1,12 @@
+# [4.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.10.1...@ovh-ux/manager-public-cloud@4.11.0) (2021-03-17)
+
+
+### Features
+
+* add incident migration banner ([f05c541](https://github.com/ovh/manager/commit/f05c541b027a1af92f211c7d17bb08c8c466eb50))
+
+
+
 ## [4.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.10.0...@ovh-ux/manager-public-cloud@4.10.1) (2021-03-16)
 
 

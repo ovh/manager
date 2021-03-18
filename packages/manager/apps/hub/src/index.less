@@ -1,19 +1,21 @@
 @import '@ovh-ux/manager-account-sidebar/src/variables';
 @import '@ovh-ux/ui-kit/dist/less/_tokens';
 
-.hub-main-view_sidebar_expanded {
-  margin-right: @ovh-sidebar-width;
-}
-
 ovh-manager-banner-text .notification-banner {
   padding-right: @ovh-sidebar-width !important;
+}
+
+@media screen and (min-width: @device-breakpoint-medium-max-width) {
+  .hub-main-view_sidebar_expanded {
+    margin-right: @ovh-sidebar-width;
+    max-width: calc(100% - @ovh-sidebar-width);
+  }
 }
 
 @media screen and (max-width: @device-breakpoint-medium-max-width) {
   .hub-main-view {
     margin-right: 0;
   }
-
   ovh-manager-banner-text .notification-banner {
     padding-right: 0 !important;
   }

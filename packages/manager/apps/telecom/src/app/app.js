@@ -9,6 +9,7 @@ import ovhManagerAccountSidebar from '@ovh-ux/manager-account-sidebar';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ovhManagerDashboard from '@ovh-ux/manager-telecom-dashboard';
 import ovhManagerFreefax from '@ovh-ux/manager-freefax';
+import ovhManagerIncidentBanner from '@ovh-ux/manager-incident-banner';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
 import ovhManagerOverTheBox from '@ovh-ux/manager-overthebox';
 import ovhManagerSms from '@ovh-ux/manager-sms';
@@ -116,6 +117,7 @@ angular
       ovhManagerBetaPreference,
       ovhManagerCore,
       ovhManagerDashboard,
+      ovhManagerIncidentBanner,
       ovhManagerFreefax,
       ovhManagerNavbar,
       ovhManagerOverTheBox,

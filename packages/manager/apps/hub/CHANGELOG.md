@@ -1,3 +1,13 @@
+# [3.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.7.1...@ovh-ux/manager-hub-app@3.8.0) (2021-03-17)
+
+
+### Features
+
+* add incident migration banner ([f05c541](https://github.com/ovh/manager/commit/f05c541b027a1af92f211c7d17bb08c8c466eb50))
+* add incident migration module ([92d320f](https://github.com/ovh/manager/commit/92d320f7201eb8561dbe8ed5e2f7617dc895e46c))
+
+
+
 ## [3.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.7.0...@ovh-ux/manager-hub-app@3.7.1) (2021-03-17)
 
 

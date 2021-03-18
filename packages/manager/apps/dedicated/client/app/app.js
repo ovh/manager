@@ -31,6 +31,7 @@ import ovhManagerCore from '@ovh-ux/manager-core';
 import ovhManagerBanner from '@ovh-ux/manager-banner';
 import ovhManagerEnterpriseCloudDatabase from '@ovh-ux/manager-enterprise-cloud-database';
 import ovhManagerDbaasLogs from '@ovh-ux/manager-dbaas-logs';
+import ovhManagerIncidentBanner from '@ovh-ux/manager-incident-banner';
 import ovhManagerMfaEnrollment from '@ovh-ux/mfa-enrollment';
 import ovhManagerNasha from '@ovh-ux/manager-nasha';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
@@ -131,6 +132,7 @@ angular
       ovhManagerAtInternetConfiguration,
       ovhManagerAccountMigration,
       ovhManagerDbaasLogs,
+      ovhManagerIncidentBanner,
       ovhManagerIplb,
       ovhManagerServerSidebar,
       ovhManagerSupport,
