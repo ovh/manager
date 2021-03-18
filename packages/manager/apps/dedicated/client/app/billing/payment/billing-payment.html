@@ -13,10 +13,9 @@
                 ><span data-translate="billing_payment_ovhaccount_title"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
-                data-ng-if="$ctrl.coreConfig.getRegion() !== 'US'"
-                data-href="{{ $ctrl.$state.href('app.account.billing.payment.vouchers') }}"
-                data-active="$ctrl.$state.includes('app.account.billing.payment.vouchers')"
-                ><span data-translate="billing_payment_vouchers_title"></span>
+                data-href="{{ $ctrl.$state.href('app.account.billing.payment.credits') }}"
+                data-active="$ctrl.$state.includes('app.account.billing.payment.credits')"
+                ><span data-translate="billing_payment_credits_title"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
                 data-ng-if="$ctrl.coreConfig.getRegion() === 'EU'"
@@ -25,9 +24,10 @@
                 ><span data-translate="billing_payment_fidelity_title"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
-                data-href="{{ $ctrl.$state.href('app.account.billing.payment.credits') }}"
-                data-active="$ctrl.$state.includes('app.account.billing.payment.credits')"
-                ><span data-translate="billing_payment_credits_title"></span>
+                data-ng-if="$ctrl.coreConfig.getRegion() !== 'US' && !!$ctrl.voucherAccounts.length"
+                data-href="{{ $ctrl.$state.href('app.account.billing.payment.vouchers') }}"
+                data-active="$ctrl.$state.includes('app.account.billing.payment.vouchers')"
+                ><span data-translate="billing_payment_vouchers_title"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
                 data-ng-if="$ctrl.coreConfig.getRegion() === 'EU'"
