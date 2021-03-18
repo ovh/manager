@@ -6,6 +6,7 @@ import ovhManagerCore from '@ovh-ux/manager-core';
 import autorenew from './autoRenew/autorenew.module';
 import featureAvailability from './billing-feature-availability';
 import history from './main/history/history.module';
+import paymentCreditAdd from './payment/credits/add/add-credits.module';
 import order from './order/billing-order-tracking.module';
 import orders from './orders/orders.module';
 import refunds from './main/refunds/refunds.module';
@@ -28,6 +29,7 @@ angular
     history,
     'ngRoute',
     'ngSanitize',
+    paymentCreditAdd,
     order,
     orders,
     refunds,
