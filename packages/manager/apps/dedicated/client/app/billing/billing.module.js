@@ -8,6 +8,7 @@ import featureAvailability from './billing-feature-availability';
 import history from './main/history/history.module';
 import order from './order/billing-order-tracking.module';
 import orders from './orders/orders.module';
+import refunds from './main/refunds/refunds.module';
 import sla from './sla/sla.module';
 import termination from './confirmTerminate/termination.module';
 import paymentMehtod from './payment/method';
@@ -29,6 +30,7 @@ angular
     'ngSanitize',
     order,
     orders,
+    refunds,
     ngOvhExportCsv,
     'ngOvhUtils',
     sla,

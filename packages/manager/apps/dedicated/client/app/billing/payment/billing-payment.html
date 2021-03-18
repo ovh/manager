@@ -19,11 +19,6 @@
                 ><span data-translate="billing_payment_vouchers_title"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
-                data-href="{{ $ctrl.$state.href('app.account.billing.payment.refunds') }}"
-                data-active="$ctrl.$state.includes('app.account.billing.payment.refunds')"
-                ><span data-translate="billing_payment_refunds_title"></span>
-            </oui-header-tabs-item>
-            <oui-header-tabs-item
                 data-ng-if="$ctrl.coreConfig.getRegion() === 'EU'"
                 data-href="{{ $ctrl.$state.href('app.account.billing.payment.fidelity') }}"
                 data-active="$ctrl.$state.includes('app.account.billing.payment.fidelity')"
