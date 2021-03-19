@@ -3,6 +3,7 @@
   "manager_hub_incident_status_service_name": "Service name",
   "manager_hub_incident_status_service_type": "Product type",
   "manager_hub_incident_status_service_status": "Status",
+  "manager_hub_incident_status_service_rack": "Rack",
   "manager_hub_incident_status_service_status_RECOVERABLE": "Recoverable",
   "manager_hub_incident_status_service_status_NON_RECOVERABLE": "Non-recoverable",
   "manager_hub_incident_status_service_status_TO_ASSESS": "Under investigation",
