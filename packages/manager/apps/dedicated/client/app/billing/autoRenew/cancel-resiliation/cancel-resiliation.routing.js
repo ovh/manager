@@ -1,3 +1,5 @@
+import kebabCase from 'lodash/kebabCase';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.account.billing.autorenew.cancel-resiliation', {
     url: '/cancel-resiliation?serviceId&serviceType',
@@ -8,6 +10,16 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     layout: 'modal',
     translations: { value: ['.'], format: 'json' },
+    atInternet: {
+      ignore: true,
+    },
+    onEnter: /* @ngInject */ (atInternet, service) =>
+      atInternet.trackPage({
+        name: `account::billing::autorenew::${kebabCase(
+          service.serviceType,
+        )}::cancel-resiliation`,
+        type: 'navigation',
+      }),
     resolve: {
       goBack: /* @ngInject */ (goToAutorenew) => goToAutorenew,
       cancelResiliation: /* @ngInject */ (
@@ -52,9 +64,11 @@ export default /* @ngInject */ ($stateProvider) => {
           service.id,
           endStrategies.REACTIVATE_ENGAGEMENT,
         ),
-      trackClick: /* @ngInject */ (atInternet) => () =>
+      trackClick: /* @ngInject */ (atInternet, service) => () =>
         atInternet.trackClick({
-          name: 'autorenew::cancel-resiliation',
+          name: `autorenew::${kebabCase(
+            service.serviceType,
+          )}::cancel-resiliation::confirm`,
           type: 'action',
           chapter1: 'dedicated',
           chapter2: 'account',
