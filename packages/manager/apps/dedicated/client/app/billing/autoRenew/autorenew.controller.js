@@ -259,4 +259,11 @@ export default class AutorenewCtrl {
       }).format(new Date(service.expiration)),
     );
   }
+
+  /* for some services it doesn't make sense to display
+   * the date of effect, in that case it'll be hidden
+   */
+  static shouldHideDate(service) {
+    return ['EMAIL_EXCHANGE'].includes(service?.serviceType);
+  }
 }

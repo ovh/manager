@@ -243,34 +243,38 @@
             data-filterable
             data-sortable
         >
-            <span
-                data-ng-if="$row.hasDebt() && !$row.isBillingSuspended()"
-                data-translate="billing_autorenew_service_date_now"
-            ></span>
-            <span
-                data-ng-if="$row.isOneShot() && !$row.isResiliated() && !$row.hasPendingResiliation() || $row.isBillingSuspended()"
-                >-</span
-            >
-            <span
-                data-ng-if="$row.hasManualRenew() && !$row.isResiliated() && !$row.hasDebt() && !$row.isBillingSuspended()"
-                data-translate="billing_autorenew_service_date_before"
-                data-translate-values="{
-                        date: $row.formattedExpiration
-                    }"
-            >
+            <span data-ng-if="$ctrl.constructor.shouldHideDate($row)">
+                -
             </span>
-            <span
-                data-ng-if="$row.isResiliated() || $row.hasPendingResiliation() && !$row.isBillingSuspended()"
-                data-translate="billing_autorenew_service_date_renew"
-                data-translate-values="{
-                        date: $row.formattedExpiration
-                    }"
-            >
-            </span>
-            <span
-                data-ng-if="$row.hasAutomaticRenewal() && !$row.isOneShot() && !$row.hasDebt() && !$row.isResiliated() && !$row.hasPendingResiliation() && !$row.isBillingSuspended()"
-                data-ng-bind="$ctrl.getAutomaticExpirationDate($row)"
-            >
+            <span data-ng-if="!$ctrl.constructor.shouldHideDate($row)">
+                <span
+                    data-ng-if="$row.hasDebt() && !$row.isBillingSuspended()"
+                    data-translate="billing_autorenew_service_date_now"
+                ></span>
+                <span
+                    data-ng-if="$row.isOneShot() && !$row.isResiliated() && !$row.hasPendingResiliation() || $row.isBillingSuspended()"
+                    >-</span
+                >
+                <span
+                    data-ng-if="$row.hasManualRenew() && !$row.isResiliated() && !$row.hasDebt() && !$row.isBillingSuspended()"
+                    data-translate="billing_autorenew_service_date_before"
+                    data-translate-values="{
+                            date: $row.formattedExpiration
+                        }"
+                >
+                </span>
+                <span
+                    data-ng-if="$row.isResiliated() || $row.hasPendingResiliation() && !$row.isBillingSuspended()"
+                    data-translate="billing_autorenew_service_date_renew"
+                    data-translate-values="{
+                            date: $row.formattedExpiration
+                        }"
+                >
+                </span>
+                <span
+                    data-ng-if="$row.hasAutomaticRenewal() && !$row.isOneShot() && !$row.hasDebt() && !$row.isResiliated() && !$row.hasPendingResiliation() && !$row.isBillingSuspended()"
+                    data-ng-bind="$ctrl.getAutomaticExpirationDate($row)"
+                >
             </span>
         </oui-datagrid-column>
         <!-- /Columns -->
