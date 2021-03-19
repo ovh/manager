@@ -1,3 +1,12 @@
+# [3.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.8.1...@ovh-ux/manager-hub-app@3.9.0) (2021-03-19)
+
+
+### Features
+
+* **dashboard:** add rack state to incident status ([#4586](https://github.com/ovh/manager/issues/4586)) ([5448bd5](https://github.com/ovh/manager/commit/5448bd57a725c4179e10f74f55280758144da37a))
+
+
+
 ## [3.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.8.0...@ovh-ux/manager-hub-app@3.8.1) (2021-03-18)
 
 
