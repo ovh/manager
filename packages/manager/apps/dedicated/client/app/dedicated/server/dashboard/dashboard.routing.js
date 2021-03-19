@@ -215,6 +215,8 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
       vrackInfos: /* @ngInject */ ($stateParams, Server) =>
         Server.getVrackInfos($stateParams.productId),
+      incidentStatus: /* @ngInject */ ($stateParams, Server) =>
+        Server.getIncidentStatus($stateParams.productId),
     },
   });
 };
