@@ -29,6 +29,7 @@ export default {
     user: '<',
     vrackInfos: '<',
     worldPart: '<',
+    incidentStatus: '<',
   },
   controller,
   template,

@@ -1,3 +1,12 @@
+# [16.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.7.0...@ovh-ux/manager-dedicated@16.8.0) (2021-03-19)
+
+
+### Features
+
+* **server.dashboard:** add rack status ([#4590](https://github.com/ovh/manager/issues/4590)) ([fae1b00](https://github.com/ovh/manager/commit/fae1b00844b0c2878cc8d247a10e9d8324102707))
+
+
+
 # [16.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.6.0...@ovh-ux/manager-dedicated@16.7.0) (2021-03-17)
 
 
