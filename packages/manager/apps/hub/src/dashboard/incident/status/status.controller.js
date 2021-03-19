@@ -37,6 +37,12 @@ export default class StatusController {
           this.services.length > 0 &&
           !Object.keys(this.services[0]).includes('datacenter'),
       },
+      {
+        name: 'rack',
+        hidden:
+          this.services.length > 0 &&
+          !Object.keys(this.services[0]).includes('rack'),
+      },
     ];
   }
 }

@@ -84,6 +84,19 @@
     >
     </oui-datagrid-column>
     <oui-datagrid-column
+        title="::'manager_hub_incident_status_service_rack' | translate"
+        property="rack"
+    >
+        <p data-ng-if="$value.status !== 'UNKNOWN'">
+            <span data-ng-bind=":: $value.id"></span>
+            <span
+                class="oui-badge"
+                data-ng-class="{ 'oui-badge_success' : $value.status === 'UP',  'oui-badge_sold-out' : $value.status === 'DOWN' }"
+                data-ng-bind=":: $value.status"
+            ></span>
+        </p>
+    </oui-datagrid-column>
+    <oui-datagrid-column
         title="::'manager_hub_incident_status_service_status' | translate"
         property="status"
         filterable
@@ -91,7 +104,7 @@
         type-options="$ctrl.filtersOptions.status"
     >
         <span
-            data-translate="{{:: 'manager_hub_incident_status_service_status_' + $row.status }}"
+            data-translate="{{:: 'manager_hub_incident_status_service_status_' + $value }}"
         >
         </span>
     </oui-datagrid-column>
