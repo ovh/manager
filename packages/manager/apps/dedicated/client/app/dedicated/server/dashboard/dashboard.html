@@ -236,10 +236,17 @@
                                 class="oui-tile__term"
                                 data-translate="server_configuration_rack"
                             ></dt>
-                            <dd
-                                class="oui-tile__description"
-                                data-ng-bind="$ctrl.infoServer.rack || '-'"
-                            ></dd>
+                            <dd class="oui-tile__description">
+                                <span
+                                    data-ng-bind="$ctrl.infoServer.rack || '-'"
+                                ></span>
+                                <span
+                                    class="oui-badge"
+                                    data-ng-if="$ctrl.incidentStatus.rack.status !== 'UNKNOWN'"
+                                    data-ng-class="{ 'oui-badge_success' : $ctrl.incidentStatus.rack.status === 'UP',  'oui-badge_sold-out' : $ctrl.incidentStatus.rack.status === 'DOWN' }"
+                                    data-ng-bind=":: $ctrl.incidentStatus.rack.status"
+                                ></span>
+                            </dd>
                         </dl>
                     </div>
                     <div class="oui-tile__item">
