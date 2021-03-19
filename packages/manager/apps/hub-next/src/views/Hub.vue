@@ -82,7 +82,10 @@ export default defineComponent({
     warningNotifications(): string[] {
       return Array.isArray(this.notifications)
         ? this.notifications
-            .filter((notification: OvhNotification) => notification.level === 'warning')
+            .filter(
+              (notification: OvhNotification) =>
+                notification.level === 'warning' || notification.level === 'error',
+            )
             .map((notification) => notification.description)
         : [];
     },
@@ -92,7 +95,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .hub-dashboard-content {
-  padding-bottom: 3rem;
+  padding-bottom: 5rem;
 }
 
 .hub-banner {
