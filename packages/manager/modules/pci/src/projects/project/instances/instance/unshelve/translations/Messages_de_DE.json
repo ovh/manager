@@ -1,0 +1,9 @@
+{
+  "pci_projects_project_instances_instance_unshelve_title": "Reaktivierung Ihrer Instanz",
+  "pci_projects_project_instances_instance_unshelve_submit_label": "Bestätigen",
+  "pci_projects_project_instances_instance_unshelve_cancel_label": "Abbrechen",
+  "pci_projects_project_instances_instance_unshelve_content": "Sie sind dabei, Ihre Instanz {{ instance }} erneut zu aktivieren. Die Ihrer Public Cloud Instanz vorbehaltenen Ressourcen werden wieder hergestellt (inklusive IP-Adresse). Die Daten Ihrer lokalen Festplatte werden wiederhergestellt. Die Dauer dieses Vorgangs hängt von der Größe Ihrer lokalen Festplatte ab.",
+  "pci_projects_project_instances_instance_unshelve_success_inprogress_message": "Die Instanz {{ instance }} wird gerade erneut aktiviert.",
+  "pci_projects_project_instances_instance_unshelve_success_message": "Die Instanz {{ instance }} wurde reaktiviert.",
+  "pci_projects_project_instances_instance_unshelve_error_message": "Bei der Reaktivierung der Instanz {{ instance }} ist ein Fehler aufgetreten: {{message}}."
+}

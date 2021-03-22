@@ -32,8 +32,8 @@
   "pci_projects_project_instances_status_BUILD": "Tworzenie",
   "pci_projects_project_instances_status_SHUTOFF": "Wyłączona",
   "pci_projects_project_instances_status_RESCUE": "Rescue",
-  "pci_projects_project_instances_status_SHELVED": "Shelved",
-  "pci_projects_project_instances_status_SHELVED_OFFLOADED": "Shelved offloaded",
+  "pci_projects_project_instances_status_SHELVED": "Zawieszona",
+  "pci_projects_project_instances_status_SHELVED_OFFLOADED": "Zawieszona",
   "pci_projects_project_instances_status_RESCUING": "Restart (rescue)",
   "pci_projects_project_instances_status_UNRESCUING": "Restart",
   "pci_projects_project_instances_status_SNAPSHOTTING": "Tworzenie kopii instancji",
@@ -56,5 +56,9 @@
   "pci_projects_project_instances_autobackup_label": "Utwórz automatyzowane kopie zapasowe",
   "pci_projects_project_instances_refresh": "Aktualizacja instancji",
   "pci_projects_project_instances_start_label": "Uruchom",
-  "pci_projects_project_instances_stop_label": "Zatrzymaj"
+  "pci_projects_project_instances_stop_label": "Zatrzymaj",
+  "pci_projects_project_instances_status_SHELVING": "Zawieszanie w trakcie",
+  "pci_projects_project_instances_status_UNSHELVING": "Ponowne włączenie w trakcie",
+  "pci_projects_project_instances_shelve_label": "Zawieś",
+  "pci_projects_project_instances_unshelve_label": "Przywróć"
 }
