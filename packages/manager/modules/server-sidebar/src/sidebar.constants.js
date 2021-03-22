@@ -43,7 +43,7 @@ export const DEDICATED_CLOUD_CONFIG = {
       types: [
         {
           path: '/dedicatedCloud/:productId/datacenter',
-          state: 'app.dedicatedCloud.details.datacenter',
+          state: 'app.dedicatedCloud.details.datacenter.details',
           stateParams: ['productId', 'datacenterId'],
           app: [DEDICATED],
           namespace: HPC_NAMESPACE,
