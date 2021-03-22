@@ -14,7 +14,6 @@ import billingMain from './main/billing-main.module';
 import dateRangeSelectionService from './common/dateRangeSelection';
 import debtAccount from './dbtAccount/billing-debtAccount.service';
 import featureAvailability from './billing-feature-availability';
-import history from './main/history/history.module';
 import paymentCreditAdd from './payment/credits/add/add-credits.module';
 import messageParser from './common/messageParser';
 import order from './order/billing-order-tracking.module';

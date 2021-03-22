@@ -10,8 +10,6 @@ import createAlertCtrl from './createAlert/billing-ovhAccount-createAlert.contro
 import createAlertTpl from './createAlert/billing-ovhAccount-createAlert.html';
 import renewCtrl from './renew/billing-ovhAccount-renew.controller';
 import renewTpl from './renew/billing-ovhAccount-renew.html';
-import retrieveCtrl from './retrieve/billing-ovhAccount-retrieve.controller';
-import retrieveTpl from './retrieve/billing-ovhAccount-retrieve.html';
 
 const moduleName = 'ovhManagerBillingPaymentOvhAccount';
 
@@ -26,7 +24,6 @@ angular
   .service('BillingOvhAccount', service)
   .controller('Billing.controllers.OvhAccountCreateAlert', createAlertCtrl)
   .controller('Billing.controllers.OvhAccountRenew', renewCtrl)
-  .controller('Billing.controllers.OvhAccountRetrieve', retrieveCtrl)
   .run(
     /* @ngInject */ ($templateCache) => {
       $templateCache.put(
@@ -36,10 +33,6 @@ angular
       $templateCache.put(
         '/billing/payment/ovhAccount/renew/billing-ovhAccount-renew.html',
         renewTpl,
-      );
-      $templateCache.put(
-        '/billing/payment/ovhAccount/renew/billing-ovhAccount-retrieve.html',
-        retrieveTpl,
       );
     },
   )
