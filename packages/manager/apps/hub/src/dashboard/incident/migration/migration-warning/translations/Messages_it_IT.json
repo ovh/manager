@@ -1,7 +1,7 @@
 {
-  "manager_hub_incident_migration_warning_replace": "Sostituisci i tuoi servizi",
+  "manager_hub_incident_migration_warning_replace": "Sostituzione del servizio",
   "manager_hub_incident_migration_warning_see_contracts": "Conferma i contratti",
   "manager_hub_incident_migration_warning_cancel": "Annulla",
   "manager_hub_incident_migration_warning_description": "Per sostituire i tuoi servizi, ti sarà richiesto di confermare i contratti associati.",
-  "manager_hub_incident_migration_warning_purchase": "Verrai poi reindirizzato al buono d'ordine con le informazioni relative ai tuoi nuovi servizi."
+  "manager_hub_incident_migration_warning_purchase": "Verrai poi reindirizzato al buono d'ordine con le informazioni dei tuoi nuovi servizi."
 }

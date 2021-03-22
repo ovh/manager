@@ -1,4 +1,4 @@
 {
-  "manager_incident_migration_banner_description": "Uno o più dei tuoi servizi Bare Metal sono stati colpiti dall'incendio del datacenter di Strasburgo (SBG). Ti proponiamo la sostituzione gratuita di questo/i servizio/i per un determinato periodo.",
-  "manager_incident_migration_banner_cta": "Sostituisci i servizi"
+  "manager_incident_migration_banner_description": "Uno o più dei tuoi servizi Bare Metal sono stati colpiti dall'incendio del datacenter di Strasburgo (SBG). Ti proponiamo la sostituzione gratuita di questo/i servizio/i per un periodo di tempo determinato.",
+  "manager_incident_migration_banner_cta": "Sostituisci i tuoi servizi"
 }
