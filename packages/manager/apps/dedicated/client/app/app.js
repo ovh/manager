@@ -53,7 +53,6 @@ import ovhManagerIplb from '@ovh-ux/manager-iplb';
 import ovhManagerCloudConnect from '@ovh-ux/manager-cloud-connect';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
-import ovhManagerAccountMigration from '@ovh-ux/manager-account-migration';
 import account from './account';
 import cdn from './cdn';
 import config from './config/config';
@@ -130,7 +129,6 @@ angular
       ngQAllSettled,
       'ovh-api-services',
       ovhManagerAtInternetConfiguration,
-      ovhManagerAccountMigration,
       ovhManagerDbaasLogs,
       ovhManagerIncidentBanner,
       ovhManagerIplb,
