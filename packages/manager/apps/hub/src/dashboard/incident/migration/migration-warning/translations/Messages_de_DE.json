@@ -1,7 +1,7 @@
 {
-  "manager_hub_incident_migration_warning_replace": "Meine Dienste ersetzen",
+  "manager_hub_incident_migration_warning_replace": "Ersatz Ihrer Dienste",
   "manager_hub_incident_migration_warning_see_contracts": "Die Verträge bestätigen",
-  "manager_hub_incident_migration_warning_cancel": "Abbrechen",
+  "manager_hub_incident_migration_warning_cancel": "Stornieren",
   "manager_hub_incident_migration_warning_description": "Um Ihre Dienste zu ersetzen, bestätigen Sie bitte die dazugehörigen Verträge.",
   "manager_hub_incident_migration_warning_purchase": "Anschließend werden Sie zum Bestellschein weitergeleitet, der die Informationen zu Ihren neuen Diensten enthält."
 }

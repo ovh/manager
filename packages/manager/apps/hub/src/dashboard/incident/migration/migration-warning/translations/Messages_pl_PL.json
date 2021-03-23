@@ -1,7 +1,7 @@
 {
-  "manager_hub_incident_migration_warning_replace": "Zastąpienie usług",
+  "manager_hub_incident_migration_warning_replace": "Zastąpienie usługi",
   "manager_hub_incident_migration_warning_see_contracts": "Akceptacja regulaminów",
   "manager_hub_incident_migration_warning_cancel": "Anuluj",
-  "manager_hub_incident_migration_warning_description": "Jeśli są Państwo zainteresowani zastąpieniem usług, prosimy o zaakceptowanie powiązanych z nimi regulaminów.",
+  "manager_hub_incident_migration_warning_description": "Jeśli są Państwo zainteresowani zastąpieniem usług, prosimy o zaakceptowanie powiązanych z nimi regulaminów. ",
   "manager_hub_incident_migration_warning_purchase": "Zostaniecie Państwo przekierowani do zamówienia zawierającego informacje o nowych usługach."
 }
