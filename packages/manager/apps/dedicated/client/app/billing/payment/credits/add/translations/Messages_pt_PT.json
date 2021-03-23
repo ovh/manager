@@ -1,8 +1,8 @@
 {
-  "voucher_credit_code_add_label": "Adicionar o código do Voucher ",
-  "voucher_credit_code_add_placeholder": "Código",
+  "voucher_credit_code_add_label": "Adicionar voucher",
+  "voucher_credit_code_add_placeholder": "Voucher",
   "voucher_credit_code_add_submit": "Adicionar",
-  "voucher_credit_code_success": "O crédito de <strong>{{t0}}</strong> foi gerado de forma correta. Pode continuar com o seu pedido.",
-  "voucher_credit_code_error": "Código incorreto do voucher.",
-  "voucher_credit_code_cancel": "Annuler"
+  "voucher_credit_code_success": "O seu crédito de <strong>{{credit}}</strong> foi gerado com êxito. Pode efetuar a sua encomenda.",
+  "voucher_credit_code_error": "Ocorreu um erro aquando da adição do voucher.",
+  "voucher_credit_code_cancel": "Cancelar"
 }
