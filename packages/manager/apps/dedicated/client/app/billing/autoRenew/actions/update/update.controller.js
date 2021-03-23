@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import kebabCase from 'lodash/kebabCase';
 
 import { BillingService } from '@ovh-ux/manager-models';
 
@@ -11,6 +12,7 @@ export default class {
   }
 
   $onInit() {
+    this.currentRenew = { ...this.service.renew };
     this.billingService = new BillingService(this.service);
 
     this.model = {
@@ -45,8 +47,12 @@ export default class {
 
   onConfirmation() {
     this.atInternet.trackEvent({
-      event: 'autorenew::validate-config',
-      page: 'dedicated::account::billing::autorenew::validate-config',
+      event: `autorenew::${kebabCase(
+        this.service.serviceType,
+      )}::validate-config`,
+      page: `dedicated::account::billing::autorenew::${kebabCase(
+        this.service.serviceType,
+      )}::validate-config`,
       chapter1: 'dedicated',
       chapter2: 'account',
       chapter3: 'billing',
@@ -54,12 +60,18 @@ export default class {
   }
 
   onFinish() {
+    const previousType = this.currentRenew.automatic ? 'auto' : 'manual';
+    const previousPeriod = this.currentRenew.period
+      ? `_${this.currentRenew.period}m`
+      : '';
     const type = this.service.renew.automatic ? 'auto' : 'manual';
     const period = this.service.renew.period
       ? `_${this.service.renew.period}m`
       : '';
     this.atInternet.trackClick({
-      name: `autorenew::update::${type}${period}`,
+      name: `autorenew::${kebabCase(
+        this.service.serviceType,
+      )}::update::from_${previousType}${previousPeriod}_to_${type}${period}`,
       type: 'action',
       chapter1: 'dedicated',
       chapter2: 'account',

@@ -1,3 +1,5 @@
+import kebabCase from 'lodash/kebabCase';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.account.billing.autorenew.update', {
     url: '/update?serviceId&serviceType',
@@ -37,5 +39,15 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('billing_autorenew_service_update_title'),
     },
+    atInternet: {
+      ignore: true,
+    },
+    onEnter: /* @ngInject */ (atInternet, service) =>
+      atInternet.trackPage({
+        name: `account::billing::autorenew::${kebabCase(
+          service.serviceType,
+        )}::update`,
+        type: 'navigation',
+      }),
   });
 };
