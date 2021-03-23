@@ -8,8 +8,6 @@ import '@ovh-ux/ng-ovh-utils';
 import '@ovh-ux/ng-ovh-web-universe-components';
 import '@ovh-ux/ng-ui-router-layout';
 
-import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
-
 import cacheTemplate from './emailpro.template';
 import controllers from './emailproControllers.module';
 import routing from './emailpro.routes';
