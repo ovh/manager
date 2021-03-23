@@ -31,6 +31,14 @@ export default class {
       { application: 'dedicated', path: '#/billing/mean' },
       { application: 'dedicated', path: '#/support' },
     ]);
+
+    this.model = {
+      manualQuota: this.project.manualQuota,
+    };
+
+    this.loaders = {
+      manualQuota: false,
+    };
   }
 
   loadMessages() {
@@ -78,6 +86,32 @@ export default class {
             this.$translate.instant('pci_projects_project_quota_unleash_error'),
           );
         }
+      });
+  }
+
+  onManualQuotaSwitchChange(modelValue) {
+    this.loaders.manualQuota = true;
+
+    return this.OvhApiCloudProject.v6()
+      .put(
+        {
+          serviceName: this.projectId,
+        },
+        {
+          manualQuota: modelValue,
+        },
+      )
+      .$promise.catch(() => {
+        this.CucCloudMessage.error(
+          this.$translate.instant(
+            'pci_projects_project_quota_autoscaling_error',
+          ),
+        );
+
+        this.model.manualQuota = !this.model.manualQuota;
+      })
+      .finally(() => {
+        this.loaders.manualQuota = false;
       });
   }
 }
