@@ -1,3 +1,24 @@
 {
-  "billing_payment_credits": "Guthaben"
+  "billing_payment_credits": "Meine Gutscheine",
+  "billing_credits_add": "Einen Gutschein hinzufügen",
+  "billing_credits_description": "Ihre Gutscheine werden verwendet, um Ihre Bestellung ganz oder teilweise zu bezahlen. Ihre Gutscheine werden auf den Betrag zzgl. MwSt. Ihrer Bestellung verwendet.",
+  "billing_credits_title": "Meine Gutscheine",
+  "billing_credits_none": "Sie haben keine Gutscheine.",
+  "billing_credit_balance_header_name": "Name",
+  "billing_credit_balance_header_creation_date": "Erstellungsdatum",
+  "billing_credit_balance_header_last_update_date": "Letztes Update",
+  "billing_credit_balance_header_expiration_date": "Ablaufdatum",
+  "billing_credit_balance_header_expiration_amount": "Ablaufendes Guthaben",
+  "billing_credit_balance_header_amount": "Betrag",
+  "billing_credit_balance_header_movements": "Vorgänge",
+  "billing_credit_balance_movements_details": "Vorgangsdetails",
+  "billing_credit_balance_movements_title": "Details zu den Vorgängen unter Verwendung Ihrer Gutscheine {{t0}}",
+  "billing_credit_balance_movements_back": "Zurück zu meinen Gutscheinen",
+  "billing_credit_balance_movements_header_date": "Datum",
+  "billing_credit_balance_movements_header_operation": "Operation",
+  "billing_credit_balance_header_order": "Bestellung",
+  "billing_credit_balance_movements_operation_credit": "Aufladung",
+  "billing_credit_balance_movements_operation_debit": "Soll",
+  "billing_credit_balance_movements_load_error": "Beim Laden der Vorgänge unter Verwendung Ihrer Gutscheine ist ein Fehler aufgetreten.",
+  "billing_credit_back": "Zurück zu meinen Gutscheinen"
 }

@@ -1,3 +1,24 @@
 {
-  "billing_payment_credits": "Créditos"
+  "billing_payment_credits": "Os meus vouchers",
+  "billing_credits_add": "Adicionar voucher",
+  "billing_credits_description": "Os seus vouchers serão utilizados para pagar a totalidade ou parte da sua encomenda. Estes aplicar-se-ão ao montante s/IVA da sua encomenda.",
+  "billing_credits_title": "Os meus vouchers",
+  "billing_credits_none": "Não possui vouchers",
+  "billing_credit_balance_header_name": "Nome",
+  "billing_credit_balance_header_creation_date": "Data de criação",
+  "billing_credit_balance_header_last_update_date": "Última atualização",
+  "billing_credit_balance_header_expiration_date": "Data de expiração",
+  "billing_credit_balance_header_expiration_amount": "Montante prestes a expirar",
+  "billing_credit_balance_header_amount": "Montante",
+  "billing_credit_balance_header_movements": "Movimentos",
+  "billing_credit_balance_movements_details": "Detalhes dos movimentos",
+  "billing_credit_balance_movements_title": "Detalhes dos movimentos do seu voucher {{t0}}",
+  "billing_credit_balance_movements_back": "Voltar aos meus vouchers",
+  "billing_credit_balance_movements_header_date": "Data",
+  "billing_credit_balance_movements_header_operation": "Operação",
+  "billing_credit_balance_header_order": "Comando",
+  "billing_credit_balance_movements_operation_credit": "Crédito",
+  "billing_credit_balance_movements_operation_debit": "Débito",
+  "billing_credit_balance_movements_load_error": "Ocorreu um erro aquando do carregamento dos movimentos do seu voucher.",
+  "billing_credit_back": "Voltar aos meus vouchers"
 }

@@ -1,8 +1,8 @@
 {
-  "voucher_credit_code_add_label": "Promo-Code eingeben",
-  "voucher_credit_code_add_placeholder": "Code",
+  "voucher_credit_code_add_label": "Einen Gutschein hinzufügen",
+  "voucher_credit_code_add_placeholder": "Gutschein",
   "voucher_credit_code_add_submit": "Hinzufügen",
-  "voucher_credit_code_success": "Ihre Gutschrift von <strong>{{credit}}</strong> wurde erfolgreich generiert. Sie können mit Ihrer Bestellung fortfahren.",
-  "voucher_credit_code_error": "Ungültiger Promo-Code.",
-  "voucher_credit_code_cancel": "Annuler"
+  "voucher_credit_code_success": "Ihre Gutschrift in Höhe von <strong>{{credit}}</strong> wurde erstellt. Sie können nun mit Ihrer Bestellung fortfahren.",
+  "voucher_credit_code_error": "Beim Hinzufügen des Gutscheins ist ein Fehler aufgetreten:",
+  "voucher_credit_code_cancel": "Stornieren"
 }
