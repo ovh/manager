@@ -12,7 +12,7 @@
   "billing_credit_balance_header_amount": "Montant",
   "billing_credit_balance_header_movements": "Mouvements",
   "billing_credit_balance_movements_details": "Détails des mouvements",
-  "billing_credit_balance_movements_title": "Détails des mouvements de votre bon bons d'achat {{t0}}",
+  "billing_credit_balance_movements_title": "Détails des mouvements de votre bon d'achat {{t0}}",
   "billing_credit_balance_movements_back": "Retour à mes bons d'achat",
   "billing_credit_balance_movements_header_date": "Date",
   "billing_credit_balance_movements_header_operation": "Opération",
