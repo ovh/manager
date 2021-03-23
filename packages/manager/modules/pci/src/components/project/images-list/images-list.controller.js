@@ -108,23 +108,28 @@ export default class ImagesListController {
 
   findDefaultImage() {
     if (this.defaultImageId) {
-      find(this.os, (osList, osType) => {
-        find(osList, (osSubList, osName) => {
-          find(osSubList, (os) => {
-            const region = find(os.regions, {
-              region: this.region,
-              id: this.defaultImageId,
-            });
-            if (region) {
-              this.selectedTab = osType;
-              this.distribution = osName;
-              this.image = os;
+      // To cover case where image is deprecated
+      if (this.instance.isDeprecatedImage()) {
+        this.selectedTab = this.instance.image.type;
+      } else {
+        find(this.os, (osList, osType) => {
+          find(osList, (osSubList, osName) => {
+            find(osSubList, (os) => {
+              const region = find(os.regions, {
+                region: this.region,
+                id: this.defaultImageId,
+              });
+              if (region) {
+                this.selectedTab = osType;
+                this.distribution = osName;
+                this.image = os;
 
-              this.onImageChange(os);
-            }
+                this.onImageChange(os);
+              }
+            });
           });
         });
-      });
+      }
 
       if (!this.image) {
         find(this.apps, (app) => {
