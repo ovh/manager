@@ -28,7 +28,7 @@ export default defineComponent({
   },
 });
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 @import '~@ovh-ux/manager-hub/src/variables.scss';
 .manager-hub-user-panel_links {
   padding-bottom: 3rem !important;

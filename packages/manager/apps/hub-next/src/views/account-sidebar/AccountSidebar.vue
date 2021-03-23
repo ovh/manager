@@ -1,17 +1,9 @@
 <template>
   <sidebar :closed="closed" class="manager-hub-user-panel">
-    <div class="mb-3">
-      <account-sidebar-user-infos :user="user"></account-sidebar-user-infos>
-    </div>
-    <div class="mb-4">
-      <account-sidebar-payment></account-sidebar-payment>
-    </div>
-    <div class="mb-4">
-      <account-sidebar-shortcuts :shortcuts="shortcutList"></account-sidebar-shortcuts>
-    </div>
-    <div class="mb-5">
-      <account-sidebar-links :links="usefulLinks"></account-sidebar-links>
-    </div>
+    <account-sidebar-user-infos class="mb-3" :user="user"></account-sidebar-user-infos>
+    <account-sidebar-payment class="mb-4"></account-sidebar-payment>
+    <account-sidebar-shortcuts class="mb-4" :shortcuts="shortcutList"></account-sidebar-shortcuts>
+    <account-sidebar-links class="mb-5" :links="usefulLinks"></account-sidebar-links>
   </sidebar>
 </template>
 
@@ -63,7 +55,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .manager-hub-user-panel {
   @import '~@ovh-ux/ui-kit/dist/scss/_tokens.scss';
   @import '~bootstrap4/scss/_functions.scss';
@@ -100,39 +92,6 @@ export default defineComponent({
 
   p {
     line-height: inherit;
-  }
-
-  &_divider {
-    display: block;
-    border-top: 1px solid darken($p-075, 10%);
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-
-  &_links {
-    padding-bottom: 3rem !important;
-    a,
-    .btn-link {
-      font-weight: bold;
-      color: $p-500;
-      padding: 0;
-      text-decoration: none;
-      white-space: initial;
-      text-align: left;
-      letter-spacing: normal;
-
-      .oui-icon {
-        line-height: 1;
-        color: $p-500;
-        font-size: 1.5rem;
-        vertical-align: middle;
-        margin-right: 1rem;
-      }
-
-      &:hover {
-        text-decoration: none;
-      }
-    }
   }
 }
 </style>
