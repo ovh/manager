@@ -77,18 +77,19 @@ angular
         ...atInternetConfiguration.getConfig(Environment.getRegion()),
         ...(referrerSite ? { referrerSite } : {}),
       };
-      $http
-        .get('/me')
-        .then(({ data: me }) => me)
-        .catch(() => {})
-        .then((me) => {
-          atInternet.setDefaults({
+
+      atInternet.setDefaultsPromise(
+        $http
+          .get('/me')
+          .then(({ data: me }) => me)
+          .catch(() => {})
+          .then((me) => ({
             ...data,
             countryCode: me.country,
             currencyCode: me.currency && me.currency.code,
             visitorId: me.customerCode,
-          });
-        });
+          })),
+      );
     },
   );
 
