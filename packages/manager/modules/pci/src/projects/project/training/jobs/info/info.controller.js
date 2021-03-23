@@ -33,8 +33,11 @@ export default class PciTrainingJobsInfoController {
   $onInit() {
     this.guideUrl = GUIDE_URL;
 
-    this.unitPrice = this.getPrice(1);
-    this.unitTax = this.getTax(1);
+    const resourceId = this.job.spec.resources.gpu >= 1 ? 'gpu' : 'cpu';
+    const resourceN =
+      this.job.spec.resources.gpu || this.job.spec.resources.cpu;
+    this.unitPrice = this.getPrice(resourceN, resourceId);
+    this.unitTax = this.getTax(resourceN, resourceId);
     const totalHour = this.job.status.duration / 3600;
     this.price = this.unitPrice * totalHour;
     this.tax = this.unitTax * totalHour;
@@ -105,5 +108,10 @@ export default class PciTrainingJobsInfoController {
 
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
+  }
+
+  static getVolumeRepr(volume) {
+    const prefix = volume.prefix ? `/${volume.prefix}` : '';
+    return `${volume.container}@${volume.region}${prefix}:${volume.mountPath}:${volume.permission}`;
   }
 }
