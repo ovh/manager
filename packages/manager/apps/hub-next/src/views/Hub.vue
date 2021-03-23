@@ -31,7 +31,7 @@
 </template>
 
 <script lang="ts">
-import { defineAsyncComponent, defineComponent, Ref, ref } from 'vue';
+import { defineAsyncComponent, defineComponent, Ref, ref, inject } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { HubResponse, OvhNotification, User } from '@/models/hub.d';
 import { PRODUCTS_TO_SHOW_DEFAULT } from '@/constants/products_consts';
@@ -42,6 +42,7 @@ import useLoadTranslations from '@/composables/useLoadTranslations';
 
 export default defineComponent({
   async setup() {
+    const user = inject('user') as Ref<User>;
     const { locale, t, fallbackLocale } = useI18n();
 
     const notifications: Ref<OvhNotification[]> = ref([]);
@@ -52,7 +53,7 @@ export default defineComponent({
 
     await useLoadTranslations(translationFolders);
     const userReponse = await axios.get<HubResponse>('/engine/2api/hub/me');
-    const user: User = userReponse.data.data.me.data;
+    user.value = userReponse.data.data.me.data;
 
     return {
       t,

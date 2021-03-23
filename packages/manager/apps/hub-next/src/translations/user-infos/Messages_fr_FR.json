@@ -1,0 +1,13 @@
+{
+  "hub_user_support_level_standard": "Support Standard",
+  "hub_user_support_level_premium": "Support Premium",
+  "hub_user_support_level_premium-accredited": "Support Premium Advanced",
+  "hub_user_support_level_business": "Support Business",
+  "hub_user_support_level_enterprise": "Support Enterprise",
+  "hub_user_logout": "Me déconnecter",
+  "hub_user_actions_aria_expand": "Voir les actions disponibles",
+  "hub_user_actions_aria_reduce": "Masquer les actions disponibles",
+  "hub_user_account": "Gérer mon compte",
+  "hub_user_role_user": "Connecté en tant que sous-utilisateur",
+  "hub_user_role_none": "Connecté en lecture seule"
+}

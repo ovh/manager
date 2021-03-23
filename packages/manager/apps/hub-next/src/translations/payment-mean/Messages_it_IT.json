@@ -1,0 +1,14 @@
+{
+  "hub_payment_mean_title": "Metodo di pagamento",
+  "hub_payment_mean_status_CANCELED": "Annullato",
+  "hub_payment_mean_status_CANCELING": "In corso di annullamento",
+  "hub_payment_mean_status_CREATED": "Creato",
+  "hub_payment_mean_status_ERROR": "In errore",
+  "hub_payment_mean_status_EXPIRED": "Scaduto",
+  "hub_payment_mean_status_CREATING": "In corso di creazione",
+  "hub_payment_mean_status_MAINTENANCE": "In corso di manutenzione",
+  "hub_payment_mean_status_PAUSED": "In pausa",
+  "hub_payment_mean_status_VALID": "Valido",
+  "hub_payment_mean_none": "Nessun metodo di pagamento",
+  "hub_payment_mean_status_TOO_MANY_FAILURES": "Non valido"
+}

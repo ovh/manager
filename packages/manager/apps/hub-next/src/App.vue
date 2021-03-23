@@ -1,7 +1,7 @@
 <template>
   <ovh-fragment fragment-id="navbar"></ovh-fragment>
   <div class="hub-wrapper">
-    <account-sidebar :closed="!sidebarOpen"></account-sidebar>
+    <account-sidebar :user="user" :closed="!sidebarOpen"></account-sidebar>
     <div class="hub-main-view" :class="isLargeScreen ? 'hub-main-view_sidebar_expanded' : ''">
       <div class="container-fluid hub-main-view_container">
         <div class="breadcrumbs">
@@ -20,7 +20,15 @@
   </div>
 </template>
 <script lang="ts">
-import { computed, defineAsyncComponent, defineComponent, onMounted, ref, watchEffect } from 'vue';
+import {
+  computed,
+  defineAsyncComponent,
+  defineComponent,
+  onMounted,
+  provide,
+  ref,
+  watchEffect,
+} from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRoute } from 'vue-router';
 import { listen } from '@ovh-ux/ufrontend/communication';
@@ -29,6 +37,7 @@ import useWindowResize from '@/composables/useWindowResize';
 
 export default defineComponent({
   setup() {
+    const user = ref({});
     const route = useRoute();
     const sidebarOpen = ref(true);
     const sidebarToggledManually = ref(false);
@@ -39,6 +48,8 @@ export default defineComponent({
     const { t, locale, fallbackLocale } = useI18n();
     const productRangeName = computed(() => t(`manager_hub_products_${route.query.productName}`));
     const dashboardTitle = computed(() => t('manager_hub_dashboard'));
+
+    provide('user', user);
 
     onMounted(() => {
       listen((listener: { id: string; locale: string }) => {
@@ -74,6 +85,7 @@ export default defineComponent({
       sidebarOpen,
       width,
       isLargeScreen,
+      user,
     };
   },
   components: {
