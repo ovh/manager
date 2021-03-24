@@ -1,3 +1,21 @@
+# [16.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.8.0...@ovh-ux/manager-dedicated@16.9.0) (2021-03-24)
+
+
+### Bug Fixes
+
+* **billing.credits:** fix translations ([7be03e2](https://github.com/ovh/manager/commit/7be03e28089366a466baa57b032e285c3c0887cc))
+* **i18n:** add missing translations [CDS 863] ([4769306](https://github.com/ovh/manager/commit/4769306f6ca4603a97534e63e43169ac6d517c6d))
+
+
+### Features
+
+* **billing:** move refunds from payment means to bills ([097a46f](https://github.com/ovh/manager/commit/097a46fd2293b179a4baf3be2bbb4e00db0bfdb0))
+* **billing.credits:** revamp ([545e7b5](https://github.com/ovh/manager/commit/545e7b5a9ff5c19fcce67cd6d93c30b196626443))
+* **billing.payment:** remove transaction tab ([353cd96](https://github.com/ovh/manager/commit/353cd961d937c1c45fe486ee22655fd25ca4f57f))
+* change tab order ([66f505f](https://github.com/ovh/manager/commit/66f505fb808bb571e68b51c9eb5cc0c76ee8111a))
+
+
+
 # [16.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.7.0...@ovh-ux/manager-dedicated@16.8.0) (2021-03-19)
 
 
