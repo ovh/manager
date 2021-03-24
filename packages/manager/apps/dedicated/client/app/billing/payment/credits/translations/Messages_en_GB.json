@@ -1,3 +1,24 @@
 {
-  "billing_payment_credits": "Credits"
+  "billing_payment_credits": "My vouchers",
+  "billing_credits_add": "Add a coupon or voucher",
+  "billing_credits_description": "Your vouchers will be used to pay for all or part of your order. They will apply to your order total ex. VAT.",
+  "billing_credits_title": "My vouchers",
+  "billing_credits_none": "You don't have any vouchers",
+  "billing_credit_balance_header_name": "Name",
+  "billing_credit_balance_header_creation_date": "Creation date",
+  "billing_credit_balance_header_last_update_date": "Last updated",
+  "billing_credit_balance_header_expiration_date": "Expiry date",
+  "billing_credit_balance_header_expiration_amount": "Amount reaching expiry",
+  "billing_credit_balance_header_amount": "Amount",
+  "billing_credit_balance_header_movements": "Operations",
+  "billing_credit_balance_movements_details": "Details of operations",
+  "billing_credit_balance_movements_title": "Details of {{t0}} voucher operations",
+  "billing_credit_balance_movements_back": "Back to your vouchers",
+  "billing_credit_balance_movements_header_date": "Date",
+  "billing_credit_balance_movements_header_operation": "Operation",
+  "billing_credit_balance_header_order": "Order",
+  "billing_credit_balance_movements_operation_credit": "Credit",
+  "billing_credit_balance_movements_operation_debit": "Debit",
+  "billing_credit_balance_movements_load_error": "An error has occurred loading voucher operations.",
+  "billing_credit_back": "Back to your vouchers"
 }

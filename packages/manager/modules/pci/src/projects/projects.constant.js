@@ -1,5 +1,7 @@
 export const DEFAULT_PROJECT_KEY = 'PUBLIC_CLOUD_DEFAULT_PROJECT';
+export const QUOTA_THRESHOLD = 80;
 
 export default {
   DEFAULT_PROJECT_KEY,
+  QUOTA_THRESHOLD,
 };

@@ -1,6 +1,6 @@
 angular
   .module('Billing')
-  .config(($stateProvider) => {
+  .config(($stateProvider, $urlServiceProvider) => {
     $stateProvider.state('app.account.billing.main', {
       url: '',
       templateUrl: 'billing/main/billing-main.html',
@@ -20,5 +20,10 @@ angular
           $translate.instant('billing_main_title'),
       },
     });
+
+    $urlServiceProvider.rules.when(
+      '/billing/payment/refunds',
+      '/billing/refunds',
+    );
   })
   .run(/* @ngTranslationsInject:json ./translations */);

@@ -27,9 +27,9 @@
   "manager_hub_incident_migration_replace": "Substituir o serviço",
   "manager_hub_incident_migration_replace_bulk": "Substituir",
   "manager_hub_incident_migration_see": "Ver o serviço",
-  "manager_hub_incident_migration_replacement_done": "As suas encomendas de substituição foram efetuadas corretamente.",
-  "manager_hub_incident_migration_replacement_follow": "Ver o meu acompanhamento de encomendas",
-  "manager_hub_incident_migration_discount_sidenote_1": "A esta gratuidade junta-se um crédito correspondente ao montante do serviço faturado na sua fatura de março.",
-  "manager_hub_incident_migration_description": "Um ou vários dos seus serviços Bare Metal foram afetados pelo incêndio no datacenter de Estrasburgo (SBG). Lamentamos o sucedido e, como gesto comercial, oferecemos-lhe a substituição deste(s) serviço(s) sem custos durante o período a seguir indicado.",
-  "manager_hub_incident_migration_discount_sidenote_2": "Se o montante for inferior ao montante inicialmente indicado por e-mail, ser-lhe-á sugerido um complemento de valor equivalente a esta diferença."
+  "manager_hub_incident_migration_replacement_done": "Encomenda em curso de validação.",
+  "manager_hub_incident_migration_replacement_follow": "Ver as minhas encomendas",
+  "manager_hub_incident_migration_discount_sidenote_1": "Para além do serviço gratuito proposto, também receberá um crédito correspondente ao custo do seu serviço que foi faturado em março.",
+  "manager_hub_incident_migration_description": "Um ou vários dos seus serviços Bare Metal Cloud foram afetados pela situação no nosso datacenter de Estrasburgo (SBG). Lamentamos o sucedido e, como gesto comercial, oferecemos-lhe a substituição deste(s) serviço(s) sem custos durante o período a seguir indicado.",
+  "manager_hub_incident_migration_discount_sidenote_2": "Se o montante for inferior ao montante inicialmente indicado por e-mail, ser-lhe-á sugerido um complemento de valor equivalente a esta diferença. "
 }

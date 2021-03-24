@@ -126,6 +126,12 @@
                 data-ng-if="$row.instance.maxInstances !== -1"
                 data-ng-bind=" :: $row.instance.maxInstances"
             ></span>
+            <span
+                data-ng-if="$row.isInstanceQuotaThresholdReached()"
+                class="oui-badge oui-badge_warning"
+                data-translate="pci_projects_project_quota_threshold_reached"
+            >
+            </span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_projects_project_quota_core' | translate"
@@ -140,6 +146,12 @@
                 data-ng-if="quota.instance.maxCores !== -1"
                 data-ng-bind=":: $row.instance.maxCores"
             ></span>
+            <span
+                data-ng-if="$row.isCpuQuotaThresholdReached()"
+                class="oui-badge oui-badge_warning"
+                data-translate="pci_projects_project_quota_threshold_reached"
+            >
+            </span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_projects_project_quota_ram' | translate"
@@ -157,6 +169,12 @@
                 data-ng-if="$row.instance.maxRam !== -1"
                 data-ng-bind=":: ($row.instance.maxRam * 1000000) | cucBytes:2"
             ></span>
+            <span
+                data-ng-if="$row.isRamQuotaThresholdReached()"
+                class="oui-badge oui-badge_warning"
+                data-translate="pci_projects_project_quota_threshold_reached"
+            >
+            </span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_projects_project_quota_add_disk' | translate"
@@ -174,6 +192,12 @@
                 data-ng-if="$row.volume.maxGigabytes !== -1"
                 data-ng-bind=":: ($row.volume.maxGigabytes * 1000000000) | cucBytes:2"
             ></span>
+            <span
+                data-ng-if="$row.isVolumeQuotaThresholdReached()"
+                class="oui-badge oui-badge_warning"
+                data-translate="pci_projects_project_quota_threshold_reached"
+            >
+            </span>
         </oui-datagrid-column>
     </oui-datagrid>
 </div>

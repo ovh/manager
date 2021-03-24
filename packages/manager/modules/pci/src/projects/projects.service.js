@@ -1,9 +1,13 @@
+import map from 'lodash/map';
+
+import Quota from './quota.class';
 import { DEFAULT_PROJECT_KEY } from './projects.constant';
 
 export default class {
   /* @ngInject */
-  constructor(ovhUserPref) {
+  constructor(ovhUserPref, OvhApiCloudProjectQuota) {
     this.ovhUserPref = ovhUserPref;
+    this.OvhApiCloudProjectQuota = OvhApiCloudProjectQuota;
   }
 
   getDefaultProject() {
@@ -21,5 +25,13 @@ export default class {
 
   removeDefaultProject() {
     return this.ovhUserPref.remove(DEFAULT_PROJECT_KEY);
+  }
+
+  getQuotas(projectId) {
+    return this.OvhApiCloudProjectQuota.v6()
+      .query({
+        serviceName: projectId,
+      })
+      .$promise.then((quotas) => map(quotas, (quota) => new Quota(quota)));
   }
 }

@@ -12,8 +12,6 @@ export default /* @ngInject */ ($stateProvider) => {
             : false,
         ),
     resolve: {
-      quotas: /* @ngInject */ (OvhApiCloudProjectQuota, projectId) =>
-        OvhApiCloudProjectQuota.v6().query({ serviceName: projectId }).$promise,
       goBack: /* @ngInject */ (goToKubernetes) => goToKubernetes,
 
       breadcrumb: /* @ngInject */ ($translate) =>
