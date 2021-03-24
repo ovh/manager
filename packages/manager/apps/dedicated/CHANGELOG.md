@@ -1,3 +1,12 @@
+## [16.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.9.0...@ovh-ux/manager-dedicated@16.9.1) (2021-03-24)
+
+
+### Bug Fixes
+
+* **billing.payment:** avoid duplicate tab name ([#4605](https://github.com/ovh/manager/issues/4605)) ([387ac21](https://github.com/ovh/manager/commit/387ac215d0a2db4b91bbbb5b80f0d0f13755396a))
+
+
+
 # [16.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.8.0...@ovh-ux/manager-dedicated@16.9.0) (2021-03-24)
 
 
