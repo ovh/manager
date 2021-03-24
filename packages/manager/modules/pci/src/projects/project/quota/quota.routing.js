@@ -3,11 +3,6 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/quota',
     component: 'pciProjectQuota',
     resolve: {
-      quotas: /* @ngInject */ (OvhApiCloudProjectQuota, projectId) =>
-        OvhApiCloudProjectQuota.v6().query({
-          serviceName: projectId,
-        }).$promise,
-
       region: /* @ngInject */ (coreConfig) => coreConfig.getRegion(),
 
       hasDefaultPaymentMethod: /* @ngInject */ (ovhPaymentMethod) =>

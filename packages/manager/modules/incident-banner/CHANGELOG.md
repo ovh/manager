@@ -1,3 +1,12 @@
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-incident-banner@1.1.1...@ovh-ux/manager-incident-banner@1.2.0) (2021-03-24)
+
+
+### Features
+
+* **migration:** update banner content ([#4602](https://github.com/ovh/manager/issues/4602)) ([d9075da](https://github.com/ovh/manager/commit/d9075da77b8ac67f2e4e4e64d82b22c5a061c5f4))
+
+
+
 ## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-incident-banner@1.1.0...@ovh-ux/manager-incident-banner@1.1.1) (2021-03-18)
 
 

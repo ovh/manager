@@ -1,3 +1,17 @@
+# [5.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.14.0...@ovh-ux/manager-pci@5.15.0) (2021-03-24)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 865] ([6493b06](https://github.com/ovh/manager/commit/6493b06a391dca6f6cc25e0d8964ff4316590ad7))
+
+
+### Features
+
+* **public-cloud:** quota management enhancements ([b170487](https://github.com/ovh/manager/commit/b17048762d01e0f3597b5d4597b092ab9ad0ac12)), closes [#MANAGER-6293](https://github.com/ovh/manager/issues/MANAGER-6293)
+
+
+
 # [5.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.13.2...@ovh-ux/manager-pci@5.14.0) (2021-03-17)
 
 

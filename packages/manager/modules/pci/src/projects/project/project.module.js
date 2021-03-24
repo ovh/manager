@@ -33,6 +33,8 @@ import serving from './serving';
 import training from './training';
 import workflow from './workflow';
 
+import projectComponent from './project.component';
+
 import './project.less';
 
 const moduleName = 'ovhManagerPciProject';
@@ -70,6 +72,7 @@ angular
     training,
   ])
   .config(routing)
+  .component('pciProject', projectComponent)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

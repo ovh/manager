@@ -14,6 +14,11 @@ angular
       controllerAs: '$ctrl',
       redirectTo: `${name}.method`,
       resolve: {
+        voucherAccounts: /* @ngInject */ ($http) =>
+          $http
+            .get('/me/voucherAccount')
+            .then(({ data }) => data)
+            .catch(() => []),
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant('billing_payment_title'),
       },

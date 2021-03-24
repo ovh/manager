@@ -15,5 +15,6 @@
   "pci_projects_project_welcome": "Bienvenido a la nueva interfaz de Public Cloud",
   "pci_projects_project_keystone_upgrade": "El 23 de junio de 2020 se producirá un cambio importante. Por favor, planifique su migración a <strong>Keystone v3</strong>.",
   "pci_projects_project_keystone_upgrade_more": "Más información",
-  "pci_projects_project_quota_warning_message": "Por motivos de seguridad, su proyecto tiene un límite. Para aumentar este límite, acceda a la página <a data-ui-sref=\"{{ quotaUrl }}\">Quota and Localisation</a>."
+  "pci_projects_project_quota_warning_message": "Por motivos de seguridad, su proyecto tiene un límite. Para aumentar este límite, acceda a la página <a data-ui-sref=\"{{ quotaUrl }}\">Quota and Localisation</a>.",
+  "pci_projects_project_quota_threshold_warning_message": "Está a punto de alcanzar el límite máximo de sus cuotas. <a href=\"{{ quotaUrl }}\">Haga clic aquí para gestionar sus cuotas</a>."
 }

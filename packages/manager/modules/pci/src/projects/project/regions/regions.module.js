@@ -12,6 +12,8 @@ import header from '../../../components/project/quota-region-header';
 import component from './regions.component';
 import routing from './regions.routing';
 
+import './index.less';
+
 const moduleName = 'ovhManagerPciProjectRegions';
 
 angular

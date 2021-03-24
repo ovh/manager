@@ -52,6 +52,15 @@
                                     data-translate-compile
                                 ></p>
                             </oui-message>
+                            <oui-message
+                                data-type="warning"
+                                data-ng-if="$ctrl.projectQuotaAboveThreshold"
+                            >
+                                <p
+                                    data-translate="pci_projects_project_quota_threshold_warning_message"
+                                    data-translate-values="{ quotaUrl: $ctrl.getQuotaUrl() }"
+                                ></p>
+                            </oui-message>
                             <div class="container-fluid px-0">
                                 <div class="row">
                                     <div
