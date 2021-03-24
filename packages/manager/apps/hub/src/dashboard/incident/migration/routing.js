@@ -67,7 +67,7 @@ export default /* @ngInject */ ($stateProvider) => {
           ({ data }) => data,
         );
         return servicesToMigrate
-          .filter(({ orderId }) => !orderId)
+          .filter(({ orderId }) => orderId === null)
           .map((service) => {
             const price = parseFloat(getPrice(service)).toFixed(2);
             return {
