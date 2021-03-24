@@ -29,7 +29,7 @@
   "manager_hub_incident_migration_see": "Wiederherstellbar",
   "manager_hub_incident_migration_replacement_done": "Bestellung wird bestätigt.",
   "manager_hub_incident_migration_replacement_follow": "Meine Bestellungen anzeigen",
-  "manager_hub_incident_migration_description": "Einer oder mehrere Ihrer Bare-Metal-Dienste sind vom Brand im Straßburger Rechenzentrum (SBG) betroffen. Wir bedauern dies und bieten Ihnen an, diese Dienste während der unten genannten Zeit kostenfrei zu ersetzen.",
+  "manager_hub_incident_migration_description": "Einer oder mehrere Ihrer Bare-Metal-Cloud-Dienste sind von der aktuellen Lage an unserem Straßburger Standort (SBG) betroffen. Wir bedauern dies und bieten Ihnen an, diese Dienste während der unten genannten Zeit kostenfrei zu ersetzen.",
   "manager_hub_incident_migration_discount_sidenote_1": "Zusätzlich zum kostenfreien Dienst erhalten Sie Guthaben in Höhe der für den Dienst auf der Rechnung für März aufgeführten Kosten.",
   "manager_hub_incident_migration_discount_sidenote_2": "Wenn der Betrag geringer ist als ursprünglich per E-Mail angekündigt, wird Ihnen ein Zusatz in Höhe der Differenz angeboten."
 }
