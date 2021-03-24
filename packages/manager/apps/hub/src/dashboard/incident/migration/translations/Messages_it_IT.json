@@ -30,6 +30,6 @@
   "manager_hub_incident_migration_replacement_done": "Ordine in corso di convalida",
   "manager_hub_incident_migration_replacement_follow": "Visualizza i tuoi ordini",
   "manager_hub_incident_migration_discount_sidenote_1": "Oltre al servizio offerto gratuitamente, riceverai un credito corrispondente al costo del servizio indicato nella fattura di marzo.",
-  "manager_hub_incident_migration_description": "Uno o più dei tuoi servizi Bare Metal sono stati colpiti dall'incendio del datacenter di Strasburgo (SBG). Ci dispiace molto e, come misura commerciale, ti proponiamo di sostituire questi servizi senza spese per il periodo indicato qui di seguito.",
+  "manager_hub_incident_migration_description": "Uno o più dei tuoi servizi Bare Metal Cloud sono stati colpiti dalla situazione verificatasi nel nostro datacenter di Strasburgo (SBG). Ci dispiace molto e, come misura commerciale, ti proponiamo di sostituire questi servizi senza spese per il periodo indicato qui di seguito.",
   "manager_hub_incident_migration_discount_sidenote_2": "Se l'importo è inferiore a quello inizialmente comunicato via email, ti verrà proposta un’integrazione corrispondente alla differenza. "
 }
