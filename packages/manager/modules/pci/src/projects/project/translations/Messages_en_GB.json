@@ -15,5 +15,6 @@
   "pci_projects_project_welcome": "Welcome to the new Public Cloud interface",
   "pci_projects_project_keystone_upgrade": "An important change will take place on 23rd June 2020 — please prepare for the upgrade to <strong>Keystone v3</strong>.",
   "pci_projects_project_keystone_upgrade_more": "Find out more",
-  "pci_projects_project_quota_warning_message": "As a security measure, your project is subject to a quota. If you would like to increase this quota, go to the <a data-ui-sref=\"{{ quotaUrl }}\">Quota and location</a> page."
+  "pci_projects_project_quota_warning_message": "As a security measure, your project is subject to a quota. If you would like to increase this quota, go to the <a data-ui-sref=\"{{ quotaUrl }}\">Quota and location</a> page.",
+  "pci_projects_project_quota_threshold_warning_message": "Your quota levels are reaching their maximum. <a href=\"{{ quotaUrl }}\">Click here to manage your quota</a>."
 }

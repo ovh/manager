@@ -17,5 +17,6 @@
   "pci_projects_project_quota_instance": "Server",
   "pci_projects_project_quota_core": "vCPU",
   "pci_projects_project_quota_ram": "RAM",
-  "pci_projects_project_quota_open_new_tab": "Öffnet einen neuen Tab"
+  "pci_projects_project_quota_open_new_tab": "Öffnet einen neuen Tab",
+  "pci_projects_project_quota_threshold_reached": "begrenzte Quotas"
 }
