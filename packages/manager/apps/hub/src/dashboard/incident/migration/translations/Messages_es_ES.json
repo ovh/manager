@@ -31,5 +31,5 @@
   "manager_hub_incident_migration_replacement_follow": "Ver el seguimiento de los pedidos",
   "manager_hub_incident_migration_discount_sidenote_1": "A este período gratuito se añade un crédito correspondiente al importe del servicio indicado en su factura de marzo.",
   "manager_hub_incident_migration_discount_sidenote_2": "Si el importe es inferior al que se le indicó inicialmente por correo electrónico, le ofreceremos un complemento por un valor equivalente a esta diferencia.",
-  "manager_hub_incident_migration_description": "Uno o varios de sus servicios Bare Metal se han visto afectados por el incendio en el datacenter de Estrasburgo (SBG). Lamentamos profundamente las molestias ocasionadas y, como gesto comercial, le ofrecemos la sustitución de este o estos servicios sin coste alguno durante el período que se indica a continuación."
+  "manager_hub_incident_migration_description": "Uno o varios de sus servicios Bare Metal Cloud se han visto afectados por la situación registrada en nuestro datacenter de Estrasburgo (SBG). Lamentamos profundamente las molestias ocasionadas y, como gesto comercial, le ofrecemos la sustitución de este o estos servicios sin coste alguno durante el período que se indica a continuación."
 }

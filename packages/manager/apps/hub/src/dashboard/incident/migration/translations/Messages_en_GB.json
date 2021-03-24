@@ -26,10 +26,10 @@
   "manager_hub_incident_migration_price_TTC": "Then {{ price }}/month incl. VAT",
   "manager_hub_incident_migration_replace": "Replace service",
   "manager_hub_incident_migration_replace_bulk": "Replace",
-  "manager_hub_incident_migration_see": "View service",
-  "manager_hub_incident_migration_replacement_done": "Your replacement orders have been placed.",
-  "manager_hub_incident_migration_replacement_follow": "View order tracking",
-  "manager_hub_incident_migration_description": "One or more of your Bare Metal services were affected by the incident in the Strasbourg datacentre (SBG). We would like to extend our sincerest apologies and as an exceptional commercial gesture, we are offering to replace your service(s) free of charge for the period specified below.",
+  "manager_hub_incident_migration_see": "View service details",
+  "manager_hub_incident_migration_replacement_done": "Your replacement orders are pending",
+  "manager_hub_incident_migration_replacement_follow": "See order tracking",
+  "manager_hub_incident_migration_description": "One or more of your Bare Metal cloud services have been impacted by the situation in our Strasbourg (SBG) site. We would like to extend our sincerest apologies and as an exceptional commercial gesture, we are offering to replace your service(s) free of charge for the period specified below.",
   "manager_hub_incident_migration_discount_sidenote_1": "In addition to the free service offered, you will also receive credit corresponding to the cost of your service invoiced on your March bill.",
   "manager_hub_incident_migration_discount_sidenote_2": "<b>*</b>If the amount is lower than the amount initially specified by email, you will be offered an additional amount equal to the difference."
 }
