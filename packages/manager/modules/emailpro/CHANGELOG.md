@@ -1,3 +1,33 @@
+# [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@2.0.9...@ovh-ux/manager-emailpro@2.1.0) (2021-03-25)
+
+
+### Bug Fixes
+
+* avoid to override already imported stylesheet ([#4594](https://github.com/ovh/manager/issues/4594)) ([ad849cb](https://github.com/ovh/manager/commit/ad849cb84b02ff06b15f47ddc7b53919c426e608))
+* **account:** add missing this ([87c8f4b](https://github.com/ovh/manager/commit/87c8f4b55c5fe804a18c8379ac71fe225fb3d3c2))
+* **i18n:** add missing translations [CDS 829] ([29b1f41](https://github.com/ovh/manager/commit/29b1f410537fe6d38dfc65807e716130566746ed))
+* use correct product name for header ([5280c91](https://github.com/ovh/manager/commit/5280c91a7adaacb592aa9cec154838c0b4f00ba5))
+* **dashboard.upgrade:** add missing breadcrumb translation ([d9ce6fd](https://github.com/ovh/manager/commit/d9ce6fde53b857d912c89549801100e9b6f6ebce))
+* **deps:** update dependencies ([bd6f10e](https://github.com/ovh/manager/commit/bd6f10e1b10a00c19e9600ac2439a48aca7c6a12))
+* **disclaimer:** fix breadcrumb translation ([f700a99](https://github.com/ovh/manager/commit/f700a99df3a5615053c1c34a3092e7d15d395b2d))
+* **domain.add:** prevent freeze from modal backdrop ([e8fdc17](https://github.com/ovh/manager/commit/e8fdc17dbd8533e1082661ebf719960a9752b1e0))
+* add missing dependencies ([4129568](https://github.com/ovh/manager/commit/41295682e323a33efe68f5117e38a9a8adfd04d0))
+* add missing translations ([e4fc17c](https://github.com/ovh/manager/commit/e4fc17c2659d8fd27eff6c6c4cd2d9d2da7a619b))
+* **disclaimer:** remove usage of navigation service ([59b5d05](https://github.com/ovh/manager/commit/59b5d0586e5733b7265ca8758f53b2c91873d0ce))
+
+
+### Features
+
+* add breadcrumb ([b425493](https://github.com/ovh/manager/commit/b4254932dba7c713d09a80479b113ad0aebfe0a1))
+* refresh translations before entering states ([2a6a343](https://github.com/ovh/manager/commit/2a6a3439f78ecab9f10a5806da4c2747a98912ee))
+* **account:** add intermediate state ([a0920fe](https://github.com/ovh/manager/commit/a0920fe3290bb0f8a87472283bd5b22235bdd86a))
+* **email-pro:** add listing page ([437687c](https://github.com/ovh/manager/commit/437687cdbc6139ef25fe703fa5dbadbb51f2b309))
+* **mailing-list:** add intermediate state ([e1bfa8b](https://github.com/ovh/manager/commit/e1bfa8bfd9b232d40b88e769701f267ce87cc326))
+* add user service to wuc ([acf14ae](https://github.com/ovh/manager/commit/acf14ae557c62f044813f028190e2cb60da2fe6a))
+* **mxplan:** add listing page ([9ed11d2](https://github.com/ovh/manager/commit/9ed11d2baa8699189709f5b5e1a8a25c5c9975c2))
+
+
+
 ## [2.0.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@2.0.8...@ovh-ux/manager-emailpro@2.0.9) (2021-03-02)
 
 

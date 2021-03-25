@@ -1,3 +1,13 @@
+## [12.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.0.2...@ovh-ux/manager-core@12.0.3) (2021-03-25)
+
+
+### Bug Fixes
+
+* **deps:** update dependencies ([bd6f10e](https://github.com/ovh/manager/commit/bd6f10e1b10a00c19e9600ac2439a48aca7c6a12))
+* **i18n:** remove unused locales ([#4598](https://github.com/ovh/manager/issues/4598)) ([59ba7f9](https://github.com/ovh/manager/commit/59ba7f93923e190b059ed0df270af3e0a0592880))
+
+
+
 ## [12.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.0.1...@ovh-ux/manager-core@12.0.2) (2021-03-02)
 
 

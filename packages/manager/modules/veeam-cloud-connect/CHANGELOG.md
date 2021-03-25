@@ -1,3 +1,20 @@
+# [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-cloud-connect@2.0.8...@ovh-ux/manager-veeam-cloud-connect@2.1.0) (2021-03-25)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 808] ([ba2c7cb](https://github.com/ovh/manager/commit/ba2c7cb71125d9e47400184953b6614030a1a2c6))
+* add missing translations ([a668534](https://github.com/ovh/manager/commit/a6685349173116cd8ae4748ad43ba7a6ff5769a3))
+* fix constants import ([c7f32ce](https://github.com/ovh/manager/commit/c7f32cedfdbceaa521cad228d2d0d7b842534601))
+
+
+### Features
+
+* add breadcrumb ([5ac9761](https://github.com/ovh/manager/commit/5ac9761d3d6b75a4aa6e9e9cf96ab20871dce4cd))
+* **veeam-cc:** add listing page ([cfbfec4](https://github.com/ovh/manager/commit/cfbfec4e1da807e5effa02fceb7558f229ec25a7))
+
+
+
 ## [2.0.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-cloud-connect@2.0.7...@ovh-ux/manager-veeam-cloud-connect@2.0.8) (2021-03-02)
 
 

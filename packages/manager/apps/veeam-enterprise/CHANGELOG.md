@@ -1,3 +1,13 @@
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-enterprise-app@1.1.6...@ovh-ux/manager-veeam-enterprise-app@1.2.0) (2021-03-25)
+
+
+### Features
+
+* add breadcrumb ([9773a64](https://github.com/ovh/manager/commit/9773a64f9f8e5d5d47806af6d33f053edf0435b4))
+* **veeam-enterprise:** add listing page ([2c7c9e2](https://github.com/ovh/manager/commit/2c7c9e2869cb19d227051546d59cbddf1ec52dc6))
+
+
+
 ## [1.1.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-enterprise-app@1.1.5...@ovh-ux/manager-veeam-enterprise-app@1.1.6) (2021-03-02)
 
 

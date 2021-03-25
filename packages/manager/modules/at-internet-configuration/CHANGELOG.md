@@ -1,3 +1,13 @@
+## [1.1.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-at-internet-configuration@1.1.5...@ovh-ux/manager-at-internet-configuration@1.1.6) (2021-03-25)
+
+
+### Bug Fixes
+
+* **tracking:** update defaults initialization ([#4595](https://github.com/ovh/manager/issues/4595)) ([7eda192](https://github.com/ovh/manager/commit/7eda192ceb1b9769ff2adcb6ca28f17686e69be8))
+* update @ovh-ux/manager-core ([d9898c0](https://github.com/ovh/manager/commit/d9898c09018bba60a10f2684912ec780beb41a7a))
+
+
+
 ## [1.1.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-at-internet-configuration@1.1.4...@ovh-ux/manager-at-internet-configuration@1.1.5) (2021-03-02)
 
 

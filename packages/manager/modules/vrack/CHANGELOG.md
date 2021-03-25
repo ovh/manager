@@ -1,3 +1,22 @@
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.1.0...@ovh-ux/manager-vrack@1.2.0) (2021-03-25)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 808] ([ba2c7cb](https://github.com/ovh/manager/commit/ba2c7cb71125d9e47400184953b6614030a1a2c6))
+* add missing translations ([a668534](https://github.com/ovh/manager/commit/a6685349173116cd8ae4748ad43ba7a6ff5769a3))
+* use new state for translation refresh hook ([65e5fe1](https://github.com/ovh/manager/commit/65e5fe1b6f9fda35b262ba01cf31bcb32d5b22ec))
+
+
+### Features
+
+* add breadcrumb ([e0b64b0](https://github.com/ovh/manager/commit/e0b64b04f68babd0f629bba72f5cc90330a8de03))
+* move listing page as first architecture level ([6b59e57](https://github.com/ovh/manager/commit/6b59e579fc9b7055e7ebcd1f5a54648cc29b63e4))
+* revamp state architecture ([3cf2aa0](https://github.com/ovh/manager/commit/3cf2aa0e3f013a23c3f228e36bcb9f19811b432b))
+* **vrack:** add listing page ([e1b6b54](https://github.com/ovh/manager/commit/e1b6b547410eef0d8b7855613dbfb9413fdc8e5b))
+
+
+
 # [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.0.9...@ovh-ux/manager-vrack@1.1.0) (2021-02-10)
 
 

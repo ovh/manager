@@ -1,3 +1,13 @@
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb-app@1.1.6...@ovh-ux/manager-iplb-app@1.2.0) (2021-03-25)
+
+
+### Features
+
+* add breadcrumb ([87371ed](https://github.com/ovh/manager/commit/87371ed59cda18c9bb91d9215fc7849ee15391d2))
+* **iplb:** add listing page ([5847ef2](https://github.com/ovh/manager/commit/5847ef28e9b6a843f5b6cb26f40749bc6e877961))
+
+
+
 ## [1.1.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb-app@1.1.5...@ovh-ux/manager-iplb-app@1.1.6) (2021-03-02)
 
 

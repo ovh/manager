@@ -1,3 +1,21 @@
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.0.12...@ovh-ux/manager-iplb@1.1.0) (2021-03-25)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 808] ([ba2c7cb](https://github.com/ovh/manager/commit/ba2c7cb71125d9e47400184953b6614030a1a2c6))
+* add missing translations ([a668534](https://github.com/ovh/manager/commit/a6685349173116cd8ae4748ad43ba7a6ff5769a3))
+* import styles for listing page ([c694bd3](https://github.com/ovh/manager/commit/c694bd3f7b5dbe4bf5fdc4d7f0820c6a74d22094))
+* rename product ([4e497bb](https://github.com/ovh/manager/commit/4e497bbcfceb6b31fbfcc8ce9ef4425d12394590))
+
+
+### Features
+
+* add breadcrumb ([87371ed](https://github.com/ovh/manager/commit/87371ed59cda18c9bb91d9215fc7849ee15391d2))
+* **iplb:** add listing page ([5847ef2](https://github.com/ovh/manager/commit/5847ef28e9b6a843f5b6cb26f40749bc6e877961))
+
+
+
 ## [1.0.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.0.11...@ovh-ux/manager-iplb@1.0.12) (2021-03-02)
 
 

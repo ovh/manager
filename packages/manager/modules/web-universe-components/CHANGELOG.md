@@ -1,3 +1,19 @@
+# [9.1.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.0.11...@ovh-ux/ng-ovh-web-universe-components@9.1.0) (2021-03-25)
+
+
+### Bug Fixes
+
+* remove apiv7 from exchange service ([7698d24](https://github.com/ovh/manager/commit/7698d2438a5c304f741b1457e8662518163fc391))
+
+
+### Features
+
+* add user service to wuc ([acf14ae](https://github.com/ovh/manager/commit/acf14ae557c62f044813f028190e2cb60da2fe6a))
+* move exchange password service to wuc ([81dd714](https://github.com/ovh/manager/commit/81dd714bcd698d8fba8f8e477b3b8ad0da00c500))
+* move Exchange service to wuc ([61488d1](https://github.com/ovh/manager/commit/61488d142e821ffdc6194ff04dfa93ed53663cff))
+
+
+
 ## [9.0.11](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.0.10...@ovh-ux/ng-ovh-web-universe-components@9.0.11) (2021-03-02)
 
 

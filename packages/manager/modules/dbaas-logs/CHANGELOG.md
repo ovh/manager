@@ -1,3 +1,23 @@
+# [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.4.10...@ovh-ux/manager-dbaas-logs@1.5.0) (2021-03-25)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 808] ([ba2c7cb](https://github.com/ovh/manager/commit/ba2c7cb71125d9e47400184953b6614030a1a2c6))
+* **streams.archive:** revamp state ([d521d45](https://github.com/ovh/manager/commit/d521d45c3c1356514ea445fe0102cc7f5293951c))
+* **streams.edit:** fix breadcrumb translation ([d457b32](https://github.com/ovh/manager/commit/d457b32075bf2ddd4712c48ad464f66850bcb20b))
+* **streams.edit:** inject translations ([175b1cf](https://github.com/ovh/manager/commit/175b1cfdfbc1fdeb1075a74f8403159b247aa056))
+* avoid loading unecessary dependencies ([1c1e10c](https://github.com/ovh/manager/commit/1c1e10ca76579bee8021e85f91dfd48ebaab7ac2))
+
+
+### Features
+
+* add breadcrumb ([1a2e3c8](https://github.com/ovh/manager/commit/1a2e3c878d606a6bff2445f251b63716f2dee343))
+* add lazyloading ([ea2168a](https://github.com/ovh/manager/commit/ea2168a9fd1e831b8c64ba715dd12ce7f70af78b))
+* revamp states and url ([4e96d81](https://github.com/ovh/manager/commit/4e96d8141b8ed9af574b12135e37e3d36b629096))
+
+
+
 ## [1.4.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.4.9...@ovh-ux/manager-dbaas-logs@1.4.10) (2021-03-02)
 
 

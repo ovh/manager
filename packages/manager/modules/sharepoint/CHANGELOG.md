@@ -1,3 +1,26 @@
+# [2.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sharepoint@2.1.0...@ovh-ux/manager-sharepoint@2.2.0) (2021-03-25)
+
+
+### Bug Fixes
+
+* **dashboard:** fix import ([2a22d9b](https://github.com/ovh/manager/commit/2a22d9b5888e89b779218235b3a4d33789b91caa))
+* **i18n:** add missing translations [CDS 829] ([29b1f41](https://github.com/ovh/manager/commit/29b1f410537fe6d38dfc65807e716130566746ed))
+* add missing dependencies ([6aa5017](https://github.com/ovh/manager/commit/6aa50178b5e43b7d96c290087e3f8551b6ff1458))
+* add missing translations ([e4fc17c](https://github.com/ovh/manager/commit/e4fc17c2659d8fd27eff6c6c4cd2d9d2da7a619b))
+* update redirection for root state ([82f634b](https://github.com/ovh/manager/commit/82f634b03bd7ca08a6eaaff815f7059f31b1e77f))
+
+
+### Features
+
+* add breadcrumb ([af37cd8](https://github.com/ovh/manager/commit/af37cd8c1fe54a91a18f04f7b804bae077a0d82a))
+* add user service to wuc ([acf14ae](https://github.com/ovh/manager/commit/acf14ae557c62f044813f028190e2cb60da2fe6a))
+* move exchange password service to wuc ([81dd714](https://github.com/ovh/manager/commit/81dd714bcd698d8fba8f8e477b3b8ad0da00c500))
+* move Exchange service to wuc ([61488d1](https://github.com/ovh/manager/commit/61488d142e821ffdc6194ff04dfa93ed53663cff))
+* refresh translations before entering states ([2a6a343](https://github.com/ovh/manager/commit/2a6a3439f78ecab9f10a5806da4c2747a98912ee))
+* **sharepoint:** add listing page ([ab74c5a](https://github.com/ovh/manager/commit/ab74c5ac936e35b6bcee06e368a01a446262a450))
+
+
+
 # [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sharepoint@2.0.2...@ovh-ux/manager-sharepoint@2.1.0) (2021-02-10)
 
 

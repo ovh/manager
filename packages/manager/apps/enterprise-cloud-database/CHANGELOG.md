@@ -1,3 +1,13 @@
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-enterprise-cloud-database-app@1.1.7...@ovh-ux/manager-enterprise-cloud-database-app@1.2.0) (2021-03-25)
+
+
+### Features
+
+* add breadcrumb ([f41b472](https://github.com/ovh/manager/commit/f41b472cea916822bf88e6dac901b76680e69b68))
+* add env executor ([538c6c7](https://github.com/ovh/manager/commit/538c6c79fa169d8be8305c5bfdbaa425eeafb68c))
+
+
+
 ## [1.1.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-enterprise-cloud-database-app@1.1.6...@ovh-ux/manager-enterprise-cloud-database-app@1.1.7) (2021-03-02)
 
 

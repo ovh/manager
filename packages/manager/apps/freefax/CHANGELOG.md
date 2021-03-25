@@ -1,3 +1,12 @@
+## [6.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax-app@6.2.1...@ovh-ux/manager-freefax-app@6.2.2) (2021-03-25)
+
+
+### Bug Fixes
+
+* **payment-method:** set user locale ([562b0ab](https://github.com/ovh/manager/commit/562b0ab2bac676a7b16382abc227a713bbfde150))
+
+
+
 ## [6.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax-app@6.2.0...@ovh-ux/manager-freefax-app@6.2.1) (2021-03-02)
 
 

@@ -1,3 +1,14 @@
+# [2.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha-app@2.1.6...@ovh-ux/manager-nasha-app@2.2.0) (2021-03-25)
+
+
+### Features
+
+* add breadcrumb ([d46ef88](https://github.com/ovh/manager/commit/d46ef886f72d89b19ddc5a7308d6598591d17408))
+* **nasha:** add listing page ([01d8a98](https://github.com/ovh/manager/commit/01d8a980205c5934ef59dfac9f35a6a3da875d3e))
+* **nasha:** redirect to default route on application start ([f5a6817](https://github.com/ovh/manager/commit/f5a6817e284394fdd8f157463121883dffb92ed8))
+
+
+
 ## [2.1.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha-app@2.1.5...@ovh-ux/manager-nasha-app@2.1.6) (2021-03-02)
 
 

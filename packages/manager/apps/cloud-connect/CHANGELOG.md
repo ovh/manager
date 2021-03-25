@@ -1,3 +1,20 @@
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect-app@1.0.11...@ovh-ux/manager-cloud-connect-app@1.1.0) (2021-03-25)
+
+
+### Bug Fixes
+
+* add missing dependencies ([ac7454a](https://github.com/ovh/manager/commit/ac7454a351f932118519a16063cb8b23a069d18f))
+* import moment in app not module ([40b1061](https://github.com/ovh/manager/commit/40b10613597c98128468a17438976e086ed95aa9))
+
+
+### Features
+
+* add breadcrumb ([1da9f28](https://github.com/ovh/manager/commit/1da9f28d207b5a1ce6f1a487c457b7ed2ba5345a))
+* add default redirection ([aeefd4c](https://github.com/ovh/manager/commit/aeefd4ce02514675bee6731460ab36571de04a30))
+* add product listing page ([b9e7a7b](https://github.com/ovh/manager/commit/b9e7a7b8a522b8f7a83b911285ebd93a7e597893))
+
+
+
 ## [1.0.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect-app@1.0.10...@ovh-ux/manager-cloud-connect-app@1.0.11) (2021-03-02)
 
 

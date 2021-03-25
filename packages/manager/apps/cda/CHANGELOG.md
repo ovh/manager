@@ -1,3 +1,18 @@
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cda-app@1.0.4...@ovh-ux/manager-cda-app@1.1.0) (2021-03-25)
+
+
+### Bug Fixes
+
+* import moment ([3f28fcb](https://github.com/ovh/manager/commit/3f28fcb44cabb6a39d5eb3d97e62a811116f590e))
+
+
+### Features
+
+* add breadcrumb ([97caa7c](https://github.com/ovh/manager/commit/97caa7c806ae45ed0552195663a3044fe5b4055c))
+* add listing page ([47abad0](https://github.com/ovh/manager/commit/47abad0a2f6a759f0706766204693bcc3831fdee))
+
+
+
 ## [1.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-cda-app@1.0.3...@ovh-ux/manager-cda-app@1.0.4) (2021-03-02)
 
 

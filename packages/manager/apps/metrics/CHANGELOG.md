@@ -1,3 +1,13 @@
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-metrics-app@1.0.4...@ovh-ux/manager-metrics-app@1.1.0) (2021-03-25)
+
+
+### Features
+
+* add breadcrumb ([13559fa](https://github.com/ovh/manager/commit/13559fa4ed5d40d052866f37fbdadade2d005185))
+* add listing page ([1d2b9d0](https://github.com/ovh/manager/commit/1d2b9d0e443346966362000e76694ed7628f2d53))
+
+
+
 ## [1.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-metrics-app@1.0.3...@ovh-ux/manager-metrics-app@1.0.4) (2021-03-02)
 
 

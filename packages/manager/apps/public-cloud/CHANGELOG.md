@@ -1,3 +1,12 @@
+## [4.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.11.0...@ovh-ux/manager-public-cloud@4.11.1) (2021-03-25)
+
+
+### Bug Fixes
+
+* **payment-method:** set user locale ([562b0ab](https://github.com/ovh/manager/commit/562b0ab2bac676a7b16382abc227a713bbfde150))
+
+
+
 # [4.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.10.1...@ovh-ux/manager-public-cloud@4.11.0) (2021-03-17)
 
 

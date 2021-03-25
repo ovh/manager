@@ -1,3 +1,19 @@
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-enterprise@1.0.4...@ovh-ux/manager-veeam-enterprise@1.1.0) (2021-03-25)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 808] ([ba2c7cb](https://github.com/ovh/manager/commit/ba2c7cb71125d9e47400184953b6614030a1a2c6))
+* add missing translations ([a668534](https://github.com/ovh/manager/commit/a6685349173116cd8ae4748ad43ba7a6ff5769a3))
+
+
+### Features
+
+* add breadcrumb ([9773a64](https://github.com/ovh/manager/commit/9773a64f9f8e5d5d47806af6d33f053edf0435b4))
+* **veeam-enterprise:** add listing page ([2c7c9e2](https://github.com/ovh/manager/commit/2c7c9e2869cb19d227051546d59cbddf1ec52dc6))
+
+
+
 ## [1.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-enterprise@1.0.3...@ovh-ux/manager-veeam-enterprise@1.0.4) (2020-10-28)
 
 

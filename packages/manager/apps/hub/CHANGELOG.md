@@ -1,3 +1,16 @@
+## [3.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.9.1...@ovh-ux/manager-hub-app@3.9.2) (2021-03-25)
+
+
+### Bug Fixes
+
+* **dashboard:** avoid error if partial error on payment tile ([#4480](https://github.com/ovh/manager/issues/4480)) ([059b19e](https://github.com/ovh/manager/commit/059b19e776628db73d192bfada974bfb56f03ec2))
+* **i18n:** add missing translations [CDS 859] ([810e235](https://github.com/ovh/manager/commit/810e2352b0195caf0362a50499d04eb0b2942cd5))
+* **i18n:** add missing translations [CDS 861] ([f42c3ed](https://github.com/ovh/manager/commit/f42c3edeeb30a0307c245d35a42ec7a8e428a1d4))
+* **i18n:** add missing translations [CDS 864] ([db265a6](https://github.com/ovh/manager/commit/db265a6ab958b0afc3a7c297fa890d6c11ed250c))
+* **payment-method:** set user locale ([562b0ab](https://github.com/ovh/manager/commit/562b0ab2bac676a7b16382abc227a713bbfde150))
+
+
+
 ## [3.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.9.0...@ovh-ux/manager-hub-app@3.9.1) (2021-03-24)
 
 

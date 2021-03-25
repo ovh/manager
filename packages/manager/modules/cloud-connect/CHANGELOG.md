@@ -1,3 +1,20 @@
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.0.10...@ovh-ux/manager-cloud-connect@1.1.0) (2021-03-25)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 808] ([ba2c7cb](https://github.com/ovh/manager/commit/ba2c7cb71125d9e47400184953b6614030a1a2c6))
+* add missing dependencies ([ac7454a](https://github.com/ovh/manager/commit/ac7454a351f932118519a16063cb8b23a069d18f))
+* import moment in app not module ([40b1061](https://github.com/ovh/manager/commit/40b10613597c98128468a17438976e086ed95aa9))
+
+
+### Features
+
+* add breadcrumb ([1da9f28](https://github.com/ovh/manager/commit/1da9f28d207b5a1ce6f1a487c457b7ed2ba5345a))
+* add product listing page ([b9e7a7b](https://github.com/ovh/manager/commit/b9e7a7b8a522b8f7a83b911285ebd93a7e597893))
+
+
+
 ## [1.0.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.0.9...@ovh-ux/manager-cloud-connect@1.0.10) (2021-03-02)
 
 

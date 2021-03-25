@@ -1,3 +1,29 @@
+# [3.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.9.3...@ovh-ux/manager-server-sidebar@3.10.0) (2021-03-25)
+
+
+### Bug Fixes
+
+* **cdn:** fix submenu loading ([9032be4](https://github.com/ovh/manager/commit/9032be46fb44df8ea22a196a823a80ba210969e5))
+* **dedicated-cloud:** update datacenter subitem state ([#4593](https://github.com/ovh/manager/issues/4593)) ([0becafd](https://github.com/ovh/manager/commit/0becafdcdb5f63f3f16e52b4d42922c193b5e145))
+* **i18n:** add missing translations [CDS 829] ([29b1f41](https://github.com/ovh/manager/commit/29b1f410537fe6d38dfc65807e716130566746ed))
+* **ip:** fix agora order ([6bed14c](https://github.com/ovh/manager/commit/6bed14c0a9003670ace53ff05b4b4e3fb3d41cf3))
+* add missing breadcrumb translations ([188100d](https://github.com/ovh/manager/commit/188100d236b217b2994c66ab5881601ca3336a07))
+* **private-database:** lazyload orders ([8225800](https://github.com/ovh/manager/commit/822580053fbcaa2b492b01824f6e6e57132a8cdb))
+* **web:** add new state names to configuration ([4839782](https://github.com/ovh/manager/commit/4839782cd6197c5453edbecaeaa0d9bf3a1f1093))
+* **web:** fix highlight for alldom and dns zone ([6d3005d](https://github.com/ovh/manager/commit/6d3005dfdc88cf5096823059515552308687e48c))
+* add missing translations ([e4fc17c](https://github.com/ovh/manager/commit/e4fc17c2659d8fd27eff6c6c4cd2d9d2da7a619b))
+* update dns zone order url ([e77863a](https://github.com/ovh/manager/commit/e77863af7ed909a6bd6496e0092d428e55a608e1))
+
+
+### Features
+
+* add listing page ([1d2b9d0](https://github.com/ovh/manager/commit/1d2b9d0e443346966362000e76694ed7628f2d53))
+* add listing page ([47abad0](https://github.com/ovh/manager/commit/47abad0a2f6a759f0706766204693bcc3831fdee))
+* revamp state architecture ([3cf2aa0](https://github.com/ovh/manager/commit/3cf2aa0e3f013a23c3f228e36bcb9f19811b432b))
+* **domain:** add listing page ([b6b55f2](https://github.com/ovh/manager/commit/b6b55f2c9966f9ee6062a2538b752dff4125d65f))
+
+
+
 ## [3.9.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.9.2...@ovh-ux/manager-server-sidebar@3.9.3) (2021-03-16)
 
 

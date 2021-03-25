@@ -1,3 +1,12 @@
+## [14.0.13](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-utils@14.0.12...@ovh-ux/ng-ovh-utils@14.0.13) (2021-03-25)
+
+
+### Bug Fixes
+
+* **popover:** make component standalone by declaring its own style ([14548df](https://github.com/ovh/manager/commit/14548dfe69bc7ab7d138d4ccdc78d9b8d8375420))
+
+
+
 ## [14.0.12](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-utils@14.0.11...@ovh-ux/ng-ovh-utils@14.0.12) (2021-02-11)
 
 

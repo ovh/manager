@@ -1,3 +1,24 @@
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-enterprise-cloud-database@1.0.7...@ovh-ux/manager-enterprise-cloud-database@1.1.0) (2021-03-25)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 808] ([ba2c7cb](https://github.com/ovh/manager/commit/ba2c7cb71125d9e47400184953b6614030a1a2c6))
+* rename lazyloading module to avoid duplicates ([75963fa](https://github.com/ovh/manager/commit/75963facff46720d20a0d97d19f214eb3b6325d3))
+* return promise for translation refresh ([4c0a2ba](https://github.com/ovh/manager/commit/4c0a2ba604379134b579150f34ecf1ba0f895e16))
+
+
+### Features
+
+* add breadcrumb ([f41b472](https://github.com/ovh/manager/commit/f41b472cea916822bf88e6dac901b76680e69b68))
+
+
+### Performance Improvements
+
+* load dependencies only when required ([125dcb2](https://github.com/ovh/manager/commit/125dcb2630e27f633e6bf710be02fe7f6042ec2a))
+
+
+
 ## [1.0.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-enterprise-cloud-database@1.0.6...@ovh-ux/manager-enterprise-cloud-database@1.0.7) (2021-02-10)
 
 

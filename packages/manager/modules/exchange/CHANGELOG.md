@@ -1,3 +1,38 @@
+# [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@2.0.4...@ovh-ux/manager-exchange@2.1.0) (2021-03-25)
+
+
+### Bug Fixes
+
+* **account:** use injected link ([900489c](https://github.com/ovh/manager/commit/900489c1102242d1531d953f0d4692979431f755))
+* **deps:** update @ovh-ux/manager-config ([f8d7c24](https://github.com/ovh/manager/commit/f8d7c2469e5151d39fa73a2d064c8673835e11e9))
+* **deps:** update dependencies ([bd6f10e](https://github.com/ovh/manager/commit/bd6f10e1b10a00c19e9600ac2439a48aca7c6a12))
+* **deps:** update deps ([249b0b9](https://github.com/ovh/manager/commit/249b0b9315b8cab1550b6d529dd56986a8176b1b))
+* **diagnostic:** use value after initialization ([6269f16](https://github.com/ovh/manager/commit/6269f161641b88ab6e5ea3bdedf1f60f096a7fc4))
+* **domain:** fix link display ([79dda37](https://github.com/ovh/manager/commit/79dda37b84e4f0a05f32d142e189ea8313f5e239))
+* **domain.add:** update order url ([375c74a](https://github.com/ovh/manager/commit/375c74aac625946c6a02fa8b64b73df69fa4f6ea))
+* **i18n:** add missing translations [CDS 829] ([29b1f41](https://github.com/ovh/manager/commit/29b1f410537fe6d38dfc65807e716130566746ed))
+* **security:** import controller ([ee7ef75](https://github.com/ovh/manager/commit/ee7ef75c7375cce1d35b436604df633e1c01dbee))
+* **shared-account:** add missing breadcrumb translation ([ae6db0d](https://github.com/ovh/manager/commit/ae6db0d0968b58ee933dd02ffcf1b56e94a5a9cc))
+* add and import missing dependencies ([b1cf5d2](https://github.com/ovh/manager/commit/b1cf5d2c1b4a53a8ea6c4d6776f191c21a21a79b))
+* add missing translations ([e4fc17c](https://github.com/ovh/manager/commit/e4fc17c2659d8fd27eff6c6c4cd2d9d2da7a619b))
+* fix service injection ([a9c53db](https://github.com/ovh/manager/commit/a9c53db126807231cc17ca7dda154564e59dada4))
+* remove apiv7 from exchange service ([7698d24](https://github.com/ovh/manager/commit/7698d2438a5c304f741b1457e8662518163fc391))
+* remove parameter from lazyloaded url ([1c9c0d5](https://github.com/ovh/manager/commit/1c9c0d52228999d8b7313b88af10bd797d306f53))
+
+
+### Features
+
+* add breadcrumb ([ef88e63](https://github.com/ovh/manager/commit/ef88e634423680a7471d2086c8085651fcf505ba))
+* refresh translations before entering states ([2a6a343](https://github.com/ovh/manager/commit/2a6a3439f78ecab9f10a5806da4c2747a98912ee))
+* **account:** add intermediate state ([ebb9b07](https://github.com/ovh/manager/commit/ebb9b072077120ceeb8078aa972a104363995b17))
+* **exchange:** add listing page ([4e936d9](https://github.com/ovh/manager/commit/4e936d9f2ffdcb2a4c9bd64763e1f77ebd96782d))
+* **group:** add intermediate state ([631c22d](https://github.com/ovh/manager/commit/631c22db43c21a4f5d08f227b13f31da4e1e409c))
+* add user service to wuc ([acf14ae](https://github.com/ovh/manager/commit/acf14ae557c62f044813f028190e2cb60da2fe6a))
+* move exchange password service to wuc ([81dd714](https://github.com/ovh/manager/commit/81dd714bcd698d8fba8f8e477b3b8ad0da00c500))
+* move Exchange service to wuc ([61488d1](https://github.com/ovh/manager/commit/61488d142e821ffdc6194ff04dfa93ed53663cff))
+
+
+
 ## [2.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@2.0.3...@ovh-ux/manager-exchange@2.0.4) (2021-01-27)
 
 

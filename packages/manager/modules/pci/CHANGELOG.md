@@ -1,3 +1,15 @@
+## [5.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.15.0...@ovh-ux/manager-pci@5.15.1) (2021-03-25)
+
+
+### Bug Fixes
+
+* remove non needed component ([#4563](https://github.com/ovh/manager/issues/4563)) ([b3aa13f](https://github.com/ovh/manager/commit/b3aa13f8b1e7f32328f992b1d0195de7473a0c15))
+* **i18n:** add missing translations [CDS 856] ([e86d632](https://github.com/ovh/manager/commit/e86d632f26a851a37be72e8be555c20b570570ae))
+* **i18n:** add missing translations [CDS 859] ([810e235](https://github.com/ovh/manager/commit/810e2352b0195caf0362a50499d04eb0b2942cd5))
+* **i18n:** add missing translations [CDS 861] ([f42c3ed](https://github.com/ovh/manager/commit/f42c3edeeb30a0307c245d35a42ec7a8e428a1d4))
+
+
+
 # [5.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.14.0...@ovh-ux/manager-pci@5.15.0) (2021-03-24)
 
 

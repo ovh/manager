@@ -1,3 +1,23 @@
+# [8.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@7.0.11...@ovh-ux/ng-ovh-payment-method@8.0.0) (2021-03-25)
+
+
+### Bug Fixes
+
+* **locale:** add missing getUserLocale method ([f57bab7](https://github.com/ovh/manager/commit/f57bab7530881e184655cbd42dc5782edb545ee4))
+* **user-locale:** use user locale from provider ([bfd74a0](https://github.com/ovh/manager/commit/bfd74a095285ce108a081afd61dc8b5666f0939d))
+
+
+### Features
+
+* **locale:** add user locale in payment method provider ([8cb2a16](https://github.com/ovh/manager/commit/8cb2a165600766adb7d2b8caa99066c476c1b757))
+
+
+### BREAKING CHANGES
+
+* **user-locale:** remove @ovh-ux/manager-config dependency
+
+
+
 ## [7.0.11](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@7.0.10...@ovh-ux/ng-ovh-payment-method@7.0.11) (2021-03-02)
 
 

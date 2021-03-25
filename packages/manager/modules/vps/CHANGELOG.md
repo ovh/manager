@@ -1,3 +1,25 @@
+# [2.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.4.0...@ovh-ux/manager-vps@2.5.0) (2021-03-25)
+
+
+### Bug Fixes
+
+* **cloud-database.order:** inject missing translations ([3af2590](https://github.com/ovh/manager/commit/3af2590ab99da10d2e5b9b7e1a314b55f495078d))
+* **i18n:** add missing translations [CDS 808] ([ba2c7cb](https://github.com/ovh/manager/commit/ba2c7cb71125d9e47400184953b6614030a1a2c6))
+* **i18n:** add missing translations [CDS 820] ([1339603](https://github.com/ovh/manager/commit/13396035fa7af101cb69643964a234b249e7a0d1))
+* **i18n:** add missing translations [CDS 832] ([39dc3f9](https://github.com/ovh/manager/commit/39dc3f9730bf97a268c7ae1cdeb1af0011ecfd1e))
+* fix constants import ([c7f32ce](https://github.com/ovh/manager/commit/c7f32cedfdbceaa521cad228d2d0d7b842534601))
+* inject missing translations ([ebaae89](https://github.com/ovh/manager/commit/ebaae892595b5d32d0d096e411f98ad63da3c8a8))
+
+
+### Features
+
+* add breadcrumb ([95df5ea](https://github.com/ovh/manager/commit/95df5ea3289f41e1a86556c328707ade208e216e))
+* revamp state url ([390f434](https://github.com/ovh/manager/commit/390f434de4f53ce99c59dde5a0529c703123c658))
+* **vps:** add listing page ([1f3a506](https://github.com/ovh/manager/commit/1f3a5062a504263d4daa82ed06b2caeb6b8fcdeb))
+* **vps:** add tracking on upgrade and upscale ([2b8468f](https://github.com/ovh/manager/commit/2b8468fb162be19117e05dc6b411a73c032eccf5))
+
+
+
 # [2.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.3.7...@ovh-ux/manager-vps@2.4.0) (2021-03-14)
 
 
