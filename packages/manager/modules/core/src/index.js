@@ -101,17 +101,11 @@ angular
       case 'es-es':
         angularLocalePromise = import('angular-i18n/angular-locale_es-es.js');
         break;
-      case 'fi-fi':
-        angularLocalePromise = import('angular-i18n/angular-locale_fi-fi.js');
-        break;
       case 'fr-ca':
         angularLocalePromise = import('angular-i18n/angular-locale_fr-ca.js');
         break;
       case 'it-it':
         angularLocalePromise = import('angular-i18n/angular-locale_it-it.js');
-        break;
-      case 'lt-lt':
-        angularLocalePromise = import('angular-i18n/angular-locale_lt-lt.js');
         break;
       case 'pl-pl':
         angularLocalePromise = import('angular-i18n/angular-locale_pl-pl.js');
