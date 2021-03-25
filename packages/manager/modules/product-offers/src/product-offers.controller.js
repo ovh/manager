@@ -34,6 +34,7 @@ export default class ProductOffersController {
       case WORKFLOW_TYPES.ORDER:
         this.workflow = new OrderWorkflow(
           this.$q,
+          this.$timeout,
           this.$translate,
           this.workflowOptions,
           this.WucOrderCartService,
