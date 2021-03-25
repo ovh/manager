@@ -1,0 +1,6 @@
+{
+  "manager_hub_incident_status_resiliation_pci": "Delete instances",
+  "manager_hub_incident_status_resiliation_description_pci": "Your instances in \"Off\" status will be billed if you don't delete them. Please delete them in the \"Instances\" page.",
+  "manager_hub_incident_status_resiliate_pci_cancel": "Cancel",
+  "manager_hub_incident_status_resiliate_pci_confirm": "See instances"
+}

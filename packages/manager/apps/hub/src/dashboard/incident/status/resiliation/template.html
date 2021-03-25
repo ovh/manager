@@ -1,0 +1,24 @@
+<oui-modal
+    primary-label="{{ 'manager_hub_incident_status_resiliate_confirm' | translate }}"
+    secondary-label="{{ 'manager_hub_incident_status_resiliate_cancel' | translate}}"
+    secondary-action="$ctrl.goBack()"
+    primary-action="$ctrl.resiliate()"
+    on-dismiss="$ctrl.goBack()"
+    heading="{{ :: 'manager_hub_incident_status_resiliation' | translate }}"
+>
+    <p
+        data-translate="manager_hub_incident_status_resiliation_description"
+        data-translate-values="{
+        serviceName: $ctrl.service.serviceName
+    }"
+    ></p>
+    <p
+        data-ng-if="$ctrl.service.isEngaged || $ctrl.service.terminateRoute"
+        class="mb-0"
+        data-translate="manager_hub_incident_status_resiliation_description_sidenote"
+    ></p>
+    <p
+        data-ng-if="!$ctrl.service.isEngaged"
+        data-translate="manager_hub_incident_status_resiliation_description_email"
+    ></p>
+</oui-modal>

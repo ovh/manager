@@ -1,0 +1,11 @@
+{
+  "manager_hub_incident_status_resiliation": "Resiliate service",
+  "manager_hub_incident_status_resiliation_description": "Are you sure you want to resiliate your service {{ serviceName }}?",
+  "manager_hub_incident_status_resiliation_description_sidenote": "Your service will be retroactively resiliated on April, 1st 2021",
+  "manager_hub_incident_status_resiliation_description_email": "You will be sent an email detailing the procedure to delete this service.",
+  "manager_hub_incident_status_resiliate_success_engaged": "Your request has been submitted and will be processed shortly. You can follow up your service status on <a href=\"{{url}}\">\"My services\"</a> page.",
+  "manager_hub_incident_status_resiliate_success": "Your request has been submitted and will be processed shortly. You have been sent an email detailing the procedure to follow.",
+  "manager_hub_incident_status_resiliate_error": "An error has occured while requesting for resiliation.",
+  "manager_hub_incident_status_resiliate_confirm": "Confirm",
+  "manager_hub_incident_status_resiliate_cancel": "Cancel"
+}

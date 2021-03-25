@@ -1,0 +1,6 @@
+{
+  "manager_hub_incident_status_resiliation_pci": "Supprimer les instances",
+  "manager_hub_incident_status_resiliation_description_pci": "Vos instances au statut « Éteintes » seront facturées si vous ne les supprimez pas. Nous vous invitons à les « Supprimer» dans la vue Mes instances.",
+  "manager_hub_incident_status_resiliate_pci_cancel": "Annuler",
+  "manager_hub_incident_status_resiliate_pci_confirm": "Voir les instances"
+}

@@ -27,5 +27,9 @@
   "manager_hub_incident_status_product_PCS": "Public Cloud Storage",
   "manager_hub_incident_status_product_PCA": "Public Cloud Archive",
   "manager_hub_incident_status_product_VEEAMCC": "Veeam Cloud Connect",
-  "manager_hub_incident_status_faq": "Sprawdź sekcję FAQ"
+  "manager_hub_incident_status_faq": "Sprawdź sekcję FAQ",
+  "manager_hub_incident_status_resiliate": "Resiliate service",
+  "manager_hub_incident_status_see": "View service details",
+  "manager_hub_incident_status_delete_instances": "Delete instances",
+  "manager_hub_incident_status_product_resiliated": "Termination requested"
 }

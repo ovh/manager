@@ -1,0 +1,12 @@
+<oui-modal
+    primary-label="{{ 'manager_hub_incident_status_resiliate_pci_confirm' | translate }}"
+    secondary-label="{{ 'manager_hub_incident_status_resiliate_pci_cancel' | translate}}"
+    secondary-action="$ctrl.goBack()"
+    primary-action="$ctrl.deleteInstances()"
+    on-dismiss="$ctrl.goBack()"
+    heading="{{ :: 'manager_hub_incident_status_resiliation_pci' | translate }}"
+>
+    <p
+        data-translate="manager_hub_incident_status_resiliation_description_pci"
+    ></p>
+</oui-modal>

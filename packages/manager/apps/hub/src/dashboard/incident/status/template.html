@@ -40,6 +40,14 @@
     data-ng-href="{{$ctrl.faqLink}}"
     data-translate="manager_hub_incident_status_faq"
 ></a>
+
+<oui-message
+    data-ng-if="$ctrl.message.value"
+    type="{{$ctrl.message.type}}"
+    class="mt-3"
+>
+    <span data-ng-bind-html="$ctrl.message.value"></span>
+</oui-message>
 <oui-datagrid
     class="pb-5"
     rows="$ctrl.services"
@@ -55,6 +63,11 @@
             data-ng-href="{{:: $row.url }}"
             data-ng-bind="::$row.serviceName"
         ></a>
+        <span
+            data-ng-if="!$row.serviceId"
+            class="oui-badge oui-badge_info"
+            data-translate="manager_hub_incident_status_product_resiliated"
+        ></span>
     </oui-datagrid-column>
     <oui-datagrid-column
         title="::'manager_hub_incident_status_service_type' | translate"
@@ -108,4 +121,27 @@
         >
         </span>
     </oui-datagrid-column>
+    <oui-action-menu compact placement="end">
+        <oui-action-menu-item href="{{$row.url}}">
+            <span data-translate="manager_hub_incident_status_see"></span>
+        </oui-action-menu-item>
+        <div data-ng-if="$ctrl.canResiliate">
+            <oui-action-menu-item
+                ng-if="::!$ctrl.constructor.hasInstances($row) && $ctrl.constructor.canBeResiliated($row)"
+                on-click="$ctrl.goToResiliation($row)"
+            >
+                <span
+                    data-translate="manager_hub_incident_status_resiliate"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                ng-if="::$ctrl.constructor.hasInstances($row)"
+                on-click="$ctrl.goToDeleteInstances($row)"
+            >
+                <span
+                    data-translate="manager_hub_incident_status_delete_instances"
+                ></span>
+            </oui-action-menu-item>
+        </div>
+    </oui-action-menu>
 </oui-datagrid>
