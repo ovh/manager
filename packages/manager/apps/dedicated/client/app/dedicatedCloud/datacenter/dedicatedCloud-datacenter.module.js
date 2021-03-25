@@ -8,7 +8,7 @@ import drp from './drp';
 import host from './host';
 import routing from './dedicatedCloud-datacenter.routing';
 
-const moduleName = 'ovhManagerDedicatedCloudDatacenterHost';
+const moduleName = 'ovhManagerDedicatedCloudDatacenter';
 
 angular
   .module(moduleName, [
