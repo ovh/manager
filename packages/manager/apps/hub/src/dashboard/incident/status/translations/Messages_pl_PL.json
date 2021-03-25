@@ -3,7 +3,7 @@
   "manager_hub_incident_status_service_name": "Nazwa usługi",
   "manager_hub_incident_status_service_type": "Typ usługi",
   "manager_hub_incident_status_service_status": "Status",
-  "manager_hub_incident_status_service_rack": "Rack",
+  "manager_hub_incident_status_service_rack": "Szafa",
   "manager_hub_incident_status_service_status_RECOVERABLE": "Odzyskanie usługi możliwe",
   "manager_hub_incident_status_service_status_NON_RECOVERABLE": "Odzyskanie usługi niemożliwe",
   "manager_hub_incident_status_service_status_TO_ASSESS": "Trwa diagnoza",
