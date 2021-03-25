@@ -155,31 +155,6 @@ export default class TelecomTelephonyAliasConfigurationCtrl {
           ),
         },
       );
-
-      // add links for hunting board and hunting records for "CCS expert"
-      if (this.number.feature.featureType === 'contactCenterSolutionExpert') {
-        ovhPabxActions.push(
-          {
-            divider: true,
-          },
-          {
-            name: 'number_cloud_hunting_board',
-            sref:
-              'telecom.telephony.billingAccount.alias.details.configuration.stats.ovhPabx',
-            text: this.$translate.instant(
-              'telephony_alias_configuration_actions_number_hunting_board',
-            ),
-          },
-          {
-            name: 'number_cloud_hunting_records',
-            sref:
-              'telecom.telephony.billingAccount.alias.details.configuration.recordsOvhPabx',
-            text: this.$translate.instant(
-              'telephony_alias_configuration_actions_number_hunting_records',
-            ),
-          },
-        );
-      }
     }
     return ovhPabxActions;
   }

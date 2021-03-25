@@ -12,6 +12,7 @@
   "telephony_alias_tab_number_directory": "Coordonnées",
   "telephony_alias_tab_statistics": "Statistiques",
   "telephony_alias_tab_records": "Enregistrements",
+  "telephony_alias_tab_showmore": "Consultation",
   "telephony_alias_rename_error": "Impossible de renommer votre alias {{serviceName}}.",
   "telephony_alias_termination_warning": "Le numéro sera résilié le <strong>{{ date }}</strong>.",
   "telephony_alias_termination_warning_cancel": "Vous pourrez annuler dans la section suivante.",

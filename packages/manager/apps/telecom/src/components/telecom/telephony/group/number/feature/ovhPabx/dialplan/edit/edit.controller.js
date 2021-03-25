@@ -73,15 +73,7 @@ export default class DialplanEditCtrl {
    *  Called on cancel button clicked
    */
   onCancelBtnClick() {
-    // close popover
-    this.dialplanCtrl.popoverStatus.isOpen = false;
-    this.dialplanCtrl.popoverStatus.move = false;
-
-    // if draft => remove from ovh pabx dialplans list and refresh current displayed dialplan
-    if (this.dialplan.status === 'DRAFT') {
-      this.ovhPabx.removeDialplan(this.dialplan);
-      this.ovhPabxCtrl.refreshDisplayedDialplan();
-    }
+    this.dialplanCtrl.onCancelEditDialplan();
   }
 
   /**

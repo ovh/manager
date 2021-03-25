@@ -1,6 +1,7 @@
 import find from 'lodash/find';
 import filter from 'lodash/filter';
 import get from 'lodash/get';
+import isString from 'lodash/isString';
 import map from 'lodash/map';
 import snakeCase from 'lodash/snakeCase';
 import sortBy from 'lodash/sortBy';
@@ -159,6 +160,7 @@ export default class DialplanExtensionRuleEditCtrl {
    */
   // eslint-disable-next-line class-methods-use-this
   getServiceDisplayedName(service, isGroup) {
+    if (isString(service)) return service;
     if (isGroup) {
       return service.description &&
         service.description !== service.billingAccount
@@ -307,14 +309,6 @@ export default class DialplanExtensionRuleEditCtrl {
   }
 
   onCancelBtnClick() {
-    this.parentCtrl.popoverStatus.isOpen = false;
-    this.parentCtrl.popoverStatus.move = false;
-
-    if (this.rule.status === 'DRAFT') {
-      this.parentCtrl.extensionCtrl.extension.removeRule(this.rule);
-
-      // check for collapsing or not the rules into extension component view
-      this.parentCtrl.extensionCtrl.checkForDisplayHelpers();
-    }
+    this.parentCtrl.onCancelRuleEdit();
   }
 }

@@ -4,12 +4,20 @@ import some from 'lodash/some';
 
 export default class DialplanCtrl {
   /* @ngInject */
-  constructor($q, $timeout, $translate, TucToast, TUC_UI_SORTABLE_HELPERS) {
+  constructor(
+    $q,
+    $timeout,
+    $translate,
+    autoScrollOnToggle,
+    TucToast,
+    TUC_UI_SORTABLE_HELPERS,
+  ) {
     this.$q = $q;
     this.$timeout = $timeout;
     this.$translate = $translate;
     this.TucToast = TucToast;
     this.tucUiSortableHelpers = TUC_UI_SORTABLE_HELPERS;
+    this.autoScrollOnToggle = autoScrollOnToggle;
   }
 
   $onInit() {
@@ -141,17 +149,18 @@ export default class DialplanCtrl {
     }
   }
 
-  onDialplanOutsideClick() {
-    if (this.dialplan.status !== 'DELETE_PENDING') {
-      return;
-    }
-
-    // cancel delete confirm
-    this.dialplan.status = 'OK';
-  }
-
   onEditDialplanBtnClick() {
     this.popoverStatus.isOpen = true;
+  }
+
+  onCancelEditDialplan() {
+    this.popoverStatus.isOpen = false;
+    this.popoverStatus.move = false;
+    // if draft => remove from ovh pabx dialplans list and refresh current displayed dialplan
+    if (this.dialplan.status === 'DRAFT') {
+      this.ovhPabx.removeDialplan(this.dialplan);
+      this.ovhPabxCtrl.refreshDisplayedDialplan();
+    }
   }
 
   onDialplanExpanding() {
@@ -168,6 +177,21 @@ export default class DialplanCtrl {
     });
 
     return addedExtension.create();
+  }
+
+  static onDialplanExpanded() {
+    const elt = angular.element('#group-number-extension-steps')[0];
+    if (elt) {
+      elt.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'nearest',
+      });
+    }
+  }
+
+  toggleCollapsed() {
+    this.displayHelpers.collapsed = !this.displayHelpers.collapsed;
   }
 
   /**

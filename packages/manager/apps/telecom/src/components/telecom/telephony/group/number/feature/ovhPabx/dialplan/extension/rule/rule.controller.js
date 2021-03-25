@@ -3,9 +3,10 @@ import indexOf from 'lodash/indexOf';
 
 export default class DialplanExtensionRuleCtrl {
   /* @ngInject */
-  constructor($q, $translate, TelephonyMediator, TucToast) {
+  constructor($q, $translate, autoScrollOnToggle, TelephonyMediator, TucToast) {
     this.$q = $q;
     this.$translate = $translate;
+    this.autoScrollOnToggle = autoScrollOnToggle;
     this.TelephonyMediator = TelephonyMediator;
     this.TucToast = TucToast;
 
@@ -82,6 +83,10 @@ export default class DialplanExtensionRuleCtrl {
     );
   }
 
+  openPopOver() {
+    this.popoverStatus.isOpen = true;
+  }
+
   onDeleteButtonClick() {
     this.rule.status = 'DELETE_CONFIRM';
   }
@@ -117,12 +122,15 @@ export default class DialplanExtensionRuleCtrl {
     );
   }
 
-  onRuleOutsideClick() {
-    if (!this.deletePending) {
-      return;
-    }
+  onCancelRuleEdit() {
+    this.popoverStatus.isOpen = false;
+    this.popoverStatus.move = false;
 
-    // cancel delete confirm
-    this.deletePending = false;
+    if (this.rule.status === 'DRAFT') {
+      this.extensionCtrl.extension.removeRule(this.rule);
+
+      // check for collapsing or not the rules into extension component view
+      this.extensionCtrl.checkForDisplayHelpers();
+    }
   }
 }

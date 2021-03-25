@@ -11,7 +11,8 @@
         data-popover-is-open="$ctrl.popoverStatus.isOpen"
         data-popover-class="pretty-popover telephony-number-feature-popover telephony-number-ovh-pabx-actions-popup"
         data-ng-class="{ 'voip-plan__step-content--delete-anim': $ctrl.deletePending }"
-        data-tuc-hide-outside-click="$ctrl.onRuleOutsideClick()"
+        data-popover-autofocus
+        data-popover-on-outside-click="$ctrl.onCancelRuleEdit()"
     >
         <div
             class="voip-plan__step-description-pabx"
@@ -100,15 +101,19 @@
         <!-- END OF RULE ACTION -->
 
         <!-- AVAILABLE RULE ACTIONS -->
-        <div class="voip-plan__step-btn-container" data-uib-dropdown>
+        <div
+            class="voip-plan__step-btn-container"
+            data-uib-dropdown
+            data-on-toggle="$ctrl.autoScrollOnToggle(open)"
+        >
             <button
                 type="button"
-                class="voip-plan__step-btn voip-plan__step-btn--default"
+                class="oui-action-button"
                 data-attr-id="extension-rule-{{ $ctrl.rule.ruleId }}-actions"
                 data-uib-dropdown-toggle
             >
                 <span
-                    class="ovh-font ovh-font-dots align-top"
+                    class="oui-icon oui-icon-ellipsis ml-0"
                     aria-hidden="true"
                 ></span>
             </button>
@@ -125,7 +130,7 @@
                         type="button"
                         class="btn btn-link w-100"
                         data-translate="telephony_number_feature_ovh_pabx_step_rule_action_edit"
-                        data-ng-click="$ctrl.popoverStatus.isOpen = true"
+                        data-ng-click="$ctrl.openPopOver()"
                     ></button>
                 </li>
                 <!-- EDIT ACTION -->
