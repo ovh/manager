@@ -16,6 +16,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     resolve: {
+      hideBreadcrumb: () => true,
       breadcrumb: () => null,
     },
     layout: 'modal',
