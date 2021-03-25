@@ -14,6 +14,7 @@ export default /* @ngInject */ function telephonyNumberOvhPabxMenuCtrl(
   $timeout,
   $translate,
   $translatePartialLoader,
+  autoScrollOnToggle,
   TucToast,
 ) {
   const self = this;
@@ -358,5 +359,6 @@ export default /* @ngInject */ function telephonyNumberOvhPabxMenuCtrl(
     }
   });
 
+  self.autoScrollOnToggle = autoScrollOnToggle;
   /* -----  End of INITIALIZATION  ------*/
 }

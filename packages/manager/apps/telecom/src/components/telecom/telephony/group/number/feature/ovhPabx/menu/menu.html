@@ -255,9 +255,6 @@
             >
                 <div
                     data-ng-repeat="entry in $ctrl.menu.entries track by $index"
-                    data-smooth-scroll
-                    data-scroll-if="{{ entry.status === 'DRAFT' && $ctrl.popoverStatus.isParentClicked }}"
-                    data-offset="550"
                     data-ng-if="$ctrl.displayHelpers.expanded"
                 >
                     <telephony-number-ovh-pabx-menu-entry

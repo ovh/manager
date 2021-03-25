@@ -149,6 +149,19 @@
                     data-translate="telephony_alias_tab_number_directory"
                 ></span
             ></oui-header-tabs-item>
+            <oui-header-tabs-dropdown
+                data-text="{{:: 'telephony_alias_tab_showmore' | translate }}"
+                data-ng-if="$ctrl.isContactCenterSolutionExpert()"
+            >
+                <oui-header-tabs-item
+                    data-state="telecom.telephony.billingAccount.alias.details.configuration.stats.ovhPabx"
+                    ><span data-translate="telephony_group_tab_dashboard"></span
+                ></oui-header-tabs-item>
+                <oui-header-tabs-item
+                    data-state="telecom.telephony.billingAccount.alias.details.configuration.recordsOvhPabx"
+                    ><span data-translate="telephony_alias_tab_records"></span
+                ></oui-header-tabs-item>
+            </oui-header-tabs-dropdown>
         </oui-header-tabs>
     </div>
 

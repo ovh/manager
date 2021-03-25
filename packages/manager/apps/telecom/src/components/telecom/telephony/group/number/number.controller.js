@@ -10,12 +10,14 @@ export default class TelephonyNumberCtrl {
     $q,
     $translate,
     $translatePartialLoader,
+    autoScrollOnToggle,
     tucJsPlumbService,
     TucToast,
   ) {
     this.$q = $q;
     this.$translate = $translate;
     this.$translatePartialLoader = $translatePartialLoader;
+    this.autoScrollOnToggle = autoScrollOnToggle;
     this.tucJsPlumbService = tucJsPlumbService;
     this.TucToast = TucToast;
     this.jsPlumbInstanceOptions = JSPLUMB_INSTANCE_OPTIONS;

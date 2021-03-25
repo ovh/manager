@@ -128,6 +128,10 @@ export default class TelecomTelephonyAliasCtrl {
     return this.alias.isContactCenterSolution();
   }
 
+  isContactCenterSolutionExpert() {
+    return get(this, 'alias.featureType') === 'contactCenterSolutionExpert';
+  }
+
   isFeatureTypeObsolete() {
     return OBSOLETE_FEATURE_TYPES.includes(this.alias.featureType);
   }

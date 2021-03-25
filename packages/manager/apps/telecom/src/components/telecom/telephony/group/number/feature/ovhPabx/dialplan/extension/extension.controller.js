@@ -11,6 +11,7 @@ export default class DialplanExtensionCtrl {
     $scope,
     $timeout,
     $translate,
+    autoScrollOnToggle,
     TucToast,
     TUC_UI_SORTABLE_HELPERS,
   ) {
@@ -18,6 +19,7 @@ export default class DialplanExtensionCtrl {
     this.$scope = $scope;
     this.$timeout = $timeout;
     this.$translate = $translate;
+    this.autoScrollOnToggle = autoScrollOnToggle;
     this.TucToast = TucToast;
     this.tucUiSortableHelpers = TUC_UI_SORTABLE_HELPERS;
   }
@@ -186,15 +188,6 @@ export default class DialplanExtensionCtrl {
     }
   }
 
-  onExtensionOutsideClick() {
-    if (this.extension.status !== 'DELETE_PENDING') {
-      return;
-    }
-
-    // cancel deletion confirm
-    this.extension.status = 'OK';
-  }
-
   /* ----------  ACTIVATE/DESACTIVATE  ----------*/
 
   toggleEnabledState() {
@@ -227,6 +220,12 @@ export default class DialplanExtensionCtrl {
       status: 'DRAFT',
       negativeAction: isNegative,
     });
+  }
+
+  onCancelExtensionEdit() {
+    this.popoverStatus.isOpen = false;
+    this.popoverStatus.move = false;
+    this.extension.stopEdition(true);
   }
 
   /* ----------  MANAGE CONDITIONS  ----------*/
@@ -289,5 +288,18 @@ export default class DialplanExtensionCtrl {
       isNegative ? 'negativeExpanded' : 'expanded',
       true,
     );
+  }
+
+  onExtensionExpanded() {
+    const elt = angular.element(
+      `#group-number__action-id-${this.extension.extensionId}`,
+    )[0];
+    if (elt) {
+      elt.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'nearest',
+      });
+    }
   }
 }

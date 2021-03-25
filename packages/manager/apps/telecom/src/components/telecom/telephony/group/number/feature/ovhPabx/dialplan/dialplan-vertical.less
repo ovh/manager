@@ -1,0 +1,173 @@
+@import '../../../variables.less';
+
+@voip-plan-condition-tip: 11px;
+@voip-plan-links: 3px solid @voip-plan-main-color;
+
+.group-number-layout-vertical {
+  .group-number {
+    justify-content: center;
+
+    &__step {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &-wrapper {
+        position: relative;
+        display: flex;
+        &::before {
+          content: '';
+          position: absolute;
+          top: -22px;
+          left: 50%;
+          border-left: @voip-plan-links;
+          width: 0;
+          height: 25px;
+        }
+      }
+
+      &-container {
+        float: left;
+        text-align: center;
+        list-style-type: none;
+        position: relative;
+        &::before,
+        &::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          right: 50%;
+          border-top: @voip-plan-links;
+          width: 100%;
+          height: 25px;
+        }
+        &::after {
+          right: auto;
+          left: 50%;
+          border-left: @voip-plan-links;
+        }
+        &:first-child::before,
+        &:last-child::after {
+          border: 0 none;
+        }
+        &:last-child::before {
+          border-right: @voip-plan-links;
+          right: 49%;
+        }
+      }
+
+      &-content {
+        &--node {
+          margin-bottom: 10px;
+        }
+      }
+
+      &-container {
+        &::before,
+        &::after {
+          top: 0;
+          right: 50%;
+          border-top: @voip-plan-links;
+          width: 100%;
+          height: 25px;
+        }
+        &::after {
+          right: auto;
+          left: 50%;
+          border-left: @voip-plan-links;
+        }
+        &:last-child::before {
+          border-right: @voip-plan-links;
+          right: 49%;
+        }
+      }
+
+      &--condition {
+        &-icon {
+          background-color: #fff;
+          margin-left: -69px;
+        }
+      }
+
+      &-confirm {
+        &-content {
+          display: flex;
+        }
+      }
+    } // &__step
+
+    &__action {
+      &-wrapper {
+        margin-top: 42px;
+      }
+      &-container {
+        margin-left: -10px;
+      }
+      &-negative {
+        margin-bottom: -40px;
+      }
+      &-btn {
+        &--add {
+          margin-left: -165px;
+        }
+      }
+    }
+
+    &__title {
+      &--container {
+        justify-content: inherit;
+      }
+    }
+
+    &__number {
+      &::before,
+      &::after {
+        right: 50%;
+        width: 50%;
+      }
+
+      &::after {
+        left: 50%;
+      }
+    }
+
+    &__dialplan {
+      margin-top: 8px;
+      &::before,
+      &::after {
+        content: '';
+        position: absolute;
+        top: -30px;
+        right: 50%;
+        width: 50%;
+        height: 25px;
+      }
+      &::after {
+        right: auto;
+        left: 50%;
+        border-left: @voip-plan-links;
+      }
+      &--check-btn {
+        color: @voip-plan-main-color;
+      }
+    }
+
+    .action_hidden {
+      top: 137px;
+    }
+  } // .group-number
+
+  .telephony-number-feature {
+    position: absolute;
+    margin-top: 185px;
+  }
+
+  .group-number-switch {
+    text-align: center;
+    float: left;
+  }
+  // Display flex into columns
+  .rules-flex {
+    flex-flow: column;
+  }
+} // .group-number-layout-vertical

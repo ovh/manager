@@ -2,11 +2,12 @@
     <div
         class="group-number__step-content group-number__step-content--node group-number__dialplan"
         data-responsive-popover="'components/telecom/telephony/group/number/feature/ovhPabx/dialplan/edit/edit.html'"
-        data-popover-trigger="test"
+        data-popover-trigger="none"
         data-popover-is-open="$ctrl.popoverStatus.isOpen"
         data-popover-placement="right"
         data-popover-class="pretty-popover telephony-number-feature-popover telephony-number-ovh-pabx-actions-popup"
-        data-tuc-hide-outside-click="$ctrl.onDialplanOutsideClick()"
+        data-popover-autofocus
+        data-popover-on-outside-click="$ctrl.onCancelEditDialplan()"
     >
         <div class="group-number__step-icon group-number__step-icon--included">
             <span
@@ -28,15 +29,19 @@
             </span>
         </div>
 
-        <div class="group-number__step-btn-container" data-uib-dropdown>
+        <div
+            class="group-number__step-btn-container"
+            data-uib-dropdown
+            data-on-toggle="$ctrl.autoScrollOnToggle(open)"
+        >
             <button
                 type="button"
-                class="group-number__step-btn group-number__step-btn--included"
+                class="oui-action-button"
                 data-ng-attr-id="dialplan-{{ $ctrl.dialplan.dialplanId }}-actions"
                 data-uib-dropdown-toggle
             >
                 <span
-                    class="oui-icon group-number__number--btn-icon oui-icon-hamburger"
+                    class="oui-icon oui-icon-ellipsis ml-0"
                     aria-hidden="true"
                 ></span>
             </button>
@@ -74,7 +79,7 @@
                         type="button"
                         class="btn btn-link w-100"
                         data-translate="{{ $ctrl.displayHelpers.collapsed ? 'telephony_number_feature_ovh_pabx_dialplan_action_show_steps' : 'telephony_number_feature_ovh_pabx_dialplan_action_hide_steps' }}"
-                        data-ng-click="$ctrl.displayHelpers.collapsed = !$ctrl.displayHelpers.collapsed"
+                        data-ng-click="$ctrl.toggleCollapsed()"
                         data-ng-disabled="!$ctrl.dialplan.extensions.length"
                     ></button>
                 </li>
@@ -143,9 +148,10 @@
             data-collapsing="$ctrl.onDialplanCollapsing()"
             data-expanding="$ctrl.onDialplanExpanding()"
             data-collapsed="$ctrl.onDialplanCollapsed()"
-            data-expanded="$ctrl.onDialplanExpanded()"
+            data-expanded="$ctrl.constructor.onDialplanExpanded()"
         >
             <ul
+                id="group-number-extension-steps"
                 class="group-number__step-wrapper"
                 data-ui-sortable="$ctrl.sortableOptions"
                 data-ng-model="$ctrl.dialplan.extensions"
@@ -153,10 +159,7 @@
                 <li
                     class="group-number__step-container"
                     data-ng-repeat="extension in $ctrl.dialplan.extensions track by extension.extensionId"
-                    data-smooth-scroll
                     data-ng-if="$ctrl.displayHelpers.expanded"
-                    data-scroll-if="{{ extension.status === 'IN_CREATION' }}"
-                    data-offset="550"
                 >
                     <telephony-number-ovh-pabx-dialplan-extension
                         data-extension="extension"
@@ -167,11 +170,11 @@
                         <div class="group-number__step-btn--add-container">
                             <button
                                 type="button"
-                                class="group-number__step-btn group-number__step-btn--primary group-number__step-btn--add"
+                                class="oui-action-button"
                                 data-translate-attr="{ title: 'telephony_number_feature_ovh_pabx_step_add' }"
                                 data-ng-click="$ctrl.onExtensionAddBtnClick()"
                             >
-                                <span class="ovh-font ovh-font-ajouter"> </span>
+                                <span class="oui-icon oui-icon-add"> </span>
                             </button>
                             <span
                                 class="group-number__step-btn--add-description"

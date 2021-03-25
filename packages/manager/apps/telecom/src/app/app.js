@@ -49,6 +49,8 @@ import TelecomAppCtrl from './app.controller';
 import pack from './telecom/pack';
 import telephony from './telecom/telephony';
 import telephonyComponents from '../components/telecom/telephony';
+import popoverUtils from '../components/popover';
+import uibDropdownUtils from '../components/uib-dropdown-helper';
 
 import errorPage from './error-page/error-page.module';
 import searchPage from './search/search.module';
@@ -124,10 +126,12 @@ angular
       ovhNotificationsSidebar,
       'oui',
       'pascalprecht.translate',
+      popoverUtils,
       'smoothScroll',
       errorPage,
       navbar,
       'tmh.dynamicLocale',
+      uibDropdownUtils,
       'ui.bootstrap',
       'ui.select',
       uiRouter,

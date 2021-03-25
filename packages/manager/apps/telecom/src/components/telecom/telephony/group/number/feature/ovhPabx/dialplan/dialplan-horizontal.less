@@ -1,18 +1,11 @@
 @import '../../../variables.less';
-// SIZES
 
 @voip-plan-condition-tip: 11px;
 @voip-plan-links: 3px solid @voip-plan-main-color;
 
-.horizontal-layout {
+.group-number-layout-horizontal {
   .group-number {
-    width: 100%;
-    position: relative;
-    display: flex;
-
     &__step {
-      margin: 32px 0;
-
       &-wrapper {
         position: absolute;
         top: 0;
@@ -23,7 +16,6 @@
         text-align: center;
         list-style-type: none;
         position: relative;
-
         &::before,
         &::after {
           content: '';
@@ -33,19 +25,16 @@
           border-left: @voip-plan-links;
           height: 100%;
         }
-
         &::after {
           bottom: auto;
           top: 50%;
           border-top: @voip-plan-links;
           width: 25px;
         }
-
         &:first-child::before,
         &:last-child::after {
           border: 0 none;
         }
-
         &:last-child::after {
           border-top: @voip-plan-links;
           width: 25px;
@@ -53,343 +42,25 @@
         }
       }
 
-      &-content {
-        display: flex;
-        flex-shrink: 0;
-        align-items: center;
-        position: relative;
-
-        &--after-grip {
-          margin-left: 8px;
-          padding: 0 10px;
-        }
-
-        &--node {
-          border: solid 1px @voip-plan-main-color;
-          align-items: center;
-          background-color: white;
-        }
-      }
-
-      &-item {
-        height: 150px;
-      }
-
-      &--point {
-        align-items: center;
-      }
-
-      &-icon {
-        display: flex;
-        flex-shrink: 0;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-        z-index: 4;
-
-        &--basic {
-          font-size: @voip-plan-icons-main-font-size + 2;
-          color: @voip-plan-main-color;
-        }
-
-        &--included {
-          width: @voip-plan-main-elements-size;
-          padding: 8px 0;
-          background-color: #fff;
-          font-size: @voip-plan-icons-main-font-size + 5;
-          color: @voip-plan-main-color;
-        }
-
-        &--indicators {
-          font-size: @voip-plan-icons-font-size;
-          color: @voip-plan-secondary-color;
-        }
-      }
-
-      &-radio {
-        display: block;
-        width: @voip-plan-radio-size;
-        height: @voip-plan-radio-size;
-        flex-shrink: 0;
-        position: relative;
-        z-index: 10;
-        cursor: pointer;
-
-        &[type='radio'] {
-          margin: 0;
-        }
-
-        &::before {
-          content: '';
-          display: block;
-          width: @voip-plan-radio-size - 2;
-          height: @voip-plan-radio-size - 2;
-          border: solid 1px @voip-plan-secondary-color;
-          position: absolute;
-          top: 0;
-          left: 0;
-          z-index: 11;
-          background-color: white;
-          border-radius: 50%;
-        }
-
-        &::after {
-          content: '';
-          display: block;
-          width: @voip-plan-radio-size / 2;
-          height: @voip-plan-radio-size / 2;
-          position: absolute;
-          top: ((@voip-plan-radio-size - 2) - (@voip-plan-radio-size / 2)) / 2;
-          left: ((@voip-plan-radio-size - 2) - (@voip-plan-radio-size / 2)) / 2;
-          z-index: 12;
-          background-color: @voip-plan-main-color;
-          border-radius: 50%;
-          transform-origin: 50%;
-          transform: scale(0);
-          transition: transform 340ms cubic-bezier(0.5, 1.8, 0.5, 0.7);
-        }
-
-        &:checked {
-          &::before {
-            border-color: @voip-plan-main-color;
-          }
-
-          &::after {
-            transform: scale(1);
-            transition: transform 340ms cubic-bezier(0.5, 1.8, 0.5, 0.7);
-          }
-        }
-      }
-
-      &-description {
-        display: inline-block;
-        min-width: 200px;
-        max-width: 348px;
-        flex-shrink: 0;
-        padding: 8px 16px;
-        white-space: nowrap;
-      }
-
-      &-name {
-        display: block;
-        font-size: @font-size-base;
-        color: @voip-plan-main-color;
-
-        &--has-info {
-          margin-bottom: 4px;
-        }
-      }
-
-      &-info {
-        display: block;
-        font-size: @font-size-base;
-        color: @voip-plan-secondary-color;
-        max-width: 167px;
-      }
-
       &--condition {
-        &-tip {
-          font-size: @voip-plan-condition-tip;
-
-          &-container {
-            border: 0;
-            padding: 0;
-            margin: 0;
-          }
-        }
-
         &-icon {
-          border: 1px solid @voip-plan-main-color;
-          border-radius: 50%;
-          padding: 8px;
           margin-left: -26px;
         }
       }
 
-      &-btn {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-shrink: 0;
-        font-size: @voip-plan-icons-font-size;
-        color: @voip-plan-main-color;
-        transition: all 200ms ease-in-out;
-
-        &:hover,
-        &:focus,
-        &:active {
-          color: @voip-plan-main-color;
-          text-decoration: none;
-        }
-
-        &-container {
-          display: flex;
-          align-items: stretch;
-          background-color: lighten(@oui-color-secondary, 30%);
-          width: 30px;
-          height: 30px;
-          border-radius: 50%;
-
-          &:hover {
-            background-color: lighten(@oui-color-secondary, 25%);
-          }
-        }
-
-        &--primary {
-          width: @voip-plan-main-elements-size;
-          height: @voip-plan-main-elements-size;
-          border: none;
-          border-radius: 50%;
-
-          &:hover,
-          &:focus,
-          &:active {
-            background-color: darken(@oui-color-secondary, 15%);
-          }
-        }
-
-        &--default {
-          width: @voip-plan-main-elements-size - 2;
-          height: @voip-plan-main-elements-size - 2;
-          border: solid 1px @oui-color-secondary;
-          background-color: transparent;
-          border-radius: 50%;
-
-          &:hover,
-          &:focus,
-          &:active {
-            background-color: fadeout(@oui-color-secondary, 85%);
-          }
-        }
-
-        &--included {
-          width: @voip-plan-main-elements-size;
-          padding: 0;
-          background-color: transparent;
-          border: none;
-        }
-
-        &--add {
-          &-container {
-            min-width: 302px;
-            min-height: 150px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-          }
-
-          &-description {
-            color: @voip-plan-main-color;
-            font-size: @voip-plan-icons-main-font-size;
-            margin-left: 10px;
-          }
-        }
-
-        &--switch {
-          border: none;
-          background-color: transparent;
-          font-size: @voip-plan-icons-main-font-size;
-        }
-      }
-
       &-confirm {
-        width: 100%;
-        height: 100%;
-        flex-shrink: 0;
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 51;
-
-        &-overlay {
-          width: 100%;
-          height: 100%;
-          position: absolute;
-          z-index: 52;
-          background-color: white;
-          opacity: 0.85;
-        }
-
         &-content {
-          align-items: center;
-          justify-content: space-around;
-          width: 100%;
-          height: 100%;
-          position: absolute;
-          z-index: 54;
-
-          .btn.btn-default {
-            background-color: white;
-
-            &:hover,
-            &:focus,
-            &:active {
-              background-color: @gray-lighter;
-            }
-          }
-        }
-
-        &--has-border {
-          left: 8px;
-
-          &::before,
-          &::after {
-            width: 100%;
-            height: 100%;
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 53;
-            box-sizing: border-box;
-            animation: 0.5s borderAnim;
-          }
-
-          &::before {
-            border-bottom: 1px solid @voip-plan-border-color;
-            border-left: 1px solid @voip-plan-border-color;
-            transform-origin: 0 100%;
-          }
-
-          &::after {
-            border-top: 1px solid @voip-plan-border-color;
-            border-right: 1px solid @voip-plan-border-color;
-            transform-origin: 100% 0;
-          }
-
-          @keyframes borderAnim {
-            0% {
-              transform: scale(0);
-            }
-
-            100% {
-              transform: scale(1);
-            }
-          }
+          top: 40%;
         }
       }
-
-      &-config {
-        display: flex;
-        align-items: center;
-
-        &-item {
-          display: flex;
-          align-items: center;
-          margin-left: 16px;
-        }
-      }
-    }
+    } // &__step
 
     &__action {
       &-wrapper {
-        // position: absolute;
         left: 500px;
         top: 0;
-
         &::before {
           content: '';
-          // position: absolute;
           border-bottom: 3px solid #0050d7;
           width: 240px;
           left: -220px;
@@ -398,93 +69,22 @@
       }
 
       &-container {
-        list-style-type: none;
-        position: relative;
-        text-align: left;
         margin-left: -5px;
-
-        &::before,
-        &::after {
-          content: '';
-          position: absolute;
-          left: -15px;
-          bottom: 50%;
-          border-left: @voip-plan-links;
-          height: 100%;
-          margin-top: -13px;
-        }
-
-        &::after {
-          bottom: auto;
-          top: 50%;
-          border-top: @voip-plan-links;
-          width: 25px;
-        }
-
-        &:first-child::before,
-        &:last-child::after {
+        &:first-child::before {
           border: 0 none;
         }
+      }
 
-        &:last-child::after {
-          border-top: 3px solid #0050d7;
-          width: 25px;
-          top: 50%;
+      &--condition {
+        &-icon {
+          margin-left: -26px;
         }
       }
 
       &-negative {
-        margin-top: 55px;
-        border-top: 2px dashed @voip-plan-main-color;
-        min-height: 60px;
         margin-bottom: -33px;
         display: flex;
         margin-left: -20px;
-        max-width: 95%;
-
-        &-header {
-          list-style-type: none;
-
-          &::before,
-          &::after {
-            border: 0 none;
-          }
-        }
-
-        &-container {
-          list-style-type: none;
-          position: relative;
-          text-align: left;
-          margin-left: -50px;
-
-          &::before,
-          &::after {
-            content: '';
-            position: absolute;
-            left: -10px;
-            bottom: 50%;
-            border-left: @voip-plan-links;
-            height: 100%;
-          }
-
-          &::after {
-            bottom: auto;
-            top: 50%;
-            border-top: @voip-plan-links;
-            width: 25px;
-          }
-
-          &:last-child::after {
-            border: 0 none;
-            border-top: 3px solid #0050d7;
-            width: 25px;
-            top: 50%;
-          }
-        }
-
-        &--icon {
-          left: 7px;
-        }
       }
 
       &-btn {
@@ -495,90 +95,21 @@
     }
 
     &__title {
-      margin: 0 0 0 25px;
-      color: #fff;
-      font-size: 25px;
-
       &--container {
-        background-color: @voip-plan-main-color;
-        display: flex;
-        align-items: center;
-        padding: 10px 10px;
-        width: 400px;
-        height: 64px;
         justify-content: center;
-      }
-
-      &--icon {
-        color: #fff;
       }
     }
 
     &__number {
-      display: flex;
-      align-items: center;
-      width: 400px;
-      justify-content: space-between;
-      padding: 0 10px;
-      z-index: 5;
-      border: 1px solid @voip-plan-main-color;
-      background-color: #fff;
-
       &::before,
       &::after {
-        content: '';
-        position: absolute;
-        top: 100px;
         left: 185px;
-        height: 25px;
-      }
-
-      &::after {
-        right: auto;
-        border-left: @voip-plan-links;
-      }
-
-      &--btn {
-        border: none;
-        background-color: transparent;
-        padding: 0;
-        width: inherit;
-        height: inherit;
-
-        &-icon {
-          font-size: 25px !important;
-          margin-left: 3px !important;
-        }
-
-        &-wrapper {
-          background-color: lighten(@oui-color-secondary, 30%);
-          width: 30px;
-          height: 30px;
-          border-radius: 50%;
-
-          &:hover {
-            background-color: lighten(@oui-color-secondary, 25%);
-          }
-        }
-      }
-
-      &--dropdown {
-        border-radius: 0;
-        width: 375px;
-        max-width: inherit;
-        margin: 11px 0 0 -324px;
       }
     }
 
     &__dialplan {
-      padding: 0 10px;
-      z-index: 4;
       margin-top: 441px;
-      width: 400px;
-      justify-content: space-between;
-      align-items: center;
       position: absolute;
-
       &::before {
         content: '';
         position: absolute;
@@ -588,7 +119,6 @@
         right: auto;
         border-left: @voip-plan-links;
       }
-
       &::after {
         content: '';
         position: absolute;
@@ -596,89 +126,19 @@
         width: 25px;
         right: -28px;
       }
-
-      &--dropdown {
-        border-radius: 0;
-        width: 375px;
-        max-width: inherit;
-        margin-top: 11px;
-        margin-left: -324px;
-      }
-
-      &-extension {
-        &--dropdown {
-          border-radius: 0;
-          width: 262px;
-          max-width: inherit;
-          margin-left: -211px;
-          margin-top: 54px;
-        }
-
-        &-rule {
-          &--dropdown {
-            border-radius: 0;
-            width: 170px;
-            min-width: inherit;
-          }
-        }
-      }
-    }
-
-    &__subpart {
-      margin: -6px 0 0 0;
-    }
-
-    @media screen and (min-width: @screen-xs) {
-      margin: 0 32px 48px 32px;
     }
 
     .action_hidden {
       top: 104px;
-      left: 114px;
     }
 
-    /* ----------  disabled  ---------- */
-    .disabled {
-      .voip-plan__step {
-        &-icon {
-          border-color: @voip-plan-disabled-border-color;
-          background-color: @voip-plan-disabled-background-color;
-          color: @voip-plan-disabled-color;
-          cursor: default;
-        }
-
-        &-name,
-        &-info {
-          color: @voip-plan-disabled-color;
-        }
-
-        &-btn {
-          color: @voip-plan-disabled-color;
-          cursor: default;
-
-          &--default,
-          &--primary {
-            border-color: @voip-plan-disabled-border-color;
-            background-color: @voip-plan-disabled-background-color;
-          }
-
-          &--included {
-            background-color: transparent;
-          }
-        }
-      }
-
-      .dropdown-menu {
-        border-color: @voip-plan-disabled-border-color;
-        background-color: @voip-plan-disabled-background-color;
-        color: @voip-plan-disabled-color;
+    .voip-plan__step {
+      //display: none;
+      &-description-pabx {
+        /* padding-bottom: 1rem; */
       }
     }
-  }
-
-  .telephony-number-feature {
-    max-width: 100%;
-  }
+  } // .group-number
 
   .number-header {
     margin-top: 217px;
@@ -692,4 +152,4 @@
     align-items: center;
     justify-content: flex-start;
   }
-}
+} //.group-number-layout-horizontal

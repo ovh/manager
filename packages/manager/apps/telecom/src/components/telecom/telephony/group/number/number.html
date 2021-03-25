@@ -1,17 +1,28 @@
 <div id="groupNumber">
     <div class="group-number-switch">
         <div data-translate="telephony_number_action_layout"></div>
-        <span
-            class="oui-icon oui-icon-ellipsis-vertical"
-            oui-tooltip="{{::'telephony_number_action_layout_vertical' | translate}}"
-            oui-tooltip-placement="bottom-start"
-        ></span>
-        <oui-switch on-change="$ctrl.toggleCcsLayout()"></oui-switch>
-        <span
-            class="oui-icon oui-icon-ellipsis"
-            oui-tooltip="{{::'telephony_number_action_layout_horizontal' | translate}}"
-            oui-tooltip-placement="bottom-start"
-        ></span>
+        <div class="oui-button-group">
+            <button
+                class="oui-button"
+                data-ng-class="{
+                        'oui-button_primary': $ctrl.verticalLayout,
+                        'oui-button_secondary': !$ctrl.verticalLayout,
+                    }"
+                data-translate="telephony_number_action_layout_vertical"
+                data-ng-click="$ctrl.toggleCcsLayout()"
+                data-ng-disabled="$ctrl.verticalLayout"
+            ></button>
+            <button
+                class="oui-button"
+                data-ng-class="{
+                        'oui-button_primary': !$ctrl.verticalLayout,
+                        'oui-button_secondary': $ctrl.verticalLayout,
+                    }"
+                data-translate="telephony_number_action_layout_horizontal"
+                data-ng-click="$ctrl.toggleCcsLayout()"
+                data-ng-disabled="!$ctrl.verticalLayout"
+            ></button>
+        </div>
     </div>
     <form
         class="telephony-number"
@@ -20,11 +31,11 @@
         novalidate
     >
         <div
-            class="group-number-container"
+            class="group-number-container group-number-layout"
             data-ng-class="{
-            'horizontal-layout': !$ctrl.verticalLayout,
-            'vertical-layout': $ctrl.verticalLayout,
-        }"
+            'group-number-layout-horizontal': !$ctrl.verticalLayout,
+            'group-number-layout-vertical': $ctrl.verticalLayout,
+            }"
         >
             <div class="group-number" data-ng-if="!$ctrl.loading.init">
                 <!-- HEADER -->
@@ -48,7 +59,7 @@
                     <div class="group-number__step group-number__step--point">
                         <div class="group-number__number">
                             <div
-                                class="group-number__step-icon group-number__step-icon--basic"
+                                class="group-number__step-icon group-number__step-icon--included"
                             >
                                 <span
                                     class="ovh-font ovh-font-hashtag"
@@ -86,16 +97,17 @@
                                 class="group-number__number--btn-wrapper"
                                 data-ng-if="$ctrl.featureActions.length > 1"
                                 data-uib-dropdown
+                                data-on-toggle="$ctrl.autoScrollOnToggle(open)"
                             >
                                 <button
                                     type="button"
                                     id="number-actions"
-                                    class="group-number__step-btn group-number__number--btn"
+                                    class="oui-action-button"
                                     data-ng-disabled="$ctrl.number.inEdition"
                                     data-uib-dropdown-toggle
                                 >
                                     <span
-                                        class="oui-icon group-number__number--btn-icon oui-icon-hamburger"
+                                        class="oui-icon oui-icon-ellipsis ml-0"
                                         aria-hidden="true"
                                     ></span>
                                 </button>

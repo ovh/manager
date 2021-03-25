@@ -449,9 +449,6 @@ export default class DialplanExtensionEditCtrl {
   }
 
   onCancelBtnClick() {
-    this.parentCtrl.popoverStatus.isOpen = false;
-    this.parentCtrl.popoverStatus.move = false;
-
-    this.extension.stopEdition(true);
+    this.parentCtrl.onCancelExtensionEdit();
   }
 }

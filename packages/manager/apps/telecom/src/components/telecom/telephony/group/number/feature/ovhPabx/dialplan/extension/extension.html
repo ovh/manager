@@ -12,7 +12,8 @@
             data-popover-trigger="none"
             data-popover-is-open="$ctrl.popoverStatus.isOpen"
             data-popover-class="pretty-popover telephony-number-feature-popover telephony-number-ovh-pabx-actions-popup"
-            data-tuc-hide-outside-click="$ctrl.onExtensionOutsideClick()"
+            data-popover-autofocus
+            data-popover-on-outside-click="$ctrl.onCancelExtensionEdit()"
         >
             <div class="group-number__invisible-anchor"></div>
             <div class="group-number__step-description">
@@ -134,15 +135,16 @@
             <div
                 class="group-number__step-btn-container dropdown"
                 data-uib-dropdown
+                data-on-toggle="$ctrl.autoScrollOnToggle(open)"
             >
                 <button
                     type="button"
-                    class="group-number__step-btn group-number__step-btn--included"
+                    class="oui-action-button"
                     data-attr-id="extension-{{ $ctrl.extension.extensionId }}-actions"
                     data-uib-dropdown-toggle
                 >
                     <span
-                        class="oui-icon group-number__number--btn-icon oui-icon-hamburger"
+                        class="oui-icon oui-icon-ellipsis ml-0"
                         aria-hidden="true"
                     ></span>
                 </button>
@@ -259,6 +261,8 @@
         <div data-ng-if="!$ctrl.loading.init">
             <!-- ADDED RULES -->
             <div
+                id="{{:: 'group-number__action-id-' + $ctrl.extension.extensionId }}"
+                class="collapsible-rules"
                 data-uib-collapse="$ctrl.displayHelpers.collapsed"
                 data-collapsing="$ctrl.onExtensionCollapsing()"
                 data-expanding="$ctrl.onExtensionExpanding()"
@@ -273,9 +277,6 @@
                     <li
                         class="group-number__action-container"
                         data-ng-repeat="rule in $ctrl.extension.rules track by rule.ruleId"
-                        data-smooth-scroll
-                        data-scroll-if="{{ rule.status === 'DRAFT' }}"
-                        data-offset="550"
                         data-ng-if="$ctrl.displayHelpers.expanded"
                     >
                         <telephony-number-ovh-pabx-dialplan-extension-rule
@@ -292,17 +293,17 @@
                     </li>
                     <!-- ADDED RULES -->
                     <li class="group-number__action-container">
-                        <div class="group-number__step">
+                        <div>
                             <!-- ADD BTN -->
                             <button
                                 type="button"
-                                class="group-number__step-btn group-number__step-btn--primary group-number__action-btn--add"
+                                class="oui-action-button ml-4"
                                 data-ng-class="{ action_hidden: !$ctrl.displayHelpers.expanded && !$ctrl.extensionHasConditions() }"
                                 data-translate-attr="{ title: 'telephony_number_feature_ovh_pabx_step_add_rule' }"
                                 data-ng-click="$ctrl.addRule(false)"
                             >
                                 <span
-                                    class="ovh-font ovh-font-ajouter"
+                                    class="oui-icon oui-icon-add"
                                     data-ng-if="!$ctrl.extension.collapsed"
                                 >
                                 </span>
@@ -325,25 +326,21 @@
                                 </span>
                             </div>
                             <div
-                                class="group-number__step-content group-number__step-content--after-grip group-number__step-content--node group-number__step--condition-tip-container"
+                                class="group-number__step-description group-number__action-negative--description"
                             >
-                                <div
-                                    class="group-number__step-description group-number__action-negative--description"
+                                <span
+                                    class="group-number__step-info group-number__step--condition-tip"
+                                    data-ng-if="$ctrl.extension.negativeRules.length === 0"
+                                    data-translate="telephony_number_feature_ovh_pabx_step_no_invalid_actions"
                                 >
-                                    <span
-                                        class="group-number__step-info group-number__step--condition-tip"
-                                        data-ng-if="$ctrl.extension.negativeRules.length === 0"
-                                        data-translate="telephony_number_feature_ovh_pabx_step_no_invalid_actions"
-                                    >
-                                    </span>
-                                    <span
-                                        class="group-number__step-info group-number__step--condition-tip"
-                                        data-ng-if="$ctrl.extension.negativeRules.length > 0"
-                                        data-translate="{{ $ctrl.extension.negativeRules.length === 1 ? 'telephony_number_feature_ovh_pabx_step_invalid_actions_single' : 'telephony_number_feature_ovh_pabx_step_invalid_actions' }}"
-                                        data-translate-values="{ count: $ctrl.extension.negativeRules.length }"
-                                    >
-                                    </span>
-                                </div>
+                                </span>
+                                <span
+                                    class="group-number__step-info group-number__step--condition-tip"
+                                    data-ng-if="$ctrl.extension.negativeRules.length > 0"
+                                    data-translate="{{ $ctrl.extension.negativeRules.length === 1 ? 'telephony_number_feature_ovh_pabx_step_invalid_actions_single' : 'telephony_number_feature_ovh_pabx_step_invalid_actions' }}"
+                                    data-translate-values="{ count: $ctrl.extension.negativeRules.length }"
+                                >
+                                </span>
                             </div>
                         </div>
                         <!-- END OF CONDITION DISPLAY -->
@@ -363,9 +360,6 @@
                                 <li
                                     class="group-number__action-negative-container"
                                     data-ng-repeat="rule in $ctrl.extension.negativeRules track by rule.ruleId"
-                                    data-smooth-scroll
-                                    data-scroll-if="{{ rule.status === 'DRAFT' }}"
-                                    data-offset="550"
                                 >
                                     <telephony-number-ovh-pabx-dialplan-extension-rule
                                         data-ng-if="$ctrl.getRuleAttr('action', rule) !== 'ivr'"
@@ -384,15 +378,15 @@
                                     class="group-number__action-negative-container"
                                 >
                                     <!-- ADD NEGATIVE ACTION BTN -->
-                                    <div class="group-number__step">
+                                    <div class="mt-4">
                                         <button
                                             type="button"
-                                            class="group-number__step-btn group-number__step-btn--primary group-number__action-btn--add"
+                                            class="oui-action-button ml-4"
                                             data-translate-attr="{ title: 'telephony_number_feature_ovh_pabx_step_add_rule_invalid' }"
                                             data-ng-click="$ctrl.addRule(true)"
                                         >
                                             <span
-                                                class="ovh-font ovh-font-ajouter"
+                                                class="oui-icon oui-icon-add"
                                                 data-ng-if="!$ctrl.extension.collapsed"
                                                 aria-hidden="true"
                                             >
