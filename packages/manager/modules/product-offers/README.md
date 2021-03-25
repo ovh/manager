@@ -71,6 +71,8 @@ export default class {
       getPlanCode: this.getPlanCode.bind(this),
       productName: 'webHosting',
       serviceNameToAddProduct: 'nameOfMyProduct',
+      onPricingSubmit: () => console.log('onPricingSubmit'),
+      onValidateSubmit: () => console.log('onValidateSubmit'),
       user: this.user,
     };
   }
