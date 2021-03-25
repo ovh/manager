@@ -11,6 +11,7 @@
         data-editable="$ctrl.workflow.pricings.length > 1 && !$ctrl.workflow.isLoading()"
         data-valid="$ctrl.workflow.pricing"
         data-prevent-next="true"
+        data-on-submit="$ctrl.workflow.onPricingSubmit($ctrl.workflow.pricing)"
         data-on-focus="$ctrl.workflow.getPricings()"
         data-loading="$ctrl.workflow.loading.getPricingInformation"
     >
@@ -71,6 +72,7 @@
           || $ctrl.workflow.isFreePricing()
           ) && $ctrl.workflow.hasContractsAgreements()"
         data-on-focus="$ctrl.workflow.getValidationInformation()"
+        data-on-submit="$ctrl.workflow.onValidateSubmit(validate)"
         data-prevent-next
         data-submit-text="{{ ($ctrl.workflow.isFreePricing() ? 'ovh_product_offers_confirmation_activate' : 'ovh_product_offers_confirmation_pay') | translate }}"
         data-loading="$ctrl.workflow.loading.getOfferValidationInformation || $ctrl.workflow.loading.validateOffer"

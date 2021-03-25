@@ -44,6 +44,9 @@ export default class ServicesWorkflow extends Workflow {
       this.$timeout(() => {
         this.currentIndex += 1;
         [this.pricing] = this.pricings;
+        if (typeof this.onPricingSubmit === 'function') {
+          this.onPricingSubmit(this.pricing);
+        }
       });
     }
   }
