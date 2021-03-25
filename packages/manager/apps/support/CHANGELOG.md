@@ -1,3 +1,12 @@
+# [2.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-support-app@2.2.5...@ovh-ux/manager-support-app@2.3.0) (2021-03-25)
+
+
+### Features
+
+* add breadcrumb ([cda5bd5](https://github.com/ovh/manager/commit/cda5bd5522ddae4e9b8648c20ed815c0840b9961))
+
+
+
 ## [2.2.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-support-app@2.2.4...@ovh-ux/manager-support-app@2.2.5) (2021-03-02)
 
 

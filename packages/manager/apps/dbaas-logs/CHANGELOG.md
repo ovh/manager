@@ -1,3 +1,12 @@
+## [1.3.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs-app@1.3.7...@ovh-ux/manager-dbaas-logs-app@1.3.8) (2021-03-25)
+
+
+### Bug Fixes
+
+* add missing env variable ([f0d65db](https://github.com/ovh/manager/commit/f0d65db61a899dfcf5fb359a85aa28dbc0e3908e))
+
+
+
 ## [1.3.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs-app@1.3.6...@ovh-ux/manager-dbaas-logs-app@1.3.7) (2021-03-02)
 
 

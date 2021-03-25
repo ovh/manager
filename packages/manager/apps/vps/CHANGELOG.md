@@ -1,3 +1,19 @@
+# [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps-app@1.2.5...@ovh-ux/manager-vps-app@1.3.0) (2021-03-25)
+
+
+### Bug Fixes
+
+* **payment-method:** set user locale ([562b0ab](https://github.com/ovh/manager/commit/562b0ab2bac676a7b16382abc227a713bbfde150))
+
+
+### Features
+
+* add breadcrumb ([95df5ea](https://github.com/ovh/manager/commit/95df5ea3289f41e1a86556c328707ade208e216e))
+* revamp state url ([390f434](https://github.com/ovh/manager/commit/390f434de4f53ce99c59dde5a0529c703123c658))
+* **vps:** add listing page ([1f3a506](https://github.com/ovh/manager/commit/1f3a5062a504263d4daa82ed06b2caeb6b8fcdeb))
+
+
+
 ## [1.2.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps-app@1.2.4...@ovh-ux/manager-vps-app@1.2.5) (2021-03-18)
 
 

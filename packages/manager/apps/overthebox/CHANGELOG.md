@@ -1,3 +1,12 @@
+## [5.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox-app@5.3.1...@ovh-ux/manager-overthebox-app@5.3.2) (2021-03-25)
+
+
+### Bug Fixes
+
+* **deps:** update dependencies ([bd6f10e](https://github.com/ovh/manager/commit/bd6f10e1b10a00c19e9600ac2439a48aca7c6a12))
+
+
+
 ## [5.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox-app@5.3.0...@ovh-ux/manager-overthebox-app@5.3.1) (2021-03-02)
 
 

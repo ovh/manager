@@ -1,3 +1,13 @@
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-app@1.1.6...@ovh-ux/manager-vrack-app@1.2.0) (2021-03-25)
+
+
+### Features
+
+* add breadcrumb ([e0b64b0](https://github.com/ovh/manager/commit/e0b64b04f68babd0f629bba72f5cc90330a8de03))
+* **vrack:** add listing page ([e1b6b54](https://github.com/ovh/manager/commit/e1b6b547410eef0d8b7855613dbfb9413fdc8e5b))
+
+
+
 ## [1.1.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-app@1.1.5...@ovh-ux/manager-vrack-app@1.1.6) (2021-03-02)
 
 

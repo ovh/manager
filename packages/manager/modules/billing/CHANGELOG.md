@@ -1,3 +1,13 @@
+## [2.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@2.2.1...@ovh-ux/manager-billing@2.2.2) (2021-03-25)
+
+
+### Bug Fixes
+
+* **dedicated-server:** add breadcrumb for commitment ([4cdfc48](https://github.com/ovh/manager/commit/4cdfc4891f516cd8cae0bed7d10225395919ad2c))
+* update @ovh-ux/manager-core ([d9898c0](https://github.com/ovh/manager/commit/d9898c09018bba60a10f2684912ec780beb41a7a))
+
+
+
 ## [2.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@2.2.0...@ovh-ux/manager-billing@2.2.1) (2021-03-02)
 
 

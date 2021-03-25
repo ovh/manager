@@ -1,3 +1,12 @@
+## [1.1.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-migration@1.1.4...@ovh-ux/manager-account-migration@1.1.5) (2021-03-25)
+
+
+### Bug Fixes
+
+* update @ovh-ux/manager-core ([d9898c0](https://github.com/ovh/manager/commit/d9898c09018bba60a10f2684912ec780beb41a7a))
+
+
+
 ## [1.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-migration@1.1.3...@ovh-ux/manager-account-migration@1.1.4) (2021-03-02)
 
 

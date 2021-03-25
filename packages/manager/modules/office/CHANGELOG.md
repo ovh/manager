@@ -1,3 +1,23 @@
+# [2.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-office@2.1.0...@ovh-ux/manager-office@2.2.0) (2021-03-25)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 829] ([29b1f41](https://github.com/ovh/manager/commit/29b1f410537fe6d38dfc65807e716130566746ed))
+* **list:** fix default property ([468ef94](https://github.com/ovh/manager/commit/468ef94cedbcec8783ddb52d7d001056a03b6aa5))
+* add missing translations ([e4fc17c](https://github.com/ovh/manager/commit/e4fc17c2659d8fd27eff6c6c4cd2d9d2da7a619b))
+* import missing dependencies ([65c1228](https://github.com/ovh/manager/commit/65c12288df9b56b1decee743a9294bcfb7db3166))
+
+
+### Features
+
+* add breadcrumb ([#3661](https://github.com/ovh/manager/issues/3661)) ([0630bfa](https://github.com/ovh/manager/commit/0630bfa4c3a0736a536bbe95dc41a63da6987686))
+* add user service to wuc ([acf14ae](https://github.com/ovh/manager/commit/acf14ae557c62f044813f028190e2cb60da2fe6a))
+* refresh translations before entering states ([2a6a343](https://github.com/ovh/manager/commit/2a6a3439f78ecab9f10a5806da4c2747a98912ee))
+* **office:** add listing page ([858f414](https://github.com/ovh/manager/commit/858f41485ac9de7ebc55908d075e95eccbd196ec))
+
+
+
 # [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-office@2.0.2...@ovh-ux/manager-office@2.1.0) (2021-02-10)
 
 

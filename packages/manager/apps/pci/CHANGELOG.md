@@ -1,3 +1,12 @@
+## [3.1.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@3.1.7...@ovh-ux/manager-pci-app@3.1.8) (2021-03-25)
+
+
+### Bug Fixes
+
+* remove non needed component ([#4563](https://github.com/ovh/manager/issues/4563)) ([b3aa13f](https://github.com/ovh/manager/commit/b3aa13f8b1e7f32328f992b1d0195de7473a0c15))
+
+
+
 ## [3.1.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@3.1.6...@ovh-ux/manager-pci-app@3.1.7) (2021-03-02)
 
 

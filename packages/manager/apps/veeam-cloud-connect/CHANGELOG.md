@@ -1,3 +1,13 @@
+# [2.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-cloud-connect-app@2.1.6...@ovh-ux/manager-veeam-cloud-connect-app@2.2.0) (2021-03-25)
+
+
+### Features
+
+* add breadcrumb ([5ac9761](https://github.com/ovh/manager/commit/5ac9761d3d6b75a4aa6e9e9cf96ab20871dce4cd))
+* **veeam-cc:** add listing page ([cfbfec4](https://github.com/ovh/manager/commit/cfbfec4e1da807e5effa02fceb7558f229ec25a7))
+
+
+
 ## [2.1.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-cloud-connect-app@2.1.5...@ovh-ux/manager-veeam-cloud-connect-app@2.1.6) (2021-03-02)
 
 

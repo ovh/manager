@@ -1,3 +1,19 @@
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cda@1.0.4...@ovh-ux/manager-cda@1.1.0) (2021-03-25)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 808] ([ba2c7cb](https://github.com/ovh/manager/commit/ba2c7cb71125d9e47400184953b6614030a1a2c6))
+* add missing translations ([a668534](https://github.com/ovh/manager/commit/a6685349173116cd8ae4748ad43ba7a6ff5769a3))
+
+
+### Features
+
+* add breadcrumb ([97caa7c](https://github.com/ovh/manager/commit/97caa7c806ae45ed0552195663a3044fe5b4055c))
+* add listing page ([47abad0](https://github.com/ovh/manager/commit/47abad0a2f6a759f0706766204693bcc3831fdee))
+
+
+
 ## [1.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-cda@1.0.3...@ovh-ux/manager-cda@1.0.4) (2021-03-02)
 
 

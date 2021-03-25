@@ -1,3 +1,32 @@
+# [13.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.13.0...@ovh-ux/manager-telecom@13.14.0) (2021-03-25)
+
+
+### Bug Fixes
+
+* remove non needed component ([#4563](https://github.com/ovh/manager/issues/4563)) ([b3aa13f](https://github.com/ovh/manager/commit/b3aa13f8b1e7f32328f992b1d0195de7473a0c15))
+* **alias:** allow resiliation ([#4565](https://github.com/ovh/manager/issues/4565)) ([c54732f](https://github.com/ovh/manager/commit/c54732fcb97a10f4df4ce69b84466d5705ab9a90))
+* **i18n:** add missing translations [CDS 824] ([26284f6](https://github.com/ovh/manager/commit/26284f6cf7b42de7a1ffd2e4b15cd826d09328f3))
+* **i18n:** add missing translations [CDS 834] ([06c8593](https://github.com/ovh/manager/commit/06c85930fa08dc7a8f04d12ef0aea0d1f21953c7))
+* **i18n:** add missing translations [CDS 839] ([1b49e99](https://github.com/ovh/manager/commit/1b49e99aaf192cfcc3312e2237b27e36b3e3a604))
+* **i18n:** add missing translations [CDS 840] ([264a89b](https://github.com/ovh/manager/commit/264a89b4a216831dbe4e74e6c64b3affa0c45f6a))
+* **i18n:** add missing translations [CDS 843] ([bf50acd](https://github.com/ovh/manager/commit/bf50acddd1ade370570eb6e3126ef5be0d9e0e40))
+* **i18n:** add missing translations [CDS 847] ([baeddbb](https://github.com/ovh/manager/commit/baeddbbb54329da4ed87af77ad374cec999c041f))
+* **i18n:** add missing translations [CDS 856] ([e86d632](https://github.com/ovh/manager/commit/e86d632f26a851a37be72e8be555c20b570570ae))
+* **i18n:** add missing translations [CDS 858] ([a4d96a1](https://github.com/ovh/manager/commit/a4d96a1106bafacab1a4c0ff13e77d1272e7f02d))
+* **move.buildingdetails:** rename building reference to reference ([#4400](https://github.com/ovh/manager/issues/4400)) ([f1313bb](https://github.com/ovh/manager/commit/f1313bbb507bb2fdaf157b6836de1a27d7962dc0))
+* **payment-method:** set user locale ([562b0ab](https://github.com/ovh/manager/commit/562b0ab2bac676a7b16382abc227a713bbfde150))
+* **telephony.contact:** add wayName directory field ([632fe5f](https://github.com/ovh/manager/commit/632fe5f82c425b5e179ade9ef874936cbf195544))
+* **telephony.contact:** remove address field ([35fdfdc](https://github.com/ovh/manager/commit/35fdfdc30839b3246dba4c050bd3cda072b5316e))
+
+
+### Features
+
+* **line:** add antihack alert ([29f9c11](https://github.com/ovh/manager/commit/29f9c11b322636ffe330a06cdfa73f89ff329547))
+* **telecom:** add voicemail password checkbox ([f26fce5](https://github.com/ovh/manager/commit/f26fce58e8bf06c2a5f8242d3fa7dac6ca5672d4))
+* **voip.billing-account:** add alert for suspended billing account ([1822593](https://github.com/ovh/manager/commit/1822593e0850df49de6cebf3f23c9a3b610ffd98))
+
+
+
 # [13.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.12.3...@ovh-ux/manager-telecom@13.13.0) (2021-03-17)
 
 

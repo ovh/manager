@@ -1,3 +1,12 @@
+## [2.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-error-page@2.0.1...@ovh-ux/manager-error-page@2.0.2) (2021-03-25)
+
+
+### Bug Fixes
+
+* **deps:** update dependencies ([bd6f10e](https://github.com/ovh/manager/commit/bd6f10e1b10a00c19e9600ac2439a48aca7c6a12))
+
+
+
 ## [2.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-error-page@2.0.0...@ovh-ux/manager-error-page@2.0.1) (2020-10-28)
 
 
