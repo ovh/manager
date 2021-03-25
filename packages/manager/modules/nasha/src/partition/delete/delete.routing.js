@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('nasha.nasha-partitions.delete', {
+  $stateProvider.state('nasha.dashboard.nasha-partitions.delete', {
     url: '/delete',
     views: {
       modal: {
@@ -7,5 +7,8 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     layout: 'modal',
+    resolve: {
+      breadcrumb: () => null,
+    },
   });
 };

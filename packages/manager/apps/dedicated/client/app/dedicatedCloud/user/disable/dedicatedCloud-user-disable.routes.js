@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicatedClouds.users.disable', {
+  $stateProvider.state('app.dedicatedCloud.details.users.user.disable', {
     url: '/disable',
     params: {
       user: null,
@@ -12,6 +12,7 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     resolve: {
       user: /* @ngInject */ ($transition$) => $transition$.params().user,
+      breadcrumb: () => null,
     },
   });
 };

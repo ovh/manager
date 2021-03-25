@@ -13,5 +13,6 @@
   "enterprise_cloud_database_service_details_settings_add_a_rule": "Aggiungi una regola",
   "enterprise_cloud_database_service_details_settings_edit_group": "Modifica un gruppo",
   "enterprise_cloud_database_service_details_settings_delete_group": "Elimina un gruppo",
-  "enterprise_cloud_database_service_details_settings_rules_error": "Si è verificato un errore durante il recupero delle regole: {{ message }}"
+  "enterprise_cloud_database_service_details_settings_rules_error": "Si è verificato un errore durante il recupero delle regole: {{ message }}",
+  "enterprise_cloud_database_service_details_settings": "Impostazioni"
 }

@@ -1,4 +1,4 @@
-<div class="metrics__token cui-page__content" data-ui-view="metricsSubContent">
+<div class="metrics__token" data-ui-view="metricsContent">
     <div class="metrics__row">
         <h3 class="oui-heading_3" data-translate="metrics_token_title"></h3>
         <p
@@ -15,7 +15,7 @@
                     type="button"
                     data-ng-disabled="MetricsTokenCtrl.actions.loading"
                     data-translate="metrics_token_add_token"
-                    data-ui-sref="dbaas.metrics.detail.token.add({ serviceName: MetricsTokenCtrl.serviceName })"
+                    data-ui-sref="metrics.detail.token.add({ serviceName: MetricsTokenCtrl.serviceName })"
                 ></button>
                 <oui-spinner
                     data-ng-if="MetricsTokenCtrl.loading"

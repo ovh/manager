@@ -24,6 +24,7 @@ export default class {
   }
 
   $onInit() {
+    console.log(this.me);
     this.isLoadingService = true;
     this.paymentMethod = null;
     this.model = {

@@ -9,5 +9,6 @@
   "enterprise_cloud_database_restored_instances_current_usage": "Consumo actual",
   "enterprise_cloud_database_restored_instances_size": "Volumen total restaurado: {{ size }}",
   "enterprise_cloud_database_restored_instances_info": "La restauración de la instancia puede tardar desde unos minutos hasta unas horas, en función del tamaño de los datos de la copia de seguridad.",
-  "enterprise_cloud_database_restored_instances_popover": "Volumen total de todas las instancias restauradas"
+  "enterprise_cloud_database_restored_instances_popover": "Volumen total de todas las instancias restauradas",
+  "enterprise_cloud_database_restored_instances": "Instancias restauradas"
 }

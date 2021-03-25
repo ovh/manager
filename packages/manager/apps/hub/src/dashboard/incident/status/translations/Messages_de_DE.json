@@ -18,7 +18,7 @@
   "manager_hub_incident_status_service_status_NON_RECOVERABLE_description": "services affected during the incident that cannot be restored",
   "manager_hub_incident_status_service_status_TO_ASSESS_description": "services which may be partly recoverable* or non-recoverable (diagnostics currently in progress)",
   "manager_hub_incident_status_service_status_RECOVERABLE_sidenote": "Due to the exceptional situation, there is still a possibility that services listed as \"Recoverable\" cannot be recovered, despite all our efforts.",
-  "manager_hub_incident_status_product_CLOUD_PROJECT": "Public Cloud Instances",
+  "manager_hub_incident_status_product_CLOUD_PROJECT": "Public Cloud Instanzen",
   "manager_hub_incident_status_product_DEDICATED_SERVER": "Dedicated servers",
   "manager_hub_incident_status_product_DEDICATED_CLOUD": "Hosted Private Cloud",
   "manager_hub_incident_status_product_DEDICATED_NASHA": "HA NAS",

@@ -11,6 +11,13 @@ const state = {
   atInternet: {
     rename: 'REDIRECTION',
   },
+  resolve: {
+    breadcrumb: /* @ngInject */ ($translate) =>
+      $translate.instant('domain_redirection'),
+  },
 };
 
-export default state;
+export default /* @ngInject */ ($stateProvider) => {
+  $stateProvider.state('app.domain.product.redirection', { ...state });
+  $stateProvider.state('app.alldom.domain.redirection', { ...state });
+};

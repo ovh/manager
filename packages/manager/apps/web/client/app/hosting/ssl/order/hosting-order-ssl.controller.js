@@ -16,7 +16,7 @@ angular.module('App').controller(
       HostingDomain,
       hostingSSLCertificate,
       hostingSSLCertificateType,
-      User,
+      WucUser,
       WucValidator,
     ) {
       this.$q = $q;
@@ -30,7 +30,7 @@ angular.module('App').controller(
       this.HostingDomain = HostingDomain;
       this.hostingSSLCertificate = hostingSSLCertificate;
       this.hostingSSLCertificateType = hostingSSLCertificateType;
-      this.User = User;
+      this.WucUser = WucUser;
       this.WucValidator = WucValidator;
       this.$window = $window;
     }
@@ -194,7 +194,7 @@ angular.module('App').controller(
     generatingOrderForm() {
       this.step2.loading.isGeneratingOrderForm = true;
 
-      return this.User.getUrlOfEndsWithSubsidiary(
+      return this.WucUser.getUrlOfEndsWithSubsidiary(
         'domain_order_options_service',
       )
         .then((rawOrderFormURL) => {

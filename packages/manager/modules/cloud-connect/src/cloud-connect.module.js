@@ -1,35 +1,23 @@
 import angular from 'angular';
 
-import '@ovh-ux/manager-core';
-import 'angular-translate';
-import 'ovh-api-services';
-import '@ovh-ux/ng-at-internet';
-import '@ovh-ux/ng-ovh-cloud-universe-components';
-
-import '@ovh-ux/ui-kit';
-
-import '@ovh-ux/ui-kit/dist/css/oui.css';
-
-import './style.scss';
-
-import component from './cloud-connect.component';
+import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 import details from './details';
 import routing from './cloud-connect.routing';
 import service from './cloud-connect.service';
+
+import '@ovh-ux/ng-at-internet';
+import '@ovh-ux/ng-ui-router-breadcrumb';
 
 const moduleName = 'ovhCloudConnect';
 
 angular
   .module(moduleName, [
-    'ngOvhCloudUniverseComponents',
-    'oui',
-    'ovh-api-services',
-    'ovhManagerCore',
-    'pascalprecht.translate',
+    ListLayoutHelper.moduleName,
+    'ngAtInternet',
+    'ngUiRouterBreadcrumb',
     details,
   ])
   .config(routing)
-  .component('cloudConnect', component)
   .service('cloudConnectService', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 

@@ -5,6 +5,9 @@ import routing from './dedicatedCloud-datacenter-host-order.routes';
 
 const moduleName = 'ovhManagerDedicatedCloudDatacenterHostOrder';
 
-angular.module(moduleName, [datacenterHostOrderComponent]).config(routing);
+angular
+  .module(moduleName, [datacenterHostOrderComponent])
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

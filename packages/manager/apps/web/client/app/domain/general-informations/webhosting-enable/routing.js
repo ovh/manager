@@ -31,6 +31,8 @@ const commonResolves = {
       waiveRetractationPeriod: true,
     }),
   goBack: /* @ngInject */ (goToDashboard) => goToDashboard,
+  breadcrumb: /* @ngInject */ ($translate) =>
+    $translate.instant('domain_configuration_enable_web_hosting'),
 };
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -40,7 +42,7 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: commonResolves,
   });
 
-  $stateProvider.state('app.domain.alldom.information.enable-webhosting', {
+  $stateProvider.state('app.alldom.domain.information.enable-webhosting', {
     url: '/webhosting-enable',
     component: 'domainWebhostingEnable',
     resolve: commonResolves,

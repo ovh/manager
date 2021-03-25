@@ -7,7 +7,7 @@ const moduleName = 'managedBaremetalBackupMinimumHostsLazyloading';
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'app.managedBaremetal.datacenter.backup.minimum-hosts.**',
+      'app.managedBaremetal.details.datacenters.datacenter.backup.minimum-hosts.**',
       {
         url: '/minimum-hosts',
         lazyLoad: ($transition$) => {

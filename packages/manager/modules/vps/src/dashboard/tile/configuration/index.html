@@ -15,12 +15,19 @@
             <span data-ng-bind=":: $ctrl.vps.vcore"></span>
             <p
                 class="p-0"
-                data-translate="vps_dashboard_tile_configuration_vcore_upscale"
-                data-translate-values="{
-                  href: $ctrl.getUpscaleHref()
-                }"
                 data-ng-if="!$ctrl.vpsUpgradeTask && !$ctrl.isMaxEliteVcore && !$ctrl.isInRescueMode"
-            ></p>
+            >
+                <a
+                    data-ng-href="{{:: $ctrl.getUpscaleHref() }}"
+                    data-track-on="click"
+                    data-track-name="vps::detail::dashboard::vcore-upscale"
+                    data-track-type="action"
+                >
+                    <span
+                        data-translate="vps_dashboard_tile_configuration_vcore_upscale"
+                    ></span>
+                </a>
+            </p>
         </oui-tile-description>
     </oui-tile-definition>
 
@@ -66,10 +73,19 @@
             ></span>
             <p
                 class="p-0"
-                data-translate="{{ $ctrl.isMaxEliteVcore ? 'vps_dashboard_tile_configuration_memory_add_upscale_elite' : 'vps_dashboard_tile_configuration_memory_add_upscale' }}"
-                data-translate-values="{ href: $ctrl.getUpscaleHref() }"
                 data-ng-if="!$ctrl.vpsUpgradeTask && !$ctrl.isMaxEliteRam && !$ctrl.isInRescueMode"
-            ></p>
+            >
+                <a
+                    data-ng-href="{{:: $ctrl.getUpscaleHref()}}"
+                    data-track-on="click"
+                    data-track-name="vps::detail::dashboard::memory-upscale"
+                    data-track-type="action"
+                >
+                    <span
+                        data-translate="{{ $ctrl.isMaxEliteVcore ? 'vps_dashboard_tile_configuration_memory_add_upscale_elite' : 'vps_dashboard_tile_configuration_memory_add_upscale' }}"
+                    ></span>
+                </a>
+            </p>
         </oui-tile-description>
     </oui-tile-definition>
 
@@ -115,10 +131,19 @@
             ></span>
             <p
                 class="p-0"
-                data-translate="{{ $ctrl.isMaxEliteVcore ? 'vps_dashboard_tile_configuration_storage_add_upscale_elite' : 'vps_dashboard_tile_configuration_storage_add_upscale' }}"
-                data-translate-values="{ href: $ctrl.getUpscaleHref() }"
                 data-ng-if="!$ctrl.vpsUpgradeTask && !$ctrl.isMaxEliteStorage && !$ctrl.isInRescueMode"
-            ></p>
+            >
+                <a
+                    data-ng-href="{{:: $ctrl.getUpscaleHref()}}"
+                    data-track-on="click"
+                    data-track-name="vps::detail::dashboard::storage-upscale"
+                    data-track-type="action"
+                >
+                    <span
+                        data-translate="{{ $ctrl.isMaxEliteVcore ? 'vps_dashboard_tile_configuration_storage_add_upscale_elite' : 'vps_dashboard_tile_configuration_storage_add_upscale' }}"
+                    ></span>
+                </a>
+            </p>
         </oui-tile-description>
     </oui-tile-definition>
 </oui-tile>

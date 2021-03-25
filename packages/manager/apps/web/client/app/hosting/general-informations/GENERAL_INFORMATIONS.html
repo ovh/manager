@@ -1,7 +1,4 @@
-<div
-    class="container-fluid px-0"
-    data-ng-controller="hostingGeneralInformationsCtrl as $ctrl"
->
+<div>
     <oui-spinner data-ng-if="!hosting"></oui-spinner>
 
     <div data-ng-if="hosting">
@@ -196,9 +193,7 @@
                             data-ng-if="!hosting.boostOffer && hosting.availableBoostOffer && hosting.availableBoostOffer.length > 0"
                             data-placement="end"
                         >
-                            <oui-action-menu-item
-                                data-on-click="$ctrl.goToBoostTab()"
-                            >
+                            <oui-action-menu-item href="{{ $ctrl.boostLink }}">
                                 <span data-translate="hosting_tab_BOOST"></span>
                             </oui-action-menu-item>
                         </oui-action-menu>
@@ -397,7 +392,7 @@
                             </oui-action-menu-item>
                             <oui-action-menu-item
                                 data-ng-if="$ctrl.doesEmailOfferExists()"
-                                data-ui-sref="app.hosting.terminate-email-option"
+                                data-ui-sref="app.hosting.dashboard.terminate-email-option"
                             >
                                 <span
                                     data-translate="hosting_dashboard_service_terminate_email"
@@ -449,6 +444,7 @@
                             <oui-action-menu-item
                                 data-ng-if="hosting.hasCdn && cdnProperties.version === 'cdn-hosting'"
                                 data-on-click="$ctrl.goToMultisite()"
+                                data-href="{{ $ctrl.multisiteLink }}"
                             >
                                 <span
                                     data-translate="hosting_dashboard_service_setting_cdn"
@@ -502,7 +498,7 @@
                             >
                                 <oui-action-menu-item
                                     data-ng-if="privateDb.isAdmin"
-                                    data-href="#/configuration/private_database/{{ privateDb.name }}"
+                                    data-href="#/private_database/{{ privateDb.name }}"
                                 >
                                     <span
                                         data-translate="hosting_tab_LOCAL_SEO_access_interface"
@@ -515,7 +511,7 @@
                             >
                                 <oui-action-menu-item
                                     data-ng-if="sqlPriveState !== 'check' && sqlPriveState !== 'doing'"
-                                    data-ui-sref="app.hosting.database.private-sql-activation"
+                                    data-ui-sref="app.hosting.dashboard.database.private-sql-activation"
                                 >
                                     <span
                                         data-translate="hosting_dashboard_service_privatesql_active"
@@ -541,7 +537,7 @@
                             </oui-action-menu-item>
 
                             <oui-action-menu-item
-                                data-ui-sref="app.hosting.database.order-private"
+                                data-ui-sref="app.hosting.dashboard.database.order-private"
                             >
                                 <span
                                     data-translate="hosting_dashboard_service_privatesql_order"
@@ -586,7 +582,7 @@
                         >
                             <oui-action-menu-item
                                 data-ng-if="$ctrl.localSeo.isActive && $ctrl.localSeo.quantity > 0"
-                                data-on-click="ctrlHostingTabs.setSelectedTab('LOCAL_SEO')"
+                                data-href="{{ $ctrl.localSEOLink }}"
                             >
                                 <span data-translate="common_manage"></span>
                             </oui-action-menu-item>
@@ -639,7 +635,7 @@
                         </oui-tile-description>
                         <oui-action-menu data-compact data-placement="end">
                             <oui-action-menu-item
-                                data-on-click="ctrlHostingTabs.setSelectedTab('RUNTIMES')"
+                                href="{{ $ctrl.runtimesLink }}"
                                 ><span data-translate="common_configure"></span
                             ></oui-action-menu-item>
                         </oui-action-menu>

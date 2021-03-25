@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.managedBaremetal.security', {
+  $stateProvider.state('app.managedBaremetal.details.security', {
     url: '/security',
     reloadOnSearch: false,
     views: {
@@ -21,49 +21,58 @@ export default /* @ngInject */ ($stateProvider) => {
             .resetQueryCache();
         }
 
-        return goBackToState('app.managedBaremetal.security', message, type);
+        return goBackToState(
+          'app.managedBaremetal.details.security',
+          message,
+          type,
+        );
       },
       addKms: /* @ngInject */ ($state) => () =>
-        $state.go('app.managedBaremetal.security.kms-add'),
+        $state.go('app.managedBaremetal.details.security.kms-add'),
       addSecurity: /* @ngInject */ ($state) => () =>
-        $state.go('app.managedBaremetal.security.add'),
+        $state.go('app.managedBaremetal.details.security.add'),
       deleteKms: /* @ngInject */ ($state) => (kmsToDelete) =>
-        $state.go('app.managedBaremetal.security.kms-delete', {
+        $state.go('app.managedBaremetal.details.security.kms-delete', {
           kmsToDelete,
         }),
       deleteSecurity: /* @ngInject */ ($state) => (
         selectedPolicies,
         policies,
       ) =>
-        $state.go('app.managedBaremetal.security.delete', {
+        $state.go('app.managedBaremetal.details.security.delete', {
           policies,
           selectedPolicies,
         }),
       editKms: /* @ngInject */ ($state) => (kmsToEdit) =>
-        $state.go('app.managedBaremetal.security.kms-edit', {
+        $state.go('app.managedBaremetal.details.security.kms-edit', {
           kmsToEdit,
         }),
       securityAccess: /* @ngInject */ ($state) => () =>
-        $state.go('app.managedBaremetal.security.access'),
+        $state.go('app.managedBaremetal.details.security.access'),
       securityLogout: /* @ngInject */ ($state) => () =>
-        $state.go('app.managedBaremetal.security.logout'),
+        $state.go('app.managedBaremetal.details.security.logout'),
       updateMaxSimultaneousConnection: /* @ngInject */ ($state) => (
         userLimitConcurrentSession,
       ) =>
         $state.go(
-          'app.managedBaremetal.security.simultaneous-connection-update',
+          'app.managedBaremetal.details.security.simultaneous-connection-update',
           {
             userLimitConcurrentSession,
           },
         ),
       updateSecurity: /* @ngInject */ ($state) => (policy) =>
-        $state.go('app.managedBaremetal.security.update', {
+        $state.go('app.managedBaremetal.details.security.update', {
           policy,
         }),
       updateSessionTimeout: /* @ngInject */ ($state) => (userSessionTimeout) =>
-        $state.go('app.managedBaremetal.security.session-timeout-update', {
-          userSessionTimeout,
-        }),
+        $state.go(
+          'app.managedBaremetal.details.security.session-timeout-update',
+          {
+            userSessionTimeout,
+          },
+        ),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('managed_baremetal_security'),
     },
   });
 };

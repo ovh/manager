@@ -23,12 +23,12 @@ angular
       Hosting,
       HostingDatabase,
       OvhApiHostingWeb,
-      User,
+      WucUser,
     ) => {
       $scope.primaryLogin = $scope.hosting.primaryLogin;
       $scope.maxUserLength = MAX_USER_LENGTH - $scope.primaryLogin.length;
 
-      User.getUrlOf('guides').then((guides) => {
+      WucUser.getUrlOf('guides').then((guides) => {
         if (guides && guides.hostingPrivateDatabase) {
           $scope.guide = guides.hostingPrivateDatabase;
         }
@@ -199,7 +199,7 @@ angular
       $scope.buyPrivateDb = () => {
         $scope.resetAction();
         $timeout(() => {
-          $location.path('/configuration/private_database');
+          $location.path('/private_database/order');
         }, 300);
       };
     },

@@ -9,6 +9,7 @@ angular
       $translate,
       Ip,
       IpFirewall,
+      goToDashboard,
       $location,
       $route,
     ) => {
@@ -108,7 +109,7 @@ angular
       $scope.hideFirewall = function hideFirewall() {
         Ip.cancelActionParam('firewall');
         IpFirewall.killPollFirewallRule();
-        $rootScope.$broadcast('ips.display', 'table');
+        goToDashboard();
       };
 
       // Come from button

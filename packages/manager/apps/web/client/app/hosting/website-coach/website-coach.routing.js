@@ -1,15 +1,14 @@
 import JSURL from 'jsurl';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.hosting.website-coach', {
+  $stateProvider.state('app.hosting.dashboard.website-coach', {
     url: '/website-coach',
-    translations: { value: ['.'], format: 'json' },
     component: 'hostingWebsiteCoach',
     resolve: {
-      activateWebsiteCoach: /* @ngInject */ ($window, User) => (
+      activateWebsiteCoach: /* @ngInject */ ($window, WucUser) => (
         attachedDomain,
       ) => {
-        User.getUrlOfEndsWithSubsidiary('express_order').then(
+        WucUser.getUrlOfEndsWithSubsidiary('express_order').then(
           (expressOrderUrl) => {
             const orderParams = [
               {
@@ -37,13 +36,14 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       attachedDomains: /* @ngInject */ (productId, HostingModule) =>
         HostingModule.getAttachedDomains(productId),
-      productId: /* @ngInject */ ($transition$) =>
-        $transition$.params().productId,
+      productId: /* @ngInject */ (serviceName) => serviceName,
       screenshot: /* @ngInject */ (productId, OvhApiScreenshot) =>
         OvhApiScreenshot.Aapi()
           .get({ url: productId })
           .$promise.then((screenshot) => screenshot),
-      user: /* @ngInject */ (User) => User.getUser(),
+      user: /* @ngInject */ (WucUser) => WucUser.getUser(),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('hosting_website_coach_title'),
     },
   });
 };

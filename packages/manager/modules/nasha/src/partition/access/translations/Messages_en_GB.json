@@ -20,5 +20,6 @@
   "nasha_partitions_access_readwrite": "Read/Write",
   "nasha_partitions_access_permissions": "Permissions",
   "nasha_partitions_access_permissions_warning_cifs": "Read-only mode is only available in NFS.",
-  "nasha_partitions_access_notice": "Currently, HA-NAS can only be used with OVH IPs (Dedicated server/VPS/Public Cloud/Private Cloud/So you Start/Kimsufi/ADSL)."
+  "nasha_partitions_access_notice": "Currently, HA-NAS can only be used with OVH IPs (Dedicated server/VPS/Public Cloud/Private Cloud/So you Start/Kimsufi/ADSL).",
+  "nasha_access_breadcrumb": "Partition"
 }

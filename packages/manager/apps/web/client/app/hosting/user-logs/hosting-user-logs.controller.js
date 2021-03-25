@@ -12,7 +12,7 @@ export default class HostingTabUserLogsCtrl {
     Alerter,
     constants,
     Hosting,
-    User,
+    WucUser,
   ) {
     this.$scope = $scope;
     this.$q = $q;
@@ -22,7 +22,7 @@ export default class HostingTabUserLogsCtrl {
     this.Alerter = Alerter;
     this.constants = constants;
     this.Hosting = Hosting;
-    this.User = User;
+    this.WucUser = WucUser;
   }
 
   $onInit() {
@@ -37,7 +37,7 @@ export default class HostingTabUserLogsCtrl {
       this.refreshTableUserLogs();
     });
 
-    this.User.getUrlOf('guides').then((guides) => {
+    this.WucUser.getUrlOf('guides').then((guides) => {
       this.guide = get(guides, 'hostingStatsLogs');
     });
 

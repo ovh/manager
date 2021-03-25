@@ -14,6 +14,8 @@ export default /* @ngInject */ ($stateProvider) => {
       goToVeeamMount: /* @ngInject */ ($state) => (restorePoint, mount) =>
         $state.go('vps.detail.veeam.mount', { restorePoint, mount }),
       goBack: /* @ngInject */ ($state) => () => $state.go('vps.detail.veeam'),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('vps_veeam'),
     },
   });
 };

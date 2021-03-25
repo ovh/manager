@@ -151,5 +151,6 @@
   "mailing_list_tab_delete_subscribers_title": "Eliminar os subscritores da mailing list <strong>{0}</strong>",
   "mailing_list_tab_delete_subscribers_list": "Lista dos subscritores a eliminar",
   "mailing_list_tab_delete_moderators_title": "Eliminar os moderadores da mailing-list <strong>{0}</strong>",
-  "mailing_list_tab_delete_moderators_list": "Lista dos moderadores a eliminar"
+  "mailing_list_tab_delete_moderators_list": "Lista dos moderadores a eliminar",
+  "emailpro_mailing_list": "Mailing lists"
 }

@@ -7,12 +7,19 @@ import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 angular.module('App').controller(
   'DomainOperationUpdateCtrl',
   class DomainOperationUpdateCtrl {
-    constructor($scope, $q, $translate, Alerter, User, domainOperationService) {
+    constructor(
+      $scope,
+      $q,
+      $translate,
+      Alerter,
+      WucUser,
+      domainOperationService,
+    ) {
       this.$scope = $scope;
       this.$q = $q;
       this.$translate = $translate;
       this.Alerter = Alerter;
-      this.User = User;
+      this.WucUser = WucUser;
       this.domainOperationService = domainOperationService;
     }
 
@@ -111,7 +118,7 @@ angular.module('App').controller(
                   }
 
                   if (argument.value) {
-                    this.User.getDocument(argument.value).then(
+                    this.WucUser.getDocument(argument.value).then(
                       (documentInfo) => {
                         this.documents[argument.value] = documentInfo;
                         this.previousValue[argument.key] =
@@ -184,7 +191,7 @@ angular.module('App').controller(
         let rtn;
         if (arg.type === '/me/document') {
           if (this.files[arg.key]) {
-            rtn = this.User.uploadFile(arg.key, this.files[arg.key]).then(
+            rtn = this.WucUser.uploadFile(arg.key, this.files[arg.key]).then(
               (documentId) =>
                 this.domainOperationService.updateOperation({
                   id: this.operation.id,

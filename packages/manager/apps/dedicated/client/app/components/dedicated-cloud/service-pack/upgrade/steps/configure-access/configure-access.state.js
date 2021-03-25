@@ -23,5 +23,6 @@ export default {
   resolve: {
     allowedIPsAndBlocks: resolveAllowedIPsAndBlocks,
     hasDefaultMeansOfPayment: resolveHasDefaultMeansOfPayment,
+    breadcrumb: () => null,
   },
 };

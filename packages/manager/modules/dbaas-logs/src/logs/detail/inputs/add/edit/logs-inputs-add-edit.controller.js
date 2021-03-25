@@ -141,7 +141,7 @@ export default class LogsInputsAddEditCtrl {
   }
 
   gotToNextStep(inputId) {
-    this.$state.go('dbaas-logs.detail.inputs.editwizard.configure', {
+    this.$state.go('dbaas-logs.detail.inputs.input.editwizard.configure', {
       serviceName: this.serviceName,
       inputId,
     });

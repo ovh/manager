@@ -1,11 +1,9 @@
 <div>
     <div data-ovh-alert></div>
 
-    <div class="page-header">
-        <h1 data-translate="menu_sla"></h1>
-    </div>
+    <oui-header heading="{{:: 'menu_sla' | translate }}"> </oui-header>
 
-    <div class="tab-content">
+    <div>
         <div data-ng-show="loaders.slas" class="text-center">
             <oui-spinner></oui-spinner>
         </div>

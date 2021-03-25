@@ -2,6 +2,10 @@ import controller from './domain-zone-dns.controller';
 import template from './domain-zone-dns.html';
 
 export default /* @ngInject */ ($stateProvider) => {
+  const commonResolve = {
+    breadcrumb: /* @ngInject */ ($translate) =>
+      $translate.instant('domain_zone'),
+  };
   $stateProvider.state('app.domain.product.zone', {
     url: '/zone',
     views: {
@@ -15,6 +19,7 @@ export default /* @ngInject */ ($stateProvider) => {
       rename: 'ZONE',
     },
     resolve: {
+      ...commonResolve,
       activateZone: /* @ngInject */ ($state) => () =>
         $state.go('app.domain.product.zone.activate'),
       orderZone: /* @ngInject */ ($state) => () =>
@@ -38,7 +43,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
   });
 
-  $stateProvider.state('app.domain.alldom.zone', {
+  $stateProvider.state('app.alldom.domain.zone', {
     url: '/zone',
     views: {
       domainView: {
@@ -51,12 +56,13 @@ export default /* @ngInject */ ($stateProvider) => {
       rename: 'ZONE',
     },
     resolve: {
+      ...commonResolve,
       activateZone: /* @ngInject */ ($state) => () =>
-        $state.go('app.domain.alldom.zone.activate'),
+        $state.go('app.alldom.domain.zone.activate'),
       orderZone: /* @ngInject */ ($state) => () =>
         $state.go('app.dns-zone-new'),
       goToZone: /* @ngInject */ ($state) => () =>
-        $state.go('app.domain.alldom.zone'),
+        $state.go('app.alldom.domain.zone'),
     },
   });
 };

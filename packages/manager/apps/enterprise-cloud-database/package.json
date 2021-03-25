@@ -23,10 +23,11 @@
     "@ovh-ux/manager-core": "^11.0.0 || ^12.0.0",
     "@ovh-ux/manager-enterprise-cloud-database": "^0.2.0 || ^1.0.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.8",
+    "@ovh-ux/manager-preloader": "^1.1.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.0",
     "@ovh-ux/ng-ovh-contracts": "^4.0.2",
     "@ovh-ux/ng-ovh-http": "^5.0.1",
-    "@ovh-ux/ng-ovh-payment-method": "^7.0.11",
+    "@ovh-ux/ng-ovh-payment-method": "^7.0.11 || ^8.0.0",
     "@ovh-ux/ng-ovh-proxy-request": "^2.0.1",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.0",
     "@ovh-ux/ng-ovh-sso-auth": "^4.4.0",
@@ -34,6 +35,7 @@
     "@ovh-ux/ng-ovh-toaster": "^2.0.1",
     "@ovh-ux/ng-ovh-user-pref": "^2.0.1",
     "@ovh-ux/ng-translate-async-loader": "^2.1.1",
+    "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.0",
     "@ovh-ux/ng-ui-router-layout": "^4.0.2",
     "@ovh-ux/ui-kit": "^4.4.4",
     "@uirouter/angularjs": "^1.0.22",
@@ -54,6 +56,7 @@
     "popper.js": "^1.16.1",
     "regenerator-runtime": "^0.13.7",
     "ui-select": "^0.19.8",
+    "whatwg-fetch": "^3.4.1",
     "zxcvbn": "^4.4.2"
   },
   "devDependencies": {

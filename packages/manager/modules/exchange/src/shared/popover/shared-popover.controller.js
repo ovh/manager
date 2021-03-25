@@ -4,7 +4,7 @@ export default class ExchangeToolboxSharedCtrl {
   /* @ngInject */
   constructor(
     $scope,
-    Exchange,
+    wucExchange,
     messaging,
     navigation,
     $translate,
@@ -12,7 +12,7 @@ export default class ExchangeToolboxSharedCtrl {
   ) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       messaging,
       navigation,
       $translate,

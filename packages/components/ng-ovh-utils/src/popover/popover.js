@@ -6,6 +6,8 @@ import simpletooltip from './simpletooltip/simpletooltip';
 
 import popoverService from './popover-service';
 
+import './popover.less';
+
 const moduleName = 'ua.popover';
 
 angular

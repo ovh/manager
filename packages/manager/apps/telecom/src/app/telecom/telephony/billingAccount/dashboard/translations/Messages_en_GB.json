@@ -36,5 +36,7 @@
   "telephony_group_billing_dashboard_RMA_status_received": "Réception du colis",
   "telephony_group_billing_dashboard_no_phone": "Ligne nue",
   "telephony_group_billing_dashboard_RMA_title": "RMA",
-  "telephony_group_billing_dashboard_calls": "Calls"
+  "telephony_group_billing_dashboard_calls": "Calls",
+  "telephony_group_billing_dashboard_suspended_info": "This group is currently suspended.",
+  "telephony_group_billing_dashboard_suspended_info_link": "Click here to increase your security deposit."
 }

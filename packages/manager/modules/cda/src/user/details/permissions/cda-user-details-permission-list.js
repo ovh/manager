@@ -4,9 +4,9 @@ import permissionTemplate from './cda-user-details-permission-title.html';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'cda.cda-details.cda-user.cda-user-details.cda-user-details-permission-list',
+    'cda.dashboard.cda-user.cda-user-details.cda-user-details-permission-list',
     {
-      url: '/permission/list',
+      url: '/permission',
       views: {
         cdaUserDetailsTitle: {
           template: permissionTemplate,
@@ -17,9 +17,9 @@ export default /* @ngInject */ ($stateProvider) => {
           controllerAs: 'CdaUserDetailsPermissionListCtrl',
         },
       },
-      translations: {
-        format: 'json',
-        value: ['.'],
+      resolve: {
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('cda_user_details_permission_breadcrumb'),
       },
     },
   );

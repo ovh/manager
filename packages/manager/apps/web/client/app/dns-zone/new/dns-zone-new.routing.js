@@ -1,8 +1,8 @@
 import set from 'lodash/set';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dns-zone-new', {
-    url: '/configuration/new_dns_zone',
+  $stateProvider.state('app.zone.new', {
+    url: '/new',
     component: 'domainDnsZoneNew',
     resolve: {
       navigationInformations: /* @ngInject */ (Navigator, $rootScope) => {
@@ -29,7 +29,7 @@ export default /* @ngInject */ ($stateProvider) => {
         const reload = message && type === 'success';
 
         const promise = $state.go(
-          'app.dns-zone-new',
+          'app.zone.new',
           {},
           {
             reload,
@@ -57,7 +57,8 @@ export default /* @ngInject */ ($stateProvider) => {
           .getZoneNameValidation(name)
           .then(() => true)
           .catch(() => false),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('domains_newdnszone_order_title'),
     },
-    translations: { value: ['.'], format: 'json' },
   });
 };

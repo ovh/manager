@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicatedClouds.dashboard.update', {
+  $stateProvider.state('app.dedicatedCloud.details.dashboard.update', {
     url: '/update',
     params: {
       targetVersion: null,
@@ -15,6 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
       targetVersion: /* @ngInject */ ($transition$) =>
         $transition$.params().targetVersion,
       goBack: /* @ngInject */ (goBackToDashboard) => goBackToDashboard,
+      breadcrumb: () => null,
     },
   });
 };

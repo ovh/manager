@@ -8,5 +8,6 @@
   "enterprise_cloud_database_service_details_cluster_nodes_node_name": "Nazwa węzła",
   "enterprise_cloud_database_service_details_cluster_nodes_add_replica": "Dodaj replikę",
   "enterprise_cloud_database_service_details_cluster_nodes_delete_replica": "Usuń replikę",
-  "enterprise_cloud_database_service_details_cluster_nodes_refresh": "Odśwież węzły"
+  "enterprise_cloud_database_service_details_cluster_nodes_refresh": "Odśwież węzły",
+  "enterprise_cloud_database_service_details_cluster_nodes": "Węzły klastra"
 }

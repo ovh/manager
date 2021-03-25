@@ -11,7 +11,7 @@ export default class ExchangeExportToCsvAccountsCtrl {
     $scope,
     $q,
     $translate,
-    Exchange,
+    wucExchange,
     ExchangeExternalContacts,
     ExchangeSharedAccounts,
     messaging,
@@ -21,7 +21,7 @@ export default class ExchangeExportToCsvAccountsCtrl {
       $scope,
       $q,
       $translate,
-      Exchange,
+      wucExchange,
       ExchangeExternalContacts,
       ExchangeSharedAccounts,
       messaging,
@@ -56,7 +56,7 @@ export default class ExchangeExportToCsvAccountsCtrl {
       ],
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
     this.timeoutObject = null;
     this.loading = {
       exportCsv: false,
@@ -65,7 +65,7 @@ export default class ExchangeExportToCsvAccountsCtrl {
     this.search = navigation.currentActionData.search;
     this.totalAccounts = navigation.currentActionData.total;
     this.csvExportType = navigation.currentActionData.csvExportType;
-    this.exchange = Exchange.value;
+    this.exchange = wucExchange.value;
 
     $scope.exportAccounts = () => this.exportAccounts();
     $scope.cancelExport = () => this.cancelExport();
@@ -189,7 +189,7 @@ export default class ExchangeExportToCsvAccountsCtrl {
     let promise = null;
     switch (this.csvExportType) {
       case 'accounts':
-        promise = this.services.Exchange.prepareForCsv(
+        promise = this.services.wucExchange.prepareForCsv(
           this.exchange,
           this.$routerParams.organization,
           this.$routerParams.productId,
@@ -199,7 +199,7 @@ export default class ExchangeExportToCsvAccountsCtrl {
         );
         break;
       case 'group':
-        promise = this.services.Exchange.prepareGroupsForCsv(
+        promise = this.services.wucExchange.prepareGroupsForCsv(
           this.$routerParams.organization,
           this.$routerParams.productId,
           exportOpts,

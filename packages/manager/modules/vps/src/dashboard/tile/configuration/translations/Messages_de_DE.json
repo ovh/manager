@@ -1,19 +1,19 @@
 {
   "vps_dashboard_tile_configuration_title": "Ihre Konfiguration",
-  "vps_dashboard_tile_configuration_vcore_upscale": "Mit Wechsel zur <a href=\"{{href}}\">nächsten Serverreihe</a> vCores hinzufügen.",
+  "vps_dashboard_tile_configuration_vcore_upscale": "vCores hinzufügen und dazu zur nächsthöheren Serverreihe wechseln.",
   "vps_dashboard_tile_configuration_memory": "Arbeitsspeicher",
   "vps_dashboard_tile_configuration_memory_add": "Arbeitsspeicher hinzufügen",
-  "vps_dashboard_tile_configuration_memory_add_upscale": "Zur <a href=\"{{href}}\">nächsten Produktreihe</a> mit mehr Arbeitsspeicher wechseln",
+  "vps_dashboard_tile_configuration_memory_add_upscale": "RAM hinzufügen und dazu zur nächsthöheren Serverreihe wechseln.",
   "vps_dashboard_tile_configuration_memory_double": "Den Arbeitsspeicher zum Preis von {{ price }}/Monat verdoppeln",
   "vps_dashboard_tile_configuration_storage": "Storage",
   "vps_dashboard_tile_configuration_storage_add": "Speicherkapazität erhöhen",
-  "vps_dashboard_tile_configuration_storage_add_upscale": "Zur <a href=\"{{href}}\">nächsten Produktreihe</a> mit mehr Speicherkapazität wechseln",
+  "vps_dashboard_tile_configuration_storage_add_upscale": "Speicherkapazität hinzufügen und dazu zur nächsthöheren Serverreihe wechseln.",
   "vps_dashboard_tile_configuration_storage_double": "Den Speicherplatz zum Preis von {{ price }}/Monat verdoppeln",
   "vps_dashboard_tile_configuration_upgrade_confirmation_title": "Die von Ihnen gewünschte Veränderung wurde registriert.",
   "vps_dashboard_tile_configuration_upgrade_confirmation_details": "Sie werden innerhalb der nächsten zwei Stunden eine E-Mail erhalten, die bestätigt, dass die Änderungen an Ihrem VPS erfolgt sind. Um Ihre neue Konfiguration zu nutzen, müssen Sie Ihren VPS neu starten.",
   "vps_dashboard_tile_configuration_upgrade_confirmation_track_order": "Meine Bestellung verfolgen",
   "vps_dashboard_tile_configuration_upgrade_complete_reboot_required": "Ihrem VPS wurden neue Ressourcen hinzugefügt. Bitte starten Sie Ihren Server neu, um die neue Konfiguration zu aktivieren.",
   "vps_dashboard_tile_configuration_vcore": "vCores",
-  "vps_dashboard_tile_configuration_memory_add_upscale_elite": "Bauen Sie Ihren VPS mit <a href=\"{{href}}\">mehr Arbeitsspeicher</a> aus",
-  "vps_dashboard_tile_configuration_storage_add_upscale_elite": "Bauen Sie Ihren VPS mit <a href=\"{{href}}\">mehr Speicherkapazität</a> aus"
+  "vps_dashboard_tile_configuration_memory_add_upscale_elite": "Bauen Sie Ihren VPS aus und fügen Sie Arbeitsspeicher hinzu.",
+  "vps_dashboard_tile_configuration_storage_add_upscale_elite": "Bauen Sie Ihren VPS aus und erweitern Sie die Speicherkapazität."
 }

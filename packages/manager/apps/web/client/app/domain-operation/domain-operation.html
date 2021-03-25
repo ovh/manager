@@ -1,8 +1,9 @@
-<div class="page-header mb-5">
-    <h1 data-translate="domains_operations_dashboard_title"></h1>
-</div>
+<div ui-view>
+    <oui-header
+        heading="{{:: 'domains_operations_dashboard_title' | translate }}"
+    >
+    </oui-header>
 
-<div class="container-fluid px-5">
     <div data-ovh-alert="{{alerts.main}}"></div>
 
     <p data-translate="domains_operations_dashboard_info"></p>
@@ -217,7 +218,7 @@
                                     ></span>
                                 </oui-action-menu-item>
                                 <oui-action-menu-item
-                                    data-ng-href="#/configuration/domain_operation/progress/{{operation.id}}"
+                                    data-ng-href="#/domain_operation/progress/{{operation.id}}"
                                     data-ng-if="operation.function === 'DomainIncomingTransfer'"
                                 >
                                     <span

@@ -1,7 +1,7 @@
 import get from 'lodash/get';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.hosting.database.order-private', {
+  $stateProvider.state('app.hosting.dashboard.database.order-private', {
     url: '/order-private',
     component: 'hostingDatabaseOrderPrivate',
     resolve: {
@@ -72,7 +72,7 @@ export default /* @ngInject */ ($stateProvider) => {
       getDatacenter: (HostingDatabaseOrderPrivateService) => (serviceName) =>
         HostingDatabaseOrderPrivateService.getDatacenter(serviceName),
 
-      goBack: /* @ngInject */ (goToHosting) => goToHosting,
+      goBack: /* @ngInject */ (goToDatabase) => goToDatabase,
 
       prepareOrderCart: /* @ngInject */ (
         cartId,
@@ -126,12 +126,12 @@ export default /* @ngInject */ ($stateProvider) => {
         HostingDatabaseOrderPrivateService,
       ) => () => HostingDatabaseOrderPrivateService.resetOrderCart(cartId),
 
-      serviceName: /* @ngInject */ ($transition$) =>
-        $transition$.params().productId,
-
       /* @ngInject */
       services: (HostingDatabaseOrderPrivateService) =>
         HostingDatabaseOrderPrivateService.getServices(),
+
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('hosting_database_order_private_title'),
     },
   });
 };

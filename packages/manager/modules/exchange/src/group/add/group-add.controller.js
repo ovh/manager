@@ -8,17 +8,17 @@ import isNaN from 'lodash/isNaN';
 
 export default class ExchangeAddGroupCtrl {
   /* @ngInject */
-  constructor($scope, Exchange, navigation, messaging, $translate, group) {
+  constructor($scope, wucExchange, navigation, messaging, $translate, group) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       navigation,
       messaging,
       $translate,
       group,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
 
     this.groupToAdd = {
       auth: false,
@@ -228,14 +228,15 @@ export default class ExchangeAddGroupCtrl {
     this.loading = true;
     this.saveSelected();
 
-    this.services.Exchange.getAccountsAndContacts(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-      count,
-      offset,
-      this.search.value,
-      1,
-    )
+    this.services.wucExchange
+      .getAccountsAndContacts(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        count,
+        offset,
+        this.search.value,
+        1,
+      )
       .then((accounts) => {
         this.accountsList = accounts;
 
@@ -267,11 +268,12 @@ export default class ExchangeAddGroupCtrl {
     );
 
     this.prepareModel();
-    this.services.Exchange.addExchangeGroup(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-      this.model,
-    )
+    this.services.wucExchange
+      .addExchangeGroup(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        this.model,
+      )
       .then((data) => {
         const addGroupMessages = {
           OK: this.services.$translate.instant(

@@ -2,9 +2,10 @@ export default class ExchangeTabPublicFolderCtrl {
   /* @ngInject */
   constructor(
     $scope,
-    Exchange,
+    wucExchange,
     $timeout,
     ExchangePublicFolders,
+    goToFolder,
     messaging,
     $translate,
     navigation,
@@ -12,7 +13,7 @@ export default class ExchangeTabPublicFolderCtrl {
   ) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       $timeout,
       ExchangePublicFolders,
       messaging,
@@ -21,7 +22,7 @@ export default class ExchangeTabPublicFolderCtrl {
       exchangeStates,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
 
     this.loading = false;
     this.publicFoldersList = null;
@@ -29,9 +30,9 @@ export default class ExchangeTabPublicFolderCtrl {
       value: null,
     };
 
-    this.displayPublicFolders();
+    this.goToFolder = goToFolder;
 
-    $scope.$on(Exchange.events.publicFoldersChanged, () =>
+    $scope.$on(wucExchange.events.publicFoldersChanged, () =>
       $scope.$broadcast('paginationServerSide.reload', 'publicFoldersTable'),
     );
 
@@ -39,7 +40,6 @@ export default class ExchangeTabPublicFolderCtrl {
       this.retrievingMailingLists(count, offset);
     $scope.getPublicFoldersList = () => this.publicFoldersList;
     $scope.getLoading = () => this.loading;
-    $scope.displayPublicFolders = () => this.displayPublicFolders();
   }
 
   onSearch() {
@@ -81,19 +81,9 @@ export default class ExchangeTabPublicFolderCtrl {
     this.services.navigation.setAction('exchange/shared/add/shared-add');
   }
 
-  displayPublicFolders() {
-    this.resetSearch();
-
-    this.showPublicFolders = true;
-    this.showPermissions = false;
-    this.services.$scope.selectedFolder = null;
-  }
-
   displayPermissions(folder) {
     this.resetSearch();
-
-    this.showPublicFolders = false;
-    this.showPermissions = true;
+    this.goToFolder();
     this.services.$scope.selectedFolder = folder;
 
     this.services.$scope.$broadcast(

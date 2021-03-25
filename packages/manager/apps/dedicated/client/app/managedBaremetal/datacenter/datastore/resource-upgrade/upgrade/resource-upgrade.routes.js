@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'app.managedBaremetal.datacenter.datastores.resourceUpgrade',
+    'app.managedBaremetal.details.datacenters.datacenter.datastores.resourceUpgrade',
     {
       url: '/upgradeResource',
       params: {
@@ -17,6 +17,7 @@ export default /* @ngInject */ ($stateProvider) => {
         goBack: /* @ngInject */ (goBackToDatastore) => goBackToDatastore,
         id: /* @ngInject */ ($transition$) => $transition$.params().id,
         type: /* @ngInject */ ($transition$) => $transition$.params().type,
+        breadcrumb: () => null,
       },
     },
   );

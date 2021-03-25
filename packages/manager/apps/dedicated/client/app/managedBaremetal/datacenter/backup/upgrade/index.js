@@ -6,15 +6,18 @@ const moduleName = 'managedBaremetalBackupUpgradeLazyloading';
 
 angular.module(moduleName, ['oc.lazyLoad', 'ui.router']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.managedBaremetal.datacenter.backup.upgrade.**', {
-      url: '/upgrade',
-      lazyLoad: ($transition$) => {
-        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-        return import('./upgrade.module').then((mod) =>
-          $ocLazyLoad.inject(mod.default || mod),
-        );
+    $stateProvider.state(
+      'app.managedBaremetal.details.datacenters.datacenter.backup.upgrade.**',
+      {
+        url: '/upgrade',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+          return import('./upgrade.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
       },
-    });
+    );
   },
 );
 

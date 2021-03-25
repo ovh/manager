@@ -38,7 +38,6 @@ angular.module('App').controller(
 
       this.hosting = this.$scope.hosting;
       this.hostingProxy = this.$scope.hostingProxy;
-      this.bddTemplate = 'hosting/database/DATABASE_LIST.html';
       this.canCreateDatabase =
         this.hosting.databaseMax - this.hosting.databaseCount > 0;
       this.databases = {
@@ -54,7 +53,6 @@ angular.module('App').controller(
         value: null,
       };
 
-      this.$scope.goToList = () => this.goToList();
       this.$scope.$on('hosting.databases.backup.restore', () =>
         this.reloadCurrentPage(),
       );
@@ -174,12 +172,6 @@ angular.module('App').controller(
       return `${PHPMYADMIN_BASE_URL}?${queryString}`;
     }
 
-    goToList() {
-      this.loading.init = true;
-      this.$scope.bdd = null;
-      this.bddTemplate = 'hosting/database/DATABASE_LIST.html';
-    }
-
     loadDatabases() {
       this.loading.databases = true;
       this.databases.ids = null;
@@ -211,7 +203,9 @@ angular.module('App').controller(
 
     restoreDump(database) {
       this.$scope.bdd = database;
-      this.bddTemplate = 'hosting/database/dump/DUMPS.html';
+      this.$state.go('app.hosting.dashboard.database.dashboard.dump', {
+        name: database.name,
+      });
     }
 
     transformItem(id) {

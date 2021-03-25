@@ -65,5 +65,6 @@
   "server_sidebar_item_dedicated_network_title": "Sieć",
   "server_sidebar_order_item_ovh_cloud_connect_title": "OVHCloud Connect",
   "server_sidebar_item_managedBaremetal_title": "Managed Bare Metal",
-  "server_sidebar_order_item_managed_bare_metal_title": "Managed Bare Metal"
+  "server_sidebar_order_item_managed_bare_metal_title": "Managed Bare Metal",
+  "server_sidebar_item_domain_bulk_title": "Masowe operacje"
 }

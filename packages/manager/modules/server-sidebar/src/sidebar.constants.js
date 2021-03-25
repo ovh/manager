@@ -2,11 +2,11 @@ import { DEDICATED, HPC_NAMESPACE } from './constants';
 
 export const DEDICATED_SERVER_CONFIG = {
   id: 'dedicatedServers',
-  loadOnState: 'app.dedicated',
+  loadOnState: ['dedicated-housing', 'app.dedicated-server'],
   children: [
     {
       id: 'servers_all',
-      state: 'app.dedicated.servers',
+      state: 'app.dedicated-server.index',
       stateUrl: '#/configuration/servers',
       icon: 'ovh-font ovh-font-server',
       app: [DEDICATED],
@@ -16,7 +16,7 @@ export const DEDICATED_SERVER_CONFIG = {
     {
       path: '/dedicated/housing',
       category: 'HOUSING',
-      state: 'app.dedicated.housing',
+      state: 'dedicated-housing.dashboard',
       stateParams: ['productId'],
       app: [DEDICATED],
       searchKeys: ['HOUSING'],
@@ -24,7 +24,7 @@ export const DEDICATED_SERVER_CONFIG = {
     {
       path: '/dedicated/server',
       category: 'SERVER',
-      state: 'app.dedicated.server',
+      state: 'app.dedicated-server.server',
       stateParams: ['productId'],
       app: [DEDICATED],
       searchKeys: ['SERVER'],
@@ -43,14 +43,14 @@ export const DEDICATED_CLOUD_CONFIG = {
       types: [
         {
           path: '/dedicatedCloud/:productId/datacenter',
-          state: 'app.dedicatedClouds.datacenter',
+          state: 'app.dedicatedCloud.details.datacenter.details',
           stateParams: ['productId', 'datacenterId'],
           app: [DEDICATED],
           namespace: HPC_NAMESPACE,
           subType: 'EPCC',
         },
       ],
-      state: 'app.dedicatedClouds',
+      state: 'app.dedicatedCloud.details',
       stateParams: ['productId'],
       icon: 'ovh-font ovh-font-dedicatedCloud',
       app: [DEDICATED],
@@ -58,7 +58,7 @@ export const DEDICATED_CLOUD_CONFIG = {
       subType: 'EPCC',
     },
   ],
-  loadOnState: 'app.dedicatedClouds',
+  loadOnState: 'app.dedicatedCloud.details',
   icon: 'ovh-font ovh-font-dedicatedCloud',
   app: [DEDICATED],
   regions: ['EU', 'CA', 'US'],
@@ -73,20 +73,20 @@ export const MANAGED_BAREMETAL_CONFIG = {
       types: [
         {
           path: '/dedicatedCloud/:productId/datacenter',
-          state: 'app.managedBaremetal.datacenter',
+          state: 'app.managedBaremetal.details.datacenters.datacenter',
           stateParams: ['productId', 'datacenterId'],
           app: [DEDICATED],
           subType: 'MBM',
         },
       ],
-      state: 'app.managedBaremetal',
+      state: 'app.managedBaremetal.details',
       stateParams: ['productId'],
       icon: 'oui-icon oui-icon-cloud-essential_concept',
       app: [DEDICATED],
       subType: 'MBM',
     },
   ],
-  loadOnState: 'app.managedBaremetal',
+  loadOnState: 'app.managedBaremetal.details',
   icon: 'oui-icon oui-icon-cloud-essential_concept',
   app: [DEDICATED],
   regions: ['EU', 'CA', 'US'],
@@ -100,13 +100,14 @@ export const NETWORKS_CONFIG = {
       types: [
         {
           path: '/cdn/dedicated/:productId/domains',
-          state: 'app.networks.cdn.dedicated.domain',
+          state: 'app.networks.cdn.dedicated.manage.domain.dashboard',
           stateParams: ['productId', 'domain'],
           app: [DEDICATED],
           regions: ['EU'],
         },
       ],
       state: 'app.networks.cdn.dedicated',
+      loadOnState: 'app.networks.cdn.dedicated',
       stateParams: ['productId'],
       icon: 'ovh-font ovh-font-cdn',
       app: [DEDICATED],
@@ -115,7 +116,7 @@ export const NETWORKS_CONFIG = {
     },
     {
       path: '/dedicated/nas',
-      state: 'app.networks.nas.details',
+      state: 'app.dedicated-nas.details',
       stateParams: ['nasId'],
       icon: 'ovh-font ovh-font-cloudnas',
       app: [DEDICATED],
@@ -124,7 +125,7 @@ export const NETWORKS_CONFIG = {
     },
     {
       path: '/dedicated/nasha',
-      state: 'nasha.nasha-partitions',
+      state: 'nasha.dashboard.nasha-partitions',
       stateParams: ['nashaId'],
       icon: 'ovh-font ovh-font-cloudnas',
       app: [DEDICATED],
@@ -132,7 +133,11 @@ export const NETWORKS_CONFIG = {
       searchKeys: ['NAS', 'NASHA', 'NAS-HA'],
     },
   ],
-  loadOnState: ['nasha.nasha-partitions', 'app.networks'],
+  loadOnState: [
+    'nasha.dashboard.nasha-partitions',
+    'app.networks',
+    'dedicated-nas',
+  ],
   icon: 'ovh-font ovh-font-network',
   app: [DEDICATED],
   regions: ['EU', 'CA'],
@@ -153,21 +158,21 @@ export const MICROSOFT_CONFIG = {
     {
       path: '/email/exchange',
       icon: 'ms-Icon ms-Icon--ExchangeLogo',
-      loadOnState: 'app.microsoft.exchange',
+      loadOnState: 'exchange.dashboard',
       stateParams: ['organization'],
       app: [DEDICATED],
       types: [
         {
           path: '/email/exchange',
           icon: 'ms-Icon ms-Icon--ExchangeLogo',
-          state: 'app.exchange',
+          state: 'exchange.dashboard',
           stateParams: ['organization', 'productId'],
           app: [DEDICATED],
         },
       ],
     },
   ],
-  loadOnState: 'app.microsoft.exchange',
+  loadOnState: 'exchange',
   icon: 'ms-Icon ms-Icon--ExchangeLogo',
   app: [DEDICATED],
   regions: ['CA'],
@@ -216,12 +221,12 @@ export const PAAS_CONFIG = {
     'cda',
     'paas.veeam.detail',
     'veeam-cloud-connect',
-    'veeam-enterprise',
+    'veeam-enterprise.details',
   ],
   types: [
     {
       path: '/dedicated/ceph',
-      state: 'cda.cda-details.cda-details-home',
+      state: 'cda.dashboard.cda-details-home',
       stateParams: ['serviceName'],
       icon: 'ovh-font ovh-font-cloud-disk-array',
       app: [DEDICATED],
@@ -241,7 +246,7 @@ export const PAAS_CONFIG = {
     },
     {
       path: '/veeam/veeamEnterprise',
-      state: 'veeam-enterprise.dashboard',
+      state: 'veeam-enterprise.details.dashboard',
       stateParams: ['serviceName'],
       icon: 'ovh-font ovh-font-veeam',
       app: [DEDICATED],
@@ -258,11 +263,11 @@ export const PAAS_CONFIG = {
 
 export const METRICS_CONFIG = {
   id: 'metrics',
-  loadOnState: 'dbaas.metrics',
+  loadOnState: 'metrics',
   types: [
     {
       path: '/metrics',
-      state: 'dbaas.metrics.detail.dashboard',
+      state: 'metrics.detail.dashboard',
       stateParams: ['serviceName'],
       icon: 'ovh-font ovh-font-graph',
       app: [DEDICATED],
@@ -302,11 +307,11 @@ export const LOGS_CONFIG = {
 
 export const IPLB_CONFIG = {
   id: 'load_balancer',
-  loadOnState: 'network.iplb',
+  loadOnState: 'iplb',
   types: [
     {
       path: '/ipLoadbalancing',
-      state: 'network.iplb.detail.home',
+      state: 'iplb.detail.home',
       stateParams: ['serviceName'],
       icon: 'ovh-font ovh-font-iplb',
       app: [DEDICATED],
@@ -325,7 +330,7 @@ export const DEDICATED_NETWORK_CONFIG = {
   regions: ['EU', 'CA', 'US'],
   namespace: [undefined, HPC_NAMESPACE],
   icon: 'oui-icon oui-icon-bandwidth_concept',
-  loadOnState: ['vrack', 'cloud-connect'],
+  loadOnState: ['vrack.dashboard', 'cloud-connect'],
   children: [
     {
       id: 'vrack',
@@ -333,7 +338,7 @@ export const DEDICATED_NETWORK_CONFIG = {
       types: [
         {
           path: '/vrack',
-          state: 'vrack',
+          state: 'vrack.dashboard',
           stateParams: ['vrackId'],
           app: [DEDICATED],
           namespace: [undefined, HPC_NAMESPACE],

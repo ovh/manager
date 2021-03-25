@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'app.managedBaremetal.dashboard.drpDatacenterSelection',
+    'app.managedBaremetal.details.dashboard.drpDatacenterSelection',
     {
       url: '/drpDatacenterSelection',
       views: {
@@ -9,6 +9,9 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       },
       layout: 'modal',
+      resolve: {
+        breadcrumb: () => null,
+      },
     },
   );
 };

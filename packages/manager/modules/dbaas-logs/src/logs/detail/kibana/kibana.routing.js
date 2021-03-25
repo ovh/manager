@@ -4,5 +4,9 @@ export default /* @ngInject */ ($stateProvider) => {
     views: {
       logsContent: 'dbaasLogsDetailKibana',
     },
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('dbaas_logs_kibana'),
+    },
   });
 };

@@ -1,5 +1,5 @@
-<div data-ng-controller="EmailsMigrateAccountCtrl as ctrl">
-    <oui-back-button data-on-click="ctrlEmailDomainEmail.displayEmailsList()"
+<div>
+    <oui-back-button data-on-click="ctrl.goToEmail()"
         ><span data-translate="email_tab_modal_migrate_title"></span>
     </oui-back-button>
 
@@ -201,21 +201,21 @@
                     ></span>
                     <a
                         class="oui-link"
-                        data-ui-sref="app.email-pro({productId: ctrl.migrate.destinationService.name, tab: 'ACCOUNT'})"
+                        data-ui-sref="email-pro.dashboard({productId: ctrl.migrate.destinationService.name, tab: 'ACCOUNT'})"
                         data-ng-switch-when="EMAIL PRO"
                         data-translate="email_tab_modal_migrate_order_new_emails_button"
                     >
                     </a>
                     <a
                         class="oui-link"
-                        data-ui-sref="app.microsoft.exchange.hosted({organization: ctrl.migrate.destinationService.name, productId: ctrl.migrate.destinationService.name, tab: 'ACCOUNT'})"
+                        data-ui-sref="exchange.dashboard({organization: ctrl.migrate.destinationService.name, productId: ctrl.migrate.destinationService.name, tab: 'ACCOUNT'})"
                         data-ng-switch-when="HOSTED EXCHANGE"
                         data-translate="email_tab_modal_migrate_order_new_emails_button"
                     >
                     </a>
                     <a
                         class="oui-link"
-                        data-ui-sref="app.microsoft.exchange.dedicated({organization: ctrl.migrate.destinationService.name, productId: ctrl.migrate.destinationService.name, tab: 'ACCOUNT'})"
+                        data-ui-sref="exchange.dashboard({organization: ctrl.migrate.destinationService.name, productId: ctrl.migrate.destinationService.name, tab: 'ACCOUNT'})"
                         data-ng-switch-when="PRIVATE EXCHANGE"
                         data-translate="email_tab_modal_migrate_order_new_emails_button"
                     >
@@ -234,7 +234,7 @@
             data-navigation="ctrl.isMigrationDataValid"
             data-submit-text="{{:: 'email_tab_modal_migrate_submit' | translate }}"
             data-cancel-text="{{:: 'wizard_cancel' | translate }}"
-            data-on-cancel="ctrlEmailDomainEmail.displayEmailsList()"
+            data-on-cancel="ctrl.goToEmail()"
         >
             <!-- Migration data invalid -->
             <oui-message

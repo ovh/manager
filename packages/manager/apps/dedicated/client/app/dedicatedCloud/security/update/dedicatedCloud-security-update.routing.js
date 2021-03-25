@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicatedClouds.security.update', {
+  $stateProvider.state('app.dedicatedCloud.details.security.update', {
     url: '/update',
     params: {
       policy: null,
@@ -12,6 +12,7 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     resolve: {
       policy: /* @ngInject */ ($transition$) => $transition$.params().policy,
+      breadcrumb: () => null,
     },
   });
 };

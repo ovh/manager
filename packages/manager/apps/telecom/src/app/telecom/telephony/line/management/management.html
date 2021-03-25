@@ -5,6 +5,18 @@
 
     <tuc-toast-message></tuc-toast-message>
 
+    <oui-message
+        type="error"
+        data-ng-if="LineManagementCtrl.displayAntihackAlert"
+    >
+        <p data-translate="telephony_line_antihack_title"></p>
+        <span data-translate="telephony_line_antihack_text"></span>
+        <a
+            data-ng-href="{{ :: LineManagementCtrl.filteringLink }}"
+            data-translate="telephony_line_antihack_link"
+        ></a>
+    </oui-message>
+
     <tuc-telecom-v4-links
         data-ng-if="!LineManagementCtrl.loading.init"
         data-telecom-v4-links="LineManagementCtrl.actions"

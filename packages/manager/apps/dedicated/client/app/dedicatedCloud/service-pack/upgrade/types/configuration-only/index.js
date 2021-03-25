@@ -8,7 +8,7 @@ const moduleName =
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'app.dedicatedClouds.servicePackUpgrade.configurationOnly.**',
+      'app.dedicatedCloud.details.servicePackUpgrade.configurationOnly.**',
       {
         url: '/configurationOnly',
         lazyLoad: ($transition$) => {

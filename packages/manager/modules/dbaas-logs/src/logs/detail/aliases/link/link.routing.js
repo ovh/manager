@@ -1,11 +1,15 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('dbaas-logs.detail.aliases.link', {
-    url: '/:aliasId/link',
+  $stateProvider.state('dbaas-logs.detail.aliases.home.alias.link', {
+    url: '/link',
     params: {
       defaultContent: null,
     },
     views: {
-      logsAliases: 'dbaasLogsDetailAliasesLink',
+      'logsAliases@dbaas-logs.detail.aliases': 'dbaasLogsDetailAliasesLink',
+    },
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('dbaas_logs_alias_link'),
     },
   });
 };

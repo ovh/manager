@@ -6,7 +6,7 @@ const moduleName = 'dedicatedCloudSecurityAccessLazyloading';
 
 angular.module(moduleName, ['oc.lazyLoad', 'ui.router']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.dedicatedClouds.security.access.**', {
+    $stateProvider.state('app.dedicatedCloud.details.security.access.**', {
       url: '/access',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');

@@ -4,13 +4,9 @@ import { STATUS } from '../../../enterprise-cloud-database.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('enterprise-cloud-database.service.details.overview', {
+    url: '/overview',
     cache: false,
     component: 'enterpriseCloudDatabaseServiceDetailsOverviewComponent',
-    translations: {
-      value: ['.'],
-      format: 'json',
-    },
-    url: '/overview',
     resolve: {
       /* @ngInject */
       endPoints: (clusterId, enterpriseCloudDatabaseService) =>
@@ -58,6 +54,7 @@ export default /* @ngInject */ ($stateProvider) => {
       /* @ngInject */
       offerDetails: (clusterDetails, capabilities) =>
         find(capabilities, { name: clusterDetails.offerName }),
+      breadcrumb: () => null,
     },
   });
 };

@@ -148,7 +148,7 @@ export default class LogsStreamsAlertsHomeCtrl {
    * @memberof LogsStreamsAlertsHomeCtrl
    */
   addAlert(type) {
-    this.$state.go('dbaas-logs.detail.streams.alerts.add', {
+    this.$state.go('dbaas-logs.detail.streams.stream.alerts.add', {
       serviceName: this.serviceName,
       streamId: this.streamId,
       type: this.LogsConstants.alertType[type],
@@ -162,7 +162,7 @@ export default class LogsStreamsAlertsHomeCtrl {
    * @memberof LogsStreamsAlertsHomeCtrl
    */
   editAlert(alert) {
-    this.$state.go('dbaas-logs.detail.streams.alerts.edit', {
+    this.$state.go('dbaas-logs.detail.streams.stream.alerts.alert.edit', {
       serviceName: this.serviceName,
       streamId: this.streamId,
       alertId: alert.alertId,

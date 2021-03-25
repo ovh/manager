@@ -134,5 +134,6 @@
   "telecom_pack_migration_pto_yes_not_known": "J'ai un boîtier mais je ne connais pas son numéro",
   "telecom_pack_migration_confirm_resume_contact_owner": "Kontakt-Informationen",
   "telecom_pack_migration_confirm_resume_contact_phone": "Telefonnummer, unter der Sie bei Bedarf kontaktiert werden können",
-  "telecom_pack_migration_confirm_resume_phone_form_error": "Die angegebene Nummer muss gültig sein."
+  "telecom_pack_migration_confirm_resume_phone_form_error": "Die angegebene Nummer muss gültig sein.",
+  "telecom_pack_migration_choose_offer_error": "Beim Abruf der Angebote ist ein Fehler aufgetreten: {{ error }}"
 }

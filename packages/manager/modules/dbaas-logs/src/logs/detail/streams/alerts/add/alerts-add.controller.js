@@ -74,7 +74,7 @@ export default class LogsStreamsAlertsAddCtrl {
     });
     return this.savingAlert
       .load()
-      .then(() => this.$state.go('dbaas-logs.detail.streams.alerts'));
+      .then(() => this.$state.go('dbaas-logs.detail.streams.stream.alerts'));
   }
 
   /**
@@ -84,7 +84,7 @@ export default class LogsStreamsAlertsAddCtrl {
    * @memberof LogsStreamsAlertsAddCtrl
    */
   cancel() {
-    this.$state.go('dbaas-logs.detail.streams.alerts');
+    this.$state.go('dbaas-logs.detail.streams.stream.alerts');
   }
 
   /**

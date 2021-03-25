@@ -19,5 +19,5 @@
   "pci_project_flavors_quota_info": "Limit Twojego projektu nie pozwala na dodanie tego typu maszyny w tym regionie. ",
   "pci_project_flavors_quota_manage": "Zarządzaj limitami",
   "pci_project_flavors_category_new": "Nowość",
-  "pci_project_flavors_category_definition_discovery": "Instancje ze współdzielonymi zasobami (Discovery) są odpowiednie do testowania i programowania. Wydajność może się nieznacznie zmieniać w czasie."
+  "pci_project_flavors_category_definition_discovery": "Instancje ze współdzielonymi zasobami (Discovery) świetnie sprawdzają się w przypadku testów, procedur i środowisk deweloperskich. Ich wydajność może się nieznacznie zmieniać w czasie."
 }

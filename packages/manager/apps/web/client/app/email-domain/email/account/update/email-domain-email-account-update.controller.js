@@ -10,15 +10,15 @@ angular.module('App').controller(
      * @param $translate
      * @param Alerter
      * @param WucEmails
-     * @param User
+     * @param WucUser
      */
-    constructor($scope, $stateParams, $translate, Alerter, WucEmails, User) {
+    constructor($scope, $stateParams, $translate, Alerter, WucEmails, WucUser) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
       this.$translate = $translate;
       this.Alerter = Alerter;
       this.WucEmails = WucEmails;
-      this.User = User;
+      this.WucUser = WucUser;
     }
 
     $onInit() {
@@ -37,14 +37,14 @@ angular.module('App').controller(
 
       this.$scope.updateAccount = () => this.updateAccount();
 
-      this.User.getUrlOf('exchangeOrder')
+      this.WucUser.getUrlOf('exchangeOrder')
         .then((exchangeOrder) => {
           this.exchangeOrderUrl = exchangeOrder;
         })
         .catch(() => {
           this.exchangeOrderUrl = null;
         });
-      this.User.getUrlOf('guides')
+      this.WucUser.getUrlOf('guides')
         .then((guides) => {
           this.guideMigrate = get(guides, 'emailsMigrateToExchange');
         })

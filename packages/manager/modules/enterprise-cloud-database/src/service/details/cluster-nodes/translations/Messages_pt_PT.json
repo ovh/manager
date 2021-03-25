@@ -8,5 +8,6 @@
   "enterprise_cloud_database_service_details_cluster_nodes_node_name": "Nome do nó",
   "enterprise_cloud_database_service_details_cluster_nodes_add_replica": "Adicionar uma réplica",
   "enterprise_cloud_database_service_details_cluster_nodes_delete_replica": "Eliminar uma réplica",
-  "enterprise_cloud_database_service_details_cluster_nodes_refresh": "Atualizar nós"
+  "enterprise_cloud_database_service_details_cluster_nodes_refresh": "Atualizar nós",
+  "enterprise_cloud_database_service_details_cluster_nodes": "Nós do cluster"
 }

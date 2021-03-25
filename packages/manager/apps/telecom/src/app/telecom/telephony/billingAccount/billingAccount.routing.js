@@ -96,6 +96,10 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('telecom.telephony.billingAccount.guides', {
           billingAccount: billingAccountId,
         }),
+      billingDepositLink: /* @ngInject */ ($state, billingAccountId) =>
+        $state.href('telecom.telephony.billingAccount.billing.deposit', {
+          billingAccount: billingAccountId,
+        }),
       breadcrumb: /* @ngInject */ (billingAccount) => billingAccount,
     },
     translations: { value: ['..', '.', './dashboard'], format: 'json' },

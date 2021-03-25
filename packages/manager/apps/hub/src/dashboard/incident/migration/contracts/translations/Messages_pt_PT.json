@@ -1,7 +1,7 @@
 {
-  "manager_hub_incident_migration_contract": "Contratos",
+  "manager_hub_incident_migration_contract": "Validação dos contratos",
   "manager_hub_incident_migration_contract_title": "Contrato",
   "manager_hub_incident_migration_contract_continue": "Continuar",
   "manager_hub_incident_migration_contract_cancel": "Cancelar",
-  "manager_hub_incident_migration_contract_error": "Ocorreu um erro."
+  "manager_hub_incident_migration_contract_error": "Ocorreu um erro aquando da criação da encomenda."
 }

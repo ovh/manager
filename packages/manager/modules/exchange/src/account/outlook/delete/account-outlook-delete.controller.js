@@ -2,7 +2,7 @@ export default class ExchangeAccountOutlookDelete {
   /* @ngInject */
   constructor(
     $scope,
-    Exchange,
+    wucExchange,
     exchangeAccountOutlook,
     messaging,
     navigation,
@@ -10,7 +10,7 @@ export default class ExchangeAccountOutlookDelete {
   ) {
     this.$scope = $scope;
 
-    this.Exchange = Exchange;
+    this.wucExchange = wucExchange;
     this.exchangeAccountOutlook = exchangeAccountOutlook;
     this.messaging = messaging;
     this.navigation = navigation;
@@ -18,7 +18,7 @@ export default class ExchangeAccountOutlookDelete {
   }
 
   $onInit() {
-    this.$routerParams = this.Exchange.getParams();
+    this.$routerParams = this.wucExchange.getParams();
     this.account = this.navigation.currentActionData;
 
     this.$scope.delete = () => this.delete();

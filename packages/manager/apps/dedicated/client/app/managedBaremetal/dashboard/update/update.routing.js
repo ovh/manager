@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.managedBaremetal.dashboard.update', {
+  $stateProvider.state('app.managedBaremetal.details.dashboard.update', {
     url: '/update',
     params: {
       targetVersion: null,
@@ -15,6 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
       targetVersion: /* @ngInject */ ($transition$) =>
         $transition$.params().targetVersion,
       goBack: /* @ngInject */ (goBackToDashboard) => goBackToDashboard,
+      breadcrumb: () => null,
     },
   });
 };

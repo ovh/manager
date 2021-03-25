@@ -22,6 +22,7 @@ angular
     'ui.router',
   ])
   .config(routing)
-  .component('dbaasLogsDetailStreamsAlertsAdd', component);
+  .component('dbaasLogsDetailStreamsAlertsAdd', component)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

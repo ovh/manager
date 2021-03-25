@@ -15,7 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: commonResolves,
   });
 
-  $stateProvider.state('app.domain.alldom.zone.activate', {
+  $stateProvider.state('app.alldom.domain.zone.activate', {
     url: '/activate',
     component: 'domainZoneActivate',
     resolve: commonResolves,

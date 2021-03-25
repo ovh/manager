@@ -17,5 +17,6 @@
   "telephony_line_answer_voicemail_password_bulk_all_success": "Le mot de passe a bien été appliqué aux services sélectionnés.",
   "telephony_line_answer_voicemail_password_bulk_some_success": "Le mot de passe a bien été appliqué à {{ count }} des services sélectionnés.",
   "telephony_line_answer_voicemail_password_bulk_error": "Le mot de passe n'a pas pu être appliqué au(x) service(s) suivant(s) :",
-  "telephony_line_answer_voicemail_password_bulk_on_error": "Oups ! Une erreur est survenue lors de l'application du mot de passe."
+  "telephony_line_answer_voicemail_password_bulk_on_error": "Oups ! Une erreur est survenue lors de l'application du mot de passe.",
+  "telephony_line_answer_voicemail_password_force": "Pytaj o hasło, kiedy sprawdzam moje wiadomości."
 }

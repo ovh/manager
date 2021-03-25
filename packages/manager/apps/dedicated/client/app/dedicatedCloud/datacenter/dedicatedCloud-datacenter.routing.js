@@ -1,10 +1,11 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicatedClouds.datacenter', {
-    url: '/datacenter/:datacenterId',
+  $stateProvider.state('app.dedicatedCloud.details.datacenter.details', {
+    url: '/:datacenterId',
     views: {
-      dedicatedCloudView: 'ovhManagerDedicatedCloudDatacenter',
+      'dedicatedCloudView@app.dedicatedCloud.details':
+        'ovhManagerDedicatedCloudDatacenter',
     },
-    redirectTo: 'app.dedicatedClouds.datacenter.dashboard',
+    redirectTo: 'app.dedicatedCloud.details.datacenter.details.dashboard',
     resolve: {
       datacenterId: /* @ngInject */ ($transition$) =>
         $transition$.params().datacenterId,
@@ -20,26 +21,32 @@ export default /* @ngInject */ ($stateProvider) => {
           },
         })),
       deleteDatacenter: /* @ngInject */ ($state) => () =>
-        $state.go('app.dedicatedClouds.datacenter.dashboard.delete'),
-      backupState: () => 'app.dedicatedClouds.datacenter.backup',
-      dashboardState: () => 'app.dedicatedClouds.datacenter.dashboard',
-      datastoresState: () => 'app.dedicatedClouds.datacenter.datastores',
-      drpState: () => 'app.dedicatedClouds.datacenter.drp',
-      hostsState: () => 'app.dedicatedClouds.datacenter.hosts',
+        $state.go(
+          'app.dedicatedCloud.details.datacenter.details.dashboard.delete',
+        ),
+      backupState: () => 'app.dedicatedCloud.details.datacenter.details.backup',
+      dashboardState: () =>
+        'app.dedicatedCloud.details.datacenter.details.dashboard',
+      datastoresState: () =>
+        'app.dedicatedCloud.details.datacenter.details.datastores',
+      drpState: () => 'app.dedicatedCloud.details.datacenter.details.drp',
+      hostsState: () => 'app.dedicatedCloud.details.datacenter.details.hosts',
       goToHosts: /* @ngInject */ ($state) => () =>
-        $state.go('app.dedicatedClouds.datacenter.hosts'),
+        $state.go('app.dedicatedCloud.details.datacenter.details.hosts'),
       goToDatastores: /* @ngInject */ ($state) => () =>
-        $state.go('app.dedicatedClouds.datacenter.datastores'),
+        $state.go('app.dedicatedCloud.details.datacenter.details.datastores'),
       goToBackup: /* @ngInject */ ($state) => () =>
-        $state.go('app.dedicatedClouds.datacenter.backup'),
+        $state.go('app.dedicatedCloud.details.datacenter.details.backup'),
       goToDrp: /* @ngInject */ ($state) => () =>
-        $state.go('app.dedicatedClouds.datacenter.drp'),
+        $state.go('app.dedicatedCloud.details.datacenter.details.drp'),
       goToDrpSummary: /* @ngInject */ ($state, currentDrp) => () =>
-        $state.go('app.dedicatedClouds.datacenter.drp.summary', {
+        $state.go('app.dedicatedCloud.details.datacenter.details.drp.summary', {
           drpInformations: currentDrp,
         }),
       goToDeleteDrp: /* @ngInject */ ($state) => () =>
-        $state.go('app.dedicatedClouds.datacenter.dashboard.deleteDrp'),
+        $state.go(
+          'app.dedicatedCloud.details.datacenter.details.dashboard.deleteDrp',
+        ),
       setMessage: /* @ngInject */ (Alerter) => (
         message = false,
         type = 'success',
@@ -51,6 +58,7 @@ export default /* @ngInject */ ($stateProvider) => {
           'dedicatedCloudDatacenterAlert',
         );
       },
+      breadcrumb: /* @ngInject */ (datacenterId) => datacenterId,
     },
   });
 };

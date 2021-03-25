@@ -9,6 +9,7 @@ import '@ovh-ux/ui-kit';
 
 import add from './add/add.module';
 import component from './alerts.component';
+import edit from './edit/edit.module';
 import home from './home/home.module';
 import routing from './alerts.routing';
 import service from './streams-alerts.service';
@@ -24,10 +25,12 @@ angular
     'pascalprecht.translate',
     'ui.router',
     add,
+    edit,
     home,
   ])
   .config(routing)
   .service('LogsStreamsAlertsService', service)
-  .component('dbaasLogsDetailStreamsAlerts', component);
+  .component('dbaasLogsDetailStreamsAlerts', component)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

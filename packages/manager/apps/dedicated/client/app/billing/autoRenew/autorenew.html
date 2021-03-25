@@ -21,267 +21,262 @@
 </oui-header>
 
 <div data-ui-view>
-    <div class="tab-content">
-        <div data-ovh-alert></div>
-        <oui-message
-            class="mb-4"
-            data-ng-if="$ctrl.BillingAutoRenew.isAutomaticRenewV2Available() && (
+    <div data-ovh-alert></div>
+    <oui-message
+        class="mb-4"
+        data-ng-if="$ctrl.BillingAutoRenew.isAutomaticRenewV2Available() && (
                 !$ctrl.defaultPaymentMean
                 || ($ctrl.defaultPaymentMean && !$ctrl.nicRenew.active))
                 && !$ctrl.currentUser.hasAutorenew2016()"
-            data-type="error"
-            data-dismissable
+        data-type="error"
+        data-dismissable
+    >
+        <p
+            data-ng-if="!$ctrl.defaultPaymentMean"
+            data-translate="billing_autorenew_service_renew_requires_mean_and_date"
+        ></p>
+        <p data-ng-if="$ctrl.defaultPaymentMean && !nicRenew.active">
+            <span
+                data-translate="billing_autorenew_service_activate_alert"
+            ></span>
+            <a
+                data-ng-href="{{:: $ctrl.activationLink }}"
+                class="oui-link"
+                data-translate="billing_autorenew_service_enable_autorenew"
+            >
+            </a>
+        </p>
+    </oui-message>
+
+    <div data-ng-if="$ctrl.nics.length > 1">
+        <label
+            for="nicBilling"
+            class="oui-label"
+            data-translate="billing_autorenew_service_autorenew_contact_filter"
+        ></label>
+        <oui-select
+            class="oui-select_l"
+            id="nicBilling"
+            data-name="nicBilling"
+            data-model="$ctrl.nicBillingFilter"
+            data-items="$ctrl.nics"
+            data-on-change="$ctrl.onNicBillingChange(modelValue)"
         >
-            <p
-                data-ng-if="!$ctrl.defaultPaymentMean"
-                data-translate="billing_autorenew_service_renew_requires_mean_and_date"
-            ></p>
-            <p data-ng-if="$ctrl.defaultPaymentMean && !nicRenew.active">
+        </oui-select>
+    </div>
+
+    <form novalidate>
+        <oui-field
+            data-ng-if="$ctrl.nicRenew.isMandatory && $ctrl.defaultPaymentMean"
+            data-label="{{::'autorenew_service_autorenew_day' | translate}}"
+            data-label-popover="{{::'autorenew_service_autorenew_day_tooltip' | translate}}"
+            data-size="l"
+        >
+            <label class="oui-select" data-ng-hide="$ctrl.nicRenewLoading">
+                <select
+                    name="renewDay"
+                    class="oui-select__input"
+                    data-ng-change="$ctrl.onAutoRenewChange($ctrl.nicRenew)"
+                    data-ng-disabled="!$ctrl.nicRenew.active"
+                    data-ng-model="$ctrl.nicRenew.renewDay"
+                    data-ng-model-options="{ debounce: 1000 }"
+                    data-ng-options="day for day in $ctrl.nicRenew.renewDays track by day"
+                >
+                    <option
+                        value
+                        data-translate="autorenew_service_autorenew_contact_filter_all"
+                    >
+                    </option>
+                </select>
                 <span
-                    data-translate="billing_autorenew_service_activate_alert"
+                    class="oui-icon oui-icon-chevron-down"
+                    aria-hidden="true"
                 ></span>
-                <a
-                    data-ng-href="{{:: $ctrl.activationLink }}"
-                    class="oui-link"
-                    data-translate="billing_autorenew_service_enable_autorenew"
-                >
-                </a>
-            </p>
-        </oui-message>
+            </label>
+            <oui-spinner size="s" data-ng-show="$ctrl.nicRenewLoading">
+            </oui-spinner>
+        </oui-field>
+    </form>
 
-        <div data-ng-if="$ctrl.nics.length > 1">
-            <label
-                for="nicBilling"
-                class="oui-label"
-                data-translate="billing_autorenew_service_autorenew_contact_filter"
-            ></label>
-            <oui-select
-                class="oui-select_l"
-                id="nicBilling"
-                data-name="nicBilling"
-                data-model="$ctrl.nicBillingFilter"
-                data-items="$ctrl.nics"
-                data-on-change="$ctrl.onNicBillingChange(modelValue)"
+    <oui-datagrid
+        id="services"
+        data-page-size="{{:: $ctrl.pageSize }}"
+        data-empty-placeholder="{{:: 'autorenew_empty' | translate }}"
+        data-rows-loader="$ctrl.loadServices($config)"
+        data-on-row-select="$ctrl.onRowSelection($rows)"
+        data-selectable-rows
+        data-criteria="$ctrl.criteria"
+        data-columns="$ctrl.columnsConfig"
+        data-on-criteria-change="$ctrl.onCriteriaChange($criteria)"
+        data-on-page-change="$ctrl.onPageChange($pagination)"
+        data-on-sort-change="$ctrl.onSortChange($sort)"
+    >
+        <oui-datagrid-topbar>
+            <oui-action-menu
+                data-text="{{:: 'autorenew_service_action_title' | translate }}"
             >
-            </oui-select>
-        </div>
-
-        <form novalidate>
-            <oui-field
-                data-ng-if="$ctrl.nicRenew.isMandatory && $ctrl.defaultPaymentMean"
-                data-label="{{::'autorenew_service_autorenew_day' | translate}}"
-                data-label-popover="{{::'autorenew_service_autorenew_day_tooltip' | translate}}"
-                data-size="l"
-            >
-                <label class="oui-select" data-ng-hide="$ctrl.nicRenewLoading">
-                    <select
-                        name="renewDay"
-                        class="oui-select__input"
-                        data-ng-change="$ctrl.onAutoRenewChange($ctrl.nicRenew)"
-                        data-ng-disabled="!$ctrl.nicRenew.active"
-                        data-ng-model="$ctrl.nicRenew.renewDay"
-                        data-ng-model-options="{ debounce: 1000 }"
-                        data-ng-options="day for day in $ctrl.nicRenew.renewDays track by day"
-                    >
-                        <option
-                            value
-                            data-translate="autorenew_service_autorenew_contact_filter_all"
-                        >
-                        </option>
-                    </select>
-                    <span
-                        class="oui-icon oui-icon-chevron-down"
-                        aria-hidden="true"
-                    ></span>
-                </label>
-                <oui-spinner size="s" data-ng-show="$ctrl.nicRenewLoading">
-                </oui-spinner>
-            </oui-field>
-        </form>
-
-        <oui-datagrid
-            id="services"
-            data-page-size="{{:: $ctrl.pageSize }}"
-            data-empty-placeholder="{{:: 'autorenew_empty' | translate }}"
-            data-rows-loader="$ctrl.loadServices($config)"
-            data-on-row-select="$ctrl.onRowSelection($rows)"
-            data-selectable-rows
-            data-criteria="$ctrl.criteria"
-            data-columns="$ctrl.columnsConfig"
-            data-on-criteria-change="$ctrl.onCriteriaChange($criteria)"
-            data-on-page-change="$ctrl.onPageChange($pagination)"
-            data-on-sort-change="$ctrl.onSortChange($sort)"
-        >
-            <oui-datagrid-topbar>
-                <oui-action-menu
-                    data-text="{{:: 'autorenew_service_action_title' | translate }}"
-                >
-                    <div data-ng-if="$ctrl.selectedServices.length > 0">
-                        <oui-action-menu-item
-                            data-href="{{ $ctrl.manualRenewUrl }}"
-                            data-external
-                        >
-                            <span
-                                data-translate="billing_autorenew_renew_action"
-                            ></span>
-                        </oui-action-menu-item>
-                        <oui-action-menu-item
-                            data-on-click="$ctrl.disableBulkAutorenew($ctrl.selectedServices)"
-                        >
-                            <span
-                                data-translate="billing_autorenew_service_disable_autorenew"
-                            ></span>
-                        </oui-action-menu-item>
-                        <oui-action-menu-item
-                            data-on-click="$ctrl.enableBulkAutorenew($ctrl.selectedServices)"
-                        >
-                            <span
-                                data-translate="billing_autorenew_service_enable_autorenew"
-                            ></span>
-                        </oui-action-menu-item>
-                        <oui-action-menu-divider></oui-action-menu-divider>
-                    </div>
-                    <button
-                        type="button"
-                        class="oui-dropdown-option"
-                        data-export-csv="$ctrl.getDatasToExport()"
-                        data-export-csv-separator=";"
-                        data-ng-click="$ctrl.trackCSVExport()"
-                    >
-                        <span data-translate="billing_export_csv"></span>
-                    </button>
-                    <oui-action-menu-divider
-                        data-ng-if="$ctrl.ALIGNMENT_URL || $ctrl.canDisableAllDomains"
-                    ></oui-action-menu-divider>
+                <div data-ng-if="$ctrl.selectedServices.length > 0">
                     <oui-action-menu-item
-                        data-ng-if="$ctrl.ALIGNMENT_URL"
-                        data-href="{{ $ctrl.ALIGNMENT_URL }}"
+                        data-href="{{ $ctrl.manualRenewUrl }}"
                         data-external
                     >
                         <span
-                            data-translate="billing_autorenew_service_align_renew"
+                            data-translate="billing_autorenew_renew_action"
                         ></span>
                     </oui-action-menu-item>
                     <oui-action-menu-item
-                        data-ng-if="$ctrl.canDisableAllDomains"
-                        data-on-click="$ctrl.disableAutorenewForDomains()"
+                        data-on-click="$ctrl.disableBulkAutorenew($ctrl.selectedServices)"
                     >
                         <span
-                            data-translate="billing_autorenew_service_disable_all_dom"
+                            data-translate="billing_autorenew_service_disable_autorenew"
                         ></span>
                     </oui-action-menu-item>
-                </oui-action-menu>
-            </oui-datagrid-topbar>
-
-            <!-- Columns -->
-            <oui-datagrid-column
-                data-property="serviceId"
-                data-title="::'billing_autorenew_service_name' | translate"
-                data-type="string"
-                data-searchable
-                data-sortable
-            >
-                <a
-                    class="oui-link"
-                    data-ng-if="$row.url"
-                    data-ng-href="{{:: $row.url }}"
-                    data-ng-bind=":: $row.alternativeId"
+                    <oui-action-menu-item
+                        data-on-click="$ctrl.enableBulkAutorenew($ctrl.selectedServices)"
+                    >
+                        <span
+                            data-translate="billing_autorenew_service_enable_autorenew"
+                        ></span>
+                    </oui-action-menu-item>
+                    <oui-action-menu-divider></oui-action-menu-divider>
+                </div>
+                <button
+                    type="button"
+                    class="oui-dropdown-option"
+                    data-export-csv="$ctrl.getDatasToExport()"
+                    data-export-csv-separator=";"
+                    data-ng-click="$ctrl.trackCSVExport()"
                 >
-                </a>
-                <span
-                    data-ng-if="!$row.url"
-                    data-ng-bind="::$row.alternativeId"
-                ></span>
-            </oui-datagrid-column>
-            <oui-datagrid-column
-                data-property="serviceType"
-                data-title="::'billing_autorenew_service' | translate"
-                data-type="options"
-                data-type-options="$ctrl.filtersOptions.serviceType"
-                data-filterable
-                data-sortable
+                    <span data-translate="billing_export_csv"></span>
+                </button>
+                <oui-action-menu-divider
+                    data-ng-if="$ctrl.ALIGNMENT_URL || $ctrl.canDisableAllDomains"
+                ></oui-action-menu-divider>
+                <oui-action-menu-item
+                    data-ng-if="$ctrl.ALIGNMENT_URL"
+                    data-href="{{ $ctrl.ALIGNMENT_URL }}"
+                    data-external
+                >
+                    <span
+                        data-translate="billing_autorenew_service_align_renew"
+                    ></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item
+                    data-ng-if="$ctrl.canDisableAllDomains"
+                    data-on-click="$ctrl.disableAutorenewForDomains()"
+                >
+                    <span
+                        data-translate="billing_autorenew_service_disable_all_dom"
+                    ></span>
+                </oui-action-menu-item>
+            </oui-action-menu>
+        </oui-datagrid-topbar>
+
+        <!-- Columns -->
+        <oui-datagrid-column
+            data-property="serviceId"
+            data-title="::'billing_autorenew_service_name' | translate"
+            data-type="string"
+            data-searchable
+            data-sortable
+        >
+            <a
+                class="oui-link"
+                data-ng-if="$row.url"
+                data-ng-href="{{:: $row.url }}"
+                data-ng-bind=":: $row.alternativeId"
             >
-                <span
-                    data-ng-bind-html="('billing_autorenew_service_type_' + $row.serviceType) | translate"
-                ></span>
-            </oui-datagrid-column>
-            <oui-datagrid-column
-                data-property="state"
-                data-title="::'billing_autorenew_criterion_state' | translate"
-                data-type="options"
-                data-type-options="$ctrl.filtersOptions.state"
-                data-filterable
-                data-sortable
-            >
-                <span
-                    class="oui-badge"
-                    data-ng-class="{
+            </a>
+            <span
+                data-ng-if="!$row.url"
+                data-ng-bind="::$row.alternativeId"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-property="serviceType"
+            data-title="::'billing_autorenew_service' | translate"
+            data-type="options"
+            data-type-options="$ctrl.filtersOptions.serviceType"
+            data-filterable
+            data-sortable
+        >
+            <span
+                data-ng-bind-html="('billing_autorenew_service_type_' + $row.serviceType) | translate"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-property="state"
+            data-title="::'billing_autorenew_criterion_state' | translate"
+            data-type="options"
+            data-type-options="$ctrl.filtersOptions.state"
+            data-filterable
+            data-sortable
+        >
+            <span
+                class="oui-badge"
+                data-ng-class="{
                         'oui-badge_success': !$row.isSuspended(),
                         'oui-badge_error': $row.isSuspended()
                     }"
-                    data-translate="{{ 'billing_autorenew_service_state_' + $row.state | translate }}"
-                >
-                </span>
-            </oui-datagrid-column>
-            <oui-datagrid-column
-                data-title="::'billing_autorenew_service_status' | translate"
-                data-property="status"
-                data-sortable
-                data-type="options"
-                data-type-options="$ctrl.filtersOptions.status"
-                data-filterable
+                data-translate="{{ 'billing_autorenew_service_state_' + $row.state | translate }}"
             >
-                <billing-status service="$row"> </billing-status>
-            </oui-datagrid-column>
-            <oui-datagrid-column
-                data-title="::'billing_autorenew_service_date' | translate"
-                data-property="expiration"
-                data-type="options"
-                data-type-options="$ctrl.filtersOptions.expiration"
-                data-filterable
-                data-sortable
+            </span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="::'billing_autorenew_service_status' | translate"
+            data-property="status"
+            data-sortable
+            data-type="options"
+            data-type-options="$ctrl.filtersOptions.status"
+            data-filterable
+        >
+            <billing-status service="$row"> </billing-status>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="::'billing_autorenew_service_date' | translate"
+            data-property="expiration"
+            data-type="options"
+            data-type-options="$ctrl.filtersOptions.expiration"
+            data-filterable
+            data-sortable
+        >
+            <span
+                data-ng-if="$row.hasDebt()"
+                data-translate="billing_autorenew_service_date_now"
+            ></span>
+            <span
+                data-ng-if="$row.isOneShot() && !$row.isResiliated() && !$row.hasPendingResiliation()"
+                >-</span
             >
-                <span
-                    data-ng-if="$row.hasDebt()"
-                    data-translate="billing_autorenew_service_date_now"
-                ></span>
-                <span
-                    data-ng-if="$row.isOneShot() && !$row.isResiliated() && !$row.hasPendingResiliation()"
-                    >-</span
-                >
-                <span
-                    data-ng-if="$row.hasManualRenew() && !$row.isResiliated() && !$row.hasDebt()"
-                    data-translate="billing_autorenew_service_date_before"
-                    data-translate-values="{
+            <span
+                data-ng-if="$row.hasManualRenew() && !$row.isResiliated() && !$row.hasDebt()"
+                data-translate="billing_autorenew_service_date_before"
+                data-translate-values="{
                         date: $row.formattedExpiration
                     }"
-                >
-                </span>
-                <span
-                    data-ng-if="$row.isResiliated() || $row.hasPendingResiliation()"
-                    data-translate="billing_autorenew_service_date_renew"
-                    data-translate-values="{
+            >
+            </span>
+            <span
+                data-ng-if="$row.isResiliated() || $row.hasPendingResiliation()"
+                data-translate="billing_autorenew_service_date_renew"
+                data-translate-values="{
                         date: $row.formattedExpiration
                     }"
-                >
-                </span>
-                <span
-                    data-ng-if="$row.hasAutomaticRenewal() && !$row.isOneShot() && !$row.hasDebt() && !$row.isResiliated() && !$row.hasPendingResiliation()"
-                    data-ng-bind="$ctrl.getAutomaticExpirationDate($row)"
-                >
-                </span>
-            </oui-datagrid-column>
-            <!-- /Columns -->
+            >
+            </span>
+            <span
+                data-ng-if="$row.hasAutomaticRenewal() && !$row.isOneShot() && !$row.hasDebt() && !$row.isResiliated() && !$row.hasPendingResiliation()"
+                data-ng-bind="$ctrl.getAutomaticExpirationDate($row)"
+            >
+            </span>
+        </oui-datagrid-column>
+        <!-- /Columns -->
 
-            <oui-datagrid-column
-                data-title="::'billing_autorenew_service_actions' | translate"
-            >
-                <billing-services-actions
-                    service="$row"
-                    user="$ctrl.currentUser"
-                >
-                </billing-services-actions>
-            </oui-datagrid-column>
-        </oui-datagrid>
-    </div>
+        <oui-datagrid-column
+            data-title="::'billing_autorenew_service_actions' | translate"
+        >
+            <billing-services-actions service="$row" user="$ctrl.currentUser">
+            </billing-services-actions>
+        </oui-datagrid-column>
+    </oui-datagrid>
 </div>

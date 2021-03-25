@@ -32,6 +32,7 @@ angular
   ])
   .config(routing)
   .service('LogsRolesService', service)
-  .component('dbaasLogsDetailRoles', component);
+  .component('dbaasLogsDetailRoles', component)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

@@ -8,8 +8,8 @@ import isFinite from 'lodash/isFinite';
 export default class ExchangeWizardHostedCreationEmailCreationAddController {
   /* @ngInject */
   constructor(
-    Exchange,
-    ExchangePassword,
+    wucExchange,
+    wucExchangePassword,
     messaging,
     navigation,
     $rootScope,
@@ -18,8 +18,8 @@ export default class ExchangeWizardHostedCreationEmailCreationAddController {
     $translate,
     wizardHostedCreationEmailCreation,
   ) {
-    this.Exchange = Exchange;
-    this.ExchangePassword = ExchangePassword;
+    this.wucExchange = wucExchange;
+    this.wucExchangePassword = wucExchangePassword;
     this.messaging = messaging;
     this.navigation = navigation;
     this.$rootScope = $rootScope;
@@ -30,7 +30,7 @@ export default class ExchangeWizardHostedCreationEmailCreationAddController {
   }
 
   $onInit() {
-    this.$routerParams = this.Exchange.getParams();
+    this.$routerParams = this.wucExchange.getParams();
     this.formerEmailAccount = this.navigation.currentActionData.formerEmailAddress;
     this.model = {
       domain: this.navigation.currentActionData.domainName,
@@ -104,7 +104,7 @@ export default class ExchangeWizardHostedCreationEmailCreationAddController {
     const passwordIsComplexEnough =
       isBoolean(this.serviceParameters.complexityEnabled) &&
       this.serviceParameters.complexityEnabled
-        ? this.ExchangePassword.passwordComplexityCheck(this.model.password)
+        ? this.wucExchangePassword.passwordComplexityCheck(this.model.password)
         : true;
     this.addForm.password.$setValidity(
       'passwordComplexity',

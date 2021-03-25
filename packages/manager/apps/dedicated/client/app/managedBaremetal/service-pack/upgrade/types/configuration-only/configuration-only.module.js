@@ -4,6 +4,9 @@ import { registerState } from './configuration-only.routing';
 
 const moduleName = 'managedBaremetalServicePackUpgradeConfigurationOnly';
 
-angular.module(moduleName, [configurationOnly]).config(registerState);
+angular
+  .module(moduleName, [configurationOnly])
+  .config(registerState)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

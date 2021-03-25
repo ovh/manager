@@ -18,11 +18,16 @@
             <oui-header-tabs-item state="app.networks.cdn.dedicated.manage.logs"
                 ><span data-translate="cdn_tab_logs"></span
             ></oui-header-tabs-item>
+            <oui-header-tabs-item
+                href="{{ $ctrl.domainsLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.domainsLink"
+                ><span data-translate="cdn_tab_domains"></span
+            ></oui-header-tabs-item>
         </oui-header-tabs>
     </oui-header>
 
     <!-- Tab Content -->
-    <div class="tab-content">
+    <div>
         <div
             class="alert"
             role="alert"

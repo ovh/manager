@@ -1,4 +1,5 @@
 {
+  "dedicated_server_interfaces": "Interfaces réseau",
   "dedicated_server_interfaces_title": "Réseau",
   "dedicated_server_interfaces_guides": "Guides",
   "dedicated_server_interfaces_guides_ola": "Comment configurer OLA ?",

@@ -1,6 +1,6 @@
-angular.module('App').config(($stateProvider) => {
+angular.module('App').config(($stateProvider, $urlRouterProvider) => {
   $stateProvider.state('app.domain.all', {
-    url: '/configuration/domains',
+    url: '/bulk',
     component: 'domains',
     resolve: {
       navigationInformations: [
@@ -15,7 +15,17 @@ angular.module('App').config(($stateProvider) => {
           });
         },
       ],
+      hideBreadcrumb: () => true,
     },
     translations: { value: ['../domain', '../domains'], format: 'json' },
   });
+
+  $urlRouterProvider.when(
+    /^\/configuration\/domains$/,
+    /* @ngInject */ ($location) => {
+      $location.url(
+        $location.url().replace('/configuration/domains', '/domain/bulk'),
+      );
+    },
+  );
 });

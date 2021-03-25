@@ -13,20 +13,24 @@ export default class EmailProMXPlanMailingListsModeratorsCtrl {
   /* @ngInject */
   constructor(
     $scope,
+    $stateParams,
     $filter,
     $translate,
     Alerter,
     EmailProMXPlanMailingLists,
+    goToMailingList,
   ) {
     this.$scope = $scope;
+    this.$stateParams = $stateParams;
     this.$filter = $filter;
     this.$translate = $translate;
     this.Alerter = Alerter;
     this.EmailProMXPlanMailingLists = EmailProMXPlanMailingLists;
+    this.goToMailingList = goToMailingList;
   }
 
   $onInit() {
-    this.mailingList = this.$scope.ctrlTabView.currentMailingList;
+    this.mailingList = this.$stateParams.mailingList;
     this.moderators = {
       selected: [],
       updating: false,

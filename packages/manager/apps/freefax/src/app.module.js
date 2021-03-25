@@ -12,6 +12,7 @@ import ovhManagerFreeFax from '@ovh-ux/manager-freefax';
 import managerNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 import managerAccountSidebar from '@ovh-ux/manager-account-sidebar';
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
+import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import { Environment } from '@ovh-ux/manager-config';
 
@@ -30,6 +31,7 @@ angular
     managerNotificationsSidebar,
     managerAccountSidebar,
     ngOvhFeatureFlipping,
+    ngOvhPaymentMethod,
     ...get(__NG_APP_INJECTIONS__, Environment.getRegion(), []),
   ])
   .controller('FreefaxAppController', controller)
@@ -46,6 +48,11 @@ angular
   .config(
     /* @ngInject */ ($urlRouterProvider) =>
       $urlRouterProvider.otherwise('/freefax'),
+  )
+  .config(
+    /* @ngInject */ (ovhPaymentMethodProvider) => {
+      ovhPaymentMethodProvider.setUserLocale(Environment.getUserLocale());
+    },
   )
   .run(
     /* @ngInject */ ($translate) => {

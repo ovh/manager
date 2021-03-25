@@ -7,17 +7,17 @@ export default class ExchangeOrderAccountCtrl {
   /* @ngInject */
   constructor(
     $scope,
-    Exchange,
+    wucExchange,
     $window,
     messaging,
     $translate,
     navigation,
     exchangeServiceInfrastructure,
-    User,
+    WucUser,
   ) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       $window,
       messaging,
       $translate,
@@ -25,7 +25,7 @@ export default class ExchangeOrderAccountCtrl {
       exchangeServiceInfrastructure,
     };
 
-    User.getUser()
+    WucUser.getUser()
       .then(({ ovhSubsidiary }) => {
         this.ovhSubsidiary = ovhSubsidiary;
       })
@@ -42,7 +42,7 @@ export default class ExchangeOrderAccountCtrl {
         this.showPriceWithTaxOnly = includes(['DE'], this.ovhSubsidiary);
       });
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
     this.numConfigureMeAccount =
       navigation.currentActionData.numConfigureMeAccount;
 
@@ -86,7 +86,7 @@ export default class ExchangeOrderAccountCtrl {
     this.ordersList = [];
     this.url = null;
     this.previewOrder = null;
-    this.exchange = Exchange.value;
+    this.exchange = wucExchange.value;
 
     this.loadOrderList();
 
@@ -107,11 +107,12 @@ export default class ExchangeOrderAccountCtrl {
 
     this.accountsToAdd.storageQuota = this.selectedAccountType.value.storageQuota;
 
-    this.services.Exchange.orderAccounts(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-      this.accountsToAdd,
-    )
+    this.services.wucExchange
+      .orderAccounts(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        this.accountsToAdd,
+      )
       .then((data) => {
         this.previewOrder = data;
         this.url = data.url;
@@ -134,18 +135,19 @@ export default class ExchangeOrderAccountCtrl {
       ? accountType.storageQuota
       : '50';
     this.accountsToAdd.duration = '01';
-    this.services.Exchange.getAccountsOptions(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-      this.accountsToAdd,
-    )
+    this.services.wucExchange
+      .getAccountsOptions(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        this.accountsToAdd,
+      )
       .then((data) => {
         set(data, 'duration', '01');
         forEach(data.prices, (price) => {
           set(
             price,
             'localizedText',
-            this.services.Exchange.constructor.getLocalizedPrice(
+            this.services.wucExchange.constructor.getLocalizedPrice(
               this.ovhSubsidiary,
               price.value,
               price.currencyCode,
@@ -165,18 +167,19 @@ export default class ExchangeOrderAccountCtrl {
       });
 
     this.accountsToAdd.duration = '12';
-    this.services.Exchange.getAccountsOptions(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-      this.accountsToAdd,
-    )
+    this.services.wucExchange
+      .getAccountsOptions(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        this.accountsToAdd,
+      )
       .then((data) => {
         set(data, 'duration', '12');
         forEach(data.prices, (price) => {
           set(
             price,
             'localizedText',
-            this.services.Exchange.constructor.getLocalizedPrice(
+            this.services.wucExchange.constructor.getLocalizedPrice(
               this.ovhSubsidiary,
               price.value,
               price.currencyCode,

@@ -1,13 +1,11 @@
 <div data-ovh-alert="monitoringAlert"></div>
 
-<a
-    class="d-inline-block mb-5"
-    title="{{ 'server_tab_MONITORING_back' | translate }}"
-    data-ng-click="$ctrl.goBack()"
+<oui-back-button
+    aria-label="{{ 'server_tab_MONITORING_back' | translate }}"
+    on-click="$ctrl.goBack()"
 >
-    <span class="fa fa-chevron-left mr-2" aria-hidden="true"></span>
     <span data-translate="server_tab_MONITORING_back"></span>
-</a>
+</oui-back-button>
 
 <h2 data-translate="server_tab_MONITORING_services"></h2>
 

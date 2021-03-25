@@ -7,7 +7,7 @@ export default /* @ngInject */ (
   $stateParams,
   $translate,
   EmailPro,
-  User,
+  WucUser,
 ) => {
   // default values
   $scope.accountsToAdd = {
@@ -15,7 +15,7 @@ export default /* @ngInject */ (
     accountsNumber: 1,
   };
 
-  User.getUser()
+  WucUser.getUser()
     .then(({ ovhSubsidiary }) => {
       $scope.ovhSubsidiary = ovhSubsidiary;
     })

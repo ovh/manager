@@ -15,8 +15,14 @@ import { Environment } from '@ovh-ux/manager-config';
 import angular from 'angular';
 
 import ovhManagerNasha from '@ovh-ux/manager-nasha';
+import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
+
 import './index.scss';
 
 Environment.setRegion(__WEBPACK_REGION__);
 
-angular.module('nashaApp', [ovhManagerNasha]);
+angular.module('nashaApp', [ovhManagerNasha, ngUiRouterBreadcrumb]).config(
+  /* @ngInject */ ($urlRouterProvider) => {
+    $urlRouterProvider.otherwise('/nasha');
+  },
+);

@@ -1,4 +1,4 @@
-<div class="cui-page__content inputs-logs-add">
+<div class="inputs-logs-add">
     <oui-back-button data-on-click="ctrl.gotoInputsHome()"
         ><span
             data-ng-bind="::(ctrl.editMode ? 'inputs_logs_title_edit' : 'inputs_logs_title_add') | translate"
@@ -16,11 +16,11 @@
         <ol class="oui-progress-tracker__steps">
             <li
                 class="oui-progress-tracker__step"
-                data-ng-class="{ 'oui-progress-tracker__step_active': ctrl.$state.is('dbaas-logs.detail.inputs.editwizard.edit') || ctrl.$state.is('dbaas-logs.detail.inputs.addwizard.add') }"
+                data-ng-class="{ 'oui-progress-tracker__step_active': ctrl.$state.is('dbaas-logs.detail.inputs.input.editwizard.edit') || ctrl.$state.is('dbaas-logs.detail.inputs.addwizard.add') }"
             >
                 <a
                     class="oui-progress-tracker__status"
-                    data-ui-sref="dbaas-logs.detail.inputs.editwizard.edit(ctrl.inputId)"
+                    data-ui-sref="dbaas-logs.detail.inputs.input.editwizard.edit(ctrl.inputId)"
                 >
                     <span
                         class="oui-progress-tracker__label"
@@ -30,11 +30,11 @@
             </li>
             <li
                 class="oui-progress-tracker__step"
-                data-ng-class="{ 'oui-progress-tracker__step_active': ctrl.$state.is('dbaas-logs.detail.inputs.editwizard.configure')}"
+                data-ng-class="{ 'oui-progress-tracker__step_active': ctrl.$state.is('dbaas-logs.detail.inputs.input.editwizard.configure')}"
             >
                 <a
                     class="oui-progress-tracker__status"
-                    data-ui-sref="dbaas-logs.detail.inputs.editwizard.configure(ctrl.inputId)"
+                    data-ui-sref="dbaas-logs.detail.inputs.input.editwizard.configure(ctrl.inputId)"
                 >
                     <span
                         class="oui-progress-tracker__label"

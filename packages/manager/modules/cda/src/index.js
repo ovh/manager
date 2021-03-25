@@ -1,62 +1,66 @@
 import angular from 'angular';
-import '@uirouter/angularjs';
 import 'angular-translate';
-import 'ovh-api-services';
-import 'angular-ui-bootstrap';
-import '@ovh-ux/ng-ovh-sidebar-menu';
-
-import ovhManagerCore from '@ovh-ux/manager-core';
-import ngAtInternet from '@ovh-ux/ng-at-internet';
-import ngOvhCloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-components';
-import ngOvhDocUrl from '@ovh-ux/ng-ovh-doc-url';
-
-import { Environment } from '@ovh-ux/manager-config';
-
-import cdaDetails from './details';
-import cdaDetailsHome from './details/home';
-import cdaIp from './ip';
-import cdaPool from './pool';
-import cdaUser from './user';
-import routing from './routing';
-import service from './cda.service';
+import '@uirouter/angularjs';
+import 'oclazyload';
+import '@ovh-ux/ng-ui-router-breadcrumb';
 
 import '@ovh-ux/ui-kit/dist/css/oui.css';
-import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
-import './cda.less';
 
-const moduleName = 'ovhManagerCda';
+const moduleName = 'ovhManagerCdaLazyLoading';
 
 angular
   .module(moduleName, [
     'pascalprecht.translate',
+    'ngUiRouterBreadcrumb',
     'ui.router',
-    'ovh-api-services',
-    'oui',
-    'ui.bootstrap',
-    'ngOvhSidebarMenu',
-    ovhManagerCore,
-    ngAtInternet,
-    ngOvhDocUrl,
-    ngOvhCloudUniverseComponents,
-    cdaDetails,
-    cdaDetailsHome,
-    cdaIp,
-    cdaUser,
-    cdaPool,
+    'oc.lazyLoad',
   ])
-  .config(routing)
   .config(
-    /* @ngInject */ ($qProvider, ovhDocUrlProvider) => {
-      ovhDocUrlProvider.setUserLocale(Environment.getUserLocale());
-      $qProvider.errorOnUnhandledRejections(false);
+    /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
+      $stateProvider
+        .state('cda', {
+          url: '/cda',
+          template: '<div data-ui-view="cdaDetails"></div>',
+          redirectTo: 'cda.index',
+          resolve: {
+            breadcrumb: /* @ngInject */ ($translate) =>
+              $translate.instant('cda_title'),
+          },
+        })
+        .state('cda.index.**', {
+          url: '',
+          lazyLoad: ($transition$) => {
+            const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+            return import('./cda.module').then((mod) =>
+              $ocLazyLoad.inject(mod.default || mod),
+            );
+          },
+        })
+        .state('cda.dashboard.**', {
+          url: '/:serviceName',
+          lazyLoad: ($transition$) => {
+            const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+            return import('./details/index').then((mod) =>
+              $ocLazyLoad.inject(mod.default || mod),
+            );
+          },
+        });
+
+      $urlRouterProvider.when('/paas/cda', () => {
+        window.location.href = window.location.href.replace(
+          '/paas/cda',
+          '/cda',
+        );
+      });
     },
   )
-  .service('CdaService', service)
-  .run(($transitions, CdaService) => {
-    $transitions.onSuccess({ to: 'cda.**' }, (transition) => {
-      CdaService.initDetails(transition.params().serviceName);
-    });
-  })
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */)
+  .run(
+    /* @ngInject */ ($translate, $transitions) => {
+      $transitions.onBefore({ to: 'cda.**' }, () => $translate.refresh());
+    },
+  );
 
 export default moduleName;

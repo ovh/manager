@@ -149,5 +149,6 @@
   "telecom_pack_migration_buildings_select_building": "Wybierz",
   "telecom_pack_migration_confirm_resume_contact_owner": "Dane kontaktu",
   "telecom_pack_migration_confirm_resume_contact_phone": "Numer telefonu, pod którym w razie potrzeby można się z Tobą w skontaktować.",
-  "telecom_pack_migration_confirm_resume_phone_form_error": "Wprowadź poprawny numer telefonu."
+  "telecom_pack_migration_confirm_resume_phone_form_error": "Wprowadź poprawny numer telefonu.",
+  "telecom_pack_migration_choose_offer_error": "Wystąpił błąd podczas pobierania ofert: {{error}}"
 }

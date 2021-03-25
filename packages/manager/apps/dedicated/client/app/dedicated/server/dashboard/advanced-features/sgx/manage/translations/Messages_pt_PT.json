@@ -15,5 +15,6 @@
   "dedicated_server_dashboard_advanced_features_sgx_manage_confirm": "Confirmar",
   "dedicated_server_dashboard_advanced_features_sgx_manage_activation_success": "O reboot do seu servidor está em curso, a funcionalidade SGX ficará ativa dentro de alguns minutos.",
   "dedicated_server_dashboard_advanced_features_sgx_manage_deactivation_success": "O reboot do seu servidor está em curso, a funcionalidade SGX será desativada dentro de alguns minutos.",
-  "dedicated_server_dashboard_advanced_features_sgx_manage_error": "Ocorreu um erro ao alterar a funcionalidade SGX."
+  "dedicated_server_dashboard_advanced_features_sgx_manage_error": "Ocorreu um erro ao alterar a funcionalidade SGX.",
+  "dedicated_server_dashboard_advanced_features_sgx_manage": "Gerir SGX"
 }

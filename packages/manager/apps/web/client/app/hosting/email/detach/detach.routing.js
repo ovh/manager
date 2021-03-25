@@ -8,7 +8,7 @@ import {
 import component from './detach.component';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.hosting.detachEmail', {
+  $stateProvider.state('app.hosting.dashboard.detachEmail', {
     url: '/detachEmail',
     component: component.name,
     resolve: {
@@ -62,7 +62,8 @@ export default /* @ngInject */ ($stateProvider) => {
           Alerter.success(successMessage, 'app.alerts.tabs');
         });
       },
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('hosting_email_detach_option_title'),
     },
-    translations: { value: ['./'], format: 'json' },
   });
 };

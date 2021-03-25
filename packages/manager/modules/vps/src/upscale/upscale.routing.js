@@ -55,6 +55,8 @@ export default /* @ngInject */ function($stateProvider) {
             },
           ]);
       },
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('vps_upscale_title'),
     },
     views: {
       'vpsHeader@vps': {

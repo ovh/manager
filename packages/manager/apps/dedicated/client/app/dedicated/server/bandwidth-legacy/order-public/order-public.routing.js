@@ -4,8 +4,8 @@ angular.module('App').config(
   /* @ngInject */
   ($stateProvider) => {
     const parentStates = [
-      'app.dedicated.server.dashboard',
-      'app.dedicated.server.interfaces',
+      'app.dedicated-server.server.dashboard',
+      'app.dedicated-server.server.interfaces',
     ];
 
     parentStates.forEach((parent) => {

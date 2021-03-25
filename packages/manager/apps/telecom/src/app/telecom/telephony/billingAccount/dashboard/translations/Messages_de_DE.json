@@ -36,5 +36,7 @@
   "telephony_group_billing_dashboard_RMA_status_received": "Réception du colis",
   "telephony_group_billing_dashboard_no_phone": "Ligne nue",
   "telephony_group_billing_dashboard_RMA_title": "RMA",
-  "telephony_group_billing_dashboard_calls": "Anrufe"
+  "telephony_group_billing_dashboard_calls": "Anrufe",
+  "telephony_group_billing_dashboard_suspended_info": "Diese Gruppe ist derzeit ausgesetzt.",
+  "telephony_group_billing_dashboard_suspended_info_link": "Klicken Sie hier, um Ihr Garantiedepot zu erhöhen."
 }

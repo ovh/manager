@@ -5,7 +5,7 @@ export default class SummaryController {
   /* @ngInject */
   constructor(
     constants,
-    Exchange,
+    wucExchange,
     ExchangeDomains,
     EXCHANGE_MX_CONFIG,
     messaging,
@@ -15,7 +15,7 @@ export default class SummaryController {
     wizardHostedCreationEmailCreation,
   ) {
     this.constants = constants;
-    this.Exchange = Exchange;
+    this.wucExchange = wucExchange;
     this.ExchangeDomains = ExchangeDomains;
     this.EXCHANGE_MX_CONFIG = EXCHANGE_MX_CONFIG;
     this.messaging = messaging;
@@ -26,8 +26,8 @@ export default class SummaryController {
   }
 
   $onInit() {
-    this.$routerParams = this.Exchange.getParams();
-    this.exchange = this.Exchange.value;
+    this.$routerParams = this.wucExchange.getParams();
+    this.exchange = this.wucExchange.value;
     this.$rootScope.$on('exchange.wizard.request.done', () => {
       this.retrievingEmailAccounts();
     });

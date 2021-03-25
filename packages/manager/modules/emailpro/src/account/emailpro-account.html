@@ -1,5 +1,5 @@
-<div class="container-fluid px-0" data-ng-controller="EmailProTabAccountsCtrl">
-    <div class="row" data-ng-if="!showAlias">
+<div ui-view>
+    <div class="row">
         <div class="col-md-9">
             <div
                 class="alert alert-warning mt-3"
@@ -391,8 +391,4 @@
             </button>
         </div>
     </div>
-    <div
-        data-ng-if="showAlias"
-        data-ng-include="'emailpro/account/alias/emailpro-account-alias.html'"
-    ></div>
 </div>

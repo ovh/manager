@@ -59,7 +59,6 @@ angular.module('Module.ip.controllers').controller(
       this.$scope.orderFormValid = () => this.orderFormValid();
       this.$scope.checkDedicatedBlockSize = () =>
         this.checkDedicatedBlockSize();
-      this.$scope.orderOrganisation = () => this.orderOrganisation();
       this.$scope.loadPrices = (durations) => this.loadPrices(durations);
       this.$scope.getDurations = () => this.getDurations();
       this.$scope.loadContracts = () => this.loadContracts();
@@ -78,11 +77,11 @@ angular.module('Module.ip.controllers').controller(
       return (
         startsWith(
           this.$state.current.name,
-          'app.dedicatedClouds.datacenter.drp',
+          'app.dedicatedCloud.details.datacenter.drp',
         ) ||
         startsWith(
           this.$state.current.name,
-          'app.managedBaremetal.datacenter.drp',
+          'app.managedBaremetal.details.datacenters.datacenter.drp',
         )
       );
     }
@@ -138,7 +137,7 @@ angular.module('Module.ip.controllers').controller(
           }
 
           if (get(infos, 'vpsInfos.model.version') === '2019v1') {
-            return this.$state.go('app.ip.agora-order', {
+            return this.$state.go('app.ip.dashboard.agora-order', {
               service: this.$scope.model.service,
               user: this.$scope.currentUser,
             });
@@ -342,11 +341,6 @@ angular.module('Module.ip.controllers').controller(
       }
     }
 
-    orderOrganisation() {
-      this.$rootScope.$broadcast('ips.display', 'organisation');
-      this.$scope.resetAction();
-    }
-
     /*= =============================
     =            STEP 3            =
     ============================== */
@@ -483,8 +477,8 @@ angular.module('Module.ip.controllers').controller(
 
     getDrpState() {
       return this.$scope.model.service.productReference === 'MBM'
-        ? 'app.managedBaremetal.datacenter.drp'
-        : 'app.dedicatedClouds.datacenter.drp';
+        ? 'app.managedBaremetal.details.datacenters.datacenter.drp'
+        : 'app.dedicatedCloud.details.datacenter.drp';
     }
 
     loadContracts() {

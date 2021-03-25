@@ -1,4 +1,4 @@
-import { EMAILPRO_MX_CONFIG } from '../../emailpro.constants';
+import { EMAILPRO_MX_CONFIG } from '../../dashboard/emailpro.constants';
 
 export default /* @ngInject */ (
   $scope,

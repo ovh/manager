@@ -6,6 +6,7 @@ import punycode from 'punycode';
 export default /* @ngInject */ (
   $rootScope,
   $scope,
+  $state,
   $timeout,
   $stateParams,
   $translate,
@@ -173,4 +174,6 @@ export default /* @ngInject */ (
       WucValidator.isValidDomain($scope.model.displayName)
     );
   };
+
+  $scope.resetAction = () => $state.go('^');
 };

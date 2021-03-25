@@ -10,7 +10,7 @@ export default class ExchangeTabDomainsCtrl {
     $http,
     $scope,
     $translate,
-    Exchange,
+    wucExchange,
     ExchangeDomains,
     exchangeServiceInfrastructure,
     exchangeStates,
@@ -22,7 +22,7 @@ export default class ExchangeTabDomainsCtrl {
       $http,
       $scope,
       $translate,
-      Exchange,
+      wucExchange,
       ExchangeDomains,
       exchangeServiceInfrastructure,
       exchangeStates,
@@ -31,7 +31,7 @@ export default class ExchangeTabDomainsCtrl {
       navigation,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
 
     this.domainTypeAuthoritative = 'AUTHORITATIVE';
     this.domainTypeNonAuthoritative = 'NON_AUTHORITATIVE';
@@ -42,7 +42,7 @@ export default class ExchangeTabDomainsCtrl {
       value: null,
     };
 
-    this.exchange = Exchange.value;
+    this.exchange = wucExchange.value;
 
     if (exchangeServiceInfrastructure.isProvider()) {
       this.cnameRedirection = 'ex-mail.biz';
@@ -50,7 +50,7 @@ export default class ExchangeTabDomainsCtrl {
       this.cnameRedirection = 'ovh.com';
     }
 
-    $scope.$on(Exchange.events.domainsChanged, () =>
+    $scope.$on(wucExchange.events.domainsChanged, () =>
       $scope.$broadcast('paginationServerSide.reload', 'domainsTable'),
     );
 

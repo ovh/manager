@@ -30,6 +30,7 @@ export default {
   resolve: {
     hasDefaultMeansOfPayment: resolveHasDefaultMeansOfPayment,
     usersWhoCanReceiveSMS: resolveUsersWhoCanReceiveSMS,
+    breadcrumb: () => null,
   },
   translations: {
     format: 'json',

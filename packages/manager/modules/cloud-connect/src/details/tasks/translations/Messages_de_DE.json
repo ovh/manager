@@ -14,5 +14,6 @@
   "cloud_connect_tasks_status_doing": "Wird bearbeitet",
   "cloud_connect_tasks_status_done": "Beendet",
   "cloud_connect_tasks_status_error": "Fehler",
-  "cloud_connect_tasks_status": "Status"
+  "cloud_connect_tasks_status": "Status",
+  "cloud_connect_tasks": "Tasks"
 }

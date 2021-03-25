@@ -7,7 +7,7 @@ export default class ExchangeLicenseHistoryCtrl {
   constructor(
     $scope,
     WucChartjsFactory,
-    Exchange,
+    wucExchange,
     exchangeAccountTypes,
     exchangeHeaderLicence,
     messaging,
@@ -17,7 +17,7 @@ export default class ExchangeLicenseHistoryCtrl {
     this.$scope = $scope;
 
     this.WucChartjsFactory = WucChartjsFactory;
-    this.Exchange = Exchange;
+    this.wucExchange = wucExchange;
     this.exchangeAccountTypes = exchangeAccountTypes;
     this.exchangeHeaderLicence = exchangeHeaderLicence;
     this.messaging = messaging;
@@ -26,7 +26,7 @@ export default class ExchangeLicenseHistoryCtrl {
   }
 
   $onInit() {
-    this.$routerParams = this.Exchange.getParams();
+    this.$routerParams = this.wucExchange.getParams();
     this.selectedPeriod = this.exchangeHeaderLicence.PERIODS.LAST_MONTH;
 
     this.$scope.loadMonitoring = () => this.loadMonitoring();

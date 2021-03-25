@@ -1,7 +1,4 @@
-<div
-    class="container-fluid px-0"
-    data-ng-controller="HostingCronsCtrl as $ctrl"
->
+<div data-ng-controller="HostingCronsCtrl as $ctrl">
     <div class="row">
         <div class="col-md-9">
             <div data-ovh-alert="{{alerts.main}}"></div>
@@ -20,7 +17,7 @@
                         class="btn btn-info"
                         type="button"
                         data-translate="hosting_dashboard_service_change_offer"
-                        data-ui-sref="app.hosting.upgrade({ productId: hosting.serviceName })"
+                        data-ui-sref="app.hosting.dashboard.upgrade({ productId: hosting.serviceName })"
                     ></button>
                 </div>
             </div>
@@ -39,7 +36,7 @@
                         class="btn btn-info"
                         type="button"
                         data-translate="hosting_dashboard_service_change_offer"
-                        data-ui-sref="app.hosting.upgrade({ productId: hosting.serviceName })"
+                        data-ui-sref="app.hosting.dashboard.upgrade({ productId: hosting.serviceName })"
                     ></button>
                 </div>
             </div>

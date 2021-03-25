@@ -24,6 +24,7 @@ angular
     'ngTailLogs',
   ])
   .config(routing)
-  .component('dbaasLogsDetailInputsConsole', component);
+  .component('dbaasLogsDetailInputsConsole', component)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

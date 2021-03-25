@@ -7,6 +7,8 @@ import map from 'lodash/map';
 import remove from 'lodash/remove';
 import sortBy from 'lodash/sortBy';
 
+import punycode from 'punycode';
+
 export default class SharepointAddDomainController {
   /* @ngInject */
   constructor(
@@ -28,7 +30,7 @@ export default class SharepointAddDomainController {
   }
 
   $onInit() {
-    this.punycode = window.punycode;
+    this.punycode = punycode;
 
     this.loading = true;
     this.domainType = 'ovhDomain';

@@ -722,5 +722,6 @@
   "logs_home_service_type_standard": "Standard",
   "logs_home_service_type_enterprise": "Enterprise",
   "logs_order_selection_details_standard_description_7": "14-day/1-month/3-month/1-year retention options",
-  "logs_order_selection_details_enterprise_description_4": "customisable retention, on request"
+  "logs_order_selection_details_enterprise_description_4": "customisable retention, on request",
+  "dbaas_logs": "Logs Data Platform"
 }

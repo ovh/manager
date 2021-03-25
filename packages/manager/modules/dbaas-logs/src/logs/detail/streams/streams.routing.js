@@ -5,5 +5,24 @@ export default /* @ngInject */ ($stateProvider) => {
     views: {
       logsContent: 'dbaasLogsDetailStreams',
     },
+    resolve: {
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('dbaas_logs_streams'),
+    },
+  });
+
+  $stateProvider.state('dbaas-logs.detail.streams.stream', {
+    url: '/:streamId',
+    redirectTo: 'dbaas-logs.detail.streams',
+    views: {
+      logsStreams: {
+        template: '<div ui-view></div>',
+      },
+    },
+    resolve: {
+      streamId: /* @ngInject */ ($transition$) =>
+        $transition$.params().streamId,
+      breadcrumb: /* @ngInject */ (streamId) => streamId,
+    },
   });
 };

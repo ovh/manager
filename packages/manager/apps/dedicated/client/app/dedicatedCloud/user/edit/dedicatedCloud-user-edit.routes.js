@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicatedClouds.users.edit', {
+  $stateProvider.state('app.dedicatedCloud.details.users.edit', {
     url: '/edit',
     params: {
       user: null,
@@ -12,6 +12,7 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     resolve: {
       user: /* @ngInject */ ($transition$) => $transition$.params().user,
+      breadcrumb: () => null,
     },
   });
 };

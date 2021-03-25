@@ -12,7 +12,7 @@ angular
   .module(moduleName, ['ui.router'])
   .config(
     /* @ngInject */ ($stateProvider) => {
-      $stateProvider.state('network.iplb.detail.task', {
+      $stateProvider.state('iplb.detail.task', {
         url: '/task',
         views: {
           iplbHeader: {
@@ -29,6 +29,10 @@ angular
         translations: {
           value: ['../task'],
           format: 'json',
+        },
+        resolve: {
+          breadcrumb: /* @ngInject */ ($translate) =>
+            $translate.instant('iplb_task_title'),
         },
       });
     },

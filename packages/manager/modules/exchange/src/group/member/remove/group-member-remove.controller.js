@@ -1,15 +1,15 @@
 export default class ExchangeRemoveMemberCtrl {
   /* @ngInject */
-  constructor($scope, Exchange, navigation, messaging, $translate) {
+  constructor($scope, wucExchange, navigation, messaging, $translate) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       navigation,
       messaging,
       $translate,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
 
     this.group = navigation.currentActionData.group;
     this.member = navigation.currentActionData.member;
@@ -22,13 +22,14 @@ export default class ExchangeRemoveMemberCtrl {
       this.services.$translate.instant('exchange_dashboard_action_doing'),
     );
 
-    this.services.Exchange.removeMember(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-      this.group.mailingListName,
-      this.member.id,
-      this.member.type,
-    )
+    this.services.wucExchange
+      .removeMember(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        this.group.mailingListName,
+        this.member.id,
+        this.member.type,
+      )
       .then((success) => {
         this.services.messaging.writeSuccess(
           this.services.$translate.instant(

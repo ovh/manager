@@ -36,5 +36,7 @@
   "telephony_group_billing_dashboard_RMA_status_received": "Réception du colis",
   "telephony_group_billing_dashboard_no_phone": "Ligne nue",
   "telephony_group_billing_dashboard_RMA_title": "RMA",
-  "telephony_group_billing_dashboard_calls": "Połączenia"
+  "telephony_group_billing_dashboard_calls": "Połączenia",
+  "telephony_group_billing_dashboard_suspended_info": "Grupa ta jest obecnie zawieszona.",
+  "telephony_group_billing_dashboard_suspended_info_link": "Kliknij tutaj, aby zwiększyć wysokość kaucji."
 }

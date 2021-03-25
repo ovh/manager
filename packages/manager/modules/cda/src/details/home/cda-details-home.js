@@ -2,7 +2,7 @@ import template from './cda-details-home.html';
 import controller from './cda-details-home.controller';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('cda.cda-details.cda-details-home', {
+  $stateProvider.state('cda.dashboard.cda-details-home', {
     url: '/home',
     views: {
       cdaDetailsTab: {
@@ -11,9 +11,8 @@ export default /* @ngInject */ ($stateProvider) => {
         controllerAs: 'CdaDetailsHomeCtrl',
       },
     },
-    translations: {
-      format: 'json',
-      value: ['.'],
+    resolve: {
+      breadcrumb: () => null,
     },
   });
 };

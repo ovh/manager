@@ -34,13 +34,15 @@ export default class DomainTabGeneralInformationsCtrl {
     constants,
     dnsAvailableOptions,
     Domain,
+    emailObfuscationLink,
     enableWebhostingLink,
     Hosting,
     HostingDomain,
     isStart10mAvailable,
+    optinLink,
     OvhApiDomainRules,
     OvhApiScreenshot,
-    User,
+    WucUser,
     WucAllDom,
     DOMAIN,
     goToDnsAnycast,
@@ -55,13 +57,15 @@ export default class DomainTabGeneralInformationsCtrl {
     this.WucAllDom = WucAllDom;
     this.dnsAvailableOptions = dnsAvailableOptions;
     this.Domain = Domain;
+    this.emailObfuscationLink = emailObfuscationLink;
     this.enableWebhostingLink = enableWebhostingLink;
     this.Hosting = Hosting;
     this.HostingDomain = HostingDomain;
     this.isStart10mAvailable = isStart10mAvailable;
+    this.optinLink = optinLink;
     this.OvhApiDomainRules = OvhApiDomainRules;
     this.OvhApiScreenshot = OvhApiScreenshot.Aapi();
-    this.User = User;
+    this.WucUser = WucUser;
     this.constants = constants;
     this.DOMAIN = DOMAIN;
     this.goToDnsAnycast = goToDnsAnycast;
@@ -161,7 +165,7 @@ export default class DomainTabGeneralInformationsCtrl {
     if (!this.domain.isExpired) {
       this.getScreenshoot(this.domain.name);
     }
-    this.User.getUrlOf('start10mMarket').then((start10mMarket) => {
+    this.WucUser.getUrlOf('start10mMarket').then((start10mMarket) => {
       this.start10MarketUrl = start10mMarket;
     });
 
@@ -209,7 +213,7 @@ export default class DomainTabGeneralInformationsCtrl {
     if (isObject(this.domain.whoisOwner)) {
       return this.$q
         .all({
-          domainOrderTradeUrl: this.User.getUrlOf('domainOrderTrade'),
+          domainOrderTradeUrl: this.WucUser.getUrlOf('domainOrderTrade'),
           orderServiceOption: this.Domain.getOrderServiceOption(
             this.domain.name,
           ),
@@ -238,7 +242,7 @@ export default class DomainTabGeneralInformationsCtrl {
       last(this.domain.name.split('.')),
     );
 
-    return this.User.getUrlOf(
+    return this.WucUser.getUrlOf(
       changeOwnerClassic ? 'changeOwner' : 'domainOrderChange',
     )
       .then((changeOwnerUrl) => {
@@ -378,7 +382,7 @@ export default class DomainTabGeneralInformationsCtrl {
             ),
             (item) => ({
               name: item,
-              url: `#/configuration/hosting/${item}`,
+              url: `#/hosting/${item}`,
             }),
           );
 

@@ -1,6 +1,6 @@
-<div data-ng-controller="DatabaseDumpsCtrl as ctrlDumps">
+<div>
     <div data-ovh-alert="{{alerts.main}}"></div>
-    <oui-back-button data-on-click="goToList()">
+    <oui-back-button href="{{:: ctrlDumps.databaseLink }}">
         <span data-translate="common_back"></span>
     </oui-back-button>
     <div>

@@ -2,30 +2,54 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-const moduleName = 'ovhManagerOfficeLazyLoading';
+import '@ovh-ux/ng-ui-router-breadcrumb';
+import '@ovh-ux/ui-kit/dist/css/oui.css';
 
-angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
-  /* @ngInject */ ($stateProvider) => {
-    $stateProvider
-      .state('app.microsoft.office', {
-        abstract: true,
-        template: '<div ui-view></div>',
-        translations: {
-          value: ['.'],
-          format: 'json',
-        },
-      })
-      .state('app.microsoft.office.product.**', {
-        url: '/configuration/microsoft/office/license/:serviceName?tab',
-        lazyLoad: ($transition$) => {
-          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+const moduleName = 'ovhManagerOfficeLicensesLazyLoading';
 
-          return import('./microsoft.module').then((mod) =>
-            $ocLazyLoad.inject(mod.default || mod),
+angular
+  .module(moduleName, ['ui.router', 'ngUiRouterBreadcrumb', 'oc.lazyLoad'])
+  .config(
+    /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
+      $stateProvider
+        .state('office', {
+          url: '/office/license',
+          template: '<div ui-view></div>',
+          redirectTo: 'office.index',
+          breadcrumb: /* @ngInject */ ($translate) =>
+            $translate.instant('office_title'),
+        })
+        .state('office.index.**', {
+          url: '',
+          lazyLoad: ($transition$) => {
+            const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+            return import('./office.module').then((mod) =>
+              $ocLazyLoad.inject(mod.default || mod),
+            );
+          },
+        })
+        .state('office.product.**', {
+          url: '/:serviceName',
+          lazyLoad: ($transition$) => {
+            const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+            return import('./dashboard/microsoft.module').then((mod) =>
+              $ocLazyLoad.inject(mod.default || mod),
+            );
+          },
+        });
+
+      $urlRouterProvider.when(
+        /^\/configuration\/microsoft\/office\/license/,
+        /* @ngInject */ ($location) => {
+          $location.url(
+            $location.url().replace('/configuration/microsoft', ''),
           );
         },
-      });
-  },
-);
+      );
+    },
+  )
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

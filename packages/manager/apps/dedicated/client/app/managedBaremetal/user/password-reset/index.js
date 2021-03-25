@@ -6,15 +6,18 @@ const moduleName = 'managedBaremetalUserPasswordResetLazyloading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.managedBaremetal.users.password-reset.**', {
-      url: '/password-reset',
-      lazyLoad: ($transition$) => {
-        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-        return import('./password-reset.module').then((mod) =>
-          $ocLazyLoad.inject(mod.default || mod),
-        );
+    $stateProvider.state(
+      'app.managedBaremetal.details.users.password-reset.**',
+      {
+        url: '/password-reset',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+          return import('./password-reset.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
       },
-    });
+    );
   },
 );
 

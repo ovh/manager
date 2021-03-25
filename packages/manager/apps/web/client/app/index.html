@@ -68,7 +68,6 @@
                         </div>
 
                         <ovh-manager-banner-text></ovh-manager-banner-text>
-                        <account-migration-notification></account-migration-notification>
                         <ovh-manager-incident-migration-banner
                             incident="sbg"
                         ></ovh-manager-incident-migration-banner>
@@ -82,7 +81,10 @@
                             data-support-level="{{$ctrl.user.supportLevel.level}}"
                         ></ovh-chatbot>
 
-                        <div data-ui-view class="pb-5"></div>
+                        <div class="container-fluid px-md-5 px-3 mt-3">
+                            <ui-router-breadcrumb></ui-router-breadcrumb>
+                            <div data-ui-view class="pb-5 mt-3"></div>
+                        </div>
                     </div>
                 </div>
             </div>

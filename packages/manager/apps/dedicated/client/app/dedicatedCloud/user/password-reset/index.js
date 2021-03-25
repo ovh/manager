@@ -6,7 +6,7 @@ const moduleName = 'dedicatedCloudUserPasswordResetLazyloading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.dedicatedClouds.users.password-reset.**', {
+    $stateProvider.state('app.dedicatedCloud.details.users.password-reset.**', {
       url: '/password-reset',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');

@@ -36,5 +36,7 @@
   "telephony_group_billing_dashboard_RMA_status_received": "Réception du colis",
   "telephony_group_billing_dashboard_no_phone": "Ligne nue",
   "telephony_group_billing_dashboard_RMA_title": "RMA",
-  "telephony_group_billing_dashboard_calls": "Appels"
+  "telephony_group_billing_dashboard_calls": "Appels",
+  "telephony_group_billing_dashboard_suspended_info": "Ce groupe est actuellement suspendu.",
+  "telephony_group_billing_dashboard_suspended_info_link": "Cliquez ici pour augmenter votre dépôt de garantie."
 }

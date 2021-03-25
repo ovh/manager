@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) =>
-  $stateProvider.state('app.dedicatedClouds.dashboard.terminate', {
+  $stateProvider.state('app.dedicatedCloud.details.dashboard.terminate', {
     url: '/terminate',
     views: {
       modal: {
@@ -23,5 +23,6 @@ export default /* @ngInject */ ($stateProvider) =>
                 'dedicated-cloud:deleteAtExpiration',
               ) && !currentUser.isEnterprise,
           ),
+      breadcrumb: () => null,
     },
   });

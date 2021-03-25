@@ -7,7 +7,7 @@ export default class ExchangeUpdatePublicFolderCtrl {
   /* @ngInject */
   constructor(
     $scope,
-    Exchange,
+    wucExchange,
     ExchangePublicFolders,
     messaging,
     navigation,
@@ -15,14 +15,14 @@ export default class ExchangeUpdatePublicFolderCtrl {
   ) {
     this.services = {
       $scope,
-      Exchange,
+      wucExchange,
       ExchangePublicFolders,
       messaging,
       navigation,
       $translate,
     };
 
-    this.$routerParams = Exchange.getParams();
+    this.$routerParams = wucExchange.getParams();
     this.buffer = angular.copy(navigation.currentActionData);
     this.folderToUpdate = navigation.currentActionData;
     this.folderIsValid = false;

@@ -12,6 +12,7 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     resolve: {
       access: /* @ngInject */ ($transition$) => $transition$.params().access,
+      breadcrumb: () => null,
     },
   });
 };

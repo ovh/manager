@@ -20,6 +20,7 @@ export default class OvhPaymentMethodService {
     coreConfig,
     OvhApiMe,
     paymentMethodPageUrl,
+    userLocale,
   ) {
     this.$q = $q;
     this.$translate = $translate;
@@ -37,6 +38,11 @@ export default class OvhPaymentMethodService {
     );
 
     this.paymentMethodPageUrl = paymentMethodPageUrl;
+    this.userLocale = userLocale;
+  }
+
+  getUserLocale() {
+    return this.userLocale;
   }
 
   /**

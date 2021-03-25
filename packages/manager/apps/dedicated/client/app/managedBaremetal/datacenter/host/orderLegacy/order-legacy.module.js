@@ -5,6 +5,9 @@ import routing from './order-legacy.routes';
 
 const moduleName = 'managedBaremetalDatacenterHostOrder';
 
-angular.module(moduleName, [datacenterHostOrderComponent]).config(routing);
+angular
+  .module(moduleName, [datacenterHostOrderComponent])
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

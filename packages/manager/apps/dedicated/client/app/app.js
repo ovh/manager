@@ -31,6 +31,7 @@ import ovhManagerCore from '@ovh-ux/manager-core';
 import ovhManagerBanner from '@ovh-ux/manager-banner';
 import ovhManagerEnterpriseCloudDatabase from '@ovh-ux/manager-enterprise-cloud-database';
 import ovhManagerDbaasLogs from '@ovh-ux/manager-dbaas-logs';
+import ovhManagerIncidentBanner from '@ovh-ux/manager-incident-banner';
 import ovhManagerMfaEnrollment from '@ovh-ux/mfa-enrollment';
 import ovhManagerNasha from '@ovh-ux/manager-nasha';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
@@ -52,8 +53,8 @@ import ovhManagerIplb from '@ovh-ux/manager-iplb';
 import ovhManagerCloudConnect from '@ovh-ux/manager-cloud-connect';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
 import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
-import ovhManagerAccountMigration from '@ovh-ux/manager-account-migration';
 import account from './account';
+import cdn from './cdn';
 import config from './config/config';
 import dedicatedCloud from './dedicatedCloud';
 import dedicatedUniverseComponents from './dedicatedUniverseComponents';
@@ -62,6 +63,8 @@ import errorPage from './error';
 import expiredPage from './expired';
 
 import dedicatedServer from './dedicated/server';
+import dedicatedNas from './dedicated/nas';
+import dedicatedHousing from './dedicated/housing';
 import userContracts from './user-contracts';
 import otrs from './otrs';
 
@@ -82,7 +85,10 @@ angular
       'Billing',
       chartjs,
       'controllers',
+      cdn,
       dedicatedCloud,
+      dedicatedHousing,
+      dedicatedNas,
       dedicatedServer,
       dedicatedUniverseComponents,
       'directives',
@@ -121,11 +127,10 @@ angular
       ngOvhExportCsv,
       ngPaginationFront,
       ngQAllSettled,
-      'ovh-angular-responsive-tabs',
       'ovh-api-services',
       ovhManagerAtInternetConfiguration,
-      ovhManagerAccountMigration,
       ovhManagerDbaasLogs,
+      ovhManagerIncidentBanner,
       ovhManagerIplb,
       ovhManagerServerSidebar,
       ovhManagerSupport,
@@ -217,6 +222,11 @@ angular
       ]);
     },
   )
+  .config(
+    /* @ngInject */ (ovhPaymentMethodProvider) => {
+      ovhPaymentMethodProvider.setUserLocale(Environment.getUserLocale());
+    },
+  )
   .constant('REGEX', {
     ROUTABLE_BLOCK: /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\/(\d|[1-2]\d|3[0-2]))$/,
     ROUTABLE_IP: /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/,
@@ -248,7 +258,7 @@ angular
 
         const HPC_STATES = [
           'app.hpc',
-          'app.dedicatedClouds',
+          'app.dedicatedCloud',
           'veeam-enterprise',
         ];
         const IGNORE_STATES = [

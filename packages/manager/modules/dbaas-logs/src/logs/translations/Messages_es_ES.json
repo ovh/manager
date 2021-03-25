@@ -722,5 +722,6 @@
   "logs_home_service_type_standard": "Standard",
   "logs_home_service_type_enterprise": "Enterprise",
   "logs_order_selection_details_standard_description_7": "retención a elegir entre 14 días / 1 mes / 3 meses / 1 año",
-  "logs_order_selection_details_enterprise_description_4": "retención personalizable, previa solicitud"
+  "logs_order_selection_details_enterprise_description_4": "retención personalizable, previa solicitud",
+  "dbaas_logs": "Logs Data Platform"
 }

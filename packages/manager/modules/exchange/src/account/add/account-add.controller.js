@@ -11,10 +11,10 @@ export default class ExchangeAccountAddController {
     $scope,
     $timeout,
     exchangeAccountTypes,
-    Exchange,
+    wucExchange,
     exchangeAccount,
     exchangeServiceInfrastructure,
-    ExchangePassword,
+    wucExchangePassword,
     exchangeVersion,
     messaging,
     $translate,
@@ -23,9 +23,9 @@ export default class ExchangeAccountAddController {
     this.$timeout = $timeout;
 
     this.exchangeAccountTypes = exchangeAccountTypes;
-    this.Exchange = Exchange;
+    this.wucExchange = wucExchange;
     this.exchangeAccount = exchangeAccount;
-    this.ExchangePassword = ExchangePassword;
+    this.wucExchangePassword = wucExchangePassword;
     this.exchangeServiceInfrastructure = exchangeServiceInfrastructure;
     this.exchangeVersion = exchangeVersion;
     this.messaging = messaging;
@@ -33,7 +33,7 @@ export default class ExchangeAccountAddController {
   }
 
   $onInit() {
-    this.$routerParams = this.Exchange.getParams();
+    this.$routerParams = this.wucExchange.getParams();
 
     this.isFetchingCreationOptions = true;
     this.newAccount = {};
@@ -51,10 +51,11 @@ export default class ExchangeAccountAddController {
       }));
     }
 
-    return this.Exchange.fetchingAccountCreationOptions(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-    )
+    return this.wucExchange
+      .fetchingAccountCreationOptions(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+      )
       .then((accountCreationOptions) => {
         this.accountCreationOptions = assign(accountCreationOptions, {
           availableTypes: transformAccountTypes.call(
@@ -114,10 +115,10 @@ export default class ExchangeAccountAddController {
     if (this.accountCreationOptions.passwordComplexityEnabled) {
       this.newAccountForm.password.$setValidity(
         'doesntRespectComplexityRules',
-        this.ExchangePassword.passwordComplexityCheck(
+        this.wucExchangePassword.passwordComplexityCheck(
           this.newAccount.password,
         ) &&
-          this.ExchangePassword.passwordSimpleCheck(
+          this.wucExchangePassword.passwordSimpleCheck(
             this.newAccount.password,
             true,
             this.accountCreationOptions.minPasswordLength,
@@ -125,7 +126,7 @@ export default class ExchangeAccountAddController {
       );
       this.newAccountForm.password.$setValidity(
         'containsDisplayName',
-        !this.ExchangePassword.passwordContainsName(
+        !this.wucExchangePassword.passwordContainsName(
           this.newAccount.password,
           this.newAccount.displayName,
         ),
@@ -141,7 +142,7 @@ export default class ExchangeAccountAddController {
     } else {
       this.newAccountForm.password.$setValidity(
         'doesntRespectComplexityRules',
-        this.ExchangePassword.passwordSimpleCheck(
+        this.wucExchangePassword.passwordSimpleCheck(
           this.newAccount.password,
           true,
           this.accountCreationOptions.minPasswordLength,
@@ -151,9 +152,7 @@ export default class ExchangeAccountAddController {
   }
 
   hide() {
-    this.$scope.$emit(this.exchangeAccount.EVENTS.CHANGE_STATE, {
-      stateName: 'hide',
-    });
+    this.goToAccounts();
   }
 
   switchBetweenPasswordAndTextInput() {

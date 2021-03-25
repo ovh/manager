@@ -4,7 +4,7 @@ import map from 'lodash/map';
 import some from 'lodash/some';
 
 import { URLS, WEATHERMAP_URL } from './dashboard.constants';
-import { NEW_RANGE } from '../server.constants';
+import { NEW_RANGE } from '../details/server.constants';
 
 export default class DedicatedServerDashboard {
   /* @ngInject */
@@ -201,7 +201,7 @@ export default class DedicatedServerDashboard {
   }
 
   rebootServer() {
-    return this.$state.go('app.dedicated.server.dashboard.reboot');
+    return this.$state.go('app.dedicated-server.server.dashboard.reboot');
   }
 
   getStatistics() {
@@ -236,7 +236,7 @@ export default class DedicatedServerDashboard {
   }
 
   goToMonitoring() {
-    return this.$state.go('app.dedicated.server.dashboard.monitoring');
+    return this.$state.go('app.dedicated-server.server.dashboard.monitoring');
   }
 
   isMonitoringEnabled(protocol) {

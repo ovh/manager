@@ -6,7 +6,7 @@ const moduleName = 'dedicatedCloudSecurityLogoutLazyloading';
 
 angular.module(moduleName, ['oc.lazyLoad', 'ui.router']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.dedicatedClouds.security.logout.**', {
+    $stateProvider.state('app.dedicatedCloud.details.security.logout.**', {
       url: '/logout',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');

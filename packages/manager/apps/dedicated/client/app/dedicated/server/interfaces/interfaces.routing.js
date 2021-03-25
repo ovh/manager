@@ -2,14 +2,13 @@ import get from 'lodash/get';
 import { GUIDES } from './interfaces.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicated.server.interfaces', {
+  $stateProvider.state('app.dedicated-server.server.interfaces', {
     url: '/interfaces?:configStep',
     views: {
-      'tabView@app.dedicated.server': {
+      'tabView@app.dedicated-server.server': {
         component: 'dedicatedServerInterfaces',
       },
     },
-    translations: { value: ['.'], format: 'json' },
     params: {
       configStep: { dynamic: true },
     },
@@ -53,11 +52,11 @@ export default /* @ngInject */ ($stateProvider) => {
       ) =>
         isLegacy
           ? $state.href(
-              'app.dedicated.server.interfaces.bandwidth-legacy-private-order',
+              'app.dedicated-server.server.interfaces.bandwidth-legacy-private-order',
               { productId: serverName },
             )
           : $state.href(
-              'app.dedicated.server.interfaces.bandwidth-private-order',
+              'app.dedicated-server.server.interfaces.bandwidth-private-order',
               { productId: serverName },
             ),
       orderPublicBandwidthLink: /* @ngInject */ (
@@ -67,11 +66,11 @@ export default /* @ngInject */ ($stateProvider) => {
       ) =>
         isLegacy
           ? $state.href(
-              'app.dedicated.server.interfaces.bandwidth-legacy-public-order',
+              'app.dedicated-server.server.interfaces.bandwidth-legacy-public-order',
               { productId: serverName },
             )
           : $state.href(
-              'app.dedicated.server.interfaces.bandwidth-public-order',
+              'app.dedicated-server.server.interfaces.bandwidth-public-order',
               { productId: serverName },
             ),
       taskPolling: /* @ngInject */ (
@@ -80,6 +79,8 @@ export default /* @ngInject */ ($stateProvider) => {
       ) => DedicatedServerInterfacesService.getTasks(serverName),
       urls: /* @ngInject */ (constants, user) =>
         constants.urls[user.ovhSubsidiary],
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('dedicated_server_interfaces'),
     },
   });
 };

@@ -12,24 +12,24 @@ export default class ExchangeTabInformationCtrl {
     $rootScope,
     $scope,
     exchangeServiceInfrastructure,
-    Exchange,
+    wucExchange,
     EXCHANGE_CONFIG,
     exchangeVersion,
     messaging,
     navigation,
     $translate,
-    User,
+    WucUser,
   ) {
     this.$rootScope = $rootScope;
     this.$scope = $scope;
     this.exchangeServiceInfrastructure = exchangeServiceInfrastructure;
-    this.exchangeService = Exchange;
+    this.exchangeService = wucExchange;
     this.EXCHANGE_CONFIG = EXCHANGE_CONFIG;
     this.exchangeVersion = exchangeVersion;
     this.messaging = messaging;
     this.navigation = navigation;
     this.$translate = $translate;
-    this.User = User;
+    this.WucUser = WucUser;
   }
 
   $onInit() {
@@ -57,7 +57,7 @@ export default class ExchangeTabInformationCtrl {
   }
 
   getGuides() {
-    return this.User.getUser()
+    return this.WucUser.getUser()
       .then((data) => {
         try {
           this.displayGuides = this.EXCHANGE_CONFIG.URLS.GUIDES.DOCS_HOME[
@@ -81,7 +81,7 @@ export default class ExchangeTabInformationCtrl {
 
         this.SHAREPOINT_URL = buildURL(
           'web',
-          '#/configuration/sharepoint/:exchangeId/:productId',
+          '#/sharepoint/:exchangeId/:productId',
           {
             exchangeId: this.exchange.domain,
             productId: this.sharepoint.domain,

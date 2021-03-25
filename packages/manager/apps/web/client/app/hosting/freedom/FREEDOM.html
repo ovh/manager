@@ -1,7 +1,4 @@
-<div
-    class="container-fluid px-0"
-    data-ng-controller="HostingFreedomTabCtrl as ctrlHostingFreedomTab"
->
+<div data-ng-controller="HostingFreedomTabCtrl as ctrlHostingFreedomTab">
     <div data-ovh-alert="{{alerts.main}}"></div>
 
     <h2 data-translate="hosting_tab_FREEDOM"></h2>
@@ -118,7 +115,7 @@
                         <oui-action-menu data-compact data-placement="end">
                             <oui-action-menu-item
                                 data-on-click="ctrlHostingFreedomTab.setSelectedProduct(freedom.domain)"
-                                data-href="{{'#/configuration/domain/'+freedom.domain}}"
+                                data-href="{{'#/domain/'+freedom.domain}}"
                             >
                                 <span data-translate="common_configure"></span>
                             </oui-action-menu-item>

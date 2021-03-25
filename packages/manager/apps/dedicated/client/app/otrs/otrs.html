@@ -1,7 +1,5 @@
-<header class="page-header" role="banner">
-    <h1 data-translate="otrs_title"></h1>
-</header>
-<div class="tab-content">
+<div ui-view>
+    <oui-header heading="{{:: 'otrs_title' | translate }}"> </oui-header>
     <div data-ovh-alert></div>
     <div data-ovh-alert="otrs_popup_service"></div>
     <div data-ovh-alert="otrs_popup_status"></div>

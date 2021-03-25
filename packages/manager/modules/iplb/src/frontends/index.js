@@ -16,9 +16,9 @@ angular
   .config(
     /* @ngInject */ ($stateProvider) => {
       $stateProvider
-        .state('network.iplb.detail.frontends', {
+        .state('iplb.detail.frontends', {
           url: '/frontends',
-          redirectTo: 'network.iplb.detail.frontends.home',
+          redirectTo: 'iplb.detail.frontends.home',
           views: {
             iplbHeader: {
               template: IplbHeaderTemplate,
@@ -29,13 +29,13 @@ angular
               template: '<div data-ui-view="iplbFrontend"><div>',
             },
           },
-          translations: {
-            value: ['.'],
-            format: 'json',
+          resolve: {
+            breadcrumb: /* @ngInject */ ($translate) =>
+              $translate.instant('iplb_frontends_title'),
           },
         })
-        .state('network.iplb.detail.frontends.home', {
-          url: '/',
+        .state('iplb.detail.frontends.home', {
+          url: '',
           views: {
             iplbFrontend: {
               template: IplbFrontendsTemplate,
@@ -43,12 +43,11 @@ angular
               controllerAs: 'ctrl',
             },
           },
-          translations: {
-            value: ['.'],
-            format: 'json',
+          resolve: {
+            breadcrumb: () => null,
           },
         })
-        .state('network.iplb.detail.frontends.add', {
+        .state('iplb.detail.frontends.add', {
           url: '/add',
           views: {
             iplbFrontend: {
@@ -57,12 +56,12 @@ angular
               controllerAs: 'ctrl',
             },
           },
-          translations: {
-            value: ['.'],
-            format: 'json',
+          resolve: {
+            breadcrumb: /* @ngInject */ ($translate) =>
+              $translate.instant('iplb_frontends_add'),
           },
         })
-        .state('network.iplb.detail.frontends.update', {
+        .state('iplb.detail.frontends.update', {
           url: '/:frontendId',
           views: {
             iplbFrontend: {
@@ -71,9 +70,10 @@ angular
               controllerAs: 'ctrl',
             },
           },
-          translations: {
-            value: ['.'],
-            format: 'json',
+          resolve: {
+            frontendId: /* @ngInject */ ($transition$) =>
+              $transition$.params().frontendId,
+            breadcrumb: /* @ngInject */ (frontendId) => frontendId,
           },
         });
     },

@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicatedClouds.security.delete', {
+  $stateProvider.state('app.dedicatedCloud.details.security.delete', {
     url: '/delete',
     params: {
       policies: null,
@@ -16,6 +16,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $transition$.params().policies,
       selectedPolicies: /* @ngInject */ ($transition$) =>
         $transition$.params().selectedPolicies,
+      breadcrumb: () => null,
     },
   });
 };
