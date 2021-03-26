@@ -173,8 +173,8 @@
   "ovhAccount_retrieve_amount_disponible": "Somme disponible :",
   "ovhAccount_retrieve_error": "Suite à une erreur votre opération n'a pas pu être effectuée.",
   "ovhAccount_retrieve_explanation": "Vous avez la possibilité de lancer un virement d'un montant choisi depuis votre compte client OVH vers un compte bancaire. Veuillez noter que seules les sommes issues des reversements et des remboursements sont disponibles.",
-  "ovhAccount_retrieve_success": "Votre demande a été traité avec succès. Afin de valider le bon de commande, <a href=\"{{t0}}\" target=\"_blank\">cliquez ici.</a>",
-  "ovhAccount_retrieve_resume_1": "Confirmez-vous le virement de",
+  "ovhAccount_retrieve_success": "Votre demande de virement a été traitée avec succès.",
+  "ovhAccount_retrieve_resume_1": "Confirmez-vous le virement d'un montant de",
   "ovhAccount_retrieve_resume_2": "de votre compte prépayé vers votre compte bancaire",
   "ovhAccount_retrieve_tips": "Cliquez sur \"Régler\" pour ouvrir le bon de commande. Il faut que votre navigateur accepte les pop-up.",
   "ovhAccount_create_alert": "Définir une alerte",
@@ -903,5 +903,6 @@
   "statements_operation_description_refund": "Remboursement",
   "statements_operation_description_refund_unknown": "Remboursement",
   "billing_date_range_choose_custom_date": "Définir une période",
-  "billing_date_range_text": "Du {{t0}} au {{t1}}"
+  "billing_date_range_text": "Du {{t0}} au {{t1}}",
+  "billing_price_ttc_label": "{{price}} TTC"
 }
