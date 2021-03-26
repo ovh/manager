@@ -5,6 +5,7 @@ export default {
   bindings: {
     technicalDetails: '<',
     goToManualUpgrade: '<',
+    upgradeWithTicketAvailable: '<',
   },
   controller,
   template,

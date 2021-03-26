@@ -16,7 +16,10 @@
             <span data-ng-bind=":: $ctrl.formattedRAM"></span>
         </oui-tile-description>
     </oui-tile-definition>
-    <oui-tile-button on-click="$ctrl.goToManualUpgrade('ram')">
+    <oui-tile-button
+        ng-if="$ctrl.upgradeWithTicketAvailable"
+        on-click="$ctrl.goToManualUpgrade('ram')"
+    >
         <span
             data-translate="dedicated_server_dashboard_technical_details_ram_upgrade"
         ></span>
@@ -41,7 +44,10 @@
             ></p>
         </oui-tile-description>
     </oui-tile-definition>
-    <oui-tile-button on-click="$ctrl.goToManualUpgrade('storage')">
+    <oui-tile-button
+        ng-if="$ctrl.upgradeWithTicketAvailable"
+        on-click="$ctrl.goToManualUpgrade('storage')"
+    >
         <span
             data-translate="dedicated_server_dashboard_technical_details_data_disk_upgrade"
         ></span>

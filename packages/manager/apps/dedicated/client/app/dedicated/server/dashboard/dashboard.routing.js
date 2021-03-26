@@ -234,6 +234,14 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('app.dedicated-server.server.dashboard.upgrade', {
           selectedUpgrade,
         }),
+      upgradeWithTicketAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability('dedicated-server:upgradeWithTicket')
+          .then((upgradeFeature) =>
+            upgradeFeature.isFeatureAvailable(
+              'dedicated-server:upgradeWithTicket',
+            ),
+          ),
     },
   });
 };

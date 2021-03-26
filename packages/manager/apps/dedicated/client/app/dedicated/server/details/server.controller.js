@@ -417,7 +417,6 @@ export default class ServerCtrl {
   }
 
   getTaskInProgress() {
-    console.log('getTaskInProgress');
     return this.$q
       .all({
         hardRebootTasks: this.Server.getTaskInProgress(
@@ -434,9 +433,7 @@ export default class ServerCtrl {
         ),
       })
       .then(({ hardRebootTasks, resetIPMITasks, reinstallServerTasks }) => {
-        console.log(hardRebootTasks);
         if (isArray(hardRebootTasks) && !isEmpty(hardRebootTasks)) {
-          console.log('isRebooting');
           this.$scope.$broadcast(
             'dedicated.informations.reboot',
             hardRebootTasks[0],

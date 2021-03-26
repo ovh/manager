@@ -34,6 +34,7 @@ export default {
     goToManualUpgrade: '<',
     isRamUpgradable: '<',
     isDataDiskUpgradable: '<',
+    upgradeWithTicketAvailable: '<',
   },
   controller,
   template,
