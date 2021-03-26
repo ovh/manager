@@ -498,23 +498,27 @@ angular.module('Module.ip.controllers').controller(
       }
     });
     $scope.displayAntispam = function displayAntispam(ipBlock, ip) {
-      goToAntispam(ip);
-      $rootScope.$broadcast('ips.antispam.display', {
-        ip: ipBlock.ipBlock,
-        ipSpamming: ip.ip,
-      });
+      goToAntispam(ip).then(() =>
+        $rootScope.$broadcast('ips.antispam.display', {
+          ip: ipBlock.ipBlock,
+          ipSpamming: ip.ip,
+        }),
+      );
     };
     $scope.displayFirewall = function displayFirewall(ipBlock, ip) {
-      goToFirewall(ip);
-      $scope.$broadcast('ips.firewall.display', { ipBlock, ip });
+      goToFirewall(ip).then(() =>
+        $scope.$broadcast('ips.firewall.display', { ipBlock, ip }),
+      );
     };
     $scope.displayGameFirewall = function displayGameFirewall(ipBlock, ip) {
-      goToGameFirewall(ip);
-      $scope.$broadcast('ips.gameFirewall.display', { ipBlock, ip });
+      goToGameFirewall(ip).then(() =>
+        $scope.$broadcast('ips.gameFirewall.display', { ipBlock, ip }),
+      );
     };
     $scope.displayOrganisation = function displayOrganisation() {
-      goToOrganisation();
-      $scope.$broadcast('ips.organisation.display');
+      goToOrganisation().then(() =>
+        $scope.$broadcast('ips.organisation.display'),
+      );
     };
     $scope.getStatePercent = function getStatePercent() {
       return Math.ceil(($scope.state.loaded / $scope.state.total) * 100);
