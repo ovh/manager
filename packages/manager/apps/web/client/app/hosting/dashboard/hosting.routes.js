@@ -89,16 +89,16 @@ export default /* @ngInject */ ($stateProvider) => {
       emailOptionDetachInformation: /* @ngInject */ (
         $q,
         emailOptionServiceInfos,
-        ovhManagerProductOffersDetachService,
+        ovhManagerProductOffersActionService,
       ) =>
         $q.all(
           emailOptionServiceInfos.map(({ serviceId }) =>
-            ovhManagerProductOffersDetachService
+            ovhManagerProductOffersActionService
               .getAvailableDetachPlancodes(serviceId)
               .catch(() => [])
               .then((plancodes) => ({
                 serviceId,
-                detachPlancodes: plancodes,
+                plancodes,
               })),
           ),
         ),
@@ -137,7 +137,7 @@ export default /* @ngInject */ ($stateProvider) => {
         HostingDatabase.getPrivateDatabaseIds(serviceName).catch(() => []),
       privateDatabasesDetachable: /* @ngInject */ (
         $q,
-        ovhManagerProductOffersDetachService,
+        ovhManagerProductOffersActionService,
         PrivateDatabase,
         privateDatabasesIds,
       ) =>
@@ -157,13 +157,13 @@ export default /* @ngInject */ ($stateProvider) => {
           .then((privateDatabasesInformation) =>
             $q.all(
               privateDatabasesInformation.map(({ domain, serviceId }) =>
-                ovhManagerProductOffersDetachService
+                ovhManagerProductOffersActionService
                   .getAvailableDetachPlancodes(serviceId)
                   .catch(() => [])
                   .then((plancodes) => ({
                     optionId: domain,
                     serviceId,
-                    detachPlancodes: plancodes,
+                    plancodes,
                   })),
               ),
             ),
