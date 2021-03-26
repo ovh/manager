@@ -123,6 +123,9 @@ export default class Workflow {
       case PRICING_CAPACITIES.RENEW:
         pricings = Workflow.getRenewPricings(pricingsToCompute);
         break;
+      case PRICING_CAPACITIES.UPGRADE:
+        pricings = Workflow.getUpgradePricings(pricingsToCompute);
+        break;
       default:
         pricings = ProductOffersService.filterPricingsByCapacity(
           pricingsToCompute,
@@ -206,6 +209,33 @@ export default class Workflow {
         extraPricingCapacity: installationPricing.capacities[0],
       }))
       .concat(pricingsWitRenewAndInstallationCapacities)
+      .map((pricing) => Workflow.convertPricingObject(pricing));
+  }
+
+  /**
+   * Get the upgrade pricings, with its renew pricing
+   * @param  {Array} providedPricings Pricings to get upgrade ones
+   * @return {Array}                  Upgrade pricings
+   */
+  static getUpgradePricings(providedPricings) {
+    const upgradePricing = ProductOffersService.getUniquePricingOfCapacity(
+      providedPricings,
+      PRICING_CAPACITIES.UPGRADE,
+    );
+
+    const renewPricings = ProductOffersService.filterPricingsByCapacity(
+      providedPricings,
+      PRICING_CAPACITIES.RENEW,
+    );
+
+    return renewPricings
+      .map((renewPricing) => ({
+        ...upgradePricing,
+        description: `${upgradePricing.description}`,
+        duration: renewPricing.duration,
+        interval: renewPricing.interval,
+        priceInUcents: renewPricing.priceInUcents,
+      }))
       .map((pricing) => Workflow.convertPricingObject(pricing));
   }
 
