@@ -52,6 +52,8 @@ export default class {
   }
 
   create() {
+    this.sendKubeTrack('add::confirm');
+
     this.isAdding = true;
     return this.Kubernetes.createCluster(
       this.projectId,
