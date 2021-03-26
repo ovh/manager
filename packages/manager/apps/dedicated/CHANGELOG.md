@@ -1,3 +1,12 @@
+## [16.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.11.0...@ovh-ux/manager-dedicated@16.11.1) (2021-03-26)
+
+
+### Bug Fixes
+
+* **ip:** broadcast event on promise callback ([#4624](https://github.com/ovh/manager/issues/4624)) ([c063884](https://github.com/ovh/manager/commit/c063884cade97e476786749ada2b08953826522e))
+
+
+
 # [16.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.10.0...@ovh-ux/manager-dedicated@16.11.0) (2021-03-26)
 
 
