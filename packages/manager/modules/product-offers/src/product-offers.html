@@ -36,6 +36,7 @@
                         data-price="pricing.price"
                         data-tax="pricing.tax"
                         data-user="$ctrl.workflow.user"
+                        data-from-to-price="pricing.isFree() ? null : $ctrl.workflow.currentOptionPrice"
                     >
                     </ovh-manager-catalog-price>
                 </oui-select-picker-label>
