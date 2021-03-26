@@ -12,7 +12,6 @@ import './boost/hosting-boost.service';
 import './boost/update/hosting-boost-update.controller';
 import './cdn/flush/hosting-cdn-flush.controller';
 import './cdn/order/hosting-cdn-order.component';
-import './cdn/order/hosting-cdn-order.controller';
 import './cdn/order/hosting-cdn-order.routing';
 import './cdn/order/hosting-cdn-order.service';
 import './cdn/terminate/hosting-cdn-terminate.controller';
