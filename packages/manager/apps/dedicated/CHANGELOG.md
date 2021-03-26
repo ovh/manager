@@ -1,3 +1,23 @@
+# [16.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.10.0...@ovh-ux/manager-dedicated@16.11.0) (2021-03-26)
+
+
+### Bug Fixes
+
+* avoid duplicate module name ([21ed860](https://github.com/ovh/manager/commit/21ed860d1d0a67b0c4bd4914415e9dfd4e3d847c))
+* **ip.order:** hide breadcrumb ([92d2238](https://github.com/ovh/manager/commit/92d2238b972cb59e76492c94a8b55958a5c04c0c))
+
+
+### Features
+
+* **billing.refunds:** add link to prepaid account ([#4611](https://github.com/ovh/manager/issues/4611)) ([8ed77ad](https://github.com/ovh/manager/commit/8ed77ad48d681bb0e3ef60c8361dc6ee2f37654e))
+
+
+### Reverts
+
+* Revert "fix: remove non needed component (#4563)" ([3b86fff](https://github.com/ovh/manager/commit/3b86fff879336db05c982b18e9563175caaf4be4)), closes [#4563](https://github.com/ovh/manager/issues/4563)
+
+
+
 # [16.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.9.1...@ovh-ux/manager-dedicated@16.10.0) (2021-03-25)
 
 
