@@ -9,13 +9,13 @@ export default class ProductOffersController {
     $q,
     $timeout,
     $translate,
-    ovhManagerProductOffersDetachService,
+    ovhManagerProductOffersActionService,
     WucOrderCartService,
   ) {
     this.$q = $q;
     this.$timeout = $timeout;
     this.$translate = $translate;
-    this.detachService = ovhManagerProductOffersDetachService;
+    this.actionService = ovhManagerProductOffersActionService;
     this.WucOrderCartService = WucOrderCartService;
   }
 
@@ -46,7 +46,7 @@ export default class ProductOffersController {
           this.$timeout,
           this.$translate,
           this.workflowOptions,
-          this.detachService,
+          this.actionService,
         );
         break;
       default:
