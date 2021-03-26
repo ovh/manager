@@ -79,12 +79,12 @@ export default class HostingGeneralInformationsCtrl {
     this.goToDetachPrivateDB = this.$scope.goToDetachPrivateDB;
     this.isDetachEmailOptionAvailable =
       this.$scope.emailOptionDetachInformation.length > 0 &&
-      this.$scope.emailOptionDetachInformation[0].detachPlancodes.length > 0 &&
+      this.$scope.emailOptionDetachInformation[0].plancodes.length > 0 &&
       this.$scope.pendingTasks.length === 0;
 
     this.isPrivateDatabaseDetachable =
       this.$scope.privateDatabasesDetachable.length > 0 &&
-      this.$scope.privateDatabasesDetachable[0].detachPlancodes.length > 0 &&
+      this.$scope.privateDatabasesDetachable[0].plancodes.length > 0 &&
       this.$scope.pendingTasks.length === 0;
 
     const quotaUsed = this.$scope.convertBytesSize(
