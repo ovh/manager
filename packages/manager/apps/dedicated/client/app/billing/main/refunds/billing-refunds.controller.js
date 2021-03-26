@@ -1,3 +1,6 @@
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+import { PREPAID_ACCOUNT } from './refunds.constants';
+
 export default /* @ngInject */ function BillingRefundsController(
   $scope,
   BillingRefunds,
@@ -25,6 +28,11 @@ export default /* @ngInject */ function BillingRefundsController(
   $scope.fuseRefundOpen = function fuseRefundOpen() {
     return $scope.refundCount > FUSE_CAPACITY;
   };
+
+  this.prepaidAccountLink = buildURL(
+    'dedicated',
+    '#/billing/payment/ovhaccount',
+  );
 
   this.sortHistoryResult = ({ predicate, reverse }) => {
     $scope.refunds.list.results.sort((a, b) => {
@@ -54,6 +62,9 @@ export default /* @ngInject */ function BillingRefundsController(
       return reverse ? -result : result;
     });
   };
+
+  this.isCreditedOnPrepaidAccount = ({ paymentType }) =>
+    paymentType === PREPAID_ACCOUNT;
 
   $scope.onOrderStateChanged = (predicate, reverse) => {
     $scope.orderByState.predicate = predicate;
