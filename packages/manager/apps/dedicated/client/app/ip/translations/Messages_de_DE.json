@@ -673,5 +673,6 @@
   "ip_table_manage_delegation_ipv6block_to_delete": "Zu löschende(r) Reverse(s)",
   "ip_filter_services__FAILOVER": "Failover-IP",
   "ip_description_edit_move": "Diesen IP-Block mit einem anderen Dienst verbinden",
-  "ip_order_renew_MBM": "Ihre IP-Adressen werden automatisch mit Ihrer Managed Bare Metal Infrastruktur verlängert."
+  "ip_order_renew_MBM": "Ihre IP-Adressen werden automatisch mit Ihrer Managed Bare Metal Infrastruktur verlängert.",
+  "ip_ipfo_slowness_information": "Derzeit werden außergewöhnlich viele Anfragen gestellt. Die jeweilige Antwort kann sich entsprechend stark verzögern. Dennoch werden alle Anfragen innerhalb weniger Stunden bearbeitet. Wir entschuldigen uns für die Unannehmlichkeiten."
 }
