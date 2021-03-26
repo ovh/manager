@@ -2988,19 +2988,6 @@
   dependencies:
     lodash "^4.17.20"
 
-"@ovh-ux/ng-ovh-utils@14.0.10":
-  version "14.0.10"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-utils/-/ng-ovh-utils-14.0.10.tgz#9a7ab615cb9a680f448ec310865dd5597ca08235"
-  integrity sha512-wvlCj3LLxe78eJK/W3YO1jspar8XlmsCQPQ/2DiEU2kpK37WFOBP9wW1HSZ6QuiWyYKU/dKelKYUGopg0cqQiQ==
-  dependencies:
-    filesize "^3.6.1"
-    lodash "^4.17.15"
-
-"@ovh-ux/ng-translate-async-loader@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-translate-async-loader/-/ng-translate-async-loader-2.1.0.tgz#dac30a50426658c95be8d24b5a1d75f7b18932aa"
-  integrity sha512-RqSEZp/J4Pe7lrn6yQgJIrvN6Hu3Rm21KUNCe+exlp6DhSfAwn1hKON4OmQ666E+AL2dp6IAIVyhC3Q1nokjiw==
-
 "@ovh-ux/rollup-plugin-less-inject@^1.0.5":
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/@ovh-ux/rollup-plugin-less-inject/-/rollup-plugin-less-inject-1.0.5.tgz#02285367219f72056faf06deeacaeb357f16633c"
