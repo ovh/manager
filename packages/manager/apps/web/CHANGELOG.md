@@ -1,3 +1,17 @@
+## [15.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.18.0...@ovh-ux/manager-web@15.18.1) (2021-03-26)
+
+
+### Bug Fixes
+
+* **domain.zone:** inject missing translations ([b30dbd0](https://github.com/ovh/manager/commit/b30dbd0fb20f5171f2611fc6aa4a025bc52a2f20))
+
+
+### Reverts
+
+* Revert "fix: remove non needed component (#4563)" ([3b86fff](https://github.com/ovh/manager/commit/3b86fff879336db05c982b18e9563175caaf4be4)), closes [#4563](https://github.com/ovh/manager/issues/4563)
+
+
+
 # [15.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.17.0...@ovh-ux/manager-web@15.18.0) (2021-03-25)
 
 
