@@ -79,6 +79,21 @@ export default /* @ngInject */ ($stateProvider) => {
 
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('kube_list_title'),
+
+      kubeTrackPrefix: () => 'PublicCloud::pci::projects::project::kubernetes',
+
+      sendKubeTrack: /* @ngInject */ (kubeTrackPrefix, trackClick) => (
+        complement,
+      ) => {
+        trackClick(`${kubeTrackPrefix}::${complement}`);
+      },
+
+      trackClick: /* @ngInject */ (atInternet) => (hit) => {
+        atInternet.trackClick({
+          name: hit,
+          type: 'action',
+        });
+      },
     },
   });
 };
