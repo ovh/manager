@@ -17,6 +17,8 @@ export default class kubernetesUpgradePolicyCtrl {
   }
 
   updateUpgradePolicy() {
+    this.sendKubeTrack('details::service::upgradePolicy::confirm');
+
     this.isUpgrading = true;
     return this.OvhApiCloudProjectKube.v6()
       .updatePolicy(
@@ -41,5 +43,10 @@ export default class kubernetesUpgradePolicyCtrl {
           'error',
         ),
       );
+  }
+
+  onUpgradePolicyModalCancel() {
+    this.sendKubeTrack('details::service::upgradePolicy::cancel');
+    this.goBack();
   }
 }
