@@ -784,17 +784,17 @@ export default class {
       const { serviceName } = this.$scope.hosting;
       return this.HostingCdnSharedService.simulateUpgrade(
         serviceName,
-        this.HostingCdnOrderService,
+        this.$scope.hosting.serviceInfos.serviceId,
       )
         .then(() => {
           this.$scope.isUpgradable = true;
         })
         .catch(() => {
           this.$scope.isUpgradable = false;
-          return this.$q.resolve();
+          return null;
         });
     }
     this.$scope.isUpgradable = true;
-    return this.$q.resolve();
+    return null;
   }
 }
