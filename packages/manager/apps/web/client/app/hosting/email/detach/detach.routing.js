@@ -18,7 +18,7 @@ export default /* @ngInject */ ($stateProvider) => {
         emailOptionDetachInformation,
       ) =>
         $translate.instant(
-          `hosting_change_main_domain_${emailOptionDetachInformation[0].detachPlancodes[0].planCode}`,
+          `hosting_change_main_domain_${emailOptionDetachInformation[0].plancodes[0].planCode}`,
         ),
       pricingType: () => pricingConstants.PRICING_CAPACITIES.DETACH,
       workflow: /* @ngInject */ (emailOptionDetachInformation) => ({
@@ -37,23 +37,23 @@ export default /* @ngInject */ ($stateProvider) => {
         );
       },
       onSuccess: /* @ngInject */ ($translate, $window, Alerter, goBack) => (
-        detachResult,
+        result,
       ) => {
         let successMessage;
-        if (!detachResult.autoPayWithPreferredPaymentMethod) {
+        if (!result.autoPayWithPreferredPaymentMethod) {
           successMessage = $translate.instant(
             'hosting_email_detach_option_success_with_no_payment',
             {
-              billUrl: detachResult.url,
+              billUrl: result.url,
             },
           );
         } else {
           successMessage = $translate.instant(
             'hosting_email_detach_option_success_with_payment',
             {
-              accountId: detachResult.paymentMethodLabel,
-              billUrl: detachResult.url,
-              price: detachResult.prices.withTax.text,
+              accountId: result.paymentMethodLabel,
+              billUrl: result.url,
+              price: result.prices.withTax.text,
             },
           );
         }
