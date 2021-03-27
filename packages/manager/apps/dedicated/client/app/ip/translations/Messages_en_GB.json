@@ -673,5 +673,6 @@
   "ip_table_header_reverse_invalid": "Please enter a valid reverse DNS",
   "ip_filter_services__FAILOVER": "Failover IP",
   "ip_description_edit_move": "Attach this IP block to another service",
-  "ip_order_renew_MBM": "Your IPs will be automatically renewed with your Managed Bare Metal infrastructure."
+  "ip_order_renew_MBM": "Your IPs will be automatically renewed with your Managed Bare Metal infrastructure.",
+  "ip_ipfo_slowness_information": "Due to an exceptional peak in the volume of requests, each response could take much longer than usual. However, all requests will be processed within a few hours. We apologise for the inconvenience."
 }

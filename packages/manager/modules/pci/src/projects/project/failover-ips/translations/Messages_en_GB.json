@@ -10,5 +10,6 @@
   "pci_projects_project_failoverip_mitigation": "Enable/disable mitigation ",
   "pci_projects_project_failoverip_firewall": "Configure the firewall ",
   "pci_projects_project_failoverip_actions": "Actions",
-  "pci_projects_project_failoverip_order": "Buy Failover IPs"
+  "pci_projects_project_failoverip_order": "Buy Failover IPs",
+  "pci_projects_project_failoverip_slowness_information": "Due to an exceptional peak in the volume of requests, each response could take much longer than usual. However, all requests will be processed within a few hours. We apologise for the inconvenience."
 }
