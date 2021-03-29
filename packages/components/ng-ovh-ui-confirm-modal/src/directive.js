@@ -16,7 +16,7 @@
  *
  */
 
-export default /* @ngInject */ function($uibModal) {
+export default /* @ngInject */ function ($uibModal) {
   return {
     restrict: 'EA',
     link(scope, element, attrs) {

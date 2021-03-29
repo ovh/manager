@@ -36,12 +36,10 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountBillingTol
             map(
               chunk(dates, 50),
               (chunkDates) =>
-                OvhApiTelephony.HistoryTollfreeConsumption()
-                  .v6()
-                  .getBatch({
-                    billingAccount: $stateParams.billingAccount,
-                    date: chunkDates,
-                  }).$promise,
+                OvhApiTelephony.HistoryTollfreeConsumption().v6().getBatch({
+                  billingAccount: $stateParams.billingAccount,
+                  date: chunkDates,
+                }).$promise,
             ),
           )
           .then((chunkResult) => {

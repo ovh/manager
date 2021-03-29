@@ -1,6 +1,6 @@
 import defaults from 'lodash/defaults';
 
-export default function() {
+export default function () {
   const self = this;
   const allowedModes = ['mondialRelay', 'transporter'];
 

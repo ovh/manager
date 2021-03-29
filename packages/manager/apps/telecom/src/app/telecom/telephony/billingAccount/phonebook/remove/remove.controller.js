@@ -20,12 +20,10 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountPhonebookR
     self.isRemoving = true;
     return $q
       .all([
-        OvhApiTelephony.Phonebook()
-          .v6()
-          .remove({
-            billingAccount: $stateParams.billingAccount,
-            bookKey: self.phonebook.bookKey,
-          }).$promise,
+        OvhApiTelephony.Phonebook().v6().remove({
+          billingAccount: $stateParams.billingAccount,
+          bookKey: self.phonebook.bookKey,
+        }).$promise,
         $timeout(angular.noop, 1000),
       ])
       .then(

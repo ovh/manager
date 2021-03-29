@@ -97,24 +97,17 @@ export default /* @ngInject */ function TelecomTelephonyServiceConsumptionOutgoi
             return null;
           },
         );
-        self.consumption.sum.outPlan.price = `${Math.floor(
-          self.consumption.sum.outPlan.price * 100.0,
-          2,
-        ) / 100.0} ${priceSuffix}`;
+        self.consumption.sum.outPlan.price = `${
+          Math.floor(self.consumption.sum.outPlan.price * 100.0, 2) / 100.0
+        } ${priceSuffix}`;
       },
       (err) => new TucToastError(err),
     );
   }
 
   self.refresh = function refresh() {
-    OvhApiTelephony.Service()
-      .VoiceConsumption()
-      .v6()
-      .resetCache();
-    OvhApiTelephony.Service()
-      .VoiceConsumption()
-      .v6()
-      .resetQueryCache();
+    OvhApiTelephony.Service().VoiceConsumption().v6().resetCache();
+    OvhApiTelephony.Service().VoiceConsumption().v6().resetQueryCache();
     init();
   };
 

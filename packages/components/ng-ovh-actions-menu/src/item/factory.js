@@ -40,7 +40,7 @@
 
 import angular from 'angular';
 
-export default function() {
+export default function () {
   /*= ==================================
     =            CONSTRUCTOR            =
     =================================== */

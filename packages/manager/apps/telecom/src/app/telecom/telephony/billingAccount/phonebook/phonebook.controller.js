@@ -81,14 +81,11 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountPhonebookC
             map(
               chunk(phonebookContactIds, 50),
               (chunkIds) =>
-                OvhApiTelephony.Phonebook()
-                  .PhonebookContact()
-                  .v6()
-                  .getBatch({
-                    billingAccount: $stateParams.billingAccount,
-                    bookKey,
-                    id: chunkIds,
-                  }).$promise,
+                OvhApiTelephony.Phonebook().PhonebookContact().v6().getBatch({
+                  billingAccount: $stateParams.billingAccount,
+                  bookKey,
+                  id: chunkIds,
+                }).$promise,
             ),
           )
           .then((chunkResult) => {
@@ -511,10 +508,7 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountPhonebookC
 
   self.refresh = function refresh() {
     self.phonebookContact.isLoading = true;
-    OvhApiTelephony.Phonebook()
-      .PhonebookContact()
-      .v6()
-      .resetAllCache();
+    OvhApiTelephony.Phonebook().PhonebookContact().v6().resetAllCache();
     return fetchPhonebookContact(self.phonebook.bookKey)
       .then((phonebookContact) => {
         self.phonebookContact.raw = phonebookContact;

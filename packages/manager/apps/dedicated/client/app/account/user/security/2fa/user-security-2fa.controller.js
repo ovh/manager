@@ -19,7 +19,7 @@ angular
     'UserAccount.services.doubleAuth.u2f',
     'userAccountServiceInfos',
     'OvhApiAuth',
-    function(
+    function (
       $q,
       $rootScope,
       $scope,

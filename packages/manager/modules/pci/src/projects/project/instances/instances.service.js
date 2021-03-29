@@ -258,8 +258,8 @@ export default class PciProjectInstanceService {
   }
 
   getSnapshotMonthlyPrice(projectId, instance) {
-    return this.CucPriceHelper.getPrices(projectId).then((catalog) => {
-      return get(
+    return this.CucPriceHelper.getPrices(projectId).then((catalog) =>
+      get(
         catalog,
         `snapshot.monthly.postpaid.${instance.region}`,
         get(
@@ -267,8 +267,8 @@ export default class PciProjectInstanceService {
           'snapshot.monthly.postpaid',
           get(catalog, 'snapshot.monthly', false),
         ),
-      );
-    });
+      ),
+    );
   }
 
   createBackup(projectId, { id: instanceId }, { name: snapshotName }) {
@@ -487,17 +487,15 @@ export default class PciProjectInstanceService {
       privateNetworks,
       (results, privateNetwork) => [
         ...results,
-        this.OvhApiCloudProjectInstance.Interface()
-          .v6()
-          .save(
-            {
-              serviceName: projectId,
-              instanceId,
-            },
-            {
-              networkId: privateNetwork.id,
-            },
-          ).$promise,
+        this.OvhApiCloudProjectInstance.Interface().v6().save(
+          {
+            serviceName: projectId,
+            instanceId,
+          },
+          {
+            networkId: privateNetwork.id,
+          },
+        ).$promise,
       ],
       [],
     );
@@ -543,9 +541,7 @@ export default class PciProjectInstanceService {
         .query({ ip })
         .$promise.then(([ipReverse]) =>
           ipReverse
-            ? this.OvhApiIp.Reverse()
-                .v6()
-                .get({ ip, ipReverse }).$promise
+            ? this.OvhApiIp.Reverse().v6().get({ ip, ipReverse }).$promise
             : null,
         )
         .catch((error) =>

@@ -6,7 +6,7 @@
  * @description
  * An panel inside the `timeline-event` which shows detailed information about the event.
  */
-export default /* @ngInject */ function() {
+export default /* @ngInject */ function () {
   return {
     require: '^timeline',
     restrict: 'AE',

@@ -10,11 +10,9 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
       url: '/line/:serviceName',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-        return import(/* webpackChunkName: "line" */ './line.module').then(
-          (mod) => {
-            return $ocLazyLoad.inject(mod.default || mod);
-          },
-        );
+        return import(
+          /* webpackChunkName: "line" */ './line.module'
+        ).then((mod) => $ocLazyLoad.inject(mod.default || mod));
       },
     });
   },

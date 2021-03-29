@@ -73,12 +73,10 @@ export default class IpLoadBalancerHomeService {
   }
 
   getUsageForZone(serviceName, zoneName) {
-    return this.OvhApiIpLoadBalancing.Quota()
-      .v6()
-      .get({
-        serviceName,
-        zoneName,
-      }).$promise;
+    return this.OvhApiIpLoadBalancing.Quota().v6().get({
+      serviceName,
+      zoneName,
+    }).$promise;
   }
 
   updateQuota(serviceName, zoneName, alert) {

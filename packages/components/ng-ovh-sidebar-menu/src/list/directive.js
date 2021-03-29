@@ -15,7 +15,7 @@
 import angular from 'angular';
 import template from './template.html';
 
-export default function() {
+export default function () {
   return {
     template,
     restrict: 'AE',

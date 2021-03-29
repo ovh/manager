@@ -1,4 +1,4 @@
-export default /* @ngInject */ function($translate) {
+export default /* @ngInject */ function ($translate) {
   const frenchTouch = {
     TTCOnly: false,
     HTOnly: false,
@@ -71,7 +71,7 @@ export default /* @ngInject */ function($translate) {
     return `<b class="red">${$translate.instant('ua_price_free')}</b>`;
   }
 
-  return function(price, ovhSubsidiary, frequency) {
+  return function (price, ovhSubsidiary, frequency) {
     if (price !== undefined) {
       return format(price, ovhSubsidiary, frequency);
     }

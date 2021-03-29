@@ -2,7 +2,7 @@ import find from 'lodash/find';
 import forEach from 'lodash/forEach';
 import { Environment } from '@ovh-ux/manager-config';
 
-export default /* @ngInject */ function(
+export default /* @ngInject */ function (
   $q,
   $translate,
   $stateParams,

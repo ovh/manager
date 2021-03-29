@@ -20,15 +20,9 @@ export default class LogsStreamsService {
     this.$q = $q;
     this.$translate = $translate;
     this.LogsApiService = OvhApiDbaas.Logs().v6();
-    this.StreamsApiService = OvhApiDbaas.Logs()
-      .Stream()
-      .v6();
-    this.StreamsAapiService = OvhApiDbaas.Logs()
-      .Stream()
-      .Aapi();
-    this.DetailsAapiService = OvhApiDbaas.Logs()
-      .Details()
-      .Aapi();
+    this.StreamsApiService = OvhApiDbaas.Logs().Stream().v6();
+    this.StreamsAapiService = OvhApiDbaas.Logs().Stream().Aapi();
+    this.DetailsAapiService = OvhApiDbaas.Logs().Details().Aapi();
     this.LogsHomeService = LogsHomeService;
     this.LogsStreamsAlertsService = LogsStreamsAlertsService;
     this.LogsStreamsArchivesService = LogsStreamsArchivesService;

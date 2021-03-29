@@ -253,9 +253,7 @@ export default class HostingCdnSharedService {
   simulateUpgrade(serviceName) {
     const data = { serviceId: null };
     return this.getServiceInfo(serviceName)
-      .then(({ data: servInfo }) => {
-        return this.getServiceOptions(servInfo.serviceId);
-      })
+      .then(({ data: servInfo }) => this.getServiceOptions(servInfo.serviceId))
       .then(({ data: servOpts }) => {
         const { serviceId } = find(servOpts, ({ billing }) => {
           const planCode = get(billing, 'plan.code', '');
@@ -274,13 +272,11 @@ export default class HostingCdnSharedService {
           data.serviceId,
         );
       })
-      .then(({ data: upgradeResponse }) => {
-        return {
-          cart: upgradeResponse.order,
-          addonPlan: data.addonPlan,
-          serviceId: data.serviceId,
-        };
-      });
+      .then(({ data: upgradeResponse }) => ({
+        cart: upgradeResponse.order,
+        addonPlan: data.addonPlan,
+        serviceId: data.serviceId,
+      }));
   }
 
   /**

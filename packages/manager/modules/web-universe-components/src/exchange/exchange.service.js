@@ -231,13 +231,7 @@ export default class Exchange {
         ),
       )
       .then((services) =>
-        reduce(
-          services,
-          (flattened, other) => {
-            return flattened.concat(other);
-          },
-          [],
-        ),
+        reduce(services, (flattened, other) => flattened.concat(other), []),
       );
   }
 
@@ -274,12 +268,10 @@ export default class Exchange {
   }
 
   getExchangeDetails(organization, exchangeName) {
-    return this.services.OvhApiEmailExchange.service()
-      .Aapi()
-      .get({
-        organization,
-        exchange: exchangeName,
-      }).$promise;
+    return this.services.OvhApiEmailExchange.service().Aapi().get({
+      organization,
+      exchange: exchangeName,
+    }).$promise;
   }
 
   setConfiguration(organization, serviceName, data) {
@@ -1722,16 +1714,13 @@ export default class Exchange {
   }
 
   updateExchangeServer(organizationName, exchangeService, data) {
-    return this.services.OvhApiEmailExchange.service()
-      .server()
-      .v6()
-      .update(
-        {
-          organizationName,
-          exchangeService,
-        },
-        data,
-      ).$promise;
+    return this.services.OvhApiEmailExchange.service().server().v6().update(
+      {
+        organizationName,
+        exchangeService,
+      },
+      data,
+    ).$promise;
   }
 
   /**

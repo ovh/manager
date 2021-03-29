@@ -171,15 +171,12 @@ export default class OvhPaymentMethodService {
       );
     }
 
-    return this.OvhApiMe.Payment()
-      .Method()
-      .v6()
-      .edit(
-        {
-          paymentMethodId: paymentMethod.paymentMethodId,
-        },
-        params,
-      ).$promise;
+    return this.OvhApiMe.Payment().Method().v6().edit(
+      {
+        paymentMethodId: paymentMethod.paymentMethodId,
+      },
+      params,
+    ).$promise;
   }
 
   /**
@@ -215,15 +212,12 @@ export default class OvhPaymentMethodService {
       );
     }
 
-    return this.OvhApiMe.Payment()
-      .Method()
-      .v6()
-      .challenge(
-        {
-          paymentMethodId: paymentMethod.paymentMethodId,
-        },
-        { challenge },
-      ).$promise;
+    return this.OvhApiMe.Payment().Method().v6().challenge(
+      {
+        paymentMethodId: paymentMethod.paymentMethodId,
+      },
+      { challenge },
+    ).$promise;
   }
 
   /**
@@ -258,12 +252,9 @@ export default class OvhPaymentMethodService {
       );
     }
 
-    return this.OvhApiMe.Payment()
-      .Method()
-      .v6()
-      .delete({
-        paymentMethodId: paymentMethod.paymentMethodId,
-      }).$promise;
+    return this.OvhApiMe.Payment().Method().v6().delete({
+      paymentMethodId: paymentMethod.paymentMethodId,
+    }).$promise;
   }
 
   /* ----------  New payment methods  ---------- */

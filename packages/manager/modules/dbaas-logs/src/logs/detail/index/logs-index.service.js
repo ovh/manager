@@ -23,15 +23,9 @@ export default class LogsIndexService {
     this.LogsConstants = LogsConstants;
     this.LogsHomeService = LogsHomeService;
     this.LogsOrderService = LogsOrderService;
-    this.IndexApiService = OvhApiDbaas.Logs()
-      .Index()
-      .v6();
-    this.IndexAapiService = OvhApiDbaas.Logs()
-      .Index()
-      .Aapi();
-    this.OperationApiService = OvhApiDbaas.Logs()
-      .Operation()
-      .v6();
+    this.IndexApiService = OvhApiDbaas.Logs().Index().v6();
+    this.IndexAapiService = OvhApiDbaas.Logs().Index().Aapi();
+    this.OperationApiService = OvhApiDbaas.Logs().Operation().v6();
     this.newIndex = {
       description: '',
       alertNotifyEnabled: false,

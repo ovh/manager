@@ -1,4 +1,4 @@
-export default /* @ngInject */ function(OvhApiFreeFax) {
+export default /* @ngInject */ function (OvhApiFreeFax) {
   const self = this;
 
   /*= ============================

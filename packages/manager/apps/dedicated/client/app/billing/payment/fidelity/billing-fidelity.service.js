@@ -21,14 +21,10 @@ angular
       let dateEnd = _dateEnd;
 
       if (_dateStart) {
-        dateStart = moment(_dateStart)
-          .startOf('day')
-          .toISOString();
+        dateStart = moment(_dateStart).startOf('day').toISOString();
       }
       if (_dateEnd) {
-        dateEnd = moment(_dateEnd)
-          .endOf('day')
-          .toISOString();
+        dateEnd = moment(_dateEnd).endOf('day').toISOString();
       }
 
       return $http

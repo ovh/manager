@@ -36,12 +36,10 @@ export default class BillingTerminate {
   }
 
   getTerminationForm(serviceId) {
-    return this.OvhApiServices.Form()
-      .v6()
-      .get({
-        serviceId,
-        formName: TERMINATION_FORM_NAME,
-      }).$promise;
+    return this.OvhApiServices.Form().v6().get({
+      serviceId,
+      formName: TERMINATION_FORM_NAME,
+    }).$promise;
   }
 
   answerForm({ serviceId }, answers) {

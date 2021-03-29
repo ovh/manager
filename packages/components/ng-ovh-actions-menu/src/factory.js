@@ -29,7 +29,7 @@
  */
 import angular from 'angular';
 
-export default /* @ngInject */ function(ActionsMenuItem) {
+export default /* @ngInject */ function (ActionsMenuItem) {
   /*= ==================================
     =            CONSTRUCTOR            =
     =================================== */

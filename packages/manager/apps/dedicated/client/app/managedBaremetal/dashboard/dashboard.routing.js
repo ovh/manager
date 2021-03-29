@@ -29,22 +29,18 @@ export default /* @ngInject */ ($stateProvider) => {
               state: 'todo',
             },
           })
-          .then((response) => {
-            return map(response.data, (taskId) => {
-              return $http
+          .then((response) =>
+            map(response.data, (taskId) =>
+              $http
                 .get(
                   `/dedicatedCloud/${currentService.serviceName}/task/${taskId}`,
                 )
-                .then((taskResponse) => taskResponse.data);
-            });
-          })
-          .then((tasks) => {
-            return set(
-              currentService,
-              'vcenterUpgradePendingTask',
-              head(tasks),
-            );
-          }),
+                .then((taskResponse) => taskResponse.data),
+            ),
+          )
+          .then((tasks) =>
+            set(currentService, 'vcenterUpgradePendingTask', head(tasks)),
+          ),
       onUpgradeVersion: /* @ngInject */ ($state, currentService) => (
         targetVersion,
       ) =>

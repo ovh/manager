@@ -23,12 +23,10 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountAdministra
           map(
             offerTaskIds,
             (id) =>
-              OvhApiTelephony.OfferTask()
-                .v6()
-                .get({
-                  billingAccount,
-                  taskId: id,
-                }).$promise,
+              OvhApiTelephony.OfferTask().v6().get({
+                billingAccount,
+                taskId: id,
+              }).$promise,
           ),
         ),
       );

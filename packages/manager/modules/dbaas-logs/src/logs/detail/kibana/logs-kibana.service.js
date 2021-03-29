@@ -33,9 +33,7 @@ export default class LogsKibanaService {
       .Elasticsearch()
       .Kibana()
       .Aapi();
-    this.OperationApiService = OvhApiDbaas.Logs()
-      .Operation()
-      .v6();
+    this.OperationApiService = OvhApiDbaas.Logs().Operation().v6();
     this.newKibana = {
       description: '',
     };

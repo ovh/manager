@@ -27,9 +27,7 @@ export default class TelecomTelephonyAliasConfigurationContactCenterSolutionCtrl
         },
       })
       .result.then(() => {
-        this.OvhApiTelephony.Service()
-          .v6()
-          .resetCache();
+        this.OvhApiTelephony.Service().v6().resetCache();
         this.$state
           .go('telecom.telephony.billingAccount.alias.details')
           .then(() => {

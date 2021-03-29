@@ -185,19 +185,15 @@ export default class VrackMoveDialogCtrl {
       .$promise.then((allServicesParam) => {
         let allServices = {
           ...allServicesParam,
-          dedicatedCloud: allServicesParam.dedicatedCloud.filter((service) => {
-            return (
+          dedicatedCloud: allServicesParam.dedicatedCloud.filter(
+            (service) =>
               VrackMoveDialogCtrl.isServiceAllowed(service) &&
-              service.productReference === 'EPCC'
-            );
-          }),
+              service.productReference === 'EPCC',
+          ),
           managedBareMetal: allServicesParam.dedicatedCloud.filter(
-            (service) => {
-              return (
-                VrackMoveDialogCtrl.isServiceAllowed(service) &&
-                service.productReference === 'MBM'
-              );
-            },
+            (service) =>
+              VrackMoveDialogCtrl.isServiceAllowed(service) &&
+              service.productReference === 'MBM',
           ),
           dedicatedServer: allServicesParam.dedicatedServer.filter(
             VrackMoveDialogCtrl.isServiceAllowed,
@@ -266,11 +262,10 @@ export default class VrackMoveDialogCtrl {
         if (has(allServices, 'dedicatedCloud')) {
           const groupedDedicatedCloud = groupBy(
             allServices.dedicatedCloud,
-            (dedicatedCloud) => {
-              return dedicatedCloud.productReference === 'MBM'
+            (dedicatedCloud) =>
+              dedicatedCloud.productReference === 'MBM'
                 ? 'managedBareMetal'
-                : 'dedicatedCloud';
-            },
+                : 'dedicatedCloud',
           );
           allServices = assign(
             allServices,
@@ -281,25 +276,22 @@ export default class VrackMoveDialogCtrl {
         if (has(allServices, 'dedicatedCloudDatacenter')) {
           let groupedDatacenters = groupBy(
             allServices.dedicatedCloudDatacenter,
-            (datacenter) => {
-              return get(datacenter, 'dedicatedCloud.productReference') ===
-                'MBM'
+            (datacenter) =>
+              get(datacenter, 'dedicatedCloud.productReference') === 'MBM'
                 ? 'managedBareMetalDatacenter'
-                : 'dedicatedCloudDatacenter';
-            },
+                : 'dedicatedCloudDatacenter',
           );
           groupedDatacenters = mapValues(
             groupedDatacenters,
-            (datacenters, type) => {
-              return groupBy(
+            (datacenters, type) =>
+              groupBy(
                 datacenters,
                 get(
                   this.groupedServiceKeys,
                   type,
                   this.groupedServiceKeys.dedicatedCloudDatacenter,
                 ),
-              );
-            },
+              ),
           );
           allServices = assign(
             allServices,
@@ -358,27 +350,13 @@ export default class VrackMoveDialogCtrl {
 
   resetCache() {
     this.OvhApiVrack.v6().resetCache();
-    this.OvhApiVrack.CloudProject()
-      .v6()
-      .resetQueryCache();
-    this.OvhApiVrack.IpLoadBalancing()
-      .v6()
-      .resetQueryCache();
-    this.OvhApiVrack.DedicatedCloud()
-      .v6()
-      .resetQueryCache();
-    this.OvhApiVrack.DedicatedServer()
-      .v6()
-      .resetQueryCache();
-    this.OvhApiVrack.DedicatedServerInterface()
-      .v6()
-      .resetQueryCache();
-    this.OvhApiVrack.Ip()
-      .v6()
-      .resetQueryCache();
-    this.OvhApiVrack.LegacyVrack()
-      .v6()
-      .resetQueryCache();
+    this.OvhApiVrack.CloudProject().v6().resetQueryCache();
+    this.OvhApiVrack.IpLoadBalancing().v6().resetQueryCache();
+    this.OvhApiVrack.DedicatedCloud().v6().resetQueryCache();
+    this.OvhApiVrack.DedicatedServer().v6().resetQueryCache();
+    this.OvhApiVrack.DedicatedServerInterface().v6().resetQueryCache();
+    this.OvhApiVrack.Ip().v6().resetQueryCache();
+    this.OvhApiVrack.LegacyVrack().v6().resetQueryCache();
     this.OvhApiVrack.Aapi().resetAllCache();
   }
 
@@ -654,89 +632,75 @@ export default class VrackMoveDialogCtrl {
           let task = this.$q.reject('Unknown service type');
           switch (service.type) {
             case 'dedicatedServer':
-              task = this.OvhApiVrack.DedicatedServer()
-                .v6()
-                .create(
-                  {
-                    serviceName: this.serviceName,
-                  },
-                  {
-                    dedicatedServer: service.id,
-                  },
-                ).$promise;
+              task = this.OvhApiVrack.DedicatedServer().v6().create(
+                {
+                  serviceName: this.serviceName,
+                },
+                {
+                  dedicatedServer: service.id,
+                },
+              ).$promise;
               break;
             case 'dedicatedServerInterface':
-              task = this.OvhApiVrack.DedicatedServerInterface()
-                .v6()
-                .post(
-                  {
-                    serviceName: this.serviceName,
-                  },
-                  {
-                    dedicatedServerInterface: service.id,
-                  },
-                ).$promise;
+              task = this.OvhApiVrack.DedicatedServerInterface().v6().post(
+                {
+                  serviceName: this.serviceName,
+                },
+                {
+                  dedicatedServerInterface: service.id,
+                },
+              ).$promise;
               break;
             case 'dedicatedCloud':
             case 'managedBareMetal':
-              task = this.OvhApiVrack.DedicatedCloud()
-                .v6()
-                .create(
-                  {
-                    serviceName: this.serviceName,
-                  },
-                  {
-                    dedicatedCloud: service.id,
-                  },
-                ).$promise;
+              task = this.OvhApiVrack.DedicatedCloud().v6().create(
+                {
+                  serviceName: this.serviceName,
+                },
+                {
+                  dedicatedCloud: service.id,
+                },
+              ).$promise;
               break;
             case 'legacyVrack':
-              task = this.OvhApiVrack.LegacyVrack()
-                .v6()
-                .create(
-                  {
-                    serviceName: this.serviceName,
-                  },
-                  {
-                    legacyVrack: service.id,
-                  },
-                ).$promise;
+              task = this.OvhApiVrack.LegacyVrack().v6().create(
+                {
+                  serviceName: this.serviceName,
+                },
+                {
+                  legacyVrack: service.id,
+                },
+              ).$promise;
               break;
             case 'ip':
-              task = this.OvhApiVrack.Ip()
-                .v6()
-                .create(
-                  {
-                    serviceName: this.serviceName,
-                  },
-                  {
-                    block: service.id,
-                  },
-                ).$promise;
+              task = this.OvhApiVrack.Ip().v6().create(
+                {
+                  serviceName: this.serviceName,
+                },
+                {
+                  block: service.id,
+                },
+              ).$promise;
               break;
             case 'cloudProject':
-              task = this.OvhApiVrack.CloudProject()
-                .v6()
-                .create(
-                  {
-                    serviceName: this.serviceName,
-                  },
-                  {
-                    project: service.id,
-                  },
-                ).$promise;
+              task = this.OvhApiVrack.CloudProject().v6().create(
+                {
+                  serviceName: this.serviceName,
+                },
+                {
+                  project: service.id,
+                },
+              ).$promise;
               break;
             case 'ipLoadbalancing':
-              task = this.OvhApiVrack.IpLoadBalancing()
-                .v6()
-                .create(
-                  {
-                    serviceName: this.serviceName,
-                  },
-                  {
-                    ipLoadbalancing: service.id,
-                  },
-                ).$promise;
+              task = this.OvhApiVrack.IpLoadBalancing().v6().create(
+                {
+                  serviceName: this.serviceName,
+                },
+                {
+                  ipLoadbalancing: service.id,
+                },
+              ).$promise;
               break;
             default:
               break;
@@ -767,61 +731,47 @@ export default class VrackMoveDialogCtrl {
           let task = this.$q.reject('Unknown service type');
           switch (service.type) {
             case 'dedicatedServer':
-              task = this.OvhApiVrack.DedicatedServer()
-                .v6()
-                .delete({
-                  serviceName: this.serviceName,
-                  dedicatedServer: service.id,
-                }).$promise;
+              task = this.OvhApiVrack.DedicatedServer().v6().delete({
+                serviceName: this.serviceName,
+                dedicatedServer: service.id,
+              }).$promise;
               break;
             case 'dedicatedServerInterface':
-              task = this.OvhApiVrack.DedicatedServerInterface()
-                .v6()
-                .delete({
-                  serviceName: this.serviceName,
-                  dedicatedServerInterface: service.id,
-                }).$promise;
+              task = this.OvhApiVrack.DedicatedServerInterface().v6().delete({
+                serviceName: this.serviceName,
+                dedicatedServerInterface: service.id,
+              }).$promise;
               break;
             case 'dedicatedCloud':
             case 'managedBareMetal':
-              task = this.OvhApiVrack.DedicatedCloud()
-                .v6()
-                .delete({
-                  serviceName: this.serviceName,
-                  dedicatedCloud: service.id,
-                }).$promise;
+              task = this.OvhApiVrack.DedicatedCloud().v6().delete({
+                serviceName: this.serviceName,
+                dedicatedCloud: service.id,
+              }).$promise;
               break;
             case 'legacyVrack':
-              task = this.OvhApiVrack.LegacyVrack()
-                .v6()
-                .delete({
-                  serviceName: this.serviceName,
-                  legacyVrack: service.id,
-                }).$promise;
+              task = this.OvhApiVrack.LegacyVrack().v6().delete({
+                serviceName: this.serviceName,
+                legacyVrack: service.id,
+              }).$promise;
               break;
             case 'ip':
-              task = this.OvhApiVrack.Ip()
-                .v6()
-                .delete({
-                  serviceName: this.serviceName,
-                  ip: service.id,
-                }).$promise;
+              task = this.OvhApiVrack.Ip().v6().delete({
+                serviceName: this.serviceName,
+                ip: service.id,
+              }).$promise;
               break;
             case 'cloudProject':
-              task = this.OvhApiVrack.CloudProject()
-                .v6()
-                .delete({
-                  serviceName: this.serviceName,
-                  project: service.id,
-                }).$promise;
+              task = this.OvhApiVrack.CloudProject().v6().delete({
+                serviceName: this.serviceName,
+                project: service.id,
+              }).$promise;
               break;
             case 'ipLoadbalancing':
-              task = this.OvhApiVrack.IpLoadBalancing()
-                .v6()
-                .delete({
-                  serviceName: this.serviceName,
-                  ipLoadbalancing: service.id,
-                }).$promise;
+              task = this.OvhApiVrack.IpLoadBalancing().v6().delete({
+                serviceName: this.serviceName,
+                ipLoadbalancing: service.id,
+              }).$promise;
               break;
             default:
               break;

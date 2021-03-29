@@ -127,13 +127,13 @@ export default class KubernetesNodesAddCtrl {
       this.nodePoolId,
       this.nodeCount + this.nodeAddCount,
     )
-      .then(() => {
-        return this.nodeCount === 1
+      .then(() =>
+        this.nodeCount === 1
           ? this.goBack(this.$translate.instant('kube_nodes_add_success'))
           : this.goBack(
               this.$translate.instant('kube_nodes_add_success_multiple'),
-            );
-      })
+            ),
+      )
       .catch((error) => {
         this.CucCloudMessage.error(
           this.$translate.instant('kube_nodes_add_error', {

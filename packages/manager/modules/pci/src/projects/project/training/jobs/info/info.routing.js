@@ -8,9 +8,8 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: /* @ngInject */ (jobId) => jobId,
       jobId: /* @ngInject */ ($transition$) => $transition$.params().jobId,
-      job: /* @ngInject */ (PciProjectTrainingJobService, projectId, jobId) => {
-        return PciProjectTrainingJobService.get(projectId, jobId);
-      },
+      job: /* @ngInject */ (PciProjectTrainingJobService, projectId, jobId) =>
+        PciProjectTrainingJobService.get(projectId, jobId),
       jobInfo: /* @ngInject */ ($state, projectId, jobId) =>
         $state.href('pci.projects.project.training.jobs.info', {
           projectId,

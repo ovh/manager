@@ -123,15 +123,11 @@ export default class TelecomTelephonyAliasConfigurationAgentsOvhPabxCtrl {
   }
 
   fetchAgent(id) {
-    return this.OvhApiTelephony.OvhPabx()
-      .Hunting()
-      .Agent()
-      .v6()
-      .get({
-        billingAccount: this.$stateParams.billingAccount,
-        serviceName: this.$stateParams.serviceName,
-        agentId: id,
-      }).$promise;
+    return this.OvhApiTelephony.OvhPabx().Hunting().Agent().v6().get({
+      billingAccount: this.$stateParams.billingAccount,
+      serviceName: this.$stateParams.serviceName,
+      agentId: id,
+    }).$promise;
   }
 
   getSelectedAgentIds() {
@@ -302,23 +298,19 @@ export default class TelecomTelephonyAliasConfigurationAgentsOvhPabxCtrl {
           if (!number || !number.length) {
             return this.$q.when(null);
           }
-          return this.OvhApiTelephony.OvhPabx()
-            .Hunting()
-            .Agent()
-            .v6()
-            .create(
-              {
-                billingAccount: this.$stateParams.billingAccount,
-                serviceName: this.$stateParams.serviceName,
-              },
-              {
-                number,
-                simultaneousLines: 1,
-                status: 'available',
-                timeout: 20,
-                wrapUpTime: 0,
-              },
-            ).$promise;
+          return this.OvhApiTelephony.OvhPabx().Hunting().Agent().v6().create(
+            {
+              billingAccount: this.$stateParams.billingAccount,
+              serviceName: this.$stateParams.serviceName,
+            },
+            {
+              number,
+              simultaneousLines: 1,
+              status: 'available',
+              timeout: 20,
+              wrapUpTime: 0,
+            },
+          ).$promise;
         }),
       )
       .then(() => {

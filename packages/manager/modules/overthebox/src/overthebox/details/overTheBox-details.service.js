@@ -1,6 +1,6 @@
 import 'moment';
 
-export default /* @ngInject */ function($http) {
+export default /* @ngInject */ function ($http) {
   this.getGraphData = function getGraphData(opts) {
     const req = {
       method: 'POST',
@@ -13,10 +13,7 @@ export default /* @ngInject */ function($http) {
         )}`,
       },
       data: JSON.stringify({
-        start:
-          moment()
-            .subtract(1, 'days')
-            .unix() * 1000,
+        start: moment().subtract(1, 'days').unix() * 1000,
         queries: [
           {
             metric: 'linux.net.bytes',

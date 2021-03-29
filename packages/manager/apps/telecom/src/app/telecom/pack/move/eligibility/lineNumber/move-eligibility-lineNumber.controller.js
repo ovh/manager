@@ -44,9 +44,7 @@ export default class {
   fiberSearchBuildingByNumber(lineNumber, status) {
     return this.OvhApiConnectivityEligibilitySearch.v6()
       .searchBuildingByLines(this.$scope, { lineNumber, status })
-      .then((data) => {
-        return data.result.length > 0 ? data.result : null;
-      })
+      .then((data) => (data.result.length > 0 ? data.result : null))
       .catch((error) => {
         this.loading = false;
         this.TucToast.error(error);
@@ -58,9 +56,7 @@ export default class {
       .testBuilding(this.$scope, {
         building: buildingRef,
       })
-      .then((elig) => {
-        return elig;
-      })
+      .then((elig) => elig)
       .catch((error) => {
         this.loading = false;
         this.TucToast.error(error);

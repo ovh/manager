@@ -48,8 +48,8 @@ export default class {
           )}`,
         ),
       )
-      .catch((error) => {
-        return this.goToBackup(
+      .catch((error) =>
+        this.goToBackup(
           this.$translate.instant(
             'dedicatedCloud_datacenter_backup_upgrade_error',
             {
@@ -57,8 +57,8 @@ export default class {
             },
           ),
           'danger',
-        );
-      })
+        ),
+      )
       .finally(() => {
         this.upgrading = false;
       });

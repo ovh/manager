@@ -47,19 +47,18 @@ export default class PciTrainingJobsSubmitController {
     this.filteredContainers = this.containers
       .filter(({ archive }) => !archive)
       // Remove containers that are already on volume list
-      .filter(({ name, region }) => {
-        return !this.job.volumes
-          // eslint-disable-next-line no-shadow
-          .map(({ container, region }) => `${container}-${region}`)
-          .includes(`${name}-${region}`);
-      })
-      .map(({ name, region }) => {
-        return {
-          name,
-          region,
-          description: `${name} - ${region}`,
-        };
-      });
+      .filter(
+        ({ name, region }) =>
+          !this.job.volumes
+            // eslint-disable-next-line no-shadow
+            .map(({ container, region }) => `${container}-${region}`)
+            .includes(`${name}-${region}`),
+      )
+      .map(({ name, region }) => ({
+        name,
+        region,
+        description: `${name} - ${region}`,
+      }));
   }
 
   onAddVolume(form) {

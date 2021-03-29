@@ -12,7 +12,7 @@
  *  **Note:** when ui-bootstrap version >= 2.0 will be used, the only thing to do should be to add
  *  a custom class with the 'popover-class' option of the uibPopover directive. To be tested.
  */
-export default /* @ngInject */ function(matchmedia, responsivePopover) {
+export default /* @ngInject */ function (matchmedia, responsivePopover) {
   return {
     restrict: 'C',
     link(scope, iElement) {
@@ -20,7 +20,7 @@ export default /* @ngInject */ function(matchmedia, responsivePopover) {
       let isMobileDetected = false;
       let mediaQueryHandler = false;
       let scrollPosition;
-      const resetFixedBody = function(scrollTo) {
+      const resetFixedBody = function (scrollTo) {
         $('body')
           .removeClass('responsive-popover-fixed-body')
           .css('top', '')

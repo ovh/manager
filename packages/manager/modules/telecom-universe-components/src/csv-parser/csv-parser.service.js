@@ -1,6 +1,6 @@
 import CSV from 'CSV-JS';
 
-export default function() {
+export default function () {
   this.setColumnSeparator = function setColumnSeparator(separatorParam) {
     let separator = separatorParam;
 

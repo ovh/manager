@@ -11,9 +11,7 @@ export default class LogsHomeService {
     SidebarMenu,
   ) {
     this.$http = $http;
-    this.DetailsAapiService = OvhApiDbaas.Logs()
-      .Details()
-      .Aapi();
+    this.DetailsAapiService = OvhApiDbaas.Logs().Details().Aapi();
     this.LogsLexiService = OvhApiDbaas.Logs().v6();
     this.LogsHelperService = LogsHelperService;
     this.LogsConstants = LogsConstants;

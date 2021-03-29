@@ -26,12 +26,10 @@ export default class PciProjectStorageSnapshotsService {
           map(
             volumeIds,
             (volumeId) =>
-              this.OvhApiCloudProject.Volume()
-                .v6()
-                .get({
-                  serviceName: projectId,
-                  volumeId,
-                }).$promise,
+              this.OvhApiCloudProject.Volume().v6().get({
+                serviceName: projectId,
+                volumeId,
+              }).$promise,
           ),
         );
       })
@@ -69,12 +67,10 @@ export default class PciProjectStorageSnapshotsService {
   }
 
   getVolume(projectId, storageId) {
-    return this.OvhApiCloudProject.Volume()
-      .v6()
-      .get({
-        serviceName: projectId,
-        volumeId: storageId,
-      }).$promise;
+    return this.OvhApiCloudProject.Volume().v6().get({
+      serviceName: projectId,
+      volumeId: storageId,
+    }).$promise;
   }
 
   delete(projectId, { id }) {
@@ -88,22 +84,20 @@ export default class PciProjectStorageSnapshotsService {
     projectId,
     { description, imageId, name, region, size, snapshotId, type, bootable },
   ) {
-    return this.OvhApiCloudProject.Volume()
-      .v6()
-      .save(
-        {
-          serviceName: projectId,
-        },
-        {
-          description,
-          imageId,
-          name,
-          region,
-          size,
-          snapshotId,
-          type,
-          bootable,
-        },
-      ).$promise;
+    return this.OvhApiCloudProject.Volume().v6().save(
+      {
+        serviceName: projectId,
+      },
+      {
+        description,
+        imageId,
+        name,
+        region,
+        size,
+        snapshotId,
+        type,
+        bootable,
+      },
+    ).$promise;
   }
 }

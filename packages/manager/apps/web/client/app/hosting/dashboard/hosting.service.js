@@ -391,18 +391,18 @@ import union from 'lodash/union';
       getEmailOptions(serviceName) {
         return this.OvhHttp.get(`/hosting/web/${serviceName}/emailOption`, {
           rootPath: 'apiv6',
-        }).then((ids) => {
-          return this.$q.all(
-            ids.map((id) => {
-              return this.OvhHttp.get(
+        }).then((ids) =>
+          this.$q.all(
+            ids.map((id) =>
+              this.OvhHttp.get(
                 `/hosting/web/${serviceName}/emailOption/${id}`,
                 {
                   rootPath: 'apiv6',
                 },
-              );
-            }),
-          );
-        });
+              ),
+            ),
+          ),
+        );
       }
 
       /**
@@ -425,11 +425,11 @@ import union from 'lodash/union';
        */
       getAvailableOffer(domain) {
         return this.getServiceInfos(domain)
-          .then(({ serviceId }) => {
-            return this.OvhHttp.get(`/services/${serviceId}`, {
+          .then(({ serviceId }) =>
+            this.OvhHttp.get(`/services/${serviceId}`, {
               rootPath: 'apiv6',
-            });
-          })
+            }),
+          )
           .then(({ parentServiceId }) => {
             // if the service is included in another offer it cannot be upgraded
             if (parentServiceId === null) {

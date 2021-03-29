@@ -147,16 +147,20 @@ export default class {
 
         Object.assign(this.statistics, {
           credits: Math.round(this.statistics.credits * 100) / 100,
-          deliveredPercentage: `(${Math.round(
-            (this.statistics.delivered / (this.statistics.sent || 1)) *
-              100 *
-              100,
-          ) / 100}%)`,
-          stoplistedPercentage: `(${Math.round(
-            (this.statistics.stoplisted / (this.statistics.sent || 1)) *
-              100 *
-              100,
-          ) / 100}%)`,
+          deliveredPercentage: `(${
+            Math.round(
+              (this.statistics.delivered / (this.statistics.sent || 1)) *
+                100 *
+                100,
+            ) / 100
+          }%)`,
+          stoplistedPercentage: `(${
+            Math.round(
+              (this.statistics.stoplisted / (this.statistics.sent || 1)) *
+                100 *
+                100,
+            ) / 100
+          }%)`,
         });
         return statistics;
       })

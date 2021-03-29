@@ -252,9 +252,7 @@ export default /* @ngInject */ (
                 startsWith(consumption.dialed, prefix) &&
                 consumption.price !== 0 &&
                 moment(consumption.creationDatetime).isAfter(
-                  moment()
-                    .subtract(60, 'days')
-                    .format(),
+                  moment().subtract(60, 'days').format(),
                 ),
             ),
           ),

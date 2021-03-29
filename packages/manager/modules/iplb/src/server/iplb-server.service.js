@@ -18,18 +18,9 @@ export default class IpLoadBalancerServerService {
     this.CucServiceHelper = CucServiceHelper;
 
     this.Server = {
-      tcp: this.IpLoadBalancing.Farm()
-        .Tcp()
-        .Server()
-        .v6(),
-      udp: this.IpLoadBalancing.Farm()
-        .Udp()
-        .Server()
-        .v6(),
-      http: this.IpLoadBalancing.Farm()
-        .Http()
-        .Server()
-        .v6(),
+      tcp: this.IpLoadBalancing.Farm().Tcp().Server().v6(),
+      udp: this.IpLoadBalancing.Farm().Udp().Server().v6(),
+      http: this.IpLoadBalancing.Farm().Http().Server().v6(),
     };
   }
 

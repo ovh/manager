@@ -1,4 +1,4 @@
-export default /* @ngInject */ function($q, TUC_JS_PLUMB) {
+export default /* @ngInject */ function ($q, TUC_JS_PLUMB) {
   const self = this;
 
   const jsPlumbReadyDefered = $q.defer();

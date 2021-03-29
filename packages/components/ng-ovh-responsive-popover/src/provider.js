@@ -14,7 +14,7 @@
  *      });
  * </pre>
  */
-export default function() {
+export default function () {
   const self = this;
   let mobileMediaQuery = '(max-width: 980px)';
 
@@ -34,7 +34,7 @@ export default function() {
    *
    *  @return {String} The new query provided.
    */
-  self.setMobileMediaQuery = function(query) {
+  self.setMobileMediaQuery = function (query) {
     if (query) {
       mobileMediaQuery = query;
     }
@@ -51,7 +51,7 @@ export default function() {
    *  @description
    *  This service enable you to get configured values.
    */
-  self.$get = /* @ngInject */ function() {
+  self.$get = /* @ngInject */ function () {
     return {
       /**
        *  @ngdoc method

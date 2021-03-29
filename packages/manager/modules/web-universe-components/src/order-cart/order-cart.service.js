@@ -20,9 +20,7 @@ export default class OrderCartService {
    * @return {Promise<Object>}      Promise of the new created cart
    */
   createNewCart(ovhSubsidiary) {
-    return this.OvhApiOrder.Cart()
-      .v6()
-      .post({}, { ovhSubsidiary }).$promise;
+    return this.OvhApiOrder.Cart().v6().post({}, { ovhSubsidiary }).$promise;
   }
 
   /**
@@ -32,9 +30,7 @@ export default class OrderCartService {
    * @return {Promise<Object>}    Promise of the assign cart
    */
   assignCart(cartId) {
-    return this.OvhApiOrder.Cart()
-      .v6()
-      .assign({ cartId }).$promise;
+    return this.OvhApiOrder.Cart().v6().assign({ cartId }).$promise;
   }
 
   /**
@@ -44,9 +40,7 @@ export default class OrderCartService {
    * @return {Promise}        Promise of cart removal
    */
   deleteCart(cartId) {
-    return this.OvhApiOrder.Cart()
-      .v6()
-      .delete({ cartId }).$promise;
+    return this.OvhApiOrder.Cart().v6().delete({ cartId }).$promise;
   }
 
   /**
@@ -57,13 +51,10 @@ export default class OrderCartService {
    * @return {Promise<Array>}      Promise of offers list
    */
   getProductOffers(cartId, productName) {
-    return this.OvhApiOrder.Cart()
-      .Product()
-      .v6()
-      .get({
-        cartId,
-        productName,
-      }).$promise;
+    return this.OvhApiOrder.Cart().Product().v6().get({
+      cartId,
+      productName,
+    }).$promise;
   }
 
   /**
@@ -76,16 +67,13 @@ export default class OrderCartService {
    * cart, with identification information to add configuration if needed
    */
   addProductToCart(cartId, productName, product) {
-    return this.OvhApiOrder.Cart()
-      .Product()
-      .v6()
-      .post(
-        {
-          cartId,
-          productName,
-        },
-        product,
-      ).$promise;
+    return this.OvhApiOrder.Cart().Product().v6().post(
+      {
+        cartId,
+        productName,
+      },
+      product,
+    ).$promise;
   }
 
   /**
@@ -140,20 +128,16 @@ export default class OrderCartService {
    * cart
    */
   addConfigurationItem(cartId, itemId, label, value) {
-    return this.OvhApiOrder.Cart()
-      .Item()
-      .Configuration()
-      .v6()
-      .post(
-        {
-          cartId,
-          itemId,
-        },
-        {
-          label,
-          value,
-        },
-      ).$promise;
+    return this.OvhApiOrder.Cart().Item().Configuration().v6().post(
+      {
+        cartId,
+        itemId,
+      },
+      {
+        label,
+        value,
+      },
+    ).$promise;
   }
 
   /**
@@ -167,15 +151,11 @@ export default class OrderCartService {
    * @return {Promise}                Promise of the deleted configuration item
    */
   deleteConfigurationItem(cartId, itemId, configurationId) {
-    return this.OvhApiOrder.Cart()
-      .Item()
-      .Configuration()
-      .v6()
-      .delete({
-        cartId,
-        itemId,
-        configurationId,
-      }).$promise;
+    return this.OvhApiOrder.Cart().Item().Configuration().v6().delete({
+      cartId,
+      itemId,
+      configurationId,
+    }).$promise;
   }
 
   /**
@@ -185,11 +165,9 @@ export default class OrderCartService {
    * @return {Promise<Object>}  Promise of the checkout information
    */
   getCheckoutInformations(cartId) {
-    return this.OvhApiOrder.Cart()
-      .v6()
-      .getCheckout({
-        cartId,
-      }).$promise;
+    return this.OvhApiOrder.Cart().v6().getCheckout({
+      cartId,
+    }).$promise;
   }
 
   /**
@@ -215,16 +193,14 @@ export default class OrderCartService {
       !checkout.autoPayWithPreferredPaymentMethod &&
       order.prices.withTax.value === 0
     ) {
-      await this.OvhApiMe.Order()
-        .v6()
-        .payRegisteredPaymentMean(
-          {
-            orderId: order.orderId,
-          },
-          {
-            paymentMean: 'fidelityAccount',
-          },
-        ).$promise;
+      await this.OvhApiMe.Order().v6().payRegisteredPaymentMean(
+        {
+          orderId: order.orderId,
+        },
+        {
+          paymentMean: 'fidelityAccount',
+        },
+      ).$promise;
     }
 
     return order;
@@ -240,13 +216,10 @@ export default class OrderCartService {
    * public catalog
    */
   getProductPublicCatalog(ovhSubsidiary, productName) {
-    return this.OvhApiOrder.Catalog()
-      .Public()
-      .v6()
-      .get({
-        ovhSubsidiary,
-        productName,
-      }).$promise;
+    return this.OvhApiOrder.Catalog().Public().v6().get({
+      ovhSubsidiary,
+      productName,
+    }).$promise;
   }
 
   /**
@@ -257,12 +230,10 @@ export default class OrderCartService {
    * @return {Promise<Array>}     Promise of the product options list
    */
   getProductServiceOptions(productName, serviceName) {
-    return this.OvhApiOrder.CartServiceOption()
-      .v6()
-      .get({
-        productName,
-        serviceName,
-      }).$promise;
+    return this.OvhApiOrder.CartServiceOption().v6().get({
+      productName,
+      serviceName,
+    }).$promise;
   }
 
   /**
@@ -298,10 +269,7 @@ export default class OrderCartService {
    * @return {Promise<Array>} Promise of the cart items list of ids
    */
   getCartItems(cartId) {
-    return this.OvhApiOrder.Cart()
-      .Item()
-      .v6()
-      .query({ cartId }).$promise;
+    return this.OvhApiOrder.Cart().Item().v6().query({ cartId }).$promise;
   }
 
   /**
@@ -312,10 +280,8 @@ export default class OrderCartService {
    * @return {Promise}       Promise of the deleted item
    */
   deleteItem(cartId, itemId) {
-    return this.OvhApiOrder.Cart()
-      .Item()
-      .v6()
-      .delete({ cartId, itemId }).$promise;
+    return this.OvhApiOrder.Cart().Item().v6().delete({ cartId, itemId })
+      .$promise;
   }
 
   /**
@@ -325,10 +291,7 @@ export default class OrderCartService {
    * @return {Promise}       Promise of the list of deleted items
    */
   deleteAllItems(cartId) {
-    this.OvhApiOrder.Cart()
-      .Item()
-      .v6()
-      .resetQueryCache();
+    this.OvhApiOrder.Cart().Item().v6().resetQueryCache();
     return this.getCartItems(cartId).then((itemsId) =>
       this.$q.all(itemsId.map((id) => this.deleteItem(cartId, id))),
     );

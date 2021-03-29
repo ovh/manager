@@ -66,11 +66,9 @@ angular.module('Billing.controllers').controller(
         })
         .$promise.then((associatedObject) => {
           if (associatedObject.type === 'Bill') {
-            return this.OvhApiMe.Bill()
-              .v6()
-              .get({
-                billId: associatedObject.id,
-              }).$promise;
+            return this.OvhApiMe.Bill().v6().get({
+              billId: associatedObject.id,
+            }).$promise;
           }
 
           return null;
@@ -86,12 +84,9 @@ angular.module('Billing.controllers').controller(
 
       return this.$q
         .all({
-          debt: this.OvhApiMe.DebtAccount()
-            .Debt()
-            .v6()
-            .get({
-              debtId: this.$stateParams.debtId,
-            }).$promise,
+          debt: this.OvhApiMe.DebtAccount().Debt().v6().get({
+            debtId: this.$stateParams.debtId,
+          }).$promise,
           operations: this.getOperations(),
         })
         .then((results) => {
@@ -99,11 +94,9 @@ angular.module('Billing.controllers').controller(
 
           return this.$q
             .all({
-              order: this.OvhApiMe.Order()
-                .v6()
-                .get({
-                  orderId: results.debt.orderId,
-                }).$promise,
+              order: this.OvhApiMe.Order().v6().get({
+                orderId: results.debt.orderId,
+              }).$promise,
               bill: this.getBill(results.debt.orderId),
             })
             .then((details) => {

@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-export default /* @ngInject */ function($scope, $translate) {
+export default /* @ngInject */ function ($scope, $translate) {
   let initialized = false;
 
   let currentStep;
@@ -16,13 +16,13 @@ export default /* @ngInject */ function($scope, $translate) {
   $scope.onFinish = angular.noop;
   $scope.onCancel = angular.noop;
 
-  this.initWatcher = function() {
+  this.initWatcher = function () {
     initialized = true;
     this.checkStepShow();
   };
 
   // Watcher
-  this.checkStepShow = function() {
+  this.checkStepShow = function () {
     if (!initialized) {
       return;
     }
@@ -49,11 +49,11 @@ export default /* @ngInject */ function($scope, $translate) {
     }
   };
 
-  this.addStep = function(step) {
+  this.addStep = function (step) {
     $scope.steps.push(step);
   };
 
-  this.getStepCount = function() {
+  this.getStepCount = function () {
     return $scope.steps.length;
   };
 
@@ -61,19 +61,19 @@ export default /* @ngInject */ function($scope, $translate) {
    * Buttons
    */
 
-  this.setConfirmButton = function(value) {
+  this.setConfirmButton = function (value) {
     $scope.confirmButton = value;
   };
 
-  this.setCancelButton = function(value) {
+  this.setCancelButton = function (value) {
     $scope.cancelButton = value;
   };
 
-  this.setWizardFormConfirmButtonText = function(value) {
+  this.setWizardFormConfirmButtonText = function (value) {
     $scope.wizardConfirmButtonText = value;
   };
 
-  this.setWizardFormCancelButtonText = function(value) {
+  this.setWizardFormCancelButtonText = function (value) {
     $scope.wizardCancelButtonText = value;
   };
 }

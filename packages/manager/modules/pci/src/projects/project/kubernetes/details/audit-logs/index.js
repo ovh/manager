@@ -11,9 +11,9 @@ angular.module(moduleName, ['oc.lazyLoad', 'ui.router']).config(
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-        return import('./audit-logs.module').then((mod) => {
-          return $ocLazyLoad.inject(mod.default || mod);
-        });
+        return import('./audit-logs.module').then((mod) =>
+          $ocLazyLoad.inject(mod.default || mod),
+        );
       },
     });
   },

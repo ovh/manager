@@ -76,22 +76,18 @@ export default class CloudConnectService {
   getVracks() {
     return this.OvhApiVrack.v6()
       .query()
-      .$promise.then((vRacks) => {
-        return this.$q.all(
-          map(vRacks, (vRackId) => this.getVrackDetails(vRackId)),
-        );
-      });
+      .$promise.then((vRacks) =>
+        this.$q.all(map(vRacks, (vRackId) => this.getVrackDetails(vRackId))),
+      );
   }
 
   getVrackDetails(vRackId) {
     return this.OvhApiVrack.v6()
       .get({ serviceName: vRackId })
-      .$promise.then((vRack) => {
-        return {
-          name: vRack.name || vRackId,
-          id: vRackId,
-        };
-      });
+      .$promise.then((vRack) => ({
+        name: vRack.name || vRackId,
+        id: vRackId,
+      }));
   }
 
   getVrackAllowedServices(vRackId) {
@@ -157,11 +153,11 @@ export default class CloudConnectService {
       .get(`/ovhCloudConnect/${cloudConnect.uuid}/config/pop`, {
         cache: this.cache.popConfigurationQuery,
       })
-      .then((res) => {
-        return this.$q
+      .then((res) =>
+        this.$q
           .all(
-            map(res.data, (popConfigId) => {
-              return this.$http
+            map(res.data, (popConfigId) =>
+              this.$http
                 .get(
                   `/ovhCloudConnect/${cloudConnect.uuid}/config/pop/${popConfigId}`,
                   {
@@ -171,11 +167,11 @@ export default class CloudConnectService {
                 .then((config) => {
                   cloudConnect.setPopConfiguration(config.data);
                   return config.data;
-                });
-            }),
+                }),
+            ),
           )
-          .then(() => cloudConnect);
-      })
+          .then(() => cloudConnect),
+      )
       .finally(() => {
         cloudConnect.setLoadingPopConfiguration(false);
         this.checkPendingTasks(cloudConnect);
@@ -208,18 +204,16 @@ export default class CloudConnectService {
     cloudConnect.setLoadingInterface(true);
     return this.$q
       .all(
-        map(cloudConnect.interfaceList, (interfaceId) => {
-          return this.$http
+        map(cloudConnect.interfaceList, (interfaceId) =>
+          this.$http
             .get(
               `/ovhCloudConnect/${cloudConnect.uuid}/interface/${interfaceId}`,
               {
                 cache: this.cache.interface,
               },
             )
-            .then(({ data }) => {
-              return new CloudConnectInterface(data);
-            });
-        }),
+            .then(({ data }) => new CloudConnectInterface(data)),
+        ),
       )
       .then((interfaces) => {
         cloudConnect.setInterface(interfaces);
@@ -321,8 +315,8 @@ export default class CloudConnectService {
       .get(`/ovhCloudConnect/${cloudConnect.uuid}/datacenter`, {
         cache: this.cache.datacenterQuery,
       })
-      .then(({ data }) => {
-        return this.$q
+      .then(({ data }) =>
+        this.$q
           .all(
             map(data, (datacenterId) =>
               this.$http
@@ -335,8 +329,8 @@ export default class CloudConnectService {
                 .then((res) => res.data),
             ),
           )
-          .then((list) => cloudConnect.setAvailableDatacenters(list));
-      });
+          .then((list) => cloudConnect.setAvailableDatacenters(list)),
+      );
   }
 
   loadDatacenterConfigurations(cloudConnect) {
@@ -349,11 +343,11 @@ export default class CloudConnectService {
           cache: this.cache.datacenterConfigQuery,
         },
       )
-      .then((res) => {
-        return this.$q
+      .then((res) =>
+        this.$q
           .all(
-            map(res.data, (datacenterId) => {
-              return this.$http
+            map(res.data, (datacenterId) =>
+              this.$http
                 .get(
                   `/ovhCloudConnect/${cloudConnect.uuid}/config/pop/${pop.id}/datacenter/${datacenterId}`,
                   {
@@ -366,14 +360,14 @@ export default class CloudConnectService {
                   });
                   set(data, 'dcName', get(dc, 'name', null));
                   return new CloudConnectDatacenter(data);
-                });
-            }),
+                }),
+            ),
           )
           .then((datacenter) => cloudConnect.setDcConfigurations(datacenter))
           .finally(() => {
             cloudConnect.setLoadingDatacenters(false);
-          });
-      })
+          }),
+      )
       .finally(() => {
         cloudConnect.setLoadingDatacenters(false);
       });
@@ -419,25 +413,25 @@ export default class CloudConnectService {
           cache: this.cache.datacenterConfigExtraQuery,
         },
       )
-      .then((res) => {
-        return this.$q
+      .then((res) =>
+        this.$q
           .all(
-            map(res.data, (extraId) => {
-              return this.$http
+            map(res.data, (extraId) =>
+              this.$http
                 .get(
                   `/ovhCloudConnect/${cloudConnectId}/config/pop/${popId}/datacenter/${datacenter.id}/extra/${extraId}`,
                   {
                     cache: this.cache.datacenterConfigExtra,
                   },
                 )
-                .then((detail) => new CloudConnectDatacenterExtra(detail.data));
-            }),
+                .then((detail) => new CloudConnectDatacenterExtra(detail.data)),
+            ),
           )
           .then((extra) => datacenter.setExtraConfigurations(extra))
           .finally(() => {
             datacenter.setLoadingExtraConfigurations(false);
-          });
-      })
+          }),
+      )
       .finally(() => {
         datacenter.setLoadingExtraConfigurations(false);
       });

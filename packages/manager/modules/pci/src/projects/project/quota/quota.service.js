@@ -17,9 +17,7 @@ export default class {
    */
   getDefaultPaymentMean(region) {
     if (region !== 'US') {
-      return this.OvhApiMe.PaymentMean()
-        .v6()
-        .getDefaultPaymentMean();
+      return this.OvhApiMe.PaymentMean().v6().getDefaultPaymentMean();
     }
 
     return this.OvhApiMe.PaymentMethod()
@@ -30,11 +28,9 @@ export default class {
       .$promise.then((paymentMethodIds) =>
         map(paymentMethodIds, (paymentMethodId) =>
           Promise.all(
-            this.OvhApiMe.PaymentMethod()
-              .v6()
-              .get({
-                id: paymentMethodId,
-              }).$promise,
+            this.OvhApiMe.PaymentMethod().v6().get({
+              id: paymentMethodId,
+            }).$promise,
           ),
         ),
       )

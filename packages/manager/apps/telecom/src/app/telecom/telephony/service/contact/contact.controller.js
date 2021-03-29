@@ -51,12 +51,10 @@ export default /* @ngInject */ function TelecomTelephonyServiceContactCtrl(
   }
 
   function fetchDirectory() {
-    return OvhApiTelephony.Service()
-      .v6()
-      .directory({
-        billingAccount: $stateParams.billingAccount,
-        serviceName: $stateParams.serviceName,
-      }).$promise;
+    return OvhApiTelephony.Service().v6().directory({
+      billingAccount: $stateParams.billingAccount,
+      serviceName: $stateParams.serviceName,
+    }).$promise;
   }
 
   function fetchDirectoryServiceCode(ape) {

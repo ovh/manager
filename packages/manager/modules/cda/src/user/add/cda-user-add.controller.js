@@ -68,9 +68,9 @@ export default class CdaUserAddCtrl {
       })
       .catch((error) => {
         this.CucCloudMessage.error(
-          `${this.$translate.instant('ceph_common_error')} ${(error.data &&
-            error.data.message) ||
-            ''}`,
+          `${this.$translate.instant('ceph_common_error')} ${
+            (error.data && error.data.message) || ''
+          }`,
           this.messageContainerName,
         );
       })

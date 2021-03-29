@@ -68,14 +68,13 @@ export default /* @ngInject */ ($stateProvider) => {
       HostingCdnSharedService,
       serviceName,
       goBack,
-    ) => {
-      return HostingCdnSharedService.getCDNProperties(serviceName)
+    ) =>
+      HostingCdnSharedService.getCDNProperties(serviceName)
         .then(({ data: cdn }) => {
           if (cdn.version === HOSTING_CDN_ORDER_CDN_VERSION_V2) goBack();
           return cdn;
         })
-        .catch(() => null);
-    },
+        .catch(() => null),
 
     hasCDN: /* @ngInject */ (cdnProperties) => cdnProperties !== null,
 
@@ -130,9 +129,7 @@ export default /* @ngInject */ ($stateProvider) => {
             serviceOption,
           );
         })
-        .then((cart) => {
-          return { cart, cartId: data.cartId };
-        })
+        .then((cart) => ({ cart, cartId: data.cartId }))
         .catch((error) => goBackWithError(get(error, 'data.message', error)));
     },
 
@@ -143,8 +140,8 @@ export default /* @ngInject */ ($stateProvider) => {
       $translate,
       $window,
       HostingCdnOrderService,
-    ) => (autoPayWithPreferredPaymentMethod, cartId) => {
-      return HostingCdnOrderService.checkoutOrderCart(
+    ) => (autoPayWithPreferredPaymentMethod, cartId) =>
+      HostingCdnOrderService.checkoutOrderCart(
         autoPayWithPreferredPaymentMethod,
         cartId,
       )
@@ -159,8 +156,7 @@ export default /* @ngInject */ ($stateProvider) => {
                 });
           return goBack(message);
         })
-        .catch((error) => goBackWithError(get(error, 'data.message', error)));
-    },
+        .catch((error) => goBackWithError(get(error, 'data.message', error))),
   };
   const resolveUpgrade = {
     prepareCart: /* @ngInject */ (
@@ -168,11 +164,10 @@ export default /* @ngInject */ ($stateProvider) => {
       serviceName,
       HostingCdnOrderService,
       HostingCdnSharedService,
-    ) => () => {
-      return HostingCdnSharedService.simulateUpgrade(
-        serviceName,
-      ).catch((error) => goBackWithError(get(error, 'data.message', error)));
-    },
+    ) => () =>
+      HostingCdnSharedService.simulateUpgrade(serviceName).catch((error) =>
+        goBackWithError(get(error, 'data.message', error)),
+      ),
 
     autoPayFreeOffer: /* @ngInject */ (OvhApiMe) => ({ orderId }) =>
       OvhApiMe.Order()

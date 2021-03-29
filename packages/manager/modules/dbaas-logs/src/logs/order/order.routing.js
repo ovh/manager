@@ -5,17 +5,16 @@ export default /* @ngInject */ ($stateProvider) => {
       logsContainer: 'dbaasLogsOrder',
     },
     resolve: {
-      catalog: ($http, me) => {
-        return $http
+      catalog: ($http, me) =>
+        $http
           .get('/order/catalog/public/logs', {
             params: {
               ovhSubsidiary: me.ovhSubsidiary,
             },
           })
-          .then(({ data }) => data);
-      },
-      formattedPrice: ($http, me, LogsConstants) => {
-        return $http
+          .then(({ data }) => data),
+      formattedPrice: ($http, me, LogsConstants) =>
+        $http
           .get('/order/catalog/formatted/logs', {
             params: {
               ovhSubsidiary: me.ovhSubsidiary,
@@ -74,8 +73,7 @@ export default /* @ngInject */ ($stateProvider) => {
               standardPlanPrice,
               enterprisePlanPrice,
             };
-          });
-      },
+          }),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('dbaas_logs_order'),
     },

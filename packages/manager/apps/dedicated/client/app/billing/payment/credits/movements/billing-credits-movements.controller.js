@@ -35,14 +35,14 @@ angular.module('Billing.controllers').controller(
 
       return this.billingCredits
         .getBalanceMovement(this.$stateParams.balanceName, movementId)
-        .then((data) => {
-          return data.orderId
+        .then((data) =>
+          data.orderId
             ? this.billingCredits.getOrder(data.orderId).then((order) => ({
                 ...data,
                 orderUrl: order.url,
               }))
-            : this.$q.resolve(data);
-        })
+            : this.$q.resolve(data),
+        )
         .catch((error) => {
           this.Alerter.set(
             'alert-danger',

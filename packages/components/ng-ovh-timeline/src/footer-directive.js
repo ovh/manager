@@ -6,7 +6,7 @@
  * @description
  * Optional element to add a footer section to the `timeline-panel` for links or other actions.
  */
-export default /* @ngInject */ function() {
+export default /* @ngInject */ function () {
   return {
     require: '^timelinePanel',
     restrict: 'AE',

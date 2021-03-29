@@ -33,15 +33,11 @@ export default /* @ngInject */ function TelecomTelephonyAliasConfigurationRecord
             map(
               ids,
               (id) =>
-                OvhApiTelephony.OvhPabx()
-                  .Hunting()
-                  .Queue()
-                  .v6()
-                  .get({
-                    billingAccount: $stateParams.billingAccount,
-                    serviceName: $stateParams.serviceName,
-                    queueId: id,
-                  }).$promise,
+                OvhApiTelephony.OvhPabx().Hunting().Queue().v6().get({
+                  billingAccount: $stateParams.billingAccount,
+                  serviceName: $stateParams.serviceName,
+                  queueId: id,
+                }).$promise,
             ),
           )
           .then((queues) => sortBy(queues, 'queueId')),
@@ -49,10 +45,7 @@ export default /* @ngInject */ function TelecomTelephonyAliasConfigurationRecord
   };
 
   self.fetchRecords = function fetchRecords() {
-    OvhApiTelephony.OvhPabx()
-      .Records()
-      .v6()
-      .resetAllCache();
+    OvhApiTelephony.OvhPabx().Records().v6().resetAllCache();
     return OvhApiTelephony.OvhPabx()
       .Records()
       .v6()
@@ -66,14 +59,11 @@ export default /* @ngInject */ function TelecomTelephonyAliasConfigurationRecord
             map(
               chunk(recordsIds, 50),
               (chunkIds) =>
-                OvhApiTelephony.OvhPabx()
-                  .Records()
-                  .v6()
-                  .getBatch({
-                    billingAccount: $stateParams.billingAccount,
-                    serviceName: $stateParams.serviceName,
-                    id: chunkIds,
-                  }).$promise,
+                OvhApiTelephony.OvhPabx().Records().v6().getBatch({
+                  billingAccount: $stateParams.billingAccount,
+                  serviceName: $stateParams.serviceName,
+                  id: chunkIds,
+                }).$promise,
             ),
           )
           .then((chunkResult) => map(flatten(chunkResult), 'value')),
@@ -112,14 +102,11 @@ export default /* @ngInject */ function TelecomTelephonyAliasConfigurationRecord
       map(
         records,
         (record) =>
-          OvhApiTelephony.OvhPabx()
-            .Records()
-            .v6()
-            .remove({
-              billingAccount: $stateParams.billingAccount,
-              serviceName: $stateParams.serviceName,
-              id: record.id,
-            }).$promise,
+          OvhApiTelephony.OvhPabx().Records().v6().remove({
+            billingAccount: $stateParams.billingAccount,
+            serviceName: $stateParams.serviceName,
+            id: record.id,
+          }).$promise,
       ),
     );
   };

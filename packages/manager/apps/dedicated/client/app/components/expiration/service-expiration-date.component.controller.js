@@ -45,9 +45,7 @@ import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 
     getDate() {
       if (this.isAutoRenew()) {
-        return moment(this.serviceInfos.expiration)
-          .add(1, 'days')
-          .format();
+        return moment(this.serviceInfos.expiration).add(1, 'days').format();
       }
       return this.serviceInfos.expiration;
     }

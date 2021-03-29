@@ -215,15 +215,10 @@ export default /* @ngInject */ ($compile, $locale) => ({
         // @see https://fullcalendar.io/docs/utilities/Moment/#ambiguously-timed
         const eventDateStart = jQuery.fullCalendar.moment(dateStart).hasTime()
           ? moment(dateStart.toJSON()).toDate()
-          : moment(dateStart.toDate())
-              .startOf('day')
-              .toDate();
+          : moment(dateStart.toDate()).startOf('day').toDate();
         const eventDateEnd = jQuery.fullCalendar.moment(dateEnd).hasTime()
           ? moment(dateEnd.toJSON()).toDate()
-          : moment(dateEnd.toDate())
-              .subtract(1, 'day')
-              .endOf('day')
-              .toDate();
+          : moment(dateEnd.toDate()).subtract(1, 'day').endOf('day').toDate();
 
         // convert to native Date to avoid time offset
         tmpEventInEdition.event = telephonySchedulerCtrl.createEvent(

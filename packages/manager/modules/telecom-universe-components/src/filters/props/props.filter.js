@@ -14,10 +14,7 @@ export default () =>
           const text = props[prop].toLowerCase();
           if (
             item[prop] &&
-            item[prop]
-              .toString()
-              .toLowerCase()
-              .indexOf(text) !== -1
+            item[prop].toString().toLowerCase().indexOf(text) !== -1
           ) {
             itemMatches = true;
             break;

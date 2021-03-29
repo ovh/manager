@@ -71,9 +71,7 @@ export default /* @ngInject */ (
     // Waiting API, next bill is always first day of next month
     this.nextBill =
       options.nextBill ||
-      moment([moment().year(), moment().month(), 1])
-        .add(1, 'M')
-        .valueOf();
+      moment([moment().year(), moment().month(), 1]).add(1, 'M').valueOf();
 
     // managing notifications object
     this.notifications = options.notifications;
@@ -123,19 +121,13 @@ export default /* @ngInject */ (
   };
 
   TelephonyGroupLine.prototype.getOffers = function getOffers(params) {
-    return OvhApiTelephony.Line()
-      .Offers()
-      .v6()
-      .query(params).$promise;
+    return OvhApiTelephony.Line().Offers().v6().query(params).$promise;
   };
 
   TelephonyGroupLine.prototype.getOfferPhones = function getOfferPhones(
     params,
   ) {
-    return OvhApiTelephony.Line()
-      .Offers()
-      .v6()
-      .phones(params).$promise;
+    return OvhApiTelephony.Line().Offers().v6().phones(params).$promise;
   };
 
   TelephonyGroupLine.prototype.getOfferTypes = function getOfferTypes() {
@@ -180,18 +172,16 @@ export default /* @ngInject */ (
   TelephonyGroupLine.prototype.save = function save() {
     const self = this;
 
-    return OvhApiTelephony.Line()
-      .v6()
-      .edit(
-        {
-          billingAccount: self.billingAccount,
-          serviceName: self.serviceName,
-        },
-        {
-          description: self.description,
-          notifications: self.notifications,
-        },
-      ).$promise;
+    return OvhApiTelephony.Line().v6().edit(
+      {
+        billingAccount: self.billingAccount,
+        serviceName: self.serviceName,
+      },
+      {
+        description: self.description,
+        notifications: self.notifications,
+      },
+    ).$promise;
   };
 
   TelephonyGroupLine.prototype.supportsPhonebook = function supportsPhonebook() {
@@ -286,14 +276,11 @@ export default /* @ngInject */ (
           map(
             taskIds,
             (id) =>
-              OvhApiTelephony.Service()
-                .OfferTask()
-                .v6()
-                .get({
-                  billingAccount: self.billingAccount,
-                  serviceName: self.serviceName,
-                  taskId: id,
-                }).$promise,
+              OvhApiTelephony.Service().OfferTask().v6().get({
+                billingAccount: self.billingAccount,
+                serviceName: self.serviceName,
+                taskId: id,
+              }).$promise,
           ),
         ),
       )
@@ -361,16 +348,13 @@ export default /* @ngInject */ (
       })
       .$promise.then((tasks) => {
         if (tasks[0]) {
-          return OvhApiTelephony.Service()
-            .OfferTask()
-            .v6()
-            .get({
-              billingAccount: self.billingAccount,
-              serviceName: self.serviceName,
-              action: 'convertToAlias',
-              status: 'todo',
-              taskId: tasks[0],
-            }).$promise;
+          return OvhApiTelephony.Service().OfferTask().v6().get({
+            billingAccount: self.billingAccount,
+            serviceName: self.serviceName,
+            action: 'convertToAlias',
+            status: 'todo',
+            taskId: tasks[0],
+          }).$promise;
         }
         return null;
       });
@@ -386,27 +370,23 @@ export default /* @ngInject */ (
     if (options.details) {
       params.details = options.details;
     }
-    return OvhApiTelephony.Line()
-      .v6()
-      .terminate(
-        {
-          billingAccount: self.billingAccount,
-          serviceName: self.serviceName,
-        },
-        params,
-      ).$promise;
+    return OvhApiTelephony.Line().v6().terminate(
+      {
+        billingAccount: self.billingAccount,
+        serviceName: self.serviceName,
+      },
+      params,
+    ).$promise;
   };
 
   /* Cancel an Termination service */
   TelephonyGroupLine.prototype.cancelTermination = function cancelTermination() {
     const self = this;
 
-    return OvhApiTelephony.Line()
-      .v6()
-      .cancelTermination({
-        billingAccount: self.billingAccount,
-        serviceName: self.serviceName,
-      }).$promise;
+    return OvhApiTelephony.Line().v6().cancelTermination({
+      billingAccount: self.billingAccount,
+      serviceName: self.serviceName,
+    }).$promise;
   };
 
   TelephonyGroupLine.prototype.isIncludedInXdslPack = function isIncludedInXdslPack() {

@@ -1,6 +1,6 @@
 import template from './alerter.html';
 
-export default function() {
+export default function () {
   return {
     restrict: 'A',
     scope: {
@@ -35,7 +35,7 @@ export default function() {
         $scope.ovhAlertMessageDetails = null;
       };
 
-      $scope.expandDetails = function() {
+      $scope.expandDetails = function () {
         $scope.expand = !$scope.expand;
       };
 

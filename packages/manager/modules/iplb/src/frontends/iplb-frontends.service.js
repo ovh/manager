@@ -22,27 +22,15 @@ export default class IpLoadBalancerFrontendsService {
 
     this.Frontend = {
       all: this.IpLoadBalancing.Frontend().v6(),
-      tcp: this.IpLoadBalancing.Frontend()
-        .Tcp()
-        .v6(),
-      udp: this.IpLoadBalancing.Frontend()
-        .Udp()
-        .v6(),
-      http: this.IpLoadBalancing.Frontend()
-        .Http()
-        .v6(),
+      tcp: this.IpLoadBalancing.Frontend().Tcp().v6(),
+      udp: this.IpLoadBalancing.Frontend().Udp().v6(),
+      http: this.IpLoadBalancing.Frontend().Http().v6(),
     };
 
     this.Farm = {
-      tcp: this.IpLoadBalancing.Farm()
-        .Tcp()
-        .v6(),
-      udp: this.IpLoadBalancing.Farm()
-        .Udp()
-        .v6(),
-      http: this.IpLoadBalancing.Farm()
-        .Http()
-        .v6(),
+      tcp: this.IpLoadBalancing.Farm().Tcp().v6(),
+      udp: this.IpLoadBalancing.Farm().Udp().v6(),
+      http: this.IpLoadBalancing.Farm().Http().v6(),
     };
   }
 
@@ -187,12 +175,10 @@ export default class IpLoadBalancerFrontendsService {
   }
 
   getCertificate(serviceName, sslId) {
-    return this.IpLoadBalancing.Ssl()
-      .v6()
-      .get({
-        serviceName,
-        sslId,
-      }).$promise;
+    return this.IpLoadBalancing.Ssl().v6().get({
+      serviceName,
+      sslId,
+    }).$promise;
   }
 
   createFrontend(type, serviceName, frontend) {

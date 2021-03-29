@@ -4,7 +4,7 @@ import map from 'lodash/map';
 import remove from 'lodash/remove';
 import some from 'lodash/some';
 
-export default /* @ngInject */ function(
+export default /* @ngInject */ function (
   $q,
   $stateParams,
   $translate,

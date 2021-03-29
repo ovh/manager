@@ -1,7 +1,7 @@
 import filesize from 'filesize';
 
-export default /* @ngInject */ function($translate) {
-  return function(size, options) {
+export default /* @ngInject */ function ($translate) {
+  return function (size, options) {
     if (Number.isNaN(size)) {
       return '';
     }

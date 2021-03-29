@@ -594,12 +594,9 @@ export default class ServerCtrl {
       null,
       {
         namespace: 'byoi_poller',
-        successRule: (byoi) => {
-          return (
-            byoi.status === BYOI_STATUS_ENUM.DOING &&
-            byoi.message !== BYOI_STARTING_MESSAGE
-          );
-        },
+        successRule: (byoi) =>
+          byoi.status === BYOI_STATUS_ENUM.DOING &&
+          byoi.message !== BYOI_STARTING_MESSAGE,
       },
     ).then(
       (byoi) => {

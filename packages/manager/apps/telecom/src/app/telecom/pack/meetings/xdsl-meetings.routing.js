@@ -7,11 +7,10 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceName,
-      loadMeetings: /* @ngInject */ ($rootScope, OvhApiXdsl, serviceName) => {
-        return OvhApiXdsl.v6().searchOrderMeetings($rootScope, {
+      loadMeetings: /* @ngInject */ ($rootScope, OvhApiXdsl, serviceName) =>
+        OvhApiXdsl.v6().searchOrderMeetings($rootScope, {
           serviceName,
-        });
-      },
+        }),
       meetingSlots: /* @ngInject */ (loadMeetings) => {
         const { result, error } = loadMeetings;
         if (result) {

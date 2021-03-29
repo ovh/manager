@@ -1,4 +1,4 @@
-export default /* @ngInject */ function($scope) {
+export default /* @ngInject */ function ($scope) {
   const self = this;
   const intRegex = /^\d+$/;
 

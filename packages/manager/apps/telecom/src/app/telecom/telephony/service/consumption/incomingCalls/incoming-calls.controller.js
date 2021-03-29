@@ -75,14 +75,8 @@ export default /* @ngInject */ function TelecomTelephonyServiceConsumptionIncomi
   }
 
   self.refresh = function refresh() {
-    OvhApiTelephony.Service()
-      .VoiceConsumption()
-      .v6()
-      .resetCache();
-    OvhApiTelephony.Service()
-      .VoiceConsumption()
-      .v6()
-      .resetQueryCache();
+    OvhApiTelephony.Service().VoiceConsumption().v6().resetCache();
+    OvhApiTelephony.Service().VoiceConsumption().v6().resetQueryCache();
     init();
   };
 

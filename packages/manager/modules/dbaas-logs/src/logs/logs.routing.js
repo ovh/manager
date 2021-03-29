@@ -10,14 +10,10 @@ export default /* @ngInject */ ($stateProvider) => {
           OvhApiDbaas.Logs()
             .v6()
             .query()
-            .$promise.then((result) => {
-              return result.length > 0
-                ? 'dbaas-logs.list'
-                : 'dbaas-logs.onboarding';
-            })
-            .catch(() => {
-              return 'dbaas-logs.onboarding';
-            }),
+            .$promise.then((result) =>
+              result.length > 0 ? 'dbaas-logs.list' : 'dbaas-logs.onboarding',
+            )
+            .catch(() => 'dbaas-logs.onboarding'),
         ),
     translations: {
       value: ['.'],

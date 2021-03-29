@@ -31,9 +31,7 @@ export default class CdaIpListCtrl {
     };
 
     function initIps() {
-      OvhApiDedicatedCeph.Acl()
-        .v6()
-        .resetAllCache();
+      OvhApiDedicatedCeph.Acl().v6().resetAllCache();
       return OvhApiDedicatedCeph.Acl()
         .v6()
         .query({

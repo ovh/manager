@@ -71,12 +71,10 @@ export default class {
    *  @return {Promise}   That return a `TucVoipLine` instance.
    */
   fetchLineInfo(service) {
-    return this.OvhApiTelephony.Line()
-      .v6()
-      .get({
-        billingAccount: service.billingAccount,
-        serviceName: service.serviceName,
-      }).$promise;
+    return this.OvhApiTelephony.Line().v6().get({
+      billingAccount: service.billingAccount,
+      serviceName: service.serviceName,
+    }).$promise;
   }
 
   /**

@@ -177,12 +177,13 @@ export default class PciProjectNewPaymentCtrl {
         });
     }
 
-    return Promise.all([challengePromise, defaultPaymentMethodPromise]).then(
-      () => {
-        return !this.model.challenge.error && !setDefaultPaymentMethodInError
-          ? this.manageProjectCreation()
-          : null;
-      },
+    return Promise.all([
+      challengePromise,
+      defaultPaymentMethodPromise,
+    ]).then(() =>
+      !this.model.challenge.error && !setDefaultPaymentMethodInError
+        ? this.manageProjectCreation()
+        : null,
     );
   }
 

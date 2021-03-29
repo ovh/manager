@@ -48,12 +48,10 @@ class DedicatedCloudDatacenterDrpService {
       .$promise.then((ipAddresses) =>
         ipAddresses.map(
           (ipAddress) =>
-            this.OvhApiDedicatedCloud.Ip()
-              .v6()
-              .get({
-                serviceName,
-                network: ipAddress,
-              }).$promise,
+            this.OvhApiDedicatedCloud.Ip().v6().get({
+              serviceName,
+              network: ipAddress,
+            }).$promise,
         ),
       );
   }
@@ -92,13 +90,10 @@ class DedicatedCloudDatacenterDrpService {
           .all(
             ipAddresses.map(
               (ipAddress) =>
-                this.OvhApiDedicatedCloud.Ip()
-                  .Details()
-                  .v6()
-                  .get({
-                    serviceName,
-                    network: ipAddress,
-                  }).$promise,
+                this.OvhApiDedicatedCloud.Ip().Details().v6().get({
+                  serviceName,
+                  network: ipAddress,
+                }).$promise,
             ),
           )
           .then((ipAddressesDetails) => flatten(ipAddressesDetails)),
@@ -153,21 +148,18 @@ class DedicatedCloudDatacenterDrpService {
     secondaryDatacenter,
     secondaryEndpointIp,
   }) {
-    return this.OvhApiDedicatedCloud.Datacenter()
-      .Zerto()
-      .v6()
-      .enable(
-        {
-          serviceName: primaryPcc.serviceName,
-          datacenterId: primaryDatacenter.id,
-        },
-        {
-          primaryEndpointIp,
-          secondaryServiceName: secondaryPcc.serviceName,
-          secondaryDatacenterId: secondaryDatacenter.id,
-          secondaryEndpointIp,
-        },
-      ).$promise;
+    return this.OvhApiDedicatedCloud.Datacenter().Zerto().v6().enable(
+      {
+        serviceName: primaryPcc.serviceName,
+        datacenterId: primaryDatacenter.id,
+      },
+      {
+        primaryEndpointIp,
+        secondaryServiceName: secondaryPcc.serviceName,
+        secondaryDatacenterId: secondaryDatacenter.id,
+        secondaryEndpointIp,
+      },
+    ).$promise;
   }
 
   enableDrpOnPremiseLegacy({
@@ -177,21 +169,17 @@ class DedicatedCloudDatacenterDrpService {
     primaryEndpointIp: ovhEndpointIp,
     remoteVraNetwork,
   }) {
-    return this.OvhApiDedicatedCloud.Datacenter()
-      .Zerto()
-      .Single()
-      .v6()
-      .enable(
-        {
-          serviceName: primaryPcc.serviceName,
-          datacenterId: primaryDatacenter.id,
-        },
-        {
-          localVraNetwork,
-          ovhEndpointIp,
-          remoteVraNetwork,
-        },
-      ).$promise;
+    return this.OvhApiDedicatedCloud.Datacenter().Zerto().Single().v6().enable(
+      {
+        serviceName: primaryPcc.serviceName,
+        datacenterId: primaryDatacenter.id,
+      },
+      {
+        localVraNetwork,
+        ovhEndpointIp,
+        remoteVraNetwork,
+      },
+    ).$promise;
   }
 
   /* ------ END PCC Legacy OVH ------- */
@@ -221,20 +209,15 @@ class DedicatedCloudDatacenterDrpService {
       .post({}, { ovhSubsidiary: Environment.getUser().ovhSubsidiary })
       .$promise.then(({ cartId }) => {
         zertoCartId = cartId;
-        return this.OvhApiOrder.Cart()
-          .v6()
-          .assign({ cartId }).$promise;
+        return this.OvhApiOrder.Cart().v6().assign({ cartId }).$promise;
       })
       .then(
         () =>
-          this.OvhApiOrder.Cart()
-            .ServiceOption()
-            .v6()
-            .get({
-              productName:
-                DEDICATEDCLOUD_DATACENTER_DRP_ORDER_OPTIONS.productName,
-              serviceName: drpInformations.primaryPcc.serviceName,
-            }).$promise,
+          this.OvhApiOrder.Cart().ServiceOption().v6().get({
+            productName:
+              DEDICATEDCLOUD_DATACENTER_DRP_ORDER_OPTIONS.productName,
+            serviceName: drpInformations.primaryPcc.serviceName,
+          }).$promise,
       )
       .then((offers) => {
         const productName = get(
@@ -276,17 +259,15 @@ class DedicatedCloudDatacenterDrpService {
           (paymentMethod) => !!paymentMethod.default,
         );
 
-        return this.OvhApiOrder.Cart()
-          .v6()
-          .checkout(
-            {
-              cartId,
-            },
-            {
-              autoPayWithPreferredPaymentMethod,
-              waiveRetractationPeriod: false,
-            },
-          ).$promise;
+        return this.OvhApiOrder.Cart().v6().checkout(
+          {
+            cartId,
+          },
+          {
+            autoPayWithPreferredPaymentMethod,
+            waiveRetractationPeriod: false,
+          },
+        ).$promise;
       })
       .then(({ orderId, url }) => ({
         hasAutoPay: autoPayWithPreferredPaymentMethod,
@@ -367,9 +348,7 @@ class DedicatedCloudDatacenterDrpService {
   }
 
   getZertoOptionOrderStatus(orderId) {
-    return this.OvhApiMe.Order()
-      .v6()
-      .getStatus({ orderId }).$promise;
+    return this.OvhApiMe.Order().v6().getStatus({ orderId }).$promise;
   }
 
   storeZertoOptionOrderInUserPref(drpInformations, enableDrp) {
@@ -425,33 +404,26 @@ class DedicatedCloudDatacenterDrpService {
     secondaryPcc,
     secondaryDatacenter,
   }) {
-    return this.OvhApiDedicatedCloud.Datacenter()
-      .Zerto()
-      .v6()
-      .disable(
-        {
-          serviceName: primaryPcc.serviceName,
-          datacenterId: primaryDatacenter.id,
-        },
-        {
-          secondaryServiceName: secondaryPcc.serviceName,
-          secondaryDatacenterId: secondaryDatacenter.id,
-        },
-      ).$promise;
+    return this.OvhApiDedicatedCloud.Datacenter().Zerto().v6().disable(
+      {
+        serviceName: primaryPcc.serviceName,
+        datacenterId: primaryDatacenter.id,
+      },
+      {
+        secondaryServiceName: secondaryPcc.serviceName,
+        secondaryDatacenterId: secondaryDatacenter.id,
+      },
+    ).$promise;
   }
 
   disableDrpOnPremise({ primaryPcc, primaryDatacenter }) {
-    return this.OvhApiDedicatedCloud.Datacenter()
-      .Zerto()
-      .Single()
-      .v6()
-      .disable(
-        {
-          serviceName: primaryPcc.serviceName,
-          datacenterId: primaryDatacenter.id,
-        },
-        null,
-      ).$promise;
+    return this.OvhApiDedicatedCloud.Datacenter().Zerto().Single().v6().disable(
+      {
+        serviceName: primaryPcc.serviceName,
+        datacenterId: primaryDatacenter.id,
+      },
+      null,
+    ).$promise;
   }
 
   regenerateZsspPassword({ primaryPcc, primaryDatacenter }) {

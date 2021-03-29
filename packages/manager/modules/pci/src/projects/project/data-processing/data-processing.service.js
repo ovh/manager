@@ -64,14 +64,12 @@ export default class DataProcessingService {
     // The execute function will skip the cache as the job status are changing too quickly and can create an understanding problem for the service user
     return res
       .execute({ serviceName: projectId }, true)
-      .$promise.then((jobs) => {
-        return {
-          data: jobs.data.map((job) => summarizeJob(job)),
-          meta: {
-            totalCount: jobs.headers['x-pagination-elements'],
-          },
-        };
-      });
+      .$promise.then((jobs) => ({
+        data: jobs.data.map((job) => summarizeJob(job)),
+        meta: {
+          totalCount: jobs.headers['x-pagination-elements'],
+        },
+      }));
   }
 
   /**
@@ -170,11 +168,9 @@ export default class DataProcessingService {
    * @returns {Promise<{core: *, memory: *}>}
    */
   getPricesFromCatalog(projectId) {
-    return this.CucPriceHelper.getPrices(projectId).then((prices) => {
-      return {
-        core: prices[`data-processing-job.core.minute.consumption`],
-        memory: prices[`data-processing-job.memory-gib.minute.consumption`],
-      };
-    });
+    return this.CucPriceHelper.getPrices(projectId).then((prices) => ({
+      core: prices[`data-processing-job.core.minute.consumption`],
+      memory: prices[`data-processing-job.memory-gib.minute.consumption`],
+    }));
   }
 }

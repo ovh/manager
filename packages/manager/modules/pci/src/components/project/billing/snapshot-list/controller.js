@@ -1,7 +1,7 @@
 import get from 'lodash/get';
 import { Environment } from '@ovh-ux/manager-config';
 
-export default /* @ngInject */ function(
+export default /* @ngInject */ function (
   $q,
   $translate,
   CucCloudMessage,

@@ -31,9 +31,7 @@ export default class CdaPoolListCtrl {
     };
 
     function initPools() {
-      OvhApiDedicatedCeph.Pool()
-        .v6()
-        .resetAllCache();
+      OvhApiDedicatedCeph.Pool().v6().resetAllCache();
 
       return OvhApiDedicatedCeph.Pool()
         .v6()

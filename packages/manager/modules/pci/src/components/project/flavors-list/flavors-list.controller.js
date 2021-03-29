@@ -143,8 +143,9 @@ export default class FlavorsListController {
         .map((disk) => {
           const multiplier = disk.number > 1 ? `${disk.number} x ` : '';
           const capacity = this.formatStorage(disk.capacity);
-          return `${multiplier}${capacity} ${disk.technology ||
-            disk.interface}`;
+          return `${multiplier}${capacity} ${
+            disk.technology || disk.interface
+          }`;
         })
         .join(' + ');
     }

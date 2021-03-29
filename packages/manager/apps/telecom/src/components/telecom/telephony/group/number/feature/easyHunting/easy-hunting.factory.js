@@ -161,9 +161,7 @@ export default /* @ngInject */ (
     const self = this;
 
     if (resetCache) {
-      OvhApiTelephony.EasyHunting()
-        .v6()
-        .resetAllCache();
+      OvhApiTelephony.EasyHunting().v6().resetAllCache();
     }
 
     return OvhApiTelephony.EasyHunting()

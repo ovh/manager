@@ -1,6 +1,6 @@
 import template from './contracts.html';
 
-export default function() {
+export default function () {
   return {
     restrict: 'EA',
     replace: true,
@@ -38,12 +38,10 @@ export default function() {
         $scope.disabled = true;
 
         // Fake Anchor
-        topMenu.delegate('a', 'click', function(e) {
+        topMenu.delegate('a', 'click', function (e) {
           const href = $(this).attr('data-fake-href');
 
-          $('.contracts-list')
-            .stop()
-            .scrollTo(href, scrollToOptions);
+          $('.contracts-list').stop().scrollTo(href, scrollToOptions);
 
           e.preventDefault();
         });
@@ -131,10 +129,7 @@ export default function() {
           .filter(`[data-fake-href="#${lastId}"]`)
           .addClass('active');
         window.setTimeout(() => {
-          $elm
-            .find('.contracts-list')
-            .stop()
-            .scrollTo(0);
+          $elm.find('.contracts-list').stop().scrollTo(0);
         }, 300);
       };
 

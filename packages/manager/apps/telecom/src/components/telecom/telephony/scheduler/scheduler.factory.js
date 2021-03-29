@@ -110,17 +110,15 @@ export default /* @ngInject */ ($q, OvhApiTelephony, VoipSchedulerEvent) => {
 
     if (self.hasChange('timeZone')) {
       promises.push(
-        OvhApiTelephony.Scheduler()
-          .v6()
-          .save(
-            {
-              billingAccount: self.billingAccount,
-              serviceName: self.serviceName,
-            },
-            {
-              timeZone: self.timeZone,
-            },
-          ).$promise,
+        OvhApiTelephony.Scheduler().v6().save(
+          {
+            billingAccount: self.billingAccount,
+            serviceName: self.serviceName,
+          },
+          {
+            timeZone: self.timeZone,
+          },
+        ).$promise,
       );
     }
 
@@ -167,17 +165,15 @@ export default /* @ngInject */ ($q, OvhApiTelephony, VoipSchedulerEvent) => {
   ) {
     const self = this;
 
-    return OvhApiTelephony.Scheduler()
-      .v6()
-      .importIcsCalendar(
-        {
-          billingAccount: self.billingAccount,
-          serviceName: self.serviceName,
-        },
-        {
-          url: calendarUrl,
-        },
-      ).$promise;
+    return OvhApiTelephony.Scheduler().v6().importIcsCalendar(
+      {
+        billingAccount: self.billingAccount,
+        serviceName: self.serviceName,
+      },
+      {
+        url: calendarUrl,
+      },
+    ).$promise;
   };
 
   /* ----------  EVENTS  ----------*/
@@ -214,14 +210,11 @@ export default /* @ngInject */ ($q, OvhApiTelephony, VoipSchedulerEvent) => {
             map(
               chunk(eventIds, 50),
               (chunkIds) =>
-                OvhApiTelephony.Scheduler()
-                  .Events()
-                  .v6()
-                  .getBatch({
-                    billingAccount: self.billingAccount,
-                    serviceName: self.serviceName,
-                    uid: chunkIds,
-                  }).$promise,
+                OvhApiTelephony.Scheduler().Events().v6().getBatch({
+                  billingAccount: self.billingAccount,
+                  serviceName: self.serviceName,
+                  uid: chunkIds,
+                }).$promise,
             ),
           )
           .then((chunkResult) => {
@@ -347,16 +340,13 @@ export default /* @ngInject */ ($q, OvhApiTelephony, VoipSchedulerEvent) => {
     const self = this;
 
     const getImportTask = function getImportTask(status) {
-      return OvhApiTelephony.Service()
-        .Task()
-        .v6()
-        .query({
-          billingAccount: self.billingAccount,
-          serviceName: self.serviceName,
-          action: 'importIcs',
-          serviceType: 'scheduler',
-          status,
-        });
+      return OvhApiTelephony.Service().Task().v6().query({
+        billingAccount: self.billingAccount,
+        serviceName: self.serviceName,
+        action: 'importIcs',
+        serviceType: 'scheduler',
+        status,
+      });
     };
 
     return $q

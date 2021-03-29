@@ -7,7 +7,7 @@ import {
 
 import component from './component';
 
-export default /* @ngInject */ function($stateProvider) {
+export default /* @ngInject */ function ($stateProvider) {
   $stateProvider.state('app.hosting.dashboard.database.detachPrivate', {
     url: '/detach',
     component: component.name,

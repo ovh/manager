@@ -55,17 +55,15 @@ export default class DedicatedServerInterfacesOlaActivationCtrl {
       })
       .then(
         () =>
-          this.CartService.ServiceOption()
-            .v6()
-            .post({
-              productName: 'baremetalServers',
-              serviceName: this.serverName,
-              planCode,
-              duration: 'P1M',
-              pricingMode: 'default',
-              quantity: 1,
-              cartId: this.cartId,
-            }).$promise,
+          this.CartService.ServiceOption().v6().post({
+            productName: 'baremetalServers',
+            serviceName: this.serverName,
+            planCode,
+            duration: 'P1M',
+            pricingMode: 'default',
+            quantity: 1,
+            cartId: this.cartId,
+          }).$promise,
       )
       .then(
         () => this.CartService.v6().summary({ cartId: this.cartId }).$promise,

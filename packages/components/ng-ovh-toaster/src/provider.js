@@ -7,7 +7,7 @@
  */
 import angular from 'angular';
 
-export default function() {
+export default function () {
   let hideAfter = 7;
 
   function show(type, msg, opts) {

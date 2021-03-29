@@ -39,12 +39,12 @@ export default /* @ngInject */ function BillingTerminate($q, OvhHttp) {
 
   this.getServiceDetails = function getServiceDetails(serviceId) {
     return this.getServiceApi(serviceId)
-      .then((serviceApi) => {
-        return serviceApi.route.url.replace(
+      .then((serviceApi) =>
+        serviceApi.route.url.replace(
           serviceApi.resource.name,
           window.encodeURIComponent(serviceApi.resource.name),
-        );
-      })
+        ),
+      )
       .then((url) =>
         OvhHttp.get(`${url}`, {
           rootPath: 'apiv6',

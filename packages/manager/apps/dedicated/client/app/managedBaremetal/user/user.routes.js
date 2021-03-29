@@ -10,14 +10,13 @@ export default /* @ngInject */ ($stateProvider) => {
         message = false,
         type = 'success',
         reload = undefined,
-      ) => {
-        return goBackToState(
+      ) =>
+        goBackToState(
           'app.managedBaremetal.details.users',
           message,
           type,
           reload,
-        );
-      },
+        ),
       addUser: /* @ngInject */ ($state) => (passwordPolicy) =>
         $state.go('app.managedBaremetal.details.users.add', {
           passwordPolicy,

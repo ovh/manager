@@ -118,9 +118,7 @@ export default class IpLoadBalancerSslCertificateService {
       )
       .then((cart) => {
         cartId = get(cart, 'cartId');
-        return this.OvhApiOrder.Cart()
-          .v6()
-          .assign({ cartId }).$promise;
+        return this.OvhApiOrder.Cart().v6().assign({ cartId }).$promise;
       })
       .then(
         () =>
@@ -148,16 +146,11 @@ export default class IpLoadBalancerSslCertificateService {
         return this.$q.all(promises);
       })
       .then(
-        () =>
-          this.OvhApiOrder.Cart()
-            .v6()
-            .checkout({ cartId }, {}).$promise,
+        () => this.OvhApiOrder.Cart().v6().checkout({ cartId }, {}).$promise,
       )
       .catch((err) => {
         if (cartId) {
-          this.OvhApiOrder.Cart()
-            .v6()
-            .delete({ cartId });
+          this.OvhApiOrder.Cart().v6().delete({ cartId });
         }
 
         this.CucServiceHelper.errorHandler('iplb_ssl_order_error')(err);
@@ -165,20 +158,16 @@ export default class IpLoadBalancerSslCertificateService {
   }
 
   configureCartItem(cartId, itemId, label, value) {
-    return this.OvhApiOrder.Cart()
-      .Item()
-      .Configuration()
-      .v6()
-      .post(
-        {
-          cartId,
-          itemId,
-        },
-        {
-          label,
-          value,
-        },
-      ).$promise;
+    return this.OvhApiOrder.Cart().Item().Configuration().v6().post(
+      {
+        cartId,
+        itemId,
+      },
+      {
+        label,
+        value,
+      },
+    ).$promise;
   }
 
   orderFreeCertificate(serviceName, fqdn) {

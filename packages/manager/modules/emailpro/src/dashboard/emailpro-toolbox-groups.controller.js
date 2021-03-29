@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-export default /* @ngInject */ function($scope) {
+export default /* @ngInject */ function ($scope) {
   $scope.updateGroup = function updateGroup(ml) {
     if (ml.state === $scope.stateOk) {
       $scope.setAction(

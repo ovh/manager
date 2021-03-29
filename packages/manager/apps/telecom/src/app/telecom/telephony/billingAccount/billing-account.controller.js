@@ -89,12 +89,10 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountCtrl(
             map(
               offerTaskIds,
               (id) =>
-                OvhApiTelephony.OfferTask()
-                  .v6()
-                  .get({
-                    billingAccount: group.billingAccount,
-                    taskId: id,
-                  }).$promise,
+                OvhApiTelephony.OfferTask().v6().get({
+                  billingAccount: group.billingAccount,
+                  taskId: id,
+                }).$promise,
             ),
           )
           .then((tasks) => {

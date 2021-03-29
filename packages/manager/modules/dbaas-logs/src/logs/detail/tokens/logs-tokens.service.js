@@ -2,12 +2,8 @@ export default class LogsTokensService {
   /* @ngInject */
   constructor($q, OvhApiDbaas, LogsHelperService) {
     this.$q = $q;
-    this.TokenApiService = OvhApiDbaas.Logs()
-      .Token()
-      .v6();
-    this.DetailsAapiService = OvhApiDbaas.Logs()
-      .Details()
-      .Aapi();
+    this.TokenApiService = OvhApiDbaas.Logs().Token().v6();
+    this.DetailsAapiService = OvhApiDbaas.Logs().Details().Aapi();
     this.LogsHelperService = LogsHelperService;
   }
 

@@ -52,9 +52,7 @@ export default class OverTheBoxRemoteCtrl {
       exposedPort: 443,
     };
     this.datepickerOptions = {
-      minDate: moment()
-        .add(1, 'days')
-        .toDate(),
+      minDate: moment().add(1, 'days').toDate(),
     };
     this.loading = true;
     return this.$q.all([

@@ -1199,9 +1199,8 @@ angular.module('services').service(
      * @param {string} option
      */
     deleteOption(serviceName, option) {
-      return this.OvhApiDomain.Options()
-        .v6()
-        .delete({ serviceName, option }).$promise;
+      return this.OvhApiDomain.Options().v6().delete({ serviceName, option })
+        .$promise;
     }
 
     /**
@@ -1209,9 +1208,7 @@ angular.module('services').service(
      * @param {string} serviceName
      */
     getOptions(serviceName) {
-      return this.OvhApiDomain.Options()
-        .v6()
-        .query({ serviceName }).$promise;
+      return this.OvhApiDomain.Options().v6().query({ serviceName }).$promise;
     }
 
     /**
@@ -1220,18 +1217,13 @@ angular.module('services').service(
      * @param {string} option
      */
     getOption(serviceName, option) {
-      return this.OvhApiDomain.Options()
-        .v6()
-        .get({ serviceName, option }).$promise;
+      return this.OvhApiDomain.Options().v6().get({ serviceName, option })
+        .$promise;
     }
 
     resetOptionsCache() {
-      this.OvhApiDomain.Options()
-        .v6()
-        .resetQueryCache();
-      this.OvhApiDomain.Options()
-        .v6()
-        .resetCache();
+      this.OvhApiDomain.Options().v6().resetQueryCache();
+      this.OvhApiDomain.Options().v6().resetCache();
     }
 
     // --------------------- Glue registry ----------------------

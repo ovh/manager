@@ -16,10 +16,8 @@ export default class VpsRebuild {
         this.$q.all(
           imagesId.map(
             (id) =>
-              this.OvhApiVps.Images()
-                .Available()
-                .v6()
-                .get({ id, serviceName }).$promise,
+              this.OvhApiVps.Images().Available().v6().get({ id, serviceName })
+                .$promise,
           ),
         ),
       );

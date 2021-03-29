@@ -34,7 +34,7 @@ angular.module('App').controller('ServerInstallationChoiceCtrl', [
       }
     };
 
-    $scope.load = function() {
+    $scope.load = function () {
       $scope.loading.featureAvailability = true;
 
       return ovhFeatureFlipping

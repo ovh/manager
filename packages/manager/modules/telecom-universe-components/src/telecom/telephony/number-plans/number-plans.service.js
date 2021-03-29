@@ -1,6 +1,6 @@
 import find from 'lodash/find';
 
-export default /* @ngInject */ function(TUC_TELEPHONY_NUMBER_PLANS) {
+export default /* @ngInject */ function (TUC_TELEPHONY_NUMBER_PLANS) {
   this.getPlanByNumber = function getPlanByNumber(number) {
     let prefixedNumber;
     let foundedPlan;

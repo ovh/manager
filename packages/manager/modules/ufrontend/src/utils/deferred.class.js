@@ -18,7 +18,7 @@
 export default function Deferred(result) {
   const defer = {};
   let isPending = true;
-  defer.promise = new Promise(function resolver(resolve, reject) {
+  defer.promise = new Promise((resolve, reject) => {
     defer.resolve = (...args) => {
       isPending = false;
       if (result) {

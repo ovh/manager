@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-export default /* @ngInject */ function(
+export default /* @ngInject */ function (
   $q,
   $translate,
   $uibModalInstance,

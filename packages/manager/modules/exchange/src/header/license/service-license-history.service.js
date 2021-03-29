@@ -18,37 +18,25 @@ export default class ExchangeHeaderLicence {
         displayValue: $translate.instant(
           'exchange_action_license_history_period_LASTWEEK',
         ),
-        date: moment()
-          .subtract(1, 'weeks')
-          .utc()
-          .format(),
+        date: moment().subtract(1, 'weeks').utc().format(),
       },
       LAST_MONTH: {
         displayValue: $translate.instant(
           'exchange_action_license_history_period_LASTMONTH',
         ),
-        date: moment()
-          .subtract(1, 'months')
-          .utc()
-          .format(),
+        date: moment().subtract(1, 'months').utc().format(),
       },
       LAST_3_MONTHS: {
         displayValue: $translate.instant(
           'exchange_action_license_history_period_LAST3MONTHS',
         ),
-        date: moment()
-          .subtract(3, 'months')
-          .utc()
-          .format(),
+        date: moment().subtract(3, 'months').utc().format(),
       },
       LAST_YEAR: {
         displayValue: $translate.instant(
           'exchange_action_license_history_period_LASTYEAR',
         ),
-        date: moment()
-          .subtract(1, 'years')
-          .utc()
-          .format(),
+        date: moment().subtract(1, 'years').utc().format(),
       },
     };
   }
@@ -60,9 +48,7 @@ export default class ExchangeHeaderLicence {
         rootPath: 'apiv6',
         params: {
           fromDate: startingDate,
-          toDate: moment()
-            .utc()
-            .format(),
+          toDate: moment().utc().format(),
         },
       },
     )

@@ -32,10 +32,7 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountAdministra
       telephony: OvhApiTelephony.v6().get({
         billingAccount: $stateParams.billingAccount,
       }).$promise,
-      user: OvhApiMe.Telephony()
-        .Settings()
-        .v6()
-        .get().$promise,
+      user: OvhApiMe.Telephony().Settings().v6().get().$promise,
     });
   }
 
@@ -66,12 +63,9 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountAdministra
           },
           pick(self.optionsGroupForm.telephony, telephonyAttributes),
         ).$promise,
-        OvhApiMe.Telephony()
-          .Settings()
-          .v6()
-          .change({
-            settings: self.optionsGroupForm.user,
-          }).$promise,
+        OvhApiMe.Telephony().Settings().v6().change({
+          settings: self.optionsGroupForm.user,
+        }).$promise,
       ])
       .then(() => {
         self.telephonySettings = angular.copy(self.optionsGroupForm.telephony);

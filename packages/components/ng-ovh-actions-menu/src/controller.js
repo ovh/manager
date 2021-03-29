@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-export default /* @ngInject */ function(actionsMenu, ActionsMenu) {
+export default /* @ngInject */ function (actionsMenu, ActionsMenu) {
   const self = this;
 
   self.actionsMenu = null;
@@ -20,7 +20,7 @@ export default /* @ngInject */ function(actionsMenu, ActionsMenu) {
     =            EVENTS            =
     ============================== */
 
-  self.onItemClick = function(actionItem) {
+  self.onItemClick = function (actionItem) {
     if (actionItem.hasSubActions()) {
       self.status.move = true;
       self.activeActionItem = actionItem;
@@ -35,7 +35,7 @@ export default /* @ngInject */ function(actionsMenu, ActionsMenu) {
     return true;
   };
 
-  self.onBackButtonClick = function() {
+  self.onBackButtonClick = function () {
     self.status.move = false;
     self.onPageSwitch();
 
@@ -48,7 +48,7 @@ export default /* @ngInject */ function(actionsMenu, ActionsMenu) {
     =            INITIALIZATION            =
     ====================================== */
 
-  self.$onInit = function() {
+  self.$onInit = function () {
     self.loading.init = true;
 
     // build action menu object

@@ -4,7 +4,7 @@ import isFunction from 'lodash/isFunction';
 
 import templateModal from './modal/telephony-bulk-action-modal.html';
 
-export default /* @ngInject */ function(
+export default /* @ngInject */ function (
   $q,
   $translate,
   $translatePartialLoader,

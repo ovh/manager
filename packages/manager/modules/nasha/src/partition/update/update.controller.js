@@ -19,13 +19,11 @@ export default class NashaPartitionUpdateCtrl {
   }
 
   getTasksTodo(operation) {
-    return this.OvhApiDedicatedNasha.Task()
-      .v6()
-      .query({
-        operation,
-        serviceName: this.data.nashaId,
-        status: 'todo',
-      });
+    return this.OvhApiDedicatedNasha.Task().v6().query({
+      operation,
+      serviceName: this.data.nashaId,
+      status: 'todo',
+    });
   }
 
   isSizeChanged() {

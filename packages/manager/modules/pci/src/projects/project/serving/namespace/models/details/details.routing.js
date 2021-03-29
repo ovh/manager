@@ -33,12 +33,11 @@ export default /* @ngInject */ ($stateProvider) => {
           OvhManagerPciServingModelsService,
           projectId,
           namespaceId,
-        ) => {
-          return OvhManagerPciServingModelsService.getMetricsToken(
+        ) =>
+          OvhManagerPciServingModelsService.getMetricsToken(
             projectId,
             namespaceId,
-          );
-        },
+          ),
         model: /* @ngInject */ (
           OvhManagerPciServingModelsService,
           projectId,

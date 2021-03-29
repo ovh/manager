@@ -92,9 +92,9 @@ export default class {
       .then(() => this.fetchCatalog())
       .catch(({ data }) => {
         this.goBack(
-          `${this.$translate.instant(
-            'dedicatedCloud_order_loading_error',
-          )} ${data.message || data}`,
+          `${this.$translate.instant('dedicatedCloud_order_loading_error')} ${
+            data.message || data
+          }`,
           'danger',
         );
       })
@@ -105,14 +105,11 @@ export default class {
 
   fetchTarget() {
     if (this.type === RESOURCE_UPGRADE_TYPES.host) {
-      return this.OvhApiDedicatedCloud.Datacenter()
-        .Host()
-        .v6()
-        .get({
-          datacenterId: this.datacenterId,
-          hostId: this.id,
-          serviceName: this.productId,
-        }).$promise;
+      return this.OvhApiDedicatedCloud.Datacenter().Host().v6().get({
+        datacenterId: this.datacenterId,
+        hostId: this.id,
+        serviceName: this.productId,
+      }).$promise;
     }
 
     return this.OvhApiDedicatedCloud.Filer()
@@ -123,14 +120,11 @@ export default class {
       })
       .$promise.catch(
         () =>
-          this.OvhApiDedicatedCloud.Datacenter()
-            .Filer()
-            .v6()
-            .get({
-              datacenterId: this.datacenterId,
-              filerId: this.id,
-              serviceName: this.productId,
-            }).$promise,
+          this.OvhApiDedicatedCloud.Datacenter().Filer().v6().get({
+            datacenterId: this.datacenterId,
+            filerId: this.id,
+            serviceName: this.productId,
+          }).$promise,
       );
   }
 

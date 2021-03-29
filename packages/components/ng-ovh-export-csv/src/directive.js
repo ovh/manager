@@ -1,4 +1,4 @@
-export default /* @ngInject */ function($parse, $q, exportCsv) {
+export default /* @ngInject */ function ($parse, $q, exportCsv) {
   return {
     scope: {
       exportCsv: '&',
@@ -9,8 +9,8 @@ export default /* @ngInject */ function($parse, $q, exportCsv) {
     compile() {
       const exp = $parse('exportToCSV();');
 
-      return function($scope, $elm) {
-        $scope.exportToCSV = function() {
+      return function ($scope, $elm) {
+        $scope.exportToCSV = function () {
           $q.when($scope.exportCsv()).then((dataToExport) => {
             if (dataToExport) {
               exportCsv.exportData({

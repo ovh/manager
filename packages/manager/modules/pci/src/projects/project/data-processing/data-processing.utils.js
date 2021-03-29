@@ -33,9 +33,8 @@ export const formatDuration = (value) => {
  * @param unit Kubernetes-style unit to convert to (limited to biBytes units)
  * @return {string} Kubernetes-style converted value
  */
-export const convertMemory = (valueInMebiByte, unit) => {
-  return (valueInMebiByte / memoryConversions[unit]).toFixed(2) + unit;
-};
+export const convertMemory = (valueInMebiByte, unit) =>
+  (valueInMebiByte / memoryConversions[unit]).toFixed(2) + unit;
 
 /**
  * Build a UI friendly job object from API response
@@ -510,9 +509,8 @@ export const datagridToIcebergFilter = (name, operator, value) => {
  * @param id string Id of job to retrieve UI for
  * @return {string} URL to job UI
  */
-export const getDataProcessingUiUrl = (region, id) => {
-  return `https://adc.${region.toLowerCase()}.dataconvergence.ovh.com/${id}`;
-};
+export const getDataProcessingUiUrl = (region, id) =>
+  `https://adc.${region.toLowerCase()}.dataconvergence.ovh.com/${id}`;
 
 export default {
   formatDuration,

@@ -1,6 +1,6 @@
 import find from 'lodash/find';
 
-export default /* @ngInject */ function(
+export default /* @ngInject */ function (
   $q,
   $stateParams,
   $translate,

@@ -80,9 +80,7 @@ export default class CdaService {
     };
 
     self.getUsers = function getUsers(params) {
-      OvhApiDedicatedCeph.User()
-        .Aapi()
-        .resetCache();
+      OvhApiDedicatedCeph.User().Aapi().resetCache();
 
       return OvhApiDedicatedCeph.User()
         .Aapi()

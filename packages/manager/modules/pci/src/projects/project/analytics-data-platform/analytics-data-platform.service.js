@@ -26,9 +26,7 @@ export default class AnalyticsDataPlatformService {
     this.$q = $q;
     this.$translate = $translate;
     this.OvhApiAnalyticsPlatforms = OvhApiAnalytics.Platforms().v6();
-    this.OvhApiAnalyticsPlatformsNode = OvhApiAnalytics.Platforms()
-      .Node()
-      .v6();
+    this.OvhApiAnalyticsPlatformsNode = OvhApiAnalytics.Platforms().Node().v6();
     this.OvhApiAnalyticsCapabilities = OvhApiAnalytics.Capabilities().v6();
     this.ovhApiCloudProject = OvhApiCloudProject.v6();
     this.ovhApiCloudProjectQuota = OvhApiCloudProject.Quota().v6();
@@ -38,9 +36,7 @@ export default class AnalyticsDataPlatformService {
     this.ovhApiCloudProjectUser = OvhApiCloudProject.User().v6();
     this.OvhApiCloudServiceInfos = OvhApiCloudProject.ServiceInfos().v6();
     this.OvhApiOrderCart = OvhApiOrder.Cart().v6();
-    this.OvhApiOrderCartProduct = OvhApiOrder.Cart()
-      .Product()
-      .v6();
+    this.OvhApiOrderCartProduct = OvhApiOrder.Cart().Product().v6();
     this.OvhApiOrderCatalogPublic = OvhApiOrderCatalogPublic.v6();
     this.OvhApiMeOrder = OvhApiMe.Order().v6();
     this.OvhApiVrack = OvhApiVrack.v6();

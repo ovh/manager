@@ -35,12 +35,10 @@ export default class PciProjectStorageInstanceBackupService {
   }
 
   delete(projectId, { id }) {
-    return this.OvhApiCloudProject.Snapshot()
-      .v6()
-      .delete({
-        serviceName: projectId,
-        snapshotId: id,
-      }).$promise;
+    return this.OvhApiCloudProject.Snapshot().v6().delete({
+      serviceName: projectId,
+      snapshotId: id,
+    }).$promise;
   }
 
   getAssociatedInstances(projectId, { id }) {

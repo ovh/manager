@@ -34,21 +34,15 @@ export default /* @ngInject */ function TelecomTelephonyServiceFaxSettingsCtrl(
   }
 
   function fetchSettings() {
-    return OvhApiTelephony.Fax()
-      .v6()
-      .getSettings({
-        billingAccount: $stateParams.billingAccount,
-        serviceName: $stateParams.serviceName,
-      }).$promise;
+    return OvhApiTelephony.Fax().v6().getSettings({
+      billingAccount: $stateParams.billingAccount,
+      serviceName: $stateParams.serviceName,
+    }).$promise;
   }
 
   function refreshSettings() {
-    OvhApiTelephony.Fax()
-      .v6()
-      .resetCache();
-    OvhApiTelephony.Fax()
-      .v6()
-      .resetQueryCache();
+    OvhApiTelephony.Fax().v6().resetCache();
+    OvhApiTelephony.Fax().v6().resetQueryCache();
     return fetchSettings().then((settings) =>
       assignWith(
         self.settings,

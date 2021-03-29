@@ -1,7 +1,7 @@
 import angular from 'angular';
 import { every, filter, find, remove, set } from 'lodash-es';
 
-export default /* @ngInject */ function($q, $timeout, $http) {
+export default /* @ngInject */ function ($q, $timeout, $http) {
   const defaultInterval = 7000;
   const defaultRetryMaxAttemps = 3;
   const defaultRetryTimeout = 10000;

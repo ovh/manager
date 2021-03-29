@@ -93,17 +93,13 @@ export default /* @ngInject */ ($stateProvider) => {
           nodePoolId,
         ) =>
           Kubernetes.getNodes(projectId, kubeId, nodePoolId).then((nodes) =>
-            map(nodes, (node) => {
-              return {
-                ...node,
-                formattedFlavor,
-              };
-            }),
+            map(nodes, (node) => ({
+              ...node,
+              formattedFlavor,
+            })),
           ),
 
-        refreshNodes: /* @ngInject */ ($state) => () => {
-          return $state.reload();
-        },
+        refreshNodes: /* @ngInject */ ($state) => () => $state.reload(),
 
         goToNodes: ($state, CucCloudMessage, kubeId, projectId, nodePoolId) => (
           message = false,

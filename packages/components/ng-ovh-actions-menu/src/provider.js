@@ -13,7 +13,7 @@
  *      });
  * </pre>
  */
-export default function() {
+export default function () {
   const self = this;
   let translationPath =
     '../bower_components/ovh-angular-actions-menu/dist/ovh-angular-actions-menu';
@@ -34,7 +34,7 @@ export default function() {
    *
    *  @return {String} The new configured translation path.
    */
-  self.setTranslationPath = function(path) {
+  self.setTranslationPath = function (path) {
     if (path) {
       translationPath = path;
     }
@@ -51,7 +51,7 @@ export default function() {
    *  @description
    *  This service enable you to load translation file.
    */
-  self.$get = /* @ngInject */ function(
+  self.$get = /* @ngInject */ function (
     $translate /* , $translatePartialLoader */,
   ) {
     return {

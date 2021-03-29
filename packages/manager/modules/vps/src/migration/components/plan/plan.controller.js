@@ -37,10 +37,12 @@ export default class PlanMigrationCtrl {
     this.dateOptions = {
       enable: [
         {
-          from: `${this.todaysDate.getFullYear()}-${this.todaysDate.getMonth() +
-            1}-${this.todaysDate.getDate()}`,
-          to: `${this.migrationCutoffDate.getFullYear()}-${this.migrationCutoffDate.getMonth() +
-            1}-${this.migrationCutoffDate.getDate()}`,
+          from: `${this.todaysDate.getFullYear()}-${
+            this.todaysDate.getMonth() + 1
+          }-${this.todaysDate.getDate()}`,
+          to: `${this.migrationCutoffDate.getFullYear()}-${
+            this.migrationCutoffDate.getMonth() + 1
+          }-${this.migrationCutoffDate.getDate()}`,
         },
       ],
       inline: true,

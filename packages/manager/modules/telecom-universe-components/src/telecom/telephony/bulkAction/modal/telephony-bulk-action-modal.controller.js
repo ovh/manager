@@ -12,7 +12,7 @@ import partition from 'lodash/partition';
 import set from 'lodash/set';
 import sortBy from 'lodash/sortBy';
 
-export default /* @ngInject */ function(
+export default /* @ngInject */ function (
   $http,
   $filter,
   $q,

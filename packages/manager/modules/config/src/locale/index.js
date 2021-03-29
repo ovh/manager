@@ -84,9 +84,8 @@ export const saveUserLocale = (locale) => {
  * @param {string} language The language to convert, in the OVHcloud format (i.e.: 'fr_FR')
  * @returns {string} The languag converted to BCP 47 (i.e.: 'fr-FR')
  */
-export const convertLanguageFromOVHToBCP47 = (language) => {
-  return language.replace('_', '-');
-};
+export const convertLanguageFromOVHToBCP47 = (language) =>
+  language.replace('_', '-');
 
 export default {
   convertLanguageFromOVHToBCP47,

@@ -337,9 +337,7 @@ export default class TelecomTelephonyAliasConfigurationCallsFilteringCtrl {
           });
         });
 
-      this.OvhApiTelephony.EasyHunting()
-        .ScreenListConditions()
-        .resetCache();
+      this.OvhApiTelephony.EasyHunting().ScreenListConditions().resetCache();
       this.$onInit();
     };
   }

@@ -70,16 +70,16 @@ export default class ManagerHubShortcutsCtrl {
 
     return this.$translate
       .refresh()
-      .then(() => {
-        return shortcuts
+      .then(() =>
+        shortcuts
           .filter(({ url }) => url || !isEmpty(url))
           .map((shortcut) => ({
             ...shortcut,
             label: this.$translate.instant(
               `hub_user_panel_shortcuts_link_${shortcut.id}`,
             ),
-          }));
-      })
+          })),
+      )
       .then((result) => {
         this.shortcuts = result;
       });

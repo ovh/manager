@@ -1,9 +1,7 @@
 export default class LogsAccountService {
   /* @ngInject */
   constructor(OvhApiDbaas, LogsHelperService, LogsConstants) {
-    this.UserApiService = OvhApiDbaas.Logs()
-      .User()
-      .v6();
+    this.UserApiService = OvhApiDbaas.Logs().User().v6();
     this.LogsLexiService = OvhApiDbaas.Logs().v6();
     this.LogsHelperService = LogsHelperService;
     this.LogsConstants = LogsConstants;

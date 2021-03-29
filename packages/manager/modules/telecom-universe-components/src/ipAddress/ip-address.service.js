@@ -4,7 +4,7 @@ import { Address4, Address6 } from 'ip-address';
  * Wrapper for ip-address library.
  * See doc here: http://ip-address.js.org/
  */
-export default function() {
+export default function () {
   /**
    * Returns a new instance of Address6.
    */

@@ -20,10 +20,7 @@ export default class CdaUserDetailsPermissionListCtrl {
     };
 
     function initUserPermissions() {
-      OvhApiDedicatedCeph.User()
-        .Pool()
-        .v6()
-        .resetQueryCache();
+      OvhApiDedicatedCeph.User().Pool().v6().resetQueryCache();
 
       return OvhApiDedicatedCeph.User()
         .Pool()
@@ -39,9 +36,7 @@ export default class CdaUserDetailsPermissionListCtrl {
     }
 
     function initPools() {
-      OvhApiDedicatedCeph.Pool()
-        .v6()
-        .resetQueryCache();
+      OvhApiDedicatedCeph.Pool().v6().resetQueryCache();
 
       return OvhApiDedicatedCeph.Pool()
         .v6()

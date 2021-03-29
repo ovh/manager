@@ -53,8 +53,8 @@ export default /* @ngInject */ ($stateProvider) => {
           .query()
           .expand('CachedObjectList-Pages')
           .execute({ serviceName: projectId })
-          .$promise.then(({ data }) => {
-            return data.reduce((regions, { name, services }) => {
+          .$promise.then(({ data }) =>
+            data.reduce((regions, { name, services }) => {
               if (
                 services.find(
                   ({ name: serviceName, status: serviceStatus }) =>
@@ -64,8 +64,8 @@ export default /* @ngInject */ ($stateProvider) => {
                 return [...regions, name];
               }
               return [...regions];
-            }, []);
-          })
+            }, []),
+          )
           .then((regions) => {
             const workflows = map(regions, (region) =>
               OvhApiCloudProjectRegionWorkflowBackup.v6()

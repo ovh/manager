@@ -56,8 +56,8 @@ export default class OvhManagerServerSidebarController {
   }
 
   getFeaturesList() {
-    const getFeatures = (items) => {
-      return items.reduce((featuresList, item) => {
+    const getFeatures = (items) =>
+      items.reduce((featuresList, item) => {
         let itemFeatures = [];
         if (item.feature) {
           itemFeatures.push(item.feature);
@@ -70,7 +70,6 @@ export default class OvhManagerServerSidebarController {
         }
         return [...featuresList, ...itemFeatures];
       }, []);
-    };
 
     return [
       ...new Set([
@@ -96,9 +95,7 @@ export default class OvhManagerServerSidebarController {
         .then((features) =>
           this.$translate
             .refresh()
-            .then(() => {
-              return features;
-            })
+            .then(() => features)
             .finally(() => this.$rootScope.$broadcast('sidebar:loaded')),
         )
         .then((features) => {

@@ -148,9 +148,7 @@ export default class TelecomTelephonyAliasChangeTypeCtrl {
         this.TucToast.success(
           this.$translate.instant('telephony_alias_change_type_ok'),
         );
-        this.OvhApiTelephony.Service()
-          .v6()
-          .resetCache();
+        this.OvhApiTelephony.Service().v6().resetCache();
         this.$state.go('^').then(() => {
           this.$state.reload();
         });
@@ -264,12 +262,8 @@ export default class TelecomTelephonyAliasChangeTypeCtrl {
               });
             });
 
-          this.OvhApiTelephony.Service()
-            .v6()
-            .resetCache();
-          this.OvhApiTelephony.Service()
-            .v6()
-            .resetQueryCache();
+          this.OvhApiTelephony.Service().v6().resetCache();
+          this.OvhApiTelephony.Service().v6().resetQueryCache();
 
           this.$state
             .go('telecom.telephony.billingAccount.alias.details.configuration')

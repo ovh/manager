@@ -38,8 +38,9 @@ export default /* @ngInject */ () => {
             /^(00(\d{1,3})|\+(\d{1,3})\s?\(0\))?([\d\s]*)$/,
           );
           if (matcher && (matcher[2] || matcher[3]) && matcher[4]) {
-            this.formatedNumber = `00${matcher[3] ||
-              matcher[2]}${matcher[4].replace(/\s/g, '')}`; // ("0033" + matcher[3] + matcher[4]).replace(/\s/g, "");
+            this.formatedNumber = `00${
+              matcher[3] || matcher[2]
+            }${matcher[4].replace(/\s/g, '')}`; // ("0033" + matcher[3] + matcher[4]).replace(/\s/g, "");
           } else {
             this.formatedNumber = number;
           }

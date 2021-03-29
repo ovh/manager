@@ -78,17 +78,15 @@ export default /* @ngInject */ function TelecomTelephonyServiceVoicemailPassword
 
     if (self.password) {
       tasks.push(
-        OvhApiTelephony.Voicemail()
-          .v6()
-          .changePassword(
-            {
-              billingAccount: $stateParams.billingAccount,
-              serviceName: $stateParams.serviceName,
-            },
-            {
-              password: self.password,
-            },
-          ).$promise,
+        OvhApiTelephony.Voicemail().v6().changePassword(
+          {
+            billingAccount: $stateParams.billingAccount,
+            serviceName: $stateParams.serviceName,
+          },
+          {
+            password: self.password,
+          },
+        ).$promise,
       );
     }
 

@@ -2,15 +2,9 @@ export default class LogsDashboardsService {
   /* @ngInject */
   constructor($q, OvhApiDbaas, LogsHelperService, LogsConstants, CucUrlHelper) {
     this.$q = $q;
-    this.DashboardsApiService = OvhApiDbaas.Logs()
-      .Dashboard()
-      .v6();
-    this.DashboardsAapiService = OvhApiDbaas.Logs()
-      .Dashboard()
-      .Aapi();
-    this.DetailsAapiService = OvhApiDbaas.Logs()
-      .Details()
-      .Aapi();
+    this.DashboardsApiService = OvhApiDbaas.Logs().Dashboard().v6();
+    this.DashboardsAapiService = OvhApiDbaas.Logs().Dashboard().Aapi();
+    this.DetailsAapiService = OvhApiDbaas.Logs().Details().Aapi();
     this.LogsHelperService = LogsHelperService;
     this.LogsConstants = LogsConstants;
     this.CucUrlHelper = CucUrlHelper;

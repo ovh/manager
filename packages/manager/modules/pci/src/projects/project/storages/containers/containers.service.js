@@ -339,9 +339,7 @@ export default class PciStoragesContainersService {
   }
 
   getObjectUrl(projectId, containerId, object) {
-    const expirationDate = moment()
-      .add(1, 'week')
-      .toISOString();
+    const expirationDate = moment().add(1, 'week').toISOString();
     return this.OvhApiCloudProjectStorage.v6()
       .getURL(
         {
@@ -384,8 +382,9 @@ export default class PciStoragesContainersService {
       })
       .$promise.then((catalog) => {
         let priceObj = null;
-        find(get(catalog, 'addons', []), (addon) => {
-          return (
+        find(
+          get(catalog, 'addons', []),
+          (addon) =>
             get(addon, 'blobs.commercial.name', null) ===
               CONTAINER_COMMERCIAL_NAME &&
             find(get(addon, 'pricings', []), (pricing) => {
@@ -394,9 +393,8 @@ export default class PciStoragesContainersService {
                 return true;
               }
               return false;
-            })
-          );
-        });
+            }),
+        );
         return priceObj;
       });
   }

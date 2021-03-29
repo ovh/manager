@@ -4,7 +4,7 @@ import controller from './otrs-popup.controller';
 import template from './otrs-popup.html';
 import './otrs-popup.less';
 
-export default function() {
+export default function () {
   return {
     restrict: 'A',
     scope: {},

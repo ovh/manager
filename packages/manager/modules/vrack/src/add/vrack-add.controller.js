@@ -1,6 +1,6 @@
 import pick from 'lodash/pick';
 
-export default /* @ngInject */ function(
+export default /* @ngInject */ function (
   $q,
   $translate,
   $state,

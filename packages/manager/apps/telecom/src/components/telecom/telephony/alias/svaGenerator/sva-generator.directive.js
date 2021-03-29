@@ -112,8 +112,9 @@ export default /* @ngInject */ ($q, $translate, $timeout) => {
 
       function loadAssets() {
         const fill = scope.fill || 'gradient';
-        const template = `${getNumberType(scope.number) +
-          (fill ? `_${fill}` : '')}.png`;
+        const template = `${
+          getNumberType(scope.number) + (fill ? `_${fill}` : '')
+        }.png`;
         return $q.all({
           template: loadImage(scope.scale.assetsPath + template),
           font: loadImage(`${scope.scale.assetsPath}font.png`),

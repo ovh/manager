@@ -136,14 +136,11 @@ export default /* @ngInject */ function TelecomTelephonyAliasConfigurationQueues
           map(
             ids,
             (id) =>
-              OvhApiTelephony.OvhPabx()
-                .Sound()
-                .v6()
-                .get({
-                  billingAccount: $stateParams.billingAccount,
-                  serviceName: $stateParams.serviceName,
-                  soundId: id,
-                }).$promise,
+              OvhApiTelephony.OvhPabx().Sound().v6().get({
+                billingAccount: $stateParams.billingAccount,
+                serviceName: $stateParams.serviceName,
+                soundId: id,
+              }).$promise,
           ),
         ),
       );
@@ -168,15 +165,11 @@ export default /* @ngInject */ function TelecomTelephonyAliasConfigurationQueues
             map(
               chunk(ids, 50),
               (chunkIds) =>
-                OvhApiTelephony.OvhPabx()
-                  .Hunting()
-                  .Agent()
-                  .v6()
-                  .getBatch({
-                    billingAccount: $stateParams.billingAccount,
-                    serviceName: $stateParams.serviceName,
-                    agentId: chunkIds,
-                  }).$promise,
+                OvhApiTelephony.OvhPabx().Hunting().Agent().v6().getBatch({
+                  billingAccount: $stateParams.billingAccount,
+                  serviceName: $stateParams.serviceName,
+                  agentId: chunkIds,
+                }).$promise,
             ),
           )
           .then((chunkResult) => map(flatten(chunkResult), 'value')),
@@ -200,15 +193,11 @@ export default /* @ngInject */ function TelecomTelephonyAliasConfigurationQueues
             map(
               chunk(ids, 50),
               (chunkIds) =>
-                OvhApiTelephony.OvhPabx()
-                  .Hunting()
-                  .Agent()
-                  .v6()
-                  .getBatch({
-                    billingAccount: $stateParams.billingAccount,
-                    serviceName: $stateParams.serviceName,
-                    agentId: chunkIds,
-                  }).$promise,
+                OvhApiTelephony.OvhPabx().Hunting().Agent().v6().getBatch({
+                  billingAccount: $stateParams.billingAccount,
+                  serviceName: $stateParams.serviceName,
+                  agentId: chunkIds,
+                }).$promise,
             ),
           )
           .then((chunkResult) => map(flatten(chunkResult), 'value')),
@@ -227,28 +216,18 @@ export default /* @ngInject */ function TelecomTelephonyAliasConfigurationQueues
 
   self.reorderAgentsOfQueue = function reorderAgentsOfQueue(queue, agents) {
     const ids = map(agents, 'agentId');
-    OvhApiTelephony.OvhPabx()
-      .Hunting()
-      .Queue()
-      .Agent()
-      .v6()
-      .resetAllCache();
+    OvhApiTelephony.OvhPabx().Hunting().Queue().Agent().v6().resetAllCache();
     return $q
       .all(
         map(
           chunk(ids, 50),
           (chunkIds) =>
-            OvhApiTelephony.OvhPabx()
-              .Hunting()
-              .Queue()
-              .Agent()
-              .v6()
-              .getBatch({
-                billingAccount: $stateParams.billingAccount,
-                serviceName: $stateParams.serviceName,
-                queueId: queue.queueId,
-                agentId: chunkIds,
-              }).$promise,
+            OvhApiTelephony.OvhPabx().Hunting().Queue().Agent().v6().getBatch({
+              billingAccount: $stateParams.billingAccount,
+              serviceName: $stateParams.serviceName,
+              queueId: queue.queueId,
+              agentId: chunkIds,
+            }).$promise,
         ),
       )
       .then((chunkResult) => map(flatten(chunkResult), 'value'))
@@ -268,52 +247,38 @@ export default /* @ngInject */ function TelecomTelephonyAliasConfigurationQueues
     fromAgent,
     toAgent,
   ) {
-    return OvhApiTelephony.OvhPabx()
-      .Hunting()
-      .Queue()
-      .Agent()
-      .v6()
-      .change(
-        {
-          billingAccount: $stateParams.billingAccount,
-          serviceName: $stateParams.serviceName,
-          queueId: queue.queueId,
-          agentId: fromAgent.agentId,
-        },
-        {
-          position: toAgent.position,
-        },
-      ).$promise;
+    return OvhApiTelephony.OvhPabx().Hunting().Queue().Agent().v6().change(
+      {
+        billingAccount: $stateParams.billingAccount,
+        serviceName: $stateParams.serviceName,
+        queueId: queue.queueId,
+        agentId: fromAgent.agentId,
+      },
+      {
+        position: toAgent.position,
+      },
+    ).$promise;
   };
 
   self.updateAgent = function updateAgent(agent) {
     const attrs = ['status', 'timeout', 'wrapUpTime', 'simultaneousLines'];
-    return OvhApiTelephony.OvhPabx()
-      .Hunting()
-      .Agent()
-      .v6()
-      .change(
-        {
-          billingAccount: $stateParams.billingAccount,
-          serviceName: $stateParams.serviceName,
-          agentId: agent.agentId,
-        },
-        pick(agent, attrs),
-      ).$promise;
+    return OvhApiTelephony.OvhPabx().Hunting().Agent().v6().change(
+      {
+        billingAccount: $stateParams.billingAccount,
+        serviceName: $stateParams.serviceName,
+        agentId: agent.agentId,
+      },
+      pick(agent, attrs),
+    ).$promise;
   };
 
   self.deleteAgentFromQueue = function deleteAgentFromQueue(queue, toDelete) {
-    return OvhApiTelephony.OvhPabx()
-      .Hunting()
-      .Queue()
-      .Agent()
-      .v6()
-      .remove({
-        billingAccount: $stateParams.billingAccount,
-        serviceName: $stateParams.serviceName,
-        queueId: queue.queueId,
-        agentId: toDelete.agentId,
-      }).$promise;
+    return OvhApiTelephony.OvhPabx().Hunting().Queue().Agent().v6().remove({
+      billingAccount: $stateParams.billingAccount,
+      serviceName: $stateParams.serviceName,
+      queueId: queue.queueId,
+      agentId: toDelete.agentId,
+    }).$promise;
   };
 
   self.createQueue = function createQueue() {

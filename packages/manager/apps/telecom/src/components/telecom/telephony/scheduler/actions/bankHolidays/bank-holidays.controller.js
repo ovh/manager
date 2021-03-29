@@ -110,12 +110,8 @@ export default /* @ngInject */ function TelephonySchedulerBankHolidaysCtrl(
     // build year list
     self.yearList = [
       self.model.year,
-      moment()
-        .add(1, 'year')
-        .get('year'),
-      moment()
-        .add(2, 'year')
-        .get('year'),
+      moment().add(1, 'year').get('year'),
+      moment().add(2, 'year').get('year'),
     ];
 
     // get default selected country depending to scheduler timezone
@@ -129,10 +125,7 @@ export default /* @ngInject */ function TelephonySchedulerBankHolidaysCtrl(
           .year(head(self.yearList))
           .startOf('year')
           .format(),
-        'dateEnd.to': moment()
-          .year(last(self.yearList))
-          .endOf('year')
-          .format(),
+        'dateEnd.to': moment().year(last(self.yearList)).endOf('year').format(),
         categories: 'holidays',
       })
       .then(() => {

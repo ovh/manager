@@ -27,7 +27,7 @@ import {
  * @description
  * Provider allowing configuration for atInternet service.
  */
-export default /* @ngInject */ function(AT_INTERNET_CUSTOM_VARS) {
+export default /* @ngInject */ function (AT_INTERNET_CUSTOM_VARS) {
   const config = {
     enabled: false, // enable or disable tracking
     debug: false, // enable or disable logging tracking in JS console

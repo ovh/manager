@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-export default /* @ngInject */ function($scope, $translate) {
+export default /* @ngInject */ function ($scope, $translate) {
   this.currentStep = 0;
   $scope.currentStep = this.currentStep;
 

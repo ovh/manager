@@ -51,7 +51,7 @@ import isFinite from 'lodash/isFinite';
 
 import template from './paginationServerSide.html';
 
-export default /* @ngInject */ function($translate) {
+export default /* @ngInject */ function ($translate) {
   return {
     restrict: 'A',
     replace: true,

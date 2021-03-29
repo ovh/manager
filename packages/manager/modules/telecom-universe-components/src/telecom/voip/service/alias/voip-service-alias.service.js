@@ -64,14 +64,11 @@ export default class {
             map(
               offerTaskIds,
               (id) =>
-                this.OvhApiTelephony.Service()
-                  .OfferTask()
-                  .v6()
-                  .get({
-                    billingAccount,
-                    serviceName,
-                    taskId: id,
-                  }).$promise,
+                this.OvhApiTelephony.Service().OfferTask().v6().get({
+                  billingAccount,
+                  serviceName,
+                  taskId: id,
+                }).$promise,
             ),
           )
           .then((tasks) => head(filter(tasks, { status: 'todo' }))),
@@ -130,17 +127,15 @@ export default class {
    *  @return {Promise} Promise of the edit
    */
   editDescription({ billingAccount, serviceName, description }) {
-    return this.OvhApiTelephony.Number()
-      .v6()
-      .edit(
-        {
-          billingAccount,
-          serviceName,
-        },
-        {
-          description,
-        },
-      ).$promise;
+    return this.OvhApiTelephony.Number().v6().edit(
+      {
+        billingAccount,
+        serviceName,
+      },
+      {
+        description,
+      },
+    ).$promise;
   }
 
   /**
@@ -178,12 +173,10 @@ export default class {
    *
    */
   getRSVAInformations({ billingAccount, serviceName }) {
-    return this.OvhApiTelephony.Rsva()
-      .v6()
-      .get({
-        billingAccount,
-        serviceName,
-      }).$promise;
+    return this.OvhApiTelephony.Rsva().v6().get({
+      billingAccount,
+      serviceName,
+    }).$promise;
   }
 
   /**
@@ -199,12 +192,10 @@ export default class {
    *  @return {String}                            The rate codes
    */
   getAllowedRateCodes({ billingAccount, serviceName }) {
-    return this.OvhApiTelephony.Rsva()
-      .v6()
-      .getAllowedRateCodes({
-        billingAccount,
-        serviceName,
-      }).$promise;
+    return this.OvhApiTelephony.Rsva().v6().getAllowedRateCodes({
+      billingAccount,
+      serviceName,
+    }).$promise;
   }
 
   /**
@@ -220,12 +211,10 @@ export default class {
    *  @return {String}                            The rate code
    */
   getCurrentRateCode({ billingAccount, serviceName }) {
-    return this.OvhApiTelephony.Rsva()
-      .v6()
-      .getCurrentRateCode({
-        billingAccount,
-        serviceName,
-      }).$promise;
+    return this.OvhApiTelephony.Rsva().v6().getCurrentRateCode({
+      billingAccount,
+      serviceName,
+    }).$promise;
   }
 
   /**
@@ -268,15 +257,13 @@ export default class {
    *
    */
   updateRateCode({ billingAccount, serviceName }, rateCode) {
-    return this.OvhApiTelephony.Rsva()
-      .v6()
-      .scheduleRateCode(
-        {
-          billingAccount,
-          serviceName,
-        },
-        { rateCode },
-      ).$promise;
+    return this.OvhApiTelephony.Rsva().v6().scheduleRateCode(
+      {
+        billingAccount,
+        serviceName,
+      },
+      { rateCode },
+    ).$promise;
   }
 
   /**
@@ -292,15 +279,13 @@ export default class {
    *
    */
   updateTypology({ billingAccount, serviceName }, typology) {
-    return this.OvhApiTelephony.Rsva()
-      .v6()
-      .edit(
-        {
-          billingAccount,
-          serviceName,
-        },
-        { typology },
-      ).$promise;
+    return this.OvhApiTelephony.Rsva().v6().edit(
+      {
+        billingAccount,
+        serviceName,
+      },
+      { typology },
+    ).$promise;
   }
 
   /**
@@ -316,12 +301,10 @@ export default class {
    *  @return {VoipService}
    */
   fetchContactCenterSolutionNumber({ billingAccount, serviceName }) {
-    return this.OvhApiTelephony.EasyHunting()
-      .v6()
-      .get({
-        billingAccount,
-        serviceName,
-      }).$promise;
+    return this.OvhApiTelephony.EasyHunting().v6().get({
+      billingAccount,
+      serviceName,
+    }).$promise;
   }
 
   /**
@@ -337,15 +320,13 @@ export default class {
    *
    */
   updateContactCenterSolutionNumber({ billingAccount, serviceName }, settings) {
-    return this.OvhApiTelephony.EasyHunting()
-      .v6()
-      .change(
-        {
-          billingAccount,
-          serviceName,
-        },
-        settings,
-      ).$promise;
+    return this.OvhApiTelephony.EasyHunting().v6().change(
+      {
+        billingAccount,
+        serviceName,
+      },
+      settings,
+    ).$promise;
   }
 
   /**
@@ -373,15 +354,11 @@ export default class {
         this.$q.all(
           queueIds.map(
             (queueId) =>
-              this.OvhApiTelephony.EasyHunting()
-                .Hunting()
-                .Queue()
-                .v6()
-                .get({
-                  billingAccount,
-                  serviceName,
-                  queueId,
-                }).$promise,
+              this.OvhApiTelephony.EasyHunting().Hunting().Queue().v6().get({
+                billingAccount,
+                serviceName,
+                queueId,
+              }).$promise,
           ),
         ),
       );
@@ -416,30 +393,26 @@ export default class {
       recordDisablingLanguage,
     },
   ) {
-    return this.OvhApiTelephony.EasyHunting()
-      .Hunting()
-      .Queue()
-      .v6()
-      .change(
-        {
-          billingAccount,
-          serviceName,
-          queueId,
-        },
-        {
-          actionOnClosure,
-          actionOnClosureParam,
-          actionOnOverflow,
-          actionOnOverflowParam,
-          askForRecordDisabling,
-          followCallForwards,
-          maxMember,
-          maxWaitTime,
-          record,
-          recordDisablingDigit,
-          recordDisablingLanguage,
-        },
-      ).$promise;
+    return this.OvhApiTelephony.EasyHunting().Hunting().Queue().v6().change(
+      {
+        billingAccount,
+        serviceName,
+        queueId,
+      },
+      {
+        actionOnClosure,
+        actionOnClosureParam,
+        actionOnOverflow,
+        actionOnOverflowParam,
+        askForRecordDisabling,
+        followCallForwards,
+        maxMember,
+        maxWaitTime,
+        record,
+        recordDisablingDigit,
+        recordDisablingLanguage,
+      },
+    ).$promise;
   }
 
   /**
@@ -681,18 +654,14 @@ export default class {
     agentId,
     agentSettings,
   ) {
-    return this.OvhApiTelephony.EasyHunting()
-      .Hunting()
-      .Agent()
-      .v6()
-      .change(
-        {
-          billingAccount,
-          serviceName,
-          agentId,
-        },
-        agentSettings,
-      ).$promise;
+    return this.OvhApiTelephony.EasyHunting().Hunting().Agent().v6().change(
+      {
+        billingAccount,
+        serviceName,
+        agentId,
+      },
+      agentSettings,
+    ).$promise;
   }
 
   /**
@@ -743,15 +712,11 @@ export default class {
     { billingAccount, serviceName },
     agentId,
   ) {
-    return this.OvhApiTelephony.EasyHunting()
-      .Hunting()
-      .Agent()
-      .v6()
-      .remove({
-        billingAccount,
-        serviceName,
-        agentId,
-      }).$promise;
+    return this.OvhApiTelephony.EasyHunting().Hunting().Agent().v6().remove({
+      billingAccount,
+      serviceName,
+      agentId,
+    }).$promise;
   }
 
   /**
@@ -777,14 +742,11 @@ export default class {
           return this.$q.all(
             chunk(recordsIds, 50).map(
               (chunkIds) =>
-                this.OvhApiTelephony.EasyHunting()
-                  .Records()
-                  .v6()
-                  .getBatch({
-                    billingAccount,
-                    serviceName,
-                    id: chunkIds,
-                  }).$promise,
+                this.OvhApiTelephony.EasyHunting().Records().v6().getBatch({
+                  billingAccount,
+                  serviceName,
+                  id: chunkIds,
+                }).$promise,
             ),
           );
         }
@@ -806,14 +768,11 @@ export default class {
    *  @param  {Number}      id                    Id of the record to delete
    */
   deleteContactCenterSolutionNumberRecord({ billingAccount, serviceName }, id) {
-    return this.OvhApiTelephony.EasyHunting()
-      .Records()
-      .v6()
-      .remove({
-        billingAccount,
-        serviceName,
-        id,
-      }).$promise;
+    return this.OvhApiTelephony.EasyHunting().Records().v6().remove({
+      billingAccount,
+      serviceName,
+      id,
+    }).$promise;
   }
 
   /**
@@ -892,14 +851,11 @@ export default class {
         this.$q.all(
           ids.map(
             (id) =>
-              this.OvhApiTelephony.EasyHunting()
-                .Sound()
-                .v6()
-                .get({
-                  billingAccount,
-                  serviceName,
-                  soundId: id,
-                }).$promise,
+              this.OvhApiTelephony.EasyHunting().Sound().v6().get({
+                billingAccount,
+                serviceName,
+                soundId: id,
+              }).$promise,
           ),
         ),
       );
@@ -925,18 +881,16 @@ export default class {
       .upload(file.name, file)
       .then(
         ({ id, name }) =>
-          this.OvhApiTelephony.EasyHunting()
-            .v6()
-            .soundUpload(
-              {
-                billingAccount,
-                serviceName,
-              },
-              {
-                documentId: id,
-                name,
-              },
-            ).$promise,
+          this.OvhApiTelephony.EasyHunting().v6().soundUpload(
+            {
+              billingAccount,
+              serviceName,
+            },
+            {
+              documentId: id,
+              name,
+            },
+          ).$promise,
       )
       .then(({ taskId }) =>
         this.tucVoipServiceTask.startPolling(
@@ -966,13 +920,10 @@ export default class {
     billingAccount,
     serviceName,
   }) {
-    return this.OvhApiTelephony.EasyHunting()
-      .ScreenListConditions()
-      .v6()
-      .get({
-        billingAccount,
-        serviceName,
-      }).$promise;
+    return this.OvhApiTelephony.EasyHunting().ScreenListConditions().v6().get({
+      billingAccount,
+      serviceName,
+    }).$promise;
   }
 
   /**
@@ -1125,13 +1076,11 @@ export default class {
    *  @return {VoipService} The redirect number
    */
   fetchRedirectNumber({ billingAccount, serviceName }, featureType) {
-    return this.OvhApiTelephony.Redirect()
-      .v6()
-      .get({
-        billingAccount,
-        featureType,
-        serviceName,
-      }).$promise;
+    return this.OvhApiTelephony.Redirect().v6().get({
+      billingAccount,
+      featureType,
+      serviceName,
+    }).$promise;
   }
 
   /**
@@ -1190,12 +1139,10 @@ export default class {
    *  @return {VoipService}                       The conference number
    */
   fetchConferenceNumber({ billingAccount, serviceName }) {
-    return this.OvhApiTelephony.Conference()
-      .v6()
-      .settings({
-        billingAccount,
-        serviceName,
-      }).$promise;
+    return this.OvhApiTelephony.Conference().v6().settings({
+      billingAccount,
+      serviceName,
+    }).$promise;
   }
 
   /**
@@ -1211,15 +1158,13 @@ export default class {
    *
    */
   updateConferenceNumberSettings({ billingAccount, serviceName }, settings) {
-    return this.OvhApiTelephony.Conference()
-      .v6()
-      .updateSettings(
-        {
-          billingAccount,
-          serviceName,
-        },
-        settings,
-      ).$promise;
+    return this.OvhApiTelephony.Conference().v6().updateSettings(
+      {
+        billingAccount,
+        serviceName,
+      },
+      settings,
+    ).$promise;
   }
 
   /**
@@ -1240,15 +1185,13 @@ export default class {
       .upload(file.name, file)
       .then(
         ({ id }) =>
-          this.OvhApiTelephony.Conference()
-            .v6()
-            .announceUpload(
-              {
-                billingAccount,
-                serviceName,
-              },
-              { documentId: id },
-            ).$promise,
+          this.OvhApiTelephony.Conference().v6().announceUpload(
+            {
+              billingAccount,
+              serviceName,
+            },
+            { documentId: id },
+          ).$promise,
       )
       .then(({ taskId }) =>
         this.tucVoipServiceTask.startPolling(
@@ -1289,14 +1232,11 @@ export default class {
         this.$q.all(
           ids.map(
             (id) =>
-              this.OvhApiTelephony.Conference()
-                .WebAccess()
-                .v6()
-                .get({
-                  billingAccount,
-                  serviceName,
-                  id,
-                }).$promise,
+              this.OvhApiTelephony.Conference().WebAccess().v6().get({
+                billingAccount,
+                serviceName,
+                id,
+              }).$promise,
           ),
         ),
       );
@@ -1316,16 +1256,13 @@ export default class {
    *  @return {Object}                            The created web access
    */
   createConferenceNumberWebAccess({ billingAccount, serviceName }, type) {
-    return this.OvhApiTelephony.Conference()
-      .WebAccess()
-      .v6()
-      .create(
-        {
-          billingAccount,
-          serviceName,
-        },
-        { type },
-      ).$promise;
+    return this.OvhApiTelephony.Conference().WebAccess().v6().create(
+      {
+        billingAccount,
+        serviceName,
+      },
+      { type },
+    ).$promise;
   }
 
   /**
@@ -1340,15 +1277,12 @@ export default class {
    *  @param  {String}      id                    Id of the web access to delete
    */
   deleteConferenceNumberWebAccess({ billingAccount, serviceName }, id) {
-    return this.OvhApiTelephony.Conference()
-      .WebAccess()
-      .v6()
-      .remove(
-        {
-          billingAccount,
-          serviceName,
-        },
-        id,
-      ).$promise;
+    return this.OvhApiTelephony.Conference().WebAccess().v6().remove(
+      {
+        billingAccount,
+        serviceName,
+      },
+      id,
+    ).$promise;
   }
 }

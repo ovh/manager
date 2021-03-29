@@ -26,8 +26,8 @@ const getMissingFragmentsVersion = (sourceInfos, targetInfos) => {
   );
 };
 
-module.exports = (sourceRegistryPath, targetRegistryPath) => {
-  return Promise.all([
+module.exports = (sourceRegistryPath, targetRegistryPath) =>
+  Promise.all([
     staticStorage.readInfos(sourceRegistryPath),
     staticStorage.readInfos(targetRegistryPath),
   ]).then(([sourceInfos, targetInfos]) => {
@@ -47,6 +47,5 @@ module.exports = (sourceRegistryPath, targetRegistryPath) => {
     console.log('No fragment to sync');
     return Promise.resolve();
   });
-};
 
 /* eslint-enable no-console */

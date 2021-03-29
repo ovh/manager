@@ -10,12 +10,8 @@ export default class LogsStreamsAlertsService {
   ) {
     this.$q = $q;
     this.CucCloudPoll = CucCloudPoll;
-    this.OperationApiService = OvhApiDbaas.Logs()
-      .Operation()
-      .v6();
-    this.AlertsApiService = OvhApiDbaas.Logs()
-      .Alert()
-      .v6();
+    this.OperationApiService = OvhApiDbaas.Logs().Operation().v6();
+    this.AlertsApiService = OvhApiDbaas.Logs().Alert().v6();
     this.CucServiceHelper = CucServiceHelper;
     this.LogsConstants = LogsConstants;
     this.LogsHelperService = LogsHelperService;

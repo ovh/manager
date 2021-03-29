@@ -33,7 +33,7 @@
  */
 import angular from 'angular';
 
-export default /* @ngInject */ function($timeout) {
+export default /* @ngInject */ function ($timeout) {
   return {
     restrict: 'A',
     scope: {

@@ -33,9 +33,7 @@ angular
             const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
             return import(
               /* webpackChunkName: "administration" */ './administration.module'
-            ).then((mod) => {
-              return $ocLazyLoad.inject(mod.default || mod);
-            });
+            ).then((mod) => $ocLazyLoad.inject(mod.default || mod));
           },
         },
       );

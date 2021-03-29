@@ -26,10 +26,7 @@ export default /* @ngInject */ function TelecomTelephonyFaxManagementTerminateCt
   self.fax = null;
   self.terminateTask = null;
   self.availableReasons = null;
-  self.nextBillDate = moment()
-    .add(1, 'month')
-    .startOf('month')
-    .toDate();
+  self.nextBillDate = moment().add(1, 'month').startOf('month').toDate();
 
   /* =====================================
   =            INITIALIZATION            =

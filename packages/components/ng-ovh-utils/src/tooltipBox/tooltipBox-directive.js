@@ -44,7 +44,7 @@
  */
 import angular from 'angular';
 
-export default /* @ngInject */ function(
+export default /* @ngInject */ function (
   tooltipBoxConfig,
   $compile,
   $http,
@@ -279,7 +279,7 @@ export default /* @ngInject */ function(
         popover.hasContent = function hasContent() {
           return this.getTitle() || options.content; // fix multiple $compile()
         };
-        popover.getPosition = function() {
+        popover.getPosition = function () {
           const r = $.fn.popover.Constructor.prototype.getPosition.apply(
             popover,
             args,
@@ -302,7 +302,7 @@ export default /* @ngInject */ function(
 
           // If enabled, hide any active popover except self
           if (options.unique) {
-            $('.popover.in').each(function() {
+            $('.popover.in').each(function () {
               const $this = $(this);
 
               const currentPopover = $this.data('popover');
@@ -351,11 +351,11 @@ export default /* @ngInject */ function(
         $rootScope.$broadcast('ovhDirectives.tooltipBox.init');
       }
 
-      $scope.show = function() {
+      $scope.show = function () {
         el.popover('show');
       };
 
-      $scope.hide = function() {
+      $scope.hide = function () {
         el.popover('hide');
       };
 

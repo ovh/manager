@@ -77,9 +77,7 @@ export default /* @ngInject */ function TelecomTelephonyAliasPortabilityOrderCtr
 
     self.stepsList = ['number', 'contact', 'config', 'summary'];
     self.step = 'number';
-    self.minDate = moment()
-      .add(15, 'days')
-      .toDate();
+    self.minDate = moment().add(15, 'days').toDate();
     self.order.desireDate = moment(self.minDate).toDate();
     self.desireDatePickerOpened = false;
     self.isSDA = false;

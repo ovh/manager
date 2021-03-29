@@ -8,9 +8,7 @@ export default /* @ngInject */ ($stateProvider) => {
       registryList: /* @ngInject */ (
         PciProjectTrainingRegistryService,
         projectId,
-      ) => {
-        return PciProjectTrainingRegistryService.getAll(projectId);
-      },
+      ) => PciProjectTrainingRegistryService.getAll(projectId),
       goToRegistryAdd: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.training.registries.add', {
           projectId,

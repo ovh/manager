@@ -379,17 +379,15 @@ export default /* @ngInject */ function VpsService(
               });
           }
 
-          return OvhApiIp.Reverse()
-            .v6()
-            .create(
-              {
-                ip: ip.ipAddress,
-              },
-              {
-                ipReverse: ip.ipAddress,
-                reverse: ip.reverse,
-              },
-            ).$promise;
+          return OvhApiIp.Reverse().v6().create(
+            {
+              ip: ip.ipAddress,
+            },
+            {
+              ipReverse: ip.ipAddress,
+              reverse: ip.reverse,
+            },
+          ).$promise;
         }
 
         return $q.reject(vps);
@@ -1472,7 +1470,7 @@ export default /* @ngInject */ function VpsService(
     );
   };
 
-  this.getCatalog = function(ovhSubsidiary) {
+  this.getCatalog = function (ovhSubsidiary) {
     return $http
       .get(`/order/catalog/public/${apiCatalogProductName}`, {
         params: {

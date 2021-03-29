@@ -39,9 +39,8 @@ const ServicePackService = class ServicePack {
   }
 
   getNamesForService(serviceName) {
-    return this.OvhApiDedicatedCloud.ServicePacks()
-      .v6()
-      .query({ serviceName }).$promise;
+    return this.OvhApiDedicatedCloud.ServicePacks().v6().query({ serviceName })
+      .$promise;
   }
 
   getServicePacksForDashboardOptions(serviceName, subsidiary) {

@@ -4,7 +4,7 @@ import fill from 'lodash/fill';
 import filter from 'lodash/filter';
 import map from 'lodash/map';
 
-export default /* @ngInject */ function(
+export default /* @ngInject */ function (
   $q,
   OvhApiTelephony,
   OvhApiOrder,

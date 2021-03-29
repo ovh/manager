@@ -200,15 +200,11 @@ export default class TelecomTelephonyAliasHomeController {
     };
 
     const _incomingCalls = incomingCalls.map((call) => ({
-      callDate: moment(call.creationDatetime)
-        .format('YYYY-MM-DD')
-        .toString(),
+      callDate: moment(call.creationDatetime).format('YYYY-MM-DD').toString(),
     }));
 
     const _outgoingCalls = outgoingCalls.map((call) => ({
-      callDate: moment(call.creationDatetime)
-        .format('YYYY-MM-DD')
-        .toString(),
+      callDate: moment(call.creationDatetime).format('YYYY-MM-DD').toString(),
     }));
 
     const xAxisKeys = keys(
@@ -257,9 +253,7 @@ export default class TelecomTelephonyAliasHomeController {
         },
       })
       .result.then(() => {
-        this.OvhApiTelephony.Service()
-          .v6()
-          .resetCache();
+        this.OvhApiTelephony.Service().v6().resetCache();
         this.$state.reload();
         this.TucToast.success(
           this.$translate.instant('telephony_alias_delete_ok'),

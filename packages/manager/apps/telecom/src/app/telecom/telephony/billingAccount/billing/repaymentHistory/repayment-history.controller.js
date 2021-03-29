@@ -40,12 +40,10 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountBillingRep
             map(
               chunk(dates, 50),
               (chunkDates) =>
-                OvhApiTelephony.HistoryRepaymentConsumption()
-                  .v6()
-                  .getBatch({
-                    billingAccount: $stateParams.billingAccount,
-                    date: chunkDates,
-                  }).$promise,
+                OvhApiTelephony.HistoryRepaymentConsumption().v6().getBatch({
+                  billingAccount: $stateParams.billingAccount,
+                  date: chunkDates,
+                }).$promise,
             ),
           )
           .then((chunkResult) => {

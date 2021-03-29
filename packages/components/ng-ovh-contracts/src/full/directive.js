@@ -4,7 +4,7 @@ import animateScrollTo from 'animated-scroll-to';
 import controller from './controller';
 import template from './template.html';
 
-export default /* @ngInject */ function($timeout) {
+export default /* @ngInject */ function ($timeout) {
   return {
     restrict: 'EA',
     template,

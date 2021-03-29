@@ -5,9 +5,7 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       taskList: /* @ngInject */ (cloudConnectService, cloudConnect) =>
         cloudConnectService.loadAllTasks(cloudConnect.id),
-      refreshTasks: /* @ngInject */ ($state) => () => {
-        return $state.reload();
-      },
+      refreshTasks: /* @ngInject */ ($state) => () => $state.reload(),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('cloud_connect_tasks'),
     },

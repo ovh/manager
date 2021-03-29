@@ -5,8 +5,8 @@ import controller from './leave-confirm-settings/leave/hosting-shared-leave-sett
 
 export default /* @ngInject */ ($stateProvider) => {
   const isLeaveSettings = { status: false };
-  const openModal = ($uibModal, model, rules) => {
-    return $uibModal.open({
+  const openModal = ($uibModal, model, rules) =>
+    $uibModal.open({
       template,
       controller,
       backdrop: 'static',
@@ -19,7 +19,6 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       },
     });
-  };
   $stateProvider.state('app.hosting.cdn.shared', {
     url: '/shared/settings/:domainName',
     params: {

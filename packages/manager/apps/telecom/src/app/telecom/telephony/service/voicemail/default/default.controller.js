@@ -16,12 +16,10 @@ export default /* @ngInject */ function TelecomTelephonyServiceVoicemailDefaultC
   const self = this;
 
   function fetchOptions() {
-    return OvhApiTelephony.Line()
-      .v6()
-      .getOptions({
-        billingAccount: $stateParams.billingAccount,
-        serviceName: $stateParams.serviceName,
-      }).$promise;
+    return OvhApiTelephony.Line().v6().getOptions({
+      billingAccount: $stateParams.billingAccount,
+      serviceName: $stateParams.serviceName,
+    }).$promise;
   }
 
   function init() {
@@ -63,15 +61,13 @@ export default /* @ngInject */ function TelecomTelephonyServiceVoicemailDefaultC
 
   self.saveDefaultVoicemail = function saveDefaultVoicemail() {
     self.saving = true;
-    const save = OvhApiTelephony.Line()
-      .v6()
-      .setOptions(
-        {
-          billingAccount: $stateParams.billingAccount,
-          serviceName: $stateParams.serviceName,
-        },
-        self.options,
-      ).$promise;
+    const save = OvhApiTelephony.Line().v6().setOptions(
+      {
+        billingAccount: $stateParams.billingAccount,
+        serviceName: $stateParams.serviceName,
+      },
+      self.options,
+    ).$promise;
 
     self.success = false;
     return $q
@@ -163,9 +159,7 @@ export default /* @ngInject */ function TelecomTelephonyServiceVoicemailDefaultC
       });
 
     // reset initial values to be able to modify again the options
-    OvhApiTelephony.Line()
-      .v6()
-      .resetAllCache();
+    OvhApiTelephony.Line().v6().resetAllCache();
 
     init();
   };

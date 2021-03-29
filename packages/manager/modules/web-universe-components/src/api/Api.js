@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-export default /* @ngInject */ function($http, $q) {
+export default /* @ngInject */ function ($http, $q) {
   const self = this;
 
   // DEPRECATED: You should use ovh.http

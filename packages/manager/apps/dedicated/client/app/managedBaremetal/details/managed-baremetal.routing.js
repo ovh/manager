@@ -217,11 +217,10 @@ export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
             const options = uniq(
               reduce(
                 model.servicePacks.all,
-                (availableOptions, servicePack) => {
-                  return availableOptions.concat(
+                (availableOptions, servicePack) =>
+                  availableOptions.concat(
                     map(servicePack.options, (option) => option.name),
-                  );
-                },
+                  ),
                 [],
               ),
             );

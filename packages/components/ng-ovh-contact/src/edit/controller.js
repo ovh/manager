@@ -2,7 +2,7 @@ import { snakeCase, startsWith } from 'lodash-es';
 
 import moment from 'moment';
 
-export default /* @ngInject */ function(
+export default /* @ngInject */ function (
   $timeout,
   $anchorScroll,
   ovhContact,

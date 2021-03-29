@@ -20,12 +20,11 @@ export default /* @ngInject */ ($stateProvider) => {
             .$promise.then((quotaList) =>
               find(quotaList, { region: cluster.region }),
             ),
-        region: /* @ngInject */ (cluster, quota) => {
-          return new Datacenter({
+        region: /* @ngInject */ (cluster, quota) =>
+          new Datacenter({
             name: cluster.region,
             quota,
-          });
-        },
+          }),
         cancelLink: /* @ngInject */ ($state, projectId, kubeId) =>
           $state.href('pci.projects.project.kubernetes.details.nodepools', {
             projectId,

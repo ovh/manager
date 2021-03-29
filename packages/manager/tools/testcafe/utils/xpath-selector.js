@@ -21,6 +21,6 @@ const elementByXPath = Selector((xpath) => {
   return items;
 });
 
-export default function(xpath) {
+export default function (xpath) {
   return Selector(elementByXPath(xpath));
 }

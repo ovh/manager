@@ -19,15 +19,9 @@ export default class LogsAliasesService {
     this.$q = $q;
     this.$translate = $translate;
     this.CucServiceHelper = CucServiceHelper;
-    this.AliasApiService = OvhApiDbaas.Logs()
-      .Alias()
-      .v6();
-    this.AliasAapiService = OvhApiDbaas.Logs()
-      .Alias()
-      .Aapi();
-    this.OperationApiService = OvhApiDbaas.Logs()
-      .Operation()
-      .v6();
+    this.AliasApiService = OvhApiDbaas.Logs().Alias().v6();
+    this.AliasAapiService = OvhApiDbaas.Logs().Alias().Aapi();
+    this.OperationApiService = OvhApiDbaas.Logs().Operation().v6();
     this.CucCloudPoll = CucCloudPoll;
     this.LogsHelperService = LogsHelperService;
     this.LogsConstants = LogsConstants;
@@ -179,14 +173,14 @@ export default class LogsAliasesService {
       { serviceName, aliasId: alias.aliasId },
       alias,
     )
-      .$promise.then((operation) => {
-        return this.LogsHelperService.handleOperation(
+      .$promise.then((operation) =>
+        this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
           'logs_aliases_delete_success',
           { aliasName: alias.name },
-        );
-      })
+        ),
+      )
       .catch((err) =>
         this.LogsHelperService.handleError('logs_aliases_delete_error', err, {
           aliasName: alias.name,
@@ -210,14 +204,14 @@ export default class LogsAliasesService {
         suffix: alias.suffix,
       },
     )
-      .$promise.then((operation) => {
-        return this.LogsHelperService.handleOperation(
+      .$promise.then((operation) =>
+        this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
           'logs_aliases_create_success',
           { aliasName: alias.suffix },
-        );
-      })
+        ),
+      )
       .catch((err) =>
         this.LogsHelperService.handleError('logs_aliases_create_error', err, {
           aliasName: alias.suffix,
@@ -240,14 +234,14 @@ export default class LogsAliasesService {
         description: alias.description,
       },
     )
-      .$promise.then((operation) => {
-        return this.LogsHelperService.handleOperation(
+      .$promise.then((operation) =>
+        this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
           'logs_aliases_update_success',
           { aliasName: alias.name },
-        );
-      })
+        ),
+      )
       .catch((err) =>
         this.LogsHelperService.handleError('logs_aliases_update_error', err, {
           aliasName: alias.name,

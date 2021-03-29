@@ -14,9 +14,9 @@ angular
         url: '/:billingAccount',
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-          return import('./billing-account.module').then((mod) => {
-            return $ocLazyLoad.inject(mod.default || mod);
-          });
+          return import('./billing-account.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
         },
       });
     },

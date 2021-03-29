@@ -19,7 +19,7 @@
  */
 import angular from 'angular';
 
-export default /* @ngInject */ function($rootScope, $location) {
+export default /* @ngInject */ function ($rootScope, $location) {
   // just check param
   function isGoodParams(level, value) {
     return (
@@ -69,7 +69,7 @@ export default /* @ngInject */ function($rootScope, $location) {
    * store some useful informations for navigation to use in resolve for instance.
    * @param {Object} the config Object
    */
-  this.setNavigationInformation = function(c) {
+  this.setNavigationInformation = function (c) {
     if (angular.isObject(c) && c) {
       navigationInformations = c;
       $rootScope.$broadcast(
@@ -115,17 +115,17 @@ export default /* @ngInject */ function($rootScope, $location) {
    * navigate in the app
    * @param {string} path the path you want to go
    */
-  this.navigate = function(path) {
+  this.navigate = function (path) {
     let inPhase = true;
 
     let newPath = '';
 
-    inPhase = (function() {
+    inPhase = (function () {
       const phase = $rootScope.$$phase;
       return phase === '$digest' || phase === '$apply';
     })();
 
-    newPath = (function(p) {
+    newPath = (function (p) {
       if (angular.isString(p) && p !== '') {
         return p.indexOf('/') === 0 ? p : `/${p}`;
       }

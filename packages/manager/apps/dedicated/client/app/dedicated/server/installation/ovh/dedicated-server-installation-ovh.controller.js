@@ -1516,9 +1516,9 @@ angular
               (!!~$scope.constants.forbiddenMountPoint.indexOf(
                 partition.mountPoint.toLowerCase(),
               ) ||
-              /\/\.{1,2}(\/|$)/.test(partition.mountPoint) || // /../
-              /\/-/.test(partition.mountPoint) || // /-
-              /\/\//.test(partition.mountPoint) || // //
+                /\/\.{1,2}(\/|$)/.test(partition.mountPoint) || // /../
+                /\/-/.test(partition.mountPoint) || // /-
+                /\/\//.test(partition.mountPoint) || // //
                 !/^\/[A-Za-z0-9._\-/]{0,254}$/.test(partition.mountPoint));
 
             $scope.errorInst.mountPoint2 =

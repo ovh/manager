@@ -171,9 +171,7 @@ export default class PackVoipLineActivationCtrl {
    */
   checkIfStillCanUncheckOrderablePhones() {
     const uncheckedPhones = sum(
-      map(this.modem.lines, (line) => {
-        return line.needHardware ? 0 : 1;
-      }),
+      map(this.modem.lines, (line) => (line.needHardware ? 0 : 1)),
     );
 
     this.canUncheckOrderablePhones = uncheckedPhones < this.modem.linesOnModem;

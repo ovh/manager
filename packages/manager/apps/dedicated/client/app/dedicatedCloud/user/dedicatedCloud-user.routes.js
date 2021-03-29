@@ -10,14 +10,13 @@ export default /* @ngInject */ ($stateProvider) => {
         message = false,
         type = 'success',
         reload = undefined,
-      ) => {
-        return goBackToState(
+      ) =>
+        goBackToState(
           'app.dedicatedCloud.details.users',
           message,
           type,
           reload,
-        );
-      },
+        ),
       addUser: /* @ngInject */ ($state) => (passwordPolicy) =>
         $state.go('app.dedicatedCloud.details.users.add', {
           passwordPolicy,

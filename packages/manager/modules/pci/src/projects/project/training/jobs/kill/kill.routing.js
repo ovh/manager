@@ -14,12 +14,10 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_projects_project_training_job_kill'),
       jobId: /* @ngInject */ ($transition$) => $transition$.params().jobId,
-      previousState: /* @ngInject */ ($transition$) => {
-        return $transition$.params().previousState;
-      },
-      job: /* @ngInject */ (PciProjectTrainingJobService, projectId, jobId) => {
-        return PciProjectTrainingJobService.get(projectId, jobId);
-      },
+      previousState: /* @ngInject */ ($transition$) =>
+        $transition$.params().previousState,
+      job: /* @ngInject */ (PciProjectTrainingJobService, projectId, jobId) =>
+        PciProjectTrainingJobService.get(projectId, jobId),
       killJob: /* @ngInject */ (
         PciProjectTrainingJobService,
         projectId,

@@ -9,8 +9,6 @@ export default class {
   deleteJob() {
     return this.dataProcessingService
       .terminateJob(this.projectId, this.jobId)
-      .then(() => {
-        return this.goBack();
-      });
+      .then(() => this.goBack());
   }
 }

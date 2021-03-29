@@ -120,9 +120,11 @@ angular.module('App').controller(
             set(
               record,
               'domainToDisplay',
-              `${(record.subDomainToDisplay
-                ? `${record.subDomainToDisplay}.`
-                : '') + record.zoneToDisplay}.`,
+              `${
+                (record.subDomainToDisplay
+                  ? `${record.subDomainToDisplay}.`
+                  : '') + record.zoneToDisplay
+              }.`,
             );
           });
         })

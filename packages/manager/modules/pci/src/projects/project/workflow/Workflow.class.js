@@ -14,9 +14,6 @@ export default class Workflow {
     const executions = map(this.executions, ({ executedAt }) =>
       moment(executedAt),
     );
-    return moment
-      .max(executions)
-      .utc()
-      .format();
+    return moment.max(executions).utc().format();
   }
 }

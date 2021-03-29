@@ -38,16 +38,16 @@ export default class PciInstanceStopController {
     )
       .then(() => this.waitInstanceStop())
       .then(() => this.OvhApiCloudProjectInstance.v6().resetQueryCache())
-      .then(() => {
-        return this.goBack(
+      .then(() =>
+        this.goBack(
           this.$translate.instant(
             'pci_projects_project_instances_instance_stop_success_message',
             {
               instance: this.instance.name,
             },
           ),
-        );
-      })
+        ),
+      )
       .catch((err) =>
         this.goBack(
           this.$translate.instant(

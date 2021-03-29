@@ -74,13 +74,11 @@ angular
           offset,
           $scope.search.text,
         )
-          .then((domains) => {
-            return HostingCdnSharedService.getSharedCDNDomains(
+          .then((domains) =>
+            HostingCdnSharedService.getSharedCDNDomains(
               $scope.hosting.serviceName,
-            ).then(({ data: sharedDomains }) => {
-              return { domains, sharedDomains };
-            });
-          })
+            ).then(({ data: sharedDomains }) => ({ domains, sharedDomains })),
+          )
           .then(({ domains, sharedDomains }) => {
             $scope.domains = domains;
             $scope.sharedDomains = sharedDomains;

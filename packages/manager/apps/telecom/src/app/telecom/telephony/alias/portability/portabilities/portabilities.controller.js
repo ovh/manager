@@ -60,12 +60,10 @@ export default class TelecomTelephonyAliasPortabilitiesCtrl {
               .$promise.then((porta) =>
                 this.$q
                   .all({
-                    steps: this.OvhApiTelephony.Portability()
-                      .v6()
-                      .getStatus({
-                        billingAccount: this.$stateParams.billingAccount,
-                        id,
-                      }).$promise,
+                    steps: this.OvhApiTelephony.Portability().v6().getStatus({
+                      billingAccount: this.$stateParams.billingAccount,
+                      id,
+                    }).$promise,
                     canBeCancelled: this.OvhApiTelephony.Portability()
                       .v6()
                       .canBeCancelled({

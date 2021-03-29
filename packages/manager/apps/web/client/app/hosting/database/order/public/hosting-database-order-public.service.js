@@ -87,13 +87,13 @@ export default class {
         this.getCharacteristicsOfAllProducts(serviceName),
         this.getUnavailableDiskSpaces(serviceName),
       ])
-      .then(([characteristicsOfAllProducts, unavailableDiskSpaces]) => {
-        return characteristicsOfAllProducts.filter(
+      .then(([characteristicsOfAllProducts, unavailableDiskSpaces]) =>
+        characteristicsOfAllProducts.filter(
           (product) =>
             !unavailableDiskSpaces.some(
               (diskSpace) => product.diskSpace === diskSpace,
             ),
-        );
-      });
+        ),
+      );
   }
 }

@@ -1,6 +1,6 @@
 import { convertUnit, getValueFromUnit } from '../helpers/helpers';
 
-export default /* @ngInject */ function($translate) {
+export default /* @ngInject */ function ($translate) {
   const UNITS = {
     bit: [
       'unit_bits_per_sec',

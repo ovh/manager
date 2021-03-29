@@ -102,12 +102,10 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountAdministra
             map(
               chunk(ids, 50),
               (chunkIds) =>
-                OvhApiTelephony.Line()
-                  .v6()
-                  .getBatch({
-                    billingAccount: ba.billingAccount,
-                    serviceName: chunkIds,
-                  }).$promise,
+                OvhApiTelephony.Line().v6().getBatch({
+                  billingAccount: ba.billingAccount,
+                  serviceName: chunkIds,
+                }).$promise,
             ),
           )
           .then((chunkResult) => map(flatten(chunkResult), 'value')),
@@ -125,12 +123,10 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountAdministra
             map(
               chunk(ids, 50),
               (chunkIds) =>
-                OvhApiTelephony.Number()
-                  .v6()
-                  .getBatch({
-                    billingAccount: ba.billingAccount,
-                    serviceName: chunkIds,
-                  }).$promise,
+                OvhApiTelephony.Number().v6().getBatch({
+                  billingAccount: ba.billingAccount,
+                  serviceName: chunkIds,
+                }).$promise,
             ),
           )
           .then((chunkResult) => map(flatten(chunkResult), 'value')),
@@ -148,12 +144,10 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountAdministra
             map(
               chunk(ids, 50),
               (chunkIds) =>
-                OvhApiTelephony.Fax()
-                  .v6()
-                  .getBatch({
-                    billingAccount: ba.billingAccount,
-                    serviceName: chunkIds,
-                  }).$promise,
+                OvhApiTelephony.Fax().v6().getBatch({
+                  billingAccount: ba.billingAccount,
+                  serviceName: chunkIds,
+                }).$promise,
             ),
           )
           .then((chunkResult) =>

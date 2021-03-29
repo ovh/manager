@@ -1,6 +1,6 @@
 import head from 'lodash/head';
 
-export default /* @ngInject */ function(
+export default /* @ngInject */ function (
   OvhApiFreeFax,
   TucToastError,
   FREEFAX_DISCRETE_CREDIT,

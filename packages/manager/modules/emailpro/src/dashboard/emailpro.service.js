@@ -1595,8 +1595,9 @@ export default class EmailPro {
   gettingIsServiceMXPlan(serviceName) {
     return this.EMAIL_CAPABILITIES.isEmailProAvailable
       ? this.OvhHttp.get(
-          `/email/pro/${serviceName ||
-            this.$stateParams.productId}/billingMigrated`,
+          `/email/pro/${
+            serviceName || this.$stateParams.productId
+          }/billingMigrated`,
           {
             rootPath: 'apiv6',
           },

@@ -130,8 +130,8 @@ export default class BillingMainHistoryCtrl {
 
   fetchAll(route) {
     let result = [];
-    const fetchPart = (page) => {
-      return this.$http
+    const fetchPart = (page) =>
+      this.$http
         .get(route, {
           serviceType: 'apiv6',
           headers: {
@@ -147,7 +147,6 @@ export default class BillingMainHistoryCtrl {
           }
           return result;
         });
-    };
     return fetchPart(1);
   }
 
@@ -217,17 +216,15 @@ export default class BillingMainHistoryCtrl {
         this.exportCsv.exportData({
           separator: ',',
           datas: [csvHeaders].concat(
-            map(sortBy(bills, 'date'), (bill) => {
-              return [
-                bill.billId,
-                bill.orderId,
-                moment(bill.date).format('L'),
-                bill.priceWithoutTax.text,
-                bill.priceWithTax.text,
-                getDebtAmount(bill),
-                getDueDate(bill),
-              ];
-            }),
+            map(sortBy(bills, 'date'), (bill) => [
+              bill.billId,
+              bill.orderId,
+              moment(bill.date).format('L'),
+              bill.priceWithoutTax.text,
+              bill.priceWithTax.text,
+              getDebtAmount(bill),
+              getDueDate(bill),
+            ]),
           ),
         });
       })

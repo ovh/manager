@@ -36,7 +36,7 @@
 import angular from 'angular';
 import omit from 'lodash/omit';
 
-export default /* @ngInject */ function($timeout) {
+export default /* @ngInject */ function ($timeout) {
   return {
     restrict: 'A',
     scope: {

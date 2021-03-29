@@ -120,11 +120,9 @@ export default /* @ngInject */ (
               .finally(() => {
                 // to finish delete file uploaded to user document
                 // we don't care about success or fail
-                OvhApiMe.Document()
-                  .v6()
-                  .delete({
-                    id: doc.id,
-                  });
+                OvhApiMe.Document().v6().delete({
+                  id: doc.id,
+                });
               }),
           ),
       );

@@ -14,13 +14,13 @@ export default class CloudConnectEditDescriptionCtrl {
     this.isLoading = true;
     return this.cloudConnectService
       .saveDescription(this.cloudConnect.id, this.description)
-      .then(() => {
-        return this.goBack(
+      .then(() =>
+        this.goBack(
           this.$translate.instant('cloud_connect_edit_description_success'),
           'success',
           true,
-        );
-      })
+        ),
+      )
       .catch((error) =>
         this.goBack(
           this.$translate.instant('cloud_connect_edit_description_error', {

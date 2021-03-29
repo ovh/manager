@@ -1,4 +1,4 @@
-export default /* @ngInject */ function(DetailsPopoverService) {
+export default /* @ngInject */ function (DetailsPopoverService) {
   const self = this;
   self.toggle = {
     accordions: {

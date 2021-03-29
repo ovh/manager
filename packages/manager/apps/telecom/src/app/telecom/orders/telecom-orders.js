@@ -15,9 +15,8 @@ angular
       },
       translations: { value: ['../pack/common'], format: 'json' },
       resolve: {
-        $title: /* @ngInject */ ($translate) => {
-          return $translate('telecom_order_page_title');
-        },
+        $title: /* @ngInject */ ($translate) =>
+          $translate('telecom_order_page_title'),
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant('telecom_orders_follow_up_title'),
         hideBreadcrumb: () => true,

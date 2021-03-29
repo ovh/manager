@@ -35,9 +35,7 @@ export default class IpLoadBalancerVrackCtrl {
           this.serviceName,
           creationRules.tasks,
         ).$promise.then(() => {
-          this.OvhApiIpLoadBalancing.Vrack()
-            .v6()
-            .resetCache();
+          this.OvhApiIpLoadBalancing.Vrack().v6().resetCache();
           this.creationRules.load();
         });
       }

@@ -140,12 +140,9 @@ export default class {
     //   this.$scope.displayAccounts();
     // });
 
-    this.$scope.addAccountOptionIsNotAvailable = () => {
-      return (
-        this.$scope.exchange.nicType.indexOf(this.EmailPro.nicAdmin) === -1 &&
-        this.$scope.exchange.nicType.indexOf(this.EmailPro.nicTech) === -1
-      );
-    };
+    this.$scope.addAccountOptionIsNotAvailable = () =>
+      this.$scope.exchange.nicType.indexOf(this.EmailPro.nicAdmin) === -1 &&
+      this.$scope.exchange.nicType.indexOf(this.EmailPro.nicTech) === -1;
 
     this.$scope.newAccount = () => {
       if (this.$scope.is25g()) {
@@ -165,18 +162,13 @@ export default class {
       }
     };
 
-    this.$scope.isEditable = (account) => {
-      return (
-        (account.state === this.$scope.stateOk ||
-          account.state === this.$scope.stateTaskDoing ||
-          account.state === this.$scope.stateTaskError) &&
-        !this.$scope.noDomainFlag
-      );
-    };
+    this.$scope.isEditable = (account) =>
+      (account.state === this.$scope.stateOk ||
+        account.state === this.$scope.stateTaskDoing ||
+        account.state === this.$scope.stateTaskError) &&
+      !this.$scope.noDomainFlag;
 
-    this.$scope.isConfigurable = (account) => {
-      return account.canBeConfigured;
-    };
+    this.$scope.isConfigurable = (account) => account.canBeConfigured;
 
     this.$scope.editAccount = (account) => {
       const populateAccount = angular.copy(account);
@@ -211,9 +203,8 @@ export default class {
       }
     };
 
-    this.$scope.isDisabled = (account) => {
-      return account.state !== 'OK' ? 'disabled' : '';
-    };
+    this.$scope.isDisabled = (account) =>
+      account.state !== 'OK' ? 'disabled' : '';
 
     this.$scope.deleteAccount = (account) => {
       if (account.state === 'OK') {

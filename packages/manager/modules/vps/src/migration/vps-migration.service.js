@@ -27,8 +27,8 @@ export default class VpsMigrationService {
           [X_PAGINATION_MODE]: CACHED_OBJECT_LIST_PAGES,
         },
       })
-      .then((list) => {
-        return this.$q
+      .then((list) =>
+        this.$q
           .all(
             map(
               filter(list.data, (vps) =>
@@ -36,17 +36,16 @@ export default class VpsMigrationService {
               ),
               (vps) =>
                 this.getMigrationDetails(vps.name, catalog)
-                  .then((migrationDetails) => {
-                    return migrationDetails.status ===
-                      MIGRATION_STATUS.NOT_AVAILABLE
+                  .then((migrationDetails) =>
+                    migrationDetails.status === MIGRATION_STATUS.NOT_AVAILABLE
                       ? null
-                      : set(vps, 'migration', migrationDetails);
-                  })
+                      : set(vps, 'migration', migrationDetails),
+                  )
                   .catch(() => null),
             ),
           )
-          .then((filteredList) => compact(filteredList));
-      });
+          .then((filteredList) => compact(filteredList)),
+      );
   }
 
   getMigrationDetails(serviceName, catalog) {

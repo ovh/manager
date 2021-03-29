@@ -257,12 +257,10 @@ export default class {
   }
 
   getExchangeService(organization, exchange) {
-    return this.OvhApiEmailExchange.service()
-      .Aapi()
-      .get({
-        organization,
-        exchange,
-      }).$promise;
+    return this.OvhApiEmailExchange.service().Aapi().get({
+      organization,
+      exchange,
+    }).$promise;
   }
 
   getAutorenewAgreements() {

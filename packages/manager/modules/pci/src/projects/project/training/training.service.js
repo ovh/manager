@@ -41,16 +41,16 @@ export default class PciProjectTrainingService {
       .query({
         serviceName: projectId,
       })
-      .$promise.then((users) => {
-        return users.filter((user) => {
+      .$promise.then((users) =>
+        users.filter((user) => {
           const aiRole = user.roles.find(
             (role) =>
               role.name === 'ai_training_operator' ||
               role.name === 'administrator',
           );
           return aiRole !== undefined;
-        });
-      });
+        }),
+      );
   }
 
   getPresetImages(serviceName) {
@@ -85,13 +85,13 @@ export default class PciProjectTrainingService {
       .query({
         serviceName,
       })
-      .$promise.then((regions) => {
-        return map(regions, (region) => ({
+      .$promise.then((regions) =>
+        map(regions, (region) => ({
           ...region,
           name: region.id,
           hasEnoughQuota: () => true,
-        }));
-      });
+        })),
+      );
   }
 
   getGpus(serviceName, region) {

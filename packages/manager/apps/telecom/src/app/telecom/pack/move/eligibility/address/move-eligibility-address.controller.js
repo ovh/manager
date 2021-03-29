@@ -163,9 +163,7 @@ export default class {
         streetCode: this.address.street.streetCode,
         streetNumber: this.address.streetNumber,
       })
-      .then((data) => {
-        return data.result.length > 0 ? data.result : null;
-      })
+      .then((data) => (data.result.length > 0 ? data.result : null))
       .catch((error) => {
         this.loading = false;
         this.TucToast.error(error);

@@ -31,9 +31,7 @@ export default class PackMoveOffersCtrl {
 
     this.$q
       .all([this.getOptions(), this.getCopperOffers()])
-      .then(() => {
-        return this.getFiberOffers();
-      })
+      .then(() => this.getFiberOffers())
       .then(() => {
         if (this.eligibilityReferenceFiber) {
           this.offers = [...this.listOffersFiber, ...this.listOffers];

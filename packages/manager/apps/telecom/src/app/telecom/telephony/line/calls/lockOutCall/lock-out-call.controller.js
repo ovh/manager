@@ -140,9 +140,7 @@ export default /* @ngInject */ function TelecomTelephonyLineCallsLockOutCallCtrl
         });
       });
 
-    OvhApiTelephony.Line()
-      .v6()
-      .resetAllCache();
+    OvhApiTelephony.Line().v6().resetAllCache();
     self.save();
   };
 

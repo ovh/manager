@@ -78,13 +78,15 @@ export default class SidebarController {
   }
 
   static findFeatureToCheck() {
-    return MENU.reduce((features, item) => {
-      return [
-        ...features,
-        item.feature,
-        ...item.subitems.map((subitem) => subitem.feature),
-      ].filter((feature) => !!feature);
-    }, []);
+    return MENU.reduce(
+      (features, item) =>
+        [
+          ...features,
+          item.feature,
+          ...item.subitems.map((subitem) => subitem.feature),
+        ].filter((feature) => !!feature),
+      [],
+    );
   }
 
   $onInit() {

@@ -635,13 +635,7 @@ export default class MicrosoftSharepointLicenseService {
         ),
       )
       .then((services) =>
-        reduce(
-          services,
-          (flattened, other) => {
-            return flattened.concat(other);
-          },
-          [],
-        ),
+        reduce(services, (flattened, other) => flattened.concat(other), []),
       );
   }
 

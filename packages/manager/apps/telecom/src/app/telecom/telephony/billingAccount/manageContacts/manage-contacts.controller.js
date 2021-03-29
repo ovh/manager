@@ -123,12 +123,9 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountManageCont
             map(
               chunk(ids, 50),
               (chunkIds) =>
-                OvhApiMe.Task()
-                  .ContactChange()
-                  .v6()
-                  .getBatch({
-                    id: chunkIds,
-                  }).$promise,
+                OvhApiMe.Task().ContactChange().v6().getBatch({
+                  id: chunkIds,
+                }).$promise,
             ),
           )
           .then((chunkResult) => map(flatten(chunkResult), 'value')),
@@ -251,34 +248,28 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountManageCont
         ).$promise;
         break;
       case 'line':
-        promise = OvhApiTelephony.Lines()
-          .v6()
-          .changeContact(
-            {
-              serviceName: contact.serviceName,
-            },
-            pick(contact.modified, contactAttributes),
-          ).$promise;
+        promise = OvhApiTelephony.Lines().v6().changeContact(
+          {
+            serviceName: contact.serviceName,
+          },
+          pick(contact.modified, contactAttributes),
+        ).$promise;
         break;
       case 'trunk':
-        promise = OvhApiTelephony.Trunks()
-          .v6()
-          .changeContact(
-            {
-              serviceName: contact.serviceName,
-            },
-            pick(contact.modified, contactAttributes),
-          ).$promise;
+        promise = OvhApiTelephony.Trunks().v6().changeContact(
+          {
+            serviceName: contact.serviceName,
+          },
+          pick(contact.modified, contactAttributes),
+        ).$promise;
         break;
       case 'alias':
-        promise = OvhApiTelephony.Aliases()
-          .v6()
-          .changeContact(
-            {
-              serviceName: contact.serviceName,
-            },
-            pick(contact.modified, contactAttributes),
-          ).$promise;
+        promise = OvhApiTelephony.Aliases().v6().changeContact(
+          {
+            serviceName: contact.serviceName,
+          },
+          pick(contact.modified, contactAttributes),
+        ).$promise;
         break;
       default:
         break;

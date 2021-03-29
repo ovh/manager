@@ -28,16 +28,13 @@ export default /* @ngInject */ function TelecomTelephonyLineCallsForwardService(
     forEach(forwards, (elt) => {
       assignIn(dataToSave, elt.saveData);
     });
-    return OvhApiTelephony.Line()
-      .Options()
-      .v6()
-      .update(
-        {
-          billingAccount,
-          serviceName,
-        },
-        dataToSave,
-      ).$promise;
+    return OvhApiTelephony.Line().Options().v6().update(
+      {
+        billingAccount,
+        serviceName,
+      },
+      dataToSave,
+    ).$promise;
   };
 
   /**
@@ -132,9 +129,7 @@ export default /* @ngInject */ function TelecomTelephonyLineCallsForwardService(
 
   this.resetAllCache = function resetAllCache() {
     OvhApiTelephony.Number().resetCache();
-    OvhApiTelephony.Line()
-      .Options()
-      .resetCache();
+    OvhApiTelephony.Line().Options().resetCache();
     OvhApiTelephony.v6().resetCache();
   };
 }

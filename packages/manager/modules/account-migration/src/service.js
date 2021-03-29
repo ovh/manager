@@ -131,8 +131,8 @@ export default class {
   }
 
   getAgreementDetails(contractId) {
-    return this.getPendingMigration().then((migration) => {
-      return migration
+    return this.getPendingMigration().then((migration) =>
+      migration
         ? this.$http
             .get(
               `/me/migration/${migration.id}/contract/${contractId}/agreement`,
@@ -141,25 +141,25 @@ export default class {
               },
             )
             .then(({ data }) => data)
-        : null;
-    });
+        : null,
+    );
   }
 
   getMigrationContracts() {
-    return this.getPendingMigration().then((migration) => {
-      return migration
+    return this.getPendingMigration().then((migration) =>
+      migration
         ? this.$http
             .get(`/me/migration/${migration.id}/contract`, {
               cache: this.cache,
             })
             .then(({ data }) => data)
-        : [];
-    });
+        : [],
+    );
   }
 
   getContractInfo(contractId) {
-    return this.getPendingMigration().then((migration) => {
-      return migration
+    return this.getPendingMigration().then((migration) =>
+      migration
         ? this.$http
             .get(`/me/migration/${migration.id}/contract/${contractId}`, {
               cache: this.cache,
@@ -168,8 +168,8 @@ export default class {
               ...data,
               migrationId: migration.id,
             }))
-        : null;
-    });
+        : null,
+    );
   }
 
   getContractDetails(contractId) {
@@ -193,14 +193,14 @@ export default class {
   }
 
   acceptAgreement(contractId) {
-    return this.getPendingMigration().then((migration) => {
-      return migration
+    return this.getPendingMigration().then((migration) =>
+      migration
         ? this.$http
             .post(`/me/migration/${migration.id}/contract/${contractId}/accept`)
             .then(() => {
               this.cache.removeAll();
             })
-        : null;
-    });
+        : null,
+    );
   }
 }

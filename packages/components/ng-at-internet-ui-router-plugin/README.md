@@ -39,7 +39,7 @@ Configuring the provider:
 ```js
 app.config([
   'atInternetUiRouterPluginProvider',
-  function(provider) {
+  function (provider) {
     provider.setTrackStateChange(true);
   },
 ]);

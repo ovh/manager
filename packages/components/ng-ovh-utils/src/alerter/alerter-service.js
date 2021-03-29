@@ -1,4 +1,4 @@
-export default /* @ngInject */ function($rootScope) {
+export default /* @ngInject */ function ($rootScope) {
   const self = this;
 
   const alertTypesHash = {
@@ -28,14 +28,14 @@ export default /* @ngInject */ function($rootScope) {
     false: 'alert-danger',
   };
 
-  this.set = function(type, message, details, alertId) {
+  this.set = function (type, message, details, alertId) {
     $rootScope.$broadcast('ovhAlert.show', type, message, details, alertId);
   };
 
-  this.success = function(message, alertId) {
+  this.success = function (message, alertId) {
     self.set(alertTypesHash.OK, message, null, alertId);
   };
-  this.error = function(message, alertId) {
+  this.error = function (message, alertId) {
     self.set(alertTypesHash.ERROR, message, null, alertId);
   };
 
@@ -114,7 +114,7 @@ export default /* @ngInject */ function($rootScope) {
     self.set(alertType || 'alert-warning', messageToSend, null, alertId);
   };
 
-  this.resetMessage = function(alertId) {
+  this.resetMessage = function (alertId) {
     $rootScope.$broadcast('ovhAlert.resetMessage', alertId);
   };
 }

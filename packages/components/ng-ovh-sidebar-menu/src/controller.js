@@ -1,4 +1,4 @@
-export default /* @ngInject */ function($transitions, SidebarMenu) {
+export default /* @ngInject */ function ($transitions, SidebarMenu) {
   const self = this;
 
   self.loading = {

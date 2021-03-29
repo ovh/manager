@@ -70,9 +70,9 @@ export default class BackupService {
   }
 
   addOptionToCart(option, cart, productId) {
-    const price = find(get(option, 'prices'), (priceObj) => {
-      return includes(get(priceObj, 'capacities'), 'installation');
-    });
+    const price = find(get(option, 'prices'), (priceObj) =>
+      includes(get(priceObj, 'capacities'), 'installation'),
+    );
     return this.WucOrderCartService.addProductServiceOptionToCart(
       cart.cartId,
       'privateCloud',

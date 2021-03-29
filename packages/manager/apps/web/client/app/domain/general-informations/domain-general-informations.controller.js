@@ -523,11 +523,9 @@ export default class DomainTabGeneralInformationsCtrl {
           .query({
             serviceName: this.domain.name,
           }).$promise,
-        optinRules: this.OvhApiDomainRules.Optin()
-          .v6()
-          .query({
-            serviceName: this.domain.name,
-          }).$promise,
+        optinRules: this.OvhApiDomainRules.Optin().v6().query({
+          serviceName: this.domain.name,
+        }).$promise,
       })
       .then(({ obfuscationRules, optinRules }) => {
         this.isWhoisOptinAllowed = !isEmpty(optinRules);

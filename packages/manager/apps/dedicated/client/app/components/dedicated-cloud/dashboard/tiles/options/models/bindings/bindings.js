@@ -142,9 +142,7 @@ class ModelBindings {
     this.options.basic.description.items = this.computeOptionsBasicDescriptionItems();
     this.options.basic.description.available = reduce(
       this.options.basic.description.items,
-      (available, item) => {
-        return item.available || available;
-      },
+      (available, item) => item.available || available,
       false,
     );
   }
@@ -208,9 +206,9 @@ class ModelBindings {
             this.model.currentUser.ovhSubsidiary,
           ),
         status,
-        available: some(this.model.servicePacks.all, (servicePack) => {
-          return find(servicePack.options, { name: option.name });
-        }),
+        available: some(this.model.servicePacks.all, (servicePack) =>
+          find(servicePack.options, { name: option.name }),
+        ),
       };
     });
   }

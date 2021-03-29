@@ -85,9 +85,7 @@ export default class RegionsCtrl {
         { region: this.regionToAdd.microRegion.code },
       )
       .$promise.then(() =>
-        this.OvhApiCloudProjectRegion.AvailableRegions()
-          .v6()
-          .resetQueryCache(),
+        this.OvhApiCloudProjectRegion.AvailableRegions().v6().resetQueryCache(),
       )
       .then(() => this.$state.reload())
       .then(() => {

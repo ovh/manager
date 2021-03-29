@@ -77,9 +77,9 @@ export default class {
 
   onError(error) {
     this.setMessage(
-      `${this.$translate.instant(
-        'dedicatedCloud_dashboard_loading_error',
-      )} ${error.message || error}}`,
+      `${this.$translate.instant('dedicatedCloud_dashboard_loading_error')} ${
+        error.message || error
+      }}`,
     );
   }
 

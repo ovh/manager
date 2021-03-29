@@ -44,28 +44,22 @@ export default class PciProjectTrainingJobService {
   }
 
   kill(projectId, jobId) {
-    return this.OvhApiCloudProjectAi.Training()
-      .Job()
-      .v6()
-      .kill(
-        {
-          serviceName: projectId,
-          jobId,
-        },
-        null,
-      ).$promise;
+    return this.OvhApiCloudProjectAi.Training().Job().v6().kill(
+      {
+        serviceName: projectId,
+        jobId,
+      },
+      null,
+    ).$promise;
   }
 
   logs(projectId, jobId) {
-    return this.OvhApiCloudProjectAi.Training()
-      .Job()
-      .v6()
-      .logs(
-        {
-          serviceName: projectId,
-          jobId,
-        },
-        null,
-      ).$promise;
+    return this.OvhApiCloudProjectAi.Training().Job().v6().logs(
+      {
+        serviceName: projectId,
+        jobId,
+      },
+      null,
+    ).$promise;
   }
 }

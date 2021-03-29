@@ -48,9 +48,8 @@ export default /* @ngInject */ ($stateProvider) => {
         }
         return promise;
       },
-      hasBackupStorage: /* @ngInject */ (isVpsNewRange, tabSummary) => {
-        return tabSummary.ftpBackup?.optionActivated || !isVpsNewRange;
-      },
+      hasBackupStorage: /* @ngInject */ (isVpsNewRange, tabSummary) =>
+        tabSummary.ftpBackup?.optionActivated || !isVpsNewRange,
       isVpsNewRange: /* @ngInject */ (stateVps) =>
         stateVps.model.version === NEW_RANGE_VERSION &&
         !~stateVps.model.name.indexOf(RANGES.BESTVALUE),

@@ -1,19 +1,16 @@
 import find from 'lodash/find';
 import { Environment } from '@ovh-ux/manager-config';
 
-export default /* @ngInject */ function(
+export default /* @ngInject */ function (
   $q,
   OvhApiCloud,
   OvhApiCloudProjectServiceInfos,
 ) {
   function getReadWriteAccounts(projectId) {
-    return OvhApiCloud.Project()
-      .Acl()
-      .v6()
-      .query({
-        serviceName: projectId,
-        type: 'readWrite',
-      }).$promise;
+    return OvhApiCloud.Project().Acl().v6().query({
+      serviceName: projectId,
+      type: 'readWrite',
+    }).$promise;
   }
 
   function getCurrentUserNic() {

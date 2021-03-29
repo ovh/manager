@@ -27,14 +27,11 @@ export default /* @ngInject */ function TelecomTelephonyServiceFaxCampaignsRemov
 
     return $q
       .all([
-        OvhApiTelephony.Fax()
-          .Campaigns()
-          .v6()
-          .delete({
-            billingAccount: $stateParams.billingAccount,
-            serviceName: $stateParams.serviceName,
-            id: self.campaign.id,
-          }).$promise,
+        OvhApiTelephony.Fax().Campaigns().v6().delete({
+          billingAccount: $stateParams.billingAccount,
+          serviceName: $stateParams.serviceName,
+          id: self.campaign.id,
+        }).$promise,
         $timeout(angular.noop, 1000),
       ])
       .then(

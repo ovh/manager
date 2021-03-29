@@ -70,9 +70,7 @@ const resolve = {
               defaultPaymentMethod.label,
               checkout.url,
               checkout.prices.withTax.text,
-              moment(domain.expiration)
-                .add(1, 'days')
-                .format('DD/MM/YYYY'),
+              moment(domain.expiration).add(1, 'days').format('DD/MM/YYYY'),
             );
           }
           displayOrderBillSuccessMessage(checkout.url);

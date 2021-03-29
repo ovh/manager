@@ -3,7 +3,7 @@ import { find, get, set } from 'lodash-es';
 
 import moment from 'moment';
 
-export default /* @ngInject */ function(OvhApiMe, CONTACT_PROTOTYPE_PATH) {
+export default /* @ngInject */ function (OvhApiMe, CONTACT_PROTOTYPE_PATH) {
   const getDatas = function getDatas(instance) {
     const datas = {};
 

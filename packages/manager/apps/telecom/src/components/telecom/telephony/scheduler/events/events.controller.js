@@ -219,9 +219,7 @@ export default /* @ngInject */ function TelephonySchedulerEventsCtrl(
 
       // if event is full day event, set end date to the end of the day
       if (self.event.allDay) {
-        self.event.dateEnd = moment(self.event.dateEnd)
-          .endOf('day')
-          .toDate();
+        self.event.dateEnd = moment(self.event.dateEnd).endOf('day').toDate();
       }
     }
 
@@ -252,18 +250,14 @@ export default /* @ngInject */ function TelephonySchedulerEventsCtrl(
       self.event.dateStart = moment(self.event.dateStart)
         .startOf('day')
         .toDate();
-      self.event.dateEnd = moment(self.event.dateEnd)
-        .endOf('day')
-        .toDate();
+      self.event.dateEnd = moment(self.event.dateEnd).endOf('day').toDate();
     } else if (moment(self.event.dateEnd).isSame(self.event.dateStart, 'day')) {
       self.event.dateEnd = moment(self.event.dateEnd)
         .startOf('day')
         .add(15, 'minutes')
         .toDate();
     } else {
-      self.event.dateEnd = moment(self.event.dateEnd)
-        .startOf('day')
-        .toDate();
+      self.event.dateEnd = moment(self.event.dateEnd).startOf('day').toDate();
     }
   };
 

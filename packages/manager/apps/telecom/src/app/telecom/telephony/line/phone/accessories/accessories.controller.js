@@ -34,12 +34,10 @@ export default class TelephonyLinePhoneAccessoriesCtrl {
           this.billingAccount,
         );
         this.line = group.getLine(this.serviceName);
-        return this.OvhApiTelephony.Line()
-          .v6()
-          .get({
-            billingAccount: this.line.billingAccount,
-            serviceName: this.line.serviceName,
-          }).$promise;
+        return this.OvhApiTelephony.Line().v6().get({
+          billingAccount: this.line.billingAccount,
+          serviceName: this.line.serviceName,
+        }).$promise;
       })
       .then((result) => {
         assign(

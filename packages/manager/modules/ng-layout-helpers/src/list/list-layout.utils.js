@@ -294,8 +294,8 @@ export const stateResolves = {
       serviceNameTracker,
     );
   },
-  formatters: /* @ngInject */ (configuration) => {
-    return configuration.data.reduce(
+  formatters: /* @ngInject */ (configuration) =>
+    configuration.data.reduce(
       (columns, column) => ({
         ...columns,
         ...(column.format
@@ -303,11 +303,10 @@ export const stateResolves = {
           : {}),
       }),
       {},
-    );
-  },
+    ),
 
-  mappings: /* @ngInject */ (configuration) => {
-    return configuration.data.reduce(
+  mappings: /* @ngInject */ (configuration) =>
+    configuration.data.reduce(
       (columns, column) => ({
         ...columns,
         ...(column.map
@@ -315,8 +314,7 @@ export const stateResolves = {
           : {}),
       }),
       {},
-    );
-  },
+    ),
 };
 
 export const stateParams = {

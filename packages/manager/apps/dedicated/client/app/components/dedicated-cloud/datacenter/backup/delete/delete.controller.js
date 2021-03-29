@@ -41,8 +41,8 @@ export default class {
           'success',
         );
       })
-      .catch((error) => {
-        return this.goToBackup(
+      .catch((error) =>
+        this.goToBackup(
           this.$translate.instant(
             error.status === 403
               ? 'dedicatedCloud_datacenter_backup_delete_error_403'
@@ -52,8 +52,8 @@ export default class {
             },
           ),
           'danger',
-        );
-      })
+        ),
+      )
       .finally(() => {
         this.deleting = false;
       });

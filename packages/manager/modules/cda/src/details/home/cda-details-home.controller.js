@@ -80,9 +80,7 @@ export default class CdaDetailHomeCtrl {
     }
 
     function initTasks() {
-      OvhApiDedicatedCeph.Task()
-        .v6()
-        .resetQueryCache();
+      OvhApiDedicatedCeph.Task().v6().resetQueryCache();
       OvhApiDedicatedCeph.Task()
         .v6()
         .query({

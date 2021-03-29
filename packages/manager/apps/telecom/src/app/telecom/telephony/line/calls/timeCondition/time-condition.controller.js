@@ -212,18 +212,12 @@ export default /* @ngInject */ function TelecomTelephonyLineCallsTimeConditionCt
               set(
                 condition,
                 'hourBegin',
-                condition.timeFrom
-                  .split(':')
-                  .slice(0, 2)
-                  .join(''),
+                condition.timeFrom.split(':').slice(0, 2).join(''),
               );
               set(
                 condition,
                 'hourEnd',
-                condition.timeTo
-                  .split(':')
-                  .slice(0, 2)
-                  .join(''),
+                condition.timeTo.split(':').slice(0, 2).join(''),
               );
 
               set(condition, 'featureType', 'sip');

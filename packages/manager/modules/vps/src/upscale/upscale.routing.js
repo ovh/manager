@@ -1,7 +1,7 @@
 import component from './upscale.component';
 import vpsHeaderComponent from '../header/vps-header.component';
 
-export default /* @ngInject */ function($stateProvider) {
+export default /* @ngInject */ function ($stateProvider) {
   $stateProvider.state('vps.detail.upscale', {
     url: '/upscale',
     resolve: {

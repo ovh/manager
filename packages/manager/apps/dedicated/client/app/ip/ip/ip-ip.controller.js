@@ -119,9 +119,7 @@ angular.module('Module.ip.controllers').controller(
           serviceType: 'aapi',
         })
         .then(({ data }) => data)
-        .then(({ count, data }) => {
-          return count === 1 ? data[0] : null;
-        });
+        .then(({ count, data }) => (count === 1 ? data[0] : null));
     }
 
     function checkIps(ipBlock) {

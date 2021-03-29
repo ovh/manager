@@ -14,8 +14,8 @@ const {
   FRAGMENT_DEFINITION_FILE,
 } = require('./storage/constants');
 
-module.exports = (rootPath, port = 8888, { fallbackRegistry, filters }) => {
-  return Promise.all([
+module.exports = (rootPath, port = 8888, { fallbackRegistry, filters }) =>
+  Promise.all([
     devStorage.readInfos(rootPath),
     fallbackRegistry ? remoteStorage.readInfos(fallbackRegistry) : [],
   ])
@@ -101,5 +101,4 @@ module.exports = (rootPath, port = 8888, { fallbackRegistry, filters }) => {
 
       return app;
     });
-};
 /* eslint-enable no-console */

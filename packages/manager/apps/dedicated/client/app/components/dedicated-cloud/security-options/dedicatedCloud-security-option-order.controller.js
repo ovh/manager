@@ -46,9 +46,9 @@ export default class {
       (result) => {
         if (result.error) {
           this.setMessage(
-            `${this.$translate.instant(
-              'dedicatedCloud_options_check_error',
-            )} ${result.error.message || result.error}`,
+            `${this.$translate.instant('dedicatedCloud_options_check_error')} ${
+              result.error.message || result.error
+            }`,
             'danger',
           );
         }

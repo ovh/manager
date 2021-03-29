@@ -114,12 +114,9 @@ export default class PciProjectNewService {
 
   async getOrderCartItems(orderCart) {
     const { cartId } = orderCart;
-    const itemIds = await this.OvhApiOrder.Cart()
-      .Item()
-      .v6()
-      .query({
-        cartId,
-      }).$promise;
+    const itemIds = await this.OvhApiOrder.Cart().Item().v6().query({
+      cartId,
+    }).$promise;
     const itemDetailsPromises = map(itemIds, (itemId) =>
       this.OvhApiOrder.Cart()
         .Item()

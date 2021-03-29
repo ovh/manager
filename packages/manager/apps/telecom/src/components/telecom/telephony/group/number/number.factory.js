@@ -70,17 +70,15 @@ export default /* @ngInject */ (
 
     if (self.hasChange('description')) {
       savePromises.push(
-        OvhApiTelephony.Number()
-          .v6()
-          .edit(
-            {
-              billingAccount: self.billingAccount,
-              serviceName: self.serviceName,
-            },
-            {
-              description: self.description,
-            },
-          ).$promise,
+        OvhApiTelephony.Number().v6().edit(
+          {
+            billingAccount: self.billingAccount,
+            serviceName: self.serviceName,
+          },
+          {
+            description: self.description,
+          },
+        ).$promise,
       );
     }
 
@@ -204,14 +202,11 @@ export default /* @ngInject */ (
             map(
               offerTaskIds,
               (id) =>
-                OvhApiTelephony.Service()
-                  .OfferTask()
-                  .v6()
-                  .get({
-                    billingAccount: self.billingAccount,
-                    serviceName: self.serviceName,
-                    taskId: id,
-                  }).$promise,
+                OvhApiTelephony.Service().OfferTask().v6().get({
+                  billingAccount: self.billingAccount,
+                  serviceName: self.serviceName,
+                  taskId: id,
+                }).$promise,
             ),
           )
           .then((tasks) => head(filter(tasks, { status: 'todo' }))),

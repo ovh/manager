@@ -40,7 +40,7 @@ import {
 
 import innerMenuItemTemplate from './list/item/list-item-inner.html';
 
-export default function() {
+export default function () {
   const self = this;
 
   let translationPaths = [
@@ -206,7 +206,7 @@ export default function() {
        *
        *  @return {Promise} void
        */
-      sidebarMenuService.loadTranslations = function() {
+      sidebarMenuService.loadTranslations = function () {
         // angular.forEach(translationPaths, function (translationPath) {
         //     $translatePartialLoader.addPart(translationPath);
         // });
@@ -241,7 +241,7 @@ export default function() {
        *
        *  @return {Number} The minimum items length for enabling search.
        */
-      sidebarMenuService.getMinItemsForEnablingSearch = function() {
+      sidebarMenuService.getMinItemsForEnablingSearch = function () {
         return minItemsForEnablingSearch;
       };
 
@@ -434,7 +434,7 @@ export default function() {
           );
         }
 
-        return function(menuItems) {
+        return function (menuItems) {
           return manageStateChangeRecur(menuItems || this.items);
         };
       })();
@@ -585,7 +585,7 @@ export default function() {
           return items;
         }
 
-        return function() {
+        return function () {
           return flattenSubItems(this.items || []);
         };
       })();

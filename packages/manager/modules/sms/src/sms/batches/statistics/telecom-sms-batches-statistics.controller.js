@@ -15,14 +15,18 @@ export default class SmsBatchesStatisticsController {
       .then((statistics) => {
         Object.assign(this.batch, {
           delivered: statistics.delivered,
-          deliveredPercentage: `(${Math.round(
-            (statistics.delivered / (statistics.sent || 1)) * 100 * 100,
-          ) / 100}%)`,
+          deliveredPercentage: `(${
+            Math.round(
+              (statistics.delivered / (statistics.sent || 1)) * 100 * 100,
+            ) / 100
+          }%)`,
           sent: statistics.sent,
           stoplisted: statistics.stoplisted,
-          stoplistedPercentage: `(${Math.round(
-            (statistics.stoplisted / (statistics.sent || 1)) * 100 * 100,
-          ) / 100}%)`,
+          stoplistedPercentage: `(${
+            Math.round(
+              (statistics.stoplisted / (statistics.sent || 1)) * 100 * 100,
+            ) / 100
+          }%)`,
         });
       })
       .catch((error) => {

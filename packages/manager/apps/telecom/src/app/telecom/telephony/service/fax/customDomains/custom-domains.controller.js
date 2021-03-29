@@ -21,9 +21,7 @@ export default /* @ngInject */ function TelecomTelephonyServiceFaxCustomDomainsC
   =============================== */
 
   function fetchDomains() {
-    return OvhApiDomain.v7()
-      .query()
-      .execute().$promise;
+    return OvhApiDomain.v7().query().execute().$promise;
   }
 
   function fetchCustomDomains() {
@@ -36,12 +34,9 @@ export default /* @ngInject */ function TelecomTelephonyServiceFaxCustomDomainsC
           map(
             customDomainsIds,
             (id) =>
-              OvhApiMe.Fax()
-                .CustomDomains()
-                .v6()
-                .get({
-                  id,
-                }).$promise,
+              OvhApiMe.Fax().CustomDomains().v6().get({
+                id,
+              }).$promise,
           ),
         ),
       );

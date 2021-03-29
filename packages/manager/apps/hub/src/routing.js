@@ -12,14 +12,13 @@ const parseErrors = (data) =>
       : value,
   );
 
-const transformBillingServices = (services) => {
-  return services.status === 'ERROR'
+const transformBillingServices = (services) =>
+  services.status === 'ERROR'
     ? services
     : {
         count: get(services, 'data.count'),
         data: map(services.data.data, (service) => new BillingService(service)),
       };
-};
 
 const transformOrder = ($q, lastOrder, OrderTracking) => {
   const latestOrder = lastOrder.data;

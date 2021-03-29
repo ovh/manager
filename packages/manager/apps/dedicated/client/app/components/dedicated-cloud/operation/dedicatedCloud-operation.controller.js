@@ -38,9 +38,9 @@ export default class {
       })
       .catch((err) => {
         this.setMessage(
-          `${this.$translate.instant(
-            'dedicatedCloud_OPERATIONS_error',
-          )} ${err.message || err}`,
+          `${this.$translate.instant('dedicatedCloud_OPERATIONS_error')} ${
+            err.message || err
+          }`,
         );
       })
       .finally(() => {

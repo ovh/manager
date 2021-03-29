@@ -68,12 +68,10 @@ export default class PciProjectStorageBlockService {
           map(
             instanceIds,
             (instanceId) =>
-              this.OvhApiCloudProject.Instance()
-                .v6()
-                .get({
-                  serviceName: projectId,
-                  instanceId,
-                }).$promise,
+              this.OvhApiCloudProject.Instance().v6().get({
+                serviceName: projectId,
+                instanceId,
+              }).$promise,
           ),
         );
       })
@@ -105,12 +103,10 @@ export default class PciProjectStorageBlockService {
             map(
               volume.attachedTo,
               (instanceId) =>
-                this.OvhApiCloudProject.Instance()
-                  .v6()
-                  .get({
-                    serviceName: projectId,
-                    instanceId,
-                  }).$promise,
+                this.OvhApiCloudProject.Instance().v6().get({
+                  serviceName: projectId,
+                  instanceId,
+                }).$promise,
             ),
           ),
         }),
@@ -135,40 +131,34 @@ export default class PciProjectStorageBlockService {
   }
 
   attachTo(projectId, storage, instance) {
-    return this.OvhApiCloudProject.Volume()
-      .v6()
-      .attach(
-        {
-          serviceName: projectId,
-          volumeId: storage.id,
-        },
-        {
-          instanceId: instance.id,
-        },
-      ).$promise;
+    return this.OvhApiCloudProject.Volume().v6().attach(
+      {
+        serviceName: projectId,
+        volumeId: storage.id,
+      },
+      {
+        instanceId: instance.id,
+      },
+    ).$promise;
   }
 
   detach(projectId, storage) {
-    return this.OvhApiCloudProject.Volume()
-      .v6()
-      .detach(
-        {
-          serviceName: projectId,
-          volumeId: storage.id,
-        },
-        {
-          instanceId: storage.attachedTo[0].id,
-        },
-      ).$promise;
+    return this.OvhApiCloudProject.Volume().v6().detach(
+      {
+        serviceName: projectId,
+        volumeId: storage.id,
+      },
+      {
+        instanceId: storage.attachedTo[0].id,
+      },
+    ).$promise;
   }
 
   getCompatiblesInstances(projectId, { region }) {
-    return this.OvhApiCloudProject.Instance()
-      .v6()
-      .query({
-        serviceName: projectId,
-        region,
-      }).$promise;
+    return this.OvhApiCloudProject.Instance().v6().query({
+      serviceName: projectId,
+      region,
+    }).$promise;
   }
 
   getVolumeSnapshots(projectId, { id }) {
@@ -214,22 +204,20 @@ export default class PciProjectStorageBlockService {
     projectId,
     { description, imageId, name, region, size, snapshotId, type },
   ) {
-    return this.OvhApiCloudProject.Volume()
-      .v6()
-      .save(
-        {
-          serviceName: projectId,
-        },
-        {
-          description,
-          imageId,
-          name,
-          region: region.name,
-          size,
-          snapshotId,
-          type,
-        },
-      ).$promise;
+    return this.OvhApiCloudProject.Volume().v6().save(
+      {
+        serviceName: projectId,
+      },
+      {
+        description,
+        imageId,
+        name,
+        region: region.name,
+        size,
+        snapshotId,
+        type,
+      },
+    ).$promise;
   }
 
   update(projectId, { name, bootable, size }, originalStorage) {
@@ -238,42 +226,36 @@ export default class PciProjectStorageBlockService {
       originalStorage.name !== name ||
       originalStorage.bootable !== bootable
     ) {
-      promises.put = this.OvhApiCloudProject.Volume()
-        .v6()
-        .put(
-          {
-            serviceName: projectId,
-            volumeId: originalStorage.id,
-          },
-          {
-            name,
-            bootable,
-          },
-        ).$promise;
+      promises.put = this.OvhApiCloudProject.Volume().v6().put(
+        {
+          serviceName: projectId,
+          volumeId: originalStorage.id,
+        },
+        {
+          name,
+          bootable,
+        },
+      ).$promise;
     }
     if (size !== originalStorage.size) {
-      promises.upsize = this.OvhApiCloudProject.Volume()
-        .v6()
-        .upsize(
-          {
-            serviceName: projectId,
-            volumeId: originalStorage.id,
-          },
-          {
-            size,
-          },
-        ).$promise;
+      promises.upsize = this.OvhApiCloudProject.Volume().v6().upsize(
+        {
+          serviceName: projectId,
+          volumeId: originalStorage.id,
+        },
+        {
+          size,
+        },
+      ).$promise;
     }
     return this.$q.all(promises);
   }
 
   delete(projectId, { id }) {
-    return this.OvhApiCloudProject.Volume()
-      .v6()
-      .delete({
-        serviceName: projectId,
-        volumeId: id,
-      }).$promise;
+    return this.OvhApiCloudProject.Volume().v6().delete({
+      serviceName: projectId,
+      volumeId: id,
+    }).$promise;
   }
 
   static getVolumePriceEstimationFromCatalog(catalog, storage) {
@@ -360,12 +342,10 @@ export default class PciProjectStorageBlockService {
           map(
             regions,
             (region) =>
-              this.OvhApiCloudProject.Region()
-                .v6()
-                .get({
-                  serviceName: projectId,
-                  id: region,
-                }).$promise,
+              this.OvhApiCloudProject.Region().v6().get({
+                serviceName: projectId,
+                id: region,
+              }).$promise,
           ),
         ),
       )

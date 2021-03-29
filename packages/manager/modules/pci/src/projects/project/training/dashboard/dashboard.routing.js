@@ -9,11 +9,9 @@ export default /* @ngInject */ ($stateProvider) => {
       usage: /* @ngInject */ (OvhApiCloudProjectUsageCurrent, projectId) =>
         OvhApiCloudProjectUsageCurrent.v6()
           .get({ serviceName: projectId })
-          .$promise.catch(() => {
-            return {
-              resourcesUsage: [],
-            };
-          }),
+          .$promise.catch(() => ({
+            resourcesUsage: [],
+          })),
       goToInstallDetails: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.training.dashboard.install', {
           projectId,

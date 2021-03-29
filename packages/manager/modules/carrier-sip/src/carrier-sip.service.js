@@ -44,21 +44,16 @@ export default class CarrierSipService {
   }
 
   getSettings(billingAccount, serviceName) {
-    return this.OvhApiTelephony.CarrierSip()
-      .Settings()
-      .v6()
-      .query({
-        billingAccount,
-        serviceName,
-      }).$promise;
+    return this.OvhApiTelephony.CarrierSip().Settings().v6().query({
+      billingAccount,
+      serviceName,
+    }).$promise;
   }
 
   getServiceInfos(serviceName) {
-    return this.OvhApiTelephony.Lines()
-      .v6()
-      .getServiceInfos({
-        serviceName,
-      }).$promise;
+    return this.OvhApiTelephony.Lines().v6().getServiceInfos({
+      serviceName,
+    }).$promise;
   }
 
   getEndpoints(billingAccount, serviceName) {
@@ -74,14 +69,11 @@ export default class CarrierSipService {
           map(
             endpointsIds,
             (endpointId) =>
-              this.OvhApiTelephony.CarrierSip()
-                .Endpoints()
-                .v6()
-                .get({
-                  billingAccount,
-                  serviceName,
-                  id: endpointId,
-                }).$promise,
+              this.OvhApiTelephony.CarrierSip().Endpoints().v6().get({
+                billingAccount,
+                serviceName,
+                id: endpointId,
+              }).$promise,
           ),
         ),
       );

@@ -78,11 +78,11 @@ export default class PciProjectsProjectUsersService {
   }
 
   getStorageRegions(projectId) {
-    return this.getRegions(projectId).then((regions) => {
-      return regions.filter(({ services }) =>
+    return this.getRegions(projectId).then((regions) =>
+      regions.filter(({ services }) =>
         services.find(({ name }) => name === REGION_CAPACITY),
-      );
-    });
+      ),
+    );
   }
 
   downloadOpenRc(projectId, { id: userId }, region, version) {

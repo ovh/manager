@@ -7,30 +7,24 @@ export default class OvhManagerPciServingTokenService {
   }
 
   add(serviceName, namespaceId, tokenCreation) {
-    return this.OvhApiCloudProjectAi.Serving()
-      .Token()
-      .v6()
-      .save(
-        {
-          serviceName,
-          namespaceId,
-        },
-        tokenCreation,
-      ).$promise;
+    return this.OvhApiCloudProjectAi.Serving().Token().v6().save(
+      {
+        serviceName,
+        namespaceId,
+      },
+      tokenCreation,
+    ).$promise;
   }
 
   update(serviceName, namespaceId, tokenId) {
-    return this.OvhApiCloudProjectAi.Serving()
-      .Token()
-      .v6()
-      .edit(
-        {
-          serviceName,
-          namespaceId,
-          tokenId,
-        },
-        null,
-      ).$promise;
+    return this.OvhApiCloudProjectAi.Serving().Token().v6().edit(
+      {
+        serviceName,
+        namespaceId,
+        tokenId,
+      },
+      null,
+    ).$promise;
   }
 
   getAll(serviceName, namespaceId) {
@@ -64,13 +58,10 @@ export default class OvhManagerPciServingTokenService {
   }
 
   delete(serviceName, namespaceId, { id: tokenId }) {
-    return this.OvhApiCloudProjectAi.Serving()
-      .Token()
-      .v6()
-      .delete({
-        serviceName,
-        namespaceId,
-        tokenId,
-      }).$promise;
+    return this.OvhApiCloudProjectAi.Serving().Token().v6().delete({
+      serviceName,
+      namespaceId,
+      tokenId,
+    }).$promise;
   }
 }

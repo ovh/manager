@@ -126,9 +126,7 @@ export default class DomainDnsZoneActivateController {
         this.serviceName,
         this.serviceOption,
         price,
-      ).then((finalCart) => {
-        return { ...finalCart, cartId: cart.cartId };
-      }),
+      ).then((finalCart) => ({ ...finalCart, cartId: cart.cartId })),
     );
   }
 

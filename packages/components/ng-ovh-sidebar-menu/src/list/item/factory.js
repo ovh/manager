@@ -78,7 +78,7 @@
 import angular from 'angular';
 import { filter, map, now, random, slice } from 'lodash-es';
 
-export default /* @ngInject */ function($q, $timeout) {
+export default /* @ngInject */ function ($q, $timeout) {
   /*= ==================================
     =            CONSTRUCTOR            =
     =================================== */

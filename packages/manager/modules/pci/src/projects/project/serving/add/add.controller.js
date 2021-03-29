@@ -75,12 +75,10 @@ export default class PciServingAddController {
           ({ region, archive }) =>
             region === this.model.region.name && !archive,
         )
-        .map(({ name }) => {
-          return {
-            name,
-            description: `${name} - ${this.model.region.name}`,
-          };
-        });
+        .map(({ name }) => ({
+          name,
+          description: `${name} - ${this.model.region.name}`,
+        }));
     }
 
     if (!this.containersFilter.length) {

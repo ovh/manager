@@ -19,12 +19,8 @@ export default class {
   }
 
   $onInit() {
-    this.OvhApiDedicatedCloud.Ip()
-      .v6()
-      .resetQueryCache();
-    this.OvhApiDedicatedCloud.Ip()
-      .v6()
-      .resetCache();
+    this.OvhApiDedicatedCloud.Ip().v6().resetQueryCache();
+    this.OvhApiDedicatedCloud.Ip().v6().resetCache();
 
     if (this.defaultLocalVraNetwork) {
       this.drpInformations.localVraNetwork = this.defaultLocalVraNetwork;

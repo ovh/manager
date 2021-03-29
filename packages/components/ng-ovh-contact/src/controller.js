@@ -1,6 +1,6 @@
 import { isUndefined } from 'lodash-es';
 
-export default /* @ngInject */ function($q, $timeout, ovhContact, OvhContact) {
+export default /* @ngInject */ function ($q, $timeout, ovhContact, OvhContact) {
   const self = this;
   let tmpContact = null;
 

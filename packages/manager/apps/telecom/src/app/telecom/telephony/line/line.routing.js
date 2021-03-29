@@ -39,8 +39,8 @@ export default /* @ngInject */ ($stateProvider) => {
         $stateParams,
         OvhApiTelephony,
         serviceName,
-      ) => {
-        return OvhApiTelephony.Line()
+      ) =>
+        OvhApiTelephony.Line()
           .v6()
           .get({
             billingAccount: $stateParams.billingAccount,
@@ -61,17 +61,15 @@ export default /* @ngInject */ ($stateProvider) => {
                 }),
               ),
           )
-          .catch(() => ({}));
-      },
-      $title: /* @ngInject */ ($translate, currentLine, serviceName) => {
-        return $translate.instant(
+          .catch(() => ({})),
+      $title: /* @ngInject */ ($translate, currentLine, serviceName) =>
+        $translate.instant(
           'telephony_line_page_title',
           { name: currentLine.description || serviceName },
           null,
           null,
           'escape',
-        );
-      },
+        ),
       displayAntihackAlert: /* @ngInject */ (
         $http,
         billingAccount,

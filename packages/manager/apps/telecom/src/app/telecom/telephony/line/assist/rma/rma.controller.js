@@ -22,13 +22,10 @@ export default /* @ngInject */ function TelecomTelephonyLineAssistRmaCtrl(
   }
 
   self.fetchPhone = function fetchPhone() {
-    return OvhApiTelephony.Line()
-      .Phone()
-      .v6()
-      .get({
-        billingAccount: $stateParams.billingAccount,
-        serviceName: $stateParams.serviceName,
-      }).$promise;
+    return OvhApiTelephony.Line().Phone().v6().get({
+      billingAccount: $stateParams.billingAccount,
+      serviceName: $stateParams.serviceName,
+    }).$promise;
   };
 
   self.fetchRma = function fetchRma() {
@@ -51,15 +48,11 @@ export default /* @ngInject */ function TelecomTelephonyLineAssistRmaCtrl(
         $q.all(
           rmaIds.map(
             (id) =>
-              OvhApiTelephony.Line()
-                .Phone()
-                .RMA()
-                .v6()
-                .get({
-                  billingAccount: $stateParams.billingAccount,
-                  serviceName: $stateParams.serviceName,
-                  id,
-                }).$promise,
+              OvhApiTelephony.Line().Phone().RMA().v6().get({
+                billingAccount: $stateParams.billingAccount,
+                serviceName: $stateParams.serviceName,
+                id,
+              }).$promise,
           ),
         ),
       );

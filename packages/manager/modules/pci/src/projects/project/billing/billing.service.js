@@ -249,13 +249,13 @@ export default class CloudProjectBillingService {
     );
 
     this.data[resourceName] = flatten(
-      map(resources, (resource) => {
-        return map(resource.components, (resourceComponent) => {
+      map(resources, (resource) =>
+        map(resource.components, (resourceComponent) => {
           const component = resourceComponent;
           component.region = resource.region;
           return component;
-        });
-      }),
+        }),
+      ),
     );
 
     this.data.totals.hourly[resourceName] = this.data[resourceName].reduce(

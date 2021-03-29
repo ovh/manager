@@ -1,7 +1,7 @@
 import angular from 'angular';
 import moment from 'moment';
 
-export default /* @ngInject */ function($location) {
+export default /* @ngInject */ function ($location) {
   const self = this;
   const internalCache = {};
   const internalStatus = {

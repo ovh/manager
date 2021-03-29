@@ -15,14 +15,11 @@ export default /* @ngInject */ function TelecomTelephonyServiceFaxCampaignsReadC
   =============================== */
 
   function fetchCampaignDetail(theCampaign) {
-    return OvhApiTelephony.Fax()
-      .Campaigns()
-      .v6()
-      .getDetail({
-        billingAccount: $stateParams.billingAccount,
-        serviceName: $stateParams.serviceName,
-        id: theCampaign.id,
-      }).$promise;
+    return OvhApiTelephony.Fax().Campaigns().v6().getDetail({
+      billingAccount: $stateParams.billingAccount,
+      serviceName: $stateParams.serviceName,
+      id: theCampaign.id,
+    }).$promise;
   }
 
   /* -----  End of HELPERS  ------*/

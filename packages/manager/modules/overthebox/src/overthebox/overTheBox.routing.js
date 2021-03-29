@@ -15,8 +15,8 @@ export default /* @ngInject */ ($stateProvider) => {
         $translate,
         $stateParams,
         OvhApiOverTheBox,
-      ) => {
-        return OvhApiOverTheBox.v6()
+      ) =>
+        OvhApiOverTheBox.v6()
           .get({
             serviceName: $stateParams.serviceName,
           })
@@ -33,8 +33,7 @@ export default /* @ngInject */ ($stateProvider) => {
             $translate('overTheBox_page_title', {
               name: $stateParams.serviceName,
             }),
-          );
-      },
+          ),
       breadcrumb: /* @ngInject */ (serviceName) => serviceName,
     },
     translations: {

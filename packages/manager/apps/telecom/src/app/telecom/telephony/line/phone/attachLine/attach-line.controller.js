@@ -78,13 +78,8 @@ export default class TelephonyLinePhoneOrderAttachCtrl {
         );
 
         // Cache reset
-        this.OvhApiTelephony.Line()
-          .v6()
-          .resetAllCache();
-        this.OvhApiTelephony.Line()
-          .Phone()
-          .v6()
-          .resetAllCache();
+        this.OvhApiTelephony.Line().v6().resetAllCache();
+        this.OvhApiTelephony.Line().Phone().v6().resetAllCache();
         this.TelephonyMediator.resetAllCache();
         this.init();
       })

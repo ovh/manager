@@ -119,11 +119,7 @@ const getReleaseVersion = (version, seed) => {
   if (!version) {
     const codename = new Codename(Sample, seed || '');
     return MonoRepository.getReleaseVersion(
-      codename
-        .encode()
-        .toLowerCase()
-        .trim()
-        .replace(' ', '-'),
+      codename.encode().toLowerCase().trim().replace(' ', '-'),
     );
   }
   return Promise.resolve().then(() => version);

@@ -168,10 +168,7 @@ export default /* @ngInject */ function TelecomTelephonyLinePasswordCtrl(
    */
   this.cancel = function cancel() {
     $state.go(
-      $state.current.name
-        .split('.')
-        .slice(0, -1)
-        .join('.'),
+      $state.current.name.split('.').slice(0, -1).join('.'),
       $stateParams,
       {
         reload: true,

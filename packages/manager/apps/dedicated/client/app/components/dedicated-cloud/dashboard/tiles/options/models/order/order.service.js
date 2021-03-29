@@ -24,12 +24,8 @@ const OptionsService = class {
 
     return this.$q
       .all([
-        this.OvhApiMe.Order()
-          .v6()
-          .get({ orderId }).$promise,
-        this.OvhApiMe.Order()
-          .v6()
-          .getStatus({ orderId }).$promise,
+        this.OvhApiMe.Order().v6().get({ orderId }).$promise,
+        this.OvhApiMe.Order().v6().getStatus({ orderId }).$promise,
       ])
       .then(mergeOrderAndItsStatus);
   }

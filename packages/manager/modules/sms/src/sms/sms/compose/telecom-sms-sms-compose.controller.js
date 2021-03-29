@@ -55,9 +55,7 @@ export default class {
         receivers: OvhApiSms.Receivers().v6(),
         senders: OvhApiSms.Senders().v6(),
         virtualNumbers: {
-          jobs: OvhApiSms.VirtualNumbers()
-            .Jobs()
-            .v6(),
+          jobs: OvhApiSms.VirtualNumbers().Jobs().v6(),
         },
       },
       user: OvhApiMe.v6(),

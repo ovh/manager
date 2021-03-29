@@ -38,17 +38,14 @@ export default class {
           .v6()
           .get({ productName: WEBHOSTING_ORDER_PRODUCT, ovhSubsidiary })
           .$promise.then(({ plans }) => plans),
-        offers: this.OvhApiOrder.Cart()
-          .Product()
-          .v6()
-          .get(
-            {
-              cartId,
-            },
-            {
-              productName: WEBHOSTING_ORDER_PRODUCT,
-            },
-          ).$promise,
+        offers: this.OvhApiOrder.Cart().Product().v6().get(
+          {
+            cartId,
+          },
+          {
+            productName: WEBHOSTING_ORDER_PRODUCT,
+          },
+        ).$promise,
       })
       .then(({ catalog, offers }) => {
         const productPlancodes = offers.map(({ planCode }) => planCode);

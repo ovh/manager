@@ -26,7 +26,7 @@ import indexOf from 'lodash/indexOf';
 import URI from 'urijs';
 import 'urijs/src/URITemplate';
 
-export default function() {
+export default function () {
   const self = this;
 
   self.rootPath = '';
