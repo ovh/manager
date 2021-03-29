@@ -1,11 +1,10 @@
-import find from 'lodash/find';
-
 import {
   pricingConstants,
   workflowConstants,
 } from '@ovh-ux/manager-product-offers';
 
 import {
+  HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_ADVANCED,
   HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_BASIC,
   HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_BUSINESS,
   HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_BASIC_FREE,
@@ -19,6 +18,20 @@ export default /* @ngInject */ ($stateProvider) => {
   const resolve = {
     autoPayWithPreferredPaymentMethod: /* @ngInject */ (ovhPaymentMethod) =>
       ovhPaymentMethod.hasDefaultPaymentMethod(),
+
+    availablePlans: /* @ngInject */ (availableOptions) =>
+      availableOptions
+        .filter(({ family }) => family === 'cdn')
+        .map(({ planCode }) => ({
+          planCode,
+          available: true,
+        }))
+        .concat([
+          {
+            planCode: HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_ADVANCED,
+            available: false,
+          },
+        ]),
 
     catalog: /* @ngInject */ (user, WucOrderCartService) =>
       WucOrderCartService.getProductPublicCatalog(
@@ -36,18 +49,8 @@ export default /* @ngInject */ ($stateProvider) => {
         'danger',
       ),
 
-    isOptionFree: /* @ngInject */ (serviceOption) =>
-      serviceOption.planCode ===
-        HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_BASIC_FREE ||
-      serviceOption.planCode ===
-        HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_BUSINESS_FREE,
-
     serviceName: /* @ngInject */ ($transition$) =>
       $transition$.params().productId,
-
-    serviceOption: /* @ngInject */ (availableOptions, goBackWithError) =>
-      find(availableOptions, { family: 'cdn' }) ||
-      goBackWithError('No serviceOption found'),
 
     serviceInfo: /* @ngInject */ (Hosting, serviceName) =>
       Hosting.getServiceInfos(serviceName),
@@ -101,29 +104,20 @@ export default /* @ngInject */ ($stateProvider) => {
   };
 
   const resolveOrder = {
-    onSuccess: /* @ngInject */ ($translate, goBack, isOptionFree) => (
-      checkout,
-    ) => {
-      const message =
-        isOptionFree || checkout.autoPayWithPreferredPaymentMethod
-          ? $translate.instant('hosting_dashboard_cdn_order_success_activation')
-          : $translate.instant('hosting_dashboard_cdn_v2_order_success', {
-              t0: checkout.url,
-            });
+    onSuccess: /* @ngInject */ ($translate, goBack) => (checkout) => {
+      const message = checkout.autoPayWithPreferredPaymentMethod
+        ? $translate.instant('hosting_dashboard_cdn_order_success_activation')
+        : $translate.instant('hosting_dashboard_cdn_v2_order_success', {
+            t0: checkout.url,
+          });
       return goBack(message);
     },
 
     pricingType: () => pricingConstants.PRICING_CAPACITIES.RENEW,
     workflowType: () => workflowConstants.WORKFLOW_TYPES.ORDER,
-    workflowOptions: /* @ngInject */ (
-      catalog,
-      serviceName,
-      serviceOption,
-      trackClick,
-    ) => ({
+    workflowOptions: /* @ngInject */ (catalog, serviceName, trackClick) => ({
       catalog,
       catalogItemTypeName: workflowConstants.CATALOG_ITEM_TYPE_NAMES.ADDON,
-      getPlanCode: () => serviceOption.planCode,
       onPricingSubmit: () => {
         trackClick('web::hosting::cdn::order::next');
       },
@@ -135,15 +129,12 @@ export default /* @ngInject */ ($stateProvider) => {
     }),
   };
   const resolveUpgrade = {
-    onSuccess: /* @ngInject */ ($translate, goBack, isOptionFree) => (
-      result,
-    ) => {
-      const message =
-        isOptionFree || result.autoPayWithPreferredPaymentMethod
-          ? $translate.instant('hosting_dashboard_cdn_upgrade_included_success')
-          : $translate.instant('hosting_dashboard_cdn_v2_order_success', {
-              t0: result.url,
-            });
+    onSuccess: /* @ngInject */ ($translate, goBack) => (result) => {
+      const message = result.autoPayWithPreferredPaymentMethod
+        ? $translate.instant('hosting_dashboard_cdn_upgrade_included_success')
+        : $translate.instant('hosting_dashboard_cdn_v2_order_success', {
+            t0: result.url,
+          });
       return goBack(message);
     },
 

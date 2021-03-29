@@ -8,6 +8,9 @@ export const HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_BASIC = 'cdn-basic';
 export const HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_BUSINESS =
   'cdn_business';
 
+export const HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_ADVANCED =
+  'cdn-advanced';
+
 export const HOSTING_PRODUCT_NAME = 'webHosting';
 
 export default {
