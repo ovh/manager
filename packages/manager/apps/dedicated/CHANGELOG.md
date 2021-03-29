@@ -1,3 +1,18 @@
+# [16.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.11.1...@ovh-ux/manager-dedicated@16.12.0) (2021-03-29)
+
+
+### Bug Fixes
+
+* **billing.ovhaccount:** enable cash out for DE subsidiary ([8b89fe2](https://github.com/ovh/manager/commit/8b89fe2f222804705d86185db4f024b232df68bd))
+* **billing.payment.ovh-account:** update retrieve wording ([#4620](https://github.com/ovh/manager/issues/4620)) ([2580561](https://github.com/ovh/manager/commit/258056171209fea9b2572aa56c8b813e047b8037))
+
+
+### Features
+
+* **billing.payment:** add description to voucher movements ([#4623](https://github.com/ovh/manager/issues/4623)) ([d19b6b5](https://github.com/ovh/manager/commit/d19b6b5389f61cea82584f8ea4e71b48d060e934))
+
+
+
 ## [16.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.11.0...@ovh-ux/manager-dedicated@16.11.1) (2021-03-26)
 
 
