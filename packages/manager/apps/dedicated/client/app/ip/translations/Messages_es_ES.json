@@ -673,5 +673,6 @@
   "ip_table_manage_delegation_ipv6block_to_delete": "Registro(s) inverso(s) que desea eliminar",
   "ip_filter_services__FAILOVER": "IP Failover",
   "ip_description_edit_move": "Asociar este bloque de IP a otro servicio",
-  "ip_order_renew_MBM": "Sus direcciones IP se renovarán automáticamente con su infraestructura Managed Bare Metal."
+  "ip_order_renew_MBM": "Sus direcciones IP se renovarán automáticamente con su infraestructura Managed Bare Metal.",
+  "ip_ipfo_slowness_information": "Debido a un aumento excepcional en el número de solicitudes, podríamos tardar más tiempo del normal en responderle. No obstante, estamos tratando todas las solicitudes en cuestión de horas. Rogamos disculpen las molestias."
 }

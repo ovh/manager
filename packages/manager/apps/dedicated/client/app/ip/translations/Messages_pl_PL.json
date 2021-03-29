@@ -673,5 +673,6 @@
   "ip_table_manage_delegation_ipv6block_to_delete": "Rewers(y) do usunięcia",
   "ip_filter_services__FAILOVER": "IP Failover",
   "ip_description_edit_move": "Przypisz ten blok IP do innej usługi",
-  "ip_order_renew_MBM": "Adresy IP będą odnawiane automatycznie wraz z Twoją infrastrukturą Managed Bare Metal."
+  "ip_order_renew_MBM": "Adresy IP będą odnawiane automatycznie wraz z Twoją infrastrukturą Managed Bare Metal.",
+  "ip_ipfo_slowness_information": "Ze względu na wyjątkowy wzrost liczby zgłoszeń czas odpowiedzi może się znacznie wydłużyć.  Niemniej jednak każde zgłoszenie zostanie przetworzone w ciągu kilku godzin. Przepraszamy za niedogodności."
 }
