@@ -69,7 +69,7 @@
     "@ovh-ux/ng-ui-router-layout": "^4.0.2",
     "@ovh-ux/ng-ui-router-line-progress": "^1.2.4",
     "@ovh-ux/ufrontend": "^1.0.0",
-    "@ovh-ux/ui-kit": "^4.4.4",
+    "@ovh-ux/ui-kit": "^4.5.0",
     "@uirouter/angularjs": "^1.0.23",
     "URIjs": "^1.14.0",
     "angular": "^1.6.10",

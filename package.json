@@ -40,7 +40,7 @@
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
   },
   "resolutions": {
-    "flatpickr": "4.6.3"
+    "flatpickr": "4.6.9"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.3.3",
