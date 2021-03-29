@@ -903,5 +903,6 @@
   "statements_operation_description_refund": "Devolución",
   "statements_operation_description_refund_unknown": "Devolución",
   "billing_date_range_choose_custom_date": "Indicar un período",
-  "billing_date_range_text": "Del {{t0}} al {{t1}}"
+  "billing_date_range_text": "Del {{t0}} al {{t1}}",
+  "billing_price_ttc_label": "{{price}} IVA incl."
 }
