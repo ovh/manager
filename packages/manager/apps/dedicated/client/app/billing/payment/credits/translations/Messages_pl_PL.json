@@ -19,6 +19,7 @@
   "billing_credit_balance_header_order": "Zamówienie",
   "billing_credit_balance_movements_operation_credit": "Zasilenie",
   "billing_credit_balance_movements_operation_debit": "Wykorzystane środki",
+  "billing_credit_balance_movements_operation_debit_order": "Debit from order <a href=\"{{orderUrl}}\" target=\"_blank\">{{ orderId }}</a>",
   "billing_credit_balance_movements_load_error": "Wystąpił błąd podczas pobierania listy transakcji powiązanych z Twoim voucherem.",
   "billing_credit_back": "Powrót do voucherów"
 }
