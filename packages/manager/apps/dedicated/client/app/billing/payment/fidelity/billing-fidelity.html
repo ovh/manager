@@ -103,12 +103,8 @@
                     <th scope="row" class="text-center">
                         {{task.date | date:'mediumDate' }}
                     </th>
-                    <td>
-                        {{ task.order }}
-                    </td>
-                    <td>
-                        {{ task.description }}
-                    </td>
+                    <td>{{ task.order }}</td>
+                    <td>{{ task.description }}</td>
                     <td class="text-center">
                         <span data-ng-show="task.previousBalance < task.balance"
                             >{{ task.amount }}

@@ -31,8 +31,7 @@
                             data-ng-change="$ctrl.getPrices();"
                             data-ng-options="smsAccount as smsAccount.label for smsAccount in $ctrl.availableAccounts"
                             data-ng-disabled="$ctrl.loading.prices"
-                        >
-                        </select>
+                        ></select>
                     </div>
 
                     <!-- CREDIT -->
@@ -52,8 +51,7 @@
                             data-ng-change="$ctrl.getPrices(); $ctrl.order.customCredit = $ctrl.order.min"
                             data-ng-options="credit as credit.label for credit in $ctrl.availableCredits"
                             data-ng-disabled="$ctrl.loading.prices"
-                        >
-                        </select>
+                        ></select>
                     </div>
 
                     <!-- CUSTOMCREDIT -->

@@ -901,8 +901,7 @@
                                             data-ng-disabled="network.disabled"
                                             data-ng-selected="{{ network.id === $ctrl.serverStats.networkChoice }}"
                                             data-ng-bind="network.displayName"
-                                        >
-                                        </option>
+                                        ></option>
                                     </select>
                                     <span
                                         class="oui-icon oui-icon-chevron-down"
@@ -927,8 +926,7 @@
                                         data-ng-options="('server_tab_stats_type_' + type | translate) for type in $ctrl.serverStats.modelconst.types"
                                         data-ng-model="$ctrl.serverStats.typeChoice"
                                         data-ng-change="$ctrl.getStatistics()"
-                                    >
-                                    </select>
+                                    ></select>
                                     <span
                                         class="oui-icon oui-icon-chevron-down"
                                         aria-hidden="true"
@@ -952,8 +950,7 @@
                                         data-ng-options="('server_tab_stats_period_' + periode | translate) for periode in $ctrl.serverStats.modelconst.periods"
                                         data-ng-model="$ctrl.serverStats.periodeChoice"
                                         data-ng-change="$ctrl.getStatistics()"
-                                    >
-                                    </select>
+                                    ></select>
                                     <span
                                         class="oui-icon oui-icon-chevron-down"
                                         aria-hidden="true"

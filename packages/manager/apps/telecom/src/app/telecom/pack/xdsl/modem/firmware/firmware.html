@@ -7,8 +7,7 @@
             data-ng-model="$ctrl.firmwareTmp"
             data-ng-options="firmware for firmware in $ctrl.availableFirmwares"
             data-ng-disabled="!$ctrl.mediator.capabilities.canChangeFirmware || $ctrl.mediator.tasks.changeModemConfigFirmware || $ctrl.loading"
-        >
-        </select>
+        ></select>
     </div>
     <button
         class="oui-button oui-button_primary mt-1"

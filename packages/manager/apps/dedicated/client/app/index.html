@@ -19,7 +19,7 @@
     <body
         data-ng-controller="SessionCtrl as $ctrl"
         class="h-100 ovh-manager-dedicated-app"
-        style="overflow: hidden;"
+        style="overflow: hidden"
     >
         <div class="h-100 d-flex flex-column overflow-hidden ng-cloak">
             <!-- Skip to main content -->
@@ -44,7 +44,15 @@
             </ovh-manager-notifications-sidebar>
 
             <button
-                style="position: absolute; top: 0; left: 0; width: 48px; height: 44px; background-color: transparent; border: 0;"
+                style="
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 48px;
+                    height: 44px;
+                    background-color: transparent;
+                    border: 0;
+                "
                 data-ng-if="$ctrl.sidebarIsOpen"
                 data-ng-click="$ctrl.closeSidebar()"
             ></button>
@@ -112,7 +120,7 @@
                         <div
                             id="modal-help"
                             class="help4wizards"
-                            style="width: 230px;"
+                            style="width: 230px"
                         ></div>
                     </div>
                 </div>

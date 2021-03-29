@@ -44,8 +44,7 @@
                         data-ng-options="country.value as country.label for country in $ctrl.creationRules['address.country'].values | orderBy:'label'"
                         data-ng-model="$ctrl.ovhContactCtrl.contact.address.country"
                         data-ng-required="!$ctrl.creationRules.address.country.canBeNull"
-                    >
-                    </select>
+                    ></select>
                 </div>
 
                 <!-- legalform -->
@@ -61,8 +60,7 @@
                         data-ng-options="item.value as item.label | translate for item in $ctrl.creationRules['legalForm'].values"
                         data-ng-model="$ctrl.ovhContactCtrl.contact['legalForm']"
                         data-ng-required="!$ctrl.creationRules.legalForm.canBeNull"
-                    >
-                    </select>
+                    ></select>
                 </div>
 
                 <!-- birthDay -->
@@ -335,8 +333,7 @@
                             data-ng-options="item.value as item.label for item in $ctrl.creationRules[field].values | orderBy:'label'"
                             data-ng-model="$ctrl.ovhContactCtrl.contact[field]"
                             data-ng-required="!$ctrl.creationRules.country.canBeNull"
-                        >
-                        </select>
+                        ></select>
                     </div>
                 </div>
             </div>

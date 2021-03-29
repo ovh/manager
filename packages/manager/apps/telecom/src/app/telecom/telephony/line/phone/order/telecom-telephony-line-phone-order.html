@@ -156,22 +156,19 @@
                                 data-ng-if="PhoneOrderCtrl.phone"
                                 data-translate="telephony_line_phone_order_return_phone"
                                 data-translate-values="{ phone: PhoneOrderCtrl.phone.description }"
-                            >
-                            </option>
+                            ></option>
                             <option
                                 data-ng-if="PhoneOrderCtrl.phone"
                                 data-ng-repeat="phone in PhoneOrderCtrl.merchandise track by phone.name"
                                 data-ng-bind-html="PhoneOrderCtrl.getPhoneLabel(phone)"
                                 data-ng-value="phone.name"
-                            >
-                            </option>
+                            ></option>
                             <option
                                 data-ng-if="!PhoneOrderCtrl.phone"
                                 data-ng-repeat="offer in PhoneOrderCtrl.phoneOffers track by offer.brand"
                                 data-ng-bind-html="PhoneOrderCtrl.getOfferLabel(offer)"
                                 data-ng-value="offer.brand"
-                            >
-                            </option>
+                            ></option>
                         </select>
                         <div
                             class="alert alert-warning alert-xs mt-3"
@@ -372,19 +369,19 @@
                                             scope="col"
                                             class="text-sm-right"
                                             data-translate="telephony_line_phone_order_table_unit_price"
-                                            style="width:25%;"
+                                            style="width: 25%"
                                         ></th>
                                         <th
                                             scope="col"
                                             class="text-sm-right"
                                             data-translate="telephony_line_phone_order_table_quantity"
-                                            style="width:12%;"
+                                            style="width: 12%"
                                         ></th>
                                         <th
                                             scope="col"
                                             class="text-sm-right"
                                             data-translate="telephony_line_phone_order_table_total"
-                                            style="width:15%;"
+                                            style="width: 15%"
                                         ></th>
                                     </tr>
                                 </thead>

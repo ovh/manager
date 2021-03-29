@@ -12,8 +12,10 @@
         data-ng-options="(('license_designation_PLESK_version_'+optionVersion.value) | translate) for optionVersion in getOptionVersions()"
         data-ng-model="selected.options['PLESK'].version"
     >
-        <option value="" data-translate="license_upgrade_common_no_change">
-        </option>
+        <option
+            value=""
+            data-translate="license_upgrade_common_no_change"
+        ></option>
     </select>
 </div>
 
@@ -31,8 +33,10 @@
         data-ng-options="domainNumber.value for domainNumber in selected.version.options"
         data-ng-model="selected.options['PLESK'].domainNumber.value"
     >
-        <option value="" data-translate="license_upgrade_common_no_change">
-        </option>
+        <option
+            value=""
+            data-translate="license_upgrade_common_no_change"
+        ></option>
     </select>
 </div>
 
@@ -53,8 +57,10 @@
         data-ng-options="languagePack for languagePack in selected.version.more.compliantLanguagePack"
         data-ng-model="selected.options['PLESK'].languagePackNumber.value"
     >
-        <option value="" data-translate="license_upgrade_common_no_change">
-        </option>
+        <option
+            value=""
+            data-translate="license_upgrade_common_no_change"
+        ></option>
     </select>
 </div>
 
@@ -75,8 +81,10 @@
         data-ng-options="antivirus as (('license_designation_PLESK_options_antivirus_' + antivirus) | translate) for antivirus in selected.version.more.compliantAntivirus"
         data-ng-model="selected.options['PLESK'].antivirus.value"
     >
-        <option value="" data-translate="license_upgrade_common_no_change">
-        </option>
+        <option
+            value=""
+            data-translate="license_upgrade_common_no_change"
+        ></option>
     </select>
 </div>
 

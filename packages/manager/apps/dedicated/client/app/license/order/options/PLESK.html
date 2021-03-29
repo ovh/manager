@@ -19,8 +19,7 @@
             value
             data-ng-disabled="true"
             data-translate="license_order_common_choose"
-        >
-        </option>
+        ></option>
     </select>
 </div>
 
@@ -41,7 +40,7 @@
         data-ng-options="(languagePack === 'unlimited' ? ('license_order_step2_option_PLESK_language_pack_unlimited' | translate) : languagePack) for languagePack in selected.version.more.compliantLanguagePack | orderBy:'toString()'"
         data-ng-model="selected.options['PLESK'].languagePackNumber.value"
     >
-        <option value data-translate="license_order_common_none"> </option>
+        <option value data-translate="license_order_common_none"></option>
     </select>
 </div>
 
@@ -62,7 +61,7 @@
         data-ng-options="antivirus as (('license_designation_PLESK_options_antivirus_' + antivirus) | translate) for antivirus in selected.version.more.compliantAntivirus"
         data-ng-model="selected.options['PLESK'].antivirus.value"
     >
-        <option value data-translate="license_order_common_none"> </option>
+        <option value data-translate="license_order_common_none"></option>
     </select>
 </div>
 

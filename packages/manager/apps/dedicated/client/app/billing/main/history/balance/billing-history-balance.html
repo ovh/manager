@@ -76,8 +76,7 @@
                                 id="selectPaymentMethod"
                                 data-ng-options="method as ('[' + ('billing_history_balance_payment_method_subtype_' + method.paymentSubType.toLowerCase() | translate) + '] ' + method.publicLabel + ' ' + method.description) for method in $ctrl.paymentMethods"
                                 data-ng-model="$ctrl.model.paymentMethod"
-                            >
-                            </select>
+                            ></select>
                         </div>
                         <a
                             data-ui-sref="app.account.billing.payment.method.add({from: 'app.account.billing.main.history.balance'})"

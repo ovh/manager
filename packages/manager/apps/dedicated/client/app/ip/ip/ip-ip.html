@@ -202,8 +202,7 @@
                 data-ng-model="selectedService"
                 data-ng-change="selectService(selectedService)"
                 data-ng-options="service as (('ip_filter_services_' + service.serviceName) | ducTranslateAlt: service.serviceName) group by (('ip_filter_services_title_' + service.category) | ducTranslateAlt: service.category) for service in services"
-            >
-            </select>
+            ></select>
         </div>
 
         <div data-ng-if="filters.service.serviceName === '_PARK' && parkPrice">

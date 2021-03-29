@@ -19,8 +19,7 @@
                         data-ng-model="Credit.amount"
                         data-ng-options="choice as choice.label for choice in Credit.creditChoices track by choice.value"
                         data-ng-change="Credit.getPrice(Credit.amount.value)"
-                    >
-                    </select>
+                    ></select>
                     <span class="help-block">
                         <span data-ng-if="Credit.cost">
                             {{ 'freefax_credit_unit' | translate:{ quantity:

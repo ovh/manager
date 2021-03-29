@@ -44,8 +44,7 @@
                             data-ng-disabled="ctrl.availableDomains == null || ctrl.availableDomains.length === 0"
                             data-ng-model="ctrl.model.resourceEmailDomain"
                             data-ng-options="domain.displayName for domain in ctrl.availableDomains | orderBy:'formattedName'"
-                        >
-                        </select>
+                        ></select>
                     </div>
                     <small
                         class="help-block"

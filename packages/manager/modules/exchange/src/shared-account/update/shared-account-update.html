@@ -48,8 +48,7 @@
                             data-ng-change="ctrl.emailOnChange()"
                             data-ng-model="ctrl.domain"
                             data-ng-options="domain.displayName for domain in ctrl.optionsToUpdateAccount.availableDomains | orderBy:'formattedName'"
-                        >
-                        </select>
+                        ></select>
                     </div>
                     <small
                         class="help-block"
@@ -97,8 +96,7 @@
                             data-ng-model="ctrl.optionsToUpdateAccount.quota.unit"
                             data-ng-options="('unit_size_' + unit | translate) for unit in ctrl.optionsToUpdateAccount.availableQuotaUnits"
                             data-ng-change="ctrl.convertQuotas()"
-                        >
-                        </select>
+                        ></select>
                     </div>
                     <small
                         class="help-block"

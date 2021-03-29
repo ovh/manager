@@ -53,8 +53,7 @@
                         data-ng-options="phonebook as phonebook.name for phonebook in PhonebooksCtrl.phonebooks.raw"
                         data-ng-change="PhonebooksCtrl.changePhonebook()"
                         data-ng-disabled="PhonebooksCtrl.phonebooks.current.inEdition"
-                    >
-                    </select>
+                    ></select>
                 </div>
                 <form
                     class="form-inline mb-3"
@@ -72,7 +71,7 @@
                         data-ng-if="!PhonebooksCtrl.phonebooks.current.inEdition"
                     >
                         <span
-                            class="phonebook-name "
+                            class="phonebook-name"
                             data-ng-bind="PhonebooksCtrl.phonebooks.current.name"
                         >
                         </span>

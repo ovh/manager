@@ -61,8 +61,7 @@
                             data-ng-disabled="!ctrl.canChangePrimary()"
                             data-ng-model="ctrl.selectedAccount.completeDomain"
                             data-ng-options="domain.displayName for domain in (ctrl.newAccountOptions.availableDomains | orderBy:'formattedName') track by domain.name"
-                        >
-                        </select>
+                        ></select>
                     </div>
                     <small
                         class="help-block"

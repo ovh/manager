@@ -136,8 +136,9 @@
                             <option
                                 data-ng-repeat="domainName in $ctrl.availableDomainNames | orderBy: 'toString()' track by domainName"
                                 data-ng-value="domainName"
-                                >{{:: domainName }}</option
                             >
+                                {{:: domainName }}
+                            </option>
                         </select>
                         <i
                             class="oui-icon oui-icon-chevron-down"

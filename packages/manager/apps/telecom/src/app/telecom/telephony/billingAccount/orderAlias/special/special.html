@@ -39,8 +39,7 @@
                             data-ng-options="item as item.label for item in AliasOrderSpecialCtrl.preAmount track by item.value"
                             data-ng-change="AliasOrderSpecialCtrl.changeQty()"
                             data-ng-disabled="AliasOrderSpecialCtrl.loading.init || AliasOrderSpecialCtrl.loading.order"
-                        >
-                        </select>
+                        ></select>
                     </div>
                     <div class="form-group">
                         <label
@@ -58,8 +57,7 @@
                             data-ng-options="item as item.label for item in AliasOrderSpecialCtrl.typologies | orderBy:'+label' track by item.value"
                             data-ng-change="AliasOrderSpecialCtrl.form.typology = AliasOrderSpecialCtrl.form.typo.value"
                             data-ng-disabled="AliasOrderSpecialCtrl.loading.init || AliasOrderSpecialCtrl.loading.order"
-                        >
-                        </select>
+                        ></select>
                     </div>
                     <div class="form-group">
                         <label
@@ -77,8 +75,7 @@
                             data-ng-options="item as item.label for item in AliasOrderSpecialCtrl.ranges track by item.value"
                             data-ng-change="AliasOrderSpecialCtrl.changeRange()"
                             data-ng-disabled="AliasOrderSpecialCtrl.loading.init || AliasOrderSpecialCtrl.loading.order"
-                        >
-                        </select>
+                        ></select>
                     </div>
                 </div>
 

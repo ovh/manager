@@ -85,8 +85,7 @@
                             data-ng-options="tld.value as tld.label for tld in locker.tldList"
                             data-ng-disabled="PackDomainActivation.isActivating"
                             data-ng-change="checkDomainDisponibility();"
-                        >
-                        </select>
+                        ></select>
                     </div>
                 </div>
                 <div class="mt-2" data-ng-if="toggles.domainLoading">
@@ -97,7 +96,7 @@
                 <!-- already in pack-->
                 <div data-ng-if="toggles.domainStatus === 'alreadyActivated'">
                     <h6
-                        class="ovh-font ovh-font-warning text-warning "
+                        class="ovh-font ovh-font-warning text-warning"
                         aria-hidden="true"
                     ></h6>
                     <span
@@ -111,7 +110,7 @@
                 <div data-ng-if="toggles.domainStatus === 'available'">
                     <div>
                         <h6
-                            class="ovh-font ovh-font-success text-success "
+                            class="ovh-font ovh-font-success text-success"
                             aria-hidden="true"
                         ></h6>
                         <span
@@ -174,7 +173,7 @@
                 <div data-ng-if="toggles.domainStatus === 'unavailable'">
                     <div>
                         <h6
-                            class="ovh-font ovh-font-warning text-warning "
+                            class="ovh-font ovh-font-warning text-warning"
                             aria-hidden="true"
                         ></h6>
                         <span

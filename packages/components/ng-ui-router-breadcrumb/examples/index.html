@@ -18,12 +18,12 @@
         <script>
             var myApp = angular
                 .module('myApp', ['ui.router', 'ngUiRouterBreadcrumb'])
-                .config(function($stateProvider) {
+                .config(function ($stateProvider) {
                     $stateProvider.state('foo', {
                         url: '/foo',
                         template: '<h2>Foo</h2>',
                         resolve: {
-                            breadcrumb: function() {
+                            breadcrumb: function () {
                                 return 'foo';
                             },
                         },
@@ -32,7 +32,7 @@
                         url: '/bar',
                         template: '<h2>Bar</h2>',
                         resolve: {
-                            breadcrumb: function() {
+                            breadcrumb: function () {
                                 return 'bar';
                             },
                         },
@@ -41,7 +41,7 @@
                         url: '/baz',
                         template: '<h2>Baz</h2>',
                         resolve: {
-                            breadcrumb: function() {
+                            breadcrumb: function () {
                                 return 'baz';
                             },
                         },

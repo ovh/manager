@@ -164,8 +164,9 @@
                         <option
                             data-ng-repeat="notifType in NotificationListCtrl.types"
                             value="{{ notifType.name }}"
-                            >{{ notifType.label | translate }}</option
                         >
+                            {{ notifType.label | translate }}
+                        </option>
                     </select>
                 </td>
                 <td
@@ -185,8 +186,9 @@
                                 <option
                                     data-ng-repeat="account in NotificationListCtrl.accounts"
                                     value="{{ account }}"
-                                    >{{ account | translate }}</option
                                 >
+                                    {{ account | translate }}
+                                </option>
                             </select>
                         </div>
                     </div>
@@ -225,8 +227,9 @@
                         <option
                             data-ng-repeat="fre in NotificationListCtrl.frequencies"
                             value="{{fre.name}}"
-                            >{{fre.label | translate}}</option
                         >
+                            {{fre.label | translate}}
+                        </option>
                     </select>
                 </td>
 

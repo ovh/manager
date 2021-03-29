@@ -91,8 +91,7 @@
                                 id="offerChoice"
                                 data-ng-model="OfferChangeCtrl.model.offer"
                                 data-ng-options="offer as offer.getFullDescription() for offer in OfferChangeCtrl.availableOffers | orderBy:['type', 'price.value'] track by offer.name"
-                            >
-                            </select>
+                            ></select>
                         </div>
                         <div
                             class="form-group"

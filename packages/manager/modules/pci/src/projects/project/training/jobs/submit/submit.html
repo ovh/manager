@@ -200,11 +200,11 @@
                                     <option
                                         ng-repeat="perm in $ctrl.volumesPermissions"
                                         value="{{perm}}"
-                                    >{{::
-                                        'pci_projects_project_training_jobs_submit_data_permission_'
-                                    + perm | translate }}
-                                    </option
                                     >
+                                        {{::
+                                        'pci_projects_project_training_jobs_submit_data_permission_'
+                                        + perm | translate }}
+                                    </option>
                                 </select>
                                 <span
                                     class="oui-icon oui-icon-chevron-down"
@@ -420,10 +420,16 @@
                             class="h-100"
                             data-heading="{{:: 'pci_projects_project_training_jobs_submit_validation_equivalent_command' | translate  }}"
                         >
-                            <span data-translate="pci_projects_project_training_jobs_submit_ovhai_info"></span>
-                            <pre>{{:: 'pci_projects_project_training_parter_cli_name' | translate
-                                }} {{ $ctrl.cliCommand() }}</pre>
-                            <span data-translate="pci_projects_project_training_jobs_submit_ovhai_help"></span>
+                            <span
+                                data-translate="pci_projects_project_training_jobs_submit_ovhai_info"
+                            ></span>
+                            <pre>
+{{:: 'pci_projects_project_training_parter_cli_name' | translate
+                                }} {{ $ctrl.cliCommand() }}</pre
+                            >
+                            <span
+                                data-translate="pci_projects_project_training_jobs_submit_ovhai_help"
+                            ></span>
                             <pre>ovhai job run --help</pre>
                         </oui-tile>
                     </div>

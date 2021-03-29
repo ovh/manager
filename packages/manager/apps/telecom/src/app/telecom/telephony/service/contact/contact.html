@@ -35,8 +35,7 @@
                             data-ng-model="$ctrl.directoryForm.legalForm"
                             data-ng-change="$ctrl.onChangeLegalForm()"
                             data-ng-options="legalForm as ('telephony_service_contact_legalform_' + legalForm | translate) for legalForm in ['individual', 'professional', 'corporation']"
-                        >
-                        </select>
+                        ></select>
                     </div>
 
                     <div
@@ -376,8 +375,7 @@
                             data-ng-model="$ctrl.directoryForm.directoryServiceCode"
                             data-ng-disabled="!$ctrl.directoryCodes"
                             data-ng-options="opt.directoryServiceCode as opt.directoryServiceDescription for opt in $ctrl.directoryCodes"
-                        >
-                        </select>
+                        ></select>
                         <span
                             class="help-block"
                             role="alert"
@@ -403,8 +401,7 @@
                             class="form-control text-capitalize"
                             data-ng-model="$ctrl.directoryForm.displayUniversalDirectory"
                             data-ng-options="opt as (opt ? 'yes' : 'no' | translate) for opt in [true, false]"
-                        >
-                        </select>
+                        ></select>
                     </div>
 
                     <div
@@ -424,8 +421,7 @@
                                 class="form-control text-capitalize"
                                 data-ng-model="$ctrl.directoryForm.displayMarketingDirectory"
                                 data-ng-options="opt as (opt ? 'yes' : 'no' | translate) for opt in [true, false]"
-                            >
-                            </select>
+                            ></select>
                         </div>
 
                         <!-- DISPLAY SEARCH REVERSE -->
@@ -442,8 +438,7 @@
                                 class="form-control text-capitalize"
                                 data-ng-model="$ctrl.directoryForm.displaySearchReverse"
                                 data-ng-options="opt as (opt ? 'yes' : 'no' | translate) for opt in [true, false]"
-                            >
-                            </select>
+                            ></select>
                         </div>
 
                         <!-- DISPLAY FIRST NAME -->
@@ -463,8 +458,7 @@
                                 class="form-control text-capitalize mb-4"
                                 data-ng-model="$ctrl.directoryForm.displayFirstName"
                                 data-ng-options="opt as $ctrl.getDisplayFirstNameOptions(opt) for opt in [true, false]"
-                            >
-                            </select>
+                            ></select>
 
                             <!-- DISPLAY ONLY CITY -->
                             <label
@@ -478,8 +472,7 @@
                                 class="form-control text-capitalize"
                                 data-ng-model="$ctrl.directoryForm.displayOnlyCity"
                                 data-ng-options="opt as ('telephony_service_contact_address_publish_' + (opt ? 'city' : 'full') | translate) for opt in [false, true]"
-                            >
-                            </select>
+                            ></select>
                         </div>
 
                         <!-- LINE DESCRIPTION -->

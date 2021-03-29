@@ -58,14 +58,18 @@
                                 <td
                                     class="text-right"
                                     data-title="{{ 'telecom_pack_migration_confirm_header_quantity' | translate }}"
-                                >1</td>
+                                >
+                                    1
+                                </td>
                                 <td
                                     class="text-price text-right"
                                     data-ng-bind="$ctrl.process.selectedOffer.price.text"
                                     data-title="{{ 'telecom_pack_migration_confirm_header_total' | translate }}"
                                 ></td>
                             </tr>
-                            <tr data-ng-if="$ctrl.process.selectedOffer.firstYearPromo.value > 0">
+                            <tr
+                                data-ng-if="$ctrl.process.selectedOffer.firstYearPromo.value > 0"
+                            >
                                 <th
                                     scope="row"
                                     data-translate="telecom_pack_migration_confirm_first_year_promo"
@@ -79,7 +83,9 @@
                                 <td
                                     class="text-right"
                                     data-title="{{ 'telecom_pack_migration_confirm_header_quantity' | translate }}"
-                                >1</td>
+                                >
+                                    1
+                                </td>
                                 <td
                                     class="text-price text-right"
                                     data-ng-bind="$ctrl.getReductionPriceFirstYear().text"
@@ -102,7 +108,9 @@
                                 <td
                                     class="text-right"
                                     data-title="{{ 'telecom_pack_migration_confirm_header_quantity' | translate }}"
-                                >1</td>
+                                >
+                                    1
+                                </td>
                                 <td
                                     class="text-price text-right"
                                     data-ng-bind="$ctrl.process.selectedOffer.modemRental.text"
@@ -149,7 +157,9 @@
                                 <td
                                     class="text-right"
                                     data-title="{{ 'telecom_pack_migration_confirm_header_quantity' | translate }}"
-                                >1</td>
+                                >
+                                    1
+                                </td>
                                 <td
                                     class="text-price text-right"
                                     data-ng-bind="$ctrl.process.selectedOffer.options.gtr_ovh.optionalPrice.text"

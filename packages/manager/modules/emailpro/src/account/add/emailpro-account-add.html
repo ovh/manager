@@ -43,8 +43,7 @@
                                 data-ng-disabled="newAccountOptions == null"
                                 data-ng-model="accountToAdd.completeDomain"
                                 data-ng-options="domain.displayName for domain in newAccountOptions.availableDomains | orderBy:'formattedName'"
-                            >
-                            </select>
+                            ></select>
                         </div>
                         <small
                             class="help-block"
@@ -69,7 +68,7 @@
                         for="accountLicense"
                         data-translate="emailpro_ACTION_update_account_step1_type_label"
                     ></label>
-                    <div class=" col-md-9">
+                    <div class="col-md-9">
                         <select
                             class="form-control"
                             id="accountLicense"
@@ -77,8 +76,7 @@
                             required
                             data-ng-options="('emailpro_ACTION_update_account_step1_type_' + type | translate) for type in newAccountOptions.availableTypes"
                             data-ng-model="accountToAdd.accountLicense"
-                        >
-                        </select>
+                        ></select>
                     </div>
                 </div>
                 <div class="form-group">

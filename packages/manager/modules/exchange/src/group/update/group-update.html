@@ -45,8 +45,7 @@
                             data-ng-disabled="ctrl.groupOptions == null"
                             data-ng-model="ctrl.selectedGroup.completeDomain"
                             data-ng-options="domain.displayName for domain in ctrl.groupOptions.availableDomains | orderBy:'formattedName'"
-                        >
-                        </select>
+                        ></select>
                     </div>
                     <small
                         class="help-block"
@@ -158,8 +157,7 @@
                             data-ng-disabled="ctrl.groupOptions == null"
                             data-ng-model="ctrl.selectedGroup.joinRestriction"
                             data-ng-options="('exchange_GROUPS_add_group_retriction_' + restriction) | translate for restriction in ctrl.groupOptions.availableJoinRestrictions"
-                        >
-                        </select>
+                        ></select>
                         <span
                             class="oui-icon oui-icon-chevron-down"
                             aria-hidden="true"
@@ -182,8 +180,7 @@
                             data-ng-disabled="ctrl.groupOptions == null"
                             data-ng-model="ctrl.selectedGroup.departRestriction"
                             data-ng-options="('exchange_GROUPS_add_group_retriction_' + restriction) | translate for restriction in ctrl.groupOptions.availableDepartRestrictions"
-                        >
-                        </select>
+                        ></select>
                         <span
                             class="oui-icon oui-icon-chevron-down"
                             aria-hidden="true"

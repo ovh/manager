@@ -64,8 +64,7 @@
                     id="{{ config.name }}"
                     data-ng-model="config.value"
                     data-ng-options="value as ($ctrl.isEnumHasToBeTranslated(config.name) ? (['telephony_line_phone_configuration_config', value].join('_') | tucSnakeCase | translate) : value) for value in config['enum']"
-                >
-                </select>
+                ></select>
             </div>
 
             <!-- IPV4 TYPE (INPUT TEXT WITH IPV4 VALIDATION) -->

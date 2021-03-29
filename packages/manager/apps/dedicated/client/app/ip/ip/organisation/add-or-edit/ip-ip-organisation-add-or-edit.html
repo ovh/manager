@@ -43,8 +43,7 @@
                             data-ng-model="newOrganisation.registry"
                             data-ng-required="true"
                             data-ng-options="registry for registry in list.registry"
-                        >
-                        </select>
+                        ></select>
                     </div>
 
                     <div class="form-group">
@@ -118,8 +117,7 @@
                             class="form-control"
                             data-ng-required="true"
                             data-ng-options="country as ('country_' + country | ducTranslateAlt: country) for country in list.country | orderBy:orderByCountryAlias"
-                        >
-                        </select>
+                        ></select>
                         <div data-ng-show="load.request" class="text-center">
                             <oui-spinner size="s"></oui-spinner>
                         </div>

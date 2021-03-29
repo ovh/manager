@@ -37,8 +37,7 @@
                         data-ng-options="desktop as ('server_configuration_installation_ovh_desktop_' + desktop | translate) for desktop in installation.desktopType"
                         data-ng-model="installation.selectDesktopType"
                         data-ng-change="installation.hasData = false; setSelectDistribution(null);"
-                    >
-                    </select>
+                    ></select>
                 </div>
                 <p data-ng-if="hasLicencedOs()">
                     <span
@@ -152,8 +151,7 @@
                         name="selectLanguage"
                         data-ng-options="language as language for language in installation.selectDistribution.availableLanguages"
                         data-ng-model="installation.selectLanguage"
-                    >
-                    </select>
+                    ></select>
                 </div>
                 <div class="control-group clearfix">
                     <label
@@ -169,8 +167,7 @@
                         data-ng-model="installation.diskGroup"
                         data-ng-options="diskGroup as diskGroup.description for diskGroup in informations.diskGroups track by diskGroup.diskGroupId"
                         data-ng-disabled="!canEditDiskGroup()"
-                    >
-                    </select>
+                    ></select>
                     <oui-spinner
                         class="align-middle"
                         aria-label="{{ 'common_loading' | translate }}"
@@ -304,8 +301,7 @@
                             name="hardwareRaidController"
                             data-ng-options="controller as (controller.model + ' (' + controller.type + ')') for controller in informations.hardwareRaid.profile.controllers"
                             data-ng-model="installation.hardwareRaid.controller"
-                        >
-                        </select>
+                        ></select>
                     </div>
 
                     <div class="form-group">
@@ -322,8 +318,7 @@
                             data-ng-if="installation.hardwareRaid.controller"
                             data-ng-options="raid as raid for raid in informations.hardwareRaid.availableRaids | orderBy:'toString()'"
                             data-ng-model="installation.hardwareRaid.raid"
-                        >
-                        </select>
+                        ></select>
                     </div>
 
                     <div class="form-group">
@@ -340,8 +335,7 @@
                             data-ng-if="installation.hardwareRaid.raid"
                             data-ng-options="disk as disk for disk in informations.hardwareRaid.availableDisks"
                             data-ng-model="installation.hardwareRaid.disks"
-                        >
-                        </select>
+                        ></select>
                     </div>
 
                     <div class="form-group">
@@ -358,8 +352,7 @@
                             data-ng-if="installation.hardwareRaid.disks"
                             data-ng-model="installation.hardwareRaid.arrays"
                             data-ng-options="array as array for array in informations.hardwareRaid.availableArrays"
-                        >
-                        </select>
+                        ></select>
                     </div>
 
                     <div class="form-group">
@@ -442,8 +435,7 @@
                         data-ng-options="nbdisk as nbdisk for nbdisk in getNbDisqueList(informations.nbDisk)"
                         data-ng-model="installation.nbDiskUse"
                         data-ng-disabled="setPartition.indexSet != -1 || newPartition.display"
-                    >
-                    </select>
+                    ></select>
                     <strong
                         data-ng-hide="informations.nbDisk > 1"
                         data-ng-bind="informations.nbPhysicalDisk"
@@ -650,8 +642,7 @@
                                         data-ng-options="type as ('server_configuration_installation_' + type | translate) for type in constants.partitionTypeList"
                                         data-ng-model="partition.typePartition"
                                         data-ng-change="validationType(partition)"
-                                    >
-                                    </select>
+                                    ></select>
                                 </td>
                                 <td
                                     class="form-group"
@@ -670,8 +661,7 @@
                                         data-ng-options="fileSystem as ('server_configuration_installation_' + fileSystem | translate) for fileSystem in constants.fileSystemList"
                                         data-ng-model="partition.fileSystem"
                                         data-ng-change="validationFileSystem(partition)"
-                                    >
-                                    </select>
+                                    ></select>
                                 </td>
                                 <td
                                     class="form-group"
@@ -741,8 +731,7 @@
                                         data-ng-options="raid as raid.replace('_', '') for raid in getRaidList(installation.nbDiskUse)"
                                         data-ng-model="partition.raid"
                                         data-ng-change="validationRaid(partition)"
-                                    >
-                                    </select>
+                                    ></select>
                                     <span
                                         class="oui-icon oui-icon-warning-circle"
                                         aria-label="{{ 'server_configuration_installation_ovh_step2_error_raid_diskUse_icon' | translate }}"
@@ -895,7 +884,7 @@
                                 <td>
                                     <div
                                         class="pellet"
-                                        style="margin: auto;"
+                                        style="margin: auto"
                                         data-ng-style="{ 'background': newPartition.progressColor}"
                                     ></div>
                                 </td>
@@ -925,8 +914,7 @@
                                         data-ng-options="type as ('server_configuration_installation_' + type | translate) for type in constants.partitionTypeList"
                                         data-ng-model="newPartition.typePartition"
                                         data-ng-change="validationType(newPartition)"
-                                    >
-                                    </select>
+                                    ></select>
                                 </td>
                                 <td
                                     class="form-group"
@@ -939,8 +927,7 @@
                                         data-ng-options="fileSystem as ('server_configuration_installation_' + fileSystem | translate) for fileSystem in constants.fileSystemList"
                                         data-ng-model="newPartition.fileSystem"
                                         data-ng-change="validationFileSystem(newPartition)"
-                                    >
-                                    </select>
+                                    ></select>
                                 </td>
                                 <td
                                     class="form-group"
@@ -989,8 +976,7 @@
                                         data-ng-options="raid as raid.replace('_','') for raid in getRaidList(installation.nbDiskUse)"
                                         data-ng-model="newPartition.raid"
                                         data-ng-change="validationRaid(newPartition)"
-                                    >
-                                    </select>
+                                    ></select>
                                 </td>
                                 <td
                                     class="form-group"
@@ -1109,7 +1095,7 @@
                     <ul>
                         <li data-ng-show="warning.raid0">
                             <i
-                                style="margin-right: 5px;"
+                                style="margin-right: 5px"
                                 class="icon-warning"
                             ></i
                             ><span
@@ -1661,8 +1647,7 @@
                                 <option
                                     value
                                     data-ng-bind=":: 'server_configuration_installation_ovh_step3_partiton_none' | translate"
-                                >
-                                </option>
+                                ></option>
                             </select>
                         </div>
 
@@ -1870,8 +1855,7 @@
                                 <option
                                     value
                                     data-translate="server_configuration_installation_form_ssh_no"
-                                >
-                                </option>
+                                ></option>
                             </select>
                             <p
                                 class="form-control-static text-danger"
@@ -1897,8 +1881,7 @@
                                 name="nbDiskUse"
                                 data-ng-options="nbdisk as nbdisk for nbdisk in getNbDisqueList(informations.nbDisk)"
                                 data-ng-model="installation.nbDiskUse"
-                            >
-                            </select>
+                            ></select>
                         </div>
 
                         <div

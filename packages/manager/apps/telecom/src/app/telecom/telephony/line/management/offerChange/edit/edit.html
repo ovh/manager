@@ -43,8 +43,7 @@
                     id="offerChoice"
                     data-ng-model="OfferChangeEditCtrl.model.offer"
                     data-ng-options="offer as offer.getFullDescription() for offer in OfferChangeEditCtrl.availableOffers | orderBy:['type', 'price.value'] track by offer.name"
-                >
-                </select>
+                ></select>
             </div>
         </div>
 
