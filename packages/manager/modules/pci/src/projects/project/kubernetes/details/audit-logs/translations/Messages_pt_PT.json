@@ -1,0 +1,6 @@
+{
+  "kube_logs_tab_title": "Auditoria Logs",
+  "kube_logs_list_no_logs": "A aguardar logs",
+  "kube_logs_description": "Encontrará aqui os logs do control-plane do seu cluster Kubernetes. Para consultar os seus pods profissionais, consulte os manuais.",
+  "kube_logs_description_link": "Saber mais"
+}

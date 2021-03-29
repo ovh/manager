@@ -1,0 +1,6 @@
+{
+  "kube_logs_tab_title": "Audit Logs",
+  "kube_logs_list_no_logs": "Warten auf Logs",
+  "kube_logs_description": "Hier finden Sie die Logs der Steuerungsebene Ihres Kubernetes-Clusters. Bitte entnehmen Sie der Dokumentation, wie Sie Ihre Pods einsehen können.",
+  "kube_logs_description_link": "Mehr erfahren."
+}
