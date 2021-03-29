@@ -40,6 +40,12 @@ angular.module('Billing.services').service(
       );
     }
 
+    getOrder(orderId) {
+      return this.OvhHttp.get(`/me/order/${orderId}`, {
+        rootPath: 'apiv6',
+      });
+    }
+
     /* -----  End of API CALLS  ------ */
   },
 );
