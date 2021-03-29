@@ -120,6 +120,8 @@ export default class KubernetesNodesAddCtrl {
   }
 
   addNode() {
+    this.sendKubeTrack('details::nodepools::details::nodes::add::confirm');
+
     this.isAdding = true;
     return this.Kubernetes.resizeNodePool(
       this.projectId,
@@ -144,5 +146,10 @@ export default class KubernetesNodesAddCtrl {
       .finally(() => {
         this.isAdding = false;
       });
+  }
+
+  onAddNodeCancel() {
+    this.sendKubeTrack('details::nodepools::details::nodes::add::cancel');
+    this.goBack();
   }
 }
