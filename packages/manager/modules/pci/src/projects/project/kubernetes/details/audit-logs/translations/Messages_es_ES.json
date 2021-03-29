@@ -1,0 +1,6 @@
+{
+  "kube_logs_tab_title": "Auditoría de logs",
+  "kube_logs_list_no_logs": "Ningún log",
+  "kube_logs_description": "Aquí encontrará los logs del plano de control de su cluster Kubernetes. Para monitorizar sus pods de trabajo, consulte la documentación.",
+  "kube_logs_description_link": "Más información."
+}
