@@ -908,5 +908,6 @@
   "statements_operation_description_refund": "Remboursement",
   "statements_operation_description_refund_unknown": "Remboursement",
   "billing_date_range_choose_custom_date": "Indicar un período",
-  "billing_date_range_text": "De {{t0}} a {{t1}}"
+  "billing_date_range_text": "De {{t0}} a {{t1}}",
+  "billing_price_ttc_label": "{{price}} IVA incl."
 }

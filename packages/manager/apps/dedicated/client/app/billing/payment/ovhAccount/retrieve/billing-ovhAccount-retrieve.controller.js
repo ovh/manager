@@ -59,6 +59,13 @@ angular
       };
 
       $scope.initStep2 = () => {
+        $scope.price = $scope.accountModel.balanceText.replace(
+          /([0-9]|\s|\.|,)+/g,
+          $scope.retrieve.amount,
+        );
+      };
+
+      $scope.validate = () => {
         $scope.loading = true;
         BillingOvhAccount.retrieveMoney(
           $scope.accountModel.accountId,
@@ -66,42 +73,38 @@ angular
           $scope.retrieve.account.paymentMethodId,
         )
           .then((order) => {
+            atInternet.trackClick({
+              name: 'validation_transfer_bank_account',
+              type: 'action',
+              chapter1: 'payment_types',
+              chapter2: 'prepaid_account',
+            });
             $scope.$emit(OVH_ACCOUNT_EVENT.TRANSFER_TO_BANK_ACCOUNT);
             $scope.retrieveOrder = {
               ...order,
               prices: {
-                withTax: order.priceWithTax,
+                withTax: order.priceWithTax.text.replace('-', ''),
                 withoutTax: order.priceWithoutTax,
                 tax: order.tax,
               },
             };
+            $window.open($scope.retrieveOrder.url);
+            Alerter.success(
+              $translate.instant('ovhAccount_retrieve_success', {
+                t0: $scope.retrieveOrder.url,
+              }),
+            );
           })
           .catch((err) => {
             Alerter.alertFromSWS(
               $translate.instant('ovhAccount_retrieve_error'),
               err,
             );
-            $scope.resetAction();
           })
           .finally(() => {
             $scope.loading = false;
+            $scope.resetAction();
           });
-      };
-
-      $scope.retrieve = () => {
-        $window.open($scope.retrieveOrder.url);
-        Alerter.success(
-          $translate.instant('ovhAccount_retrieve_success', {
-            t0: $scope.retrieveOrder.url,
-          }),
-        );
-        $scope.resetAction();
-        atInternet.trackClick({
-          name: 'validation_transfer_bank_account',
-          type: 'action',
-          chapter1: 'payment_types',
-          chapter2: 'prepaid_account',
-        });
       };
     },
   );
