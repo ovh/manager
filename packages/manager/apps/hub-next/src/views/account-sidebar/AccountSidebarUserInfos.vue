@@ -18,7 +18,7 @@
       <span class="d-block manager-hub-user-infos_text-small text-break">
         {{ user.email }}
       </span>
-      <span class="d-block manager-hub-user-infos_text-small"> {{ user.customerCode }} </span>
+      <span class="d-block manager-hub-user-infos_text-small"> {{ user.nichandle }} </span>
     </p>
   </div>
 </template>
