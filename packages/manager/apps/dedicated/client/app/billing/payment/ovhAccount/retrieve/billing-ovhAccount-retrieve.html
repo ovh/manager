@@ -2,7 +2,7 @@
     <div
         data-wizard
         data-wizard-on-cancel="resetAction"
-        data-wizard-on-finish="retrieve"
+        data-wizard-on-finish="validate"
         data-wizard-title="::'ovhAccount_retrieve_title' | translate"
         data-wizard-confirm-button-text="::'wizard_pay' | translate"
     >
@@ -94,8 +94,10 @@
                 <div data-ng-if="!loading">
                     <span data-translate="ovhAccount_retrieve_resume_1"></span>
                     <strong
-                        class="text-danger"
-                        data-ng-bind-html="retrieveOrder.prices | ducPrice:user.ovhSubsidiary"
+                        data-translate="billing_price_ttc_label"
+                        data-translate-values="{
+                            price: price
+                        }"
                     >
                     </strong>
                     <span data-translate="ovhAccount_retrieve_resume_2"></span>(

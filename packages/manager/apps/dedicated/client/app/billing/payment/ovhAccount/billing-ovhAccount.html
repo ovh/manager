@@ -84,7 +84,7 @@
         <button
             class="oui-button oui-button_secondary"
             type="button"
-            data-ng-if="user && user.ovhSubsidiary === 'FR' && !(ovhAccountLoading || !ovhAccount.model.hasOvhAccount)"
+            data-ng-if="user && (user.ovhSubsidiary === 'FR' || user.ovhSubsidiary === 'DE') && !(ovhAccountLoading || !ovhAccount.model.hasOvhAccount)"
             data-ng-click="setAction('retrieve', ovhAccount.model, 'ovhaccount')"
             data-ng-disabled="ovhAccount.model.balance.value <= 0"
             data-track-on="click"
