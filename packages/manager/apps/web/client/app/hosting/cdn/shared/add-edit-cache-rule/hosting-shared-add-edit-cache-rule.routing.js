@@ -21,7 +21,7 @@ export default /* @ngInject */ ($stateProvider) => {
     rule: null,
   };
 
-  $stateProvider.state('app.hosting.cdn.shared.addCacheRule', {
+  $stateProvider.state('app.hosting.dashboard.cdn.shared.addCacheRule', {
     url: '/add-cache-rule',
     views: {
       modal: {
@@ -36,7 +36,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
   });
 
-  $stateProvider.state('app.hosting.cdn.shared.editCacheRule', {
+  $stateProvider.state('app.hosting.dashboard.cdn.shared.editCacheRule', {
     url: '/edit-cache-rule',
     views: {
       modal: {
