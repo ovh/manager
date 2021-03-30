@@ -20,7 +20,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     });
   };
-  $stateProvider.state('app.hosting.cdn.shared', {
+  $stateProvider.state('app.hosting.dashboard.cdn.shared', {
     url: '/shared/settings/:domainName',
     params: {
       domain: null,
@@ -61,13 +61,13 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
 
       displayCreateCacheRuleModal: /* @ngInject */ ($state) => (params) =>
-        $state.go('app.hosting.cdn.shared.addCacheRule', params),
+        $state.go('app.hosting.dashboard.cdn.shared.addCacheRule', params),
 
       displayUpdateCacheRuleModal: /* @ngInject */ ($state) => (params) =>
-        $state.go('app.hosting.cdn.shared.editCacheRule', params),
+        $state.go('app.hosting.dashboard.cdn.shared.editCacheRule', params),
 
       displayConfirmSettingsModal: /* @ngInject */ ($state) => (params) =>
-        $state.go('app.hosting.cdn.shared.confirmSettings', params),
+        $state.go('app.hosting.dashboard.cdn.shared.confirmSettings', params),
 
       displayLeaveSettingsModal: /* @ngInject */ (
         $uibModal,
@@ -103,8 +103,10 @@ export default /* @ngInject */ ($stateProvider) => {
       const stateName = $transition$.to().name;
 
       const isValidState =
-        includes(['app.hosting.cdn.shared.addCacheRule'], stateName) ||
-        HostingCdnSharedService.isValidCase;
+        includes(
+          ['app.hosting.dashboard.cdn.shared.addCacheRule'],
+          stateName,
+        ) || HostingCdnSharedService.isValidCase;
 
       if (
         !isLeaveSettings.status &&
