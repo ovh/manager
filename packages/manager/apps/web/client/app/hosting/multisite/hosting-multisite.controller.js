@@ -33,6 +33,12 @@ angular
     ) => {
       atInternet.trackPage({ name: 'web::hosting::multisites' });
 
+      $scope.goToCdnConfiguration = function goToCdnConfiguration(domain) {
+        $state.go('app.hosting.dashboard.multisite.cdnConfiguration', {
+          domain,
+        });
+      };
+
       $scope.domains = null;
       $scope.sslLinked = [];
       $scope.HOSTING = HOSTING;
@@ -173,6 +179,14 @@ angular
           });
       };
 
+      $scope.canEditCdn = function canEditCdn(domain) {
+        return (
+          domain.cdn === 'ACTIVE' &&
+          domain.status !== HOSTING_STATUS.CREATING &&
+          $scope.cdnProperties.version === 'cdn-hosting'
+        );
+      };
+
       $scope.detachDomain = (domain) => {
         sendTrackClick('web::hosting::multisites::detach-domain');
         $scope.setAction('multisite/delete/hosting-multisite-delete', domain);
@@ -233,11 +247,6 @@ angular
           domain,
           domainName: domain.domain,
         });
-      };
-
-      $scope.flushCdn = (domain) => {
-        sendTrackClick('web::hosting::multisites::purge-cdn');
-        $scope.setAction('/cdn/flush/hosting-cdn-flush', { domain });
       };
 
       $scope.$on('hostingDomain.restart.done', (response, data) => {
