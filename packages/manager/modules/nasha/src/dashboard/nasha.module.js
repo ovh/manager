@@ -59,7 +59,7 @@ angular
   .controller('NashaAddCtrl', NashaAddCtrl)
   .controller('NashaUnavailableCtrl', NashaUnavailableCtrl)
   .service('NashaAddService', NashaAddService)
-  .run(/* @ngTranslationsInject:json ./translations */)
+  .run(/* @ngTranslationsInject:json ./translations ../add/translations */)
   .run(
     /* @ngInject */ ($templateCache) => {
       $templateCache.put(
@@ -70,6 +70,11 @@ angular
         'nasha/information/nasha-information-usage-help.html',
         usageHelpTemplate,
       );
+    },
+  )
+  .run(
+    /* @ngInject */ ($translate, $transitions) => {
+      $transitions.onBefore({ to: 'nasha.**' }, () => $translate.refresh());
     },
   );
 

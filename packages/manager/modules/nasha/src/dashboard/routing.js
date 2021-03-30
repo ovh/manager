@@ -25,10 +25,6 @@ export default /* @ngInject */ ($stateProvider) => {
       template: nashaAddTemplate,
       controller: 'NashaAddCtrl',
       controllerAs: 'NashaAddCtrl',
-      translations: {
-        value: ['add', '..'],
-        format: 'json',
-      },
       resolve: {
         hideBreadcrumb: () => true,
       },
