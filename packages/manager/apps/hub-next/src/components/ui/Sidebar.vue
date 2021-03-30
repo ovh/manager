@@ -1,6 +1,6 @@
 <template>
-  <transition :name="`slide-${left ? 'left' : 'right'}`">
-    <div v-if="!closed" class="sidebar" :class="left ? 'left' : 'right'">
+  <transition :name="`slide-${sidebarOrientationClass}`">
+    <div v-if="!closed" class="sidebar" :class="sidebarOrientationClass">
       <slot></slot>
     </div>
   </transition>
@@ -18,6 +18,11 @@ export default defineComponent({
     closed: {
       type: Boolean,
       default: false,
+    },
+  },
+  computed: {
+    sidebarOrientationClass(): string {
+      return this.left ? 'left' : 'right';
     },
   },
 });
