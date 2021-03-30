@@ -221,7 +221,7 @@ angular
 
       $scope.activateDomain = (domain) => {
         sendTrackClick('web::hosting::multisites::activate-domain');
-        $state.go('app.hosting.cdn.shared', {
+        $state.go('app.hosting.dashboard.cdn.shared', {
           domain,
           domainName: domain.domain,
         });
@@ -229,7 +229,7 @@ angular
 
       $scope.settingCdnDomain = (domain) => {
         sendTrackClick('web::hosting::multisites::modify-cdn');
-        $state.go('app.hosting.cdn.shared', {
+        $state.go('app.hosting.dashboard.cdn.shared', {
           domain,
           domainName: domain.domain,
         });
