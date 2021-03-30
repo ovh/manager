@@ -1,6 +1,6 @@
 {
-  "hosting_cdn_shared_title": "Configurer votre CDN Basic",
-  "hosting_cdn_shared_info": "Retrouvez les paramètres de l’option Shared CDN. Des réglages standards sont appliqués par défaut pour vous permettre de démarrer simplement et rapidement.\nLes options avancées CDN Security et CDN Advance vous donnent accès à davantage de paramètres.",
+  "hosting_cdn_shared_title": "Configurer votre CDN {{range}} pour {{domainName}}",
+  "hosting_cdn_shared_info": "Retrouvez les paramètres de l’option Shared CDN. Des réglages standards sont appliqués par défaut pour vous permettre de démarrer simplement et rapidement.\nLes options CDN Security et CDN Advanced vous donnent accès à davantage de paramètres.",
   "hosting_cdn_shared_state_enable": "Activé",
   "hosting_cdn_shared_state_disabled": "Désactivé",
   "hosting_cdn_shared_option_always_online_info": "Le CDN continue à répondre aux requêtes, même en cas de panne du serveur d’origine.",
