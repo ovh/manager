@@ -16,7 +16,7 @@ export default /* @ngInject */ ($stateProvider) => {
           ? $http
               .get(`/services/${service.id}/billing/engagement`)
               .then((data) => ({ engagement: data }))
-              .catch({ engagement: null })
+              .catch(() => ({ engagement: null }))
           : Promise.resolve({ engagement: null })
         ).then(({ engagement }) => engagement),
 
