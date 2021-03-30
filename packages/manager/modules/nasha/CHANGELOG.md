@@ -1,3 +1,12 @@
+## [2.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.2.0...@ovh-ux/manager-nasha@2.2.1) (2021-03-30)
+
+
+### Bug Fixes
+
+* **nasha.new:** inject translations ([#4622](https://github.com/ovh/manager/issues/4622)) ([e19a5c8](https://github.com/ovh/manager/commit/e19a5c84c6d46701f9eb5c09fc76159a064b1ddb))
+
+
+
 # [2.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.1.5...@ovh-ux/manager-nasha@2.2.0) (2021-03-25)
 
 

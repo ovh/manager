@@ -1,3 +1,12 @@
+## [15.18.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.18.1...@ovh-ux/manager-web@15.18.2) (2021-03-30)
+
+
+### Bug Fixes
+
+* **hosting.cdn:** shared cdn wrong state ([#4636](https://github.com/ovh/manager/issues/4636)) ([ca73ae5](https://github.com/ovh/manager/commit/ca73ae5375c39534bc42133995709f9c2cc521e1))
+
+
+
 ## [15.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.18.0...@ovh-ux/manager-web@15.18.1) (2021-03-26)
 
 
