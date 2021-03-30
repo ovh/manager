@@ -96,6 +96,9 @@ export default class Service {
   }
 
   isEngaged() {
-    return !!this.billing.engagement;
+    return (
+      !!this.billing.engagement ||
+      !!this.billing.pricing.engagementConfiguration
+    );
   }
 }
