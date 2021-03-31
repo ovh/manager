@@ -447,7 +447,7 @@ export default class DomainTabGeneralInformationsCtrl {
       })
       .then(() => {
         return this.$http
-          .get(`/domain/zone/${this.domain.name}/anycast/serviceInfos`, {
+          .get(`/domain/zone/${this.domain.name}/option/anycast/serviceInfos`, {
             serviceType: 'apiv6',
           })
           .then(({ data }) => {
