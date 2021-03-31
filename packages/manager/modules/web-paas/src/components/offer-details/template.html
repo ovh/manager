@@ -1,0 +1,42 @@
+<ul>
+    <li
+        data-ng-if="$ctrl.offer.getProdEnvironment() <= 1"
+        data-translate="web_paas_offer_num_prod_env_single"
+        data-translate-values="{ numProdEnvironment: $ctrl.offer.getProdEnvironment() }"
+    ></li>
+    <li
+        data-ng-if="$ctrl.offer.getProdEnvironment() > 1"
+        data-translate="web_paas_offer_num_prod_env_multiple"
+        data-translate-values="{ numProdEnvironment: $ctrl.offer.getProdEnvironment() }"
+    ></li>
+    <li
+        data-ng-if="$ctrl.offer.getTestEnvironment() <= 1"
+        data-translate="web_paas_offer_num_test_env_single"
+        data-translate-values="{ numTestEnvironment: $ctrl.offer.getTestEnvironment() }"
+    ></li>
+    <li
+        data-ng-if="$ctrl.offer.getTestEnvironment() > 1"
+        data-translate="web_paas_offer_num_test_env_multiple"
+        data-translate-values="{ numTestEnvironment: $ctrl.offer.getTestEnvironment() }"
+    ></li>
+    <li
+        data-translate="web_paas_offer_storage_size"
+        data-translate-values="{
+            storageSize: $ctrl.offer.getStorage(),
+        }"
+    ></li>
+    <li
+        data-ng-if="$ctrl.offer.getMaxLicenses() <= 1"
+        data-translate="web_paas_offer_num_licence_single"
+        data-translate-values="{
+            numLicence: $ctrl.offer.getMaxLicenses(),
+        }"
+    ></li>
+    <li
+        data-ng-if="$ctrl.offer.getMaxLicenses() > 1"
+        data-translate="web_paas_offer_num_licence_multiple"
+        data-translate-values="{
+            numLicence: $ctrl.offer.getMaxLicenses(),
+        }"
+    ></li>
+</ul>

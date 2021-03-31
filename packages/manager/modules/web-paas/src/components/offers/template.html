@@ -1,0 +1,30 @@
+<div class="row mb-3">
+    <oui-select-picker
+        class="col-md-4 mb-3"
+        data-ng-repeat="offer in $ctrl.offers track by offer.product"
+        name="offer"
+        data-model="$ctrl.selectedOffer"
+        data-label="{{:: 'web_paas_offer_' + offer.product | translate }}"
+        data-variant="light"
+        data-on-change="$ctrl.onSelected(modelValue)"
+        data-values="[offer]"
+        data-disabled="$ctrl.disabled"
+        data-ng-if="!$ctrl.previewMode || offer.product === $ctrl.selectedOffer.product"
+    >
+        <oui-select-picker-section>
+            <web-paas-offer-details data-offer="offer"></web-paas-offer-details>
+            <oui-select
+                disabled="$ctrl.selectedVcpu && offer.cpu.length === 1"
+                data-items="offer.cpu"
+                data-match="name"
+                data-model="$ctrl.selectedVcpu"
+                name="vcpu"
+                required
+            >
+            </oui-select>
+        </oui-select-picker-section>
+        <oui-select-picker-footer>
+            <span data-translate="web_paas_offer_price_text"></span>
+        </oui-select-picker-footer>
+    </oui-select-picker>
+</div>

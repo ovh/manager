@@ -1,0 +1,21 @@
+<form
+    id="projectTerminate"
+    name="projectTerminate"
+    data-ng-submit="$ctrl.terminate()"
+    novalidate
+>
+    <oui-modal
+        data-primary-label="{{ ::'web_paas_service_terminate_common_confirm' | translate }}"
+        data-secondary-action="$ctrl.goBack()"
+        data-secondary-label="{{ ::'web_paas_service_terminate_common_cancel' | translate }}"
+        data-on-dismiss="$ctrl.goBack()"
+        data-loading="$ctrl.isDeleting"
+        data-type="warning"
+        data-heading="{{ ::'web_paas_service_terminate_title' | translate }}"
+    >
+        <p
+            data-translate="web_paas_service_terminate_description"
+            data-translate-values="{ projectName: $ctrl.projectName }"
+        ></p>
+    </oui-modal>
+</form>

@@ -45,6 +45,7 @@ import exchange from '@ovh-ux/manager-exchange';
 import office from '@ovh-ux/manager-office';
 import sharepoint from '@ovh-ux/manager-sharepoint';
 import { detach as detachPreloader } from '@ovh-ux/manager-preloader';
+import WebPaas from '@ovh-ux/manager-web-paas';
 
 import config from './config/config';
 import domain from './domain';
@@ -155,6 +156,7 @@ angular
       wucProgressBarElementCounter,
       wucServiceStatus,
       ...get(__NG_APP_INJECTIONS__, Environment.getRegion(), []),
+      WebPaas,
     ].filter(isString),
   )
   .constant('constants', {

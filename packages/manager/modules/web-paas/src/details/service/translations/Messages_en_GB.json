@@ -1,0 +1,18 @@
+{
+  "web_paas_service_project_information": "General information",
+  "web_paas_service_project_name": "Project name",
+  "web_paas_service_project_status": "Project status",
+  "web_paas_service_project_id": "Project ID",
+  "web_paas_service_project_plan_type": "Range",
+  "web_paas_service_project_region": "Region",
+  "web_paas_service_project_upgrade": "Upgrade",
+  "web_paas_service_project_user_licence": "{{ numLicence }} user licence",
+  "web_paas_service_project_user_licence_available": "{{ numLicenceAvailable }} user licence available",
+  "web_paas_service_project_new": "New project",
+  "web_paas_service_project_access": "Access project",
+  "web_paas_service_project_cancel": "Delete project",
+  "web_paas_service_project_manage_title": "Management interface",
+  "web_paas_service_project_edit": "Change the project name",
+  "web_paas_service_project_configuration": "Configuration",
+  "web_paas_service_project_storage": "{{ storageSize }} GB storage"
+}
