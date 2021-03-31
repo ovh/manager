@@ -32,13 +32,14 @@
     "@ovh-ux/manager-exchange": "^1.0.0 || ^2.0.0",
     "@ovh-ux/manager-incident-banner": "^1.0.0",
     "@ovh-ux/manager-navbar": "^4.0.0 || ^5.0.0",
-    "@ovh-ux/manager-ng-layout-helpers": "^1.1.0 || ^2.0.0",
+    "@ovh-ux/manager-ng-layout-helpers": "^2.0.1",
     "@ovh-ux/manager-notifications-sidebar": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-office": "^1.0.0 || ^2.0.0",
     "@ovh-ux/manager-preloader": "^1.0.0",
     "@ovh-ux/manager-product-offers": "^3.0.0 || ^4.0.0",
     "@ovh-ux/manager-server-sidebar": "^2.0.0 || ^3.0.0",
     "@ovh-ux/manager-sharepoint": "^1.0.0 || ^2.0.0",
+    "@ovh-ux/manager-web-paas": "^0.0.0 || ^1.0.0",
     "@ovh-ux/mfa-enrollment": "^1.0.0 || ^2.0.0",
     "@ovh-ux/ng-at-internet": "^5.4.1",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.1.1",
@@ -127,7 +128,7 @@
     "ui-select": "^0.19.8",
     "urijs": "^1.19.1",
     "validator": "^11.1.0",
-    "whatwg-fetch": "^3.5.0"
+    "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
     "@ovh-ux/manager-webpack-config": "^3.1.1 || ^4.0.0",

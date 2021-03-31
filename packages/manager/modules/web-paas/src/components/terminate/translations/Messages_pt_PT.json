@@ -1,0 +1,8 @@
+{
+  "web_paas_service_terminate_common_confirm": "Confirmar",
+  "web_paas_service_terminate_common_cancel": "Cancelar",
+  "web_paas_service_terminate_title": "Eliminar o projeto",
+  "web_paas_service_terminate_description": "Tem a certeza de que pretende anular o seu projeto {{projectName}} na Área de Cliente e no Platform SH?",
+  "web_paas_service_terminate_success": "O seu pedido de eliminação do projeto Platform SH foi registado. Um e-mail foi enviado para confirmar a receção do seu pedido.",
+  "web_paas_service_terminate_error": "Ocorreu um erro aquando da eliminação do seu projeto: {{message}}"
+}

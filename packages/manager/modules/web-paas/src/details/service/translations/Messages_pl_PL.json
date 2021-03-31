@@ -1,0 +1,18 @@
+{
+  "web_paas_service_project_information": "Informacje ogólne",
+  "web_paas_service_project_name": "Nazwa projektu",
+  "web_paas_service_project_status": "Status projektu",
+  "web_paas_service_project_id": "Identyfikator projektu",
+  "web_paas_service_project_plan_type": "Gama",
+  "web_paas_service_project_region": "Region",
+  "web_paas_service_project_upgrade": "Zmień ofertę na wyższą",
+  "web_paas_service_project_user_licence": "Licencji użytkowników: {{numLicence}}",
+  "web_paas_service_project_user_licence_available": "Dostępnych licencji użytkowników: {{numLicenceAvailable}} ",
+  "web_paas_service_project_new": "Nowy projekt",
+  "web_paas_service_project_access": "Dostęp do projektu",
+  "web_paas_service_project_cancel": "Usuń projekt",
+  "web_paas_service_project_manage_title": "Interfejs zarządzania",
+  "web_paas_service_project_edit": "Zmień nazwę projektu",
+  "web_paas_service_project_configuration": "Konfiguracja",
+  "web_paas_service_project_storage": "{{storageSize}} GB przestrzeni dyskowej"
+}

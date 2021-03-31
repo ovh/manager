@@ -237,6 +237,30 @@ export const MICROSOFT_CONFIG = {
   regions: ['EU'],
 };
 
+export const PSH_CONFIG = {
+  id: 'web_paas',
+  feature: 'web-paas',
+  loadOnState: 'web-paas',
+  children: [
+    {
+      id: 'web_paas_all_accounts',
+      state: 'web-paas',
+      stateUrl: '/paas/webpaas/projects',
+      app: [WEB],
+    },
+  ],
+  types: [
+    {
+      path: '/webPaaS/subscription',
+      state: 'web-paas.dashboard',
+      stateParams: ['projectId'],
+      app: [WEB],
+    },
+  ],
+  icon: 'oui-icon oui-icon-partner-platformsh_concept',
+  app: [WEB],
+};
+
 export const WEB_SIDEBAR_CONFIG = [
   DOMAIN_CONFIG,
   HOSTING_CONFIG,
@@ -244,6 +268,7 @@ export const WEB_SIDEBAR_CONFIG = [
   EMAIL_PRO_CONFIG,
   EMAIL_CONFIG,
   MICROSOFT_CONFIG,
+  PSH_CONFIG,
 ];
 
 export const WEB_ORDER_SIDEBAR_CONFIG = [
@@ -358,6 +383,15 @@ export const WEB_ORDER_SIDEBAR_CONFIG = [
     icon: 'ovh-font ovh-font-database',
     state: 'app.private-database.order',
     regions: ['EU', 'CA'],
+    app: [WEB],
+  },
+  {
+    id: 'orderWebPaas',
+    title: 'web_paas',
+    feature: 'web:web-paas',
+    icon: 'oui-icon oui-icon-partner-platformsh_concept',
+    state: 'web-paas.add',
+    regions: ['EU'],
     app: [WEB],
   },
 ];

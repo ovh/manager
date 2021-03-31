@@ -1,0 +1,9 @@
+{
+  "web_paas_offer_num_prod_env_single": "Środowisk produkcyjnych: {{numProdEnvironment}}",
+  "web_paas_offer_num_prod_env_multiple": "Środowisk produkcyjnych: {{numProdEnvironment}} ",
+  "web_paas_offer_num_test_env_single": "Środowisk testowych: {{numTestEnvironment}} ",
+  "web_paas_offer_num_test_env_multiple": "Środowisk testowych: {{numTestEnvironment}} ",
+  "web_paas_offer_storage_size": "{{storageSize}} GB przestrzeni dyskowej",
+  "web_paas_offer_num_licence_single": "Licencji użytkowników: {{numLicence}}",
+  "web_paas_offer_num_licence_multiple": "Licencji użytkowników: {{numLicence}}"
+}
