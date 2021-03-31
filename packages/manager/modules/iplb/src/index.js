@@ -46,7 +46,7 @@ angular
         });
 
       $urlRouterProvider.when(/^\/network\/iplb/, () => {
-        window.location.url = window.location.url.replace(
+        window.location.href = window.location.href.replace(
           '/network/iplb',
           '/iplb',
         );
