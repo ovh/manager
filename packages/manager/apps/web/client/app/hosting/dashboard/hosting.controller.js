@@ -30,6 +30,7 @@ export default class {
     boostLink,
     constants,
     availableOptions,
+    cdnProperties,
     cronLink,
     currentActiveLink,
     databaseLink,
@@ -71,6 +72,7 @@ export default class {
     OVH_ORDER_URLS,
   ) {
     this.$scope = $scope;
+    this.$scope.cdnProperties = cdnProperties;
     this.$scope.HOSTING_STATUS = HOSTING_STATUS;
     this.$scope.logs = logs;
     this.$rootScope = $rootScope;
@@ -747,7 +749,6 @@ export default class {
         this.Alerter.error(err);
       })
       .then(() => this.handlePrivateDatabases())
-      .then(() => this.handleCDNProperties())
       .then(() => this.simulateUpgradeAvailability())
       .finally(() => {
         this.$scope.loadingHostingInformations = false;
@@ -758,19 +759,6 @@ export default class {
     return this.getPrivateDatabases().then((privateDatabases) => {
       this.$scope.privateDatabases = privateDatabases;
     });
-  }
-
-  handleCDNProperties() {
-    return this.HostingCdnSharedService.getCDNProperties(
-      this.$scope.hosting.serviceName,
-    )
-      .then(({ data: cdn }) => {
-        this.$scope.cdnProperties = cdn;
-      })
-      .catch((err) => {
-        this.Alerter.error(err);
-        this.$scope.cdnProperties = null;
-      });
   }
 
   /**
