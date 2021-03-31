@@ -6,5 +6,6 @@
   "manager_billing_service_status_manualPayment": "Odnowienie ręczne",
   "manager_billing_service_status_pending_debt": "Płatność do uregulowania",
   "manager_billing_service_status_delete_at_expiration": "Złożona rezygnacja",
-  "manager_billing_service_status_expired": "Anulowany"
+  "manager_billing_service_status_expired": "Anulowany",
+  "manager_billing_service_status_billing_suspended": "Postponed billing"
 }

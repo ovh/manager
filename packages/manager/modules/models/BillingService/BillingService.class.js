@@ -32,7 +32,15 @@ export default class BillingService {
     return this.creationDate.format('LL');
   }
 
+  isBillingSuspended() {
+    return this.status === 'BILLING_SUSPENDED';
+  }
+
   getRenew() {
+    if (this.isBillingSuspended()) {
+      return this.status.toLowerCase();
+    }
+
     if (this.hasManualRenew()) {
       return 'manualPayment';
     }

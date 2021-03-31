@@ -6,5 +6,6 @@
   "manager_billing_service_status_manualPayment": "Manuelle Verlängerung",
   "manager_billing_service_status_pending_debt": "Ausstehende Rechnung",
   "manager_billing_service_status_delete_at_expiration": "Kündigung angefordert",
-  "manager_billing_service_status_expired": "Gekündigt"
+  "manager_billing_service_status_expired": "Gekündigt",
+  "manager_billing_service_status_billing_suspended": "Postponed billing"
 }
