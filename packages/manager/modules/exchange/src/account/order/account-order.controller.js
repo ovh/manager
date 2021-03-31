@@ -7,22 +7,25 @@ export default class ExchangeOrderAccountCtrl {
   /* @ngInject */
   constructor(
     $scope,
-    wucExchange,
-    $window,
-    messaging,
     $translate,
-    navigation,
+    $window,
+    coreConfig,
     exchangeServiceInfrastructure,
+    messaging,
+    navigation,
+    wucExchange,
     WucUser,
   ) {
     this.services = {
       $scope,
-      wucExchange,
-      $window,
-      messaging,
       $translate,
-      navigation,
+      $window,
+      coreConfig,
       exchangeServiceInfrastructure,
+      messaging,
+      navigation,
+      wucExchange,
+      WucUser,
     };
 
     WucUser.getUser()
@@ -77,9 +80,9 @@ export default class ExchangeOrderAccountCtrl {
       legalWarning: false,
     };
 
-    this.worldPart = $scope.worldPart;
+    this.showLegal = coreConfig.isRegion('EU');
 
-    if (this.worldPart === 'CA') {
+    if (coreConfig.isRegion('CA')) {
       this.valid.legalWarning = true;
     }
 
