@@ -45,12 +45,13 @@
             >
                 <span
                     data-ng-if="$row.type !== licenseTypes.SPLA"
-                    data-ng-bind="('license_designation_' + $row.type + '_version_' + $row.version) | translate"
+                    data-translate="{{:: 'license_designation_' + $row.type + '_version_' + $row.version }}"
+                    data-translate-default="{{:: formatName($row) }}"
                 >
                 </span>
                 <span
                     data-ng-if="$row.type === licenseTypes.SPLA"
-                    data-ng-bind="('license_designation_' + $row.type + '_type_' + $row.splaType) | translate"
+                    data-translate="{{:: 'license_designation_' + $row.type + '_type_' + $row.splaType }}"
                 >
                 </span>
             </oui-datagrid-column>
