@@ -1,3 +1,12 @@
+## [15.19.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.19.0...@ovh-ux/manager-web@15.19.1) (2021-03-31)
+
+
+### Bug Fixes
+
+* **web:** domain operation progress link ([#4654](https://github.com/ovh/manager/issues/4654)) ([0d7830f](https://github.com/ovh/manager/commit/0d7830fb6fbc9eea03c8ab29db4e5334633c1ac2))
+
+
+
 # [15.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.18.2...@ovh-ux/manager-web@15.19.0) (2021-03-31)
 
 

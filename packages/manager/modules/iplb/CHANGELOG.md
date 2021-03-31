@@ -1,3 +1,12 @@
+## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.1.0...@ovh-ux/manager-iplb@1.1.1) (2021-03-31)
+
+
+### Bug Fixes
+
+* **iplb:** fix redirection ([#4653](https://github.com/ovh/manager/issues/4653)) ([060793c](https://github.com/ovh/manager/commit/060793cb3d7672244c7fdc2043e3b4546ff29cba))
+
+
+
 # [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.0.12...@ovh-ux/manager-iplb@1.1.0) (2021-03-25)
 
 

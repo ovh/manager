@@ -1,3 +1,12 @@
+# [5.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.15.1...@ovh-ux/manager-pci@5.16.0) (2021-03-31)
+
+
+### Features
+
+* **project:** details why project is not available anymore ([#3137](https://github.com/ovh/manager/issues/3137)) ([8cd18d7](https://github.com/ovh/manager/commit/8cd18d79ed84a1d0b7b41c893eae88a1ac1f4a04))
+
+
+
 ## [5.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.15.0...@ovh-ux/manager-pci@5.15.1) (2021-03-25)
 
 
