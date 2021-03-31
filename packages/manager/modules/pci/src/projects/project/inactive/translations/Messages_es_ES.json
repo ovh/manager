@@ -1,0 +1,9 @@
+{
+  "pci_projects_project_inactive_title_pending_debt": "Hay una factura asociada a este proyecto pendiente de pago.",
+  "pci_projects_project_inactive_title_suspended": "Su proyecto ha sido suspendido.",
+  "pci_projects_project_inactive_title_suspended_pending_debt": "Su proyecto ha sido suspendido por impago.",
+  "pci_projects_project_inactive_description_pending_debt": "Por favor, abone el importe pendiente. Si no realiza ninguna acción, el proyecto se suspenderá y perderá todos los servicios asociados.",
+  "pci_projects_project_inactive_description_suspended": "El proyecto se eliminará de forma permanente.",
+  "pci_projects_project_inactive_description_suspended_pending_debt": "Para reactivar el proyecto, abone la factura pendiente y contacte con nuestro equipo de Soporte.",
+  "pci_projects_project_inactive_close": "Cerrar"
+}

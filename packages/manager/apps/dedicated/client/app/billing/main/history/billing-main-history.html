@@ -165,7 +165,7 @@
             </oui-action-menu-item>
             <oui-action-menu-item
                 ng-if="$row.debt.debtId"
-                on-click="$ctrl.seeDebt($row.debt.debtId)"
+                on-click="$ctrl.seeDebt($row.billId, $row.debt.debtId)"
             >
                 <span
                     data-translate="billing_main_history_table_debt_detail"

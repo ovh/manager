@@ -1,27 +1,55 @@
+import isEmpty from 'lodash/isEmpty';
+
 import { DEFAULT_PROJECT_KEY } from './index.constants';
 
 export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
   $stateProvider.state('app', {
     url: '/?onboarding',
-    redirectTo: (trans) =>
-      trans
-        .injector()
-        .get('publicCloud')
-        .getDefaultProject()
-        .then((projectId) =>
-          projectId
-            ? {
-                state: 'pci.projects.project',
-                params: {
-                  projectId,
-                },
-              }
-            : {
-                state: trans.params().onboarding
-                  ? 'pci.projects.onboarding'
-                  : 'pci.projects.new',
+    redirectTo: (trans) => {
+      const $q = trans.injector().get('$q');
+      const publicCloud = trans.injector().get('publicCloud');
+      return $q
+        .all([
+          publicCloud.getDefaultProject(),
+          publicCloud.getServices([
+            {
+              field: 'route.path',
+              comparator: 'eq',
+              reference: '/cloud/project/{serviceName}',
+            },
+            {
+              field: 'billing.lifecycle.current.state',
+              comparator: 'eq',
+              reference: 'unpaid',
+            },
+          ]),
+          publicCloud.getProjects([
+            {
+              field: 'status',
+              comparator: 'like',
+              reference: 'suspended',
+            },
+          ]),
+        ])
+        .then(([defaultProjectId, unPaidProjects, suspendedProjects]) => {
+          if (!isEmpty(suspendedProjects) || !isEmpty(unPaidProjects)) {
+            return { state: 'pci.projects' };
+          }
+          if (defaultProjectId) {
+            return {
+              state: 'pci.projects.project',
+              params: {
+                projectId: defaultProjectId,
               },
-        ),
+            };
+          }
+          return {
+            state: trans.params().onboarding
+              ? 'pci.projects.onboarding'
+              : 'pci.projects.new',
+          };
+        });
+    },
     resolve: {
       rootState: () => 'app',
     },

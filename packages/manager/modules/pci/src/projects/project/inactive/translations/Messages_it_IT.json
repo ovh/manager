@@ -1,0 +1,9 @@
+{
+  "pci_projects_project_inactive_title_pending_debt": "Una fattura relativa a questo progetto è in attesa di pagamento",
+  "pci_projects_project_inactive_title_suspended": "Il tuo progetto è sospeso",
+  "pci_projects_project_inactive_title_suspended_pending_debt": "Il tuo progetto è sospeso a causa di un mancato pagamento",
+  "pci_projects_project_inactive_description_pending_debt": "Ti invitiamo a regolarizzare la situazione. Senza una rapida azione da parte tua, il progetto sarà sospeso e tutti i servizi associati verranno persi.",
+  "pci_projects_project_inactive_description_suspended": "Il progetto sarà eliminato definitivamente.",
+  "pci_projects_project_inactive_description_suspended_pending_debt": "Per riattivare il tuo progetto, salda la fattura in attesa di pagamento e contatta il supporto OVHcloud.",
+  "pci_projects_project_inactive_close": "Chiudi"
+}
