@@ -239,7 +239,7 @@ export const MICROSOFT_CONFIG = {
 
 export const PSH_CONFIG = {
   id: 'web_paas',
-  feature: 'web:web-paas',
+  feature: 'web-paas',
   loadOnState: 'web-paas',
   children: [
     {

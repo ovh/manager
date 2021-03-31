@@ -37,6 +37,11 @@ angular
         },
       });
     },
+  )
+  .run(
+    /* @ngInject */ ($translate, $transitions) => {
+      $transitions.onBefore({ to: 'web-paas.**' }, () => $translate.refresh());
+    },
   );
 
 export default moduleName;
