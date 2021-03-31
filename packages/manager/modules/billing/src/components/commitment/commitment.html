@@ -135,11 +135,6 @@
             loading="$ctrl.isPaymentStepLoading"
             submit-text="{{:: 'billing_commitment_summit' | translate }}"
         >
-            <ovh-payment-method-choice
-                ng-if="$ctrl.model.engagement.isUpfront()"
-                model="$ctrl.model.paymentMethod"
-            >
-            </ovh-payment-method-choice>
             <p
                 data-translate="{{ 'billing_commitment_summary_description_' + $ctrl.model.engagement.commitmentType }}"
                 data-translate-values="{
@@ -149,7 +144,7 @@
                 }"
             ></p>
             <p
-                data-ng-if="!$ctrl.model.engagement.isUpfront() && $ctrl.paymentMethod && !$ctrl.service.isRenewManual()"
+                data-ng-if="$ctrl.paymentMethod && !$ctrl.service.isRenewManual()"
                 data-translate="billing_commitment_summary_description_payment"
                 data-translate-values="{
                 paymentMethodType: $ctrl.paymentMethod.label,
