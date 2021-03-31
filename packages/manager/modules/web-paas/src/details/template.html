@@ -1,0 +1,27 @@
+<div data-ui-view>
+    <div data-ovh-alert="{{alerts.dashboard}}"></div>
+    <oui-header
+        class="mb-3"
+        data-heading="{{:: $ctrl.project.projectName }}"
+        data-description="{{::$ctrl.project.projectId }}"
+    >
+        <oui-guide-menu data-text="{{ ::'web_paas_guides' | translate }}">
+            <oui-guide-menu-item
+                data-href="{{:: $ctrl.guideUrl }}"
+                data-external
+                ><span data-translate="web_paas_guides_main"></span>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
+        <oui-header-tabs>
+            <oui-header-tabs-item
+                data-href="{{:: $ctrl.serviceLink }}"
+                data-active="$ctrl.currentActiveLink() === $ctrl.serviceLink"
+                ><span data-translate="web_paas_general_info"></span>
+            </oui-header-tabs-item>
+        </oui-header-tabs>
+    </oui-header>
+    <div
+        class="container-fluid w-100 h-100 pt-4 px-3 px-md-5"
+        data-ui-view="projectView"
+    ></div>
+</div>
