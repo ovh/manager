@@ -170,8 +170,9 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
           $state.go('app.account.billing.main.history.pay-debt', {
             debtId,
           }),
-        seeDebt: /* @ngInject */ ($state) => (debtId) =>
+        seeDebt: /* @ngInject */ ($state) => (billId, debtId) =>
           $state.go('app.account.billing.main.history.details.debt.details', {
+            billId,
             debtId,
           }),
         breadcrumb: () => null,
