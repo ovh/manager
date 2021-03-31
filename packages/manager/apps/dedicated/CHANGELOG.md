@@ -1,3 +1,18 @@
+# [16.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.13.0...@ovh-ux/manager-dedicated@16.14.0) (2021-03-31)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 851] ([6406b5d](https://github.com/ovh/manager/commit/6406b5d82ffaad8109b5ce561caf37ac1e3c18a9))
+
+
+### Features
+
+* add webpaas ([#4385](https://github.com/ovh/manager/issues/4385)) ([a7fdb93](https://github.com/ovh/manager/commit/a7fdb938d0a85c64d702e06cd00445e223fa3671))
+* **dedicated:** add sidebar entry for web paas ([3126755](https://github.com/ovh/manager/commit/3126755ace084c0f6fc31e3570f2f62c064c8509))
+
+
+
 # [16.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.12.0...@ovh-ux/manager-dedicated@16.13.0) (2021-03-31)
 
 
