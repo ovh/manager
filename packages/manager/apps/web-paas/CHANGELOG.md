@@ -1,3 +1,12 @@
+## [1.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas-app@1.0.0...@ovh-ux/manager-web-paas-app@1.0.1) (2021-03-31)
+
+
+### Bug Fixes
+
+* update yarn.lock ([#4655](https://github.com/ovh/manager/issues/4655)) ([cf722ba](https://github.com/ovh/manager/commit/cf722ba6047ae99b2fc32e7e06b2132b46b2efeb))
+
+
+
 # [1.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas-app@0.0.0...@ovh-ux/manager-web-paas-app@1.0.0) (2021-03-31)
 
 
