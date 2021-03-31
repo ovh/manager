@@ -6,7 +6,7 @@
         <cui-message-container
             data-messages="$ctrl.messages"
         ></cui-message-container>
-        <oui-datagrid rows="$ctrl.projects" row-loader="$ctrl.getProject($row)">
+        <oui-datagrid rows="$ctrl.projects">
             <oui-datagrid-column
                 title=":: 'pci_projects_description' | translate"
                 property="description"
@@ -15,6 +15,7 @@
                 <oui-button
                     data-variant="link"
                     data-on-click="$ctrl.goToProject($row)"
+                    data-disabled="$row.isSuspended()"
                 >
                     <span data-ng-bind="::$value"></span>
                 </oui-button>
@@ -27,27 +28,48 @@
                 <span
                     class="oui-badge"
                     data-ng-class="{
-                    'oui-badge_info': $row.isCreating(),
-                    'oui-badge_error': $row.isDeleted() || $row.isSuspended(),
-                    'oui-badge_success': $row.isActive(),
-                    'oui-badge_warning': $row.isDeleting(),
-                }"
-                    data-ng-bind=":: ('pci_projects_status_' + $row.status) | translate"
+                        'oui-badge_info': $row.isCreating(),
+                        'oui-badge_error': $row.isDeleted() || $row.isSuspended() || $row.hasPendingDebt(),
+                        'oui-badge_success': $row.isActive(),
+                        'oui-badge_warning': $row.isDeleting(),
+                    }"
+                    data-ng-bind=":: (($row.hasPendingDebt() && !$row.isSuspended())
+                        ? 'pci_projects_status_pendingDebt'
+                        : ('pci_projects_status_' + $row.status)) | translate"
                 >
                 </span>
             </oui-datagrid-column>
-            <oui-action-menu data-compact data-placement="end">
-                <oui-action-menu-item data-on-click="$ctrl.goToProject($row)">
-                    <span data-translate="pci_projects_project_show"></span>
+            <oui-action-menu
+                data-ng-if="!$row.isSuspended() || $row.hasPendingDebt()"
+                data-placement="end"
+                data-compact
+            >
+                <oui-action-menu-item
+                    data-ng-if="$row.hasPendingDebt()"
+                    data-href="{{ $ctrl.billingUrl }}"
+                >
+                    <span data-translate="pci_projects_project_pay_bill"></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
-                    data-ng-if="$row.isCreating()"
+                    data-ng-if="!$row.isSuspended()"
+                    data-on-click="$ctrl.goToProject($row)"
+                >
+                    <span
+                        data-translate="{{
+                            ($row.hasPendingDebt()
+                                ? 'pci_projects_project_view'
+                                : 'pci_projects_project_show')
+                        }}"
+                    ></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item
+                    data-ng-if="$row.isCreating() && !$row.hasPendingDebt()"
                     data-on-click="$ctrl.deleteProject($row)"
                 >
                     <span data-translate="pci_projects_project_delete"></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
-                    data-ng-if="$row.isActive()"
+                    data-ng-if="$row.isActive() && !$row.hasPendingDebt()"
                     data-on-click="$ctrl.confirmDeletion($row)"
                 >
                     <span data-translate="pci_projects_project_delete"></span>

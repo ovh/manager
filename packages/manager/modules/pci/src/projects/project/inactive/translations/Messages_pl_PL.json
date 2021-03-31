@@ -1,0 +1,9 @@
+{
+  "pci_projects_project_inactive_title_pending_debt": "Faktura powiązana z tym projektem oczekuje na płatność",
+  "pci_projects_project_inactive_title_suspended": "Twój projekt został zawieszony",
+  "pci_projects_project_inactive_title_suspended_pending_debt": "Twój projekt został zawieszony na skutek nieopłacenia zamówienia",
+  "pci_projects_project_inactive_description_pending_debt": "Prosimy o uiszczenie należności. Jeśli nie podejmiesz odpowiednich kroków w najbliższym czasie, projekt zostanie zawieszony, a Ty stracisz wszystkie powiązane usługi.",
+  "pci_projects_project_inactive_description_suspended": "Ten projekt zostanie definitywnie usunięty.",
+  "pci_projects_project_inactive_description_suspended_pending_debt": "Aby ponownie włączyć projekt, ureguluj należność i skontaktuj się z zespołem pomocy.",
+  "pci_projects_project_inactive_close": "Zamknij"
+}

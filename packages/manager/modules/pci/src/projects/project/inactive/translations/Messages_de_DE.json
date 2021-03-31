@@ -1,0 +1,9 @@
+{
+  "pci_projects_project_inactive_title_pending_debt": "Eine Rechnung im Zusammenhang mit diesem Projekt ist noch offen.",
+  "pci_projects_project_inactive_title_suspended": "Ihr Projekt wurde gesperrt.",
+  "pci_projects_project_inactive_title_suspended_pending_debt": "Ihr Projekt wurde aufgrund eines Ausstands gesperrt.",
+  "pci_projects_project_inactive_description_pending_debt": "Bitte begleichen Sie die ausstehenden Beträge. Ohne schnelle Handeln Ihrerseits wird das Projekt gesperrt und Sie verlieren alle dazugehörigen Dienste.",
+  "pci_projects_project_inactive_description_suspended": "Es wird unwiderruflich gelöscht.",
+  "pci_projects_project_inactive_description_suspended_pending_debt": "Um Ihr Projekt erneut zu aktivieren, begleichen Sie bitte die ausstehende Rechnung und kontaktieren Sie unser Support-Team.",
+  "pci_projects_project_inactive_close": "Schließen"
+}
