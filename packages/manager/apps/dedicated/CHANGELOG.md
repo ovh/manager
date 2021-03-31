@@ -1,3 +1,12 @@
+## [16.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.14.0...@ovh-ux/manager-dedicated@16.14.1) (2021-03-31)
+
+
+### Bug Fixes
+
+* **billing.history:** add billId to see debt ([#4658](https://github.com/ovh/manager/issues/4658)) ([c780905](https://github.com/ovh/manager/commit/c78090586ccf6da90b5be23a5a886353ace33921))
+
+
+
 # [16.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.13.0...@ovh-ux/manager-dedicated@16.14.0) (2021-03-31)
 
 
