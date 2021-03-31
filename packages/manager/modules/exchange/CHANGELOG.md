@@ -1,3 +1,12 @@
+# [2.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@2.1.0...@ovh-ux/manager-exchange@2.2.0) (2021-03-31)
+
+
+### Features
+
+* **web.exchange:** fix order new account in exchange ([#4629](https://github.com/ovh/manager/issues/4629)) ([8714768](https://github.com/ovh/manager/commit/8714768ed30df1bc218f82c1ef648e456bd3a273))
+
+
+
 # [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@2.0.4...@ovh-ux/manager-exchange@2.1.0) (2021-03-25)
 
 
