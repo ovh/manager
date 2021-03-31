@@ -1,3 +1,12 @@
+# [3.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.9.2...@ovh-ux/manager-hub-app@3.10.0) (2021-03-31)
+
+
+### Features
+
+* **hub:** add web paas translations ([8f5e443](https://github.com/ovh/manager/commit/8f5e4432709bfccc359b0e71de27e4a951dd3c79))
+
+
+
 ## [3.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.9.1...@ovh-ux/manager-hub-app@3.9.2) (2021-03-25)
 
 

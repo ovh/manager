@@ -1,3 +1,23 @@
+# [3.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.10.0...@ovh-ux/manager-server-sidebar@3.11.0) (2021-03-31)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 851] ([6406b5d](https://github.com/ovh/manager/commit/6406b5d82ffaad8109b5ce561caf37ac1e3c18a9))
+
+
+### Features
+
+* **dedicated:** add sidebar entry for web paas ([3126755](https://github.com/ovh/manager/commit/3126755ace084c0f6fc31e3570f2f62c064c8509))
+* **platform-sh:** addd api to order ([2b8852d](https://github.com/ovh/manager/commit/2b8852d772772d46357ab98f738c1efe17404bf4))
+* **platform-sh:** implement platform.sh UI ([7dddbb4](https://github.com/ovh/manager/commit/7dddbb4677bd98f39f7460497e406cf07d0d0b41)), closes [#MANAGER-5618](https://github.com/ovh/manager/issues/MANAGER-5618)
+* **web:** add webpaas in web ([eb0452e](https://github.com/ovh/manager/commit/eb0452e07b56b81c23a06d48b7f4acd6943c66cd))
+* **web:** add webpaas in web ([b1d4ad6](https://github.com/ovh/manager/commit/b1d4ad6c3f0b153c5b9f2ca24aae0bbc74e80028))
+* **web-paas:** final changes ([732ffc2](https://github.com/ovh/manager/commit/732ffc26204fbcb788b0784d0e97fa0f95a40333))
+* **webpaas:** add terminate component ([4c02c51](https://github.com/ovh/manager/commit/4c02c5109497f68293fd364ee7a28679b7c62ffb))
+
+
+
 # [3.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.9.3...@ovh-ux/manager-server-sidebar@3.10.0) (2021-03-25)
 
 

@@ -1,3 +1,16 @@
+# [15.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.18.2...@ovh-ux/manager-web@15.19.0) (2021-03-31)
+
+
+### Features
+
+* **platform-sh:** implement platform.sh UI ([7dddbb4](https://github.com/ovh/manager/commit/7dddbb4677bd98f39f7460497e406cf07d0d0b41)), closes [#MANAGER-5618](https://github.com/ovh/manager/issues/MANAGER-5618)
+* **web:** add webpaas in web ([eb0452e](https://github.com/ovh/manager/commit/eb0452e07b56b81c23a06d48b7f4acd6943c66cd))
+* **web:** add webpaas in web ([b1d4ad6](https://github.com/ovh/manager/commit/b1d4ad6c3f0b153c5b9f2ca24aae0bbc74e80028))
+* **web-paas:** final changes ([732ffc2](https://github.com/ovh/manager/commit/732ffc26204fbcb788b0784d0e97fa0f95a40333))
+* **webpaas:** add terminate component ([4c02c51](https://github.com/ovh/manager/commit/4c02c5109497f68293fd364ee7a28679b7c62ffb))
+
+
+
 ## [15.18.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.18.1...@ovh-ux/manager-web@15.18.2) (2021-03-30)
 
 
