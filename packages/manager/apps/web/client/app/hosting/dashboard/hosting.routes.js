@@ -30,6 +30,10 @@ export default /* @ngInject */ ($stateProvider) => {
       tab: null,
     },
     resolve: {
+      cdnProperties: /* @ngInject */ (HostingCdnSharedService, serviceName) =>
+        HostingCdnSharedService.getCDNProperties(serviceName)
+          .then(({ data }) => data)
+          .catch(() => null),
       generalInformationLink: /* @ngInject */ ($state, $transition$) =>
         $state.href(
           'app.hosting.dashboard.general-informations',
