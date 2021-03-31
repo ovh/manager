@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.hosting.cdn.shared.confirmSettings', {
-    url: '/add-cache-rule',
+  $stateProvider.state('app.hosting.dashboard.cdn.shared.confirmSettings', {
+    url: '',
     views: {
       modal: {
         component: 'managerHostingSharedConfirmSettings',

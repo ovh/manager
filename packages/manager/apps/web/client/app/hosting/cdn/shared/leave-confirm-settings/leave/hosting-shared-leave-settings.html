@@ -1,11 +1,11 @@
 <oui-modal
     data-heading="{{:: 'hosting_cdn_shared_modal_leave_title' | translate}}"
-    data-primary-action="$ctrl.primaryAction()"
+    data-primary-action="$ctrl.leave()"
     data-primary-label="{{'hosting_cdn_shared_modal_leave_btn_validate' | translate}}"
-    data-secondary-action="$ctrl.secondaryAction()"
+    data-secondary-action="$ctrl.goBack()"
     data-secondary-label="{{:: 'hosting_cdn_shared_modal_leave_btn_cancel' | translate}}"
     type="warning"
-    data-on-dismiss="$ctrl.modal.close(true)"
+    data-on-dismiss="$ctrl.goBack()"
 >
     <!--Description-->
     <div
