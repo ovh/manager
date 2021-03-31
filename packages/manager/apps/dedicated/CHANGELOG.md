@@ -1,3 +1,17 @@
+# [16.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.12.0...@ovh-ux/manager-dedicated@16.13.0) (2021-03-31)
+
+
+### Bug Fixes
+
+* allow resiliation on service that can be engaged ([#4639](https://github.com/ovh/manager/issues/4639)) ([75c7f24](https://github.com/ovh/manager/commit/75c7f2460e7971d7f71824ad98144e04e1221264))
+
+
+### Features
+
+* update wording for new billing status ([#4640](https://github.com/ovh/manager/issues/4640)) ([9a780cd](https://github.com/ovh/manager/commit/9a780cddb253e225874cd2f21e5fc3d9d5fa0839))
+
+
+
 # [16.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.11.1...@ovh-ux/manager-dedicated@16.12.0) (2021-03-29)
 
 

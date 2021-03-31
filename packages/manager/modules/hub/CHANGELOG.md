@@ -1,3 +1,12 @@
+# [2.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@2.2.2...@ovh-ux/manager-hub@2.3.0) (2021-03-31)
+
+
+### Features
+
+* update wording for new billing status ([#4640](https://github.com/ovh/manager/issues/4640)) ([9a780cd](https://github.com/ovh/manager/commit/9a780cddb253e225874cd2f21e5fc3d9d5fa0839))
+
+
+
 ## [2.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@2.2.1...@ovh-ux/manager-hub@2.2.2) (2021-03-02)
 
 

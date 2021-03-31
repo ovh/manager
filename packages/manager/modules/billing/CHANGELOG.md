@@ -1,3 +1,18 @@
+# [2.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@2.2.2...@ovh-ux/manager-billing@2.3.0) (2021-03-31)
+
+
+### Bug Fixes
+
+* **billing.cancellation-form:** update wording ([#4641](https://github.com/ovh/manager/issues/4641)) ([56f8b7d](https://github.com/ovh/manager/commit/56f8b7d8ee041b264390efb09aded69b61c46fb6))
+* allow resiliation on service that can be engaged ([#4639](https://github.com/ovh/manager/issues/4639)) ([75c7f24](https://github.com/ovh/manager/commit/75c7f2460e7971d7f71824ad98144e04e1221264))
+
+
+### Features
+
+* update wording for new billing status ([#4640](https://github.com/ovh/manager/issues/4640)) ([9a780cd](https://github.com/ovh/manager/commit/9a780cddb253e225874cd2f21e5fc3d9d5fa0839))
+
+
+
 ## [2.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@2.2.1...@ovh-ux/manager-billing@2.2.2) (2021-03-25)
 
 
