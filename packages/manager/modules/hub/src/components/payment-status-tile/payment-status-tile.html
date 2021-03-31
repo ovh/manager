@@ -54,7 +54,10 @@
                         <div class="d-block d-md-inline mb-1">
                             <billing-status service="service"></billing-status>
                         </div>
-                        <div class="d-lg-inline mb-1">
+                        <div
+                            class="d-lg-inline mb-1"
+                            data-ng-if="!service.isBillingSuspended()"
+                        >
                             <span
                                 data-ng-if="service.isOneShot() && !service.isResiliated() && !service.hasPendingResiliation()"
                                 >-</span
