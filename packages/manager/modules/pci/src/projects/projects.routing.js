@@ -1,8 +1,6 @@
-import map from 'lodash/map';
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 
-import Project from './Project.class';
 import Offer from '../components/project/offer/offer.class';
-
 import { GUIDES_URL } from '../components/project/guides-header/guides-header.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -30,12 +28,8 @@ export default /* @ngInject */ ($stateProvider) => {
           .catch(() => $q.when({ active: false })),
       defaultProject: /* @ngInject */ (PciProjectsService) =>
         PciProjectsService.getDefaultProject(),
-      getProject: /* @ngInject */ (OvhApiCloudProject) => (project) =>
-        OvhApiCloudProject.v6()
-          .get({ serviceName: project.serviceName })
-          .$promise.then((projectDetails) => new Project(projectDetails)),
       goToProject: /* @ngInject */ ($state) => (project) =>
-        $state.go('pci.projects.project', { projectId: project.serviceName }),
+        $state.go('pci.projects.project', { projectId: project.project_id }),
       goToProjects: /* @ngInject */ ($state, CucCloudMessage) => (
         message = false,
         type = 'success',
@@ -53,12 +47,20 @@ export default /* @ngInject */ ($stateProvider) => {
         return promise;
       },
       guideUrl: () => GUIDES_URL,
-      projects: /* @ngInject */ (OvhApiCloudProject) =>
-        OvhApiCloudProject.v6()
-          .query()
-          .$promise.then((projects) =>
-            map(projects, (serviceName) => new Project({ serviceName })),
-          ),
+      projects: /* @ngInject */ (PciProjectsService) =>
+        PciProjectsService.getProjects().then((projects) =>
+          projects.sort((project1, project2) => {
+            const project1SuspendedOrDebt =
+              project1.isSuspended() || project1.hasPendingDebt();
+            const project2SuspendedOrDebt =
+              project2.isSuspended() || project2.hasPendingDebt();
+            if (project1SuspendedOrDebt === project2SuspendedOrDebt) {
+              return 0;
+            }
+            return project1SuspendedOrDebt ? -1 : 1;
+          }),
+        ),
+      billingUrl: () => buildURL('dedicated', '#/billing/history'),
       terminateProject: /* @ngInject */ (OvhApiCloudProject) => (project) =>
         OvhApiCloudProject.v6().delete({ serviceName: project.serviceName })
           .$promise,

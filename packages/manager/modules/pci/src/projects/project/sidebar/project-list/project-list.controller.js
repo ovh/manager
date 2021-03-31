@@ -1,11 +1,11 @@
+import { CLOUD_PROJECT_STATE } from '../../../../constants';
+
 export default class ProjectListController {
   /* @ngInject */
-  constructor($injector, $q, $translate, publicCloud, iceberg) {
+  constructor($injector, $translate, PciProjectsService) {
     this.$injector = $injector;
-    this.$q = $q;
     this.$translate = $translate;
-    this.publicCloud = publicCloud;
-    this.iceberg = iceberg;
+    this.PciProjectsService = PciProjectsService;
   }
 
   $onInit() {
@@ -26,14 +26,17 @@ export default class ProjectListController {
 
   getProjects() {
     this.isLoading = true;
-    this.publicCloud
-      .getProjects([
-        {
-          field: 'status',
-          comparator: 'in',
-          reference: ['creating', 'ok'],
-        },
-      ])
+    this.PciProjectsService.getProjects([
+      {
+        field: 'status',
+        comparator: 'in',
+        reference: [
+          CLOUD_PROJECT_STATE.creating,
+          CLOUD_PROJECT_STATE.ok,
+          CLOUD_PROJECT_STATE.suspended,
+        ],
+      },
+    ])
       .then((projects) => {
         this.projects = projects;
       })
@@ -43,5 +46,11 @@ export default class ProjectListController {
       .finally(() => {
         this.isLoading = false;
       });
+  }
+
+  goToProjectDetails(project) {
+    return project.isSuspended() || project.hasPendingDebt()
+      ? this.goToProjectInactive(project)
+      : this.goToProject(project);
   }
 }
