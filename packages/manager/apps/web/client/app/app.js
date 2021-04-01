@@ -31,7 +31,6 @@ import ngUiRouterLayout from '@ovh-ux/ng-ui-router-layout';
 import ngUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ovhManagerAccountSidebar from '@ovh-ux/manager-account-sidebar';
 import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
-import ovhManagerAccountMigration from '@ovh-ux/manager-account-migration';
 import ovhManagerBanner from '@ovh-ux/manager-banner';
 import ovhManagerCatalogPrice from '@ovh-ux/manager-catalog-price';
 import ovhManagerIncidentBanner from '@ovh-ux/manager-incident-banner';
@@ -124,7 +123,6 @@ angular
       'ovh-api-services',
       ovhManagerMfaEnrollment,
       ovhManagerAtInternetConfiguration,
-      ovhManagerAccountMigration,
       ovhManagerBanner,
       ovhManagerCatalogPrice,
       ovhManagerIncidentBanner,
