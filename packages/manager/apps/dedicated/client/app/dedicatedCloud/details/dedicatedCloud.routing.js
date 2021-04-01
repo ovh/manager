@@ -14,10 +14,21 @@ import {
   DEDICATEDCLOUD_DATACENTER_DRP_VPN_CONFIGURATION_STATUS,
 } from '../../components/dedicated-cloud/datacenter/drp/dedicatedCloud-datacenter-drp.constants';
 
-export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicatedCloud.details', {
-    url: '/:productId',
-    redirectTo: 'app.dedicatedCloud.details.dashboard',
+    url: '/:productId?action&token',
+    redirectTo: (transition) => {
+      if (transition.params().action === 'confirmcancel') {
+        return {
+          state: 'app.dedicatedCloud.details.terminate-confirm',
+          params: {
+            productId: transition.params().productId,
+            token: transition.params().token,
+          },
+        };
+      }
+      return 'app.dedicatedCloud.details.dashboard';
+    },
     resolve: {
       currentService: /* @ngInject */ (DedicatedCloud, productId) =>
         DedicatedCloud.getSelected(productId, true).then(
@@ -265,23 +276,7 @@ export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
           ),
       breadcrumb: /* @ngInject */ (serviceName) => serviceName,
     },
-    views: {
-      '': 'ovhManagerPcc',
-    },
+    component: 'ovhManagerPcc',
     reloadOnSearch: false,
   });
-
-  // ensure compatibility with links sended by emails
-  // like #/configuration/dedicated_cloud/pcc-123456?action=confirmcancel&token=myToken
-  // make a redirect to the new url of ui route
-  $urlServiceProvider.rules.when(
-    '/dedicated_cloud/:productId?action&token',
-    (match) => {
-      if (match.action === 'confirmcancel') {
-        return `/dedicated_cloud/${match.productId}/terminate-confirm?token=${match.token}`;
-      }
-
-      return false;
-    },
-  );
 };
