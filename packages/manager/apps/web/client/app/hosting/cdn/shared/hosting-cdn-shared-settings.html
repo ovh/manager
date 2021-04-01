@@ -1,8 +1,4 @@
-<div>
-    <div class="text-center" data-ng-if="!$ctrl.loading.init">
-        <oui-spinner data-size="l"></oui-spinner>
-    </div>
-
+<section>
     <div data-ovh-alert="cdnSharedSettingsError"></div>
 
     <div>
@@ -24,9 +20,7 @@
             ></div>
             <oui-switch
                 disabled="true"
-                data-ng-init="status = {inProgress: false}"
-                data-model="$ctrl.model.alwaysOnline.enabled"
-                data-on-change="$ctrl.updateSwitchOption($ctrl.model.alwaysOnline, modelValue, status)"
+                model="$ctrl.model.alwaysOnline.enabled"
             >
             </oui-switch>
             <strong
@@ -41,12 +35,7 @@
                 class="oui-paragraph"
                 data-translate="hosting_cdn_shared_option_http_https_info"
             ></div>
-            <oui-switch
-                disabled="true"
-                data-ng-init="status = {inProgress: false}"
-                data-model="$ctrl.model.http.enabled"
-                data-on-change="$ctrl.updateSwitchOption($ctrl.model.http, modelValue, status)"
-            >
+            <oui-switch disabled="true" model="$ctrl.model.http.enabled">
             </oui-switch>
             <strong
                 data-ng-bind="$ctrl.getSwitchBtnStatusText($ctrl.model.http.enabled)"
@@ -61,10 +50,8 @@
                 data-translate="hosting_cdn_shared_option_dev_mode_info"
             ></div>
             <oui-switch
-                data-ng-init="status = {inProgress: false}"
-                disabled="!$ctrl.model.devmode || status.inProgress"
-                data-model="$ctrl.model.devmode.enabled"
-                data-on-change="$ctrl.updateSwitchOption($ctrl.model.devmode, modelValue, status)"
+                disabled="!$ctrl.model.devmode"
+                model="$ctrl.model.devmode.enabled"
             >
             </oui-switch>
             <strong
@@ -80,10 +67,8 @@
                 data-translate="hosting_cdn_shared_option_brotli_info"
             ></div>
             <oui-switch
-                disabled="!$ctrl.model.brotli || status.inProgress"
-                data-ng-init="status = {inProgress: false}"
-                data-model="$ctrl.model.brotli.enabled"
-                data-on-change="$ctrl.updateSwitchOption($ctrl.model.brotli, modelValue, status)"
+                disabled="!$ctrl.model.brotli"
+                model="$ctrl.model.brotli.enabled"
             >
             </oui-switch>
             <strong
@@ -96,11 +81,11 @@
             <p class="oui-heading_5 mb-1"><strong>Cache rule</strong></p>
             <oui-button
                 class="mb-1"
-                data-variant="secondary"
-                data-icon-left="oui-icon-plus"
+                variant="secondary"
+                icon-left="oui-icon-plus"
                 disabled="status.inProgress || ($ctrl.model.rules.length >= $ctrl.model.maxItems)"
                 data-ng-init="status = {inProgress: false}"
-                data-on-click="$ctrl.openCreatCacheRuleModal(status)"
+                on-click="$ctrl.openCreatCacheRuleModal(status)"
             >
                 <span
                     data-translate="hosting_cdn_shared_option_cache_rule_btn_add_rule"
@@ -167,8 +152,8 @@
                             <td class="oui-table__cell">
                                 <oui-switch
                                     disabled="status.inProgress"
-                                    data-model="rule.enabled"
-                                    data-on-change="$ctrl.updateSwitchRule(rule, modelValue, status)"
+                                    model="rule.enabled"
+                                    on-change="$ctrl.updateSwitchRule(rule, modelValue, status)"
                                 >
                                 </oui-switch>
                                 <span
@@ -180,24 +165,24 @@
                             <td class="oui-table__cell">
                                 <oui-action-menu
                                     aria-label="Actions"
-                                    data-compact
+                                    compact
                                     disabled="$ctrl.disabled"
                                 >
                                     <oui-action-menu-item
                                         data-on-click="$ctrl.openUpdateCacheRuleModal(rule)"
                                     >
-                                        {{::
-                                        'hosting_cdn_shared_option_cache_rule_table_items_option_set_rule'
-                                        | translate}}
+                                        <span
+                                            data-translate="hosting_cdn_shared_option_cache_rule_table_items_option_set_rule"
+                                        ></span>
                                     </oui-action-menu-item>
                                     <oui-action-menu-item
                                         disabled="status.inProgress"
                                         data-ng-init="status = {inProgress: false}"
-                                        data-on-click="$ctrl.removeRule(rule, status)"
+                                        on-click="$ctrl.removeRule(rule, status)"
                                     >
-                                        {{::
-                                        'hosting_cdn_shared_option_cache_rule_table_items_option_delete_rule'
-                                        | translate}}
+                                        <span
+                                            data-translate="hosting_cdn_shared_option_cache_rule_table_items_option_delete_rule"
+                                        ></span>
                                     </oui-action-menu-item>
                                 </oui-action-menu>
                             </td>
@@ -210,7 +195,7 @@
         <!--Cancel settings-->
         <oui-button
             size="l"
-            data-variant="secondary"
+            variant="secondary"
             disabled="status.inProgress"
             data-on-click="$ctrl.displayLeaveSettingsModal($ctrl.model, $ctrl.model.rules)"
         >
@@ -222,13 +207,13 @@
         <!--Validate settings-->
         <oui-button
             size="l"
-            data-variant="primary"
-            data-on-click="$ctrl.openConfirmModal()"
-            disabled="!$ctrl.settingsToSave"
+            variant="primary"
+            on-click="$ctrl.openConfirmModal()"
+            disabled="!$ctrl.constructor.hasModelChange($ctrl.model, $ctrl.copyModel) || !$ctrl.model.rules.length"
         >
             <span
                 data-translate="hosting_cdn_shared_option_cache_rule_btn_validate"
             ></span>
         </oui-button>
     </div>
-</div>
+</section>
