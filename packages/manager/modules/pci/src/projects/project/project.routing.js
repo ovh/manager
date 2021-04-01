@@ -2,7 +2,9 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project', {
     url: '/{projectId:[0-9a-zA-Z]{32}}',
     views: {
-      '@pci': 'pciProject',
+      '@pci': {
+        component: 'pciProject',
+      },
     },
     redirectTo: (transition) => {
       const projectPromise = transition.injector().getAsync('project');
@@ -24,11 +26,6 @@ export default /* @ngInject */ ($stateProvider) => {
       });
     },
     resolve: {
-      goToProjectInactive: ($state, projectId) => (project) =>
-        $state.go('pci.projects.project.inactive', {
-          project,
-          projectId,
-        }),
       projectId: /* @ngInject */ ($transition$) =>
         $transition$.params().projectId,
       project: /* @ngInject */ (OvhApiCloudProject, projectId) =>
