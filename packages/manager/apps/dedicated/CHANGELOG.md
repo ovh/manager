@@ -1,3 +1,12 @@
+## [16.14.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.14.1...@ovh-ux/manager-dedicated@16.14.2) (2021-04-01)
+
+
+### Bug Fixes
+
+* **dedicated-cloud:** fix terminate resiliation ([427e93e](https://github.com/ovh/manager/commit/427e93e095634b9abba3466831b512ec4c543f39))
+
+
+
 ## [16.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.14.0...@ovh-ux/manager-dedicated@16.14.1) (2021-03-31)
 
 
