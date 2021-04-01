@@ -1,13 +1,13 @@
 <oui-modal
-    data-heading="{{:: 'hosting_cdn_shared_modal_confirm_title' | translate}}"
-    data-primary-action="$ctrl.primaryAction()"
-    data-primary-label="{{'hosting_cdn_shared_modal_confirm_btn_validate' | translate}}"
-    data-secondary-action="$ctrl.goBack()"
-    data-secondary-label="{{:: 'hosting_cdn_shared_modal_confirm_btn_cancel' | translate}}"
+    heading="{{:: 'hosting_cdn_shared_modal_confirm_title' | translate }}"
+    primary-action="$ctrl.onConfirm()"
+    primary-label="{{:: 'hosting_cdn_shared_modal_confirm_btn_validate' | translate }}"
+    secondary-action="$ctrl.goBack()"
+    secondary-label="{{:: 'hosting_cdn_shared_modal_confirm_btn_cancel' | translate }}"
     type="info"
-    data-on-dismiss="$ctrl.goBack()"
+    on-dismiss="$ctrl.goBack()"
+    loading="$ctrl.loading"
 >
-    <!--Description-->
     <div
         class="oui-paragraph"
         data-ng-bind=":: 'hosting_cdn_shared_modal_confirm_info' | translate"
@@ -82,7 +82,7 @@
             <div class="text-left col-md-6">
                 <p
                     class="mb-1"
-                    data-ng-repeat="rule in ::$ctrl.model.rules track by $index"
+                    data-ng-repeat="rule in ::$ctrl.rules track by $index"
                     data-ng-bind="::rule.name"
                 ></p>
             </div>

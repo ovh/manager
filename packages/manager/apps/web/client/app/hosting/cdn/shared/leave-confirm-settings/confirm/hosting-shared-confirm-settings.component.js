@@ -5,11 +5,13 @@ export default {
   controller,
   template,
   bindings: {
+    applyChanges: '<',
     goBack: '<',
-    rules: '<',
+    goToHosting: '<',
     model: '<',
-    success: '<',
-    cancel: '<',
+    oldModel: '<',
+    refresh: '<',
+    rules: '<',
     trackClick: '<',
   },
 };
