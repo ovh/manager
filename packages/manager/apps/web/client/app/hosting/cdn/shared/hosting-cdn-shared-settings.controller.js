@@ -19,16 +19,13 @@ import {
 
 export default class CdnSharedSettingsController {
   /* @ngInject */
-  constructor($q, $translate, $timeout, Alerter, HostingCdnSharedService) {
+  constructor($q, $translate, HostingCdnSharedService) {
     this.$q = $q;
     this.$translate = $translate;
-    this.$timeout = $timeout;
-    this.Alerter = Alerter;
     this.HostingCdnSharedService = HostingCdnSharedService;
   }
 
   $onInit() {
-    this.loading = { init: false };
     this.model = {
       alwaysOnline: {
         enabled: true,
@@ -36,27 +33,25 @@ export default class CdnSharedSettingsController {
       http: {
         enabled: true,
       },
-      devmode: null,
-      brotli: null,
-      rules: [],
+      devmode: find(this.domainOptions, {
+        type: SHARED_CDN_SETTINGS_RULE_TYPE_DEVMODE,
+      }),
+      brotli: find(this.domainOptions, {
+        type: SHARED_CDN_SETTINGS_RULE_TYPE_BROTLI,
+      }),
+      rules: filter(this.domainOptions, {
+        type: SHARED_CDN_SETTINGS_RULE_CACHE_RULE,
+      }),
       maxItems: find(this.availableOptions, {
         type: SHARED_CDN_SETTINGS_RULE_CACHE_RULE,
       }).maxItems,
     };
     this.tasks = { toUpdate: [] };
-    this.HostingCdnSharedService.model = this.model;
-    this.markFormAsToSave(this.cdnDetails.needRefresh);
+    this.copyModel = angular.copy(this.model);
+  }
 
-    this.model.rules = filter(this.domainOptions, {
-      type: SHARED_CDN_SETTINGS_RULE_CACHE_RULE,
-    });
-    this.model.devmode = find(this.domainOptions, {
-      type: SHARED_CDN_SETTINGS_RULE_TYPE_DEVMODE,
-    });
-    this.model.brotli = find(this.domainOptions, {
-      type: SHARED_CDN_SETTINGS_RULE_TYPE_BROTLI,
-    });
-    this.loading.init = true;
+  static hasModelChange(model, copyModel) {
+    return !angular.equals(model, copyModel);
   }
 
   getSwitchBtnStatusText(switchBtn) {
@@ -113,29 +108,6 @@ export default class CdnSharedSettingsController {
     set(status, 'inProgress', state);
   }
 
-  markFormAsToSave(toSave) {
-    this.settingsToSave = toSave;
-    this.HostingCdnSharedService.settingsToSave = toSave;
-  }
-
-  updateSwitchOption(model, modelValue, status) {
-    const { type } = model;
-    CdnSharedSettingsController.activateDeactivateStatus(status, true);
-    this.HostingCdnSharedService.updateCDNDomainOption(
-      this.serviceName,
-      this.domainName,
-      type,
-      {
-        type,
-        enabled: modelValue,
-      },
-    )
-      .then(() => this.markFormAsToSave(true))
-      .finally(() =>
-        CdnSharedSettingsController.activateDeactivateStatus(status, false),
-      );
-  }
-
   createRule(rule) {
     return this.HostingCdnSharedService.addNewOptionToDomain(
       this.serviceName,
@@ -157,7 +129,6 @@ export default class CdnSharedSettingsController {
   }
 
   removeRule(rule, status) {
-    this.markFormAsToSave(true);
     CdnSharedSettingsController.activateDeactivateStatus(status, true);
     return this.HostingCdnSharedService.deleteCDNDomainOption(
       this.serviceName,
@@ -178,7 +149,6 @@ export default class CdnSharedSettingsController {
     CdnSharedSettingsController.activateDeactivateStatus(status, true);
     return this.updateRule(rule, modelValue)
       .then((res) => {
-        this.markFormAsToSave(true);
         return res;
       })
       .finally(
@@ -221,7 +191,6 @@ export default class CdnSharedSettingsController {
           .then(() => this.createRule(rule))
           .then(() => {
             this.model.rules.push(rule);
-            this.markFormAsToSave(true);
           })
           .finally(() => {
             this.tasks.toUpdate = [];
@@ -249,7 +218,6 @@ export default class CdnSharedSettingsController {
         this.setRulesPriority(uRule);
         this.updateChangedRules(this.tasks.toUpdate, status)
           .then(() => this.updateRule(uRule))
-          .then(() => this.markFormAsToSave(true))
           .finally(() => {
             this.tasks.toUpdate = [];
             CdnSharedSettingsController.activateDeactivateStatus(status, false);
@@ -268,37 +236,11 @@ export default class CdnSharedSettingsController {
   }
 
   openConfirmModal() {
-    const { rules } = this.model;
+    const { rules, ...model } = this.model;
     this.displayConfirmSettingsModal({
       rules,
-      model: this.model,
-      success: () => {
-        this.HostingCdnSharedService.appliedCdnSettings(
-          this.serviceName,
-          this.domainName,
-        )
-          .then(() => {
-            this.markFormAsToSave(false);
-            return this.goBack().then(() => {
-              this.$timeout(() =>
-                this.Alerter.success(
-                  this.$translate.instant('hosting_cdn_shared_banner_success'),
-                  'cdnSharedSettingsSuccess',
-                ),
-              );
-            });
-          })
-          .catch((err) => {
-            this.Alerter.error(
-              get(err, 'data.message', ''),
-              'cdnSharedSettingsError',
-            );
-          })
-          .finally(() => {
-            this.HostingCdnSharedService.isValidCase = false;
-          });
-      },
-      cancel: () => {},
+      model,
+      oldModel: this.copyModel,
     });
     this.trackClick('web::hosting::cdn::configure::apply-configuration');
   }
