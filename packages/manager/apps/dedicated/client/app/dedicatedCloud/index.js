@@ -36,10 +36,10 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
       },
     });
 
-    $urlRouterProvider.when(/^configuration\/dedicated_cloud/, () => {
-      window.location.hash = window.location.hash.replace(
-        /^configuration\//,
-        '',
+    $urlRouterProvider.when(/^\/configuration\/dedicated_cloud/, () => {
+      window.location.href = window.location.href.replace(
+        '/configuration/dedicated_cloud',
+        '/dedicated_cloud',
       );
     });
   },
