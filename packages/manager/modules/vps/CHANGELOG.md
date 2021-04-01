@@ -1,3 +1,12 @@
+## [2.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.5.0...@ovh-ux/manager-vps@2.5.1) (2021-04-01)
+
+
+### Bug Fixes
+
+* **vps:** fix redirection ([8b8b9fe](https://github.com/ovh/manager/commit/8b8b9fe701aa685337114bcad17a63818bdde505))
+
+
+
 # [2.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.4.0...@ovh-ux/manager-vps@2.5.0) (2021-03-25)
 
 
