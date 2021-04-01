@@ -1,4 +1,4 @@
-import { groupBy, map } from 'lodash-es';
+import { groupBy, map, sortBy } from 'lodash-es';
 import CommitmentDuration from './CommitmentDuration.class';
 
 export default class {
@@ -75,10 +75,13 @@ export default class {
           availableEngagements,
           'configuration.duration',
         );
-        this.availableDurations = map(
-          this.availableEngagements,
-          (commitment, duration) =>
-            new CommitmentDuration(duration, commitment, this.defaultPrice),
+        this.availableDurations = sortBy(
+          map(
+            this.availableEngagements,
+            (commitment, duration) =>
+              new CommitmentDuration(duration, commitment, this.defaultPrice),
+          ),
+          'monthlyDuration',
         );
         this.model.duration =
           this.availableDurations.find(
