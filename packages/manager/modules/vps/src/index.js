@@ -52,7 +52,7 @@ angular
           },
         });
 
-      $urlRouterProvider.when('/iaas/vps', () => {
+      $urlRouterProvider.when(/^\/iaas\/vps/, () => {
         window.location.href = window.location.href.replace(
           '/iaas/vps',
           '/vps',
