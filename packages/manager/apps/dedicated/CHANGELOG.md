@@ -1,3 +1,12 @@
+## [16.14.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.14.2...@ovh-ux/manager-dedicated@16.14.3) (2021-04-01)
+
+
+### Bug Fixes
+
+* fix terminate redirection ([#4669](https://github.com/ovh/manager/issues/4669)) ([c33c704](https://github.com/ovh/manager/commit/c33c70436af3a01c8e7bd08b14ec29ce0b895b45))
+
+
+
 ## [16.14.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.14.1...@ovh-ux/manager-dedicated@16.14.2) (2021-04-01)
 
 
