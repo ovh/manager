@@ -11,10 +11,21 @@ import {
   DEDICATEDCLOUD_DATACENTER_DRP_VPN_CONFIGURATION_STATUS,
 } from '../../components/dedicated-cloud/datacenter/drp/dedicatedCloud-datacenter-drp.constants';
 
-export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.managedBaremetal.details', {
     url: '/:productId',
-    redirectTo: 'app.managedBaremetal.details.dashboard',
+    redirectTo: (transition) => {
+      if (transition.params().action === 'confirmcancel') {
+        return {
+          state: 'app.managedBaremetal.details.terminate-confirm',
+          params: {
+            productId: transition.params().productId,
+            token: transition.params().token,
+          },
+        };
+      }
+      return 'app.managedBaremetal.details.dashboard';
+    },
     resolve: {
       currentService: /* @ngInject */ (DedicatedCloud, productId) =>
         DedicatedCloud.getSelected(productId, true).then(
@@ -265,18 +276,4 @@ export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
     },
     reloadOnSearch: false,
   });
-
-  // ensure compatibility with links sended by emails
-  // like #/configuration/managedBaremetal/pcc-123456?action=confirmcancel&token=myToken
-  // make a redirect to the new url of ui route
-  $urlServiceProvider.rules.when(
-    '/configuration/managedBaremetal/:productId?action&token',
-    (match) => {
-      if (match.action === 'confirmcancel') {
-        return `/configuration/managedBaremetal/${match.productId}/terminate-confirm?token=${match.token}`;
-      }
-
-      return false;
-    },
-  );
 };
