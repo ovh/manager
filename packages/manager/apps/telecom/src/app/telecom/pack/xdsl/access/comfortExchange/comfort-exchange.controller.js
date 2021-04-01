@@ -1,7 +1,5 @@
 import assign from 'lodash/assign';
-import filter from 'lodash/filter';
 import get from 'lodash/get';
-import groupBy from 'lodash/groupBy';
 import map from 'lodash/map';
 import { COMFORT_EXCHANGE_TYPE_ERROR } from './comfort-exchange.constant';
 
