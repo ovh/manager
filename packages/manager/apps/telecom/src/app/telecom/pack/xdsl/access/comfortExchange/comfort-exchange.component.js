@@ -5,6 +5,7 @@ export default {
   bindings: {
     xdslId: '<',
     openedRMAs: '<',
+    packName: '<',
   },
   controller,
   template,
