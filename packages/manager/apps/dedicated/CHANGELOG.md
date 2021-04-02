@@ -1,3 +1,17 @@
+# [16.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.14.3...@ovh-ux/manager-dedicated@16.15.0) (2021-04-02)
+
+
+### Bug Fixes
+
+* **billing.payment:** rename DLP to Startup Program ([#4674](https://github.com/ovh/manager/issues/4674)) ([5837448](https://github.com/ovh/manager/commit/5837448fba07fc9ab7472587e9751490cd8f479e))
+
+
+### Features
+
+* **billing.payment.ovhaccount:** revamp refund ([#4664](https://github.com/ovh/manager/issues/4664)) ([79b48cd](https://github.com/ovh/manager/commit/79b48cd34b6b312a47c7f003c89f3466a6c6da18))
+
+
+
 ## [16.14.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.14.2...@ovh-ux/manager-dedicated@16.14.3) (2021-04-01)
 
 
