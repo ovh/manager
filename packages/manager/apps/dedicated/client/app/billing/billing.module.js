@@ -9,6 +9,7 @@ import history from './main/history/history.module';
 import paymentCreditAdd from './payment/credits/add/add-credits.module';
 import order from './order/billing-order-tracking.module';
 import orders from './orders/orders.module';
+import ovhAccountRefund from './payment/ovhAccount/refund';
 import refunds from './main/refunds/refunds.module';
 import sla from './sla/sla.module';
 import termination from './confirmTerminate/termination.module';
@@ -32,6 +33,7 @@ angular
     paymentCreditAdd,
     order,
     orders,
+    ovhAccountRefund,
     refunds,
     ngOvhExportCsv,
     'ngOvhUtils',

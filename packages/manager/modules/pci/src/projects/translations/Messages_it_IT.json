@@ -6,8 +6,5 @@
   "pci_projects_status_deleting": "Eliminazione in corso...",
   "pci_projects_status_creating": "Creazione in corso...",
   "pci_projects_project_show": "Visualizza",
-  "pci_projects_status_suspended": "Sospeso",
-  "pci_projects_status_pendingDebt": "Fattura da pagare",
-  "pci_projects_project_pay_bill": "Paga la tua fattura",
-  "pci_projects_project_view": "Visualizza il progetto"
+  "pci_projects_status_suspended": "Sospeso"
 }
