@@ -24,9 +24,7 @@ export default /* @ngInject */ ($stateProvider) => {
         PciProjectTrainingJobService,
         projectId,
         job,
-      ) => () => {
-        return PciProjectTrainingJobService.resubmit(projectId, job.spec);
-      },
+      ) => () => PciProjectTrainingJobService.resubmit(projectId, job.spec),
       goToJobInfo: /* @ngInject */ ($state, projectId, jobId) => () =>
         $state.go('pci.projects.project.training.jobs.info', {
           projectId,

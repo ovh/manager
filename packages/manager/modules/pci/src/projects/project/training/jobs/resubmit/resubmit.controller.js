@@ -39,7 +39,9 @@ export default class PciTrainingJobsResubmitController {
           'error',
         ),
       )
-      .finally(() => { this.loading = false; });
+      .finally(() => {
+        this.loading = false;
+      });
   }
 
   goBack() {
