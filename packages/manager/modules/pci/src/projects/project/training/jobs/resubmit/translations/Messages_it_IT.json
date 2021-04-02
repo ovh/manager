@@ -1,0 +1,6 @@
+{
+  "pci_projects_project_training_jobs_resubmit": "Riavvia",
+  "pci_projects_project_training_jobs_confirm_resubmit": "Vuoi davvero riavviare il job?",
+  "pci_projects_project_training_jobs_resubmit_success": "Il job è stato riavviato correttamente",
+  "pci_projects_project_training_jobs_resubmit_error": "Si è verificato un errore durante il riavvio del job: {{ message }}"
+}
