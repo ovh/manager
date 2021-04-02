@@ -8,6 +8,7 @@ angular
     (
       $filter,
       $scope,
+      $state,
       $timeout,
       $translate,
       atInternet,
@@ -65,10 +66,12 @@ angular
 
       $scope.changeOvhAccount = function changeOvhAccount() {
         $scope.ovhAccount.model = null;
-        $scope.$broadcast('paginationServerSide.loadPage', '1', 'accountTable');
+        $scope.loadOvhAccount({
+          offset: 1,
+        });
       };
 
-      $scope.loadOvhAccount = function loadOvhAccount(count, offset) {
+      $scope.loadOvhAccount = function loadOvhAccount({ offset, pageSize }) {
         $scope.ovhAccountLoading = true;
 
         const date = BillingdateRangeSelection.dateFrom;
@@ -76,8 +79,8 @@ angular
         const ovhAccount = $scope.ovhAccount.choice.ovhAccountId;
 
         const data = {
-          count,
-          offset,
+          count: pageSize,
+          offset: offset - 1,
           date,
           dateTo,
           ovhAccount,
@@ -86,6 +89,12 @@ angular
         return BillingOvhAccount.getBillingOvhAccount(data)
           .then((account) => {
             $scope.ovhAccount.model = account;
+            return {
+              data: account.list.results,
+              meta: {
+                totalCount: account.count,
+              },
+            };
           })
           .catch((err) => {
             $scope.setMessage(
@@ -99,7 +108,9 @@ angular
       };
 
       $scope.onDateRangeChanged = function onDateRangeChanged() {
-        $scope.$broadcast('paginationServerSide.loadPage', '1', 'accountTable');
+        $scope.loadOvhAccount({
+          offset: 1,
+        });
       };
 
       $scope.getPriceClasses = function getPriceClasses(price) {
@@ -193,6 +204,13 @@ angular
           chapter2: 'prepaid_account',
         });
       };
+
+      // TODO: Pass this through resolve when controller is refactored
+      $scope.askForRefund = (accountId, movementId) =>
+        $state.go('app.account.billing.payment.ovhaccount.refund', {
+          accountId,
+          movementId,
+        });
 
       init();
     },
