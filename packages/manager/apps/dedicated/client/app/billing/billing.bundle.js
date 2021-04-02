@@ -163,7 +163,6 @@ import './payment/ovhAccount/billing-ovhAccount.service';
 import './payment/ovhAccount/billing-payment-ovhAccount.routes';
 import './payment/ovhAccount/createAlert/billing-ovhAccount-createAlert.controller';
 import './payment/ovhAccount/renew/billing-ovhAccount-renew.controller';
-import './payment/ovhAccount/retrieve/billing-ovhAccount-retrieve.controller';
 import './payment/vouchers/billing-payment-voucher.routes';
 import './payment/vouchers/billing-vouchers.controller';
 import './payment/vouchers/billing-vouchers.service';

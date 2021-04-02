@@ -8,8 +8,6 @@ export default {
     project: '<',
     user: '<',
     getQuotaUrl: '<',
-    goToProject: '<',
-    goToProjectInactive: '<',
   },
   controller,
   template,

@@ -3,8 +3,6 @@ import controller from './sidebar.controller';
 
 export default {
   bindings: {
-    goToProject: '<',
-    goToProjectInactive: '<',
     isOpen: '<',
     user: '<',
     onClick: '&',

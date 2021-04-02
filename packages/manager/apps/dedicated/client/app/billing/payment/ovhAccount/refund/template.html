@@ -1,0 +1,17 @@
+<oui-modal
+    primary-label="{{ 'billing_ovhaccount_refund_confirm' | translate }}"
+    secondary-label="{{ 'billing_ovhaccount_refund_cancel' | translate}}"
+    secondary-action="$ctrl.goBack()"
+    primary-action="$ctrl.confirm()"
+    on-dismiss="$ctrl.goBack()"
+    loading="$ctrl.isLoading"
+    heading="{{ :: 'billing_ovhaccount_refund' | translate }}"
+>
+    <p
+        data-translate="billing_ovhaccount_refund_description"
+        data-translate-values="{
+            amount: $ctrl.movement.retrievableAmount.text
+        }"
+    ></p>
+    <p data-translate="billing_ovhaccount_refund_description_confirm"></p>
+</oui-modal>
