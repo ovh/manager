@@ -827,5 +827,6 @@
   "domain_dashboard_recommended_hosting_title_Perso": "Hosting del blog o del sito Web",
   "domain_dashboard_recommended_hosting_label": "- {{ reduction }} sull’hosting {{ type }} per il Black Friday.",
   "domain_dashboard_recommended_hosting_discover": "Scopri le soluzioni ",
-  "domain_tab_ZONE_no_zone_order_btn": "Ordina una zona DNS"
+  "domain_tab_ZONE_no_zone_order_btn": "Ordina una zona DNS",
+  "domain_tab_emails": "Email e mailing list"
 }
