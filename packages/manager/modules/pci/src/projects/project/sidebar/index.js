@@ -2,6 +2,8 @@ import angular from 'angular';
 import '@ovh-ux/ng-at-internet';
 import '@ovh-ux/ng-ovh-feature-flipping';
 
+import './sidebar.less';
+
 import component from './sidebar.component';
 import cloudSidebarProjectList from './project-list/project-list.component';
 
