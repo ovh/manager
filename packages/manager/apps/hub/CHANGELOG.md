@@ -1,3 +1,12 @@
+## [3.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.10.0...@ovh-ux/manager-hub-app@3.10.1) (2021-04-03)
+
+
+### Bug Fixes
+
+* update content ([#4681](https://github.com/ovh/manager/issues/4681)) ([adc13c0](https://github.com/ovh/manager/commit/adc13c0d4c467eb84cc2f433c3e7bb67652f7555))
+
+
+
 # [3.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.9.2...@ovh-ux/manager-hub-app@3.10.0) (2021-03-31)
 
 
