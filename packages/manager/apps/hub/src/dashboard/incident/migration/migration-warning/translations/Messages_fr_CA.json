@@ -1,7 +1,7 @@
 {
-  "manager_hub_incident_migration_warning_replace": "Remplacement de service",
+  "manager_hub_incident_migration_warning_replace": "Vos serveurs de substitution",
   "manager_hub_incident_migration_warning_see_contracts": "Valider les contrats",
   "manager_hub_incident_migration_warning_cancel": "Annuler",
-  "manager_hub_incident_migration_warning_description": "Pour remplacer vos services, il vous est demandé de valider les contrats associés.",
-  "manager_hub_incident_migration_warning_purchase": "Vous serez ensuite redirigé vers le bon de commande reprenant les informations de vos nouveaux services."
+  "manager_hub_incident_migration_warning_description": "Pour activer vos serveurs de substitution, il vous est demandé de valider les contrats associés.",
+  "manager_hub_incident_migration_warning_purchase": "Vous serez redirigé vers le bon de commande (montant à zéro) reprenant les informations de vos nouveaux serveurs."
 }
