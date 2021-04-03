@@ -1,4 +1,4 @@
 {
-  "manager_incident_migration_banner_description": "Un ou plusieurs de vos services Bare Metal Cloud ont été impactés par la situation sur notre site de Strasbourg (SBG). Nous vous proposons le remplacement de ce(s) service(s) gratuitement pour une période donnée.",
-  "manager_incident_migration_banner_cta": "Remplacer mes services"
+  "manager_incident_migration_banner_description": "SBG : Un ou plusieurs de vos serveurs Bare Metal Cloud ont été impactés par la situation sur notre site de Strasbourg (SBG). Nous vous proposons un serveur de substitution gratuitement pour une période donnée.",
+  "manager_incident_migration_banner_cta": "Voir mes serveurs de substitution"
 }
