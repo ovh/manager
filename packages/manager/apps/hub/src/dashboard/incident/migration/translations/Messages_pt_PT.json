@@ -1,7 +1,7 @@
 {
-  "manager_hub_incident_migration": "Substitute servers",
-  "manager_hub_incident_migration_impacted_service": "Initial server",
-  "manager_hub_incident_migration_replacement_service": "Substitute server",
+  "manager_hub_incident_migration": "Servidores de substituição",
+  "manager_hub_incident_migration_impacted_service": "Servidor inicial",
+  "manager_hub_incident_migration_replacement_service": "Servidor de substituição",
   "manager_hub_incident_migration_discount": "Commercial discount",
   "manager_hub_incident_migration_commercial_name": "Commercial name: {{ name }}",
   "manager_hub_incident_migration_datacenter": "Datacentre",
@@ -27,9 +27,9 @@
   "manager_hub_incident_migration_replace": "Replace service",
   "manager_hub_incident_migration_replace_bulk": "Replace",
   "manager_hub_incident_migration_see": "View service details",
-  "manager_hub_incident_migration_replacement_done": "Your substitute server(s) activation has been saved.",
+  "manager_hub_incident_migration_replacement_done": "A ativação dos seus servidores de substituição foi registada com êxito.",
   "manager_hub_incident_migration_replacement_follow": "See order tracking",
-  "manager_hub_incident_migration_description": "Following the fire that occurred on our Strasbourg (SBG) site, one or more machines associated with your services cannot be recovered. We are working hard to deliver an equivalent server(s) to another datacentre in France as soon as possible. We would like to extend our sincerest apologies and, as an exceptional commercial gesture, we are offering substitute server(s) free of charge for the period specified below.",
+  "manager_hub_incident_migration_description": "Na sequência do incêndio ocorrido nas nossas instalações de Estrasburgo (SBG), uma ou várias máquinas associadas aos seus serviços não podem ser recuperadas. Fazemos todos os possíveis para lhe fornecer, o mais rapidamente possível, um ou vários servidores equivalentes noutro datacenter em França. Lamentamos o sucedido e, como medida comercial, oferecemos-lhe um ou vários servidores de substituição sem custos durante o período a seguir indicado.",
   "manager_hub_incident_migration_discount_sidenote_1": "In addition to the free service offered, you will also receive credit corresponding to the cost of your service invoiced on your March bill.",
   "manager_hub_incident_migration_discount_sidenote_2": "<b>*</b>If the amount is lower than the amount initially specified by email, you will be offered an additional amount equal to the difference."
 }

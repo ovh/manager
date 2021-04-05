@@ -1,4 +1,4 @@
 {
-  "manager_incident_migration_banner_description": "Um ou vários dos seus serviços Bare Metal Cloud foram afetados pela situação no nosso datacenter de Estrasburgo (SBG). Propomos-lhe a substituição gratuita deste(s) serviço(s) durante um determinado período.",
-  "manager_incident_migration_banner_cta": "Substituir os meus serviços"
+  "manager_incident_migration_banner_description": "SBG: Um ou vários dos seus servidores Bare Metal Cloud foram afetados pela situação no nosso datacenter de Estrasburgo (SBG). Oferecemos-lhe um servidor de substituição sem custos por um determinado período.",
+  "manager_incident_migration_banner_cta": "Ver os meus servidores de substituição"
 }
