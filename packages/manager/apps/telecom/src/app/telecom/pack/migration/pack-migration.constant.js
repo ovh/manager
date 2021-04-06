@@ -6,4 +6,10 @@ export const PROMO_DISPLAY = {
   },
 };
 
-export default { PROMO_DISPLAY };
+export const PROCESS_STEP = {
+  buildings: 'buildings',
+  migration: 'migration',
+  offers: 'offers',
+};
+
+export default { PROMO_DISPLAY, PROCESS_STEP };
