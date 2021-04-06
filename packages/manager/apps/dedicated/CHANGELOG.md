@@ -1,3 +1,12 @@
+## [16.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.15.0...@ovh-ux/manager-dedicated@16.15.1) (2021-04-06)
+
+
+### Bug Fixes
+
+* avoid duplicate token in url ([#4685](https://github.com/ovh/manager/issues/4685)) ([d717855](https://github.com/ovh/manager/commit/d717855ae5f9cdb433d46e899b6f2e94d3728ab6))
+
+
+
 # [16.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.14.3...@ovh-ux/manager-dedicated@16.15.0) (2021-04-02)
 
 
