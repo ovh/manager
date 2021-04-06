@@ -14,6 +14,8 @@ export default class {
   }
 
   edit() {
+    this.sendKubeTrack('details::service::name::confirm');
+
     this.isEditing = true;
     return this.OvhApiCloudProjectKube.v6()
       .update(
@@ -43,5 +45,10 @@ export default class {
           'error',
         ),
       );
+  }
+
+  onRenameModalCancel() {
+    this.sendKubeTrack('details::service::name::cancel');
+    this.goBack();
   }
 }

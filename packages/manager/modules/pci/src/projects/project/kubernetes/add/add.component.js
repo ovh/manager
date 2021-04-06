@@ -10,6 +10,7 @@ export default {
     quotas: '<',
     regions: '<',
     versions: '<',
+    sendKubeTrack: '<',
   },
   controller,
   template,

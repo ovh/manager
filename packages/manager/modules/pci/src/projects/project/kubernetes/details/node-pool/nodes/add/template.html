@@ -73,8 +73,8 @@
         data-navigation="$ctrl.intanceFlavor && !$ctrl.isAdding"
         data-submit-text="{{ ::'kube_common_save' | translate }}"
         data-cancel-text="{{ ::'kube_common_cancel' | translate }}"
-        data-cancel-href="{{$ctrl.cancelLink}}"
         data-on-submit="$ctrl.addNode()"
+        data-on-cancel="$ctrl.onAddNodeCancel()"
         name="node_add_billing_info"
     >
         <p data-translate="kube_nodes_add_billing_type_unavailable"></p>

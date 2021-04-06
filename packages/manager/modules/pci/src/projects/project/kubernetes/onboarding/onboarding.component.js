@@ -7,5 +7,6 @@ export default {
   bindings: {
     addCluster: '<',
     regions: '<',
+    sendKubeTrack: '<',
   },
 };

@@ -16,6 +16,7 @@ const component = {
     projectId: '<',
     quotas: '<',
     nodePool: '<',
+    sendKubeTrack: '<',
   },
   controller,
   template,

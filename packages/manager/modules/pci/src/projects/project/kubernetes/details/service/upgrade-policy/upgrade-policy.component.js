@@ -7,6 +7,7 @@ const component = {
     kubeId: '<',
     goBack: '<',
     projectId: '<',
+    sendKubeTrack: '<',
   },
   template,
   controller,
