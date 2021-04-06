@@ -1,27 +1,32 @@
 import get from 'lodash/get';
-import { VIRTUAL_TYPE } from './interfaces.constants';
 
 export default class {
   /* @ngInject */
-  constructor($translate, Alerter, DedicatedServerInterfacesService) {
+  constructor(
+    $q,
+    $timeout,
+    $translate,
+    Alerter,
+    DedicatedServerInterfacesService,
+  ) {
+    this.$q = $q;
+    this.$timeout = $timeout;
     this.$translate = $translate;
     this.Alerter = Alerter;
     this.InterfaceService = DedicatedServerInterfacesService;
   }
 
   $onInit() {
-    this.VIRTUAL_TYPE = VIRTUAL_TYPE;
-    this.loading = true;
-    this.taskPolling.promise
+    this.InterfaceService.waitTasks(this.serverName)
+      .then(() => {
+        this.goToInterfaces();
+      })
       .catch((error) =>
         this.Alerter.error(
           this.$translate.instant('dedicated_server_interfaces_task_error', {
             errorMessage: get(error, 'comment'),
           }),
         ),
-      )
-      .finally(() => {
-        this.loading = false;
-      });
+      );
   }
 }

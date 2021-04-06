@@ -18,6 +18,10 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         goBack: /* @ngInject */ ($state) => () => $state.go('^'),
         breadcrumb: () => null,
+        hasDefaultPaymentMethod: /* @ngInject */ (ovhPaymentMethod) =>
+          ovhPaymentMethod.hasDefaultPaymentMethod(),
+        trackingPrefix: () =>
+          'dedicated::server::interfaces::bandwidth-public-order::',
       },
     });
   });

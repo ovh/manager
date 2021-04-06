@@ -1,5 +1,5 @@
-import controller from './ola-terminate.controller';
-import template from './ola-terminate.html';
+import controller from './ola-reset.controller';
+import template from './ola-reset.html';
 
 export default {
   bindings: {
@@ -7,6 +7,8 @@ export default {
     alertError: '<',
     atTrack: '<',
     serverName: '<',
+    trackingPrefix: '<',
+    ola: '<',
   },
   controller,
   template,

@@ -5,10 +5,13 @@ export default {
   controller,
   template,
   bindings: {
-    goBack: '<',
     alertError: '<',
+    atTrack: '<',
+    goBack: '<',
+    hasDefaultPaymentMethod: '<',
     serverName: '<',
     specifications: '<',
+    trackingPrefix: '<',
     user: '<',
   },
 };

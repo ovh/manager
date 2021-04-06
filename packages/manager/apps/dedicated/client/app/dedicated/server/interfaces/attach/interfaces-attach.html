@@ -5,6 +5,7 @@
     data-secondary-action=":: $ctrl.goBack()"
     data-secondary-label="{{:: 'common_cancel' | translate }}"
     data-on-dismiss=":: $ctrl.goBack()"
+    data-loading="$ctrl.loading"
 >
     <form name="vrack-attach-form">
         <oui-field
@@ -14,6 +15,7 @@
                 data-placeholder="{{'select_option' | translate}}"
                 data-model="$ctrl.vrack"
                 data-items="$ctrl.vracks"
+                name="select-vrack"
             >
             </oui-select>
         </oui-field>
