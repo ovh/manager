@@ -4,6 +4,7 @@ import forEach from 'lodash/forEach';
 import get from 'lodash/get';
 import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
+import toLower from 'lodash/toLower';
 import map from 'lodash/map';
 import partition from 'lodash/partition';
 import has from 'lodash/has';
@@ -308,7 +309,9 @@ export default class PciInstancesAddController {
   trackCreate() {
     const mode = this.instance.monthlyBilling ? 'monthly' : 'hourly';
     this.atInternet.trackClick({
-      name: `instances_create_${this.selectedCategory}_${mode}`,
+      name: `instances_create_${this.selectedCategory}_${mode}_${toLower(
+        this.instance.region,
+      )}`,
       type: 'action',
     });
   }
