@@ -20,5 +20,6 @@
   "billing_credit_balance_movements_operation_credit": "Aufladung",
   "billing_credit_balance_movements_operation_debit": "Soll",
   "billing_credit_balance_movements_load_error": "Beim Laden der Vorgänge unter Verwendung Ihres Gutscheins ist ein Fehler aufgetreten.",
-  "billing_credit_back": "Zurück zu meinen Gutscheinen"
+  "billing_credit_back": "Zurück zu meinen Gutscheinen",
+  "billing_credit_balance_movements_operation_debit_order": "Abbuchung bei der Bestellung <a href=\"{{orderUrl}}\" target=\"_blank\">{{ orderId }}</a>"
 }

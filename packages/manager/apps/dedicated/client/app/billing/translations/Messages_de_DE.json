@@ -173,7 +173,7 @@
   "ovhAccount_retrieve_amount_disponible": "Verfügbarer Betrag:",
   "ovhAccount_retrieve_error": "Aufgrund eines Fehlers konnte die gewünschte Operation nicht ausgeführt werden.",
   "ovhAccount_retrieve_explanation": "Sie können einen selbst gewählten Betrag von Ihrem OVH Kundenkonto auf ein Bankkonto überweisen. Bitte beachten Sie, dass hierfür nur Beträge aus Rückzahlungen und Erstattungen zur Verfügung stehen.",
-  "ovhAccount_retrieve_success": "Ihre Anfrage wurde erfolgreich verarbeitet. Um den Bestellschein zu validieren, klicken Sie <a href=\"{{t0}}\" target=\"_blank\">hier.</a>",
+  "ovhAccount_retrieve_success": "Ihre Überweisungsanfrage wurde bearbeitet.",
   "ovhAccount_retrieve_resume_1": "Bestätigen Sie die Überweisung von",
   "ovhAccount_retrieve_resume_2": "von ihrem Prepaid-Account zu Ihrem Bankkonto",
   "ovhAccount_retrieve_tips": "Klicken Sie auf \"Bezahlen\", um den Bestellschein zu öffnen. Ihr Browser muss Pop-ups erlauben.",
@@ -908,5 +908,5 @@
   "statements_operation_description_refund_unknown": "Rückerstattung",
   "billing_date_range_choose_custom_date": "Zeitraum festlegen",
   "billing_date_range_text": "Vom {{t0}} bis zum {{t1}}",
-  "billing_price_ttc_label": "{{price}} inkl. MwSt."
+  "billing_price_ttc_label": "{{price}} inkl. MwSt.?"
 }
