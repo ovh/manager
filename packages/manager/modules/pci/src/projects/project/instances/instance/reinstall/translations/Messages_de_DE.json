@@ -1,9 +1,11 @@
 {
- "pci_projects_project_instances_instance_reinstall_title": "Instanz neu installieren",
- "pci_projects_project_instances_instance_reinstall_submit_label": "Bestätigen",
- "pci_projects_project_instances_instance_reinstall_cancel_label": "Abbrechen",
- "pci_projects_project_instances_instance_reinstall_content": "Sind Sie sicher, dass Sie die Instanz {{ instance }} neu installieren möchten?",
- "pci_projects_project_instances_instance_reinstall_erase_message": "Sämtliche Daten werden gelöscht.",
- "pci_projects_project_instances_instance_reinstall_success_message": "Die Instanz {{ instance }} wird neu installiert.",
- "pci_projects_project_instances_instance_reinstall_error_reinstall": "Bei der Neuinstallation der Instanz {{ instance }} ist ein Fehler aufgetreten: {{message}}."
+  "pci_projects_project_instances_instance_reinstall_title": "Instanz neu installieren",
+  "pci_projects_project_instances_instance_reinstall_submit_label": "Bestätigen",
+  "pci_projects_project_instances_instance_reinstall_cancel_label": "Abbrechen",
+  "pci_projects_project_instances_instance_reinstall_content": "Sind Sie sicher, dass Sie die Instanz {{ instance }} neu installieren möchten?",
+  "pci_projects_project_instances_instance_reinstall_erase_message": "Sämtliche Daten werden gelöscht.",
+  "pci_projects_project_instances_instance_reinstall_success_message": "Die Instanz {{ instance }} wird neu installiert.",
+  "pci_projects_project_instances_instance_reinstall_error_reinstall": "Bei der Neuinstallation der Instanz {{ instance }} ist ein Fehler aufgetreten: {{message}}.",
+  "pci_projects_project_instances_instance_reinstall_deprecated_image": "Das Image, das Sie beim Erstellen der Instanz ( {{ image }} ) ausgewählt haben, wird nicht mehr unterstützt. Es kann daher nicht neu installiert werden. Wir bieten Ihnen jedoch neue Images zur Installation an.",
+  "pci_projects_project_instances_instance_reinstall_deprecated_image_format_message": "Bitte beachten Sie: Bei der Installation eines neuen Images werden alle Daten formatiert."
 }
