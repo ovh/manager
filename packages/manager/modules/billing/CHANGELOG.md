@@ -1,3 +1,12 @@
+# [2.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@2.3.0...@ovh-ux/manager-billing@2.4.0) (2021-04-06)
+
+
+### Features
+
+* **dedicated:** hgv2 & ola integration #MANAGER-6116 ([e9d184f](https://github.com/ovh/manager/commit/e9d184f119d3cbd6754c7c2653180b0325341792)), closes [#MANAGER-6116](https://github.com/ovh/manager/issues/MANAGER-6116)
+
+
+
 # [2.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@2.2.2...@ovh-ux/manager-billing@2.3.0) (2021-03-31)
 
 

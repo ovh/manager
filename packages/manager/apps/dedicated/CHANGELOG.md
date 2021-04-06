@@ -1,3 +1,30 @@
+# [16.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.15.1...@ovh-ux/manager-dedicated@16.16.0) (2021-04-06)
+
+
+### Bug Fixes
+
+* **dedicated:** add ola tracking ([b496a2f](https://github.com/ovh/manager/commit/b496a2fef252ab0db85cdecb11632367bd5369ae))
+* **dedicated:** dashboard hardware tile integration ([3ca6335](https://github.com/ovh/manager/commit/3ca6335a2554390622074813840a800821c623fc))
+* **dedicated:** disable os install if ola is configured ([ee93dd5](https://github.com/ovh/manager/commit/ee93dd5efe31354f2792ee06ecb0ddc0541e5ea7))
+* **dedicated:** ola reset modal refresh ([73903ac](https://github.com/ovh/manager/commit/73903acb6edd80acc56780c726d8ba4ba01c83ed))
+* **i18n:** add missing translations [CDS 648] ([f823204](https://github.com/ovh/manager/commit/f82320482057281fefd559697d7b9c855f76db4a))
+* **i18n:** add missing translations [CDS 764] ([e9cf1de](https://github.com/ovh/manager/commit/e9cf1de2721539f649907e1fdfb0824a6d035794))
+* **i18n:** add missing translations [CDS 766] ([8bdaae7](https://github.com/ovh/manager/commit/8bdaae7224f276db0941da96f6a67f5fe7e3ade4))
+* **i18n:** add missing translations [CDS 872] ([a796478](https://github.com/ovh/manager/commit/a79647892590fe5bce321188aa2b2c307abb60db))
+* **i18n:** add missing translations [CDS 885] ([9434739](https://github.com/ovh/manager/commit/9434739f3f625bdf5d3e363e283bb5e7a1c1d0b2))
+* **upgrade:** add flipping on technical upgrade ([8bbbc00](https://github.com/ovh/manager/commit/8bbbc004e51936599f7617046252d63703267b75))
+
+
+### Features
+
+* **dedicated:** add technical details tile to dashboard ([cf13e4e](https://github.com/ovh/manager/commit/cf13e4eec183096c78976dd36fe5a713cfcdf3e8))
+* **dedicated:** hgv2 & ola integration #MANAGER-6116 ([e9d184f](https://github.com/ovh/manager/commit/e9d184f119d3cbd6754c7c2653180b0325341792)), closes [#MANAGER-6116](https://github.com/ovh/manager/issues/MANAGER-6116)
+* **dedicated:** ola enhancements ([cae8bbe](https://github.com/ovh/manager/commit/cae8bbe5632f8d3de02a87f57f25f03343f89cb1)), closes [#MANAGER-5264](https://github.com/ovh/manager/issues/MANAGER-5264) [#MANAGER-5494](https://github.com/ovh/manager/issues/MANAGER-5494)
+* **dedicated:** server dashboard ola message formatting ([0d2fa2c](https://github.com/ovh/manager/commit/0d2fa2c1fcc0fa37464523c63dc12e4363e56e7f))
+* **hgv2:** add manual upgrade with ticket ([7d69257](https://github.com/ovh/manager/commit/7d692575d5ab978397bdc292befaec4b602a3f65))
+
+
+
 ## [16.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.15.0...@ovh-ux/manager-dedicated@16.15.1) (2021-04-06)
 
 
