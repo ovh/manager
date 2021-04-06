@@ -8,6 +8,7 @@ export default {
     atTrack: '<',
     server: '<',
     serverName: '<',
+    trackingPrefix: '<',
     user: '<',
   },
   controller,

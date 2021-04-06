@@ -55,10 +55,10 @@ export default /* @ngInject */ ($translate) => {
     US: usTouch,
   };
 
-  function format(price, paramCountry) {
+  function format(price, paramCountry, modifier) {
     const country = (angular.isString(paramCountry) && paramCountry) || 'FR';
     const taxes = showTaxes[country];
-    if (price.withTax.value !== 0) {
+    if (price.withTax.value !== 0 || modifier === 'verbose') {
       if (taxes.withGST) {
         return `<b class="red">${$translate.instant(
           'price_price_gst_excl_label',
@@ -83,9 +83,9 @@ export default /* @ngInject */ ($translate) => {
     return `<b class="red">${$translate.instant('price_free')}</b>`;
   }
 
-  return function priceFilter(price, ovhSubsidiary) {
+  return function priceFilter(price, ovhSubsidiary, modifier) {
     if (price !== undefined) {
-      return format(price, ovhSubsidiary);
+      return format(price, ovhSubsidiary, modifier);
     }
 
     return '<span/>';

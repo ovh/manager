@@ -6,6 +6,7 @@ const moduleName = 'ovhManagerDedicatedServerInterfacesAttach';
 angular
   .module(moduleName, ['ui.router'])
   .config(routing)
-  .component('dedicatedServerInterfacesAttach', component);
+  .component('dedicatedServerInterfacesAttach', component)
+  .run(/* @ngTranslationsInject:json ../translations */);
 
 export default moduleName;

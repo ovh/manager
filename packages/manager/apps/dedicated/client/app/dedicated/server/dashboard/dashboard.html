@@ -10,7 +10,7 @@
         <span data-translate="server_tab_dashboard_install_progress"> </span>
         <button
             type="button"
-            class="oui-button oui-button__link p-0"
+            class="oui-button oui-button__link p-1"
             data-translate="server_tab_dashboard_install_progress_link"
             data-ng-click="$ctrl.dedicatedServer.$scope.setAction('installation/progress/dedicated-server-installation-progress', { server: $ctrl.server, serverCtrl: $ctrl.dedicatedServer })"
         ></button>
@@ -133,6 +133,11 @@
                                     data-translate="server_configuration_distribution_none"
                                 >
                                 </span>
+                                <p
+                                    class="small"
+                                    data-ng-if="$ctrl.ola.isConfigured()"
+                                    data-translate="server_configuration_installation_no_public_network"
+                                ></p>
                             </dd>
                         </dl>
                         <div
@@ -143,6 +148,7 @@
                                 aria-label="{{:: 'menu_action_label' | translate:{ t0: ('server_configuration_distribution' | translate) } }}"
                                 data-compact
                                 data-placement="end"
+                                data-disabled="$ctrl.ola.isConfigured()"
                             >
                                 <oui-action-menu-item
                                     data-on-click="$ctrl.dedicatedServer.$scope.setAction('installation/progress/dedicated-server-installation-progress', { server: $ctrl.server, serverCtrl: $ctrl.dedicatedServer, user: $ctrl.user })"
@@ -155,17 +161,8 @@
                                 </oui-action-menu-item>
                                 <oui-action-menu-item
                                     data-on-click="$ctrl.dedicatedServer.$scope.setAction('installation/choice/dedicated-server-installation-choice', { server: $ctrl.server, serverCtrl: $ctrl.dedicatedServer, user: $ctrl.user })"
-                                    data-disabled="$ctrl.dedicatedServer.$scope.disable.reboot || $ctrl.dedicatedServer.$scope.disable.byOtherTask"
-                                    data-ng-if="$ctrl.server.os && !$ctrl.dedicatedServer.$scope.disable.installationInProgress"
-                                >
-                                    <span
-                                        data-translate="server_configuration_installation_button"
-                                    ></span>
-                                </oui-action-menu-item>
-                                <oui-action-menu-item
-                                    data-on-click="$ctrl.dedicatedServer.$scope.setAction('installation/choice/dedicated-server-installation-choice', { server: $ctrl.server, serverCtrl: $ctrl.dedicatedServer, user: $ctrl.user })"
-                                    data-disabled="$ctrl.dedicatedServer.$scope.disable.reboot || $ctrl.dedicatedServer.$scope.disable.byOtherTask"
-                                    data-ng-if="!$ctrl.server.os && !$ctrl.dedicatedServer.$scope.disable.installationInProgress"
+                                    data-disabled="$ctrl.dedicatedServer.$scope.disable.reboot || $ctrl.dedicatedServer.$scope.disable.byOtherTask || $ctrl.ola.isConfigured()"
+                                    data-ng-if="!$ctrl.dedicatedServer.$scope.disable.installationInProgress && !$ctrl.ola.isConfigured()"
                                 >
                                     <span
                                         data-translate="server_configuration_installation_button"
@@ -226,7 +223,10 @@
                             ></dt>
                             <dd
                                 class="oui-tile__description"
-                                data-translate="{{'server_datacenter_' + $ctrl.server.datacenter}}"
+                                data-translate="{{'server_datacenter_' + $ctrl.server.datacenter.split('_')[0]}}"
+                                data-translate-values="{
+                                    number: $ctrl.server.datacenter.split('_')[1]
+                                  }"
                             ></dd>
                         </dl>
                     </div>
@@ -263,6 +263,17 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <!-- TECHNICAL DETAILS -->
+        <div class="col-md-4" data-ng-if="$ctrl.technicalDetails">
+            <dedicated-server-dashboard-technical-details
+                technical-details="$ctrl.technicalDetails"
+                go-to-manual-upgrade="$ctrl.goToManualUpgrade"
+                upgrade-with-ticket-available="$ctrl.upgradeWithTicketAvailable"
+                is-ram-upgradable="$ctrl.isRamUpgradable"
+                is-data-disk-upgradable="$ctrl.isDataDiskUpgradable"
+            ></dedicated-server-dashboard-technical-details>
         </div>
 
         <div
@@ -357,6 +368,7 @@
                                 aria-label="{{:: 'menu_action_label' | translate:{t0: ('server_configuration_monitoring' | translate)} }}"
                                 data-compact
                                 data-placement="end"
+                                data-disabled="$ctrl.ola.isConfigured()"
                             >
                                 <oui-action-menu-item
                                     data-ui-sref="app.dedicated-server.server.dashboard.monitoringUpdate"
@@ -443,6 +455,7 @@
                                         <li class="oui-list__item">
                                             <a
                                                 class="oui-list__link oui-button_ghost"
+                                                ng-if="$ctrl.servicesStateLinks.vms"
                                                 href="{{:: $ctrl.servicesStateLinks.vms}}"
                                                 target="_blank"
                                                 rel="noopener"
@@ -513,8 +526,8 @@
             </div>
         </div>
 
-        <div class="col-md-4">
-            <!-- SUBSCRIPTION -->
+        <!-- SUBSCRIPTION -->
+        <div class="col-md-4" data-ng-if="!$ctrl.technicalDetails">
             <billing-subscription-tile
                 on-error="$ctrl.onBillingInformationError(error)"
                 service-path="{{ '/dedicated/server/' + $ctrl.server.name }}"
@@ -537,55 +550,12 @@
                         <span data-translate="core_change_owner"></span>
                     </oui-action-menu-item>
                 </billing-contact-actions>
-                <billing-extra-information
-                    data-ng-if="$ctrl.server.availableProfessionalUse"
-                >
-                    <div class="oui-tile__item">
-                        <dl class="oui-tile__definition">
-                            <dt
-                                class="oui-tile__term"
-                                data-translate="server_configuration_profesionnal_use"
-                            ></dt>
-                            <dd class="oui-tile__description">
-                                <span
-                                    class="oui-badge"
-                                    data-ng-class="{
-                                  'oui-badge_success': $ctrl.server.hasProfessionalUse,
-                                  'oui-badge_error': !$ctrl.server.hasProfessionalUse
-                              }"
-                                    data-translate="{{'server_configuration_monitoring_' + ($ctrl.server.hasProfessionalUse &amp;&amp; 'activated' || 'disabled') | translate}}"
-                                >
-                                </span>
-
-                                <span
-                                    class="oui-icon oui-icon-info-circle"
-                                    data-aria-hidden="true"
-                                    data-ng-if="!$ctrl.server.hasProfessionalUse"
-                                    data-oui-tooltip="{{:: 'server_configuration_profesionnal_use_info' | translate}}"
-                                    data-oui-tooltip-placement="top-start"
-                                ></span>
-                            </dd>
-                        </dl>
-                        <div
-                            class="oui-tile__actions"
-                            data-ng-if="!$ctrl.server.isExpired && $ctrl.server.availableProfessionalUse && !$ctrl.server.hasProfessionalUse"
-                        >
-                            <oui-action-menu
-                                aria-label="{{:: 'menu_action_label' | translate:{ t0: ('server_configuration_profesionnal_use' | translate) } }}"
-                                data-compact
-                                data-placement="end"
-                            >
-                                <oui-action-menu-item
-                                    data-on-click="$ctrl.dedicatedServer.$scope.setAction('pro-use/order/dedicated-server-pro-use-order', $ctrl.server.name)"
-                                    data-disabled="$ctrl.server.order.indexOf('professionalUse') === -1"
-                                >
-                                    <span
-                                        data-translate="server_configuration_profesionnal_use_order_button"
-                                    ></span>
-                                </oui-action-menu-item>
-                            </oui-action-menu>
-                        </div>
-                    </div>
+                <billing-extra-information>
+                    <dedicated-server-dashboard-professional-use
+                        server="$ctrl.dedicatedServer.server"
+                        service-infos="$ctrl.dedicatedServer.serviceInfos"
+                    >
+                    </dedicated-server-dashboard-professional-use>
                 </billing-extra-information>
             </billing-subscription-tile>
         </div>
@@ -740,10 +710,18 @@
                         data-term="{{:: 'server_ola' | translate}}"
                     >
                         <oui-tile-description>
-                            <span
-                                data-ng-if="$ctrl.ola.isActivated()"
-                                data-translate="server_ola_active"
-                            ></span>
+                            <div data-ng-if="$ctrl.ola.isActivated()">
+                                <span
+                                    data-ng-if="$ctrl.ola.isConfigured()"
+                                    data-translate="server_ola_mode_{{ $ctrl.ola.getCurrentMode() }}"
+                                >
+                                </span>
+                                <span
+                                    data-ng-if="!$ctrl.ola.isConfigured()"
+                                    data-translate="server_ola_active"
+                                >
+                                </span>
+                            </div>
                             <span
                                 data-ng-if="!$ctrl.ola.isActivated()"
                                 data-translate="server_ola_inactive"
@@ -763,19 +741,17 @@
                                 ></span>
                             </oui-action-menu-item>
                             <oui-action-menu-item
-                                data-ng-if="$ctrl.ola.isActivated()"
+                                data-ng-if="$ctrl.ola.isConfigured()"
+                                data-ui-sref="app.dedicated-server.server.interfaces.ola-reset"
+                            >
+                                <span data-translate="server_ola_reset"></span>
+                            </oui-action-menu-item>
+                            <oui-action-menu-item
+                                data-ng-if="$ctrl.ola.isActivated() && !$ctrl.ola.isConfigured()"
                                 data-ui-sref="app.dedicated-server.server.interfaces.ola-configuration"
                             >
                                 <span
                                     data-translate="server_ola_configure"
-                                ></span>
-                            </oui-action-menu-item>
-                            <oui-action-menu-item
-                                data-ng-if="$ctrl.ola.isActivated()"
-                                data-ui-sref="app.dedicated-server.server.interfaces.ola-terminate"
-                            >
-                                <span
-                                    data-translate="server_ola_terminate"
                                 ></span>
                             </oui-action-menu-item>
                         </oui-action-menu>
@@ -817,6 +793,40 @@
             </oui-tile>
         </div>
 
+        <!-- SUBSCRIPTIONS -->
+        <div class="col-md-4" data-ng-if="$ctrl.technicalDetails">
+            <billing-subscription-tile
+                on-error="$ctrl.onBillingInformationError(error)"
+                service-path="{{ '/dedicated/server/' + $ctrl.server.name }}"
+                with-engagement="$ctrl.isCommitmentAvailable"
+                go-to-commit="$ctrl.goToCommit()"
+                go-to-cancel-commit="$ctrl.goToCancelCommit()"
+                go-to-cancel-resiliation="$ctrl.goToCancelResiliation()"
+                go-to-resiliation="$ctrl.goToResiliation()"
+                service-infos="$ctrl.serviceInfos"
+                highlight-engagement="$ctrl.server.shouldReengage"
+                tracking-prefix="dedicated::dedicated::server::dashboard"
+                user="$ctrl.user"
+            >
+                <billing-contact-actions>
+                    <oui-action-menu-item
+                        data-href="{{:: $ctrl.changeOwnerUrl }}"
+                        data-external
+                        data-disabled="$ctrl.server.state === 'HACKED' || $ctrl.server.state === 'HACKED_BLOCKED'"
+                    >
+                        <span data-translate="core_change_owner"></span>
+                    </oui-action-menu-item>
+                </billing-contact-actions>
+                <billing-extra-information>
+                    <dedicated-server-dashboard-professional-use
+                        server="$ctrl.dedicatedServer.server"
+                        service-infos="$ctrl.dedicatedServer.serviceInfos"
+                    >
+                    </dedicated-server-dashboard-professional-use>
+                </billing-extra-information>
+            </billing-subscription-tile>
+        </div>
+
         <div
             class="col-md-4"
             data-ng-if="!$ctrl.server.isExpired && $ctrl.biosSettings.sgx"
@@ -853,7 +863,10 @@
     ></div>
 
     <!-- MRTG -->
-    <div class="oui-tile mb-5" data-ng-if="!$ctrl.server.isExpired">
+    <div
+        class="oui-tile mb-5"
+        data-ng-if="!$ctrl.server.isExpired && !$ctrl.technicalDetails"
+    >
         <h4
             class="oui-tile__title oui-heading_4"
             data-translate="server_tab_stats_legend_mrtg"

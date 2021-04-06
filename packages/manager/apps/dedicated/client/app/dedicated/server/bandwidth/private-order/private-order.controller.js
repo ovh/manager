@@ -24,6 +24,13 @@ export default class {
           )
             .then((plans) => {
               this.plans = this.Server.getValidBandwidthPlans(plans);
+              this.plans.sort(
+                (a, b) =>
+                  a.prices.find((el) => el.capacities.includes('renew'))
+                    .priceInUcents -
+                  b.prices.find((el) => el.capacities.includes('renew'))
+                    .priceInUcents,
+              );
             })
             .catch((error) => {
               this.goBack().then(() =>
@@ -74,9 +81,15 @@ export default class {
     this.steps[1].load();
   }
 
+  cancel() {
+    this.atTrack(`${this.trackingPrefix}cancel`);
+    this.goBack();
+  }
+
   order() {
     if (this.model.plan) {
       this.isLoading = true;
+      this.atTrack(`${this.trackingPrefix}confirm`);
       return this.Server.bareMetalPrivateBandwidthPlaceOrder(
         this.serverName,
         this.model.plan,

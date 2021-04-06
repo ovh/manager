@@ -13,6 +13,9 @@ import commitment from './commitment';
 import cancelCommitment from './cancel-commitment';
 import cancelResiliation from './cancel-resiliation';
 import resiliation from './resiliation';
+import professionalUse from './professional-use';
+import technicalDetails from './technical-details';
+import upgradeRequest from './upgrade-request';
 
 import component from './dashboard.component';
 import routing from './dashboard.routing';
@@ -28,6 +31,9 @@ angular
     atInternet,
     'oui',
     'pascalprecht.translate',
+    professionalUse,
+    technicalDetails,
+    upgradeRequest,
     'ui.router',
     ovhManagerBilling,
     resiliation,

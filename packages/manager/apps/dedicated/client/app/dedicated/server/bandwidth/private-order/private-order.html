@@ -1,7 +1,7 @@
 <div
     data-ng-if="!$ctrl.model.orderUrl"
     data-wizard
-    data-wizard-on-cancel="$ctrl.goBack.bind($ctrl)"
+    data-wizard-on-cancel="$ctrl.cancel.bind($ctrl)"
     data-wizard-on-finish="$ctrl.order.bind($ctrl)"
     data-wizard-hide-cancel-button="$ctrl.isLoading"
     data-wizard-hide-previous-button="$ctrl.isLoading"
@@ -93,14 +93,14 @@
                 </div>
                 <div class="col-md-4 pl-0">
                     <span
-                        data-ng-bind-html="$ctrl.provisionalPlan.order.prices | ducPrice:$ctrl.user.ovhSubsidiary"
+                        data-ng-bind-html="$ctrl.provisionalPlan.order.prices | ducPrice: $ctrl.user.ovhSubsidiary:'verbose'"
                     ></span>
                 </div>
             </div>
             <oui-checkbox
                 data-model="$ctrl.model.autoPay"
                 class="mt-3"
-                data-ng-if="$ctrl.region !== 'US'"
+                data-ng-if="$ctrl.region !== 'US' && $ctrl.hasDefaultPaymentMethod"
             >
                 <span data-translate="server_order_bandwidth_auto_pay"></span>
             </oui-checkbox>

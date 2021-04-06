@@ -118,7 +118,6 @@ import './dedicated/server/interfaces/attach/interfaces-attach.module';
 import './dedicated/server/interfaces/detach/interfaces-detach.module';
 import './dedicated/server/interfaces/ola-activation/ola-activation.module';
 import './dedicated/server/interfaces/ola-configuration/ola-configuration.module';
-import './dedicated/server/interfaces/ola-terminate/ola-terminate.module';
 import './dedicated/server/interfaces/rename/interfaces-rename.module';
 import './ip/ip-controllers.module';
 import './ip/ip-services.module';

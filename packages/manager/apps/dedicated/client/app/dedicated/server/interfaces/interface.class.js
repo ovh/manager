@@ -5,6 +5,7 @@ import { PHYSICAL_TYPE, VIRTUAL_TYPE } from './interfaces.constants';
 export default class Interface {
   constructor(resource) {
     Object.assign(this, resource);
+    this.taskInProgress = false;
   }
 
   isPhysical() {
@@ -20,7 +21,11 @@ export default class Interface {
   }
 
   isPublic() {
-    return [PHYSICAL_TYPE.public, VIRTUAL_TYPE.public].includes(this.type);
+    return [
+      PHYSICAL_TYPE.public,
+      VIRTUAL_TYPE.public,
+      VIRTUAL_TYPE.publicAggregation,
+    ].includes(this.type);
   }
 
   isPrivate() {
@@ -38,5 +43,17 @@ export default class Interface {
 
   hasVrack() {
     return this.vrack !== null;
+  }
+
+  setVrack(vrack) {
+    this.vrack = vrack;
+  }
+
+  hasTaskInProgress() {
+    return !!this.taskInProgress;
+  }
+
+  setTaskInProgress(progress) {
+    this.taskInProgress = progress;
   }
 }

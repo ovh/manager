@@ -1,11 +1,11 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dedicated.server.install', {
+  $stateProvider.state('app.dedicated-server.server.install', {
     abstract: true,
     url: '/install',
     resolve: {
       goDashboard: /* @ngInject */ ($state) => () =>
         $state.go(
-          'app.dedicated.server.dashboard',
+          'app.dedicated-server.server.dashboard',
           {},
           {
             reload: true,

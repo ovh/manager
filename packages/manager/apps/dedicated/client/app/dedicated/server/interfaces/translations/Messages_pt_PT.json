@@ -72,7 +72,12 @@
   "dedicated_server_interfaces_task_error": "Ocorreu um erro durante a configuração: {{ errorMessage }}",
   "dedicated_server_interfaces_guides": "Manuais",
   "dedicated_server_interfaces_guides_ola": "Como configurar o OLA?",
-  "dedicated_server_interfaces_new_tab": "(Abre-se numa nova janela)",
+  "dedicated_server_interfaces": "Interfaces de rede",
   "dedicated_server_interfaces_vrack_aggregation_guarantee": "garantida",
-  "dedicated_server_interfaces": "Interfaces de rede"
+  "dedicated_server_interfaces_new_tab": "Abre-se numa nova janela",
+  "dedicated_server_interfaces_vrack_operation_attach": "Associação em curso",
+  "dedicated_server_interfaces_vrack_operation_detach": "Em curso de dissociação",
+  "server_vrack_attach_in_progress": "O vRack {{vRackname}} está a ser associado",
+  "server_vrack_detach_in_progress": "O vRack {{vRackname}} está a ser desassociado",
+  "dedicated_server_interfaces_type_public_aggregation_label": "Agregação pública"
 }

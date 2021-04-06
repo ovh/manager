@@ -201,8 +201,15 @@ export default /* @ngInject */ ($stateProvider) => {
               'app.dedicated-server.server.dashboard.bandwidth-public-order',
               { productId: serverName },
             ),
-      serviceMonitoring: /* @ngInject */ ($stateParams, Server) =>
-        Server.getAllServiceMonitoring($stateParams.productId),
+      serviceMonitoring: /* @ngInject */ ($transition$, Server) =>
+        Server.getAllServiceMonitoring($transition$.params().productId),
+      technicalDetails: /* @ngInject */ ($http, serverName) =>
+        $http
+          .get(`/dedicated/technical-details/${serverName}`, {
+            serviceType: 'aapi',
+          })
+          .then(({ data }) => data?.baremetalServers)
+          .catch(() => null),
       trafficInformations: /* @ngInject */ (
         $q,
         $stateParams,
@@ -223,6 +230,18 @@ export default /* @ngInject */ ($stateProvider) => {
       incidentStatus: /* @ngInject */ ($stateParams, Server) =>
         Server.getIncidentStatus($stateParams.productId),
       breadcrumb: () => null,
+      goToManualUpgrade: /* @ngInject */ ($state) => (selectedUpgrade) =>
+        $state.go('app.dedicated-server.server.dashboard.upgrade', {
+          selectedUpgrade,
+        }),
+      upgradeWithTicketAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability('dedicated-server:upgradeWithTicket')
+          .then((upgradeFeature) =>
+            upgradeFeature.isFeatureAvailable(
+              'dedicated-server:upgradeWithTicket',
+            ),
+          ),
     },
   });
 };

@@ -9,7 +9,11 @@ export const URLS = {
   },
 };
 
-export const WEATHERMAP_URL = 'http://weathermap.ovh.net/';
+export const WEATHERMAP_URL = {
+  EU: 'http://weathermap.ovh.net/',
+  CA: 'http://weathermap.ovh.net/',
+  US: 'http://weathermap.ovh.net/#usa',
+};
 
 export default {
   ELIGIBLE_FOR_UPGRADE,

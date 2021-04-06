@@ -30,7 +30,7 @@ angular.module('App').controller('ServerInstallationChoiceCtrl', [
         );
       } else if ($scope.choice.value === $scope.choice.image) {
         $scope.resetAction();
-        $state.go('app.dedicated.server.install.image');
+        $state.go('app.dedicated-server.server.install.image');
       }
     };
 

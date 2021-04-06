@@ -1,4 +1,5 @@
 import { groupBy, map } from 'lodash-es';
+import { Environment } from '@ovh-ux/manager-config';
 import CommitmentDuration from './CommitmentDuration.class';
 
 export default class {
@@ -24,7 +25,7 @@ export default class {
   }
 
   $onInit() {
-    console.log(this.me);
+    this.user = Environment.getUser();
     this.isLoadingService = true;
     this.paymentMethod = null;
     this.model = {
@@ -42,7 +43,7 @@ export default class {
         this.service.addOptions(options);
         return this.BillingCommitmentService.getCatalogPrice(
           this.service,
-          this.me,
+          this.user,
         );
       })
       .then((defaultPrice) => {

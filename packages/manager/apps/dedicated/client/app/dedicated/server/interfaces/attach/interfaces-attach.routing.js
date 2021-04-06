@@ -10,9 +10,8 @@ export default /* @ngInject */ ($stateProvider) => {
       interface: null,
     },
     layout: 'modal',
-    translations: { value: ['.'], format: 'json' },
     resolve: {
-      goBack: /* @ngInject */ ($state) => () => $state.go('^'),
+      goBack: /* @ngInject */ (goToInterfaces) => goToInterfaces,
       interface: /* @ngInject */ ($transition$) =>
         $transition$.params().interface,
       vracks: /* @ngInject */ (OvhApiVrack) => OvhApiVrack.v6().query(),

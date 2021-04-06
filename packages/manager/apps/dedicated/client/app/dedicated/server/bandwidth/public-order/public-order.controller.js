@@ -23,6 +23,13 @@ export default class {
           return this.Server.getBareMetalPublicBandwidthOptions(this.serverName)
             .then((plans) => {
               this.plans = this.Server.getValidBandwidthPlans(plans);
+              this.plans.sort(
+                (a, b) =>
+                  a.prices.find((el) => el.capacities.includes('renew'))
+                    .priceInUcents -
+                  b.prices.find((el) => el.capacities.includes('renew'))
+                    .priceInUcents,
+              );
             })
             .catch((error) => {
               this.goBack().then(() =>
@@ -84,6 +91,7 @@ export default class {
     });
     if (this.model.plan) {
       this.isLoading = true;
+      this.atTrack(`${this.trackingPrefix}confirm`);
       this.Server.bareMetalPublicBandwidthPlaceOrder(
         this.serverName,
         this.model.plan,
@@ -96,6 +104,11 @@ export default class {
           this.isLoading = false;
         });
     }
+  }
+
+  cancel() {
+    this.atTrack(`${this.trackingPrefix}cancel`);
+    this.goBack();
   }
 
   seeOrder() {
