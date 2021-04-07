@@ -1,3 +1,13 @@
+## [16.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.16.0...@ovh-ux/manager-dedicated@16.16.1) (2021-04-07)
+
+
+### Bug Fixes
+
+* **server.details:** catch error for byoi ([#4692](https://github.com/ovh/manager/issues/4692)) ([c8d4ae8](https://github.com/ovh/manager/commit/c8d4ae85495b715f34344d57e758337680575a85))
+* **server.interfaces:** fix ola detection on legacy ([#4693](https://github.com/ovh/manager/issues/4693)) ([6c03945](https://github.com/ovh/manager/commit/6c039457659cf2cb541734375602b03448cabfd2))
+
+
+
 # [16.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.15.1...@ovh-ux/manager-dedicated@16.16.0) (2021-04-06)
 
 
