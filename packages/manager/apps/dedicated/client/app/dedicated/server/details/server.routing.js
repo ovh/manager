@@ -47,14 +47,8 @@ export default /* @ngInject */ ($stateProvider) => {
 
       breadcrumb: /* @ngInject */ (server) => server.displayName,
 
-      bringYourOwnImage: /* @ngInject */ ($q, $stateParams, Server) =>
-        Server.getBringYourOwnImage($stateParams.productId).catch((error) => {
-          if (error.status === 404) {
-            return null;
-          }
-
-          return $q.reject(error);
-        }),
+      bringYourOwnImage: /* @ngInject */ ($stateParams, Server) =>
+        Server.getBringYourOwnImage($stateParams.productId).catch(() => null),
     },
   });
 };
