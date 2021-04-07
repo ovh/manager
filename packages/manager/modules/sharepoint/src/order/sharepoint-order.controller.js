@@ -18,6 +18,7 @@ export default class SharepointOrderCtrl {
     ouiDatagridService,
     OvhApiMeVipStatus,
     WucUser,
+    atInternet,
   ) {
     this.$q = $q;
     this.$stateParams = $stateParams;
@@ -27,6 +28,7 @@ export default class SharepointOrderCtrl {
     this.ouiDatagridService = ouiDatagridService;
     this.OvhApiMeVipStatus = OvhApiMeVipStatus;
     this.WucUser = WucUser;
+    this.atInternet = atInternet;
   }
 
   $onInit() {
@@ -243,8 +245,16 @@ export default class SharepointOrderCtrl {
   }
 
   goToSharepointOrder() {
+    this.trackSharepointOrder();
     const win = this.$window.open('', '_blank');
     win.opener = null;
     win.location = this.getSharepointOrderUrl();
+  }
+
+  trackSharepointOrder() {
+    this.atInternet.trackClick({
+      name: 'sharepoint::order::confirm',
+      type: 'action',
+    });
   }
 }

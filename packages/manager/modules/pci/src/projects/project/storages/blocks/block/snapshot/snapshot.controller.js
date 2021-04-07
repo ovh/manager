@@ -2,10 +2,11 @@ import get from 'lodash/get';
 
 export default class PciBlockStorageDetailchsSnapshotController {
   /* @ngInject */
-  constructor($filter, $translate, PciProjectStorageBlockService) {
+  constructor($filter, $translate, PciProjectStorageBlockService, atInternet) {
     this.$filter = $filter;
     this.$translate = $translate;
     this.PciProjectStorageBlockService = PciProjectStorageBlockService;
+    this.atInternet = atInternet;
   }
 
   $onInit() {
@@ -20,6 +21,7 @@ export default class PciBlockStorageDetailchsSnapshotController {
 
   createSnapshot() {
     this.isLoading = true;
+    this.trackSnapshotCreate();
     return this.PciProjectStorageBlockService.createSnapshot(
       this.projectId,
       this.storage,
@@ -50,5 +52,13 @@ export default class PciBlockStorageDetailchsSnapshotController {
       .finally(() => {
         this.isLoading = false;
       });
+  }
+
+  trackSnapshotCreate() {
+    this.atInternet.trackClick({
+      name:
+        'PublicCloud::pci::projects::project::storages::blocks::snapshot::confirm',
+      type: 'action',
+    });
   }
 }

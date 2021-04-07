@@ -3,7 +3,12 @@ import head from 'lodash/head';
 import map from 'lodash/map';
 import some from 'lodash/some';
 
-import { URLS, WEATHERMAP_URL } from './dashboard.constants';
+import {
+  URLS,
+  WEATHERMAP_URL,
+  COMMIT_IMPRESSION_TRACKING_DATA,
+  RECOMMIT_IMPRESSION_TRACKING_DATA,
+} from './dashboard.constants';
 import { NEW_RANGE } from '../details/server.constants';
 
 export default class DedicatedServerDashboard {
@@ -32,6 +37,8 @@ export default class DedicatedServerDashboard {
 
   $onInit() {
     this.URLS = URLS;
+    this.COMMIT_IMPRESSION_TRACKING_DATA = COMMIT_IMPRESSION_TRACKING_DATA;
+    this.RECOMMIT_IMPRESSION_TRACKING_DATA = RECOMMIT_IMPRESSION_TRACKING_DATA;
 
     this.servicesStateLinks = {
       weathermap: WEATHERMAP_URL[this.user.country],

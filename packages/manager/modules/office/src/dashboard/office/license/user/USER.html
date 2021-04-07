@@ -89,32 +89,52 @@
     </div>
 
     <div class="col-md-3 mt-5 mt-lg-0">
-        <div class="mb-5">
-            <button
-                data-ng-if="MicrosoftOfficeLicenseCtrl.license.tenant.serviceType === 'payAsYouGo'"
-                type="button"
-                class="btn btn-block btn-default"
-                data-translate="microsoft_office_license_user_add"
-                data-ng-click="setAction('user/add/microsoft-office-license-user-add', {'license': usersCtrl.currentLicense});"
-            ></button>
-            <button
-                data-ng-if="MicrosoftOfficeLicenseCtrl.license.tenant.serviceType === 'prepaid'"
-                type="button"
-                class="btn btn-block btn-default"
-                data-translate="microsoft_office_license_user_order"
-                data-ng-click="setAction('user/order/microsoft-office-license-user-order', {'license': usersCtrl.currentLicense});"
-            ></button>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="mb-5">
+                    <button
+                        data-ng-if="MicrosoftOfficeLicenseCtrl.license.tenant.serviceType === 'payAsYouGo'"
+                        type="button"
+                        class="btn btn-block btn-default"
+                        data-translate="microsoft_office_license_user_add"
+                        data-ng-click="setAction('user/add/microsoft-office-license-user-add', {'license': usersCtrl.currentLicense});"
+                    ></button>
+                    <button
+                        data-ng-if="MicrosoftOfficeLicenseCtrl.license.tenant.serviceType === 'prepaid'"
+                        type="button"
+                        class="btn btn-block btn-default"
+                        data-translate="microsoft_office_license_user_order"
+                        data-ng-click="setAction('user/order/microsoft-office-license-user-order', {'license': usersCtrl.currentLicense});"
+                    ></button>
+                </div>
+                <p class="mb-5" data-ng-if="MicrosoftOfficeLicenseCtrl.guide">
+                    <span
+                        class="fa fa-life-ring mr-2"
+                        aria-hidden="true"
+                    ></span>
+                    <span data-translate="license_office_guide"></span><br />
+                    <a
+                        data-ng-href="{{ MicrosoftOfficeLicenseCtrl.guide }}"
+                        target="_blank"
+                    >
+                        <span data-translate="license_office_guide_help"></span>
+                        <span
+                            class="fa fa-external-link"
+                            aria-hidden="true"
+                        ></span>
+                    </a>
+                </p>
+            </div>
         </div>
-        <p class="mb-5" data-ng-if="MicrosoftOfficeLicenseCtrl.guide">
-            <span class="fa fa-life-ring mr-2" aria-hidden="true"></span>
-            <span data-translate="license_office_guide"></span><br />
-            <a
-                data-ng-href="{{ MicrosoftOfficeLicenseCtrl.guide }}"
-                target="_blank"
-            >
-                <span data-translate="license_office_guide_help"></span>
-                <span class="fa fa-external-link" aria-hidden="true"></span>
-            </a>
-        </p>
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Advices -->
+                <ovh-advices
+                    service-type="office"
+                    service-name="{{ ::usersCtrl.currentLicense }}"
+                >
+                </ovh-advices>
+            </div>
+        </div>
     </div>
 </div>

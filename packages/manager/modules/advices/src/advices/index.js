@@ -4,6 +4,8 @@ import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
 import 'angular-translate';
 
+import './index.less';
+
 import advices from './component';
 
 const moduleName = 'ovhManagerAdvicesAdvice';

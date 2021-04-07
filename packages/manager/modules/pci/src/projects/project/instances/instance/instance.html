@@ -134,8 +134,11 @@
             <!-- Advices -->
             <div class="mt-4">
                 <ovh-advices
-                    service-type="instance"
-                    service-name="{{ ::$ctrl.instanceId }}"
+                    url="/cloud/:serviceName/instance/:instanceId"
+                    url-params="{
+                        serviceName: $ctrl.projectId,
+                        instanceId: $ctrl.instance.id,
+                    }"
                 >
                 </ovh-advices>
             </div>
