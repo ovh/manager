@@ -18,8 +18,14 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         activateAutorenew: /* @ngInject */ (BillingAutoRenew, nicRenew) => () =>
           BillingAutoRenew.enableAutorenew(head(nicRenew.renewDays)),
-        agreements: /* @ngInject */ ($transition$) =>
-          $transition$.params().agreements,
+        agreements: /* @ngInject */ (
+          $transition$,
+          UserAccountServicesAgreements,
+        ) =>
+          $transition$.params().agreements ||
+          UserAccountServicesAgreements.getToValidate().then(
+            (result) => result.list.results,
+          ),
         goBack: /* @ngInject */ ($state, $timeout, Alerter) => (
           message = false,
           type = 'success',
