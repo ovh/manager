@@ -4,8 +4,6 @@ import '@ovh-ux/manager-core';
 import '@ovh-ux/ng-at-internet';
 import '@ovh-ux/ng-at-internet-ui-router-plugin';
 
-import { Environment } from '@ovh-ux/manager-config';
-
 import provider from './provider';
 import { CUSTOM_VARIABLES, USER_ID } from './config.constants';
 
@@ -25,9 +23,11 @@ angular
       atInternetConfigurationProvider,
       atInternetProvider,
       atInternetUiRouterPluginProvider,
+      coreConfigProvider,
     ) => {
       atInternetProvider.setEnabled(trackingEnabled);
       atInternetProvider.setDebug(!trackingEnabled);
+      atInternetProvider.setRegion(coreConfigProvider.getRegion());
 
       atInternetUiRouterPluginProvider.setTrackStateChange(true);
       atInternetUiRouterPluginProvider.addStateNameFilter((routeName) => {
@@ -70,11 +70,17 @@ angular
     },
   )
   .run(
-    /* @ngInject */ ($cookies, $http, atInternet, atInternetConfiguration) => {
+    /* @ngInject */ (
+      $cookies,
+      $http,
+      atInternet,
+      atInternetConfiguration,
+      coreConfig,
+    ) => {
       const referrerSite = $cookies.get('OrderCloud');
       const data = {
         ...CUSTOM_VARIABLES,
-        ...atInternetConfiguration.getConfig(Environment.getRegion()),
+        ...atInternetConfiguration.getConfig(coreConfig.getRegion()),
         ...(referrerSite ? { referrerSite } : {}),
       };
 
