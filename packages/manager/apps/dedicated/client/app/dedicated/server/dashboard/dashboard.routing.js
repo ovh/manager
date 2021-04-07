@@ -208,7 +208,9 @@ export default /* @ngInject */ ($stateProvider) => {
           .get(`/dedicated/technical-details/${serverName}`, {
             serviceType: 'aapi',
           })
-          .then(({ data }) => data?.baremetalServers)
+          .then(({ data }) =>
+            data?.baremetalServers?.storage ? data?.baremetalServers : null,
+          )
           .catch(() => null),
       trafficInformations: /* @ngInject */ (
         $q,
