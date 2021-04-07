@@ -48,7 +48,11 @@ export default class {
         {
           commentary: this.model.commentary,
           reason: this.model.reason,
-          token: this.token,
+          // Somehow it was reported that the value sent was sometimes the token
+          // wrapped in an array. I currently don't see how this could happen.
+          // This fix temporarily solves the issue until we find the root cause.
+          // @TODO find root cause of token being an Array instead of String
+          token: Array.isArray(this.token) ? head(this.token) : this.token,
         },
       )
       .$promise.then(() =>
@@ -60,7 +64,7 @@ export default class {
         this.goBack(
           `${this.$translate.instant(
             'dedicatedCloud_confirm_close_error',
-          )} ${error.message || error}`,
+          )} ${error.data?.message || error.message}`,
           'danger',
         ),
       );
