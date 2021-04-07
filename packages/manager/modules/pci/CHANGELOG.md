@@ -1,3 +1,12 @@
+# [5.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.16.0...@ovh-ux/manager-pci@5.17.0) (2021-04-07)
+
+
+### Features
+
+* add batch 2 advices ([#4597](https://github.com/ovh/manager/issues/4597)) ([69e5fe5](https://github.com/ovh/manager/commit/69e5fe5bfe813f4ef0e63e1acd8f128dc4590b73))
+
+
+
 # [5.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.15.1...@ovh-ux/manager-pci@5.16.0) (2021-03-31)
 
 

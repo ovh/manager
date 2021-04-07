@@ -1,3 +1,12 @@
+# [2.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-office@2.2.0...@ovh-ux/manager-office@2.3.0) (2021-04-07)
+
+
+### Features
+
+* add batch 2 advices ([#4597](https://github.com/ovh/manager/issues/4597)) ([69e5fe5](https://github.com/ovh/manager/commit/69e5fe5bfe813f4ef0e63e1acd8f128dc4590b73))
+
+
+
 # [2.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-office@2.1.0...@ovh-ux/manager-office@2.2.0) (2021-03-25)
 
 
