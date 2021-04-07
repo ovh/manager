@@ -3,6 +3,7 @@ import template from './move-eligibility-lineNumber.html';
 
 export default {
   bindings: {
+    isReseller: '<',
     offers: '=?',
     offersChange: '&',
     method: '=?',

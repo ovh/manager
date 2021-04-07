@@ -30,6 +30,19 @@ export default class {
    * @param { String } status status of the line: 'active' | 'inactive'
    */
   getLineCopper(lineNumber, status) {
+    if (this.isReseller) {
+      // If current offer is a reseller offer,
+      // launch eligibility test line for partners (reseller)
+      return this.OvhApiConnectivityEligibility.v6()
+        .testLinePartners(this.$scope, {
+          lineNumber,
+          status,
+        })
+        .catch((error) => {
+          this.loading = false;
+          this.TucToast.error(error);
+        });
+    }
     return this.OvhApiConnectivityEligibility.v6()
       .testLine(this.$scope, {
         lineNumber,

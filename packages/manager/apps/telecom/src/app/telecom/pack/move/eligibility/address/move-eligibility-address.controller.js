@@ -137,6 +137,25 @@ export default class {
    * Copper eligibility by address
    */
   copperEligibilityByAddress() {
+    if (this.isReseller) {
+      // If current offer is a reseller offer,
+      // launch eligibility test address for partners (reseller)
+      return this.OvhApiConnectivityEligibility.v6()
+        .testAddressPartners(this.$scope, {
+          streetCode: this.address.street.streetCode,
+          streetNumber: this.address.streetNumber,
+        })
+        .then((res) => {
+          const elig = {
+            result: res.result,
+          };
+          return elig;
+        })
+        .catch((error) => {
+          this.loading = false;
+          this.TucToast.error(error);
+        });
+    }
     return this.OvhApiConnectivityEligibility.v6()
       .testAddress(this.$scope, {
         streetCode: this.address.street.streetCode,
