@@ -1,4 +1,5 @@
 import isEmpty from 'lodash/isEmpty';
+import { VIRTUAL_TYPE } from './interfaces.constants';
 
 import { OLA_MODES } from './ola-configuration/ola-configuration.constants';
 
@@ -22,6 +23,9 @@ export default class Ola {
   }
 
   isConfigured() {
-    return this.interfaces.length === 1;
+    return (
+      this.interfaces.length === 1 &&
+      this.interfaces[0].type === VIRTUAL_TYPE.vrackAggregation
+    );
   }
 }
