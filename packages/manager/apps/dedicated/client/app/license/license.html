@@ -111,7 +111,7 @@
                     ></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
-                    data-ng-if="$row.canBeUpgraded === true && !$row.isExpired"
+                    data-ng-if="$row.canBeUpgraded === true && !$row.isExpired && canUpgrade"
                     href="{{ $state.href('app.license.detail.upgrade', { licenseId: getLicenseId($row) }) }}"
                     ><span
                         data-translate="license_dashboard_table_popover_upgrade"

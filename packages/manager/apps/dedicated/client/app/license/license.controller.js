@@ -9,7 +9,16 @@ angular.module('Module.license').controller('LicenseCtrl', [
   '$timeout',
   'constants',
   'Billing.URLS',
-  ($scope, $state, License, $timeout, constants, billingUrls) => {
+  'ovhFeatureFlipping',
+  (
+    $scope,
+    $state,
+    License,
+    $timeout,
+    constants,
+    billingUrls,
+    ovhFeatureFlipping,
+  ) => {
     $scope.licencesTableLoading = false;
     $scope.licenses = null;
     $scope.licenseTypes = {
@@ -141,5 +150,24 @@ angular.module('Module.license').controller('LicenseCtrl', [
     };
 
     $scope.resetAction();
+
+    const init = () => {
+      $scope.loadingLicensesInformations = true;
+      return ovhFeatureFlipping
+        .checkFeatureAvailability(['license:upgrade'])
+        .then((commitmentAvailability) => {
+          $scope.canUpgrade = commitmentAvailability.isFeatureAvailable(
+            'license:upgrade',
+          );
+        })
+        .catch(() => {
+          $scope.canUpgrade = false;
+        })
+        .finally(() => {
+          $scope.loadingLicensesInformations = false;
+        });
+    };
+
+    init();
   },
 ]);

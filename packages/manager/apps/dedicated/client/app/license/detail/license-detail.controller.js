@@ -1,4 +1,5 @@
 angular.module('Module.license').controller('LicenseDetailsCtrl', [
+  '$q',
   '$scope',
   '$translate',
   'License',
@@ -9,8 +10,10 @@ angular.module('Module.license').controller('LicenseDetailsCtrl', [
   'Billing.URLS',
   '$window',
   'Alerter',
+  'ovhFeatureFlipping',
 
   function LicenseDetailsCtrl(
+    $q,
     $scope,
     $translate,
     License,
@@ -21,6 +24,7 @@ angular.module('Module.license').controller('LicenseDetailsCtrl', [
     billingUrls,
     $window,
     Alerter,
+    ovhFeatureFlipping,
   ) {
     $scope.loadLicense = true;
 
@@ -97,13 +101,30 @@ angular.module('Module.license').controller('LicenseDetailsCtrl', [
       });
     }
 
+    function checkUpgradeAvailability() {
+      return ovhFeatureFlipping
+        .checkFeatureAvailability(['license:upgrade'])
+        .then((commitmentAvailability) => {
+          $scope.canUpgrade = commitmentAvailability.isFeatureAvailable(
+            'license:upgrade',
+          );
+        })
+        .catch(() => {
+          $scope.canUpgrade = false;
+        });
+    }
+
     function get() {
       $scope.loadLicense = true;
 
-      return fetchLicense()
-        .then((licence) => {
-          if (licence.type !== 'SPLA') {
-            pollChangeOsTaskPending(licence);
+      return $q
+        .all({
+          license: fetchLicense(),
+          upgradeAvailability: checkUpgradeAvailability(),
+        })
+        .then(({ license }) => {
+          if (license.type !== 'SPLA') {
+            pollChangeOsTaskPending(license);
           }
         })
         .then(() => {
