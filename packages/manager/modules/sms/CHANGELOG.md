@@ -1,3 +1,12 @@
+# [8.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.3.1...@ovh-ux/manager-sms@8.4.0) (2021-04-07)
+
+
+### Features
+
+* add batch 2 advices ([#4597](https://github.com/ovh/manager/issues/4597)) ([69e5fe5](https://github.com/ovh/manager/commit/69e5fe5bfe813f4ef0e63e1acd8f128dc4590b73))
+
+
+
 ## [8.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.3.0...@ovh-ux/manager-sms@8.3.1) (2021-03-02)
 
 

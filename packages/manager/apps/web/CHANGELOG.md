@@ -1,3 +1,12 @@
+# [15.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.19.2...@ovh-ux/manager-web@15.20.0) (2021-04-07)
+
+
+### Features
+
+* add batch 2 advices ([#4597](https://github.com/ovh/manager/issues/4597)) ([69e5fe5](https://github.com/ovh/manager/commit/69e5fe5bfe813f4ef0e63e1acd8f128dc4590b73))
+
+
+
 ## [15.19.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.19.1...@ovh-ux/manager-web@15.19.2) (2021-04-02)
 
 
