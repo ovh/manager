@@ -81,7 +81,11 @@
         class="oui-button oui-button_primary oui-button_l"
         target="{{ ctrl.alreadyHasAnExchange ? '_self' : '_blank'}}"
         title="{{ ctrl.alreadyHasAnExchange ? ('exchange_order_view_button_attached_title' | translate: { t0: ctrl.firstExchangeAccount.displayName }) : 'exchange_order_view_button_stand_alone_title' | translate }}{{ ctrl.alreadyHasAnExchange ? '' : '('+ ('core_new_window' | translate) +')'}}"
-        data-translate="exchange_order_view_button_label"
         data-ng-href="{{ctrl.getExchangeOrderUrl()}}"
-    ></a>
+        data-track-name="exchange::order::confirm"
+        data-track-on="click"
+        data-track-type="action"
+    >
+        <span data-translate="exchange_order_view_button_label"></span>
+    </a>
 </form>

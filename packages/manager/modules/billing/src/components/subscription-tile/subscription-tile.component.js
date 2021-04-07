@@ -14,6 +14,7 @@ export default {
     goToResiliation: '&',
     trackingPrefix: '@',
     user: '<',
+    commitImpressionData: '<',
   },
   controller,
   template,

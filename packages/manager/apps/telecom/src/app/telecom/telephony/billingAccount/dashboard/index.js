@@ -4,6 +4,7 @@ import '@uirouter/angularjs';
 import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 import 'ovh-api-services';
+import ovhManagerAdvices from '@ovh-ux/manager-advices';
 
 import pieChartComponent from '../../../../../components/telecom/telephony/group/consumption/pie-chart';
 
@@ -17,6 +18,7 @@ angular
     'ovh-api-services',
     'ui.router',
     pieChartComponent,
+    ovhManagerAdvices,
   ])
   .run(/* @ngTranslationsInject:json ./translations */);
 

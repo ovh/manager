@@ -2,7 +2,7 @@
     <div class="telecom-freeFax">
         <oui-header
             class="mb-4"
-            heading="{{:: 'freefax_title' | translate:{serviceName: Freefax.serviceName } }}"
+            heading="{{:: 'freefax_title' | translate:{serviceName: FreeFax.serviceName } }}"
         >
         </oui-header>
 
@@ -17,6 +17,13 @@
                     <div
                         data-ng-include="'freefax/credit/freefax-credit.html'"
                     ></div>
+                    <!-- advices -->
+                    <ovh-advices
+                        class="pt-3"
+                        service-type="fax"
+                        service-name="{{ ::FreeFax.serviceName }}"
+                    >
+                    </ovh-advices>
                 </div>
                 <div class="col-md-6">
                     <div

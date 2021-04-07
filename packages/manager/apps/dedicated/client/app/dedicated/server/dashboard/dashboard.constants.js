@@ -15,8 +15,28 @@ export const WEATHERMAP_URL = {
   US: 'http://weathermap.ovh.net/#usa',
 };
 
+const COMMIT_RECOMMIT_IMPRESSION_TRACKING_DATA = {
+  campaignId: '[commit-recommit]',
+  creation: '[batch1]',
+  format: '[link]',
+  generalPlacement: '[dedicated-server]',
+  detailedPlacement: '[commitment]',
+};
+
+export const COMMIT_IMPRESSION_TRACKING_DATA = {
+  ...COMMIT_RECOMMIT_IMPRESSION_TRACKING_DATA,
+  variant: '[commit]',
+};
+
+export const RECOMMIT_IMPRESSION_TRACKING_DATA = {
+  ...COMMIT_RECOMMIT_IMPRESSION_TRACKING_DATA,
+  variant: '[recommit]',
+};
+
 export default {
   ELIGIBLE_FOR_UPGRADE,
   URLS,
   WEATHERMAP_URL,
+  COMMIT_IMPRESSION_TRACKING_DATA,
+  RECOMMIT_IMPRESSION_TRACKING_DATA,
 };
