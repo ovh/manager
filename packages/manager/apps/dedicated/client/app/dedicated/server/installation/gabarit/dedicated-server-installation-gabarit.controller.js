@@ -14,6 +14,7 @@ angular
       $scope,
       $q,
       $translate,
+      atInternet,
       Server,
       $filter,
       Alerter,
@@ -65,6 +66,14 @@ angular
       $scope.loader = {
         loading: false,
       };
+
+      if ($scope.installation.deleteGabarit) {
+        atInternet.trackPage({
+          name:
+            'dedicated::dedicated::server::system-install::existing-template::delete-template',
+          type: 'navigation',
+        });
+      }
 
       $scope.load = function load() {
         $scope.loader.loading = true;
@@ -240,6 +249,11 @@ angular
       });
 
       $scope.deleteGabarit = function deleteGabarit() {
+        atInternet.trackClick({
+          name:
+            'dedicated::dedicated::server::system-install::existing-template::delete-template::confirm',
+          type: 'action',
+        });
         $scope.loader.loading = true;
 
         Server.deleteGabarit(
@@ -265,6 +279,12 @@ angular
       // ------INSTALL------
 
       function startInstall() {
+        atInternet.trackClick({
+          name:
+            'dedicated::dedicated::server::system-install::existing-template::install',
+          type: 'action',
+        });
+
         $scope.loader.loading = true;
         Server.startInstallation(
           $stateParams.productId,

@@ -46,6 +46,7 @@ export default /* @ngInject */ ($stateProvider) => {
       worldPart: /* @ngInject */ (coreConfig) => coreConfig.getRegion(),
 
       breadcrumb: /* @ngInject */ (server) => server.displayName,
+      trackingPrefix: () => 'dedicated::dedicated::server',
 
       bringYourOwnImage: /* @ngInject */ ($stateParams, Server) =>
         Server.getBringYourOwnImage($stateParams.productId).catch(() => null),

@@ -19,6 +19,7 @@ export default class DedicatedServerDashboard {
     $state,
     $stateParams,
     $translate,
+    atInternet,
     Alerter,
     constants,
     DedicatedServerFeatureAvailability,
@@ -29,6 +30,7 @@ export default class DedicatedServerDashboard {
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.Alerter = Alerter;
     this.constants = constants;
     this.DedicatedServerFeatureAvailability = DedicatedServerFeatureAvailability;
@@ -296,5 +298,28 @@ export default class DedicatedServerDashboard {
 
   onBillingInformationError(error) {
     return this.Alerter.error(error, 'server_dashboard_alert');
+  }
+
+  openOsInstallation(type) {
+    if (type === 'progress') {
+      this.trackPage(`${this.trackingPrefix}::system-installation-progress`);
+    } else {
+      this.trackPage(`${this.trackingPrefix}::system-install`);
+    }
+    return this.dedicatedServer.$scope.setAction(
+      `installation/${type}/dedicated-server-installation-${type}`,
+      {
+        server: this.server,
+        serverCtrl: this.dedicatedServer,
+        user: this.user,
+      },
+    );
+  }
+
+  trackPage(name) {
+    this.atInternet.trackPage({
+      name,
+      type: 'navigation',
+    });
   }
 }

@@ -6,6 +6,7 @@ export default {
   bindings: {
     loaders: '<',
     model: '<',
+    trackingPrefix: '<',
     server: '<',
   },
   controller,

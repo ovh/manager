@@ -1551,10 +1551,24 @@
                             class="mb-0"
                             data-translate="server_configuration_installation_form_rtm"
                         ></h5>
-                        <p
-                            data-translate="server_configuration_installation_form_rtm_explain"
-                            data-translate-values="{ href: rtmGuideLink }"
-                        ></p>
+
+                        <p>
+                            <span
+                                data-translate="server_configuration_installation_form_rtm_explain"
+                            ></span>
+                            <a
+                                data-ng-href="{{ ::rtmGuideLink }}"
+                                target="_blank"
+                                rel="noopener"
+                                data-track-on="click"
+                                data-track-name="dedicated::dedicated::server::system-install::public-catalog::rtm-documentation"
+                                data-track-type="action"
+                            >
+                                <span
+                                    data-translate="server_configuration_installation_form_rtm_explain_link_name"
+                                ></span>
+                            </a>
+                        </p>
 
                         <oui-switch
                             data-model="installation.options.installRTM"

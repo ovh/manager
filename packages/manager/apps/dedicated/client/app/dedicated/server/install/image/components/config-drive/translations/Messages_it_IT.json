@@ -1,6 +1,6 @@
 {
   "dedicated_server_install_image_config_drive": "Attiva ConfigDrive",
-  "dedicated_server_install_image_config_drive_eplain": "Il ConfigDrive è una partizione necessaria per utilizzare Cloud-init al primo boot del tuo server per stabilire la configurazione desiderata. È possibile scegliere se attivare o meno questa opzione. <a href=\"{{ href }}\" target=\"_blank\" rel=\"noopener\">Clicca qui per leggere la documentazione.</a>",
+  "dedicated_server_install_image_config_drive_eplain": "Il ConfigDrive è una partizione necessaria per utilizzare Cloud-init al primo boot del tuo server per stabilire la configurazione desiderata. È possibile scegliere se attivare o meno questa opzione.",
   "dedicated_server_install_image_config_drive_activated": "Attivo",
   "dedicated_server_install_image_config_drive_deactivated": "Disattivato",
   "dedicated_server_install_image_config_drive_hostname": "Hostname del server",
@@ -9,5 +9,6 @@
   "dedicated_server_install_image_config_drive_script": "Script di configurazione post-installazione (opzionale)",
   "dedicated_server_install_image_config_drive_meta_data": "Metadati utilizzati da Nova al momento del boot (facoltativo)",
   "dedicated_server_install_image_config_drive_meta_data_key": "Chiave",
-  "dedicated_server_install_image_config_drive_meta_data_value": "Valore"
+  "dedicated_server_install_image_config_drive_meta_data_value": "Valore",
+  "dedicated_server_install_image_config_drive_eplain_link_name": "Clicca qui per leggere la documentazione."
 }

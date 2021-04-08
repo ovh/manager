@@ -9,7 +9,7 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicated-server.server.install.image', {
     url: '/image',
     views: {
-      '@app.dedicated': {
+      '@app.dedicated-server': {
         component: component.name,
       },
 
@@ -44,6 +44,9 @@ export default /* @ngInject */ ($stateProvider) => {
 
       checksumTypeEnum: /* @ngInject */ (dedicatedApiSchema) =>
         get(dedicatedApiSchema, 'models["dedicated.CheckSumTypesEnum"].enum'),
+    },
+    atInternet: {
+      ignore: true,
     },
   });
 };

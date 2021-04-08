@@ -8,7 +8,6 @@ export default {
     model: '<',
     server: '<',
     user: '<',
-
     goDashboard: '<',
   },
   controller,
