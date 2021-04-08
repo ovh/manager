@@ -13,7 +13,7 @@ import {
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.managedBaremetal.details', {
-    url: '/:productId',
+    url: '/:productId?action&token',
     redirectTo: (transition) => {
       if (transition.params().action === 'confirmcancel') {
         return {
