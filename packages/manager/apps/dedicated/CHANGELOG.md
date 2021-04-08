@@ -1,3 +1,12 @@
+## [16.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.18.0...@ovh-ux/manager-dedicated@16.18.1) (2021-04-08)
+
+
+### Bug Fixes
+
+* **managed-baremetal:** add params to url ([#4719](https://github.com/ovh/manager/issues/4719)) ([44b282f](https://github.com/ovh/manager/commit/44b282f208d659a1f3d587d5d5d3261588ef72ec))
+
+
+
 # [16.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.17.0...@ovh-ux/manager-dedicated@16.18.0) (2021-04-08)
 
 
