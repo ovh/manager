@@ -1,3 +1,12 @@
+# [5.5.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet@5.4.1...@ovh-ux/ng-at-internet@5.5.0) (2021-04-08)
+
+
+### Features
+
+* **provider:** add setRegion ([bde4150](https://github.com/ovh/manager/commit/bde415075c74d2dcc864987a681e180bc554a019))
+
+
+
 ## [5.4.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet@5.4.0...@ovh-ux/ng-at-internet@5.4.1) (2021-01-13)
 
 

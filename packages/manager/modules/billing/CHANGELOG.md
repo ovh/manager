@@ -1,3 +1,14 @@
+## [2.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@2.5.0...@ovh-ux/manager-billing@2.5.1) (2021-04-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 884] ([a32e02e](https://github.com/ovh/manager/commit/a32e02eefb033d6163531307519f50508798ca69))
+* **i18n:** add missing translations [CDS 889] ([7571da8](https://github.com/ovh/manager/commit/7571da807590c84097a6f21de8c5222ab8fb06ac))
+* **server:** fix commit recommit tracking ([#4713](https://github.com/ovh/manager/issues/4713)) ([091c777](https://github.com/ovh/manager/commit/091c777cf2de516c0ef0a186b3cabe0697dc01e9))
+
+
+
 # [2.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@2.4.0...@ovh-ux/manager-billing@2.5.0) (2021-04-07)
 
 

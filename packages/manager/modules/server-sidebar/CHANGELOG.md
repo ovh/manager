@@ -1,3 +1,13 @@
+## [3.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.11.0...@ovh-ux/manager-server-sidebar@3.11.1) (2021-04-08)
+
+
+### Bug Fixes
+
+* **deps:** upgrade @ovh-ux/ui-kit to v4.5.0 ([#4631](https://github.com/ovh/manager/issues/4631)) ([7909d4b](https://github.com/ovh/manager/commit/7909d4b5b8001de15204fd632fd08b6814c4a786))
+* **i18n:** add missing translations [CDS 881] ([c5eb003](https://github.com/ovh/manager/commit/c5eb003157cc31a07616e0f3ca09a390bebdad84))
+
+
+
 # [3.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@3.10.0...@ovh-ux/manager-server-sidebar@3.11.0) (2021-03-31)
 
 

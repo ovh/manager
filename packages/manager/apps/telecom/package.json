@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-telecom",
-  "version": "13.15.1",
+  "version": "13.16.0",
   "private": true,
   "description": "OVHcloud Telecom control panel.",
   "repository": {
@@ -40,7 +40,7 @@
     "@ovh-ux/manager-telecom-dashboard": "^5.0.0 || ^6.0.0",
     "@ovh-ux/manager-telecom-styles": "^4.0.0",
     "@ovh-ux/manager-telecom-task": "^5.0.0 || ^6.0.0",
-    "@ovh-ux/ng-at-internet": "^5.4.1",
+    "@ovh-ux/ng-at-internet": "^5.5.0",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.1.1",
     "@ovh-ux/ng-ovh-actions-menu": "^5.0.8",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.8",
@@ -51,7 +51,7 @@
     "@ovh-ux/ng-ovh-feature-flipping": "^1.0.2",
     "@ovh-ux/ng-ovh-http": "^5.0.1",
     "@ovh-ux/ng-ovh-line-diagnostics": "^5.0.6",
-    "@ovh-ux/ng-ovh-mondial-relay": "^8.0.5",
+    "@ovh-ux/ng-ovh-mondial-relay": "^8.0.6",
     "@ovh-ux/ng-ovh-payment-method": "^8.0.0",
     "@ovh-ux/ng-ovh-proxy-request": "^2.0.1",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.0",

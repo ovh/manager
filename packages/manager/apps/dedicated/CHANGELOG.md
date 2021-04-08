@@ -1,3 +1,31 @@
+# [16.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.17.0...@ovh-ux/manager-dedicated@16.18.0) (2021-04-08)
+
+
+### Bug Fixes
+
+* **billing.autorenew.agreements:** fix empty agreements modal ([#4697](https://github.com/ovh/manager/issues/4697)) ([05540aa](https://github.com/ovh/manager/commit/05540aa3cd142b08243e0abb0f5df86cc259f1b5))
+* **deps:** upgrade @ovh-ux/ui-kit to v4.5.0 ([#4631](https://github.com/ovh/manager/issues/4631)) ([7909d4b](https://github.com/ovh/manager/commit/7909d4b5b8001de15204fd632fd08b6814c4a786))
+* **deps:** upgrade ovh-api-services ([#4706](https://github.com/ovh/manager/issues/4706)) ([5619e0c](https://github.com/ovh/manager/commit/5619e0c761a865be15701e096745c68dcc824f8e))
+* **i18n:** add missing translations [CDS 868] ([bdc753b](https://github.com/ovh/manager/commit/bdc753bb845383c37bb76d16d879c0df0180027a))
+* **i18n:** add missing translations [CDS 869] ([b7f1138](https://github.com/ovh/manager/commit/b7f11381debaeb1c70923032a08d60490a4d3f29))
+* **i18n:** add missing translations [CDS 870] ([4ed6164](https://github.com/ovh/manager/commit/4ed61649a9ec2e799924925369a59579c4d943f7))
+* **i18n:** add missing translations [CDS 873] ([57786c0](https://github.com/ovh/manager/commit/57786c0d8dcc696aa88322043ad8c9b6d4af71d2))
+* **i18n:** add missing translations [CDS 875] ([c13bcb1](https://github.com/ovh/manager/commit/c13bcb18a7e5cd28662ef9cc2158776bde0b6db1))
+* **i18n:** add missing translations [CDS 876] ([9e61b8b](https://github.com/ovh/manager/commit/9e61b8bde2bf1497048fdcd0ebd5a3dd85784ada))
+* **i18n:** add missing translations [CDS 881] ([c5eb003](https://github.com/ovh/manager/commit/c5eb003157cc31a07616e0f3ca09a390bebdad84))
+* **i18n:** add missing translations [CDS 885] ([111ef80](https://github.com/ovh/manager/commit/111ef8058c0d9c0c7f58946c800640a0c45a406a))
+* **license:** feature flip upgrade availability ([#4700](https://github.com/ovh/manager/issues/4700)) ([ffbac64](https://github.com/ovh/manager/commit/ffbac64c3b5ed791ca872e1a310876d6f5ae2887))
+* **license:** spla license service name display ([#4709](https://github.com/ovh/manager/issues/4709)) ([44a68ca](https://github.com/ovh/manager/commit/44a68cae4f6770159cfe36116ac83db31909cca9))
+* **server:** fix commit recommit tracking ([#4713](https://github.com/ovh/manager/issues/4713)) ([091c777](https://github.com/ovh/manager/commit/091c777cf2de516c0ef0a186b3cabe0697dc01e9))
+* **server.dashboard:** detection if tech details are here ([#4701](https://github.com/ovh/manager/issues/4701)) ([2fb5430](https://github.com/ovh/manager/commit/2fb54309fc0de775784b379c664cb7103e85e69f))
+
+
+### Features
+
+* **server:** add os image tracking ([#4451](https://github.com/ovh/manager/issues/4451)) ([854cce2](https://github.com/ovh/manager/commit/854cce2c464c38ff49d4262a17991746121613d4))
+
+
+
 # [16.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.16.1...@ovh-ux/manager-dedicated@16.17.0) (2021-04-07)
 
 

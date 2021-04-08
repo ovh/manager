@@ -1,3 +1,17 @@
+## [3.10.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.10.2...@ovh-ux/manager-hub-app@3.10.3) (2021-04-08)
+
+
+### Bug Fixes
+
+* **deps:** upgrade @ovh-ux/ui-kit to v4.5.0 ([#4631](https://github.com/ovh/manager/issues/4631)) ([7909d4b](https://github.com/ovh/manager/commit/7909d4b5b8001de15204fd632fd08b6814c4a786))
+* **deps:** upgrade ovh-api-services ([#4706](https://github.com/ovh/manager/issues/4706)) ([5619e0c](https://github.com/ovh/manager/commit/5619e0c761a865be15701e096745c68dcc824f8e))
+* **i18n:** add missing translations [CDS 868] ([bdc753b](https://github.com/ovh/manager/commit/bdc753bb845383c37bb76d16d879c0df0180027a))
+* **i18n:** add missing translations [CDS 876] ([9e61b8b](https://github.com/ovh/manager/commit/9e61b8bde2bf1497048fdcd0ebd5a3dd85784ada))
+* **i18n:** add missing translations [CDS 884] ([a32e02e](https://github.com/ovh/manager/commit/a32e02eefb033d6163531307519f50508798ca69))
+* **i18n:** add missing translations [CDS 885] ([111ef80](https://github.com/ovh/manager/commit/111ef8058c0d9c0c7f58946c800640a0c45a406a))
+
+
+
 ## [3.10.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.10.1...@ovh-ux/manager-hub-app@3.10.2) (2021-04-06)
 
 
