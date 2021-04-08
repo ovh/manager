@@ -19,7 +19,7 @@
   "billing_credit_balance_header_order": "Ordine",
   "billing_credit_balance_movements_operation_credit": "Credito",
   "billing_credit_balance_movements_operation_debit": "Debito",
-  "billing_credit_balance_movements_operation_debit_order": "Debit from order <a href=\"{{orderUrl}}\" target=\"_blank\">{{ orderId }}</a>",
+  "billing_credit_balance_movements_operation_debit_order": "Addebito sull'ordine <a href=\"{{orderUrl}}\" target=\"_blank\">{{ orderId }}</a>",
   "billing_credit_balance_movements_load_error": "Si è verificato un errore durante il caricamento dei movimenti del tuo voucher.",
   "billing_credit_back": "Ritorna ai tuoi voucher"
 }
