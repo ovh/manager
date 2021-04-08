@@ -15,7 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/:streamId',
     redirectTo: 'dbaas-logs.detail.streams',
     views: {
-      logsStreams: {
+      'logsContent@dbaas-logs.detail': {
         template: '<div ui-view></div>',
       },
     },
