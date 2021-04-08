@@ -163,7 +163,7 @@
                 ></span>
             </oui-action-menu-item>
             <oui-action-menu-item
-                data-disabled="!$row.canAddSnapshot()"
+                data-disabled="!$row.canCreateOrScheduleBackup()"
                 data-on-click="$ctrl.createBackupInstance($row)"
                 data-ng-if="$row.statusGroup === 'ACTIVE'"
             >
@@ -172,7 +172,7 @@
                 ></span>
             </oui-action-menu-item>
             <oui-action-menu-item
-                data-disabled="!$row.canAddSnapshot()"
+                data-disabled="!$row.canCreateOrScheduleBackup()"
                 data-on-click="$ctrl.scheduleAutoBackup($row)"
                 data-ng-if="$row.statusGroup === 'ACTIVE' && !$ctrl.coreConfig.isRegion('US')"
             >
@@ -185,21 +185,22 @@
             >
             </oui-action-menu-divider>
             <oui-action-menu-item
+                data-disabled="!$row.canBeStarted()"
                 data-on-click="$ctrl.startInstance($row)"
-                data-disabled="$row.isStarted()"
             >
                 <span
                     data-translate="pci_projects_project_instances_start_label"
                 ></span>
             </oui-action-menu-item>
             <oui-action-menu-item
+                data-disabled="!$row.canBeStopped()"
                 data-on-click="$ctrl.stopInstance($row)"
-                data-disabled="$row.isStopped()"
             >
                 <span
                     data-translate="pci_projects_project_instances_stop_label"
                 ></span>
             </oui-action-menu-item>
+            <oui-action-menu-divider></oui-action-menu-divider>
             <oui-action-menu-item
                 data-on-click="$ctrl.startRescueInstance($row)"
                 data-ng-if="$row.statusGroup === 'ACTIVE'"
@@ -230,6 +231,23 @@
             >
                 <span
                     data-translate="pci_projects_project_instances_hardReboot_label"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-divider></oui-action-menu-divider>
+            <oui-action-menu-item
+                data-disabled="!$row.canBeShelved()"
+                data-on-click="$ctrl.shelveInstance($row)"
+            >
+                <span
+                    data-translate="pci_projects_project_instances_shelve_label"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-disabled="!$row.canBeUnshelved()"
+                data-on-click="$ctrl.unshelveInstance($row)"
+            >
+                <span
+                    data-translate="pci_projects_project_instances_unshelve_label"
                 ></span>
             </oui-action-menu-item>
             <oui-action-menu-divider></oui-action-menu-divider>

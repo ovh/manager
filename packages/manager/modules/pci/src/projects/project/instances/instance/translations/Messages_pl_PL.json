@@ -46,5 +46,7 @@
   "pci_projects_project_instances_instance_ssh_key_label": "Klucz SSH",
   "pci_projects_project_instances_instance_gateway": "Gateway",
   "pci_projects_project_instances_instance_action_start_label": "Uruchom",
-  "pci_projects_project_instances_instance_action_stop_label": "Zatrzymaj"
+  "pci_projects_project_instances_instance_action_stop_label": "Zatrzymaj",
+  "pci_projects_project_instances_instance_action_shelve_label": "Zawieś",
+  "pci_projects_project_instances_instance_action_unshelve_label": "Przywróć"
 }

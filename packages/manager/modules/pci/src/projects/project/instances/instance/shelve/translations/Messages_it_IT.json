@@ -1,0 +1,9 @@
+{
+  "pci_projects_project_instances_instance_shelve_title": "Sospensione dell'istanza",
+  "pci_projects_project_instances_instance_shelve_submit_label": "Conferma",
+  "pci_projects_project_instances_instance_shelve_cancel_label": "Annulla",
+  "pci_projects_project_instances_instance_shelve_content": "Stai per sospendere l'istanza {{ instance }}. Le risorse dedicate all'istanza Public Cloud verranno liberate ma il tuo IP verrà mantenuto. I dati del disco locale saranno salvati e solo lo storage utilizzato per questo scopo sarà fatturato. La durata dell'operazione dipende dalla dimensione del disco locale. È possibile riattivare l'istanza in qualsiasi momento.",
+  "pci_projects_project_instances_instance_shelve_success_inprogress_message": "Sospensione dell'istanza {{ instance }} in corso...",
+  "pci_projects_project_instances_instance_shelve_success_message": "L’istanza {{ instance }} è stata sospesa.",
+  "pci_projects_project_instances_instance_shelve_error_message": "Si è verificato un errore durante la sospensione dell'istanza {{ instance }}: {{ message }}."
+}
