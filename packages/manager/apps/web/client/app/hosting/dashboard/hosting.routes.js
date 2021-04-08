@@ -231,6 +231,12 @@ export default /* @ngInject */ ($stateProvider) => {
       isLocalSeoAvailable: /* @ngInject */ (availableOptions) =>
         availableOptions.find(({ family }) => family === LOCAL_SEO_FAMILY),
 
+      hostingSsl: /* @ngInject */ ($http, serviceName) =>
+        $http
+          .get(`/hosting/web/${serviceName}/ssl`)
+          .then(({ data }) => data)
+          .catch(() => null),
+
       breadcrumb: /* @ngInject */ (serviceName) => serviceName,
     },
     translations: { value: ['.'], format: 'json' },

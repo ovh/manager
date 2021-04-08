@@ -1,12 +1,11 @@
-export const SHARED_CDN_SETTINGS_RULE_TYPE_DEVMODE = 'devmode';
-export const SHARED_CDN_SETTINGS_RULE_TYPE_BROTLI = 'brotli';
-export const SHARED_CDN_SETTINGS_RULE_CACHE_RULE = 'cache_rule';
 export const SHARED_CDN_SETTINGS_RULE_CACHE_RULE_PATTERN_REGEX = 'regex';
 export const SHARED_CDN_SETTINGS_RULE_CACHE_RULE_PATTERN_EXTENSION =
   'extension';
 export const SHARED_CDN_SETTINGS_RULE_FACTOR_DAY = 86400;
 export const SHARED_CDN_SETTINGS_RULE_FACTOR_HOUR = 3600;
 export const SHARED_CDN_SETTINGS_RULE_FACTOR_MINUTE = 60;
+export const SHARED_CDN_SETTINGS_RULE_FACTOR_MONTH = 60;
+export const SHARED_CDN_SETTINGS_RULE_FACTOR_SECOND = 1;
 
 export const SHARED_CDN_GET_MORE_INFO = {
   FR: 'https://www.ovh.com/fr/hebergement-web/cdn.xml',

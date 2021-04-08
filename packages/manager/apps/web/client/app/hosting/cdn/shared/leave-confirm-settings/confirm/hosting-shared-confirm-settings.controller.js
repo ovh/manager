@@ -43,4 +43,8 @@ export default class HostingCdnSharedConfirmController {
         this.loading = false;
       });
   }
+
+  static getCorsOriginsList(origins) {
+    return origins.split(',');
+  }
 }

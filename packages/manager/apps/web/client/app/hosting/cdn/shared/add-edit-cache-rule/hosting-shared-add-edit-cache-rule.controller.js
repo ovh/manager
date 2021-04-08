@@ -2,7 +2,6 @@ import find from 'lodash/find';
 import set from 'lodash/set';
 
 import {
-  SHARED_CDN_SETTINGS_RULE_CACHE_RULE,
   SHARED_CDN_SETTINGS_RULE_FACTOR_DAY,
   SHARED_CDN_SETTINGS_RULE_FACTOR_HOUR,
   SHARED_CDN_SETTINGS_RULE_FACTOR_MINUTE,
@@ -100,7 +99,7 @@ export default class {
   createRule() {
     const { name, pattern, ttl, priority } = this.ruleModel;
     return {
-      type: SHARED_CDN_SETTINGS_RULE_CACHE_RULE,
+      type: this.cdnOptionTypeEnum.CACHE_RULE,
       name,
       pattern,
       enabled: true,
