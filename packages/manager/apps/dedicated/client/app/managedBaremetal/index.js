@@ -40,7 +40,7 @@ angular
 
       $urlRouterProvider.when(/^\/configuration\/managedBaremetal/, () => {
         window.location.href = window.location.href.replace(
-          'configuration',
+          '/configuration',
           '',
         );
       });
