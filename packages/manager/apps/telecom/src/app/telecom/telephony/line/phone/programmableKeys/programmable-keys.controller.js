@@ -9,11 +9,6 @@ import isString from 'lodash/isString';
 import editTemplate from './edit/edit.html';
 import editController from './edit/edit.controller';
 
-import {
-  ALPHA_NUMERIC_REGEXP,
-  COMPLEX_NUMERIC_REGEXP,
-} from './programmable-keys.constants';
-
 export default class TelecomTelephonyLinePhoneProgammableKeysCtrl {
   /* @ngInject */
   constructor(
@@ -142,28 +137,13 @@ export default class TelecomTelephonyLinePhoneProgammableKeysCtrl {
               return key;
             },
           );
-          this.functionKeys.raw.sort(this.constructor.sortFunctionKeys);
+          this.functionKeys.raw.sort(
+            ({ keyNum: keyNumA }, { keyNum: keyNumB }) => keyNumA - keyNumB,
+          );
         });
       }
       return null;
     });
-  }
-
-  static sortFunctionKeys(functionKeyA, functionKeyB) {
-    const [alphaA, numericA] = functionKeyA.label.match(ALPHA_NUMERIC_REGEXP);
-    const [alphaB, numericB] = functionKeyB.label.match(ALPHA_NUMERIC_REGEXP);
-    if (alphaA === alphaB) {
-      const [numericA1, numericA2] = numericA.match(COMPLEX_NUMERIC_REGEXP);
-      const [numericB1, numericB2] = numericB.match(COMPLEX_NUMERIC_REGEXP);
-
-      if (numericA1 === numericB1) {
-        return parseInt(numericA2, 10) > parseInt(numericB2, 10) ? 1 : -1;
-      }
-
-      return parseInt(numericA, 10) > parseInt(numericB, 10) ? 1 : -1;
-    }
-
-    return alphaA > alphaB ? 1 : -1;
   }
 
   /* ===========================
