@@ -1,3 +1,12 @@
+## [1.1.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-at-internet-configuration@1.1.6...@ovh-ux/manager-at-internet-configuration@1.1.7) (2021-04-08)
+
+
+### Bug Fixes
+
+* configure region ([e4d2fc6](https://github.com/ovh/manager/commit/e4d2fc63cb2a7d3dcb84fa6f2a98820eedb5fb35))
+
+
+
 ## [1.1.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-at-internet-configuration@1.1.5...@ovh-ux/manager-at-internet-configuration@1.1.6) (2021-03-25)
 
 

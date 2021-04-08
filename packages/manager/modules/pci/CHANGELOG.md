@@ -1,3 +1,27 @@
+# [5.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.17.0...@ovh-ux/manager-pci@5.18.0) (2021-04-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 868] ([bdc753b](https://github.com/ovh/manager/commit/bdc753bb845383c37bb76d16d879c0df0180027a))
+* **i18n:** add missing translations [CDS 869] ([b7f1138](https://github.com/ovh/manager/commit/b7f11381debaeb1c70923032a08d60490a4d3f29))
+* **i18n:** add missing translations [CDS 870] ([4ed6164](https://github.com/ovh/manager/commit/4ed61649a9ec2e799924925369a59579c4d943f7))
+* **i18n:** add missing translations [CDS 873] ([57786c0](https://github.com/ovh/manager/commit/57786c0d8dcc696aa88322043ad8c9b6d4af71d2))
+* **i18n:** add missing translations [CDS 878] ([#4672](https://github.com/ovh/manager/issues/4672)) ([9d88695](https://github.com/ovh/manager/commit/9d88695ab3a3f96a00de4eeee7445fcc15e3eaf1))
+* **i18n:** add missing translations [CDS 881] ([c5eb003](https://github.com/ovh/manager/commit/c5eb003157cc31a07616e0f3ca09a390bebdad84))
+* **project.billing:** remove repeated tab name ([#4649](https://github.com/ovh/manager/issues/4649)) ([b3462f1](https://github.com/ovh/manager/commit/b3462f15922ebcf61d50cdc74e673aaa81ddf890))
+
+
+### Features
+
+* shelve and unshelve instance ([#4401](https://github.com/ovh/manager/issues/4401)) ([b492c42](https://github.com/ovh/manager/commit/b492c4218af345932a1a55db3698c91d5683f038))
+* **project.kubernetes:** add tracking ([#4618](https://github.com/ovh/manager/issues/4618)) ([2501c15](https://github.com/ovh/manager/commit/2501c15a71ba9f19002ac791b1ebc16eed824963))
+* redirect to instance edition when reinstalling a deprecated image ([#4457](https://github.com/ovh/manager/issues/4457)) ([be3af50](https://github.com/ovh/manager/commit/be3af50351de2882ade6e4598b7fc9621e5ed5ba))
+* **instances.add:** update creation tracking ([#4689](https://github.com/ovh/manager/issues/4689)) ([b62a04f](https://github.com/ovh/manager/commit/b62a04f39d1130dc56e251c87277d32790b916f4))
+* **project.kube.details.audit-logs:** add audit logs tabs ([#4471](https://github.com/ovh/manager/issues/4471)) ([f25d750](https://github.com/ovh/manager/commit/f25d7506bb95eb58268f1845201222d18a5aae64))
+
+
+
 # [5.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.16.0...@ovh-ux/manager-pci@5.17.0) (2021-04-07)
 
 

@@ -1,3 +1,13 @@
+## [6.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-task-app@6.2.1...@ovh-ux/manager-telecom-task-app@6.2.2) (2021-04-08)
+
+
+### Bug Fixes
+
+* **deps:** upgrade @ovh-ux/ui-kit to v4.5.0 ([#4631](https://github.com/ovh/manager/issues/4631)) ([7909d4b](https://github.com/ovh/manager/commit/7909d4b5b8001de15204fd632fd08b6814c4a786))
+* **deps:** upgrade ovh-api-services ([#4706](https://github.com/ovh/manager/issues/4706)) ([5619e0c](https://github.com/ovh/manager/commit/5619e0c761a865be15701e096745c68dcc824f8e))
+
+
+
 ## [6.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-task-app@6.2.0...@ovh-ux/manager-telecom-task-app@6.2.1) (2021-03-02)
 
 

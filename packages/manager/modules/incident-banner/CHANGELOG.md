@@ -1,3 +1,15 @@
+## [1.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-incident-banner@1.2.3...@ovh-ux/manager-incident-banner@1.2.4) (2021-04-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 875] ([c13bcb1](https://github.com/ovh/manager/commit/c13bcb18a7e5cd28662ef9cc2158776bde0b6db1))
+* **i18n:** add missing translations [CDS 876] ([9e61b8b](https://github.com/ovh/manager/commit/9e61b8bde2bf1497048fdcd0ebd5a3dd85784ada))
+* **i18n:** add missing translations [CDS 884] ([a32e02e](https://github.com/ovh/manager/commit/a32e02eefb033d6163531307519f50508798ca69))
+* **i18n:** add missing translations [CDS 885] ([111ef80](https://github.com/ovh/manager/commit/111ef8058c0d9c0c7f58946c800640a0c45a406a))
+
+
+
 ## [1.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-incident-banner@1.2.2...@ovh-ux/manager-incident-banner@1.2.3) (2021-04-06)
 
 

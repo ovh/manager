@@ -1,3 +1,12 @@
+## [9.1.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.1.0...@ovh-ux/ng-ovh-web-universe-components@9.1.1) (2021-04-08)
+
+
+### Bug Fixes
+
+* **deps:** upgrade @ovh-ux/ui-kit to v4.5.0 ([#4631](https://github.com/ovh/manager/issues/4631)) ([7909d4b](https://github.com/ovh/manager/commit/7909d4b5b8001de15204fd632fd08b6814c4a786))
+
+
+
 # [9.1.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.0.11...@ovh-ux/ng-ovh-web-universe-components@9.1.0) (2021-03-25)
 
 

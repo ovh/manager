@@ -1,3 +1,13 @@
+## [7.2.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.2.2...@ovh-ux/ng-ovh-telecom-universe-components@7.2.3) (2021-04-08)
+
+
+### Bug Fixes
+
+* **deps:** upgrade @ovh-ux/ui-kit to v4.5.0 ([#4631](https://github.com/ovh/manager/issues/4631)) ([7909d4b](https://github.com/ovh/manager/commit/7909d4b5b8001de15204fd632fd08b6814c4a786))
+* **pack.migration:** fix the building reference not sent to api ([#4488](https://github.com/ovh/manager/issues/4488)) ([e2384c2](https://github.com/ovh/manager/commit/e2384c2b9a04e45de823bb429e14d539ec68eb64))
+
+
+
 ## [7.2.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.2.1...@ovh-ux/ng-ovh-telecom-universe-components@7.2.2) (2021-02-24)
 
 

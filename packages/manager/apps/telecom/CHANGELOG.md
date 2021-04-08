@@ -1,3 +1,23 @@
+# [13.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.15.1...@ovh-ux/manager-telecom@13.16.0) (2021-04-08)
+
+
+### Bug Fixes
+
+* **deps:** upgrade @ovh-ux/ui-kit to v4.5.0 ([#4631](https://github.com/ovh/manager/issues/4631)) ([7909d4b](https://github.com/ovh/manager/commit/7909d4b5b8001de15204fd632fd08b6814c4a786))
+* **deps:** upgrade ovh-api-services ([#4706](https://github.com/ovh/manager/issues/4706)) ([5619e0c](https://github.com/ovh/manager/commit/5619e0c761a865be15701e096745c68dcc824f8e))
+* **i18n:** add missing translations [CDS 868] ([bdc753b](https://github.com/ovh/manager/commit/bdc753bb845383c37bb76d16d879c0df0180027a))
+* **i18n:** add missing translations [CDS 869] ([b7f1138](https://github.com/ovh/manager/commit/b7f11381debaeb1c70923032a08d60490a4d3f29))
+* **pack.migration:** fix the building reference not sent to api ([#4488](https://github.com/ovh/manager/issues/4488)) ([e2384c2](https://github.com/ovh/manager/commit/e2384c2b9a04e45de823bb429e14d539ec68eb64))
+* **telephony.ovhpabx.dialplan.extension.edit:** fix ccs scheduler link ([#4699](https://github.com/ovh/manager/issues/4699)) ([54b05bd](https://github.com/ovh/manager/commit/54b05bdf12414d350e4bebea4c4e6c42b5a3b958))
+
+
+### Features
+
+* **pack.move:** set only fiber offers for user who is already fibered ([#4436](https://github.com/ovh/manager/issues/4436)) ([f9e17a6](https://github.com/ovh/manager/commit/f9e17a618c8b693a8471abb6dd8294d580616662))
+* **pack.xdsl.access.comfort-exchange:** select contact for modem exchange ([#4486](https://github.com/ovh/manager/issues/4486)) ([e7ebad8](https://github.com/ovh/manager/commit/e7ebad8d2c8087a9759825367c03bb30f4164006))
+
+
+
 ## [13.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.15.0...@ovh-ux/manager-telecom@13.15.1) (2021-04-07)
 
 

@@ -1,3 +1,17 @@
+## [15.20.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.20.0...@ovh-ux/manager-web@15.20.1) (2021-04-08)
+
+
+### Bug Fixes
+
+* **deps:** upgrade @ovh-ux/ui-kit to v4.5.0 ([#4631](https://github.com/ovh/manager/issues/4631)) ([7909d4b](https://github.com/ovh/manager/commit/7909d4b5b8001de15204fd632fd08b6814c4a786))
+* **deps:** upgrade ovh-api-services ([#4706](https://github.com/ovh/manager/issues/4706)) ([5619e0c](https://github.com/ovh/manager/commit/5619e0c761a865be15701e096745c68dcc824f8e))
+* **i18n:** add missing translations [CDS 879] ([#4673](https://github.com/ovh/manager/issues/4673)) ([9fdc57f](https://github.com/ovh/manager/commit/9fdc57fd66e16bde26ce4465976120c2a9511cea))
+* **i18n:** add missing translations [CDS 881] ([c5eb003](https://github.com/ovh/manager/commit/c5eb003157cc31a07616e0f3ca09a390bebdad84))
+* **i18n:** add missing translations [CDS 889] ([7571da8](https://github.com/ovh/manager/commit/7571da807590c84097a6f21de8c5222ab8fb06ac))
+* **private-database:** fix metrics name ([#4690](https://github.com/ovh/manager/issues/4690)) ([95b940c](https://github.com/ovh/manager/commit/95b940c34fbe2e966e3735fd895b5966de46e63b))
+
+
+
 # [15.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.19.2...@ovh-ux/manager-web@15.20.0) (2021-04-07)
 
 

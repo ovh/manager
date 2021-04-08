@@ -1,3 +1,14 @@
+## [2.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@2.4.0...@ovh-ux/manager-hub@2.4.1) (2021-04-08)
+
+
+### Bug Fixes
+
+* **deps:** upgrade @ovh-ux/ui-kit to v4.5.0 ([#4631](https://github.com/ovh/manager/issues/4631)) ([7909d4b](https://github.com/ovh/manager/commit/7909d4b5b8001de15204fd632fd08b6814c4a786))
+* **hub:** add ALL_DOM translation ([#4698](https://github.com/ovh/manager/issues/4698)) ([619503d](https://github.com/ovh/manager/commit/619503decfcd082f2c46e375a113971c9ace81df))
+* **i18n:** add missing translations [CDS 881] ([c5eb003](https://github.com/ovh/manager/commit/c5eb003157cc31a07616e0f3ca09a390bebdad84))
+
+
+
 # [2.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@2.3.0...@ovh-ux/manager-hub@2.4.0) (2021-03-31)
 
 

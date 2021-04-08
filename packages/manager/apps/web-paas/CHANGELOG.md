@@ -1,3 +1,12 @@
+## [1.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas-app@1.0.1...@ovh-ux/manager-web-paas-app@1.0.2) (2021-04-08)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services ([#4706](https://github.com/ovh/manager/issues/4706)) ([5619e0c](https://github.com/ovh/manager/commit/5619e0c761a865be15701e096745c68dcc824f8e))
+
+
+
 ## [1.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas-app@1.0.0...@ovh-ux/manager-web-paas-app@1.0.1) (2021-03-31)
 
 
