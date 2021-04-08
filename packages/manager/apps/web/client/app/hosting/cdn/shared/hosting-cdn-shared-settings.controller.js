@@ -9,12 +9,11 @@ import map from 'lodash/map';
 import clone from 'lodash/clone';
 
 import {
-  SHARED_CDN_SETTINGS_RULE_CACHE_RULE,
   SHARED_CDN_SETTINGS_RULE_FACTOR_DAY,
   SHARED_CDN_SETTINGS_RULE_FACTOR_HOUR,
   SHARED_CDN_SETTINGS_RULE_FACTOR_MINUTE,
-  SHARED_CDN_SETTINGS_RULE_TYPE_BROTLI,
-  SHARED_CDN_SETTINGS_RULE_TYPE_DEVMODE,
+  SHARED_CDN_SETTINGS_RULE_FACTOR_MONTH,
+  SHARED_CDN_SETTINGS_RULE_FACTOR_SECOND,
 } from './hosting-cdn-shared-settings.constants';
 
 export default class CdnSharedSettingsController {
@@ -33,25 +32,89 @@ export default class CdnSharedSettingsController {
       http: {
         enabled: true,
       },
-      devmode: find(this.domainOptions, {
-        type: SHARED_CDN_SETTINGS_RULE_TYPE_DEVMODE,
-      }),
-      brotli: find(this.domainOptions, {
-        type: SHARED_CDN_SETTINGS_RULE_TYPE_BROTLI,
-      }),
       rules: filter(this.domainOptions, {
-        type: SHARED_CDN_SETTINGS_RULE_CACHE_RULE,
+        type: this.cdnOptionTypeEnum.CACHE_RULE,
       }),
       maxItems: find(this.availableOptions, {
-        type: SHARED_CDN_SETTINGS_RULE_CACHE_RULE,
+        type: this.cdnOptionTypeEnum.CACHE_RULE,
       }).maxItems,
+      ...CdnSharedSettingsController.getCdnSettingsOption(
+        this.cdnOptionTypeEnum.DEVMODE,
+        this.domainOptions,
+      ),
+      ...CdnSharedSettingsController.getCdnSettingsOption(
+        this.cdnOptionTypeEnum.BROTLI,
+        this.domainOptions,
+      ),
+      ...CdnSharedSettingsController.getCdnSettingsOption(
+        this.cdnOptionTypeEnum.CORS,
+        this.domainOptions,
+      ),
+      ...CdnSharedSettingsController.getCdnSettingsOption(
+        this.cdnOptionTypeEnum.HTTPS_REDIRECT,
+        this.domainOptions,
+      ),
+      ...CdnSharedSettingsController.getCdnSettingsOption(
+        this.cdnOptionTypeEnum.HSTS,
+        this.domainOptions,
+      ),
+      ...CdnSharedSettingsController.getCdnSettingsOption(
+        this.cdnOptionTypeEnum.MIXED_CONTENT,
+        this.domainOptions,
+      ),
+      ...CdnSharedSettingsController.getCdnSettingsOption(
+        this.cdnOptionTypeEnum.WAF,
+        this.domainOptions,
+      ),
     };
+
+    this.redirections = [
+      {
+        key: this.$translate.instant(
+          'hosting_cdn_shared_option_https_redirect_301',
+        ),
+        value: 301,
+      },
+      {
+        key: this.$translate.instant(
+          'hosting_cdn_shared_option_https_redirect_302',
+        ),
+        value: 302,
+      },
+    ];
+    this.hstsMaxAgeUnits = [
+      {
+        key: this.$translate.instant(
+          'hosting_cdn_shared_option_hsts_max_age_seconds',
+        ),
+        value: SHARED_CDN_SETTINGS_RULE_FACTOR_SECOND,
+      },
+      {
+        key: this.$translate.instant(
+          'hosting_cdn_shared_option_hsts_max_age_days',
+        ),
+        value: SHARED_CDN_SETTINGS_RULE_FACTOR_DAY,
+      },
+      {
+        key: this.$translate.instant(
+          'hosting_cdn_shared_option_hsts_max_age_months',
+        ),
+        value: SHARED_CDN_SETTINGS_RULE_FACTOR_MONTH,
+      },
+    ];
+    this.hstsMaxAgeValue = this.model.hsts?.config.ttl;
+    [this.hstsMaxAgeUnit] = this.hstsMaxAgeUnits; // Max age is expressed in seconds by default
+    this.redirection = this.redirections.find(
+      ({ value }) => value === this.model.https_redirect?.config?.statusCode,
+    );
     this.tasks = { toUpdate: [] };
     this.copyModel = angular.copy(this.model);
   }
 
-  static hasModelChange(model, copyModel) {
-    return !angular.equals(model, copyModel);
+  static getCdnSettingsOption(optionName, options) {
+    return {
+      [optionName]: options.find(({ type }) => type === optionName),
+    };
   }
 
   getSwitchBtnStatusText(switchBtn) {
@@ -254,5 +317,38 @@ export default class CdnSharedSettingsController {
   static getChangedRules(tasks) {
     const { toAdd, toUpdate, toRemove } = tasks;
     return concat(toAdd, toRemove, toUpdate);
+  }
+
+  static hasModelChange(model, copyModel) {
+    return !angular.equals(model, copyModel);
+  }
+
+  setRedirection(redirection) {
+    this.model.https_redirect.config.statusCode = redirection.value;
+  }
+
+  setHstsMaxAge() {
+    this.model.hsts.config.ttl =
+      this.hstsMaxAgeValue * this.hstsMaxAgeUnit.value;
+  }
+
+  hasSecurityOptions(config) {
+    return [
+      this.cdnOptionTypeEnum.CORS,
+      this.cdnOptionTypeEnum.HTTPS_REDIRECT,
+      this.cdnOptionTypeEnum.HSTS,
+      this.cdnOptionTypeEnum.MIXED_CONTENT,
+      this.cdnOptionTypeEnum.WAF,
+    ].some((key) => config[key]);
+  }
+
+  onCancel() {
+    if (
+      !CdnSharedSettingsController.hasModelChange(this.model, this.copyModel)
+    ) {
+      return this.goBack();
+    }
+
+    return this.displayLeaveSettingsModal(this.model);
   }
 }

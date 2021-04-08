@@ -3,14 +3,28 @@
 
     <div>
         <!--Description-->
-        <p class="oui-heading_4 mb-5">
-            <strong data-translate="hosting_cdn_shared_title"></strong>
-        </p>
-        <div
-            class="oui-paragraph"
-            data-translate="hosting_cdn_shared_info"
-        ></div>
+        <h2
+            class="mb-3"
+            data-translate="hosting_cdn_shared_title"
+            data-translate-values="{ 'range': $ctrl.cdnRange, 'domainName': $ctrl.domainName }"
+        ></h2>
+        <p class="oui-paragraph" data-translate="hosting_cdn_shared_info"></p>
 
+        <oui-message type="info">
+            <span data-translate="hosting_cdn_shared_help"></span>
+            <a
+                class="oui-link"
+                data-ng-href="{{:: $ctrl.guideLinkHref }}"
+                target="_blank"
+                rel="noopener"
+                data-translate="hosting_cdn_shared_help_link"
+            >
+            </a>
+        </oui-message>
+
+        <h3
+            data-translate="hosting_cdn_shared_option_category_performance"
+        ></h3>
         <!--Always online-->
         <div class="mb-4">
             <p class="oui-heading_5 mb-1"><strong>Always online</strong></p>
@@ -42,23 +56,6 @@
             ></strong>
         </div>
 
-        <!--DEV-MODE-->
-        <div class="mb-4">
-            <p class="oui-heading_5 mb-1"><strong>Dev-mode</strong></p>
-            <div
-                class="oui-paragraph"
-                data-translate="hosting_cdn_shared_option_dev_mode_info"
-            ></div>
-            <oui-switch
-                disabled="!$ctrl.model.devmode"
-                model="$ctrl.model.devmode.enabled"
-            >
-            </oui-switch>
-            <strong
-                data-ng-bind="$ctrl.getSwitchBtnStatusText($ctrl.model.devmode.enabled)"
-            ></strong>
-        </div>
-
         <!--BROTLI-->
         <div class="mb-4">
             <p class="oui-heading_5 mb-1"><strong>Brotli</strong></p>
@@ -73,6 +70,25 @@
             </oui-switch>
             <strong
                 data-ng-bind="$ctrl.getSwitchBtnStatusText($ctrl.model.brotli.enabled)"
+            ></strong>
+        </div>
+
+        <h3 data-translate="hosting_cdn_shared_option_category_cache"></h3>
+
+        <!--DEV-MODE-->
+        <div class="mb-4">
+            <p class="oui-heading_5 mb-1"><strong>Dev-mode</strong></p>
+            <div
+                class="oui-paragraph"
+                data-translate="hosting_cdn_shared_option_dev_mode_info"
+            ></div>
+            <oui-switch
+                disabled="!$ctrl.model.devmode"
+                model="$ctrl.model.devmode.enabled"
+            >
+            </oui-switch>
+            <strong
+                data-ng-bind="$ctrl.getSwitchBtnStatusText($ctrl.model.devmode.enabled)"
             ></strong>
         </div>
 
@@ -94,6 +110,7 @@
             <div class="oui-field__helper">
                 <p
                     data-translate="hosting_cdn_shared_option_cache_rule_add_rule_max_rules"
+                    data-translate-values="{ 'range': $ctrl.cdnRange, 'maxItems': $ctrl.model.maxItems }"
                 ></p>
             </div>
             <div>
@@ -192,12 +209,158 @@
             </div>
         </div>
 
+        <div data-ng-if="::$ctrl.hasSecurityOptions($ctrl.model)">
+            <h3
+                data-translate="hosting_cdn_shared_option_category_security"
+            ></h3>
+
+            <!-- Cross-Origin Resource Sharing (CORS) -->
+            <div class="mb-4">
+                <p class="oui-heading_5 mb-1">
+                    <strong>Cross-Origin Resource Sharing (CORS)</strong>
+                </p>
+                <div
+                    class="oui-paragraph"
+                    data-translate="hosting_cdn_shared_option_cors_description"
+                ></div>
+                <oui-switch model="$ctrl.model.cors.enabled"></oui-switch>
+                <strong
+                    data-ng-bind="$ctrl.getSwitchBtnStatusText($ctrl.model.cors.enabled)"
+                ></strong>
+                <oui-button
+                    class="d-block mt-1"
+                    variant="primary"
+                    on-click="$ctrl.openCorsList($ctrl.model.cors)"
+                    disabled="!$ctrl.model.cors.enabled"
+                >
+                    <span
+                        data-translate="hosting_cdn_shared_option_cors_edit"
+                    ></span>
+                </oui-button>
+            </div>
+
+            <!-- HTTPS Redirect -->
+            <div class="mb-4">
+                <p class="oui-heading_5 mb-1">
+                    <strong>HTTPS-Redirect</strong>
+                </p>
+                <p
+                    class="oui-paragraph"
+                    data-translate="hosting_cdn_shared_option_https_redirect_description"
+                ></p>
+                <oui-message
+                    type="warning"
+                    data-ng-if="!$ctrl.hasSslForDomain && $ctrl.model.https_redirect.enabled"
+                >
+                    <span
+                        data-translate="hosting_cdn_ssl_required_warning"
+                    ></span>
+                </oui-message>
+                <oui-switch model="$ctrl.model.https_redirect.enabled">
+                </oui-switch>
+                <strong
+                    data-ng-bind="$ctrl.getSwitchBtnStatusText($ctrl.model.https_redirect.enabled)"
+                ></strong>
+
+                <oui-select
+                    class="w-25 mt-1"
+                    name="https_redirect"
+                    match="key"
+                    items="$ctrl.redirections"
+                    model="$ctrl.redirection"
+                    on-change="$ctrl.setRedirection(modelValue)"
+                    disabled="!$ctrl.model.https_redirect.enabled"
+                ></oui-select>
+            </div>
+
+            <!-- HTTP Strict Transport Security (HSTS) -->
+            <div class="mb-4">
+                <p class="oui-heading_5 mb-1">
+                    <strong>HTTP Strict Transport Security (HSTS)</strong>
+                </p>
+                <div
+                    class="oui-paragraph"
+                    data-translate="hosting_cdn_shared_option_hsts_description"
+                ></div>
+                <oui-message
+                    type="warning"
+                    data-ng-if="!$ctrl.hasSslForDomain && $ctrl.model.hsts.enabled"
+                >
+                    <span
+                        data-translate="hosting_cdn_ssl_required_warning"
+                    ></span>
+                </oui-message>
+                <oui-switch model="$ctrl.model.hsts.enabled"></oui-switch>
+                <strong
+                    data-ng-bind="$ctrl.getSwitchBtnStatusText($ctrl.model.hsts.enabled)"
+                ></strong>
+
+                <oui-field
+                    class="ml-1 mt-2"
+                    label="{{:: 'hosting_cdn_shared_option_hsts_max_age' | translate }}"
+                    size="m"
+                >
+                    <div class="oui-input-group oui-input-group_inline">
+                        <input
+                            class="oui-input"
+                            name="maxAgeValue"
+                            type="text"
+                            data-ng-disabled="!$ctrl.model.hsts.enabled"
+                            data-ng-pattern="/\d+/"
+                            data-ng-model="$ctrl.hstsMaxAgeValue"
+                            data-ng-change="$ctrl.setHstsMaxAge()"
+                        />
+                        <oui-select
+                            name="maxAgeUnit"
+                            match="key"
+                            items="$ctrl.hstsMaxAgeUnits"
+                            model="$ctrl.hstsMaxAgeUnit"
+                            disabled="!$ctrl.model.hsts.enabled"
+                            on-change="$ctrl.setHstsMaxAge()"
+                        >
+                            <span data-ng-bind="$item.key"></span>
+                        </oui-select>
+                    </div>
+                </oui-field>
+            </div>
+
+            <!-- Mixed content -->
+            <div class="mb-4">
+                <p class="oui-heading_5 mb-1">
+                    <strong>Mixed content</strong>
+                </p>
+                <div
+                    class="oui-paragraph"
+                    data-translate="hosting_cdn_shared_option_mixed_content_description"
+                ></div>
+                <oui-switch model="$ctrl.model.mixed_content.enabled">
+                </oui-switch>
+                <strong
+                    data-ng-bind="$ctrl.getSwitchBtnStatusText($ctrl.model.mixed_content.enabled)"
+                ></strong>
+            </div>
+
+            <!-- Web Application Firewall (WAF) -->
+            <div class="mb-4">
+                <p class="oui-heading_5 mb-1">
+                    <strong>Web Application Firewall (WAF)</strong>
+                </p>
+                <div
+                    class="oui-paragraph"
+                    data-translate="hosting_cdn_shared_option_waf_description"
+                ></div>
+                <oui-switch model="$ctrl.model.waf.enabled"> </oui-switch>
+                <strong
+                    data-ng-bind="$ctrl.getSwitchBtnStatusText($ctrl.model.waf.enabled)"
+                ></strong>
+            </div>
+        </div>
         <!--Cancel settings-->
         <oui-button
             size="l"
             variant="secondary"
             disabled="status.inProgress"
-            data-on-click="$ctrl.displayLeaveSettingsModal($ctrl.model, $ctrl.model.rules)"
+            data-on-click="$ctrl.onCancel()"
         >
             <span
                 data-translate="hosting_cdn_shared_option_cache_rule_btn_cancel"
@@ -209,7 +372,7 @@
             size="l"
             variant="primary"
             on-click="$ctrl.openConfirmModal()"
-            disabled="!$ctrl.constructor.hasModelChange($ctrl.model, $ctrl.copyModel) || !$ctrl.model.rules.length"
+            disabled="!$ctrl.constructor.hasModelChange($ctrl.model, $ctrl.copyModel)"
         >
             <span
                 data-translate="hosting_cdn_shared_option_cache_rule_btn_validate"
