@@ -1223,6 +1223,7 @@
   "server_configuration_installation_form_rtm_activated": "Aktiviert",
   "server_configuration_installation_image": "Installation auf Basis eines personalisierten Images",
   "server_configuration_distribution_byoi": "BringYourOwnImage",
+  "server_datacenter_RBX_8": "Roubaix (RBX8) - Frankreich",
   "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_GROUP": "Interfaces des Unternehmensnetzwerks",
   "server_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE_UNGROUP": "Die Netzwerkinterfaces trennen",
   "server_ola_reset": "Die „private aggregation“ dekonfigurieren",

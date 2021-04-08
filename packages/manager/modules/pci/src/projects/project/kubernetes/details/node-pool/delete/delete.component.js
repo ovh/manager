@@ -8,6 +8,7 @@ const component = {
     nodePoolId: '<',
     nodePoolName: '<',
     projectId: '<',
+    sendKubeTrack: '<',
   },
   controller,
   template,

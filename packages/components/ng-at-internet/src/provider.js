@@ -32,6 +32,7 @@ export default /* @ngInject */ function(AT_INTERNET_CUSTOM_VARS) {
     enabled: false, // enable or disable tracking
     debug: false, // enable or disable logging tracking in JS console
     defaults: {}, // default data to be sent with each hit
+    region: 'EU', // region used to get custom vars
   };
 
   let defaultsPromise; // to be sure that defaults are setted after a promise resoltion
@@ -106,6 +107,18 @@ export default /* @ngInject */ function(AT_INTERNET_CUSTOM_VARS) {
    */
   this.setDebug = function setDebug(state) {
     config.debug = state;
+  };
+
+  /**
+   * @ngdoc function
+   * @name atInternet.setRegion
+   * @methodOf atInternetProvider
+   * @param {String} region Region where to get custom vars
+   * @description
+   * Set the region in order to get right default custom vars.
+   */
+  this.setRegion = function setRegion(region) {
+    config.region = region;
   };
 
   this.$get = /* @ngInject */ function $get($window, $log) {
@@ -185,10 +198,14 @@ export default /* @ngInject */ function(AT_INTERNET_CUSTOM_VARS) {
       }
     }
 
+    function getCustomVarConfigPath(conf) {
+      return conf.path[config.region] || conf.path.default;
+    }
+
     function updateCustomVars(data, conf, attr, customVars) {
       // if data has custom attribute
       if (has(data, attr)) {
-        const keys = conf.path.split('.');
+        const keys = getCustomVarConfigPath(conf).split('.');
         let tmp = customVars;
 
         /*

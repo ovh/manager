@@ -225,6 +225,9 @@ export default class PackMoveCtrl {
         this.offer.current.offerDescription = data.offerDescription;
         this.offer.current.offerPrice = data.offerPrice;
         this.offer.current.isLegacy = data.capabilities.isLegacyOffer;
+        this.offer.current.isFTTH = data.offerDescription.includes(
+          OFFER_TYPE.ftth,
+        );
       })
       .catch((error) => new this.TucToastError(error));
   }

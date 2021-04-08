@@ -38,6 +38,7 @@ angular
       $q,
       $stateParams,
       $translate,
+      atInternet,
       Server,
       $filter,
       Alerter,
@@ -45,7 +46,6 @@ angular
       TEMPLATE_OS_HARDWARE_RAID_ENUM,
     ) => {
       $scope.LICENSE_URL = buildURL('dedicated', '#/configuration/license');
-
       $scope.units = {
         model: [
           {
@@ -296,6 +296,13 @@ angular
         $scope.constants.user.ovhSubsidiary,
         get(RTM_GUIDE_URLS, 'GB'),
       );
+
+      $scope.trackClick = function(name) {
+        atInternet.trackClick({
+          name,
+          type: 'action',
+        });
+      };
 
       // ------STEP1------
       $scope.load = function load() {
@@ -2466,6 +2473,11 @@ angular
       }
 
       function startInstall() {
+        $scope.trackClick(
+          `dedicated::dedicated::server::system-install::public-catalog::rtm::${
+            $scope.installation.options.installRTM ? 'activate' : 'deactivate'
+          }`,
+        );
         $scope.loader.loading = true;
         Server.startInstallation(
           $stateParams.productId,
@@ -2603,6 +2615,9 @@ angular
       }
 
       $scope.install = function install() {
+        $scope.trackClick(
+          'dedicated::dedicated::server::system-install::public-catalog::install',
+        );
         if ($scope.installation.options.saveGabarit) {
           $scope.loader.loading = true;
           setGabarit();

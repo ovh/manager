@@ -16,6 +16,8 @@ export default class kubernetesTerminateCtrl {
   }
 
   terminate() {
+    this.sendKubeTrack('details::service::terminate::confirm');
+
     this.isDeleting = true;
     return (this.isLegacyCluster
       ? this.OvhApiKube.v6().terminate({
@@ -37,5 +39,10 @@ export default class kubernetesTerminateCtrl {
           'error',
         ),
       );
+  }
+
+  onTerminateModalCancel() {
+    this.sendKubeTrack('details::service::terminate::cancel');
+    this.goBack();
   }
 }

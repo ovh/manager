@@ -8,7 +8,7 @@
         data-heading="{{:: 'kube_nodes_delete' | translate }}"
         data-primary-label="{{:: 'kube_nodes_common_delete' | translate }}"
         data-secondary-label="{{:: 'kube_nodes_common_cancel' | translate }}"
-        data-secondary-action="$ctrl.goBack()"
+        data-secondary-action="$ctrl.onKubeNodesDeleteModalCancel()"
         data-on-dismiss="$ctrl.goBack()"
         data-loading="$ctrl.isDeleting"
         type="warning"

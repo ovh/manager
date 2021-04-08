@@ -9,6 +9,8 @@
   "pci_projects_project_instances_instance_action_createBackup_label": "Créer un backup",
   "pci_projects_project_instances_instance_action_start_label": "Démarrer",
   "pci_projects_project_instances_instance_action_stop_label": "Arrêter",
+  "pci_projects_project_instances_instance_action_shelve_label": "Suspendre",
+  "pci_projects_project_instances_instance_action_unshelve_label": "Réactiver",
   "pci_projects_project_instances_instance_action_rescue_label": "Redémarrer en mode rescue",
   "pci_projects_project_instances_instance_action_rescueEnd_label": "Sortir du mode rescue",
   "pci_projects_project_instances_instance_action_softReboot_label": "Redémarrer à chaud (soft)",

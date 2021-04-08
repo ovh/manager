@@ -5,3 +5,7 @@ ovh-manager-kubernetes-detail-component {
   @import '~bootstrap4/scss/_utilities';
   @import '~bootstrap4/scss/_grid';
 }
+
+.text-break {
+  word-break: break-word;
+}

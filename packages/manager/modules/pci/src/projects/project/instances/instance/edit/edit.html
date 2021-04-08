@@ -97,7 +97,10 @@
         </fieldset>
     </form>
 
-    <div class="mt-4 pt-4 border-top">
+    <div
+        id="{{::$ctrl.EDIT_PAGE_SECTIONS.IMAGES}}"
+        class="mt-4 pt-4 border-top"
+    >
         <form
             novalidate
             name="$ctrl.editImageForm"
@@ -109,6 +112,7 @@
                     data-size="auto"
                 >
                     <pci-project-images-list
+                        data-instance="$ctrl.editInstance"
                         data-flavor-type="$ctrl.instance.flavor.type"
                         data-os-types="[$ctrl.instance.flavor.osType]"
                         data-region="$ctrl.instance.region"
@@ -154,7 +158,10 @@
         </form>
     </div>
 
-    <div class="mt-4 pt-4 border-top">
+    <div
+        id="{{::$ctrl.EDIT_PAGE_SECTIONS.FLAVORS}}"
+        class="mt-4 pt-4 border-top"
+    >
         <form
             novalidate
             name="$ctrl.resizeInstanceForm"
@@ -227,7 +234,10 @@
         </form>
     </div>
 
-    <div class="mt-4 pt-4 border-top">
+    <div
+        id="{{::$ctrl.EDIT_PAGE_SECTIONS.BILLING_PERIOD}}"
+        class="mt-4 pt-4 border-top"
+    >
         <form
             novalidate
             name="$ctrl.activateMonthlyBillingForm"

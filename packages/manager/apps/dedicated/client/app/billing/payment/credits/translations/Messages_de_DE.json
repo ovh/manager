@@ -12,7 +12,7 @@
   "billing_credit_balance_header_amount": "Betrag",
   "billing_credit_balance_header_movements": "Vorgänge",
   "billing_credit_balance_movements_details": "Vorgangsdetails",
-  "billing_credit_balance_movements_title": "Details zu den Vorgängen unter Verwendung Ihrer Gutscheine {{t0}}",
+  "billing_credit_balance_movements_title": "Details zu den Vorgängen unter Verwendung Ihres Gutscheins {{t0}}",
   "billing_credit_balance_movements_back": "Zurück zu meinen Gutscheinen",
   "billing_credit_balance_movements_header_date": "Datum",
   "billing_credit_balance_movements_header_operation": "Operation",

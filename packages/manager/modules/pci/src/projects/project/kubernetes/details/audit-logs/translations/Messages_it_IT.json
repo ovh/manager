@@ -1,0 +1,6 @@
+{
+  "kube_logs_tab_title": "Audit Logs",
+  "kube_logs_list_no_logs": "In attesa dei log",
+  "kube_logs_description": "Qui trovi i log del control plane del tuo cluster Kubernetes. Per monitorare i pod aziendali, consulta la documentazione disponibile.",
+  "kube_logs_description_link": "Scopri di più"
+}

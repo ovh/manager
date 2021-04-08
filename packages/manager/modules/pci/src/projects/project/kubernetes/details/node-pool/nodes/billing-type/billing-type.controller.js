@@ -12,6 +12,10 @@ export default class KubernetesNodesBillingTypeCtrl {
   }
 
   switchToMonthlyBilling() {
+    this.sendKubeTrack(
+      'details::nodepools::details::nodes::billing-type::confirm',
+    );
+
     this.loading = true;
     return this.Kubernetes.switchToMonthlyBilling(
       this.projectId,
@@ -33,5 +37,12 @@ export default class KubernetesNodesBillingTypeCtrl {
       .finally(() => {
         this.loading = false;
       });
+  }
+
+  onSwitchToMonthlyBillingModalCancel() {
+    this.sendKubeTrack(
+      'details::nodepools::details::nodes::billing-type::cancel',
+    );
+    this.goBack();
   }
 }

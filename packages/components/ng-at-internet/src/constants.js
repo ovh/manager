@@ -6,7 +6,10 @@ export const AT_INTERNET_CUSTOM_VARS = {
    * Country code of the customer making the order
    */
   countryCode: {
-    path: 'site.1',
+    path: {
+      default: 'site.1',
+      US: 'site.12',
+    },
     format: '[%s]',
   },
 
@@ -14,7 +17,10 @@ export const AT_INTERNET_CUSTOM_VARS = {
    * Currency code of the customer
    */
   currencyCode: {
-    path: 'site.16',
+    path: {
+      default: 'site.16',
+      US: 'site.15',
+    },
     format: '[%s]',
   },
 
@@ -23,7 +29,10 @@ export const AT_INTERNET_CUSTOM_VARS = {
    */
 
   referrerSite: {
-    path: 'site.8', // OVH's AtInternet configuration
+    path: {
+      default: 'site.8', // OVH's AtInternet configuration
+      US: 'site.11',
+    },
     format: '[%s]',
   },
 
@@ -31,12 +40,18 @@ export const AT_INTERNET_CUSTOM_VARS = {
    * Event
    */
   event: {
-    path: 'site.20',
+    path: {
+      default: 'site.20',
+      US: 'site.6',
+    },
     format: '[%s]',
   },
 
   siteName: {
-    path: 'site.13',
+    path: {
+      default: 'site.13',
+      US: 'site.14',
+    },
     format: '[%s]',
   },
 
@@ -44,7 +59,9 @@ export const AT_INTERNET_CUSTOM_VARS = {
    * Project Id
    */
   projectId: {
-    path: 'page.1', // OVH's AtInternet configuration
+    path: {
+      default: 'page.1', // OVH's AtInternet configuration
+    },
     format: '[%s]',
   },
 
@@ -52,7 +69,9 @@ export const AT_INTERNET_CUSTOM_VARS = {
    * Voucher code used
    */
   voucherCode: {
-    path: 'page.2', // OVH's AtInternet configuration
+    path: {
+      default: 'page.2', // OVH's AtInternet configuration
+    },
     format: '[%s]',
   },
 
@@ -60,7 +79,9 @@ export const AT_INTERNET_CUSTOM_VARS = {
    * Order status used
    */
   orderStatus: {
-    path: 'page.1',
+    path: {
+      default: 'page.1',
+    },
     format: '[%s]',
   },
 };

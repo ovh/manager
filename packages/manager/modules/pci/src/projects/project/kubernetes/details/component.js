@@ -11,6 +11,7 @@ const component = {
     serviceLink: '<',
     restrictionsLink: '<',
     restrictions: '<',
+    auditLogsLink: '<',
   },
   template,
   controller,

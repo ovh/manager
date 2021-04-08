@@ -6,6 +6,7 @@ const component = {
     restrictions: '<',
     updateRestrictions: '<',
     deleteRestriction: '<',
+    sendKubeTrack: '<',
   },
   controller,
   template,

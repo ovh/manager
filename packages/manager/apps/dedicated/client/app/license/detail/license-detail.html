@@ -205,7 +205,7 @@
                     ></button>
                     <a
                         class="btn btn-default btn-block"
-                        data-ng-if="license.canBeUpgraded == true && license.isExpired == false"
+                        data-ng-if="canUpgrade && license.canBeUpgraded == true && license.isExpired == false"
                         data-ui-sref="app.license.detail.upgrade({
                        licenseId: license.id
                    })"

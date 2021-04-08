@@ -1,6 +1,8 @@
 import get from 'lodash/get';
 import head from 'lodash/head';
 
+import { PROCESS_STEP } from './pack-migration.constant';
+
 export default class TelecomPackMigrationCtrl {
   /* @ngInject */
   constructor(
@@ -37,13 +39,10 @@ export default class TelecomPackMigrationCtrl {
     return this.TucPackMigrationProcess.checkForPendingMigration()
       .then((pendingTasks) => {
         if (pendingTasks && pendingTasks.length === 1) {
-          this.process.currentStep = 'migration';
+          this.process.currentStep = PROCESS_STEP.migration;
           this.process.migrationTaskId = head(pendingTasks);
           this.process.migrationDoing = true;
         } else {
-          // Display offers
-          this.process.currentStep = 'offers';
-
           this.getPackAccess();
         }
         return this.process;
@@ -71,6 +70,8 @@ export default class TelecomPackMigrationCtrl {
           // Retrieve line associated to the service
           return this.getLine(service);
         }
+        // Display offers
+        this.process.currentStep = PROCESS_STEP.offers;
         return packServices;
       })
       .catch((error) => {
@@ -108,7 +109,7 @@ export default class TelecomPackMigrationCtrl {
             this.TucPackMigrationProcess.setBuildings(buildings);
 
             // Display buildings to select one
-            this.process.currentStep = 'buildings';
+            this.process.currentStep = PROCESS_STEP.buildings;
           } else if (buildings && buildings.length === 1) {
             const [building] = buildings;
 
@@ -120,6 +121,9 @@ export default class TelecomPackMigrationCtrl {
               );
 
             this.TucPackMigrationProcess.setSelectedBuilding(building);
+
+            // Display offers
+            this.process.currentStep = PROCESS_STEP.offers;
           }
           return data;
         }

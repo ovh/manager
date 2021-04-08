@@ -45,6 +45,8 @@ export default class KubernetesRestrictionsCtrl {
   }
 
   addRestriction() {
+    this.sendKubeTrack('details::restrictions::add');
+
     this.currentIp = null;
     this.ips.push({});
     this.selectRow(this.ips.length - 1);

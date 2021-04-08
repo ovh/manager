@@ -15,6 +15,8 @@ export default class KubernetesNodePoolsDeleteCtrl {
   }
 
   deletePoolNode() {
+    this.sendKubeTrack('details::nodepools::delete::confirm');
+
     this.isDeleting = true;
     return this.Kubernetes.deleteNodePool(
       this.projectId,
@@ -32,5 +34,10 @@ export default class KubernetesNodePoolsDeleteCtrl {
           'error',
         ),
       );
+  }
+
+  onNodePoolDeleteModalCancel() {
+    this.sendKubeTrack('details::nodepools::delete::cancel');
+    this.goBack();
   }
 }

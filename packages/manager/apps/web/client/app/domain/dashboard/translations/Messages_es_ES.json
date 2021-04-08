@@ -306,7 +306,7 @@
   "domain_configuration_fetch_fail": "Se ha producido un error al cargar la información.",
   "domain_exemple": "P. ej.:",
   "domain_and": "y <b>{{t0}}</b>",
-  "domain_tab_REDIRECTION": "Redirigiendo...",
+  "domain_tab_REDIRECTION": "Redirección",
   "domain_tab_REDIRECTION_title": "Gestión de redirecciones de los dominios y subdominios hacia otras direcciones web o servidores",
   "domain_tab_REDIRECTION_add_info": "Añadir una redirección del dominio o subdominio hacia otra dirección de internet o hacia un servidor.",
   "domain_tab_REDIRECTION_load_fail": "Se ha producido un error al cargar las redirecciones.",
@@ -827,5 +827,6 @@
   "domain_dashboard_recommended_hosting_title_Perso": "Alojamiento de su blog o sitio web",
   "domain_dashboard_recommended_hosting_label": "- {{ reduction }} en su alojamiento {{ type }} durante el Black Friday.",
   "domain_dashboard_recommended_hosting_discover": "Descubrir las soluciones",
-  "domain_tab_ZONE_no_zone_order_btn": "Contratar una zona DNS"
+  "domain_tab_ZONE_no_zone_order_btn": "Contratar una zona DNS",
+  "domain_tab_emails": "Correo electrónico y listas de correo"
 }

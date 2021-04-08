@@ -15,7 +15,7 @@ tests:
   - packages/manager/tools/testcafe/**
 translation required:
   - packages/**/Messages_fr_FR.json
-univers-public-cloud:
+universe-public-cloud:
   - packages/manager/*/pci/**
   - packages/manager/apps/public-cloud/**
 universe-bare-metal-cloud:

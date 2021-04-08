@@ -1,10 +1,23 @@
 <div class="dedicated-server-install-image-config-drive">
     <h3 data-translate="dedicated_server_install_image_config_drive"></h3>
 
-    <p
-        data-translate="dedicated_server_install_image_config_drive_eplain"
-        data-translate-values="{ href: $ctrl.documentationLink }"
-    ></p>
+    <p>
+        <span
+            data-translate="dedicated_server_install_image_config_drive_eplain"
+        ></span>
+        <a
+            data-ng-href="{{ ::$ctrl.documentationLink }}"
+            target="_blank"
+            rel="noopener"
+            data-track-on="click"
+            data-track-name="dedicated::dedicated::server::system-install::personalized-image::configdrive-documentation"
+            data-track-type="action"
+        >
+            <span
+                data-translate="dedicated_server_install_image_config_drive_eplain_link_name"
+            ></span>
+        </a>
+    </p>
 
     <oui-field data-size="xl">
         <oui-switch

@@ -17,7 +17,7 @@ export const WEATHERMAP_URL = {
 
 const COMMIT_RECOMMIT_IMPRESSION_TRACKING_DATA = {
   campaignId: '[commit-recommit]',
-  creation: '[batch1]',
+  creation: '[batch2]',
   format: '[link]',
   generalPlacement: '[dedicated-server]',
   detailedPlacement: '[commitment]',

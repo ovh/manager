@@ -1302,12 +1302,12 @@ export default class PrivateDatabase {
         start: this.constructor.getStartTime(opts.range),
         queries: [
           {
-            metric: 'metrics.exec_memsw',
+            metric: 'dbaas.metrics.exec_memsw',
             aggregator: 'sum',
             downsample: downSample,
           },
           {
-            metric: 'metrics.mysql_threads_connected',
+            metric: 'dbaas.metrics.mysql_threads_connected',
             aggregator: 'sum',
             downsample: downSample,
           },

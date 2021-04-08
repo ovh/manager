@@ -9,6 +9,7 @@ const component = {
     nodeId: '<',
     nodeName: '<',
     projectId: '<',
+    sendKubeTrack: '<',
   },
   controller,
   template,

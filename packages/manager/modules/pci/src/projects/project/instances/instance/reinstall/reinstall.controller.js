@@ -1,8 +1,17 @@
 import get from 'lodash/get';
+import { EDIT_PAGE_SECTIONS } from '../instance.constants';
 
 export default class PciInstanceReinstallController {
   /* @ngInject */
-  constructor($translate, CucCloudMessage, PciProjectsProjectInstanceService) {
+  constructor(
+    $anchorScroll,
+    $location,
+    $translate,
+    CucCloudMessage,
+    PciProjectsProjectInstanceService,
+  ) {
+    this.$anchorScroll = $anchorScroll;
+    this.$location = $location;
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.PciProjectsProjectInstanceService = PciProjectsProjectInstanceService;
@@ -43,5 +52,17 @@ export default class PciInstanceReinstallController {
       .finally(() => {
         this.isLoading = false;
       });
+  }
+
+  /**
+   * This function is used in case where customer image is deprecated
+   * To allow him to choose and install new image
+   * @returns {Promise}
+   */
+  goToEditAnInstance() {
+    return this.editInstance(this.instance).then(() => {
+      this.$location.hash(EDIT_PAGE_SECTIONS.IMAGES);
+      this.$anchorScroll();
+    });
   }
 }

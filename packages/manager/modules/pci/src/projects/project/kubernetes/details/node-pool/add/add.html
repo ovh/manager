@@ -56,8 +56,8 @@
         data-navigation="$ctrl.nodePool.flavor && !$ctrl.isAdding"
         data-submit-text="{{ ::'kube_common_save' | translate }}"
         data-cancel-text="{{ ::'kube_common_cancel' | translate }}"
-        data-cancel-href="{{$ctrl.cancelLink}}"
         data-on-submit="$ctrl.create()"
+        data-on-cancel="$ctrl.onNodePoolAddModalCancel()"
         name="nodepool_add_billing_info"
     >
         <node-pool-anti-affinity

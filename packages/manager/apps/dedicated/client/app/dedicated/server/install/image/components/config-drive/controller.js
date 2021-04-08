@@ -3,7 +3,9 @@ import some from 'lodash/some';
 import { DOCUMENTATION_LINK, SUPPORTED_SSH_KEY_FORMATS } from './constants';
 
 export default class DedicatedServerInstallImageConfigDriveCtrl {
-  constructor() {
+  /* @ngInject */
+  constructor(atInternet) {
+    this.atInternet = atInternet;
     this.documentationLink = DOCUMENTATION_LINK;
     this.supportedSshFormatsNames = SUPPORTED_SSH_KEY_FORMATS.map(
       ({ name }) => name,
@@ -46,6 +48,5 @@ export default class DedicatedServerInstallImageConfigDriveCtrl {
   onMetadataDeleteBtnClick(index) {
     this.model.configdrive.metadata.splice(index, 1);
   }
-
   /* -----  End of Events  ------*/
 }

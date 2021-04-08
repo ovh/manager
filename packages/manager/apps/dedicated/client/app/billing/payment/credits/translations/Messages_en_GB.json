@@ -12,7 +12,7 @@
   "billing_credit_balance_header_amount": "Amount",
   "billing_credit_balance_header_movements": "Operations",
   "billing_credit_balance_movements_details": "Details of operations",
-  "billing_credit_balance_movements_title": "Details of {{t0}} voucher operations",
+  "billing_credit_balance_movements_title": "Details of operations for your {{t0}} voucher",
   "billing_credit_balance_movements_back": "Back to your vouchers",
   "billing_credit_balance_movements_header_date": "Date",
   "billing_credit_balance_movements_header_operation": "Operation",

@@ -1,0 +1,6 @@
+{
+  "kube_logs_tab_title": "Audit Logs",
+  "kube_logs_list_no_logs": "Pending logs...",
+  "kube_logs_description": "Here, you will find the logs for your Kubernetes cluster’s control-plane. To observe your business pods, please follow the documentation.",
+  "kube_logs_description_link": "Find out more."
+}

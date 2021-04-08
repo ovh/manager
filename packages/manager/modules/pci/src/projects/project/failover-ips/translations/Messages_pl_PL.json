@@ -10,5 +10,6 @@
   "pci_projects_project_failoverip_mitigation": "Włącz/Wyłącz filtrowanie",
   "pci_projects_project_failoverip_firewall": "Skonfiguruj firewall",
   "pci_projects_project_failoverip_actions": "Operacje",
-  "pci_projects_project_failoverip_order": "Zamów adresy IP Failover"
+  "pci_projects_project_failoverip_order": "Zamów adresy IP Failover",
+  "pci_projects_project_failoverip_slowness_information": "Ze względu na wyjątkowy wzrost liczby zgłoszeń czas odpowiedzi może się znacznie wydłużyć.  Niemniej jednak każde zgłoszenie zostanie przetworzone w ciągu kilku godzin. Przepraszamy za niedogodności."
 }

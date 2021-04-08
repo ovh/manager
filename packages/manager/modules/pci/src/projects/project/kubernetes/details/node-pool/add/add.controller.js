@@ -41,6 +41,8 @@ export default class {
   }
 
   create() {
+    this.sendKubeTrack('details::nodepools::add::confirm');
+
     this.isAdding = true;
     return this.Kubernetes.createNodePool(this.projectId, this.kubeId, {
       desiredNodes: this.nodePool.nodeCount,
@@ -93,5 +95,10 @@ export default class {
     if (this.nodePool.nodeCount > this.antiAffinityMaxNodes) {
       this.nodePool.antiAffinity = false;
     }
+  }
+
+  onNodePoolAddModalCancel() {
+    this.sendKubeTrack('details::nodepools::add::cancel');
+    this.goBack();
   }
 }

@@ -15,6 +15,10 @@ export default class KubernetesNodesDeleteCtrl {
   }
 
   deleteNode() {
+    this.sendKubeTrack(
+      'details::nodepools::details::nodes::bulk-delete::confirm',
+    );
+
     this.isDeleting = true;
     return this.Kubernetes.resizeNodePool(
       this.projectId,
@@ -33,5 +37,12 @@ export default class KubernetesNodesDeleteCtrl {
           'error',
         ),
       );
+  }
+
+  onBulkDeleteModalCancel() {
+    this.sendKubeTrack(
+      'details::nodepools::details::nodes::bulk-delete::cancel',
+    );
+    this.goBack();
   }
 }

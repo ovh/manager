@@ -13,12 +13,14 @@ import deleteInstance from './delete';
 import edit from './edit';
 import hardReboot from './hard-reboot';
 import reinstall from './reinstall';
-import start from './start';
-import stop from './stop';
 import rescue from './rescue';
 import resume from './resume';
+import shelve from './shelve';
 import softReboot from './soft-reboot';
+import start from './start';
+import stop from './stop';
 import unrescue from './unrescue';
+import unshelve from './unshelve';
 import vnc from './vnc';
 
 import component from './instance.component';
@@ -31,6 +33,7 @@ angular
     'ui.router',
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
+    ovhManagerAdvices,
     activeMonthlyBilling,
     applicationAccess,
     attachPrivateNetwork,
@@ -40,14 +43,15 @@ angular
     edit,
     hardReboot,
     reinstall,
-    start,
-    stop,
     rescue,
     resume,
+    shelve,
     softReboot,
+    start,
+    stop,
     unrescue,
+    unshelve,
     vnc,
-    ovhManagerAdvices,
   ])
   .config(routing)
   .component('pciProjectsProjectInstancesInstance', component)

@@ -10,16 +10,18 @@ import backup from './backup';
 import hardReboot from './hard-reboot';
 import help from './help';
 import instance from './instance';
-import start from './start';
-import stop from './stop';
 import instancesDelete from './delete';
 import onboarding from './onboarding';
-import reinstall from './reinstall';
 import regionsList from './add/regions-list';
+import reinstall from './reinstall';
 import rescue from './rescue';
 import resume from './resume';
+import shelve from './shelve';
 import softReboot from './soft-reboot';
+import start from './start';
+import stop from './stop';
 import unrescue from './unrescue';
+import unshelve from './unshelve';
 
 import privateNetworks from '../private-networks/private-networks.module';
 
@@ -37,17 +39,19 @@ angular
     hardReboot,
     help,
     instance,
-    start,
-    stop,
     instancesDelete,
     onboarding,
     privateNetworks,
-    reinstall,
     regionsList,
+    reinstall,
     rescue,
     resume,
+    shelve,
     softReboot,
+    start,
+    stop,
     unrescue,
+    unshelve,
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
     'ovh-api-services',

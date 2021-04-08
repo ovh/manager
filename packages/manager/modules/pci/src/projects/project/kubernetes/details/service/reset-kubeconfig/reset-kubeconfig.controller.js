@@ -15,6 +15,8 @@ export default class kubernetesResetCtrl {
   }
 
   reset() {
+    this.sendKubeTrack('details::service::reset-kubeconfig::confirm');
+
     this.isReseting = true;
     return this.OvhApiCloudProjectKube.v6()
       .resetKubeConfig(
@@ -42,5 +44,10 @@ export default class kubernetesResetCtrl {
           'error',
         ),
       );
+  }
+
+  onResetKubeModalCancel() {
+    this.sendKubeTrack('details::service::reset-kubeconfig::cancel');
+    this.goBack();
   }
 }

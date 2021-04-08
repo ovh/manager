@@ -107,6 +107,11 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           instanceId: instance.id,
         }),
+      shelveInstance: /* @ngInject */ ($state, instance, projectId) => () =>
+        $state.go('pci.projects.project.instances.instance.shelve', {
+          projectId,
+          instanceId: instance.id,
+        }),
       startInstance: /* @ngInject */ ($state, instance, projectId) => () =>
         $state.go('pci.projects.project.instances.instance.start', {
           projectId,
@@ -114,6 +119,11 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
       stopInstance: /* @ngInject */ ($state, instance, projectId) => () =>
         $state.go('pci.projects.project.instances.instance.stop', {
+          projectId,
+          instanceId: instance.id,
+        }),
+      unshelveInstance: /* @ngInject */ ($state, instance, projectId) => () =>
+        $state.go('pci.projects.project.instances.instance.unshelve', {
           projectId,
           instanceId: instance.id,
         }),

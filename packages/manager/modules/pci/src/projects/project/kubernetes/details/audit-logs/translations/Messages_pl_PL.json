@@ -1,0 +1,6 @@
+{
+  "kube_logs_tab_title": "Audit Logs",
+  "kube_logs_list_no_logs": "Oczekiwanie na logi",
+  "kube_logs_description": "Tutaj znajdziesz logi control-plane Twojego klastra Kubernetes. Aby obserwować pody biznesowe, śledź dokumentację.",
+  "kube_logs_description_link": "Dowiedz się więcej."
+}

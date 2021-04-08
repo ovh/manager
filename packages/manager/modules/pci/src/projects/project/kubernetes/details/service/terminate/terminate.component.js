@@ -8,6 +8,7 @@ const component = {
     goBack: '<',
     isLegacyCluster: '<',
     projectId: '<',
+    sendKubeTrack: '<',
   },
   template,
   controller,

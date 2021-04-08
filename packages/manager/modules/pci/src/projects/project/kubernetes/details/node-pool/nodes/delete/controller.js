@@ -15,6 +15,8 @@ export default class KubernetesNodesDeleteCtrl {
   }
 
   deleteNode() {
+    this.sendKubeTrack('details::nodepools::details::nodes::delete::confirm');
+
     this.isDeleting = true;
     return this.OvhApiCloudProjectKube.Node()
       .v6()
@@ -34,5 +36,10 @@ export default class KubernetesNodesDeleteCtrl {
           'error',
         ),
       );
+  }
+
+  onKubeNodesDeleteModalCancel() {
+    this.sendKubeTrack('details::nodepools::details::nodes::delete::cancel');
+    this.goBack();
   }
 }

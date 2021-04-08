@@ -29,4 +29,13 @@ export default class {
       [],
     );
   }
+
+  onAddClusterClick() {
+    this.sendKubeTrack('onboarding::add-first');
+    this.addCluster();
+  }
+
+  onDocumentationClick(guide) {
+    this.sendKubeTrack(`onboarding::documentation::${guide.id}`);
+  }
 }

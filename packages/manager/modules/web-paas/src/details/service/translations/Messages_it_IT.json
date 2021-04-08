@@ -1,0 +1,18 @@
+{
+  "web_paas_service_project_information": "Informazioni generali",
+  "web_paas_service_project_name": "Nome del progetto",
+  "web_paas_service_project_status": "Stato del progetto",
+  "web_paas_service_project_id": "Identificativo del pack",
+  "web_paas_service_project_plan_type": "Gamme",
+  "web_paas_service_project_region": "Region",
+  "web_paas_service_project_upgrade": "Passa all'offerta superiore",
+  "web_paas_service_project_user_licence": "{{ numLicence }} licenza utente",
+  "web_paas_service_project_user_licence_available": "{{ numLicenceAvailable }} licenza utente disponibile",
+  "web_paas_service_project_new": "Nuovo progetto",
+  "web_paas_service_project_access": "Accedi al progetto",
+  "web_paas_service_project_cancel": "Elimina il progetto",
+  "web_paas_service_project_manage_title": "Interfaccia di gestione",
+  "web_paas_service_project_edit": "Modifica il nome del progetto",
+  "web_paas_service_project_configuration": "Configurazione",
+  "web_paas_service_project_storage": "{{ storageSize }} GB di storage"
+}
