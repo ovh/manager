@@ -19,6 +19,7 @@
     "punycode": "^1.4.1"
   },
   "peerDependencies": {
+    "@ovh-ux/manager-advices": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-core": "^11.0.0 || ^12.0.0",
     "@ovh-ux/manager-ng-layout-helpers": "^1.1.0 || ^2.0.0",
     "@ovh-ux/ng-at-internet": "^5.4.1",

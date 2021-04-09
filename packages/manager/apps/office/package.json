@@ -18,11 +18,13 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-office-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
+    "@ovh-ux/manager-advices": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-config": "^4.0.0 || ^5.0.0",
     "@ovh-ux/manager-core": "^12.0.0",
     "@ovh-ux/manager-ng-layout-helpers": "^1.1.0 || ^2.0.0",
     "@ovh-ux/manager-office": "^2.0.0",
     "@ovh-ux/manager-preloader": "^1.1.0",
+    "@ovh-ux/ng-at-internet": "^5.5.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.4",
     "@ovh-ux/ng-ovh-http": "^5.0.1",
     "@ovh-ux/ng-ovh-payment-method": "^8.0.0",
