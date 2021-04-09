@@ -344,4 +344,11 @@
             </div>
         </div>
     </div>
+    <hosting-multisite-statistics
+        data-ng-if="!loading.domains && hosting.hasCdn && activeDomains.length"
+        chart-js-factory="getChartJsInstance"
+        domains="activeDomains"
+        get-statistics="getStatistics"
+        periods="periods"
+    ></hosting-multisite-statistics>
 </div>
