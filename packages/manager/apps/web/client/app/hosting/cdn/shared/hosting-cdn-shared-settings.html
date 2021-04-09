@@ -349,7 +349,7 @@
                     class="oui-paragraph"
                     data-translate="hosting_cdn_shared_option_waf_description"
                 ></div>
-                <oui-switch model="$ctrl.model.waf.enabled"> </oui-switch>
+                <oui-switch model="$ctrl.model.waf.enabled"></oui-switch>
                 <strong
                     data-ng-bind="$ctrl.getSwitchBtnStatusText($ctrl.model.waf.enabled)"
                 ></strong>
@@ -360,7 +360,7 @@
             size="l"
             variant="secondary"
             disabled="status.inProgress"
-            data-on-click="$ctrl.onCancel()"
+            on-click="$ctrl.onCancel()"
         >
             <span
                 data-translate="hosting_cdn_shared_option_cache_rule_btn_cancel"
