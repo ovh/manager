@@ -1,3 +1,12 @@
+## [0.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-sharepoint-app@0.1.1...@ovh-ux/manager-sharepoint-app@0.1.2) (2021-04-09)
+
+
+### Bug Fixes
+
+* **deps:** add missing deps related to @ovh-ux/manager-advices ([#4727](https://github.com/ovh/manager/issues/4727)) ([73bd7e5](https://github.com/ovh/manager/commit/73bd7e537ac87667de6305b13293c5c9213c47ad)), closes [#4597](https://github.com/ovh/manager/issues/4597)
+
+
+
 ## [0.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sharepoint-app@0.1.0...@ovh-ux/manager-sharepoint-app@0.1.1) (2021-04-08)
 
 

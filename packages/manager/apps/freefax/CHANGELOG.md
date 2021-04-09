@@ -1,3 +1,12 @@
+## [6.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax-app@6.2.3...@ovh-ux/manager-freefax-app@6.2.4) (2021-04-09)
+
+
+### Bug Fixes
+
+* **deps:** add missing deps related to @ovh-ux/manager-advices ([#4727](https://github.com/ovh/manager/issues/4727)) ([73bd7e5](https://github.com/ovh/manager/commit/73bd7e537ac87667de6305b13293c5c9213c47ad)), closes [#4597](https://github.com/ovh/manager/issues/4597)
+
+
+
 ## [6.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax-app@6.2.2...@ovh-ux/manager-freefax-app@6.2.3) (2021-04-08)
 
 
