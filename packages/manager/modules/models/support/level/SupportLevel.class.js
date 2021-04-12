@@ -15,12 +15,20 @@ export default class SupportLevel {
     );
   }
 
-  isPremium() {
-    return this.level === 'premium';
-  }
-
   isAdvancedPremium() {
     return this.level === 'premium-accredited';
+  }
+
+  isBusiness() {
+    return this.level === 'business';
+  }
+
+  isEnterprise() {
+    return this.level === 'enterprise';
+  }
+
+  isPremium() {
+    return this.level === 'premium';
   }
 
   isStandard() {
