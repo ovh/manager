@@ -13,11 +13,11 @@
     >
         <div class="block-emphasis">
             <div class="radio">
-                <label for="offerChange">
+                <label for="offerChange-{{$index}}">
                     <input
                         type="radio"
-                        id="offerChange"
-                        name="offerChange"
+                        id="offerChange-{{$index}}"
+                        name="offerChange-{{$index}}"
                         data-ng-model="$ctrl.offerModel"
                         data-ng-change="$ctrl.selectOffer(offer.product.code)"
                         data-ng-value="offer"
