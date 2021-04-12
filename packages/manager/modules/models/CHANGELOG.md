@@ -1,3 +1,12 @@
+# [1.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@1.7.0...@ovh-ux/manager-models@1.8.0) (2021-04-12)
+
+
+### Features
+
+* **models.support.level:** add is_enterprise and is_business functions ([b492a80](https://github.com/ovh/manager/commit/b492a80edbdcf9fc9133fe4382aab5d5ea9cd031))
+
+
+
 # [1.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@1.6.2...@ovh-ux/manager-models@1.7.0) (2021-03-31)
 
 

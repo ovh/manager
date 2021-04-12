@@ -1,3 +1,26 @@
+# [5.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.18.0...@ovh-ux/manager-pci@5.19.0) (2021-04-12)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 867] ([14da024](https://github.com/ovh/manager/commit/14da0242ff22ebc8a4dd870fe9f04317e650e4a5))
+* **pci.projects.creating:** find and get project item not first item ([6f0e08b](https://github.com/ovh/manager/commit/6f0e08b6aa22354f671c69111a54582dc8880120))
+
+
+### Features
+
+* **pci:** add model dependency ([c9de352](https://github.com/ovh/manager/commit/c9de352b15046573ba11a9813e0315b3316375b9))
+* **pci.components.hds:** implement reusable hds component ([5bed584](https://github.com/ovh/manager/commit/5bed584b46a9d833e9d20de2618ce32f3e5be6ad))
+* **pci.projects:** setup project dependencies ([f7826a7](https://github.com/ovh/manager/commit/f7826a7ce1671c8547509a17bcf2bd493bd8043e))
+* **pci.projects.new:** setup dependencies ([81206f2](https://github.com/ovh/manager/commit/81206f259fb68d304c12d6870f470e2fb17bd8c6))
+* **pci.projects.new.classes:** add new functions ([65c3567](https://github.com/ovh/manager/commit/65c3567bed9bc5371a442a84408fb71ad5de511b))
+* **pci.projects.new.config:** implement support of hds option ([a0c1307](https://github.com/ovh/manager/commit/a0c13073e5d7220f55a8221161377993af950706))
+* **pci.projects.project:** add hds addon dependency ([3f9d38d](https://github.com/ovh/manager/commit/3f9d38d35420c595d1a732c1fac52b73a0f9a31a))
+* **pci.projects.project.edit:** setup hds dependencies ([4d7a4e8](https://github.com/ovh/manager/commit/4d7a4e83bc9644a89d790586d52c773f95773f57))
+* **pci.projects.project.edit.hds:** add hds html component section ([aafdb92](https://github.com/ovh/manager/commit/aafdb923dc59def4bf83c66427e2e44d58e59f9d))
+
+
+
 # [5.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.17.0...@ovh-ux/manager-pci@5.18.0) (2021-04-08)
 
 
