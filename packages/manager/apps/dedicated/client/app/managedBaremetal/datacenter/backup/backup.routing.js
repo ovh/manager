@@ -185,12 +185,7 @@ export default /* @ngInject */ ($stateProvider) => {
           );
           if (message) {
             return promise.then(() => {
-              Alerter.set(
-                `alert-${type}`,
-                message,
-                null,
-                'app.managedBaremetal.details.datacenters.datacenter.backup',
-              );
+              Alerter.set(`alert-${type}`, message, null, 'datacenterBackup');
             });
           }
           return promise;

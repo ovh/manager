@@ -168,12 +168,7 @@ export default /* @ngInject */ ($stateProvider) => {
         );
         if (message) {
           return promise.then(() => {
-            Alerter.set(
-              `alert-${type}`,
-              message,
-              null,
-              'app.dedicatedCloud.details.datacenter.details.backup',
-            );
+            Alerter.set(`alert-${type}`, message, null, 'datacenterBackup');
           });
         }
         return promise;
