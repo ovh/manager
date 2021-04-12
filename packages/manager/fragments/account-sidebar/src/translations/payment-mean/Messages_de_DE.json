@@ -1,0 +1,14 @@
+{
+  "hub_payment_mean_title": "Zahlungsmittel",
+  "hub_payment_mean_status_CANCELED": "Abgebrochen",
+  "hub_payment_mean_status_CANCELING": "Wird abgebrochen",
+  "hub_payment_mean_status_CREATED": "Erstellt",
+  "hub_payment_mean_status_ERROR": "Fehler",
+  "hub_payment_mean_status_EXPIRED": "Abgelaufen",
+  "hub_payment_mean_status_CREATING": "Wird erstellt",
+  "hub_payment_mean_status_MAINTENANCE": "Wartungsarbeiten laufen",
+  "hub_payment_mean_status_PAUSED": "Pausiert",
+  "hub_payment_mean_status_VALID": "Gültig",
+  "hub_payment_mean_none": "Kein Zahlungsmittel",
+  "hub_payment_mean_status_TOO_MANY_FAILURES": "Ungültig"
+}
