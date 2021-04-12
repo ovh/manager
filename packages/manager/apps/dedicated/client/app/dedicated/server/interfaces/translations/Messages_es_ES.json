@@ -10,7 +10,7 @@
   "dedicated_server_interfaces_step_checker_list_connectivity": "Conectividad redundada",
   "dedicated_server_interfaces_step_checker_list_security": "Seguridad de las máquinas",
   "dedicated_server_interfaces_step_checker_list_reversible": "Reversibilidad a voluntad",
-  "dedicated_server_interfaces_step_checker_list_free": "Gratuito",
+  "dedicated_server_interfaces_step_checker_list_free": "Gratis",
   "dedicated_server_interfaces_step_checker_text1": "Con OLA, podrá utilizar conjuntamente las conexiones de red de un servidor de OVHcloud.",
   "dedicated_server_interfaces_step_checker_text2": "De este modo, podrá asociar sus interfaces de red (tarjetas de redes físicas) del servidor para crear una única interfaz de red virtual. Si lo necesita, podrá ampliar el ancho de banda adicional (solo para la agregación en la red privada vRack).",
   "dedicated_server_interfaces_step_checker_text3": "En un primer momento, solo está disponible para la red privada vRack.",

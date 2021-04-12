@@ -1,9 +1,9 @@
 {
-  "billing_ovhaccount_refund": "Ask for refund",
-  "billing_ovhaccount_refund_cancel": "Cancel",
-  "billing_ovhaccount_refund_confirm": "Confirm",
-  "billing_ovhaccount_refund_description": "You are about to request a refund of {{amount}}. This amount will be refunded on the original payment method",
-  "billing_ovhaccount_refund_description_confirm": "Are you sure to process the refund?",
-  "billing_ovhaccount_refund_success": "Your refund request of {{amount}} has been submitted successfully and will be processed shortly.",
-  "billing_ovhaccount_refund_error": "An error has occured while requesting for a refund."
+  "billing_ovhaccount_refund": "Solicitar un reembolso",
+  "billing_ovhaccount_refund_cancel": "Cancelar",
+  "billing_ovhaccount_refund_confirm": "Confirmar la solicitud",
+  "billing_ovhaccount_refund_description": "Va a solicitar el reembolso de {{ amount }}. Será reembolsado en la forma de pago original.",
+  "billing_ovhaccount_refund_description_confirm": "¿Quiere solicitar el reembolso?",
+  "billing_ovhaccount_refund_success": "La solicitud de reembolso de {{amount}} se ha enviado y será tratada lo antes posible.",
+  "billing_ovhaccount_refund_error": "Se ha producido un error al solicitar el reembolso."
 }

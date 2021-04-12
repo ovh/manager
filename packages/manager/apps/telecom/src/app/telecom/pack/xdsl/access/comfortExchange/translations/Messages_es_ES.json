@@ -4,7 +4,7 @@
   "xdsl_access_comfort_exchange_warning_part1": "Este cambio tiene como único objetivo ofrecerle un módem más reciente cuando las funcionalidades de su módem actual no se corresponden con sus necesidades.",
   "xdsl_access_comfort_exchange_warning_part2": "Si su módem actual no funciona correctamente, no solicite su sustitución a través de esta herramienta y póngase en contacto con el equipo de soporte.",
   "xdsl_access_comfort_exchange_confirm_title": "¿Seguro/a que quiere realizar este cambio?",
-  "xdsl_access_comfort_exchange_confirm_subtitle": "El módem se enviará automáticamente a la dirección de conexión.",
+  "xdsl_access_comfort_exchange_confirm_subtitle": "El módem se enviará automáticamente a la dirección de contacto seleccionada.",
   "xdsl_access_comfort_exchange_success_message": "Recibirá un mensaje de correo electrónico con el procedimiento que debe seguir para devolver su módem antiguo.",
   "xdsl_access_comfort_exchange_error_ERR011": "Se ha producido un error al cargar los datos de acceso a internet.",
   "xdsl_access_comfort_exchange_error_ERR012": "Se ha producido un error al cargar la información relativa al contrato de internet.",
@@ -30,5 +30,7 @@
   "xdsl_access_comfort_exchange_rma_reference": "Referencia del RMA",
   "xdsl_access_comfort_exchange_rma_equipment_reference": "Referencia del equipo",
   "xdsl_access_comfort_exchange_rma_status": "Fecha de la solicitud",
-  "xdsl_access_comfort_exchange_link_in_new_tab": "En enlace de la orden de pedido se abrirá en una nueva pestaña"
+  "xdsl_access_comfort_exchange_link_in_new_tab": "En enlace de la orden de pedido se abrirá en una nueva pestaña",
+  "xdsl_access_comfort_exchange_shipping_addresses_error": "¡Vaya! Se ha producido un error al cargar las direcciones de entrega.",
+  "xdsl_access_comfort_exchange_shipping_contact": "Dirección de entrega del nuevo módem"
 }

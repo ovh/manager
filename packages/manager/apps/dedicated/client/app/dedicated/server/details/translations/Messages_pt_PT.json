@@ -1036,7 +1036,7 @@
   "server_ola": "OVHcloud Link Aggregation",
   "server_ola_mode": "Modo",
   "server_ola_active": "Disponível",
-  "server_ola_inactive": "Indisponível ",
+  "server_ola_inactive": "Indisponível",
   "server_ola_activate": "Ativar a opção OLA",
   "server_ola_configure": "Configurar a agregação privada",
   "server_ola_terminate": "Rescindir a opção OLA",
