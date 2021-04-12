@@ -3,9 +3,5 @@
   "pci_projects_hds_description": "Alojamiento de datos de salud y certificación HDS para este proyecto. ",
   "pci_projects_hds_description_link": "Consulte la página dedicada.",
   "pci_projects_hds_banner_info": "Es necesario contratar un nivel de soporte Business o Enterprise para alojar datos de salud y disfrutar de la certificación HDS en sus servicios de OVHcloud.",
-  "pci_projects_hds_banner_info_link": "Más información.",
-  "pci_projects_hds_description_part_1": "Alojamiento de datos de salud y certificación HDS para este proyecto. ",
-  "pci_projects_hds_description_part_2": "Consulte la lista de países afectados.",
-  "pci_projects_hds_description_part_2_link": "Visite nuestra página dedicada ",
-  "pci_projects_hds_description_part_3": " para consultar la lista de los países afectados."
+  "pci_projects_hds_banner_info_link": "Más información."
 }

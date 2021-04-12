@@ -3,9 +3,5 @@
   "pci_projects_hds_description": "Healthcare data hosting and HDS certification for this project. ",
   "pci_projects_hds_description_link": "Visit the dedicated page.",
   "pci_projects_hds_banner_info": "To host healthcare data, you need to sign up to Business or Enterprise support — and you will need to have HDS certification for your OVHcloud services.",
-  "pci_projects_hds_banner_info_link": "Find out more.",
-  "pci_projects_hds_description_part_1": "Healthcare data hosting and HDS certification for this project. ",
-  "pci_projects_hds_description_part_2": "View the list of countries concerned.",
-  "pci_projects_hds_description_part_2_link": "Visit our dedicated page ",
-  "pci_projects_hds_description_part_3": " for a list of the countries concerned."
+  "pci_projects_hds_banner_info_link": "Find out more."
 }
