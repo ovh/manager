@@ -8,6 +8,7 @@ export default class DialplanExtensionRuleCtrl {
     $scope,
     $timeout,
     $translate,
+    atInternet,
     autoScrollOnToggle,
     TelephonyMediator,
     TucToast,
@@ -16,6 +17,7 @@ export default class DialplanExtensionRuleCtrl {
     this.$scope = $scope;
     this.$timeout = $timeout;
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.autoScrollOnToggle = autoScrollOnToggle;
     this.TelephonyMediator = TelephonyMediator;
     this.TucToast = TucToast;
@@ -117,6 +119,10 @@ export default class DialplanExtensionRuleCtrl {
 
   openPopOver() {
     this.popoverStatus.isOpen = true;
+    this.atInternet.trackClick({
+      name: `ccs::dialplan::actions-step-${this.extension.position}::modify-action`,
+      type: 'action',
+    });
   }
 
   onDeleteButtonClick() {
@@ -139,6 +145,10 @@ export default class DialplanExtensionRuleCtrl {
 
         // display information about rule count
         this.extensionCtrl.checkForDisplayHelpers();
+        this.atInternet.trackClick({
+          name: `ccs::dialplan::actions-step-${this.extension.position}::delete-action`,
+          type: 'action',
+        });
       },
       (error) => {
         this.TucToast.error(
