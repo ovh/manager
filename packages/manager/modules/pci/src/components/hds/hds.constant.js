@@ -12,8 +12,7 @@ export const HDS_INFO = {
   IE: 'https://www.ovhcloud.com/en-ie/enterprise/certification-conformity/hds/',
   IT: 'https://www.ovhcloud.com/it/enterprise/certification-conformity/hds/',
   MA: 'https://www.ovhcloud.com/fr-ma/enterprise/certification-conformity/hds/',
-  NL:
-    'https://www.ovhcloud.com/nl/enterprise/products/hosted-private-cloud/safety-compliance/hds/',
+  NL: 'https://www.ovhcloud.com/nl/enterprise/certification-conformity/hds/',
   PL: 'https://www.ovhcloud.com/pl/enterprise/certification-conformity/hds/',
   PT: 'https://www.ovhcloud.com/pt/enterprise/certification-conformity/hds/',
   QC: 'https://www.ovhcloud.com/fr-ca/enterprise/certification-conformity/hds/',

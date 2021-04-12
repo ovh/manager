@@ -18,7 +18,7 @@ export default /* @ngInject */ ($stateProvider) => {
           .then(({ data }) => data),
       requestRefund: /* @ngInject */ ($http, accountId, movement) => () =>
         $http.post(
-          `/me/ovhAccount/${accountId}/movement/${movement.movementId}/requestRefund`,
+          `/me/ovhAccount/${accountId}/movements/${movement.movementId}/requestRefund`,
           {
             amount: movement.retrievableAmount.value * 100,
           },
