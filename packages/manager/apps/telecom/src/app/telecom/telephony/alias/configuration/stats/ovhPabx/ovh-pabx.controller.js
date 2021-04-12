@@ -6,12 +6,20 @@ export default /* @ngInject */ function TelecomTelephonyAliasConfigurationStatsO
   $stateParams,
   $q,
   $timeout,
+  atInternet,
   OvhApiTelephony,
   TucToastError,
 ) {
   const self = this;
   let poller = null;
   let stopPolling = false;
+
+  this.$onInit = function $onInit() {
+    atInternet.trackClick({
+      name: 'ccs::group-number::consult-the-dashboard',
+      type: 'navigation',
+    });
+  };
 
   function init() {
     self.apiEndpoint = OvhApiTelephony.OvhPabx();

@@ -10,6 +10,7 @@ export default class TelephonyNumberCtrl {
     $q,
     $translate,
     $translatePartialLoader,
+    atInternet,
     autoScrollOnToggle,
     tucJsPlumbService,
     TucToast,
@@ -17,6 +18,7 @@ export default class TelephonyNumberCtrl {
     this.$q = $q;
     this.$translate = $translate;
     this.$translatePartialLoader = $translatePartialLoader;
+    this.atInternet = atInternet;
     this.autoScrollOnToggle = autoScrollOnToggle;
     this.tucJsPlumbService = tucJsPlumbService;
     this.TucToast = TucToast;
@@ -89,5 +91,11 @@ export default class TelephonyNumberCtrl {
 
   toggleCcsLayout() {
     this.verticalLayout = !this.verticalLayout;
+    this.atInternet.trackClick({
+      name: `ccs::change-layout::to-${
+        this.verticalLayout ? 'vertical' : 'horizontal'
+      }`,
+      type: 'action',
+    });
   }
 }
