@@ -1,4 +1,6 @@
 import component from './component';
+import { PCI_PROJECT_ORDER_CART } from '../constants';
+import { PCI_HDS_ADDON } from '../../project/project.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.new.config', {
@@ -28,15 +30,47 @@ export default /* @ngInject */ ($stateProvider) => {
         return $state.href(actionState);
       },
 
-      summary: /* @ngInject */ (cart, orderCart) =>
-        orderCart.getSummary(cart.cartId),
-
       goToPayment: /* @ngInject */ ($state, cart) => () =>
         $state.go('pci.projects.new.payment', {
           cartId: cart.cartId,
         }),
 
+      hds: /* @ngInject */ (
+        hdsAddonOption,
+        isHdsAvailable,
+        isValidHdsSupportLevel,
+      ) => {
+        return {
+          isAvailable: isHdsAvailable,
+          isCertifiedProject: false,
+          isValidForCertification: true,
+          isValidSupportLevel: isValidHdsSupportLevel,
+          isInprogressRequest: false,
+          option: hdsAddonOption,
+        };
+      },
+
+      hdsAddonOption: /* @ngInject */ (orderCart, cart) =>
+        orderCart.getHdsAddon(
+          cart.cartId,
+          PCI_PROJECT_ORDER_CART.productName,
+          PCI_PROJECT_ORDER_CART.planCode,
+          PCI_HDS_ADDON.planCode,
+        ),
+
       step: /* @ngInject */ (getStep) => getStep('configuration'),
+
+      summary: /* @ngInject */ (cart, getSummary) => getSummary(),
+
+      getSummary: /* @ngInject */ (cart, orderCart) => () =>
+        orderCart.getSummary(cart.cartId),
+
+      trackClick: /* @ngInject */ (atInternet) => (hit) => {
+        atInternet.trackClick({
+          name: hit,
+          type: 'action',
+        });
+      },
     },
   });
 };

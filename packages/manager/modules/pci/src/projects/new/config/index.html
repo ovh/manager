@@ -31,6 +31,15 @@
     <!-- voucher -->
     <div class="mb-3" data-ui-view="voucher"></div>
 
+    <!-- HDS checkbox and banner info -->
+    <hds-option
+        data-ng-if="$ctrl.hds.isAvailable"
+        data-hds="$ctrl.hds"
+        data-model="$ctrl.model"
+        data-on-hds-checkbox-changed="$ctrl.onHdsCheckboxChanged(hdsCheckbox)"
+    >
+    </hds-option>
+
     <!-- contracts -->
     <ovh-contracts-summary
         data-items="$ctrl.summary.contracts"
@@ -47,7 +56,7 @@
             class="oui-button oui-button_primary oui-button_icon-right no-transition"
             type="submit"
             form="projectConfigForm"
-            data-ng-disabled="!$ctrl.model.agreements"
+            data-ng-disabled="!$ctrl.model.agreements || $ctrl.hds.isInprogressRequest"
         >
             <span data-translate="pci_project_new_config_btn_continue"></span>
             <span class="oui-icon oui-icon-chevron-right" aria-hidden="true">

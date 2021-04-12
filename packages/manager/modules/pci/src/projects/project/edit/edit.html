@@ -29,6 +29,18 @@
         {{ ::'pci_projects_project_edit_update' | translate }}
     </oui-button>
 </form>
+
+<!--HDS section-->
+<div class="mt-4 pt-4 border-top" data-ng-if="$ctrl.hds.isAvailable">
+    <edit-hds-option
+        data-cart="$ctrl.cart"
+        data-hds="$ctrl.hds"
+        data-project-name="$ctrl.project.description"
+        data-summary="$ctrl.summary"
+    ></edit-hds-option>
+</div>
+
+<!--Rm project section-->
 <div class="mt-4 pt-4 border-top">
     <h2 data-translate="pci_projects_project_edit_remove"></h2>
     <p data-translate="pci_projects_project_edit_remove_description"></p>

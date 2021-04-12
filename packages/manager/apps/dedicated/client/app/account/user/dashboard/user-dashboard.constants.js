@@ -11,7 +11,7 @@ export const USER_DASHBOARD_SHORTCUTS = [
   },
   {
     key: 'PAYMENT_FOLLOW_UP',
-    state: 'app.account.billing.payment.transactions',
+    state: 'app.account.billing.main.payments',
   },
   {
     key: 'ADD_PAYMENT_METHOD',

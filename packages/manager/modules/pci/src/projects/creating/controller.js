@@ -1,5 +1,4 @@
 import find from 'lodash/find';
-import get from 'lodash/get';
 import some from 'lodash/some';
 
 import {
@@ -9,6 +8,7 @@ import {
   SLIDE_ANIMATION_INTERVAL,
   SLIDE_IMAGES,
 } from './constants';
+import { PCI_HDS_ADDON } from '../project/project.constants';
 
 export default class PciProjectCreatingCtrl {
   /* @ngInject */
@@ -31,7 +31,31 @@ export default class PciProjectCreatingCtrl {
   getDeliveredProjectId() {
     return this.pciProjectCreating
       .getOrderDetails(this.orderId)
-      .then((details) => get(details, '[0].domain'));
+      .then((details) => {
+        const orderItemsDetailPromises = details.map(({ orderDetailId }) =>
+          this.pciProjectCreating
+            .getOrderItemDetails(this.orderId, orderDetailId)
+            .then((data) => {
+              return { orderDetailId, item: data };
+            }),
+        );
+
+        return this.$q
+          .all(orderItemsDetailPromises)
+          .then((orderItemsDetails) => {
+            return { details, orderItemsDetails };
+          });
+      })
+      .then(({ details, orderItemsDetails }) => {
+        const itemDetails = orderItemsDetails.find(
+          ({ item }) => item.order.plan.code === PCI_HDS_ADDON.parentPlanCode,
+        );
+        const detail = details.find(
+          ({ orderDetailId }) => itemDetails.orderDetailId === orderDetailId,
+        );
+
+        return detail.domain;
+      });
   }
 
   /* ==============================

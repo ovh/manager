@@ -2,9 +2,10 @@ import angular from 'angular';
 
 import '@ovh-ux/manager-core';
 import '@ovh-ux/ng-ovh-api-wrappers'; // should be a peer dependency of ovh-api-services
+import '@ovh-ux/ng-ovh-feature-flipping';
+import '@ovh-ux/ui-kit';
 import 'angular-translate';
 import 'ovh-api-services';
-import '@ovh-ux/ui-kit';
 
 import guidesHeader from '../components/project/guides-header';
 
@@ -22,9 +23,10 @@ const moduleName = 'ovhManagerPciProjects';
 
 angular
   .module(moduleName, [
+    'ngOvhFeatureFlipping',
     'oui',
-    'ovhManagerCore',
     'ovh-api-services',
+    'ovhManagerCore',
     'pascalprecht.translate',
     guidesHeader,
     creatingProject,

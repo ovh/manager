@@ -7,9 +7,12 @@ export default {
   template,
   bindings: {
     cart: '<',
-    summary: '<',
     getActionHref: '<',
     goToPayment: '<',
+    hds: '<',
     model: '<',
+    summary: '<',
+    getSummary: '<',
+    trackClick: '<',
   },
 };

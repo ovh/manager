@@ -1,6 +1,7 @@
 import find from 'lodash/find';
 
 import { PCI_PROJECT_ORDER_CART } from '../constants';
+import { PCI_HDS_ADDON } from '../../project/project.constants';
 
 import PciCartProjectItem from './cart.project.item.class';
 
@@ -18,6 +19,13 @@ export default class PciCartProject {
     );
   }
 
+  get hdsItem() {
+    return find(
+      this.items,
+      (cartItem) => cartItem.settings.planCode === PCI_HDS_ADDON.planCode,
+    );
+  }
+
   get creditOption() {
     return find(
       this.items,
@@ -30,5 +38,12 @@ export default class PciCartProject {
     const item = new PciCartProjectItem(itemOptions);
     this.items.push(item);
     return item;
+  }
+
+  deleteItem(itemOptions) {
+    const itemIndex = this.items.findIndex(
+      ({ itemId }) => itemId === itemOptions.itemId,
+    );
+    this.items.splice(itemIndex);
   }
 }
