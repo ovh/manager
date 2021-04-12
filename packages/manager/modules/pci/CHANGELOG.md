@@ -1,3 +1,12 @@
+## [5.19.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.19.0...@ovh-ux/manager-pci@5.19.1) (2021-04-12)
+
+
+### Bug Fixes
+
+* **pci.components.hds:** update nl link ([9d2c92f](https://github.com/ovh/manager/commit/9d2c92fdb20e18791c3228762c564a8ec8d4a155))
+
+
+
 # [5.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.18.0...@ovh-ux/manager-pci@5.19.0) (2021-04-12)
 
 

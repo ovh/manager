@@ -1,3 +1,12 @@
+## [16.18.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.18.2...@ovh-ux/manager-dedicated@16.18.3) (2021-04-12)
+
+
+### Bug Fixes
+
+* **billing.payment.refund:** fix route for request ([#4736](https://github.com/ovh/manager/issues/4736)) ([651175d](https://github.com/ovh/manager/commit/651175d97ba8752d64c11772c1e4a456f5385416))
+
+
+
 ## [16.18.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.18.1...@ovh-ux/manager-dedicated@16.18.2) (2021-04-12)
 
 
