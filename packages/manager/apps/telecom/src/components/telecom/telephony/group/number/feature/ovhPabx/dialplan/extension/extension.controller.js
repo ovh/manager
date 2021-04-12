@@ -12,6 +12,7 @@ export default class DialplanExtensionCtrl {
     $scope,
     $timeout,
     $translate,
+    atInternet,
     autoScrollOnToggle,
     TucToast,
     TUC_UI_SORTABLE_HELPERS,
@@ -20,6 +21,7 @@ export default class DialplanExtensionCtrl {
     this.$scope = $scope;
     this.$timeout = $timeout;
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.autoScrollOnToggle = autoScrollOnToggle;
     this.TucToast = TucToast;
     this.tucUiSortableHelpers = TUC_UI_SORTABLE_HELPERS;
@@ -200,7 +202,23 @@ export default class DialplanExtensionCtrl {
 
     return actionPromise.finally(() => {
       this.loading.save = false;
+      this.atInternet.trackClick({
+        name: `ccs::dialplan::step-${this.extension.position}::${
+          this.extension.enabled ? '' : 'de'
+        }activate-step`,
+        type: 'action',
+      });
     });
+  }
+
+  toggleCollapse() {
+    this.displayHelpers.collapsed = !this.displayHelpers.collapsed;
+    if (!this.displayHelpers.collapsed) {
+      this.atInternet.trackClick({
+        name: `ccs::dialplan::step-${this.extension.position}::display-actions`,
+        type: 'action',
+      });
+    }
   }
 
   /* ----------  ADD RULE  ----------*/
@@ -219,6 +237,11 @@ export default class DialplanExtensionCtrl {
       this.displayHelpers.negativeCollapsed = false;
       this.displayHelpers.negativeExpanded = true;
     }
+
+    this.atInternet.trackClick({
+      name: `ccs::dialplan::step-${this.extension.position}::add-action`,
+      type: 'action',
+    });
 
     this.extension.addRule({
       position: isNegative
@@ -239,6 +262,10 @@ export default class DialplanExtensionCtrl {
 
   onManageConditionBtnClick() {
     this.popoverStatus.isOpen = true;
+    this.atInternet.trackClick({
+      name: `ccs::dialplan::step-${this.extension.position}::advanced-configuration`,
+      type: 'action',
+    });
   }
 
   /* ----------  DELETE  ----------*/
@@ -261,6 +288,10 @@ export default class DialplanExtensionCtrl {
 
           // display information about extension count
           this.dialplanCtrl.checkForDisplayHelpers();
+          this.atInternet.trackClick({
+            name: `ccs::dialplan::step-${this.extension.position}::delete-step`,
+            type: 'action',
+          });
         },
         (error) => {
           this.TucToast.error(

@@ -195,7 +195,7 @@
                             type="button"
                             class="btn btn-link w-100"
                             data-translate="{{ $ctrl.displayHelpers.collapsed ? 'telephony_number_feature_ovh_pabx_step_expand' : 'telephony_number_feature_ovh_pabx_step_collapse'}}"
-                            data-ng-click="$ctrl.displayHelpers.collapsed = !$ctrl.displayHelpers.collapsed"
+                            data-ng-click="$ctrl.toggleCollapse()"
                             data-ng-disabled="!$ctrl.extension.rules.length"
                         ></button>
                     </li>

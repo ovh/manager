@@ -128,6 +128,7 @@
                                             data-ui-sref="{{ action.sref }}"
                                             data-ng-if="action.sref"
                                             data-ng-bind="action.text"
+                                            data-ng-click="action.onClick()"
                                         >
                                         </a>
                                         <!-- END OF ACTION WITH SREF -->
@@ -137,6 +138,7 @@
                                             class="btn btn-link w-100"
                                             data-ng-href="{{ action.url }}"
                                             data-ng-if="action.url"
+                                            data-ng-click="action.onClick()"
                                             target="_blank"
                                             rel="nofollow"
                                         >

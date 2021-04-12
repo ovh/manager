@@ -8,6 +8,7 @@ export default class DialplanCtrl {
     $q,
     $timeout,
     $translate,
+    atInternet,
     autoScrollOnToggle,
     TucToast,
     TUC_UI_SORTABLE_HELPERS,
@@ -15,6 +16,7 @@ export default class DialplanCtrl {
     this.$q = $q;
     this.$timeout = $timeout;
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.TucToast = TucToast;
     this.tucUiSortableHelpers = TUC_UI_SORTABLE_HELPERS;
     this.autoScrollOnToggle = autoScrollOnToggle;
@@ -151,6 +153,10 @@ export default class DialplanCtrl {
 
   onEditDialplanBtnClick() {
     this.popoverStatus.isOpen = true;
+    this.atInternet.trackClick({
+      name: 'ccs::group-number::modify-ccs-options',
+      type: 'navigation',
+    });
   }
 
   onCancelEditDialplan() {
@@ -176,6 +182,11 @@ export default class DialplanCtrl {
       status: 'DRAFT',
     });
 
+    this.atInternet.trackClick({
+      name: 'ccs::group-number::add-step',
+      type: 'action',
+    });
+
     return addedExtension.create();
   }
 
@@ -192,6 +203,21 @@ export default class DialplanCtrl {
 
   toggleCollapsed() {
     this.displayHelpers.collapsed = !this.displayHelpers.collapsed;
+
+    if (this.displayHelpers.collapsed) {
+      this.atInternet.trackClick({
+        name: 'ccs::group-number::hide-steps',
+        type: 'action',
+      });
+    }
+  }
+
+  onDeleteDialplanBtnClick() {
+    this.dialplan.status = 'DELETE_PENDING';
+    this.atInternet.trackClick({
+      name: 'ccs::group-number::delete-ccs-configuration',
+      type: 'action',
+    });
   }
 
   /**

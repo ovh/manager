@@ -14,6 +14,7 @@ export default class DialplanExtensionRuleEditCtrl {
     $filter,
     $translate,
     $state,
+    atInternet,
     TelephonyMediator,
     TucToast,
   ) {
@@ -22,6 +23,7 @@ export default class DialplanExtensionRuleEditCtrl {
     this.$filter = $filter;
     this.$translate = $translate;
     this.$state = $state;
+    this.atInternet = atInternet;
     this.TelephonyMediator = TelephonyMediator;
     this.TucToast = TucToast;
 
@@ -208,6 +210,78 @@ export default class DialplanExtensionRuleEditCtrl {
   onRuleActionChange() {
     this.parentCtrl.popoverStatus.move = false;
     this.rule.actionParam = '';
+    const step = this.parentCtrl.extension.position;
+
+    switch (this.rule.action) {
+      case 'bridge':
+        this.atInternet.trackClick({
+          name: `ccs::dialplan::execute-actions-step-${step}::transfer-call`,
+          type: 'action',
+        });
+        break;
+      case 'endless_playback':
+        this.atInternet.trackClick({
+          name: `ccs::dialplan::execute-actions-step-${step}::play-a-song-endlessly`,
+          type: 'action',
+        });
+        break;
+      case 'hangup':
+        this.atInternet.trackClick({
+          name: `ccs::dialplan::execute-actions-step-${step}::hang-up`,
+          type: 'action',
+        });
+        break;
+      case 'hunting':
+        this.atInternet.trackClick({
+          name: `ccs::dialplan::execute-actions-step-${step}::ring-the-queue-members`,
+          type: 'action',
+        });
+        break;
+      case 'ivr':
+        this.atInternet.trackClick({
+          name: `ccs::dialplan::execute-actions-step-${step}::launch-interactive-menu`,
+          type: 'action',
+        });
+        break;
+      case 'playback':
+        this.atInternet.trackClick({
+          name: `ccs::dialplan::execute-actions-step-${step}::play-a-song`,
+          type: 'action',
+        });
+        break;
+      case 'readDtmf':
+        this.atInternet.trackClick({
+          name: `ccs::dialplan::execute-actions-step-${step}::dtmf-entry-variable`,
+          type: 'action',
+        });
+        break;
+      case 'setCallerName':
+        this.atInternet.trackClick({
+          name: `ccs::dialplan::execute-actions-step-${step}::set-a-caller-name`,
+          type: 'action',
+        });
+        break;
+      case 'sleep':
+        this.atInternet.trackClick({
+          name: `ccs::dialplan::execute-actions-step-${step}::start-a-timer`,
+          type: 'action',
+        });
+        break;
+      case 'tts':
+        this.atInternet.trackClick({
+          name: `ccs::dialplan::execute-actions-step-${step}::link-a-tts`,
+          type: 'action',
+        });
+        break;
+      case 'voicemail':
+        this.atInternet.trackClick({
+          name: `ccs::dialplan::execute-actions-step-${step}::send-to-answering-machine`,
+          type: 'action',
+        });
+        break;
+      default:
+        break;
+    }
   }
 
   /* ----------  PLAYBACK ACTIONS  ----------*/
@@ -286,12 +360,19 @@ export default class DialplanExtensionRuleEditCtrl {
   onValidateBtnClick() {
     const actionPromise =
       this.rule.status === 'DRAFT' ? this.rule.create() : this.rule.save();
+    const step = this.parentCtrl.extension.position;
 
     this.parentCtrl.popoverStatus.isOpen = false;
 
     return actionPromise
       .then(() => {
         this.rule.stopEdition();
+        this.atInternet.trackClick({
+          name: `ccs::dialplan::execute-actions-step-${step}::${
+            this.rule.status === 'DRAFT' ? '' : 'modify-'
+          }validate`,
+          type: 'action',
+        });
       })
       .catch((error) => {
         const errorTranslationKey =
@@ -309,6 +390,13 @@ export default class DialplanExtensionRuleEditCtrl {
   }
 
   onCancelBtnClick() {
+    const step = this.parentCtrl.extension.position;
     this.parentCtrl.onCancelRuleEdit();
+    this.atInternet.trackClick({
+      name: `ccs::dialplan::execute-actions-step-${step}::${
+        this.rule.status === 'DRAFT' ? '' : 'modify-'
+      }cancel`,
+      type: 'action',
+    });
   }
 }
