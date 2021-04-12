@@ -1,3 +1,12 @@
+## [16.18.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.18.1...@ovh-ux/manager-dedicated@16.18.2) (2021-04-12)
+
+
+### Bug Fixes
+
+* **user.dashboard:** update payment tracking shortcut link ([#4728](https://github.com/ovh/manager/issues/4728)) ([1838870](https://github.com/ovh/manager/commit/18388703d5927b050cf34228dd7fe1121b1a9e29))
+
+
+
 ## [16.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.18.0...@ovh-ux/manager-dedicated@16.18.1) (2021-04-08)
 
 

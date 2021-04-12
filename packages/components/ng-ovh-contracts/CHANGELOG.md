@@ -1,3 +1,12 @@
+## [4.0.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contracts@4.0.2...@ovh-ux/ng-ovh-contracts@4.0.3) (2021-04-12)
+
+
+### Bug Fixes
+
+* **components.ng-ovh-contracts.summary:** rm one time binding for url ([1c3256b](https://github.com/ovh/manager/commit/1c3256b8ae43c487601ccabf7a6134e6ea45d087))
+
+
+
 ## [4.0.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contracts@4.0.1...@ovh-ux/ng-ovh-contracts@4.0.2) (2021-01-13)
 
 

@@ -1,3 +1,12 @@
+## [13.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.16.0...@ovh-ux/manager-telecom@13.16.1) (2021-04-12)
+
+
+### Bug Fixes
+
+* **contact:** restore wayName display ([#4732](https://github.com/ovh/manager/issues/4732)) ([1f25f33](https://github.com/ovh/manager/commit/1f25f33901b62eaad81ee0d63f215dd5c8fbe5cc))
+
+
+
 # [13.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.15.1...@ovh-ux/manager-telecom@13.16.0) (2021-04-08)
 
 
