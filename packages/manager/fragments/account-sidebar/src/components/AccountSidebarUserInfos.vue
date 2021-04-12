@@ -42,7 +42,7 @@ export default defineComponent({
   props: {
     user: {
       type: Object as PropType<User>,
-      default: {},
+      default: {} as User,
     },
   },
   computed: {
