@@ -25,6 +25,18 @@
             data-ng-submit="AgentsOvhPabxCtrl.addAgents()"
             novalidate
         >
+            <!-- ADD MORE NUMBERS -->
+            <oui-button
+                data-variant="secondary"
+                data-icon-left="oui-icon-add"
+                data-on-click="AgentsOvhPabxCtrl.addAgentForm.numbers.push(null)"
+                data-disabled="!AgentsOvhPabxCtrl.addAgentForm.numbers[AgentsOvhPabxCtrl.addAgentForm.numbers.length - 1]"
+            >
+                <span
+                    data-translate="telephony_alias_configuration_agents_number_add_single"
+                ></span>
+            </oui-button>
+
             <!-- NUMBER -->
             <div class="form-group">
                 <label
@@ -49,7 +61,7 @@
                     <span class="input-group-btn">
                         <button
                             type="button"
-                            class="btn btn-default"
+                            class="oui-button oui-button_secondary"
                             data-voip-service-choice-popover="{
                                         popoverPlacement: 'auto left',
                                         popoverClass: 'telephony-service-choice-popover pretty-popover',
@@ -61,47 +73,35 @@
                             data-on-choice-validated="AgentsOvhPabxCtrl.onChooseServicePopover"
                             data-on-choice-cancel=""
                         >
-                            <span class="ovh-font ovh-font-search"></span>
+                            <span class="oui-icon oui-icon-search"></span>
                         </button>
                     </span>
                     <span class="input-group-btn">
                         <button
                             type="button"
                             class="btn btn-default"
+                            data-ng-disabled="!AgentsOvhPabxCtrl.addAgentForm.numbers[0]"
                             data-ng-click="AgentsOvhPabxCtrl.cancelAddAgent($index)"
                         >
-                            <span class="ovh-font ovh-font-wrong"></span>
+                            <span class="oui-icon oui-icon-bin"></span>
                         </button>
                     </span>
                 </div>
             </div>
-
-            <!-- ADD MORE NUMBERS -->
-            <div
-                class="form-group"
-                data-ng-if="AgentsOvhPabxCtrl.addAgentForm.numbers[0]"
-            >
-                <button
-                    type="button"
-                    class="btn btn-default"
-                    data-ng-click="AgentsOvhPabxCtrl.addAgentForm.numbers.push(null)"
-                    data-translate="telephony_alias_configuration_agents_number_add"
-                    data-ng-disabled="!AgentsOvhPabxCtrl.addAgentForm.numbers[AgentsOvhPabxCtrl.addAgentForm.numbers.length - 1]"
-                ></button>
-            </div>
-
             <div class="form-group">
-                <button
-                    type="button"
-                    class="btn btn-default"
-                    data-translate="cancel"
-                    data-ng-click="AgentsOvhPabxCtrl.addAgentForm.numbers = [null]"
+                <oui-button
+                    data-variant="secondary"
+                    data-size="l"
+                    data-on-click="AgentsOvhPabxCtrl.addAgentForm.numbers = [null]"
                     data-ng-if="AgentsOvhPabxCtrl.addAgentForm.numbers[0]"
-                ></button>
-                <button
+                >
+                    <span data-translate="cancel"></span>
+                </oui-button>
+                <oui-button
+                    data-variant="primary"
+                    data-size="l"
                     type="submit"
-                    class="btn btn-primary"
-                    data-ng-disabled="agentAddForm.$invalid || AgentsOvhPabxCtrl.addAgentForm.isAdding"
+                    data-disabled="agentAddForm.$invalid || AgentsOvhPabxCtrl.addAgentForm.isAdding"
                 >
                     <oui-spinner
                         class="mr-2"
@@ -120,7 +120,7 @@
                         data-translate-values="{ count: AgentsOvhPabxCtrl.addAgentForm.numbers.length }"
                     >
                     </span>
-                </button>
+                </oui-button>
             </div>
         </form>
         <!-- agent add form -->

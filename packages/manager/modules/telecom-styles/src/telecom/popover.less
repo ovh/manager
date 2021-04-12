@@ -24,7 +24,7 @@
 
     background-color: @pretty-popover-bg;
     padding: 0;
-    color: @gray-dark;
+    color: @p-800;
 
     .popover-content {
       padding: 0;
@@ -33,11 +33,13 @@
     section.page-section {
       header {
         position: relative;
-        margin: 20px 0 !important;
+        padding: 20px 0;
+        background-color: @p-050;
 
         h2 {
           text-align: center;
           font-size: 1.5625rem;
+          font-weight: bold;
           padding: 0 (@padding-large-horizontal * 2);
           margin-bottom: 0;
         }
@@ -45,7 +47,6 @@
         .btn.btn-link {
           position: absolute;
           left: 0;
-          top: 2px;
           font-size: 20px;
           padding: 0 @padding-base-horizontal;
         }
@@ -73,20 +74,17 @@
         }
 
         .section-group {
-          &:not(:first-child) {
-            margin-top: @pretty-popover-group-margin;
-          }
-
           .group-title {
-            padding: 0 8px 8px;
+            padding: 0.5rem;
+            font-size: 1.25rem;
             font-weight: bold;
+            color: @p-800;
+            background-color: white;
             border-bottom: 1px solid #ddd;
-            color: #999;
           }
 
           .large-popover-item {
-            border-left: none;
-            border-right: none;
+            border: none;
             width: 100% !important;
           }
 
@@ -121,12 +119,17 @@
               &.has-error label {
                 color: @ae-500;
               }
+
+              label.required::after {
+                content: '' !important;
+              }
             }
           }
 
           button.section-item {
             display: block;
             position: relative;
+            padding: 1rem;
 
             &:not(.section-item-left) {
               padding-right: 35px;
@@ -134,6 +137,12 @@
 
             &.section-item-left {
               padding-left: 35px;
+            }
+
+            .oui-icon-chevron-right {
+              font-size: 2rem;
+              line-height: 1.3rem;
+              vertical-align: bottom;
             }
 
             .chevron-right,
@@ -170,6 +179,11 @@
                 opacity: 1;
               }
             }
+          }
+
+          label {
+            font-size: 1rem;
+            margin: 0;
           }
 
           label.section-item {

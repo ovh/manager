@@ -102,6 +102,7 @@
   "telephony_number_feature_ovh_pabx_step_rule_ivr": "Lancer un menu interactif",
   "telephony_number_feature_ovh_pabx_step_rule_ivr_explain": "Permet de proposer à l'appelant un menu avec lequel il pourra interagir grâce aux touches de son téléphone.",
   "telephony_number_feature_ovh_pabx_step_rule_ivr_menu_to_launch": "Menu à lancer",
+  "telephony_number_feature_ovh_pabx_step_rule_ivr_menu_already_added": "Menus déjà ajoutés",
   "telephony_number_feature_ovh_pabx_step_rule_ivr_menu_no_selected": "Aucun menu sélectionné",
   "telephony_number_feature_ovh_pabx_step_rule_ivr_menu_add_menu": "Ajouter un menu interactif",
   "telephony_number_feature_ovh_pabx_step_rule_ivr_menu_add_menu_new": "Nouveau menu",
