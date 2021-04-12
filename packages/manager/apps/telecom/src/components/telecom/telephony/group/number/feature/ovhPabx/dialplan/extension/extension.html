@@ -23,12 +23,14 @@
                         data-translate-values="{ position: $ctrl.extension.position }"
                     >
                     </span>
-                    <small>
-                        (<span
-                            data-translate="{{ $ctrl.extension.enabled ? 'telephony_number_feature_ovh_pabx_step_active' : 'telephony_number_feature_ovh_pabx_step_inactive' }}"
-                        ></span
-                        >)
-                    </small>
+                    <span
+                        class="oui-badge oui-badge_s"
+                        data-ng-class="{
+                            'oui-badge_success': $ctrl.extension.enabled,
+                            'oui-badge_error': !$ctrl.extension.enabled,
+                          }"
+                        data-translate="{{ $ctrl.extension.enabled ? 'telephony_number_feature_ovh_pabx_step_active' : 'telephony_number_feature_ovh_pabx_step_inactive' }}"
+                    ></span>
                 </span>
 
                 <div class="group-number__step-info">

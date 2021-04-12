@@ -32,8 +32,7 @@
                         <span
                             class="d-block"
                             data-translate="{{ 'telephony_number_feature_ovh_pabx_step_rule_' + ($ctrl.rule.action | tucSnakeCase) }}"
-                        >
-                        </span>
+                        ></span>
                         <div class="chevron-right">
                             <div class="chevron-wrapper">
                                 <i class="ovh-font ovh-font-arrow-right"></i>
@@ -496,7 +495,7 @@
                 data-ng-switch-when="playback"
                 data-ovh-pabx="$ctrl.menuEntryCtrl.menuCtrl.ovhPabx"
                 data-selected-sound-id="$ctrl.rule.actionParam"
-                data-on-sound-change="$ctrl.onSoundSelected"
+                data-on-sound-change="$ctrl.onSoundSelected.bind($ctrl)"
             >
             </telephony-number-ovh-pabx-sound-popover-section>
             <!-- END OF SOUND CHOICE FOR PLAYBACK -->
@@ -585,7 +584,7 @@
                         data-ng-click="$ctrl.onAddIvrMenuButtonClick()"
                     >
                         <div class="d-table">
-                            <div class="d-table-cell align-middle px-3">
+                            <div class="d-table-cell align-top px-3">
                                 <i class="ovh-font ovh-font-ajouter fs18"></i>
                             </div>
                             <div class="d-table-cell align-middle">
@@ -594,11 +593,6 @@
                                     data-translate="telephony_number_feature_ovh_pabx_step_rule_ivr_menu_add_menu"
                                 >
                                 </label>
-                                <span
-                                    class="small font-weight-normal"
-                                    data-translate="telephony_number_feature_ovh_pabx_step_rule_ivr_menu_add_menu_explain"
-                                >
-                                </span>
                             </div>
                         </div>
                     </button>
@@ -606,6 +600,10 @@
                 </div>
 
                 <div class="section-group">
+                    <div
+                        class="group-title"
+                        data-translate="telephony_number_feature_ovh_pabx_step_rule_ivr_menu_already_added"
+                    ></div>
                     <div class="section-item menu-list-container">
                         <!-- MENUS LIST -->
                         <telephony-number-ovh-pabx-menu-list
@@ -752,6 +750,7 @@
                                     <span class="oui-radio__icon"></span>
                                     <span
                                         class="oui-radio__text"
+                                        style="max-width: 20rem"
                                         data-ng-bind="tts.text"
                                     ></span>
                                 </span>

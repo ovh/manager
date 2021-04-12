@@ -44,7 +44,7 @@
         class="row"
         data-ng-if="!$ctrl.loading.init && $ctrl.number.getFeatureFamily() === 'ovhPabx' && $ctrl.number.feature.isCcs()"
     >
-        <div class="col-xs-12 col-md-6 widget-presentation">
+        <div class="col-xs-12 col-md-12 widget-presentation">
             <header class="widget-presentation-header">
                 <h2
                     class="widget-presentation-title"
@@ -181,6 +181,9 @@
                                 >
                                     <button
                                         class="btn btn-link text-left"
+                                        data-ng-class="{
+                                            'elipse no-wrap': $ctrl.state.textDetail !== tts.id,
+                                        }"
                                         data-ng-click="$ctrl.state.textDetail == tts.id ? $ctrl.state.textDetail = null : $ctrl.state.textDetail = tts.id"
                                     >
                                         <i
@@ -190,7 +193,6 @@
                                         </i>
                                         <span
                                             class="d-inline align-middle"
-                                            data-ng-class="{ 'elipse no-wrap': $ctrl.state.textDetail !== tts.id }"
                                             data-ng-style="$ctrl.state.textDetail !== tts.id && { width: '300px' }"
                                             data-ng-bind="tts.text"
                                         >
@@ -247,6 +249,7 @@
             <div
                 class="mt-2"
                 data-ng-if="$ctrl.tts.raw.length"
+                data-ng-show="$ctrl.tts.raw.length > itemsPerPage"
                 data-pagination-front
                 data-items="$ctrl.tts.sorted"
                 data-paginated-items="$ctrl.tts.paginated"

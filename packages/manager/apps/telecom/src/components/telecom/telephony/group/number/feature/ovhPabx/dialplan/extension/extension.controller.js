@@ -1,5 +1,6 @@
 import get from 'lodash/get';
 import isNumber from 'lodash/isNumber';
+import last from 'lodash/last';
 import set from 'lodash/set';
 import some from 'lodash/some';
 import uniqueId from 'lodash/uniqueId';
@@ -205,6 +206,12 @@ export default class DialplanExtensionCtrl {
   /* ----------  ADD RULE  ----------*/
 
   addRule(isNegative) {
+    if (
+      last(this.extension.rules)?.status === 'DRAFT' ||
+      last(this.extension.negativeRules)?.status === 'DRAFT'
+    ) {
+      return;
+    }
     if (!isNegative) {
       this.displayHelpers.collapsed = false;
       this.displayHelpers.expanded = true;

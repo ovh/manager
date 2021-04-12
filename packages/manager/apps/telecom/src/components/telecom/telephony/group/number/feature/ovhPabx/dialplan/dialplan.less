@@ -1,3 +1,4 @@
+@import '~ovh-ui-kit-bs/dist/less/bootstrap/_variables';
 @import '../../../variables.less';
 
 @voip-plan-condition-tip: 11px;
@@ -10,6 +11,10 @@
   right: 0;
   left: auto;
   margin-top: 1rem;
+}
+
+.dropdown-menu {
+  z-index: @zindex-modal-background + 100;
 }
 
 .ovh-pabx-dialplan-extension {

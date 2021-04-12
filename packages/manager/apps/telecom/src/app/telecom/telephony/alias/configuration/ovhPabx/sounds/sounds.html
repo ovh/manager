@@ -55,13 +55,6 @@
         data-ng-if="!$ctrl.loading.init && $ctrl.number.getFeatureFamily() === 'ovhPabx'"
     >
         <div class="col-xs-12 col-md-6 widget-presentation">
-            <header class="widget-presentation-header">
-                <h2
-                    class="widget-presentation-title"
-                    data-translate="telephony_alias_ovh_pabx_sounds_list_title"
-                ></h2>
-            </header>
-
             <form novalidate name="ovhPabxSound" class="mb-3">
                 <!-- ADD SOUND -->
                 <label
@@ -72,7 +65,8 @@
                     data-upload-errors="$ctrl.uploadErrors"
                 >
                     <i
-                        class="ovh-font ovh-font-upload d-inline-block align-middle"
+                        class="oui-icon oui-icon-add d-inline-block align-middle"
+                        aria-hidden="true"
                     ></i>
                     <span
                         class="d-inline-block align-middle ml-2"
@@ -113,6 +107,9 @@
                 </div>
                 <!-- END OF ADD SOUND -->
             </form>
+            <h2
+                data-translate="telephony_alias_ovh_pabx_sounds_list_title"
+            ></h2>
 
             <telephony-number-ovh-pabx-sound-list
                 data-ovh-pabx="$ctrl.number.feature"
