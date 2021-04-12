@@ -15,6 +15,7 @@
   "telephony_alias_configuration_agents_number": "Numéro",
   "telephony_alias_configuration_agents_number_placeholder": "Numéro au format international",
   "telephony_alias_configuration_agents_number_add": "Ajouter un autre numéro",
+  "telephony_alias_configuration_agents_number_add_single": "Ajouter un numéro",
   "telephony_alias_configuration_agents_add_multiple": "Ajouter {{ count }} agents",
   "telephony_alias_configuration_agents_delete_one": "Supprimer l'agent sélectionné",
   "telephony_alias_configuration_agents_delete_n": "Supprimer les {{ count }} agents sélectionnés",
