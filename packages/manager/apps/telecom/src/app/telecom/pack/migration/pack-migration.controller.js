@@ -127,6 +127,9 @@ export default class TelecomPackMigrationCtrl {
           }
           return data;
         }
+        // Display offers
+        this.process.currentStep = PROCESS_STEP.offers;
+
         return null;
       })
       .catch((error) => {
