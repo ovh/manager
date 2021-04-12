@@ -586,7 +586,7 @@
   "server_configuration_task_status_CUSTOMER_ERROR": "Client error",
   "server_configuration_task_status_DOING": "Running",
   "server_configuration_task_status_DONE": "Closed",
-  "server_configuration_task_status_INIT": "Startup",
+  "server_configuration_task_status_INIT": "Initializing",
   "server_configuration_task_status_OVH_ERROR": "Error",
   "server_configuration_task_status_TODO": "To be processed",
   "server_configuration_impi_loading_error": "An error has occurred retrieving the information.",
@@ -1286,5 +1286,17 @@
   "plan_bandwidth-1000-upto-2000-hgr-scale-us": "1Gbps unmetered and guaranteed",
   "plan_bandwidth-4000-upto-8000-hgr-scale-us": "4Gbps unmetered and guaranteed",
   "plan_bandwidth-6000-upto-12000-hgr-scale-us": "6Gbps unmetered and guaranteed",
-  "plan_bandwidth-10000-upto-20000-hgr-scale-us": "10Gbps unmetered and guaranteed"
+  "plan_bandwidth-10000-upto-20000-hgr-scale-us": "10Gbps unmetered and guaranteed",
+  "plan_bandwidth-1000-upto-2000-scale-us": "1Gbps unmetered and guaranteed",
+  "plan_bandwidth-4000-upto-8000-scale-us": "4Gbps unmetered and guaranteed",
+  "plan_bandwidth-6000-upto-12000-scale-us": "6Gbps unmetered and guaranteed",
+  "plan_bandwidth-10000-upto-20000-scale-us": "10Gbps unmetered and guaranteed",
+  "plan_bandwidth-12000-upto-24000-scale-us": "12Gbps unmetered and guaranteed",
+  "plan_bandwidth-25000-upto-50000-scale-us": "25Gbps unmetered and guaranteed",
+  "plan_vrack-bandwidth-1000-upto-2000-scale-us": "1Gbps unmetered and guaranteed",
+  "plan_vrack-bandwidth-4000-upto-8000-scale-us": "4Gbps unmetered and guaranteed",
+  "plan_vrack-bandwidth-6000-upto-12000-scale-us": "6Gbps unmetered and guaranteed",
+  "plan_vrack-bandwidth-10000-upto-20000-scale-us": "10Gbps unmetered and guaranteed",
+  "plan_vrack-bandwidth-12000-upto-24000-scale-us": "12Gbps unmetered and guaranteed",
+  "plan_vrack-bandwidth-25000-upto-50000-scale-us": "25Gbps unmetered and guaranteed"
 }

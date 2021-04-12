@@ -1286,5 +1286,17 @@
   "plan_bandwidth-1000-upto-2000-hgr-scale-us": "1 Gbps bez limitu i z gwarancją przepustowości ",
   "plan_bandwidth-4000-upto-8000-hgr-scale-us": "4 Gbps bez limitu i z gwarancją przepustowości ",
   "plan_bandwidth-6000-upto-12000-hgr-scale-us": "6 Gbps bez limitu i z gwarancją przepustowości ",
-  "plan_bandwidth-10000-upto-20000-hgr-scale-us": "10 Gbps bez limitu i z gwarancją przepustowości "
+  "plan_bandwidth-10000-upto-20000-hgr-scale-us": "10 Gbps bez limitu i z gwarancją przepustowości ",
+  "plan_bandwidth-1000-upto-2000-scale-us": "1 Gbps bez limitu i z gwarancją przepustowości ",
+  "plan_bandwidth-4000-upto-8000-scale-us": "4 Gbps bez limitu i z gwarancją przepustowości ",
+  "plan_bandwidth-6000-upto-12000-scale-us": "6 Gbps bez limitu i z gwarancją przepustowości ",
+  "plan_bandwidth-10000-upto-20000-scale-us": "10 Gbps bez limitu i z gwarancją przepustowości ",
+  "plan_bandwidth-12000-upto-24000-scale-us": "12 Gbps bez limitu i z gwarancją przepustowości ",
+  "plan_bandwidth-25000-upto-50000-scale-us": "25 Gbps bez limitu i z gwarancją przepustowości ",
+  "plan_vrack-bandwidth-1000-upto-2000-scale-us": "1 Gbps bez limitu i z gwarancją przepustowości ",
+  "plan_vrack-bandwidth-4000-upto-8000-scale-us": "4 Gbps bez limitu i z gwarancją przepustowości ",
+  "plan_vrack-bandwidth-6000-upto-12000-scale-us": "6 Gbps bez limitu i z gwarancją przepustowości ",
+  "plan_vrack-bandwidth-10000-upto-20000-scale-us": "10 Gbps bez limitu i z gwarancją przepustowości ",
+  "plan_vrack-bandwidth-12000-upto-24000-scale-us": "12 Gbps bez limitu i z gwarancją przepustowości ",
+  "plan_vrack-bandwidth-25000-upto-50000-scale-us": "25 Gbps bez limitu i z gwarancją przepustowości "
 }
