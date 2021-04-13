@@ -39,7 +39,7 @@ export default class {
         this.goBack(
           `${this.$translate.instant(
             'dedicatedCloud_tab_licences_active_spla_load_fail',
-          )}: ${error.message || error}`,
+          )}: ${error.data.message || error.data}`,
           'danger',
         );
       })
