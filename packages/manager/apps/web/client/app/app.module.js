@@ -61,8 +61,6 @@ import './hosting/cdn/terminate/hosting-cdn-terminate.module';
 import './hosting/email/activate/activate.module';
 import './hosting/email/terminate/hosting-email-terminate.module';
 
-import './components/user/user-session.service';
-import './components/user/user.controller';
 import './components/webApp.controller';
 
 import './config/config.bundle';

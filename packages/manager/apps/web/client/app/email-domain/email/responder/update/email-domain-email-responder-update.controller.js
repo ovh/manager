@@ -10,22 +10,13 @@ angular.module('App').controller(
      * @param $translate
      * @param Alerter
      * @param WucEmails
-     * @param UserSessionService
      */
-    constructor(
-      $scope,
-      $stateParams,
-      $translate,
-      Alerter,
-      WucEmails,
-      UserSessionService,
-    ) {
+    constructor($scope, $stateParams, $translate, Alerter, WucEmails) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
       this.$translate = $translate;
       this.Alerter = Alerter;
       this.WucEmails = WucEmails;
-      this.SessionService = UserSessionService;
     }
 
     $onInit() {
