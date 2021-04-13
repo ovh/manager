@@ -1,0 +1,6 @@
+{
+  "pci_projects_project_training_jobs_resubmit": "Neu starten",
+  "pci_projects_project_training_jobs_confirm_resubmit": "Sind Sie sicher, dass Sie diesen Auftrag neu starten möchten?",
+  "pci_projects_project_training_jobs_resubmit_success": "Der Auftrag wurde neu gestartet",
+  "pci_projects_project_training_jobs_resubmit_error": "Beim Neustart des Auftrags ist ein Fehler aufgetreten: {{ message }}"
+}

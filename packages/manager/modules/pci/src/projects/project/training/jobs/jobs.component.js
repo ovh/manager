@@ -9,6 +9,7 @@ export default {
     projectId: '<',
     jobInfo: '<',
     jobKill: '<',
+    jobResubmit: '<',
     submitJobLink: '<',
     submitJob: '<',
     regions: '<',

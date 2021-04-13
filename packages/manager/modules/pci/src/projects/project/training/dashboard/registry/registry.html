@@ -10,6 +10,42 @@
         {{:: 'pci_projects_project_training_registry_section_1_title_info_1' |
         translate }}
     </oui-message>
+
+    <span
+        >{{:: 'pci_projects_project_training_registry_select_region' | translate
+        }}</span
+    >
+    <label class="oui-select oui-select_inline" for="region">
+        <select
+            class="oui-select__input"
+            ng-model="$ctrl.currentRegion"
+            id="region"
+        >
+            <option ng-repeat="region in $ctrl.regions" ng-value="region"
+                >{{region.name}}</option
+            >
+        </select>
+        <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+    </label>
+
+    <dl class="oui-description">
+        <dt>
+            Docker Registry
+            <button
+                type="button"
+                class="oui-popover-button"
+                oui-popover="{{:: 'pci_projects_project_training_registry_docker_registry_help' | translate }}"
+                oui-popover-placement="right"
+            ></button>
+        </dt>
+        <dd>{{ $ctrl.currentRegion.registryUrl }}</dd>
+        <dt>
+            {{:: 'pci_projects_project_training_registry_public_cloud_project' |
+            translate }}
+        </dt>
+        <dd>{{$ctrl.projectId }}</dd>
+    </dl>
+
     <p>
         {{:: 'pci_projects_project_training_registry_section_1_message_1' |
         translate }}
@@ -31,9 +67,9 @@
         {{:: 'pci_projects_project_training_registry_section_1_message_5' |
         translate }}
     </p>
-    <pre><code>docker tag image {{ $ctrl.currentRegion.registryUrl }}/{{$ctrl.projectId }}/image
+    <pre><code>docker tag &lt;image&gt; {{ $ctrl.currentRegion.registryUrl }}/{{$ctrl.projectId }}/&lt;image&gt;
 
-docker push {{ $ctrl.currentRegion.registryUrl }}/{{$ctrl.projectId }}/image</code></pre>
+docker push {{ $ctrl.currentRegion.registryUrl }}/{{$ctrl.projectId }}/&lt;image&gt;</code></pre>
     <p>
         {{:: 'pci_projects_project_training_registry_section_1_message_6' |
         translate }}

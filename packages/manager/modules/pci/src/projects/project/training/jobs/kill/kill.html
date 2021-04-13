@@ -20,9 +20,7 @@
             class="h-100"
             data-heading="{{:: 'pci_projects_project_training_job_kill' | translate  }}"
         >
-            <oui-tile-definition
-                data-term="{{:: 'pci_projects_project_training_jobs_id' | translate  }}"
-            >
+            <oui-tile-definition data-term="Job ID">
                 <oui-tile-description
                     data-ng-bind="$ctrl.job.id"
                 ></oui-tile-description>
@@ -32,7 +30,7 @@
                 data-term="{{:: 'pci_projects_project_training_jobs_region' | translate  }}"
             >
                 <oui-tile-description
-                    data-ng-bind="$ctrl.job.region"
+                    data-ng-bind="$ctrl.job.spec.region"
                 ></oui-tile-description>
             </oui-tile-definition>
 
@@ -40,7 +38,7 @@
                 data-term="{{:: 'pci_projects_project_training_jobs_image' | translate  }}"
             >
                 <oui-tile-description
-                    data-ng-bind="$ctrl.job.image"
+                    data-ng-bind="$ctrl.job.spec.image"
                 ></oui-tile-description>
             </oui-tile-definition>
 
@@ -71,7 +69,7 @@
                 data-term="{{:: 'pci_projects_project_training_jobs_created' | translate  }}"
             >
                 <oui-tile-description
-                    data-ng-bind="$ctrl.job.created | date:'medium'"
+                    data-ng-bind="$ctrl.job.createdAt | date:'medium'"
                 ></oui-tile-description>
             </oui-tile-definition>
         </oui-tile>

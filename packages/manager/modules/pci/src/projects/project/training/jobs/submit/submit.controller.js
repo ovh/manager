@@ -2,6 +2,7 @@ import get from 'lodash/get';
 import remove from 'lodash/remove';
 import { nameGenerator } from '../../../data-processing/data-processing.utils';
 import { COMMUNITY_URL } from '../../training.constants';
+import convertJobSpecToCliCommand from '../../command_line_converter';
 
 export default class PciTrainingJobsSubmitController {
   /* @ngInject */
@@ -99,29 +100,7 @@ export default class PciTrainingJobsSubmitController {
   }
 
   cliCommand() {
-    const baseCmdArray = [
-      'job run',
-      `--gpu ${this.job.resources.gpu}`,
-      `--name ${this.job.name}`,
-    ];
-
-    if (this.job.volumes && this.job.volumes.length > 0) {
-      this.job.volumes
-        .map(
-          ({ container, region, mountPath, permission }) =>
-            `--volume ${container}@${region}:${mountPath}:${permission}`,
-        )
-        .forEach((x) => baseCmdArray.push(x));
-    }
-
-    baseCmdArray.push(`${this.job.image.id}`);
-
-    if (this.job.command) {
-      baseCmdArray.push('--');
-      this.splitStringCommandIntoArray().forEach((x) => baseCmdArray.push(x));
-    }
-
-    return baseCmdArray.join(' \\\n\t');
+    return convertJobSpecToCliCommand(this.computeJobSpec());
   }
 
   splitStringCommandIntoArray() {
@@ -150,6 +129,8 @@ export default class PciTrainingJobsSubmitController {
     };
     if (this.job.command) {
       payload.command = this.splitStringCommandIntoArray();
+    } else {
+      payload.command = null;
     }
     return payload;
   }
