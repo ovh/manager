@@ -10,6 +10,7 @@ export default {
     cart: '<',
     reloadPayment: '<',
     getCancelHref: '<',
+    getPaymentMethod: '<',
     eligibility: '<',
     model: '<',
     defaultPaymentMethod: '<',

@@ -50,6 +50,10 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       callback: /* @ngInject */ ($location) => $location.search(),
 
+      getPaymentMethod: /* @ngInject */ (ovhPaymentMethod) => (
+        paymentMethodId,
+      ) => ovhPaymentMethod.getPaymentMethod(paymentMethodId),
+
       paymentStatus: /* @ngInject */ ($transition$) =>
         $transition$.params().paymentStatus,
 

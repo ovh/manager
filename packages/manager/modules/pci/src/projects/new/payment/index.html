@@ -10,9 +10,32 @@
         data-messages="$ctrl.message.list"
     ></cui-message-container>
 
+    <oui-message type="info" data-ng-if="$ctrl.isCheckingPaymentMethod">
+        <span data-translate="pci_project_new_payment_pending_check"></span>
+    </oui-message>
+
+    <oui-message type="error" data-ng-if="$ctrl.hasCheckingError">
+        <span data-translate="pci_project_new_payment_check_error"></span>
+        <a
+            class="oui-link"
+            data-ng-href="{{:: $ctrl.paymentMethodUrl }}"
+            rel="noopener"
+            target="_self"
+            data-translate="pci_project_new_payment_check_payment_method_status"
+        ></a>
+    </oui-message>
+
     <div data-ui-view>
         <!-- main content: payment method (default or register) -->
-        <div class="mb-3" data-ui-view="payment"></div>
+        <div
+            class="mb-3"
+            data-ng-if="!$ctrl.isCheckingPaymentMethod"
+            data-ui-view="payment"
+        ></div>
+
+        <div class="text-center" data-ng-if="$ctrl.isCheckingPaymentMethod">
+            <oui-spinner></oui-spinner>
+        </div>
 
         <!-- credits -->
         <div
@@ -56,6 +79,7 @@
                         data-type="submit"
                         data-variant-nav="next"
                         data-disabled="$ctrl.globalLoading.finalize"
+                        data-ng-if="!$ctrl.isCheckingPaymentMethod"
                     >
                         <span
                             data-translate="{{ 'pci_project_new_payment_btn_continue_' + $ctrl.model.paymentMethod.paymentType.toLowerCase() }}"
@@ -88,7 +112,7 @@
                         || $ctrl.model.challenge.checking
                         || $ctrl.globalLoading.finalize
                         || $ctrl.globalLoading.setDefaultPaymentMethod"
-                    data-ng-if="$ctrl.defaultPaymentMethod || !$ctrl.model.paymentMethod || ($ctrl.eligibility.isDefaultPaymentMethodChoiceRequired() && !$ctrl.model.paymentMethod)"
+                    data-ng-if="$ctrl.defaultPaymentMethod || !$ctrl.model.paymentMethod || ($ctrl.eligibility.isDefaultPaymentMethodChoiceRequired() && !$ctrl.model.paymentMethod) && !$ctrl.isCheckingPaymentMethod"
                 >
                     <span
                         data-translate="pci_project_new_payment_btn_continue_default"
@@ -99,7 +123,7 @@
                     variant="primary"
                     type="button"
                     on-click="$ctrl.initComponentInitialParams()"
-                    data-ng-if="$ctrl.model.paymentMethod.isHandleByComponent() && !$ctrl.componentInitialParams"
+                    data-ng-if="$ctrl.model.paymentMethod.isHandleByComponent() && !$ctrl.componentInitialParams && !$ctrl.isCheckingPaymentMethod"
                     disabled="$ctrl.globalLoading.finalize"
                 >
                     <span
@@ -110,7 +134,7 @@
                 <a
                     class="oui-button oui-button_primary oui-button_icon-right no-transition"
                     data-ng-if="$ctrl.model.paymentMethod.type.isBankAccount()"
-                    data-ng-href="{{ $ctrl.paymentMethodUrl }}"
+                    data-ng-href="{{ $ctrl.paymentMethodAddUrl }}"
                 >
                     <span
                         data-translate="pci_project_new_payment_btn_continue_bank_account"
