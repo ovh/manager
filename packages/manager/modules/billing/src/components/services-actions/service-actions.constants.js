@@ -11,6 +11,7 @@ export const SERVICE_TYPE = {
 
 export const RENEW_URL = {
   default: '/cgi-bin/order/renew.cgi?domainChooser=',
+  AU: 'https://ca.ovh.com/au/cgi-bin/order/renew.cgi?domainChooser=',
   CA: 'https://ca.ovh.com/fr/cgi-bin/order/renew.cgi?domainChooser=',
   CZ: 'https://www.ovh.cz/cgi-bin/order/renew.cgi?domainChooser=',
   DE: 'https://www.ovh.de/cgi-bin/order/renew.cgi?domainChooser=',
@@ -28,6 +29,7 @@ export const RENEW_URL = {
   PT: 'https://www.ovh.pt/cgi-bin/order/renew.cgi?domainChooser=',
   QC: 'https://ca.ovh.com/fr/cgi-bin/order/renew.cgi?domainChooser=',
   RU: 'https://www.ovh.co.uk/cgi-bin/order/renew.cgi?domainChooser=',
+  SG: 'https://ca.ovh.com/sg/cgi-bin/order/renew.cgi?domainChooser=',
   SN: 'https://www.ovh.sn/cgi-bin/order/renew.cgi?domainChooser=',
   TN: 'https://www.ovh.com/tn/cgi-bin/order/renew.cgi?domainChooser=',
   WE: 'https://ca.ovh.com/fr/cgi-bin/order/renew.cgi?domainChooser=',
