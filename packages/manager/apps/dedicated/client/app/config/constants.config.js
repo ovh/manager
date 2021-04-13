@@ -1120,6 +1120,8 @@ const constants = {
       CZ: 'http://www.ovh.cz/podpora/new_nic.xml',
     },
     billingRenew: {
+      AU:
+        'https://ca.ovh.com/au/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
       CA:
         'https://ca.ovh.com/fr/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
       CZ:
@@ -1154,6 +1156,8 @@ const constants = {
         'https://ca.ovh.com/fr/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
       RU:
         'https://www.ovh.co.uk/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+      SG:
+        'https://ca.ovh.com/sg/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
       SN:
         'https://www.ovh.sn/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
       TN:
