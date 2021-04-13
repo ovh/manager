@@ -1,3 +1,12 @@
+## [2.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@2.5.1...@ovh-ux/manager-billing@2.5.2) (2021-04-13)
+
+
+### Bug Fixes
+
+* **billing:** manual renew url for apac subs ([#4753](https://github.com/ovh/manager/issues/4753)) ([da586e9](https://github.com/ovh/manager/commit/da586e9dda77ee81f7fcaeae42767d8fa6bcb3a3))
+
+
+
 ## [2.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@2.5.0...@ovh-ux/manager-billing@2.5.1) (2021-04-08)
 
 
