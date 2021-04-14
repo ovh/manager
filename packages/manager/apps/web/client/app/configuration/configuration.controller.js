@@ -1,10 +1,14 @@
+import { Environment } from '@ovh-ux/manager-config';
+
 import get from 'lodash/get';
 
 angular.module('App').controller(
   'configurationCtrl',
   class ConfigurationCtrl {
-    constructor(constants) {
+    /* @ngInject */
+    constructor($scope, constants) {
       this.constants = constants;
+      $scope.user = Environment.getUser();
     }
 
     $onInit() {
