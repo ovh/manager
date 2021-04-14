@@ -1,6 +1,6 @@
 {
   "hosting_cdn_order_title": "Sie sind im Begriff, die Option „Shared CDN“ zu bestellen",
-  "hosting_cdn_upgrade_title": "Zur Option „Shared CDN“ migrieren",
+  "hosting_cdn_v1_upgrade_title": "Zur Option „Shared CDN“ migrieren",
   "hosting_cdn_order_customer_cdn_included_step1_description": "Wir führen die Migration Ihres alten CDN zur Option „Shared CDN“ für Sie durch. Schrittweise migrieren wir auch die Domainnamen Ihres Hostings, auf denen die alte CDN Option aktiviert ist. Es wird eine Standardkonfiguration eingerichtet. Die Domainnamen, für die das CDN nicht aktiviert ist, bleiben nach der Migration im gleichen Zustand.",
   "hosting_cdn_order_customer_cdn_included_step1_header": "Preis der Option",
   "hosting_cdn_order_customer_cdn_included_step1_info": "Der Wechsel zum neuen CDN ist bei den Lösungen Performance 1, 2, 3, 4 und Cloud Web 1, 2 und 3 ohne Zusatzkosten inbegriffen.",
