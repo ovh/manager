@@ -16,6 +16,7 @@
     "@ovh-ux/manager-config": "^3.0.1",
     "@ovh-ux/ufrontend": "^1.0.0",
     "@ovh-ux/ui-kit": "^4.4.3",
+    "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "core-js": "^3.6.5",
     "lodash-es": "^4.17.21",

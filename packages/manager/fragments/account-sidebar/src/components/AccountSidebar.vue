@@ -1,7 +1,14 @@
 <template>
   <sidebar :closed="!sidebarOpen" class="manager-hub-user-panel">
     <account-sidebar-user-infos class="mb-3" :user="user"></account-sidebar-user-infos>
-    <account-sidebar-payment class="mb-4"></account-sidebar-payment>
+    <Suspense>
+      <template #default>
+        <account-sidebar-payment class="mb-4"></account-sidebar-payment>
+      </template>
+      <template #fallback>
+        <account-sidebar-payment-skeleton class="mb-4"></account-sidebar-payment-skeleton>
+      </template>
+    </Suspense>
     <account-sidebar-shortcuts class="mb-4" :shortcuts="shortcutList"></account-sidebar-shortcuts>
     <account-sidebar-links class="mb-5" :links="usefulLinks"></account-sidebar-links>
   </sidebar>
@@ -13,6 +20,7 @@ import { Environment } from '@ovh-ux/manager-config';
 import { emit, listen } from '@ovh-ux/ufrontend/communication';
 import shortcuts from '@/utils/shortcuts';
 import links from '@/utils/panelLinks';
+import AccountSidebarPaymentSkeleton from '@/components/AccountSidebarPaymentSkeleton.vue';
 import { User } from '@/models/user';
 
 export default defineComponent({
@@ -59,6 +67,7 @@ export default defineComponent({
       import('@/components/AccountSidebarShortcuts'),
     ),
     AccountSidebarLinks: defineAsyncComponent(() => import('@/components/AccountSidebarLinks')),
+    AccountSidebarPaymentSkeleton,
   },
   computed: {
     shortcutList(): any {
