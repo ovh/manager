@@ -1,3 +1,12 @@
+## [6.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard@6.1.0...@ovh-ux/manager-telecom-dashboard@6.1.1) (2021-04-14)
+
+
+### Performance Improvements
+
+* **telecom.dashboard:** improve fetching of last bills ([#4734](https://github.com/ovh/manager/issues/4734)) ([1e5c109](https://github.com/ovh/manager/commit/1e5c109eb5a19aa300158042daf297379d6bec96))
+
+
+
 # [6.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard@6.0.6...@ovh-ux/manager-telecom-dashboard@6.1.0) (2021-02-24)
 
 
