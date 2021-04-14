@@ -1,6 +1,6 @@
 {
   "hosting_cdn_order_title": "You are about to subscribe to the Shared CDN option",
-  "hosting_cdn_upgrade_title": "Migrate to the Shared CDN option",
+  "hosting_cdn_v1_upgrade_title": "Migrate to the Shared CDN option",
   "hosting_cdn_order_customer_cdn_included_step1_description": "We will migrate your old CDN to the Shared CDN option for you. We will also progressively migrate the domain names on your hosting plan that have the old CDN option enabled. A default configuration will be set up. Domain names that do not have the CDN option enabled will remain in the same state after the migration.",
   "hosting_cdn_order_customer_cdn_included_step1_header": "Option price",
   "hosting_cdn_order_customer_cdn_included_step1_info": "Updating to the new CDN is included with Performance 1, 2, 3, 4 and Cloud Web 1, 2 and 3 solutions, with no additional fees.",

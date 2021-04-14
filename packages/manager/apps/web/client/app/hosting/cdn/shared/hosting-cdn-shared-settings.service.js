@@ -193,7 +193,7 @@ export default class HostingCdnSharedService {
    */
   simulateCartForUpgrade(serviceName, addonOption, serviceId) {
     const price = find(addonOption.prices, ({ capacities }) =>
-      includes(capacities, pricingConstants.PRICING_CAPACITIES.UPGRADE),
+      includes(capacities, pricingConstants.PRICING_CAPACITIES.RENEW),
     );
 
     return this.ovhManagerProductOffersActionService.simulate(
@@ -220,7 +220,7 @@ export default class HostingCdnSharedService {
       .then((options) => {
         const { serviceId } = find(options, ({ billing }) => {
           const planCode = get(billing, 'plan.code', '');
-          return planCode.match('^cdn') && planCode.match('_business$');
+          return planCode.match('^cdn');
         });
         data.serviceId = serviceId;
         return this.ovhManagerProductOffersActionService.getAvailableUpgradePlancodes(
@@ -228,8 +228,9 @@ export default class HostingCdnSharedService {
         );
       })
       .then((upgrades) => {
-        data.addonPlan = find(upgrades, ({ planCode }) =>
-          includes(['cdn-basic', 'cdn-basic-free'], planCode),
+        data.addonPlan = find(
+          upgrades,
+          ({ planCode }) => !planCode.includes('business'),
         );
         return this.simulateCartForUpgrade(
           serviceName,

@@ -11,6 +11,7 @@ export default {
     hasCDN: '<',
     cdnCase: '<',
     isOptionFree: '<',
+    isV1CDN: '<',
     serviceOption: '<',
 
     onError: '<',
