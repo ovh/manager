@@ -30,13 +30,15 @@ export default class CloudprojectbillingvouchersCtrl {
   }
 
   $onInit() {
-    return this.pollVouchers().catch((err) =>
-      this.CucCloudMessage.error({
-        text: `${this.$translate.instant('cpb_vouchers_get_error')} ${
-          err.data
-        }`,
-      }),
-    );
+    return this.pollVouchers()
+      .catch(({ data }) => data.data)
+      .then(({ message }) => {
+        return this.CucCloudMessage.error({
+          text: `${this.$translate.instant(
+            'cpb_vouchers_get_error',
+          )} ${message}`,
+        });
+      });
   }
 
   $onDestroy() {
