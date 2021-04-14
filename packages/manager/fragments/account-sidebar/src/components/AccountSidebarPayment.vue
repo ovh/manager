@@ -31,7 +31,7 @@ import { defineAsyncComponent, defineComponent, Ref, ref } from 'vue';
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import { useI18n } from 'vue-i18n';
 import { Payment, PaymentTypes } from '@/models/payment';
-import { getAvailablePaymentMeans } from '@/utils/paymentMeans';
+import getAvailablePaymentMeans from '@/utils/paymentMeans';
 import axios from 'axios';
 
 export default defineComponent({
