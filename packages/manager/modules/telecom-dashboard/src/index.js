@@ -26,6 +26,8 @@ import template from './telecom-dashboard.html';
 import billsTemplate from './bills/telecom-dashboard-bills.html';
 import guidesTemplate from './guides/telecom-dashboard-guides.html';
 
+import billsService from './bills/telecom-dashboard-bills.service';
+
 const moduleName = 'ovhManagerTelecomDashboard';
 
 angular
@@ -82,6 +84,7 @@ angular
         },
       });
     },
-  );
+  )
+  .service('BillsService', billsService);
 
 export default moduleName;
