@@ -1,3 +1,12 @@
+## [16.18.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.18.5...@ovh-ux/manager-dedicated@16.18.6) (2021-04-14)
+
+
+### Bug Fixes
+
+* **dedicated-cloud.license:** display error on spla license activation ([#4752](https://github.com/ovh/manager/issues/4752)) ([5acf3f2](https://github.com/ovh/manager/commit/5acf3f29463f4c0a7e69567b2ca3944903354e14))
+
+
+
 ## [16.18.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.18.4...@ovh-ux/manager-dedicated@16.18.5) (2021-04-13)
 
 
