@@ -5,12 +5,9 @@ import {
 
 import {
   HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_ADVANCED,
-  HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_BASIC,
   HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_BUSINESS,
-  HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_BASIC_FREE,
   HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_BUSINESS_FREE,
   HOSTING_CDN_ORDER_CDN_VERSION_V1,
-  HOSTING_CDN_ORDER_CDN_VERSION_V2,
   HOSTING_PRODUCT_NAME,
 } from './hosting-cdn-order.constant';
 
@@ -19,12 +16,13 @@ export default /* @ngInject */ ($stateProvider) => {
     autoPayWithPreferredPaymentMethod: /* @ngInject */ (ovhPaymentMethod) =>
       ovhPaymentMethod.hasDefaultPaymentMethod(),
 
-    availablePlans: /* @ngInject */ (availableOptions) =>
+    availablePlans: /* @ngInject */ (availableOptions, cdnProperties) =>
       availableOptions
         .filter(({ family }) => family === 'cdn')
         .map(({ planCode }) => ({
           planCode,
-          available: true,
+          available: !planCode.includes(cdnProperties?.type),
+          current: planCode.includes(cdnProperties?.type),
         }))
         .concat([
           {
@@ -55,16 +53,9 @@ export default /* @ngInject */ ($stateProvider) => {
     serviceInfo: /* @ngInject */ (Hosting, serviceName) =>
       Hosting.getServiceInfos(serviceName),
 
-    cdnProperties: /* @ngInject */ (
-      HostingCdnSharedService,
-      serviceName,
-      goBack,
-    ) => {
+    cdnProperties: /* @ngInject */ (HostingCdnSharedService, serviceName) => {
       return HostingCdnSharedService.getCDNProperties(serviceName)
-        .then(({ data: cdn }) => {
-          if (cdn.version === HOSTING_CDN_ORDER_CDN_VERSION_V2) goBack();
-          return cdn;
-        })
+        .then(({ data: cdn }) => cdn)
         .catch(() => null);
     },
 
@@ -142,6 +133,7 @@ export default /* @ngInject */ ($stateProvider) => {
     workflowType: () => workflowConstants.WORKFLOW_TYPES.SERVICES,
     workflowOptions: /* @ngInject */ (
       catalog,
+      isV1CDN,
       ovhManagerProductOffersActionService,
       ovhManagerProductOffersService,
       serviceInfo,
@@ -151,13 +143,13 @@ export default /* @ngInject */ ($stateProvider) => {
       return ovhManagerProductOffersActionService
         .getAvailableOptions(serviceInfo.serviceId)
         .then((options) => {
-          const cdnOption = options.find(({ billing }) =>
-            [
-              HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_BASIC,
-              HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_BASIC_FREE,
-              HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_BUSINESS,
-              HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_BUSINESS_FREE,
-            ].includes(billing.plan.code),
+          const cdnOption = options.find(
+            ({ billing }) =>
+              ![
+                HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_BUSINESS,
+                HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_BUSINESS_FREE,
+              ].includes(billing.plan.code) &&
+              billing.plan.code.includes('cdn'),
           );
 
           upgradeServiceId = cdnOption.serviceId;
@@ -166,13 +158,12 @@ export default /* @ngInject */ ($stateProvider) => {
           );
         })
         .then((upgrades) => {
-          const cdnUpgrades = upgrades.filter(({ planCode }) =>
-            [
-              HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_BASIC,
-              HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_BASIC_FREE,
-              HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_BUSINESS,
-              HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_BUSINESS_FREE,
-            ].includes(planCode),
+          const cdnUpgrades = upgrades.filter(
+            ({ planCode }) =>
+              ![
+                HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_BUSINESS,
+                HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_BUSINESS_FREE,
+              ].includes(planCode),
           );
 
           const cdn1Addon = catalog.addons.find(
@@ -190,7 +181,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
           return {
             plancodes: cdnUpgrades,
-            currentOptionPrice: cdn1Price,
+            currentOptionPrice: isV1CDN ? cdn1Price : null,
             onPricingSubmit: () => {
               trackClick('web::hosting::cdn::order::next');
             },

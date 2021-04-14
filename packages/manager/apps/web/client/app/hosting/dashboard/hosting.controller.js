@@ -9,8 +9,6 @@ import some from 'lodash/some';
 import union from 'lodash/union';
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 
-import { HOSTING_CDN_ORDER_CDN_VERSION_V1 } from '../cdn/order/hosting-cdn-order.constant';
-
 export default class {
   /* @ngInject */
   constructor(
@@ -763,28 +761,17 @@ export default class {
     });
   }
 
-  /**
-   * This function can be removed once all CDN has been migrated by AGORA
-   * The isUpgradable variable can also removed
-   * @returns {Promise<{}>}
-   */
   simulateUpgradeAvailability() {
-    const cdnVersion = get(this.$scope.cdnProperties, 'version', '');
-    if (cdnVersion === HOSTING_CDN_ORDER_CDN_VERSION_V1) {
-      const { serviceName } = this.$scope.hosting;
-      return this.HostingCdnSharedService.simulateUpgrade(
-        serviceName,
-        this.$scope.hosting.serviceInfos.serviceId,
-      )
-        .then(() => {
-          this.$scope.isUpgradable = true;
-        })
-        .catch(() => {
-          this.$scope.isUpgradable = false;
-          return null;
-        });
-    }
-    this.$scope.isUpgradable = true;
-    return null;
+    const { serviceName } = this.$scope.hosting;
+    return this.HostingCdnSharedService.simulateUpgrade(
+      serviceName,
+      this.$scope.hosting.serviceInfos.serviceId,
+    )
+      .then(() => {
+        this.$scope.isUpgradable = true;
+      })
+      .catch(() => {
+        this.$scope.isUpgradable = false;
+      });
   }
 }

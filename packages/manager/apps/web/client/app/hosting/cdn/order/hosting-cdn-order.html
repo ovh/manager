@@ -1,10 +1,16 @@
 <oui-back-button data-on-click="$ctrl.goBack()">
     <span
-        data-translate="{{:: 'hosting_cdn_' + ($ctrl.hasCDN ? 'upgrade' : 'order') + '_title' }}"
+        data-ng-if="!$ctrl.hasCDN"
+        data-translate="{{:: 'hosting_cdn_order_title' }}"
+    ></span>
+    <span
+        data-ng-if="$ctrl.hasCDN"
+        data-translate="{{:: 'hosting_cdn_' + ($ctrl.isV1CDN ? 'v1_' : '') + 'upgrade_title' }}"
     ></span>
 </oui-back-button>
 
 <p
+    data-ng-if="$ctrl.isV1CDN"
     data-translate="{{:: 'hosting_cdn_order_customer_cdn_'+ $ctrl.cdnCase +'_step1_description' }}"
 ></p>
 
@@ -40,7 +46,13 @@
                             data-translate="{{:: 'hosting_cdn_order_choose_plan_' + cdn.planCode }}"
                         >
                         </strong>
-                        <p data-ng-if="!cdn.available">
+                        <p data-ng-if="cdn.current">
+                            <span
+                                class="oui-badge oui-badge_s oui-badge_info"
+                                data-translate="hosting_cdn_order_choose_plan_current_plan"
+                            ></span>
+                        </p>
+                        <p data-ng-if="!cdn.available && !cdn.current">
                             <span
                                 class="oui-badge oui-badge_s oui-badge_success"
                             >
