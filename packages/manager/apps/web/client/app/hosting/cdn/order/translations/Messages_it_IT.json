@@ -1,6 +1,6 @@
 {
   "hosting_cdn_order_title": "Stai per attivare l'opzione Shared CDN",
-  "hosting_cdn_upgrade_title": "Passa all'opzione Shared CDN",
+  "hosting_cdn_v1_upgrade_title": "Passa all'opzione Shared CDN",
   "hosting_cdn_order_customer_cdn_included_step1_description": "La migrazione della tua CDN precedente verso l'opzione Shared CDN verrà presa in carico da OVHcloud, che provvederà anche a migrare i domini dell’hosting su cui risulta attiva la vecchia CDN. Sarà installata una configurazione di default. Lo stato dei domini su cui la CDN non è attiva resterà invariato dopo la migrazione.",
   "hosting_cdn_order_customer_cdn_included_step1_header": "Prezzo dell'opzione",
   "hosting_cdn_order_customer_cdn_included_step1_info": "L'aggiornamento verso la nuova CDN è incluso con la soluzione Performance 1, 2, 3, 4 o Cloud Web 1, 2 o 3, senza fatturazione aggiuntiva.",
