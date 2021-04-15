@@ -1,3 +1,12 @@
+## [1.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas@1.0.3...@ovh-ux/manager-web-paas@1.0.4) (2021-04-15)
+
+
+### Bug Fixes
+
+* **webpaas:** add multiple project condition back ([#4779](https://github.com/ovh/manager/issues/4779)) ([0f5242c](https://github.com/ovh/manager/commit/0f5242cf375891c2a39ffa2ddd2736d7fa1197d4))
+
+
+
 ## [1.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas@1.0.2...@ovh-ux/manager-web-paas@1.0.3) (2021-04-15)
 
 
