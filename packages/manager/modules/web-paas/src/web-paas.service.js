@@ -1,8 +1,8 @@
 import map from 'lodash/map';
 import set from 'lodash/set';
-
 import Project from './project.class';
 import Plan from './plan.class';
+import { BETA_PLAN_CODE } from './web-paas.constants';
 
 export default class WebPaasService {
   /* @ngInject */
@@ -56,7 +56,9 @@ export default class WebPaasService {
       set(
         catalog,
         'plans',
-        map(catalog.plans, (plan) => new Plan(plan)),
+        map(catalog.plans, (plan) =>
+          plan.planCode === BETA_PLAN_CODE ? new Plan(plan) : null,
+        ),
       );
       return catalog;
     });

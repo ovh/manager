@@ -33,6 +33,8 @@ export default /* @ngInject */ ($stateProvider) => {
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().productId,
       breadcrumb: /* @ngInject */ (serviceName) => serviceName,
+      emailLink: /* @ngInject */ (serviceName) =>
+        buildURL('web', `#/email_domain/${serviceName}/mailing-list`),
     },
     redirectTo: 'app.zone.details.dashboard',
     translations: { value: ['../../domain/dashboard'], format: 'json' },
