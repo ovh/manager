@@ -1,3 +1,14 @@
+## [16.18.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.18.6...@ovh-ux/manager-dedicated@16.18.7) (2021-04-15)
+
+
+### Bug Fixes
+
+* **installation:** fix modal display ([#4764](https://github.com/ovh/manager/issues/4764)) ([4ad8160](https://github.com/ovh/manager/commit/4ad81600e90a5bf5c2e61bc3aaafe3520caf3c8c))
+* **ip:** ip firewall rules are not shown ([#4763](https://github.com/ovh/manager/issues/4763)) ([18b5418](https://github.com/ovh/manager/commit/18b54186340e5c5a43187d249c99955b4e5673e1))
+* **license:** add default name format ([16f71ef](https://github.com/ovh/manager/commit/16f71ef925aade755a1cc26bac9339b4351bd8f2))
+
+
+
 ## [16.18.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.18.5...@ovh-ux/manager-dedicated@16.18.6) (2021-04-14)
 
 

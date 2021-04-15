@@ -1,3 +1,12 @@
+## [15.20.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.20.1...@ovh-ux/manager-web@15.20.2) (2021-04-15)
+
+
+### Bug Fixes
+
+* **dns-zone:** update link to mailing lists ([659445c](https://github.com/ovh/manager/commit/659445c4b983d7f980a7b6535d3fabc07f4ae758))
+
+
+
 ## [15.20.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.20.0...@ovh-ux/manager-web@15.20.1) (2021-04-08)
 
 
