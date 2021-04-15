@@ -1,3 +1,12 @@
+## [1.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas@1.0.2...@ovh-ux/manager-web-paas@1.0.3) (2021-04-15)
+
+
+### Bug Fixes
+
+* **webpaas:** fix webpaas plan issue ([#4776](https://github.com/ovh/manager/issues/4776)) ([a0ba0cf](https://github.com/ovh/manager/commit/a0ba0cf7a24917b5bddd1fec6572883076d487b8))
+
+
+
 ## [1.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas@1.0.1...@ovh-ux/manager-web-paas@1.0.2) (2021-04-15)
 
 
