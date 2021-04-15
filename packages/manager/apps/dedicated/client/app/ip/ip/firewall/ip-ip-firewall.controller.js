@@ -12,6 +12,8 @@ angular
       goToDashboard,
       $location,
       $route,
+      $stateParams,
+      $http,
     ) => {
       $scope.selectedBlock = null;
       $scope.selectedIp = null;
@@ -40,69 +42,81 @@ angular
         $scope.$broadcast('paginationServerSide.reload', 'rulesTable');
       }
 
+      function fetchRules(rulesCount, offset) {
+        $scope.rulesLoading = true;
+
+        IpFirewall.getFirewallRules(
+          $scope.selectedBlock,
+          $scope.selectedIp,
+          rulesCount,
+          offset,
+        )
+          .then(
+            (rules) => {
+              $scope.rules = rules;
+              let options;
+
+              if (
+                $scope.rules &&
+                $scope.rules.list &&
+                $scope.rules.list.results &&
+                $scope.rules.list.results.length
+              ) {
+                angular.forEach($scope.rules.list.results, (result, i) => {
+                  options = [];
+                  if (result.fragments) {
+                    options.push(
+                      $translate.instant('ip_firewall_rule_fragments'),
+                    );
+                  }
+                  if (result.tcpOption) {
+                    options.push(result.tcpOption);
+                  }
+
+                  $scope.rules.list.results[i].options = options.join('<br/>');
+
+                  // Go poll
+                  if (
+                    result.state === 'CREATION_PENDING' ||
+                    result.state === 'REMOVAL_PENDING'
+                  ) {
+                    IpFirewall.pollFirewallRule(
+                      $scope.selectedBlock,
+                      $scope.selectedIp,
+                      result.sequence,
+                    ).then(() => {
+                      reloadRules();
+                    });
+                  }
+                });
+              }
+            },
+            (reason) => {
+              $scope.rulesLoadingError = reason.message;
+            },
+          )
+          .finally(() => {
+            $scope.rulesLoading = false;
+          });
+      }
+
       $scope.$on('ips.firewall.informations.reload', () => {
         reloadRules();
       });
 
       $scope.loadRules = function loadRules(rulesCount, offset) {
-        if ($scope.selectedIp) {
-          $scope.rulesLoading = true;
-
-          IpFirewall.getFirewallRules(
-            $scope.selectedBlock,
-            $scope.selectedIp,
-            rulesCount,
-            offset,
-          )
-            .then(
-              (rules) => {
-                $scope.rules = rules;
-                let options;
-
-                if (
-                  $scope.rules &&
-                  $scope.rules.list &&
-                  $scope.rules.list.results &&
-                  $scope.rules.list.results.length
-                ) {
-                  angular.forEach($scope.rules.list.results, (result, i) => {
-                    options = [];
-                    if (result.fragments) {
-                      options.push(
-                        $translate.instant('ip_firewall_rule_fragments'),
-                      );
-                    }
-                    if (result.tcpOption) {
-                      options.push(result.tcpOption);
-                    }
-
-                    $scope.rules.list.results[i].options = options.join(
-                      '<br/>',
-                    );
-
-                    // Go poll
-                    if (
-                      result.state === 'CREATION_PENDING' ||
-                      result.state === 'REMOVAL_PENDING'
-                    ) {
-                      IpFirewall.pollFirewallRule(
-                        $scope.selectedBlock,
-                        $scope.selectedIp,
-                        result.sequence,
-                      ).then(() => {
-                        reloadRules();
-                      });
-                    }
-                  });
-                }
-              },
-              (reason) => {
-                $scope.rulesLoadingError = reason.message;
-              },
-            )
-            .finally(() => {
-              $scope.rulesLoading = false;
+        if (!$scope.selectedIp && !$scope.selectedBlock) {
+          $scope.selectedIp = $stateParams.ip;
+          $http
+            .get(`/ip?ip=${window.encodeURIComponent($stateParams.ip)}`)
+            .then(({ data }) => {
+              if (data.length) {
+                [$scope.selectedBlock] = data;
+                fetchRules(rulesCount, offset);
+              }
             });
+        } else if ($scope.selectedIp) {
+          fetchRules(rulesCount, offset);
         }
       };
 
