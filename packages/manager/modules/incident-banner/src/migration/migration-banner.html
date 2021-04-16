@@ -1,5 +1,7 @@
 <oui-message data-ng-if="$ctrl.isActive" type="warning" dismissable>
-    <span data-translate="manager_incident_migration_banner_description"></span>
+    <span
+        data-translate="{{ $ctrl.hasRise ? 'manager_incident_migration_banner_rise' : 'manager_incident_migration_banner_description' }}"
+    ></span>
     <a
         data-ng-href="{{$ctrl.migrationLink}}"
         class="oui-link_icon"
@@ -7,7 +9,9 @@
         data-track-name="alert::sbg-incident::go-to-service-replacement"
         data-track-type="action"
     >
-        <span data-translate="manager_incident_migration_banner_cta"></span>
+        <span
+            data-translate="{{$ctrl.hasRise ? 'manager_incident_migration_banner_cta_rise' : 'manager_incident_migration_banner_cta' }}"
+        ></span>
         <span class="oui-icon oui-icon-arrow-right"></span>
     </a>
 </oui-message>
