@@ -3,11 +3,11 @@
     data-ng-controller="telephonyNumberOvhPabxDialplanEditCtrl as $ctrl"
     data-ng-form="dialplanForm"
 >
-    <div
-        class="popover-pages-wrapper"
-        data-ng-class="{ move: $ctrl.dialplanCtrl.popoverStatus.move }"
-    >
-        <section class="popover-page page-section">
+    <div class="popover-pages-wrapper">
+        <section
+            class="popover-page page-section"
+            data-ng-if="!$ctrl.dialplanCtrl.popoverStatus.move"
+        >
             <header>
                 <h2
                     data-translate="telephony_number_feature_ovh_pabx_dialplan_edit"
@@ -164,7 +164,10 @@
             </footer>
         </section>
 
-        <section class="popover-page page-section">
+        <section
+            class="popover-page page-section"
+            data-ng-if="$ctrl.dialplanCtrl.popoverStatus.move"
+        >
             <header>
                 <button
                     type="button"

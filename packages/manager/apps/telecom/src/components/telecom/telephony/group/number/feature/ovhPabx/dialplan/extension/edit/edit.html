@@ -3,12 +3,12 @@
     class="telephony-number-ovh-pabx-extension-edit popover-pages"
     data-ng-form="extensionConditionsForm"
 >
-    <div
-        class="popover-pages-wrapper"
-        data-ng-class="{ move: $ctrl.parentCtrl.popoverStatus.move }"
-    >
+    <div class="popover-pages-wrapper">
         <!-- LEFT PAGE -->
-        <section class="popover-page page-section">
+        <section
+            data-ng-if="!$ctrl.parentCtrl.popoverStatus.move"
+            class="popover-page page-section"
+        >
             <header>
                 <h2
                     data-translate="telephony_number_feature_ovh_pabx_step_advanced"
@@ -173,8 +173,8 @@
 
         <!-- RIGHT PAGE -->
         <section
-            class="popover-page page-section"
-            data-ng-switch="$ctrl.parentCtrl.popoverStatus.rightPage"
+            data-ng-if="$ctrl.parentCtrl.popoverStatus.move"
+            class="popover-page page-section page-right"
         >
             <header>
                 <button

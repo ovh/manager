@@ -4,12 +4,12 @@
     data-ng-form="$ctrl.extensionRuleForm"
     id="ruleEdit"
 >
-    <div
-        class="popover-pages-wrapper"
-        data-ng-class="{ move: $ctrl.parentCtrl.popoverStatus.move }"
-    >
+    <div class="popover-pages-wrapper">
         <!-- LEFT PAGE -->
-        <section class="popover-page page-section">
+        <section
+            data-ng-if="!$ctrl.parentCtrl.popoverStatus.move"
+            class="popover-page page-section"
+        >
             <header>
                 <h2
                     data-translate="{{ $ctrl.rule.status === 'DRAFT' ? 'telephony_number_feature_ovh_pabx_step_rule_new' : 'telephony_number_feature_ovh_pabx_step_rule_edit' }}"
@@ -403,8 +403,9 @@
 
         <!-- RIGHT PAGE -->
         <section
-            class="popover-page page-section"
+            data-ng-if="$ctrl.parentCtrl.popoverStatus.move"
             data-ng-switch="$ctrl.parentCtrl.popoverStatus.rightPage"
+            class="popover-page page-section"
         >
             <header>
                 <button

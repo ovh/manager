@@ -5,8 +5,6 @@ export default class DialplanExtensionRuleCtrl {
   /* @ngInject */
   constructor(
     $q,
-    $scope,
-    $timeout,
     $translate,
     atInternet,
     autoScrollOnToggle,
@@ -14,8 +12,6 @@ export default class DialplanExtensionRuleCtrl {
     TucToast,
   ) {
     this.$q = $q;
-    this.$scope = $scope;
-    this.$timeout = $timeout;
     this.$translate = $translate;
     this.atInternet = atInternet;
     this.autoScrollOnToggle = autoScrollOnToggle;
@@ -45,28 +41,6 @@ export default class DialplanExtensionRuleCtrl {
 
     // set extension
     this.extension = this.extensionCtrl.extension;
-
-    // There is a display bug whith popover misplacement probably due to the
-    // poor css used in this section. I didn't manage to find a clean fix
-    // and i'm using this dirty fix for now until a better solution is provided.
-    // Triggering a focus event on the popup make uib bootstrap popover recompute
-    // his position.
-    // @TODO find a better way to clean popover misplacement
-    this.$scope.$watch(
-      () => this.popoverStatus.move,
-      (move) => {
-        if (move) {
-          [1, 10, 50, 100, 250, 500, 1000].map((delay) =>
-            this.$timeout(() => {
-              angular
-                .element('.popover-page')
-                .last()
-                .focus();
-            }, delay),
-          );
-        }
-      },
-    );
   }
 
   refreshSubwayPlan() {
