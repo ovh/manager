@@ -1,3 +1,12 @@
+# [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-incident-banner@1.2.4...@ovh-ux/manager-incident-banner@1.3.0) (2021-04-16)
+
+
+### Features
+
+* **migration:** update content for rise servers ([#4784](https://github.com/ovh/manager/issues/4784)) ([a0ca241](https://github.com/ovh/manager/commit/a0ca241a21183bbd4ff5fc70638cbea8721e0667))
+
+
+
 ## [1.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-incident-banner@1.2.3...@ovh-ux/manager-incident-banner@1.2.4) (2021-04-08)
 
 
