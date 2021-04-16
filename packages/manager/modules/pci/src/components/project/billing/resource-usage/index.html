@@ -28,7 +28,7 @@
     >
         <span
             data-translate="pci_billing_private_registry_consumption_value"
-            data-translate-values="{ value: $row.quantity.value }"
+            data-translate-values="{ value: $ctrl.constructor.hourlyQuantity($row.quantity) }"
         >
         </span>
     </oui-datagrid-column>
