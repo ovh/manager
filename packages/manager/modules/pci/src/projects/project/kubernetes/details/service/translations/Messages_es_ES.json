@@ -61,5 +61,6 @@
   "kube_service_restrictions_no_count": "Sin límite",
   "kube_service_restrictions_count": "{{ count }} rangos de IP",
   "kube_service_restrictions_one": "1 rango de IP",
-  "kube_service_restrictions_edit": "Modificar las limitaciones"
+  "kube_service_restrictions_edit": "Modificar las limitaciones",
+  "kube_service_cluster_status_MAINTENANCE": "En mantenimiento"
 }

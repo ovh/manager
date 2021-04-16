@@ -61,5 +61,6 @@
   "kube_service_restrictions_no_count": "Keine Einschränkung",
   "kube_service_restrictions_count": "{{ count }} IP-Bereiche",
   "kube_service_restrictions_one": "1 IP-Bereich",
-  "kube_service_restrictions_edit": "Die Einschränkungen ändern"
+  "kube_service_restrictions_edit": "Die Einschränkungen ändern",
+  "kube_service_cluster_status_MAINTENANCE": "Wartungsarbeiten laufen"
 }
