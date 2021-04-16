@@ -1,0 +1,36 @@
+$buttons-width: 15rem;
+$buttons-margin: 0.2rem;
+$img-width: 10rem;
+$img-wrapper-margin-bottom: 1rem;
+$modal-margin: 0;
+
+.cookie-policy-modal {
+  .img-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: $img-wrapper-margin-bottom;
+
+    img {
+      width: $img-width;
+    }
+  }
+
+  .oui-modal__header {
+    display: none;
+  }
+
+  .banner-buttons {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .oui-button {
+      width: $buttons-width;
+      margin: $buttons-margin;
+    }
+  }
+}

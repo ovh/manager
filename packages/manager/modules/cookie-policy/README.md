@@ -17,10 +17,6 @@ import ovhManagerCookiePolicy from '@ovh-ux/manager-cookie-policy';
 angular.module('myApp', [ovhManagerCookiePolicy]);
 ```
 
-```html
-<ovh-manager-cookie-policy></ovh-manager-cookie-policy>
-````
-
 ## Build
 
 ```sh
