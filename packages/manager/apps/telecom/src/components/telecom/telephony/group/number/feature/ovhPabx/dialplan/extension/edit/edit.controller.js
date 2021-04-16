@@ -427,6 +427,7 @@ export default class DialplanExtensionEditCtrl {
 
   onValidateBtnClick() {
     this.parentCtrl.popoverStatus.isOpen = false;
+    this.parentCtrl.popoverStatus.move = false;
 
     // remove all screen list conditions if no list type selected
     if (isNull(this.extension.screenListType)) {
