@@ -319,11 +319,12 @@
                         data-expanded="!conditionsGroup.collapsed"
                         data-on-toggle="conditionsGroup.collapsed = !conditionsGroup.collapsed"
                     >
-                        <div class="section-item">
+                        <div class="section-item pr-0">
                             <div class="btn-group w-100">
+                                <!-- warning: oui-button style not compatible with uib-btn-checkbox -->
                                 <button
                                     type="button"
-                                    class="oui-button"
+                                    class="btn btn-primary"
                                     data-ng-repeat="day in conditionsGroup.dayModel track by $index"
                                     data-ng-model="day.selected"
                                     data-ng-click="$ctrl.onDayBtnClick(day, conditionsGroup)"
@@ -423,6 +424,7 @@
                                         data-uib-typeahead="hour for hour in $ctrl.availableHours | filter:$viewValue:$ctrl.hourStartWith | limitTo:4"
                                         data-typeahead-select-on-blur="true"
                                         data-typeahead-show-hint="true"
+                                        data-typeahead-append-to-body="true"
                                         data-typeahead-no-results="conditionsGroup.errors.timeFrom"
                                     />
                                 </div>
@@ -438,6 +440,7 @@
                                         data-uib-typeahead="hour for hour in $ctrl.availableHours | filter:$viewValue:$ctrl.hourStartWith | limitTo:4"
                                         data-typeahead-select-on-blur="true"
                                         data-typeahead-show-hint="true"
+                                        data-typeahead-append-to-body="true"
                                         data-typeahead-no-results="conditionsGroup.errors.timeTo"
                                     />
                                 </div>
@@ -461,9 +464,8 @@
                         <!-- END OF ADD CONDITION -->
 
                         <!-- ERROR DISPLAY -->
-                        <div
-                            class="alert alert-danger mb-0 pl-3"
-                            role="alert"
+                        <oui-message
+                            type="error"
                             data-ng-if="conditionsGroup.errors.timeFrom || conditionsGroup.errors.timeTo || conditionsGroup.errors.collision || conditionsGroup.errors.badSlot"
                         >
                             <!-- BAD HOUR SELECTION ERROR -->
@@ -484,7 +486,7 @@
                                 data-translate="telephony_number_feature_ovh_pabx_step_conditions_time_condition_bad_hours"
                             ></p>
                             <!-- END OF COLLISION ERROR -->
-                        </div>
+                        </oui-message>
                         <!-- END OF ERROR DISPLAY -->
                     </oui-collapsible>
                 </div>
@@ -690,6 +692,24 @@
                 <!-- END OF NUMBER LIST -->
             </section>
             <!-- END OF SCREEN LIST CONDITIONS -->
+
+            <!-- FOOTER ACTIONS -->
+            <footer class="clearfix float-sm-right">
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                    data-ng-disabled="!$ctrl.extension.hasChange() || extensionConditionsForm.$invalid"
+                    data-translate="{{ $ctrl.extension.status === 'DRAFT' ? 'common_create' : 'modify' }}"
+                    data-ng-click="$ctrl.onValidateBtnClick()"
+                ></button>
+                <button
+                    type="button"
+                    class="btn btn-default mr-sm-2 float-left"
+                    data-translate="cancel"
+                    data-ng-click="$ctrl.onCancelBtnClick()"
+                ></button>
+            </footer>
+            <!-- FOOTER ACTIONS -->
         </section>
         <!-- RIGHT PAGE -->
     </div>
