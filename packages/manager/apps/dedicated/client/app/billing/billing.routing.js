@@ -14,8 +14,10 @@ export default /* @ngInject */ ($stateProvider) => {
           $state.transition.to().name !== 'app.account.billing.autorenew.ssh'
         ) {
           return $q.reject({
+            data: {
+              message: 'Access forbidden for enterprise accounts',
+            },
             status: 403,
-            message: 'Access forbidden for enterprise accounts',
             code: 'FORBIDDEN_BILLING_ACCESS',
           });
         }
