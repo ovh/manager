@@ -340,7 +340,9 @@
                             data-ng-repeat="slot in conditionsGroup.slots | filter:{ condition: { state: '!TO_DELETE' } } | orderBy:$ctrl.orderConditionTimeByTimeFrom track by $index"
                         >
                             <div class="d-table w-100 fixed-layout">
-                                <div class="d-table-cell text-left">
+                                <div
+                                    class="d-table-cell text-left align-middle"
+                                >
                                     <div
                                         data-ng-class="{ 'opacity2-leave': slot.condition.state === 'DELETE_PENDING', 'opacity2-enter': slot.condition.state !== 'DELETE_PENDING' }"
                                     >
@@ -364,7 +366,8 @@
                                             data-ng-click="slot.condition.state = 'OK'"
                                         >
                                             <i
-                                                class="ovh-font ovh-font-wrong mr-2"
+                                                class="oui-icon oui-icon-close mr-2"
+                                                aria-hidden="true"
                                             ></i>
                                             <span
                                                 data-translate="cancel"
@@ -377,7 +380,8 @@
                                             data-ng-click="$ctrl.onTimeConditionDeleteConfirmBtnClick(slot, conditionsGroup)"
                                         >
                                             <i
-                                                class="ovh-font ovh-font-bin mr-2"
+                                                class="oui-icon oui-icon-bin mr-2"
+                                                aria-hidden="true"
                                             ></i>
                                             <span
                                                 data-translate="delete"
@@ -390,12 +394,13 @@
                                     >
                                         <button
                                             type="button"
-                                            class="btn-actions-list"
+                                            class="oui-button oui-button_secondary"
                                             data-ng-click="slot.condition.state = 'DELETE_PENDING'"
                                             data-translate-attr="{ title: 'telephony_number_feature_ovh_pabx_step_conditions_screen_list_number_remove' }"
                                         >
                                             <i
-                                                class="ovh-font ovh-font-bin"
+                                                class="oui-icon oui-icon-bin"
+                                                aria-hidden="true"
                                             ></i>
                                         </button>
                                     </div>
@@ -440,7 +445,7 @@
                                 <div class="d-table-cell align-middle pl-5">
                                     <button
                                         type="button"
-                                        class="btn-actions-list"
+                                        class="oui-button oui-button_secondary"
                                         data-ng-disabled="!$ctrl.isConditionGroupValid(conditionsGroup)"
                                         data-ng-click="$ctrl.onConditionAddBtnClick(conditionsGroup)"
                                     >
@@ -617,7 +622,9 @@
                             data-ng-repeat="screenList in $ctrl.getScreenListConditionList() track by $index"
                         >
                             <div class="d-table w-100 fixed-layout">
-                                <div class="d-table-cell text-left">
+                                <div
+                                    class="d-table-cell text-left align-middle"
+                                >
                                     <div
                                         data-ng-class="{ 'opacity2-leave': screenList.state === 'DELETE_PENDING', 'opacity2-enter': screenList.state !== 'DELETE_PENDING' }"
                                     >
@@ -637,7 +644,8 @@
                                             data-ng-click="screenList.state = 'OK'"
                                         >
                                             <i
-                                                class="ovh-font ovh-font-wrong mr-2"
+                                                class="oui-icon oui-icon-close mr-2"
+                                                aria-hidden="true"
                                             ></i>
                                             <span
                                                 data-translate="cancel"
@@ -650,7 +658,8 @@
                                             data-ng-click="$ctrl.onScreenListDeleteConfirmBtnClick(screenList)"
                                         >
                                             <i
-                                                class="ovh-font ovh-font-bin mr-2"
+                                                class="oui-icon oui-icon-bin mr-2"
+                                                aria-hidden="true"
                                             ></i>
                                             <span
                                                 data-translate="delete"
@@ -663,12 +672,12 @@
                                     >
                                         <button
                                             type="button"
-                                            class="btn-actions-list"
+                                            class="oui-button oui-button_secondary"
                                             data-ng-click="screenList.state = 'DELETE_PENDING'"
                                             data-translate-attr="{ title: 'telephony_number_feature_ovh_pabx_step_conditions_screen_list_number_remove' }"
                                         >
                                             <i
-                                                class="ovh-font ovh-font-bin"
+                                                class="oui-icon oui-icon-bin"
                                                 aria-hidden="true"
                                             ></i>
                                         </button>
