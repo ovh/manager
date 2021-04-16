@@ -1,4 +1,6 @@
 {
   "manager_incident_migration_banner_description": "SBG: Uno o più dei tuoi servizi Bare Metal Cloud sono stati colpiti dalla situazione verificatasi nel nostro sito di Strasburgo (SBG). Ti offriamo un server sostitutivo gratuito per un periodo di tempo determinato.",
-  "manager_incident_migration_banner_cta": "Visualizza i tuoi server sostitutivi"
+  "manager_incident_migration_banner_cta": "Visualizza i tuoi server sostitutivi",
+  "manager_incident_migration_banner_rise": "SBG: Activate your replacement server with our free service offering.",
+  "manager_incident_migration_banner_cta_rise": "Click here"
 }
