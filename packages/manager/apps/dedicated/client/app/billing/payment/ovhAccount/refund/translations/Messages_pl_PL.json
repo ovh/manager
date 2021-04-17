@@ -1,9 +1,9 @@
 {
-  "billing_ovhaccount_refund": "Ask for refund",
-  "billing_ovhaccount_refund_cancel": "Cancel",
-  "billing_ovhaccount_refund_confirm": "Confirm",
-  "billing_ovhaccount_refund_description": "You are about to request a refund of {{amount}}. This amount will be refunded on the original payment method",
-  "billing_ovhaccount_refund_description_confirm": "Are you sure to process the refund?",
-  "billing_ovhaccount_refund_success": "Your refund request of {{amount}} has been submitted successfully and will be processed shortly.",
-  "billing_ovhaccount_refund_error": "An error has occured while requesting for a refund."
+  "billing_ovhaccount_refund": "Wniosek o zwrot",
+  "billing_ovhaccount_refund_cancel": "Anuluj",
+  "billing_ovhaccount_refund_confirm": "Zatwierdź wniosek",
+  "billing_ovhaccount_refund_description": "Składasz wniosek o zwrot środków w wysokości {{amount}}. Zwrot zostanie przekazany na zarejestrowany sposób płatności.",
+  "billing_ovhaccount_refund_description_confirm": "Czy chcesz złożyć wniosek o zwrot?",
+  "billing_ovhaccount_refund_success": "Wniosek o zwrot środków w wysokości {{amount}} został zarejestrowany. Rozpatrzymy go w najbliższym możliwym terminie.",
+  "billing_ovhaccount_refund_error": "Wystąpił błąd podczas składania wniosku o zwrot."
 }
