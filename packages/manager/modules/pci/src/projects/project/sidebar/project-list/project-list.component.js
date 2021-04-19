@@ -4,6 +4,7 @@ import template from './project-list.html';
 export default {
   bindings: {
     goToProject: '<',
+    goToProjects: '<',
     goToProjectInactive: '<',
   },
   controller,

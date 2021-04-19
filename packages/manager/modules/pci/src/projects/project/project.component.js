@@ -9,6 +9,7 @@ export default {
     user: '<',
     getQuotaUrl: '<',
     goToProject: '<',
+    goToProjects: '<',
     goToProjectInactive: '<',
   },
   controller,

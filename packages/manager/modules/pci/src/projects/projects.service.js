@@ -1,6 +1,4 @@
-import find from 'lodash/find';
 import map from 'lodash/map';
-import set from 'lodash/set';
 
 import { DEFAULT_PROJECT_KEY } from './projects.constant';
 import Project from './Project.class';
@@ -37,17 +35,16 @@ export default class {
         ]),
       ])
       .then(([projects, services]) =>
-        map(projects, (project) => {
-          set(
-            project,
-            'service',
-            find(
-              services,
-              (service) => project.project_id === service.resource.name,
-            ),
-          );
-          return new Project(project);
-        }),
+        map(
+          projects,
+          (project) =>
+            new Project({
+              ...project,
+              service: services.find(
+                (service) => project.project_id === service.resource.name,
+              ),
+            }),
+        ),
       );
   }
 
