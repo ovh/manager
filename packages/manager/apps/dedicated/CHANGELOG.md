@@ -1,3 +1,12 @@
+## [16.18.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.18.7...@ovh-ux/manager-dedicated@16.18.8) (2021-04-19)
+
+
+### Bug Fixes
+
+* prepare new dedicated server OS usages ([#4771](https://github.com/ovh/manager/issues/4771)) ([a6d07df](https://github.com/ovh/manager/commit/a6d07dfb6bc8ac1b2288eafdcdf966b33dd48c95)), closes [#4767](https://github.com/ovh/manager/issues/4767)
+
+
+
 ## [16.18.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.18.6...@ovh-ux/manager-dedicated@16.18.7) (2021-04-15)
 
 
