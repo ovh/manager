@@ -38,6 +38,9 @@ export default /* @ngInject */ ($stateProvider) => {
       goToProject: /* @ngInject */ ($state) => (project) =>
         $state.go('pci.projects.project', { projectId: project.project_id }),
 
+      goToNewProject: /* @ngInject */ ($state) => () =>
+        $state.go('pci.projects.new'),
+
       goToProjects: /* @ngInject */ ($state, CucCloudMessage) => (
         message = false,
         type = 'success',

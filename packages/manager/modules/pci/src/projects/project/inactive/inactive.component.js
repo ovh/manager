@@ -5,9 +5,9 @@ export default {
   template,
   controller,
   bindings: {
-    billingUrl: '<',
     goBack: '<',
     goToBilling: '<',
+    goToNewProject: '<',
     goToProject: '<',
     project: '<',
   },
