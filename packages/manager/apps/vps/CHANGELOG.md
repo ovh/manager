@@ -1,3 +1,12 @@
+## [1.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps-app@1.3.1...@ovh-ux/manager-vps-app@1.3.2) (2021-04-19)
+
+
+### Bug Fixes
+
+* **deps:** add missing @ovh-ux/ng-ovh-feature-flipping deps ([#4787](https://github.com/ovh/manager/issues/4787)) ([b3b6a53](https://github.com/ovh/manager/commit/b3b6a539901dd9d8dd66721a389489d3dfd32167))
+
+
+
 ## [1.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps-app@1.3.0...@ovh-ux/manager-vps-app@1.3.1) (2021-04-08)
 
 
