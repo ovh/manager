@@ -1298,5 +1298,8 @@
   "plan_vrack-bandwidth-6000-upto-12000-scale-us": "6 Gbit/s unbegrenzt und garantiert",
   "plan_vrack-bandwidth-10000-upto-20000-scale-us": "10 Gbit/s unbegrenzt und garantiert",
   "plan_vrack-bandwidth-12000-upto-24000-scale-us": "12 Gbit/s unbegrenzt und garantiert",
-  "plan_vrack-bandwidth-25000-upto-50000-scale-us": "25 Gbit/s unbegrenzt und garantiert"
+  "plan_vrack-bandwidth-25000-upto-50000-scale-us": "25 Gbit/s unbegrenzt und garantiert",
+  "server_configuration_installation_ovh_desktop_DATABASE": "Datenbank",
+  "server_configuration_installation_ovh_desktop_MANAGEMENT": "Verwaltungs-Interface",
+  "server_configuration_installation_ovh_desktop_VIRTUALIZATION": "Virtualisierung"
 }
