@@ -320,7 +320,7 @@ export default class DialplanExtensionRuleEditCtrl {
 
     // go to OvhPabx menus to create sub menu for menu entry
     this.$state.go(
-      'telecom.telephony.billingAccount.alias.configuration.ovhPabx.menus',
+      'telecom.telephony.billingAccount.alias.details.configuration.ovhPabx.menus',
     );
 
     // stop edition of menu entry
