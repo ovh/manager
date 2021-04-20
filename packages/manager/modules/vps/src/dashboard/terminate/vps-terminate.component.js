@@ -11,6 +11,7 @@ export default {
     supportTicketLink: '<',
     terminateOptions: '<',
     validateTermination: '<',
+    vps: '<',
   },
   controller,
   name: 'ovhManagerVpsTerminate',
