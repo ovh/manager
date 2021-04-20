@@ -15,7 +15,7 @@
             ></dt>
             <dd
                 class="col-md-7"
-                data-ng-bind="::'dedicatedCloud_datacenter_' + $ctrl.drpInformations.drpType + '_choice' | translate"
+                data-ng-bind="::'dedicatedCloud_datacenter_' + $ctrl.drpInformations.drpType + '_choice_' + $ctrl.pccType | translate"
             ></dd>
             <dt
                 class="col-md-5"
@@ -95,6 +95,20 @@
                     type="text"
                     data-ng-model="$ctrl.drpInformations.vpnConfiguration.remoteEndpointInternalIp"
                     data-ng-pattern="$ctrl.ipValidator"
+                    required
+                />
+            </oui-field>
+            <oui-field
+                data-label="{{:: 'dedicatedCloud_datacenter_drp_vpn_remoteVraNetwork' | translate }}"
+                data-error-messages="{ 'pattern': ('dedicatedCloud_datacenter_drp_vpn_ip_block_invalid' | translate) }"
+                data-size="l"
+            >
+                <input
+                    class="oui-input"
+                    name="remoteVraNetwork"
+                    type="text"
+                    data-ng-model="$ctrl.drpInformations.remoteVraNetwork"
+                    data-ng-pattern="$ctrl.isValidIpv4Block"
                     required
                 />
             </oui-field>

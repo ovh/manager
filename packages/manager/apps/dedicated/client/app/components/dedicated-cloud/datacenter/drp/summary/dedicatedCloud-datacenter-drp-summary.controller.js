@@ -46,6 +46,10 @@ export default class {
       test: (ip) => this.Validator.isValidIpv4(ip),
     }))();
 
+    this.isValidIpv4Block = (() => ({
+      test: (ip) => this.Validator.isValidIpv4Block(ip),
+    }))();
+
     this.canConfigureVpn = this.canSetVpnConfiguration();
     this.isVpnNotConfigured = this.hasNoVpnConfiguration();
   }

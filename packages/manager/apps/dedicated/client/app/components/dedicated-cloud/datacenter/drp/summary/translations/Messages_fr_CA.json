@@ -28,11 +28,13 @@
 
   "dedicatedCloud_datacenter_drp_vpn_presharedkey": "Clé de chiffrement du VPN (PSK)",
   "dedicatedCloud_datacenter_drp_vpn_remoteEndpointPublicIp": "IP publique du VPN distant",
+  "dedicatedCloud_datacenter_drp_vpn_remoteVraNetwork": "Réseau VRA Datacenter on premises",
   "dedicatedCloud_datacenter_drp_vpn_remoteEndpointInternalIp": "IP privée du VPN distant",
   "dedicatedCloud_datacenter_drp_vpn_remoteZvmInternalIp": "IP de votre Zvm",
   "dedicatedCloud_datacenter_drp_vpn_validate": "Valider",
   "dedicatedCloud_datacenter_drp_vpn_change_parameters": "Modifier les paramètres",
   "dedicatedCloud_datacenter_drp_vpn_success": "La mise à jour de la configuration VPN a bien été effectuée",
   "dedicatedCloud_datacenter_drp_vpn_error": "Une erreur est survenue lors de la mise à jour de la configuration VPN",
-  "dedicatedCloud_datacenter_drp_vpn_ip_invalid": "Veuillez saisir une adresse IPv4 valide (ex: 192.168.0.1)"
+  "dedicatedCloud_datacenter_drp_vpn_ip_invalid": "Veuillez saisir une adresse IPv4 valide (ex: 192.168.0.1)",
+  "dedicatedCloud_datacenter_drp_vpn_ip_block_invalid": "Veuillez saisir une adresse IPv4Block valide (ex: 192.168.0.1/10)"
 }
