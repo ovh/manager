@@ -76,6 +76,9 @@ export default class ServicesWorkflow extends Workflow {
       .then(({ order }) => {
         this.contracts = order.contracts;
         this.prices = order.prices;
+        this.prorataDurationDate = this.constructor.getDurationProrataDate(
+          order.details,
+        );
       })
       .catch((error) =>
         !this.onError || this.onError({ error }) === false
