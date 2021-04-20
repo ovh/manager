@@ -118,6 +118,9 @@ export default /* @ngInject */ ($stateProvider) => {
       productName: HOSTING_PRODUCT_NAME,
       serviceNameToAddProduct: serviceName,
     }),
+
+    breadcrumb: /* @ngInject */ ($translate) =>
+      $translate.instant('hosting_cdn_order_breadcrumb'),
   };
   const resolveUpgrade = {
     onSuccess: /* @ngInject */ ($translate, goBack) => (result) => {
@@ -192,6 +195,9 @@ export default /* @ngInject */ ($stateProvider) => {
           };
         });
     },
+
+    breadcrumb: /* @ngInject */ ($translate) =>
+      $translate.instant('hosting_cdn_upgrade_breadcrumb'),
   };
   const atInternet = {
     rename: 'web::hosting::cdn::order',

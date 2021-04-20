@@ -1,5 +1,6 @@
 {
   "hosting_cdn_shared_title": "Configurer votre CDN {{range}} pour {{domainName}}",
+  "hosting_cdn_shared_breadcrumb": "Configuration CDN",
   "hosting_cdn_shared_info": "Retrouvez les paramètres de l’option Shared CDN. Des réglages standards sont appliqués par défaut pour vous permettre de démarrer simplement et rapidement.\nLes options CDN Security et CDN Advanced vous donnent accès à davantage de paramètres.",
   "hosting_cdn_shared_help": "Besoin d’aide pour les statistiques et logs de votre site ?",
   "hosting_cdn_shared_help_link": "Consultez nos guides en ligne.",

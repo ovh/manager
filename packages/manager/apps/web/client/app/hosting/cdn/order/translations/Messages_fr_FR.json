@@ -1,6 +1,8 @@
 {
   "hosting_cdn_order_title": "Vous allez souscrire l’option Shared CDN",
+  "hosting_cdn_order_breadcrumb": "Commande de CDN",
   "hosting_cdn_upgrade_title": "Changer d'offre Shared CDN",
+  "hosting_cdn_upgrade_breadcrumb": "Changement d'offre de CDN",
   "hosting_cdn_v1_upgrade_title": "Migrer vers l’option Shared CDN",
   "hosting_cdn_order_choose_plan": "Sélectionnez l'offre désirée",
   "hosting_cdn_order_choose_plan_cdn-advanced": "CDN Advanced",
