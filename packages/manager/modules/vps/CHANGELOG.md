@@ -1,3 +1,12 @@
+# [2.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.5.1...@ovh-ux/manager-vps@2.6.0) (2021-04-20)
+
+
+### Features
+
+* allow resiliation for impacted services ([#4795](https://github.com/ovh/manager/issues/4795)) ([61143ce](https://github.com/ovh/manager/commit/61143ce7a21bef899bd3e5571746b96e68e1dece))
+
+
+
 ## [2.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.5.0...@ovh-ux/manager-vps@2.5.1) (2021-04-01)
 
 
