@@ -38,6 +38,7 @@
             data-ng-if="$ctrl.terminateOption && $ctrl.constructor.isTerminateNow($ctrl.terminateOption)"
         >
             <p
+                data-ng-if="!$ctrl.vps.engagement"
                 class="text-danger"
                 data-translate="vps_terminate_option_terminate_now_description"
             ></p>
