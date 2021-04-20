@@ -4,6 +4,7 @@
   "vps_terminate_cancel": "Annuler",
   "vps_terminate_confirm": "Confirmer",
   "vps_terminate_success": "La suppression du service a été prise en compte, vous recevrez un e-mail de confirmation pour valider la suppression.",
+  "vps_terminate_success_engagement": "Votre demande a été prise en compte et sera traitée dans les plus brefs délais.",
   "vps_terminate_error": "Une erreur est survenue lors de la suppression du service.",
   "vps_terminate_unavailable": "Vous avez souscrit cet abonnement avec un engagement de {{ monthCount }} mois. Si vous avez la moindre question, n’hésitez pas à contacter notre service client par chat ou en envoyant un <a class=\"oui-link\" href=\"{{supportTicketLink}}\" target=\"_blank\" rel=\"noopener\">ticket d'assistance </a>. Merci de votre compréhension",
   "vps_terminate_option_terminate_at_expiration": "Supprimer le service à la date d'expiration.",

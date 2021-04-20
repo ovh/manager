@@ -13,6 +13,13 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/{serviceName}',
     redirectTo: 'vps.detail.dashboard',
     resolve: {
+      resiliationCapability: /* @ngInject */ ($http, serviceName) =>
+        $http
+          .get(`/incident/resiliation/${serviceName}`, {
+            serviceType: 'aapi',
+          })
+          .then(({ data }) => data)
+          .catch(() => null),
       connectedUser: /* @ngInject */ (OvhApiMe) => OvhApiMe.v6().get().$promise,
       capabilities: /* @ngInject */ ($http, serviceName, stateVps) =>
         $http

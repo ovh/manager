@@ -1,4 +1,12 @@
 <div data-ng-if="!$ctrl.loaders.init">
+    <oui-message
+        data-ng-if="$ctrl.resiliationCapability.message"
+        type="info"
+        class="mb-3"
+        dismissable
+    >
+        <span data-ng-bind-html="$ctrl.resiliationCapability.message"></span>
+    </oui-message>
     <cui-message-container
         data-messages="$ctrl.messages"
         data-grouped-types="['error', 'warning']"
