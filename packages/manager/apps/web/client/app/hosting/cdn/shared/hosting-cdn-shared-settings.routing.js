@@ -105,6 +105,9 @@ export default /* @ngInject */ ($stateProvider) => {
           type: 'action',
         });
       },
+
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('hosting_cdn_shared_breadcrumb'),
     },
     atInternet: {
       rename: 'web::hosting::cdn::configure',
