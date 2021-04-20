@@ -125,6 +125,7 @@
   "telephony_number_feature_ovh_pabx_step_rule_voicemail_no_line": "Aucune ligne OVHcloud sélectionnée",
   "telephony_number_feature_ovh_pabx_step_rule_read_dtmf": "Variable d'entrée DTMF",
   "telephony_number_feature_ovh_pabx_step_rule_read_dtmf_explain": "Permet, par exemple, de récupérer un identifiant client.",
+  "telephony_number_feature_ovh_pabx_step_rule_read_dtmf_infos": "Une entrée DTMF correspond à la fréquence émise par la touche d’un téléphone lorsqu’on la presse.",
   "telephony_number_feature_ovh_pabx_step_rule_read_dtmf_var": "Nom de la variable d'entrée DTMF",
   "telephony_number_feature_ovh_pabx_step_rule_read_dtmf_action_param_required": "Veuillez spécifier un nom de variable d'entrée DTMF.",
   "telephony_number_feature_ovh_pabx_step_rule_read_dtmf_action_param_bad_format": "Le nom de variable d'entrée DTMF ne peut contenir que des lettres (sans accents) ou des chiffres.",
