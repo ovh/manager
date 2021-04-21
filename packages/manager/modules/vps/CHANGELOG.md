@@ -1,3 +1,12 @@
+## [2.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.7.0...@ovh-ux/manager-vps@2.7.1) (2021-04-21)
+
+
+### Bug Fixes
+
+* **terminate:** hide content on some condition ([#4803](https://github.com/ovh/manager/issues/4803)) ([7043044](https://github.com/ovh/manager/commit/7043044efd450f96554e89955a596bef47d4912d))
+
+
+
 # [2.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.6.0...@ovh-ux/manager-vps@2.7.0) (2021-04-21)
 
 
