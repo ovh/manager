@@ -1,7 +1,7 @@
 {
   "xdsl_access_comfort_exchange_title": "Échange de modem de confort",
   "xdsl_access_comfort_exchange_confirm_title": "Êtes-vous sûr(e) de vouloir effectuer cet échange ?",
-  "xdsl_access_comfort_exchange_confirm_subtitle": "Le modem sera envoyé automatiquement à l'adresse de raccordement.",
+  "xdsl_access_comfort_exchange_confirm_subtitle": "Le modem sera envoyé automatiquement à l'adresse de contact sélectionnée.",
   "xdsl_access_comfort_exchange_success_message": "Vous allez recevoir un e-mail vous décrivant la marche à suivre pour nous renvoyer votre ancien modem.",
   "xdsl_access_comfort_exchange_error_ERR011": "Erreur lors de la tentative de récupération des informations sur l'accès internet.",
   "xdsl_access_comfort_exchange_error_ERR012": "Erreur lors de la récupération des informations liées au contrat internet.",
@@ -30,5 +30,7 @@
   "xdsl_access_comfort_exchange_rma_status": "État de la demande",
   "xdsl_access_comfort_exchange_link_in_new_tab": "Ouverture du lien du bon de commande dans un nouvel onglet",
   "xdsl_access_comfort_exchange_warning_part1": "Cet échange a pour seul but de vous proposer un modem plus récent si les fonctionnalités de votre modem actuel ne conviennent plus à votre besoin.",
-  "xdsl_access_comfort_exchange_warning_part2": "En cas de défaut sur votre modem actuel, merci de ne pas initier d'échange via cet outil et de contacter le support."
+  "xdsl_access_comfort_exchange_warning_part2": "En cas de défaut sur votre modem actuel, merci de ne pas initier d'échange via cet outil et de contacter le support.",
+  "xdsl_access_comfort_exchange_shipping_addresses_error": "Oups ! Une erreur est survenue lors du chargement de vos adresses de livraisons.",
+  "xdsl_access_comfort_exchange_shipping_contact": "Adresse de livraison du nouveau modem"
 }

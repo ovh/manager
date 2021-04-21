@@ -33,5 +33,7 @@
   "dedicatedCloud_datacenter_drp_confirm_creation_pending_task_MBM": "Sprawdź zadanie enableDisasterRecovery na głównej infrastrukturze Essentials i śledź jego postęp.",
   "dedicatedCloud_datacenter_drp_confirm_summary_first_ovh_pcc_MBM": "Główna infrastruktura Essentials",
   "dedicatedCloud_datacenter_drp_confirm_summary_first_onPremise_pcc_MBM": "OVHcloud Managed Bare Metal",
-  "dedicatedCloud_datacenter_drp_confirm_summary_secondary_pcc_MBM": "Zapasowa infrastruktura Essentials"
+  "dedicatedCloud_datacenter_drp_confirm_summary_secondary_pcc_MBM": "Zapasowa infrastruktura Essentials",
+  "dedicatedCloud_datacenter_drp_vpn_remoteVraNetwork": "Sieć VRA Lokalne centrum danych",
+  "dedicatedCloud_datacenter_drp_vpn_ip_block_invalid": "Wybierz prawidłowy adres IPv4Block (np. 192.168.0.1/10)"
 }

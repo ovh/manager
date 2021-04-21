@@ -12,6 +12,9 @@ export default {
   template,
   scope: {
     callbackStatusParamUrlName: '@?',
+    callback: '<?',
+    cancelHref: '@?',
+    initialParams: '<?',
     onInitialized: '&?',
     onSubmit: '&?',
     onSubmitError: '&?',

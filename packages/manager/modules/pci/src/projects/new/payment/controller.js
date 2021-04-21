@@ -1,8 +1,12 @@
+import { Environment } from '@ovh-ux/manager-config';
 import { buildURL } from '@ovh-ux/ufrontend/url-builder';
+
+const getPaymentMethodTimeoutLimit = 30000;
 
 export default class PciProjectNewPaymentCtrl {
   /* @ngInject */
   constructor(
+    $timeout,
     $translate,
     $q,
     $window,
@@ -12,6 +16,7 @@ export default class PciProjectNewPaymentCtrl {
     ovhPaymentMethod,
     OVH_PAYMENT_METHOD_INTEGRATION_TYPE,
   ) {
+    this.$timeout = $timeout;
     this.$translate = $translate;
     this.$q = $q;
     this.$window = $window;
@@ -21,10 +26,8 @@ export default class PciProjectNewPaymentCtrl {
     this.OVH_PAYMENT_METHOD_INTEGRATION_TYPE = OVH_PAYMENT_METHOD_INTEGRATION_TYPE;
 
     // other attributes
-    this.paymentMethodUrl = buildURL(
-      'dedicated',
-      '#/billing/payment/method/add',
-    );
+    this.paymentMethodUrl = buildURL('dedicated', '#/billing/payment/method');
+    this.paymentMethodAddUrl = `${this.paymentMethodUrl}/add`;
     this.integrationSubmitFn = null;
 
     this.message = {
@@ -41,6 +44,44 @@ export default class PciProjectNewPaymentCtrl {
 
   refreshMessages() {
     this.message.list = this.message.handler.getMessages();
+  }
+
+  pollCheckDefaultPaymentMethod(paymentMethodId, currentTime = 0) {
+    return this.$timeout(() => {
+      return this.getPaymentMethod(paymentMethodId).then((paymentMethod) => {
+        if (paymentMethod.isValid()) {
+          return this.$q.when();
+        }
+
+        return currentTime >= getPaymentMethodTimeoutLimit
+          ? this.$q.reject()
+          : this.pollCheckDefaultPaymentMethod(
+              paymentMethodId,
+              currentTime + 1000,
+            );
+      });
+    }, 1000);
+  }
+
+  checkPaymentMethodAndCreateProject(paymentMethodId) {
+    if (!paymentMethodId) {
+      return this.$q.reject();
+    }
+
+    this.isCheckingPaymentMethod = true;
+    return (this.defaultPaymentMethod?.isLegacy()
+      ? this.$q.when()
+      : this.pollCheckDefaultPaymentMethod(paymentMethodId)
+    )
+      .then(() => {
+        this.manageProjectCreation();
+      })
+      .catch(() => {
+        this.hasCheckingError = true;
+      })
+      .finally(() => {
+        this.isCheckingPaymentMethod = false;
+      });
   }
 
   manageProjectCreation() {
@@ -94,6 +135,9 @@ export default class PciProjectNewPaymentCtrl {
           this.$translate.instant('pci_project_new_payment_checkout_error'),
           'pci.projects.new.payment',
         );
+
+        this.componentInitialParams = null;
+        this.hasComponentRedirectCallback = false;
       })
       .finally(() => {
         this.globalLoading.finalize = false;
@@ -105,6 +149,14 @@ export default class PciProjectNewPaymentCtrl {
   /* =============================
   =            Events            =
   ============================== */
+
+  initComponentInitialParams() {
+    this.componentInitialParams = {
+      locale: Environment.getUser().language,
+      paymentMethod: this.model.paymentMethod,
+      setAsDefault: true,
+    };
+  }
 
   onPaymentFormSubmit() {
     let challengePromise = Promise.resolve(true);
@@ -196,15 +248,18 @@ export default class PciProjectNewPaymentCtrl {
     this.integrationSubmitFn = integrationSubmitFn;
   }
 
-  static onIntegrationSubmit() {
+  static onIntegrationSubmit(additionalParams = {}) {
     return {
       default: true,
       register: true,
+      ...additionalParams,
     };
   }
 
-  onIntegrationSubmitSuccess() {
-    return this.manageProjectCreation();
+  onIntegrationSubmitSuccess(paymentMethodIdParam) {
+    const paymentMethodId =
+      paymentMethodIdParam || this.defaultPaymentMethod?.paymentMethodId;
+    return this.checkPaymentMethodAndCreateProject(paymentMethodId);
   }
 
   onIntegrationSubmitError() {
@@ -212,6 +267,9 @@ export default class PciProjectNewPaymentCtrl {
       this.$translate.instant('pci_project_new_payment_create_error'),
       'pci.projects.new.payment',
     );
+
+    this.componentInitialParams = null;
+    this.hasComponentRedirectCallback = false;
   }
 
   /* -----  End of Callbacks  ------ */
@@ -241,8 +299,12 @@ export default class PciProjectNewPaymentCtrl {
       this.defaultPaymentMethod &&
       this.paymentStatus === 'success'
     ) {
-      this.manageProjectCreation();
+      return this.checkPaymentMethodAndCreateProject(
+        this.defaultPaymentMethod.paymentMethodId,
+      );
     }
+
+    return null;
   }
 
   /* -----  End of Hooks  ------ */

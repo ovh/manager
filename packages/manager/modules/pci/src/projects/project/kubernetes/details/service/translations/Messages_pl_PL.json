@@ -61,5 +61,6 @@
   "kube_service_restrictions_no_count": "Bez ograniczeń",
   "kube_service_restrictions_count": "Liczba zakresów IP: {{count}} ",
   "kube_service_restrictions_one": "1 zakres IP",
-  "kube_service_restrictions_edit": "Zmień ograniczenia"
+  "kube_service_restrictions_edit": "Zmień ograniczenia",
+  "kube_service_cluster_status_MAINTENANCE": "Trwają prace konserwacyjne..."
 }

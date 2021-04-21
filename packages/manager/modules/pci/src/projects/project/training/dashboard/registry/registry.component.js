@@ -10,5 +10,6 @@ export default {
     goToDashboard: '<',
     goBack: '<',
     regions: '<',
+    currentRegion: '<',
   },
 };

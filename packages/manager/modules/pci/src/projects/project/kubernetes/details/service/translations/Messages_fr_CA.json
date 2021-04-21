@@ -18,6 +18,7 @@
   "kube_service_cluster_status_DELETING": "En cours de suppression",
   "kube_service_cluster_status_RESETTING": "En cours de réinitialisation",
   "kube_service_cluster_status_REDEPLOYING": "En cours de redéploiement",
+  "kube_service_cluster_status_MAINTENANCE": "En cours de maintenance",
   "kube_service_cluster_status_SUSPENDING": "Suspension en cours",
   "kube_service_cluster_status_REOPENING": "Réouverture en cours",
   "kube_service_cluster_status_SUSPENDED": "Suspendu",

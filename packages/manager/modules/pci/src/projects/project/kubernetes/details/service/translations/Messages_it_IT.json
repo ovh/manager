@@ -61,5 +61,6 @@
   "kube_service_restrictions_no_count": "Nessun limite",
   "kube_service_restrictions_count": "{{ count }} classi di IP",
   "kube_service_restrictions_one": "1 classe di IP",
-  "kube_service_restrictions_edit": "Modifica le limitazioni"
+  "kube_service_restrictions_edit": "Modifica le limitazioni",
+  "kube_service_cluster_status_MAINTENANCE": "In corso di manutenzione"
 }

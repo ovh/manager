@@ -4,7 +4,7 @@
   "xdsl_access_comfort_exchange_warning_part1": "Questa sostituzione è finalizzata a proporre un modem più recente nel caso in cui il dispositivo utilizzato non disponga di funzionalità adeguate alle proprie esigenze.",
   "xdsl_access_comfort_exchange_warning_part2": "Se il modem utilizzato non funziona correttamente, ti consigliamo di non utilizzare questo strumento ma contattare direttamente il nostro supporto.",
   "xdsl_access_comfort_exchange_confirm_title": "Vuoi davvero effettuare la sostituzione?",
-  "xdsl_access_comfort_exchange_confirm_subtitle": "Il modem verrà inviato automaticamente all'indirizzo di registrazione della linea",
+  "xdsl_access_comfort_exchange_confirm_subtitle": "Il modem verrà inviato automaticamente all'indirizzo di contatto selezionato.",
   "xdsl_access_comfort_exchange_success_message": "Riceverai un’email con la procedura da seguire per la restituzione del vecchio modem.",
   "xdsl_access_comfort_exchange_error_ERR011": "Si è verificato un errore durante il recupero delle informazioni relative all’accesso Internet.",
   "xdsl_access_comfort_exchange_error_ERR012": "Si è verificato un errore durante il recupero delle informazioni relative al contratto Internet.",
@@ -30,5 +30,7 @@
   "xdsl_access_comfort_exchange_rma_reference": "Riferimento RMA",
   "xdsl_access_comfort_exchange_rma_equipment_reference": "Riferimento dispositivo",
   "xdsl_access_comfort_exchange_rma_status": "Stato della richiesta",
-  "xdsl_access_comfort_exchange_link_in_new_tab": "Apri il link del buono d’ordine in una nuova finestra"
+  "xdsl_access_comfort_exchange_link_in_new_tab": "Apri il link del buono d’ordine in una nuova finestra",
+  "xdsl_access_comfort_exchange_shipping_addresses_error": "Ops! Si è verificato un errore durante il caricamento dei tuoi indirizzi di consegna.",
+  "xdsl_access_comfort_exchange_shipping_contact": "Indirizzo di consegna del nuovo modem"
 }

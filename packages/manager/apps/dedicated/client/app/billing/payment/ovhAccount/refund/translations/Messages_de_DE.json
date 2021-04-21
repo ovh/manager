@@ -1,9 +1,9 @@
 {
-  "billing_ovhaccount_refund": "Ask for refund",
-  "billing_ovhaccount_refund_cancel": "Cancel",
-  "billing_ovhaccount_refund_confirm": "Confirm",
-  "billing_ovhaccount_refund_description": "You are about to request a refund of {{amount}}. This amount will be refunded on the original payment method",
-  "billing_ovhaccount_refund_description_confirm": "Are you sure to process the refund?",
-  "billing_ovhaccount_refund_success": "Your refund request of {{amount}} has been submitted successfully and will be processed shortly.",
-  "billing_ovhaccount_refund_error": "An error has occured while requesting for a refund."
+  "billing_ovhaccount_refund": "Erstattung fordern",
+  "billing_ovhaccount_refund_cancel": "Abbrechen",
+  "billing_ovhaccount_refund_confirm": "Anfrage bestätigen",
+  "billing_ovhaccount_refund_description": "Sie sind im Begriff, die Erstattung in Höhe von {{ amount }} einzuleiten. Die Erstattung erfolgt auf das ursprüngliche Zahlungsmittel.",
+  "billing_ovhaccount_refund_description_confirm": "Möchten Sie die Erstattung vornehmen?",
+  "billing_ovhaccount_refund_success": "Ihre Forderung einer Erstattung in Höhe von {{amount}} ist eingegangen und wird so schnell wie möglich bearbeitet.",
+  "billing_ovhaccount_refund_error": "Bei der Forderung einer Erstattung ist ein Fehler aufgetreten."
 }

@@ -2,7 +2,7 @@
   "billing_payment_method_add_title": "Dodaj sposób płatności",
   "billing_payment_method_add_back_btn_title": "Powrót do sposobów płatności",
   "billing_payment_method_add_choose_type": "Wybór metody płatności",
-  "billing_payment_method_add_selected_common_redirect": "Po kliknięciu \"Dodaj\" zostaniesz przekierowany do systemu bezpiecznych płatności.",
+  "billing_payment_method_add_selected_common_redirect": "Zostaniesz przekierowany do bezpiecznego interfejsu naszego dostawcy, abyś mógł zarejestrować nową kartę bankową.",
   "billing_payment_method_add_selected_paypal_redirect": "Klikając na przycisk \"Paypal\", otworzy się wyskakujące okno, aby dokończyć dodawanie metody płatności.",
   "billing_payment_method_add_selected_original_credit_card_redirect": "Klikając na przycisk \"Dodaj\", dokument zostanie pobrany. Proszę postępować zgodnie z procedurą opisaną w dokumencie, aby zatwierdzić metodę płatności.",
   "billing_payment_method_add_credit_card_selected": "Twoja karta bankowa zostanie natychmiast włączona.",

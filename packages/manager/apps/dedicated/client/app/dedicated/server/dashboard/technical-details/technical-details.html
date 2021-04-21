@@ -17,7 +17,7 @@
         </oui-tile-description>
     </oui-tile-definition>
     <oui-tile-button
-        ng-if="$ctrl.upgradeWithTicketAvailable"
+        ng-if="$ctrl.isRamUpgradable()"
         on-click="$ctrl.goToManualUpgrade('ram')"
     >
         <span
@@ -45,7 +45,7 @@
         </oui-tile-description>
     </oui-tile-definition>
     <oui-tile-button
-        ng-if="$ctrl.upgradeWithTicketAvailable"
+        ng-if="$ctrl.isDisksUpgradable()"
         on-click="$ctrl.goToManualUpgrade('storage')"
     >
         <span

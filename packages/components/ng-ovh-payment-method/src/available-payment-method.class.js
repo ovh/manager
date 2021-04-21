@@ -39,6 +39,12 @@ export default class OvhAvailablePaymentMethod {
     this.integration = options.integration;
 
     /**
+     *  Merchant id to use in case of component integration type.
+     *  @type {String}
+     */
+    this.merchantId = options.merchantId;
+
+    /**
      *  Flag indicating if we can use the payment method type for oneshot payment.
      *  @type {Boolean}
      */
@@ -104,5 +110,15 @@ export default class OvhAvailablePaymentMethod {
       TYPE_INTEGRATION_ENUM.IFRAME_VANTIV,
       TYPE_INTEGRATION_ENUM.IN_CONTEXT,
     ].includes(this.integration);
+  }
+
+  /**
+   *  Determine if payment method type requires component to handle the register.
+   *  The component may have its own submit logic.
+   *  This method uses the integration attribute to determine it.
+   *  @return {Boolean} true if type requires inputs false otherwise.
+   */
+  isHandleByComponent() {
+    return [TYPE_INTEGRATION_ENUM.COMPONENT].includes(this.integration);
   }
 }

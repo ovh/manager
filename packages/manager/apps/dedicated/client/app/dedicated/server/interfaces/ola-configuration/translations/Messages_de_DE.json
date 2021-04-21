@@ -1,7 +1,7 @@
 {
   "dedicated_server_interfaces_ola_alert_obsolete_option": "Bei einer privaten Aggregationskonfiguration wird Ihre Option für ausgehende öffentliche Bandbreite nicht genutzt.",
   "dedicated_server_interfaces_ola_error": "Bei der Konfiguration ist ein Fehler aufgetreten: {{ errorMessage }}",
-  "dedicated_server_interfaces_ola_title": "Konfiguration von OVHcloud Link Aggregation ",
+  "dedicated_server_interfaces_ola_title": "Konfiguration von OVHcloud Link Aggregation",
   "dedicated_server_interfaces_ola_description": "Mit OLA können Sie ein Netzwerkinterface einrichten und seine Funktionsweise bearbeiten. So ist es zum Beispiel möglich, das Interface für das öffentliche Netzwerk für eine doppelte Anbindung an das private OVHcloud Netzwerk (vRack) zu verwenden.",
   "dedicated_server_interfaces_ola_alert_configuration_reset": "Die Interfaces werden dekonfiguriert. Die Verbindung zu Ihrem Server wird während der Konfiguration unterbrochen.",
   "dedicated_server_interfaces_ola_alert_not_allowed": "Die folgenden Interfaces können nicht für Ihre Konfiguration ausgewählt werden. Um sie zu konfigurieren, müssen zuerst die verbundenen vRacks und Failover-IPs entfernt werden.",

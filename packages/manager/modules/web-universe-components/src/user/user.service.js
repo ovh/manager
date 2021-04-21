@@ -1,45 +1,24 @@
+import { Environment } from '@ovh-ux/manager-config';
+
 import get from 'lodash/get';
 import has from 'lodash/has';
 import isEmpty from 'lodash/isEmpty';
 
 export default /* @ngInject */
 function userService($http, $q, constants, OvhHttp) {
-  let user = null;
-  let userPromise;
-  let userPromiseRunning = false;
-
   this.getUser = () => {
-    if (!userPromiseRunning && user === null) {
-      userPromiseRunning = true;
-
-      userPromise = $q.when('start').then(() =>
-        OvhHttp.get('/me', {
-          rootPath: 'apiv6',
-        }).then((result) => {
-          userPromiseRunning = false;
-
-          if (result) {
-            user = {
-              nichandle: result.nichandle,
-              email: result.email,
-              firstName: result.firstname,
-              lastName: result.name,
-              billingCountry: result.country,
-              ovhSubsidiary: result.ovhSubsidiary,
-              spareEmail: result.spareEmail,
-            };
-          }
-        }),
-      );
-    }
-
-    return userPromise.then(
-      () => user,
-      (error) => $q.reject(error),
-    );
+    const user = Environment.getUser();
+    const webUser = {
+      nichandle: user.nichandle,
+      email: user.email,
+      firstName: user.firstname,
+      lastName: user.name,
+      billingCountry: user.country,
+      ovhSubsidiary: user.ovhSubsidiary,
+      spareEmail: user.spareEmail,
+    };
+    return $q.when(webUser);
   };
-
-  this.getUser();
 
   this.getUrlOf = (link) =>
     this.getUser().then((data) => {

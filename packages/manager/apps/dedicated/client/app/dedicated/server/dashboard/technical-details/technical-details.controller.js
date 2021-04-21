@@ -20,6 +20,13 @@ export default class TechnicalDetailsController {
     );
   }
 
+  isRamUpgradable() {
+    return (
+      this.upgradeWithTicketAvailable &&
+      this.technicalDetails.memory?.upgradable?.length
+    );
+  }
+
   formatRAM() {
     const ram = get(this.technicalDetails, 'memory');
     if (!ram) {
@@ -77,5 +84,12 @@ export default class TechnicalDetailsController {
 
       return `${number}×${capacity} ${technology} ${diskInterface}`;
     });
+  }
+
+  isDisksUpgradable() {
+    return (
+      this.upgradeWithTicketAvailable &&
+      this.technicalDetails.storage?.upgradable?.length
+    );
   }
 }

@@ -19,6 +19,7 @@ export default class {
           `${this.$translate.instant('dedicatedCloud_USER_delete_fail', {
             t0: this.user.name,
           })} ${err.message || err}`,
+          'danger',
         );
       });
   }

@@ -1,0 +1,5 @@
+{
+  "dedicated_server_interfaces_ola_reset_title": "Remover a configuração da agregação privada",
+  "dedicated_server_interfaces_ola_reset_text": "Tem a certeza de que quer desconfigurar a agregação privada neste servidor?",
+  "dedicated_server_interfaces_ola_reset_error": "Ocorreu um erro durante a desconfiguração da agregação privada."
+}

@@ -1,0 +1,8 @@
+{
+  "vps_configuration_veeam_schedule_backup_title": "Configurer l'heure du Backup automatisé",
+  "vps_configuration_veeam_schedule_backup_description": "Effectuer le Backup automatisé tous les jours à (Fuseau horaire UTC) : ",
+  "vps_configuration_veeam_schedule_backup_action_confirm": "Confirmer",
+  "vps_configuration_veeam_schedule_backup_action_cancel": "Annuler",
+  "vps_configuration_veeam_schedule_backup_action_success_message": "L'horaire d'automatisation a été modifié avec succès.",
+  "vps_configuration_veeam_schedule_backup_action_error_message": "Une erreur est survenue lors de la modification de l'horaire d'automatisation : {{ message }}."
+}

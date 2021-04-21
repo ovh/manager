@@ -5,5 +5,6 @@
   "dedicated_servers_reverse": "Reverse DNS",
   "dedicated_servers_localization": "Location",
   "dedicated_servers_model": "Model",
-  "dedicated_servers_order": "Order a dedicated server"
+  "dedicated_servers_order": "Order a dedicated server",
+  "server_configuration_installation_no_public_network": "Since the network configuration applied on your server does not give access to the public network, you cannot install/reinstall an OS on it. To unblock this action, please modify your network configuration in the “network interfaces” tab"
 }

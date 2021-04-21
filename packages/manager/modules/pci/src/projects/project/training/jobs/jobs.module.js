@@ -8,6 +8,7 @@ import 'ovh-api-services';
 
 import info from './info';
 import submit from './submit';
+import resubmit from './resubmit';
 import kill from './kill';
 import component from './jobs.component';
 import routing from './jobs.routing';
@@ -26,6 +27,7 @@ angular
     'ui.router',
     info,
     submit,
+    resubmit,
     kill,
   ])
   .config(routing)

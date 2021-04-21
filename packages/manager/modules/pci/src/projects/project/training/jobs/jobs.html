@@ -86,6 +86,11 @@
                     data-translate="pci_projects_project_training_jobs_info"
                 ></span>
             </oui-action-menu-item>
+            <oui-action-menu-item data-on-click="$ctrl.jobResubmit($row.id)">
+                <span
+                    data-translate="pci_projects_project_training_jobs_resubmit"
+                ></span>
+            </oui-action-menu-item>
             <oui-action-menu-item
                 data-on-click="$ctrl.jobKill($row.id)"
                 data-disabled="!$row.canBeKilled()"

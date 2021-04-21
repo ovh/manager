@@ -215,7 +215,10 @@ export default /* @ngInject */ ($q, $translate, $timeout) => {
             ).toFixed(2),
             type: 'perCall',
           };
-        } else if (scope.pricePerMinute > 0) {
+        } else if (
+          scope.pricePerMinute > 0 &&
+          getNumberType(scope.number) !== 'common'
+        ) {
           price = {
             value: parseFloat(
               Math.round(scope.pricePerMinute * 100) / 100,

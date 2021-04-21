@@ -5,5 +5,6 @@
   "dedicated_servers_reverse": "Reverse",
   "dedicated_servers_localization": "Localizzazione",
   "dedicated_servers_model": "Modello",
-  "dedicated_servers_order": "Ordina un server dedicato"
+  "dedicated_servers_order": "Ordina un server dedicato",
+  "server_configuration_installation_no_public_network": "Non è possibile installare/reinstallare un OS sul server perché la configurazione di rete applicata sulla macchina non consente l'accesso alla rete pubblica. Per effettuare l’operazione è necessario modificare la configurazione di rete nella scheda \"Interfacce di rete\"."
 }

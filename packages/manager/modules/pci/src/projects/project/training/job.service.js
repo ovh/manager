@@ -19,6 +19,15 @@ export default class PciProjectTrainingJobService {
       );
   }
 
+  resubmit(projectId, jobSpec) {
+    let toSubmit = jobSpec;
+    if (Object.prototype.hasOwnProperty.call(jobSpec, 'shutdown')) {
+      // remove shutdown before submitting as it is forbidden server side and irrelevant when resubmitting
+      toSubmit = (({ shutdown, ...j }) => j)(jobSpec);
+    }
+    return this.submit(projectId, toSubmit);
+  }
+
   getAll(projectId) {
     return this.OvhApiCloudProjectAi.Training()
       .Job()

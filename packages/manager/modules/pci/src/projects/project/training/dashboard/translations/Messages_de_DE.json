@@ -20,5 +20,6 @@
   "pci_projects_project_training_dashboard_users_list_name": "Name",
   "pci_projects_project_training_dashboard_users_list_description": "Beschreibung",
   "pci_projects_project_training_dashboard_users_list_none": "Sie haben keine Benutzer mit den Rollen „AI Training Operator“ oder „ObjectStore Operator“ erstellt",
-  "pci_projects_project_training_dashboard_jobs_list_see_jobs": "Alle Aufträge anzeigen"
+  "pci_projects_project_training_dashboard_jobs_list_see_jobs": "Alle Aufträge anzeigen",
+  "pci_projects_project_training_jobs_resubmit": "Neu starten"
 }

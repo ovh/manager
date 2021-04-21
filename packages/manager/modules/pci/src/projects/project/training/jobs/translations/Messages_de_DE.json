@@ -39,5 +39,9 @@
   "pci_projects_project_training_jobs_submit_select_image_preset_missing_framework": "Fehlt ein Framework?",
   "pci_projects_project_training_jobs_submit_select_image_preset_request": "Schlagen Sie in der OVHcloud AI Community weitere Framework-Optionen vor.",
   "pci_projects_project_training_jobs_submit_ovhai_info": "Mit dem folgenden Befehl können Sie den gleichen Auftrag über unser OVHAI CLI starten:",
-  "pci_projects_project_training_jobs_submit_ovhai_help": "Hier finden Sie weitere Informationen zu den verfügbaren Einstellungen:"
+  "pci_projects_project_training_jobs_submit_ovhai_help": "Hier finden Sie weitere Informationen zu den verfügbaren Einstellungen:",
+  "pci_projects_project_training_jobs_id": "Auftrag-ID",
+  "pci_projects_project_training_jobs_common_cancel": "Abbrechen",
+  "pci_projects_project_training_jobs_resubmit_success": "Der Auftrag wurde neu gestartet",
+  "pci_projects_project_training_jobs_resubmit_error": "Beim Neustart des Auftrags ist ein Fehler aufgetreten: {{ message }}"
 }

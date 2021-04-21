@@ -5,5 +5,6 @@
   "dedicated_servers_reverse": "Reverse",
   "dedicated_servers_localization": "Localisation",
   "dedicated_servers_model": "Modèle",
-  "dedicated_servers_order": "Commander un serveur dédié"
+  "dedicated_servers_order": "Commander un serveur dédié",
+  "server_configuration_installation_no_public_network": "La configuration réseau appliquée sur votre serveur ne donnant pas accès au réseau public, il est impossible d’installer/réinstaller un OS sur celui-ci. Pour débloquer cette action, merci de modifier votre configuration réseau dans l’onglet « interfaces réseaux »"
 }
