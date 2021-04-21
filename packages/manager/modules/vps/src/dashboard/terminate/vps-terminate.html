@@ -11,8 +11,10 @@
     on-dismiss="$ctrl.cancel()"
 >
     <div data-ng-if="$ctrl.isActionAvailable">
-        <p>
+        <p class="mb-0">
             <span data-translate="vps_terminate_warning_data_deletion"></span>
+        </p>
+        <p data-ng-if="!$ctrl.resiliationCapability.message">
             <span
                 data-ng-if="!$ctrl.hasManualRefund"
                 data-translate="vps_terminate_warning_no_refund"
