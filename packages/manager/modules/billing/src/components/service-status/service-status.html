@@ -17,4 +17,11 @@
         data-ng-if="!$ctrl.service.hasDebt() && !$ctrl.service.isOneShot()"
         data-translate="{{:: 'manager_billing_service_status_' + $ctrl.service.getRenew() | translate }}"
     ></span>
+    <button
+        type="button"
+        class="oui-popover-button"
+        data-ng-if="$ctrl.service.statusHelp"
+        oui-popover="{{ $ctrl.service.statusHelp }}"
+        oui-popover-placement="bottom"
+    ></button>
 </div>
