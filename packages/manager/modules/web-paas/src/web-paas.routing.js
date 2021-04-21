@@ -12,7 +12,7 @@ export default /* @ngInject */ ($stateProvider) => {
       createProject: /* @ngInject */ ($state) => () =>
         $state.go('web-paas.add'),
       viewDetails: /* @ngInject */ ($state) => (projectId) =>
-        $state.go('web-paas.dashboard', {
+        $state.href('web-paas.dashboard', {
           projectId,
         }),
       openPartnerConsole: /* @ngInject */ ($window) => (project) =>

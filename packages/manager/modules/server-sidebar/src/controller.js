@@ -265,7 +265,13 @@ export default class OvhManagerServerSidebarController {
             loadOnState: get(service, 'loadOnState'),
             url: link,
             target: link ? '_self' : null,
-            click: () => this.onClick(),
+            click: () => {
+              this.atInternet.trackClick({
+                type: 'action',
+                name: get(service, 'tracker'),
+              });
+              return this.onClick();
+            },
             namespace: service.namespace,
           },
           parent,

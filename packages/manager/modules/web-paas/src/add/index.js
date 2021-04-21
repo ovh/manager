@@ -1,7 +1,6 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
-
 import '@ovh-ux/manager-core';
 
 const moduleName = 'ovhManagerWebPaasAddLazyLoad';

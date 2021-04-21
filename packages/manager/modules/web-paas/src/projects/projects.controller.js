@@ -10,7 +10,11 @@ export default class WebPaasProjectsCtrl {
     };
   }
 
-  getProjectDetails(projectId) {
-    return this.WebPaas.getProjectDetails(projectId);
+  static getDetailsState(projectId) {
+    return `web-paas.dashboard.service({ projectId: '${projectId}'})`;
+  }
+
+  static isAdmin(project) {
+    return project.getAccountName() === this.user.nichandle;
   }
 }

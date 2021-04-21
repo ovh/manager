@@ -1,13 +1,17 @@
-import controller from './controller';
+import controller from './details.controller';
 import template from './template.html';
 
 const component = {
   bindings: {
+    catalog: '<',
+    currentActiveLink: '<',
+    guideUrl: '<',
+    plans: '<',
     project: '<',
     projectId: '<',
-    guideUrl: '<',
-    currentActiveLink: '<',
     serviceLink: '<',
+    user: '<',
+    userLink: '<',
   },
   template,
   controller,

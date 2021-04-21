@@ -1,0 +1,92 @@
+<div>
+    <oui-header
+        id="web-pass-add-header"
+        class="mb-3 add-page-header"
+        data-heading="{{:: 'web_paas_change_offer_title_edit' | translate }}"
+        data-description="{{:: 'web_paas_change_offer_description' | translate }}"
+    >
+    </oui-header>
+    <div class="container-fluid">
+        <div
+            id="web-pass-add-alert"
+            data-ovh-alert="{{$ctrl.alerts.changeOffer}}"
+        ></div>
+        <oui-stepper>
+            <!-- choose the offer -->
+            <oui-step-form
+                data-header="{{:: 'web_paas_change_offer_choose_offer' | translate }}"
+                data-submit-text="{{:: 'web_paas_change_offer_next' | translate }}"
+                data-prevent-next="true"
+                data-valid="$ctrl.project.offer && !$ctrl.isCurrentOffer()"
+                data-navigation="$ctrl.project.offer"
+                data-on-submit="$ctrl.onPlanSubmit()"
+            >
+                <web-paas-offers
+                    data-offers="$ctrl.catalog.productList"
+                    data-user="$ctrl.user"
+                    data-disabled="false"
+                    data-on-select="$ctrl.onPlanSelect(product)"
+                    data-on-focus="$ctrl.onOfferFocus()"
+                    data-on-submit="$ctrl.onOfferSubmit(form)"
+                    data-preview-mode="!$ctrl.isEditingOffers"
+                    data-selected-plan="$ctrl.selectedProject.selectedPlan"
+                >
+                </web-paas-offers>
+            </oui-step-form>
+            <!-- choose additional options -->
+            <oui-step-form
+                data-ng-if="$ctrl.shouldRemoveExtraLicences()"
+                data-header="{{:: 'web_paas_change_offer_options' | translate }}"
+                data-submit-text="{{:: 'web_paas_change_offer_next' | translate }}"
+                data-loading="$ctrl.isGettingAddons"
+                data-prevent-next="true"
+                data-valid="!$ctrl.shouldRemoveExtraLicences()"
+                data-on-submit="$ctrl.onOptionsSubmit()"
+            >
+                <p
+                    data-translate="web_paas_change_offer_downgrade_licence_warning"
+                ></p>
+                <p
+                    data-translate="web_paas_change_offer_downgrade_licence_warning_from_plan"
+                    data-translate-values="{
+                        licencesIncluded: $ctrl.selectedPlan.getLicences(),
+                        additionalLicences: $ctrl.getAdditionalLicencesCount()
+                    }"
+                ></p>
+                <p>
+                    <span
+                        data-translate="web_paas_change_offer_downgrade_licence_warning_to_plan"
+                        data-translate-values="{
+                        usersToRemove: $ctrl.getNumberOfUsersToRemove(),
+                    }"
+                    ></span>
+                </p>
+                <web-paas-user-list
+                    user-list="$ctrl.userList"
+                    delete-user="$ctrl.goToDeleteUser"
+                    hide-invite="true"
+                ></web-paas-user-list>
+            </oui-step-form>
+            <!-- summary -->
+            <oui-step-form
+                data-header="{{:: 'web_paas_change_offer_summary_title' | translate }}"
+                data-loading="$ctrl.isGettingCheckoutInfo || $ctrl.orderInProgress"
+                data-submit-text="{{:: 'web_paas_change_offer_submit_button' | translate }}"
+                data-cancel-text="{{ ::'web_paas_common_cancel' | translate }}"
+                data-on-cancel="$ctrl.goBack()"
+                data-on-submit="$ctrl.upgradeOffer()"
+            >
+                <div class="mb-3">
+                    <web-paas-summary
+                        data-ng-if="$ctrl.prices"
+                        prices="$ctrl.prices"
+                        selected-plan="$ctrl.selectedPlan"
+                        user="$ctrl.user"
+                        change-offer="true"
+                    >
+                    </web-paas-summary>
+                </div>
+            </oui-step-form>
+        </oui-stepper>
+    </div>
+</div>

@@ -1,0 +1,181 @@
+<div>
+    <oui-header
+        id="web-pass-add-header"
+        class="mb-3 add-page-header"
+        data-heading="{{:: 'web_paas_add_project_title' | translate }}"
+        data-description="{{:: 'web_paas_add_project_description' | translate }}"
+    >
+    </oui-header>
+    <div class="container-fluid">
+        <div
+            id="web-pass-add-alert"
+            data-ovh-alert="{{$ctrl.alerts.add}}"
+        ></div>
+        <oui-stepper data-on-finish="$ctrl.orderProject()">
+            <!-- enter name -->
+            <oui-step-form
+                data-header="{{:: 'web_paas_add_project_name' | translate }}"
+                data-submit-text="{{:: 'web_paas_add_project_next' | translate }}"
+                data-prevent-next="true"
+                data-valid="$ctrl.project.name"
+                data-navigation="$ctrl.project.name"
+                data-loading="$ctrl.loader.loadingCapabilities"
+            >
+                <oui-field data-size="xl">
+                    <input
+                        class="oui-input mb-2"
+                        type="text"
+                        id="projectName"
+                        name="projectName"
+                        maxlength="{{:: $ctrl.NAME_VALIDATION.MAX_LENGTH }}"
+                        ng-pattern="$ctrl.NAME_VALIDATION.PATTERN"
+                        data-ng-model="$ctrl.project.name"
+                        autofocus
+                        required
+                    />
+                </oui-field>
+            </oui-step-form>
+            <!-- choose the offer -->
+            <oui-step-form
+                data-header="{{:: 'web_paas_add_project_choose_offer' | translate }}"
+                data-description="{{:: 'web_paas_add_project_choose_offer_description' | translate }}"
+                data-submit-text="{{:: 'web_paas_add_project_next' | translate }}"
+                data-prevent-next="true"
+                data-valid="$ctrl.project.offer"
+                data-navigation="$ctrl.project.offer"
+                data-on-submit="$ctrl.onPlanSubmit()"
+            >
+                <web-paas-offers
+                    data-offers="$ctrl.catalog.productList"
+                    data-user="$ctrl.user"
+                    data-disabled="false"
+                    data-on-select="$ctrl.onPlanSelect(product)"
+                    data-on-focus="$ctrl.onOfferFocus()"
+                    data-on-submit="$ctrl.onOfferSubmit(form)"
+                    data-preview-mode="!$ctrl.loader.isEditingOffers"
+                >
+                </web-paas-offers>
+            </oui-step-form>
+            <!-- region -->
+            <oui-step-form
+                data-header="{{:: 'web_paas_add_project_region' | translate }}"
+                data-submit-text="{{:: 'web_paas_add_project_next' | translate }}"
+                data-valid="$ctrl.project.region"
+                data-description="{{:: 'web_paas_add_project_region_description' | translate}}"
+                data-navigation="$ctrl.project.region"
+                data-prevent-next="true"
+                data-loading="$ctrl.loader.loadingCapabilities"
+            >
+                <div class="row mb-3">
+                    <oui-select-picker
+                        disabled="$ctrl.project.region && $ctrl.capabilities.regions.length === 1"
+                        data-ng-repeat="region in $ctrl.capabilities.regions track by $index"
+                        data-picture="flag-icon flag-icon-{{region.toLowerCase()}}"
+                        class="col-md-4 mb-3"
+                        data-model="$ctrl.project.region"
+                        model="$ctrl.selectedDatacenter"
+                        values="[region]"
+                        data-label="{{:: ('web_paas_region_' + region | translate) + '(' + region + ')' }}"
+                        data-variant="light"
+                    >
+                        <oui-select-picker-section class="text-uppercase"
+                            ><span data-ng-bind="region"></span
+                        ></oui-select-picker-section>
+                    </oui-select-picker>
+                </div>
+            </oui-step-form>
+            <!-- choose template -->
+            <oui-step-form
+                data-header="{{:: 'web_paas_add_project_template' | translate}}"
+                data-submit-text="{{:: 'web_paas_add_project_next' | translate }}"
+                data-prevent-next="true"
+                data-valid="$ctrl.project.template.createNew || $ctrl.project.template.templateUrl"
+                data-navigation="$ctrl.project.template.createNew || $ctrl.project.template.templateUrl"
+                data-loading="$ctrl.loader.loadingCapabilities"
+                data-on-focus="$ctrl.onTemplateFocus()"
+                data-on-submit="$ctrl.onTemplateSubmit(form)"
+            >
+                <div class="row mb-3">
+                    <oui-select-picker
+                        class="col-md-4 mb-3"
+                        name="templateNew"
+                        data-model="$ctrl.project.template.createNew"
+                        data-label="{{:: 'web_paas_add_project_template_create_title' | translate }}"
+                        data-variant="light"
+                        data-on-change="$ctrl.onSelected(modelValue)"
+                        data-values="[true]"
+                        data-ng-if="$ctrl.loader.isEditingTemplate || $ctrl.project.template.createNew"
+                    >
+                        <oui-select-picker-section>
+                            <span
+                                data-translate="web_paas_add_project_template_create_description"
+                            ></span>
+                        </oui-select-picker-section>
+                    </oui-select-picker>
+                    <oui-select-picker
+                        class="col-md-4 mb-3"
+                        name="templateExiting"
+                        data-model="$ctrl.project.template.createNew"
+                        data-label="{{:: 'web_paas_add_project_template_existing_title' | translate }}"
+                        data-variant="light"
+                        data-on-change="$ctrl.onSelected(modelValue)"
+                        data-values="[false]"
+                        data-ng-if="$ctrl.loader.isEditingTemplate || !$ctrl.project.template.createNew"
+                    >
+                        <oui-select-picker-section>
+                            <span
+                                data-translate="web_paas_add_project_template_existing_description"
+                            ></span>
+                        </oui-select-picker-section>
+                    </oui-select-picker>
+                </div>
+                <web-paas-project-template
+                    data-ng-if="!$ctrl.project.template.createNew"
+                    data-project="$ctrl.project"
+                    data-templates="$ctrl.capabilities.templates"
+                    data-disabled="false"
+                    data-on-select="$ctrl.onTemplateSelect(template)"
+                    data-preview-mode="!$ctrl.loader.isEditingTemplate"
+                >
+                </web-paas-project-template>
+            </oui-step-form>
+            <!-- choose additional options -->
+            <oui-step-form
+                data-header="{{:: 'web_paas_add_project_options' | translate }}"
+                data-submit-text="{{:: 'web_paas_add_project_next' | translate }}"
+                data-description="{{:: 'web_paas_add_project_options_description' | translate }}"
+                data-loading="$ctrl.loader.isGettingAddons"
+                data-on-submit="$ctrl.onAddonsSubmit()"
+            >
+                <div class="w-75">
+                    <web-paas-additional-option
+                        data-ng-repeat="addon in $ctrl.selectedPlan.addons track by $index"
+                        option="addon"
+                        plan="$ctrl.selectedPlan"
+                        user="$ctrl.user"
+                        disabled="false"
+                    >
+                    </web-paas-additional-option>
+                </div>
+            </oui-step-form>
+            <!-- summary -->
+            <oui-step-form
+                data-header="{{:: 'web_paas_add_project_summary_title' | translate }}"
+                data-loading="$ctrl.loader.isGettingCheckoutInfo || $ctrl.loader.orderInProgress"
+                data-submit-text="{{:: 'web_paas_add_project_create' | translate }}"
+                data-cancel-text="{{ ::'web_paas_common_cancel' | translate }}"
+                data-on-cancel="$ctrl.goBack()"
+            >
+                <div class="mb-3">
+                    <web-paas-summary
+                        data-ng-if="$ctrl.prices"
+                        prices="$ctrl.prices"
+                        selected-plan="$ctrl.selectedPlan"
+                        user="$ctrl.user"
+                    >
+                    </web-paas-summary>
+                </div>
+            </oui-step-form>
+        </oui-stepper>
+    </div>
+</div>

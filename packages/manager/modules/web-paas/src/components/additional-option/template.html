@@ -1,0 +1,69 @@
+<div class="oui-tile d-flex m-2 web-paas-additional-option">
+    <h6 class="ng-binding w-50">
+        <span
+            data-translate="{{ 'web_paas_offer_additional_option_title_' + $ctrl.option.family}}"
+        ></span>
+    </h6>
+    <div class="text-right ml-auto mr-3">
+        <h6
+            class="m-0"
+            data-translate="web_paas_offer_additional_option_price_text"
+            data-translate-values="{ price: $ctrl.getPrice(),
+            currencySymbol: $ctrl.user.currency.symbol
+        }"
+        ></h6>
+        <span
+            data-ng-if="!$ctrl.project || !$ctrl.option.isStorageAddon()"
+            data-translate="{{ 'web_paas_offer_additional_option_price_desc'}}"
+        ></span>
+        <span
+            data-ng-if="$ctrl.project && $ctrl.option.isStorageAddon()"
+            data-translate="{{ 'web_paas_offer_additional_option_price_desc_storage_environment' }}"
+        ></span>
+    </div>
+    <div class="oui-tile__body">
+        <oui-field
+            data-ng-if="$ctrl.option.isUserLicenseAddon()"
+            data-error-messages="{ 'max': ('web_paas_offer_additional_option_invalid_max' | translate: { max: $ctrl.plan.getMaxLicenses() - ($ctrl.project.getTotalLicences() || $ctrl.plan.getLicences()) }) }"
+        >
+            <oui-numeric
+                id="licences"
+                name="licences"
+                model="$ctrl.option.quantity"
+                min="0"
+                disabled="$ctrl.disabled"
+                max="$ctrl.plan.getMaxLicenses() - ($ctrl.project.getTotalLicences() || $ctrl.plan.getLicences())"
+                on-change="$ctrl.onSelected(modelValue)"
+            ></oui-numeric>
+        </oui-field>
+        <oui-field
+            data-ng-if="$ctrl.option.isStorageAddon()"
+            data-error-messages="{ 'max': ('web_paas_offer_additional_option_invalid_max' | translate: { max: $ctrl.plan.getMaxStorage() }) }"
+        >
+            <oui-numeric
+                id="storage"
+                name="numeric"
+                disabled="$ctrl.disabled"
+                model="$ctrl.option.quantity"
+                min="0"
+                step="5"
+                max="$ctrl.plan.getMaxStorage()"
+                on-change="$ctrl.onSelected(modelValue)"
+            ></oui-numeric>
+        </oui-field>
+        <oui-field
+            data-ng-if="$ctrl.option.isStagingEnvironmentAddon()"
+            data-error-messages="{ 'max': ('web_paas_offer_additional_option_invalid_max' | translate: { max: $ctrl.plan.getMaxEnvironment() }) }"
+        >
+            <oui-numeric
+                id="environment"
+                name="environment"
+                disabled="$ctrl.disabled"
+                model="$ctrl.option.quantity"
+                min="0"
+                max="$ctrl.plan.getMaxEnvironment()"
+                on-change="$ctrl.onSelected(modelValue)"
+            ></oui-numeric>
+        </oui-field>
+    </div>
+</div>

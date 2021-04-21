@@ -12,6 +12,7 @@ import ovhManagerProductOffers from '@ovh-ux/manager-product-offers';
 import { OnboardingLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
 import './index.scss';
+import './index.less';
 
 const moduleName = 'ovhManagerWebPaasLazyLoad';
 

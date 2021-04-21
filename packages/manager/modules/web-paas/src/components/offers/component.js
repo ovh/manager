@@ -3,11 +3,12 @@ import template from './template.html';
 
 export default {
   bindings: {
-    offers: '<',
-    previewMode: '<',
-    user: '<',
     disabled: '<',
+    offers: '<',
     onSelect: '&',
+    previewMode: '<',
+    selectedPlan: '<',
+    user: '<',
   },
   controller,
   template,

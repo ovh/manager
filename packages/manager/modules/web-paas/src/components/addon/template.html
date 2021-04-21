@@ -1,0 +1,52 @@
+<form
+    id="addAddon"
+    name="addAddon"
+    data-ng-submit="$ctrl.addon.quantity > 0 && $ctrl.orderAddon()"
+    novalidate
+>
+    <oui-modal
+        data-primary-label="{{ ::'web_paas_common_confirm' | translate }}"
+        data-secondary-action="$ctrl.goBack()"
+        data-secondary-label="{{ ::'web_paas_common_cancel' | translate }}"
+        data-on-dismiss="$ctrl.goBack()"
+        data-primary-disabled="$ctrl.disableSubmit"
+        data-heading="{{ ::'web_paas_service_add_addon_title_' + $ctrl.addon.family | translate }}"
+    >
+        <p data-ng-bind="$ctrl.description"></p>
+        <oui-message type="info" data-ng-if="$ctrl.addon.isStorageAddon()">
+            <span
+                data-translate="web_paas_service_add_addon_storage_info"
+            ></span>
+        </oui-message>
+        <web-paas-additional-option
+            disabled="$ctrl.disableNumeric"
+            option="$ctrl.addon"
+            plan="$ctrl.project.selectedPlan"
+            project="$ctrl.project"
+            on-change="$ctrl.onChange(modelValue)"
+            user="$ctrl.user"
+        >
+        </web-paas-additional-option>
+        <p>
+            <oui-spinner
+                data-size="s"
+                data-ng-if="$ctrl.disableNumeric"
+            ></oui-spinner>
+            <span
+                data-ng-if="$ctrl.disableNumeric"
+                data-translate="web_paas_service_add_addon_fetching_price"
+            ></span>
+            <span
+                data-ng-if="!$ctrl.disableNumeric && !$ctrl.disableSubmit"
+                data-translate="{{:: 'web_paas_service_add_addon_prorata_price_' + $ctrl.addon.family }}"
+                data-translate-values="{
+                    prorataPrice: $ctrl.prices.withoutTax.value || 0,
+                    nextMonthPrice: $ctrl.nextMonthPrice || 0,
+                    currentMonth: $ctrl.currentMonth,
+                    totalPrice: $ctrl.totalPrice || 0,
+                    currencySymbol: $ctrl.user.currency.symbol
+                }"
+            ></span>
+        </p>
+    </oui-modal>
+</form>

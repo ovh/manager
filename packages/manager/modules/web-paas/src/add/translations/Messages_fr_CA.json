@@ -5,7 +5,6 @@
   "web_paas_add_project_error": "Une erreur est survenue lors de la création de votre Web PaaS project: {{ message }}",
   "web_paas_add_project_loading": "La création du Web PaaS project est en cours",
   "web_paas_add_project_select_region": "Sélectionnez une région",
-  "web_paas_add_project_options_description": "Les options de stockage, d’environnement et de licence utilisateur sont limitées en version bêta.",
   "web_paas_add_project_storage": "{{ storageSize }} Go",
   "web_paas_add_project_choose_offer_description": "L’offre est actuellement disponible en version bêta gratuite. Vous êtes engagé pour une période d’un mois avec un renouvellement automatique. Lorsque l’offre bêta sera terminée, elle sera disponible en version payante.",
   "web_paas_add_project_next": "Suivant",
