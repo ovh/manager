@@ -5,12 +5,18 @@ export default /* @ngInject */ ($stateProvider) => {
       projectView: 'webPaasDetailsService',
     },
     resolve: {
-      terminateProject: /* @ngInject */ ($state, projectId) => () =>
-        $state.go('web-paas.dashboard.service.cancel', {
+      goToAddAddon: /* @ngInject */ ($state, projectId) => (addonType) =>
+        $state.go('web-paas.dashboard.service.add-addon', {
           projectId,
+          addonType,
         }),
-
-      breadcrumb: () => false,
+      goToChangeOffer: /* @ngInject */ ($state, projectId) => (cpu) =>
+        $state.go('web-paas.dashboard.service.change-offer', {
+          projectId,
+          cpu,
+        }),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('web_paas_general_info'),
     },
   });
 };

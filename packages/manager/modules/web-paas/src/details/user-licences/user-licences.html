@@ -1,0 +1,71 @@
+<div>
+    <h5 data-translate="web_paas_user_licences_heading"></h5>
+    <div data-ovh-alert="{{$ctrl.alerts.licences}}"></div>
+    <p>
+        <span
+            data-ng-if="!$ctrl.project.isStartOffer()"
+            data-translate="web_paas_user_licences_range_text"
+            data-translate-values="{
+               plan: $ctrl.project.selectedPlan.product,
+               addon: ($ctrl.project.getTotalLicences() - $ctrl.project.selectedPlan.getLicences()) || 0,
+               included: $ctrl.project.selectedPlan.getLicences()
+            }"
+        ></span>
+        <span
+            data-translate="web_paas_user_licences_range_text_start_offer"
+            data-ng-if="$ctrl.project.isStartOffer()"
+        ></span>
+    </p>
+
+    <web-paas-status
+        data-project="$ctrl.project"
+        data-user-list="$ctrl.userList"
+    ></web-paas-status>
+
+    <div class="mb-2 mt-2">
+        <button
+            data-ng-disabled="!$ctrl.isAdmin()"
+            data-ng-if="!$ctrl.project.isStartOffer() && $ctrl.canAddUserLicences()"
+            data-ng-click="$ctrl.goToAddAddon($ctrl.ADDON_TYPE.LICENCES)"
+            class="oui-button oui-button_secondary oui-button_icon-left mb-2"
+        >
+            <span class="oui-icon oui-icon-add" aria-hidden="true"></span>
+            <span data-translate="web_paas_user_licences_add_licences"></span>
+        </button>
+    </div>
+
+    <oui-message
+        type="info"
+        data-ng-if="$ctrl.isAdmin() && $ctrl.project.isDevelopOffer() && !$ctrl.canAddUserLicences()"
+    >
+        <span data-translate="web_paas_user_licences_more_users"></span>
+        <a
+            data-ui-sref="{{:: $ctrl.constructor.getChangeOfferState($ctrl.projectId)}}"
+        >
+            <span
+                data-translate="web_paas_user_licences_more_users_develop_link"
+            ></span>
+        </a>
+    </oui-message>
+    <oui-message
+        type="info"
+        data-ng-if="$ctrl.isAdmin() && $ctrl.project.isStartOffer()"
+    >
+        <span data-translate="web_paas_user_licences_more_users"></span>
+        <a
+            data-ui-sref="{{:: $ctrl.constructor.getChangeOfferState($ctrl.projectId)}}"
+        >
+            <span
+                data-translate="web_paas_user_licences_more_users_start_link"
+            ></span>
+        </a>
+    </oui-message>
+</div>
+<h3 data-translate="web_paas_user_licences_users_listed"></h3>
+<web-paas-user-list
+    project="$ctrl.project"
+    user-list="$ctrl.userList"
+    invite-user="$ctrl.goToInviteUser"
+    delete-user="$ctrl.goToDeleteUser"
+    user="$ctrl.user"
+></web-paas-user-list>

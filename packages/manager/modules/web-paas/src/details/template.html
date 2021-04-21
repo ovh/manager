@@ -1,5 +1,5 @@
 <div data-ui-view>
-    <div data-ovh-alert="{{alerts.dashboard}}"></div>
+    <div data-ovh-alert="{{ $ctrl.alerts.dashboard }}"></div>
     <oui-header
         class="mb-3"
         data-heading="{{:: $ctrl.project.projectName }}"
@@ -17,6 +17,11 @@
                 data-href="{{:: $ctrl.serviceLink }}"
                 data-active="$ctrl.currentActiveLink() === $ctrl.serviceLink"
                 ><span data-translate="web_paas_general_info"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-href="{{:: $ctrl.userLink }}"
+                data-active="$ctrl.currentActiveLink() === $ctrl.userLink"
+                ><span data-translate="web_paas_manage_users"></span>
             </oui-header-tabs-item>
         </oui-header-tabs>
     </oui-header>

@@ -2,7 +2,7 @@
   "web_paas_service_terminate_common_confirm": "Confirmer",
   "web_paas_service_terminate_common_cancel": "Annuler",
   "web_paas_service_terminate_title": "Supprimer le projet",
-  "web_paas_service_terminate_description": "Êtes-vous sûr d'annuler votre projet {{projectName}} dans Manager et dans Platform SH?",
+  "web_paas_service_terminate_description": "Êtes-vous sûr de vouloir supprimer votre projet {{projectName}}. Celui-ci sera supprimé dans votre espace client OVHcloud, et dans Platform.sh.",
   "web_paas_service_terminate_success": "Votre demande de suppression du Platform SH project a bien été prise en compte. Un email a été envoyé afin d'accuser réception de votre demande.",
   "web_paas_service_terminate_error": "Une erreur est survenue lors de la suppression de votre projet: {{message}}"
 }

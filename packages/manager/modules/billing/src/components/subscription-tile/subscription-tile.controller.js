@@ -24,7 +24,6 @@ export default class ServicesActionsCtrl {
 
   $onInit() {
     this.displayServiceActions = this.coreConfig.isRegion(['EU', 'CA']);
-
     this.withEngagement =
       this.withEngagement || this.$attrs.withEngagement === '';
     this.isLoading = true;

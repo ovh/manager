@@ -1,26 +1,23 @@
 import angular from 'angular';
-
-import '@ovh-ux/ng-ovh-cloud-universe-components';
-import '@ovh-ux/ui-kit';
-import ngOvhWebUniverseComponents from '@ovh-ux/ng-ovh-web-universe-components';
-
-import component from './add.component';
+import 'angular-translate';
 import routing from './add.routing';
-import offersComponent from '../components/offers';
-import templateComponent from '../components/project-template';
+import component from './add.component';
+import offerComponent from '../components/offers';
+import projectTemplateComponent from '../components/project-template';
+import additionalOptionComponent from '../components/additional-option';
+import summaryComponent from '../components/summary';
 
 const moduleName = 'ovhManagerWebPaasAdd';
 
 angular
   .module(moduleName, [
-    'ngOvhCloudUniverseComponents',
-    'oui',
-    ngOvhWebUniverseComponents,
-    offersComponent,
-    templateComponent,
+    offerComponent,
+    projectTemplateComponent,
+    additionalOptionComponent,
+    summaryComponent,
   ])
   .config(routing)
-  .component('webPaasAdd', component)
+  .component('webPaasAddComponent', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

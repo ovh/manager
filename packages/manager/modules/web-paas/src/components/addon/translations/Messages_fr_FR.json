@@ -1,0 +1,24 @@
+{
+  "web_paas_service_add_addon_title_storage": "Augmentez votre stockage",
+  "web_paas_service_add_addon_title_staging_environment": "Augmentez vos environnements",
+  "web_paas_service_add_addon_title_user_license": "Augmentez vos licences utilisateur",
+
+  "web_paas_service_add_storage_description": "Vous possédez actuellement {{ storage }} Go de stockage additionnel. Le prix de votre stockage additionnel est lié au nombre de vos environnements.",
+  "web_paas_service_add_license_description1": "Vous avez souscrit à l’offre {{ offerName }}. Vous avez {{ maxLicences }} licences utilisateur inclues et {{ addonLicenses }} ",
+  "web_paas_service_add_license_description_licence_singular": "licence utilisateur additionnelle.",
+  "web_paas_service_add_license_description_licence_plural": "licences utilisateur additionnelles.",
+  "web_paas_service_add_license_description2": "Vous pouvez ajouter des licences utilisateur pour permettre à vos collaborateurs d’accéder à vos projets Web PaaS.",
+  "web_paas_service_add_staging_description": "Vous possédez actuellement {{ environment }} environnements. Le nombre de vos environnements impacte également le prix de votre stockage qui est appliqué à tous vos environnements.",
+
+  "web_paas_service_add_addon_prorata_price_staging_environment": "Le prorata à payer sera de {{ prorataPrice }} {{ currencySymbol }} HT pour le mois de {{ currentMonth }} et de {{ nextMonthPrice }} {{ currencySymbol }}HT/mois pour les prochains mois sur vos nouveaux environnements. Le prix total de votre stockage additionnel en fonction du nombre d’environnement sera de {{ totalPrice }} {{ currencySymbol }}HT/mois.",
+  "web_paas_service_add_addon_prorata_price_storage": "Le prorata à payer sera de {{ prorataPrice }} {{ currencySymbol }} HT pour le mois de {{ currentMonth }} et de {{ nextMonthPrice }} {{ currencySymbol }}HT/mois pour les prochains mois pour votre nouveau stockage additionnel. Soit un total de {{ totalPrice }} {{ currencySymbol }}HT/mois calculé en fonction du nombre de vos environnements.",
+
+  "web_paas_service_add_addon_prorata_price_user_license": "Le prorata à payer sera de {{ prorataPrice }} {{ currencySymbol }} HT pour le mois de {{ currentMonth }} et de {{ nextMonthPrice }} {{ currencySymbol }}HT/mois pour les prochains mois sur vos nouvelles licences utilisateur supplémentaires.",
+
+  "web_paas_service_add_addon_error": "Erreur lors de l'ajout du module complémentaire: {{ message }}",
+  "web_paas_service_add_addon_success_storage": "La modification de votre stockage a bien été prise en compte. Vous pouvez suivre l’évolution de sa livraison dans votre compte, rubrique <a href='{{orderURL}}'>Mes commandes</a>",
+  "web_paas_service_add_addon_success_staging_environment": "La modification de votre environnements de test a bien été prise en compte. Vous pouvez suivre l’évolution de sa livraison dans votre compte, rubrique <a href='{{orderURL}}'>Mes commandes</a>",
+  "web_paas_service_add_addon_success_user_license": "La modification de votre licences utilisateur a bien été prise en compte. Vous pouvez suivre l’évolution de sa livraison dans votre compte, rubrique <a href='{{orderURL}}'>Mes commandes</a>",
+  "web_paas_service_add_addon_fetching_price": "Calcul du prix",
+  "web_paas_service_add_addon_storage_info": "Attention, il n'est pas possible de réduire le stockage d'un projet une fois le stockage additionnel commandé."
+}

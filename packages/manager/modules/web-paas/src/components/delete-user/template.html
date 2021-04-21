@@ -1,0 +1,15 @@
+<oui-modal
+    data-primary-label="{{ ::'web_paas_common_confirm' | translate }}"
+    data-primary-action="$ctrl.delete()"
+    data-secondary-action="$ctrl.goBack()"
+    data-secondary-label="{{ ::'web_paas_common_cancel' | translate }}"
+    data-on-dismiss="$ctrl.goBack()"
+    data-loading="$ctrl.isLoading"
+    data-type="warning"
+    data-heading="{{ ::'web_paas_user_licences_delete_heading' | translate }}"
+>
+    <p
+        data-translate="web_paas_user_licences_delete_description"
+        data-translate-values="{ accountName: $ctrl.customer.accountName }"
+    ></p>
+</oui-modal>

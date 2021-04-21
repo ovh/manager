@@ -80,14 +80,21 @@ export default class SupportNewIssuesFormController {
     this.bindings.serviceType.isLoading = true;
 
     return this.IssueForm.getServiceTypes()
-      .then((serviceTypes) =>
-        this.IssueForm.filterOwnServiceTypes(serviceTypes).then(
+      .then((serviceTypes) => {
+        const aiComponent = {
+          name: 'ai_training_job',
+          route: '/cloud/project/*/ai/training/job',
+          label: 'Ai Training Job',
+        };
+        serviceTypes.push(aiComponent);
+        console.log(serviceTypes);
+        return this.IssueForm.filterOwnServiceTypes(serviceTypes).then(
           (filteredServiceTypes) => ({
             serviceTypes,
             filteredServiceTypes,
           }),
-        ),
-      )
+        );
+      })
       .finally(() => {
         this.bindings.serviceType.isLoading = false;
       });

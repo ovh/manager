@@ -1,0 +1,15 @@
+{
+  "web_paas_change_offer_title_edit": "Modifier l'offre",
+  "web_paas_change_offer_description": "Vous pouvez changer d’offre commerciale, en fonction de celle déjà souscrite.",
+  "web_paas_change_offer_choose_offer": "Choisissez votre offre",
+  "web_paas_change_offer_next": "Suivant",
+  "web_paas_change_offer_options": "Choisissez vos options",
+  "web_paas_change_offer_summary_title": "Récapitulatif de votre commande.",
+  "web_paas_change_offer_submit_button": "Modifier l'offre",
+  "web_paas_change_offer_downgrade_licence_warning": "La solution sélectionnée vous offre moins de licences utilisateur que vous n’en aviez auparavant.",
+
+  "web_paas_change_offer_downgrade_licence_warning_from_plan": "Vous possédez désormais {{ licencesIncluded }} licences utilisateur incluses et {{ additionalLicences }} licences utilisateur additionnelles.",
+  "web_paas_change_offer_downgrade_licence_warning_to_plan": "Vous devez donc supprimer {{ usersToRemove }} licences utilisateur si vous souhaitez changer votre offre pour une gamme inférieure.",
+  "web_paas_change_offer_success": "La modification de votre offre et de vos options a bien été prise en compte.",
+  "web_paas_change_offer_error": "Une erreur est survenue lors de la modifier l'offre: {{ message }}"
+}

@@ -1,0 +1,6 @@
+{
+  "web_paas_user_licences_delete_heading": "Supprimer l'utilisateur",
+  "web_paas_user_licences_delete_description": "Vous allez supprimer définitivement la carte réseau de l'utilisateur {{accountName}}",
+  "web_paas_user_licences_delete_user_success": "L'utilisateur a été supprimé du projet avec succès",
+  "web_paas_user_licences_delete_user_error": "Une erreur s'est produite lors de la suppression de l'utilisateur"
+}

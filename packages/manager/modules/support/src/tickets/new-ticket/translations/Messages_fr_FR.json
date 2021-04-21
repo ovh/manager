@@ -98,7 +98,11 @@
   "ovhManagerSupport_new_serviceType_saas_csp_2": "Microsoft 365 et Office 365 Reseller",
   "ovhManagerSupport_new_serviceType_horizon_view": "Horizon View",
   "ovhManagerSupport_new_serviceType_other": "Autre demande",
+<<<<<<< HEAD
   "ovhManagerSupport_new_serviceType_ai_training_job": "AI Training",
+=======
+  "ovhManagerSupport_new_serviceType_ai_training_job": "Autre demande",
+>>>>>>> feat(webpaas): fixes qa issues
 
   "ovhManagerSupport_new_service": "Service concerné",
   "ovhManagerSupport_new_service_unknown": "Mon service n'est pas listé et/ou je ne dispose pas encore de ce service",

@@ -98,6 +98,7 @@ export default class {
   }
 
   getServicesTypes(services) {
+    console.log(services);
     return reduce(
       services.servicesTypes,
       (serviceTypes, service) => ({

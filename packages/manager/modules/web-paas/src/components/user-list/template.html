@@ -1,0 +1,36 @@
+<oui-datagrid data-rows="$ctrl.userList">
+    <oui-datagrid-column
+        data-title=":: 'web_paas_user_licences_account_name' | translate"
+        data-property="accountName"
+        data-searchable
+        data-filterable
+        data-type="string"
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'web_paas_user_licences_customer_type' | translate"
+        data-property="customerType"
+        data-searchable
+        data-filterable
+        data-type="string"
+    ></oui-datagrid-column>
+    <oui-action-menu
+        data-compact
+        data-placement="end"
+        data-ng-if="$ctrl.isAdmin() && !$row.isOwner()"
+    >
+        <oui-action-menu-item data-on-click="$ctrl.deleteUser($row)">
+            <span data-translate="web_paas_common_terminate"></span>
+        </oui-action-menu-item>
+    </oui-action-menu>
+    <oui-datagrid-topbar>
+        <button
+            data-ng-disabled="$ctrl.isInviteDisabled()"
+            data-ng-click="$ctrl.inviteUser()"
+            class="oui-button oui-button_secondary oui-button_icon-left mb-2"
+        >
+            <span class="oui-icon oui-icon-add" aria-hidden="true"></span>
+            <span data-translate="web_paas_user_licences_invite_user"></span>
+        </button>
+    </oui-datagrid-topbar>
+</oui-datagrid>
