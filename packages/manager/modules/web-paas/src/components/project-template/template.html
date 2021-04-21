@@ -25,3 +25,14 @@
         </oui-select-picker-section>
     </oui-select-picker>
 </div>
+<div class="row">
+    <div class="ml-md-auto mr-md-0 d-flex">
+        <oui-pagination
+            current-offset="$ctrl.offset"
+            page-size="$ctrl.pageSize"
+            total-items="$ctrl.originalList.length"
+            on-change="$ctrl.onChange($event)"
+        >
+        </oui-pagination>
+    </div>
+</div>

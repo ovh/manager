@@ -12,6 +12,10 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('web-paas.dashboard.service', {
           projectId,
         }),
+      userLink: /* @ngInject */ ($state, projectId) =>
+        $state.href('web-paas.dashboard.user-licences', {
+          projectId,
+        }),
       currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
         $state.href($state.current.name, $transition$.params()),
       goToProjectDetails: /* @ngInject */ ($state, Alerter) => (

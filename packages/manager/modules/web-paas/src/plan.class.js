@@ -2,6 +2,7 @@ import get from 'lodash/get';
 import find from 'lodash/find';
 
 export default class Plan {
+  /* @ngInject */
   constructor({
     addonFamilies,
     blobs,
@@ -12,7 +13,7 @@ export default class Plan {
     pricingType,
     pricings,
     product,
-    vcpus,
+    vcpuConfig,
   }) {
     Object.assign(this, {
       addonFamilies,
@@ -24,12 +25,12 @@ export default class Plan {
       pricingType,
       pricings,
       product,
-      vcpus,
+      vcpuConfig,
     });
   }
 
   getCpu() {
-    return [get(this, 'blobs.technical.cpu.cores')];
+    return get(this, 'blobs.technical.cpu.cores');
   }
 
   getStorage() {
@@ -48,9 +49,25 @@ export default class Plan {
     }).value;
   }
 
+  getPrice() {
+    return get(this, 'pricings').find(({ capacities }) =>
+      capacities.includes('renew'),
+    ).price;
+  }
+
+  getMaxEnvironment() {
+    return this.product === 'expand' ? 50 : 10;
+  }
+
+  getMaxStorage() {
+    return this.product === 'expand' ? 100 : 10;
+  }
+
   getMaxLicenses() {
-    return find(get(this, 'blobs.commercial.features'), {
-      name: 'max_user_licences',
-    }).value;
+    return this.product === 'expand'
+      ? 100
+      : find(get(this, 'blobs.commercial.features'), {
+          name: 'max_user_licences',
+        })?.value;
   }
 }

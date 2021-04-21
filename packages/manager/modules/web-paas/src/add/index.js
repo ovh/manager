@@ -2,12 +2,19 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
+import ovhManagerCatalogPrice from '@ovh-ux/manager-catalog-price';
+
 import '@ovh-ux/manager-core';
 
 const moduleName = 'ovhManagerWebPaasAddLazyLoad';
 
 angular
-  .module(moduleName, ['ui.router', 'ovhManagerCore', 'oc.lazyLoad'])
+  .module(moduleName, [
+    'ui.router',
+    'ovhManagerCore',
+    'oc.lazyLoad',
+    ovhManagerCatalogPrice,
+  ])
   .config(
     /* @ngInject */ ($stateProvider) => {
       $stateProvider.state('web-paas.add.**', {

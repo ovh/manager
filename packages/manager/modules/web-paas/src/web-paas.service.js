@@ -1,18 +1,38 @@
 import map from 'lodash/map';
 import set from 'lodash/set';
-import compact from 'lodash/compact';
+import get from 'lodash/get';
+import groupBy from 'lodash/groupBy';
+import sortBy from 'lodash/sortBy';
 import Project from './project.class';
 import Plan from './plan.class';
-import { BETA_PLAN_CODE } from './web-paas.constants';
+import PlanFamily from './family.class';
 
 export default class WebPaasService {
   /* @ngInject */
-  constructor($http, $q, $translate, WucOrderCartService, iceberg) {
+  constructor(
+    $http,
+    $q,
+    $translate,
+    WucOrderCartService,
+    iceberg,
+    OvhApiOrder,
+    OvhApiMe,
+  ) {
     this.$http = $http;
     this.$q = $q;
     this.iceberg = iceberg;
     this.$translate = $translate;
     this.WucOrderCartService = WucOrderCartService;
+    this.OvhApiOrderCart = OvhApiOrder.Cart().v6();
+    this.OvhApiOrderCartProduct = OvhApiOrder.Cart()
+      .Product()
+      .v6();
+    this.OvhApiOrderCartConfig = OvhApiOrder.Cart()
+      .Item()
+      .Configuration()
+      .v6();
+    this.OvhApiMeOrder = OvhApiMe.Order().v6();
+    this.OvhApiMe = OvhApiMe;
   }
 
   getProjects() {
@@ -54,16 +74,172 @@ export default class WebPaasService {
       ovhSubsidiary,
       'webPaaS',
     ).then((catalog) => {
-      set(
-        catalog,
-        'plans',
-        compact(
-          map(catalog.plans, (plan) =>
-            plan.planCode === BETA_PLAN_CODE ? new Plan(plan) : null,
-          ),
-        ),
-      );
+      const sorted = this.sortSetVcpuConfig(catalog);
+      const groupedPlans = this.groupPlans(sorted);
+      set(catalog, 'plans', sorted);
+      set(catalog, 'productList', groupedPlans);
       return catalog;
     });
+  }
+
+  /**
+   * @param {*} plans
+   * @returns Grouped plans according to the products i.e., 'expand', 'develop', 'start'
+   */
+  groupPlans(plans) {
+    const groupedPlans = map(
+      groupBy(
+        map(plans, (plan) => new Plan(plan)),
+        'product',
+      ),
+      (value, key) => ({ name: key, plans: value, selectedPlan: value[0] }),
+    );
+    return map(groupedPlans, (family) => new PlanFamily(family));
+  }
+
+  /**
+   *
+   * @param {*} catalog
+   * @returns plans which have vcpuConfig text and sorted by number of cores in a plan
+   */
+  sortSetVcpuConfig(catalog) {
+    const plans = map(catalog.plans, (plan) => ({
+      ...plan,
+      vcpuConfig: this.$translate.instant('web_paas_plan_vcpu_config_text', {
+        prodCpu: get(plan, 'blobs.technical.cpu.cores'),
+        stagingCpu: get(plan, 'blobs.technical.cpu.cores') / 2,
+      }),
+    }));
+    return sortBy(plans, ['blobs.technical.cpu.cores']);
+  }
+
+  getUsers(projectId) {
+    return this.$http
+      .get(`/webPaaS/subscription/${projectId}/customer`)
+      .then(({ data }) => data);
+  }
+
+  getMe() {
+    return this.OvhApiMe.v6().get().$promise;
+  }
+
+  createCart() {
+    return this.getMe().then(
+      (me) =>
+        this.OvhApiOrderCart.post({ ovhSubsidiary: me.ovhSubsidiary }).$promise,
+    );
+  }
+
+  assignCart(cart) {
+    return this.OvhApiOrderCart.assign({
+      cartId: cart.cartId,
+      autoPayWithPreferredPaymentMethod: true,
+    }).$promise.then(() => cart);
+  }
+
+  getOptions(cart, plan) {
+    return this.$http
+      .get(`/order/cart/${cart.cartId}/webPaaS/options`, {
+        params: {
+          cart: cart.cartId,
+          planCode: plan.planCode,
+        },
+      })
+      .then((res) => res.data);
+  }
+
+  addToCart(cartId, plan) {
+    return this.OvhApiOrderCartProduct.post({
+      cartId,
+      productName: 'webPaaS',
+      duration: 'P1M',
+      planCode: plan.planCode,
+      pricingMode: 'default',
+      quantity: 1,
+    }).$promise;
+  }
+
+  getAddons(plan) {
+    return this.createCart()
+      .then((cart) => this.assignCart(cart))
+      .then((cart) => this.addToCart(cart.cartId, plan))
+      .then((cart) => {
+        this.cart = cart;
+        return this.getOptions(cart, plan).then((res) => res);
+      })
+      .finally(() => this.deleteCart());
+  }
+
+  addAddons(cart, addons) {
+    return this.$q
+      .all(
+        addons.forEach((addon) => {
+          const capacity = get(addon, 'prices').find(({ capacities }) =>
+            capacities.includes('renew'),
+          );
+          this.OvhApiOrderCartProduct.postOptions({
+            cartId: cart.cartId,
+            productName: 'webPaaS',
+            duration: capacity.duration,
+            planCode: addon.planCode,
+            pricingMode: 'default',
+            quantity: addon.quantity,
+            itemId: cart.itemId,
+          }).$promise;
+        }),
+      )
+      .then(() => cart);
+  }
+
+  addConfig(cart, config) {
+    return this.$q
+      .all(
+        config.map(
+          ({ label, value }) =>
+            this.OvhApiOrderCartConfig.post({
+              cartId: cart.cartId,
+              itemId: cart.itemId,
+              label,
+              value,
+            }).$promise,
+        ),
+      )
+      .then(() => cart);
+  }
+
+  getOrderSummary(selectedPlan, config) {
+    return this.createCart()
+      .then((cart) => this.addToCart(cart.cartId, selectedPlan))
+      .then((cart) => this.addConfig(cart, config))
+      .then((cart) => this.addAddons(cart, selectedPlan.addons))
+      .then((cart) => this.assignCart(cart))
+      .then((cart) =>
+        this.getCheckoutInfo(cart).then((order) => ({
+          ...order,
+          cart,
+        })),
+      );
+  }
+
+  getCheckoutInfo(cart) {
+    return this.OvhApiOrderCart.getCheckout({ cartId: cart.cartId }).$promise;
+  }
+
+  checkoutCart(cart) {
+    return this.OvhApiOrderCart.checkout({
+      cartId: cart.cartId,
+      autoPayWithPreferredPaymentMethod: true,
+    }).$promise;
+  }
+
+  getSummary(cart) {
+    return this.OvhApiOrderCart.summary({
+      cartId: cart.cartId,
+      autoPayWithPreferredPaymentMethod: true,
+    }).$promise;
+  }
+
+  deleteCart() {
+    this.$http.delete(`/order/cart/${this.cart.cartId}`);
   }
 }

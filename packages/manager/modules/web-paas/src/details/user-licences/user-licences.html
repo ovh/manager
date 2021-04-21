@@ -1,0 +1,65 @@
+<div>
+    <h5 data-translate="web_paas_user_licences_heading"></h5>
+    <p
+        data-translate="web_paas_user_licences_range_text"
+        data-translate-values="{
+           plan: $ctrl.project.offer,
+           maxUsers: $ctrl.project.availableUserLicenses(),
+        }"
+    ></p>
+    <span data-translate="5/5 licences used"></span>
+    <oui-message type="info">
+        <span data-translate="web_paas_user_licences_more_users"></span>
+        <a href="{{orderURL}}">
+            <span
+                data-translate="web_paas_user_licences_more_users_link"
+            ></span>
+        </a>
+    </oui-message>
+</div>
+<h3 data-translate="web_paas_user_licences_users_listed"></h3>
+<oui-datagrid data-rows="$ctrl.userList">
+    <oui-datagrid-column
+        data-title=":: 'web_paas_user_licences_account_name' | translate"
+        data-property="accountName"
+        data-searchable
+        data-filterable
+        data-type="string"
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'web_paas_user_licences_customer_id' | translate"
+        data-property="customerId"
+        data-searchable
+        data-filterable
+    ></oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'web_paas_user_licences_customer_type' | translate"
+        data-property="customerType"
+        data-searchable
+        data-filterable
+    ></oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'web_paas_user_licences_created_at' | translate"
+        data-property="createdAt"
+        data-searchable
+        data-filterable
+    ></oui-datagrid-column>
+    <oui-action-menu data-compact data-placement="end">
+        <oui-action-menu-item data-on-click="$ctrl.deleteUserLicences($row)">
+            <span data-translate="delete"></span>
+        </oui-action-menu-item>
+    </oui-action-menu>
+    <oui-datagrid-topbar>
+        <button
+            data-ng-click="$ctrl.createUserLicence()"
+            class="oui-button oui-button_secondary oui-button_icon-left mb-2"
+            data-track-on="click"
+            data-track-name="PLATFORM_SH_USER_LICENCES_ADD"
+            data-track-type="navigation"
+        >
+            <span class="oui-icon oui-icon-add" aria-hidden="true"></span>
+            <span data-translate="web_paas_user_licences_invite_user"></span>
+        </button>
+    </oui-datagrid-topbar>
+</oui-datagrid>

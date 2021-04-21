@@ -8,6 +8,7 @@ const component = {
     guideUrl: '<',
     currentActiveLink: '<',
     serviceLink: '<',
+    userLink: '<',
   },
   template,
   controller,

@@ -1,0 +1,36 @@
+<div class="oui-tile d-flex m-2 w-75">
+    <h4 class="oui-tile__title ng-binding">
+        <span
+            data-translate="{{ 'web_paas_offer_additional_option_title_' + $ctrl.option.family}}"
+        ></span>
+    </h4>
+    <div class="text-right ml-auto mr-3">
+        <h4 class="m-0"><span data-ng-bind="$ctrl.getPrice()"></span></h4>
+        <span
+            data-translate="{{ 'web_paas_offer_additional_option_price_desc_' + $ctrl.option.family}}"
+        ></span>
+    </div>
+    <div class="oui-tile__body">
+        <oui-numeric
+            name="numeric"
+            model="$ctrl.option.quantity"
+            min="0"
+            max="$ctrl.plan.getMaxLicenses()"
+            data-ng-if="$ctrl.option.family === 'user_license'"
+        ></oui-numeric>
+        <oui-numeric
+            name="numeric"
+            model="$ctrl.option.quantity"
+            min="0"
+            max="$ctrl.plan.getMaxStorage()"
+            data-ng-if="$ctrl.option.family === 'storage'"
+        ></oui-numeric>
+        <oui-numeric
+            name="numeric"
+            model="$ctrl.option.quantity"
+            min="0"
+            max="$ctrl.plan.getMaxEnvironment()"
+            data-ng-if="$ctrl.option.family === 'staging_environment'"
+        ></oui-numeric>
+    </div>
+</div>

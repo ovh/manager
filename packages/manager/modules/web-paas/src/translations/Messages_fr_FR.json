@@ -21,5 +21,6 @@
   "web_paas_project_status_TERMINATED": "Révoquée",
   "web_paas_project_status_SUSPENDED": "Suspendu",
   "web_paas_guides": "Guides",
-  "web_paas_guides_main": "Web PaaS"
+  "web_paas_guides_main": "Web PaaS",
+  "web_paas_plan_vcpu_config_text": "{{ prodCpu }} vCPU prod({{ stagingCpu }} vCPU Staging)"
 }

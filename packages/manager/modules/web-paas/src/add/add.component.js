@@ -3,11 +3,11 @@ import template from './add.html';
 
 export default {
   bindings: {
+    catalog: '<',
     getOrdersURL: '<',
     goBack: '<',
-    catalog: '<',
-    user: '<',
     plans: '<',
+    user: '<',
   },
   controller,
   template,

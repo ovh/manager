@@ -1,3 +1,4 @@
+import set from 'lodash/set';
 import {
   pricingConstants,
   workflowConstants,
@@ -33,6 +34,8 @@ export default class {
     this.isAdding = false;
     this.isEditingTemplate = false;
     this.isEditingOffers = false;
+    this.isGettingAddons = false;
+    this.isGettingCheckoutInfo = false;
 
     this.project = {
       region: null,
@@ -44,16 +47,14 @@ export default class {
       },
     };
 
-    this.setStaticOptions();
-
     this.productOffers = {
       pricingType: pricingConstants.PRICING_CAPACITIES.RENEW,
       user: this.user,
       workflowOptions: {
+        serviceNameToAddProduct: null,
         catalog: this.catalog,
         catalogItemTypeName: WORKFLOW_OPTIONS.catalogItemTypeName,
         productName: WORKFLOW_OPTIONS.productName,
-        serviceNameToAddProduct: null,
         getPlanCode: this.getPlanCode.bind(this),
         onGetConfiguration: () => this.getConfiguration(),
       },
@@ -69,8 +70,9 @@ export default class {
     this.loadCapabilities(this.project.offer);
   }
 
-  onPlanSelect(plan) {
-    this.project.offer = plan;
+  onPlanSelect(product) {
+    this.selectedPlan = product.selectedPlan;
+    this.project.offer = product.selectedPlan.planCode;
   }
 
   onTemplateSelect(templateUrl) {
@@ -82,6 +84,7 @@ export default class {
   }
 
   onTemplateSubmit() {
+    this.loadOptions();
     this.isEditingTemplate = false;
   }
 
@@ -176,36 +179,39 @@ export default class {
     this.characteristics.isEditable = !state.isLoading;
   }
 
-  setStaticOptions() {
-    this.availableStorages = [
-      {
-        value: this.plans[0].getStorage(),
-        name: this.$translate.instant('web_paas_add_project_storage', {
-          storageSize: this.plans[0].getStorage(),
-        }),
-      },
-    ];
-    this.availableEnvironments = [
-      {
-        value: this.plans[0].getProdEnvironment(),
-        name: this.$translate.instant('web_paas_add_project_environment', {
-          count: this.plans[0].getProdEnvironment(),
-        }),
-      },
-    ];
-    this.availableUserLicenses = [
-      {
-        value: this.plans[0].getMaxLicenses(),
-        name: this.$translate.instant('web_paas_add_project_license', {
-          count: this.plans[0].getMaxLicenses(),
-        }),
-      },
-    ];
-    this.project.configuration = {
-      ...this.project.configuration,
-      storage: this.availableStorages[0],
-      environment: this.availableEnvironments[0],
-      license: this.availableUserLicenses[0],
-    };
+  loadOptions() {
+    this.isGettingAddons = true;
+    this.WebPaas.getAddons(this.selectedPlan).then((addons) => {
+      this.isGettingAddons = false;
+      set(this.selectedPlan, 'addons', addons);
+    });
+  }
+
+  onOptionsSubmit() {
+    this.isGettingCheckoutInfo = true;
+    this.WebPaas.getOrderSummary(this.selectedPlan, this.getConfiguration())
+      .then(({ contracts, prices, cart }) => {
+        this.cart = cart;
+        this.contracts = contracts;
+        this.prices = prices;
+      })
+      .catch((error) =>
+        !this.onError || this.onError({ error }) === false
+          ? this.$q.reject(error)
+          : null,
+      )
+      .finally(() => {
+        this.isGettingCheckoutInfo = false;
+      });
+  }
+
+  createWebPaas() {
+    this.WebPaas.checkoutCart(this.cart)
+      .then((checkout) => {
+        this.onPlatformOrderSuccess(checkout);
+      })
+      .catch((error) => {
+        this.onPlatformOrderError(error);
+      });
   }
 }

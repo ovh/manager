@@ -5,7 +5,6 @@
   "web_paas_add_project_error": "Une erreur est survenue lors de la création de votre Web PaaS project: {{ message }}",
   "web_paas_add_project_loading": "La création du Web PaaS project est en cours",
   "web_paas_add_project_select_region": "Sélectionnez une région",
-  "web_paas_add_project_options_description": "Les options de stockage, d’environnement et de licence utilisateur sont limitées en version bêta.",
   "web_paas_add_project_storage": "{{ storageSize }} Go",
   "web_paas_add_project_choose_offer_description": "L’offre est actuellement disponible en version bêta gratuite. Vous êtes engagé pour une période d’un mois avec un renouvellement automatique. Lorsque l’offre bêta sera terminée, elle sera disponible en version payante.",
   "web_paas_add_project_next": "Suivant",
@@ -25,5 +24,11 @@
   "web_paas_add_project_options_environment_popover": "Vous ne pouvez pas sélectionner l'environnement en version bêta",
   "web_paas_add_project_region_na": "Régions non disponibles. Réessayer.",
   "web_paas_add_project_environment": "{{count}} environnement",
-  "web_paas_add_project_license": "{{count}} licence utilisateur"
+  "web_paas_add_project_license": "{{count}} licence utilisateur",
+  "web_paas_add_project_license_summary_offer": "Offre",
+  "web_paas_add_project_license_summary_total": "Total",
+  "web_paas_add_project_license_total_price_without_tax": "Prix HT :",
+  "web_paas_add_project_license_total_price_with_tax": "Prix TTC :",
+  "web_paas_add_project_license_summary_addon_storage": "+{{quantity}} 5GB Additional Storage",
+  "web_paas_add_project_license_summary_addon_user_licence": "+{{ quantity}} Additional User licence"
 }
