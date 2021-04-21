@@ -1,3 +1,12 @@
+## [1.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.5.0...@ovh-ux/manager-dbaas-logs@1.5.1) (2021-04-21)
+
+
+### Bug Fixes
+
+* **logs.detail.streams:** fix routing issue ([#4718](https://github.com/ovh/manager/issues/4718)) ([e4e7918](https://github.com/ovh/manager/commit/e4e7918c1626b9d87a16bc15759350065f6d3a5f))
+
+
+
 # [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.4.10...@ovh-ux/manager-dbaas-logs@1.5.0) (2021-03-25)
 
 

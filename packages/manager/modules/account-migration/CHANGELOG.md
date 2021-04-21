@@ -1,3 +1,12 @@
+## [1.1.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-migration@1.1.5...@ovh-ux/manager-account-migration@1.1.6) (2021-04-21)
+
+
+### Bug Fixes
+
+* remove non needed entries ([897b1a7](https://github.com/ovh/manager/commit/897b1a74e3094bb82ee5f9dd06d014f861a193f4))
+
+
+
 ## [1.1.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-migration@1.1.4...@ovh-ux/manager-account-migration@1.1.5) (2021-03-25)
 
 

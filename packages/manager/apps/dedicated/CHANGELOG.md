@@ -1,3 +1,31 @@
+# [16.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.18.8...@ovh-ux/manager-dedicated@16.19.0) (2021-04-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 813] ([7576441](https://github.com/ovh/manager/commit/75764419f0ad376750d683a7b8b9eed4b9b01af4))
+* **i18n:** add missing translations [CDS 890] ([953780c](https://github.com/ovh/manager/commit/953780c97d4123f62e647150527b557c43d5a915))
+* **i18n:** add missing translations [CDS 891] ([c8594e5](https://github.com/ovh/manager/commit/c8594e5435a1de19a8980b18c7b1c0b498228d14))
+* **i18n:** add missing translations [CDS 892] ([8c51e87](https://github.com/ovh/manager/commit/8c51e879b6427ea9a947255d9097cfa1c496268b))
+* **i18n:** add missing translations [CDS 894] ([d371945](https://github.com/ovh/manager/commit/d3719452c06974d5638be3a83e398b5ac2ede2b4))
+* **i18n:** add missing translations [CDS 896] ([c1a16a4](https://github.com/ovh/manager/commit/c1a16a4660fe7b379b67cc00c730812bf8708a28))
+* **i18n:** add missing translations [CDS 898] ([1a21c31](https://github.com/ovh/manager/commit/1a21c31630d8fbc4e3715103ed346b600be9f8d8))
+* **i18n:** add missing translations [CDS 899] ([110f23c](https://github.com/ovh/manager/commit/110f23ca4af9b4abb8d8f72b5f7f0f615fb9757e))
+* **i18n:** add missing translations [CDS 902] ([0af3a1a](https://github.com/ovh/manager/commit/0af3a1a41ce86febbb16bc0c991bc06328e32dc6))
+* **i18n:** add missing translations [CDS 906] ([4c98d4c](https://github.com/ovh/manager/commit/4c98d4c3705ecdb5675424b99eca9c11df9fdba6))
+* fix alerter message slot name ([#4731](https://github.com/ovh/manager/issues/4731)) ([b7f7772](https://github.com/ovh/manager/commit/b7f77724204581e9e13efad0ef1ee81242fb2710))
+* **pcc.users:** avoid to display an error message as successful ([#4723](https://github.com/ovh/manager/issues/4723)) ([292c1ed](https://github.com/ovh/manager/commit/292c1edf32beec2ba62bc231440882d7f6226b9c))
+
+
+### Features
+
+* **datacenter.drp.summary:** add remoteVraNetwork field ([#4760](https://github.com/ovh/manager/issues/4760)) ([516c6d2](https://github.com/ovh/manager/commit/516c6d256bd3a02a2b34311d06a9f21fec143032))
+* **dedicated.billing:** add new adyen method type ([d6d62b3](https://github.com/ovh/manager/commit/d6d62b3c6ca9bc055d604bd8e0a42faf59d5b9a4))
+* **dedicated.billing:** change explanation text of payment type card ([0c56894](https://github.com/ovh/manager/commit/0c568945c6413102408705e7566ffd035cb2c24e))
+* **server.dashboard.technical-details:** check if upgradable ([#4773](https://github.com/ovh/manager/issues/4773)) ([889f972](https://github.com/ovh/manager/commit/889f9724b858afd096ed5b953e09f87ff970fed5))
+
+
+
 ## [16.18.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.18.7...@ovh-ux/manager-dedicated@16.18.8) (2021-04-19)
 
 

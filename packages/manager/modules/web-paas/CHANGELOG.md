@@ -1,3 +1,13 @@
+## [1.0.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas@1.0.4...@ovh-ux/manager-web-paas@1.0.5) (2021-04-21)
+
+
+### Bug Fixes
+
+* **deps:** add missing deps ([b4dee4e](https://github.com/ovh/manager/commit/b4dee4e5ada2231ed06260ee9009211e0b224141))
+* **webpaas:** change to beta plan ([#4783](https://github.com/ovh/manager/issues/4783)) ([b1b47b6](https://github.com/ovh/manager/commit/b1b47b69643c73bb0ce850275a45f81e668ee3ca))
+
+
+
 ## [1.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-paas@1.0.3...@ovh-ux/manager-web-paas@1.0.4) (2021-04-15)
 
 

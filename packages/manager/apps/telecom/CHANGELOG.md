@@ -1,3 +1,19 @@
+## [13.16.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.16.1...@ovh-ux/manager-telecom@13.16.2) (2021-04-21)
+
+
+### Bug Fixes
+
+* **functionkeys:** sort programmable keys by API keyNum ([#4717](https://github.com/ovh/manager/issues/4717)) ([13cb0c9](https://github.com/ovh/manager/commit/13cb0c999d45f991c20fab9aba1ae47b8fb0cee7))
+* **i18n:** add missing translations [CDS 894] ([d371945](https://github.com/ovh/manager/commit/d3719452c06974d5638be3a83e398b5ac2ede2b4))
+* **i18n:** add missing translations [CDS 898] ([1a21c31](https://github.com/ovh/manager/commit/1a21c31630d8fbc4e3715103ed346b600be9f8d8))
+* **i18n:** add missing translations [CDS 899] ([110f23c](https://github.com/ovh/manager/commit/110f23ca4af9b4abb8d8f72b5f7f0f615fb9757e))
+* **i18n:** add missing translations [CDS 902] ([0af3a1a](https://github.com/ovh/manager/commit/0af3a1a41ce86febbb16bc0c991bc06328e32dc6))
+* **i18n:** add missing translations [CDS 906] ([4c98d4c](https://github.com/ovh/manager/commit/4c98d4c3705ecdb5675424b99eca9c11df9fdba6))
+* **i18n:** add missing translations [CDS 909] ([b65aeab](https://github.com/ovh/manager/commit/b65aeab3e5cb36b5ae0f9252ad294637a8de4cf3))
+* **sva:** disable pricePerMinute for common number ([#4714](https://github.com/ovh/manager/issues/4714)) ([110ffa9](https://github.com/ovh/manager/commit/110ffa93c3e5fbdd5ee6307006b797174f58e8a3))
+
+
+
 ## [13.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.16.0...@ovh-ux/manager-telecom@13.16.1) (2021-04-12)
 
 

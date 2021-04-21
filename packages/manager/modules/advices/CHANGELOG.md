@@ -1,3 +1,12 @@
+## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-advices@1.1.0...@ovh-ux/manager-advices@1.1.1) (2021-04-21)
+
+
+### Bug Fixes
+
+* remove non needed entries ([897b1a7](https://github.com/ovh/manager/commit/897b1a74e3094bb82ee5f9dd06d014f861a193f4))
+
+
+
 # [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-advices@1.0.0...@ovh-ux/manager-advices@1.1.0) (2021-04-07)
 
 
