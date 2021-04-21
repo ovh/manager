@@ -27,7 +27,7 @@
   "private_registry_common_status_DELETED": "Supprimé",
   "private_registry_common_status_SUSPENDED": "Suspendue",
   "private_registry_common_status_INSTALLING": "En cours d'installation",
-  "private_registry_common_status_UPDATING": "Mise à jour",
+  "private_registry_common_status_UPDATING": "Mise à jour en cours",
   "private_registry_common_status_RESTORING": "Restauration",
   "private_registry_common_status_TO_SUSPENDING": "Suspension",
   "private_registry_common_status_DELETING": "En cours de suppression",
