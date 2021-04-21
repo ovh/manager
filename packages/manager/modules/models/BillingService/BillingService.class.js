@@ -36,8 +36,16 @@ export default class BillingService {
     return this.status === 'BILLING_SUSPENDED';
   }
 
+  isManualForced() {
+    return this.status === 'FORCED_MANUAL';
+  }
+
   getRenew() {
     if (this.isBillingSuspended()) {
+      return this.status.toLowerCase();
+    }
+
+    if (this.isManualForced()) {
       return this.status.toLowerCase();
     }
 

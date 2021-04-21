@@ -4,6 +4,7 @@ import template from './vps-dashboard.html';
 export default {
   bindings: {
     features: '<',
+    resiliationCapability: '<',
 
     goToDisplayIps: '<',
     goToKvm: '<',
