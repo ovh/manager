@@ -1,3 +1,12 @@
+## [15.20.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.20.2...@ovh-ux/manager-web@15.20.3) (2021-04-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 891] ([c8594e5](https://github.com/ovh/manager/commit/c8594e5435a1de19a8980b18c7b1c0b498228d14))
+
+
+
 ## [15.20.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.20.1...@ovh-ux/manager-web@15.20.2) (2021-04-15)
 
 

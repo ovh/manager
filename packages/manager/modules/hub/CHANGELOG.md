@@ -1,3 +1,12 @@
+## [2.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@2.4.1...@ovh-ux/manager-hub@2.4.2) (2021-04-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 892] ([8c51e87](https://github.com/ovh/manager/commit/8c51e879b6427ea9a947255d9097cfa1c496268b))
+
+
+
 ## [2.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@2.4.0...@ovh-ux/manager-hub@2.4.1) (2021-04-08)
 
 

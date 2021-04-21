@@ -1,3 +1,18 @@
+# [8.1.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@8.0.0...@ovh-ux/ng-ovh-payment-method@8.1.0) (2021-04-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 813] ([7576441](https://github.com/ovh/manager/commit/75764419f0ad376750d683a7b8b9eed4b9b01af4))
+
+
+### Features
+
+* **ng-ovh-payment-method:** add adyen component ([7144126](https://github.com/ovh/manager/commit/7144126487f33c925b16f84b8b7359f288101139))
+* **ng-ovh-payment-method:** handle new component integration type ([f0e372d](https://github.com/ovh/manager/commit/f0e372da485beb1670959083e7b00c630b9e6371))
+
+
+
 # [8.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@7.0.11...@ovh-ux/ng-ovh-payment-method@8.0.0) (2021-03-25)
 
 

@@ -1,3 +1,12 @@
+# [2.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.6.0...@ovh-ux/manager-vps@2.7.0) (2021-04-21)
+
+
+### Features
+
+* add vps automated backup option ([#4553](https://github.com/ovh/manager/issues/4553)) ([c602fc7](https://github.com/ovh/manager/commit/c602fc777c4a303d9b196bfe12814abcd992f5cb))
+
+
+
 # [2.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.5.1...@ovh-ux/manager-vps@2.6.0) (2021-04-20)
 
 

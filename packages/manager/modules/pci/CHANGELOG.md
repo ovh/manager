@@ -1,3 +1,25 @@
+# [5.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.19.1...@ovh-ux/manager-pci@5.20.0) (2021-04-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 813] ([7576441](https://github.com/ovh/manager/commit/75764419f0ad376750d683a7b8b9eed4b9b01af4))
+* **i18n:** add missing translations [CDS 897] ([#4761](https://github.com/ovh/manager/issues/4761)) ([e73bfcf](https://github.com/ovh/manager/commit/e73bfcf99144875e602cc810dfe89ec50152c323))
+* **i18n:** add missing translations [CDS 899] ([110f23c](https://github.com/ovh/manager/commit/110f23ca4af9b4abb8d8f72b5f7f0f615fb9757e))
+* **i18n:** add missing translations [CDS 902] ([0af3a1a](https://github.com/ovh/manager/commit/0af3a1a41ce86febbb16bc0c991bc06328e32dc6))
+* **pci.projects.project.vouchers:**  display properly the error message ([#4769](https://github.com/ovh/manager/issues/4769)) ([81bd0d8](https://github.com/ovh/manager/commit/81bd0d86b347e12cbefa9c44856713661c376266))
+
+
+### Features
+
+* **cloud.project:** handle quantity unit in billing display ([#4762](https://github.com/ovh/manager/issues/4762)) ([a706a43](https://github.com/ovh/manager/commit/a706a437a875be3c7602cccda9c626daa978e179))
+* **pci.new.project:** add check payment method polling before creation ([e8f8942](https://github.com/ovh/manager/commit/e8f894208930aef87e3192041a6b76172fe74d1f))
+* **pci.new.project:** add new adyen method type ([fa69fca](https://github.com/ovh/manager/commit/fa69fca808be494e9cfc75485a46aa3b7ccb66bd))
+* **project.kubernetes.details.service:** add maintenance status ([#4724](https://github.com/ovh/manager/issues/4724)) ([55b8e89](https://github.com/ovh/manager/commit/55b8e8925d8dbf88a443305c8bd9f1daaf273f37))
+* **training:** add job resubmit ([#4523](https://github.com/ovh/manager/issues/4523)) ([7bf300c](https://github.com/ovh/manager/commit/7bf300cd8219295791eef189aa16f14a750d1688))
+
+
+
 ## [5.19.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.19.0...@ovh-ux/manager-pci@5.19.1) (2021-04-12)
 
 

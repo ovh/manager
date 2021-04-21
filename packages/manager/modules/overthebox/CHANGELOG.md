@@ -1,3 +1,12 @@
+## [6.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.2.1...@ovh-ux/manager-overthebox@6.2.2) (2021-04-21)
+
+
+### Bug Fixes
+
+* **deps:** add missing deps ([b4dee4e](https://github.com/ovh/manager/commit/b4dee4e5ada2231ed06260ee9009211e0b224141))
+
+
+
 ## [6.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.2.0...@ovh-ux/manager-overthebox@6.2.1) (2021-02-26)
 
 
