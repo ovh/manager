@@ -7,5 +7,6 @@
   "manager_billing_service_status_pending_debt": "Fatura por pagar",
   "manager_billing_service_status_delete_at_expiration": "Rescisão solicitada",
   "manager_billing_service_status_expired": "Rescindido",
-  "manager_billing_service_status_billing_suspended": "Faturação diferida"
+  "manager_billing_service_status_billing_suspended": "Faturação diferida",
+  "manager_billing_service_status_forced_manual": "Forced manual renew"
 }

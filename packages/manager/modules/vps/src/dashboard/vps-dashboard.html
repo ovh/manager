@@ -589,6 +589,7 @@
                 <oui-tile-definition
                     data-term="{{($ctrl.plan.renew.forced || $ctrl.plan.renew.automatic) ? 'vps_tile_subscription_autorenew' : 'vps_tile_subscription_expiration_date' | translate}}"
                     data-description="{{ ::$ctrl.plan.expiration }}"
+                    term-popover="{{ $ctrl.resiliationCapability.billingInformation ? $ctrl.resiliationCapability.billingInformation : null }}"
                 >
                     <oui-action-menu
                         data-compact

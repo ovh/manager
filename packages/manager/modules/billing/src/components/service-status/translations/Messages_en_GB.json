@@ -7,5 +7,6 @@
   "manager_billing_service_status_pending_debt": "Bill to pay",
   "manager_billing_service_status_delete_at_expiration": "Cancellation requested",
   "manager_billing_service_status_expired": "Cancelled",
-  "manager_billing_service_status_billing_suspended": "Deferred billing"
+  "manager_billing_service_status_billing_suspended": "Deferred billing",
+  "manager_billing_service_status_forced_manual": "Forced manual renew"
 }
