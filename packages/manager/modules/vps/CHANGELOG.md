@@ -1,3 +1,12 @@
+# [2.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.7.1...@ovh-ux/manager-vps@2.8.0) (2021-04-21)
+
+
+### Features
+
+* add forced manual status ([#4807](https://github.com/ovh/manager/issues/4807)) ([8012ad3](https://github.com/ovh/manager/commit/8012ad35399a282a684e814ec4e2f9de8c64525e))
+
+
+
 ## [2.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.7.0...@ovh-ux/manager-vps@2.7.1) (2021-04-21)
 
 
