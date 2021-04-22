@@ -74,6 +74,26 @@
             ></span>
         </oui-datagrid-column>
         <oui-datagrid-column
+            data-title="'Autoscaling'"
+            data-property="autoscale"
+            data-type="boolean"
+            data-sortable
+            data-filterable
+        >
+            <span
+                class="oui-badge"
+                data-ng-class="{
+                    'oui-status_success' : $row.autoscale,
+                    'oui-status_error' : !$row.autoscale
+                    }"
+                data-translate="{{:: 'kube_node_pool_autoscale_' + $row.autoscale }}"
+            ></span>
+            <span
+                data-ng-if="$row.autoscale"
+                data-ng-bind="::$row.getNodePoolLimitsLabel()"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'kube_node_pool_monthly_billing' | translate"
             data-property="monthlyBilled"
             data-type="boolean"
