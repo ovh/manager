@@ -43,6 +43,7 @@
                 ></span>
             </a>
         </div>
+
         <div data-ng-if="ctrl.logs.logs" class="mb-3">
             <h3 data-translate="hosting_user_logs_dashboard_logs"></h3>
             <p
@@ -67,6 +68,13 @@
             </a>
         </div>
     </div>
+
+    <div data-ng-if="!hosting.isCloudWeb">
+        <h3 data-translate="hosting_user_logs_dashboard_infra_stats"></h3>
+
+        <div data-ng-include="'hosting/statistics/STATISTICS.html'"></div>
+    </div>
+
     <div>
         <h3 data-translate="hosting_user_logs_dashboard_users"></h3>
         <p data-translate="hosting_user_logs_dashboard_users_description"></p>
