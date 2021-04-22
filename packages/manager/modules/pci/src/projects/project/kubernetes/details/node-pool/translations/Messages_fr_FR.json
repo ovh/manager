@@ -11,5 +11,7 @@
   "kube_node_pool_anti_affinity": "Anti-affinité",
   "kube_add_billing_type_description": "Vous pourrez passer de la facturation horaire au forfait mensuel pour chaque nœud, dans la vue édition du pool de nœud.",
   "kube_node_pool_enabled": "Activé",
-  "kube_node_pool_disabled": "Désactivé"
+  "kube_node_pool_disabled": "Désactivé",
+  "kube_node_pool_autoscale_true": "Actif",
+  "kube_node_pool_autoscale_false": "Inactif"
 }
