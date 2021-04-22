@@ -34,6 +34,16 @@ export default /* @ngInject */ ($stateProvider) => {
         HostingCdnSharedService.getCDNProperties(serviceName)
           .then(({ data }) => data)
           .catch(() => null),
+
+      cdnRange: /* @ngInject */ ($transition$, cdnProperties) => {
+        if (!cdnProperties) {
+          return '';
+        }
+
+        const range = cdnProperties.type.split('cdn-')[1].replace('-', ' ');
+        return `${range.charAt(0).toUpperCase()}${range.slice(1)}`;
+      },
+
       generalInformationLink: /* @ngInject */ ($state, $transition$) =>
         $state.href(
           'app.hosting.dashboard.general-informations',

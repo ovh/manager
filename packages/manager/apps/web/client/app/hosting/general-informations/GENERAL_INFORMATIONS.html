@@ -389,9 +389,11 @@
                                 ><br />
                             </div>
                             <span
-                                class="mr-2"
                                 data-ng-bind="::hosting.hasCdn ? ('common_yes' | translate) : ('common_no' | translate)"
                             ></span>
+                            <span data-ng-if="hosting.hasCdn">
+                                - <span data-ng-bind="::cdnRange"></span>
+                            </span>
                             <oui-spinner
                                 data-size="s"
                                 data-ng-if="flushCdnState === 'check'"
