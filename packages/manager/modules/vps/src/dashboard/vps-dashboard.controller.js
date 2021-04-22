@@ -214,7 +214,7 @@ export default class {
   }
 
   initSnapshotActions() {
-    this.snapshotDescription = this.tabSummary.snapshot.creationDate
+    this.snapshotDescription = this.tabSummary.snapshot?.creationDate
       ? `${this.$translate.instant(
           'vps_tab_SUMMARY_snapshot_creationdate',
         )} ${moment(this.tabSummary.snapshot.creationDate).format('LLL')}`
