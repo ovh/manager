@@ -1,6 +1,7 @@
 import kebabCase from 'lodash/kebabCase';
 import 'moment';
 
+import { EngagementConfiguration } from '@ovh-ux/manager-models';
 import { NEW_RANGE_VERSION } from '../dashboard/vps-dashboard.constants';
 import { RANGES } from '../upscale/upscale.constants';
 import { FEATURE_CLOUDDATABASE, PRODUCT_NAME } from './constants';
@@ -34,7 +35,8 @@ export default /* @ngInject */ ($stateProvider) => {
           ),
       defaultPaymentMethod: /* @ngInject */ (ovhPaymentMethod) =>
         ovhPaymentMethod.getDefaultPaymentMethod(),
-      engagement: /* @ngInject */ (vps) => vps.engagement,
+      engagement: /* @ngInject */ (vps) =>
+        new EngagementConfiguration(vps.engagement),
       hasCloudDatabaseFeature: /* @ngInject */ (
         CucFeatureAvailabilityService,
       ) =>

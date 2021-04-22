@@ -457,7 +457,9 @@ export default class {
           },
           terminate: {
             callback: () => this.$state.go('vps.detail.dashboard.terminate'),
-            isAvailable: () => !this.engagement,
+            isAvailable: () =>
+              this.resiliationCapability?.message ||
+              !this.engagement?.isPeriodic(),
           },
           terminateAdditionalDiskOption: {
             text: this.$translate.instant(
