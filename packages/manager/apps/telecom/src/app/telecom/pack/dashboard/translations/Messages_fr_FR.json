@@ -78,7 +78,7 @@
   "create_a_new_hubic_with_the_adding_button": "Activez un nouveau service grâce au lien \"Profiter de mon offre hubiC\".",
   "pack_xdsl_loading": "Le chargement de votre pack est en cours ...",
   "pack_xdsl_this_pack_seems_to_be_unavailable": "Il semblerait que ce pack n'existe pas.",
-  "pack_promotion_code_proposal": "OVH vous offre un bon d'achat d'une valeur de <strong>{{text}}</strong> HT, valable sur l'ensemble de nos produits (hors forfait ADSL-VDSL/SDSL, hors offre hubiC, hors achat de matériel et caution de téléphone, hors crédit du compte client OVH et achat de points prépayés).",
+  "pack_promotion_code_proposal": "OVHcloud vous offre un bon d'achat d'une valeur de <strong>{{text}}</strong> HT, valable sur l'ensemble de nos produits (hors forfait ADSL-VDSL/SDSL, hors offre hubiC, hors achat de matériel et caution de téléphone, hors crédit du compte client OVHcloud et achat de points prépayés).",
   "pack_promotion_code_question": "J'en profite",
   "pack_promotion_code_modal_title": "Profiter du bon de réduction",
   "pack_promotion_code_condition": "Je comprends qu'en générant mon bon d'achat de <strong>{{text}}</strong> HT, je me réengage sur <b>{{engagement}} mois</b> pour le <b>pack complet</b>. Cette opération est <b>irréversible</b>.",

@@ -28,7 +28,7 @@
   "telephony_line_actions_line_calls_forward_fax": "Fax",
   "telephony_line_actions_line_calls_forward_number": "Téléphone",
   "telephony_line_actions_line_calls_forward_voicemail": "Répondeur",
-  "telephony_line_actions_line_calls_forward_external": "Numéro hors OVH",
+  "telephony_line_actions_line_calls_forward_external": "Numéro hors OVHcloud",
   "telephony_line_actions_line_calls_forward_time_range": "Valeur comprise entre 5 et 60",
   "telephony_line_actions_line_calls_forward_bulk_all_success": "La modification du renvoi d'appel a bien été appliquée aux services sélectionnés",
   "telephony_line_actions_line_calls_forward_bulk_some_success": "La modification du renvoi d'appel a bien été appliquée à {{ count }} des services sélectionnés",

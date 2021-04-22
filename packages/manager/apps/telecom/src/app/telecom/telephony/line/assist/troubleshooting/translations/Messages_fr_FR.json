@@ -33,7 +33,7 @@
   "telephony_line_assist_troubleshooting_problem_phone_mac_address": "Adresse MAC : {{ macAddress }}",
   "telephony_line_assist_troubleshooting_support_contact": "Contacter le support",
   "telephony_line_assist_troubleshooting_support_contact_title": "Votre problème semble nécessiter l'intervention d'un technicien.",
-  "telephony_line_assist_troubleshooting_support_contact_way_to": "Veuillez contacter le support OVH&#8239;:",
+  "telephony_line_assist_troubleshooting_support_contact_way_to": "Veuillez contacter le support OVHcloud&#8239;:",
   "telephony_line_assist_troubleshooting_support_contact_email": "Par e-mail, en déclarant un incident via le menu \"<strong>Assistance</strong>\", puis \"<strong>Créer une demande d'asssistance</strong>\".",
   "telephony_line_assist_troubleshooting_support_contact_phone": "Par téléphone, en composant le <strong>1007</strong> (du lundi au vendredi de 8 h à 20 h, et le samedi de 9 h à 17 h)."
 }
