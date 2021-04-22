@@ -31,6 +31,7 @@ export default class {
     constants,
     availableOptions,
     cdnProperties,
+    cdnRange,
     cronLink,
     currentActiveLink,
     databaseLink,
@@ -73,6 +74,7 @@ export default class {
   ) {
     this.$scope = $scope;
     this.$scope.cdnProperties = cdnProperties;
+    this.$scope.cdnRange = cdnRange;
     this.$scope.HOSTING_STATUS = HOSTING_STATUS;
     this.$scope.logs = logs;
     this.$rootScope = $rootScope;
