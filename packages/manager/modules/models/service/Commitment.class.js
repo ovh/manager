@@ -1,10 +1,13 @@
+import EngagementConfiguration from './EngagementConfiguration.class';
 import Pricing from './Pricing.class';
 
 export default class Commitment {
   constructor(pricing, locale = 'fr_FR') {
     Object.assign(this, {
       pricing: new Pricing(pricing, locale),
-      configuration: pricing.engagementConfiguration,
+      configuration: new EngagementConfiguration(
+        pricing.engagementConfiguration,
+      ),
       pricingMode: pricing.pricingMode,
     });
     this.locale = locale;
@@ -27,7 +30,7 @@ export default class Commitment {
   }
 
   get durationInMonths() {
-    return moment.duration(this.configuration.duration).asMonths();
+    return this.configuration.getDuration();
   }
 
   get totalPrice() {
@@ -61,11 +64,11 @@ export default class Commitment {
   }
 
   isPeriodic() {
-    return this.commitmentType === 'periodic';
+    return this.configuration.isPeriodic();
   }
 
   isUpfront() {
-    return this.commitmentType === 'upfront';
+    return this.configuration.isUpfront();
   }
 
   getEndDate(service) {
