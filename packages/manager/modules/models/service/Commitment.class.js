@@ -71,8 +71,8 @@ export default class Commitment {
     return this.configuration.isUpfront();
   }
 
-  getEndDate(service) {
-    return moment(service.billing.nextBillingDate)
+  getEndDate(nextBillingDate) {
+    return moment(nextBillingDate)
       .add(this.durationInMonths, 'months')
       .format('LL');
   }

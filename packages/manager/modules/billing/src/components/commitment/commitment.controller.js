@@ -1,4 +1,5 @@
 import { groupBy, map, sortBy } from 'lodash-es';
+import { EngagementConfiguration } from '@ovh-ux/manager-models';
 import CommitmentDuration from './CommitmentDuration.class';
 
 export default class {
@@ -58,13 +59,6 @@ export default class {
       });
   }
 
-  generatePaymentMethodUrl() {
-    const callbackUrl = `${window.location.href}?duration=${this.model.duration.duration}`;
-    this.addPaymentMethodUrl = `${this.RedirectionService.getURL(
-      'addPaymentMethod',
-    )}?callbackUrl=${encodeURIComponent(callbackUrl)}`;
-  }
-
   getAvailableEngagements() {
     return this.BillingCommitmentService.getServiceAvailableEngagements(
       this.service,
@@ -113,13 +107,29 @@ export default class {
     }
   }
 
+  getStartingDate() {
+    const engagementConfiguration = new EngagementConfiguration(
+      this.service?.billing?.pricing?.engagementConfiguration,
+    );
+    if (
+      this.service.isEngaged() &&
+      engagementConfiguration.isUpfront() &&
+      this.model.engagement.isUpfront()
+    ) {
+      this.startingDate = moment().toISOString();
+      this.formattedStartingDate = moment(this.startingDate).format('LL');
+      return;
+    }
+
+    this.startingDate = this.service.billing.nextBillingDate;
+  }
+
   onPaymentStepFocus() {
     this.isPaymentStepLoading = true;
     this.getDiscount();
     return this.ovhPaymentMethod
       .getDefaultPaymentMethod()
       .then((paymentMethod) => {
-        this.generatePaymentMethodUrl();
         this.paymentMethod = paymentMethod;
       })
       .catch((error) => {
