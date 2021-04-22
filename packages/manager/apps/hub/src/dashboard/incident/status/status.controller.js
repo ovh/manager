@@ -1,7 +1,11 @@
-import { Environment } from '@ovh-ux/manager-config';
 import { DATACENTERS, FAQ, REGIONS } from './status.constants';
 
 export default class StatusController {
+  /* @ngInject */
+  constructor(coreConfig) {
+    this.coreConfig = coreConfig;
+  }
+
   $onInit() {
     this.filtersOptions = {
       status: {
@@ -22,7 +26,7 @@ export default class StatusController {
       },
     };
 
-    this.faqLink = FAQ[Environment.getUserLocale()] || FAQ.en_GB;
+    this.faqLink = FAQ[this.coreConfig.getUserLocale()] || FAQ.en_GB;
 
     this.datagridParameters = [
       {
