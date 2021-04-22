@@ -132,6 +132,7 @@
             name="summary"
             header="{{:: 'billing_commitment_summary' | translate}}"
             on-cancel="$ctrl.goBack()"
+            on-focus="$ctrl.getStartingDate()"
             loading="$ctrl.isPaymentStepLoading"
             submit-text="{{:: 'billing_commitment_summit' | translate }}"
         >
@@ -139,8 +140,8 @@
                 data-translate="{{ 'billing_commitment_summary_description_' + $ctrl.model.engagement.commitmentType }}"
                 data-translate-values="{
                     serviceName: $ctrl.service.name,
-                    renewDate: $ctrl.service.nextBillingDate,
-                    engagementEndDate: $ctrl.model.engagement.getEndDate($ctrl.service)
+                    renewDate: $ctrl.formattedStartingDate,
+                    engagementEndDate: $ctrl.model.engagement.getEndDate($ctrl.startingDate)
                 }"
             ></p>
             <p
@@ -154,7 +155,7 @@
             <p
                 data-translate="billing_commitment_summary_description_end"
                 data-translate-values="{
-                endDate: $ctrl.model.engagement.getEndDate($ctrl.service)
+                endDate: $ctrl.model.engagement.getEndDate($ctrl.startingDate)
             }"
             ></p>
         </oui-step-form>
