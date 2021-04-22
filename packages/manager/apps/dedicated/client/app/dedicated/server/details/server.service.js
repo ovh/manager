@@ -261,8 +261,19 @@ export default class ServerF {
       data: {
         monitoring,
       },
-      broadcast: 'dedicated.informations.reload',
-    });
+    }).then(() =>
+      this.OvhHttp.get('/dedicated/server/{serviceName}', {
+        rootPath: 'apiv6',
+        urlParams: {
+          serviceName,
+        },
+      }).then((data) => {
+        return this.$rootScope.$broadcast(
+          'dedicated.informations.update.monitoring',
+          data.monitoring,
+        );
+      }),
+    );
   }
 
   getRescueMail(productId) {

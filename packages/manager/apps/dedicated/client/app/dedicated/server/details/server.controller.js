@@ -220,6 +220,14 @@ export default class ServerCtrl {
       this.loadServer();
     });
 
+    this.$scope.$on(
+      'dedicated.informations.update.monitoring',
+      (_, monitored) => {
+        this.server.monitored = monitored;
+        this.loadServer();
+      },
+    );
+
     this.$scope.$on('$destroy', () => {
       this.Polling.addKilledScope();
       this.Poller.kill({
