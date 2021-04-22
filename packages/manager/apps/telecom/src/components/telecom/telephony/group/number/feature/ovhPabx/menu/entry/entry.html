@@ -19,11 +19,6 @@
     <!-- ENTRY BLOCK -->
     <div
         class="voip-plan__step-content"
-        data-responsive-popover="$ctrl.popoverTemplateUrl"
-        data-popover-placement="auto right"
-        data-popover-trigger="none"
-        data-popover-is-open="$ctrl.popoverStatus.isOpen"
-        data-popover-class="pretty-popover telephony-number-feature-popover telephony-number-ovh-pabx-actions-popup"
         data-ng-class="{ 'voip-plan__step-content--delete-anim': $ctrl.menuEntry.status === 'DELETE_PENDING' }"
         data-tuc-hide-outside-click="$ctrl.onEntryOutsideClick()"
     >
@@ -82,7 +77,15 @@
         </div>
         <!-- END OF ENTRY ACTION -->
         <!-- AVAILABLE ENTRY ACTIONS -->
-        <div class="voip-plan__step-btn-container" data-uib-dropdown>
+        <div
+            class="voip-plan__step-btn-container"
+            data-uib-dropdown
+            data-responsive-popover="$ctrl.popoverTemplateUrl"
+            data-popover-placement="auto right"
+            data-popover-trigger="none"
+            data-popover-is-open="$ctrl.popoverStatus.isOpen"
+            data-popover-class="pretty-popover telephony-number-feature-popover telephony-number-ovh-pabx-actions-popup"
+        >
             <button
                 type="button"
                 class="voip-plan__step-btn voip-plan__step-btn--default"
