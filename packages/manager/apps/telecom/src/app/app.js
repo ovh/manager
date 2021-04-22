@@ -6,6 +6,7 @@ import { Environment } from '@ovh-ux/manager-config';
 import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
 import ovhManagerBetaPreference from '@ovh-ux/manager-beta-preference';
 import ovhManagerAccountSidebar from '@ovh-ux/manager-account-sidebar';
+import ovhManagerCookiePolicy from '@ovh-ux/manager-cookie-policy';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ovhManagerDashboard from '@ovh-ux/manager-telecom-dashboard';
 import ovhManagerFreefax from '@ovh-ux/manager-freefax';
@@ -115,6 +116,7 @@ angular
       ovhManagerAtInternetConfiguration,
       ovhManagerAccountMigration,
       ovhManagerBetaPreference,
+      ovhManagerCookiePolicy,
       ovhManagerCore,
       ovhManagerDashboard,
       ovhManagerIncidentBanner,

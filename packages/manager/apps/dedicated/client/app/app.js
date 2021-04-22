@@ -28,6 +28,7 @@ import ovhContacts from '@ovh-ux/ng-ovh-contacts';
 import ovhManagerAccountSidebar from '@ovh-ux/manager-account-sidebar';
 import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
 import ovhManagerCore from '@ovh-ux/manager-core';
+import ovhManagerCookiePolicy from '@ovh-ux/manager-cookie-policy';
 import ovhManagerBanner from '@ovh-ux/manager-banner';
 import ovhManagerEnterpriseCloudDatabase from '@ovh-ux/manager-enterprise-cloud-database';
 import ovhManagerDbaasLogs from '@ovh-ux/manager-dbaas-logs';
@@ -143,6 +144,7 @@ angular
       ngTailLogs,
       ovhContacts,
       ovhManagerBanner,
+      ovhManagerCookiePolicy,
       ovhManagerEnterpriseCloudDatabase,
       ovhManagerMetrics,
       ovhManagerNasha,
