@@ -171,7 +171,7 @@
   "hosting_dashboard_service_change_offer_explanation_db": "A database starting at 100MB",
   "hosting_dashboard_service_change_offer_now": "Change solution now ",
   "hosting_dashboard_service_change_cdn": "Change CDN",
-  "hosting_dashboard_service_change_cdn_version": "Upgrade CDN to a later version",
+  "hosting_dashboard_service_change_cdn_version": "Change solution",
   "hosting_dashboard_service_order_ssl": "Order an SSL certificate",
   "hosting_dashboard_service_setting_cdn": "Configure CDN",
   "hosting_dashboard_service_activate_cdn_option": "Enable CDN option",

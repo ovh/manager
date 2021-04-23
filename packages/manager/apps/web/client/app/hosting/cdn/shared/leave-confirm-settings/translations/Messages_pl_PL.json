@@ -6,5 +6,7 @@
   "hosting_cdn_shared_modal_leave_title": "Konfiguracja CDN Basic została zmodyfikowana",
   "hosting_cdn_shared_modal_leave_info": "Jeśli zmienisz stronę, utracisz zmiany wprowadzone w konfiguracji CDN Basic.",
   "hosting_cdn_shared_modal_leave_btn_validate": "Opuść stronę",
-  "hosting_cdn_shared_modal_leave_btn_cancel": "Anuluj"
+  "hosting_cdn_shared_modal_leave_btn_cancel": "Anuluj",
+  "hosting_cdn_shared_modal_confirm_btn_validate_success": "Zmiana parametrów usługi CDN została przyjęta.",
+  "hosting_cdn_shared_modal_confirm_btn_validate_error": "Wystąpił błąd podczas edycji ustawień CDN."
 }

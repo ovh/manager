@@ -1,0 +1,6 @@
+{
+  "hosting_multisite_cdn_configuration_title": "Configurar el CDN",
+  "hosting_multisite_cdn_configuration_prompt": "Desde aquí podrá purgar y editar las opciones de su CDN",
+  "hosting_multisite_cdn_configuration_flush": "Limpiar la CDN",
+  "hosting_multisite_cdn_configuration_edit": "Migrar su CDN"
+}
