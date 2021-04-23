@@ -35,5 +35,7 @@
   "hosting_cdn_shared_option_hsts_max_age_days": "Giorni",
   "hosting_cdn_shared_option_hsts_max_age_months": "Mese",
   "hosting_cdn_shared_option_mixed_content_description": "Costruisci il caricamento dell'intero contenuto delle tue pagine Web in modo sicuro, partecipando così a un'esperienza utente ottimale. Tutte le risorse del tuo sito, interne ed esterne, devono essere disponibili in HTTPS.",
-  "hosting_cdn_shared_option_waf_description": "Proteggi il tuo sito con il nostro firewall, attacchi fraudolenti come iniezioni, richieste illegittime o furto di dati. Proteggiti dalle principali falle note del web filtrando le richieste e i pacchetti trasmessi (la lista delle falle è gestita e aggiornata regolarmente da OVHcloud)."
+  "hosting_cdn_shared_option_waf_description": "Proteggi il tuo sito con il nostro firewall, attacchi fraudolenti come iniezioni, richieste illegittime o furto di dati. Proteggiti dalle principali falle note del web filtrando le richieste e i pacchetti trasmessi (la lista delle falle è gestita e aggiornata regolarmente da OVHcloud).",
+  "hosting_cdn_ssl_required_warning": "Attenzione: l'opzione che hai attivato richiede che l'SSL sia attivo sul sottodominio. Verifica la configurazione dell'SSL sul sottodominio.",
+  "hosting_cdn_shared_breadcrumb": "Configura CDN"
 }
