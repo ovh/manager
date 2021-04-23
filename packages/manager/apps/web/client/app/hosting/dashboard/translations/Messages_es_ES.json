@@ -171,7 +171,7 @@
   "hosting_dashboard_service_change_offer_explanation_db": "Una base de datos de 100 MB o más",
   "hosting_dashboard_service_change_offer_now": "Cambiar de plan ahora",
   "hosting_dashboard_service_change_cdn": "Cambiar de CDN",
-  "hosting_dashboard_service_change_cdn_version": "Actualizar la CDN con la última versión",
+  "hosting_dashboard_service_change_cdn_version": "Cambiar de plan",
   "hosting_dashboard_service_order_ssl": "Contratar un certificado SSL",
   "hosting_dashboard_service_setting_cdn": "Configurar la CDN",
   "hosting_dashboard_service_activate_cdn_option": "Activar la opción CDN",

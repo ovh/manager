@@ -1,0 +1,9 @@
+{
+  "hosting_cdn_shared_cors_description": "Les domaines extérieurs que vous spécifierez ici seront autorisés à accéder à vos ressources web",
+  "hosting_cdn_shared_cors_add_domain": "Ajouter un domaine",
+  "hosting_cdn_shared_cors_domain_list": "Liste des domaines",
+  "hosting_cdn_shared_cors_add": "Ajouter",
+  "hosting_cdn_shared_cors_remove": "Retirer",
+  "hosting_cdn_shared_cors_cancel": "Annuler",
+  "hosting_cdn_shared_cors_confirm": "Confirmer"
+}

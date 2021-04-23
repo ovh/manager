@@ -1,3 +1,12 @@
 {
-  "hosting_multisite": "Multisito"
+  "hosting_multisite": "Multisito",
+  "hosting_multisite_actions": "Azioni",
+  "hosting_multisite_statistics": "Statistiche della CDN",
+  "hosting_multisite_statistics_domain": "Dominio",
+  "hosting_multisite_statistics_period": "Periodo",
+  "hosting_multisite_statistics_period_day": "Giorno",
+  "hosting_multisite_statistics_period_week": "Settimana",
+  "hosting_multisite_statistics_period_month": "Mese",
+  "hosting_multisite_statistics_period_year": "Anno",
+  "hosting_multisite_statistics_loading_error": "Si è verificato un errore durante il recupero delle statistiche"
 }
