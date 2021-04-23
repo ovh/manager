@@ -171,7 +171,7 @@
   "hosting_dashboard_service_change_offer_explanation_db": "Un database da minimo 100 MB",
   "hosting_dashboard_service_change_offer_now": "Cambia offerta adesso",
   "hosting_dashboard_service_change_cdn": "Cambia CDN",
-  "hosting_dashboard_service_change_cdn_version": "Aggiorna la CDN alla versione superiore",
+  "hosting_dashboard_service_change_cdn_version": "Modifica offerta",
   "hosting_dashboard_service_order_ssl": "Ordina un certificato SSL",
   "hosting_dashboard_service_setting_cdn": "Configura la CDN",
   "hosting_dashboard_service_activate_cdn_option": "Attiva l'opzione CDN",
