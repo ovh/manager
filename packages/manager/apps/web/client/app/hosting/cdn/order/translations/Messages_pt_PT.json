@@ -26,7 +26,7 @@
   "hosting_cdn_order_submit_pay": "Pagar",
   "hosting_cdn_order_cancel": "Cancelar",
   "hosting_cdn_upgrade_title": "Alterar a oferta Shared CDN",
-  "hosting_cdn_order_choose_plan": "Escolha o plano de entre um dos seguintes planos",
+  "hosting_cdn_order_choose_plan": "Selecione a oferta desejada.",
   "hosting_cdn_order_choose_plan_cdn-advanced": "CDN Advanced",
   "hosting_cdn_order_choose_plan_cdn-advanced_details": "(Incluído com CDN Basic e CDN Security) Otimize a sua configuração CDN conforme as suas necessidades para garantir uma experiência de utilizador personalizado.",
   "hosting_cdn_order_choose_plan_cdn-basic": "CDN Basic",
@@ -36,5 +36,7 @@
   "hosting_cdn_order_choose_plan_cdn-security": "CDN Security",
   "hosting_cdn_order_choose_plan_cdn-security_details": "(Incluído CDN Basic) Proteja o seu website com uma configuração padrão, personalizável.",
   "hosting_cdn_order_choose_plan_current_plan": "Oferta atual",
-  "hosting_cdn_order_choose_plan_coming_soon": "Disponível em breve Próximo em 2021"
+  "hosting_cdn_order_choose_plan_coming_soon": "Disponível em breve Próximo em 2021",
+  "hosting_cdn_order_choose_plan_coming_soon_1": "Disponível em breve",
+  "hosting_cdn_order_choose_plan_coming_soon_2": "Próximo em 2021"
 }
