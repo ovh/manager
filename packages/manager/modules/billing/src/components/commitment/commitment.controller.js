@@ -116,6 +116,7 @@ export default class {
       engagementConfiguration.isUpfront() &&
       this.model.engagement.isUpfront()
     ) {
+      this.displayPaymentMean = false;
       this.startingDate = moment().toISOString();
       this.formattedStartingDate = moment(this.startingDate).format('LL');
       return;

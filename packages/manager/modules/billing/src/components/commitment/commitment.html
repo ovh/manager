@@ -145,7 +145,7 @@
                 }"
             ></p>
             <p
-                data-ng-if="$ctrl.paymentMethod && !$ctrl.service.isRenewManual()"
+                data-ng-if="$ctrl.paymentMethod && !$ctrl.service.isRenewManual() && $ctrl.displayPaymentMean"
                 data-translate="billing_commitment_summary_description_payment"
                 data-translate-values="{
                 paymentMethodType: $ctrl.paymentMethod.label,
