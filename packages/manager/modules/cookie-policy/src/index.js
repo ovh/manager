@@ -34,6 +34,7 @@ angular
             size: 'lg',
             keyboard: false,
             backdrop: 'static',
+            backdropClass: 'manager-cookie-policy-banner-backdrop',
             windowClass: 'manager-cookie-policy-banner',
           })
           .result.then((consent) => {
