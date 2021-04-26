@@ -17,7 +17,7 @@ export default /* @ngInject */ ($stateProvider) => {
         engagement,
         setReactivateEngagementStrategy,
       ) => (service) => {
-        return (engagement
+        return (engagement?.isPeriodic()
           ? setReactivateEngagementStrategy()
           : $q.when(0)
         ).then(() => {
