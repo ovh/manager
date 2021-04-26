@@ -40,7 +40,9 @@ export default /* @ngInject */ ($stateProvider) => {
           return '';
         }
 
-        const range = cdnProperties.type.split('cdn-')[1].replace('-', ' ');
+        const range =
+          cdnProperties.type.split('cdn-')[1]?.replace('-', ' ') ||
+          cdnProperties.type;
         return `${range.charAt(0).toUpperCase()}${range.slice(1)}`;
       },
 
