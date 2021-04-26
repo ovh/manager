@@ -4,7 +4,7 @@
   "vps_terminate_cancel": "Cancel",
   "vps_terminate_confirm": "Confirm",
   "vps_terminate_success": "The deletion of the service has been taken into account, you will receive an email to confirm the deletion.",
-  "vps_terminate_success_engagement": "Your request has been submitted and will be processed shortly.",
+  "vps_terminate_success_engagement": "Your request has been received, and will be processed as soon as possible.",
   "vps_terminate_error": "An error occurred while deleting your service.",
   "vps_terminate_unavailable": "You have signed up to this plan for a period of {{ monthCount }} months. If you have any queries, please feel free to get in touch with our support team via telephone, or by creating a <a class=\"oui-link\" href=\"{{supportTicketLink}}\" target=\"_blank\" rel=\"noopener\">support ticket</a>. Thank you for your understanding.",
   "vps_terminate_option_terminate_at_expiration": "Delete service on its expiry date.",

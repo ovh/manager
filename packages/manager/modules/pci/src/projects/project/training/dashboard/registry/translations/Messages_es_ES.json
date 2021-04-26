@@ -6,5 +6,8 @@
   "pci_projects_project_training_registry_section_1_message_3": "usuarios configurados",
   "pci_projects_project_training_registry_section_1_message_4": " en un mismo proyecto de Public Cloud.",
   "pci_projects_project_training_registry_section_1_message_5": "A continuación, puede seleccionar sus imágenes y cargarlas en el registro.",
-  "pci_projects_project_training_registry_section_1_message_6": "Ya puede utilizar su imagen en un job AI Training."
+  "pci_projects_project_training_registry_section_1_message_6": "Ya puede utilizar su imagen en un job AI Training.",
+  "pci_projects_project_training_registry_select_region": "Seleccione la región que quiere utilizar:",
+  "pci_projects_project_training_registry_docker_registry_help": "Este registro contiene imágenes Docker compartidas.",
+  "pci_projects_project_training_registry_public_cloud_project": "Proyecto Public Cloud"
 }
