@@ -1,6 +1,7 @@
 {
   "pci_projects": "Projets",
   "pci_projects_description": "Description",
+  "pci_projects_create_project": "Créer un nouveau projet",
   "pci_projects_status": "Statut",
   "pci_projects_status_ok": "Actif",
   "pci_projects_status_deleting": "Suppression en cours",
