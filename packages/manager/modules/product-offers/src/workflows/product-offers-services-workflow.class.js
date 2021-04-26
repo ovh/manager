@@ -36,7 +36,13 @@ export default class ServicesWorkflow extends Workflow {
    * based on the pricing type
    */
   getPricings() {
-    const [actionPlancode] = this.plancodes; // Yes, for the moment, there is just one plan code
+    let selectedPlanCode;
+    if (typeof this.getPlanCode === 'function') {
+      selectedPlanCode = this.plancodes.find(
+        ({ planCode }) => planCode === this.getPlanCode(),
+      );
+    }
+    const actionPlancode = selectedPlanCode || this.plancodes[0];
     this.plancode = actionPlancode.planCode;
     this.pricings = this.computePricing(actionPlancode.prices);
 
