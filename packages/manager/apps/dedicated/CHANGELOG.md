@@ -1,3 +1,13 @@
+## [16.19.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.19.0...@ovh-ux/manager-dedicated@16.19.1) (2021-04-26)
+
+
+### Bug Fixes
+
+* **billing:** outstanding balance and due date not shown in US ([#4792](https://github.com/ovh/manager/issues/4792)) ([6500e1b](https://github.com/ovh/manager/commit/6500e1b31b81d04290a5c3fcaf99699ba618b189))
+* **ip:** enabled pagination for ip parking ([#4799](https://github.com/ovh/manager/issues/4799)) ([4b2590d](https://github.com/ovh/manager/commit/4b2590daa6701d1b899950e03e73fdc824e9ae52))
+
+
+
 # [16.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.18.8...@ovh-ux/manager-dedicated@16.19.0) (2021-04-21)
 
 
