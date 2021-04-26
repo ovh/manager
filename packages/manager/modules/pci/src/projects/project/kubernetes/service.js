@@ -182,6 +182,16 @@ export default class Kubernetes {
     }).$promise;
   }
 
+  updateNodePool(projectId, kubeId, nodePoolId, kubeNodePool) {
+    const { autoscale, desiredNodes, maxNodes, minNodes } = kubeNodePool;
+    return this.$http
+      .put(
+        `/cloud/project/${projectId}/kube/${kubeId}/nodepool/${nodePoolId}`,
+        { autoscale, desiredNodes, maxNodes, minNodes },
+      )
+      .then(({ data }) => data);
+  }
+
   switchToMonthlyBilling(serviceName, nodeId) {
     return this.OvhApiCloudProjectInstance.v6().activeMonthlyBilling({
       serviceName,
