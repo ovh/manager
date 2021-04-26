@@ -264,10 +264,6 @@ angular.module('Module.ip.controllers').controller(
         params.type = 'failover';
       } else if ($scope.serviceName === '_PARK') {
         params.type = 'failover';
-        params.pageSize = 5000;
-        params.pageNumber = 1;
-        $location.search('page', params.pageNumber);
-        $location.search('pageSize', params.pageSize);
       } else if ($scope.serviceName && $scope.serviceName !== '_ALL') {
         params.serviceName = $scope.serviceName;
       }
@@ -353,6 +349,7 @@ angular.module('Module.ip.controllers').controller(
 
     $scope.selectService = ({ serviceName }) => {
       $scope.pageNumber = 1;
+      $scope.paginationOffset = 1;
       $scope.serviceName = serviceName;
       $location.search('page', $scope.pageNumber);
       $location.search('serviceName', serviceName);
