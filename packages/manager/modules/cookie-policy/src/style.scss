@@ -1,5 +1,6 @@
 $buttons-width: 15rem;
 $buttons-margin: 0.2rem;
+$buttons-wrapper-margin-top: 1rem;
 $img-width: 10rem;
 $img-wrapper-margin-bottom: 1rem;
 $modal-margin: 0;
@@ -18,6 +19,7 @@ $modal-margin: 0;
   }
 
   .banner-buttons {
+    margin-top: $buttons-wrapper-margin-top;
     .oui-button {
       width: $buttons-width;
       margin: $buttons-margin;

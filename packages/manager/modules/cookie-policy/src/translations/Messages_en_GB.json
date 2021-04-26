@@ -6,5 +6,5 @@
   "cookie_policy_description_2": "If you click ‘Accept’, this category will be enabled. The purpose of these cookies is to improve how our website works, provide value-added services, and secure our website. Please note that if you choose to opt out, your browsing experience may be limited.",
   "cookie_policy_description_3": "Site performance and customisation cookies",
   "cookie_policy_description_4": "OVHcloud will save your choice for 13 months.",
-  "cookie_policy_description_5": "You can change your mind at any time by clicking <a href='{{ url }}' target='_blank' class='oui-link'>here</a>"
+  "cookie_policy_description_5": "You can change your mind at any time by clicking <a href='{{ url }}' target='_blank' class='oui-link'>here</a>."
 }
