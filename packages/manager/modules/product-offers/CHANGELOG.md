@@ -1,3 +1,12 @@
+## [5.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-product-offers@5.0.0...@ovh-ux/manager-product-offers@5.0.1) (2021-04-26)
+
+
+### Bug Fixes
+
+* **product-offers:** fix on get plancode ([543d6d9](https://github.com/ovh/manager/commit/543d6d9b752cf2e5ab46607687a897804fe57015))
+
+
+
 # [5.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-product-offers@4.0.7...@ovh-ux/manager-product-offers@5.0.0) (2021-04-26)
 
 
