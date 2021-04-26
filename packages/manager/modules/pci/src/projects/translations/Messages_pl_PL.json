@@ -11,5 +11,6 @@
   "pci_projects_status_suspended": "Zawieszony",
   "pci_projects_status_pendingDebt": "Faktura do zapłaty",
   "pci_projects_project_pay_bill": "Ureguluj należności",
-  "pci_projects_project_view": "Wyświetl projekt"
+  "pci_projects_project_view": "Wyświetl projekt",
+  "pci_projects_create_project": "Utwórz nowy projekt"
 }
