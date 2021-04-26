@@ -353,4 +353,31 @@ export default class BillingMainHistoryCtrl {
         this.loading.init = false;
       });
   }
+
+  getDebt(bill) {
+    return this.$http
+      .get(`/me/bill/${bill.billId}/debt`)
+      .then(({ data: debt }) => {
+        return {
+          ...bill,
+          debt,
+        };
+      })
+      .catch((error) => {
+        // If there is no debt means the bill has been payed
+        // API return a 404 if there is no debt
+        if (error.status === 404) {
+          return {
+            ...bill,
+            debt: {
+              dueAmount: {
+                value: 0,
+                text: bill.priceWithTax.text.replace(/([0-9]|\.|,)+/g, '0.00'),
+              },
+            },
+          };
+        }
+        return bill;
+      });
+  }
 }
