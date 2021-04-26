@@ -155,9 +155,21 @@ export default class {
       this.service,
       this.model.engagement,
     )
-      .then(() =>
-        this.goBack(this.$translate.instant('billing_commitment_success')),
-      )
+      .then(({ order }) => {
+        if (order) {
+          this.$window.open(order.url, '_blank');
+        }
+
+        return this.goBack(
+          `${this.$translate.instant('billing_commitment_success')}${
+            order
+              ? this.$translate.instant('billing_commitment_success_purchase', {
+                  url: order.url,
+                })
+              : ''
+          }`,
+        );
+      })
       .catch((error) => {
         this.error = error.data?.message || error.message;
       });
