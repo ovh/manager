@@ -158,6 +158,7 @@
         <oui-datagrid
             data-ng-if="$ctrl.debtAccount.active"
             data-rows-loader="$ctrl.getBills($config)"
+            data-row-loader="$ctrl.getDebt($row)"
             data-on-criteria-change="$ctrl.onCriteriaChange($criteria)"
             data-criteria="$ctrl.criteria"
         >
@@ -262,8 +263,8 @@
                     ></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
-                    data-ng-if="$row.debt"
-                    data-href="{{ :: $ctrl.$state.href('app.account.billing.main.history.debt.details', { debtId: $row.debt.debtId }) }}"
+                    data-ng-if="$row.debt && $row.debt.debtId"
+                    data-href="{{ :: $ctrl.$state.href('app.account.billing.main.history.details.debt.details', { billId: $row.billId, debtId: $row.debt.debtId }) }}"
                     ><span
                         data-translate="billing_main_history_legacy_table_debt_detail"
                     ></span>
