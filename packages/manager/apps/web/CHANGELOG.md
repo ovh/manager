@@ -1,3 +1,13 @@
+## [15.21.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.21.0...@ovh-ux/manager-web@15.21.1) (2021-04-26)
+
+
+### Bug Fixes
+
+* **web.hosting:** fix range cdn format ([33523bc](https://github.com/ovh/manager/commit/33523bc7e2120454d52011255b7e2ed4e7b2a79b))
+* **web.hosting.cdn:** fix upgrade for legacy cdn ([065b0d9](https://github.com/ovh/manager/commit/065b0d91f7617863972d310169bf922106d9bf30))
+
+
+
 # [15.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.20.3...@ovh-ux/manager-web@15.21.0) (2021-04-26)
 
 
