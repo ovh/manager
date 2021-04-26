@@ -146,13 +146,8 @@ export default /* @ngInject */ ($stateProvider) => {
       return ovhManagerProductOffersActionService
         .getAvailableOptions(serviceInfo.serviceId)
         .then((options) => {
-          const cdnOption = options.find(
-            ({ billing }) =>
-              ![
-                HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_BUSINESS,
-                HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_BUSINESS_FREE,
-              ].includes(billing.plan.code) &&
-              billing.plan.code.includes('cdn'),
+          const cdnOption = options.find(({ billing }) =>
+            billing.plan.code.includes('cdn'),
           );
 
           upgradeServiceId = cdnOption.serviceId;
