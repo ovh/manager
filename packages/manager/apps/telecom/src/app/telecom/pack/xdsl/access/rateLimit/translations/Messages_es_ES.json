@@ -1,7 +1,7 @@
 {
   "xdsl_access_lns_ratelimit_title": "Optimización del acceso a internet",
   "xdsl_access_lns_ratelimit_activate": "Eliminar el límite del ancho de banda de la línea",
-  "xdsl_access_lns_ratelimit_description": "Disponible solo para las redes France Télecom. Ajustar el límite superior del ancho de banda de la línea en los dispositivos de OVH. Este ajuste puede hacer más fluida la navegación, en algunos casos poco frecuentes de pérdida de paquetes.",
+  "xdsl_access_lns_ratelimit_description": "Disponible solo para las redes France Télecom. Ajustar el límite superior del ancho de banda de la línea en los dispositivos de OVHcloud. Este ajuste puede hacer más fluida la navegación, en algunos casos poco frecuentes de pérdida de paquetes.",
   "xdsl_access_lns_ratelimit_warning": "Esta operación puede tardar hasta 10 minutos en realizarse y la conexión se interrumpirá un momento.",
   "xdsl_access_lns_ratelimit_really_on": "¿Seguro que quiere activar el límite del ancho de banda de la línea?",
   "xdsl_access_lns_ratelimit_really_off": "¿Seguro que quiere desactivar el límite del ancho de banda de la línea?",

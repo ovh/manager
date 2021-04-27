@@ -8,7 +8,7 @@
   "telephony_group_billing_credit_threshold_new_credit": "Dopo la convalida, il tuo limite sarà di:",
   "telephony_group_billing_credit_threshold_without_tax": "+IVA",
   "telephony_group_billing_credit_threshold_contracts_subtitle": "Ho preso visione e accetto i contratti",
-  "telephony_group_billing_credit_threshold_contracts": "Prima di convalidare la richiesta di deposito di garanzia, è necessario accettare i contratti OVH",
+  "telephony_group_billing_credit_threshold_contracts": "Prima di convalidare la richiesta di deposito di garanzia, è necessario accettare i contratti OVHcloud.",
   "telephony_group_billing_credit_threshold_submit": "Modifica",
   "telephony_group_billing_credit_threshold_success": "La tua richiesta di modifica del limite è stata registrata correttamente!"
 }

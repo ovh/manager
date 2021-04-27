@@ -4,7 +4,7 @@
   "telephony_calls_filtering_table_nature": "Type of phone number",
   "telephony_calls_filtering_table_nature_fax": "Fax",
   "telephony_calls_filtering_table_nature_international": "International",
-  "telephony_calls_filtering_table_nature_services": "OVH Services",
+  "telephony_calls_filtering_table_nature_services": "OVHcloud Services",
   "telephony_calls_filtering_table_nature_special": "Abbreviated phone number",
   "telephony_calls_filtering_table_nature_voicemail": "Voicemail",
   "telephony_calls_filtering_table_status": "Status",

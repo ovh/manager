@@ -78,7 +78,7 @@
   "create_a_new_hubic_with_the_adding_button": "Per attivare un nuovo servizio, clicca sul link \"Approfitta della tua offerta hubiC\"",
   "pack_xdsl_loading": "Caricamento del tuo pack in corso...",
   "pack_xdsl_this_pack_seems_to_be_unavailable": "Impossibile trovare questo pack.",
-  "pack_promotion_code_proposal": "OVH ti offre un buono sconto dal valore di <strong>{{text}}</strong> +IVA, valido su tutti i nostri prodotti (esclusi forfait ADSL-VDSL/SDSL, offerta hubiC, acquisto di materiale e deposito cauzionale per il telefono, credito dell'account cliente OVH e acquisto di punti prepagati).",
+  "pack_promotion_code_proposal": "OVHcloud ti offre un buono sconto dal valore di <strong>{{text}}</strong> +IVA, valido su tutti i nostri prodotti (esclusi forfait ADSL-VDSL/SDSL, offerta hubiC, acquisto di materiale e deposito cauzionale per il telefono, credito dell'account cliente OVHcloud e acquisto di punti prepagati).",
   "pack_promotion_code_question": "Ne approfitto",
   "pack_promotion_code_modal_title": "Utilizzo il buono sconto",
   "pack_promotion_code_condition": "Confermi di essere a conoscenza che, generando il coupon da <strong>{{text}}</strong> +IVA, sottoscrivo un nuovo contratto per <b>{{engagement}} mesi</b> per il <b>pack completo</b>. Questa operazione è <b>irreversible</b>.",

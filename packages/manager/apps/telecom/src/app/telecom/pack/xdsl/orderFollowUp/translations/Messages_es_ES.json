@@ -3,7 +3,7 @@
   "telecom_pack_xdsl_order_follow_up_total_error": "Se ha producido un error durante la carga.",
   "telecom_pack_xdsl_order_follow_up_step_name_accessIsOperational": "Su acceso está operativo",
   "telecom_pack_xdsl_order_follow_up_step_name_checkInfrastructure": "Validación de la construcción de su acceso",
-  "telecom_pack_xdsl_order_follow_up_step_name_configureAccessOnOVH": "Configuración del acceso en los dispositivos OVH",
+  "telecom_pack_xdsl_order_follow_up_step_name_configureAccessOnOVH": "Configuración del acceso en los dispositivos de OVHcloud",
   "telecom_pack_xdsl_order_follow_up_step_name_orderPayed": "Pago del pedido",
   "telecom_pack_xdsl_order_follow_up_step_name_orderReceived": "Creación del pedido",
   "telecom_pack_xdsl_order_follow_up_step_name_orderTreatment": "Tratamiento del pedido",

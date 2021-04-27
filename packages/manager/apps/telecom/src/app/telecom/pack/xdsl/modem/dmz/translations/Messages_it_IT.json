@@ -1,6 +1,6 @@
 {
   "xdsl_modem_dmz_status": "DMZ",
-  "xdsl_modem_dmz_description": "La DMZ sui modem OVH permette di rendere una macchina totalmente accessibile dall'esterno della tua rete locale. Attenzione: per il corretto funzionamento della DMZ è necessario che il firewall sia disattivato e che la macchina gestisca autonomamente la sua protezione",
+  "xdsl_modem_dmz_description": "La sezione DMZ ( o zona demilitarizzata) sui modem OVHcloud permette di rendere totalmente accessibile una macchina dall'esterno della tua rete locale. Attenzione: per rendere effettiva la DMZ, il firewall dovrà essere disattivato e la macchina dovrà gestire la propria protezione.",
   "xdsl_modem_dmz_warning": "Attenzione: qualsiasi altra modifica alla configurazione della tua DMZ (modifica/eliminazione) comporterà un'interruzione della tua connessione per qualche minuto.",
   "xdsl_modem_dmz_dmz_address": "Indirizzo IP della DMZ",
   "xdsl_modem_dmz_modem_address": "Indirizzo IP del modem",

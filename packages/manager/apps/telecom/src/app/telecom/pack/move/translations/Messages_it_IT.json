@@ -78,5 +78,8 @@
   "pack_move_contact_name_info": "Comunica il nome della persona che accoglierà il tecnico il giorno dell'appuntamento.",
   "pack_move_mandatory_field": "I campi indicati con un asterisco sono obbligatori.",
   "pack_move_slamming_error": "Oups ! Nous n'avons pas pu vérifier la portabilité de votre numéro",
-  "pack_move_go_back": "Dettagli del pack"
+  "pack_move_go_back": "Dettagli del pack",
+  "pack_move_gtr_available": "GTR OVHcloud disponibile",
+  "pack_move_gtr_add": "Aggiungi la GTR OVHcloud",
+  "pack_move_confirm_resume_gtr_ovh": "Opzione GTR OVHcloud (se compatibile)"
 }
