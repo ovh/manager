@@ -110,12 +110,10 @@ export default class Kubernetes {
     );
   }
 
-  resizeNodePool(projectId, kubeId, nodePoolId, desiredNodes) {
+  resizeNodePool(projectId, kubeId, nodePoolId, kubeNodePool) {
     return this.$http.put(
       `/cloud/project/${projectId}/kube/${kubeId}/nodepool/${nodePoolId}`,
-      {
-        desiredNodes,
-      },
+      kubeNodePool,
     );
   }
 
