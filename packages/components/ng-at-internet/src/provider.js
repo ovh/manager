@@ -122,6 +122,8 @@ export default /* @ngInject */ function(AT_INTERNET_CUSTOM_VARS) {
   };
 
   this.$get = /* @ngInject */ function $get($window, $log) {
+    const trackQueue = [];
+
     // Reference to ATInternet JS lib
     if ($window.ATInternet) {
       try {
@@ -277,7 +279,17 @@ export default /* @ngInject */ function(AT_INTERNET_CUSTOM_VARS) {
        * Enable or disable tracking.
        */
       setEnabled(state) {
+        const self = this;
         config.enabled = state;
+        self.processTrackQueue();
+      },
+
+      processTrackQueue() {
+        const self = this;
+        while (trackQueue.length) {
+          const { type, data } = trackQueue.shift();
+          self[type](data);
+        }
       },
 
       getTag() {
@@ -335,6 +347,8 @@ export default /* @ngInject */ function(AT_INTERNET_CUSTOM_VARS) {
               pageData,
             );
           }
+        } else {
+          trackQueue.push({ type: 'trackPage', data: pageDataParam });
         }
       },
 
@@ -382,6 +396,8 @@ export default /* @ngInject */ function(AT_INTERNET_CUSTOM_VARS) {
               clickData,
             );
           }
+        } else {
+          trackQueue.push({ type: 'trackClick', data: clickData });
         }
       },
 
@@ -502,6 +518,8 @@ export default /* @ngInject */ function(AT_INTERNET_CUSTOM_VARS) {
 
           atinternetTag.dispatch();
           logDebugInfos('atinternet.trackOrder: ', productData);
+        } else {
+          trackQueue.push({ type: 'trackOrder', data: productData });
         }
       },
 
@@ -538,6 +556,8 @@ export default /* @ngInject */ function(AT_INTERNET_CUSTOM_VARS) {
           atinternetTag.customVars.set(getCustomVarsWithDefaults(eventData));
           atinternetTag.dispatch();
           logDebugInfos('atinternet.trackEvent: ', eventData);
+        } else {
+          trackQueue.push({ type: 'trackEvent', data: eventData });
         }
       },
       /**
@@ -580,6 +600,8 @@ export default /* @ngInject */ function(AT_INTERNET_CUSTOM_VARS) {
           });
           atinternetTag.dispatch();
           logDebugInfos('atinternet.trackImpression: ', impressionData);
+        } else {
+          trackQueue.push({ type: 'trackImpression', data: impressionData });
         }
       },
       /**
@@ -619,6 +641,11 @@ export default /* @ngInject */ function(AT_INTERNET_CUSTOM_VARS) {
           }
           atinternetTag.publisher.send(impressionData);
           logDebugInfos('atinternet.trackClickImpression: ', impressionData);
+        } else {
+          trackQueue.push({
+            type: 'trackClickImpression',
+            data: impressionData,
+          });
         }
       },
     };
