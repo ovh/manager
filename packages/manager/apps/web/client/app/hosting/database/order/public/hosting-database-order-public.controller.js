@@ -15,7 +15,6 @@ export default class {
   $onInit() {
     this.productOffers = {
       pricingType: pricingConstants.PRICING_CAPACITIES.RENEW,
-      user: this.user,
       workflowOptions: {
         catalog: this.catalog,
         catalogItemTypeName: workflowConstants.CATALOG_ITEM_TYPE_NAMES.ADDON,
