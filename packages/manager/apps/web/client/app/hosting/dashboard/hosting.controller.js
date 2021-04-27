@@ -8,8 +8,6 @@ import set from 'lodash/set';
 import some from 'lodash/some';
 import union from 'lodash/union';
 
-import { HOSTING_CDN_ORDER_CDN_VERSION_V1 } from '../cdn/order/hosting-cdn-order.constant';
-
 export default class {
   /* @ngInject */
   constructor(
@@ -29,6 +27,8 @@ export default class {
     boostLink,
     constants,
     availableOptions,
+    cdnProperties,
+    cdnRange,
     coreURLBuilder,
     cronLink,
     currentActiveLink,
@@ -71,6 +71,8 @@ export default class {
     OVH_ORDER_URLS,
   ) {
     this.$scope = $scope;
+    this.$scope.cdnProperties = cdnProperties;
+    this.$scope.cdnRange = cdnRange;
     this.$scope.HOSTING_STATUS = HOSTING_STATUS;
     this.$scope.logs = logs;
     this.$rootScope = $rootScope;
@@ -748,7 +750,6 @@ export default class {
         this.Alerter.error(err);
       })
       .then(() => this.handlePrivateDatabases())
-      .then(() => this.handleCDNProperties())
       .then(() => this.simulateUpgradeAvailability())
       .finally(() => {
         this.$scope.loadingHostingInformations = false;
@@ -761,41 +762,17 @@ export default class {
     });
   }
 
-  handleCDNProperties() {
-    return this.HostingCdnSharedService.getCDNProperties(
-      this.$scope.hosting.serviceName,
-    )
-      .then(({ data: cdn }) => {
-        this.$scope.cdnProperties = cdn;
-      })
-      .catch((err) => {
-        this.Alerter.error(err);
-        this.$scope.cdnProperties = null;
-      });
-  }
-
-  /**
-   * This function can be removed once all CDN has been migrated by AGORA
-   * The isUpgradable variable can also removed
-   * @returns {Promise<{}>}
-   */
   simulateUpgradeAvailability() {
-    const cdnVersion = get(this.$scope.cdnProperties, 'version', '');
-    if (cdnVersion === HOSTING_CDN_ORDER_CDN_VERSION_V1) {
-      const { serviceName } = this.$scope.hosting;
-      return this.HostingCdnSharedService.simulateUpgrade(
-        serviceName,
-        this.HostingCdnOrderService,
-      )
-        .then(() => {
-          this.$scope.isUpgradable = true;
-        })
-        .catch(() => {
-          this.$scope.isUpgradable = false;
-          return this.$q.resolve();
-        });
-    }
-    this.$scope.isUpgradable = true;
-    return this.$q.resolve();
+    const { serviceName } = this.$scope.hosting;
+    return this.HostingCdnSharedService.simulateUpgrade(
+      serviceName,
+      this.$scope.hosting.serviceInfos.serviceId,
+    )
+      .then(() => {
+        this.$scope.isUpgradable = true;
+      })
+      .catch(() => {
+        this.$scope.isUpgradable = false;
+      });
   }
 }

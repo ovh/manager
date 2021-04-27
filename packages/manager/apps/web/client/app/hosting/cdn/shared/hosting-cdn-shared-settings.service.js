@@ -2,10 +2,13 @@ import includes from 'lodash/includes';
 import find from 'lodash/find';
 import get from 'lodash/get';
 
+import { pricingConstants } from '@ovh-ux/manager-product-offers';
+
 export default class HostingCdnSharedService {
   /* @ngInject */
-  constructor($http) {
+  constructor($http, ovhManagerProductOffersActionService) {
     this.$http = $http;
+    this.ovhManagerProductOffersActionService = ovhManagerProductOffersActionService;
   }
 
   /**
@@ -182,42 +185,21 @@ export default class HostingCdnSharedService {
   }
 
   /**
-   * Return service details
-   * @param {string} serviceName: The internal name of your hosting
-   * @returns {*}: promise
+   * Allow to simulate a cart for an upgrade
+   * @param {string} serviceName: product name
+   * @param {Object} addonOption: addon option
+   * @param {number} serviceId: selected serviceId
+   * @returns {*}
    */
-  getServiceInfo(serviceName) {
-    return this.$http.get(`/hosting/web/${serviceName}/serviceInfos`);
-  }
+  simulateCartForUpgrade(serviceName, addonOption, serviceId) {
+    const price = find(addonOption.prices, ({ capacities }) =>
+      includes(capacities, pricingConstants.PRICING_CAPACITIES.RENEW),
+    );
 
-  /**
-   * Return service description
-   * @param {number} serviceInfoId: get from serviceInfo
-   * @returns {*}: promise
-   */
-  getServiceOptions(serviceInfoId) {
-    return this.$http.get(`/services/${serviceInfoId}/options`);
-  }
-
-  /**
-   * Return list of offers
-   * @param serviceOptionsId: get from serviceOptions
-   * @returns {*}: promise
-   */
-  getCatalogAddonsPlan(serviceOptionsId) {
-    return this.$http.get(`/services/${serviceOptionsId}/upgrade`);
-  }
-
-  /**
-   * simulate an upgrade to shared CDN (CDNv2)
-   * @param {number} serviceId: get from serviceOptions
-   * @param {string} planCode: get from serviceOptions
-   * @param {object} price: contains info for simulate the order
-   * @returns {*}: promise
-   */
-  simulateUpgradeToSharedCDN(serviceId, planCode, price) {
-    return this.$http.post(
-      `/services/${serviceId}/upgrade/${planCode}/simulate`,
+    return this.ovhManagerProductOffersActionService.simulate(
+      addonOption.planCode,
+      serviceId,
+      pricingConstants.PRICING_CAPACITIES.UPGRADE,
       {
         duration: price.duration,
         pricingMode: price.pricingMode,
@@ -227,46 +209,28 @@ export default class HostingCdnSharedService {
   }
 
   /**
-   * Allow to simulate a cart for an upgrade
-   * @param {string} serviceName: product name
-   * @param {Object} addonOption: addon option
-   * @param {number} serviceId: selected serviceId
-   * @returns {*}
-   */
-  simulateCartForUpgrade(serviceName, addonOption, serviceId) {
-    const price = find(addonOption.prices, ({ capacities }) =>
-      includes(capacities, 'upgrade'),
-    );
-
-    return this.simulateUpgradeToSharedCDN(
-      serviceId,
-      addonOption.planCode,
-      price,
-    );
-  }
-
-  /**
    * Call this to know if upgrade is feasible
    * @param {string} serviceName: product name
    * @returns {*}
    */
-  simulateUpgrade(serviceName) {
+  simulateUpgrade(serviceName, parentServiceId) {
     const data = { serviceId: null };
-    return this.getServiceInfo(serviceName)
-      .then(({ data: servInfo }) => {
-        return this.getServiceOptions(servInfo.serviceId);
-      })
-      .then(({ data: servOpts }) => {
-        const { serviceId } = find(servOpts, ({ billing }) => {
+    return this.ovhManagerProductOffersActionService
+      .getAvailableOptions(parentServiceId)
+      .then((options) => {
+        const { serviceId } = find(options, ({ billing }) => {
           const planCode = get(billing, 'plan.code', '');
-          return planCode.match('^cdn') && planCode.match('_business$');
+          return planCode.match('^cdn');
         });
         data.serviceId = serviceId;
-        return this.getCatalogAddonsPlan(serviceId);
+        return this.ovhManagerProductOffersActionService.getAvailableUpgradePlancodes(
+          serviceId,
+        );
       })
-      .then(({ data: addonPlans }) => {
-        data.addonPlan = find(addonPlans, ({ planCode }) =>
-          includes(['cdn-basic', 'cdn-basic-free'], planCode),
+      .then((upgrades) => {
+        data.addonPlan = find(
+          upgrades,
+          ({ planCode }) => !planCode.includes('business'),
         );
         return this.simulateCartForUpgrade(
           serviceName,
@@ -274,13 +238,11 @@ export default class HostingCdnSharedService {
           data.serviceId,
         );
       })
-      .then(({ data: upgradeResponse }) => {
-        return {
-          cart: upgradeResponse.order,
-          addonPlan: data.addonPlan,
-          serviceId: data.serviceId,
-        };
-      });
+      .then((simulate) => ({
+        cart: simulate.order,
+        addonPlan: data.addonPlan,
+        serviceId: data.serviceId,
+      }));
   }
 
   /**

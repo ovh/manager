@@ -31,23 +31,23 @@ export default /* @ngInject */ function($stateProvider) {
         );
       },
       onSuccess: /* @ngInject */ ($translate, $window, Alerter, goBack) => (
-        detachResult,
+        result,
       ) => {
         let successMessage;
-        if (!detachResult.autoPayWithPreferredPaymentMethod) {
+        if (!result.autoPayWithPreferredPaymentMethod) {
           successMessage = $translate.instant(
             'hosting_database_private_detach_option_success_with_no_payment',
             {
-              billUrl: detachResult.url,
+              billUrl: result.url,
             },
           );
         } else {
           successMessage = $translate.instant(
             'hosting_database_private_detach_option_success_with_payment',
             {
-              accountId: detachResult.paymentMethodLabel,
-              billUrl: detachResult.url,
-              price: detachResult.prices.withTax.text,
+              accountId: result.paymentMethodLabel,
+              billUrl: result.url,
+              price: result.prices.withTax.text,
             },
           );
         }

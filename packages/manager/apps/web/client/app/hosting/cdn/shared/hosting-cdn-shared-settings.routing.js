@@ -1,33 +1,17 @@
-import includes from 'lodash/includes';
-
-import template from './leave-confirm-settings/leave/hosting-shared-leave-settings.html';
-import controller from './leave-confirm-settings/leave/hosting-shared-leave-settings.controller';
-
 export default /* @ngInject */ ($stateProvider) => {
-  const isLeaveSettings = { status: false };
-  const openModal = ($uibModal, model, rules) => {
-    return $uibModal.open({
-      template,
-      controller,
-      backdrop: 'static',
-      controllerAs: '$ctrl',
-      resolve: {
-        params: {
-          model,
-          domain: {},
-          rules,
-        },
-      },
-    });
-  };
   $stateProvider.state('app.hosting.dashboard.cdn.shared', {
     url: '/shared/settings/:domainName',
     params: {
       domain: null,
     },
-    component: 'hostingCdnSharedSettings',
+    views: {
+      '@app.hosting.dashboard': {
+        component: 'hostingCdnSharedSettings',
+      },
+    },
     resolve: {
-      goBack: /* @ngInject */ (goToHosting) => goToHosting,
+      goBack: /* @ngInject */ ($state) => () =>
+        $state.go('app.hosting.dashboard.multisite'),
 
       domainName: /* @ngInject */ ($transition$) =>
         $transition$.params().domainName,
@@ -52,6 +36,15 @@ export default /* @ngInject */ ($stateProvider) => {
           domainName,
         ).then(({ data }) => data),
 
+      cdnRange: /* @ngInject */ ($transition$, cdnProperties) =>
+        cdnProperties.type
+          .split('cdn-')[1]
+          .replace('-', ' ')
+          .toUpperCase(),
+
+      guideLinkHref: /* @ngInject */ (CORE_URLS, user) =>
+        CORE_URLS.guides.cdn[user.ovhSubsidiary] || CORE_URLS.guides.cdn.GB,
+
       availableOptions: /* @ngInject */ (
         HostingCdnSharedService,
         serviceName,
@@ -69,20 +62,42 @@ export default /* @ngInject */ ($stateProvider) => {
       displayConfirmSettingsModal: /* @ngInject */ ($state) => (params) =>
         $state.go('app.hosting.dashboard.cdn.shared.confirmSettings', params),
 
-      displayLeaveSettingsModal: /* @ngInject */ (
-        $uibModal,
-        HostingCdnSharedService,
-        goBack,
-      ) => (model, { rules, changed }) => {
-        if (changed) {
-          openModal($uibModal, model, rules).result.catch(() => {
-            isLeaveSettings.status = true;
-            goBack();
-          });
-        } else {
-          goBack();
-        }
-      },
+      displayLeaveSettingsModal: /* @ngInject */ ($state) => (params) =>
+        $state.go('app.hosting.dashboard.cdn.shared.leaveSettings', {
+          model: params,
+        }),
+
+      openCorsList: /* @ngInject */ ($state) => (cors) =>
+        $state.go('app.hosting.dashboard.cdn.shared.cors', {
+          cors,
+        }),
+
+      hasSslForDomain: /* @ngInject */ (
+        $http,
+        hostingSsl,
+        domainName,
+        serviceName,
+      ) =>
+        hostingSsl !== null
+          ? $http
+              .get(`/hosting/web/${serviceName}/ssl/domains`)
+              .then(({ data }) => data.includes(domainName))
+              .catch(() => false)
+          : false,
+
+      cdnOptionTypeEnum: /* @ngInject */ ($http) =>
+        $http
+          .get('/hosting/web.json')
+          .then(({ data }) => data)
+          .then((schema) =>
+            schema.models['cdn.OptionTypeEnum'].enum.reduce(
+              (options, option) => ({
+                [option.toUpperCase()]: option,
+                ...options,
+              }),
+              {},
+            ),
+          ),
 
       trackClick: /* @ngInject */ (atInternet) => (hit) => {
         atInternet.trackClick({
@@ -90,45 +105,12 @@ export default /* @ngInject */ ($stateProvider) => {
           type: 'action',
         });
       },
+
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('hosting_cdn_shared_breadcrumb'),
     },
     atInternet: {
       rename: 'web::hosting::cdn::configure',
-    },
-    onExit: ($transition$) => {
-      const $q = $transition$.injector().get('$q');
-      const $uibModal = $transition$.injector().get('$uibModal');
-      const HostingCdnSharedService = $transition$
-        .injector()
-        .get('HostingCdnSharedService');
-      const stateName = $transition$.to().name;
-
-      const isValidState =
-        includes(
-          ['app.hosting.dashboard.cdn.shared.addCacheRule'],
-          stateName,
-        ) || HostingCdnSharedService.isValidCase;
-
-      if (
-        !isLeaveSettings.status &&
-        !isValidState &&
-        HostingCdnSharedService.settingsToSave
-      ) {
-        return $q((resolve) => {
-          openModal(
-            $uibModal,
-            HostingCdnSharedService.model,
-            HostingCdnSharedService.model.rules,
-          )
-            .result.then(() => {
-              resolve(false);
-            })
-            .catch(() => {
-              resolve();
-            });
-        });
-      }
-
-      return true;
     },
   });
 };

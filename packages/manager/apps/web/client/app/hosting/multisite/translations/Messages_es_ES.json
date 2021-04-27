@@ -1,3 +1,12 @@
 {
-  "hosting_multisite": "Multisitio"
+  "hosting_multisite": "Multisitio",
+  "hosting_multisite_actions": "Acciones",
+  "hosting_multisite_statistics": "Estadísticas de la CDN",
+  "hosting_multisite_statistics_domain": "Dominio",
+  "hosting_multisite_statistics_period": "Período",
+  "hosting_multisite_statistics_period_day": "Día",
+  "hosting_multisite_statistics_period_week": "Semana",
+  "hosting_multisite_statistics_period_month": "Mes",
+  "hosting_multisite_statistics_period_year": "Año",
+  "hosting_multisite_statistics_loading_error": "Se ha producido un error al cargar los snapshots."
 }

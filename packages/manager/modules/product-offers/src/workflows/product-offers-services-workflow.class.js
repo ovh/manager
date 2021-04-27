@@ -3,7 +3,7 @@ import get from 'lodash/get';
 import Workflow from './product-offers-workflow.class';
 
 /**
- * Workflow Class to handle service detachable options
+ * Workflow Class to handle service detachable or upgradable options
  */
 export default class ServicesWorkflow extends Workflow {
   /**
@@ -13,12 +13,12 @@ export default class ServicesWorkflow extends Workflow {
    * @param {Object} workflowOptions Specific options
    * for this workflow, must contains the following values:
    * - {optionId} (Optional): Option id to display information about termination date if needed
-   * - {serviceId}: Id of the service on which to detach an option
-   * - {detachPlancodes}: Item representing the option to detach
+   * - {serviceId}: Id of the service on which to detach or upgrade an option
+   * - {plancodes}: Detach or upgrade plancodes to use
    * - {durationToUse}: Duration to use, will override the default pricing
    * duration.
-   * @param {Object} DetachService   Service to handle request to perform a
-   * detach action, see /services API schema
+   * @param {Object} workflowService   Service to handle request to perform an
+   * action (detach, upgrade), see /services API schema
    */
   constructor(
     locale,
@@ -26,11 +26,11 @@ export default class ServicesWorkflow extends Workflow {
     $timeout,
     $translate,
     workflowOptions,
-    detachService,
+    workflowService,
   ) {
     super(locale, $q, $translate, workflowOptions);
     this.$timeout = $timeout;
-    this.workflowService = detachService;
+    this.workflowService = workflowService;
 
     if (!this.serviceId) {
       throw new Error(
@@ -40,24 +40,33 @@ export default class ServicesWorkflow extends Workflow {
   }
 
   /**
-   * Get the pricings from available detach plan codes,
+   * Get the pricings from available detach or upgrade plan codes,
    * based on the pricing type
    */
   getPricings() {
-    const [detachPlancode] = this.detachPlancodes; // Yes, for the moment, there is just one plan code
-    this.plancode = detachPlancode.planCode;
-    this.pricings = this.computePricing(detachPlancode.prices);
+    let selectedPlanCode;
+    if (typeof this.getPlanCode === 'function') {
+      selectedPlanCode = this.plancodes.find(
+        ({ planCode }) => planCode === this.getPlanCode(),
+      );
+    }
+    const actionPlancode = selectedPlanCode || this.plancodes[0];
+    this.plancode = actionPlancode.planCode;
+    this.pricings = this.computePricing(actionPlancode.prices);
 
     if (this.hasUniquePricing()) {
       this.$timeout(() => {
         this.currentIndex += 1;
         [this.pricing] = this.pricings;
+        if (typeof this.onPricingSubmit === 'function') {
+          this.onPricingSubmit(this.pricing);
+        }
       });
     }
   }
 
   /**
-   * Get the information for detach validation
+   * Get the information for validation
    * Will tell to upper scope the loading state of the workflow
    * @return {Promise}
    */
@@ -68,14 +77,22 @@ export default class ServicesWorkflow extends Workflow {
     this.validationParameters = {
       duration: this.durationToUse || pricing.getDurationISOFormat(),
       pricingMode: pricing.mode,
-      quantity: 1,
+      quantity: pricing.minimumQuantity,
     };
 
     return this.workflowService
-      .simulateDetach(this.plancode, this.serviceId, this.validationParameters)
+      .simulate(
+        this.plancode,
+        this.serviceId,
+        this.pricingType,
+        this.validationParameters,
+      )
       .then(({ order }) => {
         this.contracts = order.contracts;
         this.prices = order.prices;
+        this.prorataDurationDate = this.constructor.getDurationProrataDate(
+          order.details,
+        );
       })
       .catch((error) =>
         !this.onError || this.onError({ error }) === false
@@ -113,9 +130,9 @@ export default class ServicesWorkflow extends Workflow {
   }
 
   /**
-   * Validate the detach offer
+   * Validate the offer
    * Will tell to upper scope the loading state of the workflow
-   * @return {Promise} Promise of the validated detach offer
+   * @return {Promise} Promise of the validated offer
    */
   validateOffer() {
     this.updateLoadingStatus('validateOffer');
@@ -123,37 +140,39 @@ export default class ServicesWorkflow extends Workflow {
     const autoPayWithPreferredPaymentMethod =
       !!this.defaultPaymentMethod || this.isFreePricing();
 
-    let detachResult;
+    let result;
 
     this.validationParameters.autoPayWithPreferredPaymentMethod = autoPayWithPreferredPaymentMethod;
 
     return this.workflowService
-      .executeDetach(this.plancode, this.serviceId, this.validationParameters)
-      .then(({ order: orderResult }) => {
-        detachResult = orderResult;
+      .execute(
+        this.plancode,
+        this.serviceId,
+        this.pricingType,
+        this.validationParameters,
+      )
+      .then(({ order }) => {
+        result = order;
 
         return autoPayWithPreferredPaymentMethod
-          ? this.workflowService.payDetach(
-              detachResult,
-              this.defaultPaymentMethod,
-            )
+          ? this.workflowService.pay(result, this.defaultPaymentMethod)
           : this.$q.when();
       })
       .then(() => {
-        const validatedDetach = {
-          ...detachResult,
+        const validateResult = {
+          ...result,
           autoPayWithPreferredPaymentMethod,
         };
 
         if (autoPayWithPreferredPaymentMethod) {
-          validatedDetach.paymentMethodLabel = get(
+          validateResult.paymentMethodLabel = get(
             this.defaultPaymentMethod,
             'label',
           );
         }
 
         this.onSuccess({
-          detachResult: validatedDetach,
+          result: validateResult,
         });
       })
       .catch((error) =>

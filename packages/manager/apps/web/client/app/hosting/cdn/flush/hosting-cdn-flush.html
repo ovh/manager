@@ -1,14 +1,13 @@
-<div data-ng-controller="HostingFlushCdnCtrl">
-    <div
-        data-wizard
-        data-wizard-on-cancel="resetAction"
-        data-wizard-on-finish="flushCdn"
-        data-wizard-title="'hosting_dashboard_service_flush_cdn' | translate"
-    >
-        <div data-wizard-step>
-            <p
-                data-translate="{{ :: cdnProperties.version === 'cdn-hosting' ? 'hosting_dashboard_cdn_v2_flush_question' : 'hosting_dashboard_cdn_flush_question' }}"
-            ></p>
-        </div>
-    </div>
-</div>
+<oui-modal
+    heading="{{:: 'hosting_dashboard_cdn_flush' | translate }}"
+    primary-action="$ctrl.flushCdn()"
+    primary-label="{{:: 'hosting_dashboard_cdn_flush_validate' | translate }}"
+    secondary-action="$ctrl.goBack()"
+    secondary-label="{{:: 'hosting_dashboard_cdn_flush_cancel' | translate }}"
+    on-dismiss="$ctrl.goBack()"
+    loading="$ctrl.loading"
+>
+    <p
+        data-translate="{{ :: $ctrl.cdnProperties.version === 'cdn-hosting' ? 'hosting_dashboard_cdn_v2_flush_question' : 'hosting_dashboard_cdn_flush_question' }}"
+    ></p>
+</oui-modal>
