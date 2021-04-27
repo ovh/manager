@@ -66,6 +66,24 @@
         </oui-message>
     </oui-step-form>
 
+    <!--Autoscaling-->
+    <oui-step-form
+        data-header="{{:: 'kube_common_node_pool_autoscaling_title' | translate }}"
+        data-editable="!$ctrl.isAdding"
+        data-on-focus="$ctrl.onNodePoolAutoscalingFocus()"
+        data-on-submit="$ctrl.displayNodePoolSizing = false"
+        name="nodepool_nodes_add"
+        data-loading="$ctrl.loadingFlavors"
+    >
+        <node-pool-autoscaling
+            data-is-edit-mode="false"
+            data-node-count="$ctrl.nodeAddCount"
+            data-autoscaling-model="$ctrl.autoscaling"
+            data-display-node-pool-sizing="$ctrl.displayNodePoolSizing"
+        >
+        </node-pool-autoscaling>
+    </oui-step-form>
+
     <oui-step-form
         data-header="{{:: 'kube_common_billing_type_title' | translate }}"
         data-editable="!$ctrl.isAdding"
