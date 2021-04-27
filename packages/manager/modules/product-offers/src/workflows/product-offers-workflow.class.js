@@ -17,13 +17,16 @@ import { PRICING_CAPACITIES } from '../pricing/pricing.constants';
  */
 export default class Workflow {
   /**
+   * @param {Object} $q              AngularJS provider
+   * @param {Object} $timeout        AngularJS provider
    * @param {Object} $translate      AngularJS provider
    * @param {Object} workflowOptions Workflow specific options. Each type of
    * workflow has its own options to work with.
    * See other workflow class constructor documentation for more details.
    */
-  constructor($q, $translate, workflowOptions) {
+  constructor($q, $timeout, $translate, workflowOptions) {
     this.$q = $q;
+    this.$timeout = $timeout;
     this.$translate = $translate;
 
     if (new.target === Workflow) {

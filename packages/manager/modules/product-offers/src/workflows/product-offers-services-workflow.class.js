@@ -8,6 +8,7 @@ import Workflow from './product-offers-workflow.class';
 export default class ServicesWorkflow extends Workflow {
   /**
    * @param {Object} $q              AngularJS provider
+   * @param {Object} $timeout        AngularJS provider
    * @param {Object} $translate      AngularJS provider
    * @param {Object} workflowOptions Specific options
    * for this workflow, must contains the following values:
@@ -20,8 +21,7 @@ export default class ServicesWorkflow extends Workflow {
    * action (detach, upgrade), see /services API schema
    */
   constructor($q, $timeout, $translate, workflowOptions, workflowService) {
-    super($q, $translate, workflowOptions);
-    this.$timeout = $timeout;
+    super($q, $timeout, $translate, workflowOptions);
     this.workflowService = workflowService;
 
     if (!this.serviceId) {
