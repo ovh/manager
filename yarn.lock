@@ -15793,10 +15793,10 @@ osenv@0, osenv@^0.1.4, osenv@^0.1.5:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.0"
 
-ovh-api-services@^11.1.0:
-  version "11.1.0"
-  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-11.1.0.tgz#edd9db0cfc3b755fa25e3ab0524131a234f412e5"
-  integrity sha512-H2dI00qzt4VRswa0brryxKE+gSoozlUXvfgz1rOcS2T1rTPR4RfmXZZcI6oWdn+SZe3N+4Mo+Zl9DvmxLx1/7A==
+ovh-api-services@^11.1.1:
+  version "11.1.1"
+  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-11.1.1.tgz#d032085c228388dac2944b39d380c8c58ca8487e"
+  integrity sha512-0mCuG2zih6h91lPipFiFBIZ+K8LgHQlHMBhvRPP8HQwrVJwGiDRQjloNmvGTLJPtX1uaSk/FF6EkqYOsOCZCEA==
   dependencies:
     lodash "^4.17.20"
 
