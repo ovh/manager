@@ -43,5 +43,8 @@
   "pci_projects_project_training_jobs_id": "Auftrag-ID",
   "pci_projects_project_training_jobs_common_cancel": "Abbrechen",
   "pci_projects_project_training_jobs_resubmit_success": "Der Auftrag wurde neu gestartet",
-  "pci_projects_project_training_jobs_resubmit_error": "Beim Neustart des Auftrags ist ein Fehler aufgetreten: {{ message }}"
+  "pci_projects_project_training_jobs_resubmit_error": "Beim Neustart des Auftrags ist ein Fehler aufgetreten: {{ message }}",
+  "pci_projects_project_training_jobs_submit_add_volume": "Hinzufügen",
+  "pci_projects_project_training_jobs_submit_select_data_select": "Ich möchte Data Volumes mit diesem Auftrag verbinden.",
+  "pci_projects_project_training_jobs_submit_add_volume_warning": "Bitte beachten Sie: Ein oder mehrere Volumes konnten nicht hinzugefügt werden. Bitte korrigieren Sie dies, um zum nächsten Schritt zu gelangen."
 }
