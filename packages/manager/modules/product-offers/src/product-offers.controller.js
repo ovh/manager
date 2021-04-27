@@ -35,7 +35,6 @@ export default class ProductOffersController {
     switch (this.workflowType) {
       case WORKFLOW_TYPES.ORDER:
         this.workflow = new OrderWorkflow(
-          this.coreConfig.getUserLocale(),
           this.$q,
           this.$timeout,
           this.$translate,
@@ -45,7 +44,6 @@ export default class ProductOffersController {
         break;
       case WORKFLOW_TYPES.SERVICES:
         this.workflow = new ServicesWorkflow(
-          this.coreConfig.getUserLocale(),
           this.$q,
           this.$timeout,
           this.$translate,

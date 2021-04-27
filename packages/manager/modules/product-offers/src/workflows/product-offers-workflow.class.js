@@ -17,14 +17,12 @@ import { PRICING_CAPACITIES } from '../pricing/pricing.constants';
  */
 export default class Workflow {
   /**
-   * @param {string} locale          User locale
    * @param {Object} $translate      AngularJS provider
    * @param {Object} workflowOptions Workflow specific options. Each type of
    * workflow has its own options to work with.
    * See other workflow class constructor documentation for more details.
    */
-  constructor(locale, $q, $translate, workflowOptions) {
-    this.locale = locale;
+  constructor($q, $translate, workflowOptions) {
     this.$q = $q;
     this.$translate = $translate;
 
@@ -120,10 +118,10 @@ export default class Workflow {
 
     switch (this.pricingType) {
       case PRICING_CAPACITIES.DETACH:
-        pricings = this.getDetachPricings(pricingsToCompute);
+        pricings = Workflow.getDetachPricings(pricingsToCompute);
         break;
       case PRICING_CAPACITIES.RENEW:
-        pricings = this.getRenewPricings(pricingsToCompute);
+        pricings = Workflow.getRenewPricings(pricingsToCompute);
         break;
       case PRICING_CAPACITIES.UPGRADE:
         pricings = Workflow.getUpgradePricings(pricingsToCompute);
@@ -132,7 +130,7 @@ export default class Workflow {
         pricings = ProductOffersService.filterPricingsByCapacity(
           pricingsToCompute,
           this.pricingType,
-        ).map((pricing) => this.convertPricingObject(pricing));
+        ).map((pricing) => Workflow.convertPricingObject(pricing));
     }
 
     return sortBy(pricings, 'price');
@@ -144,7 +142,7 @@ export default class Workflow {
    * @param  {Array} providedPricings Pricings to get detach ones
    * @return {Array}                  Detach pricings
    */
-  getDetachPricings(providedPricings) {
+  static getDetachPricings(providedPricings) {
     const detachPricing = ProductOffersService.getUniquePricingOfCapacity(
       providedPricings,
       PRICING_CAPACITIES.DETACH,
@@ -161,10 +159,10 @@ export default class Workflow {
         description: `${detachPricing.description} (${renewPricing.description})`,
         duration: renewPricing.duration,
         interval: renewPricing.interval,
-        extraPricing: this.convertPricingObject(renewPricing),
+        extraPricing: Workflow.convertPricingObject(renewPricing),
         extraPricingCapacity: PRICING_CAPACITIES.RENEW,
       }))
-      .map((pricing) => this.convertPricingObject(pricing));
+      .map((pricing) => Workflow.convertPricingObject(pricing));
   }
 
   /**
@@ -172,7 +170,7 @@ export default class Workflow {
    * @param  {Array} providedPricings Pricings to get renew ones
    * @return {Array}                  Renew pricings
    */
-  getRenewPricings(providedPricings) {
+  static getRenewPricings(providedPricings) {
     const installationPricing = ProductOffersService.getUniqueInstallationPricing(
       providedPricings,
     );
@@ -207,11 +205,11 @@ export default class Workflow {
     return pricingsWithOnlyRenewCapacity
       .map((pricing) => ({
         ...pricing,
-        extraPricing: this.convertPricingObject(installationPricing),
+        extraPricing: Workflow.convertPricingObject(installationPricing),
         extraPricingCapacity: installationPricing.capacities[0],
       }))
       .concat(pricingsWitRenewAndInstallationCapacities)
-      .map((pricing) => this.convertPricingObject(pricing));
+      .map((pricing) => Workflow.convertPricingObject(pricing));
   }
 
   /**
@@ -246,8 +244,8 @@ export default class Workflow {
    * @param  {Object} pricing Pricing to transform
    * @return {Pricing}        Instance of Pricing
    */
-  convertPricingObject(pricing) {
-    return new Pricing(pricing, this.locale);
+  static convertPricingObject(pricing) {
+    return new Pricing(pricing);
   }
 
   static getDurationDetails(details) {
