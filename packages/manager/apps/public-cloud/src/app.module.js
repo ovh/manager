@@ -18,6 +18,7 @@ import has from 'lodash/has';
 import navbar from '@ovh-ux/manager-navbar';
 import ovhManagerAccountSidebar from '@ovh-ux/manager-account-sidebar';
 import { registerCoreModule } from '@ovh-ux/manager-core';
+import ovhManagerCookiePolicy from '@ovh-ux/manager-cookie-policy';
 import ovhManagerMfaEnrollment from '@ovh-ux/mfa-enrollment';
 import ovhManagerPci from '@ovh-ux/manager-pci';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
@@ -66,6 +67,7 @@ export default (containerEl, environment) => {
         'oui',
         ovhManagerAccountSidebar,
         registerCoreModule(environment),
+        ovhManagerCookiePolicy,
         ovhManagerIncidentBanner,
         ovhManagerMfaEnrollment,
         ovhManagerPci,

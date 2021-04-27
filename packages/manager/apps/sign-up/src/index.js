@@ -17,9 +17,9 @@ import { registerCoreModule } from '@ovh-ux/manager-core';
 
 import ngOvhSsoAuth from '@ovh-ux/ng-ovh-sso-auth'; // peerDep of manager-core
 import ngAtInternet from '@ovh-ux/ng-at-internet';
+import ovhManagerCookiePolicy from '@ovh-ux/manager-cookie-policy';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
 import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
-
 import '@ovh-ux/sign-up';
 import signUpFormView from './form';
 import detailsState from './details';
@@ -46,6 +46,7 @@ angular
       'ngSanitize',
       'pascalprecht.translate',
       registerCoreModule(environment),
+      ovhManagerCookiePolicy,
       ovhManagerAtInternetConfiguration,
       ngAtInternet,
       ngAtInternetUiRouterPlugin,

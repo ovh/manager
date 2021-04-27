@@ -25,7 +25,7 @@ angular
       atInternetUiRouterPluginProvider,
       coreConfigProvider,
     ) => {
-      atInternetProvider.setEnabled(trackingEnabled);
+      atInternetProvider.setEnabled(false);
       atInternetProvider.setDebug(!trackingEnabled);
       atInternetProvider.setRegion(coreConfigProvider.getRegion());
 
@@ -43,30 +43,33 @@ angular
     },
   )
   .run(
-    /* @ngInject */ ($cookies, atInternet) => {
-      const cookie = $cookies.get(USER_ID);
-      const tag = atInternet.getTag();
-      if (trackingEnabled) {
-        try {
-          if (cookie) {
-            tag.clientSideUserId.set(cookie);
-          } else {
-            const value = tag.clientSideUserId.get();
-            tag.clientSideUserId.store();
+    /* @ngInject */ ($cookies, atInternet, $rootScope) => {
+      $rootScope.$on('cookie-policy:consent', () => {
+        atInternet.setEnabled(trackingEnabled);
+        if (trackingEnabled) {
+          const cookie = $cookies.get(USER_ID);
+          const tag = atInternet.getTag();
+          try {
+            if (cookie) {
+              tag.clientSideUserId.set(cookie);
+            } else {
+              const value = tag.clientSideUserId.get();
+              tag.clientSideUserId.store();
 
-            const element = document.getElementById('manager-tms-iframe');
+              const element = document.getElementById('manager-tms-iframe');
 
-            if (element) {
-              element.contentWindow.postMessage({
-                id: 'ClientUserId',
-                value,
-              });
+              if (element) {
+                element.contentWindow.postMessage({
+                  id: 'ClientUserId',
+                  value,
+                });
+              }
             }
+          } catch (e) {
+            // nothing to do.
           }
-        } catch (e) {
-          // nothing to do.
         }
-      }
+      });
     },
   )
   .run(

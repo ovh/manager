@@ -72,6 +72,7 @@ import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-confi
 import ovhManagerBetaPreference from '@ovh-ux/manager-beta-preference';
 import ovhManagerAccountSidebar from '@ovh-ux/manager-account-sidebar';
 import { registerCoreModule } from '@ovh-ux/manager-core';
+import ovhManagerCookiePolicy from '@ovh-ux/manager-cookie-policy';
 import ovhManagerDashboard from '@ovh-ux/manager-telecom-dashboard';
 import ovhManagerFreefax from '@ovh-ux/manager-freefax';
 import ovhManagerIncidentBanner from '@ovh-ux/manager-incident-banner';
@@ -180,6 +181,7 @@ export default (containerEl, environment) => {
         ovhManagerAccountMigration,
         ovhManagerBetaPreference,
         registerCoreModule(environment),
+        ovhManagerCookiePolicy,
         ovhManagerDashboard,
         ovhManagerFreefax,
         ovhManagerIncidentBanner,

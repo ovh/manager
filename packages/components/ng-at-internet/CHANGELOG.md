@@ -1,3 +1,12 @@
+# [5.6.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet@5.5.0...@ovh-ux/ng-at-internet@5.6.0) (2021-04-27)
+
+
+### Features
+
+* **atinternet:** queue tracking when tracker not enabled ([49c9172](https://github.com/ovh/manager/commit/49c917227b8792cf1a00fd8ab92192290bacb5fa))
+
+
+
 # [5.5.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet@5.4.1...@ovh-ux/ng-at-internet@5.5.0) (2021-04-08)
 
 

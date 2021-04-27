@@ -12,6 +12,7 @@ import { isString, get, has } from 'lodash-es';
 
 import '@ovh-ux/ui-kit';
 import ovhManagerBanner from '@ovh-ux/manager-banner';
+import ovhManagerCookiePolicy from '@ovh-ux/manager-cookie-policy';
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import ovhManagerAccountSidebar from '@ovh-ux/manager-account-sidebar';
 import { registerCoreModule } from '@ovh-ux/manager-core';
@@ -59,6 +60,7 @@ export default (containerEl, environment) => {
         ovhManagerOrderTracking,
         ovhNotificationsSidebar,
         ovhManagerBanner,
+        ovhManagerCookiePolicy,
         ngOvhPaymentMethod,
         'pascalprecht.translate',
         'ui.bootstrap',

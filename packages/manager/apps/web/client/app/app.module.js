@@ -75,6 +75,7 @@ import ovhManagerAccountSidebar from '@ovh-ux/manager-account-sidebar';
 import ovhNotificationsSidebar from '@ovh-ux/manager-notifications-sidebar';
 import ovhManagerAccountMigration from '@ovh-ux/manager-account-migration';
 import ovhManagerBanner from '@ovh-ux/manager-banner';
+import ovhManagerCookiePolicy from '@ovh-ux/manager-cookie-policy';
 import ovhManagerCatalogPrice from '@ovh-ux/manager-catalog-price';
 import ovhManagerIncidentBanner from '@ovh-ux/manager-incident-banner';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
@@ -169,6 +170,7 @@ export default (containerEl, environment) => {
         ovhManagerAtInternetConfiguration,
         ovhManagerAccountMigration,
         ovhManagerBanner,
+        ovhManagerCookiePolicy,
         ovhManagerCatalogPrice,
         ovhManagerIncidentBanner,
         ovhManagerNavbar,
