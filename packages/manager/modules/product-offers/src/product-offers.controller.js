@@ -10,14 +10,14 @@ export default class ProductOffersController {
     $timeout,
     $translate,
     coreConfig,
-    ovhManagerProductOffersDetachService,
+    ovhManagerProductOffersActionService,
     WucOrderCartService,
   ) {
     this.$q = $q;
     this.$timeout = $timeout;
     this.$translate = $translate;
     this.coreConfig = coreConfig;
-    this.detachService = ovhManagerProductOffersDetachService;
+    this.actionService = ovhManagerProductOffersActionService;
     this.WucOrderCartService = WucOrderCartService;
   }
 
@@ -37,6 +37,7 @@ export default class ProductOffersController {
         this.workflow = new OrderWorkflow(
           this.coreConfig.getUserLocale(),
           this.$q,
+          this.$timeout,
           this.$translate,
           this.workflowOptions,
           this.WucOrderCartService,
@@ -49,7 +50,7 @@ export default class ProductOffersController {
           this.$timeout,
           this.$translate,
           this.workflowOptions,
-          this.detachService,
+          this.actionService,
         );
         break;
       default:
@@ -59,7 +60,7 @@ export default class ProductOffersController {
     Object.assign(this.workflow, {
       pricingType: this.pricingType,
       sendCurrentState: this.sendCurrentState,
-      user: this.user,
+      user: this.coreConfig.getUser(),
       onError: this.onError,
       onSuccess: this.onSuccess,
     });

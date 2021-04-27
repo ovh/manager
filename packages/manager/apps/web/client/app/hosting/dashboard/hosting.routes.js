@@ -30,6 +30,22 @@ export default /* @ngInject */ ($stateProvider) => {
       tab: null,
     },
     resolve: {
+      cdnProperties: /* @ngInject */ (HostingCdnSharedService, serviceName) =>
+        HostingCdnSharedService.getCDNProperties(serviceName)
+          .then(({ data }) => data)
+          .catch(() => null),
+
+      cdnRange: /* @ngInject */ ($transition$, cdnProperties) => {
+        if (!cdnProperties) {
+          return '';
+        }
+
+        const range =
+          cdnProperties.type.split('cdn-')[1]?.replace('-', ' ') ||
+          cdnProperties.type;
+        return `${range.charAt(0).toUpperCase()}${range.slice(1)}`;
+      },
+
       generalInformationLink: /* @ngInject */ ($state, $transition$) =>
         $state.href(
           'app.hosting.dashboard.general-informations',
@@ -89,16 +105,16 @@ export default /* @ngInject */ ($stateProvider) => {
       emailOptionDetachInformation: /* @ngInject */ (
         $q,
         emailOptionServiceInfos,
-        ovhManagerProductOffersDetachService,
+        ovhManagerProductOffersActionService,
       ) =>
         $q.all(
           emailOptionServiceInfos.map(({ serviceId }) =>
-            ovhManagerProductOffersDetachService
+            ovhManagerProductOffersActionService
               .getAvailableDetachPlancodes(serviceId)
               .catch(() => [])
               .then((plancodes) => ({
                 serviceId,
-                detachPlancodes: plancodes,
+                plancodes,
               })),
           ),
         ),
@@ -137,7 +153,7 @@ export default /* @ngInject */ ($stateProvider) => {
         HostingDatabase.getPrivateDatabaseIds(serviceName).catch(() => []),
       privateDatabasesDetachable: /* @ngInject */ (
         $q,
-        ovhManagerProductOffersDetachService,
+        ovhManagerProductOffersActionService,
         PrivateDatabase,
         privateDatabasesIds,
       ) =>
@@ -157,13 +173,13 @@ export default /* @ngInject */ ($stateProvider) => {
           .then((privateDatabasesInformation) =>
             $q.all(
               privateDatabasesInformation.map(({ domain, serviceId }) =>
-                ovhManagerProductOffersDetachService
+                ovhManagerProductOffersActionService
                   .getAvailableDetachPlancodes(serviceId)
                   .catch(() => [])
                   .then((plancodes) => ({
                     optionId: domain,
                     serviceId,
-                    detachPlancodes: plancodes,
+                    plancodes,
                   })),
               ),
             ),
@@ -216,6 +232,12 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       isLocalSeoAvailable: /* @ngInject */ (availableOptions) =>
         availableOptions.find(({ family }) => family === LOCAL_SEO_FAMILY),
+
+      hostingSsl: /* @ngInject */ ($http, serviceName) =>
+        $http
+          .get(`/hosting/web/${serviceName}/ssl`)
+          .then(({ data }) => data)
+          .catch(() => null),
 
       breadcrumb: /* @ngInject */ (serviceName) => serviceName,
     },

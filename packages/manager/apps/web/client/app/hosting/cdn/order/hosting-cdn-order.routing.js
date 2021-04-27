@@ -1,11 +1,14 @@
-import find from 'lodash/find';
-import get from 'lodash/get';
+import {
+  pricingConstants,
+  workflowConstants,
+} from '@ovh-ux/manager-product-offers';
 
 import {
-  HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_BASIC_FREE,
+  HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_ADVANCED,
+  HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_BUSINESS,
   HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_BUSINESS_FREE,
   HOSTING_CDN_ORDER_CDN_VERSION_V1,
-  HOSTING_CDN_ORDER_CDN_VERSION_V2,
+  HOSTING_PRODUCT_NAME,
 } from './hosting-cdn-order.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -13,30 +16,26 @@ export default /* @ngInject */ ($stateProvider) => {
     autoPayWithPreferredPaymentMethod: /* @ngInject */ (ovhPaymentMethod) =>
       ovhPaymentMethod.hasDefaultPaymentMethod(),
 
-    isAutoPayable: /* @ngInject */ (
-      autoPayWithPreferredPaymentMethod,
-      isOptionFree,
-    ) => (defaultPaymentChoose) =>
-      defaultPaymentChoose ||
-      (autoPayWithPreferredPaymentMethod && isOptionFree),
+    availablePlans: /* @ngInject */ (availableOptions, cdnProperties) =>
+      availableOptions
+        .filter(({ family }) => family === 'cdn')
+        .map(({ planCode }) => ({
+          planCode,
+          available: !planCode.includes(cdnProperties?.type),
+          current: planCode.includes(cdnProperties?.type),
+        }))
+        .concat([
+          {
+            planCode: HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_ADVANCED,
+            available: false,
+          },
+        ]),
 
-    catalogAddons: /* @ngInject */ (user, WucOrderCartService) =>
+    catalog: /* @ngInject */ (user, WucOrderCartService) =>
       WucOrderCartService.getProductPublicCatalog(
         user.ovhSubsidiary,
-        'webHosting',
+        HOSTING_PRODUCT_NAME,
       ),
-
-    catalogAddon: /* @ngInject */ (
-      goBackWithError,
-      serviceOption,
-      user,
-      $translate,
-      HostingCdnOrderService,
-    ) =>
-      HostingCdnOrderService.getCatalogAddon(
-        user.ovhSubsidiary,
-        serviceOption,
-      ).catch((error) => goBackWithError(get(error, 'data.message', error))),
 
     goBack: /* @ngInject */ (goToHosting) => goToHosting,
 
@@ -48,32 +47,15 @@ export default /* @ngInject */ ($stateProvider) => {
         'danger',
       ),
 
-    isOptionFree: /* @ngInject */ (serviceOption) =>
-      serviceOption.planCode ===
-        HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_BASIC_FREE ||
-      serviceOption.planCode ===
-        HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_BUSINESS_FREE,
-
     serviceName: /* @ngInject */ ($transition$) =>
       $transition$.params().productId,
-
-    serviceOption: /* @ngInject */ (availableOptions, goBackWithError) =>
-      find(availableOptions, { family: 'cdn' }) ||
-      goBackWithError('No serviceOption found'),
 
     serviceInfo: /* @ngInject */ (Hosting, serviceName) =>
       Hosting.getServiceInfos(serviceName),
 
-    cdnProperties: /* @ngInject */ (
-      HostingCdnSharedService,
-      serviceName,
-      goBack,
-    ) => {
+    cdnProperties: /* @ngInject */ (HostingCdnSharedService, serviceName) => {
       return HostingCdnSharedService.getCDNProperties(serviceName)
-        .then(({ data: cdn }) => {
-          if (cdn.version === HOSTING_CDN_ORDER_CDN_VERSION_V2) goBack();
-          return cdn;
-        })
+        .then(({ data: cdn }) => cdn)
         .catch(() => null);
     },
 
@@ -88,9 +70,6 @@ export default /* @ngInject */ ($stateProvider) => {
     isPayableCDN: /* @ngInject */ (cdnProperties, isV1CDN) =>
       isV1CDN && !cdnProperties.free,
 
-    isV2CDN: /* @ngInject */ (cdnProperties, hasCDN) =>
-      hasCDN && cdnProperties.version === HOSTING_CDN_ORDER_CDN_VERSION_V2,
-
     cdnCase: /* @ngInject */ (isIncludedCDN, isPayableCDN, hasCDN) => {
       if (isIncludedCDN) {
         return 'included';
@@ -104,6 +83,9 @@ export default /* @ngInject */ ($stateProvider) => {
       return null;
     },
 
+    onError: /* @ngInject */ (goBackWithError) => (error) =>
+      goBackWithError(error.data?.message || error),
+
     trackClick: /* @ngInject */ (atInternet) => (hit) => {
       atInternet.trackClick({
         name: hit,
@@ -111,110 +93,106 @@ export default /* @ngInject */ ($stateProvider) => {
       });
     },
   };
+
   const resolveOrder = {
-    prepareCart: /* @ngInject */ (
-      goBackWithError,
-      serviceName,
-      serviceOption,
-      user,
-      $translate,
-      HostingCdnOrderService,
-    ) => () => {
-      const data = { cartId: null };
-      return HostingCdnOrderService.prepareOrderCart(user.ovhSubsidiary)
-        .then((cartId) => {
-          data.cartId = cartId;
-          return HostingCdnOrderService.addItemToCart(
-            cartId,
-            serviceName,
-            serviceOption,
-          );
-        })
-        .then((cart) => {
-          return { cart, cartId: data.cartId };
-        })
-        .catch((error) => goBackWithError(get(error, 'data.message', error)));
+    onSuccess: /* @ngInject */ ($translate, goBack) => (checkout) => {
+      const message = checkout.autoPayWithPreferredPaymentMethod
+        ? $translate.instant('hosting_dashboard_cdn_order_success_activation')
+        : $translate.instant('hosting_dashboard_cdn_v2_order_success', {
+            t0: checkout.url,
+          });
+      return goBack(message);
     },
 
-    checkoutCart: /* @ngInject */ (
-      goBack,
-      goBackWithError,
-      isOptionFree,
-      $translate,
-      $window,
-      HostingCdnOrderService,
-    ) => (autoPayWithPreferredPaymentMethod, cartId) => {
-      return HostingCdnOrderService.checkoutOrderCart(
-        autoPayWithPreferredPaymentMethod,
-        cartId,
-      )
-        .then((order) => {
-          const message =
-            isOptionFree || autoPayWithPreferredPaymentMethod
-              ? $translate.instant(
-                  'hosting_dashboard_cdn_order_success_activation',
-                )
-              : $translate.instant('hosting_dashboard_cdn_v2_order_success', {
-                  t0: order.url,
-                });
-          return goBack(message);
-        })
-        .catch((error) => goBackWithError(get(error, 'data.message', error)));
-    },
+    pricingType: () => pricingConstants.PRICING_CAPACITIES.RENEW,
+    workflowType: () => workflowConstants.WORKFLOW_TYPES.ORDER,
+    workflowOptions: /* @ngInject */ (catalog, serviceName, trackClick) => ({
+      catalog,
+      catalogItemTypeName: workflowConstants.CATALOG_ITEM_TYPE_NAMES.ADDON,
+      onPricingSubmit: () => {
+        trackClick('web::hosting::cdn::order::next');
+      },
+      onValidateSubmit: () => {
+        trackClick('web::hosting::cdn::order::confirm');
+      },
+      productName: HOSTING_PRODUCT_NAME,
+      serviceNameToAddProduct: serviceName,
+    }),
+
+    breadcrumb: /* @ngInject */ ($translate) =>
+      $translate.instant('hosting_cdn_order_breadcrumb'),
   };
   const resolveUpgrade = {
-    prepareCart: /* @ngInject */ (
-      goBackWithError,
-      serviceName,
-      HostingCdnOrderService,
-      HostingCdnSharedService,
-    ) => () => {
-      return HostingCdnSharedService.simulateUpgrade(
-        serviceName,
-      ).catch((error) => goBackWithError(get(error, 'data.message', error)));
+    onSuccess: /* @ngInject */ ($translate, goBack) => (result) => {
+      const message = result.autoPayWithPreferredPaymentMethod
+        ? $translate.instant('hosting_dashboard_cdn_upgrade_included_success')
+        : $translate.instant('hosting_dashboard_cdn_v2_order_success', {
+            t0: result.url,
+          });
+      return goBack(message);
     },
 
-    autoPayFreeOffer: /* @ngInject */ (OvhApiMe) => ({ orderId }) =>
-      OvhApiMe.Order()
-        .v6()
-        .payRegisteredPaymentMean(
-          { orderId },
-          { paymentMean: 'fidelityAccount' },
-        ).$promise,
+    pricingType: () => pricingConstants.PRICING_CAPACITIES.UPGRADE,
+    workflowType: () => workflowConstants.WORKFLOW_TYPES.SERVICES,
+    workflowOptions: /* @ngInject */ (
+      catalog,
+      isV1CDN,
+      ovhManagerProductOffersActionService,
+      ovhManagerProductOffersService,
+      serviceInfo,
+      trackClick,
+    ) => {
+      let upgradeServiceId;
+      return ovhManagerProductOffersActionService
+        .getAvailableOptions(serviceInfo.serviceId)
+        .then((options) => {
+          const cdnOption = options.find(({ billing }) =>
+            billing.plan.code.includes('cdn'),
+          );
 
-    checkoutCart: /* @ngInject */ (
-      $q,
-      $translate,
-      goBack,
-      goBackWithError,
-      isAutoPayable,
-      isOptionFree,
-      autoPayFreeOffer,
-      HostingCdnSharedService,
-    ) => (autoPayWithPreferredPaymentMethod, serviceOption, serviceId) => {
-      const data = { order: null };
-      return HostingCdnSharedService.upgradeToSharedCDN(
-        isAutoPayable(autoPayWithPreferredPaymentMethod),
-        serviceOption,
-        serviceId,
-      )
-        .then(({ data: upgrade }) => {
-          data.order = upgrade.order;
-          return isOptionFree ? autoPayFreeOffer(upgrade.order) : $q.resolve();
+          upgradeServiceId = cdnOption.serviceId;
+          return ovhManagerProductOffersActionService.getAvailableUpgradePlancodes(
+            upgradeServiceId,
+          );
         })
-        .then(() => {
-          const message =
-            isOptionFree || autoPayWithPreferredPaymentMethod
-              ? $translate.instant(
-                  'hosting_dashboard_cdn_upgrade_included_success',
-                )
-              : $translate.instant('hosting_dashboard_cdn_v2_order_success', {
-                  t0: data.order.url,
-                });
-          return goBack(message);
-        })
-        .catch((error) => goBackWithError(get(error, 'data.message', error)));
+        .then((upgrades) => {
+          const cdnUpgrades = upgrades.filter(
+            ({ planCode }) =>
+              ![
+                HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_BUSINESS,
+                HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_BUSINESS_FREE,
+              ].includes(planCode),
+          );
+
+          const cdn1Addon = catalog.addons.find(
+            (addon) =>
+              addon.planCode ===
+              HOSTING_CDN_ORDER_CATALOG_ADDONS_PLAN_CODE_CDN_BUSINESS,
+          );
+
+          const [
+            cdn1Price,
+          ] = ovhManagerProductOffersService.constructor.filterPricingsByCapacity(
+            cdn1Addon.pricings,
+            pricingConstants.PRICING_CAPACITIES.RENEW,
+          );
+
+          return {
+            plancodes: cdnUpgrades,
+            currentOptionPrice: isV1CDN ? cdn1Price : null,
+            onPricingSubmit: () => {
+              trackClick('web::hosting::cdn::order::next');
+            },
+            onValidateSubmit: () => {
+              trackClick('web::hosting::cdn::order::confirm');
+            },
+            serviceId: upgradeServiceId,
+          };
+        });
     },
+
+    breadcrumb: /* @ngInject */ ($translate) =>
+      $translate.instant('hosting_cdn_upgrade_breadcrumb'),
   };
   const atInternet = {
     rename: 'web::hosting::cdn::order',

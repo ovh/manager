@@ -1,0 +1,55 @@
+<oui-modal
+    heading="Cross-Origin Resource Sharing"
+    on-dismiss="$ctrl.goBack()"
+    primary-action="$ctrl.onValidate($ctrl.origins)"
+    primary-label="{{:: 'hosting_cdn_shared_cors_confirm' | translate }}"
+    secondary-action="$ctrl.goBack()"
+    secondary-label="{{:: 'hosting_cdn_shared_cors_cancel' | translate }}"
+>
+    <p data-translate="hosting_cdn_shared_cors_description"></p>
+
+    <oui-field label="{{:: 'hosting_cdn_shared_cors_add_domain' | translate }}">
+        <input
+            name="domainToAdd"
+            class="oui-input"
+            type="text"
+            data-ng-model="$ctrl.domainToAdd"
+            data-ng-pattern="{{:: $ctrl.originRegex }}"
+        />
+        <oui-button
+            class="mt-2"
+            variant="primary"
+            on-click="$ctrl.addDomain($ctrl.domainToAdd)"
+            disabled="!$ctrl.domainToAdd"
+        >
+            <span data-translate="hosting_cdn_shared_cors_add"></span>
+        </oui-button>
+    </oui-field>
+
+    <label class="oui-select">
+        <span data-translate="hosting_cdn_shared_cors_domain_list"></span>
+        <select
+            class="oui-select__input"
+            name="domainList"
+            multiple
+            data-ng-disabled="$ctrl.origins.length === 0"
+            data-ng-model="$ctrl.domainsToRemove"
+        >
+            <option
+                data-ng-repeat="origin in $ctrl.origins track by origin"
+                value="{{origin}}"
+                data-ng-bind="origin"
+            ></option>
+        </select>
+        <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+    </label>
+
+    <oui-button
+        class="mt-2"
+        variant="primary"
+        on-click="$ctrl.removeDomains($ctrl.domainsToRemove)"
+        disabled="$ctrl.domainsToRemove.length === 0"
+    >
+        <span data-translate="hosting_cdn_shared_cors_remove"></span>
+    </oui-button>
+</oui-modal>

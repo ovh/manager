@@ -7,7 +7,7 @@ import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
 import ngOvhWebUniverseComponents from '@ovh-ux/ng-ovh-web-universe-components';
 import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 
-import detachService from './services/product-offers-detach.service';
+import actionService from './services/product-offers-action.service';
 import service from './services/product-offers.service';
 
 import component from './product-offers.component';
@@ -35,7 +35,7 @@ angular
   .component('ovhManagerProductOffers', component)
   .constant('OVH_MANAGER_PRODUCT_OFFERS_PRICING_CONSTANTS', pricingConstants)
   .constant('OVH_MANAGER_PRODUCT_OFFERS_WORKFLOW_CONSTANTS', workflowConstants)
-  .service('ovhManagerProductOffersDetachService', detachService)
+  .service('ovhManagerProductOffersActionService', actionService)
   .service('ovhManagerProductOffersService', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 

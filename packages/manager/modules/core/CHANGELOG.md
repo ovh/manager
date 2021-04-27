@@ -1,3 +1,12 @@
+# [12.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.0.3...@ovh-ux/manager-core@12.1.0) (2021-04-26)
+
+
+### Features
+
+* **core:** add cdn guides link ([009814e](https://github.com/ovh/manager/commit/009814efadb8bb2caeb92aad1b1dc92be38f9d35))
+
+
+
 ## [12.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.0.2...@ovh-ux/manager-core@12.0.3) (2021-03-25)
 
 

@@ -9,11 +9,21 @@ import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
 import union from 'lodash/union';
 
+import { CDN_ACTIVE } from './hosting-multisite.constants';
+
+const CDN_STATISTICS_PERIOD = {
+  DAY: 'day',
+  MONTH: 'month',
+  WEEK: 'week',
+  YEAR: 'year',
+};
+
 angular
   .module('App')
   .controller(
     'HostingTabDomainsCtrl',
     (
+      $http,
       $scope,
       $q,
       $state,
@@ -30,8 +40,15 @@ angular
       hostingSSLCertificate,
       hostingSSLCertificateType,
       Alerter,
+      WucChartjsFactory,
     ) => {
       atInternet.trackPage({ name: 'web::hosting::multisites' });
+
+      $scope.goToCdnConfiguration = function goToCdnConfiguration(domain) {
+        $state.go('app.hosting.dashboard.multisite.cdnConfiguration', {
+          domain,
+        });
+      };
 
       $scope.domains = null;
       $scope.sslLinked = [];
@@ -49,6 +66,13 @@ angular
       };
 
       $scope.certificateTypes = hostingSSLCertificateType.constructor.getCertificateTypes();
+
+      $scope.periods = Object.values(CDN_STATISTICS_PERIOD).map((period) => ({
+        label: $translate.instant(
+          `hosting_multisite_statistics_period_${period}`,
+        ),
+        value: period,
+      }));
 
       function sendTrackClick(hit) {
         atInternet.trackClick({
@@ -83,6 +107,9 @@ angular
           })
           .then(({ domains, sharedDomains }) => {
             $scope.domains = domains;
+            $scope.activeDomains = $scope.domains.list.results.filter(
+              (domain) => domain.cdn === CDN_ACTIVE,
+            );
             $scope.sharedDomains = sharedDomains;
             $scope.hasResult = !isEmpty($scope.domains);
             $scope.domains.list.results.forEach((domain) => {
@@ -173,6 +200,14 @@ angular
           });
       };
 
+      $scope.canEditCdn = function canEditCdn(domain) {
+        return (
+          domain.cdn === CDN_ACTIVE &&
+          domain.status !== HOSTING_STATUS.CREATING &&
+          $scope.cdnProperties.version === 'cdn-hosting'
+        );
+      };
+
       $scope.detachDomain = (domain) => {
         sendTrackClick('web::hosting::multisites::detach-domain');
         $scope.setAction('multisite/delete/hosting-multisite-delete', domain);
@@ -233,11 +268,6 @@ angular
           domain,
           domainName: domain.domain,
         });
-      };
-
-      $scope.flushCdn = (domain) => {
-        sendTrackClick('web::hosting::multisites::purge-cdn');
-        $scope.setAction('/cdn/flush/hosting-cdn-flush', { domain });
       };
 
       $scope.$on('hostingDomain.restart.done', (response, data) => {
@@ -453,6 +483,22 @@ angular
       $scope.$on('$destroy', () => {
         HostingDomain.killAllPolling();
       });
+
+      $scope.getChartJsInstance = function getChartJsInstance(configuration) {
+        return new WucChartjsFactory(configuration);
+      };
+
+      $scope.getStatistics = function getStatistics(domain, period) {
+        return $http
+          .get(
+            `/hosting/web/${
+              $scope.hosting.serviceName
+            }/cdn/domain/${domain}/statistics${
+              period ? `?period=${period}` : ''
+            }`,
+          )
+          .then(({ data }) => data);
+      };
 
       startPolling();
     },

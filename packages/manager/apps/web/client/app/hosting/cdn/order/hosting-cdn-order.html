@@ -1,87 +1,82 @@
 <oui-back-button data-on-click="$ctrl.goBack()">
     <span
-        data-translate="{{:: 'hosting_cdn_' + ($ctrl.hasCDN ? 'upgrade' : 'order') + '_title' }}"
+        data-ng-if="!$ctrl.hasCDN"
+        data-translate="{{:: 'hosting_cdn_order_title' }}"
+    ></span>
+    <span
+        data-ng-if="$ctrl.hasCDN"
+        data-translate="{{:: 'hosting_cdn_' + ($ctrl.isV1CDN ? 'v1_' : '') + 'upgrade_title' }}"
     ></span>
 </oui-back-button>
 
-<div class="text-center" data-ng-if="$ctrl.loading">
-    <oui-spinner></oui-spinner>
-</div>
+<p
+    data-ng-if="$ctrl.isV1CDN"
+    data-translate="{{:: 'hosting_cdn_order_customer_cdn_'+ $ctrl.cdnCase +'_step1_description' }}"
+></p>
 
-<div data-ng-if="!$ctrl.loading">
-    <p
-        data-translate="{{:: 'hosting_cdn_order_customer_cdn_'+ $ctrl.cdnCase +'_step1_description' }}"
-    ></p>
-    <oui-stepper
-        data-current-index="$ctrl.currentIndex"
-        data-on-finish="$ctrl.checkout()"
+<ovh-manager-product-offers
+    workflow-type=":: $ctrl.workflowType"
+    workflow-options=":: $ctrl.workflowOptions"
+    pricing-type=":: $ctrl.pricingType"
+    user=":: $ctrl.user"
+    on-error=":: $ctrl.onError(error)"
+    on-success=":: $ctrl.onSuccess($ctrl.workflowOptions.serviceId ? result : checkout)"
+    send-current-state="$ctrl.getOrderState(state)"
+>
+    <oui-step-form
+        header="{{:: 'hosting_cdn_order_choose_plan' | translate }}"
+        prevent-next="true"
+        valid="$ctrl.cdnPlanCode"
+        editable="!$ctrl.isStepperLoading"
     >
-        <oui-step-form
-            data-header="{{:: 'hosting_cdn_order_customer_cdn_'+ $ctrl.cdnCase +'_step1_header' | translate }}"
-            data-description="{{:: ($ctrl.isIncludedCDN ? 'hosting_cdn_order_customer_cdn_included_step1_info' : '') | translate }}"
-            data-editable="$ctrl.isEditable && !$ctrl.checkoutLoading"
-            data-on-focus="$ctrl.resetCart()"
-        >
-            <!-- Durations -->
-            <oui-field data-ng-if="!$ctrl.isIncludedCDN">
-                <oui-radio
-                    name="interval"
-                    data-ng-repeat="pricing in ::$ctrl.prices track by $index"
-                    data-model="$ctrl.interval"
-                    data-value="pricing.interval"
-                    data-required
+        <div class="row w-100 d-md-flex">
+            <div
+                class="col-lg-4 col-sm-12 mb-4"
+                data-ng-repeat="cdn in $ctrl.availablePlans track by cdn.planCode"
+            >
+                <oui-select-picker
+                    class="h-100"
+                    name="{{:: cdn.planCode }}"
+                    model="$ctrl.cdnPlanCode"
+                    values="[cdn.planCode]"
+                    disabled="!cdn.available"
                 >
-                    <span
-                        data-translate="hosting_cdn_order_duration_label"
-                        data-translate-values="{
-                            duration: $ctrl.getDuration(pricing.interval)
-                        }"
-                    >
-                    </span>
-                    <ovh-manager-catalog-price
-                        data-price="pricing.price"
-                        data-tax="pricing.tax"
-                        data-user="$ctrl.user"
-                        data-from-to-price="!$ctrl.hasCDN ? null : $ctrl.cdn1Price"
-                    >
-                    </ovh-manager-catalog-price>
-                </oui-radio>
-            </oui-field>
-        </oui-step-form>
-        <oui-step-form
-            name="checkout"
-            data-header="{{:: $ctrl.getHeaderText() }}"
-            data-submit-text="{{:: $ctrl.getButtonSubmitText() }}"
-            data-cancel-text="{{:: 'hosting_cdn_order_cancel' | translate }}"
-            data-editable="::false"
-            data-description="{{:: ($ctrl.isOptionFree ? 'hosting_cdn_order_step_description_activation' : '') | translate }}"
-            data-loading="$ctrl.checkoutLoading"
-            data-valid="$ctrl.agreeContracts || ($ctrl.cart && !$ctrl.cart.contracts.length )"
-            data-on-focus="$ctrl.prepareCheckout()"
-            data-on-cancel="$ctrl.goBack()"
-            data-prevent-next
-        >
-            <p
-                data-ng-if="(!$ctrl.autoPayWithPreferredPaymentMethod && !$ctrl.isOptionFree)"
-                data-translate="hosting_cdn_order_customer_cdn_included_step2_no_default_payment_method"
-            ></p>
-
-            <!-- Payment Means -->
-            <ovh-payment-method-choice
-                data-ng-if="::($ctrl.autoPayWithPreferredPaymentMethod && !$ctrl.isOptionFree)"
-                data-model="$ctrl.defaultPaymentMethod"
-                data-error-callback="$ctrl.goBackWithError()"
-            >
-            </ovh-payment-method-choice>
-
-            <!-- Contracts -->
-            <ovh-contracts-summary
-                name="agreeContracts"
-                data-ng-if="$ctrl.cart"
-                data-items="$ctrl.cart.contracts"
-                data-model="$ctrl.agreeContracts"
-            >
-            </ovh-contracts-summary>
-        </oui-step-form>
-    </oui-stepper>
-</div>
+                    <oui-select-picker-label>
+                        <strong
+                            data-translate="{{:: 'hosting_cdn_order_choose_plan_' + cdn.planCode }}"
+                        >
+                        </strong>
+                        <p data-ng-if="cdn.current">
+                            <span
+                                class="oui-badge oui-badge_s oui-badge_info"
+                                data-translate="hosting_cdn_order_choose_plan_current_plan"
+                            ></span>
+                        </p>
+                        <p data-ng-if="!cdn.available && !cdn.current">
+                            <span
+                                class="oui-badge oui-badge_s oui-badge_success"
+                            >
+                                <span
+                                    class="oui-icon oui-icon-warning-circle align-text-bottom"
+                                    aria-hidden="true"
+                                ></span>
+                                <span
+                                    data-translate="hosting_cdn_order_choose_plan_coming_soon_1"
+                                ></span>
+                            </span>
+                            <span
+                                class="small"
+                                data-translate="hosting_cdn_order_choose_plan_coming_soon_2"
+                            ></span>
+                        </p>
+                    </oui-select-picker-label>
+                    <oui-select-picker-description>
+                        <p
+                            data-translate="{{:: 'hosting_cdn_order_choose_plan_' + cdn.planCode + '_details' }}"
+                        ></p>
+                    </oui-select-picker-description>
+                </oui-select-picker>
+            </div>
+        </div>
+    </oui-step-form>
+</ovh-manager-product-offers>

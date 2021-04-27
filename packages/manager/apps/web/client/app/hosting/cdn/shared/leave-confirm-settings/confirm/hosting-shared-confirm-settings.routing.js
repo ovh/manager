@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.hosting.cdn.shared.confirmSettings', {
-    url: '/add-cache-rule',
+  $stateProvider.state('app.hosting.dashboard.cdn.shared.confirmSettings', {
+    url: '',
     views: {
       modal: {
         component: 'managerHostingSharedConfirmSettings',
@@ -8,21 +8,40 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     params: {
       model: null,
+      oldModel: null,
       rules: null,
-      success: null,
-      cancel: null,
     },
     layout: 'modal',
     resolve: {
+      applyChanges: /* @ngInject */ (
+        $q,
+        $transition$,
+        HostingCdnSharedService,
+      ) => (settings) =>
+        $q.all(
+          settings.map(({ name: settingName, ...settingProperties }) =>
+            HostingCdnSharedService.updateCDNDomainOption(
+              $transition$.params().productId,
+              $transition$.params().domainName,
+              settingName,
+              settingProperties,
+            ),
+          ),
+        ),
       goBack: /* @ngInject */ ($state) => () => $state.go('^'),
 
       model: /* @ngInject */ ($transition$) => $transition$.params().model,
 
+      oldModel: /* @ngInject */ ($transition$) =>
+        $transition$.params().oldModel,
+
+      refresh: /* @ngInject */ ($transition$, HostingCdnSharedService) => () =>
+        HostingCdnSharedService.appliedCdnSettings(
+          $transition$.params().productId,
+          $transition$.params().domainName,
+        ),
+
       rules: /* @ngInject */ ($transition$) => $transition$.params().rules,
-
-      success: /* @ngInject */ ($transition$) => $transition$.params().success,
-
-      cancel: /* @ngInject */ ($transition$) => $transition$.params().cancel,
     },
     atInternet: {
       rename: 'web::hosting::cdn::configure::apply-configuration',

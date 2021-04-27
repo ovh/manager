@@ -1,3 +1,36 @@
+## [15.21.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.21.0...@ovh-ux/manager-web@15.21.1) (2021-04-26)
+
+
+### Bug Fixes
+
+* **web.hosting:** fix range cdn format ([33523bc](https://github.com/ovh/manager/commit/33523bc7e2120454d52011255b7e2ed4e7b2a79b))
+* **web.hosting.cdn:** fix upgrade for legacy cdn ([065b0d9](https://github.com/ovh/manager/commit/065b0d91f7617863972d310169bf922106d9bf30))
+
+
+
+# [15.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.20.3...@ovh-ux/manager-web@15.21.0) (2021-04-26)
+
+
+### Bug Fixes
+
+* **hosting.cdn:** add missing breadcrumb translation ([2a0c30b](https://github.com/ovh/manager/commit/2a0c30bfc0e8a84b48bb43761882d915d85b8d21))
+* **i18n:** add missing translations [CDS 915] ([c0ca559](https://github.com/ovh/manager/commit/c0ca55916840c51fa7a89798007600ad61bc916e))
+* **i18n:** add missing translations [CDS 918] ([32967d6](https://github.com/ovh/manager/commit/32967d64b78b107202e03a01775474f5c0c0a8a2))
+* **web.hosting.cdn:** change cdn settings at validation time ([a719d31](https://github.com/ovh/manager/commit/a719d316009a85ac845ab89d8bf830b6d7e027aa))
+* **web.hosting.cdn:** fix state for cdn shared settings ([8a8e31e](https://github.com/ovh/manager/commit/8a8e31e68f4694b8df2694ad50aac23e18ab0886))
+
+
+### Features
+
+* **web.hosting.cdn:** allow upgrade of cdn basic ([f83be89](https://github.com/ovh/manager/commit/f83be89122e7fd29ae1ad600630b34cb74b53aab))
+* **web.hosting.cdn:** handle new security cdn plan code ([46ae736](https://github.com/ovh/manager/commit/46ae736ae4563b2056d8d4289eab2d6720a193ec))
+* **web.hosting.cdn:** move cdn actions to specific button and modal ([814b46c](https://github.com/ovh/manager/commit/814b46cda39706f2b94e9e5ad144b63d17394add))
+* **web.hosting.cdn:** update settings page for cdn security ([f14da1a](https://github.com/ovh/manager/commit/f14da1ad4bae1d7aa81066eedf19c9117f8c04ea))
+* **web.hosting.dashboard:** display current cdn option ([f91c696](https://github.com/ovh/manager/commit/f91c696611c5a25d14ff550e493a34ad592d29bf))
+* **web.hosting.multisite:** add statistics of domain ([52430f2](https://github.com/ovh/manager/commit/52430f2db30cf81d2afdb062581eff3199ee773a))
+
+
+
 ## [15.20.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.20.2...@ovh-ux/manager-web@15.20.3) (2021-04-21)
 
 

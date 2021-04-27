@@ -1,3 +1,36 @@
+## [5.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-product-offers@5.0.0...@ovh-ux/manager-product-offers@5.0.1) (2021-04-26)
+
+
+### Bug Fixes
+
+* **product-offers:** fix on get plancode ([543d6d9](https://github.com/ovh/manager/commit/543d6d9b752cf2e5ab46607687a897804fe57015))
+
+
+
+# [5.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-product-offers@4.0.7...@ovh-ux/manager-product-offers@5.0.0) (2021-04-26)
+
+
+### Bug Fixes
+
+* **product-offers:** use prorata date on services workflow ([6334d38](https://github.com/ovh/manager/commit/6334d38ccaa5e690848bd454a1218ff1b53ea481))
+* **product-offers:** use timeout for auto focus next step ([5a2944e](https://github.com/ovh/manager/commit/5a2944e229b46bf68e9c29320b0c698436de70aa))
+
+
+### Features
+
+* **product-offers:** add callback on steps submit ([ab42456](https://github.com/ovh/manager/commit/ab424566bfd43ad9848ad335a87a146d1649954e))
+* **product-offers:** allow display of current option price ([9b67cea](https://github.com/ovh/manager/commit/9b67cea1fb8d5e9284ac9ad5016b2190d2c23ea4))
+* **product-offers:** change service to handle upgrades ([77bdc97](https://github.com/ovh/manager/commit/77bdc9787f05eade80d41d5da6382ca5a11cfcd8))
+* **product-offers:** handle upgrades for services workflow type ([d7a404c](https://github.com/ovh/manager/commit/d7a404cdfe4ef1e31e4656966180341b83ed6946))
+
+
+### BREAKING CHANGES
+
+* **product-offers:** 1. the workflowOptions property 'detachPlancodes' becomes 'plancodes'. So all detach use of the component must change their property name to be set correctly.
+2. name of the services workflow validate result is renamed `result` (was `detachResult` before)
+
+
+
 ## [4.0.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-product-offers@4.0.6...@ovh-ux/manager-product-offers@4.0.7) (2021-03-02)
 
 

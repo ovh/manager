@@ -67,8 +67,17 @@ export default class OrderWorkflow extends Workflow {
    *  ];
    * @param {Object} WucOrderCartService Service to handle order cart
    */
-  constructor(locale, $q, $translate, workflowOptions, WucOrderCartService) {
+  /* @ngInject */
+  constructor(
+    locale,
+    $q,
+    $timeout,
+    $translate,
+    workflowOptions,
+    WucOrderCartService,
+  ) {
     super(locale, $q, $translate, workflowOptions);
+    this.$timeout = $timeout;
     this.WucOrderCartService = WucOrderCartService;
 
     if (!this.catalog) {
@@ -111,8 +120,13 @@ export default class OrderWorkflow extends Workflow {
     this.pricings = this.computePricing(catalogPricings);
 
     if (this.hasUniquePricing()) {
-      this.currentIndex += 1;
-      [this.pricing] = this.pricings;
+      this.$timeout(() => {
+        this.currentIndex += 1;
+        [this.pricing] = this.pricings;
+        if (typeof this.onPricingSubmit === 'function') {
+          this.onPricingSubmit(this.pricing);
+        }
+      });
     }
   }
 
