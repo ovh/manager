@@ -42,7 +42,6 @@ export default /* @ngInject */ ($stateProvider) => {
         $translate.instant('ovhManagerHostingDatabaseOrderPublic_title'),
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().productId,
-      user: /* @ngInject */ (coreConfig) => coreConfig.getUser(),
     },
   });
 };

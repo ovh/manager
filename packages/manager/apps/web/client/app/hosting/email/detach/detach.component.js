@@ -6,7 +6,6 @@ export default {
     goBack: '<',
     pricingType: '<',
     serviceName: '<',
-    user: '<',
     workflow: '<',
 
     onError: '<',

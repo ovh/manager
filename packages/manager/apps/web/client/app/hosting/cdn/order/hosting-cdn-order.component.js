@@ -7,7 +7,6 @@ export default {
   bindings: {
     availablePlans: '<',
     goBack: '<',
-    user: '<',
     hasCDN: '<',
     cdnCase: '<',
     isOptionFree: '<',

@@ -11,7 +11,6 @@ export default {
     goBack: '<',
     hosting: '<',
     serviceName: '<',
-    user: '<',
 
     onError: '<',
     onSuccess: '<',
