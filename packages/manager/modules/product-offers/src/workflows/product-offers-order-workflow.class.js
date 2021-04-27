@@ -12,6 +12,8 @@ import { CATALOG_ITEM_TYPE_NAMES } from './product-offers-workflow.constants';
  */
 export default class OrderWorkflow extends Workflow {
   /**
+   * @param {Object} $q              AngularJS provider
+   * @param {Object} $timeout        AngularJS provider
    * @param {Object} $translate      AngularJS provider
    * @param {Object} workflowOptions Specific options for this workflow,
    *  must contains the following values:
@@ -68,8 +70,7 @@ export default class OrderWorkflow extends Workflow {
    */
   /* @ngInject */
   constructor($q, $timeout, $translate, workflowOptions, WucOrderCartService) {
-    super($q, $translate, workflowOptions);
-    this.$timeout = $timeout;
+    super($q, $timeout, $translate, workflowOptions);
     this.WucOrderCartService = WucOrderCartService;
 
     if (!this.catalog) {
