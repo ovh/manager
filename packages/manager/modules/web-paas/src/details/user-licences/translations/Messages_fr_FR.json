@@ -4,7 +4,7 @@
   "web_paas_user_licences_customer_type": "Customer Type",
   "web_paas_user_licences_created_at": "Created At",
   "web_paas_user_licences_invite_user": "Invit user",
-  "web_paas_user_licences_heading": "User Licences",
+  "web_paas_user_licences_heading": "Gérer les utilisateurs",
   "web_paas_user_licences_range_text": "Range {{plan}} allows you to have {{maxUsers}} users",
   "web_paas_user_licences_users_listed": "Users listed",
   "web_paas_user_licences_more_users": "Si vous souhaitez plus d'utilisateurs, decouvrez l'",

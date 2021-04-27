@@ -1,8 +1,8 @@
 export default class {
   /* @ngInject */
-  constructor() {}
-
-  // $onInit() {
-  //   console.log(this.project);
-  // }
+  $onInit() {
+    this.alerts = {
+      licences: 'web_paas_licences_alert',
+    };
+  }
 }

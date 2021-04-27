@@ -1,0 +1,30 @@
+<form
+    id="userInvite"
+    name="userInvite"
+    data-ng-submit="$ctrl.invite()"
+    novalidate
+>
+    <oui-modal
+        data-primary-label="{{ ::'web_paas_user_licences_invite_user' | translate }}"
+        data-secondary-action="$ctrl.cancel()"
+        data-secondary-label="{{ ::'web_paas_common_cancel' | translate }}"
+        data-on-dismiss="$ctrl.cancel()"
+        data-heading="{{ ::'web_paas_user_licences_invite_user' | translate }}"
+        data-loading="$ctrl.isLoading"
+        data-primary-disabled="userInvite.$invalid"
+    >
+        <span
+            data-tranlsate="{{ ::'invite user description' | translate }}"
+        ></span>
+        <oui-field data-label="{{:: 'NIC' | translate }}">
+            <input
+                class="oui-input"
+                type="text"
+                name="accountName"
+                data-ng-model="$ctrl.accountName"
+                required
+                autofocus
+            />
+        </oui-field>
+    </oui-modal>
+</form>

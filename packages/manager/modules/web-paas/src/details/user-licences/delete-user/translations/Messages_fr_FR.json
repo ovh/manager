@@ -1,0 +1,6 @@
+{
+  "web_paas_user_licences_delete_heading": "Delete User",
+  "web_paas_user_licences_delete_description": "You will delete the user NIC {{ nic }} permanently",
+  "web_paas_user_licences_delete_user_success": "L'utilisateur a été supprimé du projet avec succès",
+  "web_paas_user_licences_delete_user_error": ""
+}

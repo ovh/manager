@@ -3,8 +3,10 @@ import template from './user-licences.html';
 
 const component = {
   bindings: {
+    deleteUser: '<',
     project: '<',
     projectId: '<',
+    inviteUser: '<',
     userList: '<',
   },
   controller,
