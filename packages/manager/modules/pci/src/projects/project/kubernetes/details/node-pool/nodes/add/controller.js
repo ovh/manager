@@ -127,7 +127,12 @@ export default class KubernetesNodesAddCtrl {
       this.projectId,
       this.kubeId,
       this.nodePoolId,
-      this.nodeCount + this.nodeAddCount,
+      {
+        desiredNodes: this.nodeCount + this.nodeAddCount,
+        autoscale: this.autoscaling.autoscale,
+        minNodes: this.autoscaling.nodes.lowest.value,
+        maxNodes: this.autoscaling.nodes.highest.value,
+      },
     )
       .then(() => {
         return this.nodeCount === 1
@@ -151,5 +156,10 @@ export default class KubernetesNodesAddCtrl {
   onAddNodeCancel() {
     this.sendKubeTrack('details::nodepools::details::nodes::add::cancel');
     this.goBack();
+  }
+
+  onNodePoolAutoscalingFocus() {
+    this.displayNodePoolSizing = true;
+    this.autoscaling.nodes.lowest.value = this.nodeAddCount;
   }
 }

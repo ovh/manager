@@ -4,6 +4,7 @@ import template from './template.html';
 const component = {
   bindings: {
     antiAffinityMaxNodes: '<',
+    autoscaling: '<',
     cancelLink: '<',
     goBack: '<',
     goToProjectQuota: '<',
