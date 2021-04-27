@@ -1,3 +1,12 @@
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-at-internet-configuration@1.1.7...@ovh-ux/manager-at-internet-configuration@1.2.0) (2021-04-27)
+
+
+### Features
+
+* **atinternet:** disable atinternet by default ([c684295](https://github.com/ovh/manager/commit/c684295e8e8ca659ec079f2e973ebc3d0e8fbc3a))
+
+
+
 ## [1.1.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-at-internet-configuration@1.1.6...@ovh-ux/manager-at-internet-configuration@1.1.7) (2021-04-08)
 
 

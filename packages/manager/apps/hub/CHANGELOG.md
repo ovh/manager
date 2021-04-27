@@ -1,3 +1,12 @@
+# [3.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.10.3...@ovh-ux/manager-hub-app@3.11.0) (2021-04-27)
+
+
+### Features
+
+* **cookie-banner:** add banner ([c70fd27](https://github.com/ovh/manager/commit/c70fd2754916b63dd4752ab011856d0a8bab3c4c))
+
+
+
 ## [3.10.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.10.2...@ovh-ux/manager-hub-app@3.10.3) (2021-04-08)
 
 

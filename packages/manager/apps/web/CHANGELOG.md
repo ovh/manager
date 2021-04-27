@@ -1,3 +1,12 @@
+# [15.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.21.1...@ovh-ux/manager-web@15.22.0) (2021-04-27)
+
+
+### Features
+
+* **cookie-policy:** add banner in main apps ([9ee06b9](https://github.com/ovh/manager/commit/9ee06b943e1be00de84f6ed495316a130ae6aa3e))
+
+
+
 ## [15.21.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@15.21.0...@ovh-ux/manager-web@15.21.1) (2021-04-26)
 
 

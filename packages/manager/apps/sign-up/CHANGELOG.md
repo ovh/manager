@@ -1,3 +1,12 @@
+# [2.2.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@2.1.7...@ovh-ux/sign-up-app@2.2.0) (2021-04-27)
+
+
+### Features
+
+* **cookie-banner:** add banner to signup ([49bd3cd](https://github.com/ovh/manager/commit/49bd3cd04cf185b1a4bf55d96da70a9a31bcc1b8))
+
+
+
 ## [2.1.7](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@2.1.6...@ovh-ux/sign-up-app@2.1.7) (2021-04-08)
 
 

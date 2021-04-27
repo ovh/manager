@@ -1,3 +1,12 @@
+# [13.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.16.2...@ovh-ux/manager-telecom@13.17.0) (2021-04-27)
+
+
+### Features
+
+* **cookie-policy:** add banner in main apps ([9ee06b9](https://github.com/ovh/manager/commit/9ee06b943e1be00de84f6ed495316a130ae6aa3e))
+
+
+
 ## [13.16.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.16.1...@ovh-ux/manager-telecom@13.16.2) (2021-04-21)
 
 
