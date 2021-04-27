@@ -9,6 +9,8 @@ export default /* @ngInject */ ($stateProvider) => {
         $transition$.params().duration,
       serviceId: /* @ngInject */ (serviceInfo) => serviceInfo.serviceId,
       me: /* @ngInject */ (connectedUser) => connectedUser,
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('vps_commitment'),
     },
   });
 };

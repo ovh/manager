@@ -43,6 +43,8 @@ export default /* @ngInject */ ($stateProvider) => {
         $http
           .get(`/services/${serviceId}`)
           .then(({ data }) => new Service(data)),
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('vps_resiliate'),
     },
   });
 };

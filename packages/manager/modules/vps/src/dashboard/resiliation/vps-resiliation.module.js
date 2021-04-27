@@ -9,6 +9,7 @@ const moduleName = 'ovhManagerVpsResiliation';
 
 angular
   .module(moduleName, ['ui.router', ngUiRouterLayout, ovhManagerBilling])
-  .config(routing);
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

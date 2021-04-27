@@ -6,6 +6,9 @@ import routing from './vps-commitment.routing';
 
 const moduleName = 'ovhManagerVpsCommitment';
 
-angular.module(moduleName, ['ui.router', ovhManagerBilling]).config(routing);
+angular
+  .module(moduleName, ['ui.router', ovhManagerBilling])
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
