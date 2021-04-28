@@ -35,6 +35,37 @@
         >
         </pci-project-versions-list>
     </oui-step-form>
+    <!-- private network -->
+    <oui-step-form
+        data-header="{{:: 'kubernetes_add_private_network' | translate }}"
+        data-editable="!$ctrl.isAdding"
+        data-on-focus="$ctrl.displaySelectedPrivateNetwork = true"
+        data-on-submit="$ctrl.displaySelectedPrivateNetwork = false"
+        name="kubernetes_add_private_network"
+    >
+        <oui-field
+            data-label="{{ :: 'kubernetes_add_private_network_label' | translate }}"
+        >
+            <oui-select
+                data-name="privateNetwork"
+                data-model="$ctrl.cluster.privateNetwork"
+                data-items="$ctrl.availablePrivateNetworks"
+                data-match="name"
+                data-searchable
+            >
+            </oui-select>
+            <p>
+                <span
+                    data-translate="kubernetes_add_private_network_description"
+                ></span>
+                <a
+                    data-ng-if="$ctrl.displaySelectedPrivateNetwork"
+                    data-ng-href="{{:: $ctrl.addPrivateNetworksLink }}"
+                    data-translate="kubernetes_add_private_network_add"
+                ></a>
+            </p>
+        </oui-field>
+    </oui-step-form>
 
     <!-- select node pool configuration -->
     <oui-step-form

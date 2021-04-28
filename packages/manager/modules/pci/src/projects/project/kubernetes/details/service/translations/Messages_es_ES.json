@@ -48,6 +48,7 @@
   "kube_service_cluster_status_SUSPENDED": "Suspendido",
   "kube_service_cluster_status_USER_ERROR": "En error",
   "kube_service_cluster_status_USER_QUOTA_ERROR": "Problema de cuota",
+  "kube_service_cluster_status_MAINTENANCE": "En mantenimiento",
   "kube_service_cluster_minor_update_available": "Hay disponible una actualización menor.",
   "kube_service_manage_title": "Gestión",
   "kube_service_common_edit_security_update_policy": "Editar la política de seguridad",
@@ -62,5 +63,6 @@
   "kube_service_restrictions_count": "{{ count }} rangos de IP",
   "kube_service_restrictions_one": "1 rango de IP",
   "kube_service_restrictions_edit": "Modificar las limitaciones",
-  "kube_service_cluster_status_MAINTENANCE": "En mantenimiento"
+  "kube_service_cluster_network_public": "Pública",
+  "kube_service_cluster_network_attached": "Red asociada"
 }

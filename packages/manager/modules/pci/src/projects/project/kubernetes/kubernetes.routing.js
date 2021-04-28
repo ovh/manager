@@ -76,7 +76,12 @@ export default /* @ngInject */ ($stateProvider) => {
           ),
 
       antiAffinityMaxNodes: /* @ngInject */ () => ANTI_AFFINITY_MAX_NODES,
-
+      addPrivateNetworksLink: /* @ngInject */ ($state, projectId) =>
+        $state.href('pci.projects.project.privateNetwork', {
+          projectId,
+        }),
+      privateNetworks: /* @ngInject */ (Kubernetes, projectId) =>
+        Kubernetes.getPrivateNetworks(projectId),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('kube_list_title'),
 
