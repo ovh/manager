@@ -1,3 +1,12 @@
+# [5.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.21.0...@ovh-ux/manager-pci@5.22.0) (2021-04-28)
+
+
+### Features
+
+* **kubernetes:** allow to select private network while creating cluster ([#4818](https://github.com/ovh/manager/issues/4818)) ([36c0ffd](https://github.com/ovh/manager/commit/36c0ffdcfbf84b039f86c0d5fc05dd0961b304b5))
+
+
+
 # [5.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.20.0...@ovh-ux/manager-pci@5.21.0) (2021-04-28)
 
 
