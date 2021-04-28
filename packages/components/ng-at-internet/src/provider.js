@@ -125,11 +125,12 @@ export default /* @ngInject */ function(AT_INTERNET_CUSTOM_VARS) {
     const trackQueue = [];
 
     // Reference to ATInternet JS lib
-    if ($window.ATInternet) {
+    if ($window.ATInternet && config.enabled) {
       try {
         atinternetTag = new $window.ATInternet.Tracker.Tag({
           ClientSideUserId: { clientSideMode: 'always' },
-          secure: true, // force HTTPS
+          secure: true, // force HTTPS,
+          disableCookie: !config.enabled,
         });
       } catch (err) {
         atinternetTag = null;
@@ -293,6 +294,13 @@ export default /* @ngInject */ function(AT_INTERNET_CUSTOM_VARS) {
       },
 
       getTag() {
+        if (!atinternetTag) {
+          atinternetTag = new $window.ATInternet.Tracker.Tag({
+            ClientSideUserId: { clientSideMode: 'always' },
+            secure: true, // force HTTPS,
+            disableCookie: !config.enabled,
+          });
+        }
         return atinternetTag;
       },
 
