@@ -712,8 +712,8 @@
                 <div class="section-group" data-ng-if="$ctrl.state.collapse">
                     <div class="section-item">
                         <telephony-number-ovh-pabx-tts-create
-                            data-on-tts-creation-cancel="$ctrl.onTtsCreationCancel"
-                            data-on-tts-creation-success="$ctrl.onTtsCreationSuccess"
+                            data-on-tts-creation-cancel="$ctrl.onTtsCreationCancel.bind($ctrl)"
+                            data-on-tts-creation-success="$ctrl.onTtsCreationSuccess.bind($ctrl)"
                         >
                         </telephony-number-ovh-pabx-tts-create>
                     </div>
