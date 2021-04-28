@@ -322,4 +322,57 @@ export default class DedicatedServerDashboard {
       type: 'navigation',
     });
   }
+
+  showSuccessMessage(message) {
+    this.Alerter.success(
+      this.$translate.instant(message, {
+        serverName: this.server.displayName,
+      }),
+      'server_dashboard_alert',
+    );
+  }
+
+  showErrorMessage(message, error) {
+    this.Alerter.error(
+      this.$translate.instant(message, {
+        serverName: this.server.displayName,
+      }),
+      error,
+      'server_dashboard_alert',
+    );
+  }
+
+  onChangeIntervention(noIntervention) {
+    const { monitored } = this.server;
+    this.updatingNoIntervention = true;
+    return this.Server.updateMonitoring(
+      this.serverName,
+      monitored,
+      noIntervention,
+    )
+      .then(() =>
+        noIntervention
+          ? this.showSuccessMessage(
+              'server_configuration_no_intervention_activate_success',
+            )
+          : this.showSuccessMessage(
+              'server_configuration_no_intervention_deactivate_success',
+            ),
+      )
+      .catch((err) => {
+        this.server.noIntervention = !noIntervention;
+        return noIntervention
+          ? this.showErrorMessage(
+              'server_configuration_no_intervention_activate_failed',
+              err,
+            )
+          : this.showErrorMessage(
+              'server_configuration_no_intervention_deactivate_failed',
+              err,
+            );
+      })
+      .finally(() => {
+        this.updatingNoIntervention = false;
+      });
+  }
 }

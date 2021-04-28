@@ -252,7 +252,7 @@ export default class ServerF {
     });
   }
 
-  updateMonitoring(serviceName, monitoring) {
+  updateMonitoring(serviceName, monitoring, noIntervention) {
     return this.OvhHttp.put('/dedicated/server/{serviceName}', {
       rootPath: 'apiv6',
       urlParams: {
@@ -260,8 +260,13 @@ export default class ServerF {
       },
       data: {
         monitoring,
+        noIntervention,
       },
       broadcast: 'dedicated.informations.reload',
+      broadcastParam: {
+        monitoring,
+        noIntervention,
+      },
     });
   }
 
