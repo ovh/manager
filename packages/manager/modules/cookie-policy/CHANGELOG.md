@@ -1,3 +1,12 @@
+## [1.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cookie-policy@1.0.0...@ovh-ux/manager-cookie-policy@1.0.1) (2021-04-28)
+
+
+### Bug Fixes
+
+* enforce cookie policy ([#4840](https://github.com/ovh/manager/issues/4840)) ([aaba4bb](https://github.com/ovh/manager/commit/aaba4bba6bc1f0ec900ec20f22c7ccb0f1f6dfae))
+
+
+
 # [1.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cookie-policy@0.0.0...@ovh-ux/manager-cookie-policy@1.0.0) (2021-04-27)
 
 
