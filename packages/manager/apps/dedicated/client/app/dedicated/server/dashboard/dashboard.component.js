@@ -37,6 +37,7 @@ export default {
     upgradeWithTicketAvailable: '<',
     resiliationCapability: '<',
     terminateLink: '<',
+    serverName: '<',
   },
   controller,
   template,
