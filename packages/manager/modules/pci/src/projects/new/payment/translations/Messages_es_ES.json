@@ -9,5 +9,8 @@
   "pci_project_new_payment_checkout_error": "Se ha producido un error al crear el proyecto de Public Cloud. Por favor, vuelva a intentarlo.",
   "pci_project_new_payment_challenge_error_payment_method_deactivated": "No ha sido posible verificar su forma de pago. Esta forma de pago se ha desactivado. Por favor, seleccione una nueva forma de pago para poder crear un nuevo proyecto.",
   "pci_project_new_payment_set_default_payment_method_error": "Se ha producido un error al actualizar su forma de pago por defecto.",
-  "pci_project_new_payment_information": "Información bancaria"
+  "pci_project_new_payment_information": "Información bancaria",
+  "pci_project_new_payment_pending_check": "Pendiente de validación de su forma de pago",
+  "pci_project_new_payment_check_error": "La verificación de su forma de pago en su entidad bancaria es excepcionalmente larga.",
+  "pci_project_new_payment_check_payment_method_status": "Consulte el estado en la lista de sus formas de pago y vuelva a crear su proyecto de Public Cloud una vez validada la forma de pago."
 }
