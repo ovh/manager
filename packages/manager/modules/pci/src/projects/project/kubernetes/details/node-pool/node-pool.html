@@ -143,10 +143,14 @@
             </span>
         </oui-datagrid-column>
         <oui-action-menu data-compact data-placement="end">
+            <oui-action-menu-item data-on-click="$ctrl.scaleNodePool($row.id, $row.name)"
+                                  data-disabled="!$row.isReady()">
+                <span data-translate="kube_node_pool_scale"></span>
+            </oui-action-menu-item>
             <oui-action-menu-item
                 data-ng-href="{{ ::$ctrl.getNodesStateHref($row.id) }}"
                 data-disabled="$row.isProcessing()"
-                ><span data-translate="kube_node_pool_edit"></span
+                ><span data-translate="kube_node_pool_nodes"></span
             ></oui-action-menu-item>
             <oui-action-menu-item
                 data-on-click="$ctrl.deleteNodePool($row.id, $row.name)"
