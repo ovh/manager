@@ -212,6 +212,10 @@ export default /* @ngInject */ ($stateProvider) => {
             data?.baremetalServers?.storage ? data?.baremetalServers : null,
           )
           .catch(() => null),
+      terminateLink: /* @ngInject */ ($state, serverName) =>
+        $state.href('app.dedicated-server.server.dashboard.terminate', {
+          productId: serverName,
+        }),
       trafficInformations: /* @ngInject */ (
         $q,
         $stateParams,
