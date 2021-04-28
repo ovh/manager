@@ -11,6 +11,7 @@ export default {
     user: '<',
     worldPart: '<',
     bringYourOwnImage: '<',
+    resiliationCapability: '<',
   },
   controller,
   template,
