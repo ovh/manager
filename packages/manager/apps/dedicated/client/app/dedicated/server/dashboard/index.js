@@ -15,6 +15,7 @@ import cancelResiliation from './cancel-resiliation';
 import resiliation from './resiliation';
 import professionalUse from './professional-use';
 import technicalDetails from './technical-details';
+import terminate from '../terminate/terminate.module';
 import upgradeRequest from './upgrade-request';
 
 import component from './dashboard.component';
@@ -38,6 +39,7 @@ angular
     ovhManagerBilling,
     resiliation,
     ovhManagerAdvices,
+    terminate,
   ])
   .component('dedicatedServerDashboard', component)
   .config(routing)

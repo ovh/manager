@@ -36,6 +36,8 @@ export default {
     isRamUpgradable: '<',
     isDataDiskUpgradable: '<',
     upgradeWithTicketAvailable: '<',
+    resiliationCapability: '<',
+    terminateLink: '<',
   },
   controller,
   template,

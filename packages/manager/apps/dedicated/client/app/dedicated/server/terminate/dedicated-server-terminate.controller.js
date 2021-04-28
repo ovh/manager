@@ -1,131 +1,131 @@
-import get from 'lodash/get';
 import pick from 'lodash/pick';
 import set from 'lodash/set';
 
-angular.module('App').controller(
-  'ServerTerminateCtrl',
-  class ServerTerminateCtrl {
-    constructor(
-      $q,
-      $scope,
-      $stateParams,
-      Alerter,
-      constants,
-      DedicatedServerFeatureAvailability,
-      Server,
-    ) {
-      this.$scope = $scope;
-      this.$stateParams = $stateParams;
-      this.constants = constants;
-      this.$q = $q;
-      this.Server = Server;
-      this.DedicatedServerFeatureAvailability = DedicatedServerFeatureAvailability;
-      this.Alerter = Alerter;
-    }
+export default class ServerTerminateCtrl {
+  /* @ngInject */
+  constructor(
+    $http,
+    $q,
+    $scope,
+    $stateParams,
+    $translate,
+    Alerter,
+    constants,
+    DedicatedServerFeatureAvailability,
+    Server,
+  ) {
+    this.$http = $http;
+    this.$scope = $scope;
+    this.$stateParams = $stateParams;
+    this.$translate = $translate;
+    this.constants = constants;
+    this.$q = $q;
+    this.Server = Server;
+    this.DedicatedServerFeatureAvailability = DedicatedServerFeatureAvailability;
+    this.Alerter = Alerter;
+  }
 
-    $onInit() {
-      this.$scope.loading = false;
-      this.$scope.server = this.$scope.currentActionData;
-      this.manualRefund = this.DedicatedServerFeatureAvailability.hasDedicatedServerManualRefund();
-      this.serviceInfos = get(this.$scope, 'serviceInfos', null);
-      this.cancelSubscriptionForm = {
-        cancelMethod: null,
-        isSubmiting: false,
-      };
-      this.$scope.submitCancelSubscription = this.submitCancelSubscription.bind(
-        this,
-      );
-    }
+  $onInit() {
+    this.manualRefund = this.DedicatedServerFeatureAvailability.hasDedicatedServerManualRefund();
+    this.cancelSubscriptionForm = {
+      cancelMethod: null,
+      isSubmiting: false,
+    };
+  }
 
-    /**
-     * Submit cancel subscription form.
-     * @return {Promise}
-     */
-    submitCancelSubscription() {
-      const serviceInfosRenew = pick(this.serviceInfos, 'renew');
+  /**
+   * Submit cancel subscription form.
+   * @return {Promise}
+   */
+  submitCancelSubscription() {
+    const serviceInfosRenew = pick(this.serviceInfos, 'renew');
 
-      let promise = this.$q.when(true);
-      switch (this.cancelSubscriptionForm.cancelMethod) {
-        case 'terminate':
-          promise = this.Server.terminate(this.$stateParams.productId)
-            .then(() =>
-              this.Alerter.success(
+    let promise = this.$q.when(true);
+    switch (this.cancelSubscriptionForm.cancelMethod) {
+      case 'terminate':
+        promise = (this.server.engagement
+          ? this.$http
+              .post(`/support/service/terminateSBG`, {
+                serviceId: this.server.serviceId,
+              })
+              .then(() =>
+                this.goBack(
+                  this.$translate.instant(
+                    'dedicated_server_terminate_success_engaged',
+                  ),
+                  'DONE',
+                ),
+              )
+          : this.Server.terminate(this.$stateParams.productId).then(() =>
+              this.goBack(
                 this.$translate.instant('server_close_service_success'),
-                'server_dashboard_alert',
+                'DONE',
               ),
             )
-            .catch((err) => {
-              this.Alerter.alertFromSWS(
-                this.$translate.instant('server_close_service_error'),
-                err,
-                'server_dashboard_alert',
-              );
-              return this.$q.reject(err);
-            });
-          break;
-        case 'deleteAtExpiration':
-          set(serviceInfosRenew, 'renew.automatic', true);
-          set(serviceInfosRenew, 'renew.deleteAtExpiration', true);
+        ).catch((err) => {
+          return this.goBack(
+            `${this.$translate.instant('server_close_service_error')} ${err.data
+              ?.message || err.message}`,
+            'error',
+          );
+        });
+        break;
+      case 'deleteAtExpiration':
+        set(serviceInfosRenew, 'renew.automatic', true);
+        set(serviceInfosRenew, 'renew.deleteAtExpiration', true);
 
-          promise = this.Server.updateServiceInfos(
-            this.$stateParams.productId,
-            serviceInfosRenew,
+        promise = this.Server.updateServiceInfos(
+          this.$stateParams.productId,
+          serviceInfosRenew,
+        )
+          .then(() =>
+            this.goBack(
+              this.$translate.instant(
+                'server_close_service_delete_at_expiration_activate_success',
+              ),
+              'DONE',
+            ),
           )
-            .then(() =>
-              this.Alerter.success(
-                this.$translate.instant(
-                  'server_close_service_delete_at_expiration_activate_success',
-                ),
-                'server_dashboard_alert',
-              ),
-            )
-            .catch((err) => {
-              this.Alerter.alertFromSWS(
-                this.$translate.instant(
-                  'server_close_service_delete_at_expiration_activate_error',
-                ),
-                err,
-                'server_dashboard_alert',
-              );
-              return this.$q.reject(err);
-            });
-          break;
-        case 'cancel':
-          set(serviceInfosRenew, 'renew.automatic', true);
-          set(serviceInfosRenew, 'renew.deleteAtExpiration', false);
+          .catch((err) => {
+            this.goBack(
+              `${this.$translate.instant(
+                'server_close_service_delete_at_expiration_activate_error',
+              )} ${err.data?.message || err.message}`,
+              'error',
+            );
+            return this.$q.reject(err);
+          });
+        break;
+      case 'cancel':
+        set(serviceInfosRenew, 'renew.automatic', true);
+        set(serviceInfosRenew, 'renew.deleteAtExpiration', false);
 
-          promise = this.Server.updateServiceInfos(
-            this.$stateParams.productId,
-            serviceInfosRenew,
+        promise = this.Server.updateServiceInfos(
+          this.$stateParams.productId,
+          serviceInfosRenew,
+        )
+          .then(() =>
+            this.goBack(
+              this.$translate.instant('server_close_service_cancel_success'),
+              'DONE',
+            ),
           )
-            .then(() =>
-              this.Alerter.success(
-                this.$translate.instant('server_close_service_cancel_success'),
-                'server_dashboard_alert',
-              ),
-            )
-            .catch((err) => {
-              this.Alerter.alertFromSWS(
-                this.$translate.instant('server_close_service_cancel_error'),
-                err,
-                'server_dashboard_alert',
-              );
-              return this.$q.reject(err);
-            });
-          break;
-        default:
-          break;
-      }
-
-      this.cancelSubscriptionForm.isSubmiting = true;
-      return promise.finally(() => {
-        this.cancelSubscriptionForm.isSubmiting = false;
-        this.resetAction();
-      });
+          .catch((err) =>
+            this.goBack(
+              `${this.$translate.instant(
+                'server_close_service_cancel_error',
+              )} ${err.data?.message || err.message}`,
+              'error',
+            ),
+          );
+        break;
+      default:
+        break;
     }
 
-    resetAction() {
-      this.$scope.resetAction();
-    }
-  },
-);
+    this.cancelSubscriptionForm.isSubmiting = true;
+    return promise.finally(() => {
+      this.cancelSubscriptionForm.isSubmiting = false;
+    });
+  }
+}

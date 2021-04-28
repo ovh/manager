@@ -340,8 +340,8 @@
                                     ></span>
                                 </oui-action-menu-item>
                                 <oui-action-menu-item
-                                    data-ng-click="$ctrl.dedicatedServer.$scope.setAction('terminate/dedicated-server-terminate', $ctrl.server)"
-                                    data-ng-if="!$ctrl.server.isExpired && !$ctrl.server.engagement"
+                                    data-ng-href="{{:: $ctrl.terminateLink }}"
+                                    data-ng-if="(!$ctrl.server.isExpired && !$ctrl.server.engagement) || $ctrl.resiliationCapability.message"
                                 >
                                     <span
                                         data-translate="server_close_service"

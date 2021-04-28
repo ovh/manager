@@ -10,6 +10,13 @@ export default /* @ngInject */ ($stateProvider) => {
     reloadOnSearch: false,
     redirectTo: 'app.dedicated-server.server.dashboard',
     resolve: {
+      resiliationCapability: /* @ngInject */ ($http, serverName) =>
+        $http
+          .get(`/incident/resiliation/${serverName}`, {
+            serviceType: 'aapi',
+          })
+          .then(({ data }) => data)
+          .catch(() => null),
       currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
         $state.href($state.current.name, $transition$.params()),
       isLegacy: /* @ngInject */ (server) =>
@@ -32,8 +39,18 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
       serverName: /* @ngInject */ ($transition$) =>
         $transition$.params().productId,
-      serviceInfos: /* @ngInject */ ($stateParams, Server) =>
-        Server.getServiceInfos($stateParams.productId),
+      serviceInfos: /* @ngInject */ (
+        $stateParams,
+        resiliationCapability,
+        Server,
+      ) =>
+        Server.getServiceInfos($stateParams.productId).then((serviceInfo) => ({
+          ...serviceInfo,
+          status: resiliationCapability.billingInformation
+            ? 'FORCED_MANUAL'
+            : serviceInfo.status,
+          statusHelp: resiliationCapability.billingInformation || null,
+        })),
       specifications: /* @ngInject */ (serverName, Server) =>
         Server.getBandwidth(serverName),
       user: /* @ngInject */ (currentUser) => currentUser,

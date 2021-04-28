@@ -82,6 +82,14 @@
 </header>
 
 <div>
+    <oui-message
+        data-ng-if="$ctrl.resiliationCapability.message"
+        type="info"
+        class="mb-3"
+        dismissable
+    >
+        <span data-ng-bind-html="$ctrl.resiliationCapability.message"></span>
+    </oui-message>
     <ovh-manager-incident-banner service-name="$ctrl.server.name">
     </ovh-manager-incident-banner>
     <div
