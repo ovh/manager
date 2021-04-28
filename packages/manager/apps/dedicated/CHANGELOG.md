@@ -1,3 +1,12 @@
+# [16.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.20.0...@ovh-ux/manager-dedicated@16.21.0) (2021-04-28)
+
+
+### Features
+
+* update resiliation process ([#4837](https://github.com/ovh/manager/issues/4837)) ([7449bd0](https://github.com/ovh/manager/commit/7449bd0ea3382f8beb2b74d787f853103e6b2dd9))
+
+
+
 # [16.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.19.1...@ovh-ux/manager-dedicated@16.20.0) (2021-04-27)
 
 
