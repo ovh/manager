@@ -1,3 +1,12 @@
+## [5.6.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet@5.6.0...@ovh-ux/ng-at-internet@5.6.1) (2021-04-28)
+
+
+### Bug Fixes
+
+* optimize cookie policy ([#4845](https://github.com/ovh/manager/issues/4845)) ([c6edceb](https://github.com/ovh/manager/commit/c6edceb22689c6837d25c08f0e62cc4ae0d79ce4))
+
+
+
 # [5.6.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet@5.5.0...@ovh-ux/ng-at-internet@5.6.0) (2021-04-27)
 
 
