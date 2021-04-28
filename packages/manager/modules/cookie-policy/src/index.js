@@ -22,10 +22,15 @@ angular
   ])
   .service('cookiePolicy', service)
   .run(
-    /* @ngInject */ ($uibModal, cookiePolicy) => {
+    /* @ngInject */ ($uibModal, $cookies, cookiePolicy) => {
       cookiePolicy.checkConsent();
 
       if (cookiePolicy.shouldAskConsent()) {
+        const atidvisitor = $cookies.get('atidvisitor');
+        const atuserid = $cookies.get('atuserid');
+        $cookies.remove('atidvisitor');
+        $cookies.remove('atuserid');
+
         $uibModal
           .open({
             template,
@@ -38,6 +43,11 @@ angular
             windowClass: 'manager-cookie-policy-banner',
           })
           .result.then((consent) => {
+            if (consent && atidvisitor && atuserid) {
+              $cookies.put('atidvisitor', atidvisitor);
+              $cookies.put('atuserid', atuserid);
+            }
+
             cookiePolicy.consent(consent);
           });
       }
