@@ -11,5 +11,6 @@
   "pci_projects_status_suspended": "Geschlossen",
   "pci_projects_status_pendingDebt": "Zu begleichende Rechnung",
   "pci_projects_project_pay_bill": "Meine Rechnung begleichen",
-  "pci_projects_project_view": "Projekt anzeigen"
+  "pci_projects_project_view": "Projekt anzeigen",
+  "pci_projects_create_project": "Neues Projekt erstellen"
 }

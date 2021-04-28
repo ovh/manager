@@ -1,3 +1,18 @@
+# [5.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.20.0...@ovh-ux/manager-pci@5.21.0) (2021-04-28)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 922] ([d4f2113](https://github.com/ovh/manager/commit/d4f2113cc9ca82b14ee25d5a328ecf7c3f4b0e93))
+* **pci:** cosmetic changes and links ([de0cb3a](https://github.com/ovh/manager/commit/de0cb3a2ddedc6bbb97fead0c1dd0db0c45e3f6c)), closes [#MANAGER-4766](https://github.com/ovh/manager/issues/MANAGER-4766)
+
+
+### Features
+
+* **project:** details why project is not available anymore ([b775b31](https://github.com/ovh/manager/commit/b775b3139b3629b12a8f729532a31142e7a9754b))
+
+
+
 # [5.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.19.1...@ovh-ux/manager-pci@5.20.0) (2021-04-21)
 
 

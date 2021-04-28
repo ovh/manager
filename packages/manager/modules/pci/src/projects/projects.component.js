@@ -3,8 +3,9 @@ import template from './projects.html';
 
 export default {
   bindings: {
+    billingUrl: '@',
     confirmDeletion: '<',
-    getProject: '<',
+    goToNewProject: '<',
     goToProject: '<',
     goToProjects: '<',
     isHdsAvailable: '<',

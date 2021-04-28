@@ -23,7 +23,6 @@ export default class ProjectController {
     this.$uibModal = $uibModal;
     this.atInternet = atInternet;
     this.OvhApiCloudProject = OvhApiCloudProject;
-    this.loading = false;
     this.region = coreConfig.getRegion();
 
     const filterByRegion = (list) =>
@@ -37,7 +36,6 @@ export default class ProjectController {
 
   $onInit() {
     this.isSidebarOpen = false;
-    this.loading = true;
 
     this.$scope.$on('sidebar:open', () => {
       this.isSidebarOpen = true;
@@ -47,17 +45,6 @@ export default class ProjectController {
     this.projectQuotaAboveThreshold = this.quotas.find(
       (quota) => quota.quotaAboveThreshold,
     );
-
-    return this.OvhApiCloudProject.v6()
-      .get({
-        serviceName: this.$stateParams.projectId,
-      })
-      .$promise.then((project) => {
-        this.project = project;
-      })
-      .finally(() => {
-        this.loading = false;
-      });
   }
 
   closeSidebar() {

@@ -1,3 +1,12 @@
+# [4.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.13.0...@ovh-ux/manager-public-cloud@4.14.0) (2021-04-28)
+
+
+### Features
+
+* **project:** details why project is not available anymore ([b775b31](https://github.com/ovh/manager/commit/b775b3139b3629b12a8f729532a31142e7a9754b))
+
+
+
 # [4.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.12.1...@ovh-ux/manager-public-cloud@4.13.0) (2021-04-27)
 
 

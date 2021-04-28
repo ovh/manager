@@ -1,13 +1,16 @@
 import map from 'lodash/map';
 
-import Quota from './quota.class';
 import { DEFAULT_PROJECT_KEY } from './projects.constant';
+import Project from './Project.class';
+import Quota from './quota.class';
 
 export default class {
   /* @ngInject */
-  constructor(ovhUserPref, OvhApiCloudProjectQuota) {
+  constructor($q, ovhUserPref, OvhApiCloudProjectQuota, publicCloud) {
+    this.$q = $q;
     this.ovhUserPref = ovhUserPref;
     this.OvhApiCloudProjectQuota = OvhApiCloudProjectQuota;
+    this.publicCloud = publicCloud;
   }
 
   getDefaultProject() {
@@ -17,6 +20,32 @@ export default class {
       }
       throw err;
     });
+  }
+
+  getProjects(filters = [], sort = 'description', sortOrder = 'asc') {
+    return this.$q
+      .all([
+        this.publicCloud.getProjects(filters, sort, sortOrder),
+        this.publicCloud.getServices([
+          {
+            field: 'route.path',
+            comparator: 'eq',
+            reference: '/cloud/project/{serviceName}',
+          },
+        ]),
+      ])
+      .then(([projects, services]) =>
+        map(
+          projects,
+          (project) =>
+            new Project({
+              ...project,
+              service: services.find(
+                (service) => project.project_id === service.resource.name,
+              ),
+            }),
+        ),
+      );
   }
 
   setAsDefaultProject(projectId) {

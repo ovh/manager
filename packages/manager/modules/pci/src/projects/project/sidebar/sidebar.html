@@ -208,7 +208,11 @@
             ></h2>
         </div>
     </div>
-    <cloud-sidebar-project-list></cloud-sidebar-project-list>
+    <cloud-sidebar-project-list
+        go-to-project="$ctrl.goToProject"
+        go-to-projects="$ctrl.goToProjects"
+        go-to-project-inactive="$ctrl.goToProjectInactive"
+    ></cloud-sidebar-project-list>
 </div>
 <div
     class="oui-navbar-backdrop"

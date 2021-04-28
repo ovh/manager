@@ -1,11 +1,12 @@
 <div data-ng-if="!$ctrl.isLoadingTranslations">
     <a
-        class="oui-button oui-button_secondary"
+        class="oui-button oui-button_primary"
         data-ui-sref="pci.projects.new"
         data-track-on="click"
         data-track-name="PCI_PROJECTS_SIDEBAR_NEW_PROJECT"
         data-track-type="navigation"
     >
+        <span class="oui-icon oui-icon-add" aria-hidden="true"></span>
         <span data-translate="cloud_sidebar_projectlist_create_project"></span>
     </a>
     <div data-ng-if="$ctrl.isLoading" class="d-flex mt-4">
@@ -41,6 +42,15 @@
                 class="text-white"
                 data-translate="cloud_sidebar_projectlist_title"
             ></h4>
+            <button
+                type="button"
+                class="oui-button oui-button_secondary mb-3"
+                data-ng-click="$ctrl.goToProjects()"
+            >
+                <span
+                    data-translate="cloud_sidebar_projectlist_view_all_projects"
+                ></span>
+            </button>
             <oui-search
                 data-model="$ctrl.searchText"
                 placeholder="{{:: 'cloud_sidebar_projectlist_title_search' | translate }}"
@@ -50,13 +60,19 @@
                     data-ng-repeat="project in $ctrl.projects | filter:$ctrl.searchText track by $index"
                 >
                     <a
-                        ui-sref="pci.projects.project({ projectId: project.project_id })"
+                        data-ng-click="$ctrl.goToProjectDetails(project)"
                         class="d-flex text-white"
                     >
                         <span
                             class="text-truncate"
                             data-ng-bind="project.description"
                         ></span>
+                        <span
+                            data-ng-if="project.isSuspended() || project.hasPendingDebt()"
+                            class="oui-icon project-warning-icon oui-icon-warning-circle"
+                            aria-hidden="true"
+                        >
+                        </span>
                         <span
                             class="text-white ml-auto my-auto oui-icon oui-icon-chevron-right"
                             style="font-size: 0.8rem;"
