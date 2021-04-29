@@ -4,7 +4,7 @@
   "manager_hub_incident_status_service_type": "Typ usługi",
   "manager_hub_incident_status_service_status": "Status",
   "manager_hub_incident_status_service_rack": "Szafa",
-  "manager_hub_incident_status_service_backup": "Backup",
+  "manager_hub_incident_status_service_backup": "Partial snapshot",
   "manager_hub_incident_status_service_backup_download": "Download",
   "manager_hub_incident_status_service_status_RECOVERABLE": "Odzyskanie usługi możliwe",
   "manager_hub_incident_status_service_status_NON_RECOVERABLE": "Odzyskanie usługi niemożliwe",

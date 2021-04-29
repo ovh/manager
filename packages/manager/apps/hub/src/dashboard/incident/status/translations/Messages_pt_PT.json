@@ -4,7 +4,7 @@
   "manager_hub_incident_status_service_type": "Tipo de serviço",
   "manager_hub_incident_status_service_status": "Estado",
   "manager_hub_incident_status_service_rack": "Rack",
-  "manager_hub_incident_status_service_backup": "Backup",
+  "manager_hub_incident_status_service_backup": "Partial snapshot",
   "manager_hub_incident_status_service_backup_download": "Download",
   "manager_hub_incident_status_service_status_RECOVERABLE": "Recuperável",
   "manager_hub_incident_status_service_status_NON_RECOVERABLE": "Não recuperável",
