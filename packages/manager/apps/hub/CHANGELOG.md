@@ -1,3 +1,12 @@
+# [3.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.11.0...@ovh-ux/manager-hub-app@3.12.0) (2021-04-29)
+
+
+### Features
+
+* **incident:** add vps backup download link ([#4850](https://github.com/ovh/manager/issues/4850)) ([ef4a985](https://github.com/ovh/manager/commit/ef4a9853fbb7f231c4bfd05def844948d8a311d7))
+
+
+
 # [3.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.10.3...@ovh-ux/manager-hub-app@3.11.0) (2021-04-27)
 
 
