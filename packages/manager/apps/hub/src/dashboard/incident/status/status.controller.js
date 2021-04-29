@@ -43,6 +43,12 @@ export default class StatusController {
           this.services.length > 0 &&
           !Object.keys(this.services[0]).includes('rack'),
       },
+      {
+        name: 'backupUrl',
+        hidden:
+          this.services.length > 0 &&
+          !this.services.some(({ backupUrl }) => !!backupUrl),
+      },
     ];
   }
 }

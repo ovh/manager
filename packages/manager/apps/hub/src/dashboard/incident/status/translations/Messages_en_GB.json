@@ -4,6 +4,8 @@
   "manager_hub_incident_status_service_type": "Type of service",
   "manager_hub_incident_status_service_status": "Status",
   "manager_hub_incident_status_service_rack": "Rack",
+  "manager_hub_incident_status_service_backup": "Backup",
+  "manager_hub_incident_status_service_backup_download": "Download",
   "manager_hub_incident_status_service_status_RECOVERABLE": "Recoverable",
   "manager_hub_incident_status_service_status_NON_RECOVERABLE": "Non-recoverable",
   "manager_hub_incident_status_service_status_TO_ASSESS": "Under investigation",
