@@ -12,6 +12,7 @@ export default class OverTheBoxDetailsCtrl {
     $filter,
     $translate,
     $q,
+    coreConfig,
     OVER_THE_BOX,
     OVERTHEBOX_DETAILS,
     OvhApiOverTheBox,
@@ -24,6 +25,7 @@ export default class OverTheBoxDetailsCtrl {
     this.$filter = $filter;
     this.$translate = $translate;
     this.$q = $q;
+    this.coreConfig = coreConfig;
     this.OVER_THE_BOX = OVER_THE_BOX;
     this.OVERTHEBOX_DETAILS = OVERTHEBOX_DETAILS;
     this.OvhApiOverTheBox = OvhApiOverTheBox;
@@ -52,6 +54,10 @@ export default class OverTheBoxDetailsCtrl {
     this.deviceIds = [];
     this.allDevices = [];
     this.device = null;
+
+    // Retrieve user language to get guides link by language
+    this.language = this.coreConfig.getUserLanguage();
+    this.guidesLink = this.OVERTHEBOX_DETAILS.guidesUrl[this.language];
 
     this.$q
       .all([
