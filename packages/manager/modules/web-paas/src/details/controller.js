@@ -1,4 +1,4 @@
-export default class WebPaasProjectCtrl {
+export default class {
   /* @ngInject */
   $onInit() {
     this.alerts = {

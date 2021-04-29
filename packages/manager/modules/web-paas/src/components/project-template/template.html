@@ -1,8 +1,28 @@
 <p data-translate="web_paas_project_template_choose"></p>
+
 <div class="row mb-3">
+    <div class="col-md-12 d-flex">
+        <p
+            data-translate="web_paas_project_template_count"
+            data-translate-values="{ count: $ctrl.originalList.length }"
+        ></p>
+        <div class="ml-auto">
+            <oui-search
+                model="$ctrl.searchText"
+                on-change="$ctrl.onChangeSearch(modelValue)"
+            >
+            </oui-search>
+        </div>
+        <!-- <oui-criteria
+            model="$ctrl.templates"
+            on-change="$ctrl.onChange(modelValue)"
+            properties="$ctrl.properties"
+            searchable=true>
+        </oui-criteria> -->
+    </div>
     <oui-select-picker
         class="col-md-4 mb-3"
-        data-ng-repeat="template in $ctrl.templates track by template.name"
+        data-ng-repeat="template in $ctrl.templates | filter:$ctrl.searchText track by template.name"
         name="template"
         data-model="$ctrl.selectedType"
         data-label="{{ template.name }}"

@@ -8,5 +8,6 @@
   "web_paas_user_licences_range_text": "Range {{plan}} allows you to have {{maxUsers}} users",
   "web_paas_user_licences_users_listed": "Users listed",
   "web_paas_user_licences_more_users": "Si vous souhaitez plus d'utilisateurs, decouvrez l'",
-  "web_paas_user_licences_more_users_link": "offre Large Team"
+  "web_paas_user_licences_more_users_link": "offre Large Team",
+  "web_paas_user_licences_used": "{{ numLicenceAvailable }}/{{ totalLicence }} Licences utilisées"
 }

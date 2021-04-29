@@ -1,0 +1,4 @@
+{
+  "web_paas_service_add_storage_title": "Augmentez votre stockage",
+  "web_paas_service_add_storage_description": "Vous possédez actuellement {{ storage }} Go de stockage additionnel.  Le prix de votre stockage est lié au nombre de vos environnements."
+}

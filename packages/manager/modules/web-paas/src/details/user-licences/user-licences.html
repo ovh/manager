@@ -8,7 +8,14 @@
            maxUsers: $ctrl.project.availableUserLicenses(),
         }"
     ></p>
-    <span data-translate="5/5 licences used"></span>
+    <p
+        class="oui-badge"
+        data-ng-class="{
+                    'oui-badge_success' : $ctrl.project.availableUserLicenses() < $ctrl.project.totalLicences(),
+                    'oui-badge_error' : $ctrl.project.availableUserLicenses() === $ctrl.project.totalLicences(),
+                    }"
+        data-translate="{{:: 'web_paas_user_licences_used' | translate: { totalLicence: $ctrl.project.totalLicences(), numLicenceAvailable: $ctrl.project.availableUserLicenses() } }}"
+    ></p>
     <oui-message type="info">
         <span data-translate="web_paas_user_licences_more_users"></span>
         <a href="{{orderURL}}">
@@ -40,7 +47,11 @@
         data-searchable
         data-filterable
     ></oui-datagrid-column>
-    <oui-action-menu data-compact data-placement="end">
+    <oui-action-menu
+        data-compact
+        data-placement="end"
+        data-ng-if="$row.customerType !== 'OWNER'"
+    >
         <oui-action-menu-item data-on-click="$ctrl.deleteUser($row)">
             <span data-translate="web_paas_common_terminate"></span>
         </oui-action-menu-item>

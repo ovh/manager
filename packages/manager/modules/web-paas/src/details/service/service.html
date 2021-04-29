@@ -1,8 +1,8 @@
 <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
 <div class="row d-lg-flex">
-    <div class="col-md-4">
+    <div class="col-md-4 h-100">
         <oui-tile
-            data-heading="{{ ::'web_paas_service_project_manage_title' | translate }}"
+            data-heading="{{:: 'web_paas_service_project_information' | translate }}"
         >
             <oui-tile-button
                 data-on-click="$ctrl.openPartnerConsole($ctrl.project)"
@@ -11,21 +11,6 @@
             >
                 <span data-translate="web_paas_service_project_access"></span>
             </oui-tile-button>
-            <oui-tile-button data-on-click="$ctrl.createProject()">
-                <span data-translate="web_paas_service_project_new"></span>
-            </oui-tile-button>
-            <oui-tile-button
-                data-on-click="$ctrl.terminateProject()"
-                data-disabled="!$ctrl.project.isActive()"
-            >
-                <span data-translate="web_paas_service_project_cancel"></span>
-            </oui-tile-button>
-        </oui-tile>
-    </div>
-    <div class="col-md-4 h-100">
-        <oui-tile
-            data-heading="{{:: 'web_paas_service_project_information' | translate }}"
-        >
             <oui-tile-definition
                 data-term="{{:: 'web_paas_service_project_name' | translate }}"
             >
@@ -61,7 +46,7 @@
                 data-description="{{:: $ctrl.project.offer }}"
             >
             </oui-tile-definition>
-            <oui-tile-button disabled="true">
+            <oui-tile-button>
                 <span data-translate="web_paas_service_project_upgrade"></span>
             </oui-tile-button>
             <oui-tile-definition
@@ -74,23 +59,157 @@
         <oui-tile
             data-heading="{{:: 'web_paas_service_project_configuration' | translate }}"
         >
-            <oui-tile-definition data-term="1 vCPU"> </oui-tile-definition>
             <oui-tile-definition
-                data-term="{{:: 'web_paas_service_project_storage' | translate: { storageSize: 5 } }}"
+                data-term="{{:: 'web_paas_service_project_environment' | translate }}"
+                data-description="{{:: $ctrl.project.selectedPlan.vcpuConfig }}"
+            ></oui-tile-definition>
+            <oui-tile-button data-on-click="$ctrl.goToEditPlan()">
+                <span
+                    data-translate="web_paas_service_project_cpu_upgrade"
+                ></span>
+            </oui-tile-button>
+            <oui-tile-definition
+                data-term="{{:: 'web_paas_service_project_storage_title' | translate }}"
+                data-description="{{:: 'web_paas_service_project_storage' | translate: { storageSize: $ctrl.project.totalStorage() } }}"
             >
             </oui-tile-definition>
+            <oui-tile-button data-on-click="$ctrl.goToAddStorage()">
+                <span
+                    data-translate="web_paas_service_project_storage_upgrade"
+                ></span>
+            </oui-tile-button>
             <oui-tile-definition
-                data-term="{{:: 'web_paas_service_project_user_licence' | translate: { numLicence: 1} }}"
-                data-description="{{:: $ctrl.project.metadata.project.region }}"
+                data-term="{{:: 'web_paas_service_project_user_licences_title' | translate }}"
+            >
+                <oui-tile-description>
+                    <oui-tile-description>
+                        <span
+                            class="oui-badge"
+                            data-ng-class="{
+                                        'oui-badge_success' : $ctrl.project.availableUserLicenses() < $ctrl.project.totalLicences(),
+                                        'oui-badge_error' : $ctrl.project.availableUserLicenses() === $ctrl.project.totalLicences(),
+                                        }"
+                            data-translate="{{:: 'web_paas_service_project_user_licence' | translate: { totalLicence: $ctrl.project.totalLicences(), numLicenceAvailable: $ctrl.project.availableUserLicenses() } }}"
+                        >
+                        </span>
+                    </oui-tile-description>
+                </oui-tile-description>
+            </oui-tile-definition>
+            <oui-tile-button disabled="true">
+                <span
+                    data-translate="web_paas_service_project_licences_upgrade"
+                ></span>
+            </oui-tile-button>
+            <oui-tile-definition
+                data-term="{{:: 'web_paas_service_project_additional_environment_title' | translate }}"
             >
                 <oui-tile-description>
                     <span
-                        data-translate="web_paas_service_project_user_licence_available"
-                        data-translate-values="{ numLicenceAvailable: 0 }"
-                    >
-                    </span>
+                        data-ng-if="$ctrl.project.availableEnvironments() === 0"
+                        data-translate="web_paas_service_project_additional_environment_none"
+                    ></span>
+                    <span
+                        data-ng-if="$ctrl.project.availableEnvironments() > 0"
+                        data-ng-bind="$ctrl.project.availableEnvironments()"
+                    ></span>
                 </oui-tile-description>
             </oui-tile-definition>
+            <oui-tile-button disabled="true">
+                <span
+                    data-translate="web_paas_service_project_environment_upgrade"
+                ></span>
+            </oui-tile-button>
+        </oui-tile>
+    </div>
+    <div class="col-md-4 h-100">
+        <oui-tile
+            data-heading="{{ ::'web_paas_tile_subscription' | translate }}"
+            data-loading="$ctrl.loading.plan"
+            class="oui-tile-h-100 h-100 mt-3"
+        >
+            <oui-tile-definition data-ng-if="$ctrl.loading.plan">
+                <oui-tile-description>
+                    <oui-skeleton data-randomized></oui-skeleton>
+                    <oui-skeleton data-randomized></oui-skeleton>
+                    <oui-skeleton data-randomized></oui-skeleton>
+                    <oui-skeleton data-randomized></oui-skeleton>
+                    <oui-skeleton data-randomized></oui-skeleton>
+                    <oui-skeleton data-randomized></oui-skeleton>
+                    <oui-skeleton data-randomized></oui-skeleton>
+                </oui-tile-description>
+            </oui-tile-definition>
+            <div data-ng-if="!$ctrl.loading.serviceInfo">
+                <oui-tile-definition
+                    data-ng-if="$ctrl.serviceInfo.offer"
+                    data-term="{{ ::'web_paas_tile_subscription_offer' | translate }}"
+                    data-description="{{ ::$ctrl.serviceInfo.offer }}"
+                >
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{($ctrl.serviceInfo.renew.forced || $ctrl.serviceInfo.renew.automatic) ? 'web_paas_tile_subscription_autorenew' : 'web_paas_expiry_date' | translate}}"
+                    data-description="{{ ::$ctrl.serviceInfo.expiration | cucMomentFormat:'LL' }}"
+                >
+                    <oui-action-menu
+                        data-compact
+                        data-disabled="!$ctrl.project.isActive()"
+                        data-placement="end"
+                    >
+                        <oui-action-menu-item
+                            data-href="{{ ::$ctrl.actions.autorenew.href }}"
+                            data-external
+                            ><span data-translate="Managing service"></span>
+                        </oui-action-menu-item>
+                        <oui-action-menu-item
+                            data-href="{{ ::$ctrl.actions.autorenew.href }}"
+                            data-external
+                            ><span data-translate="Pay billing"></span>
+                        </oui-action-menu-item>
+                        <oui-action-menu-item
+                            data-on-click="$ctrl.terminateProject()"
+                            ><span
+                                data-translate="web_paas_service_project_cancel"
+                            ></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{::'web_paas_tile_subscription_contact' | translate}}"
+                >
+                    <oui-tile-description>
+                        <ul class="list-unstyled">
+                            <li>
+                                <span
+                                    data-ng-bind="::$ctrl.serviceInfo.contactAdmin"
+                                ></span>
+                                <small
+                                    data-translate="web_paas_tile_subscription_contact_admin"
+                                ></small>
+                            </li>
+                            <li>
+                                <span
+                                    data-ng-bind="::$ctrl.serviceInfo.contactBilling"
+                                ></span>
+                                <small
+                                    data-translate="web_paas_tile_subscription_contact_billing"
+                                ></small>
+                            </li>
+                            <li>
+                                <span
+                                    data-ng-bind="::$ctrl.serviceInfo.contactTech"
+                                ></span>
+                                <small
+                                    data-translate="web_paas_tile_subscription_contact_technical"
+                                ></small>
+                            </li>
+                        </ul>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{ ::'web_paas_tile_subscription_creation_date' | translate }}"
+                    data-description="{{ ::$ctrl.serviceInfo.creation | cucMomentFormat:'LL' }}"
+                >
+                </oui-tile-definition>
+            </div>
         </oui-tile>
     </div>
 </div>

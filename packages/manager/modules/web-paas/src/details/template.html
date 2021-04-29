@@ -18,8 +18,10 @@
                 data-active="$ctrl.currentActiveLink() === $ctrl.serviceLink"
                 ><span data-translate="web_paas_general_info"></span>
             </oui-header-tabs-item>
-            <oui-header-tabs-item data-href="{{:: $ctrl.userLink }}"
-                ><span data-translate="User Licenses"></span>
+            <oui-header-tabs-item
+                data-href="{{:: $ctrl.userLink }}"
+                data-active="$ctrl.currentActiveLink() === $ctrl.userLink"
+                ><span data-translate="web_paas_manage_users"></span>
             </oui-header-tabs-item>
         </oui-header-tabs>
     </oui-header>

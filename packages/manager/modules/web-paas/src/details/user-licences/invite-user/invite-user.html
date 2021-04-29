@@ -9,13 +9,21 @@
         data-secondary-action="$ctrl.cancel()"
         data-secondary-label="{{ ::'web_paas_common_cancel' | translate }}"
         data-on-dismiss="$ctrl.cancel()"
-        data-heading="{{ ::'web_paas_user_licences_invite_user' | translate }}"
+        data-heading="{{ ::'web_paas_user_licences_invite_user_title' | translate }}"
         data-loading="$ctrl.isLoading"
         data-primary-disabled="userInvite.$invalid"
     >
         <span
-            data-tranlsate="{{ ::'invite user description' | translate }}"
+            data-translate="{{ ::'web_paas_user_licences_invite_user_description_1' | translate }}"
         ></span>
+        <ul>
+            <li
+                data-translate="{{ ::'web_paas_user_licences_invite_user_description_2' | translate }}"
+            ></li>
+            <li
+                data-translate="{{ ::'web_paas_user_licences_invite_user_description_3' | translate }}"
+            ></li>
+        </ul>
         <oui-field data-label="{{:: 'NIC' | translate }}">
             <input
                 class="oui-input"

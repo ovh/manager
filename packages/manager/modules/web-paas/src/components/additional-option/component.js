@@ -3,8 +3,10 @@ import template from './template.html';
 
 export default {
   bindings: {
+    disabled: '<',
     option: '<',
     plan: '<',
+    project: '<',
   },
   controller,
   template,

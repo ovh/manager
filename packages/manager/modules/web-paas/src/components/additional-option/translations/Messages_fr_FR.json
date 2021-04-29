@@ -1,8 +1,8 @@
 {
-  "web_paas_offer_additional_option_title_staging_environment": "Additional enivronments",
-  "web_paas_offer_additional_option_title_storage": "Additional Storage",
-  "web_paas_offer_additional_option_title_user_license": "Additional license",
-  "web_paas_offer_additional_option_price_desc_staging_environment": "/month",
-  "web_paas_offer_additional_option_price_desc_storage": "/environment/month",
-  "web_paas_offer_additional_option_price_desc_user_license": "/month"
+  "web_paas_offer_additional_option_title_staging_environment": "Ajouter des environnements de test",
+  "web_paas_offer_additional_option_title_storage": "Ajouter du stockage",
+  "web_paas_offer_additional_option_title_user_license": "Ajouter des licences utilisateur",
+  "web_paas_offer_additional_option_price_desc_staging_environment": "/mois",
+  "web_paas_offer_additional_option_price_desc_storage": "/environnement/mois",
+  "web_paas_offer_additional_option_price_desc_user_license": "/mois"
 }

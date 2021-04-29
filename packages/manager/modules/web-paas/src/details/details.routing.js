@@ -1,3 +1,5 @@
+import find from 'lodash/find';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('web-paas.dashboard', {
     url: '/:projectId',
@@ -5,9 +7,17 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       projectId: /* @ngInject */ ($transition$) =>
         $transition$.params().projectId,
+      catalog: /* @ngInject */ (WebPaas, user) =>
+        WebPaas.getCatalog(user.ovhSubsidiary),
       project: /* @ngInject */ (WebPaas, projectId) =>
         WebPaas.getProjectDetails(projectId),
+      selectedPlan: /* @ngInject */ (catalog, project) =>
+        project.setSelectedPlan(
+          find(catalog.plans, { planCode: project.offer }),
+        ),
       projectName: /* @ngInject */ (project) => project.projectName,
+      serviceInfo: /* @ngInject */ (projectId, WebPaas) =>
+        WebPaas.getServiceInfos(projectId),
       serviceLink: /* @ngInject */ ($state, projectId) =>
         $state.href('web-paas.dashboard.service', {
           projectId,

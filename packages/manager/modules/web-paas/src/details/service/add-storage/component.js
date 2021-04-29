@@ -3,12 +3,12 @@ import template from './template.html';
 
 export default {
   bindings: {
-    disabled: '<',
-    previewMode: '<',
-    offers: '<',
+    catalog: '<',
+    projectId: '<',
+    storageAddon: '<',
     selectedPlan: '<',
-    onSelect: '&',
-    user: '<',
+    project: '<',
+    goBack: '<',
   },
   controller,
   template,

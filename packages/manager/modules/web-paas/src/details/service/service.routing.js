@@ -9,7 +9,14 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('web-paas.dashboard.service.cancel', {
           projectId,
         }),
-
+      goToAddStorage: /* @ngInject */ ($state, projectId) => () =>
+        $state.go('web-paas.dashboard.service.add-storage', {
+          projectId,
+        }),
+      goToEditPlan: /* @ngInject */ ($state, project) => () =>
+        $state.go('web-paas.add', {
+          selectedProject: project,
+        }),
       breadcrumb: () => false,
     },
   });

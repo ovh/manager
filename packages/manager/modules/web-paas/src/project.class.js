@@ -1,18 +1,24 @@
 import get from 'lodash/get';
-import { STATUS } from './web-paas.constants';
+import set from 'lodash/set';
+import { STATUS, OFFER_NAME } from './web-paas.constants';
+import Plan from './plan.class';
 
 export default class Project {
   constructor({
+    addons,
     offer,
     metadata,
     partnerProjectId,
     projectName,
     serviceId,
     startDate,
+    offerName,
     status,
   }) {
     Object.assign(this, {
+      addons,
       offer,
+      offerName,
       metadata,
       partnerProjectId,
       projectName,
@@ -20,6 +26,7 @@ export default class Project {
       startDate,
       status,
     });
+    this.setOfferName();
   }
 
   isActive() {
@@ -40,5 +47,29 @@ export default class Project {
 
   availableEnvironments() {
     return get(this, 'metadata.project.availableEnvironments');
+  }
+
+  totalLicences() {
+    return get(this, 'metadata.project.userLicenses');
+  }
+
+  totalStorage() {
+    return get(this, 'metadata.project.storage');
+  }
+
+  getVcpu() {
+    return get(this, 'metadata.project.vcpu');
+  }
+
+  totalEnvironment() {
+    return get(this, 'metadata.project.environment');
+  }
+
+  setSelectedPlan(plan) {
+    set(this, 'selectedPlan', new Plan(plan));
+  }
+
+  setOfferName() {
+    set(this, 'offerName', OFFER_NAME[this.offer.split('-')[0]]);
   }
 }

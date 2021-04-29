@@ -1,4 +1,4 @@
-<div class="oui-tile d-flex m-2 w-75">
+<div class="oui-tile d-flex m-2">
     <h4 class="oui-tile__title ng-binding">
         <span
             data-translate="{{ 'web_paas_offer_additional_option_title_' + $ctrl.option.family}}"
@@ -15,11 +15,13 @@
             name="numeric"
             model="$ctrl.option.quantity"
             min="0"
+            disabled="$ctrl.disabled"
             max="$ctrl.plan.getMaxLicenses()"
             data-ng-if="$ctrl.option.family === 'user_license'"
         ></oui-numeric>
         <oui-numeric
             name="numeric"
+            disabled="$ctrl.disabled"
             model="$ctrl.option.quantity"
             min="0"
             max="$ctrl.plan.getMaxStorage()"
@@ -27,6 +29,7 @@
         ></oui-numeric>
         <oui-numeric
             name="numeric"
+            disabled="$ctrl.disabled"
             model="$ctrl.option.quantity"
             min="0"
             max="$ctrl.plan.getMaxEnvironment()"

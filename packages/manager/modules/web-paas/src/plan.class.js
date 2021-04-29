@@ -14,6 +14,7 @@ export default class Plan {
     pricings,
     product,
     vcpuConfig,
+    available,
   }) {
     Object.assign(this, {
       addonFamilies,
@@ -26,6 +27,7 @@ export default class Plan {
       pricings,
       product,
       vcpuConfig,
+      available,
     });
   }
 
@@ -46,6 +48,12 @@ export default class Plan {
   getProdEnvironment() {
     return find(get(this, 'blobs.commercial.features'), {
       name: 'production_environment_included',
+    }).value;
+  }
+
+  getLicences() {
+    return find(get(this, 'blobs.commercial.features'), {
+      name: 'user_licences_included',
     }).value;
   }
 

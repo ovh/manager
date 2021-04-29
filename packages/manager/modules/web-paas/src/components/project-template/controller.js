@@ -24,4 +24,10 @@ export default class WebPaasProjectTemplateCtrl {
       this.onSelect(template);
     }
   }
+
+  onChangeSearch(value) {
+    return value === ''
+      ? this.paginate(this.pageSize, this.offset)
+      : this.paginate(100, 1);
+  }
 }

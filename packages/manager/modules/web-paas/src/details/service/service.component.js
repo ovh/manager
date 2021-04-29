@@ -2,11 +2,13 @@ import template from './service.html';
 
 const component = {
   bindings: {
-    createProject: '<',
+    goToEditPlan: '<',
     terminateProject: '<',
     project: '<',
     projectId: '<',
     openPartnerConsole: '<',
+    serviceInfo: '<',
+    goToAddStorage: '<',
   },
   template,
 };
