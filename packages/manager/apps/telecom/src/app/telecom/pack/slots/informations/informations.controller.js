@@ -58,7 +58,7 @@ export default /* @ngInject */ function PackInformationCtrl(
     self.servicesStateLink = {
       igmap: IG_MAP_URL.FR,
       travaux: TRAVAUX_URL,
-      guides: GUIDES_URL,
+      guides: GUIDES_URL.FR,
     };
 
     return $q
