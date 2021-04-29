@@ -1,3 +1,12 @@
+## [3.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.12.0...@ovh-ux/manager-hub-app@3.12.1) (2021-04-29)
+
+
+### Bug Fixes
+
+* **incident:** update wording ([#4854](https://github.com/ovh/manager/issues/4854)) ([a0c9d5a](https://github.com/ovh/manager/commit/a0c9d5adbe170cecacad75e03088759c985dfbb7))
+
+
+
 # [3.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.11.0...@ovh-ux/manager-hub-app@3.12.0) (2021-04-29)
 
 
