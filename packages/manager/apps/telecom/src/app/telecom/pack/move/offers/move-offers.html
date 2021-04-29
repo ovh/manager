@@ -141,7 +141,10 @@
                             >
                                 <span
                                     ng-if="offer.prices.installFees.price"
-                                    data-ng-bind-html="offer.prices.installFees.price.text | tucFormatPrice"
+                                    data-ng-bind-html="offer.prices.installFees.price.text | tucFormatPrice { withoutTax: false }"
+                                ></span>
+                                <span
+                                    data-translate="common_without_tax"
                                 ></span>
 
                                 <!-- Other Promotion -->
@@ -160,8 +163,11 @@
                                     <del>
                                         <span
                                             class="text-small"
-                                            data-ng-bind-html="offer.prices.promotion.installFee.discount.text | tucFormatPrice">
+                                            data-ng-bind-html="offer.prices.promotion.installFee.discount.text | tucFormatPrice: { withoutTax: false }">
                                         </span>
+                                        <span
+                                            data-translate="common_without_tax"
+                                        ></span>
                                     </del>
                                 </div>
                             </td>
