@@ -4,6 +4,8 @@
   "manager_hub_incident_status_service_type": "Type de service",
   "manager_hub_incident_status_service_status": "État",
   "manager_hub_incident_status_service_rack": "Baie",
+  "manager_hub_incident_status_service_backup": "Backup",
+  "manager_hub_incident_status_service_backup_download": "Télécharger",
   "manager_hub_incident_status_service_status_RECOVERABLE": "Récupérable",
   "manager_hub_incident_status_service_status_NON_RECOVERABLE": "Non récupérable",
   "manager_hub_incident_status_service_status_TO_ASSESS": "En cours d'investigation",
