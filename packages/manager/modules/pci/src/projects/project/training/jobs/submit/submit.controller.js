@@ -1,5 +1,4 @@
 import get from 'lodash/get';
-import remove from 'lodash/remove';
 import { nameGenerator } from '../../../data-processing/data-processing.utils';
 import { COMMUNITY_URL } from '../../training.constants';
 import convertJobSpecToCliCommand from '../../command_line_converter';
@@ -20,17 +19,47 @@ export default class PciTrainingJobsSubmitController {
     this.atInternet = atInternet;
   }
 
+  addHttpHeader() {
+    this.httpHeader.push({
+      added: false,
+      model: {},
+    });
+  }
+
+  onHttpHeaderAddBtnClick(index) {
+    this.httpHeader[index].added = true;
+    this.job.volumes.push({
+      region: this.httpHeader[index].model.container.region,
+      container: this.httpHeader[index].model.container.name,
+      mountPath: this.httpHeader[index].model.mountPath,
+      permission: this.httpHeader[index].model.permission,
+    });
+    this.addHttpHeader();
+    this.job.validNextStep = this.validateVolume();
+  }
+
+  onHttpHeaderDeleteBtnClick(index) {
+    this.httpHeader.splice(index, 1);
+    this.job.volumes.splice(index, 1);
+    this.filterContainers();
+  }
+
   $onInit() {
+    this.httpHeader = [];
     this.volumesPermissions = ['RO', 'RW'];
     this.communityUrl = COMMUNITY_URL;
     // Form payload
     this.job = {
+      addVolume: false,
+      validNextStep: true,
+      validVolume: true,
       region: null,
       name: null,
       image: {
         id: null,
       },
       command: null,
+      valid: true,
       volumes: [],
       resources: {
         gpu: 1,
@@ -63,39 +92,24 @@ export default class PciTrainingJobsSubmitController {
       });
   }
 
-  onAddVolume(form) {
-    const volume = {
-      region: form.container.$viewValue.region,
-      container: form.container.$viewValue.name,
-      mountPath: form.mountPath.$viewValue,
-      permission: form.permission.$viewValue,
-    };
-
-    this.job.volumes.push(volume);
-    this.filterContainers();
+  /**
+   * Validation of the volume to have atleast one volume and if
+   * volume is added, it should have no field empty
+   */
+  validateVolume() {
+    this.job.validVolume =
+      !this.httpHeader.some(
+        (volume) =>
+          !volume.added &&
+          volume.model.container?.description &&
+          volume.model.container?.name &&
+          volume.model.container?.region,
+      ) && this.job.volumes.length > 0;
+    return this.job.validVolume;
   }
 
-  // Dirty hack to validate the oui-inline-adder form
-  // eslint-disable-next-line class-methods-use-this
-  forceSubmitContainer(form) {
-    form.$$controls.forEach((innerForm) => {
-      // eslint-disable-next-line no-param-reassign
-      innerForm.$error = {};
-      innerForm.$setPristine();
-    });
-    // eslint-disable-next-line no-param-reassign
-    form.$valid = true;
-
-    return true;
-  }
-
-  onRemoveVolume(form) {
-    const container = form.container.$viewValue;
-    remove(
-      this.job.volumes,
-      (vol) =>
-        vol.region === container.region && vol.container === container.name,
-    );
+  submitVolume() {
+    this.job.validNextStep = this.validateVolume();
     this.filterContainers();
   }
 
@@ -186,5 +200,14 @@ export default class PciTrainingJobsSubmitController {
       .finally(() => {
         this.isSubmit = false;
       });
+  }
+
+  changeAddVolume(addVolume) {
+    if (!addVolume) {
+      this.httpHeader = [];
+      this.job.volumes = [];
+    } else {
+      this.addHttpHeader();
+    }
   }
 }

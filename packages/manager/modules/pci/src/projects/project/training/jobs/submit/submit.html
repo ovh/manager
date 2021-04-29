@@ -128,7 +128,8 @@
         <oui-step-form
             data-header="{{:: 'pci_projects_project_training_jobs_submit_select_data' | translate  }}"
             data-editable="!$ctrl.isSubmit"
-            data-on-submit="$ctrl.forceSubmitContainer(form)"
+            valid="$ctrl.validateVolume() || !$ctrl.job.addVolume"
+            data-on-submit="$ctrl.submitVolume()"
         >
             <div data-ng-if="!$ctrl.containers.length">
                 <div
@@ -145,76 +146,128 @@
                     ></span>
                 </button>
             </div>
-            <oui-inline-adder
+            <oui-field
                 data-ng-if="$ctrl.containers.length"
-                data-on-add="$ctrl.onAddVolume(form)"
-                data-on-remove="$ctrl.onRemoveVolume(form)"
+                data-size="xl"
+                data-label="{{:: 'pci_projects_project_training_jobs_submit_select_data_select' | translate  }}"
             >
-                <oui-inline-adder-row>
-                    <oui-inline-adder-field>
-                        <oui-field
-                            data-label="{{:: 'pci_projects_project_training_jobs_submit_data_container' | translate  }}"
-                        >
-                            <oui-select
-                                id="container"
-                                name="container"
-                                data-model="container"
-                                data-items="$ctrl.filteredContainers"
-                                data-match="description"
-                                data-searchable
-                                data-required
-                            >
-                            </oui-select>
-                        </oui-field>
-                    </oui-inline-adder-field>
-                    <oui-inline-adder-field>
-                        <oui-field
-                            data-label="{{:: 'pci_projects_project_training_jobs_submit_data_mount_path' | translate  }}"
-                        >
-                            <input
-                                type="text"
-                                class="oui-input"
-                                placeholder="/workspace/demo"
-                                data-ng-init="mountPath = '/workspace/container_' + $ctrl.job.volumes.length"
-                                name="mountPath"
-                                data-valid-mount="$ctrl.job.volumes"
-                                data-ng-model="mountPath"
-                                data-ng-pattern="/^\/(\S)*/"
-                                data-ng-model-options="{ debounce: 500 }"
-                                required
-                            />
-                        </oui-field>
-                    </oui-inline-adder-field>
-                    <oui-inline-adder-field data-adaptive>
-                        <oui-field
-                            data-label="{{:: 'pci_projects_project_training_jobs_submit_data_permission' | translate  }}"
-                            size="m"
-                        >
-                            <label class="oui-select">
-                                <select
-                                    name="permission"
-                                    ng-model="permission"
-                                    class="oui-select__input"
-                                    required
-                                >
-                                    <option
-                                        ng-repeat="perm in $ctrl.volumesPermissions"
-                                        value="{{perm}}"
-                                    >{{::
-                                        'pci_projects_project_training_jobs_submit_data_permission_'
-                                    + perm | translate }}
-                                    </option
+                <oui-switch
+                    data-model="$ctrl.job.addVolume"
+                    name="addVolume"
+                    on-change="$ctrl.changeAddVolume(modelValue)"
+                >
+                </oui-switch>
+            </oui-field>
+            <div class="oui-field__control" data-ng-if="$ctrl.job.addVolume">
+                <div class="oui-inline-adder mb-2">
+                    <div
+                        class="oui-inline-adder__form"
+                        data-ng-class="{ 'oui-inline-adder__form_added': $ctrl.httpHeader[$index].added }"
+                        data-ng-repeat="httpHeader in $ctrl.httpHeader track by $index"
+                    >
+                        <fieldset class="oui-inline-adder__fieldset">
+                            <div class="oui-inline-adder__row">
+                                <div class="oui-inline-adder__field">
+                                    <oui-field
+                                        data-label="{{:: 'pci_projects_project_training_jobs_submit_data_container' | translate  }}"
                                     >
-                                </select>
+                                        <oui-select
+                                            name="container"
+                                            data-model="$ctrl.httpHeader[$index].model.container"
+                                            data-items="$ctrl.filteredContainers"
+                                            data-match="description"
+                                            data-searchable
+                                            data-required="$ctrl.httpHeader[$index].model.container"
+                                            data-disabled="$ctrl.httpHeader[$index].added"
+                                        >
+                                        </oui-select>
+                                    </oui-field>
+                                </div>
+                                <div class="oui-inline-adder__field">
+                                    <oui-field
+                                        data-label="{{:: 'pci_projects_project_training_jobs_submit_data_mount_path' | translate  }}"
+                                    >
+                                        <input
+                                            type="text"
+                                            class="oui-input"
+                                            placeholder="/workspace/demo"
+                                            data-ng-init="$ctrl.httpHeader[$index].model.mountPath = '/workspace/container_' + ($ctrl.httpHeader.length - 1)"
+                                            name="mountPath"
+                                            data-valid-mount="$ctrl.job.volumes"
+                                            data-ng-model="$ctrl.httpHeader[$index].model.mountPath"
+                                            data-ng-pattern="/^\/(\S)*/"
+                                            data-ng-model-options="{ debounce: 500 }"
+                                            data-ng-required="$ctrl.httpHeader[$index].model.mountPath"
+                                            data-ng-disabled="$ctrl.httpHeader[$index].added"
+                                        />
+                                    </oui-field>
+                                </div>
+                                <div class="oui-inline-adder__field">
+                                    <oui-field
+                                        data-label="{{:: 'pci_projects_project_training_jobs_submit_data_permission' | translate  }}"
+                                        size="m"
+                                    >
+                                        <label class="oui-select">
+                                            <select
+                                                name="permission"
+                                                ng-model="$ctrl.httpHeader[$index].model.permission"
+                                                class="oui-select__input"
+                                                data-ng-required="$ctrl.httpHeader[$index].model.permission"
+                                                data-ng-disabled="$ctrl.httpHeader[$index].added"
+                                            >
+                                                <option
+                                                    ng-repeat="perm in $ctrl.volumesPermissions"
+                                                    value="{{perm}}"
+                                                    data-ng-bind="::'pci_projects_project_training_jobs_submit_data_permission_'+ perm | translate"
+                                                >
+                                                </option>
+                                            </select>
+                                            <span
+                                                class="oui-icon oui-icon-chevron-down"
+                                                aria-hidden="true"
+                                            ></span>
+                                        </label>
+                                    </oui-field>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <footer class="oui-inline-adder__footer">
+                            <button
+                                type="button"
+                                class="oui-inline-adder__action oui-button oui-button_primary oui-button_s"
+                                data-translate-attr="{title: 'dedicated_server_install_image_config_http_header_add'}"
+                                data-ng-click="$ctrl.onHttpHeaderAddBtnClick($index)"
+                                data-ng-if="!$ctrl.httpHeader[$index].added"
+                                data-ng-disabled="!$ctrl.httpHeader[$index].model.container || !$ctrl.httpHeader[$index].model.mountPath ||!$ctrl.httpHeader[$index].model.permission"
+                            >
                                 <span
-                                    class="oui-icon oui-icon-chevron-down"
+                                    data-translate="pci_projects_project_training_jobs_submit_add_volume"
+                                ></span>
+                            </button>
+                            <button
+                                type="button"
+                                class="oui-inline-adder__action oui-button oui-button_primary oui-button_s"
+                                data-translate-attr="{title: 'dedicated_server_install_image_config_http_header_delete'}"
+                                data-ng-click="$ctrl.onHttpHeaderDeleteBtnClick($index)"
+                                data-ng-if="$ctrl.httpHeader[$index].added"
+                            >
+                                <span
+                                    class="oui-icon oui-icon-trash"
                                     aria-hidden="true"
                                 ></span>
-                            </label>
-                        </oui-field>
-                    </oui-inline-adder-field>
-                </oui-inline-adder-row>
-            </oui-inline-adder>
+                            </button>
+                        </footer>
+                    </div>
+                    <oui-message
+                        type="warning"
+                        data-ng-if="!$ctrl.job.validNextStep"
+                    >
+                        <span
+                            data-translate="pci_projects_project_training_jobs_submit_add_volume_warning"
+                        ></span>
+                    </oui-message>
+                </div>
+            </div>
         </oui-step-form>
 
         <oui-step-form
@@ -420,10 +473,16 @@
                             class="h-100"
                             data-heading="{{:: 'pci_projects_project_training_jobs_submit_validation_equivalent_command' | translate  }}"
                         >
-                            <span data-translate="pci_projects_project_training_jobs_submit_ovhai_info"></span>
-                            <pre>{{:: 'pci_projects_project_training_parter_cli_name' | translate
-                                }} {{ $ctrl.cliCommand() }}</pre>
-                            <span data-translate="pci_projects_project_training_jobs_submit_ovhai_help"></span>
+                            <span
+                                data-translate="pci_projects_project_training_jobs_submit_ovhai_info"
+                            ></span>
+                            <pre>
+{{:: 'pci_projects_project_training_parter_cli_name' | translate
+                                }} {{ $ctrl.cliCommand() }}</pre
+                            >
+                            <span
+                                data-translate="pci_projects_project_training_jobs_submit_ovhai_help"
+                            ></span>
                             <pre>ovhai job run --help</pre>
                         </oui-tile>
                     </div>

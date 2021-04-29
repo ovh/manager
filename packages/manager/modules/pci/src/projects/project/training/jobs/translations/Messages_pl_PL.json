@@ -43,5 +43,8 @@
   "pci_projects_project_training_jobs_id": "ID zadania",
   "pci_projects_project_training_jobs_common_cancel": "Anuluj",
   "pci_projects_project_training_jobs_resubmit_success": "Zadanie zostało poprawnie uruchomione",
-  "pci_projects_project_training_jobs_resubmit_error": "Wystąpił błąd podczas ponownego uruchamiania zadania: {{message}}"
+  "pci_projects_project_training_jobs_resubmit_error": "Wystąpił błąd podczas ponownego uruchamiania zadania: {{message}}",
+  "pci_projects_project_training_jobs_submit_add_volume": "Dodaj",
+  "pci_projects_project_training_jobs_submit_select_data_select": "Chcę przypisać wolumeny danych do zadania",
+  "pci_projects_project_training_jobs_submit_add_volume_warning": "Uwaga, jeden lub kilka wolumenów nie zostało dodanych. Popraw, aby przejść do następnego etapu."
 }
